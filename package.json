@@ -8,5 +8,6 @@
   },
   "dependencies": {
     "gridsome": "^0.7.0"
-  }
+  },
+  "devDependencies": {}
 }
