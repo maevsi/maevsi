@@ -1,9 +1,8 @@
 <template>
   <div class="layout">
     <header class="header">
-      <strong>
-        <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-      </strong>
+      <g-link to="/"><g-image alt="Example image" src="~/assets/default-monochrome.svg" width="135" /></g-link>
+      <!--{{ $static.metadata.siteName }}-->
       <nav class="nav">
         <g-link class="nav__link" to="/">Home</g-link>
         <g-link class="nav__link" to="/about/">About</g-link>

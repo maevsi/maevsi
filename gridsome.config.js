@@ -5,6 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
+  icon: './src/assets/isolated-layout.svg',
   siteName: 'maevsi',
   plugins: []
 }
