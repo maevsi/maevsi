@@ -6,6 +6,8 @@
 
 module.exports = {
   icon: './src/assets/isolated-layout.svg',
+  siteDescription: 'A manager for user supported events.',
   siteName: 'maevsi',
+  siteUrl: 'https://maev.si',
   plugins: []
 }
