@@ -1,8 +1,8 @@
 ############
 # Serve Vue.
 
-# Should be the specific version of node:current-slim.
-FROM node:12.13.0-stretch-slim@sha256:b6791b911fb5d0be22c9b12d608d9f70e089b9ffb5f83e1e01012df3be0f75f6 AS development
+# Should be the specific version of node:buster-slim.
+FROM node:13.1.0-buster-slim@sha256:ecde3c1c140216c8540db4deefeb757c33d9c8da3a9a35dfa144c9da6353b3e0 AS development
 
 # Install gridsome.
 RUN yarn global add @gridsome/cli
@@ -12,6 +12,16 @@ WORKDIR /srv/app/
 COPY ./gridsome/ /srv/app/
 
 RUN yarn
+
+# Install sqitch.
+RUN apt-get update && apt-get -y install libdbd-pg-perl postgresql-client sqitch
+
+COPY ./sqitch/ /srv/sqitch/
+COPY ./docker-entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+CMD ["develop"]
 
 
 ########################
