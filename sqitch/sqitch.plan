@@ -1,3 +1,5 @@
 %syntax-version=1.0.0
 %project=maevsi
 %uri=https://github.com/maevsi/maevsi/
+
+schema_public 2019-11-19T20:30:44Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add public schema.
