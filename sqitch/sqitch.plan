@@ -5,3 +5,4 @@
 schema_public 2019-11-19T20:30:44Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add public schema.
 schema_private 2019-11-19T20:48:13Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add private schema.
 extension_pgcrypto 2019-11-19T21:06:17Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension pgcrypto.
+extension_uuid-ossp 2019-11-19T21:15:41Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension uuid-ossp.
