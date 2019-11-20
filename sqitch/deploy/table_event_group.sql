@@ -6,7 +6,7 @@ BEGIN;
 
 CREATE TABLE maevsi.event_group (
     "id"            SERIAL PRIMARY KEY,
-    "name"          TEXT CHECK (char_length("name") < 100),
+    "name"          TEXT NOT NULL CHECK (char_length("name") < 100),
     "visibility"    event_visibility NOT NULL,
     "organizer_id"  INTEGER REFERENCES maevsi_private.account("id") NOT NULL,
     "archived"      BOOLEAN NOT NULL DEFAULT FALSE,
