@@ -7,3 +7,4 @@ schema_private 2019-11-19T20:48:13Z Jonas Thelemann <e-mail@jonas-thelemann.de> 
 extension_pgcrypto 2019-11-19T21:06:17Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension pgcrypto.
 extension_uuid-ossp 2019-11-19T21:15:41Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension uuid-ossp.
 table_person [schema_public] 2019-11-19T22:36:09Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table Person.
+table_account [schema_private table_person] 2019-11-20T00:27:19Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table Account.
