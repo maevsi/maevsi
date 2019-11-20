@@ -1,5 +1,4 @@
 -- Deploy maevsi:enum_event_visibility to pg
--- requires: schema_public
 
 BEGIN;
 
