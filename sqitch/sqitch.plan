@@ -6,6 +6,6 @@ schema_public 2019-11-19T20:30:44Z Jonas Thelemann <e-mail@jonas-thelemann.de> #
 schema_private 2019-11-19T20:48:13Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add private schema.
 extension_pgcrypto 2019-11-19T21:06:17Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension pgcrypto.
 extension_uuid-ossp 2019-11-19T21:15:41Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension uuid-ossp.
-table_person [schema_public] 2019-11-19T22:36:09Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table Person.
-table_account [schema_private table_person] 2019-11-20T00:27:19Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table Account.
-index_account_person-id [table_account] 2019-11-20T00:59:30Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the Account table's person_id field.
+table_contact [schema_public] 2019-11-19T22:36:09Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table Contact.
+table_account [schema_private table_contact] 2019-11-20T00:27:19Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table Account.
+index_account_contact-id [table_account] 2019-11-20T00:59:30Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the Account table's contact_id field.

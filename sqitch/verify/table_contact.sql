@@ -1,4 +1,4 @@
--- Verify maevsi:table_person on pg
+-- Verify maevsi:table_contact on pg
 
 BEGIN;
 
@@ -7,6 +7,6 @@ SELECT "id",
        "last_name",
        "address",
        "e-mail_address"
-FROM maevsi.person WHERE FALSE;
+FROM maevsi.contact WHERE FALSE;
 
 ROLLBACK;

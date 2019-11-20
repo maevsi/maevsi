@@ -1,9 +1,9 @@
--- Deploy maevsi:table_person to pg
+-- Deploy maevsi:table_contact to pg
 -- requires: schema_public
 
 BEGIN;
 
-CREATE TABLE maevsi.person (
+CREATE TABLE maevsi.contact (
     "id"                SERIAL PRIMARY KEY,
     "first_name"        TEXT CHECK (char_length("first_name") < 100),
     "last_name"         TEXT CHECK (char_length("last_name") < 100),
@@ -11,6 +11,6 @@ CREATE TABLE maevsi.person (
     "e-mail_address"    TEXT CHECK (char_length("e-mail_address") < 320 AND "e-mail_address" ~* '^.+@.+\..+$')
 );
 
-COMMENT ON TABLE maevsi.person IS 'Contact data.';
+COMMENT ON TABLE maevsi.contact IS 'Contact data.';
 
 COMMIT;

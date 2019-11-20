@@ -3,7 +3,7 @@
 BEGIN;
 
 SELECT "id",
-       "person_id",
+       "contact_id",
        "username",
        "e-mail_address",
        "password_hash"
