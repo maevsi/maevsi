@@ -8,3 +8,4 @@ extension_pgcrypto 2019-11-19T21:06:17Z Jonas Thelemann <e-mail@jonas-thelemann.
 extension_uuid-ossp 2019-11-19T21:15:41Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension uuid-ossp.
 table_person [schema_public] 2019-11-19T22:36:09Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table Person.
 table_account [schema_private table_person] 2019-11-20T00:27:19Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table Account.
+index_account_person-id [table_account] 2019-11-20T00:59:30Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the Account table's person_id field.
