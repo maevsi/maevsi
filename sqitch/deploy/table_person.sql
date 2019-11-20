@@ -8,7 +8,7 @@ CREATE TABLE maevsi.person (
     "first_name"        TEXT CHECK (char_length("first_name") < 100),
     "last_name"         TEXT CHECK (char_length("last_name") < 100),
     "address"           TEXT CHECK (char_length("address") < 300),
-    "e-mail_address"    TEXT CHECK (char_length("e-mail_address") < 320)
+    "e-mail_address"    TEXT CHECK (char_length("e-mail_address") < 320 AND "e-mail_address" ~* '^.+@.+\..+$')
 );
 
 COMMIT;
