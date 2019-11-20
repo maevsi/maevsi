@@ -1,5 +1,5 @@
 -- Deploy maevsi:table_event to pg
--- requires: table_event_group
+-- requires: schema_public
 -- requires: table_account
 -- requires: enum_event_visibility
 

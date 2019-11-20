@@ -1,6 +1,8 @@
 -- Deploy maevsi:table_account to pg
 -- requires: schema_private
 -- requires: table_contact
+-- requires: extension_pgcrypto
+-- requires: extension_uuid-ossp
 
 BEGIN;
 
