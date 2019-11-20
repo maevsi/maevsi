@@ -12,5 +12,10 @@ CREATE TABLE maevsi.contact (
 );
 
 COMMENT ON TABLE maevsi.contact IS 'Contact data.';
+COMMENT ON COLUMN maevsi.contact.id IS 'The record''s id.';
+COMMENT ON COLUMN maevsi.contact.first_name IS 'The contact''s first name.';
+COMMENT ON COLUMN maevsi.contact.last_name IS 'The contact''s last name.';
+COMMENT ON COLUMN maevsi.contact.address IS 'The contact''s physical address.';
+COMMENT ON COLUMN maevsi.contact."e-mail_address" IS 'The contact''s e-mail address.';
 
 COMMIT;
