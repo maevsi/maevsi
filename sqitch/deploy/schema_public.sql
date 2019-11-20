@@ -4,4 +4,6 @@ BEGIN;
 
 CREATE SCHEMA maevsi;
 
+COMMENT ON SCHEMA "maevsi" IS 'Is used by PostGraphile.';
+
 COMMIT;

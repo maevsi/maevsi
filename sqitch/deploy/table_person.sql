@@ -11,4 +11,6 @@ CREATE TABLE maevsi.person (
     "e-mail_address"    TEXT CHECK (char_length("e-mail_address") < 320 AND "e-mail_address" ~* '^.+@.+\..+$')
 );
 
+COMMENT ON TABLE maevsi.person IS 'Contact data.';
+
 COMMIT;

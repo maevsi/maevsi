@@ -13,4 +13,6 @@ CREATE TABLE maevsi_private.account (
     "password_hash"     TEXT NOT NULL
 );
 
+COMMENT ON TABLE maevsi_private.account IS 'Account data.';
+
 COMMIT;
