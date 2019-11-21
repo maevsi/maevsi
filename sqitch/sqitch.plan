@@ -13,3 +13,4 @@ enum_event_visibility 2019-11-20T03:40:01Z Jonas Thelemann <e-mail@jonas-thelema
 table_event_group [schema_public table_account enum_event_visibility] 2019-11-20T04:14:41Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event_group.
 index_event-group_organizer-id [table_event_group] 2019-11-20T04:16:30Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event group table's organizer_id field.
 table_event [schema_public table_account enum_event_visibility] 2019-11-20T14:38:27Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event.
+index_event_organizer-id [table_event] 2019-11-21T00:15:31Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event table's organizer_id field.
