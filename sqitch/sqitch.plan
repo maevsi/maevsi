@@ -26,3 +26,4 @@ index_event-grouping_event-group-id [table_event_grouping] 2019-11-21T01:13:16Z 
 function_account_register [schema_public table_contact table_account extension_pgcrypto] 2019-11-21T01:43:29Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add function account register.
 role_postgraphile 2019-11-21T15:22:09Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role postgraphile.
 role_anonymous [role_postgraphile] 2019-11-21T16:00:27Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role anonymous.
+role_account [role_postgraphile] 2019-11-21T16:55:44Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role account.
