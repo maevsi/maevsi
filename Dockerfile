@@ -28,7 +28,7 @@ CMD ["develop"]
 # Build and compile Vue.
 
 # Should be the specific version of node:current-slim.
-FROM node:12.13.0-stretch-slim@sha256:b6791b911fb5d0be22c9b12d608d9f70e089b9ffb5f83e1e01012df3be0f75f6 AS build
+FROM node:13.1.0-stretch-slim@sha256:f5ae196a043965ee4dd2d94c242c7ef2582a2c19814ea27d68141b9ee7ffba68 AS build
 
 WORKDIR /srv/app/
 
