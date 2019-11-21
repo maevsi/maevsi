@@ -28,3 +28,4 @@ role_postgraphile 2019-11-21T15:22:09Z Jonas Thelemann <e-mail@jonas-thelemann.d
 role_anonymous [role_postgraphile] 2019-11-21T16:00:27Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role anonymous.
 role_account [role_postgraphile] 2019-11-21T16:55:44Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role account.
 type_jwt [schema_public] 2019-11-21T17:05:28Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add type jwt.
+function_authenticate [schema_public type_jwt table_account] 2019-11-21T17:18:21Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function to authenticate accounts.
