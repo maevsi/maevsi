@@ -12,9 +12,9 @@ CREATE TABLE maevsi.invite_contact (
     UNIQUE ("event_id", "contact_id")
 );
 
-COMMENT ON TABLE maevsi.invite_contact IS 'An invite for a contact, i.e. someone without an account.';
+COMMENT ON TABLE maevsi.invite_contact IS 'An invite for a contact, i.e. someone without an account. A bidirectional mapping between an event and a contact.';
 COMMENT ON COLUMN maevsi.invite_contact.id IS 'The record''s id.';
-COMMENT ON COLUMN maevsi.invite_contact.event_id IS 'The event''s id.';
-COMMENT ON COLUMN maevsi.invite_contact.contact_id IS 'The contact''s id.';
+COMMENT ON COLUMN maevsi.invite_contact.event_id IS 'The event''s id for which the invite is valid.';
+COMMENT ON COLUMN maevsi.invite_contact.contact_id IS 'The contact''s id for which the invite is valid.';
 
 COMMIT;

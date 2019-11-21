@@ -12,9 +12,9 @@ CREATE TABLE maevsi.invite_account (
     UNIQUE ("event_id", "account_id")
 );
 
-COMMENT ON TABLE maevsi.invite_account IS 'An invite for an account.';
+COMMENT ON TABLE maevsi.invite_account IS 'An invite for an account. A bidirectional mapping between an event and an account.';
 COMMENT ON COLUMN maevsi.invite_account.id IS 'The record''s id.';
-COMMENT ON COLUMN maevsi.invite_account.event_id IS 'The event''s id.';
-COMMENT ON COLUMN maevsi.invite_account.account_id IS 'The account''s id.';
+COMMENT ON COLUMN maevsi.invite_account.event_id IS 'The event''s id for which the invite is valid.';
+COMMENT ON COLUMN maevsi.invite_account.account_id IS 'The account''s id for which the invite is valid.';
 
 COMMIT;
