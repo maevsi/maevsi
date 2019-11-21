@@ -9,7 +9,7 @@ CREATE TABLE maevsi.event (
     "id"            SERIAL PRIMARY KEY,
     "name"          TEXT CHECK (char_length("name") < 100),
     "visibility"    event_visibility NOT NULL,
-    "organizer_id"  INTEGER REFERENCES maevsi_private.account("id") NOT NULL,
+    "organizer_id"  INTEGER REFERENCES maevsi_private.account("contact_id") NOT NULL,
     "place"         TEXT NOT NULL CHECK (char_length("place") < 300),
     "timestamp"     TIMESTAMP WITH TIME ZONE NOT NULL,
     "interval"      INTERVAL,

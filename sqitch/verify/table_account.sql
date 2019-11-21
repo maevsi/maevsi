@@ -2,8 +2,7 @@
 
 BEGIN;
 
-SELECT "id",
-       "contact_id",
+SELECT "contact_id",
        "username",
        "e-mail_address",
        "password_hash"
