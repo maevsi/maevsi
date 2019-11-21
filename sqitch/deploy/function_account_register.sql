@@ -18,7 +18,7 @@ BEGIN
         RETURNING * INTO contact;
 
     INSERT INTO maevsi_private.account("contact_id", "username", "e-mail_address", "password_hash", "last_activity") values
-        (contact.id, "username", "e-mail_address", crypt("password", gen_salt('bf')), now());
+        (contact.id, "username", "e-mail_address", maevsi.crypt("password", gen_salt('bf')), now());
 
     RETURN contact;
 END;
