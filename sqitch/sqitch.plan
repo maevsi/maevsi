@@ -16,3 +16,7 @@ table_event [schema_public table_account enum_event_visibility] 2019-11-20T14:38
 index_event_organizer-id [table_event] 2019-11-21T00:15:31Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event table's organizer_id field.
 table_invite_contact [schema_public table_event table_contact] 2019-11-21T00:31:25Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite contact.
 table_invite_account [schema_public table_event table_account] 2019-11-21T00:46:25Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite account.
+index_invite-account_event-id [table_invite_account] 2019-11-21T00:56:18Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's event_id field.
+index_invite-account_account-id [table_invite_account] 2019-11-21T00:56:35Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's account_id field.
+index_invite-contact_event-id [table_invite_contact] 2019-11-21T00:57:03Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite contact table's event_id field.
+index_invite-contact_contact-id [table_invite_contact] 2019-11-21T00:57:17Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite contact table's contact_id field.
