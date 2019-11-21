@@ -17,7 +17,7 @@ CREATE TABLE maevsi.event (
     UNIQUE ("organizer_id", "name")
 );
 
-COMMENT ON TABLE maevsi.event IS 'An events';
+COMMENT ON TABLE maevsi.event IS 'An event.';
 COMMENT ON COLUMN maevsi.event.id IS 'The record''s id.';
 COMMENT ON COLUMN maevsi.event.name IS 'The event''s name.';
 COMMENT ON COLUMN maevsi.event.visibility IS 'The event''s visibility.';
