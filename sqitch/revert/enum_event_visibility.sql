@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TYPE event_visibility;
+DROP TYPE maevsi.event_visibility;
 
 COMMIT;

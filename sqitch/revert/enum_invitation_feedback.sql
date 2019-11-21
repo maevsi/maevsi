@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TYPE invitation_feedback;
+DROP TYPE maevsi.invitation_feedback;
 
 COMMIT;

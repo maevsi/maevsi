@@ -2,6 +2,6 @@
 
 BEGIN;
 
-SELECT pg_catalog.has_type_privilege('invitation_feedback', 'usage');
+SELECT pg_catalog.has_type_privilege('maevsi.invitation_feedback', 'usage');
 
 ROLLBACK;

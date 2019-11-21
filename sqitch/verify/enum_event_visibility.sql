@@ -2,6 +2,6 @@
 
 BEGIN;
 
-SELECT pg_catalog.has_type_privilege('event_visibility', 'usage');
+SELECT pg_catalog.has_type_privilege('maevsi.event_visibility', 'usage');
 
 ROLLBACK;
