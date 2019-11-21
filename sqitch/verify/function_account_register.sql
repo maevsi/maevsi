@@ -2,6 +2,6 @@
 
 BEGIN;
 
--- XXX Add verifications here.
+SELECT pg_catalog.has_function_privilege('maevsi.account_register(TEXT, TEXT, TEXT)', 'execute');
 
 ROLLBACK;
