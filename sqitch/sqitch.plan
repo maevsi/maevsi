@@ -30,3 +30,4 @@ role_account [role_postgraphile] 2019-11-21T16:55:44Z Jonas Thelemann <e-mail@jo
 type_jwt [schema_public] 2019-11-21T17:05:28Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add type jwt.
 function_authenticate [schema_public type_jwt table_account] 2019-11-21T17:18:21Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function to authenticate accounts.
 function_account_current_id [schema_public table_account] 2019-11-21T17:51:41Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that get the current account id.
+function_account_password_change [schema_public table_account extension_pgcrypto] 2019-11-21T18:05:44Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that allows to change account passwords.
