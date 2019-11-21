@@ -20,3 +20,4 @@ index_invite-account_event-id [table_invite_account] 2019-11-21T00:56:18Z Jonas 
 index_invite-account_account-id [table_invite_account] 2019-11-21T00:56:35Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's account_id field.
 index_invite-contact_event-id [table_invite_contact] 2019-11-21T00:57:03Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite contact table's event_id field.
 index_invite-contact_contact-id [table_invite_contact] 2019-11-21T00:57:17Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite contact table's contact_id field.
+table_event_grouping [schema_public table_event table_event_group] 2019-11-21T01:05:49Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event grouping.
