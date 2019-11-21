@@ -27,3 +27,4 @@ function_account_register [schema_public table_contact table_account extension_p
 role_postgraphile 2019-11-21T15:22:09Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role postgraphile.
 role_anonymous [role_postgraphile] 2019-11-21T16:00:27Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role anonymous.
 role_account [role_postgraphile] 2019-11-21T16:55:44Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role account.
+type_jwt [schema_public] 2019-11-21T17:05:28Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add type jwt.
