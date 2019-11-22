@@ -26,4 +26,6 @@ COMMENT ON COLUMN maevsi.event_group.archived IS 'Indicates whether the event gr
 GRANT SELECT ON TABLE maevsi.event_group TO maevsi_account, maevsi_anonymous;
 GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event_group TO maevsi_account;
 
+GRANT USAGE ON SEQUENCE maevsi.event_group_id_seq TO maevsi_account;
+
 COMMIT;

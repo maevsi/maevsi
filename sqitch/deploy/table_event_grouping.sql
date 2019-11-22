@@ -22,4 +22,6 @@ COMMENT ON COLUMN maevsi.event_grouping.event_group_id IS 'The event group''s id
 GRANT SELECT ON TABLE maevsi.event_grouping TO maevsi_account, maevsi_anonymous;
 GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event_grouping TO maevsi_account;
 
+GRANT USAGE ON SEQUENCE maevsi.event_grouping_id_seq TO maevsi_account;
+
 COMMIT;

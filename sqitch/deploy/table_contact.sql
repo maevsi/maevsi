@@ -20,5 +20,6 @@ COMMENT ON COLUMN maevsi.contact.address IS 'The contact''s physical address.';
 COMMENT ON COLUMN maevsi.contact."e-mail_address" IS 'The contact''s e-mail address.';
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE maevsi.contact TO maevsi_account;
+GRANT USAGE ON SEQUENCE maevsi.contact_id_seq TO maevsi_account;
 
 COMMIT;

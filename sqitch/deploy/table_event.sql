@@ -32,4 +32,6 @@ COMMENT ON COLUMN maevsi.event.archived IS 'Indicates whether the event is archi
 GRANT SELECT ON TABLE maevsi.event TO maevsi_account, maevsi_anonymous;
 GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event TO maevsi_account;
 
+GRANT USAGE ON SEQUENCE maevsi.event_id_seq TO maevsi_account;
+
 COMMIT;
