@@ -1,5 +1,6 @@
 -- Deploy maevsi:table_contact to pg
 -- requires: schema_public
+-- requires: role_account
 
 BEGIN;
 
@@ -17,5 +18,7 @@ COMMENT ON COLUMN maevsi.contact.first_name IS 'The contact''s first name.';
 COMMENT ON COLUMN maevsi.contact.last_name IS 'The contact''s last name.';
 COMMENT ON COLUMN maevsi.contact.address IS 'The contact''s physical address.';
 COMMENT ON COLUMN maevsi.contact."e-mail_address" IS 'The contact''s e-mail address.';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE maevsi.contact TO maevsi_account;
 
 COMMIT;

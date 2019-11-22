@@ -1,5 +1,7 @@
 -- Deploy maevsi:function_account_register to pg
+-- requires: privilege_execute_revoke
 -- requires: schema_public
+-- requires: role_anonymous
 -- requires: table_contact
 -- requires: table_account
 -- requires: extension_pgcrypto
@@ -25,5 +27,7 @@ END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi.account_register(TEXT, TEXT, TEXT) IS 'Creates a contact and registers an account referencing it.';
+
+GRANT EXECUTE ON FUNCTION maevsi.account_register(TEXT, TEXT, TEXT) TO maevsi_anonymous;
 
 COMMIT;

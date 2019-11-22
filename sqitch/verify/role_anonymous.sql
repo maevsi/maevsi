@@ -2,6 +2,9 @@
 
 BEGIN;
 
-SELECT pg_catalog.pg_has_role('maevsi_anonymous', 'usage');
+DO $$
+BEGIN
+   ASSERT (SELECT pg_catalog.pg_has_role('maevsi_postgraphile', 'maevsi_anonymous', 'USAGE'));
+END $$;
 
 ROLLBACK;

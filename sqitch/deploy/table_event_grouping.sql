@@ -1,5 +1,7 @@
 -- Deploy maevsi:table_event_grouping to pg
 -- requires: schema_public
+-- requires: role_account
+-- requires: role_anonymous
 -- requires: table_event
 -- requires: table_event_group
 
@@ -16,5 +18,8 @@ COMMENT ON TABLE maevsi.event_grouping IS 'A bidirectional mapping between an ev
 COMMENT ON COLUMN maevsi.event_grouping.id IS 'The record''s id.';
 COMMENT ON COLUMN maevsi.event_grouping.event_id IS 'The event''s id.';
 COMMENT ON COLUMN maevsi.event_grouping.event_group_id IS 'The event group''s id.';
+
+GRANT SELECT ON TABLE maevsi.event_grouping TO maevsi_account, maevsi_anonymous;
+GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event_grouping TO maevsi_account;
 
 COMMIT;

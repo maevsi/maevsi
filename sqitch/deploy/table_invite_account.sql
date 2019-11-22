@@ -1,5 +1,6 @@
 -- Deploy maevsi:table_invite_account to pg
 -- requires: schema_public
+-- requires: role_account
 -- requires: table_event
 -- requires: table_account
 
@@ -16,5 +17,7 @@ COMMENT ON TABLE maevsi.invite_account IS 'An invite for an account. A bidirecti
 COMMENT ON COLUMN maevsi.invite_account.id IS 'The record''s id.';
 COMMENT ON COLUMN maevsi.invite_account.event_id IS 'The event''s id for which the invite is valid.';
 COMMENT ON COLUMN maevsi.invite_account.account_id IS 'The account''s id for which the invite is valid.';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE maevsi.invite_account TO maevsi_account;
 
 COMMIT;

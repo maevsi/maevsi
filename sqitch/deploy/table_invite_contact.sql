@@ -1,5 +1,6 @@
 -- Deploy maevsi:table_invite_contact to pg
 -- requires: schema_public
+-- requires: role_account
 -- requires: table_event
 -- requires: table_contact
 
@@ -16,5 +17,7 @@ COMMENT ON TABLE maevsi.invite_contact IS 'An invite for a contact, i.e. someone
 COMMENT ON COLUMN maevsi.invite_contact.id IS 'The record''s id.';
 COMMENT ON COLUMN maevsi.invite_contact.event_id IS 'The event''s id for which the invite is valid.';
 COMMENT ON COLUMN maevsi.invite_contact.contact_id IS 'The contact''s id for which the invite is valid.';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE maevsi.invite_contact TO maevsi_account;
 
 COMMIT;

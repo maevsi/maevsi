@@ -1,5 +1,7 @@
 -- Deploy maevsi:table_event_group to pg
 -- requires: schema_public
+-- requires: role_account
+-- requires: role_anonymous
 -- requires: table_account
 -- requires: enum_event_visibility
 
@@ -20,5 +22,8 @@ COMMENT ON COLUMN maevsi.event_group.name IS 'The event group''s name.';
 COMMENT ON COLUMN maevsi.event_group.visibility IS 'The event group''s visibility.';
 COMMENT ON COLUMN maevsi.event_group.organizer_id IS 'The id of the event group''s organizer.';
 COMMENT ON COLUMN maevsi.event_group.archived IS 'Indicates whether the event group is archived.';
+
+GRANT SELECT ON TABLE maevsi.event_group TO maevsi_account, maevsi_anonymous;
+GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event_group TO maevsi_account;
 
 COMMIT;

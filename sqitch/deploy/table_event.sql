@@ -1,5 +1,7 @@
 -- Deploy maevsi:table_event to pg
 -- requires: schema_public
+-- requires: role_account
+-- requires: role_anonymous
 -- requires: table_account
 -- requires: enum_event_visibility
 
@@ -26,5 +28,8 @@ COMMENT ON COLUMN maevsi.event.place IS 'The event''s place as it can be shown o
 COMMENT ON COLUMN maevsi.event.timestamp IS 'The event''s date and time, with timezone.';
 COMMENT ON COLUMN maevsi.event.interval IS 'The event''s duration.';
 COMMENT ON COLUMN maevsi.event.archived IS 'Indicates whether the event is archived.';
+
+GRANT SELECT ON TABLE maevsi.event TO maevsi_account, maevsi_anonymous;
+GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event TO maevsi_account;
 
 COMMIT;

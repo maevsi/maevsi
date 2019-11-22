@@ -1,5 +1,7 @@
 -- Deploy maevsi:function_account_password_change to pg
+-- requires: privilege_execute_revoke
 -- requires: schema_public
+-- requires: role_account
 -- requires: table_account
 -- requires: extension_pgcrypto
 
@@ -20,5 +22,7 @@ BEGIN
   END IF;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
+
+GRANT EXECUTE ON FUNCTION maevsi.account_password_change(TEXT, TEXT) TO maevsi_account;
 
 COMMIT;
