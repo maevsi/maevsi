@@ -11,7 +11,7 @@
     "@fortawesome/free-brands-svg-icons": "5.11.2",
     "@fortawesome/free-regular-svg-icons": "5.11.2",
     "@fortawesome/vue-fontawesome": "0.1.8",
-    "gridsome": "0.7.10"
+    "gridsome": "0.7.11"
   },
   "devDependencies": {},
   "resolutions": {
