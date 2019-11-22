@@ -2,7 +2,7 @@
 # Serve Vue.
 
 # Should be the specific version of node:buster-slim.
-FROM node:13.1.0-buster-slim@sha256:ecde3c1c140216c8540db4deefeb757c33d9c8da3a9a35dfa144c9da6353b3e0 AS development
+FROM node:13.1.0-buster-slim@sha256:aa3f6c49eeb2b4270c7c397cd05c1754e278d912bdcb23591bda3531616c0ef5 AS development
 
 # Install gridsome.
 RUN yarn global add @gridsome/cli
