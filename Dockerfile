@@ -42,7 +42,7 @@ RUN yarn build
 # Only the compiled app, ready for production with Nginx.
 
 # Should be the specific version of nginx:stable.
-FROM nginx:1.16.1-alpine@sha256:4f62bdbb63374788df936d6dccdb5fb6446968d336b3900cdeeeb22c1e4079d5 AS production
+FROM nginx:1.17.6-alpine@sha256:2993f9c9a619cde706ae0e34a1a91eb9cf5225182b6b76eb637392d2ce816538 AS production
 
 COPY --from=build /srv/app/dist/ /usr/share/nginx/html/
 
