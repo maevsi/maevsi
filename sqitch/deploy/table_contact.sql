@@ -22,4 +22,10 @@ COMMENT ON COLUMN maevsi.contact."e-mail_address" IS 'The contact''s e-mail addr
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE maevsi.contact TO maevsi_account;
 GRANT USAGE ON SEQUENCE maevsi.contact_id_seq TO maevsi_account;
 
+ALTER TABLE maevsi.contact ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY contact_select ON maevsi.contact FOR SELECT USING (
+        id = current_setting('jwt.claims.account_id', true)::integer
+);
+
 COMMIT;

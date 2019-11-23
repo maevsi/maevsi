@@ -28,4 +28,12 @@ GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event_group TO maevsi_account;
 
 GRANT USAGE ON SEQUENCE maevsi.event_group_id_seq TO maevsi_account;
 
+ALTER TABLE maevsi.event_group ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY event_group_select ON maevsi.event_group FOR SELECT USING (
+    id IN (
+        SELECT event_group_id FROM maevsi.event_grouping
+    )
+);
+
 COMMIT;

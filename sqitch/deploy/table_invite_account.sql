@@ -20,4 +20,10 @@ COMMENT ON COLUMN maevsi.invite_account.account_id IS 'The account''s id for whi
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE maevsi.invite_account TO maevsi_account;
 
+ALTER TABLE maevsi.invite_account ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY invite_account_select ON maevsi.invite_account FOR SELECT USING (
+        account_id = current_setting('jwt.claims.account_id', true)::integer
+);
+
 COMMIT;

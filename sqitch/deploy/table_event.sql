@@ -34,4 +34,10 @@ GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event TO maevsi_account;
 
 GRANT USAGE ON SEQUENCE maevsi.event_id_seq TO maevsi_account;
 
+ALTER TABLE maevsi.event ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY event_select ON maevsi.event FOR SELECT USING (
+        organizer_id = current_setting('jwt.claims.account_id', true)::integer
+);
+
 COMMIT;

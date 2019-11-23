@@ -20,4 +20,10 @@ COMMENT ON COLUMN maevsi.invite_contact.contact_id IS 'The contact''s id for whi
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE maevsi.invite_contact TO maevsi_account;
 
+ALTER TABLE maevsi.invite_contact ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY invite_contact_select ON maevsi.invite_contact FOR SELECT USING (
+        contact_id = current_setting('jwt.claims.account_id', true)::integer
+);
+
 COMMIT;
