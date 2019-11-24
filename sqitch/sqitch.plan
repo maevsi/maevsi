@@ -16,8 +16,10 @@ enum_invitation_feedback [schema_public] 2019-11-20T03:27:33Z Jonas Thelemann <e
 enum_event_visibility [schema_public] 2019-11-20T03:40:01Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible visibilities of events and event groups: public, limited, private.
 table_event_group [schema_public role_account role_anonymous table_account enum_event_visibility] 2019-11-20T04:14:41Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event_group.
 index_event-group_organizer-id [table_event_group] 2019-11-20T04:16:30Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event group table's organizer_id field.
+function_events_invited [schema_public] 2019-11-20T14:38:26Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is invited.
 table_event [schema_public role_account role_anonymous table_account enum_event_visibility] 2019-11-20T14:38:27Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event.
 index_event_organizer-id [table_event] 2019-11-21T00:15:31Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event table's organizer_id field.
+function_events_organized [schema_public] 2019-11-21T00:31:24Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is the organizer.
 table_invite_contact [schema_public role_account table_event table_contact] 2019-11-21T00:31:25Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite contact.
 table_invite_account [schema_public role_account table_event table_account] 2019-11-21T00:46:25Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite account.
 index_invite-account_event-id [table_invite_account] 2019-11-21T00:56:18Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's event_id field.

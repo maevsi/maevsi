@@ -24,6 +24,7 @@ ALTER TABLE maevsi.invite_contact ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY invite_contact_select ON maevsi.invite_contact FOR SELECT USING (
         contact_id = current_setting('jwt.claims.account_id', true)::integer
+    OR  event_id IN (SELECT maevsi_private.events_organized())
 );
 
 COMMIT;
