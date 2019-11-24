@@ -6,6 +6,9 @@
     <br>
     <a class="nav__link" :href="'https://github.com/' + $static.metadata.siteName + '/' + $static.metadata.siteName + '/'" target="_blank" :title="$static.metadata.siteName + ' on GitHub'"><font-awesome :icon="['fab', 'github']" size="2x" /></a>
     </p>
+    <p>
+      <a href="events/"><button>Events</button></a>
+    </p>
   </Layout>
 </template>
 
