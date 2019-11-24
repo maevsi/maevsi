@@ -19,6 +19,14 @@ query {
 </static-query>
 
 <style>
+a {
+  text-decoration: none;
+}
+
+a > svg {
+  margin-right: 7px;
+}
+
 html {
   background: linear-gradient(#34A1F0, #695BC0);
   color: white;
