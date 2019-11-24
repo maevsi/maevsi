@@ -11,7 +11,7 @@ BEGIN;
 CREATE FUNCTION maevsi.authenticate(
   "e-mail_address" TEXT,
   "password" TEXT
-) RETURNS maevsi.jwt as $$
+) RETURNS maevsi.jwt AS $$
   SELECT ('maevsi_account', contact_id)::maevsi.jwt
     FROM maevsi_private.account
     WHERE
