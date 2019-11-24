@@ -19,6 +19,13 @@ query {
 </static-query>
 
 <style>
+html {
+  background: linear-gradient(#34A1F0, #695BC0);
+  color: white;
+  height: 100%;
+  text-align: center;
+}
+
 body {
   font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   margin:0;
