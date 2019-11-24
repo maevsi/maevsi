@@ -13,8 +13,5 @@
     "@fortawesome/vue-fontawesome": "0.1.8",
     "gridsome": "0.7.11"
   },
-  "devDependencies": {},
-  "resolutions": {
-    "gridsome/sharp": "0.23.2"
-  }
+  "devDependencies": {}
 }
