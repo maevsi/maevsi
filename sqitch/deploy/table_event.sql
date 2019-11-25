@@ -37,7 +37,8 @@ GRANT USAGE ON SEQUENCE maevsi.event_id_seq TO maevsi_account;
 ALTER TABLE maevsi.event ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY event_select ON maevsi.event FOR SELECT USING (
-        organizer_id = current_setting('jwt.claims.account_id', true)::integer
+        visibility = 'public'
+    OR  organizer_id = current_setting('jwt.claims.account_id', true)::integer
     OR  id IN (SELECT maevsi_private.events_invited())
 );
 
