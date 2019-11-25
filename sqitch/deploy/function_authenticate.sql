@@ -9,13 +9,13 @@
 BEGIN;
 
 CREATE FUNCTION maevsi.authenticate(
-  "e-mail_address" TEXT,
+  "username" TEXT,
   "password" TEXT
 ) RETURNS maevsi.jwt AS $$
   SELECT ('maevsi_account', contact_id)::maevsi.jwt
     FROM maevsi_private.account
     WHERE
-      account."e-mail_address" = $1
+      account."username" = $1
       AND account.password_hash = maevsi.crypt($2, account.password_hash);
 $$ LANGUAGE SQL STRICT SECURITY DEFINER;
 
