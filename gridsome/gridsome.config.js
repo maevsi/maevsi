@@ -11,16 +11,7 @@ module.exports = {
   siteUrl: 'https://maev.si',
   plugins: [
     {
-      use: 'gridsome-plugin-tailwindcss',
-      options: {
-        //tailwindConfig: './some/file/js',
-        purgeConfig: {},
-        presetEnvConfig: {},
-        shouldPurge: true,
-        shouldImport: true,
-        shouldTimeTravel: true,
-        shouldPurgeUnusedKeyframes: true,
-      }
+      use: 'gridsome-plugin-tailwindcss'
     }
   ]
 }
