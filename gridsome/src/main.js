@@ -17,11 +17,14 @@ const apolloClient = new ApolloClient({
   fetch,
   request: (operation) => {
     const jwt = localStorage.getItem('jwt')
-    operation.setContext({
-      headers: {
-        authorization: jwt ? `Bearer ${jwt}` : ''
-      }
-    })
+
+    if (jwt) {
+      operation.setContext({
+        headers: {
+          authorization: `Bearer ${jwt}`
+        }
+      })
+    }
   }
 })
 
