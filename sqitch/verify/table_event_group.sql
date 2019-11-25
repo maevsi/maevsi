@@ -4,7 +4,6 @@ BEGIN;
 
 SELECT "id",
        "name",
-       "visibility",
        "organizer_id",
        "archived"
 FROM maevsi.event_group WHERE FALSE;
