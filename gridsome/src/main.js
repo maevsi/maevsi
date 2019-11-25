@@ -12,7 +12,15 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 const apolloClient = new ApolloClient({
-  uri: 'https://postgraphile.maevsi.test/graphql'
+  uri: 'https://postgraphile.maevsi.test/graphql',
+  request: (operation) => {
+    const jwt = localStorage.getItem('jwt')
+    operation.setContext({
+      headers: {
+        authorization: jwt ? `Bearer ${jwt}` : ''
+      }
+    })
+  }
 })
 
 const apolloProvider = new VueApollo({
