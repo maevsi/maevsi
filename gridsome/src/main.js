@@ -4,6 +4,7 @@
 import DefaultLayout from '~/layouts/Default.vue'
 
 import ApolloClient from 'apollo-boost'
+import fetch from 'node-fetch'
 import VueApollo from 'vue-apollo'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
@@ -13,6 +14,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 
 const apolloClient = new ApolloClient({
   uri: 'https://postgraphile.maevsi.test/graphql',
+  fetch,
   request: (operation) => {
     const jwt = localStorage.getItem('jwt')
     operation.setContext({
