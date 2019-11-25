@@ -1283,7 +1283,7 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apollo-boost@^0.4.4:
+apollo-boost@0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/apollo-boost/-/apollo-boost-0.4.4.tgz#7c278dac6cb6fa3f2f710c56baddc6e3ae730651"
   integrity sha512-ASngBvazmp9xNxXfJ2InAzfDwz65o4lswlEPrWoN35scXmCz8Nz4k3CboUXbrcN/G0IExkRf/W7o9Rg0cjEBqg==
@@ -4023,14 +4023,14 @@ graphql-type-json@^0.3.0:
   resolved "https://registry.yarnpkg.com/graphql-type-json/-/graphql-type-json-0.3.0.tgz#bb32e1b74bf52ebc690f9df12b4067bc061f818a"
   integrity sha512-lnxg5HiB95yxy+/5cDKtP6pZo0zgntsOmqsjeCBXFGJ4YoMF3+1YaSEKWJntNTu+VsAm3zf6lPxFpp1kxzofLA==
 
-graphql@^14.4.2, graphql@^14.5.8:
+graphql@14.5.8, graphql@^14.4.2:
   version "14.5.8"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.5.8.tgz#504f3d3114cb9a0a3f359bbbcf38d9e5bf6a6b3c"
   integrity sha512-MMwmi0zlVLQKLdGiMfWkgQD7dY/TUKt4L+zgJ/aR0Howebod3aNgP5JkgvAULiR2HPVZaP2VEElqtdidHweLkg==
   dependencies:
     iterall "^1.2.2"
 
-gridsome-plugin-tailwindcss@^2.2.27:
+gridsome-plugin-tailwindcss@2.2.27:
   version "2.2.27"
   resolved "https://registry.yarnpkg.com/gridsome-plugin-tailwindcss/-/gridsome-plugin-tailwindcss-2.2.27.tgz#171783cbf9595048897d4e78cb9d013dfa03c21b"
   integrity sha512-JhakEWsqTrxblRDmWR9uM1gEwhT7oT43oYtFX3ajQn6aALsnEKiZyKL6XPssjEe0tI8kqnvdil7rVe7Bv9L9+w==
@@ -8821,7 +8821,7 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-apollo@^3.0.0:
+vue-apollo@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/vue-apollo/-/vue-apollo-3.0.0.tgz#e252130b18cbd7b0d060fc3dd9616813e4a65acf"
   integrity sha512-ByeKajmgItICrOkUl2j/XzqWjv2FOdQYAPsuGyry4yrQBCU641gSoZZn1TjHiR9rAsR2aycGsY9vuV0sN14Mbg==
