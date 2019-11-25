@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <h1 class="text-2xl">{{ this.$metaInfo.title }}</h1>
+    <h1>{{ this.$metaInfo.title }}</h1>
     <p>A manager for events supported by invitees.</p>
     <p>This site is currently in alpha: anything can change at any time.
     <br>
@@ -9,7 +9,7 @@
     </a>
     </p>
     <p>
-      <a href="events/"><button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full shadow m-4">Events</button></a>
+      <a href="events/"><button class="btn btn-red">Events</button></a>
     </p>
   </Layout>
 </template>
