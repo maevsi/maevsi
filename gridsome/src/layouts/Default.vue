@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto p-4 text-center text-white">
     <header class="flex items-center justify-between mb-4">
-      <g-link to="/"><g-image alt="maevsi logo" src="~/assets/default-monochrome.svg" width="135" /></g-link>
+      <g-link to="/"><g-image alt="maevsi logo" src="~/assets/default-monochrome_maevsi.svg" width="135" /></g-link>
       <nav>
         <g-link to="/account/">
           <font-awesome class="mr-2" :icon="['far', 'user']" />Account
