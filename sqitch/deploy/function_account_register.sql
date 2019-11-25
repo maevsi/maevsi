@@ -4,6 +4,7 @@
 -- requires: role_anonymous
 -- requires: table_contact
 -- requires: table_account
+-- requires: type_jwt
 -- requires: extension_pgcrypto
 
 BEGIN;
@@ -13,17 +14,17 @@ CREATE FUNCTION maevsi_private.account_register(
     "username" TEXT,
     "e-mail_address" TEXT,
     "password" TEXT
-) RETURNS maevsi.contact AS $$
+) RETURNS maevsi.jwt AS $$
 DECLARE
-  contact maevsi.contact;
+    _contact maevsi.contact;
 BEGIN
     INSERT INTO maevsi.contact DEFAULT VALUES
-        RETURNING * INTO contact;
+        RETURNING * INTO _contact;
 
-    INSERT INTO maevsi_private.account("contact_id", "username", "e-mail_address", "password_hash", "last_activity") values
-        (contact.id, "username", "e-mail_address", maevsi.crypt("password", maevsi.gen_salt('bf')), now());
+    INSERT INTO maevsi_private.account("contact_id", "username", "e-mail_address", "password_hash", "last_activity") VALUES
+        (_contact.id, "username", "e-mail_address", maevsi.crypt("password", maevsi.gen_salt('bf')), NOW());
 
-    RETURN contact;
+    RETURN (SELECT maevsi.authenticate("e-mail_address", "password"));
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
