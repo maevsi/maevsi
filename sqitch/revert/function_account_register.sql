@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP FUNCTION maevsi.account_register;
+DROP FUNCTION maevsi_private.account_register;
 
 COMMIT;
