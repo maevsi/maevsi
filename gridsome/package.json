@@ -13,5 +13,7 @@
     "@fortawesome/vue-fontawesome": "0.1.8",
     "gridsome": "0.7.11"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gridsome-plugin-tailwindcss": "^2.2.27"
+  }
 }

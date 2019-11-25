@@ -17,6 +17,8 @@ export default function (Vue, { router, head, isClient }) {
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
 
+  head.htmlAttrs = {class: 'h-full'}
+  head.bodyAttrs = {class: 'font-sans'}
   head.meta.push({
     name: 'viewport',
     content: 'width=device-width, initial-scale=1, shrink-to-fit=no'

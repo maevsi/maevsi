@@ -9,5 +9,18 @@ module.exports = {
   siteDescription: 'A manager for user supported events.',
   siteName: 'maevsi',
   siteUrl: 'https://maev.si',
-  plugins: []
+  plugins: [
+    {
+      use: 'gridsome-plugin-tailwindcss',
+      options: {
+        //tailwindConfig: './some/file/js',
+        purgeConfig: {},
+        presetEnvConfig: {},
+        shouldPurge: true,
+        shouldImport: true,
+        shouldTimeTravel: true,
+        shouldPurgeUnusedKeyframes: true,
+      }
+    }
+  ]
 }
