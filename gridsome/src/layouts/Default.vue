@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto p-4 text-center text-white">
+  <div class="container mx-auto p-4 text-center">
     <header class="flex items-center justify-between mb-4">
       <g-link to="/"><g-image alt="maevsi logo" src="~/assets/default-monochrome_maevsi.svg" width="135" /></g-link>
       <nav>
