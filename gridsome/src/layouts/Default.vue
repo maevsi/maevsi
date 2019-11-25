@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <header class="header">
-      <g-link to="/"><g-image alt="Example image" src="~/assets/default-monochrome.svg" width="135" /></g-link>
+      <g-link to="/"><g-image alt="maevsi logo" src="~/assets/default-monochrome.svg" width="135" /></g-link>
       <nav class="nav">
         <g-link class="nav__link" to="/account/"><font-awesome :icon="['far', 'user']" />Account</g-link>
       </nav>
