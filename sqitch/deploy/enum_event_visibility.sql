@@ -5,7 +5,7 @@ BEGIN;
 
 CREATE TYPE maevsi.event_visibility AS ENUM (
   'public',
-  'limited',
+  'limited', -- TODO: implementation in external SQL structure
   'private'
 );
 
