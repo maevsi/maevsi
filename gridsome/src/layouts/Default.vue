@@ -21,7 +21,7 @@ query {
 </static-query>
 
 <style>
-html {
-  background: linear-gradient(#34A1F0, #695BC0);
+body {
+  background: linear-gradient(#34A1F0, #695BC0) fixed;
 }
 </style>
