@@ -66,7 +66,6 @@ export default {
           password: this.password
         },
       }).then((data) => {
-        console.log(data)
         if (data.data.authenticate.jwt !== null) {
           localStorage.setItem('jwt', data.data.authenticate.jwt)
           this.$router.push(this.username)
