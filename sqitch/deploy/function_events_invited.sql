@@ -14,7 +14,7 @@ BEGIN
     -- SELECT invite_contact.event_id FROM maevsi.invite_contact
     -- WHERE invite_contact.contact_id = current_setting('jwt.claims.username', true)::TEXT;
 END
-$$ LANGUAGE plpgsql STRICT SECURITY DEFINER;
+$$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi_private.events_invited() IS 'Add a function that returns all event ids for which the invoker is invited.';
 
