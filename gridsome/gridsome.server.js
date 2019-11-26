@@ -13,12 +13,12 @@ module.exports = function (api) {
       component: './src/templates/Account.vue'
     }),
     createPage({
-      path: '/events/:account_name([A-Za-z0-9-_]+)/:event_series_name([A-Za-z0-9-_]+)',
-      component: './src/templates/EventSeries.vue'
+      path: '/events/:account_name([A-Za-z0-9-_]+)/:event_name([A-Za-z0-9-_]+)',
+      component: './src/templates/Event.vue'
     }),
     createPage({
-      path: '/events/:account_name([A-Za-z0-9-_]+)/:event_series_name([A-Za-z0-9-_]+)/:event_name([A-Za-z0-9-_]+)',
-      component: './src/templates/Event.vue'
+      path: '/event-groups/:account_name([A-Za-z0-9-_]+)/:event_group_name([A-Za-z0-9-_]+)',
+      component: './src/templates/EventGroup.vue'
     })
   })
 }
