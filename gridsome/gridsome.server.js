@@ -13,11 +13,11 @@ module.exports = function (api) {
       component: './src/templates/Account.vue'
     }),
     createPage({
-      path: '/events/:event_series_name([A-Za-z0-9-_]+)',
+      path: '/events/:account_name([A-Za-z0-9-_]+)/:event_series_name([A-Za-z0-9-_]+)',
       component: './src/templates/EventSeries.vue'
     }),
     createPage({
-      path: '/events/:event_series_name([A-Za-z0-9-_]+)/:event_name([A-Za-z0-9-_]+)',
+      path: '/events/:account_name([A-Za-z0-9-_]+)/:event_series_name([A-Za-z0-9-_]+)/:event_name([A-Za-z0-9-_]+)',
       component: './src/templates/Event.vue'
     })
   })
