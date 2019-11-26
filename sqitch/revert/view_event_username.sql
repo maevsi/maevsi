@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP VIEW maevsi.all_events_with_username;
+DROP VIEW maevsi.events_with_username;
 
 COMMIT;
