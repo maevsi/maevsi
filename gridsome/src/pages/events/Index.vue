@@ -41,7 +41,6 @@ export default {
     return { title: "Events" };
   },
   apollo: {
-    // Simple query that will update the 'hello' vue property
     allEvents: {
       query: gql`{
         allEvents {
