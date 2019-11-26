@@ -12,12 +12,17 @@ CREATE FUNCTION maevsi.authenticate(
   "username" TEXT,
   "password" TEXT
 ) RETURNS maevsi.jwt AS $$
-  SELECT ('maevsi_account', contact_id, username)::maevsi.jwt
-    FROM maevsi_private.account
-    WHERE
-      account."username" = $1
-      AND account.password_hash = maevsi.crypt($2, account.password_hash);
-$$ LANGUAGE SQL STRICT SECURITY DEFINER;
+BEGIN
+  IF ("username" = '' AND "password" = '') THEN
+    RETURN (SELECT ('maevsi_anonymous', NULL, NULL, NULL)::maevsi.jwt);
+  ELSIF ("username" IS NOT NULL AND "password" IS NOT NULL) THEN
+    RETURN (SELECT ('maevsi_account', account.contact_id, account.username, NULL)::maevsi.jwt
+      FROM maevsi_private.account
+      WHERE
+        account."username" = $1
+        AND account.password_hash = maevsi.crypt($2, account.password_hash));
+  END IF;
+END $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi.authenticate(TEXT, TEXT) IS 'Creates a JWT token that will securely identify an account and give it certain permissions.';
 
