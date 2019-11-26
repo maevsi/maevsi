@@ -21,7 +21,7 @@ const apolloClient = new ApolloClient({
     if (jwt) {
       operation.setContext({
         headers: {
-          authorization: `Bearer ${jwt}`
+          Authorization: `Bearer ${jwt}`
         }
       })
     }
