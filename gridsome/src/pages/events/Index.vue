@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <tr v-for="event in allEvents" v-bind:key="event.id">
-            <td class="td"><g-link :to="'/events/' + $slugify(event.username, {lower: true}) + '/' + $slugify(event.name, {lower: true})">{{event.name}}</g-link></td>
+            <td class="td"><g-link :to="'/events/' + $slugify(event.username) + '/' + $slugify(event.name)">{{event.name}}</g-link></td>
             <td class="td">{{event.timestamp | moment("lll")}}</td>
             <td class="td">{{event.interval | duration('humanize')}}</td>
           </tr>

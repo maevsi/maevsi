@@ -10,18 +10,20 @@ BEGIN;
 CREATE TABLE maevsi.event (
     "id"            SERIAL PRIMARY KEY,
     "name"          TEXT NOT NULL CHECK (char_length("name") < 100),
+    "slug"          TEXT NOT NULL CHECK (char_length("name") < 100 AND "slug" ~* '^[-A-Za-z0-9_]+$'),
     "visibility"    maevsi.event_visibility NOT NULL,
     "organizer_id"  INTEGER REFERENCES maevsi_private.account("contact_id") NOT NULL,
     "place"         TEXT CHECK (char_length("place") < 300),
     "timestamp"     TIMESTAMP WITH TIME ZONE NOT NULL,
     "interval"      INTERVAL,
     "archived"      BOOLEAN NOT NULL DEFAULT FALSE,
-    UNIQUE ("organizer_id", "name")
+    UNIQUE ("organizer_id", "slug")
 );
 
 COMMENT ON TABLE maevsi.event IS 'An event.';
 COMMENT ON COLUMN maevsi.event.id IS 'The record''s id.';
 COMMENT ON COLUMN maevsi.event.name IS 'The event''s name.';
+COMMENT ON COLUMN maevsi.event.slug IS 'The event''s name, slugified.';
 COMMENT ON COLUMN maevsi.event.visibility IS 'The event''s visibility.';
 COMMENT ON COLUMN maevsi.event.organizer_id IS 'The id of the event''s organizer.';
 COMMENT ON COLUMN maevsi.event.place IS 'The event''s place as it can be shown on a map.';

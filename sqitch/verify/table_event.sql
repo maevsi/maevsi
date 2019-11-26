@@ -4,6 +4,7 @@ BEGIN;
 
 SELECT "id",
        "name",
+       "slug",
        "visibility",
        "organizer_id",
        "place",
