@@ -2,7 +2,7 @@
   <Layout>
     <h1>{{ this.$metaInfo.title }}</h1>
     <div class="m-auto max-w-sm">
-      <form class="form" @submit="submit">
+      <form class="form" @submit="authenticate">
         <div class="md:flex md:items-center mb-6">
           <div class="md:w-1/3">
             <label class="form-label md:text-right mb-1 md:mb-0" for="input-username">
@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 export default {
   data() {
     return {
@@ -50,10 +52,29 @@ export default {
     return { title: "Account" };
   },
   methods: {
-    submit: function (e) {
-      // TODO: form validation
+    authenticate(e) {
       e.preventDefault();
-    }
+
+      this.$apollo.mutate({
+        mutation: gql`mutation auth($username: String!, $password: String!) {
+            authenticate(input: {username: $username, password: $password}) {
+              jwt
+            }
+        }`,
+        variables: {
+          username: this.username,
+          password: this.password
+        },
+      }).then((data) => {
+        console.log(data)
+        if (data.data.authenticate.jwt !== null) {
+          localStorage.setItem('jwt', data.data.authenticate.jwt)
+          this.$router.push(this.username)
+        }
+      }).catch((error) => {
+        console.error(error)
+      })
+    },
   }
 };
 </script>
