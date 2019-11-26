@@ -41,6 +41,7 @@ export default {
     return { title: "Events" };
   },
   apollo: {
+    $prefetch: false,
     allEvents: {
       query: gql`{
         allEvents {
