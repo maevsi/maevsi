@@ -5,7 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  icon: './src/assets/isolated-layout.svg',
+  icon: './src/assets/maevsi.svg',
   siteDescription: 'A manager for user supported events.',
   siteName: 'maevsi',
   siteUrl: 'https://maev.si',
