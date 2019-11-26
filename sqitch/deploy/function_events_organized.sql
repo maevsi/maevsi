@@ -9,7 +9,7 @@ CREATE FUNCTION maevsi_private.events_organized() RETURNS TABLE (event_id INTEGE
 BEGIN
     RETURN QUERY
     SELECT id FROM maevsi.event
-    WHERE event.organizer_id = current_setting('jwt.claims.account_id', true)::integer;
+    WHERE event.organizer_username = current_setting('jwt.claims.username', true)::TEXT;
 END
 $$ LANGUAGE plpgsql STRICT SECURITY DEFINER;
 

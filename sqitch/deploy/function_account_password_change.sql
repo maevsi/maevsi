@@ -10,12 +10,12 @@ BEGIN;
 CREATE FUNCTION maevsi.account_password_change(current_password TEXT, new_password TEXT)
 RETURNS BOOLEAN AS $$
 DECLARE
-  _account_current_id maevsi_private.account;
+  _current_username TEXT;
 BEGIN
-  _account_current_id := current_setting('jwt.claims.account_id', true)::integer;
-  IF EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.contact_id = _account_current_id AND account.password_hash = maevsi.crypt($1, account.password_hash))
+  _current_username := current_setting('jwt.claims.username', true)::TEXT;
+  IF EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.username = _current_username AND account.password_hash = maevsi.crypt($1, account.password_hash))
   THEN
-    UPDATE maevsi_private.account SET password_hash = maevsi.crypt($2, maevsi.gen_salt('bf')) WHERE account.contact_id = _account_current_id;
+    UPDATE maevsi_private.account SET password_hash = maevsi.crypt($2, maevsi.gen_salt('bf')) WHERE account.username = _current_username;
     RETURN TRUE;
   ELSE
     RETURN FALSE;

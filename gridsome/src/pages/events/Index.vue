@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <tr v-for="event in allEvents" v-bind:key="event.id">
-            <td class="td"><g-link :to="'/events/' + $slugify(event.username) + '/' + $slugify(event.name)">{{event.name}}</g-link></td>
+            <td class="td"><g-link :to="'/events/' + $slugify(event.organizerUsername) + '/' + $slugify(event.name)">{{event.name}}</g-link></td>
             <td class="td">{{event.timestamp | moment("lll")}}</td>
             <td class="td">{{event.interval | duration('humanize')}}</td>
           </tr>
@@ -44,12 +44,12 @@ export default {
     // Simple query that will update the 'hello' vue property
     allEvents: {
       query: gql`{
-        allAllEventsWithUsernames {
+        allEvents {
           nodes {
             id
             name
             visibility
-            username
+            organizerUsername
             place
             timestamp
             interval {
@@ -64,7 +64,7 @@ export default {
           }
         }
       }`,
-      update: data => data.allAllEventsWithUsernames.nodes
+      update: data => data.allEvents.nodes
     }
   }
 };

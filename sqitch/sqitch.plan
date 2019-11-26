@@ -15,16 +15,16 @@ table_account [schema_private schema_public table_contact extension_uuid-ossp] 1
 enum_invitation_feedback [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible answers to an invitation: accepted, canceled.
 enum_event_visibility [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible visibilities of events and event groups: public, limited, private.
 table_event_group [schema_public role_account role_anonymous table_account enum_event_visibility] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event_group.
-index_event-group_organizer-id [table_event_group] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event group table's organizer_id field.
+index_event-group_organizer-username [table_event_group] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event group table's organizer_username field.
 function_events_invited [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is invited.
 table_event [schema_public role_account role_anonymous table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event.
-index_event_organizer-id [table_event] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event table's organizer_id field.
+index_event_organizer-username [table_event] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event table's username field.
 function_events_organized [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is the organizer.
 enum_invitation_feedback_paper 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible choices on how to receive a paper invitation: paper, digital.
 table_invite_contact [schema_public role_account table_event table_contact enum_invitation_feedback enum_invitation_feedback_paper] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite contact.
 table_invite_account [schema_public role_account table_event table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite account.
 index_invite-account_event-id [table_invite_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's event_id field.
-index_invite-account_account-id [table_invite_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's account_id field.
+index_invite-account_username [table_invite_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's username field.
 index_invite-contact_event-id [table_invite_contact] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite contact table's event_id field.
 index_invite-contact_contact-id [table_invite_contact] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite contact table's contact_id field.
 table_event_grouping [schema_public role_account role_anonymous table_event table_event_group] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event grouping.
@@ -34,4 +34,3 @@ type_jwt [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thel
 function_account_register [privilege_execute_revoke schema_private role_anonymous table_contact table_account type_jwt extension_pgcrypto] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add function account register.
 function_authenticate [privilege_execute_revoke schema_public role_account role_anonymous type_jwt table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function to authenticate accounts.
 function_account_password_change [privilege_execute_revoke schema_public role_account table_account extension_pgcrypto] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that allows to change account passwords.
-view_event_username [schema_public table_event table_account role_account role_anonymous] 2019-11-26T03:15:32Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add view that shows all events, but adds the organizer's username as column.

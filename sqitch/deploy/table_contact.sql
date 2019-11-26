@@ -25,13 +25,8 @@ GRANT USAGE ON SEQUENCE maevsi.contact_id_seq TO maevsi_account;
 ALTER TABLE maevsi.contact ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY contact_select ON maevsi.contact FOR SELECT USING (
-        id = current_setting('jwt.claims.account_id', true)::integer
-    -- OR  id IN (
-    --         SELECT account_id FROM maevsi.invite_account
-    --     )
-    -- OR  id IN (
-    --         SELECT contact_id FROM maevsi.invite_contact
-    --     )
+        id = current_setting('jwt.claims.account_id', true)::INTEGER
+    -- OR  id IN (SELECT contact_id FROM maevsi.invite_contact)
 );
 
 COMMIT;

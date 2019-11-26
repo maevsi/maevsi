@@ -4,7 +4,7 @@ BEGIN;
 
 SELECT "id",
        "event_id",
-       "account_id"
+       "username"
 FROM maevsi.invite_account WHERE FALSE;
 
 DO $$

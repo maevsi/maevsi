@@ -5,7 +5,7 @@ BEGIN;
 SELECT "id",
        "name",
        "slug",
-       "organizer_id",
+       "organizer_username",
        "archived"
 FROM maevsi.event_group WHERE FALSE;
 

@@ -5,7 +5,8 @@ BEGIN;
 
 CREATE TYPE maevsi.jwt AS (
   role TEXT,
-  account_id INTEGER
+  account_id INTEGER,
+  username TEXT
 );
 
 COMMIT;

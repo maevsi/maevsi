@@ -12,7 +12,7 @@ CREATE FUNCTION maevsi.authenticate(
   "username" TEXT,
   "password" TEXT
 ) RETURNS maevsi.jwt AS $$
-  SELECT ('maevsi_account', contact_id)::maevsi.jwt
+  SELECT ('maevsi_account', contact_id, username)::maevsi.jwt
     FROM maevsi_private.account
     WHERE
       account."username" = $1
