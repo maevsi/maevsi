@@ -57,6 +57,13 @@ module.exports = {
           display: 'block',
           fontWeight: config('theme.fontWeight.bold'),
           paddingRight: config('theme.padding.4'),
+        },
+        '.td': {
+          borderWidth: config('theme.borderWidth.default'),
+          padding: config('theme.padding.2') + ' ' + config('theme.padding.4'),
+        },
+        '.th': {
+          padding: config('theme.padding.2') + ' ' + config('theme.padding.4'),
         }
       })
     },

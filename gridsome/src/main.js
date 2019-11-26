@@ -5,7 +5,10 @@ import DefaultLayout from '~/layouts/Default.vue'
 
 import ApolloClient from 'apollo-boost'
 import fetch from 'node-fetch'
+import moment from 'moment-timezone'
+import slugify from 'slugify'
 import VueApollo from 'vue-apollo'
+import VueMoment from 'vue-moment'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
@@ -43,6 +46,9 @@ export default function (Vue, { appOptions, head }) {
   Vue.component('Layout', DefaultLayout)
 
   Vue.use(VueApollo)
+  Vue.use(VueMoment, {moment});
+
+  Vue.prototype.$slugify = slugify
 
   appOptions.apolloProvider = apolloProvider
   head.htmlAttrs = {class: 'h-full'}
