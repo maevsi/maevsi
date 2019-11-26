@@ -2,7 +2,7 @@
 
 BEGIN;
 
-SELECT "id",
+SELECT "uuid",
        "event_id",
        "contact_id"
 FROM maevsi.invite_contact WHERE FALSE;

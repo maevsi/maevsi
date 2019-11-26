@@ -9,7 +9,7 @@
 BEGIN;
 
 CREATE TABLE maevsi.invite_contact (
-    "id"            UUID PRIMARY KEY DEFAULT maevsi.uuid_generate_v1mc(),
+    "uuid"          UUID PRIMARY KEY DEFAULT maevsi.uuid_generate_v1mc(),
     "event_id"      INTEGER REFERENCES maevsi.event("id") NOT NULL,
     "contact_id"    INTEGER REFERENCES maevsi.contact("id") NOT NULL,
     -- columns below are here temporarily and will be extracted later
@@ -19,7 +19,7 @@ CREATE TABLE maevsi.invite_contact (
 );
 
 COMMENT ON TABLE maevsi.invite_contact IS 'An invite for a contact, i.e. someone without an account. A bidirectional mapping between an event and a contact.';
-COMMENT ON COLUMN maevsi.invite_contact.id IS 'The record''s id.';
+COMMENT ON COLUMN maevsi.invite_contact.uuid IS 'The record''s UUID.';
 COMMENT ON COLUMN maevsi.invite_contact.event_id IS 'The event''s id for which the invite is valid.';
 COMMENT ON COLUMN maevsi.invite_contact.contact_id IS 'The contact''s id for which the invite is valid.';
 COMMENT ON COLUMN maevsi.invite_contact.invitation_feedback IS 'The invitee''s feedback for the invitation. Null, accepted or canceled.';
@@ -29,9 +29,9 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE maevsi.invite_contact TO maevsi_ac
 
 ALTER TABLE maevsi.invite_contact ENABLE ROW LEVEL SECURITY;
 
--- CREATE POLICY invite_contact_select ON maevsi.invite_contact FOR SELECT USING (
---         contact_id = current_setting('jwt.claims.username', true)::TEXT
---     OR  event_id IN (SELECT maevsi_private.events_organized())
--- );
+-- Display contact invites for events organized by oneself.
+CREATE POLICY invite_contact_select ON maevsi.invite_contact FOR SELECT USING (
+    event_id IN (SELECT maevsi_private.events_organized())
+);
 
 COMMIT;

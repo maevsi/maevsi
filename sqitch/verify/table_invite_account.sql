@@ -2,7 +2,7 @@
 
 BEGIN;
 
-SELECT "id",
+SELECT "uuid",
        "event_id",
        "username"
 FROM maevsi.invite_account WHERE FALSE;
