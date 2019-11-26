@@ -24,7 +24,7 @@ BEGIN
     INSERT INTO maevsi_private.account("contact_id", "username", "e-mail_address", "password_hash", "last_activity") VALUES
         (_contact.id, "username", "e-mail_address", maevsi.crypt("password", maevsi.gen_salt('bf')), NOW());
 
-    RETURN (SELECT maevsi.authenticate("e-mail_address", "password"));
+    RETURN (SELECT maevsi.authenticate("username", "password"));
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
