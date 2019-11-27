@@ -10,7 +10,7 @@ BEGIN;
 CREATE TABLE maevsi.event (
     "id"                    SERIAL PRIMARY KEY,
     "name"                  TEXT NOT NULL CHECK (char_length("name") < 100),
-    "slug"                  TEXT NOT NULL CHECK (char_length("name") < 100 AND "slug" ~* '^[-A-Za-z0-9_]+$'),
+    "slug"                  TEXT NOT NULL CHECK (char_length("slug") < 100 AND "slug" ~* '^[-A-Za-z0-9_]+$'),
     "visibility"            maevsi.event_visibility NOT NULL,
     "organizer_username"    TEXT REFERENCES maevsi_private.account("username") NOT NULL,
     "place"                 TEXT CHECK (char_length("place") < 300),
