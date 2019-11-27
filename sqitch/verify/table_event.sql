@@ -9,8 +9,8 @@ SELECT "id",
        "organizer_username",
        "description",
        "place",
-       "timestamp",
-       "interval",
+       "start",
+       "end",
        "archived"
 FROM maevsi.event WHERE FALSE;
 

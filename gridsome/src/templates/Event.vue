@@ -4,8 +4,10 @@
     <div v-else>
       <div v-if="event !== null">
         <h1>{{ event.name }} ({{ event.visibility }})</h1>
-        <div>{{event.timestamp | moment("lll")}}</div>
-        <div>{{event.interval | duration('humanize')}}</div>
+        <div>{{event.start | moment("from")}}</div>
+        <div>{{event.start | moment("lll")}}</div>
+        <div>{{event.end | moment("lll")}}</div>
+        <div>{{event.end | moment("diff", event.start) | duration('humanize')}}</div>
       </div>
       <div v-else>
         <Error404 />
@@ -34,7 +36,8 @@ export default {
               visibility
               organizerUsername
               place
-              timestamp
+              start
+              end
             }
           }
         `,
