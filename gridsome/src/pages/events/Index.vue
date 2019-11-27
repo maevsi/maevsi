@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <tr v-for="event in allEvents" v-bind:key="event.id">
-            <td class="td"><g-link :to="'/events/' + $slugify(event.organizerUsername) + '/' + $slugify(event.name)">{{event.name}}</g-link></td>
+            <td class="td"><g-link :to="'/events/' + event.organizerUsername + '/' + event.slug">{{event.name}}</g-link></td>
             <td class="td">{{event.timestamp | moment("lll")}}</td>
             <td class="td">{{event.interval | duration('humanize')}}</td>
           </tr>
@@ -48,6 +48,7 @@ export default {
           nodes {
             id
             name
+            slug
             visibility
             organizerUsername
             place
