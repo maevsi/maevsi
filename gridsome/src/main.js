@@ -11,7 +11,8 @@ import VueApollo from 'vue-apollo'
 import VueMoment from 'vue-moment'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { faEye, faEyeSlash, faUser } from '@fortawesome/free-regular-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
@@ -36,7 +37,7 @@ const apolloProvider = new VueApollo({
 })
 
 config.autoAddCss = false;
-library.add(faGithub, faUser)
+library.add(faEye, faEyeSlash, faGithub, faPlus, faUser)
 
 // export default apolloProvider;
 export default function (Vue, { appOptions, head }) {
