@@ -1,6 +1,8 @@
 -- Deploy maevsi:table_contact to pg
 -- requires: schema_public
 -- requires: role_account
+-- requires: role_anonymous
+-- requires: function_invites_contact
 
 BEGIN;
 
@@ -24,9 +26,11 @@ GRANT USAGE ON SEQUENCE maevsi.contact_id_seq TO maevsi_account;
 
 ALTER TABLE maevsi.contact ENABLE ROW LEVEL SECURITY;
 
+-- Display the contact that is linked to the own account.
+-- Display contacts that are accessible via contact invites.
 CREATE POLICY contact_select ON maevsi.contact FOR SELECT USING (
         id = current_setting('jwt.claims.account_id', true)::INTEGER
-    -- OR  id IN (SELECT contact_id FROM maevsi.invite_contact)
+    OR  id IN (SELECT maevsi_private.invites_contact())
 );
 
 COMMIT;
