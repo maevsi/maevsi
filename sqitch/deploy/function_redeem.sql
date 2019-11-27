@@ -4,6 +4,7 @@
 -- requires: table_invite_contact
 -- requires: table_event
 -- requires: type_redeem_response
+-- requires: function_invite_claims_to_array
 
 BEGIN;
 
@@ -12,7 +13,12 @@ CREATE FUNCTION maevsi.redeem(
 ) RETURNS maevsi.redeem_response AS $$
     SELECT  "organizer_username",
             "slug" AS "event_slug",
-            ('maevsi_anonymous', NULL, NULL, (SELECT ARRAY(SELECT DISTINCT UNNEST(string_to_array(replace(btrim(current_setting('jwt.claims.invites', true), '[]'), '"', ''), ',')::UUID[] || "invitation_code") ORDER BY 1)))::maevsi.jwt
+            (
+                'maevsi_anonymous',
+                NULL,
+                NULL,
+               (SELECT ARRAY(SELECT DISTINCT UNNEST(maevsi_private.invite_claim_array() || "invitation_code") ORDER BY 1))
+            )::maevsi.jwt
     FROM maevsi.event
     WHERE id = (
         SELECT event_id FROM maevsi.invite_contact

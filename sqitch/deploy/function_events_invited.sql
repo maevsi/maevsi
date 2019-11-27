@@ -2,6 +2,7 @@
 -- requires: schema_public
 -- requires: table_invite_account
 -- requires: table_invite_contact
+-- requires: function_invite_claims_to_array
 
 BEGIN;
 
@@ -12,7 +13,7 @@ BEGIN
     WHERE invite_account.username = current_setting('jwt.claims.username', true)::TEXT
     UNION ALL
     SELECT invite_contact.event_id FROM maevsi.invite_contact
-    WHERE invite_contact.uuid = ANY (string_to_array(replace(btrim(current_setting('jwt.claims.invites', true), '[]'), '"', ''), ',')::UUID[]);
+    WHERE invite_contact.uuid = ANY (maevsi_private.invite_claim_array());
 END
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 

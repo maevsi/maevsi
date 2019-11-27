@@ -5,6 +5,7 @@
 -- requires: table_contact
 -- requires: enum_invitation_feedback
 -- requires: enum_invitation_feedback_paper
+-- requires: function_invite_claims_to_array
 
 BEGIN;
 
@@ -25,13 +26,16 @@ COMMENT ON COLUMN maevsi.invite_contact.contact_id IS 'The contact''s id for whi
 COMMENT ON COLUMN maevsi.invite_contact.invitation_feedback IS 'The invitee''s feedback for the invitation. Null, accepted or canceled.';
 COMMENT ON COLUMN maevsi.invite_contact.paper_invitation_feedback IS 'The invitee''s choice on how to receive a paper invitation. Null, paper or digital.';
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE maevsi.invite_contact TO maevsi_account;
+GRANT SELECT ON TABLE maevsi.invite_contact TO maevsi_account, maevsi_anonymous;
+GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.invite_contact TO maevsi_account;
 
 ALTER TABLE maevsi.invite_contact ENABLE ROW LEVEL SECURITY;
 
+-- TODO: Display contact invites issued to oneself.
 -- Display contact invites for events organized by oneself.
 CREATE POLICY invite_contact_select ON maevsi.invite_contact FOR SELECT USING (
-    event_id IN (SELECT maevsi_private.events_organized())
+        uuid = ANY (maevsi_private.invite_claim_array())
+    OR  event_id IN (SELECT maevsi_private.events_organized())
 );
 
 COMMIT;

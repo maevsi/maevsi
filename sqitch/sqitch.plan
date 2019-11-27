@@ -16,12 +16,13 @@ enum_invitation_feedback [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e
 enum_event_visibility [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible visibilities of events and event groups: public, limited, private.
 table_event_group [schema_public role_account role_anonymous table_account enum_event_visibility] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event_group.
 index_event-group_organizer-username [table_event_group] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event group table's organizer_username field.
-function_events_invited [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is invited.
+function_invite_claim_array [schema_private] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns the current invite clains as UUID array.
+function_events_invited [schema_public function_invite_claim_array] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is invited.
 table_event [schema_public role_account role_anonymous table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event.
 index_event_organizer-username [table_event] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event table's username field.
 function_events_organized [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is the organizer.
 enum_invitation_feedback_paper 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible choices on how to receive a paper invitation: paper, digital.
-table_invite_contact [schema_public role_account table_event table_contact enum_invitation_feedback enum_invitation_feedback_paper] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite contact.
+table_invite_contact [schema_public role_account table_event table_contact enum_invitation_feedback enum_invitation_feedback_paper function_invite_claim_array] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite contact.
 table_invite_account [schema_public role_account table_event table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite account.
 index_invite-account_event-id [table_invite_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's event_id field.
 index_invite-account_username [table_invite_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's username field.
@@ -35,4 +36,4 @@ function_account_register [privilege_execute_revoke schema_private role_anonymou
 function_authenticate [privilege_execute_revoke schema_public role_account role_anonymous type_jwt table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function to authenticate accounts.
 function_account_password_change [privilege_execute_revoke schema_public role_account table_account extension_pgcrypto] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that allows to change account passwords.
 type_redeem_response [schema_public type_jwt] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a type that is returned by invitation code redemption.
-function_redeem [schema_public table_invite_account table_invite_contact table_event type_redeem_response] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add function that allows to redeem invitation codes.
+function_redeem [schema_public table_invite_account table_invite_contact table_event type_redeem_response function_invite_claim_array] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add function that allows to redeem invitation codes.
