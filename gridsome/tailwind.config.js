@@ -7,7 +7,8 @@ module.exports = {
     function({ addBase, addComponents, config }) {
       addBase({
         'h1': { fontSize: config('theme.fontSize.2xl'),
-                marginBottom: config('theme.margin.4') },
+                marginBottom: config('theme.margin.4'),
+                fontWeight: config('theme.fontWeight.bold'), },
         /*'h2': { fontSize: config('theme.fontSize.xl') },
         'h3': { fontSize: config('theme.fontSize.lg') },*/
       }),
@@ -57,6 +58,11 @@ module.exports = {
           display: 'block',
           fontWeight: config('theme.fontWeight.bold'),
           paddingRight: config('theme.padding.4'),
+        },
+        '.oneliner': {
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
         },
         '.td': {
           borderWidth: config('theme.borderWidth.default'),
