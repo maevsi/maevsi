@@ -13,6 +13,7 @@ CREATE TABLE maevsi.event (
     "slug"                  TEXT NOT NULL CHECK (char_length("slug") < 100 AND "slug" ~* '^[-A-Za-z0-9_]+$'),
     "visibility"            maevsi.event_visibility NOT NULL,
     "organizer_username"    TEXT REFERENCES maevsi_private.account("username") NOT NULL,
+    "description"           TEXT CHECK (char_length("description") < 10000),
     "place"                 TEXT CHECK (char_length("place") < 300),
     "timestamp"             TIMESTAMP WITH TIME ZONE NOT NULL,
     "interval"              INTERVAL,
@@ -26,6 +27,7 @@ COMMENT ON COLUMN maevsi.event.name IS 'The event''s name.';
 COMMENT ON COLUMN maevsi.event.slug IS 'The event''s name, slugified.';
 COMMENT ON COLUMN maevsi.event.visibility IS 'The event''s visibility.';
 COMMENT ON COLUMN maevsi.event.organizer_username IS 'The id of the event''s organizer.';
+COMMENT ON COLUMN maevsi.event.description IS 'The event''s description.';
 COMMENT ON COLUMN maevsi.event.place IS 'The event''s place as it can be shown on a map.';
 COMMENT ON COLUMN maevsi.event.timestamp IS 'The event''s date and time, with timezone.';
 COMMENT ON COLUMN maevsi.event.interval IS 'The event''s duration.';

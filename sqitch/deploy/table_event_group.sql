@@ -11,6 +11,7 @@ CREATE TABLE maevsi.event_group (
     "name"                  TEXT NOT NULL CHECK (char_length("name") < 100),
     "slug"                  TEXT NOT NULL CHECK (char_length("slug") < 100 AND "slug" ~* '^[-A-Za-z0-9_]+$'),
     "organizer_username"    INTEGER REFERENCES maevsi_private.account("contact_id") NOT NULL,
+    "description"           TEXT CHECK (char_length("description") < 10000),
     "archived"              BOOLEAN NOT NULL DEFAULT FALSE,
     UNIQUE ("organizer_username", "slug")
 );
@@ -20,6 +21,7 @@ COMMENT ON COLUMN maevsi.event_group.id IS 'The record''s id.';
 COMMENT ON COLUMN maevsi.event_group.name IS 'The event group''s name.';
 COMMENT ON COLUMN maevsi.event_group.slug IS 'The event group''s name, slugified.';
 COMMENT ON COLUMN maevsi.event_group.organizer_username IS 'The username of the event group''s organizer.';
+COMMENT ON COLUMN maevsi.event_group.description IS 'The event group''s description.';
 COMMENT ON COLUMN maevsi.event_group.archived IS 'Indicates whether the event group is archived.';
 
 GRANT SELECT ON TABLE maevsi.event_group TO maevsi_account, maevsi_anonymous;

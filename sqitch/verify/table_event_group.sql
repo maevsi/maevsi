@@ -6,6 +6,7 @@ SELECT "id",
        "name",
        "slug",
        "organizer_username",
+       "description",
        "archived"
 FROM maevsi.event_group WHERE FALSE;
 
