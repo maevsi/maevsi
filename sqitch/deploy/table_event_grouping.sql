@@ -26,6 +26,7 @@ GRANT USAGE ON SEQUENCE maevsi.event_grouping_id_seq TO maevsi_account;
 
 ALTER TABLE maevsi.event_grouping ENABLE ROW LEVEL SECURITY;
 
+-- TODO:
 -- CREATE POLICY event_grouping_select ON maevsi.event_grouping FOR SELECT USING (
 --     event_id IN (
 --         SELECT id FROM maevsi.event

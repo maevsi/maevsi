@@ -5,7 +5,7 @@
 -- requires: table_contact
 -- requires: enum_invitation_feedback
 -- requires: enum_invitation_feedback_paper
--- requires: function_invite_claims_to_array
+-- requires: function_invite_claim_array
 
 BEGIN;
 

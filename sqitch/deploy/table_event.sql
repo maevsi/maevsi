@@ -40,6 +40,9 @@ GRANT USAGE ON SEQUENCE maevsi.event_id_seq TO maevsi_account;
 
 ALTER TABLE maevsi.event ENABLE ROW LEVEL SECURITY;
 
+-- Display events that are public.
+-- Display events that are organized by oneself.
+-- Display events to which oneself is invited.
 CREATE POLICY event_select ON maevsi.event FOR SELECT USING (
         visibility = 'public'
     OR  organizer_username = current_setting('jwt.claims.username', true)::TEXT
