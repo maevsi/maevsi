@@ -62,7 +62,7 @@ export default {
       title:
         this.event !== null && this.event.name !== null
           ? this.event.name
-          : "Redeem Invitation Code"
+          : "404"
     };
   }
 };
