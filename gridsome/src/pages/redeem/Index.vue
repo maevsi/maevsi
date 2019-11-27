@@ -49,27 +49,27 @@ export default {
     redeem(e) {
       e.preventDefault();
 
-      let invitationCodes = JSON.parse(
-        localStorage.getItem("invitation-codes")
-      );
-      invitationCodes = invitationCodes ? invitationCodes : [];
-
-      let duplicateFound = false;
-
-      for (let i = 0; i < invitationCodes.length; i++) {
-        if (invitationCodes[i] == this.invitationCode) {
-          duplicateFound = true;
-          break;
+      this.$apollo.query({
+        query: gql`query($uuid: UUID!) {
+          redeem(invitationCode: $uuid) {
+            organizerUsername
+            eventSlug
+            jwt
+          }
+        }`,
+        variables: {
+          uuid: this.invitationCode
+        },
+      }).then((data) => {
+        if (data.data.redeem !== null) {
+          localStorage.setItem('jwt', data.data.redeem.jwt)
+          this.$router.push(`/events/${data.data.redeem.organizerUsername}/${data.data.redeem.eventSlug}`)
+        } else {
+          console.error("Code invalid.")
         }
-      }
-
-      if (!duplicateFound) {
-        invitationCodes.push(this.invitationCode);
-        localStorage.setItem(
-          "invitation-codes",
-          JSON.stringify(invitationCodes)
-        );
-      }
+      }).catch((error) => {
+        console.error(error)
+      })
     }
   }
 };

@@ -9,10 +9,10 @@ CREATE FUNCTION maevsi_private.events_invited() RETURNS TABLE (event_id INTEGER)
 BEGIN
     RETURN QUERY
     SELECT invite_account.event_id FROM maevsi.invite_account
-    WHERE invite_account.username = current_setting('jwt.claims.username', true)::TEXT;
-    -- UNION ALL
-    -- SELECT invite_contact.event_id FROM maevsi.invite_contact
-    -- WHERE invite_contact.contact_id = current_setting('jwt.claims.username', true)::TEXT;
+    WHERE invite_account.username = current_setting('jwt.claims.username', true)::TEXT
+    UNION ALL
+    SELECT invite_contact.event_id FROM maevsi.invite_contact
+    WHERE invite_contact.uuid = ANY (string_to_array(replace(btrim(current_setting('jwt.claims.invites', true), '[]'), '"', ''), ',')::UUID[]);
 END
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
