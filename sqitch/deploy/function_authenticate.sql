@@ -14,7 +14,7 @@ CREATE FUNCTION maevsi.authenticate(
 ) RETURNS maevsi.jwt AS $$
 BEGIN
   IF ("username" = '' AND "password" = '') THEN
-    RETURN (SELECT ('maevsi_anonymous', NULL, NULL, NULL)::maevsi.jwt);
+    RETURN (SELECT ('maevsi_anonymous', NULL, NULL, maevsi.invite_claim_array())::maevsi.jwt);
   ELSIF ("username" IS NOT NULL AND "password" IS NOT NULL) THEN
     RETURN (SELECT ('maevsi_account', account.contact_id, account.username, NULL)::maevsi.jwt
       FROM maevsi_private.account
