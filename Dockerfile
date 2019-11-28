@@ -30,6 +30,10 @@ CMD ["develop"]
 # Should be the specific version of node:current-slim.
 FROM node:13.2.0-stretch-slim@sha256:e41c73773b47a5de6549786152c460843ac63e24ef0ffe288faa704922642621 AS build
 
+ARG GRIDSOME_STACK_DOMAIN=maev.si
+ENV GRIDSOME_STACK_DOMAIN=${GRIDSOME_STACK_DOMAIN}
+ENV NODE_ENV=production
+
 WORKDIR /srv/app/
 
 COPY --from=development /srv/app/ /srv/app/
