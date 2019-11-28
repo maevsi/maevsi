@@ -3,6 +3,7 @@
 BEGIN;
 
 CREATE TYPE maevsi.invitation_feedback_paper AS ENUM (
+  'none',
   'paper',
   'digital'
 );
