@@ -24,6 +24,12 @@ module.exports = {
             outline: 0
           },
         },
+        '.btn-green': {
+          backgroundColor: config('theme.colors.green.600'),
+          '&:hover': {
+            backgroundColor: config('theme.colors.green.700')
+          },
+        },
         '.btn-red': {
           backgroundColor: config('theme.colors.red.600'),
           '&:hover': {
