@@ -5,6 +5,7 @@ import DefaultLayout from '~/layouts/Default.vue'
 
 import ApolloClient from 'apollo-boost'
 import fetch from 'node-fetch'
+import gql from 'graphql-tag'
 import moment from 'moment-timezone'
 import slugify from 'slugify'
 import VueApollo from 'vue-apollo'
@@ -39,7 +40,6 @@ const apolloProvider = new VueApollo({
 config.autoAddCss = false;
 library.add(faCalendarDay, faExternalLinkAlt, faKey, faGithub, faLockOpen, faMapMarker, faPlus, faUser)
 
-// export default apolloProvider;
 export default function (Vue, { appOptions, head }) {
   Vue.component('font-awesome', FontAwesomeIcon)
 
@@ -57,5 +57,21 @@ export default function (Vue, { appOptions, head }) {
   head.meta.push({
     name: 'viewport',
     content: 'width=device-width, initial-scale=1, shrink-to-fit=no'
+  })
+
+  apolloProvider.defaultClient.query({
+    query: gql`query($username: String!, $password: String!) {
+        authenticate(username: $username, password: $password)
+    }`,
+    variables: {
+      username: '',
+      password: ''
+    },
+  }).then((data) => {
+    if (data.data.authenticate !== null) {
+      localStorage.setItem('jwt', data.data.authenticate)
+    }
+  }).catch((error) => {
+    console.error(error)
   })
 }
