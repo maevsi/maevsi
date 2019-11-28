@@ -6,9 +6,11 @@ module.exports = {
   plugins: [
     function({ addBase, addComponents, config }) {
       addBase({
-        'h1': { fontSize: config('theme.fontSize.2xl'),
-                marginBottom: config('theme.margin.4'),
-                fontWeight: config('theme.fontWeight.bold'), },
+        'h1': {
+          fontSize: config('theme.fontSize.2xl'),
+          marginBottom: config('theme.margin.4'),
+          fontWeight: config('theme.fontWeight.bold'),
+        }
         /*'h2': { fontSize: config('theme.fontSize.xl') },
         'h3': { fontSize: config('theme.fontSize.lg') },*/
       }),
@@ -34,6 +36,14 @@ module.exports = {
           backgroundColor: config('theme.colors.red.600'),
           '&:hover': {
             backgroundColor: config('theme.colors.red.700')
+          },
+        },
+        '.description': {
+          'a': {
+            color: config('theme.colors.blue.700'),
+          },
+          'p': {
+            margin: config('theme.margin.2') + ' ' + config('theme.margin.0'),
           },
         },
         '.form': {

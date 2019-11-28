@@ -39,7 +39,7 @@
             </a>
           </div>
           <hr class="my-4" />
-          <div class="text-gray-900 text-sm">{{eventContactFeedbackData.event.description}}</div>
+          <vue-markdown class="description text-left text-gray-900 text-sm">{{eventContactFeedbackData.event.description}}</vue-markdown>
           <div class="text-white">
             <button
               class="btn btn-green"
@@ -81,6 +81,7 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown-v2'
 import Error404 from "~/components/Error404.vue";
 import gql from "graphql-tag";
 
@@ -131,7 +132,8 @@ export default {
     }
   },
   components: {
-    Error404
+    Error404,
+    VueMarkdown
   },
   data() {
     return {
