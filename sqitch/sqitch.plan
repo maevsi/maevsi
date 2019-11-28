@@ -24,6 +24,7 @@ table_event [schema_public role_account role_anonymous table_account] 1970-01-01
 index_event_organizer-username [table_event] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event table's username field.
 enum_invitation_feedback_paper 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible choices on how to receive a paper invitation: paper, digital.
 function_invite_feedback_ids [schema_private] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all accessible invitation feedback ids.
+table_invitation_feedback_data [schema_public enum_invitation_feedback enum_invitation_feedback_paper function_invite_feedback_ids] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a table that includes invitation feedback data.
 table_invite_account [schema_public role_account table_event table_account table_invitation_feedback_data function_events_organized] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite account.
 table_invite_contact [schema_public role_anonymous table_event table_contact table_invite_account table_invitation_feedback_data function_invite_claim_array function_events_organized] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite contact.
 index_invite-account_event-id [table_invite_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's event_id field.
