@@ -55,3 +55,7 @@ COPY --from=build /srv/app/dist/ /usr/share/nginx/html/
 
 COPY ./sqitch/ /srv/sqitch/
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./docker-entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
