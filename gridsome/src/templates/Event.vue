@@ -27,6 +27,17 @@
             <br />
             ({{eventContactFeedbackData.event.start | moment("from")}})
           </div>
+          <div class="text-gray-600">
+            <font-awesome :icon="['fas', 'map-marker']" />
+            <br />
+            <a
+              :href="'https://maps.google.de/?q=' + eventContactFeedbackData.event.place"
+              target="_blank"
+            >
+              {{eventContactFeedbackData.event.place}}
+              <font-awesome :icon="['fas', 'external-link-alt']" />
+            </a>
+          </div>
           <hr class="my-4" />
           <div class="text-gray-900 text-sm">{{eventContactFeedbackData.event.description}}</div>
           <div class="text-white">
@@ -44,7 +55,7 @@
           <div
             v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback !== null && eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
           >
-            <label class="form-label md:text-right mb-1 md:mb-0" for="input-username">Kind of invite</label>
+            <label class="form-label mb-1 md:mb-0" for="input-username">Kind of invite</label>
             <select
               class="form-input"
               v-model="eventContactFeedbackData.invitationFeedbackData.paperInvitationFeedback"
@@ -176,8 +187,12 @@ export default {
           }
         })
         .then(data => {
-          if (data.data.updateInvitationFeedbackDatumById.invitationFeedbackDatum !== null) {
-            this.eventContactFeedbackData.invitationFeedbackData = data.data.updateInvitationFeedbackDatumById.invitationFeedbackDatum
+          if (
+            data.data.updateInvitationFeedbackDatumById
+              .invitationFeedbackDatum !== null
+          ) {
+            this.eventContactFeedbackData.invitationFeedbackData =
+              data.data.updateInvitationFeedbackDatumById.invitationFeedbackDatum;
           }
         })
         .catch(error => {
