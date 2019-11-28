@@ -7,7 +7,7 @@ CREATE FUNCTION maevsi.invite_claim_array() RETURNS UUID[] AS $$
 BEGIN
     RETURN string_to_array(replace(btrim(current_setting('jwt.claims.invites', true), '[]'), '"', ''), ',')::UUID[];
 END
-$$ LANGUAGE PLPGSQL STRICT;
+$$ LANGUAGE PLPGSQL STRICT STABLE;
 
 COMMENT ON FUNCTION maevsi.invite_claim_array() IS 'Returns the current invite clains as UUID array.';
 

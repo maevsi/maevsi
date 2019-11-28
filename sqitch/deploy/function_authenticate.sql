@@ -22,7 +22,7 @@ BEGIN
         account."username" = $1
         AND account.password_hash = maevsi.crypt($2, account.password_hash));
   END IF;
-END $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
+END $$ LANGUAGE PLPGSQL STRICT STABLE SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi.authenticate(TEXT, TEXT) IS 'Creates a JWT token that will securely identify an account and give it certain permissions.';
 

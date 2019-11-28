@@ -11,7 +11,7 @@ BEGIN
     SELECT id FROM maevsi.event
     WHERE event.organizer_username = current_setting('jwt.claims.username', true)::TEXT;
 END
-$$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
+$$ LANGUAGE PLPGSQL STRICT STABLE SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi.events_organized() IS 'Add a function that returns all event ids for which the invoker is the organizer.';
 
