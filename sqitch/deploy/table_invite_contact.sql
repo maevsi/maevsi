@@ -1,21 +1,20 @@
 -- Deploy maevsi:table_invite_contact to pg
 -- requires: schema_public
 -- requires: role_account
+-- requires: role_anonymous
 -- requires: table_event
 -- requires: table_contact
--- requires: enum_invitation_feedback
--- requires: enum_invitation_feedback_paper
+-- requires: table_invitation_feedback_data
 -- requires: function_invite_claim_array
+-- requires: function_events_organized
 
 BEGIN;
 
 CREATE TABLE maevsi.invite_contact (
-    "uuid"          UUID PRIMARY KEY DEFAULT maevsi.uuid_generate_v1mc(),
-    "event_id"      INTEGER REFERENCES maevsi.event("id") NOT NULL,
-    "contact_id"    INTEGER REFERENCES maevsi.contact("id") NOT NULL,
-    -- columns below are here temporarily and will be extracted later
-    "invitation_feedback"   maevsi.invitation_feedback,
-    "paper_invitation_feedback"   maevsi.invitation_feedback_paper,
+    "uuid"                      UUID PRIMARY KEY DEFAULT maevsi.uuid_generate_v1mc(),
+    "event_id"                  INTEGER REFERENCES maevsi.event("id") NOT NULL,
+    "contact_id"                INTEGER REFERENCES maevsi.contact("id") NOT NULL,
+    "invitation_feedback_id"    INTEGER REFERENCES maevsi.invitation_feedback_data("id") NOT NULL,
     UNIQUE ("event_id", "contact_id")
 );
 
@@ -23,8 +22,7 @@ COMMENT ON TABLE maevsi.invite_contact IS 'An invite for a contact, i.e. someone
 COMMENT ON COLUMN maevsi.invite_contact.uuid IS 'The record''s UUID.';
 COMMENT ON COLUMN maevsi.invite_contact.event_id IS 'The event''s id for which the invite is valid.';
 COMMENT ON COLUMN maevsi.invite_contact.contact_id IS 'The contact''s id for which the invite is valid.';
-COMMENT ON COLUMN maevsi.invite_contact.invitation_feedback IS 'The invitee''s feedback for the invitation. Null, accepted or canceled.';
-COMMENT ON COLUMN maevsi.invite_contact.paper_invitation_feedback IS 'The invitee''s choice on how to receive a paper invitation. Null, paper or digital.';
+COMMENT ON COLUMN maevsi.invite_contact.invitation_feedback_id IS 'The contact''s invitation feedback reference.';
 
 GRANT SELECT ON TABLE maevsi.invite_contact TO maevsi_account, maevsi_anonymous;
 GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.invite_contact TO maevsi_account;

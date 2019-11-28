@@ -28,7 +28,7 @@ table_invitation_feedback_data [schema_public enum_invitation_feedback enum_invi
 table_invite_account [schema_public role_account table_event table_account table_invitation_feedback_data function_events_organized] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite account.
 table_invite_contact [schema_public role_anonymous table_event table_contact table_invite_account table_invitation_feedback_data function_invite_claim_array function_events_organized] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invite contact.
 index_invite-account_event-id [table_invite_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's event_id field.
-index_invite-account_username [table_invite_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's username field.
+index_invite-account_account-id [table_invite_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite account table's username field.
 index_invite-contact_event-id [table_invite_contact] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite contact table's event_id field.
 index_invite-contact_contact-id [table_invite_contact] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invite contact table's contact_id field.
 table_event_grouping [schema_public role_account role_anonymous table_event table_event_group] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event grouping.
