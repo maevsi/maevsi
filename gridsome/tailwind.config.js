@@ -46,6 +46,12 @@ module.exports = {
             margin: config('theme.margin.2') + ' ' + config('theme.margin.0'),
           },
         },
+        '.event-meta': {
+          color: config('theme.colors.gray.600'),
+          'div': {
+            margin: config('theme.margin.2') + ' ' + config('theme.margin.0'),
+          },
+        },
         '.form': {
           backgroundColor: config('theme.colors.white'),
           boxShadow: config('theme.boxShadow.md'),
