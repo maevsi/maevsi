@@ -63,6 +63,6 @@ passopt+=(-e "HOME=${homedst}")
 docker run -it --rm --network host \
     --mount "type=bind,src=$(pwd),dst=/repo" \
     --mount "type=bind,src=$HOME,dst=$homedst" \
-    --mount "type=bind,src=$PWD/../../maevsi_stack/development/secrets/postgres/role_maevsi-postgraphile.secret,dst=/run/secrets/postgres_role_maevsi-postgraphile_password" \
+    --mount "type=bind,src=$PWD/../../maevsi_stack/development/secrets/postgres/role_maevsi-postgraphile_password.secret,dst=/run/secrets/postgres_role_maevsi-postgraphile_password" \
     --mount "type=bind,src=/var/run/postgresql/,dst=/var/run/postgresql/" \
     "${passopt[@]}" "$SQITCH_IMAGE" "$@"
