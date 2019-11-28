@@ -11,7 +11,7 @@ schema_private 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> 
 extension_pgcrypto [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension pgcrypto.
 extension_uuid-ossp [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension uuid-ossp.
 function_events_organized [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is the organizer.
-function_invite_claim_array [schema_private] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns the current invite clains as UUID array.
+function_invite_claim_array [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns the current invite clains as UUID array.
 function_invites_contact [schema_private function_invite_claim_array function_events_organized] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Displays the same values as a SELECT on the invite_contact table. Used as prevention for a circular dependency.
 table_contact [schema_public role_account role_anonymous function_invites_contact] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table contact.
 table_account [schema_private schema_public table_contact extension_uuid-ossp] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table account.

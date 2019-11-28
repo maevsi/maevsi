@@ -13,7 +13,7 @@ BEGIN
     WHERE invite_account.username = current_setting('jwt.claims.username', true)::TEXT
     UNION ALL
     SELECT invite_contact.event_id FROM maevsi.invite_contact
-    WHERE invite_contact.uuid = ANY (maevsi_private.invite_claim_array());
+    WHERE invite_contact.uuid = ANY (maevsi.invite_claim_array());
 END
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 

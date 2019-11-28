@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP FUNCTION maevsi_private.events_organized;
+DROP FUNCTION maevsi.events_organized;
 
 COMMIT;

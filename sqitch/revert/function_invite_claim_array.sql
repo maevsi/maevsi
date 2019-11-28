@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP FUNCTION maevsi_private.invite_claim_array;
+DROP FUNCTION maevsi.invite_claim_array;
 
 COMMIT;

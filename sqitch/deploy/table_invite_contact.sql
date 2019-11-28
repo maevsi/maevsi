@@ -31,11 +31,11 @@ GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.invite_contact TO maevsi_account;
 
 ALTER TABLE maevsi.invite_contact ENABLE ROW LEVEL SECURITY;
 
--- TODO: Display contact invites issued to oneself.
+-- Display contact invites issued to oneself.
 -- Display contact invites for events organized by oneself.
 CREATE POLICY invite_contact_select ON maevsi.invite_contact FOR SELECT USING (
-        uuid = ANY (maevsi_private.invite_claim_array())
-    OR  event_id IN (SELECT maevsi_private.events_organized())
+        uuid = ANY (maevsi.invite_claim_array())
+    OR  event_id IN (SELECT maevsi.events_organized())
 );
 
 COMMIT;

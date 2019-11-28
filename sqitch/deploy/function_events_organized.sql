@@ -5,7 +5,7 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi_private.events_organized() RETURNS TABLE (event_id INTEGER) AS $$
+CREATE FUNCTION maevsi.events_organized() RETURNS TABLE (event_id INTEGER) AS $$
 BEGIN
     RETURN QUERY
     SELECT id FROM maevsi.event
@@ -13,8 +13,8 @@ BEGIN
 END
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi_private.events_organized() IS 'Add a function that returns all event ids for which the invoker is the organizer.';
+COMMENT ON FUNCTION maevsi.events_organized() IS 'Add a function that returns all event ids for which the invoker is the organizer.';
 
-GRANT EXECUTE ON FUNCTION maevsi_private.events_organized() TO maevsi_account, maevsi_anonymous;
+GRANT EXECUTE ON FUNCTION maevsi.events_organized() TO maevsi_account, maevsi_anonymous;
 
 COMMIT;

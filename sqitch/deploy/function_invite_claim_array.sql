@@ -1,16 +1,16 @@
 -- Deploy maevsi:function_invite_claim_array to pg
--- requires: schema_private
+-- requires: schema_public
 
 BEGIN;
 
-CREATE FUNCTION maevsi_private.invite_claim_array() RETURNS UUID[] AS $$
+CREATE FUNCTION maevsi.invite_claim_array() RETURNS UUID[] AS $$
 BEGIN
     RETURN string_to_array(replace(btrim(current_setting('jwt.claims.invites', true), '[]'), '"', ''), ',')::UUID[];
 END
 $$ LANGUAGE PLPGSQL STRICT;
 
-COMMENT ON FUNCTION maevsi_private.invite_claim_array() IS 'Returns the current invite clains as UUID array.';
+COMMENT ON FUNCTION maevsi.invite_claim_array() IS 'Returns the current invite clains as UUID array.';
 
-GRANT EXECUTE ON FUNCTION maevsi_private.invite_claim_array() TO maevsi_anonymous;
+GRANT EXECUTE ON FUNCTION maevsi.invite_claim_array() TO maevsi_account, maevsi_anonymous;
 
 COMMIT;

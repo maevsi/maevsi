@@ -17,7 +17,7 @@ CREATE FUNCTION maevsi.redeem(
                 'maevsi_anonymous',
                 NULL,
                 NULL,
-               (SELECT ARRAY(SELECT DISTINCT UNNEST(maevsi_private.invite_claim_array() || "invitation_code") ORDER BY 1))
+               (SELECT ARRAY(SELECT DISTINCT UNNEST(maevsi.invite_claim_array() || "invitation_code") ORDER BY 1))
             )::maevsi.jwt
     FROM maevsi.event
     WHERE id = (

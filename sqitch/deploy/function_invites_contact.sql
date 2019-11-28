@@ -9,8 +9,8 @@ CREATE FUNCTION maevsi_private.invites_contact() RETURNS TABLE (contact_id INTEG
 BEGIN
     RETURN QUERY
     SELECT invite_contact.contact_id FROM maevsi.invite_contact
-    WHERE   uuid = ANY (maevsi_private.invite_claim_array())
-        OR  event_id IN (SELECT maevsi_private.events_organized());
+    WHERE   uuid = ANY (maevsi.invite_claim_array())
+        OR  event_id IN (SELECT maevsi.events_organized());
 END
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
