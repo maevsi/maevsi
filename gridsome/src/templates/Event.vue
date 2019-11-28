@@ -45,25 +45,26 @@
               class="btn btn-green"
               v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'CANCELED'"
               @click="accept"
-            >Accept</button>
+            >Accept Invite</button>
             <button
               class="btn btn-red"
               v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
               @click="cancel"
-            >Cancel</button>
+            >Cancel Invite</button>
           </div>
           <div
             v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback !== null && eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
           >
-            <label class="form-label mb-1 md:mb-0" for="input-username">Kind of invite</label>
+            <label class="form-label mb-1 md:mb-0 pr-0" for="input-username">Kind of invite</label>
             <select
               class="form-input"
               v-model="eventContactFeedbackData.invitationFeedbackData.paperInvitationFeedback"
               @change="send"
             >
-              <option value="NONE">none</option>
-              <option value="PAPER">paper</option>
-              <option value="DIGITAL">digital</option>
+              <option disabled :value="null">Please select</option>
+              <option value="NONE">None</option>
+              <option value="PAPER">Paper</option>
+              <option value="DIGITAL">Digital</option>
             </select>
           </div>
         </div>
