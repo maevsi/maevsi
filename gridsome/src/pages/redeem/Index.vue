@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="flex flex-col items-center justify-between">
-          <button class="btn btn-red" type="sumit">Redeem</button>
+          <button class="btn btn-red" type="submit">Redeem</button>
         </div>
       </form>
     </div>

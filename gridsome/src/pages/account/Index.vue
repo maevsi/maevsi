@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="flex flex-col items-center justify-between">
-          <button class="btn btn-red" type="sumit">
+          <button class="btn btn-red" type="submit">
             Sign In
           </button>
           <!-- TODO
