@@ -34,10 +34,10 @@ const apolloClient = new ApolloClient({
 })
 
 const apolloProvider = new VueApollo({
-  defaultClient: apolloClient,
+  defaultClient: apolloClient
 })
 
-config.autoAddCss = false;
+config.autoAddCss = false
 library.add(faCalendarDay, faExternalLinkAlt, faKey, faGithub, faLockOpen, faMapMarker, faPlus, faUser)
 
 export default function (Vue, { appOptions, head }) {
@@ -47,13 +47,13 @@ export default function (Vue, { appOptions, head }) {
   Vue.component('Layout', DefaultLayout)
 
   Vue.use(VueApollo)
-  Vue.use(VueMoment, {moment});
+  Vue.use(VueMoment, { moment })
 
   Vue.prototype.$slugify = slugify
 
   appOptions.apolloProvider = apolloProvider
-  head.htmlAttrs = {class: 'h-full'}
-  head.bodyAttrs = {class: 'font-sans h-full text-white'}
+  head.htmlAttrs = { class: 'h-full' }
+  head.bodyAttrs = { class: 'font-sans h-full text-white' }
   head.meta.push({
     name: 'viewport',
     content: 'width=device-width, initial-scale=1, shrink-to-fit=no'
@@ -66,7 +66,7 @@ export default function (Vue, { appOptions, head }) {
     variables: {
       username: '',
       password: ''
-    },
+    }
   }).then((data) => {
     if (data.data.authenticate !== null) {
       localStorage.setItem('jwt', data.data.authenticate)

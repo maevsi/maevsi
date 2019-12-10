@@ -42,18 +42,18 @@
 import gql from 'graphql-tag'
 
 export default {
-  data() {
+  data () {
     return {
       username: null,
       password: null
-    };
+    }
   },
-  metaInfo() {
-    return { title: "Account" };
+  metaInfo () {
+    return { title: 'Account' }
   },
   methods: {
-    authenticate(e) {
-      e.preventDefault();
+    authenticate (e) {
+      e.preventDefault()
 
       this.$apollo.query({
         query: gql`query($username: String!, $password: String!) {
@@ -62,7 +62,7 @@ export default {
         variables: {
           username: this.username,
           password: this.password
-        },
+        }
       }).then((data) => {
         if (data.data.authenticate !== null) {
           localStorage.setItem('jwt', data.data.authenticate)
@@ -71,7 +71,7 @@ export default {
       }).catch((error) => {
         console.error(error)
       })
-    },
+    }
   }
-};
+}
 </script>

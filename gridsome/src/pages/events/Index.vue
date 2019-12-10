@@ -40,16 +40,16 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
+import gql from 'graphql-tag'
 
 export default {
-  data() {
+  data () {
     return {
       allEvents: null
-    };
+    }
   },
-  metaInfo() {
-    return { title: "Events" };
+  metaInfo () {
+    return { title: 'Events' }
   },
   apollo: {
     $prefetch: false,
@@ -75,5 +75,5 @@ export default {
       update: data => data.allEvents.nodes
     }
   }
-};
+}
 </script>

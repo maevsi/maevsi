@@ -25,8 +25,8 @@ query {
 
 <script>
 export default {
-  metaInfo() {
-    return { title: "Welcome!" };
+  metaInfo () {
+    return { title: 'Welcome!' }
   }
-};
+}
 </script>

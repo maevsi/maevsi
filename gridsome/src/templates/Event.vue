@@ -89,14 +89,14 @@
 </template>
 
 <script>
-import VueMarkdown from "vue-markdown-v2";
-import Error404 from "~/components/Error404.vue";
-import gql from "graphql-tag";
+import VueMarkdown from 'vue-markdown-v2'
+import Error404 from '~/components/Error404.vue'
+import gql from 'graphql-tag'
 
 export default {
   apollo: {
     $prefetch: false,
-    eventContactFeedbackData() {
+    eventContactFeedbackData () {
       return {
         query: gql`
           query($organizerUsername: String!, $slug: String!) {
@@ -136,39 +136,39 @@ export default {
           slug: this.$route.params.event_name
         },
         update: data => data.eventContactFeedbackData
-      };
+      }
     }
   },
   components: {
     Error404,
     VueMarkdown
   },
-  data() {
+  data () {
     return {
       eventContactFeedbackData: null
-    };
+    }
   },
-  metaInfo() {
+  metaInfo () {
     return {
       title:
         this.eventContactFeedbackData !== null &&
         this.eventContactFeedbackData.event.name !== null
           ? this.eventContactFeedbackData.event.name
-          : "404"
-    };
+          : '404'
+    }
   },
   methods: {
-    accept() {
+    accept () {
       this.eventContactFeedbackData.invitationFeedbackData.invitationFeedback =
-        "ACCEPTED";
-      this.send();
+        'ACCEPTED'
+      this.send()
     },
-    cancel() {
+    cancel () {
       this.eventContactFeedbackData.invitationFeedbackData.invitationFeedback =
-        "CANCELED";
-      this.send();
+        'CANCELED'
+      this.send()
     },
-    send() {
+    send () {
       this.$apollo
         .mutate({
           mutation: gql`
@@ -203,18 +203,18 @@ export default {
               .invitationFeedbackDatum !== null
           ) {
             this.eventContactFeedbackData.invitationFeedbackData =
-              data.data.updateInvitationFeedbackDatumById.invitationFeedbackDatum;
+              data.data.updateInvitationFeedbackDatumById.invitationFeedbackDatum
           }
         })
         .catch(error => {
-          console.error(error);
-        });
+          console.error(error)
+        })
     },
-    removeTypename(object) {
-      let objectClone = JSON.parse(JSON.stringify(object));
-      delete objectClone.__typename;
-      return objectClone;
+    removeTypename (object) {
+      const objectClone = JSON.parse(JSON.stringify(object))
+      delete objectClone.__typename
+      return objectClone
     }
   }
-};
+}
 </script>

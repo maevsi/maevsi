@@ -7,8 +7,8 @@
 
 <script>
 export default {
-  metaInfo() {
-    return { title: this.$route.params.account_name };
+  metaInfo () {
+    return { title: this.$route.params.account_name }
   }
-};
+}
 </script>

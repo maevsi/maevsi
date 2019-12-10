@@ -34,20 +34,20 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
+import gql from 'graphql-tag'
 
 export default {
-  data() {
+  data () {
     return {
       invitationCode: this.$route.query.ic
-    };
+    }
   },
-  metaInfo() {
-    return { title: "Redeem" };
+  metaInfo () {
+    return { title: 'Redeem' }
   },
   methods: {
-    redeem(e) {
-      e.preventDefault();
+    redeem (e) {
+      e.preventDefault()
 
       this.$apollo.query({
         query: gql`query($uuid: UUID!) {
@@ -59,18 +59,18 @@ export default {
         }`,
         variables: {
           uuid: this.invitationCode
-        },
+        }
       }).then((data) => {
         if (data.data.redeem !== null) {
           localStorage.setItem('jwt', data.data.redeem.jwt)
           this.$router.push(`/events/${data.data.redeem.organizerUsername}/${data.data.redeem.eventSlug}`)
         } else {
-          console.error("Code invalid.")
+          console.error('Code invalid.')
         }
       }).catch((error) => {
         console.error(error)
       })
     }
   }
-};
+}
 </script>
