@@ -4,7 +4,7 @@ module.exports = {
     es6: true
   },
   extends: [
-    'plugin:vue/essential',
+    'plugin:vue/recommended',
     'standard'
   ],
   globals: {

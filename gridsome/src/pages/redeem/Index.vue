@@ -4,9 +4,12 @@
       <h1>{{ this.$metaInfo.title }}</h1>
       <div class="mb-4">
         Did you receive an invitation code for an event?
-        <br />Enter it below!
+        <br>Enter it below!
       </div>
-      <form class="form" @submit="redeem">
+      <form
+        class="form"
+        @submit="redeem"
+      >
         <div class="md:flex md:items-center mb-6">
           <div class="md:w-1/3">
             <label
@@ -16,17 +19,22 @@
           </div>
           <div class="md:w-2/3">
             <input
-              class="form-input"
               id="input-code"
+              v-model="invitationCode"
+              class="form-input"
               type="text"
               pattern="[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}"
               placeholder="Invitation Code"
-              v-model="invitationCode"
-            />
+            >
           </div>
         </div>
         <div class="flex flex-col items-center justify-between">
-          <button class="btn btn-red" type="submit">Redeem</button>
+          <button
+            class="btn btn-red"
+            type="submit"
+          >
+            Redeem
+          </button>
         </div>
       </form>
     </div>

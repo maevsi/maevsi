@@ -2,29 +2,53 @@
   <Layout>
     <h1>{{ this.$metaInfo.title }}</h1>
     <div class="m-auto max-w-sm">
-      <form class="form" @submit="authenticate">
+      <form
+        class="form"
+        @submit="authenticate"
+      >
         <div class="md:flex md:items-center mb-6">
           <div class="md:w-1/3">
-            <label class="form-label md:text-right mb-1 md:mb-0" for="input-username">
+            <label
+              class="form-label md:text-right mb-1 md:mb-0"
+              for="input-username"
+            >
               Username
             </label>
           </div>
           <div class="md:w-2/3">
-            <input class="form-input" id="input-username" type="text" placeholder="Username" v-model="username">
+            <input
+              id="input-username"
+              v-model="username"
+              class="form-input"
+              type="text"
+              placeholder="Username"
+            >
           </div>
         </div>
         <div class="md:flex md:items-center mb-6">
           <div class="md:w-1/3">
-            <label class="form-label md:text-right mb-1 md:mb-0" for="input-password">
+            <label
+              class="form-label md:text-right mb-1 md:mb-0"
+              for="input-password"
+            >
               Password
             </label>
           </div>
           <div class="md:w-2/3">
-            <input class="form-input" id="input-password" type="password" placeholder="Password" v-model="password">
+            <input
+              id="input-password"
+              v-model="password"
+              class="form-input"
+              type="password"
+              placeholder="Password"
+            >
           </div>
         </div>
         <div class="flex flex-col items-center justify-between">
-          <button class="btn btn-red" type="submit">
+          <button
+            class="btn btn-red"
+            type="submit"
+          >
             Sign In
           </button>
           <!-- TODO

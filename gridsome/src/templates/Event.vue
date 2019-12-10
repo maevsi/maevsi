@@ -1,77 +1,109 @@
 <template>
   <Layout>
-    <div v-if="$apollo.loading">Loading...</div>
+    <div v-if="$apollo.loading">
+      Loading...
+    </div>
     <div v-else>
       <div v-if="eventContactFeedbackData.event !== null">
         <p
-          class="font-bold mb-2 text-2xl"
           v-if="eventContactFeedbackData.contact !== null"
-        >Hey {{eventContactFeedbackData.contact.firstName}}!</p>
+          class="font-bold mb-2 text-2xl"
+        >
+          Hey {{ eventContactFeedbackData.contact.firstName }}!
+        </p>
         <p>You've been invited to the following event:</p>
         <div
           class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black"
         >
-          <h1 class="text-gray-900">{{ eventContactFeedbackData.event.name }}</h1>
+          <h1 class="text-gray-900">
+            {{ eventContactFeedbackData.event.name }}
+          </h1>
           <div class="event-meta">
             <div>
-              <div title="public" v-if="eventContactFeedbackData.event.visibility == 'PUBLIC'">
+              <div
+                v-if="eventContactFeedbackData.event.visibility == 'PUBLIC'"
+                title="public"
+              >
                 <font-awesome :icon="['fas', 'lock-open']" />
-                <br />public
+                <br>public
               </div>
-              <div title="private" v-if="eventContactFeedbackData.event.visibility == 'PRIVATE'">
+              <div
+                v-if="eventContactFeedbackData.event.visibility == 'PRIVATE'"
+                title="private"
+              >
                 <font-awesome :icon="['fas', 'key']" />
-                <br />private
+                <br>private
               </div>
             </div>
             <div>
               <font-awesome :icon="['fas', 'calendar-day']" />
-              <br />
-              {{eventContactFeedbackData.event.start | moment("lll")}}
-              <br />
-              ({{eventContactFeedbackData.event.start | moment("from")}})
+              <br>
+              {{ eventContactFeedbackData.event.start | moment("lll") }}
+              <br>
+              ({{ eventContactFeedbackData.event.start | moment("from") }})
             </div>
             <div v-if="eventContactFeedbackData.event.place !== null">
               <font-awesome :icon="['fas', 'map-marker']" />
-              <br />
+              <br>
               <a
                 :href="'https://maps.google.de/?q=' + eventContactFeedbackData.event.place"
                 target="_blank"
               >
-                {{eventContactFeedbackData.event.place}}
+                {{ eventContactFeedbackData.event.place }}
                 <font-awesome :icon="['fas', 'external-link-alt']" />
               </a>
             </div>
           </div>
-          <hr class="my-4" />
+          <hr class="my-4">
           <vue-markdown
             class="description text-left text-gray-900 text-sm"
-          >{{eventContactFeedbackData.event.description}}</vue-markdown>
+          >
+            {{ eventContactFeedbackData.event.description }}
+          </vue-markdown>
           <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
             <div class="text-white">
               <button
-                class="btn btn-green"
                 v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'CANCELED'"
+                class="btn btn-green"
                 @click="accept"
-              >Accept Invite</button>
+              >
+                Accept Invite
+              </button>
               <button
-                class="btn btn-red"
                 v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
+                class="btn btn-red"
                 @click="cancel"
-              >Cancel Invite</button>
+              >
+                Cancel Invite
+              </button>
             </div>
             <div
               v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback !== null && eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
             >
-              <label class="form-label mb-1 md:mb-0 pr-0" for="input-username">Kind of invite</label>
+              <label
+                class="form-label mb-1 md:mb-0 pr-0"
+                for="input-username"
+              >Kind of invite</label>
               <select
-                class="form-input"
                 v-model="eventContactFeedbackData.invitationFeedbackData.paperInvitationFeedback"
+                class="form-input"
                 @change="send"
               >
-                <option disabled :value="null">Please select</option>
-                <option value="NONE">None</option>
-                <option value="PAPER">Paper</option>
-                <option value="DIGITAL">Digital</option>
+                <option
+                  disabled
+                  :value="null"
+                >
+                  Please select
+                </option>
+                <option value="NONE">
+                  None
+                </option>
+                <option value="PAPER">
+                  Paper
+                </option>
+                <option value="DIGITAL">
+                  Digital
+                </option>
               </select>
             </div>
           </div>
