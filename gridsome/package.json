@@ -2,7 +2,7 @@
   "name": "maevsi",
   "private": true,
   "scripts": {
-    "build": "gridsome build",
+    "build": "eslint --ext .js,.vue src && gridsome build",
     "develop": "gridsome develop",
     "explore": "gridsome explore"
   },
@@ -23,6 +23,19 @@
     "vue-moment": "4.0.0"
   },
   "devDependencies": {
-    "gridsome-plugin-tailwindcss": "2.2.27"
+    "eslint": "^6.7.2",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.0.1",
+    "gridsome-plugin-tailwindcss": "2.2.27",
+    "husky": "^4.0.0-beta.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint --ext .js,.vue src"
+    }
   }
 }
