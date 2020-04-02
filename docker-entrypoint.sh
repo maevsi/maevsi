@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-sqitch -C /srv/sqitch/ deploy $(cat /run/secrets/maevsi_sqitch-target)
+sqitch -C /srv/sqitch/ deploy "$(cat /run/secrets/maevsi_sqitch-target)"
 
 if hash gridsome 2>/dev/null
 then
