@@ -66,20 +66,22 @@ export default function (Vue, { appOptions, head }) {
     content: 'width=device-width, initial-scale=1, shrink-to-fit=no'
   })
 
-  apolloProvider.defaultClient.mutate({
-    mutation: gql`mutation ($id: UUID!) {
-      jwtRefresh(input: {jwtId: $id}) {
-        jwt
+  if (typeof window !== 'undefined') {
+    apolloProvider.defaultClient.mutate({
+      mutation: gql`mutation ($id: UUID!) {
+        jwtRefresh(input: {jwtId: $id}) {
+          jwt
+        }
+      }`,
+      variables: {
+        id: jwtDecode(localStorage.getItem('jwt')).id
       }
-    }`,
-    variables: {
-      id: jwtDecode(localStorage.getItem('jwt')).id
-    }
-  }).then((data) => {
-    if (data.data.jwtRefresh.jwt !== null) {
-      localStorage.setItem('jwt', data.data.jwtRefresh.jwt)
-    }
-  }).catch((error) => {
-    console.error(error)
-  })
+    }).then((data) => {
+      if (data.data.jwtRefresh.jwt !== null) {
+        localStorage.setItem('jwt', data.data.jwtRefresh.jwt)
+      }
+    }).catch((error) => {
+      console.error(error)
+    })
+  }
 }
