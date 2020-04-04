@@ -8,6 +8,7 @@ import fetch from 'node-fetch'
 import gql from 'graphql-tag'
 import moment from 'moment-timezone'
 import slugify from 'slugify'
+import jwtDecode from 'jwt-decode'
 import VueApollo from 'vue-apollo'
 import VueMoment from 'vue-moment'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
@@ -23,12 +24,18 @@ const apolloClient = new ApolloClient({
   request: (operation) => {
     const jwt = localStorage.getItem('jwt')
 
-    if (jwt) {
-      operation.setContext({
-        headers: {
-          Authorization: `Bearer ${jwt}`
-        }
-      })
+    if (jwt !== null) {
+      const jwtDecoded = jwtDecode(jwt)
+
+      if (jwtDecoded.exp > Math.floor(new Date() / 1000)) {
+        operation.setContext({
+          headers: {
+            Authorization: `Bearer ${jwt}`
+          }
+        })
+      } else {
+        console.warn('JWT expired.')
+      }
     }
   }
 })
@@ -59,19 +66,45 @@ export default function (Vue, { appOptions, head }) {
     content: 'width=device-width, initial-scale=1, shrink-to-fit=no'
   })
 
-  apolloProvider.defaultClient.query({
-    query: gql`query($username: String!, $password: String!) {
-      authenticate(username: $username, password: $password)
-    }`,
-    variables: {
-      username: '',
-      password: ''
+  // Either authenticate or refresh token on page load.
+  if (typeof window !== 'undefined') {
+    const jwt = localStorage.getItem('jwt')
+
+    if (jwt === null) {
+      apolloProvider.defaultClient.mutate({
+        mutation: gql`mutation ($username: String!, $password: String!) {
+          authenticate(input: {username: $username, password: $password}) {
+            jwt
+          }
+        }`,
+        variables: {
+          username: '',
+          password: ''
+        }
+      }).then((data) => {
+        if (data.data.authenticate !== null) {
+          localStorage.setItem('jwt', data.data.authenticate.jwt)
+        }
+      }).catch((error) => {
+        console.error(error)
+      })
+    } else {
+      apolloProvider.defaultClient.mutate({
+        mutation: gql`mutation ($id: UUID!) {
+          jwtRefresh(input: {jwtId: $id}) {
+            jwt
+          }
+        }`,
+        variables: {
+          id: jwtDecode(jwt).id
+        }
+      }).then((data) => {
+        if (data.data.jwtRefresh.jwt !== null) {
+          localStorage.setItem('jwt', data.data.jwtRefresh.jwt)
+        }
+      }).catch((error) => {
+        console.error(error)
+      })
     }
-  }).then((data) => {
-    if (data.data.authenticate !== null) {
-      localStorage.setItem('jwt', data.data.authenticate)
-    }
-  }).catch((error) => {
-    console.error(error)
-  })
+  }
 }

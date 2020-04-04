@@ -57,12 +57,14 @@ export default {
     redeem (e) {
       e.preventDefault()
 
-      this.$apollo.query({
-        query: gql`query($uuid: UUID!) {
-          redeem(invitationCode: $uuid) {
-            organizerUsername
-            eventSlug
-            jwt
+      this.$apollo.mutate({
+        mutation: gql`mutation ($uuid: UUID!) {
+          redeem(input: {invitationCode: $uuid}) {
+            redeemResponse {
+              organizerUsername
+              eventSlug
+              jwt
+            }
           }
         }`,
         variables: {
@@ -70,8 +72,8 @@ export default {
         }
       }).then((data) => {
         if (data.data.redeem !== null) {
-          localStorage.setItem('jwt', data.data.redeem.jwt)
-          this.$router.push(`/events/${data.data.redeem.organizerUsername}/${data.data.redeem.eventSlug}`)
+          localStorage.setItem('jwt', data.data.redeem.redeemResponse.jwt)
+          this.$router.push(`/events/${data.data.redeem.redeemResponse.organizerUsername}/${data.data.redeem.redeemResponse.eventSlug}`)
         } else {
           console.error('Code invalid.')
         }
