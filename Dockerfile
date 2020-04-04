@@ -4,6 +4,11 @@
 # Should be the specific version of node:buster-slim.
 FROM node:13.2.0-buster-slim@sha256:81850e9056b20b11d4219080d19c26ae902d9c2991ad24af6b52c0d69bfb0c00 AS development
 
+# Update and install build dependencies
+RUN \
+    apt-get update && \
+    apt-get install -y git
+
 # Install gridsome.
 RUN yarn global add @gridsome/cli
 
