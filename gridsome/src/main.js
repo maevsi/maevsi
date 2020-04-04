@@ -61,7 +61,7 @@ export default function (Vue, { appOptions, head }) {
 
   apolloProvider.defaultClient.query({
     query: gql`query($username: String!, $password: String!) {
-        authenticate(username: $username, password: $password)
+      authenticate(username: $username, password: $password)
     }`,
     variables: {
       username: '',

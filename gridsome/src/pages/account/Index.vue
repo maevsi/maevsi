@@ -81,7 +81,7 @@ export default {
 
       this.$apollo.query({
         query: gql`query($username: String!, $password: String!) {
-            authenticate(username: $username, password: $password)
+          authenticate(username: $username, password: $password)
         }`,
         variables: {
           username: this.username,
