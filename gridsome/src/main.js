@@ -8,6 +8,7 @@ import fetch from 'node-fetch'
 import gql from 'graphql-tag'
 import moment from 'moment-timezone'
 import slugify from 'slugify'
+import jwtDecode from 'jwt-decode'
 import VueApollo from 'vue-apollo'
 import VueMoment from 'vue-moment'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
@@ -23,12 +24,18 @@ const apolloClient = new ApolloClient({
   request: (operation) => {
     const jwt = localStorage.getItem('jwt')
 
-    if (jwt) {
-      operation.setContext({
-        headers: {
-          Authorization: `Bearer ${jwt}`
-        }
-      })
+    if (jwt !== null) {
+      const jwtDecoded = jwtDecode(jwt)
+
+      if (jwtDecoded.exp > Math.floor(new Date() / 1000)) {
+        operation.setContext({
+          headers: {
+            Authorization: `Bearer ${jwt}`
+          }
+        })
+      } else {
+        console.warn('JWT expired.')
+      }
     }
   }
 })
