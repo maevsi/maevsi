@@ -4,16 +4,16 @@ module.exports = {
   },
   variants: {},
   plugins: [
-    function({ addBase, addComponents, config }) {
+    function ({ addBase, addComponents, config }) {
       addBase({
-        'h1': {
+        h1: {
           fontSize: config('theme.fontSize.2xl'),
           marginBottom: config('theme.margin.4'),
-          fontWeight: config('theme.fontWeight.bold'),
+          fontWeight: config('theme.fontWeight.bold')
         }
-        /*'h2': { fontSize: config('theme.fontSize.xl') },
-        'h3': { fontSize: config('theme.fontSize.lg') },*/
-      }),
+        /* 'h2': { fontSize: config('theme.fontSize.xl') },
+        'h3': { fontSize: config('theme.fontSize.lg') }, */
+      })
       addComponents({
         '.btn': {
           boxShadow: config('theme.boxShadow.default'),
@@ -24,40 +24,40 @@ module.exports = {
           '&:focus': {
             boxShadow: config('theme.boxShadow.outline'),
             outline: 0
-          },
+          }
         },
         '.btn-green': {
           backgroundColor: config('theme.colors.green.600'),
           '&:hover': {
             backgroundColor: config('theme.colors.green.700')
-          },
+          }
         },
         '.btn-red': {
           backgroundColor: config('theme.colors.red.600'),
           '&:hover': {
             backgroundColor: config('theme.colors.red.700')
-          },
+          }
         },
         '.description': {
-          'a': {
-            color: config('theme.colors.blue.700'),
+          a: {
+            color: config('theme.colors.blue.700')
           },
-          'p': {
-            margin: config('theme.margin.2') + ' ' + config('theme.margin.0'),
-          },
+          p: {
+            margin: config('theme.margin.2') + ' ' + config('theme.margin.0')
+          }
         },
         '.event-meta': {
           color: config('theme.colors.gray.600'),
-          'div': {
-            margin: config('theme.margin.2') + ' ' + config('theme.margin.0'),
-          },
+          div: {
+            margin: config('theme.margin.2') + ' ' + config('theme.margin.0')
+          }
         },
         '.form': {
           backgroundColor: config('theme.colors.white'),
           boxShadow: config('theme.boxShadow.md'),
           borderRadius: config('theme.borderRadius.default'),
           marginBottom: config('theme.margin.4'),
-          padding: config('theme.padding.6') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8'),
+          padding: config('theme.padding.6') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8')
         },
         '.form-input': {
           appearance: 'none',
@@ -73,28 +73,27 @@ module.exports = {
             backgroundColor: config('theme.colors.white'),
             borderColor: config('theme.colors.purple.500'),
             outline: 0
-          },
+          }
         },
         '.form-label': {
           color: config('theme.colors.gray.500'),
           display: 'block',
           fontWeight: config('theme.fontWeight.bold'),
-          paddingRight: config('theme.padding.4'),
+          paddingRight: config('theme.padding.4')
         },
         '.oneliner': {
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
+          whiteSpace: 'nowrap'
         },
         '.td': {
           borderWidth: config('theme.borderWidth.default'),
-          padding: config('theme.padding.2') + ' ' + config('theme.padding.4'),
+          padding: config('theme.padding.2') + ' ' + config('theme.padding.4')
         },
         '.th': {
-          padding: config('theme.padding.2') + ' ' + config('theme.padding.4'),
+          padding: config('theme.padding.2') + ' ' + config('theme.padding.4')
         }
       })
-    },
+    }
   ]
-
 }
