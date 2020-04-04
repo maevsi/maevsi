@@ -11,23 +11,25 @@ CREATE FUNCTION maevsi.jwt_refresh(
 DECLARE
   "_jwt" maevsi.jwt;
 BEGIN
-    SELECT INTO "_jwt"
+    SELECT (token)."id", (token)."role", (token)."account_id", (token)."username", (token)."invites" INTO "_jwt"
     FROM maevsi_private.jwt
-    WHERE   "id" = "jwt_id"
+    WHERE   "id" = $1
     AND     "valid_until" >= NOW();
 
-    IF EXISTS "_jwt"
+    IF NOT "_jwt" IS NULL
     THEN
         UPDATE maevsi_private.jwt
         SET "valid_until" = DEFAULT
-        WHERE "id" = "jwt_id";
+        WHERE "id" = $1;
 
         RETURN (
             SELECT "token"
             FROM maevsi_private.jwt
-            WHERE   "id" = "jwt_id"
+            WHERE   "id" = $1
             AND     "valid_until" >= NOW()
         );
+    ELSE
+        RETURN NULL;
     END IF;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
