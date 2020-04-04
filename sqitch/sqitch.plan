@@ -42,5 +42,5 @@ type_redeem_response [schema_public type_jwt] 1970-01-01T00:00:00Z Jonas Thelema
 function_redeem [schema_public table_invite_account table_invite_contact table_event type_redeem_response function_invite_claim_array] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add function that allows to redeem invitation codes.
 type_event_contact_feedback [schema_public table_event table_contact table_invitation_feedback_data] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a custom type consisting of an event and an contact.
 function_event_contact_feedback_data [schema_public table_event table_contact table_invite_account table_invite_contact type_event_contact_feedback] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Returns the event as indicated by the event organizer''s username and event slug together with the accessing contact and its feedback data.
-table_token [schema_private extension_uuid-ossp] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table token.
-function_jwt_refresh [schema_public type_jwt table_token] 2020-04-04T02:47:19Z Jonas Thelemann <jonas@cosmic> # Add function that refreshed tokens.
+table_jwt [schema_private extension_uuid-ossp] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table for JWTs.
+function_jwt_refresh [schema_public type_jwt table_jwt] 2020-04-04T02:47:19Z Jonas Thelemann <jonas@cosmic> # Add function that refreshed tokens.

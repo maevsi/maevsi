@@ -1,7 +1,7 @@
 -- Deploy maevsi:function_jwt_refresh to pg
 -- requires: schema_public
 -- requires: type_jwt
--- requires: table_token
+-- requires: table_jwt
 
 BEGIN;
 
@@ -12,19 +12,19 @@ DECLARE
   "_jwt" maevsi.jwt;
 BEGIN
     SELECT INTO "_jwt"
-    FROM maevsi_private.token
+    FROM maevsi_private.jwt
     WHERE   "id" = "jwt_id"
     AND     "valid_until" >= NOW();
 
     IF EXISTS "_jwt"
     THEN
-        UPDATE maevsi_private.token
+        UPDATE maevsi_private.jwt
         SET "valid_until" = DEFAULT
         WHERE "id" = "jwt_id";
 
         RETURN (
             SELECT "token"
-            FROM maevsi_private.token
+            FROM maevsi_private.jwt
             WHERE   "id" = "jwt_id"
             AND     "valid_until" >= NOW()
         );
