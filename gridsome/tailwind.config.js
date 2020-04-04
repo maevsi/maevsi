@@ -61,7 +61,11 @@ module.exports = {
           boxShadow: config('theme.boxShadow.md'),
           borderRadius: config('theme.borderRadius.default'),
           marginBottom: config('theme.margin.4'),
-          padding: config('theme.padding.6') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8')
+          padding: config('theme.padding.6') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8'),
+          '&.form-error': {
+            borderColor: config('theme.colors.red.500'),
+            borderWidth: config('theme.borderWidth.default')
+          }
         },
         '.form-input': {
           appearance: 'none',

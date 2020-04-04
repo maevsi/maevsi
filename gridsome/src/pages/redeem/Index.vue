@@ -8,7 +8,10 @@
       </div>
       <form
         class="form"
-        :class="{ 'form-group--error': graphqlErrorMessage !== undefined }"
+        :class="{
+          'form-group--error': graphqlErrorMessage !== undefined && !$v.invitationCode.$dirty,
+          'form-error': graphqlErrorMessage !== undefined && !$v.invitationCode.$dirty
+        }"
         @submit="redeem"
       >
         <div
