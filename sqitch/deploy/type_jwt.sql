@@ -4,6 +4,7 @@
 BEGIN;
 
 CREATE TYPE maevsi.jwt AS (
+  "id" UUID,
   "role" TEXT,
   "account_id" INTEGER,
   "username" TEXT,

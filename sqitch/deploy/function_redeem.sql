@@ -14,6 +14,7 @@ CREATE FUNCTION maevsi.redeem(
     SELECT  "organizer_username",
             "slug" AS "event_slug",
             (
+                current_setting('jwt.claims.id', true)::UUID,
                 'maevsi_anonymous',
                 NULL,
                 NULL,
