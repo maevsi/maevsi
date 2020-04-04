@@ -3,7 +3,7 @@
     <header class="flex items-center justify-between mb-4">
       <g-link to="/">
         <g-image
-          alt="maevsi logo"
+          alt="mævsi logo"
           src="~/assets/maevsi_with-text.svg"
           width="135"
         />

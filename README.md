@@ -1,4 +1,4 @@
-# maevsi - **ALPHA**
+# mævsi - **ALPHA**
 
 A manager for events supported by invitees.
 

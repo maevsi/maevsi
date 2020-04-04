@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <h1>{{ this.$metaInfo.title }}</h1>
-    <p>Maevsi is a manager for events supported by invitees.</p>
+    <p>Mævsi is a manager for events supported by invitees.</p>
     <p>This site is currently in alpha: anything can change at any time.</p>
     <br>
     <div class="flex justify-center">

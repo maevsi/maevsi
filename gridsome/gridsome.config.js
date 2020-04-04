@@ -7,7 +7,7 @@
 module.exports = {
   icon: './src/assets/maevsi.svg',
   siteDescription: 'A manager for events supported by invitees.',
-  siteName: 'maevsi',
+  siteName: 'mævsi',
   siteUrl: 'https://maev.si',
   plugins: [
     {
