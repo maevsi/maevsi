@@ -17,14 +17,21 @@ jobs:
         id: buildx
         uses: crazy-max/ghaction-docker-buildx@v1
 
-      - name: Build
+      - name: Build "build"
         run: |
-          docker build -t stage_build --target build .
+          IMAGE_ID=${{ github.repository }}
+
+          docker buildx build \
+            --cache-from=$IMAGE_ID:cache \
+            --cache-to=$IMAGE_ID:cache \
+            -t stage_build \
+            --target build\
+            .
           docker container create --name extract stage_build
           docker container cp extract:/srv/app/dist/ .
           docker container rm -f extract
 
-      - name: Run Buildx
+      - name: Build "production"
         run: |
           IMAGE_ID=${{ github.repository }}
 
@@ -43,11 +50,13 @@ jobs:
               --cache-from=$IMAGE_ID:cache \
               --cache-to=$IMAGE_ID:cache \
               --push \
-              -t $IMAGE_ID:$VERSION .
+              -t $IMAGE_ID:$VERSION \
+              .
           else
             docker buildx build \
               --cache-from=$IMAGE_ID:cache \
-              -t $IMAGE_ID:$VERSION .
+              -t $IMAGE_ID:$VERSION \
+              .
           fi
 
       - name: Zip
