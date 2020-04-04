@@ -10,6 +10,7 @@ import moment from 'moment-timezone'
 import slugify from 'slugify'
 import jwtDecode from 'jwt-decode'
 import VueApollo from 'vue-apollo'
+import Vuelidate from 'vuelidate'
 import VueMoment from 'vue-moment'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
@@ -54,6 +55,7 @@ export default function (Vue, { appOptions, head }) {
   Vue.component('Layout', DefaultLayout)
 
   Vue.use(VueApollo)
+  Vue.use(Vuelidate)
   Vue.use(VueMoment, { moment })
 
   Vue.prototype.$slugify = slugify

@@ -38,6 +38,10 @@ module.exports = {
             backgroundColor: config('theme.colors.red.700')
           }
         },
+        '.btn-disabled': {
+          cursor: config('theme.cursor.not-allowed'),
+          opacity: config('theme.opacity.50')
+        },
         '.description': {
           a: {
             color: config('theme.colors.blue.700')
@@ -73,13 +77,19 @@ module.exports = {
             backgroundColor: config('theme.colors.white'),
             borderColor: config('theme.colors.purple.500'),
             outline: 0
+          },
+          '&.form-error': {
+            borderColor: config('theme.colors.red.500')
           }
         },
         '.form-label': {
-          color: config('theme.colors.gray.500'),
+          color: config('theme.colors.gray.600'),
           display: 'block',
           fontWeight: config('theme.fontWeight.bold'),
-          paddingRight: config('theme.padding.4')
+          paddingRight: config('theme.padding.4'),
+          '&.form-error': {
+            color: config('theme.colors.red.500')
+          }
         },
         '.oneliner': {
           overflow: 'hidden',
