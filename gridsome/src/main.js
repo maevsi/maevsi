@@ -66,22 +66,45 @@ export default function (Vue, { appOptions, head }) {
     content: 'width=device-width, initial-scale=1, shrink-to-fit=no'
   })
 
+  // Either authenticate or refresh token on page load.
   if (typeof window !== 'undefined') {
-    apolloProvider.defaultClient.mutate({
-      mutation: gql`mutation ($id: UUID!) {
-        jwtRefresh(input: {jwtId: $id}) {
-          jwt
+    const jwt = localStorage.getItem('jwt')
+
+    if (jwt === null) {
+      apolloProvider.defaultClient.mutate({
+        mutation: gql`mutation ($username: String!, $password: String!) {
+          authenticate(input: {username: $username, password: $password}) {
+            jwt
+          }
+        }`,
+        variables: {
+          username: '',
+          password: ''
         }
-      }`,
-      variables: {
-        id: jwtDecode(localStorage.getItem('jwt')).id
-      }
-    }).then((data) => {
-      if (data.data.jwtRefresh.jwt !== null) {
-        localStorage.setItem('jwt', data.data.jwtRefresh.jwt)
-      }
-    }).catch((error) => {
-      console.error(error)
-    })
+      }).then((data) => {
+        if (data.data.authenticate !== null) {
+          localStorage.setItem('jwt', data.data.authenticate.jwt)
+        }
+      }).catch((error) => {
+        console.error(error)
+      })
+    } else {
+      apolloProvider.defaultClient.mutate({
+        mutation: gql`mutation ($id: UUID!) {
+          jwtRefresh(input: {jwtId: $id}) {
+            jwt
+          }
+        }`,
+        variables: {
+          id: jwtDecode(jwt).id
+        }
+      }).then((data) => {
+        if (data.data.jwtRefresh.jwt !== null) {
+          localStorage.setItem('jwt', data.data.jwtRefresh.jwt)
+        }
+      }).catch((error) => {
+        console.error(error)
+      })
+    }
   }
 }

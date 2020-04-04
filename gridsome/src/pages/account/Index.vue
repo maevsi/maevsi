@@ -79,9 +79,11 @@ export default {
     authenticate (e) {
       e.preventDefault()
 
-      this.$apollo.query({
-        query: gql`query($username: String!, $password: String!) {
-            authenticate(username: $username, password: $password)
+      this.$apollo.mutation({
+        mutation: gql`mutation ($username: String!, $password: String!) {
+          authenticate(input: {username: $username, password: $password}) {
+            jwt
+          }
         }`,
         variables: {
           username: this.username,
@@ -89,7 +91,7 @@ export default {
         }
       }).then((data) => {
         if (data.data.authenticate !== null) {
-          localStorage.setItem('jwt', data.data.authenticate)
+          localStorage.setItem('jwt', data.data.authenticate.jwt)
           this.$router.push(this.username)
         }
       }).catch((error) => {
