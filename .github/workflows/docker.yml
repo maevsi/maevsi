@@ -22,8 +22,6 @@ jobs:
           IMAGE_ID=${{ github.repository }}
 
           docker buildx build \
-            --cache-from=$IMAGE_ID:cache \
-            --cache-to=$IMAGE_ID:cache \
             -t stage_build \
             --target build\
             .
