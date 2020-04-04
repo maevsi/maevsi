@@ -24,10 +24,10 @@ jobs:
           docker container cp extract:/srv/app/dist/ .
           docker container rm -f extract
 
-      - name: Variables
+      - name: Run Buildx
         run: |
           IMAGE_ID=${{ github.repository }}
-          
+
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
@@ -37,22 +37,19 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-      - name: Run Buildx w/ push
-        if: github.event_name == 'push'
-        run: |
-          docker buildx build \
-            --cache-from=$IMAGE_ID:cache \
-            --cache-to=$IMAGE_ID:cache \
-            --push \
-            -t $IMAGE_ID:$VERSION .
+          if [[ "${{ github.event_name }}" == "push" ]]
+          then
+            docker buildx build \
+              --cache-from=$IMAGE_ID:cache \
+              --cache-to=$IMAGE_ID:cache \
+              --push \
+              -t $IMAGE_ID:$VERSION .
+          else
+            docker buildx build \
+              --cache-from=$IMAGE_ID:cache \
+              -t $IMAGE_ID:$VERSION .
+          fi
 
-      - name: Run Buildx w/o push
-        if: github.event_name == 'pull_request'
-        run: |
-          docker buildx build \
-            --cache-from=$IMAGE_ID:cache \
-            -t $IMAGE_ID:$VERSION .
-        
       - name: Zip
         uses: montudor/action-zip@v0.1.0
         if: startsWith(github.ref, 'refs/tags/')
