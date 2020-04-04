@@ -5,7 +5,8 @@ SQITCH_IMAGE=${SQITCH_IMAGE:=sqitch/sqitch:latest}
 
 if [ -e "$PWD/SQITCH_TARGET.env" ]
 then
-	export SQITCH_TARGET="$(cat $PWD/SQITCH_TARGET.env)"
+    SQITCH_TARGET="$(cat "$PWD"/SQITCH_TARGET.env)"
+    export SQITCH_TARGET
 fi
 
 # Set up required pass-through variables.
@@ -20,14 +21,14 @@ passopt=(
 # Handle OS-specific options.
 case "$(uname -s)" in
     Linux*)
-        passopt+=(-e "SQITCH_ORIG_FULLNAME=$(getent passwd $user | cut -d: -f5 | cut -d, -f1)")
-        passopt+=(-u $(id -u ${user}):$(id -g ${user}))
+        passopt+=(-e "SQITCH_ORIG_FULLNAME=$(getent passwd "$user" | cut -d: -f5 | cut -d, -f1)")
+        passopt+=(-u "$(id -u "${user}")":"$(id -g "${user}")")
         ;;
     Darwin*)
-        passopt+=(-e "SQITCH_ORIG_FULLNAME=$(id -P $user | awk -F '[:]' '{print $8}')")
+        passopt+=(-e "SQITCH_ORIG_FULLNAME=$(id -P "$user" | awk -F '[:]' '{print $8}')")
         ;;
     MINGW*|CYGWIN*)
-        passopt+=(-e "SQITCH_ORIG_FULLNAME=$(net user $user)")
+        passopt+=(-e "SQITCH_ORIG_FULLNAME=$(net user "$user")")
         ;;
     *)
         echo "Unknown OS: $(uname -s)"
@@ -47,13 +48,13 @@ for var in \
     SNOWSQL_ACCOUNT SNOWSQL_USER SNOWSQL_PWD SNOWSQL_HOST SNOWSQL_PORT SNOWSQL_DATABASE SNOWSQL_REGION SNOWSQL_WAREHOUSE
 do
     if [ -n "${!var}" ]; then
-       passopt+=(-e $var)
+       passopt+=(-e "$var")
     fi
 done
 
 # Determine the name of the container home directory.
 homedst=/home
-if [ $(id -u ${user}) -eq 0 ]; then
+if [ "$(id -u "${user}")" -eq 0 ]; then
     homedst=/root
 fi
 # Set HOME, since the user ID likely won't be the same as for the sqitch user.
