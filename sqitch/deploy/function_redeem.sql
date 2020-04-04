@@ -24,7 +24,7 @@ CREATE FUNCTION maevsi.redeem(
         SELECT event_id FROM maevsi.invite_contact
         WHERE invite_contact.uuid = "invitation_code"
     )
-$$ LANGUAGE SQL STABLE STRICT SECURITY DEFINER;
+$$ LANGUAGE PLPGSQL STABLE STRICT SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi.redeem(UUID) IS 'Allows to redeem invitation codes.';
 
