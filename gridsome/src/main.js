@@ -66,17 +66,18 @@ export default function (Vue, { appOptions, head }) {
     content: 'width=device-width, initial-scale=1, shrink-to-fit=no'
   })
 
-  apolloProvider.defaultClient.query({
-    query: gql`query($username: String!, $password: String!) {
-        authenticate(username: $username, password: $password)
+  apolloProvider.defaultClient.mutate({
+    mutation: gql`mutation ($id: UUID!) {
+      jwtRefresh(input: {jwtId: $id}) {
+        jwt
+      }
     }`,
     variables: {
-      username: '',
-      password: ''
+      id: jwtDecode(localStorage.getItem('jwt')).id
     }
   }).then((data) => {
-    if (data.data.authenticate !== null) {
-      localStorage.setItem('jwt', data.data.authenticate)
+    if (data.data.jwtRefresh.jwt !== null) {
+      localStorage.setItem('jwt', data.data.jwtRefresh.jwt)
     }
   }).catch((error) => {
     console.error(error)
