@@ -25,7 +25,7 @@ jobs:
             --cache-from=$IMAGE_ID:cache \
             --cache-to=$IMAGE_ID:cache \
             -t stage_build \
-            --target build\
+            --target build \
             .
           docker container create --name extract stage_build
           docker container cp extract:/srv/app/dist/ .
