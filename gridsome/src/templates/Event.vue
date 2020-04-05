@@ -12,9 +12,7 @@
           Hey {{ eventContactFeedbackData.contact.firstName }}!
         </p>
         <p>You've been invited to the following event:</p>
-        <div
-          class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black"
-        >
+        <div class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black">
           <h1 class="text-gray-900">
             {{ eventContactFeedbackData.event.name }}
           </h1>
@@ -55,11 +53,8 @@
             </div>
           </div>
           <hr class="my-4">
-          <vue-markdown
-            class="description text-left text-gray-900 text-sm"
-          >
-            {{ eventContactFeedbackData.event.description }}
-          </vue-markdown>
+          <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
+          <vue-markdown class="description text-left text-gray-900 text-sm">{{ eventContactFeedbackData.event.description }}</vue-markdown>
           <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
             <div class="text-white">
               <button
@@ -77,9 +72,7 @@
                 Cancel Invite
               </button>
             </div>
-            <div
-              v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback !== null && eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
-            >
+            <div v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback !== null && eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'">
               <label
                 class="form-label mb-1 md:mb-0 pr-0"
                 for="input-username"
@@ -184,7 +177,7 @@ export default {
     return {
       title:
         this.eventContactFeedbackData !== null &&
-        this.eventContactFeedbackData.event.name !== null
+          this.eventContactFeedbackData.event.name !== null
           ? this.eventContactFeedbackData.event.name
           : '404'
     }

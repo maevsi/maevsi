@@ -20,5 +20,8 @@ module.exports = {
   ],
   root: true,
   rules: {
+    "vue/singleline-html-element-content-newline": ["error", {
+      "ignores": ["vue-markdown"]
+    }]
   }
 }

@@ -19,7 +19,11 @@
       </a>
     </div>
     <p>
-      <a href="events/"><button class="btn btn-red">Events</button></a>
+      <a href="events/">
+        <button class="btn btn-red">
+          Events
+        </button>
+      </a>
     </p>
   </Layout>
 </template>
