@@ -36,9 +36,7 @@
             >
           </div>
         </div>
-        <div
-          class="md:flex md:items-center mb-6"
-        >
+        <div class="md:flex md:items-center mb-6">
           <div class="md:w-1/3" />
           <div class="md:w-2/3">
             <div

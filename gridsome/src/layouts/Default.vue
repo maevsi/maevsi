@@ -37,13 +37,13 @@ query {
 
 <style>
 body {
-  background: linear-gradient(#34A1F0, #695BC0) fixed;
+  background: linear-gradient(#34a1f0, #695bc0) fixed;
 }
 
 .form-group--error {
   animation-name: shakeError;
   animation-fill-mode: forwards;
-  animation-duration: .6s;
+  animation-duration: 0.6s;
   animation-timing-function: ease-in-out;
 }
 
