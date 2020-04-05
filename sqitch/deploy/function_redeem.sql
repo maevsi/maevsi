@@ -38,13 +38,9 @@ BEGIN
 
     IF "_event_id" IS NOT NULL
     THEN
-        RETURN (SELECT  "organizer_username",
-                "slug" AS "event_slug",
-                "_jwt"
+        RETURN (SELECT ("organizer_username", "slug", "_jwt")::maevsi.redeem_response
         FROM maevsi.event
-        WHERE id = (
-            "_event_id"
-        ));
+        WHERE id = "_event_id");
     ELSE
         RAISE 'No event for this invitation code found!' USING ERRCODE = 'no_data_found';
     END IF;
