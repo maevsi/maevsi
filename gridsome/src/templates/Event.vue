@@ -21,8 +21,15 @@
                 v-if="eventContactFeedbackData.event.visibility == 'PUBLIC'"
                 title="public"
               >
-                <font-awesome :icon="['fas', 'lock-open']" />
+                <font-awesome :icon="['fas', 'globe-africa']" />
                 <br>public
+              </div>
+              <div
+                v-if="eventContactFeedbackData.event.visibility == 'LIMITED'"
+                title="limited"
+              >
+                <font-awesome :icon="['fas', 'hand-paper']" />
+                <br>limited
               </div>
               <div
                 v-if="eventContactFeedbackData.event.visibility == 'PRIVATE'"

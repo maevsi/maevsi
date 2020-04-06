@@ -20,14 +20,28 @@
           <li class="mb-4">
             <div class="bg-white border border-gray-400 flex flex-col p-4 rounded">
               <div class="flex items-center mb-2 text-gray-600 text-sm">
-                <div>{{ event.start | moment("lll") }}</div>
+                <div
+                  class="font-medium"
+                  :class="{
+                    'text-gray-600': $moment(event.start).isBefore($moment()),
+                    'text-teal-600': $moment(event.start).isSameOrAfter($moment())
+                  }"
+                >
+                  {{ event.start | moment("lll") }}
+                </div>
               </div>
               <div class="flex items-center mb-2 text-gray-600 text-sm">
                 <font-awesome
                   v-if="event.visibility == 'PUBLIC'"
                   class="mr-2"
-                  :icon="['fas', 'lock-open']"
+                  :icon="['fas', 'globe-africa']"
                   title="public"
+                />
+                <font-awesome
+                  v-if="event.visibility == 'LIMITED'"
+                  class="mr-2"
+                  :icon="['fas', 'hand-paper']"
+                  title="limited"
                 />
                 <font-awesome
                   v-if="event.visibility == 'PRIVATE'"
@@ -35,7 +49,13 @@
                   :icon="['fas', 'key']"
                   title="private"
                 />
-                <div class="font-bold text-gray-900 text-xl">
+                <div
+                  class="font-bold text-xl"
+                  :class="{
+                    'text-gray-600': $moment(event.start).isBefore($moment()),
+                    'text-gray-900': $moment(event.start).isSameOrAfter($moment())
+                  }"
+                >
                   {{ event.name }}
                 </div>
               </div>
