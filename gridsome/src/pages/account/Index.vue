@@ -319,15 +319,29 @@ export default {
   watch: {
     formRegister: {
       handler (val) {
-        this.formSignin.signinPassword = val.registerPassword
-        this.formSignin.signinUsername = val.registerUsername
+        if (this.formSignin.signinPassword !== val.registerPassword) {
+          this.formSignin.signinPassword = val.registerPassword
+          this.$v.formSignin.signinPassword.$touch()
+        }
+
+        if (this.formSignin.signinUsername !== val.registerUsername) {
+          this.formSignin.signinUsername = val.registerUsername
+          this.$v.formSignin.signinUsername.$touch()
+        }
       },
       deep: true
     },
     formSignin: {
       handler (val) {
-        this.formRegister.registerPassword = val.signinPassword
-        this.formRegister.registerUsername = val.signinUsername
+        if (this.formRegister.registerPassword !== val.signinPassword) {
+          this.formRegister.registerPassword = val.signinPassword
+          this.$v.formRegister.registerPassword.$touch()
+        }
+
+        if (this.formRegister.registerUsername !== val.signinUsername) {
+          this.formRegister.registerUsername = val.signinUsername
+          this.$v.formRegister.registerUsername.$touch()
+        }
       },
       deep: true
     }
@@ -338,7 +352,7 @@ export default {
     if (jwt !== null) {
       const jwtDecoded = jwtDecode(jwt)
 
-      if (jwtDecoded.username !== undefined && jwtDecoded.username !== '') {
+      if (jwtDecoded.username !== null && jwtDecoded.username !== '') {
         this.$router.push(jwtDecoded.username)
       }
     }
