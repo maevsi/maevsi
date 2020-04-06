@@ -191,7 +191,7 @@ export default {
     return {
       username: null,
       password: null,
-      form: (this.$route.query.form === undefined) ? 'login' : this.$route.query.form
+      form: (this.$route.query.form === undefined) ? 'signin' : this.$route.query.form
     }
   },
   metaInfo () {
