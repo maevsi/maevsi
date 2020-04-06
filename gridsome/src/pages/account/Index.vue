@@ -347,13 +347,15 @@ export default {
     }
   },
   beforeCreate () {
-    const jwt = localStorage.getItem('jwt')
+    if (typeof window !== 'undefined') {
+      const jwt = localStorage.getItem('jwt')
 
-    if (jwt !== null) {
-      const jwtDecoded = jwtDecode(jwt)
+      if (jwt !== null) {
+        const jwtDecoded = jwtDecode(jwt)
 
-      if (jwtDecoded.username !== null && jwtDecoded.username !== '') {
-        this.$router.push(jwtDecoded.username)
+        if (jwtDecoded.username !== null && jwtDecoded.username !== '') {
+          this.$router.push(jwtDecoded.username)
+        }
       }
     }
   },

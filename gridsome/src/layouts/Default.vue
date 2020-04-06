@@ -89,13 +89,15 @@ export default {
     }
   },
   created () {
-    const jwt = localStorage.getItem('jwt')
+    if (typeof window !== 'undefined') {
+      const jwt = localStorage.getItem('jwt')
 
-    if (jwt !== null) {
-      const jwtDecoded = jwtDecode(jwt)
+      if (jwt !== null) {
+        const jwtDecoded = jwtDecode(jwt)
 
-      if (jwtDecoded.exp > Math.floor(new Date() / 1000) && jwtDecoded.username !== null) {
-        this.loggedIn = true
+        if (jwtDecoded.exp > Math.floor(new Date() / 1000) && jwtDecoded.username !== null) {
+          this.loggedIn = true
+        }
       }
     }
   },
