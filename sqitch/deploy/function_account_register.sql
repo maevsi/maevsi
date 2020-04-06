@@ -18,6 +18,11 @@ CREATE FUNCTION maevsi_private.account_register(
 DECLARE
     _contact maevsi.contact;
 BEGIN
+    IF char_length("password") < 8
+    THEN
+        RAISE 'Password too short!' USING ERRCODE = 'invalid_parameter_value';
+    END IF;
+
     INSERT INTO maevsi.contact DEFAULT VALUES
         RETURNING * INTO _contact;
 
