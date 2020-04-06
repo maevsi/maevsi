@@ -56,7 +56,7 @@
         <div class="flex flex-col items-center justify-between">
           <button
             class="btn btn-red"
-            :class="{ 'btn-disabled': $v.invitationCode.$model === '' || $v.invitationCode.$error }"
+            :class="{ 'disabled': $v.invitationCode.$model === '' || $v.invitationCode.$error }"
             :disabled="$v.invitationCode.$model === '' || $v.invitationCode.$error"
             type="submit"
           >

@@ -15,6 +15,9 @@ module.exports = {
         'h3': { fontSize: config('theme.fontSize.lg') }, */
       })
       addComponents({
+        body: {
+          background: 'linear-gradient(#34a1f0, #695bc0) fixed'
+        },
         '.btn': {
           boxShadow: config('theme.boxShadow.default'),
           margin: config('theme.margin.4'),
@@ -35,10 +38,13 @@ module.exports = {
         '.btn-red': {
           backgroundColor: config('theme.colors.red.600'),
           '&:hover': {
-            backgroundColor: config('theme.colors.red.700')
+            backgroundColor: config('theme.colors.red.700'),
+            '&.disabled': {
+              backgroundColor: config('theme.colors.red.600')
+            }
           }
         },
-        '.btn-disabled': {
+        '.disabled': {
           cursor: config('theme.cursor.not-allowed'),
           opacity: config('theme.opacity.50')
         },
@@ -50,11 +56,34 @@ module.exports = {
             margin: config('theme.margin.2') + ' ' + config('theme.margin.0')
           }
         },
+        '.e1': {
+          gridRow: '1',
+          gridColumn: '1'
+        },
         '.event-meta': {
           color: config('theme.colors.gray.600'),
           div: {
             margin: config('theme.margin.2') + ' ' + config('theme.margin.0')
           }
+        },
+        '.flip-card': {
+          perspective: '1000px'
+        },
+        '.flip-card-inner': {
+          transition: 'transform 0.8s',
+          transformStyle: 'preserve-3d'
+        },
+        '.flip-card.flipped .flip-card-inner': {
+          transform: 'rotateY(180deg)'
+        },
+        '.flip-card-front, .flip-card-back': {
+          backfaceVisibility: 'hidden'
+        },
+        '.flip-card-front': {
+          transform: 'rotateY(0deg)'
+        },
+        '.flip-card-back': {
+          transform: 'rotateY(180deg)'
         },
         '.form': {
           backgroundColor: config('theme.colors.white'),
@@ -66,6 +95,12 @@ module.exports = {
             borderColor: config('theme.colors.red.500'),
             borderWidth: config('theme.borderWidth.default')
           }
+        },
+        '.form-group--error': {
+          animationName: 'shakeError',
+          animationFillMode: 'forwards',
+          animationDuration: '0.6s',
+          animationTimingFunction: 'ease-in-out'
         },
         '.form-input': {
           appearance: 'none',
@@ -89,7 +124,7 @@ module.exports = {
         '.form-label': {
           color: config('theme.colors.gray.600'),
           display: 'block',
-          fontWeight: config('theme.fontWeight.bold'),
+          fontWeight: config('theme.fontWeight.semibold'),
           paddingRight: config('theme.padding.4'),
           '&.form-error': {
             color: config('theme.colors.red.500')
@@ -100,9 +135,29 @@ module.exports = {
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap'
         },
+        '.pills': {
+          display: 'flex',
+          justifyContent: 'space-between',
+          li: {
+            width: config('theme.width.full'),
+            button: {
+              color: config('theme.colors.black'),
+              fontWeight: config('theme.fontWeight.semibold'),
+              outline: '0',
+              padding: config('theme.spacing.2') + ' ' + config('theme.spacing.4'),
+              width: config('theme.width.full')
+            }
+          }
+        },
         '.td': {
           borderWidth: config('theme.borderWidth.default'),
           padding: config('theme.padding.2') + ' ' + config('theme.padding.4')
+        },
+        '.transition-006': {
+          transition: '0.6s'
+        },
+        '.translate-x-100': {
+          transform: 'translateX(100%)'
         },
         '.th': {
           padding: config('theme.padding.2') + ' ' + config('theme.padding.4')

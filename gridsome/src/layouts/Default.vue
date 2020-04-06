@@ -36,17 +36,6 @@ query {
 </static-query>
 
 <style>
-body {
-  background: linear-gradient(#34a1f0, #695bc0) fixed;
-}
-
-.form-group--error {
-  animation-name: shakeError;
-  animation-fill-mode: forwards;
-  animation-duration: 0.6s;
-  animation-timing-function: ease-in-out;
-}
-
 @keyframes shakeError {
   0% {
     transform: translateX(0);
