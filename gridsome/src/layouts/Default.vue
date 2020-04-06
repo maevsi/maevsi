@@ -17,11 +17,14 @@
           :icon="['fas', 'plus']"
         />Redeem
       </g-link>
-      <!--<nav>
+      <nav>
         <g-link to="/account/">
-          <font-awesome class="mr-2" :icon="['far', 'user']" />Account
+          <font-awesome
+            class="mr-2"
+            :icon="['far', 'user']"
+          />Account
         </g-link>
-      </nav>-->
+      </nav>
     </header>
     <slot />
   </div>
