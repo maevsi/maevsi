@@ -17,14 +17,26 @@
           :icon="['fas', 'plus']"
         />Redeem
       </g-link>
-      <nav>
-        <g-link to="/account/">
+      <div>
+        <g-link
+          v-if="!loggedIn"
+          to="/account/"
+        >
           <font-awesome
             class="mr-2"
             :icon="['far', 'user']"
           />Account
         </g-link>
-      </nav>
+        <button
+          v-if="loggedIn"
+          @click="logOut"
+        >
+          <font-awesome
+            class="mr-2"
+            :icon="['fas', 'sign-out-alt']"
+          />Log Out
+        </button>
+      </div>
     </header>
     <slot />
   </div>
@@ -66,3 +78,40 @@ query {
   }
 }
 </style>
+
+<script>
+import jwtDecode from 'jwt-decode'
+
+export default {
+  data () {
+    return {
+      loggedIn: false
+    }
+  },
+  created () {
+    const jwt = localStorage.getItem('jwt')
+
+    if (jwt !== null) {
+      const jwtDecoded = jwtDecode(jwt)
+
+      if (jwtDecoded.exp > Math.floor(new Date() / 1000) && jwtDecoded.username !== null) {
+        this.loggedIn = true
+      }
+    }
+  },
+  methods: {
+    logOut (e) {
+      localStorage.removeItem('jwt')
+
+      const jwtAnonymous = localStorage.getItem('jwt_anonymous')
+
+      if (jwtAnonymous !== undefined) {
+        localStorage.setItem('jwt', jwtAnonymous)
+        localStorage.removeItem('jwt_anonymous')
+      }
+
+      location.reload()
+    }
+  }
+}
+</script>

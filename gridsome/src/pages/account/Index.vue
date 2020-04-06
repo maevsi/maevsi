@@ -351,6 +351,7 @@ export default {
         }
       }).then((data) => {
         if (data.data.authenticate !== null) {
+          localStorage.setItem('jwt_anonymous', localStorage.getItem('jwt'))
           localStorage.setItem('jwt', data.data.authenticate.jwt)
           this.$router.push(this.formSignin.signinUsername)
         }
@@ -379,6 +380,7 @@ export default {
         }
       }).then((data) => {
         if (data.data.accountRegister !== null) {
+          localStorage.setItem('jwt_anonymous', localStorage.getItem('jwt'))
           localStorage.setItem('jwt', data.data.accountRegister.jwt)
           this.$router.push(this.formRegister.registerUsername)
         }
