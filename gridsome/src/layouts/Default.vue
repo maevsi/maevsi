@@ -39,7 +39,7 @@ query {
 </static-query>
 
 <style>
-@keyframes shakeError {
+@keyframes shake {
   0% {
     transform: translateX(0);
   }

@@ -9,19 +9,17 @@
       <form
         class="form"
         :class="{
-          'form-group--error': graphqlErrorMessage !== undefined && !$v.invitationCode.$dirty,
-          'form-error': graphqlErrorMessage !== undefined && !$v.invitationCode.$dirty
+          'error shake': graphqlErrorMessage !== undefined && !$v.invitationCode.$dirty
         }"
         @submit="redeem"
       >
         <div
           class="md:flex md:items-center"
-          :class="{ 'form-group--error': $v.invitationCode.$error }"
+          :class="{ 'form-error shake': $v.invitationCode.$error }"
         >
           <div class="md:w-1/3">
             <label
               class="form-label md:text-right mb-1 md:mb-0"
-              :class="{ 'form-error': $v.invitationCode.$error }"
               for="input-username"
             >Invitation Code</label>
           </div>
@@ -30,7 +28,6 @@
               id="input-code"
               v-model.trim="$v.invitationCode.$model"
               class="form-input"
-              :class="{ 'form-error': $v.invitationCode.$error }"
               type="text"
               placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
             >
@@ -39,55 +36,57 @@
         <div class="md:flex md:items-center mb-6">
           <div class="md:w-1/3" />
           <div class="md:w-2/3">
-            <div
-              v-if="$v.invitationCode.$error && !$v.invitationCode.required"
-              class="text-red-600 text-left"
-            >
-              required
-            </div>
-            <div
-              v-if="$v.invitationCode.$error && !$v.invitationCode.uuid"
-              class="text-red-600 text-left"
-            >
-              invalid format
-            </div>
+            <FormError
+              :text="'required'"
+              :trigger="$v.invitationCode.$error && !$v.invitationCode.required"
+            />
+            <FormError
+              :text="'invalid format'"
+              :trigger="$v.invitationCode.$error && !$v.invitationCode.uuid"
+            />
           </div>
         </div>
         <div class="flex flex-col items-center justify-between">
           <button
             class="btn btn-red"
-            :class="{ 'disabled': $v.invitationCode.$model === '' || $v.invitationCode.$error }"
-            :disabled="$v.invitationCode.$model === '' || $v.invitationCode.$error"
+            :class="{ 'disabled': !($v.invitationCode.$dirty && !$v.invitationCode.$error) }"
+            :disabled="!($v.invitationCode.$dirty && !$v.invitationCode.$error)"
             type="submit"
           >
             Redeem
           </button>
         </div>
-        <div
-          v-if="graphqlErrorMessage !== undefined && !$v.invitationCode.$dirty"
-          class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-          role="alert"
-        >
-          <span class="block sm:inline">
-            {{ "Error: " + graphqlErrorMessage.substr(15) }}
-          </span>
-        </div>
+        <AlertGraphql
+          :graphql-error-message="graphqlErrorMessage"
+          :validation-object="$v.invitationCode"
+        />
       </form>
     </div>
   </Layout>
 </template>
 
 <script>
+import AlertGraphql from '~/components/AlertGraphql.vue'
+import FormError from '~/components/FormError.vue'
 import gql from 'graphql-tag'
 import { helpers, required } from 'vuelidate/lib/validators'
 
 const uuid = helpers.regex('uuid', /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/)
 
 export default {
+  components: {
+    AlertGraphql,
+    FormError
+  },
   data () {
     return {
       graphqlErrorMessage: undefined,
       invitationCode: (this.$route.query.ic === undefined) ? '' : this.$route.query.ic
+    }
+  },
+  created () {
+    if (this.$route.query.ic !== undefined) {
+      this.$v.invitationCode.$touch()
     }
   },
   metaInfo () {

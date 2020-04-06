@@ -15,6 +15,15 @@ module.exports = {
         'h3': { fontSize: config('theme.fontSize.lg') }, */
       })
       addComponents({
+        '.alert': {
+          backgroundColor: config('theme.colors.red.100'),
+          borderWidth: config('theme.borderWidth.default'),
+          borderColor: config('theme.colors.red.400'),
+          color: config('theme.colors.red.700'),
+          padding: config('theme.padding.3') + ' ' + config('theme.padding.4'),
+          borderRadius: config('theme.borderRadius.default'),
+          position: 'relative'
+        },
         body: {
           background: 'linear-gradient(#34a1f0, #695bc0) fixed'
         },
@@ -91,13 +100,24 @@ module.exports = {
           borderRadius: config('theme.borderRadius.default'),
           marginBottom: config('theme.margin.4'),
           padding: config('theme.padding.6') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8'),
-          '&.form-error': {
+          '&.error': {
             borderColor: config('theme.colors.red.500'),
-            borderWidth: config('theme.borderWidth.default')
+            borderWidth: config('theme.borderWidth.default'),
           }
         },
-        '.form-group--error': {
-          animationName: 'shakeError',
+        '.form-error': {
+          input: {
+            borderColor: config('theme.colors.red.500'),
+            '&:focus': {
+              borderColor: config('theme.colors.red.500')
+            }
+          },
+          label: {
+            color: config('theme.colors.red.500')
+          }
+        },
+        '.shake': {
+          animationName: 'shake',
           animationFillMode: 'forwards',
           animationDuration: '0.6s',
           animationTimingFunction: 'ease-in-out'
@@ -116,19 +136,13 @@ module.exports = {
             backgroundColor: config('theme.colors.white'),
             borderColor: config('theme.colors.purple.500'),
             outline: 0
-          },
-          '&.form-error': {
-            borderColor: config('theme.colors.red.500')
           }
         },
         '.form-label': {
           color: config('theme.colors.gray.600'),
           display: 'block',
           fontWeight: config('theme.fontWeight.semibold'),
-          paddingRight: config('theme.padding.4'),
-          '&.form-error': {
-            color: config('theme.colors.red.500')
-          }
+          paddingRight: config('theme.padding.4')
         },
         '.oneliner': {
           overflow: 'hidden',
