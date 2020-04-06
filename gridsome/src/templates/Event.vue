@@ -146,7 +146,7 @@ export default {
                 firstName
                 lastName
                 address
-                eMailAddress
+                emailAddress
               }
               invitationFeedbackData {
                 id

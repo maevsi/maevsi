@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="graphqlErrorMessage !== undefined && !validationObject.$dirty"
+    v-if="graphqlErrorMessage !== undefined && !validationObject.$anyDirty"
     class="alert"
     role="alert"
   >

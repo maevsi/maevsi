@@ -50,7 +50,7 @@
           <form
             class="form rounded-t-none"
             :class="{
-              'error shake': graphqlErrorMessage !== undefined && !$v.formRegister.$dirty
+              'error shake': registerGraphqlErrorMessage !== undefined && !$v.formRegister.$dirty
             }"
             @submit="register"
           >
@@ -162,15 +162,15 @@
             <div class="flex flex-col items-center justify-between">
               <button
                 class="btn btn-red"
-                :class="{ 'disabled': !($v.formRegister.$dirty && !$v.formRegister.$error) }"
-                :disabled="!($v.formRegister.$dirty && !$v.formRegister.$error)"
+                :class="{ 'disabled': !((formRegister.sent ? $v.formRegister.$anyDirty : $v.formRegister.$dirty) && !$v.formRegister.$error) }"
+                :disabled="!((formRegister.sent ? $v.formRegister.$anyDirty : $v.formRegister.$dirty) && !$v.formRegister.$error)"
                 type="submit"
               >
                 Register
               </button>
             </div>
             <AlertGraphql
-              :graphql-error-message="graphqlErrorMessage"
+              :graphql-error-message="registerGraphqlErrorMessage"
               :validation-object="$v.formRegister"
             />
           </form>
@@ -179,7 +179,7 @@
           <form
             class="form rounded-t-none"
             :class="{
-              'error shake': graphqlErrorMessage !== undefined && !$v.formSignin.$dirty
+              'error shake': signinGraphqlErrorMessage !== undefined && !$v.formSignin.$dirty
             }"
             @submit="signin"
           >
@@ -256,14 +256,14 @@
             <div class="flex flex-col items-center justify-between">
               <button
                 class="btn btn-red"
-                :class="{ 'disabled': !($v.formSignin.$dirty && !$v.formSignin.$error) }"
-                :disabled="!($v.formSignin.$dirty && !$v.formSignin.$error)"
+                :class="{ 'disabled': !((formSignin.sent ? $v.formSignin.$anyDirty : $v.formSignin.$dirty) && !$v.formSignin.$error) }"
+                :disabled="!((formSignin.sent ? $v.formSignin.$anyDirty : $v.formSignin.$dirty) && !$v.formSignin.$error)"
                 type="submit"
               >
                 Sign In
               </button>
               <a
-                class="disabled inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                class="disabled inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 mb-6"
                 href="#"
                 title="Not yet available."
               >
@@ -271,7 +271,7 @@
               </a>
             </div>
             <AlertGraphql
-              :graphql-error-message="graphqlErrorMessage"
+              :graphql-error-message="signinGraphqlErrorMessage"
               :validation-object="$v.formSignin"
             />
           </form>
@@ -299,14 +299,17 @@ export default {
       formRegister: {
         registerEmailAddress: '',
         registerPassword: '',
-        registerUsername: ''
+        registerUsername: '',
+        sent: false
       },
       formSignin: {
+        sent: false,
         signinPassword: '',
         signinUsername: ''
       },
-      graphqlErrorMessage: undefined,
-      form: (this.$route.query.form === undefined) ? 'signin' : this.$route.query.form
+      form: (this.$route.query.form === undefined) ? 'signin' : this.$route.query.form,
+      registerGraphqlErrorMessage: undefined,
+      signinGraphqlErrorMessage: undefined
     }
   },
   metaInfo () {
@@ -332,6 +335,10 @@ export default {
     signin (e) {
       e.preventDefault()
 
+      this.formSignin.sent = true
+      this.signinGraphqlErrorMessage = undefined
+
+      this.$v.formSignin.$reset()
       this.$apollo.mutate({
         mutation: gql`mutation ($username: String!, $password: String!) {
           authenticate(input: {username: $username, password: $password}) {
@@ -339,20 +346,46 @@ export default {
           }
         }`,
         variables: {
-          username: this.username,
-          password: this.password
+          username: this.formSignin.signinUsername,
+          password: this.formSignin.signinPassword
         }
       }).then((data) => {
         if (data.data.authenticate !== null) {
           localStorage.setItem('jwt', data.data.authenticate.jwt)
-          this.$router.push(this.username)
+          this.$router.push(this.formSignin.signinUsername)
         }
       }).catch((error) => {
+        this.signinGraphqlErrorMessage = error.message
         console.error(error)
       })
     },
-    register () {
+    register (e) {
+      e.preventDefault()
 
+      this.formRegister.sent = true
+      this.registerGraphqlErrorMessage = undefined
+
+      this.$v.formRegister.$reset()
+      this.$apollo.mutate({
+        mutation: gql`mutation ($username: String!, $password: String!, $emailAddress: String!) {
+          accountRegister(input: {username: $username, password: $password, emailAddress: $emailAddress}) {
+            jwt
+          }
+        }`,
+        variables: {
+          username: this.formRegister.registerUsername,
+          password: this.formRegister.registerPassword,
+          emailAddress: this.formRegister.registerEmailAddress
+        }
+      }).then((data) => {
+        if (data.data.accountRegister !== null) {
+          localStorage.setItem('jwt', data.data.accountRegister.jwt)
+          this.$router.push(this.formRegister.registerUsername)
+        }
+      }).catch((error) => {
+        this.registerGraphqlErrorMessage = error.message
+        console.error(error)
+      })
     },
     tabSelect (tab) {
       if (this.form !== tab) {

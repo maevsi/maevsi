@@ -35,7 +35,7 @@ table_event_grouping [schema_public role_account role_anonymous table_event tabl
 index_event-grouping_event-id [table_event_grouping] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event grouping table's event_id field.
 index_event-grouping_event-group-id [table_event_grouping] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event grouping table's event_group_id field.
 type_jwt [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add type jwt.
-function_account_register [privilege_execute_revoke schema_private role_anonymous table_contact table_account type_jwt extension_pgcrypto] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add function account register.
+function_account_register [privilege_execute_revoke schema_private schema_public role_anonymous table_contact table_account type_jwt extension_pgcrypto] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add function account register.
 table_jwt [schema_private extension_uuid-ossp] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table for JWTs.
 function_authenticate [privilege_execute_revoke schema_public role_account role_anonymous type_jwt table_account table_jwt] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function to authenticate accounts.
 function_account_password_change [privilege_execute_revoke schema_public role_account table_account extension_pgcrypto] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that allows to change account passwords.

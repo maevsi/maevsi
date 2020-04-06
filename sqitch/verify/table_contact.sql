@@ -6,7 +6,7 @@ SELECT "id",
        "first_name",
        "last_name",
        "address",
-       "e-mail_address"
+       "email_address"
 FROM maevsi.contact WHERE FALSE;
 
 DO $$
