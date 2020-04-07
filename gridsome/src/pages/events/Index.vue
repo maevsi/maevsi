@@ -38,12 +38,6 @@
                   title="public"
                 />
                 <font-awesome
-                  v-if="event.visibility == 'LIMITED'"
-                  class="mr-2"
-                  :icon="['fas', 'hand-paper']"
-                  title="limited"
-                />
-                <font-awesome
                   v-if="event.visibility == 'PRIVATE'"
                   class="mr-2"
                   :icon="['fas', 'key']"

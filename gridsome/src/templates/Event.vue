@@ -25,13 +25,6 @@
                 <br>public
               </div>
               <div
-                v-if="eventContactFeedbackData.event.visibility == 'LIMITED'"
-                title="limited"
-              >
-                <font-awesome :icon="['fas', 'hand-paper']" />
-                <br>limited
-              </div>
-              <div
                 v-if="eventContactFeedbackData.event.visibility == 'PRIVATE'"
                 title="private"
               >
