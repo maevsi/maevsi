@@ -9,11 +9,11 @@
       class="m-auto w-full"
     >
       <ul
-        v-if="allEvents && allEvents.length"
+        v-if="allEvents.nodes && allEvents.nodes.length"
         class="mx-4 text-left"
       >
         <g-link
-          v-for="event in allEvents"
+          v-for="event in allEvents.nodes"
           :key="event.id"
           :to="'/events/' + event.organizerUsername + '/' + event.slug"
         >
@@ -59,6 +59,17 @@
             </div>
           </li>
         </g-link>
+        <div
+          v-if="allEvents.pageInfo.hasNextPage"
+          class="flex justify-center"
+        >
+          <button
+            class="btn btn-red"
+            @click="showMore"
+          >
+            More
+          </button>
+        </div>
       </ul>
       <p v-else>
         There are currently no events :/
@@ -83,8 +94,8 @@ export default {
     $prefetch: false,
     allEvents: {
       query: gql`
-        {
-          allEvents {
+        query eventsPage ($cursor: Cursor) {
+          allEvents (first: 10, after: $cursor) {
             nodes {
               id
               name
@@ -97,10 +108,37 @@ export default {
               end
               archived
             }
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
           }
         }
       `,
-      update: data => data.allEvents.nodes
+      variables: {
+        cursor: null
+      }
+    }
+  },
+  methods: {
+    showMore () {
+      this.$apollo.queries.allEvents.fetchMore({
+        variables: {
+          cursor: this.allEvents.pageInfo.endCursor
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          const newNodes = fetchMoreResult.allEvents.nodes
+          const pageInfo = fetchMoreResult.allEvents.pageInfo
+
+          return {
+            allEvents: {
+              __typename: previousResult.allEvents.__typename,
+              nodes: [...previousResult.allEvents.nodes, ...newNodes],
+              pageInfo
+            }
+          }
+        }
+      })
     }
   }
 }
