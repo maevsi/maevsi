@@ -5,9 +5,7 @@
     </div>
     <div v-else>
       <div v-if="eventContactFeedbackData.event !== null">
-        <p
-          class="font-bold mb-2 text-2xl"
-        >
+        <p class="font-bold mb-2 text-2xl">
           Hey{{ eventContactFeedbackData.contact !== null && eventContactFeedbackData.contact.firstName !== null ? ' ' + eventContactFeedbackData.contact.firstName : '' }}!
         </p>
         <p>You've been invited to the following event:</p>
@@ -39,6 +37,11 @@
               <br>
               ({{ eventContactFeedbackData.event.start | moment("from") }})
             </div>
+            <div v-if="eventContactFeedbackData.event.end !== null">
+              <font-awesome :icon="['fas', 'hourglass']" />
+              <br>
+              {{ eventContactFeedbackData.event.end | moment("diff", eventContactFeedbackData.event.start) | duration('humanize') }}
+            </div>
             <div v-if="eventContactFeedbackData.event.place !== null">
               <font-awesome :icon="['fas', 'map-marker']" />
               <br>
@@ -54,6 +57,7 @@
           <hr class="my-4">
           <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
           <vue-markdown class="description text-left text-gray-900 text-sm">{{ eventContactFeedbackData.event.description }}</vue-markdown>
+          <hr class="my-4">
           <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
             <div class="text-white">
               <button
@@ -63,13 +67,26 @@
               >
                 Accept Invite
               </button>
-              <button
-                v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
-                class="btn btn-red"
-                @click="cancel"
-              >
-                Cancel Invite
-              </button>
+              <div class="flex justify-center">
+                <div
+                  v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
+                  class="flex font-semibold items-center text-green-600"
+                >
+                  <font-awesome
+                    class="mr-2 text-green-600"
+                    :icon="['fas', 'check-circle']"
+                    size="lg"
+                    title="accepted"
+                  /> Accepted
+                </div>
+                <button
+                  v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
+                  class="btn btn-red text-white"
+                  @click="cancel"
+                >
+                  Cancel Invite
+                </button>
+              </div>
             </div>
             <div v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback !== null && eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'">
               <label
@@ -100,10 +117,6 @@
             </div>
           </div>
         </div>
-        <!-- <div v-if="event.end !== null">
-          <div>{{event.end | moment("lll")}}</div>
-          <div>{{event.end | moment("diff", event.start) | duration('humanize')}}</div>
-        </div>-->
       </div>
       <div v-else>
         <Error404 />
@@ -169,7 +182,8 @@ export default {
   },
   data () {
     return {
-      eventContactFeedbackData: null
+      eventContactFeedbackData: null,
+      eventContactFeedbackDataToSend: null
     }
   },
   metaInfo () {
@@ -183,13 +197,13 @@ export default {
   },
   methods: {
     accept () {
-      this.eventContactFeedbackData.invitationFeedbackData.invitationFeedback =
-        'ACCEPTED'
+      this.eventContactFeedbackDataToSend = JSON.parse(JSON.stringify(this.eventContactFeedbackData))
+      this.eventContactFeedbackDataToSend.invitationFeedbackData.invitationFeedback = 'ACCEPTED'
       this.send()
     },
     cancel () {
-      this.eventContactFeedbackData.invitationFeedbackData.invitationFeedback =
-        'CANCELED'
+      this.eventContactFeedbackDataToSend = JSON.parse(JSON.stringify(this.eventContactFeedbackData))
+      this.eventContactFeedbackDataToSend.invitationFeedbackData.invitationFeedback = 'CANCELED'
       this.send()
     },
     send () {
@@ -215,19 +229,10 @@ export default {
             }
           `,
           variables: {
-            id: this.eventContactFeedbackData.invitationFeedbackData.id,
+            id: this.eventContactFeedbackDataToSend.invitationFeedbackData.id,
             invitationFeedbackDatumPatch: this.removeTypename(
-              this.eventContactFeedbackData.invitationFeedbackData
+              this.eventContactFeedbackDataToSend.invitationFeedbackData
             )
-          }
-        })
-        .then(data => {
-          if (
-            data.data.updateInvitationFeedbackDatumById
-              .invitationFeedbackDatum !== null
-          ) {
-            this.eventContactFeedbackData.invitationFeedbackData =
-              data.data.updateInvitationFeedbackDatumById.invitationFeedbackDatum
           }
         })
         .catch(error => {
