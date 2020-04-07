@@ -144,11 +144,6 @@ module.exports = {
           fontWeight: config('theme.fontWeight.semibold'),
           paddingRight: config('theme.padding.4')
         },
-        '.oneliner': {
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap'
-        },
         '.pills': {
           display: 'flex',
           justifyContent: 'space-between',
@@ -175,6 +170,15 @@ module.exports = {
         },
         '.th': {
           padding: config('theme.padding.2') + ' ' + config('theme.padding.4')
+        },
+        '.line-clamp-box': {
+          display: '-webkit-box',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          '-webkit-box-orient': 'vertical'
+        },
+        '.line-clamp-2': {
+          '-webkit-line-clamp': '2'
         }
       })
     }

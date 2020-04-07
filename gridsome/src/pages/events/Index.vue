@@ -53,7 +53,7 @@
                   {{ event.name }}
                 </div>
               </div>
-              <p class="oneliner text-gray-700">
+              <p class="line-clamp-box line-clamp-2 text-gray-700">
                 {{ event.description }}
               </p>
             </div>
