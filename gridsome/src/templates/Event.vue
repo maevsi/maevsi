@@ -20,22 +20,10 @@
             {{ eventContactFeedbackData.event.name }}
           </h1>
           <div class="event-meta">
-            <div>
-              <div
-                v-if="eventContactFeedbackData.event.visibility == 'PUBLIC'"
-                title="public"
-              >
-                <font-awesome :icon="['fas', 'globe-africa']" />
-                <br>public
-              </div>
-              <div
-                v-if="eventContactFeedbackData.event.visibility == 'PRIVATE'"
-                title="private"
-              >
-                <font-awesome :icon="['fas', 'key']" />
-                <br>private
-              </div>
-            </div>
+            <EventIcon
+              :event="eventContactFeedbackData.event"
+              :with-text="true"
+            />
             <div>
               <font-awesome :icon="['fas', 'calendar-day']" />
               <br>
@@ -135,6 +123,7 @@
 import VueMarkdown from 'vue-markdown-v2'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Error404 from '~/components/Error404.vue'
+import EventIcon from '~/components/EventIcon.vue'
 import gql from 'graphql-tag'
 
 export default {
@@ -189,6 +178,7 @@ export default {
   components: {
     AlertGraphql,
     Error404,
+    EventIcon,
     VueMarkdown
   },
   data () {

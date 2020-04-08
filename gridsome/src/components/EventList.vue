@@ -23,17 +23,10 @@
               </div>
             </div>
             <div class="flex items-center mb-2 text-gray-600 text-sm">
-              <font-awesome
-                v-if="event.visibility == 'PUBLIC'"
+              <EventIcon
                 class="mr-2"
-                :icon="['fas', 'globe-africa']"
-                title="public"
-              />
-              <font-awesome
-                v-if="event.visibility == 'PRIVATE'"
-                class="mr-2"
-                :icon="['fas', 'key']"
-                title="private"
+                :event="event"
+                :show-text="false"
               />
               <div
                 class="font-bold text-xl"
@@ -70,7 +63,12 @@
 </template>
 
 <script>
+import EventIcon from '~/components/EventIcon.vue'
+
 export default {
+  components: {
+    EventIcon
+  },
   props: {
     events: {
       type: Object,
