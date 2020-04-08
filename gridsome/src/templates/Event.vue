@@ -176,7 +176,7 @@ export default {
           }
         `,
         variables: {
-          organizerUsername: this.$route.params.account_name,
+          organizerUsername: this.$route.params.username,
           slug: this.$route.params.event_name
         },
         update: data => data.eventContactFeedbackData,
