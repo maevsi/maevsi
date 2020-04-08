@@ -10,9 +10,13 @@ module.exports = {
           fontSize: config('theme.fontSize.2xl'),
           marginBottom: config('theme.margin.4'),
           fontWeight: config('theme.fontWeight.bold')
+        },
+        h2: {
+          fontSize: config('theme.fontSize.xl'),
+          marginBottom: config('theme.margin.4'),
+          fontWeight: config('theme.fontWeight.bold')
         }
-        /* 'h2': { fontSize: config('theme.fontSize.xl') },
-        'h3': { fontSize: config('theme.fontSize.lg') }, */
+        /* 'h3': { fontSize: config('theme.fontSize.lg') }, */
       })
       addComponents({
         '.alert': {

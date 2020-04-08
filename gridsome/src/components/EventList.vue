@@ -1,11 +1,11 @@
 <template>
   <div class="m-auto w-full">
     <ul
-      v-if="events.nodes && events.nodes.length"
-      class="mx-4 text-left"
+      v-if="allEvents.nodes && allEvents.nodes.length"
+      class="text-left"
     >
       <g-link
-        v-for="event in events.nodes"
+        v-for="event in allEvents.nodes"
         :key="event.id"
         :to="'/events/' + event.organizerUsername + '/' + event.slug"
       >
@@ -45,7 +45,7 @@
         </li>
       </g-link>
       <div
-        v-if="events.pageInfo.hasNextPage"
+        v-if="allEvents.pageInfo.hasNextPage"
         class="flex justify-center"
       >
         <button
@@ -70,9 +70,34 @@ export default {
     EventIcon
   },
   props: {
-    events: {
+    apollo: {
       type: Object,
       default: undefined
+    },
+    allEvents: {
+      type: Object,
+      default: undefined
+    }
+  },
+  methods: {
+    showMore () {
+      this.apollo.queries.allEvents.fetchMore({
+        variables: {
+          cursor: this.allEvents.pageInfo.endCursor
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          const newNodes = fetchMoreResult.allEvents.nodes
+          const pageInfo = fetchMoreResult.allEvents.pageInfo
+
+          return {
+            allEvents: {
+              __typename: previousResult.allEvents.__typename,
+              nodes: [...previousResult.allEvents.nodes, ...newNodes],
+              pageInfo
+            }
+          }
+        }
+      })
     }
   }
 }

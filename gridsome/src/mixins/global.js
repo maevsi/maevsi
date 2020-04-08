@@ -2,6 +2,11 @@ import gql from 'graphql-tag'
 import jwtDecode from 'jwt-decode'
 
 export default {
+  data () {
+    return {
+      ITEMS_PER_PAGE: 10
+    }
+  },
   methods: {
     $authenticateAnonymous (apolloProvider) {
       apolloProvider.defaultClient.mutate({
