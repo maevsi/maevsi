@@ -8,15 +8,6 @@
           width="135"
         />
       </g-link>
-      <g-link
-        v-if="this.$route.path == '/events/'"
-        to="/redeem/"
-      >
-        <font-awesome
-          class="mr-2"
-          :icon="['fas', 'plus']"
-        />Redeem
-      </g-link>
       <div>
         <g-link
           v-if="!loggedIn"

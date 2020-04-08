@@ -1,6 +1,14 @@
 <template>
   <Layout>
     <h1>{{ this.$metaInfo.title }}</h1>
+    <g-link to="/redeem/">
+      <button class="btn btn-red mx-0">
+        <font-awesome
+          class="mr-2"
+          :icon="['fas', 'key']"
+        />Redeem
+      </button>
+    </g-link>
     <div v-if="$apollo.loading">
       Loading...
     </div>
