@@ -12,9 +12,9 @@ CREATE FUNCTION maevsi.invitee_count("event_id" INTEGER)
 RETURNS INTEGER AS $$
 BEGIN
   RETURN (
-    (SELECT COUNT(1) FROM maevsi.invite_account WHERE invite_account.event_id = "event_id")
+    (SELECT COUNT(1) FROM maevsi.invite_account WHERE invite_account.event_id = $1)
     +
-    (SELECT COUNT(1) FROM maevsi.invite_contact WHERE invite_contact.event_id = "event_id")
+    (SELECT COUNT(1) FROM maevsi.invite_contact WHERE invite_contact.event_id = $1)
   );
 END;
 $$ LANGUAGE PLPGSQL STRICT STABLE SECURITY DEFINER;
