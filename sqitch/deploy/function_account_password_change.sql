@@ -23,6 +23,8 @@ BEGIN
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
+COMMENT ON FUNCTION maevsi.account_password_change(TEXT, TEXT) IS 'Allows to change account passwords.';
+
 GRANT EXECUTE ON FUNCTION maevsi.account_password_change(TEXT, TEXT) TO maevsi_account;
 
 COMMIT;
