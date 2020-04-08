@@ -20,7 +20,7 @@
       <div>
         <g-link
           v-if="!loggedIn"
-          to="/account/"
+          to="/accounts/"
         >
           <font-awesome
             class="mr-2"
