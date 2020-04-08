@@ -9,7 +9,7 @@
       <form
         class="form"
         :class="{
-          'error shake': graphqlErrorMessage !== undefined && !$v.invitationCode.$dirty
+          'error shake': graphqlErrorMessage !== null && !$v.invitationCode.$dirty
         }"
         @submit="redeem"
       >
@@ -80,7 +80,7 @@ export default {
   },
   data () {
     return {
-      graphqlErrorMessage: undefined,
+      graphqlErrorMessage: null,
       invitationCode: (this.$route.query.ic === undefined) ? '' : this.$route.query.ic
     }
   },
@@ -96,7 +96,7 @@ export default {
     redeem (e) {
       e.preventDefault()
 
-      this.graphqlErrorMessage = undefined
+      this.graphqlErrorMessage = null
 
       this.$v.$reset()
       this.$apollo.mutate({

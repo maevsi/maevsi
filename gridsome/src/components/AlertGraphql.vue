@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="graphqlErrorMessage !== undefined && !validationObject.$anyDirty"
+    v-if="graphqlErrorMessage !== null && (validationObject === undefined || !validationObject.$anyDirty)"
     class="alert"
     role="alert"
   >
@@ -15,7 +15,7 @@ export default {
   props: {
     graphqlErrorMessage: {
       type: String,
-      default: undefined
+      default: null
     },
     validationObject: {
       type: Object,

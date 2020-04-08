@@ -50,7 +50,7 @@
           <form
             class="form rounded-t-none"
             :class="{
-              'error shake': registerGraphqlErrorMessage !== undefined && !$v.formRegister.$dirty
+              'error shake': registerGraphqlErrorMessage !== null && !$v.formRegister.$dirty
             }"
             @submit="register"
           >
@@ -179,7 +179,7 @@
           <form
             class="form rounded-t-none"
             :class="{
-              'error shake': signinGraphqlErrorMessage !== undefined && !$v.formSignin.$dirty
+              'error shake': signinGraphqlErrorMessage !== null && !$v.formSignin.$dirty
             }"
             @submit="signin"
           >
@@ -309,8 +309,8 @@ export default {
         signinUsername: ''
       },
       form: (this.$route.query.form === undefined) ? 'signin' : this.$route.query.form,
-      registerGraphqlErrorMessage: undefined,
-      signinGraphqlErrorMessage: undefined
+      registerGraphqlErrorMessage: null,
+      signinGraphqlErrorMessage: null
     }
   },
   metaInfo () {
@@ -364,7 +364,7 @@ export default {
       e.preventDefault()
 
       this.formSignin.sent = true
-      this.signinGraphqlErrorMessage = undefined
+      this.signinGraphqlErrorMessage = null
 
       this.$v.formSignin.$reset()
       this.$apollo.mutate({
@@ -392,7 +392,7 @@ export default {
       e.preventDefault()
 
       this.formRegister.sent = true
-      this.registerGraphqlErrorMessage = undefined
+      this.registerGraphqlErrorMessage = null
 
       this.$v.formRegister.$reset()
       this.$apollo.mutate({
