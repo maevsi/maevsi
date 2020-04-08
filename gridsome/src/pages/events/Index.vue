@@ -4,6 +4,12 @@
     <div v-if="$apollo.loading">
       Loading...
     </div>
+    <div v-else-if="graphqlErrorMessage !== null">
+      <AlertGraphql
+        :graphql-error-message="graphqlErrorMessage"
+        :validation-object="undefined"
+      />
+    </div>
     <div
       v-else
       class="m-auto w-full"
@@ -79,12 +85,17 @@
 </template>
 
 <script>
+import AlertGraphql from '~/components/AlertGraphql.vue'
 import gql from 'graphql-tag'
 
 export default {
+  components: {
+    AlertGraphql
+  },
   data () {
     return {
-      allEvents: null
+      allEvents: null,
+      graphqlErrorMessage: null
     }
   },
   metaInfo () {
@@ -117,6 +128,9 @@ export default {
       `,
       variables: {
         cursor: null
+      },
+      error (error, vm, key, type, options) {
+        this.graphqlErrorMessage = error.message
       }
     }
   },

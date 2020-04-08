@@ -3,6 +3,12 @@
     <div v-if="$apollo.loading">
       Loading...
     </div>
+    <div v-else-if="graphqlErrorMessage !== null">
+      <AlertGraphql
+        :graphql-error-message="graphqlErrorMessage"
+        :validation-object="undefined"
+      />
+    </div>
     <div v-else>
       <div v-if="eventContactFeedbackData.event !== null">
         <p class="font-bold mb-2 text-2xl">
@@ -127,6 +133,7 @@
 
 <script>
 import VueMarkdown from 'vue-markdown-v2'
+import AlertGraphql from '~/components/AlertGraphql.vue'
 import Error404 from '~/components/Error404.vue'
 import gql from 'graphql-tag'
 
@@ -172,18 +179,23 @@ export default {
           organizerUsername: this.$route.params.account_name,
           slug: this.$route.params.event_name
         },
-        update: data => data.eventContactFeedbackData
+        update: data => data.eventContactFeedbackData,
+        error (error, vm, key, type, options) {
+          this.graphqlErrorMessage = error.message
+        }
       }
     }
   },
   components: {
+    AlertGraphql,
     Error404,
     VueMarkdown
   },
   data () {
     return {
       eventContactFeedbackData: null,
-      eventContactFeedbackDataToSend: null
+      eventContactFeedbackDataToSend: null,
+      graphqlErrorMessage: null
     }
   },
   metaInfo () {
