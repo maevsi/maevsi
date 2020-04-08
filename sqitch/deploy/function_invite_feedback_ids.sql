@@ -1,4 +1,5 @@
 -- Deploy maevsi:function_invite_feedback_ids to pg
+-- requires: privilege_execute_revoke
 -- requires: schema_private
 
 BEGIN;

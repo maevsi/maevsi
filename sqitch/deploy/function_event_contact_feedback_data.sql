@@ -1,4 +1,5 @@
 -- Deploy maevsi:function_event_contact_feedback_data to pg
+-- requires: privilege_execute_revoke
 -- requires: schema_public
 -- requires: table_event
 -- requires: table_contact

@@ -1,4 +1,5 @@
 -- Deploy maevsi:function_invite_claim_array to pg
+-- requires: privilege_execute_revoke
 -- requires: schema_public
 
 BEGIN;

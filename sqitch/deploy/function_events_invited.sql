@@ -1,4 +1,5 @@
 -- Deploy maevsi:function_invites to pg
+-- requires: privilege_execute_revoke
 -- requires: schema_public
 -- requires: table_invite_account
 -- requires: table_invite_contact
