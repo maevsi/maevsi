@@ -29,7 +29,7 @@
         </g-link>
         <button
           v-if="loggedIn"
-          @click="logOut"
+          @click="$logOut($apollo.provider); loggedIn = false"
         >
           <font-awesome
             class="mr-2"
@@ -95,24 +95,10 @@ export default {
       if (jwt !== null) {
         const jwtDecoded = jwtDecode(jwt)
 
-        if (jwtDecoded.exp > Math.floor(new Date() / 1000) && jwtDecoded.username !== null) {
+        if (jwtDecoded.exp > Math.floor(new Date() / 1000) && jwtDecoded.role === 'maevsi_account') {
           this.loggedIn = true
         }
       }
-    }
-  },
-  methods: {
-    logOut (e) {
-      localStorage.removeItem('jwt')
-
-      const jwtAnonymous = localStorage.getItem('jwt_anonymous')
-
-      if (jwtAnonymous !== undefined) {
-        localStorage.setItem('jwt', jwtAnonymous)
-        localStorage.removeItem('jwt_anonymous')
-      }
-
-      location.reload()
     }
   }
 }

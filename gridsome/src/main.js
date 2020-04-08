@@ -3,9 +3,10 @@
 
 import DefaultLayout from '~/layouts/Default.vue'
 
+import global from './mixins/global'
+
 import ApolloClient from 'apollo-boost'
 import fetch from 'node-fetch'
-import gql from 'graphql-tag'
 import moment from 'moment-timezone'
 import slugify from 'slugify'
 import jwtDecode from 'jwt-decode'
@@ -54,6 +55,8 @@ export default function (Vue, { appOptions, head }) {
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
 
+  Vue.mixin(global)
+
   Vue.use(VueApollo)
   Vue.use(Vuelidate)
   Vue.use(VueMoment, { moment })
@@ -73,40 +76,9 @@ export default function (Vue, { appOptions, head }) {
     const jwt = localStorage.getItem('jwt')
 
     if (jwt === null) {
-      apolloProvider.defaultClient.mutate({
-        mutation: gql`mutation ($username: String!, $password: String!) {
-          authenticate(input: {username: $username, password: $password}) {
-            jwt
-          }
-        }`,
-        variables: {
-          username: '',
-          password: ''
-        }
-      }).then((data) => {
-        if (data.data.authenticate !== null) {
-          localStorage.setItem('jwt', data.data.authenticate.jwt)
-        }
-      }).catch((error) => {
-        console.error(error)
-      })
+      global.methods.$authenticateAnonymous(apolloProvider)
     } else {
-      apolloProvider.defaultClient.mutate({
-        mutation: gql`mutation ($id: UUID!) {
-          jwtRefresh(input: {jwtId: $id}) {
-            jwt
-          }
-        }`,
-        variables: {
-          id: jwtDecode(jwt).id
-        }
-      }).then((data) => {
-        if (data.data.jwtRefresh.jwt !== null) {
-          localStorage.setItem('jwt', data.data.jwtRefresh.jwt)
-        }
-      }).catch((error) => {
-        console.error(error)
-      })
+      global.methods.$jwtRefresh(apolloProvider)
     }
   }
 }

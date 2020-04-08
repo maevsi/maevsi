@@ -201,8 +201,9 @@ export default {
   metaInfo () {
     return {
       title:
-        this.eventContactFeedbackData !== null &&
-          this.eventContactFeedbackData.event.name !== null
+        (this.eventContactFeedbackData !== null &&
+          this.eventContactFeedbackData.event !== null &&
+          this.eventContactFeedbackData.event.name !== null)
           ? this.eventContactFeedbackData.event.name
           : '404'
     }
@@ -242,19 +243,15 @@ export default {
           `,
           variables: {
             id: this.eventContactFeedbackDataToSend.invitationFeedbackData.id,
-            invitationFeedbackDatumPatch: this.removeTypename(
+            invitationFeedbackDatumPatch: this.$removeTypename(
               this.eventContactFeedbackDataToSend.invitationFeedbackData
             )
           }
         })
         .catch(error => {
+          alert(error.message)
           console.error(error)
         })
-    },
-    removeTypename (object) {
-      const objectClone = JSON.parse(JSON.stringify(object))
-      delete objectClone.__typename
-      return objectClone
     }
   }
 }
