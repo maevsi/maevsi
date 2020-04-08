@@ -5,6 +5,7 @@
 -- requires: table_invite_account
 -- requires: table_invite_contact
 -- requires: function_events_invited
+-- requires: function_invitee_count
 
 BEGIN;
 
@@ -20,13 +21,7 @@ CREATE POLICY event_select ON maevsi.event FOR SELECT USING (
             (
                 "invitee_count_maximum" IS NULL
                 OR
-                (
-                    (
-                        (SELECT COUNT(1) FROM maevsi.invite_account WHERE invite_account.event_id = id)
-                        +
-                        (SELECT COUNT(1) FROM maevsi.invite_contact WHERE invite_contact.event_id = id)
-                    ) > 0
-                )
+                maevsi.invitee_count(id) > 0
             )
         )
     OR  organizer_username = current_setting('jwt.claims.username', true)::TEXT
