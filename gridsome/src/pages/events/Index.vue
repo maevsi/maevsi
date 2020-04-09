@@ -1,14 +1,7 @@
 <template>
   <Layout>
     <h1>{{ this.$metaInfo.title }}</h1>
-    <g-link to="/redeem/">
-      <button class="btn btn-red mx-0">
-        <font-awesome
-          class="mr-2"
-          :icon="['fas', 'key']"
-        />Redeem
-      </button>
-    </g-link>
+    <ButtonRedeem />
     <div v-if="$apollo.loading">
       Loading...
     </div>
@@ -27,6 +20,7 @@
 
 <script>
 import AlertGraphql from '~/components/AlertGraphql.vue'
+import ButtonRedeem from '~/components/ButtonRedeem.vue'
 import EventList from '~/components/EventList.vue'
 import gql from 'graphql-tag'
 
@@ -68,6 +62,7 @@ export default {
   },
   components: {
     AlertGraphql,
+    ButtonRedeem,
     EventList
   },
   data () {
