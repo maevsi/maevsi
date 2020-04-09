@@ -42,20 +42,6 @@ query {
 }
 </static-query>
 
-<style>
-.dropdown-content {
-  display: none;
-}
-
-.dropdown-content > * {
-  display: block;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-</style>
-
 <script>
 import jwtDecode from 'jwt-decode'
 

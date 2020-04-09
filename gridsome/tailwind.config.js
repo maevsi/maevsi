@@ -104,6 +104,19 @@ module.exports = {
             margin: config('theme.margin.2') + ' ' + config('theme.margin.0')
           }
         },
+        '.dropdown-content': {
+          display: 'none',
+          '>*': {
+            display: 'block'
+          }
+        },
+        '.dropdown': {
+          '&:hover': {
+            '.dropdown-content': {
+              display: 'block'
+            }
+          }
+        },
         '.event-meta': {
           color: config('theme.colors.gray.600'),
           div: {
