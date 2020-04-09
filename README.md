@@ -1,6 +1,20 @@
+[![build status](https://github.com/maevsi/maevsi/workflows/Docker%20CI/badge.svg)](https://github.com/maevsi/maevsi/actions?query=workflow%3ADocker%20CI "build status")
+[![renovate](https://badges.renovateapi.com/github/maevsi/maevsi)](https://renovatebot.com/ "renovate")
+
 # mævsi - **ALPHA**
 
-A manager for events supported by invitees.
+A manager for events supported by invitees: [maev.si](https://maev.si/).
+
+<!-- ![Welcome](images/welcome.jpg "mævsi") -->
+
+## Table of Contents
+1. **[Development](#development)**
+1. **[Dependencies](#dependencies)**
+
+## Development
+
+This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance to the [DargStack template](https://github.com/dargmuesli/dargstack_template/) to make deployment a breeze.
+
 
 ## Dependencies
 
