@@ -14,7 +14,7 @@
     "@fortawesome/vue-fontawesome": "0.1.9",
     "apollo-boost": "0.4.7",
     "graphql": "14.6.0",
-    "gridsome": "0.7.11",
+    "gridsome": "0.7.13",
     "jwt-decode": "2.2.0",
     "moment-timezone": "0.5.27",
     "node-fetch": "2.6.0",
