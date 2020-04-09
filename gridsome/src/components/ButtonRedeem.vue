@@ -1,15 +1,33 @@
 <template>
-  <!-- eslint-disable vue/attribute-hyphenation -->
-  <g-link
-    tabIndex="-1"
-    to="/redeem"
-  >
-    <!-- eslint-enable vue/attribute-hyphenation -->
-    <button class="btn btn-red">
-      <font-awesome
-        class="mr-2"
-        :icon="['fas', 'key']"
-      />Redeem invite
-    </button>
-  </g-link>
+  <Button
+    :icon-id="['fas', 'key']"
+    :link="'/redeem'"
+    :text="'Redeem invite'"
+  />
 </template>
+
+<script>
+import Button from '~/components/Button.vue'
+
+export default {
+  components: {
+    Button
+  },
+  props: {
+    iconId: {
+      type: Array,
+      default () {
+        return ['fas', 'bug']
+      }
+    },
+    link: {
+      type: String,
+      default: undefined
+    },
+    text: {
+      type: String,
+      default: undefined
+    }
+  }
+}
+</script>

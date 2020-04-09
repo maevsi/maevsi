@@ -1,7 +1,15 @@
 <template>
   <Layout>
     <h1>{{ this.$metaInfo.title }}</h1>
-    <ButtonRedeem />
+    <div class="flex justify-around">
+      <Button
+        v-if="loggedIn"
+        :icon-id="['fas', 'plus']"
+        :link="'/new'"
+        :text="'Create event'"
+      />
+      <ButtonRedeem />
+    </div>
     <div v-if="$apollo.loading">
       Loading...
     </div>
@@ -20,8 +28,10 @@
 
 <script>
 import AlertGraphql from '~/components/AlertGraphql.vue'
+import Button from '~/components/Button.vue'
 import ButtonRedeem from '~/components/ButtonRedeem.vue'
 import EventList from '~/components/EventList.vue'
+
 import gql from 'graphql-tag'
 
 export default {
@@ -62,6 +72,7 @@ export default {
   },
   components: {
     AlertGraphql,
+    Button,
     ButtonRedeem,
     EventList
   },
