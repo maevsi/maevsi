@@ -6,9 +6,6 @@ module.exports = {
   plugins: [
     function ({ addBase, addComponents, config }) {
       addBase({
-        a: {
-          outline: 0
-        },
         body: {
           background: 'linear-gradient(#34a1f0, #695bc0) fixed'
         },
@@ -45,8 +42,7 @@ module.exports = {
           borderRadius: config('theme.borderRadius.full'),
           fontWeight: config('theme.fontWeight.bold'),
           '&:focus': {
-            boxShadow: config('theme.boxShadow.outline'),
-            outline: 0
+            boxShadow: config('theme.boxShadow.outline')
           }
         },
         '.btn-green': {
@@ -145,8 +141,7 @@ module.exports = {
           width: config('theme.width.full'),
           '&:focus': {
             backgroundColor: config('theme.colors.white'),
-            borderColor: config('theme.colors.purple.500'),
-            outline: 0
+            borderColor: config('theme.colors.purple.500')
           }
         },
         '.form-label': {
@@ -163,7 +158,6 @@ module.exports = {
             button: {
               color: config('theme.colors.black'),
               fontWeight: config('theme.fontWeight.semibold'),
-              outline: 0,
               padding: config('theme.spacing.2') + ' ' + config('theme.spacing.4'),
               width: config('theme.width.full')
             }
