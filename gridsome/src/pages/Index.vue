@@ -18,13 +18,16 @@
         /> github.com/maevsi/maevsi
       </a>
     </div>
-    <p>
-      <a href="events/">
-        <button class="btn btn-red">
-          Events
-        </button>
-      </a>
-    </p>
+    <!-- eslint-disable vue/attribute-hyphenation -->
+    <g-link
+      tabIndex="-1"
+      to="/events"
+    >
+      <!-- eslint-enable vue/attribute-hyphenation -->
+      <button class="btn btn-red">
+        Events
+      </button>
+    </g-link>
   </Layout>
 </template>
 
