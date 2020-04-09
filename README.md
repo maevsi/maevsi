@@ -9,14 +9,14 @@ A manager for events supported by invitees: [maev.si](https://maev.si/).
 
 ## Table of Contents
 1. **[Development](#development)**
-1. **[Dependencies](#dependencies)**
+1. **[Technology](#technology)**
 
 ## Development
 
 This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance to the [DargStack template](https://github.com/dargmuesli/dargstack_template/) to make deployment a breeze.
 
 
-## Dependencies
+## Technology
 
 [![Gridsome](https://gridsome.org/logos/logo-normal.svg)](https://gridsome.org/)
 [![PostGraphile](https://www.graphile.org/static/postgres_postgraphile_graphql-4b238552d875fe06196ba3bda74c6d2b.png)](https://www.graphile.org/)
