@@ -14,7 +14,7 @@
       Loading...
     </div>
     <AlertGraphql
-      v-else-if="graphqlErrorMessage !== null"
+      v-else-if="graphqlErrorMessage !== undefined"
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="undefined"
     />
@@ -78,8 +78,8 @@ export default {
   },
   data () {
     return {
-      graphqlErrorMessage: null,
-      loggedIn: false
+      graphqlErrorMessage: undefined,
+      loggedIn: undefined
     }
   },
   created () {

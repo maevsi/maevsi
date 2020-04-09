@@ -3,14 +3,14 @@
     <div v-if="$apollo.loading">
       Loading...
     </div>
-    <div v-else-if="graphqlErrorMessage !== null">
+    <div v-else-if="graphqlErrorMessage !== undefined">
       <AlertGraphql
         :graphql-error-message="graphqlErrorMessage"
         :validation-object="undefined"
       />
     </div>
     <div v-else>
-      <div v-if="eventContactFeedbackData.event !== null">
+      <div v-if="$checkNested(eventContactFeedbackData, 'event')">
         <p class="font-bold mb-2 text-2xl">
           Hey{{ eventContactFeedbackData.contact !== null && eventContactFeedbackData.contact.firstName !== null ? ' ' + eventContactFeedbackData.contact.firstName : '' }}!
         </p>
@@ -183,15 +183,15 @@ export default {
   },
   data () {
     return {
-      eventContactFeedbackData: null,
-      eventContactFeedbackDataToSend: null,
-      graphqlErrorMessage: null
+      eventContactFeedbackData: undefined,
+      eventContactFeedbackDataToSend: undefined,
+      graphqlErrorMessage: undefined
     }
   },
   metaInfo () {
     return {
       title:
-        (this.eventContactFeedbackData !== null &&
+        (this.eventContactFeedbackData !== undefined &&
           this.eventContactFeedbackData.event !== null &&
           this.eventContactFeedbackData.event.name !== null)
           ? this.eventContactFeedbackData.event.name

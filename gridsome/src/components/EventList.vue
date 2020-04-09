@@ -1,7 +1,7 @@
 <template>
   <div class="m-auto w-full">
     <ul
-      v-if="allEvents.nodes && allEvents.nodes.length"
+      v-if="allEvents !== undefined && allEvents.nodes && allEvents.nodes.length"
       class="text-left"
     >
       <g-link

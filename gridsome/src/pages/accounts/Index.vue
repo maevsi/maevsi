@@ -50,7 +50,7 @@
           <form
             class="form rounded-t-none"
             :class="{
-              'error shake': registerGraphqlErrorMessage !== null && !$v.formRegister.$dirty
+              'error shake': registerGraphqlErrorMessage !== undefined && !$v.formRegister.$dirty
             }"
             @submit="register"
           >
@@ -178,7 +178,7 @@
           <form
             class="form rounded-t-none"
             :class="{
-              'error shake': signinGraphqlErrorMessage !== null && !$v.formSignin.$dirty
+              'error shake': signinGraphqlErrorMessage !== undefined && !$v.formSignin.$dirty
             }"
             @submit="signin"
           >
@@ -295,19 +295,19 @@ export default {
   data () {
     return {
       formRegister: {
-        registerEmailAddress: '',
-        registerPassword: '',
-        registerUsername: '',
-        sent: false
+        registerEmailAddress: undefined,
+        registerPassword: undefined,
+        registerUsername: undefined,
+        sent: undefined
       },
       formSignin: {
-        sent: false,
-        signinPassword: '',
-        signinUsername: ''
+        sent: undefined,
+        signinPassword: undefined,
+        signinUsername: undefined
       },
       form: (this.$route.query.form === undefined) ? 'signin' : this.$route.query.form,
-      registerGraphqlErrorMessage: null,
-      signinGraphqlErrorMessage: null
+      registerGraphqlErrorMessage: undefined,
+      signinGraphqlErrorMessage: undefined
     }
   },
   metaInfo () {
@@ -355,7 +355,7 @@ export default {
       e.preventDefault()
 
       this.formSignin.sent = true
-      this.signinGraphqlErrorMessage = null
+      this.signinGraphqlErrorMessage = undefined
 
       this.$v.formSignin.$reset()
       this.$apollo.mutate({
@@ -383,7 +383,7 @@ export default {
       e.preventDefault()
 
       this.formRegister.sent = true
-      this.registerGraphqlErrorMessage = null
+      this.registerGraphqlErrorMessage = undefined
 
       this.$v.formRegister.$reset()
       this.$apollo.mutate({

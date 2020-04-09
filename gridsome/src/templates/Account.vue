@@ -3,7 +3,7 @@
     <div v-if="$apollo.loading">
       Loading...
     </div>
-    <div v-else-if="graphqlErrorMessage !== null">
+    <div v-else-if="graphqlErrorMessage !== undefined">
       <AlertGraphql
         :graphql-error-message="graphqlErrorMessage"
         :validation-object="undefined"
@@ -77,7 +77,7 @@ export default {
   },
   data () {
     return {
-      graphqlErrorMessage: null
+      graphqlErrorMessage: undefined
     }
   },
   metaInfo () {

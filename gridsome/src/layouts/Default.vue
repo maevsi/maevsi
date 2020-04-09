@@ -9,16 +9,16 @@
         />
       </g-link>
       <div class="dropdown">
-        <g-link :to="'/accounts/' + (loggedInUsername === null ? '' : loggedInUsername)">
+        <g-link :to="'/accounts/' + (loggedInUsername === undefined ? '' : loggedInUsername)">
           <font-awesome
             class="mr-2"
             :icon="['fas', 'user']"
-          />{{ loggedInUsername === null ? 'Account' : loggedInUsername }}
+          />{{ loggedInUsername === undefined ? 'Account' : loggedInUsername }}
         </g-link>
         <div class="absolute dropdown-content right-0">
           <div class="mt-1">
             <button
-              v-if="loggedInUsername !== null"
+              v-if="loggedInUsername !== undefined"
               @click="$logOut($apollo.provider)"
             >
               <font-awesome
@@ -46,7 +46,7 @@ query {
 export default {
   data () {
     return {
-      loggedInUsername: null
+      loggedInUsername: undefined
     }
   },
   created () {
