@@ -6,6 +6,9 @@ module.exports = {
   plugins: [
     function ({ addBase, addComponents, config }) {
       addBase({
+        a: {
+          outline: 0
+        },
         h1: {
           fontSize: config('theme.fontSize.2xl'),
           marginBottom: config('theme.margin.4'),
@@ -156,7 +159,7 @@ module.exports = {
             button: {
               color: config('theme.colors.black'),
               fontWeight: config('theme.fontWeight.semibold'),
-              outline: '0',
+              outline: 0,
               padding: config('theme.spacing.2') + ' ' + config('theme.spacing.4'),
               width: config('theme.width.full')
             }
