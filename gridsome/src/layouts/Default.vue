@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto p-4 text-center">
-    <header class="flex items-center justify-between mb-4">
+    <header class="flex items-center justify-between mb-4 relative">
       <g-link to="/">
         <g-image
           alt="mævsi logo"
@@ -8,25 +8,26 @@
           width="135"
         />
       </g-link>
-      <div>
-        <g-link
-          v-if="!loggedIn"
-          to="/accounts/"
-        >
+      <div class="dropdown">
+        <g-link :to="'/accounts/' + (loggedInUsername === null ? '' : loggedInUsername)">
           <font-awesome
             class="mr-2"
-            :icon="['far', 'user']"
-          />Account
+            :icon="['fas', 'user']"
+          />{{ loggedInUsername === null ? 'Account' : loggedInUsername }}
         </g-link>
-        <button
-          v-if="loggedIn"
-          @click="$logOut($apollo.provider); loggedIn = false"
-        >
-          <font-awesome
-            class="mr-2"
-            :icon="['fas', 'sign-out-alt']"
-          />Log Out
-        </button>
+        <div class="absolute dropdown-content right-0">
+          <div class="mt-1">
+            <button
+              v-if="loggedInUsername !== null"
+              @click="$logOut($apollo.provider); loggedInUsername = null"
+            >
+              <font-awesome
+                class="mr-2"
+                :icon="['fas', 'sign-out-alt']"
+              />Log Out
+            </button>
+          </div>
+        </div>
       </div>
     </header>
     <slot />
@@ -42,6 +43,18 @@ query {
 </static-query>
 
 <style>
+.dropdown-content {
+  display: none;
+}
+
+.dropdown-content > * {
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 @keyframes shake {
   0% {
     transform: translateX(0);
@@ -76,7 +89,7 @@ import jwtDecode from 'jwt-decode'
 export default {
   data () {
     return {
-      loggedIn: false
+      loggedInUsername: null
     }
   },
   created () {
@@ -87,7 +100,7 @@ export default {
         const jwtDecoded = jwtDecode(jwt)
 
         if (jwtDecoded.exp > Math.floor(new Date() / 1000) && jwtDecoded.role === 'maevsi_account') {
-          this.loggedIn = true
+          this.loggedInUsername = jwtDecoded.username
         }
       }
     }
