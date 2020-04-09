@@ -9,7 +9,6 @@ import ApolloClient from 'apollo-boost'
 import fetch from 'node-fetch'
 import moment from 'moment-timezone'
 import slugify from 'slugify'
-import jwtDecode from 'jwt-decode'
 import VueApollo from 'vue-apollo'
 import Vuelidate from 'vuelidate'
 import VueMoment from 'vue-moment'
@@ -24,11 +23,7 @@ const apolloClient = new ApolloClient({
   uri: 'https://postgraphile.' + process.env.GRIDSOME_STACK_DOMAIN + '/graphql',
   fetch,
   request: (operation) => {
-    const jwt = localStorage.getItem('jwt')
-
-    if (jwt !== null) {
-      const jwtDecoded = jwtDecode(jwt)
-
+    global.methods.$jwtDecode((jwt, jwtDecoded) => {
       if (jwtDecoded.exp > Math.floor(new Date() / 1000)) {
         operation.setContext({
           headers: {
@@ -38,7 +33,7 @@ const apolloClient = new ApolloClient({
       } else {
         console.warn('JWT expired.')
       }
-    }
+    })
   }
 })
 

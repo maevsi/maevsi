@@ -32,12 +32,17 @@ export default {
       if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level)) return true
       return this.checkNested(obj[level], ...rest)
     },
-    $jwtRefresh (apolloProvider) {
+    $jwtDecode (f) {
       const jwt = localStorage.getItem('jwt')
 
       if (jwt !== null) {
         const jwtDecoded = jwtDecode(jwt)
 
+        f(jwt, jwtDecoded)
+      }
+    },
+    $jwtRefresh (apolloProvider) {
+      this.$jwtDecode((jwt, jwtDecoded) => {
         apolloProvider.defaultClient.mutate({
           mutation: gql`mutation ($id: UUID!) {
             jwtRefresh(input: {jwtId: $id}) {
@@ -56,7 +61,7 @@ export default {
         }).catch((error) => {
           console.error(error)
         })
-      }
+      })
     },
     $logOut (apolloProvider) {
       localStorage.removeItem('jwt')

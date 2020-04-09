@@ -43,8 +43,6 @@ query {
 </static-query>
 
 <script>
-import jwtDecode from 'jwt-decode'
-
 export default {
   data () {
     return {
@@ -52,17 +50,11 @@ export default {
     }
   },
   created () {
-    if (typeof window !== 'undefined') {
-      const jwt = localStorage.getItem('jwt')
-
-      if (jwt !== null) {
-        const jwtDecoded = jwtDecode(jwt)
-
-        if (jwtDecoded.exp > Math.floor(new Date() / 1000) && jwtDecoded.role === 'maevsi_account') {
-          this.loggedInUsername = jwtDecoded.username
-        }
+    this.$jwtDecode((jwt, jwtDecoded) => {
+      if (jwtDecoded.role === 'maevsi_account' && jwtDecoded.exp > Math.floor(new Date() / 1000)) {
+        this.loggedInUsername = jwtDecoded.username
       }
-    }
+    })
   }
 }
 </script>

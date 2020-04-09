@@ -283,7 +283,6 @@
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import FormError from '~/components/FormError.vue'
 import gql from 'graphql-tag'
-import jwtDecode from 'jwt-decode'
 import { email, helpers, minLength, required } from 'vuelidate/lib/validators'
 
 const slug = helpers.regex('slug', /^[-A-Za-z0-9_]+$/)
@@ -344,18 +343,12 @@ export default {
       deep: true
     }
   },
-  beforeCreate () {
-    if (typeof window !== 'undefined') {
-      const jwt = localStorage.getItem('jwt')
-
-      if (jwt !== null) {
-        const jwtDecoded = jwtDecode(jwt)
-
-        if (jwtDecoded.username !== null && jwtDecoded.username !== '') {
-          this.$router.push(jwtDecoded.username)
-        }
+  created () {
+    this.$jwtDecode((jwt, jwtDecoded) => {
+      if (jwtDecoded.username !== null && jwtDecoded.username !== '') {
+        this.$router.push(jwtDecoded.username)
       }
-    }
+    })
   },
   methods: {
     signin (e) {
