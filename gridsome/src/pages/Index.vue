@@ -7,7 +7,7 @@
     <div class="flex justify-center">
       <a
         class="items-center flex"
-        :href="'https://github.com/' + $static.metadata.siteName + '/' + $static.metadata.siteName + '/'"
+        :href="'https://github.com/maevsi/maevsi/'"
         target="_blank"
         :title="$static.metadata.siteName + ' on GitHub'"
       >
