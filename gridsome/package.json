@@ -16,7 +16,7 @@
     "graphql": "14.6.0",
     "gridsome": "0.7.11",
     "jwt-decode": "2.2.0",
-    "moment-timezone": "0.5.27",
+    "moment-timezone": "0.5.28",
     "node-fetch": "2.6.0",
     "slugify": "1.3.6",
     "tailwindcss-animations": "2.0.0",
