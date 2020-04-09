@@ -4,7 +4,7 @@ module.exports = {
   },
   variants: {},
   plugins: [
-    function ({ addBase, addComponents, config }) {
+    function ({ addBase, addComponents, addUtilities, config }) {
       addBase({
         body: {
           background: 'linear-gradient(#34a1f0, #695bc0) fixed'
@@ -18,13 +18,14 @@ module.exports = {
           fontSize: config('theme.fontSize.xl'),
           marginBottom: config('theme.margin.4'),
           fontWeight: config('theme.fontWeight.bold')
-        }
+        },
         /* 'h3': { fontSize: config('theme.fontSize.lg') }, */
-      })
-      addComponents({
         ':disabled': {
           cursor: config('theme.cursor.not-allowed'),
           opacity: config('theme.opacity.50')
+        }
+      })
+      addComponents({
         },
         '.alert': {
           backgroundColor: config('theme.colors.red.100'),
@@ -67,14 +68,6 @@ module.exports = {
           p: {
             margin: config('theme.margin.2') + ' ' + config('theme.margin.0')
           }
-        },
-        '.disabled': {
-          cursor: config('theme.cursor.not-allowed'),
-          opacity: config('theme.opacity.50')
-        },
-        '.e1': {
-          gridRow: '1',
-          gridColumn: '1'
         },
         '.event-meta': {
           color: config('theme.colors.gray.600'),
@@ -162,6 +155,16 @@ module.exports = {
               width: config('theme.width.full')
             }
           }
+        }
+      })
+      addUtilities({
+        '.disabled': {
+          cursor: config('theme.cursor.not-allowed'),
+          opacity: config('theme.opacity.50')
+        },
+        '.e1': {
+          gridRow: '1',
+          gridColumn: '1'
         },
         '.line-clamp-box': {
           display: '-webkit-box',
