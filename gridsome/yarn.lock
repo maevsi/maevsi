@@ -9716,10 +9716,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-apollo@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/vue-apollo/-/vue-apollo-3.0.1.tgz#b7c24b6d6032bf707be7872e6615d59aa6621241"
-  integrity sha512-NM+kWbPGV5bnRMK7BmMJMxoT1NqPjVAYf+MsjPDyfQNgyVEHSIObRVqLQDIs56PYQSC6YOGa0luo6Ykjj6rrPw==
+vue-apollo@3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/vue-apollo/-/vue-apollo-3.0.3.tgz#7f29558df76eec0f03251847eef153816a261827"
+  integrity sha512-WJaQ1v/i46/oIPlKv7J0Tx6tTlbuaeCdhrAbL06h+Zca2gzr5ywjUFpl8ijMTGJsQ+Ph/U4xEpBFBOMxQmL+7g==
   dependencies:
     chalk "^2.4.2"
     serialize-javascript "^2.1.0"
