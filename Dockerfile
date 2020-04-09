@@ -2,7 +2,7 @@
 # Serve Vue.
 
 # Should be the specific version of node:buster-slim.
-FROM node:13.2.0-buster-slim@sha256:81850e9056b20b11d4219080d19c26ae902d9c2991ad24af6b52c0d69bfb0c00 AS development
+FROM node:13.12.0-buster-slim@sha256:cc0d8c39734f51153a52a35bcec871b0829b7cfe256fb39583b3dfc54a323314 AS development
 
 # Update and install build dependencies
 RUN \
@@ -33,7 +33,7 @@ CMD ["develop"]
 # Build and compile Vue.
 
 # Should be the specific version of node:current-slim.
-FROM node:13.2.0-stretch-slim@sha256:e41c73773b47a5de6549786152c460843ac63e24ef0ffe288faa704922642621 AS build
+FROM node:13.12.0-stretch-slim@sha256:fdc6dc81ea417ac56e3ed5d20d240f47d281674b0110dd2c0c6e3d511b4160ad AS build
 
 ARG GRIDSOME_STACK_DOMAIN=maev.si
 ENV GRIDSOME_STACK_DOMAIN=${GRIDSOME_STACK_DOMAIN}
