@@ -169,15 +169,8 @@ module.exports = {
             }
           }
         },
-        '.td': {
-          borderWidth: config('theme.borderWidth.default'),
-          padding: config('theme.padding.2') + ' ' + config('theme.padding.4')
-        },
         '.translate-x-100': {
           transform: 'translateX(100%)'
-        },
-        '.th': {
-          padding: config('theme.padding.2') + ' ' + config('theme.padding.4')
         },
         '.line-clamp-box': {
           display: '-webkit-box',
