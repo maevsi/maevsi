@@ -16,6 +16,16 @@ A manager for events supported by invitees: [maev.si](https://maev.si/).
 This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance to the [DargStack template](https://github.com/dargmuesli/dargstack_template/) to make deployment a breeze.
 
 
+### Sqitch
+
+- run `mkdir -p /var/run/postgresql/` to create the database's socket mount point, which Sqitch uses to connect to the database
+- run `cd sqitch` from this project's root directory
+- run `cp SQITCH_TARGET.env.template SQITCH_TARGET.env` and fill in the correct target
+- run `./sqitch` with appropriate parameters
+
+  (optionally, add an `alias sqitch="./sqitch"` to your shell, so that you can run `sqitch` like a binary without the preceding location indicator)
+
+
 ## Technology
 
 [![Gridsome](https://gridsome.org/logos/logo-normal.svg)](https://gridsome.org/)
