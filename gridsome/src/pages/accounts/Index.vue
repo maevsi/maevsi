@@ -14,7 +14,7 @@
         </div>
         <ul class="e1 pills">
           <li
-            class="rounded-t bg-white transition-006"
+            class="rounded-t bg-white duration-700"
             :class="{ 'translate-x-100': form === 'signin'}"
           >
             <button class="invisible">

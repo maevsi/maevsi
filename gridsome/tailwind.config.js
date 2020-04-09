@@ -90,7 +90,7 @@ module.exports = {
           perspective: '1000px'
         },
         '.flip-card-inner': {
-          transition: 'transform 0.8s',
+          transition: 'transform 0.7s',
           transformStyle: 'preserve-3d'
         },
         '.flip-card.flipped .flip-card-inner': {
@@ -172,9 +172,6 @@ module.exports = {
         '.td': {
           borderWidth: config('theme.borderWidth.default'),
           padding: config('theme.padding.2') + ' ' + config('theme.padding.4')
-        },
-        '.transition-006': {
-          transition: '0.6s'
         },
         '.translate-x-100': {
           transform: 'translateX(100%)'
