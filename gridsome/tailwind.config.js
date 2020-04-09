@@ -26,6 +26,8 @@ module.exports = {
         }
       })
       addComponents({
+        'a > .btn': {
+          margin: config('theme.margin.4') + ' 0px'
         },
         '.alert': {
           backgroundColor: config('theme.colors.red.100'),
