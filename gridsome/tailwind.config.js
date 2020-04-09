@@ -9,6 +9,9 @@ module.exports = {
         a: {
           outline: 0
         },
+        body: {
+          background: 'linear-gradient(#34a1f0, #695bc0) fixed'
+        },
         h1: {
           fontSize: config('theme.fontSize.2xl'),
           marginBottom: config('theme.margin.4'),
@@ -30,9 +33,6 @@ module.exports = {
           padding: config('theme.padding.3') + ' ' + config('theme.padding.4'),
           borderRadius: config('theme.borderRadius.default'),
           position: 'relative'
-        },
-        body: {
-          background: 'linear-gradient(#34a1f0, #695bc0) fixed'
         },
         '.btn': {
           boxShadow: config('theme.boxShadow.default'),
