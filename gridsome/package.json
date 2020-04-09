@@ -34,7 +34,7 @@
     "eslint-plugin-standard": "4.0.1",
     "eslint-plugin-vue": "6.2.2",
     "gridsome-plugin-tailwindcss": "2.2.43",
-    "husky": "4.2.4"
+    "husky": "4.2.5"
   },
   "husky": {
     "hooks": {
