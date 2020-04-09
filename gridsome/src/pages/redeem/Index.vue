@@ -49,7 +49,6 @@
         <div class="flex flex-col items-center justify-between">
           <button
             class="btn btn-red"
-            :class="{ 'disabled': !($v.invitationCode.$dirty && !$v.invitationCode.$error) }"
             :disabled="!($v.invitationCode.$dirty && !$v.invitationCode.$error)"
             type="submit"
           >

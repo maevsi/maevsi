@@ -25,6 +25,10 @@ module.exports = {
         /* 'h3': { fontSize: config('theme.fontSize.lg') }, */
       })
       addComponents({
+        ':disabled': {
+          cursor: config('theme.cursor.not-allowed'),
+          opacity: config('theme.opacity.50')
+        },
         '.alert': {
           backgroundColor: config('theme.colors.red.100'),
           borderWidth: config('theme.borderWidth.default'),
@@ -54,15 +58,11 @@ module.exports = {
         '.btn-red': {
           backgroundColor: config('theme.colors.red.600'),
           '&:hover': {
-            backgroundColor: config('theme.colors.red.700'),
-            '&.disabled': {
-              backgroundColor: config('theme.colors.red.600')
-            }
+            backgroundColor: config('theme.colors.red.700')
+          },
+          '&:disabled': {
+            backgroundColor: config('theme.colors.red.600')
           }
-        },
-        '.disabled': {
-          cursor: config('theme.cursor.not-allowed'),
-          opacity: config('theme.opacity.50')
         },
         '.description': {
           a: {
@@ -71,6 +71,10 @@ module.exports = {
           p: {
             margin: config('theme.margin.2') + ' ' + config('theme.margin.0')
           }
+        },
+        '.disabled': {
+          cursor: config('theme.cursor.not-allowed'),
+          opacity: config('theme.opacity.50')
         },
         '.e1': {
           gridRow: '1',

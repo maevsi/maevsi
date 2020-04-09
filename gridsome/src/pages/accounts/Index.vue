@@ -162,7 +162,6 @@
             <div class="flex flex-col items-center justify-between">
               <button
                 class="btn btn-red"
-                :class="{ 'disabled': !((formRegister.sent ? $v.formRegister.$anyDirty : $v.formRegister.$dirty) && !$v.formRegister.$error) }"
                 :disabled="!((formRegister.sent ? $v.formRegister.$anyDirty : $v.formRegister.$dirty) && !$v.formRegister.$error)"
                 type="submit"
               >
@@ -256,7 +255,6 @@
             <div class="flex flex-col items-center justify-between">
               <button
                 class="btn btn-red"
-                :class="{ 'disabled': !((formSignin.sent ? $v.formSignin.$anyDirty : $v.formSignin.$dirty) && !$v.formSignin.$error) }"
                 :disabled="!((formSignin.sent ? $v.formSignin.$anyDirty : $v.formSignin.$dirty) && !$v.formSignin.$error)"
                 type="submit"
               >
