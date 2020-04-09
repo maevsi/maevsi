@@ -78,8 +78,16 @@ export default {
   },
   data () {
     return {
-      graphqlErrorMessage: null
+      graphqlErrorMessage: null,
+      loggedIn: false
     }
+  },
+  created () {
+    this.$jwtDecode((jwt, jwtDecoded) => {
+      if (jwtDecoded.role === 'maevsi_account' && jwtDecoded.exp > Math.floor(new Date() / 1000)) {
+        this.loggedIn = true
+      }
+    })
   },
   metaInfo () {
     return { title: 'Events' }
