@@ -54,33 +54,6 @@ query {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
-@keyframes shake {
-  0% {
-    transform: translateX(0);
-  }
-  15% {
-    transform: translateX(0.375rem);
-  }
-  30% {
-    transform: translateX(-0.375rem);
-  }
-  45% {
-    transform: translateX(0.375rem);
-  }
-  60% {
-    transform: translateX(-0.375rem);
-  }
-  75% {
-    transform: translateX(0.375rem);
-  }
-  90% {
-    transform: translateX(-0.375rem);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
 </style>
 
 <script>

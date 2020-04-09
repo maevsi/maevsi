@@ -1,9 +1,42 @@
 module.exports = {
   theme: {
-    extend: {}
+    animations: {
+      shake: {
+        '0%': {
+          transform: 'translateX(0)'
+        },
+        '15%': {
+          transform: 'translateX(0.375rem)'
+        },
+        '30%': {
+          transform: 'translateX(-0.375rem)'
+        },
+        '45%': {
+          transform: 'translateX(0.375rem)'
+        },
+        '60%': {
+          transform: 'translateX(-0.375rem)'
+        },
+        '75%': {
+          transform: 'translateX(0.375rem)'
+        },
+        '90%': {
+          transform: 'translateX(-0.375rem)'
+        },
+        '100%': {
+          transform: 'translateX(0)'
+        }
+      }
+    },
+    extend: {
+      animationDuration: {
+        fast: '0.6s'
+      }
+    }
   },
   variants: {},
   plugins: [
+    require('tailwindcss-animations'),
     function ({ addBase, addComponents, addUtilities, config }) {
       addBase({
         body: {
@@ -120,9 +153,9 @@ module.exports = {
         },
         '.shake': {
           animationName: 'shake',
-          animationFillMode: 'forwards',
-          animationDuration: '0.6s',
-          animationTimingFunction: 'ease-in-out'
+          animationFillMode: config('theme.animationFillMode.forwards'),
+          animationDuration: config('theme.animationDuration.fast'),
+          animationTimingFunction: config('theme.animationTimingFunction.ease-in-out')
         },
         '.form-input': {
           appearance: 'none',
