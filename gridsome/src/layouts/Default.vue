@@ -19,7 +19,7 @@
           <div class="mt-1">
             <button
               v-if="loggedInUsername !== null"
-              @click="$logOut($apollo.provider); loggedInUsername = null"
+              @click="$logOut($apollo.provider)"
             >
               <font-awesome
                 class="mr-2"

@@ -73,9 +73,9 @@ export default {
         localStorage.removeItem('jwt_anonymous')
 
         this.$jwtRefresh(apolloProvider)
-      } else {
-        this.$authenticateAnonymous(apolloProvider)
       }
+
+      location.reload()
     },
     $objectClone (object) {
       const objectClone = JSON.parse(JSON.stringify(object))
