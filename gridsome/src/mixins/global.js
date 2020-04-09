@@ -33,12 +33,14 @@ export default {
       return this.checkNested(obj[level], ...rest)
     },
     $jwtDecode (f) {
-      const jwt = localStorage.getItem('jwt')
+      if (typeof window !== 'undefined') {
+        const jwt = localStorage.getItem('jwt')
 
-      if (jwt !== null) {
-        const jwtDecoded = jwtDecode(jwt)
+        if (jwt !== null) {
+          const jwtDecoded = jwtDecode(jwt)
 
-        f(jwt, jwtDecoded)
+          f(jwt, jwtDecoded)
+        }
       }
     },
     $jwtRefresh (apolloProvider) {
