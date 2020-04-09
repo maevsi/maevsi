@@ -109,7 +109,7 @@ module.exports = {
           padding: config('theme.padding.6') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8'),
           '&.error': {
             borderColor: config('theme.colors.red.500'),
-            borderWidth: config('theme.borderWidth.default'),
+            borderWidth: config('theme.borderWidth.default')
           }
         },
         '.form-error': {
