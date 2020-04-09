@@ -169,9 +169,6 @@ module.exports = {
             }
           }
         },
-        '.translate-x-100': {
-          transform: 'translateX(100%)'
-        },
         '.line-clamp-box': {
           display: '-webkit-box',
           overflow: 'hidden',

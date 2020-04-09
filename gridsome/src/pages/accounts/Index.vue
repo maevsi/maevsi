@@ -15,7 +15,7 @@
         <ul class="e1 pills">
           <li
             class="rounded-t bg-white duration-700"
-            :class="{ 'translate-x-100': form === 'signin'}"
+            :class="{ 'transform translate-x-full': form === 'signin'}"
           >
             <button class="invisible">
               [filler]
