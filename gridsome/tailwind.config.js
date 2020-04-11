@@ -43,12 +43,12 @@ module.exports = {
           background: 'linear-gradient(#34a1f0, #695bc0) fixed'
         },
         h1: {
-          fontSize: config('theme.fontSize.2xl'),
+          fontSize: config('theme.fontSize.4xl'),
           marginBottom: config('theme.margin.4'),
           fontWeight: config('theme.fontWeight.bold')
         },
         h2: {
-          fontSize: config('theme.fontSize.xl'),
+          fontSize: config('theme.fontSize.3xl'),
           marginBottom: config('theme.margin.4'),
           fontWeight: config('theme.fontWeight.bold')
         },
