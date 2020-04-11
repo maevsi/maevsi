@@ -2,6 +2,7 @@
   <Button
     :icon-id="['fas', 'key']"
     :link="'/redeem'"
+    :wrapper-class="wrapperClass"
     :text="'Redeem invite'"
   />
 </template>
@@ -25,6 +26,10 @@ export default {
       default: undefined
     },
     text: {
+      type: String,
+      default: undefined
+    },
+    wrapperClass: {
       type: String,
       default: undefined
     }

@@ -59,9 +59,6 @@ module.exports = {
         }
       })
       addComponents({
-        'a > .btn': {
-          margin: config('theme.margin.4') + ' 0px'
-        },
         '.alert': {
           backgroundColor: config('theme.colors.red.100'),
           borderWidth: config('theme.borderWidth.default'),
@@ -73,7 +70,6 @@ module.exports = {
         },
         '.btn': {
           boxShadow: config('theme.boxShadow.default'),
-          margin: config('theme.margin.4'),
           padding: config('theme.padding.2') + ' ' + config('theme.padding.4'),
           borderRadius: config('theme.borderRadius.full'),
           fontWeight: config('theme.fontWeight.bold'),

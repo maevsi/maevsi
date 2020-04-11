@@ -48,12 +48,11 @@
         v-if="allEvents.pageInfo.hasNextPage"
         class="flex justify-center"
       >
-        <button
-          class="btn btn-red"
-          @click="showMore"
-        >
-          More
-        </button>
+        <Button
+          :icon="false"
+          :text="'More'"
+          @click.native="showMore"
+        />
       </div>
     </ul>
     <p v-else>
@@ -63,10 +62,12 @@
 </template>
 
 <script>
+import Button from '~/components/Button.vue'
 import EventIcon from '~/components/EventIcon.vue'
 
 export default {
   components: {
+    Button,
     EventIcon
   },
   props: {

@@ -47,13 +47,12 @@
           </div>
         </div>
         <div class="flex flex-col items-center justify-between">
-          <button
-            class="btn btn-red"
+          <Button
             :disabled="!($v.invitationCode.$dirty && !$v.invitationCode.$error)"
+            :icon="false"
+            :text="'Redeem'"
             type="submit"
-          >
-            Redeem
-          </button>
+          />
         </div>
         <AlertGraphql
           :graphql-error-message="graphqlErrorMessage"
@@ -66,6 +65,7 @@
 
 <script>
 import AlertGraphql from '~/components/AlertGraphql.vue'
+import Button from '~/components/Button.vue'
 import FormError from '~/components/FormError.vue'
 import gql from 'graphql-tag'
 import { helpers, required } from 'vuelidate/lib/validators'
@@ -75,6 +75,7 @@ const uuid = helpers.regex('uuid', /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9
 export default {
   components: {
     AlertGraphql,
+    Button,
     FormError
   },
   data () {

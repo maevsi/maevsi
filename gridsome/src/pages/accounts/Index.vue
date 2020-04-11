@@ -160,13 +160,12 @@
               </div>
             </div>
             <div class="flex flex-col items-center justify-between">
-              <button
-                class="btn btn-red"
+              <Button
                 :disabled="!((formRegister.sent ? $v.formRegister.$anyDirty : $v.formRegister.$dirty) && !$v.formRegister.$error)"
+                :icon="false"
+                :text="'Register'"
                 type="submit"
-              >
-                Register
-              </button>
+              />
             </div>
             <AlertGraphql
               :graphql-error-message="registerGraphqlErrorMessage"
@@ -253,13 +252,12 @@
               </div>
             </div>
             <div class="flex flex-col items-center justify-between">
-              <button
-                class="btn btn-red"
+              <Button
                 :disabled="!((formSignin.sent ? $v.formSignin.$anyDirty : $v.formSignin.$dirty) && !$v.formSignin.$error)"
+                :icon="false"
+                :text="'Sign In'"
                 type="submit"
-              >
-                Sign In
-              </button>
+              />
               <a
                 class="disabled inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 mb-6"
                 href="#"
@@ -281,6 +279,7 @@
 
 <script>
 import AlertGraphql from '~/components/AlertGraphql.vue'
+import Button from '~/components/Button.vue'
 import FormError from '~/components/FormError.vue'
 import gql from 'graphql-tag'
 import { email, helpers, minLength, required } from 'vuelidate/lib/validators'
@@ -290,6 +289,7 @@ const slug = helpers.regex('slug', /^[-A-Za-z0-9_]+$/)
 export default {
   components: {
     AlertGraphql,
+    Button,
     FormError
   },
   data () {

@@ -24,9 +24,10 @@
       to="/events"
     >
       <!-- eslint-enable vue/attribute-hyphenation -->
-      <button class="btn btn-red">
-        Events
-      </button>
+      <Button
+        :icon="false"
+        :text="'Events'"
+      />
     </g-link>
   </Layout>
 </template>
@@ -40,7 +41,12 @@ query {
 </static-query>
 
 <script>
+import Button from '~/components/Button.vue'
+
 export default {
+  components: {
+    Button
+  },
   metaInfo () {
     return { title: 'Welcome!' }
   }

@@ -54,13 +54,13 @@
           <hr class="my-4">
           <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
             <div class="text-white">
-              <button
+              <Button
                 v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'CANCELED'"
-                class="btn btn-green"
-                @click="accept"
-              >
-                Accept Invite
-              </button>
+                :button-class="'btn-green'"
+                :icon="false"
+                :text="'Accept Invite'"
+                @click.native="accept"
+              />
               <div class="flex justify-center">
                 <div
                   v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
@@ -73,13 +73,12 @@
                     title="accepted"
                   /> Accepted
                 </div>
-                <button
+                <Button
                   v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
-                  class="btn btn-red text-white"
-                  @click="cancel"
-                >
-                  Cancel Invite
-                </button>
+                  :icon="false"
+                  :text="'Cancel Invite'"
+                  @click.native="cancel"
+                />
               </div>
             </div>
             <div v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback !== null && eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'">
@@ -120,11 +119,12 @@
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown-v2'
 import AlertGraphql from '~/components/AlertGraphql.vue'
+import Button from '~/components/Button.vue'
 import Error404 from '~/components/Error404.vue'
 import EventIcon from '~/components/EventIcon.vue'
 import gql from 'graphql-tag'
+import VueMarkdown from 'vue-markdown-v2'
 
 export default {
   apollo: {
@@ -177,6 +177,7 @@ export default {
   },
   components: {
     AlertGraphql,
+    Button,
     Error404,
     EventIcon,
     VueMarkdown
