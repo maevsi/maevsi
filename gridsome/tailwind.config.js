@@ -210,6 +210,9 @@ module.exports = {
           gridRow: '1',
           gridColumn: '1'
         },
+        '.inline-grid': {
+          display: 'inline-grid'
+        },
         '.line-clamp-box': {
           display: '-webkit-box',
           overflow: 'hidden',

@@ -1,15 +1,20 @@
 <template>
-  <div class="flex flex-col items-center justify-between">
+  <div>
     <h1>404 - Not Found</h1>
-    <ButtonRedeem />
+    <div class="gap-4 grid-cols-2 inline-grid">
+      <ButtonHome :wrapper-class="''" />
+      <ButtonRedeem :wrapper-class="''" />
+    </div>
   </div>
 </template>
 
 <script>
+import ButtonHome from '~/components/ButtonHome.vue'
 import ButtonRedeem from '~/components/ButtonRedeem.vue'
 
 export default {
   components: {
+    ButtonHome,
     ButtonRedeem
   }
 }
