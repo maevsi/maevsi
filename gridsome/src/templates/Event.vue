@@ -171,12 +171,12 @@ export default {
   },
   methods: {
     accept () {
-      this.eventContactFeedbackDataToSend = JSON.parse(JSON.stringify(this.eventContactFeedbackData))
+      this.eventContactFeedbackDataToSend = this.$objectClone(this.eventContactFeedbackData)
       this.eventContactFeedbackDataToSend.invitationFeedbackData.invitationFeedback = 'ACCEPTED'
       this.send()
     },
     cancel () {
-      this.eventContactFeedbackDataToSend = JSON.parse(JSON.stringify(this.eventContactFeedbackData))
+      this.eventContactFeedbackDataToSend = this.$objectClone(this.eventContactFeedbackData)
       this.eventContactFeedbackDataToSend.invitationFeedbackData.invitationFeedback = 'CANCELED'
       this.send()
     },
