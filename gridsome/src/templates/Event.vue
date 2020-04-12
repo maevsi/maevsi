@@ -119,10 +119,12 @@
 </template>
 
 <script>
+import { EVENT_CONTACT_FEEDBACK_DATA_QUERY } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/Button.vue'
 import Error404 from '~/components/Error404.vue'
 import EventIcon from '~/components/EventIcon.vue'
+
 import gql from 'graphql-tag'
 import VueMarkdown from 'vue-markdown-v2'
 
@@ -131,39 +133,7 @@ export default {
     $prefetch: false,
     eventContactFeedbackData () {
       return {
-        query: gql`
-          query($organizerUsername: String!, $slug: String!) {
-            eventContactFeedbackData(
-              _organizerUsername: $organizerUsername
-              _slug: $slug
-            ) {
-              event {
-                id
-                name
-                slug
-                visibility
-                organizerUsername
-                description
-                place
-                start
-                end
-                archived
-              }
-              contact {
-                id
-                firstName
-                lastName
-                address
-                emailAddress
-              }
-              invitationFeedbackData {
-                id
-                invitationFeedback
-                paperInvitationFeedback
-              }
-            }
-          }
-        `,
+        query: EVENT_CONTACT_FEEDBACK_DATA_QUERY,
         variables: {
           organizerUsername: this.$route.params.username,
           slug: this.$route.params.event_name
