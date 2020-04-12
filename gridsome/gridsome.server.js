@@ -1,12 +1,20 @@
 // https://gridsome.org/docs/server-api/
 // Changes here require a server restart.
+const express = require('express')
+const { iCal } = require('./src/server/middleware')
 
 module.exports = function (api) {
   const paths = {
     account: '/accounts/:username([A-Za-z0-9-_]+)',
     event: '/events/:username([A-Za-z0-9-_]+)/:event_name([-A-Za-z0-9_]+)',
-    eventGroup: '/event-groups/:username([A-Za-z0-9-_]+)/:event_group_name([-A-Za-z0-9_]+)'
+    eventGroup: '/event-groups/:username([A-Za-z0-9-_]+)/:event_group_name([-A-Za-z0-9_]+)',
+    eventIcs: '/ical'
   }
+
+  api.configureServer(app => {
+    app.use(express.json())
+    app.post(paths.eventIcs, iCal)
+  })
 
   api.createPages(({ createPage }) => {
     // Use the Pages API here: https://gridsome.org/docs/pages-api/

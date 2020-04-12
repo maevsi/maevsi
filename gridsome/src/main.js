@@ -15,7 +15,7 @@ import VueMoment from 'vue-moment'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 // import { x } from '@fortawesome/free-regular-svg-icons'
-import { faArchive, faBug, faCalendarDay, faCheckCircle, faExternalLinkAlt, faGlobeAfrica, faHome, faHourglass, faKey, faMapMarker, faPlus, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArchive, faBug, faCalendarDay, faCheckCircle, faDownload, faExternalLinkAlt, faGlobeAfrica, faHome, faHourglass, faKey, faMapMarker, faPlus, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
@@ -42,7 +42,7 @@ const apolloProvider = new VueApollo({
 })
 
 config.autoAddCss = false
-library.add(faArchive, faBug, faCalendarDay, faCheckCircle, faExternalLinkAlt, faKey, faGithub, faGlobeAfrica, faHome, faHourglass, faMapMarker, faPlus, faUser, faSignOutAlt)
+library.add(faArchive, faBug, faCalendarDay, faDownload, faCheckCircle, faExternalLinkAlt, faKey, faGithub, faGlobeAfrica, faHome, faHourglass, faMapMarker, faPlus, faUser, faSignOutAlt)
 
 export default function (Vue, { appOptions, head }) {
   Vue.component('font-awesome', FontAwesomeIcon)

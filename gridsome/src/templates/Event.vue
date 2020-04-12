@@ -47,6 +47,12 @@
                 <font-awesome :icon="['fas', 'external-link-alt']" />
               </a>
             </div>
+            <Button
+              :icon-id="['fas', 'download']"
+              :text="'Download as iCal'"
+              class="text-white"
+              @click.native="downloadIcal"
+            />
           </div>
           <hr class="my-4">
           <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
@@ -179,6 +185,19 @@ export default {
       this.eventContactFeedbackDataToSend = this.$objectClone(this.eventContactFeedbackData)
       this.eventContactFeedbackDataToSend.invitationFeedbackData.invitationFeedback = 'CANCELED'
       this.send()
+    },
+    downloadIcal () {
+      const xhr = new XMLHttpRequest()
+      const fileName = this.$route.params.username + '_' + this.$route.params.event_name + '.ics'
+
+      xhr.open('POST', '/ical', true)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          require('downloadjs')(this.responseText, fileName, 'text/calendar')
+        }
+      }
+      xhr.send(JSON.stringify({ event: this.eventContactFeedbackData.event }))
     },
     send () {
       this.$apollo.mutate({
