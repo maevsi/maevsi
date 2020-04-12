@@ -211,34 +211,33 @@ export default {
       this.send()
     },
     send () {
-      this.$apollo
-        .mutate({
-          mutation: gql`
-            mutation(
-              $id: Int!
-              $invitationFeedbackDatumPatch: InvitationFeedbackDatumPatch!
+      this.$apollo.mutate({
+        mutation: gql`
+          mutation(
+            $id: Int!
+            $invitationFeedbackDatumPatch: InvitationFeedbackDatumPatch!
+          ) {
+            updateInvitationFeedbackDatumById(
+              input: {
+                id: $id
+                invitationFeedbackDatumPatch: $invitationFeedbackDatumPatch
+              }
             ) {
-              updateInvitationFeedbackDatumById(
-                input: {
-                  id: $id
-                  invitationFeedbackDatumPatch: $invitationFeedbackDatumPatch
-                }
-              ) {
-                invitationFeedbackDatum {
-                  id
-                  invitationFeedback
-                  paperInvitationFeedback
-                }
+              invitationFeedbackDatum {
+                id
+                invitationFeedback
+                paperInvitationFeedback
               }
             }
-          `,
-          variables: {
-            id: this.eventContactFeedbackDataToSend.invitationFeedbackData.id,
-            invitationFeedbackDatumPatch: this.$removeTypename(
-              this.eventContactFeedbackDataToSend.invitationFeedbackData
-            )
           }
-        })
+        `,
+        variables: {
+          id: this.eventContactFeedbackDataToSend.invitationFeedbackData.id,
+          invitationFeedbackDatumPatch: this.$removeTypename(
+            this.eventContactFeedbackDataToSend.invitationFeedbackData
+          )
+        }
+      })
         .catch(error => {
           alert(error.message)
           console.error(error)
