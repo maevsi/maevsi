@@ -3460,7 +3460,7 @@ download@^7.1.0:
     p-event "^2.1.0"
     pify "^3.0.0"
 
-downloadjs@^1.4.7:
+downloadjs@1.4.7:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/downloadjs/-/downloadjs-1.4.7.tgz#f69f96f940e0d0553dac291139865a3cd0101e3c"
   integrity sha1-9p+W+UDg0FU9rCkROYZaPNAQHjw=
@@ -5006,7 +5006,7 @@ html-tags@^2.0.0:
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-2.0.0.tgz#10b30a386085f43cede353cc8fa7cb0deeea668b"
   integrity sha1-ELMKOGCF9Dzt41PMj6fLDe7qZos=
 
-html-to-text@^5.1.1:
+html-to-text@5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/html-to-text/-/html-to-text-5.1.1.tgz#2d89db7bf34bc7bcb7d546b1b228991a16926e87"
   integrity sha512-Bci6bD/JIfZSvG4s0gW/9mMKwBRoe/1RWLxUME/d6WUSZCdY7T60bssf/jFf7EYXRyqU4P5xdClVqiYU0/ypdA==
@@ -5113,7 +5113,7 @@ husky@4.2.5:
     slash "^3.0.0"
     which-pm-runs "^1.0.0"
 
-ical-generator@^1.9.4:
+ical-generator@1.9.4:
   version "1.9.4"
   resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-1.9.4.tgz#b0ef88ed6132a1aedd8bd18a73c5fbcfd39b3a79"
   integrity sha512-hL9i+EKdS9/mZwNN193bHoSTA7BpKxI1u5JDrrOJAXVQ8VEHboHlWoalsDeaXWA4UUdGOmY+jVrRMFhicvqiFA==
