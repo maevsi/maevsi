@@ -59,7 +59,7 @@ export default {
     },
     wrapperClass: {
       type: String,
-      default: 'm-4'
+      default: 'inline m-4'
     }
   }
 }
