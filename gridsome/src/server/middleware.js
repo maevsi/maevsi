@@ -43,7 +43,7 @@ function iCal (req, res) {
         //   excludeTimezone: 'Europe/Berlin' // timezone of exclude
         // },
         // recurrenceId: moment(),
-        summary: data.event.slug, // The event's title.
+        summary: data.event.name, // The event's title.
         ...(data.event.description && { description: htmlToText.fromString(eventDescriptionHtml) }),
         ...(data.event.description && { htmlDescription: eventDescriptionHtml }),
         ...(data.event.place && { location: data.event.place }),
