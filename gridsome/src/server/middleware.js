@@ -6,13 +6,13 @@ function iCal (req, res) {
 
   const data = req.body
   const eventId = data.event.organizerUsername + '/' + data.event.slug
-  const eventUrl = 'https://' + process.env.GRIDSOME_STACK_DOMAIN + '/events/' + eventId
+  const eventUrl = 'https://' + process.env.STACK_DOMAIN + '/events/' + eventId
   const eventDescriptionHtml = md.render(data.event.description)
 
   res.type('text/calendar')
   res.set('Content-Disposition', 'attachment; filename="' + eventId.replace('/', '_') + '.ics"')
   res.send(ical({
-    domain: process.env.GRIDSOME_STACK_DOMAIN,
+    domain: process.env.STACK_DOMAIN,
     // `prodId` is generated automatically.
     name: eventId.replace('/', '_'),
     url: eventUrl,
@@ -53,7 +53,7 @@ function iCal (req, res) {
         // },
         organizer: {
           name: data.event.organizerUsername,
-          email: data.event.organizerUsername + '@' + process.env.GRIDSOME_STACK_DOMAIN
+          email: data.event.organizerUsername + '@' + process.env.STACK_DOMAIN
           // mailto: 'explicit@mailto.com'
         },
         // attendees: [{

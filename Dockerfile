@@ -35,8 +35,8 @@ CMD ["develop"]
 # Should be the specific version of node:current-slim.
 FROM node:13.12.0-stretch-slim@sha256:fdc6dc81ea417ac56e3ed5d20d240f47d281674b0110dd2c0c6e3d511b4160ad AS build
 
-ARG GRIDSOME_STACK_DOMAIN=maev.si
-ENV GRIDSOME_STACK_DOMAIN=${GRIDSOME_STACK_DOMAIN}
+ARG STACK_DOMAIN=maev.si
+ENV STACK_DOMAIN=${STACK_DOMAIN}
 ENV NODE_ENV=production
 
 WORKDIR /srv/app/
