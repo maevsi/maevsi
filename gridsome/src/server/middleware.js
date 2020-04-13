@@ -6,14 +6,14 @@ function iCal (req, res) {
 
   const data = req.body
   const eventId = data.event.organizerUsername + '/' + data.event.slug
-  const eventUrl = 'https://' + req.hostname + '/' + eventId
+  const eventUrl = 'https://' + process.env.GRIDSOME_STACK_DOMAIN + '/events/' + eventId
 
   res.type('text/calendar')
   res.set('Content-Disposition', 'attachment; filename="' + eventId.replace('/', '_') + '.ics"')
   res.send(ical({
-    domain: req.hostname,
+    domain: process.env.GRIDSOME_STACK_DOMAIN,
     // `prodId` is generated automatically.
-    name: data.event.slug,
+    name: eventId.replace('/', '_'),
     url: eventUrl,
     // `scale` is specified as `GREGORIAN` if not set explicitly.
     timezone: 'UTC',
@@ -42,7 +42,7 @@ function iCal (req, res) {
         //   excludeTimezone: 'Europe/Berlin' // timezone of exclude
         // },
         // recurrenceId: moment(),
-        // summary: 'Summary',
+        summary: data.event.slug, // The event's title.
         ...(data.event.description && { description: htmlToText.fromString(md.render(data.event.description)) }),
         ...(data.event.description && { htmlDescription: md.render(data.event.description) }),
         ...(data.event.place && { location: data.event.place }),
@@ -52,7 +52,7 @@ function iCal (req, res) {
         // },
         organizer: {
           name: data.event.organizerUsername,
-          email: data.event.organizerUsername + '@' + req.hostname
+          email: data.event.organizerUsername + '@' + process.env.GRIDSOME_STACK_DOMAIN
           // mailto: 'explicit@mailto.com'
         },
         // attendees: [{
@@ -78,8 +78,8 @@ function iCal (req, res) {
         //   name: 'appointment'
         // }],
         url: eventUrl,
-        status: 'confirmed',
-        busystatus: 'busy'
+        status: 'confirmed'
+        // busystatus: 'busy',
         // created: moment(), // Event creation date.
         // lastModified: moment()
       }
