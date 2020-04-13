@@ -190,7 +190,7 @@ export default {
       const fileName = this.$route.params.username + '_' + this.$route.params.event_name + '.ics'
 
       xhr.open('POST', '/ical', true)
-      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
       xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
           require('downloadjs')(this.responseText, fileName, 'text/calendar')
