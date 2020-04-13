@@ -20,7 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 const apolloClient = new ApolloClient({
-  uri: 'https://postgraphile.' + process.env.STACK_DOMAIN + '/graphql',
+  uri: 'https://postgraphile.' + process.env.GRIDSOME_STACK_DOMAIN + '/graphql',
   fetch,
   request: (operation) => {
     global.methods.$jwtDecode((jwt, jwtDecoded) => {
