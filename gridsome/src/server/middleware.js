@@ -7,6 +7,7 @@ function iCal (req, res) {
   const data = req.body
   const eventId = data.event.organizerUsername + '/' + data.event.slug
   const eventUrl = 'https://' + process.env.GRIDSOME_STACK_DOMAIN + '/events/' + eventId
+  const eventDescriptionHtml = md.render(data.event.description)
 
   res.type('text/calendar')
   res.set('Content-Disposition', 'attachment; filename="' + eventId.replace('/', '_') + '.ics"')
@@ -43,8 +44,8 @@ function iCal (req, res) {
         // },
         // recurrenceId: moment(),
         summary: data.event.slug, // The event's title.
-        ...(data.event.description && { description: htmlToText.fromString(md.render(data.event.description)) }),
-        ...(data.event.description && { htmlDescription: md.render(data.event.description) }),
+        ...(data.event.description && { description: htmlToText.fromString(eventDescriptionHtml) }),
+        ...(data.event.description && { htmlDescription: eventDescriptionHtml }),
         ...(data.event.place && { location: data.event.place }),
         // geo: {
         //   lat: 44.4987,
