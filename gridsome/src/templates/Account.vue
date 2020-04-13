@@ -35,7 +35,6 @@ import gql from 'graphql-tag'
 
 export default {
   apollo: {
-    $prefetch: false,
     allEvents () {
       return {
         query: gql`

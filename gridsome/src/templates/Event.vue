@@ -136,7 +136,6 @@ import VueMarkdown from 'vue-markdown-v2'
 
 export default {
   apollo: {
-    $prefetch: false,
     eventContactFeedbackData () {
       return {
         query: EVENT_CONTACT_FEEDBACK_DATA_QUERY,
