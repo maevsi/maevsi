@@ -14,8 +14,18 @@
         <Error404 />
       </div>
       <div v-else>
-        <h1>{{ $route.params.username }}</h1>
-        <h2 class="text-left">
+        <div class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4">
+          <g-image
+            alt="blank profile picture"
+            class="flex-none mr-0 sm:mr-4"
+            src="~/assets/blank-profile-picture.svg"
+            width="100"
+          />
+          <h1 class="mb-0 truncate w-full sm:w-auto">
+            {{ $route.params.username }}
+          </h1>
+        </div>
+        <h2 class="text-left truncate">
           Their Events
         </h2>
         <EventList
