@@ -8,7 +8,7 @@
           width="135"
         />
       </g-link>
-      <div class="dropdown">
+      <div class="dropdown text-lg">
         <g-link :to="'/accounts/' + (loggedInUsername === undefined ? '' : loggedInUsername)">
           <font-awesome
             class="mr-2"
