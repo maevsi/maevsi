@@ -48,7 +48,10 @@ module.exports = {
         h1: {
           fontSize: config('theme.fontSize.4xl'),
           marginBottom: config('theme.margin.4'),
-          fontWeight: config('theme.fontWeight.bold')
+          fontWeight: config('theme.fontWeight.bold'),
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap'
         },
         h2: {
           fontSize: config('theme.fontSize.3xl'),
