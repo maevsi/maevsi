@@ -39,6 +39,9 @@ module.exports = {
     require('tailwindcss-animations'),
     function ({ addBase, addComponents, addUtilities, config }) {
       addBase({
+        '::selection': {
+          background: '#e53e3e'
+        },
         body: {
           background: 'linear-gradient(#34a1f0, #695bc0) fixed'
         },
