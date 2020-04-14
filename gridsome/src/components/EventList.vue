@@ -13,7 +13,7 @@
           <div class="bg-white border border-gray-400 flex flex-col p-4 rounded">
             <div class="flex items-center mb-2 text-gray-600 text-sm">
               <div
-                class="font-medium"
+                class="font-medium truncate"
                 :class="{
                   'text-gray-600': $moment(event.start).isBefore($moment()),
                   'text-teal-600': $moment(event.start).isSameOrAfter($moment())
@@ -29,7 +29,7 @@
                 :show-text="false"
               />
               <div
-                class="font-bold text-xl"
+                class="font-bold text-xl truncate"
                 :class="{
                   'text-gray-600': $moment(event.start).isBefore($moment()),
                   'text-gray-900': $moment(event.start).isSameOrAfter($moment())
