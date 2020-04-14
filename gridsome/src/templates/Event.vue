@@ -16,7 +16,7 @@
         </p>
         <p>You've been invited to the following event:</p>
         <div class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black">
-          <h1 class="text-gray-900">
+          <h1>
             {{ eventContactFeedbackData.event.name }}
           </h1>
           <div class="event-meta">
