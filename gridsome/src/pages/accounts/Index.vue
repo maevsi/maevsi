@@ -369,6 +369,7 @@ export default {
           localStorage.setItem('jwt_anonymous', localStorage.getItem('jwt'))
           localStorage.setItem('jwt', data.data.authenticate.jwt)
           this.$router.push(this.formSignin.signinUsername)
+          location.reload() // Invalidate cached components.
         }
       }).catch((error) => {
         this.signinGraphqlErrorMessage = error.message
@@ -394,6 +395,7 @@ export default {
           localStorage.setItem('jwt_anonymous', localStorage.getItem('jwt'))
           localStorage.setItem('jwt', data.data.accountRegister.jwt)
           this.$router.push(this.formRegister.registerUsername)
+          location.reload() // Invalidate cached components.
         }
       }).catch((error) => {
         this.registerGraphqlErrorMessage = error.message
