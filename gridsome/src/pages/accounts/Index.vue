@@ -278,10 +278,10 @@
 </template>
 
 <script>
+import { ACCOUNT_REGISTER_MUTATION, AUTHENTICATE_MUTATION } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/Button.vue'
 import FormError from '~/components/FormError.vue'
-import gql from 'graphql-tag'
 import { email, helpers, minLength, required } from 'vuelidate/lib/validators'
 
 const slug = helpers.regex('slug', /^[-A-Za-z0-9_]+$/)
@@ -359,11 +359,7 @@ export default {
 
       this.$v.formSignin.$reset()
       this.$apollo.mutate({
-        mutation: gql`mutation ($username: String!, $password: String!) {
-          authenticate(input: {username: $username, password: $password}) {
-            jwt
-          }
-        }`,
+        mutation: AUTHENTICATE_MUTATION,
         variables: {
           username: this.formSignin.signinUsername,
           password: this.formSignin.signinPassword
@@ -387,11 +383,7 @@ export default {
 
       this.$v.formRegister.$reset()
       this.$apollo.mutate({
-        mutation: gql`mutation ($username: String!, $password: String!, $emailAddress: String!) {
-          accountRegister(input: {username: $username, password: $password, emailAddress: $emailAddress}) {
-            jwt
-          }
-        }`,
+        mutation: ACCOUNT_REGISTER_MUTATION,
         variables: {
           username: this.formRegister.registerUsername,
           password: this.formRegister.registerPassword,

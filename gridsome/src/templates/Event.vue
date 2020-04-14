@@ -125,13 +125,12 @@
 </template>
 
 <script>
-import { EVENT_CONTACT_FEEDBACK_DATA_QUERY } from '~/apollo/documents'
+import { EVENT_CONTACT_FEEDBACK_DATA_QUERY, UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/Button.vue'
 import Error404 from '~/components/Error404.vue'
 import EventIcon from '~/components/EventIcon.vue'
 
-import gql from 'graphql-tag'
 import VueMarkdown from 'vue-markdown-v2'
 
 export default {
@@ -200,25 +199,7 @@ export default {
     },
     send () {
       this.$apollo.mutate({
-        mutation: gql`
-          mutation(
-            $id: Int!
-            $invitationFeedbackDatumPatch: InvitationFeedbackDatumPatch!
-          ) {
-            updateInvitationFeedbackDatumById(
-              input: {
-                id: $id
-                invitationFeedbackDatumPatch: $invitationFeedbackDatumPatch
-              }
-            ) {
-              invitationFeedbackDatum {
-                id
-                invitationFeedback
-                paperInvitationFeedback
-              }
-            }
-          }
-        `,
+        mutation: UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION,
         variables: {
           id: this.eventContactFeedbackDataToSend.invitationFeedbackData.id,
           invitationFeedbackDatumPatch: this.$removeTypename(

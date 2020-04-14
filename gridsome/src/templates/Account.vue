@@ -28,36 +28,16 @@
 </template>
 
 <script>
+import { ALL_EVENTS_QUERY } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Error404 from '~/components/Error404.vue'
 import EventList from '~/components/EventList.vue'
-import gql from 'graphql-tag'
 
 export default {
   apollo: {
     allEvents () {
       return {
-        query: gql`
-          query eventsPage ($username: String!, $limit: Int!, $cursor: Cursor) {
-            allEvents (condition: {organizerUsername: $username}, first: $limit, after: $cursor) {
-              nodes {
-                name
-                slug
-                visibility
-                organizerUsername
-                description
-                place
-                start
-                end
-                archived
-              }
-              pageInfo {
-                hasNextPage
-                endCursor
-              }
-            }
-          }
-        `,
+        query: ALL_EVENTS_QUERY,
         variables: {
           cursor: null,
           limit: this.ITEMS_PER_PAGE,

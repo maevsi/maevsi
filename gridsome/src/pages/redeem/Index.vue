@@ -64,10 +64,10 @@
 </template>
 
 <script>
+import { REDEEM_MUTATION } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/Button.vue'
 import FormError from '~/components/FormError.vue'
-import gql from 'graphql-tag'
 import { helpers, required } from 'vuelidate/lib/validators'
 
 const uuid = helpers.regex('uuid', /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/)
@@ -100,15 +100,7 @@ export default {
 
       this.$v.$reset()
       this.$apollo.mutate({
-        mutation: gql`mutation ($uuid: UUID!) {
-          redeem(input: {invitationCode: $uuid}) {
-            redeemResponse {
-              organizerUsername
-              eventSlug
-              jwt
-            }
-          }
-        }`,
+        mutation: REDEEM_MUTATION,
         variables: {
           uuid: this.invitationCode
         }

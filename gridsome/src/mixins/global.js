@@ -1,4 +1,5 @@
-import gql from 'graphql-tag'
+import { AUTHENTICATE_MUTATION, JWT_REFRESH_MUTATION } from '~/apollo/documents'
+
 import jwtDecode from 'jwt-decode'
 
 export default {
@@ -10,11 +11,7 @@ export default {
   methods: {
     $authenticateAnonymous (apolloProvider) {
       apolloProvider.defaultClient.mutate({
-        mutation: gql`mutation ($username: String!, $password: String!) {
-          authenticate(input: {username: $username, password: $password}) {
-            jwt
-          }
-        }`,
+        mutation: AUTHENTICATE_MUTATION,
         variables: {
           username: '',
           password: ''
@@ -46,11 +43,7 @@ export default {
     $jwtRefresh (apolloProvider) {
       this.$jwtDecode((jwt, jwtDecoded) => {
         apolloProvider.defaultClient.mutate({
-          mutation: gql`mutation ($id: UUID!) {
-            jwtRefresh(input: {jwtId: $id}) {
-              jwt
-            }
-          }`,
+          mutation: JWT_REFRESH_MUTATION,
           variables: {
             id: jwtDecoded.id
           }
