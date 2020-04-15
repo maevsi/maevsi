@@ -10,6 +10,7 @@
       <button
         class="btn"
         :class="buttonClass"
+        :disabled="disabled"
       >
         <font-awesome
           v-if="icon"
@@ -22,6 +23,7 @@
       v-else
       class="btn"
       :class="buttonClass"
+      :disabled="disabled"
     >
       <font-awesome
         v-if="icon"
@@ -38,6 +40,10 @@ export default {
     buttonClass: {
       type: String,
       default: 'btn-red'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     icon: {
       type: Boolean,
