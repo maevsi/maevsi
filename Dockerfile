@@ -4,6 +4,7 @@
 FROM node:13.13.0-slim@sha256:e21f4309c3b764f2197fd60566478f5870507bb891d32ccdd6174747ddd7437f AS development
 
 # Update and install build dependencies
+# - `git` is required by the `yarn` command
 RUN \
     apt-get update && \
     apt-get install -y git
