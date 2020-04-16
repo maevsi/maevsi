@@ -208,6 +208,9 @@ module.exports = {
         }
       })
       addUtilities({
+        '.bg-half-transparent': {
+          backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        },
         '.disabled': {
           cursor: config('theme.cursor.not-allowed'),
           opacity: config('theme.opacity.50')
