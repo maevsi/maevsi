@@ -865,7 +865,7 @@
     sort-package-json "^1.15.0"
     update-notifier "^3.0.1"
 
-"@gridsome/plugin-critical@^0.1.6":
+"@gridsome/plugin-critical@0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@gridsome/plugin-critical/-/plugin-critical-0.1.6.tgz#75f13dfa4752c85f9157c85fe0201ca31fa2d88d"
   integrity sha512-TEknagMCInrIGM2WRQlOBaxKA3xAjN7i1RwwjMJIlqYLNTl5znSv0DOFJ8Sy5FKokufZmname9FUHsMFS5CMSw==
