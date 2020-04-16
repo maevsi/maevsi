@@ -15,9 +15,10 @@ import VueMoment from 'vue-moment'
 import { config, library } from '@fortawesome/fontawesome-svg-core'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 // import { x } from '@fortawesome/free-regular-svg-icons'
-import { faArchive, faBug, faCalendarDay, faCheckCircle, faDownload, faExternalLinkAlt, faGlobeAfrica, faHome, faHourglass, faKey, faMapMarker, faPlus, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArchive, faBug, faCalendarDay, faCheckCircle, faDownload, faExternalLinkAlt, faGlobeAfrica, faHome, faHourglass, faKey, faMapMarker, faPlus, faSignOutAlt, faUpload, faUser, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import 'vue-croppa/dist/vue-croppa.css'
 
 const apolloClient = new ApolloClient({
   uri: 'https://postgraphile.' + process.env.GRIDSOME_STACK_DOMAIN + '/graphql',
@@ -42,7 +43,7 @@ const apolloProvider = new VueApollo({
 })
 
 config.autoAddCss = false
-library.add(faArchive, faBug, faCalendarDay, faDownload, faCheckCircle, faExternalLinkAlt, faKey, faGithub, faGlobeAfrica, faHome, faHourglass, faMapMarker, faPlus, faUser, faSignOutAlt)
+library.add(faArchive, faBug, faCalendarDay, faDownload, faCheckCircle, faExternalLinkAlt, faKey, faGithub, faGlobeAfrica, faHome, faHourglass, faMapMarker, faPlus, faUser, faUpload, faSignOutAlt, faWindowClose)
 
 export default function (Vue, { appOptions, head }) {
   Vue.component('font-awesome', FontAwesomeIcon)
