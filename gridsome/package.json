@@ -19,7 +19,7 @@
     "gridsome": "0.7.14",
     "html-to-text": "5.1.1",
     "ical-generator": "1.10.0",
-    "jwt-decode": "2.2.0",
+    "jsonwebtoken": "8.5.1",
     "moment-timezone": "0.5.28",
     "node-fetch": "2.6.0",
     "slugify": "1.4.0",

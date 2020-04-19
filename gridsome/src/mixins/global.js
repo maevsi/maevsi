@@ -1,6 +1,6 @@
 import { AUTHENTICATE_MUTATION, JWT_REFRESH_MUTATION } from '~/apollo/documents'
 
-import jwtDecode from 'jwt-decode'
+import { decode } from 'jsonwebtoken'
 
 export default {
   data () {
@@ -34,7 +34,7 @@ export default {
         const jwt = localStorage.getItem('jwt')
 
         if (jwt !== null) {
-          const jwtDecoded = jwtDecode(jwt)
+          const jwtDecoded = decode(jwt)
 
           f(jwt, jwtDecoded)
         }
