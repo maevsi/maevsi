@@ -88,6 +88,10 @@ function iCal (req, res) {
   }).toString())
 }
 
+function tusd (req, res) {
+
+}
 module.exports = {
-  iCal
+  iCal,
+  tusd
 }
