@@ -3,15 +3,25 @@
 -- requires: role_account
 -- requires: role_anonymous
 -- requires: function_invites_contact
+-- requires: function_regexp_escape
 
 BEGIN;
 
 CREATE TABLE maevsi.contact (
-    "id"                SERIAL PRIMARY KEY,
-    "first_name"        TEXT CHECK (char_length("first_name") < 100),
-    "last_name"         TEXT CHECK (char_length("last_name") < 100),
-    "address"           TEXT CHECK (char_length("address") < 300),
-    "email_address"     TEXT CHECK (char_length("email_address") < 320 AND "email_address" ~* '^.+@.+\..+$')
+    "id"                    SERIAL PRIMARY KEY,
+    "first_name"            TEXT CHECK (char_length("first_name") < 100),
+    "last_name"             TEXT CHECK (char_length("last_name") < 100),
+    "address"               TEXT CHECK (char_length("address") < 300),
+    "email_address"         TEXT CHECK (char_length("email_address") < 320 AND "email_address" ~* '^.+@.+\..+$'),
+    "email_address_hash"    TEXT GENERATED ALWAYS AS (
+                                NULLIF('https://www.gravatar.com/avatar/' || md5(lower(substring("email_address", '\S(?:.*\S)*'))), 'https://www.gravatar.com/avatar/')
+                            ) STORED,
+    "profile_picture_url"   TEXT
+                            CHECK (
+                                    "profile_picture_url" ~ '^https://www\.gravatar\.com/avatar/[0-9a-z]{32}$'
+                                OR  "profile_picture_url" ~ concat('^https://tusd\.', maevsi.regexp_escape(current_setting('maevsi.stack_domain')), '/files/[TODO]')
+                            )
+    --"website_url"           TEXT
 );
 
 COMMENT ON TABLE maevsi.contact IS 'Contact data.';

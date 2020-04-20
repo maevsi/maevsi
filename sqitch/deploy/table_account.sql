@@ -6,7 +6,6 @@
 
 BEGIN;
 
--- TODO: profile picture
 CREATE TABLE maevsi_private.account (
     "contact_id"                    INTEGER PRIMARY KEY REFERENCES maevsi.contact("id"),
     "username"                      TEXT NOT NULL CHECK (char_length("username") < 100 AND "username" ~* '^[-A-Za-z0-9_]+$') UNIQUE,
