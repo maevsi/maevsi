@@ -143,7 +143,7 @@ export default {
         allowedFileTypes: ['image/*']
       },
       meta: {
-        username: this.$route.params.username
+        jwt: localStorage.getItem('jwt')
       },
       onBeforeUpload: (files) => {
         const updatedFiles = {}
