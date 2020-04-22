@@ -4909,16 +4909,16 @@ graphql@^14.4.2:
   dependencies:
     iterall "^1.2.2"
 
-gridsome-plugin-tailwindcss@2.2.45:
-  version "2.2.45"
-  resolved "https://registry.yarnpkg.com/gridsome-plugin-tailwindcss/-/gridsome-plugin-tailwindcss-2.2.45.tgz#8add6e12b3462c0cfcc8228f9c4f359b5571cf2d"
-  integrity sha512-bUoFLQFMeXI/tff+dsRICMo8R4F9L+ciWt+JtB2gE2JKBBTk1gd8gVMgKY3haNCagG0zCZGf5x/klizj0h1uVw==
+gridsome-plugin-tailwindcss@2.2.46:
+  version "2.2.46"
+  resolved "https://registry.yarnpkg.com/gridsome-plugin-tailwindcss/-/gridsome-plugin-tailwindcss-2.2.46.tgz#c67226665e3836be6df5e44f52b84a5f7f16266e"
+  integrity sha512-CQ1M44ASUIhB1VxUNcL7nShyOCUsN4pN3ASYuA9SB/NExbW7OjagMmImVMgZaEywF76XKESjx2URa3gkNUZLQQ==
   dependencies:
     "@fullhuman/postcss-purgecss" "^2.1.2"
     postcss-import "^12.0.1"
     postcss-import-url "^5.1.0"
     postcss-preset-env "^6.7.0"
-    tailwindcss "^1.3.3"
+    tailwindcss "^1.3.4"
 
 gridsome@0.7.14:
   version "0.7.14"
@@ -9997,10 +9997,10 @@ tailwindcss-animations@2.0.0:
   dependencies:
     lodash "^4.17.15"
 
-tailwindcss@^1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.3.3.tgz#f2c1f2f22dcf14a0c701355d46c159ccd4db2573"
-  integrity sha512-zysBWSSJ6wZMqWxzuQ8H1UCHZ5YyUMsuqLlGS+bhr20ZpxbzP5yXQrUFKlB86tii3DfNo6AssIJ+JbtjGq8vrA==
+tailwindcss@^1.3.4:
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.3.4.tgz#e05d2ef7fd45ed8250af8afc38b333c1fa9b9d40"
+  integrity sha512-jrxz0HbCmY7wlSN7lY/9Xx8BlcqeD7bWdTErwqcGrlVq697UNT/A6JsYbrhYmsfGMk5INaXJFVihhLkPq9ZMow==
   dependencies:
     autoprefixer "^9.4.5"
     bytes "^3.0.0"
