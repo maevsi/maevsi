@@ -2,7 +2,7 @@
 # Serve Vue.
 
 # Not below `buster`!
-FROM node:13.13.0-buster-slim@sha256:90c9711260718c7513f636ed9aec3b7589902ef5192a354f2d2dde89f2965d74 AS development
+FROM node:13.13.0-buster-slim@sha256:b59de58dc13b8172f82bd257181a00099f80a76bf58114c126fe947031efdedc AS development
 
 # Update and install build dependencies
 # - `git` is required by the `yarn` command
