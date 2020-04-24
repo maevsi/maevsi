@@ -37,7 +37,7 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "eslint-plugin-vue": "6.2.2",
-    "gridsome-plugin-tailwindcss": "2.2.46",
+    "gridsome-plugin-tailwindcss": "2.2.47",
     "husky": "4.2.5"
   },
   "husky": {
