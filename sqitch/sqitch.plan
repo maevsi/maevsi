@@ -6,6 +6,7 @@ privilege_execute_revoke 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thel
 role_postgraphile 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role postgraphile.
 role_anonymous [role_postgraphile] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role anonymous.
 role_account [role_postgraphile] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role account.
+role_tusd [role_postgraphile] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role tusd.
 schema_public [role_anonymous role_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add public schema.
 schema_private 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add private schema.
 extension_pgcrypto [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension pgcrypto.
