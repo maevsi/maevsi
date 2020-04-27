@@ -14,7 +14,7 @@ CREATE TABLE maevsi.contact (
     "address"               TEXT CHECK (char_length("address") < 300),
     "email_address"         TEXT CHECK (char_length("email_address") < 320 AND "email_address" ~* '^.+@.+\..+$'),
     "email_address_hash"    TEXT GENERATED ALWAYS AS (
-                                NULLIF('https://www.gravatar.com/avatar/' || md5(lower(substring("email_address", '\S(?:.*\S)*'))), 'https://www.gravatar.com/avatar/')
+                                md5(lower(substring("email_address", '\S(?:.*\S)*')))
                             ) STORED,
     "profile_picture_url"   TEXT
                             CHECK (
