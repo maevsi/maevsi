@@ -131,7 +131,7 @@ import Button from '~/components/Button.vue'
 import Error404 from '~/components/Error404.vue'
 import EventIcon from '~/components/EventIcon.vue'
 
-import VueMarkdown from 'vue-markdown-v2'
+import VueMarkdown from 'vue-markdown-konishi'
 
 export default {
   apollo: {

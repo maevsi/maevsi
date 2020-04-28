@@ -10619,7 +10619,7 @@ vue-loader@^15.7.1:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-markdown-konishi@^0.2.10:
+vue-markdown-konishi@0.2.10:
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/vue-markdown-konishi/-/vue-markdown-konishi-0.2.10.tgz#5dc5a8ec6419942e760c566fb1814f5eecbeb50a"
   integrity sha512-ipQATo00+9NxF5lDiWpFS4rasu1w2NYulre3gpFPIc6IOSEkH6g2El1EC06/BPXGeuf85Ue1OyN1GQOi/glmgA==
