@@ -2,7 +2,7 @@
 # Serve Vue.
 
 # Not below `buster`!
-FROM node:13.13.0-buster-slim@sha256:b59de58dc13b8172f82bd257181a00099f80a76bf58114c126fe947031efdedc AS development
+FROM node:13.14.0-buster-slim@sha256:c2b5023b1531954ac1bfb1069a99575e3d0111e096c748f252e8a5583cdc27d2 AS development
 
 # Update and install build dependencies
 # - `git` is required by the `yarn` command
@@ -33,7 +33,7 @@ CMD ["develop"]
 ########################
 # Build and compile Vue.
 
-FROM node:13.13.0-slim@sha256:f10f225155dbb987c086672462c9c9fc166f410201c4503e879287804b54ee16 AS build
+FROM node:13.14.0-slim@sha256:91ca0dfd94f16e46d0eff93c2b4f18893f431bdf67e23839dbab3b3d90ea071d AS build
 
 ARG GRIDSOME_STACK_DOMAIN=maev.si
 ENV GRIDSOME_STACK_DOMAIN=${GRIDSOME_STACK_DOMAIN}
