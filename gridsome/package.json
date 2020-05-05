@@ -30,7 +30,7 @@
     "vue-markdown-konishi": "0.2.10",
     "vue-moment": "4.1.0",
     "vuelidate": "0.7.5",
-    "snyk": "1.317.0"
+    "snyk": "1.318.0"
   },
   "devDependencies": {
     "eslint": "6.8.0",
