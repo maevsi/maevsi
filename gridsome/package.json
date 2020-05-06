@@ -24,6 +24,7 @@
     "jsonwebtoken": "8.5.1",
     "moment-timezone": "0.5.28",
     "node-fetch": "2.6.0",
+    "pg": "^8.0.3",
     "slugify": "1.4.0",
     "tailwindcss-animations": "2.0.0",
     "vue-apollo": "3.0.3",
