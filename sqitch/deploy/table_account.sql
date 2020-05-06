@@ -14,6 +14,7 @@ CREATE TABLE maevsi_private.account (
     "password_hash"                 TEXT NOT NULL,
     "created"                       TIMESTAMP NOT NULL DEFAULT NOW(),
     "last_activity"                 TIMESTAMP NOT NULL DEFAULT NOW(),
+    "upload_quota_bytes"            INTEGER NOT NULL DEFAULT 10485760 -- 10 mebibyte
 );
 
 COMMENT ON TABLE maevsi_private.account IS 'Account data.';
@@ -24,5 +25,6 @@ COMMENT ON COLUMN maevsi_private.account.email_address_verification IS 'The UUID
 COMMENT ON COLUMN maevsi_private.account.password_hash IS 'The account''s password, hashed and salted.';
 COMMENT ON COLUMN maevsi_private.account.created IS 'Timestamp at which the account was last active.';
 COMMENT ON COLUMN maevsi_private.account.last_activity IS 'Timestamp at which the account last requested an access token.';
+COMMENT ON COLUMN maevsi_private.account.upload_quota_bytes IS 'The account''s upload quota in bytes.';
 
 COMMIT;
