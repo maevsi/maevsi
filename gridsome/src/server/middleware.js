@@ -88,9 +88,51 @@ function iCal (req, res) {
   }).toString())
 }
 
-function tusd (req, res) {
+const fs = require('fs')
+const { Pool } = require('pg')
 
+const pool = new Pool({
+  database: fs.readFileSync('/run/secrets/postgres_db', 'utf-8'),
+  host: 'postgres',
+  password: fs.readFileSync('/run/secrets/postgres_role_maevsi-tusd_password', 'utf-8'),
+  user: 'maevsi_tusd'
+})
+
+function tusd (req, res) {
+  switch (req.get('Hook-Name')) {
+    case 'pre-create':
+      pool.query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = \'' + req.body.Upload.MetaData.maevsiUploadId + '\');', (err, queryRes) => {
+        if (err) {
+          res.status(500).send(err)
+          return
+        }
+
+        if (!queryRes.rows[0].exists) {
+          res.status(500).send('Upload id does not exist!')
+          return
+        }
+
+        res.end()
+      })
+
+      break
+    case 'post-finish':
+
+      pool.query('UPDATE maevsi.upload SET storage_key = \'' + req.body.Upload.Storage.Key + '\' WHERE id = \'' + req.body.Upload.MetaData.maevsiUploadId + '\';', (err, queryRes) => {
+        if (err) {
+          res.status(500).send(err)
+          return
+        }
+
+        console.log('tusd/post-finish: ' + req.body.Upload.Storage.Key)
+
+        res.end()
+      })
+
+      break
+  }
 }
+
 module.exports = {
   iCal,
   tusd
