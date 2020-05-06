@@ -11,22 +11,22 @@ module.exports = {
   ALL_EVENTS_QUERY: gql`
     query eventsPage ($username: String, $limit: Int!, $cursor: Cursor) {
       allEvents (condition: {organizerUsername: $username}, first: $limit, after: $cursor) {
-              nodes {
-                name
-                slug
-                visibility
-                organizerUsername
-                description
-                place
-                start
-                end
-                archived
-              }
-              pageInfo {
-                hasNextPage
-                endCursor
-              }
-            }
+        nodes {
+          name
+          slug
+          visibility
+          organizerUsername
+          description
+          place
+          start
+          end
+          archived
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
     }
   `,
   AUTHENTICATE_MUTATION: gql`
