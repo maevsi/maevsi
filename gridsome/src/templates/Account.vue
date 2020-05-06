@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import { ALL_EVENTS_QUERY } from '~/apollo/documents'
+import { ALL_EVENTS_QUERY, UPLOAD_CREATE_MUTATION } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/Button.vue'
 import Error404 from '~/components/Error404.vue'
@@ -131,38 +131,6 @@ export default {
   metaInfo () {
     return { title: this.$route.params.username }
   },
-  mounted () {
-    this.uppy = Uppy({
-      id: 'profile-picture',
-      allowMultipleUploads: false,
-      debug: process.env.NODE_ENV !== 'production',
-      restrictions: {
-        maxFileSize: 1048576,
-        maxNumberOfFiles: 1,
-        minNumberOfFiles: 1,
-        allowedFileTypes: ['image/*']
-      },
-      meta: {
-        jwt: localStorage.getItem('jwt')
-      },
-      onBeforeUpload: (files) => {
-        const updatedFiles = {}
-
-        Object.keys(files).forEach(fileID => {
-          updatedFiles[fileID] = {
-            ...files[fileID],
-            name: '/profile-pictures/' + files[fileID].name
-          }
-        })
-
-        return updatedFiles
-      }
-    })
-
-    this.uppy.use(Tus, {
-      endpoint: 'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/'
-    })
-  },
   methods: {
     changeProfilePicture () {
       document.querySelector('#input-profile-picture').click()
@@ -194,27 +162,65 @@ export default {
     },
     generateBlob () {
       this.$refs.croppy.generateBlob(
-        blob => this.uploadCroppedImage(blob)
-      )
-    },
-    uploadCroppedImage (blob) {
-      this.uppy.addFile({
-        source: 'croppy',
-        name: document.querySelector('#input-profile-picture').files[0].name,
-        type: blob.type,
-        data: blob
-      })
-      this.uppy.upload().then((result) => {
-        console.log(result.successful[0].uploadURL)
-        this.profilePictureUrl = result.successful[0].uploadURL
+        blob => {
+          this.$apollo.mutate({
+            mutation: UPLOAD_CREATE_MUTATION,
+            variables: {
+              uploadCreateInput: {
+                sizeByte: blob.size
+              }
+            }
+          }).then((data) => {
+            if (data.data.uploadCreate.uuid !== null) {
+              this.uppy = Uppy({
+                id: 'profile-picture',
+                debug: process.env.NODE_ENV !== 'production',
+                restrictions: {
+                  maxFileSize: 1048576,
+                  maxNumberOfFiles: 1,
+                  minNumberOfFiles: 1,
+                  allowedFileTypes: ['image/*']
+                },
+                meta: {
+                  maevsiUploadId: data.data.uploadCreate.uuid
+                },
+                onBeforeUpload: (files) => {
+                  const updatedFiles = {}
 
-        if (result.failed.length > 0) {
-          console.error('Errors:')
-          result.failed.forEach((file) => {
-            console.error(file.error)
+                  Object.keys(files).forEach(fileID => {
+                    updatedFiles[fileID] = {
+                      ...files[fileID],
+                      name: '/profile-pictures/' + files[fileID].name
+                    }
+                  })
+
+                  return updatedFiles
+                }
+              })
+
+              this.uppy.use(Tus, {
+                endpoint: 'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/',
+                limit: 1
+              })
+
+              this.uppy.addFile({
+                source: 'croppy',
+                name: document.querySelector('#input-profile-picture').files[0].name,
+                type: blob.type,
+                data: blob
+              })
+
+              this.uppy.upload().then((result) => {
+                console.log(result.successful[0].uploadURL)
+                this.profilePictureUrl = result.successful[0].uploadURL
+              })
+            }
+          }).catch((error) => {
+            this.graphqlErrorMessage = error.message
+            console.error(error)
           })
         }
-      })
+      )
     }
   }
 }

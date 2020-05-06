@@ -105,5 +105,12 @@ module.exports = {
         }
       }
     }
+  `,
+  UPLOAD_CREATE_MUTATION: gql`
+    mutation($uploadCreateInput: UploadCreateInput!) {
+      uploadCreate(input: $uploadCreateInput) {
+        uuid
+      }
+    }
   `
 }
