@@ -40,7 +40,7 @@
             <h2 slot="header">
               Upload a new profile picture
             </h2>
-            <croppa
+            <Croppa
               slot="body"
               ref="croppy"
               :initial-image="fileSelectedUrl"
@@ -113,7 +113,7 @@ export default {
   components: {
     AlertGraphql,
     Button,
-    croppa: Croppa.component,
+    Croppa: Croppa.component,
     Error404,
     EventList,
     Modal
