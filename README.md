@@ -2,11 +2,11 @@
 [![renovate](https://badges.renovateapi.com/github/maevsi/maevsi)](https://renovatebot.com/ "renovate")
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/maevsi/maevsi.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/maevsi/maevsi/context:javascript)
 
-# mævsi - **ALPHA**
+# maevsi - **ALPHA**
 
 A manager for events supported by invitees: [maev.si](https://maev.si/).
 
-<!-- ![Welcome](images/welcome.jpg "mævsi") -->
+<!-- ![Welcome](images/welcome.jpg "maevsi") -->
 
 ## Table of Contents
 1. **[Development](#development)**
