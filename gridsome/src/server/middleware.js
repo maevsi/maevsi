@@ -90,11 +90,17 @@ function iCal (req, res) {
 
 const fs = require('fs')
 const { Pool } = require('pg')
+const secretPostgresDb = '/run/secrets/postgres_db'
+const secretPostgresRoleMaevsiTusdPassword = '/run/secrets/postgres_role_maevsi-tusd_password'
 
 const pool = new Pool({
-  database: fs.readFileSync('/run/secrets/postgres_db', 'utf-8'),
+  database: (fs.existsSync(secretPostgresDb))
+    ? fs.readFileSync(secretPostgresDb, 'utf-8')
+    : undefined,
   host: 'postgres',
-  password: fs.readFileSync('/run/secrets/postgres_role_maevsi-tusd_password', 'utf-8'),
+  password: (fs.existsSync(secretPostgresRoleMaevsiTusdPassword))
+    ? fs.readFileSync(secretPostgresRoleMaevsiTusdPassword, 'utf-8')
+    : undefined,
   user: 'maevsi_tusd'
 })
 
