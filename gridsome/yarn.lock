@@ -1286,7 +1286,7 @@
   dependencies:
     namespace-emitter "^2.0.1"
 
-"@uppy/core@^1.10.1":
+"@uppy/core@1.10.2":
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/@uppy/core/-/core-1.10.2.tgz#d7c7169ecce34cfe5bdf3ece92ea74bc585e7dfc"
   integrity sha512-0mC6f6icnwQTqpX5VQgt1mnD2629FgAMB2uwTg7PS9BkqwoNulgUhUkqg4aRB6Kmjvc5Cw0LWp0Z8Bkh56E5cA==
@@ -1304,7 +1304,7 @@
   resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-1.2.1.tgz#4f6f1815292388bc2fd6da2655a3ae1133598d5c"
   integrity sha512-B7iKa9CMLTPgSu1lHQX+Z82NgxoBrzWfZg9WbZnvoJRHnoiwu8A3EFXPLq0OEslvJndBD4xPgUms0BPt4WbnWw==
 
-"@uppy/tus@^1.5.9":
+"@uppy/tus@1.5.10":
   version "1.5.10"
   resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.5.10.tgz#c8ac77b0398b3531e20d732eb2a6b067101b8f6d"
   integrity sha512-lD6ZZ3t9gebISSGWTseWniOdZYv3ieWl8rCfuAOk+TrQm+1XT5XC1lvGQrr+MAc7KvL8sC4/eYOqO/zVKUwdgA==
@@ -8620,7 +8620,7 @@ pg-types@^2.1.0:
     postgres-date "~1.0.4"
     postgres-interval "^1.1.0"
 
-pg@^8.0.3:
+pg@8.0.3:
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/pg/-/pg-8.0.3.tgz#b220ee468a1819e1c7e9ca9878f8ae50ba8e1952"
   integrity sha512-fvcNXn4o/iq4jKq15Ix/e58q3jPSmzOp6/8C3CaHoSR/bsxdg+1FXfDRePdtE/zBb3++TytvOrS1hNef3WC/Kg==
@@ -12105,7 +12105,7 @@ vue-apollo@3.0.3:
     serialize-javascript "^2.1.0"
     throttle-debounce "^2.1.0"
 
-vue-croppa@^1.3.8:
+vue-croppa@1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/vue-croppa/-/vue-croppa-1.3.8.tgz#1aac95bf5d94020de7bc1ea7ca61e3aadfff1811"
   integrity sha512-WwYgEKscTCD7BzhnbfRJfzWIU6RcMq2JRimB3aI5gGzpADmpKuqmDh9+oVfiZaEnpmRthgXZxcAvbxU6CeIU9w==
