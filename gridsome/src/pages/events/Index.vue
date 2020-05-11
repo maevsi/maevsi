@@ -1,15 +1,15 @@
 <template>
   <Layout>
     <h1>{{ this.$metaInfo.title }}</h1>
-    <div class="gap-2 sm:grid-cols-2 inline-grid my-4">
+    <div class="flex flex-wrap justify-center my-2">
       <Button
         v-if="loggedIn"
         :icon-id="['fas', 'plus']"
         :link="'/new'"
         :text="'Create event'"
-        :wrapper-class="'inline-block'"
+        :wrapper-class="'inline-block m-2'"
       />
-      <ButtonRedeem :wrapper-class="'inline-block'" />
+      <ButtonRedeem :wrapper-class="'inline-block m-2'" />
     </div>
     <div v-if="$apollo.loading">
       Loading...

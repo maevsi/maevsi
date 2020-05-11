@@ -88,6 +88,58 @@ function iCal (req, res) {
   }).toString())
 }
 
+const fs = require('fs')
+const { Pool } = require('pg')
+const secretPostgresDb = '/run/secrets/postgres_db'
+const secretPostgresRoleMaevsiTusdPassword = '/run/secrets/postgres_role_maevsi-tusd_password'
+
+const pool = new Pool({
+  database: (fs.existsSync(secretPostgresDb))
+    ? fs.readFileSync(secretPostgresDb, 'utf-8')
+    : undefined,
+  host: 'postgres',
+  password: (fs.existsSync(secretPostgresRoleMaevsiTusdPassword))
+    ? fs.readFileSync(secretPostgresRoleMaevsiTusdPassword, 'utf-8')
+    : undefined,
+  user: 'maevsi_tusd'
+})
+
+function tusd (req, res) {
+  switch (req.get('Hook-Name')) {
+    case 'pre-create':
+      pool.query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = \'' + req.body.Upload.MetaData.maevsiUploadId + '\');', (err, queryRes) => {
+        if (err) {
+          res.status(500).send(err)
+          return
+        }
+
+        if (!queryRes.rows[0].exists) {
+          res.status(500).send('Upload id does not exist!')
+          return
+        }
+
+        res.end()
+      })
+
+      break
+    case 'post-finish':
+
+      pool.query('UPDATE maevsi.upload SET storage_key = \'' + req.body.Upload.Storage.Key + '\' WHERE id = \'' + req.body.Upload.MetaData.maevsiUploadId + '\';', (err, queryRes) => {
+        if (err) {
+          res.status(500).send(err)
+          return
+        }
+
+        console.log('tusd/post-finish: ' + req.body.Upload.Storage.Key)
+
+        res.end()
+      })
+
+      break
+  }
+}
+
 module.exports = {
-  iCal
+  iCal,
+  tusd
 }

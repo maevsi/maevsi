@@ -17,11 +17,17 @@ BEGIN
     WHERE   "id" = $1
     AND     "valid_until" >= NOW();
 
-    IF NOT "_jwt" IS NULL
+    IF "_jwt" IS NULL
     THEN
+        RETURN NULL;
+    ELSE
         UPDATE maevsi_private.jwt
         SET "valid_until" = DEFAULT
         WHERE "id" = $1;
+
+        UPDATE maevsi_private.account
+        SET "last_activity" = DEFAULT
+        WHERE account."username" = "_jwt"."username";
 
         RETURN (
             SELECT "token"
@@ -29,8 +35,6 @@ BEGIN
             WHERE   "id" = $1
             AND     "valid_until" >= NOW()
         );
-    ELSE
-        RETURN NULL;
     END IF;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
