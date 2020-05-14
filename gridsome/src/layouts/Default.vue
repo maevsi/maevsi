@@ -17,6 +17,14 @@
         </g-link>
         <div class="absolute dropdown-content right-0">
           <div class="mt-1">
+            <g-link :to="'/accounts/' + (loggedInUsername === undefined ? '' : loggedInUsername) + '/settings'">
+              <font-awesome
+                class="mr-2"
+                :icon="['fas', 'cog']"
+              />Settings
+            </g-link>
+          </div>
+          <div class="mt-1">
             <button
               v-if="loggedInUsername !== undefined"
               @click="$logOut($apollo.provider)"
