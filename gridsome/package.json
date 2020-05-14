@@ -17,7 +17,7 @@
     "@gridsome/plugin-critical": "0.1.6",
     "@uppy/core": "1.10.4",
     "@uppy/tus": "1.5.12",
-    "apollo-boost": "0.4.8",
+    "apollo-boost": "0.4.9",
     "downloadjs": "1.4.7",
     "graphql": "15.0.0",
     "gridsome": "0.7.14",
