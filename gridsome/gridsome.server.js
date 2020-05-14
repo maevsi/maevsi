@@ -6,6 +6,7 @@ const { iCal, tusd } = require('./src/server/middleware')
 module.exports = function (api) {
   const paths = {
     account: '/accounts/:username([A-Za-z0-9-_]+)',
+    accountSetting: '/accounts/:username([A-Za-z0-9-_]+)/settings',
     event: '/events/:username([A-Za-z0-9-_]+)/:event_name([-A-Za-z0-9_]+)',
     eventGroup: '/event-groups/:username([A-Za-z0-9-_]+)/:event_group_name([-A-Za-z0-9_]+)',
     eventIcs: '/ical',
@@ -23,6 +24,10 @@ module.exports = function (api) {
     createPage({
       path: paths.account,
       component: './src/templates/Account.vue'
+    })
+    createPage({
+      path: paths.accountSetting,
+      component: './src/templates/AccountSettings.vue'
     })
     createPage({
       path: paths.event,
