@@ -123,7 +123,6 @@ function tusd (req, res) {
 
       break
     case 'post-finish':
-
       pool.query('UPDATE maevsi.upload SET storage_key = \'' + req.body.Upload.Storage.Key + '\' WHERE id = \'' + req.body.Upload.MetaData.maevsiUploadId + '\';', (err, queryRes) => {
         if (err) {
           res.status(500).send(err)
