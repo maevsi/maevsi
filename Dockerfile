@@ -33,7 +33,7 @@ CMD ["develop"]
 ########################
 # Build and compile Vue.
 
-FROM node:13.14.0-slim@sha256:91ca0dfd94f16e46d0eff93c2b4f18893f431bdf67e23839dbab3b3d90ea071d AS build
+FROM node:13.14.0-slim@sha256:929f3b8d56fed083914776a90088a2033ccc136f5b24e653f8c4d53217f9e076 AS build
 
 ARG GRIDSOME_STACK_DOMAIN=maev.si
 ENV GRIDSOME_STACK_DOMAIN=${GRIDSOME_STACK_DOMAIN}
