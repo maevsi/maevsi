@@ -77,7 +77,7 @@
 <script>
 import { UPLOAD_CREATE_MUTATION } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
-import Button from '~/components/Button.vue'
+import Button from '~/components/buttons/Button.vue'
 import ImageUploadGallery from '~/components/ImageUploadGallery.vue'
 import Modal from '~/components/Modal.vue'
 

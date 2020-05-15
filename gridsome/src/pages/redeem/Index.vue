@@ -66,7 +66,7 @@
 <script>
 import { REDEEM_MUTATION } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
-import Button from '~/components/Button.vue'
+import Button from '~/components/buttons/Button.vue'
 import FormError from '~/components/FormError.vue'
 import { helpers, required } from 'vuelidate/lib/validators'
 

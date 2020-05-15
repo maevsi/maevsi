@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Button from '~/components/Button.vue'
-import ButtonRedeem from '~/components/ButtonRedeem.vue'
+import Button from '~/components/buttons/Button.vue'
+import ButtonRedeem from '~/components/buttons/ButtonRedeem.vue'
 import EventList from '~/components/EventList.vue'
 
 export default {

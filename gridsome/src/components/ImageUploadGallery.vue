@@ -76,7 +76,7 @@
 <script>
 import { ALL_UPLOADS } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
-import Button from '~/components/Button.vue'
+import Button from '~/components/buttons/Button.vue'
 
 export default {
   apollo: {

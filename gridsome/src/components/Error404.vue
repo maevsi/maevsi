@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import ButtonHome from '~/components/ButtonHome.vue'
-import ButtonRedeem from '~/components/ButtonRedeem.vue'
+import ButtonHome from '~/components/buttons/ButtonHome.vue'
+import ButtonRedeem from '~/components/buttons/ButtonRedeem.vue'
 
 export default {
   components: {

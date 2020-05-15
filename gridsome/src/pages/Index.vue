@@ -41,7 +41,7 @@ query {
 </static-query>
 
 <script>
-import Button from '~/components/Button.vue'
+import Button from '~/components/buttons/Button.vue'
 
 export default {
   components: {
