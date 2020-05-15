@@ -123,7 +123,6 @@ function tusd (req, res) {
 
       break
     case 'post-finish':
-
       pool.query('UPDATE maevsi.upload SET storage_key = \'' + req.body.Upload.Storage.Key + '\' WHERE id = \'' + req.body.Upload.MetaData.maevsiUploadId + '\';', (err, queryRes) => {
         if (err) {
           res.status(500).send(err)
@@ -131,6 +130,19 @@ function tusd (req, res) {
         }
 
         console.log('tusd/post-finish: ' + req.body.Upload.Storage.Key)
+
+        res.end()
+      })
+
+      break
+    case 'post-terminate':
+      pool.query('DELETE FROM maevsi.upload WHERE storage_key = \'' + req.body.Upload.Storage.Key + '\';', (err, queryRes) => {
+        if (err) {
+          res.status(500).send(err)
+          return
+        }
+
+        console.log('tusd/post-terminate: ' + req.body.Upload.Storage.Key)
 
         res.end()
       })
