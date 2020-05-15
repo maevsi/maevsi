@@ -15,7 +15,10 @@
             :icon="['fas', 'user']"
           />{{ loggedInUsername === undefined ? 'Account' : loggedInUsername }}
         </g-link>
-        <div class="absolute dropdown-content right-0">
+        <div
+          v-if="loggedInUsername !== undefined"
+          class="absolute dropdown-content right-0"
+        >
           <div class="mt-1">
             <g-link :to="'/accounts/' + (loggedInUsername === undefined ? '' : loggedInUsername) + '/settings'">
               <font-awesome
@@ -25,10 +28,7 @@
             </g-link>
           </div>
           <div class="mt-1">
-            <button
-              v-if="loggedInUsername !== undefined"
-              @click="$logOut($apollo.provider)"
-            >
+            <button @click="$logOut($apollo.provider)">
               <font-awesome
                 class="mr-2"
                 :icon="['fas', 'sign-out-alt']"
