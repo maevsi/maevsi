@@ -14,44 +14,17 @@
     <div v-if="$apollo.loading">
       Loading...
     </div>
-    <AlertGraphql
-      v-else-if="graphqlErrorMessage !== undefined"
-      :graphql-error-message="graphqlErrorMessage"
-      :validation-object="undefined"
-    />
-    <EventList
-      v-else
-      :apollo="$apollo"
-      :all-events="allEvents"
-    />
+    <EventList v-else />
   </Layout>
 </template>
 
 <script>
-import { ALL_EVENTS_QUERY } from '~/apollo/documents'
-import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/Button.vue'
 import ButtonRedeem from '~/components/ButtonRedeem.vue'
 import EventList from '~/components/EventList.vue'
 
 export default {
-  apollo: {
-    allEvents () {
-      return {
-        query: ALL_EVENTS_QUERY,
-        variables: {
-          cursor: null,
-          limit: this.ITEMS_PER_PAGE,
-          username: undefined
-        },
-        error (error, vm, key, type, options) {
-          this.graphqlErrorMessage = error.message
-        }
-      }
-    }
-  },
   components: {
-    AlertGraphql,
     Button,
     ButtonRedeem,
     EventList
