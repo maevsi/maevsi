@@ -22,6 +22,7 @@ COMMENT ON COLUMN maevsi.upload.size_byte IS 'The upload''s size in bytes.';
 
 GRANT SELECT ON TABLE maevsi.upload TO maevsi_account, maevsi_tusd;
 GRANT UPDATE ON TABLE maevsi.upload TO maevsi_tusd;
+GRANT DELETE ON TABLE maevsi.upload TO maevsi_tusd;
 
 ALTER TABLE maevsi.upload ENABLE ROW LEVEL SECURITY;
 
@@ -32,8 +33,13 @@ CREATE POLICY upload_select_using ON maevsi.upload FOR SELECT USING (
         username = current_setting('jwt.claims.username', true)::TEXT
 );
 
--- Only allow tusd to make changes.
+-- Only allow tusd to update rows.
 CREATE POLICY upload_update_using ON maevsi.upload FOR UPDATE USING (
+    (SELECT current_user) = 'maevsi_tusd'
+);
+
+-- Only allow the upload's owner to delete rows.
+CREATE POLICY upload_delete_using ON maevsi.upload FOR DELETE USING (
     (SELECT current_user) = 'maevsi_tusd'
 );
 
