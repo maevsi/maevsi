@@ -9,7 +9,7 @@ module.exports = {
     }
   `,
   ALL_EVENTS_QUERY: gql`
-    query eventsPage ($username: String, $limit: Int!, $cursor: Cursor) {
+    query ($username: String, $limit: Int!, $cursor: Cursor) {
       allEvents (condition: {organizerUsername: $username}, first: $limit, after: $cursor) {
         nodes {
           name
@@ -29,6 +29,20 @@ module.exports = {
       }
     }
   `,
+  ALL_UPLOADS: gql`
+    query ($username: String, $limit: Int!, $cursor: Cursor) {
+      allUploads (condition: {username: $username}, first: $limit, after: $cursor) {
+        nodes {
+          storageKey
+          sizeByte
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  `,
   AUTHENTICATE_MUTATION: gql`
     mutation ($username: String!, $password: String!) {
       authenticate(input: {username: $username, password: $password}) {
@@ -37,7 +51,7 @@ module.exports = {
     }
   `,
   EVENT_CONTACT_FEEDBACK_DATA_QUERY: gql`
-    query($organizerUsername: String!, $slug: String!) {
+    query ($organizerUsername: String!, $slug: String!) {
       eventContactFeedbackData(
         _organizerUsername: $organizerUsername
         _slug: $slug
@@ -88,7 +102,7 @@ module.exports = {
     }
   `,
   UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION: gql`
-    mutation(
+    mutation (
       $id: Int!
       $invitationFeedbackDatumPatch: InvitationFeedbackDatumPatch!
     ) {
@@ -107,7 +121,7 @@ module.exports = {
     }
   `,
   UPLOAD_CREATE_MUTATION: gql`
-    mutation($uploadCreateInput: UploadCreateInput!) {
+    mutation ($uploadCreateInput: UploadCreateInput!) {
       uploadCreate(input: $uploadCreateInput) {
         uuid
       }
