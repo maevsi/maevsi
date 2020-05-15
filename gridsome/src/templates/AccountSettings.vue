@@ -49,11 +49,13 @@
               class="text-white"
             >
               <Button
+                :disabled="uploading"
                 :icon-id="['fas', 'window-close']"
                 :text="'Cancel'"
                 @click.native="showModal = false"
               />
               <Button
+                :disabled="uploading"
                 :button-class="'btn-green'"
                 :icon-id="['fas', 'upload']"
                 :text="'Upload'"
@@ -102,6 +104,7 @@ export default {
       croppy: {},
       profilePictureUrl: '/assets/static/src/assets/blank-profile-picture.svg',
       showModal: false,
+      uploading: false,
       uppy: undefined
     }
   },
@@ -147,6 +150,8 @@ export default {
       }
     },
     generateBlob () {
+      this.uploading = true
+
       this.$refs.croppy.generateBlob(
         blob => {
           this.$apollo.mutate({
@@ -158,6 +163,8 @@ export default {
             }
           }).then((data) => {
             if (data.data.uploadCreate.uuid !== null) {
+              const outerThis = this
+
               this.uppy = Uppy({
                 id: 'profile-picture',
                 debug: process.env.NODE_ENV !== 'production',
@@ -198,8 +205,9 @@ export default {
               })
 
               this.uppy.upload().then((result) => {
-                console.log(result.successful[0].uploadURL)
-                this.profilePictureUrl = result.successful[0].uploadURL
+                this.profilePictureUrl = result.successful[0].uploadURL // TODO: replace with live data
+                this.uploading = false
+                outerThis.showModal = false
               })
             }
           }).catch((error) => {
