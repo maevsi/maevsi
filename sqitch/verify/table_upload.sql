@@ -4,7 +4,7 @@ BEGIN;
 
 SELECT "id",
        "storage_key",
-       "account_id",
+       "username",
        "size_byte"
 FROM maevsi.upload WHERE FALSE;
 
@@ -21,7 +21,7 @@ BEGIN
    ASSERT (SELECT pg_catalog.has_table_privilege('maevsi_tusd', 'maevsi.upload', 'SELECT'));
    ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_tusd', 'maevsi.upload', 'INSERT'));
    ASSERT (SELECT pg_catalog.has_table_privilege('maevsi_tusd', 'maevsi.upload', 'UPDATE'));
-   ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_tusd', 'maevsi.upload', 'DELETE'));
+   ASSERT (SELECT pg_catalog.has_table_privilege('maevsi_tusd', 'maevsi.upload', 'DELETE'));
 END $$;
 
 ROLLBACK;

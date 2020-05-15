@@ -17,15 +17,15 @@ BEGIN
   IF  COALESCE((
         SELECT SUM("size_byte")
         FROM maevsi.upload
-        WHERE account_id = current_setting('jwt.claims.account_id', true)::INTEGER
+        WHERE username = current_setting('jwt.claims.username', true)::TEXT
       ), 0) + $1 <= (
         SELECT "upload_quota_bytes"
         FROM maevsi_private.account
-        WHERE contact_id = current_setting('jwt.claims.account_id', true)::INTEGER
+        WHERE username = current_setting('jwt.claims.username', true)::TEXT
       )
   THEN
-    INSERT INTO maevsi.upload ("account_id", "size_byte")
-    VALUES (current_setting('jwt.claims.account_id', true)::INTEGER, $1)
+    INSERT INTO maevsi.upload ("username", "size_byte")
+    VALUES (current_setting('jwt.claims.username', true)::TEXT, $1)
     RETURNING upload.id INTO "_id";
 
     RETURN "_id";

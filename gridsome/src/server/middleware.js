@@ -135,6 +135,19 @@ function tusd (req, res) {
       })
 
       break
+    case 'post-terminate':
+      pool.query('DELETE FROM maevsi.upload WHERE storage_key = \'' + req.body.Upload.Storage.Key + '\';', (err, queryRes) => {
+        if (err) {
+          res.status(500).send(err)
+          return
+        }
+
+        console.log('tusd/post-terminate: ' + req.body.Upload.Storage.Key)
+
+        res.end()
+      })
+
+      break
   }
 }
 

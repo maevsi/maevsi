@@ -5,7 +5,7 @@ import { decode } from 'jsonwebtoken'
 export default {
   data () {
     return {
-      ITEMS_PER_PAGE: 10
+      ITEMS_PER_PAGE: 8
     }
   },
   methods: {
@@ -80,6 +80,18 @@ export default {
       const objectClone = this.$objectClone(object)
       delete objectClone.__typename
       return objectClone
+    },
+    $removeItemFromArray (array, prop, value) {
+      var i = 0
+
+      while (i < array.length) {
+        if (prop in array[i] && array[i][prop] === value) {
+          array.splice(i, 1)
+          break
+        } else {
+          i++
+        }
+      }
     }
   }
 }
