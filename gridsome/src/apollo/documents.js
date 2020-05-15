@@ -29,6 +29,20 @@ module.exports = {
       }
     }
   `,
+  ALL_UPLOADS: gql`
+    query ($username: String, $limit: Int!, $cursor: Cursor) {
+      allUploads (condition: {username: $username}, first: $limit, after: $cursor) {
+        nodes {
+          storageKey
+          sizeByte
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }
+  `,
   AUTHENTICATE_MUTATION: gql`
     mutation ($username: String!, $password: String!) {
       authenticate(input: {username: $username, password: $password}) {

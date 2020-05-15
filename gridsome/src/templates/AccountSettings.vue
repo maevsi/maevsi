@@ -10,10 +10,7 @@
       />
     </div>
     <div v-else>
-      <div v-if="allEvents === null">
-        <Error404 />
-      </div>
-      <div v-else>
+      <div>
         <div class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4">
           <button
             class="flex-none mr-0 sm:mr-4"
@@ -68,16 +65,20 @@
             {{ $route.params.username }}
           </h1>
         </div>
+        <h2>
+          Image Uploads
+        </h2>
+        <ImageUploadGallery :username="$route.params.username" />
       </div>
     </div>
   </Layout>
 </template>
 
 <script>
-import { ALL_EVENTS_QUERY, UPLOAD_CREATE_MUTATION } from '~/apollo/documents'
+import { UPLOAD_CREATE_MUTATION } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/Button.vue'
-import Error404 from '~/components/Error404.vue'
+import ImageUploadGallery from '~/components/ImageUploadGallery.vue'
 import Modal from '~/components/Modal.vue'
 
 import Uppy from '@uppy/core'
@@ -87,26 +88,11 @@ import Croppa from 'vue-croppa'
 require('@uppy/core/dist/style.css')
 
 export default {
-  apollo: {
-    allEvents () {
-      return {
-        query: ALL_EVENTS_QUERY,
-        variables: {
-          cursor: null,
-          limit: this.ITEMS_PER_PAGE,
-          username: this.$route.params.username
-        },
-        error (error, vm, key, type, options) {
-          this.graphqlErrorMessage = error.message
-        }
-      }
-    }
-  },
   components: {
     AlertGraphql,
     Button,
     Croppa: Croppa.component,
-    Error404,
+    ImageUploadGallery,
     Modal
   },
   data () {
@@ -118,6 +104,15 @@ export default {
       showModal: false,
       uppy: undefined
     }
+  },
+  created () {
+    const routeUsername = this.$route.params.username
+
+    this.$jwtDecode((jwt, jwtDecoded) => {
+      if (jwtDecoded.username !== routeUsername) {
+        this.$router.push('.')
+      }
+    })
   },
   metaInfo () {
     return { title: this.$route.params.username }
@@ -191,7 +186,8 @@ export default {
 
               this.uppy.use(Tus, {
                 endpoint: 'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/',
-                limit: 1
+                limit: 1,
+                removeFingerprintOnSuccess: true
               })
 
               this.uppy.addFile({
