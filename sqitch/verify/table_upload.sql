@@ -4,7 +4,7 @@ BEGIN;
 
 SELECT "id",
        "storage_key",
-       "account_id",
+       "username",
        "size_byte"
 FROM maevsi.upload WHERE FALSE;
 
