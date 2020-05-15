@@ -5,7 +5,7 @@ import { decode } from 'jsonwebtoken'
 export default {
   data () {
     return {
-      ITEMS_PER_PAGE: 10
+      ITEMS_PER_PAGE: 8
     }
   },
   methods: {
