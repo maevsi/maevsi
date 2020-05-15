@@ -3,88 +3,72 @@
     <div v-if="$apollo.loading">
       Loading...
     </div>
-    <div v-else-if="graphqlErrorMessage !== undefined">
-      <AlertGraphql
-        :graphql-error-message="graphqlErrorMessage"
-        :validation-object="undefined"
-      />
-    </div>
     <div v-else>
-      <div v-if="allEvents === null">
-        <Error404 />
-      </div>
-      <div v-else>
-        <div class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4">
-          <button
-            class="flex-none mr-0 sm:mr-4"
-            @click="changeProfilePicture"
+      <div class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4">
+        <button
+          class="flex-none mr-0 sm:mr-4"
+          @click="changeProfilePicture"
+        >
+          <img
+            alt="blank profile picture"
+            :src="profilePictureUrl"
+            width="100"
           >
-            <img
-              alt="blank profile picture"
-              :src="profilePictureUrl"
-              width="100"
-            >
-            <input
-              id="input-profile-picture"
-              accept="image/*"
-              hidden
-              name="input-profile-picture"
-              type="file"
-              @change="loadProfilePicture"
-            >
-          </button>
-          <modal
-            v-if="showModal"
-            @close="showModal = false"
+          <input
+            id="input-profile-picture"
+            accept="image/*"
+            hidden
+            name="input-profile-picture"
+            type="file"
+            @change="loadProfilePicture"
           >
-            <h2 slot="header">
-              Upload a new profile picture
-            </h2>
-            <Croppa
-              slot="body"
-              ref="croppy"
-              :initial-image="fileSelectedUrl"
-              :placeholder-font-size="17.5"
-              :show-remove-button="false"
+        </button>
+        <modal
+          v-if="showModal"
+          @close="showModal = false"
+        >
+          <h2 slot="header">
+            Upload a new profile picture
+          </h2>
+          <Croppa
+            slot="body"
+            ref="croppy"
+            :initial-image="fileSelectedUrl"
+            :placeholder-font-size="17.5"
+            :show-remove-button="false"
+          />
+          <div
+            slot="footer"
+            class="text-white"
+          >
+            <Button
+              :icon-id="['fas', 'window-close']"
+              :text="'Cancel'"
+              @click.native="showModal = false"
             />
-            <div
-              slot="footer"
-              class="text-white"
-            >
-              <Button
-                :icon-id="['fas', 'window-close']"
-                :text="'Cancel'"
-                @click.native="showModal = false"
-              />
-              <Button
-                :button-class="'btn-green'"
-                :icon-id="['fas', 'upload']"
-                :text="'Upload'"
-                @click.native="generateBlob()"
-              />
-            </div>
-          </modal>
-          <h1 class="mb-0 truncate w-full sm:w-auto">
-            {{ $route.params.username }}
-          </h1>
-        </div>
-        <h2 class="text-left truncate">
-          Their Events
-        </h2>
-        <EventList
-          :apollo="$apollo"
-          :all-events="allEvents"
-        />
+            <Button
+              :button-class="'btn-green'"
+              :icon-id="['fas', 'upload']"
+              :text="'Upload'"
+              @click.native="generateBlob()"
+            />
+          </div>
+        </modal>
+        <h1 class="mb-0 truncate w-full sm:w-auto">
+          {{ $route.params.username }}
+        </h1>
       </div>
+      <h2 class="text-left truncate">
+        Their Events
+      </h2>
+      <EventList :username="this.$route.params.username" />
     </div>
   </Layout>
 </template>
 
 <script>
-import { ALL_EVENTS_QUERY, UPLOAD_CREATE_MUTATION } from '~/apollo/documents'
-import AlertGraphql from '~/components/AlertGraphql.vue'
+import { UPLOAD_CREATE_MUTATION } from '~/apollo/documents'
 import Button from '~/components/Button.vue'
-import Error404 from '~/components/Error404.vue'
 import EventList from '~/components/EventList.vue'
 import Modal from '~/components/Modal.vue'
 
@@ -95,26 +79,9 @@ import Croppa from 'vue-croppa'
 require('@uppy/core/dist/style.css')
 
 export default {
-  apollo: {
-    allEvents () {
-      return {
-        query: ALL_EVENTS_QUERY,
-        variables: {
-          cursor: null,
-          limit: this.ITEMS_PER_PAGE,
-          username: this.$route.params.username
-        },
-        error (error, vm, key, type, options) {
-          this.graphqlErrorMessage = error.message
-        }
-      }
-    }
-  },
   components: {
-    AlertGraphql,
     Button,
     Croppa: Croppa.component,
-    Error404,
     EventList,
     Modal
   },
