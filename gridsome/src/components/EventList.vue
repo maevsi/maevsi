@@ -101,6 +101,11 @@ export default {
       default: undefined
     }
   },
+  data () {
+    return {
+      graphqlErrorMessage: undefined
+    }
+  },
   methods: {
     showMore () {
       this.$apollo.queries.allEvents.fetchMore({
