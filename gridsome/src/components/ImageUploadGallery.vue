@@ -20,15 +20,11 @@
           >
             <div class="relative">
               <img
-                class="bg-gray-400"
+                class="bg-gray-400 h-48 w-48"
                 :src="'https://tusd.' + gridsomeStackDomain + '/files/' + upload.storageKey + '+'"
-                :height="'200px'"
-                :width="'200px'"
               >
               <div>
-                <div
-                  class="absolute bg-white opacity-75 right-0 top-0"
-                >
+                <div class="absolute bg-white opacity-75 right-0 top-0">
                   <div class="flex h-full justify-center items-center">
                     <font-awesome
                       :icon="['fas', 'trash']"
@@ -54,6 +50,24 @@
               </div>
             </div>
           </li>
+          <button
+            class="bg-gray-600 flex-none h-48 m-1 w-48"
+            @click="changeProfilePicture"
+          >
+            <font-awesome
+              :icon="['fas', 'plus']"
+              title="add"
+              size="3x"
+            />
+            <input
+              id="input-profile-picture"
+              accept="image/*"
+              hidden
+              name="input-profile-picture"
+              type="file"
+              @change="loadProfilePicture"
+            >
+          </button>
         </ul>
         <div
           v-if="allUploads.pageInfo.hasNextPage"
@@ -70,13 +84,51 @@
     <div v-else>
       There are currently no uploads :/
     </div>
+    <modal
+      v-if="showModal"
+      @close="showModal = false"
+    >
+      <h2 slot="header">
+        Upload a new picture
+      </h2>
+      <Croppa
+        slot="body"
+        ref="croppy"
+        :initial-image="fileSelectedUrl"
+        :placeholder-font-size="17.5"
+        :show-remove-button="false"
+      />
+      <div
+        slot="footer"
+        class="text-white"
+      >
+        <Button
+          :disabled="uploading"
+          :icon-id="['fas', 'window-close']"
+          :text="'Cancel'"
+          @click.native="showModal = false"
+        />
+        <Button
+          :disabled="uploading"
+          :button-class="'btn-green'"
+          :icon-id="['fas', 'upload']"
+          :text="'Upload'"
+          @click.native="generateBlob()"
+        />
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
-import { ALL_UPLOADS } from '~/apollo/documents'
+import { ALL_UPLOADS, UPLOAD_CREATE_MUTATION } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/buttons/Button.vue'
+import Modal from '~/components/Modal.vue'
+
+import Croppa from 'vue-croppa'
+import Uppy from '@uppy/core'
+import Tus from '@uppy/tus'
 
 export default {
   apollo: {
@@ -97,7 +149,9 @@ export default {
   },
   components: {
     AlertGraphql,
-    Button
+    Button,
+    Croppa: Croppa.component,
+    Modal
   },
   props: {
     username: {
@@ -108,12 +162,20 @@ export default {
   data () {
     return {
       allUploads: undefined,
+      croppy: {},
+      fileSelectedUrl: undefined,
       graphqlErrorMessage: undefined,
       gridsomeStackDomain: process.env.GRIDSOME_STACK_DOMAIN,
-      storageKeyPrefix: 'sk_'
+      showModal: false,
+      storageKeyPrefix: 'sk_',
+      uploading: false,
+      uppy: undefined
     }
   },
   methods: {
+    changeProfilePicture () {
+      document.querySelector('#input-profile-picture').click()
+    },
     deleteImageUpload (storageKey) {
       const xhr = new XMLHttpRequest()
       const outerThis = this
@@ -126,6 +188,103 @@ export default {
         }
       }
       xhr.send()
+    },
+    fileLoaded (e) {
+      this.fileSelectedUrl = e.target.result
+      this.showModal = true
+    },
+    loadProfilePicture (event) {
+      const files = Array.from(event.target.files)
+
+      if (files.length !== 1) {
+        return
+      }
+
+      const file = files[0]
+
+      try {
+        var fileReader = new FileReader()
+        fileReader.onload = e => this.fileLoaded(e)
+        fileReader.readAsDataURL(file)
+      } catch (err) {
+        if (err.isRestriction) {
+          console.log('Restriction error:', err)
+        } else {
+          console.error(err)
+        }
+      }
+    },
+    generateBlob () {
+      this.uploading = true
+
+      this.$refs.croppy.generateBlob(
+        blob => {
+          this.$apollo.mutate({
+            mutation: UPLOAD_CREATE_MUTATION,
+            variables: {
+              uploadCreateInput: {
+                sizeByte: blob.size
+              }
+            }
+          }).then((data) => {
+            if (data.data.uploadCreate.uuid !== null) {
+              const outerThis = this
+
+              this.uppy = Uppy({
+                id: 'profile-picture',
+                debug: process.env.NODE_ENV !== 'production',
+                restrictions: {
+                  maxFileSize: 1048576,
+                  maxNumberOfFiles: 1,
+                  minNumberOfFiles: 1,
+                  allowedFileTypes: ['image/*']
+                },
+                meta: {
+                  maevsiUploadId: data.data.uploadCreate.uuid
+                },
+                onBeforeUpload: (files) => {
+                  const updatedFiles = {}
+
+                  Object.keys(files).forEach(fileID => {
+                    updatedFiles[fileID] = {
+                      ...files[fileID],
+                      name: '/profile-pictures/' + files[fileID].name
+                    }
+                  })
+
+                  return updatedFiles
+                }
+              })
+
+              this.uppy.use(Tus, {
+                endpoint: 'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/',
+                limit: 1,
+                removeFingerprintOnSuccess: true
+              })
+
+              this.uppy.addFile({
+                source: 'croppy',
+                name: document.querySelector('#input-profile-picture').files[0].name,
+                type: blob.type,
+                data: blob
+              })
+
+              this.uppy.upload().then((result) => {
+                this.uploading = false
+
+                if (result.failed.length > 0) {
+                  alert('Some files did not upload successfully!')
+                } else {
+                  outerThis.showModal = false
+                }
+              })
+            }
+          }).catch((error) => {
+            this.graphqlErrorMessage = error.message
+            console.error(error)
+          })
+        }
+      )
     },
     showMore () {
       this.$apollo.queries.allUploads.fetchMore({
