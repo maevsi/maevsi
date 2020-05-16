@@ -107,6 +107,8 @@ const pool = new Pool({
 function tusd (req, res) {
   switch (req.get('Hook-Name')) {
     case 'pre-create':
+      console.log('tusd/pre-create')
+
       pool.query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = \'' + req.body.Upload.MetaData.maevsiUploadId + '\');', (err, queryRes) => {
         if (err) {
           res.status(500).send(err)
@@ -123,26 +125,26 @@ function tusd (req, res) {
 
       break
     case 'post-finish':
+      console.log('tusd/post-finish: ' + req.body.Upload.Storage.Key)
+
       pool.query('UPDATE maevsi.upload SET storage_key = \'' + req.body.Upload.Storage.Key + '\' WHERE id = \'' + req.body.Upload.MetaData.maevsiUploadId + '\';', (err, queryRes) => {
         if (err) {
           res.status(500).send(err)
           return
         }
 
-        console.log('tusd/post-finish: ' + req.body.Upload.Storage.Key)
-
         res.end()
       })
 
       break
     case 'post-terminate':
+      console.log('tusd/post-terminate: ' + req.body.Upload.Storage.Key)
+
       pool.query('DELETE FROM maevsi.upload WHERE storage_key = \'' + req.body.Upload.Storage.Key + '\';', (err, queryRes) => {
         if (err) {
           res.status(500).send(err)
           return
         }
-
-        console.log('tusd/post-terminate: ' + req.body.Upload.Storage.Key)
 
         res.end()
       })
