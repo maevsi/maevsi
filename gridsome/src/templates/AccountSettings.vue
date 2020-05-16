@@ -205,9 +205,13 @@ export default {
               })
 
               this.uppy.upload().then((result) => {
-                this.profilePictureUrl = result.successful[0].uploadURL // TODO: replace with live data
                 this.uploading = false
-                outerThis.showModal = false
+
+                if (result.failed.length > 0) {
+                  alert('Some files did not upload successfully!')
+                } else {
+                  outerThis.showModal = false
+                }
               })
             }
           }).catch((error) => {
