@@ -7,7 +7,7 @@
       <AlertGraphql :graphql-error-message="graphqlErrorMessage" />
     </div>
     <div
-      v-else-if="allUploads !== undefined && allUploads.nodes.length > 0"
+      v-else
       class="m-auto w-full"
     >
       <div class="bg-white rounded">
@@ -80,9 +80,6 @@
           />
         </div>
       </div>
-    </div>
-    <div v-else>
-      There are currently no uploads :/
     </div>
     <modal
       v-if="showModal"
