@@ -179,12 +179,19 @@ export default {
     deleteImageUpload (storageKey) {
       const xhr = new XMLHttpRequest()
       const outerThis = this
+      const element = document.getElementById(this.storageKeyPrefix + storageKey)
+
+      element.classList.add('disabled')
 
       xhr.open('DELETE', 'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/' + storageKey + '+', true)
       xhr.setRequestHeader('Tus-Resumable', '1.0.0')
       xhr.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 204) {
-          outerThis.$removeItemFromArray(outerThis.allUploads.nodes, 'storageKey', storageKey)
+        if (this.readyState === 4) {
+          element.classList.remove('disabled')
+
+          if (this.status === 204) {
+            outerThis.$removeItemFromArray(outerThis.allUploads.nodes, 'storageKey', storageKey)
+          }
         }
       }
       xhr.send()
