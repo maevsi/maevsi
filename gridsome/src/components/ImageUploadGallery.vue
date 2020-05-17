@@ -20,7 +20,7 @@
           >
             <div class="relative">
               <img
-                class="bg-gray-400 h-48 w-48"
+                class="bg-gray-400 h-32 w-32"
                 :src="'https://tusd.' + gridsomeStackDomain + '/files/' + upload.storageKey + '+'"
               >
               <div>
@@ -51,7 +51,7 @@
             </div>
           </li>
           <button
-            class="bg-gray-600 flex-none h-48 m-1 w-48"
+            class="bg-gray-600 flex-none h-32 m-1 w-32"
             @click="changeProfilePicture"
           >
             <font-awesome
