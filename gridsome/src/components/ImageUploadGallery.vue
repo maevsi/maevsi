@@ -7,7 +7,7 @@
       <AlertGraphql :graphql-error-message="graphqlErrorMessage" />
     </div>
     <div
-      v-else
+      v-else-if="allUploads !== undefined && allUploads.nodes.length > 0 || allowAddition"
       class="m-auto w-full"
     >
       <div class="bg-white rounded">
@@ -20,13 +20,13 @@
             class="border-4 border-transparent box-border relative"
             @click="toggleSelect(upload)"
           >
-            <div class="relative">
               <img
+                alt="picture"
                 class="bg-gray-400 h-32 w-32"
                 :src="TUSD_FILES_URL + upload.storageKey + '+'"
               >
-              <div>
-                <div class="absolute bg-white opacity-75 right-0 top-0">
+              <div v-if="allowDeletion">
+                <div class="absolute bg-red-600 opacity-75 right-0 rounded-tl-lg top-0">
                   <div class="flex h-full justify-center items-center">
                     <font-awesome
                       :icon="['fas', 'trash']"
@@ -43,21 +43,22 @@
                   <div class="flex h-full justify-center items-center">
                     <font-awesome
                       :icon="['fas', 'trash']"
-                      class="m-2 text-red-600"
+                      class="m-2 text-white"
                       size="lg"
                       title="trash"
                     />
                   </div>
                 </button>
               </div>
-            </div>
           </li>
           <button
+            v-if="allowAddition"
             class="bg-gray-600 flex-none h-32 m-1 w-32"
             @click="changeProfilePicture"
           >
             <font-awesome
               :icon="['fas', 'plus']"
+              class="text-white"
               title="add"
               size="3x"
             />
@@ -83,12 +84,15 @@
         </div>
       </div>
     </div>
-    <modal
-      v-if="showModal"
-      @close="showModal = false"
+    <p v-else>
+      You don't have any uploaded pictures :/
+    </p>
+    <Modal
+      v-if="showModalImageUpload"
+      @close="showModalImageUpload = false"
     >
       <h2 slot="header">
-        Upload a new picture
+        Upload a new image
       </h2>
       <Croppa
         slot="body"
@@ -115,7 +119,7 @@
           @click.native="generateBlob()"
         />
       </div>
-    </modal>
+    </Modal>
   </div>
 </template>
 
@@ -153,6 +157,18 @@ export default {
     Modal
   },
   props: {
+    allowAddition: {
+      type: Boolean,
+      default: true
+    },
+    allowDeletion: {
+      type: Boolean,
+      default: true
+    },
+    selectionFunction: {
+      type: Function,
+      default: undefined
+    },
     username: {
       type: String,
       default: undefined
