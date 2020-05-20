@@ -33,6 +33,7 @@ module.exports = {
     query ($username: String, $limit: Int!, $cursor: Cursor) {
       allUploads (condition: {username: $username}, first: $limit, after: $cursor) {
         nodes {
+          id
           storageKey
           sizeByte
         }

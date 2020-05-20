@@ -14,8 +14,8 @@
         <ul class="inline-flex flex-wrap justify-center p-1">
           <li
             v-for="upload in allUploads.nodes"
-            :id="storageKeyPrefix + upload.storageKey"
-            :key="upload.storageKey"
+            :id="uploadIdPrefix + upload.id"
+            :key="upload.id"
             class="m-1"
           >
             <div class="relative">
@@ -36,7 +36,7 @@
                 </div>
                 <button
                   class="absolute right-0 top-0"
-                  @click="deleteImageUpload(upload.storageKey)"
+                  @click="deleteImageUpload(upload.id)"
                 >
                   <div class="flex h-full justify-center items-center">
                     <font-awesome
@@ -164,7 +164,7 @@ export default {
       graphqlErrorMessage: undefined,
       gridsomeStackDomain: process.env.GRIDSOME_STACK_DOMAIN,
       showModal: false,
-      storageKeyPrefix: 'sk_',
+      uploadIdPrefix: 'upid_',
       uploading: false,
       uppy: undefined
     }
@@ -173,21 +173,22 @@ export default {
     changeProfilePicture () {
       document.querySelector('#input-profile-picture').click()
     },
-    deleteImageUpload (storageKey) {
+    deleteImageUpload (uploadId) {
       const xhr = new XMLHttpRequest()
       const outerThis = this
-      const element = document.getElementById(this.storageKeyPrefix + storageKey)
+      const element = document.getElementById(this.uploadIdPrefix + uploadId)
 
       element.classList.add('disabled')
 
-      xhr.open('DELETE', 'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/' + storageKey + '+', true)
-      xhr.setRequestHeader('Tus-Resumable', '1.0.0')
+      xhr.open('DELETE', '/tusd?uploadId=' + uploadId, true)
+      xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
+      xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('jwt'))
       xhr.onreadystatechange = function () {
         if (this.readyState === 4) {
           element.classList.remove('disabled')
 
           if (this.status === 204) {
-            outerThis.$removeItemFromArray(outerThis.allUploads.nodes, 'storageKey', storageKey)
+            outerThis.$removeItemFromArray(outerThis.allUploads.nodes, 'id', uploadId)
           }
         }
       }

@@ -1,7 +1,7 @@
 // https://gridsome.org/docs/server-api/
 // Changes here require a server restart.
 const express = require('express')
-const { iCal, tusd } = require('./src/server/middleware')
+const { iCal, tusdDelete, tusdPost } = require('./src/server/middleware')
 
 module.exports = function (api) {
   const paths = {
@@ -15,8 +15,9 @@ module.exports = function (api) {
 
   api.configureServer(app => {
     app.use(express.json())
+    app.delete(paths.tusd, tusdDelete)
     app.post(paths.eventIcs, iCal)
-    app.post(paths.tusd, tusd)
+    app.post(paths.tusd, tusdPost)
   })
 
   api.createPages(({ createPage }) => {

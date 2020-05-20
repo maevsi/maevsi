@@ -1,7 +1,12 @@
 const fs = require('fs')
 
 const secretPostgresDbPath = '/run/secrets/postgres_db'
+const secretPostgraphileJwtSecretPath = '/run/secrets/postgraphile_jwt-secret'
 const secretPostgresRoleMaevsiTusdPasswordPath = '/run/secrets/postgres_role_maevsi-tusd_password'
+
+const secretPostgraphileJwtSecret = (fs.existsSync(secretPostgraphileJwtSecretPath))
+  ? fs.readFileSync(secretPostgraphileJwtSecretPath, 'utf-8')
+  : undefined
 
 function iCal (req, res) {
   const htmlToText = require('html-to-text')
@@ -106,7 +111,94 @@ const pool = new Pool({
   user: 'maevsi_tusd'
 })
 
-function tusd (req, res) {
+function tusdDelete (req, res) {
+  const uploadId = req.query.uploadId
+
+  if (uploadId === undefined) {
+    res.status(422).send('The request query parameter "uploadId" is undefined!')
+    return
+  }
+
+  console.log('tusdDelete: ' + uploadId)
+
+  if (req.header('Authorization') === undefined) {
+    res.status(401).send('The request header "Authorization" is undefined!')
+    return
+  }
+
+  if (secretPostgraphileJwtSecret === undefined) {
+    res.status(500).send('Secret missing!')
+    return
+  }
+
+  const jsonwebtoken = require('jsonwebtoken')
+
+  try {
+    jsonwebtoken.verify(req.header('Authorization').substring(7), secretPostgraphileJwtSecret, {
+      audience: 'postgraphile',
+      issuer: 'postgraphile'
+    })
+  } catch (err) {
+    res.status(401).send('Json web token verification failed: "' + err.message + '"!')
+    return
+  }
+
+  pool.query('SELECT * FROM maevsi.upload WHERE id = $1;',
+    [uploadId],
+    (err, queryRes) => {
+      if (err) {
+        res.status(500).send(err)
+        return
+      }
+
+      if (queryRes.rows.length === 0) {
+        res.status(500).send('No result found for id "' + uploadId + '"!')
+      }
+
+      const storageKey = queryRes.rows[0].storage_key
+
+      if (storageKey !== null) {
+        const http = require('http')
+
+        const reqTusd = http.request('http://tusd:1080/files/' + storageKey + '+', {
+          headers: {
+            'Tus-Resumable': '1.0.0'
+          },
+          method: 'DELETE'
+        }, (httpResp) => {
+          httpResp.on('data', () => { }) // Do not remove! If you do, the 'end' event won't fire.
+          httpResp.on('end', () => {
+            if (httpResp.statusCode === 204) {
+              res.status(204).end()
+            } else {
+              res.status(500).send('Tusd status was "' + this.status + '".')
+            }
+          })
+        }).on('error', (err) => {
+          res.status(500).send('Internal delete failed: "' + err.message + '"!')
+        })
+
+        reqTusd.end()
+      } else {
+        pool.query('DELETE FROM maevsi.upload WHERE id = $1;',
+          [uploadId],
+          (err, queryRes) => {
+            if (err) {
+              res.status(500).send(err)
+              return
+            }
+
+            console.log(queryRes)
+
+            res.status(204).end()
+          }
+        )
+      }
+    }
+  )
+}
+
+function tusdPost (req, res) {
   switch (req.get('Hook-Name')) {
     case 'pre-create':
       console.log('tusd/pre-create')
@@ -170,5 +262,6 @@ function tusd (req, res) {
 
 module.exports = {
   iCal,
-  tusd
+  tusdDelete,
+  tusdPost
 }
