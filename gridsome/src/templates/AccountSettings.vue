@@ -27,6 +27,12 @@
       <h2>
         Image Uploads
       </h2>
+      <ModalImageSelection
+        v-if="showModalImageSelection"
+        :modal-hide-function="hideModalImageSelection"
+        :reload-function="reloadProfilePicture"
+      />
+      <!-- "ImageUploadGallery" must come after "ModalImageSelection"! -->
       <ImageUploadGallery :username="$route.params.username" />
     </div>
   </Layout>
@@ -35,6 +41,7 @@
 <script>
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import ImageUploadGallery from '~/components/ImageUploadGallery.vue'
+import ModalImageSelection from '~/components/ModalImageSelection.vue'
 import ProfilePicture from '~/components/ProfilePicture.vue'
 
 require('@uppy/core/dist/style.css')
@@ -43,12 +50,14 @@ export default {
   components: {
     AlertGraphql,
     ImageUploadGallery,
+    ModalImageSelection,
     ProfilePicture
   },
   data () {
     return {
       graphqlErrorMessage: undefined,
-      profilePictureUrl: '/assets/static/src/assets/blank-profile-picture.svg'
+      profilePictureUrl: '/assets/static/src/assets/blank-profile-picture.svg',
+      showModalImageSelection: false
     }
   },
   created () {
@@ -62,6 +71,14 @@ export default {
   },
   metaInfo () {
     return { title: this.$route.params.username }
+  },
+  methods: {
+    hideModalImageSelection () {
+      this.showModalImageSelection = false
+    },
+    reloadProfilePicture () {
+      this.$refs.profilePicture.reloadProfilePicture()
+    }
   }
 }
 </script>
