@@ -111,6 +111,22 @@ const pool = new Pool({
   user: 'maevsi_tusd'
 })
 
+function deleteUploadById (res, uploadId) {
+  pool.query('DELETE FROM maevsi.upload WHERE id = $1;',
+    [uploadId],
+    (err, queryRes) => {
+      if (err) {
+        res.status(500).send(err)
+        return
+      }
+
+      console.log(queryRes)
+
+      res.status(204).end()
+    }
+  )
+}
+
 function tusdDelete (req, res) {
   const uploadId = req.query.uploadId
 
@@ -170,6 +186,8 @@ function tusdDelete (req, res) {
           httpResp.on('end', () => {
             if (httpResp.statusCode === 204) {
               res.status(204).end()
+            } else if (httpResp.statusCode === 404) {
+              deleteUploadById(res, uploadId)
             } else {
               res.status(500).send('Tusd status was "' + this.status + '".')
             }
@@ -180,19 +198,7 @@ function tusdDelete (req, res) {
 
         reqTusd.end()
       } else {
-        pool.query('DELETE FROM maevsi.upload WHERE id = $1;',
-          [uploadId],
-          (err, queryRes) => {
-            if (err) {
-              res.status(500).send(err)
-              return
-            }
-
-            console.log(queryRes)
-
-            res.status(204).end()
-          }
-        )
+        deleteUploadById()
       }
     }
   )
