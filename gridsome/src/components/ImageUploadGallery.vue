@@ -103,7 +103,7 @@
           :disabled="uploading"
           :icon-id="['fas', 'window-close']"
           :text="'Cancel'"
-          @click.native="showModal = false"
+          @click.native="showModalImageUpload = false"
         />
         <Button
           :disabled="uploading"
@@ -163,7 +163,7 @@ export default {
       fileSelectedUrl: undefined,
       graphqlErrorMessage: undefined,
       gridsomeStackDomain: process.env.GRIDSOME_STACK_DOMAIN,
-      showModal: false,
+      showModalImageUpload: false,
       uploadIdPrefix: 'upid_',
       uploading: false,
       uppy: undefined
@@ -196,7 +196,7 @@ export default {
     },
     fileLoaded (e) {
       this.fileSelectedUrl = e.target.result
-      this.showModal = true
+      this.showModalImageUpload = true
     },
     loadProfilePicture (event) {
       const files = Array.from(event.target.files)
@@ -281,7 +281,7 @@ export default {
                 if (result.failed.length > 0) {
                   alert('Some files did not upload successfully!')
                 } else {
-                  outerThis.showModal = false
+                  outerThis.showModalImageUpload = false
                 }
               })
             }
