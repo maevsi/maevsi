@@ -276,6 +276,7 @@ export default {
 
               this.uppy.upload().then((result) => {
                 this.uploading = false
+                this.$apollo.queries.allUploads.refetch()
 
                 if (result.failed.length > 0) {
                   alert('Some files did not upload successfully!')
