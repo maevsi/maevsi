@@ -16,7 +16,9 @@
             v-for="upload in allUploads.nodes"
             :id="uploadIdPrefix + upload.id"
             :key="upload.id"
-            class="m-1"
+            :class="{ 'border-red-600': selectionFunction !== undefined && upload === selectedItem }"
+            class="border-4 border-transparent box-border relative"
+            @click="toggleSelect(upload)"
           >
             <div class="relative">
               <img
@@ -163,6 +165,7 @@ export default {
       fileSelectedUrl: undefined,
       graphqlErrorMessage: undefined,
       gridsomeStackDomain: process.env.GRIDSOME_STACK_DOMAIN,
+      selectedItem: undefined,
       showModalImageUpload: false,
       uploadIdPrefix: 'upid_',
       uploading: false,
@@ -291,6 +294,21 @@ export default {
           })
         }
       )
+    },
+    toggleSelect (upload) {
+      if (this.selectedItem === upload) {
+        this.selectedItem = undefined
+
+        if (this.selectionFunction !== undefined) {
+          this.selectionFunction(undefined)
+        }
+      } else {
+        this.selectedItem = upload
+
+        if (this.selectionFunction !== undefined) {
+          this.selectionFunction(this.selectedItem.storageKey)
+        }
+      }
     },
     showMore () {
       this.$apollo.queries.allUploads.fetchMore({
