@@ -111,45 +111,58 @@ function tusd (req, res) {
     case 'pre-create':
       console.log('tusd/pre-create')
 
-      pool.query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = \'' + req.body.Upload.MetaData.maevsiUploadId + '\');', (err, queryRes) => {
-        if (err) {
-          res.status(500).send(err)
-          return
-        }
+      pool.query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = $1);',
+        [req.body.Upload.MetaData.maevsiUploadId],
+        (err, queryRes) => {
+          if (err) {
+            res.status(500).send(err)
+            return
+          }
 
-        if (!queryRes.rows[0].exists) {
-          res.status(500).send('Upload id does not exist!')
-          return
-        }
+          if (!queryRes.rows[0].exists) {
+            res.status(500).send('Upload id does not exist!')
+            return
+          }
 
-        res.end()
-      })
+          res.end()
+        }
+      )
 
       break
     case 'post-finish':
       console.log('tusd/post-finish: ' + req.body.Upload.Storage.Key)
 
-      pool.query('UPDATE maevsi.upload SET storage_key = \'' + req.body.Upload.Storage.Key + '\' WHERE id = \'' + req.body.Upload.MetaData.maevsiUploadId + '\';', (err, queryRes) => {
-        if (err) {
-          res.status(500).send(err)
-          return
-        }
+      pool.query(
+        'UPDATE maevsi.upload SET storage_key = $1 WHERE id = $2;',
+        [
+          req.body.Upload.Storage.Key,
+          req.body.Upload.MetaData.maevsiUploadId
+        ],
+        (err, queryRes) => {
+          if (err) {
+            res.status(500).send(err)
+            return
+          }
 
-        res.end()
-      })
+          res.end()
+        }
+      )
 
       break
     case 'post-terminate':
       console.log('tusd/post-terminate: ' + req.body.Upload.Storage.Key)
 
-      pool.query('DELETE FROM maevsi.upload WHERE storage_key = \'' + req.body.Upload.Storage.Key + '\';', (err, queryRes) => {
-        if (err) {
-          res.status(500).send(err)
-          return
-        }
+      pool.query('DELETE FROM maevsi.upload WHERE storage_key = $1;',
+        [req.body.Upload.Storage.Key],
+        (err, queryRes) => {
+          if (err) {
+            res.status(500).send(err)
+            return
+          }
 
-        res.end()
-      })
+          res.end()
+        }
+      )
 
       break
   }
