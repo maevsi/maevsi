@@ -50,3 +50,4 @@ function_event_contact_feedback_data [privilege_execute_revoke schema_public tab
 function_jwt_refresh [privilege_execute_revoke schema_public type_jwt table_jwt] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add function that refreshes tokens.
 table_upload [schema_public schema_private table_account role_account role_tusd] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # An upload.
 function_upload_create [privilege_execute_revoke extension_uuid-ossp schema_public schema_private role_account table_upload table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Creates an upload with the given size if quota is available.
+table_profile_picture [schema_public schema_private table_account table_upload role_account role_anonymous] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Mapping of usernames to upload storage keys.

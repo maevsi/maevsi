@@ -29,6 +29,15 @@ module.exports = {
       }
     }
   `,
+  ALL_PROFILE_PICTURES: gql`
+    query allProfilePictures($username: String!) {
+      allProfilePictures(condition: {username: $username}) {
+        nodes {
+          uploadStorageKey
+        }
+      }
+    }
+  `,
   ALL_UPLOADS: gql`
     query ($username: String, $limit: Int!, $cursor: Cursor) {
       allUploads (condition: {username: $username}, first: $limit, after: $cursor) {
