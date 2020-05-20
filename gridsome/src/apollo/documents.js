@@ -100,6 +100,13 @@ module.exports = {
       }
     }
   `,
+  PROFILE_PICTURE_SET: gql`
+    mutation ($storageKey: String!) {
+      profilePictureSet(input: {_storageKey: $storageKey}) {
+        clientMutationId
+      }
+    }
+  `,
   REDEEM_MUTATIN: gql`
     mutation ($uuid: UUID!) {
       redeem(input: {invitationCode: $uuid}) {
