@@ -15,7 +15,7 @@ function_events_organized [privilege_execute_revoke schema_public] 1970-01-01T00
 function_invite_claim_array [privilege_execute_revoke schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns the current invite clains as UUID array.
 function_invites_contact [privilege_execute_revoke schema_private function_invite_claim_array function_events_organized] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Displays the same values as a SELECT on the invite_contact table. Used as prevention for a circular dependency.
 function_regexp_escape [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Escapes all characters in a string, which have a special meaning in regular expressions.
-table_contact [schema_public role_account role_anonymous function_invites_contact function_regexp_escape] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table contact.
+table_contact [schema_public role_account role_anonymous function_invites_contact] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table contact.
 table_account [schema_private schema_public table_contact extension_uuid-ossp] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table account.
 enum_invitation_feedback [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible answers to an invitation: accepted, canceled.
 enum_event_visibility [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible visibilities of events and event groups: public, private.

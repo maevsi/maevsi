@@ -3,7 +3,6 @@
 -- requires: role_account
 -- requires: role_anonymous
 -- requires: function_invites_contact
--- requires: function_regexp_escape
 
 BEGIN;
 
