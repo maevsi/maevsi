@@ -21,7 +21,7 @@
             <div class="relative">
               <img
                 class="bg-gray-400 h-32 w-32"
-                :src="'https://tusd.' + gridsomeStackDomain + '/files/' + upload.storageKey + '+'"
+                :src="TUSD_FILES_URL + upload.storageKey + '+'"
               >
               <div>
                 <div class="absolute bg-white opacity-75 right-0 top-0">
@@ -261,7 +261,7 @@ export default {
               })
 
               this.uppy.use(Tus, {
-                endpoint: 'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/',
+                endpoint: this.TUSD_FILES_URL,
                 limit: 1,
                 removeFingerprintOnSuccess: true
               })

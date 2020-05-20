@@ -5,7 +5,8 @@ import { decode } from 'jsonwebtoken'
 export default {
   data () {
     return {
-      ITEMS_PER_PAGE: 8
+      ITEMS_PER_PAGE: 8,
+      TUSD_FILES_URL: 'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/'
     }
   },
   methods: {
