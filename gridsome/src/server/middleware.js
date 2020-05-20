@@ -189,7 +189,7 @@ function tusdDelete (req, res) {
             } else if (httpResp.statusCode === 404) {
               deleteUploadById(res, uploadId)
             } else {
-              res.status(500).send('Tusd status was "' + this.status + '".')
+              res.status(500).send('Tusd status was "' + httpResp.statusCode + '".')
             }
           })
         }).on('error', (err) => {
