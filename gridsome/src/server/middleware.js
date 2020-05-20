@@ -1,3 +1,8 @@
+const fs = require('fs')
+
+const secretPostgresDbPath = '/run/secrets/postgres_db'
+const secretPostgresRoleMaevsiTusdPasswordPath = '/run/secrets/postgres_role_maevsi-tusd_password'
+
 function iCal (req, res) {
   const htmlToText = require('html-to-text')
   const ical = require('ical-generator')
@@ -88,18 +93,15 @@ function iCal (req, res) {
   }).toString())
 }
 
-const fs = require('fs')
 const { Pool } = require('pg')
-const secretPostgresDb = '/run/secrets/postgres_db'
-const secretPostgresRoleMaevsiTusdPassword = '/run/secrets/postgres_role_maevsi-tusd_password'
 
 const pool = new Pool({
-  database: (fs.existsSync(secretPostgresDb))
-    ? fs.readFileSync(secretPostgresDb, 'utf-8')
+  database: (fs.existsSync(secretPostgresDbPath))
+    ? fs.readFileSync(secretPostgresDbPath, 'utf-8')
     : undefined,
   host: 'postgres',
-  password: (fs.existsSync(secretPostgresRoleMaevsiTusdPassword))
-    ? fs.readFileSync(secretPostgresRoleMaevsiTusdPassword, 'utf-8')
+  password: (fs.existsSync(secretPostgresRoleMaevsiTusdPasswordPath))
+    ? fs.readFileSync(secretPostgresRoleMaevsiTusdPasswordPath, 'utf-8')
     : undefined,
   user: 'maevsi_tusd'
 })
