@@ -39,6 +39,11 @@ export default {
       graphqlErrorMessage: undefined,
       profilePictureUrl: '/assets/static/src/assets/blank-profile-picture.svg'
     }
+  },
+  methods: {
+    reloadProfilePicture () {
+      this.$apollo.queries.allProfilePictures.refetch()
+    }
   }
 }
 </script>
