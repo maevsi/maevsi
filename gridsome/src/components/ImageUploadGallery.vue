@@ -26,7 +26,7 @@
                 :src="TUSD_FILES_URL + upload.storageKey + '+'"
               >
               <div v-if="allowDeletion">
-                <div class="absolute bg-red-600 opacity-75 right-0 rounded-tl-lg top-0">
+                <div class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0">
                   <div class="flex h-full justify-center items-center">
                     <font-awesome
                       :icon="['fas', 'trash']"
