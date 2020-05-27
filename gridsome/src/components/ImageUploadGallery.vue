@@ -20,36 +20,36 @@
             class="border-4 border-transparent box-border relative"
             @click="toggleSelect(upload)"
           >
-              <img
-                alt="picture"
-                class="bg-gray-400 h-32 w-32"
-                :src="TUSD_FILES_URL + upload.storageKey + '+'"
-              >
-              <div v-if="allowDeletion">
-                <div class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0">
-                  <div class="flex h-full justify-center items-center">
-                    <font-awesome
-                      :icon="['fas', 'trash']"
-                      class="m-2"
-                      size="lg"
-                      title="trash"
-                    />
-                  </div>
+            <img
+              alt="picture"
+              class="bg-gray-400 h-32 w-32"
+              :src="TUSD_FILES_URL + upload.storageKey + '+'"
+            >
+            <div v-if="allowDeletion">
+              <div class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0">
+                <div class="flex h-full justify-center items-center">
+                  <font-awesome
+                    :icon="['fas', 'trash']"
+                    class="m-2"
+                    size="lg"
+                    title="trash"
+                  />
                 </div>
-                <button
-                  class="absolute right-0 top-0"
-                  @click="deleteImageUpload(upload.id)"
-                >
-                  <div class="flex h-full justify-center items-center">
-                    <font-awesome
-                      :icon="['fas', 'trash']"
-                      class="m-2 text-white"
-                      size="lg"
-                      title="trash"
-                    />
-                  </div>
-                </button>
               </div>
+              <button
+                class="absolute right-0 top-0"
+                @click="deleteImageUpload(upload.id)"
+              >
+                <div class="flex h-full justify-center items-center">
+                  <font-awesome
+                    :icon="['fas', 'trash']"
+                    class="m-2 text-white"
+                    size="lg"
+                    title="trash"
+                  />
+                </div>
+              </button>
+            </div>
           </li>
           <button
             v-if="allowAddition"
