@@ -18,7 +18,7 @@ export default {
           username: this.username
         },
         update: data => {
-          if (data.allProfilePictures !== undefined) {
+          if (this.$checkNested(data.allProfilePictures, 'nodes') && data.allProfilePictures.nodes.length > 0) {
             this.profilePictureUrl = this.TUSD_FILES_URL + data.allProfilePictures.nodes[0].uploadStorageKey + '+'
           } else {
             this.profilePictureUrl = this.PROFILE_PICTURE_BLANK_URL
