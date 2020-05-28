@@ -31,7 +31,7 @@ export default {
   },
   data () {
     return {
-      profilePictureUrl: '/assets/static/src/assets/blank-profile-picture.svg'
+      profilePictureUrl: this.PROFILE_PICTURE_BLANK_URL
     }
   },
   metaInfo () {

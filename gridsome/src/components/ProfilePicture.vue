@@ -20,6 +20,8 @@ export default {
         update: data => {
           if (data.allProfilePictures !== undefined) {
             this.profilePictureUrl = this.TUSD_FILES_URL + data.allProfilePictures.nodes[0].uploadStorageKey + '+'
+          } else {
+            this.profilePictureUrl = this.PROFILE_PICTURE_BLANK_URL
           }
         },
         error (error, vm, key, type, options) {
@@ -37,7 +39,7 @@ export default {
   data () {
     return {
       graphqlErrorMessage: undefined,
-      profilePictureUrl: '/assets/static/src/assets/blank-profile-picture.svg'
+      profilePictureUrl: this.PROFILE_PICTURE_BLANK_URL
     }
   },
   methods: {
