@@ -5,6 +5,7 @@
 -- requires: table_upload
 -- requires: role_account
 -- requires: role_anonymous
+-- requires: role_tusd
 
 BEGIN;
 
@@ -17,8 +18,9 @@ COMMENT ON TABLE maevsi.profile_picture IS 'Mapping of usernames to upload stora
 COMMENT ON COLUMN maevsi.profile_picture.username IS 'The account''s username.';
 COMMENT ON COLUMN maevsi.profile_picture.upload_storage_key IS 'The upload storage key.';
 
-GRANT SELECT ON TABLE maevsi.profile_picture TO maevsi_account, maevsi_anonymous;
+GRANT SELECT ON TABLE maevsi.profile_picture TO maevsi_account, maevsi_anonymous, maevsi_tusd;
 GRANT INSERT, DELETE, UPDATE ON TABLE maevsi.profile_picture TO maevsi_account;
+GRANT DELETE ON TABLE maevsi.profile_picture TO maevsi_tusd;
 
 ALTER TABLE maevsi.profile_picture ENABLE ROW LEVEL SECURITY;
 
@@ -39,7 +41,9 @@ CREATE POLICY profile_picture_update ON maevsi.profile_picture FOR UPDATE USING 
 
 -- Only allow deletes for the item with the username that matches the invoker's username.
 CREATE POLICY profile_picture_delete ON maevsi.profile_picture FOR DELETE USING (
-    "username" = current_setting('jwt.claims.username', true)::TEXT
+        (SELECT current_user) = 'maevsi_tusd'
+    OR
+        "username" = current_setting('jwt.claims.username', true)::TEXT
 );
 
 COMMIT;
