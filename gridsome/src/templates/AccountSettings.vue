@@ -33,7 +33,10 @@
         :reload-function="reloadProfilePicture"
       />
       <!-- "ImageUploadGallery" must come after "ModalImageSelection"! -->
-      <ImageUploadGallery :username="$route.params.username" />
+      <ImageUploadGallery
+        :deletion-function="reloadProfilePicture"
+        :username="$route.params.username"
+      />
     </div>
   </Layout>
 </template>

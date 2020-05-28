@@ -111,18 +111,26 @@ const pool = new Pool({
   user: 'maevsi_tusd'
 })
 
-function deleteUploadById (res, uploadId) {
-  pool.query('DELETE FROM maevsi.upload WHERE id = $1;',
-    [uploadId],
+function deleteUpload (res, uploadId, storageKey) {
+  pool.query('DELETE FROM maevsi.profile_picture WHERE upload_storage_key = $1;',
+    [storageKey],
     (err, queryRes) => {
       if (err) {
         res.status(500).send(err)
         return
       }
 
-      console.log(queryRes)
+      pool.query('DELETE FROM maevsi.upload WHERE id = $1;',
+        [uploadId],
+        (err, queryRes) => {
+          if (err) {
+            res.status(500).send(err)
+            return
+          }
 
-      res.status(204).end()
+          res.status(204).end()
+        }
+      )
     }
   )
 }
@@ -187,7 +195,7 @@ function tusdDelete (req, res) {
             if (httpResp.statusCode === 204) {
               res.status(204).end()
             } else if (httpResp.statusCode === 404) {
-              deleteUploadById(res, uploadId)
+              deleteUpload(res, uploadId, storageKey)
             } else {
               res.status(500).send('Tusd status was "' + httpResp.statusCode + '".')
             }
@@ -198,7 +206,7 @@ function tusdDelete (req, res) {
 
         reqTusd.end()
       } else {
-        deleteUploadById()
+        deleteUpload(res, uploadId, storageKey)
       }
     }
   )
@@ -249,18 +257,7 @@ function tusdPost (req, res) {
       break
     case 'post-terminate':
       console.log('tusd/post-terminate: ' + req.body.Upload.Storage.Key)
-
-      pool.query('DELETE FROM maevsi.upload WHERE storage_key = $1;',
-        [req.body.Upload.Storage.Key],
-        (err, queryRes) => {
-          if (err) {
-            res.status(500).send(err)
-            return
-          }
-
-          res.end()
-        }
-      )
+      deleteUpload(res, req.body.Upload.MetaData.maevsiUploadId, req.body.Upload.Storage.Key)
 
       break
   }
