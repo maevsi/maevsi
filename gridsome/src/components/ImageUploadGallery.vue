@@ -165,6 +165,10 @@ export default {
       type: Boolean,
       default: true
     },
+    deletionFunction: {
+      type: Function,
+      default: undefined
+    },
     selectionFunction: {
       type: Function,
       default: undefined
@@ -206,8 +210,20 @@ export default {
         if (this.readyState === 4) {
           element.classList.remove('disabled')
 
-          if (this.status === 204) {
-            outerThis.$removeItemFromArray(outerThis.allUploads.nodes, 'id', uploadId)
+          switch (this.status) {
+            case 204:
+              outerThis.$removeItemFromArray(outerThis.allUploads.nodes, 'id', uploadId)
+
+              if (outerThis.deletionFunction !== undefined) {
+                outerThis.deletionFunction()
+              }
+
+              break
+            case 500:
+              alert('Deleting upload failed!')
+              break
+            default:
+              alert('Deleting upload returned an unexpected status code.')
           }
         }
       }
