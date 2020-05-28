@@ -12,5 +12,15 @@
   ],
   "major": {
     "automerge": false
-  }
+  },
+  "packageRules": [
+    {
+      "packagePatterns": [
+        "snyk"
+      ],
+      "schedule": [
+        "before 3am on Monday"
+      ]
+    }
+  ]
 }
