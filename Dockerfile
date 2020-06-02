@@ -51,7 +51,7 @@ RUN yarn build
 # Only the compiled app, ready for production with Nginx.
 
 # Should be the specific version of nginx:stable.
-FROM nginx:1.18.0@sha256:637488545a21a1ff771549ef65f5e3c1a8dbd92c98d360ac489d76b857021a55 AS production
+FROM nginx:1.19.0@sha256:109bfacd414451755a82fba95feb6926de653104552997960e4f310896f2c358 AS production
 
 # Install sqitch.
 RUN apt-get update && apt-get -y install libdbd-pg-perl postgresql-client sqitch
