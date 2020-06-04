@@ -108,7 +108,7 @@ const pool = new Pool({
   password: (fs.existsSync(secretPostgresRoleMaevsiTusdPasswordPath))
     ? fs.readFileSync(secretPostgresRoleMaevsiTusdPasswordPath, 'utf-8')
     : undefined,
-  user: 'maevsi_tusd'
+  user: 'maevsi_tusd' // lgtm [js/hardcoded-credentials]
 })
 
 function deleteUpload (res, uploadId, storageKey) {
