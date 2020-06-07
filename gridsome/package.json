@@ -22,7 +22,7 @@
     "graphql": "15.0.0",
     "gridsome": "0.7.17",
     "html-to-text": "5.1.1",
-    "ical-generator": "1.10.0",
+    "ical-generator": "1.11.0",
     "jsonwebtoken": "8.5.1",
     "moment-timezone": "0.5.31",
     "node-fetch": "2.6.0",
