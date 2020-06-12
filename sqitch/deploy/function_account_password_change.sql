@@ -7,7 +7,7 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.account_password_change(current_password TEXT, new_password TEXT)
+CREATE FUNCTION maevsi.account_password_change(password_current TEXT, password_new TEXT)
 RETURNS BOOLEAN AS $$
 DECLARE
   _current_username TEXT;
