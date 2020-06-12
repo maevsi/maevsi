@@ -39,7 +39,7 @@
           :username="$route.params.username"
         />
       </section>
-      <section>
+      <section class="mt-4">
         <h2>
           Change Password
         </h2>
