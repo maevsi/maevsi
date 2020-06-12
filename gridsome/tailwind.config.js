@@ -67,18 +67,6 @@ module.exports = {
         }
       })
       addComponents({
-        '.alert': {
-          backgroundColor: config('theme.colors.red.100'),
-          borderWidth: config('theme.borderWidth.default'),
-          borderColor: config('theme.colors.red.400'),
-          color: config('theme.colors.red.700'),
-          padding: config('theme.padding.3') + ' ' + config('theme.padding.4'),
-          borderRadius: config('theme.borderRadius.default'),
-          position: 'relative',
-          '::selection': {
-            color: config('theme.colors.white')
-          }
-        },
         '.btn': {
           boxShadow: config('theme.boxShadow.default'),
           padding: config('theme.padding.2') + ' ' + config('theme.padding.4'),
