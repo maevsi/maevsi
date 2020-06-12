@@ -41,6 +41,7 @@ module.exports = {
     function ({ addBase, addComponents, addUtilities, config }) {
       addBase({
         '::selection': {
+          color: config('theme.colors.white'),
           background: '#e53e3e'
         },
         body: {
