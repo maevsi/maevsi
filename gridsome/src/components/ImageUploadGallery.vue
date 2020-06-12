@@ -78,9 +78,10 @@
         >
           <Button
             :icon="false"
-            :text="'More'"
             @click.native="showMore"
-          />
+          >
+            More
+          </Button>
         </div>
       </div>
     </div>
@@ -108,16 +109,18 @@
         <Button
           :disabled="uploading"
           :icon-id="['fas', 'window-close']"
-          :text="'Cancel'"
           @click.native="showModalImageUpload = false"
-        />
+        >
+          Cancel
+        </Button>
         <Button
           :disabled="uploading"
           :button-class="'btn-green'"
           :icon-id="['fas', 'upload']"
-          :text="'Upload'"
           @click.native="generateBlob()"
-        />
+        >
+          Upload
+        </Button>
       </div>
     </Modal>
   </div>

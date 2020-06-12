@@ -56,9 +56,10 @@
         >
           <Button
             :icon="false"
-            :text="'More'"
             @click.native="showMore"
-          />
+          >
+            More
+          </Button>
         </div>
       </ul>
       <p v-else>

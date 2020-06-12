@@ -163,9 +163,10 @@
               <Button
                 :disabled="!((formRegister.sent ? $v.formRegister.$anyDirty : $v.formRegister.$dirty) && !$v.formRegister.$error)"
                 :icon="false"
-                :text="'Register'"
                 type="submit"
-              />
+              >
+                Register
+              </Button>
             </div>
             <AlertGraphql
               :graphql-error-message="registerGraphqlErrorMessage"
@@ -255,9 +256,10 @@
               <Button
                 :disabled="!((formSignin.sent ? $v.formSignin.$anyDirty : $v.formSignin.$dirty) && !$v.formSignin.$error)"
                 :icon="false"
-                :text="'Sign In'"
                 type="submit"
-              />
+              >
+                Sign In
+              </Button>
               <a
                 class="disabled inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 mb-6"
                 href="#"

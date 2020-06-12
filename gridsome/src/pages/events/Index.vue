@@ -6,9 +6,10 @@
         v-if="loggedIn"
         :icon-id="['fas', 'plus']"
         :link="'/new'"
-        :text="'Create event'"
         class="m-2"
-      />
+      >
+        Create event
+      </Button>
       <ButtonRedeem class="m-2" />
     </div>
     <div v-if="$apollo.loading">

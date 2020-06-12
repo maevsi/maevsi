@@ -103,9 +103,10 @@
           )
         "
         :icon="false"
-        :text="'Change Password'"
         type="submit"
-      />
+      >
+        Change Password
+      </Button>
     </div>
     <AlertGraphql
       :graphql-error-message="graphqlErrorMessage"

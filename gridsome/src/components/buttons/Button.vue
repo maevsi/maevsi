@@ -16,7 +16,8 @@
           v-if="icon"
           class="mr-2"
           :icon="iconId"
-        />{{ text }}
+        />
+        <slot />
       </button>
     </g-link>
     <button
@@ -29,7 +30,8 @@
         v-if="icon"
         class="mr-2"
         :icon="iconId"
-      />{{ text }}
+      />
+      <slot />
     </button>
   </div>
 </template>
@@ -56,10 +58,6 @@ export default {
       }
     },
     link: {
-      type: String,
-      default: undefined
-    },
-    text: {
       type: String,
       default: undefined
     }

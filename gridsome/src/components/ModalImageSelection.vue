@@ -16,16 +16,18 @@
       <Button
         :disabled="settingProfilePicture"
         :icon-id="['fas', 'window-close']"
-        :text="'Cancel'"
         @click.native="modalHideFunction()"
-      />
+      >
+        Cancel
+      </Button>
       <Button
         :disabled="settingProfilePicture || selectedProfilePictureStorageKey === undefined"
         :button-class="'btn-green'"
         :icon-id="['fas', 'check-circle']"
-        :text="'Select'"
         @click.native="setProfilePicture()"
-      />
+      >
+        Select
+      </Button>
     </div>
     <div if="graphqlErrorMessage !== undefined">
       <AlertGraphql :graphql-error-message="graphqlErrorMessage" />

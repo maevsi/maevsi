@@ -2,8 +2,9 @@
   <Button
     :icon-id="['fas', 'home']"
     :link="'/'"
-    :text="'Home'"
-  />
+  >
+    Home
+  </Button>
 </template>
 
 <script>

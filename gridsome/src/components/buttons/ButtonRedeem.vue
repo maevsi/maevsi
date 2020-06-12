@@ -2,8 +2,9 @@
   <Button
     :icon-id="['fas', 'key']"
     :link="'/redeem'"
-    :text="'Redeem invite'"
-  />
+  >
+    Redeem invite
+  </Button>
 </template>
 
 <script>

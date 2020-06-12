@@ -50,9 +50,10 @@
           <Button
             :disabled="!($v.invitationCode.$dirty && !$v.invitationCode.$error)"
             :icon="false"
-            :text="'Redeem'"
             type="submit"
-          />
+          >
+            Redeem
+          </Button>
         </div>
         <AlertGraphql
           :graphql-error-message="graphqlErrorMessage"

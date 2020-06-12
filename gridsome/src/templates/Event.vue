@@ -57,10 +57,11 @@
           </div>
           <Button
             :icon-id="['fas', 'download']"
-            :text="'Download as iCal'"
             class="my-2 text-white"
             @click.native="downloadIcal"
-          />
+          >
+            Download as iCal
+          </Button>
           <hr class="my-4">
           <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
           <vue-markdown class="description text-left text-gray-900 text-sm">{{ eventContactFeedbackData.event.description }}</vue-markdown>
@@ -71,9 +72,10 @@
                 v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'CANCELED'"
                 :button-class="'btn-green'"
                 :icon="false"
-                :text="'Accept Invite'"
                 @click.native="accept"
-              />
+              >
+                Accept Invite
+              </Button>
               <div class="flex justify-center">
                 <div
                   v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
@@ -89,9 +91,10 @@
                 <Button
                   v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
                   :icon="false"
-                  :text="'Cancel Invite'"
                   @click.native="cancel"
-                />
+                >
+                  Cancel Invite
+                </Button>
               </div>
             </div>
             <div v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback !== null && eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'">
