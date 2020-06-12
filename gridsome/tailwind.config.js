@@ -124,12 +124,6 @@ module.exports = {
             }
           }
         },
-        '.event-meta': {
-          color: config('theme.colors.gray.600'),
-          div: {
-            margin: config('theme.margin.2') + ' ' + config('theme.margin.0')
-          }
-        },
         '.flip-card': {
           perspective: '1000px'
         },

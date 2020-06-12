@@ -19,24 +19,31 @@
           <h1>
             {{ eventContactFeedbackData.event.name }}
           </h1>
-          <div class="event-meta">
+          <div class="flex flex-col sm:flex-row m-auto text-gray-600">
             <EventIcon
               :event="eventContactFeedbackData.event"
               :with-text="true"
+              class="my-2 sm:mx-4"
             />
-            <div>
+            <div class="my-2 sm:mx-4">
               <font-awesome :icon="['fas', 'calendar-day']" />
               <br>
               {{ eventContactFeedbackData.event.start | moment("lll") }}
               <br>
               ({{ eventContactFeedbackData.event.start | moment("from") }})
             </div>
-            <div v-if="eventContactFeedbackData.event.end !== null">
+            <div
+              v-if="eventContactFeedbackData.event.end !== null"
+              class="my-2 sm:mx-4"
+            >
               <font-awesome :icon="['fas', 'hourglass']" />
               <br>
               {{ eventContactFeedbackData.event.end | moment("diff", eventContactFeedbackData.event.start) | duration('humanize') }}
             </div>
-            <div v-if="eventContactFeedbackData.event.place !== null">
+            <div
+              v-if="eventContactFeedbackData.event.place !== null"
+              class="my-2 sm:mx-4"
+            >
               <font-awesome :icon="['fas', 'map-marker']" />
               <br>
               <a
@@ -47,13 +54,13 @@
                 <font-awesome :icon="['fas', 'external-link-alt']" />
               </a>
             </div>
-            <Button
-              :icon-id="['fas', 'download']"
-              :text="'Download as iCal'"
-              class="text-white"
-              @click.native="downloadIcal"
-            />
           </div>
+          <Button
+            :icon-id="['fas', 'download']"
+            :text="'Download as iCal'"
+            class="my-2 text-white"
+            @click.native="downloadIcal"
+          />
           <hr class="my-4">
           <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
           <vue-markdown class="description text-left text-gray-900 text-sm">{{ eventContactFeedbackData.event.description }}</vue-markdown>
