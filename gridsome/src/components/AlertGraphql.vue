@@ -5,7 +5,7 @@
     role="alert"
   >
     <span>
-      {{ "Error: " + graphqlErrorMessage.substr(15) }}
+      {{ "Error: " + graphqlErrorMessage.replace('GraphQL error: ', '') }}
     </span>
   </div>
 </template>
