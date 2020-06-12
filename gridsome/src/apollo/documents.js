@@ -1,6 +1,13 @@
 const gql = require('graphql-tag')
 
 module.exports = {
+  ACCOUNT_PASSWORD_CHANGE: gql`
+    mutation ($passwordCurrent: String!, $passwordNew: String!) {
+      accountPasswordChange (input: {passwordCurrent: $passwordCurrent, passwordNew: $passwordNew}) {
+        clientMutationId
+      }
+    }
+  `,
   ACCOUNT_REGISTER_MUTATION: gql`
     mutation ($username: String!, $password: String!, $emailAddress: String!) {
       accountRegister(input: {username: $username, password: $password, emailAddress: $emailAddress}) {

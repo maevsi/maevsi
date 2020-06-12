@@ -37,6 +37,12 @@
         :deletion-function="reloadProfilePicture"
         :username="$route.params.username"
       />
+      <section>
+        <h2>
+          Change Password
+        </h2>
+        <PasswordChange />
+      </section>
     </div>
   </Layout>
 </template>
@@ -45,6 +51,7 @@
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import ImageUploadGallery from '~/components/ImageUploadGallery.vue'
 import ModalImageSelection from '~/components/ModalImageSelection.vue'
+import PasswordChange from '~/components/PasswordChange.vue'
 import ProfilePicture from '~/components/ProfilePicture.vue'
 
 require('@uppy/core/dist/style.css')
@@ -54,6 +61,7 @@ export default {
     AlertGraphql,
     ImageUploadGallery,
     ModalImageSelection,
+    PasswordChange,
     ProfilePicture
   },
   data () {
