@@ -261,7 +261,7 @@
                 Sign In
               </Button>
               <a
-                class="disabled inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 mb-6"
+                class="disabled inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 mt-4"
                 href="#"
                 title="Not yet available."
               >
