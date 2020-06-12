@@ -12,7 +12,7 @@
     <div v-else>
       <div v-if="$checkNested(eventContactFeedbackData, 'event')">
         <p class="font-bold mb-2 text-2xl">
-          Hey{{ eventContactFeedbackData.contact !== null && eventContactFeedbackData.contact.firstName !== null ? ' ' + eventContactFeedbackData.contact.firstName : '' }}!
+          Hey{{ $checkNested(eventContactFeedbackData, 'contact', 'firstname') ? ' ' + eventContactFeedbackData.contact.firstName : '' }}!
         </p>
         <p>You've been invited to the following event:</p>
         <div class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black">
