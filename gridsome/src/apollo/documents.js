@@ -114,7 +114,7 @@ module.exports = {
       }
     }
   `,
-  REDEEM_MUTATIN: gql`
+  REDEEM_MUTATION: gql`
     mutation ($uuid: UUID!) {
       redeem(input: {invitationCode: $uuid}) {
         redeemResponse {
