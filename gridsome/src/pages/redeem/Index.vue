@@ -6,49 +6,38 @@
         Did you receive an invitation code for an event?
         <br>Enter it below!
       </div>
-      <form
-        class="form"
-        :class="{
-          'error shake': graphqlErrorMessage !== undefined && !$v.invitationCode.$dirty
-        }"
-        @submit="redeem"
+      <Form
+        :function-submit="redeem"
+        :graphql-error-message="graphqlErrorMessage"
+        :validation-object="$v.form"
       >
-        <div
-          class="md:flex md:items-center"
-          :class="{ 'form-error shake': $v.invitationCode.$error }"
+        <FormInput
+          :title="'Invitation Code'"
+          :v="$v"
         >
-          <div class="md:w-1/3">
-            <label
-              class="form-label md:text-right mb-1 md:mb-0"
-              for="input-username"
-            >Invitation Code</label>
-          </div>
-          <div class="md:w-2/3">
-            <input
-              id="input-code"
-              v-model.trim="$v.invitationCode.$model"
-              class="form-input"
-              type="text"
-              placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-            >
-          </div>
-        </div>
-        <div class="md:flex md:items-center mb-6">
-          <div class="md:w-1/3" />
-          <div class="md:w-2/3">
+          <input
+            id="input-invitation-code"
+            v-model.trim="$v.form['invitation-code'].$model"
+            class="form-input"
+            type="text"
+            placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+          >
+          <div slot="formError">
             <FormError
               :text="'required'"
-              :trigger="$v.invitationCode.$error && !$v.invitationCode.required"
+              :validation-object="$v.form['invitation-code']"
+              :validation-property="'required'"
             />
             <FormError
               :text="'invalid format'"
-              :trigger="$v.invitationCode.$error && !$v.invitationCode.uuid"
+              :validation-object="$v.form['invitation-code']"
+              :validation-property="'uuid'"
             />
           </div>
-        </div>
+        </FormInput>
         <div class="flex flex-col items-center justify-between">
           <Button
-            :disabled="!($v.invitationCode.$dirty && !$v.invitationCode.$error)"
+            :disabled="!($v.form['invitation-code'].$dirty && !$v.form['invitation-code'].$error)"
             :icon="false"
             type="submit"
           >
@@ -57,18 +46,21 @@
         </div>
         <AlertGraphql
           :graphql-error-message="graphqlErrorMessage"
-          :validation-object="$v.invitationCode"
+          :validation-object="$v.form['invitation-code']"
+          class="mt-4"
         />
-      </form>
+      </Form>
     </div>
   </Layout>
 </template>
 
 <script>
 import { REDEEM_MUTATION } from '~/apollo/documents'
+import Form from '~/components/forms/Form.vue'
+import FormError from '~/components/forms/FormError.vue'
+import FormInput from '~/components/forms/FormInput.vue'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/buttons/Button.vue'
-import FormError from '~/components/FormError.vue'
 import { helpers, required } from 'vuelidate/lib/validators'
 
 const uuid = helpers.regex('uuid', /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/)
@@ -77,17 +69,21 @@ export default {
   components: {
     AlertGraphql,
     Button,
-    FormError
+    Form,
+    FormError,
+    FormInput
   },
   data () {
     return {
-      graphqlErrorMessage: undefined,
-      invitationCode: (this.$route.query.ic === undefined) ? undefined : this.$route.query.ic
+      form: {
+        'invitation-code': (this.$route.query.ic === undefined) ? undefined : this.$route.query.ic
+      },
+      graphqlErrorMessage: undefined
     }
   },
   created () {
     if (this.$route.query.ic !== undefined) {
-      this.$v.invitationCode.$touch()
+      this.$v.form['invitation-code'].$touch()
     }
   },
   metaInfo () {
@@ -103,7 +99,7 @@ export default {
       this.$apollo.mutate({
         mutation: REDEEM_MUTATION,
         variables: {
-          uuid: this.invitationCode
+          invitationCode: this.form['invitation-code']
         }
       }).then((data) => {
         if (data.data.redeem !== null) {
@@ -119,9 +115,11 @@ export default {
     }
   },
   validations: {
-    invitationCode: {
-      required,
-      uuid
+    form: {
+      'invitation-code': {
+        required,
+        uuid
+      }
     }
   }
 }

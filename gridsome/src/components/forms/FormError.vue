@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="trigger"
+    v-if="validationObject.$error && !validationObject[validationProperty]"
     class="text-red-600 text-left"
   >
     {{ text }}
@@ -14,8 +14,12 @@ export default {
       type: String,
       default: undefined
     },
-    trigger: {
-      type: Boolean,
+    validationObject: {
+      type: Object,
+      default: undefined
+    },
+    validationProperty: {
+      type: String,
       default: undefined
     }
   }

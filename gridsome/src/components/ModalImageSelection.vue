@@ -20,14 +20,13 @@
       >
         Cancel
       </Button>
-      <Button
+      <ButtonGreen
         :disabled="settingProfilePicture || selectedProfilePictureStorageKey === undefined"
-        :button-class="'btn-green'"
         :icon-id="['fas', 'check-circle']"
         @click.native="setProfilePicture()"
       >
         Select
-      </Button>
+      </ButtonGreen>
     </div>
     <div if="graphqlErrorMessage !== undefined">
       <AlertGraphql :graphql-error-message="graphqlErrorMessage" />
@@ -38,12 +37,14 @@
 <script>
 import { PROFILE_PICTURE_SET } from '~/apollo/documents'
 import Button from '~/components/buttons/Button.vue'
+import ButtonGreen from '~/components/buttons/ButtonGreen.vue'
 import ImageUploadGallery from '~/components/ImageUploadGallery.vue'
 import Modal from '~/components/Modal.vue'
 
 export default {
   components: {
     Button,
+    ButtonGreen,
     ImageUploadGallery,
     Modal
   },

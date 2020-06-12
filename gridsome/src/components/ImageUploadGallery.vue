@@ -113,14 +113,13 @@
         >
           Cancel
         </Button>
-        <Button
+        <ButtonGreen
           :disabled="uploading"
-          :button-class="'btn-green'"
           :icon-id="['fas', 'upload']"
           @click.native="generateBlob()"
         >
           Upload
-        </Button>
+        </ButtonGreen>
       </div>
     </Modal>
   </div>
@@ -130,6 +129,7 @@
 import { ALL_UPLOADS, UPLOAD_CREATE_MUTATION } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/buttons/Button.vue'
+import ButtonGreen from '~/components/buttons/ButtonGreen.vue'
 import Modal from '~/components/Modal.vue'
 
 import Croppa from 'vue-croppa'
@@ -156,6 +156,7 @@ export default {
   components: {
     AlertGraphql,
     Button,
+    ButtonGreen,
     Croppa: Croppa.component,
     Modal
   },

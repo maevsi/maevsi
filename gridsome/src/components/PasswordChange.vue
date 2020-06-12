@@ -1,98 +1,57 @@
 <template>
-  <form
-    class="form rounded-t-none"
-    :class="{
-      'error shake':
-        graphqlErrorMessage !== undefined && !$v.form.$dirty
-    }"
-    @submit="passwordChange"
+  <Form
+    :function-submit="passwordChange"
+    :graphql-error-message="graphqlErrorMessage"
+    :validation-object="$v.form"
   >
-    <div>
-      <div
-        :class="{ 'form-error shake': $v.form.passwordCurrent.$error }"
-        class="md:flex md:items-center"
+    <FormInput
+      :title="'Current Password'"
+      :v="$v"
+    >
+      <input
+        id="input-current-password"
+        v-model.trim="$v.form['current-password'].$model"
+        class="form-input"
+        type="password"
+        placeholder="**********"
       >
-        <div class="md:w-1/3">
-          <label
-            class="form-label md:text-right mb-1 md:mb-0"
-            for="input-password-current"
-          >
-            Current Password
-          </label>
-        </div>
-        <div class="md:w-2/3">
-          <input
-            id="input-password-current"
-            v-model.trim="$v.form.passwordCurrent.$model"
-            class="form-input"
-            type="password"
-            placeholder="**********"
-          >
-        </div>
+      <div slot="formError">
+        <FormError
+          :text="'required'"
+          :validation-object="$v.form['current-password']"
+          :validation-property="'required'"
+        />
+        <FormError
+          :text="'too short'"
+          :validation-object="$v.form['current-password']"
+          :validation-property="'minLength'"
+        />
       </div>
-      <div class="md:flex md:items-center mb-6">
-        <div class="md:w-1/3" />
-        <div class="md:w-2/3">
-          <FormError
-            :text="'required'"
-            :trigger="
-              $v.form.passwordCurrent.$error &&
-                !$v.form.passwordCurrent.required
-            "
-          />
-          <FormError
-            :text="'too short'"
-            :trigger="
-              $v.form.passwordCurrent.$error &&
-                !$v.form.passwordCurrent.minLength
-            "
-          />
-        </div>
-      </div>
-    </div>
-    <div>
-      <div
-        :class="{ 'form-error shake': $v.form.passwordNew.$error }"
-        class="md:flex md:items-center"
+    </FormInput>
+    <FormInput
+      :title="'New Password'"
+      :v="$v"
+    >
+      <input
+        id="input-new-password"
+        v-model.trim="$v.form['new-password'].$model"
+        class="form-input"
+        type="password"
+        placeholder="**********"
       >
-        <div class="md:w-1/3">
-          <label
-            class="form-label md:text-right mb-1 md:mb-0"
-            for="input-password-new"
-          >
-            New Password
-          </label>
-        </div>
-        <div class="md:w-2/3">
-          <input
-            id="input-password-new"
-            v-model.trim="$v.form.passwordNew.$model"
-            class="form-input"
-            type="password"
-            placeholder="**********"
-          >
-        </div>
+      <div slot="formError">
+        <FormError
+          :text="'required'"
+          :validation-object="$v.form['new-password']"
+          :validation-property="'required'"
+        />
+        <FormError
+          :text="'too short'"
+          :validation-object="$v.form['new-password']"
+          :validation-property="'minLength'"
+        />
       </div>
-      <div class="md:flex md:items-center mb-6">
-        <div class="md:w-1/3" />
-        <div class="md:w-2/3">
-          <FormError
-            :text="'required'"
-            :trigger="
-              $v.form.passwordNew.$error &&
-                !$v.form.passwordNew.required
-            "
-          />
-          <FormError
-            :text="'too short'"
-            :trigger="
-              $v.form.passwordNew.$error &&
-                !$v.form.passwordNew.minLength
-            "
-          />
-        </div>
-      </div>
-    </div>
+    </FormInput>
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="
@@ -111,15 +70,18 @@
     <AlertGraphql
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
+      class="mt-4"
     />
-  </form>
+  </Form>
 </template>
 
 <script>
 import { ACCOUNT_PASSWORD_CHANGE } from '~/apollo/documents'
+import Form from '~/components/forms/Form.vue'
+import FormError from '~/components/forms/FormError.vue'
+import FormInput from '~/components/forms/FormInput.vue'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/buttons/Button.vue'
-import FormError from '~/components/FormError.vue'
 
 import { minLength, required } from 'vuelidate/lib/validators'
 
@@ -127,13 +89,15 @@ export default {
   components: {
     AlertGraphql,
     Button,
-    FormError
+    Form,
+    FormError,
+    FormInput
   },
   data () {
     return {
       form: {
-        passwordCurrent: undefined,
-        passwordNew: undefined,
+        'current-password': undefined,
+        'new-password': undefined,
         sent: undefined
       },
       graphqlErrorMessage: undefined
@@ -150,8 +114,8 @@ export default {
       this.$apollo.mutate({
         mutation: ACCOUNT_PASSWORD_CHANGE,
         variables: {
-          passwordCurrent: this.form.passwordCurrent,
-          passwordNew: this.form.passwordNew
+          passwordCurrent: this.form['current-password'],
+          passwordNew: this.form['new-password']
         }
       }).then((data) => {
         alert('Success: Password changed successfully.')
@@ -164,11 +128,11 @@ export default {
   validations () {
     return {
       form: {
-        passwordCurrent: {
+        'current-password': {
           minLength: minLength(this.PASSWORD_LENGTH_MINIMUM),
           required
         },
-        passwordNew: {
+        'new-password': {
           minLength: minLength(this.PASSWORD_LENGTH_MINIMUM),
           required
         }

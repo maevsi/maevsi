@@ -115,8 +115,8 @@ module.exports = {
     }
   `,
   REDEEM_MUTATION: gql`
-    mutation ($uuid: UUID!) {
-      redeem(input: {invitationCode: $uuid}) {
+    mutation ($invitationCode: UUID!) {
+      redeem(input: {invitationCode: $invitationCode}) {
         redeemResponse {
           organizerUsername
           eventSlug

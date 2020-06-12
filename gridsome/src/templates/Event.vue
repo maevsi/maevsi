@@ -68,14 +68,13 @@
           <hr class="my-4">
           <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
             <div class="text-white">
-              <Button
+              <ButtonGreen
                 v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'CANCELED'"
-                :button-class="'btn-green'"
                 :icon="false"
                 @click.native="accept"
               >
                 Accept Invite
-              </Button>
+              </ButtonGreen>
               <div class="flex justify-center">
                 <div
                   v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
@@ -99,7 +98,7 @@
             </div>
             <div v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback !== null && eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'">
               <label
-                class="form-label mb-1 md:mb-0 pr-0"
+                class="mb-1 md:mb-0 pr-0"
                 for="input-username"
               >Kind of invite</label>
               <select
@@ -138,6 +137,7 @@
 import { EVENT_CONTACT_FEEDBACK_DATA_QUERY, UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION } from '~/apollo/documents'
 import AlertGraphql from '~/components/AlertGraphql.vue'
 import Button from '~/components/buttons/Button.vue'
+import ButtonGreen from '~/components/buttons/ButtonGreen.vue'
 import Error404 from '~/components/Error404.vue'
 import EventIcon from '~/components/EventIcon.vue'
 
@@ -162,6 +162,7 @@ export default {
   components: {
     AlertGraphql,
     Button,
+    ButtonGreen,
     Error404,
     EventIcon,
     VueMarkdown

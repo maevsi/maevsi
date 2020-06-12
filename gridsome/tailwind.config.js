@@ -35,7 +35,9 @@ module.exports = {
       }
     }
   },
-  variants: {},
+  variants: {
+    margin: ['last']
+  },
   plugins: [
     require('tailwindcss-animations'),
     function ({ addBase, addComponents, addUtilities, config }) {
@@ -60,37 +62,12 @@ module.exports = {
           marginBottom: config('theme.margin.4'),
           fontWeight: config('theme.fontWeight.bold')
         },
-        /* 'h3': { fontSize: config('theme.fontSize.lg') }, */
         ':disabled': {
           cursor: config('theme.cursor.not-allowed'),
           opacity: config('theme.opacity.50')
         }
       })
       addComponents({
-        '.btn': {
-          boxShadow: config('theme.boxShadow.default'),
-          padding: config('theme.padding.2') + ' ' + config('theme.padding.4'),
-          borderRadius: config('theme.borderRadius.full'),
-          fontWeight: config('theme.fontWeight.bold'),
-          '&:focus': {
-            boxShadow: config('theme.boxShadow.outline')
-          }
-        },
-        '.btn-green': {
-          backgroundColor: config('theme.colors.green.600'),
-          '&:hover': {
-            backgroundColor: config('theme.colors.green.700')
-          }
-        },
-        '.btn-red': {
-          backgroundColor: config('theme.colors.red.600'),
-          '&:hover': {
-            backgroundColor: config('theme.colors.red.700')
-          },
-          '&:disabled': {
-            backgroundColor: config('theme.colors.red.600')
-          }
-        },
         '.description': {
           a: {
             color: config('theme.colors.blue.700')
@@ -131,18 +108,7 @@ module.exports = {
         '.flip-card-back': {
           transform: 'rotateY(180deg)'
         },
-        '.form': {
-          backgroundColor: config('theme.colors.white'),
-          boxShadow: config('theme.boxShadow.md'),
-          borderRadius: config('theme.borderRadius.default'),
-          marginBottom: config('theme.margin.4'),
-          padding: config('theme.padding.6') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8') + ' ' + config('theme.padding.8'),
-          '&.error': {
-            borderColor: config('theme.colors.red.500'),
-            borderWidth: config('theme.borderWidth.default')
-          }
-        },
-        '.form-error': {
+        '.form-input-error': {
           input: {
             borderColor: config('theme.colors.red.500'),
             '&:focus': {
@@ -173,12 +139,6 @@ module.exports = {
             backgroundColor: config('theme.colors.white'),
             borderColor: config('theme.colors.purple.500')
           }
-        },
-        '.form-label': {
-          color: config('theme.colors.gray.600'),
-          display: 'block',
-          fontWeight: config('theme.fontWeight.semibold'),
-          paddingRight: config('theme.padding.4')
         },
         '.pills': {
           display: 'flex',

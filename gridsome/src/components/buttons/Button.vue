@@ -8,8 +8,7 @@
     >
       <!-- eslint-enable vue/attribute-hyphenation -->
       <button
-        class="btn"
-        :class="buttonClass"
+        :class="`${buttonClassStatic} ${buttonClass}`"
         :disabled="disabled"
       >
         <font-awesome
@@ -22,8 +21,7 @@
     </g-link>
     <button
       v-else
-      class="btn"
-      :class="buttonClass"
+      :class="`${buttonClassStatic} ${buttonClass}`"
       :disabled="disabled"
     >
       <font-awesome
@@ -41,7 +39,7 @@ export default {
   props: {
     buttonClass: {
       type: String,
-      default: 'btn-red'
+      default: 'bg-red-600 disabled:bg-red-600 focus:shadow-outline hover:bg-red-700'
     },
     disabled: {
       type: Boolean,
@@ -60,6 +58,11 @@ export default {
     link: {
       type: String,
       default: undefined
+    }
+  },
+  data () {
+    return {
+      buttonClassStatic: 'font-bold py-2 px-4 rounded-full shadow text-white'
     }
   }
 }
