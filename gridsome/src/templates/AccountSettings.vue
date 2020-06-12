@@ -20,23 +20,25 @@
             :username="this.$route.params.username"
           />
         </button>
+        <ModalImageSelection
+          v-if="showModalImageSelection"
+          :modal-hide-function="hideModalImageSelection"
+          :reload-function="reloadProfilePicture"
+        />
         <h1 class="mb-0 truncate w-full sm:w-auto">
           {{ $route.params.username }}
         </h1>
       </div>
-      <h2>
-        Image Uploads
-      </h2>
-      <ModalImageSelection
-        v-if="showModalImageSelection"
-        :modal-hide-function="hideModalImageSelection"
-        :reload-function="reloadProfilePicture"
-      />
-      <!-- "ImageUploadGallery" must come after "ModalImageSelection"! -->
-      <ImageUploadGallery
-        :deletion-function="reloadProfilePicture"
-        :username="$route.params.username"
-      />
+      <section>
+        <h2>
+          Image Uploads
+        </h2>
+        <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
+        <ImageUploadGallery
+          :deletion-function="reloadProfilePicture"
+          :username="$route.params.username"
+        />
+      </section>
       <section>
         <h2>
           Change Password
