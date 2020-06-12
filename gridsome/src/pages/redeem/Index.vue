@@ -108,7 +108,7 @@ export default {
       }).then((data) => {
         if (data.data.redeem !== null) {
           localStorage.setItem('jwt', data.data.redeem.redeemResponse.jwt)
-          this.$router.push(`/events/${data.data.redeem.redeemResponse.organizerUsername}/${data.data.redeem.redeemResponse.eventSlug}`)
+          this.$router.push(`/event/${data.data.redeem.redeemResponse.organizerUsername}/${data.data.redeem.redeemResponse.eventSlug}`)
         } else {
           console.error('Code invalid.')
         }

@@ -9,7 +9,7 @@
         />
       </g-link>
       <div class="dropdown text-lg">
-        <g-link :to="'/accounts/' + (loggedInUsername === undefined ? '' : loggedInUsername)">
+        <g-link :to="'/account/' + (loggedInUsername === undefined ? '' : loggedInUsername)">
           <font-awesome
             class="mr-2"
             :icon="['fas', 'user']"
@@ -20,7 +20,7 @@
           class="absolute dropdown-content right-0"
         >
           <div class="mt-1">
-            <g-link :to="'/accounts/' + (loggedInUsername === undefined ? '' : loggedInUsername) + '/settings'">
+            <g-link :to="'/account/' + (loggedInUsername === undefined ? '' : loggedInUsername) + '/settings'">
               <font-awesome
                 class="mr-2"
                 :icon="['fas', 'cog']"

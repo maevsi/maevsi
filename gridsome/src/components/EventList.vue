@@ -13,7 +13,7 @@
         <g-link
           v-for="event in allEvents.nodes"
           :key="event.id"
-          :to="'/events/' + event.organizerUsername + '/' + event.slug"
+          :to="'/event/' + event.organizerUsername + '/' + event.slug"
         >
           <li class="mb-2">
             <div class="bg-white border border-gray-400 flex flex-col p-4 rounded">

@@ -5,10 +5,10 @@ const { iCal, tusdDelete, tusdPost } = require('./src/server/middleware')
 
 module.exports = function (api) {
   const paths = {
-    account: '/accounts/:username([A-Za-z0-9-_]+)',
-    accountSetting: '/accounts/:username([A-Za-z0-9-_]+)/settings',
-    event: '/events/:username([A-Za-z0-9-_]+)/:event_name([-A-Za-z0-9_]+)',
-    eventGroup: '/event-groups/:username([A-Za-z0-9-_]+)/:event_group_name([-A-Za-z0-9_]+)',
+    account: '/account/:username([A-Za-z0-9-_]+)',
+    accountSetting: '/account/:username([A-Za-z0-9-_]+)/settings',
+    event: '/event/:username([A-Za-z0-9-_]+)/:event_name([-A-Za-z0-9_]+)',
+    eventGroup: '/event-group/:username([A-Za-z0-9-_]+)/:event_group_name([-A-Za-z0-9_]+)',
     eventIcs: '/ical',
     tusd: '/tusd'
   }

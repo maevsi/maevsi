@@ -21,7 +21,7 @@
     <!-- eslint-disable vue/attribute-hyphenation -->
     <g-link
       tabIndex="-1"
-      to="/events"
+      to="/event"
     >
       <!-- eslint-enable vue/attribute-hyphenation -->
       <Button

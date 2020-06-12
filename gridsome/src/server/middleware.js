@@ -16,7 +16,7 @@ function iCal (req, res) {
 
   const data = req.body
   const eventId = data.event.organizerUsername + '/' + data.event.slug
-  const eventUrl = 'https://' + process.env.GRIDSOME_STACK_DOMAIN + '/events/' + eventId
+  const eventUrl = 'https://' + process.env.GRIDSOME_STACK_DOMAIN + '/event/' + eventId
   const eventDescriptionHtml = md.render(data.event.description)
 
   res.type('text/calendar')
