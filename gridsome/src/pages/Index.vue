@@ -26,7 +26,7 @@
       <!-- eslint-enable vue/attribute-hyphenation -->
       <Button
         :icon="false"
-        class="m-4"
+        class="my-4"
       >
         Events
       </Button>
