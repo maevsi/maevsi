@@ -1,0 +1,6 @@
+*.log
+gridsome/.cache
+gridsome/src/.temp
+gridsome/node_modules
+gridsome/dist
+.git
