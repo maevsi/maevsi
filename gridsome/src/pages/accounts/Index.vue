@@ -410,29 +410,31 @@ export default {
       }
     }
   },
-  validations: {
-    formRegister: {
-      registerUsername: {
-        required,
-        slug
+  validations () {
+    return {
+      formRegister: {
+        registerUsername: {
+          required,
+          slug
+        },
+        registerPassword: {
+          minLength: minLength(this.PASSWORD_LENGTH_MINIMUM),
+          required
+        },
+        registerEmailAddress: {
+          email,
+          required
+        }
       },
-      registerPassword: {
-        minLength: minLength(8),
-        required
-      },
-      registerEmailAddress: {
-        email,
-        required
-      }
-    },
-    formSignin: {
-      signinUsername: {
-        required,
-        slug
-      },
-      signinPassword: {
-        minLength: minLength(8),
-        required
+      formSignin: {
+        signinUsername: {
+          required,
+          slug
+        },
+        signinPassword: {
+          minLength: minLength(this.PASSWORD_LENGTH_MINIMUM),
+          required
+        }
       }
     }
   }
