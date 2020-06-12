@@ -27,6 +27,7 @@
       <Button
         :icon="false"
         :text="'Events'"
+        class="m-4"
       />
     </g-link>
   </Layout>

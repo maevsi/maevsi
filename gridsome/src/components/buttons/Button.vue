@@ -1,5 +1,5 @@
 <template>
-  <div :class="wrapperClass">
+  <div class="inline-block">
     <!-- eslint-disable vue/attribute-hyphenation -->
     <g-link
       v-if="link !== undefined"
@@ -62,10 +62,6 @@ export default {
     text: {
       type: String,
       default: undefined
-    },
-    wrapperClass: {
-      type: String,
-      default: 'inline-block m-4'
     }
   }
 }

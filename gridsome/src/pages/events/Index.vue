@@ -7,9 +7,9 @@
         :icon-id="['fas', 'plus']"
         :link="'/new'"
         :text="'Create event'"
-        :wrapper-class="'inline-block m-2'"
+        class="m-2"
       />
-      <ButtonRedeem :wrapper-class="'inline-block m-2'" />
+      <ButtonRedeem class="m-2" />
     </div>
     <div v-if="$apollo.loading">
       Loading...
