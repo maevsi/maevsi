@@ -29,7 +29,7 @@ export default {
     $checkNested (obj, level, ...rest) {
       if (obj === undefined) return false
       if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level)) return true
-      return this.checkNested(obj[level], ...rest)
+      return this.$checkNested(obj[level], ...rest)
     },
     $jwtDecode (f) {
       if (typeof window !== 'undefined') {
