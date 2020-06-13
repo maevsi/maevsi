@@ -1283,22 +1283,22 @@
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
   integrity sha512-te5lMAWii1uEJ4FwLjzdlbw3+n0FZNOvFXHxQDKeT0dilh7HOzdMzV2TrJVUzq8ep7J4Na8OUYPRLSQkJHAlrg==
 
-"@uppy/companion-client@^1.4.5":
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-1.4.5.tgz#8119c80fc8f27b40bd66a95ddb7a8e2d2e67d9fc"
-  integrity sha512-lHmw48rWpipLKBDoDVuMPkSWZPIPoQr9aaV3VSAsVIUg65IhYyJ0FFBEXCh8jtNZsQbkHuXE+xM0niD0kDH/5w==
+"@uppy/companion-client@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-1.5.0.tgz#7688cbc44bda16b94d342bcdd622ba92d5493310"
+  integrity sha512-/YPSdjiknRAn4+qzwfSecugqqX0SQGEnAuDpnf6JWN0Im+5YHVkKT/D4UT6OWTjYa+qwN6vhbdk7qxfY3jqFlg==
   dependencies:
-    "@uppy/utils" "^3.0.0"
+    "@uppy/utils" "^3.1.0"
     namespace-emitter "^2.0.1"
 
-"@uppy/core@1.10.5":
-  version "1.10.5"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-1.10.5.tgz#64375a1b46cbe11498b66d34aadf030b18abd213"
-  integrity sha512-RweK/RSJAf5iEjBPt+Vxspnnavkvq2yI2OuAm9Sfz+035k+IPi8G59z0RcBVpWxYZrPkd1lxbd+9Bwql4P8JLw==
+"@uppy/core@1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-1.11.0.tgz#14340a19f15d4ddde03dac102851ed97cb04dc77"
+  integrity sha512-m65bX2M7iYBMEp3QYCetYVVOS1XpTg2CSW+9gF84kf9MKyHuIYmMNDPZ0Z6L7TfbtM+9e6kBZvzqeRlkLUhhYw==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.7"
     "@uppy/store-default" "^1.2.1"
-    "@uppy/utils" "^3.0.0"
+    "@uppy/utils" "^3.1.0"
     cuid "^2.1.1"
     lodash.throttle "^4.1.1"
     mime-match "^1.0.2"
@@ -1310,20 +1310,20 @@
   resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-1.2.1.tgz#4f6f1815292388bc2fd6da2655a3ae1133598d5c"
   integrity sha512-B7iKa9CMLTPgSu1lHQX+Z82NgxoBrzWfZg9WbZnvoJRHnoiwu8A3EFXPLq0OEslvJndBD4xPgUms0BPt4WbnWw==
 
-"@uppy/tus@1.5.13":
-  version "1.5.13"
-  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.5.13.tgz#74799fecfb2a9c997e76a5ac0493ccfa48c8d365"
-  integrity sha512-sjwHTtPsG0MHieTMfNS8qi/SHY2lkVUAIHXzaLwRwUW2PXatGbHXeAfTs5Wb7b5HZivMKmlqnWHWvD4Em4vY2g==
+"@uppy/tus@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.6.0.tgz#4f6fa8624a28794ff56ed195637a369341faa2a6"
+  integrity sha512-cRQ5Qw87SNS4b2v+UfjUW5uAVx4nv6pj9I0cu6ys8x+t7NjVo3cOjaT4Bns1/xxy6xzWv/4WT0LbG5h+NNGNMA==
   dependencies:
     "@types/tus-js-client" "^1.8.0"
-    "@uppy/companion-client" "^1.4.5"
-    "@uppy/utils" "^3.0.0"
+    "@uppy/companion-client" "^1.5.0"
+    "@uppy/utils" "^3.1.0"
     tus-js-client "^1.8.0"
 
-"@uppy/utils@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-3.0.0.tgz#144c2fee24c48126202da1f2b80563e794e0fbe8"
-  integrity sha512-QOXy2TrObmFBVOBFekQ3zgr7cKp6v5jUUSPBxN5GzxE9I8FDH6tOtDU4FwzatsC5g430e68DHEyiM1IgA1tTvA==
+"@uppy/utils@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-3.1.0.tgz#bc52b88f467018ee35cd0acede1da11e684fd265"
+  integrity sha512-XmqN9cjXg4cyJBQrtBR7qbZH68B35iH53v5iFVU4j2Ge0/BsUNXd8ygl0nnPudFDibNrZALVLS6DJtEg42w1FA==
   dependencies:
     lodash.throttle "^4.1.1"
 
