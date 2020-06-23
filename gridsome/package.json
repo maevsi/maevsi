@@ -27,7 +27,7 @@
     "moment-timezone": "0.5.31",
     "node-fetch": "2.6.0",
     "pg": "8.2.1",
-    "slugify": "1.4.0",
+    "slugify": "1.4.2",
     "snyk": "1.346.0",
     "tailwindcss-animations": "2.0.0",
     "vue-apollo": "3.0.3",
