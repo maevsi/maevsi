@@ -1,5 +1,4 @@
 module.exports = {
-  purge: false,
   theme: {
     animations: {
       shake: {
@@ -180,5 +179,30 @@ module.exports = {
         }
       })
     }
-  ]
+  ],
+  purge: {
+    content: [
+      'components/**/*.vue',
+      'layouts/**/*.vue',
+      'pages/**/*.vue',
+      'plugins/**/*.js',
+      'nuxt.config.js'
+    ],
+    options: {
+      whitelist: [
+        'body',
+        'html',
+        'img',
+        'a',
+        'g-image',
+        'g-image--lazy',
+        'g-image--loaded',
+        'active',
+        'active--exact',
+        'svg-inline--fa'
+      ],
+      whitelistPatterns: [/fa-/],
+      defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
+    }
+  }
 }

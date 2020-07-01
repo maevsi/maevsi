@@ -19,37 +19,7 @@ module.exports = {
       }
     },
     {
-      use: 'gridsome-plugin-tailwindcss',
-      options: {
-        purgeConfig: {
-          content: [
-            'src/assets/**/*.css',
-            './src/**/*.vue',
-            './src/**/*.js',
-            './src/**/*.jsx',
-            './src/**/*.ts',
-            './src/**/*.tsx',
-            './src/**/*.html',
-            './src/**/*.pug',
-            './src/**/*.md',
-            './src/**/*.svg'
-          ],
-          whitelist: [
-            'body',
-            'html',
-            'img',
-            'a',
-            'g-image',
-            'g-image--lazy',
-            'g-image--loaded',
-            'active',
-            'active--exact',
-            'svg-inline--fa'
-          ],
-          whitelistPatterns: [/fa-/],
-          defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
-        }
-      }
+      use: 'gridsome-plugin-tailwindcss'
     }
   ]
 }
