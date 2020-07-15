@@ -1377,11 +1377,6 @@
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-5.5.0.tgz#146c2a29ee7d3bae4bf2fcb274636e264c813c45"
   integrity sha512-41qEJgBH/TWgo5NFSvBCJ1qkoi3Q6ONSF2avrHq1LVEZfYpdHmj0y9SuTK+u9ZhG1sYQKBL1AWXKyLWP4RaUoQ==
 
-"@types/tus-js-client@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@types/tus-js-client/-/tus-js-client-1.8.0.tgz#492770b47560f9e8bf593b1263d382cc9ce87a20"
-  integrity sha512-lWxu5+6qfyfwsW99GzUeJ9y9JeOSSLduKxgYMvaYM7sGTDKZsrIIHTUbHI2P016xhXtu9NxmUM3GrB4i14ie4A==
-
 "@types/xml2js@0.4.5":
   version "0.4.5"
   resolved "https://registry.yarnpkg.com/@types/xml2js/-/xml2js-0.4.5.tgz#d21759b056f282d9c7066f15bbf5c19b908f22fa"
@@ -1394,22 +1389,22 @@
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
   integrity sha512-te5lMAWii1uEJ4FwLjzdlbw3+n0FZNOvFXHxQDKeT0dilh7HOzdMzV2TrJVUzq8ep7J4Na8OUYPRLSQkJHAlrg==
 
-"@uppy/companion-client@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-1.5.0.tgz#7688cbc44bda16b94d342bcdd622ba92d5493310"
-  integrity sha512-/YPSdjiknRAn4+qzwfSecugqqX0SQGEnAuDpnf6JWN0Im+5YHVkKT/D4UT6OWTjYa+qwN6vhbdk7qxfY3jqFlg==
+"@uppy/companion-client@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-1.5.1.tgz#88a9b55f8c813eac169c6d1c196d7d2d10985f89"
+  integrity sha512-dAt8CnuWmNRJKIoUsRbk4kjpe5tcsPaZfa0mmdd9TPUp5z548Ni895dkBzWhLmV/JSkRViJ7NNxtWXuyxBeEqQ==
   dependencies:
-    "@uppy/utils" "^3.1.0"
+    "@uppy/utils" "^3.2.0"
     namespace-emitter "^2.0.1"
 
-"@uppy/core@1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-1.11.0.tgz#14340a19f15d4ddde03dac102851ed97cb04dc77"
-  integrity sha512-m65bX2M7iYBMEp3QYCetYVVOS1XpTg2CSW+9gF84kf9MKyHuIYmMNDPZ0Z6L7TfbtM+9e6kBZvzqeRlkLUhhYw==
+"@uppy/core@1.12.0":
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-1.12.0.tgz#4da20e408ea1111e66b2edf7ec9e5f070c025624"
+  integrity sha512-l0r3m5MlfCSyFW+eQWb2i8b2VU7ExP7jWNGhqBFEcdpi8fFEExV2Nup61Ct0c3uone+mVjfuDWpqQf0NH40Zgg==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.7"
     "@uppy/store-default" "^1.2.1"
-    "@uppy/utils" "^3.1.0"
+    "@uppy/utils" "^3.2.0"
     cuid "^2.1.1"
     lodash.throttle "^4.1.1"
     mime-match "^1.0.2"
@@ -1421,21 +1416,21 @@
   resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-1.2.1.tgz#4f6f1815292388bc2fd6da2655a3ae1133598d5c"
   integrity sha512-B7iKa9CMLTPgSu1lHQX+Z82NgxoBrzWfZg9WbZnvoJRHnoiwu8A3EFXPLq0OEslvJndBD4xPgUms0BPt4WbnWw==
 
-"@uppy/tus@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.6.0.tgz#4f6fa8624a28794ff56ed195637a369341faa2a6"
-  integrity sha512-cRQ5Qw87SNS4b2v+UfjUW5uAVx4nv6pj9I0cu6ys8x+t7NjVo3cOjaT4Bns1/xxy6xzWv/4WT0LbG5h+NNGNMA==
+"@uppy/tus@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.7.0.tgz#c3afd8fbfef8a6fdf3939ac6af64b95d76595c28"
+  integrity sha512-IiZIQr7g642K2Zzh89z1h1uBHhgBKO55ect1tBKNGzY1ju9aWWax8MHNxYwTHXBwmJbknFCylDBLG/6SwClrMw==
   dependencies:
-    "@types/tus-js-client" "^1.8.0"
-    "@uppy/companion-client" "^1.5.0"
-    "@uppy/utils" "^3.1.0"
-    tus-js-client "^1.8.0"
+    "@uppy/companion-client" "^1.5.1"
+    "@uppy/utils" "^3.2.0"
+    tus-js-client "^2.1.1"
 
-"@uppy/utils@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-3.1.0.tgz#bc52b88f467018ee35cd0acede1da11e684fd265"
-  integrity sha512-XmqN9cjXg4cyJBQrtBR7qbZH68B35iH53v5iFVU4j2Ge0/BsUNXd8ygl0nnPudFDibNrZALVLS6DJtEg42w1FA==
+"@uppy/utils@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-3.2.0.tgz#13e90c886381b31038c8fd2bb901dc1006a35272"
+  integrity sha512-Ta+7mKoq6lW6JIesE4YJIeDRv0AxFKPEMJI4SoIW88/9D1hGTsx+G7SdVICBi9I3ttEDBW+WDjmN2BA/9ZaTjg==
   dependencies:
+    abortcontroller-polyfill "^1.4.0"
     lodash.throttle "^4.1.1"
 
 "@vue/babel-helper-vue-jsx-merge-props@^1.0.0":
@@ -1820,6 +1815,11 @@ abbrev@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
+
+abortcontroller-polyfill@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/abortcontroller-polyfill/-/abortcontroller-polyfill-1.4.0.tgz#0d5eb58e522a461774af8086414f68e1dda7a6c4"
+  integrity sha512-3ZFfCRfDzx3GFjO6RAkYx81lPGpUS20ISxux9gLxuKnqafNcFQo59+IoZqpO2WvQlyc287B62HDnDdNYRmlvWA==
 
 accepts@^1.3.7, accepts@~1.3.7:
   version "1.3.7"
@@ -4922,7 +4922,7 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
     assign-symbols "^1.0.0"
     is-extendable "^1.0.1"
 
-extend@^3.0.2, extend@~3.0.2:
+extend@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
   integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
@@ -12187,14 +12187,13 @@ tunnel@^0.0.6:
   resolved "https://registry.yarnpkg.com/tunnel/-/tunnel-0.0.6.tgz#72f1314b34a5b192db012324df2cc587ca47f92c"
   integrity sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==
 
-tus-js-client@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/tus-js-client/-/tus-js-client-1.8.0.tgz#0402357bdaa90e9dee6f6734c24473808bff272b"
-  integrity sha512-qPX3TywqzxocTxUZtcS8X7Aik72SVMa0jKi4hWyfvRV+s9raVzzYGaP4MoJGaF0yOgm2+b6jXaVEHogxcJ8LGw==
+tus-js-client@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/tus-js-client/-/tus-js-client-2.1.1.tgz#e7bd94226e1fa1860fcb22d67414b13474a85087"
+  integrity sha512-ILpgHlR0nfKxmlkXfrZ2z61upkHEXhADOGbGyvXSPjp7bn1NhU50p/Mu59q577Xirayr9vlW4tmoFqUrHKcWeQ==
   dependencies:
     buffer-from "^0.1.1"
     combine-errors "^3.0.3"
-    extend "^3.0.2"
     js-base64 "^2.4.9"
     lodash.throttle "^4.1.1"
     proper-lockfile "^2.0.1"
