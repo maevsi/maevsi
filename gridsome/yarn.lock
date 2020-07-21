@@ -1416,10 +1416,10 @@
   resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-1.2.1.tgz#4f6f1815292388bc2fd6da2655a3ae1133598d5c"
   integrity sha512-B7iKa9CMLTPgSu1lHQX+Z82NgxoBrzWfZg9WbZnvoJRHnoiwu8A3EFXPLq0OEslvJndBD4xPgUms0BPt4WbnWw==
 
-"@uppy/tus@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.7.0.tgz#c3afd8fbfef8a6fdf3939ac6af64b95d76595c28"
-  integrity sha512-IiZIQr7g642K2Zzh89z1h1uBHhgBKO55ect1tBKNGzY1ju9aWWax8MHNxYwTHXBwmJbknFCylDBLG/6SwClrMw==
+"@uppy/tus@1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.7.1.tgz#3aa6001e2a778f13b792c3539e220307ca83dc9b"
+  integrity sha512-lRXR1v/pXiJuHfkBNmfaniEVhbD3DnWjYpbEIg9EantL/Jsj6GZXOQXNjPiGYUh62kpyRWANfrfZF84jhttE/w==
   dependencies:
     "@uppy/companion-client" "^1.5.1"
     "@uppy/utils" "^3.2.0"
