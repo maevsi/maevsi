@@ -12,45 +12,47 @@
     >
       <div class="bg-white rounded">
         <ul class="inline-flex flex-wrap justify-center p-1">
-          <li
-            v-for="upload in allUploads.nodes"
-            :id="uploadIdPrefix + upload.id"
-            :key="upload.id"
-            :class="{ 'border-red-600': selectionFunction !== undefined && upload === selectedItem }"
-            class="border-4 border-transparent box-border relative"
-            @click="toggleSelect(upload)"
-          >
-            <img
-              alt="picture"
-              class="bg-gray-400 h-32 w-32"
-              :src="TUSD_FILES_URL + upload.storageKey + '+'"
+          <div v-if="allUploads !== undefined">
+            <li
+              v-for="upload in allUploads.nodes"
+              :id="uploadIdPrefix + upload.id"
+              :key="upload.id"
+              :class="{ 'border-red-600': selectionFunction !== undefined && upload === selectedItem }"
+              class="border-4 border-transparent box-border relative"
+              @click="toggleSelect(upload)"
             >
-            <div v-if="allowDeletion">
-              <div class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0">
-                <div class="flex h-full justify-center items-center">
-                  <font-awesome
-                    :icon="['fas', 'trash']"
-                    class="m-2"
-                    size="lg"
-                    title="trash"
-                  />
-                </div>
-              </div>
-              <button
-                class="absolute right-0 top-0"
-                @click="deleteImageUpload(upload.id)"
+              <img
+                alt="picture"
+                class="bg-gray-400 h-32 w-32"
+                :src="TUSD_FILES_URL + upload.storageKey + '+'"
               >
-                <div class="flex h-full justify-center items-center">
-                  <font-awesome
-                    :icon="['fas', 'trash']"
-                    class="m-2 text-white"
-                    size="lg"
-                    title="trash"
-                  />
+              <div v-if="allowDeletion">
+                <div class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0">
+                  <div class="flex h-full justify-center items-center">
+                    <font-awesome
+                      :icon="['fas', 'trash']"
+                      class="m-2"
+                      size="lg"
+                      title="trash"
+                    />
+                  </div>
                 </div>
-              </button>
-            </div>
-          </li>
+                <button
+                  class="absolute right-0 top-0"
+                  @click="deleteImageUpload(upload.id)"
+                >
+                  <div class="flex h-full justify-center items-center">
+                    <font-awesome
+                      :icon="['fas', 'trash']"
+                      class="m-2 text-white"
+                      size="lg"
+                      title="trash"
+                    />
+                  </div>
+                </button>
+              </div>
+            </li>
+          </div>
           <button
             v-if="allowAddition"
             class="bg-gray-600 flex-none h-32 m-1 w-32"
@@ -73,7 +75,7 @@
           </button>
         </ul>
         <div
-          v-if="allUploads.pageInfo.hasNextPage"
+          v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"
           class="flex justify-center"
         >
           <Button
