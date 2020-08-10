@@ -15,7 +15,7 @@
     "@fortawesome/free-solid-svg-icons": "5.14.0",
     "@fortawesome/vue-fontawesome": "0.1.10",
     "@gridsome/plugin-critical": "0.1.6",
-    "@uppy/core": "1.12.2",
+    "@uppy/core": "1.13.0",
     "@uppy/tus": "1.7.3",
     "apollo-boost": "0.4.9",
     "downloadjs": "1.4.7",
