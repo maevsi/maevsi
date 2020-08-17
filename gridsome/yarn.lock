@@ -1464,10 +1464,10 @@
     "@uppy/utils" "^3.2.2"
     namespace-emitter "^2.0.1"
 
-"@uppy/core@1.13.0":
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-1.13.0.tgz#1d9161d6072817659077b5a26a9204fa8511732f"
-  integrity sha512-bSrjAwXSGbqNYFWeTzKMuysdXwVUSXjLHl6/RbVQBPVOzETzkObNtXWK02pldQf0HxVpeQryzmA7Ws6Z8ow3tA==
+"@uppy/core@1.13.1":
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-1.13.1.tgz#fcec53cac4b4e89c56beeade125b27df6a257c63"
+  integrity sha512-HaWHUGDgcjya0NljV6dvEkVjGm+/WtrUEw+Zo7JA3Ah3VfgIUS/f7/uX+INsw+I4++TzcKSxr9fjTf+IzXSwJA==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.7"
     "@uppy/store-default" "^1.2.3"
@@ -1483,10 +1483,10 @@
   resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-1.2.3.tgz#3274acf97c77f3d7d2c71bd7faefff17e2115527"
   integrity sha512-9DFq4ccIqfy8mBOO5Mj52X26JsplY3hydSooM+64NKMZ9ccs6LpSm7j8WVbvvNFnSrd7SgP/53vFwo953KCKgg==
 
-"@uppy/tus@1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.7.4.tgz#d9f02c9689c1c3267a0221fbff5a17d13283e83a"
-  integrity sha512-E7q4MVTq8/2WTl2XzIsnWhueAk+V6sMJG+40vSgOST7yoN517t4SaM7Pvi5QmFnVABwrSZZffUnhCCQ+I2qVBQ==
+"@uppy/tus@1.7.5":
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.7.5.tgz#50fae77bc6e6f92b9bd57fe0a511ed75b907b3d3"
+  integrity sha512-aW8k8k5hUHL8SOq1tTvhoDWPXBsebaZ4dXDxeUSua1axjS1iA9F7C6RRlrVLxJgRPAPIJfW2zv3QtoJAbnhpFA==
   dependencies:
     "@uppy/companion-client" "^1.5.3"
     "@uppy/utils" "^3.2.2"
