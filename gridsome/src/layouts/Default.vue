@@ -3,9 +3,9 @@
     <header class="flex items-center justify-between mb-4 relative">
       <g-link to="/">
         <g-image
+          class="w-32"
           alt="maevsi logo"
-          src="~/assets/maevsi_with-text.svg"
-          width="135"
+          :src="imageSrc"
         />
       </g-link>
       <div class="dropdown text-lg">
@@ -54,7 +54,19 @@ query {
 export default {
   data () {
     return {
-      loggedInUsername: undefined
+      loggedInUsername: undefined,
+      colorMode: require('~/assets/maevsi.svg')
+    }
+  },
+  computed: {
+    imageSrc () {
+      if (this.colorMode === 'dark') {
+        return require('~/assets/maevsi_with-text_white.svg')
+      } else if (this.colorMode === 'light') {
+        return require('~/assets/maevsi_with-text_black.svg')
+      }
+
+      return require('~/assets/maevsi.svg')
     }
   },
   created () {
@@ -63,6 +75,17 @@ export default {
         this.loggedInUsername = jwtDecoded.username
       }
     })
+
+    if (typeof window !== 'undefined') {
+      const mM = window.matchMedia('(prefers-color-scheme: dark)')
+      mM.addEventListener('change', this.updateColorMode)
+      this.updateColorMode(mM)
+    }
+  },
+  methods: {
+    updateColorMode (mM) {
+      this.colorMode = mM.matches ? 'dark' : 'light'
+    }
   }
 }
 </script>
