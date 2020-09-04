@@ -31,6 +31,9 @@ module.exports = {
     extend: {
       animationDuration: {
         fast: '0.6s'
+      },
+      screens: {
+        'dark-mode': { raw: '(prefers-color-scheme: dark)' }
       }
     }
   },
@@ -51,7 +54,10 @@ module.exports = {
           background: '#e53e3e'
         },
         body: {
-          background: 'linear-gradient(#34a1f0, #695bc0) fixed'
+          background: '#f0f0f0',
+          '@screen dark-mode': {
+            background: '#181818'
+          }
         },
         h1: {
           fontSize: config('theme.fontSize.4xl'),

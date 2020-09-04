@@ -101,7 +101,7 @@ export default function (Vue, { appOptions, head }) {
 
   appOptions.apolloProvider = apolloProvider
   head.htmlAttrs = { class: 'h-full' }
-  head.bodyAttrs = { class: 'font-sans h-full text-white' }
+  head.bodyAttrs = { class: 'font-sans h-full dark-mode:text-white' }
   head.meta.push({
     name: 'viewport',
     content: 'width=device-width, initial-scale=1, shrink-to-fit=no'
