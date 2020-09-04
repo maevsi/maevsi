@@ -64,7 +64,7 @@
         :icon="false"
         type="submit"
       >
-        Change Password
+        Change password
       </Button>
     </div>
     <AlertGraphql

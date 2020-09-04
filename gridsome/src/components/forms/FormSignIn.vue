@@ -59,14 +59,14 @@
         :icon="false"
         type="submit"
       >
-        Sign In
+        Sign in
       </Button>
       <a
         class="disabled inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 mt-4"
         href="#"
         title="Not yet available."
       >
-        Forgot Password?
+        Forgot password?
       </a>
     </div>
     <AlertGraphql

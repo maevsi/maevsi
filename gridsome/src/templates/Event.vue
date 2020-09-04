@@ -73,7 +73,7 @@
                 :icon="false"
                 @click.native="accept"
               >
-                Accept Invite
+                Accept invite
               </ButtonGreen>
               <div class="flex justify-center">
                 <div
@@ -92,7 +92,7 @@
                   :icon="false"
                   @click.native="cancel"
                 >
-                  Cancel Invite
+                  Cancel invite
                 </Button>
               </div>
             </div>
