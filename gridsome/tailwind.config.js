@@ -41,6 +41,11 @@ module.exports = {
     require('tailwindcss-animations'),
     function ({ addBase, addComponents, addUtilities, config }) {
       addBase({
+        '@font-face': {
+          fontFamily: 'Montserrat',
+          src: "local('Montserrat Medium'), local('Montserrat-Medium'), url(/assets/static/fonts/montserrat/montserrat-medium.woff2) format('woff2')",
+          unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD'
+        },
         '::selection': {
           color: config('theme.colors.white'),
           background: '#e53e3e'
@@ -51,6 +56,7 @@ module.exports = {
         h1: {
           fontSize: config('theme.fontSize.4xl'),
           marginBottom: config('theme.margin.4'),
+          fontFamily: 'Montserrat',
           fontWeight: config('theme.fontWeight.bold'),
           overflow: 'hidden',
           textOverflow: 'ellipsis',
@@ -58,8 +64,9 @@ module.exports = {
         },
         h2: {
           fontSize: config('theme.fontSize.3xl'),
-          marginBottom: config('theme.margin.4'),
-          fontWeight: config('theme.fontWeight.bold')
+          fontFamily: 'Montserrat',
+          fontWeight: config('theme.fontWeight.bold'),
+          marginBottom: config('theme.margin.4')
         },
         ':disabled': {
           cursor: config('theme.cursor.not-allowed'),
