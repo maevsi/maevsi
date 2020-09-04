@@ -62,9 +62,11 @@
           >
             Download as iCal
           </Button>
-          <hr class="my-4">
-          <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
-          <vue-markdown class="description text-left text-gray-900 text-sm">{{ eventContactFeedbackData.event.description }}</vue-markdown>
+          <div v-if="eventContactFeedbackData.event.description">
+            <hr class="my-4">
+            <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
+            <vue-markdown class="description text-left text-gray-900 text-sm">{{ eventContactFeedbackData.event.description }}</vue-markdown>
+          </div>
           <hr class="my-4">
           <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
             <div class="text-white mb-4">
