@@ -67,7 +67,7 @@
           <vue-markdown class="description text-left text-gray-900 text-sm">{{ eventContactFeedbackData.event.description }}</vue-markdown>
           <hr class="my-4">
           <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
-            <div class="text-white">
+            <div class="text-white mb-4">
               <ButtonGreen
                 v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'CANCELED'"
                 :icon="false"
@@ -87,6 +87,7 @@
                     title="accepted"
                   /> Accepted
                 </div>
+                <div class="mx-2" />
                 <Button
                   v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
                   :icon="false"
