@@ -54,13 +54,7 @@
     </FormInput>
     <div class="flex flex-col items-center justify-between">
       <Button
-        :disabled="
-          !(
-            (form.sent
-              ? $v.form.$anyDirty
-              : $v.form.$dirty) && !$v.form.$error
-          )
-        "
+        :disabled="$v.form.$invalid || (form.sent && !$v.form.$anyDirty && !graphqlErrorMessage)"
         :icon="false"
         type="submit"
       >
