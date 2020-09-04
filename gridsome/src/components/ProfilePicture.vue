@@ -1,9 +1,9 @@
 <template>
-  <img
+  <g-image
     alt="profile picture"
     class="bg-gray-400 flex-none h-24 w-24"
-    :src="profilePictureUrl"
-  >
+    :src="imageSrc"
+  />
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
           if (this.$checkNested(data.allProfilePictures, 'nodes') && data.allProfilePictures.nodes.length > 0) {
             this.profilePictureUrl = this.TUSD_FILES_URL + data.allProfilePictures.nodes[0].uploadStorageKey + '+'
           } else {
-            this.profilePictureUrl = this.PROFILE_PICTURE_BLANK_URL
+            this.profilePictureUrl = undefined
           }
         },
         error (error, vm, key, type, options) {
@@ -39,7 +39,16 @@ export default {
   data () {
     return {
       graphqlErrorMessage: undefined,
-      profilePictureUrl: this.PROFILE_PICTURE_BLANK_URL
+      profilePictureUrl: undefined
+    }
+  },
+  computed: {
+    imageSrc () {
+      if (this.profilePictureUrl !== undefined) {
+        return this.profilePictureUrl
+      } else {
+        return require('~/assets/blank-profile-picture.svg')
+      }
     }
   },
   methods: {

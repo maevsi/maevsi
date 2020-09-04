@@ -7,7 +7,6 @@ export default {
     return {
       ITEMS_PER_PAGE: 8,
       PASSWORD_LENGTH_MINIMUM: 8,
-      PROFILE_PICTURE_BLANK_URL: '/assets/static/src/assets/blank-profile-picture.svg',
       TUSD_FILES_URL: 'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/'
     }
   },

@@ -29,11 +29,6 @@ export default {
     EventList,
     ProfilePicture
   },
-  data () {
-    return {
-      profilePictureUrl: this.PROFILE_PICTURE_BLANK_URL
-    }
-  },
   metaInfo () {
     return { title: this.$route.params.username }
   }
