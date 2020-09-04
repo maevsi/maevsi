@@ -11,7 +11,7 @@ BEGIN;
 CREATE TABLE maevsi.event (
     "id"                    SERIAL PRIMARY KEY,
     "name"                  TEXT NOT NULL CHECK (char_length("name") < 100),
-    "slug"                  TEXT NOT NULL CHECK (char_length("slug") < 100 AND "slug" ~* '^[-A-Za-z0-9_]+$'),
+    "slug"                  TEXT NOT NULL CHECK (char_length("slug") < 100 AND "slug" ~* '^[-A-Za-z0-9]+$'),
     "visibility"            maevsi.event_visibility NOT NULL,
     "invitee_count_maximum" INTEGER CHECK ("invitee_count_maximum" > 0),
     "organizer_username"    TEXT REFERENCES maevsi_private.account("username") NOT NULL,

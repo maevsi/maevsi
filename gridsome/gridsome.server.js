@@ -7,8 +7,8 @@ module.exports = function (api) {
   const paths = {
     account: '/account/:username([A-Za-z0-9-_]+)',
     accountSetting: '/account/:username([A-Za-z0-9-_]+)/settings',
-    event: '/event/:username([A-Za-z0-9-_]+)/:event_name([-A-Za-z0-9_]+)',
-    eventGroup: '/event-group/:username([A-Za-z0-9-_]+)/:event_group_name([-A-Za-z0-9_]+)',
+    event: '/event/:username([A-Za-z0-9-_]+)/:event_name([-A-Za-z0-9]+)',
+    eventGroup: '/event-group/:username([A-Za-z0-9-_]+)/:event_group_name([-A-Za-z0-9]+)',
     eventIcs: '/ical',
     tusd: '/tusd'
   }

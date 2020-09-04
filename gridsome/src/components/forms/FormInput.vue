@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     titleSlug: function () {
-      return this.$slugify(this.title, { lower: true })
+      return this.$slugify(this.title, { lower: true, strict: true })
     }
   }
 }

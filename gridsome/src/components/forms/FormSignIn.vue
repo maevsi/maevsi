@@ -87,7 +87,7 @@ import AlertGraphql from '~/components/AlertGraphql.vue'
 
 import { helpers, minLength, required } from 'vuelidate/lib/validators'
 
-const slug = helpers.regex('slug', /^[-A-Za-z0-9_]+$/)
+const slug = helpers.regex('slug', /^[-A-Za-z0-9]+$/)
 
 export default {
   components: {

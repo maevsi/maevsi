@@ -8,7 +8,7 @@ BEGIN;
 
 CREATE TABLE maevsi_private.account (
     "contact_id"                    INTEGER PRIMARY KEY REFERENCES maevsi.contact("id"),
-    "username"                      TEXT NOT NULL CHECK (char_length("username") < 100 AND "username" ~* '^[-A-Za-z0-9_]+$') UNIQUE,
+    "username"                      TEXT NOT NULL CHECK (char_length("username") < 100 AND "username" ~* '^[-A-Za-z0-9]+$') UNIQUE,
     "email_address"                 TEXT NOT NULL CHECK (char_length("email_address") < 320 AND "email_address" ~* '^.+@.+\..+$') UNIQUE,
     "email_address_verification"    UUID DEFAULT maevsi.uuid_generate_v1mc(),
     "password_hash"                 TEXT NOT NULL,
