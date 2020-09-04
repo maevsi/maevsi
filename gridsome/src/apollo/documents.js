@@ -100,6 +100,24 @@ module.exports = {
       }
     }
   `,
+  EVENT_CREATE: gql`
+    mutation ($createEventInput: CreateEventInput!) {
+      createEvent(input: $createEventInput) {
+        event {
+          organizerUsername
+          name
+          slug
+          visibility
+          inviteeCountMaximum
+          description
+          place
+          start
+          end
+          archived
+        }
+      }
+    }
+  `,
   JWT_REFRESH_MUTATION: gql`
     mutation ($id: UUID!) {
       jwtRefresh(input: {jwtId: $id}) {

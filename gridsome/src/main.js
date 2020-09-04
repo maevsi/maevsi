@@ -38,6 +38,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import 'vue-croppa/dist/vue-croppa.css'
+import 'vue-datetime/dist/vue-datetime.css'
 
 const apolloClient = new ApolloClient({
   uri: 'https://postgraphile.' + process.env.GRIDSOME_STACK_DOMAIN + '/graphql',

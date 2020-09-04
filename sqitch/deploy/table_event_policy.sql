@@ -28,4 +28,8 @@ CREATE POLICY event_select ON maevsi.event FOR SELECT USING (
     OR  id IN (SELECT maevsi_private.events_invited())
 );
 
+CREATE POLICY event_insert ON maevsi.event FOR INSERT WITH CHECK (
+    organizer_username = current_setting('jwt.claims.username', true)::TEXT
+);
+
 COMMIT;

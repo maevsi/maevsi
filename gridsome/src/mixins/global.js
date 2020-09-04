@@ -5,6 +5,10 @@ import { decode } from 'jsonwebtoken'
 export default {
   data () {
     return {
+      EVENT_DESCRIPTION_MAXIMUM: 10000,
+      EVENT_NAME_MAXIMUM: 100,
+      EVENT_PLACE_MAXIMUM: 300,
+      EVENT_SLUG_MAXIMUM: 100,
       ITEMS_PER_PAGE: 8,
       PASSWORD_LENGTH_MINIMUM: 8,
       TUSD_FILES_URL: 'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/'
