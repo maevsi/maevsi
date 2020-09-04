@@ -38,7 +38,7 @@ module.exports = {
     }
   },
   variants: {
-    margin: ['last']
+    margin: ['last', 'responsive']
   },
   plugins: [
     require('tailwindcss-animations'),
