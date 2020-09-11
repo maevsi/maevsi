@@ -82,6 +82,61 @@ export default {
       this.updateColorMode(mM)
     }
   },
+  metaInfo () {
+    return {
+      link: [
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/assets/static/favicon/apple-touch-icon.png?v=bOXMwoKlJr'
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/assets/static/favicon/favicon-32x32.png?v=bOXMwoKlJr'
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '16x16',
+          href: '/assets/static/favicon/favicon-16x16.png?v=bOXMwoKlJr'
+        },
+        {
+          rel: 'manifest',
+          href: '/assets/static/favicon/site.webmanifest?v=bOXMwoKlJr'
+        },
+        {
+          rel: 'mask-icon',
+          href: '/assets/static/favicon/safari-pinned-tab.svg?v=bOXMwoKlJr',
+          color: '#202020'
+        },
+        {
+          rel: 'shortcut icon',
+          href: '/assets/static/favicon/favicon.ico?v=bOXMwoKlJr'
+        }
+      ],
+      meta: [
+        {
+          key: 'theme-color',
+          name: 'theme-color',
+          content: this.themeColor
+        },
+        {
+          name: 'msapplication-TileColor',
+          content: '#202020'
+        },
+        {
+          name: 'msapplication-config',
+          content: '/assets/static/favicon/browserconfig.xml?v=bOXMwoKlJr'
+        },
+        {
+          name: 'theme-color',
+          content: '#202020'
+        }
+      ]
+    }
+  },
   methods: {
     updateColorMode (mM) {
       this.colorMode = mM.matches ? 'dark' : 'light'
