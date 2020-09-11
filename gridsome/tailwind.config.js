@@ -60,7 +60,7 @@ module.exports = {
         body: {
           background: '#f0f0f0',
           '@screen dark-mode': {
-            background: '#181818'
+            background: '#202020'
           }
         },
         h1: {
