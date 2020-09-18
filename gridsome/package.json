@@ -20,7 +20,7 @@
     "apollo-boost": "0.4.9",
     "downloadjs": "1.4.7",
     "graphql": "15.3.0",
-    "gridsome": "0.7.20",
+    "gridsome": "0.7.21",
     "html-to-text": "5.1.1",
     "ical-generator": "1.15.0",
     "jsonwebtoken": "8.5.1",
