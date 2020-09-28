@@ -8,7 +8,9 @@
     "pinDigests": true
   },
   "extends": [
-    "config:base"
+    "config:base",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)"
   ],
   "major": {
     "automerge": false

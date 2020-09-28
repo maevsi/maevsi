@@ -2,6 +2,7 @@
   "name": "maevsi",
   "private": true,
   "version": "0.0.3",
+  "scheduleVersion": "0.0.3",
   "scripts": {
     "build": "eslint --ext .js,.vue src && gridsome build",
     "develop": "gridsome develop",
@@ -41,6 +42,8 @@
     "weekstart": "1.0.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "11.0.0",
+    "@commitlint/config-conventional": "11.0.0",
     "eslint": "7.10.0",
     "eslint-config-standard": "14.1.1",
     "eslint-plugin-import": "2.22.0",
@@ -53,6 +56,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "eslint --ext .js,.vue src"
     }
   },
