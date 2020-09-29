@@ -195,11 +195,9 @@ module.exports = {
   ],
   purge: {
     content: [
-      'components/**/*.vue',
-      'layouts/**/*.vue',
-      'pages/**/*.vue',
-      'plugins/**/*.js',
-      'nuxt.config.js'
+      'src/**/*.vue',
+      'src/main.js',
+      'gridsome.config.js'
     ],
     options: {
       whitelist: [
