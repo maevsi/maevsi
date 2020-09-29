@@ -1,3 +1,10 @@
+## [0.1.2](https://github.com/maevsi/maevsi/compare/0.1.1...0.1.2) (2020-09-29)
+
+
+### Bug Fixes
+
+* **nginx:** correct redirects ([d252e00](https://github.com/maevsi/maevsi/commit/d252e00a62a5bc9edcb28f299689f5e45f2c708b))
+
 ## [0.1.1](https://github.com/maevsi/maevsi/compare/0.1.0...0.1.1) (2020-09-29)
 
 
