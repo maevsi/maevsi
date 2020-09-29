@@ -1,3 +1,10 @@
+## [0.1.1](https://github.com/maevsi/maevsi/compare/0.1.0...0.1.1) (2020-09-29)
+
+
+### Bug Fixes
+
+* **tailwind:** correct purge content ([c8a41c4](https://github.com/maevsi/maevsi/commit/c8a41c4797ed4a7a7a2e09da7304257a754e66c2))
+
 # [0.1.0](https://github.com/maevsi/maevsi/compare/0.0.3...0.1.0) (2020-09-28)
 
 
