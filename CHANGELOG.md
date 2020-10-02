@@ -1,3 +1,10 @@
+## [0.1.4](https://github.com/maevsi/maevsi/compare/0.1.3...0.1.4) (2020-10-02)
+
+
+### Bug Fixes
+
+* **workflows/semantic-release:** correct token usage ([0b69980](https://github.com/maevsi/maevsi/commit/0b69980550079396693151330c9b687e3a3372b7))
+
 ## [0.1.3](https://github.com/maevsi/maevsi/compare/0.1.2...0.1.3) (2020-10-02)
 
 
