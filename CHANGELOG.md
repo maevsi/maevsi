@@ -1,3 +1,10 @@
+## [0.1.3](https://github.com/maevsi/maevsi/compare/0.1.2...0.1.3) (2020-10-02)
+
+
+### Bug Fixes
+
+* **nginx:** add dynamic path locations ([8a0eadd](https://github.com/maevsi/maevsi/commit/8a0eadd0c54de34a6d397545d9ee57742e9dad7b))
+
 ## [0.1.2](https://github.com/maevsi/maevsi/compare/0.1.1...0.1.2) (2020-09-29)
 
 
