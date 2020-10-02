@@ -7,7 +7,9 @@ module.exports = {
       pkgRoot: './gridsome'
     }],
     '@semantic-release/github',
-    '@semantic-release/git'
+    ['@semantic-release/git', {
+      'assets': ['CHANGELOG.md', './gridsome/package.json']
+    }]
   ],
   // eslint-disable-next-line no-template-curly-in-string
   tagFormat: '${version}'
