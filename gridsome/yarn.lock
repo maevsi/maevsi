@@ -1539,10 +1539,10 @@
   resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-1.2.4.tgz#480f50cbf23f36158557a42b7699da0cf629d368"
   integrity sha512-d4YTq6SeH792+vG9OXGCfmCIoo4RteLJKU2mZCzMYNjCZ1yNfU/FVw1r7heTc7f2wNls56ABor2xSybk/X+wFA==
 
-"@uppy/tus@1.7.6":
-  version "1.7.6"
-  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.7.6.tgz#32f57adcb033df7a99f6fc5a6fce127be7944dd9"
-  integrity sha512-Aetmw/EjwXuUl6XoosiFbqSk59iRuTfsJmKoWL+TI4PiE+NPVYreRao7vS1Dy072cQo7nD9MlK/tAFOZ/Lf7DQ==
+"@uppy/tus@1.7.7":
+  version "1.7.7"
+  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-1.7.7.tgz#a146ae0938f755234f774ae9c536be8b6bc8f4f1"
+  integrity sha512-Fb8xlEeMmhbHeb4CvWuk3vXzhCV3vxZf7D0J/gg3OjDyWnKLnzNjHyfoNvjgukhd0V0Qes+bDxeSwkk3XXrc0g==
   dependencies:
     "@uppy/companion-client" "^1.5.4"
     "@uppy/utils" "^3.2.3"
