@@ -1,3 +1,10 @@
+## [0.1.5](https://github.com/maevsi/maevsi/compare/0.1.4...0.1.5) (2020-10-02)
+
+
+### Bug Fixes
+
+* **semantic-release:** correct assets ([b74078a](https://github.com/maevsi/maevsi/commit/b74078ad50eb2b77962223679b8c020fecd3185a))
+
 ## [0.1.4](https://github.com/maevsi/maevsi/compare/0.1.3...0.1.4) (2020-10-02)
 
 
