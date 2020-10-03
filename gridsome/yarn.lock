@@ -6456,10 +6456,10 @@ husky@4.3.0:
     slash "^3.0.0"
     which-pm-runs "^1.0.0"
 
-ical-generator@1.15.0:
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-1.15.0.tgz#98808c7f4117d84947f5d417ad5acda10da39c62"
-  integrity sha512-UdNOHps1y9GK2/4Mb1eeAlnIqS8cHFOFf1NiCnpzZps+iqyqZn4tQAJJZxt4TjdVkiVCQeKRaaMhTRy4tZEcYQ==
+ical-generator@1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-1.15.1.tgz#12e2fbd4b15ca893875f88c15952077520b7cab8"
+  integrity sha512-ZfrZYywBigtET2SPXtf+1qLupXx9KCWfWoHWjGs1k/hXWma8PtrhthWI3EdsLmWFyVvx2YzP/0Jh4sLAx7JVpw==
   dependencies:
     moment-timezone "^0.5.31"
 
