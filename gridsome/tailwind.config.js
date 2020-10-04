@@ -202,6 +202,11 @@ module.exports = {
       'src/**/*.vue',
       'src/main.js',
       'gridsome.config.js'
-    ]
+    ],
+    options: {
+      whitelist: [
+        ':disabled'
+      ]
+    }
   }
 }
