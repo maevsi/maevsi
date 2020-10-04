@@ -41,7 +41,7 @@ import 'vue-croppa/dist/vue-croppa.css'
 import 'vue-datetime/dist/vue-datetime.css'
 
 const apolloClient = new ApolloClient({
-  uri: 'https://postgraphile.' + process.env.GRIDSOME_STACK_DOMAIN + '/graphql',
+  uri: 'https://postgraphile.' + (process.env.GRIDSOME_STACK_DOMAIN || 'maevsi.test') + '/graphql',
   fetch,
   request: (operation) => {
     global.methods.$jwtDecode((jwt, jwtDecoded) => {
