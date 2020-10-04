@@ -1,3 +1,12 @@
+## [0.1.6](https://github.com/maevsi/maevsi/compare/0.1.5...0.1.6) (2020-10-04)
+
+
+### Bug Fixes
+
+* **ci:** don't start semantic-release on PRs ([00eac9a](https://github.com/maevsi/maevsi/commit/00eac9ad0662342a3bb00f9599c4839a65d972fb))
+* **forms:** use events instead of prop mutation ([9ec8262](https://github.com/maevsi/maevsi/commit/9ec8262076b373f2d849d685f3ef6038ae1c6735))
+* **tailwind:** whitelist ":disabled" ([5da0470](https://github.com/maevsi/maevsi/commit/5da047081fa7ec4215bde98c08d9618b33e5ed01)), closes [#35](https://github.com/maevsi/maevsi/issues/35)
+
 ## [0.1.5](https://github.com/maevsi/maevsi/compare/0.1.4...0.1.5) (2020-10-02)
 
 
