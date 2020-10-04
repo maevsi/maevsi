@@ -29,7 +29,7 @@
     "luxon": "1.25.0",
     "moment-timezone": "0.5.31",
     "node-fetch": "2.6.1",
-    "pg": "8.3.3",
+    "pg": "8.4.0",
     "slugify": "1.4.5",
     "snyk": "1.398.1",
     "tailwindcss-animations": "2.0.0",
