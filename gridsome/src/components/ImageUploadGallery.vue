@@ -29,7 +29,7 @@
               <div v-if="allowDeletion">
                 <div class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0">
                   <div class="flex h-full justify-center items-center">
-                    <font-awesome
+                    <FontAwesome
                       :icon="['fas', 'trash']"
                       class="m-2"
                       size="lg"
@@ -42,7 +42,7 @@
                   @click="deleteImageUpload(upload.id)"
                 >
                   <div class="flex h-full justify-center items-center">
-                    <font-awesome
+                    <FontAwesome
                       :icon="['fas', 'trash']"
                       class="m-2 text-white"
                       size="lg"
@@ -58,7 +58,7 @@
             class="bg-gray-600 flex-none h-32 m-1 w-32"
             @click="changeProfilePicture"
           >
-            <font-awesome
+            <FontAwesome
               :icon="['fas', 'plus']"
               class="text-white"
               title="add"

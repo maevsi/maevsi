@@ -64,10 +64,10 @@
     >
       <RadioButtonGroup
         id="input-visibility"
+        class="text-left"
         :name="'visibility'"
         :titles-values="[['public', 'PUBLIC'], ['private', 'PRIVATE']]"
-        :v="$v"
-        class="text-left"
+        @change="$v.form['visibility'].$model = $event"
       />
       <div slot="formError">
         <FormError

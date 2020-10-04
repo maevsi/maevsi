@@ -11,7 +11,7 @@
         :class="`${buttonClassStatic} ${buttonClass}`"
         :disabled="disabled"
       >
-        <font-awesome
+        <FontAwesome
           v-if="icon"
           class="mr-2"
           :icon="iconId"
@@ -24,7 +24,7 @@
       :class="`${buttonClassStatic} ${buttonClass}`"
       :disabled="disabled"
     >
-      <font-awesome
+      <FontAwesome
         v-if="icon"
         class="mr-2"
         :icon="iconId"

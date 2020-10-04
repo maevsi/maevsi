@@ -10,7 +10,7 @@
       </g-link>
       <div class="dropdown text-lg">
         <g-link :to="'/account/' + (loggedInUsername === undefined ? '' : loggedInUsername)">
-          <font-awesome
+          <FontAwesome
             class="mr-2"
             :icon="['fas', 'user']"
           />{{ loggedInUsername === undefined ? 'Account' : loggedInUsername }}
@@ -21,7 +21,7 @@
         >
           <div class="mt-1">
             <g-link :to="'/account/' + (loggedInUsername === undefined ? '' : loggedInUsername) + '/settings'">
-              <font-awesome
+              <FontAwesome
                 class="mr-2"
                 :icon="['fas', 'cog']"
               />Settings
@@ -29,7 +29,7 @@
           </div>
           <div class="mt-1">
             <button @click="$logOut($apollo.provider)">
-              <font-awesome
+              <FontAwesome
                 class="mr-2"
                 :icon="['fas', 'sign-out-alt']"
               />Log Out

@@ -2,10 +2,10 @@
   <div>
     <input
       :id="`input-${groupName}-${titleSlug}`"
-      v-model.trim="v.form[groupName].$model"
       :name="groupName"
       type="radio"
       :value="value ? value : titleSlug"
+      @change="$emit('change', $event.target.value)"
     >
     <label
       class="font-semibold inline-block pl-2"
@@ -25,10 +25,6 @@ export default {
     },
     groupName: {
       type: String,
-      default: undefined
-    },
-    v: {
-      type: Object,
       default: undefined
     },
     value: {
