@@ -26,7 +26,7 @@
               class="my-2 sm:mx-4"
             />
             <div class="my-2 sm:mx-4">
-              <font-awesome :icon="['fas', 'calendar-day']" />
+              <FontAwesome :icon="['fas', 'calendar-day']" />
               <br>
               {{ eventContactFeedbackData.event.start | moment("lll") }}
               <br>
@@ -36,7 +36,7 @@
               v-if="eventContactFeedbackData.event.end !== null"
               class="my-2 sm:mx-4"
             >
-              <font-awesome :icon="['fas', 'hourglass']" />
+              <FontAwesome :icon="['fas', 'hourglass']" />
               <br>
               {{ eventContactFeedbackData.event.end | moment("diff", eventContactFeedbackData.event.start) | duration('humanize') }}
             </div>
@@ -44,14 +44,14 @@
               v-if="eventContactFeedbackData.event.place !== null"
               class="my-2 sm:mx-4"
             >
-              <font-awesome :icon="['fas', 'map-marker']" />
+              <FontAwesome :icon="['fas', 'map-marker']" />
               <br>
               <a
                 :href="'https://maps.google.de/?q=' + eventContactFeedbackData.event.place"
                 target="_blank"
               >
                 {{ eventContactFeedbackData.event.place }}
-                <font-awesome :icon="['fas', 'external-link-alt']" />
+                <FontAwesome :icon="['fas', 'external-link-alt']" />
               </a>
             </div>
           </div>
@@ -82,7 +82,7 @@
                   v-if="eventContactFeedbackData.invitationFeedbackData.invitationFeedback === null || eventContactFeedbackData.invitationFeedbackData.invitationFeedback == 'ACCEPTED'"
                   class="flex font-semibold items-center text-green-600"
                 >
-                  <font-awesome
+                  <FontAwesome
                     class="mr-2 text-green-600"
                     :icon="['fas', 'check-circle']"
                     size="lg"

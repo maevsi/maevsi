@@ -1,7 +1,7 @@
 <template>
   <div v-if="event !== undefined">
     <div v-if="event.archived">
-      <font-awesome
+      <FontAwesome
         :icon="['fas', 'archive']"
         title="archived"
       />
@@ -13,7 +13,7 @@
       </span>
     </div>
     <div v-else-if="event.visibility === 'PUBLIC'">
-      <font-awesome
+      <FontAwesome
         :icon="['fas', 'globe-africa']"
         title="public"
       />
@@ -25,7 +25,7 @@
       </span>
     </div>
     <div v-else-if="event.visibility === 'PRIVATE'">
-      <font-awesome
+      <FontAwesome
         :icon="['fas', 'key']"
         title="private"
       />
@@ -37,7 +37,7 @@
       </span>
     </div>
     <div v-else>
-      <font-awesome
+      <FontAwesome
         :icon="['fas', 'bug']"
         title="bug"
       />
@@ -50,7 +50,7 @@
     </div>
   </div>
   <div v-else>
-    <font-awesome
+    <FontAwesome
       :icon="['fas', 'bug']"
       title="bug"
     />

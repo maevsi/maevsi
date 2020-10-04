@@ -87,7 +87,7 @@ library.add(
 )
 
 export default function (Vue, { appOptions, head }) {
-  Vue.component('font-awesome', FontAwesomeIcon)
+  Vue.component('FontAwesome', FontAwesomeIcon)
 
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)

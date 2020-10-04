@@ -11,7 +11,7 @@
         target="_blank"
         :title="$static.metadata.siteName + ' on GitHub'"
       >
-        <font-awesome
+        <FontAwesome
           class="mr-2"
           :icon="['fab', 'github']"
           size="2x"
