@@ -47,6 +47,7 @@ jobs:
               .
           fi
   semantic-release:
+    if: github.event_name != 'pull_request'
     name: Semantic Release
     runs-on: ubuntu-latest
     needs: docker
