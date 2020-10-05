@@ -1335,6 +1335,23 @@
     temp-dir "^2.0.0"
     tslib "^1.9.3"
 
+"@snyk/java-call-graph-builder@^1.14.0":
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/@snyk/java-call-graph-builder/-/java-call-graph-builder-1.15.1.tgz#deab3a84102349dcd5785d987f2d58cbd65c8ff5"
+  integrity sha512-9ycMAzc5wc0DPIs/cM9JVyfSN8vvK5xoEDzI/Ds+xQzw+hyZig1XISrTvDC5koGca/TVu+GNytGDeuc3SZ4VJA==
+  dependencies:
+    ci-info "^2.0.0"
+    debug "^4.1.1"
+    glob "^7.1.6"
+    graphlib "^2.1.8"
+    jszip "^3.2.2"
+    needle "^2.3.3"
+    progress "^2.0.3"
+    snyk-config "^3.0.0"
+    source-map-support "^0.5.7"
+    temp-dir "^2.0.0"
+    tslib "^1.9.3"
+
 "@snyk/rpm-parser@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@snyk/rpm-parser/-/rpm-parser-2.0.0.tgz#4ded7fa4b0a8efca7699359e4ca7a79bfbe38bc1"
@@ -11385,20 +11402,20 @@ snyk-config@3.1.1, snyk-config@^3.0.0:
     lodash.merge "^4.6.2"
     nconf "^0.10.0"
 
-snyk-cpp-plugin@1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/snyk-cpp-plugin/-/snyk-cpp-plugin-1.5.0.tgz#2ec2068fdcf5e579eb7d9b9eed8bb984fd00a925"
-  integrity sha512-nBZ0cBmpT4RVJUFzYydQJOxwjcdXk7NtRJE1UIIOafQa2FcvIl3GBezfrCJ6pu61svOAf5r8Qi/likx6F15K1A==
+snyk-cpp-plugin@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/snyk-cpp-plugin/-/snyk-cpp-plugin-2.0.0.tgz#5eb1100f33e0ae5b2818744b81bf8903b8e92b62"
+  integrity sha512-/xcDy8H5wxhk+4E9e8zDDGfcNo5g+zpwy585sCDkH5KpHdZHmguPi0GmZ9ZCBTuGIodeTIqsDqkBiA1WXSH7+w==
   dependencies:
     "@snyk/dep-graph" "^1.19.3"
     chalk "^4.1.0"
     debug "^4.1.1"
     tslib "^2.0.0"
 
-snyk-docker-plugin@3.21.0:
-  version "3.21.0"
-  resolved "https://registry.yarnpkg.com/snyk-docker-plugin/-/snyk-docker-plugin-3.21.0.tgz#a92074c0411578c1a7b86852a06f1421770e985d"
-  integrity sha512-A7oJS3QGR7bwm1qeeczCb8PDfi8go1KM6VWph/drJHBQ7JxVKKLb3j4AzrMmIM96mGZFbmyNOL4pznwumaOM8g==
+snyk-docker-plugin@3.24.0:
+  version "3.24.0"
+  resolved "https://registry.yarnpkg.com/snyk-docker-plugin/-/snyk-docker-plugin-3.24.0.tgz#534fe3a289dd6d0547a73807eee05d8d3e5ec9bc"
+  integrity sha512-ZKYNZkfCv90/SzBvZcQlEbfJ5ctOvfltZ5Km/z6N5IF+Peetos6VRwxcX8Jenq204ec0bTnBQ0h0OpTIGkMQnQ==
   dependencies:
     "@snyk/rpm-parser" "^2.0.0"
     "@snyk/snyk-docker-pull" "^3.2.0"
@@ -11409,7 +11426,7 @@ snyk-docker-plugin@3.21.0:
     gunzip-maybe "^1.4.2"
     mkdirp "^1.0.4"
     semver "^6.1.0"
-    snyk-nodejs-lockfile-parser "1.28.1"
+    snyk-nodejs-lockfile-parser "1.29.0"
     tar-stream "^2.1.0"
     tmp "^0.2.1"
     tslib "^1"
@@ -11435,13 +11452,14 @@ snyk-go-plugin@1.16.2:
     tmp "0.2.1"
     tslib "^1.10.0"
 
-snyk-gradle-plugin@3.6.3:
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/snyk-gradle-plugin/-/snyk-gradle-plugin-3.6.3.tgz#484059bcb98469b6a674bbcbdc995eafb5581041"
-  integrity sha512-j/eQSLSsK3DHmvVX2fNig4+ugYrKlCOV8Xvo6OYFkNzhMpdyNFiGWTS1uyP1HH75Gyc78MaLANMgjlSYePukzQ==
+snyk-gradle-plugin@3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/snyk-gradle-plugin/-/snyk-gradle-plugin-3.7.0.tgz#db84eeaa349d6c4ec7e27a5ada788e7a53851d4a"
+  integrity sha512-j2HJCX0RCvRsYLvF+MkA5io175QIWh6jVjHNXRYOL6ls0ZOhn0BLLs1Ilm8WkT+jTmaZt+Wnh8wBHDMhKlGcew==
   dependencies:
     "@snyk/cli-interface" "2.9.1"
     "@snyk/dep-graph" "^1.19.4"
+    "@snyk/java-call-graph-builder" "^1.14.0"
     "@types/debug" "^4.1.4"
     chalk "^3.0.0"
     debug "^4.1.1"
@@ -11505,6 +11523,27 @@ snyk-nodejs-lockfile-parser@1.28.1:
     source-map-support "^0.5.7"
     tslib "^1.9.3"
     uuid "^3.3.2"
+    yaml "^1.9.2"
+
+snyk-nodejs-lockfile-parser@1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/snyk-nodejs-lockfile-parser/-/snyk-nodejs-lockfile-parser-1.29.0.tgz#2774207ab8850749c4b44b3f50cbf96e81dd90ea"
+  integrity sha512-pQL5fe0lypifou0QAvirTsj0Ez7zHjwBUUq9U5ManMfPqFt89nwIK/5/xW0o3OiFM56Iu3uLUQXM/BhYqBokzQ==
+  dependencies:
+    "@yarnpkg/lockfile" "^1.1.0"
+    event-loop-spinner "^2.0.0"
+    got "11.4.0"
+    graphlib "2.1.8"
+    lodash.clonedeep "^4.5.0"
+    lodash.flatmap "^4.5.0"
+    lodash.isempty "^4.4.0"
+    lodash.set "^4.3.2"
+    lodash.topairs "^4.3.0"
+    p-map "2.1.0"
+    snyk-config "^3.0.0"
+    source-map-support "^0.5.7"
+    tslib "^1.9.3"
+    uuid "^8.3.0"
     yaml "^1.9.2"
 
 snyk-nuget-plugin@1.19.3:
@@ -11626,10 +11665,10 @@ snyk-try-require@1.3.1, snyk-try-require@^1.1.1, snyk-try-require@^1.3.1:
     lru-cache "^4.0.0"
     then-fs "^2.0.0"
 
-snyk@1.398.1:
-  version "1.398.1"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.398.1.tgz#19aec8dfffa60e7412e6309117e96b2cfa960355"
-  integrity sha512-jH24ztdJY8DQlqkd1z8n/JutdOqHtTPccCynM2hfOedW20yAp9c108LFjXvqBEk/EH3YyNmWzyLkkHOySeDkwQ==
+snyk@1.406.0:
+  version "1.406.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.406.0.tgz#f40e116786e655e81a5d1e3064b367d99489de33"
+  integrity sha512-1wJkwXl1pXPF4p7BeXUHAhnF/Yp81bzHuUKWEN5F55Rzdkz60yKeR3NO8y5pzRg8em7Leyf322APlV4DUHeoZA==
   dependencies:
     "@snyk/cli-interface" "2.9.2"
     "@snyk/dep-graph" "1.19.4"
@@ -11653,10 +11692,10 @@ snyk@1.398.1:
     proxy-from-env "^1.0.0"
     semver "^6.0.0"
     snyk-config "3.1.1"
-    snyk-cpp-plugin "1.5.0"
-    snyk-docker-plugin "3.21.0"
+    snyk-cpp-plugin "2.0.0"
+    snyk-docker-plugin "3.24.0"
     snyk-go-plugin "1.16.2"
-    snyk-gradle-plugin "3.6.3"
+    snyk-gradle-plugin "3.7.0"
     snyk-module "3.1.0"
     snyk-mvn-plugin "2.19.4"
     snyk-nodejs-lockfile-parser "1.28.1"
@@ -12977,6 +13016,11 @@ uuid@^8.2.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.0.tgz#ab738085ca22dc9a8c92725e459b1d507df5d6ea"
   integrity sha512-fX6Z5o4m6XsXBdli9g7DtWgAx+osMsRRZFKma1mIUsLCz6vRvv+pz5VNbyu9UEDzpMWulZfvpgb/cmDXVulYFQ==
+
+uuid@^8.3.0:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.1.tgz#2ba2e6ca000da60fce5a196954ab241131e05a31"
+  integrity sha512-FOmRr+FmWEIG8uhZv6C2bTgEVXsHk08kE7mPlrBbEe+c3r9pjceVPgupIfNIhc4yx55H69OXANrUaSuu9eInKg==
 
 v8-compile-cache@^2.0.3:
   version "2.1.1"
