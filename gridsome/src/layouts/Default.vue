@@ -111,11 +111,6 @@ export default {
       ],
       meta: [
         {
-          key: 'theme-color',
-          name: 'theme-color',
-          content: this.themeColor
-        },
-        {
           name: 'msapplication-TileColor',
           content: '#202020'
         },
