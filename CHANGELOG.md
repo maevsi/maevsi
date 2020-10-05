@@ -1,3 +1,10 @@
+## [0.1.9](https://github.com/maevsi/maevsi/compare/0.1.8...0.1.9) (2020-10-05)
+
+
+### Bug Fixes
+
+* **404:** add missing page title ([77f7629](https://github.com/maevsi/maevsi/commit/77f76292c59abeae7835be82aa2ff9b6fb40b346))
+
 ## [0.1.8](https://github.com/maevsi/maevsi/compare/0.1.7...0.1.8) (2020-10-05)
 
 
