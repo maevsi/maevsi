@@ -1,3 +1,15 @@
+## [0.1.7](https://github.com/maevsi/maevsi/compare/0.1.6...0.1.7) (2020-10-05)
+
+
+### Bug Fixes
+
+* populate data variables in mounted ([50d32f5](https://github.com/maevsi/maevsi/commit/50d32f538b0fea87b1b9bb960f42d2b0e85dea99)), closes [#41](https://github.com/maevsi/maevsi/issues/41)
+
+
+### Performance Improvements
+
+* **main:** add default value for GRIDSOME_STACK_DOMAIN ([9a942ab](https://github.com/maevsi/maevsi/commit/9a942abee2d01f0ae600e300e7c1cd3018dc0154))
+
 ## [0.1.6](https://github.com/maevsi/maevsi/compare/0.1.5...0.1.6) (2020-10-04)
 
 
