@@ -16,8 +16,6 @@ jobs:
       - name: Get Previous tag
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@0.2.0"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: Get next minor version
         id: semvers
         uses: "WyriHaximus/github-action-next-semvers@v1.0"
