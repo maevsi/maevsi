@@ -1,3 +1,10 @@
+## [0.1.10](https://github.com/maevsi/maevsi/compare/0.1.9...0.1.10) (2020-10-05)
+
+
+### Bug Fixes
+
+* **workflows/schedule:** correct path ([a1ff62a](https://github.com/maevsi/maevsi/commit/a1ff62a44266148ccff3d023fc70f8aebbb3c732))
+
 ## [0.1.9](https://github.com/maevsi/maevsi/compare/0.1.8...0.1.9) (2020-10-05)
 
 
