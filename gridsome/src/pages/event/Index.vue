@@ -36,7 +36,7 @@ export default {
       loggedIn: undefined
     }
   },
-  created () {
+  mounted () { // Must not be anything before 'mounted' as rendering would collide with 'v-if="loggedIn"'.
     this.$jwtDecode((jwt, jwtDecoded) => {
       if (jwtDecoded.role === 'maevsi_account' && jwtDecoded.exp > Math.floor(new Date() / 1000)) {
         this.loggedIn = true

@@ -62,17 +62,18 @@ export default {
     }
   },
   created () {
-    this.$jwtDecode((jwt, jwtDecoded) => {
-      if (jwtDecoded.role === 'maevsi_account' && jwtDecoded.exp > Math.floor(new Date() / 1000)) {
-        this.loggedInUsername = jwtDecoded.username
-      }
-    })
-
     if (typeof window !== 'undefined') {
       const mM = window.matchMedia('(prefers-color-scheme: dark)')
       mM.addEventListener('change', this.updateColorMode)
       this.updateColorMode(mM)
     }
+  },
+  mounted () { // Must not be anything before 'mounted' as rendering would collide with 'v-if="loggedInUsername !== undefined"'.
+    this.$jwtDecode((jwt, jwtDecoded) => {
+      if (jwtDecoded.role === 'maevsi_account' && jwtDecoded.exp > Math.floor(new Date() / 1000)) {
+        this.loggedInUsername = jwtDecoded.username
+      }
+    })
   },
   methods: {
     updateColorMode (mM) {
