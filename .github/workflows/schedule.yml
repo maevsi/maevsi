@@ -9,8 +9,8 @@ jobs:
   analyze-tags:
     runs-on: ubuntu-latest
     outputs:
-      tag: ${{ steps.previoustag.tag }}
-      timestamp-diff: ${{ steps.diff.timestamp-diff }}
+      tag: ${{ steps.previoustag.outputs.tag }}
+      timestamp-diff: ${{ steps.diff.outputs.timestamp-diff }}
     steps:
       - uses: actions/checkout@v2.3.3
         with:
@@ -24,12 +24,12 @@ jobs:
         id: diff
         run: echo "::set-output name=timestamp-diff::$(expr $EPOCHSECONDS - $TIMESTAMP_TAG)"
         env:
-          TIMESTAMP_TAG: ${{ steps.previoustag.timestamp }}
+          TIMESTAMP_TAG: ${{ steps.previoustag.outputs.timestamp }}
 
   schedule-release:
     runs-on: ubuntu-latest
     needs: analyze-tags
-    if: needs.analyze-tags.outputs.timestamp-diff > 78721
+    if: needs.analyze-tags.outputs.timestamp-diff > 156757
     steps:
       - name: Get next minor version
         id: semvers
