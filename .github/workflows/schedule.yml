@@ -8,16 +8,16 @@ jobs:
   analyze-tags:
     runs-on: ubuntu-latest
     outputs:
-      tag: ${{ steps.previoustag.outputs.tag }}
+      previous-tag: ${{ steps.previoustag.outputs.tag }}
       timestamp-diff: ${{ steps.diff.outputs.timestamp-diff }}
     steps:
       - uses: actions/checkout@v2.3.3
         with:
           fetch-depth: 0
-      - name: Get Previous tag
+      - name: Get previous tag
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@1.0.0"
-      - name: Get timestamp diff
+      - name: Get seconds from previous tag to now
         id: diff
         shell: bash
         env:
@@ -28,7 +28,7 @@ jobs:
   schedule-release:
     runs-on: ubuntu-latest
     needs: analyze-tags
-    if: needs.analyze-tags.outputs.timestamp-diff > 604800
+    if: needs.analyze-tags.outputs.timestamp-diff > 604800 # 604800 equal one week.
     steps:
       - uses: actions/checkout@v2.3.3
         with:
@@ -37,7 +37,7 @@ jobs:
         id: semvers
         uses: "WyriHaximus/github-action-next-semvers@v1.0"
         with:
-          version: ${{ needs.analyze-tags.outputs.tag }}
+          version: ${{ needs.analyze-tags.outputs.previous-tag }}
       - name: manifest Version
         uses: deef0000dragon1/json-edit-action/@v1
         env:
