@@ -3,10 +3,14 @@ name: Scheduled Release
 on:
   schedule:
     - cron:  '0 0 * * 1' # Every Monday at 00:00 AM UTC on the default branch
+  workflow_dispatch:
 
 jobs:
-  scheduled-release:
+  analyze-tags:
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.previoustag.tag }}
+      timestamp-diff: ${{ steps.diff.timestamp-diff }}
     steps:
       - uses: actions/checkout@v2.3.3
         with:
@@ -15,12 +19,23 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
       - name: Get Previous tag
         id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@0.2.0"
+        uses: "WyriHaximus/github-action-get-previous-tag@1.0.0"
+      - name: Get timestamp diff
+        id: diff
+        run: echo "::set-output name=timestamp-diff::$(expr $EPOCHSECONDS - $TIMESTAMP_TAG)"
+        env:
+          TIMESTAMP_TAG: ${{ steps.previoustag.timestamp }}
+
+  schedule-release:
+    runs-on: ubuntu-latest
+    needs: analyze-tags
+    if: needs.analyze-tags.outputs.timestamp-diff > 78721
+    steps:
       - name: Get next minor version
         id: semvers
         uses: "WyriHaximus/github-action-next-semvers@v1.0"
         with:
-          version: ${{ steps.previoustag.outputs.tag }}
+          version: ${{ needs.analyze-tags.outputs.tag }}
       - name: manifest Version
         uses: deef0000dragon1/json-edit-action/@v1
         env:
