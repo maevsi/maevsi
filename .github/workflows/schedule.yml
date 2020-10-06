@@ -3,7 +3,6 @@ name: Scheduled Release
 on:
   schedule:
     - cron:  '0 0 * * 1' # Every Monday at 00:00 AM UTC on the default branch
-  workflow_dispatch:
 
 jobs:
   analyze-tags:
@@ -29,7 +28,7 @@ jobs:
   schedule-release:
     runs-on: ubuntu-latest
     needs: analyze-tags
-    if: needs.analyze-tags.outputs.timestamp-diff > 157229
+    if: needs.analyze-tags.outputs.timestamp-diff > 604800
     steps:
       - uses: actions/checkout@v2.3.3
         with:
