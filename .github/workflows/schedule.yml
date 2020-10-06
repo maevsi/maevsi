@@ -15,8 +15,6 @@ jobs:
       - uses: actions/checkout@v2.3.3
         with:
           fetch-depth: 0
-          ref: ${{ github.head_ref }}
-          token: ${{ secrets.GH_TOKEN }}
       - name: Get Previous tag
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@1.0.0"
@@ -33,6 +31,9 @@ jobs:
     needs: analyze-tags
     if: needs.analyze-tags.outputs.timestamp-diff > 157229
     steps:
+      - uses: actions/checkout@v2.3.3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
       - name: Get next minor version
         id: semvers
         uses: "WyriHaximus/github-action-next-semvers@v1.0"
