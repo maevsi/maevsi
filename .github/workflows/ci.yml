@@ -18,6 +18,7 @@ jobs:
         uses: crazy-max/ghaction-docker-buildx@v3.3.0
 
       - name: Registry login
+        if: github.event_name == 'push'
         run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USER_NAME }}" --password-stdin
 
       - name: Build
