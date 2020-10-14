@@ -12,8 +12,56 @@ export default {
         name: 'description',
         content: 'A manager for events supported by invitees.',
       },
+      {
+        name: 'msapplication-config',
+        content: '/assets/static/favicon/browserconfig.xml?v=bOXMwoKlJr',
+      },
+      {
+        name: 'msapplication-TileColor',
+        content: '#202020',
+      },
+      {
+        name: 'theme-color',
+        content: '#202020',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/assets/static/favicon/apple-touch-icon.png?v=bOXMwoKlJr',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/assets/static/favicon/favicon-32x32.png?v=bOXMwoKlJr',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/assets/static/favicon/favicon-16x16.png?v=bOXMwoKlJr',
+      },
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/assets/static/favicon/favicon.ico',
+      },
+      {
+        rel: 'manifest',
+        href: '/assets/static/favicon/site.webmanifest?v=bOXMwoKlJr',
+      },
+      {
+        rel: 'mask-icon',
+        href: '/assets/static/favicon/safari-pinned-tab.svg?v=bOXMwoKlJr',
+        color: '#202020',
+      },
+      {
+        rel: 'shortcut icon',
+        href: '/assets/static/favicon/favicon.ico?v=bOXMwoKlJr',
+      },
+    ],
     htmlAttrs: { class: 'h-full' },
     bodyAttrs: { class: 'font-sans h-full dark-mode:text-white' },
   },
