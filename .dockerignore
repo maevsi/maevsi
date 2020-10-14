@@ -1,6 +1,12 @@
-*.log
-gridsome/.cache
-gridsome/src/.temp
-gridsome/node_modules
-gridsome/dist
-.git
+# Created by https://www.toptal.com/developers/gitignore/api/node
+# Edit at https://www.toptal.com/developers/gitignore?templates=node
+# UNUSED PROPERTIES REMOVED!
+
+# Dependency directories
+nuxt/node_modules/
+
+# Nuxt.js build / generate output
+nuxt/.nuxt
+nuxt/dist
+
+# End of https://www.toptal.com/developers/gitignore/api/node

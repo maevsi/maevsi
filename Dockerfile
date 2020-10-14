@@ -1,7 +1,8 @@
-############
-# Serve Vue.
+#############
+# Serve Nuxt in development mode.
 
-# Not below `buster`!
+# Should be the specific version of node:buster-slim.
+# sqitch requires at least buster.
 FROM node:13.14.0-buster-slim@sha256:ffee53b7563851a457e5a6f485adbe28877cf92286cc7095806e09d721808669 AS development
 
 # Update and install build dependencies
@@ -10,12 +11,9 @@ RUN \
     apt-get update && \
     apt-get install -y git
 
-# Install gridsome.
-RUN yarn global add @gridsome/cli
-
 WORKDIR /srv/app/
 
-COPY ./gridsome/ /srv/app/
+COPY ./nuxt/ ./
 
 RUN yarn
 
@@ -26,50 +24,51 @@ COPY ./sqitch/ /srv/sqitch/
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-
-CMD ["develop"]
+CMD ["dev", "--hostname", "0.0.0.0"]
 
 
 ########################
-# Build and compile Vue.
+# Build Nuxt.
 
-FROM node:13.14.0-slim@sha256:f8fddd1391a558ecde84a6340685f29af134181e5adbaa7e4d7e8ad28c417667 AS build
+FROM node:14.13.1-slim@sha256:19d61ec884cc2c72aa72e2b59d2c02de5227b2a8e8fdd2174c693e8e6d9237d4 AS build
 
-ARG GRIDSOME_STACK_DOMAIN=maev.si
-ENV GRIDSOME_STACK_DOMAIN=${GRIDSOME_STACK_DOMAIN}
+ARG NUXT_STACK_DOMAIN=maev.si
+ENV NUXT_STACK_DOMAIN=${NUXT_STACK_DOMAIN}
 ENV NODE_ENV=production
 
-# https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#running-puppeteer-in-docker
-RUN apt-get update \
-    && apt-get install -y wget gnupg \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-    && apt-get update \
-    && apt-get install -y google-chrome-stable libxss1 --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+# Update and install build dependencies
+# - `git` is required by the `yarn` command
+RUN \
+    apt-get update && \
+    apt-get install -y git
 
 WORKDIR /srv/app/
 
-COPY --from=development /srv/app/ /srv/app/
+COPY --from=development /srv/app/ ./
 
-RUN yarn build
+RUN yarn run build
+
+# Discard devDependencies.
+RUN yarn install
 
 
 #######################
 # Provide a web server.
-# Only the compiled app, ready for production with Nginx.
+# Requires node (cannot be static) as the server acts as backend too.
 
-# Should be the specific version of nginx:stable.
-FROM nginx:1.19.3@sha256:4949aa7259aa6f827450207db5ad94cabaa9248277c6d736d5e1975d200c7e43 AS production
+# Should be the specific version of node:buster-slim.
+# sqitch requires at least buster.
+FROM node:14.13.1-buster-slim@sha256:2565c4d4f984f9219661ccd1618d61a0614a0385e2770b71c94bfd86a2388a50 AS production
 
 # Install sqitch.
 RUN apt-get update && apt-get -y install libdbd-pg-perl postgresql-client sqitch
 
-COPY --from=build /srv/app/dist/ /usr/share/nginx/html/
+WORKDIR /srv/app/
+
+COPY --from=build /srv/app/ ./
 
 COPY ./sqitch/ /srv/sqitch/
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nuxt-ts", "start", "--hostname", "0.0.0.0"]

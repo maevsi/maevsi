@@ -31,6 +31,6 @@ The database management tool *Sqitch* needs special configuration.
 
 ## Technology
 
-[![Gridsome](https://gridsome.org/logos/logo-normal.svg)](https://gridsome.org/)
+[![Nuxt.js](https://nuxtjs.org/logos/nuxtjs-typo.svg)](https://nuxtjs.org/)
 [![PostGraphile](https://www.graphile.org/static/postgres_postgraphile_graphql-4b238552d875fe06196ba3bda74c6d2b.png)](https://www.graphile.org/)
 [![Sqitch](https://sqitch.org/img/sqitch-logo.svg)](https://sqitch.org/)
