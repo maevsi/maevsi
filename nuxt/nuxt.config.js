@@ -76,7 +76,12 @@ export default {
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/mixins.js', '~/plugins/vuelidate.js'],
+  plugins: [
+    // apollo-config.js is used by apollo directly
+    '~/plugins/mixins.js',
+    '~/plugins/vuelidate.js',
+    '~/plugins/slugify.js',
+  ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
