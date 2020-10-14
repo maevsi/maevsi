@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ this.$metaInfo.title }}</h1>
+    <h1>{{ title }}</h1>
     <div class="m-auto max-w-lg">
       <div class="grid">
         <div class="e1">
@@ -82,11 +82,9 @@ export default {
           ? 'signIn'
           : this.$route.query.form,
       password: undefined,
+      title: 'Account',
       username: undefined,
     }
-  },
-  metaInfo() {
-    return { title: 'Account' }
   },
   created() {
     this.$jwtDecode((_jwt, jwtDecoded) => {
@@ -124,6 +122,9 @@ export default {
         this.$router.push({ path: '', query: { form: tab } })
       }
     },
+  },
+  head() {
+    return { title: this.title }
   },
 }
 </script>

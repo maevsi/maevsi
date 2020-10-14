@@ -27,7 +27,7 @@ export default {
     EventList,
     ProfilePicture,
   },
-  metaInfo() {
+  head() {
     return { title: this.$route.params.username }
   },
   validate({ params }) {

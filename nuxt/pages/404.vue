@@ -9,7 +9,7 @@ export default {
   components: {
     Error404,
   },
-  metaInfo() {
+  head() {
     return { title: '404' }
   },
 }

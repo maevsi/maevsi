@@ -12,7 +12,7 @@
         class="items-center flex"
         :href="'https://github.com/maevsi/maevsi/'"
         target="_blank"
-        :title="$static.metadata.siteName + ' on GitHub'"
+        :title="title + ' on GitHub'"
       >
         <FontAwesomeIcon class="mr-2" :icon="['fab', 'github']" size="2x" />
         github.com/maevsi/maevsi
@@ -38,8 +38,10 @@ export default {
       title: 'Welcome!',
     }
   },
-  metaInfo() {
-    return { title: this.title }
+  head() {
+    return {
+      title: this.title,
+    }
   },
 }
 </script>

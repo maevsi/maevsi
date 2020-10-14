@@ -1,6 +1,6 @@
 <template>
   <div class="m-auto max-w-xl">
-    <h1>{{ this.$metaInfo.title }}</h1>
+    <h1>{{ title }}</h1>
     <div class="mb-4">
       Did you receive an invitation code for an event?
       <br />Enter it below!
@@ -84,15 +84,13 @@ export default {
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
       },
       graphqlErrorMessage: undefined,
+      title: 'Redeem',
     }
   },
   created() {
     if (this.$route.query.ic !== undefined) {
       this.$v.form['invitation-code'].$touch()
     }
-  },
-  metaInfo() {
-    return { title: 'Redeem' }
   },
   methods: {
     redeem(e) {
@@ -123,6 +121,9 @@ export default {
           console.error(error)
         })
     },
+  },
+  head() {
+    return { title: this.title }
   },
   validations: {
     form: {

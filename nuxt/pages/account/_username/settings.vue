@@ -62,9 +62,6 @@ export default {
       }
     })
   },
-  metaInfo() {
-    return { title: this.$route.params.username }
-  },
   methods: {
     hideModalImageSelection() {
       this.showModalImageSelection = false
@@ -72,6 +69,9 @@ export default {
     reloadProfilePicture() {
       this.$refs.profilePicture.reloadProfilePicture()
     },
+  },
+  head() {
+    return { title: this.$route.params.username }
   },
 }
 </script>

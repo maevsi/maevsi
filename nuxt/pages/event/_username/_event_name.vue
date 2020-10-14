@@ -207,16 +207,6 @@ export default {
       graphqlErrorMessage: undefined,
     }
   },
-  metaInfo() {
-    return {
-      title:
-        this.eventContactFeedbackData !== undefined &&
-        this.eventContactFeedbackData.event !== null &&
-        this.eventContactFeedbackData.event.name !== null
-          ? this.eventContactFeedbackData.event.name
-          : '404',
-    }
-  },
   methods: {
     accept() {
       this.eventContactFeedbackDataToSend = this.$objectClone(
@@ -267,6 +257,16 @@ export default {
           console.error(error)
         })
     },
+  },
+  head() {
+    return {
+      title:
+        this.eventContactFeedbackData !== undefined &&
+        this.eventContactFeedbackData.event !== null &&
+        this.eventContactFeedbackData.event.name !== null
+          ? this.eventContactFeedbackData.event.name
+          : '404',
+    }
   },
   validate({ params }) {
     // Must be a number

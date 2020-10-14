@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  metaInfo() {
+  head() {
     return { title: this.$route.params.event_group_name }
   },
   validate({ params }) {

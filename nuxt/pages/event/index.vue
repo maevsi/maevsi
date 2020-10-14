@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ this.$metaInfo.title }}</h1>
+    <h1>{{ title }}</h1>
     <div class="flex flex-wrap justify-center my-2">
       <Button
         v-if="loggedIn"
@@ -32,6 +32,7 @@ export default {
     return {
       graphqlErrorMessage: undefined,
       loggedIn: undefined,
+      title: 'Events',
     }
   },
   mounted() {
@@ -45,8 +46,8 @@ export default {
       }
     })
   },
-  metaInfo() {
-    return { title: 'Events' }
+  head() {
+    return { title: this.title }
   },
 }
 </script>

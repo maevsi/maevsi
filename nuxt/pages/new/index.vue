@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ this.$metaInfo.title }}</h1>
+    <h1>{{ title }}</h1>
     <NewEvent />
   </div>
 </template>
@@ -12,8 +12,13 @@ export default {
   components: {
     NewEvent,
   },
-  metaInfo() {
-    return { title: 'New Items' }
+  data() {
+    return {
+      title: 'New Items',
+    }
+  },
+  head() {
+    return { title: this.title }
   },
 }
 </script>
