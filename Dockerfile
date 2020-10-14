@@ -71,4 +71,4 @@ COPY ./sqitch/ /srv/sqitch/
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["nuxt-ts", "start", "--hostname", "0.0.0.0"]
+CMD ["start", "--hostname", "0.0.0.0"]
