@@ -3,7 +3,9 @@ import bodyParser from 'body-parser'
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - maevsi',
+    titleTemplate: (titleChunk) => {
+      return titleChunk ? `${titleChunk} - maevsi` : 'maevsi'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
