@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <div v-if="$apollo.loading">Loading...</div>
     <div v-else>
       <div
@@ -15,7 +15,7 @@
       <h2 class="text-left truncate">Their Events</h2>
       <EventList :username="this.$route.params.username" />
     </div>
-  </Layout>
+  </div>
 </template>
 
 <script>

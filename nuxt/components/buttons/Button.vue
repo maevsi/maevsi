@@ -1,7 +1,7 @@
 <template>
   <div class="inline-block">
     <!-- eslint-disable vue/attribute-hyphenation -->
-    <g-link v-if="link !== undefined" tabIndex="-1" :to="link">
+    <nuxt-link v-if="link !== undefined" tabIndex="-1" :to="link">
       <!-- eslint-enable vue/attribute-hyphenation -->
       <button
         :class="`${buttonClassStatic} ${buttonClass}`"
@@ -10,7 +10,7 @@
         <FontAwesomeIcon v-if="icon" class="mr-2" :icon="iconId" />
         <slot />
       </button>
-    </g-link>
+    </nuxt-link>
     <button
       v-else
       :class="`${buttonClassStatic} ${buttonClass}`"

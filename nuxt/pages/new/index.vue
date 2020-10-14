@@ -1,8 +1,8 @@
 <template>
-  <Layout>
+  <div>
     <h1>{{ this.$metaInfo.title }}</h1>
     <NewEvent />
-  </Layout>
+  </div>
 </template>
 
 <script>

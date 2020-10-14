@@ -1,8 +1,8 @@
 <template>
-  <Layout>
+  <div>
     <h1>{{ $route.params.event_group_name }}</h1>
     <p>It's not yet possible to view event groups. Stay tuned!</p>
-  </Layout>
+  </div>
 </template>
 
 <script>

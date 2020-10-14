@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <div v-if="$apollo.loading">Loading...</div>
     <div v-else-if="graphqlErrorMessage !== undefined">
       <AlertGraphql
@@ -160,7 +160,7 @@
         <Error404 />
       </div>
     </div>
-  </Layout>
+  </div>
 </template>
 
 <script>

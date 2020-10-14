@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <div
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
@@ -30,7 +30,7 @@
       <h2>Change Password</h2>
       <PasswordChange />
     </section>
-  </Layout>
+  </div>
 </template>
 
 <script>

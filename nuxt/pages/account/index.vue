@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <h1>{{ this.$metaInfo.title }}</h1>
     <div class="m-auto max-w-lg">
       <div class="grid">
@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-  </Layout>
+  </div>
 </template>
 
 <script>

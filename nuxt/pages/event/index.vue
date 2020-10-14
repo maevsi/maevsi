@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <h1>{{ this.$metaInfo.title }}</h1>
     <div class="flex flex-wrap justify-center my-2">
       <Button
@@ -14,7 +14,7 @@
     </div>
     <div v-if="$apollo.loading">Loading...</div>
     <EventList v-else />
-  </Layout>
+  </div>
 </template>
 
 <script>

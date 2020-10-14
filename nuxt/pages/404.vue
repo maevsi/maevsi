@@ -1,7 +1,5 @@
 <template>
-  <Layout>
-    <Error404 />
-  </Layout>
+  <Error404 />
 </template>
 
 <script>

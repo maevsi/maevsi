@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <h1>{{ title }}</h1>
     <p>Maevsi is a manager for events supported by invitees.</p>
     <p>
@@ -19,11 +19,11 @@
       </a>
     </div>
     <!-- eslint-disable vue/attribute-hyphenation -->
-    <g-link tabIndex="-1" to="/event">
+    <nuxt-link tabIndex="-1" to="/event">
       <!-- eslint-enable vue/attribute-hyphenation -->
       <Button :icon="false" class="my-4"> Events </Button>
-    </g-link>
-  </Layout>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>

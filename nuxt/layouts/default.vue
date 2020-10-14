@@ -1,11 +1,11 @@
 <template>
   <div class="container mx-auto p-4 text-center">
     <header class="flex items-center justify-between mb-4 relative">
-      <g-link to="/">
-        <g-image class="w-32" alt="maevsi logo" :src="imageSrc" />
-      </g-link>
+      <nuxt-link to="/">
+        <img class="w-32" alt="maevsi logo" :src="imageSrc" />
+      </nuxt-link>
       <div class="dropdown text-lg">
-        <g-link
+        <nuxt-link
           :to="
             '/account/' +
             (loggedInUsername === undefined ? '' : loggedInUsername)
@@ -14,13 +14,13 @@
           <FontAwesomeIcon class="mr-2" :icon="['fas', 'user']" />{{
             loggedInUsername === undefined ? 'Account' : loggedInUsername
           }}
-        </g-link>
+        </nuxt-link>
         <div
           v-if="loggedInUsername !== undefined"
           class="absolute dropdown-content right-0"
         >
           <div class="mt-1">
-            <g-link
+            <nuxt-link
               :to="
                 '/account/' +
                 (loggedInUsername === undefined ? '' : loggedInUsername) +
@@ -28,7 +28,7 @@
               "
             >
               <FontAwesomeIcon class="mr-2" :icon="['fas', 'cog']" />Settings
-            </g-link>
+            </nuxt-link>
           </div>
           <div class="mt-1">
             <button @click="$logOut($apollo.provider)">
@@ -41,7 +41,7 @@
         </div>
       </div>
     </header>
-    <slot />
+    <nuxt />
   </div>
 </template>
 

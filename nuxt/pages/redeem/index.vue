@@ -1,59 +1,57 @@
 <template>
-  <Layout>
-    <div class="m-auto max-w-xl">
-      <h1>{{ this.$metaInfo.title }}</h1>
-      <div class="mb-4">
-        Did you receive an invitation code for an event?
-        <br />Enter it below!
-      </div>
-      <Form
-        :function-submit="redeem"
-        :graphql-error-message="graphqlErrorMessage"
-        :validation-object="$v.form"
-      >
-        <FormInput :title="'Invitation Code'" :v="$v">
-          <input
-            id="input-invitation-code"
-            v-model.trim="$v.form['invitation-code'].$model"
-            class="form-input"
-            type="text"
-            placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-          />
-          <div slot="formError">
-            <FormError
-              :text="'required'"
-              :validation-object="$v.form['invitation-code']"
-              :validation-property="'required'"
-            />
-            <FormError
-              :text="'invalid format'"
-              :validation-object="$v.form['invitation-code']"
-              :validation-property="'uuid'"
-            />
-          </div>
-        </FormInput>
-        <div class="flex flex-col items-center justify-between">
-          <Button
-            :disabled="
-              !(
-                $v.form['invitation-code'].$dirty &&
-                !$v.form['invitation-code'].$error
-              )
-            "
-            :icon="false"
-            type="submit"
-          >
-            Redeem
-          </Button>
-        </div>
-        <AlertGraphql
-          :graphql-error-message="graphqlErrorMessage"
-          :validation-object="$v.form['invitation-code']"
-          class="mt-4"
-        />
-      </Form>
+  <div class="m-auto max-w-xl">
+    <h1>{{ this.$metaInfo.title }}</h1>
+    <div class="mb-4">
+      Did you receive an invitation code for an event?
+      <br />Enter it below!
     </div>
-  </Layout>
+    <Form
+      :function-submit="redeem"
+      :graphql-error-message="graphqlErrorMessage"
+      :validation-object="$v.form"
+    >
+      <FormInput :title="'Invitation Code'" :v="$v">
+        <input
+          id="input-invitation-code"
+          v-model.trim="$v.form['invitation-code'].$model"
+          class="form-input"
+          type="text"
+          placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        />
+        <div slot="formError">
+          <FormError
+            :text="'required'"
+            :validation-object="$v.form['invitation-code']"
+            :validation-property="'required'"
+          />
+          <FormError
+            :text="'invalid format'"
+            :validation-object="$v.form['invitation-code']"
+            :validation-property="'uuid'"
+          />
+        </div>
+      </FormInput>
+      <div class="flex flex-col items-center justify-between">
+        <Button
+          :disabled="
+            !(
+              $v.form['invitation-code'].$dirty &&
+              !$v.form['invitation-code'].$error
+            )
+          "
+          :icon="false"
+          type="submit"
+        >
+          Redeem
+        </Button>
+      </div>
+      <AlertGraphql
+        :graphql-error-message="graphqlErrorMessage"
+        :validation-object="$v.form['invitation-code']"
+        class="mt-4"
+      />
+    </Form>
+  </div>
 </template>
 
 <script>

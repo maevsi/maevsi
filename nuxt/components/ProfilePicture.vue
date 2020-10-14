@@ -1,5 +1,5 @@
 <template>
-  <g-image
+  <img
     alt="profile picture"
     class="bg-gray-400 flex-none h-24 w-24"
     :src="imageSrc"

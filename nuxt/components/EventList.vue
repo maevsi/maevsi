@@ -12,7 +12,7 @@
         "
         class="text-left"
       >
-        <g-link
+        <nuxt-link
           v-for="event in allEvents.nodes"
           :key="event.id"
           :to="'/event/' + event.organizerUsername + '/' + event.slug"
@@ -53,7 +53,7 @@
               </p>
             </div>
           </li>
-        </g-link>
+        </nuxt-link>
         <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
           <Button :icon="false" @click.native="showMore"> More </Button>
         </div>
