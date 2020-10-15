@@ -2,7 +2,7 @@
   <div class="container mx-auto p-4 text-center">
     <header class="flex items-center justify-between mb-4 relative">
       <nuxt-link to="/">
-        <img class="w-32" alt="maevsi logo" :src="imageSrc" />
+        <div id="logo" class="h-10 w-32" />
       </nuxt-link>
       <div class="dropdown text-lg">
         <nuxt-link
@@ -50,27 +50,9 @@ export default {
   data() {
     return {
       loggedInUsername: undefined,
-      colorMode: require('~/assets/maevsi.svg'),
     }
-  },
-  computed: {
-    imageSrc() {
-      if (this.colorMode === 'dark') {
-        return require('~/assets/maevsi_with-text_white.svg')
-      } else if (this.colorMode === 'light') {
-        return require('~/assets/maevsi_with-text_black.svg')
-      }
-
-      return require('~/assets/maevsi.svg')
-    },
   },
   mounted() {
-    if (typeof window !== 'undefined') {
-      const mM = window.matchMedia('(prefers-color-scheme: dark)')
-      mM.addEventListener('change', this.updateColorMode)
-      this.updateColorMode(mM)
-    }
-
     // Must not be anything before 'mounted' as rendering would collide with 'v-if="loggedInUsername !== undefined"'.
     this.$global.jwtDecode((_jwt, jwtDecoded) => {
       if (
@@ -81,10 +63,23 @@ export default {
       }
     })
   },
-  methods: {
-    updateColorMode(mM) {
-      this.colorMode = mM.matches ? 'dark' : 'light'
-    },
-  },
 }
 </script>
+
+<style scoped>
+#logo {
+  background-image: url(/assets/static/logos/maevsi.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+@media (prefers-color-scheme: dark) {
+  #logo {
+    background-image: url(/assets/static/logos/maevsi_with-text_white.svg);
+  }
+}
+@media (prefers-color-scheme: light) {
+  #logo {
+    background-image: url(/assets/static/logos/maevsi_with-text_black.svg);
+  }
+}
+</style>
