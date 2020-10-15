@@ -18,9 +18,7 @@
         github.com/maevsi/maevsi
       </a>
     </div>
-    <!-- eslint-disable vue/attribute-hyphenation -->
-    <nuxt-link tabIndex="-1" to="/event">
-      <!-- eslint-enable vue/attribute-hyphenation -->
+    <nuxt-link to="/event">
       <Button :icon="false" class="my-4"> Events </Button>
     </nuxt-link>
   </div>
