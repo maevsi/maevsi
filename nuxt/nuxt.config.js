@@ -69,11 +69,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-    '@fortawesome/fontawesome-svg-core/styles.css',
-    'vue-croppa/dist/vue-croppa.css',
-    'vue-datetime/dist/vue-datetime.css',
-  ],
+  css: ['vue-croppa/dist/vue-croppa.css', 'vue-datetime/dist/vue-datetime.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
