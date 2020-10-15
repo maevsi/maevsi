@@ -36,9 +36,9 @@
             <div class="my-2 sm:mx-4">
               <FontAwesomeIcon :icon="['fas', 'calendar-day']" />
               <br />
-              {{ eventContactFeedbackData.event.start | moment('lll') }}
+              {{ $moment(eventContactFeedbackData.event.start).format('lll') }}
               <br />
-              ({{ eventContactFeedbackData.event.start | moment('from') }})
+              ({{ $moment(eventContactFeedbackData.event.start).fromNow() }})
             </div>
             <div
               v-if="eventContactFeedbackData.event.end !== null"
@@ -47,9 +47,13 @@
               <FontAwesomeIcon :icon="['fas', 'hourglass']" />
               <br />
               {{
-                eventContactFeedbackData.event.end
-                  | moment('diff', eventContactFeedbackData.event.start)
-                  | duration('humanize')
+                $moment
+                  .duration(
+                    $moment(eventContactFeedbackData.event.end).diff(
+                      $moment(eventContactFeedbackData.event.start)
+                    )
+                  )
+                  .humanize()
               }}
             </div>
             <div

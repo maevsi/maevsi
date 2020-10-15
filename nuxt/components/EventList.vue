@@ -31,7 +31,7 @@
                     ),
                   }"
                 >
-                  {{ event.start | moment('lll') }}
+                  {{ $moment(event.start).format('lll') }}
                 </div>
               </div>
               <div class="flex items-center mb-2 text-gray-600 text-sm">
