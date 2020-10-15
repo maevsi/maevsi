@@ -12,7 +12,7 @@
         class="items-center flex"
         :href="'https://github.com/maevsi/maevsi/'"
         target="_blank"
-        :title="title + ' on GitHub'"
+        :title="'maevsi on GitHub'"
       >
         <FontAwesomeIcon class="mr-2" :icon="['fab', 'github']" size="2x" />
         github.com/maevsi/maevsi
