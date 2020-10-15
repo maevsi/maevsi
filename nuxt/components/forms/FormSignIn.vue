@@ -58,13 +58,13 @@
       >
         Sign in
       </Button>
-      <a
+      <nuxt-link
         class="disabled inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 mt-4"
-        href="#"
+        to="#"
         title="Not yet available."
       >
         Forgot password?
-      </a>
+      </nuxt-link>
     </div>
     <AlertGraphql
       :graphql-error-message="graphqlErrorMessage"
