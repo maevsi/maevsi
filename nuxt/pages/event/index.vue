@@ -12,8 +12,7 @@
       </Button>
       <ButtonRedeem class="m-2" />
     </div>
-    <div v-if="$apollo.loading">Loading...</div>
-    <EventList v-else />
+    <EventList />
   </div>
 </template>
 

@@ -3,63 +3,61 @@
     <AlertGraphql
       v-if="graphqlErrorMessage !== undefined"
       :graphql-error-message="graphqlErrorMessage"
-      :validation-object="undefined"
     />
-    <div class="m-auto w-full">
-      <ul
-        v-if="
-          allEvents !== undefined && allEvents.nodes && allEvents.nodes.length
-        "
-        class="text-left"
+    <div v-else-if="$apollo.loading">Loading...</div>
+    <ul
+      v-else-if="
+        allEvents !== undefined && allEvents.nodes && allEvents.nodes.length
+      "
+      class="text-left"
+    >
+      <nuxt-link
+        v-for="event in allEvents.nodes"
+        :key="event.id"
+        :to="'/event/' + event.organizerUsername + '/' + event.slug"
       >
-        <nuxt-link
-          v-for="event in allEvents.nodes"
-          :key="event.id"
-          :to="'/event/' + event.organizerUsername + '/' + event.slug"
-        >
-          <li class="mb-2">
-            <div
-              class="bg-white border border-gray-400 flex flex-col p-4 rounded"
-            >
-              <div class="flex items-center mb-2 text-gray-600 text-sm">
-                <div
-                  class="font-medium truncate"
-                  :class="{
-                    'text-gray-600': $moment(event.start).isBefore($moment()),
-                    'text-teal-600': $moment(event.start).isSameOrAfter(
-                      $moment()
-                    ),
-                  }"
-                >
-                  {{ $moment(event.start).format('lll') }}
-                </div>
+        <li class="mb-2">
+          <div
+            class="bg-white border border-gray-400 flex flex-col p-4 rounded"
+          >
+            <div class="flex items-center mb-2 text-gray-600 text-sm">
+              <div
+                class="font-medium truncate"
+                :class="{
+                  'text-gray-600': $moment(event.start).isBefore($moment()),
+                  'text-teal-600': $moment(event.start).isSameOrAfter(
+                    $moment()
+                  ),
+                }"
+              >
+                {{ $moment(event.start).format('lll') }}
               </div>
-              <div class="flex items-center mb-2 text-gray-600 text-sm">
-                <EventIcon class="mr-2" :event="event" :show-text="false" />
-                <div
-                  class="font-bold text-xl truncate"
-                  :class="{
-                    'text-gray-600': $moment(event.start).isBefore($moment()),
-                    'text-gray-900': $moment(event.start).isSameOrAfter(
-                      $moment()
-                    ),
-                  }"
-                >
-                  {{ event.name }}
-                </div>
-              </div>
-              <p class="line-clamp-box line-clamp-2 text-gray-700">
-                {{ event.description }}
-              </p>
             </div>
-          </li>
-        </nuxt-link>
-        <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
-          <Button :icon="false" @click.native="showMore"> More </Button>
-        </div>
-      </ul>
-      <p v-else>There are currently no events :/</p>
-    </div>
+            <div class="flex items-center mb-2 text-gray-600 text-sm">
+              <EventIcon class="mr-2" :event="event" :show-text="false" />
+              <div
+                class="font-bold text-xl truncate"
+                :class="{
+                  'text-gray-600': $moment(event.start).isBefore($moment()),
+                  'text-gray-900': $moment(event.start).isSameOrAfter(
+                    $moment()
+                  ),
+                }"
+              >
+                {{ event.name }}
+              </div>
+            </div>
+            <p class="line-clamp-box line-clamp-2 text-gray-700">
+              {{ event.description }}
+            </p>
+          </div>
+        </li>
+      </nuxt-link>
+      <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
+        <Button :icon="false" @click.native="showMore">More</Button>
+      </div>
+    </ul>
+    <p v-else>There are currently no events :/</p>
   </div>
 </template>
 
