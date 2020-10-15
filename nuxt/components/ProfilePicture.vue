@@ -19,11 +19,11 @@ export default {
         },
         update: (data) => {
           if (
-            this.$checkNested(data.allProfilePictures, 'nodes') &&
+            this.$global.checkNested(data.allProfilePictures, 'nodes') &&
             data.allProfilePictures.nodes.length > 0
           ) {
             this.profilePictureUrl =
-              this.TUSD_FILES_URL +
+              this.$global.TUSD_FILES_URL +
               data.allProfilePictures.nodes[0].uploadStorageKey +
               '+'
           } else {

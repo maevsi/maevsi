@@ -200,7 +200,7 @@ export default {
     }
   },
   created() {
-    this.$jwtDecode((_jwt, jwtDecoded) => {
+    this.$global.jwtDecode((_jwt, jwtDecoded) => {
       if (
         jwtDecoded.role === 'maevsi_account' &&
         jwtDecoded.exp > Math.floor(new Date() / 1000)
@@ -255,11 +255,11 @@ export default {
     return {
       form: {
         name: {
-          maxLength: maxLength(this.EVENT_NAME_MAXIMUM),
+          maxLength: maxLength(this.$global.EVENT_NAME_MAXIMUM),
           required,
         },
         slug: {
-          maxLength: maxLength(this.EVENT_SLUG_MAXIMUM),
+          maxLength: maxLength(this.$global.EVENT_SLUG_MAXIMUM),
           required,
           slugFormat,
         },
@@ -270,10 +270,10 @@ export default {
           minValue: minValue(1),
         },
         description: {
-          maxLength: maxLength(this.EVENT_DESCRIPTION_MAXIMUM),
+          maxLength: maxLength(this.$global.EVENT_DESCRIPTION_MAXIMUM),
         },
         place: {
-          maxLength: maxLength(this.EVENT_PLACE_MAXIMUM),
+          maxLength: maxLength(this.$global.EVENT_PLACE_MAXIMUM),
         },
         start: {
           required,

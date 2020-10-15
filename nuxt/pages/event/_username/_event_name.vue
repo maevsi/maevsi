@@ -8,10 +8,14 @@
       />
     </div>
     <div v-else>
-      <div v-if="$checkNested(eventContactFeedbackData, 'event')">
+      <div v-if="$global.checkNested(eventContactFeedbackData, 'event')">
         <p class="font-bold mb-2 text-2xl">
           Hey{{
-            $checkNested(eventContactFeedbackData, 'contact', 'firstname')
+            $global.checkNested(
+              eventContactFeedbackData,
+              'contact',
+              'firstname'
+            )
               ? ' ' + eventContactFeedbackData.contact.firstName
               : ''
           }}!
@@ -209,7 +213,7 @@ export default {
   },
   methods: {
     accept() {
-      this.eventContactFeedbackDataToSend = this.$objectClone(
+      this.eventContactFeedbackDataToSend = this.$global.objectClone(
         this.eventContactFeedbackData
       )
       this.eventContactFeedbackDataToSend.invitationFeedbackData.invitationFeedback =
@@ -217,7 +221,7 @@ export default {
       this.send()
     },
     cancel() {
-      this.eventContactFeedbackDataToSend = this.$objectClone(
+      this.eventContactFeedbackDataToSend = this.$global.objectClone(
         this.eventContactFeedbackData
       )
       this.eventContactFeedbackDataToSend.invitationFeedbackData.invitationFeedback =
@@ -247,7 +251,7 @@ export default {
           mutation: UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION,
           variables: {
             id: this.eventContactFeedbackDataToSend.invitationFeedbackData.id,
-            invitationFeedbackDatumPatch: this.$removeTypename(
+            invitationFeedbackDatumPatch: this.$global.removeTypename(
               this.eventContactFeedbackDataToSend.invitationFeedbackData
             ),
           },

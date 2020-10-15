@@ -31,7 +31,7 @@
             </nuxt-link>
           </div>
           <div class="mt-1">
-            <button @click="$logOut($apollo.provider)">
+            <button @click="$global.logOut()">
               <FontAwesomeIcon
                 class="mr-2"
                 :icon="['fas', 'sign-out-alt']"
@@ -46,17 +46,6 @@
 </template>
 
 <script>
-// Either authenticate or refresh token on page load.
-if (typeof window !== 'undefined') {
-  const jwt = localStorage.getItem('jwt')
-
-  if (jwt === null) {
-    global.methods.$authenticateAnonymous(this.app.apolloProvider)
-  } else {
-    global.methods.$jwtRefresh(this.app.apolloProvider)
-  }
-}
-
 export default {
   data() {
     return {
@@ -83,7 +72,7 @@ export default {
     }
 
     // Must not be anything before 'mounted' as rendering would collide with 'v-if="loggedInUsername !== undefined"'.
-    this.$jwtDecode((_jwt, jwtDecoded) => {
+    this.$global.jwtDecode((_jwt, jwtDecoded) => {
       if (
         jwtDecoded.role === 'maevsi_account' &&
         jwtDecoded.exp > Math.floor(new Date() / 1000)

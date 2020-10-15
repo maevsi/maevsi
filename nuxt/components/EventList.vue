@@ -76,7 +76,7 @@ export default {
         query: ALL_EVENTS_QUERY,
         variables: {
           cursor: null,
-          limit: this.ITEMS_PER_PAGE,
+          limit: this.$global.ITEMS_PER_PAGE,
           username: this.$route.params.username,
         },
         error(error, _vm, _key, _type, _options) {

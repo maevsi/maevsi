@@ -28,7 +28,7 @@
               <img
                 alt="picture"
                 class="bg-gray-400 h-32 w-32"
-                :src="TUSD_FILES_URL + upload.storageKey + '+'"
+                :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
               />
               <div v-if="allowDeletion">
                 <div
@@ -136,7 +136,7 @@ export default {
         query: ALL_UPLOADS,
         variables: {
           cursor: null,
-          limit: this.ITEMS_PER_PAGE,
+          limit: this.$global.ITEMS_PER_PAGE,
           username: this.username,
         },
         update: (data) => data.allUploads,
@@ -212,7 +212,7 @@ export default {
 
           switch (this.status) {
             case 204:
-              outerThis.$removeItemFromArray(
+              outerThis.$global.removeItemFromArray(
                 outerThis.allUploads.nodes,
                 'id',
                 uploadId
@@ -302,7 +302,7 @@ export default {
               })
 
               this.uppy.use(Tus, {
-                endpoint: this.TUSD_FILES_URL,
+                endpoint: this.$global.TUSD_FILES_URL,
                 limit: 1,
                 removeFingerprintOnSuccess: true,
               })

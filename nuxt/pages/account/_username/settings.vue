@@ -56,7 +56,7 @@ export default {
   created() {
     const routeUsername = this.$route.params.username
 
-    this.$jwtDecode((_jwt, jwtDecoded) => {
+    this.$global.jwtDecode((_jwt, jwtDecoded) => {
       if (jwtDecoded.username !== routeUsername) {
         this.$router.push('.')
       }

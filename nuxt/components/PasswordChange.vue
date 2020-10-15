@@ -123,11 +123,11 @@ export default {
     return {
       form: {
         'current-password': {
-          minLength: minLength(this.PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),
           required,
         },
         'new-password': {
-          minLength: minLength(this.PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },

@@ -87,7 +87,7 @@ export default {
     }
   },
   created() {
-    this.$jwtDecode((_jwt, jwtDecoded) => {
+    this.$global.jwtDecode((_jwt, jwtDecoded) => {
       if (jwtDecoded.username !== null && jwtDecoded.username !== '') {
         this.$router.push(jwtDecoded.username)
       }
