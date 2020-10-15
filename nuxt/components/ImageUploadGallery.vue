@@ -124,10 +124,6 @@ import Uppy from '@uppy/core'
 import Tus from '@uppy/tus'
 
 import { ALL_UPLOADS, UPLOAD_CREATE_MUTATION } from '~/apollo/documents'
-import AlertGraphql from '~/components/AlertGraphql.vue'
-import Button from '~/components/buttons/Button.vue'
-import ButtonGreen from '~/components/buttons/ButtonGreen.vue'
-import Modal from '~/components/Modal.vue'
 
 export default {
   apollo: {
@@ -147,11 +143,7 @@ export default {
     },
   },
   components: {
-    AlertGraphql,
-    Button,
-    ButtonGreen,
     Croppa: Croppa.component,
-    Modal,
   },
   props: {
     allowAddition: {

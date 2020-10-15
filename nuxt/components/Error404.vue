@@ -7,15 +7,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import ButtonHome from '~/components/buttons/ButtonHome.vue'
-import ButtonRedeem from '~/components/buttons/ButtonRedeem.vue'
-
-export default {
-  components: {
-    ButtonHome,
-    ButtonRedeem,
-  },
-}
-</script>

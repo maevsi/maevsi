@@ -178,11 +178,6 @@ import {
   EVENT_CONTACT_FEEDBACK_DATA_QUERY,
   UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION,
 } from '~/apollo/documents'
-import AlertGraphql from '~/components/AlertGraphql.vue'
-import Button from '~/components/buttons/Button.vue'
-import ButtonGreen from '~/components/buttons/ButtonGreen.vue'
-import Error404 from '~/components/Error404.vue'
-import EventIcon from '~/components/EventIcon.vue'
 
 export default {
   apollo: {
@@ -201,11 +196,6 @@ export default {
     },
   },
   components: {
-    AlertGraphql,
-    Button,
-    ButtonGreen,
-    Error404,
-    EventIcon,
     VueMarkdown,
   },
   data() {

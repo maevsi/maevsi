@@ -34,18 +34,8 @@
 
 <script>
 import { PROFILE_PICTURE_SET } from '~/apollo/documents'
-import Button from '~/components/buttons/Button.vue'
-import ButtonGreen from '~/components/buttons/ButtonGreen.vue'
-import ImageUploadGallery from '~/components/ImageUploadGallery.vue'
-import Modal from '~/components/Modal.vue'
 
 export default {
-  components: {
-    Button,
-    ButtonGreen,
-    ImageUploadGallery,
-    Modal,
-  },
   props: {
     modalHideFunction: {
       type: Function,

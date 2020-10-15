@@ -1,6 +1,6 @@
 <template>
   <div>
-    <RadioButton
+    <FormRadioButton
       v-for="titlesValue in titlesValues"
       :key="Array.isArray(titlesValue) ? titlesValue[0] : titlesValue"
       :group-name="name"
@@ -13,12 +13,7 @@
 </template>
 
 <script>
-import RadioButton from '~/components/forms/RadioButton.vue'
-
 export default {
-  components: {
-    RadioButton,
-  },
   props: {
     name: {
       type: String,

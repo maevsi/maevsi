@@ -58,11 +58,6 @@
 import { helpers, required } from 'vuelidate/lib/validators'
 
 import { REDEEM_MUTATION } from '~/apollo/documents'
-import Form from '~/components/forms/Form.vue'
-import FormError from '~/components/forms/FormError.vue'
-import FormInput from '~/components/forms/FormInput.vue'
-import AlertGraphql from '~/components/AlertGraphql.vue'
-import Button from '~/components/buttons/Button.vue'
 
 const uuid = helpers.regex(
   'uuid',
@@ -70,13 +65,6 @@ const uuid = helpers.regex(
 )
 
 export default {
-  components: {
-    AlertGraphql,
-    Button,
-    Form,
-    FormError,
-    FormInput,
-  },
   data() {
     return {
       form: {

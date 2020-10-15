@@ -25,12 +25,7 @@
 </template>
 
 <script>
-import Button from '~/components/buttons/Button.vue'
-
 export default {
-  components: {
-    Button,
-  },
   data() {
     return {
       title: 'Welcome!',

@@ -58,14 +58,7 @@
 </template>
 
 <script>
-import FormRegister from '~/components/forms/FormRegister.vue'
-import FormSignIn from '~/components/forms/FormSignIn.vue'
-
 export default {
-  components: {
-    FormSignIn,
-    FormRegister,
-  },
   data() {
     return {
       formRegister: {

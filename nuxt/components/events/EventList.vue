@@ -65,9 +65,6 @@
 
 <script>
 import { ALL_EVENTS_QUERY } from '~/apollo/documents'
-import AlertGraphql from '~/components/AlertGraphql.vue'
-import Button from '~/components/buttons/Button.vue'
-import EventIcon from '~/components/EventIcon.vue'
 
 export default {
   apollo: {
@@ -84,11 +81,6 @@ export default {
         },
       }
     },
-  },
-  components: {
-    AlertGraphql,
-    Button,
-    EventIcon,
   },
   props: {
     username: {

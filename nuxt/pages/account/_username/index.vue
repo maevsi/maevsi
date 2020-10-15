@@ -19,14 +19,7 @@
 </template>
 
 <script>
-import EventList from '~/components/EventList.vue'
-import ProfilePicture from '~/components/ProfilePicture.vue'
-
 export default {
-  components: {
-    EventList,
-    ProfilePicture,
-  },
   head() {
     return { title: this.$route.params.username }
   },

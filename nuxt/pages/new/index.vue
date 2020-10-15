@@ -6,12 +6,7 @@
 </template>
 
 <script>
-import NewEvent from '~/components/NewEvent.vue'
-
 export default {
-  components: {
-    NewEvent,
-  },
   data() {
     return {
       title: 'New Items',

@@ -11,12 +11,7 @@
 </template>
 
 <script>
-import Button from '~/components/buttons/Button.vue'
-
 export default {
-  components: {
-    Button,
-  },
   props: {
     buttonClass: {
       type: String,

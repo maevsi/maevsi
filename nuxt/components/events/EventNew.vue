@@ -53,7 +53,7 @@
       </div>
     </FormInput>
     <FormInput :title="'Visibility'" :v="$v">
-      <RadioButtonGroup
+      <FormRadioButtonGroup
         id="input-visibility"
         class="text-left"
         :name="'visibility'"
@@ -162,24 +162,12 @@ import {
 } from 'vuelidate/lib/validators'
 
 import { EVENT_CREATE } from '~/apollo/documents'
-import Form from '~/components/forms/Form.vue'
-import FormError from '~/components/forms/FormError.vue'
-import FormInput from '~/components/forms/FormInput.vue'
-import RadioButtonGroup from '~/components/forms/RadioButtonGroup.vue'
-import AlertGraphql from '~/components/AlertGraphql.vue'
-import Button from '~/components/buttons/Button.vue'
 
 const slugFormat = helpers.regex('uuid', /^[-A-Za-z0-9]+$/)
 
 export default {
   components: {
-    AlertGraphql,
-    Button,
     Datetime,
-    Form,
-    FormError,
-    FormInput,
-    RadioButtonGroup,
   },
   data() {
     return {

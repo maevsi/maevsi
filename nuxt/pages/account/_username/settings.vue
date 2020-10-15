@@ -34,20 +34,9 @@
 </template>
 
 <script>
-import ImageUploadGallery from '~/components/ImageUploadGallery.vue'
-import ModalImageSelection from '~/components/ModalImageSelection.vue'
-import PasswordChange from '~/components/PasswordChange.vue'
-import ProfilePicture from '~/components/ProfilePicture.vue'
-
 require('@uppy/core/dist/style.css')
 
 export default {
-  components: {
-    ImageUploadGallery,
-    ModalImageSelection,
-    PasswordChange,
-    ProfilePicture,
-  },
   data() {
     return {
       showModalImageSelection: false,
