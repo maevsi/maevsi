@@ -67,6 +67,7 @@
                   'https://maps.google.de/?q=' +
                   eventContactFeedbackData.event.place
                 "
+                rel="noopener"
                 target="_blank"
               >
                 {{ eventContactFeedbackData.event.place }}

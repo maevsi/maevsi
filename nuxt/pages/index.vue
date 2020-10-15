@@ -11,6 +11,7 @@
       <a
         class="items-center flex"
         :href="'https://github.com/maevsi/maevsi/'"
+        rel="noopener"
         target="_blank"
         :title="'maevsi on GitHub'"
       >
