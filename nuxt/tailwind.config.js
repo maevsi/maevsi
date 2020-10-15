@@ -1,7 +1,9 @@
 module.exports = {
   future: {
+    defaultLineHeights: false, // https://github.com/tailwindlabs/tailwindcss/issues/2308
     purgeLayersByDefault: true,
     removeDeprecatedGapUtilities: true,
+    standardFontWeights: true,
   },
   theme: {
     animations: {
