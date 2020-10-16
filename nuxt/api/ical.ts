@@ -1,4 +1,11 @@
-export default function (req: any, res: any, _next: any) {
+import { ServerResponse } from 'http'
+import { IncomingMessageWithBody } from '../types/http'
+
+export default function (
+  req: IncomingMessageWithBody,
+  res: ServerResponse,
+  _next: any
+) {
   const htmlToText = require('html-to-text')
   const ical = require('ical-generator')
   const moment = require('moment')
@@ -13,12 +20,12 @@ export default function (req: any, res: any, _next: any) {
     eventId
   const eventDescriptionHtml = md.render(data.event.description)
 
-  res.type('text/calendar')
-  res.set(
+  res.setHeader('Content-Type', 'text/calendar')
+  res.setHeader(
     'Content-Disposition',
     'attachment; filename="' + eventId.replace('/', '_') + '.ics"'
   )
-  res.send(
+  res.end(
     ical({
       domain: process.env.NUXT_STACK_DOMAIN || 'maevsi.test',
       // `prodId` is generated automatically.

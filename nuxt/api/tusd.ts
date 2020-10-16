@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+import { IncomingMessage, ServerResponse } from 'http'
+import { IncomingMessageWithBody } from '../types/http'
 const fs = require('fs')
 
 const secretPostgresDbPath = '/run/secrets/postgres_db'
@@ -25,13 +27,14 @@ const pool = new Pool({
   user: 'maevsi_tusd', // lgtm [js/hardcoded-credentials]
 })
 
-function deleteUpload(res: any, uploadId: any, storageKey: any) {
+function deleteUpload(res: ServerResponse, uploadId: any, storageKey: any) {
   pool.query(
     'DELETE FROM maevsi.profile_picture WHERE upload_storage_key = $1;',
     [storageKey],
     (err: any, _queryRes: any) => {
       if (err) {
-        res.status(500).send(err)
+        res.statusCode = 500
+        res.end(err)
         return
       }
 
@@ -40,34 +43,39 @@ function deleteUpload(res: any, uploadId: any, storageKey: any) {
         [uploadId],
         (err: any, _queryRes: any) => {
           if (err) {
-            res.status(500).send(err)
+            res.statusCode = 500
+            res.end(err)
             return
           }
 
-          res.status(204).end()
+          res.statusCode = 204
+          res.end()
         }
       )
     }
   )
 }
 
-function tusdDelete(req: any, res: any) {
-  const uploadId = req.query.uploadId
+function tusdDelete(req: IncomingMessage, res: ServerResponse) {
+  const uploadId = new URLSearchParams(req.url?.substring(2)).get('uploadId')
 
-  if (uploadId === undefined) {
-    res.status(422).send('The request query parameter "uploadId" is undefined!')
+  if (uploadId === null) {
+    res.statusCode = 422
+    res.end('The request query parameter "uploadId" is null!')
     return
   }
 
   console.log('tusdDelete: ' + uploadId)
 
-  if (req.header('Authorization') === undefined) {
-    res.status(401).send('The request header "Authorization" is undefined!')
+  if (req.headers.authorization === undefined) {
+    res.statusCode = 401
+    res.end('The request header "Authorization" is undefined!')
     return
   }
 
   if (secretPostgraphileJwtSecret === undefined) {
-    res.status(500).send('Secret missing!')
+    res.statusCode = 500
+    res.end('Secret missing!')
     return
   }
 
@@ -75,7 +83,7 @@ function tusdDelete(req: any, res: any) {
 
   try {
     jsonwebtoken.verify(
-      req.header('Authorization').substring(7),
+      req.headers.authorization.substring(7),
       secretPostgraphileJwtSecret,
       {
         audience: 'postgraphile',
@@ -83,9 +91,8 @@ function tusdDelete(req: any, res: any) {
       }
     )
   } catch (err) {
-    res
-      .status(401)
-      .send('Json web token verification failed: "' + err.message + '"!')
+    res.statusCode = 401
+    res.end('Json web token verification failed: "' + err.message + '"!')
     return
   }
 
@@ -94,12 +101,14 @@ function tusdDelete(req: any, res: any) {
     [uploadId],
     (err: any, queryRes: any) => {
       if (err) {
-        res.status(500).send(err)
+        res.statusCode = 500
+        res.end(err)
         return
       }
 
       if (queryRes.rows.length === 0) {
-        res.status(500).send('No result found for id "' + uploadId + '"!')
+        res.statusCode = 500
+        res.end('No result found for id "' + uploadId + '"!')
       }
 
       const storageKey = queryRes.rows[0].storage_key
@@ -120,21 +129,20 @@ function tusdDelete(req: any, res: any) {
               httpResp.on('data', () => {}) // Do not remove! If you do, the 'end' event won't fire.
               httpResp.on('end', () => {
                 if (httpResp.statusCode === 204) {
-                  res.status(204).end()
+                  res.statusCode = 204
+                  res.end()
                 } else if (httpResp.statusCode === 404) {
                   deleteUpload(res, uploadId, storageKey)
                 } else {
-                  res
-                    .status(500)
-                    .send('Tusd status was "' + httpResp.statusCode + '".')
+                  res.statusCode = 500
+                  res.end('Tusd status was "' + httpResp.statusCode + '".')
                 }
               })
             }
           )
           .on('error', (err: any) => {
-            res
-              .status(500)
-              .send('Internal delete failed: "' + err.message + '"!')
+            res.statusCode = 500
+            res.end('Internal delete failed: "' + err.message + '"!')
           })
 
         reqTusd.end()
@@ -145,8 +153,8 @@ function tusdDelete(req: any, res: any) {
   )
 }
 
-function tusdPost(req: any, res: any) {
-  switch (req.get('Hook-Name')) {
+function tusdPost(req: IncomingMessageWithBody, res: ServerResponse) {
+  switch (req.headers['hook-name']) {
     case 'pre-create':
       console.log('tusd/pre-create')
 
@@ -155,12 +163,14 @@ function tusdPost(req: any, res: any) {
         [req.body.Upload.MetaData.maevsiUploadId],
         (err: any, queryRes: any) => {
           if (err) {
-            res.status(500).send(err)
+            res.statusCode = 500
+            res.end(err)
             return
           }
 
           if (!queryRes.rows[0].exists) {
-            res.status(500).send('Upload id does not exist!')
+            res.statusCode = 500
+            res.end('Upload id does not exist!')
             return
           }
 
@@ -177,7 +187,8 @@ function tusdPost(req: any, res: any) {
         [req.body.Upload.Storage.Key, req.body.Upload.MetaData.maevsiUploadId],
         (err: any, _queryRes: any) => {
           if (err) {
-            res.status(500).send(err)
+            res.statusCode = 500
+            res.end(err)
             return
           }
 
@@ -198,15 +209,19 @@ function tusdPost(req: any, res: any) {
   }
 }
 
-export default function (req: any, res: any, _next: any) {
+export default function (
+  req: IncomingMessageWithBody,
+  res: ServerResponse,
+  _next: any
+) {
   switch (req.method) {
-    case 'delete':
+    case 'DELETE':
       tusdDelete(req, res)
       break
-    case 'post':
+    case 'POST':
       tusdPost(req, res)
       break
     default:
-      console.warn('Unexpected request method.')
+      console.warn(`Unexpected request method: ${req.method}`)
   }
 }
