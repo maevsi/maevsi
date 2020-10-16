@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <NewEvent />
+    <EventNew />
   </div>
 </template>
 
