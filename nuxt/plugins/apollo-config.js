@@ -6,7 +6,7 @@ export default (_context) => {
       typeof window === 'undefined'
         ? 'http://postgraphile:5000/graphql'
         : 'https://postgraphile.' +
-          (process.env.GRIDSOME_STACK_DOMAIN || 'maevsi.test') +
+          (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') +
           '/graphql',
     getAuth: () => {
       global.jwtDecode((jwt, jwtDecoded) => {

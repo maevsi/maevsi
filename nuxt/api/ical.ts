@@ -7,7 +7,10 @@ export default function (req: any, res: any, _next: any) {
   const data = req.body
   const eventId = data.event.organizerUsername + '/' + data.event.slug
   const eventUrl =
-    'https://' + process.env.GRIDSOME_STACK_DOMAIN + '/event/' + eventId
+    'https://' +
+    (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') +
+    '/event/' +
+    eventId
   const eventDescriptionHtml = md.render(data.event.description)
 
   res.type('text/calendar')
@@ -17,7 +20,7 @@ export default function (req: any, res: any, _next: any) {
   )
   res.send(
     ical({
-      domain: process.env.GRIDSOME_STACK_DOMAIN,
+      domain: process.env.NUXT_STACK_DOMAIN || 'maevsi.test',
       // `prodId` is generated automatically.
       name: eventId.replace('/', '_'),
       url: eventUrl,
@@ -65,7 +68,7 @@ export default function (req: any, res: any, _next: any) {
             email:
               data.event.organizerUsername +
               '@' +
-              process.env.GRIDSOME_STACK_DOMAIN,
+              (process.env.NUXT_STACK_DOMAIN || 'maevsi.test'),
             // mailto: 'explicit@mailto.com'
           },
           // attendees: [{

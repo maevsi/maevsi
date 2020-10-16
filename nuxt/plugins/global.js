@@ -15,7 +15,9 @@ const global = {
   JWT_NAME_ANONYMOUS,
   PASSWORD_LENGTH_MINIMUM: 8,
   TUSD_FILES_URL:
-    'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/',
+    'https://tusd.' +
+    (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') +
+    '/files/',
   checkNested(obj, level, ...rest) {
     if (obj === undefined || obj === null) return false
     if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))

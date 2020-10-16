@@ -173,7 +173,6 @@ export default {
       croppy: {},
       fileSelectedUrl: undefined,
       graphqlErrorMessage: undefined,
-      gridsomeStackDomain: process.env.GRIDSOME_STACK_DOMAIN,
       selectedItem: undefined,
       showModalImageUpload: false,
       uploadIdPrefix: 'upid_',

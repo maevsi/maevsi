@@ -43,7 +43,7 @@ jobs:
         env:
           KEY: scheduleVersion
           VALUE: ${{ steps.semvers.outputs.patch }}
-          FILE: gridsome/package.json
+          FILE: nuxt/package.json
       - uses: stefanzweifel/git-auto-commit-action@v4.5.1
         with:
           commit_message: 'fix(release): schedule release'

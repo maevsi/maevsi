@@ -205,7 +205,6 @@ module.exports = {
     },
   ],
   purge: {
-    content: ['src/**/*.vue', 'src/main.js', 'gridsome.config.js'],
     options: {
       whitelist: [':disabled'],
     },
