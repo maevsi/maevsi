@@ -31,9 +31,12 @@ const global = {
       if (jwt !== null) {
         const jwtDecoded = decode(jwt)
 
-        f(jwt, jwtDecoded)
+        return f(jwt, jwtDecoded)
       }
     }
+
+    // else
+    return ''
   },
   logOut() {
     localStorage.removeItem('jwt')

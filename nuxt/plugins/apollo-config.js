@@ -8,13 +8,15 @@ export default (_context) => {
         : 'https://postgraphile.' +
           (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') +
           '/graphql',
-    getAuth: () => {
-      global.jwtDecode((jwt, jwtDecoded) => {
+    getAuth: (_tokenName) => {
+      return global.jwtDecode((jwt, jwtDecoded) => {
         if (jwtDecoded.exp > Math.floor(new Date() / 1000)) {
           return `Bearer ${jwt}`
-        } else {
-          console.warn('JWT expired.')
         }
+
+        // else
+        console.warn('JWT expired.')
+        return ''
       })
     },
   }
