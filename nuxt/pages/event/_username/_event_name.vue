@@ -1,12 +1,10 @@
 <template>
   <div>
     <div v-if="$apollo.loading">Loading...</div>
-    <div v-else-if="graphqlErrorMessage !== undefined">
-      <AlertGraphql
-        :graphql-error-message="graphqlErrorMessage"
-        :validation-object="undefined"
-      />
-    </div>
+    <AlertGraphql
+      v-else-if="graphqlErrorMessage !== undefined"
+      :graphql-error-message="graphqlErrorMessage"
+    />
     <div v-else>
       <div v-if="$global.checkNested(eventContactFeedbackData, 'event')">
         <p class="font-bold mb-2 text-2xl">
