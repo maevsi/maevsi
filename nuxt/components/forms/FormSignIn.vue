@@ -77,7 +77,8 @@
 <script>
 import { helpers, minLength, required } from 'vuelidate/lib/validators'
 
-import { AUTHENTICATE_MUTATION } from '~/apollo/documents'
+import { AUTHENTICATE_MUTATION } from '~/scripts/apollo'
+import login from '~/scripts/login'
 
 const slug = helpers.regex('slug', /^[-A-Za-z0-9]+$/)
 
@@ -129,14 +130,7 @@ export default {
             password: this.form.password,
           },
         })
-        .then((data) => {
-          if (data.data.authenticate !== null) {
-            localStorage.setItem('jwt_anonymous', localStorage.getItem('jwt'))
-            localStorage.setItem('jwt', data.data.authenticate.jwt)
-            this.$router.push(this.form.username)
-            location.reload() // Invalidate cached components.
-          }
-        })
+        .then((data) => login(this, data.data.authenticate.jwt))
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           console.error(error)

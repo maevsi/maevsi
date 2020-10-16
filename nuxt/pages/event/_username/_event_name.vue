@@ -176,7 +176,7 @@ import VueMarkdown from 'vue-markdown-konishi'
 import {
   EVENT_CONTACT_FEEDBACK_DATA_QUERY,
   UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION,
-} from '~/apollo/documents'
+} from '~/scripts/apollo'
 
 export default {
   apollo: {

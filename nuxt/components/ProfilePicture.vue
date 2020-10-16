@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { ALL_PROFILE_PICTURES } from '~/apollo/documents'
+import { ALL_PROFILE_PICTURES } from '~/scripts/apollo'
 
 export default {
   apollo: {

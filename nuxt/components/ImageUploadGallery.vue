@@ -123,7 +123,7 @@ import Croppa from 'vue-croppa'
 import Uppy from '@uppy/core'
 import Tus from '@uppy/tus'
 
-import { ALL_UPLOADS, UPLOAD_CREATE_MUTATION } from '~/apollo/documents'
+import { ALL_UPLOADS, UPLOAD_CREATE_MUTATION } from '~/scripts/apollo'
 
 export default {
   apollo: {
@@ -186,44 +186,44 @@ export default {
       document.querySelector('#input-profile-picture').click()
     },
     deleteImageUpload(uploadId) {
-      const xhr = new XMLHttpRequest()
       const outerThis = this
       const element = document.getElementById(this.uploadIdPrefix + uploadId)
 
       element.classList.add('disabled')
 
-      xhr.open('DELETE', '/tusd?uploadId=' + uploadId, true)
-      xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
-      xhr.setRequestHeader(
-        'Authorization',
-        'Bearer ' + localStorage.getItem('jwt')
-      )
-      xhr.onreadystatechange = function () {
-        if (this.readyState === 4) {
-          element.classList.remove('disabled')
+      this.$global.jwtDecode((jwt, _jwtDecoded) => {
+        const xhr = new XMLHttpRequest()
 
-          switch (this.status) {
-            case 204:
-              outerThis.$global.removeItemFromArray(
-                outerThis.allUploads.nodes,
-                'id',
-                uploadId
-              )
+        xhr.open('DELETE', '/tusd?uploadId=' + uploadId, true)
+        xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
+        xhr.setRequestHeader('Authorization', 'Bearer ' + jwt)
+        xhr.onreadystatechange = function () {
+          if (this.readyState === 4) {
+            element.classList.remove('disabled')
 
-              if (outerThis.deletionFunction !== undefined) {
-                outerThis.deletionFunction()
-              }
+            switch (this.status) {
+              case 204:
+                outerThis.$global.removeItemFromArray(
+                  outerThis.allUploads.nodes,
+                  'id',
+                  uploadId
+                )
 
-              break
-            case 500:
-              alert('Deleting upload failed!')
-              break
-            default:
-              alert('Deleting upload returned an unexpected status code.')
+                if (outerThis.deletionFunction !== undefined) {
+                  outerThis.deletionFunction()
+                }
+
+                break
+              case 500:
+                alert('Deleting upload failed!')
+                break
+              default:
+                alert('Deleting upload returned an unexpected status code.')
+            }
           }
         }
-      }
-      xhr.send()
+        xhr.send()
+      })
     },
     fileLoaded(e) {
       this.fileSelectedUrl = e.target.result
@@ -264,60 +264,58 @@ export default {
             },
           })
           .then((data) => {
-            if (data.data.uploadCreate.uuid !== null) {
-              const outerThis = this
+            const outerThis = this
 
-              this.uppy = Uppy({
-                id: 'profile-picture',
-                debug: process.env.NODE_ENV !== 'production',
-                restrictions: {
-                  maxFileSize: 1048576,
-                  maxNumberOfFiles: 1,
-                  minNumberOfFiles: 1,
-                  allowedFileTypes: ['image/*'],
-                },
-                meta: {
-                  maevsiUploadId: data.data.uploadCreate.uuid,
-                },
-                onBeforeUpload: (files) => {
-                  const updatedFiles = {}
+            this.uppy = Uppy({
+              id: 'profile-picture',
+              debug: process.env.NODE_ENV !== 'production',
+              restrictions: {
+                maxFileSize: 1048576,
+                maxNumberOfFiles: 1,
+                minNumberOfFiles: 1,
+                allowedFileTypes: ['image/*'],
+              },
+              meta: {
+                maevsiUploadId: data.data.uploadCreate.uuid,
+              },
+              onBeforeUpload: (files) => {
+                const updatedFiles = {}
 
-                  Object.keys(files).forEach((fileID) => {
-                    updatedFiles[fileID] = {
-                      ...files[fileID],
-                      name: '/profile-pictures/' + files[fileID].name,
-                    }
-                  })
+                Object.keys(files).forEach((fileID) => {
+                  updatedFiles[fileID] = {
+                    ...files[fileID],
+                    name: '/profile-pictures/' + files[fileID].name,
+                  }
+                })
 
-                  return updatedFiles
-                },
-              })
+                return updatedFiles
+              },
+            })
 
-              this.uppy.use(Tus, {
-                endpoint: this.$global.TUSD_FILES_URL,
-                limit: 1,
-                removeFingerprintOnSuccess: true,
-              })
+            this.uppy.use(Tus, {
+              endpoint: this.$global.TUSD_FILES_URL,
+              limit: 1,
+              removeFingerprintOnSuccess: true,
+            })
 
-              this.uppy.addFile({
-                source: 'croppy',
-                name: document.querySelector('#input-profile-picture').files[0]
-                  .name,
-                type: blob.type,
-                data: blob,
-              })
+            this.uppy.addFile({
+              source: 'croppy',
+              name: document.querySelector('#input-profile-picture').files[0]
+                .name,
+              type: blob.type,
+              data: blob,
+            })
 
-              this.uppy.upload().then((result) => {
-                this.uploading = false
-                this.$apollo.queries.allUploads.refetch()
+            this.uppy.upload().then((result) => {
+              this.uploading = false
+              this.$apollo.queries.allUploads.refetch()
 
-                if (result.failed.length > 0) {
-                  alert('Some files did not upload successfully!')
-                } else {
-                  outerThis.showModalImageUpload = false
-                }
-              })
-            }
+              if (result.failed.length > 0) {
+                alert('Some files did not upload successfully!')
+              } else {
+                outerThis.showModalImageUpload = false
+              }
+            })
           })
           .catch((error) => {
             this.graphqlErrorMessage = error.message

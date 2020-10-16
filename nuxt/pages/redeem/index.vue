@@ -57,7 +57,7 @@
 <script>
 import { helpers, required } from 'vuelidate/lib/validators'
 
-import { REDEEM_MUTATION } from '~/apollo/documents'
+import { REDEEM_MUTATION } from '~/scripts/apollo'
 
 const uuid = helpers.regex(
   'uuid',
@@ -95,14 +95,13 @@ export default {
           },
         })
         .then((data) => {
-          if (data.data.redeem !== null) {
-            localStorage.setItem('jwt', data.data.redeem.redeemResponse.jwt)
-            this.$router.push(
-              `/event/${data.data.redeem.redeemResponse.organizerUsername}/${data.data.redeem.redeemResponse.eventSlug}`
-            )
-          } else {
-            console.error('Code invalid.')
-          }
+          localStorage.setItem(
+            this.$global.JWT_NAME,
+            data.data.redeem.redeemResponse.jwt
+          )
+          this.$router.push(
+            `/event/${data.data.redeem.redeemResponse.organizerUsername}/${data.data.redeem.redeemResponse.eventSlug}`
+          )
         })
         .catch((error) => {
           this.graphqlErrorMessage = error.message

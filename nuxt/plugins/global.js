@@ -1,6 +1,9 @@
 import { decode } from 'jsonwebtoken'
 
-import { AUTHENTICATE_MUTATION, JWT_REFRESH_MUTATION } from '~/apollo/documents'
+import { AUTHENTICATE_MUTATION, JWT_REFRESH_MUTATION } from '~/scripts/apollo'
+
+const JWT_NAME = 'apollo-token'
+const JWT_NAME_ANONYMOUS = 'apollo-token_anonymous'
 
 const global = {
   EVENT_DESCRIPTION_MAXIMUM: 10000,
@@ -8,6 +11,8 @@ const global = {
   EVENT_PLACE_MAXIMUM: 300,
   EVENT_SLUG_MAXIMUM: 100,
   ITEMS_PER_PAGE: 8,
+  JWT_NAME,
+  JWT_NAME_ANONYMOUS,
   PASSWORD_LENGTH_MINIMUM: 8,
   TUSD_FILES_URL:
     'https://tusd.' + process.env.GRIDSOME_STACK_DOMAIN + '/files/',
@@ -19,7 +24,7 @@ const global = {
   },
   jwtDecode(f) {
     if (typeof window !== 'undefined') {
-      const jwt = localStorage.getItem('jwt')
+      const jwt = localStorage.getItem(JWT_NAME)
 
       if (jwt !== null) {
         const jwtDecoded = decode(jwt)
@@ -31,11 +36,11 @@ const global = {
   logOut() {
     localStorage.removeItem('jwt')
 
-    const jwtAnonymous = localStorage.getItem('jwt_anonymous')
+    const jwtAnonymous = localStorage.getItem(JWT_NAME_ANONYMOUS)
 
     if (jwtAnonymous !== null) {
-      localStorage.setItem('jwt', jwtAnonymous)
-      localStorage.removeItem('jwt_anonymous')
+      localStorage.setItem(JWT_NAME, jwtAnonymous)
+      localStorage.removeItem(JWT_NAME_ANONYMOUS)
 
       this.jwtRefresh()
     }
@@ -80,9 +85,7 @@ export default ({ app }, inject) => {
           },
         })
         .then((data) => {
-          if (data.data.authenticate !== null) {
-            localStorage.setItem('jwt', data.data.authenticate.jwt)
-          }
+          localStorage.setItem(JWT_NAME, data.data.authenticate.jwt)
         })
         .catch((error) => {
           console.error(error)
@@ -98,14 +101,11 @@ export default ({ app }, inject) => {
             },
           })
           .then((data) => {
-            if (data.data.jwtRefresh.jwt !== null) {
-              localStorage.setItem('jwt', data.data.jwtRefresh.jwt)
-            } else {
-              this.logOut()
-            }
+            localStorage.setItem(JWT_NAME, data.data.jwtRefresh.jwt)
           })
           .catch((error) => {
             console.error(error)
+            this.logOut()
           })
       })
     },
@@ -115,7 +115,7 @@ export default ({ app }, inject) => {
 
   // Either authenticate or refresh token on page load.
   if (typeof window !== 'undefined') {
-    const jwt = localStorage.getItem('jwt')
+    const jwt = localStorage.getItem(JWT_NAME)
 
     if (jwt === null) {
       globalExtended.authenticateAnonymous()

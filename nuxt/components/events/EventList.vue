@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { ALL_EVENTS_QUERY } from '~/apollo/documents'
+import { ALL_EVENTS_QUERY } from '~/scripts/apollo'
 
 export default {
   apollo: {

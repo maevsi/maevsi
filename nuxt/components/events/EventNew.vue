@@ -161,7 +161,7 @@ import {
   required,
 } from 'vuelidate/lib/validators'
 
-import { EVENT_CREATE } from '~/apollo/documents'
+import { EVENT_CREATE } from '~/scripts/apollo'
 
 const slugFormat = helpers.regex('uuid', /^[-A-Za-z0-9]+$/)
 

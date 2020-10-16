@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { PROFILE_PICTURE_SET } from '~/apollo/documents'
+import { PROFILE_PICTURE_SET } from '~/scripts/apollo'
 
 export default {
   props: {
