@@ -1,6 +1,6 @@
 module.exports = {
   future: {
-    defaultLineHeights: false, // https://github.com/tailwindlabs/tailwindcss/issues/2308
+    defaultLineHeights: true,
     purgeLayersByDefault: true,
     removeDeprecatedGapUtilities: true,
     standardFontWeights: true,
@@ -48,7 +48,7 @@ module.exports = {
   },
   plugins: [
     require('tailwindcss-animations'),
-    function ({ addBase, addComponents, addUtilities, config }) {
+    function ({ addBase, addComponents, addUtilities, theme }) {
       addBase({
         '@font-face': {
           fontFamily: 'Montserrat',
@@ -58,7 +58,7 @@ module.exports = {
             'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD',
         },
         '::selection': {
-          color: config('theme.colors.white'),
+          color: theme('colors.white'),
           background: '#e53e3e',
         },
         body: {
@@ -68,32 +68,32 @@ module.exports = {
           },
         },
         h1: {
-          fontSize: config('theme.fontSize.4xl'),
-          marginBottom: config('theme.margin.4'),
+          fontSize: theme('fontSize.4xl'),
+          marginBottom: theme('margin.4'),
           fontFamily: 'Montserrat',
-          fontWeight: config('theme.fontWeight.bold'),
+          fontWeight: theme('fontWeight.bold'),
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
         },
         h2: {
-          fontSize: config('theme.fontSize.3xl'),
+          fontSize: theme('fontSize.3xl'),
           fontFamily: 'Montserrat',
-          fontWeight: config('theme.fontWeight.bold'),
-          marginBottom: config('theme.margin.4'),
+          fontWeight: theme('fontWeight.bold'),
+          marginBottom: theme('margin.4'),
         },
         ':disabled': {
-          cursor: config('theme.cursor.not-allowed'),
-          opacity: config('theme.opacity.50'),
+          cursor: theme('cursor.not-allowed'),
+          opacity: theme('opacity.50'),
         },
       })
       addComponents({
         '.description': {
           a: {
-            color: config('theme.colors.blue.700'),
+            color: theme('colors.blue.700'),
           },
           p: {
-            margin: config('theme.margin.2') + ' ' + config('theme.margin.0'),
+            margin: theme('margin.2') + ' ' + theme('margin.0'),
           },
         },
         '.dropdown-content': {
@@ -130,49 +130,46 @@ module.exports = {
         },
         '.form-input-error': {
           input: {
-            borderColor: config('theme.colors.red.500'),
+            borderColor: theme('colors.red.500'),
             '&:focus': {
-              borderColor: config('theme.colors.red.500'),
+              borderColor: theme('colors.red.500'),
             },
           },
           label: {
-            color: config('theme.colors.red.500'),
+            color: theme('colors.red.500'),
           },
         },
         '.shake': {
           animationName: 'shake',
-          animationFillMode: config('theme.animationFillMode.forwards'),
-          animationDuration: config('theme.animationDuration.fast'),
-          animationTimingFunction: config(
-            'theme.animationTimingFunction.ease-in-out'
-          ),
+          animationFillMode: theme('animationFillMode.forwards'),
+          animationDuration: theme('animationDuration.fast'),
+          animationTimingFunction: theme('animationTimingFunction.ease-in-out'),
         },
         '.form-input': {
           appearance: 'none',
-          backgroundColor: config('theme.colors.gray.200'),
-          borderColor: config('theme.colors.gray.200'),
-          borderRadius: config('theme.borderRadius.default'),
-          borderWidth: config('theme.borderWidth.2'),
-          color: config('theme.colors.gray.700'),
-          lineHeight: config('theme.lineHeight.tight'),
-          padding: config('theme.padding.2') + ' ' + config('theme.padding.4'),
-          width: config('theme.width.full'),
+          backgroundColor: theme('colors.gray.200'),
+          borderColor: theme('colors.gray.200'),
+          borderRadius: theme('borderRadius.default'),
+          borderWidth: theme('borderWidth.2'),
+          color: theme('colors.gray.700'),
+          lineHeight: theme('lineHeight.tight'),
+          padding: theme('padding.2') + ' ' + theme('padding.4'),
+          width: theme('width.full'),
           '&:focus': {
-            backgroundColor: config('theme.colors.white'),
-            borderColor: config('theme.colors.purple.500'),
+            backgroundColor: theme('colors.white'),
+            borderColor: theme('colors.purple.500'),
           },
         },
         '.pills': {
           display: 'flex',
           justifyContent: 'space-between',
           li: {
-            width: config('theme.width.full'),
+            width: theme('width.full'),
             button: {
-              color: config('theme.colors.black'),
-              fontWeight: config('theme.fontWeight.semibold'),
-              padding:
-                config('theme.spacing.2') + ' ' + config('theme.spacing.4'),
-              width: config('theme.width.full'),
+              color: theme('colors.black'),
+              fontWeight: theme('fontWeight.semibold'),
+              padding: theme('padding.2') + ' ' + theme('padding.4'),
+              width: theme('width.full'),
             },
           },
         },
@@ -182,8 +179,8 @@ module.exports = {
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
         },
         '.disabled': {
-          cursor: config('theme.cursor.not-allowed'),
-          opacity: config('theme.opacity.50'),
+          cursor: theme('cursor.not-allowed'),
+          opacity: theme('opacity.50'),
         },
         '.e1': {
           gridRow: '1',
