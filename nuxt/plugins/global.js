@@ -71,6 +71,7 @@ export function jwtRefresh(app) {
 
 async function logOut(app) {
   await app.$apolloHelpers.onLogout()
+  location.reload()
 }
 
 export function objectClone(object) {

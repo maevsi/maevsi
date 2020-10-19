@@ -31,7 +31,7 @@
             </nuxt-link>
           </div>
           <div class="mt-1">
-            <button @click="$global.logOut(this)">
+            <button @click="logout">
               <FontAwesomeIcon
                 class="mr-2"
                 :icon="['fas', 'sign-out-alt']"
@@ -62,6 +62,11 @@ export default {
         this.loggedInUsername = jwtDecoded.username
       }
     })
+  },
+  methods: {
+    logout() {
+      this.$global.logOut(this)
+    },
   },
 }
 </script>

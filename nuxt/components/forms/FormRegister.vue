@@ -151,6 +151,7 @@ export default {
         })
 
       await this.$apolloHelpers.onLogin(res.jwt)
+      location.reload()
     },
   },
   validations() {
