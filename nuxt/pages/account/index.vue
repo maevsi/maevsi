@@ -80,7 +80,7 @@ export default {
     }
   },
   created() {
-    this.$global.jwtDecode((_jwt, jwtDecoded) => {
+    this.$global.jwtDecode(this, (_jwt, jwtDecoded) => {
       if (jwtDecoded.username !== null && jwtDecoded.username !== '') {
         this.$router.push(jwtDecoded.username)
       }

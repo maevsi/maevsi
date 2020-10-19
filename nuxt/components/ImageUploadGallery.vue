@@ -190,7 +190,7 @@ export default {
 
       element.classList.add('disabled')
 
-      this.$global.jwtDecode((jwt, _jwtDecoded) => {
+      this.$global.jwtDecode(this, (jwt, _jwtDecoded) => {
         const xhr = new XMLHttpRequest()
 
         xhr.open('DELETE', '/tusd?uploadId=' + uploadId, true)

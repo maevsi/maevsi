@@ -31,7 +31,7 @@
             </nuxt-link>
           </div>
           <div class="mt-1">
-            <button @click="$global.logOut()">
+            <button @click="$global.logOut(this)">
               <FontAwesomeIcon
                 class="mr-2"
                 :icon="['fas', 'sign-out-alt']"
@@ -54,7 +54,7 @@ export default {
   },
   mounted() {
     // Must not be anything before 'mounted' as rendering would collide with 'v-if="loggedInUsername !== undefined"'.
-    this.$global.jwtDecode((_jwt, jwtDecoded) => {
+    this.$global.jwtDecode(this, (_jwt, jwtDecoded) => {
       if (
         jwtDecoded.role === 'maevsi_account' &&
         jwtDecoded.exp > Math.floor(new Date() / 1000)

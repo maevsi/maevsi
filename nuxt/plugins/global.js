@@ -2,130 +2,132 @@ import { decode } from 'jsonwebtoken'
 
 import { AUTHENTICATE_MUTATION, JWT_REFRESH_MUTATION } from '~/scripts/apollo'
 
-const JWT_NAME = 'apollo-token'
-const JWT_NAME_ANONYMOUS = 'apollo-token_anonymous'
+export const EVENT_DESCRIPTION_MAXIMUM = 10000
+export const EVENT_NAME_MAXIMUM = 100
+export const EVENT_PLACE_MAXIMUM = 300
+export const EVENT_SLUG_MAXIMUM = 100
+export const ITEMS_PER_PAGE = 8
+export const PASSWORD_LENGTH_MINIMUM = 8
+export const TUSD_FILES_URL =
+  'https://tusd.' + (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') + '/files/'
 
-const global = {
-  EVENT_DESCRIPTION_MAXIMUM: 10000,
-  EVENT_NAME_MAXIMUM: 100,
-  EVENT_PLACE_MAXIMUM: 300,
-  EVENT_SLUG_MAXIMUM: 100,
-  ITEMS_PER_PAGE: 8,
-  JWT_NAME,
-  JWT_NAME_ANONYMOUS,
-  PASSWORD_LENGTH_MINIMUM: 8,
-  TUSD_FILES_URL:
-    'https://tusd.' +
-    (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') +
-    '/files/',
-  checkNested(obj, level, ...rest) {
-    if (obj === undefined || obj === null) return false
-    if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
-      return true
-    return this.checkNested(obj[level], ...rest)
-  },
-  jwtDecode(f) {
-    if (typeof window !== 'undefined') {
-      const jwt = localStorage.getItem(JWT_NAME)
+export async function authenticateAnonymous(app) {
+  const res = await app.apolloProvider.defaultClient
+    .mutate({
+      mutation: AUTHENTICATE_MUTATION,
+      variables: {
+        username: '',
+        password: '',
+      },
+    })
+    .then(({ data }) => data && data.authenticate)
+    .catch((error) => {
+      console.error(error)
+    })
 
-      if (jwt !== null) {
-        const jwtDecoded = decode(jwt)
-
-        return f(jwt, jwtDecoded)
-      }
-    }
-
-    // else
-    return ''
-  },
-  logOut() {
-    localStorage.removeItem('jwt')
-
-    const jwtAnonymous = localStorage.getItem(JWT_NAME_ANONYMOUS)
-
-    if (jwtAnonymous !== null) {
-      localStorage.setItem(JWT_NAME, jwtAnonymous)
-      localStorage.removeItem(JWT_NAME_ANONYMOUS)
-
-      this.jwtRefresh()
-    }
-
-    location.reload()
-  },
-  objectClone(object) {
-    const objectClone = JSON.parse(JSON.stringify(object))
-    return objectClone
-  },
-  removeTypename(object) {
-    const objectClone = this.objectClone(object)
-    delete objectClone.__typename
-    return objectClone
-  },
-  removeItemFromArray(array, prop, value) {
-    let i = 0
-
-    while (i < array.length) {
-      if (prop in array[i] && array[i][prop] === value) {
-        array.splice(i, 1)
-        break
-      } else {
-        i++
-      }
-    }
-  },
+  await app.$apolloHelpers.onLogin(res.jwt)
 }
 
-export { global }
+export function checkNested(obj, level, ...rest) {
+  if (obj === undefined || obj === null) return false
+  if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
+    return true
+  return this.checkNested(obj[level], ...rest)
+}
 
-export default ({ app }, inject) => {
-  const globalExtended = {
-    ...global,
-    authenticateAnonymous() {
-      app.apolloProvider.defaultClient
-        .mutate({
-          mutation: AUTHENTICATE_MUTATION,
-          variables: {
-            username: '',
-            password: '',
-          },
-        })
-        .then((data) => {
-          localStorage.setItem(JWT_NAME, data.data.authenticate.jwt)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    },
-    jwtRefresh() {
-      this.jwtDecode((_jwt, jwtDecoded) => {
-        app.apolloProvider.defaultClient
-          .mutate({
-            mutation: JWT_REFRESH_MUTATION,
-            variables: {
-              id: jwtDecoded.id,
-            },
-          })
-          .then((data) => {
-            localStorage.setItem(JWT_NAME, data.data.jwtRefresh.jwt)
-          })
-          .catch((error) => {
-            console.error(error)
-            this.logOut()
-          })
-      })
-    },
+export function jwtDecode(app, f) {
+  if (typeof window !== 'undefined') {
+    const jwt = app.$apolloHelpers.getToken()
+
+    if (jwt) {
+      const jwtDecoded = decode(jwt)
+
+      return f(jwt, jwtDecoded)
+    }
   }
 
-  inject('global', globalExtended)
+  // else
+  return ''
+}
+
+export function jwtRefresh(app) {
+  this.jwtDecode(app, async (_jwt, jwtDecoded) => {
+    const res = await app.apolloProvider.defaultClient
+      .mutate({
+        mutation: JWT_REFRESH_MUTATION,
+        variables: {
+          id: jwtDecoded.id,
+        },
+      })
+      .then(({ data }) => data && data.jwtRefresh)
+      .catch((error) => {
+        console.error(error)
+        this.logOut(app)
+      })
+
+    await app.$apolloHelpers.onLogin(res.jwt)
+  })
+}
+
+async function logOut(app) {
+  await app.$apolloHelpers.onLogout()
+}
+
+export function objectClone(object) {
+  const objectClone = JSON.parse(JSON.stringify(object))
+  return objectClone
+}
+
+export function removeTypename(object) {
+  const objectClone = this.objectClone(object)
+  delete objectClone.__typename
+  return objectClone
+}
+
+export function removeItemFromArray(array, prop, value) {
+  let i = 0
+
+  while (i < array.length) {
+    if (prop in array[i] && array[i][prop] === value) {
+      array.splice(i, 1)
+      break
+    } else {
+      i++
+    }
+  }
+}
+
+export default ({ app }, inject) => {
+  const global = {
+    EVENT_DESCRIPTION_MAXIMUM,
+    EVENT_NAME_MAXIMUM,
+    EVENT_PLACE_MAXIMUM,
+    EVENT_SLUG_MAXIMUM,
+    ITEMS_PER_PAGE,
+    PASSWORD_LENGTH_MINIMUM,
+    TUSD_FILES_URL,
+    authenticateAnonymous,
+    checkNested,
+    jwtDecode,
+    jwtRefresh,
+    logOut,
+    objectClone,
+    removeTypename,
+    removeItemFromArray,
+  }
+
+  inject('global', global)
 
   // Either authenticate or refresh token on page load.
   if (typeof window !== 'undefined') {
-    const jwt = localStorage.getItem(JWT_NAME)
+    const jwt = app.$apolloHelpers.getToken()
 
-    if (jwt === null) {
-      globalExtended.authenticateAnonymous()
+    if (jwt) {
+      global.jwtRefresh(app)
     } else {
-      globalExtended.jwtRefresh()
+      global.authenticateAnonymous(app)
     }
   }
+
+  // return global
 }

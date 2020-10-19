@@ -1,6 +1,6 @@
-import { global } from './global'
+import { jwtDecode } from './global'
 
-export default (_context) => {
+export default ({ app }) => {
   return {
     httpEndpoint:
       typeof window === 'undefined'
@@ -9,7 +9,7 @@ export default (_context) => {
           (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') +
           '/graphql',
     getAuth: (_tokenName) => {
-      return global.jwtDecode((jwt, jwtDecoded) => {
+      return jwtDecode(app, (jwt, jwtDecoded) => {
         if (jwtDecoded.exp > Math.floor(new Date() / 1000)) {
           return `Bearer ${jwt}`
         }

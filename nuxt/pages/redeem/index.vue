@@ -81,32 +81,28 @@ export default {
     }
   },
   methods: {
-    redeem(e) {
+    async redeem(e) {
       e.preventDefault()
 
       this.graphqlErrorMessage = undefined
 
       this.$v.$reset()
-      this.$apollo
+      const res = await this.$apollo
         .mutate({
           mutation: REDEEM_MUTATION,
           variables: {
             invitationCode: this.form['invitation-code'],
           },
         })
-        .then(({ data }) => {
-          localStorage.setItem(
-            this.$global.JWT_NAME,
-            data.redeem.redeemResponse.jwt
-          )
-          this.$router.push(
-            `/event/${data.redeem.redeemResponse.organizerUsername}/${data.redeem.redeemResponse.eventSlug}`
-          )
-        })
+        .then(({ data }) => data && data.redeem && data.redeem.redeemResponse)
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           console.error(error)
         })
+
+      await this.$apolloHelpers.onLogin(res.jwt)
+
+      this.$router.push(`/event/${res.organizerUsername}/${res.eventSlug}`)
     },
   },
   head() {

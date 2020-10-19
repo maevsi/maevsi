@@ -27,7 +27,7 @@ export default {
   },
   mounted() {
     // Must not be anything before 'mounted' as rendering would collide with 'v-if="loggedIn"'.
-    this.$global.jwtDecode((_jwt, jwtDecoded) => {
+    this.$global.jwtDecode(this, (_jwt, jwtDecoded) => {
       if (
         jwtDecoded.role === 'maevsi_account' &&
         jwtDecoded.exp > Math.floor(new Date() / 1000)

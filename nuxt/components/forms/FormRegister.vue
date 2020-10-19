@@ -92,7 +92,6 @@
 import { email, helpers, minLength, required } from 'vuelidate/lib/validators'
 
 import { ACCOUNT_REGISTER_MUTATION } from '~/scripts/apollo'
-import login from '~/scripts/login'
 
 const slug = helpers.regex('slug', /^[-A-Za-z0-9]+$/)
 
@@ -129,14 +128,14 @@ export default {
     touch(prop) {
       this.$v.form[prop].$touch()
     },
-    register(e) {
+    async register(e) {
       e.preventDefault()
 
       this.formSent = true
       this.graphqlErrorMessage = undefined
 
       this.$v.form.$reset()
-      this.$apollo
+      const res = await this.$apollo
         .mutate({
           mutation: ACCOUNT_REGISTER_MUTATION,
           variables: {
@@ -145,11 +144,13 @@ export default {
             emailAddress: this.form['email-address'],
           },
         })
-        .then(({ data }) => login(this, data.accountRegister.jwt))
+        .then(({ data }) => data && data.accountRegister)
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           console.error(error)
         })
+
+      await this.$apolloHelpers.onLogin(res.jwt)
     },
   },
   validations() {
