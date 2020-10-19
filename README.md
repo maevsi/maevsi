@@ -1,4 +1,4 @@
-[![build status](https://github.com/maevsi/maevsi/workflows/Docker%20CI/badge.svg)](https://github.com/maevsi/maevsi/actions?query=workflow%3ADocker%20CI "build status")
+[![build status](https://github.com/maevsi/maevsi/workflows/CI/badge.svg)](https://github.com/maevsi/maevsi/actions?query=workflow%3ACI "build status")
 [![renovate](https://badges.renovateapi.com/github/maevsi/maevsi)](https://renovatebot.com/ "renovate")
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/maevsi/maevsi.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/maevsi/maevsi/context:javascript)
 
