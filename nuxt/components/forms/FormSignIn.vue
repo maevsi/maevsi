@@ -130,7 +130,7 @@ export default {
             password: this.form.password,
           },
         })
-        .then((data) => login(this, data.data.authenticate.jwt))
+        .then(({ data }) => login(this, data.authenticate.jwt))
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           console.error(error)

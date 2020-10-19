@@ -262,7 +262,7 @@ export default {
               },
             },
           })
-          .then((data) => {
+          .then(({ data }) => {
             const outerThis = this
 
             this.uppy = Uppy({
@@ -275,7 +275,7 @@ export default {
                 allowedFileTypes: ['image/*'],
               },
               meta: {
-                maevsiUploadId: data.data.uploadCreate.uuid,
+                maevsiUploadId: data.uploadCreate.uuid,
               },
               onBeforeUpload: (files) => {
                 const updatedFiles = {}

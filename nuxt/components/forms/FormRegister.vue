@@ -145,7 +145,7 @@ export default {
             emailAddress: this.form['email-address'],
           },
         })
-        .then((data) => login(this, data.data.accountRegister.jwt))
+        .then(({ data }) => login(this, data.accountRegister.jwt))
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           console.error(error)

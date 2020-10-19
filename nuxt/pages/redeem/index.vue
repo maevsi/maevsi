@@ -94,13 +94,13 @@ export default {
             invitationCode: this.form['invitation-code'],
           },
         })
-        .then((data) => {
+        .then(({ data }) => {
           localStorage.setItem(
             this.$global.JWT_NAME,
-            data.data.redeem.redeemResponse.jwt
+            data.redeem.redeemResponse.jwt
           )
           this.$router.push(
-            `/event/${data.data.redeem.redeemResponse.organizerUsername}/${data.data.redeem.redeemResponse.eventSlug}`
+            `/event/${data.redeem.redeemResponse.organizerUsername}/${data.redeem.redeemResponse.eventSlug}`
           )
         })
         .catch((error) => {
