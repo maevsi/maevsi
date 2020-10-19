@@ -7,7 +7,7 @@
   >
     <FormInput :title="'Username'" :v="$v">
       <input
-        id="input-username"
+        id="input-username-sign-in"
         v-model.trim="$v.form.username.$model"
         class="form-input"
         type="text"
@@ -28,7 +28,7 @@
     </FormInput>
     <FormInput :title="'Password'" :v="$v">
       <input
-        id="input-password"
+        id="input-password-sign-in"
         v-model.trim="$v.form.password.$model"
         class="form-input"
         type="password"
