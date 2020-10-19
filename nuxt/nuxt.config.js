@@ -136,6 +136,11 @@ export default {
     clientConfigs: {
       default: '~/plugins/apollo-config.js',
     },
+    cookieAttributes: {
+      // httpOnly: true,
+      sameSite: 'strict',
+      secure: true,
+    },
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
