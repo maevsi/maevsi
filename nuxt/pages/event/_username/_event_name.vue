@@ -143,10 +143,13 @@
                   .invitationFeedback == 'ACCEPTED'
               "
             >
-              <label class="mb-1 md:mb-0 pr-0" for="input-username"
+              <label
+                class="mb-1 md:mb-0 pr-0"
+                for="input-paper-invitation-feedback"
                 >Kind of invite</label
               >
               <select
+                id="input-paper-invitation-feedback"
                 v-model="
                   eventContactFeedbackData.invitationFeedbackData
                     .paperInvitationFeedback
