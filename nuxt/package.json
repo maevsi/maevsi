@@ -41,6 +41,7 @@
     "node-fetch": "2.6.1",
     "nuxt": "2.14.6",
     "pg": "8.4.1",
+    "shrink-ray-current": "4.1.2",
     "slugify": "1.4.5",
     "snyk": "1.413.2",
     "tailwindcss-animations": "2.0.0",
@@ -73,6 +74,9 @@
     "stylelint": "13.7.2",
     "stylelint-config-prettier": "8.0.2",
     "stylelint-config-standard": "20.0.0"
+  },
+  "optionalDependencies": {
+    "node-zopfli-es": "1.0.3"
   },
   "snyk": true
 }

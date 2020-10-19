@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser'
+import shrinkRay from 'shrink-ray-current'
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -153,6 +154,9 @@ export default {
         ]
       },
     },
+  },
+  render: {
+    compressor: shrinkRay(),
   },
   serverMiddleware: [
     bodyParser.json(),
