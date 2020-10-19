@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import { ALL_PROFILE_PICTURES } from '~/scripts/apollo'
+import ALL_PROFILE_PICTURES_QUERY from '~/gql/query/allProfilePictures'
 
 export default {
   apollo: {
     allProfilePictures() {
       return {
-        query: ALL_PROFILE_PICTURES,
+        query: ALL_PROFILE_PICTURES_QUERY,
         variables: {
           username: this.username,
         },

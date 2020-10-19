@@ -57,7 +57,7 @@
 <script>
 import { helpers, required } from 'vuelidate/lib/validators'
 
-import { REDEEM_MUTATION } from '~/scripts/apollo'
+import REDEEM_MUTATION from '~/gql/mutation/redeem'
 
 const uuid = helpers.regex(
   'uuid',

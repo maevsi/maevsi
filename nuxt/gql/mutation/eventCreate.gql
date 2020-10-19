@@ -1,0 +1,16 @@
+mutation($createEventInput: CreateEventInput!) {
+  createEvent(input: $createEventInput) {
+    event {
+      organizerUsername
+      name
+      slug
+      visibility
+      inviteeCountMaximum
+      description
+      place
+      start
+      end
+      archived
+    }
+  }
+}

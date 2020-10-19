@@ -1,0 +1,5 @@
+mutation($username: String!, $password: String!) {
+  authenticate(input: { username: $username, password: $password }) {
+    jwt
+  }
+}

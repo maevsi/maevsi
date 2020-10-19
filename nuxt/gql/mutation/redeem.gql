@@ -1,0 +1,9 @@
+mutation($invitationCode: UUID!) {
+  redeem(input: { invitationCode: $invitationCode }) {
+    redeemResponse {
+      organizerUsername
+      eventSlug
+      jwt
+    }
+  }
+}

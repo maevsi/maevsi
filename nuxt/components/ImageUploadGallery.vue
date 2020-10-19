@@ -123,13 +123,14 @@ import Croppa from 'vue-croppa'
 import Uppy from '@uppy/core'
 import Tus from '@uppy/tus'
 
-import { ALL_UPLOADS, UPLOAD_CREATE_MUTATION } from '~/scripts/apollo'
+import ALL_UPLOADS_QUERY from '~/gql/query/allUploads'
+import UPLOAD_CREATE_MUTATION from '~/gql/mutation/uploadCreate'
 
 export default {
   apollo: {
     allUploads() {
       return {
-        query: ALL_UPLOADS,
+        query: ALL_UPLOADS_QUERY,
         variables: {
           cursor: null,
           limit: this.$global.ITEMS_PER_PAGE,

@@ -161,7 +161,7 @@ import {
   required,
 } from 'vuelidate/lib/validators'
 
-import { EVENT_CREATE } from '~/scripts/apollo'
+import EVENT_CREATE_MUTATION from '~/gql/mutation/eventCreate'
 
 const slugFormat = helpers.regex('uuid', /^[-A-Za-z0-9]+$/)
 
@@ -207,7 +207,7 @@ export default {
       this.$v.form.$reset()
       this.$apollo
         .mutate({
-          mutation: EVENT_CREATE,
+          mutation: EVENT_CREATE_MUTATION,
           variables: {
             createEventInput: {
               event: {

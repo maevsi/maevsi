@@ -1,0 +1,17 @@
+mutation(
+  $id: Int!
+  $invitationFeedbackDatumPatch: InvitationFeedbackDatumPatch!
+) {
+  updateInvitationFeedbackDatumById(
+    input: {
+      id: $id
+      invitationFeedbackDatumPatch: $invitationFeedbackDatumPatch
+    }
+  ) {
+    invitationFeedbackDatum {
+      id
+      invitationFeedback
+      paperInvitationFeedback
+    }
+  }
+}

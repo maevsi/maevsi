@@ -91,7 +91,7 @@
 <script>
 import { email, helpers, minLength, required } from 'vuelidate/lib/validators'
 
-import { ACCOUNT_REGISTER_MUTATION } from '~/scripts/apollo'
+import ACCOUNT_REGISTER_MUTATION from '~/gql/mutation/accountRegister'
 
 const slug = helpers.regex('slug', /^[-A-Za-z0-9]+$/)
 

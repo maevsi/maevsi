@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { PROFILE_PICTURE_SET } from '~/scripts/apollo'
+import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePictureSet'
 
 export default {
   props: {
@@ -62,7 +62,7 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: PROFILE_PICTURE_SET,
+          mutation: PROFILE_PICTURE_SET_MUTATION,
           variables: {
             storageKey: this.selectedProfilePictureStorageKey,
           },

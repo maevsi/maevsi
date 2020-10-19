@@ -1,0 +1,5 @@
+mutation($uploadCreateInput: UploadCreateInput!) {
+  uploadCreate(input: $uploadCreateInput) {
+    uuid
+  }
+}
