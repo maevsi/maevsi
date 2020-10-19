@@ -18,13 +18,15 @@ export default {
           username: this.username,
         },
         update: (data) => {
-          if (
-            this.$global.checkNested(data.allProfilePictures, 'nodes') &&
-            data.allProfilePictures.nodes.length > 0
-          ) {
+          const allProfilePicturesNodes = this.$global.checkNested(
+            data,
+            'allProfilePictures',
+            'nodes'
+          )
+          if (allProfilePicturesNodes.length > 0) {
             this.profilePictureUrl =
               this.$global.TUSD_FILES_URL +
-              data.allProfilePictures.nodes[0].uploadStorageKey +
+              allProfilePicturesNodes[0].uploadStorageKey +
               '+'
           } else {
             this.profilePictureUrl = undefined

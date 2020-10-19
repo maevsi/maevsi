@@ -252,8 +252,8 @@ export default {
     generateBlob() {
       this.uploading = true
 
-      this.$refs.croppy.generateBlob((blob) => {
-        this.$apollo
+      this.$refs.croppy.generateBlob(async (blob) => {
+        const res = await this.$apollo
           .mutate({
             mutation: UPLOAD_CREATE_MUTATION,
             variables: {
@@ -262,64 +262,63 @@ export default {
               },
             },
           })
-          .then(({ data }) => {
-            const outerThis = this
-
-            this.uppy = Uppy({
-              id: 'profile-picture',
-              debug: process.env.NODE_ENV !== 'production',
-              restrictions: {
-                maxFileSize: 1048576,
-                maxNumberOfFiles: 1,
-                minNumberOfFiles: 1,
-                allowedFileTypes: ['image/*'],
-              },
-              meta: {
-                maevsiUploadId: data.uploadCreate.uuid,
-              },
-              onBeforeUpload: (files) => {
-                const updatedFiles = {}
-
-                Object.keys(files).forEach((fileID) => {
-                  updatedFiles[fileID] = {
-                    ...files[fileID],
-                    name: '/profile-pictures/' + files[fileID].name,
-                  }
-                })
-
-                return updatedFiles
-              },
-            })
-
-            this.uppy.use(Tus, {
-              endpoint: this.$global.TUSD_FILES_URL,
-              limit: 1,
-              removeFingerprintOnSuccess: true,
-            })
-
-            this.uppy.addFile({
-              source: 'croppy',
-              name: document.querySelector('#input-profile-picture').files[0]
-                .name,
-              type: blob.type,
-              data: blob,
-            })
-
-            this.uppy.upload().then((result) => {
-              this.uploading = false
-              this.$apollo.queries.allUploads.refetch()
-
-              if (result.failed.length > 0) {
-                alert('Some files did not upload successfully!')
-              } else {
-                outerThis.showModalImageUpload = false
-              }
-            })
-          })
+          .then(({ data }) => this.$global.checkNested(data, 'uploadCreate'))
           .catch((error) => {
             this.graphqlErrorMessage = error.message
             console.error(error)
           })
+
+        const outerThis = this
+
+        this.uppy = Uppy({
+          id: 'profile-picture',
+          debug: process.env.NODE_ENV !== 'production',
+          restrictions: {
+            maxFileSize: 1048576,
+            maxNumberOfFiles: 1,
+            minNumberOfFiles: 1,
+            allowedFileTypes: ['image/*'],
+          },
+          meta: {
+            maevsiUploadId: res.uuid,
+          },
+          onBeforeUpload: (files) => {
+            const updatedFiles = {}
+
+            Object.keys(files).forEach((fileID) => {
+              updatedFiles[fileID] = {
+                ...files[fileID],
+                name: '/profile-pictures/' + files[fileID].name,
+              }
+            })
+
+            return updatedFiles
+          },
+        })
+
+        this.uppy.use(Tus, {
+          endpoint: this.$global.TUSD_FILES_URL,
+          limit: 1,
+          removeFingerprintOnSuccess: true,
+        })
+
+        this.uppy.addFile({
+          source: 'croppy',
+          name: document.querySelector('#input-profile-picture').files[0].name,
+          type: blob.type,
+          data: blob,
+        })
+
+        this.uppy.upload().then((result) => {
+          this.uploading = false
+          this.$apollo.queries.allUploads.refetch()
+
+          if (result.failed.length > 0) {
+            alert('Some files did not upload successfully!')
+          } else {
+            outerThis.showModalImageUpload = false
+          }
+        })
       })
     },
     toggleSelect(upload) {

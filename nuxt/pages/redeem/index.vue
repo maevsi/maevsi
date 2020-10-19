@@ -94,7 +94,9 @@ export default {
             invitationCode: this.form['invitation-code'],
           },
         })
-        .then(({ data }) => data && data.redeem && data.redeem.redeemResponse)
+        .then(({ data }) =>
+          this.$global.checkNested(data, 'redeem', 'redeemResponse')
+        )
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           console.error(error)

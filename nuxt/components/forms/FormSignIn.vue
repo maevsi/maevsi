@@ -129,7 +129,7 @@ export default {
             password: this.form.password,
           },
         })
-        .then(({ data }) => data && data.authenticate)
+        .then(({ data }) => this.$global.checkNested(data, 'authenticate'))
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           console.error(error)

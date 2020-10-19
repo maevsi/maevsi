@@ -20,7 +20,7 @@ export async function authenticateAnonymous(app) {
         password: '',
       },
     })
-    .then(({ data }) => data && data.authenticate)
+    .then(({ data }) => this.checkNested(data, 'authenticate'))
     .catch((error) => {
       console.error(error)
     })
@@ -31,7 +31,7 @@ export async function authenticateAnonymous(app) {
 export function checkNested(obj, level, ...rest) {
   if (obj === undefined || obj === null) return false
   if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
-    return true
+    return obj[level]
   return this.checkNested(obj[level], ...rest)
 }
 
@@ -59,7 +59,7 @@ export function jwtRefresh(app) {
           id: jwtDecoded.id,
         },
       })
-      .then(({ data }) => data && data.jwtRefresh)
+      .then(({ data }) => this.checkNested(data, 'jwtRefresh'))
       .catch((error) => {
         console.error(error)
         this.logOut(app)
