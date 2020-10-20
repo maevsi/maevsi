@@ -86,7 +86,7 @@ jobs:
             --load \
             .
           docker container create --name extract stage_build
-          docker container cp extract:/srv/app/dist/ .
+          docker container cp extract:/srv/app/ ./dist/
           docker container rm -f extract
 
       - name: Zip
