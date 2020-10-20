@@ -35,7 +35,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
       - name: Get next minor version
         id: semvers
-        uses: "WyriHaximus/github-action-next-semvers@v1.0"
+        uses: "WyriHaximus/github-action-next-semvers@v1"
         with:
           version: ${{ needs.analyze-tags.outputs.previous-tag }}
       - name: manifest Version
