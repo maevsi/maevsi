@@ -1,0 +1,11 @@
+mutation($username: String!, $password: String!, $emailAddress: String!) {
+  accountRegister(
+    input: {
+      username: $username
+      password: $password
+      emailAddress: $emailAddress
+    }
+  ) {
+    jwt
+  }
+}

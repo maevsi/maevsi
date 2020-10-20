@@ -1,75 +1,86 @@
-############
-# Serve Vue.
+#############
+# Serve Nuxt in development mode.
 
-# Not below `buster`!
-FROM node:13.14.0-buster-slim@sha256:ffee53b7563851a457e5a6f485adbe28877cf92286cc7095806e09d721808669 AS development
+# Should be the specific version of node:buster.
+# `node-zopfli-es` and `sqitch` require at least buster.
+# `node-zopfli-es` requires non-slim.
+FROM node:14.14.0-buster@sha256:a054bd2e7ee8f0d40b6db577b4965e2f80e2707e40b2f221cc4418be253c3036 AS development
 
 # Update and install build dependencies
 # - `git` is required by the `yarn` command
-RUN \
-    apt-get update && \
-    apt-get install -y git
-
-# Install gridsome.
-RUN yarn global add @gridsome/cli
-
-WORKDIR /srv/app/
-
-COPY ./gridsome/ /srv/app/
-
-RUN yarn
-
-# Install sqitch.
-RUN apt-get update && apt-get -y install libdbd-pg-perl postgresql-client sqitch
-
-COPY ./sqitch/ /srv/sqitch/
-COPY ./docker-entrypoint.sh /usr/local/bin/
-
-ENTRYPOINT ["docker-entrypoint.sh"]
-
-CMD ["develop"]
-
-
-########################
-# Build and compile Vue.
-
-FROM node:13.14.0-slim@sha256:f8fddd1391a558ecde84a6340685f29af134181e5adbaa7e4d7e8ad28c417667 AS build
-
-ARG GRIDSOME_STACK_DOMAIN=maev.si
-ENV GRIDSOME_STACK_DOMAIN=${GRIDSOME_STACK_DOMAIN}
-ENV NODE_ENV=production
-
-# https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#running-puppeteer-in-docker
 RUN apt-get update \
-    && apt-get install -y wget gnupg \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-    && apt-get update \
-    && apt-get install -y google-chrome-stable libxss1 --no-install-recommends \
+    && apt-get install --no-install-recommends -y git \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /srv/app/
 
-COPY --from=development /srv/app/ /srv/app/
+COPY ./nuxt/ ./
 
-RUN yarn build
+RUN yarn install
+
+# Install sqitch.
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y libdbd-pg-perl postgresql-client sqitch \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY ./sqitch/ /srv/sqitch/
+COPY ./docker-entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["dev", "--hostname", "0.0.0.0"]
+
+
+########################
+# Build Nuxt.
+
+# Should be the specific version of node:buster.
+# `node-zopfli-es` and `sqitch` require at least buster.
+# `node-zopfli-es` requires non-slim.
+FROM node:14.14.0-buster@sha256:a054bd2e7ee8f0d40b6db577b4965e2f80e2707e40b2f221cc4418be253c3036 AS build
+
+ARG NUXT_STACK_DOMAIN=maev.si
+ENV NUXT_STACK_DOMAIN=${NUXT_STACK_DOMAIN}
+ENV NODE_ENV=production
+
+# Update and install build dependencies
+# - `git` is required by the `yarn` command
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y git \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /srv/app/
+
+COPY --from=development /srv/app/ ./
+
+RUN yarn run build
+
+# Discard devDependencies.
+RUN yarn install
 
 
 #######################
 # Provide a web server.
-# Only the compiled app, ready for production with Nginx.
+# Requires node (cannot be static) as the server acts as backend too.
 
-# Should be the specific version of nginx:stable.
-FROM nginx:1.19.3@sha256:4949aa7259aa6f827450207db5ad94cabaa9248277c6d736d5e1975d200c7e43 AS production
+# Should be the specific version of node:buster-slim.
+# sqitch requires at least buster.
+FROM node:14.14.0-buster-slim@sha256:8f417dc7877e271341473e9feae4696eb49219c83e5b760b5222845be0399dbf AS production
 
 # Install sqitch.
-RUN apt-get update && apt-get -y install libdbd-pg-perl postgresql-client sqitch
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y libdbd-pg-perl postgresql-client sqitch \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY --from=build /srv/app/dist/ /usr/share/nginx/html/
+WORKDIR /srv/app/
+
+COPY --from=build /srv/app/ ./
 
 COPY ./sqitch/ /srv/sqitch/
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["start", "--hostname", "0.0.0.0"]
