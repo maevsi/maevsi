@@ -1,9 +1,10 @@
 #############
 # Serve Nuxt in development mode.
 
-# Should be the specific version of node:buster-slim.
-# sqitch requires at least buster.
-FROM node:13.14.0-buster-slim@sha256:ffee53b7563851a457e5a6f485adbe28877cf92286cc7095806e09d721808669 AS development
+# Should be the specific version of node:buster.
+# `node-zopfli-es` and `sqitch` require at least buster.
+# `node-zopfli-es` requires non-slim.
+FROM node:14.14.0-buster@sha256:a054bd2e7ee8f0d40b6db577b4965e2f80e2707e40b2f221cc4418be253c3036 AS development
 
 # Update and install build dependencies
 # - `git` is required by the `yarn` command
@@ -34,7 +35,10 @@ CMD ["dev", "--hostname", "0.0.0.0"]
 ########################
 # Build Nuxt.
 
-FROM node:14.13.1-slim@sha256:19d61ec884cc2c72aa72e2b59d2c02de5227b2a8e8fdd2174c693e8e6d9237d4 AS build
+# Should be the specific version of node:buster.
+# `node-zopfli-es` and `sqitch` require at least buster.
+# `node-zopfli-es` requires non-slim.
+FROM node:14.14.0-buster@sha256:a054bd2e7ee8f0d40b6db577b4965e2f80e2707e40b2f221cc4418be253c3036 AS build
 
 ARG NUXT_STACK_DOMAIN=maev.si
 ENV NUXT_STACK_DOMAIN=${NUXT_STACK_DOMAIN}
@@ -63,7 +67,7 @@ RUN yarn install
 
 # Should be the specific version of node:buster-slim.
 # sqitch requires at least buster.
-FROM node:14.13.1-buster-slim@sha256:2565c4d4f984f9219661ccd1618d61a0614a0385e2770b71c94bfd86a2388a50 AS production
+FROM node:14.14.0-buster-slim@sha256:8f417dc7877e271341473e9feae4696eb49219c83e5b760b5222845be0399dbf AS production
 
 # Install sqitch.
 RUN apt-get update \
