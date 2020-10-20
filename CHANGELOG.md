@@ -1,3 +1,50 @@
+# [0.2.0](https://github.com/maevsi/maevsi/compare/0.1.11...0.2.0) (2020-10-20)
+
+
+### Bug Fixes
+
+* **a:** add rel="noopener" to target="_blank" ([b64774d](https://github.com/maevsi/maevsi/commit/b64774d7ef843cc864cbcc1f0ec7623367e904ea))
+* **api:** migrate to node's http api ([259d993](https://github.com/maevsi/maevsi/commit/259d9930614fde2cb45a86a1e50d80dec9b3973d))
+* **apollo:** add return to auth ([a1ad6f8](https://github.com/maevsi/maevsi/commit/a1ad6f81098fc8958db311ad58256ad4c871d5ed))
+* **apollo:** downgrade @nuxtjs/apollo to 4.0.1-rc.1 ([562bf34](https://github.com/maevsi/maevsi/commit/562bf348825da59f8507e637c83fc8df1bd3f8b9))
+* **apollo:** handle empty responses ([738faea](https://github.com/maevsi/maevsi/commit/738faea7cc021385d0af6cae1f34b8017d3c8013))
+* **apollo:** move ".loading" to appropriate components ([3768967](https://github.com/maevsi/maevsi/commit/3768967f2f5153ba0cc265daa874cd0d9f150bfa))
+* **apollo:** refactor jwt name, remove null checks in then ([92539b6](https://github.com/maevsi/maevsi/commit/92539b61ee0b118197467132c8eac2efde17c533))
+* **docker:** change node versions to support "node-zopfli-es" dependency ([8904349](https://github.com/maevsi/maevsi/commit/8904349f87964adcb3c6a949febb34d203ac6799))
+* **docker:** correct entrypoint and command for nuxt ([babc444](https://github.com/maevsi/maevsi/commit/babc444382c911f9902cde4522ac7a453c566927))
+* **event:** set proper label id ([504cb9f](https://github.com/maevsi/maevsi/commit/504cb9f4d444dd91054df5b6399dd78c6f5bca4f))
+* **index:** correct title ([9c84760](https://github.com/maevsi/maevsi/commit/9c84760a0e9d143b30ef2a6516b90148c9981270))
+* **logo:** move from javascript to css loading ([df9b533](https://github.com/maevsi/maevsi/commit/df9b533321752f0061e9f56a3f15b8f95da4141b))
+* **mixins:** add global plugin ([70e42cd](https://github.com/maevsi/maevsi/commit/70e42cd889cbab19dba3cc448ada4280f4d43554))
+* **new:** correct component name ([86ad8f4](https://github.com/maevsi/maevsi/commit/86ad8f479b6b0846cbbd0249dcce61173c28345f))
+* **nuxt:** add missing slugify plugin ([1650cec](https://github.com/maevsi/maevsi/commit/1650cecf803f0ee53795544b51da78fcb47269e0))
+* **nuxt:** set cookies to secure & strict same-site ([bf967b2](https://github.com/maevsi/maevsi/commit/bf967b26882a154ac6d867c4746a96f2860511b9))
+* **nuxt:** use head instead of metaInfo, correct titles ([328b845](https://github.com/maevsi/maevsi/commit/328b84510fc471704badb1c3b266a9db62240f3f))
+* **sign-in/-out:** readd location reloads ([f06c0ef](https://github.com/maevsi/maevsi/commit/f06c0efc685423060c3ac3ad17c81271729e0537))
+* **sign-in/register:** differentiate between duplicate ids ([7320bd0](https://github.com/maevsi/maevsi/commit/7320bd088edffc5d8da9f8d181bafcae6bbf56ba))
+* **snyk:** add missing script, remove outdated ".snyk" ([510fb4c](https://github.com/maevsi/maevsi/commit/510fb4ccc9bce4a6e50329be6ff4b1ce40cd28f3))
+* **tailwind:** opt in to the defaultLineHeights future ([a9e147f](https://github.com/maevsi/maevsi/commit/a9e147f6bc88eb03a864dc7fd722ab6272e7558d))
+* **yarn:** add peer dependencies ([2ec3212](https://github.com/maevsi/maevsi/commit/2ec3212ab658d848b7e1623974fd7b6af35a4d0a))
+* **yarn:** downgrade webpack ([adbe5cf](https://github.com/maevsi/maevsi/commit/adbe5cf6f0b4d685accd230503a5f125f725ea6a))
+* **yarn:** require node-zopfli-es ([4d38216](https://github.com/maevsi/maevsi/commit/4d3821660c39bfbbd028a32e4284c111d5b98511))
+* corret moment usage without vue plugin ([49d3270](https://github.com/maevsi/maevsi/commit/49d3270abf50270ad010d72a4ba5882dbf11a28a))
+* migrate framework specific tags ([daa48be](https://github.com/maevsi/maevsi/commit/daa48be6723f2024bb1267ddd82dac7ea2cfbe00))
+* readd tab index to links ([0122744](https://github.com/maevsi/maevsi/commit/01227445ad4963aad9aa3a9c2bd6cba0e4ec9344))
+* remove "gridsome" occurrences ([1fd1318](https://github.com/maevsi/maevsi/commit/1fd1318701a5f279ca44e3af559d974a7fcb7b40))
+
+
+### Features
+
+* implement httpOnly cookie authentication ([4cd5cb3](https://github.com/maevsi/maevsi/commit/4cd5cb3706dcb62e80fbb807bfccd835c9e3d78d))
+* **apollo:** use cookies for jwt ([0a65354](https://github.com/maevsi/maevsi/commit/0a653549ba3ff2fed58659e3d977ef14797d97ab))
+* **nuxt:** add brotli compression ([806b204](https://github.com/maevsi/maevsi/commit/806b2046100944d0b326caf2ccfcfbeaec04ca21))
+* **nuxt:** add fallback title if no local title is available ([c81a6c9](https://github.com/maevsi/maevsi/commit/c81a6c9b5d3ceba6dc23f0f3c772a3658f86c0b2))
+
+
+### Performance Improvements
+
+* **docker:** clean up apt after installation ([349cf79](https://github.com/maevsi/maevsi/commit/349cf79754afb8319d19137856c0df255a613590))
+
 ## [0.1.11](https://github.com/maevsi/maevsi/compare/0.1.10...0.1.11) (2020-10-19)
 
 
