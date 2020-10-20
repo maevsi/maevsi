@@ -184,18 +184,16 @@ export default {
         visibility: undefined,
       },
       graphqlErrorMessage: undefined,
-      loggedInUsername: undefined,
     }
   },
-  created() {
-    this.$global.jwtDecode(this, (_jwt, jwtDecoded) => {
-      if (
-        jwtDecoded.role === 'maevsi_account' &&
-        jwtDecoded.exp > Math.floor(new Date() / 1000)
-      ) {
-        this.loggedInUsername = jwtDecoded.username
-      }
-    })
+  computed: {
+    loggedInUsername() {
+      return this.$store.state.jwtDecoded &&
+        this.$store.state.jwtDecoded.role === 'maevsi_account' &&
+        this.$store.state.jwtDecoded.exp > Math.floor(Date.now() / 1000)
+        ? this.$store.state.jwtDecoded.username
+        : undefined
+    },
   },
   methods: {
     submit(e) {

@@ -136,11 +136,6 @@ export default {
     clientConfigs: {
       default: '~/plugins/apollo-config.js',
     },
-    cookieAttributes: {
-      // httpOnly: true,
-      sameSite: 'strict',
-      secure: true,
-    },
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -165,6 +160,7 @@ export default {
   },
   serverMiddleware: [
     bodyParser.json(),
+    { path: '/auth', handler: '~/api/auth.ts' },
     { path: '/ical', handler: '~/api/ical.ts' },
     { path: '/tusd', handler: '~/api/tusd.ts' },
   ],

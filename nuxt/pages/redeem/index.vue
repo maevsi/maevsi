@@ -106,8 +106,12 @@ export default {
         return
       }
 
-      await this.$apolloHelpers.onLogin(res.jwt)
-
+      this.$global.storeJwt(
+        this.$apollo.getClient(),
+        this.$store,
+        undefined,
+        res.jwt
+      )
       this.$router.push(`/event/${res.organizerUsername}/${res.eventSlug}`)
     },
   },

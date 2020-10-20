@@ -1,23 +1,37 @@
-import { jwtDecode } from './global'
+import cookie from 'cookie'
 
-export default ({ app }) => {
+export default ({ req, store }) => {
   return {
-    httpEndpoint:
-      typeof window === 'undefined'
-        ? 'http://postgraphile:5000/graphql'
-        : 'https://postgraphile.' +
-          (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') +
-          '/graphql',
-    getAuth: (_tokenName) => {
-      return jwtDecode(app, (jwt, jwtDecoded) => {
-        if (jwtDecoded.exp > Math.floor(new Date() / 1000)) {
-          return `Bearer ${jwt}`
-        }
+    httpEndpoint: process.server
+      ? 'http://postgraphile:5000/graphql'
+      : 'https://postgraphile.' +
+        (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') +
+        '/graphql',
+    getAuth: (tokenName) => {
+      let jwt = store.state.jwt
 
-        // else
-        console.warn('JWT expired.')
-        return ''
-      })
+      if (process.server) {
+        // Server.
+        if (req.headers.cookie) {
+          const cookies = cookie.parse(req.headers.cookie)
+
+          if (cookies[tokenName]) {
+            jwt = cookies[tokenName]
+          }
+        }
+      } else {
+        // Client.
+        jwt = store.state.jwt
+      }
+
+      if (jwt !== null) {
+        // Jwt isn't expired.
+        return `Bearer ${jwt}`
+      }
+
+      // else
+      console.warn('No authentication.')
+      return ''
     },
   }
 }

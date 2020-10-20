@@ -1,3 +1,4 @@
+import cookie from 'cookie'
 import { decode } from 'jsonwebtoken'
 
 import AUTHENTICATE_MUTATION from '../gql/mutation/authenticate'
@@ -12,8 +13,8 @@ export const PASSWORD_LENGTH_MINIMUM = 8
 export const TUSD_FILES_URL =
   'https://tusd.' + (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') + '/files/'
 
-export async function authenticateAnonymous(app) {
-  const res = await app.apolloProvider.defaultClient
+export async function authenticateAnonymous(apolloClient, store, res) {
+  const authenticationData = await apolloClient
     .mutate({
       mutation: AUTHENTICATE_MUTATION,
       variables: {
@@ -26,11 +27,11 @@ export async function authenticateAnonymous(app) {
       console.error(error)
     })
 
-  if (!res) {
+  if (!authenticationData) {
     return
   }
 
-  await app.$apolloHelpers.onLogin(res.jwt)
+  await storeJwt(apolloClient, store, res, authenticationData.jwt)
 }
 
 export function checkNested(obj, level, ...rest) {
@@ -40,47 +41,29 @@ export function checkNested(obj, level, ...rest) {
   return this.checkNested(obj[level], ...rest)
 }
 
-export function jwtDecode(app, f) {
-  if (typeof window !== 'undefined') {
-    const jwt = app.$apolloHelpers.getToken()
+export async function jwtRefresh(apolloClient, store, res, id) {
+  const jwtRefreshData = await apolloClient
+    .mutate({
+      mutation: JWT_REFRESH_MUTATION,
+      variables: {
+        id,
+      },
+    })
+    .then(({ data }) => this.checkNested(data, 'jwtRefresh'))
+    .catch((error) => {
+      console.error(error)
+      logOut(apolloClient, store, res)
+    })
 
-    if (jwt) {
-      const jwtDecoded = decode(jwt)
-
-      return f(jwt, jwtDecoded)
-    }
+  if (!jwtRefreshData) {
+    return
   }
 
-  // else
-  return ''
+  await storeJwt(apolloClient, store, res, jwtRefreshData.jwt)
 }
 
-export function jwtRefresh(app) {
-  this.jwtDecode(app, async (_jwt, jwtDecoded) => {
-    const res = await app.apolloProvider.defaultClient
-      .mutate({
-        mutation: JWT_REFRESH_MUTATION,
-        variables: {
-          id: jwtDecoded.id,
-        },
-      })
-      .then(({ data }) => this.checkNested(data, 'jwtRefresh'))
-      .catch((error) => {
-        console.error(error)
-        this.logOut(app)
-      })
-
-    if (!res) {
-      return
-    }
-
-    await app.$apolloHelpers.onLogin(res.jwt)
-  })
-}
-
-async function logOut(app) {
-  await app.$apolloHelpers.onLogout()
-  location.reload()
+async function logOut(apolloClient, store, res) {
+  await storeJwt(apolloClient, store, res, null)
 }
 
 export function objectClone(object) {
@@ -107,7 +90,46 @@ export function removeItemFromArray(array, prop, value) {
   }
 }
 
-export default ({ app }, inject) => {
+export async function storeJwt(apolloClient, store, res, jwt) {
+  store.commit('setJwt', jwt)
+  await apolloClient.resetStore()
+
+  if (process.server) {
+    res.setHeader(
+      'Set-Cookie',
+      cookie.serialize('apollo-token', jwt, {
+        expires: jwt ? new Date(Date.now() + 86400 * 1000 * 7) : new Date(0),
+        httpOnly: true,
+        path: '/',
+        sameSite: 'strict',
+        secure: true,
+      })
+    )
+  } else {
+    const xhr = new XMLHttpRequest()
+
+    xhr.open('POST', '/auth', true)
+
+    if (jwt) {
+      xhr.setRequestHeader('Authorization', 'Bearer ' + jwt)
+    }
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState === 4) {
+        switch (this.status) {
+          case 500:
+            alert('Authorization failed!')
+            break
+          default:
+            alert('Authorization returned an unexpected status code.')
+        }
+      }
+    }
+    xhr.send()
+  }
+}
+
+export default async ({ app, req, res, store }, inject) => {
   const global = {
     EVENT_DESCRIPTION_MAXIMUM,
     EVENT_NAME_MAXIMUM,
@@ -118,26 +140,42 @@ export default ({ app }, inject) => {
     TUSD_FILES_URL,
     authenticateAnonymous,
     checkNested,
-    jwtDecode,
     jwtRefresh,
     logOut,
     objectClone,
     removeTypename,
     removeItemFromArray,
+    storeJwt,
   }
 
   inject('global', global)
 
-  // Either authenticate or refresh token on page load.
-  if (typeof window !== 'undefined') {
-    const jwt = app.$apolloHelpers.getToken()
+  // TODO: move to an authentication plugin
+  // Either authenticate anonymously or refresh token on page load.
+  if (process.server) {
+    if (req.headers.cookie) {
+      const cookies = cookie.parse(req.headers.cookie)
 
-    if (jwt) {
-      global.jwtRefresh(app)
+      if (cookies['apollo-token']) {
+        await global.jwtRefresh(
+          app.apolloProvider.defaultClient,
+          store,
+          res,
+          decode(cookies['apollo-token']).id
+        )
+      } else {
+        await global.authenticateAnonymous(
+          app.apolloProvider.defaultClient,
+          store,
+          res
+        )
+      }
     } else {
-      global.authenticateAnonymous(app)
+      await global.authenticateAnonymous(
+        app.apolloProvider.defaultClient,
+        store,
+        res
+      )
     }
   }
-
-  // return global
 }

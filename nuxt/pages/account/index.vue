@@ -79,12 +79,10 @@ export default {
       username: undefined,
     }
   },
-  created() {
-    this.$global.jwtDecode(this, (_jwt, jwtDecoded) => {
-      if (jwtDecoded.username !== null && jwtDecoded.username !== '') {
-        this.$router.push(jwtDecoded.username)
-      }
-    })
+  middleware({ store, redirect }) {
+    if (store.state.jwtDecoded && store.state.jwtDecoded.username) {
+      return redirect('./' + store.state.jwtDecoded.username)
+    }
   },
   methods: {
     handlerRegister(val) {

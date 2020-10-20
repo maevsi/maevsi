@@ -31,7 +31,9 @@
             </nuxt-link>
           </div>
           <div class="mt-1">
-            <button @click="logout">
+            <button
+              @click="$global.logOut($apollo.getClient(), $store, undefined)"
+            >
               <FontAwesomeIcon
                 class="mr-2"
                 :icon="['fas', 'sign-out-alt']"
@@ -47,25 +49,13 @@
 
 <script>
 export default {
-  data() {
-    return {
-      loggedInUsername: undefined,
-    }
-  },
-  mounted() {
-    // Must not be anything before 'mounted' as rendering would collide with 'v-if="loggedInUsername !== undefined"'.
-    this.$global.jwtDecode(this, (_jwt, jwtDecoded) => {
-      if (
-        jwtDecoded.role === 'maevsi_account' &&
-        jwtDecoded.exp > Math.floor(new Date() / 1000)
-      ) {
-        this.loggedInUsername = jwtDecoded.username
-      }
-    })
-  },
-  methods: {
-    logout() {
-      this.$global.logOut(this)
+  computed: {
+    loggedInUsername() {
+      return this.$store.state.jwtDecoded &&
+        this.$store.state.jwtDecoded.role === 'maevsi_account' &&
+        this.$store.state.jwtDecoded.exp > Math.floor(Date.now() / 1000)
+        ? this.$store.state.jwtDecoded.username
+        : undefined
     },
   },
 }

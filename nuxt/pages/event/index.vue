@@ -21,20 +21,17 @@ export default {
   data() {
     return {
       graphqlErrorMessage: undefined,
-      loggedIn: undefined,
       title: 'Events',
     }
   },
-  mounted() {
-    // Must not be anything before 'mounted' as rendering would collide with 'v-if="loggedIn"'.
-    this.$global.jwtDecode(this, (_jwt, jwtDecoded) => {
-      if (
-        jwtDecoded.role === 'maevsi_account' &&
-        jwtDecoded.exp > Math.floor(new Date() / 1000)
-      ) {
-        this.loggedIn = true
-      }
-    })
+  computed: {
+    loggedIn() {
+      return (
+        this.$store.state.jwtDecoded &&
+        this.$store.state.jwtDecoded.role === 'maevsi_account' &&
+        this.$store.state.jwtDecoded.exp > Math.floor(Date.now() / 1000)
+      )
+    },
   },
   head() {
     return { title: this.title }

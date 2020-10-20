@@ -139,8 +139,13 @@ export default {
         return
       }
 
-      await this.$apolloHelpers.onLogin(res.jwt)
-      location.reload()
+      this.$global.storeJwt(
+        this.$apollo.getClient(),
+        this.$store,
+        undefined,
+        res.jwt
+      )
+      window.location.reload()
     },
   },
   validations() {

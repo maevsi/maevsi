@@ -42,14 +42,15 @@ export default {
       showModalImageSelection: false,
     }
   },
+  computed: {
+    jwtDecoded() {
+      return this.$store.state.jwtDecoded
+    },
+  },
   created() {
-    const routeUsername = this.$route.params.username
-
-    this.$global.jwtDecode(this, (_jwt, jwtDecoded) => {
-      if (jwtDecoded.username !== routeUsername) {
-        this.$router.push('.')
-      }
-    })
+    if (this.jwtDecoded.username !== this.$route.params.username) {
+      this.$router.push('.')
+    }
   },
   methods: {
     hideModalImageSelection() {

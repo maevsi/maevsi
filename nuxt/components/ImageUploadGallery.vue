@@ -181,6 +181,11 @@ export default {
       uppy: undefined,
     }
   },
+  computed: {
+    jwt() {
+      return this.$store.state.jwt
+    },
+  },
   methods: {
     changeProfilePicture() {
       document.querySelector('#input-profile-picture').click()
@@ -191,39 +196,37 @@ export default {
 
       element.classList.add('disabled')
 
-      this.$global.jwtDecode(this, (jwt, _jwtDecoded) => {
-        const xhr = new XMLHttpRequest()
+      const xhr = new XMLHttpRequest()
 
-        xhr.open('DELETE', '/tusd?uploadId=' + uploadId, true)
-        xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
-        xhr.setRequestHeader('Authorization', 'Bearer ' + jwt)
-        xhr.onreadystatechange = function () {
-          if (this.readyState === 4) {
-            element.classList.remove('disabled')
+      xhr.open('DELETE', '/tusd?uploadId=' + uploadId, true)
+      xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
+      xhr.setRequestHeader('Authorization', 'Bearer ' + this.jwt)
+      xhr.onreadystatechange = function () {
+        if (this.readyState === 4) {
+          element.classList.remove('disabled')
 
-            switch (this.status) {
-              case 204:
-                outerThis.$global.removeItemFromArray(
-                  outerThis.allUploads.nodes,
-                  'id',
-                  uploadId
-                )
+          switch (this.status) {
+            case 204:
+              outerThis.$global.removeItemFromArray(
+                outerThis.allUploads.nodes,
+                'id',
+                uploadId
+              )
 
-                if (outerThis.deletionFunction !== undefined) {
-                  outerThis.deletionFunction()
-                }
+              if (outerThis.deletionFunction !== undefined) {
+                outerThis.deletionFunction()
+              }
 
-                break
-              case 500:
-                alert('Deleting upload failed!')
-                break
-              default:
-                alert('Deleting upload returned an unexpected status code.')
-            }
+              break
+            case 500:
+              alert('Deleting upload failed!')
+              break
+            default:
+              alert('Deleting upload returned an unexpected status code.')
           }
         }
-        xhr.send()
-      })
+      }
+      xhr.send()
     },
     fileLoaded(e) {
       this.fileSelectedUrl = e.target.result
