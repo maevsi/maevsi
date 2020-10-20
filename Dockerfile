@@ -16,7 +16,7 @@ WORKDIR /srv/app/
 
 COPY ./nuxt/ ./
 
-RUN yarn
+RUN yarn install
 
 # Install sqitch.
 RUN apt-get update \
