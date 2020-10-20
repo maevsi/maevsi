@@ -1,3 +1,10 @@
+## [0.2.2](https://github.com/maevsi/maevsi/compare/0.2.1...0.2.2) (2020-10-20)
+
+
+### Bug Fixes
+
+* **ci:** correct extraction path ([e1bfc45](https://github.com/maevsi/maevsi/commit/e1bfc451fee18686d4f028f0b87a6f36643245d9))
+
 ## [0.2.1](https://github.com/maevsi/maevsi/compare/0.2.0...0.2.1) (2020-10-20)
 
 
