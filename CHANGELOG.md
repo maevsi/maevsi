@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/maevsi/maevsi/compare/0.2.0...0.2.1) (2020-10-20)
+
+
+### Bug Fixes
+
+* **deps:** bump crazy-max/ghaction-docker-buildx from v3.3.0 to v3.3.1 ([d477769](https://github.com/maevsi/maevsi/commit/d477769ccc479e88c91e357384edf77d6136d5f5))
+* **deps:** bump stefanzweifel/git-auto-commit-action ([08893f8](https://github.com/maevsi/maevsi/commit/08893f84e94bbeace01dd2181270afc7ba55f963))
+* **deps:** bump WyriHaximus/github-action-next-semvers from v1.0 to v1 ([c402bde](https://github.com/maevsi/maevsi/commit/c402bde33550f19a730d1af2a8f7b528a764aa5b))
+
 # [0.2.0](https://github.com/maevsi/maevsi/compare/0.1.11...0.2.0) (2020-10-20)
 
 
