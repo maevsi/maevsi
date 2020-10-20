@@ -102,6 +102,10 @@ export default {
           console.error(error)
         })
 
+      if (!res) {
+        return
+      }
+
       await this.$apolloHelpers.onLogin(res.jwt)
 
       this.$router.push(`/event/${res.organizerUsername}/${res.eventSlug}`)

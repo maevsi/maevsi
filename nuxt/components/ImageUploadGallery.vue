@@ -269,6 +269,10 @@ export default {
             console.error(error)
           })
 
+        if (!res) {
+          return
+        }
+
         const outerThis = this
 
         this.uppy = Uppy({

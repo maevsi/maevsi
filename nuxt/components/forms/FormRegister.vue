@@ -150,6 +150,10 @@ export default {
           console.error(error)
         })
 
+      if (!res) {
+        return
+      }
+
       await this.$apolloHelpers.onLogin(res.jwt)
       location.reload()
     },

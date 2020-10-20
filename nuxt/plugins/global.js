@@ -26,6 +26,10 @@ export async function authenticateAnonymous(app) {
       console.error(error)
     })
 
+  if (!res) {
+    return
+  }
+
   await app.$apolloHelpers.onLogin(res.jwt)
 }
 
@@ -65,6 +69,10 @@ export function jwtRefresh(app) {
         console.error(error)
         this.logOut(app)
       })
+
+    if (!res) {
+      return
+    }
 
     await app.$apolloHelpers.onLogin(res.jwt)
   })
