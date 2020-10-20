@@ -6,37 +6,37 @@ module.exports = {
     standardFontWeights: true,
   },
   theme: {
-    animations: {
-      shake: {
-        '0%': {
-          transform: 'translateX(0)',
-        },
-        '15%': {
-          transform: 'translateX(0.375rem)',
-        },
-        '30%': {
-          transform: 'translateX(-0.375rem)',
-        },
-        '45%': {
-          transform: 'translateX(0.375rem)',
-        },
-        '60%': {
-          transform: 'translateX(-0.375rem)',
-        },
-        '75%': {
-          transform: 'translateX(0.375rem)',
-        },
-        '90%': {
-          transform: 'translateX(-0.375rem)',
-        },
-        '100%': {
-          transform: 'translateX(0)',
-        },
-      },
-    },
     extend: {
-      animationDuration: {
-        fast: '0.6s',
+      animation: {
+        shake: 'shake 0.6s ease-in-out 0s 1 normal forwards running',
+      },
+      keyframes: {
+        shake: {
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '15%': {
+            transform: 'translateX(0.375rem)',
+          },
+          '30%': {
+            transform: 'translateX(-0.375rem)',
+          },
+          '45%': {
+            transform: 'translateX(0.375rem)',
+          },
+          '60%': {
+            transform: 'translateX(-0.375rem)',
+          },
+          '75%': {
+            transform: 'translateX(0.375rem)',
+          },
+          '90%': {
+            transform: 'translateX(-0.375rem)',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+          },
+        },
       },
       screens: {
         'dark-mode': { raw: '(prefers-color-scheme: dark)' },
@@ -47,7 +47,6 @@ module.exports = {
     margin: ['last', 'responsive'],
   },
   plugins: [
-    require('tailwindcss-animations'),
     function ({ addBase, addComponents, addUtilities, theme }) {
       addBase({
         '@font-face': {
@@ -138,12 +137,6 @@ module.exports = {
           label: {
             color: theme('colors.red.500'),
           },
-        },
-        '.shake': {
-          animationName: 'shake',
-          animationFillMode: theme('animationFillMode.forwards'),
-          animationDuration: theme('animationDuration.fast'),
-          animationTimingFunction: theme('animationTimingFunction.ease-in-out'),
         },
         '.form-input': {
           appearance: 'none',

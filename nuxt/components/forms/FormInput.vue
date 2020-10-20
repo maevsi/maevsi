@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      :class="{ 'form-input-error shake': v.form[titleSlug].$error }"
+      :class="{ 'animate-shake form-input-error': v.form[titleSlug].$error }"
       class="md:flex md:items-center"
     >
       <div class="md:w-1/3">
