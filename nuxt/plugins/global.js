@@ -97,7 +97,7 @@ export async function storeJwt(apolloClient, store, res, jwt) {
   if (process.server) {
     res.setHeader(
       'Set-Cookie',
-      cookie.serialize('apollo-token', jwt, {
+      cookie.serialize('__Secure-apollo-token', jwt, {
         expires: jwt ? new Date(Date.now() + 86400 * 1000 * 7) : new Date(0),
         httpOnly: true,
         path: '/',
@@ -156,12 +156,12 @@ export default async ({ app, req, res, store }, inject) => {
     if (req.headers.cookie) {
       const cookies = cookie.parse(req.headers.cookie)
 
-      if (cookies['apollo-token']) {
+      if (cookies['__Secure-apollo-token']) {
         await global.jwtRefresh(
           app.apolloProvider.defaultClient,
           store,
           res,
-          decode(cookies['apollo-token']).id
+          decode(cookies['__Secure-apollo-token']).id
         )
       } else {
         await global.authenticateAnonymous(

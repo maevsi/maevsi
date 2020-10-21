@@ -43,7 +43,7 @@ export default function (
 
   res.setHeader(
     'Set-Cookie',
-    cookie.serialize('apollo-token', jwt, {
+    cookie.serialize('__Secure-apollo-token', jwt, {
       expires: jwt ? new Date(Date.now() + 86400 * 1000 * 7) : new Date(0),
       httpOnly: true,
       path: '/',
