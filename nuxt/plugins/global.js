@@ -90,7 +90,17 @@ export function removeItemFromArray(array, prop, value) {
   }
 }
 
-export async function storeJwt(apolloClient, store, res, jwt) {
+export async function storeJwt(
+  apolloClient,
+  store,
+  res,
+  jwt,
+  then = () => {
+    if (!process.server) {
+      window.location.reload()
+    }
+  }
+) {
   store.commit('setJwt', jwt)
   await apolloClient.resetStore()
 
@@ -117,6 +127,9 @@ export async function storeJwt(apolloClient, store, res, jwt) {
     xhr.onreadystatechange = function () {
       if (this.readyState === 4) {
         switch (this.status) {
+          case 200:
+            then()
+            break
           case 500:
             alert('Authorization failed!')
             break

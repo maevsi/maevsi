@@ -160,7 +160,6 @@ export default {
         undefined,
         res.jwt
       )
-      window.location.reload()
     },
   },
   validations() {

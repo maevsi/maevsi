@@ -110,9 +110,9 @@ export default {
         this.$apollo.getClient(),
         this.$store,
         undefined,
-        res.jwt
+        res.jwt,
+        this.$router.push(`/event/${res.organizerUsername}/${res.eventSlug}`)
       )
-      this.$router.push(`/event/${res.organizerUsername}/${res.eventSlug}`)
     },
   },
   head() {
