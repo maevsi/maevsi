@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/maevsi/maevsi/compare/0.4.0...0.4.1) (2020-10-21)
+
+
+### Bug Fixes
+
+* **csp:** implement specific policies ([246b0c9](https://github.com/maevsi/maevsi/commit/246b0c9ca270b6ff73802cc50a730eafb8d9aba7))
+
 # [0.4.0](https://github.com/maevsi/maevsi/compare/0.3.2...0.4.0) (2020-10-21)
 
 
