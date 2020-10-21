@@ -1,3 +1,17 @@
+# [0.4.0](https://github.com/maevsi/maevsi/compare/0.3.2...0.4.0) (2020-10-21)
+
+
+### Bug Fixes
+
+* **auth:** move redirects to callback ([ef1b5a7](https://github.com/maevsi/maevsi/commit/ef1b5a7d1a27c22c1ca69da6a5b0bf2c174fb854))
+
+
+### Features
+
+* **auth:** add "__Secure-" cookie prefix ([4653d43](https://github.com/maevsi/maevsi/commit/4653d43ace71f53f5602ef61bc430ccea47c9714))
+* **nuxt:** enable csp ([641385d](https://github.com/maevsi/maevsi/commit/641385dfc6a6507a57bc6d162e920a7076b27dcf))
+* **yarn:** add nuxt-helmet ([0eebae2](https://github.com/maevsi/maevsi/commit/0eebae2362fe84350fb59a2f0f44005e61fabcf5))
+
 ## [0.3.2](https://github.com/maevsi/maevsi/compare/0.3.1...0.3.2) (2020-10-21)
 
 
