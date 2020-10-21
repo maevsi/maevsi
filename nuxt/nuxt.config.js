@@ -130,7 +130,10 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: ['@nuxtjs/apollo'],
+  modules: [
+    '@nuxtjs/apollo',
+    '@nuxtjs/sitemap', // Should be declared at the end of the array.
+  ],
 
   apollo: {
     clientConfigs: {
