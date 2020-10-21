@@ -5,7 +5,7 @@ export default ({ req, store }) => {
     httpEndpoint: process.server
       ? 'http://postgraphile:5000/graphql'
       : 'https://postgraphile.' +
-        (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') +
+        (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
         '/graphql',
     getAuth: (tokenName) => {
       let jwt = store.state.jwt

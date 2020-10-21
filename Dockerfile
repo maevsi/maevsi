@@ -40,8 +40,8 @@ CMD ["dev", "--hostname", "0.0.0.0"]
 # `node-zopfli-es` requires non-slim.
 FROM node:14.14.0-buster@sha256:a054bd2e7ee8f0d40b6db577b4965e2f80e2707e40b2f221cc4418be253c3036 AS build
 
-ARG NUXT_STACK_DOMAIN=maev.si
-ENV NUXT_STACK_DOMAIN=${NUXT_STACK_DOMAIN}
+ARG NUXT_ENV_STACK_DOMAIN=maev.si
+ENV NUXT_ENV_STACK_DOMAIN=${NUXT_ENV_STACK_DOMAIN}
 ENV NODE_ENV=production
 
 # Update and install build dependencies

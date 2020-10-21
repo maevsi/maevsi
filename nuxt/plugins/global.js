@@ -11,7 +11,9 @@ export const EVENT_SLUG_MAXIMUM = 100
 export const ITEMS_PER_PAGE = 8
 export const PASSWORD_LENGTH_MINIMUM = 8
 export const TUSD_FILES_URL =
-  'https://tusd.' + (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') + '/files/'
+  'https://tusd.' +
+  (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
+  '/files/'
 
 export async function authenticateAnonymous(apolloClient, store, res) {
   const authenticationData = await apolloClient

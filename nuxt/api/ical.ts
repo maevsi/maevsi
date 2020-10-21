@@ -15,7 +15,7 @@ export default function (
   const eventId = data.event.organizerUsername + '/' + data.event.slug
   const eventUrl =
     'https://' +
-    (process.env.NUXT_STACK_DOMAIN || 'maevsi.test') +
+    (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
     '/event/' +
     eventId
   const eventDescriptionHtml = md.render(data.event.description)
@@ -27,7 +27,7 @@ export default function (
   )
   res.end(
     ical({
-      domain: process.env.NUXT_STACK_DOMAIN || 'maevsi.test',
+      domain: process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test',
       // `prodId` is generated automatically.
       name: eventId.replace('/', '_'),
       url: eventUrl,
@@ -75,7 +75,7 @@ export default function (
             email:
               data.event.organizerUsername +
               '@' +
-              (process.env.NUXT_STACK_DOMAIN || 'maevsi.test'),
+              (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test'),
             // mailto: 'explicit@mailto.com'
           },
           // attendees: [{

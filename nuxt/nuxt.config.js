@@ -165,7 +165,7 @@ export default {
     csp: {
       policies: {
         'base-uri': ["'none'"],
-        'connect-src': [`https://*.${process.env.NUXT_STACK_DOMAIN}`],
+        'connect-src': [`https://*.${process.env.NUXT_ENV_STACK_DOMAIN}`],
         'default-src': ["'none'"],
         'font-src': ["'self'"],
         'form-action': ["'none'"],
