@@ -1,3 +1,10 @@
+## [0.3.2](https://github.com/maevsi/maevsi/compare/0.3.1...0.3.2) (2020-10-21)
+
+
+### Bug Fixes
+
+* **yarn:** add @fortawesome/vue-fontawesome ([15cc1d4](https://github.com/maevsi/maevsi/commit/15cc1d4b40e36aae38c621a48eb6c9ce8c9ba7e5))
+
 ## [0.3.1](https://github.com/maevsi/maevsi/compare/0.3.0...0.3.1) (2020-10-21)
 
 
