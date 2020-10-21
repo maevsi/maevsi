@@ -148,6 +148,7 @@ export default {
      ** You can extend webpack config here
      */
     extend(_config, _ctx) {},
+    extractCSS: true,
     /*
      ** https://github.com/nuxt-community/nuxt-property-decorator
      */
@@ -162,11 +163,25 @@ export default {
   render: {
     compressor: shrinkRay(),
     csp: {
+      policies: {
+        'base-uri': ["'none'"],
+        'connect-src': [`https://*.${process.env.NUXT_STACK_DOMAIN}`],
+        'default-src': ["'none'"],
+        'font-src': ["'self'"],
+        'form-action': ["'none'"],
+        'frame-ancestors': ["'none'"],
+        'img-src': ['data:', "'self'"],
+        'manifest-src': ["'self'"],
+        'report-uri': 'https://dargmuesli.report-uri.com/r/d/csp/enforce',
+        'script-src': ["'self'"],
+        'style-src': ["'self'"],
+      },
       reportOnly: false,
     },
   },
   serverMiddleware: [
     bodyParser.json(),
+    '~/middleware/server/headers.ts',
     { path: '/auth', handler: '~/api/auth.ts' },
     { path: '/ical', handler: '~/api/ical.ts' },
     { path: '/tusd', handler: '~/api/tusd.ts' },
