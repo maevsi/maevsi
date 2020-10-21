@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/maevsi/maevsi/compare/0.3.0...0.3.1) (2020-10-21)
+
+
+### Bug Fixes
+
+* **yarn:** add @fortawesome/fontawesome-svg-core ([90d368c](https://github.com/maevsi/maevsi/commit/90d368c56e07fedf14597e80e74f04e4d6de8adf))
+
 # [0.3.0](https://github.com/maevsi/maevsi/compare/0.2.2...0.3.0) (2020-10-21)
 
 
