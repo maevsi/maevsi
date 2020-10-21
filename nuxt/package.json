@@ -26,6 +26,7 @@
     "@fortawesome/fontawesome-svg-core": "1.2.32",
     "@fortawesome/free-brands-svg-icons": "5.15.1",
     "@fortawesome/free-solid-svg-icons": "5.15.1",
+    "@fortawesome/vue-fontawesome": "^2.0.0",
     "@nuxt/typescript-runtime": "2.0.0",
     "@nuxtjs/apollo": "4.0.1-rc.4",
     "@nuxtjs/sitemap": "2.4.0",
