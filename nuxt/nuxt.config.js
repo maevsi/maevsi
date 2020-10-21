@@ -161,6 +161,9 @@ export default {
   },
   render: {
     compressor: shrinkRay(),
+    csp: {
+      reportOnly: false,
+    },
   },
   serverMiddleware: [
     bodyParser.json(),
