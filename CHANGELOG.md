@@ -1,3 +1,10 @@
+## [0.4.2](https://github.com/maevsi/maevsi/compare/0.4.1...0.4.2) (2020-10-21)
+
+
+### Bug Fixes
+
+* **nuxt:** correct environment variable name ([1e79ce6](https://github.com/maevsi/maevsi/commit/1e79ce6ea31abc63a3be0405d2f8001e9b540ec2))
+
 ## [0.4.1](https://github.com/maevsi/maevsi/compare/0.4.0...0.4.1) (2020-10-21)
 
 
