@@ -131,6 +131,7 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    'nuxt-helmet', // Should be declared at the start of the array.
     '@nuxtjs/apollo',
     '@nuxtjs/sitemap', // Should be declared at the end of the array.
   ],
@@ -167,4 +168,10 @@ export default {
     { path: '/ical', handler: '~/api/ical.ts' },
     { path: '/tusd', handler: '~/api/tusd.ts' },
   ],
+  helmet: {
+    hsts: {
+      maxAge: 31536000,
+      preload: true,
+    },
+  },
 }
