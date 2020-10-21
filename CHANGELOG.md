@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/maevsi/maevsi/compare/0.2.2...0.3.0) (2020-10-21)
+
+
+### Features
+
+* add sitemap ([760f273](https://github.com/maevsi/maevsi/commit/760f273c5e7f3322fd9ccc460e473482a9216b0e))
+
 ## [0.2.2](https://github.com/maevsi/maevsi/compare/0.2.1...0.2.2) (2020-10-20)
 
 
