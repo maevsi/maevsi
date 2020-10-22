@@ -1,3 +1,11 @@
+## [0.4.3](https://github.com/maevsi/maevsi/compare/0.4.2...0.4.3) (2020-10-22)
+
+
+### Performance Improvements
+
+* **docker:** add health check ([6730d16](https://github.com/maevsi/maevsi/commit/6730d16bf751a0c634fbbcb0bbd9859cb87e0375))
+* **docker:** optimize installation ([e312ee0](https://github.com/maevsi/maevsi/commit/e312ee0624fd1133ec7b1730d50e5cb78300b4f2))
+
 ## [0.4.2](https://github.com/maevsi/maevsi/compare/0.4.1...0.4.2) (2020-10-21)
 
 
