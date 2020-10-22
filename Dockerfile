@@ -35,6 +35,7 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["dev", "--hostname", "0.0.0.0"]
+HEALTHCHECK --interval=3s CMD curl -f http://localhost:3000/ || exit 1
 
 
 ########################
@@ -94,3 +95,4 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["start", "--hostname", "0.0.0.0"]
+HEALTHCHECK --interval=3s CMD curl -f http://localhost:3000/ || exit 1
