@@ -1,3 +1,10 @@
+## [0.4.5](https://github.com/maevsi/maevsi/compare/0.4.4...0.4.5) (2020-10-22)
+
+
+### Bug Fixes
+
+* add healthcheck endpoint ([39dff08](https://github.com/maevsi/maevsi/commit/39dff08a7adb60f35567b3a6cdbb4392d0c7aa4c))
+
 ## [0.4.4](https://github.com/maevsi/maevsi/compare/0.4.3...0.4.4) (2020-10-22)
 
 
