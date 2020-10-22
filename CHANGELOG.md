@@ -1,3 +1,15 @@
+## [0.4.6](https://github.com/maevsi/maevsi/compare/0.4.5...0.4.6) (2020-10-22)
+
+
+### Bug Fixes
+
+* **event-new:** convert maximum invitee count to number ([9c71e66](https://github.com/maevsi/maevsi/commit/9c71e660d92185f1fb3f21d146372103ac0241f7))
+
+
+### Performance Improvements
+
+* **docker:** increase healthcheck interval ([85a68d2](https://github.com/maevsi/maevsi/commit/85a68d266844d11c54b268cbe3fdac43d0312ce4))
+
 ## [0.4.5](https://github.com/maevsi/maevsi/compare/0.4.4...0.4.5) (2020-10-22)
 
 
