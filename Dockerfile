@@ -83,6 +83,8 @@ RUN apt-get update \
         libdbd-pg-perl \
         postgresql-client \
         sqitch \
+    && apt-get install --no-install-recommends -y \
+        curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
