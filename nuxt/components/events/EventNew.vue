@@ -212,7 +212,7 @@ export default {
                 organizerUsername: this.loggedInUsername,
                 description: this.form.description,
                 end: this.form.end !== '' ? this.form.end : undefined,
-                inviteeCountMaximum: this.form['maximum-invitee-count'],
+                inviteeCountMaximum: +this.form['maximum-invitee-count'],
                 name: this.form.name,
                 place: this.form.place,
                 slug: this.form.slug,
