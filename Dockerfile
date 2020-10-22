@@ -35,7 +35,7 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["dev", "--hostname", "0.0.0.0"]
-HEALTHCHECK --interval=3s CMD curl -f http://localhost:3000/healthcheck || exit 1
+HEALTHCHECK --interval=10s CMD curl -f http://localhost:3000/healthcheck || exit 1
 
 
 ########################
@@ -97,4 +97,4 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["start", "--hostname", "0.0.0.0"]
-HEALTHCHECK --interval=3s CMD curl -f http://localhost:3000/healthcheck || exit 1
+HEALTHCHECK --interval=10s CMD curl -f http://localhost:3000/healthcheck || exit 1
