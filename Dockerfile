@@ -6,24 +6,29 @@
 # `node-zopfli-es` requires non-slim.
 FROM node:14.14.0-buster@sha256:a054bd2e7ee8f0d40b6db577b4965e2f80e2707e40b2f221cc4418be253c3036 AS development
 
-# Update and install build dependencies
+# Update and install dependencies.
 # - `git` is required by the `yarn` command
+# - `sqitch` is required by the entrypoint
+# - `curl` is required by the healthcheck
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y git \
+    && apt-get install --no-install-recommends -y \
+        git \
+    && apt-get install --no-install-recommends -y \
+        libdbd-pg-perl \
+        postgresql-client \
+        sqitch \
+    && apt-get install --no-install-recommends -y \
+        curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /srv/app/
 
-COPY ./nuxt/ ./
+COPY ./nuxt/package.json ./nuxt/yarn.lock ./
 
 RUN yarn install
 
-# Install sqitch.
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y libdbd-pg-perl postgresql-client sqitch \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+COPY ./nuxt/ ./
 
 COPY ./sqitch/ /srv/sqitch/
 COPY ./docker-entrypoint.sh /usr/local/bin/
@@ -44,10 +49,11 @@ ARG NUXT_ENV_STACK_DOMAIN=maev.si
 ENV NUXT_ENV_STACK_DOMAIN=${NUXT_ENV_STACK_DOMAIN}
 ENV NODE_ENV=production
 
-# Update and install build dependencies
+# Update and install dependencies.
 # - `git` is required by the `yarn` command
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y git \
+    && apt-get install --no-install-recommends -y \
+        git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -69,9 +75,13 @@ RUN yarn install
 # sqitch requires at least buster.
 FROM node:14.14.0-buster-slim@sha256:8f417dc7877e271341473e9feae4696eb49219c83e5b760b5222845be0399dbf AS production
 
-# Install sqitch.
+# Update and install dependencies.
+# - `sqitch` is required by the entrypoint
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y libdbd-pg-perl postgresql-client sqitch \
+    && apt-get install --no-install-recommends -y \
+        libdbd-pg-perl \
+        postgresql-client \
+        sqitch \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
