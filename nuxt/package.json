@@ -1,7 +1,7 @@
 {
   "name": "maevsi",
   "private": true,
-  "version": "0.4.3",
+  "version": "0.4.4",
   "scheduleVersion": "0.0.3",
   "scripts": {
     "dev": "nuxt-ts",

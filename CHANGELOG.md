@@ -1,3 +1,10 @@
+## [0.4.4](https://github.com/maevsi/maevsi/compare/0.4.3...0.4.4) (2020-10-22)
+
+
+### Bug Fixes
+
+* **docker:** install missing dependency ([b8c77f0](https://github.com/maevsi/maevsi/commit/b8c77f036f9cdd8a35ae2c881c8123f7a955f659))
+
 ## [0.4.3](https://github.com/maevsi/maevsi/compare/0.4.2...0.4.3) (2020-10-22)
 
 
