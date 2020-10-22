@@ -132,6 +132,7 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     'nuxt-helmet', // Should be declared at the start of the array.
+    'nuxt-healthcheck',
     '@nuxtjs/apollo',
     '@nuxtjs/sitemap', // Should be declared at the end of the array.
   ],
