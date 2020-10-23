@@ -2,90 +2,30 @@ import bodyParser from 'body-parser'
 import shrinkRay from 'shrink-ray-current'
 
 export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
-  head: {
-    titleTemplate: (titleChunk) => {
-      return titleChunk ? `${titleChunk} - maevsi` : 'maevsi'
+  apollo: {
+    clientConfigs: {
+      default: '~/plugins/apollo-config.js',
     },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'A manager for events supported by invitees.',
-      },
-      {
-        name: 'msapplication-config',
-        content: '/assets/static/favicon/browserconfig.xml?v=bOXMwoKlJr',
-      },
-      {
-        name: 'msapplication-TileColor',
-        content: '#202020',
-      },
-      {
-        name: 'theme-color',
-        content: '#202020',
-      },
-    ],
-    link: [
-      {
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
-        href: '/assets/static/favicon/apple-touch-icon.png?v=bOXMwoKlJr',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        href: '/assets/static/favicon/favicon-32x32.png?v=bOXMwoKlJr',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        href: '/assets/static/favicon/favicon-16x16.png?v=bOXMwoKlJr',
-      },
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: '/assets/static/favicon/favicon.ico',
-      },
-      {
-        rel: 'manifest',
-        href: '/assets/static/favicon/site.webmanifest?v=bOXMwoKlJr',
-      },
-      {
-        rel: 'mask-icon',
-        href: '/assets/static/favicon/safari-pinned-tab.svg?v=bOXMwoKlJr',
-        color: '#202020',
-      },
-      {
-        rel: 'shortcut icon',
-        href: '/assets/static/favicon/favicon.ico?v=bOXMwoKlJr',
-      },
-    ],
-    htmlAttrs: { class: 'h-full' },
-    bodyAttrs: { class: 'font-sans h-full dark-mode:text-white' },
   },
 
-  // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['vue-croppa/dist/vue-croppa.css', 'vue-datetime/dist/vue-datetime.css'],
-
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-    '~/plugins/global.js',
-    '~/plugins/vuelidate.js',
-    '~/plugins/slugify.js',
-  ],
-
-  // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
-
-  /*
-   ** Customize the progress-bar color
-   */
-  loading: { color: '#fff' },
+  // Build Configuration (https://go.nuxtjs.dev/config-build)
+  build: {
+    /*
+     ** https://github.com/nuxt-community/nuxt-property-decorator
+     */
+    babel: {
+      presets({ _isServer }) {
+        return [
+          ['@nuxt/babel-preset-app', { loose: true, corejs: { version: 3 } }],
+        ]
+      },
+    },
+    /*
+     ** You can extend webpack config here
+     */
+    extend(_config, _ctx) {},
+    extractCSS: true,
+  },
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
@@ -129,6 +69,91 @@ export default {
     '@nuxtjs/tailwindcss',
   ],
 
+  // Auto import components (https://go.nuxtjs.dev/config-components)
+  components: true,
+
+  // Global CSS (https://go.nuxtjs.dev/config-css)
+  css: ['vue-croppa/dist/vue-croppa.css', 'vue-datetime/dist/vue-datetime.css'],
+
+  // Global page headers (https://go.nuxtjs.dev/config-head)
+  head: {
+    bodyAttrs: { class: 'font-sans h-full dark-mode:text-white' },
+    htmlAttrs: { class: 'h-full' },
+    link: [
+      {
+        href: '/assets/static/favicon/apple-touch-icon.png?v=bOXMwoKlJr',
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+      },
+      {
+        href: '/assets/static/favicon/favicon-32x32.png?v=bOXMwoKlJr',
+        rel: 'icon',
+        sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        href: '/assets/static/favicon/favicon-16x16.png?v=bOXMwoKlJr',
+        rel: 'icon',
+        sizes: '16x16',
+        type: 'image/png',
+      },
+      {
+        href: '/assets/static/favicon/favicon.ico',
+        rel: 'icon',
+        type: 'image/x-icon',
+      },
+      {
+        href: '/assets/static/favicon/site.webmanifest?v=bOXMwoKlJr',
+        rel: 'manifest',
+      },
+      {
+        color: '#202020',
+        href: '/assets/static/favicon/safari-pinned-tab.svg?v=bOXMwoKlJr',
+        rel: 'mask-icon',
+      },
+      {
+        href: '/assets/static/favicon/favicon.ico?v=bOXMwoKlJr',
+        rel: 'shortcut icon',
+      },
+    ],
+    meta: [
+      { charset: 'utf-8' },
+      { content: 'width=device-width, initial-scale=1', name: 'viewport' },
+      {
+        content: 'A manager for events supported by invitees.',
+        hid: 'description',
+        name: 'description',
+      },
+      {
+        content: '/assets/static/favicon/browserconfig.xml?v=bOXMwoKlJr',
+        name: 'msapplication-config',
+      },
+      {
+        content: '#202020',
+        name: 'msapplication-TileColor',
+      },
+      {
+        content: '#202020',
+        name: 'theme-color',
+      },
+    ],
+    titleTemplate: (titleChunk) => {
+      return titleChunk ? `${titleChunk} - maevsi` : 'maevsi'
+    },
+  },
+
+  helmet: {
+    hsts: {
+      maxAge: 31536000,
+      preload: true,
+    },
+  },
+
+  /*
+   ** Customize the progress-bar color
+   */
+  loading: { color: '#fff' },
+
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     'nuxt-helmet', // Should be declared at the start of the array.
@@ -137,30 +162,13 @@ export default {
     '@nuxtjs/sitemap', // Should be declared at the end of the array.
   ],
 
-  apollo: {
-    clientConfigs: {
-      default: '~/plugins/apollo-config.js',
-    },
-  },
+  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
+  plugins: [
+    '~/plugins/global.js',
+    '~/plugins/vuelidate.js',
+    '~/plugins/slugify.js',
+  ],
 
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(_config, _ctx) {},
-    extractCSS: true,
-    /*
-     ** https://github.com/nuxt-community/nuxt-property-decorator
-     */
-    babel: {
-      presets({ _isServer }) {
-        return [
-          ['@nuxt/babel-preset-app', { loose: true, corejs: { version: 3 } }],
-        ]
-      },
-    },
-  },
   render: {
     compressor: shrinkRay(),
     csp: {
@@ -180,6 +188,7 @@ export default {
       reportOnly: false,
     },
   },
+
   serverMiddleware: [
     bodyParser.json(),
     '~/middleware/server/headers.ts',
@@ -187,10 +196,4 @@ export default {
     { path: '/ical', handler: '~/api/ical.ts' },
     { path: '/tusd', handler: '~/api/tusd.ts' },
   ],
-  helmet: {
-    hsts: {
-      maxAge: 31536000,
-      preload: true,
-    },
-  },
 }
