@@ -165,7 +165,6 @@ export default async ({ app, req, res, store }, inject) => {
 
   inject('global', global)
 
-  // TODO: move to an authentication plugin
   // Either authenticate anonymously or refresh token on page load.
   if (process.server) {
     if (req.headers.cookie) {

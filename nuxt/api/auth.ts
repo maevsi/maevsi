@@ -27,6 +27,7 @@ export default function (
   let jwt = ''
 
   if (req.headers.authorization !== undefined) {
+    // There is an authorization header.
     jwt = req.headers.authorization.substring(7)
 
     try {
