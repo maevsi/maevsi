@@ -2,7 +2,7 @@ import { ServerResponse } from 'http'
 import cookie from 'cookie'
 import { verify } from 'jsonwebtoken'
 
-import { IncomingMessageWithBody } from '../types/http'
+import { IncomingMessageWithBody } from '~/types/http'
 
 const fs = require('fs')
 

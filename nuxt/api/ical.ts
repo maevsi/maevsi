@@ -1,5 +1,5 @@
 import { ServerResponse } from 'http'
-import { IncomingMessageWithBody } from '../types/http'
+import { IncomingMessageWithBody } from '~/types/http'
 
 export default function (
   req: IncomingMessageWithBody,

@@ -1,8 +1,8 @@
 import cookie from 'cookie'
 import { decode } from 'jsonwebtoken'
 
-import AUTHENTICATE_MUTATION from '../gql/mutation/authenticate'
-import JWT_REFRESH_MUTATION from '../gql/mutation/jwtRefresh'
+import AUTHENTICATE_MUTATION from '~/gql/mutation/authenticate'
+import JWT_REFRESH_MUTATION from '~/gql/mutation/jwtRefresh'
 
 export const EVENT_DESCRIPTION_MAXIMUM = 10000
 export const EVENT_NAME_MAXIMUM = 100

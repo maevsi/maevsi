@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { IncomingMessage, ServerResponse } from 'http'
-import { IncomingMessageWithBody } from '../types/http'
+import { IncomingMessageWithBody } from '~/types/http'
 const fs = require('fs')
 
 const secretPostgresDbPath = '/run/secrets/postgres_db'
