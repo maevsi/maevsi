@@ -24,7 +24,7 @@ export async function authenticateAnonymous(apolloClient, store, res) {
         password: '',
       },
     })
-    .then(({ data }) => this.checkNested(data, 'authenticate'))
+    .then(({ data }) => checkNested(data, 'authenticate'))
     .catch((error) => {
       console.error(error)
     })
@@ -40,7 +40,7 @@ export function checkNested(obj, level, ...rest) {
   if (obj === undefined || obj === null) return false
   if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
     return obj[level]
-  return this.checkNested(obj[level], ...rest)
+  return checkNested(obj[level], ...rest)
 }
 
 export async function jwtRefresh(apolloClient, store, res, id) {
@@ -51,7 +51,7 @@ export async function jwtRefresh(apolloClient, store, res, id) {
         id,
       },
     })
-    .then(({ data }) => this.checkNested(data, 'jwtRefresh'))
+    .then(({ data }) => checkNested(data, 'jwtRefresh'))
     .catch((error) => {
       console.error(error)
       logOut(apolloClient, store, res)
