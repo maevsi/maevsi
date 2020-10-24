@@ -1,3 +1,13 @@
+## [0.4.7](https://github.com/maevsi/maevsi/compare/0.4.6...0.4.7) (2020-10-24)
+
+
+### Bug Fixes
+
+* **apollo:** correct token name for "getAuth" ([758d5f4](https://github.com/maevsi/maevsi/commit/758d5f4980f517de0f22138dc0b609e6a879922a))
+* **auth:** use token's own expiry ([1c5db1d](https://github.com/maevsi/maevsi/commit/1c5db1d94d275095f3721528deaa1d438235c8de))
+* **global:** remove "this." prefix ([638efe8](https://github.com/maevsi/maevsi/commit/638efe80d74970a1468eb5495ce34d010c6fa3f8))
+* **sqitch:** correct paths ([40b4ebe](https://github.com/maevsi/maevsi/commit/40b4ebe0a8b9f13330df6e9ef628208f7532139d))
+
 ## [0.4.6](https://github.com/maevsi/maevsi/compare/0.4.5...0.4.6) (2020-10-22)
 
 
