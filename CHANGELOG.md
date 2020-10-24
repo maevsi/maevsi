@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/maevsi/maevsi/compare/0.4.7...0.5.0) (2020-10-24)
+
+
+### Features
+
+* redirect to event on creation ([a82eaa7](https://github.com/maevsi/maevsi/commit/a82eaa7dfe374d6732d523348240b87cdb52bec4))
+
 ## [0.4.7](https://github.com/maevsi/maevsi/compare/0.4.6...0.4.7) (2020-10-24)
 
 
