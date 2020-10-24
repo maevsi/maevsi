@@ -59,6 +59,8 @@ import { helpers, required } from 'vuelidate/lib/validators'
 
 import REDEEM_MUTATION from '~/gql/mutation/redeem'
 
+const consola = require('consola')
+
 const uuid = helpers.regex(
   'uuid',
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
@@ -99,7 +101,7 @@ export default {
         )
         .catch((error) => {
           this.graphqlErrorMessage = error.message
-          console.error(error)
+          consola.error(error)
         })
 
       if (!res) {

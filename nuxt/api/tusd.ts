@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 import { IncomingMessage, ServerResponse } from 'http'
 import { IncomingMessageWithBody } from '~/types/http'
+
 const fs = require('fs')
+const consola = require('consola')
 
 const secretPostgresDbPath = '/run/secrets/postgres_db'
 const secretPostgraphileJwtSecretPath = '/run/secrets/postgraphile_jwt-secret'
@@ -65,7 +67,7 @@ function tusdDelete(req: IncomingMessage, res: ServerResponse) {
     return
   }
 
-  console.log('tusdDelete: ' + uploadId)
+  consola.log('tusdDelete: ' + uploadId)
 
   if (req.headers.authorization === undefined) {
     res.statusCode = 401
@@ -156,7 +158,7 @@ function tusdDelete(req: IncomingMessage, res: ServerResponse) {
 function tusdPost(req: IncomingMessageWithBody, res: ServerResponse) {
   switch (req.headers['hook-name']) {
     case 'pre-create':
-      console.log('tusd/pre-create')
+      consola.log('tusd/pre-create')
 
       pool.query(
         'SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = $1);',
@@ -180,7 +182,7 @@ function tusdPost(req: IncomingMessageWithBody, res: ServerResponse) {
 
       break
     case 'post-finish':
-      console.log('tusd/post-finish: ' + req.body.Upload.Storage.Key)
+      consola.log('tusd/post-finish: ' + req.body.Upload.Storage.Key)
 
       pool.query(
         'UPDATE maevsi.upload SET storage_key = $1 WHERE id = $2;',
@@ -198,7 +200,7 @@ function tusdPost(req: IncomingMessageWithBody, res: ServerResponse) {
 
       break
     case 'post-terminate':
-      console.log('tusd/post-terminate: ' + req.body.Upload.Storage.Key)
+      consola.log('tusd/post-terminate: ' + req.body.Upload.Storage.Key)
       deleteUpload(
         res,
         req.body.Upload.MetaData.maevsiUploadId,
@@ -222,6 +224,6 @@ export default function (
       tusdPost(req, res)
       break
     default:
-      console.warn(`Unexpected request method: ${req.method}`)
+      consola.warn(`Unexpected request method: ` + req.method)
   }
 }

@@ -35,6 +35,8 @@
 <script>
 import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePictureSet'
 
+const consola = require('consola')
+
 export default {
   props: {
     modalHideFunction: {
@@ -73,7 +75,7 @@ export default {
         })
         .catch((error) => {
           this.graphqlErrorMessage = error.message
-          console.error(error)
+          consola.error(error)
         })
         .finally(() => {
           this.settingProfilePicture = false

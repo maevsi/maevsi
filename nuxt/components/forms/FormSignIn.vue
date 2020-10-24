@@ -79,6 +79,8 @@ import { helpers, minLength, required } from 'vuelidate/lib/validators'
 
 import AUTHENTICATE_MUTATION from '~/gql/mutation/authenticate'
 
+const consola = require('consola')
+
 const slug = helpers.regex('slug', /^[-A-Za-z0-9]+$/)
 
 export default {
@@ -132,7 +134,7 @@ export default {
         .then(({ data }) => this.$global.checkNested(data, 'authenticate'))
         .catch((error) => {
           this.graphqlErrorMessage = error.message
-          console.error(error)
+          consola.error(error)
         })
 
       if (!res) {

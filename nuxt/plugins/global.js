@@ -4,6 +4,8 @@ import { decode } from 'jsonwebtoken'
 import AUTHENTICATE_MUTATION from '~/gql/mutation/authenticate'
 import JWT_REFRESH_MUTATION from '~/gql/mutation/jwtRefresh'
 
+const consola = require('consola')
+
 export const EVENT_DESCRIPTION_MAXIMUM = 10000
 export const EVENT_NAME_MAXIMUM = 100
 export const EVENT_PLACE_MAXIMUM = 300
@@ -16,6 +18,8 @@ export const TUSD_FILES_URL =
   '/files/'
 
 export async function authenticateAnonymous(apolloClient, store, res) {
+  consola.trace('Authenticating anonymously...')
+
   const authenticationData = await apolloClient
     .mutate({
       mutation: AUTHENTICATE_MUTATION,
@@ -26,7 +30,7 @@ export async function authenticateAnonymous(apolloClient, store, res) {
     })
     .then(({ data }) => checkNested(data, 'authenticate'))
     .catch((error) => {
-      console.error(error)
+      consola.error(error)
     })
 
   if (!authenticationData) {
@@ -49,13 +53,13 @@ export function getJwtFromCookie(req) {
           jwtDecoded: cookie,
         }
       } else {
-        console.log('Token expired.')
+        consola.debug('Token expired.')
       }
     } else {
-      console.log('No token cookie.')
+      consola.debug('No token cookie.')
     }
   } else {
-    console.log('No cookie header.')
+    consola.debug('No cookie header.')
   }
 }
 
@@ -67,6 +71,8 @@ export function checkNested(obj, level, ...rest) {
 }
 
 export async function jwtRefresh(apolloClient, store, res, id) {
+  consola.trace('Refreshing a JWT...')
+
   const jwtRefreshData = await apolloClient
     .mutate({
       mutation: JWT_REFRESH_MUTATION,
@@ -76,7 +82,7 @@ export async function jwtRefresh(apolloClient, store, res, id) {
     })
     .then(({ data }) => checkNested(data, 'jwtRefresh'))
     .catch((error) => {
-      console.error(error)
+      consola.error(error)
       logOut(apolloClient, store, res)
     })
 
@@ -126,7 +132,9 @@ export async function storeJwt(
     }
   }
 ) {
+  consola.debug('Storing the following JWT: ' + jwt)
   store.commit('setJwt', jwt)
+
   await apolloClient.resetStore()
 
   if (process.server) {

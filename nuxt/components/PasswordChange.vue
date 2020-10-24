@@ -71,6 +71,8 @@ import { minLength, required } from 'vuelidate/lib/validators'
 
 import ACCOUNT_PASSWORD_CHANGE_MUTATION from '~/gql/mutation/accountPasswordChange'
 
+const consola = require('consola')
+
 export default {
   data() {
     return {
@@ -103,7 +105,7 @@ export default {
         })
         .catch((error) => {
           this.graphqlErrorMessage = error.message
-          console.error(error)
+          consola.error(error)
         })
     },
   },

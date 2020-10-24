@@ -1,5 +1,7 @@
 import { getJwtFromCookie } from './global'
 
+const consola = require('consola')
+
 export default ({ req, store }) => {
   return {
     httpEndpoint: process.server
@@ -22,8 +24,10 @@ export default ({ req, store }) => {
       }
 
       if (jwt !== null) {
+        consola.debug('Apollo request authenticated with: ' + jwt)
         return `Bearer ${jwt}`
       } else {
+        consola.info('Apollo request without authentication.')
         return ''
       }
     },

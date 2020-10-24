@@ -126,6 +126,8 @@ import Tus from '@uppy/tus'
 import ALL_UPLOADS_QUERY from '~/gql/query/allUploads'
 import UPLOAD_CREATE_MUTATION from '~/gql/mutation/uploadCreate'
 
+const consola = require('consola')
+
 export default {
   apollo: {
     allUploads() {
@@ -247,9 +249,9 @@ export default {
         fileReader.readAsDataURL(file)
       } catch (err) {
         if (err.isRestriction) {
-          console.log('Restriction error:', err)
+          consola.log('Restriction error: ' + err)
         } else {
-          console.error(err)
+          consola.error(err)
         }
       }
     },
@@ -269,7 +271,7 @@ export default {
           .then(({ data }) => this.$global.checkNested(data, 'uploadCreate'))
           .catch((error) => {
             this.graphqlErrorMessage = error.message
-            console.error(error)
+            consola.error(error)
           })
 
         if (!res) {

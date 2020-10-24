@@ -179,6 +179,8 @@ import VueMarkdown from 'vue-markdown-konishi'
 import EVENT_CONTACT_FEEDBACK_DATA_QUERY from '~/gql/query/eventContactFeedbackData'
 import UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION from '~/gql/mutation/updateInvitationFeedbackDatumById'
 
+const consola = require('consola')
+
 export default {
   apollo: {
     eventContactFeedbackData() {
@@ -252,7 +254,7 @@ export default {
         })
         .catch((error) => {
           alert(error.message)
-          console.error(error)
+          consola.error(error)
         })
     },
   },

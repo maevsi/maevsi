@@ -163,6 +163,8 @@ import {
 
 import EVENT_CREATE_MUTATION from '~/gql/mutation/eventCreate'
 
+const consola = require('consola')
+
 const slugFormat = helpers.regex('uuid', /^[-A-Za-z0-9]+$/)
 
 export default {
@@ -227,7 +229,7 @@ export default {
         })
         .catch((error) => {
           this.graphqlErrorMessage = error.message
-          console.error(error)
+          consola.error(error)
         })
     },
     updateSlug() {
