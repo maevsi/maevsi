@@ -15,11 +15,12 @@ CREATE FUNCTION maevsi.authenticate(
 ) RETURNS maevsi.jwt AS $$
 DECLARE
     "_jwt_id" UUID := maevsi.uuid_generate_v1mc();
+    "_jwt_exp" BIGINT := EXTRACT(EPOCH FROM ((SELECT date_trunc('second', NOW()::TIMESTAMP)) + COALESCE(current_setting('maevsi.jwt_expiry_duration'), '1 day')::INTERVAL));
     "_jwt" maevsi.jwt;
 BEGIN
   IF ("username" = '' AND "password" = '') THEN
     -- Authenticate as guest.
-    "_jwt" := ("_jwt_id", 'maevsi_anonymous', NULL, NULL, maevsi.invite_claim_array())::maevsi.jwt;
+    "_jwt" := ("_jwt_id", "_jwt_exp", 'maevsi_anonymous', NULL, NULL, maevsi.invite_claim_array())::maevsi.jwt;
   ELSIF ("username" IS NOT NULL AND "password" IS NOT NULL) THEN
     WITH updated AS (
       UPDATE maevsi_private.account
@@ -28,7 +29,7 @@ BEGIN
             account."username" = $1
         AND account.password_hash = maevsi.crypt($2, account.password_hash)
       RETURNING *
-    ) SELECT "_jwt_id", 'maevsi_account', updated.contact_id, updated.username, NULL
+    ) SELECT "_jwt_id", "_jwt_exp", 'maevsi_account', updated.contact_id, updated.username, NULL
       INTO "_jwt"
       FROM updated;
 

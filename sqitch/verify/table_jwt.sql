@@ -3,8 +3,7 @@
 BEGIN;
 
 SELECT "id",
-       "token",
-       "valid_until"
+       "token"
 FROM maevsi_private.jwt WHERE FALSE;
 
 DO $$

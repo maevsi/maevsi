@@ -22,6 +22,7 @@ BEGIN
     "_jwt_id" := current_setting('jwt.claims.id', true)::UUID;
     "_jwt" := (
         "_jwt_id",
+        current_setting('jwt.claims.exp', true)::BIGINT,
         current_setting('jwt.claims.role', true)::TEXT,
         current_setting('jwt.claims.account_id', true)::INTEGER,
         current_setting('jwt.claims.username', true)::TEXT,
