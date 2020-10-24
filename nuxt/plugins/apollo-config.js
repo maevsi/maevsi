@@ -1,4 +1,4 @@
-import cookie from 'cookie'
+import { getJwtFromCookie } from './global'
 
 export default ({ req, store }) => {
   return {
@@ -7,17 +7,14 @@ export default ({ req, store }) => {
       : 'https://postgraphile.' +
         (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
         '/graphql',
-    getAuth: (tokenName) => {
+    getAuth: (_tokenName) => {
       let jwt = store.state.jwt
 
       if (process.server) {
         // Server.
-        if (req.headers.cookie) {
-          const cookies = cookie.parse(req.headers.cookie)
-
-          if (cookies[tokenName]) {
-            jwt = cookies[tokenName]
-          }
+        const jwtData = getJwtFromCookie(req)
+        if (jwtData) {
+          jwt = jwtData.jwt
         }
       } else {
         // Client.
@@ -25,13 +22,10 @@ export default ({ req, store }) => {
       }
 
       if (jwt !== null) {
-        // Jwt isn't expired.
         return `Bearer ${jwt}`
+      } else {
+        return ''
       }
-
-      // else
-      console.warn('No authentication.')
-      return ''
     },
   }
 }

@@ -36,6 +36,29 @@ export async function authenticateAnonymous(apolloClient, store, res) {
   await storeJwt(apolloClient, store, res, authenticationData.jwt)
 }
 
+export function getJwtFromCookie(req) {
+  if (req.headers.cookie) {
+    const cookies = cookie.parse(req.headers.cookie)
+
+    if (cookies['__Secure-apollo-token']) {
+      const cookie = decode(cookies['__Secure-apollo-token'])
+
+      if (cookie.exp > Date.now() / 1000) {
+        return {
+          jwt: cookies['__Secure-apollo-token'],
+          jwtDecoded: cookie,
+        }
+      } else {
+        console.log('Token expired.')
+      }
+    } else {
+      console.log('No token cookie.')
+    }
+  } else {
+    console.log('No cookie header.')
+  }
+}
+
 export function checkNested(obj, level, ...rest) {
   if (obj === undefined || obj === null) return false
   if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
@@ -155,6 +178,7 @@ export default async ({ app, req, res, store }, inject) => {
     TUSD_FILES_URL,
     authenticateAnonymous,
     checkNested,
+    getJwtFromCookie,
     jwtRefresh,
     logOut,
     objectClone,
@@ -167,29 +191,16 @@ export default async ({ app, req, res, store }, inject) => {
 
   // Either authenticate anonymously or refresh token on page load.
   if (process.server) {
-    if (req.headers.cookie) {
-      const cookies = cookie.parse(req.headers.cookie)
-
-      if (cookies['__Secure-apollo-token']) {
-        await global.jwtRefresh(
-          app.apolloProvider.defaultClient,
-          store,
-          res,
-          decode(cookies['__Secure-apollo-token']).id
-        )
-      } else {
-        await global.authenticateAnonymous(
-          app.apolloProvider.defaultClient,
-          store,
-          res
-        )
-      }
-    } else {
-      await global.authenticateAnonymous(
+    const jwtData = getJwtFromCookie(req)
+    if (jwtData) {
+      await jwtRefresh(
         app.apolloProvider.defaultClient,
         store,
-        res
+        res,
+        jwtData.jwtDecoded.id
       )
+    } else {
+      await authenticateAnonymous(app.apolloProvider.defaultClient, store, res)
     }
   }
 }

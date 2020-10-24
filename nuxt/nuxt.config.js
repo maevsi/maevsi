@@ -6,7 +6,6 @@ export default {
     clientConfigs: {
       default: '~/plugins/apollo-config.js',
     },
-    tokenName: '__Secure-apollo-token',
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
