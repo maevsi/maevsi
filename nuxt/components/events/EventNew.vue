@@ -226,6 +226,7 @@ export default {
         })
         .then((_data) => {
           alert('Success: Event created successfully.')
+          this.$router.push(`/event/${this.loggedInUsername}/${this.form.slug}`)
         })
         .catch((error) => {
           this.graphqlErrorMessage = error.message
