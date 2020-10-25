@@ -15,6 +15,14 @@ export default {
   head() {
     return { title: this.title }
   },
+  middleware({ app, store, redirect }) {
+    if (
+      store.state.jwtDecoded &&
+      store.state.jwtDecoded.role !== 'maevsi_account'
+    ) {
+      return redirect(app.localePath('/'))
+    }
+  },
 }
 </script>
 
