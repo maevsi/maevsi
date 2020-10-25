@@ -1,7 +1,7 @@
 <template>
   <div class="inline-block">
     <!-- eslint-disable vue/attribute-hyphenation -->
-    <nuxt-link v-if="link !== undefined" :to="link">
+    <nuxt-link v-if="link !== undefined" :to="localePath(link)">
       <!-- eslint-enable vue/attribute-hyphenation -->
       <button
         :class="`${buttonClassStatic} ${buttonClass}`"

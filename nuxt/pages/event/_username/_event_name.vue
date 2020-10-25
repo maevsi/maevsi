@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="$apollo.loading">Loading...</div>
+    <div v-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
     <AlertGraphql
       v-else-if="graphqlErrorMessage !== undefined"
       :graphql-error-message="graphqlErrorMessage"
@@ -8,17 +8,19 @@
     <div v-else>
       <div v-if="$global.checkNested(eventContactFeedbackData, 'event')">
         <p class="font-bold mb-2 text-2xl">
-          Hey{{
-            $global.checkNested(
-              eventContactFeedbackData,
-              'contact',
-              'firstname'
-            )
-              ? ' ' + eventContactFeedbackData.contact.firstName
-              : ''
-          }}!
+          {{
+            $t('greeting', {
+              usernameString: $global.checkNested(
+                eventContactFeedbackData,
+                'contact',
+                'firstname'
+              )
+                ? ' ' + eventContactFeedbackData.contact.firstName
+                : '',
+            })
+          }}
         </p>
-        <p>You've been invited to the following event:</p>
+        <p>{{ $t('greetingDescription') }}</p>
         <div
           class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black"
         >
@@ -78,7 +80,7 @@
             class="my-2 text-white"
             @click.native="downloadIcal"
           >
-            Download as iCal
+            {{ $t('iCalDownload') }}
           </Button>
           <div v-if="eventContactFeedbackData.event.description">
             <hr class="my-4" />
@@ -100,7 +102,7 @@
                 :icon="false"
                 @click.native="accept"
               >
-                Accept invite
+                {{ $t('inviteAccept') }}
               </ButtonGreen>
               <div class="flex justify-center">
                 <div
@@ -118,7 +120,7 @@
                     size="lg"
                     title="accepted"
                   />
-                  Accepted
+                  {{ $t('inviteAccepted') }}
                 </div>
                 <div class="mx-2" />
                 <Button
@@ -131,7 +133,7 @@
                   :icon="false"
                   @click.native="cancel"
                 >
-                  Cancel invite
+                  {{ $t('inviteCancel') }}
                 </Button>
               </div>
             </div>
@@ -146,7 +148,7 @@
               <label
                 class="mb-1 md:mb-0 pr-0"
                 for="input-paper-invitation-feedback"
-                >Kind of invite</label
+                >{{ $t('inviteKind') }}</label
               >
               <select
                 id="input-paper-invitation-feedback"
@@ -157,10 +159,12 @@
                 class="form-input"
                 @change="send"
               >
-                <option disabled :value="null">Please select</option>
-                <option value="NONE">None</option>
-                <option value="PAPER">Paper</option>
-                <option value="DIGITAL">Digital</option>
+                <option disabled :value="null">
+                  {{ $t('requestSelection') }}
+                </option>
+                <option value="NONE">{{ $t('inviteKindNone') }}</option>
+                <option value="PAPER">{{ $t('inviteKindPaper') }}</option>
+                <option value="DIGITAL">{{ $t('inviteKindDigital') }}</option>
               </select>
             </div>
           </div>
@@ -246,7 +250,9 @@ export default {
               break
             default:
               alert(
-                `Error: Status code ${this.status}. Could not get iCal data.`
+                this.$t('iCalUnexpectedStatusCode', {
+                  statusCode: this.status,
+                })
               )
           }
         }
@@ -286,3 +292,32 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  greeting: 'Hey{usernameString}!'
+  greetingDescription: 'Du wurdest zu folgender Veranstaltung eingeladen:'
+  iCalDownload: 'Als iCal herunterladen'
+  iCalUnexpectedStatusCode: 'Fehler: Statuscode {statusCode}. iCal-Daten konnten nicht geladen werden.'
+  inviteAccept: 'Einladung annehmen'
+  inviteAccepted: 'Einladung angenommen'
+  inviteCancel: 'Einladung ablehnen'
+  inviteKind: 'Art der Einladung'
+  inviteKindNone: 'Keine'
+  inviteKindPaper: 'Papier'
+  inviteKindDigital: 'Digital'
+  requestSelection: 'Bitte auswählen'
+en:
+  greeting: 'Hey{usernameString}!'
+  greetingDescription: "You've been invited to the following event:"
+  iCalDownload: 'Download as iCal'
+  iCalUnexpectedStatusCode: 'Error: Status code {statusCode}. Could not get iCal data.'
+  inviteAccept: 'Accept invite'
+  inviteAccepted: 'Invite accepted'
+  inviteCancel: 'Cancel invite'
+  inviteKind: 'Kind of invite'
+  inviteKindNone: 'None'
+  inviteKindPaper: 'Paper'
+  inviteKindDigital: 'Digital'
+  requestSelection: 'Please select'
+</i18n>

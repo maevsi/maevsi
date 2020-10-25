@@ -46,6 +46,7 @@ export default {
             'faGlobeAfrica',
             'faHome',
             'faHourglass',
+            'faLanguage',
             'faMapMarker',
             'faPlus',
             'faUser',
@@ -158,6 +159,55 @@ export default {
   modules: [
     'nuxt-helmet', // Should be declared at the start of the array.
     'nuxt-healthcheck',
+    [
+      'nuxt-i18n',
+      {
+        baseUrl: 'https://' + process.env.NUXT_ENV_STACK_DOMAIN,
+        defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
+        detectBrowserLanguage: {
+          cookieSecure: true,
+          onlyOnRoot: true, // Enables better SEO.
+        },
+        locales: [
+          {
+            code: 'en',
+            name: 'English',
+            iso: 'en', // Will be used as catchall locale by default.
+          },
+          {
+            code: 'de',
+            name: 'Deutsch',
+            iso: 'de',
+          },
+        ],
+        seo: false, // https://i18n.nuxtjs.org/seo/#improving-performance
+        vueI18n: {
+          messages: {
+            de: {
+              globalApolloLoading: 'Lade...',
+              globalAvailabilityNotYet: 'Noch nicht verfügbar.',
+              globalPagingMore: 'Mehr',
+              globalValidationFormatIncorrect: 'Falsches Format.',
+              globalValidationMinValue: 'Wert zu gering.',
+              globalValidationRequired: 'Pflichtfeld.',
+              globalValidationTooLong: 'Zu lang.',
+              globalValidationTooShort: 'Zu kurz.',
+            },
+            en: {
+              globalApolloLoading: 'Loading...',
+              globalAvailabilityNotYet: 'Not yet available.',
+              globalPagingMore: 'More',
+              globalValidationFormatIncorrect: 'Incorrect format.',
+              globalValidationMinValue: 'Under minimum value.',
+              globalValidationRequired: 'Required.',
+              globalValidationTooLong: 'Too long.',
+              globalValidationTooShort: 'Too short.',
+            },
+          },
+        },
+        vueI18nLoader: true,
+      },
+    ],
     '@nuxtjs/apollo',
     '@nuxtjs/sitemap', // Should be declared at the end of the array.
   ],

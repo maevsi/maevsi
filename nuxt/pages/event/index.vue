@@ -8,7 +8,7 @@
         :link="'/new'"
         class="m-2"
       >
-        Create event
+        {{ $t('createEvent') }}
       </Button>
       <ButtonRedeem class="m-2" />
     </div>
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       graphqlErrorMessage: undefined,
-      title: 'Events',
+      title: this.$t('title'),
     }
   },
   computed: {
@@ -38,3 +38,12 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  createEvent: 'Veranstaltung erstellen'
+  title: 'Veranstaltungen'
+en:
+  createEvent: 'Create event'
+  title: 'Events'
+</i18n>

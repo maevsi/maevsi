@@ -19,7 +19,7 @@
       </h1>
     </div>
     <section>
-      <h2>Image Uploads</h2>
+      <h2>{{ $t('titleImageUploads') }}</h2>
       <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
       <ImageUploadGallery
         :deletion-function="reloadProfilePicture"
@@ -27,7 +27,7 @@
       />
     </section>
     <section class="mt-4">
-      <h2>Change Password</h2>
+      <h2>{{ $t('titleChangePassword') }}</h2>
       <PasswordChange />
     </section>
   </div>
@@ -65,3 +65,12 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  titleChangePassword: 'Password ändern'
+  titleImageUploads: 'Hochgeladene Bilder'
+en:
+  titleChangePassword: 'Change password'
+  titleImageUploads: 'Image uploads'
+</i18n>

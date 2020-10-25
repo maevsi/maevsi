@@ -10,7 +10,6 @@
         {{ $route.params.username }}
       </h1>
     </div>
-    <h2 class="text-left truncate">Their Events</h2>
     <EventList :username="this.$route.params.username" />
   </div>
 </template>

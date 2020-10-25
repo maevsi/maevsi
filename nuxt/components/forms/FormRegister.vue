@@ -5,28 +5,28 @@
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
   >
-    <FormInput :title="'Username'" :v="$v">
+    <FormInput :error="$v.form['username'].$error" :title="$t('username')">
       <input
         id="input-username-register"
         v-model.trim="$v.form.username.$model"
         class="form-input"
         type="text"
-        placeholder="john-doe"
+        :placeholder="$t('usernamePlaceholder')"
       />
       <div slot="formError">
         <FormError
-          :text="'required'"
+          :text="$t('globalValidationRequired')"
           :validation-object="$v.form.username"
           :validation-property="'required'"
         />
         <FormError
-          :text="'invalid format'"
+          :text="$t('globalValidationFormatIncorrect')"
           :validation-object="$v.form.username"
           :validation-property="'slug'"
         />
       </div>
     </FormInput>
-    <FormInput :title="'Password'" :v="$v">
+    <FormInput :error="$v.form['password'].$error" :title="$t('password')">
       <input
         id="input-password-register"
         v-model.trim="$v.form.password.$model"
@@ -36,33 +36,36 @@
       />
       <div slot="formError">
         <FormError
-          :text="'required'"
+          :text="$t('globalValidationRequired')"
           :validation-object="$v.form.password"
           :validation-property="'required'"
         />
         <FormError
-          :text="'too short'"
+          :text="$t('globalValidationTooShort')"
           :validation-object="$v.form.password"
           :validation-property="'minLength'"
         />
       </div>
     </FormInput>
-    <FormInput :title="'Email address'" :v="$v">
+    <FormInput
+      :error="$v.form['email-address'].$error"
+      :title="$t('emailAddress')"
+    >
       <input
         id="input-email-address"
         v-model.trim="$v.form['email-address'].$model"
         class="form-input"
         type="email"
-        placeholder="email@addre.ss"
+        :placeholder="$t('emailAddressPlaceholder')"
       />
       <div slot="formError">
         <FormError
-          :text="'required'"
+          :text="$t('globalValidationRequired')"
           :validation-object="$v.form['email-address']"
           :validation-property="'required'"
         />
         <FormError
-          :text="'invalid format'"
+          :text="$t('globalValidationFormatIncorrect')"
           :validation-object="$v.form['email-address']"
           :validation-property="'email'"
         />
@@ -77,7 +80,7 @@
         :icon="false"
         type="submit"
       >
-        Register
+        {{ this.$t('register') }}
       </Button>
     </div>
     <AlertGraphql
@@ -184,3 +187,20 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  emailAddress: 'E-Mail-Adresse'
+  emailAddressPlaceholder: 'email@adres.se'
+  password: 'Passwort'
+  register: 'Registrieren'
+  username: 'Nutzername'
+  usernamePlaceholder: 'nutzer-name'
+en:
+  emailAddress: 'Email address'
+  emailAddressPlaceholder: 'email@addre.ss'
+  password: 'Password'
+  register: 'Register'
+  username: 'Username'
+  usernamePlaceholder: 'user-name'
+</i18n>

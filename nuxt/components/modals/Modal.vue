@@ -15,7 +15,7 @@
           </div>
           <div class="modal-footer">
             <slot name="footer">
-              <button @click="$emit('close')">OK</button>
+              <button @click="$emit('close')">{{ $t('ok') }}</button>
             </slot>
           </div>
         </div>
@@ -45,3 +45,10 @@
   transform: scale(1.1);
 }
 </style>
+
+<i18n lang="yml">
+de:
+  ok: 'OK'
+en:
+  ok: 'OK'
+</i18n>

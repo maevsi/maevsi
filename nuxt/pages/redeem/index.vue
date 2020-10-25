@@ -2,15 +2,19 @@
   <div class="m-auto max-w-xl">
     <h1>{{ title }}</h1>
     <div class="mb-4">
-      Did you receive an invitation code for an event?
-      <br />Enter it below!
+      {{ $t('greetingQuestion') }}
+      <br />
+      {{ $t('greetingRequest') }}
     </div>
     <Form
       :function-submit="redeem"
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
     >
-      <FormInput :title="'Invitation Code'" :v="$v">
+      <FormInput
+        :error="$v.form['invitation-code'].$error"
+        :title="'Invitation Code'"
+      >
         <input
           id="input-invitation-code"
           v-model.trim="$v.form['invitation-code'].$model"
@@ -42,7 +46,7 @@
           :icon="false"
           type="submit"
         >
-          Redeem
+          {{ $t('title') }}
         </Button>
       </div>
       <AlertGraphql
@@ -74,7 +78,7 @@ export default {
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
       },
       graphqlErrorMessage: undefined,
-      title: 'Redeem',
+      title: this.$t('title'),
     }
   },
   created() {
@@ -113,7 +117,9 @@ export default {
         this.$store,
         undefined,
         res.jwt,
-        this.$router.push(`/event/${res.organizerUsername}/${res.eventSlug}`)
+        this.$router.push(
+          this.localePath(`/event/${res.organizerUsername}/${res.eventSlug}`)
+        )
       )
     },
   },
@@ -130,3 +136,14 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  greetingQuestion: 'Hast du einen Einladungscode für eine Veranstaltung erhalten?'
+  greetingRequest: 'Gib ihn hier ein!'
+  title: 'Einlösen'
+en:
+  greetingQuestion: 'Did you receive an invitation code for an event?'
+  greetingRequest: 'Enter it here!'
+  title: 'Redeem' # This property is currently used for the title and the button.
+</i18n>

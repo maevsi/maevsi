@@ -1,3 +1,5 @@
+// This file must exist for the i18n module too, as this file's existence enables the Vuex store.
+
 import { decode } from 'jsonwebtoken'
 
 export const state = () => ({

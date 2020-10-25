@@ -1,5 +1,5 @@
 <template>
-  <div />
+  <EventList :username="this.$route.params.username" />
 </template>
 
 <script>

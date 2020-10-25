@@ -4,7 +4,10 @@
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
   >
-    <FormInput :title="'Current Password'" :v="$v">
+    <FormInput
+      :error="$v.form['current-password'].$error"
+      :title="$t('passwordCurrent')"
+    >
       <input
         id="input-current-password"
         v-model.trim="$v.form['current-password'].$model"
@@ -14,18 +17,21 @@
       />
       <div slot="formError">
         <FormError
-          :text="'required'"
+          :text="$t('globalValidationRequired')"
           :validation-object="$v.form['current-password']"
           :validation-property="'required'"
         />
         <FormError
-          :text="'too short'"
+          :text="$t('globalValidationTooShort')"
           :validation-object="$v.form['current-password']"
           :validation-property="'minLength'"
         />
       </div>
     </FormInput>
-    <FormInput :title="'New Password'" :v="$v">
+    <FormInput
+      :error="$v.form['new-password'].$error"
+      :title="$t('passwordNew')"
+    >
       <input
         id="input-new-password"
         v-model.trim="$v.form['new-password'].$model"
@@ -35,12 +41,12 @@
       />
       <div slot="formError">
         <FormError
-          :text="'required'"
+          :text="$t('globalValidationRequired')"
           :validation-object="$v.form['new-password']"
           :validation-property="'required'"
         />
         <FormError
-          :text="'too short'"
+          :text="$t('globalValidationTooShort')"
           :validation-object="$v.form['new-password']"
           :validation-property="'minLength'"
         />
@@ -55,7 +61,7 @@
         :icon="false"
         type="submit"
       >
-        Change password
+        {{ $t('passwordChange') }}
       </Button>
     </div>
     <AlertGraphql
@@ -101,7 +107,7 @@ export default {
           },
         })
         .then((_data) => {
-          alert('Success: Password changed successfully.')
+          alert(this.$t('passwordChangeSuccess'))
         })
         .catch((error) => {
           this.graphqlErrorMessage = error.message
@@ -125,3 +131,16 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  passwordChange: 'Passwort ändern'
+  passwordChangeSuccess: 'Passwort erfolgreich geändert.'
+  passwordCurrent: 'Aktuelles Passwort'
+  passwordNew: 'Neues Passwort'
+en:
+  passwordChange: 'Change password'
+  passwordChangeSuccess: 'Password changed successfully.'
+  passwordCurrent: 'Current Password'
+  passwordNew: 'New Password'
+</i18n>

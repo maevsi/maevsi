@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ $route.params.event_group_name }}</h1>
-    <p>It's not yet possible to view event groups. Stay tuned!</p>
+    <p>{{ $t('futureEventGroups') }}</p>
   </div>
 </template>
 
@@ -16,3 +16,10 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  futureEventGroups: 'Es ist noch nicht möglich Veranstaltungsgruppen anzuzeigen. Ohren steifhalten!'
+en:
+  futureEventGroups: "It's not yet possible to view event groups. Stay tuned!"
+</i18n>

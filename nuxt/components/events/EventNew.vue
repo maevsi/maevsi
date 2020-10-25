@@ -4,74 +4,77 @@
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
   >
-    <FormInput :title="'Name'" :v="$v">
+    <FormInput :error="$v.form['name'].$error" :title="$t('name')">
       <input
         id="input-name"
         v-model.trim="$v.form['name'].$model"
         class="form-input"
         type="text"
-        placeholder="Welcome Party"
+        :placeholder="$t('namePlaceholder')"
         @input="updateSlug"
       />
       <div slot="formError">
         <FormError
-          :text="'required'"
+          :text="$t('globalValidationRequired')"
           :validation-object="$v.form['name']"
           :validation-property="'required'"
         />
         <FormError
-          :text="'too long'"
+          :text="$t('globalValidationTooLong')"
           :validation-object="$v.form['name']"
           :validation-property="'maxLength'"
         />
       </div>
     </FormInput>
-    <FormInput :title="'Slug'" :v="$v">
+    <FormInput :error="$v.form['slug'].$error" :title="$t('slug')">
       <input
         id="input-slug"
         v-model.trim="$v.form['slug'].$model"
         class="form-input"
         type="text"
-        placeholder="welcome-party"
+        :placeholder="$t('slugPlaceholder')"
       />
       <div slot="formError">
         <FormError
-          :text="'required'"
+          :text="$t('globalValidationRequired')"
           :validation-object="$v.form['slug']"
           :validation-property="'required'"
         />
         <FormError
-          :text="'too long'"
+          :text="$t('globalValidationTooLong')"
           :validation-object="$v.form['slug']"
           :validation-property="'maxLength'"
         />
         <FormError
-          :text="'incorrect format'"
+          :text="$t('globalValidationFormatIncorrect')"
           :validation-object="$v.form['slug']"
           :validation-property="'slugFormat'"
         />
       </div>
     </FormInput>
-    <FormInput :title="'Visibility'" :v="$v">
+    <FormInput :error="$v.form['visibility'].$error" :title="$t('visibility')">
       <FormRadioButtonGroup
         id="input-visibility"
         class="text-left"
         :name="'visibility'"
         :titles-values="[
-          ['public', 'PUBLIC'],
-          ['private', 'PRIVATE'],
+          [$t('visibilityPublic'), 'PUBLIC'],
+          [$t('visibilityPrivate'), 'PRIVATE'],
         ]"
         @change="$v.form['visibility'].$model = $event"
       />
       <div slot="formError">
         <FormError
-          :text="'required'"
+          :text="$t('globalValidationRequired')"
           :validation-object="$v.form['visibility']"
           :validation-property="'required'"
         />
       </div>
     </FormInput>
-    <FormInput :title="'Maximum Invitee Count'" :v="$v">
+    <FormInput
+      :error="$v.form['maximum-invitee-count'].$error"
+      :title="$t('maximumInviteeCount')"
+    >
       <input
         id="input-maximum-invitee-count"
         v-model.trim="$v.form['maximum-invitee-count'].$model"
@@ -80,13 +83,16 @@
       />
       <div slot="formError">
         <FormError
-          :text="'under minimum value'"
+          :text="$t('globalValidationMinValue')"
           :validation-object="$v.form['maximum-invitee-count']"
           :validation-property="'minValue'"
         />
       </div>
     </FormInput>
-    <FormInput :title="'Description'" :v="$v">
+    <FormInput
+      :error="$v.form['description'].$error"
+      :title="$t('description')"
+    >
       <textarea
         id="input-description"
         v-model.trim="$v.form['description'].$model"
@@ -94,13 +100,13 @@
       />
       <div slot="formError">
         <FormError
-          :text="'too long'"
+          :text="$t('globalValidationTooLong')"
           :validation-object="$v.form['description']"
           :validation-property="'maxLength'"
         />
       </div>
     </FormInput>
-    <FormInput :title="'Place'" :v="$v">
+    <FormInput :error="$v.form['place'].$error" :title="$t('place')">
       <input
         id="input-place"
         v-model.trim="$v.form['place'].$model"
@@ -109,13 +115,13 @@
       />
       <div slot="formError">
         <FormError
-          :text="'too long'"
+          :text="$t('globalValidationTooLong')"
           :validation-object="$v.form['place']"
           :validation-property="'maxLength'"
         />
       </div>
     </FormInput>
-    <FormInput :title="'Start'" :v="$v">
+    <FormInput :error="$v.form['start'].$error" :title="$t('start')">
       <Datetime
         v-model="$v.form['start'].$model"
         input-class="form-input"
@@ -123,7 +129,7 @@
         type="datetime"
       />
     </FormInput>
-    <FormInput :title="'End'" :v="$v">
+    <FormInput :error="$v.form['end'].$error" :title="$t('end')">
       <Datetime
         v-model="$v.form['end'].$model"
         input-class="form-input"
@@ -141,7 +147,7 @@
         :icon="false"
         type="submit"
       >
-        Create event
+        {{ $t('eventCreate') }}
       </Button>
     </div>
     <AlertGraphql
@@ -225,8 +231,10 @@ export default {
           },
         })
         .then((_data) => {
-          alert('Success: Event created successfully.')
-          this.$router.push(`/event/${this.loggedInUsername}/${this.form.slug}`)
+          alert(this.$t('eventCreateSuccess'))
+          this.$router.push(
+            this.localePath(`/event/${this.loggedInUsername}/${this.form.slug}`)
+          )
         })
         .catch((error) => {
           this.graphqlErrorMessage = error.message
@@ -273,3 +281,36 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  description: 'Beschreibung'
+  end: 'Ende'
+  eventCreate: 'Veranstaltung erstellen'
+  eventCreateSuccess: 'Veranstaltung erfolgreich erstellt.'
+  maximumInviteeCount: 'Maximale Gästezahl'
+  name: 'Name'
+  namePlaceholder: 'Willkommensfeier'
+  place: 'Ort'
+  slug: 'Slug'
+  slugPlaceholder: 'willkommensfeier'
+  start: 'Start'
+  visibility: 'Sichtbarkeit'
+  visibilityPrivate: 'privat'
+  visibilityPublic: 'öffentlich'
+en:
+  description: 'Description'
+  end: 'End'
+  eventCreate: 'Create event'
+  eventCreateSuccess: 'Event created successfully.'
+  maximumInviteeCount: 'Maximum invitee count'
+  name: 'Name'
+  namePlaceholder: 'Welcome Party'
+  place: 'Place'
+  slug: 'Slug'
+  slugPlaceholder: 'welcome-party'
+  start: 'Start'
+  visibility: 'Visibiltiy'
+  visibilityPrivate: 'private'
+  visibilityPublic: 'public'
+</i18n>
