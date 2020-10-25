@@ -1,3 +1,17 @@
+# [0.7.0](https://github.com/maevsi/maevsi/compare/0.6.0...0.7.0) (2020-10-25)
+
+
+### Bug Fixes
+
+* **new:** redirect users who aren't signed in ([e3d2319](https://github.com/maevsi/maevsi/commit/e3d231928df1ef9ed2f3e6b324e5eabc7b914182))
+
+
+### Features
+
+* **event-list:** show user's events on event path ([273edad](https://github.com/maevsi/maevsi/commit/273edadc742c16d156e52ea8f06c36bcdf3ac6e3))
+* **i18n:** add German translation ([1974e32](https://github.com/maevsi/maevsi/commit/1974e3229875d7f7d8a457e7e27c6539095b9674))
+* **i18n:** add proof of concept ([835b41e](https://github.com/maevsi/maevsi/commit/835b41e48a41624a1fd014644cc83b1a78c12a49))
+
 # [0.6.0](https://github.com/maevsi/maevsi/compare/0.5.0...0.6.0) (2020-10-25)
 
 
