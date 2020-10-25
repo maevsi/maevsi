@@ -235,8 +235,20 @@ export default {
       xhr.open('POST', '/ical', true)
       xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
       xhr.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-          require('downloadjs')(this.responseText, fileName, 'text/calendar')
+        if (this.readyState === 4) {
+          switch (this.status) {
+            case 200:
+              require('downloadjs')(
+                this.responseText,
+                fileName,
+                'text/calendar'
+              )
+              break
+            default:
+              alert(
+                `Error: Status code ${this.status}. Could not get iCal data.`
+              )
+          }
         }
       }
       xhr.send(JSON.stringify({ event: this.eventContactFeedbackData.event }))
