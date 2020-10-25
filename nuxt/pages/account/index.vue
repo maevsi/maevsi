@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
+    <h1>{{ $t('title') }}</h1>
     <div class="m-auto max-w-lg">
       <div class="grid">
         <div class="e1">
@@ -23,10 +23,14 @@
         </ul>
         <ul class="e1 pills z-0">
           <li>
-            <button @click="tabSelect('register')">Registration</button>
+            <button @click="tabSelect('register')">
+              {{ $t('register') }}
+            </button>
           </li>
           <li>
-            <button @click="tabSelect('signIn')">Sign In</button>
+            <button @click="tabSelect('signIn')">
+              {{ $t('signIn') }}
+            </button>
           </li>
         </ul>
       </div>
@@ -75,13 +79,15 @@ export default {
           ? 'signIn'
           : this.$route.query.form,
       password: undefined,
-      title: 'Account',
+      title: this.$t('title'),
       username: undefined,
     }
   },
-  middleware({ store, redirect }) {
+  middleware({ app, store, redirect }) {
     if (store.state.jwtDecoded && store.state.jwtDecoded.username) {
-      return redirect('./' + store.state.jwtDecoded.username)
+      return redirect(
+        app.localePath('/account/' + store.state.jwtDecoded.username)
+      )
     }
   },
   methods: {
@@ -119,3 +125,14 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  register: 'Registrieren'
+  signIn: 'Anmelden'
+  title: 'Konto'
+en:
+  register: 'Register'
+  signIn: 'Sign In'
+  title: 'Account'
+</i18n>

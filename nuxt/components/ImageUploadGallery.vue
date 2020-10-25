@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="$apollo.loading">Loading...</div>
+    <div v-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
     <div v-else-if="graphqlErrorMessage !== undefined">
       <AlertGraphql :graphql-error-message="graphqlErrorMessage" />
     </div>
@@ -39,7 +39,7 @@
                       :icon="['fas', 'trash']"
                       class="m-2"
                       size="lg"
-                      title="trash"
+                      :title="$t('iconTrash')"
                     />
                   </div>
                 </div>
@@ -52,7 +52,7 @@
                       :icon="['fas', 'trash']"
                       class="m-2 text-white"
                       size="lg"
-                      title="trash"
+                      :title="$t('iconTrash')"
                     />
                   </div>
                 </button>
@@ -67,7 +67,7 @@
             <FontAwesomeIcon
               :icon="['fas', 'plus']"
               class="text-white"
-              title="add"
+              title="$t('iconAdd')"
               size="3x"
             />
             <input
@@ -84,17 +84,20 @@
           v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"
           class="flex justify-center"
         >
-          <Button :icon="false" @click.native="showMore"> More </Button>
+          <Button :icon="false" @click.native="showMore">{{
+            $t('globalPagingMore')
+          }}</Button>
         </div>
       </div>
     </div>
-    <p v-else>You don't have any uploaded pictures :/</p>
+    <p v-else>{{ $t('noPictures') }}</p>
     <Modal v-if="showModalImageUpload" @close="showModalImageUpload = false">
-      <h2 slot="header">Upload a new image</h2>
+      <h2 slot="header">{{ $t('uploadNew') }}</h2>
       <Croppa
         slot="body"
         ref="croppy"
         :initial-image="fileSelectedUrl"
+        :placeholder="$t('croppaPlaceholder')"
         :placeholder-font-size="17.5"
         :show-remove-button="false"
       />
@@ -104,14 +107,14 @@
           :icon-id="['fas', 'window-close']"
           @click.native="showModalImageUpload = false"
         >
-          Cancel
+          {{ $t('cancel') }}
         </Button>
         <ButtonGreen
           :disabled="uploading"
           :icon-id="['fas', 'upload']"
           @click.native="generateBlob()"
         >
-          Upload
+          {{ $t('upload') }}
         </ButtonGreen>
       </div>
     </Modal>
@@ -221,10 +224,10 @@ export default {
 
               break
             case 500:
-              alert('Deleting upload failed!')
+              alert(this.$t('uploadDeleteFailed'))
               break
             default:
-              alert('Deleting upload returned an unexpected status code.')
+              alert(this.$t('uploadDeleteUnexpectedStatusCode'))
           }
         }
       }
@@ -324,7 +327,7 @@ export default {
           this.$apollo.queries.allUploads.refetch()
 
           if (result.failed.length > 0) {
-            alert('Some files did not upload successfully!')
+            alert(this.$t('uploadError'))
           } else {
             outerThis.showModalImageUpload = false
           }
@@ -368,3 +371,28 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  cancel: 'Abbrechen'
+  croppaPlaceholder: 'Wähle ein Bild'
+  iconAdd: 'hinzufügen'
+  iconTrash: 'löschen'
+  noPictures: 'Du hast keine hochgeladenen Bilder :/'
+  upload: 'Hochladen'
+  uploadDeleteFailed: 'Das Löschen des Elements ist fehlgeschlagen!'
+  uploadDeleteUnexpectedStatusCode: 'Beim Löschen des Elements trat ein unerwarteter Statuscode auf.'
+  uploadError: 'Fehler: Dateien wurden nicht erfolgreich hochgeladen!'
+  uploadNew: 'Lade ein neues Bild hoch'
+en:
+  cancel: 'Cancel'
+  croppaPlaceholder: 'Choose an image'
+  iconAdd: 'add'
+  iconTrash: 'trash'
+  noPictures: "You don't have any uploaded pictures :/"
+  upload: 'Upload'
+  uploadDeleteFailed: 'Deleting upload failed!'
+  uploadDeleteUnexpectedStatusCode: 'Deleting upload returned an unexpected status code.'
+  uploadError: 'Error: Some files did not upload successfully!'
+  uploadNew: 'Upload a new image'
+</i18n>

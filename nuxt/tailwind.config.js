@@ -66,6 +66,12 @@ module.exports = {
             background: '#202020',
           },
         },
+        footer: {
+          background: '#ffffff',
+          '@screen dark-mode': {
+            background: '#282828',
+          },
+        },
         h1: {
           fontSize: theme('fontSize.4xl'),
           marginBottom: theme('margin.4'),

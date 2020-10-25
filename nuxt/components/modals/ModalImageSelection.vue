@@ -1,6 +1,6 @@
 <template>
   <Modal @close="modalHideFunction()">
-    <h2 slot="header">Select a profile picture</h2>
+    <h2 slot="header">{{ $t('header') }}</h2>
     <ImageUploadGallery
       slot="body"
       :allow-addition="false"
@@ -13,7 +13,7 @@
         :icon-id="['fas', 'window-close']"
         @click.native="modalHideFunction()"
       >
-        Cancel
+        {{ $t('cancel') }}
       </Button>
       <ButtonGreen
         :disabled="
@@ -23,7 +23,7 @@
         :icon-id="['fas', 'check-circle']"
         @click.native="setProfilePicture()"
       >
-        Select
+        {{ $t('select') }}
       </ButtonGreen>
     </div>
     <div if="graphqlErrorMessage !== undefined">
@@ -84,3 +84,14 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  cancel: 'Abbrechen'
+  header: 'Wähle ein Profilbild'
+  select: 'Auswählen'
+en:
+  cancel: 'Cancel'
+  header: 'Select a profile picture'
+  select: 'Select'
+</i18n>

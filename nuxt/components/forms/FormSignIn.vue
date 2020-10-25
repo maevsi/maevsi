@@ -5,28 +5,28 @@
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
   >
-    <FormInput :error="$v.form['username'].$error" :title="'Username'">
+    <FormInput :error="$v.form['username'].$error" :title="$t('username')">
       <input
         id="input-username-sign-in"
         v-model.trim="$v.form.username.$model"
         class="form-input"
         type="text"
-        placeholder="john-doe"
+        :placeholder="$t('usernamePlaceholder')"
       />
       <div slot="formError">
         <FormError
-          :text="'required'"
+          :text="$t('globalValidationRequired')"
           :validation-object="$v.form.username"
           :validation-property="'required'"
         />
         <FormError
-          :text="'invalid format'"
+          :text="$t('globalValidationFormatIncorrect')"
           :validation-object="$v.form.username"
           :validation-property="'slug'"
         />
       </div>
     </FormInput>
-    <FormInput :error="$v.form['password'].$error" :title="'Password'">
+    <FormInput :error="$v.form['password'].$error" :title="$t('password')">
       <input
         id="input-password-sign-in"
         v-model.trim="$v.form.password.$model"
@@ -36,12 +36,12 @@
       />
       <div slot="formError">
         <FormError
-          :text="'required'"
+          :text="$t('globalValidationRequired')"
           :validation-object="$v.form.password"
           :validation-property="'required'"
         />
         <FormError
-          :text="'too short'"
+          :text="$t('globalValidationTooShort')"
           :validation-object="$v.form.password"
           :validation-property="'minLength'"
         />
@@ -56,14 +56,14 @@
         :icon="false"
         type="submit"
       >
-        Sign in
+        {{ $t('signIn') }}
       </Button>
       <nuxt-link
         class="disabled inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 mt-4"
         to="#"
-        title="Not yet available."
+        :title="$t('globalAvailabilityNotYet')"
       >
-        Forgot password?
+        {{ $t('passwordForgotten') }}
       </nuxt-link>
     </div>
     <AlertGraphql
@@ -165,3 +165,18 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  passwordForgotten: 'Passwort vergessen?'
+  password: 'Passwort'
+  signIn: 'Anmelden'
+  username: 'Nutzername'
+  usernamePlaceholder: 'nutzer-name'
+en:
+  passwordForgotten: 'Forgot password?'
+  password: 'Password'
+  username: 'Username'
+  signIn: 'Sign in'
+  usernamePlaceholder: 'user-name'
+</i18n>

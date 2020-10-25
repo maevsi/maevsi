@@ -46,6 +46,7 @@ export default {
             'faGlobeAfrica',
             'faHome',
             'faHourglass',
+            'faLanguage',
             'faMapMarker',
             'faPlus',
             'faUser',
@@ -180,6 +181,30 @@ export default {
           },
         ],
         seo: false, // https://i18n.nuxtjs.org/seo/#improving-performance
+        vueI18n: {
+          messages: {
+            de: {
+              globalApolloLoading: 'Lade...',
+              globalAvailabilityNotYet: 'Noch nicht verfügbar.',
+              globalPagingMore: 'Mehr',
+              globalValidationFormatIncorrect: 'Falsches Format.',
+              globalValidationMinValue: 'Wert zu gering.',
+              globalValidationRequired: 'Pflichtfeld.',
+              globalValidationTooLong: 'Zu lang.',
+              globalValidationTooShort: 'Zu kurz.',
+            },
+            en: {
+              globalApolloLoading: 'Loading...',
+              globalAvailabilityNotYet: 'Not yet available.',
+              globalPagingMore: 'More',
+              globalValidationFormatIncorrect: 'Incorrect format.',
+              globalValidationMinValue: 'Under minimum value.',
+              globalValidationRequired: 'Required.',
+              globalValidationTooLong: 'Too long.',
+              globalValidationTooShort: 'Too short.',
+            },
+          },
+        },
         vueI18nLoader: true,
       },
     ],

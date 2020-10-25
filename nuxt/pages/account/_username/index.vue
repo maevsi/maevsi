@@ -10,7 +10,9 @@
         {{ $route.params.username }}
       </h1>
     </div>
-    <h2 class="text-left truncate">Their Events</h2>
+    <h2 class="text-left truncate">
+      {{ $t('titleEvents', { username: this.$route.params.username }) }}
+    </h2>
     <EventList :username="this.$route.params.username" />
   </div>
 </template>
@@ -26,3 +28,10 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  titleEvents: 'Veranstaltungen von {username}'
+en:
+  titleEvents: 'Events by {username}'
+</i18n>

@@ -4,7 +4,7 @@
       v-if="graphqlErrorMessage !== undefined"
       :graphql-error-message="graphqlErrorMessage"
     />
-    <div v-else-if="$apollo.loading">Loading...</div>
+    <div v-else-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
     <ul
       v-else-if="
         allEvents !== undefined && allEvents.nodes && allEvents.nodes.length
@@ -14,7 +14,7 @@
       <nuxt-link
         v-for="event in allEvents.nodes"
         :key="event.id"
-        :to="'/event/' + event.organizerUsername + '/' + event.slug"
+        :to="localePath('/event/' + event.organizerUsername + '/' + event.slug)"
       >
         <li class="mb-2">
           <div
@@ -54,10 +54,12 @@
         </li>
       </nuxt-link>
       <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
-        <Button :icon="false" @click.native="showMore">More</Button>
+        <Button :icon="false" @click.native="showMore">{{
+          $t('globalPagingMore')
+        }}</Button>
       </div>
     </ul>
-    <p v-else>There are currently no events :/</p>
+    <p v-else>{{ $t('noEvents') }}</p>
   </div>
 </template>
 
@@ -114,3 +116,10 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  noEvents: 'Aktuell gibt es keine Veranstaltungen :/'
+en:
+  noEvents: 'There are currently no events :/'
+</i18n>

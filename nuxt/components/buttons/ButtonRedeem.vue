@@ -1,5 +1,7 @@
 <template>
-  <Button :icon-id="['fas', 'key']" :link="'/redeem'"> Redeem invite </Button>
+  <Button :icon-id="['fas', 'key']" :link="'/redeem'">{{
+    $t('redeem')
+  }}</Button>
 </template>
 
 <script>
@@ -22,3 +24,10 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  redeem: 'Einladungscode einlösen'
+en:
+  redeem: 'Redeem invite code'
+</i18n>

@@ -10,20 +10,14 @@
         :href="'https://github.com/maevsi/maevsi/'"
         rel="noopener"
         target="_blank"
-        :title="'maevsi on GitHub'"
+        :title="$t('githubLinkTitle')"
       >
         <FontAwesomeIcon class="mr-2" :icon="['fab', 'github']" size="2x" />
         github.com/maevsi/maevsi
       </a>
     </div>
-    <nuxt-link
-      v-for="locale in availableLocales"
-      :key="locale.code"
-      :to="switchLocalePath(locale.code)"
-      >{{ locale.name }}</nuxt-link
-    >
-    <nuxt-link to="/event">
-      <Button :icon="false" class="my-4"> Events </Button>
+    <nuxt-link :to="localePath('/event')">
+      <Button :icon="false" class="my-4">{{ $t('events') }}</Button>
     </nuxt-link>
   </div>
 </template>
@@ -32,13 +26,8 @@
 export default {
   data() {
     return {
-      title: 'Welcome!',
+      title: this.$t('title'),
     }
-  },
-  computed: {
-    availableLocales() {
-      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
-    },
   },
   head() {
     return {
@@ -50,9 +39,15 @@ export default {
 
 <i18n lang="yml">
 de:
-  maevsi: 'Maevsi ist ein Eventmanager für Veranstaltungen, die von den Teilnehmenden unterstützt werden.'
-  alpha: 'Diese Webseite befindet sich derzeit im Alpha-Stadium: Alles kann sich jederzeit ändern und die Daten sind unbeständig.'
+  alpha: 'Diese Webseite befindet sich derzeit im Alpha-Stadium: Alles kann sich jederzeit ändern und Daten können verlorengehen.'
+  events: 'Veranstaltungen'
+  githubLinkTitle: 'maevsi auf GitHub'
+  maevsi: 'maevsi ist ein Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden.'
+  title: 'Willkommen!'
 en:
-  maevsi: 'Maevsi is a manager for events supported by invitees.'
   alpha: 'This site is currently in alpha: anything can change at any time and data is volatile.'
+  events: 'Events'
+  githubLinkTitle: 'maevsi on GitHub'
+  maevsi: 'maevsi is a manager for events supported by invitees.'
+  title: 'Welcome!'
 </i18n>
