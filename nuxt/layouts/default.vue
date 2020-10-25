@@ -58,6 +58,9 @@ export default {
         : undefined
     },
   },
+  head() {
+    return this.$nuxtI18nSeo()
+  },
 }
 </script>
 
