@@ -18,7 +18,9 @@ export default function (
     (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
     '/event/' +
     eventId
-  const eventDescriptionHtml = md.render(data.event.description)
+  const eventDescriptionHtml = data.event.description
+    ? md.render(data.event.description)
+    : ''
 
   res.setHeader('Content-Type', 'text/calendar')
   res.setHeader(

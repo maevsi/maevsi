@@ -141,7 +141,7 @@ export async function storeJwt(
     res.setHeader(
       'Set-Cookie',
       cookie.serialize('__Secure-apollo-token', jwt, {
-        expires: jwt ? new Date(Date.now() + 86400 * 1000 * 7) : new Date(0),
+        expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
         httpOnly: true,
         path: '/',
         sameSite: 'strict',

@@ -1,3 +1,24 @@
+# [0.6.0](https://github.com/maevsi/maevsi/compare/0.5.0...0.6.0) (2020-10-25)
+
+
+### Bug Fixes
+
+* **ical:** allow empty descriptions ([a2cb013](https://github.com/maevsi/maevsi/commit/a2cb013f32e5bfc40391f2ee38f3eefa11d51871))
+* **sqitch/authenticate:** add missing parameter ([615bd97](https://github.com/maevsi/maevsi/commit/615bd97161f14e6b904cc8d46121af9ff78baae6))
+
+
+### Features
+
+* **cookie:** set expiry to 31 days ([d6bf2af](https://github.com/maevsi/maevsi/commit/d6bf2afd6afb2a5f37347e1f5ffc90c00b569d7d))
+* **event:** alert on unexpected ical status code ([cd93c2c](https://github.com/maevsi/maevsi/commit/cd93c2c1b00a0301174a742bcb0094bdc8889d46))
+
+# [0.5.0](https://github.com/maevsi/maevsi/compare/0.4.7...0.5.0) (2020-10-24)
+
+
+### Features
+
+* redirect to event on creation ([a82eaa7](https://github.com/maevsi/maevsi/commit/a82eaa7dfe374d6732d523348240b87cdb52bec4))
+
 ## [0.4.7](https://github.com/maevsi/maevsi/compare/0.4.6...0.4.7) (2020-10-24)
 
 

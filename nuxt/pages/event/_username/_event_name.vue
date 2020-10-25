@@ -239,8 +239,22 @@ export default {
       xhr.open('POST', '/ical', true)
       xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
       xhr.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-          require('downloadjs')(this.responseText, fileName, 'text/calendar')
+        if (this.readyState === 4) {
+          switch (this.status) {
+            case 200:
+              require('downloadjs')(
+                this.responseText,
+                fileName,
+                'text/calendar'
+              )
+              break
+            default:
+              alert(
+                this.$t('iCalUnexpectedStatusCode', {
+                  statusCode: this.status,
+                })
+              )
+          }
         }
       }
       xhr.send(JSON.stringify({ event: this.eventContactFeedbackData.event }))
@@ -284,6 +298,7 @@ de:
   greeting: 'Hey{usernameString}!'
   greetingDescription: 'Du wurdest zu folgender Veranstaltung eingeladen:'
   iCalDownload: 'Als iCal herunterladen'
+  iCalUnexpectedStatusCode: 'Fehler: Statuscode {statusCode}. iCal-Daten konnten nicht geladen werden.'
   inviteAccept: 'Einladung annehmen'
   inviteAccepted: 'Einladung angenommen'
   inviteCancel: 'Einladung ablehnen'
@@ -296,6 +311,7 @@ en:
   greeting: 'Hey{usernameString}!'
   greetingDescription: "You've been invited to the following event:"
   iCalDownload: 'Download as iCal'
+  iCalUnexpectedStatusCode: 'Error: Status code {statusCode}. Could not get iCal data.'
   inviteAccept: 'Accept invite'
   inviteAccepted: 'Invite accepted'
   inviteCancel: 'Cancel invite'

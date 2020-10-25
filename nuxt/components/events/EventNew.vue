@@ -232,6 +232,9 @@ export default {
         })
         .then((_data) => {
           alert(this.$t('eventCreateSuccess'))
+          this.$router.push(
+            this.localePath(`/event/${this.loggedInUsername}/${this.form.slug}`)
+          )
         })
         .catch((error) => {
           this.graphqlErrorMessage = error.message
