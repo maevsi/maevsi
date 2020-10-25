@@ -11,6 +11,9 @@
       "
       class="text-left"
     >
+      <h2 v-if="username" class="text-left truncate">
+        {{ $t('titleEvents', { username: this.$route.params.username }) }}
+      </h2>
       <nuxt-link
         v-for="event in allEvents.nodes"
         :key="event.id"
@@ -74,7 +77,7 @@ export default {
         variables: {
           cursor: null,
           limit: this.$global.ITEMS_PER_PAGE,
-          username: this.$route.params.username,
+          username: this.username,
         },
         error(error, _vm, _key, _type, _options) {
           this.graphqlErrorMessage = error.message
@@ -120,6 +123,8 @@ export default {
 <i18n lang="yml">
 de:
   noEvents: 'Aktuell gibt es keine Veranstaltungen :/'
+  titleEvents: 'Veranstaltungen von {username}'
 en:
   noEvents: 'There are currently no events :/'
+  titleEvents: 'Events by {username}'
 </i18n>
