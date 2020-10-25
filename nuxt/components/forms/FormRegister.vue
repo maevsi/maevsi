@@ -5,7 +5,7 @@
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
   >
-    <FormInput :title="'Username'" :v="$v">
+    <FormInput :error="$v.form['username'].$error" :title="'Username'">
       <input
         id="input-username-register"
         v-model.trim="$v.form.username.$model"
@@ -26,7 +26,7 @@
         />
       </div>
     </FormInput>
-    <FormInput :title="'Password'" :v="$v">
+    <FormInput :error="$v.form['password'].$error" :title="'Password'">
       <input
         id="input-password-register"
         v-model.trim="$v.form.password.$model"
@@ -47,7 +47,10 @@
         />
       </div>
     </FormInput>
-    <FormInput :title="'Email address'" :v="$v">
+    <FormInput
+      :error="$v.form['email-address'].$error"
+      :title="'Email address'"
+    >
       <input
         id="input-email-address"
         v-model.trim="$v.form['email-address'].$model"

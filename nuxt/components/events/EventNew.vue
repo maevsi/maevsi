@@ -4,7 +4,7 @@
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
   >
-    <FormInput :title="'Name'" :v="$v">
+    <FormInput :error="$v.form['name'].$error" :title="'Name'">
       <input
         id="input-name"
         v-model.trim="$v.form['name'].$model"
@@ -26,7 +26,7 @@
         />
       </div>
     </FormInput>
-    <FormInput :title="'Slug'" :v="$v">
+    <FormInput :error="$v.form['slug'].$error" :title="'Slug'">
       <input
         id="input-slug"
         v-model.trim="$v.form['slug'].$model"
@@ -52,7 +52,7 @@
         />
       </div>
     </FormInput>
-    <FormInput :title="'Visibility'" :v="$v">
+    <FormInput :error="$v.form['visibility'].$error" :title="'Visibility'">
       <FormRadioButtonGroup
         id="input-visibility"
         class="text-left"
@@ -71,7 +71,10 @@
         />
       </div>
     </FormInput>
-    <FormInput :title="'Maximum Invitee Count'" :v="$v">
+    <FormInput
+      :error="$v.form['maximum-invitee-count'].$error"
+      :title="'Maximum Invitee Count'"
+    >
       <input
         id="input-maximum-invitee-count"
         v-model.trim="$v.form['maximum-invitee-count'].$model"
@@ -86,7 +89,7 @@
         />
       </div>
     </FormInput>
-    <FormInput :title="'Description'" :v="$v">
+    <FormInput :error="$v.form['description'].$error" :title="'Description'">
       <textarea
         id="input-description"
         v-model.trim="$v.form['description'].$model"
@@ -100,7 +103,7 @@
         />
       </div>
     </FormInput>
-    <FormInput :title="'Place'" :v="$v">
+    <FormInput :error="$v.form['place'].$error" :title="'Place'">
       <input
         id="input-place"
         v-model.trim="$v.form['place'].$model"
@@ -115,7 +118,7 @@
         />
       </div>
     </FormInput>
-    <FormInput :title="'Start'" :v="$v">
+    <FormInput :error="$v.form['start'].$error" :title="'Start'">
       <Datetime
         v-model="$v.form['start'].$model"
         input-class="form-input"
@@ -123,7 +126,7 @@
         type="datetime"
       />
     </FormInput>
-    <FormInput :title="'End'" :v="$v">
+    <FormInput :error="$v.form['end'].$error" :title="'End'">
       <Datetime
         v-model="$v.form['end'].$model"
         input-class="form-input"

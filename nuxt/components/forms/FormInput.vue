@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      :class="{ 'animate-shake form-input-error': v.form[titleSlug].$error }"
+      :class="{ 'animate-shake form-input-error': error }"
       class="md:flex md:items-center"
     >
       <div class="md:w-1/3">
@@ -25,18 +25,13 @@
 <script>
 export default {
   props: {
+    error: {
+      type: Boolean,
+      default: false,
+    },
     title: {
       type: String,
       default: undefined,
-    },
-    v: {
-      type: Object,
-      default: undefined,
-    },
-  },
-  computed: {
-    titleSlug() {
-      return this.$slugify(this.title, { lower: true, strict: true })
     },
   },
 }

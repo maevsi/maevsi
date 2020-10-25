@@ -4,7 +4,10 @@
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
   >
-    <FormInput :title="'Current Password'" :v="$v">
+    <FormInput
+      :error="$v.form['current-password'].$error"
+      :title="'Current Password'"
+    >
       <input
         id="input-current-password"
         v-model.trim="$v.form['current-password'].$model"
@@ -25,7 +28,7 @@
         />
       </div>
     </FormInput>
-    <FormInput :title="'New Password'" :v="$v">
+    <FormInput :error="$v.form['new-password'].$error" :title="'New Password'">
       <input
         id="input-new-password"
         v-model.trim="$v.form['new-password'].$model"

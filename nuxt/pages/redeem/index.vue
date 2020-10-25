@@ -10,7 +10,10 @@
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
     >
-      <FormInput :title="'Invitation Code'" :v="$v">
+      <FormInput
+        :error="$v.form['invitation-code'].$error"
+        :title="'Invitation Code'"
+      >
         <input
           id="input-invitation-code"
           v-model.trim="$v.form['invitation-code'].$model"
