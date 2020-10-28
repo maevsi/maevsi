@@ -13,7 +13,7 @@
     >
       <FormInput
         :error="$v.form['invitation-code'].$error"
-        :title="'Invitation Code'"
+        :title="$t('invitationCode')"
       >
         <input
           id="input-invitation-code"
@@ -141,9 +141,11 @@ export default {
 de:
   greetingQuestion: 'Hast du einen Einladungscode für eine Veranstaltung erhalten?'
   greetingRequest: 'Gib ihn hier ein!'
+  invitationCode: 'Einladungscode'
   title: 'Einlösen'
 en:
   greetingQuestion: 'Did you receive an invitation code for an event?'
   greetingRequest: 'Enter it here!'
+  invitationCode: 'Invitation code'
   title: 'Redeem' # This property is currently used for the title and the button.
 </i18n>
