@@ -1,3 +1,11 @@
+# [0.9.0](https://github.com/maevsi/maevsi/compare/0.8.0...0.9.0) (2020-10-28)
+
+
+### Features
+
+* **og-meta:** add open graph meta tags ([db00824](https://github.com/maevsi/maevsi/commit/db008243319a73edbf48572f0973150ba461b24e)), closes [#69](https://github.com/maevsi/maevsi/issues/69)
+* **og-meta:** og meta for events ([1c2f715](https://github.com/maevsi/maevsi/commit/1c2f715a802fbea5cd90c9b0d351272c329e3ddc))
+
 # [0.8.0](https://github.com/maevsi/maevsi/compare/0.7.0...0.8.0) (2020-10-28)
 
 
