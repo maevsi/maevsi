@@ -1,3 +1,17 @@
+# [0.8.0](https://github.com/maevsi/maevsi/compare/0.7.0...0.8.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **redeem:** add missing translation ([1a2eb8e](https://github.com/maevsi/maevsi/commit/1a2eb8e4a631b6151a614c0bad14e8b3e360489b))
+
+
+### Features
+
+* **robots:** add dependency ([7343d62](https://github.com/maevsi/maevsi/commit/7343d622818b953b02438b44a91957e70479a03c))
+* **robots:** extract constants reg. URL ([b6e9538](https://github.com/maevsi/maevsi/commit/b6e9538e0f18267648f6b1bcc04d2b40b786c430))
+* **robots:** setup @nuxtjs/robots ([868e26c](https://github.com/maevsi/maevsi/commit/868e26cd5534548b5bbe05bdd1aac43fb87fcbfb))
+
 # [0.7.0](https://github.com/maevsi/maevsi/compare/0.6.0...0.7.0) (2020-10-25)
 
 
