@@ -17,7 +17,21 @@
 <script>
 export default {
   head() {
-    return { title: this.$route.params.username }
+    return {
+      meta: [
+        {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'profile',
+        },
+        {
+          hid: 'profile:username',
+          property: 'profile:username',
+          content: this.$route.params.username,
+        },
+      ],
+      title: this.$route.params.username,
+    }
   },
   validate({ params }) {
     // Must be a number

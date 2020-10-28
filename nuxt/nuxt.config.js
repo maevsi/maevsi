@@ -1,11 +1,7 @@
 import bodyParser from 'body-parser'
 import shrinkRay from 'shrink-ray-current'
 
-const STACK_DOMAIN = process.env.NUXT_ENV_STACK_DOMAIN || 'localhost:3000'
-const BASE_URL = // If NUXT_ENV_STACK_DOMAIN is missing, we assume that a http dev env is used.
-  (process.env.NUXT_ENV_STACK_DOMAIN === undefined ? 'http' : 'https') +
-  '://' +
-  STACK_DOMAIN
+import { BASE_URL, STACK_DOMAIN } from './plugins/baseUrl'
 
 export default {
   apollo: {
@@ -83,70 +79,92 @@ export default {
   css: ['vue-croppa/dist/vue-croppa.css', 'vue-datetime/dist/vue-datetime.css'],
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
-  head: {
-    bodyAttrs: { class: 'font-sans h-full dark-mode:text-white' },
-    htmlAttrs: { class: 'h-full' },
-    link: [
-      {
-        href: '/assets/static/favicon/apple-touch-icon.png?v=bOXMwoKlJr',
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
+  head() {
+    return {
+      bodyAttrs: { class: 'font-sans h-full dark-mode:text-white' },
+      htmlAttrs: { class: 'h-full' },
+      link: [
+        {
+          href: '/assets/static/favicon/apple-touch-icon.png?v=bOXMwoKlJr',
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+        },
+        {
+          href: '/assets/static/favicon/favicon-32x32.png?v=bOXMwoKlJr',
+          rel: 'icon',
+          sizes: '32x32',
+          type: 'image/png',
+        },
+        {
+          href: '/assets/static/favicon/favicon-16x16.png?v=bOXMwoKlJr',
+          rel: 'icon',
+          sizes: '16x16',
+          type: 'image/png',
+        },
+        {
+          href: '/assets/static/favicon/favicon.ico',
+          rel: 'icon',
+          type: 'image/x-icon',
+        },
+        {
+          href: '/assets/static/favicon/site.webmanifest?v=bOXMwoKlJr',
+          rel: 'manifest',
+        },
+        {
+          color: '#202020',
+          href: '/assets/static/favicon/safari-pinned-tab.svg?v=bOXMwoKlJr',
+          rel: 'mask-icon',
+        },
+        {
+          href: '/assets/static/favicon/favicon.ico?v=bOXMwoKlJr',
+          rel: 'shortcut icon',
+        },
+      ],
+      meta: [
+        { charset: 'utf-8' },
+        { content: 'width=device-width, initial-scale=1', name: 'viewport' },
+        {
+          hid: 'description',
+          property: 'description',
+          content: this.$t('globalOgSeoDescription'),
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.$t('globalOgSeoDescription'),
+        },
+        {
+          content: '/assets/static/favicon/browserconfig.xml?v=bOXMwoKlJr',
+          name: 'msapplication-config',
+        },
+        {
+          content: '#202020',
+          name: 'msapplication-TileColor',
+        },
+        {
+          content: '#202020',
+          name: 'theme-color',
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.$baseUrl + '/assets/static/logos/maevsi.svg',
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: this.$t('globalOgImageAlt'),
+        },
+        {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'website', // https://ogp.me/#types
+        },
+      ],
+      titleTemplate: (titleChunk) => {
+        return titleChunk ? `${titleChunk} - maevsi` : 'maevsi'
       },
-      {
-        href: '/assets/static/favicon/favicon-32x32.png?v=bOXMwoKlJr',
-        rel: 'icon',
-        sizes: '32x32',
-        type: 'image/png',
-      },
-      {
-        href: '/assets/static/favicon/favicon-16x16.png?v=bOXMwoKlJr',
-        rel: 'icon',
-        sizes: '16x16',
-        type: 'image/png',
-      },
-      {
-        href: '/assets/static/favicon/favicon.ico',
-        rel: 'icon',
-        type: 'image/x-icon',
-      },
-      {
-        href: '/assets/static/favicon/site.webmanifest?v=bOXMwoKlJr',
-        rel: 'manifest',
-      },
-      {
-        color: '#202020',
-        href: '/assets/static/favicon/safari-pinned-tab.svg?v=bOXMwoKlJr',
-        rel: 'mask-icon',
-      },
-      {
-        href: '/assets/static/favicon/favicon.ico?v=bOXMwoKlJr',
-        rel: 'shortcut icon',
-      },
-    ],
-    meta: [
-      { charset: 'utf-8' },
-      { content: 'width=device-width, initial-scale=1', name: 'viewport' },
-      {
-        content: 'A manager for events supported by invitees.',
-        hid: 'description',
-        name: 'description',
-      },
-      {
-        content: '/assets/static/favicon/browserconfig.xml?v=bOXMwoKlJr',
-        name: 'msapplication-config',
-      },
-      {
-        content: '#202020',
-        name: 'msapplication-TileColor',
-      },
-      {
-        content: '#202020',
-        name: 'theme-color',
-      },
-    ],
-    titleTemplate: (titleChunk) => {
-      return titleChunk ? `${titleChunk} - maevsi` : 'maevsi'
-    },
+    }
   },
 
   helmet: {
@@ -192,6 +210,9 @@ export default {
             de: {
               globalApolloLoading: 'Lade...',
               globalAvailabilityNotYet: 'Noch nicht verfügbar.',
+              globalOgImageAlt: 'maevsis Logo.',
+              globalOgSeoDescription:
+                'Das erste Planungstool für Events, die von den Teilnehmenden unterstützt werden können, erleichtert die Organisation von Veranstaltungen.',
               globalPagingMore: 'Mehr',
               globalValidationFormatIncorrect: 'Falsches Format.',
               globalValidationMinValue: 'Wert zu gering.',
@@ -202,6 +223,9 @@ export default {
             en: {
               globalApolloLoading: 'Loading...',
               globalAvailabilityNotYet: 'Not yet available.',
+              globalOgImageAlt: "maevsi's logo.",
+              globalOgSeoDescription:
+                'The first management tool for events, which are supported by invitees, facilitates the organization of events.',
               globalPagingMore: 'More',
               globalValidationFormatIncorrect: 'Incorrect format.',
               globalValidationMinValue: 'Under minimum value.',
@@ -228,6 +252,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/baseUrl.js',
     '~/plugins/global.js',
     '~/plugins/vuelidate.js',
     '~/plugins/slugify.js',
