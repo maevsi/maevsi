@@ -1,6 +1,12 @@
 import bodyParser from 'body-parser'
 import shrinkRay from 'shrink-ray-current'
 
+const STACK_DOMAIN = process.env.NUXT_ENV_STACK_DOMAIN || 'localhost:3000'
+const BASE_URL = // if NUXT_ENV_STACK_DOMAIN is missing, we assume some kind of dev env and therefore also assume http.
+  (process.env.NUXT_ENV_STACK_DOMAIN === undefined ? 'http' : 'https') +
+  '://' +
+  STACK_DOMAIN
+
 export default {
   apollo: {
     clientConfigs: {
@@ -162,7 +168,7 @@ export default {
     [
       'nuxt-i18n',
       {
-        baseUrl: 'https://' + process.env.NUXT_ENV_STACK_DOMAIN,
+        baseUrl: BASE_URL,
         defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
         detectBrowserLanguage: {
           cookieSecure: true,
@@ -215,8 +221,7 @@ export default {
         UserAgent: '*',
         Disallow: ['/robots.txt'],
         Allow: ['/'],
-        Sitemap:
-          'https://' + process.env.NUXT_ENV_STACK_DOMAIN + '/sitemap.xml',
+        Sitemap: BASE_URL + '/sitemap.xml',
       },
     ],
     '@nuxtjs/sitemap', // Should be declared at the end of the array.
@@ -234,7 +239,7 @@ export default {
     csp: {
       policies: {
         'base-uri': ["'none'"],
-        'connect-src': [`https://*.${process.env.NUXT_ENV_STACK_DOMAIN}`],
+        'connect-src': [`https://*.${STACK_DOMAIN}`],
         'default-src': ["'none'"],
         'font-src': ["'self'"],
         'form-action': ["'none'"],
