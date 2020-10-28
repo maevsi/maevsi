@@ -2,7 +2,7 @@ import bodyParser from 'body-parser'
 import shrinkRay from 'shrink-ray-current'
 
 const STACK_DOMAIN = process.env.NUXT_ENV_STACK_DOMAIN || 'localhost:3000'
-const BASE_URL = // if NUXT_ENV_STACK_DOMAIN is missing, we assume some kind of dev env and therefore also assume http.
+const BASE_URL = // If NUXT_ENV_STACK_DOMAIN is missing, we assume that a http dev env is used.
   (process.env.NUXT_ENV_STACK_DOMAIN === undefined ? 'http' : 'https') +
   '://' +
   STACK_DOMAIN
@@ -218,9 +218,8 @@ export default {
     [
       '@nuxtjs/robots',
       {
-        UserAgent: '*',
-        Disallow: ['/robots.txt'],
         Allow: ['/'],
+        Disallow: ['/robots.txt'], // https://webmasters.stackexchange.com/a/117537/70856
         Sitemap: BASE_URL + '/sitemap.xml',
       },
     ],
