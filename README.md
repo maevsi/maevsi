@@ -4,7 +4,7 @@
 
 # maevsi - **ALPHA**
 
-A manager for events supported by invitees: [maev.si](https://maev.si/).
+The manager for events supported by invitees: [maev.si](https://maev.si/).
 
 <!-- ![Welcome](images/welcome.jpg "maevsi") -->
 

@@ -284,6 +284,18 @@ export default {
         this.eventContactFeedbackData.event.name !== null
           ? this.eventContactFeedbackData.event.name
           : '404',
+      meta: [
+        {
+          hid: 'description',
+          property: 'description',
+          content: this.eventContactFeedbackData?.event?.description,
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.eventContactFeedbackData?.event?.description,
+        },
+      ],
     }
   },
   validate({ params }) {
