@@ -209,6 +209,16 @@ export default {
       },
     ],
     '@nuxtjs/apollo',
+    [
+      '@nuxtjs/robots',
+      {
+        UserAgent: '*',
+        Disallow: ['/robots.txt'],
+        Allow: ['/'],
+        Sitemap:
+          'https://' + process.env.NUXT_ENV_STACK_DOMAIN + '/sitemap.xml',
+      },
+    ],
     '@nuxtjs/sitemap', // Should be declared at the end of the array.
   ],
 
