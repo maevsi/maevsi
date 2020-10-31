@@ -6,7 +6,7 @@ export default function (
   res: ServerResponse,
   _next: any
 ) {
-  const htmlToText = require('html-to-text')
+  const { htmlToText } = require('html-to-text')
   const ical = require('ical-generator')
   const moment = require('moment')
   const md = require('markdown-it')()
@@ -62,7 +62,7 @@ export default function (
           // recurrenceId: moment(),
           summary: data.event.name, // The event's title.
           ...(data.event.description && {
-            description: htmlToText.fromString(eventDescriptionHtml),
+            description: htmlToText(eventDescriptionHtml),
           }),
           ...(data.event.description && {
             htmlDescription: eventDescriptionHtml,
