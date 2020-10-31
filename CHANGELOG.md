@@ -1,3 +1,10 @@
+## [0.9.1](https://github.com/maevsi/maevsi/compare/0.9.0...0.9.1) (2020-10-31)
+
+
+### Bug Fixes
+
+* **ical:** migrate to html-to-text v6 ([8133501](https://github.com/maevsi/maevsi/commit/81335017fca5830813f7606bef840517d2fb8e69))
+
 # [0.9.0](https://github.com/maevsi/maevsi/compare/0.8.0...0.9.0) (2020-10-28)
 
 
