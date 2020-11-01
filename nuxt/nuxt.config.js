@@ -268,7 +268,7 @@ export default {
         'font-src': ["'self'"],
         'form-action': ["'none'"],
         'frame-ancestors': ["'none'"],
-        'img-src': ['data:', "'self'"],
+        'img-src': ['data:', `https://*.${STACK_DOMAIN}`, "'self'"],
         'manifest-src': ["'self'"],
         'report-uri': 'https://dargmuesli.report-uri.com/r/d/csp/enforce',
         'script-src': ["'self'"],
