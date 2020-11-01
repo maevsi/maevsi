@@ -29,6 +29,7 @@
                 alt="picture"
                 class="bg-gray-400 h-32 w-32"
                 :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
+                :title="bytesToString(upload.sizeByte)"
               />
               <div v-if="allowDeletion">
                 <div
@@ -125,6 +126,7 @@
 import Croppa from 'vue-croppa'
 import Uppy from '@uppy/core'
 import Tus from '@uppy/tus'
+import prettyBytes from 'pretty-bytes'
 
 import ALL_UPLOADS_QUERY from '~/gql/query/allUploads'
 import UPLOAD_CREATE_MUTATION from '~/gql/mutation/uploadCreate'
@@ -192,6 +194,9 @@ export default {
     },
   },
   methods: {
+    bytesToString(bytes) {
+      return prettyBytes(bytes)
+    },
     changeProfilePicture() {
       document.querySelector('#input-profile-picture').click()
     },
