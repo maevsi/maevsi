@@ -1,3 +1,17 @@
+# [0.10.0](https://github.com/maevsi/maevsi/compare/0.9.1...0.10.0) (2020-11-01)
+
+
+### Bug Fixes
+
+* **csp:** add tusd as image source ([a45fa47](https://github.com/maevsi/maevsi/commit/a45fa4770a5ef5729479caacf094f29387ce98f0))
+* **event:** correct invitee count check ([4df08f9](https://github.com/maevsi/maevsi/commit/4df08f97fec84f314f53223886464daed5fcea73))
+* **event:** remove text size class ([b2919c8](https://github.com/maevsi/maevsi/commit/b2919c8c7f35c0c332c58211695ed79b904c4d37))
+
+
+### Features
+
+* **uploads:** add upload size indication ([a4a88fe](https://github.com/maevsi/maevsi/commit/a4a88fed1a8745b963663c00e91586709cffcbe3))
+
 ## [0.9.1](https://github.com/maevsi/maevsi/compare/0.9.0...0.9.1) (2020-10-31)
 
 
