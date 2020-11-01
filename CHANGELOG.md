@@ -1,3 +1,12 @@
+# [0.11.0](https://github.com/maevsi/maevsi/compare/0.10.0...0.11.0) (2020-11-01)
+
+
+### Features
+
+* add external link icon if link's "after" pseudo class ([a8871ee](https://github.com/maevsi/maevsi/commit/a8871ee1be029e922cebe239c615f0a0c6c34071))
+* add imprint & privacy policy ([26180f8](https://github.com/maevsi/maevsi/commit/26180f83599c17e55538396cbbe1940c2ac4041f)), closes [#71](https://github.com/maevsi/maevsi/issues/71) [#72](https://github.com/maevsi/maevsi/issues/72)
+* color links in blue ([be0dad9](https://github.com/maevsi/maevsi/commit/be0dad9298762a306da1585dacfa44cdb2d53821))
+
 # [0.10.0](https://github.com/maevsi/maevsi/compare/0.9.1...0.10.0) (2020-11-01)
 
 
