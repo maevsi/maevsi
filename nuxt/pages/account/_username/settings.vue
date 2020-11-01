@@ -60,6 +60,14 @@ export default {
       this.$refs.profilePicture.reloadProfilePicture()
     },
   },
+  middleware({ app, store, redirect, route }) {
+    if (
+      store.state.jwtDecoded &&
+      store.state.jwtDecoded.role !== 'maevsi_account'
+    ) {
+      return redirect(app.localePath('/account/' + route.params.username))
+    }
+  },
   head() {
     return { title: this.$route.params.username }
   },
