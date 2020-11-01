@@ -131,6 +131,14 @@ module.exports = {
           marginBottom: theme('margin.1'),
           marginTop: theme('margin.4'),
         },
+        img: {
+          '&::before': {
+            alignItems: 'center',
+            display: 'flex',
+            height: '100%',
+            justifyContent: 'center',
+          },
+        },
       })
       addComponents({
         '.button': {

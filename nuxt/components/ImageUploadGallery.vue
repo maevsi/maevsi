@@ -26,10 +26,14 @@
               @click="toggleSelect(upload)"
             >
               <img
-                alt="picture"
+                :alt="
+                  $t('uploadSize', { size: bytesToString(upload.sizeByte) })
+                "
                 class="bg-gray-400 h-32 w-32"
                 :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
-                :title="bytesToString(upload.sizeByte)"
+                :title="
+                  $t('uploadSize', { size: bytesToString(upload.sizeByte) })
+                "
               />
               <div v-if="allowDeletion">
                 <div
@@ -389,6 +393,7 @@ de:
   uploadDeleteUnexpectedStatusCode: 'Beim Löschen des Elements trat ein unerwarteter Statuscode auf.'
   uploadError: 'Fehler: Dateien wurden nicht erfolgreich hochgeladen!'
   uploadNew: 'Lade ein neues Bild hoch'
+  uploadSize: 'Größe: {size}'
 en:
   cancel: 'Cancel'
   croppaPlaceholder: 'Choose an image'
@@ -400,4 +405,5 @@ en:
   uploadDeleteUnexpectedStatusCode: 'Deleting upload returned an unexpected status code.'
   uploadError: 'Error: Some files did not upload successfully!'
   uploadNew: 'Upload a new image'
+  uploadSize: 'Size: {size}'
 </i18n>
