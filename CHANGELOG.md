@@ -1,3 +1,10 @@
+## [0.11.1](https://github.com/maevsi/maevsi/compare/0.11.0...0.11.1) (2020-11-01)
+
+
+### Bug Fixes
+
+* **event-list:** show non-markdown description preview ([a2c3227](https://github.com/maevsi/maevsi/commit/a2c32279d1a0aaedc120c589f73f2ad1a4b696a2)), closes [#77](https://github.com/maevsi/maevsi/issues/77)
+
 # [0.11.0](https://github.com/maevsi/maevsi/compare/0.10.0...0.11.0) (2020-11-01)
 
 
