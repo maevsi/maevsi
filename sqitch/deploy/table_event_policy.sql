@@ -21,7 +21,7 @@ CREATE POLICY event_select ON maevsi.event FOR SELECT USING (
             (
                 "invitee_count_maximum" IS NULL
                 OR
-                maevsi.invitee_count(id) > 0
+                maevsi.invitee_count(id) < "invitee_count_maximum"
             )
         )
     OR  organizer_username = current_setting('jwt.claims.username', true)::TEXT
