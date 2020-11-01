@@ -1,6 +1,6 @@
 <template>
-  <div class="text-center">
-    <div class="container min-h-screen mx-auto p-4">
+  <div>
+    <div class="container min-h-screen mx-auto p-4 text-center">
       <header class="flex items-center justify-between mb-4 relative">
         <nuxt-link :to="localePath('/')">
           <div id="logo" class="h-10 w-32" />
@@ -53,12 +53,11 @@
       <nuxt />
     </div>
     <footer>
-      <div class="container flex mx-auto p-4">
-        <div class="flex flex-col items-center">
+      <div class="justify-around container flex mx-auto p-4">
+        <div class="flex flex-col">
           <FontAwesomeIcon
             :icon="['fas', 'language']"
             class="my-2"
-            size="lg"
             title="language"
           />
           <nuxt-link
@@ -67,6 +66,19 @@
             :to="switchLocalePath(locale.code)"
             >{{ locale.name }}</nuxt-link
           >
+        </div>
+        <div class="flex flex-col">
+          <FontAwesomeIcon
+            :icon="['fas', 'balance-scale']"
+            class="my-2"
+            title="scale"
+          />
+          <nuxt-link :to="localePath('/imprint')">{{
+            $t('imprint')
+          }}</nuxt-link>
+          <nuxt-link :to="localePath('/privacy-policy')">{{
+            $t('privacyPolicy')
+          }}</nuxt-link>
         </div>
       </div>
     </footer>
@@ -114,6 +126,10 @@ export default {
 <i18n lang="yml">
 de:
   account: 'Konto'
+  imprint: 'Impressum'
+  privacyPolicy: 'Datenschutzerklärung'
 en:
   account: 'Account'
+  imprint: 'Imprint'
+  privacyPolicy: 'Privacy Policy'
 </i18n>
