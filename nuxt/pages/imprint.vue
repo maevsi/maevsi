@@ -73,7 +73,14 @@
         wir derartige Inhalte umgehend entfernen.
       </p>
 
-      <p><a href="https://www.e-recht24.de">Quelle</a></p>
+      <p>
+        <a
+          href="https://www.e-recht24.de"
+          rel="noopener noreferrer"
+          target="_blank"
+          >Quelle</a
+        >
+      </p>
     </div>
   </div>
 </template>

@@ -8,7 +8,7 @@
       <a
         class="items-center flex"
         :href="'https://github.com/maevsi/maevsi/'"
-        rel="noopener"
+        rel="noopener noreferrer"
         target="_blank"
         :title="$t('githubLinkTitle')"
       >
@@ -18,7 +18,6 @@
           size="2x"
         />
         github.com/maevsi/maevsi
-        <FontAwesomeIcon class="ml-1" :icon="['fas', 'external-link-alt']" />
       </a>
     </div>
     <nuxt-link :to="localePath('/event')">

@@ -70,6 +70,22 @@ module.exports = {
             color: theme('colors.blue.400'),
           },
         },
+        'a[target="_blank"]:after': {
+          backgroundColor: 'black',
+          content: '""',
+          display: 'inline-block',
+          mask:
+            'url(https://alpha.' +
+            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
+            '/assets/static/icons/external-link-alt-solid.svg) no-repeat 50% 50%',
+          maskSize: 'cover',
+          height: theme('fontSize.xs'),
+          marginLeft: '5px',
+          width: theme('fontSize.xs'),
+          '@screen dark-mode': {
+            backgroundColor: theme('colors.white'),
+          },
+        },
         address: {
           margin: theme('margin.4'),
         },

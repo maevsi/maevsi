@@ -44,7 +44,6 @@ export default {
             'faCog',
             'faDownload',
             'faCheckCircle',
-            'faExternalLinkAlt',
             'faKey',
             'faGlobeAfrica',
             'faHome',

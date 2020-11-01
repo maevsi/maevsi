@@ -67,11 +67,10 @@
                   'https://maps.google.de/?q=' +
                   eventContactFeedbackData.event.place
                 "
-                rel="noopener"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 {{ eventContactFeedbackData.event.place }}
-                <FontAwesomeIcon :icon="['fas', 'external-link-alt']" />
               </a>
             </div>
           </div>
