@@ -23,7 +23,8 @@ export default {
             'allProfilePictures',
             'nodes'
           )
-          if (allProfilePicturesNodes.length > 0) {
+
+          if (allProfilePicturesNodes && allProfilePicturesNodes.length > 0) {
             this.profilePictureUrl =
               this.$global.TUSD_FILES_URL +
               allProfilePicturesNodes[0].uploadStorageKey +

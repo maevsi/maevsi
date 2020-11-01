@@ -12,8 +12,11 @@
       class="m-auto w-full"
     >
       <div class="bg-white rounded">
-        <ul class="inline-flex flex-wrap justify-center p-1">
-          <div v-if="allUploads !== undefined">
+        <ul class="inline-flex flex-wrap justify-center">
+          <div
+            v-if="allUploads !== undefined"
+            class="inline-flex flex-wrap justify-center"
+          >
             <li
               v-for="upload in allUploads.nodes"
               :id="uploadIdPrefix + upload.id"
@@ -72,7 +75,7 @@
             <FontAwesomeIcon
               :icon="['fas', 'plus']"
               class="text-white"
-              title="$t('iconAdd')"
+              :title="$t('iconAdd')"
               size="3x"
             />
             <input

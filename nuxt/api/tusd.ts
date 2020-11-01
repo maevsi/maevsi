@@ -113,7 +113,7 @@ function tusdDelete(req: IncomingMessage, res: ServerResponse) {
         res.end('No result found for id "' + uploadId + '"!')
       }
 
-      const storageKey = queryRes.rows[0].storage_key
+      const storageKey = queryRes.rows[0] ? queryRes.rows[0].storage_key : null
 
       if (storageKey !== null) {
         const http = require('http')

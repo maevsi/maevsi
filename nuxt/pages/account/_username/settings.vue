@@ -6,7 +6,7 @@
       <button class="mr-0 sm:mr-4" @click="showModalImageSelection = true">
         <ProfilePicture
           ref="profilePicture"
-          :username="this.$route.params.username"
+          :username="$route.params.username"
         />
       </button>
       <ModalImageSelection
