@@ -5,7 +5,7 @@
     >
       <div class="align-middle table-cell">
         <div
-          class="modal-container bg-white duration-300 mx-auto px-8 py-5 rounded-sm shadow transition-all w-5/6 sm:w-1/2 lg:w-1/3 xl:1/4"
+          class="modal-container bg-white duration-300 max-h-90vh mx-auto overflow-auto px-8 py-5 rounded-sm shadow transition-all w-5/6 sm:w-1/2 lg:w-1/3 xl:1/4"
         >
           <div>
             <slot name="header"> header </slot>

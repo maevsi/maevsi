@@ -248,6 +248,9 @@ module.exports = {
         '.line-clamp-2': {
           '-webkit-line-clamp': '2',
         },
+        '.max-h-90vh': {
+          maxHeight: '90vh',
+        },
       })
     },
   ],
