@@ -211,11 +211,11 @@ export default {
       xhr.open('DELETE', '/tusd?uploadId=' + uploadId, true)
       xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
       xhr.setRequestHeader('Authorization', 'Bearer ' + this.jwt)
-      xhr.onreadystatechange = function () {
-        if (this.readyState === 4) {
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
           element.classList.remove('disabled')
 
-          switch (this.status) {
+          switch (xhr.status) {
             case 204:
               outerThis.$global.removeItemFromArray(
                 outerThis.allUploads.nodes,

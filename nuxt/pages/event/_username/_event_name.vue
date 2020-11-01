@@ -237,20 +237,16 @@ export default {
 
       xhr.open('POST', '/ical', true)
       xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
-      xhr.onreadystatechange = function () {
-        if (this.readyState === 4) {
-          switch (this.status) {
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          switch (xhr.status) {
             case 200:
-              require('downloadjs')(
-                this.responseText,
-                fileName,
-                'text/calendar'
-              )
-              break
+              require('downloadjs')(xhr.responseText, fileName, 'text/calendar')
+              return
             default:
               alert(
                 this.$t('iCalUnexpectedStatusCode', {
-                  statusCode: this.status,
+                  statusCode: xhr.status,
                 })
               )
           }

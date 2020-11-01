@@ -157,9 +157,9 @@ export async function storeJwt(
       xhr.setRequestHeader('Authorization', 'Bearer ' + jwt)
     }
 
-    xhr.onreadystatechange = function () {
-      if (this.readyState === 4) {
-        switch (this.status) {
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        switch (xhr.status) {
           case 200:
             then()
             break
