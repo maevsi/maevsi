@@ -253,7 +253,9 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/baseUrl.js',
+    '~/plugins/htmlToText.js',
     '~/plugins/global.js',
+    '~/plugins/markdownIt.js',
     '~/plugins/vuelidate.js',
     '~/plugins/slugify.js',
   ],

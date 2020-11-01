@@ -50,8 +50,11 @@
                 {{ event.name }}
               </div>
             </div>
-            <p class="line-clamp-box line-clamp-2 text-gray-700">
-              {{ event.description }}
+            <p
+              v-if="event.description"
+              class="line-clamp-box line-clamp-2 text-gray-700"
+            >
+              {{ $htmlToText($md.render(event.description)) }}
             </p>
           </div>
         </li>
