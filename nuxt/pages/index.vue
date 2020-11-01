@@ -12,8 +12,13 @@
         target="_blank"
         :title="$t('githubLinkTitle')"
       >
-        <FontAwesomeIcon class="mr-2" :icon="['fab', 'github']" size="2x" />
+        <FontAwesomeIcon
+          class="button mr-2"
+          :icon="['fab', 'github']"
+          size="2x"
+        />
         github.com/maevsi/maevsi
+        <FontAwesomeIcon class="ml-1" :icon="['fas', 'external-link-alt']" />
       </a>
     </div>
     <nuxt-link :to="localePath('/event')">

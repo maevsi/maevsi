@@ -60,6 +60,12 @@ module.exports = {
           color: theme('colors.white'),
           background: '#e53e3e',
         },
+        a: {
+          color: theme('colors.blue.700'),
+          '@screen dark-mode': {
+            color: theme('colors.blue.400'),
+          },
+        },
         body: {
           background: '#f0f0f0',
           '@screen dark-mode': {
@@ -93,10 +99,13 @@ module.exports = {
         },
       })
       addComponents({
-        '.description': {
-          a: {
-            color: theme('colors.blue.700'),
+        '.button': {
+          color: 'initial',
+          '@screen dark-mode': {
+            color: 'white',
           },
+        },
+        '.description': {
           p: {
             margin: theme('margin.2') + ' ' + theme('margin.0'),
           },

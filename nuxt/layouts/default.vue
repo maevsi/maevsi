@@ -7,6 +7,7 @@
         </nuxt-link>
         <div class="dropdown text-lg">
           <nuxt-link
+            class="button"
             :to="
               localePath(
                 '/account/' +
@@ -24,6 +25,7 @@
           >
             <div class="mt-1">
               <nuxt-link
+                class="button"
                 :to="
                   localePath(
                     '/account/' +
