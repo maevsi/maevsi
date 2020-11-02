@@ -39,11 +39,13 @@ BEGIN
             WHERE   invite_contact.event_id = _event.id
             AND     invite_contact.uuid = ANY (maevsi.invite_claim_array());
 
-        SELECT * INTO _contact FROM maevsi.contact
-            WHERE contact.id = _invite_contact.contact_id;
+        IF (_invite_contact IS NOT NULL) THEN
+            SELECT * INTO _contact FROM maevsi.contact
+                WHERE contact.id = _invite_contact.contact_id;
 
-        SELECT * INTO _invitation_feedback_data FROM maevsi.invitation_feedback_data
-            WHERE invitation_feedback_data.id = _invite_contact.invitation_feedback_id;
+            SELECT * INTO _invitation_feedback_data FROM maevsi.invitation_feedback_data
+                WHERE invitation_feedback_data.id = _invite_contact.invitation_feedback_id;
+        END IF;
     END IF;
 
     RETURN (_event, _contact, _invitation_feedback_data);
