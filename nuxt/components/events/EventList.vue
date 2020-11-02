@@ -5,84 +5,86 @@
       :graphql-error-message="graphqlErrorMessage"
     />
     <div v-else-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
-    <ul
+    <div
       v-else-if="
         allEvents !== undefined && allEvents.nodes && allEvents.nodes.length
       "
-      class="text-left"
     >
       <h2 v-if="username" class="text-left truncate">
-        {{ $t('titleEvents', { username: this.$route.params.username }) }}
+        {{ $t('titleEvents', { username: $route.params.username }) }}
       </h2>
-      <nuxt-link
-        v-for="event in allEvents.nodes"
-        :key="event.id"
-        :to="localePath('/event/' + event.organizerUsername + '/' + event.slug)"
-      >
-        <li class="mb-2">
-          <div
-            class="bg-white border border-gray-400 flex flex-col p-4 rounded"
-            :class="{
-              'bg-yellow-100':
-                $store.state.jwtDecoded &&
-                event.organizerUsername === $store.state.jwtDecoded.username,
-            }"
+      <ul class="text-left">
+        <li v-for="event in allEvents.nodes" :key="event.id">
+          <nuxt-link
+            :to="
+              localePath('/event/' + event.organizerUsername + '/' + event.slug)
+            "
           >
-            <div class="flex items-center mb-2 text-gray-600 text-sm">
+            <div class="mb-2">
               <div
-                class="font-medium truncate"
+                class="bg-white border border-gray-400 flex flex-col p-4 rounded"
                 :class="{
-                  'text-gray-600': $moment(event.start).isBefore($moment()),
-                  'text-teal-600': $moment(event.start).isSameOrAfter(
-                    $moment()
-                  ),
+                  'bg-yellow-100':
+                    $store.state.jwtDecoded &&
+                    event.organizerUsername ===
+                      $store.state.jwtDecoded.username,
                 }"
               >
-                {{ $moment(event.start).format('lll') }}
-              </div>
-            </div>
-            <div class="flex items-center mb-2 text-gray-600 text-sm">
-              <EventIcon :event="event" :show-text="false" />
-              <div class="flex items-baseline">
-                <div
-                  class="font-bold mx-2 text-xl truncate"
-                  :class="{
-                    'text-gray-600': $moment(event.start).isBefore($moment()),
-                    'text-gray-900': $moment(event.start).isSameOrAfter(
-                      $moment()
-                    ),
-                  }"
+                <div class="flex items-center mb-2 text-gray-600 text-sm">
+                  <div
+                    class="font-medium truncate"
+                    :class="{
+                      'text-gray-600': $moment(event.start).isBefore($moment()),
+                      'text-teal-600': $moment(event.start).isSameOrAfter(
+                        $moment()
+                      ),
+                    }"
+                  >
+                    {{ $moment(event.start).format('lll') }}
+                  </div>
+                </div>
+                <div class="flex items-center mb-2 text-gray-600 text-sm">
+                  <EventIcon :event="event" :show-text="false" />
+                  <div class="flex items-baseline">
+                    <div
+                      class="font-bold mx-2 text-xl truncate"
+                      :class="{
+                        'text-gray-600': $moment(event.start).isBefore(
+                          $moment()
+                        ),
+                        'text-gray-900': $moment(event.start).isSameOrAfter(
+                          $moment()
+                        ),
+                      }"
+                    >
+                      {{ event.name }}
+                    </div>
+                    <div>
+                      <i18n path="eventOrganizer" :tag="false">
+                        <template #username>
+                          {{ event.organizerUsername }}
+                        </template>
+                      </i18n>
+                    </div>
+                  </div>
+                </div>
+                <p
+                  v-if="event.description"
+                  class="line-clamp-box line-clamp-2 text-gray-700"
                 >
-                  {{ event.name }}
-                </div>
-                <div>
-                  <i18n path="eventOrganizer" :tag="false">
-                    <template #username>
-                      <nuxt-link
-                        :to="localePath('/account/' + event.organizerUsername)"
-                      >
-                        {{ event.organizerUsername }}
-                      </nuxt-link>
-                    </template>
-                  </i18n>
-                </div>
+                  {{ $htmlToText($md.render(event.description)) }}
+                </p>
               </div>
             </div>
-            <p
-              v-if="event.description"
-              class="line-clamp-box line-clamp-2 text-gray-700"
-            >
-              {{ $htmlToText($md.render(event.description)) }}
-            </p>
-          </div>
+          </nuxt-link>
         </li>
-      </nuxt-link>
-      <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
-        <Button :icon="false" @click.native="showMore">{{
-          $t('globalPagingMore')
-        }}</Button>
-      </div>
-    </ul>
+        <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
+          <Button :icon="false" @click.native="showMore">{{
+            $t('globalPagingMore')
+          }}</Button>
+        </div>
+      </ul>
+    </div>
     <p v-else>{{ $t('noEvents') }}</p>
   </div>
 </template>
