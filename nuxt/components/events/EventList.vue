@@ -22,6 +22,11 @@
         <li class="mb-2">
           <div
             class="bg-white border border-gray-400 flex flex-col p-4 rounded"
+            :class="{
+              'bg-yellow-100':
+                $store.state.jwtDecoded &&
+                event.organizerUsername === $store.state.jwtDecoded.username,
+            }"
           >
             <div class="flex items-center mb-2 text-gray-600 text-sm">
               <div
