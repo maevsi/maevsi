@@ -1,3 +1,16 @@
+# [0.14.0](https://github.com/maevsi/maevsi/compare/0.13.0...0.14.0) (2020-11-02)
+
+
+### Bug Fixes
+
+* **event:** display greeting only when invited ([cb72795](https://github.com/maevsi/maevsi/commit/cb7279501047e57b8bcdbd631bf80f4bb2c9b14c))
+* **event-list:** improve html validity ([a73f842](https://github.com/maevsi/maevsi/commit/a73f842ada495a58f1a57e2014ad3af00565bcf1))
+
+
+### Features
+
+* **event:** display owner, linked & highlighted ([84e7b26](https://github.com/maevsi/maevsi/commit/84e7b26325c30636f2e7aa797735b40e358317ad))
+
 # [0.13.0](https://github.com/maevsi/maevsi/compare/0.12.0...0.13.0) (2020-11-02)
 
 
