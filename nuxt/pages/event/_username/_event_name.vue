@@ -7,20 +7,22 @@
     />
     <div v-else>
       <div v-if="$global.checkNested(eventContactFeedbackData, 'event')">
-        <p class="font-bold mb-2 text-2xl">
-          {{
-            $t('greeting', {
-              usernameString: $global.checkNested(
-                eventContactFeedbackData,
-                'contact',
-                'firstname'
-              )
-                ? ' ' + eventContactFeedbackData.contact.firstName
-                : '',
-            })
-          }}
-        </p>
-        <p>{{ $t('greetingDescription') }}</p>
+        <div v-if="eventContactFeedbackData.contact">
+          <p class="font-bold mb-2 text-2xl">
+            {{
+              $t('greeting', {
+                usernameString: $global.checkNested(
+                  eventContactFeedbackData,
+                  'contact',
+                  'firstname'
+                )
+                  ? ' ' + eventContactFeedbackData.contact.firstName
+                  : '',
+              })
+            }}
+          </p>
+          <p>{{ $t('greetingDescription') }}</p>
+        </div>
         <div
           class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black"
         >
