@@ -57,11 +57,13 @@
                 </div>
                 <div>
                   <i18n path="eventOrganizer" :tag="false">
-                    <nuxt-link
-                      :to="localePath('/account/' + event.organizerUsername)"
-                    >
-                      {{ event.organizerUsername }}
-                    </nuxt-link>
+                    <template #username>
+                      <nuxt-link
+                        :to="localePath('/account/' + event.organizerUsername)"
+                      >
+                        {{ event.organizerUsername }}
+                      </nuxt-link>
+                    </template>
                   </i18n>
                 </div>
               </div>
@@ -141,11 +143,11 @@ export default {
 
 <i18n lang="yml">
 de:
-  eventOrganizer: 'von {0}'
+  eventOrganizer: 'von {username}'
   noEvents: 'Aktuell gibt es keine Veranstaltungen :/'
   titleEvents: 'Veranstaltungen von {username}'
 en:
-  eventOrganizer: 'by {0}'
+  eventOrganizer: 'by {username}'
   noEvents: 'There are currently no events :/'
   titleEvents: 'Events by {username}'
 </i18n>
