@@ -241,7 +241,11 @@ export default {
         if (xhr.readyState === 4) {
           switch (xhr.status) {
             case 200:
-              require('downloadjs')(xhr.responseText, fileName, 'text/calendar')
+              require('downloadjs')(
+                new Blob([xhr.responseText]),
+                fileName,
+                'text/calendar'
+              )
               return
             default:
               alert(
