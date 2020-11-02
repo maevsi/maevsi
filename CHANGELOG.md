@@ -1,3 +1,17 @@
+# [0.13.0](https://github.com/maevsi/maevsi/compare/0.12.0...0.13.0) (2020-11-02)
+
+
+### Bug Fixes
+
+* **ical:** download as blob ([91dcde7](https://github.com/maevsi/maevsi/commit/91dcde73aa50f0a29fa7656caee12c1babcd02ac)), closes [#76](https://github.com/maevsi/maevsi/issues/76)
+* **sqitch:** correct parameter order & syntax ([69d9d0b](https://github.com/maevsi/maevsi/commit/69d9d0b71f1f3f301503b92d2d65f8cf1adf374a))
+
+
+### Features
+
+* **event-list:** highlight own events ([e04c48b](https://github.com/maevsi/maevsi/commit/e04c48bdd9a42a1f8ca954e390cdde9c2b9f559b))
+* **event-list:** show event owner ([a3c9cee](https://github.com/maevsi/maevsi/commit/a3c9cee7417cfb1169cb044934c57935c6c95c97))
+
 # [0.12.0](https://github.com/maevsi/maevsi/compare/0.11.1...0.12.0) (2020-11-02)
 
 
