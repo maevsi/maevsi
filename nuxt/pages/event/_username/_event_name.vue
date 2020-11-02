@@ -25,10 +25,21 @@
         </div>
         <div
           class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black"
+          :class="{
+            'bg-yellow-100':
+              $store.state.jwtDecoded &&
+              eventContactFeedbackData.event.organizerUsername ===
+                $store.state.jwtDecoded.username,
+          }"
         >
-          <h1>
+          <h1 class="mb-0">
             {{ eventContactFeedbackData.event.name }}
           </h1>
+          <Owner
+            class="mb-4"
+            link
+            :username="eventContactFeedbackData.event.organizerUsername"
+          />
           <div class="flex flex-col sm:flex-row m-auto text-gray-600">
             <EventIcon
               :event="eventContactFeedbackData.event"

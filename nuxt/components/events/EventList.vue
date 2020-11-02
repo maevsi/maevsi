@@ -59,13 +59,7 @@
                     >
                       {{ event.name }}
                     </div>
-                    <div>
-                      <i18n path="eventOrganizer" :tag="false">
-                        <template #username>
-                          {{ event.organizerUsername }}
-                        </template>
-                      </i18n>
-                    </div>
+                    <Owner :username="event.organizerUsername" />
                   </div>
                 </div>
                 <p
