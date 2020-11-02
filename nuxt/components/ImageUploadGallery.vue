@@ -224,11 +224,7 @@ export default {
 
           switch (xhr.status) {
             case 204:
-              outerThis.$global.removeItemFromArray(
-                outerThis.allUploads.nodes,
-                'id',
-                uploadId
-              )
+              this.$apollo.queries.allUploads.refetch()
 
               if (outerThis.deletionFunction !== undefined) {
                 outerThis.deletionFunction()

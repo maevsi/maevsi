@@ -108,19 +108,6 @@ export function removeTypename(object) {
   return objectClone
 }
 
-export function removeItemFromArray(array, prop, value) {
-  let i = 0
-
-  while (i < array.length) {
-    if (prop in array[i] && array[i][prop] === value) {
-      array.splice(i, 1)
-      break
-    } else {
-      i++
-    }
-  }
-}
-
 export async function storeJwt(
   apolloClient,
   store,
@@ -191,7 +178,6 @@ export default async ({ app, req, res, store }, inject) => {
     logOut,
     objectClone,
     removeTypename,
-    removeItemFromArray,
     storeJwt,
   }
 

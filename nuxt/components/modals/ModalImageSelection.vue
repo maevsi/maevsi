@@ -6,6 +6,7 @@
       :allow-addition="false"
       :allow-deletion="false"
       :selection-function="selectProfilePictureStorageKey"
+      :username="$route.params.username"
     />
     <div slot="footer" class="text-white">
       <Button
