@@ -1,3 +1,18 @@
+# [0.12.0](https://github.com/maevsi/maevsi/compare/0.11.1...0.12.0) (2020-11-02)
+
+
+### Bug Fixes
+
+* **image-upload:** use same parameter set ([805300e](https://github.com/maevsi/maevsi/commit/805300ed9dd02bd893efbda641c4fa5ceed3b17f)), closes [#44](https://github.com/maevsi/maevsi/issues/44)
+* **modal:** support overflow ([1ea09e7](https://github.com/maevsi/maevsi/commit/1ea09e7ea7266219eaa78170459c4dd42095e809))
+* **settings:** add missing middleware ([401174a](https://github.com/maevsi/maevsi/commit/401174ad133e9b75893bff0b8aae52f796aadcdb))
+* several minor fixes ([5403188](https://github.com/maevsi/maevsi/commit/5403188f5adb8340e3f9c5d3fe5dba7587dfa3ee))
+
+
+### Features
+
+* **image-upload:** improve size display ([a67e86a](https://github.com/maevsi/maevsi/commit/a67e86a1823ef050e5472bfa7e2fe10d5ab1172f))
+
 ## [0.11.1](https://github.com/maevsi/maevsi/compare/0.11.0...0.11.1) (2020-11-01)
 
 
