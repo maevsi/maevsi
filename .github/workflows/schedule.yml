@@ -11,7 +11,7 @@ jobs:
       previous-tag: ${{ steps.previoustag.outputs.tag }}
       timestamp-diff: ${{ steps.diff.outputs.timestamp-diff }}
     steps:
-      - uses: actions/checkout@v2.3.3
+      - uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
       - name: Get previous tag
@@ -30,7 +30,7 @@ jobs:
     needs: analyze-tags
     if: needs.analyze-tags.outputs.timestamp-diff > 604800 # 604800 equal one week.
     steps:
-      - uses: actions/checkout@v2.3.3
+      - uses: actions/checkout@v2.3.4
         with:
           token: ${{ secrets.GH_TOKEN }}
       - name: Get next minor version
