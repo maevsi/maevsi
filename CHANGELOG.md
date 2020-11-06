@@ -1,3 +1,10 @@
+## [0.14.1](https://github.com/maevsi/maevsi/compare/0.14.0...0.14.1) (2020-11-06)
+
+
+### Bug Fixes
+
+* **event-contact-feedback-data:** add null check ([646bbd4](https://github.com/maevsi/maevsi/commit/646bbd48fa986ca9c02fbcc310b119eb56ddc246))
+
 # [0.14.0](https://github.com/maevsi/maevsi/compare/0.13.0...0.14.0) (2020-11-02)
 
 
