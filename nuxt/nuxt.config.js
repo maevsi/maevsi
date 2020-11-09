@@ -90,15 +90,15 @@ export default {
           sizes: '180x180',
         },
         {
-          href: '/assets/static/favicon/favicon-32x32.png?v=bOXMwoKlJr',
-          rel: 'icon',
-          sizes: '32x32',
-          type: 'image/png',
-        },
-        {
           href: '/assets/static/favicon/favicon-16x16.png?v=bOXMwoKlJr',
           rel: 'icon',
           sizes: '16x16',
+          type: 'image/png',
+        },
+        {
+          href: '/assets/static/favicon/favicon-32x32.png?v=bOXMwoKlJr',
+          rel: 'icon',
+          sizes: '32x32',
           type: 'image/png',
         },
         {
