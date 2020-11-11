@@ -1,3 +1,13 @@
+## [0.14.2](https://github.com/maevsi/maevsi/compare/0.14.1...0.14.2) (2020-11-11)
+
+
+### Bug Fixes
+
+* **event:** check optional fields for empty value ([cf019e4](https://github.com/maevsi/maevsi/commit/cf019e437fd8ecc93933b6469531a21a61613f70)), closes [#80](https://github.com/maevsi/maevsi/issues/80)
+* validate html ([4520021](https://github.com/maevsi/maevsi/commit/4520021c3db7d6ea3e86460c3378e4f0fc9b57e1)), closes [#78](https://github.com/maevsi/maevsi/issues/78)
+* **button:** properly pass type attribute ([ee41f43](https://github.com/maevsi/maevsi/commit/ee41f4339c9d82ead3878b0a78f73762aaa788e9))
+* **croppa:** disable white space ([85c0914](https://github.com/maevsi/maevsi/commit/85c0914be556b0bc8baf82654ca9f3a8828f8265))
+
 ## [0.14.1](https://github.com/maevsi/maevsi/compare/0.14.0...0.14.1) (2020-11-06)
 
 
