@@ -6,7 +6,11 @@
       :disabled="disabled"
       :to="localePath(link)"
     >
-      <FontAwesomeIcon v-if="icon" class="mr-2" :icon="iconId" />
+      <FontAwesomeIcon
+        v-if="icon"
+        :class="{ 'mr-2': this.$slots.default }"
+        :icon="iconId"
+      />
       <slot />
     </nuxt-link>
     <button
@@ -15,7 +19,11 @@
       :disabled="disabled"
       :type="type"
     >
-      <FontAwesomeIcon v-if="icon" class="mr-2" :icon="iconId" />
+      <FontAwesomeIcon
+        v-if="icon"
+        :class="{ 'mr-2': this.$slots.default }"
+        :icon="iconId"
+      />
       <slot />
     </button>
   </div>
