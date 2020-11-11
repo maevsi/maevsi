@@ -382,7 +382,7 @@ de:
   croppaPlaceholder: 'Wähle ein Bild'
   iconAdd: 'hinzufügen'
   iconTrash: 'löschen'
-  noPictures: 'Du hast keine hochgeladenen Bilder :/'
+  noPictures: 'Du hast keine hochgeladenen Bilder 😕'
   upload: 'Hochladen'
   uploadDeleteFailed: 'Das Löschen des Elements ist fehlgeschlagen!'
   uploadDeleteUnexpectedStatusCode: 'Beim Löschen des Elements trat ein unerwarteter Statuscode auf.'
@@ -394,7 +394,7 @@ en:
   croppaPlaceholder: 'Choose an image'
   iconAdd: 'add'
   iconTrash: 'trash'
-  noPictures: "You don't have any uploaded pictures :/"
+  noPictures: "You don't have any uploaded pictures 😕"
   upload: 'Upload'
   uploadDeleteFailed: 'Deleting upload failed!'
   uploadDeleteUnexpectedStatusCode: 'Deleting upload returned an unexpected status code.'

@@ -140,10 +140,10 @@ export default {
 <i18n lang="yml">
 de:
   eventOrganizer: 'von {username}'
-  noEvents: 'Aktuell gibt es keine Veranstaltungen :/'
+  noEvents: 'Aktuell gibt es keine Veranstaltungen 😕'
   titleEvents: 'Veranstaltungen von {username}'
 en:
   eventOrganizer: 'by {username}'
-  noEvents: 'There are currently no events :/'
+  noEvents: 'There are currently no events 😕'
   titleEvents: 'Events by {username}'
 </i18n>
