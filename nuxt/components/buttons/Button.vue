@@ -6,6 +6,7 @@
       <button
         :class="`${buttonClassStatic} ${buttonClass}`"
         :disabled="disabled"
+        :type="type"
       >
         <FontAwesomeIcon v-if="icon" class="mr-2" :icon="iconId" />
         <slot />
@@ -15,6 +16,7 @@
       v-else
       :class="`${buttonClassStatic} ${buttonClass}`"
       :disabled="disabled"
+      :type="type"
     >
       <FontAwesomeIcon v-if="icon" class="mr-2" :icon="iconId" />
       <slot />
@@ -47,6 +49,10 @@ export default {
     link: {
       type: String,
       default: undefined,
+    },
+    type: {
+      type: String,
+      default: 'button',
     },
   },
   data() {

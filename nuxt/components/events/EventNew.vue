@@ -145,7 +145,7 @@
           (form.sent && !$v.form.$anyDirty && !graphqlErrorMessage)
         "
         :icon="false"
-        type="submit"
+        :type="'submit'"
       >
         {{ $t('eventCreate') }}
       </Button>

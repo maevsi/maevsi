@@ -44,7 +44,7 @@
             )
           "
           :icon="false"
-          type="submit"
+          :type="'submit'"
         >
           {{ $t('title') }}
         </Button>

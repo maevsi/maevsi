@@ -78,7 +78,7 @@
           (form.sent && !$v.form.$anyDirty && !graphqlErrorMessage)
         "
         :icon="false"
-        type="submit"
+        :type="'submit'"
       >
         {{ this.$t('register') }}
       </Button>
