@@ -1,16 +1,13 @@
 <template>
   <div class="inline-block">
-    <!-- eslint-disable vue/attribute-hyphenation -->
-    <nuxt-link v-if="link !== undefined" :to="localePath(link)">
-      <!-- eslint-enable vue/attribute-hyphenation -->
-      <button
-        :class="`${buttonClassStatic} ${buttonClass}`"
-        :disabled="disabled"
-        :type="type"
-      >
-        <FontAwesomeIcon v-if="icon" class="mr-2" :icon="iconId" />
-        <slot />
-      </button>
+    <nuxt-link
+      v-if="link !== undefined"
+      :class="`${buttonClassStatic} ${buttonClass}`"
+      :disabled="disabled"
+      :to="localePath(link)"
+    >
+      <FontAwesomeIcon v-if="icon" class="mr-2" :icon="iconId" />
+      <slot />
     </nuxt-link>
     <button
       v-else

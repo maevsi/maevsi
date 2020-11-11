@@ -13,71 +13,66 @@
     >
       <div class="bg-white rounded">
         <ul class="inline-flex flex-wrap justify-center">
-          <div
-            v-if="allUploads !== undefined"
-            class="inline-flex flex-wrap justify-center"
+          <li
+            v-for="upload in allUploads.nodes"
+            :id="uploadIdPrefix + upload.id"
+            :key="upload.id"
+            :class="{
+              'border-red-600':
+                selectionFunction !== undefined && upload === selectedItem,
+            }"
+            class="border-4 border-transparent box-border relative"
+            @click="toggleSelect(upload)"
           >
-            <li
-              v-for="upload in allUploads.nodes"
-              :id="uploadIdPrefix + upload.id"
-              :key="upload.id"
-              :class="{
-                'border-red-600':
-                  selectionFunction !== undefined && upload === selectedItem,
-              }"
-              class="border-4 border-transparent box-border relative"
-              @click="toggleSelect(upload)"
-            >
-              <img
-                :alt="
-                  $t('uploadSize', { size: bytesToString(upload.sizeByte) })
-                "
-                class="bg-gray-400 h-32 w-32"
-                :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
-                :title="
-                  $t('uploadSize', { size: bytesToString(upload.sizeByte) })
-                "
-              />
-              <div v-if="allowDeletion">
-                <div
-                  class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0"
-                >
-                  <div class="flex h-full justify-center items-center">
-                    <FontAwesomeIcon
-                      :icon="['fas', 'trash']"
-                      class="m-2"
-                      size="lg"
-                      :title="$t('iconTrash')"
-                    />
-                  </div>
+            <img
+              :alt="$t('uploadSize', { size: bytesToString(upload.sizeByte) })"
+              class="bg-gray-400 h-32 w-32"
+              :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
+              :title="
+                $t('uploadSize', { size: bytesToString(upload.sizeByte) })
+              "
+            />
+            <div v-if="allowDeletion">
+              <div
+                class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0"
+              >
+                <div class="flex h-full justify-center items-center">
+                  <FontAwesomeIcon
+                    :icon="['fas', 'trash']"
+                    class="m-2"
+                    size="lg"
+                    :title="$t('iconTrash')"
+                  />
                 </div>
-                <button
-                  class="absolute right-0 top-0"
-                  @click="deleteImageUpload(upload.id)"
-                >
-                  <div class="flex h-full justify-center items-center">
-                    <FontAwesomeIcon
-                      :icon="['fas', 'trash']"
-                      class="m-2 text-white"
-                      size="lg"
-                      :title="$t('iconTrash')"
-                    />
-                  </div>
+              </div>
+              <div
+                class="absolute right-0 top-0"
+                @click="deleteImageUpload(upload.id)"
+              >
+                <button class="flex h-full justify-center items-center">
+                  <FontAwesomeIcon
+                    :icon="['fas', 'trash']"
+                    class="m-2 text-white"
+                    size="lg"
+                    :title="$t('iconTrash')"
+                  />
                 </button>
               </div>
-            </li>
-          </div>
-          <button
-            v-if="allowAddition"
-            class="bg-gray-600 flex-none h-32 m-1 w-32"
-            @click="changeProfilePicture"
-          >
-            <FontAwesomeIcon
-              :icon="['fas', 'plus']"
-              class="text-white"
-              :title="$t('iconAdd')"
-              size="3x"
-            />
+            </div>
+          </li>
+          <li>
+            <button
+              v-if="allowAddition"
+              class="bg-gray-600 flex-none h-32 m-1 w-32"
+              @click="changeProfilePicture"
+            >
+              <FontAwesomeIcon
+                :icon="['fas', 'plus']"
+                class="text-white"
+                :title="$t('iconAdd')"
+                size="3x"
+              />
+            </button>
             <input
               id="input-profile-picture"
               accept="image/*"
@@ -86,7 +81,7 @@
               type="file"
               @change="loadProfilePicture"
             />
-          </button>
+          </li>
         </ul>
         <div
           v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"

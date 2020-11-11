@@ -78,7 +78,7 @@
               <a
                 :href="
                   'https://maps.google.de/?q=' +
-                  eventContactFeedbackData.event.place
+                  encodeURIComponent(eventContactFeedbackData.event.place)
                 "
                 rel="noopener noreferrer"
                 target="_blank"

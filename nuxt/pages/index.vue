@@ -20,9 +20,9 @@
         github.com/maevsi/maevsi
       </a>
     </div>
-    <nuxt-link :to="localePath('/event')">
-      <Button :icon="false" class="my-4">{{ $t('events') }}</Button>
-    </nuxt-link>
+    <Button :icon="false" :link="'/event'" class="my-4">{{
+      $t('events')
+    }}</Button>
   </div>
 </template>
 
