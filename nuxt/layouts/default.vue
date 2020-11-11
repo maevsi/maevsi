@@ -99,6 +99,9 @@ export default {
         : undefined
     },
   },
+  beforeCreate() {
+    this.$moment.locale(this.$i18n.locale)
+  },
   head() {
     return this.$nuxtI18nSeo()
   },
