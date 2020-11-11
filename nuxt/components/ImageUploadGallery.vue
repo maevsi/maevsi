@@ -108,6 +108,7 @@
         :placeholder="$t('croppaPlaceholder')"
         :placeholder-font-size="17.5"
         :show-remove-button="false"
+        :prevent-white-space="true"
       />
       <div slot="footer" class="text-white">
         <Button
