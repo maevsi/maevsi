@@ -18,6 +18,7 @@
       :class="`${buttonClassStatic} ${buttonClass}`"
       :disabled="disabled"
       :type="type"
+      @click="$emit('click')"
     >
       <FontAwesomeIcon
         v-if="icon"
