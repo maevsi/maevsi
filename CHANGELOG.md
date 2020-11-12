@@ -1,3 +1,10 @@
+## [0.17.1](https://github.com/maevsi/maevsi/compare/0.17.0...0.17.1) (2020-11-12)
+
+
+### Bug Fixes
+
+* **tailwind:** use font-display "swap" ([388bf6e](https://github.com/maevsi/maevsi/commit/388bf6e02023053e97b70417729ccdf9d52949bd))
+
 # [0.17.0](https://github.com/maevsi/maevsi/compare/0.16.0...0.17.0) (2020-11-12)
 
 
