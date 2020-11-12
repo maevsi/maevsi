@@ -9,13 +9,13 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.upload_create(sizeByte BIGINT)
+CREATE FUNCTION maevsi.upload_create(size_byte BIGINT)
 RETURNS UUID AS $$
 DECLARE
     _id UUID;
 BEGIN
   IF  COALESCE((
-        SELECT SUM(size_byte)
+        SELECT SUM(upload.size_byte)
         FROM maevsi.upload
         WHERE username = current_setting('jwt.claims.username', true)::TEXT
       ), 0) + $1 <= (

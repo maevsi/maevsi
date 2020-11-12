@@ -1,5 +1,5 @@
 mutation(
-  $id: Int!
+  $id: BigInt!
   $invitationFeedbackDatumPatch: InvitationFeedbackDatumPatch!
 ) {
   updateInvitationFeedbackDatumById(

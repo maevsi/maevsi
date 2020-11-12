@@ -262,7 +262,7 @@ export default {
             mutation: UPLOAD_CREATE_MUTATION,
             variables: {
               uploadCreateInput: {
-                sizebyte: blob.size,
+                sizeByte: blob.size,
               },
             },
           })
