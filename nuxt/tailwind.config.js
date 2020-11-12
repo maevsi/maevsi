@@ -50,6 +50,7 @@ module.exports = {
     function ({ addBase, addComponents, addUtilities, theme }) {
       addBase({
         '@font-face': {
+          fontDisplay: 'swap',
           fontFamily: 'Montserrat',
           src:
             "local('Montserrat Medium'), local('Montserrat-Medium'), url(/assets/static/fonts/montserrat/montserrat-medium.woff2) format('woff2')",
