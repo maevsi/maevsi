@@ -8062,10 +8062,10 @@ hyperlinker@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyperlinker/-/hyperlinker-1.0.0.tgz#23dc9e38a206b208ee49bc2d6c8ef47027df0c0e"
   integrity sha512-Ty8UblRWFEcfSuIaajM34LdPXIhbs1ajEX/BBPv24J+enSVaEVY63xQ6lTO9VRYS5LAoghIG0IDJ+p+IPzKUQQ==
 
-ical-generator@1.15.1:
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-1.15.1.tgz#12e2fbd4b15ca893875f88c15952077520b7cab8"
-  integrity sha512-ZfrZYywBigtET2SPXtf+1qLupXx9KCWfWoHWjGs1k/hXWma8PtrhthWI3EdsLmWFyVvx2YzP/0Jh4sLAx7JVpw==
+ical-generator@1.15.2:
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-1.15.2.tgz#7f4fbe80db8d327b0396fed59219de65beb89832"
+  integrity sha512-+G92MzEouVkQ5/1Qizh8qprvI5a+iMKCGeavUAwWoAuiF19TNAOO9z8qnnrX9UbW7URoE/8PVAo7SWv7V1u4jQ==
   dependencies:
     moment-timezone "^0.5.31"
 
