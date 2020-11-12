@@ -52,6 +52,7 @@ export default {
             'faMapMarker',
             'faPlus',
             'faUser',
+            'faUserClock',
             'faUpload',
             'faSignOutAlt',
             'faTrash',

@@ -50,6 +50,16 @@
                 </button>
               </div>
             </div>
+            <div v-else class="flex flex-col items-end">
+              <div class="mt-1">
+                <nuxt-link class="button" :to="localePath('/session')">
+                  <FontAwesomeIcon
+                    class="mr-2"
+                    :icon="['fas', 'user-clock']"
+                  />{{ $t('session') }}
+                </nuxt-link>
+              </div>
+            </div>
           </div>
         </div>
       </header>
@@ -135,11 +145,13 @@ de:
   imprint: 'Impressum'
   logOut: 'Abmelden'
   privacyPolicy: 'Datenschutzerklärung'
+  session: 'Sitzung'
   settings: 'Einstellungen'
 en:
   account: 'Account'
   imprint: 'Imprint'
   logOut: 'Log out'
   privacyPolicy: 'Privacy Policy'
+  session: 'Session'
   settings: 'Settings'
 </i18n>
