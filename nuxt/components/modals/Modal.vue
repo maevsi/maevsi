@@ -15,7 +15,9 @@
           </div>
           <div>
             <slot name="footer">
-              <button @click="$emit('close')">{{ $t('ok') }}</button>
+              <Button :icon="false" @click.native="$emit('close')">
+                {{ $t('ok') }}
+              </Button>
             </slot>
           </div>
         </div>
