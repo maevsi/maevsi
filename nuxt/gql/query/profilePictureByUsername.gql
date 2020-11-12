@@ -1,0 +1,5 @@
+query profilePictureByUsername($username: String!) {
+  profilePictureByUsername(username: $username) {
+    uploadStorageKey
+  }
+}

@@ -14,27 +14,26 @@
 </template>
 
 <script>
-import ALL_PROFILE_PICTURES_QUERY from '~/gql/query/allProfilePictures'
+import PROFILE_PICTURE_BY_USERNAME_QUERY from '~/gql/query/profilePictureByUsername'
 
 export default {
   apollo: {
-    allProfilePictures() {
+    profilePictureByUsername() {
       return {
-        query: ALL_PROFILE_PICTURES_QUERY,
+        query: PROFILE_PICTURE_BY_USERNAME_QUERY,
         variables: {
           username: this.username,
         },
         update: (data) => {
-          const allProfilePicturesNodes = this.$global.checkNested(
+          const profilePictureByUsername = this.$global.checkNested(
             data,
-            'allProfilePictures',
-            'nodes'
+            'profilePictureByUsername'
           )
 
-          if (allProfilePicturesNodes && allProfilePicturesNodes.length > 0) {
+          if (profilePictureByUsername) {
             this.profilePictureUrl =
               this.$global.TUSD_FILES_URL +
-              allProfilePicturesNodes[0].uploadStorageKey +
+              profilePictureByUsername.uploadStorageKey +
               '+'
           } else {
             this.profilePictureUrl = undefined
@@ -69,7 +68,7 @@ export default {
   },
   methods: {
     reloadProfilePicture() {
-      this.$apollo.queries.allProfilePictures.refetch()
+      this.$apollo.queries.profilePictureByUsername.refetch()
     },
   },
 }

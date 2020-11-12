@@ -1,7 +1,0 @@
-query allProfilePictures($username: String!) {
-  allProfilePictures(condition: { username: $username }) {
-    nodes {
-      uploadStorageKey
-    }
-  }
-}
