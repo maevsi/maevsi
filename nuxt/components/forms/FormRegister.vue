@@ -26,27 +26,7 @@
         />
       </div>
     </FormInput>
-    <FormInput :error="$v.form['password'].$error" :title="$t('password')">
-      <input
-        id="input-password-register"
-        v-model.trim="$v.form.password.$model"
-        class="form-input"
-        type="password"
-        placeholder="**********"
-      />
-      <div slot="formError">
-        <FormError
-          :text="$t('globalValidationRequired')"
-          :validation-object="$v.form.password"
-          :validation-property="'required'"
-        />
-        <FormError
-          :text="$t('globalValidationTooShort')"
-          :validation-object="$v.form.password"
-          :validation-property="'minLength'"
-        />
-      </div>
-    </FormInput>
+    <FormInputPassword :id="'password'" :v="$v" />
     <FormInput
       :error="$v.form['email-address'].$error"
       :title="$t('emailAddress')"
@@ -192,14 +172,12 @@ export default {
 de:
   emailAddress: 'E-Mail-Adresse'
   emailAddressPlaceholder: 'email@adres.se'
-  password: 'Passwort'
   register: 'Registrieren'
   username: 'Nutzername'
   usernamePlaceholder: 'nutzer-name'
 en:
   emailAddress: 'Email address'
   emailAddressPlaceholder: 'email@addre.ss'
-  password: 'Password'
   register: 'Register'
   username: 'Username'
   usernamePlaceholder: 'user-name'

@@ -4,54 +4,8 @@
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
   >
-    <FormInput
-      :error="$v.form['current-password'].$error"
-      :title="$t('passwordCurrent')"
-    >
-      <input
-        id="input-current-password"
-        v-model.trim="$v.form['current-password'].$model"
-        class="form-input"
-        type="password"
-        placeholder="**********"
-      />
-      <div slot="formError">
-        <FormError
-          :text="$t('globalValidationRequired')"
-          :validation-object="$v.form['current-password']"
-          :validation-property="'required'"
-        />
-        <FormError
-          :text="$t('globalValidationTooShort')"
-          :validation-object="$v.form['current-password']"
-          :validation-property="'minLength'"
-        />
-      </div>
-    </FormInput>
-    <FormInput
-      :error="$v.form['new-password'].$error"
-      :title="$t('passwordNew')"
-    >
-      <input
-        id="input-new-password"
-        v-model.trim="$v.form['new-password'].$model"
-        class="form-input"
-        type="password"
-        placeholder="**********"
-      />
-      <div slot="formError">
-        <FormError
-          :text="$t('globalValidationRequired')"
-          :validation-object="$v.form['new-password']"
-          :validation-property="'required'"
-        />
-        <FormError
-          :text="$t('globalValidationTooShort')"
-          :validation-object="$v.form['new-password']"
-          :validation-property="'minLength'"
-        />
-      </div>
-    </FormInput>
+    <FormInputPassword :id="'passwordCurrent'" :v="$v" />
+    <FormInputPassword :id="'passwordNew'" :v="$v" />
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="
@@ -83,8 +37,8 @@ export default {
   data() {
     return {
       form: {
-        'current-password': undefined,
-        'new-password': undefined,
+        passwordCurrent: undefined,
+        passwordNew: undefined,
         sent: undefined,
       },
       graphqlErrorMessage: undefined,
@@ -102,8 +56,8 @@ export default {
         .mutate({
           mutation: ACCOUNT_PASSWORD_CHANGE_MUTATION,
           variables: {
-            passwordCurrent: this.form['current-password'],
-            passwordNew: this.form['new-password'],
+            passwordCurrent: this.form.passwordCurrent,
+            passwordNew: this.form.passwordNew,
           },
         })
         .then((_data) => {
@@ -118,11 +72,11 @@ export default {
   validations() {
     return {
       form: {
-        'current-password': {
+        passwordCurrent: {
           minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),
           required,
         },
-        'new-password': {
+        passwordNew: {
           minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),
           required,
         },
@@ -136,11 +90,7 @@ export default {
 de:
   passwordChange: 'Passwort ändern'
   passwordChangeSuccess: 'Passwort erfolgreich geändert.'
-  passwordCurrent: 'Aktuelles Passwort'
-  passwordNew: 'Neues Passwort'
 en:
   passwordChange: 'Change password'
   passwordChangeSuccess: 'Password changed successfully.'
-  passwordCurrent: 'Current Password'
-  passwordNew: 'New Password'
 </i18n>

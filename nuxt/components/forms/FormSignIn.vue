@@ -26,27 +26,7 @@
         />
       </div>
     </FormInput>
-    <FormInput :error="$v.form['password'].$error" :title="$t('password')">
-      <input
-        id="input-password-sign-in"
-        v-model.trim="$v.form.password.$model"
-        class="form-input"
-        type="password"
-        placeholder="**********"
-      />
-      <div slot="formError">
-        <FormError
-          :text="$t('globalValidationRequired')"
-          :validation-object="$v.form.password"
-          :validation-property="'required'"
-        />
-        <FormError
-          :text="$t('globalValidationTooShort')"
-          :validation-object="$v.form.password"
-          :validation-property="'minLength'"
-        />
-      </div>
-    </FormInput>
+    <FormInputPassword :id="'password'" :v="$v" />
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="
@@ -169,13 +149,11 @@ export default {
 <i18n lang="yml">
 de:
   passwordForgotten: 'Passwort vergessen?'
-  password: 'Passwort'
   signIn: 'Anmelden'
   username: 'Nutzername'
   usernamePlaceholder: 'nutzer-name'
 en:
   passwordForgotten: 'Forgot password?'
-  password: 'Password'
   username: 'Username'
   signIn: 'Sign in'
   usernamePlaceholder: 'user-name'
