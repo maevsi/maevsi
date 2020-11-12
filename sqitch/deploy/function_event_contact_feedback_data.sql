@@ -10,15 +10,15 @@
 BEGIN;
 
 CREATE FUNCTION maevsi.event_contact_feedback_data(
-    "_organizer_username" TEXT,
-    "_slug" TEXT
+    _organizer_username TEXT,
+    _slug TEXT
 ) RETURNS maevsi.event_contact_feedback AS $$
 DECLARE
-    "_event" maevsi.event;
-    "_invite_account" maevsi.invite_account;
-    "_invite_contact" maevsi.invite_contact;
-    "_contact" maevsi.contact;
-    "_invitation_feedback_data" maevsi.invitation_feedback_data;
+    _event maevsi.event;
+    _invite_account maevsi.invite_account;
+    _invite_contact maevsi.invite_contact;
+    _contact maevsi.contact;
+    _invitation_feedback_data maevsi.invitation_feedback_data;
 BEGIN
     SELECT * INTO _event FROM maevsi.event
         WHERE event.organizer_username = _organizer_username

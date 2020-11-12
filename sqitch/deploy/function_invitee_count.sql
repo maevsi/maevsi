@@ -8,7 +8,7 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.invitee_count("event_id" BIGINT)
+CREATE FUNCTION maevsi.invitee_count(event_id BIGINT)
 RETURNS INTEGER AS $$
 BEGIN
   RETURN (

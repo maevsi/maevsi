@@ -2,12 +2,12 @@
 
 BEGIN;
 
-SELECT "id",
-       "username",
-       "email_address",
-       "email_address_verification",
-       "password_hash",
-       "last_activity"
+SELECT id,
+       username,
+       email_address,
+       email_address_verification,
+       password_hash,
+       last_activity
 FROM maevsi_private.account WHERE FALSE;
 
 DO $$

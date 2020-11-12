@@ -2,9 +2,9 @@
 
 BEGIN;
 
-SELECT "id",
-       "username",
-       "upload_storage_key"
+SELECT id,
+       username,
+       upload_storage_key
 FROM maevsi.profile_picture WHERE FALSE;
 
 DO $$

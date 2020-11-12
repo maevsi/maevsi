@@ -8,14 +8,14 @@
 BEGIN;
 
 CREATE TABLE maevsi.contact (
-    "id"                    BIGSERIAL PRIMARY KEY,
-    "account_id"            INTEGER REFERENCES maevsi_private.account("id") UNIQUE,
-    "email_address"         TEXT CHECK (char_length("email_address") < 320 AND "email_address" ~* '^.+@.+\..+$'),
-    "email_address_hash"    TEXT GENERATED ALWAYS AS (md5(lower(substring("email_address", '\S(?:.*\S)*')))) STORED,
-    "first_name"            TEXT CHECK (char_length("first_name") < 100),
-    "last_name"             TEXT CHECK (char_length("last_name") < 100),
-    "address"               TEXT CHECK (char_length("address") < 300),
-    -- TODO: "website_url"           TEXT
+    id                    BIGSERIAL PRIMARY KEY,
+    account_id            INTEGER REFERENCES maevsi_private.account(id) UNIQUE,
+    email_address         TEXT CHECK (char_length(email_address) < 320 AND email_address ~* '^.+@.+\..+$'),
+    email_address_hash    TEXT GENERATED ALWAYS AS (md5(lower(substring(email_address, '\S(?:.*\S)*')))) STORED,
+    first_name            TEXT CHECK (char_length(first_name) < 100),
+    last_name             TEXT CHECK (char_length(last_name) < 100),
+    address               TEXT CHECK (char_length(address) < 300),
+    -- TODO: website_url           TEXT
     CONSTRAINT chk_either_account_or_email_address CHECK (num_nonnulls(account_id, email_address) = 1)
 );
 

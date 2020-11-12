@@ -2,17 +2,17 @@
 
 BEGIN;
 
-SELECT "id",
-       "name",
-       "slug",
-       "visibility",
-       "invitee_count_maximum",
-       "organizer_username",
-       "description",
-       "place",
-       "start",
+SELECT id,
+       name,
+       slug,
+       visibility,
+       invitee_count_maximum,
+       organizer_username,
+       description,
+       place,
+       start,
        "end",
-       "archived"
+       archived
 FROM maevsi.event WHERE FALSE;
 
 DO $$

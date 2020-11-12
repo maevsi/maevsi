@@ -8,13 +8,13 @@
 BEGIN;
 
 CREATE TABLE maevsi.event_group (
-    "id"                    BIGSERIAL PRIMARY KEY,
-    "name"                  TEXT NOT NULL CHECK (char_length("name") < 100),
-    "slug"                  TEXT NOT NULL CHECK (char_length("slug") < 100 AND "slug" ~* '^[-A-Za-z0-9]+$'),
-    "organizer_username"    TEXT REFERENCES maevsi_private.account("username") NOT NULL,
-    "description"           TEXT CHECK (char_length("description") < 10000),
-    "archived"              BOOLEAN NOT NULL DEFAULT FALSE,
-    UNIQUE ("organizer_username", "slug")
+    id                    BIGSERIAL PRIMARY KEY,
+    name                  TEXT NOT NULL CHECK (char_length(name) < 100),
+    slug                  TEXT NOT NULL CHECK (char_length(slug) < 100 AND slug ~* '^[-A-Za-z0-9]+$'),
+    organizer_username    TEXT REFERENCES maevsi_private.account(username) NOT NULL,
+    description           TEXT CHECK (char_length(description) < 10000),
+    archived              BOOLEAN NOT NULL DEFAULT FALSE,
+    UNIQUE (organizer_username, slug)
 );
 
 COMMENT ON TABLE maevsi.event_group IS 'A group of events.';

@@ -12,37 +12,37 @@
 BEGIN;
 
 CREATE FUNCTION maevsi.redeem(
-    "invitation_code" UUID
+    invitation_code UUID
 ) RETURNS maevsi.redeem_response AS $$
 DECLARE
-    "_jwt_id" UUID;
-    "_jwt" maevsi.jwt;
-    "_event_id" INTEGER;
+    _jwt_id UUID;
+    _jwt maevsi.jwt;
+    _event_id INTEGER;
 BEGIN
-    "_jwt_id" := current_setting('jwt.claims.id', true)::UUID;
-    "_jwt" := (
-        "_jwt_id",
+    _jwt_id := current_setting('jwt.claims.id', true)::UUID;
+    _jwt := (
+        _jwt_id,
         current_setting('jwt.claims.role', true)::TEXT,
         current_setting('jwt.claims.account_id', true)::INTEGER,
         current_setting('jwt.claims.username', true)::TEXT,
-        (SELECT ARRAY(SELECT DISTINCT UNNEST(maevsi.invite_claim_array() || "invitation_code") ORDER BY 1)),
+        (SELECT ARRAY(SELECT DISTINCT UNNEST(maevsi.invite_claim_array() || invitation_code) ORDER BY 1)),
         current_setting('jwt.claims.exp', true)::BIGINT
     )::maevsi.jwt;
 
     UPDATE maevsi_private.jwt
-    SET "token" = "_jwt"
-    WHERE "id" = "_jwt_id";
+    SET token = _jwt
+    WHERE id = _jwt_id;
 
-    "_event_id" := (
+    _event_id := (
         SELECT event_id FROM maevsi.invite_contact
-        WHERE invite_contact.uuid = "invitation_code"
+        WHERE invite_contact.uuid = invitation_code
     );
 
-    IF "_event_id" IS NOT NULL
+    IF _event_id IS NOT NULL
     THEN
-        RETURN (SELECT ("organizer_username", "slug", "_jwt")::maevsi.redeem_response
+        RETURN (SELECT (organizer_username, slug, _jwt)::maevsi.redeem_response
         FROM maevsi.event
-        WHERE id = "_event_id");
+        WHERE id = _event_id);
     ELSE
         RAISE 'No event for this invitation code found!' USING ERRCODE = 'no_data_found';
     END IF;

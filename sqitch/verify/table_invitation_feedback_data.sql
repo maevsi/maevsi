@@ -2,9 +2,9 @@
 
 BEGIN;
 
-SELECT "id",
-       "invitation_feedback",
-       "paper_invitation_feedback"
+SELECT id,
+       invitation_feedback,
+       paper_invitation_feedback
 FROM maevsi.invitation_feedback_data WHERE FALSE;
 
 DO $$

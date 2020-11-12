@@ -2,9 +2,9 @@
 
 BEGIN;
 
-SELECT "id",
-       "event_id",
-       "event_group_id"
+SELECT id,
+       event_id,
+       event_group_id
 FROM maevsi.event_grouping WHERE FALSE;
 
 DO $$

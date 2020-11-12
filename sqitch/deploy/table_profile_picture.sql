@@ -10,9 +10,9 @@
 BEGIN;
 
 CREATE TABLE maevsi.profile_picture (
-    "id"                    BIGSERIAL PRIMARY KEY,
-    "username"              TEXT REFERENCES maevsi_private.account("username") NOT NULL UNIQUE,
-    "upload_storage_key"    TEXT REFERENCES maevsi.upload("storage_key") NOT NULL
+    id                    BIGSERIAL PRIMARY KEY,
+    username              TEXT REFERENCES maevsi_private.account(username) NOT NULL UNIQUE,
+    upload_storage_key    TEXT REFERENCES maevsi.upload(storage_key) NOT NULL
 );
 
 COMMENT ON TABLE maevsi.profile_picture IS 'Mapping of usernames to upload storage keys.';
@@ -32,19 +32,19 @@ CREATE POLICY profile_picture_select ON maevsi.profile_picture FOR SELECT USING 
 
 -- Only allow inserts with a username that matches the invoker's username.
 CREATE POLICY profile_picture_insert ON maevsi.profile_picture FOR INSERT WITH CHECK (
-    "username" = current_setting('jwt.claims.username', true)::TEXT
+    username = current_setting('jwt.claims.username', true)::TEXT
 );
 
 -- Only allow updates to the item with the username that matches the invoker's username.
 CREATE POLICY profile_picture_update ON maevsi.profile_picture FOR UPDATE USING (
-    "username" = current_setting('jwt.claims.username', true)::TEXT
+    username = current_setting('jwt.claims.username', true)::TEXT
 );
 
 -- Only allow deletes for the item with the username that matches the invoker's username.
 CREATE POLICY profile_picture_delete ON maevsi.profile_picture FOR DELETE USING (
         (SELECT current_user) = 'maevsi_tusd'
     OR
-        "username" = current_setting('jwt.claims.username', true)::TEXT
+        username = current_setting('jwt.claims.username', true)::TEXT
 );
 
 COMMIT;

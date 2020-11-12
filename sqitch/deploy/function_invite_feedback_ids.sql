@@ -4,7 +4,7 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi_private.invite_feedback_ids() RETURNS TABLE ("invitation_feedback_id" INTEGER) AS $$
+CREATE FUNCTION maevsi_private.invite_feedback_ids() RETURNS TABLE (invitation_feedback_id INTEGER) AS $$
 BEGIN
     RETURN QUERY
     SELECT invite_account.invitation_feedback_id FROM maevsi.invite_account

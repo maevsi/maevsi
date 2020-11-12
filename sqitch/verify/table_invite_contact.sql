@@ -2,11 +2,11 @@
 
 BEGIN;
 
-SELECT "id",
-       "uuid",
-       "event_id",
-       "contact_id",
-       "invitation_feedback_id"
+SELECT id,
+       uuid,
+       event_id,
+       contact_id,
+       invitation_feedback_id
 FROM maevsi.invite_contact WHERE FALSE;
 
 DO $$

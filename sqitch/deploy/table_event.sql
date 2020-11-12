@@ -9,18 +9,18 @@
 BEGIN;
 
 CREATE TABLE maevsi.event (
-    "id"                       BIGSERIAL PRIMARY KEY,
-    "organizer_username"       TEXT REFERENCES maevsi_private.account("username") NOT NULL,
-    "name"                     TEXT NOT NULL CHECK (char_length("name") < 100),
-    "slug"                     TEXT NOT NULL CHECK (char_length("slug") < 100 AND "slug" ~* '^[-A-Za-z0-9]+$'),
-    "visibility"               maevsi.event_visibility NOT NULL,
-    "invitee_count_maximum"    INTEGER CHECK ("invitee_count_maximum" > 0),
-    "description"              TEXT CHECK (char_length("description") < 10000),
-    "place"                    TEXT CHECK (char_length("place") < 300),
-    "start"                    TIMESTAMP WITH TIME ZONE NOT NULL,
-    "end"                      TIMESTAMP WITH TIME ZONE,
-    "archived"                 BOOLEAN NOT NULL DEFAULT FALSE,
-    UNIQUE ("organizer_username", "slug")
+    id                       BIGSERIAL PRIMARY KEY,
+    organizer_username       TEXT REFERENCES maevsi_private.account(username) NOT NULL,
+    name                     TEXT NOT NULL CHECK (char_length(name) < 100),
+    slug                     TEXT NOT NULL CHECK (char_length(slug) < 100 AND slug ~* '^[-A-Za-z0-9]+$'),
+    visibility               maevsi.event_visibility NOT NULL,
+    invitee_count_maximum    INTEGER CHECK (invitee_count_maximum > 0),
+    description              TEXT CHECK (char_length(description) < 10000),
+    place                    TEXT CHECK (char_length(place) < 300),
+    start                    TIMESTAMP WITH TIME ZONE NOT NULL,
+    "end"                    TIMESTAMP WITH TIME ZONE,
+    archived                 BOOLEAN NOT NULL DEFAULT FALSE,
+    UNIQUE (organizer_username, slug)
 );
 
 COMMENT ON TABLE maevsi.event IS 'An event.';
@@ -41,6 +41,6 @@ GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event TO maevsi_account;
 
 GRANT USAGE ON SEQUENCE maevsi.event_id_seq TO maevsi_account;
 
--- RLS is specified in "table_event_policy".
+-- RLS is specified in 'table_event_policy`.
 
 COMMIT;

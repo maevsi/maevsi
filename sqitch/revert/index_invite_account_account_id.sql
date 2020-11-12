@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP INDEX maevsi."idx_invite_account_account_id";
+DROP INDEX maevsi.idx_invite_account_account_id;
 
 COMMIT;

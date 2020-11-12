@@ -4,12 +4,12 @@
 BEGIN;
 
 CREATE TYPE maevsi.jwt AS (
-  "id" UUID,
-  "role" TEXT,
-  "account_id" INTEGER,
-  "username" TEXT,
-  "invites" UUID[],
-  "exp" BIGINT
+  id UUID,
+  role TEXT,
+  account_id INTEGER,
+  username TEXT,
+  invites UUID[],
+  exp BIGINT
 );
 
 COMMIT;

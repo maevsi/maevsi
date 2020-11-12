@@ -11,12 +11,12 @@
 BEGIN;
 
 CREATE TABLE maevsi.invite_contact (
-    "id"                        BIGSERIAL PRIMARY KEY,
-    "uuid"                      UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
-    "event_id"                  INTEGER REFERENCES maevsi.event("id") NOT NULL,
-    "contact_id"                INTEGER REFERENCES maevsi.contact("id") NOT NULL,
-    "invitation_feedback_id"    INTEGER REFERENCES maevsi.invitation_feedback_data("id") NOT NULL,
-    UNIQUE ("event_id", "contact_id")
+    id                        BIGSERIAL PRIMARY KEY,
+    uuid                      UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
+    event_id                  INTEGER REFERENCES maevsi.event(id) NOT NULL,
+    contact_id                INTEGER REFERENCES maevsi.contact(id) NOT NULL,
+    invitation_feedback_id    INTEGER REFERENCES maevsi.invitation_feedback_data(id) NOT NULL,
+    UNIQUE (event_id, contact_id)
 );
 
 COMMENT ON TABLE maevsi.invite_contact IS 'An invite for a contact, i.e. someone without an account. A bidirectional mapping between an event and a contact.';

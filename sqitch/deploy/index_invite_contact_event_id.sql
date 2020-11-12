@@ -3,8 +3,8 @@
 
 BEGIN;
 
-CREATE INDEX "idx_invite_contact_event_id" ON maevsi.invite_contact ("event_id");
+CREATE INDEX idx_invite_contact_event_id ON maevsi.invite_contact (event_id);
 
-COMMENT ON INDEX maevsi."idx_invite_contact_event_id" IS 'Speeds up reverse foreign key lookups.';
+COMMENT ON INDEX maevsi.idx_invite_contact_event_id IS 'Speeds up reverse foreign key lookups.';
 
 COMMIT;

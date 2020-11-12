@@ -7,9 +7,9 @@
 BEGIN;
 
 CREATE TYPE maevsi.event_contact_feedback AS (
-  "event" maevsi.event,
-  "contact" maevsi.contact,
-  "invitation_feedback_data" maevsi.invitation_feedback_data
+  event maevsi.event,
+  contact maevsi.contact,
+  invitation_feedback_data maevsi.invitation_feedback_data
 );
 
 COMMIT;

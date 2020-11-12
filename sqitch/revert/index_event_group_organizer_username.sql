@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP INDEX maevsi."idx_event_group_organizer_username";
+DROP INDEX maevsi.idx_event_group_organizer_username;
 
 COMMIT;
