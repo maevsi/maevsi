@@ -52,9 +52,6 @@ export default {
     },
   },
   methods: {
-    onDeleteClick(inviteCode) {
-      console.log(inviteCode)
-    },
     onSessionExitClick() {
       this.$global.logOut(this.$apollo.getClient(), this.$store)
     },
