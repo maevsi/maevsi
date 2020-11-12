@@ -11,17 +11,17 @@
             :to="
               localePath(
                 '/account/' +
-                  (loggedInUsername === undefined ? '' : loggedInUsername)
+                  (signedInUsername === undefined ? '' : signedInUsername)
               )
             "
           >
             <FontAwesomeIcon class="mr-2" :icon="['fas', 'user']" />{{
-              loggedInUsername === undefined ? $t('account') : loggedInUsername
+              signedInUsername === undefined ? $t('account') : signedInUsername
             }}
           </nuxt-link>
           <div class="absolute dropdown-content right-0">
             <div
-              v-if="loggedInUsername !== undefined"
+              v-if="signedInUsername !== undefined"
               class="flex flex-col items-end"
             >
               <div class="mt-1">
@@ -30,9 +30,9 @@
                   :to="
                     localePath(
                       '/account/' +
-                        (loggedInUsername === undefined
+                        (signedInUsername === undefined
                           ? ''
-                          : loggedInUsername) +
+                          : signedInUsername) +
                         '/settings'
                     )
                   "
@@ -42,11 +42,11 @@
                 </nuxt-link>
               </div>
               <div class="mt-1">
-                <button @click="$global.logOut($apollo.getClient(), $store)">
+                <button @click="$global.signOut($apollo.getClient(), $store)">
                   <FontAwesomeIcon
                     class="mr-2"
                     :icon="['fas', 'sign-out-alt']"
-                  />{{ $t('logOut') }}
+                  />{{ $t('signOut') }}
                 </button>
               </div>
             </div>
@@ -104,7 +104,7 @@ export default {
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
     },
-    loggedInUsername() {
+    signedInUsername() {
       return this.$store.state.jwtDecoded &&
         this.$store.state.jwtDecoded.role === 'maevsi_account' &&
         this.$store.state.jwtDecoded.exp > Math.floor(Date.now() / 1000)
@@ -143,14 +143,14 @@ export default {
 de:
   account: 'Konto'
   imprint: 'Impressum'
-  logOut: 'Abmelden'
+  signOut: 'Abmelden'
   privacyPolicy: 'Datenschutzerklärung'
   session: 'Sitzung'
   settings: 'Einstellungen'
 en:
   account: 'Account'
   imprint: 'Imprint'
-  logOut: 'Log out'
+  signOut: 'Sign out'
   privacyPolicy: 'Privacy Policy'
   session: 'Session'
   settings: 'Settings'

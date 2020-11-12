@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
     <div class="flex flex-wrap justify-center my-2">
       <Button
-        v-if="loggedIn"
+        v-if="signedIn"
         :icon-id="['fas', 'plus']"
         :link="'/new'"
         class="m-2"
@@ -25,7 +25,7 @@ export default {
     }
   },
   computed: {
-    loggedIn() {
+    signedIn() {
       return (
         this.$store.state.jwtDecoded &&
         this.$store.state.jwtDecoded.role === 'maevsi_account' &&

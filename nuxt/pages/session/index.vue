@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     onSessionExitClick() {
-      this.$global.logOut(this.$apollo.getClient(), this.$store)
+      this.$global.signOut(this.$apollo.getClient(), this.$store)
     },
   },
   head() {

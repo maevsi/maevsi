@@ -83,7 +83,7 @@ export async function jwtRefresh(apolloClient, store, res, id) {
     .then(({ data }) => checkNested(data, 'jwtRefresh'))
     .catch((error) => {
       consola.error(error)
-      logOut(apolloClient, store, res)
+      signOut(apolloClient, store, res)
     })
 
   if (!jwtRefreshData) {
@@ -93,7 +93,7 @@ export async function jwtRefresh(apolloClient, store, res, id) {
   await storeJwt(apolloClient, store, res, jwtRefreshData.jwt)
 }
 
-async function logOut(apolloClient, store, res) {
+async function signOut(apolloClient, store, res) {
   await storeJwt(apolloClient, store, res, null)
 }
 
@@ -175,7 +175,7 @@ export default async ({ app, req, res, store }, inject) => {
     checkNested,
     getJwtFromCookie,
     jwtRefresh,
-    logOut,
+    signOut,
     objectClone,
     removeTypename,
     storeJwt,

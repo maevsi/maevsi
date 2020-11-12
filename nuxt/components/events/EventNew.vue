@@ -195,7 +195,7 @@ export default {
     }
   },
   computed: {
-    loggedInUsername() {
+    signedInUsername() {
       return this.$store.state.jwtDecoded &&
         this.$store.state.jwtDecoded.role === 'maevsi_account' &&
         this.$store.state.jwtDecoded.exp > Math.floor(Date.now() / 1000)
@@ -217,7 +217,7 @@ export default {
           variables: {
             createEventInput: {
               event: {
-                organizerUsername: this.loggedInUsername,
+                organizerUsername: this.signedInUsername,
                 description: this.form.description,
                 end: this.form.end !== '' ? this.form.end : undefined,
                 inviteeCountMaximum:
@@ -236,7 +236,7 @@ export default {
         .then((_data) => {
           alert(this.$t('eventCreateSuccess'))
           this.$router.push(
-            this.localePath(`/event/${this.loggedInUsername}/${this.form.slug}`)
+            this.localePath(`/event/${this.signedInUsername}/${this.form.slug}`)
           )
         })
         .catch((error) => {
