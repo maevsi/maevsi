@@ -19,31 +19,36 @@
               loggedInUsername === undefined ? $t('account') : loggedInUsername
             }}
           </nuxt-link>
-          <div
-            v-if="loggedInUsername !== undefined"
-            class="absolute dropdown-content right-0"
-          >
-            <div class="mt-1">
-              <nuxt-link
-                class="button"
-                :to="
-                  localePath(
-                    '/account/' +
-                      (loggedInUsername === undefined ? '' : loggedInUsername) +
-                      '/settings'
-                  )
-                "
-              >
-                <FontAwesomeIcon class="mr-2" :icon="['fas', 'cog']" />Settings
-              </nuxt-link>
-            </div>
-            <div class="mt-1">
-              <button @click="$global.logOut($apollo.getClient(), $store)">
-                <FontAwesomeIcon
-                  class="mr-2"
-                  :icon="['fas', 'sign-out-alt']"
-                />Log Out
-              </button>
+          <div class="absolute dropdown-content right-0">
+            <div
+              v-if="loggedInUsername !== undefined"
+              class="flex flex-col items-end"
+            >
+              <div class="mt-1">
+                <nuxt-link
+                  class="button"
+                  :to="
+                    localePath(
+                      '/account/' +
+                        (loggedInUsername === undefined
+                          ? ''
+                          : loggedInUsername) +
+                        '/settings'
+                    )
+                  "
+                >
+                  <FontAwesomeIcon class="mr-2" :icon="['fas', 'cog']" />
+                  {{ $t('settings') }}
+                </nuxt-link>
+              </div>
+              <div class="mt-1">
+                <button @click="$global.logOut($apollo.getClient(), $store)">
+                  <FontAwesomeIcon
+                    class="mr-2"
+                    :icon="['fas', 'sign-out-alt']"
+                  />{{ $t('logOut') }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -128,9 +133,13 @@ export default {
 de:
   account: 'Konto'
   imprint: 'Impressum'
+  logOut: 'Abmelden'
   privacyPolicy: 'Datenschutzerklärung'
+  settings: 'Einstellungen'
 en:
   account: 'Account'
   imprint: 'Imprint'
+  logOut: 'Log out'
   privacyPolicy: 'Privacy Policy'
+  settings: 'Settings'
 </i18n>
