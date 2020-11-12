@@ -183,7 +183,7 @@
         </div>
       </div>
       <div v-else>
-        <Error404 />
+        <Error :status-code="404" />
       </div>
     </div>
   </div>

@@ -1189,6 +1189,11 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@http-util/status-i18n@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@http-util/status-i18n/-/status-i18n-0.2.0.tgz#d185da8234ada6496363e030d9215370a9649a61"
+  integrity sha512-aa4PAiDpOL2KoxTWKerKjG2faUwZPtDklu/fU0zJjywbzNqCO9RYOy+PYlDPBexKnPI9rOSPXx3nfEfNcGng5Q==
+
 "@iktakahiro/markdown-it-katex@git+https://github.com/iktakahiro/markdown-it-katex.git":
   version "4.0.1"
   resolved "git+https://github.com/iktakahiro/markdown-it-katex.git#fd03d2d21dbc02c73c8e651abd5386af076a1440"
