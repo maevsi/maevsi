@@ -24,12 +24,17 @@
         />
         <div slot="formError">
           <FormError
-            :text="'required'"
+            :text="$t('globalValidationRequired')"
             :validation-object="$v.form['invitation-code']"
             :validation-property="'required'"
           />
           <FormError
-            :text="'invalid format'"
+            :text="$t('globalValidationUsed')"
+            :validation-object="$v.form['invitation-code']"
+            :validation-property="'unused'"
+          />
+          <FormError
+            :text="$t('globalValidationFormatIncorrect')"
             :validation-object="$v.form['invitation-code']"
             :validation-property="'uuid'"
           />
@@ -124,17 +129,30 @@ export default {
         )
       )
     },
+    unused(value) {
+      if (
+        this.$global.checkNested(this.$store.state.jwtDecoded, 'invites') &&
+        this.$store.state.jwtDecoded.invites.includes(value)
+      ) {
+        return false
+      } else {
+        return true
+      }
+    },
   },
   head() {
     return { title: this.title }
   },
-  validations: {
-    form: {
-      'invitation-code': {
-        required,
-        uuid,
+  validations() {
+    return {
+      form: {
+        'invitation-code': {
+          required,
+          unused: this.unused,
+          uuid,
+        },
       },
-    },
+    }
   },
 }
 </script>
