@@ -5,15 +5,16 @@
       v-else-if="graphqlErrorMessage !== undefined"
       :graphql-error-message="graphqlErrorMessage"
     />
-    <div
-      v-else-if="
-        allEvents !== undefined && allEvents.nodes && allEvents.nodes.length
-      "
-    >
+    <div v-else>
       <h2 v-if="username" class="text-left truncate">
         {{ $t('titleEvents', { username: $route.params.username }) }}
       </h2>
-      <ul class="text-left">
+      <ul
+        v-if="
+          allEvents !== undefined && allEvents.nodes && allEvents.nodes.length
+        "
+        class="text-left"
+      >
         <li v-for="event in allEvents.nodes" :key="event.id">
           <nuxt-link
             :to="
@@ -78,8 +79,8 @@
           }}</Button>
         </div>
       </ul>
+      <p v-else>{{ $t('noEvents') }}</p>
     </div>
-    <p v-else>{{ $t('noEvents') }}</p>
   </div>
 </template>
 
