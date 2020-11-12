@@ -1,3 +1,11 @@
+# [0.16.0](https://github.com/maevsi/maevsi/compare/0.15.0...0.16.0) (2020-11-12)
+
+
+### Features
+
+* add success message to redeem ([2e782b4](https://github.com/maevsi/maevsi/commit/2e782b482075658eb6f46675a3f17e58bd2dee7d)), closes [#82](https://github.com/maevsi/maevsi/issues/82)
+* check if invitation code was already redeemed ([d828bca](https://github.com/maevsi/maevsi/commit/d828bca135dd6393a4078874ec635fb5aae31886))
+
 # [0.15.0](https://github.com/maevsi/maevsi/compare/0.14.2...0.15.0) (2020-11-12)
 
 
