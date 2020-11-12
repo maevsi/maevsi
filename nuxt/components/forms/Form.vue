@@ -9,7 +9,7 @@
       },
       formClass,
     ]"
-    @submit="functionSubmit"
+    @submit="(e) => $emit('submit', e)"
   >
     <slot />
   </form>
@@ -20,10 +20,6 @@ export default {
   props: {
     formClass: {
       type: String,
-      default: undefined,
-    },
-    functionSubmit: {
-      type: Function,
       default: undefined,
     },
     graphqlErrorMessage: {

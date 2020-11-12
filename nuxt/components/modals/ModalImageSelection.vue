@@ -1,18 +1,19 @@
 <template>
-  <Modal @close="modalHideFunction()">
+  <Modal @close="$emit('hide')">
     <h2 slot="header">{{ $t('header') }}</h2>
     <ImageUploadGallery
       slot="body"
       :allow-addition="false"
       :allow-deletion="false"
-      :selection-function="selectProfilePictureStorageKey"
+      :selectable="true"
       :username="$route.params.username"
+      @selection="selectProfilePictureStorageKey"
     />
     <div slot="footer" class="text-white">
       <Button
         :disabled="settingProfilePicture"
         :icon-id="['fas', 'window-close']"
-        @click.native="modalHideFunction()"
+        @click.native="$emit('hide')"
       >
         {{ $t('cancel') }}
       </Button>
@@ -39,16 +40,6 @@ import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePictureSet'
 const consola = require('consola')
 
 export default {
-  props: {
-    modalHideFunction: {
-      type: Function,
-      default: undefined,
-    },
-    reloadFunction: {
-      type: Function,
-      default: undefined,
-    },
-  },
   data() {
     return {
       graphqlErrorMessage: undefined,
@@ -71,8 +62,8 @@ export default {
           },
         })
         .then((_data) => {
-          this.reloadFunction()
-          this.modalHideFunction()
+          this.$emit('reload')
+          this.$emit('hide')
         })
         .catch((error) => {
           this.graphqlErrorMessage = error.message

@@ -7,9 +7,9 @@
       {{ $t('greetingRequest') }}
     </div>
     <Form
-      :function-submit="redeem"
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
+      @submit="redeem"
     >
       <FormInput
         :error="$v.form['invitation-code'].$error"

@@ -45,7 +45,7 @@
             ref="formRegister"
             :form="formRegister"
             :form-class="'rounded-t-none'"
-            :handler-sign-in="handlerSignIn"
+            @password="handlerSignIn"
           />
         </div>
         <div class="e1 flip-card-front">
@@ -53,7 +53,7 @@
             ref="formSignIn"
             :form="formSignIn"
             :form-class="'rounded-t-none'"
-            :handler-register="handlerRegister"
+            @password="handlerRegister"
           />
         </div>
       </div>

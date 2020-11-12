@@ -11,8 +11,8 @@
       </button>
       <ModalImageSelection
         v-if="showModalImageSelection"
-        :modal-hide-function="hideModalImageSelection"
-        :reload-function="reloadProfilePicture"
+        @hide="hideModalImageSelection"
+        @reload="reloadProfilePicture"
       />
       <h1 class="mb-0 truncate w-full sm:w-auto">
         {{ $route.params.username }}
@@ -22,8 +22,8 @@
       <h2>{{ $t('titleImageUploads') }}</h2>
       <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
       <ImageUploadGallery
-        :deletion-function="reloadProfilePicture"
         :username="$route.params.username"
+        @deletion="reloadProfilePicture"
       />
     </section>
     <section class="mt-4">

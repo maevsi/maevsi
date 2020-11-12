@@ -1,8 +1,8 @@
 <template>
   <Form
-    :function-submit="passwordChange"
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
+    @submit="passwordChange"
   >
     <FormInputPassword :id="'passwordCurrent'" :v="$v" />
     <FormInputPassword :id="'passwordNew'" :v="$v" />

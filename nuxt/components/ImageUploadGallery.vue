@@ -18,8 +18,7 @@
             :id="uploadIdPrefix + upload.id"
             :key="upload.id"
             :class="{
-              'border-red-600':
-                selectionFunction !== undefined && upload === selectedItem,
+              'border-red-600': selectable && upload === selectedItem,
             }"
             class="border-4 border-transparent box-border relative"
             @click="toggleSelect(upload)"
@@ -165,13 +164,9 @@ export default {
       type: Boolean,
       default: true,
     },
-    deletionFunction: {
-      type: Function,
-      default: undefined,
-    },
-    selectionFunction: {
-      type: Function,
-      default: undefined,
+    selectable: {
+      type: Boolean,
+      default: false,
     },
     username: {
       type: String,
@@ -204,7 +199,6 @@ export default {
       document.querySelector('#input-profile-picture').click()
     },
     deleteImageUpload(uploadId) {
-      const outerThis = this
       const element = document.getElementById(this.uploadIdPrefix + uploadId)
 
       element.classList.add('disabled')
@@ -221,11 +215,7 @@ export default {
           switch (xhr.status) {
             case 204:
               this.$apollo.queries.allUploads.refetch()
-
-              if (outerThis.deletionFunction !== undefined) {
-                outerThis.deletionFunction()
-              }
-
+              this.$emit('deletion')
               break
             case 500:
               alert(this.$t('uploadDeleteFailed'))
@@ -341,16 +331,10 @@ export default {
     toggleSelect(upload) {
       if (this.selectedItem === upload) {
         this.selectedItem = undefined
-
-        if (this.selectionFunction !== undefined) {
-          this.selectionFunction(undefined)
-        }
+        this.$emit('selection', undefined)
       } else {
         this.selectedItem = upload
-
-        if (this.selectionFunction !== undefined) {
-          this.selectionFunction(this.selectedItem.storageKey)
-        }
+        this.$emit('selection', this.selectedItem.storageKey)
       }
     },
     showMore() {

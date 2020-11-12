@@ -1,8 +1,8 @@
 <template>
   <Form
-    :function-submit="submit"
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
+    @submit="eventNew"
   >
     <FormInput :error="$v.form['name'].$error" :title="$t('name')">
       <input
@@ -204,7 +204,7 @@ export default {
     },
   },
   methods: {
-    submit(e) {
+    eventNew(e) {
       e.preventDefault()
 
       this.form.sent = true

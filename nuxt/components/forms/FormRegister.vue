@@ -1,9 +1,9 @@
 <template>
   <Form
     :form-class="formClass"
-    :function-submit="register"
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
+    @submit="register"
   >
     <FormInput :error="$v.form['username'].$error" :title="$t('username')">
       <input
@@ -90,10 +90,6 @@ export default {
       type: String,
       default: undefined,
     },
-    handlerSignIn: {
-      type: Function,
-      default: undefined,
-    },
   },
   data() {
     return {
@@ -104,7 +100,7 @@ export default {
   watch: {
     form: {
       handler(val) {
-        this.handlerSignIn(val)
+        this.$emit('password', val)
       },
       deep: true,
     },
