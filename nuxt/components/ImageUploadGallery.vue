@@ -344,6 +344,10 @@ export default {
           cursor: this.allUploads.pageInfo.endCursor,
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
+          if (!fetchMoreResult) {
+            return previousResult
+          }
+
           const newNodes = fetchMoreResult.allUploads.nodes
           const pageInfo = fetchMoreResult.allUploads.pageInfo
 
