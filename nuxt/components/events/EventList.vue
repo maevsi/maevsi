@@ -1,10 +1,10 @@
 <template>
   <div>
+    <div v-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
     <AlertGraphql
-      v-if="graphqlErrorMessage !== undefined"
+      v-else-if="graphqlErrorMessage !== undefined"
       :graphql-error-message="graphqlErrorMessage"
     />
-    <div v-else-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
     <div
       v-else-if="
         allEvents !== undefined && allEvents.nodes && allEvents.nodes.length

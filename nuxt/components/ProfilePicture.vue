@@ -1,9 +1,16 @@
 <template>
-  <img
-    alt="profile picture"
-    class="bg-gray-400 flex-none h-24 w-24"
-    :src="imageSrc"
-  />
+  <div>
+    <div v-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
+    <AlertGraphql
+      v-else-if="graphqlErrorMessage !== undefined"
+      :graphql-error-message="graphqlErrorMessage"
+    />
+    <img
+      alt="profile picture"
+      class="bg-gray-400 flex-none h-24 w-24"
+      :src="imageSrc"
+    />
+  </div>
 </template>
 
 <script>
