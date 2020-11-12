@@ -1,3 +1,19 @@
+# [0.15.0](https://github.com/maevsi/maevsi/compare/0.14.2...0.15.0) (2020-11-12)
+
+
+### Bug Fixes
+
+* **button:** emit clicks ([dacda0d](https://github.com/maevsi/maevsi/commit/dacda0d6f6f44ae4cdd6af39248ccdb9c1b93f8c))
+* **button:** use right margin only for filled slots ([a2e91a6](https://github.com/maevsi/maevsi/commit/a2e91a61d6803e081a9f3dbdd5780609db6f9acf))
+* **layout:** add missing translations, align items right ([a84522e](https://github.com/maevsi/maevsi/commit/a84522eb7c11fb79ff18faa8a29c3cd924f96eae))
+* **log-out:** clear store instead of resetting ([86f7f75](https://github.com/maevsi/maevsi/commit/86f7f75edcb7db9d01d0af57eeba12adddfb94c1))
+* **moment:** use correct language ([fbfa3e0](https://github.com/maevsi/maevsi/commit/fbfa3e0ce18808663916ac0be5262adbf240f07a))
+
+
+### Features
+
+* **session:** add session management page ([d1fd221](https://github.com/maevsi/maevsi/commit/d1fd22128d4afbe616b776f36dfbc1bccf41e259))
+
 ## [0.14.2](https://github.com/maevsi/maevsi/compare/0.14.1...0.14.2) (2020-11-11)
 
 
