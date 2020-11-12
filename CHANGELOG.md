@@ -1,3 +1,18 @@
+# [0.17.0](https://github.com/maevsi/maevsi/compare/0.16.0...0.17.0) (2020-11-12)
+
+
+### Bug Fixes
+
+* **apollo:** unify loading readers ([4e992b4](https://github.com/maevsi/maevsi/commit/4e992b41b106ee2f7edd96be6caa53beb81a5987))
+* **event-list:** correct heading display ([4d564b3](https://github.com/maevsi/maevsi/commit/4d564b3f5f114e1d2f00bac0fb32f4e8fc4a2fc5))
+* **modal:** use default button ([bb5b70c](https://github.com/maevsi/maevsi/commit/bb5b70c3f526ca5d58cfa15e689d97aa681780e0))
+
+
+### Features
+
+* **nuxt:** change title separator to "·" ([c942ec6](https://github.com/maevsi/maevsi/commit/c942ec6d27a9eb138dc1f305ac770465083c74f2))
+* **nuxt:** error page ([6abaf6c](https://github.com/maevsi/maevsi/commit/6abaf6c61922e6de2f83db3d7444995f99f6341f)), closes [#79](https://github.com/maevsi/maevsi/issues/79) [#81](https://github.com/maevsi/maevsi/issues/81)
+
 # [0.16.0](https://github.com/maevsi/maevsi/compare/0.15.0...0.16.0) (2020-11-12)
 
 
