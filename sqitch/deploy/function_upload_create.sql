@@ -9,7 +9,7 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.upload_create(sizeByte INTEGER)
+CREATE FUNCTION maevsi.upload_create(sizeByte BIGINT)
 RETURNS UUID AS $$
 DECLARE
     _id UUID;
@@ -26,7 +26,7 @@ BEGIN
   THEN
     INSERT INTO maevsi.upload (username, size_byte)
     VALUES (current_setting('jwt.claims.username', true)::TEXT, $1)
-    RETURNING upload.id INTO _id;
+    RETURNING upload.uuid INTO _id;
 
     RETURN _id;
   ELSE
@@ -35,8 +35,8 @@ BEGIN
 END;
 $$ LANGUAGE PLPGSQL STRICT VOLATILE SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi.upload_create(INTEGER) IS 'Creates an upload with the given size if quota is available.';
+COMMENT ON FUNCTION maevsi.upload_create(BIGINT) IS 'Creates an upload with the given size if quota is available.';
 
-GRANT EXECUTE ON FUNCTION maevsi.upload_create(INTEGER) TO maevsi_account;
+GRANT EXECUTE ON FUNCTION maevsi.upload_create(BIGINT) TO maevsi_account;
 
 COMMIT;

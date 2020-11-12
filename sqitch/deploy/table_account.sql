@@ -13,7 +13,7 @@ CREATE TABLE maevsi_private.account (
     password_hash                 TEXT NOT NULL,
     created                       TIMESTAMP NOT NULL DEFAULT NOW(),
     last_activity                 TIMESTAMP NOT NULL DEFAULT NOW(),
-    upload_quota_bytes            INTEGER NOT NULL DEFAULT 10485760 -- 10 mebibyte
+    upload_quota_bytes            BIGINT NOT NULL DEFAULT 10485760 -- 10 mebibyte
 );
 
 COMMENT ON TABLE maevsi_private.account IS 'Account data.';

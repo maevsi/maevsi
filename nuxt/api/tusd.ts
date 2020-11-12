@@ -16,7 +16,7 @@ const secretPostgraphileJwtSecret = fs.existsSync(
   ? fs.readFileSync(secretPostgraphileJwtSecretPath, 'utf-8')
   : undefined
 
-const { Pool } = require('pg')
+const { DatabaseError, Pool } = require('pg')
 
 const pool = new Pool({
   database: fs.existsSync(secretPostgresDbPath)
@@ -41,7 +41,7 @@ function deleteUpload(res: ServerResponse, uploadId: any, storageKey: any) {
       }
 
       pool.query(
-        'DELETE FROM maevsi.upload WHERE id = $1;',
+        'DELETE FROM maevsi.upload WHERE uuid = $1;',
         [uploadId],
         (err: any, _queryRes: any) => {
           if (err) {
@@ -99,7 +99,7 @@ function tusdDelete(req: IncomingMessage, res: ServerResponse) {
   }
 
   pool.query(
-    'SELECT * FROM maevsi.upload WHERE id = $1;',
+    'SELECT * FROM maevsi.upload WHERE uuid = $1;',
     [uploadId],
     (err: any, queryRes: any) => {
       if (err) {
@@ -161,18 +161,20 @@ function tusdPost(req: IncomingMessageWithBody, res: ServerResponse) {
       consola.log('tusd/pre-create')
 
       pool.query(
-        'SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = $1);',
-        [req.body.Upload.MetaData.maevsiUploadId],
-        (err: any, queryRes: any) => {
+        'SELECT EXISTS(SELECT * FROM maevsi.upload WHERE uuid = $1);',
+        [req.body.Upload.MetaData.maevsiUploadUuid],
+        (err: typeof DatabaseError, queryRes: any) => {
           if (err) {
             res.statusCode = 500
-            res.end(err)
+            consola.error(err)
+            res.end()
             return
           }
 
           if (!queryRes.rows[0].exists) {
             res.statusCode = 500
-            res.end('Upload id does not exist!')
+            consola.error('Upload id does not exist!')
+            res.end()
             return
           }
 
@@ -185,8 +187,11 @@ function tusdPost(req: IncomingMessageWithBody, res: ServerResponse) {
       consola.log('tusd/post-finish: ' + req.body.Upload.Storage.Key)
 
       pool.query(
-        'UPDATE maevsi.upload SET storage_key = $1 WHERE id = $2;',
-        [req.body.Upload.Storage.Key, req.body.Upload.MetaData.maevsiUploadId],
+        'UPDATE maevsi.upload SET storage_key = $1 WHERE uuid = $2;',
+        [
+          req.body.Upload.Storage.Key,
+          req.body.Upload.MetaData.maevsiUploadUuid,
+        ],
         (err: any, _queryRes: any) => {
           if (err) {
             res.statusCode = 500
@@ -203,7 +208,7 @@ function tusdPost(req: IncomingMessageWithBody, res: ServerResponse) {
       consola.log('tusd/post-terminate: ' + req.body.Upload.Storage.Key)
       deleteUpload(
         res,
-        req.body.Upload.MetaData.maevsiUploadId,
+        req.body.Upload.MetaData.maevsiUploadUuid,
         req.body.Upload.Storage.Key
       )
 

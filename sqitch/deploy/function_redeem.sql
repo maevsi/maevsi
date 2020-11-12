@@ -17,13 +17,13 @@ CREATE FUNCTION maevsi.redeem(
 DECLARE
     _jwt_id UUID;
     _jwt maevsi.jwt;
-    _event_id INTEGER;
+    _event_id BIGINT;
 BEGIN
     _jwt_id := current_setting('jwt.claims.id', true)::UUID;
     _jwt := (
         _jwt_id,
         current_setting('jwt.claims.role', true)::TEXT,
-        current_setting('jwt.claims.account_id', true)::INTEGER,
+        current_setting('jwt.claims.account_id', true)::BIGINT,
         current_setting('jwt.claims.username', true)::TEXT,
         (SELECT ARRAY(SELECT DISTINCT UNNEST(maevsi.invite_claim_array() || invitation_code) ORDER BY 1)),
         current_setting('jwt.claims.exp', true)::BIGINT
@@ -31,7 +31,7 @@ BEGIN
 
     UPDATE maevsi_private.jwt
     SET token = _jwt
-    WHERE id = _jwt_id;
+    WHERE uuid = _jwt_id;
 
     _event_id := (
         SELECT event_id FROM maevsi.invite_contact

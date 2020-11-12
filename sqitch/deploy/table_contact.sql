@@ -9,7 +9,7 @@ BEGIN;
 
 CREATE TABLE maevsi.contact (
     id                    BIGSERIAL PRIMARY KEY,
-    account_id            INTEGER REFERENCES maevsi_private.account(id) UNIQUE,
+    account_id            BIGINT REFERENCES maevsi_private.account(id) UNIQUE,
     email_address         TEXT CHECK (char_length(email_address) < 320 AND email_address ~* '^.+@.+\..+$'),
     email_address_hash    TEXT GENERATED ALWAYS AS (md5(lower(substring(email_address, '\S(?:.*\S)*')))) STORED,
     first_name            TEXT CHECK (char_length(first_name) < 100),
@@ -37,7 +37,7 @@ ALTER TABLE maevsi.contact ENABLE ROW LEVEL SECURITY;
 -- Display the contact that is linked to the own account.
 -- Display contacts that are accessible via contact invites.
 CREATE POLICY contact_select ON maevsi.contact FOR SELECT USING (
-        id = current_setting('jwt.claims.account_id', true)::INTEGER
+        id = current_setting('jwt.claims.account_id', true)::BIGINT
     OR  id IN (SELECT maevsi_private.invites_contact())
 );
 

@@ -11,9 +11,9 @@ BEGIN;
 CREATE TABLE maevsi.invite_account (
     id                        BIGSERIAL PRIMARY KEY,
     uuid                      UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
-    event_id                  INTEGER REFERENCES maevsi.event(id) NOT NULL,
-    account_id                INTEGER REFERENCES maevsi_private.account(id) NOT NULL,
-    invitation_feedback_id    INTEGER REFERENCES maevsi.invitation_feedback_data(id) NOT NULL,
+    event_id                  BIGINT REFERENCES maevsi.event(id) NOT NULL,
+    account_id                BIGINT REFERENCES maevsi_private.account(id) NOT NULL,
+    invitation_feedback_id    BIGINT REFERENCES maevsi.invitation_feedback_data(id) NOT NULL,
     UNIQUE (event_id, account_id)
 );
 
@@ -30,7 +30,7 @@ ALTER TABLE maevsi.invite_account ENABLE ROW LEVEL SECURITY;
 -- Display account invites issued to oneself.
 -- Display account invites for events organized by oneself.
 CREATE POLICY invite_account_select ON maevsi.invite_account FOR SELECT USING (
-        account_id = current_setting('jwt.claims.account_id', true)::INTEGER
+        account_id = current_setting('jwt.claims.account_id', true)::BIGINT
     OR  event_id IN (SELECT maevsi.events_organized())
 );
 

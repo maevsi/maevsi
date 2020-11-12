@@ -15,7 +15,7 @@ DECLARE
 BEGIN
     SELECT (token).id, (token).role, (token).account_id, (token).username, (token).invites, (token).exp INTO _jwt
     FROM maevsi_private.jwt
-    WHERE   id = $1
+    WHERE   uuid = $1
     AND     (token).exp >= _epoch_now;
 
     IF _jwt IS NULL
@@ -24,7 +24,7 @@ BEGIN
     ELSE
         UPDATE maevsi_private.jwt
         SET token.exp = EXTRACT(EPOCH FROM ((SELECT date_trunc('second', NOW()::TIMESTAMP)) + COALESCE(current_setting('maevsi.jwt_expiry_duration', true), '1 day')::INTERVAL))
-        WHERE id = $1;
+        WHERE uuid = $1;
 
         UPDATE maevsi_private.account
         SET last_activity = DEFAULT
@@ -33,7 +33,7 @@ BEGIN
         RETURN (
             SELECT token
             FROM maevsi_private.jwt
-            WHERE   id = $1
+            WHERE   uuid = $1
             AND     (token).exp >= _epoch_now
         );
     END IF;

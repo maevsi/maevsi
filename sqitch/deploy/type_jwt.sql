@@ -6,7 +6,7 @@ BEGIN;
 CREATE TYPE maevsi.jwt AS (
   id UUID,
   role TEXT,
-  account_id INTEGER,
+  account_id BIGINT,
   username TEXT,
   invites UUID[],
   exp BIGINT

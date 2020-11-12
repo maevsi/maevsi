@@ -16,8 +16,8 @@
         <ul class="inline-flex flex-wrap justify-center">
           <li
             v-for="upload in allUploads.nodes"
-            :id="uploadIdPrefix + upload.id"
-            :key="upload.id"
+            :id="uploadIdPrefix + upload.uuid"
+            :key="upload.uuid"
             :class="{
               'border-red-600': selectable && upload === selectedItem,
             }"
@@ -47,7 +47,7 @@
               </div>
               <div
                 class="absolute right-0 top-0"
-                @click="deleteImageUpload(upload.id)"
+                @click="deleteImageUpload(upload.uuid)"
               >
                 <button class="flex h-full justify-center items-center">
                   <FontAwesomeIcon
@@ -194,19 +194,19 @@ export default {
   },
   methods: {
     bytesToString(bytes) {
-      return prettyBytes(bytes)
+      return prettyBytes(+bytes)
     },
     changeProfilePicture() {
       document.querySelector('#input-profile-picture').click()
     },
-    deleteImageUpload(uploadId) {
-      const element = document.getElementById(this.uploadIdPrefix + uploadId)
+    deleteImageUpload(uploadUuid) {
+      const element = document.getElementById(this.uploadIdPrefix + uploadUuid)
 
       element.classList.add('disabled')
 
       const xhr = new XMLHttpRequest()
 
-      xhr.open('DELETE', '/tusd?uploadId=' + uploadId, true)
+      xhr.open('DELETE', '/tusd?uploadId=' + uploadUuid, true)
       xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
       xhr.setRequestHeader('Authorization', 'Bearer ' + this.jwt)
       xhr.onreadystatechange = () => {
@@ -262,7 +262,7 @@ export default {
             mutation: UPLOAD_CREATE_MUTATION,
             variables: {
               uploadCreateInput: {
-                sizeByte: blob.size,
+                sizebyte: blob.size,
               },
             },
           })
@@ -288,7 +288,7 @@ export default {
             allowedFileTypes: ['image/*'],
           },
           meta: {
-            maevsiUploadId: res.uuid,
+            maevsiUploadUuid: res.uuid,
           },
           onBeforeUpload: (files) => {
             const updatedFiles = {}

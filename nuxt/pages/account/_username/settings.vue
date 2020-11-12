@@ -47,11 +47,6 @@ export default {
       return this.$store.state.jwtDecoded
     },
   },
-  created() {
-    if (this.jwtDecoded.username !== this.$route.params.username) {
-      this.$router.push('.')
-    }
-  },
   methods: {
     hideModalImageSelection() {
       this.showModalImageSelection = false

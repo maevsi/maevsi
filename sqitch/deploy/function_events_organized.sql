@@ -6,7 +6,7 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.events_organized() RETURNS TABLE (event_id INTEGER) AS $$
+CREATE FUNCTION maevsi.events_organized() RETURNS TABLE (event_id BIGINT) AS $$
 BEGIN
     RETURN QUERY
     SELECT id FROM maevsi.event

@@ -12,11 +12,12 @@ CREATE TABLE maevsi.upload (
     uuid           UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
     storage_key    TEXT UNIQUE,
     username       TEXT REFERENCES maevsi_private.account(username) NOT NULL,
-    size_byte      INTEGER NOT NULL CHECK (size_byte > 0)
+    size_byte      BIGINT NOT NULL CHECK (size_byte > 0)
 );
 
 COMMENT ON TABLE maevsi.upload IS 'An upload.';
 COMMENT ON COLUMN maevsi.upload.id IS 'The upload''s id.';
+COMMENT ON COLUMN maevsi.upload.uuid IS 'The upload''s UUID.';
 COMMENT ON COLUMN maevsi.upload.storage_key IS 'The upload''s storage key.';
 COMMENT ON COLUMN maevsi.upload.username IS 'The uploader''s username.';
 COMMENT ON COLUMN maevsi.upload.size_byte IS 'The upload''s size in bytes.';

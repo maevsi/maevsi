@@ -27,7 +27,7 @@ BEGIN
     IF (current_setting('jwt.claims.role', true)::TEXT = 'maevsi_account') THEN
         SELECT * INTO _invite_account FROM maevsi.invite_account
             WHERE   invite_account.event_id = _event.id
-            AND     invite_account.account_id = current_setting('jwt.claims.account_id', true)::INTEGER;
+            AND     invite_account.account_id = current_setting('jwt.claims.account_id', true)::BIGINT;
 
         SELECT * INTO _contact FROM maevsi.contact
             WHERE contact.id = _invite_account.account_id;
