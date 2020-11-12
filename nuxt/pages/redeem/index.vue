@@ -112,6 +112,8 @@ export default {
         return
       }
 
+      alert(this.$t('redeemSuccess'))
+
       this.$global.storeJwt(
         this.$apollo.getClient(),
         this.$store,
@@ -142,10 +144,12 @@ de:
   greetingQuestion: 'Hast du einen Einladungscode für eine Veranstaltung erhalten?'
   greetingRequest: 'Gib ihn hier ein!'
   invitationCode: 'Einladungscode'
+  redeemSuccess: 'Einladungscode erfolgreich eingelöst.'
   title: 'Einlösen'
 en:
   greetingQuestion: 'Did you receive an invitation code for an event?'
   greetingRequest: 'Enter it here!'
   invitationCode: 'Invitation code'
+  redeemSuccess: 'Invitation code redeemed successfully.'
   title: 'Redeem' # This property is currently used for the title and the button.
 </i18n>
