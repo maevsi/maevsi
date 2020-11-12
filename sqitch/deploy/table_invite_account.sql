@@ -12,7 +12,7 @@ CREATE TABLE maevsi.invite_account (
     "id"                        BIGSERIAL PRIMARY KEY,
     "uuid"                      UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
     "event_id"                  INTEGER REFERENCES maevsi.event("id") NOT NULL,
-    "account_id"                INTEGER REFERENCES maevsi_private.account("contact_id") NOT NULL,
+    "account_id"                INTEGER REFERENCES maevsi_private.account("id") NOT NULL,
     "invitation_feedback_id"    INTEGER REFERENCES maevsi.invitation_feedback_data("id") NOT NULL,
     UNIQUE ("event_id", "account_id")
 );

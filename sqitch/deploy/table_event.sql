@@ -25,7 +25,7 @@ CREATE TABLE maevsi.event (
 
 COMMENT ON TABLE maevsi.event IS 'An event.';
 COMMENT ON COLUMN maevsi.event.id IS E'@omit create,update\nThe record''s id.';
-COMMENT ON COLUMN maevsi.event.organizer_username IS 'The id of the event''s organizer.';
+COMMENT ON COLUMN maevsi.event.organizer_username IS 'The event organizer''s username.';
 COMMENT ON COLUMN maevsi.event.name IS 'The event''s name.';
 COMMENT ON COLUMN maevsi.event.slug IS 'The event''s name, slugified.';
 COMMENT ON COLUMN maevsi.event.visibility IS 'The event''s visibility.';

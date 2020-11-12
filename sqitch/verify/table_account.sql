@@ -3,7 +3,6 @@
 BEGIN;
 
 SELECT "id",
-       "contact_id",
        "username",
        "email_address",
        "email_address_verification",

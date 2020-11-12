@@ -29,7 +29,7 @@ BEGIN
             account."username" = $1
         AND account.password_hash = maevsi.crypt($2, account.password_hash)
       RETURNING *
-    ) SELECT "_jwt_id", 'maevsi_account', updated.contact_id, updated.username, NULL, "_jwt_exp"
+    ) SELECT "_jwt_id", 'maevsi_account', updated.id, updated.username, NULL, "_jwt_exp"
       INTO "_jwt"
       FROM updated;
 
