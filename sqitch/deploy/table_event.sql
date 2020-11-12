@@ -9,17 +9,17 @@
 BEGIN;
 
 CREATE TABLE maevsi.event (
-    "id"                    SERIAL PRIMARY KEY,
-    "organizer_username"    TEXT REFERENCES maevsi_private.account("username") NOT NULL,
-    "name"                  TEXT NOT NULL CHECK (char_length("name") < 100),
-    "slug"                  TEXT NOT NULL CHECK (char_length("slug") < 100 AND "slug" ~* '^[-A-Za-z0-9]+$'),
-    "visibility"            maevsi.event_visibility NOT NULL,
-    "invitee_count_maximum" INTEGER CHECK ("invitee_count_maximum" > 0),
-    "description"           TEXT CHECK (char_length("description") < 10000),
-    "place"                 TEXT CHECK (char_length("place") < 300),
-    "start"                 TIMESTAMP WITH TIME ZONE NOT NULL,
-    "end"                   TIMESTAMP WITH TIME ZONE,
-    "archived"              BOOLEAN NOT NULL DEFAULT FALSE,
+    "id"                       BIGSERIAL PRIMARY KEY,
+    "organizer_username"       TEXT REFERENCES maevsi_private.account("username") NOT NULL,
+    "name"                     TEXT NOT NULL CHECK (char_length("name") < 100),
+    "slug"                     TEXT NOT NULL CHECK (char_length("slug") < 100 AND "slug" ~* '^[-A-Za-z0-9]+$'),
+    "visibility"               maevsi.event_visibility NOT NULL,
+    "invitee_count_maximum"    INTEGER CHECK ("invitee_count_maximum" > 0),
+    "description"              TEXT CHECK (char_length("description") < 10000),
+    "place"                    TEXT CHECK (char_length("place") < 300),
+    "start"                    TIMESTAMP WITH TIME ZONE NOT NULL,
+    "end"                      TIMESTAMP WITH TIME ZONE,
+    "archived"                 BOOLEAN NOT NULL DEFAULT FALSE,
     UNIQUE ("organizer_username", "slug")
 );
 

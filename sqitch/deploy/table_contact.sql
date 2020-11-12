@@ -7,7 +7,7 @@
 BEGIN;
 
 CREATE TABLE maevsi.contact (
-    "id"                    SERIAL PRIMARY KEY,
+    "id"                    BIGSERIAL PRIMARY KEY,
     "first_name"            TEXT CHECK (char_length("first_name") < 100),
     "last_name"             TEXT CHECK (char_length("last_name") < 100),
     "address"               TEXT CHECK (char_length("address") < 300),

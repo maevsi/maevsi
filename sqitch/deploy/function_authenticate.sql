@@ -39,7 +39,7 @@ BEGIN
     END IF;
   END IF;
 
-  INSERT INTO maevsi_private.jwt VALUES ("_jwt_id", "_jwt");
+  INSERT INTO maevsi_private.jwt(uuid, token) VALUES ("_jwt_id", "_jwt");
   RETURN "_jwt";
 END $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 

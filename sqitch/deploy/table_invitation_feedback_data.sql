@@ -7,9 +7,9 @@
 BEGIN;
 
 CREATE TABLE maevsi.invitation_feedback_data (
-    "id"                        SERIAL PRIMARY KEY,
-    "invitation_feedback"       maevsi.invitation_feedback,
-    "paper_invitation_feedback" maevsi.invitation_feedback_paper
+    "id"                           BIGSERIAL PRIMARY KEY,
+    "invitation_feedback"          maevsi.invitation_feedback,
+    "paper_invitation_feedback"    maevsi.invitation_feedback_paper
 );
 
 COMMENT ON TABLE maevsi.invitation_feedback_data IS 'Includes invitation feedback data.';

@@ -8,10 +8,11 @@
 BEGIN;
 
 CREATE TABLE maevsi.upload (
-    "id"            UUID PRIMARY KEY DEFAULT maevsi.uuid_generate_v1mc(),
-    "storage_key"   TEXT UNIQUE,
-    "username"      TEXT REFERENCES maevsi_private.account("username") NOT NULL,
-    "size_byte"     INTEGER NOT NULL CHECK ("size_byte" > 0)
+    "id"             BIGSERIAL PRIMARY KEY,
+    "uuid"           UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
+    "storage_key"    TEXT UNIQUE,
+    "username"       TEXT REFERENCES maevsi_private.account("username") NOT NULL,
+    "size_byte"      INTEGER NOT NULL CHECK ("size_byte" > 0)
 );
 
 COMMENT ON TABLE maevsi.upload IS 'An upload.';

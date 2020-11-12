@@ -8,7 +8,7 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.invitee_count("event_id" INTEGER)
+CREATE FUNCTION maevsi.invitee_count("event_id" BIGINT)
 RETURNS INTEGER AS $$
 BEGIN
   RETURN (
@@ -19,8 +19,8 @@ BEGIN
 END;
 $$ LANGUAGE PLPGSQL STRICT STABLE SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi.invitee_count(INTEGER) IS 'Returns the invitee count for an event.';
+COMMENT ON FUNCTION maevsi.invitee_count(BIGINT) IS 'Returns the invitee count for an event.';
 
-GRANT EXECUTE ON FUNCTION maevsi.invitee_count(INTEGER) TO maevsi_account, maevsi_anonymous;
+GRANT EXECUTE ON FUNCTION maevsi.invitee_count(BIGINT) TO maevsi_account, maevsi_anonymous;
 
 COMMIT;

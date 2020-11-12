@@ -3,6 +3,7 @@
 BEGIN;
 
 SELECT "id",
+       "uuid",
        "storage_key",
        "username",
        "size_byte"

@@ -2,7 +2,8 @@
 
 BEGIN;
 
-SELECT "uuid",
+SELECT "id",
+       "uuid",
        "event_id",
        "account_id",
        "invitation_feedback_id"

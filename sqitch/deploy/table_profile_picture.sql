@@ -10,6 +10,7 @@
 BEGIN;
 
 CREATE TABLE maevsi.profile_picture (
+    "id"                    BIGSERIAL PRIMARY KEY,
     "username"              TEXT REFERENCES maevsi_private.account("username") NOT NULL UNIQUE,
     "upload_storage_key"    TEXT REFERENCES maevsi.upload("storage_key") NOT NULL
 );

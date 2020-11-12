@@ -2,7 +2,8 @@
 
 BEGIN;
 
-SELECT "username",
+SELECT "id",
+       "username",
        "upload_storage_key"
 FROM maevsi.profile_picture WHERE FALSE;
 

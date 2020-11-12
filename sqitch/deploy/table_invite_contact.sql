@@ -11,7 +11,8 @@
 BEGIN;
 
 CREATE TABLE maevsi.invite_contact (
-    "uuid"                      UUID PRIMARY KEY DEFAULT maevsi.uuid_generate_v1mc(),
+    "id"                        BIGSERIAL PRIMARY KEY,
+    "uuid"                      UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
     "event_id"                  INTEGER REFERENCES maevsi.event("id") NOT NULL,
     "contact_id"                INTEGER REFERENCES maevsi.contact("id") NOT NULL,
     "invitation_feedback_id"    INTEGER REFERENCES maevsi.invitation_feedback_data("id") NOT NULL,

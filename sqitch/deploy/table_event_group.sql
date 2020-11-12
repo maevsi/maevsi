@@ -7,7 +7,7 @@
 BEGIN;
 
 CREATE TABLE maevsi.event_group (
-    "id"                    SERIAL PRIMARY KEY,
+    "id"                    BIGSERIAL PRIMARY KEY,
     "name"                  TEXT NOT NULL CHECK (char_length("name") < 100),
     "slug"                  TEXT NOT NULL CHECK (char_length("slug") < 100 AND "slug" ~* '^[-A-Za-z0-9]+$'),
     "organizer_username"    INTEGER REFERENCES maevsi_private.account("contact_id") NOT NULL,
