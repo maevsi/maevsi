@@ -1,0 +1,17 @@
+query($organizerUsername: String!, $slug: String!) {
+  eventByOrganizerUsernameAndSlug(
+    organizerUsername: $organizerUsername
+    slug: $slug
+  ) {
+    id
+    name
+    slug
+    visibility
+    organizerUsername
+    description
+    place
+    start
+    end
+    archived
+  }
+}

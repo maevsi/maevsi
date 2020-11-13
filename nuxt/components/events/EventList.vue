@@ -121,6 +121,10 @@ export default {
           cursor: this.allEvents.pageInfo.endCursor,
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
+          if (!fetchMoreResult) {
+            return previousResult
+          }
+
           const newNodes = fetchMoreResult.allEvents.nodes
           const pageInfo = fetchMoreResult.allEvents.pageInfo
 

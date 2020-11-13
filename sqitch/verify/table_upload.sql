@@ -2,10 +2,11 @@
 
 BEGIN;
 
-SELECT "id",
-       "storage_key",
-       "username",
-       "size_byte"
+SELECT id,
+       uuid,
+       storage_key,
+       username,
+       size_byte
 FROM maevsi.upload WHERE FALSE;
 
 DO $$

@@ -2,11 +2,13 @@
 
 BEGIN;
 
-SELECT "id",
-       "first_name",
-       "last_name",
-       "address",
-       "email_address"
+SELECT id,
+       account_id,
+       email_address,
+       email_address_hash,
+       first_name,
+       last_name,
+       address
 FROM maevsi.contact WHERE FALSE;
 
 DO $$

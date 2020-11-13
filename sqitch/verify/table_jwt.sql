@@ -2,8 +2,9 @@
 
 BEGIN;
 
-SELECT "id",
-       "token"
+SELECT id,
+       uuid,
+       token
 FROM maevsi_private.jwt WHERE FALSE;
 
 DO $$

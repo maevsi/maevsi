@@ -6,7 +6,7 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi_private.invites_contact() RETURNS TABLE (contact_id INTEGER) AS $$
+CREATE FUNCTION maevsi_private.invites_contact() RETURNS TABLE (contact_id BIGINT) AS $$
 BEGIN
     RETURN QUERY
     SELECT invite_contact.contact_id FROM maevsi.invite_contact

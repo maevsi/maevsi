@@ -5,9 +5,9 @@
 BEGIN;
 
 CREATE TYPE maevsi.redeem_response AS (
-  "organizer_username" TEXT,
-  "event_slug" TEXT,
-  "jwt" maevsi.jwt
+  organizer_username TEXT,
+  event_slug TEXT,
+  jwt maevsi.jwt
 );
 
 COMMIT;

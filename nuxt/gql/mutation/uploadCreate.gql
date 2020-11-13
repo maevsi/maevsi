@@ -1,5 +1,6 @@
 mutation($uploadCreateInput: UploadCreateInput!) {
   uploadCreate(input: $uploadCreateInput) {
+    clientMutationId
     uuid
   }
 }

@@ -7,11 +7,11 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi_private.events_invited() RETURNS TABLE (event_id INTEGER) AS $$
+CREATE FUNCTION maevsi_private.events_invited() RETURNS TABLE (event_id BIGINT) AS $$
 BEGIN
     RETURN QUERY
     SELECT invite_account.event_id FROM maevsi.invite_account
-    WHERE invite_account.account_id = COALESCE(NULLIF(current_setting('jwt.claims.account_id', true), ''), '0')::INTEGER
+    WHERE invite_account.account_id = COALESCE(NULLIF(current_setting('jwt.claims.account_id', true), ''), '0')::BIGINT
     UNION ALL
     SELECT invite_contact.event_id FROM maevsi.invite_contact
     WHERE invite_contact.uuid = ANY (maevsi.invite_claim_array());

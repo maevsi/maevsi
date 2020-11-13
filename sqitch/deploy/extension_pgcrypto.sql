@@ -3,8 +3,8 @@
 
 BEGIN;
 
-CREATE EXTENSION "pgcrypto" WITH SCHEMA maevsi;
+CREATE EXTENSION pgcrypto WITH SCHEMA maevsi;
 
-COMMENT ON EXTENSION "pgcrypto" IS 'Provides password hashing functions.';
+COMMENT ON EXTENSION pgcrypto IS 'Provides password hashing functions.';
 
 COMMIT;

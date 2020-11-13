@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP EXTENSION "pgcrypto";
+DROP EXTENSION pgcrypto;
 
 COMMIT;

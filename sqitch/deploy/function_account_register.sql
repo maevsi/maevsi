@@ -11,15 +11,15 @@
 BEGIN;
 
 CREATE FUNCTION maevsi.account_register(
-    "username" TEXT,
-    "email_address" TEXT,
-    "password" TEXT
+    username TEXT,
+    email_address TEXT,
+    password TEXT
 ) RETURNS maevsi.jwt AS $$
 DECLARE
-    "_contact" maevsi.contact;
-    "_new_account_notify" RECORD;
+    _new_account maevsi_private.account;
+    _new_account_notify RECORD;
 BEGIN
-    IF char_length("password") < 8
+    IF char_length(password) < 8
     THEN
         RAISE 'Password too short!' USING ERRCODE = 'invalid_parameter_value';
     END IF;
@@ -34,17 +34,18 @@ BEGIN
         RAISE 'An account with this email address already exists!' USING ERRCODE = 'unique_violation';
     END IF;
 
-    INSERT INTO maevsi.contact DEFAULT VALUES
-        RETURNING * INTO "_contact";
+    INSERT INTO maevsi_private.account(username, email_address, password_hash, last_activity) VALUES
+        (username, email_address, maevsi.crypt(password, maevsi.gen_salt('bf')), NOW())
+        RETURNING * INTO _new_account;
 
-    INSERT INTO maevsi_private.account("contact_id", "username", "email_address", "password_hash", "last_activity") VALUES
-        ("_contact".id, "username", "email_address", maevsi.crypt("password", maevsi.gen_salt('bf')), NOW())
-        RETURNING account.username, account.email_address, "email_address_verification"
-        INTO "_new_account_notify";
+    SELECT _new_account.username, _new_account.email_address, _new_account.email_address_verification
+    INTO _new_account_notify;
 
-    PERFORM pg_notify('account_register', jsonb_pretty(jsonb_build_object('account', row_to_json("_new_account_notify"))));
+    INSERT INTO maevsi.contact(account_id) VALUES (_new_account.id);
 
-    RETURN (SELECT maevsi.authenticate("username", "password"));
+    PERFORM pg_notify('account_register', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify))));
+
+    RETURN (SELECT maevsi.authenticate(username, password));
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
