@@ -1,3 +1,21 @@
+# [0.18.0](https://github.com/maevsi/maevsi/compare/0.17.1...0.18.0) (2020-11-13)
+
+
+### Bug Fixes
+
+* **apollo:** add `clientMutationId` and `id` properties ([a309845](https://github.com/maevsi/maevsi/commit/a3098456d0e5cfc5b39d066828f46165978a92ef))
+* **delete:** remove duplicate variable ([699af39](https://github.com/maevsi/maevsi/commit/699af397ab21ef134b67ee2b393afba5a8d68875))
+* **nuxt:** add name to meta description tag ([85292a1](https://github.com/maevsi/maevsi/commit/85292a16bafcd8be815ed9e357e8772d72041c89)), closes [#87](https://github.com/maevsi/maevsi/issues/87)
+* **paging:** return previous when no more data ([a42eb81](https://github.com/maevsi/maevsi/commit/a42eb81015c5882cb405dd8351cf5738f72750d0))
+* several correction II ([fb8cda4](https://github.com/maevsi/maevsi/commit/fb8cda485bf672e36670433156b4bbd3da1df34f))
+* **sqitch:** several corrections ([bf437b6](https://github.com/maevsi/maevsi/commit/bf437b64ec41d4683e8e430d2b489681078ea073))
+
+
+### Features
+
+* add delete buttons ([02cbcd9](https://github.com/maevsi/maevsi/commit/02cbcd9c9a9784e9076c6a360f78a603623c819b)), closes [#64](https://github.com/maevsi/maevsi/issues/64)
+* **sqitch:** add "BIGSERIAL" primary keys ([fe48ca7](https://github.com/maevsi/maevsi/commit/fe48ca71a902b5e1b2d458890f948ee507221650))
+
 ## [0.17.1](https://github.com/maevsi/maevsi/compare/0.17.0...0.17.1) (2020-11-12)
 
 
