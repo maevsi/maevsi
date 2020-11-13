@@ -1,5 +1,6 @@
 mutation($id: UUID!) {
   jwtRefresh(input: { jwtId: $id }) {
+    clientMutationId
     jwt
   }
 }

@@ -1,6 +1,7 @@
 mutation($createEventInput: CreateEventInput!) {
   createEvent(input: $createEventInput) {
     event {
+      id
       organizerUsername
       name
       slug

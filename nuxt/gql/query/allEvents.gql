@@ -5,6 +5,7 @@ query($username: String, $limit: Int!, $cursor: Cursor) {
     after: $cursor
   ) {
     nodes {
+      id
       name
       slug
       visibility
