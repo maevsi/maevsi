@@ -75,7 +75,7 @@ export default {
           mutation: this.mutation,
           variables: {
             password: this.form.password,
-            ...(this.variables && this.variables),
+            ...this.variables,
           },
           ...(this.update && { update: this.update }),
         })
