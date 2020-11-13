@@ -232,6 +232,7 @@ export default {
               globalValidationUsed: 'Already used.',
             },
           },
+          silentFallbackWarn: true,
         },
         vueI18nLoader: true,
       },
