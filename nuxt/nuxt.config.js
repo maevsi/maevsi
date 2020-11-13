@@ -4,12 +4,6 @@ import shrinkRay from 'shrink-ray-current'
 import { BASE_URL, STACK_DOMAIN } from './plugins/baseUrl'
 
 export default {
-  apollo: {
-    clientConfigs: {
-      default: '~/plugins/apollo-config.js',
-    },
-  },
-
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     /*
@@ -242,7 +236,19 @@ export default {
         vueI18nLoader: true,
       },
     ],
-    '@nuxtjs/apollo',
+    [
+      '@nuxtjs/apollo',
+      {
+        clientConfigs: {
+          default: '~/plugins/apollo-config.js',
+        },
+        defaultOptions: {
+          $query: {
+            fetchPolicy: 'cache-and-network',
+          },
+        },
+      },
+    ],
     [
       '@nuxtjs/robots',
       {

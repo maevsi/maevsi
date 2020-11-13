@@ -3,7 +3,7 @@ query($username: String, $limit: Int!, $cursor: Cursor) {
     condition: { username: $username }
     first: $limit
     after: $cursor
-  ) {
+  ) @connection(key: "allUploads", filter: ["condition"]) {
     nodes {
       id
       uuid

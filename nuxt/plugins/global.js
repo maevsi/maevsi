@@ -40,6 +40,17 @@ export async function authenticateAnonymous(apolloClient, store, res) {
   await storeJwt(apolloClient, store, res, authenticationData.jwt)
 }
 
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+export function checkNested(obj, level, ...rest) {
+  if (obj === undefined || obj === null) return false
+  if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
+    return obj[level]
+  return checkNested(obj[level], ...rest)
+}
+
 export function getJwtFromCookie(req) {
   if (req.headers.cookie) {
     const cookies = cookie.parse(req.headers.cookie)
@@ -61,13 +72,6 @@ export function getJwtFromCookie(req) {
   } else {
     consola.debug('No cookie header.')
   }
-}
-
-export function checkNested(obj, level, ...rest) {
-  if (obj === undefined || obj === null) return false
-  if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
-    return obj[level]
-  return checkNested(obj[level], ...rest)
 }
 
 export async function jwtRefresh(apolloClient, store, res, id) {
@@ -172,6 +176,7 @@ export default async ({ app, req, res, store }, inject) => {
     PASSWORD_LENGTH_MINIMUM,
     TUSD_FILES_URL,
     authenticateAnonymous,
+    capitalizeFirstLetter,
     checkNested,
     getJwtFromCookie,
     jwtRefresh,

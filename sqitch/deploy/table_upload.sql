@@ -11,7 +11,7 @@ CREATE TABLE maevsi.upload (
     id             BIGSERIAL PRIMARY KEY,
     uuid           UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
     storage_key    TEXT UNIQUE,
-    username       TEXT REFERENCES maevsi_private.account(username) NOT NULL,
+    username       TEXT REFERENCES maevsi_private.account(username) ON DELETE CASCADE NOT NULL,
     size_byte      BIGINT NOT NULL CHECK (size_byte > 0)
 );
 

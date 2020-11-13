@@ -3,7 +3,7 @@ query($username: String, $limit: Int!, $cursor: Cursor) {
     condition: { organizerUsername: $username }
     first: $limit
     after: $cursor
-  ) {
+  ) @connection(key: "allEvents", filter: ["condition"]) {
     nodes {
       id
       name

@@ -24,6 +24,17 @@
           <p>{{ $t('greetingDescription') }}</p>
         </div>
         <div
+          v-if="
+            $store.state.jwtDecoded &&
+            eventContactFeedbackData.event.organizerUsername ===
+              $store.state.jwtDecoded.username
+          "
+        >
+          <Button append :icon-id="['fas', 'cog']" :link="'settings'">
+            {{ $t('settings') }}
+          </Button>
+        </div>
+        <div
           class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black"
           :class="{
             'bg-yellow-100':
@@ -331,6 +342,7 @@ de:
   inviteKindPaper: 'Papier'
   inviteKindDigital: 'Digital'
   requestSelection: 'Bitte auswählen'
+  settings: 'Einstellungen'
 en:
   greeting: 'Hey{usernameString}!'
   greetingDescription: "You've been invited to the following event:"
@@ -344,4 +356,5 @@ en:
   inviteKindPaper: 'Paper'
   inviteKindDigital: 'Digital'
   requestSelection: 'Please select'
+  settings: 'Settings'
 </i18n>

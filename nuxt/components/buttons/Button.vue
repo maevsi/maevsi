@@ -2,9 +2,10 @@
   <div class="inline-block">
     <nuxt-link
       v-if="link !== undefined"
+      :append="append"
       :class="`${buttonClassStatic} ${buttonClass}`"
       :disabled="disabled"
-      :to="localePath(link)"
+      :to="append ? link : localePath(link)"
     >
       <FontAwesomeIcon
         v-if="icon"
@@ -33,6 +34,10 @@
 <script>
 export default {
   props: {
+    append: {
+      type: Boolean,
+      default: false,
+    },
     buttonClass: {
       type: String,
       default:

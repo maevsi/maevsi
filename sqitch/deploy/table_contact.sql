@@ -9,7 +9,7 @@ BEGIN;
 
 CREATE TABLE maevsi.contact (
     id                    BIGSERIAL PRIMARY KEY,
-    account_id            BIGINT REFERENCES maevsi_private.account(id) UNIQUE,
+    account_id            BIGINT REFERENCES maevsi_private.account(id) ON DELETE CASCADE UNIQUE, -- TODO: Create ghost contact on delete.
     email_address         TEXT CHECK (char_length(email_address) < 320 AND email_address ~* '^.+@.+\..+$'),
     email_address_hash    TEXT GENERATED ALWAYS AS (md5(lower(substring(email_address, '\S(?:.*\S)*')))) STORED,
     first_name            TEXT CHECK (char_length(first_name) < 100),

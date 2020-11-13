@@ -11,7 +11,7 @@ BEGIN;
 CREATE TABLE maevsi.invite_account (
     id                        BIGSERIAL PRIMARY KEY,
     uuid                      UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
-    event_id                  BIGINT REFERENCES maevsi.event(id) NOT NULL,
+    event_id                  BIGINT REFERENCES maevsi.event(id) ON DELETE CASCADE NOT NULL,
     account_id                BIGINT REFERENCES maevsi_private.account(id) NOT NULL,
     invitation_feedback_id    BIGINT REFERENCES maevsi.invitation_feedback_data(id) NOT NULL,
     UNIQUE (event_id, account_id)

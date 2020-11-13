@@ -30,15 +30,27 @@
       <h2>{{ $t('titleChangePassword') }}</h2>
       <PasswordChange />
     </section>
+    <section class="mt-4">
+      <h2>{{ $t('titleDangerZone') }}</h2>
+      <Delete
+        :id="'deleteAccount'"
+        :item-name="$t('account')"
+        :mutation="mutation"
+        @success="onDeleteSuccess"
+      />
+    </section>
   </div>
 </template>
 
 <script>
+import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/accountDelete'
+
 require('@uppy/core/dist/style.css')
 
 export default {
   data() {
     return {
+      mutation: ACCOUNT_DELETE_MUTATION,
       showModalImageSelection: false,
     }
   },
@@ -51,16 +63,20 @@ export default {
     hideModalImageSelection() {
       this.showModalImageSelection = false
     },
+    onDeleteSuccess() {
+      this.$router.push(this.localePath(`/account`))
+      // TODO: Clear apollo.
+    },
     reloadProfilePicture() {
       this.$refs.profilePicture.reloadProfilePicture()
     },
   },
   middleware({ app, store, redirect, route }) {
     if (
-      store.state.jwtDecoded &&
-      store.state.jwtDecoded.role !== 'maevsi_account'
+      !app.$global.checkNested(store.state.jwtDecoded, 'username') ||
+      store.state.jwtDecoded.username !== route.params.username
     ) {
-      return redirect(app.localePath('/account/' + route.params.username))
+      return redirect({ append: true, path: '..' })
     }
   },
   head() {
@@ -71,9 +87,13 @@ export default {
 
 <i18n lang="yml">
 de:
+  account: 'Konto'
+  titleDangerZone: 'Gefahrenzone'
   titleChangePassword: 'Password ändern'
   titleImageUploads: 'Hochgeladene Bilder'
 en:
+  account: 'account'
+  titleDangerZone: 'Danger zone'
   titleChangePassword: 'Change password'
   titleImageUploads: 'Image uploads'
 </i18n>
