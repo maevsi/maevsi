@@ -5,7 +5,11 @@
     :validation-object="$v.form"
     @submit="register"
   >
-    <FormInput :error="$v.form['username'].$error" :title="$t('username')">
+    <FormInput
+      :error="$v.form['username'].$error"
+      label-for="input-username-register"
+      :title="$t('username')"
+    >
       <input
         id="input-username-register"
         v-model.trim="$v.form.username.$model"
@@ -26,9 +30,10 @@
         />
       </div>
     </FormInput>
-    <FormInputPassword :id="'password'" :v="$v" />
+    <FormInputPassword id="password-register" form-key="password" :v="$v" />
     <FormInput
       :error="$v.form['email-address'].$error"
+      label-for="input-email-address"
       :title="$t('emailAddress')"
     >
       <input

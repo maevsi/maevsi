@@ -1,8 +1,12 @@
 <template>
-  <FormInput :error="v.form[id].$error" :title="$t(id)">
+  <FormInput
+    :error="v.form[formKeyComputed].$error"
+    :label-for="`input-${id}`"
+    :title="$t(id.replace(/(-register|-sign-in)$/, ''))"
+  >
     <input
       :id="`input-${id}`"
-      v-model.trim="v.form[id].$model"
+      v-model.trim="v.form[formKeyComputed].$model"
       class="form-input"
       type="password"
       placeholder="**********"
@@ -10,12 +14,12 @@
     <div slot="formError">
       <FormError
         :text="$t('globalValidationRequired')"
-        :validation-object="v.form[id]"
+        :validation-object="v.form[formKeyComputed]"
         :validation-property="'required'"
       />
       <FormError
         :text="$t('globalValidationTooShort')"
-        :validation-object="v.form[id]"
+        :validation-object="v.form[formKeyComputed]"
         :validation-property="'minLength'"
       />
     </div>
@@ -29,9 +33,18 @@ export default {
       type: String,
       default: undefined,
     },
+    formKey: {
+      type: String,
+      default: undefined,
+    },
     v: {
       type: Object,
       default: undefined,
+    },
+  },
+  computed: {
+    formKeyComputed() {
+      return this.formKey ? this.formKey : this.id
     },
   },
 }

@@ -5,9 +5,12 @@
       class="md:flex md:items-center"
     >
       <div class="md:w-1/3">
-        <span class="block font-semibold pr-4 md:text-right mb-1 md:mb-0">
+        <label
+          class="block font-semibold pr-4 md:text-right mb-1 md:mb-0"
+          :for="labelFor"
+        >
           {{ title }}
-        </span>
+        </label>
       </div>
       <div class="md:w-2/3">
         <slot />
@@ -28,6 +31,10 @@ export default {
     error: {
       type: Boolean,
       default: false,
+    },
+    labelFor: {
+      type: String,
+      default: undefined,
     },
     title: {
       type: String,

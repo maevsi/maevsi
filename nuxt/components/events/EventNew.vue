@@ -4,7 +4,11 @@
     :validation-object="$v.form"
     @submit="eventNew"
   >
-    <FormInput :error="$v.form['name'].$error" :title="$t('name')">
+    <FormInput
+      :error="$v.form['name'].$error"
+      label-for="input-name"
+      :title="$t('name')"
+    >
       <input
         id="input-name"
         v-model.trim="$v.form['name'].$model"
@@ -26,7 +30,11 @@
         />
       </div>
     </FormInput>
-    <FormInput :error="$v.form['slug'].$error" :title="$t('slug')">
+    <FormInput
+      :error="$v.form['slug'].$error"
+      label-for="input-slug"
+      :title="$t('slug')"
+    >
       <input
         id="input-slug"
         v-model.trim="$v.form['slug'].$model"
@@ -52,7 +60,11 @@
         />
       </div>
     </FormInput>
-    <FormInput :error="$v.form['visibility'].$error" :title="$t('visibility')">
+    <FormInput
+      :error="$v.form['visibility'].$error"
+      label-for="input-visibility"
+      :title="$t('visibility')"
+    >
       <FormRadioButtonGroup
         id="input-visibility"
         class="text-left"
@@ -73,6 +85,7 @@
     </FormInput>
     <FormInput
       :error="$v.form['maximum-invitee-count'].$error"
+      label-for="input-maximum-invitee-count"
       :title="$t('maximumInviteeCount')"
     >
       <input
@@ -91,6 +104,7 @@
     </FormInput>
     <FormInput
       :error="$v.form['description'].$error"
+      label-for="input-description"
       :title="$t('description')"
     >
       <textarea
@@ -106,7 +120,11 @@
         />
       </div>
     </FormInput>
-    <FormInput :error="$v.form['place'].$error" :title="$t('place')">
+    <FormInput
+      :error="$v.form['place'].$error"
+      label-for="input-place"
+      :title="$t('place')"
+    >
       <input
         id="input-place"
         v-model.trim="$v.form['place'].$model"
@@ -121,7 +139,11 @@
         />
       </div>
     </FormInput>
-    <FormInput :error="$v.form['start'].$error" :title="$t('start')">
+    <FormInput
+      :error="$v.form['start'].$error"
+      label-for="input-start"
+      :title="$t('start')"
+    >
       <Datetime
         v-model="$v.form['start'].$model"
         input-class="form-input"
@@ -129,7 +151,11 @@
         type="datetime"
       />
     </FormInput>
-    <FormInput :error="$v.form['end'].$error" :title="$t('end')">
+    <FormInput
+      :error="$v.form['end'].$error"
+      label-for="input-end"
+      :title="$t('end')"
+    >
       <Datetime
         v-model="$v.form['end'].$model"
         input-class="form-input"

@@ -5,7 +5,11 @@
     :validation-object="$v.form"
     @submit="signIn"
   >
-    <FormInput :error="$v.form['username'].$error" :title="$t('username')">
+    <FormInput
+      :error="$v.form['username'].$error"
+      label-for="input-username-sign-in"
+      :title="$t('username')"
+    >
       <input
         id="input-username-sign-in"
         v-model.trim="$v.form.username.$model"
@@ -26,7 +30,7 @@
         />
       </div>
     </FormInput>
-    <FormInputPassword :id="'password'" :v="$v" />
+    <FormInputPassword id="password-sign-in" form-key="password" :v="$v" />
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="

@@ -13,6 +13,7 @@
     >
       <FormInput
         :error="$v.form['invitation-code'].$error"
+        label-for="input-invitation-code"
         :title="$t('invitationCode')"
       >
         <input
