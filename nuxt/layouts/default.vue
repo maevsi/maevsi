@@ -2,7 +2,7 @@
   <div>
     <div class="container min-h-screen mx-auto p-4 text-center">
       <header class="flex items-center justify-between mb-4 relative">
-        <nuxt-link :to="localePath('/')">
+        <nuxt-link :aria-label="$t('home')" :to="localePath('/')">
           <div id="logo" class="h-10 w-32" />
         </nuxt-link>
         <div class="dropdown text-lg">
@@ -142,6 +142,7 @@ export default {
 <i18n lang="yml">
 de:
   account: 'Konto'
+  home: 'Nach Hause'
   imprint: 'Impressum'
   signOut: 'Abmelden'
   privacyPolicy: 'Datenschutzerklärung'
@@ -149,6 +150,7 @@ de:
   settings: 'Einstellungen'
 en:
   account: 'Account'
+  home: 'Head home'
   imprint: 'Imprint'
   signOut: 'Sign out'
   privacyPolicy: 'Privacy Policy'

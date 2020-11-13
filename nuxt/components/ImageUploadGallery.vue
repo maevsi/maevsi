@@ -49,7 +49,10 @@
                 class="absolute right-0 top-0"
                 @click="deleteImageUpload(upload.uuid)"
               >
-                <button class="flex h-full justify-center items-center">
+                <button
+                  :aria-label="$t('iconTrashLabel')"
+                  class="flex h-full justify-center items-center"
+                >
                   <FontAwesomeIcon
                     :icon="['fas', 'trash']"
                     class="m-2 text-white"
@@ -63,6 +66,7 @@
           <li>
             <button
               v-if="allowAddition"
+              :aria-label="$t('iconAddLabel')"
               class="bg-gray-600 flex-none h-32 m-1 w-32"
               @click="changeProfilePicture"
             >
@@ -370,7 +374,9 @@ de:
   cancel: 'Abbrechen'
   croppaPlaceholder: 'Wähle ein Bild'
   iconAdd: 'hinzufügen'
+  iconAddLabel: 'Ein neues Bild hochladen.'
   iconTrash: 'löschen'
+  iconTrashLabel: 'Dieses hochgeladene Bild löschen.'
   noPictures: 'Du hast keine hochgeladenen Bilder 😕'
   upload: 'Hochladen'
   uploadAlt: 'Ein hochgeladenes Bild.'
@@ -383,7 +389,9 @@ en:
   cancel: 'Cancel'
   croppaPlaceholder: 'Choose an image'
   iconAdd: 'add'
+  iconAddLabel: 'Upload a new image.'
   iconTrash: 'trash'
+  iconTrashLabel: 'Delete this uploaded image.'
   noPictures: "You don't have any uploaded pictures 😕"
   upload: 'Upload'
   uploadAlt: 'An uploaded image.'
