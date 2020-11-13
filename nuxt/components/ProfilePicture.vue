@@ -6,7 +6,7 @@
       :graphql-error-message="graphqlErrorMessage"
     />
     <img
-      alt="profile picture"
+      :alt="$t('profilePictureAlt', { username })"
       class="bg-gray-400 flex-none h-24 w-24"
       :src="imageSrc"
     />
@@ -73,3 +73,10 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  profilePictureAlt: 'Das Profilbild von {username}.'
+en:
+  profilePictureAlt: "{username}'s profile picture."
+</i18n>
