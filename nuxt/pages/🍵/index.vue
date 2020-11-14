@@ -9,7 +9,7 @@ export default {
   },
   head() {
     return {
-      title: '🍵',
+      title: "I'll not make coffee",
     }
   },
 }
