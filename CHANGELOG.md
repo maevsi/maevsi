@@ -1,3 +1,10 @@
+# [0.20.0](https://github.com/maevsi/maevsi/compare/0.19.0...0.20.0) (2020-11-14)
+
+
+### Features
+
+* **error:** add first `maev.no` implementation ([0a05b24](https://github.com/maevsi/maevsi/commit/0a05b243b3f814b7c188906f521e64ea4daa9d11))
+
 # [0.19.0](https://github.com/maevsi/maevsi/compare/0.18.0...0.19.0) (2020-11-14)
 
 
