@@ -108,9 +108,11 @@
           <div v-if="eventContactFeedbackData.event.description">
             <hr class="my-4" />
             <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
-            <vue-markdown class="description text-left text-gray-900">{{
-              eventContactFeedbackData.event.description
-            }}</vue-markdown>
+            <vue-markdown
+              :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
+              class="description text-left text-gray-900"
+              >{{ eventContactFeedbackData.event.description }}
+            </vue-markdown>
           </div>
           <hr class="my-4" />
           <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
