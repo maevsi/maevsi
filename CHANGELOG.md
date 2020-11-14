@@ -1,3 +1,18 @@
+# [0.19.0](https://github.com/maevsi/maevsi/compare/0.18.0...0.19.0) (2020-11-14)
+
+
+### Bug Fixes
+
+* add missing labels ([cb9a6f5](https://github.com/maevsi/maevsi/commit/cb9a6f5431f8d1ccb11f4217efd1c0d42b28944d))
+* **form:** add label for inputs ([e913ee4](https://github.com/maevsi/maevsi/commit/e913ee4c38fd6b6489ad70c115f989eb116ea7c3))
+* **i18n:** hide fallback warnings ([1126084](https://github.com/maevsi/maevsi/commit/11260847d37334b9a8149b063674a4eee06d4ed0))
+* **images:** translate alternative text ([39ee995](https://github.com/maevsi/maevsi/commit/39ee9956556062e40f600da92a39d226ff4b6030))
+
+
+### Features
+
+* **event:** add anchor attributes in rendered markdown ([31eb7e5](https://github.com/maevsi/maevsi/commit/31eb7e53dfe6b6bd05496c2e9f3691c9781f7cbb)), closes [#89](https://github.com/maevsi/maevsi/issues/89)
+
 # [0.18.0](https://github.com/maevsi/maevsi/compare/0.17.1...0.18.0) (2020-11-13)
 
 
