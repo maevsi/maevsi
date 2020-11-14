@@ -21,12 +21,12 @@
         <FormError
           :text="$t('globalValidationRequired')"
           :validation-object="$v.form.username"
-          :validation-property="'required'"
+          validation-property="required"
         />
         <FormError
           :text="$t('globalValidationFormatIncorrect')"
           :validation-object="$v.form.username"
-          :validation-property="'slug'"
+          validation-property="slug"
         />
       </div>
     </FormInput>
@@ -38,7 +38,7 @@
           (form.sent && !$v.form.$anyDirty && !graphqlErrorMessage)
         "
         :icon="false"
-        :type="'submit'"
+        type="submit"
       >
         {{ $t('signIn') }}
       </Button>

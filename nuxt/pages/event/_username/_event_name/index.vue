@@ -30,7 +30,7 @@
               $store.state.jwtDecoded.username
           "
         >
-          <Button append :icon-id="['fas', 'cog']" :link="'settings'">
+          <Button append :icon-id="['fas', 'cog']" link="settings">
             {{ $t('settings') }}
           </Button>
         </div>

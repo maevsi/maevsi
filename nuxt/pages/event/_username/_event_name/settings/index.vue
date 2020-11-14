@@ -10,7 +10,7 @@
       <section class="mt-4">
         <h2>{{ $t('titleDangerZone') }}</h2>
         <Delete
-          :id="'deleteEvent'"
+          id="deleteEvent"
           :item-name="$t('event')"
           :mutation="mutation"
           :update="updateCacheDelete"

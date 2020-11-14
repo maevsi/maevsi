@@ -1,5 +1,5 @@
 <template>
-  <Button :icon-id="['fas', 'home']" :link="'/'">{{ $t('home') }}</Button>
+  <Button :icon-id="['fas', 'home']" link="/">{{ $t('home') }}</Button>
 </template>
 
 <i18n lang="yml">

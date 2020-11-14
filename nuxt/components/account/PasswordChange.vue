@@ -4,8 +4,8 @@
     :validation-object="$v.form"
     @submit="passwordChange"
   >
-    <FormInputPassword :id="'passwordCurrent'" :v="$v" />
-    <FormInputPassword :id="'passwordNew'" :v="$v" />
+    <FormInputPassword id="passwordCurrent" :v="$v" />
+    <FormInputPassword id="passwordNew" :v="$v" />
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="
@@ -13,7 +13,7 @@
           (form.sent && !$v.form.$anyDirty && !graphqlErrorMessage)
         "
         :icon="false"
-        :type="'submit'"
+        type="submit"
       >
         {{ $t('passwordChange') }}
       </Button>

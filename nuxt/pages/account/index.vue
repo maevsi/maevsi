@@ -44,7 +44,7 @@
           <FormRegister
             ref="formRegister"
             :form="formRegister"
-            :form-class="'rounded-t-none'"
+            form-class="rounded-t-none"
             @password="handlerSignIn"
           />
         </div>
@@ -52,7 +52,7 @@
           <FormSignIn
             ref="formSignIn"
             :form="formSignIn"
-            :form-class="'rounded-t-none'"
+            form-class="rounded-t-none"
             @password="handlerRegister"
           />
         </div>

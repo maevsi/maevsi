@@ -4,7 +4,7 @@
     :validation-object="$v.form"
     @submit="deletion"
   >
-    <FormInputPassword :id="'password'" :v="$v" />
+    <FormInputPassword id="password" :v="$v" />
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="
@@ -12,7 +12,7 @@
           (form.sent && !$v.form.$anyDirty && !graphqlErrorMessage)
         "
         :icon-id="['fa', 'trash']"
-        :type="'submit'"
+        type="submit"
       >
         {{ $t('deletion', { item: itemName }) }}
       </Button>

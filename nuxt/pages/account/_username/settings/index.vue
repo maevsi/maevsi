@@ -33,7 +33,7 @@
     <section class="mt-4">
       <h2>{{ $t('titleDangerZone') }}</h2>
       <Delete
-        :id="'deleteAccount'"
+        id="deleteAccount"
         :item-name="$t('account')"
         :mutation="mutation"
         @success="onDeleteSuccess"

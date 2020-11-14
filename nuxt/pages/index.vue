@@ -7,7 +7,7 @@
     <div class="flex justify-center">
       <a
         class="items-center flex"
-        :href="'https://github.com/maevsi/maevsi/'"
+        href="https://github.com/maevsi/maevsi/"
         rel="noopener noreferrer"
         target="_blank"
         :title="$t('githubLinkTitle')"
@@ -20,9 +20,7 @@
         github.com/maevsi/maevsi
       </a>
     </div>
-    <Button :icon="false" :link="'/event'" class="my-4">{{
-      $t('events')
-    }}</Button>
+    <Button :icon="false" link="/event" class="my-4">{{ $t('events') }}</Button>
   </div>
 </template>
 

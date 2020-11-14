@@ -15,12 +15,12 @@
       <FormError
         :text="$t('globalValidationRequired')"
         :validation-object="v.form[formKeyComputed]"
-        :validation-property="'required'"
+        validation-property="required"
       />
       <FormError
         :text="$t('globalValidationTooShort')"
         :validation-object="v.form[formKeyComputed]"
-        :validation-property="'minLength'"
+        validation-property="minLength"
       />
     </div>
   </FormInput>

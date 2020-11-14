@@ -27,17 +27,17 @@
           <FormError
             :text="$t('globalValidationRequired')"
             :validation-object="$v.form['invitation-code']"
-            :validation-property="'required'"
+            validation-property="required"
           />
           <FormError
             :text="$t('globalValidationUsed')"
             :validation-object="$v.form['invitation-code']"
-            :validation-property="'unused'"
+            validation-property="unused"
           />
           <FormError
             :text="$t('globalValidationFormatIncorrect')"
             :validation-object="$v.form['invitation-code']"
-            :validation-property="'uuid'"
+            validation-property="uuid"
           />
         </div>
       </FormInput>
@@ -50,7 +50,7 @@
             )
           "
           :icon="false"
-          :type="'submit'"
+          type="submit"
         >
           {{ $t('title') }}
         </Button>

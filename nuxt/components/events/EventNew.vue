@@ -21,12 +21,12 @@
         <FormError
           :text="$t('globalValidationRequired')"
           :validation-object="$v.form['name']"
-          :validation-property="'required'"
+          validation-property="required"
         />
         <FormError
           :text="$t('globalValidationTooLong')"
           :validation-object="$v.form['name']"
-          :validation-property="'maxLength'"
+          validation-property="maxLength"
         />
       </div>
     </FormInput>
@@ -46,17 +46,17 @@
         <FormError
           :text="$t('globalValidationRequired')"
           :validation-object="$v.form['slug']"
-          :validation-property="'required'"
+          validation-property="required"
         />
         <FormError
           :text="$t('globalValidationTooLong')"
           :validation-object="$v.form['slug']"
-          :validation-property="'maxLength'"
+          validation-property="maxLength"
         />
         <FormError
           :text="$t('globalValidationFormatIncorrect')"
           :validation-object="$v.form['slug']"
-          :validation-property="'slugFormat'"
+          validation-property="slugFormat"
         />
       </div>
     </FormInput>
@@ -68,7 +68,7 @@
       <FormRadioButtonGroup
         id="input-visibility"
         class="text-left"
-        :name="'visibility'"
+        name="visibility"
         :titles-values="[
           [$t('visibilityPublic'), 'PUBLIC'],
           [$t('visibilityPrivate'), 'PRIVATE'],
@@ -79,7 +79,7 @@
         <FormError
           :text="$t('globalValidationRequired')"
           :validation-object="$v.form['visibility']"
-          :validation-property="'required'"
+          validation-property="required"
         />
       </div>
     </FormInput>
@@ -98,7 +98,7 @@
         <FormError
           :text="$t('globalValidationMinValue')"
           :validation-object="$v.form['maximum-invitee-count']"
-          :validation-property="'minValue'"
+          validation-property="minValue"
         />
       </div>
     </FormInput>
@@ -116,7 +116,7 @@
         <FormError
           :text="$t('globalValidationTooLong')"
           :validation-object="$v.form['description']"
-          :validation-property="'maxLength'"
+          validation-property="maxLength"
         />
       </div>
     </FormInput>
@@ -135,7 +135,7 @@
         <FormError
           :text="$t('globalValidationTooLong')"
           :validation-object="$v.form['place']"
-          :validation-property="'maxLength'"
+          validation-property="maxLength"
         />
       </div>
     </FormInput>
@@ -171,7 +171,7 @@
           (form.sent && !$v.form.$anyDirty && !graphqlErrorMessage)
         "
         :icon="false"
-        :type="'submit'"
+        type="submit"
       >
         {{ $t('eventCreate') }}
       </Button>
