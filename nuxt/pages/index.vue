@@ -20,7 +20,9 @@
         github.com/maevsi/maevsi
       </a>
     </div>
-    <Button :icon="false" link="/event" class="my-4">{{ $t('events') }}</Button>
+    <Button :icon="false" :link="localePath('/event')" class="my-4">{{
+      $t('events')
+    }}</Button>
   </div>
 </template>
 

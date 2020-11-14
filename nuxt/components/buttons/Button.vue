@@ -5,7 +5,7 @@
       :append="append"
       :class="`${buttonClassStatic} ${buttonClass}`"
       :disabled="disabled"
-      :to="append ? link : localePath(link)"
+      :to="link"
     >
       <FontAwesomeIcon
         v-if="icon"

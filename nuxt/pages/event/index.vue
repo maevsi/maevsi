@@ -5,7 +5,7 @@
       <Button
         v-if="signedIn"
         :icon-id="['fas', 'plus']"
-        link="/new"
+        :link="localePath('/new')"
         class="m-2"
       >
         {{ $t('createEvent') }}
