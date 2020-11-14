@@ -252,6 +252,9 @@ module.exports = {
         '.max-h-90vh': {
           maxHeight: '90vh',
         },
+        '.font-family-montserrat': {
+          fontFamily: 'Montserrat',
+        },
       })
     },
   ],
