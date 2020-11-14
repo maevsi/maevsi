@@ -91,7 +91,7 @@
                   'https://maps.google.de/?q=' +
                   encodeURIComponent(eventContactFeedbackData.event.place)
                 "
-                rel="noopener noreferrer"
+                rel="nofollow noopener noreferrer"
                 target="_blank"
               >
                 {{ eventContactFeedbackData.event.place }}
