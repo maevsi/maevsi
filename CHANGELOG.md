@@ -1,3 +1,11 @@
+## [0.20.1](https://github.com/maevsi/maevsi/compare/0.20.0...0.20.1) (2020-11-14)
+
+
+### Bug Fixes
+
+* **event:** add missing `nofollow` value ([26cf6d0](https://github.com/maevsi/maevsi/commit/26cf6d0df433d6c7a8663036357d587927854b15))
+* **sqitch:** add missing plan entries ([8e30965](https://github.com/maevsi/maevsi/commit/8e3096561a037bc5a2ee8b74cd43f899a29c9bd9))
+
 # [0.20.0](https://github.com/maevsi/maevsi/compare/0.19.0...0.20.0) (2020-11-14)
 
 
