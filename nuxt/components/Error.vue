@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="font-black font-family-montserrat text-xl">maev.no?</span>
+    <span class="font-black font-family-montserrat text-xl">maev.no? 🥺</span>
     <h1>{{ statusCode }} - {{ statusReason }}</h1>
     <div class="flex flex-wrap justify-center my-2">
       <ButtonHome class="m-2" />
