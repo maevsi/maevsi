@@ -1,3 +1,10 @@
+# [0.21.0](https://github.com/maevsi/maevsi/compare/0.20.1...0.21.0) (2020-11-15)
+
+
+### Features
+
+* **error:** add emoji ([2d3cb40](https://github.com/maevsi/maevsi/commit/2d3cb403b7ca7e8244fc1d89db8d9a73e82cb23f))
+
 ## [0.20.1](https://github.com/maevsi/maevsi/compare/0.20.0...0.20.1) (2020-11-14)
 
 
