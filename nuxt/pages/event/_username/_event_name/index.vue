@@ -1,205 +1,198 @@
 <template>
-  <div>
-    <div v-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
-    <AlertGraphql
-      v-else-if="graphqlErrorMessage !== undefined"
-      :graphql-error-message="graphqlErrorMessage"
-    />
-    <div v-else>
-      <div v-if="$global.checkNested(eventContactFeedbackData, 'event')">
-        <div v-if="eventContactFeedbackData.contact">
-          <p class="font-bold mb-2 text-2xl">
-            {{
-              $t('greeting', {
-                usernameString: $global.checkNested(
-                  eventContactFeedbackData,
-                  'contact',
-                  'firstname'
-                )
-                  ? ' ' + eventContactFeedbackData.contact.firstName
-                  : '',
-              })
-            }}
-          </p>
-          <p>{{ $t('greetingDescription') }}</p>
-        </div>
-        <div
-          v-if="
+  <Apollo :graphql-error-message="graphqlErrorMessage">
+    <div v-if="$global.checkNested(eventContactFeedbackData, 'event')">
+      <div v-if="eventContactFeedbackData.contact">
+        <p class="font-bold mb-2 text-2xl">
+          {{
+            $t('greeting', {
+              usernameString: $global.checkNested(
+                eventContactFeedbackData,
+                'contact',
+                'firstname'
+              )
+                ? ' ' + eventContactFeedbackData.contact.firstName
+                : '',
+            })
+          }}
+        </p>
+        <p>{{ $t('greetingDescription') }}</p>
+      </div>
+      <div
+        v-if="
+          $store.state.jwtDecoded &&
+          eventContactFeedbackData.event.organizerUsername ===
+            $store.state.jwtDecoded.username
+        "
+      >
+        <Button append :icon-id="['fas', 'cog']" link="settings">
+          {{ $t('settings') }}
+        </Button>
+      </div>
+      <div
+        class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black"
+        :class="{
+          'bg-yellow-100':
             $store.state.jwtDecoded &&
             eventContactFeedbackData.event.organizerUsername ===
-              $store.state.jwtDecoded.username
-          "
-        >
-          <Button append :icon-id="['fas', 'cog']" link="settings">
-            {{ $t('settings') }}
-          </Button>
-        </div>
-        <div
-          class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black"
-          :class="{
-            'bg-yellow-100':
-              $store.state.jwtDecoded &&
-              eventContactFeedbackData.event.organizerUsername ===
-                $store.state.jwtDecoded.username,
-          }"
-        >
-          <h1 class="mb-0">
-            {{ eventContactFeedbackData.event.name }}
-          </h1>
-          <Owner
-            class="mb-4"
-            link
-            :username="eventContactFeedbackData.event.organizerUsername"
+              $store.state.jwtDecoded.username,
+        }"
+      >
+        <h1 class="mb-0">
+          {{ eventContactFeedbackData.event.name }}
+        </h1>
+        <Owner
+          class="mb-4"
+          link
+          :username="eventContactFeedbackData.event.organizerUsername"
+        />
+        <div class="flex flex-col sm:flex-row m-auto text-gray-600">
+          <EventIcon
+            :event="eventContactFeedbackData.event"
+            :with-text="true"
+            class="my-2 sm:mx-4"
           />
-          <div class="flex flex-col sm:flex-row m-auto text-gray-600">
-            <EventIcon
-              :event="eventContactFeedbackData.event"
-              :with-text="true"
-              class="my-2 sm:mx-4"
-            />
-            <div class="my-2 sm:mx-4">
-              <FontAwesomeIcon :icon="['fas', 'calendar-day']" />
-              <br />
-              {{ $moment(eventContactFeedbackData.event.start).format('lll') }}
-              <br />
-              ({{ $moment(eventContactFeedbackData.event.start).fromNow() }})
-            </div>
-            <div
-              v-if="eventContactFeedbackData.event.end !== null"
-              class="my-2 sm:mx-4"
-            >
-              <FontAwesomeIcon :icon="['fas', 'hourglass']" />
-              <br />
-              {{
-                $moment
-                  .duration(
-                    $moment(eventContactFeedbackData.event.end).diff(
-                      $moment(eventContactFeedbackData.event.start)
-                    )
-                  )
-                  .humanize()
-              }}
-            </div>
-            <div
-              v-if="eventContactFeedbackData.event.place !== null"
-              class="my-2 sm:mx-4"
-            >
-              <FontAwesomeIcon :icon="['fas', 'map-marker']" />
-              <br />
-              <a
-                :href="
-                  'https://maps.google.de/?q=' +
-                  encodeURIComponent(eventContactFeedbackData.event.place)
-                "
-                rel="nofollow noopener noreferrer"
-                target="_blank"
-              >
-                {{ eventContactFeedbackData.event.place }}
-              </a>
-            </div>
+          <div class="my-2 sm:mx-4">
+            <FontAwesomeIcon :icon="['fas', 'calendar-day']" />
+            <br />
+            {{ $moment(eventContactFeedbackData.event.start).format('lll') }}
+            <br />
+            ({{ $moment(eventContactFeedbackData.event.start).fromNow() }})
           </div>
-          <Button
-            :icon-id="['fas', 'download']"
-            class="my-2 text-white"
-            @click.native="downloadIcal"
+          <div
+            v-if="eventContactFeedbackData.event.end !== null"
+            class="my-2 sm:mx-4"
           >
-            {{ $t('iCalDownload') }}
-          </Button>
-          <div v-if="eventContactFeedbackData.event.description">
-            <hr class="my-4" />
-            <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
-            <vue-markdown
-              :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
-              class="description text-left text-gray-900"
-              >{{ eventContactFeedbackData.event.description }}
-            </vue-markdown>
+            <FontAwesomeIcon :icon="['fas', 'hourglass']" />
+            <br />
+            {{
+              $moment
+                .duration(
+                  $moment(eventContactFeedbackData.event.end).diff(
+                    $moment(eventContactFeedbackData.event.start)
+                  )
+                )
+                .humanize()
+            }}
           </div>
+          <div
+            v-if="eventContactFeedbackData.event.place !== null"
+            class="my-2 sm:mx-4"
+          >
+            <FontAwesomeIcon :icon="['fas', 'map-marker']" />
+            <br />
+            <a
+              :href="
+                'https://maps.google.de/?q=' +
+                encodeURIComponent(eventContactFeedbackData.event.place)
+              "
+              rel="nofollow noopener noreferrer"
+              target="_blank"
+            >
+              {{ eventContactFeedbackData.event.place }}
+            </a>
+          </div>
+        </div>
+        <Button
+          :icon-id="['fas', 'download']"
+          class="my-2 text-white"
+          @click.native="downloadIcal"
+        >
+          {{ $t('iCalDownload') }}
+        </Button>
+        <div v-if="eventContactFeedbackData.event.description">
           <hr class="my-4" />
-          <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
-            <div class="text-white mb-4">
-              <ButtonGreen
+          <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
+          <vue-markdown
+            :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
+            class="description text-left text-gray-900"
+            >{{ eventContactFeedbackData.event.description }}
+          </vue-markdown>
+        </div>
+        <hr class="my-4" />
+        <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
+          <div class="text-white mb-4">
+            <ButtonGreen
+              v-if="
+                eventContactFeedbackData.invitationFeedbackData
+                  .invitationFeedback === null ||
+                eventContactFeedbackData.invitationFeedbackData
+                  .invitationFeedback == 'CANCELED'
+              "
+              :icon="false"
+              @click.native="accept"
+            >
+              {{ $t('inviteAccept') }}
+            </ButtonGreen>
+            <div class="flex justify-center">
+              <div
                 v-if="
                   eventContactFeedbackData.invitationFeedbackData
                     .invitationFeedback === null ||
                   eventContactFeedbackData.invitationFeedbackData
-                    .invitationFeedback == 'CANCELED'
+                    .invitationFeedback == 'ACCEPTED'
+                "
+                class="flex font-semibold items-center text-green-600"
+              >
+                <FontAwesomeIcon
+                  class="mr-2 text-green-600"
+                  :icon="['fas', 'check-circle']"
+                  size="lg"
+                  title="accepted"
+                />
+                {{ $t('inviteAccepted') }}
+              </div>
+              <div class="mx-2" />
+              <Button
+                v-if="
+                  eventContactFeedbackData.invitationFeedbackData
+                    .invitationFeedback === null ||
+                  eventContactFeedbackData.invitationFeedbackData
+                    .invitationFeedback == 'ACCEPTED'
                 "
                 :icon="false"
-                @click.native="accept"
+                @click.native="cancel"
               >
-                {{ $t('inviteAccept') }}
-              </ButtonGreen>
-              <div class="flex justify-center">
-                <div
-                  v-if="
-                    eventContactFeedbackData.invitationFeedbackData
-                      .invitationFeedback === null ||
-                    eventContactFeedbackData.invitationFeedbackData
-                      .invitationFeedback == 'ACCEPTED'
-                  "
-                  class="flex font-semibold items-center text-green-600"
-                >
-                  <FontAwesomeIcon
-                    class="mr-2 text-green-600"
-                    :icon="['fas', 'check-circle']"
-                    size="lg"
-                    title="accepted"
-                  />
-                  {{ $t('inviteAccepted') }}
-                </div>
-                <div class="mx-2" />
-                <Button
-                  v-if="
-                    eventContactFeedbackData.invitationFeedbackData
-                      .invitationFeedback === null ||
-                    eventContactFeedbackData.invitationFeedbackData
-                      .invitationFeedback == 'ACCEPTED'
-                  "
-                  :icon="false"
-                  @click.native="cancel"
-                >
-                  {{ $t('inviteCancel') }}
-                </Button>
-              </div>
+                {{ $t('inviteCancel') }}
+              </Button>
             </div>
-            <div
-              v-if="
-                eventContactFeedbackData.invitationFeedbackData
-                  .invitationFeedback !== null &&
-                eventContactFeedbackData.invitationFeedbackData
-                  .invitationFeedback == 'ACCEPTED'
-              "
+          </div>
+          <div
+            v-if="
+              eventContactFeedbackData.invitationFeedbackData
+                .invitationFeedback !== null &&
+              eventContactFeedbackData.invitationFeedbackData
+                .invitationFeedback == 'ACCEPTED'
+            "
+          >
+            <label
+              class="mb-1 md:mb-0 pr-0"
+              for="input-paper-invitation-feedback"
+              >{{ $t('inviteKind') }}</label
             >
-              <label
-                class="mb-1 md:mb-0 pr-0"
-                for="input-paper-invitation-feedback"
-                >{{ $t('inviteKind') }}</label
-              >
-              <select
-                id="input-paper-invitation-feedback"
-                v-model="
-                  eventContactFeedbackData.invitationFeedbackData
-                    .paperInvitationFeedback
-                "
-                class="form-input"
-                @change="send"
-              >
-                <option disabled :value="null">
-                  {{ $t('requestSelection') }}
-                </option>
-                <option value="NONE">{{ $t('inviteKindNone') }}</option>
-                <option value="PAPER">{{ $t('inviteKindPaper') }}</option>
-                <option value="DIGITAL">{{ $t('inviteKindDigital') }}</option>
-              </select>
-            </div>
+            <select
+              id="input-paper-invitation-feedback"
+              v-model="
+                eventContactFeedbackData.invitationFeedbackData
+                  .paperInvitationFeedback
+              "
+              class="form-input"
+              @change="send"
+            >
+              <option disabled :value="null">
+                {{ $t('requestSelection') }}
+              </option>
+              <option value="NONE">{{ $t('inviteKindNone') }}</option>
+              <option value="PAPER">{{ $t('inviteKindPaper') }}</option>
+              <option value="DIGITAL">{{ $t('inviteKindDigital') }}</option>
+            </select>
           </div>
         </div>
       </div>
-      <div v-else>
-        <Error :status-code="404" />
-      </div>
     </div>
-  </div>
+    <div v-else>
+      <Error :status-code="404" />
+    </div>
+  </Apollo>
 </template>
 
 <script>

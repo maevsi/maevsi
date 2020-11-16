@@ -1,12 +1,7 @@
 <template>
-  <div>
-    <div v-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
-    <AlertGraphql
-      v-else-if="graphqlErrorMessage !== undefined"
-      :graphql-error-message="graphqlErrorMessage"
-    />
+  <Apollo :graphql-error-message="graphqlErrorMessage">
     <div
-      v-else-if="
+      v-if="
         (allUploads !== undefined && allUploads.nodes.length > 0) ||
         allowAddition
       "
@@ -14,55 +9,57 @@
     >
       <div class="bg-white rounded">
         <ul class="inline-flex flex-wrap justify-center">
-          <li
-            v-for="upload in allUploads.nodes"
-            :id="uploadIdPrefix + upload.uuid"
-            :key="upload.uuid"
-            :class="{
-              'border-red-600': selectable && upload === selectedItem,
-            }"
-            class="border-4 border-transparent box-border relative"
-            @click="toggleSelect(upload)"
-          >
-            <img
-              :alt="$t('uploadAlt')"
-              class="bg-gray-400 h-32 w-32"
-              :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
-              :title="
-                $t('uploadSize', { size: bytesToString(upload.sizeByte) })
-              "
-            />
-            <div v-if="allowDeletion">
-              <div
-                class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0"
-              >
-                <div class="flex h-full justify-center items-center">
-                  <FontAwesomeIcon
-                    :icon="['fas', 'trash']"
-                    class="m-2"
-                    size="lg"
-                    :title="$t('iconTrash')"
-                  />
+          <template v-if="allUploads">
+            <li
+              v-for="upload in allUploads.nodes"
+              :id="uploadIdPrefix + upload.uuid"
+              :key="upload.uuid"
+              :class="{
+                'border-red-600': selectable && upload === selectedItem,
+              }"
+              class="border-4 border-transparent box-border relative"
+              @click="toggleSelect(upload)"
+            >
+              <img
+                :alt="$t('uploadAlt')"
+                class="bg-gray-400 h-32 w-32"
+                :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
+                :title="
+                  $t('uploadSize', { size: bytesToString(upload.sizeByte) })
+                "
+              />
+              <div v-if="allowDeletion">
+                <div
+                  class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0"
+                >
+                  <div class="flex h-full justify-center items-center">
+                    <FontAwesomeIcon
+                      :icon="['fas', 'trash']"
+                      class="m-2"
+                      size="lg"
+                      :title="$t('iconTrash')"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="absolute right-0 top-0"
+                  @click="deleteImageUpload(upload.uuid)"
+                >
+                  <button
+                    :aria-label="$t('iconTrashLabel')"
+                    class="flex h-full justify-center items-center"
+                  >
+                    <FontAwesomeIcon
+                      :icon="['fas', 'trash']"
+                      class="m-2 text-white"
+                      size="lg"
+                      :title="$t('iconTrash')"
+                    />
+                  </button>
                 </div>
               </div>
-              <div
-                class="absolute right-0 top-0"
-                @click="deleteImageUpload(upload.uuid)"
-              >
-                <button
-                  :aria-label="$t('iconTrashLabel')"
-                  class="flex h-full justify-center items-center"
-                >
-                  <FontAwesomeIcon
-                    :icon="['fas', 'trash']"
-                    class="m-2 text-white"
-                    size="lg"
-                    :title="$t('iconTrash')"
-                  />
-                </button>
-              </div>
-            </div>
-          </li>
+            </li>
+          </template>
           <li>
             <button
               v-if="allowAddition"
@@ -126,7 +123,7 @@
         </ButtonGreen>
       </div>
     </Modal>
-  </div>
+  </Apollo>
 </template>
 
 <script>

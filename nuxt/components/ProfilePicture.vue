@@ -1,16 +1,12 @@
 <template>
-  <div>
-    <div v-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
-    <AlertGraphql
-      v-else-if="graphqlErrorMessage !== undefined"
-      :graphql-error-message="graphqlErrorMessage"
-    />
+  <!-- TODO: https://github.com/maevsi/maevsi/issues/96 for html validity inside button -->
+  <Apollo :graphql-error-message="graphqlErrorMessage">
     <img
       :alt="$t('profilePictureAlt', { username })"
       class="bg-gray-400 flex-none h-24 w-24"
       :src="imageSrc"
     />
-  </div>
+  </Apollo>
 </template>
 
 <script>

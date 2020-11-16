@@ -1,11 +1,6 @@
 <template>
-  <div>
-    <div v-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
-    <AlertGraphql
-      v-else-if="graphqlErrorMessage !== undefined"
-      :graphql-error-message="graphqlErrorMessage"
-    />
-    <div v-else-if="event">
+  <Apollo :graphql-error-message="graphqlErrorMessage">
+    <div v-if="event">
       {{ $route.params.event_name }}
       <section class="mt-4">
         <h2>{{ $t('titleDangerZone') }}</h2>
@@ -23,7 +18,7 @@
       </section>
     </div>
     <Error v-else :status-code="404" />
-  </div>
+  </Apollo>
 </template>
 
 <script>
