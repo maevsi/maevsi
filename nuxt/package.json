@@ -34,7 +34,7 @@
     "@nuxtjs/robots": "2.4.2",
     "@nuxtjs/sitemap": "2.4.0",
     "@uppy/core": "1.14.0",
-    "@uppy/tus": "1.7.9",
+    "@uppy/tus": "1.8.0",
     "apollo-cache-inmemory": "1.6.6",
     "apollo-client": "2.6.10",
     "apollo-link": "1.2.14",
