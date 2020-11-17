@@ -13,15 +13,17 @@
     />
     <div slot="formError">
       <FormError
-        :text="$t('globalValidationRequired')"
         :validation-object="v.form[formKeyComputed]"
         validation-property="required"
-      />
+      >
+        {{ $t('globalValidationRequired') }}
+      </FormError>
       <FormError
-        :text="$t('globalValidationTooShort')"
         :validation-object="v.form[formKeyComputed]"
         validation-property="minLength"
-      />
+      >
+        {{ $t('globalValidationTooShort') }}
+      </FormError>
     </div>
   </FormInput>
 </template>

@@ -25,20 +25,23 @@
         />
         <div slot="formError">
           <FormError
-            :text="$t('globalValidationRequired')"
             :validation-object="$v.form['invitation-code']"
             validation-property="required"
-          />
+          >
+            {{ $t('globalValidationRequired') }}
+          </FormError>
           <FormError
-            :text="$t('globalValidationUsed')"
             :validation-object="$v.form['invitation-code']"
             validation-property="unused"
-          />
+          >
+            {{ $t('globalValidationUsed') }}
+          </FormError>
           <FormError
-            :text="$t('globalValidationFormatIncorrect')"
             :validation-object="$v.form['invitation-code']"
             validation-property="formatUuid"
-          />
+          >
+            {{ $t('globalValidationFormatIncorrect') }}
+          </FormError>
         </div>
       </FormInput>
       <div class="flex flex-col items-center justify-between">

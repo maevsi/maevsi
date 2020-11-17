@@ -19,15 +19,17 @@
       />
       <div slot="formError">
         <FormError
-          :text="$t('globalValidationRequired')"
           :validation-object="$v.form.username"
           validation-property="required"
-        />
+        >
+          {{ $t('globalValidationRequired') }}
+        </FormError>
         <FormError
-          :text="$t('globalValidationFormatIncorrect')"
           :validation-object="$v.form.username"
           validation-property="formatSlug"
-        />
+        >
+          {{ $t('globalValidationFormatIncorrect') }}
+        </FormError>
       </div>
     </FormInput>
     <FormInputPassword id="password-register" form-key="password" :v="$v" />
@@ -45,15 +47,17 @@
       />
       <div slot="formError">
         <FormError
-          :text="$t('globalValidationRequired')"
           :validation-object="$v.form['email-address']"
           validation-property="required"
-        />
+        >
+          {{ $t('globalValidationRequired') }}
+        </FormError>
         <FormError
-          :text="$t('globalValidationFormatIncorrect')"
           :validation-object="$v.form['email-address']"
           validation-property="email"
-        />
+        >
+          {{ $t('globalValidationFormatIncorrect') }}
+        </FormError>
       </div>
     </FormInput>
     <div class="flex flex-col items-center justify-between">
