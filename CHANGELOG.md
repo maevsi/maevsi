@@ -1,3 +1,10 @@
+## [0.23.1](https://github.com/maevsi/maevsi/compare/0.23.0...0.23.1) (2020-11-17)
+
+
+### Bug Fixes
+
+* **lint:** use input events ([3f27f6d](https://github.com/maevsi/maevsi/commit/3f27f6db9658b414e207bb56ac501a312cea614d))
+
 # [0.23.0](https://github.com/maevsi/maevsi/compare/0.22.0...0.23.0) (2020-11-17)
 
 
