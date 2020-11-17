@@ -10,45 +10,45 @@
 BEGIN;
 
 CREATE FUNCTION maevsi.event_contact_feedback_data(
-    organizer_username TEXT,
-    slug TEXT
+  organizer_username TEXT,
+  slug TEXT
 ) RETURNS maevsi.event_contact_feedback AS $$
 DECLARE
-    _event maevsi.event;
-    _invite_account maevsi.invite_account;
-    _invite_contact maevsi.invite_contact;
-    _contact maevsi.contact;
-    _invitation_feedback_data maevsi.invitation_feedback_data;
+  _event maevsi.event;
+  _invite_account maevsi.invite_account;
+  _invite_contact maevsi.invite_contact;
+  _contact maevsi.contact;
+  _invitation_feedback_data maevsi.invitation_feedback_data;
 BEGIN
-    SELECT * INTO _event FROM maevsi.event
-        WHERE event.organizer_username = $1
-          AND event.slug = $2;
+  SELECT * INTO _event FROM maevsi.event
+    WHERE event.organizer_username = $1
+      AND event.slug = $2;
 
-    IF (current_setting('jwt.claims.role', true)::TEXT = 'maevsi_account') THEN
-        SELECT * INTO _invite_account FROM maevsi.invite_account
-            WHERE   invite_account.event_id = _event.id
-            AND     invite_account.account_id = current_setting('jwt.claims.account_id', true)::BIGINT;
+  IF (current_setting('jwt.claims.role', true)::TEXT = 'maevsi_account') THEN
+    SELECT * INTO _invite_account FROM maevsi.invite_account
+      WHERE   invite_account.event_id = _event.id
+      AND     invite_account.account_id = current_setting('jwt.claims.account_id', true)::BIGINT;
 
-        SELECT * INTO _contact FROM maevsi.contact
-            WHERE contact.id = _invite_account.account_id;
+    SELECT * INTO _contact FROM maevsi.contact
+      WHERE contact.id = _invite_account.account_id;
 
-        SELECT * INTO _invitation_feedback_data FROM maevsi.invitation_feedback_data
-            WHERE invitation_feedback_data.id = _invite_account.invitation_feedback_id;
-    ELSIF (current_setting('jwt.claims.role', true)::TEXT = 'maevsi_anonymous') THEN
-        SELECT * INTO _invite_contact FROM maevsi.invite_contact
-            WHERE   invite_contact.event_id = _event.id
-            AND     invite_contact.uuid = ANY (maevsi.invite_claim_array());
+    SELECT * INTO _invitation_feedback_data FROM maevsi.invitation_feedback_data
+      WHERE invitation_feedback_data.id = _invite_account.invitation_feedback_id;
+  ELSIF (current_setting('jwt.claims.role', true)::TEXT = 'maevsi_anonymous') THEN
+    SELECT * INTO _invite_contact FROM maevsi.invite_contact
+      WHERE   invite_contact.event_id = _event.id
+      AND     invite_contact.uuid = ANY (maevsi.invite_claim_array());
 
-        IF (_invite_contact IS NOT NULL) THEN
-            SELECT * INTO _contact FROM maevsi.contact
-                WHERE contact.id = _invite_contact.contact_id;
+    IF (_invite_contact IS NOT NULL) THEN
+      SELECT * INTO _contact FROM maevsi.contact
+        WHERE contact.id = _invite_contact.contact_id;
 
-            SELECT * INTO _invitation_feedback_data FROM maevsi.invitation_feedback_data
-                WHERE invitation_feedback_data.id = _invite_contact.invitation_feedback_id;
-        END IF;
+      SELECT * INTO _invitation_feedback_data FROM maevsi.invitation_feedback_data
+        WHERE invitation_feedback_data.id = _invite_contact.invitation_feedback_id;
     END IF;
+  END IF;
 
-    RETURN (_event, _contact, _invitation_feedback_data);
+  RETURN (_event, _contact, _invitation_feedback_data);
 END
 $$ LANGUAGE PLPGSQL STRICT STABLE;
 

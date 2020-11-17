@@ -11,12 +11,12 @@
 BEGIN;
 
 CREATE TABLE maevsi.invite_contact (
-    id                        BIGSERIAL PRIMARY KEY,
-    uuid                      UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
-    event_id                  BIGINT REFERENCES maevsi.event(id) ON DELETE CASCADE NOT NULL,
-    contact_id                BIGINT REFERENCES maevsi.contact(id) NOT NULL,
-    invitation_feedback_id    BIGINT REFERENCES maevsi.invitation_feedback_data(id) NOT NULL,
-    UNIQUE (event_id, contact_id)
+  id                        BIGSERIAL PRIMARY KEY,
+  uuid                      UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
+  event_id                  BIGINT REFERENCES maevsi.event(id) ON DELETE CASCADE NOT NULL,
+  contact_id                BIGINT REFERENCES maevsi.contact(id) NOT NULL,
+  invitation_feedback_id    BIGINT REFERENCES maevsi.invitation_feedback_data(id) NOT NULL,
+  UNIQUE (event_id, contact_id)
 );
 
 COMMENT ON TABLE maevsi.invite_contact IS 'An invite for a contact, i.e. someone without an account. A bidirectional mapping between an event and a contact.';
@@ -33,8 +33,8 @@ ALTER TABLE maevsi.invite_contact ENABLE ROW LEVEL SECURITY;
 -- Display contact invites issued to oneself.
 -- Display contact invites for events organized by oneself.
 CREATE POLICY invite_contact_select ON maevsi.invite_contact FOR SELECT USING (
-        uuid = ANY (maevsi.invite_claim_array())
-    OR  event_id IN (SELECT maevsi.events_organized())
+      uuid = ANY (maevsi.invite_claim_array())
+  OR  event_id IN (SELECT maevsi.events_organized())
 );
 
 COMMIT;

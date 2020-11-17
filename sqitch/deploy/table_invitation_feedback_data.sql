@@ -7,9 +7,9 @@
 BEGIN;
 
 CREATE TABLE maevsi.invitation_feedback_data (
-    id                           BIGSERIAL PRIMARY KEY,
-    invitation_feedback          maevsi.invitation_feedback,
-    paper_invitation_feedback    maevsi.invitation_feedback_paper
+  id                           BIGSERIAL PRIMARY KEY,
+  invitation_feedback          maevsi.invitation_feedback,
+  paper_invitation_feedback    maevsi.invitation_feedback_paper
 );
 
 COMMENT ON TABLE maevsi.invitation_feedback_data IS 'Includes invitation feedback data.';
@@ -24,10 +24,10 @@ ALTER TABLE maevsi.invitation_feedback_data ENABLE ROW LEVEL SECURITY;
 
 -- Display invitation feedback data for accessible account or contact invitations.
 CREATE POLICY invitation_feedback_data_select ON maevsi.invitation_feedback_data FOR SELECT USING (
-    id IN (SELECT maevsi_private.invite_feedback_ids())
+  id IN (SELECT maevsi_private.invite_feedback_ids())
 );
 CREATE POLICY invitation_feedback_data_update ON maevsi.invitation_feedback_data FOR UPDATE USING (
-    id IN (SELECT maevsi_private.invite_feedback_ids())
+  id IN (SELECT maevsi_private.invite_feedback_ids())
 );
 
 COMMIT;

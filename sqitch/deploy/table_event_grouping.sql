@@ -8,10 +8,10 @@
 BEGIN;
 
 CREATE TABLE maevsi.event_grouping (
-    id                BIGSERIAL PRIMARY KEY,
-    event_id          BIGINT REFERENCES maevsi.event(id) NOT NULL,
-    event_group_id    BIGINT REFERENCES maevsi.event_group(id) NOT NULL,
-    UNIQUE (event_id, event_group_id)
+  id                BIGSERIAL PRIMARY KEY,
+  event_id          BIGINT REFERENCES maevsi.event(id) NOT NULL,
+  event_group_id    BIGINT REFERENCES maevsi.event_group(id) NOT NULL,
+  UNIQUE (event_id, event_group_id)
 );
 
 COMMENT ON TABLE maevsi.event_grouping IS 'A bidirectional mapping between an event and an event group.';

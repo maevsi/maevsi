@@ -15,17 +15,17 @@ ALTER TABLE maevsi.event ENABLE ROW LEVEL SECURITY;
 -- Display events that are organized by oneself.
 -- Display events to which oneself is invited.
 CREATE POLICY event_select ON maevsi.event FOR SELECT USING (
+      (
+        visibility = 'public'
+        AND
         (
-            visibility = 'public'
-            AND
-            (
-                invitee_count_maximum IS NULL
-                OR
-                maevsi.invitee_count(id) < invitee_count_maximum
-            )
+          invitee_count_maximum IS NULL
+          OR
+          maevsi.invitee_count(id) < invitee_count_maximum
         )
-    OR  organizer_username = current_setting('jwt.claims.username', true)::TEXT
-    OR  id IN (SELECT maevsi_private.events_invited())
+      )
+  OR  organizer_username = current_setting('jwt.claims.username', true)::TEXT
+  OR  id IN (SELECT maevsi_private.events_invited())
 );
 
 CREATE POLICY event_insert ON maevsi.event FOR INSERT WITH CHECK (
