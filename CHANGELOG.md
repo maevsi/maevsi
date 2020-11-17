@@ -1,3 +1,19 @@
+# [0.23.0](https://github.com/maevsi/maevsi/compare/0.22.0...0.23.0) (2020-11-17)
+
+
+### Bug Fixes
+
+* **account:** revert query watching ([c30c648](https://github.com/maevsi/maevsi/commit/c30c648b9953a69abdf0ab222cbe42ba856030bd))
+* **redeem:** adapt form reset ([ba465be](https://github.com/maevsi/maevsi/commit/ba465be0da98b78cf38886a85c1d146edb0b2e3d))
+* **sqitch:** add missing requirement ([66c94c4](https://github.com/maevsi/maevsi/commit/66c94c43e439d126af8f970746a24f69a438c330))
+* **sqitch:** disable `pg_notify` on email address verification ([5884f0d](https://github.com/maevsi/maevsi/commit/5884f0df845c842cafdd46bae08ad53da278396b))
+
+
+### Features
+
+* add password forgotten dialog ([3eca4f9](https://github.com/maevsi/maevsi/commit/3eca4f9198996d4c5c32aae918b1edbec78a0565)), closes [#95](https://github.com/maevsi/maevsi/issues/95)
+* **verify:** redirect on incorrect format ([7f49c05](https://github.com/maevsi/maevsi/commit/7f49c05c908e971a71c85c96831b13b6b7a2da1a))
+
 # [0.22.0](https://github.com/maevsi/maevsi/compare/0.21.0...0.22.0) (2020-11-17)
 
 
