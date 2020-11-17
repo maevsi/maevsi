@@ -1,3 +1,17 @@
+# [0.22.0](https://github.com/maevsi/maevsi/compare/0.21.0...0.22.0) (2020-11-17)
+
+
+### Bug Fixes
+
+* **error:** properly convert to Number ([0d86c48](https://github.com/maevsi/maevsi/commit/0d86c4834355176ee010ce7ce58949213ee1d250))
+* **loader:** add `loading` prop ([ab529e0](https://github.com/maevsi/maevsi/commit/ab529e0d7a9e601e7e29ecc23e2ed212c51fc01d))
+* **validate:** correct validation ([d1552c6](https://github.com/maevsi/maevsi/commit/d1552c6bab941b100298e33d1adae90ef7d03343))
+
+
+### Features
+
+* add account confirmation ([4e7e1f9](https://github.com/maevsi/maevsi/commit/4e7e1f9dc3203eb541024e7a4eb63050111e8a2a)), closes [#34](https://github.com/maevsi/maevsi/issues/34)
+
 # [0.21.0](https://github.com/maevsi/maevsi/compare/0.20.1...0.21.0) (2020-11-15)
 
 
