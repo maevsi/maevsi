@@ -55,6 +55,11 @@ export default {
   head() {
     return { title: this.title }
   },
+  middleware({ app, query, redirect }) {
+    if (!app.$global.REGEX_UUID.test(query.code)) {
+      return redirect(app.localePath('/'))
+    }
+  },
 }
 </script>
 
