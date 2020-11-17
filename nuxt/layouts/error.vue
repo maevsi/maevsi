@@ -1,5 +1,5 @@
 <template>
-  <Error :status-code="error.statusCode" />
+  <Error :status-code="+error.statusCode" />
 </template>
 
 <script>
