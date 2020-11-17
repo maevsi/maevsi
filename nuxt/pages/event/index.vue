@@ -24,6 +24,9 @@ export default {
       title: this.$t('title'),
     }
   },
+  head() {
+    return { title: this.title }
+  },
   computed: {
     signedIn() {
       return (
@@ -32,9 +35,6 @@ export default {
         this.$store.state.jwtDecoded.exp > Math.floor(Date.now() / 1000)
       )
     },
-  },
-  head() {
-    return { title: this.title }
   },
 }
 </script>

@@ -22,12 +22,20 @@ import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/accountE
 const consola = require('consola')
 
 export default {
+  middleware({ app, query, redirect }) {
+    if (!app.$global.REGEX_UUID.test(query.code)) {
+      return redirect(app.localePath('/'))
+    }
+  },
   data() {
     return {
       graphqlErrorMessage: undefined,
       loading: true,
       title: this.$t('title'),
     }
+  },
+  head() {
+    return { title: this.title }
   },
   beforeMount() {
     this.accountEmailAddressVerification()
@@ -49,14 +57,6 @@ export default {
           this.loading = false
         })
     },
-  },
-  head() {
-    return { title: this.title }
-  },
-  middleware({ app, query, redirect }) {
-    if (!app.$global.REGEX_UUID.test(query.code)) {
-      return redirect(app.localePath('/'))
-    }
   },
 }
 </script>

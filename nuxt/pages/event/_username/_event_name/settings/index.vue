@@ -45,11 +45,32 @@ export default {
       }
     },
   },
+  middleware({ app, store, redirect, route }) {
+    // // If access permissions need to be validated by the server in the future.
+    // const {
+    //   data: { eventByOrganizerUsernameAndSlug },
+    // } = await app.apolloProvider.defaultClient.query({
+    //   query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG_QUERY,
+    //   variables: {
+    //     organizerUsername: route.params.username,
+    //     slug: route.params.event_name,
+    //   },
+    // })
+    if (
+      !app.$global.checkNested(store.state.jwtDecoded, 'username') ||
+      store.state.jwtDecoded.username !== route.params.username
+    ) {
+      return redirect({ append: true, path: '..' })
+    }
+  },
   data() {
     return {
       graphqlErrorMessage: undefined,
       mutation: EVENT_DELETE_MUTATION,
     }
+  },
+  head() {
+    return { title: this.$route.params.event_name }
   },
   methods: {
     onDeleteSuccess() {
@@ -109,27 +130,6 @@ export default {
         })
       }
     },
-  },
-  middleware({ app, store, redirect, route }) {
-    // // If access permissions need to be validated by the server in the future.
-    // const {
-    //   data: { eventByOrganizerUsernameAndSlug },
-    // } = await app.apolloProvider.defaultClient.query({
-    //   query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG_QUERY,
-    //   variables: {
-    //     organizerUsername: route.params.username,
-    //     slug: route.params.event_name,
-    //   },
-    // })
-    if (
-      !app.$global.checkNested(store.state.jwtDecoded, 'username') ||
-      store.state.jwtDecoded.username !== route.params.username
-    ) {
-      return redirect({ append: true, path: '..' })
-    }
-  },
-  head() {
-    return { title: this.$route.params.event_name }
   },
 }
 </script>

@@ -72,6 +72,13 @@
 
 <script>
 export default {
+  middleware({ app, store, redirect }) {
+    if (store.state.jwtDecoded && store.state.jwtDecoded.username) {
+      return redirect(
+        app.localePath('/account/' + store.state.jwtDecoded.username)
+      )
+    }
+  },
   data() {
     return {
       form:
@@ -95,6 +102,9 @@ export default {
       title: this.$t('title'),
       username: undefined,
     }
+  },
+  head() {
+    return { title: this.title }
   },
   methods: {
     onAccountPasswordResetRequest() {
@@ -190,16 +200,6 @@ export default {
         this.$router.replace({ path: '', query: { form: tab } })
       }
     },
-  },
-  head() {
-    return { title: this.title }
-  },
-  middleware({ app, store, redirect }) {
-    if (store.state.jwtDecoded && store.state.jwtDecoded.username) {
-      return redirect(
-        app.localePath('/account/' + store.state.jwtDecoded.username)
-      )
-    }
   },
 }
 </script>

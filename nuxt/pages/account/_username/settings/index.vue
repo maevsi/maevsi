@@ -48,11 +48,22 @@ import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/accountDelete'
 require('@uppy/core/dist/style.css')
 
 export default {
+  middleware({ app, store, redirect, route }) {
+    if (
+      !app.$global.checkNested(store.state.jwtDecoded, 'username') ||
+      store.state.jwtDecoded.username !== route.params.username
+    ) {
+      return redirect({ append: true, path: '..' })
+    }
+  },
   data() {
     return {
       mutation: ACCOUNT_DELETE_MUTATION,
       showModalImageSelection: false,
     }
+  },
+  head() {
+    return { title: this.$route.params.username }
   },
   computed: {
     jwtDecoded() {
@@ -70,17 +81,6 @@ export default {
     reloadProfilePicture() {
       this.$refs.profilePicture.reloadProfilePicture()
     },
-  },
-  middleware({ app, store, redirect, route }) {
-    if (
-      !app.$global.checkNested(store.state.jwtDecoded, 'username') ||
-      store.state.jwtDecoded.username !== route.params.username
-    ) {
-      return redirect({ append: true, path: '..' })
-    }
-  },
-  head() {
-    return { title: this.$route.params.username }
   },
 }
 </script>

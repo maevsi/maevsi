@@ -85,6 +85,9 @@ export default {
       title: this.$t('title'),
     }
   },
+  head() {
+    return { title: this.title }
+  },
   created() {
     if (this.$route.query.ic !== undefined) {
       this.$v.form['invitation-code'].$touch()
@@ -138,9 +141,6 @@ export default {
         return true
       }
     },
-  },
-  head() {
-    return { title: this.title }
   },
   validations() {
     return {

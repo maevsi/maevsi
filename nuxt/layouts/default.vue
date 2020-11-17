@@ -100,6 +100,9 @@
 
 <script>
 export default {
+  head() {
+    return this.$nuxtI18nSeo()
+  },
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
@@ -114,9 +117,6 @@ export default {
   },
   beforeCreate() {
     this.$moment.locale(this.$i18n.locale)
-  },
-  head() {
-    return this.$nuxtI18nSeo()
   },
 }
 </script>

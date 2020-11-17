@@ -7,11 +7,11 @@
 
 <script>
 export default {
-  head() {
-    return { title: this.$route.params.event_group_name }
-  },
   validate({ app, params }) {
     app.$global.REGEX_SLUG.test(params.username)
+  },
+  head() {
+    return { title: this.$route.params.event_group_name }
   },
 }
 </script>

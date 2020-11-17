@@ -43,6 +43,9 @@ export default {
       title: this.$t('title'),
     }
   },
+  head() {
+    return { title: this.title }
+  },
   computed: {
     sessionExpiryTime() {
       return this.$moment(
@@ -55,9 +58,6 @@ export default {
     onSessionExitClick() {
       this.$global.signOut(this.$apollo.getClient(), this.$store)
     },
-  },
-  head() {
-    return { title: this.title }
   },
 }
 </script>

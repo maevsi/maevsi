@@ -225,11 +225,39 @@ export default {
   components: {
     VueMarkdown,
   },
+  validate({ app, params }) {
+    return (
+      app.$global.REGEX_SLUG.test(params.event_name) &&
+      app.$global.REGEX_SLUG.test(params.username)
+    )
+  },
   data() {
     return {
       eventContactFeedbackData: undefined,
       eventContactFeedbackDataToSend: undefined,
       graphqlErrorMessage: undefined,
+    }
+  },
+  head() {
+    return {
+      title:
+        this.eventContactFeedbackData !== undefined &&
+        this.eventContactFeedbackData.event !== null &&
+        this.eventContactFeedbackData.event.name !== null
+          ? this.eventContactFeedbackData.event.name
+          : '404',
+      meta: [
+        {
+          hid: 'description',
+          property: 'description',
+          content: this.eventContactFeedbackData?.event?.description,
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.eventContactFeedbackData?.event?.description,
+        },
+      ],
     }
   },
   methods: {
@@ -296,34 +324,6 @@ export default {
           consola.error(error)
         })
     },
-  },
-  head() {
-    return {
-      title:
-        this.eventContactFeedbackData !== undefined &&
-        this.eventContactFeedbackData.event !== null &&
-        this.eventContactFeedbackData.event.name !== null
-          ? this.eventContactFeedbackData.event.name
-          : '404',
-      meta: [
-        {
-          hid: 'description',
-          property: 'description',
-          content: this.eventContactFeedbackData?.event?.description,
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: this.eventContactFeedbackData?.event?.description,
-        },
-      ],
-    }
-  },
-  validate({ app, params }) {
-    return (
-      app.$global.REGEX_SLUG.test(params.event_name) &&
-      app.$global.REGEX_SLUG.test(params.username)
-    )
   },
 }
 </script>

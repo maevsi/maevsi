@@ -16,6 +16,9 @@
 
 <script>
 export default {
+  validate({ app, params }) {
+    return app.$global.REGEX_SLUG.test(params.username)
+  },
   head() {
     return {
       meta: [
@@ -32,9 +35,6 @@ export default {
       ],
       title: this.$route.params.username,
     }
-  },
-  validate({ app, params }) {
-    return app.$global.REGEX_SLUG.test(params.username)
   },
 }
 </script>
