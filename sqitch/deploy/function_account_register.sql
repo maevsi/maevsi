@@ -19,7 +19,7 @@ DECLARE
     _new_account maevsi_private.account;
     _new_account_notify RECORD;
 BEGIN
-    IF char_length(password) < 8
+    IF char_length($3) < 8
     THEN
         RAISE 'Password too short!' USING ERRCODE = 'invalid_parameter_value';
     END IF;
@@ -35,7 +35,7 @@ BEGIN
     END IF;
 
     INSERT INTO maevsi_private.account(username, email_address, password_hash, last_activity) VALUES
-        (username, email_address, maevsi.crypt(password, maevsi.gen_salt('bf')), NOW())
+        ($1, $2, maevsi.crypt($3, maevsi.gen_salt('bf')), NOW())
         RETURNING * INTO _new_account;
 
     SELECT _new_account.username, _new_account.email_address, _new_account.email_address_verification
@@ -45,7 +45,7 @@ BEGIN
 
     PERFORM pg_notify('account_register', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify))));
 
-    RETURN (SELECT maevsi.authenticate(username, password));
+    RETURN (SELECT maevsi.authenticate($1, $3));
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 

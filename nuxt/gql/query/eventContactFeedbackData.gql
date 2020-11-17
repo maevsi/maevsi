@@ -1,7 +1,7 @@
 query($organizerUsername: String!, $slug: String!) {
   eventContactFeedbackData(
-    _organizerUsername: $organizerUsername
-    _slug: $slug
+    organizerUsername: $organizerUsername
+    slug: $slug
   ) {
     event {
       id

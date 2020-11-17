@@ -1,5 +1,5 @@
 mutation($storageKey: String!) {
-  profilePictureSet(input: { _storageKey: $storageKey }) {
+  profilePictureSet(input: { storageKey: $storageKey }) {
     clientMutationId
   }
 }

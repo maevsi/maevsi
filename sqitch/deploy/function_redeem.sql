@@ -25,7 +25,7 @@ BEGIN
         current_setting('jwt.claims.role', true)::TEXT,
         current_setting('jwt.claims.account_id', true)::BIGINT,
         current_setting('jwt.claims.username', true)::TEXT,
-        (SELECT ARRAY(SELECT DISTINCT UNNEST(maevsi.invite_claim_array() || invitation_code) ORDER BY 1)),
+        (SELECT ARRAY(SELECT DISTINCT UNNEST(maevsi.invite_claim_array() || $1) ORDER BY 1)),
         current_setting('jwt.claims.exp', true)::BIGINT
     )::maevsi.jwt;
 
@@ -35,7 +35,7 @@ BEGIN
 
     _event_id := (
         SELECT event_id FROM maevsi.invite_contact
-        WHERE invite_contact.uuid = invitation_code
+        WHERE invite_contact.uuid = $1
     );
 
     IF _event_id IS NOT NULL

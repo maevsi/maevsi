@@ -6,17 +6,17 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.profile_picture_set(_storage_key TEXT)
+CREATE FUNCTION maevsi.profile_picture_set(storage_key TEXT)
 RETURNS VOID AS $$
 BEGIN
   INSERT INTO maevsi.profile_picture(username, upload_storage_key)
   VALUES (
     current_setting('jwt.claims.username', true)::TEXT,
-    _storage_key
+    $1
   )
   ON CONFLICT (username)
   DO UPDATE
-  SET upload_storage_key = _storage_key;
+  SET upload_storage_key = $1;
 END;
 $$ LANGUAGE PLPGSQL STRICT VOLATILE SECURITY INVOKER;
 

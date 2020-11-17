@@ -10,8 +10,8 @@
 BEGIN;
 
 CREATE FUNCTION maevsi.event_contact_feedback_data(
-    _organizer_username TEXT,
-    _slug TEXT
+    organizer_username TEXT,
+    slug TEXT
 ) RETURNS maevsi.event_contact_feedback AS $$
 DECLARE
     _event maevsi.event;
@@ -21,8 +21,8 @@ DECLARE
     _invitation_feedback_data maevsi.invitation_feedback_data;
 BEGIN
     SELECT * INTO _event FROM maevsi.event
-        WHERE event.organizer_username = _organizer_username
-          AND event.slug = _slug;
+        WHERE event.organizer_username = $1
+          AND event.slug = $2;
 
     IF (current_setting('jwt.claims.role', true)::TEXT = 'maevsi_account') THEN
         SELECT * INTO _invite_account FROM maevsi.invite_account

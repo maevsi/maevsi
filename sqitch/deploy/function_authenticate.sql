@@ -18,10 +18,10 @@ DECLARE
     _jwt_exp BIGINT := EXTRACT(EPOCH FROM ((SELECT date_trunc('second', NOW()::TIMESTAMP)) + COALESCE(current_setting('maevsi.jwt_expiry_duration', true), '1 day')::INTERVAL));
     _jwt maevsi.jwt;
 BEGIN
-  IF (username = '' AND password = '') THEN
+  IF ($1 = '' AND $2 = '') THEN
     -- Authenticate as guest.
     _jwt := (_jwt_id, 'maevsi_anonymous', NULL, NULL, maevsi.invite_claim_array(), _jwt_exp)::maevsi.jwt;
-  ELSIF (username IS NOT NULL AND password IS NOT NULL) THEN
+  ELSIF ($1 IS NOT NULL AND $2 IS NOT NULL) THEN
     WITH updated AS (
       UPDATE maevsi_private.account
       SET last_activity = DEFAULT
