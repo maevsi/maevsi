@@ -1,6 +1,7 @@
 -- Deploy maevsi:function_account_password_change to pg
 -- requires: privilege_execute_revoke
 -- requires: schema_public
+-- requires: schema_private
 -- requires: role_account
 -- requires: table_account
 -- requires: extension_pgcrypto
