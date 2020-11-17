@@ -1,12 +1,15 @@
 <template>
   <!-- TODO: https://github.com/maevsi/maevsi/issues/96 for html validity inside button -->
-  <Apollo :graphql-error-message="graphqlErrorMessage">
+  <Loader
+    :graphql-error-message="graphqlErrorMessage"
+    :loading="$apollo.loading"
+  >
     <img
       :alt="$t('profilePictureAlt', { username })"
       class="bg-gray-400 flex-none h-24 w-24"
       :src="imageSrc"
     />
-  </Apollo>
+  </Loader>
 </template>
 
 <script>

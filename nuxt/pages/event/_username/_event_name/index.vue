@@ -1,5 +1,8 @@
 <template>
-  <Apollo :graphql-error-message="graphqlErrorMessage">
+  <Loader
+    :graphql-error-message="graphqlErrorMessage"
+    :loading="$apollo.loading"
+  >
     <div v-if="$global.checkNested(eventContactFeedbackData, 'event')">
       <div v-if="eventContactFeedbackData.contact">
         <p class="font-bold mb-2 text-2xl">
@@ -192,7 +195,7 @@
     <div v-else>
       <Error :status-code="404" />
     </div>
-  </Apollo>
+  </Loader>
 </template>
 
 <script>

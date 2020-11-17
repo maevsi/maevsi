@@ -1,5 +1,8 @@
 <template>
-  <Apollo :graphql-error-message="graphqlErrorMessage">
+  <Loader
+    :graphql-error-message="graphqlErrorMessage"
+    :loading="$apollo.loading"
+  >
     <div v-if="event">
       {{ $route.params.event_name }}
       <section class="mt-4">
@@ -18,7 +21,7 @@
       </section>
     </div>
     <Error v-else :status-code="404" />
-  </Apollo>
+  </Loader>
 </template>
 
 <script>

@@ -204,7 +204,7 @@ export default {
         vueI18n: {
           messages: {
             de: {
-              globalApolloLoading: 'Lade...',
+              globalLoading: 'Lade...',
               globalAvailabilityNotYet: 'Noch nicht verfügbar.',
               globalOgImageAlt: 'maevsis Logo.',
               globalOgSeoDescription:
@@ -218,7 +218,7 @@ export default {
               globalValidationUsed: 'Schon benutzt.',
             },
             en: {
-              globalApolloLoading: 'Loading...',
+              globalLoading: 'Loading...',
               globalAvailabilityNotYet: 'Not yet available.',
               globalOgImageAlt: "maevsi's logo.",
               globalOgSeoDescription:

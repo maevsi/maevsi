@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="$apollo.loading">{{ $t('globalApolloLoading') }}</div>
+    <div v-if="loading">{{ $t('globalLoading') }}</div>
     <AlertGraphql
       v-else-if="graphqlErrorMessage !== undefined"
       :graphql-error-message="graphqlErrorMessage"
@@ -14,6 +14,10 @@ export default {
   props: {
     graphqlErrorMessage: {
       type: String,
+      default: undefined,
+    },
+    loading: {
+      type: Boolean,
       default: undefined,
     },
   },

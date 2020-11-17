@@ -1,5 +1,8 @@
 <template>
-  <Apollo :graphql-error-message="graphqlErrorMessage">
+  <Loader
+    :graphql-error-message="graphqlErrorMessage"
+    :loading="$apollo.loading"
+  >
     <div
       v-if="
         (allUploads !== undefined && allUploads.nodes.length > 0) ||
@@ -123,7 +126,7 @@
         </ButtonGreen>
       </div>
     </Modal>
-  </Apollo>
+  </Loader>
 </template>
 
 <script>
