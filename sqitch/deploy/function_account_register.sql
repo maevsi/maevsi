@@ -18,18 +18,15 @@ DECLARE
   _new_account maevsi_private.account;
   _new_account_notify RECORD;
 BEGIN
-  IF char_length($3) < 8
-  THEN
+  IF (char_length($3) < 8) THEN
     RAISE 'Password too short!' USING ERRCODE = 'invalid_parameter_value';
   END IF;
 
-  IF EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.username = $1)
-  THEN
+  IF (EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.username = $1)) THEN
     RAISE 'An account with this username already exists!' USING ERRCODE = 'unique_violation';
   END IF;
 
-  IF EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.email_address = $2)
-  THEN
+  IF (EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.email_address = $2)) THEN
     RAISE 'An account with this email address already exists!' USING ERRCODE = 'unique_violation';
   END IF;
 

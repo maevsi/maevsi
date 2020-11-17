@@ -14,8 +14,7 @@ RETURNS VOID AS $$
 DECLARE
   _notify_data RECORD;
 BEGIN
-  IF (SELECT account.email_address_verification FROM maevsi_private.account WHERE account.email_address = $1) IS NOT NULL
-  THEN
+  IF ((SELECT account.email_address_verification FROM maevsi_private.account WHERE account.email_address = $1) IS NOT NULL) THEN
     RAISE 'Account not verified!' USING ERRCODE = 'object_not_in_prerequisite_state';
   END IF;
 
@@ -28,8 +27,7 @@ BEGIN
     FROM updated
     INTO _notify_data;
 
-  IF _notify_data IS NULL
-  THEN
+  IF (_notify_data IS NULL) THEN
     RAISE 'Nothing changed!' USING ERRCODE = 'no_data_found';
   ELSE
     PERFORM pg_notify('account_password_reset_request', jsonb_pretty(jsonb_build_object('account', _notify_data)));

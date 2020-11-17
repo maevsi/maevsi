@@ -14,16 +14,15 @@ RETURNS UUID AS $$
 DECLARE
     _id UUID;
 BEGIN
-  IF  COALESCE((
-        SELECT SUM(upload.size_byte)
-        FROM maevsi.upload
-        WHERE username = current_setting('jwt.claims.username', true)::TEXT
-      ), 0) + $1 <= (
-        SELECT upload_quota_bytes
-        FROM maevsi_private.account
-        WHERE username = current_setting('jwt.claims.username', true)::TEXT
-      )
-  THEN
+  IF (COALESCE((
+    SELECT SUM(upload.size_byte)
+    FROM maevsi.upload
+    WHERE username = current_setting('jwt.claims.username', true)::TEXT
+  ), 0) + $1 <= (
+    SELECT upload_quota_bytes
+    FROM maevsi_private.account
+    WHERE username = current_setting('jwt.claims.username', true)::TEXT
+  )) THEN
     INSERT INTO maevsi.upload (username, size_byte)
     VALUES (current_setting('jwt.claims.username', true)::TEXT, $1)
     RETURNING upload.uuid INTO _id;

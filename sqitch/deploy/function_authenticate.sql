@@ -28,8 +28,7 @@ BEGIN
         WHERE
               account.username = $1
           AND account.password_hash = maevsi.crypt($2, account.password_hash)
-      ) IS NOT NULL)
-    THEN
+      ) IS NOT NULL) THEN
       RAISE 'Account not verified!' USING ERRCODE = 'object_not_in_prerequisite_state';
     END IF;
 
@@ -45,8 +44,7 @@ BEGIN
       INTO _jwt
       FROM updated;
 
-    IF _jwt IS NULL
-    THEN
+    IF (_jwt IS NULL) THEN
       RAISE 'Account not found!' USING ERRCODE = 'no_data_found';
     END IF;
   END IF;

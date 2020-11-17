@@ -18,8 +18,7 @@ BEGIN
   WHERE   uuid = $1
   AND     (token).exp >= _epoch_now;
 
-  IF _jwt IS NULL
-  THEN
+  IF (_jwt IS NULL) THEN
     RETURN NULL;
   ELSE
     UPDATE maevsi_private.jwt

@@ -14,13 +14,11 @@ RETURNS VOID AS $$
 DECLARE
   _notify_email_address TEXT;
 BEGIN
-  IF char_length($2) < 8
-  THEN
+  IF (char_length($2) < 8) THEN
     RAISE 'Password too short!' USING ERRCODE = 'invalid_parameter_value';
   END IF;
 
-  IF NOT EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.password_reset_verification = $1)
-  THEN
+  IF (NOT EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.password_reset_verification = $1)) THEN
     RAISE 'Code invalid!' USING ERRCODE = 'no_data_found';
   END IF;
 

@@ -24,8 +24,7 @@ BEGIN
     FROM updated
     INTO _notify_email_address;
 
-  IF _notify_email_address IS NULL
-  THEN
+  IF (_notify_email_address IS NULL) THEN
     RAISE 'Nothing changed!' USING ERRCODE = 'no_data_found';
   -- ELSE
   --   PERFORM pg_notify('account_email_address_verification', jsonb_pretty(jsonb_build_object('email_address', _notify_email_address)));

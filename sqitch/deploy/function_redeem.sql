@@ -38,8 +38,7 @@ BEGIN
     WHERE invite_contact.uuid = $1
   );
 
-  IF _event_id IS NOT NULL
-  THEN
+  IF (_event_id IS NOT NULL) THEN
     RETURN (SELECT (organizer_username, slug, _jwt)::maevsi.redeem_response
     FROM maevsi.event
     WHERE id = _event_id);
