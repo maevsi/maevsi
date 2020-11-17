@@ -10,9 +10,8 @@ export default {
   head() {
     return { title: this.$route.params.event_group_name }
   },
-  validate({ params }) {
-    // Must be a number
-    return /^[-A-Za-z0-9]+$/.test(params.id)
+  validate({ app, params }) {
+    app.$global.REGEX_SLUG.test(params.username)
   },
 }
 </script>

@@ -316,9 +316,11 @@ export default {
       ],
     }
   },
-  validate({ params }) {
-    // Must be a number
-    return /^[-A-Za-z0-9]+$/.test(params.id)
+  validate({ app, params }) {
+    return (
+      app.$global.REGEX_SLUG.test(params.event_name) &&
+      app.$global.REGEX_SLUG.test(params.username)
+    )
   },
 }
 </script>
