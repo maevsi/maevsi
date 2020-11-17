@@ -9,7 +9,7 @@
       :username="$route.params.username"
       @selection="selectProfilePictureStorageKey"
     />
-    <div slot="footer" class="text-white">
+    <template slot="footer" class="text-white">
       <Button
         :disabled="settingProfilePicture"
         :icon-id="['fas', 'window-close']"
@@ -27,7 +27,7 @@
       >
         {{ $t('select') }}
       </ButtonGreen>
-    </div>
+    </template>
     <div if="graphqlErrorMessage !== undefined">
       <AlertGraphql :graphql-error-message="graphqlErrorMessage" />
     </div>

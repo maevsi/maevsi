@@ -109,7 +109,7 @@
         :show-remove-button="false"
         :prevent-white-space="true"
       />
-      <div slot="footer" class="text-white">
+      <template slot="footer" class="text-white">
         <Button
           :disabled="uploading"
           :icon-id="['fas', 'window-close']"
@@ -124,7 +124,7 @@
         >
           {{ $t('upload') }}
         </ButtonGreen>
-      </div>
+      </template>
     </Modal>
   </Loader>
 </template>

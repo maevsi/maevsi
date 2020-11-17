@@ -17,7 +17,7 @@
         type="text"
         :placeholder="$t('usernamePlaceholder')"
       />
-      <div slot="formError">
+      <template slot="formError">
         <FormError
           :validation-object="$v.form.username"
           validation-property="required"
@@ -30,7 +30,7 @@
         >
           {{ $t('globalValidationFormatIncorrect') }}
         </FormError>
-      </div>
+      </template>
     </FormInput>
     <FormInputPassword id="password-sign-in" form-key="password" :v="$v" />
     <div class="flex flex-col items-center justify-between">

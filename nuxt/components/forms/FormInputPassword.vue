@@ -11,7 +11,7 @@
       type="password"
       placeholder="**********"
     />
-    <div slot="formError">
+    <template slot="formError">
       <FormError
         :validation-object="v.form[formKeyComputed]"
         validation-property="required"
@@ -24,7 +24,7 @@
       >
         {{ $t('globalValidationTooShort') }}
       </FormError>
-    </div>
+    </template>
   </FormInput>
 </template>
 

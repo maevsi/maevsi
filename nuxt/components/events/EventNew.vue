@@ -17,7 +17,7 @@
         :placeholder="$t('namePlaceholder')"
         @input="updateSlug"
       />
-      <div slot="formError">
+      <template slot="formError">
         <FormError
           :validation-object="$v.form['name']"
           validation-property="required"
@@ -30,7 +30,7 @@
         >
           {{ $t('globalValidationTooLong') }}
         </FormError>
-      </div>
+      </template>
     </FormInput>
     <FormInput
       :error="$v.form['slug'].$error"
@@ -44,7 +44,7 @@
         type="text"
         :placeholder="$t('slugPlaceholder')"
       />
-      <div slot="formError">
+      <template slot="formError">
         <FormError
           :validation-object="$v.form['slug']"
           validation-property="required"
@@ -63,7 +63,7 @@
         >
           {{ $t('globalValidationFormatIncorrect') }}
         </FormError>
-      </div>
+      </template>
     </FormInput>
     <FormInput
       :error="$v.form['visibility'].$error"
@@ -80,14 +80,14 @@
         ]"
         @change="$v.form['visibility'].$model = $event"
       />
-      <div slot="formError">
+      <template slot="formError">
         <FormError
           :validation-object="$v.form['visibility']"
           validation-property="required"
         >
           {{ $t('globalValidationRequired') }}
         </FormError>
-      </div>
+      </template>
     </FormInput>
     <FormInput
       :error="$v.form['maximum-invitee-count'].$error"
@@ -100,14 +100,14 @@
         class="form-input"
         type="number"
       />
-      <div slot="formError">
+      <template slot="formError">
         <FormError
           :validation-object="$v.form['maximum-invitee-count']"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
         </FormError>
-      </div>
+      </template>
     </FormInput>
     <FormInput
       :error="$v.form['description'].$error"
@@ -119,14 +119,14 @@
         v-model.trim="$v.form['description'].$model"
         class="form-input"
       />
-      <div slot="formError">
+      <template slot="formError">
         <FormError
           :validation-object="$v.form['description']"
           validation-property="maxLength"
         >
           {{ $t('globalValidationTooLong') }}
         </FormError>
-      </div>
+      </template>
     </FormInput>
     <FormInput
       :error="$v.form['place'].$error"
@@ -139,14 +139,14 @@
         class="form-input"
         type="text"
       />
-      <div slot="formError">
+      <template slot="formError">
         <FormError
           :validation-object="$v.form['place']"
           validation-property="maxLength"
         >
           {{ $t('globalValidationTooLong') }}
         </FormError>
-      </div>
+      </template>
     </FormInput>
     <FormInput
       :error="$v.form['start'].$error"

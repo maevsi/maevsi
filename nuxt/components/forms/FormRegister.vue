@@ -17,7 +17,7 @@
         type="text"
         :placeholder="$t('usernamePlaceholder')"
       />
-      <div slot="formError">
+      <template slot="formError">
         <FormError
           :validation-object="$v.form.username"
           validation-property="required"
@@ -30,7 +30,7 @@
         >
           {{ $t('globalValidationFormatIncorrect') }}
         </FormError>
-      </div>
+      </template>
     </FormInput>
     <FormInputPassword id="password-register" form-key="password" :v="$v" />
     <FormInput
@@ -45,7 +45,7 @@
         type="email"
         :placeholder="$t('emailAddressPlaceholder')"
       />
-      <div slot="formError">
+      <template slot="formError">
         <FormError
           :validation-object="$v.form['email-address']"
           validation-property="required"
@@ -58,7 +58,7 @@
         >
           {{ $t('globalValidationFormatIncorrect') }}
         </FormError>
-      </div>
+      </template>
     </FormInput>
     <div class="flex flex-col items-center justify-between">
       <Button

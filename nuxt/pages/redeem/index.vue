@@ -23,7 +23,7 @@
           type="text"
           placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         />
-        <div slot="formError">
+        <template slot="formError">
           <FormError
             :validation-object="$v.form['invitation-code']"
             validation-property="required"
@@ -42,7 +42,7 @@
           >
             {{ $t('globalValidationFormatIncorrect') }}
           </FormError>
-        </div>
+        </template>
       </FormInput>
       <div class="flex flex-col items-center justify-between">
         <Button
