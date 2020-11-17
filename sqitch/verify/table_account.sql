@@ -7,6 +7,7 @@ SELECT id,
        email_address,
        email_address_verification,
        password_hash,
+       password_reset_verification,
        last_activity
 FROM maevsi_private.account WHERE FALSE;
 

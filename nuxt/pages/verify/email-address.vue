@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
     <Loader :graphql-error-message="graphqlErrorMessage" :loading="loading">
       <p>
-        {{ this.$t('emailAddressVerificationSuccess') }}
+        {{ $t('emailAddressVerificationSuccess') }}
       </p>
       <ButtonSignIn
         v-if="
@@ -30,17 +30,15 @@ export default {
     }
   },
   beforeMount() {
-    if (this.$route.query.code !== undefined) {
-      this.verifyEmailAddress(this.$route.query.code)
-    }
+    this.accountEmailAddressVerification()
   },
   methods: {
-    verifyEmailAddress(code) {
+    accountEmailAddressVerification() {
       this.$apollo
         .mutate({
           mutation: ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION,
           variables: {
-            code,
+            code: this.$router.currentRoute.query.code,
           },
         })
         .catch((error) => {

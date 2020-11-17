@@ -3,15 +3,15 @@
     :form-class="formClass"
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
-    @submit="register"
+    @submit="signIn"
   >
     <FormInput
       :error="$v.form['username'].$error"
-      label-for="input-username-register"
+      label-for="input-username-sign-in"
       :title="$t('username')"
     >
       <input
-        id="input-username-register"
+        id="input-username-sign-in"
         v-model.trim="$v.form.username.$model"
         class="form-input"
         type="text"
@@ -32,12 +32,7 @@
         </FormError>
       </template>
     </FormInput>
-    <FormInputPassword id="password-register" form-key="password" :v="$v" />
-    <FormInputEmailAddress
-      id="email-address-register"
-      form-key="email-address"
-      :v="$v"
-    />
+    <FormInputPassword id="password-sign-in" form-key="password" :v="$v" />
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="
@@ -47,8 +42,15 @@
         :icon="false"
         type="submit"
       >
-        {{ this.$t('register') }}
+        {{ $t('signIn') }}
       </Button>
+      <button
+        class="font-bold text-sm text-blue-500 hover:text-blue-800 mt-4"
+        type="button"
+        @click="$emit('password-forgotten')"
+      >
+        {{ $t('passwordForgotten') }}
+      </button>
     </div>
     <AlertGraphql
       :graphql-error-message="graphqlErrorMessage"
@@ -59,9 +61,9 @@
 </template>
 
 <script>
-import { email, minLength, required } from 'vuelidate/lib/validators'
+import { minLength, required } from 'vuelidate/lib/validators'
 
-import ACCOUNT_REGISTER_MUTATION from '~/gql/mutation/accountRegister'
+import AUTHENTICATE_MUTATION from '~/gql/mutation/authenticate'
 
 const consola = require('consola')
 
@@ -85,16 +87,15 @@ export default {
   watch: {
     form: {
       handler(val) {
-        this.$emit('password', val)
+        if (JSON.stringify(val) !== '{}') {
+          this.$emit('form', val)
+        }
       },
       deep: true,
     },
   },
   methods: {
-    touch(prop) {
-      this.$v.form[prop].$touch()
-    },
-    async register(e) {
+    async signIn(e) {
       e.preventDefault()
 
       this.formSent = true
@@ -103,14 +104,13 @@ export default {
       this.$v.form.$reset()
       const res = await this.$apollo
         .mutate({
-          mutation: ACCOUNT_REGISTER_MUTATION,
+          mutation: AUTHENTICATE_MUTATION,
           variables: {
             username: this.form.username,
             password: this.form.password,
-            emailAddress: this.form['email-address'],
           },
         })
-        .then(({ data }) => this.$global.checkNested(data, 'accountRegister'))
+        .then(({ data }) => this.$global.checkNested(data, 'authenticate'))
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           consola.error(error)
@@ -120,8 +120,12 @@ export default {
         return
       }
 
-      this.$emit('registered')
-      alert(this.$t('registerSuccess'))
+      this.$global.storeJwt(
+        this.$apollo.getClient(),
+        this.$store,
+        undefined,
+        res.jwt
+      )
     },
   },
   validations() {
@@ -135,10 +139,6 @@ export default {
           minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),
           required,
         },
-        'email-address': {
-          email,
-          required,
-        },
       },
     }
   },
@@ -147,17 +147,13 @@ export default {
 
 <i18n lang="yml">
 de:
-  emailAddress: 'E-Mail-Adresse'
-  emailAddressPlaceholder: 'email@adres.se'
-  register: 'Registrieren'
-  registerSuccess: 'Registrierung erfolgreich. Verifiziere deinen Account mit dem Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.'
+  passwordForgotten: 'Passwort vergessen?'
+  signIn: 'Anmelden'
   username: 'Nutzername'
   usernamePlaceholder: 'nutzer-name'
 en:
-  emailAddress: 'Email address'
-  emailAddressPlaceholder: 'email@addre.ss'
-  register: 'Register'
-  registerSuccess: "Registration successful. Verify your account using the link that you can find in the email that you'll receive shortly."
+  passwordForgotten: 'Forgot password?'
   username: 'Username'
+  signIn: 'Sign in'
   usernamePlaceholder: 'user-name'
 </i18n>

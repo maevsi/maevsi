@@ -180,10 +180,10 @@ module.exports = {
           backfaceVisibility: 'hidden',
         },
         '.flip-card-front': {
-          transform: 'rotateY(0deg)',
+          transform: 'rotateY(-180deg)',
         },
         '.flip-card-back': {
-          transform: 'rotateY(180deg)',
+          transform: 'rotateY(0deg)',
         },
         '.form-input-error': {
           input: {

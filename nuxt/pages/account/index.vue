@@ -40,21 +40,29 @@
       :class="{ flipped: form === 'register' }"
     >
       <div class="flip-card-inner grid">
-        <div class="e1 flip-card-back">
-          <FormRegister
+        <div class="e1 flip-card-front">
+          <FormAccountRegister
             ref="formRegister"
             :form="formRegister"
             form-class="rounded-t-none"
-            @password="onPasswordRegister"
+            @form="onFormRegister"
             @registered="onRegistered"
           />
         </div>
-        <div class="e1 flip-card-front">
-          <FormSignIn
+        <div class="e1 flip-card-back">
+          <FormAccountSignIn
             ref="formSignIn"
             :form="formSignIn"
             form-class="rounded-t-none"
-            @password="onPasswordSignIn"
+            @form="onFormSignIn"
+            @password-forgotten="onClickPasswordForgotten"
+          />
+          <FormAccountPasswordResetRequest
+            v-if="showFormPasswordResetRequest"
+            ref="formPasswordResetRequest"
+            :form="formPasswordResetRequest"
+            @form="onFormPasswordResetRequest"
+            @account-password-reset-request="onAccountPasswordResetRequest"
           />
         </div>
       </div>
@@ -79,46 +87,101 @@ export default {
         password: undefined,
         username: undefined,
       },
+      formPasswordResetRequest: {
+        'email-address': undefined,
+      },
       password: undefined,
+      showFormPasswordResetRequest: false,
       title: this.$t('title'),
       username: undefined,
     }
   },
-  middleware({ app, store, redirect }) {
-    if (store.state.jwtDecoded && store.state.jwtDecoded.username) {
-      return redirect(
-        app.localePath('/account/' + store.state.jwtDecoded.username)
-      )
-    }
-  },
   methods: {
-    onPasswordSignIn(val) {
-      if (this.formRegister.password !== val.password) {
-        this.formRegister.password = val.password
-        this.$refs.formRegister.touch('password')
-      }
+    onAccountPasswordResetRequest() {
+      this.showFormPasswordResetRequest = false
 
-      if (this.formRegister.username !== val.username) {
-        this.formRegister.username = val.username
-        this.$refs.formRegister.touch('username')
+      this.formPasswordResetRequest['email-address'] = undefined
+      this.formRegister['email-address'] = undefined
+
+      this.$refs.formRegister.$v.form['email-address'].$touch()
+    },
+    onClickPasswordForgotten() {
+      this.showFormPasswordResetRequest = !this.showFormPasswordResetRequest
+
+      if (
+        this.showFormPasswordResetRequest &&
+        this.formPasswordResetRequest['email-address'] !== undefined &&
+        this.formPasswordResetRequest['email-address'] !== ''
+      ) {
+        this.$nextTick().then(() => {
+          this.$refs.formPasswordResetRequest.$v.form['email-address'].$touch()
+        })
       }
     },
-    onPasswordRegister(val) {
-      if (this.formSignIn.password !== val.password) {
-        this.formSignIn.password = val.password
-        this.$refs.formSignIn.touch('password')
+    onFormPasswordResetRequest(form) {
+      if (this.formRegister['email-address'] !== form['email-address']) {
+        this.formRegister['email-address'] = form['email-address']
+        this.$refs.formRegister.$v.form['email-address'].$touch()
+      }
+    },
+    onFormRegister(form) {
+      if (this.formSignIn.username !== form.username) {
+        this.formSignIn.username = form.username
+        this.$refs.formSignIn.$v.form.username.$touch()
       }
 
-      if (this.formSignIn.username !== val.username) {
-        this.formSignIn.username = val.username
-        this.$refs.formSignIn.touch('username')
+      if (this.formSignIn.password !== form.password) {
+        this.formSignIn.password = form.password
+        this.$refs.formSignIn.$v.form.password.$touch()
+      }
+
+      if (
+        this.formPasswordResetRequest['email-address'] !== form['email-address']
+      ) {
+        this.formPasswordResetRequest['email-address'] = form['email-address']
+
+        if (this.$refs.formPasswordResetRequest) {
+          this.$refs.formPasswordResetRequest.$v.form['email-address'].$touch()
+        }
+      }
+    },
+    onFormSignIn(form) {
+      if (this.formRegister.username !== form.username) {
+        this.formRegister.username = form.username
+        this.$refs.formRegister.$v.form.username.$touch()
+      }
+
+      if (this.formRegister.password !== form.password) {
+        this.formRegister.password = form.password
+        this.$refs.formRegister.$v.form.password.$touch()
       }
     },
     onRegistered() {
-      this.$refs.formSignIn.$v.$reset()
-      this.$router.push(
-        this.localePath({ path: '', query: { form: 'signIn' } })
-      )
+      this.resetFormPasswordResetRequest()
+      this.resetFormRegister()
+      this.resetFormSignIn()
+
+      this.tabSelect('signIn')
+    },
+    resetFormPasswordResetRequest() {
+      this.formPasswordResetRequest['email-address'] = undefined
+
+      if (this.$refs.formPasswordResetRequest) {
+        this.$refs.formPasswordResetRequest.$v.form.$reset()
+      }
+    },
+    resetFormRegister() {
+      this.formRegister.username = undefined
+      this.formRegister.password = undefined
+      this.formRegister['email-address'] = undefined
+
+      this.$refs.formRegister.$v.form.$reset()
+    },
+    resetFormSignIn() {
+      this.formSignIn.username = undefined
+      this.formSignIn.password = undefined
+
+      this.$refs.formSignIn.$v.form.$reset()
     },
     tabSelect(tab) {
       this.form = tab // Setting this via `watchQuery` resets all forms.
@@ -130,6 +193,13 @@ export default {
   },
   head() {
     return { title: this.title }
+  },
+  middleware({ app, store, redirect }) {
+    if (store.state.jwtDecoded && store.state.jwtDecoded.username) {
+      return redirect(
+        app.localePath('/account/' + store.state.jwtDecoded.username)
+      )
+    }
   },
 }
 </script>

@@ -28,7 +28,7 @@
     </section>
     <section class="mt-4">
       <h2>{{ $t('titleChangePassword') }}</h2>
-      <PasswordChange />
+      <FormAccountPasswordChange />
     </section>
     <section class="mt-4">
       <h2>{{ $t('titleDangerZone') }}</h2>
