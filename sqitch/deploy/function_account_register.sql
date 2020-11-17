@@ -5,7 +5,6 @@
 -- requires: role_anonymous
 -- requires: table_contact
 -- requires: table_account
--- requires: type_jwt
 -- requires: extension_pgcrypto
 
 BEGIN;
@@ -14,7 +13,7 @@ CREATE FUNCTION maevsi.account_register(
     username TEXT,
     email_address TEXT,
     password TEXT
-) RETURNS maevsi.jwt AS $$
+) RETURNS VOID AS $$
 DECLARE
     _new_account maevsi_private.account;
     _new_account_notify RECORD;
@@ -44,8 +43,6 @@ BEGIN
     INSERT INTO maevsi.contact(account_id) VALUES (_new_account.id);
 
     PERFORM pg_notify('account_register', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify))));
-
-    RETURN (SELECT maevsi.authenticate($1, $3));
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 

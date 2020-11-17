@@ -7,6 +7,5 @@ mutation($username: String!, $password: String!, $emailAddress: String!) {
     }
   ) {
     clientMutationId
-    jwt
   }
 }

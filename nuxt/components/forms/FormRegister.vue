@@ -138,12 +138,8 @@ export default {
         return
       }
 
-      this.$global.storeJwt(
-        this.$apollo.getClient(),
-        this.$store,
-        undefined,
-        res.jwt
-      )
+      this.$emit('registered')
+      alert(this.$t('registerSuccess'))
     },
   },
   validations() {
@@ -172,12 +168,14 @@ de:
   emailAddress: 'E-Mail-Adresse'
   emailAddressPlaceholder: 'email@adres.se'
   register: 'Registrieren'
+  registerSuccess: 'Registrierung erfolgreich. Verifiziere deinen Account mit dem Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.'
   username: 'Nutzername'
   usernamePlaceholder: 'nutzer-name'
 en:
   emailAddress: 'Email address'
   emailAddressPlaceholder: 'email@addre.ss'
   register: 'Register'
+  registerSuccess: "Registration successful. Verify your account using the link that you can find in the email that you'll receive shortly."
   username: 'Username'
   usernamePlaceholder: 'user-name'
 </i18n>

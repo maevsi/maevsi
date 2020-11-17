@@ -45,7 +45,8 @@
             ref="formRegister"
             :form="formRegister"
             form-class="rounded-t-none"
-            @password="handlerSignIn"
+            @password="onPasswordRegister"
+            @registered="onRegistered"
           />
         </div>
         <div class="e1 flip-card-front">
@@ -53,7 +54,7 @@
             ref="formSignIn"
             :form="formSignIn"
             form-class="rounded-t-none"
-            @password="handlerRegister"
+            @password="onPasswordSignIn"
           />
         </div>
       </div>
@@ -63,6 +64,11 @@
 
 <script>
 export default {
+  asyncData({ query }) {
+    return {
+      form: query.form === undefined ? 'signIn' : query.form,
+    }
+  },
   data() {
     return {
       formRegister: {
@@ -74,10 +80,6 @@ export default {
         password: undefined,
         username: undefined,
       },
-      form:
-        this.$route.query.form === undefined
-          ? 'signIn'
-          : this.$route.query.form,
       password: undefined,
       title: this.$t('title'),
       username: undefined,
@@ -91,7 +93,7 @@ export default {
     }
   },
   methods: {
-    handlerRegister(val) {
+    onPasswordSignIn(val) {
       if (this.formRegister.password !== val.password) {
         this.formRegister.password = val.password
         this.$refs.formRegister.touch('password')
@@ -102,7 +104,7 @@ export default {
         this.$refs.formRegister.touch('username')
       }
     },
-    handlerSignIn(val) {
+    onPasswordRegister(val) {
       if (this.formSignIn.password !== val.password) {
         this.formSignIn.password = val.password
         this.$refs.formSignIn.touch('password')
@@ -113,16 +115,22 @@ export default {
         this.$refs.formSignIn.touch('username')
       }
     },
+    onRegistered() {
+      this.$refs.formSignIn.$v.$reset()
+      this.$router.push(
+        this.localePath({ path: '', query: { form: 'signIn' } })
+      )
+    },
     tabSelect(tab) {
-      if (this.form !== tab) {
-        this.form = tab
-        this.$router.push({ path: '', query: { form: tab } })
+      if (this.$router.currentRoute.params.form !== tab) {
+        this.$router.replace({ path: '', query: { form: tab } })
       }
     },
   },
   head() {
     return { title: this.title }
   },
+  watchQuery: ['form'],
 }
 </script>
 

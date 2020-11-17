@@ -22,11 +22,23 @@ BEGIN
     -- Authenticate as guest.
     _jwt := (_jwt_id, 'maevsi_anonymous', NULL, NULL, maevsi.invite_claim_array(), _jwt_exp)::maevsi.jwt;
   ELSIF ($1 IS NOT NULL AND $2 IS NOT NULL) THEN
+    IF ((
+        SELECT account.email_address_verification
+        FROM maevsi_private.account
+        WHERE
+              account.username = $1
+          AND account.password_hash = maevsi.crypt($2, account.password_hash)
+      ) IS NOT NULL)
+    THEN
+      RAISE 'Account not verified!' USING ERRCODE = 'object_not_in_prerequisite_state';
+    END IF;
+
     WITH updated AS (
       UPDATE maevsi_private.account
       SET last_activity = DEFAULT
       WHERE
             account.username = $1
+        AND account.email_address_verification IS NULL -- Has been checked before, but better safe than sorry.
         AND account.password_hash = maevsi.crypt($2, account.password_hash)
       RETURNING *
     ) SELECT _jwt_id, 'maevsi_account', updated.id, updated.username, NULL, _jwt_exp
