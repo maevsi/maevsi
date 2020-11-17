@@ -1,5 +1,6 @@
 import cookie from 'cookie'
 import { decode } from 'jsonwebtoken'
+import { helpers } from 'vuelidate/lib/validators'
 
 import AUTHENTICATE_MUTATION from '~/gql/mutation/authenticate'
 import JWT_REFRESH_MUTATION from '~/gql/mutation/jwtRefresh'
@@ -12,10 +13,14 @@ export const EVENT_PLACE_MAXIMUM = 300
 export const EVENT_SLUG_MAXIMUM = 100
 export const ITEMS_PER_PAGE = 8
 export const PASSWORD_LENGTH_MINIMUM = 8
+export const REGEX_SLUG = /^[-A-Za-z0-9]+$/
+export const REGEX_UUID = /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
 export const TUSD_FILES_URL =
   'https://tusd.' +
   (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
   '/files/'
+export const VERIFICATION_FORMAT_SLUG = helpers.regex('slug', REGEX_SLUG)
+export const VERIFICATION_FORMAT_UUID = helpers.regex('uuid', REGEX_UUID)
 
 export async function authenticateAnonymous(apolloClient, store, res) {
   consola.trace('Authenticating anonymously...')
@@ -174,7 +179,11 @@ export default async ({ app, req, res, store }, inject) => {
     EVENT_SLUG_MAXIMUM,
     ITEMS_PER_PAGE,
     PASSWORD_LENGTH_MINIMUM,
+    REGEX_SLUG,
+    REGEX_UUID,
     TUSD_FILES_URL,
+    VERIFICATION_FORMAT_SLUG,
+    VERIFICATION_FORMAT_UUID,
     authenticateAnonymous,
     capitalizeFirstLetter,
     checkNested,

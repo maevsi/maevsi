@@ -37,7 +37,7 @@
           <FormError
             :text="$t('globalValidationFormatIncorrect')"
             :validation-object="$v.form['invitation-code']"
-            validation-property="uuid"
+            validation-property="formatUuid"
           />
         </div>
       </FormInput>
@@ -65,16 +65,11 @@
 </template>
 
 <script>
-import { helpers, required } from 'vuelidate/lib/validators'
+import { required } from 'vuelidate/lib/validators'
 
 import REDEEM_MUTATION from '~/gql/mutation/redeem'
 
 const consola = require('consola')
-
-const uuid = helpers.regex(
-  'uuid',
-  /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
-)
 
 export default {
   data() {
@@ -150,7 +145,7 @@ export default {
         'invitation-code': {
           required,
           unused: this.unused,
-          uuid,
+          formatUuid: this.$global.VERIFICATION_FORMAT_UUID,
         },
       },
     }

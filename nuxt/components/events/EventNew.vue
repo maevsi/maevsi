@@ -56,7 +56,7 @@
         <FormError
           :text="$t('globalValidationFormatIncorrect')"
           :validation-object="$v.form['slug']"
-          validation-property="slugFormat"
+          validation-property="formatSlug"
         />
       </div>
     </FormInput>
@@ -186,18 +186,11 @@
 
 <script>
 import { Datetime } from 'vue-datetime'
-import {
-  helpers,
-  maxLength,
-  minValue,
-  required,
-} from 'vuelidate/lib/validators'
+import { maxLength, minValue, required } from 'vuelidate/lib/validators'
 
 import EVENT_CREATE_MUTATION from '~/gql/mutation/eventCreate'
 
 const consola = require('consola')
-
-const slugFormat = helpers.regex('uuid', /^[-A-Za-z0-9]+$/)
 
 export default {
   components: {
@@ -287,7 +280,7 @@ export default {
         slug: {
           maxLength: maxLength(this.$global.EVENT_SLUG_MAXIMUM),
           required,
-          slugFormat,
+          formatSlug: this.$global.VERIFICATION_FORMAT_SLUG,
         },
         visibility: {
           required,

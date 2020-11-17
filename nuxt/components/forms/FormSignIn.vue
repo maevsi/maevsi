@@ -26,7 +26,7 @@
         <FormError
           :text="$t('globalValidationFormatIncorrect')"
           :validation-object="$v.form.username"
-          validation-property="slug"
+          validation-property="formatSlug"
         />
       </div>
     </FormInput>
@@ -59,13 +59,11 @@
 </template>
 
 <script>
-import { helpers, minLength, required } from 'vuelidate/lib/validators'
+import { minLength, required } from 'vuelidate/lib/validators'
 
 import AUTHENTICATE_MUTATION from '~/gql/mutation/authenticate'
 
 const consola = require('consola')
-
-const slug = helpers.regex('slug', /^[-A-Za-z0-9]+$/)
 
 export default {
   props: {
@@ -134,7 +132,7 @@ export default {
       form: {
         username: {
           required,
-          slug,
+          formatSlug: this.$global.VERIFICATION_FORMAT_SLUG,
         },
         password: {
           minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),
