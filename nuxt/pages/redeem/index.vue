@@ -96,7 +96,7 @@ export default {
 
       this.graphqlErrorMessage = undefined
 
-      this.$v.$reset()
+      this.$v.form.$reset()
       const res = await this.$apollo
         .mutate({
           mutation: REDEEM_MUTATION,
