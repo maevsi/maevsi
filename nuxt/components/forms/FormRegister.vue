@@ -33,33 +33,11 @@
       </template>
     </FormInput>
     <FormInputPassword id="password-register" form-key="password" :v="$v" />
-    <FormInput
-      :error="$v.form['email-address'].$error"
-      label-for="input-email-address"
-      :title="$t('emailAddress')"
-    >
-      <input
-        id="input-email-address"
-        v-model.trim="$v.form['email-address'].$model"
-        class="form-input"
-        type="email"
-        :placeholder="$t('emailAddressPlaceholder')"
-      />
-      <template slot="formError">
-        <FormError
-          :validation-object="$v.form['email-address']"
-          validation-property="required"
-        >
-          {{ $t('globalValidationRequired') }}
-        </FormError>
-        <FormError
-          :validation-object="$v.form['email-address']"
-          validation-property="email"
-        >
-          {{ $t('globalValidationFormatIncorrect') }}
-        </FormError>
-      </template>
-    </FormInput>
+    <FormInputEmailAddress
+      id="email-address-register"
+      form-key="email-address"
+      :v="$v"
+    />
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="
