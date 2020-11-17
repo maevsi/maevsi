@@ -5,7 +5,11 @@
     :validation-object="$v.form"
     @submit="accountPasswordReset"
   >
-    <FormInputPassword id="password" :v="$v" />
+    <FormInputPassword
+      id="password"
+      :v="$v"
+      @input="$v.form['password'].$model = $event"
+    />
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="

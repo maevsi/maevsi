@@ -32,7 +32,12 @@
         </FormError>
       </template>
     </FormInput>
-    <FormInputPassword id="password-sign-in" form-key="password" :v="$v" />
+    <FormInputPassword
+      id="password-sign-in"
+      form-key="password"
+      :v="$v"
+      @input="$v.form['password'].$model = $event"
+    />
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="

@@ -32,11 +32,17 @@
         </FormError>
       </template>
     </FormInput>
-    <FormInputPassword id="password-register" form-key="password" :v="$v" />
+    <FormInputPassword
+      id="password-register"
+      form-key="password"
+      :v="$v"
+      @input="$v.form['password'].$model = $event"
+    />
     <FormInputEmailAddress
       id="email-address-register"
       form-key="email-address"
       :v="$v"
+      @input="$v.form['email-address'].$model = $event"
     />
     <div class="flex flex-col items-center justify-between">
       <Button

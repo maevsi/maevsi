@@ -6,10 +6,11 @@
   >
     <input
       :id="`input-${id}`"
-      v-model.trim="v.form[formKeyComputed].$model"
       class="form-input"
       type="email"
       :placeholder="$t('emailAddressPlaceholder')"
+      :value="v.form[formKeyComputed].$model"
+      @input="$emit('input', $event.target.value)"
     />
     <template slot="formError">
       <FormError

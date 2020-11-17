@@ -4,8 +4,16 @@
     :validation-object="$v.form"
     @submit="passwordChange"
   >
-    <FormInputPassword id="passwordCurrent" :v="$v" />
-    <FormInputPassword id="passwordNew" :v="$v" />
+    <FormInputPassword
+      id="passwordCurrent"
+      :v="$v"
+      @input="$v.form['passwordCurrent'].$model = $event"
+    />
+    <FormInputPassword
+      id="passwordNew"
+      :v="$v"
+      @input="$v.form['passwordNew'].$model = $event"
+    />
     <div class="flex flex-col items-center justify-between">
       <Button
         :disabled="

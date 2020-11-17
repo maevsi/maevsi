@@ -9,6 +9,7 @@
       id="email-address-password-reset-request"
       form-key="email-address"
       :v="$v"
+      @input="$v.form['email-address'].$model = $event"
     />
     <div class="flex flex-col items-center justify-between">
       <Button
