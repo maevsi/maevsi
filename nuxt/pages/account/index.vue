@@ -64,13 +64,12 @@
 
 <script>
 export default {
-  asyncData({ query }) {
-    return {
-      form: query.form === undefined ? 'signIn' : query.form,
-    }
-  },
   data() {
     return {
+      form:
+        this.$route.query.form === undefined
+          ? 'signIn'
+          : this.$route.query.form,
       formRegister: {
         'email-address': undefined,
         password: undefined,
@@ -122,6 +121,8 @@ export default {
       )
     },
     tabSelect(tab) {
+      this.form = tab // Setting this via `watchQuery` resets all forms.
+
       if (this.$router.currentRoute.params.form !== tab) {
         this.$router.replace({ path: '', query: { form: tab } })
       }
@@ -130,7 +131,6 @@ export default {
   head() {
     return { title: this.title }
   },
-  watchQuery: ['form'],
 }
 </script>
 
