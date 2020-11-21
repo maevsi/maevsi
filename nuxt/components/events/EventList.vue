@@ -7,6 +7,7 @@
       {{ $t('titleEvents', { username: $route.params.username }) }}
     </h2>
     <div class="flex flex-wrap justify-center my-2">
+      <ButtonEventList v-if="showButtonEventList" class="m-2" />
       <ButtonEventNew v-if="showButtonEventNew" class="m-2" />
       <ButtonRedeem v-if="showButtonRedeem" class="m-2" />
     </div>
@@ -104,6 +105,12 @@ export default {
     showButtonEventNew: {
       type: Boolean,
       default: true,
+    },
+    showButtonEventList: {
+      type: Boolean,
+      default() {
+        return this.$router.currentRoute.path.replace('/', '') !== 'event'
+      },
     },
     showButtonRedeem: {
       type: Boolean,
