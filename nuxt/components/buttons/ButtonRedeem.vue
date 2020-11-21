@@ -4,27 +4,6 @@
   }}</Button>
 </template>
 
-<script>
-export default {
-  props: {
-    iconId: {
-      type: Array,
-      default() {
-        return ['fas', 'bug']
-      },
-    },
-    link: {
-      type: String,
-      default: undefined,
-    },
-    text: {
-      type: String,
-      default: undefined,
-    },
-  },
-}
-</script>
-
 <i18n lang="yml">
 de:
   redeem: 'Einladungscode einlösen'
