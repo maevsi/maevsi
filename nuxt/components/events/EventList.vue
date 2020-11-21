@@ -6,6 +6,10 @@
     <h2 v-if="username" class="text-left truncate">
       {{ $t('titleEvents', { username: $route.params.username }) }}
     </h2>
+    <div class="flex flex-wrap justify-center my-2">
+      <ButtonEventNew v-if="showButtonEventNew" class="m-2" />
+      <ButtonRedeem v-if="showButtonRedeem" class="m-2" />
+    </div>
     <ul
       v-if="
         allEvents !== undefined && allEvents.nodes && allEvents.nodes.length
@@ -97,6 +101,14 @@ export default {
     },
   },
   props: {
+    showButtonEventNew: {
+      type: Boolean,
+      default: true,
+    },
+    showButtonRedeem: {
+      type: Boolean,
+      default: true,
+    },
     username: {
       type: String,
       default: undefined,
@@ -137,10 +149,12 @@ export default {
 
 <i18n lang="yml">
 de:
+  createEvent: 'Veranstaltung erstellen'
   eventOrganizer: 'von {username}'
   noEvents: 'Aktuell gibt es keine Veranstaltungen 😕'
   titleEvents: 'Veranstaltungen von {username}'
 en:
+  createEvent: 'Create event'
   eventOrganizer: 'by {username}'
   noEvents: 'There are currently no events 😕'
   titleEvents: 'Events by {username}'

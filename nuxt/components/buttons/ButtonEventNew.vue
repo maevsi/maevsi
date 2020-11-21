@@ -1,21 +1,11 @@
 <template>
-  <div>
-    <h1>{{ title }}</h1>
-    <EventList />
-  </div>
+  <Button v-if="signedIn" :icon-id="['fas', 'plus']" :link="localePath('/new')">
+    {{ $t('new') }}
+  </Button>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      graphqlErrorMessage: undefined,
-      title: this.$t('title'),
-    }
-  },
-  head() {
-    return { title: this.title }
-  },
   computed: {
     signedIn() {
       return (
@@ -30,7 +20,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  title: 'Veranstaltungen'
+  new: 'Veranstaltung erstellen'
 en:
-  title: 'Events'
+  new: 'Create event'
 </i18n>
