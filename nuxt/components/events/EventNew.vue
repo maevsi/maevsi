@@ -114,11 +114,32 @@
       label-for="input-description"
       :title="$t('description')"
     >
-      <textarea
-        id="input-description"
-        v-model.trim="$v.form['description'].$model"
-        class="form-input"
-      />
+      <TabFlip
+        dark
+        :tabs="[
+          ['edit', $t('edit')],
+          ['preview', $t('preview')],
+        ]"
+      >
+        <template slot="front">
+          <textarea
+            id="input-description"
+            v-model.trim="$v.form['description'].$model"
+            class="form-input h-full rounded-t-none"
+          />
+        </template>
+        <template slot="back">
+          <div class="border-2 border-t-0 border-gray-200 h-full rounded-b">
+            <vue-markdown
+              v-if="$v.form['description'].$model"
+              :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
+              class="description h-full rounded-t-none text-left text-gray-900"
+              :source="$v.form['description'].$model"
+            />
+            <div v-else class="h-full">{{ $t('previewNoContent') }}</div>
+          </div>
+        </template>
+      </TabFlip>
       <template slot="formError">
         <FormError
           :validation-object="$v.form['description']"
@@ -195,6 +216,7 @@
 
 <script>
 import { Datetime } from 'vue-datetime'
+import VueMarkdown from 'vue-markdown-konishi'
 import { maxLength, minValue, required } from 'vuelidate/lib/validators'
 
 import EVENT_CREATE_MUTATION from '~/gql/mutation/eventCreate'
@@ -204,6 +226,7 @@ const consola = require('consola')
 export default {
   components: {
     Datetime,
+    VueMarkdown,
   },
   data() {
     return {
@@ -316,6 +339,7 @@ export default {
 <i18n lang="yml">
 de:
   description: 'Beschreibung'
+  edit: 'Bearbeiten'
   end: 'Ende'
   eventCreate: 'Veranstaltung erstellen'
   eventCreateSuccess: 'Veranstaltung erfolgreich erstellt.'
@@ -323,6 +347,8 @@ de:
   name: 'Name'
   namePlaceholder: 'Willkommensfeier'
   place: 'Ort'
+  preview: 'Vorschau'
+  previewNoContent: 'Kein Inhalt für die Vorschau 😕'
   slug: 'Slug'
   slugPlaceholder: 'willkommensfeier'
   start: 'Start'
@@ -331,6 +357,7 @@ de:
   visibilityPublic: 'öffentlich'
 en:
   description: 'Description'
+  edit: 'Edit'
   end: 'End'
   eventCreate: 'Create event'
   eventCreateSuccess: 'Event created successfully.'
@@ -338,6 +365,8 @@ en:
   name: 'Name'
   namePlaceholder: 'Welcome Party'
   place: 'Place'
+  preview: 'Preview'
+  previewNoContent: 'No content to preview 😕'
   slug: 'Slug'
   slugPlaceholder: 'welcome-party'
   start: 'Start'

@@ -1,45 +1,53 @@
 <template>
   <div>
-    <div class="m-auto max-w-lg">
-      <div class="grid">
-        <div class="e1">
-          <ul class="bg-white opacity-75 pills rounded-t">
-            <li class="invisible">
-              <button type="button">[filler]</button>
-            </li>
-          </ul>
-        </div>
-        <ul class="e1 pills">
-          <li
-            class="rounded-t bg-white duration-700"
-            :class="{
-              'transform translate-x-full': tabIdSelected === tabs[1][0],
-            }"
-          >
-            <button class="invisible" type="button">[filler]</button>
-          </li>
+    <div class="grid">
+      <div class="e1">
+        <ul
+          class="pills rounded-t"
+          :class="{ 'bg-black opacity-50': dark, 'bg-white opacity-75': !dark }"
+        >
           <li class="invisible">
             <button type="button">[filler]</button>
           </li>
         </ul>
-        <ul class="e1 pills z-0">
-          <li>
-            <button type="button" @click="tabSelect(tabs[0][0])">
-              {{ tabs[0][1] }}
-            </button>
-          </li>
-          <li>
-            <button type="button" @click="tabSelect(tabs[1][0])">
-              {{ tabs[1][1] }}
-            </button>
-          </li>
-        </ul>
       </div>
+      <ul class="e1 pills">
+        <li
+          class="rounded-t duration-700"
+          :class="{
+            'transform translate-x-full': tabIdSelected === tabs[1][0],
+            'bg-black opacity-25': dark,
+            'bg-white': !dark,
+          }"
+        >
+          <button class="invisible" type="button">[filler]</button>
+        </li>
+        <li class="invisible">
+          <button type="button">[filler]</button>
+        </li>
+      </ul>
+      <ul class="e1 pills z-0">
+        <li>
+          <button
+            :class="{ 'text-black': !dark, 'text-white': dark }"
+            type="button"
+            @click="tabSelect(tabs[0][0])"
+          >
+            {{ tabs[0][1] }}
+          </button>
+        </li>
+        <li>
+          <button
+            :class="{ 'text-black': !dark, 'text-white': dark }"
+            type="button"
+            @click="tabSelect(tabs[1][0])"
+          >
+            {{ tabs[1][1] }}
+          </button>
+        </li>
+      </ul>
     </div>
-    <div
-      class="flip-card m-auto max-w-lg"
-      :class="{ flipped: tabIdSelected === tabs[0][0] }"
-    >
+    <div class="flip-card" :class="{ flipped: tabIdSelected === tabs[0][0] }">
       <div class="flip-card-inner grid">
         <div class="e1 flip-card-front">
           <slot name="front" />
@@ -55,6 +63,10 @@
 <script>
 export default {
   props: {
+    dark: {
+      type: Boolean,
+      default: false,
+    },
     // `tabIdDefault` must come before `tabIdInitial` as `tabIdInitial` uses `tabIdDefault` data.
     tabIdDefault: {
       type: String,

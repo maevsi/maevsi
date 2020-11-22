@@ -2,6 +2,7 @@
   <div>
     <h1>{{ title }}</h1>
     <TabFlip
+      class="m-auto max-w-lg"
       tab-id-default="signIn"
       :tabs="[
         ['register', $t('register')],

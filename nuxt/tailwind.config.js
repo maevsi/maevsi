@@ -217,7 +217,6 @@ module.exports = {
           li: {
             width: theme('width.full'),
             button: {
-              color: theme('colors.black'),
               fontWeight: theme('fontWeight.semibold'),
               padding: theme('padding.2') + ' ' + theme('padding.4'),
               width: theme('width.full'),
