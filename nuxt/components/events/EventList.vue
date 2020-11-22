@@ -109,7 +109,7 @@ export default {
     showButtonEventList: {
       type: Boolean,
       default() {
-        return this.$router.currentRoute.path.replace('/', '') !== 'event'
+        return this.$router.currentRoute.name.replace(/___.+$/, '') !== 'event'
       },
     },
     showButtonRedeem: {
