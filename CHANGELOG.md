@@ -1,3 +1,16 @@
+# [0.24.0](https://github.com/maevsi/maevsi/compare/0.23.1...0.24.0) (2020-11-22)
+
+
+### Bug Fixes
+
+* **event-new:** correct typo ([63e49e4](https://github.com/maevsi/maevsi/commit/63e49e471857d3e66e5d6c721ba8b83de5c61949))
+
+
+### Features
+
+* add event description render preview ([b06717c](https://github.com/maevsi/maevsi/commit/b06717c8db82e84e6bae4858dff8a3cba129d84b)), closes [#98](https://github.com/maevsi/maevsi/issues/98)
+* **event-list:** add event list button ([27ae1ce](https://github.com/maevsi/maevsi/commit/27ae1ce3a149db860a766a7825eae92c5c0ea077))
+
 ## [0.23.1](https://github.com/maevsi/maevsi/compare/0.23.0...0.23.1) (2020-11-17)
 
 
