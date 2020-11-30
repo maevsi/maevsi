@@ -1,3 +1,10 @@
+## [0.24.1](https://github.com/maevsi/maevsi/compare/0.24.0...0.24.1) (2020-11-30)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([d5dd509](https://github.com/maevsi/maevsi/commit/d5dd5096b2298005f8ed239cb7f524403ed753b6))
+
 # [0.24.0](https://github.com/maevsi/maevsi/compare/0.23.1...0.24.0) (2020-11-22)
 
 
