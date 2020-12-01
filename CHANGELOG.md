@@ -1,3 +1,10 @@
+## [0.24.2](https://github.com/maevsi/maevsi/compare/0.24.1...0.24.2) (2020-12-01)
+
+
+### Bug Fixes
+
+* **event-list:** improve show event list button condition ([9e745a4](https://github.com/maevsi/maevsi/commit/9e745a449568dc64b3a6f216996c55247ffd30fb))
+
 ## [0.24.1](https://github.com/maevsi/maevsi/compare/0.24.0...0.24.1) (2020-11-30)
 
 
