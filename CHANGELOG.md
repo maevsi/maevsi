@@ -1,3 +1,18 @@
+# [0.25.0](https://github.com/maevsi/maevsi/compare/0.24.2...0.25.0) (2020-12-04)
+
+
+### Bug Fixes
+
+* **account:** correct function owner ([4819ae1](https://github.com/maevsi/maevsi/commit/4819ae135199ae781280a98cd329d1c8be06fba6))
+* **account:** sign out after account deletion ([6032cb3](https://github.com/maevsi/maevsi/commit/6032cb343ccd8b48cce790df2792be598ab28663))
+* **authenticate:** invalidate reset code on successful sign in ([65a47ae](https://github.com/maevsi/maevsi/commit/65a47ae25f8db700b332c6fb9926d122a534d183))
+* **event:** prevent error on deletion ([75608a6](https://github.com/maevsi/maevsi/commit/75608a66622c539f97f04019ed7bec2c314a42b9))
+
+
+### Features
+
+* **account:** add code validities ([3100650](https://github.com/maevsi/maevsi/commit/31006509aaee0ff69285f41b7bab627398f5888d)), closes [#108](https://github.com/maevsi/maevsi/issues/108)
+
 ## [0.24.2](https://github.com/maevsi/maevsi/compare/0.24.1...0.24.2) (2020-12-01)
 
 
