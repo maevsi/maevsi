@@ -177,7 +177,7 @@
                   .paperInvitationFeedback
               "
               class="form-input"
-              @change="send"
+              @change="paperInvitationFeedback"
             >
               <option disabled :value="null">
                 {{ $t('requestSelection') }}
@@ -273,6 +273,12 @@ export default {
       )
       this.eventContactFeedbackDataToSend.invitationFeedbackData.invitationFeedback =
         'CANCELED'
+      this.send()
+    },
+    paperInvitationFeedback() {
+      this.eventContactFeedbackDataToSend = this.$global.objectClone(
+        this.eventContactFeedbackData
+      )
       this.send()
     },
     downloadIcal() {
