@@ -1,3 +1,11 @@
+## [0.25.2](https://github.com/maevsi/maevsi/compare/0.25.1...0.25.2) (2020-12-04)
+
+
+### Bug Fixes
+
+* **event:** correct variable name (`firstName`) ([38ae41e](https://github.com/maevsi/maevsi/commit/38ae41e6e9e681ca11c8b5f88de5ae35c3186b96))
+* **event:** fix accept / cancel invite button alignment ([b08d799](https://github.com/maevsi/maevsi/commit/b08d79994c8f1d6fd9d094ecf5fa855a5169b4de))
+
 ## [0.25.1](https://github.com/maevsi/maevsi/compare/0.25.0...0.25.1) (2020-12-04)
 
 
