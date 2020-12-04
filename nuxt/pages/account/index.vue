@@ -2,6 +2,7 @@
   <div>
     <h1>{{ title }}</h1>
     <TabFlip
+      ref="tabFlip"
       class="m-auto max-w-lg"
       tab-id-default="signIn"
       :tabs="[
@@ -133,7 +134,7 @@ export default {
       this.resetFormRegister()
       this.resetFormSignIn()
 
-      this.tabSelect('signIn')
+      this.$refs.tabFlip.tabSelect('signIn')
     },
     resetFormPasswordResetRequest() {
       this.formPasswordResetRequest['email-address'] = undefined
