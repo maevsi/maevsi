@@ -123,9 +123,7 @@ export async function storeJwt(
   res,
   jwt,
   then = () => {
-    if (!process.server) {
-      window.location.reload()
-    }
+    window.location.reload()
   }
 ) {
   consola.debug('Storing the following JWT: ' + jwt)

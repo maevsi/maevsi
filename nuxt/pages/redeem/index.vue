@@ -126,9 +126,11 @@ export default {
         this.$store,
         undefined,
         res.jwt,
-        this.$router.push(
-          this.localePath(`/event/${res.organizerUsername}/${res.eventSlug}`)
-        )
+        () => {
+          this.$router.push(
+            this.localePath(`/event/${res.organizerUsername}/${res.eventSlug}`)
+          )
+        }
       )
     },
     unused(value) {
