@@ -98,7 +98,7 @@
         <Button
           :icon-id="['fas', 'download']"
           class="my-2 text-white"
-          @click.native="downloadIcal"
+          @click="downloadIcal"
         >
           {{ $t('iCalDownload') }}
         </Button>
