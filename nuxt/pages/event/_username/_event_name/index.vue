@@ -319,6 +319,9 @@ export default {
             ),
           },
         })
+        .then((_data) => {
+          alert(this.$t('success'))
+        })
         .catch((error) => {
           alert(error.message)
           consola.error(error)
@@ -343,6 +346,7 @@ de:
   inviteCardKindDigital: 'Digital'
   requestSelection: 'Bitte auswählen'
   settings: 'Einstellungen'
+  success: 'Deine Eingabe wurde erfolgreich gespeichert.'
 en:
   greeting: 'Hey{usernameString}!'
   greetingDescription: "You've been invited to the following event:"
@@ -357,4 +361,5 @@ en:
   inviteCardKindDigital: 'Digital'
   requestSelection: 'Please select'
   settings: 'Settings'
+  success: 'Your input was saved succesfully.'
 </i18n>
