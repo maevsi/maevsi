@@ -142,7 +142,6 @@
                 />
                 {{ $t('inviteAccepted') }}
               </div>
-              <div class="mx-2" />
               <Button
                 v-if="
                   eventContactFeedbackData.invitationFeedbackData
@@ -150,6 +149,7 @@
                   eventContactFeedbackData.invitationFeedbackData
                     .invitationFeedback == 'ACCEPTED'
                 "
+                class="mx-2"
                 :icon="false"
                 @click.native="cancel"
               >
