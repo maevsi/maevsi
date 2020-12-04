@@ -1,3 +1,11 @@
+## [0.25.4](https://github.com/maevsi/maevsi/compare/0.25.3...0.25.4) (2020-12-04)
+
+
+### Bug Fixes
+
+* **global:** correct `storeJwt` then function notation ([68430d1](https://github.com/maevsi/maevsi/commit/68430d132e97d8c5e160776f2c44dd1e4588213f))
+* **nuxt:** add cloudflare insights to csp ([8b5fb94](https://github.com/maevsi/maevsi/commit/8b5fb949cabd5534fd734b99637abd260a9bb759))
+
 ## [0.25.3](https://github.com/maevsi/maevsi/compare/0.25.2...0.25.3) (2020-12-04)
 
 
