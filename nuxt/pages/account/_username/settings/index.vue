@@ -75,8 +75,7 @@ export default {
       this.showModalImageSelection = false
     },
     onDeleteSuccess() {
-      this.$router.push(this.localePath(`/account`))
-      // TODO: Clear apollo.
+      this.$global.signOut(this.$apollo.getClient(), this.$store)
     },
     reloadProfilePicture() {
       this.$refs.profilePicture.reloadProfilePicture()
