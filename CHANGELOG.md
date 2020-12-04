@@ -1,3 +1,10 @@
+## [0.25.3](https://github.com/maevsi/maevsi/compare/0.25.2...0.25.3) (2020-12-04)
+
+
+### Bug Fixes
+
+* **event:** fix invitation card selection ([393af9e](https://github.com/maevsi/maevsi/commit/393af9ef4135e496cce5826859943b870cda39b2))
+
 ## [0.25.2](https://github.com/maevsi/maevsi/compare/0.25.1...0.25.2) (2020-12-04)
 
 
