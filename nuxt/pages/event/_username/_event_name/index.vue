@@ -11,7 +11,7 @@
               usernameString: $global.checkNested(
                 eventContactFeedbackData,
                 'contact',
-                'firstname'
+                'firstName'
               )
                 ? ' ' + eventContactFeedbackData.contact.firstName
                 : '',
