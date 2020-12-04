@@ -114,23 +114,21 @@
         <hr class="my-4" />
         <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
           <div class="text-white mb-4">
-            <ButtonGreen
-              v-if="
-                eventContactFeedbackData.invitationFeedbackData
-                  .invitationFeedback === null ||
-                eventContactFeedbackData.invitationFeedbackData
-                  .invitationFeedback == 'CANCELED'
-              "
-              :icon="false"
-              @click.native="accept"
-            >
-              {{ $t('inviteAccept') }}
-            </ButtonGreen>
             <div class="flex justify-center">
-              <div
+              <ButtonGreen
                 v-if="
                   eventContactFeedbackData.invitationFeedbackData
                     .invitationFeedback === null ||
+                  eventContactFeedbackData.invitationFeedbackData
+                    .invitationFeedback == 'CANCELED'
+                "
+                :icon="false"
+                @click.native="accept"
+              >
+                {{ $t('inviteAccept') }}
+              </ButtonGreen>
+              <div
+                v-if="
                   eventContactFeedbackData.invitationFeedbackData
                     .invitationFeedback == 'ACCEPTED'
                 "
