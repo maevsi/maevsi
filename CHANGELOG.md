@@ -1,3 +1,11 @@
+## [0.25.1](https://github.com/maevsi/maevsi/compare/0.25.0...0.25.1) (2020-12-04)
+
+
+### Bug Fixes
+
+* **event:** add missing form feedback ([f2e9f5d](https://github.com/maevsi/maevsi/commit/f2e9f5d7e222392a7ea32b1add3c812d66474589))
+* **event:** correct iCal download button's hitbox ([3931366](https://github.com/maevsi/maevsi/commit/393136631859e1fc29fc7916626ebb08a94cda56))
+
 # [0.25.0](https://github.com/maevsi/maevsi/compare/0.24.2...0.25.0) (2020-12-04)
 
 
