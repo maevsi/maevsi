@@ -188,6 +188,10 @@
             </select>
           </div>
         </div>
+        <img
+          class="m-auto opacity-25 md:w-3/4 xl:w-1/2"
+          src="~/assets/ornament.png"
+        />
       </div>
     </div>
     <div v-else>
