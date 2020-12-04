@@ -170,7 +170,7 @@
             <label
               class="mb-1 md:mb-0 pr-0"
               for="input-paper-invitation-feedback"
-              >{{ $t('inviteKind') }}</label
+              >{{ $t('inviteCardKind') }}</label
             >
             <select
               id="input-paper-invitation-feedback"
@@ -184,9 +184,9 @@
               <option disabled :value="null">
                 {{ $t('requestSelection') }}
               </option>
-              <option value="NONE">{{ $t('inviteKindNone') }}</option>
-              <option value="PAPER">{{ $t('inviteKindPaper') }}</option>
-              <option value="DIGITAL">{{ $t('inviteKindDigital') }}</option>
+              <option value="NONE">{{ $t('inviteCardKindNone') }}</option>
+              <option value="PAPER">{{ $t('inviteCardKindPaper') }}</option>
+              <option value="DIGITAL">{{ $t('inviteCardKindDigital') }}</option>
             </select>
           </div>
         </div>
@@ -337,10 +337,10 @@ de:
   inviteAccept: 'Einladung annehmen'
   inviteAccepted: 'Einladung angenommen'
   inviteCancel: 'Einladung ablehnen'
-  inviteKind: 'Art der Einladung'
-  inviteKindNone: 'Keine'
-  inviteKindPaper: 'Papier'
-  inviteKindDigital: 'Digital'
+  inviteCardKind: 'Art der Einladungskarte'
+  inviteCardKindNone: 'Keine'
+  inviteCardKindPaper: 'Papier'
+  inviteCardKindDigital: 'Digital'
   requestSelection: 'Bitte auswählen'
   settings: 'Einstellungen'
 en:
@@ -351,10 +351,10 @@ en:
   inviteAccept: 'Accept invite'
   inviteAccepted: 'Invite accepted'
   inviteCancel: 'Cancel invite'
-  inviteKind: 'Kind of invite'
-  inviteKindNone: 'None'
-  inviteKindPaper: 'Paper'
-  inviteKindDigital: 'Digital'
+  inviteCardKind: 'Kind of invite card'
+  inviteCardKindNone: 'None'
+  inviteCardKindPaper: 'Paper'
+  inviteCardKindDigital: 'Digital'
   requestSelection: 'Please select'
   settings: 'Settings'
 </i18n>
