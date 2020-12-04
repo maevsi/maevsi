@@ -277,17 +277,20 @@ export default {
     compressor: shrinkRay(),
     csp: {
       policies: {
-        'base-uri': ["'none'"],
+        'base-uri': ["'none'"], // Mozilla Observatory.
         'connect-src': [`https://*.${STACK_DOMAIN}`],
         'default-src': ["'none'"],
         'font-src': ["'self'"],
-        'form-action': ["'none'"],
-        'frame-ancestors': ["'none'"],
+        'form-action': ["'none'"], // Mozilla Observatory.
+        'frame-ancestors': ["'none'"], // Mozilla Observatory.
         'img-src': ['data:', `https://*.${STACK_DOMAIN}`, "'self'"],
-        'manifest-src': ["'self'"],
+        'manifest-src': ["'self'"], // Chrome
         'report-uri': 'https://dargmuesli.report-uri.com/r/d/csp/enforce',
-        'script-src': ["'self'"],
-        'style-src': ["'self'"],
+        'script-src': [
+          "'self'",
+          'https://static.cloudflareinsights.com/beacon.min.js',
+        ],
+        'style-src': ["'self'"], // Tailwind
       },
       reportOnly: false,
     },
