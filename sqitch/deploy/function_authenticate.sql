@@ -34,7 +34,7 @@ BEGIN
 
     WITH updated AS (
       UPDATE maevsi_private.account
-      SET last_activity = DEFAULT
+      SET (last_activity, password_reset_verification) = (DEFAULT, NULL)
       WHERE
             account.username = $1
         AND account.email_address_verification IS NULL -- Has been checked before, but better safe than sorry.
