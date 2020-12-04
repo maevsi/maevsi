@@ -2145,10 +2145,10 @@
     consola "^2.12.1"
     stylelint-webpack-plugin "^2.0.0"
 
-"@nuxtjs/tailwindcss@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-3.3.2.tgz#2a3058933d0d29fe7c9619b39df0a69833f9576e"
-  integrity sha512-L/HmZldIRUgVqT3Yd20eyRaQ1/M26DyXj9+v2L2i5mDJHtfsMe0HGc4TngV1CHMziiMtHSYTu/5m+TXv/Fyx5w==
+"@nuxtjs/tailwindcss@3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-3.3.3.tgz#f1c238b7c817423043dcde231d6bf062663a5b5f"
+  integrity sha512-IAWyKm9iXGlok0GgNcjEuoMvPIAmOrUmlAFJVlpZBTySr1Bs0aeZhNqfiTUSQAEaSDLFw+gwZvxRPrHytR3J0w==
   dependencies:
     clear-module "^4.1.1"
     consola "^2.15.0"
