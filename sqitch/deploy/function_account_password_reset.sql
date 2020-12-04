@@ -18,7 +18,13 @@ BEGIN
     RAISE 'Password too short!' USING ERRCODE = 'invalid_parameter_value';
   END IF;
 
-  IF (NOT EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.password_reset_verification = $1)) THEN
+  IF (NOT EXISTS (
+    SELECT 1 FROM maevsi_private.account
+    WHERE
+      account.password_reset_verification = $1
+      AND
+      account.password_reset_verification_valid_until >= NOW()
+    )) THEN
     RAISE 'Code invalid!' USING ERRCODE = 'no_data_found';
   END IF;
 
@@ -37,7 +43,7 @@ BEGIN
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi.account_password_reset(UUID, TEXT) IS 'Sets a new password for an account if there was a request to do so before.';
+COMMENT ON FUNCTION maevsi.account_password_reset(UUID, TEXT) IS 'Sets a new password for an account if there was a request to do so before that''s still up to date.';
 
 GRANT EXECUTE ON FUNCTION maevsi.account_password_reset(UUID, TEXT) TO maevsi_anonymous;
 

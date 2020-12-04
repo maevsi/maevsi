@@ -18,7 +18,10 @@ BEGIN
   WITH updated AS (
     UPDATE maevsi_private.account
       SET email_address_verification = NULL
-      WHERE email_address_verification = $1
+      WHERE
+        email_address_verification = $1
+        AND
+        email_address_verification_valid_until >= NOW()
       RETURNING email_address
   ) SELECT email_address
     FROM updated
@@ -32,7 +35,7 @@ BEGIN
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi.account_email_address_verification(UUID) IS 'Sets the account''s email address verification code to `NULL` for which the email address verification code equals the one passed.';
+COMMENT ON FUNCTION maevsi.account_email_address_verification(UUID) IS 'Sets the account''s email address verification code to `NULL` for which the email address verification code equals the one passed and is up to date.';
 
 GRANT EXECUTE ON FUNCTION maevsi.account_email_address_verification(UUID) TO maevsi_account, maevsi_anonymous;
 
