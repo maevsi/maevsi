@@ -1,3 +1,18 @@
+# [0.26.0](https://github.com/maevsi/maevsi/compare/0.25.4...0.26.0) (2020-12-05)
+
+
+### Bug Fixes
+
+* **event:** correct margin ([6bb7327](https://github.com/maevsi/maevsi/commit/6bb73278acc1f4c62e58ee95b26a3edb9653d4a8))
+* **event:** improve iCal button's text ([8743e6d](https://github.com/maevsi/maevsi/commit/8743e6d46bffd501e665ab85193a6f2ae9d7273a))
+
+
+### Features
+
+* **event:** add ornament ([fad5827](https://github.com/maevsi/maevsi/commit/fad5827c982809630fcce3c8065d67493bb0fd4c))
+* **event:** improve feedback form ([49828ea](https://github.com/maevsi/maevsi/commit/49828ea41a65aa04ed78f35e8591eed0b0ae0dce))
+* **redeem:** show appropriate text for automatic fill ([f49c77b](https://github.com/maevsi/maevsi/commit/f49c77bbaf655892e975b67ea1f373cba1fa12a6))
+
 ## [0.25.4](https://github.com/maevsi/maevsi/compare/0.25.3...0.25.4) (2020-12-04)
 
 
