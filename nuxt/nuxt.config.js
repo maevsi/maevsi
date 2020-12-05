@@ -58,6 +58,7 @@ export default {
         useLayersText: false,
       },
     ],
+    '@nuxtjs/html-validator',
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/moment-module
