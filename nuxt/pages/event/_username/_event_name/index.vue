@@ -237,7 +237,7 @@
           <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
           <vue-markdown
             :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
-            class="description text-left text-gray-900"
+            class="description prose text-left text-gray-900"
             >{{ eventContactFeedbackData.event.description }}
           </vue-markdown>
         </div>

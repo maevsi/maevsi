@@ -223,6 +223,16 @@ module.exports = {
             },
           },
         },
+        '.prose': {
+          ol: {
+            listStylePosition: 'inside',
+            listStyleType: 'decimal',
+          },
+          ul: {
+            listStylePosition: 'inside',
+            listStyleType: 'disc',
+          },
+        },
       })
       addUtilities({
         '.bg-half-transparent': {

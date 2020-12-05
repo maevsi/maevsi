@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <div class="text-left">
+    <div class="text-left prose">
       <h2>1. Datenschutz auf einen Blick</h2>
       <h3>Allgemeine Hinweise</h3>
       <p>
@@ -260,7 +260,7 @@
         Recht auf Einschr&auml;nkung der Verarbeitung besteht in folgenden
         F&auml;llen:
       </p>
-      <ul class="list-disc">
+      <ul>
         <li>
           Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen
           Daten bestreiten, ben&ouml;tigen wir in der Regel Zeit, um dies zu
@@ -369,7 +369,7 @@
         in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns
         &uuml;bermittelt. Dies sind:
       </p>
-      <ul class="list-disc">
+      <ul>
         <li>Browsertyp und Browserversion</li>
         <li>verwendetes Betriebssystem</li>
         <li>Referrer URL</li>
