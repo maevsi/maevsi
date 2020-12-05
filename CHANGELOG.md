@@ -1,3 +1,19 @@
+# [0.27.0](https://github.com/maevsi/maevsi/compare/0.26.0...0.27.0) (2020-12-05)
+
+
+### Bug Fixes
+
+* **modal:** make body slot default ([04a5892](https://github.com/maevsi/maevsi/commit/04a5892fcf2fb38e5877c7dda939bef7451e28cc))
+* **nuxt:** add missing icon ([6cec8c8](https://github.com/maevsi/maevsi/commit/6cec8c828c1a16cd6bfc4209c071ed12d9225a74))
+
+
+### Features
+
+* **event:** use modal instead of alert ([570046c](https://github.com/maevsi/maevsi/commit/570046c3934ddae8575e925beb972710b82cd3c8))
+* **nuxt:** add html validator ([93f1694](https://github.com/maevsi/maevsi/commit/93f169481355d66a53e22ab5832f0129e4e1e987))
+* **redeem:** use modal instead of alert ([bf3fd93](https://github.com/maevsi/maevsi/commit/bf3fd939914872ea5027920946a208114294a3fc))
+* **tailwind:** add prose list styles ([ffd0473](https://github.com/maevsi/maevsi/commit/ffd0473bb562821517cd4215ac0453b77ca603b6))
+
 # [0.26.0](https://github.com/maevsi/maevsi/compare/0.25.4...0.26.0) (2020-12-05)
 
 
