@@ -71,6 +71,12 @@
         class="mt-4"
       />
     </Form>
+    <Modal
+      v-if="showModalSuccessPromise"
+      @close="showModalSuccessPromise.resolve()"
+    >
+      {{ $t('redeemSuccess') }}
+    </Modal>
   </div>
 </template>
 
@@ -89,6 +95,7 @@ export default {
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
       },
       graphqlErrorMessage: undefined,
+      showModalSuccessPromise: undefined,
       title: this.$t('title'),
     }
   },
@@ -126,19 +133,21 @@ export default {
         return
       }
 
-      alert(this.$t('redeemSuccess'))
-
-      this.$global.storeJwt(
-        this.$apollo.getClient(),
-        this.$store,
-        undefined,
-        res.jwt,
-        () => {
-          this.$router.push(
-            this.localePath(`/event/${res.organizerUsername}/${res.eventSlug}`)
-          )
-        }
-      )
+      this.showModalSuccessPromise = this.$global.getDeferredPromise(() => {
+        this.$global.storeJwt(
+          this.$apollo.getClient(),
+          this.$store,
+          undefined,
+          res.jwt,
+          () => {
+            this.$router.push(
+              this.localePath(
+                `/event/${res.organizerUsername}/${res.eventSlug}`
+              )
+            )
+          }
+        )
+      })
     },
     unused(value) {
       if (

@@ -56,6 +56,26 @@ export function checkNested(obj, level, ...rest) {
   return checkNested(obj[level], ...rest)
 }
 
+export function getDeferredPromise(then) {
+  let res, rej
+
+  const promise = new Promise((resolve, reject) => {
+    res = resolve
+    rej = reject
+  })
+
+  promise.resolve = res
+  promise.reject = rej
+
+  if (then) {
+    promise.then(() => {
+      then()
+    })
+  }
+
+  return promise
+}
+
 export function getJwtFromCookie(req) {
   if (req.headers.cookie) {
     const cookies = cookie.parse(req.headers.cookie)
@@ -185,6 +205,7 @@ export default async ({ app, req, res, store }, inject) => {
     authenticateAnonymous,
     capitalizeFirstLetter,
     checkNested,
+    getDeferredPromise,
     getJwtFromCookie,
     jwtRefresh,
     signOut,
