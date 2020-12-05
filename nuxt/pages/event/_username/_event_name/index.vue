@@ -343,7 +343,7 @@ export default {
 de:
   greeting: 'Hey{usernameString}!'
   greetingDescription: 'Du wurdest zu folgender Veranstaltung eingeladen:'
-  iCalDownload: 'Als iCal herunterladen'
+  iCalDownload: 'Zum Kalender hinzufügen'
   iCalUnexpectedStatusCode: 'Fehler: Statuscode {statusCode}. iCal-Daten konnten nicht geladen werden.'
   inviteAccept: 'Einladung annehmen'
   inviteAccepted: 'Einladung angenommen'
@@ -358,7 +358,7 @@ de:
 en:
   greeting: 'Hey{usernameString}!'
   greetingDescription: "You've been invited to the following event:"
-  iCalDownload: 'Download as iCal'
+  iCalDownload: 'Add to calendar'
   iCalUnexpectedStatusCode: 'Error: Status code {statusCode}. Could not get iCal data.'
   inviteAccept: 'Accept invite'
   inviteAccepted: 'Invite accepted'
