@@ -81,7 +81,7 @@
     "@types/node": "14.14.10",
     "@vue/cli-shared-utils": "4.5.9",
     "babel-eslint": "10.1.0",
-    "eslint": "7.14.0",
+    "eslint": "7.15.0",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-nuxt": "2.0.0",
     "eslint-plugin-prettier": "3.2.0",
