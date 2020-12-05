@@ -102,6 +102,136 @@
         >
           {{ $t('iCalDownload') }}
         </Button>
+        <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
+          <hr class="my-4" />
+          <div class="grid grid-cols-6 justify-content-center text-gray-600">
+            <div
+              class="text-white m-2"
+              :class="{
+                'col-span-5':
+                  eventContactFeedbackData.invitationFeedbackData
+                    .invitationFeedback === 'ACCEPTED',
+                'col-span-6':
+                  eventContactFeedbackData.invitationFeedbackData
+                    .invitationFeedback === null ||
+                  eventContactFeedbackData.invitationFeedbackData
+                    .invitationFeedback === 'CANCELED',
+              }"
+            >
+              <div class="flex justify-center">
+                <div
+                  v-if="
+                    eventContactFeedbackData.invitationFeedbackData
+                      .invitationFeedback === 'CANCELED'
+                  "
+                  class="flex font-semibold items-center text-red-600"
+                >
+                  <FontAwesomeIcon
+                    class="mr-2"
+                    :icon="['fas', 'times-circle']"
+                    size="lg"
+                    title="canceled"
+                  />
+                  {{ $t('inviteCanceled') }}
+                </div>
+                <ButtonGreen
+                  v-if="
+                    eventContactFeedbackData.invitationFeedbackData
+                      .invitationFeedback === null ||
+                    eventContactFeedbackData.invitationFeedbackData
+                      .invitationFeedback === 'CANCELED'
+                  "
+                  class="mx-2"
+                  :icon="false"
+                  @click.native="accept"
+                >
+                  {{ $t('inviteAccept') }}
+                </ButtonGreen>
+                <div
+                  v-if="
+                    eventContactFeedbackData.invitationFeedbackData
+                      .invitationFeedback === 'ACCEPTED'
+                  "
+                  class="flex font-semibold items-center text-green-600"
+                >
+                  <FontAwesomeIcon
+                    class="mr-2"
+                    :icon="['fas', 'check-circle']"
+                    size="lg"
+                    title="accepted"
+                  />
+                  {{ $t('inviteAccepted') }}
+                </div>
+                <Button
+                  v-if="
+                    eventContactFeedbackData.invitationFeedbackData
+                      .invitationFeedback === null ||
+                    eventContactFeedbackData.invitationFeedbackData
+                      .invitationFeedback === 'ACCEPTED'
+                  "
+                  class="mx-2"
+                  :icon="false"
+                  @click.native="cancel"
+                >
+                  {{ $t('inviteCancel') }}
+                </Button>
+              </div>
+            </div>
+            <div
+              v-if="
+                eventContactFeedbackData.invitationFeedbackData
+                  .invitationFeedback === 'ACCEPTED'
+              "
+              class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-white"
+            >
+              1/2
+            </div>
+            <div
+              v-if="
+                eventContactFeedbackData.invitationFeedbackData
+                  .invitationFeedback !== null &&
+                eventContactFeedbackData.invitationFeedbackData
+                  .invitationFeedback === 'ACCEPTED'
+              "
+              class="col-span-5"
+            >
+              <FormInput
+                label-for="input-paper-invitation-feedback"
+                :title="$t('inviteCardKind')"
+              >
+                <select
+                  id="input-paper-invitation-feedback"
+                  v-model="
+                    eventContactFeedbackData.invitationFeedbackData
+                      .paperInvitationFeedback
+                  "
+                  class="form-input"
+                  @change="paperInvitationFeedback"
+                >
+                  <option disabled :value="null">
+                    {{ $t('requestSelection') }}
+                  </option>
+                  <option value="NONE">{{ $t('inviteCardKindNone') }}</option>
+                  <option value="PAPER">{{ $t('inviteCardKindPaper') }}</option>
+                  <option value="DIGITAL">
+                    {{ $t('inviteCardKindDigital') }}
+                  </option>
+                </select>
+              </FormInput>
+            </div>
+            <div
+              v-if="
+                eventContactFeedbackData.invitationFeedbackData
+                  .invitationFeedback !== null &&
+                eventContactFeedbackData.invitationFeedbackData
+                  .invitationFeedback === 'ACCEPTED'
+              "
+              class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-white"
+            >
+              2/2
+            </div>
+          </div>
+        </div>
         <div v-if="eventContactFeedbackData.event.description">
           <hr class="my-4" />
           <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
@@ -111,85 +241,8 @@
             >{{ eventContactFeedbackData.event.description }}
           </vue-markdown>
         </div>
-        <hr class="my-4" />
-        <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
-          <div class="text-white mb-4">
-            <div class="flex justify-center">
-              <ButtonGreen
-                v-if="
-                  eventContactFeedbackData.invitationFeedbackData
-                    .invitationFeedback === null ||
-                  eventContactFeedbackData.invitationFeedbackData
-                    .invitationFeedback == 'CANCELED'
-                "
-                :icon="false"
-                @click.native="accept"
-              >
-                {{ $t('inviteAccept') }}
-              </ButtonGreen>
-              <div
-                v-if="
-                  eventContactFeedbackData.invitationFeedbackData
-                    .invitationFeedback == 'ACCEPTED'
-                "
-                class="flex font-semibold items-center text-green-600"
-              >
-                <FontAwesomeIcon
-                  class="mr-2 text-green-600"
-                  :icon="['fas', 'check-circle']"
-                  size="lg"
-                  title="accepted"
-                />
-                {{ $t('inviteAccepted') }}
-              </div>
-              <Button
-                v-if="
-                  eventContactFeedbackData.invitationFeedbackData
-                    .invitationFeedback === null ||
-                  eventContactFeedbackData.invitationFeedbackData
-                    .invitationFeedback == 'ACCEPTED'
-                "
-                class="mx-2"
-                :icon="false"
-                @click.native="cancel"
-              >
-                {{ $t('inviteCancel') }}
-              </Button>
-            </div>
-          </div>
-          <div
-            v-if="
-              eventContactFeedbackData.invitationFeedbackData
-                .invitationFeedback !== null &&
-              eventContactFeedbackData.invitationFeedbackData
-                .invitationFeedback == 'ACCEPTED'
-            "
-          >
-            <label
-              class="mb-1 md:mb-0 pr-0"
-              for="input-paper-invitation-feedback"
-              >{{ $t('inviteCardKind') }}</label
-            >
-            <select
-              id="input-paper-invitation-feedback"
-              v-model="
-                eventContactFeedbackData.invitationFeedbackData
-                  .paperInvitationFeedback
-              "
-              class="form-input"
-              @change="paperInvitationFeedback"
-            >
-              <option disabled :value="null">
-                {{ $t('requestSelection') }}
-              </option>
-              <option value="NONE">{{ $t('inviteCardKindNone') }}</option>
-              <option value="PAPER">{{ $t('inviteCardKindPaper') }}</option>
-              <option value="DIGITAL">{{ $t('inviteCardKindDigital') }}</option>
-            </select>
-          </div>
-        </div>
         <img
-          class="m-auto opacity-25 md:w-3/4 xl:w-1/2"
+          class="m-auto mt-2 opacity-25 md:w-3/4 xl:w-1/2"
           src="~/assets/ornament.png"
         />
       </div>
@@ -348,6 +401,7 @@ de:
   inviteAccept: 'Einladung annehmen'
   inviteAccepted: 'Einladung angenommen'
   inviteCancel: 'Einladung ablehnen'
+  inviteCanceled: 'Einladung abgelehnt'
   inviteCardKind: 'Art der Einladungskarte'
   inviteCardKindNone: 'Keine'
   inviteCardKindPaper: 'Papier'
@@ -363,6 +417,7 @@ en:
   inviteAccept: 'Accept invite'
   inviteAccepted: 'Invite accepted'
   inviteCancel: 'Cancel invite'
+  inviteCanceled: 'Invite canceled'
   inviteCardKind: 'Kind of invite card'
   inviteCardKindNone: 'None'
   inviteCardKindPaper: 'Paper'

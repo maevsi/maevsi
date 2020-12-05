@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-3">
     <div
       :class="{ 'animate-shake form-input-error': error }"
       class="md:flex md:items-center"
@@ -16,7 +16,7 @@
         <slot />
       </div>
     </div>
-    <div class="md:flex md:items-center mb-6">
+    <div class="md:flex md:items-center">
       <div class="md:w-1/3" />
       <div class="md:w-2/3">
         <slot name="formError" />
