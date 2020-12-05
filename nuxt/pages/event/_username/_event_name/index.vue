@@ -250,6 +250,9 @@
     <div v-else>
       <Error :status-code="404" />
     </div>
+    <Modal v-if="showModalSuccess" @close="showModalSuccess = false">
+      {{ $t('success') }}
+    </Modal>
   </Loader>
 </template>
 
@@ -291,6 +294,7 @@ export default {
       eventContactFeedbackData: undefined,
       eventContactFeedbackDataToSend: undefined,
       graphqlErrorMessage: undefined,
+      showModalSuccess: false,
     }
   },
   head() {
@@ -381,7 +385,7 @@ export default {
           },
         })
         .then((_data) => {
-          alert(this.$t('success'))
+          this.showModalSuccess = true
         })
         .catch((error) => {
           alert(error.message)
