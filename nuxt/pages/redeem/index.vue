@@ -2,9 +2,16 @@
   <div class="m-auto max-w-xl">
     <h1>{{ title }}</h1>
     <div class="mb-4">
-      {{ $t('greetingQuestion') }}
-      <br />
-      {{ $t('greetingRequest') }}
+      <p v-if="this.$route.query.ic">
+        {{ $t('greetingAutomatic') }}
+        <br />
+        {{ $t('greetingAutomaticAction') }}
+      </p>
+      <p v-else>
+        {{ $t('greetingManual') }}
+        <br />
+        {{ $t('greetingManualAction') }}
+      </p>
     </div>
     <Form
       :graphql-error-message="graphqlErrorMessage"
@@ -160,14 +167,18 @@ export default {
 
 <i18n lang="yml">
 de:
-  greetingQuestion: 'Hast du einen Einladungscode für eine Veranstaltung erhalten?'
-  greetingRequest: 'Gib ihn hier ein!'
+  greetingAutomatic: 'Dein Einladungscode wurde automatisch eingetragen.'
+  greetingAutomaticAction: 'Du kannst ihn direkt einlösen!'
+  greetingManual: 'Du hast einen Einladungscode für eine Veranstaltung erhalten?'
+  greetingManualAction: 'Gib ihn hier ein!'
   invitationCode: 'Einladungscode'
   redeemSuccess: 'Einladungscode erfolgreich eingelöst.'
   title: 'Einlösen'
 en:
-  greetingQuestion: 'Did you receive an invitation code for an event?'
-  greetingRequest: 'Enter it here!'
+  greetingAutomatic: 'Your invitation code was entered automatically.'
+  greetingAutomaticAction: 'You can redeem it right away!'
+  greetingManual: 'Did you receive an invitation code for an event?'
+  greetingManualAction: 'Enter it here!'
   invitationCode: 'Invitation code'
   redeemSuccess: 'Invitation code redeemed successfully.'
   title: 'Redeem' # This property is currently used for the title and the button.
