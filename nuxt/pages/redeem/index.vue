@@ -105,7 +105,7 @@ export default {
   head() {
     return { title: this.title }
   },
-  created() {
+  mounted() {
     if (this.$route.query.ic !== undefined) {
       this.$v.form['invitation-code'].$touch()
     }
