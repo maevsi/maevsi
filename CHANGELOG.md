@@ -1,3 +1,16 @@
+# [0.28.0](https://github.com/maevsi/maevsi/compare/0.27.0...0.28.0) (2020-12-06)
+
+
+### Bug Fixes
+
+* **redeem:** use autofill in `mounted` instead of `created` ([4e485ec](https://github.com/maevsi/maevsi/commit/4e485ec9f491d8f8beb797781d33d21d8fbcab8a))
+
+
+### Features
+
+* **redeem:** disable use check ([fce6a0f](https://github.com/maevsi/maevsi/commit/fce6a0fa5eeffd39b4e0753937d05b3acb9da44e))
+* **redeem:** further improve description ([33615e4](https://github.com/maevsi/maevsi/commit/33615e4b15671fce367e096e5ba6415b38663836))
+
 # [0.27.0](https://github.com/maevsi/maevsi/compare/0.26.0...0.27.0) (2020-12-05)
 
 
