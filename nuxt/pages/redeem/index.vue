@@ -12,6 +12,9 @@
         <br />
         {{ $t('greetingManualAction') }}
       </p>
+      <p>
+        {{ $t('greetingStorage') }}
+      </p>
     </div>
     <Form
       :graphql-error-message="graphqlErrorMessage"
@@ -179,7 +182,8 @@ de:
   greetingAutomatic: 'Dein Einladungscode wurde automatisch eingetragen.'
   greetingAutomaticAction: 'Du kannst ihn direkt einlösen!'
   greetingManual: 'Du hast einen Einladungscode für eine Veranstaltung erhalten?'
-  greetingManualAction: 'Gib ihn hier ein!'
+  greetingManualAction: 'Gib ihn hier ein, um Zugang zur Veranstaltungsseite zu erhalten!'
+  greetingStorage: 'Der Code wird dann in diesem Browser gespeichert, behält aber seine Gültigkeit.'
   invitationCode: 'Einladungscode'
   redeemSuccess: 'Einladungscode erfolgreich eingelöst.'
   title: 'Einlösen'
@@ -187,7 +191,8 @@ en:
   greetingAutomatic: 'Your invitation code was entered automatically.'
   greetingAutomaticAction: 'You can redeem it right away!'
   greetingManual: 'Did you receive an invitation code for an event?'
-  greetingManualAction: 'Enter it here!'
+  greetingManualAction: 'Enter it here to get access to the event page!'
+  greetingStorage: 'The code will then be saved to this browser, but stays valid.'
   invitationCode: 'Invitation code'
   redeemSuccess: 'Invitation code redeemed successfully.'
   title: 'Redeem' # This property is currently used for the title and the button.
