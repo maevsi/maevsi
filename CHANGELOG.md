@@ -1,3 +1,10 @@
+## [0.29.1](https://github.com/maevsi/maevsi/compare/0.29.0...0.29.1) (2020-12-06)
+
+
+### Bug Fixes
+
+* **docker:** skip husky installation ([c9394e6](https://github.com/maevsi/maevsi/commit/c9394e6d5ec4b19054fc7d2d48dbe80f57169190))
+
 # [0.29.0](https://github.com/maevsi/maevsi/compare/0.28.0...0.29.0) (2020-12-06)
 
 
