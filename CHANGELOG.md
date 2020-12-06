@@ -1,3 +1,10 @@
+## [0.29.2](https://github.com/maevsi/maevsi/compare/0.29.1...0.29.2) (2020-12-06)
+
+
+### Bug Fixes
+
+* **docker:** add missing production node environment variable ([795607e](https://github.com/maevsi/maevsi/commit/795607eb7b639001819c1dd79ce48ef38462cfca))
+
 ## [0.29.1](https://github.com/maevsi/maevsi/compare/0.29.0...0.29.1) (2020-12-06)
 
 
