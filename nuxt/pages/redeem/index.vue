@@ -40,12 +40,12 @@
           >
             {{ $t('globalValidationRequired') }}
           </FormError>
-          <FormError
+          <!-- <FormError
             :validation-object="$v.form['invitation-code']"
             validation-property="unused"
           >
             {{ $t('globalValidationUsed') }}
-          </FormError>
+          </FormError> -->
           <FormError
             :validation-object="$v.form['invitation-code']"
             validation-property="formatUuid"
@@ -152,23 +152,23 @@ export default {
         )
       })
     },
-    unused(value) {
-      if (
-        this.$global.checkNested(this.$store.state.jwtDecoded, 'invites') &&
-        this.$store.state.jwtDecoded.invites.includes(value)
-      ) {
-        return false
-      } else {
-        return true
-      }
-    },
+    // unused(value) {
+    //   if (
+    //     this.$global.checkNested(this.$store.state.jwtDecoded, 'invites') &&
+    //     this.$store.state.jwtDecoded.invites.includes(value)
+    //   ) {
+    //     return false
+    //   } else {
+    //     return true
+    //   }
+    // },
   },
   validations() {
     return {
       form: {
         'invitation-code': {
           required,
-          unused: this.unused,
+          // unused: this.unused,
           formatUuid: this.$global.VERIFICATION_FORMAT_UUID,
         },
       },

@@ -218,7 +218,7 @@ export default {
               globalValidationRequired: 'Pflichtfeld.',
               globalValidationTooLong: 'Zu lang.',
               globalValidationTooShort: 'Zu kurz.',
-              globalValidationUsed: 'Schon benutzt.',
+              // globalValidationUsed: 'Schon benutzt.',
             },
             en: {
               globalLoading: 'Loading...',
@@ -232,7 +232,7 @@ export default {
               globalValidationRequired: 'Required.',
               globalValidationTooLong: 'Too long.',
               globalValidationTooShort: 'Too short.',
-              globalValidationUsed: 'Already used.',
+              // globalValidationUsed: 'Already used.',
             },
           },
           silentFallbackWarn: true,
