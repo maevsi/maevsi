@@ -79,6 +79,8 @@ RUN yarn install
 # sqitch requires at least buster.
 FROM node:14.15.1-buster-slim@sha256:4e3fb2a07ae01815771ee88e30458c63347c09597cb7291f58a05f5ed7a197d2 AS production
 
+ENV NODE_ENV=production
+
 # Update and install dependencies.
 # - `sqitch` is required by the entrypoint
 RUN apt-get update \
