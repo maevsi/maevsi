@@ -1,3 +1,10 @@
+# [0.29.0](https://github.com/maevsi/maevsi/compare/0.28.0...0.29.0) (2020-12-06)
+
+
+### Features
+
+* **redeem:** further explanation optimization ([56607b6](https://github.com/maevsi/maevsi/commit/56607b6851b512be033234d2d8de39789c4baf83))
+
 # [0.28.0](https://github.com/maevsi/maevsi/compare/0.27.0...0.28.0) (2020-12-06)
 
 
