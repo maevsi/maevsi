@@ -12,9 +12,6 @@
         <br />
         {{ $t('greetingManualAction') }}
       </p>
-      <p>
-        {{ $t('greetingStorage') }}
-      </p>
     </div>
     <Form
       :graphql-error-message="graphqlErrorMessage"
@@ -74,6 +71,9 @@
         class="mt-4"
       />
     </Form>
+    <p class="mt-2 text-left opacity-50">
+      {{ $t('greetingExplanation') }}
+    </p>
     <Modal
       v-if="showModalSuccessPromise"
       @close="showModalSuccessPromise.resolve()"
@@ -181,18 +181,18 @@ export default {
 de:
   greetingAutomatic: 'Dein Einladungscode wurde automatisch eingetragen.'
   greetingAutomaticAction: 'Du kannst ihn direkt einlösen!'
+  greetingExplanation: 'Einladungscodes ermöglichen dir den Zugriff auf Veranstaltungsseiten, ohne dass du dir einen Account erstellen musst. Der Code wird in diesem Browser gespeichert und kann erneut eingelöst werden.'
   greetingManual: 'Du hast einen Einladungscode für eine Veranstaltung erhalten?'
-  greetingManualAction: 'Gib ihn hier ein, um Zugang zur Veranstaltungsseite zu erhalten!'
-  greetingStorage: 'Der Code wird dann in diesem Browser gespeichert, behält aber seine Gültigkeit.'
+  greetingManualAction: 'Gib ihn hier ein!'
   invitationCode: 'Einladungscode'
   redeemSuccess: 'Einladungscode erfolgreich eingelöst.'
   title: 'Einlösen'
 en:
   greetingAutomatic: 'Your invitation code was entered automatically.'
   greetingAutomaticAction: 'You can redeem it right away!'
+  greetingExplanation: 'Invitation codes allow access to event pages without the need to create an account. The code will be saved to this browser and can be redeemed again.'
   greetingManual: 'Did you receive an invitation code for an event?'
-  greetingManualAction: 'Enter it here to get access to the event page!'
-  greetingStorage: 'The code will then be saved to this browser, but stays valid.'
+  greetingManualAction: 'Enter it here!'
   invitationCode: 'Invitation code'
   redeemSuccess: 'Invitation code redeemed successfully.'
   title: 'Redeem' # This property is currently used for the title and the button.
