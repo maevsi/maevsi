@@ -37,12 +37,6 @@
           >
             {{ $t('globalValidationRequired') }}
           </FormError>
-          <!-- <FormError
-            :validation-object="$v.form['invitation-code']"
-            validation-property="unused"
-          >
-            {{ $t('globalValidationUsed') }}
-          </FormError> -->
           <FormError
             :validation-object="$v.form['invitation-code']"
             validation-property="formatUuid"
@@ -62,7 +56,7 @@
           :icon="false"
           type="submit"
         >
-          {{ $t('title') }}
+          {{ $t('submit') }}
         </Button>
       </div>
       <AlertGraphql
@@ -152,23 +146,12 @@ export default {
         )
       })
     },
-    // unused(value) {
-    //   if (
-    //     this.$global.checkNested(this.$store.state.jwtDecoded, 'invites') &&
-    //     this.$store.state.jwtDecoded.invites.includes(value)
-    //   ) {
-    //     return false
-    //   } else {
-    //     return true
-    //   }
-    // },
   },
   validations() {
     return {
       form: {
         'invitation-code': {
           required,
-          // unused: this.unused,
           formatUuid: this.$global.VERIFICATION_FORMAT_UUID,
         },
       },
@@ -186,6 +169,7 @@ de:
   greetingManualAction: 'Gib ihn hier ein!'
   invitationCode: 'Einladungscode'
   redeemSuccess: 'Einladungscode erfolgreich eingelöst.'
+  submit: 'Zur Veranstaltungsseite'
   title: 'Einlösen'
 en:
   greetingAutomatic: 'Your invitation code was entered automatically.'
@@ -195,5 +179,6 @@ en:
   greetingManualAction: 'Enter it here!'
   invitationCode: 'Invitation code'
   redeemSuccess: 'Invitation code redeemed successfully.'
+  submit: 'Show event page'
   title: 'Redeem' # This property is currently used for the title and the button.
 </i18n>
