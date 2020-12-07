@@ -1,3 +1,10 @@
+# [0.30.0](https://github.com/maevsi/maevsi/compare/0.29.2...0.30.0) (2020-12-07)
+
+
+### Features
+
+* **redeem:** rename submit button ([dfa81e8](https://github.com/maevsi/maevsi/commit/dfa81e87c3a4ac580595c6b0ea3369b5f92db093))
+
 ## [0.29.2](https://github.com/maevsi/maevsi/compare/0.29.1...0.29.2) (2020-12-06)
 
 
