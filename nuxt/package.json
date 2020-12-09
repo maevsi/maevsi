@@ -52,7 +52,7 @@
     "nuxt": "2.14.10",
     "nuxt-healthcheck": "1.0.1",
     "nuxt-helmet": "2.0.0",
-    "nuxt-i18n": "6.15.4",
+    "nuxt-i18n": "6.16.0",
     "pg": "8.5.1",
     "pretty-bytes": "5.4.1",
     "shrink-ray-current": "4.1.2",
