@@ -76,6 +76,10 @@ module.exports = {
           content: '""',
           display: 'inline-block',
           mask:
+            // 'alpha.' cannot be removed as this would result in a redirect
+            // that cannot be followed in complicance with CORS headers without
+            // allowing "null" as allowed origin, which is discouraged
+            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin#Directives
             'url(https://alpha.' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
             '/assets/static/icons/external-link-alt-solid.svg) no-repeat 50% 50%',
