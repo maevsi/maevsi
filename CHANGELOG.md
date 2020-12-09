@@ -1,3 +1,10 @@
+## [0.30.1](https://github.com/maevsi/maevsi/compare/0.30.0...0.30.1) (2020-12-09)
+
+
+### Bug Fixes
+
+* **event:** add missing img alt ([df719a5](https://github.com/maevsi/maevsi/commit/df719a516bfdfee8ea42f6366a9e477448d9433d))
+
 # [0.30.0](https://github.com/maevsi/maevsi/compare/0.29.2...0.30.0) (2020-12-07)
 
 
