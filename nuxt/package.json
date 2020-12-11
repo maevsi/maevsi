@@ -77,7 +77,7 @@
     "@nuxtjs/html-validator": "0.1.4",
     "@nuxtjs/moment": "1.6.1",
     "@nuxtjs/stylelint-module": "4.0.0",
-    "@nuxtjs/tailwindcss": "3.3.3",
+    "@nuxtjs/tailwindcss": "3.3.4",
     "@types/jsonwebtoken": "8.5.0",
     "@types/node": "14.14.12",
     "@vue/cli-shared-utils": "4.5.9",
