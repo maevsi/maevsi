@@ -8775,12 +8775,12 @@ hyperlinker@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyperlinker/-/hyperlinker-1.0.0.tgz#23dc9e38a206b208ee49bc2d6c8ef47027df0c0e"
   integrity sha512-Ty8UblRWFEcfSuIaajM34LdPXIhbs1ajEX/BBPv24J+enSVaEVY63xQ6lTO9VRYS5LAoghIG0IDJ+p+IPzKUQQ==
 
-ical-generator@1.15.2:
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-1.15.2.tgz#7f4fbe80db8d327b0396fed59219de65beb89832"
-  integrity sha512-+G92MzEouVkQ5/1Qizh8qprvI5a+iMKCGeavUAwWoAuiF19TNAOO9z8qnnrX9UbW7URoE/8PVAo7SWv7V1u4jQ==
+ical-generator@1.15.3:
+  version "1.15.3"
+  resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-1.15.3.tgz#dc4d17f22e228e1b7b2836d2d104e93dac0d5c4c"
+  integrity sha512-adxfbOdV9HKiUPZwWRHeuNBHslDEB3eY4nZZ+QI48XuoUQGxZfw0xPer8SgumP7JnYRfhSZruuPys4dMjYu28w==
   dependencies:
-    moment-timezone "^0.5.31"
+    moment-timezone "^0.5.32"
 
 iconv-lite@0.4.24, iconv-lite@^0.4.24, iconv-lite@^0.4.4:
   version "0.4.24"
@@ -10842,10 +10842,17 @@ moment-timezone-data-webpack-plugin@^1.3.0:
     find-cache-dir "^3.0.0"
     make-dir "^3.0.0"
 
-moment-timezone@^0.5.28, moment-timezone@^0.5.31:
+moment-timezone@^0.5.28:
   version "0.5.31"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.31.tgz#9c40d8c5026f0c7ab46eda3d63e49c155148de05"
   integrity sha512-+GgHNg8xRhMXfEbv81iDtrVeTcWt0kWmTEY1XQK14dICTXnWJnT0dxdlPspwqF3keKMVPXwayEsk1DI0AA/jdA==
+  dependencies:
+    moment ">= 2.9.0"
+
+moment-timezone@^0.5.32:
+  version "0.5.32"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.32.tgz#db7677cc3cc680fd30303ebd90b0da1ca0dfecc2"
+  integrity sha512-Z8QNyuQHQAmWucp8Knmgei8YNo28aLjJq6Ma+jy1ZSpSk5nyfRT8xgUbSQvD2+2UajISfenndwvFuH3NGS+nvA==
   dependencies:
     moment ">= 2.9.0"
 
