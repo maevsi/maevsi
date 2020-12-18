@@ -2088,10 +2088,10 @@
     consola "^2.12.1"
     stylelint-webpack-plugin "^2.0.0"
 
-"@nuxtjs/tailwindcss@3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-3.4.0.tgz#dc059ce6a823443b7a3847e29237e17dac7b633f"
-  integrity sha512-gj5ZeY4OjZ6lP2cF6g4BxQ9pVt9XXbo/Znlmv/E8Bg/WwTn3Mi2buCakS2n1wx1wtI2xLJF95eOW6eOW86oE8Q==
+"@nuxtjs/tailwindcss@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-3.4.1.tgz#d1e1e64c4df75ddfdef09441a9157019249e689e"
+  integrity sha512-DIBtYo77qb3hX+Y0DqGVAGp+H9Wpvi+2laEQFDpTw4GBvw/4BCZ52zUYiBsH5tGaVCNBqPenGoxmnZbO68r5qQ==
   dependencies:
     "@nuxt/ufo" "^0.5.2"
     chalk "^4.1.0"
