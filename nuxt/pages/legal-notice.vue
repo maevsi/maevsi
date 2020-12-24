@@ -10,7 +10,7 @@
       </p>
 
       <h2>Kontakt</h2>
-      <p>E-Mail: server+imprint@jonas-thelemann.de</p>
+      <p>E-Mail: server+legal-notice@jonas-thelemann.de</p>
 
       <h2>Verantwortlich f&uuml;r den Inhalt nach &sect; 55 Abs. 2 RStV</h2>
       <p>
@@ -104,5 +104,5 @@ export default {
 de:
   title: 'Impressum'
 en:
-  title: 'Imprint'
+  title: 'Legal notice'
 </i18n>

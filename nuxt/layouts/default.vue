@@ -93,8 +93,8 @@
             class="my-2"
             title="scale"
           />
-          <nuxt-link :to="localePath('/imprint')">{{
-            $t('imprint')
+          <nuxt-link :to="localePath('/legal-notice')">{{
+            $t('legal-notice')
           }}</nuxt-link>
           <nuxt-link :to="localePath('/privacy-policy')">{{
             $t('privacyPolicy')
@@ -161,7 +161,7 @@ de:
   account: 'Konto'
   browserUnsupported: 'Diese Browserversion wird nicht unterstützt.'
   home: 'Nach Hause'
-  imprint: 'Impressum'
+  legal-notice: 'Impressum'
   signOut: 'Abmelden'
   privacyPolicy: 'Datenschutzerklärung'
   session: 'Sitzung'
@@ -170,9 +170,9 @@ en:
   account: 'Account'
   browserUnsupported: 'This browser version is not supported.'
   home: 'Head home'
-  imprint: 'Imprint'
+  legal-notice: 'Legal notice'
   signOut: 'Sign out'
-  privacyPolicy: 'Privacy Policy'
+  privacyPolicy: 'Privacy policy'
   session: 'Session'
   settings: 'Settings'
 </i18n>
