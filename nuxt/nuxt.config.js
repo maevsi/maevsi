@@ -271,6 +271,10 @@ export default {
     '~/plugins/slugify.js',
   ],
 
+  publicRuntimeConfig: {
+    dev: process.env.NODE_ENV !== 'production',
+  },
+
   render: {
     compressor: shrinkRay(),
     csp: {

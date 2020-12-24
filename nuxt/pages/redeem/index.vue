@@ -8,11 +8,15 @@
     >
       <FormInput
         :error="$v.form['invitation-code'].$error"
-        label-for="input-invitation-code"
+        :label-for="inputId"
         :title="$t('invitationCode')"
       >
+        <!--
+          The id's suffix `-maevsi` makes browser suggest inputs just for this
+          service.
+        -->
         <input
-          id="input-invitation-code"
+          :id="inputId"
           v-model.trim="invitationCodeModel"
           class="form-input"
           :disabled="$route.query.ic"
@@ -90,6 +94,9 @@ export default {
     return { title: this.title }
   },
   computed: {
+    inputId() {
+      return `input-invitation-code-maevsi-${this.$config.dev ? 'dev' : 'prod'}`
+    },
     invitationCodeModel: {
       get() {
         return this.$route.query.ic !== undefined
