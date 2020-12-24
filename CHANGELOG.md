@@ -1,3 +1,12 @@
+## [0.30.3](https://github.com/maevsi/maevsi/compare/0.30.2...0.30.3) (2020-12-24)
+
+
+### Bug Fixes
+
+* **legal-notice:** correct name ([364f27e](https://github.com/maevsi/maevsi/commit/364f27e0f32a090d8222d8bab5ae3a69144265df))
+* **sqitch/account:** add missing columns to verify ([c5426ad](https://github.com/maevsi/maevsi/commit/c5426adc00a52e7ec5ace4847e5edbc59b69e840))
+* **sqitch/authenticate:** add missing require ([79a91f8](https://github.com/maevsi/maevsi/commit/79a91f84794b8c3a5cd46df68700c69dc7b44d2e))
+
 ## [0.30.2](https://github.com/maevsi/maevsi/compare/0.30.1...0.30.2) (2020-12-21)
 
 
