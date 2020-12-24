@@ -30,7 +30,7 @@
           type="text"
           placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         />
-        <template slot="formError">
+        <template slot="inputError">
           <FormError
             :validation-object="$v.form['invitation-code']"
             validation-property="required"

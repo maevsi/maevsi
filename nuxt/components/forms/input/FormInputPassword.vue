@@ -12,7 +12,7 @@
       :value="v.form[formKeyComputed].$model"
       @input="$emit('input', $event.target.value)"
     />
-    <template slot="formError">
+    <template slot="inputError">
       <FormError
         :validation-object="v.form[formKeyComputed]"
         validation-property="required"

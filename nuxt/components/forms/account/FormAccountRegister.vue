@@ -17,7 +17,7 @@
         type="text"
         :placeholder="$t('usernamePlaceholder')"
       />
-      <template slot="formError">
+      <template slot="inputError">
         <FormError
           :validation-object="$v.form.username"
           validation-property="required"

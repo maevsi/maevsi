@@ -17,7 +17,7 @@
         :placeholder="$t('namePlaceholder')"
         @input="updateSlug"
       />
-      <template slot="formError">
+      <template slot="inputError">
         <FormError
           :validation-object="$v.form['name']"
           validation-property="required"
@@ -44,7 +44,7 @@
         type="text"
         :placeholder="$t('slugPlaceholder')"
       />
-      <template slot="formError">
+      <template slot="inputError">
         <FormError
           :validation-object="$v.form['slug']"
           validation-property="required"
@@ -80,7 +80,7 @@
         ]"
         @change="$v.form['visibility'].$model = $event"
       />
-      <template slot="formError">
+      <template slot="inputError">
         <FormError
           :validation-object="$v.form['visibility']"
           validation-property="required"
@@ -100,7 +100,7 @@
         class="form-input"
         type="number"
       />
-      <template slot="formError">
+      <template slot="inputError">
         <FormError
           :validation-object="$v.form['maximum-invitee-count']"
           validation-property="minValue"
@@ -140,7 +140,7 @@
           </div>
         </template>
       </TabFlip>
-      <template slot="formError">
+      <template slot="inputError">
         <FormError
           :validation-object="$v.form['description']"
           validation-property="maxLength"
@@ -160,7 +160,7 @@
         class="form-input"
         type="text"
       />
-      <template slot="formError">
+      <template slot="inputError">
         <FormError
           :validation-object="$v.form['place']"
           validation-property="maxLength"
