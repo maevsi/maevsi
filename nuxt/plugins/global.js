@@ -142,7 +142,7 @@ export async function storeJwt(
   store,
   res,
   jwt,
-  then = () => {
+  callback = () => {
     window.location.reload()
   }
 ) {
@@ -163,30 +163,44 @@ export async function storeJwt(
       })
     )
   } else {
-    const xhr = new XMLHttpRequest()
+    xhrPromise('POST', '/auth', jwt).then(
+      (_data) => callback(),
+      (_error) => alert('Authorization failed!')
+    )
+  }
+}
 
-    xhr.open('POST', '/auth', true)
+export function xhrPromise(method, url, jwt) {
+  return new Promise(function (resolve, reject) {
+    const xhr = new XMLHttpRequest()
+    xhr.open(method, url)
 
     if (jwt) {
       xhr.setRequestHeader('Authorization', 'Bearer ' + jwt)
     }
 
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState === 4) {
-        switch (xhr.status) {
-          case 200:
-            then()
-            break
-          case 500:
-            alert('Authorization failed!')
-            break
-          default:
-            alert('Authorization returned an unexpected status code.')
-        }
+    xhr.onload = function () {
+      if (this.status >= 200 && this.status < 300) {
+        resolve(xhr.response)
+      } else {
+        reject(
+          new Error({
+            status: this.status,
+            statusText: xhr.statusText,
+          })
+        )
       }
     }
+    xhr.onerror = function () {
+      reject(
+        new Error({
+          status: this.status,
+          statusText: xhr.statusText,
+        })
+      )
+    }
     xhr.send()
-  }
+  })
 }
 
 export default async ({ app, req, res, store }, inject) => {
@@ -212,6 +226,7 @@ export default async ({ app, req, res, store }, inject) => {
     objectClone,
     removeTypename,
     storeJwt,
+    xhrPromise,
   }
 
   inject('global', global)
