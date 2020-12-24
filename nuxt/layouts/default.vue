@@ -1,63 +1,68 @@
 <template>
   <div>
     <div class="container min-h-screen mx-auto p-4 text-center">
-      <header class="flex items-center justify-between mb-4 relative">
-        <nuxt-link :aria-label="$t('home')" :to="localePath('/')">
-          <div id="logo" class="h-10 w-32" />
-        </nuxt-link>
-        <div class="dropdown text-lg">
-          <nuxt-link
-            class="button"
-            :to="
-              localePath(
-                '/account/' +
-                  (signedInUsername === undefined ? '' : signedInUsername)
-              )
-            "
-          >
-            <FontAwesomeIcon class="mr-2" :icon="['fas', 'user']" />{{
-              signedInUsername === undefined ? $t('account') : signedInUsername
-            }}
+      <header>
+        <Warning v-if="!browserSupported">
+          {{ $t('browserUnsupported') }}
+        </Warning>
+        <div class="flex items-center justify-between mb-4 relative">
+          <nuxt-link :aria-label="$t('home')" :to="localePath('/')">
+            <div id="logo" class="h-10 w-32" />
           </nuxt-link>
-          <div class="absolute dropdown-content right-0">
-            <div
-              v-if="signedInUsername !== undefined"
-              class="flex flex-col items-end"
+          <div class="dropdown text-lg">
+            <nuxt-link
+              class="button"
+              :to="
+                localePath(
+                  '/account/' +
+                    (signedInUsername === undefined ? '' : signedInUsername)
+                )
+              "
             >
-              <div class="mt-1">
-                <nuxt-link
-                  class="button"
-                  :to="
-                    localePath(
-                      '/account/' +
-                        (signedInUsername === undefined
-                          ? ''
-                          : signedInUsername) +
-                        '/settings'
-                    )
-                  "
-                >
-                  <FontAwesomeIcon class="mr-2" :icon="['fas', 'cog']" />
-                  {{ $t('settings') }}
-                </nuxt-link>
+              <FontAwesomeIcon class="mr-2" :icon="['fas', 'user']" />{{
+                signedInUsername === undefined ? $t('account') : signedInUsername
+              }}
+            </nuxt-link>
+            <div class="absolute dropdown-content right-0">
+              <div
+                v-if="signedInUsername !== undefined"
+                class="flex flex-col items-end"
+              >
+                <div class="mt-1">
+                  <nuxt-link
+                    class="button"
+                    :to="
+                      localePath(
+                        '/account/' +
+                          (signedInUsername === undefined
+                            ? ''
+                            : signedInUsername) +
+                          '/settings'
+                      )
+                    "
+                  >
+                    <FontAwesomeIcon class="mr-2" :icon="['fas', 'cog']" />
+                    {{ $t('settings') }}
+                  </nuxt-link>
+                </div>
+                <div class="mt-1">
+                  <button @click="$global.signOut($apollo.getClient(), $store)">
+                    <FontAwesomeIcon
+                      class="mr-2"
+                      :icon="['fas', 'sign-out-alt']"
+                    />{{ $t('signOut') }}
+                  </button>
+                </div>
               </div>
-              <div class="mt-1">
-                <button @click="$global.signOut($apollo.getClient(), $store)">
-                  <FontAwesomeIcon
-                    class="mr-2"
-                    :icon="['fas', 'sign-out-alt']"
-                  />{{ $t('signOut') }}
-                </button>
-              </div>
-            </div>
-            <div v-else class="flex flex-col items-end">
-              <div class="mt-1">
-                <nuxt-link class="button" :to="localePath('/session')">
-                  <FontAwesomeIcon
-                    class="mr-2"
-                    :icon="['fas', 'user-clock']"
-                  />{{ $t('session') }}
-                </nuxt-link>
+              <div v-else class="flex flex-col items-end">
+                <div class="mt-1">
+                  <nuxt-link class="button" :to="localePath('/session')">
+                    <FontAwesomeIcon
+                      class="mr-2"
+                      :icon="['fas', 'user-clock']"
+                    />{{ $t('session') }}
+                  </nuxt-link>
+                </div>
               </div>
             </div>
           </div>
@@ -99,7 +104,14 @@
 </template>
 
 <script>
+const supportedBrowsers = require('~/supportedBrowsers')
+
 export default {
+  data() {
+    return {
+      browserSupported: true,
+    }
+  },
   head() {
     return this.$nuxtI18nSeo()
   },
@@ -117,6 +129,9 @@ export default {
   },
   beforeCreate() {
     this.$moment.locale(this.$i18n.locale)
+  },
+  beforeMount() {
+    this.browserSupported = supportedBrowsers.test(navigator.userAgent)
   },
 }
 </script>
@@ -142,6 +157,7 @@ export default {
 <i18n lang="yml">
 de:
   account: 'Konto'
+  browserUnsupported: 'Diese Browserversion wird nicht unterstützt.'
   home: 'Nach Hause'
   imprint: 'Impressum'
   signOut: 'Abmelden'
@@ -150,6 +166,7 @@ de:
   settings: 'Einstellungen'
 en:
   account: 'Account'
+  browserUnsupported: 'This browser version is not supported.'
   home: 'Head home'
   imprint: 'Imprint'
   signOut: 'Sign out'

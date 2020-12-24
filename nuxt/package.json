@@ -11,7 +11,8 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "yarn lint:js && yarn lint:style",
-    "test": "snyk test"
+    "test": "snyk test",
+    "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",
@@ -83,6 +84,7 @@
     "@vue/cli-shared-utils": "4.5.9",
     "babel-eslint": "10.1.0",
     "browserlist": "1.0.1",
+    "browserslist-useragent-regexp": "2.1.1",
     "eslint": "7.16.0",
     "eslint-config-prettier": "7.1.0",
     "eslint-plugin-compat": "3.9.0",
