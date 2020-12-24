@@ -51,6 +51,7 @@
                   <button
                     :aria-label="$t('iconTrashLabel')"
                     class="flex h-full justify-center items-center"
+                    type="button"
                   >
                     <FontAwesomeIcon
                       :icon="['fas', 'trash']"
@@ -68,6 +69,7 @@
               v-if="allowAddition"
               :aria-label="$t('iconAddLabel')"
               class="bg-gray-600 flex-none h-32 m-1 w-32"
+              type="button"
               @click="changeProfilePicture"
             >
               <FontAwesomeIcon

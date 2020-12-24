@@ -48,7 +48,10 @@
                   </nuxt-link>
                 </div>
                 <div class="mt-1">
-                  <button @click="$global.signOut($apollo.getClient(), $store)">
+                  <button
+                    type="button"
+                    @click="$global.signOut($apollo.getClient(), $store)"
+                  >
                     <FontAwesomeIcon
                       class="mr-2"
                       :icon="['fas', 'sign-out-alt']"

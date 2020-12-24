@@ -3,7 +3,11 @@
     <div
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
-      <button class="mr-0 sm:mr-4" @click="showModalImageSelection = true">
+      <button
+        class="mr-0 sm:mr-4"
+        type="button"
+        @click="showModalImageSelection = true"
+      >
         <ProfilePicture
           ref="profilePicture"
           :username="$route.params.username"
