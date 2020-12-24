@@ -20,7 +20,9 @@
               "
             >
               <FontAwesomeIcon class="mr-2" :icon="['fas', 'user']" />{{
-                signedInUsername === undefined ? $t('account') : signedInUsername
+                signedInUsername === undefined
+                  ? $t('account')
+                  : signedInUsername
               }}
             </nuxt-link>
             <div class="absolute dropdown-content right-0">
