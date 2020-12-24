@@ -1,3 +1,18 @@
+# [0.32.0](https://github.com/maevsi/maevsi/compare/0.31.0...0.32.0) (2020-12-24)
+
+
+### Bug Fixes
+
+* add missing button types ([caf1400](https://github.com/maevsi/maevsi/commit/caf1400367e8e30071ea508310143100959bb55f))
+* **app-link:** add link component ([3b9b27d](https://github.com/maevsi/maevsi/commit/3b9b27d21632ba3d9258fc327bc60f1f0f3936a5))
+* **legal-notice:** correct links and title ([46c9ec9](https://github.com/maevsi/maevsi/commit/46c9ec989a7eee5c2a0955aa6483eccbc1cf7d74))
+
+
+### Features
+
+* **redeem:** add automatic input information ([7c8a2d3](https://github.com/maevsi/maevsi/commit/7c8a2d3d797c2c908973c16fe78c095d157b091c))
+* **redeem:** add input id suffix ([8ac25c8](https://github.com/maevsi/maevsi/commit/8ac25c8ebcba5481fa90c56486b3136efe07e141))
+
 # [0.31.0](https://github.com/maevsi/maevsi/compare/0.30.3...0.31.0) (2020-12-24)
 
 
