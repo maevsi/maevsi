@@ -5,12 +5,10 @@
     <p>{{ $t('alpha') }}</p>
     <br />
     <div class="flex justify-center">
-      <a
+      <AppLink
         class="items-center flex"
-        href="https://github.com/maevsi/maevsi/"
-        rel="noopener noreferrer"
-        target="_blank"
         :title="$t('githubLinkTitle')"
+        to="https://github.com/maevsi/maevsi/"
       >
         <FontAwesomeIcon
           class="button mr-2"
@@ -18,7 +16,7 @@
           size="2x"
         />
         github.com/maevsi/maevsi
-      </a>
+      </AppLink>
     </div>
     <Button :icon="false" :link="localePath('/event')" class="my-4">{{
       $t('events')

@@ -577,12 +577,10 @@
       <p>
         Weitere Informationen &uuml;ber Datenschutz bei YouTube finden Sie in
         deren Datenschutzerkl&auml;rung unter:
-        <a
-          href="https://policies.google.com/privacy?hl=de"
-          target="_blank"
-          rel="noopener noreferrer"
-          >https://policies.google.com/privacy?hl=de</a
-        >.
+        <AppLink to="https://policies.google.com/privacy?hl=de">
+          https://policies.google.com/privacy?hl=de
+        </AppLink>
+        .
       </p>
       <h3>Google Web Fonts (lokales Hosting)</h3>
       <p>
@@ -593,19 +591,14 @@
       </p>
       <p>
         Weitere Informationen zu Google Web Fonts finden Sie unter
-        <a
-          href="https://developers.google.com/fonts/faq"
-          target="_blank"
-          rel="noopener noreferrer"
-          >https://developers.google.com/fonts/faq</a
-        >
+        <AppLink to="https://developers.google.com/fonts/faq">
+          https://developers.google.com/fonts/faq
+        </AppLink>
         und in der Datenschutzerkl&auml;rung von Google:
-        <a
-          href="https://policies.google.com/privacy?hl=de"
-          target="_blank"
-          rel="noopener noreferrer"
-          >https://policies.google.com/privacy?hl=de</a
-        >.
+        <AppLink to="https://policies.google.com/privacy?hl=de">
+          https://policies.google.com/privacy?hl=de
+        </AppLink>
+        .
       </p>
       <h3>Font Awesome (lokales Hosting)</h3>
       <p>
@@ -616,12 +609,10 @@
       <p>
         Weitere Informationen zu Font Awesome finden Sie&nbsp;und in der
         Datenschutzerkl&auml;rung f&uuml;r Font Awesome unter:
-        <a
-          href="https://fontawesome.com/privacy"
-          target="_blank"
-          rel="noopener noreferrer"
-          >https://fontawesome.com/privacy</a
-        >.
+        <AppLink to="https://fontawesome.com/privacy">
+          https://fontawesome.com/privacy
+        </AppLink>
+        .
       </p>
       <h3>Google Maps</h3>
       <p>
@@ -649,29 +640,26 @@
         Die Daten&uuml;bertragung in die USA wird auf die
         Standardvertragsklauseln der EU-Kommission gest&uuml;tzt. Details finden
         Sie hier:
-        <a
-          href="https://privacy.google.com/businesses/gdprcontrollerterms/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >https://privacy.google.com/businesses/gdprcontrollerterms/</a
+        <AppLink
+          to="https://privacy.google.com/businesses/gdprcontrollerterms/"
         >
+          https://privacy.google.com/businesses/gdprcontrollerterms/
+        </AppLink>
         und
-        <a
-          href="https://privacy.google.com/businesses/gdprcontrollerterms/sccs/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >https://privacy.google.com/businesses/gdprcontrollerterms/sccs/</a
-        >.
+        <AppLink
+          to="https://privacy.google.com/businesses/gdprcontrollerterms/sccs/"
+        >
+          https://privacy.google.com/businesses/gdprcontrollerterms/sccs/
+        </AppLink>
+        .
       </p>
       <p>
         Mehr Informationen zum Umgang mit Nutzerdaten finden Sie in der
         Datenschutzerkl&auml;rung von Google:
-        <a
-          href="https://policies.google.com/privacy?hl=de"
-          target="_blank"
-          rel="noopener noreferrer"
-          >https://policies.google.com/privacy?hl=de</a
-        >.
+        <AppLink to="https://policies.google.com/privacy?hl=de">
+          https://policies.google.com/privacy?hl=de
+        </AppLink>
+        .
       </p>
       <h3>Google reCAPTCHA</h3>
       <p>
@@ -710,27 +698,17 @@
         Weitere Informationen zu Google reCAPTCHA entnehmen Sie den
         Google-Datenschutzbestimmungen und den Google Nutzungsbedingungen unter
         folgenden Links:
-        <a
-          href="https://policies.google.com/privacy?hl=de"
-          target="_blank"
-          rel="noopener noreferrer"
-          >https://policies.google.com/privacy?hl=de</a
-        >
+        <AppLink to="https://policies.google.com/privacy?hl=de">
+          https://policies.google.com/privacy?hl=de
+        </AppLink>
         und
-        <a
-          href="https://policies.google.com/terms?hl=de"
-          target="_blank"
-          rel="noopener noreferrer"
-          >https://policies.google.com/terms?hl=de</a
-        >.
+        <AppLink to="https://policies.google.com/terms?hl=de">
+          https://policies.google.com/terms?hl=de
+        </AppLink>
+        .
       </p>
       <p>
-        <a
-          href="https://www.e-recht24.de"
-          rel="noopener noreferrer"
-          target="_blank"
-          >Quelle</a
-        >
+        <AppLink to="https://www.e-recht24.de">Quelle</AppLink>
       </p>
     </div>
   </div>

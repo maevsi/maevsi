@@ -1,6 +1,6 @@
 <template>
   <div class="inline-block">
-    <nuxt-link
+    <AppLink
       v-if="link !== undefined"
       :append="append"
       :class="`${buttonClassStatic} ${buttonClass}`"
@@ -13,7 +13,7 @@
         :icon="iconId"
       />
       <slot />
-    </nuxt-link>
+    </AppLink>
     <button
       v-else
       :class="`${buttonClassStatic} ${buttonClass}`"

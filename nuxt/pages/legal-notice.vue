@@ -74,12 +74,7 @@
       </p>
 
       <p>
-        <a
-          href="https://www.e-recht24.de"
-          rel="noopener noreferrer"
-          target="_blank"
-          >Quelle</a
-        >
+        <AppLink to="https://www.e-recht24.de">Quelle</AppLink>
       </p>
     </div>
   </div>
