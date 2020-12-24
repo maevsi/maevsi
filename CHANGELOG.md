@@ -1,3 +1,16 @@
+# [0.31.0](https://github.com/maevsi/maevsi/compare/0.30.3...0.31.0) (2020-12-24)
+
+
+### Bug Fixes
+
+* **eslint:** mark promises as polyfilled ([11dca61](https://github.com/maevsi/maevsi/commit/11dca61485e5e2215a8c35b59a3427abf9cb8a72))
+
+
+### Features
+
+* add browserslist ([91e6e5b](https://github.com/maevsi/maevsi/commit/91e6e5bf3191ff107b74333c9c7258a26a039471))
+* add warning on unsupported browser ([2eba21a](https://github.com/maevsi/maevsi/commit/2eba21a5ae122cf2b0d7bbddd7f3efcab8fa1af1))
+
 ## [0.30.3](https://github.com/maevsi/maevsi/compare/0.30.2...0.30.3) (2020-12-24)
 
 
