@@ -6,9 +6,13 @@ SELECT id,
        username,
        email_address,
        email_address_verification,
+       email_address_verification_valid_until,
        password_hash,
        password_reset_verification,
-       last_activity
+       password_reset_verification_valid_until,
+       created,
+       last_activity,
+       upload_quota_bytes
 FROM maevsi_private.account WHERE FALSE;
 
 DO $$
