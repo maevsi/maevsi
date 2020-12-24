@@ -1,18 +1,6 @@
 <template>
   <div class="m-auto max-w-xl">
     <h1>{{ title }}</h1>
-    <div class="mb-4">
-      <p v-if="this.$route.query.ic">
-        {{ $t('greetingAutomatic') }}
-        <br />
-        {{ $t('greetingAutomaticAction') }}
-      </p>
-      <p v-else>
-        {{ $t('greetingManual') }}
-        <br />
-        {{ $t('greetingManualAction') }}
-      </p>
-    </div>
     <Form
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
@@ -25,11 +13,20 @@
       >
         <input
           id="input-invitation-code"
-          v-model.trim="$v.form['invitation-code'].$model"
+          v-model.trim="invitationCodeModel"
           class="form-input"
+          :disabled="$route.query.ic"
           type="text"
           placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         />
+        <template slot="inputInfo">
+          <div v-if="$route.query.ic">
+            {{ $t('invitationCodeAutomatic') }}
+            <AppLink :to="localePath('/redeem')">{{
+              $t('invitationCodeManual')
+            }}</AppLink>
+          </div>
+        </template>
         <template slot="inputError">
           <FormError
             :validation-object="$v.form['invitation-code']"
@@ -65,15 +62,9 @@
         class="mt-4"
       />
     </Form>
-    <p class="mt-2 text-left opacity-50">
+    <p class="mt-2 text-left">
       {{ $t('greetingExplanation') }}
     </p>
-    <Modal
-      v-if="showModalSuccessPromise"
-      @close="showModalSuccessPromise.resolve()"
-    >
-      {{ $t('redeemSuccess') }}
-    </Modal>
   </div>
 </template>
 
@@ -92,12 +83,23 @@ export default {
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
       },
       graphqlErrorMessage: undefined,
-      showModalSuccessPromise: undefined,
       title: this.$t('title'),
     }
   },
   head() {
     return { title: this.title }
+  },
+  computed: {
+    invitationCodeModel: {
+      get() {
+        return this.$route.query.ic !== undefined
+          ? this.$route.query.ic
+          : this.$v.form['invitation-code'].$model
+      },
+      set(value) {
+        this.$v.form['invitation-code'].$model = value
+      },
+    },
   },
   mounted() {
     if (this.$route.query.ic !== undefined) {
@@ -130,21 +132,17 @@ export default {
         return
       }
 
-      this.showModalSuccessPromise = this.$global.getDeferredPromise(() => {
-        this.$global.storeJwt(
-          this.$apollo.getClient(),
-          this.$store,
-          undefined,
-          res.jwt,
-          () => {
-            this.$router.push(
-              this.localePath(
-                `/event/${res.organizerUsername}/${res.eventSlug}`
-              )
-            )
-          }
-        )
-      })
+      this.$global.storeJwt(
+        this.$apollo.getClient(),
+        this.$store,
+        undefined,
+        res.jwt,
+        () => {
+          this.$router.push(
+            this.localePath(`/event/${res.organizerUsername}/${res.eventSlug}`)
+          )
+        }
+      )
     },
   },
   validations() {
@@ -162,23 +160,17 @@ export default {
 
 <i18n lang="yml">
 de:
-  greetingAutomatic: 'Dein Einladungscode wurde automatisch eingetragen.'
-  greetingAutomaticAction: 'Du kannst ihn direkt einlösen!'
-  greetingExplanation: 'Einladungscodes ermöglichen dir den Zugriff auf Veranstaltungsseiten, ohne dass du dir einen Account erstellen musst. Der Code wird in diesem Browser gespeichert und kann erneut eingelöst werden.'
-  greetingManual: 'Du hast einen Einladungscode für eine Veranstaltung erhalten?'
-  greetingManualAction: 'Gib ihn hier ein!'
+  greetingExplanation: 'Einladungscodes gewähren dir Zugriff auf nicht-öffentliche Veranstaltungsseiten, ohne dass du dir einen Account erstellen musst. Sie sind gültig, solange du zur Veranstaltung eingeladen bist, für die sie ausgestellt wurden.'
   invitationCode: 'Einladungscode'
-  redeemSuccess: 'Einladungscode erfolgreich eingelöst.'
+  invitationCodeAutomatic: 'Der Einladungscode wurde automatisch eingegeben.'
+  invitationCodeManual: 'Code selbst eingeben.'
   submit: 'Zur Veranstaltungsseite'
-  title: 'Einlösen'
+  title: 'Veranstaltung freischalten'
 en:
-  greetingAutomatic: 'Your invitation code was entered automatically.'
-  greetingAutomaticAction: 'You can redeem it right away!'
-  greetingExplanation: 'Invitation codes allow access to event pages without the need to create an account. The code will be saved to this browser and can be redeemed again.'
-  greetingManual: 'Did you receive an invitation code for an event?'
-  greetingManualAction: 'Enter it here!'
+  greetingExplanation: 'Invitation codes give you access to non-public event pages without the need to create an account. They are valid as long as you are invited to the event they were issued for.'
   invitationCode: 'Invitation code'
-  redeemSuccess: 'Invitation code redeemed successfully.'
+  invitationCodeAutomatic: 'The invitation code was entered automatically.'
+  invitationCodeManual: 'Enter it yourself.'
   submit: 'Show event page'
-  title: 'Redeem' # This property is currently used for the title and the button.
+  title: 'Unlock event'
 </i18n>
