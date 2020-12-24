@@ -4,9 +4,6 @@ module.exports = {
   // https://stylelint.io/user-guide/configuration
   plugins: ['stylelint-no-unsupported-browser-features'],
   rules: {
-    'plugin/no-unsupported-browser-features': [
-      true,
-      { ignorePartialSupport: true },
-    ],
+    'plugin/no-unsupported-browser-features': [true, { severity: 'warning' }],
   },
 }
