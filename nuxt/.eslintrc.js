@@ -15,4 +15,7 @@ module.exports = {
   // add your custom rules here
   root: true,
   rules: {},
+  settings: {
+    polyfills: ['Promise'],
+  },
 }
