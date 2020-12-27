@@ -1,3 +1,10 @@
+# [0.33.0](https://github.com/maevsi/maevsi/compare/0.32.0...0.33.0) (2020-12-27)
+
+
+### Features
+
+* add google analytics & adsense ([10f9593](https://github.com/maevsi/maevsi/commit/10f959395e48811b9fb0710f7cc01963f211829e))
+
 # [0.32.0](https://github.com/maevsi/maevsi/compare/0.31.0...0.32.0) (2020-12-24)
 
 
