@@ -1,3 +1,10 @@
+## [0.33.1](https://github.com/maevsi/maevsi/compare/0.33.0...0.33.1) (2020-12-27)
+
+
+### Bug Fixes
+
+* **nuxt:** correct build module definition ([d42f4a0](https://github.com/maevsi/maevsi/commit/d42f4a0eb12d900d61874e09e3c91c0fbec43997))
+
 # [0.33.0](https://github.com/maevsi/maevsi/compare/0.32.0...0.33.0) (2020-12-27)
 
 
