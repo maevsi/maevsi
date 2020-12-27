@@ -250,6 +250,15 @@ export default {
       },
     ],
     [
+      '@nuxtjs/google-adsense',
+      {
+        id: process.env.GOOGLE_ADSENSE_ID,
+        analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
+        analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
+      },
+    ],
+    ['@nuxtjs/google-gtag', { id: process.env.GOOGLE_ANALYTICS_ID }],
+    [
       '@nuxtjs/robots',
       {
         Allow: ['/'],
@@ -273,6 +282,15 @@ export default {
 
   publicRuntimeConfig: {
     dev: process.env.NODE_ENV !== 'production',
+    'google-adsense': {
+      id: process.env.GOOGLE_ADSENSE_ID,
+      analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
+      analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
+    },
+    'google-gtag': {
+      id: process.env.GOOGLE_ANALYTICS_ID,
+      debug: process.env.NODE_ENV !== 'production',
+    },
   },
 
   render: {
