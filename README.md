@@ -9,6 +9,7 @@ The manager for events supported by invitees: [maev.si](https://maev.si/).
 
 ## Table of Contents
 1. **[Development](#development)**
+    1. **[Sqitch](#sqitch)**
 1. **[Technology](#technology)**
 
 ## Development
