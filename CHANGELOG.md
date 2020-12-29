@@ -1,3 +1,10 @@
+## [0.33.2](https://github.com/maevsi/maevsi/compare/0.33.1...0.33.2) (2020-12-29)
+
+
+### Bug Fixes
+
+* **modal:** remove body slot property ([b11361f](https://github.com/maevsi/maevsi/commit/b11361f3ee69bbf3f88e3038051a4a08dc89bb5c))
+
 ## [0.33.1](https://github.com/maevsi/maevsi/compare/0.33.0...0.33.1) (2020-12-27)
 
 
