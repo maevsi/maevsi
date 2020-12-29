@@ -2,7 +2,6 @@
   <Modal @close="$emit('hide')">
     <h2 slot="header">{{ $t('header') }}</h2>
     <ImageUploadGallery
-      slot="body"
       :allow-addition="false"
       :allow-deletion="false"
       :selectable="true"

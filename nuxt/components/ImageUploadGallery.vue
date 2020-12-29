@@ -103,7 +103,6 @@
     <Modal v-if="showModalImageUpload" @close="showModalImageUpload = false">
       <h2 slot="header">{{ $t('uploadNew') }}</h2>
       <Croppa
-        slot="body"
         ref="croppy"
         :initial-image="fileSelectedUrl"
         :placeholder="$t('croppaPlaceholder')"
