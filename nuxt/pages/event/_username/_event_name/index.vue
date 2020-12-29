@@ -32,7 +32,7 @@
         </Button>
       </div>
       <div
-        class="bg-white border border-gray-400 flex flex-col inline-block m-auto my-8 px-8 py-4 rounded text-black"
+        class="bg-white border border-gray-400 flex flex-col m-auto my-8 px-8 py-4 rounded text-black"
         :class="{
           'bg-yellow-100':
             $store.state.jwtDecoded &&
