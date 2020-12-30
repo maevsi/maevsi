@@ -27,7 +27,7 @@
         {{ $t('select') }}
       </ButtonGreen>
     </template>
-    <div if="graphqlErrorMessage !== undefined">
+    <div v-if="graphqlErrorMessage !== undefined">
       <CardAlert
         class="mt-4"
         :error-message="graphqlErrorMessage"

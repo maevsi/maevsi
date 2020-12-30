@@ -24,7 +24,7 @@ export default {
       type: Array,
       default: undefined,
     },
-    link: {
+    to: {
       type: String,
       default: undefined,
     },
