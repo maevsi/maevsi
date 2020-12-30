@@ -17,11 +17,11 @@
         -->
         <input
           :id="inputId"
-          v-model.trim="invitationCodeModel"
+          v-model.trim.lazy="invitationCodeModel"
           class="form-input"
           :disabled="$route.query.ic"
-          type="text"
           placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+          type="text"
         />
         <template slot="inputInfo">
           <div v-if="$route.query.ic">

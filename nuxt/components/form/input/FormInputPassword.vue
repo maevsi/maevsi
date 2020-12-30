@@ -10,7 +10,7 @@
       type="password"
       placeholder="**********"
       :value="v.form[formKeyComputed].$model"
-      @input="$emit('input', $event.target.value)"
+      @blur="$emit('input', $event.target.value)"
     />
     <template slot="inputError">
       <FormError
