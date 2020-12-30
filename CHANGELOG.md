@@ -1,3 +1,11 @@
+## [0.35.1](https://github.com/maevsi/maevsi/compare/0.35.0...0.35.1) (2020-12-30)
+
+
+### Bug Fixes
+
+* **event:** correct event icon usage ([895d402](https://github.com/maevsi/maevsi/commit/895d402e3981fb9e29a6f2640b10849ae6e57090))
+* **form:** correct form sent usage ([256260d](https://github.com/maevsi/maevsi/commit/256260dca9a84c35c1e58b9d980a338c1cc06963)), closes [#133](https://github.com/maevsi/maevsi/issues/133)
+
 # [0.35.0](https://github.com/maevsi/maevsi/compare/0.34.0...0.35.0) (2020-12-30)
 
 
