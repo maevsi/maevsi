@@ -1,107 +1,99 @@
 <template>
   <div>
-    <div class="container min-h-screen mx-auto p-4 text-center">
+    <div class="container min-h-screen mx-auto p-4">
       <header>
         <Warning v-if="!browserSupported">
           {{ $t('browserUnsupported') }}
         </Warning>
-        <div class="flex items-center justify-between mb-4 relative">
+        <div class="flex items-center justify-between my-4 relative">
           <nuxt-link :aria-label="$t('home')" :to="localePath('/')">
             <div id="logo" class="h-10 w-32" />
           </nuxt-link>
           <div class="dropdown text-lg">
-            <nuxt-link
-              class="button"
-              :to="
-                localePath(
-                  '/account/' +
-                    (signedInUsername === undefined ? '' : signedInUsername)
-                )
-              "
+            <AppLink
+              :icon="true"
+              :icon-id="['fas', 'user']"
+              :to="`/account/${
+                signedInUsername === undefined ? '' : signedInUsername
+              }`"
             >
-              <FontAwesomeIcon class="mr-2" :icon="['fas', 'user']" />{{
+              {{
                 signedInUsername === undefined
                   ? $t('account')
                   : signedInUsername
               }}
-            </nuxt-link>
+            </AppLink>
             <div class="absolute dropdown-content right-0">
               <div
                 v-if="signedInUsername !== undefined"
                 class="flex flex-col items-end"
               >
                 <div class="mt-1">
-                  <nuxt-link
-                    class="button"
-                    :to="
-                      localePath(
-                        '/account/' +
-                          (signedInUsername === undefined
-                            ? ''
-                            : signedInUsername) +
-                          '/settings'
-                      )
-                    "
+                  <AppLink
+                    :icon="true"
+                    :icon-id="['fas', 'cog']"
+                    :to="`/account/${
+                      signedInUsername === undefined ? '' : signedInUsername
+                    }/settings`"
                   >
-                    <FontAwesomeIcon class="mr-2" :icon="['fas', 'cog']" />
                     {{ $t('settings') }}
-                  </nuxt-link>
+                  </AppLink>
                 </div>
-                <div class="mt-1">
-                  <button
-                    type="button"
-                    @click="$global.signOut($apollo.getClient(), $store)"
-                  >
-                    <FontAwesomeIcon
-                      class="mr-2"
-                      :icon="['fas', 'sign-out-alt']"
-                    />{{ $t('signOut') }}
-                  </button>
-                </div>
+                <Button
+                  :icon="true"
+                  :icon-id="['fas', 'sign-out-alt']"
+                  @click="$global.signOut($apollo.getClient(), $store)"
+                >
+                  {{ $t('signOut') }}
+                </Button>
               </div>
               <div v-else class="flex flex-col items-end">
                 <div class="mt-1">
-                  <nuxt-link class="button" :to="localePath('/session')">
-                    <FontAwesomeIcon
-                      class="mr-2"
-                      :icon="['fas', 'user-clock']"
-                    />{{ $t('session') }}
-                  </nuxt-link>
+                  <AppLink
+                    :icon="true"
+                    :icon-id="['fas', 'user-clock']"
+                    :to="localePath('/session')"
+                  >
+                    {{ $t('session') }}
+                  </AppLink>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </header>
-      <nuxt />
+      <main>
+        <nuxt />
+      </main>
     </div>
     <footer>
       <div class="justify-around container flex mx-auto p-4">
         <div class="flex flex-col">
           <FontAwesomeIcon
             :icon="['fas', 'language']"
-            class="my-2"
+            class="mb-2"
             title="language"
           />
-          <nuxt-link
+          <AppLink
             v-for="locale in availableLocales"
             :key="locale.code"
             :to="switchLocalePath(locale.code)"
-            >{{ locale.name }}</nuxt-link
           >
+            {{ locale.name }}
+          </AppLink>
         </div>
         <div class="flex flex-col">
           <FontAwesomeIcon
             :icon="['fas', 'balance-scale']"
-            class="my-2"
+            class="mb-2"
             title="scale"
           />
-          <nuxt-link :to="localePath('/legal-notice')">{{
-            $t('legal-notice')
-          }}</nuxt-link>
-          <nuxt-link :to="localePath('/privacy-policy')">{{
-            $t('privacyPolicy')
-          }}</nuxt-link>
+          <AppLink to="/legal-notice">
+            {{ $t('legal-notice') }}
+          </AppLink>
+          <AppLink to="/privacy-policy">
+            {{ $t('privacyPolicy') }}
+          </AppLink>
         </div>
       </div>
     </footer>
@@ -140,6 +132,19 @@ export default {
   },
 }
 </script>
+
+<style>
+@layer components {
+  .button:focus {
+    @apply ring;
+  }
+}
+@layer utilities {
+  .maevsi-prose {
+    @apply m-auto prose dark:prose-dark sm:prose-sm sm:dark:prose-dark lg:prose-lg lg:dark:prose-dark xl:prose-xl xl:dark:prose-dark;
+  }
+}
+</style>
 
 <style scoped>
 #logo {

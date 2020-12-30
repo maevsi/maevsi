@@ -1,14 +1,30 @@
+function heading(theme) {
+  return {
+    fontFamily: 'Montserrat',
+    fontWeight: theme('fontWeight.bold'),
+    marginBottom: theme('margin.1'),
+    marginTop: theme('margin.4'),
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  }
+}
+
 module.exports = {
-  future: {
-    defaultLineHeights: true,
-    purgeLayersByDefault: true,
-    removeDeprecatedGapUtilities: true,
-    standardFontWeights: true,
-  },
+  darkMode: 'media',
   theme: {
     extend: {
       animation: {
         shake: 'shake 0.6s ease-in-out 0s 1 normal forwards running',
+      },
+      colors: {
+        link: {
+          bright: '#60a5fa', // theme('colors.blue.400')
+          dark: '#1d4ed8', // theme('colors.blue.700')
+        },
+        text: {
+          bright: '#fafafa', // theme('colors.gray.50')
+          dark: '#27272a', // theme('colors.gray.800')
+        },
       },
       keyframes: {
         shake: {
@@ -41,12 +57,78 @@ module.exports = {
       screens: {
         'dark-mode': { raw: '(prefers-color-scheme: dark)' },
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.text.dark'),
+            a: {
+              color: theme('colors.link.dark'),
+              textDecoration: 'none',
+            },
+          },
+        },
+        dark: {
+          css: {
+            color: theme('colors.text.bright'),
+            a: {
+              color: theme('colors.link.bright'),
+            },
+            h1: {
+              color: theme('colors.text.bright'),
+            },
+            h2: {
+              color: theme('colors.text.bright'),
+            },
+            h3: {
+              color: theme('colors.text.bright'),
+            },
+            h4: {
+              color: theme('colors.text.bright'),
+            },
+            h5: {
+              color: theme('colors.text.bright'),
+            },
+            h6: {
+              color: theme('colors.text.bright'),
+            },
+            '.card &': {
+              color: theme('colors.text.dark'),
+              a: {
+                color: theme('colors.link.dark'),
+              },
+              h1: {
+                color: theme('colors.text.dark'),
+              },
+              h2: {
+                color: theme('colors.text.dark'),
+              },
+              h3: {
+                color: theme('colors.text.dark'),
+              },
+              h4: {
+                color: theme('colors.text.dark'),
+              },
+              h5: {
+                color: theme('colors.text.dark'),
+              },
+              h6: {
+                color: theme('colors.text.dark'),
+              },
+            },
+          },
+        },
+      }),
     },
   },
   variants: {
-    margin: ['last', 'responsive'],
+    extend: {
+      margin: ['last'],
+      typography: ['dark'],
+    },
   },
   plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
     function ({ addBase, addComponents, addUtilities, theme }) {
       addBase({
         '@font-face': {
@@ -62,17 +144,17 @@ module.exports = {
           opacity: theme('opacity.50'),
         },
         '::selection': {
-          color: theme('colors.white'),
+          color: theme('colors.text.bright'),
           background: '#e53e3e',
         },
         a: {
-          color: theme('colors.blue.700'),
+          color: theme('colors.link.dark'),
           '@screen dark-mode': {
-            color: theme('colors.blue.400'),
+            color: theme('colors.link.bright'),
           },
         },
         'a[target="_blank"]:after': {
-          backgroundColor: 'black',
+          backgroundColor: theme('colors.text.dark'),
           content: '""',
           display: 'inline-block',
           mask:
@@ -88,7 +170,7 @@ module.exports = {
           marginLeft: '5px',
           width: theme('fontSize.xs'),
           '@screen dark-mode': {
-            backgroundColor: theme('colors.white'),
+            backgroundColor: theme('colors.text.bright'),
           },
         },
         address: {
@@ -107,34 +189,22 @@ module.exports = {
           },
         },
         h1: {
+          ...heading(theme),
           fontSize: theme('fontSize.4xl'),
           marginBottom: theme('margin.4'),
-          fontFamily: 'Montserrat',
-          fontWeight: theme('fontWeight.bold'),
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
+          textAlign: 'center',
         },
         h2: {
+          ...heading(theme),
           fontSize: theme('fontSize.3xl'),
-          fontFamily: 'Montserrat',
-          fontWeight: theme('fontWeight.bold'),
-          marginBottom: theme('margin.1'),
-          marginTop: theme('margin.4'),
         },
         h3: {
+          ...heading(theme),
           fontSize: theme('fontSize.2xl'),
-          fontFamily: 'Montserrat',
-          fontWeight: theme('fontWeight.bold'),
-          marginBottom: theme('margin.1'),
-          marginTop: theme('margin.4'),
         },
         h4: {
+          ...heading(theme),
           fontSize: theme('fontSize.xl'),
-          fontFamily: 'Montserrat',
-          fontWeight: theme('fontWeight.bold'),
-          marginBottom: theme('margin.1'),
-          marginTop: theme('margin.4'),
         },
         img: {
           '&::before': {
@@ -144,12 +214,30 @@ module.exports = {
             justifyContent: 'center',
           },
         },
+        input: {
+          '&::placeholder': {
+            opacity: 0.5,
+          },
+        },
       })
       addComponents({
         '.button': {
-          color: 'initial',
-          '@screen dark-mode': {
-            color: 'white',
+          backgroundColor: theme('colors.red.600'),
+          borderRadius: theme('borderRadius.full'),
+          boxShadow: theme('boxShadow.default'),
+          color: theme('colors.text.bright'),
+          display: 'inline-block',
+          fontWeight: theme('fontWeight.bold'),
+          marginBottom: theme('margin.4'),
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          marginTop: theme('margin.4'),
+          padding: theme('padding.2') + ' ' + theme('padding.4'),
+          '&:focus': {
+            boxShadow: theme('boxShadow.outline'),
+          },
+          '&:hover': {
+            backgroundColor: theme('colors.red.700'),
           },
         },
         '.description': {
@@ -204,7 +292,7 @@ module.exports = {
           appearance: 'none',
           backgroundColor: theme('colors.gray.200'),
           borderColor: theme('colors.gray.200'),
-          borderRadius: theme('borderRadius.default'),
+          borderRadius: theme('borderRadius.DEFAULT'),
           borderWidth: theme('borderWidth.2'),
           color: theme('colors.gray.700'),
           lineHeight: theme('lineHeight.tight'),
@@ -212,7 +300,7 @@ module.exports = {
           width: theme('width.full'),
           '&:focus': {
             backgroundColor: theme('colors.white'),
-            borderColor: theme('colors.purple.500'),
+            borderColor: theme('colors.purple.400'),
           },
         },
         '.pills': {
@@ -225,16 +313,6 @@ module.exports = {
               padding: theme('padding.2') + ' ' + theme('padding.4'),
               width: theme('width.full'),
             },
-          },
-        },
-        '.prose': {
-          ol: {
-            listStylePosition: 'inside',
-            listStyleType: 'decimal',
-          },
-          ul: {
-            listStylePosition: 'inside',
-            listStyleType: 'disc',
           },
         },
       })
@@ -271,9 +349,4 @@ module.exports = {
       })
     },
   ],
-  purge: {
-    options: {
-      whitelist: [':disabled'],
-    },
-  },
 }

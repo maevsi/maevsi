@@ -99,6 +99,21 @@ export function getJwtFromCookie(req) {
   }
 }
 
+export function getQueryString(queryParametersObject) {
+  return (
+    '?' +
+    Object.keys(queryParametersObject)
+      .map((key) => {
+        return (
+          encodeURIComponent(key) +
+          '=' +
+          encodeURIComponent(queryParametersObject[key])
+        )
+      })
+      .join('&')
+  )
+}
+
 export async function jwtRefresh(apolloClient, store, res, id) {
   consola.trace('Refreshing a JWT...')
 
@@ -221,6 +236,7 @@ export default async ({ app, req, res, store }, inject) => {
     checkNested,
     getDeferredPromise,
     getJwtFromCookie,
+    getQueryString,
     jwtRefresh,
     signOut,
     objectClone,

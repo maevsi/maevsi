@@ -4,7 +4,7 @@
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
       <button
-        class="mr-0 sm:mr-4"
+        class="sm:mr-4"
         type="button"
         @click="showModalImageSelection = true"
       >
@@ -13,14 +13,14 @@
           :username="$route.params.username"
         />
       </button>
+      <h1 class="truncate w-full sm:w-auto">
+        {{ $route.params.username }}
+      </h1>
       <ModalImageSelection
         v-if="showModalImageSelection"
         @hide="hideModalImageSelection"
         @reload="reloadProfilePicture"
       />
-      <h1 class="mb-0 truncate w-full sm:w-auto">
-        {{ $route.params.username }}
-      </h1>
     </div>
     <section>
       <h2>{{ $t('titleImageUploads') }}</h2>
@@ -30,11 +30,11 @@
         @deletion="reloadProfilePicture"
       />
     </section>
-    <section class="mt-4">
+    <section>
       <h2>{{ $t('titleChangePassword') }}</h2>
       <FormAccountPasswordChange />
     </section>
-    <section class="mt-4">
+    <section>
       <h2>{{ $t('titleDangerZone') }}</h2>
       <Delete
         id="deleteAccount"

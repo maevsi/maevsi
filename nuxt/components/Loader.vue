@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div v-if="loading">{{ $t('globalLoading') }}</div>
-    <AlertGraphql
-      v-else-if="graphqlErrorMessage !== undefined"
-      :graphql-error-message="graphqlErrorMessage"
-    />
-    <slot v-else />
+  <div v-if="loading">{{ $t('globalLoading') }}</div>
+  <AlertGraphql
+    v-else-if="graphqlErrorMessage !== undefined"
+    :graphql-error-message="graphqlErrorMessage"
+  />
+  <div v-else>
+    <slot />
   </div>
 </template>
 

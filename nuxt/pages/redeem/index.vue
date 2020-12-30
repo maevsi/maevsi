@@ -63,7 +63,6 @@
       <AlertGraphql
         :graphql-error-message="graphqlErrorMessage"
         :validation-object="$v.form['invitation-code']"
-        class="mt-4"
       />
     </Form>
     <p class="mt-2 text-left">

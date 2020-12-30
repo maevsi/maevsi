@@ -1,27 +1,27 @@
 <template>
-  <div>
+  <section>
     <h1>{{ title }}</h1>
-    <p>{{ $t('maevsi') }}</p>
-    <p>{{ $t('alpha') }}</p>
-    <br />
-    <div class="flex justify-center">
-      <AppLink
-        class="items-center flex"
-        :title="$t('githubLinkTitle')"
-        to="https://github.com/maevsi/maevsi/"
-      >
-        <FontAwesomeIcon
-          class="button mr-2"
-          :icon="['fab', 'github']"
-          size="2x"
-        />
-        github.com/maevsi/maevsi
-      </AppLink>
+    <div class="text-center">
+      <p>{{ $t('maevsi') }}</p>
+      <p>{{ $t('alpha') }}</p>
+      <br />
+      <div class="flex justify-center">
+        <AppLink
+          class="items-center flex"
+          :icon="true"
+          :icon-id="['fab', 'github']"
+          icon-size="2x"
+          :title="$t('githubLinkTitle')"
+          to="https://github.com/maevsi/maevsi/"
+        >
+          github.com/maevsi/maevsi
+        </AppLink>
+      </div>
+      <Button :icon="false" :to="localePath('/event')">{{
+        $t('events')
+      }}</Button>
     </div>
-    <Button :icon="false" :link="localePath('/event')" class="my-4">{{
-      $t('events')
-    }}</Button>
-  </div>
+  </section>
 </template>
 
 <script>

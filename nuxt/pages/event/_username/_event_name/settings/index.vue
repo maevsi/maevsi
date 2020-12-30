@@ -4,8 +4,11 @@
     :loading="$apollo.loading"
   >
     <div v-if="event">
-      {{ $route.params.event_name }}
-      <section class="mt-4">
+      <!-- breadcrumbs -->
+      <h1 class="text-center">
+        {{ title }}
+      </h1>
+      <section>
         <h2>{{ $t('titleDangerZone') }}</h2>
         <Delete
           id="deleteEvent"
@@ -67,6 +70,7 @@ export default {
     return {
       graphqlErrorMessage: undefined,
       mutation: EVENT_DELETE_MUTATION,
+      title: this.$t('title'),
     }
   },
   head() {
@@ -146,8 +150,10 @@ export default {
 <i18n lang="yml">
 de:
   event: 'Veranstaltung'
+  title: 'Einstellungen'
   titleDangerZone: 'Gefahrenzone'
 en:
   event: 'event'
+  title: 'Settings'
   titleDangerZone: 'Danger zone'
 </i18n>

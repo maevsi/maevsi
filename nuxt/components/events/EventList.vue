@@ -6,10 +6,10 @@
     <h2 v-if="username" class="text-left truncate">
       {{ $t('titleEvents', { username: $route.params.username }) }}
     </h2>
-    <div class="flex flex-wrap justify-center my-2">
-      <ButtonEventList v-if="showButtonEventList" class="m-2" />
-      <ButtonEventNew v-if="showButtonEventNew" class="m-2" />
-      <ButtonRedeem v-if="showButtonRedeem" class="m-2" />
+    <div class="flex flex-wrap justify-center">
+      <ButtonEventList v-if="showButtonEventList" class="mx-2" />
+      <ButtonEventNew v-if="showButtonEventNew" class="mx-2" />
+      <ButtonRedeem v-if="showButtonRedeem" class="mx-2" />
     </div>
     <ul
       v-if="
@@ -17,58 +17,55 @@
       "
       class="text-left"
     >
-      <li v-for="event in allEvents.nodes" :key="event.id">
+      <li
+        v-for="event in allEvents.nodes"
+        :key="event.id"
+        class="mb-2 last:mb-0"
+        :class="{
+          'opacity-75': $moment(event.start).isBefore($moment()),
+        }"
+      >
         <nuxt-link
+          class="bg-white border border-gray-300 flex flex-col p-4 rounded"
+          :class="{
+            'bg-yellow-100':
+              $store.state.jwtDecoded &&
+              event.organizerUsername === $store.state.jwtDecoded.username,
+          }"
           :to="
             localePath('/event/' + event.organizerUsername + '/' + event.slug)
           "
         >
-          <div class="mb-2">
-            <div
-              class="bg-white border border-gray-400 flex flex-col p-4 rounded"
-              :class="{
-                'bg-yellow-100':
-                  $store.state.jwtDecoded &&
-                  event.organizerUsername === $store.state.jwtDecoded.username,
-              }"
-            >
-              <div class="flex items-center mb-2 text-gray-600 text-sm">
-                <div
-                  class="font-medium truncate"
-                  :class="{
-                    'text-gray-600': $moment(event.start).isBefore($moment()),
-                    'text-teal-600': $moment(event.start).isSameOrAfter(
-                      $moment()
-                    ),
-                  }"
-                >
-                  {{ $moment(event.start).format('lll') }}
-                </div>
-              </div>
-              <div class="flex items-center mb-2 text-gray-600 text-sm">
-                <EventIcon :event="event" :show-text="false" />
-                <div class="flex items-baseline">
-                  <div
-                    class="font-bold mx-2 text-xl truncate"
-                    :class="{
-                      'text-gray-600': $moment(event.start).isBefore($moment()),
-                      'text-gray-900': $moment(event.start).isSameOrAfter(
-                        $moment()
-                      ),
-                    }"
-                  >
-                    {{ event.name }}
-                  </div>
-                  <Owner :username="event.organizerUsername" />
-                </div>
-              </div>
-              <p
-                v-if="event.description"
-                class="line-clamp-box line-clamp-2 text-gray-700"
+          <div
+            :class="{ 'opacity-75': $moment(event.start).isBefore($moment()) }"
+          >
+            <div class="flex items-center mb-2 text-text-dark text-sm">
+              <div
+                class="font-medium truncate"
+                :class="{
+                  'text-green-700': $moment(event.start).isSameOrAfter(
+                    $moment()
+                  ),
+                }"
               >
-                {{ $htmlToText($md.render(event.description)) }}
-              </p>
+                {{ $moment(event.start).format('lll') }}
+              </div>
             </div>
+            <div class="flex items-center mb-2 text-text-dark text-sm">
+              <EventIcon :event="event" :show-text="false" />
+              <div class="flex items-baseline">
+                <div class="font-bold mx-2 text-xl truncate">
+                  {{ event.name }}
+                </div>
+                <Owner :username="event.organizerUsername" />
+              </div>
+            </div>
+            <p
+              v-if="event.description"
+              class="line-clamp-box line-clamp-2 text-text-dark"
+            >
+              {{ $htmlToText($md.render(event.description)) }}
+            </p>
           </div>
         </nuxt-link>
       </li>
@@ -109,7 +106,7 @@ export default {
     showButtonEventList: {
       type: Boolean,
       default() {
-        return this.$router.currentRoute.name.replace(/___.+$/, '') !== 'event'
+        return this.$route.name.replace(/___.+$/, '') !== 'event'
       },
     },
     showButtonRedeem: {

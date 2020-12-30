@@ -1,5 +1,5 @@
 <template>
-  <Button :icon-id="['fas', 'home']" :link="localePath('/')">{{
+  <Button :icon-id="['fas', 'home']" :to="localePath('/')">{{
     $t('home')
   }}</Button>
 </template>

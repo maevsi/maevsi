@@ -4,7 +4,7 @@
       <div class="e1">
         <ul
           class="pills rounded-t"
-          :class="{ 'bg-black opacity-50': dark, 'bg-white opacity-75': !dark }"
+          :class="{ 'bg-gray-400': dark, 'bg-gray-300': !dark }"
         >
           <li class="invisible">
             <button type="button">[filler]</button>
@@ -29,7 +29,7 @@
       <ul class="e1 pills z-0">
         <li>
           <button
-            :class="{ 'text-black': !dark, 'text-white': dark }"
+            :class="{ 'text-text-dark': !dark, 'text-text-bright': dark }"
             type="button"
             @click="tabSelect(tabs[0][0])"
           >
@@ -38,7 +38,7 @@
         </li>
         <li>
           <button
-            :class="{ 'text-black': !dark, 'text-white': dark }"
+            :class="{ 'text-text-dark': !dark, 'text-text-bright': dark }"
             type="button"
             @click="tabSelect(tabs[1][0])"
           >
@@ -100,13 +100,13 @@ export default {
   },
   methods: {
     tabSelect(tabId) {
-      this.tabIdSelected = tabId // Setting this via `watchQuery` resets all forms.
+      this.tabIdSelected = tabId // Setting this via `watchQuery` instead would reset all forms.
       this.$emit('tab-id-selected', tabId)
 
-      if (this.$router.currentRoute.params[this.queryTabKey] !== tabId) {
+      if (this.$route.query[this.queryTabKey] !== tabId) {
         this.$router.replace({
           path: '',
-          query: { [this.queryTabKey]: tabId },
+          query: { ...this.$route.query, [this.queryTabKey]: tabId },
         })
       }
     },

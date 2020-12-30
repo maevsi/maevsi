@@ -1,22 +1,22 @@
 <template>
   <div class="m-auto max-w-xl">
     <h1>{{ title }}</h1>
-    <div class="mb-2">
+    <div>
       <p v-if="sessionExpiryTime !== 'Invalid date'">
         {{ $t('sessionExpiry', { exp: sessionExpiryTime }) }}
       </p>
       <p v-else>
         {{ $t('sessionExpired') }}
       </p>
+      <Button :icon-id="['fas', 'sign-out-alt']" @click="onSessionExitClick()">
+        {{ $t('sessionExit') }}
+      </Button>
     </div>
-    <Button :icon-id="['fas', 'sign-out-alt']" @click="onSessionExitClick()">
-      {{ $t('sessionExit') }}
-    </Button>
     <section>
       <h2>{{ $t('inviteCodes') }}</h2>
-      <ButtonRedeem class="my-2" />
+      <ButtonRedeem />
       <div v-if="$global.checkNested($store.state.jwtDecoded, 'invites')">
-        <p class="my-2">
+        <p>
           {{ $t('codesRedeemed') }}
         </p>
         <ul class="list-disc">

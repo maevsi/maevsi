@@ -4,7 +4,7 @@
     :loading="$apollo.loading"
   >
     <div v-if="$global.checkNested(eventContactFeedbackData, 'event')">
-      <div v-if="eventContactFeedbackData.contact">
+      <div v-if="eventContactFeedbackData.contact" class="text-center">
         <p class="font-bold mb-2 text-2xl">
           {{
             $t('greeting', {
@@ -26,13 +26,14 @@
           eventContactFeedbackData.event.organizerUsername ===
             $store.state.jwtDecoded.username
         "
+        class="flex justify-evenly"
       >
-        <Button append :icon-id="['fas', 'cog']" link="settings">
+        <Button append :icon-id="['fas', 'cog']" to="settings">
           {{ $t('settings') }}
         </Button>
       </div>
       <div
-        class="bg-white border border-gray-400 flex flex-col m-auto my-8 px-8 py-4 rounded text-black"
+        class="bg-white border border-gray-300 card flex flex-col items-center m-auto my-4 px-8 py-4 rounded text-text-dark"
         :class="{
           'bg-yellow-100':
             $store.state.jwtDecoded &&
@@ -48,25 +49,23 @@
           link
           :username="eventContactFeedbackData.event.organizerUsername"
         />
-        <div class="flex flex-col sm:flex-row m-auto text-gray-600">
+        <div class="flex flex-col sm:flex-row m-auto">
           <EventIcon
             :event="eventContactFeedbackData.event"
             :with-text="true"
             class="my-2 sm:mx-4"
           />
-          <div class="my-2 sm:mx-4">
+          <div class="flex flex-col items-center my-2 sm:mx-4 text-center">
             <FontAwesomeIcon :icon="['fas', 'calendar-day']" />
-            <br />
             {{ $moment(eventContactFeedbackData.event.start).format('lll') }}
             <br />
             ({{ $moment(eventContactFeedbackData.event.start).fromNow() }})
           </div>
           <div
             v-if="eventContactFeedbackData.event.end !== null"
-            class="my-2 sm:mx-4"
+            class="flex flex-col items-center my-2 sm:mx-4"
           >
             <FontAwesomeIcon :icon="['fas', 'hourglass']" />
-            <br />
             {{
               $moment
                 .duration(
@@ -97,16 +96,16 @@
         </div>
         <Button
           :icon-id="['fas', 'download']"
-          class="my-2 text-white"
+          class="text-text-bright"
           @click="downloadIcal"
         >
           {{ $t('iCalDownload') }}
         </Button>
         <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
           <hr class="my-4" />
-          <div class="grid grid-cols-6 justify-content-center text-gray-600">
+          <div class="grid grid-cols-6 justify-content-center">
             <div
-              class="text-white m-2"
+              class="text-text-bright m-2"
               :class="{
                 'col-span-5':
                   eventContactFeedbackData.invitationFeedbackData
@@ -182,7 +181,7 @@
                 eventContactFeedbackData.invitationFeedbackData
                   .invitationFeedback === 'ACCEPTED'
               "
-              class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-white"
+              class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-text-bright"
             >
               1/2
             </div>
@@ -226,7 +225,7 @@
                 eventContactFeedbackData.invitationFeedbackData
                   .invitationFeedback === 'ACCEPTED'
               "
-              class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-white"
+              class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-text-bright"
             >
               2/2
             </div>
@@ -237,7 +236,7 @@
           <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
           <vue-markdown
             :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
-            class="description prose text-left text-gray-900"
+            class="description maevsi-prose text-left"
             >{{ eventContactFeedbackData.event.description }}
           </vue-markdown>
         </div>

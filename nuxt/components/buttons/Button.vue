@@ -1,22 +1,20 @@
 <template>
-  <div class="inline-block">
+  <div class="text-center">
     <AppLink
-      v-if="link !== undefined"
+      v-if="to !== undefined"
       :append="append"
-      :class="`${buttonClassStatic} ${buttonClass}`"
+      :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"
       :disabled="disabled"
-      :to="link"
+      :icon="icon"
+      :icon-id="iconId"
+      :icon-size="iconSize"
+      :to="to"
     >
-      <FontAwesomeIcon
-        v-if="icon"
-        :class="{ 'mr-2': this.$slots.default }"
-        :icon="iconId"
-      />
       <slot />
     </AppLink>
     <button
       v-else
-      :class="`${buttonClassStatic} ${buttonClass}`"
+      :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"
       :disabled="disabled"
       :type="type"
       @click="$emit('click')"
@@ -25,6 +23,7 @@
         v-if="icon"
         :class="{ 'mr-2': this.$slots.default }"
         :icon="iconId"
+        :size="iconSize"
       />
       <slot />
     </button>
@@ -40,8 +39,7 @@ export default {
     },
     buttonClass: {
       type: String,
-      default:
-        'bg-red-600 disabled:bg-red-600 focus:shadow-outline hover:bg-red-700',
+      default: undefined,
     },
     disabled: {
       type: Boolean,
@@ -57,7 +55,11 @@ export default {
         return ['fas', 'bug']
       },
     },
-    link: {
+    iconSize: {
+      type: String,
+      default: undefined,
+    },
+    to: {
       type: String,
       default: undefined,
     },
@@ -65,11 +67,6 @@ export default {
       type: String,
       default: 'button',
     },
-  },
-  data() {
-    return {
-      buttonClassStatic: 'font-bold py-2 px-4 rounded-full shadow text-white',
-    }
   },
 }
 </script>

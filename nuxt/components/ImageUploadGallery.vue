@@ -8,100 +8,98 @@
         (allUploads !== undefined && allUploads.nodes.length > 0) ||
         allowAddition
       "
-      class="m-auto w-full"
+      class="bg-white rounded text-center"
     >
-      <div class="bg-white rounded">
-        <ul class="inline-flex flex-wrap justify-center">
-          <template v-if="allUploads">
-            <li
-              v-for="upload in allUploads.nodes"
-              :id="uploadIdPrefix + upload.uuid"
-              :key="upload.uuid"
-              :class="{
-                'border-red-600': selectable && upload === selectedItem,
-              }"
-              class="border-4 border-transparent box-border relative"
-              @click="toggleSelect(upload)"
-            >
-              <img
-                :alt="$t('uploadAlt')"
-                class="bg-gray-400 h-32 w-32"
-                :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
-                :title="
-                  $t('uploadSize', { size: bytesToString(upload.sizeByte) })
-                "
-              />
-              <div v-if="allowDeletion">
-                <div
-                  class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0"
-                >
-                  <div class="flex h-full justify-center items-center">
-                    <FontAwesomeIcon
-                      :icon="['fas', 'trash']"
-                      class="m-2"
-                      size="lg"
-                      :title="$t('iconTrash')"
-                    />
-                  </div>
-                </div>
-                <div
-                  class="absolute right-0 top-0"
-                  @click="deleteImageUpload(upload.uuid)"
-                >
-                  <button
-                    :aria-label="$t('iconTrashLabel')"
-                    class="flex h-full justify-center items-center"
-                    type="button"
-                  >
-                    <FontAwesomeIcon
-                      :icon="['fas', 'trash']"
-                      class="m-2 text-white"
-                      size="lg"
-                      :title="$t('iconTrash')"
-                    />
-                  </button>
+      <ul class="inline-flex flex-wrap justify-center">
+        <template v-if="allUploads">
+          <li
+            v-for="upload in allUploads.nodes"
+            :id="uploadIdPrefix + upload.uuid"
+            :key="upload.uuid"
+            :class="{
+              'border-red-600': selectable && upload === selectedItem,
+            }"
+            class="border-4 border-transparent box-border relative"
+            @click="toggleSelect(upload)"
+          >
+            <img
+              :alt="$t('uploadAlt')"
+              class="bg-gray-400 h-32 w-32"
+              :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
+              :title="
+                $t('uploadSize', { size: bytesToString(upload.sizeByte) })
+              "
+            />
+            <div v-if="allowDeletion">
+              <div
+                class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0"
+              >
+                <div class="flex h-full justify-center items-center">
+                  <FontAwesomeIcon
+                    :icon="['fas', 'trash']"
+                    class="m-2"
+                    size="lg"
+                    :title="$t('iconTrash')"
+                  />
                 </div>
               </div>
-            </li>
-          </template>
-          <li>
-            <button
-              v-if="allowAddition"
-              :aria-label="$t('iconAddLabel')"
-              class="bg-gray-600 flex-none h-32 m-1 w-32"
-              type="button"
-              @click="changeProfilePicture"
-            >
-              <FontAwesomeIcon
-                :icon="['fas', 'plus']"
-                class="text-white"
-                :title="$t('iconAdd')"
-                size="3x"
-              />
-            </button>
-            <input
-              id="input-profile-picture"
-              accept="image/*"
-              hidden
-              name="input-profile-picture"
-              type="file"
-              @change="loadProfilePicture"
-            />
+              <div
+                class="absolute right-0 top-0"
+                @click="deleteImageUpload(upload.uuid)"
+              >
+                <button
+                  :aria-label="$t('iconTrashLabel')"
+                  class="flex h-full justify-center items-center"
+                  type="button"
+                >
+                  <FontAwesomeIcon
+                    :icon="['fas', 'trash']"
+                    class="m-2 text-text-bright"
+                    size="lg"
+                    :title="$t('iconTrash')"
+                  />
+                </button>
+              </div>
+            </div>
           </li>
-        </ul>
-        <div
-          v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"
-          class="flex justify-center"
-        >
-          <Button :icon="false" @click.native="showMore">{{
-            $t('globalPagingMore')
-          }}</Button>
-        </div>
+        </template>
+        <li>
+          <button
+            v-if="allowAddition"
+            :aria-label="$t('iconAddLabel')"
+            class="bg-gray-600 flex-none h-32 m-1 w-32"
+            type="button"
+            @click="changeProfilePicture"
+          >
+            <FontAwesomeIcon
+              :icon="['fas', 'plus']"
+              class="text-text-bright"
+              :title="$t('iconAdd')"
+              size="3x"
+            />
+          </button>
+          <input
+            id="input-profile-picture"
+            accept="image/*"
+            hidden
+            name="input-profile-picture"
+            type="file"
+            @change="loadProfilePicture"
+          />
+        </li>
+      </ul>
+      <div
+        v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"
+        class="flex justify-center"
+      >
+        <Button :icon="false" @click.native="showMore">{{
+          $t('globalPagingMore')
+        }}</Button>
       </div>
     </div>
     <p v-else>{{ $t('noPictures') }}</p>
     <Modal v-if="showModalImageUpload" @close="showModalImageUpload = false">
-      <h2 slot="header">{{ $t('uploadNew') }}</h2>
+      <h2 slot="header" class="text-center">{{ $t('uploadNew') }}</h2>
       <Croppa
         ref="croppy"
         :initial-image="fileSelectedUrl"
@@ -110,7 +108,7 @@
         :show-remove-button="false"
         :prevent-white-space="true"
       />
-      <template slot="footer" class="text-white">
+      <template slot="footer" class="text-text-bright">
         <Button
           :disabled="uploading"
           :icon-id="['fas', 'window-close']"

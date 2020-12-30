@@ -49,18 +49,25 @@
       >
         {{ $t('signIn') }}
       </Button>
-      <button
-        class="font-bold text-sm text-blue-500 hover:text-blue-800 mt-4"
-        type="button"
-        @click="$emit('password-forgotten')"
+      <AppLink
+        :to="
+          $global.getQueryString({
+            ...$route.query,
+            pw: $route.query.pw === 'lost' ? 'found' : 'lost',
+          })
+        "
+        @click.native="$emit('password-lost')"
       >
-        {{ $t('passwordForgotten') }}
-      </button>
+        {{
+          this.$route.query.pw === 'lost'
+            ? $t('passwordFound')
+            : $t('passwordLost')
+        }}
+      </AppLink>
     </div>
     <AlertGraphql
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
-      class="mt-4"
     />
   </Form>
 </template>
@@ -152,12 +159,14 @@ export default {
 
 <i18n lang="yml">
 de:
-  passwordForgotten: 'Passwort vergessen?'
+  passwordFound: 'Passwort wiedergefunden?'
+  passwordLost: 'Passwort verloren?'
   signIn: 'Anmelden'
   username: 'Nutzername'
   usernamePlaceholder: 'nutzer-name'
 en:
-  passwordForgotten: 'Forgot password?'
+  passwordFound: 'Password found?'
+  passwordLost: 'Password lost?'
   username: 'Username'
   signIn: 'Sign in'
   usernamePlaceholder: 'user-name'

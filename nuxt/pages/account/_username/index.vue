@@ -3,10 +3,10 @@
     <div
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
-      <div class="mr-0 sm:mr-4">
+      <div class="sm:mr-4">
         <ProfilePicture :username="this.$route.params.username" />
       </div>
-      <h1 class="mb-0 truncate w-full sm:w-auto">
+      <h1 class="truncate w-full sm:w-auto">
         {{ $route.params.username }}
       </h1>
     </div>

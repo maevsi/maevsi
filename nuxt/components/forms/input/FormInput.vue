@@ -1,5 +1,5 @@
 <template>
-  <div class="my-3">
+  <div class="my-4">
     <div
       :class="{ 'animate-shake form-input-error': error }"
       class="md:flex flex-wrap md:items-center"

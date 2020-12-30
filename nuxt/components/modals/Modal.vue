@@ -1,7 +1,7 @@
 <template>
   <transition name="modal">
     <div
-      class="bg-half-transparent duration-300 fixed h-full left-0 table text-black top-0 transition-opacity w-full z-10"
+      class="bg-half-transparent duration-300 fixed h-full left-0 table text-text-dark top-0 transition-opacity w-full z-10"
     >
       <div class="align-middle table-cell">
         <div
@@ -10,10 +10,10 @@
           <div>
             <slot name="header" />
           </div>
-          <div class="my-5">
+          <div class="my-4 text-center">
             <slot />
           </div>
-          <div>
+          <div class="flex justify-evenly">
             <slot name="footer">
               <Button :icon="false" @click.native="$emit('close')">
                 {{ $t('ok') }}

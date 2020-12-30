@@ -129,14 +129,18 @@
           />
         </template>
         <template slot="back">
-          <div class="border-2 border-t-0 border-gray-200 h-full rounded-b">
+          <div
+            class="border-2 border-t-0 card border-gray-200 h-full rounded-b"
+          >
             <vue-markdown
               v-if="$v.form['description'].$model"
               :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
-              class="description h-full rounded-t-none text-left text-gray-900"
+              class="description h-full maevsi-prose rounded-t-none"
               :source="$v.form['description'].$model"
             />
-            <div v-else class="h-full">{{ $t('previewNoContent') }}</div>
+            <div v-else class="h-full text-center">
+              {{ $t('previewNoContent') }}
+            </div>
           </div>
         </template>
       </TabFlip>
@@ -209,7 +213,6 @@
     <AlertGraphql
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
-      class="mt-4"
     />
   </Form>
 </template>

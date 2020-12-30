@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <div class="text-left prose">
+    <div class="maevsi-prose">
       <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
       <p>
         Jonas Thelemann<br />

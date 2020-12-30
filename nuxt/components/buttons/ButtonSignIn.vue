@@ -1,5 +1,5 @@
 <template>
-  <Button :icon-id="['fas', 'user']" :link="localePath('/account?form=signIn')">
+  <Button :icon-id="['fas', 'user']" :to="localePath('/account?form=signIn')">
     {{ $t('signIn') }}
   </Button>
 </template>

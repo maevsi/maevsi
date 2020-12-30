@@ -1,6 +1,6 @@
 <template>
   <Modal @close="$emit('hide')">
-    <h2 slot="header">{{ $t('header') }}</h2>
+    <h2 slot="header" class="text-center">{{ $t('header') }}</h2>
     <ImageUploadGallery
       :allow-addition="false"
       :allow-deletion="false"
@@ -8,7 +8,7 @@
       :username="$route.params.username"
       @selection="selectProfilePictureStorageKey"
     />
-    <template slot="footer" class="text-white">
+    <template slot="footer" class="text-text-bright">
       <Button
         :disabled="settingProfilePicture"
         :icon-id="['fas', 'window-close']"

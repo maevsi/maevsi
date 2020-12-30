@@ -27,6 +27,7 @@
           @form="onFormSignIn"
           @password-forgotten="onClickPasswordForgotten"
         />
+        <Spacer size="4" />
         <FormAccountPasswordResetRequest
           v-if="showFormPasswordResetRequest"
           ref="formPasswordResetRequest"
@@ -62,12 +63,16 @@ export default {
       formPasswordResetRequest: {
         'email-address': undefined,
       },
-      showFormPasswordResetRequest: false,
       title: this.$t('title'),
     }
   },
   head() {
     return { title: this.title }
+  },
+  computed: {
+    showFormPasswordResetRequest() {
+      return this.$route.query.pw === 'lost'
+    },
   },
   methods: {
     onAccountPasswordResetRequest() {
@@ -79,8 +84,6 @@ export default {
       this.$refs.formRegister.$v.form['email-address'].$touch()
     },
     onClickPasswordForgotten() {
-      this.showFormPasswordResetRequest = !this.showFormPasswordResetRequest
-
       if (
         this.showFormPasswordResetRequest &&
         this.formPasswordResetRequest['email-address'] !== undefined &&

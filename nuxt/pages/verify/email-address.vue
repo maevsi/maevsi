@@ -46,7 +46,7 @@ export default {
         .mutate({
           mutation: ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION,
           variables: {
-            code: this.$router.currentRoute.query.code,
+            code: this.$route.query.code,
           },
         })
         .catch((error) => {

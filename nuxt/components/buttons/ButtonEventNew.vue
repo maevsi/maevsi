@@ -1,5 +1,5 @@
 <template>
-  <Button v-if="signedIn" :icon-id="['fas', 'plus']" :link="localePath('/new')">
+  <Button v-if="signedIn" :icon-id="['fas', 'plus']" :to="localePath('/new')">
     {{ $t('new') }}
   </Button>
 </template>

@@ -4,7 +4,7 @@
     :disabled="disabled"
     :icon="icon"
     :icon-id="iconId"
-    :link="link"
+    :to="to"
   >
     <slot />
   </Button>

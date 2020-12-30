@@ -26,7 +26,6 @@
     <AlertGraphql
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
-      class="mt-4"
     />
   </Form>
 </template>

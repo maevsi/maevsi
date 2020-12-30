@@ -25,7 +25,6 @@
     <AlertGraphql
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
-      class="mt-4"
     />
   </Form>
 </template>
@@ -79,7 +78,7 @@ export default {
         .mutate({
           mutation: ACCOUNT_PASSWORD_RESET_MUTATION,
           variables: {
-            code: this.$router.currentRoute.query.code,
+            code: this.$route.query.code,
             password: this.form.password,
           },
         })
@@ -99,7 +98,7 @@ export default {
       alert(this.$t('accountPasswordResetSuccess'))
       this.$router.push({
         path: this.localePath(`/account`),
-        query: { form: 'signIn' },
+        query: { ...this.$route.query, form: 'signIn' },
       })
     },
   },
