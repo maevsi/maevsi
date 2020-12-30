@@ -373,7 +373,7 @@ en:
   slug: 'Slug'
   slugPlaceholder: 'welcome-party'
   start: 'Start'
-  visibility: 'Visibilitiy'
+  visibility: 'Visibility'
   visibilityPrivate: 'private'
   visibilityPublic: 'public'
 </i18n>
