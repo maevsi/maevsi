@@ -19,7 +19,7 @@ export default function (
     '/event/' +
     eventId
   const eventDescriptionHtml = data.event.description
-    ? md.render(data.event.description)
+    ? md.render(`${eventUrl}\n${data.event.description}`)
     : ''
 
   res.setHeader('Content-Type', 'text/calendar')
