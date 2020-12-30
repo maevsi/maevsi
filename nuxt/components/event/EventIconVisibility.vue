@@ -1,22 +1,20 @@
 <template>
-  <EventIcon>
-    <FontAwesomeIcon
-      v-if="event.archived"
-      :icon="['fas', 'archive']"
-      :title="$t('archived')"
-    />
-    <FontAwesomeIcon
-      v-else-if="event.visibility === 'PUBLIC'"
-      :icon="['fas', 'globe-africa']"
-      :title="$t('public')"
-    />
-    <FontAwesomeIcon
-      v-else-if="event.visibility === 'PRIVATE'"
-      :icon="['fas', 'key']"
-      :title="$t('private')"
-    />
-    <FontAwesomeIcon v-else :icon="['fas', 'bug']" :title="$t('bug')" />
-  </EventIcon>
+  <FontAwesomeIcon
+    v-if="event.archived"
+    :icon="['fas', 'archive']"
+    :title="$t('archived')"
+  />
+  <FontAwesomeIcon
+    v-else-if="event.visibility === 'PUBLIC'"
+    :icon="['fas', 'globe-africa']"
+    :title="$t('public')"
+  />
+  <FontAwesomeIcon
+    v-else-if="event.visibility === 'PRIVATE'"
+    :icon="['fas', 'key']"
+    :title="$t('private')"
+  />
+  <FontAwesomeIcon v-else :icon="['fas', 'bug']" :title="$t('bug')" />
 </template>
 
 <script>
