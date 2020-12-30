@@ -1,6 +1,6 @@
 mutation($invitationCode: UUID!) {
-  redeem(input: { invitationCode: $invitationCode }) {
-    redeemResponse {
+  eventUnlock(input: { invitationCode: $invitationCode }) {
+    eventUnlockResponse {
       organizerUsername
       eventSlug
       jwt

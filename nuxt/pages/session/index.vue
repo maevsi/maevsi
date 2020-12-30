@@ -14,10 +14,10 @@
     </div>
     <section>
       <h2>{{ $t('inviteCodes') }}</h2>
-      <ButtonRedeem />
+      <ButtonEventUnlock />
       <div v-if="$global.checkNested($store.state.jwtDecoded, 'invites')">
         <p>
-          {{ $t('codesRedeemed') }}
+          {{ $t('codesEntered') }}
         </p>
         <ul class="list-disc">
           <li
@@ -29,7 +29,7 @@
         </ul>
       </div>
       <p v-else>
-        {{ $t('codesRedeemedNone') }}
+        {{ $t('codesEnteredNone') }}
       </p>
     </section>
   </div>
@@ -64,16 +64,16 @@ export default {
 
 <i18n lang="yml">
 de:
-  codesRedeemed: 'Du hast die folgenden Codes eingelöst:'
-  codesRedeemedNone: 'Du hast bisher keine Codes eingelöst 😕'
+  codesEntered: 'Du hast die folgenden Codes eingegeben:'
+  codesEnteredNone: 'Du hast bisher keine Codes eingegeben 😕'
   inviteCodes: 'Einladungscodes'
   sessionExit: 'Diese Sitzung beenden'
   sessionExpired: 'Deine Sitzung ist abgelaufen.'
   sessionExpiry: 'Deine Sitzung läuft am {exp} ab.'
   title: 'Sitzung'
 en:
-  codesRedeemed: 'You redeemed the following codes:'
-  codesRedeemedNone: 'You have no codes redeemed yet 😕'
+  codesEntered: 'You entered the following codes:'
+  codesEnteredNone: 'You have no codes entered yet 😕'
   inviteCodes: 'Invite codes'
   sessionExit: 'Exit this session'
   sessionExpired: 'Your session expired.'

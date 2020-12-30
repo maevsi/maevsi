@@ -1,19 +1,19 @@
--- Deploy maevsi:function_redeem to pg
+-- Deploy maevsi:function_event_unlock to pg
 -- requires: privilege_execute_revoke
 -- requires: schema_public
 -- requires: table_invite_account
 -- requires: table_invite_contact
 -- requires: table_event
--- requires: type_redeem_response
+-- requires: type_event_unlock_response
 -- requires: function_invite_claims_to_array
 -- requires: type_jwt
 -- requires: table_jwt
 
 BEGIN;
 
-CREATE FUNCTION maevsi.redeem(
+CREATE FUNCTION maevsi.event_unlock(
   invitation_code UUID
-) RETURNS maevsi.redeem_response AS $$
+) RETURNS maevsi.event_unlock_response AS $$
 DECLARE
   _jwt_id UUID;
   _jwt maevsi.jwt;
@@ -39,7 +39,7 @@ BEGIN
   );
 
   IF (_event_id IS NOT NULL) THEN
-    RETURN (SELECT (organizer_username, slug, _jwt)::maevsi.redeem_response
+    RETURN (SELECT (organizer_username, slug, _jwt)::maevsi.event_unlock_response
     FROM maevsi.event
     WHERE id = _event_id);
   ELSE
@@ -47,8 +47,8 @@ BEGIN
   END IF;
 END $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi.redeem(UUID) IS 'Allows to redeem invitation codes.';
+COMMENT ON FUNCTION maevsi.event_unlock(UUID) IS 'Allows to enter invitation codes.';
 
-GRANT EXECUTE ON FUNCTION maevsi.redeem(UUID) TO maevsi_account, maevsi_anonymous;
+GRANT EXECUTE ON FUNCTION maevsi.event_unlock(UUID) TO maevsi_account, maevsi_anonymous;
 
 COMMIT;

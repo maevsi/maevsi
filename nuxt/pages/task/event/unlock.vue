@@ -4,7 +4,7 @@
     <Form
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
-      @submit="redeem"
+      @submit="unlockEvent"
     >
       <FormInput
         :error="$v.form['invitation-code'].$error"
@@ -26,9 +26,9 @@
         <template slot="inputInfo">
           <div v-if="$route.query.ic">
             {{ $t('invitationCodeAutomatic') }}
-            <AppLink :to="localePath('/redeem')">{{
-              $t('invitationCodeManual')
-            }}</AppLink>
+            <AppLink :to="localePath('/task/event/unlock')">
+              {{ $t('invitationCodeManual') }}
+            </AppLink>
           </div>
         </template>
         <template slot="inputError">
@@ -74,7 +74,7 @@
 <script>
 import { required } from 'vuelidate/lib/validators'
 
-import REDEEM_MUTATION from '~/gql/mutation/redeem'
+import EVENT_UNLOCK_MUTATION from '~/gql/mutation/eventUnlock'
 
 const consola = require('consola')
 
@@ -113,7 +113,7 @@ export default {
     }
   },
   methods: {
-    async redeem(e) {
+    async unlockEvent(e) {
       e.preventDefault()
 
       this.graphqlErrorMessage = undefined
@@ -121,13 +121,13 @@ export default {
       this.$v.form.$reset()
       const res = await this.$apollo
         .mutate({
-          mutation: REDEEM_MUTATION,
+          mutation: EVENT_UNLOCK_MUTATION,
           variables: {
             invitationCode: this.form['invitation-code'],
           },
         })
         .then(({ data }) =>
-          this.$global.checkNested(data, 'redeem', 'redeemResponse')
+          this.$global.checkNested(data, 'eventUnlock', 'eventUnlockResponse')
         )
         .catch((error) => {
           this.graphqlErrorMessage = error.message

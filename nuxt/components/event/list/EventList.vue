@@ -6,7 +6,7 @@
     <div class="flex flex-wrap justify-center">
       <ButtonEventList v-if="showButtonEventList" class="mx-2" />
       <ButtonEventNew v-if="showButtonEventNew" class="mx-2" />
-      <ButtonRedeem v-if="showButtonRedeem" class="mx-2" />
+      <ButtonEventUnlock v-if="showButtonEventUnlock" class="mx-2" />
     </div>
     <ul
       v-if="
@@ -59,7 +59,7 @@ export default {
         return this.$route.name.replace(/___.+$/, '') !== 'event'
       },
     },
-    showButtonRedeem: {
+    showButtonEventUnlock: {
       type: Boolean,
       default: true,
     },
