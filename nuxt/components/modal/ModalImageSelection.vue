@@ -4,7 +4,7 @@
     <ImageUploadGallery
       :allow-addition="false"
       :allow-deletion="false"
-      :selectable="true"
+      selectable
       :username="$route.params.username"
       @selection="selectProfilePictureStorageKey"
     />

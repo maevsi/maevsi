@@ -102,8 +102,8 @@
         :initial-image="fileSelectedUrl"
         :placeholder="$t('croppaPlaceholder')"
         :placeholder-font-size="17.5"
+        prevent-white-space
         :show-remove-button="false"
-        :prevent-white-space="true"
       />
       <template slot="footer" class="text-text-bright">
         <Button
