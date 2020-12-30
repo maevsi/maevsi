@@ -47,49 +47,13 @@
           :username="eventContactFeedbackData.event.organizerUsername"
         />
         <div class="flex flex-col sm:flex-row m-auto">
-          <EventIcon
+          <EventDashletVisibility
             :event="eventContactFeedbackData.event"
-            :with-text="true"
-            class="my-2 sm:mx-4"
+            with-text
           />
-          <div class="flex flex-col items-center my-2 sm:mx-4 text-center">
-            <FontAwesomeIcon :icon="['fas', 'calendar-day']" />
-            {{ $moment(eventContactFeedbackData.event.start).format('lll') }}
-            <br />
-            ({{ $moment(eventContactFeedbackData.event.start).fromNow() }})
-          </div>
-          <div
-            v-if="eventContactFeedbackData.event.end !== null"
-            class="flex flex-col items-center my-2 sm:mx-4"
-          >
-            <FontAwesomeIcon :icon="['fas', 'hourglass']" />
-            {{
-              $moment
-                .duration(
-                  $moment(eventContactFeedbackData.event.end).diff(
-                    $moment(eventContactFeedbackData.event.start)
-                  )
-                )
-                .humanize()
-            }}
-          </div>
-          <div
-            v-if="eventContactFeedbackData.event.place !== null"
-            class="my-2 sm:mx-4"
-          >
-            <FontAwesomeIcon :icon="['fas', 'map-marker']" />
-            <br />
-            <a
-              :href="
-                'https://maps.google.de/?q=' +
-                encodeURIComponent(eventContactFeedbackData.event.place)
-              "
-              rel="nofollow noopener noreferrer"
-              target="_blank"
-            >
-              {{ eventContactFeedbackData.event.place }}
-            </a>
-          </div>
+          <EventDashletStart :event="eventContactFeedbackData.event" />
+          <EventDashletDuration :event="eventContactFeedbackData.event" />
+          <EventDashletPlace :event="eventContactFeedbackData.event" />
         </div>
         <Button
           :icon-id="['fas', 'download']"

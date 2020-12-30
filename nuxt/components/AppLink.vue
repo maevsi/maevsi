@@ -2,7 +2,9 @@
   <a
     v-if="to.match(/^(http(s)?|ftp):\/\//)"
     :href="to"
-    rel="noopener noreferrer"
+    :rel="
+      [...(nofollow ? ['nofollow'] : []), 'noopener', 'noreferrer'].join(' ')
+    "
     target="_blank"
   >
     <FontAwesomeIcon
@@ -38,6 +40,10 @@ export default {
     iconSize: {
       type: String,
       default: undefined,
+    },
+    nofollow: {
+      type: Boolean,
+      default: false,
     },
     to: {
       type: String,
