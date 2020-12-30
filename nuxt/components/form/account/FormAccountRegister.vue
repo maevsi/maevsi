@@ -83,7 +83,6 @@ export default {
   },
   data() {
     return {
-      formSent: undefined,
       graphqlErrorMessage: undefined,
     }
   },
@@ -101,7 +100,7 @@ export default {
     async register(e) {
       e.preventDefault()
 
-      this.formSent = true
+      this.$emit('form-sent')
       this.graphqlErrorMessage = undefined
 
       this.$v.form.$reset()

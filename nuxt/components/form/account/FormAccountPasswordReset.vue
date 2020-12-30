@@ -38,10 +38,6 @@ const consola = require('consola')
 
 export default {
   props: {
-    // form: {
-    //   type: Object,
-    //   default: undefined,
-    // },
     formClass: {
       type: String,
       default: undefined,
@@ -51,26 +47,16 @@ export default {
     return {
       form: {
         password: undefined,
+        sent: undefined,
       },
-      formSent: undefined,
       graphqlErrorMessage: undefined,
     }
   },
-  // watch: {
-  //   form: {
-  //     handler(val) {
-  //       if (JSON.stringify(val) !== '{}') {
-  //         this.$emit('form', val)
-  //       }
-  //     },
-  //     deep: true,
-  //   },
-  // },
   methods: {
     async accountPasswordReset(e) {
       e.preventDefault()
 
-      this.formSent = true
+      this.form.sent = true
       this.graphqlErrorMessage = undefined
 
       this.$v.form.$reset()

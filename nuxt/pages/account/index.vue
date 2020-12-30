@@ -16,6 +16,7 @@
           :form="formRegister"
           form-class="rounded-t-none"
           @form="onFormRegister"
+          @form-sent="onFormSent(formRegister)"
           @registered="onRegistered"
         />
       </template>
@@ -25,6 +26,7 @@
           :form="formSignIn"
           form-class="rounded-t-none"
           @form="onFormSignIn"
+          @form-sent="onFormSent(formSignIn)"
           @password-forgotten="onClickPasswordForgotten"
         />
         <Spacer size="4" />
@@ -33,6 +35,7 @@
           ref="formPasswordResetRequest"
           :form="formPasswordResetRequest"
           @form="onFormPasswordResetRequest"
+          @form-sent="onFormSent(formPasswordResetRequest)"
           @account-password-reset-request="onAccountPasswordResetRequest"
         />
       </template>
@@ -54,14 +57,17 @@ export default {
       formRegister: {
         'email-address': undefined,
         password: undefined,
+        sent: undefined,
         username: undefined,
       },
       formSignIn: {
         password: undefined,
+        sent: undefined,
         username: undefined,
       },
       formPasswordResetRequest: {
         'email-address': undefined,
+        sent: undefined,
       },
       title: this.$t('title'),
     }
@@ -120,6 +126,9 @@ export default {
           this.$refs.formPasswordResetRequest.$v.form['email-address'].$touch()
         }
       }
+    },
+    onFormSent(form) {
+      form.sent = true
     },
     onFormSignIn(form) {
       if (this.formRegister.username !== form.username) {
