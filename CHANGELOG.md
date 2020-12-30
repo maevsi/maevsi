@@ -1,3 +1,17 @@
+# [0.35.0](https://github.com/maevsi/maevsi/compare/0.34.0...0.35.0) (2020-12-30)
+
+
+### Bug Fixes
+
+* minor fixes ([fda2ecb](https://github.com/maevsi/maevsi/commit/fda2ecbfdcacb1b6a1dfa2263b09edb2bd125e12))
+* **tailwind:** capitalize default ([1affad5](https://github.com/maevsi/maevsi/commit/1affad55b04983ed16a46a8bdf9053043e3764bd))
+
+
+### Features
+
+* **tailwind:** rework cards ([53056d0](https://github.com/maevsi/maevsi/commit/53056d0653f0c7ed4b17a8e7e2a45565a159f56a)), closes [#143](https://github.com/maevsi/maevsi/issues/143)
+* **tailwind:** use card in more places ([61f4956](https://github.com/maevsi/maevsi/commit/61f4956c843f2f10f379633fcee368c168ee665f))
+
 # [0.34.0](https://github.com/maevsi/maevsi/compare/0.33.2...0.34.0) (2020-12-30)
 
 
