@@ -1,11 +1,11 @@
 <template>
   <transition name="modal">
     <div
-      class="bg-half-transparent duration-300 fixed h-full left-0 table text-text-dark top-0 transition-opacity w-full z-10"
+      class="bg-half-transparent duration-300 fixed h-full left-0 table top-0 transition-opacity w-full z-10"
     >
       <div class="align-middle table-cell">
         <div
-          class="modal-container bg-white duration-300 max-h-90vh mx-auto overflow-auto px-8 py-5 rounded-sm shadow transition-all w-5/6 sm:w-1/2 lg:w-1/3 xl:1/4"
+          class="card duration-300 max-h-90vh mx-auto overflow-auto transition-all w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3"
         >
           <div>
             <slot name="header" />

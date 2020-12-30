@@ -242,7 +242,9 @@ module.exports = {
         },
         '.card': {
           backgroundColor: theme('colors.white'),
+          borderColor: theme('colors.gray.300'),
           borderRadius: theme('borderRadius.DEFAULT'),
+          borderWidth: theme('borderWidth.DEFAULT'),
           boxShadow: theme('boxShadow.md'),
           color: theme('colors.text.dark'),
           padding: theme('padding.4'),

@@ -30,7 +30,7 @@
         </Button>
       </div>
       <div
-        class="bg-white border border-gray-300 card flex flex-col items-center m-auto my-4 px-8 py-4 rounded text-text-dark"
+        class="card flex flex-col items-center mt-4"
         :class="{
           'bg-yellow-100':
             $store.state.jwtDecoded &&

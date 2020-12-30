@@ -6,7 +6,7 @@
     }"
   >
     <nuxt-link
-      class="bg-white border border-gray-300 flex flex-col p-4 rounded"
+      class="card flex flex-col"
       :class="{
         'bg-yellow-100':
           $store.state.jwtDecoded &&
