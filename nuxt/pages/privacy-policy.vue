@@ -134,7 +134,7 @@
         34117 Kassel
       </address>
 
-      <p class="m-4">E-Mail: server+privacy-policy@jonas-thelemann.de</p>
+      <p class="m-4">E-Mail: mail+privacy-policy@maev.si</p>
       <p>
         Verantwortliche Stelle ist die nat&uuml;rliche oder juristische Person,
         die allein oder gemeinsam mit anderen &uuml;ber die Zwecke und Mittel
