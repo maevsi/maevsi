@@ -1,3 +1,11 @@
+## [0.35.2](https://github.com/maevsi/maevsi/compare/0.35.1...0.35.2) (2020-12-30)
+
+
+### Bug Fixes
+
+* **form:** fix typo ([f935c15](https://github.com/maevsi/maevsi/commit/f935c15eb0134439a4311a52ee1e3f17a800ed6c))
+* **form:** validate some input fields on blur, not on input ([9858ed6](https://github.com/maevsi/maevsi/commit/9858ed6d479bfb47f240b70e920a6e607d70f46d)), closes [#147](https://github.com/maevsi/maevsi/issues/147)
+
 ## [0.35.1](https://github.com/maevsi/maevsi/compare/0.35.0...0.35.1) (2020-12-30)
 
 
