@@ -1,3 +1,18 @@
+# [0.34.0](https://github.com/maevsi/maevsi/compare/0.33.2...0.34.0) (2020-12-30)
+
+
+### Bug Fixes
+
+* **event:** remove incorrect class ([b9f720d](https://github.com/maevsi/maevsi/commit/b9f720d5043980176791488f3e4ade7bee6327bf))
+
+
+### Features
+
+* **event:** remove ornament ([59e3066](https://github.com/maevsi/maevsi/commit/59e30660856d162617500702563cc234eba33b74))
+* **ical:** add event url to top of description ([4efea63](https://github.com/maevsi/maevsi/commit/4efea63769087db83114f4fff6ce70c6e8770edf))
+* **legal/privacy:** use new email addresses ([aba6dac](https://github.com/maevsi/maevsi/commit/aba6dacc7a641db20b30896f00578ae2d2341b01))
+* **tailwind:** upgrade to tailwind v2 ([b7cf998](https://github.com/maevsi/maevsi/commit/b7cf998b72dcaa859e8c75702a8ffcc5dd82c241))
+
 ## [0.33.2](https://github.com/maevsi/maevsi/compare/0.33.1...0.33.2) (2020-12-29)
 
 
