@@ -241,11 +241,6 @@
             >{{ eventContactFeedbackData.event.description }}
           </vue-markdown>
         </div>
-        <img
-          :alt="$t('ornament')"
-          class="m-auto mt-2 opacity-25 md:w-3/4 xl:w-1/2"
-          src="~/assets/ornament.png"
-        />
       </div>
     </div>
     <div v-else>
@@ -411,7 +406,6 @@ de:
   inviteCardKindNone: 'Keine'
   inviteCardKindPaper: 'Papier'
   inviteCardKindDigital: 'Digital'
-  ornament: 'Ornament'
   requestSelection: 'Bitte auswählen'
   settings: 'Einstellungen'
   success: 'Deine Eingabe wurde erfolgreich gespeichert.'
@@ -428,7 +422,6 @@ en:
   inviteCardKindNone: 'None'
   inviteCardKindPaper: 'Paper'
   inviteCardKindDigital: 'Digital'
-  ornament: 'Ornament'
   requestSelection: 'Please select'
   settings: 'Settings'
   success: 'Your input was saved succesfully.'
