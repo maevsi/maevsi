@@ -8,7 +8,6 @@
       <div class="flex justify-center">
         <AppLink
           class="items-center flex"
-          :icon="true"
           :icon-id="['fab', 'github']"
           icon-size="2x"
           :title="$t('githubLinkTitle')"
@@ -17,9 +16,9 @@
           github.com/maevsi/maevsi
         </AppLink>
       </div>
-      <Button :icon="false" :to="localePath('/event')">{{
-        $t('events')
-      }}</Button>
+      <Button :to="localePath('/event')">
+        {{ $t('events') }}
+      </Button>
     </div>
   </section>
 </template>

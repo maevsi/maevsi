@@ -89,9 +89,9 @@
         v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"
         class="flex justify-center"
       >
-        <Button :icon="false" @click.native="showMore">{{
-          $t('globalPagingMore')
-        }}</Button>
+        <Button @click.native="showMore">
+          {{ $t('globalPagingMore') }}
+        </Button>
       </div>
     </div>
     <p v-else>{{ $t('noPictures') }}</p>

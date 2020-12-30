@@ -15,7 +15,7 @@
           </div>
           <div class="flex justify-evenly">
             <slot name="footer">
-              <Button :icon="false" @click.native="$emit('close')">
+              <Button @click.native="$emit('close')">
                 {{ $t('ok') }}
               </Button>
             </slot>

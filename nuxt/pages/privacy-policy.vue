@@ -131,10 +131,11 @@
       <address>
         Jonas Thelemann<br />
         Fünffensterstraße 18<br />
-        34117 Kassel
+        34117 Kassel<br />
+        <br />
+        E-Mail: mail+privacy-policy@maev.si
       </address>
 
-      <p class="m-4">E-Mail: mail+privacy-policy@maev.si</p>
       <p>
         Verantwortliche Stelle ist die nat&uuml;rliche oder juristische Person,
         die allein oder gemeinsam mit anderen &uuml;ber die Zwecke und Mittel

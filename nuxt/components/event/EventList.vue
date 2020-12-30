@@ -20,9 +20,9 @@
         :event="event"
       />
       <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
-        <Button :icon="false" @click.native="showMore">{{
-          $t('globalPagingMore')
-        }}</Button>
+        <Button @click.native="showMore">
+          {{ $t('globalPagingMore') }}
+        </Button>
       </div>
     </ul>
     <p v-else>{{ $t('noEvents') }}</p>

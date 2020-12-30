@@ -5,7 +5,6 @@
       :append="append"
       :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"
       :disabled="disabled"
-      :icon="icon"
       :icon-id="iconId"
       :icon-size="iconSize"
       :to="to"
@@ -20,7 +19,7 @@
       @click="$emit('click')"
     >
       <FontAwesomeIcon
-        v-if="icon"
+        v-if="iconId"
         :class="{ 'mr-2': this.$slots.default }"
         :icon="iconId"
         :size="iconSize"
@@ -45,15 +44,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    icon: {
-      type: Boolean,
-      default: true,
-    },
     iconId: {
       type: Array,
-      default() {
-        return ['fas', 'bug']
-      },
+      default: undefined,
     },
     iconSize: {
       type: String,

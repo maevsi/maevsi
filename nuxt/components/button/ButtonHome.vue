@@ -1,7 +1,7 @@
 <template>
-  <Button :icon-id="['fas', 'home']" :to="localePath('/')">{{
-    $t('home')
-  }}</Button>
+  <Button :icon-id="['fas', 'home']" :to="localePath('/')">
+    {{ $t('home') }}
+  </Button>
 </template>
 
 <i18n lang="yml">

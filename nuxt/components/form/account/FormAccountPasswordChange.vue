@@ -20,7 +20,6 @@
           $v.form.$invalid ||
           (form.sent && !$v.form.$anyDirty && !graphqlErrorMessage)
         "
-        :icon="false"
         type="submit"
       >
         {{ $t('passwordChange') }}

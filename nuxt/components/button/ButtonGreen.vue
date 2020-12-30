@@ -2,7 +2,6 @@
   <Button
     :button-class="buttonClass"
     :disabled="disabled"
-    :icon="icon"
     :icon-id="iconId"
     :to="to"
   >
@@ -21,15 +20,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    icon: {
-      type: Boolean,
-      default: true,
-    },
     iconId: {
       type: Array,
-      default() {
-        return ['fas', 'bug']
-      },
+      default: undefined,
     },
     link: {
       type: String,

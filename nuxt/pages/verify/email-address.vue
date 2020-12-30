@@ -11,7 +11,7 @@
           'maevsi_anonymous'
         "
       />
-      <ButtonHome class="m-4" />
+      <ButtonHome />
     </Loader>
   </div>
 </template>

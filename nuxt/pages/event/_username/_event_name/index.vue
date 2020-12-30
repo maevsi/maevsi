@@ -138,7 +138,6 @@
                       .invitationFeedback === 'CANCELED'
                   "
                   class="mx-2"
-                  :icon="false"
                   @click.native="accept"
                 >
                   {{ $t('inviteAccept') }}
@@ -166,7 +165,6 @@
                       .invitationFeedback === 'ACCEPTED'
                   "
                   class="mx-2"
-                  :icon="false"
                   @click.native="cancel"
                 >
                   {{ $t('inviteCancel') }}

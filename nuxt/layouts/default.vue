@@ -11,7 +11,6 @@
           </nuxt-link>
           <div class="dropdown text-lg">
             <AppLink
-              :icon="true"
               :icon-id="['fas', 'user']"
               :to="`/account/${
                 signedInUsername === undefined ? '' : signedInUsername
@@ -30,7 +29,6 @@
               >
                 <div class="mt-1">
                   <AppLink
-                    :icon="true"
                     :icon-id="['fas', 'cog']"
                     :to="`/account/${
                       signedInUsername === undefined ? '' : signedInUsername
@@ -40,7 +38,6 @@
                   </AppLink>
                 </div>
                 <Button
-                  :icon="true"
                   :icon-id="['fas', 'sign-out-alt']"
                   @click="$global.signOut($apollo.getClient(), $store)"
                 >
@@ -50,7 +47,6 @@
               <div v-else class="flex flex-col items-end">
                 <div class="mt-1">
                   <AppLink
-                    :icon="true"
                     :icon-id="['fas', 'user-clock']"
                     :to="localePath('/session')"
                   >

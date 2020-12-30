@@ -6,7 +6,7 @@
     target="_blank"
   >
     <FontAwesomeIcon
-      v-if="icon"
+      v-if="iconId"
       :class="{ 'mr-2': this.$slots.default }"
       :icon="iconId"
       :size="iconSize"
@@ -15,7 +15,7 @@
   </a>
   <nuxt-link v-else append="append" :to="to">
     <FontAwesomeIcon
-      v-if="icon"
+      v-if="iconId"
       :class="{ 'mr-2': this.$slots.default }"
       :icon="iconId"
       :size="iconSize"
@@ -31,15 +31,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    icon: {
-      type: Boolean,
-      default: false,
-    },
     iconId: {
       type: Array,
-      default() {
-        return ['fas', 'bug']
-      },
+      default: undefined,
     },
     iconSize: {
       type: String,

@@ -1,7 +1,7 @@
 <template>
-  <Button :icon-id="['fas', 'list-ul']" :to="localePath('/event')">{{
-    $t('eventAll')
-  }}</Button>
+  <Button :icon-id="['fas', 'list-ul']" :to="localePath('/event')">
+    {{ $t('eventAll') }}
+  </Button>
 </template>
 
 <i18n lang="yml">

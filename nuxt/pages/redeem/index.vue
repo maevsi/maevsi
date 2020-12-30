@@ -54,7 +54,6 @@
               !$v.form['invitation-code'].$error
             )
           "
-          :icon="false"
           type="submit"
         >
           {{ $t('submit') }}
