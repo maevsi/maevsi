@@ -224,7 +224,7 @@ module.exports = {
         '.button': {
           backgroundColor: theme('colors.red.600'),
           borderRadius: theme('borderRadius.full'),
-          boxShadow: theme('boxShadow.default'),
+          boxShadow: theme('boxShadow.DEFAULT'),
           color: theme('colors.text.bright'),
           display: 'inline-block',
           fontWeight: theme('fontWeight.bold'),
@@ -234,7 +234,7 @@ module.exports = {
           marginTop: theme('margin.4'),
           padding: theme('padding.2') + ' ' + theme('padding.4'),
           '&:focus': {
-            boxShadow: theme('boxShadow.outline'),
+            boxShadow: theme('ringWidth.DEFAULT'),
           },
           '&:hover': {
             backgroundColor: theme('colors.red.700'),
