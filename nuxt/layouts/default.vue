@@ -2,9 +2,9 @@
   <div>
     <div class="container min-h-screen mx-auto p-4">
       <header>
-        <Warning v-if="!browserSupported">
+        <CardInfo v-if="!browserSupported">
           {{ $t('browserUnsupported') }}
-        </Warning>
+        </CardInfo>
         <div class="flex items-center justify-between my-4 relative">
           <nuxt-link :aria-label="$t('home')" :to="localePath('/')">
             <div id="logo" class="h-10 w-32" />

@@ -1,8 +1,5 @@
 <template>
-  <Loader
-    :graphql-error-message="graphqlErrorMessage"
-    :loading="$apollo.loading"
-  >
+  <Loader :error-message="graphqlErrorMessage" :loading="$apollo.loading">
     <div v-if="event">
       <!-- breadcrumbs -->
       <h1 class="text-center">
@@ -10,7 +7,7 @@
       </h1>
       <section>
         <h2>{{ $t('titleDangerZone') }}</h2>
-        <Delete
+        <FormDelete
           id="deleteEvent"
           :item-name="$t('event')"
           :mutation="mutation"

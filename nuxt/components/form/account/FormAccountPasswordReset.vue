@@ -1,8 +1,9 @@
 <template>
   <Form
+    :form-class="formClass"
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
-    @submit="deletion"
+    @submit="accountPasswordReset"
   >
     <FormInputPassword
       id="password"
@@ -15,14 +16,15 @@
           $v.form.$invalid ||
           (form.sent && !$v.form.$anyDirty && !graphqlErrorMessage)
         "
-        :icon-id="['fa', 'trash']"
+        :icon="false"
         type="submit"
       >
-        {{ $t('deletion', { item: itemName }) }}
+        {{ $t('accountPasswordReset') }}
       </Button>
     </div>
-    <AlertGraphql
-      :graphql-error-message="graphqlErrorMessage"
+    <CardAlert
+      class="mt-4"
+      :error-message="graphqlErrorMessage"
       :validation-object="$v.form"
     />
   </Form>
@@ -31,28 +33,18 @@
 <script>
 import { minLength, required } from 'vuelidate/lib/validators'
 
+import ACCOUNT_PASSWORD_RESET_MUTATION from '~/gql/mutation/accountPasswordReset'
+
 const consola = require('consola')
 
 export default {
   props: {
-    id: {
+    // form: {
+    //   type: Object,
+    //   default: undefined,
+    // },
+    formClass: {
       type: String,
-      default: undefined,
-    },
-    itemName: {
-      type: String,
-      default: undefined,
-    },
-    mutation: {
-      type: Object,
-      default: undefined,
-    },
-    update: {
-      type: Function,
-      default: undefined,
-    },
-    variables: {
-      type: Object,
       default: undefined,
     },
   },
@@ -60,40 +52,55 @@ export default {
     return {
       form: {
         password: undefined,
-        sent: undefined,
       },
+      formSent: undefined,
       graphqlErrorMessage: undefined,
     }
   },
+  // watch: {
+  //   form: {
+  //     handler(val) {
+  //       if (JSON.stringify(val) !== '{}') {
+  //         this.$emit('form', val)
+  //       }
+  //     },
+  //     deep: true,
+  //   },
+  // },
   methods: {
-    deletion(e) {
+    async accountPasswordReset(e) {
       e.preventDefault()
 
-      this.form.sent = true
+      this.formSent = true
       this.graphqlErrorMessage = undefined
 
       this.$v.form.$reset()
-      this.$apollo
+      const res = await this.$apollo
         .mutate({
-          mutation: this.mutation,
+          mutation: ACCOUNT_PASSWORD_RESET_MUTATION,
           variables: {
+            code: this.$route.query.code,
             password: this.form.password,
-            ...this.variables,
           },
-          ...(this.update && { update: this.update }),
         })
-        .then((_data) => {
-          alert(
-            this.$global.capitalizeFirstLetter(
-              this.$t('success', { item: this.itemName })
-            )
-          )
-          this.$emit('success')
-        })
+        .then(({ data }) =>
+          this.$global.checkNested(data, 'accountPasswordReset')
+        )
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           consola.error(error)
         })
+
+      if (!res) {
+        return
+      }
+
+      // this.$emit('account-password-reset')
+      alert(this.$t('accountPasswordResetSuccess'))
+      this.$router.push({
+        path: this.localePath(`/account`),
+        query: { ...this.$route.query, form: 'signIn' },
+      })
     },
   },
   validations() {
@@ -111,9 +118,9 @@ export default {
 
 <i18n lang="yml">
 de:
-  deletion: '{item} löschen'
-  success: '{item} erfolgreich gelöscht.'
+  accountPasswordReset: 'Passwort zurücksetzen'
+  accountPasswordResetSuccess: 'Passwort erfolgreich zurückgesetzt.'
 en:
-  deletion: 'Delete {item}'
-  success: '{item} deleted successfully.'
+  accountPasswordReset: 'Reset password'
+  accountPasswordResetSuccess: 'Password reset successfully.'
 </i18n>

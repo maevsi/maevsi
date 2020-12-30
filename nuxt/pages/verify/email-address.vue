@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <Loader :graphql-error-message="graphqlErrorMessage" :loading="loading">
+    <Loader :error-message="graphqlErrorMessage" :loading="loading">
       <p>
         {{ $t('emailAddressVerificationSuccess') }}
       </p>

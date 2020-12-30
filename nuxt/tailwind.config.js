@@ -240,6 +240,21 @@ module.exports = {
             backgroundColor: theme('colors.red.700'),
           },
         },
+        '.card': {
+          backgroundColor: theme('colors.white'),
+          borderRadius: theme('borderRadius.DEFAULT'),
+          boxShadow: theme('boxShadow.md'),
+          color: theme('colors.text.dark'),
+          padding: theme('padding.4'),
+          'a[target="_blank"]:after': {
+            backgroundColor: theme('colors.text.dark'),
+          },
+          form: {
+            label: {
+              color: theme('colors.gray.600'),
+            },
+          },
+        },
         '.description': {
           p: {
             margin: theme('margin.2') + ' ' + theme('margin.0'),

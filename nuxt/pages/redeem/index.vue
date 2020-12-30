@@ -60,9 +60,10 @@
           {{ $t('submit') }}
         </Button>
       </div>
-      <AlertGraphql
-        :graphql-error-message="graphqlErrorMessage"
-        :validation-object="$v.form['invitation-code']"
+      <CardAlert
+        class="mt-4"
+        :error-message="graphqlErrorMessage"
+        :validation-object="$v.form"
       />
     </Form>
     <p class="mt-2 text-left">

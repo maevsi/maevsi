@@ -1,9 +1,6 @@
 <template>
   <!-- TODO: https://github.com/maevsi/maevsi/issues/96 for html validity inside button -->
-  <Loader
-    :graphql-error-message="graphqlErrorMessage"
-    :loading="$apollo.loading"
-  >
+  <Loader :error-message="graphqlErrorMessage" :loading="$apollo.loading">
     <img
       :alt="$t('profilePictureAlt', { username })"
       class="bg-gray-400 flex-none h-24 w-24"

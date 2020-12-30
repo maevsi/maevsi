@@ -1,8 +1,5 @@
 <template>
-  <Loader
-    :graphql-error-message="graphqlErrorMessage"
-    :loading="$apollo.loading"
-  >
+  <Loader :error-message="graphqlErrorMessage" :loading="$apollo.loading">
     <div v-if="$global.checkNested(eventContactFeedbackData, 'event')">
       <div v-if="eventContactFeedbackData.contact" class="text-center">
         <p class="font-bold mb-2 text-2xl">
@@ -236,7 +233,7 @@
           <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
           <vue-markdown
             :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
-            class="description maevsi-prose text-left"
+            class="description maevsi-prose"
             >{{ eventContactFeedbackData.event.description }}
           </vue-markdown>
         </div>

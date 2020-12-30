@@ -1,6 +1,6 @@
 <template>
   <form
-    class="form bg-white p-6 rounded shadow-md text-gray-600"
+    class="card"
     :class="[
       {
         'animate-shake border border-red-500':

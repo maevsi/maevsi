@@ -1,16 +1,13 @@
 <template>
-  <Loader
-    :graphql-error-message="graphqlErrorMessage"
-    :loading="$apollo.loading"
-  >
+  <Loader :error-message="graphqlErrorMessage" :loading="$apollo.loading">
     <div
       v-if="
         (allUploads !== undefined && allUploads.nodes.length > 0) ||
         allowAddition
       "
-      class="bg-white rounded text-center"
+      class="card"
     >
-      <ul class="inline-flex flex-wrap justify-center">
+      <ul class="flex flex-wrap justify-center">
         <template v-if="allUploads">
           <li
             v-for="upload in allUploads.nodes"

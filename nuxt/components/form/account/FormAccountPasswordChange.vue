@@ -26,8 +26,9 @@
         {{ $t('passwordChange') }}
       </Button>
     </div>
-    <AlertGraphql
-      :graphql-error-message="graphqlErrorMessage"
+    <CardAlert
+      class="mt-4"
+      :error-message="graphqlErrorMessage"
       :validation-object="$v.form"
     />
   </Form>

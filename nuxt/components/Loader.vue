@@ -1,8 +1,8 @@
 <template>
   <div v-if="loading">{{ $t('globalLoading') }}</div>
-  <AlertGraphql
-    v-else-if="graphqlErrorMessage !== undefined"
-    :graphql-error-message="graphqlErrorMessage"
+  <CardAlert
+    v-else-if="errorMessage !== undefined"
+    :error-message="errorMessage"
   />
   <div v-else>
     <slot />
@@ -12,7 +12,7 @@
 <script>
 export default {
   props: {
-    graphqlErrorMessage: {
+    errorMessage: {
       type: String,
       default: undefined,
     },

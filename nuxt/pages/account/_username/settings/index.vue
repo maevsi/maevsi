@@ -36,7 +36,7 @@
     </section>
     <section>
       <h2>{{ $t('titleDangerZone') }}</h2>
-      <Delete
+      <FormDelete
         id="deleteAccount"
         :item-name="$t('account')"
         :mutation="mutation"
