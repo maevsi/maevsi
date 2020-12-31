@@ -1,3 +1,12 @@
+# [0.37.0](https://github.com/maevsi/maevsi/compare/0.36.0...0.37.0) (2020-12-31)
+
+
+### Features
+
+* **event:** add attendance type ([8521d5a](https://github.com/maevsi/maevsi/commit/8521d5abf9553adb25585ebd31e3e45f0a6bb994)), closes [#124](https://github.com/maevsi/maevsi/issues/124)
+* **sqitch/event:** add "is_" prefix to boolean column ([13f634c](https://github.com/maevsi/maevsi/commit/13f634cfb9c9616249b287dad19e286623641cc0))
+* create task page directory ([b13bf1e](https://github.com/maevsi/maevsi/commit/b13bf1ead06e725589737446f3fe9042c7cf522a))
+
 # [0.36.0](https://github.com/maevsi/maevsi/compare/0.35.2...0.36.0) (2020-12-31)
 
 
