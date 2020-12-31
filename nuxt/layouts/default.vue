@@ -163,7 +163,7 @@ export default {
 <i18n lang="yml">
 de:
   account: 'Konto'
-  browserUnsupported: 'Diese Browserversion wird nicht unterstützt.'
+  browserUnsupported: 'Die Version deines Browsers wird nicht offiziell unterstützt. Bitte verwende eine aktuelle Version.'
   home: 'Nach Hause'
   legal-notice: 'Impressum'
   signOut: 'Abmelden'
@@ -172,7 +172,7 @@ de:
   settings: 'Einstellungen'
 en:
   account: 'Account'
-  browserUnsupported: 'This browser version is not supported.'
+  browserUnsupported: "Your browser's version is not officially supported. Please use a version that is up to date."
   home: 'Head home'
   legal-notice: 'Legal notice'
   signOut: 'Sign out'
