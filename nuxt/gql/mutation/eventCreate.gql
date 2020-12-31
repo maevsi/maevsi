@@ -12,6 +12,8 @@ mutation($createEventInput: CreateEventInput!) {
       start
       end
       isArchived
+      isInPerson
+      isRemote
     }
   }
 }

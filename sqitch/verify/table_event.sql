@@ -12,7 +12,9 @@ SELECT id,
        place,
        start,
        "end",
-       is_archived
+       is_archived,
+       is_in_person,
+       is_remote
 FROM maevsi.event WHERE FALSE;
 
 DO $$

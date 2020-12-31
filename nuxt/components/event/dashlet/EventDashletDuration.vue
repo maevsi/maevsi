@@ -1,6 +1,8 @@
 <template>
   <EventDashlet v-if="event.end">
-    <FontAwesomeIcon :icon="['fas', 'hourglass']" />
+    <span>
+      <FontAwesomeIcon :icon="['fas', 'hourglass']" />
+    </span>
     {{
       $moment.duration($moment(event.end).diff($moment(event.start))).humanize()
     }}

@@ -1,6 +1,8 @@
 <template>
   <EventDashlet v-if="event.start">
-    <FontAwesomeIcon :icon="['fas', 'calendar-day']" />
+    <span>
+      <FontAwesomeIcon :icon="['fas', 'calendar-day']" />
+    </span>
     {{ $moment(event.start).format('lll') }}
     <br />
     ({{ $moment(event.start).fromNow() }})

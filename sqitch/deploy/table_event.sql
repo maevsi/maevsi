@@ -20,6 +20,8 @@ CREATE TABLE maevsi.event (
   start                    TIMESTAMP WITH TIME ZONE NOT NULL,
   "end"                    TIMESTAMP WITH TIME ZONE,
   is_archived              BOOLEAN NOT NULL DEFAULT FALSE,
+  is_in_person             BOOLEAN,
+  is_remote                BOOLEAN,
   UNIQUE (organizer_username, slug)
 );
 
@@ -35,6 +37,8 @@ COMMENT ON COLUMN maevsi.event.place IS 'The event''s place as it can be shown o
 COMMENT ON COLUMN maevsi.event.start IS 'The event''s start date and time, with timezone.';
 COMMENT ON COLUMN maevsi.event.end IS 'The event''s end date and time, with timezone.';
 COMMENT ON COLUMN maevsi.event.is_archived IS 'Indicates whether the event is archived.';
+COMMENT ON COLUMN maevsi.event.is_in_person IS 'Indicates whether the event takes place in person.';
+COMMENT ON COLUMN maevsi.event.is_remote IS 'Indicates whether the event takes place remotely.';
 
 GRANT SELECT ON TABLE maevsi.event TO maevsi_account, maevsi_anonymous;
 GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event TO maevsi_account;

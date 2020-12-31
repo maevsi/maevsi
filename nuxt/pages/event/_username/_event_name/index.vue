@@ -54,6 +54,7 @@
           <EventDashletStart :event="eventContactFeedbackData.event" />
           <EventDashletDuration :event="eventContactFeedbackData.event" />
           <EventDashletPlace :event="eventContactFeedbackData.event" />
+          <EventDashletAttendanceType :event="eventContactFeedbackData.event" />
         </div>
         <Button
           :icon-id="['fas', 'download']"

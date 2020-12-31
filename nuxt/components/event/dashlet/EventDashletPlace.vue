@@ -1,7 +1,8 @@
 <template>
   <EventDashlet v-if="event.place">
-    <FontAwesomeIcon :icon="['fas', 'map-marker']" />
-    <br />
+    <span>
+      <FontAwesomeIcon :icon="['fas', 'map-marker']" />
+    </span>
     <AppLink
       nofollow
       :to="`https://maps.google.de/?q=${encodeURIComponent(event.place)}`"
