@@ -12,6 +12,6 @@ query($organizerUsername: String!, $slug: String!) {
     place
     start
     end
-    archived
+    isArchived
   }
 }

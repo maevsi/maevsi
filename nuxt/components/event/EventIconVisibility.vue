@@ -1,6 +1,6 @@
 <template>
   <FontAwesomeIcon
-    v-if="event.archived"
+    v-if="event.isArchived"
     :icon="['fas', 'archive']"
     :title="$t('archived')"
   />

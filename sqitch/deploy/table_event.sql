@@ -19,7 +19,7 @@ CREATE TABLE maevsi.event (
   place                    TEXT CHECK (char_length(place) < 300),
   start                    TIMESTAMP WITH TIME ZONE NOT NULL,
   "end"                    TIMESTAMP WITH TIME ZONE,
-  archived                 BOOLEAN NOT NULL DEFAULT FALSE,
+  is_archived              BOOLEAN NOT NULL DEFAULT FALSE,
   UNIQUE (organizer_username, slug)
 );
 
@@ -34,7 +34,7 @@ COMMENT ON COLUMN maevsi.event.description IS 'The event''s description.';
 COMMENT ON COLUMN maevsi.event.place IS 'The event''s place as it can be shown on a map.';
 COMMENT ON COLUMN maevsi.event.start IS 'The event''s start date and time, with timezone.';
 COMMENT ON COLUMN maevsi.event.end IS 'The event''s end date and time, with timezone.';
-COMMENT ON COLUMN maevsi.event.archived IS 'Indicates whether the event is archived.';
+COMMENT ON COLUMN maevsi.event.is_archived IS 'Indicates whether the event is archived.';
 
 GRANT SELECT ON TABLE maevsi.event TO maevsi_account, maevsi_anonymous;
 GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event TO maevsi_account;

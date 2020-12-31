@@ -14,7 +14,7 @@ query($username: String, $limit: Int!, $cursor: Cursor) {
       place
       start
       end
-      archived
+      isArchived
     }
     pageInfo {
       hasNextPage

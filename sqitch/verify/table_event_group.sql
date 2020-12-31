@@ -7,7 +7,7 @@ SELECT id,
        slug,
        organizer_username,
        description,
-       archived
+       is_archived
 FROM maevsi.event_group WHERE FALSE;
 
 DO $$
