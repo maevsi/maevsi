@@ -1,3 +1,11 @@
+# [0.36.0](https://github.com/maevsi/maevsi/compare/0.35.2...0.36.0) (2020-12-31)
+
+
+### Features
+
+* **browserslist:** improve wording ([3d42c93](https://github.com/maevsi/maevsi/commit/3d42c93b16241067fa33c8f8a13201830a2d139f)), closes [#141](https://github.com/maevsi/maevsi/issues/141)
+* **unlock:** discard "redeem" ([3c559c6](https://github.com/maevsi/maevsi/commit/3c559c6c4a92056b357466c2fea3356028d6f8a0)), closes [#140](https://github.com/maevsi/maevsi/issues/140)
+
 ## [0.35.2](https://github.com/maevsi/maevsi/compare/0.35.1...0.35.2) (2020-12-30)
 
 
