@@ -15,7 +15,7 @@ jobs:
 
       - name: Docker Buildx setup
         id: buildx
-        uses: docker/setup-buildx-action@v1.0.4
+        uses: docker/setup-buildx-action@v1.1.0
 
       - name: Registry login
         if: github.event_name == 'push'
@@ -75,7 +75,7 @@ jobs:
 
       - name: Docker Buildx setup
         id: buildx
-        uses: docker/setup-buildx-action@v1.0.4
+        uses: docker/setup-buildx-action@v1.1.0
 
       - name: Build "build"
         run: |
