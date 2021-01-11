@@ -3,6 +3,27 @@ import shrinkRay from 'shrink-ray-current'
 
 import { BASE_URL, STACK_DOMAIN } from './plugins/baseUrl'
 
+const LOCALES = [
+  {
+    code: 'en',
+    name: 'English',
+    iso: 'en', // Will be used as catchall locale by default.
+  },
+  {
+    code: 'de',
+    name: 'Deutsch',
+    iso: 'de',
+  },
+]
+const EXCLUSIONS = ['/%F0%9F%AB%96']
+const EXCLUSIONS_LOCALIZED = []
+
+for (const exclusion of EXCLUSIONS) {
+  for (const locale of LOCALES) {
+    EXCLUSIONS_LOCALIZED.push(`/${locale.code}${exclusion}`)
+  }
+}
+
 export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
@@ -191,18 +212,7 @@ export default {
           cookieSecure: true,
           onlyOnRoot: true, // Enables better SEO.
         },
-        locales: [
-          {
-            code: 'en',
-            name: 'English',
-            iso: 'en', // Will be used as catchall locale by default.
-          },
-          {
-            code: 'de',
-            name: 'Deutsch',
-            iso: 'de',
-          },
-        ],
+        locales: LOCALES,
         seo: false, // https://i18n.nuxtjs.org/seo/#improving-performance
         vueI18n: {
           messages: {
@@ -268,7 +278,7 @@ export default {
         Sitemap: BASE_URL + '/sitemap.xml',
       },
     ],
-    '@nuxtjs/sitemap', // Should be declared at the end of the array.
+    ['@nuxtjs/sitemap', { exclude: EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
