@@ -7,10 +7,7 @@
       :value="value ? value : titleSlug"
       @change="$emit('change', $event.target.value)"
     />
-    <label
-      class="font-semibold inline-block pl-2"
-      :for="`input-${groupName}-${titleSlug}`"
-    >
+    <label class="pl-2" :for="`input-${groupName}-${titleSlug}`">
       {{ title }}
     </label>
   </div>

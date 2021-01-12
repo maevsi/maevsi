@@ -118,6 +118,22 @@
         type="datetime"
       />
     </FormInput>
+    <FormInput :title="$t('attendanceType')">
+      <FormCheckbox
+        form-key="is-in-person"
+        :value="$v.form['is-in-person'].$model"
+        @change="$v.form['is-in-person'].$model = $event"
+      >
+        {{ $t('isInPerson') }}
+      </FormCheckbox>
+      <FormCheckbox
+        form-key="is-remote"
+        :value="$v.form['is-remote'].$model"
+        @change="$v.form['is-remote'].$model = $event"
+      >
+        {{ $t('isRemote') }}
+      </FormCheckbox>
+    </FormInput>
     <FormInput
       :error="$v.form['place'].$error"
       label-for="input-place"
@@ -183,19 +199,19 @@
       </template>
     </FormInput>
     <FormInput
-      :error="$v.form['maximum-invitee-count'].$error"
-      label-for="input-maximum-invitee-count"
+      :error="$v.form['invitee-count-maximum'].$error"
+      label-for="input-invitee-count-maximum'"
       :title="$t('maximumInviteeCount')"
     >
       <input
-        id="input-maximum-invitee-count"
-        v-model.trim="$v.form['maximum-invitee-count'].$model"
+        id="input-invitee-count-maximum'"
+        v-model.trim="$v.form['invitee-count-maximum'].$model"
         class="form-input"
         type="number"
       />
       <template slot="inputError">
         <FormError
-          :validation-object="$v.form['maximum-invitee-count']"
+          :validation-object="$v.form['invitee-count-maximum']"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
@@ -240,7 +256,9 @@ export default {
       form: {
         description: undefined,
         end: undefined,
-        'maximum-invitee-count': undefined,
+        'is-in-person': undefined,
+        'is-remote': undefined,
+        'invitee-count-maximum': undefined,
         name: undefined,
         'organizer-username': undefined,
         place: undefined,
@@ -278,9 +296,11 @@ export default {
                 description: this.form.description,
                 end: this.form.end !== '' ? this.form.end : undefined,
                 inviteeCountMaximum:
-                  this.form['maximum-invitee-count'] !== ''
-                    ? +this.form['maximum-invitee-count']
+                  this.form['invitee-count-maximum'] !== ''
+                    ? +this.form['invitee-count-maximum']
                     : undefined,
+                isInPerson: this.form['is-in-person'],
+                isRemote: this.form['is-remote'],
                 name: this.form.name,
                 organizerUsername: this.signedInUsername,
                 place: this.form.place !== '' ? this.form.place : undefined,
@@ -316,9 +336,11 @@ export default {
           maxLength: maxLength(this.$global.EVENT_DESCRIPTION_MAXIMUM),
         },
         end: {},
-        'maximum-invitee-count': {
+        'invitee-count-maximum': {
           minValue: minValue(1),
         },
+        'is-in-person': {},
+        'is-remote': {},
         name: {
           maxLength: maxLength(this.$global.EVENT_NAME_MAXIMUM),
           required,
@@ -345,11 +367,14 @@ export default {
 
 <i18n lang="yml">
 de:
+  attendanceType: 'Anwesenheitstyp'
   description: 'Beschreibung'
   edit: 'Bearbeiten'
   end: 'Ende'
   eventCreate: 'Veranstaltung erstellen'
   eventCreateSuccess: 'Veranstaltung erfolgreich erstellt.'
+  isInPerson: 'vor Ort'
+  isRemote: 'remote'
   maximumInviteeCount: 'Maximale Gästezahl'
   name: 'Name'
   namePlaceholder: 'Willkommensfeier'
@@ -363,11 +388,14 @@ de:
   visibilityPrivate: 'privat'
   visibilityPublic: 'öffentlich'
 en:
+  attendanceType: 'Attendance type'
   description: 'Description'
   edit: 'Edit'
   end: 'End'
   eventCreate: 'Create event'
   eventCreateSuccess: 'Event created successfully.'
+  isInPerson: 'in person'
+  isRemote: 'remote'
   maximumInviteeCount: 'Maximum invitee count'
   name: 'Name'
   namePlaceholder: 'Welcome Party'
