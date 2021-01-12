@@ -7,8 +7,8 @@
     <input
       :id="`input-${id}`"
       class="form-input"
-      type="password"
-      placeholder="**********"
+      type="text"
+      :placeholder="$t('usernamePlaceholder')"
       :value="v.form[formKeyComputed].$model"
       @blur="$emit('blur', $event.target.value)"
       @input="$emit('input', $event.target.value)"
@@ -22,9 +22,9 @@
       </FormError>
       <FormError
         :validation-object="v.form[formKeyComputed]"
-        validation-property="minLength"
+        validation-property="formatSlug"
       >
-        {{ $t('globalValidationTooShort') }}
+        {{ $t('globalValidationFormatIncorrect') }}
       </FormError>
     </template>
   </FormInput>
@@ -56,11 +56,9 @@ export default {
 
 <i18n lang="yml">
 de:
-  password: 'Passwort'
-  passwordCurrent: 'Aktuelles Passwort'
-  passwordNew: 'Neues Passwort'
+  username: 'Nutzername'
+  usernamePlaceholder: 'nutzer-name'
 en:
-  password: 'Password'
-  passwordCurrent: 'Current Password'
-  passwordNew: 'New Password'
+  username: 'Username'
+  usernamePlaceholder: 'user-name'
 </i18n>

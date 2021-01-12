@@ -10,7 +10,8 @@
       type="email"
       :placeholder="$t('emailAddressPlaceholder')"
       :value="v.form[formKeyComputed].$model"
-      @blur="$emit('input', $event.target.value)"
+      @blur="$emit('blur', $event.target.value)"
+      @input="$emit('input', $event.target.value)"
     />
     <template slot="inputError">
       <FormError

@@ -45,6 +45,11 @@ export async function authenticateAnonymous(apolloClient, store, res) {
   await storeJwt(apolloClient, store, res, authenticationData.jwt)
 }
 
+export function blur(form, blurFields, fieldName, data) {
+  blurFields[fieldName] = true
+  form[fieldName].$model = data
+}
+
 export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
@@ -232,6 +237,7 @@ export default async ({ app, req, res, store }, inject) => {
     VERIFICATION_FORMAT_SLUG,
     VERIFICATION_FORMAT_UUID,
     authenticateAnonymous,
+    blur,
     capitalizeFirstLetter,
     checkNested,
     getDeferredPromise,

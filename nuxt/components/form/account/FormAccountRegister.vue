@@ -5,38 +5,23 @@
     :validation-object="$v.form"
     @submit="register"
   >
-    <FormInput
-      :error="$v.form['username'].$error"
-      label-for="input-username-register"
-      :title="$t('username')"
-    >
-      <input
-        id="input-username-register"
-        v-model.trim="$v.form.username.$model"
-        class="form-input"
-        type="text"
-        :placeholder="$t('usernamePlaceholder')"
-      />
-      <template slot="inputError">
-        <FormError
-          :validation-object="$v.form.username"
-          validation-property="required"
-        >
-          {{ $t('globalValidationRequired') }}
-        </FormError>
-        <FormError
-          :validation-object="$v.form.username"
-          validation-property="formatSlug"
-        >
-          {{ $t('globalValidationFormatIncorrect') }}
-        </FormError>
-      </template>
-    </FormInput>
+    <FormInputUsername
+      id="username-register"
+      form-key="username"
+      :v="$v"
+      @blur="$global.blur($v.form, blurFields, 'username', $event)"
+      @input="
+        blurFields.username ? ($v.form['username'].$model = $event) : null
+      "
+    />
     <FormInputPassword
       id="password-register"
       form-key="password"
       :v="$v"
-      @input="$v.form['password'].$model = $event"
+      @blur="$global.blur($v.form, blurFields, 'password', $event)"
+      @input="
+        blurFields.password ? ($v.form['password'].$model = $event) : null
+      "
     />
     <FormInputEmailAddress
       id="email-address-register"
@@ -83,6 +68,10 @@ export default {
   },
   data() {
     return {
+      blurFields: {
+        password: false,
+        username: false,
+      },
       graphqlErrorMessage: undefined,
     }
   },
@@ -153,12 +142,8 @@ de:
   emailAddress: 'E-Mail-Adresse'
   register: 'Registrieren'
   registerSuccess: 'Registrierung erfolgreich. Verifiziere deinen Account über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.'
-  username: 'Nutzername'
-  usernamePlaceholder: 'nutzer-name'
 en:
   emailAddress: 'Email address'
   register: 'Register'
   registerSuccess: "Registration successful. Verify your account using the link that you can find in the email that you'll receive shortly."
-  username: 'Username'
-  usernamePlaceholder: 'user-name'
 </i18n>

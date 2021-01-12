@@ -17,7 +17,7 @@
         -->
         <input
           :id="inputId"
-          v-model.trim.lazy="invitationCodeModel"
+          v-model.trim="invitationCodeModel"
           class="form-input"
           :disabled="$route.query.ic"
           placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"

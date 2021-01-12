@@ -5,33 +5,15 @@
     :validation-object="$v.form"
     @submit="signIn"
   >
-    <FormInput
-      :error="$v.form['username'].$error"
-      label-for="input-username-sign-in"
-      :title="$t('username')"
-    >
-      <input
-        id="input-username-sign-in"
-        v-model.trim="$v.form.username.$model"
-        class="form-input"
-        type="text"
-        :placeholder="$t('usernamePlaceholder')"
-      />
-      <template slot="inputError">
-        <FormError
-          :validation-object="$v.form.username"
-          validation-property="required"
-        >
-          {{ $t('globalValidationRequired') }}
-        </FormError>
-        <FormError
-          :validation-object="$v.form.username"
-          validation-property="formatSlug"
-        >
-          {{ $t('globalValidationFormatIncorrect') }}
-        </FormError>
-      </template>
-    </FormInput>
+    <FormInputUsername
+      id="username-sign-in"
+      form-key="username"
+      :v="$v"
+      @blur="$global.blur($v.form, blurFields, 'username', $event)"
+      @input="
+        blurFields.username ? ($v.form['username'].$model = $event) : null
+      "
+    />
     <FormInputPassword
       id="password-sign-in"
       form-key="password"
@@ -92,6 +74,9 @@ export default {
   },
   data() {
     return {
+      blurFields: {
+        username: false,
+      },
       graphqlErrorMessage: undefined,
     }
   },

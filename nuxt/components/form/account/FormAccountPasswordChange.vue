@@ -7,7 +7,7 @@
     <FormInputPassword
       id="passwordCurrent"
       :v="$v"
-      @input="$v.form['passwordCurrent'].$model = $event"
+      @blur="$v.form['passwordCurrent'].$model = $event"
     />
     <FormInputPassword
       id="passwordNew"
