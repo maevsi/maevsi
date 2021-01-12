@@ -7,6 +7,7 @@
     <FormInput
       :error="$v.form['name'].$error"
       label-for="input-name"
+      required
       :title="$t('name')"
     >
       <input
@@ -35,6 +36,7 @@
     <FormInput
       :error="$v.form['slug'].$error"
       label-for="input-slug"
+      required
       :title="$t('slug')"
     >
       <input
@@ -68,6 +70,7 @@
     <FormInput
       :error="$v.form['visibility'].$error"
       label-for="input-visibility"
+      required
       :title="$t('visibility')"
     >
       <FormRadioButtonGroup
@@ -90,22 +93,48 @@
       </template>
     </FormInput>
     <FormInput
-      :error="$v.form['maximum-invitee-count'].$error"
-      label-for="input-maximum-invitee-count"
-      :title="$t('maximumInviteeCount')"
+      :error="$v.form['start'].$error"
+      label-for="input-start"
+      required
+      :title="$t('start')"
+    >
+      <Datetime
+        v-model="$v.form['start'].$model"
+        input-class="form-input"
+        input-id="input-start"
+        type="datetime"
+      />
+    </FormInput>
+    <FormInput
+      :error="$v.form['end'].$error"
+      label-for="input-end"
+      :title="$t('end')"
+    >
+      <Datetime
+        v-model="$v.form['end'].$model"
+        input-class="form-input"
+        input-id="input-end"
+        :min-datetime="$v.form['start'].$model"
+        type="datetime"
+      />
+    </FormInput>
+    <FormInput
+      :error="$v.form['place'].$error"
+      label-for="input-place"
+      :title="$t('place')"
     >
       <input
-        id="input-maximum-invitee-count"
-        v-model.trim="$v.form['maximum-invitee-count'].$model"
+        id="input-place"
+        v-model.trim="$v.form['place'].$model"
         class="form-input"
-        type="number"
+        type="text"
       />
       <template slot="inputError">
         <FormError
-          :validation-object="$v.form['maximum-invitee-count']"
-          validation-property="minValue"
+          :validation-object="$v.form['place']"
+          validation-property="maxLength"
         >
-          {{ $t('globalValidationMinValue') }}
+          {{ $t('globalValidationTooLong') }}
         </FormError>
       </template>
     </FormInput>
@@ -154,49 +183,24 @@
       </template>
     </FormInput>
     <FormInput
-      :error="$v.form['place'].$error"
-      label-for="input-place"
-      :title="$t('place')"
+      :error="$v.form['maximum-invitee-count'].$error"
+      label-for="input-maximum-invitee-count"
+      :title="$t('maximumInviteeCount')"
     >
       <input
-        id="input-place"
-        v-model.trim="$v.form['place'].$model"
+        id="input-maximum-invitee-count"
+        v-model.trim="$v.form['maximum-invitee-count'].$model"
         class="form-input"
-        type="text"
+        type="number"
       />
       <template slot="inputError">
         <FormError
-          :validation-object="$v.form['place']"
-          validation-property="maxLength"
+          :validation-object="$v.form['maximum-invitee-count']"
+          validation-property="minValue"
         >
-          {{ $t('globalValidationTooLong') }}
+          {{ $t('globalValidationMinValue') }}
         </FormError>
       </template>
-    </FormInput>
-    <FormInput
-      :error="$v.form['start'].$error"
-      label-for="input-start"
-      :title="$t('start')"
-    >
-      <Datetime
-        v-model="$v.form['start'].$model"
-        input-class="form-input"
-        input-id="input-start"
-        type="datetime"
-      />
-    </FormInput>
-    <FormInput
-      :error="$v.form['end'].$error"
-      label-for="input-end"
-      :title="$t('end')"
-    >
-      <Datetime
-        v-model="$v.form['end'].$model"
-        input-class="form-input"
-        input-id="input-end"
-        :min-datetime="$v.form['start'].$model"
-        type="datetime"
-      />
     </FormInput>
     <div class="flex flex-col items-center justify-between">
       <Button
@@ -271,7 +275,6 @@ export default {
           variables: {
             createEventInput: {
               event: {
-                organizerUsername: this.signedInUsername,
                 description: this.form.description,
                 end: this.form.end !== '' ? this.form.end : undefined,
                 inviteeCountMaximum:
@@ -279,6 +282,7 @@ export default {
                     ? +this.form['maximum-invitee-count']
                     : undefined,
                 name: this.form.name,
+                organizerUsername: this.signedInUsername,
                 place: this.form.place !== '' ? this.form.place : undefined,
                 slug: this.form.slug,
                 start: this.form.start,
@@ -308,31 +312,31 @@ export default {
   validations() {
     return {
       form: {
+        description: {
+          maxLength: maxLength(this.$global.EVENT_DESCRIPTION_MAXIMUM),
+        },
+        end: {},
+        'maximum-invitee-count': {
+          minValue: minValue(1),
+        },
         name: {
           maxLength: maxLength(this.$global.EVENT_NAME_MAXIMUM),
           required,
+        },
+        place: {
+          maxLength: maxLength(this.$global.EVENT_PLACE_MAXIMUM),
         },
         slug: {
           maxLength: maxLength(this.$global.EVENT_SLUG_MAXIMUM),
           required,
           formatSlug: this.$global.VERIFICATION_FORMAT_SLUG,
         },
-        visibility: {
-          required,
-        },
-        'maximum-invitee-count': {
-          minValue: minValue(1),
-        },
-        description: {
-          maxLength: maxLength(this.$global.EVENT_DESCRIPTION_MAXIMUM),
-        },
-        place: {
-          maxLength: maxLength(this.$global.EVENT_PLACE_MAXIMUM),
-        },
         start: {
           required,
         },
-        end: {},
+        visibility: {
+          required,
+        },
       },
     }
   },

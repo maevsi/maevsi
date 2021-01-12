@@ -10,6 +10,7 @@
           :for="labelFor"
         >
           {{ title }}
+          <span v-if="required" class="text-red-700 font-normal">*</span>
         </label>
       </div>
       <div class="md:w-2/3">
@@ -37,6 +38,10 @@ export default {
     labelFor: {
       type: String,
       default: undefined,
+    },
+    required: {
+      type: Boolean,
+      default: false,
     },
     title: {
       type: String,
