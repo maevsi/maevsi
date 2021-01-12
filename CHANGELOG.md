@@ -1,3 +1,11 @@
+# [0.38.0](https://github.com/maevsi/maevsi/compare/0.37.1...0.38.0) (2021-01-12)
+
+
+### Features
+
+* **form:** mark required form inputs as such ([a890583](https://github.com/maevsi/maevsi/commit/a890583ccdade365b7ecdff14f9594e6eeb1cf17)), closes [#150](https://github.com/maevsi/maevsi/issues/150)
+* **sitemap:** exclude teapot, enable i18n ([b8b2f29](https://github.com/maevsi/maevsi/commit/b8b2f2985dbf064966aee8795c9556ef5594b5c4))
+
 ## [0.37.1](https://github.com/maevsi/maevsi/compare/0.37.0...0.37.1) (2021-01-11)
 
 
