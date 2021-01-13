@@ -384,7 +384,7 @@ de:
   previewNoContent: 'Kein Inhalt für die Vorschau 😕'
   slug: 'Slug'
   slugPlaceholder: 'willkommensfeier'
-  start: 'Start'
+  start: 'Beginn'
   visibility: 'Sichtbarkeit'
   visibilityPrivate: 'privat'
   visibilityPublic: 'öffentlich'

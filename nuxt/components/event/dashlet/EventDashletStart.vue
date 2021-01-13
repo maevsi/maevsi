@@ -22,7 +22,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  start: 'Start'
+  start: 'Beginn'
 en:
   start: 'start'
 </i18n>
