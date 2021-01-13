@@ -69,6 +69,7 @@ export default {
             'faListUl',
             'faMapMarker',
             'faPlus',
+            'faSpinner',
             'faTimes',
             'faTimesCircle',
             'faUser',
