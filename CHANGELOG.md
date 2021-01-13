@@ -1,3 +1,16 @@
+# [0.39.0](https://github.com/maevsi/maevsi/compare/0.38.0...0.39.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **event-dashlet-attendance-type:** view icons conditionally ([4d8b054](https://github.com/maevsi/maevsi/commit/4d8b054d295b03c8a51330e72eb191d9d1035b48))
+
+
+### Features
+
+* add hamburger menu ([91a799f](https://github.com/maevsi/maevsi/commit/91a799f6798a254375b062af91b406cbc476a8b2)), closes [#138](https://github.com/maevsi/maevsi/issues/138)
+* **event:** add attendance type inputs to creation form ([a3a95ae](https://github.com/maevsi/maevsi/commit/a3a95aeb3975226b95f76d5670a29b09dbde42e1)), closes [#148](https://github.com/maevsi/maevsi/issues/148)
+
 # [0.38.0](https://github.com/maevsi/maevsi/compare/0.37.1...0.38.0) (2021-01-12)
 
 
