@@ -8,7 +8,7 @@ mutation($createEventInput: CreateEventInput!) {
       visibility
       inviteeCountMaximum
       description
-      place
+      location
       start
       end
       isArchived

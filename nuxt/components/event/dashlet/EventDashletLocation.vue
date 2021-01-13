@@ -1,13 +1,13 @@
 <template>
-  <EventDashlet v-if="event.place">
+  <EventDashlet v-if="event.location">
     <span>
       <FontAwesomeIcon :icon="['fas', 'map-marker']" :title="$t('location')" />
     </span>
     <AppLink
       nofollow
-      :to="`https://maps.google.de/?q=${encodeURIComponent(event.place)}`"
+      :to="`https://maps.google.de/?q=${encodeURIComponent(event.location)}`"
     >
-      {{ event.place }}
+      {{ event.location }}
     </AppLink>
   </EventDashlet>
 </template>

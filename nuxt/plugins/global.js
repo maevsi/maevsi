@@ -8,8 +8,8 @@ import JWT_REFRESH_MUTATION from '~/gql/mutation/jwtRefresh'
 const consola = require('consola')
 
 export const EVENT_DESCRIPTION_MAXIMUM = 10000
+export const EVENT_LOCATION_MAXIMUM = 300
 export const EVENT_NAME_MAXIMUM = 100
-export const EVENT_PLACE_MAXIMUM = 300
 export const EVENT_SLUG_MAXIMUM = 100
 export const ITEMS_PER_PAGE = 8
 export const PASSWORD_LENGTH_MINIMUM = 8
@@ -226,8 +226,8 @@ export function xhrPromise(method, url, jwt) {
 export default async ({ app, req, res, store }, inject) => {
   const global = {
     EVENT_DESCRIPTION_MAXIMUM,
+    EVENT_LOCATION_MAXIMUM,
     EVENT_NAME_MAXIMUM,
-    EVENT_PLACE_MAXIMUM,
     EVENT_SLUG_MAXIMUM,
     ITEMS_PER_PAGE,
     PASSWORD_LENGTH_MINIMUM,

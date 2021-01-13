@@ -10,7 +10,7 @@ query($organizerUsername: String!, $slug: String!) {
       visibility
       organizerUsername
       description
-      place
+      location
       start
       end
       isArchived

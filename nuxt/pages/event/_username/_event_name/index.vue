@@ -53,7 +53,7 @@
           />
           <EventDashletStart :event="eventContactFeedbackData.event" />
           <EventDashletDuration :event="eventContactFeedbackData.event" />
-          <EventDashletPlace :event="eventContactFeedbackData.event" />
+          <EventDashletLocation :event="eventContactFeedbackData.event" />
           <EventDashletAttendanceType :event="eventContactFeedbackData.event" />
         </div>
         <Button

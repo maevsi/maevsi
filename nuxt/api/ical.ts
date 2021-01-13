@@ -67,7 +67,7 @@ export default function (
           ...(data.event.description && {
             htmlDescription: eventDescriptionHtml,
           }),
-          ...(data.event.place && { location: data.event.place }),
+          ...(data.event.location && { location: data.event.location }),
           // geo: {
           //   lat: 44.4987,
           //   lon: -6.87667

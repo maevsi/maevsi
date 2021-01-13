@@ -135,19 +135,19 @@
       </FormCheckbox>
     </FormInput>
     <FormInput
-      :error="$v.form['place'].$error"
-      label-for="input-place"
-      :title="$t('place')"
+      :error="$v.form['location'].$error"
+      label-for="input-location"
+      :title="$t('location')"
     >
       <input
-        id="input-place"
-        v-model.trim="$v.form['place'].$model"
+        id="input-location"
+        v-model.trim="$v.form['location'].$model"
         class="form-input"
         type="text"
       />
       <template slot="inputError">
         <FormError
-          :validation-object="$v.form['place']"
+          :validation-object="$v.form['location']"
           validation-property="maxLength"
         >
           {{ $t('globalValidationTooLong') }}
@@ -259,9 +259,9 @@ export default {
         'is-in-person': undefined,
         'is-remote': undefined,
         'invitee-count-maximum': undefined,
+        location: undefined,
         name: undefined,
         'organizer-username': undefined,
-        place: undefined,
         sent: undefined,
         slug: undefined,
         start: new Date().toISOString(), // workaround for https://github.com/mariomka/vue-datetime/issues/177
@@ -301,9 +301,10 @@ export default {
                     : undefined,
                 isInPerson: this.form['is-in-person'],
                 isRemote: this.form['is-remote'],
+                location:
+                  this.form.location !== '' ? this.form.location : undefined,
                 name: this.form.name,
                 organizerUsername: this.signedInUsername,
-                place: this.form.place !== '' ? this.form.place : undefined,
                 slug: this.form.slug,
                 start: this.form.start,
                 visibility: this.form.visibility,
@@ -345,8 +346,8 @@ export default {
           maxLength: maxLength(this.$global.EVENT_NAME_MAXIMUM),
           required,
         },
-        place: {
-          maxLength: maxLength(this.$global.EVENT_PLACE_MAXIMUM),
+        location: {
+          maxLength: maxLength(this.$global.EVENT_LOCATION_MAXIMUM),
         },
         slug: {
           maxLength: maxLength(this.$global.EVENT_SLUG_MAXIMUM),
@@ -378,7 +379,7 @@ de:
   maximumInviteeCount: 'Maximale Gästezahl'
   name: 'Name'
   namePlaceholder: 'Willkommensfeier'
-  place: 'Ort'
+  location: 'Ort'
   preview: 'Vorschau'
   previewNoContent: 'Kein Inhalt für die Vorschau 😕'
   slug: 'Slug'
@@ -399,7 +400,7 @@ en:
   maximumInviteeCount: 'Maximum invitee count'
   name: 'Name'
   namePlaceholder: 'Welcome Party'
-  place: 'Place'
+  location: 'Location'
   preview: 'Preview'
   previewNoContent: 'No content to preview 😕'
   slug: 'Slug'
