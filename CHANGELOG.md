@@ -1,3 +1,11 @@
+# [0.42.0](https://github.com/maevsi/maevsi/compare/0.41.0...0.42.0) (2021-01-13)
+
+
+### Features
+
+* add image loading indicator ([b4d3e98](https://github.com/maevsi/maevsi/commit/b4d3e988ad45a87444b108fe08c492abf42f66de)), closes [#84](https://github.com/maevsi/maevsi/issues/84)
+* beautify loading indicator ([08ee54c](https://github.com/maevsi/maevsi/commit/08ee54c73e4e082f1990346caa56939219651399)), closes [#96](https://github.com/maevsi/maevsi/issues/96)
+
 # [0.41.0](https://github.com/maevsi/maevsi/compare/0.40.0...0.41.0) (2021-01-13)
 
 
