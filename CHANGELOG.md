@@ -1,3 +1,16 @@
+# [0.40.0](https://github.com/maevsi/maevsi/compare/0.39.0...0.40.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** improve German translation for "start" ([b043849](https://github.com/maevsi/maevsi/commit/b043849ce68d07f88ff411d83d47ad4ef66fe708))
+
+
+### Features
+
+* **event:** add location form info ([11d6cda](https://github.com/maevsi/maevsi/commit/11d6cda5a95b679760722dcaa315bb2595a9ed50))
+* **event-dashlet:** add titles ([4c19cd4](https://github.com/maevsi/maevsi/commit/4c19cd4d99e274398d2e29c93fb83c7b13250580))
+
 # [0.39.0](https://github.com/maevsi/maevsi/compare/0.38.0...0.39.0) (2021-01-13)
 
 
