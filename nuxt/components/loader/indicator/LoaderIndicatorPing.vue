@@ -1,10 +1,8 @@
 <template>
   <div>
     <div class="flex h-full items-center justify-center">
-      <FontAwesomeIcon
-        class="animate-spin"
-        :icon="['fas', 'spinner']"
-        size="2x"
+      <div
+        class="animate-ping bg-gray-500 h-1/2 rounded-full w-1/2"
         :title="$t('globalLoading')"
       />
     </div>

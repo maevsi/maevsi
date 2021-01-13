@@ -1,5 +1,6 @@
 <template>
-  <Loader :error-message="graphqlErrorMessage" :loading="$apollo.loading">
+  <Loader v-if="$apollo.loading" :error-message="graphqlErrorMessage" />
+  <div v-else>
     <div
       v-if="
         (allUploads !== undefined && allUploads.nodes.length > 0) ||
@@ -19,9 +20,9 @@
             class="border-4 border-transparent box-border relative"
             @click="toggleSelect(upload)"
           >
-            <img
+            <LoaderImage
               :alt="$t('uploadAlt')"
-              class="bg-gray-400 h-32 w-32"
+              class="h-32 w-32"
               :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
               :title="
                 $t('uploadSize', { size: bytesToString(upload.sizeByte) })
@@ -122,7 +123,7 @@
         </ButtonGreen>
       </template>
     </Modal>
-  </Loader>
+  </div>
 </template>
 
 <script>

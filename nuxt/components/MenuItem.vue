@@ -1,6 +1,6 @@
 <template>
   <nuxt-link v-if="to" :class="classes" :to="to" @click.native="$emit('click')">
-    <div class="flex items-center justify-center w-12">
+    <div class="flex h-full items-center justify-center w-12">
       <slot name="image">
         <FontAwesomeIcon v-if="iconId" :icon="iconId" size="lg" />
       </slot>
@@ -10,7 +10,7 @@
     </div>
   </nuxt-link>
   <button v-else :class="classes" @click="$emit('click')">
-    <div class="flex items-center justify-center w-12">
+    <div class="flex h-full items-center justify-center w-12">
       <slot name="image">
         <FontAwesomeIcon v-if="iconId" :icon="iconId" size="lg" />
       </slot>

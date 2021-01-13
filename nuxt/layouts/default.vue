@@ -86,7 +86,7 @@
             }}
             <template v-if="signedInUsername" slot="image">
               <ProfilePicture
-                class="m-2"
+                class="h-full p-2 w-full"
                 rounded
                 :username="signedInUsername"
               />

@@ -4,7 +4,10 @@
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
       <div class="sm:mr-4">
-        <ProfilePicture :username="this.$route.params.username" />
+        <ProfilePicture
+          class="h-24 w-24"
+          :username="this.$route.params.username"
+        />
       </div>
       <h1 class="truncate w-full sm:w-auto">
         {{ $route.params.username }}

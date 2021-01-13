@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <Loader :error-message="graphqlErrorMessage" :loading="loading">
+    <Loader v-if="$apollo.loading" :error-message="graphqlErrorMessage" />
+    <div v-else>
       <p>
         {{ $t('emailAddressVerificationSuccess') }}
       </p>
@@ -12,7 +13,7 @@
         "
       />
       <ButtonHome />
-    </Loader>
+    </div>
   </div>
 </template>
 

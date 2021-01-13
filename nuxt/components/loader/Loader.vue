@@ -1,14 +1,9 @@
 <template>
   <CardAlert v-if="errorMessage !== undefined" :error-message="errorMessage" />
-  <div v-else-if="loading">
-    <LoaderIndicatorPulse v-if="loadingIndicator === 'pulse'" />
-    <LoaderIndicatorSpinner v-else-if="loadingIndicator === 'spinner'" />
-    <LoaderIndicatorText v-else-if="loadingIndicator === 'text'" />
-    <LoaderIndicatorText v-else />
-  </div>
-  <div v-else>
-    <slot />
-  </div>
+  <LoaderIndicatorPing v-else-if="indicator === 'ping'" />
+  <LoaderIndicatorSpinner v-else-if="indicator === 'spinner'" />
+  <LoaderIndicatorText v-else-if="indicator === 'text'" />
+  <LoaderIndicatorText v-else />
 </template>
 
 <script>
@@ -18,11 +13,7 @@ export default {
       type: String,
       default: undefined,
     },
-    loading: {
-      type: Boolean,
-      default: undefined,
-    },
-    loadingIndicator: {
+    indicator: {
       type: String,
       default: undefined,
     },

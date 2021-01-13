@@ -1,5 +1,6 @@
 <template>
-  <Loader :error-message="graphqlErrorMessage" :loading="$apollo.loading">
+  <Loader v-if="$apollo.loading" :error-message="graphqlErrorMessage" />
+  <div v-else>
     <div v-if="$global.getNested(eventContactFeedbackData, 'event')">
       <div v-if="eventContactFeedbackData.contact" class="text-center">
         <p class="font-bold mb-2 text-2xl">
@@ -208,7 +209,7 @@
     <Modal v-if="showModalSuccess" @close="showModalSuccess = false">
       {{ $t('success') }}
     </Modal>
-  </Loader>
+  </div>
 </template>
 
 <script>

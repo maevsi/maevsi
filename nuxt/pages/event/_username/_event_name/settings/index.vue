@@ -1,5 +1,6 @@
 <template>
-  <Loader :error-message="graphqlErrorMessage" :loading="$apollo.loading">
+  <Loader v-if="$apollo.loading" :error-message="graphqlErrorMessage" />
+  <div v-else>
     <div v-if="event">
       <!-- breadcrumbs -->
       <h1 class="text-center">
@@ -21,7 +22,7 @@
       </section>
     </div>
     <Error v-else :status-code="404" />
-  </Loader>
+  </div>
 </template>
 
 <script>

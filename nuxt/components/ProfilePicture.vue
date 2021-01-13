@@ -1,13 +1,16 @@
 <template>
   <!-- TODO: https://github.com/maevsi/maevsi/issues/96 for html validity inside button -->
-  <Loader :error-message="graphqlErrorMessage" :loading="$apollo.loading">
-    <img
-      :alt="$t('profilePictureAlt', { username })"
-      class="bg-gray-400 flex-none h-full max-h-24 max-w-24"
-      :class="{ 'rounded-full': rounded }"
-      :src="imageSrc"
-    />
-  </Loader>
+  <Loader
+    v-if="$apollo.loading"
+    :error-message="graphqlErrorMessage"
+    indicator="ping"
+  />
+  <LoaderImage
+    v-else
+    :alt="$t('profilePictureAlt', { username })"
+    :class="{ 'rounded-full': rounded }"
+    :src="imageSrc"
+  />
 </template>
 
 <script>
