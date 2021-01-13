@@ -203,7 +203,7 @@
       </div>
     </div>
     <div v-else>
-      <Error :status-code="404" />
+      <Error :status-code="403" />
     </div>
     <Modal v-if="showModalSuccess" @close="showModalSuccess = false">
       {{ $t('success') }}
@@ -215,6 +215,7 @@
 import VueMarkdown from 'vue-markdown-konishi'
 
 import EVENT_CONTACT_FEEDBACK_DATA_QUERY from '~/gql/query/eventContactFeedbackData'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/eventIsExisting'
 import UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION from '~/gql/mutation/updateInvitationFeedbackDatumById'
 
 const consola = require('consola')
@@ -238,11 +239,18 @@ export default {
   components: {
     VueMarkdown,
   },
-  validate({ app, params }) {
-    return (
-      app.$global.REGEX_SLUG.test(params.event_name) &&
-      app.$global.REGEX_SLUG.test(params.username)
-    )
+  async validate({ app, params }) {
+    const {
+      data: { eventIsExisting },
+    } = await app.apolloProvider.defaultClient.query({
+      query: EVENT_IS_EXISTING_QUERY,
+      variables: {
+        slug: params.event_name,
+        organizerUsername: params.username,
+      },
+    })
+
+    return eventIsExisting
   },
   data() {
     return {
@@ -255,11 +263,11 @@ export default {
   head() {
     return {
       title:
-        this.eventContactFeedbackData !== undefined &&
-        this.eventContactFeedbackData.event !== null &&
-        this.eventContactFeedbackData.event.name !== null
-          ? this.eventContactFeedbackData.event.name
-          : '404',
+        this.$global.checkNested(
+          this.eventContactFeedbackData,
+          'event',
+          'name'
+        ) || '403',
       meta: [
         {
           hid: 'description',
