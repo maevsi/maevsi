@@ -1,9 +1,6 @@
 query($username: String, $limit: Int!, $cursor: Cursor) {
-  allUploads(
-    condition: { username: $username }
-    first: $limit
-    after: $cursor
-  ) @connection(key: "allUploads", filter: ["condition"]) {
+  allUploads(condition: { username: $username }, first: $limit, after: $cursor)
+    @connection(key: "allUploads", filter: ["condition"]) {
     nodes {
       id
       uuid

@@ -1,7 +1,5 @@
 mutation($password: String!) {
-  accountDelete(
-    input: { password: $password }
-  ) {
+  accountDelete(input: { password: $password }) {
     clientMutationId
   }
 }

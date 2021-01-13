@@ -1,7 +1,5 @@
 mutation($code: UUID!) {
-  accountEmailAddressVerification(
-    input: { code: $code }
-  ) {
+  accountEmailAddressVerification(input: { code: $code }) {
     clientMutationId
   }
 }

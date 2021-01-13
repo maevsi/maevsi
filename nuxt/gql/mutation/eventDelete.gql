@@ -1,6 +1,10 @@
 mutation($organizerUsername: String!, $slug: String!, $password: String!) {
   eventDelete(
-    input: { organizerUsername: $organizerUsername, slug: $slug, password: $password }
+    input: {
+      organizerUsername: $organizerUsername
+      slug: $slug
+      password: $password
+    }
   ) {
     event {
       id
