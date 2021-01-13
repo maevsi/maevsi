@@ -9,53 +9,11 @@
           <nuxt-link :aria-label="$t('home')" :to="localePath('/')">
             <div id="logo" class="h-10 w-32" />
           </nuxt-link>
-          <div class="dropdown text-lg">
-            <AppLink
-              :icon-id="['fas', 'user']"
-              :to="`/account/${
-                signedInUsername === undefined ? '' : signedInUsername
-              }`"
-            >
-              {{
-                signedInUsername === undefined
-                  ? $t('account')
-                  : signedInUsername
-              }}
-            </AppLink>
-            <div class="absolute dropdown-content right-0">
-              <div
-                v-if="signedInUsername !== undefined"
-                class="flex flex-col items-end"
-              >
-                <div class="mt-1">
-                  <AppLink
-                    :icon-id="['fas', 'cog']"
-                    :to="`/account/${
-                      signedInUsername === undefined ? '' : signedInUsername
-                    }/settings`"
-                  >
-                    {{ $t('settings') }}
-                  </AppLink>
-                </div>
-                <Button
-                  :icon-id="['fas', 'sign-out-alt']"
-                  @click="$global.signOut($apollo.getClient(), $store)"
-                >
-                  {{ $t('signOut') }}
-                </Button>
-              </div>
-              <div v-else class="flex flex-col items-end">
-                <div class="mt-1">
-                  <AppLink
-                    :icon-id="['fas', 'user-clock']"
-                    :to="localePath('/session')"
-                  >
-                    {{ $t('session') }}
-                  </AppLink>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ButtonIcon
+            :icon-id="['fas', 'bars']"
+            icon-size="2x"
+            @click="menuShow()"
+          />
         </div>
       </header>
       <main>
@@ -93,6 +51,76 @@
         </div>
       </div>
     </footer>
+    <div
+      class="bg-black bottom-0 duration-500 fixed left-0 opacity-0 right-0 top-0 transition-opacity"
+      :class="{
+        'opacity-50 visible': isMenuVisible,
+        invisible: !isMenuVisible,
+      }"
+      @click="menuHide()"
+    />
+    <div
+      class="bg-background-bright dark:bg-background-dark bottom-0 duration-500 fixed flex-col inline-flex items-start overflow-auto p-2 right-0 top-0 transform-gpu transition-transform w-5/6 md:w-1/2 lg:w-1/3"
+      :class="{
+        'translate-x-0': isMenuVisible,
+        'translate-x-full': !isMenuVisible,
+      }"
+    >
+      <template v-if="isMenuItemsVisible">
+        <ButtonIcon
+          class="m-4 xl:m-8"
+          :icon-id="['fas', 'times']"
+          icon-size="lg"
+          @click="menuHide()"
+        />
+        <div class="flex flex-col mx-8 xl:mx-16 self-stretch">
+          <MenuItem
+            :icon-id="['fas', 'user']"
+            :to="`/account/${
+              signedInUsername === undefined ? '' : signedInUsername
+            }`"
+            @click="menuHide()"
+          >
+            {{
+              signedInUsername === undefined ? $t('account') : signedInUsername
+            }}
+            <template v-if="signedInUsername" slot="image">
+              <ProfilePicture
+                class="m-2"
+                rounded
+                :username="signedInUsername"
+              />
+            </template>
+          </MenuItem>
+          <template v-if="signedInUsername !== undefined">
+            <MenuItem
+              :icon-id="['fas', 'cog']"
+              :to="`/account/${
+                signedInUsername === undefined ? '' : signedInUsername
+              }/settings`"
+              @click="menuHide()"
+            >
+              {{ $t('settings') }}
+            </MenuItem>
+            <MenuItem
+              :icon-id="['fas', 'sign-out-alt']"
+              @click="$global.signOut($apollo.getClient(), $store)"
+            >
+              {{ $t('signOut') }}
+            </MenuItem>
+          </template>
+          <template v-else>
+            <MenuItem
+              :icon-id="['fas', 'user-clock']"
+              :to="localePath('/session')"
+              @click="menuHide()"
+            >
+              {{ $t('session') }}
+            </MenuItem>
+          </template>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -103,6 +131,8 @@ export default {
   data() {
     return {
       browserSupported: true,
+      isMenuVisible: false,
+      isMenuItemsVisible: false,
     }
   },
   head() {
@@ -126,12 +156,33 @@ export default {
   beforeMount() {
     this.browserSupported = supportedBrowsers.test(navigator.userAgent)
   },
+  methods: {
+    menuHide() {
+      this.isMenuVisible = false
+      setTimeout(() => {
+        this.isMenuItemsVisible = false
+      }, 500)
+    },
+    menuShow() {
+      this.isMenuItemsVisible = true
+      this.isMenuVisible = true
+    },
+  },
 }
 </script>
 
 <style>
 @layer components {
+  a:focus {
+    @apply outline-none;
+    @apply ring;
+  }
+  button:focus {
+    @apply outline-none;
+    @apply ring;
+  }
   .button:focus {
+    @apply outline-none;
     @apply ring;
   }
 }

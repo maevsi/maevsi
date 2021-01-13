@@ -3,7 +3,8 @@
   <Loader :error-message="graphqlErrorMessage" :loading="$apollo.loading">
     <img
       :alt="$t('profilePictureAlt', { username })"
-      class="bg-gray-400 flex-none h-24 w-24"
+      class="bg-gray-400 flex-none h-full max-h-24 max-w-24"
+      :class="{ 'rounded-full': rounded }"
       :src="imageSrc"
     />
   </Loader>
@@ -42,6 +43,10 @@ export default {
     },
   },
   props: {
+    rounded: {
+      type: Boolean,
+      default: undefined,
+    },
     username: {
       type: String,
       default: undefined,

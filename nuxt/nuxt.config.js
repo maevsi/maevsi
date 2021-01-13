@@ -54,6 +54,7 @@ export default {
           solid: [
             'faArchive',
             'faBalanceScale',
+            'faBars',
             'faBug',
             'faCalendarDay',
             'faCog',
@@ -68,6 +69,7 @@ export default {
             'faListUl',
             'faMapMarker',
             'faPlus',
+            'faTimes',
             'faTimesCircle',
             'faUser',
             'faUserClock',

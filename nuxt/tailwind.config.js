@@ -17,6 +17,10 @@ module.exports = {
         shake: 'shake 0.6s ease-in-out 0s 1 normal forwards running',
       },
       colors: {
+        background: {
+          bright: '#f0f0f0',
+          dark: '#202020',
+        },
         link: {
           bright: '#60a5fa', // theme('colors.blue.400')
           dark: '#1d4ed8', // theme('colors.blue.700')
@@ -177,9 +181,9 @@ module.exports = {
           margin: theme('margin.4'),
         },
         body: {
-          background: '#f0f0f0',
+          background: theme('colors.background.bright'),
           '@screen dark-mode': {
-            background: '#202020',
+            background: theme('colors.background.dark'),
           },
         },
         footer: {
@@ -260,19 +264,6 @@ module.exports = {
         '.description': {
           p: {
             margin: theme('margin.2') + ' ' + theme('margin.0'),
-          },
-        },
-        '.dropdown-content': {
-          display: 'none',
-          '>*': {
-            display: 'block',
-          },
-        },
-        '.dropdown': {
-          '&:hover': {
-            '.dropdown-content': {
-              display: 'block',
-            },
           },
         },
         '.flip-card': {
