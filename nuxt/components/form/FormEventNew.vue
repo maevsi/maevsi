@@ -153,6 +153,9 @@
           {{ $t('globalValidationTooLong') }}
         </FormError>
       </template>
+      <template slot="inputInfo">
+        {{ $t('inputLocationInfo') }}
+      </template>
     </FormInput>
     <FormInput
       :error="$v.form['description'].$error"
@@ -374,6 +377,7 @@ de:
   end: 'Ende'
   eventCreate: 'Veranstaltung erstellen'
   eventCreateSuccess: 'Veranstaltung erfolgreich erstellt.'
+  inputLocationInfo: 'Ein Suchbegriff für Google Maps.'
   isInPerson: 'vor Ort'
   isRemote: 'remote'
   maximumInviteeCount: 'Maximale Gästezahl'
@@ -395,6 +399,7 @@ en:
   end: 'End'
   eventCreate: 'Create event'
   eventCreateSuccess: 'Event created successfully.'
+  inputLocationInfo: 'A search phrase for Google Maps.'
   isInPerson: 'in person'
   isRemote: 'remote'
   maximumInviteeCount: 'Maximum invitee count'
