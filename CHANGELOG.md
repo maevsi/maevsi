@@ -1,3 +1,10 @@
+# [0.41.0](https://github.com/maevsi/maevsi/compare/0.40.0...0.41.0) (2021-01-13)
+
+
+### Features
+
+* **event:** show insufficient access permissions instead of 404 ([0cc40ce](https://github.com/maevsi/maevsi/commit/0cc40ce1ffb6ab05fb99b79784a674033d92cef7)), closes [#120](https://github.com/maevsi/maevsi/issues/120)
+
 # [0.40.0](https://github.com/maevsi/maevsi/compare/0.39.0...0.40.0) (2021-01-13)
 
 
