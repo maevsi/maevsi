@@ -1,7 +1,7 @@
 <template>
   <EventDashlet v-if="event.place">
     <span>
-      <FontAwesomeIcon :icon="['fas', 'map-marker']" />
+      <FontAwesomeIcon :icon="['fas', 'map-marker']" :title="$t('location')" />
     </span>
     <AppLink
       nofollow
@@ -22,3 +22,10 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  location: 'Ort'
+en:
+  location: 'location'
+</i18n>

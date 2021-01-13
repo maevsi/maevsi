@@ -1,8 +1,16 @@
 <template>
   <EventDashlet v-if="event.isInPerson || event.isRemote">
     <span>
-      <FontAwesomeIcon v-if="event.isInPerson" :icon="['fas', 'handshake']" />
-      <FontAwesomeIcon v-if="event.isRemote" :icon="['fas', 'wifi']" />
+      <FontAwesomeIcon
+        v-if="event.isInPerson"
+        :icon="['fas', 'handshake']"
+        :title="$t('inPerson')"
+      />
+      <FontAwesomeIcon
+        v-if="event.isRemote"
+        :icon="['fas', 'wifi']"
+        :title="$t('remote')"
+      />
     </span>
     {{
       [
