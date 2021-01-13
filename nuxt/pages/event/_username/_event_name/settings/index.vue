@@ -57,7 +57,7 @@ export default {
     //   },
     // })
     if (
-      !app.$global.checkNested(store.state.jwtDecoded, 'username') ||
+      !app.$global.getNested(store.state.jwtDecoded, 'username') ||
       store.state.jwtDecoded.username !== route.params.username
     ) {
       return redirect({ append: true, path: '..' })

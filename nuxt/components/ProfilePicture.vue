@@ -22,7 +22,7 @@ export default {
           username: this.username,
         },
         update: (data) => {
-          const profilePictureByUsername = this.$global.checkNested(
+          const profilePictureByUsername = this.$global.getNested(
             data,
             'profilePictureByUsername'
           )

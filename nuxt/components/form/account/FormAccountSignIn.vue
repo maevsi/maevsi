@@ -106,7 +106,7 @@ export default {
             password: this.form.password,
           },
         })
-        .then(({ data }) => this.$global.checkNested(data, 'authenticate'))
+        .then(({ data }) => this.$global.getNested(data, 'authenticate'))
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           consola.error(error)

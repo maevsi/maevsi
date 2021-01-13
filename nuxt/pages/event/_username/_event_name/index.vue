@@ -1,11 +1,11 @@
 <template>
   <Loader :error-message="graphqlErrorMessage" :loading="$apollo.loading">
-    <div v-if="$global.checkNested(eventContactFeedbackData, 'event')">
+    <div v-if="$global.getNested(eventContactFeedbackData, 'event')">
       <div v-if="eventContactFeedbackData.contact" class="text-center">
         <p class="font-bold mb-2 text-2xl">
           {{
             $t('greeting', {
-              usernameString: $global.checkNested(
+              usernameString: $global.getNested(
                 eventContactFeedbackData,
                 'contact',
                 'firstName'
@@ -263,7 +263,7 @@ export default {
   head() {
     return {
       title:
-        this.$global.checkNested(
+        this.$global.getNested(
           this.eventContactFeedbackData,
           'event',
           'name'

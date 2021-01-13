@@ -7,7 +7,7 @@
       </p>
       <ButtonSignIn
         v-if="
-          $global.checkNested($store.state.jwtDecoded, 'role') ===
+          $global.getNested($store.state.jwtDecoded, 'role') ===
           'maevsi_anonymous'
         "
       />

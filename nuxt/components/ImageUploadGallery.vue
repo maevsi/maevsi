@@ -266,7 +266,7 @@ export default {
               },
             },
           })
-          .then(({ data }) => this.$global.checkNested(data, 'uploadCreate'))
+          .then(({ data }) => this.$global.getNested(data, 'uploadCreate'))
           .catch((error) => {
             this.graphqlErrorMessage = error.message
             consola.error(error)

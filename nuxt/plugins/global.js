@@ -33,7 +33,7 @@ export async function authenticateAnonymous(apolloClient, store, res) {
         password: '',
       },
     })
-    .then(({ data }) => checkNested(data, 'authenticate'))
+    .then(({ data }) => getNested(data, 'authenticate'))
     .catch((error) => {
       consola.error(error)
     })
@@ -52,13 +52,6 @@ export function blur(form, blurFields, fieldName, data) {
 
 export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-export function checkNested(obj, level, ...rest) {
-  if (obj === undefined || obj === null) return false
-  if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
-    return obj[level]
-  return checkNested(obj[level], ...rest)
 }
 
 export function getDeferredPromise(then) {
@@ -104,6 +97,13 @@ export function getJwtFromCookie(req) {
   }
 }
 
+export function getNested(obj, level, ...rest) {
+  if (obj === undefined || obj === null) return undefined
+  if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
+    return obj[level]
+  return getNested(obj[level], ...rest)
+}
+
 export function getQueryString(queryParametersObject) {
   return (
     '?' +
@@ -129,7 +129,7 @@ export async function jwtRefresh(apolloClient, store, res, id) {
         id,
       },
     })
-    .then(({ data }) => checkNested(data, 'jwtRefresh'))
+    .then(({ data }) => getNested(data, 'jwtRefresh'))
     .catch((error) => {
       consola.error(error)
       signOut(apolloClient, store, res)
@@ -239,9 +239,9 @@ export default async ({ app, req, res, store }, inject) => {
     authenticateAnonymous,
     blur,
     capitalizeFirstLetter,
-    checkNested,
     getDeferredPromise,
     getJwtFromCookie,
+    getNested,
     getQueryString,
     jwtRefresh,
     signOut,

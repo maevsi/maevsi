@@ -15,7 +15,7 @@
     <section>
       <h2>{{ $t('inviteCodes') }}</h2>
       <ButtonEventUnlock />
-      <div v-if="$global.checkNested($store.state.jwtDecoded, 'invites')">
+      <div v-if="$global.getNested($store.state.jwtDecoded, 'invites')">
         <p>
           {{ $t('codesEntered') }}
         </p>
@@ -49,7 +49,7 @@ export default {
   computed: {
     sessionExpiryTime() {
       return this.$moment(
-        this.$global.checkNested(this.$store.state.jwtDecoded, 'exp'),
+        this.$global.getNested(this.$store.state.jwtDecoded, 'exp'),
         'X'
       ).format('llll')
     },

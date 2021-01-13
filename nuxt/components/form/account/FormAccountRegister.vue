@@ -102,7 +102,7 @@ export default {
             emailAddress: this.form['email-address'],
           },
         })
-        .then(({ data }) => this.$global.checkNested(data, 'accountRegister'))
+        .then(({ data }) => this.$global.getNested(data, 'accountRegister'))
         .catch((error) => {
           this.graphqlErrorMessage = error.message
           consola.error(error)

@@ -79,7 +79,7 @@ export default {
           },
         })
         .then(({ data }) =>
-          this.$global.checkNested(data, 'accountPasswordResetRequest')
+          this.$global.getNested(data, 'accountPasswordResetRequest')
         )
         .catch((error) => {
           this.graphqlErrorMessage = error.message
