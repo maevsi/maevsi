@@ -47,17 +47,13 @@
         </template>
       </FormInput>
       <div class="flex flex-col items-center justify-between">
-        <Button
-          :disabled="
-            !(
-              $v.form['invitation-code'].$dirty &&
-              !$v.form['invitation-code'].$error
-            )
-          "
-          type="submit"
+        <ButtonSubmit
+          :error-message="graphqlErrorMessage"
+          :form="$v.form"
+          :form-sent="form.sent"
         >
           {{ $t('submit') }}
-        </Button>
+        </ButtonSubmit>
       </div>
       <CardAlert
         class="mt-4"
@@ -84,6 +80,7 @@ export default {
       form: {
         'invitation-code':
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
+        sent: undefined,
       },
       graphqlErrorMessage: undefined,
       title: this.$t('title'),

@@ -12,15 +12,13 @@
       @input="$v.form['email-address'].$model = $event"
     />
     <div class="flex flex-col items-center justify-between">
-      <Button
-        :disabled="
-          $v.form.$invalid ||
-          (form.sent && !$v.form.$anyDirty && !graphqlErrorMessage)
-        "
-        type="submit"
+      <ButtonSubmit
+        :error-message="graphqlErrorMessage"
+        :form="$v.form"
+        :form-sent="form.sent"
       >
         {{ $t('accountPasswordResetRequest') }}
-      </Button>
+      </ButtonSubmit>
     </div>
     <CardAlert
       class="mt-4"
