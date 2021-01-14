@@ -226,6 +226,8 @@ export default {
               globalOgSeoDescription:
                 'Das erste Planungstool für Events, die von den Teilnehmenden unterstützt werden können, erleichtert die Organisation von Veranstaltungen.',
               globalPagingMore: 'Mehr',
+              globalPlaceholderEmailAddress: 'e-mail@adres.se',
+              globalPlaceholderUsername: 'nutzer-name',
               globalValidationFormatIncorrect: 'Falsches Format.',
               globalValidationMinValue: 'Wert zu gering.',
               globalValidationRequired: 'Pflichtfeld.',
@@ -239,6 +241,8 @@ export default {
               globalOgSeoDescription:
                 'The first management tool for events, which are supported by invitees, facilitates the organization of events.',
               globalPagingMore: 'More',
+              globalPlaceholderEmailAddress: 'email@addre.ss',
+              globalPlaceholderUsername: 'user-name',
               globalValidationFormatIncorrect: 'Incorrect format.',
               globalValidationMinValue: 'Under minimum value.',
               globalValidationRequired: 'Required.',

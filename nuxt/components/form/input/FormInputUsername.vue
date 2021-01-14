@@ -8,7 +8,7 @@
       :id="`input-${id}`"
       class="form-input"
       type="text"
-      :placeholder="$t('usernamePlaceholder')"
+      :placeholder="$t('globalPlaceholderUsername')"
       :value="v.form[formKeyComputed].$model"
       @blur="$emit('blur', $event.target.value)"
       @input="$emit('input', $event.target.value)"
@@ -57,8 +57,6 @@ export default {
 <i18n lang="yml">
 de:
   username: 'Nutzername'
-  usernamePlaceholder: 'nutzer-name'
 en:
   username: 'Username'
-  usernamePlaceholder: 'user-name'
 </i18n>

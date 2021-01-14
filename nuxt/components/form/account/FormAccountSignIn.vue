@@ -146,11 +146,9 @@ de:
   passwordLost: 'Passwort verloren?'
   signIn: 'Anmelden'
   username: 'Nutzername'
-  usernamePlaceholder: 'nutzer-name'
 en:
   passwordFound: 'Password found?'
   passwordLost: 'Password lost?'
   username: 'Username'
   signIn: 'Sign in'
-  usernamePlaceholder: 'user-name'
 </i18n>

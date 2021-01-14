@@ -8,7 +8,7 @@
       :id="`input-${id}`"
       class="form-input"
       type="email"
-      :placeholder="$t('emailAddressPlaceholder')"
+      :placeholder="$t('globalPlaceholderEmailAddress')"
       :value="formElement.$model"
       @blur="$emit('blur', $event.target.value)"
       @input="$emit('input', $event.target.value)"
@@ -56,8 +56,6 @@ export default {
 <i18n lang="yml">
 de:
   emailAddress: 'E-Mail-Adresse'
-  emailAddressPlaceholder: 'email@adres.se'
 en:
   emailAddress: 'Email address'
-  emailAddressPlaceholder: 'email@addre.ss'
 </i18n>
