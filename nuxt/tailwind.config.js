@@ -147,6 +147,9 @@ module.exports = {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
         },
+        '::placeholder': {
+          opacity: 0.5,
+        },
         '::selection': {
           color: theme('colors.text.bright'),
           background: '#e53e3e',
@@ -216,11 +219,6 @@ module.exports = {
             display: 'flex',
             height: '100%',
             justifyContent: 'center',
-          },
-        },
-        input: {
-          '&::placeholder': {
-            opacity: 0.5,
           },
         },
       })
