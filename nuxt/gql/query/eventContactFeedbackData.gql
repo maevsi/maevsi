@@ -2,24 +2,24 @@ query($organizerUsername: String!, $slug: String!) {
   eventContactFeedbackData(organizerUsername: $organizerUsername, slug: $slug) {
     event {
       id
-      name
-      slug
-      visibility
-      organizerUsername
       description
-      location
-      start
       end
       isArchived
       isInPerson
       isRemote
+      location
+      name
+      organizerUsername
+      slug
+      start
+      visibility
     }
     contact {
       id
-      firstName
-      lastName
       address
       emailAddress
+      firstName
+      lastName
     }
     invitationFeedbackData {
       id

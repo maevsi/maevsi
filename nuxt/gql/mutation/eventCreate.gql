@@ -2,18 +2,18 @@ mutation($createEventInput: CreateEventInput!) {
   createEvent(input: $createEventInput) {
     event {
       id
-      organizerUsername
-      name
-      slug
-      visibility
-      inviteeCountMaximum
       description
-      location
-      start
       end
+      inviteeCountMaximum
       isArchived
       isInPerson
       isRemote
+      location
+      name
+      organizerUsername
+      slug
+      start
+      visibility
     }
   }
 }

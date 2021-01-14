@@ -1,9 +1,9 @@
-mutation($username: String!, $password: String!, $emailAddress: String!) {
+mutation($emailAddress: String!, $password: String!, $username: String!) {
   accountRegister(
     input: {
-      username: $username
-      password: $password
       emailAddress: $emailAddress
+      password: $password
+      username: $username
     }
   ) {
     clientMutationId

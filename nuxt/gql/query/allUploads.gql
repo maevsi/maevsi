@@ -1,15 +1,15 @@
-query($username: String, $limit: Int!, $cursor: Cursor) {
-  allUploads(condition: { username: $username }, first: $limit, after: $cursor)
-    @connection(key: "allUploads", filter: ["condition"]) {
+query($cursor: Cursor, $limit: Int!, $username: String) {
+  allUploads(after: $cursor, condition: { username: $username }, first: $limit)
+    @connection(filter: ["condition"], key: "allUploads") {
     nodes {
       id
-      uuid
-      storageKey
       sizeByte
+      storageKey
+      uuid
     }
     pageInfo {
-      hasNextPage
       endCursor
+      hasNextPage
     }
   }
 }

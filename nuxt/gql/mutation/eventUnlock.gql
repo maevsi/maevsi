@@ -1,9 +1,9 @@
 mutation($invitationCode: UUID!) {
   eventUnlock(input: { invitationCode: $invitationCode }) {
     eventUnlockResponse {
-      organizerUsername
       eventSlug
       jwt
+      organizerUsername
     }
   }
 }

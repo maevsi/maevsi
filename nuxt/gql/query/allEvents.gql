@@ -1,26 +1,26 @@
-query($username: String, $limit: Int!, $cursor: Cursor) {
+query($cursor: Cursor, $limit: Int!, $username: String) {
   allEvents(
+    after: $cursor
     condition: { organizerUsername: $username }
     first: $limit
-    after: $cursor
-  ) @connection(key: "allEvents", filter: ["condition"]) {
+  ) @connection(filter: ["condition"], key: "allEvents") {
     nodes {
       id
-      name
-      slug
-      visibility
-      organizerUsername
       description
-      location
-      start
       end
       isArchived
       isInPerson
       isRemote
+      location
+      name
+      organizerUsername
+      slug
+      start
+      visibility
     }
     pageInfo {
-      hasNextPage
       endCursor
+      hasNextPage
     }
   }
 }

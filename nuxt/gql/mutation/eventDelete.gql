@@ -1,15 +1,15 @@
-mutation($organizerUsername: String!, $slug: String!, $password: String!) {
+mutation($organizerUsername: String!, $password: String!, $slug: String!) {
   eventDelete(
     input: {
       organizerUsername: $organizerUsername
-      slug: $slug
       password: $password
+      slug: $slug
     }
   ) {
+    clientMutationId
     event {
       id
       nodeId
     }
-    clientMutationId
   }
 }

@@ -4,16 +4,17 @@ query($organizerUsername: String!, $slug: String!) {
     slug: $slug
   ) {
     id
-    name
-    slug
-    visibility
-    organizerUsername
     description
-    location
-    start
     end
+    inviteeCountMaximum
     isArchived
     isInPerson
     isRemote
+    location
+    name
+    organizerUsername
+    slug
+    start
+    visibility
   }
 }
