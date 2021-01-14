@@ -1,6 +1,6 @@
 <template>
   <FormInput
-    :error="v.form[formKeyComputed].$error"
+    :error="formElement.$error"
     :label-for="`input-${id}`"
     :title="$t('emailAddress')"
   >
@@ -9,22 +9,26 @@
       class="form-input"
       type="email"
       :placeholder="$t('emailAddressPlaceholder')"
-      :value="v.form[formKeyComputed].$model"
+      :value="formElement.$model"
       @blur="$emit('blur', $event.target.value)"
       @input="$emit('input', $event.target.value)"
     />
     <template slot="inputError">
+      <FormError :validation-object="formElement" validation-property="email">
+        {{ $t('globalValidationFormatIncorrect') }}
+      </FormError>
       <FormError
-        :validation-object="v.form[formKeyComputed]"
+        :validation-object="formElement"
+        validation-property="maxLength"
+      >
+        {{ $t('globalValidationTooLong') }}
+      </FormError>
+      <FormError
+        v-if="required"
+        :validation-object="formElement"
         validation-property="required"
       >
         {{ $t('globalValidationRequired') }}
-      </FormError>
-      <FormError
-        :validation-object="v.form[formKeyComputed]"
-        validation-property="email"
-      >
-        {{ $t('globalValidationFormatIncorrect') }}
       </FormError>
     </template>
   </FormInput>
@@ -37,18 +41,13 @@ export default {
       type: String,
       default: undefined,
     },
-    formKey: {
-      type: String,
-      default: undefined,
-    },
-    v: {
+    formElement: {
       type: Object,
       default: undefined,
     },
-  },
-  computed: {
-    formKeyComputed() {
-      return this.formKey ? this.formKey : this.id
+    required: {
+      type: Boolean,
+      default: false,
     },
   },
 }

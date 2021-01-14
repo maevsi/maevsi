@@ -7,8 +7,8 @@
   >
     <FormInputEmailAddress
       id="email-address-password-reset-request"
-      form-key="email-address"
-      :v="$v"
+      :form-element="$v.form['email-address']"
+      required
       @input="$v.form['email-address'].$model = $event"
     />
     <div class="flex flex-col items-center justify-between">
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { email, required } from 'vuelidate/lib/validators'
+import { email, maxLength, required } from 'vuelidate/lib/validators'
 
 import ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION from '~/gql/mutation/accountPasswordResetRequest'
 
@@ -97,6 +97,7 @@ export default {
       form: {
         'email-address': {
           email,
+          maxLength: maxLength(this.$global.EMAIL_ADDRESS_LENGTH_MAXIMUM),
           required,
         },
       },

@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { minLength, required } from 'vuelidate/lib/validators'
+import { maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import AUTHENTICATE_MUTATION from '~/gql/mutation/authenticate'
 
@@ -126,8 +126,9 @@ export default {
     return {
       form: {
         username: {
-          required,
           formatSlug: this.$global.VERIFICATION_FORMAT_SLUG,
+          maxLength: maxLength(this.$global.USERNAME_LENGTH_MAXIMUM),
+          required,
         },
         password: {
           minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),

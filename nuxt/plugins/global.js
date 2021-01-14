@@ -7,6 +7,7 @@ import JWT_REFRESH_MUTATION from '~/gql/mutation/jwtRefresh'
 
 const consola = require('consola')
 
+export const EMAIL_ADDRESS_LENGTH_MAXIMUM = 320
 export const EVENT_DESCRIPTION_MAXIMUM = 10000
 export const EVENT_LOCATION_MAXIMUM = 300
 export const EVENT_NAME_MAXIMUM = 100
@@ -19,6 +20,7 @@ export const TUSD_FILES_URL =
   'https://tusd.' +
   (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
   '/files/'
+export const USERNAME_LENGTH_MAXIMUM = 100
 export const VERIFICATION_FORMAT_SLUG = helpers.regex('slug', REGEX_SLUG)
 export const VERIFICATION_FORMAT_UUID = helpers.regex('uuid', REGEX_UUID)
 
@@ -225,6 +227,7 @@ export function xhrPromise(method, url, jwt) {
 
 export default async ({ app, req, res, store }, inject) => {
   const global = {
+    EMAIL_ADDRESS_LENGTH_MAXIMUM,
     EVENT_DESCRIPTION_MAXIMUM,
     EVENT_LOCATION_MAXIMUM,
     EVENT_NAME_MAXIMUM,
@@ -234,6 +237,7 @@ export default async ({ app, req, res, store }, inject) => {
     REGEX_SLUG,
     REGEX_UUID,
     TUSD_FILES_URL,
+    USERNAME_LENGTH_MAXIMUM,
     VERIFICATION_FORMAT_SLUG,
     VERIFICATION_FORMAT_UUID,
     authenticateAnonymous,

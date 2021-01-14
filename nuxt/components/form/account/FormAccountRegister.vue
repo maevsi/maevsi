@@ -25,8 +25,8 @@
     />
     <FormInputEmailAddress
       id="email-address-register"
-      form-key="email-address"
-      :v="$v"
+      :form-element="$v.form['email-address']"
+      required
       @input="$v.form['email-address'].$model = $event"
     />
     <div class="flex flex-col items-center justify-between">
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { email, minLength, required } from 'vuelidate/lib/validators'
+import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import ACCOUNT_REGISTER_MUTATION from '~/gql/mutation/accountRegister'
 
@@ -118,8 +118,9 @@ export default {
     return {
       form: {
         username: {
-          required,
           formatSlug: this.$global.VERIFICATION_FORMAT_SLUG,
+          maxLength: maxLength(this.$global.USERNAME_LENGTH_MAXIMUM),
+          required,
         },
         password: {
           minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),
@@ -127,6 +128,7 @@ export default {
         },
         'email-address': {
           email,
+          maxLength: maxLength(this.$global.EMAIL_ADDRESS_LENGTH_MAXIMUM),
           required,
         },
       },
