@@ -1,11 +1,9 @@
 -- Deploy maevsi:table_event_policy to pg
 -- requires: schema_public
--- requires: schema_private
 -- requires: table_event
--- requires: table_invite_account
--- requires: table_invite_contact
--- requires: function_events_invited
 -- requires: function_invitee_count
+-- requires: schema_private
+-- requires: function_events_invited
 
 BEGIN;
 
