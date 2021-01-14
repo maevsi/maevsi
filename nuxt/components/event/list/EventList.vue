@@ -36,6 +36,8 @@
 <script>
 import ALL_EVENTS_QUERY from '~/gql/query/allEvents'
 
+const consola = require('consola')
+
 export default {
   apollo: {
     allEvents() {
@@ -48,6 +50,7 @@ export default {
         },
         error(error, _vm, _key, _type, _options) {
           this.graphqlErrorMessage = error.message
+          consola.error(error)
         },
       }
     },

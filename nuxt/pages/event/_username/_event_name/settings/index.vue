@@ -33,6 +33,8 @@ import EVENT_DELETE_MUTATION from '~/gql/mutation/eventDelete'
 import ALL_EVENTS_QUERY from '~/gql/query/allEvents'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/eventByOrganizerUsernameAndSlug'
 
+const consola = require('consola')
+
 export default {
   apollo: {
     event() {
@@ -45,6 +47,7 @@ export default {
         update: (data) => data.eventByOrganizerUsernameAndSlug,
         error(error, _vm, _key, _type, _options) {
           this.graphqlErrorMessage = error.message
+          consola.error(error)
         },
       }
     },

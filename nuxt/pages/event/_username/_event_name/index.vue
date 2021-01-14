@@ -236,6 +236,7 @@ export default {
         update: (data) => data.eventContactFeedbackData,
         error(error, _vm, _key, _type, _options) {
           this.graphqlErrorMessage = error.message
+          consola.error(error)
         },
       }
     },

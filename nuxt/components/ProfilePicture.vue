@@ -16,6 +16,8 @@
 <script>
 import PROFILE_PICTURE_BY_USERNAME_QUERY from '~/gql/query/profilePictureByUsername'
 
+const consola = require('consola')
+
 export default {
   apollo: {
     profilePictureByUsername() {
@@ -41,6 +43,7 @@ export default {
         },
         error(error, _vm, _key, _type, _options) {
           this.graphqlErrorMessage = error.message
+          consola.error(error)
         },
       }
     },
