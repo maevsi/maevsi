@@ -5,7 +5,7 @@
 -- requires: table_contact
 -- requires: table_invite_account
 -- requires: table_invite_contact
--- requires: type_event_with_contact
+-- requires: type_event_contact_feedback
 
 BEGIN;
 
@@ -27,10 +27,10 @@ BEGIN
   IF (current_setting('jwt.claims.role', true)::TEXT = 'maevsi_account') THEN
     SELECT * INTO _invite_account FROM maevsi.invite_account
       WHERE   invite_account.event_id = _event.id
-      AND     invite_account.account_id = current_setting('jwt.claims.account_id', true)::BIGINT;
+      AND     invite_account.username = current_setting('jwt.claims.username', true)::TEXT;
 
     SELECT * INTO _contact FROM maevsi.contact
-      WHERE contact.id = _invite_account.account_id;
+      WHERE contact.id = current_setting('jwt.claims.account_id', true)::BIGINT;
 
     SELECT * INTO _invitation_feedback_data FROM maevsi.invitation_feedback_data
       WHERE invitation_feedback_data.id = _invite_account.invitation_feedback_id;
@@ -46,11 +46,13 @@ BEGIN
       SELECT * INTO _invitation_feedback_data FROM maevsi.invitation_feedback_data
         WHERE invitation_feedback_data.id = _invite_contact.invitation_feedback_id;
     END IF;
+  ELSE
+    RAISE 'Unsupported role!' USING ERRCODE = 'invalid_parameter_value';
   END IF;
 
   RETURN (_event, _contact, _invitation_feedback_data);
 END
-$$ LANGUAGE PLPGSQL STRICT STABLE;
+$$ LANGUAGE PLPGSQL STRICT STABLE SECURITY INVOKER;
 
 COMMENT ON FUNCTION maevsi.event_contact_feedback_data(TEXT, TEXT) IS 'Returns the event as indicated by the event organizer''s username and event slug together with the accessing contact and its feedback data.';
 

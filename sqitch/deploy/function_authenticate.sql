@@ -52,7 +52,8 @@ BEGIN
 
   INSERT INTO maevsi_private.jwt(uuid, token) VALUES (_jwt_id, _jwt);
   RETURN _jwt;
-END $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
+END;
+$$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi.authenticate(TEXT, TEXT) IS 'Creates a JWT token that will securely identify an account and give it certain permissions.';
 

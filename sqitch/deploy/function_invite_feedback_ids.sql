@@ -8,7 +8,7 @@ CREATE FUNCTION maevsi_private.invite_feedback_ids() RETURNS TABLE (invitation_f
 BEGIN
   RETURN QUERY
   SELECT invite_account.invitation_feedback_id FROM maevsi.invite_account
-    WHERE   invite_account.account_id = current_setting('jwt.claims.account_id', true)::BIGINT
+    WHERE   invite_account.username = current_setting('jwt.claims.username', true)::TEXT
       OR  invite_account.event_id IN (SELECT maevsi.events_organized())
   UNION ALL
   SELECT invite_contact.invitation_feedback_id FROM maevsi.invite_contact
