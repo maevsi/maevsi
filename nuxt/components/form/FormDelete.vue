@@ -59,7 +59,7 @@ export default {
     return {
       form: {
         password: undefined,
-        sent: undefined,
+        sent: false,
       },
       graphqlErrorMessage: undefined,
     }

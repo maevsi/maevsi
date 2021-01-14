@@ -57,17 +57,17 @@ export default {
       formRegister: {
         'email-address': undefined,
         password: undefined,
-        sent: undefined,
+        sent: false,
         username: undefined,
       },
       formSignIn: {
         password: undefined,
-        sent: undefined,
+        sent: false,
         username: undefined,
       },
       formPasswordResetRequest: {
         'email-address': undefined,
-        sent: undefined,
+        sent: false,
       },
       title: this.$t('title'),
     }

@@ -44,7 +44,7 @@ export default {
       form: {
         passwordCurrent: undefined,
         passwordNew: undefined,
-        sent: undefined,
+        sent: false,
       },
       graphqlErrorMessage: undefined,
     }

@@ -80,7 +80,7 @@ export default {
       form: {
         'invitation-code':
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
-        sent: undefined,
+        sent: false,
       },
       graphqlErrorMessage: undefined,
       title: this.$t('title'),

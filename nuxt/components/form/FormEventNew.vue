@@ -263,7 +263,7 @@ export default {
         location: undefined,
         name: undefined,
         'organizer-username': undefined,
-        sent: undefined,
+        sent: false,
         slug: undefined,
         start: new Date().toISOString(), // workaround for https://github.com/mariomka/vue-datetime/issues/177
         visibility: undefined,
