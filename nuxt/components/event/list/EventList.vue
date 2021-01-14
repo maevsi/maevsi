@@ -1,5 +1,8 @@
 <template>
-  <Loader v-if="$apollo.loading" :error-message="graphqlErrorMessage" />
+  <Loader
+    v-if="$apollo.loading || graphqlErrorMessage"
+    :error-message="graphqlErrorMessage"
+  />
   <div v-else>
     <h2 v-if="username" class="text-left truncate">
       {{ $t('titleEvents', { username: $route.params.username }) }}

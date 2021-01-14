@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <Loader v-if="$apollo.loading" :error-message="graphqlErrorMessage" />
+    <Loader
+      v-if="$apollo.loading || graphqlErrorMessage"
+      :error-message="graphqlErrorMessage"
+    />
     <div v-else>
       <p>
         {{ $t('emailAddressVerificationSuccess') }}
