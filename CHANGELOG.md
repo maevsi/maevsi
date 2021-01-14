@@ -1,3 +1,14 @@
+## [0.42.1](https://github.com/maevsi/maevsi/compare/0.42.0...0.42.1) (2021-01-14)
+
+
+### Bug Fixes
+
+* **apollo:** add missing consola errors ([f471873](https://github.com/maevsi/maevsi/commit/f47187359e3ce7892db61c433ff8ab0118aac488))
+* **form:** default sent to false ([49ec3da](https://github.com/maevsi/maevsi/commit/49ec3daab5b1870320d2609fa0f93971e6eb86de))
+* **loader:** show errors ([67b516b](https://github.com/maevsi/maevsi/commit/67b516b6c826d66d31bb5c5d75d02364c6d727f2))
+* **tailwind:** apply for all placeholders ([8405389](https://github.com/maevsi/maevsi/commit/8405389b290253bffca1ae243ab30a28a1c7db69))
+* **validation:** improve validators ([b70ef92](https://github.com/maevsi/maevsi/commit/b70ef92d442fe7e86dbbf76b01d7c6c1bf1b0ef4))
+
 # [0.42.0](https://github.com/maevsi/maevsi/compare/0.41.0...0.42.0) (2021-01-13)
 
 
