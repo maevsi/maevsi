@@ -12,7 +12,7 @@ BEGIN;
 CREATE FUNCTION maevsi.account_register(
   username TEXT,
   email_address TEXT,
-  password TEXT
+  "password" TEXT
 ) RETURNS VOID AS $$
 DECLARE
   _new_account maevsi_private.account;

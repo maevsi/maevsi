@@ -16,8 +16,9 @@ CREATE TABLE maevsi.profile_picture (
 );
 
 COMMENT ON TABLE maevsi.profile_picture IS 'Mapping of usernames to upload storage keys.';
+COMMENT ON COLUMN maevsi.profile_picture.id IS E'@omit create,update\nThe profile picture''s internal id.';
 COMMENT ON COLUMN maevsi.profile_picture.username IS 'The account''s username.';
-COMMENT ON COLUMN maevsi.profile_picture.upload_storage_key IS 'The upload storage key.';
+COMMENT ON COLUMN maevsi.profile_picture.upload_storage_key IS 'The upload''s storage key.';
 
 GRANT SELECT ON TABLE maevsi.profile_picture TO maevsi_account, maevsi_anonymous, maevsi_tusd;
 GRANT INSERT, DELETE, UPDATE ON TABLE maevsi.profile_picture TO maevsi_account;

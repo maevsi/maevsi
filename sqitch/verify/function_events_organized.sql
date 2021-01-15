@@ -1,4 +1,4 @@
--- Verify maevsi:function_invites on pg
+-- Verify maevsi:function_events_organized on pg
 
 BEGIN;
 

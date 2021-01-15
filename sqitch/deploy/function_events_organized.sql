@@ -1,4 +1,4 @@
--- Deploy maevsi:function_invites to pg
+-- Deploy maevsi:function_events_organized to pg
 -- requires: privilege_execute_revoke
 -- requires: schema_public
 -- requires: table_event

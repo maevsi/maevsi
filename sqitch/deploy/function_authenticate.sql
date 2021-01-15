@@ -12,7 +12,7 @@ BEGIN;
 
 CREATE FUNCTION maevsi.authenticate(
   username TEXT,
-  password TEXT
+  "password" TEXT
 ) RETURNS maevsi.jwt AS $$
 DECLARE
     _jwt_id UUID := maevsi.uuid_generate_v1mc();

@@ -20,10 +20,14 @@ CREATE TABLE maevsi_private.account (
 );
 
 COMMENT ON TABLE maevsi_private.account IS 'Account data.';
+COMMENT ON COLUMN maevsi_private.account.id IS 'The account''s internal id.';
 COMMENT ON COLUMN maevsi_private.account.username IS 'The account''s username.';
-COMMENT ON COLUMN maevsi_private.account.email_address IS 'The account''s e-mail address for account related information.';
-COMMENT ON COLUMN maevsi_private.account.email_address_verification IS 'The UUID that is used to verify an e-mail address, or null if already verified.';
+COMMENT ON COLUMN maevsi_private.account.email_address IS 'The account''s email address for account related information.';
+COMMENT ON COLUMN maevsi_private.account.email_address_verification IS 'The UUID used to verify an email address, or null if already verified.';
+COMMENT ON COLUMN maevsi_private.account.email_address_verification_valid_until IS 'The timestamp until which an email address verification is valid.';
 COMMENT ON COLUMN maevsi_private.account.password_hash IS 'The account''s password, hashed and salted.';
+COMMENT ON COLUMN maevsi_private.account.password_reset_verification IS 'The UUID used to reset a password, or null if there is no pending reset request.';
+COMMENT ON COLUMN maevsi_private.account.password_reset_verification_valid_until IS 'The timestamp until which a password reset is valid.';
 COMMENT ON COLUMN maevsi_private.account.created IS 'Timestamp at which the account was last active.';
 COMMENT ON COLUMN maevsi_private.account.last_activity IS 'Timestamp at which the account last requested an access token.';
 COMMENT ON COLUMN maevsi_private.account.upload_quota_bytes IS 'The account''s upload quota in bytes.';

@@ -15,9 +15,9 @@ CREATE TABLE maevsi.event_grouping (
 );
 
 COMMENT ON TABLE maevsi.event_grouping IS 'A bidirectional mapping between an event and an event group.';
-COMMENT ON COLUMN maevsi.event_grouping.id IS 'The record''s id.';
-COMMENT ON COLUMN maevsi.event_grouping.event_id IS 'The event''s id.';
-COMMENT ON COLUMN maevsi.event_grouping.event_group_id IS 'The event group''s id.';
+COMMENT ON COLUMN maevsi.event_grouping.id IS E'@omit create,update\nThe event grouping''s internal id.';
+COMMENT ON COLUMN maevsi.event_grouping.event_id IS 'The event grouping''s internal event id.';
+COMMENT ON COLUMN maevsi.event_grouping.event_group_id IS 'The event grouping''s internal event group id.';
 
 GRANT SELECT ON TABLE maevsi.event_grouping TO maevsi_account, maevsi_anonymous;
 GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event_grouping TO maevsi_account;

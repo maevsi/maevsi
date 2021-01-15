@@ -8,7 +8,7 @@ SELECT id,
        email_address_hash,
        first_name,
        last_name,
-       address
+       "address"
 FROM maevsi.contact WHERE FALSE;
 
 DO $$

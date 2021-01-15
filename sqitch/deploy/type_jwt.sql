@@ -9,7 +9,7 @@ CREATE TYPE maevsi.jwt AS (
   account_id BIGINT,
   username TEXT,
   invites UUID[],
-  exp BIGINT
+  "exp" BIGINT
 );
 
 COMMIT;

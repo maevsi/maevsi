@@ -1,4 +1,4 @@
--- Revert maevsi:function_invites from pg
+-- Revert maevsi:function_events_organized from pg
 
 BEGIN;
 

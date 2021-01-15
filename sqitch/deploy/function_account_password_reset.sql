@@ -9,7 +9,7 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.account_password_reset(code UUID, password TEXT)
+CREATE FUNCTION maevsi.account_password_reset(code UUID, "password" TEXT)
 RETURNS VOID AS $$
 DECLARE
   _notify_email_address TEXT;

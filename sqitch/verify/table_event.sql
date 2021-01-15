@@ -3,14 +3,14 @@
 BEGIN;
 
 SELECT id,
-       name,
+       "name",
        slug,
        visibility,
        invitee_count_maximum,
        organizer_username,
-       description,
-       location,
-       start,
+       "description",
+       "location",
+       "start",
        "end",
        is_archived,
        is_in_person,

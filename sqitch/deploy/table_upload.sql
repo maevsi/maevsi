@@ -16,7 +16,7 @@ CREATE TABLE maevsi.upload (
 );
 
 COMMENT ON TABLE maevsi.upload IS 'An upload.';
-COMMENT ON COLUMN maevsi.upload.id IS 'The upload''s id.';
+COMMENT ON COLUMN maevsi.upload.id IS E'@omit create,update\nThe upload''s internal id.';
 COMMENT ON COLUMN maevsi.upload.uuid IS 'The upload''s UUID.';
 COMMENT ON COLUMN maevsi.upload.storage_key IS 'The upload''s storage key.';
 COMMENT ON COLUMN maevsi.upload.username IS 'The uploader''s username.';

@@ -11,13 +11,13 @@ BEGIN;
 CREATE TABLE maevsi.event (
   id                       BIGSERIAL PRIMARY KEY,
   organizer_username       TEXT REFERENCES maevsi_private.account(username) NOT NULL,
-  name                     TEXT NOT NULL CHECK (char_length(name) < 100),
+  "name"                   TEXT NOT NULL CHECK (char_length("name") < 100),
   slug                     TEXT NOT NULL CHECK (char_length(slug) < 100 AND slug ~* '^[-A-Za-z0-9]+$'),
   visibility               maevsi.event_visibility NOT NULL,
   invitee_count_maximum    INTEGER CHECK (invitee_count_maximum > 0),
-  description              TEXT CHECK (char_length(description) < 10000),
-  location                 TEXT CHECK (char_length(location) < 300),
-  start                    TIMESTAMP WITH TIME ZONE NOT NULL,
+  "description"            TEXT CHECK (char_length("description") < 10000),
+  "location"               TEXT CHECK (char_length("location") < 300),
+  "start"                  TIMESTAMP WITH TIME ZONE NOT NULL,
   "end"                    TIMESTAMP WITH TIME ZONE,
   is_archived              BOOLEAN NOT NULL DEFAULT FALSE,
   is_in_person             BOOLEAN,
@@ -26,7 +26,7 @@ CREATE TABLE maevsi.event (
 );
 
 COMMENT ON TABLE maevsi.event IS 'An event.';
-COMMENT ON COLUMN maevsi.event.id IS E'@omit create,update\nThe record''s id.';
+COMMENT ON COLUMN maevsi.event.id IS E'@omit create,update\nThe event''s internal id.';
 COMMENT ON COLUMN maevsi.event.organizer_username IS 'The event organizer''s username.';
 COMMENT ON COLUMN maevsi.event.name IS 'The event''s name.';
 COMMENT ON COLUMN maevsi.event.slug IS 'The event''s name, slugified.';
