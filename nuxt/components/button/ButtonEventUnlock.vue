@@ -1,5 +1,9 @@
 <template>
-  <Button :icon-id="['fas', 'key']" :to="localePath('/task/event/unlock')">
+  <Button
+    :icon-id="['fas', 'key']"
+    :to="localePath('/task/event/unlock')"
+    @click="$emit('click')"
+  >
     {{ $t('eventUnlock') }}
   </Button>
 </template>

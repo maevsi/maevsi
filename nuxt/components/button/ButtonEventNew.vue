@@ -3,6 +3,7 @@
     v-if="signedIn"
     :icon-id="['fas', 'plus']"
     :to="localePath('/task/event/create')"
+    @click="$emit('click')"
   >
     {{ $t('new') }}
   </Button>

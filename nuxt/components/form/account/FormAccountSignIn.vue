@@ -35,7 +35,7 @@
             pw: $route.query.pw === 'lost' ? 'found' : 'lost',
           })
         "
-        @click.native="$emit('password-lost')"
+        @click="$emit('password-lost')"
       >
         {{
           this.$route.query.pw === 'lost'

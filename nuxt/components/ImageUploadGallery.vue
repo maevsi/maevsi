@@ -93,7 +93,7 @@
         v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"
         class="flex justify-center"
       >
-        <Button @click.native="showMore">
+        <Button @click="showMore">
           {{ $t('globalPagingMore') }}
         </Button>
       </div>
@@ -113,14 +113,14 @@
         <Button
           :disabled="uploading"
           :icon-id="['fas', 'window-close']"
-          @click.native="showModalImageUpload = false"
+          @click="showModalImageUpload = false"
         >
           {{ $t('cancel') }}
         </Button>
         <ButtonGreen
           :disabled="uploading"
           :icon-id="['fas', 'upload']"
-          @click.native="generateBlob()"
+          @click="generateBlob()"
         >
           {{ $t('upload') }}
         </ButtonGreen>

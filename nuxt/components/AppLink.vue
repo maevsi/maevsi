@@ -6,6 +6,7 @@
       [...(nofollow ? ['nofollow'] : []), 'noopener', 'noreferrer'].join(' ')
     "
     target="_blank"
+    @click="$emit('click')"
   >
     <FontAwesomeIcon
       v-if="iconId"
@@ -15,7 +16,7 @@
     />
     <slot />
   </a>
-  <nuxt-link v-else append="append" :to="to">
+  <nuxt-link v-else append="append" :to="to" @click.native="$emit('click')">
     <FontAwesomeIcon
       v-if="iconId"
       :class="{ 'mr-2': this.$slots.default }"

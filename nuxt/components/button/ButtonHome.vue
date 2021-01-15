@@ -1,5 +1,9 @@
 <template>
-  <Button :icon-id="['fas', 'home']" :to="localePath('/')">
+  <Button
+    :icon-id="['fas', 'home']"
+    :to="localePath('/')"
+    @click="$emit('click')"
+  >
     {{ $t('home') }}
   </Button>
 </template>

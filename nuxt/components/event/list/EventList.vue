@@ -24,7 +24,7 @@
         :event="event"
       />
       <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
-        <Button @click.native="showMore">
+        <Button @click="showMore">
           {{ $t('globalPagingMore') }}
         </Button>
       </div>

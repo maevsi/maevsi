@@ -12,7 +12,7 @@
       <Button
         :disabled="settingProfilePicture"
         :icon-id="['fas', 'window-close']"
-        @click.native="$emit('hide')"
+        @click="$emit('hide')"
       >
         {{ $t('cancel') }}
       </Button>
@@ -22,7 +22,7 @@
           selectedProfilePictureStorageKey === undefined
         "
         :icon-id="['fas', 'check-circle']"
-        @click.native="setProfilePicture()"
+        @click="setProfilePicture()"
       >
         {{ $t('select') }}
       </ButtonGreen>

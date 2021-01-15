@@ -4,6 +4,7 @@
     :icon-id="iconId"
     :icon-size="iconSize"
     type="submit"
+    @click="$emit('click')"
   >
     <slot />
   </Button>
