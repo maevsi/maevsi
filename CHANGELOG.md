@@ -1,3 +1,12 @@
+## [0.42.2](https://github.com/maevsi/maevsi/compare/0.42.1...0.42.2) (2021-01-15)
+
+
+### Bug Fixes
+
+* **components:** propagate click event where possible ([f962bd5](https://github.com/maevsi/maevsi/commit/f962bd5ced6fc3fdce7775a6e8aa6a689c79aca5))
+* **sqitch:** correct requires and order ([0abc6c8](https://github.com/maevsi/maevsi/commit/0abc6c8bb43c023c12dbc13fc480d6dae9c97165))
+* **sqitch:** minor corrections ([3fad1f3](https://github.com/maevsi/maevsi/commit/3fad1f385fdc0fe5ed6237847af9e2b462afa7b0))
+
 ## [0.42.1](https://github.com/maevsi/maevsi/compare/0.42.0...0.42.1) (2021-01-14)
 
 
