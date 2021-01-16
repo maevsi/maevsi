@@ -148,7 +148,10 @@ module.exports = {
           opacity: theme('opacity.50'),
         },
         '::placeholder': {
-          opacity: 0.5,
+          fontStyle: 'italic',
+          'input&,textarea&': {
+            opacity: 0.5,
+          },
         },
         '::selection': {
           color: theme('colors.text.bright'),
