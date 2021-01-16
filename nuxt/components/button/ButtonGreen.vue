@@ -4,6 +4,7 @@
     :disabled="disabled"
     :icon-id="iconId"
     :to="to"
+    :type="type"
     @click="$emit('click')"
   >
     <slot />
@@ -28,6 +29,10 @@ export default {
     to: {
       type: String,
       default: undefined,
+    },
+    type: {
+      type: String,
+      default: 'button',
     },
   },
 }
