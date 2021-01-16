@@ -209,7 +209,7 @@
     <div v-else>
       <Error :status-code="403" />
     </div>
-    <Modal v-if="showModalSuccess" @close="showModalSuccess = false">
+    <Modal ref="modal">
       {{ $t('success') }}
     </Modal>
   </div>

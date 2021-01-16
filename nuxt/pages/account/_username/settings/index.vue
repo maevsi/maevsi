@@ -6,7 +6,7 @@
       <button
         class="sm:mr-4"
         type="button"
-        @click="showModalImageSelection = true"
+        @click="$refs.modal.isVisible = true"
       >
         <ProfilePicture
           ref="profilePicture"
@@ -17,11 +17,7 @@
       <h1 class="truncate w-full sm:w-auto">
         {{ $route.params.username }}
       </h1>
-      <ModalImageSelection
-        v-if="showModalImageSelection"
-        @hide="hideModalImageSelection"
-        @reload="reloadProfilePicture"
-      />
+      <ModalImageSelection ref="modal" @submitSuccess="reloadProfilePicture" />
     </div>
     <section>
       <h2>{{ $t('titleImageUploads') }}</h2>
@@ -40,8 +36,8 @@
       <FormDelete
         id="deleteAccount"
         :item-name="$t('account')"
-        :mutation="mutation"
-        @success="onDeleteSuccess"
+        :mutation="accountDeleteMutation"
+        @success="$global.signOut(this.$apollo.getClient(), this.$store)"
       />
     </section>
   </div>
@@ -49,8 +45,6 @@
 
 <script>
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/accountDelete'
-
-require('@uppy/core/dist/style.css')
 
 export default {
   middleware({ app, store, redirect, route }) {
@@ -63,25 +57,13 @@ export default {
   },
   data() {
     return {
-      mutation: ACCOUNT_DELETE_MUTATION,
-      showModalImageSelection: false,
+      accountDeleteMutation: ACCOUNT_DELETE_MUTATION,
     }
   },
   head() {
     return { title: this.$route.params.username }
   },
-  computed: {
-    jwtDecoded() {
-      return this.$store.state.jwtDecoded
-    },
-  },
   methods: {
-    hideModalImageSelection() {
-      this.showModalImageSelection = false
-    },
-    onDeleteSuccess() {
-      this.$global.signOut(this.$apollo.getClient(), this.$store)
-    },
     reloadProfilePicture() {
       this.$refs.profilePicture.reloadProfilePicture()
     },
