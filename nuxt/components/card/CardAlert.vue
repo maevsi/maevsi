@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="
-      errorMessage !== null &&
+      errorMessage &&
       (validationObject === undefined || !validationObject.$anyDirty)
     "
     class="card bg-red-100 border border-red-700 text-center text-red-700"
@@ -18,7 +18,7 @@ export default {
   props: {
     errorMessage: {
       type: String,
-      default: null,
+      default: undefined,
     },
     validationObject: {
       type: Object,
