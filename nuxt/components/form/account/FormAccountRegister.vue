@@ -3,7 +3,7 @@
     :form-class="formClass"
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
-    @submit="register"
+    @submit.prevent="submit"
   >
     <FormInputUsername
       id="username-register"
@@ -84,9 +84,7 @@ export default {
     },
   },
   methods: {
-    async register(e) {
-      e.preventDefault()
-
+    async submit() {
       this.$emit('form-sent')
       this.graphqlErrorMessage = undefined
 

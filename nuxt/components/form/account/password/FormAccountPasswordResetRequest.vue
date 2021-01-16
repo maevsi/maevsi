@@ -3,7 +3,7 @@
     :form-class="formClass"
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
-    @submit="accountPasswordResetRequest"
+    @submit.prevent="submit"
   >
     <FormInputEmailAddress
       id="email-address-password-reset-request"
@@ -62,9 +62,7 @@ export default {
     },
   },
   methods: {
-    async accountPasswordResetRequest(e) {
-      e.preventDefault()
-
+    async submit() {
       this.$emit('form-sent')
       this.graphqlErrorMessage = undefined
 

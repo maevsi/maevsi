@@ -3,7 +3,7 @@
     :form-class="formClass"
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
-    @submit="accountPasswordReset"
+    @submit.prevent="submit"
   >
     <FormInputPassword
       id="password"
@@ -51,9 +51,7 @@ export default {
     }
   },
   methods: {
-    async accountPasswordReset(e) {
-      e.preventDefault()
-
+    async submit() {
       this.form.sent = true
       this.graphqlErrorMessage = undefined
 

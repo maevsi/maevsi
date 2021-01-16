@@ -4,7 +4,7 @@
     <Form
       :graphql-error-message="graphqlErrorMessage"
       :validation-object="$v.form"
-      @submit="unlockEvent"
+      @submit.prevent="submit"
     >
       <FormInput
         :error="$v.form['invitation-code'].$error"
@@ -110,9 +110,7 @@ export default {
     }
   },
   methods: {
-    async unlockEvent(e) {
-      e.preventDefault()
-
+    async submit() {
       this.graphqlErrorMessage = undefined
 
       this.$v.form.$reset()

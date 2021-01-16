@@ -2,7 +2,7 @@
   <Form
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
-    @submit="passwordChange"
+    @submit.prevent="submit"
   >
     <FormInputPassword
       id="passwordCurrent"
@@ -50,9 +50,7 @@ export default {
     }
   },
   methods: {
-    passwordChange(e) {
-      e.preventDefault()
-
+    submit() {
       this.form.sent = true
       this.graphqlErrorMessage = undefined
 

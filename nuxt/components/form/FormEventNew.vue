@@ -2,7 +2,7 @@
   <Form
     :graphql-error-message="graphqlErrorMessage"
     :validation-object="$v.form"
-    @submit="eventNew"
+    @submit.prevent="submit"
   >
     <FormInput
       :error="$v.form['name'].$error"
@@ -281,9 +281,7 @@ export default {
     },
   },
   methods: {
-    eventNew(e) {
-      e.preventDefault()
-
+    submit() {
       this.form.sent = true
       this.graphqlErrorMessage = undefined
 
