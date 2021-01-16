@@ -1,7 +1,7 @@
 <template>
   <!-- TODO: https://github.com/maevsi/maevsi/issues/96 for html validity inside button -->
   <Loader
-    v-if="$apollo.loading || graphqlErrorMessage"
+    v-if="($apollo.loading && !profilePictureByUsername) || graphqlErrorMessage"
     :error-message="graphqlErrorMessage"
     indicator="ping"
   />

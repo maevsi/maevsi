@@ -1,6 +1,6 @@
 <template>
   <Loader
-    v-if="$apollo.loading || graphqlErrorMessage"
+    v-if="($apollo.loading && !event) || graphqlErrorMessage"
     :error-message="graphqlErrorMessage"
   />
   <div v-else>
