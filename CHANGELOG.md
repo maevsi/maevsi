@@ -1,3 +1,19 @@
+# [0.43.0](https://github.com/maevsi/maevsi/compare/0.42.2...0.43.0) (2021-01-16)
+
+
+### Bug Fixes
+
+* **button-green:** add missing type prop ([a17931c](https://github.com/maevsi/maevsi/commit/a17931c6cc90e70b7a38ba6f6bc7c13c1c4a16a0))
+* **card-alert:** default to undefined ([ab07d77](https://github.com/maevsi/maevsi/commit/ab07d7787e95066060c61dc330b8096c0e765dcc))
+* **loader:** prevent flicker when refetching ([28bc7fd](https://github.com/maevsi/maevsi/commit/28bc7fdda92543d52ab4af32eca20367bb30cf73))
+
+
+### Features
+
+* **event-settings:** show 403 instead of redirect ([3b553ea](https://github.com/maevsi/maevsi/commit/3b553eac53f2dd0db7dfbd0b36d1ba2392feb466))
+* **modal:** rework modals ([66697cd](https://github.com/maevsi/maevsi/commit/66697cd4e93e4a9ec1b513b88e7a5eb1264e798d))
+* **tailwind:** make placeholders italic and half transparent ([6e1d49e](https://github.com/maevsi/maevsi/commit/6e1d49e89ae180d6cd5e31ade1ffef322248ff2e))
+
 ## [0.42.2](https://github.com/maevsi/maevsi/compare/0.42.1...0.42.2) (2021-01-15)
 
 
