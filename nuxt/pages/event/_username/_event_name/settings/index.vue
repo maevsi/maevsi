@@ -3,7 +3,12 @@
     v-if="($apollo.loading && !event) || graphqlErrorMessage"
     :error-message="graphqlErrorMessage"
   />
-  <div v-else>
+  <div
+    v-else-if="
+      $global.getNested($store.state.jwtDecoded, 'username') &&
+      $store.state.jwtDecoded.username === $route.params.username
+    "
+  >
     <div v-if="event">
       <!-- breadcrumbs -->
       <h1 class="text-center">
@@ -26,11 +31,15 @@
     </div>
     <Error v-else :status-code="404" />
   </div>
+  <div v-else>
+    <Error :status-code="403" />
+  </div>
 </template>
 
 <script>
 import EVENT_DELETE_MUTATION from '~/gql/mutation/eventDelete'
 import ALL_EVENTS_QUERY from '~/gql/query/allEvents'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/eventIsExisting'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/eventByOrganizerUsernameAndSlug'
 
 const consola = require('consola')
@@ -52,23 +61,18 @@ export default {
       }
     },
   },
-  middleware({ app, store, redirect, route }) {
-    // // If access permissions need to be validated by the server in the future.
-    // const {
-    //   data: { eventByOrganizerUsernameAndSlug },
-    // } = await app.apolloProvider.defaultClient.query({
-    //   query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG_QUERY,
-    //   variables: {
-    //     organizerUsername: route.params.username,
-    //     slug: route.params.event_name,
-    //   },
-    // })
-    if (
-      !app.$global.getNested(store.state.jwtDecoded, 'username') ||
-      store.state.jwtDecoded.username !== route.params.username
-    ) {
-      return redirect({ append: true, path: '..' })
-    }
+  async validate({ app, params }) {
+    const {
+      data: { eventIsExisting },
+    } = await app.apolloProvider.defaultClient.query({
+      query: EVENT_IS_EXISTING_QUERY,
+      variables: {
+        slug: params.event_name,
+        organizerUsername: params.username,
+      },
+    })
+
+    return eventIsExisting
   },
   data() {
     return {
