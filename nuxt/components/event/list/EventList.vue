@@ -29,7 +29,7 @@
         </Button>
       </div>
     </ul>
-    <p v-else>{{ $t('noEvents') }}</p>
+    <p v-else class="text-center">{{ $t('noEvents') }}</p>
   </div>
 </template>
 
