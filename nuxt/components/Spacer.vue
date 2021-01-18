@@ -1,13 +1,13 @@
 <template>
-  <div :class="`m-${size}`" />
+  <div :class="size" />
 </template>
 
 <script>
 export default {
   props: {
     size: {
-      default: 2,
-      type: [Number, String],
+      default: 'm-2',
+      type: String,
     },
   },
 }

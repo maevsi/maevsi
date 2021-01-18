@@ -29,7 +29,7 @@
           @form-sent="onFormSent(formSignIn)"
           @password-forgotten="onClickPasswordForgotten"
         />
-        <Spacer size="4" />
+        <Spacer size="'m-4'" />
         <FormAccountPasswordResetRequest
           v-if="showFormPasswordResetRequest"
           ref="formPasswordResetRequest"

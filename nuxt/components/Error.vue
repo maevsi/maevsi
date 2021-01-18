@@ -5,8 +5,9 @@
     </p>
     <h1>{{ statusCode }} - {{ statusReason }}</h1>
     <div class="flex flex-wrap justify-center">
-      <ButtonHome class="mx-2" />
-      <ButtonSignIn v-if="statusCode === 403" class="mx-2" />
+      <ButtonHome />
+      <Spacer />
+      <ButtonSignIn v-if="statusCode === 403" />
     </div>
   </div>
 </template>

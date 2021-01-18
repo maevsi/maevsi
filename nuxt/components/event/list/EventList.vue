@@ -8,9 +8,11 @@
       {{ $t('titleEvents', { username: $route.params.username }) }}
     </h2>
     <div class="flex flex-wrap justify-center">
-      <ButtonEventList v-if="showButtonEventList" class="mx-2" />
-      <ButtonEventNew v-if="showButtonEventNew" class="mx-2" />
-      <ButtonEventUnlock v-if="showButtonEventUnlock" class="mx-2" />
+      <ButtonEventList v-if="showButtonEventList" />
+      <Spacer />
+      <ButtonEventNew v-if="showButtonEventNew" />
+      <Spacer />
+      <ButtonEventUnlock v-if="showButtonEventUnlock" />
     </div>
     <ul
       v-if="

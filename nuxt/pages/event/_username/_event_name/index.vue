@@ -77,12 +77,12 @@
                   />
                   {{ $t('invitationCanceled') }}
                 </div>
+                <Spacer />
                 <ButtonGreen
                   v-if="
                     invitation.feedback === null ||
                     invitation.feedback === 'CANCELED'
                   "
-                  class="mx-2"
                   @click="accept"
                 >
                   {{ $t('invitationAccept') }}
@@ -104,7 +104,6 @@
                     invitation.feedback === null ||
                     invitation.feedback === 'ACCEPTED'
                   "
-                  class="mx-2"
                   @click="cancel"
                 >
                   {{ $t('invitationCancel') }}
