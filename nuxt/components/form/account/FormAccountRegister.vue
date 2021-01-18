@@ -116,17 +116,19 @@ export default {
     return {
       form: {
         username: {
-          formatSlug: this.$global.VERIFICATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$global.USERNAME_LENGTH_MAXIMUM),
+          formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(this.$global.VALIDATION_USERNAME_LENGTH_MAXIMUM),
           required,
         },
         password: {
-          minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
         'email-address': {
           email,
-          maxLength: maxLength(this.$global.EMAIL_ADDRESS_LENGTH_MAXIMUM),
+          maxLength: maxLength(
+            this.$global.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
+          ),
           required,
         },
       },

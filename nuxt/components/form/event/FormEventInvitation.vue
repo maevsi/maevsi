@@ -211,20 +211,28 @@ export default {
   validations() {
     return {
       form: {
-        address: { maxLength: maxLength(this.$global.ADDRESS_LENGTH_MAXIMUM) },
+        address: {
+          maxLength: maxLength(this.$global.VALIDATION_ADDRESS_LENGTH_MAXIMUM),
+        },
         emailAddress: {
           email,
-          maxLength: maxLength(this.$global.EMAIL_ADDRESS_LENGTH_MAXIMUM),
+          maxLength: maxLength(
+            this.$global.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
+          ),
         },
         firstName: {
-          maxLength: maxLength(this.$global.FIRST_NAME_LENGTH_MAXIMUM),
+          maxLength: maxLength(
+            this.$global.VALIDATION_FIRST_NAME_LENGTH_MAXIMUM
+          ),
         },
         lastName: {
-          maxLength: maxLength(this.$global.LAST_NAME_LENGTH_MAXIMUM),
+          maxLength: maxLength(
+            this.$global.VALIDATION_LAST_NAME_LENGTH_MAXIMUM
+          ),
         },
         username: {
-          formatSlug: this.$global.VERIFICATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$global.USERNAME_LENGTH_MAXIMUM),
+          formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(this.$global.VALIDATION_USERNAME_LENGTH_MAXIMUM),
         },
       },
     }

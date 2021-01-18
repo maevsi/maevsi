@@ -151,7 +151,7 @@ export default {
       form: {
         'invitation-code': {
           required,
-          formatUuid: this.$global.VERIFICATION_FORMAT_UUID,
+          formatUuid: this.$global.VALIDATION_FORMAT_UUID,
         },
       },
     }

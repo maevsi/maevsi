@@ -333,7 +333,9 @@ export default {
     return {
       form: {
         description: {
-          maxLength: maxLength(this.$global.EVENT_DESCRIPTION_LENGTH_MAXIMUM),
+          maxLength: maxLength(
+            this.$global.VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM
+          ),
         },
         end: {},
         'invitee-count-maximum': {
@@ -342,16 +344,20 @@ export default {
         'is-in-person': {},
         'is-remote': {},
         name: {
-          maxLength: maxLength(this.$global.EVENT_NAME_LENGTH_MAXIMUM),
+          maxLength: maxLength(
+            this.$global.VALIDATION_EVENT_NAME_LENGTH_MAXIMUM
+          ),
           required,
         },
         location: {
-          maxLength: maxLength(this.$global.EVENT_LOCATION_LENGTH_MAXIMUM),
+          maxLength: maxLength(
+            this.$global.VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM
+          ),
         },
         slug: {
           maxLength: maxLength(this.$global.EVENT_SLUG_LENGTH_MAXIMUM),
           required,
-          formatSlug: this.$global.VERIFICATION_FORMAT_SLUG,
+          formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
         },
         start: {
           required,

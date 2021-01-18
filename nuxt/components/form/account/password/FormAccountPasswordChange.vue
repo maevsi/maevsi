@@ -76,11 +76,11 @@ export default {
     return {
       form: {
         passwordCurrent: {
-          minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
         passwordNew: {
-          minLength: minLength(this.$global.PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },

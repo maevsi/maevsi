@@ -95,7 +95,9 @@ export default {
       form: {
         'email-address': {
           email,
-          maxLength: maxLength(this.$global.EMAIL_ADDRESS_LENGTH_MAXIMUM),
+          maxLength: maxLength(
+            this.$global.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
+          ),
           required,
         },
       },
