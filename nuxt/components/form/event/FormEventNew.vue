@@ -333,7 +333,7 @@ export default {
     return {
       form: {
         description: {
-          maxLength: maxLength(this.$global.EVENT_DESCRIPTION_MAXIMUM),
+          maxLength: maxLength(this.$global.EVENT_DESCRIPTION_LENGTH_MAXIMUM),
         },
         end: {},
         'invitee-count-maximum': {
@@ -342,14 +342,14 @@ export default {
         'is-in-person': {},
         'is-remote': {},
         name: {
-          maxLength: maxLength(this.$global.EVENT_NAME_MAXIMUM),
+          maxLength: maxLength(this.$global.EVENT_NAME_LENGTH_MAXIMUM),
           required,
         },
         location: {
-          maxLength: maxLength(this.$global.EVENT_LOCATION_MAXIMUM),
+          maxLength: maxLength(this.$global.EVENT_LOCATION_LENGTH_MAXIMUM),
         },
         slug: {
-          maxLength: maxLength(this.$global.EVENT_SLUG_MAXIMUM),
+          maxLength: maxLength(this.$global.EVENT_SLUG_LENGTH_MAXIMUM),
           required,
           formatSlug: this.$global.VERIFICATION_FORMAT_SLUG,
         },
