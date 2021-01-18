@@ -86,7 +86,27 @@ export default {
       }
     },
   },
+  beforeMount() {
+    window.addEventListener('keydown', this.modalKeydowns)
+  },
+  beforeUnmount() {
+    window.removeEventListener('keydown', this.modalKeydowns)
+  },
   methods: {
+    modalKeydowns(e) {
+      if (!this.isVisible) {
+        return
+      }
+
+      switch (e.keyCode) {
+        case 13: // Enter
+          this.submit()
+          break
+        case 27: // Escape
+          this.isVisible = false
+          break
+      }
+    },
     submit() {
       this.isSubmitting = true
 
