@@ -76,9 +76,13 @@
         <div class="flex flex-col mx-8 xl:mx-16 self-stretch">
           <MenuItem
             :icon-id="['fas', 'user']"
-            :to="`/account/${
-              signedInUsername === undefined ? '' : signedInUsername
-            }`"
+            :to="
+              localePath(
+                `/account/${
+                  signedInUsername === undefined ? '' : signedInUsername
+                }`
+              )
+            "
             @click="menuHide()"
           >
             {{
@@ -95,9 +99,13 @@
           <template v-if="signedInUsername !== undefined">
             <MenuItem
               :icon-id="['fas', 'cog']"
-              :to="`/account/${
-                signedInUsername === undefined ? '' : signedInUsername
-              }/settings`"
+              :to="
+                localePath(
+                  `/account/${
+                    signedInUsername === undefined ? '' : signedInUsername
+                  }/settings`
+                )
+              "
               @click="menuHide()"
             >
               {{ $t('settings') }}
@@ -107,6 +115,13 @@
               @click="$global.signOut($apollo.getClient(), $store)"
             >
               {{ $t('signOut') }}
+            </MenuItem>
+            <MenuItem
+              :icon-id="['fas', 'plus']"
+              :to="localePath('/task/event/create')"
+              @click="menuHide()"
+            >
+              {{ $t('eventNew') }}
             </MenuItem>
           </template>
           <template v-else>
@@ -118,6 +133,13 @@
               {{ $t('session') }}
             </MenuItem>
           </template>
+          <MenuItem
+            :icon-id="['fas', 'key']"
+            :to="localePath('/task/event/unlock')"
+            @click="menuHide()"
+          >
+            {{ $t('eventUnlock') }}
+          </MenuItem>
         </div>
       </template>
     </div>
@@ -215,6 +237,8 @@ export default {
 de:
   account: 'Konto'
   browserUnsupported: 'Die Version deines Browsers wird nicht offiziell unterstützt. Bitte verwende eine aktuelle Version.'
+  eventUnlock: 'Einladungscode eingeben'
+  eventNew: 'Veranstaltung erstellen'
   home: 'Nach Hause'
   legal-notice: 'Impressum'
   signOut: 'Abmelden'
@@ -224,6 +248,8 @@ de:
 en:
   account: 'Account'
   browserUnsupported: "Your browser's version is not officially supported. Please use a version that is up to date."
+  eventUnlock: 'Enter invitation code'
+  eventNew: 'Create event'
   home: 'Head home'
   legal-notice: 'Legal notice'
   signOut: 'Sign out'
