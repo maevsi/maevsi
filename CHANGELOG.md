@@ -1,3 +1,16 @@
+# [0.45.0](https://github.com/maevsi/maevsi/compare/0.44.0...0.45.0) (2021-01-18)
+
+
+### Bug Fixes
+
+* **event:** don't show status code in title ([be9f0ea](https://github.com/maevsi/maevsi/commit/be9f0ea21d114a6933eadd4cb1d2ba8b71540108)), closes [#186](https://github.com/maevsi/maevsi/issues/186)
+* **sql:** add minimum lengths ([8703f73](https://github.com/maevsi/maevsi/commit/8703f736561277eb94bb5834384ae69a5595f526)), closes [#183](https://github.com/maevsi/maevsi/issues/183)
+
+
+### Features
+
+* **jwt:** get rid of account_id ([76eeda7](https://github.com/maevsi/maevsi/commit/76eeda7996a13d8c4f108a2d54477c00190633eb)), closes [#181](https://github.com/maevsi/maevsi/issues/181)
+
 # [0.44.0](https://github.com/maevsi/maevsi/compare/0.43.0...0.44.0) (2021-01-18)
 
 
