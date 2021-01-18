@@ -1,3 +1,17 @@
+# [0.44.0](https://github.com/maevsi/maevsi/compare/0.43.0...0.44.0) (2021-01-18)
+
+
+### Bug Fixes
+
+* **event-list:** center no content text ([640f2d0](https://github.com/maevsi/maevsi/commit/640f2d078bf4f1bfbf4c6f04c9ec995a4fff93bd))
+* **promise:** use value, reason & .toString() ([e7300e6](https://github.com/maevsi/maevsi/commit/e7300e698cd07b3578ef807f6df5d96fe48ea26c)), closes [#178](https://github.com/maevsi/maevsi/issues/178) [#188](https://github.com/maevsi/maevsi/issues/188)
+
+
+### Features
+
+* **error:** show login button on 403 ([79b7f3c](https://github.com/maevsi/maevsi/commit/79b7f3cdc953208599c4e72251b009dadfd86b6b)), closes [#189](https://github.com/maevsi/maevsi/issues/189)
+* **event:** add possibility to add invitees ([1778b5d](https://github.com/maevsi/maevsi/commit/1778b5d0702004fb6c4f2017c51fbae7ceebaed9)), closes [#60](https://github.com/maevsi/maevsi/issues/60) [#184](https://github.com/maevsi/maevsi/issues/184)
+
 # [0.43.0](https://github.com/maevsi/maevsi/compare/0.42.2...0.43.0) (2021-01-16)
 
 
