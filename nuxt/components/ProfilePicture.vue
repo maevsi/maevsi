@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import PROFILE_PICTURE_BY_USERNAME_QUERY from '~/gql/query/profilePictureByUsername'
+import PROFILE_PICTURE_BY_USERNAME_QUERY from '~/gql/query/profilePicture/profilePictureByUsername'
 
 const consola = require('consola')
 

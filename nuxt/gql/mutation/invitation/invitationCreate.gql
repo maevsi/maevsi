@@ -1,4 +1,4 @@
-#import "../fragments/contactFields.gql"
+#import "../../fragments/contactFields.gql"
 
 mutation InvitationCreate($invitationInput: InvitationInput!) {
   createInvitation(input: { invitation: $invitationInput }) {

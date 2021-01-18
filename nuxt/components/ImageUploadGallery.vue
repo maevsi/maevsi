@@ -125,8 +125,8 @@ import Uppy from '@uppy/core'
 import Tus from '@uppy/tus'
 import prettyBytes from 'pretty-bytes'
 
-import UPLOADS_ALL_QUERY from '~/gql/query/uploadsAll'
-import UPLOAD_CREATE_MUTATION from '~/gql/mutation/uploadCreate'
+import UPLOADS_ALL_QUERY from '~/gql/query/upload/uploadsAll'
+import UPLOAD_CREATE_MUTATION from '~/gql/mutation/upload/uploadCreate'
 
 require('@uppy/core/dist/style.css')
 

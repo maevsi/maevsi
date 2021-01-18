@@ -78,8 +78,8 @@
 <script>
 import { email, maxLength } from 'vuelidate/lib/validators'
 
-import CONTACT_CREATE_MUTATION from '~/gql/mutation/contactCreate'
-import INVITATION_CREATE_MUTATION from '~/gql/mutation/invitationCreate'
+import CONTACT_CREATE_MUTATION from '~/gql/mutation/contact/contactCreate'
+import INVITATION_CREATE_MUTATION from '~/gql/mutation/invitation/invitationCreate'
 
 const consola = require('consola')
 

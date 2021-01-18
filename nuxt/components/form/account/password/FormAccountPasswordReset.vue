@@ -18,7 +18,7 @@
 <script>
 import { minLength, required } from 'vuelidate/lib/validators'
 
-import ACCOUNT_PASSWORD_RESET_MUTATION from '~/gql/mutation/accountPasswordReset'
+import ACCOUNT_PASSWORD_RESET_MUTATION from '~/gql/mutation/account/accountPasswordReset'
 
 const consola = require('consola')
 

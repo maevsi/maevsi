@@ -37,7 +37,7 @@
 <script>
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import ACCOUNT_REGISTER_MUTATION from '~/gql/mutation/accountRegister'
+import ACCOUNT_REGISTER_MUTATION from '~/gql/mutation/account/accountRegister'
 
 const consola = require('consola')
 

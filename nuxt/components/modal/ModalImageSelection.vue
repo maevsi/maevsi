@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePictureSet'
+import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profilePictureSet'
 
 export default {
   data() {

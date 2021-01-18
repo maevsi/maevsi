@@ -45,7 +45,7 @@
 <script>
 import { maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import AUTHENTICATE_MUTATION from '~/gql/mutation/authenticate'
+import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate'
 
 const consola = require('consola')
 

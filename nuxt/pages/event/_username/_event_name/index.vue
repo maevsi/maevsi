@@ -183,9 +183,9 @@
 <script>
 import VueMarkdown from 'vue-markdown-konishi'
 
-import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/eventByOrganizerUsernameAndSlug'
-import EVENT_IS_EXISTING_QUERY from '~/gql/query/eventIsExisting'
-import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitationUpdateById'
+import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByOrganizerUsernameAndSlug'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting'
+import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitationUpdateById'
 
 const consola = require('consola')
 

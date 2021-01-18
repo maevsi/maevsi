@@ -210,7 +210,7 @@ import { Datetime } from 'vue-datetime'
 import VueMarkdown from 'vue-markdown-konishi'
 import { maxLength, minValue, required } from 'vuelidate/lib/validators'
 
-import EVENT_CREATE_MUTATION from '~/gql/mutation/eventCreate'
+import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate'
 
 const consola = require('consola')
 

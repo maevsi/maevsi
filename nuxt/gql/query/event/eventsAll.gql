@@ -1,4 +1,4 @@
-#import "../fragments/eventFields.gql"
+#import "../../fragments/eventFields.gql"
 
 query EventsAll($cursor: Cursor, $limit: Int!, $username: String) {
   allEvents(

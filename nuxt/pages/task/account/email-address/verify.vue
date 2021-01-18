@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/accountEmailAddressVerification'
+import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/accountEmailAddressVerification'
 
 const consola = require('consola')
 

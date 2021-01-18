@@ -1,6 +1,6 @@
-#import "../fragments/contactFields.gql"
-#import "../fragments/eventFields.gql"
-#import "../fragments/invitationFields.gql"
+#import "../../fragments/contactFields.gql"
+#import "../../fragments/eventFields.gql"
+#import "../../fragments/invitationFields.gql"
 
 query EventByOrganizerUsernameAndSlug($organizerUsername: String!, $slug: String!) {
   eventByOrganizerUsernameAndSlug(

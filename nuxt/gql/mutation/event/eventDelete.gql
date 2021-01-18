@@ -1,4 +1,4 @@
-#import "../fragments/eventFields.gql"
+#import "../../fragments/eventFields.gql"
 
 mutation EventDelete($organizerUsername: String!, $password: String!, $slug: String!) {
   eventDelete(

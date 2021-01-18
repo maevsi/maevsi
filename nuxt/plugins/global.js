@@ -2,8 +2,8 @@ import cookie from 'cookie'
 import { decode } from 'jsonwebtoken'
 import { helpers } from 'vuelidate/lib/validators'
 
-import AUTHENTICATE_MUTATION from '~/gql/mutation/authenticate'
-import JWT_REFRESH_MUTATION from '~/gql/mutation/jwtRefresh'
+import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate'
+import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh'
 
 const consola = require('consola')
 

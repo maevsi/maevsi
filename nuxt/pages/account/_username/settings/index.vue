@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/accountDelete'
+import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete'
 
 export default {
   middleware({ app, store, redirect, route }) {
