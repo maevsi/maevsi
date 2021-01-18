@@ -19,16 +19,16 @@
 export default {
   props: {
     formClass: {
-      type: String,
       default: undefined,
+      type: String,
     },
     graphqlErrorMessage: {
-      type: String,
       default: undefined,
+      type: String,
     },
     validationObject: {
-      type: Object,
       default: undefined,
+      type: Object,
     },
   },
 }

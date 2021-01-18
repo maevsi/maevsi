@@ -32,20 +32,20 @@
 export default {
   props: {
     error: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     labelFor: {
-      type: String,
       default: undefined,
+      type: String,
     },
     required: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     title: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
 }

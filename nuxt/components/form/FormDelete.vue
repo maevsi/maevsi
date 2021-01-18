@@ -35,24 +35,24 @@ const consola = require('consola')
 export default {
   props: {
     id: {
-      type: String,
       default: undefined,
+      type: String,
     },
     itemName: {
-      type: String,
       default: undefined,
+      type: String,
     },
     mutation: {
-      type: Object,
       default: undefined,
+      type: Object,
     },
     update: {
-      type: Function,
       default: undefined,
+      type: Function,
     },
     variables: {
-      type: Object,
       default: undefined,
+      type: Object,
     },
   },
   data() {

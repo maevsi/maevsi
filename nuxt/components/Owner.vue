@@ -15,12 +15,12 @@
 export default {
   props: {
     link: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     username: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
 }

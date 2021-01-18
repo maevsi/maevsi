@@ -13,24 +13,24 @@
 export default {
   props: {
     buttonClass: {
-      type: String,
       default: undefined,
+      type: String,
     },
     disabled: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     iconId: {
-      type: Array,
       required: true,
+      type: Array,
     },
     iconSize: {
-      type: String,
       default: undefined,
+      type: String,
     },
     type: {
-      type: String,
       default: 'button',
+      type: String,
     },
   },
 }

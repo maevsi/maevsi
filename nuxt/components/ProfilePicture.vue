@@ -50,12 +50,12 @@ export default {
   },
   props: {
     rounded: {
-      type: Boolean,
       default: undefined,
+      type: Boolean,
     },
     username: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
   data() {

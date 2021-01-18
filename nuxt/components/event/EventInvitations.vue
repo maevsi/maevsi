@@ -112,8 +112,8 @@ export default {
   },
   props: {
     event: {
-      type: Object,
       required: true,
+      type: Object,
     },
   },
   data() {

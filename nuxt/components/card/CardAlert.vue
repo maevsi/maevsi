@@ -17,12 +17,12 @@
 export default {
   props: {
     errorMessage: {
-      type: String,
       default: undefined,
+      type: String,
     },
     validationObject: {
-      type: Object,
       default: undefined,
+      type: Object,
     },
   },
 }

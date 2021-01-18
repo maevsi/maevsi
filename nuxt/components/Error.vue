@@ -17,8 +17,8 @@ import status from '@http-util/status-i18n'
 export default {
   props: {
     statusCode: {
-      type: Number,
       default: undefined,
+      type: Number,
     },
   },
   computed: {

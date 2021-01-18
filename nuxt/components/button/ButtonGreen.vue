@@ -15,24 +15,24 @@
 export default {
   props: {
     buttonClass: {
-      type: String,
       default: 'bg-green-600 disabled:bg-green-600 hover:bg-green-700',
+      type: String,
     },
     disabled: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     iconId: {
-      type: Array,
       default: undefined,
+      type: Array,
     },
     to: {
-      type: String,
       default: undefined,
+      type: String,
     },
     type: {
-      type: String,
       default: 'button',
+      type: String,
     },
   },
 }

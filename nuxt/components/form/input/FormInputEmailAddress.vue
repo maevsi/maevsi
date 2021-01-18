@@ -38,16 +38,16 @@
 export default {
   props: {
     id: {
-      type: String,
       default: undefined,
+      type: String,
     },
     formElement: {
-      type: Object,
       default: undefined,
+      type: Object,
     },
     required: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
   },
 }

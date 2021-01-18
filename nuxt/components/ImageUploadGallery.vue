@@ -155,20 +155,20 @@ export default {
   },
   props: {
     allowAddition: {
-      type: Boolean,
       default: true,
+      type: Boolean,
     },
     allowDeletion: {
-      type: Boolean,
       default: true,
+      type: Boolean,
     },
     selectable: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     username: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
   data() {

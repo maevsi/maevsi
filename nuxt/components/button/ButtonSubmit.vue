@@ -14,24 +14,24 @@
 export default {
   props: {
     form: {
-      type: Object,
       required: true,
+      type: Object,
     },
     formSent: {
-      type: Boolean,
       required: true,
+      type: Boolean,
     },
     error: {
-      type: Boolean,
       default: undefined,
+      type: Boolean,
     },
     iconId: {
-      type: Array,
       default: undefined,
+      type: Array,
     },
     iconSize: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
 }

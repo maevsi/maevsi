@@ -37,8 +37,8 @@ const consola = require('consola')
 export default {
   props: {
     formClass: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
   data() {

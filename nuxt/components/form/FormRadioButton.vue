@@ -17,16 +17,16 @@
 export default {
   props: {
     title: {
-      type: String,
       default: undefined,
+      type: String,
     },
     groupName: {
-      type: String,
       default: undefined,
+      type: String,
     },
     value: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
   computed: {

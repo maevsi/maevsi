@@ -62,12 +62,12 @@ const consola = require('consola')
 export default {
   props: {
     form: {
-      type: Object,
       default: undefined,
+      type: Object,
     },
     formClass: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
   data() {

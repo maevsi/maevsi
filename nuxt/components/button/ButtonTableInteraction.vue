@@ -12,8 +12,8 @@
 export default {
   props: {
     iconId: {
-      type: Array,
       required: true,
+      type: Array,
     },
   },
 }

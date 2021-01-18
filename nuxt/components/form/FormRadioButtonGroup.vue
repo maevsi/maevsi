@@ -15,12 +15,12 @@
 export default {
   props: {
     name: {
-      type: String,
       default: undefined,
+      type: String,
     },
     titlesValues: {
-      type: Array,
       default: undefined,
+      type: Array,
     },
   },
 }

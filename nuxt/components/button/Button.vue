@@ -33,32 +33,32 @@
 export default {
   props: {
     append: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     buttonClass: {
-      type: String,
       default: undefined,
+      type: String,
     },
     disabled: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     iconId: {
-      type: Array,
       default: undefined,
+      type: Array,
     },
     iconSize: {
-      type: String,
       default: undefined,
+      type: String,
     },
     to: {
-      type: String,
       default: undefined,
+      type: String,
     },
     type: {
-      type: String,
       default: 'button',
+      type: String,
     },
   },
 }

@@ -11,12 +11,12 @@
 export default {
   props: {
     validationObject: {
-      type: Object,
       default: undefined,
+      type: Object,
     },
     validationProperty: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
 }

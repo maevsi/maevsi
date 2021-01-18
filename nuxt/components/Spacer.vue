@@ -6,8 +6,8 @@
 export default {
   props: {
     size: {
-      type: [Number, String],
       default: 2,
+      type: [Number, String],
     },
   },
 }

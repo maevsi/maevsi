@@ -10,12 +10,12 @@
 export default {
   props: {
     errorMessage: {
-      type: String,
       default: undefined,
+      type: String,
     },
     indicator: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
 }

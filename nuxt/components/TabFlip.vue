@@ -64,26 +64,25 @@
 export default {
   props: {
     dark: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     // `tabIdDefault` must come before `tabIdInitial` as `tabIdInitial` uses `tabIdDefault` data.
     tabIdDefault: {
-      type: String,
       default: undefined,
+      type: String,
     },
     // `tabs` must come before `tabIdInitial` as `tabIdInitial` uses `tabs` data.
     tabs: {
-      type: Array,
       default: undefined,
+      type: Array,
     },
     // `queryTabKey` must come before `tabIdInitial` as `tabIdInitial` uses `queryTabKey` data.
     queryTabKey: {
-      type: String,
       default: 'tab',
+      type: String,
     },
     tabIdInitial: {
-      type: String,
       default() {
         return this.$route.query[this.queryTabKey] === undefined
           ? this.tabIdDefault
@@ -91,6 +90,7 @@ export default {
             : this.tabs[0][0]
           : this.$route.query[this.queryTabKey]
       },
+      type: String,
     },
   },
   data() {

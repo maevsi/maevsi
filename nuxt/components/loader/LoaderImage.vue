@@ -12,16 +12,16 @@
 export default {
   props: {
     alt: {
-      type: String,
       default: undefined,
+      type: String,
     },
     rounded: {
-      type: Boolean,
       default: undefined,
+      type: Boolean,
     },
     src: {
-      type: String,
       required: true,
+      type: String,
     },
   },
   data() {

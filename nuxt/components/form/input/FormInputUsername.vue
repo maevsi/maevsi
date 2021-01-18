@@ -34,16 +34,16 @@
 export default {
   props: {
     id: {
-      type: String,
       default: undefined,
+      type: String,
     },
     formKey: {
-      type: String,
       default: undefined,
+      type: String,
     },
     v: {
-      type: Object,
       default: undefined,
+      type: Object,
     },
   },
   computed: {

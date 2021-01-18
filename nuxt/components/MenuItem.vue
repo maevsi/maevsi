@@ -25,16 +25,16 @@
 export default {
   props: {
     append: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     iconId: {
-      type: Array,
       default: undefined,
+      type: Array,
     },
     to: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
   data() {

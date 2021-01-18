@@ -115,8 +115,8 @@ export default {
       type: Object,
     },
     event: {
-      type: Object,
       required: true,
+      type: Object,
     },
     isEmbedded: {
       default: false,

@@ -25,8 +25,8 @@
 export default {
   props: {
     event: {
-      type: Object,
       default: undefined,
+      type: Object,
     },
   },
 }

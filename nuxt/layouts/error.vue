@@ -6,8 +6,8 @@
 export default {
   props: {
     error: {
-      type: Object,
       default: undefined,
+      type: Object,
     },
   },
   head() {

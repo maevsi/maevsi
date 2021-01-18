@@ -14,12 +14,12 @@
 export default {
   props: {
     formKey: {
-      type: String,
       default: undefined,
+      type: String,
     },
     value: {
-      type: Boolean,
       default: undefined,
+      type: Boolean,
     },
   },
 }

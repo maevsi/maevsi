@@ -57,22 +57,22 @@ export default {
   },
   props: {
     showButtonEventNew: {
-      type: Boolean,
       default: true,
+      type: Boolean,
     },
     showButtonEventList: {
-      type: Boolean,
       default() {
         return this.$route.name.replace(/___.+$/, '') !== 'event'
       },
+      type: Boolean,
     },
     showButtonEventUnlock: {
-      type: Boolean,
       default: true,
+      type: Boolean,
     },
     username: {
-      type: String,
       default: undefined,
+      type: String,
     },
   },
   data() {

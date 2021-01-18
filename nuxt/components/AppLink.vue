@@ -31,24 +31,24 @@
 export default {
   props: {
     append: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     iconId: {
-      type: Array,
       default: undefined,
+      type: Array,
     },
     iconSize: {
-      type: String,
       default: undefined,
+      type: String,
     },
     nofollow: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
     to: {
-      type: String,
       required: true,
+      type: String,
     },
   },
 }
