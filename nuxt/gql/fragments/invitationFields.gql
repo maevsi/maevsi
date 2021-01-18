@@ -1,0 +1,8 @@
+fragment invitationFields on Invitation {
+  id
+  contactId
+  eventId
+  feedback
+  feedbackPaper
+  uuid
+}

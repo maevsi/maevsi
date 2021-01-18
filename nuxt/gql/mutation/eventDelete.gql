@@ -1,3 +1,5 @@
+#import "../fragments/eventFields.gql"
+
 mutation($organizerUsername: String!, $password: String!, $slug: String!) {
   eventDelete(
     input: {
@@ -8,8 +10,7 @@ mutation($organizerUsername: String!, $password: String!, $slug: String!) {
   ) {
     clientMutationId
     event {
-      id
-      nodeId
+      ...eventFields
     }
   }
 }

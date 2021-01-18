@@ -13,18 +13,18 @@
       </Button>
     </div>
     <section>
-      <h2>{{ $t('inviteCodes') }}</h2>
+      <h2>{{ $t('invitationCodes') }}</h2>
       <ButtonEventUnlock />
-      <div v-if="$global.getNested($store.state.jwtDecoded, 'invites')">
+      <div v-if="$global.getNested($store.state.jwtDecoded, 'invitations')">
         <p>
           {{ $t('codesEntered') }}
         </p>
         <ul class="list-disc">
           <li
-            v-for="inviteCode in $store.state.jwtDecoded.invites"
-            :key="inviteCode"
+            v-for="invitationCode in $store.state.jwtDecoded.invitations"
+            :key="invitationCode"
           >
-            {{ inviteCode }}
+            {{ invitationCode }}
           </li>
         </ul>
       </div>
@@ -66,7 +66,7 @@ export default {
 de:
   codesEntered: 'Du hast die folgenden Codes eingegeben:'
   codesEnteredNone: 'Du hast bisher keine Codes eingegeben 😕'
-  inviteCodes: 'Einladungscodes'
+  invitationCodes: 'Einladungscodes'
   sessionExit: 'Diese Sitzung beenden'
   sessionExpired: 'Deine Sitzung ist abgelaufen.'
   sessionExpiry: 'Deine Sitzung läuft am {exp} ab.'
@@ -74,7 +74,7 @@ de:
 en:
   codesEntered: 'You entered the following codes:'
   codesEnteredNone: 'You have no codes entered yet 😕'
-  inviteCodes: 'Invite codes'
+  invitationCodes: 'Invitation codes'
   sessionExit: 'Exit this session'
   sessionExpired: 'Your session expired.'
   sessionExpiry: 'Your session expires on {exp}.'

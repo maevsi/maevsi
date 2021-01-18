@@ -21,7 +21,7 @@ DECLARE
 BEGIN
   IF ($1 = '' AND $2 = '') THEN
     -- Authenticate as guest.
-    _jwt := (_jwt_id, 'maevsi_anonymous', NULL, NULL, maevsi.invite_claim_array(), _jwt_exp)::maevsi.jwt;
+    _jwt := (_jwt_id, 'maevsi_anonymous', NULL, NULL, maevsi.invitation_claim_array(), _jwt_exp)::maevsi.jwt;
   ELSIF ($1 IS NOT NULL AND $2 IS NOT NULL) THEN
     IF ((
         SELECT account.email_address_verification

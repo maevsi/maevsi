@@ -1,3 +1,5 @@
+#import "../fragments/eventFields.gql"
+
 query($cursor: Cursor, $limit: Int!, $username: String) {
   allEvents(
     after: $cursor
@@ -5,18 +7,7 @@ query($cursor: Cursor, $limit: Int!, $username: String) {
     first: $limit
   ) @connection(filter: ["condition"], key: "allEvents") {
     nodes {
-      id
-      description
-      end
-      isArchived
-      isInPerson
-      isRemote
-      location
-      name
-      organizerUsername
-      slug
-      start
-      visibility
+      ...eventFields
     }
     pageInfo {
       endCursor

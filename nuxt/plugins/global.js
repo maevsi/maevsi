@@ -7,12 +7,15 @@ import JWT_REFRESH_MUTATION from '~/gql/mutation/jwtRefresh'
 
 const consola = require('consola')
 
+export const ADDRESS_LENGTH_MAXIMUM = 300
 export const EMAIL_ADDRESS_LENGTH_MAXIMUM = 320
 export const EVENT_DESCRIPTION_MAXIMUM = 10000
 export const EVENT_LOCATION_MAXIMUM = 300
 export const EVENT_NAME_MAXIMUM = 100
 export const EVENT_SLUG_MAXIMUM = 100
+export const FIRST_NAME_LENGTH_MAXIMUM = 100
 export const ITEMS_PER_PAGE = 8
+export const LAST_NAME_LENGTH_MAXIMUM = 100
 export const PASSWORD_LENGTH_MINIMUM = 8
 export const REGEX_SLUG = /^[-A-Za-z0-9]+$/
 export const REGEX_UUID = /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
@@ -227,12 +230,15 @@ export function xhrPromise(method, url, jwt) {
 
 export default async ({ app, req, res, store }, inject) => {
   const global = {
+    ADDRESS_LENGTH_MAXIMUM,
     EMAIL_ADDRESS_LENGTH_MAXIMUM,
     EVENT_DESCRIPTION_MAXIMUM,
     EVENT_LOCATION_MAXIMUM,
     EVENT_NAME_MAXIMUM,
     EVENT_SLUG_MAXIMUM,
+    FIRST_NAME_LENGTH_MAXIMUM,
     ITEMS_PER_PAGE,
+    LAST_NAME_LENGTH_MAXIMUM,
     PASSWORD_LENGTH_MINIMUM,
     REGEX_SLUG,
     REGEX_UUID,

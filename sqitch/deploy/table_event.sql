@@ -40,11 +40,6 @@ COMMENT ON COLUMN maevsi.event.is_archived IS 'Indicates whether the event is ar
 COMMENT ON COLUMN maevsi.event.is_in_person IS 'Indicates whether the event takes place in person.';
 COMMENT ON COLUMN maevsi.event.is_remote IS 'Indicates whether the event takes place remotely.';
 
-GRANT SELECT ON TABLE maevsi.event TO maevsi_account, maevsi_anonymous;
-GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.event TO maevsi_account;
-
-GRANT USAGE ON SEQUENCE maevsi.event_id_seq TO maevsi_account;
-
--- RLS is specified in 'table_event_policy`.
+-- GRANTs, RLS and POLICYs are specified in 'table_event_policy`.
 
 COMMIT;

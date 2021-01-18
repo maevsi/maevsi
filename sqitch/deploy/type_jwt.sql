@@ -8,7 +8,7 @@ CREATE TYPE maevsi.jwt AS (
   role TEXT,
   account_id BIGINT,
   username TEXT,
-  invites UUID[],
+  invitations UUID[],
   "exp" BIGINT
 );
 

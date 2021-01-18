@@ -1,0 +1,10 @@
+fragment contactFields on Contact {
+  id
+  accountUsername
+  address
+  creatorAccountUsername
+  emailAddress
+  emailAddressHash
+  firstName
+  lastName
+}

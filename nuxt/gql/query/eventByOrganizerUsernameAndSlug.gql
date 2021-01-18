@@ -1,20 +1,20 @@
+#import "../fragments/contactFields.gql"
+#import "../fragments/eventFields.gql"
+#import "../fragments/invitationFields.gql"
+
 query($organizerUsername: String!, $slug: String!) {
   eventByOrganizerUsernameAndSlug(
     organizerUsername: $organizerUsername
     slug: $slug
   ) {
-    id
-    description
-    end
-    inviteeCountMaximum
-    isArchived
-    isInPerson
-    isRemote
-    location
-    name
-    organizerUsername
-    slug
-    start
-    visibility
+    ...eventFields
+    invitationsByEventId(first: 1) {
+      nodes {
+        ...invitationFields
+        contactByContactId {
+        ...contactFields
+        }
+      }
+    }
   }
 }

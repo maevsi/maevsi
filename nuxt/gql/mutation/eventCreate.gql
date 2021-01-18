@@ -1,19 +1,9 @@
+#import "../fragments/eventFields.gql"
+
 mutation($createEventInput: CreateEventInput!) {
   createEvent(input: $createEventInput) {
     event {
-      id
-      description
-      end
-      inviteeCountMaximum
-      isArchived
-      isInPerson
-      isRemote
-      location
-      name
-      organizerUsername
-      slug
-      start
-      visibility
+      ...eventFields
     }
   }
 }

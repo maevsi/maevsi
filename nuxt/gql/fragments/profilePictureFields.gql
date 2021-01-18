@@ -1,0 +1,5 @@
+fragment profilePictureFields on ProfilePicture {
+  id
+  uploadStorageKey
+  username
+}

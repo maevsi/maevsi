@@ -15,18 +15,28 @@
         {{ title }}
       </h1>
       <section>
-        <h2>{{ $t('titleDangerZone') }}</h2>
-        <FormDelete
-          id="deleteEvent"
-          :item-name="$t('event')"
-          :mutation="mutation"
-          :update="updateCacheDelete"
-          :variables="{
-            organizerUsername: $route.params.username,
-            slug: $route.params.event_name,
-          }"
-          @success="onDeleteSuccess"
-        />
+        <h2>{{ $t('titleInvitations') }}</h2>
+        <EventInvitations :event="event" />
+      </section>
+      <section>
+        <h2>{{ $t('titleGeneral') }}</h2>
+        <section>
+          <h3>{{ $t('titleDangerZone') }}</h3>
+          <section>
+            <h4>{{ $t('titleDelete') }}</h4>
+            <FormDelete
+              id="deleteEvent"
+              :item-name="$t('event')"
+              :mutation="mutation"
+              :update="updateCacheDelete"
+              :variables="{
+                organizerUsername: $route.params.username,
+                slug: $route.params.event_name,
+              }"
+              @success="onDeleteSuccess"
+            />
+          </section>
+        </section>
       </section>
     </div>
     <Error v-else :status-code="404" />
@@ -160,8 +170,14 @@ de:
   event: 'Veranstaltung'
   title: 'Einstellungen'
   titleDangerZone: 'Gefahrenzone'
+  titleDelete: 'Veranstaltung löschen'
+  titleGeneral: 'Allgemein'
+  titleInvitations: 'Einladungen'
 en:
   event: 'event'
   title: 'Settings'
   titleDangerZone: 'Danger zone'
+  titleDelete: 'Delete event'
+  titleGeneral: 'General'
+  titleInvitations: 'Invitations'
 </i18n>

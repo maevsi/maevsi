@@ -336,7 +336,8 @@ export default {
 
           this.uppy.addFile({
             source: 'croppy',
-            name: document.querySelector('#input-profile-picture').files[0].name,
+            name: document.querySelector('#input-profile-picture').files[0]
+              .name,
             type: blob.type,
             data: blob,
           })
@@ -351,7 +352,7 @@ export default {
             }
           })
         })
-        })
+      })
     },
   },
 }

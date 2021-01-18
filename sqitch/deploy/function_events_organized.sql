@@ -8,8 +8,8 @@ BEGIN;
 CREATE FUNCTION maevsi.events_organized() RETURNS TABLE (event_id BIGINT) AS $$
 BEGIN
   RETURN QUERY
-  SELECT id FROM maevsi.event
-  WHERE event.organizer_username = current_setting('jwt.claims.username', true)::TEXT;
+    SELECT id FROM maevsi.event
+    WHERE "event".organizer_username = current_setting('jwt.claims.username', true)::TEXT;
 END
 $$ LANGUAGE PLPGSQL STRICT STABLE SECURITY DEFINER;
 

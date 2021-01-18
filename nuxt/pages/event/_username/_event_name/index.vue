@@ -4,18 +4,12 @@
     :error-message="graphqlErrorMessage"
   />
   <div v-else>
-    <div v-if="$global.getNested(eventContactFeedbackData, 'event')">
-      <div v-if="eventContactFeedbackData.contact" class="text-center">
+    <div v-if="event">
+      <div v-if="contact" class="text-center">
         <p class="font-bold mb-2 text-2xl">
           {{
             $t('greeting', {
-              usernameString: $global.getNested(
-                eventContactFeedbackData,
-                'contact',
-                'firstName'
-              )
-                ? ' ' + eventContactFeedbackData.contact.firstName
-                : '',
+              usernameString: contact.firstName ? ' ' + contact.firstName : '',
             })
           }}
         </p>
@@ -24,8 +18,7 @@
       <div
         v-if="
           $store.state.jwtDecoded &&
-          eventContactFeedbackData.event.organizerUsername ===
-            $store.state.jwtDecoded.username
+          event.organizerUsername === $store.state.jwtDecoded.username
         "
         class="flex justify-evenly"
       >
@@ -38,27 +31,19 @@
         :class="{
           'bg-yellow-100':
             $store.state.jwtDecoded &&
-            eventContactFeedbackData.event.organizerUsername ===
-              $store.state.jwtDecoded.username,
+            event.organizerUsername === $store.state.jwtDecoded.username,
         }"
       >
         <h1 class="mb-0">
-          {{ eventContactFeedbackData.event.name }}
+          {{ event.name }}
         </h1>
-        <Owner
-          class="mb-4"
-          link
-          :username="eventContactFeedbackData.event.organizerUsername"
-        />
+        <Owner class="mb-4" link :username="event.organizerUsername" />
         <div class="flex flex-col sm:flex-row m-auto">
-          <EventDashletVisibility
-            :event="eventContactFeedbackData.event"
-            with-text
-          />
-          <EventDashletStart :event="eventContactFeedbackData.event" />
-          <EventDashletDuration :event="eventContactFeedbackData.event" />
-          <EventDashletLocation :event="eventContactFeedbackData.event" />
-          <EventDashletAttendanceType :event="eventContactFeedbackData.event" />
+          <EventDashletVisibility :event="event" with-text />
+          <EventDashletStart :event="event" />
+          <EventDashletDuration :event="event" />
+          <EventDashletLocation :event="event" />
+          <EventDashletAttendanceType :event="event" />
         </div>
         <Button
           :icon-id="['fas', 'download']"
@@ -67,28 +52,21 @@
         >
           {{ $t('iCalDownload') }}
         </Button>
-        <div v-if="eventContactFeedbackData.invitationFeedbackData !== null">
+        <div v-if="invitation">
           <hr class="my-4" />
           <div class="grid grid-cols-6 justify-content-center">
             <div
               class="text-text-bright m-2"
               :class="{
-                'col-span-5':
-                  eventContactFeedbackData.invitationFeedbackData
-                    .invitationFeedback === 'ACCEPTED',
+                'col-span-5': invitation.feedback === 'ACCEPTED',
                 'col-span-6':
-                  eventContactFeedbackData.invitationFeedbackData
-                    .invitationFeedback === null ||
-                  eventContactFeedbackData.invitationFeedbackData
-                    .invitationFeedback === 'CANCELED',
+                  invitation.feedback === null ||
+                  invitation.feedback === 'CANCELED',
               }"
             >
               <div class="flex justify-center">
                 <div
-                  v-if="
-                    eventContactFeedbackData.invitationFeedbackData
-                      .invitationFeedback === 'CANCELED'
-                  "
+                  v-if="invitation.feedback === 'CANCELED'"
                   class="flex font-semibold items-center text-red-600"
                 >
                   <FontAwesomeIcon
@@ -97,25 +75,20 @@
                     size="lg"
                     title="canceled"
                   />
-                  {{ $t('inviteCanceled') }}
+                  {{ $t('invitationCanceled') }}
                 </div>
                 <ButtonGreen
                   v-if="
-                    eventContactFeedbackData.invitationFeedbackData
-                      .invitationFeedback === null ||
-                    eventContactFeedbackData.invitationFeedbackData
-                      .invitationFeedback === 'CANCELED'
+                    invitation.feedback === null ||
+                    invitation.feedback === 'CANCELED'
                   "
                   class="mx-2"
-                  @click.native="accept"
+                  @click="accept"
                 >
-                  {{ $t('inviteAccept') }}
+                  {{ $t('invitationAccept') }}
                 </ButtonGreen>
                 <div
-                  v-if="
-                    eventContactFeedbackData.invitationFeedbackData
-                      .invitationFeedback === 'ACCEPTED'
-                  "
+                  v-if="invitation.feedback === 'ACCEPTED'"
                   class="flex font-semibold items-center text-green-600"
                 >
                   <FontAwesomeIcon
@@ -124,70 +97,62 @@
                     size="lg"
                     title="accepted"
                   />
-                  {{ $t('inviteAccepted') }}
+                  {{ $t('invitationAccepted') }}
                 </div>
                 <Button
                   v-if="
-                    eventContactFeedbackData.invitationFeedbackData
-                      .invitationFeedback === null ||
-                    eventContactFeedbackData.invitationFeedbackData
-                      .invitationFeedback === 'ACCEPTED'
+                    invitation.feedback === null ||
+                    invitation.feedback === 'ACCEPTED'
                   "
                   class="mx-2"
-                  @click.native="cancel"
+                  @click="cancel"
                 >
-                  {{ $t('inviteCancel') }}
+                  {{ $t('invitationCancel') }}
                 </Button>
               </div>
             </div>
             <div
-              v-if="
-                eventContactFeedbackData.invitationFeedbackData
-                  .invitationFeedback === 'ACCEPTED'
-              "
+              v-if="invitation.feedback === 'ACCEPTED'"
               class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-text-bright"
             >
               1/2
             </div>
             <div
               v-if="
-                eventContactFeedbackData.invitationFeedbackData
-                  .invitationFeedback !== null &&
-                eventContactFeedbackData.invitationFeedbackData
-                  .invitationFeedback === 'ACCEPTED'
+                invitation.feedback !== null &&
+                invitation.feedback === 'ACCEPTED'
               "
               class="col-span-5"
             >
               <FormInput
                 label-for="input-paper-invitation-feedback"
-                :title="$t('inviteCardKind')"
+                :title="$t('invitationCardKind')"
               >
                 <select
                   id="input-paper-invitation-feedback"
-                  v-model="
-                    eventContactFeedbackData.invitationFeedbackData
-                      .paperInvitationFeedback
-                  "
+                  v-model="invitation.feedbackPaper"
                   class="form-input"
                   @change="paperInvitationFeedback"
                 >
                   <option disabled :value="null">
                     {{ $t('requestSelection') }}
                   </option>
-                  <option value="NONE">{{ $t('inviteCardKindNone') }}</option>
-                  <option value="PAPER">{{ $t('inviteCardKindPaper') }}</option>
+                  <option value="NONE">
+                    {{ $t('invitationCardKindNone') }}
+                  </option>
+                  <option value="PAPER">
+                    {{ $t('invitationCardKindPaper') }}
+                  </option>
                   <option value="DIGITAL">
-                    {{ $t('inviteCardKindDigital') }}
+                    {{ $t('invitationCardKindDigital') }}
                   </option>
                 </select>
               </FormInput>
             </div>
             <div
               v-if="
-                eventContactFeedbackData.invitationFeedbackData
-                  .invitationFeedback !== null &&
-                eventContactFeedbackData.invitationFeedbackData
-                  .invitationFeedback === 'ACCEPTED'
+                invitation.feedback !== null &&
+                invitation.feedback === 'ACCEPTED'
               "
               class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-text-bright"
             >
@@ -195,13 +160,13 @@
             </div>
           </div>
         </div>
-        <div v-if="eventContactFeedbackData.event.description">
+        <div v-if="event.description">
           <hr class="my-4" />
           <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
           <vue-markdown
             :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
             class="description maevsi-prose"
-            >{{ eventContactFeedbackData.event.description }}
+            >{{ event.description }}
           </vue-markdown>
         </div>
       </div>
@@ -218,22 +183,22 @@
 <script>
 import VueMarkdown from 'vue-markdown-konishi'
 
-import EVENT_CONTACT_FEEDBACK_DATA_QUERY from '~/gql/query/eventContactFeedbackData'
+import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/eventByOrganizerUsernameAndSlug'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/eventIsExisting'
-import UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION from '~/gql/mutation/updateInvitationFeedbackDatumById'
+import UPDATE_INVITATION_BY_ID_MUTATION from '~/gql/mutation/updateInvitationById'
 
 const consola = require('consola')
 
 export default {
   apollo: {
-    eventContactFeedbackData() {
+    event() {
       return {
-        query: EVENT_CONTACT_FEEDBACK_DATA_QUERY,
+        query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
         variables: {
           organizerUsername: this.$route.params.username,
           slug: this.$route.params.event_name,
         },
-        update: (data) => data.eventContactFeedbackData,
+        update: (data) => data.eventByOrganizerUsernameAndSlug,
         error(error, _vm, _key, _type, _options) {
           this.graphqlErrorMessage = error.message
           consola.error(error)
@@ -259,56 +224,50 @@ export default {
   },
   data() {
     return {
-      eventContactFeedbackData: undefined,
-      eventContactFeedbackDataToSend: undefined,
       graphqlErrorMessage: undefined,
-      showModalSuccess: false,
     }
   },
   head() {
     return {
-      title:
-        this.$global.getNested(
-          this.eventContactFeedbackData,
-          'event',
-          'name'
-        ) || '403',
+      title: this.$global.getNested(this.event, 'name') || '403',
       meta: [
         {
           hid: 'description',
           property: 'description',
-          content: this.eventContactFeedbackData?.event?.description,
+          content: this.event?.description,
         },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.eventContactFeedbackData?.event?.description,
+          content: this.event?.description,
         },
       ],
     }
   },
+  computed: {
+    contact() {
+      return this.$global.getNested(this.invitation, 'contactByContactId')
+    },
+    invitation() {
+      return this.$global.getNested(
+        this.event,
+        'invitationsByEventId',
+        'nodes',
+        0
+      )
+    },
+  },
   methods: {
     accept() {
-      this.eventContactFeedbackDataToSend = this.$global.objectClone(
-        this.eventContactFeedbackData
-      )
-      this.eventContactFeedbackDataToSend.invitationFeedbackData.invitationFeedback =
-        'ACCEPTED'
-      this.send()
+      this.update(this.invitation.id, { feedback: 'ACCEPTED' })
     },
     cancel() {
-      this.eventContactFeedbackDataToSend = this.$global.objectClone(
-        this.eventContactFeedbackData
-      )
-      this.eventContactFeedbackDataToSend.invitationFeedbackData.invitationFeedback =
-        'CANCELED'
-      this.send()
+      this.update(this.invitation.id, { feedback: 'CANCELED' })
     },
     paperInvitationFeedback() {
-      this.eventContactFeedbackDataToSend = this.$global.objectClone(
-        this.eventContactFeedbackData
-      )
-      this.send()
+      this.update(this.invitation.id, {
+        feedbackPaper: this.invitation.feedbackPaper,
+      })
     },
     downloadIcal() {
       const xhr = new XMLHttpRequest()
@@ -339,24 +298,23 @@ export default {
           }
         }
       }
-      xhr.send(JSON.stringify({ event: this.eventContactFeedbackData.event }))
+      xhr.send(JSON.stringify({ event: this.event }))
     },
-    send() {
+    update(id, invitationPatch) {
       this.$apollo
         .mutate({
-          mutation: UPDATE_INVITATION_FEEDBACK_DATUM_BY_ID_MUTATION,
+          mutation: UPDATE_INVITATION_BY_ID_MUTATION,
           variables: {
-            id: this.eventContactFeedbackDataToSend.invitationFeedbackData.id,
-            invitationFeedbackDatumPatch: this.$global.removeTypename(
-              this.eventContactFeedbackDataToSend.invitationFeedbackData
-            ),
+            id,
+            invitationPatch,
           },
         })
         .then((_data) => {
-          this.showModalSuccess = true
+          this.$apollo.queries.event.refetch()
+          this.$refs.modal.isVisible = true
         })
         .catch((error) => {
-          alert(error.message)
+          this.graphqlErrorMessage = error.message
           consola.error(error)
         })
     },
@@ -370,14 +328,14 @@ de:
   greetingDescription: 'Du wurdest zu folgender Veranstaltung eingeladen:'
   iCalDownload: 'Zum Kalender hinzufügen'
   iCalUnexpectedStatusCode: 'Fehler: Statuscode {statusCode}. iCal-Daten konnten nicht geladen werden.'
-  inviteAccept: 'Einladung annehmen'
-  inviteAccepted: 'Einladung angenommen'
-  inviteCancel: 'Einladung ablehnen'
-  inviteCanceled: 'Einladung abgelehnt'
-  inviteCardKind: 'Art der Einladungskarte'
-  inviteCardKindNone: 'Keine'
-  inviteCardKindPaper: 'Papier'
-  inviteCardKindDigital: 'Digital'
+  invitationAccept: 'Einladung annehmen'
+  invitationAccepted: 'Einladung angenommen'
+  invitationCancel: 'Einladung ablehnen'
+  invitationCanceled: 'Einladung abgelehnt'
+  invitationCardKind: 'Art der Einladungskarte'
+  invitationCardKindNone: 'Keine'
+  invitationCardKindPaper: 'Papier'
+  invitationCardKindDigital: 'Digital'
   requestSelection: 'Bitte auswählen'
   settings: 'Einstellungen'
   success: 'Deine Eingabe wurde erfolgreich gespeichert.'
@@ -386,14 +344,14 @@ en:
   greetingDescription: "You've been invited to the following event:"
   iCalDownload: 'Add to calendar'
   iCalUnexpectedStatusCode: 'Error: Status code {statusCode}. Could not get iCal data.'
-  inviteAccept: 'Accept invite'
-  inviteAccepted: 'Invite accepted'
-  inviteCancel: 'Cancel invite'
-  inviteCanceled: 'Invite canceled'
-  inviteCardKind: 'Kind of invite card'
-  inviteCardKindNone: 'None'
-  inviteCardKindPaper: 'Paper'
-  inviteCardKindDigital: 'Digital'
+  invitationAccept: 'Accept invitation'
+  invitationAccepted: 'Invitation accepted'
+  invitationCancel: 'Cancel invitation'
+  invitationCanceled: 'Invitation canceled'
+  invitationCardKind: 'Kind of invitation card'
+  invitationCardKindNone: 'None'
+  invitationCardKindPaper: 'Paper'
+  invitationCardKindDigital: 'Digital'
   requestSelection: 'Please select'
   settings: 'Settings'
   success: 'Your input was saved succesfully.'

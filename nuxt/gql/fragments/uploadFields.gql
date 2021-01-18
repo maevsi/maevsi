@@ -1,0 +1,7 @@
+fragment uploadFields on Upload {
+  id
+  sizeByte
+  storageKey
+  username
+  uuid
+}

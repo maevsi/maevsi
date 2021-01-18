@@ -1,0 +1,15 @@
+fragment eventFields on Event {
+  id
+  description
+  end
+  inviteeCountMaximum
+  isArchived
+  isInPerson
+  isRemote
+  location
+  name
+  organizerUsername
+  slug
+  start
+  visibility
+}

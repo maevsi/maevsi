@@ -13,7 +13,7 @@ DECLARE
   _epoch_now BIGINT := EXTRACT(EPOCH FROM (SELECT date_trunc('second', NOW()::TIMESTAMP)));
   _jwt maevsi.jwt;
 BEGIN
-  SELECT (token).id, (token).role, (token).account_id, (token).username, (token).invites, (token)."exp" INTO _jwt
+  SELECT (token).id, (token).role, (token).account_id, (token).username, (token).invitations, (token)."exp" INTO _jwt
   FROM maevsi_private.jwt
   WHERE   uuid = $1
   AND     (token)."exp" >= _epoch_now;
