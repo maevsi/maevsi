@@ -1,3 +1,10 @@
+## [0.46.1](https://github.com/maevsi/maevsi/compare/0.46.0...0.46.1) (2021-01-18)
+
+
+### Bug Fixes
+
+* **event:** show event's title in tab ([66d25a4](https://github.com/maevsi/maevsi/commit/66d25a4a9b32335f59e3234030f4a1d55558eea7)), closes [#193](https://github.com/maevsi/maevsi/issues/193)
+
 # [0.46.0](https://github.com/maevsi/maevsi/compare/0.45.0...0.46.0) (2021-01-18)
 
 
