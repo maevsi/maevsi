@@ -193,12 +193,12 @@ export default {
               })
               .catch((reason) => {
                 this.graphqlErrorMessage = reason.toString()
-                reject(reason.toString())
+                reject(reason)
               })
           })
           .catch((reason) => {
             this.graphqlErrorMessage = reason.toString()
-            reject(reason.toString())
+            reject(reason)
           })
       })
     },

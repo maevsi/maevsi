@@ -63,12 +63,12 @@ export default {
             passwordNew: this.form.passwordNew,
           },
         })
-        .then((_data) => {
+        .then((_value) => {
           alert(this.$t('passwordChangeSuccess'))
         })
-        .catch((error) => {
-          this.graphqlErrorMessage = error.message
-          consola.error(error)
+        .catch((reason) => {
+          this.graphqlErrorMessage = reason.toString()
+          consola.error(reason)
         })
     },
   },

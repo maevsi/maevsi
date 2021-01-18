@@ -53,9 +53,9 @@ export default {
             code: this.$route.query.code,
           },
         })
-        .catch((error) => {
-          this.graphqlErrorMessage = error.message
-          consola.error(error)
+        .catch((reason) => {
+          this.graphqlErrorMessage = reason.toString()
+          consola.error(reason)
         })
         .finally(() => {
           this.loading = false

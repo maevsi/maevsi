@@ -293,9 +293,9 @@ export default {
               },
             })
             .then(({ data }) => this.$global.getNested(data, 'uploadCreate'))
-            .catch((error) => {
-              consola.error(error)
-              reject(error)
+            .catch((reason) => {
+              consola.error(reason.toString())
+              reject(reason)
             })
 
           if (!res) {
@@ -342,10 +342,10 @@ export default {
             data: blob,
           })
 
-          this.uppy.upload().then((result) => {
+          this.uppy.upload().then((value) => {
             this.$apollo.queries.allUploads.refetch()
 
-            if (result.failed.length > 0) {
+            if (value.failed.length > 0) {
               reject(this.$t('uploadError'))
             } else {
               resolve()

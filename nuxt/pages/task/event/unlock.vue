@@ -124,9 +124,9 @@ export default {
         .then(({ data }) =>
           this.$global.getNested(data, 'eventUnlock', 'eventUnlockResponse')
         )
-        .catch((error) => {
-          this.graphqlErrorMessage = error.message
-          consola.error(error)
+        .catch((reason) => {
+          this.graphqlErrorMessage = reason.toString()
+          consola.error(reason)
         })
 
       if (!res) {

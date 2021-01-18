@@ -39,8 +39,8 @@ export async function authenticateAnonymous(apolloClient, store, res) {
       },
     })
     .then(({ data }) => getNested(data, 'authenticate'))
-    .catch((error) => {
-      consola.error(error)
+    .catch((reason) => {
+      consola.error(reason)
     })
 
   if (!authenticationData) {
@@ -71,8 +71,8 @@ export function getDeferredPromise(then) {
   promise.reject = rej
 
   if (then) {
-    promise.then(() => {
-      then()
+    promise.then((value) => {
+      then(value)
     })
   }
 
@@ -135,8 +135,8 @@ export async function jwtRefresh(apolloClient, store, res, id) {
       },
     })
     .then(({ data }) => getNested(data, 'jwtRefresh'))
-    .catch((error) => {
-      consola.error(error)
+    .catch((reason) => {
+      consola.error(reason)
       signOut(apolloClient, store, res)
     })
 
@@ -189,8 +189,8 @@ export async function storeJwt(
     )
   } else {
     xhrPromise('POST', '/auth', jwt).then(
-      (_data) => callback(),
-      (_error) => alert('Authorization failed!')
+      (_value) => callback(),
+      (_reason) => alert('Authorization failed!')
     )
   }
 }

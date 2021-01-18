@@ -91,13 +91,13 @@ export default {
       this.isSubmitting = true
 
       this.submitTaskProvider()
-        .then((data) => {
+        .then((value) => {
           this.isVisible = false
-          this.$emit('submitSuccess', data)
+          this.$emit('submitSuccess', value)
         })
-        .catch((error) => {
-          this.errorMessage = error
-          consola.error(error)
+        .catch((reason) => {
+          this.errorMessage = reason.toString()
+          consola.error(reason)
         })
         .finally(() => {
           this.isSubmitting = false

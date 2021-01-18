@@ -311,15 +311,15 @@ export default {
             },
           },
         })
-        .then((_data) => {
+        .then((_value) => {
           alert(this.$t('eventCreateSuccess'))
           this.$router.push(
             this.localePath(`/event/${this.signedInUsername}/${this.form.slug}`)
           )
         })
-        .catch((error) => {
-          this.graphqlErrorMessage = error.message
-          consola.error(error)
+        .catch((reason) => {
+          this.graphqlErrorMessage = reason.toString()
+          consola.error(reason)
         })
     },
     updateSlug() {

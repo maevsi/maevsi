@@ -309,13 +309,13 @@ export default {
             invitationPatch,
           },
         })
-        .then((_data) => {
+        .then((_value) => {
           this.$apollo.queries.event.refetch()
           this.$refs.modal.isVisible = true
         })
-        .catch((error) => {
-          this.graphqlErrorMessage = error.message
-          consola.error(error)
+        .catch((reason) => {
+          this.graphqlErrorMessage = reason.toString()
+          consola.error(reason)
         })
     },
   },

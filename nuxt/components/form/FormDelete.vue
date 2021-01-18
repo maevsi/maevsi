@@ -79,7 +79,7 @@ export default {
           },
           ...(this.update && { update: this.update }),
         })
-        .then((_data) => {
+        .then((_value) => {
           alert(
             this.$global.capitalizeFirstLetter(
               this.$t('success', { item: this.itemName })
@@ -87,9 +87,9 @@ export default {
           )
           this.$emit('success')
         })
-        .catch((error) => {
-          this.graphqlErrorMessage = error.message
-          consola.error(error)
+        .catch((reason) => {
+          this.graphqlErrorMessage = reason.toString()
+          consola.error(reason)
         })
     },
   },

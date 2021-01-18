@@ -170,13 +170,13 @@ export default {
             uuid,
           },
         })
-        .then((_data) => {
+        .then((_value) => {
           this.$apollo.queries.allInvitations &&
             this.$apollo.queries.allInvitations.refetch()
         })
-        .catch((error) => {
-          this.graphqlErrorMessage = error.message
-          consola.error(error)
+        .catch((reason) => {
+          this.graphqlErrorMessage = reason.toString()
+          consola.error(reason)
         })
     },
     edit(invitation) {
