@@ -170,9 +170,7 @@
         </div>
       </div>
     </div>
-    <div v-else>
-      <Error :status-code="403" />
-    </div>
+    <Error v-else :status-code="403" />
     <Modal ref="modal">
       {{ $t('success') }}
     </Modal>
@@ -228,7 +226,9 @@ export default {
   },
   head() {
     return {
-      title: this.$route.params.event_name,
+      title: this.$apollo.loading
+        ? this.$t('globalLoading')
+        : this.$global.getNested(this.event, 'name') || '403',
       meta: [
         {
           hid: 'description',

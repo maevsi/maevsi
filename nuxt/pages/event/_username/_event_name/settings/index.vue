@@ -3,14 +3,9 @@
     v-if="($apollo.loading && !event) || graphqlErrorMessage"
     :error-message="graphqlErrorMessage"
   />
-  <div
-    v-else-if="
-      $global.getNested($store.state.jwtDecoded, 'username') &&
-      $store.state.jwtDecoded.username === $route.params.username
-    "
-  >
+  <div v-else>
     <div v-if="event">
-      <!-- breadcrumbs -->
+      <!-- TODO: breadcrumbs -->
       <h1 class="text-center">
         {{ title }}
       </h1>
@@ -39,10 +34,7 @@
         </section>
       </section>
     </div>
-    <Error v-else :status-code="404" />
-  </div>
-  <div v-else>
-    <Error :status-code="403" />
+    <Error v-else :status-code="403" />
   </div>
 </template>
 
@@ -92,7 +84,11 @@ export default {
     }
   },
   head() {
-    return { title: this.$route.params.event_name }
+    return {
+      title: this.$apollo.loading
+        ? this.$t('globalLoading')
+        : this.$global.getNested(this.event, 'name') || '403',
+    }
   },
   methods: {
     onDeleteSuccess() {
