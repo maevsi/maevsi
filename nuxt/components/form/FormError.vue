@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="validationObject.$error && !validationObject[validationProperty]"
+    v-if="form.$error && !form[validationProperty]"
     class="text-red-600 text-left"
   >
     <slot />
@@ -10,7 +10,7 @@
 <script>
 export default {
   props: {
-    validationObject: {
+    form: {
       default: undefined,
       type: Object,
     },

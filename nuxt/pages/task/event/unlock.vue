@@ -2,8 +2,10 @@
   <div class="m-auto max-w-xl">
     <h1>{{ title }}</h1>
     <Form
+      :form="$v.form"
+      :form-sent="form.sent"
       :graphql-error-message="graphqlErrorMessage"
-      :validation-object="$v.form"
+      :submit-name="$t('submit')"
       @submit.prevent="submit"
     >
       <FormInput
@@ -33,33 +35,19 @@
         </template>
         <template slot="inputError">
           <FormError
-            :validation-object="$v.form['invitation-code']"
+            :form="$v.form['invitation-code']"
             validation-property="required"
           >
             {{ $t('globalValidationRequired') }}
           </FormError>
           <FormError
-            :validation-object="$v.form['invitation-code']"
+            :form="$v.form['invitation-code']"
             validation-property="formatUuid"
           >
             {{ $t('globalValidationFormatIncorrect') }}
           </FormError>
         </template>
       </FormInput>
-      <div class="flex flex-col items-center justify-between">
-        <ButtonSubmit
-          :error="!!graphqlErrorMessage"
-          :form="$v.form"
-          :form-sent="form.sent"
-        >
-          {{ $t('submit') }}
-        </ButtonSubmit>
-      </div>
-      <CardAlert
-        class="mt-4"
-        :error-message="graphqlErrorMessage"
-        :validation-object="$v.form"
-      />
     </Form>
     <p class="mt-2 text-left">
       {{ $t('greetingExplanation') }}

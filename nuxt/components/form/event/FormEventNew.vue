@@ -1,7 +1,9 @@
 <template>
   <Form
+    :form="$v.form"
+    :form-sent="form.sent"
     :graphql-error-message="graphqlErrorMessage"
-    :validation-object="$v.form"
+    :submit-name="$t('eventCreate')"
     @submit.prevent="submit"
   >
     <FormInput
@@ -19,16 +21,10 @@
         @input="updateSlug"
       />
       <template slot="inputError">
-        <FormError
-          :validation-object="$v.form['name']"
-          validation-property="required"
-        >
+        <FormError :form="$v.form['name']" validation-property="required">
           {{ $t('globalValidationRequired') }}
         </FormError>
-        <FormError
-          :validation-object="$v.form['name']"
-          validation-property="maxLength"
-        >
+        <FormError :form="$v.form['name']" validation-property="maxLength">
           {{ $t('globalValidationTooLong') }}
         </FormError>
       </template>
@@ -47,22 +43,13 @@
         :placeholder="$t('slugPlaceholder')"
       />
       <template slot="inputError">
-        <FormError
-          :validation-object="$v.form['slug']"
-          validation-property="required"
-        >
+        <FormError :form="$v.form['slug']" validation-property="required">
           {{ $t('globalValidationRequired') }}
         </FormError>
-        <FormError
-          :validation-object="$v.form['slug']"
-          validation-property="maxLength"
-        >
+        <FormError :form="$v.form['slug']" validation-property="maxLength">
           {{ $t('globalValidationTooLong') }}
         </FormError>
-        <FormError
-          :validation-object="$v.form['slug']"
-          validation-property="formatSlug"
-        >
+        <FormError :form="$v.form['slug']" validation-property="formatSlug">
           {{ $t('globalValidationFormatIncorrect') }}
         </FormError>
       </template>
@@ -84,10 +71,7 @@
         @change="$v.form['visibility'].$model = $event"
       />
       <template slot="inputError">
-        <FormError
-          :validation-object="$v.form['visibility']"
-          validation-property="required"
-        >
+        <FormError :form="$v.form['visibility']" validation-property="required">
           {{ $t('globalValidationRequired') }}
         </FormError>
       </template>
@@ -146,10 +130,7 @@
         type="text"
       />
       <template slot="inputError">
-        <FormError
-          :validation-object="$v.form['location']"
-          validation-property="maxLength"
-        >
+        <FormError :form="$v.form['location']" validation-property="maxLength">
           {{ $t('globalValidationTooLong') }}
         </FormError>
       </template>
@@ -194,7 +175,7 @@
       </TabFlip>
       <template slot="inputError">
         <FormError
-          :validation-object="$v.form['description']"
+          :form="$v.form['description']"
           validation-property="maxLength"
         >
           {{ $t('globalValidationTooLong') }}
@@ -214,27 +195,13 @@
       />
       <template slot="inputError">
         <FormError
-          :validation-object="$v.form['invitee-count-maximum']"
+          :form="$v.form['invitee-count-maximum']"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
         </FormError>
       </template>
     </FormInput>
-    <div class="flex flex-col items-center justify-between">
-      <ButtonSubmit
-        :error="!!graphqlErrorMessage"
-        :form="$v.form"
-        :form-sent="form.sent"
-      >
-        {{ $t('eventCreate') }}
-      </ButtonSubmit>
-    </div>
-    <CardAlert
-      class="mt-4"
-      :error-message="graphqlErrorMessage"
-      :validation-object="$v.form"
-    />
   </Form>
 </template>
 

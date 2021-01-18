@@ -14,14 +14,11 @@
       @input="$emit('input', $event.target.value)"
     />
     <template slot="inputError">
-      <FormError
-        :validation-object="v.form[formKeyComputed]"
-        validation-property="required"
-      >
+      <FormError :form="v.form[formKeyComputed]" validation-property="required">
         {{ $t('globalValidationRequired') }}
       </FormError>
       <FormError
-        :validation-object="v.form[formKeyComputed]"
+        :form="v.form[formKeyComputed]"
         validation-property="minLength"
       >
         {{ $t('globalValidationTooShort') }}

@@ -1,7 +1,10 @@
 <template>
   <Form
+    :form="$v.form"
+    :form-sent="form.sent"
     :graphql-error-message="graphqlErrorMessage"
-    :validation-object="$v.form"
+    :is-embedded="isEmbedded"
+    :submit-name="$t('save')"
     @submit.prevent="submit"
   >
     <FormInputUsername
@@ -23,10 +26,7 @@
         :placeholder="$t('globalPlaceholderFirstName')"
       />
       <template slot="inputError">
-        <FormError
-          :validation-object="$v.form.firstName"
-          validation-property="maxLength"
-        >
+        <FormError :form="$v.form.firstName" validation-property="maxLength">
           {{ $t('globalValidationTooLong') }}
         </FormError>
       </template>
@@ -44,10 +44,7 @@
         :placeholder="$t('globalPlaceholderLastName')"
       />
       <template slot="inputError">
-        <FormError
-          :validation-object="$v.form.lastName"
-          validation-property="maxLength"
-        >
+        <FormError :form="$v.form.lastName" validation-property="maxLength">
           {{ $t('globalValidationTooLong') }}
         </FormError>
       </template>
@@ -70,33 +67,11 @@
         rows="2"
       />
       <template slot="inputError">
-        <FormError
-          :validation-object="$v.form.address"
-          validation-property="maxLength"
-        >
+        <FormError :form="$v.form.address" validation-property="maxLength">
           {{ $t('globalValidationTooLong') }}
         </FormError>
       </template>
     </FormInput>
-    <div
-      v-show="!isEmbedded"
-      class="flex flex-col items-center justify-between"
-    >
-      <ButtonSubmit
-        ref="buttonSubmit"
-        :error="!!graphqlErrorMessage"
-        :form="$v.form"
-        :form-sent="form.sent"
-      >
-        {{ $t('save') }}
-      </ButtonSubmit>
-    </div>
-    <CardAlert
-      v-if="!isEmbedded"
-      class="mt-4"
-      :error-message="graphqlErrorMessage"
-      :validation-object="$v.form"
-    />
   </Form>
 </template>
 

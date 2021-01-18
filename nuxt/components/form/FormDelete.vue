@@ -1,28 +1,16 @@
 <template>
   <Form
+    :form="$v.form"
+    :form-sent="form.sent"
     :graphql-error-message="graphqlErrorMessage"
-    :validation-object="$v.form"
+    :icon-id="['fa', 'trash']"
+    :submit-name="$t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="password"
       :v="$v"
       @input="$v.form['password'].$model = $event"
-    />
-    <div class="flex flex-col items-center justify-between">
-      <ButtonSubmit
-        :error="!!graphqlErrorMessage"
-        :form="$v.form"
-        :form-sent="form.sent"
-        :icon-id="['fa', 'trash']"
-      >
-        {{ $t('deletion', { item: itemName }) }}
-      </ButtonSubmit>
-    </div>
-    <CardAlert
-      class="mt-4"
-      :error-message="graphqlErrorMessage"
-      :validation-object="$v.form"
     />
   </Form>
 </template>

@@ -1,8 +1,10 @@
 <template>
   <Form
+    :form="$v.form"
     :form-class="formClass"
+    :form-sent="form.sent"
     :graphql-error-message="graphqlErrorMessage"
-    :validation-object="$v.form"
+    :submit-name="$t('signIn')"
     @submit.prevent="submit"
   >
     <FormInputUsername
@@ -21,13 +23,6 @@
       @input="$v.form['password'].$model = $event"
     />
     <div class="flex flex-col items-center justify-between">
-      <ButtonSubmit
-        :error="!!graphqlErrorMessage"
-        :form="$v.form"
-        :form-sent="form.sent"
-      >
-        {{ $t('signIn') }}
-      </ButtonSubmit>
       <AppLink
         :to="
           $global.getQueryString({
@@ -44,11 +39,6 @@
         }}
       </AppLink>
     </div>
-    <CardAlert
-      class="mt-4"
-      :error-message="graphqlErrorMessage"
-      :validation-object="$v.form"
-    />
   </Form>
 </template>
 

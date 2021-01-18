@@ -5,31 +5,74 @@
       {
         'animate-shake border border-red-500':
           graphqlErrorMessage !== undefined &&
-          (validationObject === undefined || !validationObject.$anyDirty),
+          (form === undefined || !form.$anyDirty),
       },
       formClass,
     ]"
     @submit="(e) => $emit('submit', e)"
   >
     <slot />
+    <div v-if="!isEmbedded" class="flex flex-col items-center justify-between">
+      <Button
+        :disabled="
+          form.$invalid || (formSent && !form.$anyDirty && !graphqlErrorMessage)
+        "
+        :icon-id="iconId"
+        type="submit"
+        @click="$emit('click')"
+      >
+        {{ submitName }}
+      </Button>
+    </div>
+    <CardAlert
+      v-if="!isEmbedded"
+      class="mt-4"
+      :error-message="graphqlErrorMessage"
+      :validation-object="form"
+    />
   </form>
 </template>
 
 <script>
 export default {
   props: {
+    form: {
+      default: undefined,
+      type: Object,
+    },
     formClass: {
       default: undefined,
       type: String,
+    },
+    formSent: {
+      required: true,
+      type: Boolean,
     },
     graphqlErrorMessage: {
       default: undefined,
       type: String,
     },
-    validationObject: {
+    iconId: {
       default: undefined,
-      type: Object,
+      type: Array,
+    },
+    isEmbedded: {
+      default: false,
+      type: Boolean,
+    },
+    submitName: {
+      default() {
+        return this.$t('submit')
+      },
+      type: String,
     },
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  submit: 'Absenden'
+en:
+  submit: 'Submit'
+</i18n>
