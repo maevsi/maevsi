@@ -1,3 +1,11 @@
+# [0.46.0](https://github.com/maevsi/maevsi/compare/0.45.0...0.46.0) (2021-01-18)
+
+
+### Features
+
+* **menu:** add menu entries for event creation and unlock ([1c9efcc](https://github.com/maevsi/maevsi/commit/1c9efcc9976ffb39dde36cd0628e84294400b7a2)), closes [#154](https://github.com/maevsi/maevsi/issues/154)
+* **modal:** react to escape and return key presses ([bc4eb1a](https://github.com/maevsi/maevsi/commit/bc4eb1a669414b24940de06d776b477c18d5048a)), closes [#136](https://github.com/maevsi/maevsi/issues/136)
+
 # [0.45.0](https://github.com/maevsi/maevsi/compare/0.44.0...0.45.0) (2021-01-18)
 
 
