@@ -229,7 +229,7 @@ export default {
   },
   head() {
     return {
-      title: this.$global.getNested(this.event, 'name') || '403',
+      title: this.$route.params.event_name,
       meta: [
         {
           hid: 'description',
