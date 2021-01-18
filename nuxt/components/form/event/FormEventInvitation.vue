@@ -84,7 +84,7 @@
     >
       <ButtonSubmit
         ref="buttonSubmit"
-        :error-message="graphqlErrorMessage"
+        :error="!!graphqlErrorMessage"
         :form="$v.form"
         :form-sent="form.sent"
       >

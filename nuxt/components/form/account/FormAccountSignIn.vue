@@ -22,7 +22,7 @@
     />
     <div class="flex flex-col items-center justify-between">
       <ButtonSubmit
-        :error-message="graphqlErrorMessage"
+        :error="!!graphqlErrorMessage"
         :form="$v.form"
         :form-sent="form.sent"
       >

@@ -1,6 +1,6 @@
 <template>
   <Button
-    :disabled="form.$invalid || (formSent && !form.$anyDirty && !errorMessage)"
+    :disabled="form.$invalid || (formSent && !form.$anyDirty && !error)"
     :icon-id="iconId"
     :icon-size="iconSize"
     type="submit"
@@ -21,8 +21,8 @@ export default {
       type: Boolean,
       required: true,
     },
-    errorMessage: {
-      type: String,
+    error: {
+      type: Boolean,
       default: undefined,
     },
     iconId: {
