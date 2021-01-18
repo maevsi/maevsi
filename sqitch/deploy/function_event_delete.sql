@@ -8,8 +8,11 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.event_delete(organizer_username TEXT, slug TEXT, password TEXT)
-RETURNS maevsi.event AS $$
+CREATE FUNCTION maevsi.event_delete(
+  organizer_username TEXT,
+  slug TEXT,
+  password TEXT
+) RETURNS maevsi.event AS $$
 DECLARE
   _current_username TEXT;
   _rows_affected maevsi.event;

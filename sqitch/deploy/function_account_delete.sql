@@ -8,8 +8,9 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.account_delete(password TEXT)
-RETURNS VOID AS $$
+CREATE FUNCTION maevsi.account_delete(
+  password TEXT
+) RETURNS VOID AS $$
 DECLARE
   _current_username TEXT;
 BEGIN

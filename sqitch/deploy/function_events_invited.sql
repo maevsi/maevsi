@@ -7,7 +7,8 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi_private.events_invited() RETURNS TABLE (event_id BIGINT) AS $$
+CREATE FUNCTION maevsi_private.events_invited()
+RETURNS TABLE (event_id BIGINT) AS $$
 BEGIN
   RETURN QUERY
   SELECT invitation.event_id FROM maevsi.invitation

@@ -6,8 +6,9 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.profile_picture_set(storage_key TEXT)
-RETURNS VOID AS $$
+CREATE FUNCTION maevsi.profile_picture_set(
+  storage_key TEXT
+) RETURNS VOID AS $$
 BEGIN
   INSERT INTO maevsi.profile_picture(username, upload_storage_key)
   VALUES (

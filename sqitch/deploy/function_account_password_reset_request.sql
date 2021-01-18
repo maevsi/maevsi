@@ -9,8 +9,9 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.account_password_reset_request(email_address TEXT)
-RETURNS VOID AS $$
+CREATE FUNCTION maevsi.account_password_reset_request(
+  email_address TEXT
+) RETURNS VOID AS $$
 DECLARE
   _notify_data RECORD;
 BEGIN

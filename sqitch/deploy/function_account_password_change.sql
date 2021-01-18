@@ -8,8 +8,10 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.account_password_change(password_current TEXT, password_new TEXT)
-RETURNS VOID AS $$
+CREATE FUNCTION maevsi.account_password_change(
+  password_current TEXT,
+  password_new TEXT
+) RETURNS VOID AS $$
 DECLARE
   _current_username TEXT;
 BEGIN

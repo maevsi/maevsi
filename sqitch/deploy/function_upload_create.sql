@@ -9,8 +9,9 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.upload_create(size_byte BIGINT)
-RETURNS UUID AS $$
+CREATE FUNCTION maevsi.upload_create(
+  size_byte BIGINT
+) RETURNS UUID AS $$
 DECLARE
     _id UUID;
 BEGIN

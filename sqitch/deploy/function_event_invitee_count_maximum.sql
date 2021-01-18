@@ -10,7 +10,9 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.event_invitee_count_maximum(event_id BIGINT) RETURNS INTEGER AS $$
+CREATE FUNCTION maevsi.event_invitee_count_maximum(
+  event_id BIGINT
+) RETURNS INTEGER AS $$
 BEGIN
   RETURN (
     SELECT "event".invitee_count_maximum
