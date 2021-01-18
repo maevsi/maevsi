@@ -12,15 +12,13 @@
       form-key="username"
       :v="$v"
       @blur="$global.blur($v.form, blurFields, 'username', $event)"
-      @input="
-        blurFields.username ? ($v.form['username'].$model = $event) : null
-      "
+      @input="blurFields.username ? ($v.form.username.$model = $event) : null"
     />
     <FormInputPassword
       id="password-sign-in"
       form-key="password"
       :v="$v"
-      @input="$v.form['password'].$model = $event"
+      @input="$v.form.password.$model = $event"
     />
     <div class="flex flex-col items-center justify-between">
       <AppLink

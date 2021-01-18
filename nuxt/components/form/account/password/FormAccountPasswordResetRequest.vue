@@ -9,9 +9,9 @@
   >
     <FormInputEmailAddress
       id="email-address-password-reset-request"
-      :form-element="$v.form['email-address']"
+      :form-element="$v.form.emailAddress"
       required
-      @input="$v.form['email-address'].$model = $event"
+      @input="$v.form.emailAddress.$model = $event"
     />
   </Form>
 </template>
@@ -59,7 +59,7 @@ export default {
         .mutate({
           mutation: ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION,
           variables: {
-            emailAddress: this.form['email-address'],
+            emailAddress: this.form.emailAddress,
           },
         })
         .then(({ data }) =>
@@ -81,7 +81,7 @@ export default {
   validations() {
     return {
       form: {
-        'email-address': {
+        emailAddress: {
           email,
           maxLength: maxLength(
             this.$global.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM

@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       formRegister: {
-        'email-address': undefined,
+        emailAddress: undefined,
         password: undefined,
         sent: false,
         username: undefined,
@@ -66,7 +66,7 @@ export default {
         username: undefined,
       },
       formPasswordResetRequest: {
-        'email-address': undefined,
+        emailAddress: undefined,
         sent: false,
       },
       title: this.$t('title'),
@@ -87,7 +87,7 @@ export default {
       this.formPasswordResetRequest['email-address'] = undefined
       this.formRegister['email-address'] = undefined
 
-      this.$refs.formRegister.$v.form['email-address'].$touch()
+      this.$refs.formRegister.$v.form.emailAddress.$touch()
     },
     onClickPasswordForgotten() {
       if (
@@ -96,14 +96,14 @@ export default {
         this.formPasswordResetRequest['email-address'] !== ''
       ) {
         this.$nextTick().then(() => {
-          this.$refs.formPasswordResetRequest.$v.form['email-address'].$touch()
+          this.$refs.formPasswordResetRequest.$v.form.emailAddress.$touch()
         })
       }
     },
     onFormPasswordResetRequest(form) {
-      if (this.formRegister['email-address'] !== form['email-address']) {
-        this.formRegister['email-address'] = form['email-address']
-        this.$refs.formRegister.$v.form['email-address'].$touch()
+      if (this.formRegister['email-address'] !== form.emailAddress) {
+        this.formRegister['email-address'] = form.emailAddress
+        this.$refs.formRegister.$v.form.emailAddress.$touch()
       }
     },
     onFormRegister(form) {
@@ -118,12 +118,12 @@ export default {
       }
 
       if (
-        this.formPasswordResetRequest['email-address'] !== form['email-address']
+        this.formPasswordResetRequest['email-address'] !== form.emailAddress
       ) {
-        this.formPasswordResetRequest['email-address'] = form['email-address']
+        this.formPasswordResetRequest['email-address'] = form.emailAddress
 
         if (this.$refs.formPasswordResetRequest) {
-          this.$refs.formPasswordResetRequest.$v.form['email-address'].$touch()
+          this.$refs.formPasswordResetRequest.$v.form.emailAddress.$touch()
         }
       }
     },

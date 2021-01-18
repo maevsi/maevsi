@@ -9,12 +9,12 @@
     <FormInputPassword
       id="passwordCurrent"
       :v="$v"
-      @blur="$v.form['passwordCurrent'].$model = $event"
+      @blur="$v.form.passwordCurrent.$model = $event"
     />
     <FormInputPassword
       id="passwordNew"
       :v="$v"
-      @input="$v.form['passwordNew'].$model = $event"
+      @input="$v.form.passwordNew.$model = $event"
     />
   </Form>
 </template>

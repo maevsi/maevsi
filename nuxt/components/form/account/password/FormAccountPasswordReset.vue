@@ -10,7 +10,7 @@
     <FormInputPassword
       id="password"
       :v="$v"
-      @input="$v.form['password'].$model = $event"
+      @input="$v.form.password.$model = $event"
     />
   </Form>
 </template>

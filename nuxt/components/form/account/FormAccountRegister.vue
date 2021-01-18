@@ -12,24 +12,20 @@
       form-key="username"
       :v="$v"
       @blur="$global.blur($v.form, blurFields, 'username', $event)"
-      @input="
-        blurFields.username ? ($v.form['username'].$model = $event) : null
-      "
+      @input="blurFields.username ? ($v.form.username.$model = $event) : null"
     />
     <FormInputPassword
       id="password-register"
       form-key="password"
       :v="$v"
       @blur="$global.blur($v.form, blurFields, 'password', $event)"
-      @input="
-        blurFields.password ? ($v.form['password'].$model = $event) : null
-      "
+      @input="blurFields.password ? ($v.form.password.$model = $event) : null"
     />
     <FormInputEmailAddress
       id="email-address-register"
-      :form-element="$v.form['email-address']"
+      :form-element="$v.form.emailAddress"
       required
-      @input="$v.form['email-address'].$model = $event"
+      @input="$v.form.emailAddress.$model = $event"
     />
   </Form>
 </template>
@@ -83,7 +79,7 @@ export default {
           variables: {
             username: this.form.username,
             password: this.form.password,
-            emailAddress: this.form['email-address'],
+            emailAddress: this.form.emailAddress,
           },
         })
         .then(({ data }) => this.$global.getNested(data, 'accountRegister'))
@@ -112,7 +108,7 @@ export default {
           minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
-        'email-address': {
+        emailAddress: {
           email,
           maxLength: maxLength(
             this.$global.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM

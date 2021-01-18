@@ -9,7 +9,7 @@
       @submit.prevent="submit"
     >
       <FormInput
-        :error="$v.form['invitation-code'].$error"
+        :error="$v.form.invitationCode.$error"
         :label-for="inputId"
         :title="$t('invitationCode')"
       >
@@ -35,13 +35,13 @@
         </template>
         <template slot="inputError">
           <FormError
-            :form="$v.form['invitation-code']"
+            :form="$v.form.invitationCode"
             validation-property="required"
           >
             {{ $t('globalValidationRequired') }}
           </FormError>
           <FormError
-            :form="$v.form['invitation-code']"
+            :form="$v.form.invitationCode"
             validation-property="formatUuid"
           >
             {{ $t('globalValidationFormatIncorrect') }}
@@ -66,7 +66,7 @@ export default {
   data() {
     return {
       form: {
-        'invitation-code':
+        invitationCode:
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
         sent: false,
       },
@@ -85,16 +85,16 @@ export default {
       get() {
         return this.$route.query.ic !== undefined
           ? this.$route.query.ic
-          : this.$v.form['invitation-code'].$model
+          : this.$v.form.invitationCode.$model
       },
       set(value) {
-        this.$v.form['invitation-code'].$model = value
+        this.$v.form.invitationCode.$model = value
       },
     },
   },
   mounted() {
     if (this.$route.query.ic !== undefined) {
-      this.$v.form['invitation-code'].$touch()
+      this.$v.form.invitationCode.$touch()
     }
   },
   methods: {
@@ -106,7 +106,7 @@ export default {
         .mutate({
           mutation: EVENT_UNLOCK_MUTATION,
           variables: {
-            invitationCode: this.form['invitation-code'],
+            invitationCode: this.form.invitationCode,
           },
         })
         .then(({ data }) =>
@@ -137,7 +137,7 @@ export default {
   validations() {
     return {
       form: {
-        'invitation-code': {
+        invitationCode: {
           required,
           formatUuid: this.$global.VALIDATION_FORMAT_UUID,
         },

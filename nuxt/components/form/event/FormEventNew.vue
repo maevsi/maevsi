@@ -7,55 +7,55 @@
     @submit.prevent="submit"
   >
     <FormInput
-      :error="$v.form['name'].$error"
+      :error="$v.form.name.$error"
       label-for="input-name"
       required
       :title="$t('name')"
     >
       <input
         id="input-name"
-        v-model.trim="$v.form['name'].$model"
+        v-model.trim="$v.form.name.$model"
         class="form-input"
         type="text"
         :placeholder="$t('namePlaceholder')"
         @input="updateSlug"
       />
       <template slot="inputError">
-        <FormError :form="$v.form['name']" validation-property="required">
+        <FormError :form="$v.form.name" validation-property="required">
           {{ $t('globalValidationRequired') }}
         </FormError>
-        <FormError :form="$v.form['name']" validation-property="maxLength">
+        <FormError :form="$v.form.name" validation-property="maxLength">
           {{ $t('globalValidationTooLong') }}
         </FormError>
       </template>
     </FormInput>
     <FormInput
-      :error="$v.form['slug'].$error"
+      :error="$v.form.slug.$error"
       label-for="input-slug"
       required
       :title="$t('slug')"
     >
       <input
         id="input-slug"
-        v-model.trim="$v.form['slug'].$model"
+        v-model.trim="$v.form.slug.$model"
         class="form-input"
         type="text"
         :placeholder="$t('slugPlaceholder')"
       />
       <template slot="inputError">
-        <FormError :form="$v.form['slug']" validation-property="required">
+        <FormError :form="$v.form.slug" validation-property="required">
           {{ $t('globalValidationRequired') }}
         </FormError>
-        <FormError :form="$v.form['slug']" validation-property="maxLength">
+        <FormError :form="$v.form.slug" validation-property="maxLength">
           {{ $t('globalValidationTooLong') }}
         </FormError>
-        <FormError :form="$v.form['slug']" validation-property="formatSlug">
+        <FormError :form="$v.form.slug" validation-property="formatSlug">
           {{ $t('globalValidationFormatIncorrect') }}
         </FormError>
       </template>
     </FormInput>
     <FormInput
-      :error="$v.form['visibility'].$error"
+      :error="$v.form.visibility.$error"
       label-for="input-visibility"
       required
       :title="$t('visibility')"
@@ -68,69 +68,69 @@
           [$t('visibilityPublic'), 'PUBLIC'],
           [$t('visibilityPrivate'), 'PRIVATE'],
         ]"
-        @change="$v.form['visibility'].$model = $event"
+        @change="$v.form.visibility.$model = $event"
       />
       <template slot="inputError">
-        <FormError :form="$v.form['visibility']" validation-property="required">
+        <FormError :form="$v.form.visibility" validation-property="required">
           {{ $t('globalValidationRequired') }}
         </FormError>
       </template>
     </FormInput>
     <FormInput
-      :error="$v.form['start'].$error"
+      :error="$v.form.start.$error"
       label-for="input-start"
       required
       :title="$t('start')"
     >
       <Datetime
-        v-model="$v.form['start'].$model"
+        v-model="$v.form.start.$model"
         input-class="form-input"
         input-id="input-start"
         type="datetime"
       />
     </FormInput>
     <FormInput
-      :error="$v.form['end'].$error"
+      :error="$v.form.end.$error"
       label-for="input-end"
       :title="$t('end')"
     >
       <Datetime
-        v-model="$v.form['end'].$model"
+        v-model="$v.form.end.$model"
         input-class="form-input"
         input-id="input-end"
-        :min-datetime="$v.form['start'].$model"
+        :min-datetime="$v.form.start.$model"
         type="datetime"
       />
     </FormInput>
     <FormInput :title="$t('attendanceType')">
       <FormCheckbox
         form-key="is-in-person"
-        :value="$v.form['is-in-person'].$model"
-        @change="$v.form['is-in-person'].$model = $event"
+        :value="$v.form.isInPerson.$model"
+        @change="$v.form.isInPerson.$model = $event"
       >
         {{ $t('isInPerson') }}
       </FormCheckbox>
       <FormCheckbox
         form-key="is-remote"
-        :value="$v.form['is-remote'].$model"
-        @change="$v.form['is-remote'].$model = $event"
+        :value="$v.form.isRemote.$model"
+        @change="$v.form.isRemote.$model = $event"
       >
         {{ $t('isRemote') }}
       </FormCheckbox>
     </FormInput>
     <FormInput
-      :error="$v.form['location'].$error"
+      :error="$v.form.location.$error"
       label-for="input-location"
       :title="$t('location')"
     >
       <input
         id="input-location"
-        v-model.trim="$v.form['location'].$model"
+        v-model.trim="$v.form.location.$model"
         class="form-input"
         type="text"
       />
       <template slot="inputError">
-        <FormError :form="$v.form['location']" validation-property="maxLength">
+        <FormError :form="$v.form.location" validation-property="maxLength">
           {{ $t('globalValidationTooLong') }}
         </FormError>
       </template>
@@ -139,7 +139,7 @@
       </template>
     </FormInput>
     <FormInput
-      :error="$v.form['description'].$error"
+      :error="$v.form.description.$error"
       label-for="input-description"
       :title="$t('description')"
     >
@@ -153,7 +153,7 @@
         <template slot="front">
           <textarea
             id="input-description"
-            v-model.trim="$v.form['description'].$model"
+            v-model.trim="$v.form.description.$model"
             class="form-input h-full rounded-t-none"
           />
         </template>
@@ -162,10 +162,10 @@
             class="border-2 border-t-0 card border-gray-200 h-full rounded-b"
           >
             <vue-markdown
-              v-if="$v.form['description'].$model"
+              v-if="$v.form.description.$model"
               :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
               class="description h-full maevsi-prose rounded-t-none"
-              :source="$v.form['description'].$model"
+              :source="$v.form.description.$model"
             />
             <div v-else class="h-full text-center">
               {{ $t('previewNoContent') }}
@@ -174,28 +174,25 @@
         </template>
       </TabFlip>
       <template slot="inputError">
-        <FormError
-          :form="$v.form['description']"
-          validation-property="maxLength"
-        >
+        <FormError :form="$v.form.description" validation-property="maxLength">
           {{ $t('globalValidationTooLong') }}
         </FormError>
       </template>
     </FormInput>
     <FormInput
-      :error="$v.form['invitee-count-maximum'].$error"
+      :error="$v.form.inviteeCountMaximum.$error"
       label-for="input-invitee-count-maximum'"
       :title="$t('maximumInviteeCount')"
     >
       <input
         id="input-invitee-count-maximum'"
-        v-model.trim="$v.form['invitee-count-maximum'].$model"
+        v-model.trim="$v.form.inviteeCountMaximum.$model"
         class="form-input"
         type="number"
       />
       <template slot="inputError">
         <FormError
-          :form="$v.form['invitee-count-maximum']"
+          :form="$v.form.inviteeCountMaximum"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
@@ -224,12 +221,12 @@ export default {
       form: {
         description: undefined,
         end: undefined,
-        'is-in-person': undefined,
-        'is-remote': undefined,
-        'invitee-count-maximum': undefined,
+        isInPerson: undefined,
+        isRemote: undefined,
+        inviteeCountMaximum: undefined,
         location: undefined,
         name: undefined,
-        'organizer-username': undefined,
+        organizerUsername: undefined,
         sent: false,
         slug: undefined,
         start: new Date().toISOString(), // workaround for https://github.com/mariomka/vue-datetime/issues/177
@@ -262,11 +259,11 @@ export default {
                 description: this.form.description,
                 end: this.form.end !== '' ? this.form.end : undefined,
                 inviteeCountMaximum:
-                  this.form['invitee-count-maximum'] !== ''
-                    ? +this.form['invitee-count-maximum']
+                  this.form.inviteeCountMaximum !== ''
+                    ? +this.form.inviteeCountMaximum
                     : undefined,
-                isInPerson: this.form['is-in-person'],
-                isRemote: this.form['is-remote'],
+                isInPerson: this.form.isInPerson,
+                isRemote: this.form.isRemote,
                 location:
                   this.form.location !== '' ? this.form.location : undefined,
                 name: this.form.name,
@@ -305,11 +302,11 @@ export default {
           ),
         },
         end: {},
-        'invitee-count-maximum': {
+        inviteeCountMaximum: {
           minValue: minValue(1),
         },
-        'is-in-person': {},
-        'is-remote': {},
+        isInPerson: {},
+        isRemote: {},
         name: {
           maxLength: maxLength(
             this.$global.VALIDATION_EVENT_NAME_LENGTH_MAXIMUM
@@ -322,7 +319,9 @@ export default {
           ),
         },
         slug: {
-          maxLength: maxLength(this.$global.EVENT_SLUG_LENGTH_MAXIMUM),
+          maxLength: maxLength(
+            this.$global.VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM
+          ),
           required,
           formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
         },
