@@ -1,4 +1,4 @@
-mutation($uploadCreateInput: UploadCreateInput!) {
+mutation UploadCreate($uploadCreateInput: UploadCreateInput!) {
   uploadCreate(input: $uploadCreateInput) {
     clientMutationId
     uuid

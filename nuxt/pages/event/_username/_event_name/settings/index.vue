@@ -48,7 +48,7 @@
 
 <script>
 import EVENT_DELETE_MUTATION from '~/gql/mutation/eventDelete'
-import ALL_EVENTS_QUERY from '~/gql/query/allEvents'
+import EVENTS_ALL_QUERY from '~/gql/query/eventsAll'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/eventIsExisting'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/eventByOrganizerUsernameAndSlug'
 
@@ -137,7 +137,7 @@ export default {
     // Just an example. Doesn't respect paramters like a conditional username that is set for this query on event lists on users' profiles.
     // Currently, the apollo fetch policy is `cache-and-network`: https://github.com/maevsi/maevsi/commit/02cbcd9c9a9784e9076c6a360f78a603623c819b#diff-ce51f9f2a4d27fb6594bd8d6dce05dcbca68a6a99999078c96dbab4033472650R247
     updateCacheDelete(store, { data: { _eventDelete } }) {
-      const query = { query: ALL_EVENTS_QUERY }
+      const query = { query: EVENTS_ALL_QUERY }
       let data
 
       try {

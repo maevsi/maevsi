@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import ALL_EVENTS_QUERY from '~/gql/query/allEvents'
+import EVENTS_ALL_QUERY from '~/gql/query/eventsAll'
 
 const consola = require('consola')
 
@@ -42,7 +42,7 @@ export default {
   apollo: {
     allEvents() {
       return {
-        query: ALL_EVENTS_QUERY,
+        query: EVENTS_ALL_QUERY,
         variables: {
           cursor: null,
           limit: this.$global.ITEMS_PER_PAGE,

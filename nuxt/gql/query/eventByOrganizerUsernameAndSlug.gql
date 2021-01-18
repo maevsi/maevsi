@@ -2,7 +2,7 @@
 #import "../fragments/eventFields.gql"
 #import "../fragments/invitationFields.gql"
 
-query($organizerUsername: String!, $slug: String!) {
+query EventByOrganizerUsernameAndSlug($organizerUsername: String!, $slug: String!) {
   eventByOrganizerUsernameAndSlug(
     organizerUsername: $organizerUsername
     slug: $slug

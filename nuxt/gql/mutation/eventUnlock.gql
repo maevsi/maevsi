@@ -1,4 +1,4 @@
-mutation($invitationCode: UUID!) {
+mutation EventUnlock($invitationCode: UUID!) {
   eventUnlock(input: { invitationCode: $invitationCode }) {
     eventUnlockResponse {
       eventSlug

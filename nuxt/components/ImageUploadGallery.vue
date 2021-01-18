@@ -125,7 +125,7 @@ import Uppy from '@uppy/core'
 import Tus from '@uppy/tus'
 import prettyBytes from 'pretty-bytes'
 
-import ALL_UPLOADS_QUERY from '~/gql/query/allUploads'
+import UPLOADS_ALL_QUERY from '~/gql/query/uploadsAll'
 import UPLOAD_CREATE_MUTATION from '~/gql/mutation/uploadCreate'
 
 require('@uppy/core/dist/style.css')
@@ -136,7 +136,7 @@ export default {
   apollo: {
     allUploads() {
       return {
-        query: ALL_UPLOADS_QUERY,
+        query: UPLOADS_ALL_QUERY,
         variables: {
           cursor: null,
           limit: this.$global.ITEMS_PER_PAGE,

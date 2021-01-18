@@ -1,4 +1,4 @@
-mutation($emailAddress: String!, $password: String!, $username: String!) {
+mutation AccountRegister($emailAddress: String!, $password: String!, $username: String!) {
   accountRegister(
     input: {
       emailAddress: $emailAddress

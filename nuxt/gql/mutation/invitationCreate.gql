@@ -1,6 +1,6 @@
 #import "../fragments/contactFields.gql"
 
-mutation($invitationInput: InvitationInput!) {
+mutation InvitationCreate($invitationInput: InvitationInput!) {
   createInvitation(input: { invitation: $invitationInput }) {
     invitation {
       contactByContactId {

@@ -1,6 +1,6 @@
 #import "../fragments/eventFields.gql"
 
-query($cursor: Cursor, $limit: Int!, $username: String) {
+query EventsAll($cursor: Cursor, $limit: Int!, $username: String) {
   allEvents(
     after: $cursor
     condition: { organizerUsername: $username }

@@ -1,6 +1,6 @@
 #import "../fragments/uploadFields.gql"
 
-query($cursor: Cursor, $limit: Int!, $username: String) {
+query uploadsAll($cursor: Cursor, $limit: Int!, $username: String) {
   allUploads(after: $cursor, condition: { username: $username }, first: $limit)
     @connection(filter: ["condition"], key: "allUploads") {
     nodes {

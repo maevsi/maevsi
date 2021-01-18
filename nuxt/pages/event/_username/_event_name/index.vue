@@ -185,7 +185,7 @@ import VueMarkdown from 'vue-markdown-konishi'
 
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/eventByOrganizerUsernameAndSlug'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/eventIsExisting'
-import UPDATE_INVITATION_BY_ID_MUTATION from '~/gql/mutation/updateInvitationById'
+import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitationUpdateById'
 
 const consola = require('consola')
 
@@ -303,7 +303,7 @@ export default {
     update(id, invitationPatch) {
       this.$apollo
         .mutate({
-          mutation: UPDATE_INVITATION_BY_ID_MUTATION,
+          mutation: INVITATION_UPDATE_BY_ID_MUTATION,
           variables: {
             id,
             invitationPatch,

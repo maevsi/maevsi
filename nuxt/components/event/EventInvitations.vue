@@ -90,7 +90,7 @@
 
 <script>
 import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitationDelete'
-import ALL_INVITATIONS_QUERY from '~/gql/query/allInvitations'
+import INVITATIONS_ALL_QUERY from '~/gql/query/invitationsAll'
 
 const consola = require('consola')
 
@@ -98,7 +98,7 @@ export default {
   apollo: {
     allInvitations() {
       return {
-        query: ALL_INVITATIONS_QUERY,
+        query: INVITATIONS_ALL_QUERY,
         variables: {
           eventId: +this.event.id,
         },

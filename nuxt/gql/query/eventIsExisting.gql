@@ -1,3 +1,3 @@
-query($organizerUsername: String!, $slug: String!) {
+query EventIsExisting($organizerUsername: String!, $slug: String!) {
   eventIsExisting(organizerUsername: $organizerUsername, slug: $slug)
 }

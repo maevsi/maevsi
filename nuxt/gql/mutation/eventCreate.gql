@@ -1,6 +1,6 @@
 #import "../fragments/eventFields.gql"
 
-mutation($createEventInput: CreateEventInput!) {
+mutation EventCreate($createEventInput: CreateEventInput!) {
   createEvent(input: $createEventInput) {
     event {
       ...eventFields
