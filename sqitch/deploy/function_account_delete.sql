@@ -9,7 +9,7 @@
 BEGIN;
 
 CREATE FUNCTION maevsi.account_delete(
-  password TEXT
+  "password" TEXT
 ) RETURNS VOID AS $$
 DECLARE
   _current_username TEXT;
