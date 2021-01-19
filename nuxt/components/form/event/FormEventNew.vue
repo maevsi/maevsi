@@ -21,12 +21,18 @@
         @input="updateSlug"
       />
       <template slot="inputError">
-        <FormError :form="$v.form.name" validation-property="required">
+        <FormInputError
+          :form-input="$v.form.name"
+          validation-property="required"
+        >
           {{ $t('globalValidationRequired') }}
-        </FormError>
-        <FormError :form="$v.form.name" validation-property="maxLength">
+        </FormInputError>
+        <FormInputError
+          :form-input="$v.form.name"
+          validation-property="maxLength"
+        >
           {{ $t('globalValidationTooLong') }}
-        </FormError>
+        </FormInputError>
       </template>
     </FormInput>
     <FormInput
@@ -43,15 +49,24 @@
         :placeholder="$t('slugPlaceholder')"
       />
       <template slot="inputError">
-        <FormError :form="$v.form.slug" validation-property="required">
+        <FormInputError
+          :form-input="$v.form.slug"
+          validation-property="required"
+        >
           {{ $t('globalValidationRequired') }}
-        </FormError>
-        <FormError :form="$v.form.slug" validation-property="maxLength">
+        </FormInputError>
+        <FormInputError
+          :form-input="$v.form.slug"
+          validation-property="maxLength"
+        >
           {{ $t('globalValidationTooLong') }}
-        </FormError>
-        <FormError :form="$v.form.slug" validation-property="formatSlug">
+        </FormInputError>
+        <FormInputError
+          :form-input="$v.form.slug"
+          validation-property="formatSlug"
+        >
           {{ $t('globalValidationFormatIncorrect') }}
-        </FormError>
+        </FormInputError>
       </template>
     </FormInput>
     <FormInput
@@ -71,9 +86,12 @@
         @change="$v.form.visibility.$model = $event"
       />
       <template slot="inputError">
-        <FormError :form="$v.form.visibility" validation-property="required">
+        <FormInputError
+          :form-input="$v.form.visibility"
+          validation-property="required"
+        >
           {{ $t('globalValidationRequired') }}
-        </FormError>
+        </FormInputError>
       </template>
     </FormInput>
     <FormInput
@@ -130,9 +148,12 @@
         type="text"
       />
       <template slot="inputError">
-        <FormError :form="$v.form.location" validation-property="maxLength">
+        <FormInputError
+          :form-input="$v.form.location"
+          validation-property="maxLength"
+        >
           {{ $t('globalValidationTooLong') }}
-        </FormError>
+        </FormInputError>
       </template>
       <template slot="inputInfo">
         {{ $t('inputLocationInfo') }}
@@ -174,9 +195,12 @@
         </template>
       </TabFlip>
       <template slot="inputError">
-        <FormError :form="$v.form.description" validation-property="maxLength">
+        <FormInputError
+          :form-input="$v.form.description"
+          validation-property="maxLength"
+        >
           {{ $t('globalValidationTooLong') }}
-        </FormError>
+        </FormInputError>
       </template>
     </FormInput>
     <FormInput
@@ -191,12 +215,12 @@
         type="number"
       />
       <template slot="inputError">
-        <FormError
-          :form="$v.form.inviteeCountMaximum"
+        <FormInputError
+          :form-input="$v.form.inviteeCountMaximum"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
-        </FormError>
+        </FormInputError>
       </template>
     </FormInput>
   </Form>

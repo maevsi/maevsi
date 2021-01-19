@@ -40,9 +40,12 @@
         :placeholder="$t('globalPlaceholderFirstName')"
       />
       <template slot="inputError">
-        <FormError :form="$v.form.firstName" validation-property="maxLength">
+        <FormInputError
+          :form-input="$v.form.firstName"
+          validation-property="maxLength"
+        >
           {{ $t('globalValidationTooLong') }}
-        </FormError>
+        </FormInputError>
       </template>
     </FormInput>
     <FormInput
@@ -58,9 +61,12 @@
         :placeholder="$t('globalPlaceholderLastName')"
       />
       <template slot="inputError">
-        <FormError :form="$v.form.lastName" validation-property="maxLength">
+        <FormInputError
+          :form-input="$v.form.lastName"
+          validation-property="maxLength"
+        >
           {{ $t('globalValidationTooLong') }}
-        </FormError>
+        </FormInputError>
       </template>
     </FormInput>
     <FormInputEmailAddress
@@ -81,9 +87,12 @@
         rows="2"
       />
       <template slot="inputError">
-        <FormError :form="$v.form.address" validation-property="maxLength">
+        <FormInputError
+          :form-input="$v.form.address"
+          validation-property="maxLength"
+        >
           {{ $t('globalValidationTooLong') }}
-        </FormError>
+        </FormInputError>
       </template>
     </FormInput>
   </Form>

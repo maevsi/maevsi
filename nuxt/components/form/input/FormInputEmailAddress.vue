@@ -14,19 +14,19 @@
       @input="$emit('input', $event.target.value)"
     />
     <template slot="inputError">
-      <FormError :form="formElement" validation-property="email">
+      <FormInputError :form-input="formElement" validation-property="email">
         {{ $t('globalValidationFormatIncorrect') }}
-      </FormError>
-      <FormError :form="formElement" validation-property="maxLength">
+      </FormInputError>
+      <FormInputError :form-input="formElement" validation-property="maxLength">
         {{ $t('globalValidationTooLong') }}
-      </FormError>
-      <FormError
+      </FormInputError>
+      <FormInputError
         v-if="required"
-        :form="formElement"
+        :form-input="formElement"
         validation-property="required"
       >
         {{ $t('globalValidationRequired') }}
-      </FormError>
+      </FormInputError>
     </template>
   </FormInput>
 </template>

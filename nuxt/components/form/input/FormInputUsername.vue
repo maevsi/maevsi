@@ -14,15 +14,24 @@
       @input="$emit('input', $event.target.value)"
     />
     <template slot="inputError">
-      <FormError :form="v.form[formKeyComputed]" validation-property="required">
-        {{ $t('globalValidationRequired') }}
-      </FormError>
-      <FormError
-        :form="v.form[formKeyComputed]"
+      <FormInputError
+        :form-input="v.form[formKeyComputed]"
+        validation-property="existence"
+      >
+        {{ $t('globalValidationExistence') }}
+      </FormInputError>
+      <FormInputError
+        :form-input="v.form[formKeyComputed]"
         validation-property="formatSlug"
       >
         {{ $t('globalValidationFormatIncorrect') }}
-      </FormError>
+      </FormInputError>
+      <FormInputError
+        :form-input="v.form[formKeyComputed]"
+        validation-property="required"
+      >
+        {{ $t('globalValidationRequired') }}
+      </FormInputError>
     </template>
   </FormInput>
 </template>

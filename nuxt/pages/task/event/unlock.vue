@@ -34,18 +34,18 @@
           </div>
         </template>
         <template slot="inputError">
-          <FormError
-            :form="$v.form.invitationCode"
+          <FormInputError
+            :form-input="$v.form.invitationCode"
             validation-property="required"
           >
             {{ $t('globalValidationRequired') }}
-          </FormError>
-          <FormError
-            :form="$v.form.invitationCode"
+          </FormInputError>
+          <FormInputError
+            :form-input="$v.form.invitationCode"
             validation-property="formatUuid"
           >
             {{ $t('globalValidationFormatIncorrect') }}
-          </FormError>
+          </FormInputError>
         </template>
       </FormInput>
     </Form>

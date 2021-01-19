@@ -1,6 +1,10 @@
 <template>
   <div
-    v-if="form.$error && !form[validationProperty]"
+    v-if="
+      formInput.$error &&
+      validationProperty in formInput &&
+      !formInput[validationProperty]
+    "
     class="text-red-600 text-left"
   >
     <slot />
@@ -10,7 +14,7 @@
 <script>
 export default {
   props: {
-    form: {
+    formInput: {
       default: undefined,
       type: Object,
     },
