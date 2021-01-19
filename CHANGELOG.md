@@ -1,3 +1,17 @@
+# [0.47.0](https://github.com/maevsi/maevsi/compare/0.46.1...0.47.0) (2021-01-19)
+
+
+### Bug Fixes
+
+* **auth:** correctly show access permissions for account & event ([d6800c1](https://github.com/maevsi/maevsi/commit/d6800c1dc09d816216324087af03496d577f55e9)), closes [#194](https://github.com/maevsi/maevsi/issues/194)
+* **event:** set empty fields to null instead of undefined ([8d1a3ab](https://github.com/maevsi/maevsi/commit/8d1a3ab62e9ef6d9014343f79cb31447762d566e))
+* **modal:** correct alert card margin ([6bb65b8](https://github.com/maevsi/maevsi/commit/6bb65b8629a4e388089b3ccc0fb201c2fbfd4be2))
+
+
+### Features
+
+* **invitation:** allow edits, show username ([6d573ca](https://github.com/maevsi/maevsi/commit/6d573cab04e719f3222d0ec999a2c0a890b7ccfd)), closes [#191](https://github.com/maevsi/maevsi/issues/191) [#192](https://github.com/maevsi/maevsi/issues/192)
+
 ## [0.46.1](https://github.com/maevsi/maevsi/compare/0.46.0...0.46.1) (2021-01-18)
 
 
