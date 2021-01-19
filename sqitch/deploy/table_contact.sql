@@ -14,8 +14,7 @@ CREATE TABLE maevsi.contact (
   first_name                  TEXT CHECK (char_length(first_name) > 0 AND char_length(first_name) < 100),
   last_name                   TEXT CHECK (char_length(last_name) > 0 AND char_length(last_name) < 100),
   "address"                   TEXT CHECK (char_length("address") > 0 AND char_length("address") < 300),
-  creator_account_username    TEXT REFERENCES maevsi_private.account(username) ON DELETE CASCADE NOT NULL,
-  CONSTRAINT chk_either_account_or_email_address CHECK (num_nonnulls(account_username, email_address) = 1)
+  creator_account_username    TEXT REFERENCES maevsi_private.account(username) ON DELETE CASCADE NOT NULL
 );
 
 COMMENT ON TABLE maevsi.contact IS 'Contact data.';

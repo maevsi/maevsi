@@ -7,11 +7,25 @@
     :submit-name="$t('save')"
     @submit.prevent="submit"
   >
+    <FormInput
+      class="hidden"
+      :error="$v.form.id.$error"
+      label-for="input-id"
+      title="id"
+    >
+      <input
+        id="input-id"
+        v-model.trim="$v.form.id.$model"
+        class="form-input"
+        type="number"
+        placeholder="id"
+      />
+    </FormInput>
     <FormInputUsername
       id="username"
-      form-key="username"
+      form-key="accountUsername"
       :v="$v"
-      @input="$v.form.username.$model = $event"
+      @input="$v.form.accountUsername.$model = $event"
     />
     <FormInput
       :error="$v.form.firstName.$error"
@@ -79,6 +93,7 @@
 import { email, maxLength } from 'vuelidate/lib/validators'
 
 import CONTACT_CREATE_MUTATION from '~/gql/mutation/contact/contactCreate'
+import CONTACT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/contact/contactUpdateById'
 import INVITATION_CREATE_MUTATION from '~/gql/mutation/invitation/invitationCreate'
 
 const consola = require('consola')
@@ -101,20 +116,28 @@ export default {
   data() {
     return {
       form: {
+        sent: false,
+        id: undefined,
+        accountUsername: undefined,
         address: undefined,
         emailAddress: undefined,
         firstName: undefined,
         lastName: undefined,
-        sent: false,
-        username: undefined,
       },
       graphqlErrorMessage: undefined,
       mounted: false,
     }
   },
-  mounted() {
+  created() {
     if (this.dataInitial) {
-      ;['address', 'emailAddress', 'firstName', 'lastName', 'username'].forEach(
+      ;[
+        'id',
+        'accountUsername',
+        'address',
+        'emailAddress',
+        'firstName',
+        'lastName',
+      ].forEach(
         (property) =>
           (this.$v.form[property].$model = this.dataInitial[property])
       )
@@ -128,53 +151,97 @@ export default {
         this.form.sent = true
         this.graphqlErrorMessage = undefined
         this.$v.form.$reset()
-        this.$apollo
-          .mutate({
-            mutation: CONTACT_CREATE_MUTATION,
-            variables: {
-              contactInput: {
-                address:
-                  this.form.address === '' ? undefined : this.form.address,
-                creatorAccountUsername: this.$store.state.jwtDecoded.username,
-                emailAddress:
-                  this.form.emailAddress === ''
-                    ? undefined
-                    : this.form.emailAddress,
-                firstName:
-                  this.form.firstName === '' ? undefined : this.form.firstName,
-                lastName:
-                  this.form.lastName === '' ? undefined : this.form.lastName,
-              },
-            },
-          })
-          .then(({ data }) => {
-            this.$apollo
-              .mutate({
-                mutation: INVITATION_CREATE_MUTATION,
-                variables: {
-                  invitationInput: {
-                    contactId: +data.createContact.contact.id,
-                    eventId: +this.event.id,
-                  },
+
+        if (this.form.id) {
+          // Edit
+          this.$apollo
+            .mutate({
+              mutation: CONTACT_UPDATE_BY_ID_MUTATION,
+              variables: {
+                id: this.form.id,
+                contactPatch: {
+                  accountUsername:
+                    this.form.accountUsername === ''
+                      ? null
+                      : this.form.accountUsername,
+                  address: this.form.address === '' ? null : this.form.address,
+                  creatorAccountUsername: this.$store.state.jwtDecoded.username,
+                  emailAddress:
+                    this.form.emailAddress === ''
+                      ? null
+                      : this.form.emailAddress,
+                  firstName:
+                    this.form.firstName === '' ? null : this.form.firstName,
+                  lastName:
+                    this.form.lastName === '' ? null : this.form.lastName,
                 },
-              })
-              .then((value) => {
-                alert(
-                  this.$global.capitalizeFirstLetter(
-                    this.$t('success', { item: this.itemName })
-                  )
+              },
+            })
+            .then((value) => {
+              alert(
+                this.$global.capitalizeFirstLetter(
+                  this.$t('success', { item: this.itemName })
                 )
-                resolve(value)
-              })
-              .catch((reason) => {
-                this.graphqlErrorMessage = reason.toString()
-                reject(reason)
-              })
-          })
-          .catch((reason) => {
-            this.graphqlErrorMessage = reason.toString()
-            reject(reason)
-          })
+              )
+              resolve(value)
+            })
+            .catch((reason) => {
+              this.graphqlErrorMessage = reason.toString()
+              reject(reason)
+            })
+        } else {
+          // Add
+          this.$apollo
+            .mutate({
+              mutation: CONTACT_CREATE_MUTATION,
+              variables: {
+                contactInput: {
+                  accountUsername:
+                    this.form.accountUsername === ''
+                      ? null
+                      : this.form.accountUsername,
+                  address: this.form.address === '' ? null : this.form.address,
+                  creatorAccountUsername: this.$store.state.jwtDecoded.username,
+                  emailAddress:
+                    this.form.emailAddress === ''
+                      ? null
+                      : this.form.emailAddress,
+                  firstName:
+                    this.form.firstName === '' ? null : this.form.firstName,
+                  lastName:
+                    this.form.lastName === '' ? null : this.form.lastName,
+                },
+              },
+            })
+            .then(({ data }) => {
+              this.$apollo
+                .mutate({
+                  mutation: INVITATION_CREATE_MUTATION,
+                  variables: {
+                    invitationInput: {
+                      contactId: +data.createContact.contact.id,
+                      eventId: +this.event.id,
+                    },
+                  },
+                })
+                .then((value) => {
+                  alert(
+                    this.$global.capitalizeFirstLetter(
+                      this.$t('success', { item: this.itemName })
+                    )
+                  )
+                  resolve(value)
+                })
+                .catch((reason) => {
+                  this.graphqlErrorMessage = reason.toString()
+                  reject(reason)
+                })
+            })
+            .catch((reason) => {
+              this.graphqlErrorMessage = reason.toString()
+              reject(reason)
+            })
+        }
       })
     },
     async submit() {
@@ -186,6 +253,11 @@ export default {
   validations() {
     return {
       form: {
+        id: {},
+        accountUsername: {
+          formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(this.$global.VALIDATION_USERNAME_LENGTH_MAXIMUM),
+        },
         address: {
           maxLength: maxLength(this.$global.VALIDATION_ADDRESS_LENGTH_MAXIMUM),
         },
@@ -204,10 +276,6 @@ export default {
           maxLength: maxLength(
             this.$global.VALIDATION_LAST_NAME_LENGTH_MAXIMUM
           ),
-        },
-        username: {
-          formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$global.VALIDATION_USERNAME_LENGTH_MAXIMUM),
         },
       },
     }

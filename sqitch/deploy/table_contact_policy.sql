@@ -21,12 +21,19 @@ CREATE POLICY contact_select ON maevsi.contact FOR SELECT USING (
   OR  id IN (SELECT maevsi.invitation_contact_ids())
 );
 
--- Only allow inserts for contacts created for the own user.
+-- Only allow inserts for contacts created by the own user.
 CREATE POLICY contact_insert ON maevsi.contact FOR INSERT WITH CHECK (
-      current_setting('jwt.claims.username', true)::TEXT != ''
-  AND creator_account_username = current_setting('jwt.claims.username', true)::TEXT
+  creator_account_username = current_setting('jwt.claims.username', true)::TEXT
 );
 
--- TODO: For update prevent users from setting a different username for their very own account's contact.
+-- Only allow updates for contacts created by the own user.
+CREATE POLICY contact_update ON maevsi.contact FOR UPDATE USING (
+  creator_account_username = current_setting('jwt.claims.username', true)::TEXT
+);
+
+-- Only allow deletes for contacts created by the own user.
+CREATE POLICY contact_delete ON maevsi.contact FOR DELETE USING (
+  creator_account_username = current_setting('jwt.claims.username', true)::TEXT
+);
 
 COMMIT;

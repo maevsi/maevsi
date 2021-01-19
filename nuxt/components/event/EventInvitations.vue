@@ -31,7 +31,7 @@
             'animate-pulse': pending.deletions.includes(invitation.uuid),
           }"
         >
-          <td class="border">{{ invitation.username }}</td>
+          <td class="border">{{ invitation.accountUsername }}</td>
           <td class="border">{{ invitation.firstName }}</td>
           <td class="border">{{ invitation.lastName }}</td>
           <td class="border">{{ invitation.emailAddress }}</td>
@@ -42,9 +42,21 @@
           <td class="border font-mono">
             <div class="flex items-center justify-evenly">
               <ButtonTableInteraction
-                v-if="!invitation.username"
-                :disabled="pending.edits.includes(invitation.uuid)"
+                :disabled="
+                  invitation.creatorAccountUsername !==
+                    $store.state.signedInUsername ||
+                  pending.edits.includes(invitation.uuid)
+                "
                 :icon-id="['fas', 'edit']"
+                :title="
+                  invitation.creatorAccountUsername !==
+                  $store.state.signedInUsername
+                    ? $t('disabledReasonCreatorNot', {
+                        creatorAccountUsername:
+                          invitation.creatorAccountUsername,
+                      })
+                    : undefined
+                "
                 @click="edit(invitation)"
               />
               <ButtonTableInteraction
@@ -137,11 +149,13 @@ export default {
 
           if (invitation.contactByContactId) {
             ;[
+              'id',
+              'accountUsername',
               'address',
+              'creatorAccountUsername',
               'emailAddress',
               'firstName',
               'lastName',
-              'username',
             ].forEach(
               (property) =>
                 (invitationFlattened[property] =
@@ -191,6 +205,7 @@ export default {
 <i18n lang="yml">
 de:
   address: 'Adresse'
+  disabledReasonCreatorNot: 'Dieser Kontakt wird von {creatorAccountUsername} verwaltet.'
   emailAddress: 'E-Mail Adresse'
   firstName: 'Vorname'
   invitationAdd: 'Einladung hinzufügen'
@@ -202,6 +217,7 @@ de:
   username: 'Nutzername'
 en:
   address: 'Address'
+  disabledReasonCreatorNot: 'This contact is being managed by {creatorAccountUsername}.'
   emailAddress: 'Email address'
   firstName: 'First name'
   invitationAdd: 'Add invitation'
