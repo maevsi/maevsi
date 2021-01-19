@@ -33,7 +33,7 @@
             </ButtonGreen>
           </slot>
         </div>
-        <CardAlert class="mt-4" :error-message="errorMessage" />
+        <CardAlert class="mb-4" :error-message="errorMessage" />
       </div>
     </div>
   </div>
