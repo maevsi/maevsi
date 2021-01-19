@@ -76,34 +76,24 @@
         <div class="flex flex-col mx-8 xl:mx-16 self-stretch">
           <MenuItem
             :icon-id="['fas', 'user']"
-            :to="
-              localePath(
-                `/account/${
-                  signedInUsername === undefined ? '' : signedInUsername
-                }`
-              )
-            "
+            :to="localePath(`/account/${$store.state.signedInUsername || ''}`)"
             @click="menuHide()"
           >
-            {{
-              signedInUsername === undefined ? $t('account') : signedInUsername
-            }}
-            <template v-if="signedInUsername" slot="image">
+            {{ $store.state.signedInUsername || $t('account') }}
+            <template v-if="$store.state.signedInUsername" slot="image">
               <ProfilePicture
                 class="h-full p-2 w-full"
                 rounded
-                :username="signedInUsername"
+                :username="$store.state.signedInUsername"
               />
             </template>
           </MenuItem>
-          <template v-if="signedInUsername !== undefined">
+          <template v-if="$store.state.signedInUsername">
             <MenuItem
               :icon-id="['fas', 'cog']"
               :to="
                 localePath(
-                  `/account/${
-                    signedInUsername === undefined ? '' : signedInUsername
-                  }/settings`
+                  `/account/${$store.state.signedInUsername || ''}/settings`
                 )
               "
               @click="menuHide()"
@@ -163,13 +153,6 @@ export default {
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
-    },
-    signedInUsername() {
-      return this.$store.state.jwtDecoded &&
-        this.$store.state.jwtDecoded.role === 'maevsi_account' &&
-        this.$store.state.jwtDecoded.exp > Math.floor(Date.now() / 1000)
-        ? this.$store.state.jwtDecoded.username
-        : undefined
     },
   },
   beforeCreate() {

@@ -3,8 +3,9 @@
 import { decode } from 'jsonwebtoken'
 
 export const state = () => ({
-  jwt: null,
-  jwtDecoded: null,
+  jwt: undefined,
+  jwtDecoded: undefined,
+  signedInUsername: undefined,
 })
 
 export const mutations = {
@@ -12,7 +13,15 @@ export const mutations = {
     this.setJwt(state, null)
   },
   setJwt(state, jwt) {
+    const jwtDecoded = decode(jwt)
+
     state.jwt = jwt
     state.jwtDecoded = decode(jwt)
+    state.signedInUsername =
+      jwtDecoded &&
+      jwtDecoded.role === 'maevsi_account' &&
+      jwtDecoded.exp > Math.floor(Date.now() / 1000)
+        ? jwtDecoded.username
+        : null
   },
 }

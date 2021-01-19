@@ -235,15 +235,6 @@ export default {
       graphqlErrorMessage: undefined,
     }
   },
-  computed: {
-    signedInUsername() {
-      return this.$store.state.jwtDecoded &&
-        this.$store.state.jwtDecoded.role === 'maevsi_account' &&
-        this.$store.state.jwtDecoded.exp > Math.floor(Date.now() / 1000)
-        ? this.$store.state.jwtDecoded.username
-        : undefined
-    },
-  },
   methods: {
     submit() {
       this.form.sent = true
@@ -267,7 +258,7 @@ export default {
                 location:
                   this.form.location !== '' ? this.form.location : undefined,
                 name: this.form.name,
-                organizerUsername: this.signedInUsername,
+                organizerUsername: this.$store.state.signedInUsername,
                 slug: this.form.slug,
                 start: this.form.start,
                 visibility: this.form.visibility,
@@ -278,7 +269,9 @@ export default {
         .then((_value) => {
           alert(this.$t('eventCreateSuccess'))
           this.$router.push(
-            this.localePath(`/event/${this.signedInUsername}/${this.form.slug}`)
+            this.localePath(
+              `/event/${this.$store.state.signedInUsername}/${this.form.slug}`
+            )
           )
         })
         .catch((reason) => {

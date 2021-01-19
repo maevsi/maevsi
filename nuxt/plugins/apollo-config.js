@@ -23,7 +23,7 @@ export default ({ req, store }) => {
         jwt = store.state.jwt
       }
 
-      if (jwt !== null) {
+      if (jwt) {
         consola.debug('Apollo request authenticated with: ' + jwt)
         return `Bearer ${jwt}`
       } else {
