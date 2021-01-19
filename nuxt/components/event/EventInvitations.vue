@@ -83,6 +83,9 @@
     <Modal
       ref="modal"
       cancellable
+      :is-submit-disabled="
+        $refs.formEventInvitation && $refs.formEventInvitation.$v.form.$invalid
+      "
       :submit-name="$t('save')"
       :submit-task-provider="() => $refs.formEventInvitation.getSubmitPromise()"
       @submitSuccess="$apollo.queries.allInvitations.refetch()"

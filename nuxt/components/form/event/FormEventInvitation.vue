@@ -264,6 +264,7 @@ export default {
       form: {
         id: {},
         accountUsername: {
+          existence: this.$global.validateUsername(this.$apollo),
           formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
           maxLength: maxLength(this.$global.VALIDATION_USERNAME_LENGTH_MAXIMUM),
         },

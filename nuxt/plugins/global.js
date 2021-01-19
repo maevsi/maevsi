@@ -4,6 +4,7 @@ import { helpers } from 'vuelidate/lib/validators'
 
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate'
 import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh'
+import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting'
 
 const consola = require('consola')
 
@@ -195,6 +196,25 @@ export async function storeJwt(
   }
 }
 
+export function validateUsername(apollo) {
+  return async (value) => {
+    if (!helpers.req(value)) {
+      return true
+    }
+
+    const {
+      data: { accountIsExisting },
+    } = await apollo.query({
+      query: ACCOUNT_IS_EXISTING_MUTATION,
+      variables: {
+        username: value,
+      },
+    })
+
+    return accountIsExisting
+  }
+}
+
 export function xhrPromise(method, url, jwt) {
   return new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest()
@@ -258,6 +278,7 @@ export default async ({ app, req, res, store }, inject) => {
     objectClone,
     removeTypename,
     storeJwt,
+    validateUsername,
     xhrPromise,
   }
 

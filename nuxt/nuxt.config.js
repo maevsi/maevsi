@@ -232,6 +232,7 @@ export default {
               globalPlaceholderFirstName: 'Vorname',
               globalPlaceholderLastName: 'Nachname',
               globalPlaceholderUsername: 'nutzer-name',
+              globalValidationExistence: 'Existiert nicht.',
               globalValidationFormatIncorrect: 'Falsches Format.',
               globalValidationMinValue: 'Wert zu gering.',
               globalValidationRequired: 'Pflichtfeld.',
@@ -250,6 +251,7 @@ export default {
               globalPlaceholderFirstName: 'Firstname',
               globalPlaceholderLastName: 'Lastname',
               globalPlaceholderUsername: 'user-name',
+              globalValidationExistence: 'Does not exist.',
               globalValidationFormatIncorrect: 'Incorrect format.',
               globalValidationMinValue: 'Under minimum value.',
               globalValidationRequired: 'Required.',
@@ -298,6 +300,7 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/baseUrl.js',
+    '~/plugins/dynamicReactiveRefs.js',
     '~/plugins/global.js',
     '~/plugins/htmlToText.js',
     '~/plugins/i18n.js',
