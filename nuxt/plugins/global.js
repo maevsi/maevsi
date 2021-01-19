@@ -141,11 +141,11 @@ export async function jwtRefresh(apolloClient, store, res, id) {
       signOut(apolloClient, store, res)
     })
 
-  if (!jwtRefreshData) {
-    return
+  if (!jwtRefreshData.jwt) {
+    await authenticateAnonymous(apolloClient, store, res)
+  } else {
+    await storeJwt(apolloClient, store, res, jwtRefreshData.jwt)
   }
-
-  await storeJwt(apolloClient, store, res, jwtRefreshData.jwt)
 }
 
 async function signOut(apolloClient, store, res) {
@@ -287,6 +287,7 @@ export default async ({ app, req, res, store }, inject) => {
   // Either authenticate anonymously or refresh token on page load.
   if (process.server) {
     const jwtData = getJwtFromCookie(req)
+
     if (jwtData) {
       await jwtRefresh(
         app.apolloProvider.defaultClient,

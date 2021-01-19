@@ -1,8 +1,6 @@
-import { getJwtFromCookie } from './global'
-
 const consola = require('consola')
 
-export default ({ req, store }) => {
+export default ({ store }) => {
   return {
     httpEndpoint: process.server
       ? 'http://postgraphile:5000/graphql'
@@ -10,18 +8,7 @@ export default ({ req, store }) => {
         (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
         '/graphql',
     getAuth: (_tokenName) => {
-      let jwt = store.state.jwt
-
-      if (process.server) {
-        // Server.
-        const jwtData = getJwtFromCookie(req)
-        if (jwtData) {
-          jwt = jwtData.jwt
-        }
-      } else {
-        // Client.
-        jwt = store.state.jwt
-      }
+      const jwt = store.state.jwt
 
       if (jwt) {
         consola.debug('Apollo request authenticated with: ' + jwt)
