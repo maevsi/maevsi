@@ -248,15 +248,14 @@ export default {
             createEventInput: {
               event: {
                 description: this.form.description,
-                end: this.form.end !== '' ? this.form.end : undefined,
+                end: this.form.end !== '' ? this.form.end : null,
                 inviteeCountMaximum:
                   this.form.inviteeCountMaximum !== ''
                     ? +this.form.inviteeCountMaximum
-                    : undefined,
+                    : null,
                 isInPerson: this.form.isInPerson,
                 isRemote: this.form.isRemote,
-                location:
-                  this.form.location !== '' ? this.form.location : undefined,
+                location: this.form.location !== '' ? this.form.location : null,
                 name: this.form.name,
                 organizerUsername: this.$store.state.signedInUsername,
                 slug: this.form.slug,
