@@ -12,7 +12,7 @@ CREATE FUNCTION maevsi.event_is_existing(
   slug TEXT
 ) RETURNS BOOLEAN AS $$
 BEGIN
-  IF (EXISTS (SELECT 1 FROM maevsi.event WHERE event.organizer_username = $1 AND event.slug = $2)) THEN
+  IF (EXISTS (SELECT 1 FROM maevsi.event WHERE "event".organizer_username = $1 AND "event".slug = $2)) THEN
     RETURN TRUE;
   ELSE
     RETURN FALSE;

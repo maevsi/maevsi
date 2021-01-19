@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="$route.params.username === $store.state.signedInUsername">
     <div
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
@@ -41,19 +41,25 @@
       />
     </section>
   </div>
+  <Error v-else :status-code="403" />
 </template>
 
 <script>
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete'
+import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting'
 
 export default {
-  middleware({ app, store, redirect, route }) {
-    if (
-      !app.$global.getNested(store.state.jwtDecoded, 'username') ||
-      store.state.jwtDecoded.username !== route.params.username
-    ) {
-      return redirect({ append: true, path: '..' })
-    }
+  async validate({ app, params }) {
+    const {
+      data: { accountIsExisting },
+    } = await app.apolloProvider.defaultClient.query({
+      query: ACCOUNT_IS_EXISTING_MUTATION,
+      variables: {
+        username: params.username,
+      },
+    })
+
+    return accountIsExisting
   },
   data() {
     return {
@@ -61,7 +67,12 @@ export default {
     }
   },
   head() {
-    return { title: this.$route.params.username }
+    return {
+      title:
+        this.$route.params.username === this.$store.state.signedInUsername
+          ? this.$route.params.username
+          : '403',
+    }
   },
   methods: {
     reloadProfilePicture() {

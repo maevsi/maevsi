@@ -18,9 +18,20 @@
 </template>
 
 <script>
+import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting'
+
 export default {
-  validate({ app, params }) {
-    return app.$global.REGEX_SLUG.test(params.username)
+  async validate({ app, params }) {
+    const {
+      data: { accountIsExisting },
+    } = await app.apolloProvider.defaultClient.query({
+      query: ACCOUNT_IS_EXISTING_MUTATION,
+      variables: {
+        username: params.username,
+      },
+    })
+
+    return accountIsExisting
   },
   head() {
     return {
