@@ -1,3 +1,10 @@
+# [0.50.0](https://github.com/maevsi/maevsi/compare/0.49.0...0.50.0) (2021-01-20)
+
+
+### Features
+
+* **event:** allow to edit events ([5248596](https://github.com/maevsi/maevsi/commit/52485963cb28d61a4a3a3cc937b21afe29687b5b)), closes [#207](https://github.com/maevsi/maevsi/issues/207)
+
 # [0.49.0](https://github.com/maevsi/maevsi/compare/0.48.0...0.49.0) (2021-01-20)
 
 
