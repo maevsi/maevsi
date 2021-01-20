@@ -1,3 +1,16 @@
+# [0.48.0](https://github.com/maevsi/maevsi/compare/0.47.0...0.48.0) (2021-01-20)
+
+
+### Bug Fixes
+
+* **account:** authenticate on unsuccessful refresh ([d3792e3](https://github.com/maevsi/maevsi/commit/d3792e3b88b76ed40510a381156321b2bd5e1d2d)), closes [#204](https://github.com/maevsi/maevsi/issues/204)
+
+
+### Features
+
+* **contact:** only allow existing account usernames ([5aed194](https://github.com/maevsi/maevsi/commit/5aed194010c67abc5460a62ea53dfa25316d0a31)), closes [#198](https://github.com/maevsi/maevsi/issues/198)
+* **event:** add possibility to send invitations to invitees ([818fbff](https://github.com/maevsi/maevsi/commit/818fbff4dd29b58be7c02f23a61c9e46ff43bd66)), closes [#156](https://github.com/maevsi/maevsi/issues/156)
+
 # [0.47.0](https://github.com/maevsi/maevsi/compare/0.46.1...0.47.0) (2021-01-19)
 
 
