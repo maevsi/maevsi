@@ -13,11 +13,11 @@ RETURNS TABLE (event_id BIGINT) AS $$
 BEGIN
   RETURN QUERY
     SELECT id FROM maevsi.event
-    WHERE "event".organizer_username = current_setting('jwt.claims.username', true)::TEXT;
+    WHERE "event".author_username = current_setting('jwt.claims.username', true)::TEXT;
 END
 $$ LANGUAGE PLPGSQL STRICT STABLE SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi.events_organized() IS 'Add a function that returns all event ids for which the invoker is the organizer.';
+COMMENT ON FUNCTION maevsi.events_organized() IS 'Add a function that returns all event ids for which the invoker is the author.';
 
 GRANT EXECUTE ON FUNCTION maevsi.events_organized() TO maevsi_account, maevsi_anonymous, maevsi_stomper;
 

@@ -32,12 +32,12 @@ CREATE POLICY event_select ON maevsi.event FOR SELECT USING (
           invitee_count_maximum > (maevsi.invitee_count(id)) -- Using the function here is required as there would otherwise be infinite recursion.
         )
       )
-  OR  organizer_username = current_setting('jwt.claims.username', true)::TEXT
+  OR  author_username = current_setting('jwt.claims.username', true)::TEXT
   OR  id IN (SELECT maevsi_private.events_invited())
 );
 
 CREATE POLICY event_insert ON maevsi.event FOR INSERT WITH CHECK (
-    organizer_username = current_setting('jwt.claims.username', true)::TEXT
+    author_username = current_setting('jwt.claims.username', true)::TEXT
 );
 
 COMMIT;

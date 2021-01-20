@@ -128,7 +128,7 @@ export default {
         res.jwt,
         () => {
           this.$router.push(
-            this.localePath(`/event/${res.organizerUsername}/${res.eventSlug}`)
+            this.localePath(`/event/${res.authorUsername}/${res.eventSlug}`)
           )
         }
       )

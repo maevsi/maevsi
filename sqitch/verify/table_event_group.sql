@@ -3,10 +3,10 @@
 BEGIN;
 
 SELECT id,
+       author_username,
        "description",
        is_archived,
        "name",
-       organizer_username,
        slug
 FROM maevsi.event_group WHERE FALSE;
 

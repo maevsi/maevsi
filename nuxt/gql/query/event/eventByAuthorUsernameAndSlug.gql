@@ -2,9 +2,9 @@
 #import "../../fragments/eventFields.gql"
 #import "../../fragments/invitationFields.gql"
 
-query EventByOrganizerUsernameAndSlug($organizerUsername: String!, $slug: String!) {
-  eventByOrganizerUsernameAndSlug(
-    organizerUsername: $organizerUsername
+query EventByAuthorUsernameAndSlug($authorUsername: String!, $slug: String!) {
+  eventByAuthorUsernameAndSlug(
+    authorUsername: $authorUsername
     slug: $slug
   ) {
     ...eventFields

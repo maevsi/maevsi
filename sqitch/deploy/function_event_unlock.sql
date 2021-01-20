@@ -37,7 +37,7 @@ BEGIN
   );
 
   IF (_event_id IS NOT NULL) THEN
-    RETURN (SELECT (organizer_username, slug, _jwt)::maevsi.event_unlock_response
+    RETURN (SELECT (author_username, slug, _jwt)::maevsi.event_unlock_response
     FROM maevsi.event
     WHERE id = _event_id);
   ELSE

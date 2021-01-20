@@ -10,9 +10,9 @@
       :class="{
         'bg-yellow-100':
           $store.state.jwtDecoded &&
-          event.organizerUsername === $store.state.jwtDecoded.username,
+          event.authorUsername === $store.state.jwtDecoded.username,
       }"
-      :to="localePath('/event/' + event.organizerUsername + '/' + event.slug)"
+      :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >
       <div :class="{ 'opacity-75': $moment(event.start).isBefore($moment()) }">
         <div class="flex items-center mb-2 text-text-dark text-sm">
@@ -31,7 +31,7 @@
             <div class="font-bold mx-2 text-xl truncate">
               {{ event.name }}
             </div>
-            <Owner :username="event.organizerUsername" />
+            <Owner :username="event.authorUsername" />
           </div>
         </div>
         <p

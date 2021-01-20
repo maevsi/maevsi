@@ -17,11 +17,11 @@ enum_event_visibility [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-ma
 table_notification [schema_private] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Notifications that are sent via pg_notify.
 table_account [schema_private schema_public extension_uuid-ossp] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table account.
 table_event_group [schema_public schema_private role_account role_anonymous table_account enum_event_visibility] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event_group.
-index_event_group_organizer_username [table_event_group] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event group table's organizer_username field.
+index_event_group_author_username [table_event_group] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event group table's author_username field.
 table_event [schema_public schema_private role_account role_anonymous table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event.
-function_events_organized [privilege_execute_revoke schema_public table_event role_account role_anonymous role_stomper] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is the organizer.
+function_events_organized [privilege_execute_revoke schema_public table_event role_account role_anonymous role_stomper] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is the author.
 function_invitation_claim_array [privilege_execute_revoke schema_public role_account role_anonymous role_stomper] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns the current invitation claims as UUID array.
-index_event_organizer_username [table_event] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event table's username field.
+index_event_author_username [table_event] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event table's username field.
 enum_invitation_feedback_paper 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible choices on how to receive a paper invitation: paper, digital.
 table_contact [schema_public role_account role_anonymous table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table contact.
 table_invitation [schema_public extension_uuid-ossp table_event table_contact] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invitation.

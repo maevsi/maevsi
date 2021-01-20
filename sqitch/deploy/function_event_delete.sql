@@ -9,7 +9,7 @@
 BEGIN;
 
 CREATE FUNCTION maevsi.event_delete(
-  organizer_username TEXT,
+  author_username TEXT,
   slug TEXT,
   "password" TEXT
 ) RETURNS maevsi.event AS $$
@@ -20,7 +20,7 @@ BEGIN
   _current_username := current_setting('jwt.claims.username', true)::TEXT;
 
   IF (EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.username = _current_username AND account.password_hash = maevsi.crypt($3, account.password_hash))) THEN
-    DELETE FROM maevsi.event WHERE event.organizer_username = $1 AND event.slug = $2 RETURNING * INTO _rows_affected;
+    DELETE FROM maevsi.event WHERE event.author_username = $1 AND event.slug = $2 RETURNING * INTO _rows_affected;
 
     IF (_rows_affected IS NULL) THEN
       RAISE 'Event not found!' USING ERRCODE = 'no_data_found';

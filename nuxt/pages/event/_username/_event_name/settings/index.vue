@@ -25,7 +25,7 @@
               :mutation="mutation"
               :update="updateCacheDelete"
               :variables="{
-                organizerUsername: $route.params.username,
+                authorUsername: $route.params.username,
                 slug: $route.params.event_name,
               }"
               @success="onDeleteSuccess"
@@ -42,7 +42,7 @@
 import EVENT_DELETE_MUTATION from '~/gql/mutation/event/eventDelete'
 import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting'
-import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByOrganizerUsernameAndSlug'
+import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug'
 
 const consola = require('consola')
 
@@ -52,10 +52,10 @@ export default {
       return {
         query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
         variables: {
-          organizerUsername: this.$route.params.username,
+          authorUsername: this.$route.params.username,
           slug: this.$route.params.event_name,
         },
-        update: (data) => data.eventByOrganizerUsernameAndSlug,
+        update: (data) => data.eventByAuthorUsernameAndSlug,
         error(error, _vm, _key, _type, _options) {
           this.graphqlErrorMessage = error.message
           consola.error(error)
@@ -70,7 +70,7 @@ export default {
       query: EVENT_IS_EXISTING_QUERY,
       variables: {
         slug: params.event_name,
-        organizerUsername: params.username,
+        authorUsername: params.username,
       },
     })
 
@@ -145,7 +145,7 @@ export default {
       // const index = data.allEvents.nodes.find(
       const index = data.allEvents.nodes.findIndex(
         (x) =>
-          x.organizerUsername === this.$route.params.username &&
+          x.authorUsername === this.$route.params.username &&
           x.slug === this.$route.params.event_name
       )
 

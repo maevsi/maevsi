@@ -3,7 +3,7 @@ mutation EventUnlock($invitationCode: UUID!) {
     eventUnlockResponse {
       eventSlug
       jwt
-      organizerUsername
+      authorUsername
     }
   }
 }

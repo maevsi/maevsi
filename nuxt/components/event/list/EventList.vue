@@ -113,12 +113,12 @@ export default {
 <i18n lang="yml">
 de:
   createEvent: 'Veranstaltung erstellen'
-  eventOrganizer: 'von {username}'
+  eventAuthor: 'von {username}'
   noEvents: 'Aktuell gibt es keine Veranstaltungen 😕'
   titleEvents: 'Veranstaltungen von {username}'
 en:
   createEvent: 'Create event'
-  eventOrganizer: 'by {username}'
+  eventAuthor: 'by {username}'
   noEvents: 'There are currently no events 😕'
   titleEvents: 'Events by {username}'
 </i18n>

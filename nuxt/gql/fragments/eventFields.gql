@@ -1,5 +1,6 @@
 fragment eventFields on Event {
   id
+  authorUsername
   description
   end
   inviteeCountMaximum
@@ -8,7 +9,6 @@ fragment eventFields on Event {
   isRemote
   location
   name
-  organizerUsername
   slug
   start
   visibility

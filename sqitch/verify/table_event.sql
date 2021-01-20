@@ -3,6 +3,7 @@
 BEGIN;
 
 SELECT id,
+       author_username,
        "description",
        "end",
        invitee_count_maximum,
@@ -11,7 +12,6 @@ SELECT id,
        is_remote,
        "location",
        "name",
-       organizer_username,
        slug,
        "start",
        visibility

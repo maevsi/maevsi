@@ -18,7 +18,7 @@
       <div
         v-if="
           $store.state.jwtDecoded &&
-          event.organizerUsername === $store.state.jwtDecoded.username
+          event.authorUsername === $store.state.jwtDecoded.username
         "
         class="flex justify-evenly"
       >
@@ -31,13 +31,13 @@
         :class="{
           'bg-yellow-100':
             $store.state.jwtDecoded &&
-            event.organizerUsername === $store.state.jwtDecoded.username,
+            event.authorUsername === $store.state.jwtDecoded.username,
         }"
       >
         <h1 class="mb-0">
           {{ event.name }}
         </h1>
-        <Owner class="mb-4" link :username="event.organizerUsername" />
+        <Owner class="mb-4" link :username="event.authorUsername" />
         <div class="flex flex-col sm:flex-row m-auto">
           <EventDashletVisibility :event="event" with-text />
           <EventDashletStart :event="event" />
@@ -180,7 +180,7 @@
 <script>
 import VueMarkdown from 'vue-markdown-konishi'
 
-import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByOrganizerUsernameAndSlug'
+import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting'
 import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitationUpdateById'
 
@@ -192,10 +192,10 @@ export default {
       return {
         query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
         variables: {
-          organizerUsername: this.$route.params.username,
+          authorUsername: this.$route.params.username,
           slug: this.$route.params.event_name,
         },
-        update: (data) => data.eventByOrganizerUsernameAndSlug,
+        update: (data) => data.eventByAuthorUsernameAndSlug,
         error(error, _vm, _key, _type, _options) {
           this.graphqlErrorMessage = error.message
           consola.error(error)
@@ -213,7 +213,7 @@ export default {
       query: EVENT_IS_EXISTING_QUERY,
       variables: {
         slug: params.event_name,
-        organizerUsername: params.username,
+        authorUsername: params.username,
       },
     })
 

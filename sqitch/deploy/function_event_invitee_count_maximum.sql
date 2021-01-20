@@ -29,7 +29,7 @@ BEGIN
                 "event".invitee_count_maximum > (maevsi.invitee_count(id)) -- Using the function here is required as there would otherwise be infinite recursion.
               )
             )
-        OR  "event".organizer_username = current_setting('jwt.claims.username', true)::TEXT
+        OR  "event".author_username = current_setting('jwt.claims.username', true)::TEXT
         OR  "event".id IN (SELECT maevsi_private.events_invited())
       )
   );

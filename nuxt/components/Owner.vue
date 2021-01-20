@@ -1,5 +1,5 @@
 <template>
-  <i18n path="eventOrganizer">
+  <i18n path="eventAuthor">
     <template #username>
       <nuxt-link v-if="link" :to="localePath('/account/' + username)">
         {{ username }}
@@ -28,7 +28,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  eventOrganizer: 'von {username}'
+  eventAuthor: 'von {username}'
 en:
-  eventOrganizer: 'by {username}'
+  eventAuthor: 'by {username}'
 </i18n>

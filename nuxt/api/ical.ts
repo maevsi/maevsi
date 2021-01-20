@@ -12,7 +12,7 @@ export default function (
   const md = require('markdown-it')()
 
   const data = req.body
-  const eventId = data.event.organizerUsername + '/' + data.event.slug
+  const eventId = data.event.authorUsername + '/' + data.event.slug
   const eventUrl =
     'https://' +
     (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
@@ -73,9 +73,9 @@ export default function (
           //   lon: -6.87667
           // },
           organizer: {
-            name: data.event.organizerUsername,
+            name: data.event.authorUsername,
             email:
-              data.event.organizerUsername +
+              data.event.authorUsername +
               '@' +
               (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test'),
             // mailto: 'explicit@mailto.com'

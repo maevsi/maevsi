@@ -17,7 +17,7 @@ BEGIN
   _current_username := current_setting('jwt.claims.username', true)::TEXT;
 
   IF (EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.username = _current_username AND account.password_hash = maevsi.crypt($1, account.password_hash))) THEN
-    IF (EXISTS (SELECT 1 FROM maevsi.event WHERE event.organizer_username = _current_username)) THEN
+    IF (EXISTS (SELECT 1 FROM maevsi.event WHERE event.author_username = _current_username)) THEN
       RAISE 'You still own events!' USING ERRCODE = 'foreign_key_violation';
     ELSE
       DELETE FROM maevsi_private.account WHERE account.username = _current_username;

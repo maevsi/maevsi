@@ -3,7 +3,7 @@
 query EventsAll($cursor: Cursor, $limit: Int!, $username: String) {
   allEvents(
     after: $cursor
-    condition: { organizerUsername: $username }
+    condition: { authorUsername: $username }
     first: $limit
   ) @connection(filter: ["condition"], key: "allEvents") {
     nodes {

@@ -250,7 +250,7 @@ export default {
         inviteeCountMaximum: undefined,
         location: undefined,
         name: undefined,
-        organizerUsername: undefined,
+        authorUsername: undefined,
         sent: false,
         slug: undefined,
         start: new Date().toISOString(), // workaround for https://github.com/mariomka/vue-datetime/issues/177
@@ -281,7 +281,7 @@ export default {
                 isRemote: this.form.isRemote,
                 location: this.form.location !== '' ? this.form.location : null,
                 name: this.form.name,
-                organizerUsername: this.$store.state.signedInUsername,
+                authorUsername: this.$store.state.signedInUsername,
                 slug: this.form.slug,
                 start: this.form.start,
                 visibility: this.form.visibility,
