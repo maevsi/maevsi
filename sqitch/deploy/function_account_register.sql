@@ -1,11 +1,12 @@
 -- Deploy maevsi:function_account_register to pg
 -- requires: privilege_execute_revoke
--- requires: schema_private
 -- requires: schema_public
--- requires: role_anonymous
--- requires: table_contact
+-- requires: schema_private
 -- requires: table_account
+-- requires: table_contact
 -- requires: extension_pgcrypto
+-- requires: table_notification
+-- requires: role_anonymous
 
 BEGIN;
 
@@ -39,7 +40,7 @@ BEGIN
 
   INSERT INTO maevsi.contact(account_username, creator_account_username) VALUES (_new_account.username, _new_account.username);
 
-  PERFORM pg_notify('account_register', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify))));
+  INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_register', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify))));
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 

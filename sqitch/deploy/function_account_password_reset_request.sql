@@ -1,11 +1,11 @@
 -- Deploy maevsi:function_account_password_reset_request to pg
--- requires: extension_uuid-ossp
 -- requires: privilege_execute_revoke
 -- requires: schema_public
 -- requires: schema_private
--- requires: role_anonymous
 -- requires: table_account
--- requires: extension_pgcrypto
+-- requires: extension_uuid-ossp
+-- requires: table_notification
+-- requires: role_anonymous
 
 BEGIN;
 
@@ -31,7 +31,7 @@ BEGIN
   IF (_notify_data IS NULL) THEN
     RAISE 'Nothing changed!' USING ERRCODE = 'no_data_found';
   ELSE
-    PERFORM pg_notify('account_password_reset_request', jsonb_pretty(jsonb_build_object('account', _notify_data)));
+    INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_password_reset_request', jsonb_pretty(jsonb_build_object('account', _notify_data)));
   END IF;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;

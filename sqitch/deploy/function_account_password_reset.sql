@@ -40,8 +40,6 @@ BEGIN
   ) SELECT email_address
     FROM updated
     INTO _notify_email_address;
-
-  -- PERFORM pg_notify('account_password_reset', jsonb_pretty(jsonb_build_object('email_address', _notify_email_address)));
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
