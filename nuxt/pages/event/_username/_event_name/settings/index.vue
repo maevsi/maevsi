@@ -14,6 +14,10 @@
         <EventInvitations :event="event" />
       </section>
       <section>
+        <h2>{{ $t('titleEdit') }}</h2>
+        <FormEvent :event="event" />
+      </section>
+      <section>
         <h2>{{ $t('titleGeneral') }}</h2>
         <section>
           <h3>{{ $t('titleDangerZone') }}</h3>
@@ -167,6 +171,7 @@ de:
   title: 'Einstellungen'
   titleDangerZone: 'Gefahrenzone'
   titleDelete: 'Veranstaltung löschen'
+  titleEdit: 'Veranstaltung bearbeiten'
   titleGeneral: 'Allgemein'
   titleInvitations: 'Einladungen'
 en:
@@ -174,6 +179,7 @@ en:
   title: 'Settings'
   titleDangerZone: 'Danger zone'
   titleDelete: 'Delete event'
+  titleEdit: 'Edit event'
   titleGeneral: 'General'
   titleInvitations: 'Invitations'
 </i18n>

@@ -134,7 +134,6 @@ export default {
         lastName: undefined,
       },
       graphqlErrorMessage: undefined,
-      mounted: false,
     }
   },
   created() {
@@ -153,8 +152,6 @@ export default {
           ])
       )
     }
-
-    this.mounted = true
   },
   methods: {
     getSubmitPromise() {

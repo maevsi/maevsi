@@ -16,9 +16,9 @@ GRANT USAGE ON SEQUENCE maevsi.event_id_seq TO maevsi_account;
 
 ALTER TABLE maevsi.event ENABLE ROW LEVEL SECURITY;
 
--- Display events that are public and not full.
--- Display events that are organized by oneself.
--- Display events to which oneself is invited.
+-- Only display events that are public and not full.
+-- Only display events that are organized by oneself.
+-- Only display events to which oneself is invited.
 CREATE POLICY event_select ON maevsi.event FOR SELECT USING (
       (SELECT current_user) = 'maevsi_stomper'
   OR
@@ -36,8 +36,14 @@ CREATE POLICY event_select ON maevsi.event FOR SELECT USING (
   OR  id IN (SELECT maevsi_private.events_invited())
 );
 
+-- Only allow inserts for events authored by the current user.
 CREATE POLICY event_insert ON maevsi.event FOR INSERT WITH CHECK (
-    author_username = current_setting('jwt.claims.username', true)::TEXT
+  author_username = current_setting('jwt.claims.username', true)::TEXT
+);
+
+-- Only allow updates for events authored by the current user.
+CREATE POLICY event_update ON maevsi.event FOR UPDATE USING (
+  author_username = current_setting('jwt.claims.username', true)::TEXT
 );
 
 COMMIT;

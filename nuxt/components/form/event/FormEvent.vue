@@ -3,9 +3,23 @@
     :form="$v.form"
     :form-sent="form.sent"
     :graphql-error-message="graphqlErrorMessage"
-    :submit-name="$t('eventCreate')"
+    :submit-name="form.id ? $t('eventUpdate') : $t('eventCreate')"
     @submit.prevent="submit"
   >
+    <FormInput
+      class="hidden"
+      :error="$v.form.id.$error"
+      label-for="input-id"
+      title="id"
+    >
+      <input
+        id="input-id"
+        v-model.trim="$v.form.id.$model"
+        class="form-input"
+        type="number"
+        placeholder="id"
+      />
+    </FormInput>
     <FormInput
       :error="$v.form.name.$error"
       label-for="input-name"
@@ -77,13 +91,13 @@
     >
       <FormRadioButtonGroup
         id="input-visibility"
+        v-model="$v.form.visibility.$model"
         class="text-left"
         name="visibility"
         :titles-values="[
           [$t('visibilityPublic'), 'PUBLIC'],
           [$t('visibilityPrivate'), 'PRIVATE'],
         ]"
-        @change="$v.form.visibility.$model = $event"
       />
       <template slot="inputError">
         <FormInputError
@@ -232,6 +246,7 @@ import VueMarkdown from 'vue-markdown-konishi'
 import { maxLength, minValue, required } from 'vuelidate/lib/validators'
 
 import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate'
+import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById'
 
 const consola = require('consola')
 
@@ -240,18 +255,25 @@ export default {
     Datetime,
     VueMarkdown,
   },
+  props: {
+    event: {
+      default: undefined,
+      type: Object,
+    },
+  },
   data() {
     return {
       form: {
+        sent: false,
+        id: undefined,
+        authorUsername: undefined,
         description: undefined,
         end: undefined,
+        inviteeCountMaximum: undefined,
         isInPerson: undefined,
         isRemote: undefined,
-        inviteeCountMaximum: undefined,
         location: undefined,
         name: undefined,
-        authorUsername: undefined,
-        sent: false,
         slug: undefined,
         start: new Date().toISOString(), // workaround for https://github.com/mariomka/vue-datetime/issues/177
         visibility: undefined,
@@ -259,48 +281,114 @@ export default {
       graphqlErrorMessage: undefined,
     }
   },
+  created() {
+    if (this.event) {
+      ;[
+        'id',
+        'authorUsername',
+        'description',
+        'end',
+        'inviteeCountMaximum',
+        'isInPerson',
+        'isRemote',
+        'location',
+        'name',
+        'slug',
+        'start',
+        'visibility',
+      ].forEach((property) => (this.form[property] = this.event[property]))
+    }
+  },
   methods: {
-    submit() {
-      this.form.sent = true
-      this.graphqlErrorMessage = undefined
+    getSubmitPromise() {
+      return new Promise((resolve, reject) => {
+        this.form.sent = true
+        this.graphqlErrorMessage = undefined
+        this.$v.form.$reset()
 
-      this.$v.form.$reset()
-      this.$apollo
-        .mutate({
-          mutation: EVENT_CREATE_MUTATION,
-          variables: {
-            createEventInput: {
-              event: {
-                description: this.form.description,
-                end: this.form.end !== '' ? this.form.end : null,
-                inviteeCountMaximum:
-                  this.form.inviteeCountMaximum !== ''
-                    ? +this.form.inviteeCountMaximum
-                    : null,
-                isInPerson: this.form.isInPerson,
-                isRemote: this.form.isRemote,
-                location: this.form.location !== '' ? this.form.location : null,
-                name: this.form.name,
-                authorUsername: this.$store.state.signedInUsername,
-                slug: this.form.slug,
-                start: this.form.start,
-                visibility: this.form.visibility,
+        if (this.form.id) {
+          // Edit.
+          this.$apollo
+            .mutate({
+              mutation: EVENT_UPDATE_BY_ID_MUTATION,
+              variables: {
+                id: this.form.id,
+                eventPatch: {
+                  authorUsername: this.$store.state.signedInUsername,
+                  description: this.form.description,
+                  end: this.form.end !== '' ? this.form.end : null,
+                  inviteeCountMaximum:
+                    this.form.inviteeCountMaximum &&
+                    this.form.inviteeCountMaximum !== ''
+                      ? +this.form.inviteeCountMaximum
+                      : null,
+                  isInPerson: this.form.isInPerson,
+                  isRemote: this.form.isRemote,
+                  location:
+                    this.form.location !== '' ? this.form.location : null,
+                  name: this.form.name,
+                  slug: this.form.slug,
+                  start: this.form.start,
+                  visibility: this.form.visibility,
+                },
               },
-            },
-          },
-        })
-        .then((_value) => {
-          alert(this.$t('eventCreateSuccess'))
-          this.$router.push(
-            this.localePath(
-              `/event/${this.$store.state.signedInUsername}/${this.form.slug}`
-            )
-          )
-        })
-        .catch((reason) => {
-          this.graphqlErrorMessage = reason.toString()
-          consola.error(reason)
-        })
+            })
+            .then((value) => {
+              alert(this.$t('eventUpdateSuccess'))
+              resolve(value)
+            })
+            .catch((reason) => {
+              this.graphqlErrorMessage = reason.toString()
+              reject(reason)
+            })
+        } else {
+          // Add.
+          this.$apollo
+            .mutate({
+              mutation: EVENT_CREATE_MUTATION,
+              variables: {
+                createEventInput: {
+                  event: {
+                    authorUsername: this.$store.state.signedInUsername,
+                    description: this.form.description,
+                    end: this.form.end !== '' ? this.form.end : null,
+                    inviteeCountMaximum:
+                      this.form.inviteeCountMaximum &&
+                      this.form.inviteeCountMaximum !== ''
+                        ? +this.form.inviteeCountMaximum
+                        : null,
+                    isInPerson: this.form.isInPerson,
+                    isRemote: this.form.isRemote,
+                    location:
+                      this.form.location !== '' ? this.form.location : null,
+                    name: this.form.name,
+                    slug: this.form.slug,
+                    start: this.form.start,
+                    visibility: this.form.visibility,
+                  },
+                },
+              },
+            })
+            .then((value) => {
+              alert(this.$t('eventCreateSuccess'))
+              this.$router.push(
+                this.localePath(
+                  `/event/${this.$store.state.signedInUsername}/${this.form.slug}`
+                )
+              )
+              resolve(value)
+            })
+            .catch((reason) => {
+              this.graphqlErrorMessage = reason.toString()
+              reject(reason)
+            })
+        }
+      })
+    },
+    async submit() {
+      return await this.getSubmitPromise()
+        .then((value) => value)
+        .catch((reason) => consola.error(reason))
     },
     updateSlug() {
       this.form.slug = this.$slugify(this.form.name, {
@@ -312,6 +400,8 @@ export default {
   validations() {
     return {
       form: {
+        id: {},
+        authorUsername: {},
         description: {
           maxLength: maxLength(
             this.$global.VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM
@@ -323,16 +413,16 @@ export default {
         },
         isInPerson: {},
         isRemote: {},
+        location: {
+          maxLength: maxLength(
+            this.$global.VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM
+          ),
+        },
         name: {
           maxLength: maxLength(
             this.$global.VALIDATION_EVENT_NAME_LENGTH_MAXIMUM
           ),
           required,
-        },
-        location: {
-          maxLength: maxLength(
-            this.$global.VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM
-          ),
         },
         slug: {
           maxLength: maxLength(
@@ -361,6 +451,8 @@ de:
   end: 'Ende'
   eventCreate: 'Veranstaltung erstellen'
   eventCreateSuccess: 'Veranstaltung erfolgreich erstellt.'
+  eventUpdate: 'Veranstaltung bearbeiten'
+  eventUpdateSuccess: 'Veranstaltung erfolgreich aktualisiert.'
   inputLocationInfo: 'Ein Suchbegriff für Google Maps.'
   isInPerson: 'vor Ort'
   isRemote: 'remote'
@@ -383,6 +475,8 @@ en:
   end: 'End'
   eventCreate: 'Create event'
   eventCreateSuccess: 'Event created successfully.'
+  eventUpdate: 'Update event'
+  eventUpdateSuccess: 'Event updated successfully.'
   inputLocationInfo: 'A search phrase for Google Maps.'
   isInPerson: 'in person'
   isRemote: 'remote'

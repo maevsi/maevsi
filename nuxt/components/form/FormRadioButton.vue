@@ -2,6 +2,7 @@
   <div>
     <input
       :id="`input-${groupName}-${titleSlug}`"
+      :checked="checked"
       :name="groupName"
       type="radio"
       :value="value ? value : titleSlug"
@@ -16,11 +17,15 @@
 <script>
 export default {
   props: {
-    title: {
+    checked: {
+      default: false,
+      type: Boolean,
+    },
+    groupName: {
       default: undefined,
       type: String,
     },
-    groupName: {
+    title: {
       default: undefined,
       type: String,
     },
