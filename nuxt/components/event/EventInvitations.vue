@@ -49,17 +49,17 @@
             <div class="flex items-center justify-evenly">
               <ButtonTableInteraction
                 :disabled="
-                  invitation.contactByContactId.creatorAccountUsername !==
+                  invitation.contactByContactId.authorAccountUsername !==
                     $store.state.signedInUsername ||
                   pending.edits.includes(invitation.uuid)
                 "
                 :icon-id="['fas', 'edit']"
                 :title="
-                  invitation.contactByContactId.creatorAccountUsername !==
+                  invitation.contactByContactId.authorAccountUsername !==
                   $store.state.signedInUsername
                     ? $t('disabledReasonCreatorNot', {
-                        creatorAccountUsername:
-                          invitation.contactByContactId.creatorAccountUsername,
+                        authorAccountUsername:
+                          invitation.contactByContactId.authorAccountUsername,
                       })
                     : undefined
                 "
@@ -233,7 +233,7 @@ export default {
 <i18n lang="yml">
 de:
   address: 'Adresse'
-  disabledReasonCreatorNot: 'Dieser Kontakt wird von {creatorAccountUsername} verwaltet.'
+  disabledReasonCreatorNot: 'Dieser Kontakt wird von {authorAccountUsername} verwaltet.'
   disabledReasonEmailAddressNone: 'Diesem Kontakt fehlt eine E-Mail-Adresse.'
   emailAddress: 'E-Mail Adresse'
   firstName: 'Vorname'
@@ -247,7 +247,7 @@ de:
   username: 'Nutzername'
 en:
   address: 'Address'
-  disabledReasonCreatorNot: 'This contact is being managed by {creatorAccountUsername}.'
+  disabledReasonCreatorNot: 'This contact is being managed by {authorAccountUsername}.'
   disabledReasonEmailAddressNone: 'This contact is missing an email address.'
   emailAddress: 'Email address'
   firstName: 'First name'

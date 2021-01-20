@@ -38,7 +38,7 @@ BEGIN
   SELECT _new_account.username, _new_account.email_address, _new_account.email_address_verification
   INTO _new_account_notify;
 
-  INSERT INTO maevsi.contact(account_username, creator_account_username) VALUES (_new_account.username, _new_account.username);
+  INSERT INTO maevsi.contact(account_username, author_account_username) VALUES (_new_account.username, _new_account.username);
 
   INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_register', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify))));
 END;

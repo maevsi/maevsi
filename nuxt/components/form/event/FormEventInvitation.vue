@@ -176,7 +176,7 @@ export default {
                       ? null
                       : this.form.accountUsername,
                   address: this.form.address === '' ? null : this.form.address,
-                  creatorAccountUsername: this.$store.state.jwtDecoded.username,
+                  authorAccountUsername: this.$store.state.jwtDecoded.username,
                   emailAddress:
                     this.form.emailAddress === ''
                       ? null
@@ -212,7 +212,7 @@ export default {
                       ? null
                       : this.form.accountUsername,
                   address: this.form.address === '' ? null : this.form.address,
-                  creatorAccountUsername: this.$store.state.jwtDecoded.username,
+                  authorAccountUsername: this.$store.state.jwtDecoded.username,
                   emailAddress:
                     this.form.emailAddress === ''
                       ? null

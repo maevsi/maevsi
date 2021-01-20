@@ -5,7 +5,7 @@ BEGIN;
 SELECT id,
        account_username,
        "address",
-       creator_account_username,
+       author_account_username,
        email_address,
        email_address_hash,
        first_name,

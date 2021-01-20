@@ -21,23 +21,23 @@ ALTER TABLE maevsi.contact ENABLE ROW LEVEL SECURITY;
 CREATE POLICY contact_select ON maevsi.contact FOR SELECT USING (
       (SELECT current_user) = 'maevsi_stomper'
   OR  account_username = current_setting('jwt.claims.username', true)::TEXT
-  OR  creator_account_username = current_setting('jwt.claims.username', true)::TEXT
+  OR  author_account_username = current_setting('jwt.claims.username', true)::TEXT
   OR  id IN (SELECT maevsi.invitation_contact_ids())
 );
 
 -- Only allow inserts for contacts created by the own user.
 CREATE POLICY contact_insert ON maevsi.contact FOR INSERT WITH CHECK (
-  creator_account_username = current_setting('jwt.claims.username', true)::TEXT
+  author_account_username = current_setting('jwt.claims.username', true)::TEXT
 );
 
 -- Only allow updates for contacts created by the own user.
 CREATE POLICY contact_update ON maevsi.contact FOR UPDATE USING (
-  creator_account_username = current_setting('jwt.claims.username', true)::TEXT
+  author_account_username = current_setting('jwt.claims.username', true)::TEXT
 );
 
 -- Only allow deletes for contacts created by the own user.
 CREATE POLICY contact_delete ON maevsi.contact FOR DELETE USING (
-  creator_account_username = current_setting('jwt.claims.username', true)::TEXT
+  author_account_username = current_setting('jwt.claims.username', true)::TEXT
 );
 
 COMMIT;
