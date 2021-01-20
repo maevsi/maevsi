@@ -358,6 +358,10 @@ export default {
 }
 </script>
 
+<style scoped>
+@import '~/node_modules/vue-croppa/dist/vue-croppa.min.css';
+</style>
+
 <i18n lang="yml">
 de:
   cancel: 'Abbrechen'

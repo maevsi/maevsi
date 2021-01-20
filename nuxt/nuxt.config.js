@@ -100,7 +100,7 @@ export default {
   components: true,
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['vue-croppa/dist/vue-croppa.css', 'vue-datetime/dist/vue-datetime.css'],
+  css: ['vue-datetime/dist/vue-datetime.min.css'],
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head() {
