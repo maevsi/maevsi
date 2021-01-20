@@ -16,15 +16,15 @@
     <template slot="inputError">
       <FormInputError
         :form-input="v.form[formKeyComputed]"
-        validation-property="required"
+        validation-property="minLength"
       >
-        {{ $t('globalValidationRequired') }}
+        {{ $t('globalValidationShortness') }}
       </FormInputError>
       <FormInputError
         :form-input="v.form[formKeyComputed]"
-        validation-property="minLength"
+        validation-property="required"
       >
-        {{ $t('globalValidationTooShort') }}
+        {{ $t('globalValidationRequired') }}
       </FormInputError>
     </template>
   </FormInput>

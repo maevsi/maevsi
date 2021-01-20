@@ -36,15 +36,15 @@
         <template slot="inputError">
           <FormInputError
             :form-input="$v.form.invitationCode"
-            validation-property="required"
+            validation-property="formatUuid"
           >
-            {{ $t('globalValidationRequired') }}
+            {{ $t('globalValidationFormat') }}
           </FormInputError>
           <FormInputError
             :form-input="$v.form.invitationCode"
-            validation-property="formatUuid"
+            validation-property="required"
           >
-            {{ $t('globalValidationFormatIncorrect') }}
+            {{ $t('globalValidationRequired') }}
           </FormInputError>
         </template>
       </FormInput>

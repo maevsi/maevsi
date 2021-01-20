@@ -24,7 +24,7 @@
         :form-input="v.form[formKeyComputed]"
         validation-property="formatSlug"
       >
-        {{ $t('globalValidationFormatIncorrect') }}
+        {{ $t('globalValidationFormat') }}
       </FormInputError>
       <FormInputError
         :form-input="v.form[formKeyComputed]"

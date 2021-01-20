@@ -15,10 +15,10 @@
     />
     <template slot="inputError">
       <FormInputError :form-input="formElement" validation-property="email">
-        {{ $t('globalValidationFormatIncorrect') }}
+        {{ $t('globalValidationFormat') }}
       </FormInputError>
       <FormInputError :form-input="formElement" validation-property="maxLength">
-        {{ $t('globalValidationTooLong') }}
+        {{ $t('globalValidationLength') }}
       </FormInputError>
       <FormInputError
         v-if="required"

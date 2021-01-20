@@ -44,7 +44,7 @@
           :form-input="$v.form.firstName"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationTooLong') }}
+          {{ $t('globalValidationLength') }}
         </FormInputError>
       </template>
     </FormInput>
@@ -65,7 +65,7 @@
           :form-input="$v.form.lastName"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationTooLong') }}
+          {{ $t('globalValidationLength') }}
         </FormInputError>
       </template>
     </FormInput>
@@ -91,7 +91,7 @@
           :form-input="$v.form.address"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationTooLong') }}
+          {{ $t('globalValidationLength') }}
         </FormInputError>
       </template>
     </FormInput>

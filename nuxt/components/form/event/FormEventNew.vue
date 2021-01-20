@@ -23,15 +23,15 @@
       <template slot="inputError">
         <FormInputError
           :form-input="$v.form.name"
-          validation-property="required"
+          validation-property="maxLength"
         >
-          {{ $t('globalValidationRequired') }}
+          {{ $t('globalValidationLength') }}
         </FormInputError>
         <FormInputError
           :form-input="$v.form.name"
-          validation-property="maxLength"
+          validation-property="required"
         >
-          {{ $t('globalValidationTooLong') }}
+          {{ $t('globalValidationRequired') }}
         </FormInputError>
       </template>
     </FormInput>
@@ -51,21 +51,21 @@
       <template slot="inputError">
         <FormInputError
           :form-input="$v.form.slug"
-          validation-property="required"
+          validation-property="formatSlug"
         >
-          {{ $t('globalValidationRequired') }}
+          {{ $t('globalValidationFormat') }}
         </FormInputError>
         <FormInputError
           :form-input="$v.form.slug"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationTooLong') }}
+          {{ $t('globalValidationLength') }}
         </FormInputError>
         <FormInputError
           :form-input="$v.form.slug"
-          validation-property="formatSlug"
+          validation-property="required"
         >
-          {{ $t('globalValidationFormatIncorrect') }}
+          {{ $t('globalValidationRequired') }}
         </FormInputError>
       </template>
     </FormInput>
@@ -152,7 +152,7 @@
           :form-input="$v.form.location"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationTooLong') }}
+          {{ $t('globalValidationLength') }}
         </FormInputError>
       </template>
       <template slot="inputInfo">
@@ -199,7 +199,7 @@
           :form-input="$v.form.description"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationTooLong') }}
+          {{ $t('globalValidationLength') }}
         </FormInputError>
       </template>
     </FormInput>
