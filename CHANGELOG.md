@@ -1,3 +1,10 @@
+# [0.49.0](https://github.com/maevsi/maevsi/compare/0.48.0...0.49.0) (2021-01-20)
+
+
+### Features
+
+* **sqitch:** store NOTIFYs in table ([d6aa69a](https://github.com/maevsi/maevsi/commit/d6aa69aaa185af0030787a71402cb2b0424e2d41)), closes [#130](https://github.com/maevsi/maevsi/issues/130)
+
 # [0.48.0](https://github.com/maevsi/maevsi/compare/0.47.0...0.48.0) (2021-01-20)
 
 
