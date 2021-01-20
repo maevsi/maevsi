@@ -148,7 +148,9 @@ export default {
         'lastName',
       ].forEach(
         (property) =>
-          (this.$v.form[property].$model = this.dataInitial[property])
+          (this.$v.form[property].$model = this.dataInitial.contactByContactId[
+            property
+          ])
       )
     }
 

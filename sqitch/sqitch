@@ -65,6 +65,7 @@ docker run -it --rm --network host \
     --mount "type=bind,src=$(pwd),dst=/repo" \
     --mount "type=bind,src=$HOME,dst=$homedst" \
     --mount "type=bind,src=$PWD/../../maevsi_stack/src/development/secrets/postgres/role_maevsi-postgraphile_password.secret,dst=/run/secrets/postgres_role_maevsi-postgraphile_password" \
+    --mount "type=bind,src=$PWD/../../maevsi_stack/src/development/secrets/postgres/role_maevsi-stomper_password.secret,dst=/run/secrets/postgres_role_maevsi-stomper_password" \
     --mount "type=bind,src=$PWD/../../maevsi_stack/src/development/secrets/postgres/role_maevsi-tusd_password.secret,dst=/run/secrets/postgres_role_maevsi-tusd_password" \
     --mount "type=bind,src=/mnt/dev/postgresql/,dst=/var/run/postgresql/" \
     "${passopt[@]}" "$SQITCH_IMAGE" "$@"

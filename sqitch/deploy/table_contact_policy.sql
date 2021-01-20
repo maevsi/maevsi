@@ -1,11 +1,14 @@
 -- Deploy maevsi:table_contact_policy to pg
 -- requires: schema_public
 -- requires: table_contact
+-- requires: role_account
+-- requires: role_anonymous
+-- requires: role_stomper
 -- requires: function_invitation_contact_ids
 
 BEGIN;
 
-GRANT SELECT ON TABLE maevsi.contact TO maevsi_account, maevsi_anonymous;
+GRANT SELECT ON TABLE maevsi.contact TO maevsi_account, maevsi_anonymous, maevsi_stomper;
 GRANT INSERT, UPDATE, DELETE ON TABLE maevsi.contact TO maevsi_account;
 
 GRANT USAGE ON SEQUENCE maevsi.contact_id_seq TO maevsi_account;
@@ -16,7 +19,8 @@ ALTER TABLE maevsi.contact ENABLE ROW LEVEL SECURITY;
 -- Only display contacts that were created by the invoker's account.
 -- Only display contacts for which an accessible invitation exists.
 CREATE POLICY contact_select ON maevsi.contact FOR SELECT USING (
-      account_username = current_setting('jwt.claims.username', true)::TEXT
+      (SELECT current_user) = 'maevsi_stomper'
+  OR  account_username = current_setting('jwt.claims.username', true)::TEXT
   OR  creator_account_username = current_setting('jwt.claims.username', true)::TEXT
   OR  id IN (SELECT maevsi.invitation_contact_ids())
 );

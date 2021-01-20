@@ -1,0 +1,5 @@
+mutation Invite($invitationId: BigInt!) {
+  invite(input: { invitationId: $invitationId }) {
+    clientMutationId
+  }
+}

@@ -12,6 +12,10 @@ BEGIN
   ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_anonymous', 'maevsi.invitation', 'INSERT'));
   ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_anonymous', 'maevsi.invitation', 'UPDATE'));
   ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_anonymous', 'maevsi.invitation', 'DELETE'));
+  ASSERT (SELECT pg_catalog.has_table_privilege('maevsi_stomper', 'maevsi.invitation', 'SELECT'));
+  ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_stomper', 'maevsi.invitation', 'INSERT'));
+  ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_stomper', 'maevsi.invitation', 'UPDATE'));
+  ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_stomper', 'maevsi.invitation', 'DELETE'));
 END $$;
 
 ROLLBACK;

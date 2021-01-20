@@ -69,6 +69,7 @@ export default {
             'faLanguage',
             'faListUl',
             'faMapMarker',
+            'faPaperPlane',
             'faPlus',
             'faSpinner',
             'faTimes',

@@ -7,7 +7,8 @@ role_postgraphile 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.d
 role_anonymous [role_postgraphile] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role anonymous.
 role_account [role_postgraphile] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role account.
 role_tusd [role_postgraphile] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role tusd.
-schema_public [role_anonymous role_account role_tusd] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add public schema.
+role_stomper [role_postgraphile] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add role stomper.
+schema_public [role_anonymous role_account role_tusd role_stomper] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add public schema.
 schema_private 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add private schema.
 extension_pgcrypto [schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension pgcrypto.
 extension_uuid-ossp [schema_public role_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add extension uuid-ossp.
@@ -17,21 +18,21 @@ table_account [schema_private schema_public extension_uuid-ossp] 1970-01-01T00:0
 table_event_group [schema_public schema_private role_account role_anonymous table_account enum_event_visibility] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event_group.
 index_event_group_organizer_username [table_event_group] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event group table's organizer_username field.
 table_event [schema_public schema_private role_account role_anonymous table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event.
-function_events_organized [privilege_execute_revoke schema_public table_event] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is the organizer.
-function_invitation_claim_array [privilege_execute_revoke schema_public] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns the current invitation claims as UUID array.
+function_events_organized [privilege_execute_revoke schema_public table_event role_account role_anonymous role_stomper] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is the organizer.
+function_invitation_claim_array [privilege_execute_revoke schema_public role_account role_anonymous role_stomper] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns the current invitation claims as UUID array.
 index_event_organizer_username [table_event] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event table's username field.
 enum_invitation_feedback_paper 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Possible choices on how to receive a paper invitation: paper, digital.
 table_contact [schema_public role_account role_anonymous table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table contact.
 table_invitation [schema_public extension_uuid-ossp table_event table_contact] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table invitation.
-function_events_invited [privilege_execute_revoke schema_private schema_public table_invitation table_contact] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is invited.
+function_events_invited [privilege_execute_revoke schema_private schema_public table_invitation table_contact role_account role_anonymous role_stomper] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is invited.
 function_invitation_contact_ids [privilege_execute_revoke schema_public table_invitation function_invitation_claim_array function_events_organized role_account role_anonymous] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns all event ids for which the invoker is invited.
-table_contact_policy [schema_public table_contact function_invitation_contact_ids] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add policy for table contact.
-function_invitee_count [privilege_execute_revoke schema_public table_invitation role_account role_anonymous] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns the invitee count for an event.
-table_event_policy [schema_public table_event table_invitation schema_private function_events_invited] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add policy for table event.
+table_contact_policy [schema_public table_contact role_account role_anonymous role_stomper function_invitation_contact_ids] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add policy for table contact.
+function_invitee_count [privilege_execute_revoke schema_public table_invitation role_account role_anonymous role_stomper] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns the invitee count for an event.
+table_event_policy [schema_public table_event role_account role_anonymous role_stomper schema_private function_events_invited] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add policy for table event.
 index_invitation_event_id [table_invitation] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invitation table's event_id field.
 index_invitation_contact_id [table_invitation] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the invitation table's contact_id field.
 function_event_invitee_count_maximum [privilege_execute_revoke schema_public table_event function_invitee_count schema_private function_events_invited role_account role_anonymous] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add a function that returns the maximum invitee count of an accessible event.
-table_invitation_policy [schema_public table_invitation role_account role_anonymous function_invitation_claim_array function_events_organized function_event_invitee_count_maximum] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add policy for table contact.
+table_invitation_policy [schema_public table_invitation role_account role_anonymous role_stomper function_invitation_claim_array function_events_organized function_event_invitee_count_maximum] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add policy for table contact.
 table_event_grouping [schema_public role_account role_anonymous table_event table_event_group] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add table event grouping.
 index_event_grouping_event_id [table_event_grouping] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event grouping table's event_id field.
 index_event_grouping_event_group_id [table_event_grouping] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add an index to the event grouping table's event_group_id field.
@@ -54,3 +55,5 @@ function_account_password_reset_request [extension_uuid-ossp privilege_execute_r
 function_account_password_reset [extension_uuid-ossp privilege_execute_revoke schema_private schema_public role_anonymous table_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Sets a new password for an account if there was a request to do so before that's still up to date.
 function_event_is_existing [privilege_execute_revoke schema_public table_event role_account role_anonymous] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Shows if an event exists.
 function_account_is_existing [privilege_execute_revoke schema_public schema_private table_account role_account role_anonymous] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Shows if an account exists.
+table_notification [schema_private] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Notifications that are sent via pg_notify.
+function_invite [privilege_execute_revoke schema_public schema_private table_notification role_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Adds a notification for the invitation channel.

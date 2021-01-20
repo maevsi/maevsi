@@ -59,6 +59,7 @@ function deleteUpload(res: ServerResponse, uploadId: any, storageKey: any) {
 }
 
 function tusdDelete(req: IncomingMessage, res: ServerResponse) {
+  // eslint-disable-next-line compat/compat
   const uploadId = new URLSearchParams(req.url?.substring(2)).get('uploadId')
 
   if (uploadId === null) {

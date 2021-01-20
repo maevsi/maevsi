@@ -12,7 +12,7 @@
         })
       }}
     </span>
-    <table v-if="allInvitationsComputed" class="w-full border">
+    <table v-if="allInvitations" class="w-full border">
       <thead>
         <tr>
           <th class="border" scope="col">{{ $t('username') }}</th>
@@ -25,39 +25,58 @@
       </thead>
       <tbody>
         <tr
-          v-for="invitation in allInvitationsComputed"
+          v-for="invitation in allInvitations.nodes"
           :key="invitation.uuid"
           :class="{
             'animate-pulse': pending.deletions.includes(invitation.uuid),
           }"
         >
-          <td class="border">{{ invitation.accountUsername }}</td>
-          <td class="border">{{ invitation.firstName }}</td>
-          <td class="border">{{ invitation.lastName }}</td>
-          <td class="border">{{ invitation.emailAddress }}</td>
           <td class="border">
-            {{ (invitation.address || '').replace('\n', ', ') }}
+            {{ invitation.contactByContactId.accountUsername }}
+          </td>
+          <td class="border">{{ invitation.contactByContactId.firstName }}</td>
+          <td class="border">{{ invitation.contactByContactId.lastName }}</td>
+          <td class="border">
+            {{ invitation.contactByContactId.emailAddress }}
+          </td>
+          <td class="border">
+            {{
+              (invitation.contactByContactId.address || '').replace('\n', ', ')
+            }}
           </td>
           <td class="border font-mono">{{ invitation.uuid }}</td>
           <td class="border font-mono">
             <div class="flex items-center justify-evenly">
               <ButtonTableInteraction
                 :disabled="
-                  invitation.creatorAccountUsername !==
+                  invitation.contactByContactId.creatorAccountUsername !==
                     $store.state.signedInUsername ||
                   pending.edits.includes(invitation.uuid)
                 "
                 :icon-id="['fas', 'edit']"
                 :title="
-                  invitation.creatorAccountUsername !==
+                  invitation.contactByContactId.creatorAccountUsername !==
                   $store.state.signedInUsername
                     ? $t('disabledReasonCreatorNot', {
                         creatorAccountUsername:
-                          invitation.creatorAccountUsername,
+                          invitation.contactByContactId.creatorAccountUsername,
                       })
                     : undefined
                 "
                 @click="edit(invitation)"
+              />
+              <ButtonTableInteraction
+                :disabled="
+                  !invitation.contactByContactId.emailAddress ||
+                  pending.sends.includes(invitation.uuid)
+                "
+                :icon-id="['fas', 'paper-plane']"
+                :title="
+                  invitation.contactByContactId.emailAddress
+                    ? undefined
+                    : $t('disabledReasonEmailAddressNone')
+                "
+                @click="send(invitation)"
               />
               <ButtonTableInteraction
                 :disabled="pending.deletions.includes(invitation.uuid)"
@@ -105,6 +124,7 @@
 
 <script>
 import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDelete'
+import INVITE_MUTATION from '~/gql/mutation/invitation/invite'
 import INVITATIONS_ALL_QUERY from '~/gql/query/invitation/invitationsAll'
 
 const consola = require('consola')
@@ -138,38 +158,10 @@ export default {
       pending: {
         deletions: [],
         edits: [],
+        sends: [],
       },
       selectedInvitation: undefined,
     }
-  },
-  computed: {
-    allInvitationsComputed() {
-      return [
-        ...this.allInvitations.nodes.map((invitation) => {
-          const invitationFlattened = {
-            uuid: invitation.uuid,
-          }
-
-          if (invitation.contactByContactId) {
-            ;[
-              'id',
-              'accountUsername',
-              'address',
-              'creatorAccountUsername',
-              'emailAddress',
-              'firstName',
-              'lastName',
-            ].forEach(
-              (property) =>
-                (invitationFlattened[property] =
-                  invitation.contactByContactId[property])
-            )
-          }
-
-          return invitationFlattened
-        }),
-      ]
-    },
   },
   methods: {
     add() {
@@ -195,11 +187,44 @@ export default {
           this.graphqlErrorMessage = reason.toString()
           consola.error(reason)
         })
+        .finally(() => {
+          this.pending.deletions.slice(this.pending.deletions.indexOf(uuid), 1)
+        })
     },
     edit(invitation) {
       this.formEventInvitationHeading = this.$t('invitationEdit')
       this.selectedInvitation = invitation
       this.$refs.modal.isVisible = true
+    },
+    send(invitation) {
+      this.pending.sends.push(invitation.uuid)
+      this.graphqlErrorMessage = undefined
+      this.$apollo
+        .mutate({
+          mutation: INVITE_MUTATION,
+          variables: {
+            invitationId: invitation.id,
+          },
+        })
+        .then((_value) => {
+          alert(
+            this.$t('sendSuccess', {
+              emailAddress: invitation.contactByContactId.emailAddress,
+            })
+          )
+          this.$apollo.queries.allInvitations &&
+            this.$apollo.queries.allInvitations.refetch()
+        })
+        .catch((reason) => {
+          this.graphqlErrorMessage = reason.toString()
+          consola.error(reason.message)
+        })
+        .finally(() => {
+          this.pending.sends.splice(
+            this.pending.sends.indexOf(invitation.uuid),
+            1
+          )
+        })
     },
   },
 }
@@ -209,6 +234,7 @@ export default {
 de:
   address: 'Adresse'
   disabledReasonCreatorNot: 'Dieser Kontakt wird von {creatorAccountUsername} verwaltet.'
+  disabledReasonEmailAddressNone: 'Diesem Kontakt fehlt eine E-Mail-Adresse.'
   emailAddress: 'E-Mail Adresse'
   firstName: 'Vorname'
   invitationAdd: 'Einladung hinzufügen'
@@ -217,10 +243,12 @@ de:
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
   lastName: 'Nachname'
   save: 'Speichern'
+  sendSuccess: 'Einladung an {emailAddress} erfolgreich angefordert.'
   username: 'Nutzername'
 en:
   address: 'Address'
   disabledReasonCreatorNot: 'This contact is being managed by {creatorAccountUsername}.'
+  disabledReasonEmailAddressNone: 'This contact is missing an email address.'
   emailAddress: 'Email address'
   firstName: 'First name'
   invitationAdd: 'Add invitation'
@@ -229,5 +257,6 @@ en:
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
   lastName: 'Last name'
   save: 'Save'
+  sendSuccess: 'Invitation to {emailAddress} requested successfully.'
   username: 'Username'
 </i18n>
