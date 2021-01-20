@@ -3,18 +3,18 @@
 BEGIN;
 
 SELECT id,
-       "name",
-       slug,
-       visibility,
-       invitee_count_maximum,
-       organizer_username,
        "description",
-       "location",
-       "start",
        "end",
+       invitee_count_maximum,
        is_archived,
        is_in_person,
-       is_remote
+       is_remote,
+       "location",
+       "name",
+       organizer_username,
+       slug,
+       "start",
+       visibility
 FROM maevsi.event WHERE FALSE;
 
 ROLLBACK;

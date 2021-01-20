@@ -4,9 +4,9 @@ BEGIN;
 
 SELECT id,
        channel,
+       is_acknowledged,
        payload,
-       "timestamp",
-       is_acknowledged
+       "timestamp"
 FROM maevsi_private.notification WHERE FALSE;
 
 ROLLBACK;

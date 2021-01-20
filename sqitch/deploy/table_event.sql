@@ -10,35 +10,35 @@ BEGIN;
 
 CREATE TABLE maevsi.event (
   id                       BIGSERIAL PRIMARY KEY,
-  organizer_username       TEXT REFERENCES maevsi_private.account(username) NOT NULL,
-  "name"                   TEXT NOT NULL CHECK (char_length("name") > 0 AND char_length("name") < 100),
-  slug                     TEXT NOT NULL CHECK (char_length(slug) < 100 AND slug ~* '^[-A-Za-z0-9]+$'),
-  visibility               maevsi.event_visibility NOT NULL,
-  invitee_count_maximum    INTEGER CHECK (invitee_count_maximum > 0),
   "description"            TEXT CHECK (char_length("description") > 0 AND char_length("description") < 10000),
-  "location"               TEXT CHECK (char_length("location") > 0 AND char_length("location") < 300),
-  "start"                  TIMESTAMP WITH TIME ZONE NOT NULL,
   "end"                    TIMESTAMP WITH TIME ZONE,
+  invitee_count_maximum    INTEGER CHECK (invitee_count_maximum > 0),
   is_archived              BOOLEAN NOT NULL DEFAULT FALSE,
   is_in_person             BOOLEAN,
   is_remote                BOOLEAN,
+  "location"               TEXT CHECK (char_length("location") > 0 AND char_length("location") < 300),
+  "name"                   TEXT NOT NULL CHECK (char_length("name") > 0 AND char_length("name") < 100),
+  organizer_username       TEXT REFERENCES maevsi_private.account(username) NOT NULL,
+  slug                     TEXT NOT NULL CHECK (char_length(slug) < 100 AND slug ~* '^[-A-Za-z0-9]+$'),
+  "start"                  TIMESTAMP WITH TIME ZONE NOT NULL,
+  visibility               maevsi.event_visibility NOT NULL,
   UNIQUE (organizer_username, slug)
 );
 
 COMMENT ON TABLE maevsi.event IS 'An event.';
 COMMENT ON COLUMN maevsi.event.id IS E'@omit create,update\nThe event''s internal id.';
-COMMENT ON COLUMN maevsi.event.organizer_username IS 'The event organizer''s username.';
-COMMENT ON COLUMN maevsi.event.name IS 'The event''s name.';
-COMMENT ON COLUMN maevsi.event.slug IS 'The event''s name, slugified.';
-COMMENT ON COLUMN maevsi.event.visibility IS 'The event''s visibility.';
-COMMENT ON COLUMN maevsi.event.invitee_count_maximum IS 'The event''s maximum invitee count.';
 COMMENT ON COLUMN maevsi.event.description IS 'The event''s description.';
-COMMENT ON COLUMN maevsi.event.location IS 'The event''s location as it can be shown on a map.';
-COMMENT ON COLUMN maevsi.event.start IS 'The event''s start date and time, with timezone.';
 COMMENT ON COLUMN maevsi.event.end IS 'The event''s end date and time, with timezone.';
+COMMENT ON COLUMN maevsi.event.invitee_count_maximum IS 'The event''s maximum invitee count.';
 COMMENT ON COLUMN maevsi.event.is_archived IS 'Indicates whether the event is archived.';
 COMMENT ON COLUMN maevsi.event.is_in_person IS 'Indicates whether the event takes place in person.';
 COMMENT ON COLUMN maevsi.event.is_remote IS 'Indicates whether the event takes place remotely.';
+COMMENT ON COLUMN maevsi.event.location IS 'The event''s location as it can be shown on a map.';
+COMMENT ON COLUMN maevsi.event.name IS 'The event''s name.';
+COMMENT ON COLUMN maevsi.event.organizer_username IS 'The event organizer''s username.';
+COMMENT ON COLUMN maevsi.event.slug IS 'The event''s name, slugified.';
+COMMENT ON COLUMN maevsi.event.start IS 'The event''s start date and time, with timezone.';
+COMMENT ON COLUMN maevsi.event.visibility IS 'The event''s visibility.';
 
 -- GRANTs, RLS and POLICYs are specified in 'table_event_policy`.
 

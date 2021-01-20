@@ -3,11 +3,11 @@
 BEGIN;
 
 SELECT id,
-       "name",
-       slug,
-       organizer_username,
        "description",
-       is_archived
+       is_archived,
+       "name",
+       organizer_username,
+       slug
 FROM maevsi.event_group WHERE FALSE;
 
 DO $$

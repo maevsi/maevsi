@@ -6,17 +6,17 @@ BEGIN;
 CREATE TABLE maevsi_private.notification (
   id                 BIGSERIAL PRIMARY KEY,
   channel            TEXT NOT NULL,
+  is_acknowledged    BOOLEAN NOT NULL DEFAULT TRUE, -- TODO: Set default value to false in https://github.com/maevsi/maevsi/issues/210
   payload            TEXT CHECK (octet_length(payload) <= 8000) NOT NULL,
-  "timestamp"        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-  is_acknowledged    BOOLEAN NOT NULL DEFAULT TRUE -- TODO: Set default value to false in https://github.com/maevsi/maevsi/issues/210
+  "timestamp"        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
 COMMENT ON TABLE maevsi_private.notification IS 'A notification.';
 COMMENT ON COLUMN maevsi_private.notification.id IS 'The notification''s internal id.';
 COMMENT ON COLUMN maevsi_private.notification.channel IS 'The notification''s channel.';
+COMMENT ON COLUMN maevsi_private.notification.is_acknowledged IS 'Whether the notification was acknowledged.';
 COMMENT ON COLUMN maevsi_private.notification.payload IS 'The notification''s payload.';
 COMMENT ON COLUMN maevsi_private.notification.timestamp IS 'The notification''s timestamp.';
-COMMENT ON COLUMN maevsi_private.notification.is_acknowledged IS 'Whether the notification was acknowledged.';
 
 CREATE FUNCTION maevsi_private.notify() RETURNS TRIGGER AS $$
 BEGIN

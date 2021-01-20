@@ -3,10 +3,10 @@
 BEGIN;
 
 SELECT id,
-       uuid,
-       storage_key,
        username,
-       size_byte
+       uuid,
+       size_byte,
+       storage_key
 FROM maevsi.upload WHERE FALSE;
 
 DO $$

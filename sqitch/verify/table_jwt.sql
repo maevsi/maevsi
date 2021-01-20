@@ -3,8 +3,8 @@
 BEGIN;
 
 SELECT id,
-       uuid,
-       token
+       token,
+       uuid
 FROM maevsi_private.jwt WHERE FALSE;
 
 DO $$

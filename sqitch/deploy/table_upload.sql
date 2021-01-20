@@ -9,18 +9,18 @@ BEGIN;
 
 CREATE TABLE maevsi.upload (
   id             BIGSERIAL PRIMARY KEY,
-  uuid           UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
+  size_byte      BIGINT NOT NULL CHECK (size_byte > 0),
   storage_key    TEXT UNIQUE,
   username       TEXT REFERENCES maevsi_private.account(username) ON DELETE CASCADE NOT NULL,
-  size_byte      BIGINT NOT NULL CHECK (size_byte > 0)
+  uuid           UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc()
 );
 
 COMMENT ON TABLE maevsi.upload IS 'An upload.';
 COMMENT ON COLUMN maevsi.upload.id IS E'@omit create,update\nThe upload''s internal id.';
-COMMENT ON COLUMN maevsi.upload.uuid IS 'The upload''s UUID.';
+COMMENT ON COLUMN maevsi.upload.size_byte IS 'The upload''s size in bytes.';
 COMMENT ON COLUMN maevsi.upload.storage_key IS 'The upload''s storage key.';
 COMMENT ON COLUMN maevsi.upload.username IS 'The uploader''s username.';
-COMMENT ON COLUMN maevsi.upload.size_byte IS 'The upload''s size in bytes.';
+COMMENT ON COLUMN maevsi.upload.uuid IS 'The upload''s UUID.';
 
 GRANT SELECT ON TABLE maevsi.upload TO maevsi_account, maevsi_tusd;
 GRANT UPDATE ON TABLE maevsi.upload TO maevsi_tusd;

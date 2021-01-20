@@ -3,10 +3,10 @@
 BEGIN;
 
 SELECT id,
-       uuid,
        event_id,
        feedback,
-       feedback_paper
+       feedback_paper,
+       uuid
 FROM maevsi.invitation WHERE FALSE;
 
 ROLLBACK;
