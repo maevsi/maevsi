@@ -4,7 +4,7 @@
 # Should be the specific version of node:buster.
 # `node-zopfli-es` and `sqitch` require at least buster.
 # `node-zopfli-es` requires non-slim.
-FROM node:14.15.4-buster@sha256:685bf54b71749dda999c68a25fafa891996f278cd1d9d3f0ac436bbe714c05ec AS development
+FROM node:14.15.5-buster@sha256:810fc73fffa02751facec95f355202b2976441ac772bdb4bd650bd1b87e88776 AS development
 
 # https://github.com/typicode/husky/issues/821
 ENV HUSKY_SKIP_INSTALL=1
@@ -47,7 +47,7 @@ HEALTHCHECK --interval=10s CMD curl -f http://localhost:3000/healthcheck || exit
 # Should be the specific version of node:buster.
 # `node-zopfli-es` and `sqitch` require at least buster.
 # `node-zopfli-es` requires non-slim.
-FROM node:14.15.4-buster@sha256:685bf54b71749dda999c68a25fafa891996f278cd1d9d3f0ac436bbe714c05ec AS build
+FROM node:14.15.5-buster@sha256:810fc73fffa02751facec95f355202b2976441ac772bdb4bd650bd1b87e88776 AS build
 
 ARG NUXT_ENV_STACK_DOMAIN=maev.si
 ENV NUXT_ENV_STACK_DOMAIN=${NUXT_ENV_STACK_DOMAIN}
@@ -77,7 +77,7 @@ RUN yarn install
 
 # Should be the specific version of node:buster-slim.
 # sqitch requires at least buster.
-FROM node:14.15.4-buster-slim@sha256:c8b73b9968457ee4969050955031efe0943d7770e38eeec2943debefd4d28cfd AS production
+FROM node:14.15.5-buster-slim@sha256:6b726a194de1f4fc0a166e0d140a29d5dec1ce83367c6c7453e411ab2058e639 AS production
 
 ENV NODE_ENV=production
 
