@@ -1,6 +1,6 @@
 name: CI
 
-on: [pull_request, push]
+on: [create, pull_request, push]
 
 env:
   IMAGE_ID: ${{ github.repository }}
@@ -18,7 +18,7 @@ jobs:
         uses: docker/setup-buildx-action@v1.1.1
 
       - name: Registry login
-        if: github.event_name == 'push'
+        if: github.event_name != 'pull_request'
         run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USER_NAME }}" --password-stdin
 
       - name: Build
@@ -33,7 +33,25 @@ jobs:
           echo VERSION=$VERSION
 
           # Push the Docker image to the registry on git pushes that either pushed a tag or one of the following branches: [master, develop]
-          if [[ "${{ github.event_name }}" == "push" && (${{startsWith(github.ref, 'refs/tags/')}} == "true" || (${{startsWith(github.ref, 'refs/heads/')}} == "true" && ($VERSION == "latest" || $VERSION == "develop"))) ]]
+          if [[
+            (
+              "${{ github.event_name }}" == "create"
+              &&
+              ${{ startsWith(github.ref, 'refs/tags/') }} == "true"
+            )
+            ||
+            (
+              "${{ github.event_name }}" == "push"
+              &&
+              ${{ startsWith(github.ref, 'refs/heads/') }} == "true"
+              &&
+              (
+                $VERSION == "latest"
+                ||
+                $VERSION == "develop"
+              )
+            )
+          ]]
           then
             docker buildx build \
               --cache-from=$IMAGE_ID:cache \
