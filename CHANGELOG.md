@@ -1,3 +1,10 @@
+## [0.50.2](https://github.com/maevsi/maevsi/compare/0.50.1...0.50.2) (2021-02-12)
+
+
+### Bug Fixes
+
+* **ci:** trigger on create ([1cf4d36](https://github.com/maevsi/maevsi/commit/1cf4d36423942921ce9efa5ca35ace33e6bf638c))
+
 ## [0.50.1](https://github.com/maevsi/maevsi/compare/0.50.0...0.50.1) (2021-02-01)
 
 
