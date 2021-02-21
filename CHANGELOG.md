@@ -1,3 +1,10 @@
+# [0.51.0](https://github.com/maevsi/maevsi/compare/0.50.2...0.51.0) (2021-02-21)
+
+
+### Features
+
+* **eslint:** remove unneeded prettier config ([3f71811](https://github.com/maevsi/maevsi/commit/3f7181143820a2732609fa8afbc36f94cfebfe0a))
+
 ## [0.50.2](https://github.com/maevsi/maevsi/compare/0.50.1...0.50.2) (2021-02-12)
 
 
