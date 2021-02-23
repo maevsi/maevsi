@@ -988,10 +988,10 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/runtime-corejs3@7.13.3":
-  version "7.13.3"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.13.3.tgz#69fa3e860ba6f64ece83d52f988b615bc9e85e75"
-  integrity sha512-fGA86l9Tg4rCjAdMJ/WPjg+IpTPKuvJcpFvuU000bSNIxLETIb7aMi0h05OqaeOkAde2zyGJX9glszExV996ZA==
+"@babel/runtime-corejs3@7.13.4":
+  version "7.13.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.13.4.tgz#9f3f3ad6bd4cb5ec16a1e1c73c9f74abdaeee897"
+  integrity sha512-W8GBjqrF1/zMrdus/epxngkjn5TGePhgAu1EJq8llEC2NmPsVipm6Emd39z/iPzyqwG2QUJXpy6qajHC5m6PGA==
   dependencies:
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
