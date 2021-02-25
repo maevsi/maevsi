@@ -1,3 +1,12 @@
+## [0.51.1](https://github.com/maevsi/maevsi/compare/0.51.0...0.51.1) (2021-02-25)
+
+
+### Bug Fixes
+
+* **nuxt:** migrate to 2.15 ([b752021](https://github.com/maevsi/maevsi/commit/b752021b8214641fb541feec56a9d37fed0fe7f0))
+* **tailwind:** remove postcss v7 compatibility ([b0a6587](https://github.com/maevsi/maevsi/commit/b0a6587f3ac68144d4de01f970c483f3f860ad0b))
+* **verify:** correct page layout ([9ab8270](https://github.com/maevsi/maevsi/commit/9ab827070dc0405a0c3f4af5ae4cdbef92ab5e1f)), closes [#223](https://github.com/maevsi/maevsi/issues/223)
+
 # [0.51.0](https://github.com/maevsi/maevsi/compare/0.50.2...0.51.0) (2021-02-21)
 
 

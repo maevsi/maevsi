@@ -6,16 +6,19 @@
       :error-message="graphqlErrorMessage"
     />
     <div v-else>
-      <p>
+      <p class="text-center">
         {{ $t('emailAddressVerificationSuccess') }}
       </p>
-      <ButtonSignIn
-        v-if="
-          $global.getNested($store.state.jwtDecoded, 'role') ===
-          'maevsi_anonymous'
-        "
-      />
-      <ButtonHome />
+      <div class="flex flex-wrap justify-center">
+        <ButtonSignIn
+          v-if="
+            $global.getNested($store.state.jwtDecoded, 'role') ===
+            'maevsi_anonymous'
+          "
+        />
+        <Spacer />
+        <ButtonHome />
+      </div>
     </div>
   </div>
 </template>
