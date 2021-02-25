@@ -10,7 +10,8 @@
 BEGIN;
 
 CREATE FUNCTION maevsi.account_password_reset_request(
-  email_address TEXT
+  email_address TEXT,
+  "language" TEXT
 ) RETURNS VOID AS $$
 DECLARE
   _notify_data RECORD;
@@ -31,13 +32,13 @@ BEGIN
   IF (_notify_data IS NULL) THEN
     RAISE 'Nothing changed!' USING ERRCODE = 'no_data_found';
   ELSE
-    INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_password_reset_request', jsonb_pretty(jsonb_build_object('account', _notify_data)));
+    INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_password_reset_request', jsonb_pretty(jsonb_build_object('account', _notify_data, 'template', jsonb_build_object('language', $2))));
   END IF;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi.account_password_reset_request(TEXT) IS 'Sets a new password reset verification code for an account.';
+COMMENT ON FUNCTION maevsi.account_password_reset_request(TEXT, TEXT) IS 'Sets a new password reset verification code for an account.';
 
-GRANT EXECUTE ON FUNCTION maevsi.account_password_reset_request(TEXT) TO maevsi_anonymous;
+GRANT EXECUTE ON FUNCTION maevsi.account_password_reset_request(TEXT, TEXT) TO maevsi_anonymous;
 
 COMMIT;

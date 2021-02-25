@@ -13,7 +13,8 @@ BEGIN;
 CREATE FUNCTION maevsi.account_register(
   username TEXT,
   email_address TEXT,
-  "password" TEXT
+  "password" TEXT,
+  "language" TEXT
 ) RETURNS VOID AS $$
 DECLARE
   _new_account maevsi_private.account;
@@ -40,12 +41,12 @@ BEGIN
 
   INSERT INTO maevsi.contact(account_username, author_account_username) VALUES (_new_account.username, _new_account.username);
 
-  INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_register', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify))));
+  INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_register', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify), 'template', jsonb_build_object('language', $4))));
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi.account_register(TEXT, TEXT, TEXT) IS 'Creates a contact and registers an account referencing it.';
+COMMENT ON FUNCTION maevsi.account_register(TEXT, TEXT, TEXT, TEXT) IS 'Creates a contact and registers an account referencing it.';
 
-GRANT EXECUTE ON FUNCTION maevsi.account_register(TEXT, TEXT, TEXT) TO maevsi_anonymous;
+GRANT EXECUTE ON FUNCTION maevsi.account_register(TEXT, TEXT, TEXT, TEXT) TO maevsi_anonymous;
 
 COMMIT;

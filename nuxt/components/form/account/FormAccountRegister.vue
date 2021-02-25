@@ -77,9 +77,10 @@ export default {
         .mutate({
           mutation: ACCOUNT_REGISTER_MUTATION,
           variables: {
-            username: this.form.username,
-            password: this.form.password,
             emailAddress: this.form.emailAddress,
+            language: this.$i18n.locale,
+            password: this.form.password,
+            username: this.form.username,
           },
         })
         .then(({ data }) => this.$global.getNested(data, 'accountRegister'))
