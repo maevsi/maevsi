@@ -60,6 +60,7 @@ export default {
           mutation: ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION,
           variables: {
             emailAddress: this.form.emailAddress,
+            language: this.$i18n.locale,
           },
         })
         .then(({ data }) =>
