@@ -1,3 +1,10 @@
+# [0.52.0](https://github.com/maevsi/maevsi/compare/0.51.1...0.52.0) (2021-02-25)
+
+
+### Features
+
+* **stomper:** add i18n ([77e698b](https://github.com/maevsi/maevsi/commit/77e698bd8fb7078f600f4c86a29b8d963d94c07f))
+
 ## [0.51.1](https://github.com/maevsi/maevsi/compare/0.51.0...0.51.1) (2021-02-25)
 
 
