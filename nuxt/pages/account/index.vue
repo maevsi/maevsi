@@ -11,12 +11,12 @@
       ]"
     >
       <template slot="front">
-        <FormAccountRegister
-          ref="formRegister"
-          :form="formRegister"
+        <FormAccountRegistration
+          ref="formRegistration"
+          :form="formRegistration"
           form-class="rounded-t-none"
-          @form="onFormRegister"
-          @form-sent="onFormSent(formRegister)"
+          @form="onFormRegistration"
+          @form-sent="onFormSent(formRegistration)"
           @registered="onRegistered"
         />
       </template>
@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      formRegister: {
+      formRegistration: {
         emailAddress: undefined,
         password: undefined,
         sent: false,
@@ -85,9 +85,9 @@ export default {
       this.showFormPasswordResetRequest = false
 
       this.formPasswordResetRequest['email-address'] = undefined
-      this.formRegister['email-address'] = undefined
+      this.formRegistration['email-address'] = undefined
 
-      this.$refs.formRegister.$v.form.emailAddress.$touch()
+      this.$refs.formRegistration.$v.form.emailAddress.$touch()
     },
     onClickPasswordForgotten() {
       if (
@@ -101,12 +101,12 @@ export default {
       }
     },
     onFormPasswordResetRequest(form) {
-      if (this.formRegister['email-address'] !== form.emailAddress) {
-        this.formRegister['email-address'] = form.emailAddress
-        this.$refs.formRegister.$v.form.emailAddress.$touch()
+      if (this.formRegistration['email-address'] !== form.emailAddress) {
+        this.formRegistration['email-address'] = form.emailAddress
+        this.$refs.formRegistration.$v.form.emailAddress.$touch()
       }
     },
-    onFormRegister(form) {
+    onFormRegistration(form) {
       if (this.formSignIn.username !== form.username) {
         this.formSignIn.username = form.username
         this.$refs.formSignIn.$v.form.username.$touch()
@@ -131,19 +131,19 @@ export default {
       form.sent = true
     },
     onFormSignIn(form) {
-      if (this.formRegister.username !== form.username) {
-        this.formRegister.username = form.username
-        this.$refs.formRegister.$v.form.username.$touch()
+      if (this.formRegistration.username !== form.username) {
+        this.formRegistration.username = form.username
+        this.$refs.formRegistration.$v.form.username.$touch()
       }
 
-      if (this.formRegister.password !== form.password) {
-        this.formRegister.password = form.password
-        this.$refs.formRegister.$v.form.password.$touch()
+      if (this.formRegistration.password !== form.password) {
+        this.formRegistration.password = form.password
+        this.$refs.formRegistration.$v.form.password.$touch()
       }
     },
     onRegistered() {
       this.resetFormPasswordResetRequest()
-      this.resetFormRegister()
+      this.resetFormRegistration()
       this.resetFormSignIn()
 
       this.$refs.tabFlip.tabSelect('signIn')
@@ -155,12 +155,12 @@ export default {
         this.$refs.formPasswordResetRequest.$v.form.$reset()
       }
     },
-    resetFormRegister() {
-      this.formRegister.username = undefined
-      this.formRegister.password = undefined
-      this.formRegister['email-address'] = undefined
+    resetFormRegistration() {
+      this.formRegistration.username = undefined
+      this.formRegistration.password = undefined
+      this.formRegistration['email-address'] = undefined
 
-      this.$refs.formRegister.$v.form.$reset()
+      this.$refs.formRegistration.$v.form.$reset()
     },
     resetFormSignIn() {
       this.formSignIn.username = undefined
