@@ -2,7 +2,7 @@
   <FormInput
     :error="v.form[formKeyComputed].$error"
     :label-for="`input-${id}`"
-    :title="$t(id.replace(/(-register|-sign-in)$/, ''))"
+    :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
   >
     <input
       :id="`input-${id}`"

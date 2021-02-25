@@ -1,4 +1,4 @@
--- Deploy maevsi:function_account_register to pg
+-- Deploy maevsi:function_account_registration to pg
 -- requires: privilege_execute_revoke
 -- requires: schema_public
 -- requires: schema_private
@@ -10,7 +10,7 @@
 
 BEGIN;
 
-CREATE FUNCTION maevsi.account_register(
+CREATE FUNCTION maevsi.account_registration(
   username TEXT,
   email_address TEXT,
   "password" TEXT,
@@ -41,12 +41,12 @@ BEGIN
 
   INSERT INTO maevsi.contact(account_username, author_account_username) VALUES (_new_account.username, _new_account.username);
 
-  INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_register', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify), 'template', jsonb_build_object('language', $4))));
+  INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_registration', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify), 'template', jsonb_build_object('language', $4))));
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi.account_register(TEXT, TEXT, TEXT, TEXT) IS 'Creates a contact and registers an account referencing it.';
+COMMENT ON FUNCTION maevsi.account_registration(TEXT, TEXT, TEXT, TEXT) IS 'Creates a contact and registers an account referencing it.';
 
-GRANT EXECUTE ON FUNCTION maevsi.account_register(TEXT, TEXT, TEXT, TEXT) TO maevsi_anonymous;
+GRANT EXECUTE ON FUNCTION maevsi.account_registration(TEXT, TEXT, TEXT, TEXT) TO maevsi_anonymous;
 
 COMMIT;

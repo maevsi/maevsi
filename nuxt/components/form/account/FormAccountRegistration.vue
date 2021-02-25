@@ -8,21 +8,21 @@
     @submit.prevent="submit"
   >
     <FormInputUsername
-      id="username-register"
+      id="username-registration"
       form-key="username"
       :v="$v"
       @blur="$global.blur($v.form, blurFields, 'username', $event)"
       @input="blurFields.username ? ($v.form.username.$model = $event) : null"
     />
     <FormInputPassword
-      id="password-register"
+      id="password-registration"
       form-key="password"
       :v="$v"
       @blur="$global.blur($v.form, blurFields, 'password', $event)"
       @input="blurFields.password ? ($v.form.password.$model = $event) : null"
     />
     <FormInputEmailAddress
-      id="email-address-register"
+      id="email-address-registration"
       :form-element="$v.form.emailAddress"
       required
       @input="$v.form.emailAddress.$model = $event"
@@ -33,7 +33,7 @@
 <script>
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import ACCOUNT_REGISTER_MUTATION from '~/gql/mutation/account/accountRegister'
+import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration'
 
 const consola = require('consola')
 
@@ -75,7 +75,7 @@ export default {
       this.$v.form.$reset()
       const res = await this.$apollo
         .mutate({
-          mutation: ACCOUNT_REGISTER_MUTATION,
+          mutation: ACCOUNT_REGISTRATION_MUTATION,
           variables: {
             emailAddress: this.form.emailAddress,
             language: this.$i18n.locale,
@@ -83,7 +83,7 @@ export default {
             username: this.form.username,
           },
         })
-        .then(({ data }) => this.$global.getNested(data, 'accountRegister'))
+        .then(({ data }) => this.$global.getNested(data, 'accountRegistration'))
         .catch((reason) => {
           this.graphqlErrorMessage = reason.toString()
           consola.error(reason)

@@ -2,9 +2,9 @@
 
 BEGIN;
 
-SELECT maevsi.account_register('jonas', 'mail+sqitch-1@maev.si', 'testtest', 'en');
+SELECT maevsi.account_registration('jonas', 'mail+sqitch-1@maev.si', 'testtest', 'en');
 SELECT maevsi.account_email_address_verification((SELECT email_address_verification FROM maevsi_private.account WHERE username = 'jonas'));
-SELECT maevsi.account_register('peter', 'mail+sqitch-2@maev.si', 'testtest', 'de');
+SELECT maevsi.account_registration('peter', 'mail+sqitch-2@maev.si', 'testtest', 'de');
 INSERT INTO maevsi.contact (
     "address",
     "email_address",
