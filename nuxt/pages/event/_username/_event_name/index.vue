@@ -165,6 +165,7 @@
           <vue-markdown
             :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
             class="description maevsi-prose"
+            :html="false"
             >{{ event.description }}
           </vue-markdown>
         </div>
