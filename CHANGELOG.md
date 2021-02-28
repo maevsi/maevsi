@@ -1,3 +1,11 @@
+## [0.52.1](https://github.com/maevsi/maevsi/compare/0.52.0...0.52.1) (2021-02-28)
+
+
+### Bug Fixes
+
+* **event:** disable html interpretation ([757298c](https://github.com/maevsi/maevsi/commit/757298c34f561ea3c64704673ce4d2423aad1753)), closes [#236](https://github.com/maevsi/maevsi/issues/236)
+* remove test data ([d925916](https://github.com/maevsi/maevsi/commit/d92591683a4a92800956f3fbf2777ff29f60b11b))
+
 # [0.52.0](https://github.com/maevsi/maevsi/compare/0.51.1...0.52.0) (2021-02-25)
 
 
