@@ -2,7 +2,7 @@
   <li
     class="mb-2 last:mb-0"
     :class="{
-      'opacity-75': $moment(event.start).isBefore($moment()),
+      'opacity-75': $moment(event.end).isBefore($moment()),
     }"
   >
     <nuxt-link
