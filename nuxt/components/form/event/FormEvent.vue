@@ -345,7 +345,9 @@ export default {
               },
             })
             .then((value) => {
-              alert(this.$t('eventUpdateSuccess'))
+              this.$store.commit('modalAdd', {
+                contentBody: this.$t('eventUpdateSuccess'),
+              })
               resolve(value)
             })
             .catch((reason) => {
@@ -381,7 +383,9 @@ export default {
               },
             })
             .then((value) => {
-              alert(this.$t('eventCreateSuccess'))
+              this.$store.commit('modalAdd', {
+                contentBody: this.$t('eventCreateSuccess'),
+              })
               this.$router.push(
                 this.localePath(
                   `/event/${this.$store.state.signedInUsername}/${this.form.slug}`

@@ -191,7 +191,10 @@ export async function storeJwt(
   } else {
     xhrPromise('POST', '/auth', jwt).then(
       (_value) => callback(),
-      (_reason) => alert('Authorization failed!')
+      (_reason) =>
+        store.commit('modalAdd', {
+          contentBody: 'Authorization failed!',
+        })
     )
   }
 }

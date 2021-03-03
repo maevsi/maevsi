@@ -214,10 +214,14 @@ export default {
               this.$emit('deletion')
               break
             case 500:
-              alert(this.$t('uploadDeleteFailed'))
+              this.$store.commit('modalAdd', {
+                contentBody: this.$t('uploadDeleteFailed'),
+              })
               break
             default:
-              alert(this.$t('uploadDeleteUnexpectedStatusCode'))
+              this.$store.commit('modalAdd', {
+                contentBody: this.$t('uploadDeleteUnexpectedStatusCode'),
+              })
           }
         }
       }

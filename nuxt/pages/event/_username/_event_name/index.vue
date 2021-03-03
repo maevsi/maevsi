@@ -284,11 +284,11 @@ export default {
               )
               return
             default:
-              alert(
-                this.$t('iCalUnexpectedStatusCode', {
+              this.$store.commit('modalAdd', {
+                contentBody: this.$t('iCalUnexpectedStatusCode', {
                   statusCode: xhr.status,
-                })
-              )
+                }),
+              })
           }
         }
       }

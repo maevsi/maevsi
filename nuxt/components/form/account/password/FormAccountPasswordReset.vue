@@ -64,8 +64,9 @@ export default {
         return
       }
 
-      // this.$emit('account-password-reset')
-      alert(this.$t('accountPasswordResetSuccess'))
+      this.$store.commit('modalAdd', {
+        contentBody: this.$t('accountPasswordResetSuccess'),
+      })
       this.$router.push({
         path: this.localePath(`/account`),
         query: { ...this.$route.query, form: 'signIn' },

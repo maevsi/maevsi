@@ -207,11 +207,11 @@ export default {
           },
         })
         .then((_value) => {
-          alert(
-            this.$t('sendSuccess', {
+          this.$store.commit('modalAdd', {
+            contentBody: this.$t('sendSuccess', {
               emailAddress: invitation.contactByContactId.emailAddress,
-            })
-          )
+            }),
+          })
           this.$apollo.queries.allInvitations &&
             this.$apollo.queries.allInvitations.refetch()
         })

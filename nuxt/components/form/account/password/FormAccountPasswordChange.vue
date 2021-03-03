@@ -52,7 +52,9 @@ export default {
           },
         })
         .then((_value) => {
-          alert(this.$t('passwordChangeSuccess'))
+          this.$store.commit('modalAdd', {
+            contentBody: this.$t('passwordChangeSuccess'),
+          })
         })
         .catch((reason) => {
           this.graphqlErrorMessage = reason.toString()

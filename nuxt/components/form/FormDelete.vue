@@ -68,11 +68,11 @@ export default {
           ...(this.update && { update: this.update }),
         })
         .then((_value) => {
-          alert(
-            this.$global.capitalizeFirstLetter(
+          this.$store.commit('modalAdd', {
+            contentBody: this.$global.capitalizeFirstLetter(
               this.$t('success', { item: this.itemName })
-            )
-          )
+            ),
+          })
           this.$emit('success')
         })
         .catch((reason) => {

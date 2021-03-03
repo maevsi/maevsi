@@ -76,7 +76,9 @@ export default {
       }
 
       this.$emit('account-password-reset-request')
-      alert(this.$t('accountPasswordResetRequestSuccess'))
+      this.$store.commit('modalAdd', {
+        contentBody: this.$t('accountPasswordResetRequestSuccess'),
+      })
     },
   },
   validations() {

@@ -94,7 +94,9 @@ export default {
       }
 
       this.$emit('registered')
-      alert(this.$t('registerSuccess'))
+      this.$store.commit('modalAdd', {
+        contentBody: this.$t('registerSuccess'),
+      })
     },
   },
   validations() {

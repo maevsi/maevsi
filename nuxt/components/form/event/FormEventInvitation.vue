@@ -186,11 +186,11 @@ export default {
               },
             })
             .then((value) => {
-              alert(
-                this.$global.capitalizeFirstLetter(
+              this.$store.commit('modalAdd', {
+                contentBody: this.$global.capitalizeFirstLetter(
                   this.$t('success', { item: this.itemName })
-                )
-              )
+                ),
+              })
               resolve(value)
             })
             .catch((reason) => {
@@ -233,11 +233,11 @@ export default {
                   },
                 })
                 .then((value) => {
-                  alert(
-                    this.$global.capitalizeFirstLetter(
+                  this.$store.commit('modalAdd', {
+                    contentBody: this.$global.capitalizeFirstLetter(
                       this.$t('success', { item: this.itemName })
-                    )
-                  )
+                    ),
+                  })
                   resolve(value)
                 })
                 .catch((reason) => {
