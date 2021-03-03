@@ -1,3 +1,24 @@
+# [0.53.0](https://github.com/maevsi/maevsi/compare/0.52.1...0.53.0) (2021-03-03)
+
+
+### Bug Fixes
+
+* **button-list:** move css to utility ([b65bc95](https://github.com/maevsi/maevsi/commit/b65bc959f0bc7982b8bc13d0fdd396911c34f892))
+* **error:** improve display without status code ([c9d512c](https://github.com/maevsi/maevsi/commit/c9d512c8517d0b3397bd7e9d24cb67a29ed23982))
+* **event:** don't return an invitation for event creator ([1f94243](https://github.com/maevsi/maevsi/commit/1f942436de82f6d87d3b8d04dea82b759213e56f)), closes [#235](https://github.com/maevsi/maevsi/issues/235)
+* **event:** show 403 on insufficient permissions ([658b337](https://github.com/maevsi/maevsi/commit/658b3375f501b2f1f401820db1dfc4cefa839167)), closes [#238](https://github.com/maevsi/maevsi/issues/238)
+* **event-list-item:** grey out after end ([44fe04d](https://github.com/maevsi/maevsi/commit/44fe04d2a57035b12b632046397c2dbb136865c7)), closes [#237](https://github.com/maevsi/maevsi/issues/237)
+* **event-list-item:** improve truncation ([64c8e55](https://github.com/maevsi/maevsi/commit/64c8e5557b38dee3c5c1dd8b7866e0cb643c9d44))
+* **layout:** add margin to the header's sides ([1e83717](https://github.com/maevsi/maevsi/commit/1e837173bd0703bc3244242648d11376aa6e491c)), closes [#232](https://github.com/maevsi/maevsi/issues/232)
+* **modal:** add button list ([66d4b70](https://github.com/maevsi/maevsi/commit/66d4b702f2b56e29e537af1732f89e71fb938b8f))
+* **spacer:** add button list component ([62b09d2](https://github.com/maevsi/maevsi/commit/62b09d2d721d17bc458bdf3b0ca23213441e5f4a)), closes [#231](https://github.com/maevsi/maevsi/issues/231)
+
+
+### Features
+
+* **app-link:** make link's items centered in component ([e6653aa](https://github.com/maevsi/maevsi/commit/e6653aa0fd8ecabb00deeaa2fc60461625925b22))
+* **event:** validate maximum invitee count on upper end ([5d0e0f8](https://github.com/maevsi/maevsi/commit/5d0e0f8e15375218984d478aece7a03d901efd58)), closes [#233](https://github.com/maevsi/maevsi/issues/233)
+
 ## [0.52.1](https://github.com/maevsi/maevsi/compare/0.52.0...0.52.1) (2021-02-28)
 
 
