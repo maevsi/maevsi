@@ -15,6 +15,7 @@
         </p>
         <p>{{ $t('greetingDescription') }}</p>
       </div>
+      <br />
       <div
         v-if="
           $store.state.jwtDecoded &&
@@ -64,7 +65,7 @@
                   invitation.feedback === 'CANCELED',
               }"
             >
-              <div class="flex justify-center">
+              <div class="flex gap-4 justify-center">
                 <div
                   v-if="invitation.feedback === 'CANCELED'"
                   class="flex font-semibold items-center text-red-600"
@@ -77,7 +78,6 @@
                   />
                   {{ $t('invitationCanceled') }}
                 </div>
-                <Spacer />
                 <ButtonGreen
                   v-if="
                     invitation.feedback === null ||

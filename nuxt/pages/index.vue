@@ -15,6 +15,7 @@
           github.com/maevsi/maevsi
         </AppLink>
       </div>
+      <br />
       <Button :to="localePath('/event')">
         {{ $t('events') }}
       </Button>

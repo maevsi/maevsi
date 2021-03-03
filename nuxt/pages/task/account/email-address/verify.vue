@@ -9,16 +9,15 @@
       <p class="text-center">
         {{ $t('emailAddressVerificationSuccess') }}
       </p>
-      <div class="flex flex-wrap justify-center">
+      <ButtonList>
         <ButtonSignIn
           v-if="
             $global.getNested($store.state.jwtDecoded, 'role') ===
             'maevsi_anonymous'
           "
         />
-        <Spacer />
         <ButtonHome />
-      </div>
+      </ButtonList>
     </div>
   </div>
 </template>

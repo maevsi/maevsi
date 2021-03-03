@@ -7,13 +7,11 @@
     <h2 v-if="username" class="text-left truncate">
       {{ $t('titleEvents', { username: $route.params.username }) }}
     </h2>
-    <div class="flex flex-wrap justify-center">
+    <ButtonList>
       <ButtonEventList v-if="showButtonEventList" />
-      <Spacer />
       <ButtonEventNew v-if="showButtonEventNew" />
-      <Spacer />
       <ButtonEventUnlock v-if="showButtonEventUnlock" />
-    </div>
+    </ButtonList>
     <ul
       v-if="
         allEvents !== undefined && allEvents.nodes && allEvents.nodes.length

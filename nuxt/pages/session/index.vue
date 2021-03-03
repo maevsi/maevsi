@@ -8,6 +8,7 @@
       <p v-else>
         {{ $t('sessionExpired') }}
       </p>
+      <br />
       <Button :icon-id="['fas', 'sign-out-alt']" @click="onSessionExitClick()">
         {{ $t('sessionExit') }}
       </Button>
@@ -15,6 +16,7 @@
     <section>
       <h2>{{ $t('invitationCodes') }}</h2>
       <ButtonEventUnlock />
+      <br />
       <div v-if="$global.getNested($store.state.jwtDecoded, 'invitations')">
         <p>
           {{ $t('codesEntered') }}

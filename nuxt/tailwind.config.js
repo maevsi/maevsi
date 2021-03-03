@@ -233,10 +233,8 @@ module.exports = {
           color: theme('colors.text.bright'),
           display: 'inline-block',
           fontWeight: theme('fontWeight.bold'),
-          marginBottom: theme('margin.4'),
           marginLeft: 'auto',
           marginRight: 'auto',
-          marginTop: theme('margin.4'),
           padding: theme('padding.2') + ' ' + theme('padding.4'),
           '&:focus': {
             boxShadow: theme('ringWidth.DEFAULT'),

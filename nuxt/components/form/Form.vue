@@ -14,6 +14,7 @@
     <slot />
     <div v-if="!isEmbedded" class="flex flex-col items-center justify-between">
       <Button
+        class="my-4"
         :disabled="
           form.$invalid || (formSent && !form.$anyDirty && !graphqlErrorMessage)
         "

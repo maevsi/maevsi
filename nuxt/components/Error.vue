@@ -4,11 +4,10 @@
       maev.no? 🥺
     </p>
     <h1>{{ statusCode }} - {{ statusReason }}</h1>
-    <div class="flex flex-wrap justify-center">
+    <ButtonList>
       <ButtonHome />
-      <Spacer />
       <ButtonSignIn v-if="statusCode === 403" />
-    </div>
+    </ButtonList>
   </div>
 </template>
 
