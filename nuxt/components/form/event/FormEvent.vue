@@ -231,6 +231,12 @@
       <template slot="inputError">
         <FormInputError
           :form-input="$v.form.inviteeCountMaximum"
+          validation-property="maxValue"
+        >
+          {{ $t('globalValidationMaxValue') }}
+        </FormInputError>
+        <FormInputError
+          :form-input="$v.form.inviteeCountMaximum"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
@@ -243,7 +249,12 @@
 <script>
 import { Datetime } from 'vue-datetime'
 import VueMarkdown from 'vue-markdown-konishi'
-import { maxLength, minValue, required } from 'vuelidate/lib/validators'
+import {
+  maxLength,
+  maxValue,
+  minValue,
+  required,
+} from 'vuelidate/lib/validators'
 
 import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate'
 import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById'
@@ -409,6 +420,7 @@ export default {
         },
         end: {},
         inviteeCountMaximum: {
+          maxValue: maxValue(Math.pow(2, 31) - 1), // PostgrSQL's positive end of range for integers.
           minValue: minValue(1),
         },
         isInPerson: {},
