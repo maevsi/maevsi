@@ -93,7 +93,7 @@ export function getJwtFromCookie(req) {
           jwtDecoded: cookie,
         }
       } else {
-        consola.debug('Token expired.')
+        consola.info('Token expired.')
       }
     } else {
       consola.debug('No token cookie.')
@@ -172,7 +172,7 @@ export async function storeJwt(
     window.location.reload()
   }
 ) {
-  consola.debug('Storing the following JWT: ' + jwt)
+  consola.trace('Storing the following JWT: ' + jwt)
   store.commit('setJwt', jwt)
 
   await apolloClient.clearStore()

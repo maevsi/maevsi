@@ -11,10 +11,10 @@ export default ({ store }) => {
       const jwt = store.state.jwt
 
       if (jwt) {
-        consola.debug('Apollo request authenticated with: ' + jwt)
+        consola.trace('Apollo request authenticated with: ' + jwt)
         return `Bearer ${jwt}`
       } else {
-        consola.info('Apollo request without authentication.')
+        consola.trace('Apollo request without authentication.')
         return ''
       }
     },
