@@ -4,39 +4,42 @@
     :error-message="graphqlErrorMessage"
   />
   <div v-else>
-    <div v-if="event">
-      <!-- TODO: breadcrumbs -->
-      <h1 class="text-center">
-        {{ title }}
-      </h1>
-      <section>
-        <h2>{{ $t('titleInvitations') }}</h2>
-        <EventInvitations :event="event" />
-      </section>
-      <section>
-        <h2>{{ $t('titleEdit') }}</h2>
-        <FormEvent :event="event" />
-      </section>
-      <section>
-        <h2>{{ $t('titleGeneral') }}</h2>
+    <div v-if="$route.params.username === $store.state.signedInUsername">
+      <div v-if="event">
+        <!-- TODO: breadcrumbs -->
+        <h1 class="text-center">
+          {{ title }}
+        </h1>
         <section>
-          <h3>{{ $t('titleDangerZone') }}</h3>
+          <h2>{{ $t('titleInvitations') }}</h2>
+          <EventInvitations :event="event" />
+        </section>
+        <section>
+          <h2>{{ $t('titleEdit') }}</h2>
+          <FormEvent :event="event" />
+        </section>
+        <section>
+          <h2>{{ $t('titleGeneral') }}</h2>
           <section>
-            <h4>{{ $t('titleDelete') }}</h4>
-            <FormDelete
-              id="deleteEvent"
-              :item-name="$t('event')"
-              :mutation="mutation"
-              :update="updateCacheDelete"
-              :variables="{
-                authorUsername: $route.params.username,
-                slug: $route.params.event_name,
-              }"
-              @success="onDeleteSuccess"
-            />
+            <h3>{{ $t('titleDangerZone') }}</h3>
+            <section>
+              <h4>{{ $t('titleDelete') }}</h4>
+              <FormDelete
+                id="deleteEvent"
+                :item-name="$t('event')"
+                :mutation="mutation"
+                :update="updateCacheDelete"
+                :variables="{
+                  authorUsername: $route.params.username,
+                  slug: $route.params.event_name,
+                }"
+                @success="onDeleteSuccess"
+              />
+            </section>
           </section>
         </section>
-      </section>
+      </div>
+      <Error v-else />
     </div>
     <Error v-else :status-code="403" />
   </div>
