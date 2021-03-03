@@ -101,7 +101,7 @@
     </Button>
     <Modal
       ref="modal"
-      cancellable
+      is-cancellable
       :is-submit-disabled="
         $refs.formEventInvitation && $refs.formEventInvitation.$v.form.$invalid
       "

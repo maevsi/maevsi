@@ -17,7 +17,7 @@
           <slot name="footer">
             <ButtonList>
               <Button
-                v-if="cancellable"
+                v-if="isCancellable"
                 :disabled="isSubmitting"
                 :icon-id="['fas', 'window-close']"
                 @click="isVisible = false"
@@ -46,7 +46,7 @@ const consola = require('consola')
 
 export default {
   props: {
-    cancellable: {
+    isCancellable: {
       default: false,
       type: Boolean,
     },

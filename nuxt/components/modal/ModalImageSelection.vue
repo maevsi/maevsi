@@ -1,7 +1,7 @@
 <template>
   <Modal
     ref="modal"
-    cancellable
+    is-cancellable
     :is-submit-disabled="selectedProfilePictureStorageKey === undefined"
     :submit-task-provider="setProfilePicture"
     @close="isVisible = false"
