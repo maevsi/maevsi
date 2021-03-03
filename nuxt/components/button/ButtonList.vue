@@ -11,7 +11,7 @@ div {
   margin: 0.5rem -0.5rem;
 }
 div >>> a,
-div >>> button {
+div >>> div {
   margin: 0.5rem;
 }
 </style>

@@ -15,22 +15,24 @@
         </div>
         <div class="flex justify-evenly">
           <slot name="footer">
-            <Button
-              v-if="cancellable"
-              :disabled="isSubmitting"
-              :icon-id="['fas', 'window-close']"
-              @click="isVisible = false"
-            >
-              {{ $t('cancel') }}
-            </Button>
-            <ButtonGreen
-              :disabled="isSubmitting || isSubmitDisabled"
-              :icon-id="submitIconId"
-              type="submit"
-              @click="submit()"
-            >
-              {{ submitName }}
-            </ButtonGreen>
+            <ButtonList>
+              <Button
+                v-if="cancellable"
+                :disabled="isSubmitting"
+                :icon-id="['fas', 'window-close']"
+                @click="isVisible = false"
+              >
+                {{ $t('cancel') }}
+              </Button>
+              <ButtonGreen
+                :disabled="isSubmitting || isSubmitDisabled"
+                :icon-id="submitIconId"
+                type="submit"
+                @click="submit()"
+              >
+                {{ submitName }}
+              </ButtonGreen>
+            </ButtonList>
           </slot>
         </div>
         <CardAlert class="mb-4" :error-message="errorMessage" />
