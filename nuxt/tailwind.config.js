@@ -324,6 +324,12 @@ module.exports = {
         },
       })
       addUtilities({
+        '.button-list': {
+          margin: theme('margin.2') + ' ' + theme('margin.-2'),
+          '> *': {
+            margin: theme('margin.2'),
+          },
+        },
         '.disabled': {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
