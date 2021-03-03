@@ -3,7 +3,7 @@
     <p class="font-black font-family-montserrat text-center text-xl">
       maev.no? 🥺
     </p>
-    <h1>{{ statusCode }} - {{ statusReason }}</h1>
+    <h1>{{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}</h1>
     <ButtonList>
       <ButtonHome />
       <ButtonSignIn v-if="statusCode === 403" />
