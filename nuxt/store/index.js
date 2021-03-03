@@ -10,6 +10,21 @@ export const state = () => ({
 })
 
 export const mutations = {
+  jwtRemove(state) {
+    this.jwtSet(state, null)
+  },
+  jwtSet(state, jwt) {
+    const jwtDecoded = decode(jwt)
+
+    state.jwt = jwt
+    state.jwtDecoded = decode(jwt)
+    state.signedInUsername =
+      jwtDecoded &&
+      jwtDecoded.role === 'maevsi_account' &&
+      jwtDecoded.exp > Math.floor(Date.now() / 1000)
+        ? jwtDecoded.username
+        : null
+  },
   modalAdd(state, data) {
     const dataDefault = {
       contentBody: undefined,
@@ -26,20 +41,5 @@ export const mutations = {
     state.modals = state.modals.filter((modal) => {
       return modal.id !== data
     })
-  },
-  removeJwt(state) {
-    this.setJwt(state, null)
-  },
-  setJwt(state, jwt) {
-    const jwtDecoded = decode(jwt)
-
-    state.jwt = jwt
-    state.jwtDecoded = decode(jwt)
-    state.signedInUsername =
-      jwtDecoded &&
-      jwtDecoded.role === 'maevsi_account' &&
-      jwtDecoded.exp > Math.floor(Date.now() / 1000)
-        ? jwtDecoded.username
-        : null
   },
 }

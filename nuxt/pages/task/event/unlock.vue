@@ -121,7 +121,7 @@ export default {
         return
       }
 
-      this.$global.storeJwt(
+      this.$global.jwtStore(
         this.$apollo.getClient(),
         this.$store,
         undefined,

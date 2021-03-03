@@ -48,7 +48,7 @@ export async function authenticateAnonymous(apolloClient, store, res) {
     return
   }
 
-  await storeJwt(apolloClient, store, res, authenticationData.jwt)
+  await jwtStore(apolloClient, store, res, authenticationData.jwt)
 }
 
 export function blur(form, blurFields, fieldName, data) {
@@ -144,26 +144,11 @@ export async function jwtRefresh(apolloClient, store, res, id) {
   if (!jwtRefreshData.jwt) {
     await authenticateAnonymous(apolloClient, store, res)
   } else {
-    await storeJwt(apolloClient, store, res, jwtRefreshData.jwt)
+    await jwtStore(apolloClient, store, res, jwtRefreshData.jwt)
   }
 }
 
-async function signOut(apolloClient, store, res) {
-  await storeJwt(apolloClient, store, res, null)
-}
-
-export function objectClone(object) {
-  const objectClone = JSON.parse(JSON.stringify(object))
-  return objectClone
-}
-
-export function removeTypename(object) {
-  const objectClone = this.objectClone(object)
-  delete objectClone.__typename
-  return objectClone
-}
-
-export async function storeJwt(
+export async function jwtStore(
   apolloClient,
   store,
   res,
@@ -173,7 +158,7 @@ export async function storeJwt(
   }
 ) {
   consola.trace('Storing the following JWT: ' + jwt)
-  store.commit('setJwt', jwt)
+  store.commit('jwtSet', jwt)
 
   await apolloClient.clearStore()
 
@@ -197,6 +182,21 @@ export async function storeJwt(
         })
     )
   }
+}
+
+async function signOut(apolloClient, store, res) {
+  await jwtStore(apolloClient, store, res, null)
+}
+
+export function objectClone(object) {
+  const objectClone = JSON.parse(JSON.stringify(object))
+  return objectClone
+}
+
+export function removeTypename(object) {
+  const objectClone = this.objectClone(object)
+  delete objectClone.__typename
+  return objectClone
 }
 
 export function validateUsername(apollo) {
@@ -277,10 +277,10 @@ export default async ({ app, req, res, store }, inject) => {
     getNested,
     getQueryString,
     jwtRefresh,
+    jwtStore,
     signOut,
     objectClone,
     removeTypename,
-    storeJwt,
     validateUsername,
     xhrPromise,
   }
