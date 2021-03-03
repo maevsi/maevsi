@@ -1,3 +1,19 @@
+# [0.54.0](https://github.com/maevsi/maevsi/compare/0.53.0...0.54.0) (2021-03-03)
+
+
+### Bug Fixes
+
+* **layout:** resolve deprecated i18n function ([7d5b8eb](https://github.com/maevsi/maevsi/commit/7d5b8eb13f034b4f4867595ec5a50107f0ed417e))
+
+
+### Features
+
+* **consola:** downgrade loglevel to tracing for authentication ([0a53ea8](https://github.com/maevsi/maevsi/commit/0a53ea85b943d0cc175488e56bec98f5e4f461f4))
+* **modal:** add "is" prefix to "cancellable" ([7833bf1](https://github.com/maevsi/maevsi/commit/7833bf12c20f0b0cab5fa03aaacf07b61242d4cc))
+* **modal:** make modals stateful ([e1d84ec](https://github.com/maevsi/maevsi/commit/e1d84ec6c29fc0b78273f70a64f883469e59174d))
+* **modal:** replace alerts ([83c724e](https://github.com/maevsi/maevsi/commit/83c724e485a185270ae89e9b2163825d9cd58c9b)), closes [#57](https://github.com/maevsi/maevsi/issues/57)
+* **nuxt:** hide production and devtool tips ([d10e0df](https://github.com/maevsi/maevsi/commit/d10e0dfe5b2718bb5a4009facdd9dfc9d1630107))
+
 # [0.53.0](https://github.com/maevsi/maevsi/compare/0.52.1...0.53.0) (2021-03-03)
 
 
