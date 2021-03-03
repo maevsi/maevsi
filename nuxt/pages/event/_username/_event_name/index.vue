@@ -249,12 +249,9 @@ export default {
       return this.$global.getNested(this.invitation, 'contactByContactId')
     },
     invitation() {
-      return this.$global.getNested(
-        this.event,
-        'invitationsByEventId',
-        'nodes',
-        0
-      )
+      return this.$route.params.username !== this.$store.state.signedInUsername
+        ? this.$global.getNested(this.event, 'invitationsByEventId', 'nodes', 0)
+        : undefined
     },
   },
   methods: {
