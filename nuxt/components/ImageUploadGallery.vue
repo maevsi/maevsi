@@ -100,7 +100,7 @@
     </div>
     <p v-else>{{ $t('noPictures') }}</p>
     <Modal
-      ref="modal"
+      id="ModalImageUploadGallery"
       is-cancellable
       :submit-icon-id="['fas', 'upload']"
       :submit-name="$t('upload')"
@@ -225,7 +225,7 @@ export default {
     },
     fileLoaded(e) {
       this.fileSelectedUrl = e.target.result
-      this.$refs.modal.isVisible = true
+      this.$store.commit('modalAdd', { id: 'ModalImageUploadGallery' })
     },
     loadProfilePicture(event) {
       const files = Array.from(event.target.files)

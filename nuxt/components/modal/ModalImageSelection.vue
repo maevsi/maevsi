@@ -1,10 +1,10 @@
 <template>
   <Modal
-    ref="modal"
+    id="ModalImageSelection"
     is-cancellable
     :is-submit-disabled="selectedProfilePictureStorageKey === undefined"
     :submit-task-provider="setProfilePicture"
-    @close="isVisible = false"
+    @close="selectedProfilePictureStorageKey = undefined"
     @submitSuccess="$emit('submitSuccess')"
   >
     <h2 slot="header">{{ $t('header') }}</h2>
@@ -24,7 +24,6 @@ import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profileP
 export default {
   data() {
     return {
-      isVisible: false,
       selectedProfilePictureStorageKey: undefined,
       setProfilePicture: () =>
         this.$apollo.mutate({
@@ -34,16 +33,6 @@ export default {
           },
         }),
     }
-  },
-  watch: {
-    isVisible(newValue) {
-      if (newValue) {
-        this.$refs.modal.isVisible = this.isVisible
-      } else {
-        this.selectedProfilePictureStorageKey = undefined
-        // this.$emit('close')
-      }
-    },
   },
   methods: {
     selectProfilePictureStorageKey(storageKey) {

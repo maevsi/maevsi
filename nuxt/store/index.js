@@ -5,10 +5,28 @@ import { decode } from 'jsonwebtoken'
 export const state = () => ({
   jwt: undefined,
   jwtDecoded: undefined,
+  modals: [],
   signedInUsername: undefined,
 })
 
 export const mutations = {
+  modalAdd(state, data) {
+    const dataDefault = {
+      contentBody: undefined,
+      contentFooter: undefined,
+      contentHeader: undefined,
+      id: 'ModalGlobal',
+      isCancellable: undefined,
+      isVisible: true,
+    }
+
+    state.modals.push({ ...dataDefault, ...data })
+  },
+  modalRemove(state, data) {
+    state.modals = state.modals.filter((modal) => {
+      return modal.id !== data
+    })
+  },
   removeJwt(state) {
     this.setJwt(state, null)
   },

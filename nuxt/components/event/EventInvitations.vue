@@ -100,7 +100,7 @@
       {{ $t('invitationAdd') }}
     </Button>
     <Modal
-      ref="modal"
+      id="ModalEventInvitation"
       is-cancellable
       :is-submit-disabled="
         $refs.formEventInvitation && $refs.formEventInvitation.$v.form.$invalid
@@ -167,7 +167,7 @@ export default {
     add() {
       this.formEventInvitationHeading = this.$t('invitationAdd')
       this.selectedInvitation = undefined
-      this.$refs.modal.isVisible = true
+      this.$store.commit('modalAdd', { id: 'ModalEventInvitation' })
     },
     deletion(uuid) {
       this.pending.deletions.push(uuid)
@@ -194,7 +194,7 @@ export default {
     edit(invitation) {
       this.formEventInvitationHeading = this.$t('invitationEdit')
       this.selectedInvitation = invitation
-      this.$refs.modal.isVisible = true
+      this.$store.commit('modalAdd', { id: 'ModalEventInvitation' })
     },
     send(invitation) {
       this.pending.sends.push(invitation.uuid)

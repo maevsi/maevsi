@@ -6,7 +6,7 @@
       <button
         class="sm:mr-4"
         type="button"
-        @click="$refs.modal.isVisible = true"
+        @click="$store.commit('modalAdd', { id: 'ModalImageSelection' })"
       >
         <ProfilePicture
           ref="profilePicture"
@@ -17,7 +17,7 @@
       <h1 class="truncate w-full sm:w-auto">
         {{ $route.params.username }}
       </h1>
-      <ModalImageSelection ref="modal" @submitSuccess="reloadProfilePicture" />
+      <ModalImageSelection @submitSuccess="reloadProfilePicture" />
     </div>
     <section>
       <h2>{{ $t('titleImageUploads') }}</h2>

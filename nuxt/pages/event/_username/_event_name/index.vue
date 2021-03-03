@@ -172,9 +172,6 @@
       </div>
     </div>
     <Error v-else :status-code="403" />
-    <Modal ref="modal">
-      {{ $t('success') }}
-    </Modal>
   </div>
 </template>
 
@@ -308,7 +305,9 @@ export default {
         })
         .then((_value) => {
           this.$apollo.queries.event.refetch()
-          this.$refs.modal.isVisible = true
+          this.$store.commit('modalAdd', {
+            contentBody: this.$t('success'),
+          })
         })
         .catch((reason) => {
           this.graphqlErrorMessage = reason.toString()
