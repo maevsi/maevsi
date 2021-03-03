@@ -27,11 +27,11 @@
         </div>
         <div class="flex items-center mb-2 text-text-dark text-sm">
           <EventIconVisibility :event="event" :show-text="false" />
-          <div class="flex items-baseline">
+          <div class="flex items-baseline truncate">
             <div class="font-bold mx-2 text-xl truncate">
               {{ event.name }}
             </div>
-            <Owner :username="event.authorUsername" />
+            <Owner class="truncate" :username="event.authorUsername" />
           </div>
         </div>
         <p
