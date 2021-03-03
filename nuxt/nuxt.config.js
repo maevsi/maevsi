@@ -355,4 +355,11 @@ export default {
     { path: '/ical', handler: '~/api/ical.ts' },
     { path: '/tusd', handler: '~/api/tusd.ts' },
   ],
+
+  vue: {
+    config: {
+      productionTip: false,
+      devtools: false,
+    },
+  },
 }
