@@ -1,6 +1,7 @@
 <template>
   <a
     v-if="to.match(/^(http(s)?|ftp):\/\//)"
+    class="items-center flex"
     :href="to"
     :rel="
       [...(nofollow ? ['nofollow'] : []), 'noopener', 'noreferrer'].join(' ')

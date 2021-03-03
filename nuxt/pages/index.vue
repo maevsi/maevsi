@@ -7,7 +7,6 @@
       <br />
       <div class="flex justify-center">
         <AppLink
-          class="items-center flex"
           :icon-id="['fab', 'github']"
           icon-size="2x"
           :title="$t('githubLinkTitle')"
