@@ -148,7 +148,7 @@ export default {
     }
   },
   head() {
-    return this.$nuxtI18nSeo()
+    return this.$nuxtI18nHead({ addSeoAttributes: true })
   },
   computed: {
     availableLocales() {
