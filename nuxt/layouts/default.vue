@@ -5,7 +5,7 @@
         <CardInfo v-if="!browserSupported">
           {{ $t('browserUnsupported') }}
         </CardInfo>
-        <div class="flex items-center justify-between my-4 relative">
+        <div class="flex items-center justify-between m-4 relative">
           <nuxt-link :aria-label="$t('home')" :to="localePath('/')">
             <div id="logo" class="h-10 w-32" />
           </nuxt-link>
