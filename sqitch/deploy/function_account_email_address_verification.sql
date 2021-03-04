@@ -13,23 +13,24 @@ CREATE FUNCTION maevsi.account_email_address_verification(
   code UUID
 ) RETURNS VOID AS $$
 DECLARE
-  _notify_email_address TEXT;
+  _account maevsi_private.account;
 BEGIN
-  WITH updated AS (
-    UPDATE maevsi_private.account
-      SET email_address_verification = NULL
-      WHERE
-        email_address_verification = $1
-        AND
-        email_address_verification_valid_until >= NOW()
-      RETURNING email_address
-  ) SELECT email_address
-    FROM updated
-    INTO _notify_email_address;
+  SELECT *
+    FROM maevsi_private.account
+    INTO _account
+    WHERE account.email_address_verification = $1;
 
-  IF (_notify_email_address IS NULL) THEN
-    RAISE 'Nothing changed!' USING ERRCODE = 'no_data_found';
+  IF (_account IS NULL) THEN
+    RAISE 'Unknown verification code!' USING ERRCODE = 'no_data_found';
   END IF;
+
+  IF (_account.email_address_verification_valid_until < NOW()) THEN
+    RAISE 'Verification code expired!' USING ERRCODE = 'no_data_found';
+  END IF;
+
+  UPDATE maevsi_private.account
+    SET email_address_verification = NULL
+    WHERE email_address_verification = $1;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 

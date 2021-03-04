@@ -14,32 +14,30 @@ CREATE FUNCTION maevsi.account_password_reset(
   "password" TEXT
 ) RETURNS VOID AS $$
 DECLARE
-  _notify_email_address TEXT;
+  _account maevsi_private.account;
 BEGIN
   IF (char_length($2) < 8) THEN
     RAISE 'Password too short!' USING ERRCODE = 'invalid_parameter_value';
   END IF;
 
-  IF (NOT EXISTS (
-    SELECT 1 FROM maevsi_private.account
-    WHERE
-      account.password_reset_verification = $1
-      AND
-      account.password_reset_verification_valid_until >= NOW()
-    )) THEN
-    RAISE 'Code invalid!' USING ERRCODE = 'no_data_found';
+  SELECT *
+    FROM maevsi_private.account
+    INTO _account
+    WHERE account.password_reset_verification = $1;
+
+  IF (_account IS NULL) THEN
+    RAISE 'Unknown reset code!' USING ERRCODE = 'no_data_found';
   END IF;
 
-  WITH updated AS (
-    UPDATE maevsi_private.account
-      SET
-        password_hash = maevsi.crypt($2, maevsi.gen_salt('bf')),
-        password_reset_verification = NULL
-      WHERE account.password_reset_verification = $1
-      RETURNING *
-  ) SELECT email_address
-    FROM updated
-    INTO _notify_email_address;
+  IF (_account.password_reset_verification_valid_until < NOW()) THEN
+    RAISE 'Reset code expired!' USING ERRCODE = 'no_data_found';
+  END IF;
+
+  UPDATE maevsi_private.account
+    SET
+      password_hash = maevsi.crypt($2, maevsi.gen_salt('bf')),
+      password_reset_verification = NULL
+    WHERE account.password_reset_verification = $1;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
