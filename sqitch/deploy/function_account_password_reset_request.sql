@@ -25,14 +25,24 @@ BEGIN
       SET password_reset_verification = maevsi.uuid_generate_v1mc()
       WHERE account.email_address = $1
       RETURNING *
-  ) SELECT updated.username, updated.email_address, updated.password_reset_verification
+  ) SELECT
+    updated.username,
+    updated.email_address,
+    updated.password_reset_verification,
+    updated.password_reset_verification_valid_until
     FROM updated
     INTO _notify_data;
 
   IF (_notify_data IS NULL) THEN
     RAISE 'Nothing changed!' USING ERRCODE = 'no_data_found';
   ELSE
-    INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_password_reset_request', jsonb_pretty(jsonb_build_object('account', _notify_data, 'template', jsonb_build_object('language', $2))));
+    INSERT INTO maevsi_private.notification (channel, payload) VALUES (
+      'account_password_reset_request',
+      jsonb_pretty(jsonb_build_object(
+        'account', _notify_data,
+        'template', jsonb_build_object('language', $2)
+      ))
+    );
   END IF;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;

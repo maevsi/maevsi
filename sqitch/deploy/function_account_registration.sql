@@ -36,12 +36,22 @@ BEGIN
     ($1, $2, maevsi.crypt($3, maevsi.gen_salt('bf')), NOW())
     RETURNING * INTO _new_account;
 
-  SELECT _new_account.username, _new_account.email_address, _new_account.email_address_verification
+  SELECT
+    _new_account.username,
+    _new_account.email_address,
+    _new_account.email_address_verification,
+    _new_account.email_address_verification_valid_until
   INTO _new_account_notify;
 
   INSERT INTO maevsi.contact(account_username, author_account_username) VALUES (_new_account.username, _new_account.username);
 
-  INSERT INTO maevsi_private.notification (channel, payload) VALUES ('account_registration', jsonb_pretty(jsonb_build_object('account', row_to_json(_new_account_notify), 'template', jsonb_build_object('language', $4))));
+  INSERT INTO maevsi_private.notification (channel, payload) VALUES (
+    'account_registration',
+    jsonb_pretty(jsonb_build_object(
+      'account', row_to_json(_new_account_notify),
+      'template', jsonb_build_object('language', $4)
+    ))
+  );
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
