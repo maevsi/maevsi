@@ -1,3 +1,16 @@
+# [0.55.0](https://github.com/maevsi/maevsi/compare/0.54.0...0.55.0) (2021-03-04)
+
+
+### Bug Fixes
+
+* **profile-picture:** prevent placeholder image large flashing ([448e84a](https://github.com/maevsi/maevsi/commit/448e84a6b693014e9e4b7bedf3d8a603d91afabc)), closes [#242](https://github.com/maevsi/maevsi/issues/242)
+
+
+### Features
+
+* **account:** add valid until data to notifies ([3b66392](https://github.com/maevsi/maevsi/commit/3b66392ccdee0195bf4c502fe5ee3566e4cd300c))
+* **account:** display expired code state ([1040a21](https://github.com/maevsi/maevsi/commit/1040a21a96f991135f64e7d99e39c5ea51b23b81)), closes [#149](https://github.com/maevsi/maevsi/issues/149)
+
 # [0.54.0](https://github.com/maevsi/maevsi/compare/0.53.0...0.54.0) (2021-03-03)
 
 
