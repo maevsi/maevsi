@@ -10,7 +10,7 @@
       >
         <ProfilePicture
           ref="profilePicture"
-          class="h-24 w-24"
+          classes="h-24 w-24"
           :username="$route.params.username"
         />
       </button>

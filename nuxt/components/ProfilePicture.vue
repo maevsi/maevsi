@@ -8,7 +8,7 @@
   <LoaderImage
     v-else
     :alt="$t('profilePictureAlt', { username })"
-    :class="{ 'rounded-full': rounded }"
+    :class="classComputed"
     :src="imageSrc"
   />
 </template>
@@ -49,6 +49,10 @@ export default {
     },
   },
   props: {
+    classes: {
+      default: undefined,
+      type: String,
+    },
     rounded: {
       default: undefined,
       type: Boolean,
@@ -65,6 +69,9 @@ export default {
     }
   },
   computed: {
+    classComputed() {
+      return [this.classes, ...(this.rounded ? ['rounded-full'] : [])].join(' ')
+    },
     imageSrc() {
       if (this.profilePictureUrl !== undefined) {
         return this.profilePictureUrl

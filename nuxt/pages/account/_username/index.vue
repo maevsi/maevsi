@@ -5,8 +5,8 @@
     >
       <div class="sm:mr-4">
         <ProfilePicture
-          class="h-24 w-24"
-          :username="this.$route.params.username"
+          classes="h-24 w-24"
+          :username="$route.params.username"
         />
       </div>
       <h1 class="truncate w-full sm:w-auto">
