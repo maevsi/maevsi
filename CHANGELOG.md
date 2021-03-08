@@ -1,3 +1,15 @@
+# [0.56.0](https://github.com/maevsi/maevsi/compare/0.55.0...0.56.0) (2021-03-08)
+
+
+### Bug Fixes
+
+* **sqitch:** correct invitation permissions ([07623ca](https://github.com/maevsi/maevsi/commit/07623caa072e9fd99d167888d3942372cc1839b5)), closes [#234](https://github.com/maevsi/maevsi/issues/234)
+
+
+### Features
+
+* **event-invitations:** add invitation feedback to invitation list ([8959fbc](https://github.com/maevsi/maevsi/commit/8959fbce54ed0a5a54500dc551fe270dbf9dcbdf)), closes [#239](https://github.com/maevsi/maevsi/issues/239)
+
 # [0.55.0](https://github.com/maevsi/maevsi/compare/0.54.0...0.55.0) (2021-03-04)
 
 
