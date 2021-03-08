@@ -10,12 +10,15 @@ BEGIN
   ASSERT (SELECT pg_catalog.has_table_privilege('maevsi_account', 'maevsi.invitation', 'DELETE'));
   ASSERT (SELECT pg_catalog.has_table_privilege('maevsi_anonymous', 'maevsi.invitation', 'SELECT'));
   ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_anonymous', 'maevsi.invitation', 'INSERT'));
-  ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_anonymous', 'maevsi.invitation', 'UPDATE'));
+  ASSERT (SELECT pg_catalog.has_table_privilege('maevsi_anonymous', 'maevsi.invitation', 'UPDATE'));
   ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_anonymous', 'maevsi.invitation', 'DELETE'));
   ASSERT (SELECT pg_catalog.has_table_privilege('maevsi_stomper', 'maevsi.invitation', 'SELECT'));
   ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_stomper', 'maevsi.invitation', 'INSERT'));
   ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_stomper', 'maevsi.invitation', 'UPDATE'));
   ASSERT NOT (SELECT pg_catalog.has_table_privilege('maevsi_stomper', 'maevsi.invitation', 'DELETE'));
+
+  ASSERT (SELECT pg_catalog.has_function_privilege('maevsi_account', 'maevsi.trigger_invitation_update()', 'EXECUTE'));
+  ASSERT (SELECT pg_catalog.has_function_privilege('maevsi_anonymous', 'maevsi.trigger_invitation_update()', 'EXECUTE'));
 END $$;
 
 ROLLBACK;
