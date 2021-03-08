@@ -21,6 +21,7 @@
           <th class="border" scope="col">{{ $t('emailAddress') }}</th>
           <th class="border" scope="col">{{ $t('address') }}</th>
           <th class="border" scope="col">{{ $t('invitationCode') }}</th>
+          <th class="border" scope="col">{{ $t('feedback') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -45,6 +46,14 @@
             }}
           </td>
           <td class="border font-mono">{{ invitation.uuid }}</td>
+          <td class="border font-mono">
+            <div class="flex justify-center">
+              <FontAwesomeIcon
+                :icon="['fas', getFeedbackIconId(invitation.feedback)]"
+                title="feedback"
+              />
+            </div>
+          </td>
           <td class="border font-mono">
             <div class="flex items-center justify-evenly">
               <ButtonTableInteraction
@@ -196,6 +205,16 @@ export default {
       this.selectedInvitation = invitation
       this.$store.commit('modalAdd', { id: 'ModalEventInvitation' })
     },
+    getFeedbackIconId(feedback) {
+      switch (feedback) {
+        case 'ACCEPTED':
+          return 'check-circle'
+        case 'CANCELED':
+          return 'times-circle'
+        default:
+          consola.error('Unexpected feedback type!')
+      }
+    },
     send(invitation) {
       this.pending.sends.push(invitation.uuid)
       this.graphqlErrorMessage = undefined
@@ -237,6 +256,7 @@ de:
   disabledReasonEmailAddressNone: 'Diesem Kontakt fehlt eine E-Mail-Adresse.'
   emailAddress: 'E-Mail Adresse'
   firstName: 'Vorname'
+  feedback: 'Rückmeldung'
   invitationAdd: 'Einladung hinzufügen'
   invitationEdit: 'Einladung bearbeiten'
   invitationCode: 'Einladungscode'
@@ -251,6 +271,7 @@ en:
   disabledReasonEmailAddressNone: 'This contact is missing an email address.'
   emailAddress: 'Email address'
   firstName: 'First name'
+  feedback: 'Feedback'
   invitationAdd: 'Add invitation'
   invitationEdit: 'Edit invitation'
   invitationCode: 'Invitation code'
