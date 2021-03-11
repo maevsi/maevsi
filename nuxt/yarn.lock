@@ -2181,10 +2181,10 @@
     moment-timezone "^0.5.28"
     moment-timezone-data-webpack-plugin "^1.3.0"
 
-"@nuxtjs/robots@2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/robots/-/robots-2.4.2.tgz#9a96c91abb70e39b414eec502ef1cf7d5ef0235e"
-  integrity sha512-BW3qhvxlPBKlMkZHtARFPeliFraiZHS28G3j4qgRbSfOBtHC0yDX3Dnq1LkQMzAbPfbw6A1L3sdjgBVZZnfFAw==
+"@nuxtjs/robots@2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/robots/-/robots-2.5.0.tgz#a42b25e3bc58181cb2a8fbd30d6b0fee6c36bc60"
+  integrity sha512-z1F3HXb05NiZga8Cuq6k5bbowfJOScPtbSOakip0nege+1aI9pGoajzap8eR5s1qwLXAk9Ts+NcgetoUn5lwrQ==
 
 "@nuxtjs/sitemap@2.4.0":
   version "2.4.0"
