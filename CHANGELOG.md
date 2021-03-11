@@ -1,3 +1,13 @@
+# [0.57.0](https://github.com/maevsi/maevsi/compare/0.56.0...0.57.0) (2021-03-11)
+
+
+### Features
+
+* **event-invitations:** add feedback title ([b42bde0](https://github.com/maevsi/maevsi/commit/b42bde0dd52f832e81d98ec345d7224decaf5e11))
+* **form-event:** improve event update ux ([15ab91a](https://github.com/maevsi/maevsi/commit/15ab91a9d921c91a5c0540e065d537f284e96a64))
+* **form-event-invitation:** remove confirmation modals ([68436af](https://github.com/maevsi/maevsi/commit/68436af9c3e293746c625989a74964fc306eebd9))
+* **invitation:** support html emails ([1c2eeda](https://github.com/maevsi/maevsi/commit/1c2eeda989a6219c4ca134de5b52f4b4fdb0ba5b))
+
 # [0.56.0](https://github.com/maevsi/maevsi/compare/0.55.0...0.56.0) (2021-03-08)
 
 
