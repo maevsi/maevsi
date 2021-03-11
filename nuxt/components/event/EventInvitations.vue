@@ -47,10 +47,10 @@
           </td>
           <td class="border font-mono">{{ invitation.uuid }}</td>
           <td class="border font-mono">
-            <div class="flex justify-center">
+            <div v-if="invitation.feedback" class="flex justify-center">
               <FontAwesomeIcon
                 :icon="['fas', getFeedbackIconId(invitation.feedback)]"
-                title="feedback"
+                :title="getFeedbackTranslation(invitation.feedback)"
               />
             </div>
           </td>
@@ -211,6 +211,20 @@ export default {
           return 'check-circle'
         case 'CANCELED':
           return 'times-circle'
+        case null:
+          return
+        default:
+          consola.error('Unexpected feedback type!')
+      }
+    },
+    getFeedbackTranslation(feedback) {
+      switch (feedback) {
+        case 'ACCEPTED':
+          return this.$t('feedbackAccepted')
+        case 'CANCELED':
+          return this.$t('feedbackCanceled')
+        case null:
+          return
         default:
           consola.error('Unexpected feedback type!')
       }
@@ -257,6 +271,8 @@ de:
   emailAddress: 'E-Mail Adresse'
   firstName: 'Vorname'
   feedback: 'Rückmeldung'
+  feedbackAccepted: 'Zugesagt'
+  feedbackCanceled: 'Abgelehnt'
   invitationAdd: 'Einladung hinzufügen'
   invitationEdit: 'Einladung bearbeiten'
   invitationCode: 'Einladungscode'
@@ -272,6 +288,8 @@ en:
   emailAddress: 'Email address'
   firstName: 'First name'
   feedback: 'Feedback'
+  feedbackAccepted: 'Accepted'
+  feedbackCanceled: 'Canceled'
   invitationAdd: 'Add invitation'
   invitationEdit: 'Edit invitation'
   invitationCode: 'Invitation code'
