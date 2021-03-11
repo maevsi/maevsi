@@ -467,7 +467,7 @@ de:
   end: 'Ende'
   eventCreate: 'Veranstaltung erstellen'
   eventCreateSuccess: 'Veranstaltung erfolgreich erstellt.'
-  eventUpdate: 'Veranstaltung bearbeiten'
+  eventUpdate: 'Veranstaltung aktualisieren'
   eventUpdateSuccess: 'Veranstaltung erfolgreich aktualisiert.'
   inputLocationInfo: 'Ein Suchbegriff für Google Maps.'
   isInPerson: 'vor Ort'
