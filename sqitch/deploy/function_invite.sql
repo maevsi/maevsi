@@ -8,7 +8,8 @@
 BEGIN;
 
 CREATE FUNCTION maevsi.invite(
-  invitation_id BIGINT
+  invitation_id BIGINT,
+  "language" TEXT
 ) RETURNS VOID AS $$
 DECLARE
   _event_id BIGINT;
@@ -21,14 +22,17 @@ BEGIN
 
   INSERT INTO maevsi_private.notification (channel, payload)
     VALUES (
-      'invitation',
-      '{ "invitation_id": ' || $1 || ' }'
+      'event_invitation',
+      jsonb_pretty(jsonb_build_object(
+        'invitation_id', $1,
+        'template', jsonb_build_object('language', $2)
+      ))
     );
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
-COMMENT ON FUNCTION maevsi.invite(BIGINT) IS 'Adds a notification for the invitation channel.';
+COMMENT ON FUNCTION maevsi.invite(BIGINT, TEXT) IS 'Adds a notification for the invitation channel.';
 
-GRANT EXECUTE ON FUNCTION maevsi.invite(BIGINT) TO maevsi_account;
+GRANT EXECUTE ON FUNCTION maevsi.invite(BIGINT, TEXT) TO maevsi_account;
 
 COMMIT;

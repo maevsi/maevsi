@@ -5,6 +5,7 @@
 -- requires: table_upload
 -- requires: role_account
 -- requires: role_anonymous
+-- requires: role_stomper
 -- requires: role_tusd
 
 BEGIN;
@@ -20,7 +21,7 @@ COMMENT ON COLUMN maevsi.profile_picture.id IS E'@omit create,update\nThe profil
 COMMENT ON COLUMN maevsi.profile_picture.upload_storage_key IS 'The upload''s storage key.';
 COMMENT ON COLUMN maevsi.profile_picture.username IS 'The account''s username.';
 
-GRANT SELECT ON TABLE maevsi.profile_picture TO maevsi_account, maevsi_anonymous, maevsi_tusd;
+GRANT SELECT ON TABLE maevsi.profile_picture TO maevsi_account, maevsi_anonymous, maevsi_stomper, maevsi_tusd;
 GRANT INSERT, DELETE, UPDATE ON TABLE maevsi.profile_picture TO maevsi_account;
 GRANT DELETE ON TABLE maevsi.profile_picture TO maevsi_tusd;
 

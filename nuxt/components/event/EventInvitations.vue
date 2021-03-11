@@ -237,6 +237,7 @@ export default {
           mutation: INVITE_MUTATION,
           variables: {
             invitationId: invitation.id,
+            language: this.$i18n.locale,
           },
         })
         .then((_value) => {
