@@ -12,91 +12,98 @@
         })
       }}
     </span>
-    <table v-if="allInvitations" class="w-full border">
-      <thead>
-        <tr>
-          <th class="border" scope="col">{{ $t('username') }}</th>
-          <th class="border" scope="col">{{ $t('firstName') }}</th>
-          <th class="border" scope="col">{{ $t('lastName') }}</th>
-          <th class="border" scope="col">{{ $t('emailAddress') }}</th>
-          <th class="border" scope="col">{{ $t('address') }}</th>
-          <th class="border" scope="col">{{ $t('invitationCode') }}</th>
-          <th class="border" scope="col">{{ $t('feedback') }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="invitation in allInvitations.nodes"
-          :key="invitation.uuid"
-          :class="{
-            'animate-pulse': pending.deletions.includes(invitation.uuid),
-          }"
-        >
-          <td class="border">
-            {{ invitation.contactByContactId.accountUsername }}
-          </td>
-          <td class="border">{{ invitation.contactByContactId.firstName }}</td>
-          <td class="border">{{ invitation.contactByContactId.lastName }}</td>
-          <td class="border">
-            {{ invitation.contactByContactId.emailAddress }}
-          </td>
-          <td class="border">
-            {{
-              (invitation.contactByContactId.address || '').replace('\n', ', ')
-            }}
-          </td>
-          <td class="border font-mono">{{ invitation.uuid }}</td>
-          <td class="border font-mono">
-            <div v-if="invitation.feedback" class="flex justify-center">
-              <FontAwesomeIcon
-                :icon="['fas', getFeedbackIconId(invitation.feedback)]"
-                :title="getFeedbackTranslation(invitation.feedback)"
-              />
-            </div>
-          </td>
-          <td class="border font-mono">
-            <div class="flex items-center justify-evenly">
-              <ButtonTableInteraction
-                :disabled="
-                  invitation.contactByContactId.authorAccountUsername !==
-                    $store.state.signedInUsername ||
-                  pending.edits.includes(invitation.uuid)
-                "
-                :icon-id="['fas', 'edit']"
-                :title="
-                  invitation.contactByContactId.authorAccountUsername !==
-                  $store.state.signedInUsername
-                    ? $t('disabledReasonCreatorNot', {
-                        authorAccountUsername:
-                          invitation.contactByContactId.authorAccountUsername,
-                      })
-                    : undefined
-                "
-                @click="edit(invitation)"
-              />
-              <ButtonTableInteraction
-                :disabled="
-                  !invitation.contactByContactId.emailAddress ||
-                  pending.sends.includes(invitation.uuid)
-                "
-                :icon-id="['fas', 'paper-plane']"
-                :title="
-                  invitation.contactByContactId.emailAddress
-                    ? undefined
-                    : $t('disabledReasonEmailAddressNone')
-                "
-                @click="send(invitation)"
-              />
-              <ButtonTableInteraction
-                :disabled="pending.deletions.includes(invitation.uuid)"
-                :icon-id="['fas', 'times']"
-                @click="deletion(invitation.uuid)"
-              />
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="overflow-auto">
+      <table v-if="allInvitations" class="border w-full">
+        <thead>
+          <tr>
+            <th class="border" scope="col">{{ $t('username') }}</th>
+            <th class="border" scope="col">{{ $t('firstName') }}</th>
+            <th class="border" scope="col">{{ $t('lastName') }}</th>
+            <th class="border" scope="col">{{ $t('emailAddress') }}</th>
+            <th class="border" scope="col">{{ $t('address') }}</th>
+            <th class="border" scope="col">{{ $t('invitationCode') }}</th>
+            <th class="border" scope="col">{{ $t('feedback') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="invitation in allInvitations.nodes"
+            :key="invitation.uuid"
+            :class="{
+              'animate-pulse': pending.deletions.includes(invitation.uuid),
+            }"
+          >
+            <td class="border">
+              {{ invitation.contactByContactId.accountUsername }}
+            </td>
+            <td class="border">
+              {{ invitation.contactByContactId.firstName }}
+            </td>
+            <td class="border">{{ invitation.contactByContactId.lastName }}</td>
+            <td class="border">
+              {{ invitation.contactByContactId.emailAddress }}
+            </td>
+            <td class="border">
+              {{
+                (invitation.contactByContactId.address || '').replace(
+                  '\n',
+                  ', '
+                )
+              }}
+            </td>
+            <td class="border font-mono">{{ invitation.uuid }}</td>
+            <td class="border font-mono">
+              <div v-if="invitation.feedback" class="flex justify-center">
+                <FontAwesomeIcon
+                  :icon="['fas', getFeedbackIconId(invitation.feedback)]"
+                  :title="getFeedbackTranslation(invitation.feedback)"
+                />
+              </div>
+            </td>
+            <td class="border font-mono">
+              <div class="flex items-center justify-evenly">
+                <ButtonTableInteraction
+                  :disabled="
+                    invitation.contactByContactId.authorAccountUsername !==
+                      $store.state.signedInUsername ||
+                    pending.edits.includes(invitation.uuid)
+                  "
+                  :icon-id="['fas', 'edit']"
+                  :title="
+                    invitation.contactByContactId.authorAccountUsername !==
+                    $store.state.signedInUsername
+                      ? $t('disabledReasonCreatorNot', {
+                          authorAccountUsername:
+                            invitation.contactByContactId.authorAccountUsername,
+                        })
+                      : undefined
+                  "
+                  @click="edit(invitation)"
+                />
+                <ButtonTableInteraction
+                  :disabled="
+                    !invitation.contactByContactId.emailAddress ||
+                    pending.sends.includes(invitation.uuid)
+                  "
+                  :icon-id="['fas', 'paper-plane']"
+                  :title="
+                    invitation.contactByContactId.emailAddress
+                      ? undefined
+                      : $t('disabledReasonEmailAddressNone')
+                  "
+                  @click="send(invitation)"
+                />
+                <ButtonTableInteraction
+                  :disabled="pending.deletions.includes(invitation.uuid)"
+                  :icon-id="['fas', 'times']"
+                  @click="deletion(invitation.uuid)"
+                />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <Button
       :disabled="
         event.inviteeCountMaximum
@@ -110,6 +117,7 @@
     </Button>
     <Modal
       id="ModalEventInvitation"
+      class="z-10"
       is-cancellable
       :is-submit-disabled="
         $refs.formEventInvitation && $refs.formEventInvitation.$v.form.$invalid
