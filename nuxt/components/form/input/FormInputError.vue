@@ -7,6 +7,7 @@
     "
     class="text-red-600 text-left"
   >
+    <FontAwesomeIcon :icon="['fas', 'exclamation-circle']" />
     <slot />
   </div>
 </template>
