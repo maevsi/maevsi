@@ -35,7 +35,7 @@
             event.authorUsername === $store.state.jwtDecoded.username,
         }"
       >
-        <h1 class="mb-0">
+        <h1 class="mb-0 truncate max-w-full">
           {{ event.name }}
         </h1>
         <Owner class="mb-4" link :username="event.authorUsername" />

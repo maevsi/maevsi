@@ -1,5 +1,5 @@
 <template>
-  <i18n path="eventAuthor">
+  <i18n class="max-w-full truncate" path="eventAuthor">
     <template #username>
       <nuxt-link v-if="link" :to="localePath('/account/' + username)">
         {{ username }}

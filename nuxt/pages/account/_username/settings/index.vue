@@ -14,7 +14,7 @@
           :username="$route.params.username"
         />
       </button>
-      <h1 class="truncate w-full sm:w-auto">
+      <h1 class="truncate max-w-full sm:w-auto">
         {{ $route.params.username }}
       </h1>
       <ModalImageSelection @submitSuccess="reloadProfilePicture" />
