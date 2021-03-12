@@ -12,7 +12,7 @@ export default {
       store.state.jwtDecoded &&
       store.state.jwtDecoded.role !== 'maevsi_account'
     ) {
-      return redirect(app.localePath('/'))
+      return redirect(app.localePath('/account'))
     }
   },
   data() {
