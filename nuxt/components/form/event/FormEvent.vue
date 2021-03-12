@@ -217,6 +217,17 @@
           {{ $t('globalValidationLength') }}
         </FormInputError>
       </template>
+      <template slot="inputInfo">
+        <i18n class="max-w-full truncate" path="inputDescriptionInfo">
+          <template #markdown>
+            <AppLink
+              to="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+            >
+              Markdown
+            </AppLink>
+          </template>
+        </i18n>
+      </template>
     </FormInput>
     <FormInput
       :error="$v.form.inviteeCountMaximum.$error"
@@ -470,6 +481,7 @@ de:
   eventCreateSuccess: 'Veranstaltung erfolgreich erstellt.'
   eventUpdate: 'Veranstaltung aktualisieren'
   eventUpdateSuccess: 'Veranstaltung erfolgreich aktualisiert.'
+  inputDescriptionInfo: 'Textformatierung mit {markdown} wird unterstützt.'
   inputLocationInfo: 'Ein Suchbegriff für Google Maps.'
   isInPerson: 'vor Ort'
   isRemote: 'digital'
@@ -494,6 +506,7 @@ en:
   eventCreateSuccess: 'Event created successfully.'
   eventUpdate: 'Update event'
   eventUpdateSuccess: 'Event updated successfully.'
+  inputDescriptionInfo: 'Text formatting with {markdown} is supported.'
   inputLocationInfo: 'A search phrase for Google Maps.'
   isInPerson: 'in person'
   isRemote: 'remote'
