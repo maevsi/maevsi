@@ -1,3 +1,22 @@
+# [0.58.0](https://github.com/maevsi/maevsi/compare/0.57.1...0.58.0) (2021-03-12)
+
+
+### Bug Fixes
+
+* **form-checkbox:** correct checked property ([4e45165](https://github.com/maevsi/maevsi/commit/4e45165c4a25ccb75ed3bf587e770a62dca60e1a))
+* **tailwind:** safelist disabled and placeholder ([dcdd636](https://github.com/maevsi/maevsi/commit/dcdd636dfa226bdae41560249c6174ae29837c0f))
+
+
+### Features
+
+* **app-link:** use inline-flex ([cd2b7e9](https://github.com/maevsi/maevsi/commit/cd2b7e9dc4c8d7f3b4559c0ca5416e37bf838935))
+* **event-invitations:** make table auto scrollable ([605b430](https://github.com/maevsi/maevsi/commit/605b430d8b247d1ce797e1dbd05b93e5ef42dd1c))
+* **event-list:** always show event creation button ([7b9cf5c](https://github.com/maevsi/maevsi/commit/7b9cf5c65dd2536de95fa9a840a0476ea9f9d6e8))
+* **form-event:** add markdown description information ([eebdc93](https://github.com/maevsi/maevsi/commit/eebdc93896a8aa8074890fe25e72cb2fb0ae0183))
+* **form-event:** hide slug ([0b5fe43](https://github.com/maevsi/maevsi/commit/0b5fe437e3227a73b4a57c295a753f1434e391f8))
+* **i18n:** rename remote to digital ([9e71b5c](https://github.com/maevsi/maevsi/commit/9e71b5c2dcf1afcd4cce3e801806b77e2d41fcc0))
+* improve text truncation ([53fe081](https://github.com/maevsi/maevsi/commit/53fe081772181139addb303bbc93b8b10adb831b))
+
 ## [0.57.1](https://github.com/maevsi/maevsi/compare/0.57.0...0.57.1) (2021-03-12)
 
 
