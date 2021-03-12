@@ -37,7 +37,7 @@
         id="deleteAccount"
         :item-name="$t('account')"
         :mutation="accountDeleteMutation"
-        @success="$global.signOut(this.$apollo.getClient(), this.$store)"
+        @success="$global.signOut($apollo.getClient(), $store)"
       />
     </section>
   </div>

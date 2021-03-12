@@ -31,9 +31,7 @@
         @click="$emit('password-lost')"
       >
         {{
-          this.$route.query.pw === 'lost'
-            ? $t('passwordFound')
-            : $t('passwordLost')
+          $route.query.pw === 'lost' ? $t('passwordFound') : $t('passwordLost')
         }}
       </AppLink>
     </div>

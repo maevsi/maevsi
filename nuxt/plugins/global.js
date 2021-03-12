@@ -231,21 +231,11 @@ export function xhrPromise(method, url, jwt) {
       if (this.status >= 200 && this.status < 300) {
         resolve(xhr.response)
       } else {
-        reject(
-          new Error({
-            status: this.status,
-            statusText: xhr.statusText,
-          })
-        )
+        reject(new Error(`${this.status}\n${xhr.statusText}`))
       }
     }
     xhr.onerror = function () {
-      reject(
-        new Error({
-          status: this.status,
-          statusText: xhr.statusText,
-        })
-      )
+      reject(new Error(`${this.status}\n${xhr.statusText}`))
     }
     xhr.send()
   })

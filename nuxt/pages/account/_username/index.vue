@@ -13,7 +13,7 @@
         {{ $route.params.username }}
       </h1>
     </div>
-    <EventList :username="this.$route.params.username" />
+    <EventList :username="$route.params.username" />
   </div>
 </template>
 

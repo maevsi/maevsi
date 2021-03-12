@@ -11,7 +11,7 @@
   >
     <FontAwesomeIcon
       v-if="iconId"
-      :class="{ 'mr-2': this.$slots.default }"
+      :class="{ 'mr-2': $slots.default }"
       :icon="iconId"
       :size="iconSize"
     />
@@ -20,7 +20,7 @@
   <nuxt-link v-else append="append" :to="to" @click.native="$emit('click')">
     <FontAwesomeIcon
       v-if="iconId"
-      :class="{ 'mr-2': this.$slots.default }"
+      :class="{ 'mr-2': $slots.default }"
       :icon="iconId"
       :size="iconSize"
     />
