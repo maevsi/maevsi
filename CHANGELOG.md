@@ -1,3 +1,10 @@
+## [0.57.1](https://github.com/maevsi/maevsi/compare/0.57.0...0.57.1) (2021-03-12)
+
+
+### Bug Fixes
+
+* fix linter issues ([5cf04f0](https://github.com/maevsi/maevsi/commit/5cf04f05dc87d57b86233e604b4e7aa2d4685f36))
+
 # [0.57.0](https://github.com/maevsi/maevsi/compare/0.56.0...0.57.0) (2021-03-11)
 
 
