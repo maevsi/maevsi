@@ -50,6 +50,7 @@
       </template>
     </FormInput>
     <FormInput
+      class="hidden"
       :error="$v.form.slug.$error"
       label-for="input-slug"
       required
