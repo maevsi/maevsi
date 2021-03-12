@@ -5,7 +5,7 @@
       'opacity-75': $moment(event.end).isBefore($moment()),
     }"
   >
-    <nuxt-link
+    <AppLink
       class="card flex flex-col"
       :class="{
         'bg-yellow-100':
@@ -41,7 +41,7 @@
           {{ $htmlToText($md.render(event.description)) }}
         </p>
       </div>
-    </nuxt-link>
+    </AppLink>
   </li>
 </template>
 
