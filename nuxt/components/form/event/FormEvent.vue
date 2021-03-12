@@ -471,7 +471,7 @@ de:
   eventUpdateSuccess: 'Veranstaltung erfolgreich aktualisiert.'
   inputLocationInfo: 'Ein Suchbegriff für Google Maps.'
   isInPerson: 'vor Ort'
-  isRemote: 'remote'
+  isRemote: 'digital'
   maximumInviteeCount: 'Maximale Gästezahl'
   name: 'Name'
   namePlaceholder: 'Willkommensfeier'

@@ -35,7 +35,7 @@ export default {
 <i18n lang="yml">
 de:
   inPerson: 'vor Ort'
-  remote: 'remote'
+  remote: 'digital'
 en:
   inPerson: 'in person'
   remote: 'remote'
