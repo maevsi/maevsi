@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import EVENT_DELETE_MUTATION from '~/gql/mutation/event/eventDelete'
-import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll'
-import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug'
+import EVENT_DELETE_MUTATION from '~/gql/mutation/event/eventDelete'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting'
+import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll'
 
 const consola = require('consola')
 
