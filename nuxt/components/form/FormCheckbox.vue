@@ -3,7 +3,7 @@
     <input
       :id="`input-${formKey}`"
       type="checkbox"
-      :value="value"
+      :checked="value"
       @change="$emit('change', $event.target.checked)"
     />
     <label class="pl-2" :for="`input-${formKey}`"><slot /></label>
