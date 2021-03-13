@@ -39,10 +39,11 @@
 
 <script>
 export default {
-  middleware({ app, store, redirect }) {
+  middleware({ app, store, redirect, route }) {
     if (store.state.jwtDecoded && store.state.jwtDecoded.username) {
       return redirect(
-        app.localePath('/account/' + store.state.jwtDecoded.username)
+        route.query.referrer ||
+          app.localePath('/account/' + store.state.jwtDecoded.username)
       )
     }
   },

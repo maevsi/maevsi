@@ -7,12 +7,17 @@
 
 <script>
 export default {
-  middleware({ app, store, redirect }) {
+  middleware({ app, store, redirect, route }) {
     if (
       store.state.jwtDecoded &&
       store.state.jwtDecoded.role !== 'maevsi_account'
     ) {
-      return redirect(app.localePath('/account'))
+      return redirect(
+        app.localePath({
+          path: '/account',
+          query: { referrer: route.fullPath },
+        })
+      )
     }
   },
   data() {

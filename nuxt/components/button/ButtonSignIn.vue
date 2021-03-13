@@ -1,7 +1,12 @@
 <template>
   <Button
     :icon-id="['fas', 'user']"
-    :to="localePath('/account?form=signIn')"
+    :to="
+      localePath({
+        path: '/account',
+        query: { form: 'signIn', referrer: $route.fullPath },
+      })
+    "
     @click="$emit('click')"
   >
     {{ $t('signIn') }}
