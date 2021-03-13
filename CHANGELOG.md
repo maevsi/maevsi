@@ -1,3 +1,11 @@
+# [0.62.0](https://github.com/maevsi/maevsi/compare/0.61.0...0.62.0) (2021-03-13)
+
+
+### Features
+
+* **graphql:** improve error message display ([54a4f74](https://github.com/maevsi/maevsi/commit/54a4f74767e2ae8f157a339dda6ff27224772bf5))
+* **sign-in:** allow to resend verification mail ([4407f70](https://github.com/maevsi/maevsi/commit/4407f7074d1ae4b9fcc86b527bb8f3597a4c554f)), closes [#128](https://github.com/maevsi/maevsi/issues/128)
+
 # [0.61.0](https://github.com/maevsi/maevsi/compare/0.60.0...0.61.0) (2021-03-13)
 
 
