@@ -1,3 +1,15 @@
+# [0.61.0](https://github.com/maevsi/maevsi/compare/0.60.0...0.61.0) (2021-03-13)
+
+
+### Bug Fixes
+
+* **form:** allow autocompletion data to be saved ([3231745](https://github.com/maevsi/maevsi/commit/3231745cc94938dd45d2cd1a29053daac6217087)), closes [#253](https://github.com/maevsi/maevsi/issues/253)
+
+
+### Features
+
+* **event-invitations:** move invitee count to add button ([dc4b233](https://github.com/maevsi/maevsi/commit/dc4b233ed968f9834a4de096deb5449d4a2faf03))
+
 # [0.60.0](https://github.com/maevsi/maevsi/compare/0.59.0...0.60.0) (2021-03-13)
 
 
