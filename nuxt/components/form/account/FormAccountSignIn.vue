@@ -11,14 +11,13 @@
       id="username-sign-in"
       form-key="username"
       :v="$v"
-      @blur="$global.blur($v.form, blurFields, 'username', $event)"
-      @input="blurFields.username ? ($v.form.username.$model = $event) : null"
+      @input="form.username = $event"
     />
     <FormInputPassword
       id="password-sign-in"
       form-key="password"
       :v="$v"
-      @input="$v.form.password.$model = $event"
+      @input="form.password = $event"
     />
     <div class="flex flex-col items-center justify-between">
       <AppLink
@@ -47,10 +46,6 @@ const consola = require('consola')
 
 export default {
   props: {
-    form: {
-      default: undefined,
-      type: Object,
-    },
     formClass: {
       default: undefined,
       type: String,
@@ -58,8 +53,10 @@ export default {
   },
   data() {
     return {
-      blurFields: {
-        username: false,
+      form: {
+        password: undefined,
+        sent: false,
+        username: undefined,
       },
       graphqlErrorMessage: undefined,
     }
@@ -76,10 +73,12 @@ export default {
   },
   methods: {
     async submit() {
-      this.$emit('form-sent')
-      this.graphqlErrorMessage = undefined
+      try {
+        await this.$global.formPreSubmit(this)
+      } catch (error) {
+        return
+      }
 
-      this.$v.form.$reset()
       const res = await this.$apollo
         .mutate({
           mutation: AUTHENTICATE_MUTATION,

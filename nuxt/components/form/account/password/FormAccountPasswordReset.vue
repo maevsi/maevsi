@@ -7,11 +7,7 @@
     :submit-name="$t('accountPasswordReset')"
     @submit.prevent="submit"
   >
-    <FormInputPassword
-      id="password"
-      :v="$v"
-      @input="$v.form.password.$model = $event"
-    />
+    <FormInputPassword id="password" :v="$v" @input="form.password = $event" />
   </Form>
 </template>
 
@@ -40,10 +36,12 @@ export default {
   },
   methods: {
     async submit() {
-      this.form.sent = true
-      this.graphqlErrorMessage = undefined
+      try {
+        await this.$global.formPreSubmit(this)
+      } catch (error) {
+        return
+      }
 
-      this.$v.form.$reset()
       const res = await this.$apollo
         .mutate({
           mutation: ACCOUNT_PASSWORD_RESET_MUTATION,

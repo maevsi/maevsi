@@ -13,29 +13,23 @@
       <template slot="front">
         <FormAccountRegistration
           ref="formRegistration"
-          :form="formRegistration"
           form-class="rounded-t-none"
           @form="onFormRegistration"
-          @form-sent="onFormSent(formRegistration)"
           @registered="onRegistered"
         />
       </template>
       <template slot="back">
         <FormAccountSignIn
           ref="formSignIn"
-          :form="formSignIn"
           form-class="rounded-t-none"
           @form="onFormSignIn"
-          @form-sent="onFormSent(formSignIn)"
-          @password-forgotten="onClickPasswordForgotten"
+          @password-lost="onClickPasswordForgotten"
         />
         <br />
         <FormAccountPasswordResetRequest
           v-if="showFormPasswordResetRequest"
           ref="formPasswordResetRequest"
-          :form="formPasswordResetRequest"
           @form="onFormPasswordResetRequest"
-          @form-sent="onFormSent(formPasswordResetRequest)"
           @account-password-reset-request="onAccountPasswordResetRequest"
         />
       </template>
@@ -54,21 +48,6 @@ export default {
   },
   data() {
     return {
-      formRegistration: {
-        emailAddress: undefined,
-        password: undefined,
-        sent: false,
-        username: undefined,
-      },
-      formSignIn: {
-        password: undefined,
-        sent: false,
-        username: undefined,
-      },
-      formPasswordResetRequest: {
-        emailAddress: undefined,
-        sent: false,
-      },
       title: this.$t('title'),
     }
   },
@@ -82,63 +61,46 @@ export default {
   },
   methods: {
     onAccountPasswordResetRequest() {
-      this.showFormPasswordResetRequest = false
+      if (this.$refs.formPasswordResetRequest) {
+        this.$refs.formPasswordResetRequest.form.emailAddress = undefined
+      }
 
-      this.formPasswordResetRequest['email-address'] = undefined
-      this.formRegistration['email-address'] = undefined
-
-      this.$refs.formRegistration.$v.form.emailAddress.$touch()
+      this.$refs.formRegistration.form.emailAddress = undefined
     },
     onClickPasswordForgotten() {
-      if (
-        this.showFormPasswordResetRequest &&
-        this.formPasswordResetRequest['email-address'] !== undefined &&
-        this.formPasswordResetRequest['email-address'] !== ''
-      ) {
-        this.$nextTick().then(() => {
-          this.$refs.formPasswordResetRequest.$v.form.emailAddress.$touch()
-        })
+      if (this.$refs.formPasswordResetRequest) {
+        this.$refs.formPasswordResetRequest.form.emailAddress = this.$refs.formRegistration.form.emailAddress
       }
     },
     onFormPasswordResetRequest(form) {
-      if (this.formRegistration['email-address'] !== form.emailAddress) {
-        this.formRegistration['email-address'] = form.emailAddress
-        this.$refs.formRegistration.$v.form.emailAddress.$touch()
+      if (this.$refs.formRegistration.form.emailAddress !== form.emailAddress) {
+        this.$refs.formRegistration.form.emailAddress = form.emailAddress
       }
     },
     onFormRegistration(form) {
-      if (this.formSignIn.username !== form.username) {
-        this.formSignIn.username = form.username
-        this.$refs.formSignIn.$v.form.username.$touch()
+      if (this.$refs.formSignIn.form.username !== form.username) {
+        this.$refs.formSignIn.form.username = form.username
       }
 
-      if (this.formSignIn.password !== form.password) {
-        this.formSignIn.password = form.password
-        this.$refs.formSignIn.$v.form.password.$touch()
+      if (this.$refs.formSignIn.form.password !== form.password) {
+        this.$refs.formSignIn.form.password = form.password
       }
 
       if (
-        this.formPasswordResetRequest['email-address'] !== form.emailAddress
+        this.$refs.formPasswordResetRequest &&
+        this.$refs.formPasswordResetRequest.form.emailAddress !==
+          form.emailAddress
       ) {
-        this.formPasswordResetRequest['email-address'] = form.emailAddress
-
-        if (this.$refs.formPasswordResetRequest) {
-          this.$refs.formPasswordResetRequest.$v.form.emailAddress.$touch()
-        }
+        this.$refs.formPasswordResetRequest.form.emailAddress =
+          form.emailAddress
       }
-    },
-    onFormSent(form) {
-      form.sent = true
     },
     onFormSignIn(form) {
-      if (this.formRegistration.username !== form.username) {
-        this.formRegistration.username = form.username
-        this.$refs.formRegistration.$v.form.username.$touch()
+      if (this.$refs.formRegistration.form.username !== form.username) {
+        this.$refs.formRegistration.form.username = form.username
       }
-
-      if (this.formRegistration.password !== form.password) {
-        this.formRegistration.password = form.password
-        this.$refs.formRegistration.$v.form.password.$touch()
+      if (this.$refs.formRegistration.form.password !== form.password) {
+        this.$refs.formRegistration.form.password = form.password
       }
     },
     onRegistered() {
@@ -149,23 +111,20 @@ export default {
       this.$refs.tabFlip.tabSelect('signIn')
     },
     resetFormPasswordResetRequest() {
-      this.formPasswordResetRequest['email-address'] = undefined
-
       if (this.$refs.formPasswordResetRequest) {
+        this.$refs.formPasswordResetRequest.form.emailAddress = undefined
         this.$refs.formPasswordResetRequest.$v.form.$reset()
       }
     },
     resetFormRegistration() {
-      this.formRegistration.username = undefined
-      this.formRegistration.password = undefined
-      this.formRegistration['email-address'] = undefined
-
+      this.$refs.formRegistration.form.username = undefined
+      this.$refs.formRegistration.form.password = undefined
+      this.$refs.formRegistration.form.emailAddress = undefined
       this.$refs.formRegistration.$v.form.$reset()
     },
     resetFormSignIn() {
-      this.formSignIn.username = undefined
-      this.formSignIn.password = undefined
-
+      this.$refs.formSignIn.form.username = undefined
+      this.$refs.formSignIn.form.password = undefined
       this.$refs.formSignIn.$v.form.$reset()
     },
   },

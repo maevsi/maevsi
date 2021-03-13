@@ -139,14 +139,14 @@
       <FormCheckbox
         form-key="is-in-person"
         :value="$v.form.isInPerson.$model"
-        @change="$v.form.isInPerson.$model = $event"
+        @change="form.isInPerson = $event"
       >
         {{ $t('isInPerson') }}
       </FormCheckbox>
       <FormCheckbox
         form-key="is-remote"
         :value="$v.form.isRemote.$model"
-        @change="$v.form.isRemote.$model = $event"
+        @change="form.isRemote = $event"
       >
         {{ $t('isRemote') }}
       </FormCheckbox>

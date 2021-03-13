@@ -11,7 +11,7 @@
       id="email-address-password-reset-request"
       :form-element="$v.form.emailAddress"
       required
-      @input="$v.form.emailAddress.$model = $event"
+      @input="form.emailAddress = $event"
     />
   </Form>
 </template>
@@ -25,10 +25,6 @@ const consola = require('consola')
 
 export default {
   props: {
-    form: {
-      default: undefined,
-      type: Object,
-    },
     formClass: {
       default: undefined,
       type: String,
@@ -36,6 +32,10 @@ export default {
   },
   data() {
     return {
+      form: {
+        emailAddress: undefined,
+        sent: false,
+      },
       graphqlErrorMessage: undefined,
     }
   },
@@ -51,10 +51,12 @@ export default {
   },
   methods: {
     async submit() {
-      this.$emit('form-sent')
-      this.graphqlErrorMessage = undefined
+      try {
+        await this.$global.formPreSubmit(this)
+      } catch (error) {
+        return
+      }
 
-      this.$v.form.$reset()
       const res = await this.$apollo
         .mutate({
           mutation: ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION,

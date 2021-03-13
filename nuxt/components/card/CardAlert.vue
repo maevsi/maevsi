@@ -1,9 +1,6 @@
 <template>
   <div
-    v-if="
-      errorMessage &&
-      (validationObject === undefined || !validationObject.$anyDirty)
-    "
+    v-if="errorMessage"
     class="card bg-red-100 border border-red-700 text-center text-red-700"
     role="alert"
   >
@@ -19,10 +16,6 @@ export default {
     errorMessage: {
       default: undefined,
       type: String,
-    },
-    validationObject: {
-      default: undefined,
-      type: Object,
     },
   },
 }

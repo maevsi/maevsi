@@ -88,7 +88,7 @@ export default {
           : this.$v.form.invitationCode.$model
       },
       set(value) {
-        this.$v.form.invitationCode.$model = value
+        this.form.invitationCode = value
       },
     },
   },
@@ -99,9 +99,12 @@ export default {
   },
   methods: {
     async submit() {
-      this.graphqlErrorMessage = undefined
+      try {
+        await this.$global.formPreSubmit(this)
+      } catch (error) {
+        return
+      }
 
-      this.$v.form.$reset()
       const res = await this.$apollo
         .mutate({
           mutation: EVENT_UNLOCK_MUTATION,

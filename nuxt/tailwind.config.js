@@ -287,12 +287,6 @@ module.exports = {
         '.form-input-error': {
           input: {
             borderColor: theme('colors.red.500'),
-            '&:focus': {
-              borderColor: theme('colors.red.500'),
-            },
-          },
-          label: {
-            color: theme('colors.red.500'),
           },
         },
         '.form-input': {

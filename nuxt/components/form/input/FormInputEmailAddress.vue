@@ -7,10 +7,9 @@
     <input
       :id="`input-${id}`"
       class="form-input"
-      type="email"
       :placeholder="$t('globalPlaceholderEmailAddress')"
+      type="email"
       :value="formElement.$model"
-      @blur="$emit('blur', $event.target.value)"
       @input="$emit('input', $event.target.value)"
     />
     <template slot="inputError">

@@ -7,11 +7,7 @@
     :submit-name="$t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
-    <FormInputPassword
-      id="password"
-      :v="$v"
-      @input="$v.form.password.$model = $event"
-    />
+    <FormInputPassword id="password" :v="$v" @input="form.password = $event" />
   </Form>
 </template>
 
@@ -53,11 +49,13 @@ export default {
     }
   },
   methods: {
-    submit() {
-      this.form.sent = true
-      this.graphqlErrorMessage = undefined
+    async submit() {
+      try {
+        await this.$global.formPreSubmit(this)
+      } catch (error) {
+        return
+      }
 
-      this.$v.form.$reset()
       this.$apollo
         .mutate({
           mutation: this.mutation,

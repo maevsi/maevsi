@@ -51,13 +51,24 @@ export async function authenticateAnonymous(apolloClient, store, res) {
   await jwtStore(apolloClient, store, res, authenticationData.jwt)
 }
 
-export function blur(form, blurFields, fieldName, data) {
-  blurFields[fieldName] = true
-  form[fieldName].$model = data
-}
-
 export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+export function formPreSubmit(that) {
+  return new Promise((resolve, reject) => {
+    that.graphqlErrorMessage = undefined
+    that.$v.form.$touch()
+
+    if (that.$v.$invalid) {
+      reject(Error('Form is invalid!'))
+      return
+    }
+
+    that.form.sent = true
+
+    resolve()
+  })
 }
 
 export function getDeferredPromise(then) {
@@ -260,8 +271,8 @@ export default async ({ app, req, res, store }, inject) => {
     VALIDATION_PASSWORD_LENGTH_MINIMUM,
     VALIDATION_USERNAME_LENGTH_MAXIMUM,
     authenticateAnonymous,
-    blur,
     capitalizeFirstLetter,
+    formPreSubmit,
     getDeferredPromise,
     getJwtFromCookie,
     getNested,

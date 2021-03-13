@@ -25,7 +25,7 @@
       id="username"
       form-key="accountUsername"
       :v="$v"
-      @input="$v.form.accountUsername.$model = $event"
+      @input="form.accountUsername = $event"
     />
     <FormInput
       :error="$v.form.firstName.$error"
@@ -72,7 +72,7 @@
     <FormInputEmailAddress
       id="email-address"
       :form-element="$v.form.emailAddress"
-      @input="$v.form.emailAddress.$model = $event"
+      @input="form.emailAddress = $event"
     />
     <FormInput
       :error="$v.form.address.$error"
@@ -147,9 +147,7 @@ export default {
         'lastName',
       ].forEach(
         (property) =>
-          (this.$v.form[property].$model = this.dataInitial.contactByContactId[
-            property
-          ])
+          (this.form[property] = this.dataInitial.contactByContactId[property])
       )
     }
   },

@@ -7,6 +7,7 @@
       <div class="md:w-1/3">
         <label
           class="block font-semibold pr-4 md:text-right mb-1 md:mb-0"
+          :class="{ 'text-red-500': error }"
           :for="labelFor"
         >
           {{ title }}

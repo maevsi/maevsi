@@ -10,7 +10,6 @@
       type="text"
       :placeholder="$t('globalPlaceholderUsername')"
       :value="v.form[formKeyComputed].$model"
-      @blur="$emit('blur', $event.target.value)"
       @input="$emit('input', $event.target.value)"
     />
     <template slot="inputError">

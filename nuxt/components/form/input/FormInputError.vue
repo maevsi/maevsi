@@ -1,13 +1,17 @@
 <template>
   <div
     v-if="
-      formInput.$error &&
-      validationProperty in formInput &&
-      !formInput[validationProperty]
+      (!formInput && !validationProperty) ||
+      (formInput.$error &&
+        validationProperty in formInput &&
+        !formInput[validationProperty])
     "
     class="text-red-600 text-left"
   >
-    <FontAwesomeIcon :icon="['fas', 'exclamation-circle']" />
+    <FontAwesomeIcon
+      v-if="formInput && validationProperty"
+      :icon="['fas', 'exclamation-circle']"
+    />
     <slot />
   </div>
 </template>

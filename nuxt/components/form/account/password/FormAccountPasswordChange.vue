@@ -9,12 +9,12 @@
     <FormInputPassword
       id="passwordCurrent"
       :v="$v"
-      @blur="$v.form.passwordCurrent.$model = $event"
+      @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
       :v="$v"
-      @input="$v.form.passwordNew.$model = $event"
+      @input="form.passwordNew = $event"
     />
   </Form>
 </template>
@@ -38,11 +38,13 @@ export default {
     }
   },
   methods: {
-    submit() {
-      this.form.sent = true
-      this.graphqlErrorMessage = undefined
+    async submit() {
+      try {
+        await this.$global.formPreSubmit(this)
+      } catch (error) {
+        return
+      }
 
-      this.$v.form.$reset()
       this.$apollo
         .mutate({
           mutation: ACCOUNT_PASSWORD_CHANGE_MUTATION,

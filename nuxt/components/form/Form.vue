@@ -4,32 +4,38 @@
     :class="[
       {
         'animate-shake border border-red-500':
-          graphqlErrorMessage !== undefined &&
-          (form === undefined || !form.$anyDirty),
+          graphqlErrorMessage !== undefined,
       },
       formClass,
     ]"
+    novalidate
     @submit="(e) => $emit('submit', e)"
   >
     <slot />
-    <div v-if="!isEmbedded" class="flex flex-col items-center justify-between">
+    <div
+      v-if="!isEmbedded"
+      class="flex flex-col items-center justify-between my-4"
+    >
       <Button
-        class="my-4"
-        :disabled="
-          form.$invalid || (formSent && !form.$anyDirty && !graphqlErrorMessage)
-        "
+        :class="[
+          {
+            'animate-shake': form.$anyError,
+          },
+        ]"
         :icon-id="iconId"
         type="submit"
         @click="$emit('click')"
       >
         {{ submitName }}
       </Button>
+      <FormInputError v-if="form.$anyError">
+        {{ $t('globalValidationFailed') }}
+      </FormInputError>
     </div>
     <CardAlert
       v-if="!isEmbedded"
       class="mt-4"
       :error-message="graphqlErrorMessage"
-      :validation-object="form"
     />
   </form>
 </template>

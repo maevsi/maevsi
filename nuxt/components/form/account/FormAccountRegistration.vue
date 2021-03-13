@@ -11,21 +11,19 @@
       id="username-registration"
       form-key="username"
       :v="$v"
-      @blur="$global.blur($v.form, blurFields, 'username', $event)"
-      @input="blurFields.username ? ($v.form.username.$model = $event) : null"
+      @input="form.username = $event"
     />
     <FormInputPassword
       id="password-registration"
       form-key="password"
       :v="$v"
-      @blur="$global.blur($v.form, blurFields, 'password', $event)"
-      @input="blurFields.password ? ($v.form.password.$model = $event) : null"
+      @input="form.password = $event"
     />
     <FormInputEmailAddress
       id="email-address-registration"
       :form-element="$v.form.emailAddress"
       required
-      @input="$v.form.emailAddress.$model = $event"
+      @input="form.emailAddress = $event"
     />
   </Form>
 </template>
@@ -39,10 +37,6 @@ const consola = require('consola')
 
 export default {
   props: {
-    form: {
-      default: undefined,
-      type: Object,
-    },
     formClass: {
       default: undefined,
       type: String,
@@ -50,9 +44,11 @@ export default {
   },
   data() {
     return {
-      blurFields: {
-        password: false,
-        username: false,
+      form: {
+        emailAddress: undefined,
+        password: undefined,
+        sent: false,
+        username: undefined,
       },
       graphqlErrorMessage: undefined,
     }
@@ -69,10 +65,12 @@ export default {
   },
   methods: {
     async submit() {
-      this.$emit('form-sent')
-      this.graphqlErrorMessage = undefined
+      try {
+        await this.$global.formPreSubmit(this)
+      } catch (error) {
+        return
+      }
 
-      this.$v.form.$reset()
       const res = await this.$apollo
         .mutate({
           mutation: ACCOUNT_REGISTRATION_MUTATION,
@@ -95,7 +93,7 @@ export default {
 
       this.$emit('registered')
       this.$store.commit('modalAdd', {
-        contentBody: this.$t('registerSuccess'),
+        contentBody: this.$t('registrationSuccess'),
       })
     },
   },
@@ -128,9 +126,9 @@ export default {
 de:
   emailAddress: 'E-Mail-Adresse'
   register: 'Registrieren'
-  registerSuccess: 'Registrierung erfolgreich. Verifiziere deinen Account über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.'
+  registrationSuccess: 'Registrierung erfolgreich. Verifiziere deinen Account über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.'
 en:
   emailAddress: 'Email address'
   register: 'Register'
-  registerSuccess: "Registration successful. Verify your account using the link that you can find in the email that you'll receive shortly."
+  registrationSuccess: "Registration successful. Verify your account using the link that you can find in the email that you'll receive shortly."
 </i18n>
