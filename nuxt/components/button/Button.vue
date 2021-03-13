@@ -2,6 +2,7 @@
   <div class="text-center">
     <AppLink
       v-if="to !== undefined"
+      ref="button"
       :append="append"
       :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"
       :disabled="disabled"
@@ -13,6 +14,7 @@
     </AppLink>
     <button
       v-else
+      ref="button"
       :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"
       :disabled="disabled"
       :type="type"
@@ -59,6 +61,11 @@ export default {
     type: {
       default: 'button',
       type: String,
+    },
+  },
+  methods: {
+    click() {
+      this.$refs.button.click()
     },
   },
 }

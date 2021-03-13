@@ -124,7 +124,6 @@
       "
       :submit-name="$t('save')"
       :submit-task-provider="() => $refs.formEventInvitation.getSubmitPromise()"
-      @submitSuccess="$apollo.queries.allInvitations.refetch()"
     >
       <h2 slot="header">
         {{ formEventInvitationHeading }}
@@ -134,6 +133,7 @@
         :event="event"
         is-embedded
         :data-initial="selectedInvitation"
+        @submitSuccess="$apollo.queries.allInvitations.refetch()"
       />
     </Modal>
   </div>

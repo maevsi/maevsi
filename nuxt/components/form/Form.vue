@@ -13,10 +13,11 @@
   >
     <slot />
     <div
-      v-if="!isEmbedded"
       class="flex flex-col items-center justify-between my-4"
+      :class="{ hidden: isEmbedded }"
     >
       <Button
+        ref="buttonSubmit"
         :class="[
           {
             'animate-shake': form.$anyError,
@@ -72,6 +73,13 @@ export default {
         return this.$t('submit')
       },
       type: String,
+    },
+  },
+  methods: {
+    submit() {
+      if (this.$refs.buttonSubmit) {
+        this.$refs.buttonSubmit.click()
+      }
     },
   },
 }

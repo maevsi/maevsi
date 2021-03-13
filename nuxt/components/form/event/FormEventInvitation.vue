@@ -1,5 +1,6 @@
 <template>
   <Form
+    ref="form"
     :form="$v.form"
     :form-sent="form.sent"
     :graphql-error-message="graphqlErrorMessage"
@@ -153,97 +154,86 @@ export default {
   },
   methods: {
     getSubmitPromise() {
-      return new Promise((resolve, reject) => {
-        this.form.sent = true
-        this.graphqlErrorMessage = undefined
-        this.$v.form.$reset()
-
-        if (this.form.id) {
-          // Edit
-          this.$apollo
-            .mutate({
-              mutation: CONTACT_UPDATE_BY_ID_MUTATION,
-              variables: {
-                id: this.form.id,
-                contactPatch: {
-                  accountUsername:
-                    this.form.accountUsername === ''
-                      ? null
-                      : this.form.accountUsername,
-                  address: this.form.address === '' ? null : this.form.address,
-                  authorAccountUsername: this.$store.state.jwtDecoded.username,
-                  emailAddress:
-                    this.form.emailAddress === ''
-                      ? null
-                      : this.form.emailAddress,
-                  firstName:
-                    this.form.firstName === '' ? null : this.form.firstName,
-                  lastName:
-                    this.form.lastName === '' ? null : this.form.lastName,
-                },
-              },
-            })
-            .then((value) => {
-              resolve(value)
-            })
-            .catch((reason) => {
-              this.graphqlErrorMessage = reason.toString()
-              reject(reason)
-            })
-        } else {
-          // Add
-          this.$apollo
-            .mutate({
-              mutation: CONTACT_CREATE_MUTATION,
-              variables: {
-                contactInput: {
-                  accountUsername:
-                    this.form.accountUsername === ''
-                      ? null
-                      : this.form.accountUsername,
-                  address: this.form.address === '' ? null : this.form.address,
-                  authorAccountUsername: this.$store.state.jwtDecoded.username,
-                  emailAddress:
-                    this.form.emailAddress === ''
-                      ? null
-                      : this.form.emailAddress,
-                  firstName:
-                    this.form.firstName === '' ? null : this.form.firstName,
-                  lastName:
-                    this.form.lastName === '' ? null : this.form.lastName,
-                },
-              },
-            })
-            .then(({ data }) => {
-              this.$apollo
-                .mutate({
-                  mutation: INVITATION_CREATE_MUTATION,
-                  variables: {
-                    invitationInput: {
-                      contactId: +data.createContact.contact.id,
-                      eventId: +this.event.id,
-                    },
-                  },
-                })
-                .then((value) => {
-                  resolve(value)
-                })
-                .catch((reason) => {
-                  this.graphqlErrorMessage = reason.toString()
-                  reject(reason)
-                })
-            })
-            .catch((reason) => {
-              this.graphqlErrorMessage = reason.toString()
-              reject(reason)
-            })
-        }
+      return new Promise((resolve) => {
+        this.$refs.form.submit()
+        resolve()
       })
     },
-    async submit() {
-      return await this.getSubmitPromise()
-        .then((value) => value)
-        .catch((reason) => consola.error(reason))
+    submit() {
+      this.form.sent = true
+      this.graphqlErrorMessage = undefined
+      this.$v.form.$reset()
+
+      if (this.form.id) {
+        // Edit
+        this.$apollo
+          .mutate({
+            mutation: CONTACT_UPDATE_BY_ID_MUTATION,
+            variables: {
+              id: this.form.id,
+              contactPatch: {
+                accountUsername:
+                  this.form.accountUsername === ''
+                    ? null
+                    : this.form.accountUsername,
+                address: this.form.address === '' ? null : this.form.address,
+                authorAccountUsername: this.$store.state.jwtDecoded.username,
+                emailAddress:
+                  this.form.emailAddress === '' ? null : this.form.emailAddress,
+                firstName:
+                  this.form.firstName === '' ? null : this.form.firstName,
+                lastName: this.form.lastName === '' ? null : this.form.lastName,
+              },
+            },
+          })
+          .then(async () => await this.$listeners.submitSuccess())
+          .catch((reason) => {
+            this.graphqlErrorMessage = reason.toString()
+            consola.error(reason)
+          })
+      } else {
+        // Add
+        this.$apollo
+          .mutate({
+            mutation: CONTACT_CREATE_MUTATION,
+            variables: {
+              contactInput: {
+                accountUsername:
+                  this.form.accountUsername === ''
+                    ? null
+                    : this.form.accountUsername,
+                address: this.form.address === '' ? null : this.form.address,
+                authorAccountUsername: this.$store.state.jwtDecoded.username,
+                emailAddress:
+                  this.form.emailAddress === '' ? null : this.form.emailAddress,
+                firstName:
+                  this.form.firstName === '' ? null : this.form.firstName,
+                lastName: this.form.lastName === '' ? null : this.form.lastName,
+              },
+            },
+          })
+          .then(({ data }) => {
+            this.$apollo
+              .mutate({
+                mutation: INVITATION_CREATE_MUTATION,
+                variables: {
+                  invitationInput: {
+                    contactId: +data.createContact.contact.id,
+                    eventId: +this.event.id,
+                  },
+                },
+              })
+              .then(async () => await this.$listeners.submitSuccess())
+              .catch((reason) => {
+                this.graphqlErrorMessage = reason.toString()
+                consola.error(reason)
+              })
+          })
+          .catch((reason) => {
+            this.graphqlErrorMessage = reason.toString()
+            consola.error(reason)
+          })
+      }
     },
   },
   validations() {

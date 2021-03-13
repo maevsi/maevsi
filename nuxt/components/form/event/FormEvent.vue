@@ -1,5 +1,6 @@
 <template>
   <Form
+    ref="form"
     :form="$v.form"
     :form-sent="form.sent"
     :graphql-error-message="graphqlErrorMessage"
@@ -324,19 +325,60 @@ export default {
   },
   methods: {
     getSubmitPromise() {
-      return new Promise((resolve, reject) => {
-        this.form.sent = true
-        this.graphqlErrorMessage = undefined
-        this.$v.form.$reset()
+      return new Promise((resolve) => {
+        this.$refs.form.submit()
+        resolve()
+      })
+    },
+    submit() {
+      this.form.sent = true
+      this.graphqlErrorMessage = undefined
+      this.$v.form.$reset()
 
-        if (this.form.id) {
-          // Edit.
-          this.$apollo
-            .mutate({
-              mutation: EVENT_UPDATE_BY_ID_MUTATION,
-              variables: {
-                id: this.form.id,
-                eventPatch: {
+      if (this.form.id) {
+        // Edit.
+        this.$apollo
+          .mutate({
+            mutation: EVENT_UPDATE_BY_ID_MUTATION,
+            variables: {
+              id: this.form.id,
+              eventPatch: {
+                authorUsername: this.$store.state.signedInUsername,
+                description: this.form.description,
+                end: this.form.end !== '' ? this.form.end : null,
+                inviteeCountMaximum:
+                  this.form.inviteeCountMaximum &&
+                  this.form.inviteeCountMaximum !== ''
+                    ? +this.form.inviteeCountMaximum
+                    : null,
+                isInPerson: this.form.isInPerson,
+                isRemote: this.form.isRemote,
+                location: this.form.location !== '' ? this.form.location : null,
+                name: this.form.name,
+                slug: this.form.slug,
+                start: this.form.start,
+                visibility: this.form.visibility,
+              },
+            },
+          })
+          .then(() => {
+            this.$store.commit('modalAdd', {
+              contentBody: this.$t('eventUpdateSuccess'),
+            })
+            // await this.$listeners.submitSuccess()
+          })
+          .catch((reason) => {
+            this.graphqlErrorMessage = reason.toString()
+            consola.error(reason)
+          })
+      } else {
+        // Add.
+        this.$apollo
+          .mutate({
+            mutation: EVENT_CREATE_MUTATION,
+            variables: {
+              createEventInput: {
+                event: {
                   authorUsername: this.$store.state.signedInUsername,
                   description: this.form.description,
                   end: this.form.end !== '' ? this.form.end : null,
@@ -355,67 +397,24 @@ export default {
                   visibility: this.form.visibility,
                 },
               },
+            },
+          })
+          .then(() => {
+            this.$store.commit('modalAdd', {
+              contentBody: this.$t('eventCreateSuccess'),
             })
-            .then((value) => {
-              this.$store.commit('modalAdd', {
-                contentBody: this.$t('eventUpdateSuccess'),
-              })
-              resolve(value)
-            })
-            .catch((reason) => {
-              this.graphqlErrorMessage = reason.toString()
-              reject(reason)
-            })
-        } else {
-          // Add.
-          this.$apollo
-            .mutate({
-              mutation: EVENT_CREATE_MUTATION,
-              variables: {
-                createEventInput: {
-                  event: {
-                    authorUsername: this.$store.state.signedInUsername,
-                    description: this.form.description,
-                    end: this.form.end !== '' ? this.form.end : null,
-                    inviteeCountMaximum:
-                      this.form.inviteeCountMaximum &&
-                      this.form.inviteeCountMaximum !== ''
-                        ? +this.form.inviteeCountMaximum
-                        : null,
-                    isInPerson: this.form.isInPerson,
-                    isRemote: this.form.isRemote,
-                    location:
-                      this.form.location !== '' ? this.form.location : null,
-                    name: this.form.name,
-                    slug: this.form.slug,
-                    start: this.form.start,
-                    visibility: this.form.visibility,
-                  },
-                },
-              },
-            })
-            .then((value) => {
-              this.$store.commit('modalAdd', {
-                contentBody: this.$t('eventCreateSuccess'),
-              })
-              this.$router.push(
-                this.localePath(
-                  `/event/${this.$store.state.signedInUsername}/${this.form.slug}`
-                )
+            this.$router.push(
+              this.localePath(
+                `/event/${this.$store.state.signedInUsername}/${this.form.slug}`
               )
-              resolve(value)
-            })
-            .catch((reason) => {
-              this.graphqlErrorMessage = reason.toString()
-              reject(reason)
-            })
-        }
-      })
-    },
-    async submit() {
-      return await this.getSubmitPromise()
-        .then((value) => value)
-        .catch((reason) => consola.error(reason))
+            )
+            // await this.$listeners.submitSuccess()
+          })
+          .catch((reason) => {
+            this.graphqlErrorMessage = reason.toString()
+            consola.error(reason)
+          })
+      }
     },
     updateSlug() {
       this.form.slug = this.$slugify(this.form.name, {
