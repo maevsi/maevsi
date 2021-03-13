@@ -1,3 +1,12 @@
+# [0.60.0](https://github.com/maevsi/maevsi/compare/0.59.0...0.60.0) (2021-03-13)
+
+
+### Features
+
+* **account:** allow to redirect to referrer on sign in ([dc32860](https://github.com/maevsi/maevsi/commit/dc32860a74334a44a0fd72df1ccdeabefc8c0efd)), closes [#199](https://github.com/maevsi/maevsi/issues/199) [#249](https://github.com/maevsi/maevsi/issues/249)
+* **error:** improve error 403 information ([fe1fc2e](https://github.com/maevsi/maevsi/commit/fe1fc2e1ad23a1a97048e453dd94d0988bbdd2d5))
+* **nuxt:** enable devtools ([ac08b6b](https://github.com/maevsi/maevsi/commit/ac08b6b397b5ed229de4c52ea216d87df7a806a5))
+
 # [0.59.0](https://github.com/maevsi/maevsi/compare/0.58.0...0.59.0) (2021-03-13)
 
 
