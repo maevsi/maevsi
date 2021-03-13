@@ -1,3 +1,11 @@
+# [0.59.0](https://github.com/maevsi/maevsi/compare/0.58.0...0.59.0) (2021-03-13)
+
+
+### Features
+
+* **form:** rework validation ([510a3c2](https://github.com/maevsi/maevsi/commit/510a3c2bbc88aebfa415ee6258eb62679c51be3a))
+* **from-input-error:** add exclamation mark ([89ca64f](https://github.com/maevsi/maevsi/commit/89ca64f911b3d7c1ff6f8336619c9eb06f6456d3))
+
 # [0.58.0](https://github.com/maevsi/maevsi/compare/0.57.1...0.58.0) (2021-03-12)
 
 
