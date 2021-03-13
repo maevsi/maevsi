@@ -83,7 +83,7 @@ export default {
         })
         .then(({ data }) => this.$global.getNested(data, 'accountRegistration'))
         .catch((reason) => {
-          this.graphqlErrorMessage = reason.toString()
+          this.graphqlErrorMessage = reason
           consola.error(reason)
         })
 

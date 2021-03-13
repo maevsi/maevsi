@@ -191,7 +191,7 @@ export default {
           this.$emit('submitSuccess', value)
         })
         .catch((reason) => {
-          this.errorMessage = reason.toString()
+          this.errorMessage = reason
           consola.error(reason)
         })
         .finally(() => {

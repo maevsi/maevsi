@@ -36,7 +36,10 @@
     <CardAlert
       v-if="!isEmbedded"
       class="mt-4"
-      :error-message="graphqlErrorMessage"
+      :error-message="
+        graphqlErrorMessage &&
+        graphqlErrorMessage.graphQLErrors.map((e) => e.message).join(', ')
+      "
     />
   </form>
 </template>
@@ -58,7 +61,7 @@ export default {
     },
     graphqlErrorMessage: {
       default: undefined,
-      type: String,
+      type: Error,
     },
     iconId: {
       default: undefined,

@@ -56,7 +56,7 @@ export default {
           },
         })
         .catch((reason) => {
-          this.graphqlErrorMessage = reason.toString()
+          this.graphqlErrorMessage = reason
           consola.error(reason)
         })
         .finally(() => {

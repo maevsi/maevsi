@@ -201,7 +201,7 @@ export default {
             this.$apollo.queries.allInvitations.refetch()
         })
         .catch((reason) => {
-          this.graphqlErrorMessage = reason.toString()
+          this.graphqlErrorMessage = reason
           consola.error(reason)
         })
         .finally(() => {
@@ -258,7 +258,7 @@ export default {
             this.$apollo.queries.allInvitations.refetch()
         })
         .catch((reason) => {
-          this.graphqlErrorMessage = reason.toString()
+          this.graphqlErrorMessage = reason
           consola.error(reason.message)
         })
         .finally(() => {

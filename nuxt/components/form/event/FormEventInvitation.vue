@@ -188,7 +188,7 @@ export default {
           })
           .then(async () => await this.$listeners.submitSuccess())
           .catch((reason) => {
-            this.graphqlErrorMessage = reason.toString()
+            this.graphqlErrorMessage = reason
             consola.error(reason)
           })
       } else {
@@ -225,12 +225,12 @@ export default {
               })
               .then(async () => await this.$listeners.submitSuccess())
               .catch((reason) => {
-                this.graphqlErrorMessage = reason.toString()
+                this.graphqlErrorMessage = reason
                 consola.error(reason)
               })
           })
           .catch((reason) => {
-            this.graphqlErrorMessage = reason.toString()
+            this.graphqlErrorMessage = reason
             consola.error(reason)
           })
       }

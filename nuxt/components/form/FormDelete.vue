@@ -74,7 +74,7 @@ export default {
           this.$emit('success')
         })
         .catch((reason) => {
-          this.graphqlErrorMessage = reason.toString()
+          this.graphqlErrorMessage = reason
           consola.error(reason)
         })
     },

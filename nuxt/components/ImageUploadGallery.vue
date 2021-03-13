@@ -298,7 +298,7 @@ export default {
             })
             .then(({ data }) => this.$global.getNested(data, 'uploadCreate'))
             .catch((reason) => {
-              consola.error(reason.toString())
+              consola.error(reason)
               reject(reason)
             })
 

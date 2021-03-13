@@ -69,7 +69,7 @@ export default {
           this.$global.getNested(data, 'accountPasswordResetRequest')
         )
         .catch((reason) => {
-          this.graphqlErrorMessage = reason.toString()
+          this.graphqlErrorMessage = reason
           consola.error(reason)
         })
 
