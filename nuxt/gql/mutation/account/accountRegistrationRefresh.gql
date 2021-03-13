@@ -1,0 +1,10 @@
+mutation AccountRegistrationRefresh($username: String!, $language: String!) {
+  accountRegistrationRefresh(
+    input: {
+      language: $language
+      username: $username
+    }
+  ) {
+    clientMutationId
+  }
+}

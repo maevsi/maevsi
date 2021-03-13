@@ -7,6 +7,7 @@
     <span>
       {{ 'Error: ' + errorMessage }}
     </span>
+    <slot />
   </div>
 </template>
 
