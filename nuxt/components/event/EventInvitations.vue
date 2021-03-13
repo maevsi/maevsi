@@ -4,14 +4,6 @@
     :error-message="graphqlErrorMessage"
   />
   <div v-else>
-    <span class="text-center">
-      {{
-        $t('invitationsUsed', {
-          amountCurrent: allInvitations.totalCount,
-          amountMaximum: event.inviteeCountMaximum || '∞',
-        })
-      }}
-    </span>
     <div class="overflow-auto">
       <table v-if="allInvitations" class="border w-full">
         <thead>
@@ -104,6 +96,14 @@
         </tbody>
       </table>
     </div>
+    <p class="text-center">
+      {{
+        $t('invitationsUsed', {
+          amountCurrent: allInvitations.totalCount,
+          amountMaximum: event.inviteeCountMaximum || '∞',
+        })
+      }}
+    </p>
     <Button
       :disabled="
         event.inviteeCountMaximum
