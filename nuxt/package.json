@@ -68,7 +68,7 @@
     "vue-markdown-konishi": "0.2.10",
     "vue-reactive-refs": "0.0.2",
     "vuelidate": "0.7.6",
-    "weekstart": "1.0.1"
+    "weekstart": "1.1.0"
   },
   "devDependencies": {
     "@babel/runtime-corejs3": "7.13.10",
