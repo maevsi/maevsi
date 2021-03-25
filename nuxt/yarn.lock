@@ -11725,10 +11725,10 @@ nuxt-helmet@2.0.0:
     consola "^2.11.3"
     helmet "^4.0.0"
 
-nuxt-i18n@6.21.1:
-  version "6.21.1"
-  resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.21.1.tgz#a69d581a870b8eac1d5b2f8812b92a41fbe29708"
-  integrity sha512-zjqqUMJgIDDxrJDO5Ot3s8F1y71A4otTyGyf/RmQHptfY1HpvqwFx8087p5vUOI9XoRsGHSYB4n4wcMxurw+qA==
+nuxt-i18n@6.22.0:
+  version "6.22.0"
+  resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.22.0.tgz#7f4cfd3536abc2bac3c0dec3dd0daf28c0dbb56c"
+  integrity sha512-snJxnPsRWE4Vc97tfE4w4l7LvAMyfrtfdTVPRglScq+vTLPBHVixVM9SUHsNUOyeTgrq7dIe7bEKyU7KW7miYg==
   dependencies:
     "@babel/parser" "^7.5.5"
     "@babel/traverse" "^7.5.5"
@@ -11738,6 +11738,7 @@ nuxt-i18n@6.21.1:
     is-https "^3.0.0"
     js-cookie "^2.2.1"
     klona "^2.0.4"
+    ufo "^0.6.7"
     vue-i18n "^8.23.0"
 
 nuxt@2.15.3:
@@ -16380,7 +16381,7 @@ uc.micro@^1.0.1, uc.micro@^1.0.5:
   resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-1.0.6.tgz#9c411a802a409a91fc6cf74081baba34b24499ac"
   integrity sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==
 
-ufo@^0.6.10, ufo@^0.6.9:
+ufo@^0.6.10, ufo@^0.6.7, ufo@^0.6.9:
   version "0.6.10"
   resolved "https://registry.yarnpkg.com/ufo/-/ufo-0.6.10.tgz#c7ace9b8f72cb08c35e3a8c8edc76f062fbaa7d0"
   integrity sha512-sMbJnrBcKKsbVyr6++hb0n9lCmrMqkJrNnJIOJ3sckeqY6NMfAULcRGbBWcASSnN1HDV3YqiGCPzi9RVs511bw==
