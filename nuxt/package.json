@@ -35,7 +35,7 @@
     "@nuxtjs/google-gtag": "1.0.4",
     "@nuxtjs/robots": "2.5.0",
     "@nuxtjs/sitemap": "2.4.0",
-    "@tailwindcss/forms": "0.2.1",
+    "@tailwindcss/forms": "0.3.0",
     "@tailwindcss/typography": "0.4.0",
     "@uppy/core": "1.16.2",
     "@uppy/tus": "1.8.6",
