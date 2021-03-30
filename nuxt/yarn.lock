@@ -11851,16 +11851,17 @@ nuxt-helmet@2.0.0:
     consola "^2.11.3"
     helmet "^4.0.0"
 
-nuxt-i18n@6.22.2:
-  version "6.22.2"
-  resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.22.2.tgz#bdcaaf32438baba85700950e8d0709a841b2b80f"
-  integrity sha512-f5QQqaSosbCc0WOwpMvx4Enyu7/xUAUKmjdqvQ26qG/Jmiry5oLVyASxS8xVZMUubXijMJmHPELKLsv2Iu+WHg==
+nuxt-i18n@6.22.3:
+  version "6.22.3"
+  resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.22.3.tgz#5e9e5c060bedc1c480827ada014f05f1fed11c7c"
+  integrity sha512-IZ4OLOYHsF6cKB0ik7j9rFr81xFmij/HQNgepcc63dFJFU6SSHJ6uO2RkGo7v8e0ttr9QDIiTM3xJrmd5W1PVQ==
   dependencies:
     "@babel/parser" "^7.5.5"
     "@babel/traverse" "^7.5.5"
     "@intlify/vue-i18n-extensions" "^1.0.1"
     "@intlify/vue-i18n-loader" "^1.0.0"
     cookie "^0.4.0"
+    devalue "^2.0.1"
     is-https "^3.0.0"
     js-cookie "^2.2.1"
     klona "^2.0.4"
