@@ -1,3 +1,10 @@
+## [0.62.3](https://github.com/maevsi/maevsi/compare/0.62.2...0.62.3) (2021-04-01)
+
+
+### Bug Fixes
+
+* nuxt/package.json & nuxt/yarn.lock to reduce vulnerabilities ([8cd0e73](https://github.com/maevsi/maevsi/commit/8cd0e733d2e58b7e5fd13684abbebff110921548))
+
 ## [0.62.2](https://github.com/maevsi/maevsi/compare/0.62.1...0.62.2) (2021-03-25)
 
 
