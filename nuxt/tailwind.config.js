@@ -353,9 +353,4 @@ module.exports = {
       })
     },
   ],
-  purge: {
-    options: {
-      safelist: [':disabled', '::placeholder'], // Required for production.
-    },
-  },
 }
