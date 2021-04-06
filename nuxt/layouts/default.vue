@@ -52,10 +52,10 @@
       </div>
     </footer>
     <div
-      class="bg-black bottom-0 duration-500 fixed left-0 opacity-0 right-0 top-0 transition-opacity"
+      class="bg-black bottom-0 duration-500 fixed left-0 right-0 top-0 transition-opacity"
       :class="{
         'opacity-50 visible': isMenuVisible,
-        invisible: !isMenuVisible,
+        'opacity-0 invisible': !isMenuVisible,
       }"
       @click="menuHide()"
     />
