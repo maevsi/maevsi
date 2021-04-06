@@ -1,3 +1,12 @@
+# [0.63.0](https://github.com/maevsi/maevsi/compare/0.62.3...0.63.0) (2021-04-06)
+
+
+### Features
+
+* **nuxt:** enable jit compilation ([4db69f6](https://github.com/maevsi/maevsi/commit/4db69f69cc27bb94304e71ac1374b70b2498d1ba))
+* **tailwind:** disable jit compilation ([86e298f](https://github.com/maevsi/maevsi/commit/86e298fbd8020d6f6df5ee04821f2fe493ffe830))
+* **tailwind:** enable jit compilation ([991bd5a](https://github.com/maevsi/maevsi/commit/991bd5a929b6e3ac513d964b1960cd69154a56f4))
+
 ## [0.62.3](https://github.com/maevsi/maevsi/compare/0.62.2...0.62.3) (2021-04-01)
 
 
