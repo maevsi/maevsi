@@ -2139,13 +2139,13 @@
   resolved "https://registry.yarnpkg.com/@nuxtjs/google-gtag/-/google-gtag-1.0.4.tgz#57562d8ec4c7694573e77edf72097da4a34b0d68"
   integrity sha512-0Xgbx1uQ9pKeV2QdU9xoxJVdgH66qyGQJ0l8pzVxz5X476qvJunj6fbcjWk0gT+MEX/VOAhfT/zw0Z1z9q9oNg==
 
-"@nuxtjs/html-validator@0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/html-validator/-/html-validator-0.3.1.tgz#e3b295f9b58d6027ee7b440f423f90bb2e6f6c08"
-  integrity sha512-XOWQXlVuKjI0AITGfQLhypdwQI5cbn4GjXPH+7RBhOb71rDVKm8CzVjZnrRojrlNgMKl5FqdnFpPBg+oRM7E6Q==
+"@nuxtjs/html-validator@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/html-validator/-/html-validator-0.4.0.tgz#6653086cf70e8060bdd68fd107ce7b40cfc75377"
+  integrity sha512-XX8pDQ35F2J3yYmNp5sD0ROGezxMmnpVu2OgTfT6JOnfxurejJZySGZpAJmsg9M0NoxSb8aelq22Z6MOeT8sjg==
   dependencies:
     defu "3.2.2"
-    html-validate "4.9.0"
+    html-validate "4.10.0"
 
 "@nuxtjs/moment@1.6.1":
   version "1.6.1"
@@ -9151,10 +9151,10 @@ html-to-text@7.0.0:
     htmlparser2 "^6.0.0"
     minimist "^1.2.5"
 
-html-validate@4.9.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/html-validate/-/html-validate-4.9.0.tgz#117b5b96847ac6e6f82a65f2a8cd5e0c7be3da0b"
-  integrity sha512-f/K800iPkwUoylSLbBHwotSgfWGQ0oW1WXZQQ1O/PRHXfyaaycGMHg5yke6CywhYW/NIV4BcXhGdtTwrrWQ1sg==
+html-validate@4.10.0:
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/html-validate/-/html-validate-4.10.0.tgz#001b581ed0026bd4ba84034b968a76c7e95f10fb"
+  integrity sha512-5yFDrUj9mb8r4bv8crKsBDNC97oL1eWg1pEqxR5GfcnlwqBztJma6dQgfbWx7J4hF02Q1IViLdWfjy8//vXvMQ==
   dependencies:
     "@babel/code-frame" "^7.10.0"
     "@html-validate/stylish" "^1.0.0"
