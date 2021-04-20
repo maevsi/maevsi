@@ -12133,10 +12133,10 @@ nuxt-helmet@2.0.0:
     consola "^2.11.3"
     helmet "^4.0.0"
 
-nuxt-i18n@6.25.0:
-  version "6.25.0"
-  resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.25.0.tgz#d5b2c0be368012bd7d691283a38fec38030aa89b"
-  integrity sha512-x9rVDPnrQyB2TrdLuwkgNGMi+a03Xo7Vp3uXq1c5sCY0AREHGTsVXjLqdJULt2hXofaF2a6I1CLgN6g9+Cv/3g==
+nuxt-i18n@6.26.0:
+  version "6.26.0"
+  resolved "https://registry.yarnpkg.com/nuxt-i18n/-/nuxt-i18n-6.26.0.tgz#f4853157bc1621aa1155851bcd59e52e50441a08"
+  integrity sha512-bf/WRr3JhkyxjlHt8NxyGeue+Kw2QsgzzbTXhnK7cRWP2zvlRvtHBo6220jBJrL/L10OzLeImKk+m2GyjgZ70w==
   dependencies:
     "@babel/parser" "^7.13.15"
     "@babel/traverse" "^7.13.15"
