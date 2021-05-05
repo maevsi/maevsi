@@ -1,18 +1,26 @@
 import { getIcalString } from './ical'
 
+const OLD_ENV = process.env
+
 beforeAll(() => {
   const date = new Date(0)
   date.setTime(date.getTime() + date.getTimezoneOffset() * 60 * 1000)
 
   jest.useFakeTimers('modern')
   jest.setSystemTime(date)
+
+  jest.resetModules()
+  process.env = { ...OLD_ENV }
 })
 
 afterAll(() => {
   jest.useRealTimers()
+  process.env = OLD_ENV
 })
 
-test('gets ical string', () =>
+test('gets ical string', () => {
+  process.env.NUXT_ENV_STACK_DOMAIN = undefined
+
   expect(
     getIcalString({
       authorUsername: 'authorUsername',
@@ -49,4 +57,5 @@ URL;VALUE=URI:https://maevsi.test/event/authorUsername/slug\r
 STATUS:CONFIRMED\r
 END:VEVENT\r
 END:VCALENDAR`
-  ))
+  )
+})
