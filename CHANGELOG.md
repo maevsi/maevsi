@@ -1,3 +1,15 @@
+# [0.64.0](https://github.com/maevsi/maevsi/compare/0.63.2...0.64.0) (2021-05-05)
+
+
+### Bug Fixes
+
+* **ical:** properly handle environment variables in test ([b2012cb](https://github.com/maevsi/maevsi/commit/b2012cbdd50c5ee022755b2574fda267a56abafc))
+
+
+### Features
+
+* **ical:** migrate to ical-generator v2 ([018132c](https://github.com/maevsi/maevsi/commit/018132c8beeadcccecc33ac77c10eaf4a7c30661))
+
 ## [0.63.2](https://github.com/maevsi/maevsi/compare/0.63.1...0.63.2) (2021-05-03)
 
 
