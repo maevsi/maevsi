@@ -1,3 +1,10 @@
+## [0.64.1](https://github.com/maevsi/maevsi/compare/0.64.0...0.64.1) (2021-05-08)
+
+
+### Bug Fixes
+
+* **tailwind:** use integrated jit ([64d68b0](https://github.com/maevsi/maevsi/commit/64d68b03a055f81df59b63c905293ee47e2235b3))
+
 # [0.64.0](https://github.com/maevsi/maevsi/compare/0.63.2...0.64.0) (2021-05-05)
 
 
