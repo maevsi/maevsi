@@ -94,7 +94,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
-    ['@nuxtjs/tailwindcss', { jit: true }],
+    '@nuxtjs/tailwindcss',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
