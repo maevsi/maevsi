@@ -3799,10 +3799,10 @@
     qs-stringify "^1.1.0"
     url-parse "^1.4.7"
 
-"@uppy/core@1.18.0":
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-1.18.0.tgz#db24ed3fb66916bc2220ae6de3c98c8f499041d8"
-  integrity sha512-ddon7JWV8l1Gm/A7Y2akNa6wAJF1rBs5N4TMVbcBeYaBUBpDIm3e+HbfbbL5VCuHxTo/bkiyN46zRxA5tv63lw==
+"@uppy/core@1.18.1":
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-1.18.1.tgz#efae33c85c786093b0c012bcf271fe6d7edd6a18"
+  integrity sha512-VK+BwjeW7++/+4qvvHsmdTrd4y37MdUHFJveMZZisMk+nyy1L8Y65qS9PV+FxChwhTg7xEJdwmqtIjDTYRZNMA==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.7"
     "@uppy/store-default" "^1.2.6"
