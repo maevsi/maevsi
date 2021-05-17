@@ -1,3 +1,10 @@
+## [0.64.2](https://github.com/maevsi/maevsi/compare/0.64.1...0.64.2) (2021-05-17)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([341cd37](https://github.com/maevsi/maevsi/commit/341cd3794e396999f176ab43d67b700b12238165))
+
 ## [0.64.1](https://github.com/maevsi/maevsi/compare/0.64.0...0.64.1) (2021-05-08)
 
 
