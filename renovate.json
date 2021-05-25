@@ -1,28 +1,5 @@
 {
-  "automerge": true,
-  "automergeType": "branch",
-  "docker": {
-    "major": {
-      "enabled": true
-    },
-    "pinDigests": true
-  },
   "extends": [
-    "config:base",
-    ":semanticCommits",
-    ":semanticCommitTypeAll(chore)"
-  ],
-  "major": {
-    "automerge": false
-  },
-  "packageRules": [
-    {
-      "packagePatterns": [
-        "snyk"
-      ],
-      "schedule": [
-        "before 3am on Monday"
-      ]
-    }
+    "github>dargmuesli/renovate-config"
   ]
 }
