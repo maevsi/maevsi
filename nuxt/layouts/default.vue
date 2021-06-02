@@ -204,28 +204,6 @@ export default {
 }
 </script>
 
-<style>
-@layer components {
-  a:focus {
-    @apply outline-none;
-    @apply ring;
-  }
-  button:focus {
-    @apply outline-none;
-    @apply ring;
-  }
-  .button:focus {
-    @apply outline-none;
-    @apply ring;
-  }
-}
-@layer utilities {
-  .maevsi-prose {
-    @apply m-auto prose dark:prose-dark sm:prose-sm sm:dark:prose-dark lg:prose-lg lg:dark:prose-dark xl:prose-xl xl:dark:prose-dark;
-  }
-}
-</style>
-
 <style scoped>
 #logo {
   background-image: url(/assets/static/logos/maevsi.svg);
