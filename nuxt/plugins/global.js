@@ -10,7 +10,8 @@ const consola = require('consola')
 
 export const ITEMS_PER_PAGE = 8
 export const REGEX_SLUG = /^[-A-Za-z0-9]+$/
-export const REGEX_UUID = /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
+export const REGEX_UUID =
+  /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
 export const TUSD_FILES_URL =
   'https://tusd.' +
   (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +

@@ -70,7 +70,8 @@ export default {
     },
     onClickPasswordForgotten() {
       if (this.$refs.formPasswordResetRequest) {
-        this.$refs.formPasswordResetRequest.form.emailAddress = this.$refs.formRegistration.form.emailAddress
+        this.$refs.formPasswordResetRequest.form.emailAddress =
+          this.$refs.formRegistration.form.emailAddress
       }
     },
     onFormPasswordResetRequest(form) {

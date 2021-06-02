@@ -65,8 +65,9 @@ WORKDIR /srv/app/
 
 COPY --from=development /srv/app/ ./
 
-RUN yarn run build
-RUN yarn run test
+RUN yarn run lint \
+    && yarn run build \
+    && yarn run test
 
 # Discard devDependencies.
 RUN yarn install

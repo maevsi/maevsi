@@ -52,7 +52,16 @@
       </div>
     </footer>
     <div
-      class="bg-black bottom-0 duration-500 fixed left-0 right-0 top-0 transition-opacity"
+      class="
+        bg-black
+        bottom-0
+        duration-500
+        fixed
+        left-0
+        right-0
+        top-0
+        transition-opacity
+      "
       :class="{
         'opacity-50 visible': isMenuVisible,
         'opacity-0 invisible': !isMenuVisible,
@@ -60,7 +69,25 @@
       @click="menuHide()"
     />
     <div
-      class="bg-background-bright dark:bg-background-dark bottom-0 duration-500 fixed flex-col inline-flex items-start overflow-auto p-2 right-0 top-0 transform-gpu transition-transform w-5/6 md:w-1/2 lg:w-1/3"
+      class="
+        bg-background-bright
+        dark:bg-background-dark
+        bottom-0
+        duration-500
+        fixed
+        flex-col
+        inline-flex
+        items-start
+        overflow-auto
+        p-2
+        right-0
+        top-0
+        transform-gpu
+        transition-transform
+        w-5/6
+        md:w-1/2
+        lg:w-1/3
+      "
       :class="{
         'translate-x-0': isMenuVisible,
         'translate-x-full': !isMenuVisible,
