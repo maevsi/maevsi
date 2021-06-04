@@ -9,11 +9,6 @@ jobs:
   docker:
     name: Docker
     runs-on: ubuntu-latest
-    services:
-      selenium:
-        image: selenium/standalone-chrome:3.141.59@sha256:4a590fc95d67a8eb13464799583991daa6a8548c9a9e2e7f234a92c9c4fa8f29
-        ports:
-          - 4444:4444
     steps:
       - name: Git checkout
         uses: actions/checkout@v2.3.4
@@ -37,6 +32,8 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
+          yarn --cwd ./nuxt selenium
+
           # Push the Docker image to the registry on git pushes that either pushed a tag or one of the following branches: [master, develop]
           if [[
             (
@@ -59,6 +56,7 @@ jobs:
           ]]
           then
             docker buildx build \
+              --build-arg CI=${CI} \
               --cache-from=$IMAGE_ID:cache \
               --cache-to=$IMAGE_ID:cache \
               --network=host \
@@ -67,6 +65,7 @@ jobs:
               .
           else
             docker buildx build \
+              --build-arg CI=${CI} \
               --cache-from=$IMAGE_ID:cache \
               --network=host \
               -t $IMAGE_ID:$VERSION \
@@ -105,6 +104,7 @@ jobs:
       - name: Build "build"
         run: |
           docker buildx build \
+            --build-arg CI=${CI} \
             --cache-from=$IMAGE_ID:cache \
             --load \
             --network=host \
