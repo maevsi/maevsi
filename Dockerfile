@@ -52,6 +52,7 @@ FROM node:16.2.0-buster@sha256:ddc2ebfc3759299afb2085bba7648416e016b326389323a25
 ARG NUXT_ENV_STACK_DOMAIN=maev.si
 ENV NUXT_ENV_STACK_DOMAIN=${NUXT_ENV_STACK_DOMAIN}
 ENV NODE_ENV=production
+ENV DOCKER_ENV=true
 
 # Update and install dependencies.
 # - `git` is required by the `yarn` command
