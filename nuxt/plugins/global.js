@@ -2,9 +2,9 @@ import cookie from 'cookie'
 import { decode } from 'jsonwebtoken'
 import { helpers } from 'vuelidate/lib/validators'
 
-import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate'
-import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh'
-import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting'
+import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
+import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
+import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 
 const consola = require('consola')
 

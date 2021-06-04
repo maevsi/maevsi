@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting'
+import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 
 export default {
   async validate({ app, params }) {

@@ -269,8 +269,8 @@ import {
   required,
 } from 'vuelidate/lib/validators'
 
-import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate'
-import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById'
+import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate.gql'
+import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById.gql'
 
 const consola = require('consola')
 

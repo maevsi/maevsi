@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll'
+import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
 
 const consola = require('consola')
 

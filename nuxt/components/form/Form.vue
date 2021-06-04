@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import ACCOUNT_REGISTRATION_MUTATION_REFRESH from '~/gql/mutation/account/accountRegistrationRefresh'
+import ACCOUNT_REGISTRATION_MUTATION_REFRESH from '~/gql/mutation/account/accountRegistrationRefresh.gql'
 
 const consola = require('consola')
 

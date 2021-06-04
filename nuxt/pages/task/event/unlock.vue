@@ -58,7 +58,7 @@
 <script>
 import { required } from 'vuelidate/lib/validators'
 
-import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock'
+import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 
 const consola = require('consola')
 
