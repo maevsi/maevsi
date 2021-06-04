@@ -360,7 +360,7 @@ export default {
   ],
 
   storybook: {
-    addons: ['creevey'],
+    addons: ['@storybook/addon-a11y', 'creevey'],
   },
 
   vue: {
