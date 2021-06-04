@@ -3,13 +3,13 @@ import Button from './Button.vue'
 export default {
   component: Button,
   title: 'button/Button',
-  argTypes: { onClick: { action: 'click' } },
+  argTypes: { click: { action: 'click' } },
 }
 
 const Template = (_, { argTypes }) => ({
   components: { Button },
   props: Object.keys(argTypes),
-  template: '<Button v-bind="$props" @click="onClick">Button</Button>',
+  template: '<Button v-bind="$props" @click="click">Button</Button>',
 })
 
 export const Default = Template.bind({})
