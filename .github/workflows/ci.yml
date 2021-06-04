@@ -61,12 +61,14 @@ jobs:
             docker buildx build \
               --cache-from=$IMAGE_ID:cache \
               --cache-to=$IMAGE_ID:cache \
+              --network=host \
               --push \
               -t $IMAGE_ID:$VERSION \
               .
           else
             docker buildx build \
               --cache-from=$IMAGE_ID:cache \
+              --network=host \
               -t $IMAGE_ID:$VERSION \
               .
           fi
@@ -104,9 +106,10 @@ jobs:
         run: |
           docker buildx build \
             --cache-from=$IMAGE_ID:cache \
+            --load \
+            --network=host \
             -t stage_build \
             --target build \
-            --load \
             .
           docker container create --name extract stage_build
           docker container cp extract:/srv/app/ ./dist/
