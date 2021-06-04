@@ -140,9 +140,9 @@
 </template>
 
 <script>
-import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDelete'
-import INVITE_MUTATION from '~/gql/mutation/invitation/invite'
-import INVITATIONS_ALL_QUERY from '~/gql/query/invitation/invitationsAll'
+import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDelete.gql'
+import INVITE_MUTATION from '~/gql/mutation/invitation/invite.gql'
+import INVITATIONS_ALL_QUERY from '~/gql/query/invitation/invitationsAll.gql'
 
 const consola = require('consola')
 

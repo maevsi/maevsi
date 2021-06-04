@@ -10,3 +10,12 @@ nuxt/.nuxt
 nuxt/dist
 
 # End of https://www.toptal.com/developers/gitignore/api/node
+
+nuxt/.nuxt-storybook/
+nuxt/storybook-static/
+
+# Creevey
+nuxt/report/*
+
+# Git
+nuxt/**/!.gitkeep

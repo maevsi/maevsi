@@ -32,6 +32,8 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
+          yarn --cwd ./nuxt selenium
+
           # Push the Docker image to the registry on git pushes that either pushed a tag or one of the following branches: [master, develop]
           if [[
             (
@@ -54,14 +56,18 @@ jobs:
           ]]
           then
             docker buildx build \
+              --build-arg CI=${CI} \
               --cache-from=$IMAGE_ID:cache \
               --cache-to=$IMAGE_ID:cache \
+              --network=host \
               --push \
               -t $IMAGE_ID:$VERSION \
               .
           else
             docker buildx build \
+              --build-arg CI=${CI} \
               --cache-from=$IMAGE_ID:cache \
+              --network=host \
               -t $IMAGE_ID:$VERSION \
               .
           fi
@@ -98,10 +104,12 @@ jobs:
       - name: Build "build"
         run: |
           docker buildx build \
+            --build-arg CI=${CI} \
             --cache-from=$IMAGE_ID:cache \
+            --load \
+            --network=host \
             -t stage_build \
             --target build \
-            --load \
             .
           docker container create --name extract stage_build
           docker container cp extract:/srv/app/ ./dist/

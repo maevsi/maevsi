@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <AppLink
-      v-if="to !== undefined"
+      v-if="to"
       ref="button"
       :append="append"
       :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"

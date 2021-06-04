@@ -359,6 +359,10 @@ export default {
     { path: '/tusd', handler: '~/api/tusd.ts' },
   ],
 
+  storybook: {
+    addons: ['@storybook/addon-a11y', 'creevey'],
+  },
+
   vue: {
     config: {
       productionTip: false,
