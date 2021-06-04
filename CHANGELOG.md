@@ -1,3 +1,17 @@
+# [0.65.0](https://github.com/maevsi/maevsi/compare/0.64.3...0.65.0) (2021-06-04)
+
+
+### Bug Fixes
+
+* **selenium:** add docker host networking ([157e30b](https://github.com/maevsi/maevsi/commit/157e30bb561967ffdc03f6e823ece25bc9dc0565))
+
+
+### Features
+
+* **report:** add .gitkeep ([51213e0](https://github.com/maevsi/maevsi/commit/51213e0b185b36f97fd12dad23f040062bb44056))
+* **storybook:** add a11y addon ([91c277e](https://github.com/maevsi/maevsi/commit/91c277ed09172a039444e249bd70af5bd33356c8))
+* **storybook:** add storybook and creevey ([727eade](https://github.com/maevsi/maevsi/commit/727eadef9b3ec906eb09b651148ddc203042d769))
+
 ## [0.64.3](https://github.com/maevsi/maevsi/compare/0.64.2...0.64.3) (2021-05-31)
 
 
