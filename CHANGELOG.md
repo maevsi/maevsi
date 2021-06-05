@@ -1,3 +1,11 @@
+# [0.66.0](https://github.com/maevsi/maevsi/compare/0.65.0...0.66.0) (2021-06-05)
+
+
+### Features
+
+* **creevey:** get rid of selenium environment variable ([6acb2e7](https://github.com/maevsi/maevsi/commit/6acb2e75eae192243dacb3b8a4aea9a58c8fc425))
+* **storybook:** add app-link stories ([38fd3ed](https://github.com/maevsi/maevsi/commit/38fd3edac35c1813d22823e1230be7980bd9aae5))
+
 # [0.65.0](https://github.com/maevsi/maevsi/compare/0.64.3...0.65.0) (2021-06-04)
 
 
