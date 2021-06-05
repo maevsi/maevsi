@@ -1,3 +1,14 @@
+## [0.66.1](https://github.com/maevsi/maevsi/compare/0.66.0...0.66.1) (2021-06-05)
+
+
+### Bug Fixes
+
+* **ci:** do not remove selenium after test ([80def0c](https://github.com/maevsi/maevsi/commit/80def0cc8f959f8d6b24c4e774c8d10b5ff06c2c))
+* **ci:** readd selenium starter ([4d1a518](https://github.com/maevsi/maevsi/commit/4d1a5180b1f1f84e39c2dad4eae5b534a3bbbee4))
+* **ci:** start selenium on release ([11dbb57](https://github.com/maevsi/maevsi/commit/11dbb5729063da5b9c6824e6cf02bdfd3cbe2882))
+* **ci:** use artifacts instead of double build ([0904d84](https://github.com/maevsi/maevsi/commit/0904d8458dffe604a9368e4c714f32c36ac36b27))
+* **ci:** use zip as artifact ([a33b169](https://github.com/maevsi/maevsi/commit/a33b16937324d30d3d9db43624958295e5d3ed6e))
+
 # [0.66.0](https://github.com/maevsi/maevsi/compare/0.65.0...0.66.0) (2021-06-05)
 
 
