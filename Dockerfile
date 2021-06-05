@@ -49,8 +49,8 @@ HEALTHCHECK --interval=10s CMD curl -f http://localhost:3000/healthcheck || exit
 # `node-zopfli-es` requires non-slim.
 FROM node:16.3.0-buster@sha256:e36cf1bb8719551220ba8c3ee1583881e79ad040803570e0849b00b8fe009153 AS build
 
-ARG CI=false
-ENV CI ${CI}
+ARG HOST_IP=127.0.0.1
+ENV HOST_IP ${HOST_IP}
 ARG NUXT_ENV_STACK_DOMAIN=maev.si
 ENV NUXT_ENV_STACK_DOMAIN=${NUXT_ENV_STACK_DOMAIN}
 ENV NODE_ENV=production
