@@ -32,8 +32,6 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          yarn --cwd ./nuxt selenium
-
           docker buildx build \
             --build-arg HOST_IP=172.17.0.1 \
             --cache-from=$IMAGE_ID:cache \
@@ -93,6 +91,7 @@ jobs:
         with:
           name: maevsi.zip
           path: ./maevsi.zip
+          retention-days: 1
   semantic-release:
     if: github.event_name != 'pull_request'
     name: Semantic Release
@@ -119,7 +118,6 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: maevsi.zip
-          path: ./maevsi.zip
 
       - name: GitHub Release Asset
         uses: softprops/action-gh-release@v1
