@@ -103,6 +103,8 @@ jobs:
 
       - name: Build "build"
         run: |
+          yarn --cwd ./nuxt selenium
+
           docker buildx build \
             --build-arg HOST_IP=172.17.0.1 \
             --cache-from=$IMAGE_ID:cache \
