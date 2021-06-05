@@ -83,10 +83,16 @@ jobs:
               -t $IMAGE_ID:$VERSION \
               .
           fi
+
+      - name: Zip
+        uses: montudor/action-zip@v1.0.0
+        with:
+          args: zip -qq -r ./maevsi.zip ./dist/
+
       - uses: actions/upload-artifact@v2
         with:
-          name: maevsi
-          path: ./dist
+          name: maevsi.zip
+          path: ./maevsi.zip
   semantic-release:
     if: github.event_name != 'pull_request'
     name: Semantic Release
@@ -112,13 +118,8 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: maevsi
-          path: ./dist
-
-      - name: Zip
-        uses: montudor/action-zip@v1.0.0
-        with:
-          args: zip -qq -r ./maevsi.zip ./dist/
+          name: maevsi.zip
+          path: ./maevsi.zip
 
       - name: GitHub Release Asset
         uses: softprops/action-gh-release@v1
