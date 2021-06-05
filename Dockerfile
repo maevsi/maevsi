@@ -54,7 +54,6 @@ ENV CI ${CI}
 ARG NUXT_ENV_STACK_DOMAIN=maev.si
 ENV NUXT_ENV_STACK_DOMAIN=${NUXT_ENV_STACK_DOMAIN}
 ENV NODE_ENV=production
-ENV SELENIUM_ENV=dedicated
 
 # Update and install dependencies.
 # - `git` is required by the `yarn` command
