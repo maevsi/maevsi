@@ -32,6 +32,8 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
+          yarn --cwd ./nuxt seleniumStart
+
           docker buildx build \
             --build-arg HOST_IP=172.17.0.1 \
             --cache-from=$IMAGE_ID:cache \
