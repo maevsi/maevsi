@@ -19,7 +19,7 @@ export default {
       type: Boolean,
     },
     username: {
-      default: undefined,
+      required: true,
       type: String,
     },
   },

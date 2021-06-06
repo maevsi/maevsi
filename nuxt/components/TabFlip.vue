@@ -74,7 +74,7 @@ export default {
     },
     // `tabs` must come before `tabIdInitial` as `tabIdInitial` uses `tabs` data.
     tabs: {
-      default: undefined,
+      required: true,
       type: Array,
     },
     // `queryTabKey` must come before `tabIdInitial` as `tabIdInitial` uses `queryTabKey` data.
