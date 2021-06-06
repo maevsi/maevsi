@@ -1,3 +1,16 @@
+# [0.67.0](https://github.com/maevsi/maevsi/compare/0.66.1...0.67.0) (2021-06-06)
+
+
+### Bug Fixes
+
+* **creevey:** update images ([719f3db](https://github.com/maevsi/maevsi/commit/719f3db649edd9c9195c2f737f87606f59960215))
+
+
+### Features
+
+* **storybook:** start on port 6006 ([409c95c](https://github.com/maevsi/maevsi/commit/409c95cb76725024171a994732c8263aa2b033b4))
+* **tailwind:** set montserrat as default font ([58abe50](https://github.com/maevsi/maevsi/commit/58abe50216965e05f580f20227f7853043848421))
+
 ## [0.66.1](https://github.com/maevsi/maevsi/compare/0.66.0...0.66.1) (2021-06-05)
 
 
