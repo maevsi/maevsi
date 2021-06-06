@@ -1,5 +1,3 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-
 function heading(theme) {
   return {
     fontFamily: 'Montserrat',
@@ -32,9 +30,6 @@ module.exports = {
           bright: '#fafafa', // theme('colors.gray.50')
           dark: '#27272a', // theme('colors.gray.800')
         },
-      },
-      fontFamily: {
-        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
         shake: {
