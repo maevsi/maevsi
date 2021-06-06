@@ -13,7 +13,7 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "yarn lint:js && yarn lint:style",
-    "storybook": "nuxt storybook",
+    "storybook": "nuxt storybook -p 6006",
     "storybookStatic": "nuxt storybook build && npx http-server ./storybook-static -p 6006",
     "test": "jest && yarn testVisual",
     "testVisual": "(wget --spider ${HOST_IP:-127.0.0.1}:4444 || yarn seleniumStart) && start-server-and-test 'yarn storybookStatic' 6006 creevey",
