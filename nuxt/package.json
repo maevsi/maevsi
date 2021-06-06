@@ -5,8 +5,8 @@
   "scheduleVersion": "0.64.3",
   "description": "The manager for events supported by invitees.",
   "scripts": {
-    "creevey": "creevey",
-    "creeveyUi": "creevey --ui",
+    "creevey": "creevey --config ./.storybook/creevey/creevey.config.js --reportDir ./.storybook/creevey/report --screenDir ./.storybook/creevey/images",
+    "creeveyUi": "creevey --config ./.storybook/creevey/creevey.config.js --reportDir ./.storybook/creevey/report --screenDir ./.storybook/creevey/images --ui",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",

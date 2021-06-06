@@ -94,7 +94,7 @@ sw.*
 storybook-static
 
 # Creevey
-report/*
+.storybook/creevey/report/*
 
 # Git
 !.gitkeep
