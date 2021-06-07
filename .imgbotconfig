@@ -1,0 +1,5 @@
+{
+    "ignoredFiles": [
+        "nuxt/.storybook/creevey/images/*"
+    ]
+}
