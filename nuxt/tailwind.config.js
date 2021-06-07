@@ -24,12 +24,12 @@ module.exports = {
           dark: '#202020',
         },
         link: {
-          bright: '#60a5fa', // theme('colors.blue.400')
-          dark: '#1d4ed8', // theme('colors.blue.700')
+          bright: 'rgb(96, 165, 250)', // theme('colors.blue.400')
+          dark: 'rgb(29, 78, 216)', // theme('colors.blue.700')
         },
         text: {
-          bright: '#fafafa', // theme('colors.gray.50')
-          dark: '#27272a', // theme('colors.gray.800')
+          bright: 'rgb(249, 250, 251)', // theme('colors.gray.50')
+          dark: 'rgb(17, 24, 39)', // theme('colors.gray.900')
         },
       },
       fontFamily: {

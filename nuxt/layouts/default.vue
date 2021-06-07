@@ -21,8 +21,8 @@
         <nuxt />
       </main>
     </div>
-    <footer>
-      <div class="justify-around container flex mx-auto p-4">
+    <footer class="leading-6 text-sm py-8">
+      <div class="justify-around container flex mx-auto p-2">
         <FooterCategory :heading="$t('product')">
           <AppLink to="/">
             {{ $t('overview') }}
@@ -89,6 +89,27 @@
           </AppLink>
         </FooterCategory>
       </div>
+      <div class="flex w-3/4 items-center m-auto p-2">
+        <div class="bg-gray-900 dark:bg-white h-px flex-1" />
+        <LoaderImage
+          :alt="$t('maevsiLogo')"
+          class="
+            brightness-0
+            contrast-75
+            dark:contrast-100
+            filter
+            h-12
+            dark:invert
+            mx-12
+            w-12
+          "
+          src="/assets/static/logos/maevsi.svg"
+        />
+        <div class="bg-gray-900 dark:bg-white h-px flex-1" />
+      </div>
+      <p class="p-2 text-center">
+        {{ $t('copyright', { year: new Date().getFullYear() }) }}
+      </p>
     </footer>
     <div
       class="
@@ -253,6 +274,7 @@ de:
   account: 'Konto'
   awards: 'Auszeichnungen'
   browserUnsupported: 'Die Version deines Browsers wird nicht offiziell unterstützt. Bitte verwende eine aktuelle Version.'
+  copyright: '© {year} maevsi-Team. Alle Rechte vorbehalten.'
   eventUnlock: 'Einladungscode eingeben'
   eventNew: 'Veranstaltung erstellen'
   features: 'Funktionen'
@@ -261,6 +283,7 @@ de:
   languages: 'Sprachen'
   legal: 'Rechtliches'
   legalNotice: 'Impressum'
+  maevsiLogo: 'maevsis Logo'
   menuHide: 'Menü verstecken'
   menuShow: 'Menü anzeigen'
   overview: 'Überblick'
@@ -277,6 +300,7 @@ en:
   account: 'Account'
   awards: 'Awards'
   browserUnsupported: "Your browser's version is not officially supported. Please use a version that is up to date."
+  copyright: '© {year} maevsi team. All rights reserved.'
   eventUnlock: 'Enter invitation code'
   eventNew: 'Create event'
   features: 'Features'
@@ -285,6 +309,7 @@ en:
   languages: 'Languages'
   legal: 'Legal'
   legalNotice: 'Legal notice'
+  maevsiLogo: "maevsi's logo"
   menuHide: 'Hide menu'
   menuShow: 'Show menu'
   overview: 'Overview'

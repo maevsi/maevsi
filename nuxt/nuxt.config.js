@@ -105,7 +105,9 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head() {
     return {
-      bodyAttrs: { class: 'font-sans h-full dark:text-text-bright' },
+      bodyAttrs: {
+        class: 'font-sans h-full text-text-dark dark:text-text-bright',
+      },
       htmlAttrs: { class: 'h-full' },
       link: [
         {
