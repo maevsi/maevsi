@@ -53,7 +53,6 @@ export default {
           brands: ['faGithub'],
           solid: [
             'faArchive',
-            'faBalanceScale',
             'faBars',
             'faBug',
             'faCalendarDay',

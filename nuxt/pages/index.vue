@@ -5,17 +5,6 @@
       <p>{{ $t('maevsi') }}</p>
       <p>{{ $t('alpha') }}</p>
       <br />
-      <div class="flex justify-center">
-        <AppLink
-          :icon-id="['fab', 'github']"
-          icon-size="2x"
-          :title="$t('githubLinkTitle')"
-          to="https://github.com/maevsi/maevsi/"
-        >
-          github.com/maevsi/maevsi
-        </AppLink>
-      </div>
-      <br />
       <Button :to="localePath('/event')">
         {{ $t('events') }}
       </Button>

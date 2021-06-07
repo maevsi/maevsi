@@ -24,11 +24,10 @@
     <footer>
       <div class="justify-around container flex mx-auto p-4">
         <div class="flex flex-col">
-          <FontAwesomeIcon
-            :icon="['fas', 'language']"
-            class="mb-2"
-            title="language"
-          />
+          <!-- TODO: Replace with language picker: https://github.com/maevsi/maevsi/issues/290. -->
+          <span class="font-medium leading-7 text-lg">
+            <FontAwesomeIcon :icon="['fas', 'language']" title="language" />
+          </span>
           <AppLink
             v-for="locale in availableLocales"
             :key="locale.code"
@@ -37,19 +36,23 @@
             {{ locale.name }}
           </AppLink>
         </div>
-        <div class="flex flex-col">
-          <FontAwesomeIcon
-            :icon="['fas', 'balance-scale']"
-            class="mb-2"
-            title="scale"
-          />
+        <FooterCategory :heading="$t('legal')">
           <AppLink to="/legal-notice">
-            {{ $t('legal-notice') }}
+            {{ $t('legalNotice') }}
           </AppLink>
           <AppLink to="/privacy-policy">
             {{ $t('privacyPolicy') }}
           </AppLink>
-        </div>
+        </FooterCategory>
+        <FooterCategory :heading="$t('quickLinks')">
+          <AppLink
+            :icon-id="['fab', 'github']"
+            :title="$t('githubLinkTitle')"
+            to="https://github.com/maevsi/maevsi/"
+          >
+            github.com/maevsi/maevsi
+          </AppLink>
+        </FooterCategory>
       </div>
     </footer>
     <div
@@ -231,11 +234,13 @@ de:
   eventUnlock: 'Einladungscode eingeben'
   eventNew: 'Veranstaltung erstellen'
   home: 'Nach Hause'
-  legal-notice: 'Impressum'
+  legal: 'Rechtliches'
+  legalNotice: 'Impressum'
   menuHide: 'Menü verstecken'
   menuShow: 'Menü anzeigen'
   signOut: 'Abmelden'
   privacyPolicy: 'Datenschutzerklärung'
+  quickLinks: 'Quick Links'
   session: 'Sitzung'
   settings: 'Einstellungen'
 en:
@@ -244,11 +249,13 @@ en:
   eventUnlock: 'Enter invitation code'
   eventNew: 'Create event'
   home: 'Head home'
-  legal-notice: 'Legal notice'
+  legal: 'Legal'
+  legalNotice: 'Legal notice'
   menuHide: 'Hide menu'
   menuShow: 'Show menu'
   signOut: 'Sign out'
   privacyPolicy: 'Privacy policy'
+  quickLinks: 'Quick Links'
   session: 'Session'
   settings: 'Settings'
 </i18n>
