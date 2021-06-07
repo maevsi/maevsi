@@ -31,13 +31,11 @@ export default {
 de:
   alpha: 'Diese Webseite befindet sich derzeit im Alpha-Stadium: Alles kann sich jederzeit ändern und Daten können verlorengehen.'
   events: 'Veranstaltungen'
-  githubLinkTitle: 'maevsi auf GitHub'
   maevsi: 'maevsi ist der Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden.'
   title: 'Willkommen!'
 en:
   alpha: 'This site is currently in alpha: anything can change at any time and data is volatile.'
   events: 'Events'
-  githubLinkTitle: 'maevsi on GitHub'
   maevsi: 'maevsi is the manager for events supported by invitees.'
   title: 'Welcome!'
 </i18n>

@@ -23,19 +23,35 @@
     </div>
     <footer>
       <div class="justify-around container flex mx-auto p-4">
-        <div class="flex flex-col">
+        <FooterCategory :heading="$t('product')">
+          <AppLink to="/">
+            {{ $t('overview') }}
+          </AppLink>
+          <AppLink to="/#features">
+            {{ $t('features') }}
+          </AppLink>
+          <AppLink to="/#pricing">
+            {{ $t('pricing') }}
+          </AppLink>
+          <!-- <AppLink to="/about/team">
+            {{ $t('team') }}
+          </AppLink> -->
+          <!-- <AppLink to="/about/awards">
+            {{ $t('awards') }}
+          </AppLink> -->
+        </FooterCategory>
+        <FooterCategory :heading="$t('languages')">
           <!-- TODO: Replace with language picker: https://github.com/maevsi/maevsi/issues/290. -->
-          <span class="font-medium leading-7 text-lg">
-            <FontAwesomeIcon :icon="['fas', 'language']" title="language" />
-          </span>
           <AppLink
-            v-for="locale in availableLocales"
+            v-for="locale in $i18n.locales"
             :key="locale.code"
             :to="switchLocalePath(locale.code)"
           >
-            {{ locale.name }}
+            <span :class="{ disabled: locale.code === $i18n.locale }">
+              {{ locale.name }}
+            </span>
           </AppLink>
-        </div>
+        </FooterCategory>
         <FooterCategory :heading="$t('legal')">
           <AppLink to="/legal-notice">
             {{ $t('legalNotice') }}
@@ -43,14 +59,33 @@
           <AppLink to="/privacy-policy">
             {{ $t('privacyPolicy') }}
           </AppLink>
+          <!-- <AppLink to="/code-of-conduct">
+            {{ $t('codeOfConduct') }}
+          </AppLink> -->
         </FooterCategory>
+        <!-- <FooterCategory :heading="$t('support')">
+          <AppLink to="/support/tutorials">
+            {{ $t('tutorials') }}
+          </AppLink>
+          <AppLink to="/support/contact">
+            {{ $t('contact') }}
+          </AppLink>
+          <AppLink to="/support/docs">
+            {{ $t('documentation') }}
+          </AppLink>
+        </FooterCategory> -->
         <FooterCategory :heading="$t('quickLinks')">
           <AppLink
-            :icon-id="['fab', 'github']"
-            :title="$t('githubLinkTitle')"
-            to="https://github.com/maevsi/maevsi/"
+            :title="$t('releases')"
+            to="https://github.com/maevsi/maevsi/releases"
           >
-            github.com/maevsi/maevsi
+            {{ $t('releases') }}
+          </AppLink>
+          <AppLink
+            :title="$t('githubLinkTitle')"
+            to="https://github.com/maevsi/"
+          >
+            {{ $t('sourceCode') }}
           </AppLink>
         </FooterCategory>
       </div>
@@ -183,11 +218,6 @@ export default {
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
   },
-  computed: {
-    availableLocales() {
-      return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
-    },
-  },
   beforeCreate() {
     this.$moment.locale(this.$i18n.locale)
   },
@@ -230,32 +260,52 @@ export default {
 <i18n lang="yml">
 de:
   account: 'Konto'
+  awards: 'Auszeichnungen'
   browserUnsupported: 'Die Version deines Browsers wird nicht offiziell unterstützt. Bitte verwende eine aktuelle Version.'
   eventUnlock: 'Einladungscode eingeben'
   eventNew: 'Veranstaltung erstellen'
+  features: 'Funktionen'
+  githubLinkTitle: 'maevsi auf GitHub'
   home: 'Nach Hause'
+  languages: 'Sprachen'
   legal: 'Rechtliches'
   legalNotice: 'Impressum'
   menuHide: 'Menü verstecken'
   menuShow: 'Menü anzeigen'
-  signOut: 'Abmelden'
-  privacyPolicy: 'Datenschutzerklärung'
+  overview: 'Überblick'
+  pricing: 'Preise'
+  privacyPolicy: 'Datenschutz'
+  product: 'Produkt'
   quickLinks: 'Quick Links'
+  releases: 'Updates'
   session: 'Sitzung'
   settings: 'Einstellungen'
+  signOut: 'Abmelden'
+  sourceCode: 'Quellcode'
+  team: 'Team'
 en:
   account: 'Account'
+  awards: 'Awards'
   browserUnsupported: "Your browser's version is not officially supported. Please use a version that is up to date."
   eventUnlock: 'Enter invitation code'
   eventNew: 'Create event'
+  features: 'Features'
+  githubLinkTitle: 'maevsi on GitHub'
   home: 'Head home'
+  languages: 'Languages'
   legal: 'Legal'
   legalNotice: 'Legal notice'
   menuHide: 'Hide menu'
   menuShow: 'Show menu'
-  signOut: 'Sign out'
-  privacyPolicy: 'Privacy policy'
+  overview: 'Overview'
+  pricing: 'Pricing'
+  privacyPolicy: 'Privacy'
+  product: 'Product'
   quickLinks: 'Quick Links'
+  releases: 'Releases'
   session: 'Session'
   settings: 'Settings'
+  signOut: 'Sign out'
+  sourceCode: 'Source code'
+  team: 'Team'
 </i18n>
