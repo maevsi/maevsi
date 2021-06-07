@@ -10,6 +10,7 @@
             <div id="logo" class="h-10 w-32" />
           </AppLink>
           <ButtonIcon
+            :aria-label="$t('menuShow')"
             :icon-id="['fas', 'bars']"
             icon-size="2x"
             @click="menuShow()"
@@ -95,6 +96,7 @@
     >
       <template v-if="isMenuItemsVisible">
         <ButtonIcon
+          :aria-label="$t('menuHide')"
           class="m-4 xl:m-8"
           :icon-id="['fas', 'times']"
           icon-size="lg"
@@ -230,6 +232,8 @@ de:
   eventNew: 'Veranstaltung erstellen'
   home: 'Nach Hause'
   legal-notice: 'Impressum'
+  menuHide: 'Menü verstecken'
+  menuShow: 'Menü anzeigen'
   signOut: 'Abmelden'
   privacyPolicy: 'Datenschutzerklärung'
   session: 'Sitzung'
@@ -241,6 +245,8 @@ en:
   eventNew: 'Create event'
   home: 'Head home'
   legal-notice: 'Legal notice'
+  menuHide: 'Hide menu'
+  menuShow: 'Show menu'
   signOut: 'Sign out'
   privacyPolicy: 'Privacy policy'
   session: 'Session'
