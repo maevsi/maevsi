@@ -6,7 +6,6 @@
   "description": "The manager for events supported by invitees.",
   "scripts": {
     "creevey": "creevey --config ./.storybook/creevey/creevey.config.js --reportDir ./.storybook/creevey/report --screenDir ./.storybook/creevey/images",
-    "creeveyUi": "creevey --config ./.storybook/creevey/creevey.config.js --reportDir ./.storybook/creevey/report --screenDir ./.storybook/creevey/images --ui",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
@@ -14,11 +13,11 @@
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "yarn lint:js && yarn lint:style",
     "storybook": "nuxt storybook -p 6006",
-    "storybookStatic": "nuxt storybook build && npx http-server ./storybook-static -p 6006",
+    "storybook:static": "nuxt storybook build && npx http-server ./storybook-static -p 6006",
     "test": "jest && yarn testVisual",
-    "testVisual": "(wget --spider ${HOST_IP:-127.0.0.1}:4444 || yarn seleniumStart) && start-server-and-test 'yarn storybookStatic' 6006 creevey",
-    "seleniumStart": "docker run -d --name selenium -p 4444:4444 --restart always -v /dev/shm:/dev/shm selenium/standalone-chrome:3.141.59@sha256:4a590fc95d67a8eb13464799583991daa6a8548c9a9e2e7f234a92c9c4fa8f29",
-    "seleniumRemove": "docker rm -f selenium",
+    "testVisual": "(wget --spider ${HOST_IP:-127.0.0.1}:4444 || yarn selenium:start) && start-server-and-test 'yarn storybook:static' 6006 creevey",
+    "selenium:start": "docker run -d --name selenium -p 4444:4444 --restart always -v /dev/shm:/dev/shm selenium/standalone-chrome:3.141.59@sha256:4a590fc95d67a8eb13464799583991daa6a8548c9a9e2e7f234a92c9c4fa8f29",
+    "selenium:remove": "docker rm -f selenium",
     "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "lint-staged": {

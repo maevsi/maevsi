@@ -32,7 +32,7 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          yarn --cwd ./nuxt seleniumStart
+          yarn --cwd ./nuxt selenium:start
 
           docker buildx build \
             --build-arg HOST_IP=172.17.0.1 \
