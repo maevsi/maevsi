@@ -3,7 +3,6 @@ import FooterCategory from './FooterCategory.vue'
 export default {
   component: FooterCategory,
   title: 'FooterCategory',
-  argTypes: { click: { action: 'click' } },
 }
 
 const Template = (_, { argTypes }) => ({

@@ -1,116 +1,12 @@
 <template>
   <div>
     <div class="container min-h-screen mx-auto p-4">
-      <header>
-        <CardInfo v-if="!browserSupported">
-          {{ $t('browserUnsupported') }}
-        </CardInfo>
-        <div class="flex items-center justify-between m-4 relative">
-          <AppLink :aria-label="$t('home')" :to="localePath('/')">
-            <div id="logo" class="h-10 w-32" />
-          </AppLink>
-          <ButtonIcon
-            :aria-label="$t('menuShow')"
-            :icon-id="['fas', 'bars']"
-            icon-size="2x"
-            @click="menuShow()"
-          />
-        </div>
-      </header>
+      <Header @onMenuShow="menuShow" />
       <main>
         <nuxt />
       </main>
     </div>
-    <footer class="leading-6 text-sm py-8">
-      <div class="justify-around container flex mx-auto p-2">
-        <FooterCategory :heading="$t('product')">
-          <AppLink to="/">
-            {{ $t('overview') }}
-          </AppLink>
-          <AppLink to="/#features">
-            {{ $t('features') }}
-          </AppLink>
-          <AppLink to="/#pricing">
-            {{ $t('pricing') }}
-          </AppLink>
-          <!-- <AppLink to="/about/team">
-            {{ $t('team') }}
-          </AppLink> -->
-          <!-- <AppLink to="/about/awards">
-            {{ $t('awards') }}
-          </AppLink> -->
-        </FooterCategory>
-        <FooterCategory :heading="$t('languages')">
-          <!-- TODO: Replace with language picker: https://github.com/maevsi/maevsi/issues/290. -->
-          <AppLink
-            v-for="locale in $i18n.locales"
-            :key="locale.code"
-            :to="switchLocalePath(locale.code)"
-          >
-            <span :class="{ disabled: locale.code === $i18n.locale }">
-              {{ locale.name }}
-            </span>
-          </AppLink>
-        </FooterCategory>
-        <FooterCategory :heading="$t('legal')">
-          <AppLink to="/legal-notice">
-            {{ $t('legalNotice') }}
-          </AppLink>
-          <AppLink to="/privacy-policy">
-            {{ $t('privacyPolicy') }}
-          </AppLink>
-          <!-- <AppLink to="/code-of-conduct">
-            {{ $t('codeOfConduct') }}
-          </AppLink> -->
-        </FooterCategory>
-        <!-- <FooterCategory :heading="$t('support')">
-          <AppLink to="/support/tutorials">
-            {{ $t('tutorials') }}
-          </AppLink>
-          <AppLink to="/support/contact">
-            {{ $t('contact') }}
-          </AppLink>
-          <AppLink to="/support/docs">
-            {{ $t('documentation') }}
-          </AppLink>
-        </FooterCategory> -->
-        <FooterCategory :heading="$t('quickLinks')">
-          <AppLink
-            :title="$t('releases')"
-            to="https://github.com/maevsi/maevsi/releases"
-          >
-            {{ $t('releases') }}
-          </AppLink>
-          <AppLink
-            :title="$t('githubLinkTitle')"
-            to="https://github.com/maevsi/"
-          >
-            {{ $t('sourceCode') }}
-          </AppLink>
-        </FooterCategory>
-      </div>
-      <div class="flex w-3/4 items-center m-auto p-2">
-        <div class="bg-gray-900 dark:bg-white h-px flex-1" />
-        <LoaderImage
-          :alt="$t('maevsiLogo')"
-          class="
-            brightness-0
-            contrast-75
-            dark:contrast-100
-            filter
-            h-12
-            dark:invert
-            mx-12
-            w-12
-          "
-          src="/assets/static/logos/maevsi.svg"
-        />
-        <div class="bg-gray-900 dark:bg-white h-px flex-1" />
-      </div>
-      <p class="p-2 text-center">
-        {{ $t('copyright', { year: new Date().getFullYear() }) }}
-      </p>
-    </footer>
+    <Footer />
     <div
       class="
         bg-black
@@ -153,76 +49,16 @@
         'translate-x-full': !isMenuVisible,
       }"
     >
-      <template v-if="isMenuItemsVisible">
-        <ButtonIcon
-          :aria-label="$t('menuHide')"
-          class="m-4 xl:m-8"
-          :icon-id="['fas', 'times']"
-          icon-size="lg"
-          @click="menuHide()"
-        />
-        <div class="flex flex-col mx-8 xl:mx-16 self-stretch">
-          <MenuItem
-            :icon-id="['fas', 'user']"
-            :to="localePath(`/account/${$store.state.signedInUsername || ''}`)"
-            @click="menuHide()"
-          >
-            {{ $store.state.signedInUsername || $t('account') }}
-            <template v-if="$store.state.signedInUsername" slot="image">
-              <ProfilePicture
-                class="h-full p-2 w-full"
-                rounded
-                :username="$store.state.signedInUsername"
-              />
-            </template>
-          </MenuItem>
-          <template v-if="$store.state.signedInUsername">
-            <MenuItem
-              :icon-id="['fas', 'cog']"
-              :to="
-                localePath(
-                  `/account/${$store.state.signedInUsername || ''}/settings`
-                )
-              "
-              @click="menuHide()"
-            >
-              {{ $t('settings') }}
-            </MenuItem>
-            <MenuItem
-              :icon-id="['fas', 'sign-out-alt']"
-              @click="$global.signOut($apollo.getClient(), $store)"
-            >
-              {{ $t('signOut') }}
-            </MenuItem>
-          </template>
-          <MenuItem
-            :icon-id="['fas', 'plus']"
-            :to="localePath('/task/event/create')"
-            @click="menuHide()"
-          >
-            {{ $t('eventNew') }}
-          </MenuItem>
-          <MenuItem
-            :icon-id="['fas', 'key']"
-            :to="localePath('/task/event/unlock')"
-            @click="menuHide()"
-          >
-            {{ $t('eventUnlock') }}
-          </MenuItem>
-        </div>
-      </template>
+      <Menu v-if="isMenuItemsVisible" @onMenuHide="menuHide" />
     </div>
     <Modal />
   </div>
 </template>
 
 <script>
-const supportedBrowsers = require('~/supportedBrowsers')
-
 export default {
   data() {
     return {
-      browserSupported: true,
       isMenuVisible: false,
       isMenuItemsVisible: false,
     }
@@ -232,9 +68,6 @@ export default {
   },
   beforeCreate() {
     this.$moment.locale(this.$i18n.locale)
-  },
-  beforeMount() {
-    this.browserSupported = supportedBrowsers.test(navigator.userAgent)
   },
   methods: {
     menuHide() {
@@ -250,76 +83,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-#logo {
-  background-image: url(/assets/static/logos/maevsi.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-@media (prefers-color-scheme: dark) {
-  #logo {
-    background-image: url(/assets/static/logos/maevsi_with-text_white.svg);
-  }
-}
-@media (prefers-color-scheme: light) {
-  #logo {
-    background-image: url(/assets/static/logos/maevsi_with-text_black.svg);
-  }
-}
-</style>
-
-<i18n lang="yml">
-de:
-  account: 'Konto'
-  awards: 'Auszeichnungen'
-  browserUnsupported: 'Die Version deines Browsers wird nicht offiziell unterstützt. Bitte verwende eine aktuelle Version.'
-  copyright: '© {year} maevsi-Team. Alle Rechte vorbehalten.'
-  eventUnlock: 'Einladungscode eingeben'
-  eventNew: 'Veranstaltung erstellen'
-  features: 'Funktionen'
-  githubLinkTitle: 'maevsi auf GitHub'
-  home: 'Nach Hause'
-  languages: 'Sprachen'
-  legal: 'Rechtliches'
-  legalNotice: 'Impressum'
-  maevsiLogo: 'maevsis Logo'
-  menuHide: 'Menü verstecken'
-  menuShow: 'Menü anzeigen'
-  overview: 'Überblick'
-  pricing: 'Preise'
-  privacyPolicy: 'Datenschutz'
-  product: 'Produkt'
-  quickLinks: 'Quick Links'
-  releases: 'Updates'
-  settings: 'Einstellungen'
-  signOut: 'Abmelden'
-  sourceCode: 'Quellcode'
-  team: 'Team'
-en:
-  account: 'Account'
-  awards: 'Awards'
-  browserUnsupported: "Your browser's version is not officially supported. Please use a version that is up to date."
-  copyright: '© {year} maevsi team. All rights reserved.'
-  eventUnlock: 'Enter invitation code'
-  eventNew: 'Create event'
-  features: 'Features'
-  githubLinkTitle: 'maevsi on GitHub'
-  home: 'Head home'
-  languages: 'Languages'
-  legal: 'Legal'
-  legalNotice: 'Legal notice'
-  maevsiLogo: "maevsi's logo"
-  menuHide: 'Hide menu'
-  menuShow: 'Show menu'
-  overview: 'Overview'
-  pricing: 'Pricing'
-  privacyPolicy: 'Privacy'
-  product: 'Product'
-  quickLinks: 'Quick Links'
-  releases: 'Releases'
-  settings: 'Settings'
-  signOut: 'Sign out'
-  sourceCode: 'Source code'
-  team: 'Team'
-</i18n>
