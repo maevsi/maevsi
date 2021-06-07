@@ -1,3 +1,22 @@
+# [0.68.0](https://github.com/maevsi/maevsi/compare/0.67.0...0.68.0) (2021-06-07)
+
+
+### Bug Fixes
+
+* **creevey:** update images ([6ca63ca](https://github.com/maevsi/maevsi/commit/6ca63ca5b1ad3267c94d962be57b5eb31c56fd79))
+
+
+### Features
+
+* **img-bot:** ignore creevey images ([d6e14f3](https://github.com/maevsi/maevsi/commit/d6e14f301c9b3851e3a706dce2415b53588b85e5))
+* **node:** always restart selenium container ([c4063b2](https://github.com/maevsi/maevsi/commit/c4063b2562d25dac45a80ded51577549730b319f))
+* **storybook:** add more stories ([a421af6](https://github.com/maevsi/maevsi/commit/a421af6ae91c6ea52e17a3adbcc347c58fd9c2ee))
+
+
+### Reverts
+
+* Revert "feat(tailwind): set montserrat as default font" ([77299b6](https://github.com/maevsi/maevsi/commit/77299b6d96b0e3f7e5a3b14c46cb855c6bccb367))
+
 # [0.67.0](https://github.com/maevsi/maevsi/compare/0.66.1...0.67.0) (2021-06-06)
 
 
