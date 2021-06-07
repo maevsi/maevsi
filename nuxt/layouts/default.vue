@@ -173,23 +173,14 @@
             >
               {{ $t('signOut') }}
             </MenuItem>
-            <MenuItem
-              :icon-id="['fas', 'plus']"
-              :to="localePath('/task/event/create')"
-              @click="menuHide()"
-            >
-              {{ $t('eventNew') }}
-            </MenuItem>
           </template>
-          <template v-else>
-            <MenuItem
-              :icon-id="['fas', 'user-clock']"
-              :to="localePath('/session')"
-              @click="menuHide()"
-            >
-              {{ $t('session') }}
-            </MenuItem>
-          </template>
+          <MenuItem
+            :icon-id="['fas', 'plus']"
+            :to="localePath('/task/event/create')"
+            @click="menuHide()"
+          >
+            {{ $t('eventNew') }}
+          </MenuItem>
           <MenuItem
             :icon-id="['fas', 'key']"
             :to="localePath('/task/event/unlock')"
@@ -278,7 +269,6 @@ de:
   product: 'Produkt'
   quickLinks: 'Quick Links'
   releases: 'Updates'
-  session: 'Sitzung'
   settings: 'Einstellungen'
   signOut: 'Abmelden'
   sourceCode: 'Quellcode'
@@ -303,7 +293,6 @@ en:
   product: 'Product'
   quickLinks: 'Quick Links'
   releases: 'Releases'
-  session: 'Session'
   settings: 'Settings'
   signOut: 'Sign out'
   sourceCode: 'Source code'
