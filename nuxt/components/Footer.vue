@@ -1,6 +1,6 @@
 <template>
   <footer class="leading-6 text-sm py-8">
-    <div class="justify-around container flex mx-auto p-2">
+    <div class="container flex flex-wrap justify-evenly mx-auto p-2">
       <FooterCategory :heading="$t('product')">
         <AppLink to="/">
           {{ $t('overview') }}
@@ -64,7 +64,8 @@
         </AppLink>
       </FooterCategory>
     </div>
-    <div class="flex w-3/4 items-center m-auto p-2">
+    <div class="p-2" />
+    <div class="flex items-center mx-auto p-2 w-3/4">
       <div class="bg-gray-900 dark:bg-white h-px flex-1" />
       <LoaderImage
         :alt="$t('maevsiLogo')"
