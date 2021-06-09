@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="grid items-center">
-      <div class="col-start-1 row-start-1 w-auto lg:w-1/2 z-10">
+      <div class="col-start-1 row-start-1 lg:w-1/2">
         <i18n
           class="font-extrabold leading-snug text-7xl text-left"
           path="title"
@@ -30,7 +30,14 @@
       </div>
       <LoaderImage
         :alt="$t('heroImage')"
-        class="col-start-1 hidden lg:block justify-self-end row-start-1"
+        class="
+          col-start-1
+          hidden
+          lg:block
+          justify-self-end
+          row-start-1
+          lg:w-1/2
+        "
         src="/assets/static/images/hero_background.svg"
       />
     </section>
