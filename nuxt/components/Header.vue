@@ -3,12 +3,14 @@
     <CardInfo v-if="!browserSupported">
       {{ $t('browserUnsupported') }}
     </CardInfo>
-    <div class="flex items-center justify-between m-4 relative">
+    <div class="flex items-center justify-between m-4">
+      <div class="h-8 w-8" />
       <AppLink :aria-label="$t('home')" :to="localePath('/')">
         <div id="logo" class="h-10 w-32" />
       </AppLink>
       <ButtonIcon
         :aria-label="$t('menuShow')"
+        class="h-8 w-8"
         :icon-id="['fas', 'bars']"
         icon-size="2x"
         @click="$emit('onMenuShow')"
