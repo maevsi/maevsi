@@ -5,14 +5,17 @@
     :class="{ 'rounded-full': rounded }"
     :src="srcWhenLoaded"
   />
-  <LoaderIndicatorPing v-else />
+  <div v-else>
+    <!-- Wrapping div is required as target for class names defined on the linking element. -->
+    <LoaderIndicatorPing />
+  </div>
 </template>
 
 <script>
 export default {
   props: {
     alt: {
-      default: undefined,
+      required: true,
       type: String,
     },
     rounded: {

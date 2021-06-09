@@ -1,6 +1,7 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 function heading(theme) {
   return {
-    fontFamily: 'Montserrat',
     fontWeight: theme('fontWeight.bold'),
     marginBottom: theme('margin.1'),
     marginTop: theme('margin.4'),
@@ -23,13 +24,16 @@ module.exports = {
           dark: '#202020',
         },
         link: {
-          bright: '#60a5fa', // theme('colors.blue.400')
-          dark: '#1d4ed8', // theme('colors.blue.700')
+          bright: 'rgb(96, 165, 250)', // theme('colors.blue.400')
+          dark: 'rgb(29, 78, 216)', // theme('colors.blue.700')
         },
         text: {
-          bright: '#fafafa', // theme('colors.gray.50')
-          dark: '#27272a', // theme('colors.gray.800')
+          bright: 'rgb(249, 250, 251)', // theme('colors.gray.50')
+          dark: 'rgb(17, 24, 39)', // theme('colors.gray.900')
         },
+      },
+      fontFamily: {
+        sans: ['Manrope', ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
         shake: {
@@ -136,13 +140,6 @@ module.exports = {
     require('@tailwindcss/typography'),
     function ({ addBase, addComponents, addUtilities, theme }) {
       addBase({
-        '@font-face': {
-          fontDisplay: 'swap',
-          fontFamily: 'Montserrat',
-          src: "local('Montserrat Medium'), local('Montserrat-Medium'), url(/assets/static/fonts/montserrat/montserrat-medium.woff2) format('woff2')",
-          unicodeRange:
-            'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD',
-        },
         ':disabled': {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
@@ -221,11 +218,12 @@ module.exports = {
       addComponents({
         '.button': {
           backgroundColor: theme('colors.red.600'),
-          borderRadius: theme('borderRadius.full'),
+          borderRadius: theme('borderRadius.lg'),
           boxShadow: theme('boxShadow.DEFAULT'),
           color: theme('colors.text.bright'),
           display: 'inline-block',
           fontWeight: theme('fontWeight.bold'),
+          fontSize: theme('fontSize.xl'),
           marginLeft: 'auto',
           marginRight: 'auto',
           padding: theme('padding.2') + ' ' + theme('padding.4'),
@@ -339,9 +337,6 @@ module.exports = {
         },
         '.max-h-90vh': {
           maxHeight: '90vh',
-        },
-        '.font-family-montserrat': {
-          fontFamily: 'Montserrat',
         },
       })
     },

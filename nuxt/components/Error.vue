@@ -1,8 +1,6 @@
 <template>
   <div>
-    <p class="font-black font-family-montserrat text-center text-xl">
-      maev.no? 🥺
-    </p>
+    <p class="font-black text-center text-xl">maev.no? 🥺</p>
     <h1>{{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}</h1>
     <p v-if="statusCode === 403" class="text-center">
       {{ $t('403description') }}
