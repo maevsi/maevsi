@@ -5,13 +5,13 @@
       class="m-4 xl:m-8"
       :icon-id="['fas', 'times']"
       icon-size="lg"
-      @click="menuHide()"
+      @click="$emit('onMenuHide')"
     />
     <div class="flex flex-col mx-8 xl:mx-16 self-stretch">
       <MenuItem
         :icon-id="['fas', 'user']"
         :to="localePath(`/account/${$store.state.signedInUsername || ''}`)"
-        @click="menuHide()"
+        @click="$emit('onMenuHide')"
       >
         {{ $store.state.signedInUsername || $t('account') }}
         <template v-if="$store.state.signedInUsername" slot="image">
@@ -30,7 +30,7 @@
               `/account/${$store.state.signedInUsername || ''}/settings`
             )
           "
-          @click="menuHide()"
+          @click="$emit('onMenuHide')"
         >
           {{ $t('settings') }}
         </MenuItem>
@@ -44,7 +44,7 @@
       <MenuItem
         :icon-id="['fas', 'plus']"
         :to="localePath('/task/event/create')"
-        @click="menuHide()"
+        @click="$emit('onMenuHide')"
       >
         {{ $t('eventNew') }}
       </MenuItem>
