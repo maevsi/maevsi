@@ -1,3 +1,25 @@
+# [0.69.0](https://github.com/maevsi/maevsi/compare/0.68.0...0.69.0) (2021-06-09)
+
+
+### Bug Fixes
+
+* **button-icon:** add missing aria label ([aa4d6aa](https://github.com/maevsi/maevsi/commit/aa4d6aafd730165f7b515ee80fde73dff3891fb4))
+* **creevey:** update images ([9bc7ea2](https://github.com/maevsi/maevsi/commit/9bc7ea2c12cf96b6a39208b3802c9496b58f5d24))
+* **footer:** improve responsiveness ([00b09fe](https://github.com/maevsi/maevsi/commit/00b09feb52ccfa3dfb87cf781cfdddf32bc2d430))
+* **menu:** correct hide click listener ([5d905f4](https://github.com/maevsi/maevsi/commit/5d905f4249beb1cb2c7efae08c168597a724f45a))
+
+
+### Features
+
+* **fonts:** switch to manrope font ([783f58b](https://github.com/maevsi/maevsi/commit/783f58bea2d4e88c6d4b4942cae08563afeae09d))
+* **footer:** add categories ([6a43d95](https://github.com/maevsi/maevsi/commit/6a43d95be6f38591d7643be113009e76e82f5431))
+* **footer:** add footer category ([f69ee0a](https://github.com/maevsi/maevsi/commit/f69ee0a0048e81bb7bf2dacc7d7f908809e5dd5c))
+* **footer:** improve design ([db0c2f4](https://github.com/maevsi/maevsi/commit/db0c2f4d2b045b9e26b9b59c10710b2089748014))
+* **header:** center logo ([3979995](https://github.com/maevsi/maevsi/commit/3979995d4c0ee9fcef935c79e7f68bff3a4e050f))
+* **index:** implement hero design ([733092c](https://github.com/maevsi/maevsi/commit/733092ce9541ba1895939be841ca3c62c37fc47d))
+* **menu:** separate dev and dashboard ([57ac0d9](https://github.com/maevsi/maevsi/commit/57ac0d974e60570f90978ccc63ea2041a4e4bbcf))
+* **node:** use colon in script names ([3b7fb10](https://github.com/maevsi/maevsi/commit/3b7fb10060d8497c855909f40b2584c26b57ded4))
+
 # [0.68.0](https://github.com/maevsi/maevsi/compare/0.67.0...0.68.0) (2021-06-07)
 
 
