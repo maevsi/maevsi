@@ -218,11 +218,12 @@ module.exports = {
       addComponents({
         '.button': {
           backgroundColor: theme('colors.red.600'),
-          borderRadius: theme('borderRadius.full'),
+          borderRadius: theme('borderRadius.lg'),
           boxShadow: theme('boxShadow.DEFAULT'),
           color: theme('colors.text.bright'),
           display: 'inline-block',
           fontWeight: theme('fontWeight.bold'),
+          fontSize: theme('fontSize.xl'),
           marginLeft: 'auto',
           marginRight: 'auto',
           padding: theme('padding.2') + ' ' + theme('padding.4'),

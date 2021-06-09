@@ -15,7 +15,7 @@
 export default {
   props: {
     alt: {
-      default: undefined,
+      required: true,
       type: String,
     },
     rounded: {
