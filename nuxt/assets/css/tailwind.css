@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+  /* Changes to the @font-face rules below are not applied when JIT compilation is active. Turn JIT off temporarily to see changes. */
   @font-face {
     font-display: swap;
     font-family: 'Manrope';
