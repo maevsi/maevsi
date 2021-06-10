@@ -34,6 +34,36 @@
         src="/assets/static/images/hero_background.svg"
       />
     </section>
+    <section class="mb-16">
+      <h2 class="font-extrabold leading-snug text-center text-5xl">
+        {{ $t('stepsTitle') }}
+      </h2>
+      <p class="leading-relaxed text-center text-lg">
+        {{ $t('stepsDescription') }}
+      </p>
+      <div class="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap">
+        <Step
+          :description="$t('stepLoginDescription')"
+          :number="$t('stepLoginNumber')"
+          :title="$t('stepLoginTitle')"
+        />
+        <Step
+          :description="$t('stepCreateDescription')"
+          :number="$t('stepCreateNumber')"
+          :title="$t('stepCreateTitle')"
+        />
+        <Step
+          :description="$t('stepDefineDescription')"
+          :number="$t('stepDefineNumber')"
+          :title="$t('stepDefineTitle')"
+        />
+        <Step
+          :description="$t('stepInviteDescription')"
+          :number="$t('stepInviteNumber')"
+          :title="$t('stepInviteTitle')"
+        />
+      </div>
+    </section>
     <section class="flex items-center mb-16">
       <LoaderImage
         :alt="$t('heroImage')"
@@ -93,36 +123,6 @@
           :description="$t('modulesDescription')"
           icon-path="/assets/static/icons/modules.svg"
           :title="$t('modules')"
-        />
-      </div>
-    </section>
-    <section class="mb-16">
-      <h2 class="font-extrabold leading-snug text-center text-5xl">
-        {{ $t('stepsTitle') }}
-      </h2>
-      <p class="leading-relaxed text-center text-lg">
-        {{ $t('stepsDescription') }}
-      </p>
-      <div class="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap">
-        <Step
-          :description="$t('stepLoginDescription')"
-          :number="$t('stepLoginNumber')"
-          :title="$t('stepLoginTitle')"
-        />
-        <Step
-          :description="$t('stepCreateDescription')"
-          :number="$t('stepCreateNumber')"
-          :title="$t('stepCreateTitle')"
-        />
-        <Step
-          :description="$t('stepDefineDescription')"
-          :number="$t('stepDefineNumber')"
-          :title="$t('stepDefineTitle')"
-        />
-        <Step
-          :description="$t('stepInviteDescription')"
-          :number="$t('stepInviteNumber')"
-          :title="$t('stepInviteTitle')"
         />
       </div>
     </section>
