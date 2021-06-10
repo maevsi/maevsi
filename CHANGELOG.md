@@ -1,3 +1,11 @@
+## [0.70.1](https://github.com/maevsi/maevsi/compare/0.70.0...0.70.1) (2021-06-10)
+
+
+### Bug Fixes
+
+* **index:** correct typo ([ea35c56](https://github.com/maevsi/maevsi/commit/ea35c56d91bf09cc7498b50e4180a1f6da4c0bfb))
+* **index:** improve smartphone section's responsiveness ([f77979c](https://github.com/maevsi/maevsi/commit/f77979c9df731f56b8829c39916b6ed063ecb3f9))
+
 # [0.70.0](https://github.com/maevsi/maevsi/compare/0.69.0...0.70.0) (2021-06-10)
 
 
