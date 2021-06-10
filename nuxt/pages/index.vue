@@ -64,10 +64,10 @@
         />
       </div>
     </section>
-    <section class="flex items-center mb-16">
+    <section class="lg:flex items-center mb-16">
       <LoaderImage
         :alt="$t('heroImage')"
-        class="hidden lg:block p-4 lg:w-1/2"
+        class="mx-auto p-4 lg:w-1/2"
         src="/assets/static/images/smartphone.svg"
       />
       <div class="p-4 lg:w-1/2">
