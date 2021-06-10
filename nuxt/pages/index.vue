@@ -189,7 +189,7 @@ de:
   titleFast: 'schnell'
   titleProfessional: 'professionell'
   userFriendly: 'Benutzerfreundlich'
-  userFriendlyDescription: 'Gäste können ganz einfach teilnehmen. Kompett ohne Login'
+  userFriendlyDescription: 'Gäste können ganz einfach teilnehmen. Komplett ohne Login'
 en:
   alpha: 'This site is currently in alpha: anything can change at any time and data is volatile.'
   benefitsTitle: 'Your benefits with {maevsi}'
