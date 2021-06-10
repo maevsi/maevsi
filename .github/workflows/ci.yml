@@ -32,6 +32,7 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
+          docker swarm init
           yarn --cwd ./nuxt selenium:start
 
           docker buildx build \
