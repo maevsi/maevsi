@@ -19,7 +19,7 @@
         </i18n>
         <div class="my-4">
           <p class="font-normal leading-8 text-lg">
-            {{ $t('maevsi') }}
+            {{ $t('maevsiDescription') }}
           </p>
           <p class="font-normal leading-8 text-lg">{{ $t('alpha') }}</p>
         </div>
@@ -40,6 +40,47 @@
         "
         src="/assets/static/images/hero_background.svg"
       />
+    </section>
+    <section>
+      <i18n
+        class="font-extrabold leading-snug text-center text-5xl"
+        path="benefitsTitle"
+        tag="h2"
+      >
+        <template #maevsi><br />{{ $t('maevsi') }}</template>
+      </i18n>
+      <div class="flex flex-wrap">
+        <Benefit
+          :description="$t('statisticsDescription')"
+          icon-path="/assets/static/icons/statistics.svg"
+          :title="$t('statistics')"
+        />
+        <Benefit
+          :description="$t('flexibilityDescription')"
+          icon-path="/assets/static/icons/flexibility.svg"
+          :title="$t('flexibility')"
+        />
+        <Benefit
+          :description="$t('userFriendlyDescription')"
+          icon-path="/assets/static/icons/user-friendly.svg"
+          :title="$t('userFriendly')"
+        />
+        <Benefit
+          :description="$t('openSourceDescription')"
+          icon-path="/assets/static/icons/open-source.svg"
+          :title="$t('openSource')"
+        />
+        <Benefit
+          :description="$t('managementDescription')"
+          icon-path="/assets/static/icons/management.svg"
+          :title="$t('management')"
+        />
+        <Benefit
+          :description="$t('modulesDescription')"
+          icon-path="/assets/static/icons/modules.svg"
+          :title="$t('modules')"
+        />
+      </div>
     </section>
   </div>
 </template>
@@ -66,22 +107,50 @@ export default {
 <i18n lang="yml">
 de:
   alpha: 'Diese Webseite befindet sich derzeit im Alpha-Stadium: Alles kann sich jederzeit ändern und Daten können verlorengehen.'
+  benefitsTitle: 'Deine Vorteile mit {maevsi}'
   events: 'Veranstaltungen'
+  flexibility: 'Flexibilität'
+  flexibilityDescription: 'Egal wer zu- oder absagt. Manage immer Deine gesamte Veranstaltung'
   heroImage: 'Heldenbild.'
-  maevsi: 'maevsi ist der Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden.'
+  maevsi: 'maevsi'
+  maevsiDescription: 'maevsi ist der Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden'
+  management: 'Management'
+  managementDescription: 'Wer hat zugesagt und wer abgesagt? Übersichtlich dargestellt'
+  modules: 'Spezielle Module'
+  modulesDescription: 'Dir fehlt ein Feature? Greife auf jede Menge freie Module zu.'
+  openSource: 'Open Source'
+  openSourceDescription: 'Du hast Lust etwas zu verbessern? Dann ergänze Deinen Code'
+  statistics: 'Statistiken'
+  statisticsDescription: 'Analysiere deine Veranstaltung und optimiere sie beim nächsten Mal'
   testNow: 'Jetzt kostenlos testen'
   title: 'Veranstaltungen {easy}, {fast}, {professional}.'
   titleEasy: 'einfach'
   titleFast: 'schnell'
   titleProfessional: 'professionell'
+  userFriendly: 'Benutzerfreundlich'
+  userFriendlyDescription: 'Gäste können ganz einfach teilnehmen. Kompett ohne Login'
 en:
   alpha: 'This site is currently in alpha: anything can change at any time and data is volatile.'
+  benefitsTitle: 'Your benefits with {maevsi}'
   events: 'Events'
+  flexibility: 'Flexibility'
+  flexibilityDescription: 'No matter who accepts or cancels. Always manage the event universally'
   heroImage: 'Hero image.'
-  maevsi: 'maevsi is the manager for events supported by invitees.'
+  maevsi: 'maevsi'
+  maevsiDescription: 'maevsi is the manager for events supported by invitees'
+  management: 'Management'
+  managementDescription: 'Who accepted or canceled? Clearly presented'
+  modules: 'Special modules'
+  modulesDescription: "You're missing a feature? Access lots of free modules"
+  openSource: 'Open Source'
+  openSourceDescription: 'You want to improve something? Simply contribute your code'
+  statistics: 'Statistics'
+  statisticsDescription: 'Anaylse your event and optimize it next time'
   testNow: 'Test for free now'
   title: 'Events {easy}, {fast}, {professional}.'
   titleEasy: 'easy'
   titleFast: 'fast'
   titleProfessional: 'professional'
+  userFriendly: 'User friendly'
+  userFriendlyDescription: 'Guests can participate easily. Completely without login'
 </i18n>

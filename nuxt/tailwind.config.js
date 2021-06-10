@@ -326,6 +326,9 @@ module.exports = {
         '.flex-basis-auto': {
           flexBasis: 'auto',
         },
+        '.flex-basis-33': {
+          flexBasis: '33.333333%',
+        },
         '.flex-basis-50': {
           flexBasis: '50%',
         },
