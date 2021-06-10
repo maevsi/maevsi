@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="flex items-center">
+    <section class="flex items-center mb-16">
       <div class="p-4 lg:w-1/2">
         <i18n
           class="font-extrabold leading-snug text-7xl text-left"
@@ -34,7 +34,7 @@
         src="/assets/static/images/hero_background.svg"
       />
     </section>
-    <section class="flex items-center">
+    <section class="flex items-center mb-16">
       <LoaderImage
         :alt="$t('heroImage')"
         class="hidden lg:block p-4 lg:w-1/2"
@@ -55,7 +55,7 @@
         </Button>
       </div>
     </section>
-    <section>
+    <section class="mb-16">
       <i18n
         class="font-extrabold leading-snug text-center text-5xl"
         path="benefitsTitle"
@@ -93,6 +93,36 @@
           :description="$t('modulesDescription')"
           icon-path="/assets/static/icons/modules.svg"
           :title="$t('modules')"
+        />
+      </div>
+    </section>
+    <section class="mb-16">
+      <h2 class="font-extrabold leading-snug text-center text-5xl">
+        {{ $t('stepsTitle') }}
+      </h2>
+      <p class="leading-relaxed text-center text-lg">
+        {{ $t('stepsDescription') }}
+      </p>
+      <div class="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap">
+        <Step
+          :description="$t('stepLoginDescription')"
+          :number="$t('stepLoginNumber')"
+          :title="$t('stepLoginTitle')"
+        />
+        <Step
+          :description="$t('stepCreateDescription')"
+          :number="$t('stepCreateNumber')"
+          :title="$t('stepCreateTitle')"
+        />
+        <Step
+          :description="$t('stepDefineDescription')"
+          :number="$t('stepDefineNumber')"
+          :title="$t('stepDefineTitle')"
+        />
+        <Step
+          :description="$t('stepInviteDescription')"
+          :number="$t('stepInviteNumber')"
+          :title="$t('stepInviteTitle')"
         />
       </div>
     </section>
@@ -138,6 +168,20 @@ de:
   smartphoneDescription: 'Mit meavsi musst du deine Geburtstage, Events und Partys nicht mehr öde per Chat-Gruppe erstellen. Du verwaltest deine Einladungen, dein Essen, deine Musikwünsche und dein Programm problemlos innerhalb einer Anwendung - Mit allen Gästen gemeinsam'
   statistics: 'Statistiken'
   statisticsDescription: 'Analysiere deine Veranstaltung und optimiere sie beim nächsten Mal'
+  stepCreateTitle: 'Erstelle dein Event'
+  stepCreateDescription: 'Erstelle dein erstes Event'
+  stepCreateNumber: '2'
+  stepDefineTitle: 'Definiere Inhalte'
+  stepDefineDescription: 'Was soll gegessen werden? Was wird gespielt und gehört?'
+  stepDefineNumber: '3'
+  stepInviteTitle: 'Lade Gäste ein'
+  stepInviteDescription: 'Verteile den Einladungslink an deine Gäste'
+  stepInviteNumber: '4'
+  stepLoginTitle: 'Kostenlos anmelden'
+  stepLoginDescription: 'Melde dich einfach an. Deine Gästen brauchen keinen Account'
+  stepLoginNumber: '1'
+  stepsTitle: 'So einfach geht’s'
+  stepsDescription: 'Der Prozess ist für dich so problemlos wie möglich gestaltet'
   testNow: 'Jetzt testen'
   testNowFree: 'Jetzt kostenlos testen'
   title: 'Veranstaltungen {easy}, {fast}, {professional}.'
@@ -165,6 +209,20 @@ en:
   smartphoneDescription: 'Using meavsi you no longer have to create your birthdays, events and parties in a boring chat group. You manage your invitations, your meals, your music requests and your program easily within one application - together with all guests'
   statistics: 'Statistics'
   statisticsDescription: 'Anaylse your event and optimize it next time'
+  stepCreateTitle: 'Create your event'
+  stepCreateDescription: 'Create your first event'
+  stepCreateNumber: '2'
+  stepDefineTitle: 'Define content'
+  stepDefineDescription: 'What shall be eaten? What is played and listened to?'
+  stepDefineNumber: '3'
+  stepInviteTitle: 'Invite guests'
+  stepInviteDescription: 'Distribute the invitation link to your guests'
+  stepInviteNumber: '4'
+  stepLoginTitle: 'Register for free'
+  stepLoginDescription: "Just sign up. Your guests don't need an account"
+  stepLoginNumber: '1'
+  stepsTitle: "It's as easy as that"
+  stepsDescription: 'The process is designed to be as easy as possible for you'
   testNow: 'Test now'
   testNowFree: 'Test now for free'
   title: 'Events {easy}, {fast}, {professional}.'
