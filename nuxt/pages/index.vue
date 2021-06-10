@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="grid items-center">
-      <div class="col-start-1 row-start-1 lg:w-1/2">
+      <div class="col-start-1 p-4 row-start-1 lg:w-1/2">
         <i18n
           class="font-extrabold leading-snug text-7xl text-left"
           path="title"
@@ -35,6 +35,7 @@
           hidden
           lg:block
           justify-self-end
+          p-4
           row-start-1
           lg:w-1/2
         "
