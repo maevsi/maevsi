@@ -1,7 +1,7 @@
 <template>
   <div>
-    <section class="grid items-center">
-      <div class="col-start-1 p-4 row-start-1 lg:w-1/2">
+    <section class="flex items-center">
+      <div class="p-4 lg:w-1/2">
         <i18n
           class="font-extrabold leading-snug text-7xl text-left"
           path="title"
@@ -25,22 +25,35 @@
         </div>
         <div class="py-2" />
         <Button class="text-left" :to="localePath('/event')">
-          {{ $t('testNow') }}
+          {{ $t('testNowFree') }}
         </Button>
       </div>
       <LoaderImage
         :alt="$t('heroImage')"
-        class="
-          col-start-1
-          hidden
-          lg:block
-          justify-self-end
-          p-4
-          row-start-1
-          lg:w-1/2
-        "
+        class="hidden lg:block p-4 lg:w-1/2"
         src="/assets/static/images/hero_background.svg"
       />
+    </section>
+    <section class="flex items-center">
+      <LoaderImage
+        :alt="$t('heroImage')"
+        class="hidden lg:block p-4 lg:w-1/2"
+        src="/assets/static/images/smartphone.svg"
+      />
+      <div class="p-4 lg:w-1/2">
+        <h2 class="font-extrabold leading-snug text-4xl text-left">
+          {{ $t('smartphoneTitle') }}
+        </h2>
+        <div class="my-4">
+          <p class="font-normal leading-8 text-lg">
+            {{ $t('smartphoneDescription') }}
+          </p>
+        </div>
+        <div class="py-2" />
+        <Button class="text-left" :to="localePath('/event')">
+          {{ $t('testNow') }}
+        </Button>
+      </div>
     </section>
     <section>
       <i18n
@@ -111,7 +124,7 @@ de:
   benefitsTitle: 'Deine Vorteile mit {maevsi}'
   events: 'Veranstaltungen'
   flexibility: 'Flexibilität'
-  flexibilityDescription: 'Egal wer zu- oder absagt. Manage immer Deine gesamte Veranstaltung'
+  flexibilityDescription: 'Egal wer zu- oder absagt. Manage immer deine gesamte Veranstaltung'
   heroImage: 'Heldenbild.'
   maevsi: 'maevsi'
   maevsiDescription: 'maevsi ist der Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden'
@@ -120,10 +133,13 @@ de:
   modules: 'Spezielle Module'
   modulesDescription: 'Dir fehlt ein Feature? Greife auf jede Menge freie Module zu.'
   openSource: 'Open Source'
-  openSourceDescription: 'Du hast Lust etwas zu verbessern? Dann ergänze Deinen Code'
+  openSourceDescription: 'Du hast Lust etwas zu verbessern? Dann ergänze deinen Code'
+  smartphoneTitle: 'Organisierst du noch so deine Veranstaltung?'
+  smartphoneDescription: 'Mit meavsi musst du deine Geburtstage, Events und Partys nicht mehr öde per Chat-Gruppe erstellen. Du verwaltest deine Einladungen, dein Essen, deine Musikwünsche und dein Programm problemlos innerhalb einer Anwendung - Mit allen Gästen gemeinsam'
   statistics: 'Statistiken'
   statisticsDescription: 'Analysiere deine Veranstaltung und optimiere sie beim nächsten Mal'
-  testNow: 'Jetzt kostenlos testen'
+  testNow: 'Jetzt testen'
+  testNowFree: 'Jetzt kostenlos testen'
   title: 'Veranstaltungen {easy}, {fast}, {professional}.'
   titleEasy: 'einfach'
   titleFast: 'schnell'
@@ -145,9 +161,12 @@ en:
   modulesDescription: "You're missing a feature? Access lots of free modules"
   openSource: 'Open Source'
   openSourceDescription: 'You want to improve something? Simply contribute your code'
+  smartphoneTitle: 'Do you still organize your event like that?'
+  smartphoneDescription: 'Using meavsi you no longer have to create your birthdays, events and parties in a boring chat group. You manage your invitations, your meals, your music requests and your program easily within one application - together with all guests'
   statistics: 'Statistics'
   statisticsDescription: 'Anaylse your event and optimize it next time'
-  testNow: 'Test for free now'
+  testNow: 'Test now'
+  testNowFree: 'Test now for free'
   title: 'Events {easy}, {fast}, {professional}.'
   titleEasy: 'easy'
   titleFast: 'fast'
