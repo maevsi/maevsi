@@ -323,6 +323,12 @@ module.exports = {
           gridRow: '1',
           gridColumn: '1',
         },
+        '.flex-basis-auto': {
+          flexBasis: 'auto',
+        },
+        '.flex-basis-50': {
+          flexBasis: '50%',
+        },
         '.inline-grid': {
           display: 'inline-grid',
         },
