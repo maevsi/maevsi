@@ -1,3 +1,16 @@
+# [0.70.0](https://github.com/maevsi/maevsi/compare/0.69.0...0.70.0) (2021-06-10)
+
+
+### Features
+
+* **footer:** improve responsiveness ([0dfbf07](https://github.com/maevsi/maevsi/commit/0dfbf0789cc4955fac44bbb2f0e5627520dada8a))
+* **hero:** tighten image ([c8af06f](https://github.com/maevsi/maevsi/commit/c8af06fa8bd7731cde935065efca685698cd6e65))
+* **index:** add benefits ([7a71236](https://github.com/maevsi/maevsi/commit/7a71236aca547bac7286eb8f10efb88e443df469))
+* **index:** add smartphone section ([eebcdfd](https://github.com/maevsi/maevsi/commit/eebcdfd71d24dac7c9d24aee40077d371c7e2bda))
+* **index:** add steps ([b13e202](https://github.com/maevsi/maevsi/commit/b13e2027bd2460ca1b0bc48d0f7b71955d7fbfff))
+* **index:** improve responsiveness ([d90ecb0](https://github.com/maevsi/maevsi/commit/d90ecb0bb725680fdf88d8e172f6ca0dea0c0612))
+* **index:** reorder sections ([dd2ef68](https://github.com/maevsi/maevsi/commit/dd2ef686dab7105c2bd7877c1c668b7b40705f7b))
+
 # [0.69.0](https://github.com/maevsi/maevsi/compare/0.68.0...0.69.0) (2021-06-09)
 
 
