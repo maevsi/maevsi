@@ -1,0 +1,56 @@
+# To start Docker in Swarm mode, you need to run `docker swarm init`
+# To deploy the Grid, `docker stack deploy -c docker-compose-v3-swarm.yml grid`
+# Stop with `docker stack rm grid`
+# Stop swarm mode `docker swarm leave --force`
+
+version: '3.7'
+
+services:
+  chromeA:
+    image: selenium/node-chrome:3.141.59@sha256:af9c625f8a93907e83d5060680c8270959489ea66c7b18e3ae7a47b49729a0a5
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+    deploy:
+      replicas: 1
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
+
+  chromeB:
+    image: selenium/node-chrome:3.141.59@sha256:af9c625f8a93907e83d5060680c8270959489ea66c7b18e3ae7a47b49729a0a5
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+    deploy:
+      replicas: 1
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
+
+  firefoxA:
+    image: selenium/node-firefox:3.141.59@sha256:be72ac7d20589614a55fa3bc8eed34d1ba0688890968c8fd1d2c81cd0da11de4
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+    deploy:
+      replicas: 1
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
+
+  firefoxB:
+    image: selenium/node-firefox:3.141.59@sha256:be72ac7d20589614a55fa3bc8eed34d1ba0688890968c8fd1d2c81cd0da11de4
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+    deploy:
+      replicas: 1
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
+
+  selenium-hub:
+    image: selenium/hub:3.141.59@sha256:7461fde60dcb6e0ff0ef514fd16c39dc53638d57f05893ab33150eba9649cb51
+    ports:
+      - "4444:4444"
