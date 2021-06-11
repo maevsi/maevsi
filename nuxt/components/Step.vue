@@ -30,7 +30,7 @@ export default {
     },
     number: {
       required: true,
-      type: Number,
+      type: String, // Cannot be Number as translations are always of type String.
     },
     title: {
       required: true,
