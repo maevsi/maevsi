@@ -152,17 +152,17 @@ export default {
 
 <i18n lang="yml">
 de:
-  greetingExplanation: 'Einladungscodes gewähren dir Zugriff auf nicht-öffentliche Veranstaltungsseiten, ohne dass du dir einen Account erstellen musst. Sie sind gültig, solange du zur Veranstaltung eingeladen bist, für die sie ausgestellt wurden.'
-  invitationCode: 'Einladungscode'
-  invitationCodeAutomatic: 'Der Einladungscode wurde automatisch eingegeben.'
-  invitationCodeManual: 'Code selbst eingeben.'
-  submit: 'Zur Veranstaltungsseite'
-  title: 'Veranstaltung freischalten'
+  greetingExplanation: Einladungscodes gewähren dir Zugriff auf nicht-öffentliche Veranstaltungsseiten, ohne dass du dir einen Account erstellen musst. Sie sind gültig, solange du zur Veranstaltung eingeladen bist, für die sie ausgestellt wurden.
+  invitationCode: Einladungscode
+  invitationCodeAutomatic: Der Einladungscode wurde automatisch eingegeben.
+  invitationCodeManual: Code selbst eingeben.
+  submit: Zur Veranstaltungsseite
+  title: Veranstaltung freischalten
 en:
-  greetingExplanation: 'Invitation codes give you access to non-public event pages without the need to create an account. They are valid as long as you are invited to the event they were issued for.'
-  invitationCode: 'Invitation code'
-  invitationCodeAutomatic: 'The invitation code was entered automatically.'
-  invitationCodeManual: 'Enter it yourself.'
-  submit: 'Show event page'
-  title: 'Unlock event'
+  greetingExplanation: Invitation codes give you access to non-public event pages without the need to create an account. They are valid as long as you are invited to the event they were issued for.
+  invitationCode: Invitation code
+  invitationCodeAutomatic: The invitation code was entered automatically.
+  invitationCodeManual: Enter it yourself.
+  submit: Show event page
+  title: Unlock event
 </i18n>

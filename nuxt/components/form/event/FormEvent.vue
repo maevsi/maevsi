@@ -472,53 +472,53 @@ export default {
 
 <i18n lang="yml">
 de:
-  attendanceType: 'Anwesenheitstyp'
-  description: 'Beschreibung'
-  edit: 'Bearbeiten'
-  end: 'Ende'
-  eventCreate: 'Veranstaltung erstellen'
-  eventCreateSuccess: 'Veranstaltung erfolgreich erstellt.'
-  eventUpdate: 'Veranstaltung aktualisieren'
-  eventUpdateSuccess: 'Veranstaltung erfolgreich aktualisiert.'
-  inputDescriptionInfo: 'Textformatierung mit {markdown} wird unterstützt.'
-  inputLocationInfo: 'Ein Suchbegriff für Google Maps.'
-  isInPerson: 'vor Ort'
-  isRemote: 'digital'
-  maximumInviteeCount: 'Maximale Gästezahl'
-  name: 'Name'
-  namePlaceholder: 'Willkommensfeier'
-  location: 'Ort'
-  preview: 'Vorschau'
-  previewNoContent: 'Kein Inhalt für die Vorschau 😕'
-  slug: 'Slug'
-  slugPlaceholder: 'willkommensfeier'
-  start: 'Beginn'
-  visibility: 'Sichtbarkeit'
-  visibilityPrivate: 'privat'
-  visibilityPublic: 'öffentlich'
+  attendanceType: Anwesenheitstyp
+  description: Beschreibung
+  edit: Bearbeiten
+  end: Ende
+  eventCreate: Veranstaltung erstellen
+  eventCreateSuccess: Veranstaltung erfolgreich erstellt.
+  eventUpdate: Veranstaltung aktualisieren
+  eventUpdateSuccess: Veranstaltung erfolgreich aktualisiert.
+  inputDescriptionInfo: Textformatierung mit {markdown} wird unterstützt.
+  inputLocationInfo: Ein Suchbegriff für Google Maps.
+  isInPerson: vor Ort
+  isRemote: digital
+  maximumInviteeCount: Maximale Gästezahl
+  name: Name
+  namePlaceholder: Willkommensfeier
+  location: Ort
+  preview: Vorschau
+  previewNoContent: Kein Inhalt für die Vorschau 😕
+  slug: Slug
+  slugPlaceholder: willkommensfeier
+  start: Beginn
+  visibility: Sichtbarkeit
+  visibilityPrivate: privat
+  visibilityPublic: öffentlich
 en:
-  attendanceType: 'Attendance type'
-  description: 'Description'
-  edit: 'Edit'
-  end: 'End'
-  eventCreate: 'Create event'
-  eventCreateSuccess: 'Event created successfully.'
-  eventUpdate: 'Update event'
-  eventUpdateSuccess: 'Event updated successfully.'
-  inputDescriptionInfo: 'Text formatting with {markdown} is supported.'
-  inputLocationInfo: 'A search phrase for Google Maps.'
-  isInPerson: 'in person'
-  isRemote: 'remote'
-  maximumInviteeCount: 'Maximum invitee count'
-  name: 'Name'
-  namePlaceholder: 'Welcome Party'
-  location: 'Location'
-  preview: 'Preview'
-  previewNoContent: 'No content to preview 😕'
-  slug: 'Slug'
-  slugPlaceholder: 'welcome-party'
-  start: 'Start'
-  visibility: 'Visibility'
-  visibilityPrivate: 'private'
-  visibilityPublic: 'public'
+  attendanceType: Attendance type
+  description: Description
+  edit: Edit
+  end: End
+  eventCreate: Create event
+  eventCreateSuccess: Event created successfully.
+  eventUpdate: Update event
+  eventUpdateSuccess: Event updated successfully.
+  inputDescriptionInfo: Text formatting with {markdown} is supported.
+  inputLocationInfo: A search phrase for Google Maps.
+  isInPerson: in person
+  isRemote: remote
+  maximumInviteeCount: Maximum invitee count
+  name: Name
+  namePlaceholder: Welcome Party
+  location: Location
+  preview: Preview
+  previewNoContent: No content to preview 😕
+  slug: Slug
+  slugPlaceholder: welcome-party
+  start: Start
+  visibility: Visibility
+  visibilityPrivate: private
+  visibilityPublic: public
 </i18n>

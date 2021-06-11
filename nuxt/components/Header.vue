@@ -54,11 +54,11 @@ export default {
 
 <i18n lang="yml">
 de:
-  browserUnsupported: 'Die Version deines Browsers wird nicht offiziell unterstützt. Bitte verwende eine aktuelle Version.'
-  home: 'Nach Hause'
-  menuShow: 'Menü anzeigen'
+  browserUnsupported: Die Version deines Browsers wird nicht offiziell unterstützt. Bitte verwende eine aktuelle Version.
+  home: Nach Hause
+  menuShow: Menü anzeigen
 en:
   browserUnsupported: "Your browser's version is not officially supported. Please use a version that is up to date."
-  home: 'Head home'
-  menuShow: 'Show menu'
+  home: Head home
+  menuShow: Show menu
 </i18n>

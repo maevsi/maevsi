@@ -54,12 +54,12 @@ export default {
 <i18n lang="yml">
 de:
   codesEntered: 'Du hast die folgenden Codes eingegeben:'
-  codesEnteredNone: 'Du hast bisher keine Codes eingegeben 😕'
-  invitationCodes: 'Einladungscodes'
-  title: 'Dashboard'
+  codesEnteredNone: Du hast bisher keine Codes eingegeben 😕
+  invitationCodes: Einladungscodes
+  title: Dashboard
 en:
   codesEntered: 'You entered the following codes:'
-  codesEnteredNone: 'You have no codes entered yet 😕'
-  invitationCodes: 'Invitation codes'
-  title: 'Dashboard'
+  codesEnteredNone: You have no codes entered yet 😕
+  invitationCodes: Invitation codes
+  title: Dashboard
 </i18n>

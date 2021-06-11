@@ -10,7 +10,7 @@
 
 <i18n lang="yml">
 de:
-  home: 'Nach Hause'
+  home: Nach Hause
 en:
-  home: 'Head home'
+  home: Head home
 </i18n>

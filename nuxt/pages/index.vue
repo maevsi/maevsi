@@ -151,84 +151,84 @@ export default {
 <i18n lang="yml">
 de:
   alpha: 'Diese Webseite befindet sich derzeit im Alpha-Stadium: Alles kann sich jederzeit ändern und Daten können verlorengehen.'
-  benefitsTitle: 'Deine Vorteile mit {maevsi}'
-  events: 'Veranstaltungen'
-  flexibility: 'Flexibilität'
-  flexibilityDescription: 'Egal wer zu- oder absagt. Manage immer deine gesamte Veranstaltung'
-  heroImage: 'Heldenbild.'
-  maevsi: 'maevsi'
-  maevsiDescription: 'maevsi ist der Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden'
-  management: 'Management'
-  managementDescription: 'Wer hat zugesagt und wer abgesagt? Übersichtlich dargestellt'
-  modules: 'Spezielle Module'
-  modulesDescription: 'Dir fehlt ein Feature? Greife auf jede Menge freie Module zu.'
-  openSource: 'Open Source'
-  openSourceDescription: 'Du hast Lust etwas zu verbessern? Dann ergänze deinen Code'
-  smartphoneTitle: 'Organisierst du noch so deine Veranstaltung?'
-  smartphoneDescription: 'Mit meavsi musst du deine Geburtstage, Events und Partys nicht mehr öde per Chat-Gruppe erstellen. Du verwaltest deine Einladungen, dein Essen, deine Musikwünsche und dein Programm problemlos innerhalb einer Anwendung - Mit allen Gästen gemeinsam'
-  statistics: 'Statistiken'
-  statisticsDescription: 'Analysiere deine Veranstaltung und optimiere sie beim nächsten Mal'
-  stepCreateTitle: 'Erstelle dein Event'
-  stepCreateDescription: 'Erstelle dein erstes Event'
+  benefitsTitle: Deine Vorteile mit {maevsi}
+  events: Veranstaltungen
+  flexibility: Flexibilität
+  flexibilityDescription: Egal wer zu- oder absagt. Manage immer deine gesamte Veranstaltung
+  heroImage: Heldenbild.
+  maevsi: maevsi
+  maevsiDescription: maevsi ist der Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden
+  management: Management
+  managementDescription: Wer hat zugesagt und wer abgesagt? Übersichtlich dargestellt
+  modules: Spezielle Module
+  modulesDescription: Dir fehlt ein Feature? Greife auf jede Menge freie Module zu.
+  openSource: Open Source
+  openSourceDescription: Du hast Lust etwas zu verbessern? Dann ergänze deinen Code
+  smartphoneTitle: Organisierst du noch so deine Veranstaltung?
+  smartphoneDescription: Mit meavsi musst du deine Geburtstage, Events und Partys nicht mehr öde per Chat-Gruppe erstellen. Du verwaltest deine Einladungen, dein Essen, deine Musikwünsche und dein Programm problemlos innerhalb einer Anwendung - Mit allen Gästen gemeinsam
+  statistics: Statistiken
+  statisticsDescription: Analysiere deine Veranstaltung und optimiere sie beim nächsten Mal
+  stepCreateTitle: Erstelle dein Event
+  stepCreateDescription: Erstelle dein erstes Event
   stepCreateNumber: '2'
-  stepDefineTitle: 'Definiere Inhalte'
-  stepDefineDescription: 'Was soll gegessen werden? Was wird gespielt und gehört?'
+  stepDefineTitle: Definiere Inhalte
+  stepDefineDescription: Was soll gegessen werden? Was wird gespielt und gehört?
   stepDefineNumber: '3'
-  stepInviteTitle: 'Lade Gäste ein'
-  stepInviteDescription: 'Verteile den Einladungslink an deine Gäste'
+  stepInviteTitle: Lade Gäste ein
+  stepInviteDescription: Verteile den Einladungslink an deine Gäste
   stepInviteNumber: '4'
-  stepLoginTitle: 'Kostenlos anmelden'
-  stepLoginDescription: 'Melde dich einfach an. Deine Gästen brauchen keinen Account'
+  stepLoginTitle: Kostenlos anmelden
+  stepLoginDescription: Melde dich einfach an. Deine Gästen brauchen keinen Account
   stepLoginNumber: '1'
-  stepsTitle: 'So einfach geht’s'
-  stepsDescription: 'Der Prozess ist für dich so problemlos wie möglich gestaltet'
-  testNow: 'Jetzt testen'
-  testNowFree: 'Jetzt kostenlos testen'
-  title: 'Veranstaltungen {easy}, {fast}, {professional}.'
-  titleEasy: 'einfach'
-  titleFast: 'schnell'
-  titleProfessional: 'professionell'
-  userFriendly: 'Benutzerfreundlich'
-  userFriendlyDescription: 'Gäste können ganz einfach teilnehmen. Komplett ohne Login'
+  stepsTitle: So einfach geht’s
+  stepsDescription: Der Prozess ist für dich so problemlos wie möglich gestaltet
+  testNow: Jetzt testen
+  testNowFree: Jetzt kostenlos testen
+  title: Veranstaltungen {easy}, {fast}, {professional}.
+  titleEasy: einfach
+  titleFast: schnell
+  titleProfessional: professionell
+  userFriendly: Benutzerfreundlich
+  userFriendlyDescription: Gäste können ganz einfach teilnehmen. Komplett ohne Login
 en:
   alpha: 'This site is currently in alpha: anything can change at any time and data is volatile.'
-  benefitsTitle: 'Your benefits with {maevsi}'
-  events: 'Events'
-  flexibility: 'Flexibility'
-  flexibilityDescription: 'No matter who accepts or cancels. Always manage the event universally'
-  heroImage: 'Hero image.'
-  maevsi: 'maevsi'
-  maevsiDescription: 'maevsi is the manager for events supported by invitees'
-  management: 'Management'
-  managementDescription: 'Who accepted or canceled? Clearly presented'
-  modules: 'Special modules'
+  benefitsTitle: Your benefits with {maevsi}
+  events: Events
+  flexibility: Flexibility
+  flexibilityDescription: No matter who accepts or cancels. Always manage the event universally
+  heroImage: Hero image.
+  maevsi: maevsi
+  maevsiDescription: maevsi is the manager for events supported by invitees
+  management: Management
+  managementDescription: Who accepted or canceled? Clearly presented
+  modules: Special modules
   modulesDescription: "You're missing a feature? Access lots of free modules"
-  openSource: 'Open Source'
-  openSourceDescription: 'You want to improve something? Simply contribute your code'
-  smartphoneTitle: 'Do you still organize your event like that?'
-  smartphoneDescription: 'Using meavsi you no longer have to create your birthdays, events and parties in a boring chat group. You manage your invitations, your meals, your music requests and your program easily within one application - together with all guests'
-  statistics: 'Statistics'
-  statisticsDescription: 'Anaylse your event and optimize it next time'
-  stepCreateTitle: 'Create your event'
-  stepCreateDescription: 'Create your first event'
+  openSource: Open Source
+  openSourceDescription: You want to improve something? Simply contribute your code
+  smartphoneTitle: Do you still organize your event like that?
+  smartphoneDescription: Using meavsi you no longer have to create your birthdays, events and parties in a boring chat group. You manage your invitations, your meals, your music requests and your program easily within one application - together with all guests
+  statistics: Statistics
+  statisticsDescription: Anaylse your event and optimize it next time
+  stepCreateTitle: Create your event
+  stepCreateDescription: Create your first event
   stepCreateNumber: '2'
-  stepDefineTitle: 'Define content'
-  stepDefineDescription: 'What shall be eaten? What is played and listened to?'
+  stepDefineTitle: Define content
+  stepDefineDescription: What shall be eaten? What is played and listened to?
   stepDefineNumber: '3'
-  stepInviteTitle: 'Invite guests'
-  stepInviteDescription: 'Distribute the invitation link to your guests'
+  stepInviteTitle: Invite guests
+  stepInviteDescription: Distribute the invitation link to your guests
   stepInviteNumber: '4'
-  stepLoginTitle: 'Register for free'
+  stepLoginTitle: Register for free
   stepLoginDescription: "Just sign up. Your guests don't need an account"
   stepLoginNumber: '1'
   stepsTitle: "It's as easy as that"
-  stepsDescription: 'The process is designed to be as easy as possible for you'
-  testNow: 'Test now'
-  testNowFree: 'Test now for free'
-  title: 'Events {easy}, {fast}, {professional}.'
-  titleEasy: 'easy'
-  titleFast: 'fast'
-  titleProfessional: 'professional'
-  userFriendly: 'User friendly'
-  userFriendlyDescription: 'Guests can participate easily. Completely without login'
+  stepsDescription: The process is designed to be as easy as possible for you
+  testNow: Test now
+  testNowFree: Test now for free
+  title: Events {easy}, {fast}, {professional}.
+  titleEasy: easy
+  titleFast: fast
+  titleProfessional: professional
+  userFriendly: User friendly
+  userFriendlyDescription: Guests can participate easily. Completely without login
 </i18n>

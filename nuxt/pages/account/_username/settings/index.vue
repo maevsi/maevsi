@@ -84,13 +84,13 @@ export default {
 
 <i18n lang="yml">
 de:
-  account: 'Konto'
-  titleDangerZone: 'Gefahrenzone'
-  titleChangePassword: 'Password ändern'
-  titleImageUploads: 'Hochgeladene Bilder'
+  account: Konto
+  titleDangerZone: Gefahrenzone
+  titleChangePassword: Password ändern
+  titleImageUploads: Hochgeladene Bilder
 en:
-  account: 'account'
-  titleDangerZone: 'Danger zone'
-  titleChangePassword: 'Change password'
-  titleImageUploads: 'Image uploads'
+  account: account
+  titleDangerZone: Danger zone
+  titleChangePassword: Change password
+  titleImageUploads: Image uploads
 </i18n>

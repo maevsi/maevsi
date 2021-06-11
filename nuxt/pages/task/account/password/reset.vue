@@ -25,7 +25,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  title: 'Passwort zurücksetzen'
+  title: Passwort zurücksetzen
 en:
-  title: 'Reset password'
+  title: Reset password
 </i18n>

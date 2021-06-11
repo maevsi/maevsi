@@ -101,9 +101,9 @@ export default {
 
 <i18n lang="yml">
 de:
-  accountPasswordResetRequest: 'Passwort zurücksetzen'
-  accountPasswordResetRequestSuccess: 'Anfrage zum Zurücksetzen des Passworts erfolgreich. Vergib ein neues Password über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.'
+  accountPasswordResetRequest: Passwort zurücksetzen
+  accountPasswordResetRequestSuccess: Anfrage zum Zurücksetzen des Passworts erfolgreich. Vergib ein neues Password über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.
 en:
-  accountPasswordResetRequest: 'Reset password'
+  accountPasswordResetRequest: Reset password
   accountPasswordResetRequestSuccess: "Request to reset the password successful. Set a new password using the link that you can find in the email that you'll receive shortly."
 </i18n>

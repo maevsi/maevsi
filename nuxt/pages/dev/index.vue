@@ -44,13 +44,13 @@ export default {
 
 <i18n lang="yml">
 de:
-  sessionExit: 'Diese Sitzung beenden'
-  sessionExpired: 'Deine Sitzung ist abgelaufen.'
-  sessionExpiry: 'Deine Sitzung läuft am {exp} ab.'
-  title: 'Sitzung'
+  sessionExit: Diese Sitzung beenden
+  sessionExpired: Deine Sitzung ist abgelaufen.
+  sessionExpiry: Deine Sitzung läuft am {exp} ab.
+  title: Sitzung
 en:
-  sessionExit: 'Exit this session'
-  sessionExpired: 'Your session expired.'
-  sessionExpiry: 'Your session expires on {exp}.'
-  title: 'Session'
+  sessionExit: Exit this session
+  sessionExpired: Your session expired.
+  sessionExpiry: Your session expires on {exp}.
+  title: Session
 </i18n>

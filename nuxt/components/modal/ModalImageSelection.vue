@@ -44,11 +44,11 @@ export default {
 
 <i18n lang="yml">
 de:
-  cancel: 'Abbrechen'
-  header: 'Wähle ein Profilbild'
-  select: 'Auswählen'
+  cancel: Abbrechen
+  header: Wähle ein Profilbild
+  select: Auswählen
 en:
-  cancel: 'Cancel'
-  header: 'Select a profile picture'
-  select: 'Select'
+  cancel: Cancel
+  header: Select a profile picture
+  select: Select
 </i18n>

@@ -214,9 +214,9 @@ export default {
 
 <i18n lang="yml">
 de:
-  cancel: 'Abbrechen'
-  ok: 'Ok'
+  cancel: Abbrechen
+  ok: Ok
 en:
-  cancel: 'Cancel'
-  ok: 'Ok'
+  cancel: Cancel
+  ok: Ok
 </i18n>

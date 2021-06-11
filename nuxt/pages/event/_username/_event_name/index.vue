@@ -334,35 +334,35 @@ export default {
 
 <i18n lang="yml">
 de:
-  greeting: 'Hey{usernameString}!'
+  greeting: Hey{usernameString}!
   greetingDescription: 'Du wurdest zu folgender Veranstaltung eingeladen:'
-  iCalDownload: 'Zum Kalender hinzufügen'
+  iCalDownload: Zum Kalender hinzufügen
   iCalUnexpectedStatusCode: 'Fehler: Statuscode {statusCode}. iCal-Daten konnten nicht geladen werden.'
-  invitationAccept: 'Einladung annehmen'
-  invitationAccepted: 'Einladung angenommen'
-  invitationCancel: 'Einladung ablehnen'
-  invitationCanceled: 'Einladung abgelehnt'
-  invitationCardKind: 'Art der Einladungskarte'
-  invitationCardKindNone: 'Keine'
-  invitationCardKindPaper: 'Papier'
-  invitationCardKindDigital: 'Digital'
-  requestSelection: 'Bitte auswählen'
-  settings: 'Einstellungen'
-  success: 'Deine Eingabe wurde erfolgreich gespeichert.'
+  invitationAccept: Einladung annehmen
+  invitationAccepted: Einladung angenommen
+  invitationCancel: Einladung ablehnen
+  invitationCanceled: Einladung abgelehnt
+  invitationCardKind: Art der Einladungskarte
+  invitationCardKindNone: Keine
+  invitationCardKindPaper: Papier
+  invitationCardKindDigital: Digital
+  requestSelection: Bitte auswählen
+  settings: Einstellungen
+  success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
-  greeting: 'Hey{usernameString}!'
+  greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event:"
-  iCalDownload: 'Add to calendar'
+  iCalDownload: Add to calendar
   iCalUnexpectedStatusCode: 'Error: Status code {statusCode}. Could not get iCal data.'
-  invitationAccept: 'Accept invitation'
-  invitationAccepted: 'Invitation accepted'
-  invitationCancel: 'Cancel invitation'
-  invitationCanceled: 'Invitation canceled'
-  invitationCardKind: 'Kind of invitation card'
-  invitationCardKindNone: 'None'
-  invitationCardKindPaper: 'Paper'
-  invitationCardKindDigital: 'Digital'
-  requestSelection: 'Please select'
-  settings: 'Settings'
-  success: 'Your input was saved succesfully.'
+  invitationAccept: Accept invitation
+  invitationAccepted: Invitation accepted
+  invitationCancel: Cancel invitation
+  invitationCanceled: Invitation canceled
+  invitationCardKind: Kind of invitation card
+  invitationCardKindNone: None
+  invitationCardKindPaper: Paper
+  invitationCardKindDigital: Digital
+  requestSelection: Please select
+  settings: Settings
+  success: Your input was saved succesfully.
 </i18n>

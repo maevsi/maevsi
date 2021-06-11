@@ -124,11 +124,11 @@ export default {
 
 <i18n lang="yml">
 de:
-  emailAddress: 'E-Mail-Adresse'
-  register: 'Registrieren'
-  registrationSuccess: 'Registrierung erfolgreich. Verifiziere deinen Account über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.'
+  emailAddress: E-Mail-Adresse
+  register: Registrieren
+  registrationSuccess: Registrierung erfolgreich. Verifiziere deinen Account über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.
 en:
-  emailAddress: 'Email address'
-  register: 'Register'
+  emailAddress: Email address
+  register: Register
   registrationSuccess: "Registration successful. Verify your account using the link that you can find in the email that you'll receive shortly."
 </i18n>

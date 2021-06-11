@@ -1,0 +1,20 @@
+{
+  "globalLoading": "Loading...",
+  "globalAvailabilityNotYet": "Not yet available.",
+  "globalOgImageAlt": "maevsi's logo.",
+  "globalOgSeoDescription": "The first management tool for events, which are supported by invitees, facilitates the organization of events.",
+  "globalPagingMore": "More",
+  "globalPlaceholderAddress": "Address",
+  "globalPlaceholderEmailAddress": "email@addre.ss",
+  "globalPlaceholderFirstName": "Firstname",
+  "globalPlaceholderLastName": "Lastname",
+  "globalPlaceholderUsername": "user-name",
+  "globalValidationExistence": "Does not exist",
+  "globalValidationFailed": "Please check your input 🙈",
+  "globalValidationFormat": "Incorrect format",
+  "globalValidationLength": "Too long",
+  "globalValidationMaxValue": "Above maximum value",
+  "globalValidationMinValue": "Under minimum value",
+  "globalValidationRequired": "Required",
+  "globalValidationShortness": "Too short"
+}

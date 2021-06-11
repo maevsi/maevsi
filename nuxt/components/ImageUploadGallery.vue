@@ -375,33 +375,33 @@ export default {
 
 <i18n lang="yml">
 de:
-  cancel: 'Abbrechen'
-  croppaPlaceholder: 'Wähle ein Bild'
-  iconAdd: 'hinzufügen'
-  iconAddLabel: 'Ein neues Bild hochladen.'
-  iconTrash: 'löschen'
-  iconTrashLabel: 'Dieses hochgeladene Bild löschen.'
-  noPictures: 'Du hast keine hochgeladenen Bilder 😕'
-  upload: 'Hochladen'
-  uploadAlt: 'Ein hochgeladenes Bild.'
-  uploadDeleteFailed: 'Das Löschen des Elements ist fehlgeschlagen!'
-  uploadDeleteUnexpectedStatusCode: 'Beim Löschen des Elements trat ein unerwarteter Statuscode auf.'
+  cancel: Abbrechen
+  croppaPlaceholder: Wähle ein Bild
+  iconAdd: hinzufügen
+  iconAddLabel: Ein neues Bild hochladen.
+  iconTrash: löschen
+  iconTrashLabel: Dieses hochgeladene Bild löschen.
+  noPictures: Du hast keine hochgeladenen Bilder 😕
+  upload: Hochladen
+  uploadAlt: Ein hochgeladenes Bild.
+  uploadDeleteFailed: Das Löschen des Elements ist fehlgeschlagen!
+  uploadDeleteUnexpectedStatusCode: Beim Löschen des Elements trat ein unerwarteter Statuscode auf.
   uploadError: 'Fehler: Dateien wurden nicht erfolgreich hochgeladen!'
-  uploadNew: 'Lade ein neues Bild hoch'
+  uploadNew: Lade ein neues Bild hoch
   uploadSize: 'Größe: {size}'
 en:
-  cancel: 'Cancel'
-  croppaPlaceholder: 'Choose an image'
-  iconAdd: 'add'
-  iconAddLabel: 'Upload a new image.'
-  iconTrash: 'trash'
-  iconTrashLabel: 'Delete this uploaded image.'
+  cancel: Cancel
+  croppaPlaceholder: Choose an image
+  iconAdd: add
+  iconAddLabel: Upload a new image.
+  iconTrash: trash
+  iconTrashLabel: Delete this uploaded image.
   noPictures: "You don't have any uploaded pictures 😕"
-  upload: 'Upload'
-  uploadAlt: 'An uploaded image.'
-  uploadDeleteFailed: 'Deleting upload failed!'
-  uploadDeleteUnexpectedStatusCode: 'Deleting upload returned an unexpected status code.'
+  upload: Upload
+  uploadAlt: An uploaded image.
+  uploadDeleteFailed: Deleting upload failed!
+  uploadDeleteUnexpectedStatusCode: Deleting upload returned an unexpected status code.
   uploadError: 'Error: Some files did not upload successfully!'
-  uploadNew: 'Upload a new image'
+  uploadNew: Upload a new image
   uploadSize: 'Size: {size}'
 </i18n>

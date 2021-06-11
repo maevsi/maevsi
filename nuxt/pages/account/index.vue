@@ -135,11 +135,11 @@ export default {
 
 <i18n lang="yml">
 de:
-  register: 'Registrieren'
-  signIn: 'Anmelden'
-  title: 'Konto'
+  register: Registrieren
+  signIn: Anmelden
+  title: Konto
 en:
-  register: 'Register'
-  signIn: 'Sign In'
-  title: 'Account'
+  register: Register
+  signIn: Sign In
+  title: Account
 </i18n>

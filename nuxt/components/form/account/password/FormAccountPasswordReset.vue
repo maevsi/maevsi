@@ -86,9 +86,9 @@ export default {
 
 <i18n lang="yml">
 de:
-  accountPasswordReset: 'Passwort zurücksetzen'
-  accountPasswordResetSuccess: 'Passwort erfolgreich zurückgesetzt.'
+  accountPasswordReset: Passwort zurücksetzen
+  accountPasswordResetSuccess: Passwort erfolgreich zurückgesetzt.
 en:
-  accountPasswordReset: 'Reset password'
-  accountPasswordResetSuccess: 'Password reset successfully.'
+  accountPasswordReset: Reset password
+  accountPasswordResetSuccess: Password reset successfully.
 </i18n>

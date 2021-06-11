@@ -90,7 +90,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  profilePictureAlt: 'Das Profilbild von {username}.'
+  profilePictureAlt: Das Profilbild von {username}.
 en:
   profilePictureAlt: "{username}'s profile picture."
 </i18n>

@@ -274,37 +274,37 @@ export default {
 
 <i18n lang="yml">
 de:
-  address: 'Adresse'
+  address: Adresse
   disabledReasonCreatorNot: 'Dieser Kontakt wird von {authorAccountUsername} verwaltet.'
-  disabledReasonEmailAddressNone: 'Diesem Kontakt fehlt eine E-Mail-Adresse.'
-  emailAddress: 'E-Mail Adresse'
-  firstName: 'Vorname'
-  feedback: 'Rückmeldung'
-  feedbackAccepted: 'Zugesagt'
-  feedbackCanceled: 'Abgelehnt'
-  invitationAdd: 'Einladung hinzufügen'
-  invitationEdit: 'Einladung bearbeiten'
-  invitationCode: 'Einladungscode'
+  disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
+  emailAddress: E-Mail Adresse
+  firstName: Vorname
+  feedback: Rückmeldung
+  feedbackAccepted: Zugesagt
+  feedbackCanceled: Abgelehnt
+  invitationAdd: Einladung hinzufügen
+  invitationEdit: Einladung bearbeiten
+  invitationCode: Einladungscode
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
-  lastName: 'Nachname'
-  save: 'Speichern'
-  sendSuccess: 'Einladung an {emailAddress} erfolgreich angefordert.'
-  username: 'Nutzername'
+  lastName: Nachname
+  save: Speichern
+  sendSuccess: Einladung an {emailAddress} erfolgreich angefordert.
+  username: Nutzername
 en:
-  address: 'Address'
-  disabledReasonCreatorNot: 'This contact is being managed by {authorAccountUsername}.'
-  disabledReasonEmailAddressNone: 'This contact is missing an email address.'
-  emailAddress: 'Email address'
-  firstName: 'First name'
-  feedback: 'Feedback'
-  feedbackAccepted: 'Accepted'
-  feedbackCanceled: 'Canceled'
-  invitationAdd: 'Add invitation'
-  invitationEdit: 'Edit invitation'
-  invitationCode: 'Invitation code'
+  address: Address
+  disabledReasonCreatorNot: This contact is being managed by {authorAccountUsername}.
+  disabledReasonEmailAddressNone: This contact is missing an email address.
+  emailAddress: Email address
+  firstName: First name
+  feedback: Feedback
+  feedbackAccepted: Accepted
+  feedbackCanceled: Canceled
+  invitationAdd: Add invitation
+  invitationEdit: Edit invitation
+  invitationCode: Invitation code
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
-  lastName: 'Last name'
-  save: 'Save'
-  sendSuccess: 'Invitation to {emailAddress} requested successfully.'
-  username: 'Username'
+  lastName: Last name
+  save: Save
+  sendSuccess: Invitation to {emailAddress} requested successfully.
+  username: Username
 </i18n>

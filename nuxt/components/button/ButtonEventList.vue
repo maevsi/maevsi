@@ -10,7 +10,7 @@
 
 <i18n lang="yml">
 de:
-  eventAll: 'Zeige alle Veranstaltungen'
+  eventAll: Zeige alle Veranstaltungen
 en:
-  eventAll: 'Show all events'
+  eventAll: Show all events
 </i18n>

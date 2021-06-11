@@ -30,7 +30,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  title: 'Veranstaltungen'
+  title: Veranstaltungen
 en:
-  title: 'Events'
+  title: Events
 </i18n>

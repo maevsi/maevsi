@@ -96,35 +96,35 @@
 
 <i18n lang="yml">
 de:
-  copyright: '© {year} maevsi-Team. Alle Rechte vorbehalten.'
-  features: 'Funktionen'
-  githubLinkTitle: 'maevsi auf GitHub'
-  languages: 'Sprachen'
-  legal: 'Rechtliches'
-  legalNotice: 'Impressum'
-  maevsiLogo: 'maevsis Logo'
-  overview: 'Überblick'
-  pricing: 'Preise'
-  privacyPolicy: 'Datenschutz'
-  product: 'Produkt'
-  quickLinks: 'Quick Links'
-  releases: 'Updates'
-  sourceCode: 'Quellcode'
-  team: 'Team'
+  copyright: © {year} maevsi-Team. Alle Rechte vorbehalten.
+  features: Funktionen
+  githubLinkTitle: maevsi auf GitHub
+  languages: Sprachen
+  legal: Rechtliches
+  legalNotice: Impressum
+  maevsiLogo: maevsis Logo
+  overview: Überblick
+  pricing: Preise
+  privacyPolicy: Datenschutz
+  product: Produkt
+  quickLinks: Quick Links
+  releases: Updates
+  sourceCode: Quellcode
+  team: Team
 en:
-  copyright: '© {year} maevsi team. All rights reserved.'
-  features: 'Features'
-  githubLinkTitle: 'maevsi on GitHub'
-  languages: 'Languages'
-  legal: 'Legal'
-  legalNotice: 'Legal notice'
+  copyright: © {year} maevsi team. All rights reserved.
+  features: Features
+  githubLinkTitle: maevsi on GitHub
+  languages: Languages
+  legal: Legal
+  legalNotice: Legal notice
   maevsiLogo: "maevsi's logo"
-  overview: 'Overview'
-  pricing: 'Pricing'
-  privacyPolicy: 'Privacy'
-  product: 'Product'
-  quickLinks: 'Quick Links'
-  releases: 'Releases'
-  sourceCode: 'Source code'
-  team: 'Team'
+  overview: Overview
+  pricing: Pricing
+  privacyPolicy: Privacy
+  product: Product
+  quickLinks: Quick Links
+  releases: Releases
+  sourceCode: Source code
+  team: Team
 </i18n>

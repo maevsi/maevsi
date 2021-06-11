@@ -272,15 +272,15 @@ export default {
 
 <i18n lang="yml">
 de:
-  address: 'Adresse'
-  firstName: 'Vorname'
-  lastName: 'Nachname'
-  save: 'Speichern'
-  username: 'Nutzername'
+  address: Adresse
+  firstName: Vorname
+  lastName: Nachname
+  save: Speichern
+  username: Nutzername
 en:
-  address: 'Address'
-  firstName: 'First name'
-  lastName: 'Last name'
-  save: 'Save'
-  username: 'Username'
+  address: Address
+  firstName: First name
+  lastName: Last name
+  save: Save
+  username: Username
 </i18n>

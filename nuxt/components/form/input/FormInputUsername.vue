@@ -61,7 +61,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  username: 'Nutzername'
+  username: Nutzername
 en:
-  username: 'Username'
+  username: Username
 </i18n>

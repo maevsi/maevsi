@@ -15,7 +15,7 @@
 
 <i18n lang="yml">
 de:
-  signIn: 'Anmelden'
+  signIn: Anmelden
 en:
-  signIn: 'Sign in'
+  signIn: Sign in
 </i18n>

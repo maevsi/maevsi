@@ -97,7 +97,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  title: 'Impressum'
+  title: Impressum
 en:
-  title: 'Legal notice'
+  title: Legal notice
 </i18n>

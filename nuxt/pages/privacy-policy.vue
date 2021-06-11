@@ -732,7 +732,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  title: 'Datenschutzerklärung'
+  title: Datenschutzerklärung
 en:
-  title: 'Privacy Policy'
+  title: Privacy Policy
 </i18n>

@@ -125,13 +125,13 @@ export default {
 
 <i18n lang="yml">
 de:
-  passwordFound: 'Passwort wiedergefunden?'
-  passwordLost: 'Passwort verloren?'
-  signIn: 'Anmelden'
-  username: 'Nutzername'
+  passwordFound: Passwort wiedergefunden?
+  passwordLost: Passwort verloren?
+  signIn: Anmelden
+  username: Nutzername
 en:
-  passwordFound: 'Password found?'
-  passwordLost: 'Password lost?'
-  username: 'Username'
-  signIn: 'Sign in'
+  passwordFound: Password found?
+  passwordLost: Password lost?
+  username: Username
+  signIn: Sign in
 </i18n>

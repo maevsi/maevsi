@@ -30,13 +30,13 @@ export default {
 
 <i18n lang="yml">
 de:
-  archived: 'archiviert'
-  bug: 'Bug'
-  private: 'privat'
-  public: 'öffentlich'
+  archived: archiviert
+  bug: Bug
+  private: privat
+  public: öffentlich
 en:
-  archived: 'archived'
-  bug: 'bug'
-  private: 'private'
-  public: 'public'
+  archived: archived
+  bug: bug
+  private: private
+  public: public
 </i18n>

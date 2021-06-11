@@ -69,9 +69,9 @@ export default {
 
 <i18n lang="yml">
 de:
-  emailAddressVerificationSuccess: 'E-Mail-Adresse erfolgreich verifiziert.'
-  title: 'Verifizierung'
+  emailAddressVerificationSuccess: E-Mail-Adresse erfolgreich verifiziert.
+  title: Verifizierung
 en:
-  emailAddressVerificationSuccess: 'Email address verified successfully.'
-  title: 'Verification'
+  emailAddressVerificationSuccess: Email address verified successfully.
+  title: Verification
 </i18n>

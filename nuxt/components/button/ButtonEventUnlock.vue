@@ -10,7 +10,7 @@
 
 <i18n lang="yml">
 de:
-  eventUnlock: 'Einladungscode eingeben'
+  eventUnlock: Einladungscode eingeben
 en:
-  eventUnlock: 'Enter invitation code'
+  eventUnlock: Enter invitation code
 </i18n>

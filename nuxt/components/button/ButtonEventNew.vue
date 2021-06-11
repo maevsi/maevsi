@@ -10,7 +10,7 @@
 
 <i18n lang="yml">
 de:
-  new: 'Veranstaltung erstellen'
+  new: Veranstaltung erstellen
 en:
-  new: 'Create event'
+  new: Create event
 </i18n>

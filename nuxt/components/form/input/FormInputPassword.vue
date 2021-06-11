@@ -55,11 +55,11 @@ export default {
 
 <i18n lang="yml">
 de:
-  password: 'Passwort'
-  passwordCurrent: 'Aktuelles Passwort'
-  passwordNew: 'Neues Passwort'
+  password: Passwort
+  passwordCurrent: Aktuelles Passwort
+  passwordNew: Neues Passwort
 en:
-  password: 'Password'
-  passwordCurrent: 'Current Password'
-  passwordNew: 'New Password'
+  password: Password
+  passwordCurrent: Current Password
+  passwordNew: New Password
 </i18n>

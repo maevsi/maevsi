@@ -170,19 +170,19 @@ export default {
 
 <i18n lang="yml">
 de:
-  event: 'Veranstaltung'
-  title: 'Einstellungen'
-  titleDangerZone: 'Gefahrenzone'
-  titleDelete: 'Veranstaltung löschen'
-  titleEdit: 'Veranstaltung bearbeiten'
-  titleGeneral: 'Allgemein'
-  titleInvitations: 'Einladungen'
+  event: Veranstaltung
+  title: Einstellungen
+  titleDangerZone: Gefahrenzone
+  titleDelete: Veranstaltung löschen
+  titleEdit: Veranstaltung bearbeiten
+  titleGeneral: Allgemein
+  titleInvitations: Einladungen
 en:
-  event: 'event'
-  title: 'Settings'
-  titleDangerZone: 'Danger zone'
-  titleDelete: 'Delete event'
-  titleEdit: 'Edit event'
-  titleGeneral: 'General'
-  titleInvitations: 'Invitations'
+  event: event
+  title: Settings
+  titleDangerZone: Danger zone
+  titleDelete: Delete event
+  titleEdit: Edit event
+  titleGeneral: General
+  titleInvitations: Invitations
 </i18n>

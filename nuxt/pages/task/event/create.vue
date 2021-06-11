@@ -33,7 +33,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  title: 'Veranstaltung erstellen'
+  title: Veranstaltung erstellen
 en:
-  title: 'Create event'
+  title: Create event
 </i18n>

@@ -61,17 +61,17 @@
 
 <i18n lang="yml">
 de:
-  account: 'Konto'
-  eventUnlock: 'Einladungscode eingeben'
-  eventNew: 'Veranstaltung erstellen'
-  menuHide: 'Menü verstecken'
-  settings: 'Einstellungen'
-  signOut: 'Abmelden'
+  account: Konto
+  eventUnlock: Einladungscode eingeben
+  eventNew: Veranstaltung erstellen
+  menuHide: Menü verstecken
+  settings: Einstellungen
+  signOut: Abmelden
 en:
-  account: 'Account'
-  eventUnlock: 'Enter invitation code'
-  eventNew: 'Create event'
-  menuHide: 'Hide menu'
-  settings: 'Settings'
-  signOut: 'Sign out'
+  account: Account
+  eventUnlock: Enter invitation code
+  eventNew: Create event
+  menuHide: Hide menu
+  settings: Settings
+  signOut: Sign out
 </i18n>

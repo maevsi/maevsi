@@ -22,7 +22,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  duration: 'Dauer'
+  duration: Dauer
 en:
-  duration: 'duration'
+  duration: duration
 </i18n>

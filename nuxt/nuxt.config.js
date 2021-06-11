@@ -1,6 +1,8 @@
 import bodyParser from 'body-parser'
 import shrinkRay from 'shrink-ray-current'
 
+import localeDe from './locales/de.json'
+import localeEn from './locales/en.json'
 import { BASE_URL, STACK_DOMAIN } from './plugins/baseUrl'
 
 const LOCALES = [
@@ -223,48 +225,8 @@ export default {
         seo: false, // https://i18n.nuxtjs.org/seo/#improving-performance
         vueI18n: {
           messages: {
-            de: {
-              globalLoading: 'Lade...',
-              globalAvailabilityNotYet: 'Noch nicht verfügbar.',
-              globalOgImageAlt: 'maevsis Logo.',
-              globalOgSeoDescription:
-                'Das erste Planungstool für Events, die von den Teilnehmenden unterstützt werden können, erleichtert die Organisation von Veranstaltungen.',
-              globalPagingMore: 'Mehr',
-              globalPlaceholderAddress: 'Adresse',
-              globalPlaceholderEmailAddress: 'e-mail@adres.se',
-              globalPlaceholderFirstName: 'Vorname',
-              globalPlaceholderLastName: 'Nachname',
-              globalPlaceholderUsername: 'nutzer-name',
-              globalValidationExistence: 'Existiert nicht',
-              globalValidationFailed: 'Bitte überprüfe deine Eingaben 🙈',
-              globalValidationFormat: 'Falsches Format',
-              globalValidationLength: 'Zu lang',
-              globalValidationMaxValue: 'Wert zu groß',
-              globalValidationMinValue: 'Wert zu gering',
-              globalValidationRequired: 'Pflichtfeld',
-              globalValidationShortness: 'Zu kurz',
-            },
-            en: {
-              globalLoading: 'Loading...',
-              globalAvailabilityNotYet: 'Not yet available.',
-              globalOgImageAlt: "maevsi's logo.",
-              globalOgSeoDescription:
-                'The first management tool for events, which are supported by invitees, facilitates the organization of events.',
-              globalPagingMore: 'More',
-              globalPlaceholderAddress: 'Address',
-              globalPlaceholderEmailAddress: 'email@addre.ss',
-              globalPlaceholderFirstName: 'Firstname',
-              globalPlaceholderLastName: 'Lastname',
-              globalPlaceholderUsername: 'user-name',
-              globalValidationExistence: 'Does not exist',
-              globalValidationFailed: 'Please check your input 🙈',
-              globalValidationFormat: 'Incorrect format',
-              globalValidationLength: 'Too long',
-              globalValidationMaxValue: 'Above maximum value',
-              globalValidationMinValue: 'Under minimum value',
-              globalValidationRequired: 'Required',
-              globalValidationShortness: 'Too short',
-            },
+            de: localeDe,
+            en: localeEn,
           },
           silentFallbackWarn: true,
         },

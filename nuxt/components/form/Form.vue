@@ -147,9 +147,9 @@ export default {
 
 <i18n lang="yml">
 de:
-  registrationRefreshSuccess: 'Eine neue Willkommensmail ist auf dem Weg zu dir.'
-  submit: 'Absenden'
+  registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
+  submit: Absenden
 en:
-  registrationRefreshSuccess: 'A new welcome email is on its way to you.'
-  submit: 'Submit'
+  registrationRefreshSuccess: A new welcome email is on its way to you.
+  submit: Submit
 </i18n>

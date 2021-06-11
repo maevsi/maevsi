@@ -83,9 +83,9 @@ export default {
 
 <i18n lang="yml">
 de:
-  passwordChange: 'Passwort ändern'
-  passwordChangeSuccess: 'Passwort erfolgreich geändert.'
+  passwordChange: Passwort ändern
+  passwordChangeSuccess: Passwort erfolgreich geändert.
 en:
-  passwordChange: 'Change password'
-  passwordChangeSuccess: 'Password changed successfully.'
+  passwordChange: Change password
+  passwordChangeSuccess: Password changed successfully.
 </i18n>

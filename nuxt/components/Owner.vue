@@ -28,7 +28,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  eventAuthor: 'von {username}'
+  eventAuthor: von {username}
 en:
-  eventAuthor: 'by {username}'
+  eventAuthor: by {username}
 </i18n>

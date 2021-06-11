@@ -1,0 +1,20 @@
+{
+  "globalLoading": "Lade...",
+  "globalAvailabilityNotYet": "Noch nicht verfügbar.",
+  "globalOgImageAlt": "maevsis Logo.",
+  "globalOgSeoDescription": "Das erste Planungstool für Events, die von den Teilnehmenden unterstützt werden können, erleichtert die Organisation von Veranstaltungen.",
+  "globalPagingMore": "Mehr",
+  "globalPlaceholderAddress": "Adresse",
+  "globalPlaceholderEmailAddress": "e-mail@adres.se",
+  "globalPlaceholderFirstName": "Vorname",
+  "globalPlaceholderLastName": "Nachname",
+  "globalPlaceholderUsername": "nutzer-name",
+  "globalValidationExistence": "Existiert nicht",
+  "globalValidationFailed": "Bitte überprüfe deine Eingaben 🙈",
+  "globalValidationFormat": "Falsches Format",
+  "globalValidationLength": "Zu lang",
+  "globalValidationMaxValue": "Wert zu groß",
+  "globalValidationMinValue": "Wert zu gering",
+  "globalValidationRequired": "Pflichtfeld",
+  "globalValidationShortness": "Zu kurz"
+}

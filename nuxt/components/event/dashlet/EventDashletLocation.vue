@@ -25,7 +25,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  location: 'Ort'
+  location: Ort
 en:
-  location: 'location'
+  location: location
 </i18n>

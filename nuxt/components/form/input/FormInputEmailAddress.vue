@@ -51,7 +51,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  emailAddress: 'E-Mail-Adresse'
+  emailAddress: E-Mail-Adresse
 en:
-  emailAddress: 'Email address'
+  emailAddress: Email address
 </i18n>
