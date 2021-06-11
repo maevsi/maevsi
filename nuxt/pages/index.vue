@@ -1,9 +1,17 @@
 <template>
   <div>
     <section class="flex items-center mb-16">
-      <div class="p-4 lg:w-1/2">
+      <div class="p-4 w-full lg:w-1/2">
         <i18n
-          class="font-extrabold leading-snug text-7xl text-left"
+          class="
+            font-extrabold
+            leading-snug
+            text-4xl
+            sm:text-5xl
+            md:text-5xl
+            xl:text-7xl
+            text-left
+          "
           path="title"
           tag="h1"
         >

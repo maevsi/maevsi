@@ -6,10 +6,14 @@
       flex-col
       items-center
       p-8
+      w-full
     "
   >
     <LoaderImage :alt="title" class="h-8 w-8" :src="iconPath" />
-    <h3 class="text-center">{{ title }}</h3>
+    <div class="w-full">
+      <!-- Heading wrapper required for text overflow ellipsis. -->
+      <h3 class="text-center">{{ title }}</h3>
+    </div>
     <p class="text-center">{{ description }}</p>
   </section>
 </template>

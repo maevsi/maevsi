@@ -227,6 +227,7 @@ module.exports = {
           marginLeft: 'auto',
           marginRight: 'auto',
           padding: theme('padding.2') + ' ' + theme('padding.4'),
+          textAlign: 'center',
           '&:focus': {
             boxShadow: theme('ringWidth.DEFAULT'),
           },
