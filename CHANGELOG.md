@@ -1,3 +1,11 @@
+# [0.71.0](https://github.com/maevsi/maevsi/compare/0.70.1...0.71.0) (2021-06-11)
+
+
+### Features
+
+* **i18n:** add linting for translations ([630f94d](https://github.com/maevsi/maevsi/commit/630f94d799030e77fe503cec85763b8206b57633))
+* **index:** improve responsiveness of text ([6d5996e](https://github.com/maevsi/maevsi/commit/6d5996eb063d38ec870742f62c19722acdc8d597)), closes [#103](https://github.com/maevsi/maevsi/issues/103)
+
 ## [0.70.1](https://github.com/maevsi/maevsi/compare/0.70.0...0.70.1) (2021-06-10)
 
 
