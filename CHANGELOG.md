@@ -1,3 +1,12 @@
+## [0.71.1](https://github.com/maevsi/maevsi/compare/0.71.0...0.71.1) (2021-06-14)
+
+
+### Bug Fixes
+
+* **icons:** remove module opacity ([df9a651](https://github.com/maevsi/maevsi/commit/df9a6510d92f8ae9218b7de55be4d12861f3587b))
+* **open-graph:** use supported image format ([c87a84b](https://github.com/maevsi/maevsi/commit/c87a84bf348e81e9926eab8ee7640f2f469d89d2))
+* **step:** correct number input type ([a7be694](https://github.com/maevsi/maevsi/commit/a7be694156ac98c4bffb94cc4be20a2dd1a60e0a))
+
 # [0.71.0](https://github.com/maevsi/maevsi/compare/0.70.1...0.71.0) (2021-06-11)
 
 
