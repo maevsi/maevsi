@@ -177,7 +177,7 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: this.$baseUrl + '/assets/static/logos/maevsi.svg',
+          content: this.$baseUrl + '/assets/static/logos/maevsi.png', // Does not support .svg as of 2021-06.
         },
         {
           hid: 'og:image:alt',
