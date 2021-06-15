@@ -8,7 +8,7 @@ BEGIN;
 CREATE TABLE maevsi_private.account (
   id                                         BIGSERIAL PRIMARY KEY,
   created                                    TIMESTAMP NOT NULL DEFAULT NOW(),
-  email_address                              TEXT NOT NULL CHECK (char_length(email_address) < 320 AND email_address ~* '^.+@.+\..+$') UNIQUE,
+  email_address                              TEXT NOT NULL CHECK (char_length(email_address) < 320 AND email_address ~ '^.+@.+\..+$') UNIQUE,
   email_address_verification                 UUID DEFAULT maevsi.uuid_generate_v1mc(),
   email_address_verification_valid_until     TIMESTAMP,
   last_activity                              TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -16,7 +16,7 @@ CREATE TABLE maevsi_private.account (
   password_reset_verification                UUID,
   password_reset_verification_valid_until    TIMESTAMP,
   upload_quota_bytes                         BIGINT NOT NULL DEFAULT 10485760, -- 10 mebibyte
-  username                                   TEXT NOT NULL CHECK (char_length(username) < 100 AND username ~* '^[-A-Za-z0-9]+$') UNIQUE
+  username                                   TEXT NOT NULL CHECK (char_length(username) < 100 AND username ~ '^[-A-Za-z0-9]+$') UNIQUE
 );
 
 COMMENT ON TABLE maevsi_private.account IS 'Account data.';

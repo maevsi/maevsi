@@ -13,7 +13,7 @@ CREATE TABLE maevsi.event_group (
   "description"         TEXT CHECK (char_length("description") < 10000),
   is_archived           BOOLEAN NOT NULL DEFAULT FALSE,
   "name"                TEXT NOT NULL CHECK (char_length("name") > 0 AND char_length("name") < 100),
-  slug                  TEXT NOT NULL CHECK (char_length(slug) < 100 AND slug ~* '^[-A-Za-z0-9]+$'),
+  slug                  TEXT NOT NULL CHECK (char_length(slug) < 100 AND slug ~ '^[-A-Za-z0-9]+$'),
   UNIQUE (author_username, slug)
 );
 
