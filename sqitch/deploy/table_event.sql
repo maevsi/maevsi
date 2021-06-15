@@ -21,6 +21,7 @@ CREATE TABLE maevsi.event (
   "name"                   TEXT NOT NULL CHECK (char_length("name") > 0 AND char_length("name") < 100),
   slug                     TEXT NOT NULL CHECK (char_length(slug) < 100 AND slug ~* '^[-A-Za-z0-9]+$'),
   "start"                  TIMESTAMP WITH TIME ZONE NOT NULL,
+  "url"                    TEXT CHECK (char_length("url") < 300 AND "url" ~* '^https:\/\/'),
   visibility               maevsi.event_visibility NOT NULL,
   UNIQUE (author_username, slug)
 );
@@ -38,6 +39,7 @@ COMMENT ON COLUMN maevsi.event.location IS 'The event''s location as it can be s
 COMMENT ON COLUMN maevsi.event.name IS 'The event''s name.';
 COMMENT ON COLUMN maevsi.event.slug IS 'The event''s name, slugified.';
 COMMENT ON COLUMN maevsi.event.start IS 'The event''s start date and time, with timezone.';
+COMMENT ON COLUMN maevsi.event.url IS 'The event''s unified resource locator.';
 COMMENT ON COLUMN maevsi.event.visibility IS 'The event''s visibility.';
 
 -- GRANTs, RLS and POLICYs are specified in 'table_event_policy`.

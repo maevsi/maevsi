@@ -12,6 +12,7 @@
   "globalValidationExistence": "Existiert nicht",
   "globalValidationFailed": "Bitte überprüfe deine Eingaben 🙈",
   "globalValidationFormat": "Falsches Format",
+  "globalValidationFormatUrl": "Beginnt die Eingabe mit \"https://\"?",
   "globalValidationLength": "Zu lang",
   "globalValidationMaxValue": "Wert zu groß",
   "globalValidationMinValue": "Wert zu gering",

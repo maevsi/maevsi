@@ -153,6 +153,7 @@
       </FormCheckbox>
     </FormInput>
     <FormInput
+      v-if="form.isInPerson"
       :error="$v.form.location.$error"
       label-for="input-location"
       :title="$t('location')"
@@ -172,7 +173,39 @@
         </FormInputError>
       </template>
       <template slot="inputInfo">
-        {{ $t('inputLocationInfo') }}
+        {{ $t('inputInfoLocation') }}
+      </template>
+    </FormInput>
+    <FormInput
+      v-if="form.isRemote"
+      :error="$v.form.url.$error"
+      label-for="input-url"
+      :title="$t('url')"
+    >
+      <input
+        id="input-url"
+        v-model.trim="$v.form.url.$model"
+        class="form-input"
+        type="text"
+      />
+      <template slot="inputError">
+        <FormInputError
+          :form-input="$v.form.url"
+          validation-property="maxLength"
+        >
+          {{ $t('globalValidationLength') }}
+        </FormInputError>
+        <FormInputError
+          :form-input="$v.form.url"
+          validation-property="formatUrl"
+        >
+          {{ $t('globalValidationFormat') }}
+          <br />
+          {{ $t('globalValidationFormatUrl') }}
+        </FormInputError>
+      </template>
+      <template slot="inputInfo">
+        {{ $t('inputInfoUrl') }}
       </template>
     </FormInput>
     <FormInput
@@ -219,7 +252,7 @@
         </FormInputError>
       </template>
       <template slot="inputInfo">
-        <i18n class="max-w-full truncate" path="inputDescriptionInfo">
+        <i18n class="max-w-full truncate" path="inputInfoDescription">
           <template #markdown>
             <AppLink
               to="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
@@ -300,6 +333,7 @@ export default {
         name: undefined,
         slug: undefined,
         start: new Date().toISOString(), // workaround for https://github.com/mariomka/vue-datetime/issues/177
+        url: undefined,
         visibility: undefined,
       },
       graphqlErrorMessage: undefined,
@@ -319,6 +353,7 @@ export default {
         'name',
         'slug',
         'start',
+        'url',
         'visibility',
       ].forEach((property) => (this.form[property] = this.event[property]))
     }
@@ -357,6 +392,7 @@ export default {
                 name: this.form.name,
                 slug: this.form.slug,
                 start: this.form.start,
+                url: this.form.url !== '' ? this.form.url : null,
                 visibility: this.form.visibility,
               },
             },
@@ -394,6 +430,7 @@ export default {
                   name: this.form.name,
                   slug: this.form.slug,
                   start: this.form.start,
+                  url: this.form.url !== '' ? this.form.url : null,
                   visibility: this.form.visibility,
                 },
               },
@@ -461,6 +498,12 @@ export default {
         start: {
           required,
         },
+        url: {
+          formatUrl: this.$global.VALIDATION_FORMAT_URL,
+          maxLength: maxLength(
+            this.$global.VALIDATION_EVENT_URL_LENGTH_MAXIMUM
+          ),
+        },
         visibility: {
           required,
         },
@@ -480,8 +523,9 @@ de:
   eventCreateSuccess: Veranstaltung erfolgreich erstellt.
   eventUpdate: Veranstaltung aktualisieren
   eventUpdateSuccess: Veranstaltung erfolgreich aktualisiert.
-  inputDescriptionInfo: Textformatierung mit {markdown} wird unterstützt.
-  inputLocationInfo: Ein Suchbegriff für Google Maps.
+  inputInfoDescription: Textformatierung mit {markdown} wird unterstützt.
+  inputInfoLocation: Ein Suchbegriff für Google Maps.
+  inputInfoUrl: Eine Web-URL für digitale Veranstaltungen.
   isInPerson: vor Ort
   isRemote: digital
   maximumInviteeCount: Maximale Gästezahl
@@ -493,6 +537,7 @@ de:
   slug: Slug
   slugPlaceholder: willkommensfeier
   start: Beginn
+  url: Link
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
@@ -505,8 +550,9 @@ en:
   eventCreateSuccess: Event created successfully.
   eventUpdate: Update event
   eventUpdateSuccess: Event updated successfully.
-  inputDescriptionInfo: Text formatting with {markdown} is supported.
-  inputLocationInfo: A search phrase for Google Maps.
+  inputInfoDescription: Text formatting with {markdown} is supported.
+  inputInfoLocation: A search phrase for Google Maps.
+  inputInfoUrl: A web URL for remote events.
   isInPerson: in person
   isRemote: remote
   maximumInviteeCount: Maximum invitee count
@@ -518,6 +564,7 @@ en:
   slug: Slug
   slugPlaceholder: welcome-party
   start: Start
+  url: Link
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public

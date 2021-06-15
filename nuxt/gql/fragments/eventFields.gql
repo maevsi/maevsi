@@ -11,5 +11,6 @@ fragment eventFields on Event {
   name
   slug
   start
+  url
   visibility
 }

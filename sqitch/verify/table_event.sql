@@ -14,6 +14,7 @@ SELECT id,
        "name",
        slug,
        "start",
+       "url",
        visibility
 FROM maevsi.event WHERE FALSE;
 

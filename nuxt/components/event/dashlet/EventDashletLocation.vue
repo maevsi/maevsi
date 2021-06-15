@@ -1,13 +1,19 @@
 <template>
-  <EventDashlet v-if="event.location">
+  <EventDashlet
+    v-if="(event.isInPerson && event.location) || (event.isRemote && event.url)"
+  >
     <span>
       <FontAwesomeIcon :icon="['fas', 'map-marker']" :title="$t('location')" />
     </span>
     <AppLink
+      v-if="event.isInPerson && event.location"
       nofollow
       :to="`https://maps.google.de/?q=${encodeURIComponent(event.location)}`"
     >
       {{ event.location }}
+    </AppLink>
+    <AppLink v-if="event.isRemote && event.url" nofollow :to="event.url">
+      {{ event.url }}
     </AppLink>
   </EventDashlet>
 </template>
