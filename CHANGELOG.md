@@ -1,3 +1,18 @@
+# [0.72.0](https://github.com/maevsi/maevsi/compare/0.71.1...0.72.0) (2021-06-15)
+
+
+### Bug Fixes
+
+* **event:** resolve form issues ([264044d](https://github.com/maevsi/maevsi/commit/264044d7acbd07650bda73f01fb7938d71e49c68)), closes [#255](https://github.com/maevsi/maevsi/issues/255)
+* **footer:** correct product links ([238dfbf](https://github.com/maevsi/maevsi/commit/238dfbf39fd5c01605afc9529fd8354f8f158a64))
+* **open-graph:** use image with recommended size and title ([c1de158](https://github.com/maevsi/maevsi/commit/c1de15816e43b2cf1fc66cba25c07dec4dfb9b98))
+
+
+### Features
+
+* **event:** add url field ([c7194dd](https://github.com/maevsi/maevsi/commit/c7194dd72f849a8b1d0739ea61b961ecdf52c953)), closes [#256](https://github.com/maevsi/maevsi/issues/256)
+* **sqitch:** make pattern checks case sensitive ([133a1ad](https://github.com/maevsi/maevsi/commit/133a1adb2801121f1aee5eea4ae1f1df52a74463))
+
 ## [0.71.1](https://github.com/maevsi/maevsi/compare/0.71.0...0.71.1) (2021-06-14)
 
 
