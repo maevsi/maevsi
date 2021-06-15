@@ -93,7 +93,7 @@
         </Button>
       </div>
     </section>
-    <section class="mb-16">
+    <section id="features" class="mb-16">
       <i18n
         class="font-extrabold leading-snug text-center text-5xl"
         path="benefitsTitle"

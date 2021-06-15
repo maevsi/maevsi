@@ -9,9 +9,9 @@
           <AppLink to="/#features">
             {{ $t('features') }}
           </AppLink>
-          <AppLink to="/#pricing">
+          <!--<AppLink to="/#pricing">
             {{ $t('pricing') }}
-          </AppLink>
+          </AppLink>-->
           <!-- <AppLink to="/about/team">
             {{ $t('team') }}
           </AppLink> -->
