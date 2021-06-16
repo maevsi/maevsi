@@ -100,6 +100,9 @@ module.exports = {
             h6: {
               color: theme('colors.text.bright'),
             },
+            strong: {
+              color: theme('colors.text.bright'),
+            },
             '.card &': {
               color: theme('colors.text.dark'),
               a: {
