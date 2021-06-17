@@ -1,3 +1,14 @@
+# [0.75.0](https://github.com/maevsi/maevsi/compare/0.74.0...0.75.0) (2021-06-17)
+
+
+### Features
+
+* **image-upload-gallery:** improve alternative text for failed uploads ([d53d5ab](https://github.com/maevsi/maevsi/commit/d53d5ab1628fbbd4f60353c9c20cb9f9cb301ba6))
+* **loader-indication-spinner:** improve icon ([c8dc23a](https://github.com/maevsi/maevsi/commit/c8dc23a5fb437f49a9f8a6c0753f9a16fe5012e5))
+* **modal:** add loading indicator or submit ([4f69980](https://github.com/maevsi/maevsi/commit/4f6998060d8e266c0dc535d1d071cf165fb07299)), closes [#45](https://github.com/maevsi/maevsi/issues/45)
+* **tailwind:** upgrade ([69cd64e](https://github.com/maevsi/maevsi/commit/69cd64e77602b9ab3ef8198124e104ffb0cef227))
+* **twitter:** add meta tags ([4947486](https://github.com/maevsi/maevsi/commit/494748680e35e67579a177684740259e667a4c0f))
+
 # [0.74.0](https://github.com/maevsi/maevsi/compare/0.73.0...0.74.0) (2021-06-17)
 
 
