@@ -24,7 +24,7 @@
             @click="toggleSelect(upload)"
           >
             <LoaderImage
-              :alt="$t('uploadAlt')"
+              :alt="upload.storageKey ? $t('uploadAlt') : $t('uploadAltFailed')"
               class="h-32 w-32"
               :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
               :title="
@@ -384,6 +384,7 @@ de:
   noPictures: Du hast keine hochgeladenen Bilder 😕
   upload: Hochladen
   uploadAlt: Ein hochgeladenes Bild.
+  uploadAltFailed: Ein Bild, das nicht vollständig hochgeladen wurde.
   uploadDeleteFailed: Das Löschen des Elements ist fehlgeschlagen!
   uploadDeleteUnexpectedStatusCode: Beim Löschen des Elements trat ein unerwarteter Statuscode auf.
   uploadError: 'Fehler: Dateien wurden nicht erfolgreich hochgeladen!'
@@ -399,6 +400,7 @@ en:
   noPictures: "You don't have any uploaded pictures 😕"
   upload: Upload
   uploadAlt: An uploaded image.
+  uploadAltFailed: An image for which the upload didn't finish.
   uploadDeleteFailed: Deleting upload failed!
   uploadDeleteUnexpectedStatusCode: Deleting upload returned an unexpected status code.
   uploadError: 'Error: Some files did not upload successfully!'
