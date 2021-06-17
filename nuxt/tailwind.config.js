@@ -140,6 +140,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
     function ({ addBase, addComponents, addUtilities, theme }) {
       addBase({
@@ -338,18 +339,6 @@ module.exports = {
         },
         '.inline-grid': {
           display: 'inline-grid',
-        },
-        '.line-clamp-box': {
-          display: '-webkit-box',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          '-webkit-box-orient': 'vertical',
-        },
-        '.line-clamp-2': {
-          '-webkit-line-clamp': '2',
-        },
-        '.max-h-90vh': {
-          maxHeight: '90vh',
         },
       })
     },

@@ -15,7 +15,7 @@
         <li
           class="rounded-t duration-700"
           :class="{
-            'transform translate-x-full': tabIdSelected === tabs[1][0],
+            'translate-x-full': tabIdSelected === tabs[1][0],
             'bg-black opacity-25': dark,
             'bg-white': !dark,
           }"

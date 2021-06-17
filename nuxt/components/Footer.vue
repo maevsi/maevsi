@@ -80,7 +80,6 @@
             brightness-0
             contrast-75
             dark:contrast-100
-            filter
             h-12
             dark:invert
             mx-12

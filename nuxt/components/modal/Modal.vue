@@ -15,7 +15,7 @@
       "
     >
       <div
-        class="card max-h-90vh overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3"
+        class="card max-h-[90vh] overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3"
       >
         <div class="text-center">
           <div v-if="contentHeaderComputed">

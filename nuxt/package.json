@@ -45,6 +45,7 @@
     "@nuxtjs/robots": "2.5.0",
     "@nuxtjs/sitemap": "2.4.0",
     "@tailwindcss/forms": "0.3.3",
+    "@tailwindcss/line-clamp": "0.2.1",
     "@tailwindcss/typography": "0.4.1",
     "@uppy/core": "1.19.1",
     "@uppy/tus": "1.9.1",

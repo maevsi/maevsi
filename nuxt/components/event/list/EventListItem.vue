@@ -36,7 +36,7 @@
         </div>
         <p
           v-if="event.description"
-          class="line-clamp-box line-clamp-2 text-text-dark"
+          class="line-clamp-2 overflow-ellipsis text-text-dark"
         >
           {{ $htmlToText($md.render(event.description)) }}
         </p>

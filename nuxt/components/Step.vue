@@ -1,6 +1,6 @@
 <template>
   <section class="flex-1 flex-basis-50 xl:flex-basis-auto p-8 relative">
-    <div class="absolute left-1/2 transform -translate-x-1/2 z-0">
+    <div class="absolute left-1/2 -translate-x-1/2 z-0">
       <span class="font-extrabold leading-snug opacity-10 text-7xl">
         {{ number }}
       </span>
