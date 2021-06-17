@@ -64,6 +64,11 @@ export default {
           property: 'profile:username',
           content: this.$route.params.username,
         },
+        {
+          hid: 'twitter:title',
+          property: 'twitter:title',
+          content: this.title,
+        },
       ],
       title: this.title,
     }

@@ -264,6 +264,16 @@ export default {
           property: 'og:description',
           content: this.event?.description,
         },
+        {
+          hid: 'twitter:description',
+          property: 'twitter:description',
+          content: this.event?.description,
+        },
+        {
+          hid: 'twitter:title',
+          property: 'twitter:title',
+          content: this.title,
+        },
       ],
       title: this.title,
     }

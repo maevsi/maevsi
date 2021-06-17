@@ -219,6 +219,39 @@ export default {
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
             this.$router.currentRoute.fullPath,
         },
+        {
+          hid: 'twitter:card',
+          property: 'twitter:card',
+          content: 'summary',
+        },
+        {
+          hid: 'twitter:description',
+          property: 'twitter:description',
+          content: this.$t('globalOgSeoDescription'),
+        },
+        {
+          hid: 'twitter:image',
+          property: 'twitter:image',
+          content:
+            this.$baseUrl +
+            '/assets/static/logos/maevsi_with-text_open-graph.png', // Does not support .svg as of 2021-06.
+        },
+        {
+          hid: 'twitter:image:alt',
+          property: 'twitter:image:alt',
+          content: this.$t('globalOgImageAlt'),
+        },
+        // TODO: Get access to the @maevsi handle.
+        // {
+        //   hid: 'twitter:site',
+        //   property: 'twitter:site',
+        //   content: '@maevsi',
+        // },
+        {
+          hid: 'twitter:title',
+          property: 'twitter:title',
+          content: 'maevsi',
+        },
       ],
       titleTemplate: (titleChunk) => {
         return titleChunk ? `${titleChunk} · maevsi` : 'maevsi'

@@ -38,6 +38,11 @@ export default {
           property: 'profile:username',
           content: this.title,
         },
+        {
+          hid: 'twitter:title',
+          property: 'twitter:title',
+          content: this.title,
+        },
       ],
       title: this.title,
     }

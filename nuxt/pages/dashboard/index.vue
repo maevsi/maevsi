@@ -48,6 +48,11 @@ export default {
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
             this.$router.currentRoute.fullPath,
         },
+        {
+          hid: 'twitter:title',
+          property: 'twitter:title',
+          content: this.title,
+        },
       ],
       title: this.title,
     }
