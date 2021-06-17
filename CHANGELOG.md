@@ -1,3 +1,10 @@
+# [0.74.0](https://github.com/maevsi/maevsi/compare/0.73.0...0.74.0) (2021-06-17)
+
+
+### Features
+
+* **open-graph:** set title and url tags on every page ([ee9d16b](https://github.com/maevsi/maevsi/commit/ee9d16bf442eb64665eac8eb1c3fedf6d207dbdc)), closes [#88](https://github.com/maevsi/maevsi/issues/88)
+
 # [0.73.0](https://github.com/maevsi/maevsi/compare/0.72.0...0.73.0) (2021-06-17)
 
 
