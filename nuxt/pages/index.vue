@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="flex items-center mb-16">
+    <section id="overview" class="flex items-center mb-16">
       <div class="p-4 w-full lg:w-1/2">
         <i18n
           class="
@@ -150,6 +150,21 @@ export default {
   },
   head() {
     return {
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.title,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content:
+            'https://' +
+            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
+            this.$router.currentRoute.fullPath,
+        },
+      ],
       title: this.title,
     }
   },

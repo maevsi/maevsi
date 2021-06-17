@@ -187,9 +187,37 @@ export default {
           content: this.$t('globalOgImageAlt'),
         },
         {
+          hid: 'og:image:height',
+          property: 'og:image:height',
+          content: '627',
+        },
+        {
+          hid: 'og:image:width',
+          property: 'og:image:width',
+          content: '1200',
+        },
+        {
+          hid: 'og:site_name',
+          property: 'og:site_name',
+          content: 'maevsi',
+        },
+        {
           hid: 'og:type',
           property: 'og:type',
           content: 'website', // https://ogp.me/#types
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'maevsi',
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content:
+            'https://' +
+            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
+            this.$router.currentRoute.fullPath,
         },
       ],
       titleTemplate: (titleChunk) => {

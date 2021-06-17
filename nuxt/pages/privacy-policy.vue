@@ -261,6 +261,21 @@ export default {
   },
   head() {
     return {
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.title,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content:
+            'https://' +
+            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
+            this.$router.currentRoute.fullPath,
+        },
+      ],
       title: this.title,
     }
   },

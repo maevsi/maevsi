@@ -3,7 +3,7 @@
     <div class="container mx-auto px-2 py-8">
       <div class="flex flex-wrap justify-between mx-auto w-5/6">
         <FooterCategory :heading="$t('product')">
-          <AppLink to="/">
+          <AppLink to="/#overview">
             {{ $t('overview') }}
           </AppLink>
           <AppLink to="/#features">

@@ -4,188 +4,183 @@
     :error-message="graphqlErrorMessage"
   />
   <div v-else>
-    <div v-if="event">
-      <div v-if="contact" class="text-center">
-        <p class="font-bold mb-2 text-2xl">
-          {{
-            $t('greeting', {
-              usernameString: contact.firstName ? ' ' + contact.firstName : '',
-            })
-          }}
-        </p>
-        <p>{{ $t('greetingDescription') }}</p>
-      </div>
-      <br />
-      <div
-        v-if="
+    <div v-if="contact" class="text-center">
+      <p class="font-bold mb-2 text-2xl">
+        {{
+          $t('greeting', {
+            usernameString: contact.firstName ? ' ' + contact.firstName : '',
+          })
+        }}
+      </p>
+      <p>{{ $t('greetingDescription') }}</p>
+    </div>
+    <br />
+    <div
+      v-if="
+        $store.state.jwtDecoded &&
+        event.authorUsername === $store.state.jwtDecoded.username
+      "
+      class="flex justify-evenly"
+    >
+      <Button append :icon-id="['fas', 'cog']" to="settings">
+        {{ $t('settings') }}
+      </Button>
+    </div>
+    <div
+      class="card flex flex-col items-center mt-4"
+      :class="{
+        'bg-yellow-100':
           $store.state.jwtDecoded &&
-          event.authorUsername === $store.state.jwtDecoded.username
-        "
-        class="flex justify-evenly"
-      >
-        <Button append :icon-id="['fas', 'cog']" to="settings">
-          {{ $t('settings') }}
-        </Button>
+          event.authorUsername === $store.state.jwtDecoded.username,
+      }"
+    >
+      <h1 class="mb-0 truncate max-w-full">
+        {{ event.name }}
+      </h1>
+      <Owner class="mb-4" link :username="event.authorUsername" />
+      <div class="flex flex-col sm:flex-row m-auto">
+        <EventDashletVisibility :event="event" with-text />
+        <EventDashletStart :event="event" />
+        <EventDashletDuration :event="event" />
+        <EventDashletLocation :event="event" />
+        <EventDashletAttendanceType :event="event" />
       </div>
-      <div
-        class="card flex flex-col items-center mt-4"
-        :class="{
-          'bg-yellow-100':
-            $store.state.jwtDecoded &&
-            event.authorUsername === $store.state.jwtDecoded.username,
-        }"
+      <Button
+        :icon-id="['fas', 'download']"
+        class="text-text-bright"
+        @click="downloadIcal"
       >
-        <h1 class="mb-0 truncate max-w-full">
-          {{ event.name }}
-        </h1>
-        <Owner class="mb-4" link :username="event.authorUsername" />
-        <div class="flex flex-col sm:flex-row m-auto">
-          <EventDashletVisibility :event="event" with-text />
-          <EventDashletStart :event="event" />
-          <EventDashletDuration :event="event" />
-          <EventDashletLocation :event="event" />
-          <EventDashletAttendanceType :event="event" />
-        </div>
-        <Button
-          :icon-id="['fas', 'download']"
-          class="text-text-bright"
-          @click="downloadIcal"
-        >
-          {{ $t('iCalDownload') }}
-        </Button>
-        <div v-if="invitation">
-          <hr class="my-4" />
-          <div class="grid grid-cols-6 justify-content-center">
-            <div
-              class="text-text-bright m-2"
-              :class="{
-                'col-span-5': invitation.feedback === 'ACCEPTED',
-                'col-span-6':
-                  invitation.feedback === null ||
-                  invitation.feedback === 'CANCELED',
-              }"
-            >
-              <div class="flex gap-4 justify-center">
-                <div
-                  v-if="invitation.feedback === 'CANCELED'"
-                  class="flex font-semibold items-center text-red-600"
-                >
-                  <FontAwesomeIcon
-                    class="mr-2"
-                    :icon="['fas', 'times-circle']"
-                    size="lg"
-                    title="canceled"
-                  />
-                  {{ $t('invitationCanceled') }}
-                </div>
-                <ButtonGreen
-                  v-if="
-                    invitation.feedback === null ||
-                    invitation.feedback === 'CANCELED'
-                  "
-                  @click="accept"
-                >
-                  {{ $t('invitationAccept') }}
-                </ButtonGreen>
-                <div
-                  v-if="invitation.feedback === 'ACCEPTED'"
-                  class="flex font-semibold items-center text-green-600"
-                >
-                  <FontAwesomeIcon
-                    class="mr-2"
-                    :icon="['fas', 'check-circle']"
-                    size="lg"
-                    title="accepted"
-                  />
-                  {{ $t('invitationAccepted') }}
-                </div>
-                <Button
-                  v-if="
-                    invitation.feedback === null ||
-                    invitation.feedback === 'ACCEPTED'
-                  "
-                  @click="cancel"
-                >
-                  {{ $t('invitationCancel') }}
-                </Button>
-              </div>
-            </div>
-            <div
-              v-if="invitation.feedback === 'ACCEPTED'"
-              class="
-                col-span-1
-                bg-gray-500
-                m-auto
-                px-2
-                rounded-full
-                text-text-bright
-              "
-            >
-              {{ $t('step1Of2') }}
-            </div>
-            <div
-              v-if="
-                invitation.feedback !== null &&
-                invitation.feedback === 'ACCEPTED'
-              "
-              class="col-span-5"
-            >
-              <FormInput
-                label-for="input-paper-invitation-feedback"
-                :title="$t('invitationCardKind')"
+        {{ $t('iCalDownload') }}
+      </Button>
+      <div v-if="invitation">
+        <hr class="my-4" />
+        <div class="grid grid-cols-6 justify-content-center">
+          <div
+            class="text-text-bright m-2"
+            :class="{
+              'col-span-5': invitation.feedback === 'ACCEPTED',
+              'col-span-6':
+                invitation.feedback === null ||
+                invitation.feedback === 'CANCELED',
+            }"
+          >
+            <div class="flex gap-4 justify-center">
+              <div
+                v-if="invitation.feedback === 'CANCELED'"
+                class="flex font-semibold items-center text-red-600"
               >
-                <select
-                  id="input-paper-invitation-feedback"
-                  v-model="invitation.feedbackPaper"
-                  class="form-input"
-                  @change="paperInvitationFeedback"
-                >
-                  <option disabled :value="null">
-                    {{ $t('requestSelection') }}
-                  </option>
-                  <option value="NONE">
-                    {{ $t('invitationCardKindNone') }}
-                  </option>
-                  <option value="PAPER">
-                    {{ $t('invitationCardKindPaper') }}
-                  </option>
-                  <option value="DIGITAL">
-                    {{ $t('invitationCardKindDigital') }}
-                  </option>
-                </select>
-              </FormInput>
-            </div>
-            <div
-              v-if="
-                invitation.feedback !== null &&
-                invitation.feedback === 'ACCEPTED'
-              "
-              class="
-                col-span-1
-                bg-gray-500
-                m-auto
-                px-2
-                rounded-full
-                text-text-bright
-              "
-            >
-              {{ $t('step2Of2') }}
+                <FontAwesomeIcon
+                  class="mr-2"
+                  :icon="['fas', 'times-circle']"
+                  size="lg"
+                  title="canceled"
+                />
+                {{ $t('invitationCanceled') }}
+              </div>
+              <ButtonGreen
+                v-if="
+                  invitation.feedback === null ||
+                  invitation.feedback === 'CANCELED'
+                "
+                @click="accept"
+              >
+                {{ $t('invitationAccept') }}
+              </ButtonGreen>
+              <div
+                v-if="invitation.feedback === 'ACCEPTED'"
+                class="flex font-semibold items-center text-green-600"
+              >
+                <FontAwesomeIcon
+                  class="mr-2"
+                  :icon="['fas', 'check-circle']"
+                  size="lg"
+                  title="accepted"
+                />
+                {{ $t('invitationAccepted') }}
+              </div>
+              <Button
+                v-if="
+                  invitation.feedback === null ||
+                  invitation.feedback === 'ACCEPTED'
+                "
+                @click="cancel"
+              >
+                {{ $t('invitationCancel') }}
+              </Button>
             </div>
           </div>
-        </div>
-        <div v-if="event.description">
-          <hr class="my-4" />
-          <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
-          <vue-markdown
-            :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
-            class="description maevsi-prose"
-            :html="false"
-            >{{ event.description }}
-          </vue-markdown>
+          <div
+            v-if="invitation.feedback === 'ACCEPTED'"
+            class="
+              col-span-1
+              bg-gray-500
+              m-auto
+              px-2
+              rounded-full
+              text-text-bright
+            "
+          >
+            {{ $t('step1Of2') }}
+          </div>
+          <div
+            v-if="
+              invitation.feedback !== null && invitation.feedback === 'ACCEPTED'
+            "
+            class="col-span-5"
+          >
+            <FormInput
+              label-for="input-paper-invitation-feedback"
+              :title="$t('invitationCardKind')"
+            >
+              <select
+                id="input-paper-invitation-feedback"
+                v-model="invitation.feedbackPaper"
+                class="form-input"
+                @change="paperInvitationFeedback"
+              >
+                <option disabled :value="null">
+                  {{ $t('requestSelection') }}
+                </option>
+                <option value="NONE">
+                  {{ $t('invitationCardKindNone') }}
+                </option>
+                <option value="PAPER">
+                  {{ $t('invitationCardKindPaper') }}
+                </option>
+                <option value="DIGITAL">
+                  {{ $t('invitationCardKindDigital') }}
+                </option>
+              </select>
+            </FormInput>
+          </div>
+          <div
+            v-if="
+              invitation.feedback !== null && invitation.feedback === 'ACCEPTED'
+            "
+            class="
+              col-span-1
+              bg-gray-500
+              m-auto
+              px-2
+              rounded-full
+              text-text-bright
+            "
+          >
+            {{ $t('step2Of2') }}
+          </div>
         </div>
       </div>
+      <div v-if="event.description">
+        <hr class="my-4" />
+        <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
+        <vue-markdown
+          :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
+          class="description maevsi-prose"
+          :html="false"
+          >{{ event.description }}
+        </vue-markdown>
+      </div>
     </div>
-    <Error v-else :status-code="403" />
   </div>
 </template>
 
@@ -199,22 +194,6 @@ import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitati
 const consola = require('consola')
 
 export default {
-  apollo: {
-    event() {
-      return {
-        query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
-        variables: {
-          authorUsername: this.$route.params.username,
-          slug: this.$route.params.event_name,
-        },
-        update: (data) => data.eventByAuthorUsernameAndSlug,
-        error(error, _vm, _key, _type, _options) {
-          this.graphqlErrorMessage = error.message
-          consola.error(error)
-        },
-      }
-    },
-  },
   components: {
     VueMarkdown,
   },
@@ -231,17 +210,50 @@ export default {
 
     return eventIsExisting
   },
+  async asyncData({ app, error, params }) {
+    let graphqlErrorMessage
+    const event = await app.apolloProvider.defaultClient
+      .query({
+        query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
+        variables: {
+          authorUsername: params.username,
+          slug: params.event_name,
+        },
+      })
+      .then(({ data }) => data.eventByAuthorUsernameAndSlug)
+      .catch((reason) => {
+        graphqlErrorMessage = reason.message
+        consola.error(reason)
+      })
+
+    if (!event) {
+      return error({ statusCode: 403 })
+    }
+
+    return { event, graphqlErrorMessage }
+  },
   data() {
     return {
       graphqlErrorMessage: undefined,
+      title: this.$route.params.event_name,
     }
   },
   head() {
     return {
-      title: this.$apollo.loading
-        ? this.$t('globalLoading')
-        : this.$global.getNested(this.event, 'name') || '403',
       meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.title,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content:
+            'https://' +
+            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
+            this.$router.currentRoute.fullPath,
+        },
         {
           hid: 'description',
           property: 'description',
@@ -253,6 +265,7 @@ export default {
           content: this.event?.description,
         },
       ],
+      title: this.title,
     }
   },
   computed: {

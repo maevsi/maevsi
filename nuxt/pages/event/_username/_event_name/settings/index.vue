@@ -70,6 +70,11 @@ export default {
       }
     },
   },
+  middleware({ res, params, store }) {
+    if (params.username !== store.state.signedInUsername) {
+      res.statusCode = 403
+    }
+  },
   async validate({ app, params }) {
     const {
       data: { eventIsExisting },
@@ -87,14 +92,30 @@ export default {
     return {
       graphqlErrorMessage: undefined,
       mutation: EVENT_DELETE_MUTATION,
-      title: this.$t('title'),
+      title:
+        this.$route.params.username === this.$store.state.signedInUsername
+          ? this.$route.params.event_name
+          : '403',
     }
   },
   head() {
     return {
-      title: this.$apollo.loading
-        ? this.$t('globalLoading')
-        : this.$global.getNested(this.event, 'name') || '403',
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.title,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content:
+            'https://' +
+            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
+            this.$router.currentRoute.fullPath,
+        },
+      ],
+      title: this.title,
     }
   },
   methods: {
@@ -171,7 +192,6 @@ export default {
 <i18n lang="yml">
 de:
   event: Veranstaltung
-  title: Einstellungen
   titleDangerZone: Gefahrenzone
   titleDelete: Veranstaltung löschen
   titleEdit: Veranstaltung bearbeiten
@@ -179,7 +199,6 @@ de:
   titleInvitations: Einladungen
 en:
   event: event
-  title: Settings
   titleDangerZone: Danger zone
   titleDelete: Delete event
   titleEdit: Edit event

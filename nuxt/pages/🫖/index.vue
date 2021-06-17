@@ -7,10 +7,38 @@ export default {
   middleware({ res }) {
     res.statusCode = 418
   },
+  data() {
+    return {
+      graphqlErrorMessage: undefined,
+      title: this.$t('title'),
+    }
+  },
   head() {
     return {
-      title: "I'll not make coffee",
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.title,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content:
+            'https://' +
+            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
+            this.$router.currentRoute.fullPath,
+        },
+      ],
+      title: this.title,
     }
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  title: Ich werd' keinen Kaffe machen
+en:
+  title: I'll not make coffee
+</i18n>

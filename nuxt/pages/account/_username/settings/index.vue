@@ -49,6 +49,11 @@ import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 
 export default {
+  middleware({ res, params, store }) {
+    if (params.username !== store.state.signedInUsername) {
+      res.statusCode = 403
+    }
+  },
   async validate({ app, params }) {
     const {
       data: { accountIsExisting },
@@ -64,14 +69,30 @@ export default {
   data() {
     return {
       accountDeleteMutation: ACCOUNT_DELETE_MUTATION,
-    }
-  },
-  head() {
-    return {
       title:
         this.$route.params.username === this.$store.state.signedInUsername
           ? this.$route.params.username
           : '403',
+    }
+  },
+  head() {
+    return {
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.title,
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content:
+            'https://' +
+            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
+            this.$router.currentRoute.fullPath,
+        },
+      ],
+      title: this.title,
     }
   },
   methods: {
