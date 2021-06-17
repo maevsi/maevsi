@@ -1,6 +1,6 @@
 <template>
   <a
-    v-if="to.match(/^(http(s)?|ftp):\/\//)"
+    v-if="to.match(/^((ftp|http(s)?):\/\/|(mailto):)/)"
     class="items-center inline-flex"
     :href="to"
     :rel="

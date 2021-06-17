@@ -66,6 +66,9 @@
           >
             {{ $t('sourceCode') }}
           </AppLink>
+          <AppLink to="mailto:mail+support@maev.si">
+            {{ $t('contact') }}
+          </AppLink>
         </FooterCategory>
       </div>
       <div class="p-2" />
@@ -96,6 +99,7 @@
 
 <i18n lang="yml">
 de:
+  contact: Kontakt
   copyright: © {year} maevsi-Team. Alle Rechte vorbehalten.
   features: Funktionen
   githubLinkTitle: maevsi auf GitHub
@@ -112,6 +116,7 @@ de:
   sourceCode: Quellcode
   team: Team
 en:
+  contact: Contact
   copyright: © {year} maevsi team. All rights reserved.
   features: Features
   githubLinkTitle: maevsi on GitHub
