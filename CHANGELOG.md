@@ -1,3 +1,24 @@
+# [0.73.0](https://github.com/maevsi/maevsi/compare/0.72.0...0.73.0) (2021-06-17)
+
+
+### Bug Fixes
+
+* **tailwind:** correct prose sizing ([4b0e05e](https://github.com/maevsi/maevsi/commit/4b0e05e5c8645a0078566d7f1cc166414ca9ec24))
+* **tailwind:** make strong text visible in dark mode ([99c5563](https://github.com/maevsi/maevsi/commit/99c556381d0b6d247f31821a3a034d5b3ed0e428))
+
+
+### Features
+
+* **eslint:** disallow raw text ([9144a1c](https://github.com/maevsi/maevsi/commit/9144a1c63f6f496fd9ee798cb597e792fd4c72dd))
+* **event-list:** reorder buttons ([8589fe1](https://github.com/maevsi/maevsi/commit/8589fe12261f068b0deb3081d64dacf7f343d6a7))
+* **footer:** add support mail link ([18dcf73](https://github.com/maevsi/maevsi/commit/18dcf7309c2c98875c0578a9c8e93b0063864199)), closes [#306](https://github.com/maevsi/maevsi/issues/306)
+* **form-event:** warn in past start date ([08b7793](https://github.com/maevsi/maevsi/commit/08b7793706d654a0dc631dfb9830913c68d28906)), closes [#257](https://github.com/maevsi/maevsi/issues/257)
+* **legal-notice:** translate raw text ([0d24d43](https://github.com/maevsi/maevsi/commit/0d24d433fabd7f3531fcfbe8dfb1d81ee4736295))
+* **node:** lint all before push ([441770b](https://github.com/maevsi/maevsi/commit/441770bcce38d1526464169104757c10514399f2))
+* x ([894ba38](https://github.com/maevsi/maevsi/commit/894ba3844c2157d9d3ea316fcb7d932c3f0e34a0))
+* **open-graph:** scale down logo ([525334e](https://github.com/maevsi/maevsi/commit/525334e74b737e10113abed7f40dfcfe387d9047))
+* translate raw text ([dd80b83](https://github.com/maevsi/maevsi/commit/dd80b834a029d877f2bb2922dafa1c51f06c4581)), closes [#304](https://github.com/maevsi/maevsi/issues/304)
+
 # [0.72.0](https://github.com/maevsi/maevsi/compare/0.71.1...0.72.0) (2021-06-15)
 
 
