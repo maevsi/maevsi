@@ -51,6 +51,6 @@
 }
 @layer utilities {
   .maevsi-prose {
-    @apply m-auto prose dark:prose-dark sm:prose-sm sm:dark:prose-dark lg:prose-lg lg:dark:prose-dark xl:prose-xl xl:dark:prose-dark;
+    @apply m-auto prose-sm dark:prose-dark sm:prose sm:dark:prose-dark lg:prose-lg lg:dark:prose-dark xl:prose-xl xl:dark:prose-dark;
   }
 }
