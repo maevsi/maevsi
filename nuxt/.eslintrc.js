@@ -15,7 +15,7 @@ module.exports = {
   root: true,
   rules: {
     '@intlify/vue-i18n/no-missing-keys': 'error',
-    '@intlify/vue-i18n/no-raw-text': 'off',
+    '@intlify/vue-i18n/no-raw-text': 'error',
     'yml/quotes': ['error', { prefer: 'single' }],
   },
   settings: {

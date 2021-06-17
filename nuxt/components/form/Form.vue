@@ -46,7 +46,7 @@
         @click="accountRegistrationRefresh"
       >
         <!-- https://github.com/maevsi/maevsi/issues/209 -->
-        Resend verification mail
+        {{ $t('verificationMailResend') }}
       </Button>
     </CardAlert>
   </form>
@@ -149,7 +149,9 @@ export default {
 de:
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
   submit: Absenden
+  verificationMailResend: Verifizierungsmail erneut senden
 en:
   registrationRefreshSuccess: A new welcome email is on its way to you.
   submit: Submit
+  verificationMailResend: Resend verification mail
 </i18n>

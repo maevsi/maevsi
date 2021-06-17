@@ -8,6 +8,7 @@ export default {
 const Template = (_, { argTypes }) => ({
   components: { Menu },
   props: Object.keys(argTypes),
+  // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
   template: '<Menu v-bind="$props">Menu</Menu>',
 })
 

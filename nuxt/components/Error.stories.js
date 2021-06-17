@@ -8,6 +8,7 @@ export default {
 const Template = (_, { argTypes }) => ({
   components: { Error },
   props: Object.keys(argTypes),
+  // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
   template: '<Error v-bind="$props">Error</Error>',
 })
 

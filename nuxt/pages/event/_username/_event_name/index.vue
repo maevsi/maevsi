@@ -121,7 +121,7 @@
                 text-text-bright
               "
             >
-              1/2
+              {{ $t('step1Of2') }}
             </div>
             <div
               v-if="
@@ -169,7 +169,7 @@
                 text-text-bright
               "
             >
-              2/2
+              {{ $t('step2Of2') }}
             </div>
           </div>
         </div>
@@ -348,6 +348,8 @@ de:
   invitationCardKindDigital: Digital
   requestSelection: Bitte auswählen
   settings: Einstellungen
+  step1Of2: 1/2
+  step2Of2: 2/2
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
   greeting: Hey{usernameString}!
@@ -364,5 +366,7 @@ en:
   invitationCardKindDigital: Digital
   requestSelection: Please select
   settings: Settings
+  step1Of2: 1/2
+  step2Of2: 2/2
   success: Your input was saved succesfully.
 </i18n>
