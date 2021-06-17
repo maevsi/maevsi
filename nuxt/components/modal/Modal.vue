@@ -23,11 +23,20 @@
           </div>
           <slot v-else name="header" />
         </div>
-        <div class="text-center">
+        <div
+          class="text-center"
+          :class="{ 'disabled pointer-events-none relative': isSubmitting }"
+        >
           <div v-if="contentBodyComputed">
             {{ contentBodyComputed }}
           </div>
           <slot v-else />
+          <div
+            v-if="isSubmitting"
+            class="absolute bottom-0 left-0 right-0 top-0"
+          >
+            <LoaderIndicatorSpinner />
+          </div>
         </div>
         <div class="flex justify-evenly">
           <div v-if="contentFooterComputed">
