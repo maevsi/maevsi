@@ -10,10 +10,6 @@
 
 <script>
 export default {
-  mounted() {
-    console.log('input:' + this.formInput)
-    console.log('func:' + this.validationFunction(this.formInput))
-  },
   props: {
     formInput: {
       default: undefined,
