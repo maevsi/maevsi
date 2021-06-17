@@ -34,6 +34,7 @@ const Template = (_, { argTypes }) => ({
   components: { ImageUploadGallery },
   props: Object.keys(argTypes),
   template:
+    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     '<ImageUploadGallery v-bind="$props">ImageUploadGallery</ImageUploadGallery>',
 })
 

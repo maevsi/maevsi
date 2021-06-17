@@ -5,7 +5,7 @@
     </span>
     {{ $moment(event.start).format('lll') }}
     <br />
-    ({{ $moment(event.start).fromNow() }})
+    {{ $t('embraced', { content: $moment(event.start).fromNow() }) }}
   </EventDashlet>
 </template>
 
@@ -22,7 +22,9 @@ export default {
 
 <i18n lang="yml">
 de:
+  embraced: ({content})
   start: Beginn
 en:
+  embraced: ({content})
   start: start
 </i18n>

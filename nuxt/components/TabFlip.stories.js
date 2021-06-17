@@ -8,6 +8,7 @@ export default {
 const Template = (_, { argTypes }) => ({
   components: { TabFlip },
   props: Object.keys(argTypes),
+  // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
   template: '<TabFlip v-bind="$props">TabFlip</TabFlip>',
 })
 

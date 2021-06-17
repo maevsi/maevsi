@@ -11,7 +11,9 @@
           :for="labelFor"
         >
           {{ title }}
-          <span v-if="required" class="text-red-700 font-normal">*</span>
+          <span v-if="required" class="text-red-700 font-normal">
+            {{ $t('requiredSymbol') }}
+          </span>
         </label>
       </div>
       <div class="md:w-2/3">
@@ -51,3 +53,10 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  requiredSymbol: '*'
+en:
+  requiredSymbol: '*'
+</i18n>

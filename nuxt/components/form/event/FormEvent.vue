@@ -257,7 +257,7 @@
             <AppLink
               to="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
             >
-              Markdown
+              {{ $t('markdown') }}
             </AppLink>
           </template>
         </i18n>
@@ -528,6 +528,7 @@ de:
   inputInfoUrl: Eine Web-URL für digitale Veranstaltungen.
   isInPerson: vor Ort
   isRemote: digital
+  markdown: Markdown
   maximumInviteeCount: Maximale Gästezahl
   name: Name
   namePlaceholder: Willkommensfeier
@@ -555,6 +556,7 @@ en:
   inputInfoUrl: A web URL for remote events.
   isInPerson: in person
   isRemote: remote
+  markdown: Markdown
   maximumInviteeCount: Maximum invitee count
   name: Name
   namePlaceholder: Welcome Party

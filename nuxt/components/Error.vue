@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="font-black text-center text-xl">maev.no? 🥺</p>
+    <p class="font-black text-center text-xl">{{ $t('maevNo') }}</p>
     <h1>{{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}</h1>
     <p v-if="statusCode === 403" class="text-center">
       {{ $t('403description') }}
@@ -50,8 +50,10 @@ de:
   403description: Du bist aktuell nicht berechtigt, auf diese Seite zuzugreifen.
   403hint: Hast du von diesem Gerät aus schon einen Einladungscode eingegeben oder dich angemeldet?
   error: Fehler
+  maevNo: maev.no? 🥺
 en:
   403description: "You're currently missing permissions to view this site."
   403hint: On this device, did you already enter an invitation code or sign in?
   error: Error
+  maevNo: maev.no? 🥺
 </i18n>

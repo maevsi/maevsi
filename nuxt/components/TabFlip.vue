@@ -7,7 +7,7 @@
           :class="{ 'bg-gray-400': dark, 'bg-gray-300': !dark }"
         >
           <li class="invisible">
-            <button type="button">[filler]</button>
+            <button type="button">{{ $t('fillerSymbol') }}</button>
           </li>
         </ul>
       </div>
@@ -20,10 +20,12 @@
             'bg-white': !dark,
           }"
         >
-          <button class="invisible" type="button">[filler]</button>
+          <button class="invisible" type="button">
+            {{ $t('fillerSymbol') }}
+          </button>
         </li>
         <li class="invisible">
-          <button type="button">[filler]</button>
+          <button type="button">{{ $t('fillerSymbol') }}</button>
         </li>
       </ul>
       <ul class="e1 pills z-0">
@@ -113,3 +115,10 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  fillerSymbol: [filler]
+en:
+  fillerSymbol: [filler]
+</i18n>

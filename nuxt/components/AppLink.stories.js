@@ -9,6 +9,7 @@ export default {
 const Template = (_, { argTypes }) => ({
   components: { AppLink },
   props: Object.keys(argTypes),
+  // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
   template: '<AppLink v-bind="$props" @click="click">AppLink</AppLink>',
 })
 
