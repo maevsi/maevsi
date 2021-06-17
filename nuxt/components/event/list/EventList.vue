@@ -9,8 +9,8 @@
     </h2>
     <ButtonList>
       <ButtonEventList v-if="showButtonEventList" />
-      <ButtonEventUnlock v-if="showButtonEventUnlock" />
       <ButtonEventNew v-if="showButtonEventNew" />
+      <ButtonEventUnlock v-if="showButtonEventUnlock" />
     </ButtonList>
     <ul
       v-if="
