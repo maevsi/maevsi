@@ -169,7 +169,7 @@
       <p>{{ $t('pluginsToolsYouTubeDescription6') }}</p>
       <i18n path="pluginsToolsYouTubeDescription7" tag="p">
         <template #linkPrivacy>
-          <AppLink to="https://policies.google.com/privacy?hl=de">
+          <AppLink :to="$t('pluginsToolsYouTubeDescription7_1')">
             {{ $t('pluginsToolsYouTubeDescription7_1') }}
           </AppLink>
         </template>
@@ -179,12 +179,12 @@
       <p>{{ $t('pluginsToolsGoogleWebFontsDescription1') }}</p>
       <i18n path="pluginsToolsGoogleWebFontsDescription2" tag="p">
         <template #linkFaq>
-          <AppLink to="https://developers.google.com/fonts/faq">
+          <AppLink :to="$t('pluginsToolsGoogleWebFontsDescription2_1')">
             {{ $t('pluginsToolsGoogleWebFontsDescription2_1') }}
           </AppLink>
         </template>
         <template #linkPrivacy>
-          <AppLink to="https://policies.google.com/privacy?hl=de">
+          <AppLink :to="$t('pluginsToolsGoogleWebFontsDescription2_2')">
             {{ $t('pluginsToolsGoogleWebFontsDescription2_2') }}
           </AppLink>
         </template>
@@ -194,7 +194,7 @@
       <p>{{ $t('pluginsToolsFontAwesomeDescription1') }}</p>
       <i18n path="pluginsToolsFontAwesomeDescription2" tag="p">
         <template #linkPrivacy>
-          <AppLink to="https://fontawesome.com/privacy">
+          <AppLink :to="$t('pluginsToolsFontAwesomeDescription2_1')">
             {{ $t('pluginsToolsFontAwesomeDescription2_1') }}
           </AppLink>
         </template>
@@ -222,7 +222,7 @@
       </i18n>
       <i18n path="pluginsToolsGoogleMapsDescription5" tag="p">
         <template #linkPrivacy>
-          <AppLink to="https://policies.google.com/privacy?hl=de">
+          <AppLink :to="$t('pluginsToolsGoogleMapsDescription5_1')">
             {{ $t('pluginsToolsGoogleMapsDescription5_1') }}
           </AppLink>
         </template>
@@ -235,12 +235,12 @@
       <p>{{ $t('pluginsToolsGoogleReCaptchaDescription4') }}</p>
       <i18n path="pluginsToolsGoogleReCaptchaDescription5" tag="p">
         <template #linkPrivacy>
-          <AppLink to="https://policies.google.com/privacy?hl=de">
+          <AppLink :to="$t('pluginsToolsGoogleReCaptchaDescription5_1')">
             {{ $t('pluginsToolsGoogleReCaptchaDescription5_1') }}
           </AppLink>
         </template>
         <template #linkTerms>
-          <AppLink to="https://policies.google.com/terms?hl=de">
+          <AppLink :to="$t('pluginsToolsGoogleReCaptchaDescription5_2')">
             {{ $t('pluginsToolsGoogleReCaptchaDescription5_2') }}
           </AppLink>
         </template>
@@ -277,7 +277,7 @@ de:
   dataAcquisitionCommentsLegalBasisTitle: Rechtsgrundlage
   dataAcquisitionCommentsStorageDurationDescription: Die Kommentare und die damit verbundenen Daten werden gespeichert und verbleiben auf dieser Website, bis der kommentierte Inhalt vollständig gelöscht wurde oder die Kommentare aus rechtlichen Gründen gelöscht werden müssen (z. B. beleidigende Kommentare).
   dataAcquisitionCommentsStorageDurationTitle: Speicherdauer der Kommentare
-  dataAcquisitionCommentsSubscribeDescription: Als Nutzer der Seite können Sie nach einer Anmeldung Kommentare abonnieren. Sie erhalten eine Bestätigungsemail, um zu prüfen, ob Sie der Inhaber der angegebenen E-Mail-Adresse sind. Sie können diese Funktion jederzeit über einen Link in den Info-Mails abbestellen. Die im Rahmen des Abonnierens von Kommentaren eingegebenen Daten werden in diesem Fall gelöscht; wenn Sie diese Daten für andere Zwecke und an anderer Stelle (z. B. Newsletterbestellung) an uns übermittelt haben, verbleiben diese Daten jedoch bei uns.
+  dataAcquisitionCommentsSubscribeDescription: Als Nutzer der Seite können Sie nach einer Anmeldung Kommentare abonnieren. Sie erhalten eine Bestätigungs-E-Mail, um zu prüfen, ob Sie der Inhaber der angegebenen E-Mail-Adresse sind. Sie können diese Funktion jederzeit über einen Link in den Info-Mails abbestellen. Die im Rahmen des Abonnierens von Kommentaren eingegebenen Daten werden in diesem Fall gelöscht; wenn Sie diese Daten für andere Zwecke und an anderer Stelle (z. B. Newsletterbestellung) an uns übermittelt haben, verbleiben diese Daten jedoch bei uns.
   dataAcquisitionCommentsSubscribeTitle: Abonnieren von Kommentaren
   dataAcquisitionCommentsTitle: Kommentarfunktion auf dieser Website
   dataAcquisitionContactExternalDescription1: Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
@@ -418,42 +418,42 @@ de:
   summary: 1. Datenschutz auf einen Blick
   title: Datenschutzerklärung
 en:
-  dataAcquisition: 4. data collection on this website
+  dataAcquisition: 4. Data collection on this website
   dataAcquisitionCommentsDescription: For the comment function on this page, in addition to your comment, information on the time of creation of the comment, your e-mail address and, if you do not post anonymously, the username you have chosen will be stored.
   dataAcquisitionCommentsIpDescription: Our comment function stores the IP addresses of users who post comments. Since we do not check comments on this website before they are activated, we need this data to be able to take action against the author in the event of legal violations such as insults or propaganda.
   dataAcquisitionCommentsIpTitle: IP address storage
-  dataAcquisitionCommentsLegalBasisDescription: The storage of comments is based on your consent (Art. 6 para. 1 lit. a DSGVO). You can revoke your consent at any time. For this purpose, an informal communication by e-mail to us is sufficient. The legality of the data processing operations already carried out remains unaffected by the revocation.
+  dataAcquisitionCommentsLegalBasisDescription: The storage of comments is based on your consent (Art. 6 para. 1 lit. a GDPR). You can revoke your consent at any time. For this purpose, an informal communication by e-mail to us is sufficient. The legality of the data processing operations already carried out remains unaffected by the revocation.
   dataAcquisitionCommentsLegalBasisTitle: Legal basis
   dataAcquisitionCommentsStorageDurationDescription: The comments and the associated data are stored and remain on this website until the commented content has been completely deleted or the comments have to be deleted for legal reasons (e.g. offensive comments).
   dataAcquisitionCommentsStorageDurationTitle: Comments storage period
-  dataAcquisitionCommentsSubscribeDescription: As a user of the site, you can subscribe to comments after registering. You will receive a confirmation email to verify that you are the owner of the email address provided. You can unsubscribe from this function at any time via a link in the info emails. In this case, the data entered in the context of subscribing to comments will be deleted; however, if you have transmitted this data to us for other purposes and at another point (e.g. newsletter order), this data will remain with us.
+  dataAcquisitionCommentsSubscribeDescription: As a user of the site, you can subscribe to comments after registering. You will receive a confirmation e-mail to verify that you are the owner of the e-mail address provided. You can unsubscribe from this function at any time via a link in the info e-mails. In this case, the data entered in the context of subscribing to comments will be deleted; however, if you have transmitted this data to us for other purposes and at another point (e.g. newsletter order), this data will remain with us.
   dataAcquisitionCommentsSubscribeTitle: Subscribe to comments
   dataAcquisitionCommentsTitle: Comment function on this website
   dataAcquisitionContactExternalDescription1: If you contact us by e-mail, telephone or fax, your inquiry including all resulting personal data (name, inquiry) will be stored and processed by us for the purpose of processing your request. We will not pass on this data without your consent.
-  dataAcquisitionContactExternalDescription2: The processing of this data is based on Art. 6 (1) lit. b DSGVO, if your request is related to the performance of a contract or is necessary for the implementation of pre-contractual measures. In all other cases, the processing is based on our legitimate interest in the effective processing of requests addressed to us (Art. 6 para. 1 lit. f DSGVO) or on your consent (Art. 6 para. 1 lit. a DSGVO) if this was requested.
+  dataAcquisitionContactExternalDescription2: The processing of this data is based on Art. 6 (1) lit. b GDPR, if your request is related to the performance of a contract or is necessary for the implementation of pre-contractual measures. In all other cases, the processing is based on our legitimate interest in the effective processing of requests addressed to us (Art. 6 para. 1 lit. f GDPR) or on your consent (Art. 6 para. 1 lit. a GDPR) if this was requested.
   dataAcquisitionContactExternalDescription3: The data you send to us via contact requests will remain with us until you request us to delete it, revoke your consent to store it, or the purpose for storing the data no longer applies (e.g. after your request has been processed). Mandatory statutory provisions – in particular statutory retention periods – remain unaffected.
   dataAcquisitionContactExternalTitle: Request by e-mail, phone or fax
   dataAcquisitionContactFormDescription1: If you send us inquiries via the contact form, your data from the inquiry form including the contact data you provided there will be stored by us for the purpose of processing the inquiry and in case of follow-up questions. We do not pass on this data without your consent.
-  dataAcquisitionContactFormDescription2: The processing of this data is based on Art. 6 (1) lit. b DSGVO, if your request is related to the performance of a contract or is necessary for the implementation of pre-contractual measures. In all other cases, the processing is based on our legitimate interest in the effective processing of requests addressed to us (Art. 6 para. 1 lit. f DSGVO) or on your consent (Art. 6 para. 1 lit. a DSGVO) if this was requested.
+  dataAcquisitionContactFormDescription2: The processing of this data is based on Art. 6 (1) lit. b GDPR, if your request is related to the performance of a contract or is necessary for the implementation of pre-contractual measures. In all other cases, the processing is based on our legitimate interest in the effective processing of requests addressed to us (Art. 6 para. 1 lit. f GDPR) or on your consent (Art. 6 para. 1 lit. a GDPR) if this was requested.
   dataAcquisitionContactFormDescription3: The data you enter in the contact form will remain with us until you request us to delete it, revoke your consent to store it, or the purpose for storing the data no longer applies (e.g. after we have completed processing your request). Mandatory legal provisions – in particular retention periods – remain unaffected.
   dataAcquisitionContactFormTitle: Contact form
   dataAcquisitionCookiesDescription1: Our Internet pages use so-called „cookies“. Cookies are small text files and do not cause any damage to your end device. They are stored either temporarily for the duration of a session (session cookies) or permanently (permanent cookies) on your end device. Session cookies are automatically deleted at the end of your visit. Permanent cookies remain stored on your end device until you delete them yourself or until they are automatically deleted by your web browser.
   dataAcquisitionCookiesDescription2: In some cases, cookies from third-party companies may also be stored on your terminal device when you enter our site (third-party cookies). These enable us or you to use certain services of the third-party company (e.g. cookies for processing payment services).
   dataAcquisitionCookiesDescription3: Cookies have various functions. Many cookies are technically necessary, as certain website functions would not work without them (e.g. the login function). Other cookies are used to evaluate user behavior or to display advertising.
-  dataAcquisitionCookiesDescription4: Cookies that are necessary to carry out the electronic communication process (necessary cookies) or to provide certain functions that you have requested (functional cookies, e.g. for the login function) or to optimize the website (e.g. cookies to measure the web audience) are stored on the basis of Art. 6 (1) lit. f DSGVO, unless another legal basis is specified. The website operator has a legitimate interest in storing cookies for the technically error-free and optimized provision of its services. If consent to store cookies has been requested, the cookies in question are stored exclusively on the basis of this consent (Art. 6 para. 1 lit. a DSGVO); consent can be revoked at any time.
+  dataAcquisitionCookiesDescription4: Cookies that are necessary to carry out the electronic communication process (necessary cookies) or to provide certain functions that you have requested (functional cookies, e.g. for the login function) or to optimize the website (e.g. cookies to measure the web audience) are stored on the basis of Art. 6 (1) lit. f GDPR, unless another legal basis is specified. The website operator has a legitimate interest in storing cookies for the technically error-free and optimized provision of its services. If consent to store cookies has been requested, the cookies in question are stored exclusively on the basis of this consent (Art. 6 para. 1 lit. a GDPR); consent can be revoked at any time.
   dataAcquisitionCookiesDescription5: You can set your browser so that you are informed about the setting of cookies and only allow cookies in individual cases, exclude the acceptance of cookies for certain cases or in general and activate the automatic deletion of cookies when closing the browser. When deactivating cookies, the functionality of this website may be limited.
   dataAcquisitionCookiesDescription6: If cookies are used by third-party companies or for analysis purposes, we will inform you about this separately within the framework of this data protection declaration and, if necessary, request your consent.
   dataAcquisitionCookiesTitle: Cookies
   dataAcquisitionLogDescription1: 'The provider of the pages automatically collects and stores information in so-called server log files, which your browser automatically transmits to us. These are:'
   dataAcquisitionLogDescription2: This data is not merged with other data sources.
-  dataAcquisitionLogDescription3: The collection of this data is based on Art. 6 para. 1 lit. f DSGVO. The website operator has a legitimate interest in the technically error-free presentation and optimization of its website – for this purpose, the server log files must be collected.
-  dataAcquisitionLogItem1: Browser type and version
-  dataAcquisitionLogItem2: Operating system used
-  dataAcquisitionLogItem3: Referrer URL
-  dataAcquisitionLogItem4: Host name of the accessing computer
-  dataAcquisitionLogItem5: Time of the server request
+  dataAcquisitionLogDescription3: The collection of this data is based on Art. 6 para. 1 lit. f GDPR. The website operator has a legitimate interest in the technically error-free presentation and optimization of its website – for this purpose, the server log files must be collected.
+  dataAcquisitionLogItem1: browser type and version
+  dataAcquisitionLogItem2: operating system used
+  dataAcquisitionLogItem3: referrer URL
+  dataAcquisitionLogItem4: host name of the accessing computer
+  dataAcquisitionLogItem5: time of the server request
   dataAcquisitionLogItem6: IP address
-  dataAcquisitionLogTitle: Server log files
+  dataAcquisitionLogTitle: server log files
   dataCollection: Data collection on this website
   dataCollectionLiabilityDescription: The data processing on this website is carried out by the website operator. You can find his contact details in the imprint of this website.
   dataCollectionLiabilityTitle: Who is responsible for the data collection on this website?
@@ -475,19 +475,19 @@ en:
   hostingCdnExternalAddressName: Hetzner Online GmbH
   hostingCdnExternalAddressStreet: Industriestr. 25
   hostingCdnExternalDescription1: This website is hosted by an external service provider (hoster). The personal data collected on this website is stored on the hoster's servers. This may include IP addresses, contact requests, meta and communication data, contract data, contact data, names, website accesses and other data generated via a website.
-  hostingCdnExternalDescription2: The hoster is used for the purpose of fulfilling contracts with our potential and existing customers (Art. 6 para. 1 lit. b DSGVO) and in the interest of a secure, fast and efficient provision of our online offer by a professional provider (Art. 6 para. 1 lit. f DSGVO).
+  hostingCdnExternalDescription2: The hoster is used for the purpose of fulfilling contracts with our potential and existing customers (Art. 6 para. 1 lit. b GDPR) and in the interest of a secure, fast and efficient provision of our online offer by a professional provider (Art. 6 para. 1 lit. f GDPR).
   hostingCdnExternalDescription3: Our hoster will only process your data to the extent necessary to fulfill its service obligations and will follow our instructions regarding this data.
   hostingCdnExternalDescription4: 'We use the following hoster:'
   hostingCdnExternalProcessingContractDescription: To ensure data protection-compliant processing, we have concluded an order processing contract with our hoster.
   hostingCdnExternalProcessingContractTitle: Conclusion of a contract for order processing
   hostingCdnExternalTitle: External hosting
-  mandatoryInfo: 3. general notes and mandatory information
+  mandatoryInfo: 3. General notes and mandatory information
   mandatoryInfoComplaintDescription: In the event of breaches of the GDPR, data subjects shall have a right of appeal to a supervisory authority, in particular in the Member State of their habitual residence, their place of work or the place of the alleged breach. The right of appeal is without prejudice to other administrative or judicial remedies.
   mandatoryInfoComplaintTitle: Right of appeal to the competent supervisory authority
   mandatoryInfoConsentRevocationDescription: Many data processing operations are only possible with your express consent. You can revoke consent you have already given at any time. The legality of the data processing carried out until the revocation remains unaffected by the revocation.
-  mandatoryInfoConsentRevocationSpecialDescription1: IF THE DATA PROCESSING IS CARRIED OUT ON THE BASIS OF ART. 6 ABS. 1 LIT. E OR F DSGVO, YOU HAVE THE RIGHT TO OBJECT TO THE PROCESSING OF YOUR PERSONAL DATA AT ANY TIME FOR REASONS ARISING FROM YOUR PARTICULAR SITUATION; THIS ALSO APPLIES TO PROFILING BASED ON THESE PROVISIONS. THE RESPECTIVE LEGAL BASIS ON WHICH PROCESSING IS BASED CAN BE FOUND IN THIS PRIVACY POLICY. IF YOU OBJECT, WE WILL NO LONGER PROCESS YOUR PERSONAL DATA UNLESS WE CAN DEMONSTRATE COMPELLING LEGITIMATE GROUNDS FOR THE PROCESSING WHICH OVERRIDE YOUR INTERESTS, RIGHTS AND FREEDOMS, OR THE PROCESSING SERVES THE PURPOSE OF ASSERTING, EXERCISING OR DEFENDING LEGAL CLAIMS (OBJECTION UNDER ARTICLE 21 (1) DSGVO).
-  mandatoryInfoConsentRevocationSpecialDescription2: IF YOUR PERSONAL DATA IS PROCESSED FOR THE PURPOSE OF DIRECT MARKETING, YOU HAVE THE RIGHT TO OBJECT AT ANY TIME TO THE PROCESSING OF PERSONAL DATA CONCERNING YOU FOR THE PURPOSE OF SUCH MARKETING; THIS ALSO APPLIES TO PROFILING INSOFAR AS IT IS CONNECTED WITH SUCH DIRECT MARKETING. IF YOU OBJECT, YOUR PERSONAL DATA WILL SUBSEQUENTLY NO LONGER BE USED FOR THE PURPOSE OF DIRECT MARKETING (OBJECTION PURSUANT TO ARTICLE 21 (2) DSGVO).
-  mandatoryInfoConsentRevocationSpecialTitle: Right to object to data collection in special cases and to direct marketing (Art. 21 DSGVO)
+  mandatoryInfoConsentRevocationSpecialDescription1: IF THE DATA PROCESSING IS CARRIED OUT ON THE BASIS OF ART. 6 ABS. 1 LIT. E OR F GDPR, YOU HAVE THE RIGHT TO OBJECT TO THE PROCESSING OF YOUR PERSONAL DATA AT ANY TIME FOR REASONS ARISING FROM YOUR PARTICULAR SITUATION; THIS ALSO APPLIES TO PROFILING BASED ON THESE PROVISIONS. THE RESPECTIVE LEGAL BASIS ON WHICH PROCESSING IS BASED CAN BE FOUND IN THIS PRIVACY POLICY. IF YOU OBJECT, WE WILL NO LONGER PROCESS YOUR PERSONAL DATA UNLESS WE CAN DEMONSTRATE COMPELLING LEGITIMATE GROUNDS FOR THE PROCESSING WHICH OVERRIDE YOUR INTERESTS, RIGHTS AND FREEDOMS, OR THE PROCESSING SERVES THE PURPOSE OF ASSERTING, EXERCISING OR DEFENDING LEGAL CLAIMS (OBJECTION UNDER ARTICLE 21 (1) GDPR).
+  mandatoryInfoConsentRevocationSpecialDescription2: IF YOUR PERSONAL DATA IS PROCESSED FOR THE PURPOSE OF DIRECT MARKETING, YOU HAVE THE RIGHT TO OBJECT AT ANY TIME TO THE PROCESSING OF PERSONAL DATA CONCERNING YOU FOR THE PURPOSE OF SUCH MARKETING; THIS ALSO APPLIES TO PROFILING INSOFAR AS IT IS CONNECTED WITH SUCH DIRECT MARKETING. IF YOU OBJECT, YOUR PERSONAL DATA WILL SUBSEQUENTLY NO LONGER BE USED FOR THE PURPOSE OF DIRECT MARKETING (OBJECTION PURSUANT TO ARTICLE 21 (2) GDPR).
+  mandatoryInfoConsentRevocationSpecialTitle: Right to object to data collection in special cases and to direct marketing (Art. 21 GDPR)
   mandatoryInfoConsentRevocationTitle: Revocation of your consent to data processing
   mandatoryInfoDataChangeDescription: Within the framework of the applicable legal provisions, you have the right at any time to free information about your stored personal data, its origin and recipient and the purpose of data processing and, if necessary, a right to correction or deletion of this data. For this purpose, as well as for further questions on the subject of personal data, you can contact us at any time at the address given in the imprint.
   mandatoryInfoDataChangeTitle: Information, deletion and correction
@@ -506,10 +506,10 @@ en:
   mandatoryInfoProcessingRestrictionList1: If you dispute the accuracy of your personal data stored by us, we usually need time to verify this. For the duration of the review, you have the right to request the restriction of the processing of your personal data.
   mandatoryInfoProcessingRestrictionList2: If the processing of your personal data happened/is happening unlawfully, you may request the restriction of data processing instead of erasure.
   mandatoryInfoProcessingRestrictionList3: If we no longer need your personal data, but you need it to exercise, defend or enforce legal claims, you have the right to request restriction of the processing of your personal data instead of deletion.
-  mandatoryInfoProcessingRestrictionList4: If you have lodged an objection pursuant to Art. 21 (1) DSGVO, a balancing of your and our interests must be carried out. As long as it has not yet been determined whose interests prevail, you have the right to request the restriction of the processing of your personal data.
+  mandatoryInfoProcessingRestrictionList4: If you have lodged an objection pursuant to Art. 21 (1) GDPR, a balancing of your and our interests must be carried out. As long as it has not yet been determined whose interests prevail, you have the right to request the restriction of the processing of your personal data.
   mandatoryInfoProcessingRestrictionTitle: Right to restriction of processing
   mandatoryInfoResponsibleAddressCity: 34117 Kassel
-  mandatoryInfoResponsibleAddressEmail: 'Email: mail+privacy-policy@maev.si'
+  mandatoryInfoResponsibleAddressEmail: 'E-mail: mail+privacy-policy@maev.si'
   mandatoryInfoResponsibleAddressName: Jonas Thelemann
   mandatoryInfoResponsibleAddressStreet: Fünffensterstraße 18
   mandatoryInfoResponsibleDescription1: 'The responsible party for data processing on this website is:'
@@ -520,50 +520,50 @@ en:
   mandatoryInfoSslTlsTitle: SSL or TLS encryption
   mandatoryInfoStorageDurationDescription: Unless a more specific storage period has been specified within this privacy policy, your personal data will remain with us until the purpose for data processing no longer applies. If you assert a legitimate request for deletion or revoke your consent to data processing, your data will be deleted unless we have other legally permissible reasons for storing your personal data (e.g. retention periods under tax or commercial law); in the latter case, the data will be deleted once these reasons no longer apply.
   mandatoryInfoStorageDurationTitle: Storage duration
-  newsletter: 5. newsletter
+  newsletter: 5. Newsletter
   newsletterDataDescription1: If you would like to receive the newsletter offered on the website, we require an e-mail address from you as well as information that allows us to verify that you are the owner of the specified e-mail address and agree to receive the newsletter. Further data is not collected or only on a voluntary basis. We use this data exclusively for sending the requested information and do not pass it on to third parties.
-  newsletterDataDescription2: The processing of the data entered in the newsletter registration form is based exclusively on your consent (Art. 6 para. 1 lit. a DSGVO). You can revoke your consent to the storage of the data, the e-mail address and their use for sending the newsletter at any time, for example via the „unsubscribe“-link in the newsletter. The legality of the data processing operations already carried out remains unaffected by the revocation.
+  newsletterDataDescription2: The processing of the data entered in the newsletter registration form is based exclusively on your consent (Art. 6 para. 1 lit. a GDPR). You can revoke your consent to the storage of the data, the e-mail address and their use for sending the newsletter at any time, for example via the „unsubscribe“-link in the newsletter. The legality of the data processing operations already carried out remains unaffected by the revocation.
   newsletterDataDescription3: The data you provide for the purpose of receiving the newsletter will be stored by us or the newsletter service provider until you unsubscribe from the newsletter and will be deleted from the newsletter distribution list after you unsubscribe from the newsletter. Data that has been stored by us for other purposes remains unaffected by this.
   newsletterDataDescription4_1: You can object to the storage if your interests outweigh our legitimate interest.
-  newsletterDataDescription4: After you have unsubscribed from the newsletter distribution list, your e-mail address will be stored by us or the newsletter service provider in a blacklist, if necessary, in order to prevent future mailings. The data from the blacklist will only be used for this purpose and will not be merged with other data. This serves both your interest and our interest in complying with legal requirements when sending newsletters (legitimate interest within the meaning of Art. 6 (1) lit. f DSGVO). The storage in the blacklist is not limited in time. {strong}
+  newsletterDataDescription4: After you have unsubscribed from the newsletter distribution list, your e-mail address will be stored by us or the newsletter service provider in a blacklist, if necessary, in order to prevent future mailings. The data from the blacklist will only be used for this purpose and will not be merged with other data. This serves both your interest and our interest in complying with legal requirements when sending newsletters (legitimate interest within the meaning of Art. 6 (1) lit. f GDPR). The storage in the blacklist is not limited in time. {strong}
   newsletterDataTitle: Newsletter data
-  pluginsTools: 6. plugins and tools
+  pluginsTools: 6. Plugins and tools
   pluginsToolsFontAwesomeDescription1: This site uses Font Awesome for consistent font rendering. Font Awesome is installed locally. A connection to servers of Fonticons, Inc. does not take place.
   pluginsToolsFontAwesomeDescription2_1: https://fontawesome.com/privacy
   pluginsToolsFontAwesomeDescription2: 'For more information about Font Awesome, please see and Font Awesome privacy policy at: {linkPrivacy}.'
   pluginsToolsFontAwesomeTitle: Font Awesome (local hosting)
   pluginsToolsGoogleMapsDescription1: This site uses the map service Google Maps. The provider is Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Ireland.
   pluginsToolsGoogleMapsDescription2: To use the functions of Google Maps, it is necessary to store your IP address. This information is usually transferred to a Google server in the USA and stored there. The provider of this site has no influence on this data transmission.
-  pluginsToolsGoogleMapsDescription3: The use of Google Maps is in the interest of an appealing presentation of our online offers and an easy location of the places indicated by us on the website. This represents a legitimate interest within the meaning of Art. 6 para. 1 lit. f DSGVO. If a corresponding consent has been requested, the processing is based exclusively on Art. 6 para. 1 lit. a DSGVO; the consent can be revoked at any time.
+  pluginsToolsGoogleMapsDescription3: The use of Google Maps is in the interest of an appealing presentation of our online offers and an easy location of the places indicated by us on the website. This represents a legitimate interest within the meaning of Art. 6 para. 1 lit. f GDPR. If a corresponding consent has been requested, the processing is based exclusively on Art. 6 para. 1 lit. a GDPR; the consent can be revoked at any time.
   pluginsToolsGoogleMapsDescription4_1: https://privacy.google.com/businesses/gdprcontrollerterms/
   pluginsToolsGoogleMapsDescription4_2: https://privacy.google.com/businesses/gdprcontrollerterms/sccs/
   pluginsToolsGoogleMapsDescription4: 'Data transfer to the USA is based on the standard contractual clauses of the EU Commission. Details can be found here: {linkGdpr} and {linkGdprScss}.'
-  pluginsToolsGoogleMapsDescription5_1: https://policies.google.com/privacy?hl=de
+  pluginsToolsGoogleMapsDescription5_1: https://policies.google.com/privacy?hl=en
   pluginsToolsGoogleMapsDescription5: "More information about the handling of user data can be found in Google's privacy policy: {linkPrivacy}."
   pluginsToolsGoogleMapsTitle: Google Maps
   pluginsToolsGoogleReCaptchaDescription1: We use „Google reCAPTCHA“ (hereinafter „reCAPTCHA“) on this website. The provider is Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Ireland.
   pluginsToolsGoogleReCaptchaDescription2: The purpose of reCAPTCHA is to check whether the data input on this website (e.g. in a contact form) is made by a human or by an automated program. For this purpose, reCAPTCHA analyzes the behavior of the website visitor based on various characteristics. This analysis begins automatically as soon as the website visitor enters the website. For the analysis, reCAPTCHA evaluates various information (e.g. IP address, time spent by the website visitor on the website or mouse movements made by the user). The data collected during the analysis is forwarded to Google.
   pluginsToolsGoogleReCaptchaDescription3: The reCAPTCHA analyses run completely in the background. Website visitors are not notified that an analysis is taking place.
-  pluginsToolsGoogleReCaptchaDescription4: The storage and analysis of the data is based on Art. 6 para. 1 lit. f DSGVO. The website operator has a legitimate interest in protecting its web offers from abusive automated spying and from SPAM. If a corresponding consent was requested, the processing is based exclusively on Art. 6 para. 1 lit. a DSGVO; the consent can be revoked at any time.
-  pluginsToolsGoogleReCaptchaDescription5_1: https://policies.google.com/privacy?hl=de
-  pluginsToolsGoogleReCaptchaDescription5_2: https://policies.google.com/terms?hl=de
+  pluginsToolsGoogleReCaptchaDescription4: The storage and analysis of the data is based on Art. 6 para. 1 lit. f GDPR. The website operator has a legitimate interest in protecting its web offers from abusive automated spying and from SPAM. If a corresponding consent was requested, the processing is based exclusively on Art. 6 para. 1 lit. a GDPR; the consent can be revoked at any time.
+  pluginsToolsGoogleReCaptchaDescription5_1: https://policies.google.com/privacy?hl=en
+  pluginsToolsGoogleReCaptchaDescription5_2: https://policies.google.com/terms?hl=en
   pluginsToolsGoogleReCaptchaDescription5: 'For more information about Google reCAPTCHA, see the Google Privacy Policy and the Google Terms of Service at the following links: {linkPrivacy} and {linkTerms}.'
   pluginsToolsGoogleReCaptchaTitle: Google reCAPTCHA
   pluginsToolsGoogleWebFontsDescription1: This site uses so-called web fonts provided by Google for the uniform display of fonts. The Google Fonts are installed locally. A connection to Google servers does not take place.
   pluginsToolsGoogleWebFontsDescription2_1: https://developers.google.com/fonts/faq
-  pluginsToolsGoogleWebFontsDescription2_2: https://policies.google.com/privacy?hl=de
+  pluginsToolsGoogleWebFontsDescription2_2: https://policies.google.com/privacy?hl=en
   pluginsToolsGoogleWebFontsDescription2: "For more information about Google Web Fonts, see {linkFaq} and Google's privacy policy: {linkPrivacy}."
   pluginsToolsGoogleWebFontsTitle: Google Web Fonts (local hosting)
   pluginsToolsYouTubeDescription1: This website embeds videos from YouTube. The operator of the pages is Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Ireland.
-  pluginsToolsYouTubeDescription2: We use YouTube in extended privacy mode. According to YouTube, this mode means that YouTube does not store any information about visitors to this website before they watch the video. The disclosure of data to YouTube partners, however, is not necessarily excluded by the extended data protection mode. Thus, YouTube establishes a connection to the Google DoubleClick network – regardless of whether you watch a video –.
+  pluginsToolsYouTubeDescription2: We use YouTube in extended privacy mode. According to YouTube, this mode means that YouTube does not store any information about visitors to this website before they watch the video. The disclosure of data to YouTube partners, however, is not necessarily excluded by the extended data protection mode. Thus, YouTube establishes a connection to the Google DoubleClick network – regardless of whether you watch a video.
   pluginsToolsYouTubeDescription3: As soon as you start a YouTube video on this website, a connection to the YouTube servers is established. This tells the YouTube server which of our pages you have visited. If you are logged into your YouTube account, you enable YouTube to assign your surfing behavior directly to your personal profile. You can prevent this by logging out of your YouTube account.
   pluginsToolsYouTubeDescription4: Furthermore, after starting a video, YouTube may store various cookies on your end device or use comparable recognition technologies (e.g. device fingerprinting). In this way, YouTube can obtain information about visitors to this website. This information is used, among other things, to collect video statistics, improve the user experience, and prevent fraud attempts.
   pluginsToolsYouTubeDescription5: If necessary, further data processing operations may be triggered after the start of a YouTube video, over which we have no control.
-  pluginsToolsYouTubeDescription6: YouTube is used in the interest of an appealing presentation of our online offers. This represents a legitimate interest within the meaning of Art. 6 Para. 1 lit. f DSGVO. If a corresponding consent has been requested, the processing is based exclusively on Art. 6 para. 1 lit. a DSGVO; the consent can be revoked at any time.
-  pluginsToolsYouTubeDescription7_1: https://policies.google.com/privacy?hl=de
+  pluginsToolsYouTubeDescription6: YouTube is used in the interest of an appealing presentation of our online offers. This represents a legitimate interest within the meaning of Art. 6 Para. 1 lit. f GDPR. If a corresponding consent has been requested, the processing is based exclusively on Art. 6 para. 1 lit. a GDPR; the consent can be revoked at any time.
+  pluginsToolsYouTubeDescription7_1: https://policies.google.com/privacy?hl=en
   pluginsToolsYouTubeDescription7: 'For more information about privacy at YouTube, please see their privacy policy at: {linkPrivacy}.'
   pluginsToolsYouTubeTitle: YouTube with enhanced privacy
   source: Source
-  summary: 1. data protection at a glance
+  summary: 1. Data protection at a glance
   title: Privacy Policy
 </i18n>
