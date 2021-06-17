@@ -73,7 +73,6 @@ export default {
             'faMapMarker',
             'faPaperPlane',
             'faPlus',
-            'faSpinner',
             'faTimes',
             'faTimesCircle',
             'faUser',
