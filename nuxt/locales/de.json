@@ -1,6 +1,6 @@
 {
-  "globalLoading": "Lade...",
   "globalAvailabilityNotYet": "Noch nicht verfügbar.",
+  "globalLoading": "Lade...",
   "globalOgImageAlt": "maevsis Logo.",
   "globalOgSeoDescription": "Das erste Planungstool für Events, die von den Teilnehmenden unterstützt werden können, erleichtert die Organisation von Veranstaltungen.",
   "globalPagingMore": "Mehr",
@@ -16,6 +16,7 @@
   "globalValidationLength": "Zu lang",
   "globalValidationMaxValue": "Wert zu groß",
   "globalValidationMinValue": "Wert zu gering",
+  "globalValidationNowOrFuture": "Zeitpunkt liegt in der Vergangenheit",
   "globalValidationRequired": "Pflichtfeld",
   "globalValidationShortness": "Zu kurz"
 }

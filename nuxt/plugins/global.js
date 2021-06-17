@@ -1,5 +1,6 @@
 import cookie from 'cookie'
 import { decode } from 'jsonwebtoken'
+import moment from 'moment'
 import { helpers } from 'vuelidate/lib/validators'
 
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
@@ -29,6 +30,7 @@ export const VALIDATION_FORMAT_SLUG = helpers.regex('slug', REGEX_SLUG)
 export const VALIDATION_FORMAT_URL = helpers.regex('url', REGEX_URL)
 export const VALIDATION_FORMAT_UUID = helpers.regex('uuid', REGEX_UUID)
 export const VALIDATION_LAST_NAME_LENGTH_MAXIMUM = 100
+export const VALIDATION_NOW_OR_FUTURE = (value) => value.isSameOrAfter(moment())
 export const VALIDATION_PASSWORD_LENGTH_MINIMUM = 8
 export const VALIDATION_USERNAME_LENGTH_MAXIMUM = 100
 
@@ -275,6 +277,7 @@ export default async ({ app, req, res, store }, inject) => {
     VALIDATION_FORMAT_URL,
     VALIDATION_FORMAT_UUID,
     VALIDATION_LAST_NAME_LENGTH_MAXIMUM,
+    VALIDATION_NOW_OR_FUTURE,
     VALIDATION_PASSWORD_LENGTH_MINIMUM,
     VALIDATION_USERNAME_LENGTH_MAXIMUM,
     authenticateAnonymous,

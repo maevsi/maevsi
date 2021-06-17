@@ -122,6 +122,14 @@
         input-id="input-start"
         type="datetime"
       />
+      <template slot="inputWarning">
+        <FormInputWarning
+          :form-input="$moment($v.form.start.$model)"
+          :validation-function="$global.VALIDATION_NOW_OR_FUTURE"
+        >
+          {{ $t('globalValidationNowOrFuture') }}
+        </FormInputWarning>
+      </template>
     </FormInput>
     <FormInput
       :error="$v.form.end.$error"
@@ -332,7 +340,9 @@ export default {
         location: undefined,
         name: undefined,
         slug: undefined,
-        start: new Date().toISOString(), // workaround for https://github.com/mariomka/vue-datetime/issues/177
+        start: new Date(
+          new Date().getTime() + 24 * 60 * 60 * 1000
+        ).toISOString(), // Must be initialized, otherwise yields an error instantly: https://github.com/mariomka/vue-datetime/issues/177
         url: undefined,
         visibility: undefined,
       },

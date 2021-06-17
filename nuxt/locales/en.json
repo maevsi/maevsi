@@ -1,6 +1,6 @@
 {
-  "globalLoading": "Loading...",
   "globalAvailabilityNotYet": "Not yet available.",
+  "globalLoading": "Loading...",
   "globalOgImageAlt": "maevsi's logo.",
   "globalOgSeoDescription": "The first management tool for events, which are supported by invitees, facilitates the organization of events.",
   "globalPagingMore": "More",
@@ -16,6 +16,7 @@
   "globalValidationLength": "Too long",
   "globalValidationMaxValue": "Above maximum value",
   "globalValidationMinValue": "Under minimum value",
+  "globalValidationNowOrFuture": "Point in time lies in the past",
   "globalValidationRequired": "Required",
   "globalValidationShortness": "Too short"
 }
