@@ -4,7 +4,7 @@
 # Should be the specific version of node:buster.
 # `node-zopfli-es` and `sqitch` require at least buster.
 # `node-zopfli-es` requires non-slim.
-FROM node:16.3.0-buster@sha256:17652ac176c22022db2692fa4253df54d8024aa188c38105cebe1f56da05059b AS development
+FROM node:16.3.0-buster@sha256:7f4cdd81f18ff312ef80f70f531f3ca17cb5b888f5534e95c4a6218b9b04377b AS development
 
 # https://github.com/typicode/husky/issues/821
 ENV HUSKY_SKIP_INSTALL=1
@@ -47,7 +47,7 @@ HEALTHCHECK --interval=10s CMD curl -f http://localhost:3000/healthcheck || exit
 # Should be the specific version of node:buster.
 # `node-zopfli-es` and `sqitch` require at least buster.
 # `node-zopfli-es` requires non-slim.
-FROM node:16.3.0-buster@sha256:17652ac176c22022db2692fa4253df54d8024aa188c38105cebe1f56da05059b AS build
+FROM node:16.3.0-buster@sha256:7f4cdd81f18ff312ef80f70f531f3ca17cb5b888f5534e95c4a6218b9b04377b AS build
 
 ARG HOST_IP=127.0.0.1
 ENV HOST_IP ${HOST_IP}
