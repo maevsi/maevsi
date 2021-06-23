@@ -96,7 +96,7 @@
     "@nuxtjs/storybook": "4.0.4",
     "@nuxtjs/stylelint-module": "4.0.0",
     "@nuxtjs/tailwindcss": "4.2.0",
-    "@storybook/addon-a11y": "6.2.9",
+    "@storybook/addon-a11y": "6.3.0",
     "@types/jest": "26.0.23",
     "@types/jsonwebtoken": "8.5.2",
     "@types/node": "14.17.4",
