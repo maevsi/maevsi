@@ -15,6 +15,7 @@
             $global.getNested($store.state.jwtDecoded, 'role') ===
             'maevsi_anonymous'
           "
+          :is-referring="false"
         />
         <ButtonHome />
       </ButtonList>
