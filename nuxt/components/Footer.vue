@@ -3,19 +3,19 @@
     <div class="container mx-auto px-2 py-8">
       <div class="flex flex-wrap justify-between mx-auto w-5/6">
         <FooterCategory :heading="$t('product')">
-          <AppLink to="/#overview">
+          <AppLink :to="localePath('/#overview')">
             {{ $t('overview') }}
           </AppLink>
-          <AppLink to="/#features">
+          <AppLink :to="localePath('/#features')">
             {{ $t('features') }}
           </AppLink>
-          <!--<AppLink to="/#pricing">
+          <!--<AppLink :to="localePath('/#pricing')">
             {{ $t('pricing') }}
           </AppLink>-->
-          <!-- <AppLink to="/about/team">
+          <!-- <AppLink :to="localePath('/about/team')">
             {{ $t('team') }}
           </AppLink> -->
-          <!-- <AppLink to="/about/awards">
+          <!-- <AppLink :to="localePath('/about/awards')">
             {{ $t('awards') }}
           </AppLink> -->
         </FooterCategory>
@@ -32,24 +32,24 @@
           </AppLink>
         </FooterCategory>
         <FooterCategory :heading="$t('legal')">
-          <AppLink to="/legal-notice">
+          <AppLink :to="localePath('/legal-notice')">
             {{ $t('legalNotice') }}
           </AppLink>
-          <AppLink to="/privacy-policy">
+          <AppLink :to="localePath('/privacy-policy')">
             {{ $t('privacyPolicy') }}
           </AppLink>
-          <!-- <AppLink to="/code-of-conduct">
+          <!-- <AppLink :to="localePath('/code-of-conduct')">
             {{ $t('codeOfConduct') }}
           </AppLink> -->
         </FooterCategory>
         <!-- <FooterCategory :heading="$t('support')">
-          <AppLink to="/support/tutorials">
+          <AppLink :to="localePath('/support/tutorials')">
             {{ $t('tutorials') }}
           </AppLink>
-          <AppLink to="/support/contact">
+          <AppLink :to="localePath('/support/contact')">
             {{ $t('contact') }}
           </AppLink>
-          <AppLink to="/support/docs">
+          <AppLink :to="localePath('/support/docs')">
             {{ $t('documentation') }}
           </AppLink>
         </FooterCategory> -->

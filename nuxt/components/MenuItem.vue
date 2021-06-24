@@ -24,10 +24,6 @@
 <script>
 export default {
   props: {
-    append: {
-      default: false,
-      type: Boolean,
-    },
     iconId: {
       default: undefined,
       type: Array,

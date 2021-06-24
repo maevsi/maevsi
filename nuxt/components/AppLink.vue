@@ -17,7 +17,7 @@
     />
     <slot />
   </a>
-  <nuxt-link v-else append="append" :to="to" @click.native="$emit('click')">
+  <nuxt-link v-else :append="append" :to="to" @click.native="$emit('click')">
     <FontAwesomeIcon
       v-if="iconId"
       :class="{ 'mr-2': $slots.default }"
