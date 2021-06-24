@@ -1,3 +1,12 @@
+## [0.75.1](https://github.com/maevsi/maevsi/compare/0.75.0...0.75.1) (2021-06-24)
+
+
+### Bug Fixes
+
+* **app-link:** correct i18n paths ([026cf20](https://github.com/maevsi/maevsi/commit/026cf20c1eb16f8383b944e468135332c44c731f)), closes [#313](https://github.com/maevsi/maevsi/issues/313)
+* **button-sign-in:** prevent redirection after verification ([6a4253f](https://github.com/maevsi/maevsi/commit/6a4253f855647689599a2e11d517326fe16b0559)), closes [#312](https://github.com/maevsi/maevsi/issues/312)
+* **form-input:** correct padding ([fcac1b7](https://github.com/maevsi/maevsi/commit/fcac1b72a8af22aeaf01f72e7cc066ad9e36a45d))
+
 # [0.75.0](https://github.com/maevsi/maevsi/compare/0.74.0...0.75.0) (2021-06-17)
 
 
