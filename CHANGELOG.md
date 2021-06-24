@@ -1,3 +1,10 @@
+## [0.75.2](https://github.com/maevsi/maevsi/compare/0.75.1...0.75.2) (2021-06-24)
+
+
+### Bug Fixes
+
+* **event:** readd apollo smart query ([9870a79](https://github.com/maevsi/maevsi/commit/9870a79f1aa8c91c6b4b4d35a945e191f295a1f1))
+
 ## [0.75.1](https://github.com/maevsi/maevsi/compare/0.75.0...0.75.1) (2021-06-24)
 
 
