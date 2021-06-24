@@ -194,6 +194,23 @@ import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitati
 const consola = require('consola')
 
 export default {
+  // TODO: Either use smart query or asyncData query.
+  apollo: {
+    event() {
+      return {
+        query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
+        variables: {
+          authorUsername: this.$route.params.username,
+          slug: this.$route.params.event_name,
+        },
+        update: (data) => data.eventByAuthorUsernameAndSlug,
+        error(error, _vm, _key, _type, _options) {
+          this.graphqlErrorMessage = error.message
+          consola.error(error)
+        },
+      }
+    },
+  },
   components: {
     VueMarkdown,
   },
