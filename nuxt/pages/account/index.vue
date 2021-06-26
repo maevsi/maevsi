@@ -1,5 +1,8 @@
 <template>
   <div>
+    <CardInfo v-if="$route.query.referrer">
+      {{ $t('accountRequired') }}
+    </CardInfo>
     <h1>{{ title }}</h1>
     <TabFlip
       ref="tabFlip"
@@ -157,10 +160,12 @@ export default {
 
 <i18n lang="yml">
 de:
+  accountRequired: Melde dich an, um fortzufahren.
   register: Registrieren
   signIn: Anmelden
   title: Konto
 en:
+  accountRequired: Sign in to continue.
   register: Register
   signIn: Sign In
   title: Account
