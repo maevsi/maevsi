@@ -5,6 +5,7 @@ query EventsAll($cursor: Cursor, $limit: Int!, $authorUsername: String) {
     after: $cursor
     condition: { authorUsername: $authorUsername }
     first: $limit
+    orderBy: START_DESC
   ) @connection(filter: ["condition"], key: "allEvents") {
     nodes {
       ...eventFields
