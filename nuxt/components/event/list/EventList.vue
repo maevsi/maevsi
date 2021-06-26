@@ -46,7 +46,7 @@ export default {
         variables: {
           cursor: null,
           limit: this.$global.ITEMS_PER_PAGE,
-          username: this.username,
+          authorUsername: this.username,
         },
         error(error, _vm, _key, _type, _options) {
           this.graphqlErrorMessage = error.message

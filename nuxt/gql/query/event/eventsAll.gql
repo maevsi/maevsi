@@ -1,9 +1,9 @@
 #import "../../fragments/eventFields.gql"
 
-query EventsAll($cursor: Cursor, $limit: Int!, $username: String) {
+query EventsAll($cursor: Cursor, $limit: Int!, $authorUsername: String) {
   allEvents(
     after: $cursor
-    condition: { authorUsername: $username }
+    condition: { authorUsername: $authorUsername }
     first: $limit
   ) @connection(filter: ["condition"], key: "allEvents") {
     nodes {
