@@ -55,6 +55,18 @@
             <td class="border font-mono">
               <div class="flex items-center justify-evenly">
                 <ButtonTableInteraction
+                  :icon-id="['fas', 'eye']"
+                  :title="$t('invitationView')"
+                  @click="
+                    $router.push({
+                      path: localePath(
+                        `/event/${event.authorUsername}/${event.slug}`
+                      ),
+                      query: { ic: invitation.uuid },
+                    })
+                  "
+                />
+                <ButtonTableInteraction
                   :disabled="
                     invitation.contactByContactId.authorAccountUsername !==
                       $store.state.signedInUsername ||
@@ -68,7 +80,7 @@
                           authorAccountUsername:
                             invitation.contactByContactId.authorAccountUsername,
                         })
-                      : undefined
+                      : $t('invitationEdit')
                   "
                   @click="edit(invitation)"
                 />
@@ -80,14 +92,15 @@
                   :icon-id="['fas', 'paper-plane']"
                   :title="
                     invitation.contactByContactId.emailAddress
-                      ? undefined
+                      ? $t('invitationSend')
                       : $t('disabledReasonEmailAddressNone')
                   "
                   @click="send(invitation)"
                 />
                 <ButtonTableInteraction
                   :disabled="pending.deletions.includes(invitation.uuid)"
-                  :icon-id="['fas', 'times']"
+                  :icon-id="['fas', 'trash']"
+                  :title="$t('invitationDelete')"
                   @click="deletion(invitation.uuid)"
                 />
               </div>
@@ -96,14 +109,7 @@
         </tbody>
       </table>
     </div>
-    <p class="text-center">
-      {{
-        $t('invitationsUsed', {
-          amountCurrent: allInvitations.totalCount,
-          amountMaximum: event.inviteeCountMaximum || '∞',
-        })
-      }}
-    </p>
+    <br />
     <Button
       :disabled="
         event.inviteeCountMaximum
@@ -115,6 +121,14 @@
     >
       {{ $t('invitationAdd') }}
     </Button>
+    <p class="text-center">
+      {{
+        $t('invitationsUsed', {
+          amountCurrent: allInvitations.totalCount,
+          amountMaximum: event.inviteeCountMaximum || '∞',
+        })
+      }}
+    </p>
     <Modal
       id="ModalEventInvitation"
       class="z-10"
@@ -285,6 +299,9 @@ de:
   invitationAdd: Einladung hinzufügen
   invitationEdit: Einladung bearbeiten
   invitationCode: Einladungscode
+  invitationDelete: Einladung löschen
+  invitationSend: Einladung versenden
+  invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
   lastName: Nachname
   save: Speichern
@@ -302,6 +319,9 @@ en:
   invitationAdd: Add invitation
   invitationEdit: Edit invitation
   invitationCode: Invitation code
+  invitationDelete: Delete invitation
+  invitationSend: Send invitation
+  invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
   lastName: Last name
   save: Save

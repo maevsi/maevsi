@@ -4,19 +4,9 @@
     :error-message="graphqlErrorMessage"
   />
   <div v-else>
-    <div v-if="contact" class="text-center">
-      <p class="font-bold mb-2 text-2xl">
-        {{
-          $t('greeting', {
-            usernameString: contact.firstName ? ' ' + contact.firstName : '',
-          })
-        }}
-      </p>
-      <p>{{ $t('greetingDescription') }}</p>
-    </div>
-    <br />
     <div
       v-if="
+        !$route.query.ic &&
         $store.state.jwtDecoded &&
         event.authorUsername === $store.state.jwtDecoded.username
       "
@@ -26,10 +16,38 @@
         {{ $t('settings') }}
       </Button>
     </div>
+    <CardInfo v-if="$route.query.ic">
+      {{ $t('invitationViewFor', { name: $global.getContactName(contact) }) }}
+      <Button
+        append
+        :icon-id="['fas', 'times']"
+        @click="
+          $router.push({
+            query: { ...$route.query, ic: undefined },
+          })
+        "
+      >
+        {{ $t('invitationSelectionClear') }}
+      </Button>
+    </CardInfo>
+    <br />
+    <div v-if="contact" class="text-center">
+      <p class="font-bold mb-2 text-2xl">
+        {{
+          $t('greeting', {
+            usernameString: $global.getContactName(contact)
+              ? ' ' + $global.getContactName(contact)
+              : '',
+          })
+        }}
+      </p>
+      <p>{{ $t('greetingDescription') }}</p>
+    </div>
     <div
       class="card flex flex-col items-center mt-4"
       :class="{
         'bg-yellow-100':
+          !$route.query.ic &&
           $store.state.jwtDecoded &&
           event.authorUsername === $store.state.jwtDecoded.username,
       }"
@@ -202,6 +220,7 @@ export default {
         variables: {
           authorUsername: this.$route.params.username,
           slug: this.$route.params.event_name,
+          invitationUuid: this.$route.query.ic,
         },
         update: (data) => data.eventByAuthorUsernameAndSlug,
         error(error, _vm, _key, _type, _options) {
@@ -227,7 +246,7 @@ export default {
 
     return eventIsExisting
   },
-  async asyncData({ app, error, params }) {
+  async asyncData({ $global, app, error, params, query }) {
     let graphqlErrorMessage
     const event = await app.apolloProvider.defaultClient
       .query({
@@ -235,6 +254,7 @@ export default {
         variables: {
           authorUsername: params.username,
           slug: params.event_name,
+          invitationUuid: query.ic,
         },
       })
       .then(({ data }) => data.eventByAuthorUsernameAndSlug)
@@ -247,11 +267,16 @@ export default {
       return error({ statusCode: 403 })
     }
 
-    return { event, graphqlErrorMessage }
+    const invitations = $global.getNested(
+      event,
+      'invitationsByEventId',
+      'nodes'
+    )
+
+    return { event, graphqlErrorMessage, invitations }
   },
   data() {
     return {
-      graphqlErrorMessage: undefined,
       title: this.$route.params.event_name,
     }
   },
@@ -300,9 +325,21 @@ export default {
       return this.$global.getNested(this.invitation, 'contactByContactId')
     },
     invitation() {
-      return this.$route.params.username !== this.$store.state.signedInUsername
-        ? this.$global.getNested(this.event, 'invitationsByEventId', 'nodes', 0)
-        : undefined
+      const invitationsMatchingUuid = this.$global
+        .getNested(this.event, 'invitationsByEventId', 'nodes')
+        .filter((invitation) => invitation.uuid === this.$route.query.ic)
+
+      if (invitationsMatchingUuid.length === 0) {
+        return undefined
+      } else if (invitationsMatchingUuid.length === 1) {
+        return invitationsMatchingUuid[0]
+      } else {
+        consola.error(
+          'An unexpected amount of matching invitation codes have been found!'
+        )
+      }
+
+      return undefined
     },
   },
   methods: {
@@ -386,6 +423,8 @@ de:
   invitationCardKindNone: Keine
   invitationCardKindPaper: Papier
   invitationCardKindDigital: Digital
+  invitationSelectionClear: Auswahl der Einladung löschen
+  invitationViewFor: Du schaust dir die Einladung für {name} an.
   requestSelection: Bitte auswählen
   settings: Einstellungen
   step1Of2: 1/2
@@ -404,6 +443,8 @@ en:
   invitationCardKindNone: None
   invitationCardKindPaper: Paper
   invitationCardKindDigital: Digital
+  invitationSelectionClear: Clear invitation selection
+  invitationViewFor: You're viewing the invitation for {name}.
   requestSelection: Please select
   settings: Settings
   step1Of2: 1/2

@@ -77,6 +77,26 @@ export function formPreSubmit(that) {
   })
 }
 
+export function getContactName(contact, isUsernamePreferred = false) {
+  let name
+
+  if (contact.accountUsername) {
+    name = contact.accountUsername
+
+    if (isUsernamePreferred) return name
+  }
+
+  if (contact.firstName) {
+    name = contact.firstName
+  }
+
+  if (contact.lastName) {
+    name += ' ' + contact.lastName
+  }
+
+  return name
+}
+
 export function getDeferredPromise(then) {
   let res, rej
 
@@ -283,6 +303,7 @@ export default async ({ app, req, res, store }, inject) => {
     authenticateAnonymous,
     capitalizeFirstLetter,
     formPreSubmit,
+    getContactName,
     getDeferredPromise,
     getJwtFromCookie,
     getNested,
