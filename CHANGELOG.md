@@ -1,3 +1,18 @@
+# [0.76.0](https://github.com/maevsi/maevsi/compare/0.75.2...0.76.0) (2021-06-26)
+
+
+### Bug Fixes
+
+* **event-list-item:** remove duplicate class ([69582d6](https://github.com/maevsi/maevsi/commit/69582d6945e822b3ab40b2af08f21f4f667c8320))
+* **tab-flip:** correct query parameter ([d375fa5](https://github.com/maevsi/maevsi/commit/d375fa502c33d0cf5bf439f792275f779f37e964))
+
+
+### Features
+
+* **event:** add invitation view ([d4f1fb9](https://github.com/maevsi/maevsi/commit/d4f1fb90b6a6598b8993680867e54bf13f7673b5)), closes [#240](https://github.com/maevsi/maevsi/issues/240)
+* **event:** order events query by start descending ([3b819a5](https://github.com/maevsi/maevsi/commit/3b819a5a5ab75624eb6245aa50f2db895222455c))
+* **event-settings:** shorten deletion headings ([2132d7d](https://github.com/maevsi/maevsi/commit/2132d7d8e3649c607b865680e2430ee3111cc550))
+
 ## [0.75.2](https://github.com/maevsi/maevsi/compare/0.75.1...0.75.2) (2021-06-24)
 
 
