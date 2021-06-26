@@ -19,24 +19,18 @@
           <FormEvent :event="event" />
         </section>
         <section>
-          <h2>{{ $t('titleGeneral') }}</h2>
-          <section>
-            <h3>{{ $t('titleDangerZone') }}</h3>
-            <section>
-              <h4>{{ $t('titleDelete') }}</h4>
-              <FormDelete
-                id="deleteEvent"
-                :item-name="$t('event')"
-                :mutation="mutation"
-                :update="updateCacheDelete"
-                :variables="{
-                  authorUsername: $route.params.username,
-                  slug: $route.params.event_name,
-                }"
-                @success="onDeleteSuccess"
-              />
-            </section>
-          </section>
+          <h2>{{ $t('titleDelete') }}</h2>
+          <FormDelete
+            id="deleteEvent"
+            :item-name="$t('event')"
+            :mutation="mutation"
+            :update="updateCacheDelete"
+            :variables="{
+              authorUsername: $route.params.username,
+              slug: $route.params.event_name,
+            }"
+            @success="onDeleteSuccess"
+          />
         </section>
       </div>
       <Error v-else />
@@ -197,16 +191,12 @@ export default {
 <i18n lang="yml">
 de:
   event: Veranstaltung
-  titleDangerZone: Gefahrenzone
   titleDelete: Veranstaltung löschen
   titleEdit: Veranstaltung bearbeiten
-  titleGeneral: Allgemein
   titleInvitations: Einladungen
 en:
   event: event
-  titleDangerZone: Danger zone
   titleDelete: Delete event
   titleEdit: Edit event
-  titleGeneral: General
   titleInvitations: Invitations
 </i18n>
