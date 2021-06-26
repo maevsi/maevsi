@@ -5,7 +5,7 @@
       localePath({
         path: '/account',
         query: {
-          form: 'signIn',
+          tab: 'signIn',
           ...(isReferring && { referrer: $route.fullPath }),
         },
       })

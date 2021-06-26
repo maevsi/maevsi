@@ -67,7 +67,7 @@ export default {
       })
       this.$router.push({
         path: this.localePath(`/account`),
-        query: { ...this.$route.query, form: 'signIn' },
+        query: { ...this.$route.query, tab: 'signIn' },
       })
     },
   },
