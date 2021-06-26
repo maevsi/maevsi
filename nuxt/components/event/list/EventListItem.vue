@@ -31,7 +31,7 @@
             <div class="font-bold mx-2 text-xl truncate">
               {{ event.name }}
             </div>
-            <Owner class="truncate" :username="event.authorUsername" />
+            <Owner :username="event.authorUsername" />
           </div>
         </div>
         <p
