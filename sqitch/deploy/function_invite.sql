@@ -23,10 +23,10 @@ BEGIN
   INSERT INTO maevsi_private.notification (channel, payload)
     VALUES (
       'event_invitation',
-      jsonb_pretty(jsonb_build_object(
+      jsonb_build_object(
         'invitation_id', $1,
         'template', jsonb_build_object('language', $2)
-      ))
+      )
     );
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;

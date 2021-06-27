@@ -47,10 +47,10 @@ BEGIN
 
   INSERT INTO maevsi_private.notification (channel, payload) VALUES (
     'account_registration',
-    jsonb_pretty(jsonb_build_object(
+    jsonb_build_object(
       'account', row_to_json(_new_account_notify),
       'template', jsonb_build_object('language', $4)
-    ))
+    )
   );
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
