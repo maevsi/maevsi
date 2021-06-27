@@ -6,7 +6,7 @@ BEGIN;
 CREATE TABLE maevsi_private.notification (
   id                 BIGSERIAL PRIMARY KEY,
   channel            TEXT NOT NULL,
-  is_acknowledged    BOOLEAN NOT NULL DEFAULT TRUE, -- TODO: Set default value to false in https://github.com/maevsi/maevsi/issues/210
+  is_acknowledged    BOOLEAN,
   payload            TEXT CHECK (octet_length(payload) <= 8000) NOT NULL,
   "timestamp"        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
@@ -20,7 +20,13 @@ COMMENT ON COLUMN maevsi_private.notification.timestamp IS 'The notification''s 
 
 CREATE FUNCTION maevsi_private.notify() RETURNS TRIGGER AS $$
 BEGIN
-  PERFORM pg_notify(NEW.channel, NEW.payload);
+  PERFORM pg_notify(
+    NEW.channel,
+    jsonb_pretty(jsonb_build_object(
+        'id', NEW.id,
+        'payload', NEW.payload
+    ))
+  );
   RETURN NEW;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
