@@ -33,6 +33,7 @@ export const mutations = {
       id: 'ModalGlobal',
       isCancellable: undefined,
       isVisible: true,
+      onSubmit: undefined,
     }
 
     state.modals.push({ ...dataDefault, ...data })

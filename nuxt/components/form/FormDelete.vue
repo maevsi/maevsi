@@ -66,8 +66,8 @@ export default {
             contentBody: this.$global.capitalizeFirstLetter(
               this.$t('success', { item: this.itemName })
             ),
+            onSubmit: () => this.$emit('success'),
           })
-          this.$emit('success')
         })
         .catch((reason) => {
           this.graphqlErrorMessage = reason

@@ -123,6 +123,7 @@ export default {
       errorMessage: undefined,
       isVisible: false,
       isSubmitting: false,
+      onSubmit: () => {},
     }
   },
   computed: {
@@ -145,6 +146,11 @@ export default {
       return (
         this.$global.getNested(this.modalComputed, 'isVisible') ||
         this.isVisible
+      )
+    },
+    onSubmitComputed() {
+      return (
+        this.$global.getNested(this.modalComputed, 'onSubmit') || this.onSubmit
       )
     },
     modalComputed() {
@@ -206,8 +212,9 @@ export default {
 
       this.submitTaskProvider()
         .then((value) => {
-          this.close()
           this.$emit('submitSuccess', value)
+          this.onSubmitComputed()
+          this.close()
         })
         .catch((reason) => {
           this.errorMessage = reason
