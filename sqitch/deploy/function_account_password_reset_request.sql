@@ -38,10 +38,10 @@ BEGIN
   ELSE
     INSERT INTO maevsi_private.notification (channel, payload) VALUES (
       'account_password_reset_request',
-      jsonb_build_object(
+      jsonb_pretty(jsonb_build_object(
         'account', _notify_data,
         'template', jsonb_build_object('language', $2)
-      )
+      ))
     );
   END IF;
 END;

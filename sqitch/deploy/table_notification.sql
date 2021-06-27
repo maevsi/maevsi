@@ -22,10 +22,10 @@ CREATE FUNCTION maevsi_private.notify() RETURNS TRIGGER AS $$
 BEGIN
   PERFORM pg_notify(
     NEW.channel,
-    jsonb_build_object(
+    jsonb_pretty(jsonb_build_object(
         'id', NEW.id,
         'payload', NEW.payload
-    )
+    ))
   );
   RETURN NEW;
 END;
