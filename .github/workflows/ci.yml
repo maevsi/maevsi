@@ -33,6 +33,7 @@ jobs:
           echo VERSION=$VERSION
 
           docker swarm init
+          mkdir ./nuxt/storybook-static
           yarn --cwd ./nuxt selenium:start
 
           docker buildx build \
