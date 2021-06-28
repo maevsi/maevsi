@@ -21,7 +21,7 @@
     "test": "jest && yarn test:visual",
     "test:visual": "yarn storybook:build && (wget --spider ${HOST_IP:-127.0.0.1}:4444 || yarn selenium:start) && yarn creevey",
     "selenium:start": "docker stack deploy --compose-file ./.storybook/creevey/stack-selenium-grid.yml selenium",
-    "selenium:remove": "docker stack rm selenium",
+    "selenium:stop": "docker stack rm selenium",
     "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "lint-staged": {
