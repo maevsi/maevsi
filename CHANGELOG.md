@@ -1,3 +1,18 @@
+# [0.77.0](https://github.com/maevsi/maevsi/compare/0.76.0...0.77.0) (2021-06-28)
+
+
+### Bug Fixes
+
+* **form-delete:** correct modal closing function ([fcb7a71](https://github.com/maevsi/maevsi/commit/fcb7a716439fd72003efef27a3c8e0dfebfd30dc)), closes [#315](https://github.com/maevsi/maevsi/issues/315)
+
+
+### Features
+
+* **account:** display notice that login is required ([a00867c](https://github.com/maevsi/maevsi/commit/a00867c60ad0955408c9836f848c0a70ad5ba10c)), closes [#314](https://github.com/maevsi/maevsi/issues/314)
+* **form-delete:** remove id property ([b8c922d](https://github.com/maevsi/maevsi/commit/b8c922d4884d5eb503a421a8bcf0bd7d10e50d86))
+* **notification:** add acknowledgement function ([fc449ad](https://github.com/maevsi/maevsi/commit/fc449ad2b5ef21183e390e39e947fbd208cbb98f))
+* **sql:** remove json prettification ([53765fb](https://github.com/maevsi/maevsi/commit/53765fb88c619cca9e0f56c6ebb496538e4de4c5))
+
 # [0.76.0](https://github.com/maevsi/maevsi/compare/0.75.2...0.76.0) (2021-06-26)
 
 
