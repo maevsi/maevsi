@@ -114,7 +114,7 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-yml": "0.9.0",
     "graphql-tag": "2.12.5",
-    "husky": "4.3.8",
+    "husky": "6.0.0",
     "jest": "27.0.6",
     "lint-staged": "11.0.0",
     "msw": "0.30.0",
