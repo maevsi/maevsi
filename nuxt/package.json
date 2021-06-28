@@ -16,9 +16,10 @@
     "lint:fix": "yarn lint:js --fix && yarn lint:style --fix",
     "storybook": "nuxt storybook -p 6006",
     "storybook:build": "nuxt storybook build",
-    "storybook:static": "yarn storybook:build && npx http-server ./storybook-static -p 6006",
+    "storybook:serve": "npx http-server ./storybook-static -p 6006",
+    "storybook:static": "yarn storybook:build && yarn storybook:serve",
     "test": "jest && yarn test:visual",
-    "test:visual": "(wget --spider ${HOST_IP:-127.0.0.1}:4444 || yarn selenium:start) && start-server-and-test 'yarn storybook:static' 6006 'sh ./.storybook/creevey/creevey.sh'",
+    "test:visual": "yarn storybook:build && (wget --spider ${HOST_IP:-127.0.0.1}:4444 || yarn selenium:start) && yarn creevey",
     "selenium:start": "docker stack deploy --compose-file ./.storybook/creevey/selenium-grid.yml selenium",
     "selenium:remove": "docker stack rm selenium",
     "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"

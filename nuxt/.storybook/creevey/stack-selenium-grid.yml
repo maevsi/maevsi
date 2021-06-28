@@ -1,11 +1,15 @@
-# To start Docker in Swarm mode, you need to run `docker swarm init`
-# To deploy the Grid, `docker stack deploy -c docker-compose-v3-swarm.yml grid`
-# Stop with `docker stack rm grid`
-# Stop swarm mode `docker swarm leave --force`
-
 version: '3.7'
 
 services:
+  storybook:
+    image: httpd:2.4.48-alpine@sha256:31a95819a37462088c54c2d044c1bccb367dfbbbef6b7ba1265570b6091a7f92
+    volumes:
+      - ../../storybook-static:/usr/local/apache2/htdocs/
+    deploy:
+      replicas: 1
+    ports:
+      - "6006:80"
+
   chromeA:
     image: selenium/node-chrome:3.141.59@sha256:af9c625f8a93907e83d5060680c8270959489ea66c7b18e3ae7a47b49729a0a5
     volumes:
