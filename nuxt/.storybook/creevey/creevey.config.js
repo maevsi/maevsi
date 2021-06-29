@@ -6,14 +6,6 @@ module.exports = {
       browserName: 'chrome',
       viewport: { height: 1020, width: 640 },
     },
-    firefox768: {
-      browserName: 'firefox',
-      viewport: { height: 1020, width: 768 },
-    },
-    chrome1024: {
-      browserName: 'chrome',
-      viewport: { height: 1020, width: 1024 },
-    },
     firefox1280: {
       browserName: 'firefox',
       viewport: { height: 1020, width: 1280 },
