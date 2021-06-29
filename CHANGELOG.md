@@ -1,3 +1,10 @@
+# [0.78.0](https://github.com/maevsi/maevsi/compare/0.77.0...0.78.0) (2021-06-29)
+
+
+### Features
+
+* **selenium:** add more test nodes with different screen resolutions ([72fbb71](https://github.com/maevsi/maevsi/commit/72fbb712bd72655c456651dddf27a603347252f3)), closes [#291](https://github.com/maevsi/maevsi/issues/291)
+
 # [0.77.0](https://github.com/maevsi/maevsi/compare/0.76.0...0.77.0) (2021-06-28)
 
 
