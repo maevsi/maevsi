@@ -60,7 +60,7 @@ const consola = require('consola')
 export default {
   props: {
     form: {
-      default: undefined,
+      required: true,
       type: Object,
     },
     formClass: {

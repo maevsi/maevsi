@@ -1,0 +1,16 @@
+import FormAccountPasswordChange from './FormAccountPasswordChange.vue'
+
+export default {
+  component: FormAccountPasswordChange,
+  title: 'form/accout/password/FormAccountPasswordChange',
+}
+
+const Template = (_, { argTypes }) => ({
+  components: { FormAccountPasswordChange },
+  props: Object.keys(argTypes),
+  template:
+    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
+    '<FormAccountPasswordChange v-bind="$props">FormAccountPasswordChange</FormAccountPasswordChange>',
+})
+
+export const Default = Template.bind({})

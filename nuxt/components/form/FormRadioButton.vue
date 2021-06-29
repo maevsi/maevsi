@@ -26,11 +26,11 @@ export default {
       type: String,
     },
     title: {
-      default: undefined,
+      required: true,
       type: String,
     },
     value: {
-      default: undefined,
+      required: true,
       type: String,
     },
   },

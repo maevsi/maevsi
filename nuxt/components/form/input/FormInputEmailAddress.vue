@@ -38,7 +38,7 @@ export default {
       type: String,
     },
     formElement: {
-      default: undefined,
+      required: true,
       type: Object,
     },
     required: {

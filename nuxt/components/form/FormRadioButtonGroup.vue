@@ -22,7 +22,7 @@ export default {
       type: String,
     },
     titlesValues: {
-      default: undefined,
+      required: true,
       type: Array,
     },
     value: {

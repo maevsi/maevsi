@@ -39,7 +39,7 @@
 export default {
   props: {
     id: {
-      default: undefined,
+      required: true,
       type: String,
     },
     formKey: {
