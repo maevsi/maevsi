@@ -33,7 +33,7 @@ services:
 
   firefoxA:
     entrypoint: bash -c 'SE_OPTS="--host $$HOSTNAME --port 5557" /opt/bin/entry_point.sh'
-    image: selenium/node-firefox:4.0.0@sha256:42da03f9fdea62f8d6fcfe9691d977b1fdfdb81d3cb94b7f6d2d6694988afe62
+    image: selenium/node-firefox:89.0.1@sha256:42da03f9fdea62f8d6fcfe9691d977b1fdfdb81d3cb94b7f6d2d6694988afe62
     depends_on:
       - selenium-hub
     environment:
@@ -48,7 +48,7 @@ services:
 
   firefoxB:
     entrypoint: bash -c 'SE_OPTS="--host $$HOSTNAME --port 5558" /opt/bin/entry_point.sh'
-    image: selenium/node-firefox:4.0.0@sha256:42da03f9fdea62f8d6fcfe9691d977b1fdfdb81d3cb94b7f6d2d6694988afe62
+    image: selenium/node-firefox:89.0.1@sha256:42da03f9fdea62f8d6fcfe9691d977b1fdfdb81d3cb94b7f6d2d6694988afe62
     depends_on:
       - selenium-hub
     environment:
