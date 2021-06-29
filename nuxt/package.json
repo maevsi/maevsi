@@ -5,7 +5,7 @@
   "scheduleVersion": "0.64.3",
   "description": "The manager for events supported by invitees.",
   "scripts": {
-    "creevey": "creevey --config ./.storybook/creevey/creevey.config.js --reportDir ./.storybook/creevey/report --screenDir ./.storybook/creevey/images",
+    "creevey": "creevey --config ./.storybook/creevey/creevey.config.js",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
@@ -15,11 +15,13 @@
     "lint:quiet": "yarn lint:js --quiet && yarn lint:style --quiet",
     "lint:fix": "yarn lint:js --fix && yarn lint:style --fix",
     "storybook": "nuxt storybook -p 6006",
-    "storybook:static": "nuxt storybook build && npx http-server ./storybook-static -p 6006",
+    "storybook:build": "nuxt storybook build",
+    "storybook:serve": "npx http-server ./storybook-static -p 6006",
+    "storybook:static": "yarn storybook:build && yarn storybook:serve",
     "test": "jest && yarn test:visual",
-    "test:visual": "(wget --spider ${HOST_IP:-127.0.0.1}:4444 || yarn selenium:start) && start-server-and-test 'yarn storybook:static' 6006 'sh ./.storybook/creevey/creevey.sh'",
-    "selenium:start": "docker run -d --name selenium -p 4444:4444 --restart always -v /dev/shm:/dev/shm selenium/standalone-chrome:3.141.59@sha256:4a590fc95d67a8eb13464799583991daa6a8548c9a9e2e7f234a92c9c4fa8f29",
-    "selenium:remove": "docker rm -f selenium",
+    "test:visual": "(wget --spider ${HOST_IP:-127.0.0.1}:4444 || yarn selenium:start) && start-server-and-test 'yarn storybook:static' 6006 'wget -O- 127.0.0.1:6006 && yarn creevey'",
+    "selenium:start": "docker-compose --file ./.storybook/creevey/stack-selenium-grid.yml --project-directory .storybook/creevey --project-name selenium up -d",
+    "selenium:stop": "docker-compose --file ./.storybook/creevey/stack-selenium-grid.yml --project-directory .storybook/creevey --project-name selenium down",
     "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "lint-staged": {
