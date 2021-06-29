@@ -1,8 +1,8 @@
 <template>
   <div class="flex h-full items-center justify-center">
-    <div class="bg-white dark:bg-black -ml-1 mr-3 rounded-full">
+    <div class="bg-white dark:bg-black rounded-full">
       <svg
-        class="animate-spin h-5 text-black dark:text-white w-5"
+        class="animate-spin text-black dark:text-white"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         :title="$t('globalLoading')"
