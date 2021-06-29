@@ -6,21 +6,27 @@ export default {
   component: ImageUploadGallery,
   parameters: {
     msw: [
-      graphql.query('uploadsAll', (req, res, ctx) => {
-        const { username } = req.variables
+      graphql.query('uploadsAll', (_req, res, ctx) => {
+        // const { username } = req.variables
         return res(
           ctx.data({
-            __typename: 'Upload',
-            nodes: {
-              id: -1,
-              sizeByte: -1,
-              storageKey: '',
-              username,
-              uuid: '',
-            },
-            pageInfo: {
-              endCursor: '',
-              hasNextPage: false,
+            allUploads: {
+              nodes: [
+                // {
+                //   id: -1,
+                //   sizeByte: -1,
+                //   storageKey: '',
+                //   username,
+                //   uuid: '',
+                //   __typename: 'Upload',
+                // },
+              ],
+              pageInfo: {
+                endCursor: '',
+                hasNextPage: false,
+                __typename: 'PageInfo',
+              },
+              __typename: 'UploadsConnection',
             },
           })
         )

@@ -22,7 +22,7 @@
 export default {
   props: {
     event: {
-      default: undefined,
+      required: true,
       type: Object,
     },
   },

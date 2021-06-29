@@ -4,9 +4,7 @@
     :disabled="disabled"
     :icon-id="iconId"
     @click="$emit('click')"
-  >
-    <slot />
-  </Button>
+  />
 </template>
 
 <script>

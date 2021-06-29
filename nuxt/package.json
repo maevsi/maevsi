@@ -119,6 +119,7 @@
     "husky": "4.3.8",
     "jest": "27.0.6",
     "lint-staged": "11.0.0",
+    "mockdate": "3.0.5",
     "msw": "0.30.0",
     "msw-storybook-addon": "1.1.0",
     "postcss": "8.3.5",

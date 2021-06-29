@@ -1,5 +1,5 @@
 <template>
-  <EventDashlet v-if="event.end">
+  <EventDashlet v-if="event.end && event.start">
     <span>
       <FontAwesomeIcon :icon="['fas', 'hourglass']" :title="$t('duration')" />
     </span>
@@ -13,7 +13,7 @@
 export default {
   props: {
     event: {
-      default: undefined,
+      required: true,
       type: Object,
     },
   },
