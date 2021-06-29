@@ -1,60 +1,63 @@
-version: '3.7'
+version: '3'
 
 services:
-  storybook:
-    image: httpd:2.4.48-alpine@sha256:31a95819a37462088c54c2d044c1bccb367dfbbbef6b7ba1265570b6091a7f92
-    volumes:
-      - ../../storybook-static:/usr/local/apache2/htdocs/
-    deploy:
-      replicas: 1
-    ports:
-      - "6006:80"
-
   chromeA:
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME -port 5555" /opt/bin/entry_point.sh'
     image: selenium/node-chrome:3.141.59@sha256:af9c625f8a93907e83d5060680c8270959489ea66c7b18e3ae7a47b49729a0a5
-    volumes:
-      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
     environment:
-      - HUB_HOST=selenium-hub
+      - HUB_HOST=localhost
       - HUB_PORT=4444
     deploy:
       replicas: 1
-    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
+    network_mode: "host"
+    volumes:
+      - /dev/shm:/dev/shm
 
   chromeB:
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME -port 5556" /opt/bin/entry_point.sh'
     image: selenium/node-chrome:3.141.59@sha256:af9c625f8a93907e83d5060680c8270959489ea66c7b18e3ae7a47b49729a0a5
-    volumes:
-      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
     environment:
-      - HUB_HOST=selenium-hub
+      - HUB_HOST=localhost
       - HUB_PORT=4444
     deploy:
       replicas: 1
-    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
+    network_mode: "host"
+    volumes:
+      - /dev/shm:/dev/shm
 
   firefoxA:
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME -port 5557" /opt/bin/entry_point.sh'
     image: selenium/node-firefox:3.141.59@sha256:be72ac7d20589614a55fa3bc8eed34d1ba0688890968c8fd1d2c81cd0da11de4
-    volumes:
-      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
     environment:
-      - HUB_HOST=selenium-hub
+      - HUB_HOST=localhost
       - HUB_PORT=4444
     deploy:
       replicas: 1
-    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
+    network_mode: "host"
+    volumes:
+      - /dev/shm:/dev/shm
 
   firefoxB:
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME -port 5558" /opt/bin/entry_point.sh'
     image: selenium/node-firefox:3.141.59@sha256:be72ac7d20589614a55fa3bc8eed34d1ba0688890968c8fd1d2c81cd0da11de4
-    volumes:
-      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
     environment:
-      - HUB_HOST=selenium-hub
+      - HUB_HOST=localhost
       - HUB_PORT=4444
     deploy:
       replicas: 1
-    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
+    network_mode: "host"
+    volumes:
+      - /dev/shm:/dev/shm
 
   selenium-hub:
+    container_name: selenium-hub
     image: selenium/hub:3.141.59@sha256:7461fde60dcb6e0ff0ef514fd16c39dc53638d57f05893ab33150eba9649cb51
-    ports:
-      - "4444:4444"
+    network_mode: "host"
