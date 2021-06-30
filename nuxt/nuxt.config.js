@@ -89,6 +89,7 @@ export default {
         useLayersText: false,
       },
     ],
+    '@nuxtjs/google-analytics',
     '@nuxtjs/html-validator',
     // Doc: https://github.com/nuxt-community/moment-module
     ['@nuxtjs/moment', { locales: ['de'] }],
@@ -317,7 +318,6 @@ export default {
         analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
       },
     ],
-    ['@nuxtjs/google-gtag', { id: process.env.GOOGLE_ANALYTICS_ID }],
     [
       '@nuxtjs/robots',
       {
@@ -348,7 +348,7 @@ export default {
       analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
       analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
     },
-    'google-gtag': {
+    googleAnalytics: {
       id: process.env.GOOGLE_ANALYTICS_ID,
       debug: process.env.NODE_ENV !== 'production',
     },
@@ -359,7 +359,10 @@ export default {
     csp: {
       policies: {
         'base-uri': ["'none'"], // Mozilla Observatory.
-        'connect-src': [`https://*.${STACK_DOMAIN}`],
+        'connect-src': [
+          `https://*.${STACK_DOMAIN}`,
+          'https://www.google-analytics.com',
+        ],
         'default-src': ["'none'"],
         'font-src': ["'self'"],
         'form-action': ["'none'"], // Mozilla Observatory.
@@ -370,6 +373,7 @@ export default {
         'script-src': [
           "'self'",
           'https://static.cloudflareinsights.com/beacon.min.js',
+          'https://www.google-analytics.com/analytics.js',
         ],
         'style-src': ["'self'"], // Tailwind
       },
