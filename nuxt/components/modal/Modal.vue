@@ -1,10 +1,12 @@
 <template>
   <div v-if="isVisibleComputed">
-    <div class="bg-black bottom-0 fixed left-0 opacity-50 right-0 top-0 z-10" />
+    <div
+      class="bg-black bottom-0 left-0 opacity-50 right-0 top-0 z-10"
+      :class="{ fixed: !isStorybook }"
+    />
     <div
       class="
         bottom-0
-        fixed
         flex
         items-center
         justify-center
@@ -13,6 +15,7 @@
         top-0
         z-20
       "
+      :class="{ fixed: !isStorybook }"
     >
       <div
         class="card max-h-[90vh] overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3"
@@ -95,6 +98,10 @@ export default {
       default: false,
       type: Boolean,
     },
+    isStorybook: {
+      default: false,
+      type: Boolean,
+    },
     isSubmitDisabled: {
       default: false,
       type: Boolean,
@@ -113,7 +120,7 @@ export default {
     },
     submitTaskProvider: {
       default() {
-        return new Promise((resolve) => resolve())
+        return () => Promise.resolve()
       },
       type: Function,
     },
@@ -156,13 +163,13 @@ export default {
     modalComputed() {
       const modals = this.$store.state.modals
 
-      if (!modals) {
+      if (!modals || modals.lenght === 0) {
         return undefined
       }
 
       const modalsFiltered = modals.filter((modal) => modal.id === this.id)
 
-      if (!modalsFiltered) {
+      if (!modalsFiltered || modalsFiltered.lenght === 0) {
         return undefined
       }
 
