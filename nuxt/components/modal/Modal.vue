@@ -38,7 +38,7 @@
             v-if="isSubmitting"
             class="absolute bottom-0 left-0 right-0 top-0"
           >
-            <LoaderIndicatorSpinner />
+            <LoaderIndicatorSpinner class="h-8 w-8 m-auto" />
           </div>
         </div>
         <div class="flex justify-evenly">
