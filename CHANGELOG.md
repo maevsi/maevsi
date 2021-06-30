@@ -1,3 +1,10 @@
+# [0.80.0](https://github.com/maevsi/maevsi/compare/0.79.0...0.80.0) (2021-06-30)
+
+
+### Features
+
+* **sql:** readd json prettification ([55b2cb1](https://github.com/maevsi/maevsi/commit/55b2cb1ff33b37d249f38814990d381b00973553))
+
 # [0.79.0](https://github.com/maevsi/maevsi/compare/0.78.0...0.79.0) (2021-06-30)
 
 
