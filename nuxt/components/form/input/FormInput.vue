@@ -1,13 +1,13 @@
 <template>
   <div class="my-4">
     <div
-      :class="{ 'form-input-error': error }"
+      :class="{ 'form-input-warning': warning, 'form-input-error': error }"
       class="md:flex flex-wrap md:items-center"
     >
       <div class="md:pr-4 md:text-right md:w-1/3">
         <label
           class="font-semibold mb-1 md:mb-0"
-          :class="{ 'text-red-500': error }"
+          :class="{ 'text-yellow-600': warning, 'text-red-500': error }"
           :for="labelFor"
         >
           {{ title }}
@@ -53,6 +53,10 @@ export default {
     title: {
       default: undefined,
       type: String,
+    },
+    warning: {
+      default: false,
+      type: Boolean,
     },
   },
 }

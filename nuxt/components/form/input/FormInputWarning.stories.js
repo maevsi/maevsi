@@ -14,7 +14,3 @@ const Template = (_, { argTypes }) => ({
 })
 
 export const Default = Template.bind({})
-Default.args = {
-  formInput: {},
-  validationFunction: (_x) => false,
-}

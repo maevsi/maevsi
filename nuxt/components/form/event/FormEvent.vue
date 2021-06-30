@@ -115,6 +115,9 @@
       label-for="input-start"
       required
       :title="$t('start')"
+      :warning="
+        !$global.VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))
+      "
     >
       <Datetime
         v-model="$v.form.start.$model"
@@ -124,8 +127,9 @@
       />
       <template slot="inputWarning">
         <FormInputWarning
-          :form-input="$moment($v.form.start.$model)"
-          :validation-function="$global.VALIDATION_NOW_OR_FUTURE"
+          v-if="
+            !$global.VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))
+          "
         >
           {{ $t('globalValidationNowOrFuture') }}
         </FormInputWarning>

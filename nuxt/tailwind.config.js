@@ -285,6 +285,11 @@ module.exports = {
             borderColor: theme('colors.red.500'),
           },
         },
+        '.form-input-warning': {
+          input: {
+            borderColor: theme('colors.yellow.600'),
+          },
+        },
         '.form-input': {
           appearance: 'none',
           backgroundColor: theme('colors.gray.200'),
