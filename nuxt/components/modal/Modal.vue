@@ -49,6 +49,7 @@
             <ButtonList>
               <Button
                 v-if="isCancellableComputed"
+                :aria-label="$t('cancel')"
                 :disabled="isSubmitting"
                 :icon-id="['fas', 'window-close']"
                 @click="close()"
@@ -57,6 +58,7 @@
               </Button>
               <ButtonGreen
                 v-if="isCancellableComputed"
+                :aria-label="submitName"
                 :disabled="isSubmitting || isSubmitDisabled"
                 :icon-id="submitIconId"
                 type="submit"
@@ -66,6 +68,7 @@
               </ButtonGreen>
               <Button
                 v-else
+                :aria-label="submitName"
                 :disabled="isSubmitting || isSubmitDisabled"
                 :icon-id="submitIconId"
                 type="submit"

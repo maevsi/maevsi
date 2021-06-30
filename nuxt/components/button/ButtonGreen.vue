@@ -1,5 +1,6 @@
 <template>
   <Button
+    :aria-label="ariaLabel"
     :button-class="buttonClass"
     :disabled="disabled"
     :icon-id="iconId"
@@ -14,6 +15,10 @@
 <script>
 export default {
   props: {
+    ariaLabel: {
+      required: true,
+      type: String,
+    },
     buttonClass: {
       default: 'bg-green-600 disabled:bg-green-600 hover:bg-green-700',
       type: String,

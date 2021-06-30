@@ -12,7 +12,12 @@
       "
       class="flex justify-evenly"
     >
-      <Button append :icon-id="['fas', 'cog']" to="settings">
+      <Button
+        append
+        :aria-label="$t('settings')"
+        :icon-id="['fas', 'cog']"
+        to="settings"
+      >
         {{ $t('settings') }}
       </Button>
     </div>
@@ -20,6 +25,7 @@
       {{ $t('invitationViewFor', { name: $global.getContactName(contact) }) }}
       <Button
         append
+        :aria-label="$t('invitationSelectionClear')"
         :icon-id="['fas', 'times']"
         @click="
           $router.push({
@@ -64,6 +70,7 @@
         <EventDashletAttendanceType :event="event" />
       </div>
       <Button
+        :aria-label="$t('iCalDownload')"
         :icon-id="['fas', 'download']"
         class="text-text-bright"
         @click="downloadIcal"
@@ -100,6 +107,7 @@
                   invitation.feedback === null ||
                   invitation.feedback === 'CANCELED'
                 "
+                :aria-label="$t('invitationAccept')"
                 @click="accept"
               >
                 {{ $t('invitationAccept') }}
@@ -121,6 +129,7 @@
                   invitation.feedback === null ||
                   invitation.feedback === 'ACCEPTED'
                 "
+                :aria-label="$t('invitationCancel')"
                 @click="cancel"
               >
                 {{ $t('invitationCancel') }}

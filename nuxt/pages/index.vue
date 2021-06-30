@@ -32,7 +32,11 @@
           <p class="font-normal leading-8 text-lg">{{ $t('alpha') }}</p>
         </div>
         <div class="py-2" />
-        <Button class="text-left" :to="localePath('/event')">
+        <Button
+          :aria-label="$t('testNowFree')"
+          class="text-left"
+          :to="localePath('/event')"
+        >
           {{ $t('testNowFree') }}
         </Button>
       </div>
@@ -92,7 +96,11 @@
           </p>
         </div>
         <div class="py-2" />
-        <Button class="text-left" :to="localePath('/event')">
+        <Button
+          :aria-label="$t('testNow')"
+          class="text-left"
+          :to="localePath('/event')"
+        >
           {{ $t('testNow') }}
         </Button>
       </div>

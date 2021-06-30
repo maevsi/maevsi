@@ -1,5 +1,6 @@
 <template>
   <Button
+    :aria-label="$t('new')"
     :icon-id="['fas', 'plus']"
     :to="localePath('/task/event/create')"
     @click="$emit('click')"

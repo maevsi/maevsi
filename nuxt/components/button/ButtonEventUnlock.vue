@@ -1,5 +1,6 @@
 <template>
   <Button
+    :aria-label="$t('eventUnlock')"
     :icon-id="['fas', 'key']"
     :to="localePath('/task/event/unlock')"
     @click="$emit('click')"

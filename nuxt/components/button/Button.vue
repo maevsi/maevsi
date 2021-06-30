@@ -4,6 +4,7 @@
       v-if="to"
       ref="button"
       :append="append"
+      :aria-label="ariaLabel"
       :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"
       :disabled="disabled"
       :icon-id="iconId"
@@ -15,6 +16,7 @@
     <button
       v-else
       ref="button"
+      :aria-label="ariaLabel"
       :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"
       :disabled="disabled"
       :type="type"
@@ -37,6 +39,10 @@ export default {
     append: {
       default: false,
       type: Boolean,
+    },
+    ariaLabel: {
+      required: true,
+      type: String,
     },
     buttonClass: {
       default: undefined,

@@ -18,6 +18,7 @@
     >
       <Button
         ref="buttonSubmit"
+        :aria-label="submitName"
         :class="[
           {
             'animate-shake': form.$anyError,
@@ -43,6 +44,7 @@
           graphqlErrorMessageComputed &&
           graphqlErrorMessageComputed.startsWith('Account not verified!')
         "
+        :aria-label="$t('verificationMailResend')"
         @click="accountRegistrationRefresh"
       >
         <!-- https://github.com/maevsi/maevsi/issues/209 -->

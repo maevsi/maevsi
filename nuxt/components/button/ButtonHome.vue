@@ -1,5 +1,6 @@
 <template>
   <Button
+    :aria-label="$t('home')"
     :icon-id="['fas', 'home']"
     :to="localePath('/')"
     @click="$emit('click')"

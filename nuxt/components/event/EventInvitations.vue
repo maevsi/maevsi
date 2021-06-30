@@ -55,8 +55,9 @@
             <td class="border font-mono">
               <div class="flex items-center justify-evenly">
                 <ButtonTableInteraction
+                  :aria-label="$t('invitationView')"
                   :icon-id="['fas', 'eye']"
-                  :title="$t('invitationView')"
+                  is-title-show
                   @click="
                     $router.push({
                       path: localePath(
@@ -67,13 +68,7 @@
                   "
                 />
                 <ButtonTableInteraction
-                  :disabled="
-                    invitation.contactByContactId.authorAccountUsername !==
-                      $store.state.signedInUsername ||
-                    pending.edits.includes(invitation.uuid)
-                  "
-                  :icon-id="['fas', 'edit']"
-                  :title="
+                  :aria-label="
                     invitation.contactByContactId.authorAccountUsername !==
                     $store.state.signedInUsername
                       ? $t('disabledReasonCreatorNot', {
@@ -82,25 +77,34 @@
                         })
                       : $t('invitationEdit')
                   "
+                  :disabled="
+                    invitation.contactByContactId.authorAccountUsername !==
+                      $store.state.signedInUsername ||
+                    pending.edits.includes(invitation.uuid)
+                  "
+                  :icon-id="['fas', 'edit']"
+                  is-title-show
                   @click="edit(invitation)"
                 />
                 <ButtonTableInteraction
+                  :aria-label="
+                    invitation.contactByContactId.emailAddress
+                      ? $t('invitationSend')
+                      : $t('disabledReasonEmailAddressNone')
+                  "
                   :disabled="
                     !invitation.contactByContactId.emailAddress ||
                     pending.sends.includes(invitation.uuid)
                   "
                   :icon-id="['fas', 'paper-plane']"
-                  :title="
-                    invitation.contactByContactId.emailAddress
-                      ? $t('invitationSend')
-                      : $t('disabledReasonEmailAddressNone')
-                  "
+                  is-title-show
                   @click="send(invitation)"
                 />
                 <ButtonTableInteraction
+                  :aria-label="$t('invitationDelete')"
                   :disabled="pending.deletions.includes(invitation.uuid)"
                   :icon-id="['fas', 'trash']"
-                  :title="$t('invitationDelete')"
+                  is-title-show
                   @click="deletion(invitation.uuid)"
                 />
               </div>
@@ -111,6 +115,7 @@
     </div>
     <br />
     <Button
+      :aria-label="$t('invitationAdd')"
       :disabled="
         event.inviteeCountMaximum
           ? allInvitations.totalCount >= event.inviteeCountMaximum

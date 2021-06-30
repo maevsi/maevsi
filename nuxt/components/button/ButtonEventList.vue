@@ -1,5 +1,6 @@
 <template>
   <Button
+    :aria-label="$t('eventAll')"
     :icon-id="['fas', 'list-ul']"
     :to="localePath('/event')"
     @click="$emit('click')"

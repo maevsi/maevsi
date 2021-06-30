@@ -1,5 +1,6 @@
 <template>
   <Button
+    :aria-label="$t('signIn')"
     :icon-id="['fas', 'user']"
     :to="
       localePath({
