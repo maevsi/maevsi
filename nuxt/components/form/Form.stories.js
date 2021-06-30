@@ -17,4 +17,5 @@ Default.args = {
   form: {},
   formSent: false,
   graphqlErrorMessage: undefined,
+  submitName: 'submitName',
 }
