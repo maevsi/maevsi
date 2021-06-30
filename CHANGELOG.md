@@ -1,3 +1,20 @@
+# [0.79.0](https://github.com/maevsi/maevsi/compare/0.78.0...0.79.0) (2021-06-30)
+
+
+### Bug Fixes
+
+* **creevey:** increase diff threshold ([af7b719](https://github.com/maevsi/maevsi/commit/af7b719b4f9cf4839f9aa036369d8f85f1ae4eec))
+* **image:** set height and width explicitly ([529c670](https://github.com/maevsi/maevsi/commit/529c67076fc42131c92436894130f7482cf4e6ac))
+* **index:** use png images ([c3f3df4](https://github.com/maevsi/maevsi/commit/c3f3df425e728c4737541bff61dbecd33ea7509e))
+* **modal:** correct loading indicator position & size ([739f92c](https://github.com/maevsi/maevsi/commit/739f92cea844deb29d9c91c6886edaa0ca516cda))
+
+
+### Features
+
+* **analytics:** use nuxt analytics plugin instead of gtag ([2bab6c2](https://github.com/maevsi/maevsi/commit/2bab6c29eee9de30a2c2bdd3e823ff767a486154))
+* **button:** make aria label required ([7d3094a](https://github.com/maevsi/maevsi/commit/7d3094a8117f93035354dfab3e6b1bb8d0e8b458))
+* **form:** style warning like error ([381a9cc](https://github.com/maevsi/maevsi/commit/381a9ccdeb4ae8e2b7f110ea816f244baf6f4f3c))
+
 # [0.78.0](https://github.com/maevsi/maevsi/compare/0.77.0...0.78.0) (2021-06-29)
 
 
