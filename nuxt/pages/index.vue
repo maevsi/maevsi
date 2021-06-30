@@ -39,7 +39,7 @@
       <LoaderImage
         :alt="$t('heroImage')"
         class="hidden lg:block p-4 lg:w-1/2"
-        src="/assets/static/images/hero_background.svg"
+        src="/assets/static/images/hero_background.png"
       />
     </section>
     <section class="mb-16">
@@ -76,7 +76,7 @@
       <LoaderImage
         :alt="$t('heroImage')"
         class="mx-auto p-4 lg:w-1/2"
-        src="/assets/static/images/smartphone.svg"
+        src="/assets/static/images/smartphone.png"
       />
       <div class="p-4 lg:w-1/2">
         <h2 class="font-extrabold leading-snug text-4xl text-left">
