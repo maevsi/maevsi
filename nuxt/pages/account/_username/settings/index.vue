@@ -11,7 +11,9 @@
         <ProfilePicture
           ref="profilePicture"
           classes="h-24 w-24"
+          height="96"
           :username="$route.params.username"
+          width="96"
         />
       </button>
       <h1 class="truncate max-w-full sm:w-auto">

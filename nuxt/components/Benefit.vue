@@ -9,7 +9,13 @@
       w-full
     "
   >
-    <LoaderImage :alt="title" class="h-8 w-8" :src="iconPath" />
+    <LoaderImage
+      :alt="title"
+      class="h-8 w-8"
+      height="32"
+      :src="iconPath"
+      width="32"
+    />
     <div class="w-full">
       <!-- Heading wrapper required for text overflow ellipsis. -->
       <h3 class="text-center">{{ title }}</h3>

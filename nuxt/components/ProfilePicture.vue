@@ -9,7 +9,9 @@
     v-else
     :alt="$t('profilePictureAlt', { username })"
     :class="classComputed"
+    :height="height"
     :src="imageSrc"
+    :width="width"
   />
 </template>
 
@@ -53,11 +55,19 @@ export default {
       default: undefined,
       type: String,
     },
+    height: {
+      required: true,
+      type: String,
+    },
     rounded: {
       default: undefined,
       type: Boolean,
     },
     username: {
+      required: true,
+      type: String,
+    },
+    width: {
       required: true,
       type: String,
     },

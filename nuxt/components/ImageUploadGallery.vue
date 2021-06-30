@@ -26,10 +26,12 @@
             <LoaderImage
               :alt="upload.storageKey ? $t('uploadAlt') : $t('uploadAltFailed')"
               class="h-32 w-32"
+              height="128"
               :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
               :title="
                 $t('uploadSize', { size: bytesToString(upload.sizeByte) })
               "
+              width="128"
             />
             <div v-if="allowDeletion">
               <div

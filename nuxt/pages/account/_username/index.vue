@@ -6,7 +6,9 @@
       <div class="sm:mr-4">
         <ProfilePicture
           classes="h-24 w-24"
+          height="96"
           :username="$route.params.username"
+          width="96"
         />
       </div>
       <h1 class="truncate max-w-full sm:w-auto">

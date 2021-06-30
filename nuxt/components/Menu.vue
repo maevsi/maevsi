@@ -17,8 +17,10 @@
         <template v-if="$store.state.signedInUsername" slot="image">
           <ProfilePicture
             class="h-full p-2 w-full"
+            height="48"
             rounded
             :username="$store.state.signedInUsername"
+            width="48"
           />
         </template>
       </MenuItem>

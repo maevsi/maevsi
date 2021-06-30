@@ -85,7 +85,9 @@
             mx-12
             w-12
           "
+          height="48"
           src="/assets/static/logos/maevsi.svg"
+          width="48"
         />
         <div class="bg-gray-900 dark:bg-white h-px flex-1" />
       </div>
