@@ -96,6 +96,7 @@
         </FormInputError>
       </template>
     </FormInput>
+    <FormInputUrl :form-element="$v.form.url" @input="form.url = $event" />
   </Form>
 </template>
 
@@ -129,6 +130,7 @@ export default {
         emailAddress: undefined,
         firstName: undefined,
         lastName: undefined,
+        url: undefined,
       },
       graphqlErrorMessage: undefined,
     }
@@ -142,6 +144,7 @@ export default {
         'emailAddress',
         'firstName',
         'lastName',
+        'url',
       ].forEach(
         (property) =>
           (this.form[property] = this.dataInitial.contactByContactId[property])
@@ -175,6 +178,7 @@ export default {
                 firstName:
                   this.form.firstName === '' ? null : this.form.firstName,
                 lastName: this.form.lastName === '' ? null : this.form.lastName,
+                url: this.form.url !== '' ? this.form.url : null,
               },
             },
           })
@@ -201,6 +205,7 @@ export default {
                 firstName:
                   this.form.firstName === '' ? null : this.form.firstName,
                 lastName: this.form.lastName === '' ? null : this.form.lastName,
+                url: this.form.url !== '' ? this.form.url : null,
               },
             },
           })
@@ -254,6 +259,12 @@ export default {
         lastName: {
           maxLength: maxLength(
             this.$global.VALIDATION_LAST_NAME_LENGTH_MAXIMUM
+          ),
+        },
+        url: {
+          formatUrl: this.$global.VALIDATION_FORMAT_URL,
+          maxLength: maxLength(
+            this.$global.VALIDATION_EVENT_URL_LENGTH_MAXIMUM
           ),
         },
       },

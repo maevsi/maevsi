@@ -8,6 +8,7 @@
   "globalPlaceholderEmailAddress": "email@addre.ss",
   "globalPlaceholderFirstName": "Firstname",
   "globalPlaceholderLastName": "Lastname",
+  "globalPlaceholderUrl": "https://websi.te",
   "globalPlaceholderUsername": "user-name",
   "globalValidationExistence": "Does not exist",
   "globalValidationFailed": "Please check your input 🙈",

@@ -8,6 +8,7 @@
   "globalPlaceholderEmailAddress": "e-mail@adres.se",
   "globalPlaceholderFirstName": "Vorname",
   "globalPlaceholderLastName": "Nachname",
+  "globalPlaceholderUrl": "https://websei.te",
   "globalPlaceholderUsername": "nutzer-name",
   "globalValidationExistence": "Existiert nicht",
   "globalValidationFailed": "Bitte überprüfe deine Eingaben 🙈",

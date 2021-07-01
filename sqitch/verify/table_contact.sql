@@ -9,7 +9,8 @@ SELECT id,
        email_address,
        email_address_hash,
        first_name,
-       last_name
+       last_name,
+       "url"
 FROM maevsi.contact WHERE FALSE;
 
 ROLLBACK;

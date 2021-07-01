@@ -14,7 +14,8 @@ CREATE TABLE maevsi.contact (
   email_address              TEXT CHECK (char_length(email_address) < 320 AND email_address ~ '^.+@.+\..+$'),
   email_address_hash         TEXT GENERATED ALWAYS AS (md5(lower(substring(email_address, '\S(?:.*\S)*')))) STORED,
   first_name                 TEXT CHECK (char_length(first_name) > 0 AND char_length(first_name) < 100),
-  last_name                  TEXT CHECK (char_length(last_name) > 0 AND char_length(last_name) < 100)
+  last_name                  TEXT CHECK (char_length(last_name) > 0 AND char_length(last_name) < 100),
+  "url"                      TEXT CHECK (char_length("url") < 300 AND "url" ~ '^https:\/\/')
 );
 
 COMMENT ON TABLE maevsi.contact IS 'Contact data.';
@@ -26,6 +27,7 @@ COMMENT ON COLUMN maevsi.contact.email_address IS 'The contact''s email address.
 COMMENT ON COLUMN maevsi.contact.email_address_hash IS E'@omit create,update\nThe contact''s email address''s md5 hash.';
 COMMENT ON COLUMN maevsi.contact.first_name IS 'The contact''s first name.';
 COMMENT ON COLUMN maevsi.contact.last_name IS 'The contact''s last name.';
+COMMENT ON COLUMN maevsi.contact.url IS 'The contact''s website url.';
 
 -- GRANTs, RLS and POLICYs are specified in 'table_contact_policy`.
 

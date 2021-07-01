@@ -188,38 +188,11 @@
         {{ $t('inputInfoLocation') }}
       </template>
     </FormInput>
-    <FormInput
+    <FormInputUrl
       v-if="form.isRemote"
-      :error="$v.form.url.$error"
-      label-for="input-url"
-      :title="$t('url')"
-    >
-      <input
-        id="input-url"
-        v-model.trim="$v.form.url.$model"
-        class="form-input"
-        type="text"
-      />
-      <template slot="inputError">
-        <FormInputError
-          :form-input="$v.form.url"
-          validation-property="maxLength"
-        >
-          {{ $t('globalValidationLength') }}
-        </FormInputError>
-        <FormInputError
-          :form-input="$v.form.url"
-          validation-property="formatUrl"
-        >
-          {{ $t('globalValidationFormat') }}
-          <br />
-          {{ $t('globalValidationFormatUrl') }}
-        </FormInputError>
-      </template>
-      <template slot="inputInfo">
-        {{ $t('inputInfoUrl') }}
-      </template>
-    </FormInput>
+      :form-element="$v.form.url"
+      @input="form.url = $event"
+    />
     <FormInput
       :error="$v.form.description.$error"
       label-for="input-description"
@@ -546,7 +519,6 @@ de:
   slug: Slug
   slugPlaceholder: willkommensfeier
   start: Beginn
-  url: Link
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
@@ -574,7 +546,6 @@ en:
   slug: Slug
   slugPlaceholder: welcome-party
   start: Start
-  url: Link
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public

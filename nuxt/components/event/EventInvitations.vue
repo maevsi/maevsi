@@ -13,6 +13,7 @@
             <th class="border" scope="col">{{ $t('lastName') }}</th>
             <th class="border" scope="col">{{ $t('emailAddress') }}</th>
             <th class="border" scope="col">{{ $t('address') }}</th>
+            <th class="border" scope="col">{{ $t('url') }}</th>
             <th class="border" scope="col">{{ $t('invitationCode') }}</th>
             <th class="border" scope="col">{{ $t('feedback') }}</th>
           </tr>
@@ -42,6 +43,9 @@
                   ', '
                 )
               }}
+            </td>
+            <td class="border">
+              {{ invitation.contactByContactId.url }}
             </td>
             <td class="border font-mono">{{ invitation.uuid }}</td>
             <td class="border font-mono">
@@ -306,6 +310,7 @@ de:
   lastName: Nachname
   save: Speichern
   sendSuccess: Einladung an {emailAddress} erfolgreich angefordert.
+  url: Webseite
   username: Nutzername
 en:
   address: Address
@@ -326,5 +331,6 @@ en:
   lastName: Last name
   save: Save
   sendSuccess: Invitation to {emailAddress} requested successfully.
+  url: Website
   username: Username
 </i18n>

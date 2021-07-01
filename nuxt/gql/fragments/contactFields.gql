@@ -7,4 +7,5 @@ fragment contactFields on Contact {
   emailAddressHash
   firstName
   lastName
+  url
 }
