@@ -12,10 +12,7 @@
     @submit="(e) => $emit('submit', e)"
   >
     <slot />
-    <div
-      class="flex flex-col items-center justify-between my-4"
-      :class="{ hidden: isEmbedded }"
-    >
+    <div class="flex flex-col items-center justify-between my-4">
       <Button
         ref="buttonSubmit"
         :aria-label="submitName"
@@ -34,11 +31,7 @@
         {{ $t('globalValidationFailed') }}
       </FormInputError>
     </div>
-    <CardAlert
-      v-if="!isEmbedded"
-      class="mt-4"
-      :error-message="graphqlErrorMessageComputed"
-    >
+    <CardAlert class="mt-4" :error-message="graphqlErrorMessageComputed">
       <Button
         v-if="
           graphqlErrorMessageComputed &&
@@ -80,10 +73,6 @@ export default {
     iconId: {
       default: undefined,
       type: Array,
-    },
-    isEmbedded: {
-      default: false,
-      type: Boolean,
     },
     submitName: {
       default() {

@@ -118,10 +118,6 @@ export default {
       required: true,
       type: Object,
     },
-    isEmbedded: {
-      default: false,
-      type: Boolean,
-    },
   },
   data() {
     return {
@@ -153,20 +149,16 @@ export default {
     }
   },
   methods: {
-    getSubmitPromise() {
-      return new Promise((resolve) => {
-        this.$refs.form.submit()
-        resolve()
-      })
-    },
-    submit() {
-      this.form.sent = true
-      this.graphqlErrorMessage = undefined
-      this.$v.form.$reset()
+    async submit() {
+      try {
+        await this.$global.formPreSubmit(this)
+      } catch (error) {
+        return
+      }
 
       if (this.form.id) {
         // Edit
-        this.$apollo
+        await this.$apollo
           .mutate({
             mutation: CONTACT_UPDATE_BY_ID_MUTATION,
             variables: {
@@ -193,7 +185,7 @@ export default {
           })
       } else {
         // Add
-        this.$apollo
+        await this.$apollo
           .mutate({
             mutation: CONTACT_CREATE_MUTATION,
             variables: {

@@ -134,26 +134,17 @@
         })
       }}
     </p>
-    <Modal
-      id="ModalEventInvitation"
-      class="z-10"
-      is-cancellable
-      :is-submit-disabled="
-        $refs.formEventInvitation && $refs.formEventInvitation.$v.form.$invalid
-      "
-      :submit-name="$t('save')"
-      :submit-task-provider="() => $refs.formEventInvitation.getSubmitPromise()"
-    >
+    <Modal id="ModalEventInvitation">
       <h2 slot="header">
         {{ formEventInvitationHeading }}
       </h2>
       <FormEventInvitation
         ref="formEventInvitation"
         :event="event"
-        is-embedded
         :data-initial="selectedInvitation"
-        @submitSuccess="$apollo.queries.allInvitations.refetch()"
+        @submitSuccess="submitSuccess"
       />
+      <div slot="footer" />
     </Modal>
   </div>
 </template>
@@ -286,6 +277,10 @@ export default {
             1
           )
         })
+    },
+    submitSuccess() {
+      this.$store.commit('modalRemove', 'ModalEventInvitation')
+      this.$apollo.queries.allInvitations.refetch()
     },
   },
 }

@@ -110,7 +110,6 @@
     <p v-else>{{ $t('noPictures') }}</p>
     <Modal
       id="ModalImageUploadGallery"
-      is-cancellable
       :submit-icon-id="['fas', 'upload']"
       :submit-name="$t('upload')"
       :submit-task-provider="() => getUploadBlobPromise()"

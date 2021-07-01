@@ -1,7 +1,6 @@
 <template>
   <Modal
     id="ModalImageSelection"
-    is-cancellable
     :is-storybook="isStorybook"
     :is-submit-disabled="selectedProfilePictureStorageKey === undefined"
     :submit-task-provider="setProfilePicture"

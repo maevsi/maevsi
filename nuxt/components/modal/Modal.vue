@@ -20,6 +20,14 @@
       <div
         class="card max-h-[90vh] overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3"
       >
+        <div class="flex justify-end">
+          <ButtonIcon
+            :aria-label="$t('cancel')"
+            :disabled="isSubmitting"
+            :icon-id="['fas', 'times']"
+            @click="close()"
+          />
+        </div>
         <div class="text-center">
           <div v-if="contentHeaderComputed">
             {{ contentHeaderComputed }}
@@ -46,40 +54,21 @@
             {{ contentFooterComputed }}
           </div>
           <slot v-else name="footer">
-            <ButtonList>
-              <Button
-                v-if="isCancellableComputed"
-                :aria-label="$t('cancel')"
-                :disabled="isSubmitting"
-                :icon-id="['fas', 'window-close']"
-                @click="close()"
-              >
-                {{ $t('cancel') }}
-              </Button>
-              <ButtonGreen
-                v-if="isCancellableComputed"
-                :aria-label="submitName"
-                :disabled="isSubmitting || isSubmitDisabled"
-                :icon-id="submitIconId"
-                type="submit"
-                @click="submit()"
-              >
-                {{ submitName }}
-              </ButtonGreen>
-              <Button
-                v-else
-                :aria-label="submitName"
-                :disabled="isSubmitting || isSubmitDisabled"
-                :icon-id="submitIconId"
-                type="submit"
-                @click="submit()"
-              >
-                {{ submitName }}
-              </Button>
-            </ButtonList>
+            <ButtonGreen
+              :aria-label="submitName"
+              :disabled="isSubmitting || isSubmitDisabled"
+              :icon-id="submitIconId"
+              type="submit"
+              @click="submit()"
+            >
+              {{ submitName }}
+            </ButtonGreen>
           </slot>
         </div>
-        <CardAlert class="mb-4" :error-message="errorMessage" />
+        <CardAlert
+          class="mb-4"
+          :error-message="errorMessage ? String(errorMessage) : undefined"
+        />
       </div>
     </div>
   </div>
@@ -96,10 +85,6 @@ export default {
     id: {
       default: 'ModalGlobal',
       type: String,
-    },
-    isCancellable: {
-      default: false,
-      type: Boolean,
     },
     isStorybook: {
       default: false,
@@ -122,9 +107,7 @@ export default {
       type: Array,
     },
     submitTaskProvider: {
-      default() {
-        return () => Promise.resolve()
-      },
+      default: () => Promise.resolve(),
       type: Function,
     },
   },
@@ -145,12 +128,6 @@ export default {
     },
     contentHeaderComputed() {
       return this.$global.getNested(this.modalComputed, 'contentHeader') // The header slot above is used as alternative.
-    },
-    isCancellableComputed() {
-      return (
-        this.$global.getNested(this.modalComputed, 'isCancellable') ||
-        this.isCancellable
-      )
     },
     isVisibleComputed() {
       return (
@@ -217,22 +194,20 @@ export default {
           break
       }
     },
-    submit() {
+    async submit() {
       this.isSubmitting = true
 
-      this.submitTaskProvider()
-        .then((value) => {
-          this.$emit('submitSuccess', value)
-          this.onSubmitComputed()
-          this.close()
-        })
-        .catch((reason) => {
-          this.errorMessage = reason
-          consola.error(reason)
-        })
-        .finally(() => {
-          this.isSubmitting = false
-        })
+      try {
+        const value = await this.submitTaskProvider()
+        this.$emit('submitSuccess', value)
+        this.onSubmitComputed()
+        this.close()
+      } catch (error) {
+        this.errorMessage = error
+        consola.error(error)
+      }
+
+      this.isSubmitting = false
     },
   },
 }

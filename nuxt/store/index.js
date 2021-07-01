@@ -31,7 +31,6 @@ export const mutations = {
       contentFooter: undefined,
       contentHeader: undefined,
       id: 'ModalGlobal',
-      isCancellable: undefined,
       isVisible: true,
       onSubmit: undefined,
     }

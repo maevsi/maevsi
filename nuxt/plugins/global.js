@@ -63,17 +63,28 @@ export function capitalizeFirstLetter(string) {
 
 export function formPreSubmit(that) {
   return new Promise((resolve, reject) => {
-    that.graphqlErrorMessage = undefined
-    that.$v.form.$touch()
+    that.graphqlError = undefined
+    that.$v.$touch()
 
-    if (that.$v.$invalid) {
-      reject(Error('Form is invalid!'))
-      return
+    // Workaround until https://vuelidate-next.netlify.app/.
+    const waitPending = () => {
+      if (that.$v.$pending) {
+        setTimeout(() => {
+          waitPending()
+        }, 100)
+      } else {
+        if (that.$v.$invalid) {
+          reject(Error('Form is invalid!'))
+          return
+        }
+
+        that.form.sent = true
+
+        resolve()
+      }
     }
 
-    that.form.sent = true
-
-    resolve()
+    waitPending()
   })
 }
 

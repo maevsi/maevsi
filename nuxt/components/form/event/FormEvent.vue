@@ -373,19 +373,15 @@ export default {
     }
   },
   methods: {
-    getSubmitPromise() {
-      return new Promise((resolve) => {
-        this.$refs.form.submit()
-        resolve()
-      })
-    },
-    submit() {
-      this.form.sent = true
-      this.graphqlErrorMessage = undefined
-      this.$v.form.$reset()
+    async submit() {
+      try {
+        await this.$global.formPreSubmit(this)
+      } catch (error) {
+        return
+      }
 
       if (this.form.id) {
-        // Edit.
+        // Edit
         this.$apollo
           .mutate({
             mutation: EVENT_UPDATE_BY_ID_MUTATION,
@@ -415,14 +411,13 @@ export default {
             this.$store.commit('modalAdd', {
               contentBody: this.$t('eventUpdateSuccess'),
             })
-            // await this.$listeners.submitSuccess()
           })
           .catch((reason) => {
             this.graphqlErrorMessage = reason
             consola.error(reason)
           })
       } else {
-        // Add.
+        // Add
         this.$apollo
           .mutate({
             mutation: EVENT_CREATE_MUTATION,
@@ -459,7 +454,6 @@ export default {
                 `/event/${this.$store.state.signedInUsername}/${this.form.slug}`
               )
             )
-            // await this.$listeners.submitSuccess()
           })
           .catch((reason) => {
             this.graphqlErrorMessage = reason
