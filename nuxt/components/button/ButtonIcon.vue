@@ -1,7 +1,6 @@
 <template>
   <button
     :aria-label="ariaLabel"
-    :class="buttonClass"
     :disabled="disabled"
     :type="type"
     @click="$emit('click')"
@@ -15,10 +14,6 @@ export default {
   props: {
     ariaLabel: {
       required: true,
-      type: String,
-    },
-    buttonClass: {
-      default: undefined,
       type: String,
     },
     disabled: {
