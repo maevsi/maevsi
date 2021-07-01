@@ -367,7 +367,12 @@ export default {
         'font-src': ["'self'"],
         'form-action': ["'none'"], // Mozilla Observatory.
         'frame-ancestors': ["'none'"], // Mozilla Observatory.
-        'img-src': ['data:', `https://*.${STACK_DOMAIN}`, "'self'"],
+        'img-src': [
+          'data:',
+          `https://*.${STACK_DOMAIN}`,
+          'https://www.google-analytics.com',
+          "'self'",
+        ],
         'manifest-src': ["'self'"], // Chrome
         'report-uri': 'https://dargmuesli.report-uri.com/r/d/csp/enforce',
         'script-src': [
