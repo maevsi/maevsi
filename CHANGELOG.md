@@ -1,3 +1,18 @@
+# [0.81.0](https://github.com/maevsi/maevsi/compare/0.80.0...0.81.0) (2021-07-01)
+
+
+### Bug Fixes
+
+* **csp:** add analytics to img-src ([bc0cc00](https://github.com/maevsi/maevsi/commit/bc0cc004c13a830a0ea9c02e88289508f9d6ca3e))
+* **middleware:** check res for existence ([2fedcf8](https://github.com/maevsi/maevsi/commit/2fedcf8faf183991bb75d25988522ab102d65070))
+
+
+### Features
+
+* rename graphql error variables ([f3a30ea](https://github.com/maevsi/maevsi/commit/f3a30ea3c29e79f5e166658068c3bf58fd3228b0))
+* **contact:** add url ([6208447](https://github.com/maevsi/maevsi/commit/6208447846bcd193e3a2f322667e0eb853c1b283)), closes [#93](https://github.com/maevsi/maevsi/issues/93)
+* **modal:** remove form workaround ([89fe3d7](https://github.com/maevsi/maevsi/commit/89fe3d79414eb0856a20a8d84b83f0de40c01071))
+
 # [0.80.0](https://github.com/maevsi/maevsi/compare/0.79.0...0.80.0) (2021-06-30)
 
 
