@@ -65,7 +65,7 @@ export default {
     },
   },
   middleware({ res, params, store }) {
-    if (params.username !== store.state.signedInUsername) {
+    if (res && params.username !== store.state.signedInUsername) {
       res.statusCode = 403
     }
   },

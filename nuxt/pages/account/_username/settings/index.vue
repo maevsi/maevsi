@@ -52,7 +52,7 @@ import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.
 
 export default {
   middleware({ res, params, store }) {
-    if (params.username !== store.state.signedInUsername) {
+    if (res && params.username !== store.state.signedInUsername) {
       res.statusCode = 403
     }
   },

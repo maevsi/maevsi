@@ -5,7 +5,9 @@
 <script>
 export default {
   middleware({ res }) {
-    res.statusCode = 418
+    if (res) {
+      res.statusCode = 418
+    }
   },
   data() {
     return {
