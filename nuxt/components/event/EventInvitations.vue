@@ -1,7 +1,7 @@
 <template>
   <Loader
-    v-if="($apollo.loading && !allInvitations) || graphqlErrorMessage"
-    :error-message="graphqlErrorMessage"
+    v-if="($apollo.loading && !allInvitations) || graphqlError"
+    :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
     <div class="overflow-auto">
@@ -170,7 +170,7 @@ export default {
         },
         update: (data) => data.allInvitations,
         error(error, _vm, _key, _type, _options) {
-          this.graphqlErrorMessage = error.message
+          this.graphqlError = error
           consola.error(error)
         },
       }
@@ -185,7 +185,7 @@ export default {
   data() {
     return {
       formEventInvitationHeading: undefined,
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
       pending: {
         deletions: [],
         edits: [],
@@ -202,7 +202,7 @@ export default {
     },
     deletion(uuid) {
       this.pending.deletions.push(uuid)
-      this.graphqlErrorMessage = undefined
+      this.graphqlError = undefined
       this.$apollo
         .mutate({
           mutation: INVITATION_DELETE_MUTATION,
@@ -215,7 +215,7 @@ export default {
             this.$apollo.queries.allInvitations.refetch()
         })
         .catch((reason) => {
-          this.graphqlErrorMessage = reason
+          this.graphqlError = reason
           consola.error(reason)
         })
         .finally(() => {
@@ -253,7 +253,7 @@ export default {
     },
     send(invitation) {
       this.pending.sends.push(invitation.uuid)
-      this.graphqlErrorMessage = undefined
+      this.graphqlError = undefined
       this.$apollo
         .mutate({
           mutation: INVITE_MUTATION,
@@ -272,8 +272,8 @@ export default {
             this.$apollo.queries.allInvitations.refetch()
         })
         .catch((reason) => {
-          this.graphqlErrorMessage = reason
-          consola.error(reason.message)
+          this.graphqlError = reason
+          consola.error(reason)
         })
         .finally(() => {
           this.pending.sends.splice(

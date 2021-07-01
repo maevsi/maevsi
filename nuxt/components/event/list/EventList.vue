@@ -1,7 +1,7 @@
 <template>
   <Loader
-    v-if="($apollo.loading && !allEvents) || graphqlErrorMessage"
-    :error-message="graphqlErrorMessage"
+    v-if="($apollo.loading && !allEvents) || graphqlError"
+    :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
     <h2 v-if="username" class="text-left truncate">
@@ -49,7 +49,7 @@ export default {
           authorUsername: this.username,
         },
         error(error, _vm, _key, _type, _options) {
-          this.graphqlErrorMessage = error.message
+          this.graphqlError = error
           consola.error(error)
         },
       }
@@ -77,7 +77,7 @@ export default {
   },
   data() {
     return {
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
     }
   },
   methods: {

@@ -1,7 +1,7 @@
 <template>
   <Loader
-    v-if="($apollo.loading && !event) || graphqlErrorMessage"
-    :error-message="graphqlErrorMessage"
+    v-if="($apollo.loading && !event) || graphqlError"
+    :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
     <div v-if="$route.params.username === $store.state.signedInUsername">
@@ -58,7 +58,7 @@ export default {
         },
         update: (data) => data.eventByAuthorUsernameAndSlug,
         error(error, _vm, _key, _type, _options) {
-          this.graphqlErrorMessage = error.message
+          this.graphqlError = error
           consola.error(error)
         },
       }
@@ -84,7 +84,7 @@ export default {
   },
   data() {
     return {
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
       mutation: EVENT_DELETE_MUTATION,
       title:
         this.$route.params.username === this.$store.state.signedInUsername

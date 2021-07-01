@@ -2,7 +2,7 @@
   <Form
     :form="$v.form"
     :form-sent="form.sent"
-    :graphql-error-message="graphqlErrorMessage"
+    :graphql-error="graphqlError"
     :submit-name="$t('passwordChange')"
     @submit.prevent="submit"
   >
@@ -34,7 +34,7 @@ export default {
         passwordNew: undefined,
         sent: false,
       },
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
     }
   },
   methods: {
@@ -59,7 +59,7 @@ export default {
           })
         })
         .catch((reason) => {
-          this.graphqlErrorMessage = reason
+          this.graphqlError = reason
           consola.error(reason)
         })
     },

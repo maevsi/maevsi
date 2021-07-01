@@ -3,7 +3,7 @@
     :form="$v.form"
     :form-class="formClass"
     :form-sent="form.sent"
-    :graphql-error-message="graphqlErrorMessage"
+    :graphql-error="graphqlError"
     :submit-name="$t('accountPasswordReset')"
     @submit.prevent="submit"
   >
@@ -31,7 +31,7 @@ export default {
         password: undefined,
         sent: false,
       },
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
     }
   },
   methods: {
@@ -54,7 +54,7 @@ export default {
           this.$global.getNested(data, 'accountPasswordReset')
         )
         .catch((reason) => {
-          this.graphqlErrorMessage = reason
+          this.graphqlError = reason
           consola.error(reason)
         })
 

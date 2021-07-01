@@ -4,7 +4,7 @@
     :class="[
       {
         'animate-shake border border-red-500':
-          graphqlErrorMessage !== undefined,
+          graphqlErrorComputed !== undefined,
       },
       formClass,
     ]"
@@ -31,11 +31,16 @@
         {{ $t('globalValidationFailed') }}
       </FormInputError>
     </div>
-    <CardAlert class="mt-4" :error-message="graphqlErrorMessageComputed">
+    <CardAlert
+      class="mt-4"
+      :error-message="
+        graphqlErrorComputed ? String(graphqlErrorComputed) : undefined
+      "
+    >
       <Button
         v-if="
-          graphqlErrorMessageComputed &&
-          graphqlErrorMessageComputed.startsWith('Account not verified!')
+          graphqlErrorComputed &&
+          graphqlErrorComputed.startsWith('Account not verified!')
         "
         :aria-label="$t('verificationMailResend')"
         @click="accountRegistrationRefresh"
@@ -66,7 +71,7 @@ export default {
       required: true,
       type: Boolean,
     },
-    graphqlErrorMessage: {
+    graphqlError: {
       default: undefined,
       type: Error,
     },
@@ -84,20 +89,18 @@ export default {
   data() {
     return {
       // TODO: remove with https://github.com/maevsi/maevsi/issues/209.
-      graphqlErrorMessageInternal: undefined,
+      graphqlErrorInternal: undefined,
     }
   },
   computed: {
-    graphqlErrorMessageComputed() {
-      if (!this.graphqlErrorMessage) {
+    graphqlErrorComputed() {
+      if (!this.graphqlError) {
         return
       }
 
       return [
-        ...this.graphqlErrorMessage.graphQLErrors.map((e) => e.message),
-        ...(this.graphqlErrorMessageInternal
-          ? [this.graphqlErrorMessageInternal]
-          : []),
+        ...this.graphqlError.graphQLErrors.map((e) => e.message),
+        ...(this.graphqlErrorInternal ? [this.graphqlErrorInternal] : []),
       ].join(', ')
     },
   },
@@ -115,7 +118,7 @@ export default {
           this.$global.getNested(data, 'accountRegistrationRefresh')
         )
         .catch((reason) => {
-          this.graphqlErrorMessageInternal = reason
+          this.graphqlErrorInternal = reason
           consola.error(reason)
         })
 

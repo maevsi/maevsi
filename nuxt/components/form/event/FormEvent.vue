@@ -3,7 +3,7 @@
     ref="form"
     :form="$v.form"
     :form-sent="form.sent"
-    :graphql-error-message="graphqlErrorMessage"
+    :graphql-error="graphqlError"
     :submit-name="form.id ? $t('eventUpdate') : $t('eventCreate')"
     @submit.prevent="submit"
   >
@@ -323,7 +323,7 @@ export default {
         url: undefined,
         visibility: undefined,
       },
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
     }
   },
   created() {
@@ -386,7 +386,7 @@ export default {
             })
           })
           .catch((reason) => {
-            this.graphqlErrorMessage = reason
+            this.graphqlError = reason
             consola.error(reason)
           })
       } else {
@@ -429,7 +429,7 @@ export default {
             )
           })
           .catch((reason) => {
-            this.graphqlErrorMessage = reason
+            this.graphqlError = reason
             consola.error(reason)
           })
       }

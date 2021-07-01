@@ -3,7 +3,7 @@
     :form="$v.form"
     :form-class="formClass"
     :form-sent="form.sent"
-    :graphql-error-message="graphqlErrorMessage"
+    :graphql-error="graphqlError"
     :submit-name="$t('signIn')"
     @submit.prevent="submit"
   >
@@ -58,7 +58,7 @@ export default {
         sent: false,
         username: undefined,
       },
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
     }
   },
   watch: {
@@ -89,7 +89,7 @@ export default {
         })
         .then(({ data }) => this.$global.getNested(data, 'authenticate'))
         .catch((reason) => {
-          this.graphqlErrorMessage = reason
+          this.graphqlError = reason
           consola.error(reason)
         })
 

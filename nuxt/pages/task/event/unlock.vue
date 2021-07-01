@@ -4,7 +4,7 @@
     <Form
       :form="$v.form"
       :form-sent="form.sent"
-      :graphql-error-message="graphqlErrorMessage"
+      :graphql-error="graphqlError"
       :submit-name="$t('submit')"
       @submit.prevent="submit"
     >
@@ -70,7 +70,7 @@ export default {
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
         sent: false,
       },
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
       title: this.$t('title'),
     }
   },
@@ -138,7 +138,7 @@ export default {
           this.$global.getNested(data, 'eventUnlock', 'eventUnlockResponse')
         )
         .catch((reason) => {
-          this.graphqlErrorMessage = reason
+          this.graphqlError = reason
           consola.error(reason)
         })
 

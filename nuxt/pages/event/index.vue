@@ -9,7 +9,7 @@
 export default {
   data() {
     return {
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
       title: this.$t('title'),
     }
   },

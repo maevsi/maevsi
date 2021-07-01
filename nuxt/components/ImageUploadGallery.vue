@@ -1,7 +1,7 @@
 <template>
   <Loader
-    v-if="($apollo.loading && !allUploads) || graphqlErrorMessage"
-    :error-message="graphqlErrorMessage"
+    v-if="($apollo.loading && !allUploads) || graphqlError"
+    :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
     <div
@@ -152,7 +152,7 @@ export default {
         },
         update: (data) => data.allUploads,
         error(error, _vm, _key, _type, _options) {
-          this.graphqlErrorMessage = error.message
+          this.graphqlError = error
           consola.error(error)
         },
       }
@@ -184,7 +184,7 @@ export default {
       allUploads: undefined,
       croppy: {},
       fileSelectedUrl: undefined,
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
       selectedItem: undefined,
       uploadIdPrefix: 'upid_',
       uppy: undefined,

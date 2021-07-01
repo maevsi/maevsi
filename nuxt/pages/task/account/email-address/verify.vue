@@ -2,8 +2,8 @@
   <div>
     <h1>{{ title }}</h1>
     <Loader
-      v-if="$apollo.loading || graphqlErrorMessage"
-      :error-message="graphqlErrorMessage"
+      v-if="$apollo.loading || graphqlError"
+      :error-message="graphqlError ? String(graphqlError) : undefined"
     />
     <div v-else>
       <p class="text-center">
@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
       loading: true,
       title: this.$t('title'),
     }
@@ -79,7 +79,7 @@ export default {
           },
         })
         .catch((reason) => {
-          this.graphqlErrorMessage = reason
+          this.graphqlError = reason
           consola.error(reason)
         })
         .finally(() => {

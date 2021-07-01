@@ -1,7 +1,7 @@
 <template>
   <Loader
-    v-if="($apollo.loading && !event) || graphqlErrorMessage"
-    :error-message="graphqlErrorMessage"
+    v-if="($apollo.loading && !event) || graphqlError"
+    :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
     <div
@@ -233,7 +233,7 @@ export default {
         },
         update: (data) => data.eventByAuthorUsernameAndSlug,
         error(error, _vm, _key, _type, _options) {
-          this.graphqlErrorMessage = error.message
+          this.graphqlError = error
           consola.error(error)
         },
       }
@@ -256,7 +256,7 @@ export default {
     return eventIsExisting
   },
   async asyncData({ $global, app, error, params, query }) {
-    let graphqlErrorMessage
+    let graphqlError
     const event = await app.apolloProvider.defaultClient
       .query({
         query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
@@ -268,7 +268,7 @@ export default {
       })
       .then(({ data }) => data.eventByAuthorUsernameAndSlug)
       .catch((reason) => {
-        graphqlErrorMessage = reason.message
+        graphqlError = reason
         consola.error(reason)
       })
 
@@ -282,7 +282,7 @@ export default {
       'nodes'
     )
 
-    return { event, graphqlErrorMessage, invitations }
+    return { event, graphqlError, invitations }
   },
   data() {
     return {
@@ -410,7 +410,7 @@ export default {
           })
         })
         .catch((reason) => {
-          this.graphqlErrorMessage = reason
+          this.graphqlError = reason
           consola.error(reason)
         })
     },

@@ -2,7 +2,7 @@
   <Form
     :form="$v.form"
     :form-sent="form.sent"
-    :graphql-error-message="graphqlErrorMessage"
+    :graphql-error="graphqlError"
     :icon-id="['fa', 'trash']"
     :submit-name="$t('deletion', { item: itemName })"
     @submit.prevent="submit"
@@ -41,7 +41,7 @@ export default {
         password: undefined,
         sent: false,
       },
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
     }
   },
   methods: {
@@ -70,7 +70,7 @@ export default {
           })
         })
         .catch((reason) => {
-          this.graphqlErrorMessage = reason
+          this.graphqlError = reason
           consola.error(reason)
         })
     },

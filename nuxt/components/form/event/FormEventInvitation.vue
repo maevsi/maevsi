@@ -3,8 +3,7 @@
     ref="form"
     :form="$v.form"
     :form-sent="form.sent"
-    :graphql-error-message="graphqlErrorMessage"
-    :is-embedded="isEmbedded"
+    :graphql-error="graphqlError"
     :submit-name="$t('save')"
     @submit.prevent="submit"
   >
@@ -132,7 +131,7 @@ export default {
         lastName: undefined,
         url: undefined,
       },
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
     }
   },
   created() {
@@ -184,7 +183,7 @@ export default {
           })
           .then(async () => await this.$listeners.submitSuccess())
           .catch((reason) => {
-            this.graphqlErrorMessage = reason
+            this.graphqlError = reason
             consola.error(reason)
           })
       } else {
@@ -222,12 +221,12 @@ export default {
               })
               .then(async () => await this.$listeners.submitSuccess())
               .catch((reason) => {
-                this.graphqlErrorMessage = reason
+                this.graphqlError = reason
                 consola.error(reason)
               })
           })
           .catch((reason) => {
-            this.graphqlErrorMessage = reason
+            this.graphqlError = reason
             consola.error(reason)
           })
       }

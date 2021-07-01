@@ -1,8 +1,8 @@
 <template>
   <!-- TODO: https://github.com/maevsi/maevsi/issues/96 for html validity inside button -->
   <Loader
-    v-if="($apollo.loading && !profilePictureByUsername) || graphqlErrorMessage"
-    :error-message="graphqlErrorMessage"
+    v-if="($apollo.loading && !profilePictureByUsername) || graphqlError"
+    :error-message="graphqlError ? String(graphqlError) : undefined"
     indicator="ping"
   />
   <LoaderImage
@@ -44,7 +44,7 @@ export default {
           }
         },
         error(error, _vm, _key, _type, _options) {
-          this.graphqlErrorMessage = error.message
+          this.graphqlError = error
           consola.error(error)
         },
       }
@@ -74,7 +74,7 @@ export default {
   },
   data() {
     return {
-      graphqlErrorMessage: undefined,
+      graphqlError: undefined,
       profilePictureUrl: undefined,
     }
   },
