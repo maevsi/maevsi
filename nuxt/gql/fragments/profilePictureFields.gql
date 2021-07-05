@@ -1,5 +1,6 @@
 fragment profilePictureFields on ProfilePicture {
   id
+  nodeId
   uploadStorageKey
   username
 }

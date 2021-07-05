@@ -1,5 +1,6 @@
 fragment eventFields on Event {
   id
+  nodeId
   authorUsername
   description
   end
