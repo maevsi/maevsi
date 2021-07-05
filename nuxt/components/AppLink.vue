@@ -1,6 +1,6 @@
 <template>
   <a
-    v-if="to.match(/^((ftp|http(s)?):\/\/|(mailto):)/)"
+    v-if="isExternal"
     class="items-center inline-flex"
     :href="to"
     :rel="
@@ -50,6 +50,11 @@ export default {
     to: {
       required: true,
       type: String,
+    },
+  },
+  computed: {
+    isExternal() {
+      return this.to.match(/^((ftp|http(s)?):\/\/|(mailto):)/) // Used as a computed property in hopes that regression test images do not bug.
     },
   },
 }
