@@ -2,7 +2,7 @@
 #import "../../fragments/eventFields.gql"
 #import "../../fragments/invitationFields.gql"
 
-query EventByAuthorUsernameAndSlug(
+query eventByAuthorUsernameAndSlug(
   $authorUsername: String!
   $slug: String!
   $invitationUuid: UUID

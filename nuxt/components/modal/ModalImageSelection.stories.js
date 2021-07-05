@@ -7,7 +7,7 @@ export default {
   component: ModalImageSelection,
   parameters: {
     msw: [
-      graphql.query('uploadsAll', (_req, res, ctx) => {
+      graphql.query('allUploads', (_req, res, ctx) => {
         return res(
           ctx.data({
             allUploads: {

@@ -1,7 +1,7 @@
 #import "../../fragments/contactFields.gql"
 #import "../../fragments/invitationFields.gql"
 
-query InvitationsAll($eventId: BigInt!) {
+query allInvitations($eventId: BigInt!) {
   allInvitations(condition: { eventId: $eventId }) {
     nodes {
       ...invitationFields

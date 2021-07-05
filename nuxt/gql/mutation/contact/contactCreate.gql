@@ -1,6 +1,6 @@
 #import "../../fragments/contactFields.gql"
 
-mutation ContactCreate($contactInput: ContactInput!) {
+mutation createContact($contactInput: ContactInput!) {
   createContact(input: { contact: $contactInput }) {
     contact {
       ...contactFields

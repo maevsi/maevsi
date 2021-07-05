@@ -1,6 +1,6 @@
 #import "../../fragments/eventFields.gql"
 
-mutation EventUpdateById($id: BigInt!, $eventPatch: EventPatch!) {
+mutation updateEventById($id: BigInt!, $eventPatch: EventPatch!) {
   updateEventById(input: { id: $id, eventPatch: $eventPatch }) {
     event {
       ...eventFields

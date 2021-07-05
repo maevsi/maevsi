@@ -1,4 +1,4 @@
-mutation AccountEmailAddressVerification($code: UUID!) {
+mutation accountEmailAddressVerification($code: UUID!) {
   accountEmailAddressVerification(input: { code: $code }) {
     clientMutationId
   }

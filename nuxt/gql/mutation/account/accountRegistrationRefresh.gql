@@ -1,4 +1,4 @@
-mutation AccountRegistrationRefresh($username: String!, $language: String!) {
+mutation accountRegistrationRefresh($username: String!, $language: String!) {
   accountRegistrationRefresh(
     input: {
       language: $language

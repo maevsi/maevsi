@@ -1,4 +1,4 @@
-mutation JwtRefresh($id: UUID!) {
+mutation jwtRefresh($id: UUID!) {
   jwtRefresh(input: { jwtId: $id }) {
     clientMutationId
     jwt

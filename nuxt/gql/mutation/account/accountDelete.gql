@@ -1,4 +1,4 @@
-mutation AccountDelete($password: String!) {
+mutation accountDelete($password: String!) {
   accountDelete(input: { password: $password }) {
     clientMutationId
   }

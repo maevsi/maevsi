@@ -6,7 +6,7 @@ export default {
   component: ImageUploadGallery,
   parameters: {
     msw: [
-      graphql.query('uploadsAll', (_req, res, ctx) => {
+      graphql.query('allUploads', (_req, res, ctx) => {
         // const { username } = req.variables
         return res(
           ctx.data({

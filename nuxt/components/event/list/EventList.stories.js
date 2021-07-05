@@ -6,7 +6,7 @@ export default {
   component: EventList,
   parameters: {
     msw: [
-      graphql.query('EventsAll', (_req, res, ctx) => {
+      graphql.query('allEvents', (_req, res, ctx) => {
         return res(
           ctx.data({
             allEvents: {
