@@ -2,7 +2,7 @@ import FormAccountSignIn from './FormAccountSignIn.vue'
 
 export default {
   component: FormAccountSignIn,
-  title: 'form/accout/FormAccountSignIn',
+  title: 'form/account/FormAccountSignIn',
 }
 
 const Template = (_, { argTypes }) => ({

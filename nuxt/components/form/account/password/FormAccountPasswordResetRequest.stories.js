@@ -2,7 +2,7 @@ import FormAccountPasswordResetRequest from './FormAccountPasswordResetRequest.v
 
 export default {
   component: FormAccountPasswordResetRequest,
-  title: 'form/accout/password/FormAccountPasswordResetRequest',
+  title: 'form/account/password/FormAccountPasswordResetRequest',
 }
 
 const Template = (_, { argTypes }) => ({

@@ -2,7 +2,7 @@ import FormAccountPasswordChange from './FormAccountPasswordChange.vue'
 
 export default {
   component: FormAccountPasswordChange,
-  title: 'form/accout/password/FormAccountPasswordChange',
+  title: 'form/account/password/FormAccountPasswordChange',
 }
 
 const Template = (_, { argTypes }) => ({

@@ -2,7 +2,7 @@ import FormAccountPasswordReset from './FormAccountPasswordReset.vue'
 
 export default {
   component: FormAccountPasswordReset,
-  title: 'form/accout/password/FormAccountPasswordReset',
+  title: 'form/account/password/FormAccountPasswordReset',
 }
 
 const Template = (_, { argTypes }) => ({

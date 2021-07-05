@@ -2,7 +2,7 @@ import FormAccountRegistration from './FormAccountRegistration.vue'
 
 export default {
   component: FormAccountRegistration,
-  title: 'form/accout/FormAccountRegistration',
+  title: 'form/account/FormAccountRegistration',
 }
 
 const Template = (_, { argTypes }) => ({
