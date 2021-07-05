@@ -253,11 +253,6 @@ module.exports = {
           'a[target="_blank"]:after': {
             backgroundColor: theme('colors.text.dark'),
           },
-          form: {
-            label: {
-              color: theme('colors.gray.600'),
-            },
-          },
         },
         '.description': {
           p: {
