@@ -1,0 +1,14 @@
+#import "../../fragments/contactFields.gql"
+
+mutation deleteContact($nodeId: ID!) {
+  deleteContact(
+    input: {
+      nodeId: $nodeId
+    }
+  ) {
+    clientMutationId
+    contact {
+      ...contactFields
+    }
+  }
+}

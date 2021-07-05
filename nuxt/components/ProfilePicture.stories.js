@@ -12,6 +12,7 @@ export default {
           ctx.data({
             __typename: 'ProfilePicture',
             id: 0,
+            nodeId: 'WyJldmVudHMiLDFd',
             uploadStorageKey: '123',
             username,
           })

@@ -22,6 +22,7 @@ export default {
                   isRemote: false,
                   location: 'Place',
                   name: 'name',
+                  nodeId: 'WyJldmVudHMiLDFd',
                   slug: 'slug',
                   start: '1970-01-01 00:00:00',
                   url: 'https://example.com',

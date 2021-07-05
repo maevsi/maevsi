@@ -138,7 +138,7 @@
         })
       }}
     </p>
-    <Modal id="ModalEventInvitation">
+    <Modal id="ModalEventInvitation" @close="onClose">
       <h2 slot="header">
         {{ formEventInvitationHeading }}
       </h2>
@@ -146,7 +146,7 @@
         ref="formEventInvitation"
         :event="event"
         :data-initial="selectedInvitation"
-        @submitSuccess="submitSuccess"
+        @submitSuccess="onSubmitSuccess"
       />
       <div slot="footer" />
     </Modal>
@@ -219,10 +219,11 @@ export default {
           consola.error(reason)
         })
         .finally(() => {
-          this.pending.deletions.slice(this.pending.deletions.indexOf(uuid), 1)
+          this.pending.deletions.splice(this.pending.deletions.indexOf(uuid), 1)
         })
     },
     edit(invitation) {
+      this.pending.edits.push(invitation.uuid)
       this.formEventInvitationHeading = this.$t('invitationEdit')
       this.selectedInvitation = invitation
       this.$store.commit('modalAdd', { id: 'ModalEventInvitation' })
@@ -282,8 +283,13 @@ export default {
           )
         })
     },
-    submitSuccess() {
-      this.$store.commit('modalRemove', 'ModalEventInvitation')
+    onClose() {
+      this.pending.edits.splice(
+        this.pending.edits.indexOf(this.selectedInvitation.uuid),
+        1
+      )
+    },
+    onSubmitSuccess() {
       this.$apollo.queries.allInvitations.refetch()
     },
   },
@@ -308,7 +314,6 @@ de:
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
   lastName: Nachname
-  save: Speichern
   sendSuccess: Einladung an {emailAddress} erfolgreich angefordert.
   url: Webseite
   username: Nutzername
@@ -329,7 +334,6 @@ en:
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
   lastName: Last name
-  save: Save
   sendSuccess: Invitation to {emailAddress} requested successfully.
   url: Website
   username: Username

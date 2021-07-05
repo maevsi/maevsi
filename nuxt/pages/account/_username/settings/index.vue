@@ -22,6 +22,10 @@
       <ModalImageSelection @submitSuccess="reloadProfilePicture" />
     </div>
     <section>
+      <h2>{{ $t('titleContacts') }}</h2>
+      <AccountContacts />
+    </section>
+    <section>
       <h2>{{ $t('titleImageUploads') }}</h2>
       <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
       <ImageUploadGallery
@@ -115,10 +119,12 @@ de:
   account: Konto
   titleAccountDelete: Konto löschen
   titlePasswordChange: Password ändern
+  titleContacts: Kontakte
   titleImageUploads: Hochgeladene Bilder
 en:
   account: account
   titleAccountDelete: Delete account
   titlePasswordChange: Change password
+  titleContacts: Contacts
   titleImageUploads: Image uploads
 </i18n>

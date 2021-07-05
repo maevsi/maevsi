@@ -1,0 +1,18 @@
+#import "../../fragments/contactFields.gql"
+
+query allContacts($cursor: Cursor, $limit: Int!, $authorAccountUsername: String) {
+  allContacts(
+    after: $cursor
+    condition: { authorAccountUsername: $authorAccountUsername }
+    first: $limit
+    orderBy: [ACCOUNT_USERNAME_ASC, FIRST_NAME_DESC, LAST_NAME_DESC]
+  ) @connection(filter: ["condition"], key: "allContacts") {
+    nodes {
+      ...contactFields
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
