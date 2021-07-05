@@ -73,25 +73,6 @@
                 />
                 <ButtonTableInteraction
                   :aria-label="
-                    invitation.contactByContactId.authorAccountUsername !==
-                    $store.state.signedInUsername
-                      ? $t('disabledReasonCreatorNot', {
-                          authorAccountUsername:
-                            invitation.contactByContactId.authorAccountUsername,
-                        })
-                      : $t('invitationEdit')
-                  "
-                  :disabled="
-                    invitation.contactByContactId.authorAccountUsername !==
-                      $store.state.signedInUsername ||
-                    pending.edits.includes(invitation.uuid)
-                  "
-                  :icon-id="['fas', 'edit']"
-                  is-title-show
-                  @click="edit(invitation)"
-                />
-                <ButtonTableInteraction
-                  :aria-label="
                     invitation.contactByContactId.emailAddress
                       ? $t('invitationSend')
                       : $t('disabledReasonEmailAddressNone')
@@ -109,7 +90,7 @@
                   :disabled="pending.deletions.includes(invitation.uuid)"
                   :icon-id="['fas', 'trash']"
                   is-title-show
-                  @click="deletion(invitation.uuid)"
+                  @click="delete_(invitation.uuid)"
                 />
               </div>
             </td>
@@ -138,16 +119,11 @@
         })
       }}
     </p>
-    <Modal id="ModalEventInvitation" @close="onClose">
+    <Modal id="ModalInvitation">
       <h2 slot="header">
-        {{ formEventInvitationHeading }}
+        {{ $t('invitationAdd') }}
       </h2>
-      <FormEventInvitation
-        ref="formEventInvitation"
-        :event="event"
-        :data-initial="selectedInvitation"
-        @submitSuccess="onSubmitSuccess"
-      />
+      <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
       <div slot="footer" />
     </Modal>
   </div>
@@ -184,23 +160,19 @@ export default {
   },
   data() {
     return {
-      formEventInvitationHeading: undefined,
       graphqlError: undefined,
       pending: {
         deletions: [],
         edits: [],
         sends: [],
       },
-      selectedInvitation: undefined,
     }
   },
   methods: {
     add() {
-      this.formEventInvitationHeading = this.$t('invitationAdd')
-      this.selectedInvitation = undefined
-      this.$store.commit('modalAdd', { id: 'ModalEventInvitation' })
+      this.$store.commit('modalAdd', { id: 'ModalInvitation' })
     },
-    deletion(uuid) {
+    delete_(uuid) {
       this.pending.deletions.push(uuid)
       this.graphqlError = undefined
       this.$apollo
@@ -221,12 +193,6 @@ export default {
         .finally(() => {
           this.pending.deletions.splice(this.pending.deletions.indexOf(uuid), 1)
         })
-    },
-    edit(invitation) {
-      this.pending.edits.push(invitation.uuid)
-      this.formEventInvitationHeading = this.$t('invitationEdit')
-      this.selectedInvitation = invitation
-      this.$store.commit('modalAdd', { id: 'ModalEventInvitation' })
     },
     getFeedbackIconId(feedback) {
       switch (feedback) {
@@ -283,13 +249,8 @@ export default {
           )
         })
     },
-    onClose() {
-      this.pending.edits.splice(
-        this.pending.edits.indexOf(this.selectedInvitation.uuid),
-        1
-      )
-    },
     onSubmitSuccess() {
+      this.$store.commit('modalRemove', 'ModalInvitation')
       this.$apollo.queries.allInvitations.refetch()
     },
   },

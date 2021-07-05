@@ -167,12 +167,15 @@ export default {
       this.$store.commit('modalAdd', { id: 'ModalContact' })
     },
     onClose() {
+      if (!this.selectedContact) return
+
       this.pending.edits.splice(
         this.pending.edits.indexOf(this.selectedContact.nodeId),
         1
       )
     },
     onSubmitSuccess() {
+      this.$store.commit('modalRemove', 'ModalContact')
       this.$apollo.queries.allContacts.refetch()
     },
   },

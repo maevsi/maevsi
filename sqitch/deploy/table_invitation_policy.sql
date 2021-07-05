@@ -30,6 +30,7 @@ CREATE POLICY invitation_select ON maevsi.invitation FOR SELECT USING (
 
 -- Only allow inserts for invitations to events organized by oneself.
 -- Only allow inserts for invitations to events for which the maximum invitee count is not yet reached.
+-- Only allow inserts for invitations issued to a contact that was created by oneself.
 CREATE POLICY invitation_insert ON maevsi.invitation FOR INSERT WITH CHECK (
       event_id IN (SELECT maevsi.events_organized())
   AND (
@@ -37,6 +38,7 @@ CREATE POLICY invitation_insert ON maevsi.invitation FOR INSERT WITH CHECK (
     OR
     maevsi.event_invitee_count_maximum(event_id) > maevsi.invitee_count(event_id)
   )
+  AND contact_id IN (SELECT id FROM maevsi.contact WHERE contact.author_account_username = current_setting('jwt.claims.username', true)::TEXT)
 );
 
 -- Only allow updates to invitations issued to oneself through invitation claims.
