@@ -14,6 +14,7 @@
             <th class="border" scope="col">{{ $t('lastName') }}</th>
             <th class="border" scope="col">{{ $t('emailAddress') }}</th>
             <th class="border" scope="col">{{ $t('address') }}</th>
+            <th class="border" scope="col">{{ $t('phoneNumber') }}</th>
             <th class="border" scope="col">{{ $t('url') }}</th>
           </tr>
         </thead>
@@ -149,6 +150,7 @@ de:
   emailAddress: E-Mail Adresse
   firstName: Vorname
   lastName: Nachname
+  phoneNumber: Telefonnummer
   url: Webseite
   username: Nutzername
 en:
@@ -160,6 +162,7 @@ en:
   emailAddress: Email address
   firstName: First name
   lastName: Last name
+  phoneNumber: Phone number
   url: Website
   username: Username
 </i18n>

@@ -95,6 +95,10 @@
         </FormInputError>
       </template>
     </FormInput>
+    <FormInputPhoneNumber
+      :form-element="$v.form.phoneNumber"
+      @input="form.phoneNumber = $event"
+    />
     <FormInputUrl :form-element="$v.form.url" @input="form.url = $event" />
   </Form>
 </template>
@@ -124,6 +128,7 @@ export default {
         emailAddress: undefined,
         firstName: undefined,
         lastName: undefined,
+        phoneNumber: undefined,
         url: undefined,
       },
       graphqlError: undefined,
@@ -138,6 +143,7 @@ export default {
         'emailAddress',
         'firstName',
         'lastName',
+        'phoneNumber',
         'url',
       ].forEach((property) => (this.form[property] = this.contact[property]))
     }
@@ -169,6 +175,8 @@ export default {
                 firstName:
                   this.form.firstName === '' ? null : this.form.firstName,
                 lastName: this.form.lastName === '' ? null : this.form.lastName,
+                phoneNumber:
+                  this.form.phoneNumber !== '' ? this.form.phoneNumber : null,
                 url: this.form.url !== '' ? this.form.url : null,
               },
             },
@@ -196,6 +204,8 @@ export default {
                 firstName:
                   this.form.firstName === '' ? null : this.form.firstName,
                 lastName: this.form.lastName === '' ? null : this.form.lastName,
+                phoneNumber:
+                  this.form.phoneNumber !== '' ? this.form.phoneNumber : null,
                 url: this.form.url !== '' ? this.form.url : null,
               },
             },
@@ -237,6 +247,9 @@ export default {
             this.$global.VALIDATION_LAST_NAME_LENGTH_MAXIMUM
           ),
         },
+        phoneNumber: {
+          formatPhoneNumber: this.$global.VALIDATION_FORMAT_PHONE_NUMBER,
+        },
         url: {
           formatUrl: this.$global.VALIDATION_FORMAT_URL,
           maxLength: maxLength(
@@ -254,10 +267,12 @@ de:
   address: Adresse
   firstName: Vorname
   lastName: Nachname
+  phoneNumber: Telefonnummer
   save: Speichern
 en:
   address: Address
   firstName: First name
   lastName: Last name
+  phoneNumber: Phone number
   save: Save
 </i18n>

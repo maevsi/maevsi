@@ -10,6 +10,8 @@ import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.
 const consola = require('consola')
 
 export const ITEMS_PER_PAGE = 8
+export const REGEX_PHONE_NUMBER =
+  /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/
 export const REGEX_SLUG = /^[-A-Za-z0-9]+$/
 export const REGEX_UPPERCASE_NONE = /^[^A-Z]+$/
 export const REGEX_URL = /^https:\/\//
@@ -27,6 +29,10 @@ export const VALIDATION_EVENT_NAME_LENGTH_MAXIMUM = 100
 export const VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM = 100
 export const VALIDATION_EVENT_URL_LENGTH_MAXIMUM = 300
 export const VALIDATION_FIRST_NAME_LENGTH_MAXIMUM = 100
+export const VALIDATION_FORMAT_PHONE_NUMBER = helpers.regex(
+  'phone-number',
+  REGEX_PHONE_NUMBER
+)
 export const VALIDATION_FORMAT_SLUG = helpers.regex('slug', REGEX_SLUG)
 export const VALIDATION_FORMAT_UPPERCASE_NONE = helpers.regex(
   'uppercase-none',
@@ -297,6 +303,7 @@ export function xhrPromise(method, url, jwt) {
 export default async ({ app, req, res, store }, inject) => {
   const global = {
     ITEMS_PER_PAGE,
+    REGEX_PHONE_NUMBER,
     REGEX_SLUG,
     REGEX_UPPERCASE_NONE,
     REGEX_URL,
@@ -310,6 +317,7 @@ export default async ({ app, req, res, store }, inject) => {
     VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM,
     VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
     VALIDATION_FIRST_NAME_LENGTH_MAXIMUM,
+    VALIDATION_FORMAT_PHONE_NUMBER,
     VALIDATION_FORMAT_SLUG,
     VALIDATION_FORMAT_UPPERCASE_NONE,
     VALIDATION_FORMAT_URL,

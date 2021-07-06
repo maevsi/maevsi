@@ -8,6 +8,7 @@
   "globalPlaceholderEmailAddress": "email@addre.ss",
   "globalPlaceholderFirstName": "Firstname",
   "globalPlaceholderLastName": "Lastname",
+  "globalPlaceholderPhoneNumber": "+1234567890",
   "globalPlaceholderUrl": "https://websi.te",
   "globalPlaceholderUsername": "user-name",
   "globalValidationExistence": "Does not exist",

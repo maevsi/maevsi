@@ -14,6 +14,7 @@
             <th class="border" scope="col">{{ $t('lastName') }}</th>
             <th class="border" scope="col">{{ $t('emailAddress') }}</th>
             <th class="border" scope="col">{{ $t('address') }}</th>
+            <th class="border" scope="col">{{ $t('phoneNumber') }}</th>
             <th class="border" scope="col">{{ $t('url') }}</th>
             <th class="border" scope="col">{{ $t('invitationCode') }}</th>
             <th class="border" scope="col">{{ $t('feedback') }}</th>
@@ -65,6 +66,9 @@
                   ', '
                 )
               }}
+            </td>
+            <td class="border">
+              {{ invitation.contactByContactId.phoneNumber }}
             </td>
             <td class="border">
               {{ invitation.contactByContactId.url }}
@@ -298,6 +302,7 @@ de:
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
   lastName: Nachname
+  phoneNumber: Telefonnummer
   sendSuccess: Einladung an {emailAddress} erfolgreich angefordert.
   url: Webseite
   username: Nutzername
@@ -319,6 +324,7 @@ en:
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
   lastName: Last name
+  phoneNumber: Phone number
   sendSuccess: Invitation to {emailAddress} requested successfully.
   url: Website
   username: Username

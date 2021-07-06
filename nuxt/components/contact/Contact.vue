@@ -38,6 +38,9 @@
       {{ (contact.address || '').replace('\n', ', ') }}
     </td>
     <td class="border">
+      {{ contact.phoneNumber }}
+    </td>
+    <td class="border">
       {{ contact.url }}
     </td>
     <td class="border font-mono">

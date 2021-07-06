@@ -10,6 +10,7 @@ SELECT id,
        email_address_hash,
        first_name,
        last_name,
+       phone_number,
        "url"
 FROM maevsi.contact WHERE FALSE;
 
