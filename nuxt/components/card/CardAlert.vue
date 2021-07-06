@@ -1,7 +1,13 @@
 <template>
   <div
     v-if="$slots.default || errorMessage"
-    class="card bg-red-100 border border-red-700 text-center text-red-700"
+    class="
+      card
+      bg-red-100
+      border border-red-700
+      overflow-hidden
+      text-center text-red-700
+    "
     role="alert"
   >
     <span v-if="errorMessage">
