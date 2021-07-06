@@ -1,3 +1,10 @@
+# [0.82.0](https://github.com/maevsi/maevsi/compare/0.81.0...0.82.0) (2021-07-06)
+
+
+### Features
+
+* **husky:** migrate to v7 ([bc7e27a](https://github.com/maevsi/maevsi/commit/bc7e27aef48a1260b350ecd8b68b620e5de3fe5f))
+
 # [0.81.0](https://github.com/maevsi/maevsi/compare/0.80.0...0.81.0) (2021-07-01)
 
 
