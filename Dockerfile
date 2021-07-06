@@ -6,9 +6,6 @@
 # `node-zopfli-es` requires non-slim.
 FROM node:16.3.0-buster@sha256:ca6daf1543242acb0ca59ff425509eab7defb9452f6ae07c156893db06c7a9a4 AS development
 
-# https://github.com/typicode/husky/issues/821
-ENV HUSKY_SKIP_INSTALL=1
-
 # Update and install dependencies.
 # - `git` is required by the `yarn` command
 # - `sqitch` is required by the entrypoint

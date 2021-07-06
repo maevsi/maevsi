@@ -1,0 +1,5 @@
+#!/bin/sh
+# shellcheck source=./_/husky.sh
+. "$(dirname "$(readlink -f "$0")")/_/husky.sh"
+
+NODE_END=production yarn --cwd ./nuxt lint-staged
