@@ -13,6 +13,7 @@
   "globalValidationExistence": "Does not exist",
   "globalValidationFailed": "Please check your input 🙈",
   "globalValidationFormat": "Incorrect format",
+  "globalValidationFormatUppercaseNone": "Contains uppercase letters",
   "globalValidationFormatUrl": "Does the input start with \"https://\"?",
   "globalValidationLength": "Too long",
   "globalValidationMaxValue": "Above maximum value",

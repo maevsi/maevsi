@@ -11,6 +11,7 @@ const consola = require('consola')
 
 export const ITEMS_PER_PAGE = 8
 export const REGEX_SLUG = /^[-A-Za-z0-9]+$/
+export const REGEX_UPPERCASE_NONE = /^[^A-Z]+$/
 export const REGEX_URL = /^https:\/\//
 export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
@@ -27,6 +28,10 @@ export const VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM = 100
 export const VALIDATION_EVENT_URL_LENGTH_MAXIMUM = 300
 export const VALIDATION_FIRST_NAME_LENGTH_MAXIMUM = 100
 export const VALIDATION_FORMAT_SLUG = helpers.regex('slug', REGEX_SLUG)
+export const VALIDATION_FORMAT_UPPERCASE_NONE = helpers.regex(
+  'uppercase-none',
+  REGEX_UPPERCASE_NONE
+)
 export const VALIDATION_FORMAT_URL = helpers.regex('url', REGEX_URL)
 export const VALIDATION_FORMAT_UUID = helpers.regex('uuid', REGEX_UUID)
 export const VALIDATION_LAST_NAME_LENGTH_MAXIMUM = 100
@@ -293,6 +298,7 @@ export default async ({ app, req, res, store }, inject) => {
   const global = {
     ITEMS_PER_PAGE,
     REGEX_SLUG,
+    REGEX_UPPERCASE_NONE,
     REGEX_URL,
     REGEX_UUID,
     TUSD_FILES_URL,
@@ -305,6 +311,7 @@ export default async ({ app, req, res, store }, inject) => {
     VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
     VALIDATION_FIRST_NAME_LENGTH_MAXIMUM,
     VALIDATION_FORMAT_SLUG,
+    VALIDATION_FORMAT_UPPERCASE_NONE,
     VALIDATION_FORMAT_URL,
     VALIDATION_FORMAT_UUID,
     VALIDATION_LAST_NAME_LENGTH_MAXIMUM,

@@ -11,7 +11,7 @@ CREATE TABLE maevsi.contact (
   account_username           TEXT REFERENCES maevsi_private.account(username) ON DELETE CASCADE,
   "address"                  TEXT CHECK (char_length("address") > 0 AND char_length("address") < 300),
   author_account_username    TEXT REFERENCES maevsi_private.account(username) ON DELETE CASCADE NOT NULL,
-  email_address              TEXT CHECK (char_length(email_address) < 320 AND email_address ~ '^.+@.+\..+$'),
+  email_address              TEXT CHECK (char_length(email_address) < 320 AND email_address ~ '^.+@.+\..+$' AND email_address ~ '^[^A-Z]+$'),
   email_address_hash         TEXT GENERATED ALWAYS AS (md5(lower(substring(email_address, '\S(?:.*\S)*')))) STORED,
   first_name                 TEXT CHECK (char_length(first_name) > 0 AND char_length(first_name) < 100),
   last_name                  TEXT CHECK (char_length(last_name) > 0 AND char_length(last_name) < 100),

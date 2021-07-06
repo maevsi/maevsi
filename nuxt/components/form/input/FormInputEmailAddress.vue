@@ -17,6 +17,12 @@
       <FormInputError :form-input="formElement" validation-property="email">
         {{ $t('globalValidationFormat') }}
       </FormInputError>
+      <FormInputError
+        :form-input="formElement"
+        validation-property="formatUppercaseNone"
+      >
+        {{ $t('globalValidationFormatUppercaseNone') }}
+      </FormInputError>
       <FormInputError :form-input="formElement" validation-property="maxLength">
         {{ $t('globalValidationLength') }}
       </FormInputError>

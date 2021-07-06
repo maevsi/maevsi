@@ -8,7 +8,7 @@ BEGIN;
 CREATE TABLE maevsi_private.account (
   id                                         BIGSERIAL PRIMARY KEY,
   created                                    TIMESTAMP NOT NULL DEFAULT NOW(),
-  email_address                              TEXT NOT NULL CHECK (char_length(email_address) < 320 AND email_address ~ '^.+@.+\..+$') UNIQUE,
+  email_address                              TEXT NOT NULL CHECK (char_length(email_address) < 320 AND email_address ~ '^.+@.+\..+$' AND email_address ~ '^[^A-Z]+$') UNIQUE,
   email_address_verification                 UUID DEFAULT maevsi.uuid_generate_v1mc(),
   email_address_verification_valid_until     TIMESTAMP,
   last_activity                              TIMESTAMP NOT NULL DEFAULT NOW(),

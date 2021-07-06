@@ -111,6 +111,7 @@ export default {
         },
         emailAddress: {
           email,
+          formatUppercaseNone: this.$global.VALIDATION_FORMAT_UPPERCASE_NONE,
           maxLength: maxLength(
             this.$global.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
           ),
