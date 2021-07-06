@@ -76,15 +76,25 @@
         <li>
           <button
             v-if="allowAddition"
-            :aria-label="$t('iconAddLabel')"
+            :aria-label="
+              $t('iconAdd', {
+                sizeUsed: bytesToString(sizeByteTotal),
+                sizeTotal: bytesToString(accountUploadQuotaBytes),
+              })
+            "
             class="bg-gray-600 flex-none h-32 m-1 w-32"
+            :title="
+              $t('iconAdd', {
+                sizeUsed: bytesToString(sizeByteTotal),
+                sizeTotal: bytesToString(accountUploadQuotaBytes),
+              })
+            "
             type="button"
             @click="changeProfilePicture"
           >
             <FontAwesomeIcon
               :icon="['fas', 'plus']"
               class="text-text-bright"
-              :title="$t('iconAdd')"
               size="3x"
             />
           </button>
@@ -133,6 +143,7 @@ import Uppy from '@uppy/core'
 import Tus from '@uppy/tus'
 import prettyBytes from 'pretty-bytes'
 
+import ACCOUNT_UPLOAD_QUOTA_BYTES from '~/gql/query/account/accountUploadQuotaBytes.gql'
 import UPLOADS_ALL_QUERY from '~/gql/query/upload/uploadsAll.gql'
 import UPLOAD_CREATE_MUTATION from '~/gql/mutation/upload/uploadCreate.gql'
 
@@ -181,6 +192,7 @@ export default {
   },
   data() {
     return {
+      accountUploadQuotaBytes: undefined,
       allUploads: undefined,
       croppy: {},
       fileSelectedUrl: undefined,
@@ -190,9 +202,29 @@ export default {
       uppy: undefined,
     }
   },
+  async fetch() {
+    this.accountUploadQuotaBytes = await this.$apollo
+      .query({
+        query: ACCOUNT_UPLOAD_QUOTA_BYTES,
+      })
+      .then(({ data }) => data.accountUploadQuotaBytes)
+      .catch((reason) => {
+        this.graphqlError = reason
+        consola.error(reason)
+      })
+  },
   computed: {
     jwt() {
       return this.$store.state.jwt
+    },
+    sizeByteTotal() {
+      let sizeByteTotal = 0
+
+      for (const upload of this.allUploads.nodes) {
+        sizeByteTotal += upload.sizeByte
+      }
+
+      return sizeByteTotal
     },
   },
   methods: {
@@ -378,8 +410,7 @@ export default {
 de:
   cancel: Abbrechen
   croppaPlaceholder: Wähle ein Bild
-  iconAdd: hinzufügen
-  iconAddLabel: Ein neues Bild hochladen.
+  iconAdd: 'Ein neues Bild hochladen. Genutzter Speicherplatz: {sizeUsed}/{sizeTotal}.'
   iconTrash: löschen
   iconTrashLabel: Dieses hochgeladene Bild löschen.
   noPictures: Du hast keine hochgeladenen Bilder 😕
@@ -394,8 +425,7 @@ de:
 en:
   cancel: Cancel
   croppaPlaceholder: Choose an image
-  iconAdd: add
-  iconAddLabel: Upload a new image.
+  iconAdd: 'Upload a new image. Used storage space: {sizeUsed}/{sizeTotal}.'
   iconTrash: trash
   iconTrashLabel: Delete this uploaded image.
   noPictures: "You don't have any uploaded pictures 😕"
