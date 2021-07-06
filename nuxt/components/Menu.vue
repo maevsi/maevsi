@@ -15,7 +15,7 @@
       >
         {{ $store.state.signedInUsername || $t('account') }}
         <template v-if="$store.state.signedInUsername" slot="image">
-          <ProfilePicture
+          <AccountProfilePicture
             class="h-full p-2 w-full"
             height="48"
             rounded

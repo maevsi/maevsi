@@ -86,13 +86,20 @@ export default {
       if (this.profilePictureUrl !== undefined) {
         return this.profilePictureUrl
       } else {
-        return require('~/assets/blank-profile-picture.svg')
+        return require('~/static/assets/static/images/blank-profile-picture.svg')
       }
+    },
+  },
+  watch: {
+    username() {
+      this.reloadProfilePicture()
     },
   },
   methods: {
     reloadProfilePicture() {
-      this.$apollo.queries.profilePictureByUsername.refetch()
+      this.$apollo.queries.profilePictureByUsername.refetch({
+        username: this.username,
+      })
     },
   },
 }

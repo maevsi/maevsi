@@ -33,17 +33,27 @@ export default {
     }
   },
   async fetch() {
-    this.srcWhenLoaded = process.server
-      ? this.src
-      : await new Promise((resolve) => {
-          const img = new Image()
+    await this.updateSource()
+  },
+  watch: {
+    async src() {
+      await this.updateSource()
+    },
+  },
+  methods: {
+    async updateSource() {
+      this.srcWhenLoaded = process.server
+        ? this.src
+        : await new Promise((resolve) => {
+            const img = new Image()
 
-          img.onload = () => {
-            resolve(img.src)
-          }
+            img.onload = () => {
+              resolve(img.src)
+            }
 
-          img.src = this.src
-        })
+            img.src = this.src
+          })
+    },
   },
 }
 </script>

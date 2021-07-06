@@ -372,6 +372,7 @@ export default {
           'data:',
           `https://*.${STACK_DOMAIN}`,
           'https://www.google-analytics.com',
+          'https://www.gravatar.com/avatar/',
           "'self'",
         ],
         'manifest-src': ["'self'"], // Chrome

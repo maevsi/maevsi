@@ -8,6 +8,7 @@
       <table v-if="allInvitations" class="border w-full">
         <thead>
           <tr>
+            <th class="border" scope="col">{{ $t('avatar') }}</th>
             <th class="border" scope="col">{{ $t('username') }}</th>
             <th class="border" scope="col">{{ $t('firstName') }}</th>
             <th class="border" scope="col">{{ $t('lastName') }}</th>
@@ -26,6 +27,27 @@
               'animate-pulse': pending.deletions.includes(invitation.uuid),
             }"
           >
+            <td class="border">
+              <AccountProfilePicture
+                v-if="invitation.contactByContactId.accountUsername"
+                ref="Image"
+                height="48"
+                rounded
+                :username="invitation.contactByContactId.accountUsername"
+                width="48"
+              />
+              <ContactAvatar
+                v-else
+                ref="Image"
+                class="h-12 w-12"
+                :email-address="invitation.contactByContactId.emailAddress"
+                :email-address-hash="
+                  invitation.contactByContactId.emailAddressHash
+                "
+                rounded
+                size="48"
+              />
+            </td>
             <td class="border">
               {{ invitation.contactByContactId.accountUsername }}
             </td>
@@ -260,6 +282,7 @@ export default {
 <i18n lang="yml">
 de:
   address: Adresse
+  avatar: Avatar
   disabledReasonCreatorNot: 'Dieser Kontakt wird von {authorAccountUsername} verwaltet.'
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   emailAddress: E-Mail Adresse
@@ -280,6 +303,7 @@ de:
   username: Nutzername
 en:
   address: Address
+  avatar: Avatar
   disabledReasonCreatorNot: This contact is being managed by {authorAccountUsername}.
   disabledReasonEmailAddressNone: This contact is missing an email address.
   emailAddress: Email address

@@ -8,6 +8,7 @@
       <table v-if="allContacts" class="border w-full">
         <thead>
           <tr>
+            <th class="border" scope="col">{{ $t('avatar') }}</th>
             <th class="border" scope="col">{{ $t('username') }}</th>
             <th class="border" scope="col">{{ $t('firstName') }}</th>
             <th class="border" scope="col">{{ $t('lastName') }}</th>
@@ -17,59 +18,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr
+          <Contact
             v-for="contact in allContacts.nodes"
             :key="contact.nodeId"
-            :class="{
-              'animate-pulse': pending.deletions.includes(contact.nodeId),
-            }"
-          >
-            <td class="border">
-              {{ contact.accountUsername }}
-            </td>
-            <td class="border">
-              {{ contact.firstName }}
-            </td>
-            <td class="border">{{ contact.lastName }}</td>
-            <td class="border">
-              {{ contact.emailAddress }}
-            </td>
-            <td class="border">
-              {{ (contact.address || '').replace('\n', ', ') }}
-            </td>
-            <td class="border">
-              {{ contact.url }}
-            </td>
-            <td class="border font-mono">
-              <div class="flex items-center justify-evenly">
-                <ButtonTableInteraction
-                  :aria-label="
-                    contact.authorAccountUsername !==
-                    $store.state.signedInUsername
-                      ? $t('disabledReasonCreatorNot', {
-                          authorAccountUsername: contact.authorAccountUsername,
-                        })
-                      : $t('contactEdit')
-                  "
-                  :disabled="
-                    contact.authorAccountUsername !==
-                      $store.state.signedInUsername ||
-                    pending.edits.includes(contact.nodeId)
-                  "
-                  :icon-id="['fas', 'edit']"
-                  is-title-show
-                  @click="edit(contact)"
-                />
-                <ButtonTableInteraction
-                  :aria-label="$t('contactDelete')"
-                  :disabled="pending.deletions.includes(contact.nodeId)"
-                  :icon-id="['fas', 'trash']"
-                  is-title-show
-                  @click="delete_(contact.nodeId)"
-                />
-              </div>
-            </td>
-          </tr>
+            :contact="contact"
+            :is-deleting="pending.deletions.includes(contact.nodeId)"
+            :is-editing="pending.edits.includes(contact.nodeId)"
+            @delete="delete_(contact.nodeId)"
+            @edit="edit(contact)"
+          />
         </tbody>
       </table>
     </div>
@@ -186,10 +143,9 @@ export default {
 de:
   address: Adresse
   author: Autor
+  avatar: Avatar
   contactAdd: Kontakt hinzufügen
   contactEdit: Kontakt bearbeiten
-  contactDelete: Kontakt löschen
-  disabledReasonCreatorNot: 'Dieser Kontakt wird von {authorAccountUsername} verwaltet.'
   emailAddress: E-Mail Adresse
   firstName: Vorname
   lastName: Nachname
@@ -198,10 +154,9 @@ de:
 en:
   address: Address
   author: Author
+  avatar: Avatar
   contactAdd: Add contact
-  contactEdit: Edit contact
-  contactDelete: Delete contact
-  disabledReasonCreatorNot: This contact is being managed by {authorAccountUsername}.
+  contactEdit: Kontakt bearbeiten
   emailAddress: Email address
   firstName: First name
   lastName: Last name

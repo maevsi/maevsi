@@ -8,7 +8,7 @@
         type="button"
         @click="$store.commit('modalAdd', { id: 'ModalImageSelection' })"
       >
-        <ProfilePicture
+        <AccountProfilePicture
           ref="profilePicture"
           classes="h-24 w-24"
           height="96"

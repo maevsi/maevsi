@@ -4,7 +4,7 @@
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
       <div class="sm:mr-4">
-        <ProfilePicture
+        <AccountProfilePicture
           classes="h-24 w-24"
           height="96"
           :username="$route.params.username"
