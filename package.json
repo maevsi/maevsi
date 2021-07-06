@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "@commitlint/cli": "12.1.4",
+    "@commitlint/config-conventional": "12.1.4",
+    "husky": "7.0.1",
+    "shx": "0.3.3"
+  },
+  "private": true,
+  "scripts": {
+    "postinstall": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks"
+  }
+}

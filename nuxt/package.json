@@ -28,13 +28,6 @@
     "*.{js,vue}": "eslint",
     "*.{css,vue}": "stylelint"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "NODE_ENV=production lint-staged",
-      "pre-push": "yarn test"
-    }
-  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.35",
     "@fortawesome/free-brands-svg-icons": "5.15.3",
@@ -83,8 +76,6 @@
   },
   "devDependencies": {
     "@babel/runtime-corejs3": "7.14.7",
-    "@commitlint/cli": "12.1.4",
-    "@commitlint/config-conventional": "12.1.4",
     "@intlify/eslint-plugin-vue-i18n": "0.11.1",
     "@nuxt/types": "2.15.7",
     "@nuxt/typescript-build": "2.1.0",
@@ -116,7 +107,6 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-yml": "0.9.0",
     "graphql-tag": "2.12.5",
-    "husky": "4.3.8",
     "jest": "27.0.6",
     "lint-staged": "11.0.0",
     "mockdate": "3.0.5",
