@@ -7,6 +7,6 @@
   },
   "private": true,
   "scripts": {
-    "postinstall": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks"
+    "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks"
   }
 }
