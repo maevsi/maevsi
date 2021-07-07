@@ -78,7 +78,7 @@ RUN yarn install
 
 # Should be the specific version of node:buster-slim.
 # sqitch requires at least buster.
-FROM node:16.4.1-buster-slim@sha256:ad08c8bf3623c8777cd543c093e11ca3981985e7c7674f73520959f16d002f67 AS production
+FROM node:16.4.1-buster-slim@sha256:34c21741098d529a15e164426cdf99c1ec9395394d4d4a2ad9186e30395a0540 AS production
 
 ENV NODE_ENV=production
 
