@@ -91,7 +91,7 @@
     "@nuxtjs/tailwindcss": "4.2.1",
     "@storybook/addon-a11y": "6.3.2",
     "@types/jest": "26.0.23",
-    "@types/jsonwebtoken": "8.5.3",
+    "@types/jsonwebtoken": "8.5.4",
     "@types/node": "14.17.4",
     "@vue/cli-shared-utils": "4.5.13",
     "autoprefixer": "10.2.6",
