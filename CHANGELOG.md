@@ -1,3 +1,10 @@
+## [0.82.1](https://github.com/maevsi/maevsi/compare/0.82.0...0.82.1) (2021-07-07)
+
+
+### Bug Fixes
+
+* **storybook:** use serverMiddleware object notation ([492a187](https://github.com/maevsi/maevsi/commit/492a1876d827fb9c453ae960e28bc9728c93eed8))
+
 # [0.82.0](https://github.com/maevsi/maevsi/compare/0.81.0...0.82.0) (2021-07-06)
 
 
