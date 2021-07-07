@@ -8487,10 +8487,10 @@ create-require@^1.1.1:
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
-creevey@0.7.31:
-  version "0.7.31"
-  resolved "https://registry.yarnpkg.com/creevey/-/creevey-0.7.31.tgz#6c240a1ac0fdde0c95b725528f0d64cd40635cfe"
-  integrity sha512-epNEPcVFT2DJfX6I25zIU5gEQ4fK7oAelDERFszW0PTjE2snnFUhr9pbWJN/UyVdr5LoeqbrEiziUVMdVnhJJw==
+creevey@0.7.32:
+  version "0.7.32"
+  resolved "https://registry.yarnpkg.com/creevey/-/creevey-0.7.32.tgz#9055138cfcbb7c1b02aec3ab66a4f0bba6b5268f"
+  integrity sha512-UMO8XBnE3kHpm/dobqf5TXb37nn2I4gGVDEjhWrhULUQzCiEn6QVuM5QnkIxowZPxa+AEPf9EyzoYsmGkkJUbQ==
   dependencies:
     "@babel/code-frame" "^7.12.13"
     "@babel/generator" "^7.13.9"
@@ -8523,6 +8523,8 @@ creevey@0.7.31:
     koa-static "^5.0.0"
     loader-utils "^2.0.0"
     lodash "^4.17.21"
+    loglevel "^1.7.1"
+    loglevel-plugin-prefix "^0.8.4"
     micromatch "^4.0.4"
     minimist "^1.2.5"
     mocha "~9.0.1"
@@ -14754,7 +14756,12 @@ log-update@^4.0.0:
     slice-ansi "^4.0.0"
     wrap-ansi "^6.2.0"
 
-loglevel@^1.6.7:
+loglevel-plugin-prefix@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/loglevel-plugin-prefix/-/loglevel-plugin-prefix-0.8.4.tgz#2fe0e05f1a820317d98d8c123e634c1bd84ff644"
+  integrity sha512-WpG9CcFAOjz/FtNht+QJeGpvVl/cdR6P0z6OcXSkr8wFJOsV2GRj2j10JLfjuA4aYkcKCNIEqRGCyTife9R8/g==
+
+loglevel@^1.6.7, loglevel@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.1.tgz#005fde2f5e6e47068f935ff28573e125ef72f197"
   integrity sha512-Hesni4s5UkWkwCGJMQGAh71PaLUmKFM60dHvq0zi/vDhhrzuk+4GgNbTXJ12YYQJn6ZKBDNIjYcuQGKudvqrIw==

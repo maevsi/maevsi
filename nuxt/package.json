@@ -98,7 +98,7 @@
     "babel-eslint": "10.1.0",
     "browserlist": "1.0.1",
     "browserslist-useragent-regexp": "3.0.0",
-    "creevey": "0.7.31",
+    "creevey": "0.7.32",
     "css-loader": "5.2.6",
     "eslint": "7.30.0",
     "eslint-config-prettier": "8.3.0",
