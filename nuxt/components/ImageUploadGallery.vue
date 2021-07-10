@@ -218,6 +218,8 @@ export default {
       return this.$store.state.jwt
     },
     sizeByteTotal() {
+      if (!this.allUploads) return
+
       let sizeByteTotal = 0
 
       for (const upload of this.allUploads.nodes) {
@@ -229,6 +231,7 @@ export default {
   },
   methods: {
     bytesToString(bytes) {
+      if (!bytes) return
       return prettyBytes(+bytes)
     },
     changeProfilePicture() {
