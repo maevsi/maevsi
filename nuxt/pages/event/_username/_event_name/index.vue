@@ -29,6 +29,8 @@
         :icon-id="['fas', 'times']"
         @click="
           $router.push({
+            append: true,
+            path: 'settings',
             query: { ...$route.query, ic: undefined },
           })
         "
