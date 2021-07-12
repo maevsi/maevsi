@@ -1,3 +1,19 @@
+# [0.83.0](https://github.com/maevsi/maevsi/compare/0.82.1...0.83.0) (2021-07-12)
+
+
+### Bug Fixes
+
+* **tailwind:** correct display of strong text ([8832086](https://github.com/maevsi/maevsi/commit/8832086a32f390bfd33c30985f73c9461a4e87b9)), closes [#341](https://github.com/maevsi/maevsi/issues/341)
+
+
+### Features
+
+* **account:** add new password confirmation input ([41d0cb5](https://github.com/maevsi/maevsi/commit/41d0cb510f7cb33b044ce8cac28dbe3d56080593))
+* **account:** align account deletion heading ([078d9c7](https://github.com/maevsi/maevsi/commit/078d9c7b83eab4fec5db11b234a91c39643091b2))
+* **account:** clear password change form on success ([953c8ab](https://github.com/maevsi/maevsi/commit/953c8abe9843895ff5df752af215360e3bbc549e)), closes [#340](https://github.com/maevsi/maevsi/issues/340)
+* **creevey:** update images ([1afe719](https://github.com/maevsi/maevsi/commit/1afe71916177fe240ab45ad91a5eaba332fb8fdd))
+* **form:** tweak display of meta information ([29e6bc3](https://github.com/maevsi/maevsi/commit/29e6bc317def00b62bf0b7e969c6882c3c60fcf1))
+
 ## [0.82.1](https://github.com/maevsi/maevsi/compare/0.82.0...0.82.1) (2021-07-07)
 
 
