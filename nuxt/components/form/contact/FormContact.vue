@@ -24,11 +24,16 @@
     <FormInputUsername
       id="username"
       form-key="accountUsername"
+      is-optional
       :v="$v"
       @input="form.accountUsername = $event"
     />
+    <div v-if="form.accountUsername">
+      {{ $t('accountOverride') }}
+    </div>
     <FormInput
       :error="$v.form.firstName.$error"
+      is-optional
       label-for="input-first-name"
       :title="$t('firstName')"
     >
@@ -50,6 +55,7 @@
     </FormInput>
     <FormInput
       :error="$v.form.lastName.$error"
+      is-optional
       label-for="input-last-name"
       :title="$t('lastName')"
     >
@@ -72,10 +78,12 @@
     <FormInputEmailAddress
       id="email-address"
       :form-element="$v.form.emailAddress"
+      is-optional
       @input="form.emailAddress = $event"
     />
     <FormInput
       :error="$v.form.address.$error"
+      is-optional
       label-for="input-address"
       :title="$t('address')"
     >
@@ -97,9 +105,14 @@
     </FormInput>
     <FormInputPhoneNumber
       :form-element="$v.form.phoneNumber"
+      is-optional
       @input="form.phoneNumber = $event"
     />
-    <FormInputUrl :form-element="$v.form.url" @input="form.url = $event" />
+    <FormInputUrl
+      :form-element="$v.form.url"
+      is-optional
+      @input="form.url = $event"
+    />
   </Form>
 </template>
 
@@ -264,12 +277,14 @@ export default {
 
 <i18n lang="yml">
 de:
+  accountOverride: Falls die privaten Daten des Accounts unvollständig oder inkorrekt sind, können sie im Folgenden überschrieben werden.
   address: Adresse
   firstName: Vorname
   lastName: Nachname
   phoneNumber: Telefonnummer
   save: Speichern
 en:
+  accountOverride: If the account's private data is incomplete or incorrect, it can be overwritten below.
   address: Address
   firstName: First name
   lastName: Last name
