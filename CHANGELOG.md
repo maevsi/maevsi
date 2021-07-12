@@ -1,3 +1,30 @@
+# [0.84.0](https://github.com/maevsi/maevsi/compare/0.83.0...0.84.0) (2021-07-12)
+
+
+### Bug Fixes
+
+* **card:** hide overflow ([96b6f57](https://github.com/maevsi/maevsi/commit/96b6f576ad3fa2f1bf3271174b2ce4a4442c56ee))
+* **card:** remove explicit form label color ([80da1a9](https://github.com/maevsi/maevsi/commit/80da1a9ed5893cded94b3e3429b2550e437d4252))
+* **event-list-item:** correct opacity ([b589d8b](https://github.com/maevsi/maevsi/commit/b589d8ba3d967afbf102683b9f5937754913c016))
+* **image-upload-gallery:** only fetch account info when logged in ([f01f860](https://github.com/maevsi/maevsi/commit/f01f860f45df590d1315db802a3225967611ba1c))
+* **image-upload-gallery:** return on invalid parameters ([680cb51](https://github.com/maevsi/maevsi/commit/680cb51f61a7ac835668c1514f8be11ef2269e48))
+* **storybook:** correct spelling ([3837b71](https://github.com/maevsi/maevsi/commit/3837b713b1e7e479e83cf0600419436870c50f1c))
+
+
+### Features
+
+* **account:** add contact management ([2e63f1d](https://github.com/maevsi/maevsi/commit/2e63f1d68ec23e66e04cbdebb0dfcccd330bff75)), closes [#195](https://github.com/maevsi/maevsi/issues/195)
+* **contact:** add phone number ([47b8396](https://github.com/maevsi/maevsi/commit/47b839635262fc9f823bfa33d148ee814432e22f)), closes [#328](https://github.com/maevsi/maevsi/issues/328)
+* **contact:** display profile pictures ([dcaeb26](https://github.com/maevsi/maevsi/commit/dcaeb2625f2845616ff9d714b4f2a509c35833eb)), closes [#119](https://github.com/maevsi/maevsi/issues/119)
+* **email:** prevent uppercase letters ([a40fade](https://github.com/maevsi/maevsi/commit/a40fade44616b57843781eb929ac22ec37405bf1))
+* **event:** redirect to settings page after invitation preview ([7c66c38](https://github.com/maevsi/maevsi/commit/7c66c38c017fbdf71bbd38adc2ebd585644af387))
+* **font:** add Manrope 500 ([70e8a83](https://github.com/maevsi/maevsi/commit/70e8a831b9eabb448e49a68bc1d2e5377eb7a0a1))
+* **form:** adapt optional fields for forms ([16619de](https://github.com/maevsi/maevsi/commit/16619dec6d70455e0225697d867f39581bea665d))
+* **gql:** add nodeId ([0f002fd](https://github.com/maevsi/maevsi/commit/0f002fdc765c3f6ce599816c1726cbe1f7707d2d))
+* **gql:** align query/mutation naming ([d792be7](https://github.com/maevsi/maevsi/commit/d792be7476936156d6a563cb95c29a2dd6d3ed27))
+* **image-upload-gallery:** show used and total disk space ([b5142d4](https://github.com/maevsi/maevsi/commit/b5142d47a1e539f6bb417d4448f6e75571231386)), closes [#311](https://github.com/maevsi/maevsi/issues/311)
+* **invitation:** separate contact creation from invitation ([06777f4](https://github.com/maevsi/maevsi/commit/06777f417edb7e3512d9269727aae5efa54e3a5e)), closes [#196](https://github.com/maevsi/maevsi/issues/196)
+
 # [0.83.0](https://github.com/maevsi/maevsi/compare/0.82.1...0.83.0) (2021-07-12)
 
 
