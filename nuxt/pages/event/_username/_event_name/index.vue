@@ -286,11 +286,6 @@ export default {
 
     return { event, graphqlError, invitations }
   },
-  data() {
-    return {
-      title: this.$route.params.event_name,
-    }
-  },
   head() {
     return {
       meta: [
@@ -351,6 +346,9 @@ export default {
       }
 
       return undefined
+    },
+    title() {
+      return this.$global.getNested(this.event, 'name')
     },
   },
   methods: {
