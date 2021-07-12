@@ -126,6 +126,9 @@ module.exports = {
               h6: {
                 color: theme('colors.text.dark'),
               },
+              strong: {
+                color: theme('colors.text.dark'),
+              },
             },
           },
         },
