@@ -19,5 +19,6 @@
   "globalValidationMinValue": "Wert zu gering",
   "globalValidationNowOrFuture": "Zeitpunkt liegt in der Vergangenheit",
   "globalValidationRequired": "Pflichtfeld",
+  "globalValidationSameAs": "Ist nicht identisch",
   "globalValidationShortness": "Zu kurz"
 }

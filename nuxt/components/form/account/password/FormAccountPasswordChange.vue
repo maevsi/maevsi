@@ -16,11 +16,30 @@
       :v="$v"
       @input="form.passwordNew = $event"
     />
+    <FormInputPassword
+      id="passwordNewConfirmation"
+      :v="$v"
+      @input="form.passwordNewConfirmation = $event"
+    >
+      <template slot="inputError">
+        <FormInputError
+          :form-input="$v.form.passwordNewConfirmation"
+          validation-property="sameAs"
+        >
+          {{ $t('globalValidationSameAs') }}
+        </FormInputError>
+      </template>
+      <template slot="inputInfo">
+        <FormInputInfo>
+          {{ $t('passwordConfirmation') }}
+        </FormInputInfo>
+      </template>
+    </FormInputPassword>
   </Form>
 </template>
 
 <script>
-import { minLength, required } from 'vuelidate/lib/validators'
+import { minLength, required, sameAs } from 'vuelidate/lib/validators'
 
 import ACCOUNT_PASSWORD_CHANGE_MUTATION from '~/gql/mutation/account/accountPasswordChange.gql'
 
@@ -32,6 +51,7 @@ export default {
       form: {
         passwordCurrent: undefined,
         passwordNew: undefined,
+        passwordNewConfirmation: undefined,
         sent: false,
       },
       graphqlError: undefined,
@@ -75,6 +95,10 @@ export default {
           minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
+        passwordNewConfirmation: {
+          required,
+          sameAs: sameAs('passwordNew'),
+        },
       },
     }
   },
@@ -85,7 +109,9 @@ export default {
 de:
   passwordChange: Passwort ändern
   passwordChangeSuccess: Passwort erfolgreich geändert.
+  passwordConfirmation: Wiederhole das neue Passwort, um Tippfehler auszuschließen.
 en:
   passwordChange: Change password
   passwordChangeSuccess: Password changed successfully.
+  passwordConfirmation: Repeat the new password to rule out typos.
 </i18n>

@@ -19,5 +19,6 @@
   "globalValidationMinValue": "Under minimum value",
   "globalValidationNowOrFuture": "Point in time lies in the past",
   "globalValidationRequired": "Required",
+  "globalValidationSameAs": "Is not identical",
   "globalValidationShortness": "Too short"
 }

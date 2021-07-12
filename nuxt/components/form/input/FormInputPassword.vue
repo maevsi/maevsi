@@ -25,6 +25,10 @@
       >
         {{ $t('globalValidationRequired') }}
       </FormInputError>
+      <slot name="inputError" />
+    </template>
+    <template slot="inputInfo">
+      <slot name="inputInfo" />
     </template>
   </FormInput>
 </template>
@@ -58,8 +62,10 @@ de:
   password: Passwort
   passwordCurrent: Aktuelles Passwort
   passwordNew: Neues Passwort
+  passwordNewConfirmation: Neues Password
 en:
   password: Password
   passwordCurrent: Current Password
   passwordNew: New Password
+  passwordNewConfirmation: New Password
 </i18n>
