@@ -94,7 +94,7 @@
     "@types/jsonwebtoken": "8.5.4",
     "@types/node": "14.17.5",
     "@vue/cli-shared-utils": "4.5.13",
-    "autoprefixer": "10.3.0",
+    "autoprefixer": "10.3.1",
     "babel-eslint": "10.1.0",
     "browserlist": "1.0.1",
     "browserslist-useragent-regexp": "3.0.0",
