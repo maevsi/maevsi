@@ -30,11 +30,11 @@
       />
     </section>
     <section>
-      <h2>{{ $t('titleChangePassword') }}</h2>
+      <h2>{{ $t('titlePasswordChange') }}</h2>
       <FormAccountPasswordChange />
     </section>
     <section>
-      <h2>{{ $t('titleDangerZone') }}</h2>
+      <h2>{{ $t('titleAccountDelete') }}</h2>
       <FormDelete
         id="deleteAccount"
         :item-name="$t('account')"
@@ -113,12 +113,12 @@ export default {
 <i18n lang="yml">
 de:
   account: Konto
-  titleDangerZone: Gefahrenzone
-  titleChangePassword: Password ändern
+  titleAccountDelete: Konto löschen
+  titlePasswordChange: Password ändern
   titleImageUploads: Hochgeladene Bilder
 en:
   account: account
-  titleDangerZone: Danger zone
-  titleChangePassword: Change password
+  titleAccountDelete: Delete account
+  titlePasswordChange: Change password
   titleImageUploads: Image uploads
 </i18n>
