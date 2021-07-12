@@ -1,5 +1,6 @@
 <template>
   <form
+    ref="form"
     class="card"
     :class="[
       {
@@ -129,6 +130,9 @@ export default {
       this.$store.commit('modalAdd', {
         contentBody: this.$t('registrationRefreshSuccess'),
       })
+    },
+    reset() {
+      this.$refs.form.reset()
     },
     submit() {
       if (this.$refs.buttonSubmit) {

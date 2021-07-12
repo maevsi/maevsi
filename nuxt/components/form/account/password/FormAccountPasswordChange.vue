@@ -1,5 +1,6 @@
 <template>
   <Form
+    ref="form"
     :form="$v.form"
     :form-sent="form.sent"
     :graphql-error="graphqlError"
@@ -77,6 +78,7 @@ export default {
           this.$store.commit('modalAdd', {
             contentBody: this.$t('passwordChangeSuccess'),
           })
+          this.$refs.form.reset()
         })
         .catch((reason) => {
           this.graphqlError = reason
