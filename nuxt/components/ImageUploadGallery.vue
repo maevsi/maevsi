@@ -203,15 +203,17 @@ export default {
     }
   },
   async fetch() {
-    this.accountUploadQuotaBytes = await this.$apollo
-      .query({
-        query: ACCOUNT_UPLOAD_QUOTA_BYTES,
-      })
-      .then(({ data }) => data.accountUploadQuotaBytes)
-      .catch((reason) => {
-        this.graphqlError = reason
-        consola.error(reason)
-      })
+    if (this.$store.state.signedInUsername) {
+      this.accountUploadQuotaBytes = await this.$apollo
+        .query({
+          query: ACCOUNT_UPLOAD_QUOTA_BYTES,
+        })
+        .then(({ data }) => data.accountUploadQuotaBytes)
+        .catch((reason) => {
+          this.graphqlError = reason
+          consola.error(reason)
+        })
+    }
   },
   computed: {
     jwt() {
