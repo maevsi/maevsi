@@ -8533,10 +8533,10 @@ create-require@^1.1.1:
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
-creevey@0.7.32:
-  version "0.7.32"
-  resolved "https://registry.yarnpkg.com/creevey/-/creevey-0.7.32.tgz#9055138cfcbb7c1b02aec3ab66a4f0bba6b5268f"
-  integrity sha512-UMO8XBnE3kHpm/dobqf5TXb37nn2I4gGVDEjhWrhULUQzCiEn6QVuM5QnkIxowZPxa+AEPf9EyzoYsmGkkJUbQ==
+creevey@0.7.33:
+  version "0.7.33"
+  resolved "https://registry.yarnpkg.com/creevey/-/creevey-0.7.33.tgz#6d7f5ab6d3c30f06044ebe8e1e762ab9deab3eb0"
+  integrity sha512-7PoPnu3+RBV8eblqHiCuCA/9/bTcmQx5yFe0MNRyi9u8ETJFbcDzYcMpYPmCfFSW8SC9qE8J3aXTPuHeUms2aQ==
   dependencies:
     "@babel/code-frame" "^7.12.13"
     "@babel/generator" "^7.13.9"
