@@ -1,6 +1,7 @@
 <template>
   <FormInput
     :error="formElement.$error"
+    :is-optional="isOptional"
     :label-for="`input-${id}`"
     :title="$t('url')"
   >
@@ -35,6 +36,10 @@ export default {
     formElement: {
       required: true,
       type: Object,
+    },
+    isOptional: {
+      default: false,
+      type: Boolean,
     },
   },
 }

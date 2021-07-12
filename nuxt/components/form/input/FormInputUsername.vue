@@ -1,6 +1,7 @@
 <template>
   <FormInput
     :error="v.form[formKeyComputed].$error"
+    :is-optional="isOptional"
     :label-for="`input-${id}`"
     :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
   >
@@ -38,13 +39,17 @@
 <script>
 export default {
   props: {
+    formKey: {
+      default: undefined,
+      type: String,
+    },
     id: {
       required: true,
       type: String,
     },
-    formKey: {
-      default: undefined,
-      type: String,
+    isOptional: {
+      default: false,
+      type: Boolean,
     },
     v: {
       default: undefined,

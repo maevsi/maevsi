@@ -27,7 +27,7 @@
       >
         {{ submitName }}
       </Button>
-      <FormInputError v-if="form.$anyError">
+      <FormInputError v-if="form.$anyError" class="mt-2">
         {{ $t('globalValidationFailed') }}
       </FormInputError>
     </div>

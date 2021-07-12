@@ -34,10 +34,7 @@
           </div>
           <slot v-else name="header" />
         </div>
-        <div
-          class="text-center"
-          :class="{ 'disabled pointer-events-none relative': isSubmitting }"
-        >
+        <div :class="{ 'disabled pointer-events-none relative': isSubmitting }">
           <div v-if="contentBodyComputed">
             {{ contentBodyComputed }}
           </div>

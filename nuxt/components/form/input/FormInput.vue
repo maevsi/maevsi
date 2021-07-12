@@ -4,16 +4,21 @@
       :class="{ 'form-input-warning': warning, 'form-input-error': error }"
       class="md:flex flex-wrap md:items-center"
     >
-      <div class="md:pr-4 md:text-right md:w-1/3">
+      <div class="leading-snug md:pr-4 md:text-right md:w-1/3">
         <label
           class="font-semibold mb-1 md:mb-0"
           :class="{ 'text-yellow-600': warning, 'text-red-500': error }"
           :for="labelFor"
         >
           {{ title }}
-          <span v-if="required" class="text-red-700 font-normal">
-            {{ $t('requiredSymbol') }}
-          </span>
+          <div class="font-medium md:text-right text-xs text-gray-500">
+            <span v-if="required">
+              {{ $t('required') }}
+            </span>
+            <span v-if="isOptional">
+              {{ $t('optional') }}
+            </span>
+          </div>
         </label>
       </div>
       <div class="md:w-2/3">
@@ -42,6 +47,10 @@ export default {
       default: false,
       type: Boolean,
     },
+    isOptional: {
+      default: false,
+      type: Boolean,
+    },
     labelFor: {
       default: undefined,
       type: String,
@@ -64,7 +73,9 @@ export default {
 
 <i18n lang="yml">
 de:
-  requiredSymbol: '*'
+  optional: optional
+  required: Pflichtfeld
 en:
-  requiredSymbol: '*'
+  optional: optional
+  required: required
 </i18n>

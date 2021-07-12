@@ -1,6 +1,7 @@
 <template>
   <FormInput
     :error="formElement.$error"
+    :is-optional="isOptional"
     :label-for="`input-${id}`"
     :title="$t('emailAddress')"
   >
@@ -33,13 +34,17 @@
 <script>
 export default {
   props: {
+    formElement: {
+      required: true,
+      type: Object,
+    },
     id: {
       default: undefined,
       type: String,
     },
-    formElement: {
-      required: true,
-      type: Object,
+    isOptional: {
+      default: false,
+      type: Boolean,
     },
     required: {
       default: false,
