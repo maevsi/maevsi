@@ -3,7 +3,7 @@ version: '3'
 services:
   chromeB:
     entrypoint: bash -c 'SE_OPTS="--host $$HOSTNAME --port 5555" /opt/bin/entry_point.sh'
-    image: selenium/node-chrome:91.0@sha256:e93ae4127e3202aa79dd8a2d96eecbc8460ecce1bff2ed70f8f2d1aa1679beaa
+    image: selenium/node-chrome:91.0@sha256:14b464850fee6ee1b2ee3eb6c6139d4e16f3ef30002eaeee413f181bb66ec1e4
     depends_on:
       - selenium-hub
     environment:
