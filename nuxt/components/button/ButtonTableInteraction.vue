@@ -1,7 +1,7 @@
 <template>
-  <Button
+  <ButtonIcon
     :aria-label="ariaLabel"
-    button-class="h-8 m-0 p-0 w-8"
+    class="h-8 m-2 w-8"
     :disabled="disabled"
     :icon-id="iconId"
     :title="isTitleShow ? ariaLabel : undefined"

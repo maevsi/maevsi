@@ -4,22 +4,30 @@
     :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
-    <div class="overflow-auto">
-      <table v-if="allContacts" class="border w-full">
+    <div class="shadow overflow-auto border-b border-gray-200 sm:rounded-lg">
+      <table v-if="allContacts" class="divide-y divide-gray-200">
         <thead>
           <tr>
-            <th class="border" scope="col">{{ $t('avatar') }}</th>
-            <th class="border" scope="col">{{ $t('username') }}</th>
-            <th class="border" scope="col">{{ $t('firstName') }}</th>
-            <th class="border" scope="col">{{ $t('lastName') }}</th>
-            <th class="border" scope="col">{{ $t('emailAddress') }}</th>
-            <th class="border" scope="col">{{ $t('address') }}</th>
-            <th class="border" scope="col">{{ $t('phoneNumber') }}</th>
-            <th class="border" scope="col">{{ $t('url') }}</th>
+            <th scope="col">
+              {{ $t('contact') }}
+            </th>
+            <th scope="col">
+              {{ $t('emailAddress') }}
+            </th>
+            <th scope="col">
+              {{ $t('address') }}
+            </th>
+            <th scope="col">
+              {{ $t('phoneNumber') }}
+            </th>
+            <th scope="col">
+              {{ $t('url') }}
+            </th>
+            <th scope="col" />
           </tr>
         </thead>
-        <tbody>
-          <Contact
+        <tbody class="divide-y divide-gray-200">
+          <ContactListItem
             v-for="contact in allContacts.nodes"
             :key="contact.nodeId"
             :contact="contact"
@@ -144,25 +152,19 @@ export default {
 de:
   address: Adresse
   author: Autor
-  avatar: Avatar
+  contact: Kontakt
   contactAdd: Kontakt hinzufügen
   contactEdit: Kontakt bearbeiten
   emailAddress: E-Mail Adresse
-  firstName: Vorname
-  lastName: Nachname
   phoneNumber: Telefonnummer
   url: Webseite
-  username: Nutzername
 en:
   address: Address
-  author: Author
-  avatar: Avatar
+  author: author
+  contact: Contact
   contactAdd: Add contact
   contactEdit: Kontakt bearbeiten
   emailAddress: Email address
-  firstName: First name
-  lastName: Last name
   phoneNumber: Phone number
   url: Website
-  username: Username
 </i18n>
