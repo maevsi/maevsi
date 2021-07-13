@@ -2,7 +2,7 @@
   <div v-if="isVisibleComputed">
     <div
       class="bg-black bottom-0 left-0 opacity-50 right-0 top-0 z-10"
-      :class="{ fixed: !isStorybook }"
+      :class="{ fixed: !$config.STORYBOOK }"
     />
     <div
       class="
@@ -15,7 +15,7 @@
         top-0
         z-20
       "
-      :class="{ fixed: !isStorybook }"
+      :class="{ fixed: !$config.STORYBOOK }"
     >
       <div
         class="card max-h-[90vh] overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3"
@@ -82,10 +82,6 @@ export default {
     id: {
       default: 'ModalGlobal',
       type: String,
-    },
-    isStorybook: {
-      default: false,
-      type: Boolean,
     },
     isSubmitDisabled: {
       default: false,
