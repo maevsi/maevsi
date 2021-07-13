@@ -74,6 +74,7 @@ export default {
             'faMapMarker',
             'faPaperPlane',
             'faPlus',
+            'faQuestionCircle',
             'faTimes',
             'faTimesCircle',
             'faUser',

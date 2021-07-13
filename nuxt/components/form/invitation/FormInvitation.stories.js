@@ -1,7 +1,28 @@
+import { graphql } from 'msw'
+
 import FormInvitation from './FormInvitation.vue'
 
 export default {
   component: FormInvitation,
+  parameters: {
+    msw: [
+      graphql.query('allContacts', (_req, res, ctx) => {
+        return res(
+          ctx.data({
+            allContacts: {
+              nodes: [],
+              pageInfo: {
+                endCursor: '',
+                hasNextPage: false,
+                __typename: 'PageInfo',
+              },
+              __typename: 'ContactsConnection',
+            },
+          })
+        )
+      }),
+    ],
+  },
   title: 'form/invitation/FormInvitation',
 }
 

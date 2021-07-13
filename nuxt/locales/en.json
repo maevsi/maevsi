@@ -18,6 +18,7 @@
   "globalValidationFormatUrl": "Does the input start with \"https://\"?",
   "globalValidationLength": "Too long",
   "globalValidationMaxValue": "Above maximum value",
+  "globalValidationMinLength": "Too few elements",
   "globalValidationMinValue": "Under minimum value",
   "globalValidationNowOrFuture": "Point in time lies in the past",
   "globalValidationRequired": "Required",

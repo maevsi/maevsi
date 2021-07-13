@@ -5,45 +5,22 @@
       'animate-pulse': isDeleting,
     }"
   >
-    <td class="border">
-      <AccountProfilePicture
-        v-if="contact.accountUsername"
-        ref="Image"
-        height="48"
-        rounded
-        :username="contact.accountUsername"
-        width="48"
-      />
-      <ContactAvatar
-        v-else
-        ref="Image"
-        class="h-12 w-12"
-        :email-address="contact.emailAddress"
-        :email-address-hash="contact.emailAddressHash"
-        rounded
-        size="48"
-      />
+    <td>
+      <ContactPreview :contact="contact" />
     </td>
-    <td class="border">
-      {{ contact.accountUsername }}
+    <td>
+      {{ contact.emailAddress || '–' }}
     </td>
-    <td class="border">
-      {{ contact.firstName }}
+    <td>
+      {{ (contact.address || '').replace('\n', ', ') || '–' }}
     </td>
-    <td class="border">{{ contact.lastName }}</td>
-    <td class="border">
-      {{ contact.emailAddress }}
+    <td>
+      {{ contact.phoneNumber || '–' }}
     </td>
-    <td class="border">
-      {{ (contact.address || '').replace('\n', ', ') }}
+    <td>
+      {{ contact.url || '–' }}
     </td>
-    <td class="border">
-      {{ contact.phoneNumber }}
-    </td>
-    <td class="border">
-      {{ contact.url }}
-    </td>
-    <td class="border font-mono">
+    <td>
       <div class="flex items-center justify-evenly">
         <ButtonTableInteraction
           :aria-label="
