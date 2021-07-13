@@ -1,7 +1,6 @@
 <template>
   <Modal
     id="ModalImageSelection"
-    :is-storybook="isStorybook"
     :is-submit-disabled="selectedProfilePictureStorageKey === undefined"
     :submit-task-provider="setProfilePicture"
     @close="selectedProfilePictureStorageKey = undefined"
@@ -22,12 +21,6 @@
 import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profilePictureSet.gql'
 
 export default {
-  props: {
-    isStorybook: {
-      default: false,
-      type: Boolean,
-    },
-  },
   data() {
     return {
       selectedProfilePictureStorageKey: undefined,

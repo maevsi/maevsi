@@ -21,7 +21,6 @@ const Template = (_, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
-  isStorybook: true,
   submitName: 'submitName',
   submitTaskProvider: () => Promise.resolve(),
 }

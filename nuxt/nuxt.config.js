@@ -353,6 +353,7 @@ export default {
       id: process.env.GOOGLE_ANALYTICS_ID,
       debug: process.env.NODE_ENV !== 'production',
     },
+    STORYBOOK: process.env.STORYBOOK,
   },
 
   render: {
