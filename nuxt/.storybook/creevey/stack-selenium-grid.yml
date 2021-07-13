@@ -33,5 +33,5 @@ services:
 
   selenium-hub:
     container_name: selenium-hub
-    image: selenium/hub:4.0.0@sha256:df562ccf82765a8778e875dc47082c55c4ebdab6a020b713867b835bab8bf34b
+    image: selenium/hub:4.0.0@sha256:cd56f2d35c9643094887e6c57af99580fc5f3fe9e59037f35be9c78c7f068acb
     network_mode: "host"
