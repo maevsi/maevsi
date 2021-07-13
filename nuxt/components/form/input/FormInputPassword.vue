@@ -62,7 +62,7 @@ de:
   password: Passwort
   passwordCurrent: Aktuelles Passwort
   passwordNew: Neues Passwort
-  passwordNewConfirmation: Neues Password
+  passwordNewConfirmation: Neues Passwort
 en:
   password: Password
   passwordCurrent: Current Password
