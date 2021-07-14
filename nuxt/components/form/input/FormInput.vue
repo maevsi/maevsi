@@ -21,7 +21,7 @@
           </div>
         </label>
       </div>
-      <div class="mt-1 md:mt-0 md:w-2/3">
+      <div class="md:mt-1 md:w-2/3">
         <slot />
       </div>
       <div class="md:w-1/3" />
