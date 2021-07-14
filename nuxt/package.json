@@ -59,7 +59,7 @@
     "node-zopfli-es": "1.0.7",
     "nuxt": "2.15.7",
     "nuxt-healthcheck": "1.0.1",
-    "nuxt-helmet": "2.0.0",
+    "nuxt-helmet": "2.0.1",
     "nuxt-i18n": "6.27.3",
     "pg": "8.6.0",
     "pretty-bytes": "5.6.0",
