@@ -480,7 +480,6 @@ export default {
           required,
         },
         url: {
-          formatUrl: this.$global.VALIDATION_FORMAT_URL,
           maxLength: maxLength(
             this.$global.VALIDATION_EVENT_URL_LENGTH_MAXIMUM
           ),

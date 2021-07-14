@@ -5,20 +5,31 @@
     :label-for="`input-${id}`"
     :title="$t('url')"
   >
-    <input
-      :id="`input-${id}`"
-      class="form-input"
-      :placeholder="$t('globalPlaceholderUrl')"
-      type="url"
-      :value="formElement.$model"
-      @input="$emit('input', $event.target.value)"
-    />
+    <div class="flex">
+      <span
+        class="
+          cursor-default
+          inline-flex
+          items-center
+          px-3
+          rounded-l
+          border border-r-0 border-gray-300
+          bg-gray-100
+          text-gray-500
+        "
+      >
+        {{ $t('https') }}
+      </span>
+      <input
+        :id="`input-${id}`"
+        class="form-input rounded-l-none"
+        :placeholder="$t('globalPlaceholderUrl')"
+        type="url"
+        :value="formElement.$model"
+        @input="$emit('input', $event.target.value)"
+      />
+    </div>
     <template slot="inputError">
-      <FormInputError :form-input="formElement" validation-property="formatUrl">
-        {{ $t('globalValidationFormat') }}
-        <br />
-        {{ $t('globalValidationFormatUrl') }}
-      </FormInputError>
       <FormInputError :form-input="formElement" validation-property="maxLength">
         {{ $t('globalValidationLength') }}
       </FormInputError>
@@ -47,7 +58,9 @@ export default {
 
 <i18n lang="yml">
 de:
+  https: https://
   url: Link
 en:
+  https: https://
   url: Link
 </i18n>
