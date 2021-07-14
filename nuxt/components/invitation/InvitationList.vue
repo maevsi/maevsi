@@ -24,6 +24,9 @@
             <th scope="col">
               {{ $t('contact') }}
             </th>
+            <th class="hidden lg:table-cell" scope="col">
+              {{ $t('invitationCode') }}
+            </th>
             <th />
           </tr>
         </thead>
@@ -41,6 +44,9 @@
                 :contact="invitation.contactByContactId"
                 :feedback="invitation.feedback"
               />
+            </td>
+            <td class="hidden lg:table-cell">
+              {{ invitation.uuid }}
             </td>
             <td class="flex items-center justify-evenly ml-4 text-gray-700">
               <ButtonTableInteraction
@@ -80,7 +86,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2">
+            <td colspan="3">
               <Button
                 :aria-label="$t('invitationAdd')"
                 :disabled="
@@ -224,10 +230,8 @@ export default {
 <i18n lang="yml">
 de:
   contact: Kontakt
-  disabledReasonCreatorNot: 'Dieser Kontakt wird von {authorAccountUsername} verwaltet.'
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   invitationAdd: Einladung hinzufügen
-  invitationEdit: Einladung bearbeiten
   invitationCode: Einladungscode
   invitationDelete: Einladung löschen
   invitationSend: Einladung versenden
@@ -236,10 +240,8 @@ de:
   sendSuccess: Einladung an {emailAddress} erfolgreich angefordert.
 en:
   contact: Contact
-  disabledReasonCreatorNot: This contact is being managed by {authorAccountUsername}.
   disabledReasonEmailAddressNone: This contact is missing an email address.
   invitationAdd: Add invitation
-  invitationEdit: Edit invitation
   invitationCode: Invitation code
   invitationDelete: Delete invitation
   invitationSend: Send invitation
