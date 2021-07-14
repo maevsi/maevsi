@@ -1,13 +1,21 @@
 <template>
   <div class="my-6">
     <div
-      :class="{ 'form-input-warning': warning, 'form-input-error': error }"
+      :class="{
+        'form-input-success': success,
+        'form-input-warning': warning,
+        'form-input-error': error,
+      }"
       class="md:flex flex-wrap md:items-center"
     >
       <div class="leading-snug md:pr-4 md:text-right md:w-1/3">
         <label
           class="font-semibold mb-1 md:mb-0"
-          :class="{ 'text-yellow-600': warning, 'text-red-500': error }"
+          :class="{
+            'text-green-600': success,
+            'text-yellow-600': warning,
+            'text-red-500': error,
+          }"
           :for="labelFor"
         >
           {{ title }}
@@ -23,6 +31,10 @@
       </div>
       <div class="md:mt-1 md:w-2/3">
         <slot />
+      </div>
+      <div class="md:w-1/3" />
+      <div class="md:w-2/3">
+        <slot name="inputSuccess" />
       </div>
       <div class="md:w-1/3" />
       <div class="text-gray-500 text-left text-sm md:w-2/3">
@@ -56,6 +68,10 @@ export default {
       type: String,
     },
     required: {
+      default: false,
+      type: Boolean,
+    },
+    success: {
       default: false,
       type: Boolean,
     },

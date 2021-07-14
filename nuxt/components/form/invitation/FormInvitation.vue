@@ -34,12 +34,10 @@
             text-gray-500
           "
         >
-          <div>
-            <FontAwesomeIcon
-              :icon="['fas', 'search']"
-              :title="$t('iconSearch')"
-            />
-          </div>
+          <FontAwesomeIcon
+            :icon="['fas', 'search']"
+            :title="$t('iconSearch')"
+          />
         </span>
       </div>
       <template slot="inputError">

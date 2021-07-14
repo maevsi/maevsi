@@ -320,6 +320,11 @@ module.exports = {
             borderColor: theme('colors.red.500'),
           },
         },
+        '.form-input-success': {
+          input: {
+            borderColor: theme('colors.green.600'),
+          },
+        },
         '.form-input-warning': {
           input: {
             borderColor: theme('colors.yellow.600'),
