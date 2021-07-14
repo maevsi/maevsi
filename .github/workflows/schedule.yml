@@ -11,7 +11,7 @@ jobs:
       previous-tag: ${{ steps.previoustag.outputs.tag }}
       timestamp-diff: ${{ steps.diff.outputs.timestamp-diff }}
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # renovate: tag=v2.3.4
         with:
           fetch-depth: 0
       - name: Get previous tag
@@ -30,7 +30,7 @@ jobs:
     needs: analyze-tags
     if: needs.analyze-tags.outputs.timestamp-diff > 604800 # 604800 equal one week.
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # renovate: tag=v2.3.4
         with:
           token: ${{ secrets.GH_TOKEN }}
       - name: Get next minor version
@@ -39,11 +39,11 @@ jobs:
         with:
           version: ${{ needs.analyze-tags.outputs.previous-tag }}
       - name: manifest Version
-        uses: deef0000dragon1/json-edit-action/@v1
+        uses: deef0000dragon1/json-edit-action@cb3f7455e89d659879ab7e4a55cbc9b10c36a713 # renovate: tag=v1
         env:
           KEY: scheduleVersion
           VALUE: ${{ steps.semvers.outputs.patch }}
           FILE: nuxt/package.json
-      - uses: stefanzweifel/git-auto-commit-action@v4.11.0
+      - uses: stefanzweifel/git-auto-commit-action@5dd17c3b53a58c1cb5eaab903826abe94765ccd6 # renovate: tag=v4.11.0
         with:
           commit_message: 'fix(release): schedule release'
