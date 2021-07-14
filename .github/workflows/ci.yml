@@ -35,6 +35,7 @@ jobs:
           yarn --cwd ./nuxt selenium:start
 
           docker buildx build \
+            --build-arg CI="$CI" \
             --build-arg HOST_IP=172.17.0.1 \
             --cache-from=$IMAGE_ID:cache \
             --load \
@@ -68,6 +69,7 @@ jobs:
           ]]
           then
             docker buildx build \
+              --build-arg CI="$CI" \
               --build-arg HOST_IP=172.17.0.1 \
               --cache-from=$IMAGE_ID:cache \
               --cache-to=$IMAGE_ID:cache \
@@ -77,6 +79,7 @@ jobs:
               .
           else
             docker buildx build \
+              --build-arg CI="$CI" \
               --build-arg HOST_IP=172.17.0.1 \
               --cache-from=$IMAGE_ID:cache \
               --network=host \
