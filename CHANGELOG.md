@@ -1,3 +1,31 @@
+# [0.86.0](https://github.com/maevsi/maevsi/compare/0.85.0...0.86.0) (2021-07-14)
+
+
+### Bug Fixes
+
+* **cookie:** support foreign links to meavsi ([adc9aef](https://github.com/maevsi/maevsi/commit/adc9aef31ef3bc42fbfe46717faad75620f2e0d1)), closes [#316](https://github.com/maevsi/maevsi/issues/316)
+* **event:** show invitations for invitees again ([cbf5bcf](https://github.com/maevsi/maevsi/commit/cbf5bcf4113890c4e1b808fe164db84a2357e29d)), closes [#344](https://github.com/maevsi/maevsi/issues/344)
+* **form-input-password:** correct typo ([8f4c09c](https://github.com/maevsi/maevsi/commit/8f4c09c66693f1585cd48e5939e661b07a53d505))
+
+
+### Features
+
+* **contact:** redesign contact views ([cd98218](https://github.com/maevsi/maevsi/commit/cd9821816bc284939e84feec63ac58cb62054313))
+* **contact-preview:** improve display ([c0a9329](https://github.com/maevsi/maevsi/commit/c0a9329b9634fd5a7119bd510a1d3c89a7e2d547))
+* **event:** display event title instead of slug in tab title ([3a06713](https://github.com/maevsi/maevsi/commit/3a067136391d851c06219dff8873664cd53b1a06)), closes [#342](https://github.com/maevsi/maevsi/issues/342)
+* **event-icon-visibility:** add visual test ([7d3d41b](https://github.com/maevsi/maevsi/commit/7d3d41b0f8f7756c51eab3393c42225f96bc722c))
+* **event-settings:** display event title instead of slug ([0ec860f](https://github.com/maevsi/maevsi/commit/0ec860f2cae71ec8aa2c118301ae452c1f8d9b20))
+* **focus:** align focus styling ([0a61292](https://github.com/maevsi/maevsi/commit/0a61292f250b49df62c9ad0c234be34ca50be073))
+* **form:** improve styling ([b4f60d4](https://github.com/maevsi/maevsi/commit/b4f60d4462736cf0ac00e1eacf5932df894bf705))
+* **form-checkbox:** style rounded ([4b8322a](https://github.com/maevsi/maevsi/commit/4b8322a1eb324416f805a183bf8abc49a9b008d4))
+* **form-input-url:** replace validation with prefix ([c1c79cd](https://github.com/maevsi/maevsi/commit/c1c79cd811a97600ec6fc4eb0bda03e7d57df0cf))
+* **form-invitation:** use single contact selection ([68c377c](https://github.com/maevsi/maevsi/commit/68c377cf4935dc7f331d93913868e065722d8d0a))
+* **image-upload-gallery:** improve button styling ([b3a510b](https://github.com/maevsi/maevsi/commit/b3a510bfbac20cd0f73a59e10ec16b5c9558cc41))
+* **invitation:** improve contact selection ([c897c8b](https://github.com/maevsi/maevsi/commit/c897c8b8718af5a1d3796953dd5f3457fe24b0aa)), closes [#197](https://github.com/maevsi/maevsi/issues/197)
+* **nuxt:** improve class usage ([352a3ac](https://github.com/maevsi/maevsi/commit/352a3ac64fa53d173e833cb4ceb004aabddc5537))
+* **storybook:** use environment variable instead of property ([b60c4f6](https://github.com/maevsi/maevsi/commit/b60c4f639c232a7c1f605ae9dbe98e98e974fb2b))
+* **tailwind:** set external link icon to current color ([a80d86a](https://github.com/maevsi/maevsi/commit/a80d86a2dfc298c621603dd20b28980a8d9ebc0e))
+
 # [0.85.0](https://github.com/maevsi/maevsi/compare/0.84.0...0.85.0) (2021-07-14)
 
 
