@@ -30,6 +30,7 @@
       <ul class="e1 pills z-0">
         <li>
           <button
+            class="rounded-t"
             :class="dark ? 'text-text-bright' : 'text-text-dark'"
             type="button"
             @click="tabSelect(tabs[0][0])"
@@ -39,6 +40,7 @@
         </li>
         <li>
           <button
+            class="rounded-t"
             :class="dark ? 'text-text-bright' : 'text-text-dark'"
             type="button"
             @click="tabSelect(tabs[1][0])"

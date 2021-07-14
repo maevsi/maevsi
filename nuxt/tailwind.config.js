@@ -258,9 +258,6 @@ module.exports = {
           marginRight: 'auto',
           padding: theme('padding.2') + ' ' + theme('padding.4'),
           textAlign: 'center',
-          '&:focus': {
-            boxShadow: theme('ringWidth.DEFAULT'),
-          },
           '&:hover': {
             backgroundColor: theme('colors.red.700'),
           },
@@ -273,9 +270,6 @@ module.exports = {
           boxShadow: theme('boxShadow.md'),
           color: theme('colors.text.dark'),
           padding: theme('padding.4'),
-          'a[target="_blank"]:after': {
-            backgroundColor: theme('colors.text.dark'),
-          },
         },
         '.description': {
           p: {
@@ -323,7 +317,6 @@ module.exports = {
           width: theme('width.full'),
           '&:focus': {
             backgroundColor: theme('colors.white'),
-            borderColor: theme('colors.purple.400'),
           },
         },
         '.pills': {
