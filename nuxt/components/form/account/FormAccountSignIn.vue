@@ -9,14 +9,12 @@
   >
     <FormInputUsername
       id="username-sign-in"
-      form-key="username"
-      :v="$v"
+      :form-input="$v.form.username"
       @input="form.username = $event"
     />
     <FormInputPassword
       id="password-sign-in"
-      form-key="password"
-      :v="$v"
+      :form-input="$v.form.password"
       @input="form.password = $event"
     />
     <div class="flex flex-col items-center justify-between">

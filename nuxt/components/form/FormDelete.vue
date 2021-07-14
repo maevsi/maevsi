@@ -7,7 +7,11 @@
     :submit-name="$t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
-    <FormInputPassword id="password" :v="$v" @input="form.password = $event" />
+    <FormInputPassword
+      id="password"
+      :form-input="$v.form.password"
+      @input="form.password = $event"
+    />
   </Form>
 </template>
 

@@ -190,7 +190,7 @@
     </FormInput>
     <FormInputUrl
       v-if="form.isRemote"
-      :form-element="$v.form.url"
+      :form-input="$v.form.url"
       @input="form.url = $event"
     />
     <FormInput

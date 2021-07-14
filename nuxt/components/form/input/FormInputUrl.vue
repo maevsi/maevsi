@@ -1,6 +1,6 @@
 <template>
   <FormInput
-    :error="formElement.$error"
+    :error="formInput.$error"
     :is-optional="isOptional"
     :label-for="`input-${id}`"
     :title="$t('url')"
@@ -25,12 +25,12 @@
         class="form-input rounded-l-none"
         :placeholder="$t('globalPlaceholderUrl')"
         type="url"
-        :value="formElement.$model"
+        :value="formInput.$model"
         @input="$emit('input', $event.target.value)"
       />
     </div>
     <template slot="inputError">
-      <FormInputError :form-input="formElement" validation-property="maxLength">
+      <FormInputError :form-input="formInput" validation-property="maxLength">
         {{ $t('globalValidationLength') }}
       </FormInputError>
     </template>
@@ -44,7 +44,7 @@ export default {
       default: 'url',
       type: String,
     },
-    formElement: {
+    formInput: {
       required: true,
       type: Object,
     },

@@ -9,19 +9,17 @@
   >
     <FormInputUsername
       id="username-registration"
-      form-key="username"
-      :v="$v"
+      :form-input="$v.form.username"
       @input="form.username = $event"
     />
     <FormInputPassword
       id="password-registration"
-      form-key="password"
-      :v="$v"
+      :form-input="$v.form.password"
       @input="form.password = $event"
     />
     <FormInputEmailAddress
       id="email-address-registration"
-      :form-element="$v.form.emailAddress"
+      :form-input="$v.form.emailAddress"
       required
       @input="form.emailAddress = $event"
     />

@@ -1,6 +1,6 @@
 <template>
   <FormInput
-    :error="v.form[formKeyComputed].$error"
+    :error="formInput.$error"
     :label-for="`input-${id}`"
     :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
   >
@@ -9,20 +9,14 @@
       class="form-input"
       type="password"
       placeholder="**********"
-      :value="v.form[formKeyComputed].$model"
+      :value="formInput.$model"
       @input="$emit('input', $event.target.value)"
     />
     <template slot="inputError">
-      <FormInputError
-        :form-input="v.form[formKeyComputed]"
-        validation-property="minLength"
-      >
+      <FormInputError :form-input="formInput" validation-property="minLength">
         {{ $t('globalValidationShortness') }}
       </FormInputError>
-      <FormInputError
-        :form-input="v.form[formKeyComputed]"
-        validation-property="required"
-      >
+      <FormInputError :form-input="formInput" validation-property="required">
         {{ $t('globalValidationRequired') }}
       </FormInputError>
       <slot name="inputError" />
@@ -40,18 +34,9 @@ export default {
       required: true,
       type: String,
     },
-    formKey: {
-      default: undefined,
-      type: String,
-    },
-    v: {
-      default: undefined,
+    formInput: {
+      required: true,
       type: Object,
-    },
-  },
-  computed: {
-    formKeyComputed() {
-      return this.formKey ? this.formKey : this.id
     },
   },
 }

@@ -23,9 +23,8 @@
     </FormInput>
     <FormInputUsername
       id="username"
-      form-key="accountUsername"
+      :form-input="$v.form.accountUsername"
       is-optional
-      :v="$v"
       @input="form.accountUsername = $event"
     />
     <div v-if="form.accountUsername">
@@ -77,7 +76,7 @@
     </FormInput>
     <FormInputEmailAddress
       id="email-address"
-      :form-element="$v.form.emailAddress"
+      :form-input="$v.form.emailAddress"
       is-optional
       @input="form.emailAddress = $event"
     />
@@ -104,12 +103,12 @@
       </template>
     </FormInput>
     <FormInputPhoneNumber
-      :form-element="$v.form.phoneNumber"
+      :form-input="$v.form.phoneNumber"
       is-optional
       @input="form.phoneNumber = $event"
     />
     <FormInputUrl
-      :form-element="$v.form.url"
+      :form-input="$v.form.url"
       is-optional
       @input="form.url = $event"
     />

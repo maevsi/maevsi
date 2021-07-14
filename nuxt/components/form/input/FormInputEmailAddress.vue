@@ -1,6 +1,6 @@
 <template>
   <FormInput
-    :error="formElement.$error"
+    :error="formInput.$error"
     :is-optional="isOptional"
     :label-for="`input-${id}`"
     :title="$t('emailAddress')"
@@ -10,25 +10,25 @@
       class="form-input"
       :placeholder="$t('globalPlaceholderEmailAddress')"
       type="email"
-      :value="formElement.$model"
+      :value="formInput.$model"
       @input="$emit('input', $event.target.value)"
     />
     <template slot="inputError">
-      <FormInputError :form-input="formElement" validation-property="email">
+      <FormInputError :form-input="formInput" validation-property="email">
         {{ $t('globalValidationFormat') }}
       </FormInputError>
       <FormInputError
-        :form-input="formElement"
+        :form-input="formInput"
         validation-property="formatUppercaseNone"
       >
         {{ $t('globalValidationFormatUppercaseNone') }}
       </FormInputError>
-      <FormInputError :form-input="formElement" validation-property="maxLength">
+      <FormInputError :form-input="formInput" validation-property="maxLength">
         {{ $t('globalValidationLength') }}
       </FormInputError>
       <FormInputError
         v-if="required"
-        :form-input="formElement"
+        :form-input="formInput"
         validation-property="required"
       >
         {{ $t('globalValidationRequired') }}
@@ -40,7 +40,7 @@
 <script>
 export default {
   props: {
-    formElement: {
+    formInput: {
       required: true,
       type: Object,
     },

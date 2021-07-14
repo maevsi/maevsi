@@ -1,11 +1,9 @@
 <template>
   <FormInput
-    :error="v.form[formKeyComputed].$error"
+    :error="formInput.$error"
     :is-optional="isOptional"
     :label-for="`input-${id}`"
-    :success="
-      v.form[formKeyComputed].$model && !v.form[formKeyComputed].$invalid
-    "
+    :success="formInput.$model && !formInput.$invalid"
     :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
   >
     <div class="relative">
@@ -14,13 +12,11 @@
         class="form-input"
         type="text"
         :placeholder="$t('globalPlaceholderUsername')"
-        :value="v.form[formKeyComputed].$model"
+        :value="formInput.$model"
         @input="$emit('input', $event.target.value)"
       />
       <span
-        v-if="
-          v.form[formKeyComputed].$model && !v.form[formKeyComputed].$invalid
-        "
+        v-if="formInput.$model && !formInput.$invalid"
         class="absolute px-3 right-0 top-1/2 -translate-y-1/2"
       >
         <div class="bg-gray-50 rounded-full">
@@ -33,27 +29,18 @@
       </span>
     </div>
     <template slot="inputError">
-      <FormInputError
-        :form-input="v.form[formKeyComputed]"
-        validation-property="existence"
-      >
+      <FormInputError :form-input="formInput" validation-property="existence">
         {{ $t('globalValidationExistence') }}
       </FormInputError>
-      <FormInputError
-        :form-input="v.form[formKeyComputed]"
-        validation-property="formatSlug"
-      >
+      <FormInputError :form-input="formInput" validation-property="formatSlug">
         {{ $t('globalValidationFormat') }}
       </FormInputError>
-      <FormInputError
-        :form-input="v.form[formKeyComputed]"
-        validation-property="required"
-      >
+      <FormInputError :form-input="formInput" validation-property="required">
         {{ $t('globalValidationRequired') }}
       </FormInputError>
     </template>
     <template slot="inputSuccess">
-      <FormInputSuccess :form-input="v.form[formKeyComputed]">
+      <FormInputSuccess :form-input="formInput">
         {{ $t('globalVerificationExistence') }}
       </FormInputSuccess>
     </template>
@@ -63,9 +50,9 @@
 <script>
 export default {
   props: {
-    formKey: {
+    formInput: {
       default: undefined,
-      type: String,
+      type: Object,
     },
     id: {
       required: true,
@@ -74,15 +61,6 @@ export default {
     isOptional: {
       default: false,
       type: Boolean,
-    },
-    v: {
-      default: undefined,
-      type: Object,
-    },
-  },
-  computed: {
-    formKeyComputed() {
-      return this.formKey ? this.formKey : this.id
     },
   },
 }

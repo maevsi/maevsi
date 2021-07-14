@@ -1,6 +1,6 @@
 <template>
   <FormInput
-    :error="formElement.$error"
+    :error="formInput.$error"
     :is-optional="isOptional"
     :label-for="`input-${id}`"
     :title="$t('phoneNumber')"
@@ -10,12 +10,12 @@
       class="form-input"
       :placeholder="$t('globalPlaceholderPhoneNumber')"
       type="url"
-      :value="formElement.$model"
+      :value="formInput.$model"
       @input="$emit('input', $event.target.value)"
     />
     <template slot="inputError">
       <FormInputError
-        :form-input="formElement"
+        :form-input="formInput"
         validation-property="formatPhoneNumber"
       >
         {{ $t('globalValidationFormat') }}
@@ -27,7 +27,7 @@
 <script>
 export default {
   props: {
-    formElement: {
+    formInput: {
       required: true,
       type: Object,
     },

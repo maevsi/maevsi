@@ -9,7 +9,7 @@
   >
     <FormInputEmailAddress
       id="email-address-password-reset-request"
-      :form-element="$v.form.emailAddress"
+      :form-input="$v.form.emailAddress"
       required
       @input="form.emailAddress = $event"
     />

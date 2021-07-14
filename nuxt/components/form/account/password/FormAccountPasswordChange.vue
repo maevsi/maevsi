@@ -9,17 +9,17 @@
   >
     <FormInputPassword
       id="passwordCurrent"
-      :v="$v"
+      :form-input="$v.form.passwordCurrent"
       @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
-      :v="$v"
+      :form-input="$v.form.passwordNew"
       @input="form.passwordNew = $event"
     />
     <FormInputPassword
       id="passwordNewConfirmation"
-      :v="$v"
+      :form-input="$v.form.passwordNewConfirmation"
       @input="form.passwordNewConfirmation = $event"
     >
       <template slot="inputError">
