@@ -213,13 +213,11 @@
           />
         </template>
         <template slot="back">
-          <div
-            class="border-2 border-t-0 card border-gray-200 h-full rounded-b"
-          >
+          <div class="card h-full rounded-t-none rounded-b">
             <vue-markdown
               v-if="$v.form.description.$model"
               :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
-              class="description h-full maevsi-prose rounded-t-none"
+              class="description h-full maevsi-prose rounded-b"
               :source="$v.form.description.$model"
             />
             <div v-else class="h-full text-center">
@@ -480,7 +478,6 @@ export default {
           required,
         },
         url: {
-          formatUrl: this.$global.VALIDATION_FORMAT_URL,
           maxLength: maxLength(
             this.$global.VALIDATION_EVENT_URL_LENGTH_MAXIMUM
           ),

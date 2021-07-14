@@ -1,5 +1,5 @@
 <template>
-  <div class="my-4">
+  <div class="my-6">
     <div
       :class="{ 'form-input-warning': warning, 'form-input-error': error }"
       class="md:flex flex-wrap md:items-center"
@@ -21,7 +21,7 @@
           </div>
         </label>
       </div>
-      <div class="md:w-2/3">
+      <div class="md:mt-1 md:w-2/3">
         <slot />
       </div>
       <div class="md:w-1/3" />

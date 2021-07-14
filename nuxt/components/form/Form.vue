@@ -13,15 +13,13 @@
     @submit="(e) => $emit('submit', e)"
   >
     <slot />
-    <div class="flex flex-col items-center justify-between my-4">
+    <div class="flex flex-col items-center justify-between mb-4 mt-6">
       <Button
         ref="buttonSubmit"
         :aria-label="submitName"
-        :class="[
-          {
-            'animate-shake': form.$anyError,
-          },
-        ]"
+        :class="{
+          'animate-shake': form.$anyError,
+        }"
         :icon-id="iconId"
         type="submit"
         @click="$emit('click')"

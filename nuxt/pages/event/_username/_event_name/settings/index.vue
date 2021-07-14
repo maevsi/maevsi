@@ -12,7 +12,7 @@
         </h1>
         <section>
           <h2>{{ $t('titleInvitations') }}</h2>
-          <EventInvitations :event="event" />
+          <InvitationList :event="event" />
         </section>
         <section>
           <h2>{{ $t('titleEdit') }}</h2>
@@ -86,10 +86,6 @@ export default {
     return {
       graphqlError: undefined,
       mutation: EVENT_DELETE_MUTATION,
-      title:
-        this.$route.params.username === this.$store.state.signedInUsername
-          ? this.$route.params.event_name
-          : '403',
     }
   },
   head() {
@@ -116,6 +112,13 @@ export default {
       ],
       title: this.title,
     }
+  },
+  computed: {
+    title() {
+      return this.$route.params.username === this.$store.state.signedInUsername
+        ? this.$global.getNested(this.event, 'name')
+        : '403'
+    },
   },
   methods: {
     onDeleteSuccess() {

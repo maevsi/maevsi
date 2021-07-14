@@ -18,10 +18,7 @@
         top-0
         transition-opacity
       "
-      :class="{
-        'opacity-50 visible': isMenuVisible,
-        'opacity-0 invisible': !isMenuVisible,
-      }"
+      :class="isMenuVisible ? 'opacity-50 visible' : 'opacity-0 invisible'"
       @click="menuHide()"
     />
     <div
@@ -44,10 +41,7 @@
         md:w-1/2
         lg:w-1/3
       "
-      :class="{
-        'translate-x-0': isMenuVisible,
-        'translate-x-full': !isMenuVisible,
-      }"
+      :class="isMenuVisible ? 'translate-x-0' : 'translate-x-full'"
     >
       <Menu v-if="isMenuItemsVisible" @onMenuHide="menuHide" />
     </div>

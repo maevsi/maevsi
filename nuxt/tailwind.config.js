@@ -177,7 +177,7 @@ module.exports = {
           marginLeft: '5px',
           width: theme('fontSize.xs'),
           '@screen dark-mode': {
-            backgroundColor: theme('colors.text.bright'),
+            backgroundColor: 'currentColor',
           },
         },
         address: {
@@ -221,6 +221,29 @@ module.exports = {
             justifyContent: 'center',
           },
         },
+        table: {
+          width: '100%',
+        },
+        tbody: {
+          color: theme('colors.text.dark'),
+          backgroundColor: theme('colors.white'),
+        },
+        td: {
+          padding: theme('padding.4') + ' ' + theme('padding.6'),
+          whiteSpace: 'nowrap',
+        },
+        thead: {
+          backgroundColor: theme('colors.gray.50'),
+        },
+        th: {
+          padding: theme('padding.3') + ' ' + theme('padding.6'),
+          textAlign: 'left',
+          fontSize: theme('fontSize.xs'),
+          fontWeight: theme('fontWeight.medium'),
+          textTransform: 'uppercase',
+          letterSpacing: theme('letterSpacing.wider'),
+          color: theme('colors.gray.500'),
+        },
       })
       addComponents({
         '.button': {
@@ -235,9 +258,6 @@ module.exports = {
           marginRight: 'auto',
           padding: theme('padding.2') + ' ' + theme('padding.4'),
           textAlign: 'center',
-          '&:focus': {
-            boxShadow: theme('ringWidth.DEFAULT'),
-          },
           '&:hover': {
             backgroundColor: theme('colors.red.700'),
           },
@@ -248,11 +268,14 @@ module.exports = {
           borderRadius: theme('borderRadius.DEFAULT'),
           borderWidth: theme('borderWidth.DEFAULT'),
           boxShadow: theme('boxShadow.md'),
+          '@screen dark-mode': {
+            '--tw-shadow':
+              '0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)',
+            boxShadow:
+              'var(--tw-ring-offset-shadow, 0 0 #ffff), var(--tw-ring-shadow, 0 0 #ffff), var(--tw-shadow)',
+          },
           color: theme('colors.text.dark'),
           padding: theme('padding.4'),
-          'a[target="_blank"]:after': {
-            backgroundColor: theme('colors.text.dark'),
-          },
         },
         '.description': {
           p: {
@@ -278,6 +301,20 @@ module.exports = {
         '.flip-card-back': {
           transform: 'rotateY(0deg)',
         },
+        '.form-input': {
+          appearance: 'none',
+          backgroundColor: theme('colors.gray.50'),
+          borderColor: theme('colors.gray.300'),
+          borderRadius: theme('borderRadius.DEFAULT'),
+          boxShadow: theme('boxShadow.sm'),
+          color: theme('colors.text.dark'),
+          lineHeight: theme('lineHeight.tight'),
+          padding: theme('padding.2') + ' ' + theme('padding.4'),
+          width: theme('width.full'),
+          '&:focus': {
+            backgroundColor: theme('colors.white'),
+          },
+        },
         '.form-input-error': {
           input: {
             borderColor: theme('colors.red.500'),
@@ -286,21 +323,6 @@ module.exports = {
         '.form-input-warning': {
           input: {
             borderColor: theme('colors.yellow.600'),
-          },
-        },
-        '.form-input': {
-          appearance: 'none',
-          backgroundColor: theme('colors.gray.200'),
-          borderColor: theme('colors.gray.200'),
-          borderRadius: theme('borderRadius.DEFAULT'),
-          borderWidth: theme('borderWidth.2'),
-          color: theme('colors.gray.700'),
-          lineHeight: theme('lineHeight.tight'),
-          padding: theme('padding.2') + ' ' + theme('padding.4'),
-          width: theme('width.full'),
-          '&:focus': {
-            backgroundColor: theme('colors.white'),
-            borderColor: theme('colors.purple.400'),
           },
         },
         '.pills': {
