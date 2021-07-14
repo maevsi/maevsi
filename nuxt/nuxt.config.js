@@ -75,6 +75,7 @@ export default {
             'faPaperPlane',
             'faPlus',
             'faQuestionCircle',
+            'faSearch',
             'faTimes',
             'faTimesCircle',
             'faUser',

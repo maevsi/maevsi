@@ -13,24 +13,34 @@
       required
       :title="$t('contact')"
     >
-      <input
-        id="input-contact-id"
-        v-model.trim="searchString"
-        class="form-input"
-        :placeholder="$t('placeholderContact')"
-      />
-      <div v-if="allContacts">
-        <div
-          v-for="contact in contactsFiltered"
-          :key="contact.id"
-          class="border cursor-pointer"
-          :class="{
-            'border-red-600': form.contactId === contact.id,
-          }"
-          @click="selectToggle(contact)"
+      <div class="flex">
+        <input
+          id="input-contact-id"
+          v-model.trim="searchString"
+          class="form-input rounded-r-none"
+          :placeholder="$t('placeholderContact')"
+          type="text"
+        />
+        <span
+          class="
+            cursor-default
+            inline-flex
+            items-center
+            pointer-events-none
+            px-3
+            rounded-r
+            border border-l-0 border-gray-300
+            bg-gray-100
+            text-gray-500
+          "
         >
-          <ContactPreview class="px-4 py-2" :contact="contact" />
-        </div>
+          <div>
+            <FontAwesomeIcon
+              :icon="['fas', 'search']"
+              :title="$t('iconSearch')"
+            />
+          </div>
+        </span>
       </div>
       <template slot="inputError">
         <FormInputError
@@ -53,6 +63,20 @@
         </FormInputError>
       </template>
     </FormInput>
+    <div v-if="allContacts" class="divide-transparent divide-y-4">
+      <div v-for="contact in contactsFiltered" :key="contact.id">
+        <button
+          class="border cursor-pointer rounded w-full"
+          :class="{
+            'border-2 border-indigo-600': form.contactId === contact.id,
+          }"
+          type="button"
+          @click="selectToggle(contact)"
+        >
+          <ContactPreview class="px-4 py-2" :contact="contact" />
+        </button>
+      </div>
+    </div>
   </Form>
 </template>
 
@@ -186,10 +210,12 @@ export default {
 <i18n lang="yml">
 de:
   contact: Kontakt
+  iconSearch: Suche
   placeholderContact: Max Mustermann
   select: Auswählen
 en:
   contact: Contact
+  iconSearch: Search
   placeholderContact: John Doe
   select: Select
 </i18n>
