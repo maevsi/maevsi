@@ -4,7 +4,7 @@
       <AccountProfilePicture
         v-if="contact.accountUsername"
         ref="Image"
-        :classes="'max-w-none'"
+        classes="max-w-none"
         height="48"
         rounded
         :username="contact.accountUsername"

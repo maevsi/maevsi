@@ -4,7 +4,7 @@
       <div class="e1">
         <ul
           class="pills rounded-t"
-          :class="{ 'bg-gray-400': dark, 'bg-gray-300': !dark }"
+          :class="dark ? 'bg-gray-400' : 'bg-gray-300'"
         >
           <li class="invisible">
             <button type="button">{{ $t('fillerSymbol') }}</button>
@@ -14,11 +14,10 @@
       <ul class="e1 pills">
         <li
           class="rounded-t duration-700"
-          :class="{
-            'translate-x-full': tabIdSelected === tabs[1][0],
-            'bg-black opacity-25': dark,
-            'bg-white': !dark,
-          }"
+          :class="[
+            tabIdSelected === tabs[1][0] ? 'translate-x-full' : undefined,
+            dark ? 'bg-black opacity-25' : 'bg-white',
+          ]"
         >
           <button class="invisible" type="button">
             {{ $t('fillerSymbol') }}
@@ -31,7 +30,7 @@
       <ul class="e1 pills z-0">
         <li>
           <button
-            :class="{ 'text-text-dark': !dark, 'text-text-bright': dark }"
+            :class="dark ? 'text-text-bright' : 'text-text-dark'"
             type="button"
             @click="tabSelect(tabs[0][0])"
           >
@@ -40,7 +39,7 @@
         </li>
         <li>
           <button
-            :class="{ 'text-text-dark': !dark, 'text-text-bright': dark }"
+            :class="dark ? 'text-text-bright' : 'text-text-dark'"
             type="button"
             @click="tabSelect(tabs[1][0])"
           >

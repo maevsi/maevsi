@@ -17,11 +17,9 @@
       <Button
         ref="buttonSubmit"
         :aria-label="submitName"
-        :class="[
-          {
-            'animate-shake': form.$anyError,
-          },
-        ]"
+        :class="{
+          'animate-shake': form.$anyError,
+        }"
         :icon-id="iconId"
         type="submit"
         @click="$emit('click')"
