@@ -268,6 +268,12 @@ module.exports = {
           borderRadius: theme('borderRadius.DEFAULT'),
           borderWidth: theme('borderWidth.DEFAULT'),
           boxShadow: theme('boxShadow.md'),
+          '@screen dark-mode': {
+            '--tw-shadow':
+              '0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)',
+            boxShadow:
+              'var(--tw-ring-offset-shadow, 0 0 #ffff), var(--tw-ring-shadow, 0 0 #ffff), var(--tw-shadow)',
+          },
           color: theme('colors.text.dark'),
           padding: theme('padding.4'),
         },
@@ -295,6 +301,20 @@ module.exports = {
         '.flip-card-back': {
           transform: 'rotateY(0deg)',
         },
+        '.form-input': {
+          appearance: 'none',
+          backgroundColor: theme('colors.gray.50'),
+          borderColor: theme('colors.gray.300'),
+          borderRadius: theme('borderRadius.DEFAULT'),
+          boxShadow: theme('boxShadow.sm'),
+          color: theme('colors.text.dark'),
+          lineHeight: theme('lineHeight.tight'),
+          padding: theme('padding.2') + ' ' + theme('padding.4'),
+          width: theme('width.full'),
+          '&:focus': {
+            backgroundColor: theme('colors.white'),
+          },
+        },
         '.form-input-error': {
           input: {
             borderColor: theme('colors.red.500'),
@@ -303,20 +323,6 @@ module.exports = {
         '.form-input-warning': {
           input: {
             borderColor: theme('colors.yellow.600'),
-          },
-        },
-        '.form-input': {
-          appearance: 'none',
-          backgroundColor: theme('colors.gray.200'),
-          borderColor: theme('colors.gray.200'),
-          borderRadius: theme('borderRadius.DEFAULT'),
-          borderWidth: theme('borderWidth.2'),
-          color: theme('colors.gray.700'),
-          lineHeight: theme('lineHeight.tight'),
-          padding: theme('padding.2') + ' ' + theme('padding.4'),
-          width: theme('width.full'),
-          '&:focus': {
-            backgroundColor: theme('colors.white'),
           },
         },
         '.pills': {

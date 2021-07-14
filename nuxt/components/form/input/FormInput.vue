@@ -1,5 +1,5 @@
 <template>
-  <div class="my-4">
+  <div class="my-6">
     <div
       :class="{ 'form-input-warning': warning, 'form-input-error': error }"
       class="md:flex flex-wrap md:items-center"

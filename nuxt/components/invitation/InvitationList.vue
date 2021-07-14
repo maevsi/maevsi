@@ -93,7 +93,7 @@
               >
                 {{ $t('invitationAdd') }}
               </Button>
-              <p class="text-center">
+              <p class="text-center text-gray-500">
                 {{
                   $t('invitationsUsed', {
                     amountCurrent: allInvitations.totalCount,
