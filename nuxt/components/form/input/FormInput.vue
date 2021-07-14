@@ -22,9 +22,7 @@
         </label>
       </div>
       <div class="mt-1 md:mt-0 md:w-2/3">
-        <slot name="prefix" />
         <slot />
-        <slot name="suffix" />
       </div>
       <div class="md:w-1/3" />
       <div class="text-gray-500 text-left text-sm md:w-2/3">
