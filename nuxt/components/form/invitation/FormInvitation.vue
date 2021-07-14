@@ -8,13 +8,13 @@
     @submit.prevent="submit"
   >
     <FormInput
-      :error="$v.form.contactIds.$error"
-      label-for="input-contact-ids"
+      :error="$v.form.contactId.$error"
+      label-for="input-contact-id"
       required
-      :title="$t('contacts')"
+      :title="$t('contact')"
     >
       <input
-        id="input-contact-ids"
+        id="input-contact-id"
         v-model.trim="searchString"
         class="form-input"
         :placeholder="$t('placeholderContact')"
@@ -22,10 +22,10 @@
       <div v-if="allContacts">
         <div
           v-for="contact in contactsFiltered"
-          :key="contact.nodeId"
+          :key="contact.id"
           class="border cursor-pointer"
           :class="{
-            'border-red-600': form.contactIds.includes(contact.nodeId),
+            'border-red-600': form.contactId === contact.id,
           }"
           @click="selectToggle(contact)"
         >
@@ -34,19 +34,19 @@
       </div>
       <template slot="inputError">
         <FormInputError
-          :form-input="$v.form.contactIds"
+          :form-input="$v.form.contactId"
           validation-property="required"
         >
           {{ $t('globalValidationRequired') }}
         </FormInputError>
         <FormInputError
-          :form-input="$v.form.contactIds"
+          :form-input="$v.form.contactId"
           validation-property="minLength"
         >
           {{ $t('globalValidationMinLength') }}
         </FormInputError>
         <FormInputError
-          :form-input="$v.form.contactIds"
+          :form-input="$v.form.contactId"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { minLength, required } from 'vuelidate/lib/validators'
+import { minLength, minValue, required } from 'vuelidate/lib/validators'
 
 import INVITATION_CREATE_MUTATION from '~/gql/mutation/invitation/invitationCreate.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
@@ -92,7 +92,7 @@ export default {
     return {
       form: {
         sent: false,
-        contactIds: [],
+        contactId: undefined,
       },
       graphqlError: undefined,
       searchString: undefined,
@@ -128,12 +128,16 @@ export default {
   },
   methods: {
     selectToggle(contact) {
-      const index = this.form.contactIds.indexOf(contact.nodeId)
-      if (index === -1) {
-        this.form.contactIds.push(contact.nodeId)
-      } else {
-        this.form.contactIds.splice(index, 1)
-      }
+      this.form.contactId = contact.id
+
+      // For multiple contact selections:
+      //
+      // const index = this.form.contactIds.indexOf(contact.nodeId)
+      // if (index === -1) {
+      //   this.form.contactIds.push(contact.nodeId)
+      // } else {
+      //   this.form.contactIds.splice(index, 1)
+      // }
     },
     async submit() {
       try {
@@ -148,8 +152,8 @@ export default {
           variables: {
             invitationInput: {
               contactId:
-                this.form.contactIds && this.form.contactIds !== ''
-                  ? +this.form.contactIds
+                this.form.contactId && this.form.contactId !== ''
+                  ? +this.form.contactId
                   : null,
               eventId: +this.event.id,
             },
@@ -165,12 +169,12 @@ export default {
   validations() {
     return {
       form: {
-        contactIds: {
+        contactId: {
           $each: {
-            // minValue: minValue(1),
+            minValue: minValue(1),
             required,
           },
-          minLength: minLength(2),
+          minLength: minLength(1),
           required,
         },
       },
@@ -181,11 +185,11 @@ export default {
 
 <i18n lang="yml">
 de:
-  contacts: Kontakte
+  contact: Kontakt
   placeholderContact: Max Mustermann
   select: Auswählen
 en:
-  contacts: Contacts
+  contact: Contact
   placeholderContact: John Doe
   select: Select
 </i18n>
