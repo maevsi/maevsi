@@ -331,9 +331,17 @@ export default {
       return this.$global.getNested(this.invitation, 'contactByContactId')
     },
     invitation() {
-      const invitationsMatchingUuid = this.$global
-        .getNested(this.event, 'invitationsByEventId', 'nodes')
-        .filter((invitation) => invitation.uuid === this.$route.query.ic)
+      const invitations = this.$global.getNested(
+        this.event,
+        'invitationsByEventId',
+        'nodes'
+      )
+      const invitationsMatchingUuid =
+        this.$store.state.signedInUsername === this.$route.params.username
+          ? invitations.filter(
+              (invitation) => invitation.uuid === this.$route.query.ic
+            )
+          : invitations
 
       if (invitationsMatchingUuid.length === 0) {
         return undefined
