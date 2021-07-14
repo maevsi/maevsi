@@ -82,7 +82,7 @@
                 sizeTotal: bytesToString(accountUploadQuotaBytes),
               })
             "
-            class="bg-gray-600 flex-none h-32 m-1 w-32"
+            class="bg-gray-200 h-32 m-1 w-32"
             :title="
               $t('iconAdd', {
                 sizeUsed: bytesToString(sizeByteTotal),
@@ -94,8 +94,8 @@
           >
             <FontAwesomeIcon
               :icon="['fas', 'plus']"
-              class="text-text-bright"
-              size="3x"
+              class="text-gray-500"
+              size="2x"
             />
           </button>
           <input
