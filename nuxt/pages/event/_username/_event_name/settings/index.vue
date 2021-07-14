@@ -86,10 +86,6 @@ export default {
     return {
       graphqlError: undefined,
       mutation: EVENT_DELETE_MUTATION,
-      title:
-        this.$route.params.username === this.$store.state.signedInUsername
-          ? this.$route.params.event_name
-          : '403',
     }
   },
   head() {
@@ -116,6 +112,13 @@ export default {
       ],
       title: this.title,
     }
+  },
+  computed: {
+    title() {
+      return this.$route.params.username === this.$store.state.signedInUsername
+        ? this.$global.getNested(this.event, 'name')
+        : '403'
+    },
   },
   methods: {
     onDeleteSuccess() {
