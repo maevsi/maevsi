@@ -13,7 +13,7 @@
       <ContactAvatar
         v-else
         ref="Image"
-        class="h-12 w-12"
+        class="max-w-none"
         :email-address="contact.emailAddress"
         :email-address-hash="contact.emailAddressHash"
         rounded
@@ -34,10 +34,15 @@
     </div>
     <div class="flex flex-col justify-center ml-4">
       <div class="font-medium">
-        {{ contact.firstName || '–' }} {{ contact.lastName || '–' }}
+        {{ contact.firstName || $t('placeholder') }}
+        {{ contact.lastName || $t('placeholder') }}
       </div>
-      <div v-if="contact.accountUsername" class="text-gray-500">
-        {{ `@${contact.accountUsername}` }}
+      <div class="text-gray-500">
+        {{
+          contact.accountUsername
+            ? `@${contact.accountUsername}`
+            : $t('placeholder')
+        }}
       </div>
     </div>
   </div>
@@ -57,3 +62,10 @@ export default {
   },
 }
 </script>
+
+<i18n lang="yml">
+de:
+  placeholder: –
+en:
+  placeholder: –
+</i18n>
