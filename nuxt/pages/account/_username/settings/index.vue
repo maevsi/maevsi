@@ -23,7 +23,7 @@
     </div>
     <section>
       <h2>{{ $t('titleContacts') }}</h2>
-      <AccountContacts />
+      <AccountContactList />
     </section>
     <section>
       <h2>{{ $t('titleImageUploads') }}</h2>

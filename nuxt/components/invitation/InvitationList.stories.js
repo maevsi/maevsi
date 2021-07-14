@@ -1,9 +1,9 @@
 import { graphql } from 'msw'
 
-import EventInvitations from './EventInvitations.vue'
+import InvitationList from './InvitationList.vue'
 
 export default {
-  component: EventInvitations,
+  component: InvitationList,
   parameters: {
     msw: [
       graphql.query('allInvitations', (_req, res, ctx) => {
@@ -50,15 +50,15 @@ export default {
     ],
   },
 
-  title: 'event/EventInvitations',
+  title: 'event/InvitationList',
 }
 
 const Template = (_, { argTypes }) => ({
-  components: { EventInvitations },
+  components: { InvitationList },
   props: Object.keys(argTypes),
   template:
     // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-    '<EventInvitations v-bind="$props">EventInvitations</EventInvitations>',
+    '<InvitationList v-bind="$props">InvitationList</InvitationList>',
 })
 
 export const Default = Template.bind({})

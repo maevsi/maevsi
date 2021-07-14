@@ -12,7 +12,7 @@
         </h1>
         <section>
           <h2>{{ $t('titleInvitations') }}</h2>
-          <EventInvitations :event="event" />
+          <InvitationList :event="event" />
         </section>
         <section>
           <h2>{{ $t('titleEdit') }}</h2>
