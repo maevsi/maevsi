@@ -1,3 +1,17 @@
+# [0.85.0](https://github.com/maevsi/maevsi/compare/0.84.0...0.85.0) (2021-07-14)
+
+
+### Bug Fixes
+
+* **form-input-password:** correct typo ([4b41e1d](https://github.com/maevsi/maevsi/commit/4b41e1d343d6397f1d80581c8ed5f9c1db1c17de))
+
+
+### Features
+
+* **event:** display event title instead of slug in tab title ([932b5d9](https://github.com/maevsi/maevsi/commit/932b5d92f7902e337ecc6bfe4226c6f40a51611f)), closes [#342](https://github.com/maevsi/maevsi/issues/342)
+* **event-icon-visibility:** add visual test ([fb2725d](https://github.com/maevsi/maevsi/commit/fb2725dffc5d62c82899e7c62d12a037d6f8773a))
+* **storybook:** use environment variable instead of property ([99364e8](https://github.com/maevsi/maevsi/commit/99364e8bae2aaa7d7cf93c5e2bb982506adc7c87))
+
 # [0.84.0](https://github.com/maevsi/maevsi/compare/0.83.0...0.84.0) (2021-07-12)
 
 
