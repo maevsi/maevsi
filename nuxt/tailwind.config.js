@@ -177,7 +177,7 @@ module.exports = {
           marginLeft: '5px',
           width: theme('fontSize.xs'),
           '@screen dark-mode': {
-            backgroundColor: theme('colors.text.bright'),
+            backgroundColor: 'currentColor',
           },
         },
         address: {
