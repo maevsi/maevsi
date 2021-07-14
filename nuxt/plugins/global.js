@@ -226,7 +226,7 @@ export async function jwtStore(
         expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
         httpOnly: true,
         path: '/',
-        sameSite: 'strict',
+        sameSite: 'lax', // Cannot be 'strict' to allow authentications after clicking on links within webmailers.
         secure: true,
       })
     )
