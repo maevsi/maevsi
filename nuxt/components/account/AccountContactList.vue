@@ -48,13 +48,13 @@
       {{ $t('contactAdd') }}
     </Button>
     <Modal id="ModalContact" @close="onClose">
-      <h2 slot="header">
-        {{ formContactHeading }}
-      </h2>
       <FormContact
         :contact="selectedContact"
         @submitSuccess="onSubmitSuccess"
       />
+      <template slot="header">
+        {{ formContactHeading }}
+      </template>
       <div slot="footer" />
     </Modal>
   </div>

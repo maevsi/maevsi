@@ -28,8 +28,6 @@ export const mutations = {
   modalAdd(state, data) {
     const dataDefault = {
       contentBody: undefined,
-      contentFooter: undefined,
-      contentHeader: undefined,
       id: 'ModalGlobal',
       isVisible: true,
       onSubmit: undefined,

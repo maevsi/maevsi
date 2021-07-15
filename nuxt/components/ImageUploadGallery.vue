@@ -124,7 +124,6 @@
       :submit-name="$t('upload')"
       :submit-task-provider="() => getUploadBlobPromise()"
     >
-      <h2 slot="header">{{ $t('uploadNew') }}</h2>
       <Croppa
         ref="croppy"
         :initial-image="fileSelectedUrl"
@@ -133,6 +132,7 @@
         prevent-white-space
         :show-remove-button="false"
       />
+      <template slot="header">{{ $t('uploadNew') }}</template>
     </Modal>
   </div>
 </template>

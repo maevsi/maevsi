@@ -6,7 +6,6 @@
     @close="selectedProfilePictureStorageKey = undefined"
     @submitSuccess="$emit('submitSuccess')"
   >
-    <h2 slot="header">{{ $t('header') }}</h2>
     <ImageUploadGallery
       :allow-addition="false"
       :allow-deletion="false"
@@ -14,6 +13,7 @@
       :username="$route.params.username"
       @selection="selectProfilePictureStorageKey"
     />
+    <template slot="header">{{ $t('header') }}</template>
   </Modal>
 </template>
 

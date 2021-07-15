@@ -115,9 +115,9 @@
     <br />
     <Modal id="ModalInvitation">
       <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
-      <h2 slot="header">
+      <template slot="header">
         {{ $t('invitationAdd') }}
-      </h2>
+      </template>
       <div slot="footer" />
     </Modal>
   </div>

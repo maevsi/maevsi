@@ -20,19 +20,17 @@
       <div
         class="card max-h-[90vh] overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3"
       >
-        <div class="flex justify-end">
+        <div class="relative">
+          <h2 class="mt-0 px-4 text-center">
+            <slot name="header" />
+          </h2>
           <ButtonIcon
             :aria-label="$t('cancel')"
+            class="absolute right-0 top-0"
             :disabled="isSubmitting"
             :icon-id="['fas', 'times']"
             @click="close()"
           />
-        </div>
-        <div class="text-center">
-          <div v-if="contentHeaderComputed">
-            {{ contentHeaderComputed }}
-          </div>
-          <slot v-else name="header" />
         </div>
         <div :class="{ 'disabled pointer-events-none relative': isSubmitting }">
           <div v-if="contentBodyComputed">
@@ -47,10 +45,7 @@
           </div>
         </div>
         <div class="flex justify-evenly">
-          <div v-if="contentFooterComputed">
-            {{ contentFooterComputed }}
-          </div>
-          <slot v-else name="footer">
+          <slot name="footer">
             <ButtonGreen
               :aria-label="submitName"
               :disabled="isSubmitting || isSubmitDisabled"
@@ -77,8 +72,6 @@ const consola = require('consola')
 export default {
   props: {
     // contentBody is provided by the default slot above.
-    // contentFooter is provided by the footer slot above.
-    // contentHeader is provided by the header slot above.
     id: {
       default: 'ModalGlobal',
       type: String,
@@ -115,12 +108,6 @@ export default {
   computed: {
     contentBodyComputed() {
       return this.$global.getNested(this.modalComputed, 'contentBody') // The default slot above is used as alternative.
-    },
-    contentFooterComputed() {
-      return this.$global.getNested(this.modalComputed, 'contentFooter') // The footer slot above is used as alternative.
-    },
-    contentHeaderComputed() {
-      return this.$global.getNested(this.modalComputed, 'contentHeader') // The header slot above is used as alternative.
     },
     isVisibleComputed() {
       return (
