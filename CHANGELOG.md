@@ -1,3 +1,14 @@
+# [0.87.0](https://github.com/maevsi/maevsi/compare/0.86.0...0.87.0) (2021-07-15)
+
+
+### Features
+
+* **creevey:** use chrome only ([eea4eec](https://github.com/maevsi/maevsi/commit/eea4eec6a597821d1a6a4958b80d27c9cdc6085b))
+* **form-input:** add verifiability ([b4df9d8](https://github.com/maevsi/maevsi/commit/b4df9d8c5b1263274f949a59232f8b91887a69ed)), closes [#252](https://github.com/maevsi/maevsi/issues/252)
+* **form-input-username:** make verification optional ([ebc89eb](https://github.com/maevsi/maevsi/commit/ebc89ebc03c7875c03ca2a5b9712ed5ddf19b588))
+* **invitation-list:** display invitation code on lg ([df20767](https://github.com/maevsi/maevsi/commit/df2076737f80dbe0b444a217ff4b5c2c57bfe5a0))
+* **modal:** improve heading ([ff58fda](https://github.com/maevsi/maevsi/commit/ff58fda2ebe0cd5aa2b71a8f79b4cd92c4d05726))
+
 # [0.86.0](https://github.com/maevsi/maevsi/compare/0.85.0...0.86.0) (2021-07-14)
 
 
