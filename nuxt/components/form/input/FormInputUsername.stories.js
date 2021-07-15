@@ -16,9 +16,5 @@ const Template = (_, { argTypes }) => ({
 export const Default = Template.bind({})
 Default.args = {
   id: 'id',
-  v: {
-    form: {
-      id: {},
-    },
-  },
+  formInput: {},
 }

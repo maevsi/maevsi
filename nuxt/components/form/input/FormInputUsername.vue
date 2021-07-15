@@ -51,7 +51,7 @@
 export default {
   props: {
     formInput: {
-      default: undefined,
+      required: true,
       type: Object,
     },
     id: {
