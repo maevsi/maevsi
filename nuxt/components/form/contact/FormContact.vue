@@ -25,6 +25,7 @@
       id="username"
       :form-input="$v.form.accountUsername"
       is-optional
+      is-verifiable
       @input="form.accountUsername = $event"
     />
     <div v-if="form.accountUsername">

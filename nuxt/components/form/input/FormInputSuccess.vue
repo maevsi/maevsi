@@ -3,10 +3,6 @@
     v-if="formInput.$model && !formInput.$invalid"
     class="text-green-600 text-left"
   >
-    <FontAwesomeIcon
-      v-if="formInput && validationProperty"
-      :icon="['fas', 'check-circle']"
-    />
     <slot />
   </div>
 </template>

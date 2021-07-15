@@ -3,7 +3,7 @@
     :error="formInput.$error"
     :is-optional="isOptional"
     :label-for="`input-${id}`"
-    :success="formInput.$model && !formInput.$invalid"
+    :success="isVerifiable && formInput.$model && !formInput.$invalid"
     :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
   >
     <div class="relative">
@@ -16,7 +16,7 @@
         @input="$emit('input', $event.target.value)"
       />
       <span
-        v-if="formInput.$model && !formInput.$invalid"
+        v-if="isVerifiable && formInput.$model && !formInput.$invalid"
         class="absolute px-3 right-0 top-1/2 -translate-y-1/2"
       >
         <div class="bg-gray-50 rounded-full">
@@ -39,7 +39,7 @@
         {{ $t('globalValidationRequired') }}
       </FormInputError>
     </template>
-    <template slot="inputSuccess">
+    <template v-if="isVerifiable" slot="inputSuccess">
       <FormInputSuccess :form-input="formInput">
         {{ $t('globalVerificationExistence') }}
       </FormInputSuccess>
@@ -59,6 +59,10 @@ export default {
       type: String,
     },
     isOptional: {
+      default: false,
+      type: Boolean,
+    },
+    isVerifiable: {
       default: false,
       type: Boolean,
     },
