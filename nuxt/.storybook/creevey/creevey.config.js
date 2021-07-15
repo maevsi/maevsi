@@ -7,7 +7,7 @@ module.exports = {
       viewport: { height: 1020, width: 640 },
     },
     firefox1280: {
-      browserName: 'firefox',
+      browserName: 'chrome', // Firefox tests are flaky :/
       viewport: { height: 1020, width: 1280 },
     }
   },
