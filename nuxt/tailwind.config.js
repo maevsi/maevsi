@@ -213,6 +213,12 @@ module.exports = {
           ...heading(theme),
           fontSize: theme('fontSize.xl'),
         },
+        header: {
+          background: '#ffffff',
+          '@screen dark-mode': {
+            background: '#282828',
+          },
+        },
         img: {
           '&::before': {
             alignItems: 'center',

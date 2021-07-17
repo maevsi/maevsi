@@ -1,10 +1,9 @@
 <template>
-  <header>
-    <CardInfo v-if="!browserSupported">
+  <header class="mb-8">
+    <CardInfo v-if="!isBrowserSupported" is-edgy>
       {{ $t('browserUnsupported') }}
     </CardInfo>
-    <div class="flex items-center justify-between m-4">
-      <div class="h-8 w-8" />
+    <div class="container flex items-center justify-between mx-auto p-4">
       <AppLink :aria-label="$t('home')" :to="localePath('/')">
         <div id="logo" class="h-10 w-32" />
       </AppLink>
@@ -25,11 +24,11 @@ const supportedBrowsers = require('~/supportedBrowsers')
 export default {
   data() {
     return {
-      browserSupported: true,
+      isBrowserSupported: true,
     }
   },
   beforeMount() {
-    this.browserSupported = supportedBrowsers.test(navigator.userAgent)
+    this.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
   },
 }
 </script>

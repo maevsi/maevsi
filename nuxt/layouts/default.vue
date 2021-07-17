@@ -1,11 +1,9 @@
 <template>
   <div>
-    <div class="container min-h-screen mx-auto p-4">
-      <Header @onMenuShow="menuShow" />
-      <main>
-        <nuxt />
-      </main>
-    </div>
+    <Header @onMenuShow="menuShow" />
+    <main class="container min-h-screen mx-auto p-4">
+      <nuxt />
+    </main>
     <Footer />
     <div
       class="
