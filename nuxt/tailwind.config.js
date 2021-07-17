@@ -184,15 +184,15 @@ module.exports = {
           margin: theme('margin.4'),
         },
         body: {
-          background: theme('colors.background.bright'),
+          background: theme('colors.white'),
           '@screen dark-mode': {
-            background: theme('colors.background.dark'),
+            background: '#282828',
           },
         },
         footer: {
-          background: '#ffffff',
+          background: theme('colors.background.bright'),
           '@screen dark-mode': {
-            background: '#282828',
+            background: theme('colors.background.dark'),
           },
         },
         h1: {
@@ -214,9 +214,9 @@ module.exports = {
           fontSize: theme('fontSize.xl'),
         },
         header: {
-          background: '#ffffff',
+          background: theme('colors.background.bright'),
           '@screen dark-mode': {
-            background: '#282828',
+            background: theme('colors.background.dark'),
           },
         },
         img: {
