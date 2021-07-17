@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <section id="overview" class="flex items-center mb-16">
-      <div class="p-4 w-full lg:w-1/2">
+  <div class="sm:p-4">
+    <section id="overview" class="flex items-center mb-16 md:mb-32">
+      <div class="w-full lg:w-1/2">
         <i18n
           class="
             font-extrabold
             leading-snug
+            sm:leading-snug
+            md:leading-snug
+            xl:leading-snug
             text-4xl
             sm:text-5xl
             md:text-5xl
@@ -48,7 +51,7 @@
         width="750"
       />
     </section>
-    <section class="mb-16">
+    <section class="mb-16 md:mb-32">
       <h2 class="font-extrabold leading-snug text-center text-5xl">
         {{ $t('stepsTitle') }}
       </h2>
@@ -78,15 +81,15 @@
         />
       </div>
     </section>
-    <section class="lg:flex items-center mb-16">
+    <section class="lg:flex items-center mb-16 md:mb-32">
       <LoaderImage
         :alt="$t('heroImage')"
-        class="mx-auto p-4 lg:w-1/2"
+        class="mx-auto sm:mr-8 lg:w-1/2"
         height="750"
         src="/assets/static/images/smartphone.png"
         width="750"
       />
-      <div class="p-4 lg:w-1/2">
+      <div class="lg:w-1/2">
         <h2 class="font-extrabold leading-snug text-4xl text-left">
           {{ $t('smartphoneTitle') }}
         </h2>

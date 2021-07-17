@@ -5,7 +5,9 @@
       sm:flex-basis-33
       flex-col
       items-center
-      p-8
+      px-4
+      sm:px-8
+      py-8
       w-full
     "
   >
