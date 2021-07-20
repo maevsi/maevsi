@@ -75,7 +75,7 @@
     "weekstart": "1.1.0"
   },
   "devDependencies": {
-    "@babel/runtime-corejs3": "7.14.7",
+    "@babel/runtime-corejs3": "7.14.8",
     "@intlify/eslint-plugin-vue-i18n": "0.11.1",
     "@nuxt/types": "2.15.7",
     "@nuxt/typescript-build": "2.1.0",
