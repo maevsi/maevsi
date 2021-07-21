@@ -6,7 +6,7 @@
     <div class="container grid grid-cols-3 items-center mx-auto p-4">
       <AppLink
         :aria-label="$t('home')"
-        class="col-start-2 justify-self-center"
+        class="col-start-2 justify-self-center rounded"
         :to="localePath('/')"
       >
         <div id="logo" class="h-10 w-32" />
@@ -42,7 +42,7 @@
         </AppLink>
         <AppLink
           v-if="$store.state.signedInUsername"
-          class="hidden md:block"
+          class="hidden md:block rounded-full"
           :to="localePath(`/account/${$store.state.signedInUsername}`)"
         >
           <AccountProfilePicture
