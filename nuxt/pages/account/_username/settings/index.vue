@@ -10,7 +10,7 @@
       >
         <AccountProfilePicture
           ref="profilePicture"
-          classes="h-24 w-24"
+          classes="h-24 rounded w-24"
           height="96"
           :username="$route.params.username"
           width="96"
