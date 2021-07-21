@@ -112,7 +112,7 @@
     "mockdate": "3.0.5",
     "msw": "0.32.2",
     "msw-storybook-addon": "1.2.0",
-    "postcss": "8.3.5",
+    "postcss": "8.3.6",
     "postcss-import": "14.0.2",
     "postcss-loader": "4.3.0",
     "postcss-url": "10.1.3",
