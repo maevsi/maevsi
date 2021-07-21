@@ -18,6 +18,9 @@ module.exports = {
       animation: {
         shake: 'shake 0.6s ease-in-out 0s 1 normal forwards running',
       },
+      boxShadow: {
+        'sm-white': '0 1px 2px 0 rgba(255, 255, 255, 0.05)',
+      },
       colors: {
         background: {
           bright: '#f0f0f0',

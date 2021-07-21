@@ -1,12 +1,8 @@
 <template>
   <div>
-    <ButtonIcon
-      :aria-label="$t('menuHide')"
-      class="m-4 xl:m-8"
-      :icon-id="['fas', 'times']"
-      icon-size="lg"
-      @click="$emit('onMenuHide')"
-    />
+    <ButtonIcon :aria-label="$t('menuHide')" @click="$emit('onMenuHide')">
+      <IconX class="h-6 m-4 w-6" />
+    </ButtonIcon>
     <div class="flex flex-col mx-8 xl:mx-16 self-stretch">
       <MenuItem
         :icon-id="['fas', 'user']"

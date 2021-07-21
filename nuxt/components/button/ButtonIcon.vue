@@ -5,7 +5,8 @@
     :type="type"
     @click="$emit('click')"
   >
-    <FontAwesomeIcon :icon="iconId" :size="iconSize" />
+    <slot v-if="$slots.default" />
+    <FontAwesomeIcon v-else :icon="iconId" :size="iconSize" />
   </button>
 </template>
 
@@ -21,7 +22,7 @@ export default {
       type: Boolean,
     },
     iconId: {
-      required: true,
+      default: () => [],
       type: Array,
     },
     iconSize: {
