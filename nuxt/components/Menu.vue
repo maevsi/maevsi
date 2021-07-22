@@ -1,9 +1,21 @@
 <template>
-  <div>
-    <ButtonIcon :aria-label="$t('menuHide')" @click="$emit('onMenuHide')">
-      <IconX class="h-6 m-4 w-6" />
+  <div class="h-full relative w-full">
+    <ButtonIcon
+      v-if="isClosable"
+      :aria-label="$t('menuHide')"
+      class="absolute right-0 top-0"
+      @click="$emit('onMenuHide')"
+    >
+      <IconX class="h-6 w-6" />
     </ButtonIcon>
-    <div class="flex flex-col mx-8 xl:mx-16 self-stretch">
+    <div class="flex flex-col mx-4 lg:mx-6 xl:mx-8 self-stretch">
+      <AppLink
+        :aria-label="$t('home')"
+        class="hidden md:block justify-self-center rounded"
+        :to="localePath('/')"
+      >
+        <div id="logo" class="h-10 w-32" />
+      </AppLink>
       <MenuItem
         :icon-id="['fas', 'user']"
         :to="localePath(`/account/${$store.state.signedInUsername || ''}`)"
@@ -57,11 +69,23 @@
   </div>
 </template>
 
+<script>
+export default {
+  props: {
+    isClosable: {
+      default: false,
+      type: Boolean,
+    },
+  },
+}
+</script>
+
 <i18n lang="yml">
 de:
   account: Konto
   eventUnlock: Einladungscode eingeben
   eventNew: Veranstaltung erstellen
+  home: Nach Hause
   menuHide: Menü verstecken
   settings: Einstellungen
   signOut: Abmelden
@@ -69,6 +93,7 @@ en:
   account: Account
   eventUnlock: Enter invitation code
   eventNew: Create event
+  home: Head home
   menuHide: Hide menu
   settings: Settings
   signOut: Sign out

@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       classes:
-        'inline-flex h-12 items-stretch focus:outline-none focus:ring text-text-dark dark:text-text-bright',
+        'inline-flex h-12 items-stretch focus:outline-none focus:ring rounded text-text-dark dark:text-text-bright',
     }
   },
 }

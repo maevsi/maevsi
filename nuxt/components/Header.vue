@@ -3,22 +3,32 @@
     <CardInfo v-if="!isBrowserSupported" is-edgy>
       {{ $t('browserUnsupported') }}
     </CardInfo>
-    <div class="container grid grid-cols-3 items-center mx-auto p-4">
-      <AppLink
-        :aria-label="$t('home')"
-        class="col-start-2 justify-self-center rounded"
-        :to="localePath('/')"
-      >
-        <div id="logo" class="h-10 w-32" />
-      </AppLink>
+    <div class="grid grid-cols-3 items-center mx-auto p-4">
       <ButtonIcon
         :aria-label="$t('menuShow')"
-        class="md:hidden justify-self-end"
+        class="md:hidden justify-self-start"
         @click="$emit('onMenuShow')"
       >
         <IconMenu class="h-8 w-8" />
       </ButtonIcon>
-      <div class="hidden md:flex flex-1 items-center justify-self-end">
+      <AppLink
+        :aria-label="$t('home')"
+        class="justify-self-center md:justify-self-start rounded"
+        :class="{ 'md:hidden': $store.state.signedInUsername }"
+        :to="localePath('/')"
+      >
+        <div id="logo" class="h-10 w-32" />
+      </AppLink>
+      <input
+        class="col-span-2 md:col-span-1 hidden md:block rounded"
+        :class="{ 'md:col-span-2': $store.state.signedInUsername }"
+        disabled
+        placeholder="search"
+        type="text"
+      />
+      <div
+        class="col-start-3 hidden md:flex flex-1 items-center justify-self-end"
+      >
         <AppLink
           class="
             bg-background-bright
@@ -41,20 +51,7 @@
           {{ $t('events') }}
         </AppLink>
         <AppLink
-          v-if="$store.state.signedInUsername"
-          class="hidden md:block rounded-full"
-          :to="localePath(`/account/${$store.state.signedInUsername}`)"
-        >
-          <AccountProfilePicture
-            class="shadow-sm dark:shadow-sm-white"
-            height="40"
-            rounded
-            :username="$store.state.signedInUsername"
-            width="40"
-          />
-        </AppLink>
-        <AppLink
-          v-else
+          v-if="!$store.state.signedInUsername"
           class="
             bg-gray-800
             hover:bg-black
@@ -92,24 +89,6 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-#logo {
-  background-image: url(/assets/static/logos/maevsi.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-@media (prefers-color-scheme: dark) {
-  #logo {
-    background-image: url(/assets/static/logos/maevsi_with-text_white.svg);
-  }
-}
-@media (prefers-color-scheme: light) {
-  #logo {
-    background-image: url(/assets/static/logos/maevsi_with-text_black.svg);
-  }
-}
-</style>
 
 <i18n lang="yml">
 de:
