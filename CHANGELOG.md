@@ -1,3 +1,10 @@
+## [0.87.1](https://github.com/maevsi/maevsi/compare/0.87.0...0.87.1) (2021-07-26)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([cffdfde](https://github.com/maevsi/maevsi/commit/cffdfde0970a3b3ca2bdd4338815ebf7f1af3348))
+
 # [0.87.0](https://github.com/maevsi/maevsi/compare/0.86.0...0.87.0) (2021-07-15)
 
 
