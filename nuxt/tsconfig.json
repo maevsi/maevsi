@@ -28,7 +28,8 @@
       "@nuxt/types",
       "@nuxtjs/moment",
       "nuxt-i18n",
-      "jest"
+      "jest",
+      "vue-apollo/types"
     ]
   },
   "exclude": [
