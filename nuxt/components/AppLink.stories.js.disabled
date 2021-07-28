@@ -1,3 +1,5 @@
+// Disabled as Nuxt's links are not rendered quick enough.
+
 import AppLink from './AppLink.vue'
 
 export default {
