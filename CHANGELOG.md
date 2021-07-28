@@ -1,3 +1,10 @@
+# [0.88.0](https://github.com/maevsi/maevsi/compare/0.87.2...0.88.0) (2021-07-28)
+
+
+### Features
+
+* **husky:** prevent pushes to master instead of testing in pre-push ([fbb99f0](https://github.com/maevsi/maevsi/commit/fbb99f01b8b60ad8dbe53b5bc7fba66d3adf6d31))
+
 ## [0.87.2](https://github.com/maevsi/maevsi/compare/0.87.1...0.87.2) (2021-07-27)
 
 
