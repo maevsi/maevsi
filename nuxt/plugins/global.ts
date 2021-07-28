@@ -1,11 +1,19 @@
+import { IncomingMessage, ServerResponse } from 'http'
 import cookie from 'cookie'
-import { decode } from 'jsonwebtoken'
+import { decode, JwtPayload } from 'jsonwebtoken'
 import moment from 'moment'
 import { helpers } from 'vuelidate/lib/validators'
+import { Store } from 'vuex'
 
+import ApolloClient from 'apollo-client'
+import { Context } from '@nuxt/types'
+import { Inject } from '@nuxt/types/app'
+import { Dictionary } from 'vue-router/types/router'
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
+import { Contact } from '~/types/contact'
+import { State } from '~/store'
 
 const consola = require('consola')
 
@@ -39,11 +47,16 @@ export const VALIDATION_FORMAT_UPPERCASE_NONE = helpers.regex(
 )
 export const VALIDATION_FORMAT_UUID = helpers.regex('uuid', REGEX_UUID)
 export const VALIDATION_LAST_NAME_LENGTH_MAXIMUM = 100
-export const VALIDATION_NOW_OR_FUTURE = (value) => value.isSameOrAfter(moment())
+export const VALIDATION_NOW_OR_FUTURE = (value: moment.Moment) =>
+  value.isSameOrAfter(moment())
 export const VALIDATION_PASSWORD_LENGTH_MINIMUM = 8
 export const VALIDATION_USERNAME_LENGTH_MAXIMUM = 100
 
-export async function authenticateAnonymous(apolloClient, store, res) {
+export async function authenticateAnonymous(
+  apolloClient: ApolloClient<any>,
+  store: Store<State>,
+  res: ServerResponse
+) {
   consola.trace('Authenticating anonymously...')
 
   const authenticationData = await apolloClient
@@ -66,12 +79,12 @@ export async function authenticateAnonymous(apolloClient, store, res) {
   await jwtStore(apolloClient, store, res, authenticationData.jwt)
 }
 
-export function capitalizeFirstLetter(string) {
+export function capitalizeFirstLetter(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-export function formPreSubmit(that) {
-  return new Promise((resolve, reject) => {
+export function formPreSubmit(that: any): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
     that.graphqlError = undefined
     that.$v.$touch()
 
@@ -97,7 +110,10 @@ export function formPreSubmit(that) {
   })
 }
 
-export function getContactName(contact, isUsernamePreferred = false) {
+export function getContactName(
+  contact: Contact,
+  isUsernamePreferred = false
+): string {
   let name
 
   if (contact.accountUsername) {
@@ -117,10 +133,10 @@ export function getContactName(contact, isUsernamePreferred = false) {
   return name
 }
 
-export function getDeferredPromise(then) {
+export function getDeferredPromise<T>(then?: (value: any) => T): Promise<T> {
   let res, rej
 
-  const promise = new Promise((resolve, reject) => {
+  const promise: any = new Promise((resolve, reject) => {
     res = resolve
     rej = reject
   })
@@ -129,7 +145,7 @@ export function getDeferredPromise(then) {
   promise.reject = rej
 
   if (then) {
-    promise.then((value) => {
+    promise.then((value: any) => {
       then(value)
     })
   }
@@ -137,14 +153,16 @@ export function getDeferredPromise(then) {
   return promise
 }
 
-export function getJwtFromCookie(req) {
+export function getJwtFromCookie(
+  req: IncomingMessage
+): { jwt: string; jwtDecoded: JwtPayload } | undefined {
   if (req.headers.cookie) {
     const cookies = cookie.parse(req.headers.cookie)
 
     if (cookies['__Secure-apollo-token']) {
-      const cookie = decode(cookies['__Secure-apollo-token'])
+      const cookie = decode(cookies['__Secure-apollo-token']) as JwtPayload
 
-      if (cookie.exp > Date.now() / 1000) {
+      if (cookie.exp !== undefined && cookie.exp > Date.now() / 1000) {
         return {
           jwt: cookies['__Secure-apollo-token'],
           jwtDecoded: cookie,
@@ -160,14 +178,23 @@ export function getJwtFromCookie(req) {
   }
 }
 
-export function getNested(obj, level, ...rest) {
+export function getNested(
+  obj: any | undefined | null,
+  level: keyof any,
+  ...rest: (keyof any)[]
+): undefined | any {
   if (obj === undefined || obj === null) return undefined
   if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
     return obj[level]
+  // @ts-ignore
   return getNested(obj[level], ...rest)
 }
 
-export function getQueryString(queryParametersObject) {
+export function getQueryString(
+  queryParametersObject: Dictionary<
+    string | ((string | null)[] & { pw: 'lost' | 'found' })
+  >
+): string {
   return (
     '?' +
     Object.keys(queryParametersObject)
@@ -175,14 +202,19 @@ export function getQueryString(queryParametersObject) {
         return (
           encodeURIComponent(key) +
           '=' +
-          encodeURIComponent(queryParametersObject[key])
+          encodeURIComponent(queryParametersObject[key] as string)
         )
       })
       .join('&')
   )
 }
 
-export async function jwtRefresh(apolloClient, store, res, id) {
+export async function jwtRefresh(
+  apolloClient: ApolloClient<any>,
+  store: Store<State>,
+  res: ServerResponse,
+  id: string
+) {
   consola.trace('Refreshing a JWT...')
 
   const jwtRefreshData = await apolloClient
@@ -206,10 +238,10 @@ export async function jwtRefresh(apolloClient, store, res, id) {
 }
 
 export async function jwtStore(
-  apolloClient,
-  store,
-  res,
-  jwt,
+  apolloClient: ApolloClient<any>,
+  store: Store<State>,
+  res: ServerResponse,
+  jwt: string | undefined,
   callback = () => {
     window.location.reload()
   }
@@ -222,7 +254,7 @@ export async function jwtStore(
   if (process.server) {
     res.setHeader(
       'Set-Cookie',
-      cookie.serialize('__Secure-apollo-token', jwt, {
+      cookie.serialize('__Secure-apollo-token', jwt || '', {
         expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
         httpOnly: true,
         path: '/',
@@ -231,7 +263,7 @@ export async function jwtStore(
       })
     )
   } else {
-    xhrPromise('POST', '/auth', jwt).then(
+    xhrPromise('POST', '/auth', jwt || '').then(
       (_value) => callback(),
       (_reason) =>
         store.commit('modalAdd', {
@@ -241,23 +273,30 @@ export async function jwtStore(
   }
 }
 
-async function signOut(apolloClient, store, res) {
-  await jwtStore(apolloClient, store, res, null)
+async function signOut(
+  apolloClient: ApolloClient<any>,
+  store: Store<State>,
+  res: ServerResponse
+) {
+  await jwtStore(apolloClient, store, res, undefined)
 }
 
-export function objectClone(object) {
-  const objectClone = JSON.parse(JSON.stringify(object))
-  return objectClone
+export function objectClone<T>(object: T): T {
+  return JSON.parse(JSON.stringify(object))
 }
 
-export function removeTypename(object) {
-  const objectClone = this.objectClone(object)
-  delete objectClone.__typename
-  return objectClone
+export function removeTypename<T extends Object & { __typename?: string }>(
+  object: T
+): Omit<T, '__typename'> {
+  const clonedObject = objectClone<T>(object)
+  delete clonedObject.__typename
+  return clonedObject
 }
 
-export function validateUsername(apollo) {
-  return async (value) => {
+export function validateUsername(
+  apollo: ApolloClient<any>
+): (value: string) => Promise<boolean> {
+  return async (value: string) => {
     if (!helpers.req(value)) {
       return true
     }
@@ -275,7 +314,11 @@ export function validateUsername(apollo) {
   }
 }
 
-export function xhrPromise(method, url, jwt) {
+export function xhrPromise(
+  method: string,
+  url: string,
+  jwt: string
+): Promise<any> {
   return new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest()
     xhr.open(method, url)
@@ -298,62 +341,65 @@ export function xhrPromise(method, url, jwt) {
   })
 }
 
-export default async ({ app, req, res, store }, inject) => {
-  const global = {
-    ITEMS_PER_PAGE,
-    REGEX_PHONE_NUMBER,
-    REGEX_SLUG,
-    REGEX_UPPERCASE_NONE,
-    REGEX_UUID,
-    TUSD_FILES_URL,
-    VALIDATION_ADDRESS_LENGTH_MAXIMUM,
-    VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
-    VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM,
-    VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM,
-    VALIDATION_EVENT_NAME_LENGTH_MAXIMUM,
-    VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM,
-    VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
-    VALIDATION_FIRST_NAME_LENGTH_MAXIMUM,
-    VALIDATION_FORMAT_PHONE_NUMBER,
-    VALIDATION_FORMAT_SLUG,
-    VALIDATION_FORMAT_UPPERCASE_NONE,
-    VALIDATION_FORMAT_UUID,
-    VALIDATION_LAST_NAME_LENGTH_MAXIMUM,
-    VALIDATION_NOW_OR_FUTURE,
-    VALIDATION_PASSWORD_LENGTH_MINIMUM,
-    VALIDATION_USERNAME_LENGTH_MAXIMUM,
-    authenticateAnonymous,
-    capitalizeFirstLetter,
-    formPreSubmit,
-    getContactName,
-    getDeferredPromise,
-    getJwtFromCookie,
-    getNested,
-    getQueryString,
-    jwtRefresh,
-    jwtStore,
-    signOut,
-    objectClone,
-    removeTypename,
-    validateUsername,
-    xhrPromise,
-  }
+const globals = {
+  ITEMS_PER_PAGE,
+  REGEX_PHONE_NUMBER,
+  REGEX_SLUG,
+  REGEX_UPPERCASE_NONE,
+  REGEX_UUID,
+  TUSD_FILES_URL,
+  VALIDATION_ADDRESS_LENGTH_MAXIMUM,
+  VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_NAME_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
+  VALIDATION_FIRST_NAME_LENGTH_MAXIMUM,
+  VALIDATION_FORMAT_PHONE_NUMBER,
+  VALIDATION_FORMAT_SLUG,
+  VALIDATION_FORMAT_UPPERCASE_NONE,
+  VALIDATION_FORMAT_UUID,
+  VALIDATION_LAST_NAME_LENGTH_MAXIMUM,
+  VALIDATION_NOW_OR_FUTURE,
+  VALIDATION_PASSWORD_LENGTH_MINIMUM,
+  VALIDATION_USERNAME_LENGTH_MAXIMUM,
+  authenticateAnonymous,
+  capitalizeFirstLetter,
+  formPreSubmit,
+  getContactName,
+  getDeferredPromise,
+  getJwtFromCookie,
+  getNested,
+  getQueryString,
+  jwtRefresh,
+  jwtStore,
+  signOut,
+  objectClone,
+  removeTypename,
+  validateUsername,
+  xhrPromise,
+}
 
-  inject('global', global)
+export default async ({ app, req, res, store }: Context, inject: Inject) => {
+  inject('global', globals)
 
   // Either authenticate anonymously or refresh token on page load.
   if (process.server) {
     const jwtData = getJwtFromCookie(req)
 
+    const apolloClient = app.apolloProvider!.defaultClient
+
     if (jwtData) {
-      await jwtRefresh(
-        app.apolloProvider.defaultClient,
-        store,
-        res,
-        jwtData.jwtDecoded.id
-      )
+      await jwtRefresh(apolloClient, store, res, jwtData.jwtDecoded.id)
     } else {
-      await authenticateAnonymous(app.apolloProvider.defaultClient, store, res)
+      await authenticateAnonymous(apolloClient, store, res)
     }
+  }
+}
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $global: typeof globals
   }
 }

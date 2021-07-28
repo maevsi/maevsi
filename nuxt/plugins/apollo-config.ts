@@ -1,13 +1,15 @@
+import { Context } from '@nuxt/types'
+
 const consola = require('consola')
 
-export default ({ store }) => {
+export default ({ store }: Context) => {
   return {
     httpEndpoint: process.server
       ? 'http://postgraphile:5000/graphql'
       : 'https://postgraphile.' +
         (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
         '/graphql',
-    getAuth: (_tokenName) => {
+    getAuth: (_tokenName: string) => {
       const jwt = store.state.jwt
 
       if (jwt) {

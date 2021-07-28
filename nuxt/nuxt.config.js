@@ -99,6 +99,8 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // https://composition-api.nuxtjs.org/
+    '@nuxtjs/composition-api/module',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -304,7 +306,7 @@ export default {
       '@nuxtjs/apollo',
       {
         clientConfigs: {
-          default: '~/plugins/apollo-config.js',
+          default: '~/plugins/apollo-config.ts',
         },
         defaultOptions: {
           $query: {
@@ -334,14 +336,14 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '~/plugins/baseUrl.js',
-    '~/plugins/dynamicReactiveRefs.js',
-    '~/plugins/global.js',
-    '~/plugins/htmlToText.js',
-    '~/plugins/i18n.js',
-    '~/plugins/markdownIt.js',
-    '~/plugins/vuelidate.js',
-    '~/plugins/slugify.js',
+    '~/plugins/baseUrl.ts',
+    '~/plugins/dynamicReactiveRefs.ts',
+    '~/plugins/global.ts',
+    '~/plugins/htmlToText.ts',
+    '~/plugins/i18n.ts',
+    '~/plugins/markdownIt.ts',
+    '~/plugins/vuelidate.ts',
+    '~/plugins/slugify.ts',
   ],
 
   publicRuntimeConfig: {
