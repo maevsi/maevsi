@@ -251,14 +251,10 @@ export async function jwtStore(
 
   await apolloClient.clearStore()
 
-  if (jwt === undefined) {
-    return
-  }
-
   if (process.server) {
     res.setHeader(
       'Set-Cookie',
-      cookie.serialize('__Secure-apollo-token', jwt, {
+      cookie.serialize('__Secure-apollo-token', jwt || '', {
         expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
         httpOnly: true,
         path: '/',
@@ -267,7 +263,7 @@ export async function jwtStore(
       })
     )
   } else {
-    xhrPromise('POST', '/auth', jwt).then(
+    xhrPromise('POST', '/auth', jwt || '').then(
       (_value) => callback(),
       (_reason) =>
         store.commit('modalAdd', {
