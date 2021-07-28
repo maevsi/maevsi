@@ -1,3 +1,15 @@
+# [0.89.0](https://github.com/maevsi/maevsi/compare/0.88.0...0.89.0) (2021-07-28)
+
+
+### Bug Fixes
+
+* **global:** fallback to empty jwt string ([9f00f30](https://github.com/maevsi/maevsi/commit/9f00f30ddfec0c67a5c5325ab704cedb88874eed))
+
+
+### Features
+
+* **vue:** use typescript for plugins ([17bfbc7](https://github.com/maevsi/maevsi/commit/17bfbc703d6c7fa3dfb896940d9814a8e5347cd7))
+
 # [0.88.0](https://github.com/maevsi/maevsi/compare/0.87.2...0.88.0) (2021-07-28)
 
 
