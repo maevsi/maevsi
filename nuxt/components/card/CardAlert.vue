@@ -2,12 +2,14 @@
   <div
     v-if="$slots.default || errorMessage"
     class="
+      bg-red-600
+      border-0
       card
-      bg-red-100
-      border border-red-700
+      font-medium
       overflow-hidden
-      text-center text-red-700
+      text-center text-white
     "
+    :class="{ 'rounded-none': isEdgy }"
     role="alert"
   >
     <span v-if="errorMessage">
@@ -23,6 +25,10 @@ export default {
     errorMessage: {
       default: undefined,
       type: String,
+    },
+    isEdgy: {
+      default: false,
+      type: Boolean,
     },
   },
 }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="grid">
-      <div class="e1">
+      <div class="border border-b-0 border-gray-300 e1 rounded-t">
         <ul
           class="pills rounded-t"
           :class="dark ? 'bg-gray-400' : 'bg-gray-300'"
@@ -11,7 +11,7 @@
           </li>
         </ul>
       </div>
-      <ul class="e1 pills">
+      <ul class="border border-b-0 border-gray-300 e1 pills rounded-t">
         <li
           class="rounded-t duration-700"
           :class="[
@@ -27,7 +27,7 @@
           <button type="button">{{ $t('fillerSymbol') }}</button>
         </li>
       </ul>
-      <ul class="e1 pills z-0">
+      <ul class="border border-b-0 border-gray-300 e1 pills rounded-t z-0">
         <li>
           <button
             class="rounded-t"

@@ -1,20 +1,89 @@
 <template>
   <header>
-    <CardInfo v-if="!browserSupported">
+    <CardInfo v-if="!isBrowserSupported" is-edgy>
       {{ $t('browserUnsupported') }}
     </CardInfo>
-    <div class="flex items-center justify-between m-4">
-      <div class="h-8 w-8" />
-      <AppLink :aria-label="$t('home')" :to="localePath('/')">
-        <div id="logo" class="h-10 w-32" />
-      </AppLink>
+    <div
+      class="grid grid-cols-3 items-center mx-auto p-4 md:px-8"
+      :class="{ container: !$store.state.signedInUsername }"
+    >
       <ButtonIcon
         :aria-label="$t('menuShow')"
-        class="h-8 w-8"
-        :icon-id="['fas', 'bars']"
-        icon-size="2x"
+        class="md:hidden justify-self-start"
         @click="$emit('onMenuShow')"
+      >
+        <IconMenu class="h-8 w-8" />
+      </ButtonIcon>
+      <AppLink
+        :aria-label="$t('home')"
+        class="justify-self-center md:justify-self-start"
+        :to="localePath('/')"
+      >
+        <div id="logo" class="h-10 w-32" />
+      </AppLink>
+      <input
+        class="col-span-2 md:col-span-1 hidden md:invisible rounded"
+        :class="{ 'md:col-span-2': $store.state.signedInUsername }"
+        disabled
+        placeholder="search"
+        type="text"
       />
+      <div
+        class="
+          col-start-3
+          hidden
+          md:flex
+          flex-1
+          items-center
+          justify-self-end
+          whitespace-nowrap
+        "
+      >
+        <AppLink
+          class="
+            bg-background-bright
+            hover:bg-gray-200
+            dark:bg-background-dark dark:hover:bg-black
+            border border-gray-300
+            dark:border-gray-600
+            mr-6
+            font-medium
+            px-4
+            py-2
+            rounded-md
+            shadow-sm
+            dark:shadow-sm-white
+            text-center text-text-dark
+            dark:text-text-bright
+          "
+          :to="
+            $store.state.signedInUsername
+              ? localePath('/task/event/create')
+              : localePath('/account')
+          "
+        >
+          {{ $store.state.signedInUsername ? $t('eventNew') : $t('signIn') }}
+        </AppLink>
+        <AppLink
+          class="
+            bg-gray-800
+            hover:bg-black
+            dark:bg-gray-100 dark:hover:bg-gray-200
+            border border-transparent
+            px-4
+            py-2
+            rounded-md
+            shadow-sm
+            dark:shadow-sm-white
+            font-medium
+            text-center text-text-bright
+            dark:text-text-dark
+          "
+          :to="localePath('/event')"
+        >
+          {{ $t('events') }}
+        </AppLink>
+      </div>
     </div>
   </header>
 </template>
@@ -25,40 +94,28 @@ const supportedBrowsers = require('~/supportedBrowsers')
 export default {
   data() {
     return {
-      browserSupported: true,
+      isBrowserSupported: true,
     }
   },
   beforeMount() {
-    this.browserSupported = supportedBrowsers.test(navigator.userAgent)
+    this.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
   },
 }
 </script>
 
-<style scoped>
-#logo {
-  background-image: url(/assets/static/logos/maevsi.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-@media (prefers-color-scheme: dark) {
-  #logo {
-    background-image: url(/assets/static/logos/maevsi_with-text_white.svg);
-  }
-}
-@media (prefers-color-scheme: light) {
-  #logo {
-    background-image: url(/assets/static/logos/maevsi_with-text_black.svg);
-  }
-}
-</style>
-
 <i18n lang="yml">
 de:
   browserUnsupported: Die Version deines Browsers wird nicht offiziell unterstützt. Bitte verwende eine aktuelle Version.
+  eventNew: Veranstaltung erstellen
+  events: Veranstaltungen entdecken
   home: Nach Hause
   menuShow: Menü anzeigen
+  signIn: Anmelden
 en:
   browserUnsupported: "Your browser's version is not officially supported. Please use a version that is up to date."
+  eventNew: Create event
+  events: Explore events
   home: Head home
   menuShow: Show menu
+  signIn: Sign in
 </i18n>

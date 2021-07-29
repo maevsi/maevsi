@@ -1,8 +1,14 @@
 <template>
   <div>
-    <div class="container min-h-screen mx-auto p-4">
-      <Header @onMenuShow="menuShow" />
-      <main>
+    <Header @onMenuShow="menuShow" />
+    <div class="flex">
+      <div
+        v-if="$store.state.signedInUsername"
+        class="bg-background-bright dark:bg-background-dark hidden md:block"
+      >
+        <Menu />
+      </div>
+      <main class="container flex-1 min-h-screen mx-auto px-4 md:px-8 py-8">
         <nuxt />
       </main>
     </div>
@@ -13,6 +19,7 @@
         bottom-0
         duration-500
         fixed
+        md:hidden
         left-0
         right-0
         top-0
@@ -28,22 +35,20 @@
         bottom-0
         duration-500
         fixed
+        md:hidden
         flex-col
         inline-flex
         items-start
+        left-0
         overflow-auto
         p-2
-        right-0
         top-0
         transform-gpu
         transition-transform
-        w-5/6
-        md:w-1/2
-        lg:w-1/3
       "
-      :class="isMenuVisible ? 'translate-x-0' : 'translate-x-full'"
+      :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >
-      <Menu v-if="isMenuItemsVisible" @onMenuHide="menuHide" />
+      <Menu v-if="isMenuItemsVisible" is-closable @onMenuHide="menuHide" />
     </div>
     <Modal />
   </div>
@@ -77,3 +82,21 @@ export default {
   },
 }
 </script>
+
+<style>
+#logo {
+  background-image: url(/assets/static/logos/maevsi.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+@media (prefers-color-scheme: dark) {
+  #logo {
+    background-image: url(/assets/static/logos/maevsi_with-text_white.svg);
+  }
+}
+@media (prefers-color-scheme: light) {
+  #logo {
+    background-image: url(/assets/static/logos/maevsi_with-text_black.svg);
+  }
+}
+</style>

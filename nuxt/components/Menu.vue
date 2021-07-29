@@ -1,79 +1,132 @@
 <template>
-  <div>
-    <ButtonIcon
-      :aria-label="$t('menuHide')"
-      class="m-4 xl:m-8"
-      :icon-id="['fas', 'times']"
-      icon-size="lg"
-      @click="$emit('onMenuHide')"
-    />
-    <div class="flex flex-col mx-8 xl:mx-16 self-stretch">
-      <MenuItem
-        :icon-id="['fas', 'user']"
-        :to="localePath(`/account/${$store.state.signedInUsername || ''}`)"
+  <nav class="h-full max-w-max w-full">
+    <div class="flex flex-col">
+      <ButtonIcon
+        v-if="isClosable"
+        :aria-label="$t('menuHide')"
+        class="self-end"
         @click="$emit('onMenuHide')"
       >
-        {{ $store.state.signedInUsername || $t('account') }}
-        <template v-if="$store.state.signedInUsername" slot="image">
-          <AccountProfilePicture
-            class="h-full p-2 w-full"
-            height="48"
-            rounded
-            :username="$store.state.signedInUsername"
-            width="48"
-          />
-        </template>
-      </MenuItem>
-      <template v-if="$store.state.signedInUsername">
-        <MenuItem
-          :icon-id="['fas', 'cog']"
-          :to="
-            localePath(
-              `/account/${$store.state.signedInUsername || ''}/settings`
-            )
-          "
-          @click="$emit('onMenuHide')"
-        >
-          {{ $t('settings') }}
-        </MenuItem>
-        <MenuItem
-          :icon-id="['fas', 'sign-out-alt']"
-          @click="$global.signOut($apollo.getClient(), $store)"
-        >
-          {{ $t('signOut') }}
-        </MenuItem>
-      </template>
-      <MenuItem
-        :icon-id="['fas', 'plus']"
-        :to="localePath('/task/event/create')"
-        @click="$emit('onMenuHide')"
-      >
-        {{ $t('eventNew') }}
-      </MenuItem>
-      <MenuItem
-        :icon-id="['fas', 'key']"
-        :to="localePath('/task/event/unlock')"
-        @click="$emit('onMenuHide')"
-      >
-        {{ $t('eventUnlock') }}
-      </MenuItem>
+        <IconX class="h-6 w-6" />
+      </ButtonIcon>
+      <div class="flex flex-col p-6 lg:p-8 space-y-8">
+        <div v-if="$store.state.signedInUsername" class="flex mt-0 md:mt-auto">
+          <AppLink
+            class="
+              flex
+              items-center
+              space-x-2
+              text-text-dark
+              dark:text-text-bright
+            "
+            :to="localePath(`/account/${$store.state.signedInUsername}`)"
+            @click="$emit('onMenuHide')"
+          >
+            <AccountProfilePicture
+              height="40"
+              rounded
+              :username="$store.state.signedInUsername"
+              width="40"
+            />
+            <span>{{ $store.state.signedInUsername }}</span>
+          </AppLink>
+          <div class="flex-1 w-12" />
+          <div class="flex items-center space-x-2">
+            <AppLink
+              class="text-text-dark dark:text-text-bright"
+              :to="
+                localePath(`/account/${$store.state.signedInUsername}/settings`)
+              "
+              @click="$emit('onMenuHide')"
+            >
+              <IconCog class="h-6 w-6" />
+            </AppLink>
+            <ButtonIcon
+              :aria-label="$t('signOut')"
+              @click="$global.signOut($apollo.getClient(), $store)"
+            >
+              <IconLogout class="h-6 w-6" />
+            </ButtonIcon>
+          </div>
+        </div>
+        <div class="flex flex-col space-y-4">
+          <AppLink
+            class="
+              bg-background-bright
+              hover:bg-gray-200
+              dark:bg-background-dark dark:hover:bg-black
+              border border-gray-300
+              dark:border-gray-600
+              font-medium
+              md:hidden
+              px-4
+              py-2
+              rounded-md
+              shadow-sm
+              dark:shadow-sm-white
+              text-center text-text-dark
+              dark:text-text-bright
+            "
+            :to="
+              $store.state.signedInUsername
+                ? localePath('/task/event/create')
+                : localePath('/account')
+            "
+            @click="$emit('onMenuHide')"
+          >
+            {{ $store.state.signedInUsername ? $t('eventNew') : $t('signIn') }}
+          </AppLink>
+          <AppLink
+            class="
+              bg-gray-800
+              hover:bg-black
+              dark:bg-gray-100 dark:hover:bg-gray-200
+              border border-transparent
+              md:hidden
+              px-4
+              py-2
+              rounded-md
+              shadow-sm
+              dark:shadow-sm-white
+              font-medium
+              text-center text-text-bright
+              dark:text-text-dark
+            "
+            :to="localePath('/event')"
+            @click="$emit('onMenuHide')"
+          >
+            {{ $t('events') }}
+          </AppLink>
+        </div>
+      </div>
     </div>
-  </div>
+  </nav>
 </template>
+
+<script>
+export default {
+  props: {
+    isClosable: {
+      default: false,
+      type: Boolean,
+    },
+  },
+}
+</script>
 
 <i18n lang="yml">
 de:
-  account: Konto
-  eventUnlock: Einladungscode eingeben
   eventNew: Veranstaltung erstellen
+  events: Veranstaltungen entdecken
   menuHide: Menü verstecken
   settings: Einstellungen
+  signIn: Anmelden
   signOut: Abmelden
 en:
-  account: Account
-  eventUnlock: Enter invitation code
   eventNew: Create event
+  events: Explore events
   menuHide: Hide menu
   settings: Settings
+  signIn: Sign in
   signOut: Sign out
 </i18n>

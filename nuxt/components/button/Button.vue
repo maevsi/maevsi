@@ -8,7 +8,6 @@
       :class="['button', buttonClass].join(' ')"
       :disabled="disabled"
       :icon-id="iconId"
-      :icon-size="iconSize"
       :to="to"
     >
       <slot />
@@ -26,7 +25,6 @@
         v-if="iconId"
         :class="{ 'mr-2': $slots.default }"
         :icon="iconId"
-        :size="iconSize"
       />
       <slot />
     </button>
@@ -55,10 +53,6 @@ export default {
     iconId: {
       default: undefined,
       type: Array,
-    },
-    iconSize: {
-      default: undefined,
-      type: String,
     },
     to: {
       default: undefined,

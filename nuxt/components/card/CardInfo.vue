@@ -1,13 +1,26 @@
 <template>
   <div
     class="
+      bg-blue-600
+      border-0
       card
-      bg-blue-100
-      border border-blue-700
+      font-medium
       overflow-hidden
-      text-center text-blue-700
+      text-center text-white
     "
+    :class="{ 'rounded-none': isEdgy }"
   >
     <slot />
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    isEdgy: {
+      default: false,
+      type: Boolean,
+    },
+  },
+}
+</script>

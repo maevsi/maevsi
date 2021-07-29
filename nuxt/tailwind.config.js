@@ -18,6 +18,9 @@ module.exports = {
       animation: {
         shake: 'shake 0.6s ease-in-out 0s 1 normal forwards running',
       },
+      boxShadow: {
+        'sm-white': '0 1px 2px 0 rgba(255, 255, 255, 0.05)',
+      },
       colors: {
         background: {
           bright: '#f0f0f0',
@@ -184,15 +187,15 @@ module.exports = {
           margin: theme('margin.4'),
         },
         body: {
-          background: theme('colors.background.bright'),
+          background: theme('colors.white'),
           '@screen dark-mode': {
-            background: theme('colors.background.dark'),
+            background: '#282828',
           },
         },
         footer: {
-          background: '#ffffff',
+          background: theme('colors.background.bright'),
           '@screen dark-mode': {
-            background: '#282828',
+            background: theme('colors.background.dark'),
           },
         },
         h1: {
@@ -212,6 +215,12 @@ module.exports = {
         h4: {
           ...heading(theme),
           fontSize: theme('fontSize.xl'),
+        },
+        header: {
+          background: theme('colors.background.bright'),
+          '@screen dark-mode': {
+            background: theme('colors.background.dark'),
+          },
         },
         img: {
           '&::before': {
