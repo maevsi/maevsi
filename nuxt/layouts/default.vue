@@ -1,26 +1,16 @@
 <template>
   <div>
-    <div class="flex flex-nowrap">
+    <Header @onMenuShow="menuShow" />
+    <div class="flex">
       <div
         v-if="$store.state.signedInUsername"
-        class="
-          bg-background-bright
-          dark:bg-background-dark
-          hidden
-          md:block
-          w-1/3
-          lg:w-1/4
-          xl:w-1/5
-        "
+        class="bg-background-bright dark:bg-background-dark hidden md:block"
       >
         <Menu />
       </div>
-      <div class="flex-1">
-        <Header @onMenuShow="menuShow" />
-        <main class="container min-h-screen mx-auto p-4 pt-8">
-          <nuxt />
-        </main>
-      </div>
+      <main class="container flex-1 min-h-screen mx-auto px-4 md:px-8 py-8">
+        <nuxt />
+      </main>
     </div>
     <Footer />
     <div
@@ -55,8 +45,6 @@
         top-0
         transform-gpu
         transition-transform
-        w-5/6
-        sm:w-1/3
       "
       :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >

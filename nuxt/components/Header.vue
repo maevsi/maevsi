@@ -3,7 +3,10 @@
     <CardInfo v-if="!isBrowserSupported" is-edgy>
       {{ $t('browserUnsupported') }}
     </CardInfo>
-    <div class="grid grid-cols-3 items-center mx-auto p-4">
+    <div
+      class="grid grid-cols-3 items-center mx-auto p-4 md:px-8"
+      :class="{ container: !$store.state.signedInUsername }"
+    >
       <ButtonIcon
         :aria-label="$t('menuShow')"
         class="md:hidden justify-self-start"
@@ -13,21 +16,28 @@
       </ButtonIcon>
       <AppLink
         :aria-label="$t('home')"
-        class="justify-self-center md:justify-self-start rounded"
-        :class="{ 'md:hidden': $store.state.signedInUsername }"
+        class="justify-self-center md:justify-self-start"
         :to="localePath('/')"
       >
         <div id="logo" class="h-10 w-32" />
       </AppLink>
       <input
-        class="col-span-2 md:col-span-1 hidden md:block rounded"
+        class="col-span-2 md:col-span-1 hidden md:invisible rounded"
         :class="{ 'md:col-span-2': $store.state.signedInUsername }"
         disabled
         placeholder="search"
         type="text"
       />
       <div
-        class="col-start-3 hidden md:flex flex-1 items-center justify-self-end"
+        class="
+          col-start-3
+          hidden
+          md:flex
+          flex-1
+          items-center
+          justify-self-end
+          whitespace-nowrap
+        "
       >
         <AppLink
           class="
@@ -36,22 +46,25 @@
             dark:bg-background-dark dark:hover:bg-black
             border border-gray-300
             dark:border-gray-600
-            mr-8
+            mr-6
             font-medium
             px-4
             py-2
             rounded-md
             shadow-sm
             dark:shadow-sm-white
-            text-text-dark
+            text-center text-text-dark
             dark:text-text-bright
           "
-          :to="localePath('/event')"
+          :to="
+            $store.state.signedInUsername
+              ? localePath('/task/event/create')
+              : localePath('/account')
+          "
         >
-          {{ $t('events') }}
+          {{ $store.state.signedInUsername ? $t('eventNew') : $t('signIn') }}
         </AppLink>
         <AppLink
-          v-if="!$store.state.signedInUsername"
           class="
             bg-gray-800
             hover:bg-black
@@ -63,12 +76,12 @@
             shadow-sm
             dark:shadow-sm-white
             font-medium
-            text-text-bright
+            text-center text-text-bright
             dark:text-text-dark
           "
-          :to="localePath('/account')"
+          :to="localePath('/event')"
         >
-          {{ $t('signIn') }}
+          {{ $t('events') }}
         </AppLink>
       </div>
     </div>
@@ -93,13 +106,15 @@ export default {
 <i18n lang="yml">
 de:
   browserUnsupported: Die Version deines Browsers wird nicht offiziell unterstützt. Bitte verwende eine aktuelle Version.
-  events: Veranstaltungen
+  eventNew: Veranstaltung erstellen
+  events: Veranstaltungen entdecken
   home: Nach Hause
   menuShow: Menü anzeigen
   signIn: Anmelden
 en:
   browserUnsupported: "Your browser's version is not officially supported. Please use a version that is up to date."
-  events: Events
+  eventNew: Create event
+  events: Explore events
   home: Head home
   menuShow: Show menu
   signIn: Sign in

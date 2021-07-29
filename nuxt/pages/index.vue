@@ -1,5 +1,5 @@
 <template>
-  <div class="sm:p-4">
+  <div>
     <section id="overview" class="flex items-center mb-16 md:mb-32">
       <div class="w-full lg:w-1/2">
         <i18n

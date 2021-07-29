@@ -1,12 +1,13 @@
 <template>
   <button
     :aria-label="ariaLabel"
+    class="rounded"
     :disabled="disabled"
     :type="type"
     @click="$emit('click')"
   >
     <slot v-if="$slots.default" />
-    <FontAwesomeIcon v-else :icon="iconId" :size="iconSize" />
+    <FontAwesomeIcon v-else :icon="iconId" />
   </button>
 </template>
 
@@ -22,10 +23,12 @@ export default {
       type: Boolean,
     },
     iconId: {
-      default: () => [],
+      default() {
+        return []
+      },
       type: Array,
     },
-    iconSize: {
+    to: {
       default: undefined,
       type: String,
     },

@@ -1,7 +1,7 @@
 <template>
   <a
     v-if="isExternal"
-    class="items-center inline-flex"
+    class="items-center inline-flex rounded"
     :href="to"
     :rel="
       [...(nofollow ? ['nofollow'] : []), 'noopener', 'noreferrer'].join(' ')
@@ -13,16 +13,20 @@
       v-if="iconId"
       :class="{ 'mr-2': $slots.default }"
       :icon="iconId"
-      :size="iconSize"
     />
     <slot />
   </a>
-  <nuxt-link v-else :append="append" :to="to" @click.native="$emit('click')">
+  <nuxt-link
+    v-else
+    :append="append"
+    class="rounded"
+    :to="to"
+    @click.native="$emit('click')"
+  >
     <FontAwesomeIcon
       v-if="iconId"
       :class="{ 'mr-2': $slots.default }"
       :icon="iconId"
-      :size="iconSize"
     />
     <slot />
   </nuxt-link>
@@ -38,10 +42,6 @@ export default {
     iconId: {
       default: undefined,
       type: Array,
-    },
-    iconSize: {
-      default: undefined,
-      type: String,
     },
     nofollow: {
       default: false,
