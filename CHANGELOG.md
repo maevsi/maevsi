@@ -1,3 +1,24 @@
+# [0.90.0](https://github.com/maevsi/maevsi/compare/0.89.0...0.90.0) (2021-07-29)
+
+
+### Bug Fixes
+
+* **index:** improve responsiveness ([f235752](https://github.com/maevsi/maevsi/commit/f235752f2e02bd34fcdd20f7ee5e1cccafc3f432))
+* **tab-flip:** add border ([b20390e](https://github.com/maevsi/maevsi/commit/b20390e7321d4be9e355cb53fd3840494ea06d07))
+
+
+### Features
+
+* **card:** improve design ([8e11d81](https://github.com/maevsi/maevsi/commit/8e11d81cc93107bb380929282de46f15867146b5))
+* **creevey:** update images ([550de6d](https://github.com/maevsi/maevsi/commit/550de6d1105210a5f21b4e4eb8c8f94d651afb29))
+* **creevey:** update images ([46c660e](https://github.com/maevsi/maevsi/commit/46c660e0241f278096e334e08727aac466e656c3))
+* **header:** add action buttons ([fb64a0d](https://github.com/maevsi/maevsi/commit/fb64a0d6d6a934a2be134e703b2087a0bce70b1c))
+* **header:** improve design ([86f65d9](https://github.com/maevsi/maevsi/commit/86f65d95c09d4a532a4d17a3905468e30ecdc2d6))
+* **menu:** design with sidebar ([69dc8e4](https://github.com/maevsi/maevsi/commit/69dc8e4704eb19f3cf3ad48f4f482cb15d6a7008))
+* **menu:** improve sidebar design ([1f6bb5d](https://github.com/maevsi/maevsi/commit/1f6bb5de3ae07a1bf82649945d08d7264fca4b12))
+* **profile-picture:** round edges ([7e8268a](https://github.com/maevsi/maevsi/commit/7e8268a0d6c8d16e3a1e5c0277ecea222b4052ea))
+* **tailwind:** switch background colors ([0b99f96](https://github.com/maevsi/maevsi/commit/0b99f9660cd168383199305885fb0a7e54bf47a1))
+
 # [0.89.0](https://github.com/maevsi/maevsi/compare/0.88.0...0.89.0) (2021-07-28)
 
 
