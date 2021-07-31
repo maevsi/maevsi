@@ -14,6 +14,7 @@ import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 import { Contact } from '~/types/contact'
 import { State } from '~/store'
+import { htmlToText } from "html-to-text";
 
 const consola = require('consola')
 
@@ -240,7 +241,7 @@ export async function jwtRefresh(
 export async function jwtStore(
   apolloClient: ApolloClient<any>,
   store: Store<State>,
-  res: ServerResponse,
+  res: ServerResponse | undefined,
   jwt: string | undefined,
   callback = () => {
     window.location.reload()
@@ -252,7 +253,7 @@ export async function jwtStore(
   await apolloClient.clearStore()
 
   if (process.server) {
-    res.setHeader(
+    res?.setHeader(
       'Set-Cookie',
       cookie.serialize('__Secure-apollo-token', jwt || '', {
         expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
@@ -276,7 +277,7 @@ export async function jwtStore(
 async function signOut(
   apolloClient: ApolloClient<any>,
   store: Store<State>,
-  res: ServerResponse
+  res?: ServerResponse
 ) {
   await jwtStore(apolloClient, store, res, undefined)
 }
@@ -400,6 +401,15 @@ export default async ({ app, req, res, store }: Context, inject: Inject) => {
 
 declare module 'vue/types/vue' {
   interface Vue {
+    $global: typeof globals
+  }
+}
+
+declare module '@nuxt/types' {
+  interface NuxtAppOptions {
+    $global: typeof globals
+  }
+  interface Context {
     $global: typeof globals
   }
 }
