@@ -54,7 +54,7 @@
     "downloadjs": "1.4.7",
     "graphql": "15.5.1",
     "html-to-text": "7.1.1",
-    "ical-generator": "2.2.0",
+    "ical-generator": "3.0.0",
     "jsonwebtoken": "8.5.1",
     "luxon": "1.28.0",
     "node-fetch": "2.6.1",
