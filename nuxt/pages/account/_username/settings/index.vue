@@ -50,20 +50,22 @@
   <Error v-else :status-code="403" />
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
+import { State } from '~/store'
 
-export default {
+export default defineComponent({
   middleware({ res, params, store }) {
-    if (res && params.username !== store.state.signedInUsername) {
+    if (res && params.username !== (store.state as State).signedInUsername) {
       res.statusCode = 403
     }
   },
   async validate({ app, params }) {
     const {
       data: { accountIsExisting },
-    } = await app.apolloProvider.defaultClient.query({
+    } = await app.apolloProvider!.defaultClient.query({
       query: ACCOUNT_IS_EXISTING_MUTATION,
       variables: {
         username: params.username,
@@ -82,12 +84,13 @@ export default {
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -100,18 +103,18 @@ export default {
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
   methods: {
     reloadProfilePicture() {
-      this.$refs.profilePicture.reloadProfilePicture()
+      ;(this.$refs.profilePicture as any).reloadProfilePicture()
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

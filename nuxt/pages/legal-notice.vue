@@ -38,20 +38,23 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   data() {
     return {
       title: this.$t('title'),
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -59,18 +62,18 @@ export default {
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            (this.$router.currentRoute.fullPath as string),
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

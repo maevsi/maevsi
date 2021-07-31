@@ -25,20 +25,23 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   data() {
     return {
       title: this.$t('title'),
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -51,14 +54,14 @@ export default {
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
   computed: {
-    sessionExpiryTime() {
+    sessionExpiryTime(): string {
       return this.$moment(
         this.$global.getNested(this.$store.state.jwtDecoded, 'exp'),
         'X'
@@ -70,7 +73,7 @@ export default {
       this.$global.signOut(this.$apollo.getClient(), this.$store)
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">
