@@ -1,7 +1,6 @@
 import { htmlToText } from 'html-to-text'
 import { Inject } from '@nuxt/types/app'
 import { Context } from '@nuxt/types'
-import MarkdownIt from "markdown-it";
 
 export default (_: Context, inject: Inject) => {
   inject('htmlToText', htmlToText)

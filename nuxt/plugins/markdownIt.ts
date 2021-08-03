@@ -1,7 +1,6 @@
 import { Inject } from '@nuxt/types/app'
 import { Context } from '@nuxt/types'
 import MarkdownIt from 'markdown-it'
-import slugify from "slugify";
 
 const md = require('markdown-it')()
 
