@@ -5,6 +5,7 @@
       bg-red-600
       border-0
       card
+      dark:card-dark
       font-medium
       overflow-hidden
       text-center text-white

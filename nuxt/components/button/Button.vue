@@ -8,6 +8,7 @@
       :class="['button', buttonClass].join(' ')"
       :disabled="disabled"
       :icon-id="iconId"
+      :is-colored="false"
       :to="to"
     >
       <slot />

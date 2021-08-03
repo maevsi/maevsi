@@ -119,7 +119,7 @@ export default {
 
 <i18n lang="yml">
 de:
-  fillerSymbol: [filler]
+  fillerSymbol: f
 en:
-  fillerSymbol: [filler]
+  fillerSymbol: f
 </i18n>

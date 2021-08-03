@@ -213,7 +213,7 @@
           />
         </template>
         <template slot="back">
-          <div class="card h-full rounded-t-none rounded-b">
+          <div class="card dark:card-dark h-full rounded-t-none rounded-b">
             <vue-markdown
               v-if="$v.form.description.$model"
               :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"

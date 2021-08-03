@@ -81,6 +81,7 @@
     "@intlify/eslint-plugin-vue-i18n": "0.12.0",
     "@nuxt/types": "2.15.7",
     "@nuxt/typescript-build": "2.1.0",
+    "@nuxtjs/color-mode": "2.1.1",
     "@nuxtjs/eslint-config": "6.0.1",
     "@nuxtjs/eslint-config-typescript": "6.0.1",
     "@nuxtjs/eslint-module": "3.0.2",

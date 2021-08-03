@@ -1,7 +1,7 @@
 <template>
   <form
     ref="form"
-    class="card"
+    class="card dark:card-dark"
     :class="[
       {
         'animate-shake border border-red-500':

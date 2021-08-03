@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="bg-background-bright dark:bg-background-dark">
     <CardInfo v-if="!isBrowserSupported" is-edgy>
       {{ $t('browserUnsupported') }}
     </CardInfo>
@@ -56,6 +56,7 @@
             text-center text-text-dark
             dark:text-text-bright
           "
+          :is-colored="false"
           :to="
             $store.state.signedInUsername
               ? localePath('/task/event/create')
@@ -79,6 +80,7 @@
             text-center text-text-bright
             dark:text-text-dark
           "
+          :is-colored="false"
           :to="localePath('/event')"
         >
           {{ $t('events') }}

@@ -52,7 +52,7 @@
       <p>{{ $t('greetingDescription') }}</p>
     </div>
     <div
-      class="card flex flex-col items-center mt-4"
+      class="card dark:card-dark flex flex-col items-center mt-4"
       :class="{
         'bg-yellow-100':
           !$route.query.ic &&
