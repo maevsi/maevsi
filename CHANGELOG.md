@@ -1,3 +1,16 @@
+# [0.91.0](https://github.com/maevsi/maevsi/compare/0.90.2...0.91.0) (2021-08-03)
+
+
+### Bug Fixes
+
+* **docker:** add jq for storycap ([1900528](https://github.com/maevsi/maevsi/commit/1900528b3f7e2407e90e090d49e18901fbccbe58))
+* **docker:** add puppeteer dependencies ([ab4eabc](https://github.com/maevsi/maevsi/commit/ab4eabc5fbf163fca9fcd3f53437367e221cfacf))
+
+
+### Features
+
+* **storycap:** migrate away from creevey ([c3ab844](https://github.com/maevsi/maevsi/commit/c3ab844073f093ea61921f66308e51c0fd4c8cc3))
+
 ## [0.90.2](https://github.com/maevsi/maevsi/compare/0.90.1...0.90.2) (2021-08-03)
 
 
