@@ -1,3 +1,17 @@
+## [0.90.2](https://github.com/maevsi/maevsi/compare/0.90.1...0.90.2) (2021-08-03)
+
+
+### Bug Fixes
+
+* **nuxt:** transpile .mjs ([3f888f3](https://github.com/maevsi/maevsi/commit/3f888f3d28e6a8805cd0ad53bd389c6e98ee1a67))
+
+## [0.90.1](https://github.com/maevsi/maevsi/compare/0.90.0...0.90.1) (2021-08-03)
+
+
+### Bug Fixes
+
+* **button:** improve optional class addition ([f67f08d](https://github.com/maevsi/maevsi/commit/f67f08dd9abb67134f3cca44b97d67f63adc5233))
+
 # [0.90.0](https://github.com/maevsi/maevsi/compare/0.89.0...0.90.0) (2021-07-29)
 
 
