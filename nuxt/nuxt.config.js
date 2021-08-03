@@ -50,6 +50,12 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     [
+      '@nuxtjs/color-mode',
+      {
+        classSuffix: '',
+      },
+    ],
+    [
       '@nuxtjs/fontawesome',
       {
         icons: {
@@ -114,9 +120,9 @@ export default {
   head() {
     return {
       bodyAttrs: {
-        class: 'font-sans h-full text-text-dark dark:text-text-bright',
+        class:
+          'bg-white dark:bg-background-body font-sans text-text-dark dark:text-text-bright',
       },
-      htmlAttrs: { class: 'h-full' },
       link: [
         {
           href: '/assets/static/favicon/apple-touch-icon.png?v=bOXMwoKlJr',

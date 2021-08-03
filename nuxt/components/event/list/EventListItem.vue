@@ -8,7 +8,7 @@
     }"
   >
     <AppLink
-      class="card flex flex-col"
+      class="card dark:card-dark flex flex-col"
       :class="{
         'bg-yellow-100':
           $store.state.jwtDecoded &&

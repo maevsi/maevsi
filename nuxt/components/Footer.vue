@@ -1,5 +1,7 @@
 <template>
-  <footer class="leading-6 text-sm">
+  <footer
+    class="bg-background-bright dark:bg-background-dark leading-6 text-sm"
+  >
     <div class="container mx-auto px-2 py-8">
       <div class="flex flex-wrap justify-between mx-auto w-5/6">
         <FooterCategory :heading="$t('product')">
@@ -18,18 +20,6 @@
           <!-- <AppLink :to="localePath('/about/awards')">
             {{ $t('awards') }}
           </AppLink> -->
-        </FooterCategory>
-        <FooterCategory :heading="$t('languages')">
-          <!-- TODO: Replace with language picker: https://github.com/maevsi/maevsi/issues/290. -->
-          <AppLink
-            v-for="locale in $i18n.locales"
-            :key="locale.code"
-            :to="switchLocalePath(locale.code)"
-          >
-            <span :class="{ disabled: locale.code === $i18n.locale }">
-              {{ locale.name }}
-            </span>
-          </AppLink>
         </FooterCategory>
         <FooterCategory :heading="$t('legal')">
           <AppLink :to="localePath('/legal-notice')">
@@ -70,6 +60,30 @@
             {{ $t('contact') }}
           </AppLink>
         </FooterCategory>
+        <FooterCategory :heading="$t('languages')">
+          <AppLink
+            v-for="locale in $i18n.locales"
+            :key="locale.code"
+            :to="switchLocalePath(locale.code)"
+          >
+            <span :class="{ disabled: locale.code === $i18n.locale }">
+              {{ locale.name }}
+            </span>
+          </AppLink>
+        </FooterCategory>
+        <FooterCategory :heading="$t('colorScheme')">
+          <AppLink
+            v-for="colorScheme in ['System', 'Light', 'Dark']"
+            :key="colorScheme"
+            :class="{
+              disabled: $colorMode.preference === colorScheme.toLowerCase(),
+            }"
+            to=""
+            @click="$colorMode.preference = colorScheme.toLowerCase()"
+          >
+            {{ $t(`colorScheme${colorScheme}`) }}
+          </AppLink>
+        </FooterCategory>
       </div>
       <div class="p-2" />
       <div class="flex items-center mx-auto w-9/12">
@@ -100,6 +114,10 @@
 
 <i18n lang="yml">
 de:
+  colorScheme: Farbschema
+  colorSchemeDark: Dunkel
+  colorSchemeLight: Hell
+  colorSchemeSystem: System
   contact: Kontakt
   copyright: © {year} maevsi-Team. Alle Rechte vorbehalten.
   features: Funktionen
@@ -117,6 +135,10 @@ de:
   sourceCode: Quellcode
   team: Team
 en:
+  colorScheme: Color scheme
+  colorSchemeDark: Dark
+  colorSchemeLight: Light
+  colorSchemeSystem: System
   contact: Contact
   copyright: © {year} maevsi team. All rights reserved.
   features: Features

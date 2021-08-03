@@ -91,14 +91,10 @@ export default defineComponent({
   background-repeat: no-repeat;
   background-size: contain;
 }
-@media (prefers-color-scheme: dark) {
-  #logo {
-    background-image: url(/assets/static/logos/maevsi_with-text_white.svg);
-  }
+html.dark #logo {
+  background-image: url(/assets/static/logos/maevsi_with-text_white.svg);
 }
-@media (prefers-color-scheme: light) {
-  #logo {
-    background-image: url(/assets/static/logos/maevsi_with-text_black.svg);
-  }
+html.light #logo {
+  background-image: url(/assets/static/logos/maevsi_with-text_black.svg);
 }
 </style>

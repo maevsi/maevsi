@@ -19,6 +19,7 @@
               text-text-dark
               dark:text-text-bright
             "
+            :is-colored="false"
             :to="localePath(`/account/${$store.state.signedInUsername}`)"
             @click="$emit('onMenuHide')"
           >
@@ -34,6 +35,7 @@
           <div class="flex items-center space-x-2">
             <AppLink
               class="text-text-dark dark:text-text-bright"
+              :is-colored="false"
               :to="
                 localePath(`/account/${$store.state.signedInUsername}/settings`)
               "
@@ -67,6 +69,7 @@
               text-center text-text-dark
               dark:text-text-bright
             "
+            :is-colored="false"
             :to="
               $store.state.signedInUsername
                 ? localePath('/task/event/create')
@@ -92,6 +95,7 @@
               text-center text-text-bright
               dark:text-text-dark
             "
+            :is-colored="false"
             :to="localePath('/event')"
             @click="$emit('onMenuHide')"
           >

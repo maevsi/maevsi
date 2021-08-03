@@ -11,7 +11,7 @@ function heading(theme) {
 }
 
 module.exports = {
-  darkMode: 'media',
+  darkMode: 'class',
   mode: 'jit',
   theme: {
     extend: {
@@ -23,6 +23,7 @@ module.exports = {
       },
       colors: {
         background: {
+          body: '#282828',
           bright: '#f0f0f0',
           dark: '#202020',
         },
@@ -164,14 +165,8 @@ module.exports = {
           color: theme('colors.text.bright'),
           background: '#e53e3e',
         },
-        a: {
-          color: theme('colors.link.dark'),
-          '@screen dark-mode': {
-            color: theme('colors.link.bright'),
-          },
-        },
         'a[target="_blank"]:after': {
-          backgroundColor: theme('colors.text.dark'),
+          backgroundColor: 'currentColor',
           content: '""',
           display: 'inline-block',
           mask: 'url(data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJleHRlcm5hbC1saW5rLWFsdCIgY2xhc3M9InN2Zy1pbmxpbmUtLWZhIGZhLWV4dGVybmFsLWxpbmstYWx0IGZhLXctMTYiIHJvbGU9ImltZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNNDMyLDMyMEg0MDBhMTYsMTYsMCwwLDAtMTYsMTZWNDQ4SDY0VjEyOEgyMDhhMTYsMTYsMCwwLDAsMTYtMTZWODBhMTYsMTYsMCwwLDAtMTYtMTZINDhBNDgsNDgsMCwwLDAsMCwxMTJWNDY0YTQ4LDQ4LDAsMCwwLDQ4LDQ4SDQwMGE0OCw0OCwwLDAsMCw0OC00OFYzMzZBMTYsMTYsMCwwLDAsNDMyLDMyMFpNNDg4LDBoLTEyOGMtMjEuMzcsMC0zMi4wNSwyNS45MS0xNyw0MWwzNS43MywzNS43M0wxMzUsMzIwLjM3YTI0LDI0LDAsMCwwLDAsMzRMMTU3LjY3LDM3N2EyNCwyNCwwLDAsMCwzNCwwTDQzNS4yOCwxMzMuMzIsNDcxLDE2OWMxNSwxNSw0MSw0LjUsNDEtMTdWMjRBMjQsMjQsMCwwLDAsNDg4LDBaIj48L3BhdGg+PC9zdmc+) no-repeat 50% 50%',
@@ -179,24 +174,9 @@ module.exports = {
           height: theme('fontSize.xs'),
           marginLeft: '5px',
           width: theme('fontSize.xs'),
-          '@screen dark-mode': {
-            backgroundColor: 'currentColor',
-          },
         },
         address: {
           margin: theme('margin.4'),
-        },
-        body: {
-          background: theme('colors.white'),
-          '@screen dark-mode': {
-            background: '#282828',
-          },
-        },
-        footer: {
-          background: theme('colors.background.bright'),
-          '@screen dark-mode': {
-            background: theme('colors.background.dark'),
-          },
         },
         h1: {
           ...heading(theme),
@@ -215,12 +195,6 @@ module.exports = {
         h4: {
           ...heading(theme),
           fontSize: theme('fontSize.xl'),
-        },
-        header: {
-          background: theme('colors.background.bright'),
-          '@screen dark-mode': {
-            background: theme('colors.background.dark'),
-          },
         },
         img: {
           '&::before': {
@@ -277,14 +251,14 @@ module.exports = {
           borderRadius: theme('borderRadius.DEFAULT'),
           borderWidth: theme('borderWidth.DEFAULT'),
           boxShadow: theme('boxShadow.md'),
-          '@screen dark-mode': {
-            '--tw-shadow':
-              '0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)',
-            boxShadow:
-              'var(--tw-ring-offset-shadow, 0 0 #ffff), var(--tw-ring-shadow, 0 0 #ffff), var(--tw-shadow)',
-          },
           color: theme('colors.text.dark'),
           padding: theme('padding.4'),
+        },
+        '.card-dark': {
+          '--tw-shadow':
+            '0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)',
+          boxShadow:
+            'var(--tw-ring-offset-shadow, 0 0 #ffff), var(--tw-ring-shadow, 0 0 #ffff), var(--tw-shadow)',
         },
         '.description': {
           p: {

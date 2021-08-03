@@ -26,6 +26,7 @@
     "types": [
       "@types/node",
       "@nuxt/types",
+      "@nuxtjs/color-mode",
       "@nuxtjs/moment",
       "nuxt-i18n",
       "jest",

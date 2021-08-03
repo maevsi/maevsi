@@ -9,7 +9,7 @@
         (allUploads !== undefined && allUploads.nodes.length > 0) ||
         allowAddition
       "
-      class="card"
+      class="card dark:card-dark"
     >
       <ul class="flex flex-wrap justify-center">
         <template v-if="allUploads">
