@@ -1,0 +1,12 @@
+{
+  "core": {
+    "workingDir": ".storybook/storycap/working-directory",
+    "actualDir": ".storybook/storycap/images/actual"
+  },
+  "plugins": {
+    "reg-keygen-git-hash-plugin": true,
+    "reg-notify-github-plugin": {
+      "clientId": "MzIyMTU3MjU1189NTC0rztQ3tDAztTS0MIHyAQ=="
+    }
+  }
+}

@@ -5,7 +5,7 @@
       ref="button"
       :append="append"
       :aria-label="ariaLabel"
-      :class="['button', buttonClass].join(' ')"
+      :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"
       :disabled="disabled"
       :icon-id="iconId"
       :is-colored="false"
@@ -17,7 +17,7 @@
       v-else
       ref="button"
       :aria-label="ariaLabel"
-      :class="['button', buttonClass].join(' ')"
+      :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"
       :disabled="disabled"
       :type="type"
       @click="$emit('click')"

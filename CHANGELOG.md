@@ -1,3 +1,10 @@
+## [0.90.1](https://github.com/maevsi/maevsi/compare/0.90.0...0.90.1) (2021-08-03)
+
+
+### Bug Fixes
+
+* **button:** improve optional class addition ([f67f08d](https://github.com/maevsi/maevsi/commit/f67f08dd9abb67134f3cca44b97d67f63adc5233))
+
 # [0.90.0](https://github.com/maevsi/maevsi/compare/0.89.0...0.90.0) (2021-07-29)
 
 
