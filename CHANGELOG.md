@@ -1,3 +1,10 @@
+## [0.93.1](https://github.com/maevsi/maevsi/compare/0.93.0...0.93.1) (2021-08-03)
+
+
+### Bug Fixes
+
+* **types:** move to modules ([12748b5](https://github.com/maevsi/maevsi/commit/12748b5dd20f9cf46b538e1716c28d8393a68c61))
+
 # [0.93.0](https://github.com/maevsi/maevsi/compare/0.92.0...0.93.0) (2021-08-03)
 
 
