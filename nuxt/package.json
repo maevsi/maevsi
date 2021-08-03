@@ -36,7 +36,7 @@
     "@fortawesome/vue-fontawesome": "2.0.2",
     "@http-util/status-i18n": "0.3.0",
     "@nuxtjs/apollo": "4.0.1-rc.5",
-    "@nuxtjs/composition-api": "0.25.2",
+    "@nuxtjs/composition-api": "0.26.0",
     "@nuxtjs/google-adsense": "1.4.0",
     "@nuxtjs/robots": "2.5.0",
     "@nuxtjs/sitemap": "2.4.0",
