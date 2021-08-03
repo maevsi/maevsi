@@ -1,3 +1,15 @@
+# [0.93.0](https://github.com/maevsi/maevsi/compare/0.92.0...0.93.0) (2021-08-03)
+
+
+### Bug Fixes
+
+* **storycap:** remove unused dependency ([0bedd7a](https://github.com/maevsi/maevsi/commit/0bedd7a8c4af046390d75fb18d2eed036197410b))
+
+
+### Features
+
+* **design:** add color scheme selection ([daefb54](https://github.com/maevsi/maevsi/commit/daefb540919cdec9b5a9d6bc84d1d97674b35044)), closes [#123](https://github.com/maevsi/maevsi/issues/123)
+
 # [0.92.0](https://github.com/maevsi/maevsi/compare/0.91.0...0.92.0) (2021-08-03)
 
 
