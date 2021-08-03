@@ -19330,15 +19330,7 @@ reg-gh-app-interface@^1.2.0:
   resolved "https://registry.yarnpkg.com/reg-gh-app-interface/-/reg-gh-app-interface-1.2.0.tgz#0961143d75a0f7453b5d07a4fd34591da96e6add"
   integrity sha512-jgEH91LWOYf7HfoO9HfX2aM71CHZs/V6Yb3yEbECK9CB69an4yNdx24l8dBUdKywesnhE/IzJ3AfOd4a84L0Og==
 
-reg-keygen-git-hash-plugin@^0.10.16:
-  version "0.10.16"
-  resolved "https://registry.yarnpkg.com/reg-keygen-git-hash-plugin/-/reg-keygen-git-hash-plugin-0.10.16.tgz#80ad60b2a5957c51b0766a815bec7f2a27a3adff"
-  integrity sha512-N3ma/KICzzyNOAn6GTjmMorAUntdBr3wsucEeMt/ts/KdMuzgyr9kuxamjVCA/n+/Lc/uOq8MnhxdKRSFUbodg==
-  dependencies:
-    reg-suit-util "^0.10.16"
-    shell-escape "^0.2.0"
-
-reg-notify-github-plugin@^0.10.16:
+reg-notify-github-plugin@0.10.16:
   version "0.10.16"
   resolved "https://registry.yarnpkg.com/reg-notify-github-plugin/-/reg-notify-github-plugin-0.10.16.tgz#aec821c179807f9f69156560c75fb396d7e78622"
   integrity sha512-uZ4E+6ci7deE64OCw6Pt8D6CdIfxFWNap8hAsNlBDgTOEA2wrAz2mqDI9Q2ltU8P2EP/+5+tys8Qr77D1RSWhg==
@@ -20260,11 +20252,6 @@ shebang-regex@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
-
-shell-escape@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/shell-escape/-/shell-escape-0.2.0.tgz#68fd025eb0490b4f567a027f0bf22480b5f84133"
-  integrity sha1-aP0CXrBJC09WegJ/C/IkgLX4QTM=
 
 shell-quote@1.7.2, shell-quote@^1.6.1:
   version "1.7.2"
