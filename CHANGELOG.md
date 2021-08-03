@@ -1,3 +1,16 @@
+# [0.92.0](https://github.com/maevsi/maevsi/compare/0.91.0...0.92.0) (2021-08-03)
+
+
+### Bug Fixes
+
+* update plugin types to fully support nuxt typings ([727e8db](https://github.com/maevsi/maevsi/commit/727e8dba373fcc0e71c64cb84fece0d723e22414))
+
+
+### Features
+
+* use typescript for layouts ([b9a4b1e](https://github.com/maevsi/maevsi/commit/b9a4b1ed58132966faa9ad81fdc858792c29eba9))
+* use typescript for pages ([1da42d9](https://github.com/maevsi/maevsi/commit/1da42d9657045b931d3131b6981fba5d705698f9))
+
 # [0.91.0](https://github.com/maevsi/maevsi/compare/0.90.2...0.91.0) (2021-08-03)
 
 
