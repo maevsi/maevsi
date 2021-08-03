@@ -93,8 +93,9 @@ sw.*
 .nuxt-storybook
 storybook-static
 
-# Creevey
-.storybook/creevey/report/*
+# Storycap
+.storybook/storycap/images/actual
+.storybook/storycap/working-directory
 
 # Git
 !.gitkeep
