@@ -5,8 +5,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   data() {
     return {
       graphqlError: undefined,
@@ -14,12 +16,13 @@ export default {
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -32,14 +35,14 @@ export default {
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
   computed: {
-    signedIn() {
+    signedIn(): boolean {
       return (
         this.$store.state.jwtDecoded &&
         this.$store.state.jwtDecoded.role === 'maevsi_account' &&
@@ -47,7 +50,7 @@ export default {
       )
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

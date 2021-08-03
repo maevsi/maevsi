@@ -11,3 +11,12 @@ declare module 'vue/types/vue' {
     $htmlToText: typeof htmlToText
   }
 }
+
+declare module '@nuxt/types' {
+  interface NuxtAppOptions {
+    $htmlToText: typeof htmlToText
+  }
+  interface Context {
+    $htmlToText: typeof htmlToText
+  }
+}

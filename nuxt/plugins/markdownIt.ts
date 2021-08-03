@@ -13,3 +13,12 @@ declare module 'vue/types/vue' {
     $md: MarkdownIt
   }
 }
+
+declare module '@nuxt/types' {
+  interface NuxtAppOptions {
+    $md: MarkdownIt
+  }
+  interface Context {
+    $md: MarkdownIt
+  }
+}

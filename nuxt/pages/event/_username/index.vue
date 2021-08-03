@@ -2,8 +2,10 @@
   <EventList :username="$route.params.username" />
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   validate({ app, params }) {
     return app.$global.REGEX_SLUG.test(params.username)
   },
@@ -13,12 +15,13 @@ export default {
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -36,18 +39,18 @@ export default {
         {
           hid: 'profile:username',
           property: 'profile:username',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

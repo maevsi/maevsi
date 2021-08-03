@@ -17,3 +17,12 @@ declare module 'vue/types/vue' {
     $baseUrl: string
   }
 }
+
+declare module '@nuxt/types' {
+  interface NuxtAppOptions {
+    $baseUrl: string
+  }
+  interface Context {
+    $baseUrl: string
+  }
+}

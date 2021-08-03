@@ -345,6 +345,7 @@ export default {
     '~/plugins/markdownIt.ts',
     '~/plugins/vuelidate.ts',
     '~/plugins/slugify.ts',
+    '~/plugins/vueMarkdown.js',
   ],
 
   publicRuntimeConfig: {
