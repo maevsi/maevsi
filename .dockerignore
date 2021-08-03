@@ -14,8 +14,9 @@ nuxt/dist
 nuxt/.nuxt-storybook/
 nuxt/storybook-static/
 
-# Creevey
-nuxt/report/*
+# Storycap
+nuxt/.storybook/storycap/images/actual
+nuxt/.storybook/storycap/working-directory
 
 # Git
 nuxt/**/!.gitkeep

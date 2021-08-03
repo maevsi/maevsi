@@ -402,7 +402,7 @@ export default {
   ],
 
   storybook: {
-    addons: ['@storybook/addon-a11y', 'creevey'],
+    addons: ['@storybook/addon-a11y'],
   },
 
   vue: {
