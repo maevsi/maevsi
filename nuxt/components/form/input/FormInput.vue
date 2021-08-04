@@ -52,8 +52,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+const FormInputComponent = defineComponent({
   props: {
     error: {
       default: false,
@@ -65,7 +67,7 @@ export default {
     },
     labelFor: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     required: {
       default: false,
@@ -77,14 +79,17 @@ export default {
     },
     title: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     warning: {
       default: false,
       type: Boolean,
     },
   },
-}
+})
+
+export type FormInput = InstanceType<typeof FormInputComponent>
+export default FormInputComponent
 </script>
 
 <i18n lang="yml">

@@ -14,21 +14,23 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     name: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     titlesValues: {
       required: true,
-      type: Array,
+      type: Array as PropType<string[] | string[][]>,
     },
     value: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
   },
-}
+})
 </script>

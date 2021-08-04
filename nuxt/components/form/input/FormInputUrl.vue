@@ -37,8 +37,11 @@
   </FormInput>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { FormInput } from '~/components/form/input/FormInput.vue'
+
+export default defineComponent({
   props: {
     id: {
       default: 'url',
@@ -46,14 +49,14 @@ export default {
     },
     formInput: {
       required: true,
-      type: Object,
+      type: Object as PropType<FormInput>,
     },
     isOptional: {
       default: false,
       type: Boolean,
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">
