@@ -75,10 +75,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { State } from '~/store'
+
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   props: {
     // contentBody is provided by the default slot above.
     id: {
@@ -103,7 +106,7 @@ export default {
     },
     submitTaskProvider: {
       default: () => Promise.resolve(),
-      type: Function,
+      type: Function as PropType<() => Promise<any>>,
     },
   },
   data() {
@@ -115,30 +118,30 @@ export default {
     }
   },
   computed: {
-    contentBodyComputed() {
+    contentBodyComputed(): any {
       return this.$global.getNested(this.modalComputed, 'contentBody') // The default slot above is used as alternative.
     },
-    isVisibleComputed() {
+    isVisibleComputed(): boolean {
       return (
         this.$global.getNested(this.modalComputed, 'isVisible') ||
         this.isVisible
       )
     },
-    onSubmitComputed() {
+    onSubmitComputed(): () => void {
       return (
         this.$global.getNested(this.modalComputed, 'onSubmit') || this.onSubmit
       )
     },
     modalComputed() {
-      const modals = this.$store.state.modals
+      const modals = (this.$store.state as State).modals
 
-      if (!modals || modals.lenght === 0) {
+      if (!modals || modals.length === 0) {
         return undefined
       }
 
       const modalsFiltered = modals.filter((modal) => modal.id === this.id)
 
-      if (!modalsFiltered || modalsFiltered.lenght === 0) {
+      if (!modalsFiltered || modalsFiltered.length === 0) {
         return undefined
       }
 
@@ -169,7 +172,7 @@ export default {
         this.isVisible = false
       }
     },
-    modalKeydowns(e) {
+    modalKeydowns(e: KeyboardEvent) {
       if (!this.isVisible) {
         return
       }
@@ -199,7 +202,7 @@ export default {
       this.isSubmitting = false
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">
