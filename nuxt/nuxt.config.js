@@ -50,12 +50,6 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     [
-      '@nuxtjs/color-mode',
-      {
-        classSuffix: '',
-      },
-    ],
-    [
       '@nuxtjs/fontawesome',
       {
         icons: {
@@ -320,6 +314,12 @@ export default {
             fetchPolicy: 'cache-and-network',
           },
         },
+      },
+    ],
+    [
+      '@nuxtjs/color-mode',
+      {
+        classSuffix: '',
       },
     ],
     [
