@@ -11,8 +11,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     alt: {
       required: true,
@@ -20,7 +22,7 @@ export default {
     },
     rounded: {
       default: undefined,
-      type: Boolean,
+      type: Boolean as PropType<boolean | undefined>,
     },
     src: {
       required: true,
@@ -29,7 +31,7 @@ export default {
   },
   data() {
     return {
-      srcWhenLoaded: undefined,
+      srcWhenLoaded: undefined as string | undefined,
     }
   },
   async fetch() {
@@ -44,7 +46,7 @@ export default {
     async updateSource() {
       this.srcWhenLoaded = process.server
         ? this.src
-        : await new Promise((resolve) => {
+        : await new Promise<string>((resolve) => {
             const img = new Image()
 
             img.onload = () => {
@@ -55,5 +57,5 @@ export default {
           })
     },
   },
-}
+})
 </script>
