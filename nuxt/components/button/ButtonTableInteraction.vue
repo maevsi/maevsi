@@ -9,8 +9,10 @@
   />
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     ariaLabel: {
       required: true,
@@ -22,12 +24,12 @@ export default {
     },
     iconId: {
       required: true,
-      type: Array,
+      type: Array as PropType<string[]>,
     },
     isTitleShow: {
       default: false,
       type: Boolean,
     },
   },
-}
+})
 </script>

@@ -17,15 +17,17 @@
   </Button>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     isReferring: {
       default: true,
       type: Boolean,
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">
