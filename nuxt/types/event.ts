@@ -10,6 +10,6 @@ export interface Event {
   isInPerson: boolean
   isRemote: boolean
 
-  start: number
-  end: number
+  start: string
+  end: string
 }
