@@ -23,15 +23,17 @@
   <FontAwesomeIcon v-else :icon="['fas', 'bug']" :title="$t('bug')" />
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     feedback: {
       required: true,
       type: String,
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

@@ -50,12 +50,15 @@
   </tr>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { Contact } from '~/types/contact'
+
+export default defineComponent({
   props: {
     contact: {
       required: true,
-      type: Object,
+      type: Object as PropType<Contact>,
     },
     isDeleting: {
       default: false,
@@ -66,7 +69,7 @@ export default {
       type: Boolean,
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

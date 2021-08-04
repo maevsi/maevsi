@@ -34,8 +34,10 @@
   </nuxt-link>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     append: {
       default: false,
@@ -43,7 +45,7 @@ export default {
     },
     iconId: {
       default: undefined,
-      type: Array,
+      type: Array as PropType<string[] | undefined>,
     },
     isColored: {
       default: true,
@@ -58,5 +60,5 @@ export default {
       type: String,
     },
   },
-}
+})
 </script>

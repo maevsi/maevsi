@@ -9,17 +9,19 @@
   <LoaderIndicatorText v-else />
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     errorMessage: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     indicator: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
   },
-}
+})
 </script>

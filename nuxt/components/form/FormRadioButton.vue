@@ -14,8 +14,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     checked: {
       default: false,
@@ -23,7 +25,7 @@ export default {
     },
     groupName: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     title: {
       required: true,
@@ -35,9 +37,9 @@ export default {
     },
   },
   computed: {
-    titleSlug() {
+    titleSlug(): string {
       return this.$slugify(this.title, { lower: true, strict: true })
     },
   },
-}
+})
 </script>

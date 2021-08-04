@@ -18,15 +18,18 @@
   </EventDashlet>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { Event } from '~/types/event'
+
+export default defineComponent({
   props: {
     event: {
       required: true,
-      type: Object,
+      type: Object as PropType<Event>,
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

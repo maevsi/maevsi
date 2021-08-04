@@ -1,5 +1,15 @@
 export interface Contact {
-  accountUsername: any
-  firstName: any
-  lastName: string
+  nodeId: string
+
+  authorAccountUsername: string
+  accountUsername?: string
+  firstName?: string
+  lastName?: string
+
+  emailAddress?: string
+  emailAddressHash?: string
+
+  address?: string
+  phoneNumber?: string
+  url?: string
 }

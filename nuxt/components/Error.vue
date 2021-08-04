@@ -15,34 +15,38 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import status from '@http-util/status-i18n'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 
-export default {
+export default defineComponent({
   props: {
     statusCode: {
       default: undefined,
-      type: Number,
+      type: Number as PropType<number | undefined>,
     },
   },
   computed: {
-    statusReason() {
+    statusReason(): string {
       // TODO: https://github.com/http-util/status-i18n/issues/27
-      let statusCodeLanugageCode
+      let statusCodeLanguageCode
 
       switch (this.$i18n.locale) {
         case 'de': // Prepared for https://github.com/http-util/status-i18n/pull/26
-          statusCodeLanugageCode = 'de-de'
+          statusCodeLanguageCode = 'de-de'
           break
         // en captured by `default`
         default:
-          statusCodeLanugageCode = 'en-us'
+          statusCodeLanguageCode = 'en-us'
           break
       }
-      return status(this.statusCode, statusCodeLanugageCode) || this.$t('error')
+      return (
+        status(this.statusCode, statusCodeLanguageCode) ||
+        (this.$t('error') as string)
+      )
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

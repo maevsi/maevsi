@@ -8,24 +8,26 @@
   />
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     classes: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     emailAddress: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     emailAddressHash: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     rounded: {
       default: undefined,
-      type: Boolean,
+      type: Boolean as PropType<boolean | undefined>,
     },
     size: {
       required: true,
@@ -33,15 +35,16 @@ export default {
     },
   },
   data() {
+    const graphqlError: string | undefined = undefined
     return {
-      graphqlError: undefined,
+      graphqlError,
     }
   },
   computed: {
-    classComputed() {
+    classComputed(): string {
       return [this.classes, ...(this.rounded ? ['rounded-full'] : [])].join(' ')
     },
-    imageSrc() {
+    imageSrc(): string {
       if (this.emailAddress && this.emailAddressHash) {
         return `https://www.gravatar.com/avatar/${this.emailAddressHash}?d=mp&s=${this.size}`
       } else {
@@ -49,7 +52,7 @@ export default {
       }
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

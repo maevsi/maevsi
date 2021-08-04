@@ -11,8 +11,10 @@
   </i18n>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     link: {
       default: false,
@@ -23,7 +25,7 @@ export default {
       type: String,
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

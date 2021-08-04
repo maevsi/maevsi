@@ -32,8 +32,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     append: {
       default: false,
@@ -45,7 +47,7 @@ export default {
     },
     buttonClass: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     disabled: {
       default: false,
@@ -53,11 +55,11 @@ export default {
     },
     iconId: {
       default: undefined,
-      type: Array,
+      type: Array as PropType<string[] | undefined>,
     },
     to: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     type: {
       default: 'button',
@@ -66,8 +68,8 @@ export default {
   },
   methods: {
     click() {
-      this.$refs.button.click()
+      ;(this.$refs.button as HTMLButtonElement).click()
     },
   },
-}
+})
 </script>

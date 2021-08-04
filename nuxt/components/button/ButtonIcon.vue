@@ -11,8 +11,10 @@
   </button>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     ariaLabel: {
       required: true,
@@ -23,19 +25,19 @@ export default {
       type: Boolean,
     },
     iconId: {
-      default() {
+      default(): string[] {
         return []
       },
-      type: Array,
+      type: Array as PropType<string[] | undefined>,
     },
     to: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     type: {
       default: 'button',
       type: String,
     },
   },
-}
+})
 </script>

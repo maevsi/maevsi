@@ -90,10 +90,12 @@
   </header>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
 const supportedBrowsers = require('~/supportedBrowsers')
 
-export default {
+export default defineComponent({
   data() {
     return {
       isBrowserSupported: true,
@@ -102,7 +104,7 @@ export default {
   beforeMount() {
     this.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
   },
-}
+})
 </script>
 
 <i18n lang="yml">

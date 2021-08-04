@@ -16,8 +16,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   props: {
     formInput: {
       default: undefined,
@@ -25,8 +27,8 @@ export default {
     },
     validationProperty: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
   },
-}
+})
 </script>
