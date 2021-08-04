@@ -113,7 +113,7 @@ export function formPreSubmit(that: any): Promise<void> {
 export function getContactName(
   contact: Contact,
   isUsernamePreferred = false
-): string {
+): string | undefined {
   let name
 
   if (contact.accountUsername) {

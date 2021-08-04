@@ -48,19 +48,22 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { Contact } from '~/types/contact'
+
+export default defineComponent({
   props: {
     contact: {
       required: true,
-      type: Object,
+      type: Object as PropType<Contact>,
     },
     feedback: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">
