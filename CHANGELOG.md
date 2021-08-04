@@ -1,3 +1,10 @@
+## [0.94.2](https://github.com/maevsi/maevsi/compare/0.94.1...0.94.2) (2021-08-04)
+
+
+### Bug Fixes
+
+* **color-mode:** use as normal module ([fad45f0](https://github.com/maevsi/maevsi/commit/fad45f0871efab6df6abdace09dbc90419e1e361))
+
 ## [0.94.1](https://github.com/maevsi/maevsi/compare/0.94.0...0.94.1) (2021-08-04)
 
 
