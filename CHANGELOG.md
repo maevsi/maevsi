@@ -1,3 +1,23 @@
+# [0.94.0](https://github.com/maevsi/maevsi/compare/0.93.1...0.94.0) (2021-08-04)
+
+
+### Bug Fixes
+
+* **vue:** use correct type for dates of events ([328eb27](https://github.com/maevsi/maevsi/commit/328eb27d1b70e9aebe7174dba9c73af3cbdd7043))
+
+
+### Features
+
+* **vue:** use typescript for button components ([eb8e658](https://github.com/maevsi/maevsi/commit/eb8e6580563b1993bd9ea68475f1fbf1dcd080a2))
+* **vue:** use typescript for card components ([933fe3f](https://github.com/maevsi/maevsi/commit/933fe3fa1a3b1d8bf95dcc3351c10ec24572c90c))
+* **vue:** use typescript for contact components ([cc8ee2a](https://github.com/maevsi/maevsi/commit/cc8ee2aa48b346dfc375fc441069f637a31fdf82))
+* **vue:** use typescript for event components ([74e4d6f](https://github.com/maevsi/maevsi/commit/74e4d6f05339ce64b4ddadb1eacba9c242d2c98d))
+* **vue:** use typescript for form components ([c6ba3d2](https://github.com/maevsi/maevsi/commit/c6ba3d20b62e4005d940b946471a11cfef7eec56))
+* **vue:** use typescript for invitation components ([a356002](https://github.com/maevsi/maevsi/commit/a356002e5bdc0856ead99ede72154acb3c309990))
+* **vue:** use typescript for loader components ([d17378c](https://github.com/maevsi/maevsi/commit/d17378cea7e8d63e78038d992b4f6e52bcc7a9ac))
+* **vue:** use typescript for modal components ([6b21fce](https://github.com/maevsi/maevsi/commit/6b21fce5f4a086d52719f39393a82dec75f2a0ef))
+* **vue:** use typescript for top-level components ([572b114](https://github.com/maevsi/maevsi/commit/572b11497118edb05c53b47b2c064b1099939709))
+
 ## [0.93.1](https://github.com/maevsi/maevsi/compare/0.93.0...0.93.1) (2021-08-03)
 
 
