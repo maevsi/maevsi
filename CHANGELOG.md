@@ -1,3 +1,10 @@
+## [0.94.1](https://github.com/maevsi/maevsi/compare/0.94.0...0.94.1) (2021-08-04)
+
+
+### Bug Fixes
+
+* **husky:** allow renovate to push on master ([b484769](https://github.com/maevsi/maevsi/commit/b48476910d127266d0657b82b0ac04bfd9934d41))
+
 # [0.94.0](https://github.com/maevsi/maevsi/compare/0.93.1...0.94.0) (2021-08-04)
 
 
