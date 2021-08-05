@@ -1,3 +1,10 @@
+## [0.94.3](https://github.com/maevsi/maevsi/compare/0.94.2...0.94.3) (2021-08-05)
+
+
+### Bug Fixes
+
+* **color-mode:** install dependency as such ([6c2030b](https://github.com/maevsi/maevsi/commit/6c2030ba2a0d157cca0c4c6b0026e86256184179))
+
 ## [0.94.2](https://github.com/maevsi/maevsi/compare/0.94.1...0.94.2) (2021-08-04)
 
 
