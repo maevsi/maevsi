@@ -141,6 +141,7 @@
 import Uppy, { UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
 import prettyBytes from 'pretty-bytes'
+import { mapGetters } from 'vuex'
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import ACCOUNT_UPLOAD_QUOTA_BYTES from '~/gql/query/account/accountUploadQuotaBytes.gql'
 import UPLOADS_ALL_QUERY from '~/gql/query/upload/uploadsAll.gql'
@@ -203,7 +204,7 @@ export default defineComponent({
     }
   },
   async fetch() {
-    if (this.$store.state.signedInUsername) {
+    if (this.$store.getters.signedInUsername) {
       this.accountUploadQuotaBytes = await this.$apollo
         .query({
           query: ACCOUNT_UPLOAD_QUOTA_BYTES,
@@ -216,9 +217,7 @@ export default defineComponent({
     }
   },
   computed: {
-    jwt(): string {
-      return this.$store.getters.jwt
-    },
+    ...mapGetters(['jwt']),
     sizeByteTotal(): number | undefined {
       if (!this.allUploads) {
         return undefined

@@ -361,7 +361,7 @@ export default defineComponent({
             variables: {
               id: this.form.id,
               eventPatch: {
-                authorUsername: this.$store.state.signedInUsername,
+                authorUsername: this.$store.getters.signedInUsername,
                 description: this.form.description,
                 end: this.form.end !== '' ? this.form.end : null,
                 inviteeCountMaximum:
@@ -397,7 +397,7 @@ export default defineComponent({
             variables: {
               createEventInput: {
                 event: {
-                  authorUsername: this.$store.state.signedInUsername,
+                  authorUsername: this.$store.getters.signedInUsername,
                   description: this.form.description,
                   end: this.form.end !== '' ? this.form.end : null,
                   inviteeCountMaximum:
@@ -424,7 +424,7 @@ export default defineComponent({
             })
             this.$router.push(
               this.localePath(
-                `/event/${this.$store.state.signedInUsername}/${this.form.slug}`
+                `/event/${this.$store.getters.signedInUsername}/${this.form.slug}`
               )
             )
           })

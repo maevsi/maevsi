@@ -5,9 +5,9 @@ import { Modal } from '~/types/modal'
 
 export interface State {
   jwt: string | undefined
-  jwtDecoded: undefined | JwtPayload
-  modals: any[]
-  signedInUsername: undefined | string
+  jwtDecoded: JwtPayload | undefined
+  modals: Modal[]
+  signedInUsername: string | undefined
 }
 
 export const state = (): State => ({
@@ -19,6 +19,10 @@ export const state = (): State => ({
 
 export const getters = {
   jwt: (state: State): string | undefined => state.jwt,
+  jwtDecoded: (state: State): JwtPayload | undefined => state.jwtDecoded,
+  modals: (state: State): Modal[] => state.modals,
+  signedInUsername: (state: State): string | undefined =>
+    state.signedInUsername,
 }
 
 export const mutations = {
@@ -49,9 +53,9 @@ export const mutations = {
 
     state.modals.push({ ...dataDefault, ...data })
   },
-  modalRemove(state: State, data: Modal) {
+  modalRemove(state: State, modalId: string) {
     state.modals = state.modals.filter((modal) => {
-      return modal.id !== data
+      return modal.id !== modalId
     })
   },
 }

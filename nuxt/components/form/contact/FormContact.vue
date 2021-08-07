@@ -188,7 +188,7 @@ export default defineComponent({
                     ? null
                     : this.form.accountUsername,
                 address: this.form.address === '' ? null : this.form.address,
-                authorAccountUsername: this.$store.state.jwtDecoded.username,
+                authorAccountUsername: this.$store.getters.jwtDecoded?.username,
                 emailAddress:
                   this.form.emailAddress === '' ? null : this.form.emailAddress,
                 firstName:
@@ -217,7 +217,7 @@ export default defineComponent({
                     ? null
                     : this.form.accountUsername,
                 address: this.form.address === '' ? null : this.form.address,
-                authorAccountUsername: this.$store.state.jwtDecoded.username,
+                authorAccountUsername: this.$store.getters.jwtDecoded?.username,
                 emailAddress:
                   this.form.emailAddress === '' ? null : this.form.emailAddress,
                 firstName:

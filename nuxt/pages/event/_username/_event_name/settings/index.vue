@@ -4,7 +4,7 @@
     :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
-    <div v-if="$route.params.username === $store.state.signedInUsername">
+    <div v-if="$route.params.username === $store.getters.signedInUsername">
       <div v-if="event">
         <!-- TODO: breadcrumbs -->
         <h1 class="text-center">
@@ -41,11 +41,11 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { Context } from '@nuxt/types'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_DELETE_MUTATION from '~/gql/mutation/event/eventDelete.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
-import { State } from '~/store'
 import { Event } from '~/types/event'
 
 const consola = require('consola')
@@ -67,8 +67,8 @@ export default defineComponent({
       }
     },
   },
-  middleware({ res, params, store }) {
-    if (res && params.username !== (store.state as State).signedInUsername) {
+  middleware({ res, params, store }: Context) {
+    if (res && params.username !== store.getters.signedInUsername) {
       res.statusCode = 403
     }
   },
@@ -120,8 +120,7 @@ export default defineComponent({
   computed: {
     title(): string | undefined {
       if (
-        this.$route.params.username ===
-        (this.$store.state as State).signedInUsername
+        this.$route.params.username === this.$store.getters.signedInUsername
       ) {
         // @ts-ignore
         return this.$global.getNested(this.event, 'name')

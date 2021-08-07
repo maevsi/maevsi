@@ -7,8 +7,8 @@
     <div
       v-if="
         !$route.query.ic &&
-        $store.state.jwtDecoded &&
-        event.authorUsername === $store.state.jwtDecoded.username
+        jwtDecoded &&
+        event.authorUsername === jwtDecoded.username
       "
       class="flex justify-evenly"
     >
@@ -56,8 +56,8 @@
       :class="{
         'bg-yellow-100':
           !$route.query.ic &&
-          $store.state.jwtDecoded &&
-          event.authorUsername === $store.state.jwtDecoded.username,
+          jwtDecoded &&
+          event.authorUsername === jwtDecoded.username,
       }"
     >
       <h1 class="mb-0 truncate max-w-full">
@@ -216,13 +216,13 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import { Context } from '@nuxt/types'
+import { mapGetters } from 'vuex'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitationUpdateById.gql'
 import { Event } from '~/types/event'
 import { Contact } from '~/types/contact'
 import { Invitation } from '~/types/invitation'
-import { State } from '~/store'
 
 const consola = require('consola')
 
@@ -330,6 +330,7 @@ export default defineComponent({
     }
   },
   computed: {
+    ...mapGetters(['jwtDecoded']),
     contact(): Contact | undefined {
       return this.$global.getNested(this.invitation, 'contactByContactId')
     },
@@ -340,8 +341,7 @@ export default defineComponent({
         'nodes'
       )
       const invitationsMatchingUuid =
-        (this.$store.state as State).signedInUsername ===
-        this.$route.params.username
+        this.$store.getters.signedInUsername === this.$route.params.username
           ? invitations.filter(
               (invitation: Invitation) =>
                 invitation.uuid === this.$route.query.ic

@@ -96,7 +96,7 @@ export default defineComponent({
         variables: {
           cursor: null,
           limit: this.$global.ITEMS_PER_PAGE,
-          authorAccountUsername: this.$store.state.signedInUsername,
+          authorAccountUsername: this.$store.getters.signedInUsername,
         },
         update: (data: any) => data.allContacts,
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {

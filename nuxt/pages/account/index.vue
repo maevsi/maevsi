@@ -42,17 +42,18 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { Context } from '@nuxt/types'
 import { TabFlipType } from '~/components/TabFlip.vue'
 import { FormAccountPasswordResetRequestType } from '~/components/form/account/password/FormAccountPasswordResetRequest.vue'
 import { FormAccountRegistrationType } from '~/components/form/account/FormAccountRegistration.vue'
 import { FormAccountSignInType } from '~/components/form/account/FormAccountSignIn.vue'
 
 export default defineComponent({
-  middleware({ app, store, redirect, route }): void {
-    if (store.state.jwtDecoded && store.state.jwtDecoded.username) {
+  middleware({ app, store, redirect, route }: Context): void {
+    if (store.getters.jwtDecoded && store.getters.jwtDecoded.username) {
       return redirect(
         (route.query.referrer as string) ||
-          app.localePath('/account/' + store.state.jwtDecoded.username)
+          app.localePath('/account/' + store.getters.jwtDecoded.username)
       )
     }
   },

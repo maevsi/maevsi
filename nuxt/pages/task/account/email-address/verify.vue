@@ -12,7 +12,7 @@
       <ButtonList>
         <ButtonSignIn
           v-if="
-            $global.getNested($store.state.jwtDecoded, 'role') ===
+            $global.getNested($store.getters.jwtDecoded, 'role') ===
             'maevsi_anonymous'
           "
           :is-referring="false"

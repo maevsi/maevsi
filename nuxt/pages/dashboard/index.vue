@@ -3,13 +3,13 @@
     <h1>{{ title }}</h1>
     <section>
       <h2>{{ $t('invitationCodes') }}</h2>
-      <div v-if="$global.getNested($store.state.jwtDecoded, 'invitations')">
+      <div v-if="jwtDecoded && jwtDecoded.invitations">
         <p>
           {{ $t('codesEntered') }}
         </p>
         <ul class="list-disc">
           <li
-            v-for="invitationCode in $store.state.jwtDecoded.invitations"
+            v-for="invitationCode in jwtDecoded.invitations"
             :key="invitationCode"
           >
             {{ invitationCode }}
@@ -27,6 +27,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
   data() {
@@ -61,9 +62,10 @@ export default defineComponent({
     }
   },
   computed: {
+    ...mapGetters(['jwtDecoded']),
     sessionExpiryTime(): string {
       return this.$moment(
-        this.$global.getNested(this.$store.state.jwtDecoded, 'exp'),
+        this.$global.getNested(this.$store.getters.jwtDecoded, 'exp'),
         'X'
       ).format('llll')
     },

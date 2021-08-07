@@ -77,7 +77,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { State } from '~/store'
+import { Modal } from '~/types/modal'
 
 const consola = require('consola')
 
@@ -132,8 +132,8 @@ export default defineComponent({
         this.$global.getNested(this.modalComputed, 'onSubmit') || this.onSubmit
       )
     },
-    modalComputed() {
-      const modals = (this.$store.state as State).modals
+    modalComputed(): Modal | undefined {
+      const modals: Modal[] = this.$store.getters.modals
 
       if (!modals || modals.length === 0) {
         return undefined
@@ -149,7 +149,7 @@ export default defineComponent({
     },
   },
   watch: {
-    isVisibleComputed(newState) {
+    isVisibleComputed(newState: boolean) {
       if (!newState) {
         this.errorMessage = undefined
         this.$emit('close')

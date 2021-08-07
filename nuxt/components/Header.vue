@@ -5,7 +5,7 @@
     </CardInfo>
     <div
       class="grid grid-cols-3 items-center mx-auto p-4 md:px-8"
-      :class="{ container: !$store.state.signedInUsername }"
+      :class="{ container: !signedInUsername }"
     >
       <ButtonIcon
         :aria-label="$t('menuShow')"
@@ -23,7 +23,7 @@
       </AppLink>
       <input
         class="col-span-2 md:col-span-1 hidden md:invisible rounded"
-        :class="{ 'md:col-span-2': $store.state.signedInUsername }"
+        :class="{ 'md:col-span-2': signedInUsername }"
         disabled
         placeholder="search"
         type="text"
@@ -58,12 +58,12 @@
           "
           :is-colored="false"
           :to="
-            $store.state.signedInUsername
+            signedInUsername
               ? localePath('/task/event/create')
               : localePath('/account')
           "
         >
-          {{ $store.state.signedInUsername ? $t('eventNew') : $t('signIn') }}
+          {{ signedInUsername ? $t('eventNew') : $t('signIn') }}
         </AppLink>
         <AppLink
           class="
@@ -92,6 +92,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
 
 const supportedBrowsers = require('~/supportedBrowsers')
 
@@ -100,6 +101,9 @@ export default defineComponent({
     return {
       isBrowserSupported: true,
     }
+  },
+  computed: {
+    ...mapGetters(['signedInUsername']),
   },
   beforeMount() {
     this.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
