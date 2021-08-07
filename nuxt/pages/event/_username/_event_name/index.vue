@@ -213,41 +213,46 @@
   </div>
 </template>
 
-<script>
-import VueMarkdown from 'vue-markdown-konishi'
+<script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { Context } from '@nuxt/types'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitationUpdateById.gql'
+import { Event } from '~/types/event'
+import { Contact } from '~/types/contact'
+import { Invitation } from '~/types/invitation'
+import { State } from '~/store'
 
 const consola = require('consola')
 
 export default defineComponent({
   // TODO: Either use smart query or asyncData query.
   apollo: {
-    event() {
+    event(): any {
       return {
         query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
         variables: {
+          // @ts-ignore
           authorUsername: this.$route.params.username,
+          // @ts-ignore
           slug: this.$route.params.event_name,
+          // @ts-ignore
           invitationUuid: this.$route.query.ic,
         },
-        update: (data) => data.eventByAuthorUsernameAndSlug,
-        error(error, _vm, _key, _type, _options) {
+        update: (data: any) => data.eventByAuthorUsernameAndSlug,
+        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
+          // @ts-ignore
           this.graphqlError = error
           consola.error(error)
         },
       }
     },
   },
-  components: {
-    VueMarkdown,
-  },
-  async validate({ app, params }) {
+  async validate({ app, params }: Context): Promise<boolean> {
     const {
       data: { eventIsExisting },
-    } = await app.apolloProvider.defaultClient.query({
+    } = await app.apolloProvider!.defaultClient.query({
       query: EVENT_IS_EXISTING_QUERY,
       variables: {
         slug: params.event_name,
@@ -257,10 +262,10 @@ export default defineComponent({
 
     return eventIsExisting
   },
-  async asyncData({ $global, app, error, params, query }) {
-    let graphqlError
-    const event = await app.apolloProvider.defaultClient
-      .query({
+  async asyncData({ $global, app, error, params, query }: Context) {
+    let graphqlError: any
+    const event = (await app
+      .apolloProvider!.defaultClient.query({
         query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
         variables: {
           authorUsername: params.username,
@@ -272,13 +277,13 @@ export default defineComponent({
       .catch((reason) => {
         graphqlError = reason
         consola.error(reason)
-      })
+      })) as Event | undefined | null
 
     if (!event) {
       return error({ statusCode: 403 })
     }
 
-    const invitations = $global.getNested(
+    const invitations: Invitation[] = $global.getNested(
       event,
       'invitationsByEventId',
       'nodes'
@@ -287,12 +292,14 @@ export default defineComponent({
     return { event, graphqlError, invitations }
   },
   head() {
+    const title = this.title as string
+    const event = this.event as Event
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -305,41 +312,43 @@ export default defineComponent({
         {
           hid: 'description',
           property: 'description',
-          content: this.event?.description,
+          content: event.description!,
         },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.event?.description,
+          content: event.description!,
         },
         {
           hid: 'twitter:description',
           property: 'twitter:description',
-          content: this.event?.description,
+          content: event.description!,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
   computed: {
-    contact() {
+    contact(): Contact | undefined {
       return this.$global.getNested(this.invitation, 'contactByContactId')
     },
-    invitation() {
+    invitation(): Invitation | undefined {
       const invitations = this.$global.getNested(
         this.event,
         'invitationsByEventId',
         'nodes'
       )
       const invitationsMatchingUuid =
-        this.$store.state.signedInUsername === this.$route.params.username
+        (this.$store.state as State).signedInUsername ===
+        this.$route.params.username
           ? invitations.filter(
-              (invitation) => invitation.uuid === this.$route.query.ic
+              (invitation: Invitation) =>
+                invitation.uuid === this.$route.query.ic
             )
           : invitations
 
@@ -355,20 +364,30 @@ export default defineComponent({
 
       return undefined
     },
-    title() {
+    title(): string | undefined {
       return this.$global.getNested(this.event, 'name')
     },
   },
   methods: {
     accept() {
+      if (this.invitation === undefined) {
+        return
+      }
       this.update(this.invitation.id, { feedback: 'ACCEPTED' })
     },
     cancel() {
+      if (this.invitation === undefined) {
+        return
+      }
       this.update(this.invitation.id, { feedback: 'CANCELED' })
     },
     paperInvitationFeedback() {
-      this.update(this.invitation.id, {
-        feedbackPaper: this.invitation.feedbackPaper,
+      if (this.invitation === undefined) {
+        return
+      }
+      const invitation = this.invitation as Invitation
+      this.update(invitation.id, {
+        feedbackPaper: invitation.feedbackPaper,
       })
     },
     downloadIcal() {
@@ -402,7 +421,7 @@ export default defineComponent({
       }
       xhr.send(JSON.stringify({ event: this.event }))
     },
-    update(id, invitationPatch) {
+    update(id: string, invitationPatch: Partial<Invitation>) {
       this.$apollo
         .mutate({
           mutation: INVITATION_UPDATE_BY_ID_MUTATION,
