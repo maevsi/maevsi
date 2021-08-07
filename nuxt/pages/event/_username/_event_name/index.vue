@@ -215,14 +215,14 @@
 
 <script>
 import VueMarkdown from 'vue-markdown-konishi'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitationUpdateById.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   // TODO: Either use smart query or asyncData query.
   apollo: {
     event() {
@@ -423,7 +423,7 @@ export default {
         })
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

@@ -57,12 +57,12 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   data() {
     return {
       form: {
@@ -169,7 +169,7 @@ export default {
       },
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">
