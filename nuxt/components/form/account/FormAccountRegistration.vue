@@ -28,12 +28,12 @@
 
 <script>
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   props: {
     formClass: {
       default: undefined,
@@ -118,7 +118,7 @@ export default {
       },
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">
