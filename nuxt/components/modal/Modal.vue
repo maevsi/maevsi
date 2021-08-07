@@ -93,16 +93,16 @@ export default defineComponent({
       type: Boolean,
     },
     submitName: {
-      default() {
-        return this.$t('ok')
+      default(): string {
+        return this.$t('ok') as string
       },
       type: String,
     },
     submitIconId: {
-      default() {
+      default(): string[] {
         return ['fas', 'check-circle']
       },
-      type: Array,
+      type: Array as PropType<string[]>,
     },
     submitTaskProvider: {
       default: () => Promise.resolve(),

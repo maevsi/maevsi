@@ -14,6 +14,9 @@ const Template = (_, { argTypes }) => ({
     state: {
       modals: [{ contentBody: 'contentBody', id: 'Modal', isVisible: true }],
     },
+    getters: {
+      modals: (state) => state.modals,
+    },
   }),
   // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
   template: '<Modal v-bind="$props" id="Modal">Modal</Modal>',
