@@ -384,6 +384,7 @@ export default {
         'img-src': [
           'data:',
           `https://*.${STACK_DOMAIN}`,
+          'https://twemoji.maxcdn.com/',
           'https://www.google-analytics.com',
           'https://www.gravatar.com/avatar/',
           "'self'",
