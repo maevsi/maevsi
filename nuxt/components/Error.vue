@@ -1,6 +1,11 @@
 <template>
   <div>
-    <p class="font-black text-center text-xl">{{ $t('maevNo') }}</p>
+    <!-- eslint-disable vue/no-v-html -->
+    <p
+      class="font-black text-center text-xl"
+      v-html="twemoji.parse($t('maevNo'), { className: 'h-5 inline-block' })"
+    />
+    <!--eslint-enable-->
     <h1>{{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}</h1>
     <p v-if="statusCode === 403" class="text-center">
       {{ $t('403description') }}
@@ -18,6 +23,7 @@
 <script lang="ts">
 import status from '@http-util/status-i18n'
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import twemoji from 'twemoji'
 
 export default defineComponent({
   props: {
@@ -25,6 +31,11 @@ export default defineComponent({
       default: undefined,
       type: Number as PropType<number | undefined>,
     },
+  },
+  data() {
+    return {
+      twemoji,
+    }
   },
   computed: {
     statusReason(): string {
