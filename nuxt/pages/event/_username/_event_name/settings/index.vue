@@ -87,7 +87,7 @@ export default defineComponent({
   },
   data() {
     return {
-      graphqlError: undefined as any | undefined,
+      graphqlError: undefined as any,
       mutation: EVENT_DELETE_MUTATION,
     }
   },

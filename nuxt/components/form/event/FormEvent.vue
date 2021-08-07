@@ -339,7 +339,10 @@ export default defineComponent({
         'start',
         'url',
         'visibility',
-      ].forEach((property) => ((this.form as Record<string, any>)[property] = this.event[property]))
+      ].forEach(
+        (property) =>
+          ((this.form as Record<string, any>)[property] = this.event[property])
+      )
     }
   },
   methods: {

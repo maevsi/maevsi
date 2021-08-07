@@ -70,7 +70,7 @@ export default defineComponent({
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
         sent: false,
       },
-      graphqlError: undefined as any | undefined,
+      graphqlError: undefined as any,
       title: this.$t('title'),
     }
   },

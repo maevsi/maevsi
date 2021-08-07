@@ -74,7 +74,7 @@ const Form = defineComponent({
     },
     graphqlError: {
       default: undefined,
-      type: Error as PropType<any | undefined>,
+      type: Error as PropType<any>,
     },
     iconId: {
       default: undefined,

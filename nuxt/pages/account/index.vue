@@ -42,12 +42,10 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import TabFlip from '~/components/TabFlip.vue'
+import { TabFlipType } from '~/components/TabFlip.vue'
 import { FormAccountPasswordResetRequestType } from '~/components/form/account/password/FormAccountPasswordResetRequest.vue'
 import { FormAccountRegistrationType } from '~/components/form/account/FormAccountRegistration.vue'
 import { FormAccountSignInType } from '~/components/form/account/FormAccountSignIn.vue'
-
-type TabFlipType = InstanceType<typeof TabFlip>
 
 export default defineComponent({
   middleware({ app, store, redirect, route }): void {

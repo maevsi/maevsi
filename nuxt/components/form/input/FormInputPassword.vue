@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { FormInput } from '~/components/form/input/FormInput.vue'
+import { FormInputType } from '~/components/form/input/FormInput.vue'
 
 export default defineComponent({
   props: {
@@ -39,7 +39,7 @@ export default defineComponent({
     },
     formInput: {
       required: true,
-      type: Object as PropType<FormInput>,
+      type: Object as PropType<FormInputType>,
     },
   },
 })

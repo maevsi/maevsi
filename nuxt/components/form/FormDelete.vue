@@ -47,7 +47,7 @@ export default defineComponent({
         password: undefined as string | undefined,
         sent: false,
       },
-      graphqlError: undefined as any | undefined,
+      graphqlError: undefined as any,
     }
   },
   methods: {

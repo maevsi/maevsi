@@ -38,7 +38,7 @@ export default defineComponent({
   },
   data() {
     return {
-      graphqlError: undefined as any | undefined,
+      graphqlError: undefined as any,
       loading: true,
       title: this.$t('title'),
     }
