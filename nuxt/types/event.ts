@@ -4,6 +4,7 @@ export interface Event {
   name: string
   description?: string
   authorUsername: string
+  slug?: string
 
   isArchived: boolean
   visibility: Visibility

@@ -39,26 +39,28 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_DELETE_MUTATION from '~/gql/mutation/event/eventDelete.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
+import { State } from '~/store'
+import { Event } from '~/types/event'
 
 const consola = require('consola')
 
 export default defineComponent({
   apollo: {
-    event() {
+    event(): any {
       return {
         query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
         variables: {
           authorUsername: this.$route.params.username,
           slug: this.$route.params.event_name,
         },
-        update: (data) => data.eventByAuthorUsernameAndSlug,
-        error(error, _vm, _key, _type, _options) {
+        update: (data: any) => data.eventByAuthorUsernameAndSlug,
+        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
           consola.error(error)
         },
@@ -66,14 +68,14 @@ export default defineComponent({
     },
   },
   middleware({ res, params, store }) {
-    if (res && params.username !== store.state.signedInUsername) {
+    if (res && params.username !== (store.state as State).signedInUsername) {
       res.statusCode = 403
     }
   },
-  async validate({ app, params }) {
+  async validate({ app, params }): Promise<boolean> {
     const {
       data: { eventIsExisting },
-    } = await app.apolloProvider.defaultClient.query({
+    } = await app.apolloProvider!.defaultClient.query({
       query: EVENT_IS_EXISTING_QUERY,
       variables: {
         slug: params.event_name,
@@ -85,17 +87,18 @@ export default defineComponent({
   },
   data() {
     return {
-      graphqlError: undefined,
+      graphqlError: undefined as any | undefined,
       mutation: EVENT_DELETE_MUTATION,
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -108,17 +111,22 @@ export default defineComponent({
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
   computed: {
-    title() {
-      return this.$route.params.username === this.$store.state.signedInUsername
-        ? this.$global.getNested(this.event, 'name')
-        : '403'
+    title(): string | undefined {
+      if (
+        this.$route.params.username ===
+        (this.$store.state as State).signedInUsername
+      ) {
+        // @ts-ignore
+        return this.$global.getNested(this.event, 'name')
+      }
+      return '403'
     },
   },
   methods: {
@@ -161,9 +169,9 @@ export default defineComponent({
     // });
     // /////////////////////////////////////////////////////////////////////////
 
-    // Just an example. Doesn't respect paramters like a conditional username that is set for this query on event lists on users' profiles.
+    // Just an example. Doesn't respect parameters like a conditional username that is set for this query on event lists on users' profiles.
     // Currently, the apollo fetch policy is `cache-and-network`: https://github.com/maevsi/maevsi/commit/02cbcd9c9a9784e9076c6a360f78a603623c819b#diff-ce51f9f2a4d27fb6594bd8d6dce05dcbca68a6a99999078c96dbab4033472650R247
-    updateCacheDelete(store, { data: { _eventDelete } }) {
+    updateCacheDelete(store: any, { data: { _eventDelete } }: any) {
       const query = { query: EVENTS_ALL_QUERY }
       let data
 
@@ -175,7 +183,7 @@ export default defineComponent({
 
       // const index = data.allEvents.nodes.find(
       const index = data.allEvents.nodes.findIndex(
-        (x) =>
+        (x: Event) =>
           x.authorUsername === this.$route.params.username &&
           x.slug === this.$route.params.event_name
       )
