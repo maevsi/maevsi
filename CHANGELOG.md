@@ -1,3 +1,15 @@
+# [0.95.0](https://github.com/maevsi/maevsi/compare/0.94.3...0.95.0) (2021-08-07)
+
+
+### Bug Fixes
+
+* **storycap:** correct dockerfile ([6db1a6d](https://github.com/maevsi/maevsi/commit/6db1a6dfcde1bfebed277158f2991f9fa1213b9d))
+
+
+### Features
+
+* **error:** use twemoji ([2eb7446](https://github.com/maevsi/maevsi/commit/2eb74469f1e78b7a98ef44e60483b2224602ecdd)), closes [#287](https://github.com/maevsi/maevsi/issues/287)
+
 ## [0.94.3](https://github.com/maevsi/maevsi/compare/0.94.2...0.94.3) (2021-08-05)
 
 
