@@ -16,11 +16,12 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import PROFILE_PICTURE_BY_USERNAME_QUERY from '~/gql/query/profilePicture/profilePictureByUsername.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   apollo: {
     profilePictureByUsername() {
       return {
@@ -102,7 +103,7 @@ export default {
       })
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

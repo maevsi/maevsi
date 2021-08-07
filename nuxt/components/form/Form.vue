@@ -52,11 +52,12 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import ACCOUNT_REGISTRATION_MUTATION_REFRESH from '~/gql/mutation/account/accountRegistrationRefresh.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   props: {
     form: {
       required: true,
@@ -138,7 +139,7 @@ export default {
       }
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

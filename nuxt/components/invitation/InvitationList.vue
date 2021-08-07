@@ -124,13 +124,14 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDelete.gql'
 import INVITE_MUTATION from '~/gql/mutation/invitation/invite.gql'
 import INVITATIONS_ALL_QUERY from '~/gql/query/invitation/invitationsAll.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   apollo: {
     allInvitations() {
       return {
@@ -224,7 +225,7 @@ export default {
       this.$apollo.queries.allInvitations.refetch()
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

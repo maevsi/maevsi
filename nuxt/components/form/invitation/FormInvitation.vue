@@ -80,13 +80,13 @@
 
 <script>
 import { minLength, minValue, required } from 'vuelidate/lib/validators'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import INVITATION_CREATE_MUTATION from '~/gql/mutation/invitation/invitationCreate.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   apollo: {
     allContacts() {
       return {
@@ -202,7 +202,7 @@ export default {
       },
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

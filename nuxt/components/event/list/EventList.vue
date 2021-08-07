@@ -34,11 +34,12 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   apollo: {
     allEvents() {
       return {
@@ -105,7 +106,7 @@ export default {
       })
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

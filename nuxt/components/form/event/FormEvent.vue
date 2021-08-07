@@ -284,13 +284,13 @@ import {
   minValue,
   required,
 } from 'vuelidate/lib/validators'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate.gql'
 import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   components: {
     Datetime,
     VueMarkdown,
@@ -488,7 +488,7 @@ export default {
       },
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

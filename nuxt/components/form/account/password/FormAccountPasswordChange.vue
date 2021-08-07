@@ -39,12 +39,12 @@
 
 <script>
 import { minLength, required, sameAs } from 'vuelidate/lib/validators'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import ACCOUNT_PASSWORD_CHANGE_MUTATION from '~/gql/mutation/account/accountPasswordChange.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   data() {
     return {
       form: {
@@ -102,7 +102,7 @@ export default {
       },
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

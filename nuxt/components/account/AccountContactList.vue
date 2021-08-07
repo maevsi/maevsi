@@ -61,12 +61,13 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import CONTACT_DELETE_MUTATION from '~/gql/mutation/contact/contactDelete.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   apollo: {
     allContacts() {
       return {
@@ -145,7 +146,7 @@ export default {
       this.$apollo.queries.allContacts.refetch()
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

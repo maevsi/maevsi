@@ -142,7 +142,7 @@ import Croppa from 'vue-croppa'
 import Uppy from '@uppy/core'
 import Tus from '@uppy/tus'
 import prettyBytes from 'pretty-bytes'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import ACCOUNT_UPLOAD_QUOTA_BYTES from '~/gql/query/account/accountUploadQuotaBytes.gql'
 import UPLOADS_ALL_QUERY from '~/gql/query/upload/uploadsAll.gql'
 import UPLOAD_CREATE_MUTATION from '~/gql/mutation/upload/uploadCreate.gql'
@@ -151,7 +151,7 @@ require('@uppy/core/dist/style.css')
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   apollo: {
     allUploads() {
       return {
@@ -404,7 +404,7 @@ export default {
       })
     },
   },
-}
+})
 </script>
 
 <style scoped>

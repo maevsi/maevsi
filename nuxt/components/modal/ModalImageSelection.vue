@@ -18,9 +18,10 @@
 </template>
 
 <script>
+import { defineComponent } from '@nuxtjs/composition-api'
 import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profilePictureSet.gql'
 
-export default {
+export default defineComponent({
   data() {
     return {
       selectedProfilePictureStorageKey: undefined,
@@ -38,7 +39,7 @@ export default {
       this.selectedProfilePictureStorageKey = storageKey
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

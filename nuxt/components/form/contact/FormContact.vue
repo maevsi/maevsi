@@ -118,13 +118,13 @@
 
 <script>
 import { email, maxLength } from 'vuelidate/lib/validators'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import CONTACT_CREATE_MUTATION from '~/gql/mutation/contact/contactCreate.gql'
 import CONTACT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/contact/contactUpdateById.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   props: {
     contact: {
       default: undefined,
@@ -271,7 +271,7 @@ export default {
       },
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">
