@@ -42,16 +42,11 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import FormAccountRegistration from '~/components/form/account/FormAccountRegistration.vue'
-import FormAccountPasswordResetRequest from '~/components/form/account/password/FormAccountPasswordResetRequest.vue'
-import FormAccountSignIn from '~/components/form/account/FormAccountSignIn.vue'
 import TabFlip from '~/components/TabFlip.vue'
+import { FormAccountPasswordResetRequestType } from '~/components/form/account/password/FormAccountPasswordResetRequest.vue'
+import { FormAccountRegistrationType } from '~/components/form/account/FormAccountRegistration.vue'
+import { FormAccountSignInType } from '~/components/form/account/FormAccountSignIn.vue'
 
-type AccountRegistration = InstanceType<typeof FormAccountRegistration>
-type AccountPasswordResetRequest = InstanceType<
-  typeof FormAccountPasswordResetRequest
->
-type AccountSignIn = InstanceType<typeof FormAccountSignIn>
 type TabFlipType = InstanceType<typeof TabFlip>
 
 export default defineComponent({
@@ -102,32 +97,33 @@ export default defineComponent({
   methods: {
     onAccountPasswordResetRequest() {
       const formPasswordResetRequest = this.$refs
-        .formPasswordResetRequest as AccountPasswordResetRequest
+        .formPasswordResetRequest as FormAccountPasswordResetRequestType
       if (formPasswordResetRequest) {
         formPasswordResetRequest.form.emailAddress = undefined
       }
 
-      ;(this.$refs.formRegistration as AccountRegistration).form.emailAddress =
-        undefined
+      ;(
+        this.$refs.formRegistration as FormAccountRegistrationType
+      ).form.emailAddress = undefined
     },
     onClickPasswordForgotten() {
       const formPasswordResetRequest = this.$refs
-        .formPasswordResetRequest as AccountPasswordResetRequest
+        .formPasswordResetRequest as FormAccountPasswordResetRequestType
       if (formPasswordResetRequest) {
         formPasswordResetRequest.form.emailAddress = (
-          this.$refs.formRegistration as AccountRegistration
+          this.$refs.formRegistration as FormAccountRegistrationType
         ).form.emailAddress
       }
     },
     onFormPasswordResetRequest(form: any) {
       const formRegistration = this.$refs
-        .formRegistration as AccountRegistration
+        .formRegistration as FormAccountRegistrationType
       if (formRegistration.form.emailAddress !== form.emailAddress) {
         formRegistration.form.emailAddress = form.emailAddress
       }
     },
     onFormRegistration(form: any) {
-      const formSignIn = this.$refs.formSignIn as AccountSignIn
+      const formSignIn = this.$refs.formSignIn as FormAccountSignInType
       if (formSignIn.form.username !== form.username) {
         formSignIn.form.username = form.username
       }
@@ -137,7 +133,7 @@ export default defineComponent({
       }
 
       const formPasswordResetRequest = this.$refs
-        .formPasswordResetRequest as AccountPasswordResetRequest
+        .formPasswordResetRequest as FormAccountPasswordResetRequestType
       if (
         formPasswordResetRequest &&
         formPasswordResetRequest.form.emailAddress !== form.emailAddress
@@ -147,7 +143,7 @@ export default defineComponent({
     },
     onFormSignIn(form: any) {
       const formRegistration = this.$refs
-        .formRegistration as AccountRegistration
+        .formRegistration as FormAccountRegistrationType
       if (formRegistration.form.username !== form.username) {
         formRegistration.form.username = form.username
       }
@@ -163,7 +159,7 @@ export default defineComponent({
     },
     resetFormPasswordResetRequest() {
       const formPasswordResetRequest = this.$refs
-        .formPasswordResetRequest as AccountPasswordResetRequest
+        .formPasswordResetRequest as FormAccountPasswordResetRequestType
       if (formPasswordResetRequest) {
         formPasswordResetRequest.form.emailAddress = undefined
         formPasswordResetRequest.$v.form.$reset()
@@ -171,14 +167,14 @@ export default defineComponent({
     },
     resetFormRegistration() {
       const formRegistration = this.$refs
-        .formRegistration as AccountRegistration
+        .formRegistration as FormAccountRegistrationType
       formRegistration.form.username = undefined
       formRegistration.form.password = undefined
       formRegistration.form.emailAddress = undefined
       formRegistration.$v.form.$reset()
     },
     resetFormSignIn() {
-      const formSignIn = this.$refs.formSignIn as AccountSignIn
+      const formSignIn = this.$refs.formSignIn as FormAccountSignInType
       formSignIn.form.username = undefined
       formSignIn.form.password = undefined
       formSignIn.$v.form.$reset()
