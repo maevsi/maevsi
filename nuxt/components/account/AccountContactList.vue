@@ -60,16 +60,18 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import VueI18n from 'vue-i18n'
 import CONTACT_DELETE_MUTATION from '~/gql/mutation/contact/contactDelete.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
+import { Contact } from '~/types/contact'
 
 const consola = require('consola')
 
 export default defineComponent({
   apollo: {
-    allContacts() {
+    allContacts(): any {
       return {
         query: CONTACTS_ALL_QUERY,
         variables: {
@@ -77,8 +79,8 @@ export default defineComponent({
           limit: this.$global.ITEMS_PER_PAGE,
           authorAccountUsername: this.$store.state.signedInUsername,
         },
-        update: (data) => data.allContacts,
-        error(error, _vm, _key, _type, _options) {
+        update: (data: any) => data.allContacts,
+        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
           consola.error(error)
         },
@@ -87,13 +89,13 @@ export default defineComponent({
   },
   data() {
     return {
-      formContactHeading: undefined,
-      graphqlError: undefined,
+      formContactHeading: undefined as VueI18n.TranslateResult | undefined,
+      graphqlError: undefined as any,
       pending: {
-        deletions: [],
-        edits: [],
+        deletions: [] as string[],
+        edits: [] as string[],
       },
-      selectedContact: undefined,
+      selectedContact: undefined as Contact | undefined,
     }
   },
   methods: {
@@ -102,7 +104,7 @@ export default defineComponent({
       this.selectedContact = undefined
       this.$store.commit('modalAdd', { id: 'ModalContact' })
     },
-    delete_(nodeId) {
+    delete_(nodeId: string) {
       this.pending.deletions.push(nodeId)
       this.graphqlError = undefined
       this.$apollo
@@ -127,7 +129,7 @@ export default defineComponent({
           )
         })
     },
-    edit(contact) {
+    edit(contact: Contact) {
       this.pending.edits.push(contact.nodeId)
       this.formContactHeading = this.$t('contactEdit')
       this.selectedContact = contact
