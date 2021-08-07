@@ -14,6 +14,7 @@ import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 import { Contact } from '~/types/contact'
 import { State } from '~/store'
+import Vue from "vue";
 
 const consola = require('consola')
 

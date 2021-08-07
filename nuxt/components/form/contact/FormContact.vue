@@ -116,11 +116,12 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { email, maxLength } from 'vuelidate/lib/validators'
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import CONTACT_CREATE_MUTATION from '~/gql/mutation/contact/contactCreate.gql'
 import CONTACT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/contact/contactUpdateById.gql'
+import { Contact } from '~/types/contact'
 
 const consola = require('consola')
 
@@ -128,23 +129,23 @@ export default defineComponent({
   props: {
     contact: {
       default: undefined,
-      type: Object,
+      type: Object as PropType<Contact | undefined>,
     },
   },
   data() {
     return {
       form: {
         sent: false,
-        id: undefined,
-        accountUsername: undefined,
-        address: undefined,
-        emailAddress: undefined,
-        firstName: undefined,
-        lastName: undefined,
-        phoneNumber: undefined,
-        url: undefined,
+        id: undefined as string | undefined,
+        accountUsername: undefined as string | undefined,
+        address: undefined as string | undefined,
+        emailAddress: undefined as string | undefined,
+        firstName: undefined as string | undefined,
+        lastName: undefined as string | undefined,
+        phoneNumber: undefined as string | undefined,
+        url: undefined as string | undefined,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as any,
     }
   },
   created() {
@@ -158,7 +159,12 @@ export default defineComponent({
         'lastName',
         'phoneNumber',
         'url',
-      ].forEach((property) => (this.form[property] = this.contact[property]))
+      ].forEach(
+        (property) =>
+          ((this.form as Record<string, any>)[property] = (
+            this.contact as Record<string, any>
+          )[property])
+      )
     }
   },
   methods: {
@@ -194,7 +200,7 @@ export default defineComponent({
               },
             },
           })
-          .then(async () => await this.$listeners.submitSuccess())
+          .then(async () => await (this.$listeners.submitSuccess as Function)())
           .catch((reason) => {
             this.graphqlError = reason
             consola.error(reason)
@@ -223,7 +229,7 @@ export default defineComponent({
               },
             },
           })
-          .then(async () => await this.$listeners.submitSuccess())
+          .then(async () => await (this.$listeners.submitSuccess as Function)())
           .catch((reason) => {
             this.graphqlError = reason
             consola.error(reason)
@@ -236,7 +242,7 @@ export default defineComponent({
       form: {
         id: {},
         accountUsername: {
-          existence: this.$global.validateUsername(this.$apollo),
+          existence: this.$global.validateUsername(this.$apollo as any),
           formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
           maxLength: maxLength(this.$global.VALIDATION_USERNAME_LENGTH_MAXIMUM),
         },

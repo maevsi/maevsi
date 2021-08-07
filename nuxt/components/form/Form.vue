@@ -58,7 +58,7 @@ import Button from '~/components/button/Button.vue'
 
 const consola = require('consola')
 
-export default defineComponent({
+const Form = defineComponent({
   props: {
     form: {
       required: true,
@@ -143,6 +143,10 @@ export default defineComponent({
     },
   },
 })
+
+export default Form
+
+export type FormType = InstanceType<typeof Form>
 </script>
 
 <i18n lang="yml">

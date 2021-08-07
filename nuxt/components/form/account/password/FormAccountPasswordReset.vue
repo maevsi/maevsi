@@ -15,14 +15,14 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { minLength, required } from 'vuelidate/lib/validators'
 import { defineComponent } from '@nuxtjs/composition-api'
 import ACCOUNT_PASSWORD_RESET_MUTATION from '~/gql/mutation/account/accountPasswordReset.gql'
 
 const consola = require('consola')
 
-export default defineComponent({
+const FormAccountPasswordReset = defineComponent({
   props: {
     formClass: {
       default: undefined,
@@ -86,6 +86,12 @@ export default defineComponent({
     }
   },
 })
+
+export default FormAccountPasswordReset
+
+export type FormAccountPasswordResetType = InstanceType<
+  typeof FormAccountPasswordReset
+>
 </script>
 
 <i18n lang="yml">

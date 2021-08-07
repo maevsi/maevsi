@@ -26,29 +26,29 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
 
 const consola = require('consola')
 
-export default defineComponent({
+const FormAccountRegistration = defineComponent({
   props: {
     formClass: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
   },
   data() {
     return {
       form: {
-        emailAddress: undefined,
-        password: undefined,
+        emailAddress: undefined as string | undefined,
+        password: undefined as string | undefined,
         sent: false,
-        username: undefined,
+        username: undefined as string | undefined,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as any,
     }
   },
   watch: {
@@ -119,6 +119,12 @@ export default defineComponent({
     }
   },
 })
+
+export default FormAccountRegistration
+
+export type FormAccountRegistrationType = InstanceType<
+  typeof FormAccountRegistration
+>
 </script>
 
 <i18n lang="yml">

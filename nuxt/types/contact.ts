@@ -1,5 +1,6 @@
 export interface Contact {
   nodeId: string
+  id: string
 
   authorAccountUsername: string
   accountUsername?: string

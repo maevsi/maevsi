@@ -37,23 +37,24 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { minLength, required, sameAs } from 'vuelidate/lib/validators'
 import { defineComponent } from '@nuxtjs/composition-api'
 import ACCOUNT_PASSWORD_CHANGE_MUTATION from '~/gql/mutation/account/accountPasswordChange.gql'
+import { FormType } from '~/components/form/Form.vue'
 
 const consola = require('consola')
 
-export default defineComponent({
+const FormAccountPasswordChange = defineComponent({
   data() {
     return {
       form: {
-        passwordCurrent: undefined,
-        passwordNew: undefined,
-        passwordNewConfirmation: undefined,
+        passwordCurrent: undefined as string | undefined,
+        passwordNew: undefined as string | undefined,
+        passwordNewConfirmation: undefined as string | undefined,
         sent: false,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as any,
     }
   },
   methods: {
@@ -76,7 +77,7 @@ export default defineComponent({
           this.$store.commit('modalAdd', {
             contentBody: this.$t('passwordChangeSuccess'),
           })
-          this.$refs.form.reset()
+          ;(this.$refs.form as FormType).reset()
         })
         .catch((reason) => {
           this.graphqlError = reason
@@ -103,6 +104,12 @@ export default defineComponent({
     }
   },
 })
+
+export default FormAccountPasswordChange
+
+export type FormAccountPasswordChangeType = InstanceType<
+  typeof FormAccountPasswordChange
+>
 </script>
 
 <i18n lang="yml">
