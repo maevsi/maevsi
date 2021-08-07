@@ -33,15 +33,15 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from '@nuxtjs/composition-api'
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
 
 const consola = require('consola')
 
 export default defineComponent({
   apollo: {
-    allEvents() {
+    allEvents(): any {
       return {
         query: EVENTS_ALL_QUERY,
         variables: {
@@ -49,7 +49,7 @@ export default defineComponent({
           limit: this.$global.ITEMS_PER_PAGE,
           authorUsername: this.username,
         },
-        error(error, _vm, _key, _type, _options) {
+        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
           consola.error(error)
         },
@@ -63,7 +63,7 @@ export default defineComponent({
     },
     showButtonEventList: {
       default() {
-        return this.$route.name.replace(/___.+$/, '') !== 'event'
+        return this.$route?.name?.replace(/___.+$/, '') !== 'event'
       },
       type: Boolean,
     },
@@ -73,19 +73,19 @@ export default defineComponent({
     },
     username: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
   },
   data() {
     return {
-      graphqlError: undefined,
+      graphqlError: undefined as any,
     }
   },
   methods: {
     showMore() {
       this.$apollo.queries.allEvents.fetchMore({
         variables: {
-          cursor: this.allEvents.pageInfo.endCursor,
+          cursor: (this.allEvents as any).pageInfo.endCursor,
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
           if (!fetchMoreResult) {
