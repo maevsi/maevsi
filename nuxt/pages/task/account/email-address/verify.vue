@@ -23,32 +23,34 @@
   </div>
 </template>
 
-<script>
-import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/accountEmailAddressVerification.gql'
+<script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { Context } from '@nuxt/types'
+import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/accountEmailAddressVerification.gql'
 
 const consola = require('consola')
 
 export default defineComponent({
-  middleware({ app, query, redirect }) {
-    if (!app.$global.REGEX_UUID.test(query.code)) {
+  middleware({ app, query, redirect }: Context) {
+    if (Array.isArray(query.code) || !app.$global.REGEX_UUID.test(query.code)) {
       return redirect(app.localePath('/'))
     }
   },
   data() {
     return {
-      graphqlError: undefined,
+      graphqlError: undefined as any | undefined,
       loading: true,
       title: this.$t('title'),
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -61,10 +63,10 @@ export default defineComponent({
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
   beforeMount() {
