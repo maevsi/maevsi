@@ -344,6 +344,7 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/baseUrl.ts',
+    '~/plugins/croppa.js',
     '~/plugins/dynamicReactiveRefs.ts',
     '~/plugins/global.ts',
     '~/plugins/htmlToText.ts',

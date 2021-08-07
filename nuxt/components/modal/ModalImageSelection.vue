@@ -17,25 +17,26 @@
   </Modal>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profilePictureSet.gql'
 
 export default defineComponent({
   data() {
     return {
-      selectedProfilePictureStorageKey: undefined,
+      selectedProfilePictureStorageKey: undefined as string | undefined,
       setProfilePicture: () =>
         this.$apollo.mutate({
           mutation: PROFILE_PICTURE_SET_MUTATION,
           variables: {
+            // @ts-ignore
             storageKey: this.selectedProfilePictureStorageKey,
           },
         }),
     }
   },
   methods: {
-    selectProfilePictureStorageKey(storageKey) {
+    selectProfilePictureStorageKey(storageKey: string) {
       this.selectedProfilePictureStorageKey = storageKey
     },
   },

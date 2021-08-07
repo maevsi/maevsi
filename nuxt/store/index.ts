@@ -4,7 +4,7 @@ import { decode, JwtPayload } from 'jsonwebtoken'
 import { Modal } from '~/types/modal'
 
 export interface State {
-  jwt: undefined | string
+  jwt: string | undefined
   jwtDecoded: undefined | JwtPayload
   modals: any[]
   signedInUsername: undefined | string
@@ -16,6 +16,10 @@ export const state = (): State => ({
   modals: [] as Modal[],
   signedInUsername: undefined,
 })
+
+export const getters = {
+  jwt: (state: State): string | undefined => state.jwt,
+}
 
 export const mutations = {
   jwtRemove(state: State) {
