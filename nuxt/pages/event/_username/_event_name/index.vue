@@ -233,16 +233,12 @@ export default defineComponent({
       return {
         query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
         variables: {
-          // @ts-ignore
           authorUsername: this.$route.params.username,
-          // @ts-ignore
           slug: this.$route.params.event_name,
-          // @ts-ignore
           invitationUuid: this.$route.query.ic,
         },
         update: (data: any) => data.eventByAuthorUsernameAndSlug,
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {
-          // @ts-ignore
           this.graphqlError = error
           consola.error(error)
         },
