@@ -45,6 +45,9 @@ const Template = (_: never, { argTypes }: any) =>
       state: {
         modals: [{ id: 'ModalImageSelection', isVisible: true }],
       },
+      getters: {
+        modals: (state) => state.modals,
+      },
     }),
     template:
       // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
