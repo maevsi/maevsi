@@ -55,14 +55,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { required } from 'vuelidate/lib/validators'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   data() {
     return {
       form: {
@@ -70,17 +70,18 @@ export default {
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
         sent: false,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as any,
       title: this.$t('title'),
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -93,10 +94,10 @@ export default {
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
   computed: {
@@ -104,19 +105,19 @@ export default {
       return `input-invitation-code-maevsi-${this.$config.dev ? 'dev' : 'prod'}`
     },
     invitationCodeModel: {
-      get() {
+      get(): string {
         return this.$route.query.ic !== undefined
           ? this.$route.query.ic
-          : this.$v.form.invitationCode.$model
+          : this.$v.form.invitationCode?.$model
       },
-      set(value) {
+      set(value: string) {
         this.form.invitationCode = value
       },
     },
   },
   mounted() {
     if (this.$route.query.ic !== undefined) {
-      this.$v.form.invitationCode.$touch()
+      this.$v.form.invitationCode?.$touch()
     }
   },
   methods: {
@@ -146,7 +147,7 @@ export default {
         return
       }
 
-      this.$global.jwtStore(
+      await this.$global.jwtStore(
         this.$apollo.getClient(),
         this.$store,
         undefined,
@@ -169,7 +170,7 @@ export default {
       },
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

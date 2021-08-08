@@ -15,20 +15,22 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { minLength, required } from 'vuelidate/lib/validators'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { DocumentNode } from 'graphql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   props: {
     itemName: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     mutation: {
       default: undefined,
-      type: Object,
+      type: Object as PropType<DocumentNode | undefined>,
     },
     update: {
       default: undefined,
@@ -36,16 +38,16 @@ export default {
     },
     variables: {
       default: undefined,
-      type: Object,
+      type: Object as PropType<Record<any, any> | undefined>,
     },
   },
   data() {
     return {
       form: {
-        password: undefined,
+        password: undefined as string | undefined,
         sent: false,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as any,
     }
   },
   methods: {
@@ -58,17 +60,17 @@ export default {
 
       this.$apollo
         .mutate({
-          mutation: this.mutation,
+          mutation: this.mutation!!,
           variables: {
             password: this.form.password,
-            ...this.variables,
+            ...(this.variables ?? {}),
           },
-          ...(this.update && { update: this.update }),
+          ...(this.update !== undefined ? { update: this.update } : {}),
         })
         .then((_value) => {
           this.$store.commit('modalAdd', {
             contentBody: this.$global.capitalizeFirstLetter(
-              this.$t('success', { item: this.itemName })
+              this.$t('success', { item: this.itemName }) as string
             ),
             onSubmit: () => this.$emit('success'),
           })
@@ -89,7 +91,7 @@ export default {
       },
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

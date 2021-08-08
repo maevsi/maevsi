@@ -10,7 +10,7 @@
         <IconX class="h-6 w-6" />
       </ButtonIcon>
       <div class="flex flex-col p-6 lg:p-8 space-y-8">
-        <div v-if="$store.state.signedInUsername" class="flex mt-0 md:mt-auto">
+        <div v-if="signedInUsername" class="flex mt-0 md:mt-auto">
           <AppLink
             class="
               flex
@@ -20,25 +20,23 @@
               dark:text-text-bright
             "
             :is-colored="false"
-            :to="localePath(`/account/${$store.state.signedInUsername}`)"
+            :to="localePath(`/account/${signedInUsername}`)"
             @click="$emit('onMenuHide')"
           >
             <AccountProfilePicture
               height="40"
               rounded
-              :username="$store.state.signedInUsername"
+              :username="signedInUsername"
               width="40"
             />
-            <span>{{ $store.state.signedInUsername }}</span>
+            <span>{{ signedInUsername }}</span>
           </AppLink>
           <div class="flex-1 w-12" />
           <div class="flex items-center space-x-2">
             <AppLink
               class="text-text-dark dark:text-text-bright"
               :is-colored="false"
-              :to="
-                localePath(`/account/${$store.state.signedInUsername}/settings`)
-              "
+              :to="localePath(`/account/${signedInUsername}/settings`)"
               @click="$emit('onMenuHide')"
             >
               <IconCog class="h-6 w-6" />
@@ -71,13 +69,13 @@
             "
             :is-colored="false"
             :to="
-              $store.state.signedInUsername
+              signedInUsername
                 ? localePath('/task/event/create')
                 : localePath('/account')
             "
             @click="$emit('onMenuHide')"
           >
-            {{ $store.state.signedInUsername ? $t('eventNew') : $t('signIn') }}
+            {{ signedInUsername ? $t('eventNew') : $t('signIn') }}
           </AppLink>
           <AppLink
             class="
@@ -109,6 +107,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
   props: {
@@ -116,6 +115,9 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
+  },
+  computed: {
+    ...mapGetters(['signedInUsername']),
   },
 })
 </script>

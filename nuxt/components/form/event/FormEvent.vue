@@ -275,25 +275,24 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { Datetime } from 'vue-datetime'
-import VueMarkdown from 'vue-markdown-konishi'
 import {
   maxLength,
   maxValue,
   minValue,
   required,
 } from 'vuelidate/lib/validators'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate.gql'
 import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById.gql'
+import { Visibility } from '~/types/event'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   components: {
     Datetime,
-    VueMarkdown,
   },
   props: {
     event: {
@@ -305,23 +304,23 @@ export default {
     return {
       form: {
         sent: false,
-        id: undefined,
-        authorUsername: undefined,
-        description: undefined,
-        end: undefined,
-        inviteeCountMaximum: undefined,
-        isInPerson: undefined,
-        isRemote: undefined,
-        location: undefined,
-        name: undefined,
-        slug: undefined,
+        id: undefined as string | undefined,
+        authorUsername: undefined as string | undefined,
+        description: undefined as string | undefined,
+        end: undefined as string | undefined,
+        inviteeCountMaximum: undefined as string | undefined,
+        isInPerson: undefined as boolean | undefined,
+        isRemote: undefined as boolean | undefined,
+        location: undefined as string | undefined,
+        name: undefined as string | undefined,
+        slug: undefined as string | undefined,
         start: new Date(
           new Date().getTime() + 24 * 60 * 60 * 1000
         ).toISOString(), // Must be initialized, otherwise yields an error instantly: https://github.com/mariomka/vue-datetime/issues/177
-        url: undefined,
-        visibility: undefined,
+        url: undefined as string | undefined,
+        visibility: undefined as Visibility | undefined,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as any,
     }
   },
   created() {
@@ -340,7 +339,10 @@ export default {
         'start',
         'url',
         'visibility',
-      ].forEach((property) => (this.form[property] = this.event[property]))
+      ].forEach(
+        (property) =>
+          ((this.form as Record<string, any>)[property] = this.event[property])
+      )
     }
   },
   methods: {
@@ -359,7 +361,7 @@ export default {
             variables: {
               id: this.form.id,
               eventPatch: {
-                authorUsername: this.$store.state.signedInUsername,
+                authorUsername: this.$store.getters.signedInUsername,
                 description: this.form.description,
                 end: this.form.end !== '' ? this.form.end : null,
                 inviteeCountMaximum:
@@ -395,7 +397,7 @@ export default {
             variables: {
               createEventInput: {
                 event: {
-                  authorUsername: this.$store.state.signedInUsername,
+                  authorUsername: this.$store.getters.signedInUsername,
                   description: this.form.description,
                   end: this.form.end !== '' ? this.form.end : null,
                   inviteeCountMaximum:
@@ -422,7 +424,7 @@ export default {
             })
             this.$router.push(
               this.localePath(
-                `/event/${this.$store.state.signedInUsername}/${this.form.slug}`
+                `/event/${this.$store.getters.signedInUsername}/${this.form.slug}`
               )
             )
           })
@@ -433,7 +435,7 @@ export default {
       }
     },
     updateSlug() {
-      this.form.slug = this.$slugify(this.form.name, {
+      this.form.slug = this.$slugify(this.form.name ?? '', {
         lower: true,
         strict: true,
       })
@@ -488,7 +490,7 @@ export default {
       },
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

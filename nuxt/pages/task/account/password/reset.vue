@@ -5,10 +5,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  middleware({ app, query, redirect }) {
-    if (!app.$global.REGEX_UUID.test(query.code)) {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+import { Context } from '@nuxt/types'
+
+export default defineComponent({
+  middleware({ app, query, redirect }: Context) {
+    if (Array.isArray(query.code) || !app.$global.REGEX_UUID.test(query.code)) {
       return redirect(app.localePath('/'))
     }
   },
@@ -18,12 +21,13 @@ export default {
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -36,13 +40,13 @@ export default {
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

@@ -15,20 +15,21 @@
   />
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import PROFILE_PICTURE_BY_USERNAME_QUERY from '~/gql/query/profilePicture/profilePictureByUsername.gql'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   apollo: {
-    profilePictureByUsername() {
+    profilePictureByUsername(): any {
       return {
         query: PROFILE_PICTURE_BY_USERNAME_QUERY,
         variables: {
           username: this.username,
         },
-        update: (data) => {
+        update: (data: any) => {
           const profilePictureByUsername = this.$global.getNested(
             data,
             'profilePictureByUsername'
@@ -43,7 +44,7 @@ export default {
             this.profilePictureUrl = undefined
           }
         },
-        error(error, _vm, _key, _type, _options) {
+        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
           consola.error(error)
         },
@@ -53,7 +54,7 @@ export default {
   props: {
     classes: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     height: {
       required: true,
@@ -61,7 +62,7 @@ export default {
     },
     rounded: {
       default: undefined,
-      type: Boolean,
+      type: Boolean as PropType<boolean | undefined>,
     },
     username: {
       required: true,
@@ -74,15 +75,15 @@ export default {
   },
   data() {
     return {
-      graphqlError: undefined,
-      profilePictureUrl: undefined,
+      graphqlError: undefined as any,
+      profilePictureUrl: undefined as string | undefined,
     }
   },
   computed: {
-    classComputed() {
+    classComputed(): string {
       return [this.classes, ...(this.rounded ? ['rounded-full'] : [])].join(' ')
     },
-    imageSrc() {
+    imageSrc(): string | any {
       if (this.profilePictureUrl !== undefined) {
         return this.profilePictureUrl
       } else {
@@ -102,7 +103,7 @@ export default {
       })
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

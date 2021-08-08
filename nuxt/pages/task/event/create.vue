@@ -5,12 +5,14 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
   middleware({ app, store, redirect, route }) {
     if (
-      store.state.jwtDecoded &&
-      store.state.jwtDecoded.role !== 'maevsi_account'
+      store.getters.jwtDecoded &&
+      store.getters.jwtDecoded.role !== 'maevsi_account'
     ) {
       return redirect(
         app.localePath({
@@ -26,12 +28,13 @@ export default {
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -44,13 +47,13 @@ export default {
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

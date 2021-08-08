@@ -16,27 +16,27 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { email, maxLength, required } from 'vuelidate/lib/validators'
-
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION from '~/gql/mutation/account/accountPasswordResetRequest.gql'
 
 const consola = require('consola')
 
-export default {
+const FormAccountPasswordResetRequest = defineComponent({
   props: {
     formClass: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
   },
   data() {
     return {
       form: {
-        emailAddress: undefined,
+        emailAddress: undefined as string | undefined,
         sent: false,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as any,
     }
   },
   watch: {
@@ -97,7 +97,13 @@ export default {
       },
     }
   },
-}
+})
+
+export default FormAccountPasswordResetRequest
+
+export type FormAccountPasswordResetRequestType = InstanceType<
+  typeof FormAccountPasswordResetRequest
+>
 </script>
 
 <i18n lang="yml">

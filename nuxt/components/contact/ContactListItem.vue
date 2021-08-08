@@ -24,15 +24,14 @@
       <div class="flex items-center justify-evenly">
         <ButtonTableInteraction
           :aria-label="
-            contact.authorAccountUsername !== $store.state.signedInUsername
+            contact.authorAccountUsername !== signedInUsername
               ? $t('disabledReasonCreatorNot', {
                   authorAccountUsername: contact.authorAccountUsername,
                 })
               : $t('contactEdit')
           "
           :disabled="
-            contact.authorAccountUsername !== $store.state.signedInUsername ||
-            isEditing
+            contact.authorAccountUsername !== signedInUsername || isEditing
           "
           :icon-id="['fas', 'edit']"
           is-title-show
@@ -52,6 +51,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
 import { Contact } from '~/types/contact'
 
 export default defineComponent({
@@ -68,6 +68,9 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
+  },
+  computed: {
+    ...mapGetters(['signedInUsername']),
   },
 })
 </script>

@@ -51,12 +51,14 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import ACCOUNT_REGISTRATION_MUTATION_REFRESH from '~/gql/mutation/account/accountRegistrationRefresh.gql'
+import Button from '~/components/button/Button.vue'
 
 const consola = require('consola')
 
-export default {
+const Form = defineComponent({
   props: {
     form: {
       required: true,
@@ -64,7 +66,7 @@ export default {
     },
     formClass: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
     formSent: {
       required: true,
@@ -72,15 +74,15 @@ export default {
     },
     graphqlError: {
       default: undefined,
-      type: Error,
+      type: Error as PropType<any>,
     },
     iconId: {
       default: undefined,
-      type: Array,
+      type: Array as PropType<string[] | undefined>,
     },
     submitName: {
       default() {
-        return this.$t('submit')
+        return this.$t('submit') as string
       },
       type: String,
     },
@@ -88,17 +90,19 @@ export default {
   data() {
     return {
       // TODO: remove with https://github.com/maevsi/maevsi/issues/209.
-      graphqlErrorInternal: undefined,
+      graphqlErrorInternal: undefined as any,
     }
   },
   computed: {
-    graphqlErrorComputed() {
+    graphqlErrorComputed(): any {
       if (!this.graphqlError) {
         return
       }
 
       return [
-        ...this.graphqlError.graphQLErrors.map((e) => e.message),
+        ...((this.graphqlError as any).graphQLErrors?.map(
+          (e: Error) => e.message
+        ) ?? []),
         ...(this.graphqlErrorInternal ? [this.graphqlErrorInternal] : []),
       ].join(', ')
     },
@@ -130,15 +134,19 @@ export default {
       })
     },
     reset() {
-      this.$refs.form.reset()
+      ;(this.$refs.form as HTMLFormElement).reset()
     },
     submit() {
       if (this.$refs.buttonSubmit) {
-        this.$refs.buttonSubmit.click()
+        ;(this.$refs.buttonSubmit as InstanceType<typeof Button>).click()
       }
     },
   },
-}
+})
+
+export default Form
+
+export type FormType = InstanceType<typeof Form>
 </script>
 
 <i18n lang="yml">

@@ -12,7 +12,7 @@
       <ButtonList>
         <ButtonSignIn
           v-if="
-            $global.getNested($store.state.jwtDecoded, 'role') ===
+            $global.getNested($store.getters.jwtDecoded, 'role') ===
             'maevsi_anonymous'
           "
           :is-referring="false"
@@ -23,31 +23,34 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+import { Context } from '@nuxt/types'
 import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/accountEmailAddressVerification.gql'
 
 const consola = require('consola')
 
-export default {
-  middleware({ app, query, redirect }) {
-    if (!app.$global.REGEX_UUID.test(query.code)) {
+export default defineComponent({
+  middleware({ app, query, redirect }: Context) {
+    if (Array.isArray(query.code) || !app.$global.REGEX_UUID.test(query.code)) {
       return redirect(app.localePath('/'))
     }
   },
   data() {
     return {
-      graphqlError: undefined,
+      graphqlError: undefined as any,
       loading: true,
       title: this.$t('title'),
     }
   },
   head() {
+    const title = this.title as string
     return {
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: this.title,
+          content: title,
         },
         {
           hid: 'og:url',
@@ -60,10 +63,10 @@ export default {
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: this.title,
+          content: title,
         },
       ],
-      title: this.title,
+      title,
     }
   },
   beforeMount() {
@@ -87,7 +90,7 @@ export default {
         })
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

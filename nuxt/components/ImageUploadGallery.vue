@@ -137,12 +137,12 @@
   </div>
 </template>
 
-<script>
-import Croppa from 'vue-croppa'
-import Uppy from '@uppy/core'
+<script lang="ts">
+import Uppy, { UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
 import prettyBytes from 'pretty-bytes'
-
+import { mapGetters } from 'vuex'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import ACCOUNT_UPLOAD_QUOTA_BYTES from '~/gql/query/account/accountUploadQuotaBytes.gql'
 import UPLOADS_ALL_QUERY from '~/gql/query/upload/uploadsAll.gql'
 import UPLOAD_CREATE_MUTATION from '~/gql/mutation/upload/uploadCreate.gql'
@@ -151,9 +151,13 @@ require('@uppy/core/dist/style.css')
 
 const consola = require('consola')
 
-export default {
+interface Item {
+  storageKey: string
+}
+
+export default defineComponent({
   apollo: {
-    allUploads() {
+    allUploads(): any {
       return {
         query: UPLOADS_ALL_QUERY,
         variables: {
@@ -161,16 +165,13 @@ export default {
           limit: this.$global.ITEMS_PER_PAGE,
           username: this.username,
         },
-        update: (data) => data.allUploads,
-        error(error, _vm, _key, _type, _options) {
+        update: (data: any) => data.allUploads,
+        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
           consola.error(error)
         },
       }
     },
-  },
-  components: {
-    Croppa: Croppa.component,
   },
   props: {
     allowAddition: {
@@ -187,23 +188,23 @@ export default {
     },
     username: {
       default: undefined,
-      type: String,
+      type: String as PropType<string | undefined>,
     },
   },
   data() {
     return {
-      accountUploadQuotaBytes: undefined,
-      allUploads: undefined,
+      accountUploadQuotaBytes: undefined as number | undefined,
+      allUploads: undefined as any,
       croppy: {},
-      fileSelectedUrl: undefined,
-      graphqlError: undefined,
-      selectedItem: undefined,
+      fileSelectedUrl: undefined as string | undefined,
+      graphqlError: undefined as any,
+      selectedItem: undefined as Item | undefined,
       uploadIdPrefix: 'upid_',
-      uppy: undefined,
+      uppy: undefined as Uppy.Uppy | undefined,
     }
   },
   async fetch() {
-    if (this.$store.state.signedInUsername) {
+    if (this.$store.getters.signedInUsername) {
       this.accountUploadQuotaBytes = await this.$apollo
         .query({
           query: ACCOUNT_UPLOAD_QUOTA_BYTES,
@@ -216,11 +217,11 @@ export default {
     }
   },
   computed: {
-    jwt() {
-      return this.$store.state.jwt
-    },
-    sizeByteTotal() {
-      if (!this.allUploads) return
+    ...mapGetters(['jwt']),
+    sizeByteTotal(): number | undefined {
+      if (!this.allUploads) {
+        return undefined
+      }
 
       let sizeByteTotal = 0
 
@@ -232,15 +233,23 @@ export default {
     },
   },
   methods: {
-    bytesToString(bytes) {
-      if (!bytes) return
+    bytesToString(
+      bytes: number | string | undefined | null
+    ): string | undefined {
+      if (bytes === undefined || bytes === null) {
+        return undefined
+      }
       return prettyBytes(+bytes)
     },
     changeProfilePicture() {
-      document.querySelector('#input-profile-picture').click()
+      ;(
+        document.querySelector('#input-profile-picture') as HTMLInputElement
+      ).click()
     },
-    deleteImageUpload(uploadUuid) {
-      const element = document.getElementById(this.uploadIdPrefix + uploadUuid)
+    deleteImageUpload(uploadUuid: string) {
+      const element = document.getElementById(
+        this.uploadIdPrefix + uploadUuid
+      ) as Element
 
       element.classList.add('disabled')
 
@@ -272,12 +281,13 @@ export default {
       }
       xhr.send()
     },
-    fileLoaded(e) {
-      this.fileSelectedUrl = e.target.result
+    fileLoaded(e: ProgressEvent<FileReader>) {
+      this.fileSelectedUrl = e.target?.result as string | undefined
       this.$store.commit('modalAdd', { id: 'ModalImageUploadGallery' })
     },
-    loadProfilePicture(event) {
-      const files = Array.from(event.target.files)
+    loadProfilePicture(event: InputEvent) {
+      const target = event.target as HTMLInputElement
+      const files = Array.from(target.files ?? [])
 
       if (files.length !== 1) {
         return
@@ -320,18 +330,18 @@ export default {
         },
       })
     },
-    toggleSelect(upload) {
+    toggleSelect(upload: any) {
       if (this.selectedItem === upload) {
         this.selectedItem = undefined
         this.$emit('selection', undefined)
       } else {
         this.selectedItem = upload
-        this.$emit('selection', this.selectedItem.storageKey)
+        this.$emit('selection', this.selectedItem?.storageKey)
       }
     },
     getUploadBlobPromise() {
-      return new Promise((resolve, reject) => {
-        this.$refs.croppy.promisedBlob().then(async (blob) => {
+      return new Promise<void>((resolve, reject) => {
+        ;(this.$refs.croppy as any).promisedBlob().then(async (blob: Blob) => {
           const res = await this.$apollo
             .mutate({
               mutation: UPLOAD_CREATE_MUTATION,
@@ -363,8 +373,8 @@ export default {
             meta: {
               maevsiUploadUuid: res.uuid,
             },
-            onBeforeUpload: (files) => {
-              const updatedFiles = {}
+            onBeforeUpload: (files: { [key: string]: UppyFile }) => {
+              const updatedFiles: Record<string, any> = {}
 
               Object.keys(files).forEach((fileID) => {
                 updatedFiles[fileID] = {
@@ -385,13 +395,16 @@ export default {
 
           this.uppy.addFile({
             source: 'croppy',
-            name: document.querySelector('#input-profile-picture').files[0]
-              .name,
+            name: (
+              document.querySelector(
+                '#input-profile-picture'
+              ) as HTMLInputElement
+            ).files![0]!.name,
             type: blob.type,
             data: blob,
           })
 
-          this.uppy.upload().then((value) => {
+          this.uppy.upload().then((value: UploadResult) => {
             this.$apollo.queries.allUploads.refetch()
 
             if (value.failed.length > 0) {
@@ -404,7 +417,7 @@ export default {
       })
     },
   },
-}
+})
 </script>
 
 <style scoped>

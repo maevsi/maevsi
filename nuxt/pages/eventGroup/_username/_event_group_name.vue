@@ -5,15 +5,18 @@
   </div>
 </template>
 
-<script>
-export default {
-  validate({ app, params }) {
-    app.$global.REGEX_SLUG.test(params.username)
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+import { Context } from '@nuxt/types'
+
+export default defineComponent({
+  validate({ app, params }: Context): boolean {
+    return app.$global.REGEX_SLUG.test(params.username)
   },
   head() {
     return { title: this.$route.params.event_group_name }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

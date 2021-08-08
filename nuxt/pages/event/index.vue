@@ -44,9 +44,9 @@ export default defineComponent({
   computed: {
     signedIn(): boolean {
       return (
-        this.$store.state.jwtDecoded &&
-        this.$store.state.jwtDecoded.role === 'maevsi_account' &&
-        this.$store.state.jwtDecoded.exp > Math.floor(Date.now() / 1000)
+        this.$store.getters.jwtDecoded &&
+        this.$store.getters.jwtDecoded.role === 'maevsi_account' &&
+        this.$store.getters.jwtDecoded.exp > Math.floor(Date.now() / 1000)
       )
     },
   },

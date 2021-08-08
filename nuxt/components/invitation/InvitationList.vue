@@ -123,23 +123,25 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDelete.gql'
 import INVITE_MUTATION from '~/gql/mutation/invitation/invite.gql'
 import INVITATIONS_ALL_QUERY from '~/gql/query/invitation/invitationsAll.gql'
+import { Event } from '~/types/event'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   apollo: {
-    allInvitations() {
+    allInvitations(): any {
       return {
         query: INVITATIONS_ALL_QUERY,
         variables: {
           eventId: +this.event.id,
         },
-        update: (data) => data.allInvitations,
-        error(error, _vm, _key, _type, _options) {
+        update: (data: any) => data.allInvitations,
+        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
           consola.error(error)
         },
@@ -149,16 +151,16 @@ export default {
   props: {
     event: {
       required: true,
-      type: Object,
+      type: Object as PropType<Event>,
     },
   },
   data() {
     return {
-      graphqlError: undefined,
+      graphqlError: undefined as any,
       pending: {
-        deletions: [],
-        edits: [],
-        sends: [],
+        deletions: [] as string[],
+        edits: [] as string[],
+        sends: [] as string[],
       },
     }
   },
@@ -166,7 +168,7 @@ export default {
     add() {
       this.$store.commit('modalAdd', { id: 'ModalInvitation' })
     },
-    delete_(uuid) {
+    delete_(uuid: string) {
       this.pending.deletions.push(uuid)
       this.graphqlError = undefined
       this.$apollo
@@ -188,7 +190,7 @@ export default {
           this.pending.deletions.splice(this.pending.deletions.indexOf(uuid), 1)
         })
     },
-    send(invitation) {
+    send(invitation: any) {
       this.pending.sends.push(invitation.uuid)
       this.graphqlError = undefined
       this.$apollo
@@ -224,7 +226,7 @@ export default {
       this.$apollo.queries.allInvitations.refetch()
     },
   },
-}
+})
 </script>
 
 <i18n lang="yml">

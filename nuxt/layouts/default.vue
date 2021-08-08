@@ -3,7 +3,7 @@
     <Header @onMenuShow="menuShow" />
     <div class="flex">
       <div
-        v-if="$store.state.signedInUsername"
+        v-if="$store.getters.signedInUsername"
         class="bg-background-bright dark:bg-background-dark hidden md:block"
       >
         <Menu />

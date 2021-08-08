@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$route.params.username === $store.state.signedInUsername">
+  <div v-if="$route.params.username === $store.getters.signedInUsername">
     <div
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
@@ -54,11 +54,10 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
-import { State } from '~/store'
 
 export default defineComponent({
   middleware({ res, params, store }) {
-    if (res && params.username !== (store.state as State).signedInUsername) {
+    if (res && params.username !== store.getters.signedInUsername) {
       res.statusCode = 403
     }
   },
@@ -78,7 +77,7 @@ export default defineComponent({
     return {
       accountDeleteMutation: ACCOUNT_DELETE_MUTATION,
       title:
-        this.$route.params.username === this.$store.state.signedInUsername
+        this.$route.params.username === this.$store.getters.signedInUsername
           ? this.$route.params.username
           : '403',
     }

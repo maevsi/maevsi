@@ -66,7 +66,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
 
-export default defineComponent({
+const TabFlip = defineComponent({
   props: {
     dark: {
       default: false,
@@ -120,6 +120,10 @@ export default defineComponent({
     },
   },
 })
+
+export default TabFlip
+
+export type TabFlipType = InstanceType<typeof TabFlip>
 </script>
 
 <i18n lang="yml">

@@ -58,7 +58,7 @@ export default defineComponent({
   computed: {
     sessionExpiryTime(): string {
       return this.$moment(
-        this.$global.getNested(this.$store.state.jwtDecoded, 'exp'),
+        this.$global.getNested(this.$store.getters.jwtDecoded, 'exp'),
         'X'
       ).format('llll')
     },

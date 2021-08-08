@@ -35,14 +35,14 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { maxLength, minLength, required } from 'vuelidate/lib/validators'
-
+import { defineComponent } from '@nuxtjs/composition-api'
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 
 const consola = require('consola')
 
-export default {
+const FormAccountSignIn = defineComponent({
   props: {
     formClass: {
       default: undefined,
@@ -118,7 +118,11 @@ export default {
       },
     }
   },
-}
+})
+
+export default FormAccountSignIn
+
+export type FormAccountSignInType = InstanceType<typeof FormAccountSignIn>
 </script>
 
 <i18n lang="yml">

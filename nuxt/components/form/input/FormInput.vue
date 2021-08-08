@@ -55,7 +55,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
 
-const FormInputComponent = defineComponent({
+const FormInput = defineComponent({
   props: {
     error: {
       default: false,
@@ -88,8 +88,9 @@ const FormInputComponent = defineComponent({
   },
 })
 
-export type FormInput = InstanceType<typeof FormInputComponent>
-export default FormInputComponent
+export default FormInput
+
+export type FormInputType = InstanceType<typeof FormInput>
 </script>
 
 <i18n lang="yml">

@@ -78,26 +78,28 @@
   </Form>
 </template>
 
-<script>
+<script lang="ts">
 import { minLength, minValue, required } from 'vuelidate/lib/validators'
-
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import INVITATION_CREATE_MUTATION from '~/gql/mutation/invitation/invitationCreate.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
+import { Event } from '~/types/event'
+import { Contact } from '~/types/contact'
 
 const consola = require('consola')
 
-export default {
+export default defineComponent({
   apollo: {
-    allContacts() {
+    allContacts(): any {
       return {
         query: CONTACTS_ALL_QUERY,
         variables: {
           cursor: null,
           limit: this.$global.ITEMS_PER_PAGE,
-          authorAccountUsername: this.$store.state.signedInUsername,
+          authorAccountUsername: this.$store.getters.signedInUsername,
         },
-        update: (data) => data.allContacts,
-        error(error, _vm, _key, _type, _options) {
+        update: (data: any) => data.allContacts,
+        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
           consola.error(error)
         },
@@ -107,49 +109,53 @@ export default {
   props: {
     event: {
       required: true,
-      type: Object,
+      type: Object as PropType<Event>,
     },
   },
   data() {
     return {
       form: {
         sent: false,
-        contactId: undefined,
+        contactId: undefined as string | undefined,
       },
-      graphqlError: undefined,
-      searchString: undefined,
+      graphqlError: undefined as any,
+      searchString: undefined as string | undefined,
     }
   },
   computed: {
-    contactsFiltered() {
-      if (!this.allContacts) return
+    contactsFiltered(): Contact[] | undefined {
+      if (!this.allContacts) {
+        return undefined
+      }
 
       if (!this.searchString || this.searchString === '') {
-        return this.allContacts.nodes.slice(0, 3)
+        return (this.allContacts as any).nodes.slice(0, 3)
       }
 
       const searchStringParts = this.searchString.split(' ')
-      const allContactsFiltered = this.allContacts.nodes.filter((contact) => {
-        for (const contactProperty of [
-          ...(contact.accountUsername ? [contact.accountUsername] : []),
-          ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
-          ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
-        ]) {
-          for (const searchStringPart of searchStringParts) {
-            if (contactProperty.includes(searchStringPart.toLowerCase())) {
-              return true
+      const allContactsFiltered = (this.allContacts as any).nodes.filter(
+        (contact: Contact) => {
+          for (const contactProperty of [
+            ...(contact.accountUsername ? [contact.accountUsername] : []),
+            ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
+            ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
+          ]) {
+            for (const searchStringPart of searchStringParts) {
+              if (contactProperty.includes(searchStringPart.toLowerCase())) {
+                return true
+              }
             }
           }
-        }
 
-        return false
-      })
+          return false
+        }
+      )
 
       return allContactsFiltered.slice(0, 3)
     },
   },
   methods: {
-    selectToggle(contact) {
+    selectToggle(contact: Contact) {
       this.form.contactId = contact.id
 
       // For multiple contact selections:
@@ -181,7 +187,7 @@ export default {
             },
           },
         })
-        .then(async () => await this.$listeners.submitSuccess())
+        .then(async () => await (this.$listeners.submitSuccess as Function)())
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)
@@ -202,7 +208,7 @@ export default {
       },
     }
   },
-}
+})
 </script>
 
 <i18n lang="yml">

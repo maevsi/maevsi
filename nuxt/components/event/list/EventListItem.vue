@@ -11,8 +11,7 @@
       class="card dark:card-dark flex flex-col"
       :class="{
         'bg-yellow-100':
-          $store.state.jwtDecoded &&
-          event.authorUsername === $store.state.jwtDecoded.username,
+          jwtDecoded && event.authorUsername === jwtDecoded.username,
       }"
       :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >
@@ -47,6 +46,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
 import { Event } from '~/types/event'
 
 export default defineComponent({
@@ -55,6 +55,9 @@ export default defineComponent({
       required: true,
       type: Object as PropType<Event>,
     },
+  },
+  computed: {
+    ...mapGetters(['jwtDecoded']),
   },
 })
 </script>
