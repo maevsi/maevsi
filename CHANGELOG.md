@@ -1,3 +1,30 @@
+# [0.97.0](https://github.com/maevsi/maevsi/compare/0.96.0...0.97.0) (2021-08-08)
+
+
+### Bug Fixes
+
+* **modal:** readd getters ([0142ca1](https://github.com/maevsi/maevsi/commit/0142ca120e35e2810b6d50ccdec49e08ecaefe6f))
+* **storybook:** define required getters ([37e29ca](https://github.com/maevsi/maevsi/commit/37e29ca927f7a255e9f65ebc307b5a52f2bc4257))
+
+
+### Features
+
+* **account-contact-list:** use typescript ([1a85708](https://github.com/maevsi/maevsi/commit/1a85708827c56109d3b3aa0786f89959604f4b7f))
+* **account-profile-picture:** use typescript ([efbfdf5](https://github.com/maevsi/maevsi/commit/efbfdf5b6d6fdc1766241ea13c84fe200f59ab8d))
+* **event-list:** use typescript ([3734a9b](https://github.com/maevsi/maevsi/commit/3734a9b786bd23406bd28925d88a13d30e2cddf8))
+* **form:** use typescript ([963c40b](https://github.com/maevsi/maevsi/commit/963c40b2da0972baa9b225a7bd7ed91b3f37b0d9))
+* **form-delete:** use typescript ([a7534c9](https://github.com/maevsi/maevsi/commit/a7534c99fe8468bde8ba0fbdd48a1317acea33ae))
+* **forms:** use typescript ([6cf01ee](https://github.com/maevsi/maevsi/commit/6cf01ee85eb472fd83a55b7dec532acc0a038721))
+* **invitation-list:** use typescript ([77ec6e7](https://github.com/maevsi/maevsi/commit/77ec6e73af83c07ed1f5a10a724d615e1e9f2181))
+* **vue:** use defineComponent for all components ([e8076a9](https://github.com/maevsi/maevsi/commit/e8076a9b2c1707c3232883236597072ab0943c8b))
+* **vue:** use defineComponent for all pages ([9005e4e](https://github.com/maevsi/maevsi/commit/9005e4eb3a6e0e7791640b1cc058518d5717b928))
+* **vue:** use typescript for e-mail verification page ([a5478ad](https://github.com/maevsi/maevsi/commit/a5478ad30df9afb7bf07158312ed4c86217eb41c))
+* **vue:** use typescript for event page ([347ebc3](https://github.com/maevsi/maevsi/commit/347ebc3701e7663411706ada78d458d7a3c914c0))
+* **vue:** use typescript for event settings page ([da1973d](https://github.com/maevsi/maevsi/commit/da1973d4282e37c431e44d7afb8bf86252803d44))
+* **vue:** use typescript for event unlock page ([bcd1373](https://github.com/maevsi/maevsi/commit/bcd1373f3811848f58e3ceb49d718bc06e1d4cda))
+* **vue:** use typescript for pages ([bc4088b](https://github.com/maevsi/maevsi/commit/bc4088b2bbe7c1e6f3d433b260296c82048b7f65))
+* **vue:** use typescript for remaining components ([1e6a973](https://github.com/maevsi/maevsi/commit/1e6a973db46fa4719fe8af5ddc318392bc406437))
+
 # [0.96.0](https://github.com/maevsi/maevsi/compare/0.95.0...0.96.0) (2021-08-08)
 
 
