@@ -1,3 +1,10 @@
+# [0.96.0](https://github.com/maevsi/maevsi/compare/0.95.0...0.96.0) (2021-08-08)
+
+
+### Features
+
+* **storybook:** use typescript for stories ([0a2c12c](https://github.com/maevsi/maevsi/commit/0a2c12c4f3d21d7718351865fe907b34b7c0f042))
+
 # [0.95.0](https://github.com/maevsi/maevsi/compare/0.94.3...0.95.0) (2021-08-07)
 
 
