@@ -3224,25 +3224,27 @@
     js-yaml "^3.13.1"
     tslib "^1.10.0"
 
-"@snyk/code-client@3.9.0":
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/@snyk/code-client/-/code-client-3.9.0.tgz#5cb690327765aa2546c74fa045bf32ac26dd6bd4"
-  integrity sha512-sscrpiODOlQI87B4OFIClnoZmHEHzJ7vULYhikS/R/2KavG4vGPw7Qe2to5rximxR3VFdWQ0wNVFB0RkU2mjPQ==
+"@snyk/code-client@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@snyk/code-client/-/code-client-4.0.0.tgz#e883deff79e3bdda2a163eb143aaf7f2c4029c50"
+  integrity sha512-x6ZsL6jBz6rDSg1cFVnaqg4fVvQEerRaATem7aeq7l+HiPb8VnorJbq/61MlTgO7gWnA1WijzmzfJK5kAUpO1A==
   dependencies:
     "@deepcode/dcignore" "^1.0.2"
     "@snyk/fast-glob" "^3.2.6-patch"
     "@types/flat-cache" "^2.0.0"
     "@types/lodash.chunk" "^4.2.6"
     "@types/lodash.omit" "^4.5.6"
+    "@types/lodash.pick" "^4.4.6"
     "@types/lodash.union" "^4.6.6"
     "@types/sarif" "^2.1.3"
     "@types/uuid" "^8.3.0"
-    axios "^0.21.1"
     ignore "^5.1.8"
     lodash.chunk "^4.2.0"
     lodash.omit "^4.5.0"
+    lodash.pick "^4.4.0"
     lodash.union "^4.6.0"
     multimatch "^5.0.0"
+    needle "^2.8.0"
     queue "^6.0.1"
     uuid "^8.3.2"
 
@@ -4794,6 +4796,13 @@
   version "4.5.6"
   resolved "https://registry.yarnpkg.com/@types/lodash.omit/-/lodash.omit-4.5.6.tgz#f2a9518259e481a48ff7ec423420fa8fd58933e2"
   integrity sha512-KXPpOSNX2h0DAG2w7ajpk7TXvWF28ZHs5nJhOJyP0BQHkehgr948RVsToItMme6oi0XJkp19CbuNXkIX8FiBlQ==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash.pick@^4.4.6":
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/@types/lodash.pick/-/lodash.pick-4.4.6.tgz#ae4e8f109e982786313bb6aac4b1a73aefa6e9be"
+  integrity sha512-u8bzA16qQ+8dY280z3aK7PoWb3fzX5ATJ0rJB6F+uqchOX2VYF02Aqa+8aYiHiHgPzQiITqCgeimlyKFy4OA6g==
   dependencies:
     "@types/lodash" "*"
 
@@ -14979,6 +14988,11 @@ lodash.orderby@^4.6.0:
   resolved "https://registry.yarnpkg.com/lodash.orderby/-/lodash.orderby-4.6.0.tgz#e697f04ce5d78522f54d9338b32b81a3393e4eb3"
   integrity sha1-5pfwTOXXhSL1TZM4syuBozk+TrM=
 
+lodash.pick@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
+  integrity sha1-UvBWEP/53tQiYRRB7R/BI6AwAbM=
+
 lodash.pickby@4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.pickby/-/lodash.pickby-4.6.0.tgz#7dea21d8c18d7703a27c704c15d3b84a67e33aff"
@@ -16056,7 +16070,7 @@ needle@2.6.0:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
-needle@^2.3.3, needle@^2.5.0:
+needle@^2.3.3, needle@^2.5.0, needle@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/needle/-/needle-2.8.0.tgz#1c8ef9c1a2c29dcc1e83d73809d7bc681c80a048"
   integrity sha512-ZTq6WYkN/3782H1393me3utVYdq2XyqNUFBsprEE3VMAT0+hP/cItpnITpqsY6ep2yeFE4Tqtqwc74VqUlUYtw==
@@ -17207,6 +17221,11 @@ peek-stream@^1.1.0:
     buffer-from "^1.0.0"
     duplexify "^3.5.0"
     through2 "^2.0.3"
+
+pegjs@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/pegjs/-/pegjs-0.10.0.tgz#cf8bafae6eddff4b5a7efb185269eaaf4610ddbd"
+  integrity sha1-z4uvrm7d/0tafvsYUmnqr0YQ3b0=
 
 pend@~1.2.0:
   version "1.2.0"
@@ -20698,15 +20717,15 @@ snyk-try-require@^2.0.0:
     lodash.clonedeep "^4.3.0"
     lru-cache "^5.1.1"
 
-snyk@1.667.0:
-  version "1.667.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.667.0.tgz#a842d7d3b973cb403d70e535a9a7ae273a351579"
-  integrity sha512-X6I0RqRu+X7d8lH3KylY54sRDfxmVN6vu/pMsEag5gsTOAJOIarLJMkwk57bikVu/yVlnh6sio3dpy782709Sw==
+snyk@1.676.0:
+  version "1.676.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.676.0.tgz#ed02675c3125f1d5192299f9bd87450ff9951949"
+  integrity sha512-3B+YZ5mf/fXcb6PmbXBhZHQPY9BuK5g+KeI+HsLlNeLIEqc+PPxyL0XKv8W1VKFsaY8J1d3JQ68fjXeJie2OoA==
   dependencies:
     "@open-policy-agent/opa-wasm" "^1.2.0"
     "@snyk/cli-interface" "2.11.0"
     "@snyk/cloud-config-parser" "^1.9.2"
-    "@snyk/code-client" "3.9.0"
+    "@snyk/code-client" "4.0.0"
     "@snyk/dep-graph" "^1.27.1"
     "@snyk/fix" "1.650.0"
     "@snyk/gemfile" "1.2.0"
@@ -20745,6 +20764,7 @@ snyk@1.667.0:
     open "^7.0.3"
     ora "5.4.0"
     os-name "^3.0.0"
+    pegjs "^0.10.0"
     promise-queue "^2.2.5"
     proxy-from-env "^1.0.0"
     rimraf "^2.6.3"
@@ -20767,7 +20787,7 @@ snyk@1.667.0:
     snyk-try-require "1.3.1"
     source-map-support "^0.5.11"
     strip-ansi "^5.2.0"
-    tar "^6.1.0"
+    tar "^6.1.2"
     tempy "^1.0.1"
     update-notifier "^5.1.0"
     uuid "^8.3.2"
@@ -21758,10 +21778,22 @@ tar-stream@^2.0.0, tar-stream@^2.0.1, tar-stream@^2.1.0, tar-stream@^2.1.4, tar-
     inherits "^2.0.3"
     readable-stream "^3.1.1"
 
-tar@^6.0.1, tar@^6.0.2, tar@^6.1.0:
+tar@^6.0.1, tar@^6.0.2:
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/tar/-/tar-6.1.2.tgz#1f045a90a6eb23557a603595f41a16c57d47adc6"
   integrity sha512-EwKEgqJ7nJoS+s8QfLYVGMDmAsj+StbI2AM/RTHeUSsOw6Z8bwNBRv5z3CY0m7laC5qUAqruLX5AhMuc5deY3Q==
+  dependencies:
+    chownr "^2.0.0"
+    fs-minipass "^2.0.0"
+    minipass "^3.0.0"
+    minizlib "^2.1.1"
+    mkdirp "^1.0.3"
+    yallist "^4.0.0"
+
+tar@^6.1.2:
+  version "6.1.6"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-6.1.6.tgz#c23d797b0a1efe5d479b1490805c5443f3560c5d"
+  integrity sha512-oaWyu5dQbHaYcyZCTfyPpC+VmI62/OM2RTUYavTk1MDr1cwW5Boi3baeYQKiZbY2uSQJGr+iMOzb/JFxLrft+g==
   dependencies:
     chownr "^2.0.0"
     fs-minipass "^2.0.0"
