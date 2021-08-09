@@ -125,7 +125,7 @@ jobs:
           name: maevsi.zip
 
       - name: GitHub Release Asset
-        uses: softprops/action-gh-release@487fcd94425dd56e168af76ef300c3b4bd2a46fa # renovate: tag=v1
+        uses: softprops/action-gh-release@815e45857946b196197a116aa0def711ff7f8ecc # renovate: tag=v1
         with:
           files: maevsi.zip
         env:
