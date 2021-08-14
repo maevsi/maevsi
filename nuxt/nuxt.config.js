@@ -283,16 +283,15 @@ export default {
     ], // Should be declared at the start of the array.
     'nuxt-healthcheck',
     [
-      'nuxt-i18n',
+      '@nuxtjs/i18n',
       {
         baseUrl: BASE_URL,
         defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
         detectBrowserLanguage: {
           cookieSecure: true,
-          onlyOnRoot: true, // Enables better SEO.
+          redirectOn: 'root',
         },
         locales: LOCALES,
-        seo: false, // https://i18n.nuxtjs.org/seo/#improving-performance
         vueI18n: {
           messages: {
             de: localeDe,

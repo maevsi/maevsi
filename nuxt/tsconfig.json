@@ -27,8 +27,8 @@
       "@types/node",
       "@nuxt/types",
       "@nuxtjs/color-mode",
+      "@nuxtjs/i18n",
       "@nuxtjs/moment",
-      "nuxt-i18n",
       "jest",
       "vue-apollo/types"
     ]
