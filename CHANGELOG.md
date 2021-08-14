@@ -1,3 +1,10 @@
+# [0.98.0](https://github.com/maevsi/maevsi/compare/0.97.0...0.98.0) (2021-08-14)
+
+
+### Features
+
+* **i18n:** migrate to @nuxtjs/i18n ([331a325](https://github.com/maevsi/maevsi/commit/331a3254277f802dd54f100242853fd6ae8306bf)), closes [#402](https://github.com/maevsi/maevsi/issues/402)
+
 # [0.97.0](https://github.com/maevsi/maevsi/compare/0.96.0...0.97.0) (2021-08-08)
 
 
