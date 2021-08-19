@@ -97,7 +97,7 @@
     "@nuxtjs/tailwindcss": "4.2.1",
     "@storybook/addon-a11y": "6.3.7",
     "@types/jest": "27.0.1",
-    "@types/jsonwebtoken": "8.5.4",
+    "@types/jsonwebtoken": "8.5.5",
     "@types/markdown-it": "12.2.0",
     "@types/node": "14.17.10",
     "@types/twemoji": "12.1.2",
