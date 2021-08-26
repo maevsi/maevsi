@@ -105,7 +105,7 @@
     "@types/vue-moment": "4.0.3",
     "@types/vuelidate": "0.7.15",
     "@vue/cli-shared-utils": "4.5.13",
-    "autoprefixer": "10.3.2",
+    "autoprefixer": "10.3.3",
     "babel-eslint": "10.1.0",
     "browserlist": "1.0.1",
     "browserslist-useragent-regexp": "3.0.0",
