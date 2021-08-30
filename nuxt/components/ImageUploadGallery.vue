@@ -202,7 +202,7 @@ export default defineComponent({
       graphqlError: undefined as any,
       selectedItem: undefined as Item | undefined,
       uploadIdPrefix: 'upid_',
-      uppy: undefined as Uppy.Uppy | undefined,
+      uppy: undefined as Uppy | undefined,
     }
   },
   async fetch() {
