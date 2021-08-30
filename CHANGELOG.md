@@ -1,3 +1,11 @@
+## [0.98.2](https://github.com/maevsi/maevsi/compare/0.98.1...0.98.2) (2021-08-30)
+
+
+### Bug Fixes
+
+* minor fixes ([81d1f7d](https://github.com/maevsi/maevsi/commit/81d1f7d889baaa6149b4938c3a096f2b6eb09e6b))
+* **image-upload-gallery:** correct uppy and croppa usage ([d26b2b3](https://github.com/maevsi/maevsi/commit/d26b2b3828df1e0a6e0b8dbf799340ba486153c9))
+
 ## [0.98.1](https://github.com/maevsi/maevsi/compare/0.98.0...0.98.1) (2021-08-23)
 
 
