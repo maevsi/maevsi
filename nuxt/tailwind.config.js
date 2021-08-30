@@ -67,9 +67,6 @@ module.exports = {
           },
         },
       },
-      screens: {
-        'dark-mode': { raw: '(prefers-color-scheme: dark)' },
-      },
       typography: (theme) => ({
         DEFAULT: {
           css: {

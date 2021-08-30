@@ -117,21 +117,23 @@
         </Button>
       </div>
     </div>
-    <p v-else>{{ $t('noPictures') }}</p>
+    <p v-else class="text-center">{{ $t('noPictures') }}</p>
     <Modal
       id="ModalImageUploadGallery"
       :submit-icon-id="['fas', 'upload']"
       :submit-name="$t('upload')"
       :submit-task-provider="() => getUploadBlobPromise()"
     >
-      <Croppa
-        ref="croppy"
-        :initial-image="fileSelectedUrl"
-        :placeholder="$t('croppaPlaceholder')"
-        :placeholder-font-size="17.5"
-        prevent-white-space
-        :show-remove-button="false"
-      />
+      <div class="text-center">
+        <croppa
+          ref="croppy"
+          :initial-image="fileSelectedUrl"
+          :placeholder="$t('croppaPlaceholder')"
+          :placeholder-font-size="17.5"
+          prevent-white-space
+          :show-remove-button="false"
+        />
+      </div>
       <template slot="header">{{ $t('uploadNew') }}</template>
     </Modal>
   </div>
@@ -200,7 +202,7 @@ export default defineComponent({
       graphqlError: undefined as any,
       selectedItem: undefined as Item | undefined,
       uploadIdPrefix: 'upid_',
-      uppy: undefined as Uppy.Uppy | undefined,
+      uppy: undefined as Uppy | undefined,
     }
   },
   async fetch() {
@@ -361,7 +363,7 @@ export default defineComponent({
             return
           }
 
-          this.uppy = Uppy({
+          this.uppy = new Uppy({
             id: 'profile-picture',
             debug: process.env.NODE_ENV !== 'production',
             restrictions: {
