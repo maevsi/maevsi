@@ -1,3 +1,10 @@
+## [0.98.3](https://github.com/maevsi/maevsi/compare/0.98.2...0.98.3) (2021-08-31)
+
+
+### Bug Fixes
+
+* **nuxt:** transpile node-fetch ([a8c67dd](https://github.com/maevsi/maevsi/commit/a8c67dd88dde708b9831f5e1e92d2581df6b7d30))
+
 ## [0.98.2](https://github.com/maevsi/maevsi/compare/0.98.1...0.98.2) (2021-08-30)
 
 
