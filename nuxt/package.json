@@ -62,7 +62,7 @@
     "ical-generator": "3.0.0",
     "jsonwebtoken": "8.5.1",
     "luxon": "1.28.0",
-    "node-fetch": "2.6.1",
+    "node-fetch": "3.0.0",
     "node-zopfli-es": "1.0.7",
     "nuxt": "2.15.8",
     "nuxt-healthcheck": "1.0.1",

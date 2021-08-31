@@ -42,7 +42,7 @@ export default {
      */
     extend(_config, _ctx) {},
     extractCSS: true,
-    transpile: [/\.mjs$/],
+    transpile: ['fetch-blob', 'node-fetch', /\.mjs$/],
   },
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
