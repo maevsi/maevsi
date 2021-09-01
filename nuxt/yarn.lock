@@ -4883,10 +4883,10 @@
     "@uppy/utils" "^4.0.0"
     namespace-emitter "^2.0.1"
 
-"@uppy/core@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-2.0.1.tgz#e9686ce3e5560593d249c455a9b3c542509e2289"
-  integrity sha512-MdSvc3ngVebfSBHYLKzFFSUxAatSqH/vYP6v4R3uU/zFaZ0cW9A/Xm52S6rGLKf1d5ZNOvZjesdkre6d61m2Eg==
+"@uppy/core@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-2.0.2.tgz#e21fbe826d758094b1ac647e4b89b9c4721a26b7"
+  integrity sha512-ZCyZNjrCnCXN18+yr1Em9y+LqUeH4VLle9hgEA3a0lM+kDlMl7uB56NAQdEei5pFoPBLkJuU+xV35B0CjS/vIw==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.7"
     "@uppy/store-default" "^2.0.0"
