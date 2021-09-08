@@ -83,7 +83,7 @@
   },
   "devDependencies": {
     "@babel/runtime-corejs3": "7.15.4",
-    "@intlify/eslint-plugin-vue-i18n": "0.13.0",
+    "@intlify/eslint-plugin-vue-i18n": "0.14.0",
     "@nuxt/typescript-build": "2.1.0",
     "@nuxtjs/eslint-config": "6.0.1",
     "@nuxtjs/eslint-config-typescript": "6.0.1",
