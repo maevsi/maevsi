@@ -1873,10 +1873,10 @@
   dependencies:
     katex "^0.12.0"
 
-"@intlify/eslint-plugin-vue-i18n@0.14.0":
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/@intlify/eslint-plugin-vue-i18n/-/eslint-plugin-vue-i18n-0.14.0.tgz#3d30d322ad789e140e74f5707869ddf3159819a6"
-  integrity sha512-OWXtQLRySTlksK2VpguqepK3MuT1lv7O3uQLK6tm2esAqhJVEF4XjqCqC5vI2Xoziu49W4eMZbywicWtATw6wg==
+"@intlify/eslint-plugin-vue-i18n@0.15.0":
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/@intlify/eslint-plugin-vue-i18n/-/eslint-plugin-vue-i18n-0.15.0.tgz#a24d4da139c4ac92f77fd56f4161144065861a94"
+  integrity sha512-HI2tzTs8SijwS8ar+KNrjFBHC8RKh8gH+QCRsAEaW/YeoA8jk4tU5EGpYTFX1L7gt5aQ2QFPqRqXIzDNma7aAA==
   dependencies:
     "@eslint/eslintrc" "^0.4.2"
     "@intlify/message-compiler" "^9.1.6"
