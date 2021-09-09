@@ -11,7 +11,6 @@ module.exports = {
     'plugin:nuxt/recommended',
     'plugin:yml/standard',
   ],
-  // add your custom rules here
   root: true,
   rules: {
     '@intlify/vue-i18n/no-missing-keys': 'error',
