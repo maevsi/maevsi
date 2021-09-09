@@ -9,7 +9,6 @@ FROM node:16.9.0-buster@sha256:9209007e946bc90549ca2a02187b7db0d921327ab3adcfbb2
 # Update and install dependencies.
 # - `git` is required by the `yarn` command
 # - `sqitch` is required by the entrypoint
-# - `curl` is required by the healthcheck
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         git \
@@ -17,8 +16,6 @@ RUN apt-get update \
         libdbd-pg-perl \
         postgresql-client \
         sqitch \
-    && apt-get install --no-install-recommends -y \
-        curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -35,7 +32,7 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["dev", "--hostname", "0.0.0.0"]
-HEALTHCHECK --interval=10s CMD curl -f http://localhost:3000/healthcheck || exit 1
+HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/healthcheck || exit 1
 
 
 ########################
@@ -93,8 +90,6 @@ RUN apt-get update \
         libdbd-pg-perl \
         postgresql-client \
         sqitch \
-    && apt-get install --no-install-recommends -y \
-        curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -107,4 +102,4 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["start", "--hostname", "0.0.0.0"]
-HEALTHCHECK --interval=10s CMD curl -f http://localhost:3000/healthcheck || exit 1
+HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/healthcheck || exit 1
