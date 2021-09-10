@@ -1,3 +1,12 @@
+# [0.99.0](https://github.com/maevsi/maevsi/compare/0.98.3...0.99.0) (2021-09-10)
+
+
+### Features
+
+* **nvm:** update to v16 ([2fb3bc6](https://github.com/maevsi/maevsi/commit/2fb3bc6eb42b3d4a655da8aa6a96ec2d3454d98c))
+* remove unnecessary directives ([2148d7f](https://github.com/maevsi/maevsi/commit/2148d7fb64b7cf0c362d4f0520b19fa6414555cf))
+* **docker:** use wget for healthcheck ([78eb06d](https://github.com/maevsi/maevsi/commit/78eb06d6f72d2e1157d8241424e24d5d2800a0ef))
+
 ## [0.98.3](https://github.com/maevsi/maevsi/compare/0.98.2...0.98.3) (2021-08-31)
 
 
