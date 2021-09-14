@@ -1,3 +1,10 @@
+## [0.99.3](https://github.com/maevsi/maevsi/compare/0.99.2...0.99.3) (2021-09-14)
+
+
+### Bug Fixes
+
+* **docker:** use node 16.9.1 ([b6a39f7](https://github.com/maevsi/maevsi/commit/b6a39f70b3a8769ab9c725755a99d6ce12f3c4c2))
+
 ## [0.99.2](https://github.com/maevsi/maevsi/compare/0.99.1...0.99.2) (2021-09-14)
 
 
