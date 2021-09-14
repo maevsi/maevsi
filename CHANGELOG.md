@@ -1,3 +1,10 @@
+## [0.99.1](https://github.com/maevsi/maevsi/compare/0.99.0...0.99.1) (2021-09-14)
+
+
+### Bug Fixes
+
+* **package:** correct types location ([c5bd50b](https://github.com/maevsi/maevsi/commit/c5bd50ba6a9c30df1fead86ff1b7157cc317e81b))
+
 # [0.99.0](https://github.com/maevsi/maevsi/compare/0.98.3...0.99.0) (2021-09-10)
 
 
