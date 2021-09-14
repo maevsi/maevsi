@@ -1,3 +1,10 @@
+## [0.99.2](https://github.com/maevsi/maevsi/compare/0.99.1...0.99.2) (2021-09-14)
+
+
+### Bug Fixes
+
+* **docker:** install wget ([78e6960](https://github.com/maevsi/maevsi/commit/78e6960e5b40f4513e8972fc86a415b6fa1f2543))
+
 ## [0.99.1](https://github.com/maevsi/maevsi/compare/0.99.0...0.99.1) (2021-09-14)
 
 
