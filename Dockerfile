@@ -9,6 +9,7 @@ FROM node:16.9.1-buster@sha256:8710efa3fc8be1cbce674c646c1c64a993a70ca767bd56bae
 # Update and install dependencies.
 # - `git` is required by the `yarn` command
 # - `sqitch` is required by the entrypoint
+# - `wget` is required by the healthcheck
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         git \
@@ -16,6 +17,8 @@ RUN apt-get update \
         libdbd-pg-perl \
         postgresql-client \
         sqitch \
+    && apt-get install --no-install-recommends -y \
+        wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -77,19 +80,23 @@ RUN yarn install
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-# Should be the specific version of node:buster-slim.
-# sqitch requires at least buster.
+# Should be the specific version of node:buster.
+# `node-zopfli-es` and `sqitch` require at least buster.
+# `node-zopfli-es` requires non-slim.
 FROM node:16.9.1-buster-slim@sha256:af6f241029c4d63107c6ccbbd030c44d331786d724bd9c2e615edf46deab58e2 AS production
 
 ENV NODE_ENV=production
 
 # Update and install dependencies.
 # - `sqitch` is required by the entrypoint
+# - `wget` is required by the healthcheck
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         libdbd-pg-perl \
         postgresql-client \
         sqitch \
+    && apt-get install --no-install-recommends -y \
+        wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
