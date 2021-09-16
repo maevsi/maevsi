@@ -119,7 +119,7 @@
     "mockdate": "3.0.5",
     "msw": "0.35.0",
     "msw-storybook-addon": "1.3.0",
-    "prettier": "2.4.0",
+    "prettier": "2.4.1",
     "puppeteer": "10.2.0",
     "reg-notify-github-plugin": "0.10.16",
     "reg-suit": "0.10.16",
