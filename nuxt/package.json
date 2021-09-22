@@ -101,7 +101,7 @@
     "@types/vue-datetime": "1.0.1",
     "@types/vue-moment": "4.0.3",
     "@types/vuelidate": "0.7.15",
-    "autoprefixer": "10.3.4",
+    "autoprefixer": "10.3.5",
     "babel-eslint": "10.1.0",
     "browserlist": "1.0.1",
     "browserslist-useragent-regexp": "3.0.0",
