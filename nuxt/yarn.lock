@@ -4409,10 +4409,15 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.25.tgz#882bea2ca0d2ec22126b92b4dd2dc24b35a07469"
   integrity sha512-hcTWqk7DR/HrN9Xe7AlJwuCaL13Vcd9/g/T54YrJz4Q3ESM5mr33YCzW2bOfzSIc3aZMeGBvbLGvgN6mIJ0I5Q==
 
-"@types/node@^14.0.0", "@types/node@^14.0.10", "@types/node@^14.11.2", "@types/node@^14.14.22":
+"@types/node@^14.0.0", "@types/node@^14.0.10", "@types/node@^14.11.2":
   version "14.17.17"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.17.tgz#4ec7b71bbcb01a4e55455b60b18b1b6a783fe31d"
   integrity sha512-niAjcewgEYvSPCZm3OaM9y6YQrL2SEPH9PymtE6fuZAvFiP6ereCcvApGl2jKTq7copTIguX3PBvfP08LN4LvQ==
+
+"@types/node@^16.9.6":
+  version "16.9.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.9.6.tgz#040a64d7faf9e5d9e940357125f0963012e66f04"
+  integrity sha512-YHUZhBOMTM3mjFkXVcK+WwAcYmyhe1wL4lfqNtzI0b3qAy7yuSetnM7QJazgE5PFmgVTNGiLOgRFfJMqW7XpSQ==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -6796,12 +6801,12 @@ browserlist@1.0.1:
   dependencies:
     chalk "^2.4.1"
 
-browserslist-useragent-regexp@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/browserslist-useragent-regexp/-/browserslist-useragent-regexp-3.0.0.tgz#5184745f7529c74a588ca13a273d26843312e9e1"
-  integrity sha512-ocH7cPNxofPA5w+GhiysyTmtIOeVXDjadn3Acg0rIRf1yN3klZjVZkUesZUlwy5gWkOQ1L1+VU5dDQrROcQIrg==
+browserslist-useragent-regexp@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/browserslist-useragent-regexp/-/browserslist-useragent-regexp-3.0.1.tgz#37f67648c94d3991f57aefd404d3437c1134f0cb"
+  integrity sha512-lZJHviu3WkFcpkKtQok+2KDP+c5Qk0wsZCtUUWwrVyha1bOFelocDOJJgu3FHA99qsUAAh+PJeZIivzrDspF8w==
   dependencies:
-    "@types/node" "^14.14.22"
+    "@types/node" "^16.9.6"
     argue-cli "^1.2.0"
     browserslist "^4.16.3"
     chalk "^4.0.0"
