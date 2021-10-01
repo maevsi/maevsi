@@ -92,7 +92,7 @@
     "@nuxtjs/storybook": "4.1.1",
     "@nuxtjs/stylelint-module": "4.0.0",
     "@nuxtjs/tailwindcss": "4.2.1",
-    "@storybook/addon-a11y": "6.3.8",
+    "@storybook/addon-a11y": "6.3.9",
     "@types/jest": "27.0.2",
     "@types/jsonwebtoken": "8.5.5",
     "@types/markdown-it": "12.2.1",
