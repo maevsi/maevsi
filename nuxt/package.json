@@ -104,7 +104,7 @@
     "autoprefixer": "10.3.6",
     "babel-eslint": "10.1.0",
     "browserlist": "1.0.1",
-    "browserslist-useragent-regexp": "3.0.1",
+    "browserslist-useragent-regexp": "3.0.2",
     "cross-env": "7.0.3",
     "css-loader": "5.2.7",
     "eslint": "7.32.0",

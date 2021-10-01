@@ -6977,10 +6977,10 @@ browserlist@1.0.1:
   dependencies:
     chalk "^2.4.1"
 
-browserslist-useragent-regexp@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/browserslist-useragent-regexp/-/browserslist-useragent-regexp-3.0.1.tgz#37f67648c94d3991f57aefd404d3437c1134f0cb"
-  integrity sha512-lZJHviu3WkFcpkKtQok+2KDP+c5Qk0wsZCtUUWwrVyha1bOFelocDOJJgu3FHA99qsUAAh+PJeZIivzrDspF8w==
+browserslist-useragent-regexp@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/browserslist-useragent-regexp/-/browserslist-useragent-regexp-3.0.2.tgz#a97951446c6a0142b6f5c3663be2d19757375826"
+  integrity sha512-hOvTo9ObY+2PvCLxydvam5WD9hlvWB4bFzRLxc/M5OdJfzjgfsQ9wEF7EpJJP7UJUAnKJdJK28XsSrl5d1DfoA==
   dependencies:
     "@types/node" "^16.9.6"
     argue-cli "^1.2.0"
