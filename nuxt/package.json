@@ -95,7 +95,7 @@
     "@storybook/addon-a11y": "6.3.9",
     "@types/jest": "27.0.2",
     "@types/jsonwebtoken": "8.5.5",
-    "@types/markdown-it": "12.2.1",
+    "@types/markdown-it": "12.2.2",
     "@types/node": "14.17.20",
     "@types/twemoji": "12.1.2",
     "@types/vue-datetime": "1.0.1",
