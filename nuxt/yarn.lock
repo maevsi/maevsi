@@ -2638,18 +2638,18 @@
     defu "^5.0.0"
     lodash.template "^4.5.0"
 
-"@nuxtjs/composition-api@0.29.2":
-  version "0.29.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/composition-api/-/composition-api-0.29.2.tgz#f3e36eb04c9a0be71d30af947b2facc20b873c6c"
-  integrity sha512-Dk2rh2xdcqGPBwmFhNs74wuCs7GWutpDylVuV8cGj/4RpxlwhXQXv8P4iWOp85Y3HEdxDYaXsb+JtMyEnXqxnw==
+"@nuxtjs/composition-api@0.29.3":
+  version "0.29.3"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/composition-api/-/composition-api-0.29.3.tgz#04ea6d4757ed0217fd45250913b70830d55f5b6b"
+  integrity sha512-zHI807v8yrvxU8Cq/ISa7AYDRdBE5ajnuuSXEDrvFBX1KJh9ShxCeknZHzXrrnFKAXnIMcouMQnbgVtk5StTzw==
   dependencies:
-    "@vue/composition-api" "^1.2.1"
+    "@vue/composition-api" "^1.2.4"
     defu "^5.0.0"
     estree-walker "^2.0.2"
     fs-extra "^9.1.0"
     magic-string "^0.25.7"
     ufo "^0.7.9"
-    unplugin-vue2-script-setup "^0.6.4"
+    unplugin-vue2-script-setup "^0.6.11"
     upath "^2.0.1"
 
 "@nuxtjs/eslint-config-typescript@6.0.1":
@@ -5034,7 +5034,7 @@
   optionalDependencies:
     prettier "^1.18.2"
 
-"@vue/composition-api@^1.2.1":
+"@vue/composition-api@^1.2.4":
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.2.4.tgz#4befcefc0e1c570fd0879a2d8b8f901f3a4e35d0"
   integrity sha512-8LVV6O4slsroBhRKxly3em5H3D5Q+ggPG75lcilh5MfLGs69LEdwm6dKhSOXtQoSyMGF4Rq30E4DcouopM8Rxg==
@@ -20791,7 +20791,7 @@ unpipe@1.0.0, unpipe@~1.0.0:
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
 
-unplugin-vue2-script-setup@^0.6.4:
+unplugin-vue2-script-setup@^0.6.11:
   version "0.6.11"
   resolved "https://registry.yarnpkg.com/unplugin-vue2-script-setup/-/unplugin-vue2-script-setup-0.6.11.tgz#7c93e6eb8c48f3e5ad2088be1820c22a78548d61"
   integrity sha512-WfPy9LVAy5gwL66g6UftBig6yAEV6Y5qG8hQNO2L8rUCPww4vpKvAt7/hZtKb11I+jzwLaaaJP8KMzrxF5169w==
