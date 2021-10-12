@@ -1836,7 +1836,6 @@
 
 "@iktakahiro/markdown-it-katex@git+https://github.com/iktakahiro/markdown-it-katex.git":
   version "4.0.1"
-  uid fd03d2d21dbc02c73c8e651abd5386af076a1440
   resolved "git+https://github.com/iktakahiro/markdown-it-katex.git#fd03d2d21dbc02c73c8e651abd5386af076a1440"
   dependencies:
     katex "^0.12.0"
@@ -19013,11 +19012,6 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
-
-snyk@1.717.0:
-  version "1.717.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.717.0.tgz#4ea0b5388e6bff658b3f09a7aaf48c97eb5c25bd"
-  integrity sha512-OWVUEr1F24isElAGG7nxjEQnE6xaxpmgj3vDGLLz3ma2mvtgaUxjWT2fx5EopeEhe9tSk7uF6SUrgudCzrjUgQ==
 
 sort-keys@^1.0.0:
   version "1.1.2"
