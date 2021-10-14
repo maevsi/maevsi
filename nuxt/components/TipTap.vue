@@ -1,6 +1,6 @@
 <template>
   <div v-if="editor">
-    <div class="flex space-x-4">
+    <div class="flex overflow-auto space-x-4">
       <div class="flex space-x-1">
         <Button
           :icon-id="['fas', 'undo']"
