@@ -53,16 +53,19 @@
   a:focus {
     @apply outline-none;
     @apply ring;
+    @apply rounded;
   }
 
   button:focus {
     @apply outline-none;
     @apply ring;
+    @apply rounded;
   }
 
   .button:focus {
     @apply outline-none;
     @apply ring;
+    @apply rounded;
   }
 }
 
