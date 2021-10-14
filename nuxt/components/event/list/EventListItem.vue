@@ -38,7 +38,7 @@
         v-if="event.description"
         class="line-clamp-2 overflow-ellipsis text-text-dark"
       >
-        {{ $htmlToText($md.render(event.description)) }}
+        {{ $htmlToText($domPurify.sanitize(event.description)) }}
       </p>
     </AppLink>
   </li>
