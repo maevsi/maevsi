@@ -24,7 +24,7 @@ test('gets ical string', () => {
   expect(
     getIcalString({
       authorUsername: 'authorUsername',
-      description: 'description',
+      description: '<p>description</p>',
       end: new Date(),
       location: 'location',
       name: 'name',
@@ -49,9 +49,9 @@ DTSTART:19700101T000000\r
 DTEND:19700101T000000\r
 SUMMARY:name\r
 LOCATION:location\r
-DESCRIPTION:https://maevsi.test/event/authorUsername/slug description\r
-X-ALT-DESC;FMTTYPE=text/html:<p>https://maevsi.test/event/authorUsername/s\r
- lug\\ndescription</p>\\n\r
+DESCRIPTION:https://maevsi.test/event/authorUsername/slug\\n\\ndescription\r
+X-ALT-DESC;FMTTYPE=text/html:https://maevsi.test/event/authorUsername/slug\r
+ \\n<p>description</p>\r
 ORGANIZER;CN="authorUsername":mailto:authorUsername@maevsi.test\r
 URL;VALUE=URI:https://maevsi.test/event/authorUsername/slug\r
 STATUS:CONFIRMED\r
