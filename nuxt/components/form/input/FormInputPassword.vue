@@ -1,5 +1,6 @@
 <template>
   <FormInput
+    v-if="formInput"
     :error="formInput.$error"
     :label-for="`input-${id}`"
     :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"

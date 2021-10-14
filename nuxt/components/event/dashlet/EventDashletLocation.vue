@@ -1,6 +1,9 @@
 <template>
   <EventDashlet
-    v-if="(event.isInPerson && event.location) || (event.isRemote && event.url)"
+    v-if="
+      event &&
+      ((event.isInPerson && event.location) || (event.isRemote && event.url))
+    "
   >
     <span>
       <FontAwesomeIcon :icon="['fas', 'map-marker']" :title="$t('location')" />

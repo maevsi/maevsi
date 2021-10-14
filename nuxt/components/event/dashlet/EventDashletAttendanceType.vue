@@ -1,5 +1,5 @@
 <template>
-  <EventDashlet v-if="event.isInPerson || event.isRemote">
+  <EventDashlet v-if="event && (event.isInPerson || event.isRemote)">
     <span>
       <FontAwesomeIcon
         v-if="event.isInPerson"

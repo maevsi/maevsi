@@ -1,5 +1,6 @@
 <template>
   <FormInput
+    v-if="formInput"
     :error="formInput.$error"
     :is-optional="isOptional"
     :label-for="`input-${id}`"

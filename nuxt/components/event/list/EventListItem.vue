@@ -1,5 +1,6 @@
 <template>
   <li
+    v-if="event"
     class="mb-2 last:mb-0"
     :class="{
       'opacity-75': event.end

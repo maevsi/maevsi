@@ -1,5 +1,5 @@
 <template>
-  <EventDashlet v-if="event.start">
+  <EventDashlet v-if="event && event.start">
     <span>
       <FontAwesomeIcon :icon="['fas', 'calendar-day']" :title="$t('start')" />
     </span>

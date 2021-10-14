@@ -1,5 +1,5 @@
 <template>
-  <div class="flex text-left whitespace-nowrap">
+  <div v-if="contact" class="flex text-left whitespace-nowrap">
     <div class="relative">
       <AccountProfilePicture
         v-if="contact.accountUsername"
