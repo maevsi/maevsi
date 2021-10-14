@@ -12,9 +12,9 @@
         <label
           class="font-semibold mb-1 md:mb-0"
           :class="{
-            'text-green-600': success,
-            'text-yellow-600': warning,
-            'text-red-500': error,
+            'form-input-success': success,
+            'form-input-warning': warning,
+            'form-input-error': error,
           }"
           :for="labelFor"
         >
