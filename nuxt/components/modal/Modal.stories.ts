@@ -1,4 +1,4 @@
-import Vuex from 'vuex'
+import { Store } from 'vuex'
 
 import { defineComponent } from '@nuxtjs/composition-api'
 import Modal from './Modal.vue'
@@ -12,7 +12,7 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { Modal },
     props: Object.keys(argTypes),
-    store: new Vuex.Store({
+    store: new Store({
       state: {
         modals: [{ contentBody: 'contentBody', id: 'Modal', isVisible: true }],
       },

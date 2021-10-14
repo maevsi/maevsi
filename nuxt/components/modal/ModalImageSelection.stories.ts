@@ -1,4 +1,4 @@
-import Vuex from 'vuex'
+import { Store } from 'vuex'
 import { graphql } from 'msw'
 
 import { defineComponent } from '@nuxtjs/composition-api'
@@ -41,7 +41,7 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { ModalImageSelection },
     props: Object.keys(argTypes),
-    store: new Vuex.Store({
+    store: new Store({
       state: {
         modals: [{ id: 'ModalImageSelection', isVisible: true }],
       },
