@@ -476,7 +476,7 @@ en:
   dataAcquisitionLogItem4: host name of the accessing computer
   dataAcquisitionLogItem5: time of the server request
   dataAcquisitionLogItem6: IP address
-  dataAcquisitionLogTitle: server log files
+  dataAcquisitionLogTitle: Server log files
   dataCollection: Data collection on this website
   dataCollectionLiabilityDescription: The data processing on this website is carried out by the website operator. You can find his contact details in the imprint of this website.
   dataCollectionLiabilityTitle: Who is responsible for the data collection on this website?
