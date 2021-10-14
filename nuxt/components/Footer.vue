@@ -3,7 +3,8 @@
     class="bg-background-bright dark:bg-background-dark leading-6 text-sm"
   >
     <div class="container mx-auto px-2 py-8">
-      <div class="flex flex-wrap justify-between mx-auto w-5/6">
+      <!-- Justifying evenly, instead of "between", centers a single element. -->
+      <div class="flex flex-wrap justify-evenly mx-auto w-5/6">
         <FooterCategory :heading="$t('product')">
           <AppLink :to="localePath('/#overview')">
             {{ $t('overview') }}
