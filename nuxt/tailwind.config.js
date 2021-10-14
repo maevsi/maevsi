@@ -28,12 +28,12 @@ module.exports = {
           dark: '#202020',
         },
         link: {
-          bright: 'rgb(96, 165, 250)', // theme('colors.blue.400')
-          dark: 'rgb(29, 78, 216)', // theme('colors.blue.700')
+          bright: defaultTheme.colors.blue['400'],
+          dark: defaultTheme.colors.blue['700'],
         },
         text: {
-          bright: 'rgb(249, 250, 251)', // theme('colors.gray.50')
-          dark: 'rgb(17, 24, 39)', // theme('colors.gray.900')
+          bright: defaultTheme.colors.gray['50'],
+          dark: defaultTheme.colors.gray['900'],
         },
       },
       fontFamily: {
