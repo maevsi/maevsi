@@ -71,3 +71,7 @@
     @apply m-auto prose-sm dark:prose-dark sm:prose sm:dark:prose-dark lg:prose-lg lg:dark:prose-dark xl:prose-xl xl:dark:prose-dark;
   }
 }
+
+.ProseMirror > * {
+  @apply maevsi-prose;
+}

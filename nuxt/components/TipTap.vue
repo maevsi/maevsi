@@ -142,12 +142,6 @@ export default defineComponent({
 })
 </script>
 
-<style>
-.ProseMirror > * {
-  @apply maevsi-prose;
-}
-</style>
-
 <i18n lang="yml">
 de:
   blockquote: Anführungszeichen
