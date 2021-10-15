@@ -21,13 +21,17 @@
       >
         <div id="logo" class="h-10 w-32" />
       </AppLink>
-      <input
-        class="col-span-2 md:col-span-1 hidden md:invisible rounded"
-        :class="{ 'md:col-span-2': signedInUsername }"
-        disabled
-        placeholder="search"
-        type="text"
-      />
+      <div>
+        <label class="hidden" for="search">{{ $t('search') }}</label>
+        <input
+          id="search"
+          class="col-span-2 md:col-span-1 hidden md:invisible rounded"
+          :class="{ 'md:col-span-2': signedInUsername }"
+          disabled
+          placeholder="search"
+          type="text"
+        />
+      </div>
       <div
         class="
           col-start-3
@@ -117,6 +121,7 @@ de:
   events: Veranstaltungen entdecken
   home: Nach Hause
   menuShow: Menü anzeigen
+  search: Suche
   signIn: Anmelden
 en:
   browserUnsupported: "Your browser's version is not officially supported. Please use a version that is up to date."
@@ -124,5 +129,6 @@ en:
   events: Explore events
   home: Head home
   menuShow: Show menu
+  search: Search
   signIn: Sign in
 </i18n>

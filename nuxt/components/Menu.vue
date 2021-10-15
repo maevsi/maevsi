@@ -33,14 +33,13 @@
           </AppLink>
           <div class="flex-1 w-12" />
           <div class="flex items-center space-x-2">
-            <AppLink
-              class="text-text-dark dark:text-text-bright"
-              :is-colored="false"
+            <ButtonIcon
+              :aria-label="$t('accountSettings')"
               :to="localePath(`/account/${signedInUsername}/settings`)"
               @click="$emit('onMenuHide')"
             >
               <IconCog class="h-6 w-6" />
-            </AppLink>
+            </ButtonIcon>
             <ButtonIcon
               :aria-label="$t('signOut')"
               @click="$global.signOut($apollo.getClient(), $store)"
@@ -124,6 +123,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
+  accountSettings: Konto bearbeiten
   eventNew: Veranstaltung erstellen
   events: Veranstaltungen entdecken
   menuHide: Menü verstecken
@@ -131,6 +131,7 @@ de:
   signIn: Anmelden
   signOut: Abmelden
 en:
+  accountSettings: Edit account
   eventNew: Create event
   events: Explore events
   menuHide: Hide menu

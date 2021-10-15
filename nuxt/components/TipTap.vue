@@ -3,11 +3,13 @@
     <div class="flex overflow-auto space-x-4">
       <div class="flex space-x-1">
         <Button
+          :aria-label="$t('undo')"
           :icon-id="['fas', 'undo']"
           :title="$t('undo')"
           @click="editor.chain().focus().undo().run()"
         />
         <Button
+          :aria-label="$t('redo')"
           :icon-id="['fas', 'redo']"
           :title="$t('redo')"
           @click="editor.chain().focus().redo().run()"
@@ -15,18 +17,21 @@
       </div>
       <div class="flex space-x-1">
         <Button
+          :aria-label="$t('bold')"
           :class="{ 'is-active': editor.isActive('bold') }"
           :icon-id="['fas', 'bold']"
           :title="$t('bold')"
           @click="editor.chain().focus().toggleBold().run()"
         />
         <Button
+          :aria-label="$t('italic')"
           :class="{ 'is-active': editor.isActive('italic') }"
           :icon-id="['fas', 'italic']"
           :title="$t('italic')"
           @click="editor.chain().focus().toggleItalic().run()"
         />
         <Button
+          :aria-label="$t('strike')"
           :class="{ 'is-active': editor.isActive('strike') }"
           :icon-id="['fas', 'strikethrough']"
           :title="$t('strike')"
@@ -35,11 +40,13 @@
       </div>
       <div class="flex space-x-1">
         <Button
+          :aria-label="$t('paragraph')"
           :icon-id="['fas', 'paragraph']"
           :title="$t('paragraph')"
           @click="editor.chain().focus().setParagraph().run()"
         />
         <Button
+          :aria-label="$t('heading')"
           :icon-id="['fas', 'heading']"
           :title="$t('heading')"
           @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
@@ -47,11 +54,13 @@
       </div>
       <div class="flex space-x-1">
         <Button
+          :aria-label="$t('listUl')"
           :icon-id="['fas', 'list-ul']"
           :title="$t('listUl')"
           @click="editor.chain().focus().toggleBulletList().run()"
         />
         <Button
+          :aria-label="$t('listOl')"
           :icon-id="['fas', 'list-ol']"
           :title="$t('listOl')"
           @click="editor.chain().focus().toggleOrderedList().run()"
@@ -64,11 +73,13 @@
           @click="editor.chain().focus().toggleBlockquote().run()"
         />
         <Button
+          :aria-label="$t('code')"
           :icon-id="['fas', 'code']"
           :title="$t('code')"
           @click="editor.chain().focus().toggleCode().run()"
         />
         <Button
+          :aria-label="$t('horizontalRule')"
           :icon-id="['fas', 'arrows-alt-v']"
           :title="$t('horizontalRule')"
           @click="editor.chain().focus().setHorizontalRule().run()"
