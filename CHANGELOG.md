@@ -1,3 +1,22 @@
+# [0.100.0](https://github.com/maevsi/maevsi/compare/0.99.5...0.100.0) (2021-10-15)
+
+
+### Bug Fixes
+
+* **app-link:** centralize classes ([b5b360d](https://github.com/maevsi/maevsi/commit/b5b360d66e16fe905a9614033c786f9ae0271643))
+* **app-link:** remove icon property ([1ba5d6c](https://github.com/maevsi/maevsi/commit/1ba5d6cf1bf70514caa9c91736631f84df8e42d8))
+* **ical:** adapt new text format ([7e0b064](https://github.com/maevsi/maevsi/commit/7e0b064c09a9e4cfc4ff84012424a8f86238ec95))
+* **privacy-policy:** correct typo ([095ff17](https://github.com/maevsi/maevsi/commit/095ff17c02a26a2e052c7f93997ebccf3587815c))
+* **tailwind:** centralize prose definition ([938ba74](https://github.com/maevsi/maevsi/commit/938ba74b7308c4eba828b3b58a6ddc54b03e0f52))
+* **tiptap:** add missing story ([7425896](https://github.com/maevsi/maevsi/commit/7425896f197b320dfe751562841d68b7dac87379))
+* **tiptap:** move css to root ([17c631e](https://github.com/maevsi/maevsi/commit/17c631ee7bd8ea283208513ce981983b0efae33d))
+
+
+### Features
+
+* add text editor ([b7a91d4](https://github.com/maevsi/maevsi/commit/b7a91d475c3f763ddbbd042448376acf7896bd2e))
+* **tailwind:** make focus rounded ([b18bdfc](https://github.com/maevsi/maevsi/commit/b18bdfc3815e2bb9361e4decb6d4db4cb841bf1c))
+
 ## [0.99.5](https://github.com/maevsi/maevsi/compare/0.99.4...0.99.5) (2021-10-11)
 
 
