@@ -1,3 +1,15 @@
+# [0.101.0](https://github.com/maevsi/maevsi/compare/0.100.1...0.101.0) (2021-10-15)
+
+
+### Bug Fixes
+
+* **event:** display description as prose ([31239d0](https://github.com/maevsi/maevsi/commit/31239d0fd31ac578db8d57fea352170a597fc9b9))
+
+
+### Features
+
+* **tiptap:** add header and link buttons ([22a6d04](https://github.com/maevsi/maevsi/commit/22a6d04fdfc84837180a1c27bf5f94de131ffee1))
+
 ## [0.100.1](https://github.com/maevsi/maevsi/compare/0.100.0...0.100.1) (2021-10-15)
 
 
