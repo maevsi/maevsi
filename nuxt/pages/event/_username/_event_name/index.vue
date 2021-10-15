@@ -201,13 +201,7 @@
       </div>
       <div v-if="event.description">
         <hr class="my-4" />
-        <!-- Do not insert other characters (newlines) in vue-markdown's body! -->
-        <vue-markdown
-          :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
-          class="description maevsi-prose"
-          :html="false"
-          >{{ event.description }}
-        </vue-markdown>
+        <div v-dompurify-html="event.description" />
       </div>
     </div>
   </div>

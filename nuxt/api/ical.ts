@@ -1,5 +1,6 @@
 import { ServerResponse } from 'http'
 
+import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
 
 import { IncomingMessageWithBody } from '~/types/http'
@@ -31,7 +32,6 @@ export default function (
 export function getIcalString(event: Event): string {
   const { htmlToText } = require('html-to-text')
   const moment = require('moment')
-  const md = require('markdown-it')()
 
   const userEventPath = event.authorUsername + '/' + event.slug
   const eventUrl =
@@ -40,7 +40,7 @@ export function getIcalString(event: Event): string {
     '/event/' +
     userEventPath
   const eventDescriptionHtml = event.description
-    ? md.render(`${eventUrl}\n${event.description}`)
+    ? `${eventUrl}\n${event.description}`
     : ''
 
   return ical({
@@ -78,10 +78,10 @@ export function getIcalString(event: Event): string {
         summary: event.name, // The event's title.
         ...(event.description && {
           description: {
-            plain: htmlToText(eventDescriptionHtml),
+            plain: htmlToText(DOMPurify.sanitize(eventDescriptionHtml)),
             html: eventDescriptionHtml,
           },
-          // description: htmlToText(eventDescriptionHtml),
+          // description: htmlToText(DOMPurify.sanitize(eventDescriptionHtml)),
         }),
         ...(event.location && { location: event.location }),
         organizer: {
