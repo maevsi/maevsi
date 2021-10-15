@@ -1,3 +1,10 @@
+## [0.100.1](https://github.com/maevsi/maevsi/compare/0.100.0...0.100.1) (2021-10-15)
+
+
+### Bug Fixes
+
+* improve various accessibility issues ([9742184](https://github.com/maevsi/maevsi/commit/97421844c4dd9e655b4205c6bbf5bb64c89975b3))
+
 # [0.100.0](https://github.com/maevsi/maevsi/compare/0.99.5...0.100.0) (2021-10-15)
 
 
