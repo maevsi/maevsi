@@ -44,6 +44,18 @@
           :title="$t('heading')"
           @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
         />
+        <Button
+          :aria-label="$t('heading')"
+          :icon-id="['fas', 'heading']"
+          :title="$t('heading')"
+          @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+        />
+        <Button
+          :aria-label="$t('heading')"
+          :icon-id="['fas', 'heading']"
+          :title="$t('heading')"
+          @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
+        />
       </div>
       <div class="flex space-x-1">
         <Button
@@ -59,6 +71,20 @@
       </div>
       <div class="flex space-x-1">
         <Button
+          :aria-label="$t('link')"
+          :icon-id="['fas', 'link']"
+          :title="$t('link')"
+          @click="setLink"
+        />
+        <Button
+          :aria-label="$t('linkRemove')"
+          :disabled="!editor.isActive('link')"
+          :icon-id="['fas', 'unlink']"
+          :title="$t('linkRemove')"
+          @click="editor.chain().focus().unsetLink().run()"
+        />
+        <Button
+          :aria-label="$t('blockquote')"
           :icon-id="['fas', 'quote-right']"
           :title="$t('blockquote')"
           @click="editor.chain().focus().toggleBlockquote().run()"
@@ -68,6 +94,8 @@
           :title="$t('code')"
           @click="editor.chain().focus().toggleCode().run()"
         />
+      </div>
+      <div class="flex space-x-1">
         <Button
           :icon-id="['fas', 'arrows-alt-v']"
           :title="$t('horizontalRule')"
@@ -89,7 +117,14 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import { Editor, EditorContent } from '@tiptap/vue-2'
+import { Link } from '@tiptap/extension-link'
 import StarterKit from '@tiptap/starter-kit'
+
+Link.configure({
+  HTMLAttributes: {
+    rel: 'nofollow noopener noreferrer',
+  },
+})
 
 export default defineComponent({
   components: {
@@ -122,7 +157,7 @@ export default defineComponent({
   mounted() {
     this.editor = new Editor({
       content: this.value,
-      extensions: [StarterKit],
+      extensions: [StarterKit, Link],
       editorProps: {
         attributes: {
           class: 'form-input',
@@ -139,6 +174,34 @@ export default defineComponent({
 
     this.editor.destroy()
   },
+  methods: {
+    setLink() {
+      if (!this.editor) return
+
+      const previousUrl = this.editor.getAttributes('link').href
+      const url = window.prompt('URL', previousUrl)
+
+      // cancelled
+      if (url === null) {
+        return
+      }
+
+      // empty
+      if (url === '') {
+        this.editor.chain().focus().extendMarkRange('link').unsetLink().run()
+
+        return
+      }
+
+      // update link
+      this.editor
+        .chain()
+        .focus()
+        .extendMarkRange('link')
+        .setLink({ href: url, target: '_blank' })
+        .run()
+    },
+  },
 })
 </script>
 
@@ -150,6 +213,8 @@ de:
   heading: Überschrift
   horizontalRule: Horizontaler Trennstrich
   italic: Kursiv
+  link: Link
+  linkRemove: Link entfernen
   listOl: Geordnete Liste
   listUl: Ungeordnete Liste
   paragraph: Absatz
@@ -162,6 +227,8 @@ en:
   code: Code
   heading: Heading
   horizontalRule: Horizontal rule
+  link: Link
+  linkRemove: Unlink
   listOl: Urdered list
   listUl: Unordered list
   italic: Italic
