@@ -1,5 +1,6 @@
 <template>
   <tr
+    v-if="contact"
     :key="contact.nodeId"
     :class="{
       'animate-pulse': isDeleting,

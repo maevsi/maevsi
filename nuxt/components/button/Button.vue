@@ -7,10 +7,14 @@
       :aria-label="ariaLabel"
       :class="['button', ...(buttonClass ? [buttonClass] : [])].join(' ')"
       :disabled="disabled"
-      :icon-id="iconId"
       :is-colored="false"
       :to="to"
     >
+      <FontAwesomeIcon
+        v-if="iconId"
+        :class="{ 'mr-2': $slots.default }"
+        :icon="iconId"
+      />
       <slot />
     </AppLink>
     <button

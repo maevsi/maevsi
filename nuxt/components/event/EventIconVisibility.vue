@@ -1,16 +1,16 @@
 <template>
   <FontAwesomeIcon
-    v-if="event.isArchived"
+    v-if="event && event.isArchived"
     :icon="['fas', 'archive']"
     :title="$t('archived')"
   />
   <FontAwesomeIcon
-    v-else-if="event.visibility === 'PUBLIC'"
+    v-else-if="event && event.visibility === 'PUBLIC'"
     :icon="['fas', 'globe-africa']"
     :title="$t('public')"
   />
   <FontAwesomeIcon
-    v-else-if="event.visibility === 'PRIVATE'"
+    v-else-if="event && event.visibility === 'PRIVATE'"
     :icon="['fas', 'key']"
     :title="$t('private')"
   />

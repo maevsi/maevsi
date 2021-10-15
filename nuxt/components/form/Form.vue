@@ -1,5 +1,6 @@
 <template>
   <form
+    v-if="form"
     ref="form"
     class="card dark:card-dark"
     :class="[

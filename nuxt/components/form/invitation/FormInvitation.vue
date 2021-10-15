@@ -1,5 +1,6 @@
 <template>
   <Form
+    v-if="event"
     ref="form"
     :form="$v.form"
     :form-sent="form.sent"

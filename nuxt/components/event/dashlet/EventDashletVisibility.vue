@@ -1,5 +1,5 @@
 <template>
-  <EventDashlet>
+  <EventDashlet v-if="event">
     <span>
       <EventIconVisibility :event="event" />
     </span>

@@ -5,7 +5,7 @@
   />
   <div v-else>
     <div
-      v-if="allInvitations"
+      v-if="allInvitations && event"
       class="
         bg-white
         shadow

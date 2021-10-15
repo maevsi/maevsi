@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="formInput.$model && !formInput.$invalid"
+    v-if="formInput && formInput.$model && !formInput.$invalid"
     class="text-green-600 text-left"
   >
     <slot />
