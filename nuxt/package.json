@@ -50,9 +50,9 @@
     "@tailwindcss/typography": "0.4.1",
     "@tiptap/extension-link": "2.0.0-beta.23",
     "@tiptap/starter-kit": "2.0.0-beta.127",
-    "@tiptap/vue-2": "2.0.0-beta.58",
-    "@uppy/core": "2.1.0",
-    "@uppy/tus": "2.1.0",
+    "@tiptap/vue-2": "2.0.0-beta.60",
+    "@uppy/core": "2.1.1",
+    "@uppy/tus": "2.1.1",
     "apollo-cache-inmemory": "1.6.6",
     "apollo-client": "2.6.10",
     "apollo-link": "1.2.14",
@@ -132,7 +132,7 @@
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-standard": "22.0.0",
     "stylelint-no-unsupported-browser-features": "5.0.2",
-    "ts-jest": "27.0.5"
+    "ts-jest": "27.0.6"
   },
   "msw": {
     "workerDirectory": "static"
