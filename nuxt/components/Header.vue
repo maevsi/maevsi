@@ -33,7 +33,6 @@
           col-start-3
           hidden
           md:flex
-          flex-1
           items-center
           justify-self-end
           whitespace-nowrap
