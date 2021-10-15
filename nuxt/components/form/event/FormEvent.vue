@@ -198,34 +198,10 @@
       label-for="input-description"
       :title="$t('description')"
     >
-      <TabFlip
-        dark
-        :tabs="[
-          ['edit', $t('edit')],
-          ['preview', $t('preview')],
-        ]"
-      >
-        <template slot="front">
-          <textarea
-            id="input-description"
-            v-model.trim="$v.form.description.$model"
-            class="form-input h-full rounded-t-none"
-          />
-        </template>
-        <template slot="back">
-          <div class="card dark:card-dark h-full rounded-t-none rounded-b">
-            <vue-markdown
-              v-if="$v.form.description.$model"
-              :anchor-attributes="{ rel: 'nofollow noopener noreferrer' }"
-              class="description h-full maevsi-prose rounded-b"
-              :source="$v.form.description.$model"
-            />
-            <div v-else class="h-full text-center">
-              {{ $t('previewNoContent') }}
-            </div>
-          </div>
-        </template>
-      </TabFlip>
+      <TipTap
+        v-model="$v.form.description.$model"
+        class="description h-full rounded-b"
+      />
       <template slot="inputError">
         <FormInputError
           :form-input="$v.form.description"
@@ -233,17 +209,6 @@
         >
           {{ $t('globalValidationLength') }}
         </FormInputError>
-      </template>
-      <template slot="inputInfo">
-        <i18n class="max-w-full truncate" path="inputInfoDescription">
-          <template #markdown>
-            <AppLink
-              to="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
-            >
-              {{ $t('markdown') }}
-            </AppLink>
-          </template>
-        </i18n>
       </template>
     </FormInput>
     <FormInput
@@ -503,12 +468,10 @@ de:
   eventCreateSuccess: Veranstaltung erfolgreich erstellt.
   eventUpdate: Veranstaltung aktualisieren
   eventUpdateSuccess: Veranstaltung erfolgreich aktualisiert.
-  inputInfoDescription: Textformatierung mit {markdown} wird unterstützt.
   inputInfoLocation: Ein Suchbegriff für Google Maps.
   inputInfoUrl: Eine Web-URL für digitale Veranstaltungen.
   isInPerson: vor Ort
   isRemote: digital
-  markdown: Markdown
   maximumInviteeCount: Maximale Gästezahl
   name: Name
   namePlaceholder: Willkommensfeier
@@ -530,12 +493,10 @@ en:
   eventCreateSuccess: Event created successfully.
   eventUpdate: Update event
   eventUpdateSuccess: Event updated successfully.
-  inputInfoDescription: Text formatting with {markdown} is supported.
   inputInfoLocation: A search phrase for Google Maps.
   inputInfoUrl: A web URL for remote events.
   isInPerson: in person
   isRemote: remote
-  markdown: Markdown
   maximumInviteeCount: Maximum invitee count
   name: Name
   namePlaceholder: Welcome Party
