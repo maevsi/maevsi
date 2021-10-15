@@ -9,11 +9,6 @@
     target="_blank"
     @click="$emit('click')"
   >
-    <FontAwesomeIcon
-      v-if="iconId"
-      :class="{ 'mr-2': $slots.default }"
-      :icon="iconId"
-    />
     <slot />
   </a>
   <nuxt-link
@@ -23,27 +18,18 @@
     :to="to"
     @click.native="$emit('click')"
   >
-    <FontAwesomeIcon
-      v-if="iconId"
-      :class="{ 'mr-2': $slots.default }"
-      :icon="iconId"
-    />
     <slot />
   </nuxt-link>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   props: {
     append: {
       default: false,
       type: Boolean,
-    },
-    iconId: {
-      default: undefined,
-      type: Array as PropType<string[] | undefined>,
     },
     isColored: {
       default: true,
@@ -61,7 +47,7 @@ export default defineComponent({
   computed: {
     linkClasses(): string {
       return [
-        'items-center inline-flex rounded',
+        'rounded',
         ...(this.isColored ? ['text-link-dark dark:text-link-bright'] : []),
       ].join(' ')
     },
