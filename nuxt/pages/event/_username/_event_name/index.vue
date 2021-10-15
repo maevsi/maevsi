@@ -201,7 +201,7 @@
       </div>
       <div v-if="event.description">
         <hr class="my-4" />
-        <div v-dompurify-html="event.description" />
+        <div v-dompurify-html="event.description" class="maevsi-prose" />
       </div>
     </div>
   </div>
