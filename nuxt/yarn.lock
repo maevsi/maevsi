@@ -8381,10 +8381,10 @@ cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-cp-file@9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/cp-file/-/cp-file-9.0.0.tgz#11986b27fd0ea7e6eadaf8a86cf16ba7e9b830ce"
-  integrity sha512-hNEM3AuZz84zOPgL8ozJ057+DjuD6LpwyYNiyTsLDU71Ke2E3KV909xhGYLK7WQ0srJRwzs/1+bSE1pk/HRC6w==
+cp-file@9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/cp-file/-/cp-file-9.1.0.tgz#e98e30db72d57d47b5b1d444deb70d05e5684921"
+  integrity sha512-3scnzFj/94eb7y4wyXRWwvzLFaQp87yyfTnChIjlfYrVqp5lVO3E2hIJMeQIltUT0K2ZAB3An1qXcBmwGyvuwA==
   dependencies:
     graceful-fs "^4.1.2"
     make-dir "^3.0.0"
@@ -12220,7 +12220,27 @@ inline-style-parser@0.1.1:
   resolved "https://registry.yarnpkg.com/inline-style-parser/-/inline-style-parser-0.1.1.tgz#ec8a3b429274e9c0a1f1c4ffa9453a7fef72cea1"
   integrity sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==
 
-inquirer@7.3.3, inquirer@^7.3.3:
+inquirer@8.1.5:
+  version "8.1.5"
+  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-8.1.5.tgz#2dc5159203c826d654915b5fe6990fd17f54a150"
+  integrity sha512-G6/9xUqmt/r+UvufSyrPpt84NYwhKZ9jLsgMbQzlx804XErNupor8WQdBnBRrXmBfTPpuwf1sV+ss2ovjgdXIg==
+  dependencies:
+    ansi-escapes "^4.2.1"
+    chalk "^4.1.1"
+    cli-cursor "^3.1.0"
+    cli-width "^3.0.0"
+    external-editor "^3.0.3"
+    figures "^3.0.0"
+    lodash "^4.17.21"
+    mute-stream "0.0.8"
+    ora "^5.4.1"
+    run-async "^2.4.0"
+    rxjs "^7.2.0"
+    string-width "^4.1.0"
+    strip-ansi "^6.0.0"
+    through "^2.3.6"
+
+inquirer@^7.3.3:
   version "7.3.3"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.3.3.tgz#04d176b2af04afc157a83fd7c100e98ee0aad003"
   integrity sha512-JG3eIAj5V9CwcGvuOmoo6LB9kbAYT8HXffUl6memuszlwDC/qvFAJw49XJ5NROSFNPxp3iQg1GqkFhaY/CR0IA==
@@ -18423,32 +18443,32 @@ reg-gh-app-interface@^1.2.0:
   resolved "https://registry.yarnpkg.com/reg-gh-app-interface/-/reg-gh-app-interface-1.2.0.tgz#0961143d75a0f7453b5d07a4fd34591da96e6add"
   integrity sha512-jgEH91LWOYf7HfoO9HfX2aM71CHZs/V6Yb3yEbECK9CB69an4yNdx24l8dBUdKywesnhE/IzJ3AfOd4a84L0Og==
 
-reg-notify-github-plugin@0.10.16:
-  version "0.10.16"
-  resolved "https://registry.yarnpkg.com/reg-notify-github-plugin/-/reg-notify-github-plugin-0.10.16.tgz#aec821c179807f9f69156560c75fb396d7e78622"
-  integrity sha512-uZ4E+6ci7deE64OCw6Pt8D6CdIfxFWNap8hAsNlBDgTOEA2wrAz2mqDI9Q2ltU8P2EP/+5+tys8Qr77D1RSWhg==
+reg-notify-github-plugin@0.10.17:
+  version "0.10.17"
+  resolved "https://registry.yarnpkg.com/reg-notify-github-plugin/-/reg-notify-github-plugin-0.10.17.tgz#45f2e4d17d343e8c0e9123be624fdfc09707779a"
+  integrity sha512-iWyyB4FXLovfVIHIAp5FAiN2HAfOlUKvALZfcLipvV+QrRsuWdItYy0BEM4toV1XtpqlZU8Q/OCd/IyB0fF9BQ==
   dependencies:
     open "^8.0.0"
     reg-gh-app-interface "^1.2.0"
-    reg-suit-util "^0.10.16"
+    reg-suit-util "^0.10.17"
     request "^2.88.2"
     request-promise "^4.2.6"
     tiny-commit-walker "^1.1.2"
 
-reg-suit-core@^0.10.16:
-  version "0.10.16"
-  resolved "https://registry.yarnpkg.com/reg-suit-core/-/reg-suit-core-0.10.16.tgz#e2b4acf9d024bf6e5c0204db81b91490c0bea4e2"
-  integrity sha512-JcMapHjU63flo7S4n/9pTBh7YPN7Lc1MgDPHbI81JSMRj4bZG/ggXFAznu9rmVVZfhCdfW/gLNENo5Ci7J4hjA==
+reg-suit-core@^0.10.17:
+  version "0.10.17"
+  resolved "https://registry.yarnpkg.com/reg-suit-core/-/reg-suit-core-0.10.17.tgz#6fd5d89553485b79241d2172ec8b5434393e9f94"
+  integrity sha512-4unfY5sbBHTfmdY5+1pJEbqdE6mLNsgXuRUTu/ogPKkosMeLyGN1pC8H71Hf+gIumVE9rH8huXKZhelD/JtQtw==
   dependencies:
     cpx "^1.5.0"
     reg-cli "^0.17.0"
-    reg-suit-util "^0.10.16"
+    reg-suit-util "^0.10.17"
     rimraf "^3.0.2"
 
-reg-suit-util@^0.10.16:
-  version "0.10.16"
-  resolved "https://registry.yarnpkg.com/reg-suit-util/-/reg-suit-util-0.10.16.tgz#958028ab74a7968fcc69c350c1906353c7fdc550"
-  integrity sha512-Ul5SqlIgEoO/RU5FkQkj2E6vwHzldvINg5YIbwUQ4KIIHmiXCvyHRNj1mdUMYuGaGRGfET/NwuLOyvYfinCzOA==
+reg-suit-util@^0.10.17:
+  version "0.10.17"
+  resolved "https://registry.yarnpkg.com/reg-suit-util/-/reg-suit-util-0.10.17.tgz#ef9890445b8531bf39204475dfff11f9fe80ee5f"
+  integrity sha512-1ooPFnWgUVKcVTSrC9K8rRMIB2b3aTnjHl6WkQSqrLsHLurN9sxJEyZORXC+8nRQy+ZT0KmXJ+AlTZbhu+AfkA==
   dependencies:
     "@types/cli-progress" "^3.8.0"
     "@types/cli-spinner" "^0.2.0"
@@ -18464,16 +18484,16 @@ reg-suit-util@^0.10.16:
     mime-types "^2.1.27"
     mkdirp "^1.0.4"
 
-reg-suit@0.10.16:
-  version "0.10.16"
-  resolved "https://registry.yarnpkg.com/reg-suit/-/reg-suit-0.10.16.tgz#2fc67e327c02c9ae478264b8b7cde4eae4d65f50"
-  integrity sha512-GXI6poPdXF1ni5VlmhL8cM7GmmCAbRCKmMmTTzGsSLQax/nUhlc+4JSC7O15nG9Ki3Rk7uWXx2THZgJpKo8iSQ==
+reg-suit@0.10.17:
+  version "0.10.17"
+  resolved "https://registry.yarnpkg.com/reg-suit/-/reg-suit-0.10.17.tgz#2b53bb13cd9aef7c90976a4066dd3a1430e9d930"
+  integrity sha512-axopdO+zEeFUUiqvRQ0Oi9LEInepAUhxEtnp8u26M335KUc2tR57o0WfO0urtE+FLd5PIrJIgnc+w8aPLEJE0w==
   dependencies:
-    cp-file "9.0.0"
+    cp-file "9.1.0"
     ignore "5.1.8"
-    inquirer "7.3.3"
-    reg-suit-core "^0.10.16"
-    reg-suit-util "^0.10.16"
+    inquirer "8.1.5"
+    reg-suit-core "^0.10.17"
+    reg-suit-util "^0.10.17"
     yargs "17.0.1"
 
 regenerate-unicode-properties@^9.0.0:
