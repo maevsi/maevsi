@@ -87,16 +87,16 @@ export default defineComponent({
 
 <style>
 #logo {
-  background-image: url(/assets/static/logos/maevsi.svg);
+  background-image: url('/assets/static/logos/maevsi.svg');
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 html.dark #logo {
-  background-image: url(/assets/static/logos/maevsi_with-text_white.svg);
+  background-image: url('/assets/static/logos/maevsi_with-text_white.svg');
 }
 
 html.light #logo {
-  background-image: url(/assets/static/logos/maevsi_with-text_black.svg);
+  background-image: url('/assets/static/logos/maevsi_with-text_black.svg');
 }
 </style>
