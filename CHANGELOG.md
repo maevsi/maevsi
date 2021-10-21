@@ -1,3 +1,10 @@
+## [0.101.1](https://github.com/maevsi/maevsi/compare/0.101.0...0.101.1) (2021-10-21)
+
+
+### Bug Fixes
+
+* adapt stylelint-config-recommended-vue ([25e5042](https://github.com/maevsi/maevsi/commit/25e5042b3ce91b831e098a7ea9432047bda9b13b))
+
 # [0.101.0](https://github.com/maevsi/maevsi/compare/0.100.1...0.101.0) (2021-10-15)
 
 
