@@ -1,3 +1,10 @@
+## [0.101.2](https://github.com/maevsi/maevsi/compare/0.101.1...0.101.2) (2021-10-22)
+
+
+### Bug Fixes
+
+* **stylelint:** add postcss-html ([345cde1](https://github.com/maevsi/maevsi/commit/345cde1c14daa72e2a63b9c42c9873af5f3a53e5))
+
 ## [0.101.1](https://github.com/maevsi/maevsi/compare/0.101.0...0.101.1) (2021-10-21)
 
 
