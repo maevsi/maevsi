@@ -4048,10 +4048,10 @@
     lodash.merge "^4.6.2"
     lodash.uniq "^4.5.0"
 
-"@tiptap/core@^2.0.0-beta.125":
-  version "2.0.0-beta.125"
-  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.125.tgz#672a86f21727614bfe8d5bf41544ce83ea4a7c87"
-  integrity sha512-I3lju5hcjK6nhC29jJCdGoRdP0C5nPBHGN8y/fbFmCX0oQ/THuzVdMgaGPpkHjralPPMS3DqHD/Rx8Kbo8zClg==
+"@tiptap/core@^2.0.0-beta.126":
+  version "2.0.0-beta.126"
+  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.126.tgz#6d7b1210cf8364acd9d0e09bcf4cc963f286506c"
+  integrity sha512-N0m74nkGaX8MIVd71iqng1ovGZsPnD2f4H4CeMS4ZnKCLXZdt+v4Hqh3pOtiVzOnrdG9u78MWK3zhAJtpN3EuA==
   dependencies:
     "@types/prosemirror-commands" "^1.0.4"
     "@types/prosemirror-keymap" "^1.0.4"
@@ -4126,10 +4126,10 @@
     prosemirror-view "^1.20.3"
     tippy.js "^6.3.2"
 
-"@tiptap/extension-gapcursor@^2.0.0-beta.27":
-  version "2.0.0-beta.27"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-gapcursor/-/extension-gapcursor-2.0.0-beta.27.tgz#ced6cb7d39a388e60f8ec22889a015beb81b417a"
-  integrity sha512-Sk041ygN+PhAGiCnDfEtFl8sFmm+clKTHJZJwb6ixcdfgY9xkTpkrgswsAY5fvLnLxZUJvZSDOrsvysbh6M2MQ==
+"@tiptap/extension-gapcursor@^2.0.0-beta.28":
+  version "2.0.0-beta.28"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-gapcursor/-/extension-gapcursor-2.0.0-beta.28.tgz#7acdefeeb4215a3a453c6ac59e6233b808b8457e"
+  integrity sha512-8JsvzVRh/ZzO+yEj7HtpXOcHo7eYIo2/uSIbFx24RM3f1TZd2/icFHUg8yMlj0tdXk9i6N270t2L/Qs7SysvFA==
   dependencies:
     "@types/prosemirror-gapcursor" "^1.0.4"
     prosemirror-gapcursor "^1.2.0"
@@ -4197,12 +4197,12 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-text/-/extension-text-2.0.0-beta.13.tgz#da0af8d9a3f149d20076e15d88c6af21fb6d940f"
   integrity sha512-0EtAwuRldCAoFaL/iXgkRepEeOd55rPg5N4FQUN1xTwZT7PDofukP0DG/2jff/Uj17x4uTaJAa9qlFWuNnDvjw==
 
-"@tiptap/starter-kit@2.0.0-beta.127":
-  version "2.0.0-beta.127"
-  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.127.tgz#75546fa90b551a34d889a257ed7ae43e98f6ec84"
-  integrity sha512-NAy5qBApic4AdcAvcRqncJpl61n5op9i2LYq/esNJ0lySNH2ZlBZjaam21oWClONR98yihTdUSriIZgmGLIzQQ==
+"@tiptap/starter-kit@2.0.0-beta.128":
+  version "2.0.0-beta.128"
+  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.128.tgz#3a0edcace0965ec41e78e9c95ec659eab8277448"
+  integrity sha512-kj+WM30ZemeDy0uY/3/DtRaNDE9YQ8BLq2Qy4hcH6j9jufqUW4Fe2VC7QZ3xGHbKGhYu4tgXjAZKzvEserBGKg==
   dependencies:
-    "@tiptap/core" "^2.0.0-beta.125"
+    "@tiptap/core" "^2.0.0-beta.126"
     "@tiptap/extension-blockquote" "^2.0.0-beta.19"
     "@tiptap/extension-bold" "^2.0.0-beta.19"
     "@tiptap/extension-bullet-list" "^2.0.0-beta.18"
@@ -4210,7 +4210,7 @@
     "@tiptap/extension-code-block" "^2.0.0-beta.24"
     "@tiptap/extension-document" "^2.0.0-beta.13"
     "@tiptap/extension-dropcursor" "^2.0.0-beta.19"
-    "@tiptap/extension-gapcursor" "^2.0.0-beta.27"
+    "@tiptap/extension-gapcursor" "^2.0.0-beta.28"
     "@tiptap/extension-hard-break" "^2.0.0-beta.24"
     "@tiptap/extension-heading" "^2.0.0-beta.18"
     "@tiptap/extension-history" "^2.0.0-beta.16"
