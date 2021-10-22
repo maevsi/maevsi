@@ -16678,6 +16678,15 @@ postcss-gap-properties@^2.0.0:
   dependencies:
     postcss "^7.0.2"
 
+postcss-html@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-html/-/postcss-html-1.0.1.tgz#422a98b8accf85afad7a3cf3c28e912908f77a54"
+  integrity sha512-f82bNa/GkOIOx0dgVSPrOCX1lwQ/V1JDiWB/lvaLrCTZux4FEaMBoFfgn0mAWVcT7AawkWrVbKhKZcq/Oiu49g==
+  dependencies:
+    htmlparser2 "^7.1.2"
+    postcss "^8.3.11"
+    postcss-safe-parser "^6.0.0"
+
 postcss-image-set-function@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/postcss-image-set-function/-/postcss-image-set-function-3.0.1.tgz#28920a2f29945bed4c3198d7df6496d410d3f288"
