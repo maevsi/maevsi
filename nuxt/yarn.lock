@@ -16678,13 +16678,13 @@ postcss-gap-properties@^2.0.0:
   dependencies:
     postcss "^7.0.2"
 
-postcss-html@^1.0.0-0:
-  version "1.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/postcss-html/-/postcss-html-1.0.0-alpha.3.tgz#2dfcfa0a886a6a6f81f828911f982e819f007071"
-  integrity sha512-KSMzLN1Svwb8Mbda+Gdu+0Uq9bGPQ5EE6bRvfHTDo/qBghkosAVrwTPLe42kMRhPcvAKjFa5yLbsYfxvLYPLfQ==
+postcss-html@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-html/-/postcss-html-1.0.1.tgz#422a98b8accf85afad7a3cf3c28e912908f77a54"
+  integrity sha512-f82bNa/GkOIOx0dgVSPrOCX1lwQ/V1JDiWB/lvaLrCTZux4FEaMBoFfgn0mAWVcT7AawkWrVbKhKZcq/Oiu49g==
   dependencies:
     htmlparser2 "^7.1.2"
-    postcss "^8.3.9"
+    postcss "^8.3.11"
     postcss-safe-parser "^6.0.0"
 
 postcss-image-set-function@^3.0.1:
@@ -17270,7 +17270,7 @@ postcss@^8.1.10, postcss@^8.1.6, postcss@^8.2.1, postcss@^8.2.15, postcss@^8.2.4
     picocolors "^0.2.1"
     source-map-js "^0.6.2"
 
-postcss@^8.3.11, postcss@^8.3.9:
+postcss@^8.3.11:
   version "8.3.11"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.11.tgz#c3beca7ea811cd5e1c4a3ec6d2e7599ef1f8f858"
   integrity sha512-hCmlUAIlUiav8Xdqw3Io4LcpA1DOt7h3LSTAC4G6JGHFFaWzI6qvFt9oilvl8BmkbBRX1IhM90ZAmpk68zccQA==
@@ -20061,27 +20061,25 @@ stylehacks@^4.0.0:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
-stylelint-config-html@>=0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/stylelint-config-html/-/stylelint-config-html-0.0.2.tgz#02b083b71bdb883debc9a48c4b534b71a6977814"
-  integrity sha512-Hce8wRuYVfc6gJrm30leoT9jaFM+JXxgG9u8AXuIMAO2UXl0Bpsz5NIkLrnqaKAw+0WpPkAkgjyhxxMR7YSozw==
-  dependencies:
-    postcss-html "^1.0.0-0"
+stylelint-config-html@>=1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-html/-/stylelint-config-html-1.0.0.tgz#172acb996ee4c854e8c670fcff77ff0d98d3bec2"
+  integrity sha512-rKQUUWDpaYC7ybsS6tLxddjn6DxhjSIXybElSmcTyVQj3ExhmU3q+l41ktrlwHRyY0M5SkTkZiwngvYPYmsgSQ==
 
 stylelint-config-prettier@9.0.3:
   version "9.0.3"
   resolved "https://registry.yarnpkg.com/stylelint-config-prettier/-/stylelint-config-prettier-9.0.3.tgz#0dccebeff359dcc393c9229184408b08964d561c"
   integrity sha512-5n9gUDp/n5tTMCq1GLqSpA30w2sqWITSSEiAWQlpxkKGAUbjcemQ0nbkRvRUa0B1LgD3+hCvdL7B1eTxy1QHJg==
 
-stylelint-config-recommended-vue@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/stylelint-config-recommended-vue/-/stylelint-config-recommended-vue-0.0.5.tgz#dc439c3f38dfcb2348c733419cf2dc90a9f606ee"
-  integrity sha512-Qsa8mNL/GTf4KcpaiY+dvaLOsAMpg2y7b+gUj7Tx14k1Pr28h2V9Wi8mOPtohI1/5cGdYCcRMmWwq8u7mRU9wg==
+stylelint-config-recommended-vue@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-recommended-vue/-/stylelint-config-recommended-vue-1.0.0.tgz#5cd2f7190cdcdb7c006204d34e7d5e96bb4515be"
+  integrity sha512-F1lq75ZcMr+wfn2QaqJ52A75nJqLktWqEmRc/ZTjhhk+/XaSoZxTHf7SeT/tdE/Bhe+TuJxqM6cxZS/zRyM1bQ==
   dependencies:
-    stylelint-config-html ">=0.0.2"
-    stylelint-config-recommended ">=6.0.0-0"
+    stylelint-config-html ">=1.0.0"
+    stylelint-config-recommended ">=6.0.0"
 
-stylelint-config-recommended@>=6.0.0-0, stylelint-config-recommended@^6.0.0:
+stylelint-config-recommended@>=6.0.0, stylelint-config-recommended@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/stylelint-config-recommended/-/stylelint-config-recommended-6.0.0.tgz#fd2523a322836005ad9bf473d3e5534719c09f9d"
   integrity sha512-ZorSSdyMcxWpROYUvLEMm0vSZud2uB7tX1hzBZwvVY9SV/uly4AvvJPPhCcymZL3fcQhEQG5AELmrxWqtmzacw==
