@@ -16679,10 +16679,10 @@ postcss-gap-properties@^2.0.0:
   dependencies:
     postcss "^7.0.2"
 
-postcss-html@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/postcss-html/-/postcss-html-1.0.2.tgz#7a1481ee7edc775f234b602dd1471e3d8704426e"
-  integrity sha512-7CMtJYjPKdpR5m6BNjwJJO24PP4O4NRXvYo/bLbIvof8WBANFJvHIKVPEl56F6k5vUm1Z5Sz0k4J5Ucgtqv3ag==
+postcss-html@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-html/-/postcss-html-1.1.0.tgz#47908bc23aae85fe66036df64a2c3fc849cf2efc"
+  integrity sha512-90V3H0oXIn9vC5JAXTANd83PVvATzWX9b1Nv5KMVG5InUZRmISp9olcj7HDOMgABP5AI903fyB4ApXNuYTdfdg==
   dependencies:
     htmlparser2 "^7.1.2"
     postcss "^8.3.11"
