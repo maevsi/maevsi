@@ -52,15 +52,15 @@ jobs:
           # Push the Docker image to the registry on git pushes that either pushed a tag or one of the following branches: [master, develop]
           if [[
             (
-              "${{ github.event_name }}" == "create"
+              "${{ github.event_name }}" == "release"
               &&
-              ${{ startsWith(github.ref, 'refs/tags/') }} == "true"
+              "${{ startsWith(github.ref, 'refs/tags/') }}" == "true"
             )
             ||
             (
               "${{ github.event_name }}" == "push"
               &&
-              ${{ startsWith(github.ref, 'refs/heads/') }} == "true"
+              "${{ startsWith(github.ref, 'refs/heads/') }}" == "true"
               &&
               (
                 $VERSION == "latest"
