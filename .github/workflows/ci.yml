@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
   release:
-    types: [created]
+    types: [published]
 
 env:
   IMAGE_ID: ${{ github.repository }}
