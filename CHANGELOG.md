@@ -1,3 +1,10 @@
+## [0.102.3](https://github.com/maevsi/maevsi/compare/0.102.2...0.102.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* **ci:** use own access token to trigger release build ([8a30eff](https://github.com/maevsi/maevsi/commit/8a30eff22233abf3f3a609cf5a587f4de068d067))
+
 ## [0.102.2](https://github.com/maevsi/maevsi/compare/0.102.1...0.102.2) (2021-10-26)
 
 
