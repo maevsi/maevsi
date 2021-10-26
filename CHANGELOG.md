@@ -1,3 +1,10 @@
+## [0.102.5](https://github.com/maevsi/maevsi/compare/0.102.4...0.102.5) (2021-10-26)
+
+
+### Bug Fixes
+
+* **ci:** check for release instead of create ([0703772](https://github.com/maevsi/maevsi/commit/070377251456cf011521b1c6f7af45ac30df7b06)), closes [#403](https://github.com/maevsi/maevsi/issues/403)
+
 ## [0.102.4](https://github.com/maevsi/maevsi/compare/0.102.3...0.102.4) (2021-10-26)
 
 
