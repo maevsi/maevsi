@@ -1,37 +1,21 @@
 <template>
-  <AppLink
-    v-if="to"
-    ref="button"
-    :append="append"
-    :aria-label="ariaLabel"
-    :class="[...(buttonClass ? [buttonClass] : [])].join(' ')"
-    :disabled="disabled"
-    :is-colored="false"
-    :to="to"
-  >
-    <FontAwesomeIcon
-      v-if="iconId"
-      :class="{ 'mr-2': $slots.default }"
-      :icon="iconId"
-    />
-    <slot />
-  </AppLink>
-  <button
-    v-else
-    ref="button"
-    :aria-label="ariaLabel"
-    :class="[...(buttonClass ? [buttonClass] : [])].join(' ')"
-    :disabled="disabled"
-    :type="type"
-    @click="$emit('click')"
-  >
-    <FontAwesomeIcon
-      v-if="iconId"
-      :class="{ 'mr-2': $slots.default }"
-      :icon="iconId"
-    />
-    <slot />
-  </button>
+  <div class="text-center">
+    <Button
+      ref="button"
+      :append="append"
+      :aria-label="ariaLabel"
+      :button-class="
+        ['button', ...(buttonClass ? [buttonClass] : [])].join(' ')
+      "
+      :disabled="disabled"
+      :icon-id="iconId"
+      :to="to"
+      :type="type"
+      @click="$emit('click')"
+    >
+      <slot />
+    </Button>
+  </div>
 </template>
 
 <script lang="ts">

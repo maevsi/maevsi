@@ -252,6 +252,7 @@ module.exports = {
         },
       })
       addComponents({
+        // TODO: create button primary css class in tailwind and use inline-block below for button class itself.
         '.button': {
           backgroundColor: theme('colors.red.600'),
           borderRadius: theme('borderRadius.lg'),

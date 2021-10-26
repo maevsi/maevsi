@@ -1,5 +1,5 @@
 <template>
-  <Button
+  <ButtonPrimary
     :aria-label="$t('signIn')"
     :icon-id="['fas', 'user']"
     :to="
@@ -14,7 +14,7 @@
     @click="$emit('click')"
   >
     {{ $t('signIn') }}
-  </Button>
+  </ButtonPrimary>
 </template>
 
 <script lang="ts">
