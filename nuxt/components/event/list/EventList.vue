@@ -24,9 +24,9 @@
         :event="event"
       />
       <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
-        <Button :aria-label="$t('globalPagingMore')" @click="showMore">
+        <ButtonPrimary :aria-label="$t('globalPagingMore')" @click="showMore">
           {{ $t('globalPagingMore') }}
-        </Button>
+        </ButtonPrimary>
       </div>
     </ul>
     <p v-else class="text-center">{{ $t('noEvents') }}</p>

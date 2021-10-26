@@ -1,12 +1,12 @@
 <template>
-  <Button
+  <ButtonPrimary
     :aria-label="$t('eventUnlock')"
     :icon-id="['fas', 'key']"
     :to="localePath('/task/event/unlock')"
     @click="$emit('click')"
   >
     {{ $t('eventUnlock') }}
-  </Button>
+  </ButtonPrimary>
 </template>
 
 <i18n lang="yml">

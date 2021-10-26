@@ -112,9 +112,9 @@
         v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"
         class="flex justify-center"
       >
-        <Button :aria-label="$t('globalPagingMore')" @click="showMore">
+        <ButtonPrimary :aria-label="$t('globalPagingMore')" @click="showMore">
           {{ $t('globalPagingMore') }}
-        </Button>
+        </ButtonPrimary>
       </div>
     </div>
     <p v-else class="text-center">{{ $t('noPictures') }}</p>

@@ -1,12 +1,12 @@
 <template>
-  <Button
+  <ButtonPrimary
     :aria-label="$t('new')"
     :icon-id="['fas', 'plus']"
     :to="localePath('/task/event/create')"
     @click="$emit('click')"
   >
     {{ $t('new') }}
-  </Button>
+  </ButtonPrimary>
 </template>
 
 <i18n lang="yml">

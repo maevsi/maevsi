@@ -1,5 +1,5 @@
 <template>
-  <Button
+  <ButtonPrimary
     :aria-label="ariaLabel"
     :button-class="buttonClass"
     :disabled="disabled"
@@ -9,7 +9,7 @@
     @click="$emit('click')"
   >
     <slot />
-  </Button>
+  </ButtonPrimary>
 </template>
 
 <script lang="ts">

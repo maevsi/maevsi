@@ -87,7 +87,7 @@
           </tr>
           <tr>
             <td colspan="3">
-              <Button
+              <ButtonPrimary
                 :aria-label="$t('invitationAdd')"
                 :disabled="
                   event.inviteeCountMaximum
@@ -98,7 +98,7 @@
                 @click="add()"
               >
                 {{ $t('invitationAdd') }}
-              </Button>
+              </ButtonPrimary>
               <p class="text-center text-gray-500">
                 {{
                   $t('invitationsUsed', {
