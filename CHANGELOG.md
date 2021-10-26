@@ -1,3 +1,10 @@
+# [0.102.0](https://github.com/maevsi/maevsi/compare/0.101.2...0.102.0) (2021-10-26)
+
+
+### Features
+
+* **button:** add button primary ([91a3f80](https://github.com/maevsi/maevsi/commit/91a3f80f152569064b30712a5dd24bc53e473969))
+
 ## [0.101.2](https://github.com/maevsi/maevsi/compare/0.101.1...0.101.2) (2021-10-22)
 
 
