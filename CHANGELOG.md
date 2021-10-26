@@ -1,3 +1,10 @@
+## [0.102.2](https://github.com/maevsi/maevsi/compare/0.102.1...0.102.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **ci:** use published releases ([c6ebbf0](https://github.com/maevsi/maevsi/commit/c6ebbf0752ecde5373c111491e6d970be055f4b7))
+
 ## [0.102.1](https://github.com/maevsi/maevsi/compare/0.102.0...0.102.1) (2021-10-26)
 
 
