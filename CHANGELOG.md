@@ -1,3 +1,10 @@
+## [0.102.1](https://github.com/maevsi/maevsi/compare/0.102.0...0.102.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **ci:** trigger on release creation ([1b7e0d6](https://github.com/maevsi/maevsi/commit/1b7e0d6c819c104690d2e4c1db89876646261ef4)), closes [#403](https://github.com/maevsi/maevsi/issues/403)
+
 # [0.102.0](https://github.com/maevsi/maevsi/compare/0.101.2...0.102.0) (2021-10-26)
 
 
