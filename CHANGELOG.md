@@ -1,3 +1,10 @@
+## [0.102.4](https://github.com/maevsi/maevsi/compare/0.102.3...0.102.4) (2021-10-26)
+
+
+### Bug Fixes
+
+* **ci:** use personal access token in the correct place ([6f341dd](https://github.com/maevsi/maevsi/commit/6f341ddb084890861d253259c42622998c7a536c))
+
 ## [0.102.3](https://github.com/maevsi/maevsi/compare/0.102.2...0.102.3) (2021-10-26)
 
 
