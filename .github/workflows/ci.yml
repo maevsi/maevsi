@@ -1,6 +1,10 @@
 name: CI
 
-on: [create, pull_request, push]
+on:
+  pull_request:
+  push:
+  release:
+    types: [created]
 
 env:
   IMAGE_ID: ${{ github.repository }}
