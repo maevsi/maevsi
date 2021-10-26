@@ -63,7 +63,7 @@
     "graphql": "15.6.1",
     "html-to-text": "8.0.0",
     "ical-generator": "3.0.1",
-    "isomorphic-dompurify": "0.15.0",
+    "isomorphic-dompurify": "0.16.0",
     "jsonwebtoken": "8.5.1",
     "luxon": "1.28.0",
     "node-fetch": "3.0.0",
