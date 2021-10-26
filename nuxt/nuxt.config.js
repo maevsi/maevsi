@@ -1,4 +1,4 @@
-import bodyParser from 'body-parser'
+import { json } from 'body-parser'
 import shrinkRay from 'shrink-ray-current'
 
 import localeDe from './locales/de.json'
@@ -415,7 +415,7 @@ export default {
   },
 
   serverMiddleware: [
-    bodyParser.json(),
+    json(),
     { handler: '~/middleware/server/headers.ts' },
     { path: '/auth', handler: '~/api/auth.ts' },
     { path: '/ical', handler: '~/api/ical.ts' },

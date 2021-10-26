@@ -31,6 +31,6 @@ The database management tool *Sqitch* needs special configuration.
 
 ## Technology
 
-<img src="https://nuxtjs.org/logos/nuxtjs-typo.svg" alt="Nuxt.js" width="1000"/>
+<img src="https://nuxtjs.org/design-kit/colored-text.svg" alt="Nuxt.js" width="1000"/>
 <img src="https://www.graphile.org/static/postgres_postgraphile_graphql-4b238552d875fe06196ba3bda74c6d2b.png" alt="PostGraphile" width="1000"/>
 <img src="https://sqitch.org/img/sqitch-logo.svg" alt="Sqitch" width="1000"/>
