@@ -252,43 +252,6 @@ module.exports = {
         },
       })
       addComponents({
-        // TODO: create button primary css class in tailwind and use inline-block below for button class itself.
-        '.button': {
-          backgroundColor: theme('colors.red.600'),
-          borderRadius: theme('borderRadius.lg'),
-          boxShadow: theme('boxShadow.DEFAULT'),
-          color: theme('colors.text.bright'),
-          display: 'inline-block',
-          fontWeight: theme('fontWeight.bold'),
-          fontSize: theme('fontSize.xl'),
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          padding: theme('padding.2') + ' ' + theme('padding.4'),
-          textAlign: 'center',
-          '&:hover': {
-            backgroundColor: theme('colors.red.700'),
-          },
-        },
-        '.card': {
-          backgroundColor: theme('colors.white'),
-          borderColor: theme('colors.gray.300'),
-          borderRadius: theme('borderRadius.DEFAULT'),
-          borderWidth: theme('borderWidth.DEFAULT'),
-          boxShadow: theme('boxShadow.md'),
-          color: theme('colors.text.dark'),
-          padding: theme('padding.4'),
-        },
-        '.card-dark': {
-          '--tw-shadow':
-            '0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)',
-          boxShadow:
-            'var(--tw-ring-offset-shadow, 0 0 #ffff), var(--tw-ring-shadow, 0 0 #ffff), var(--tw-shadow)',
-        },
-        '.description': {
-          p: {
-            margin: theme('margin.2') + ' ' + theme('margin.0'),
-          },
-        },
         '.flip-card': {
           perspective: '1000px',
         },
@@ -376,6 +339,12 @@ module.exports = {
         },
         '.inline-grid': {
           display: 'inline-grid',
+        },
+        '.shadow-md-white': {
+          '--tw-shadow':
+            '0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)',
+          boxShadow:
+            'var(--tw-ring-offset-shadow, 0 0 #ffff), var(--tw-ring-shadow, 0 0 #ffff), var(--tw-shadow)',
         },
       })
     },

@@ -12,18 +12,18 @@
       "
       class="flex justify-evenly"
     >
-      <ButtonPrimary
+      <ButtonColored
         append
         :aria-label="$t('settings')"
         :icon-id="['fas', 'cog']"
         to="settings"
       >
         {{ $t('settings') }}
-      </ButtonPrimary>
+      </ButtonColored>
     </div>
     <CardInfo v-if="$route.query.ic">
       {{ $t('invitationViewFor', { name: $global.getContactName(contact) }) }}
-      <ButtonPrimary
+      <ButtonColored
         append
         :aria-label="$t('invitationSelectionClear')"
         :icon-id="['fas', 'times']"
@@ -36,7 +36,7 @@
         "
       >
         {{ $t('invitationSelectionClear') }}
-      </ButtonPrimary>
+      </ButtonColored>
     </CardInfo>
     <br />
     <div v-if="contact" class="text-center">
@@ -51,8 +51,8 @@
       </p>
       <p>{{ $t('greetingDescription') }}</p>
     </div>
-    <div
-      class="card dark:card-dark flex flex-col items-center mt-4"
+    <Card
+      class="flex flex-col items-center mt-4"
       :class="{
         'bg-yellow-100':
           !$route.query.ic &&
@@ -71,14 +71,14 @@
         <EventDashletLocation :event="event" />
         <EventDashletAttendanceType :event="event" />
       </div>
-      <ButtonPrimary
+      <ButtonColored
         :aria-label="$t('iCalDownload')"
         :icon-id="['fas', 'download']"
         class="text-text-bright"
         @click="downloadIcal"
       >
         {{ $t('iCalDownload') }}
-      </ButtonPrimary>
+      </ButtonColored>
       <div v-if="invitation">
         <hr class="my-4" />
         <div class="grid grid-cols-6 justify-content-center">
@@ -104,16 +104,17 @@
                 />
                 {{ $t('invitationCanceled') }}
               </div>
-              <ButtonGreen
+              <ButtonColored
                 v-if="
                   invitation.feedback === null ||
                   invitation.feedback === 'CANCELED'
                 "
                 :aria-label="$t('invitationAccept')"
+                secondary
                 @click="accept"
               >
                 {{ $t('invitationAccept') }}
-              </ButtonGreen>
+              </ButtonColored>
               <div
                 v-if="invitation.feedback === 'ACCEPTED'"
                 class="flex font-semibold items-center text-green-600"
@@ -126,7 +127,7 @@
                 />
                 {{ $t('invitationAccepted') }}
               </div>
-              <ButtonPrimary
+              <ButtonColored
                 v-if="
                   invitation.feedback === null ||
                   invitation.feedback === 'ACCEPTED'
@@ -135,7 +136,7 @@
                 @click="cancel"
               >
                 {{ $t('invitationCancel') }}
-              </ButtonPrimary>
+              </ButtonColored>
             </div>
           </div>
           <div
@@ -203,7 +204,7 @@
         <hr class="my-4" />
         <div v-dompurify-html="event.description" class="maevsi-prose" />
       </div>
-    </div>
+    </Card>
   </div>
 </template>
 

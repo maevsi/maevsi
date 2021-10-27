@@ -2,7 +2,6 @@
   <form
     v-if="form"
     ref="form"
-    class="card dark:card-dark"
     :class="[
       {
         'animate-shake border border-red-500':
@@ -13,42 +12,44 @@
     novalidate
     @submit="(e) => $emit('submit', e)"
   >
-    <slot />
-    <div class="flex flex-col items-center justify-between mb-4 mt-6">
-      <ButtonPrimary
-        ref="buttonSubmit"
-        :aria-label="submitName"
-        :class="{
-          'animate-shake': form.$anyError,
-        }"
-        :icon-id="iconId"
-        type="submit"
-        @click="$emit('click')"
-      >
-        {{ submitName }}
-      </ButtonPrimary>
-      <FormInputError v-if="form.$anyError" class="mt-2">
-        {{ $t('globalValidationFailed') }}
-      </FormInputError>
-    </div>
-    <CardAlert
-      class="mt-4"
-      :error-message="
-        graphqlErrorComputed ? String(graphqlErrorComputed) : undefined
-      "
-    >
-      <ButtonPrimary
-        v-if="
-          graphqlErrorComputed &&
-          graphqlErrorComputed.startsWith('Account not verified!')
+    <Card>
+      <slot />
+      <div class="flex flex-col items-center justify-between mb-4 mt-6">
+        <ButtonColored
+          ref="buttonSubmit"
+          :aria-label="submitName"
+          :class="{
+            'animate-shake': form.$anyError,
+          }"
+          :icon-id="iconId"
+          type="submit"
+          @click="$emit('click')"
+        >
+          {{ submitName }}
+        </ButtonColored>
+        <FormInputError v-if="form.$anyError" class="mt-2">
+          {{ $t('globalValidationFailed') }}
+        </FormInputError>
+      </div>
+      <CardAlert
+        class="mt-4"
+        :error-message="
+          graphqlErrorComputed ? String(graphqlErrorComputed) : undefined
         "
-        :aria-label="$t('verificationMailResend')"
-        @click="accountRegistrationRefresh"
       >
-        <!-- https://github.com/maevsi/maevsi/issues/209 -->
-        {{ $t('verificationMailResend') }}
-      </ButtonPrimary>
-    </CardAlert>
+        <ButtonColored
+          v-if="
+            graphqlErrorComputed &&
+            graphqlErrorComputed.startsWith('Account not verified!')
+          "
+          :aria-label="$t('verificationMailResend')"
+          @click="accountRegistrationRefresh"
+        >
+          <!-- https://github.com/maevsi/maevsi/issues/209 -->
+          {{ $t('verificationMailResend') }}
+        </ButtonColored>
+      </CardAlert>
+    </Card>
   </form>
 </template>
 
@@ -90,7 +91,6 @@ const Form = defineComponent({
   },
   data() {
     return {
-      // TODO: remove with https://github.com/maevsi/maevsi/issues/209.
       graphqlErrorInternal: undefined as any,
     }
   },

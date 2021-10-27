@@ -198,10 +198,7 @@
       label-for="input-description"
       :title="$t('description')"
     >
-      <TipTap
-        v-model="$v.form.description.$model"
-        class="description h-full rounded-b"
-      />
+      <TipTap v-model="$v.form.description.$model" class="h-full rounded-b" />
       <template slot="inputError">
         <FormInputError
           :form-input="$v.form.description"

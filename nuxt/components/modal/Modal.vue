@@ -17,18 +17,7 @@
       "
       :class="{ fixed: !$config.STORYBOOK }"
     >
-      <div
-        class="
-          card
-          dark:card-dark
-          max-h-[90vh]
-          overflow-auto
-          w-5/6
-          sm:w-2/3
-          lg:w-1/2
-          xl:w-1/3
-        "
-      >
+      <Card class="max-h-[90vh] overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3">
         <div class="relative">
           <h2 class="mt-0 px-4 text-center">
             <slot name="header" />
@@ -37,9 +26,10 @@
             :aria-label="$t('cancel')"
             class="absolute right-0 top-0"
             :disabled="isSubmitting"
-            :icon-id="['fas', 'times']"
             @click="close()"
-          />
+          >
+            <FontAwesomeIcon :icon="['fas', 'times']" />
+          </ButtonIcon>
         </div>
         <div :class="{ 'disabled pointer-events-none relative': isSubmitting }">
           <div v-if="contentBodyComputed">
@@ -55,22 +45,23 @@
         </div>
         <div class="flex justify-evenly">
           <slot name="footer">
-            <ButtonGreen
+            <ButtonColored
               :aria-label="submitName"
               :disabled="isSubmitting || isSubmitDisabled"
               :icon-id="submitIconId"
+              secondary
               type="submit"
               @click="submit()"
             >
               {{ submitName }}
-            </ButtonGreen>
+            </ButtonColored>
           </slot>
         </div>
         <CardAlert
           class="mb-4"
           :error-message="errorMessage ? String(errorMessage) : undefined"
         />
-      </div>
+      </Card>
     </div>
   </div>
 </template>

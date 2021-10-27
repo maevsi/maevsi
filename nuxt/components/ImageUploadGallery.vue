@@ -4,12 +4,11 @@
     :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
-    <div
+    <Card
       v-if="
         (allUploads !== undefined && allUploads.nodes.length > 0) ||
         allowAddition
       "
-      class="card dark:card-dark"
     >
       <ul class="flex flex-wrap justify-center">
         <template v-if="allUploads">
@@ -112,11 +111,11 @@
         v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"
         class="flex justify-center"
       >
-        <ButtonPrimary :aria-label="$t('globalPagingMore')" @click="showMore">
+        <ButtonColored :aria-label="$t('globalPagingMore')" @click="showMore">
           {{ $t('globalPagingMore') }}
-        </ButtonPrimary>
+        </ButtonColored>
       </div>
-    </div>
+    </Card>
     <p v-else class="text-center">{{ $t('noPictures') }}</p>
     <Modal
       id="ModalImageUploadGallery"

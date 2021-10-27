@@ -1,15 +1,12 @@
 <template>
-  <!-- TODO: create button primary css class in tailwind and use inline-block below for button class itself. -->
   <Button
     :aria-label="ariaLabel"
-    button-class="inline-block"
     :disabled="disabled"
     :to="to"
     :type="type"
     @click="$emit('click')"
   >
-    <slot v-if="$slots.default" />
-    <FontAwesomeIcon v-else :icon="iconId" />
+    <slot />
   </Button>
 </template>
 
@@ -25,13 +22,6 @@ export default defineComponent({
     disabled: {
       default: false,
       type: Boolean,
-    },
-    iconId: {
-      // TODO: remove
-      default(): string[] {
-        return []
-      },
-      type: Array as PropType<string[] | undefined>,
     },
     to: {
       default: undefined,
