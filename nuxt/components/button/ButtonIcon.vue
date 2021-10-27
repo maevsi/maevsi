@@ -1,8 +1,6 @@
 <template>
-  <!-- TODO: create button primary css class in tailwind and use inline-block below for button class itself. -->
   <Button
     :aria-label="ariaLabel"
-    button-class="inline-block"
     :disabled="disabled"
     :to="to"
     :type="type"

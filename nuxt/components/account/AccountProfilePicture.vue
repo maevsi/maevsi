@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: https://github.com/maevsi/maevsi/issues/96 for html validity inside button -->
   <Loader
     v-if="($apollo.loading && !profilePictureByUsername) || graphqlError"
     :error-message="graphqlError ? String(graphqlError) : undefined"

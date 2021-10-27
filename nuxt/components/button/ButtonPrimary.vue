@@ -5,7 +5,10 @@
       :append="append"
       :aria-label="ariaLabel"
       :button-class="
-        ['button', ...(buttonClass ? [buttonClass] : [])].join(' ')
+        [
+          'bg-red-600 hover:bg-red-700 font-bold my-auto py-2 px-4 rounded-md shadow text-center text-text-bright text-xl',
+          ...(buttonClass ? [buttonClass] : []),
+        ].join(' ')
       "
       :disabled="disabled"
       :icon-id="iconId"
