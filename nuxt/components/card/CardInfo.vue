@@ -1,10 +1,8 @@
 <template>
-  <div
+  <Card
     class="
       bg-blue-600
       border-0
-      card
-      dark:card-dark
       font-medium
       overflow-hidden
       text-center text-white
@@ -12,7 +10,7 @@
     :class="{ 'rounded-none': isEdgy }"
   >
     <slot />
-  </div>
+  </Card>
 </template>
 
 <script lang="ts">

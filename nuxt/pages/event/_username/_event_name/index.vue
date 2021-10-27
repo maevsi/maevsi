@@ -51,8 +51,8 @@
       </p>
       <p>{{ $t('greetingDescription') }}</p>
     </div>
-    <div
-      class="card dark:card-dark flex flex-col items-center mt-4"
+    <Card
+      class="flex flex-col items-center mt-4"
       :class="{
         'bg-yellow-100':
           !$route.query.ic &&
@@ -203,7 +203,7 @@
         <hr class="my-4" />
         <div v-dompurify-html="event.description" class="maevsi-prose" />
       </div>
-    </div>
+    </Card>
   </div>
 </template>
 

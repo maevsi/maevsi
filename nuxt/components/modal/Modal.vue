@@ -17,18 +17,7 @@
       "
       :class="{ fixed: !$config.STORYBOOK }"
     >
-      <div
-        class="
-          card
-          dark:card-dark
-          max-h-[90vh]
-          overflow-auto
-          w-5/6
-          sm:w-2/3
-          lg:w-1/2
-          xl:w-1/3
-        "
-      >
+      <Card class="max-h-[90vh] overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3">
         <div class="relative">
           <h2 class="mt-0 px-4 text-center">
             <slot name="header" />
@@ -70,7 +59,7 @@
           class="mb-4"
           :error-message="errorMessage ? String(errorMessage) : undefined"
         />
-      </div>
+      </Card>
     </div>
   </div>
 </template>

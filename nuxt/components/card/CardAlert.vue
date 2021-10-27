@@ -1,11 +1,9 @@
 <template>
-  <div
+  <Card
     v-if="$slots.default || errorMessage"
     class="
       bg-red-600
       border-0
-      card
-      dark:card-dark
       font-medium
       overflow-hidden
       text-center text-white
@@ -17,7 +15,7 @@
       {{ $t('error', { errorMessage }) }}
     </span>
     <slot />
-  </div>
+  </Card>
 </template>
 
 <script lang="ts">

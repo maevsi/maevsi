@@ -252,21 +252,6 @@ module.exports = {
         },
       })
       addComponents({
-        '.card': {
-          backgroundColor: theme('colors.white'),
-          borderColor: theme('colors.gray.300'),
-          borderRadius: theme('borderRadius.DEFAULT'),
-          borderWidth: theme('borderWidth.DEFAULT'),
-          boxShadow: theme('boxShadow.md'),
-          color: theme('colors.text.dark'),
-          padding: theme('padding.4'),
-        },
-        '.card-dark': {
-          '--tw-shadow':
-            '0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)',
-          boxShadow:
-            'var(--tw-ring-offset-shadow, 0 0 #ffff), var(--tw-ring-shadow, 0 0 #ffff), var(--tw-shadow)',
-        },
         '.flip-card': {
           perspective: '1000px',
         },
@@ -354,6 +339,12 @@ module.exports = {
         },
         '.inline-grid': {
           display: 'inline-grid',
+        },
+        '.shadow-md-white': {
+          '--tw-shadow':
+            '0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)',
+          boxShadow:
+            'var(--tw-ring-offset-shadow, 0 0 #ffff), var(--tw-ring-shadow, 0 0 #ffff), var(--tw-shadow)',
         },
       })
     },
