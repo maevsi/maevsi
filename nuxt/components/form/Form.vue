@@ -91,7 +91,6 @@ const Form = defineComponent({
   },
   data() {
     return {
-      // TODO: remove with https://github.com/maevsi/maevsi/issues/209.
       graphqlErrorInternal: undefined as any,
     }
   },
