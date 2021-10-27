@@ -3,10 +3,11 @@
     :aria-label="ariaLabel"
     class="h-8 m-2 w-8"
     :disabled="disabled"
-    :icon-id="iconId"
     :title="isTitleShow ? ariaLabel : undefined"
     @click="$emit('click')"
-  />
+  >
+    <FontAwesomeIcon :icon="iconId" />
+  </ButtonIcon>
 </template>
 
 <script lang="ts">

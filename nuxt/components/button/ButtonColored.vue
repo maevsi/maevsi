@@ -6,7 +6,10 @@
       :aria-label="ariaLabel"
       :button-class="
         [
-          'bg-red-600 hover:bg-red-700 font-bold my-auto py-2 px-4 rounded-md shadow text-center text-text-bright text-xl',
+          'font-bold my-auto py-2 px-4 rounded-md shadow text-center text-text-bright text-xl',
+          ...(secondary
+            ? ['bg-green-600 hover:bg-green-700']
+            : ['bg-red-600 hover:bg-red-700 ']),
           ...(buttonClass ? [buttonClass] : []),
         ].join(' ')
       "
@@ -45,6 +48,10 @@ export default defineComponent({
     iconId: {
       default: undefined,
       type: Array as PropType<string[] | undefined>,
+    },
+    secondary: {
+      default: false,
+      type: Boolean,
     },
     to: {
       default: undefined,

@@ -1,12 +1,12 @@
 <template>
-  <ButtonPrimary
+  <ButtonColored
     :aria-label="$t('eventAll')"
     :icon-id="['fas', 'list-ul']"
     :to="localePath('/event')"
     @click="$emit('click')"
   >
     {{ $t('eventAll') }}
-  </ButtonPrimary>
+  </ButtonColored>
 </template>
 
 <i18n lang="yml">

@@ -26,9 +26,10 @@
             :aria-label="$t('cancel')"
             class="absolute right-0 top-0"
             :disabled="isSubmitting"
-            :icon-id="['fas', 'times']"
             @click="close()"
-          />
+          >
+            <FontAwesomeIcon :icon="['fas', 'times']" />
+          </ButtonIcon>
         </div>
         <div :class="{ 'disabled pointer-events-none relative': isSubmitting }">
           <div v-if="contentBodyComputed">
@@ -44,15 +45,16 @@
         </div>
         <div class="flex justify-evenly">
           <slot name="footer">
-            <ButtonGreen
+            <ButtonColored
               :aria-label="submitName"
               :disabled="isSubmitting || isSubmitDisabled"
               :icon-id="submitIconId"
+              secondary
               type="submit"
               @click="submit()"
             >
               {{ submitName }}
-            </ButtonGreen>
+            </ButtonColored>
           </slot>
         </div>
         <CardAlert

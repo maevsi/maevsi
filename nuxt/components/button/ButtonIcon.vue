@@ -6,8 +6,7 @@
     :type="type"
     @click="$emit('click')"
   >
-    <slot v-if="$slots.default" />
-    <FontAwesomeIcon v-else :icon="iconId" />
+    <slot />
   </Button>
 </template>
 
@@ -23,13 +22,6 @@ export default defineComponent({
     disabled: {
       default: false,
       type: Boolean,
-    },
-    iconId: {
-      // TODO: remove
-      default(): string[] {
-        return []
-      },
-      type: Array as PropType<string[] | undefined>,
     },
     to: {
       default: undefined,

@@ -9,13 +9,13 @@
         {{ $t('sessionExpired') }}
       </p>
       <br />
-      <ButtonPrimary
+      <ButtonColored
         :aria-label="$t('sessionExit')"
         :icon-id="['fas', 'sign-out-alt']"
         @click="onSessionExitClick()"
       >
         {{ $t('sessionExit') }}
-      </ButtonPrimary>
+      </ButtonColored>
     </div>
   </div>
 </template>

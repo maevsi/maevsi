@@ -40,13 +40,13 @@
       </table>
     </div>
     <br />
-    <ButtonPrimary
+    <ButtonColored
       :aria-label="$t('contactAdd')"
       :icon-id="['fas', 'plus']"
       @click="add()"
     >
       {{ $t('contactAdd') }}
-    </ButtonPrimary>
+    </ButtonColored>
     <Modal id="ModalContact" @close="onClose">
       <FormContact
         :contact="selectedContact"

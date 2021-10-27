@@ -15,7 +15,7 @@
     <Card>
       <slot />
       <div class="flex flex-col items-center justify-between mb-4 mt-6">
-        <ButtonPrimary
+        <ButtonColored
           ref="buttonSubmit"
           :aria-label="submitName"
           :class="{
@@ -26,7 +26,7 @@
           @click="$emit('click')"
         >
           {{ submitName }}
-        </ButtonPrimary>
+        </ButtonColored>
         <FormInputError v-if="form.$anyError" class="mt-2">
           {{ $t('globalValidationFailed') }}
         </FormInputError>
@@ -37,7 +37,7 @@
           graphqlErrorComputed ? String(graphqlErrorComputed) : undefined
         "
       >
-        <ButtonPrimary
+        <ButtonColored
           v-if="
             graphqlErrorComputed &&
             graphqlErrorComputed.startsWith('Account not verified!')
@@ -47,7 +47,7 @@
         >
           <!-- https://github.com/maevsi/maevsi/issues/209 -->
           {{ $t('verificationMailResend') }}
-        </ButtonPrimary>
+        </ButtonColored>
       </CardAlert>
     </Card>
   </form>

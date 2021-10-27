@@ -35,13 +35,13 @@
           <p class="font-normal leading-8 text-lg">{{ $t('alpha') }}</p>
         </div>
         <div class="py-2" />
-        <ButtonPrimary
+        <ButtonColored
           :aria-label="$t('testNowFree')"
           class="text-left"
           :to="localePath('/event')"
         >
           {{ $t('testNowFree') }}
-        </ButtonPrimary>
+        </ButtonColored>
       </div>
       <LoaderImage
         :alt="$t('heroImage')"
@@ -99,13 +99,13 @@
           </p>
         </div>
         <div class="py-2" />
-        <ButtonPrimary
+        <ButtonColored
           :aria-label="$t('testNow')"
           class="text-left"
           :to="localePath('/event')"
         >
           {{ $t('testNow') }}
-        </ButtonPrimary>
+        </ButtonColored>
       </div>
     </section>
     <section id="features" class="mb-16">
