@@ -1,3 +1,12 @@
+# [0.103.0](https://github.com/maevsi/maevsi/compare/0.102.5...0.103.0) (2021-10-27)
+
+
+### Features
+
+* **button:** change naming ([580cf84](https://github.com/maevsi/maevsi/commit/580cf844e37e78029fc595b2c5c75be716853e12))
+* **tailwind:** move styling to button component ([7369ced](https://github.com/maevsi/maevsi/commit/7369ced35b6864b2d49c52413b634afbcec806df))
+* **tailwind:** move styling to card component ([31ce73d](https://github.com/maevsi/maevsi/commit/31ce73d8e41dd5b63ef458211c8c825b46111a31))
+
 ## [0.102.5](https://github.com/maevsi/maevsi/compare/0.102.4...0.102.5) (2021-10-26)
 
 
