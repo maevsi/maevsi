@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
-        uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2.4.0
 
       - name: Docker Buildx setup
         id: buildx
@@ -107,7 +107,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: docker
     steps:
-      - uses: actions/checkout@1e204e9a9253d643386038d443f96446fa156a97 # renovate: tag=v2.3.5
+      - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2.4.0
         with:
           token: ${{ secrets.GH_TOKEN }}
       - name: Semantic Release
