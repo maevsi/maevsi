@@ -115,7 +115,7 @@
     "eslint-plugin-compat": "3.13.0",
     "eslint-plugin-nuxt": "3.0.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-yml": "0.10.1",
+    "eslint-plugin-yml": "0.11.0",
     "graphql-tag": "2.12.5",
     "jest": "27.3.1",
     "lint-staged": "11.2.6",
