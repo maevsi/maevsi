@@ -5120,10 +5120,10 @@
     "@uppy/utils" "^4.0.3"
     namespace-emitter "^2.0.1"
 
-"@uppy/core@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-2.1.1.tgz#503b3172ffe32e6cc7385f5b0c99f008ade815f1"
-  integrity sha512-dFlcy6+05zwsJk1KNeUKVWUyAfhOVwNpnPLaR1NX9Qsjv7KlYfUNRVW3uCCmIpd/EZsX44+haiqGrhLcYDAcxA==
+"@uppy/core@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-2.1.2.tgz#a06cf70902fac79d9def21456d845a2e0968b512"
+  integrity sha512-w5wE2THkGxYxwxfZ/89q1s8umGNswCXmgjwUxB52faOnosvtu3BLp/hJltmWUQ6YNlsRsjrzxA5IyZ+/J3ApNQ==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.7"
     "@uppy/store-default" "^2.0.2"
