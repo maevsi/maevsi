@@ -3884,10 +3884,10 @@
     lodash.merge "^4.6.2"
     lodash.uniq "^4.5.0"
 
-"@tiptap/core@^2.0.0-beta.131":
-  version "2.0.0-beta.131"
-  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.131.tgz#d1b624d41119fe5b949994c5c43675e905f1d1f6"
-  integrity sha512-+2Yh1JkZdvLjokNgIKzc6z3PlpHq4Fxa17ox3Wql9PdRUnRFu5krAHlgvgI+dSQggsC6ZNw15qlZ0gYPIzM7RA==
+"@tiptap/core@^2.0.0-beta.132":
+  version "2.0.0-beta.132"
+  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.132.tgz#9ecb125c6b6919bd7d8ef2029f837d84b8a3f706"
+  integrity sha512-SdvrICRt7j07Wypxvnglk3HQ15vFKk0tA5ExZFbwZv2GwzDwQG7VqePj5JexajFD9w3AQKxNbUNkWXQESsbPSw==
   dependencies:
     "@types/prosemirror-commands" "^1.0.4"
     "@types/prosemirror-keymap" "^1.0.4"
@@ -3902,7 +3902,7 @@
     prosemirror-schema-list "^1.1.6"
     prosemirror-state "^1.3.4"
     prosemirror-transform "^1.3.3"
-    prosemirror-view "^1.21.0"
+    prosemirror-view "^1.22.0"
 
 "@tiptap/extension-blockquote@^2.0.0-beta.21":
   version "2.0.0-beta.21"
@@ -4033,12 +4033,12 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-text/-/extension-text-2.0.0-beta.13.tgz#da0af8d9a3f149d20076e15d88c6af21fb6d940f"
   integrity sha512-0EtAwuRldCAoFaL/iXgkRepEeOd55rPg5N4FQUN1xTwZT7PDofukP0DG/2jff/Uj17x4uTaJAa9qlFWuNnDvjw==
 
-"@tiptap/starter-kit@2.0.0-beta.133":
-  version "2.0.0-beta.133"
-  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.133.tgz#c261b489c8c47cdcfb58ce4d1616e8247fd4a438"
-  integrity sha512-9CaRIW8G0tSST53qhrwTfNStyXyMYMqjsDuOtjZAatnvnSJpdrdIgNwE1JwQcoUaSHXCK4HdGavc4LWCHHK32Q==
+"@tiptap/starter-kit@2.0.0-beta.134":
+  version "2.0.0-beta.134"
+  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.134.tgz#2f0824e7e0edb5d456d63559aaacbc0b30981911"
+  integrity sha512-GypxDO9d+42fJuLsySVabqFmahCXrEofQmB3/ctScFk7iefALWlTregS173P5BRFbHE3nuB4krvHZfyxbaqbqg==
   dependencies:
-    "@tiptap/core" "^2.0.0-beta.131"
+    "@tiptap/core" "^2.0.0-beta.132"
     "@tiptap/extension-blockquote" "^2.0.0-beta.21"
     "@tiptap/extension-bold" "^2.0.0-beta.21"
     "@tiptap/extension-bullet-list" "^2.0.0-beta.20"
@@ -17493,6 +17493,15 @@ prosemirror-view@^1.0.0, prosemirror-view@^1.1.0, prosemirror-view@^1.21.0:
   version "1.21.0"
   resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.21.0.tgz#d793cd338eda224026b8fe18a4f3163204963b8b"
   integrity sha512-Pjh0vXw/l2Ifc3QcBVKJ/qHej33MX4sdq4/uAVqkSmHLf//bVWTYSZibihMya3lsIxTbDzNl/Z03KrhXWMHaoA==
+  dependencies:
+    prosemirror-model "^1.14.3"
+    prosemirror-state "^1.0.0"
+    prosemirror-transform "^1.1.0"
+
+prosemirror-view@^1.22.0:
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.22.0.tgz#235dca38ed62ae028d627be5684d45b36550d310"
+  integrity sha512-kCZoHp0Sa2AHhwV64aNFi69QlqBocZ8G8gbvZRFDdEj57whOCdPjdVLYBVyM9+S5oHDSrzjkoMm+JvvHFhMRJw==
   dependencies:
     prosemirror-model "^1.14.3"
     prosemirror-state "^1.0.0"
