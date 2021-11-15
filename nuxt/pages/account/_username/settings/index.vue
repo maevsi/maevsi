@@ -22,18 +22,6 @@
       <ModalImageSelection @submitSuccess="reloadProfilePicture" />
     </div>
     <section>
-      <h2>{{ $t('titleContacts') }}</h2>
-      <AccountContactList />
-    </section>
-    <section>
-      <h2>{{ $t('titleImageUploads') }}</h2>
-      <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
-      <ImageUploadGallery
-        :username="$route.params.username"
-        @deletion="reloadProfilePicture"
-      />
-    </section>
-    <section>
       <h2>{{ $t('titlePasswordChange') }}</h2>
       <FormAccountPasswordChange />
     </section>
@@ -121,12 +109,8 @@ de:
   account: Konto
   titleAccountDelete: Konto löschen
   titlePasswordChange: Password ändern
-  titleContacts: Kontakte
-  titleImageUploads: Hochgeladene Bilder
 en:
   account: account
   titleAccountDelete: Delete account
   titlePasswordChange: Change password
-  titleContacts: Contacts
-  titleImageUploads: Image uploads
 </i18n>

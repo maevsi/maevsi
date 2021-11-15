@@ -5,6 +5,7 @@
     >
       <div class="sm:mr-4">
         <AccountProfilePicture
+          ref="profilePicture"
           classes="h-24 rounded w-24"
           height="96"
           :username="$route.params.username"
@@ -15,7 +16,19 @@
         {{ $route.params.username }}
       </h1>
     </div>
-    <EventList :username="$route.params.username" />
+    <!-- <EventList :username="$route.params.username" /> -->
+    <section>
+      <h2>{{ $t('titleContacts') }}</h2>
+      <AccountContactList />
+    </section>
+    <section>
+      <h2>{{ $t('titleImageUploads') }}</h2>
+      <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
+      <ImageUploadGallery
+        :username="$route.params.username"
+        @deletion="reloadProfilePicture"
+      />
+    </section>
   </div>
 </template>
 
@@ -77,5 +90,19 @@ export default defineComponent({
       title,
     }
   },
+  methods: {
+    reloadProfilePicture() {
+      ;(this.$refs.profilePicture as any).reloadProfilePicture()
+    },
+  },
 })
 </script>
+
+<i18n lang="yml">
+de:
+  titleContacts: Kontakte
+  titleImageUploads: Hochgeladene Bilder
+en:
+  titleContacts: Contacts
+  titleImageUploads: Image uploads
+</i18n>
