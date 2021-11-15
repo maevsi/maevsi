@@ -57,6 +57,7 @@ export default {
         icons: {
           brands: ['faGithub'],
           solid: [
+            'faAddressBook',
             'faArchive',
             'faArrowsAltV',
             'faBars',
@@ -75,6 +76,7 @@ export default {
             'faHeading',
             'faHome',
             'faHourglass',
+            'faImages',
             'faItalic',
             'faKey',
             'faLanguage',

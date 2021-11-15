@@ -63,6 +63,8 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import VueI18n from 'vue-i18n'
+import { mapGetters } from 'vuex'
+
 import CONTACT_DELETE_MUTATION from '~/gql/mutation/contact/contactDelete.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
 import { Contact } from '~/types/contact'
@@ -77,7 +79,7 @@ export default defineComponent({
         variables: {
           cursor: null,
           limit: this.$global.ITEMS_PER_PAGE,
-          authorAccountUsername: this.$store.getters.signedInUsername,
+          authorAccountUsername: this.signedInUsername,
         },
         update: (data: any) => data.allContacts,
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {
@@ -97,6 +99,9 @@ export default defineComponent({
       },
       selectedContact: undefined as Contact | undefined,
     }
+  },
+  computed: {
+    ...mapGetters(['signedInUsername']),
   },
   methods: {
     add() {

@@ -48,6 +48,30 @@
             </ButtonIcon>
           </div>
         </div>
+        <hr v-if="signedInUsername" class="opacity-40" />
+        <Button
+          :aria-label="$t('contacts')"
+          class="text-left"
+          :to="localePath('/contact')"
+          @click.native="$emit('onMenuHide')"
+        >
+          <div class="inline-block text-center w-8">
+            <FontAwesomeIcon :icon="['fas', 'address-book']" size="lg" />
+          </div>
+          {{ $t('contacts') }}
+        </Button>
+        <Button
+          :aria-label="$t('uploads')"
+          class="text-left"
+          :to="localePath('/upload')"
+          @click.native="$emit('onMenuHide')"
+        >
+          <div class="inline-block text-center w-8">
+            <FontAwesomeIcon class="w-6" :icon="['fas', 'images']" size="lg" />
+          </div>
+          {{ $t('uploads') }}
+        </Button>
+        <hr class="md:hidden opacity-40" />
         <div class="flex flex-col space-y-4">
           <AppLink
             class="
@@ -124,18 +148,22 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   accountSettings: Konto bearbeiten
+  contacts: Kontakte
   eventNew: Veranstaltung erstellen
   events: Veranstaltungen entdecken
   menuHide: Menü verstecken
   settings: Einstellungen
   signIn: Anmelden
   signOut: Abmelden
+  uploads: Uploads
 en:
   accountSettings: Edit account
+  contacts: Contacts
   eventNew: Create event
   events: Explore events
   menuHide: Hide menu
   settings: Settings
   signIn: Sign in
   signOut: Sign out
+  uploads: Uploads
 </i18n>
