@@ -5,7 +5,7 @@ query allContacts($cursor: Cursor, $limit: Int!, $authorAccountUsername: String)
     after: $cursor
     condition: { authorAccountUsername: $authorAccountUsername }
     first: $limit
-    orderBy: [ACCOUNT_USERNAME_ASC, FIRST_NAME_DESC, LAST_NAME_DESC]
+    orderBy: [ACCOUNT_USERNAME_ASC, FIRST_NAME_ASC, LAST_NAME_ASC]
   ) @connection(filter: ["condition"], key: "allContacts") {
     nodes {
       ...contactFields
