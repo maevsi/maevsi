@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$route.params.username === $store.getters.signedInUsername">
+  <div>
     <div
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
@@ -35,18 +35,18 @@
       />
     </section>
   </div>
-  <Error v-else :status-code="403" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 
 export default defineComponent({
-  middleware({ res, params, store }) {
+  middleware({ error, params, res, store }) {
     if (res && params.username !== store.getters.signedInUsername) {
-      res.statusCode = 403
+      return error({ statusCode: 403 })
     }
   },
   async validate({ app, params }) {
