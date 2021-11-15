@@ -82,6 +82,8 @@
 <script lang="ts">
 import { minLength, minValue, required } from 'vuelidate/lib/validators'
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
+
 import INVITATION_CREATE_MUTATION from '~/gql/mutation/invitation/invitationCreate.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
 import { Event } from '~/types/event'
@@ -97,7 +99,7 @@ export default defineComponent({
         variables: {
           cursor: null,
           limit: this.$global.ITEMS_PER_PAGE,
-          authorAccountUsername: this.$store.getters.signedInUsername,
+          authorAccountUsername: this.signedInUsername,
         },
         update: (data: any) => data.allContacts,
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {
@@ -124,6 +126,7 @@ export default defineComponent({
     }
   },
   computed: {
+    ...mapGetters(['signedInUsername']),
     contactsFiltered(): Contact[] | undefined {
       if (!this.allContacts) {
         return undefined

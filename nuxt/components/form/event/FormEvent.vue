@@ -246,6 +246,8 @@ import {
   required,
 } from 'vuelidate/lib/validators'
 import { defineComponent } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
+
 import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate.gql'
 import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById.gql'
 import { Visibility } from '~/types/event'
@@ -285,6 +287,9 @@ export default defineComponent({
       graphqlError: undefined as any,
     }
   },
+  computed: {
+    ...mapGetters(['signedInUsername']),
+  },
   created() {
     if (this.event) {
       ;[
@@ -323,7 +328,7 @@ export default defineComponent({
             variables: {
               id: this.form.id,
               eventPatch: {
-                authorUsername: this.$store.getters.signedInUsername,
+                authorUsername: this.signedInUsername,
                 description: this.form.description,
                 end: this.form.end !== '' ? this.form.end : null,
                 inviteeCountMaximum:
@@ -359,7 +364,7 @@ export default defineComponent({
             variables: {
               createEventInput: {
                 event: {
-                  authorUsername: this.$store.getters.signedInUsername,
+                  authorUsername: this.signedInUsername,
                   description: this.form.description,
                   end: this.form.end !== '' ? this.form.end : null,
                   inviteeCountMaximum:
@@ -386,7 +391,7 @@ export default defineComponent({
             })
             this.$router.push(
               this.localePath(
-                `/event/${this.$store.getters.signedInUsername}/${this.form.slug}`
+                `/event/${this.signedInUsername}/${this.form.slug}`
               )
             )
           })
