@@ -63,6 +63,13 @@ import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 const consola = require('consola')
 
 export default defineComponent({
+  layout({ $global, route }: Context) {
+    return route.query.ic &&
+      typeof route.query.ic === 'string' &&
+      $global.REGEX_UUID.test(route.query.ic)
+      ? 'canvas'
+      : 'default'
+  },
   data() {
     return {
       form: {
