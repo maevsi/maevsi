@@ -50,6 +50,7 @@
         </div>
         <hr v-if="signedInUsername" class="opacity-40" />
         <Button
+          v-if="signedInUsername"
           :aria-label="$t('contacts')"
           class="text-left"
           :to="localePath('/contact')"
@@ -61,6 +62,7 @@
           {{ $t('contacts') }}
         </Button>
         <Button
+          v-if="signedInUsername"
           :aria-label="$t('uploads')"
           class="text-left"
           :to="localePath('/upload')"
@@ -71,7 +73,7 @@
           </div>
           {{ $t('uploads') }}
         </Button>
-        <hr class="md:hidden opacity-40" />
+        <hr v-if="signedInUsername" class="md:hidden opacity-40" />
         <div class="flex flex-col space-y-4">
           <AppLink
             class="
