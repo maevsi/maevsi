@@ -24,7 +24,7 @@ export default {
       }),
     ],
   },
-  title: 'account/ContactList',
+  title: 'contact/ContactList',
 }
 
 const Template = (_: never, { argTypes }: any) =>
