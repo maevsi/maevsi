@@ -97,9 +97,9 @@ export default defineComponent({
       return {
         query: CONTACTS_ALL_QUERY,
         variables: {
-          cursor: null,
-          limit: this.$global.ITEMS_PER_PAGE,
           authorAccountUsername: this.signedInUsername,
+          first: this.$global.ITEMS_PER_PAGE,
+          offset: null,
         },
         update: (data: any) => data.allContacts,
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {

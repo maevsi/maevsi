@@ -13,7 +13,6 @@ export default {
             allContacts: {
               nodes: [],
               pageInfo: {
-                endCursor: '',
                 hasNextPage: false,
                 __typename: 'PageInfo',
               },

@@ -162,8 +162,8 @@ export default defineComponent({
       return {
         query: UPLOADS_ALL_QUERY,
         variables: {
-          cursor: null,
-          limit: this.$global.ITEMS_PER_PAGE,
+          first: this.$global.ITEMS_PER_PAGE,
+          offset: null,
           username: this.username,
         },
         update: (data: any) => data.allUploads,
@@ -311,7 +311,7 @@ export default defineComponent({
     showMore() {
       this.$apollo.queries.allUploads.fetchMore({
         variables: {
-          cursor: this.allUploads.pageInfo.endCursor,
+          offset: this.allUploads.nodes.length,
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
           if (!fetchMoreResult) {

@@ -45,9 +45,9 @@ export default defineComponent({
       return {
         query: EVENTS_ALL_QUERY,
         variables: {
-          cursor: null,
-          limit: this.$global.ITEMS_PER_PAGE,
           authorUsername: this.username,
+          first: this.$global.ITEMS_PER_PAGE,
+          offset: null,
         },
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
@@ -85,7 +85,7 @@ export default defineComponent({
     showMore() {
       this.$apollo.queries.allEvents.fetchMore({
         variables: {
-          cursor: (this.allEvents as any).pageInfo.endCursor,
+          offset: (this.allEvents as any).nodes.length,
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
           if (!fetchMoreResult) {
