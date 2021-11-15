@@ -134,6 +134,6 @@ de:
 en:
   passwordFound: Password found?
   passwordLost: Password lost?
-  username: Username
   signIn: Sign in
+  username: Username
 </i18n>

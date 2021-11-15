@@ -246,10 +246,10 @@ export async function jwtStore(
     window.location.reload()
   }
 ) {
+  await apolloClient.clearStore()
+
   consola.trace('Storing the following JWT: ' + jwt)
   store.commit('jwtSet', jwt)
-
-  await apolloClient.clearStore()
 
   if (process.server) {
     res?.setHeader(
