@@ -9,7 +9,6 @@
         @click="$store.commit('modalAdd', { id: 'ModalImageSelection' })"
       >
         <AccountProfilePicture
-          ref="profilePicture"
           classes="h-24 rounded w-24"
           height="96"
           :username="$route.params.username"
@@ -19,7 +18,9 @@
       <h1 class="truncate max-w-full sm:w-auto">
         {{ $route.params.username }}
       </h1>
-      <ModalImageSelection @submitSuccess="reloadProfilePicture" />
+      <ModalImageSelection
+        @submitSuccess="$nuxt.$emit('profilePictureReload')"
+      />
     </div>
     <section>
       <h2>{{ $t('titlePasswordChange') }}</h2>
@@ -95,11 +96,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  methods: {
-    reloadProfilePicture() {
-      ;(this.$refs.profilePicture as any).reloadProfilePicture()
-    },
   },
 })
 </script>

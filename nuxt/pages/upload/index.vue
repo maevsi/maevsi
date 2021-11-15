@@ -1,15 +1,17 @@
 <template>
   <div>
-    <section>
-      <h2>{{ $t('titleImageUploads') }}</h2>
-      <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
-      <ImageUploadGallery :username="$route.params.username" />
-    </section>
+    <h1>{{ $t('titleImageUploads') }}</h1>
+    <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
+    <ImageUploadGallery
+      :username="signedInUsername"
+      @deletion="$nuxt.$emit('profilePictureReload')"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
   middleware({ error, store }) {
@@ -47,6 +49,9 @@ export default defineComponent({
       ],
       title,
     }
+  },
+  computed: {
+    ...mapGetters(['signedInUsername']),
   },
 })
 </script>
