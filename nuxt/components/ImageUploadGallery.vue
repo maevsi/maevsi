@@ -139,7 +139,7 @@
 </template>
 
 <script lang="ts">
-import Uppy, { UploadResult, UppyFile } from '@uppy/core'
+import { Uppy, UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
 import prettyBytes from 'pretty-bytes'
 import { mapGetters } from 'vuex'
