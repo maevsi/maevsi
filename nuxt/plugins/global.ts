@@ -1,14 +1,16 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { serialize, parse } from 'cookie'
 import { decode, JwtPayload } from 'jsonwebtoken'
+import { unionBy } from 'lodash-es'
 import moment from 'moment'
+import { DollarApollo } from 'vue-apollo/types/vue-apollo'
 import { helpers } from 'vuelidate/lib/validators'
 import { Store } from 'vuex'
-
 import { ApolloClient } from 'apollo-client'
 import { Context } from '@nuxt/types'
 import { Inject } from '@nuxt/types/app'
 import { Dictionary } from 'vue-router/types/router'
+
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
@@ -273,6 +275,40 @@ export async function jwtStore(
   }
 }
 
+async function loadMore(
+  $apollo: DollarApollo<Vue>,
+  key: string,
+  dataCurrent: any
+) {
+  if (!dataCurrent.pageInfo.hasNextPage) return
+
+  await $apollo.queries[key].fetchMore({
+    variables: {
+      offset: dataCurrent.nodes.length,
+    },
+    updateQuery: (previousResult: any, { fetchMoreResult }: any) => {
+      if (!fetchMoreResult) {
+        return previousResult
+      }
+
+      const newNodes = fetchMoreResult[key].nodes
+      const pageInfo = fetchMoreResult[key].pageInfo
+      const totalCount = fetchMoreResult[key].totalCount
+
+      const result = {} as Record<string, any>
+
+      result[key] = {
+        __typename: previousResult[key].__typename,
+        nodes: unionBy(previousResult[key].nodes, newNodes, 'nodeId'),
+        pageInfo,
+        totalCount,
+      }
+
+      return result
+    },
+  })
+}
+
 async function signOut(
   apolloClient: ApolloClient<any>,
   store: Store<State>,
@@ -374,6 +410,7 @@ const global = {
   getQueryString,
   jwtRefresh,
   jwtStore,
+  loadMore,
   signOut,
   objectClone,
   removeTypename,

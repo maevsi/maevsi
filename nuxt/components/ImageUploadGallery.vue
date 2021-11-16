@@ -111,7 +111,10 @@
         v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"
         class="flex justify-center"
       >
-        <ButtonColored :aria-label="$t('globalPagingMore')" @click="showMore">
+        <ButtonColored
+          :aria-label="$t('globalPagingMore')"
+          @click="$global.loadMore($apollo, 'allUploads', allUploads)"
+        >
           {{ $t('globalPagingMore') }}
         </ButtonColored>
       </div>
@@ -311,29 +314,6 @@ export default defineComponent({
           consola.error(err)
         }
       }
-    },
-    showMore() {
-      this.$apollo.queries.allUploads.fetchMore({
-        variables: {
-          offset: this.allUploads.nodes.length,
-        },
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          if (!fetchMoreResult) {
-            return previousResult
-          }
-
-          const newNodes = fetchMoreResult.allUploads.nodes
-          const pageInfo = fetchMoreResult.allUploads.pageInfo
-
-          return {
-            allUploads: {
-              __typename: previousResult.allUploads.__typename,
-              nodes: [...previousResult.allUploads.nodes, ...newNodes],
-              pageInfo,
-            },
-          }
-        },
-      })
     },
     toggleSelect(upload: any) {
       if (this.selectedItem === upload) {
