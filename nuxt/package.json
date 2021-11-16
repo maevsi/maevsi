@@ -81,6 +81,7 @@
     "vue-datetime": "1.0.0-beta.14",
     "vue-dompurify-html": "2.3.0",
     "vue-reactive-refs": "0.0.2",
+    "vue-sweetalert2": "5.0.2",
     "vuelidate": "0.7.6",
     "weekstart": "1.1.0"
   },

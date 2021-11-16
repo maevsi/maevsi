@@ -130,8 +130,10 @@ const Form = defineComponent({
         return
       }
 
-      this.$store.commit('modalAdd', {
-        contentBody: this.$t('registrationRefreshSuccess'),
+      this.$swal({
+        icon: 'success',
+        text: this.$t('registrationRefreshSuccess') as string,
+        title: this.$t('sent'),
       })
     },
     reset() {
@@ -153,10 +155,12 @@ export type FormType = InstanceType<typeof Form>
 <i18n lang="yml">
 de:
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
+  sent: Gesendet!
   submit: Absenden
   verificationMailResend: Verifizierungsmail erneut senden
 en:
   registrationRefreshSuccess: A new welcome email is on its way to you.
+  sent: Sent!
   submit: Submit
   verificationMailResend: Resend verification mail
 </i18n>

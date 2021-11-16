@@ -78,8 +78,10 @@ const FormAccountPasswordResetRequest = defineComponent({
       }
 
       this.$emit('account-password-reset-request')
-      this.$store.commit('modalAdd', {
-        contentBody: this.$t('accountPasswordResetRequestSuccess'),
+      this.$swal({
+        icon: 'success',
+        text: this.$t('accountPasswordResetRequestSuccess') as string,
+        title: this.$t('requestAccepted'),
       })
     },
   },
@@ -109,8 +111,10 @@ export type FormAccountPasswordResetRequestType = InstanceType<
 <i18n lang="yml">
 de:
   accountPasswordResetRequest: Passwort zurücksetzen
-  accountPasswordResetRequestSuccess: Anfrage zum Zurücksetzen des Passworts erfolgreich. Vergib ein neues Password über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.
+  accountPasswordResetRequestSuccess: Vergib ein neues Password über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.
+  requestAccepted: Anfrage angenommen!
 en:
   accountPasswordResetRequest: Reset password
-  accountPasswordResetRequestSuccess: "Request to reset the password successful. Set a new password using the link that you can find in the email that you'll receive shortly."
+  accountPasswordResetRequestSuccess: "Set a new password using the link that you can find in the email that you'll receive shortly."
+  requestAccepted: Request accepted!
 </i18n>

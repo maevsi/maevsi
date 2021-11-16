@@ -352,6 +352,7 @@ export default {
         Sitemap: BASE_URL + '/sitemap.xml',
       },
     ],
+    'vue-sweetalert2/nuxt',
     ['@nuxtjs/sitemap', { exclude: EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
   ],
 

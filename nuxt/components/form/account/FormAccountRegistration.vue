@@ -90,8 +90,10 @@ const FormAccountRegistration = defineComponent({
       }
 
       this.$emit('registered')
-      this.$store.commit('modalAdd', {
-        contentBody: this.$t('registrationSuccess'),
+      this.$swal({
+        icon: 'success',
+        text: this.$t('registrationSuccessBody') as string,
+        title: this.$t('registrationSuccessTitle'),
       })
     },
   },
@@ -131,9 +133,11 @@ export type FormAccountRegistrationType = InstanceType<
 de:
   emailAddress: E-Mail-Adresse
   register: Registrieren
-  registrationSuccess: Registrierung erfolgreich. Verifiziere deinen Account über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.
+  registrationSuccessBody: Verifiziere deinen Account über den Link in der E-Mail, die du in Kürze erhalten wirst.
+  registrationSuccessTitle: Registrierung erfolgreich.
 en:
   emailAddress: Email address
   register: Register
-  registrationSuccess: "Registration successful. Verify your account using the link that you can find in the email that you'll receive shortly."
+  registrationSuccessBody: "Verify your account using the link in the email you'll receive shortly."
+  registrationSuccessTitle: Registration successful.
 </i18n>

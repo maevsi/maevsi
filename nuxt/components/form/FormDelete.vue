@@ -68,12 +68,13 @@ export default defineComponent({
           ...(this.update !== undefined ? { update: this.update } : {}),
         })
         .then((_value) => {
-          this.$store.commit('modalAdd', {
-            contentBody: this.$global.capitalizeFirstLetter(
+          this.$swal({
+            icon: 'success',
+            text: this.$global.capitalizeFirstLetter(
               this.$t('success', { item: this.itemName }) as string
             ),
-            onSubmit: () => this.$emit('success'),
-          })
+            title: this.$t('deleted'),
+          }).then(() => this.$emit('success'))
         })
         .catch((reason) => {
           this.graphqlError = reason
@@ -96,9 +97,11 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
+  deleted: Gelöscht!
   deletion: '{item} löschen'
   success: '{item} erfolgreich gelöscht.'
 en:
+  deleted: Deleted!
   deletion: 'Delete {item}'
   success: '{item} deleted successfully.'
 </i18n>

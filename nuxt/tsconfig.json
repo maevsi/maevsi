@@ -30,7 +30,8 @@
       "@nuxtjs/i18n",
       "@nuxtjs/moment",
       "jest",
-      "vue-apollo/types"
+      "vue-apollo/types",
+      "vue-sweetalert2",
     ]
   },
   "exclude": [

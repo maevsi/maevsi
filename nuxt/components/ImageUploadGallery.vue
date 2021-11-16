@@ -269,13 +269,17 @@ export default defineComponent({
               this.$emit('deletion')
               break
             case 500:
-              this.$store.commit('modalAdd', {
-                contentBody: this.$t('uploadDeleteFailed'),
+              this.$swal({
+                icon: 'error',
+                text: this.$t('uploadDeleteFailed') as string,
+                title: this.$t('globalStatusError'),
               })
               break
             default:
-              this.$store.commit('modalAdd', {
-                contentBody: this.$t('uploadDeleteUnexpectedStatusCode'),
+              this.$swal({
+                icon: 'warning',
+                text: this.$t('uploadDeleteUnexpectedStatusCode') as string,
+                title: this.$t('globalStatusWarning'),
               })
           }
         }

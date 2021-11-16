@@ -348,8 +348,10 @@ export default defineComponent({
             },
           })
           .then(() => {
-            this.$store.commit('modalAdd', {
-              contentBody: this.$t('eventUpdateSuccess'),
+            this.$swal({
+              icon: 'success',
+              text: this.$t('eventUpdateSuccess') as string,
+              title: this.$t('updated'),
             })
           })
           .catch((reason) => {
@@ -386,8 +388,10 @@ export default defineComponent({
             },
           })
           .then(() => {
-            this.$store.commit('modalAdd', {
-              contentBody: this.$t('eventCreateSuccess'),
+            this.$swal({
+              icon: 'success',
+              text: this.$t('eventCreateSuccess') as string,
+              title: this.$t('created'),
             })
             this.$router.push(
               this.localePath(
@@ -463,6 +467,7 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   attendanceType: Anwesenheitstyp
+  created: Erstellt!
   description: Beschreibung
   edit: Bearbeiten
   end: Ende
@@ -483,11 +488,13 @@ de:
   slug: Slug
   slugPlaceholder: willkommensfeier
   start: Beginn
+  updated: Aktualisiert!
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
 en:
   attendanceType: Attendance type
+  created: Created!
   description: Description
   edit: Edit
   end: End
@@ -508,6 +515,7 @@ en:
   slug: Slug
   slugPlaceholder: welcome-party
   start: Start
+  updated: Updated!
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public
