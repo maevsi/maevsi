@@ -3,7 +3,7 @@
     <Header @onMenuShow="menuShow" />
     <div class="flex">
       <div
-        v-if="$store.getters.signedInUsername"
+        v-if="signedInUsername"
         class="bg-background-bright dark:bg-background-dark hidden md:block"
       >
         <Menu />
@@ -56,6 +56,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
   data() {
@@ -66,6 +67,9 @@ export default defineComponent({
   },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
+  },
+  computed: {
+    ...mapGetters(['signedInUsername']),
   },
   beforeCreate() {
     this.$moment.locale(this.$i18n.locale)

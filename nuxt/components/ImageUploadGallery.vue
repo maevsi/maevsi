@@ -139,7 +139,7 @@
 </template>
 
 <script lang="ts">
-import Uppy, { UploadResult, UppyFile } from '@uppy/core'
+import { Uppy, UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
 import prettyBytes from 'pretty-bytes'
 import { mapGetters } from 'vuex'
@@ -162,8 +162,8 @@ export default defineComponent({
       return {
         query: UPLOADS_ALL_QUERY,
         variables: {
-          cursor: null,
-          limit: this.$global.ITEMS_PER_PAGE,
+          first: this.$global.ITEMS_PER_PAGE,
+          offset: null,
           username: this.username,
         },
         update: (data: any) => data.allUploads,
@@ -188,7 +188,7 @@ export default defineComponent({
       type: Boolean,
     },
     username: {
-      default: undefined,
+      required: true,
       type: String as PropType<string | undefined>,
     },
   },
@@ -205,20 +205,20 @@ export default defineComponent({
     }
   },
   async fetch() {
-    if (this.$store.getters.signedInUsername) {
-      this.accountUploadQuotaBytes = await this.$apollo
-        .query({
-          query: ACCOUNT_UPLOAD_QUOTA_BYTES,
-        })
-        .then(({ data }) => data.accountUploadQuotaBytes)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-    }
+    if (!this.signedInUsername) return
+
+    this.accountUploadQuotaBytes = await this.$apollo
+      .query({
+        query: ACCOUNT_UPLOAD_QUOTA_BYTES,
+      })
+      .then(({ data }) => data.accountUploadQuotaBytes)
+      .catch((reason) => {
+        this.graphqlError = reason
+        consola.error(reason)
+      })
   },
   computed: {
-    ...mapGetters(['jwt']),
+    ...mapGetters(['jwt', 'signedInUsername']),
     sizeByteTotal(): number | undefined {
       if (!this.allUploads) {
         return undefined
@@ -269,13 +269,17 @@ export default defineComponent({
               this.$emit('deletion')
               break
             case 500:
-              this.$store.commit('modalAdd', {
-                contentBody: this.$t('uploadDeleteFailed'),
+              this.$swal({
+                icon: 'error',
+                text: this.$t('uploadDeleteFailed') as string,
+                title: this.$t('globalStatusError'),
               })
               break
             default:
-              this.$store.commit('modalAdd', {
-                contentBody: this.$t('uploadDeleteUnexpectedStatusCode'),
+              this.$swal({
+                icon: 'warning',
+                text: this.$t('uploadDeleteUnexpectedStatusCode') as string,
+                title: this.$t('globalStatusWarning'),
               })
           }
         }
@@ -300,7 +304,7 @@ export default defineComponent({
         const fileReader = new FileReader()
         fileReader.onload = (e) => this.fileLoaded(e)
         fileReader.readAsDataURL(file)
-      } catch (err) {
+      } catch (err: any) {
         if (err.isRestriction) {
           consola.log('Restriction error: ' + err)
         } else {
@@ -311,7 +315,7 @@ export default defineComponent({
     showMore() {
       this.$apollo.queries.allUploads.fetchMore({
         variables: {
-          cursor: this.allUploads.pageInfo.endCursor,
+          offset: this.allUploads.nodes.length,
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
           if (!fetchMoreResult) {

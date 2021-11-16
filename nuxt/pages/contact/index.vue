@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <EventList :username="$route.params.username" />
+    <ContactList />
   </div>
 </template>
 
@@ -9,12 +9,14 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
-  validate({ app, params }) {
-    return app.$global.REGEX_SLUG.test(params.username)
+  middleware({ error, store }) {
+    if (!store.getters.signedInUsername) {
+      return error({ statusCode: 403 })
+    }
   },
   data() {
     return {
-      title: this.$t('title', { username: this.$route.params.username }),
+      title: this.$t('titleContacts'),
     }
   },
   head() {
@@ -35,16 +37,6 @@ export default defineComponent({
             this.$router.currentRoute.fullPath,
         },
         {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'profile',
-        },
-        {
-          hid: 'profile:username',
-          property: 'profile:username',
-          content: title,
-        },
-        {
           hid: 'twitter:title',
           property: 'twitter:title',
           content: title,
@@ -58,7 +50,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  title: Veranstaltungen von {username}
+  titleContacts: Kontakte
 en:
-  title: Events by {username}
+  titleContacts: Contacts
 </i18n>

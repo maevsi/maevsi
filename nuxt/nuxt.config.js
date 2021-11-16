@@ -42,7 +42,7 @@ export default {
      */
     extend(_config, _ctx) {},
     extractCSS: true,
-    transpile: ['fetch-blob', 'node-fetch', /\.mjs$/],
+    transpile: ['fetch-blob', 'lodash-es', 'node-fetch', /\.mjs$/],
   },
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
@@ -57,6 +57,7 @@ export default {
         icons: {
           brands: ['faGithub'],
           solid: [
+            'faAddressBook',
             'faArchive',
             'faArrowsAltV',
             'faBars',
@@ -75,6 +76,7 @@ export default {
             'faHeading',
             'faHome',
             'faHourglass',
+            'faImages',
             'faItalic',
             'faKey',
             'faLanguage',
@@ -350,6 +352,7 @@ export default {
         Sitemap: BASE_URL + '/sitemap.xml',
       },
     ],
+    'vue-sweetalert2/nuxt',
     ['@nuxtjs/sitemap', { exclude: EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
   ],
 

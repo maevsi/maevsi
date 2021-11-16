@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$route.params.username === $store.getters.signedInUsername">
+  <div>
     <div
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
@@ -9,7 +9,6 @@
         @click="$store.commit('modalAdd', { id: 'ModalImageSelection' })"
       >
         <AccountProfilePicture
-          ref="profilePicture"
           classes="h-24 rounded w-24"
           height="96"
           :username="$route.params.username"
@@ -19,20 +18,10 @@
       <h1 class="truncate max-w-full sm:w-auto">
         {{ $route.params.username }}
       </h1>
-      <ModalImageSelection @submitSuccess="reloadProfilePicture" />
-    </div>
-    <section>
-      <h2>{{ $t('titleContacts') }}</h2>
-      <AccountContactList />
-    </section>
-    <section>
-      <h2>{{ $t('titleImageUploads') }}</h2>
-      <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
-      <ImageUploadGallery
-        :username="$route.params.username"
-        @deletion="reloadProfilePicture"
+      <ModalImageSelection
+        @submitSuccess="$nuxt.$emit('profilePictureReload')"
       />
-    </section>
+    </div>
     <section>
       <h2>{{ $t('titlePasswordChange') }}</h2>
       <FormAccountPasswordChange />
@@ -47,18 +36,18 @@
       />
     </section>
   </div>
-  <Error v-else :status-code="403" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 
 export default defineComponent({
-  middleware({ res, params, store }) {
+  middleware({ error, params, res, store }) {
     if (res && params.username !== store.getters.signedInUsername) {
-      res.statusCode = 403
+      return error({ statusCode: 403 })
     }
   },
   async validate({ app, params }) {
@@ -108,11 +97,6 @@ export default defineComponent({
       title,
     }
   },
-  methods: {
-    reloadProfilePicture() {
-      ;(this.$refs.profilePicture as any).reloadProfilePicture()
-    },
-  },
 })
 </script>
 
@@ -121,12 +105,8 @@ de:
   account: Konto
   titleAccountDelete: Konto löschen
   titlePasswordChange: Password ändern
-  titleContacts: Kontakte
-  titleImageUploads: Hochgeladene Bilder
 en:
   account: account
   titleAccountDelete: Delete account
   titlePasswordChange: Change password
-  titleContacts: Contacts
-  titleImageUploads: Image uploads
 </i18n>

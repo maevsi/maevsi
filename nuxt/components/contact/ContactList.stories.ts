@@ -1,10 +1,10 @@
 import { graphql } from 'msw'
 
 import { defineComponent } from '@nuxtjs/composition-api'
-import AccountContactList from './AccountContactList.vue'
+import ContactList from './ContactList.vue'
 
 export default {
-  component: AccountContactList,
+  component: ContactList,
   parameters: {
     msw: [
       graphql.query('allContacts', (_req, res, ctx) => {
@@ -13,7 +13,6 @@ export default {
             allContacts: {
               nodes: [],
               pageInfo: {
-                endCursor: '',
                 hasNextPage: false,
                 __typename: 'PageInfo',
               },
@@ -24,16 +23,16 @@ export default {
       }),
     ],
   },
-  title: 'account/AccountContactList',
+  title: 'contact/ContactList',
 }
 
 const Template = (_: never, { argTypes }: any) =>
   defineComponent({
-    components: { AccountContactList },
+    components: { ContactList },
     props: Object.keys(argTypes),
     template:
       // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<AccountContactList v-bind="$props">AccountContactList</AccountContactList>',
+      '<ContactList v-bind="$props">ContactList</ContactList>',
   })
 
 export const Default = Template.bind({})

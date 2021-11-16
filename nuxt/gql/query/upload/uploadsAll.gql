@@ -1,13 +1,15 @@
 #import "../../fragments/uploadFields.gql"
 
-query allUploads($cursor: Cursor, $limit: Int!, $username: String) {
-  allUploads(after: $cursor, condition: { username: $username }, first: $limit)
-    @connection(filter: ["condition"], key: "allUploads") {
+query allUploads($first: Int!, $offset: Int, $username: String) {
+  allUploads(
+    condition: { username: $username }
+    first: $first
+    offset: $offset
+  ) @connection(filter: ["condition"], key: "allUploads") {
     nodes {
       ...uploadFields
     }
     pageInfo {
-      endCursor
       hasNextPage
     }
   }

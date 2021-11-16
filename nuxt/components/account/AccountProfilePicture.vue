@@ -95,6 +95,9 @@ export default defineComponent({
       this.reloadProfilePicture()
     },
   },
+  created() {
+    this.$nuxt.$on('profilePictureReload', this.reloadProfilePicture)
+  },
   methods: {
     reloadProfilePicture() {
       this.$apollo.queries.profilePictureByUsername.refetch({

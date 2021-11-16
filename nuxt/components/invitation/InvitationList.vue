@@ -202,10 +202,12 @@ export default defineComponent({
           },
         })
         .then((_value) => {
-          this.$store.commit('modalAdd', {
-            contentBody: this.$t('sendSuccess', {
+          this.$swal({
+            icon: 'success',
+            text: this.$t('sendSuccess', {
               emailAddress: invitation.contactByContactId.emailAddress,
-            }),
+            }) as string,
+            title: this.$t('sent'),
           })
           this.$apollo.queries.allInvitations &&
             this.$apollo.queries.allInvitations.refetch()
@@ -240,6 +242,7 @@ de:
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
   sendSuccess: Einladung an {emailAddress} erfolgreich angefordert.
+  sent: Gesendet!
 en:
   contact: Contact
   disabledReasonEmailAddressNone: This contact is missing an email address.
@@ -250,4 +253,5 @@ en:
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
   sendSuccess: Invitation to {emailAddress} requested successfully.
+  sent: Sent!
 </i18n>

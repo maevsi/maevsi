@@ -5,6 +5,7 @@
     >
       <div class="sm:mr-4">
         <AccountProfilePicture
+          ref="profilePicture"
           classes="h-24 rounded w-24"
           height="96"
           :username="$route.params.username"
@@ -15,7 +16,6 @@
         {{ $route.params.username }}
       </h1>
     </div>
-    <EventList :username="$route.params.username" />
   </div>
 </template>
 

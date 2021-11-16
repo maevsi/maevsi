@@ -65,8 +65,22 @@
 
 @layer utilities {
   .maevsi-prose {
-    @apply m-auto prose-sm dark:prose-dark sm:prose sm:dark:prose-dark lg:prose-lg lg:dark:prose-dark xl:prose-xl xl:dark:prose-dark;
+    @apply m-auto prose-sm sm:prose lg:prose-lg xl:prose-xl;
   }
+
+  .maevsi-prose-scheme {
+    @apply maevsi-prose dark:prose-dark sm:dark:prose-dark lg:dark:prose-dark xl:dark:prose-dark;
+  }
+}
+
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity 0.5s;
+}
+
+.layout-enter,
+.layout-leave-active {
+  opacity: 0;
 }
 
 .ProseMirror > * { /* stylelint-disable-line selector-class-pattern */

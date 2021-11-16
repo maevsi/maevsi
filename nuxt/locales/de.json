@@ -11,6 +11,8 @@
   "globalPlaceholderPhoneNumber": "+1234567890",
   "globalPlaceholderUrl": "websei.te",
   "globalPlaceholderUsername": "nutzer-name",
+  "globalStatusError": "Fehler!",
+  "globalStatusWarning": "Warnung!",
   "globalValidationExistence": "Existiert nicht",
   "globalValidationFailed": "Bitte überprüfe deine Eingaben 🙈",
   "globalValidationFormat": "Falsches Format",

@@ -402,10 +402,12 @@ export default defineComponent({
               )
               return
             default:
-              this.$store.commit('modalAdd', {
-                contentBody: this.$t('iCalUnexpectedStatusCode', {
+              this.$swal({
+                icon: 'error',
+                text: this.$t('iCalUnexpectedStatusCode', {
                   statusCode: xhr.status,
-                }),
+                }) as string,
+                title: this.$t('globalStatusError'),
               })
           }
         }
@@ -423,8 +425,12 @@ export default defineComponent({
         })
         .then((_value) => {
           this.$apollo.queries.event.refetch()
-          this.$store.commit('modalAdd', {
-            contentBody: this.$t('success'),
+          this.$swal({
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+            text: this.$t('success') as string,
+            title: this.$t('saved'),
           })
         })
         .catch((reason) => {
@@ -441,7 +447,7 @@ de:
   greeting: Hey{usernameString}!
   greetingDescription: 'Du wurdest zu folgender Veranstaltung eingeladen:'
   iCalDownload: Zum Kalender hinzufügen
-  iCalUnexpectedStatusCode: 'Fehler: Statuscode {statusCode}. iCal-Daten konnten nicht geladen werden.'
+  iCalUnexpectedStatusCode: 'iCal-Daten konnten nicht geladen werden: Statuscode {statusCode}.'
   invitationAccept: Einladung annehmen
   invitationAccepted: Einladung angenommen
   invitationCancel: Einladung ablehnen
@@ -453,6 +459,7 @@ de:
   invitationSelectionClear: Auswahl der Einladung löschen
   invitationViewFor: Du schaust dir die Einladung für {name} an.
   requestSelection: Bitte auswählen
+  saved: Gespeichert!
   settings: Einstellungen
   step1Of2: 1/2
   step2Of2: 2/2
@@ -461,7 +468,7 @@ en:
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event:"
   iCalDownload: Add to calendar
-  iCalUnexpectedStatusCode: 'Error: Status code {statusCode}. Could not get iCal data.'
+  iCalUnexpectedStatusCode: 'Could not get iCal data: Status code {statusCode}.'
   invitationAccept: Accept invitation
   invitationAccepted: Invitation accepted
   invitationCancel: Cancel invitation
@@ -473,6 +480,7 @@ en:
   invitationSelectionClear: Clear invitation selection
   invitationViewFor: You're viewing the invitation for {name}.
   requestSelection: Please select
+  saved: Saved!
   settings: Settings
   step1Of2: 1/2
   step2Of2: 2/2

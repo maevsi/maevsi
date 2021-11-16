@@ -1,20 +1,27 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <EventList :username="$route.params.username" />
+    <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
+    <ImageUploadGallery
+      :username="signedInUsername"
+      @deletion="$nuxt.$emit('profilePictureReload')"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
-  validate({ app, params }) {
-    return app.$global.REGEX_SLUG.test(params.username)
+  middleware({ error, store }) {
+    if (!store.getters.signedInUsername) {
+      return error({ statusCode: 403 })
+    }
   },
   data() {
     return {
-      title: this.$t('title', { username: this.$route.params.username }),
+      title: this.$t('titleImageUploads'),
     }
   },
   head() {
@@ -35,16 +42,6 @@ export default defineComponent({
             this.$router.currentRoute.fullPath,
         },
         {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'profile',
-        },
-        {
-          hid: 'profile:username',
-          property: 'profile:username',
-          content: title,
-        },
-        {
           hid: 'twitter:title',
           property: 'twitter:title',
           content: title,
@@ -53,12 +50,15 @@ export default defineComponent({
       title,
     }
   },
+  computed: {
+    ...mapGetters(['signedInUsername']),
+  },
 })
 </script>
 
 <i18n lang="yml">
 de:
-  title: Veranstaltungen von {username}
+  titleImageUploads: Hochgeladene Bilder
 en:
-  title: Events by {username}
+  titleImageUploads: Image uploads
 </i18n>

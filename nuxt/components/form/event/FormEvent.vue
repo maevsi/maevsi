@@ -246,6 +246,8 @@ import {
   required,
 } from 'vuelidate/lib/validators'
 import { defineComponent } from '@nuxtjs/composition-api'
+import { mapGetters } from 'vuex'
+
 import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate.gql'
 import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById.gql'
 import { Visibility } from '~/types/event'
@@ -285,6 +287,9 @@ export default defineComponent({
       graphqlError: undefined as any,
     }
   },
+  computed: {
+    ...mapGetters(['signedInUsername']),
+  },
   created() {
     if (this.event) {
       ;[
@@ -323,7 +328,7 @@ export default defineComponent({
             variables: {
               id: this.form.id,
               eventPatch: {
-                authorUsername: this.$store.getters.signedInUsername,
+                authorUsername: this.signedInUsername,
                 description: this.form.description,
                 end: this.form.end !== '' ? this.form.end : null,
                 inviteeCountMaximum:
@@ -343,8 +348,10 @@ export default defineComponent({
             },
           })
           .then(() => {
-            this.$store.commit('modalAdd', {
-              contentBody: this.$t('eventUpdateSuccess'),
+            this.$swal({
+              icon: 'success',
+              text: this.$t('eventUpdateSuccess') as string,
+              title: this.$t('updated'),
             })
           })
           .catch((reason) => {
@@ -359,7 +366,7 @@ export default defineComponent({
             variables: {
               createEventInput: {
                 event: {
-                  authorUsername: this.$store.getters.signedInUsername,
+                  authorUsername: this.signedInUsername,
                   description: this.form.description,
                   end: this.form.end !== '' ? this.form.end : null,
                   inviteeCountMaximum:
@@ -381,12 +388,14 @@ export default defineComponent({
             },
           })
           .then(() => {
-            this.$store.commit('modalAdd', {
-              contentBody: this.$t('eventCreateSuccess'),
+            this.$swal({
+              icon: 'success',
+              text: this.$t('eventCreateSuccess') as string,
+              title: this.$t('created'),
             })
             this.$router.push(
               this.localePath(
-                `/event/${this.$store.getters.signedInUsername}/${this.form.slug}`
+                `/event/${this.signedInUsername}/${this.form.slug}`
               )
             )
           })
@@ -458,6 +467,7 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   attendanceType: Anwesenheitstyp
+  created: Erstellt!
   description: Beschreibung
   edit: Bearbeiten
   end: Ende
@@ -478,11 +488,13 @@ de:
   slug: Slug
   slugPlaceholder: willkommensfeier
   start: Beginn
+  updated: Aktualisiert!
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
 en:
   attendanceType: Attendance type
+  created: Created!
   description: Description
   edit: Edit
   end: End
@@ -503,6 +515,7 @@ en:
   slug: Slug
   slugPlaceholder: welcome-party
   start: Start
+  updated: Updated!
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public

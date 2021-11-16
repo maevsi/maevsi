@@ -11,6 +11,8 @@
   "globalPlaceholderPhoneNumber": "+1234567890",
   "globalPlaceholderUrl": "websi.te",
   "globalPlaceholderUsername": "user-name",
+  "globalStatusError": "Error!",
+  "globalStatusWarning": "Warning!",
   "globalValidationExistence": "Does not exist",
   "globalValidationFailed": "Please check your input 🙈",
   "globalValidationFormat": "Incorrect format",

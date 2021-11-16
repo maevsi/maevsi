@@ -1,11 +1,11 @@
 import { IncomingMessage, ServerResponse } from 'http'
-import cookie from 'cookie'
+import { serialize, parse } from 'cookie'
 import { decode, JwtPayload } from 'jsonwebtoken'
 import moment from 'moment'
 import { helpers } from 'vuelidate/lib/validators'
 import { Store } from 'vuex'
 
-import ApolloClient from 'apollo-client'
+import { ApolloClient } from 'apollo-client'
 import { Context } from '@nuxt/types'
 import { Inject } from '@nuxt/types/app'
 import { Dictionary } from 'vue-router/types/router'
@@ -157,7 +157,7 @@ export function getJwtFromCookie(
   req: IncomingMessage
 ): { jwt: string; jwtDecoded: JwtPayload } | undefined {
   if (req.headers.cookie) {
-    const cookies = cookie.parse(req.headers.cookie)
+    const cookies = parse(req.headers.cookie)
 
     if (cookies['__Secure-apollo-token']) {
       const cookie = decode(cookies['__Secure-apollo-token']) as JwtPayload
@@ -246,15 +246,15 @@ export async function jwtStore(
     window.location.reload()
   }
 ) {
+  await apolloClient.clearStore()
+
   consola.trace('Storing the following JWT: ' + jwt)
   store.commit('jwtSet', jwt)
-
-  await apolloClient.clearStore()
 
   if (process.server) {
     res?.setHeader(
       'Set-Cookie',
-      cookie.serialize('__Secure-apollo-token', jwt || '', {
+      serialize('__Secure-apollo-token', jwt || '', {
         expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
         httpOnly: true,
         path: '/',

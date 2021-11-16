@@ -66,8 +66,10 @@ const FormAccountPasswordReset = defineComponent({
         return
       }
 
-      this.$store.commit('modalAdd', {
-        contentBody: this.$t('accountPasswordResetSuccess'),
+      this.$swal({
+        icon: 'success',
+        text: this.$t('accountPasswordResetSuccess') as string,
+        title: this.$t('reset'),
       })
       this.$router.push({
         path: this.localePath(`/account`),
@@ -98,7 +100,9 @@ export type FormAccountPasswordResetType = InstanceType<
 de:
   accountPasswordReset: Passwort zurücksetzen
   accountPasswordResetSuccess: Passwort erfolgreich zurückgesetzt.
+  reset: Zurückgesetzt!
 en:
   accountPasswordReset: Reset password
   accountPasswordResetSuccess: Password reset successfully.
+  reset: Reset!
 </i18n>

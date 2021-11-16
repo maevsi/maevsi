@@ -74,8 +74,10 @@ const FormAccountPasswordChange = defineComponent({
           },
         })
         .then((_value) => {
-          this.$store.commit('modalAdd', {
-            contentBody: this.$t('passwordChangeSuccess'),
+          this.$swal({
+            icon: 'success',
+            text: this.$t('passwordChangeSuccess') as string,
+            title: this.$t('changed'),
           })
           ;(this.$refs.form as FormType).reset()
         })
@@ -114,10 +116,12 @@ export type FormAccountPasswordChangeType = InstanceType<
 
 <i18n lang="yml">
 de:
+  changed: Geändert!
   passwordChange: Passwort ändern
   passwordChangeSuccess: Passwort erfolgreich geändert.
   passwordConfirmation: Wiederhole das neue Passwort, um Tippfehler auszuschließen.
 en:
+  changed: Changed!
   passwordChange: Change password
   passwordChangeSuccess: Password changed successfully.
   passwordConfirmation: Repeat the new password to rule out typos.

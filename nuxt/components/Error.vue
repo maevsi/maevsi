@@ -63,12 +63,12 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   403description: Du bist aktuell nicht berechtigt, auf diese Seite zuzugreifen.
-  403hint: Hast du von diesem Gerät aus schon einen Einladungscode eingegeben oder dich angemeldet?
+  403hint: Hast du dich schon angemeldet oder von diesem Gerät aus einen Einladungscode eingegeben?
   error: Fehler
   maevNo: maev.no? 🥺
 en:
   403description: "You're currently missing permissions to view this site."
-  403hint: On this device, did you already enter an invitation code or sign in?
+  403hint: Did you already sign in or enter an invitation code on this device?
   error: Error
   maevNo: maev.no? 🥺
 </i18n>

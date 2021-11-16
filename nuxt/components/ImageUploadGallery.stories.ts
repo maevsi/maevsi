@@ -23,7 +23,6 @@ export default {
                 // },
               ],
               pageInfo: {
-                endCursor: '',
                 hasNextPage: false,
                 __typename: 'PageInfo',
               },

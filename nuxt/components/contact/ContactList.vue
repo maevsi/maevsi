@@ -4,9 +4,19 @@
     :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
-    <div class="shadow overflow-auto border-b border-gray-200 sm:rounded-lg">
+    <div
+      ref="scrollContainer"
+      class="
+        border-b border-gray-200
+        max-h-[90vh]
+        overflow-auto
+        sm:rounded-lg
+        shadow
+      "
+      @scroll.passive="onScroll"
+    >
       <table v-if="allContacts" class="divide-y divide-gray-200">
-        <thead>
+        <thead class="sticky top-0 z-10">
           <tr>
             <th scope="col">
               {{ $t('contact') }}
@@ -29,6 +39,7 @@
         <tbody class="divide-y divide-gray-200">
           <ContactListItem
             v-for="contact in allContacts.nodes"
+            :id="contact.nodeId"
             :key="contact.nodeId"
             :contact="contact"
             :is-deleting="pending.deletions.includes(contact.nodeId)"
@@ -62,7 +73,11 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
+import { ApolloQueryResult } from 'apollo-client'
+import { debounce, unionBy } from 'lodash-es'
 import VueI18n from 'vue-i18n'
+import { mapGetters } from 'vuex'
+
 import CONTACT_DELETE_MUTATION from '~/gql/mutation/contact/contactDelete.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
 import { Contact } from '~/types/contact'
@@ -75,11 +90,22 @@ export default defineComponent({
       return {
         query: CONTACTS_ALL_QUERY,
         variables: {
-          cursor: null,
-          limit: this.$global.ITEMS_PER_PAGE,
-          authorAccountUsername: this.$store.getters.signedInUsername,
+          authorAccountUsername: 'jonas',
+          first: this.$global.ITEMS_PER_PAGE,
+          offset: null,
         },
-        update: (data: any) => data.allContacts,
+        result(result: ApolloQueryResult<any>, key: string) {
+          if (!this.$refs.scrollContainer) return
+
+          const scrollContainer = this.$refs.scrollContainer as Element
+
+          if (
+            result.data[key].pageInfo.hasNextPage &&
+            scrollContainer.scrollHeight === scrollContainer.clientHeight
+          ) {
+            this.showMore()
+          }
+        },
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
           consola.error(error)
@@ -89,6 +115,7 @@ export default defineComponent({
   },
   data() {
     return {
+      allContacts: undefined as any,
       formContactHeading: undefined as VueI18n.TranslateResult | undefined,
       graphqlError: undefined as any,
       pending: {
@@ -97,6 +124,9 @@ export default defineComponent({
       },
       selectedContact: undefined as Contact | undefined,
     }
+  },
+  computed: {
+    ...mapGetters(['signedInUsername']),
   },
   methods: {
     add() {
@@ -143,9 +173,48 @@ export default defineComponent({
         1
       )
     },
+    onScroll(e: Event) {
+      const scrollBar = e.target as Element
+
+      if (
+        scrollBar &&
+        scrollBar.scrollTop + scrollBar.clientHeight >= scrollBar.scrollHeight
+      ) {
+        debounce(this.showMore, 100)()
+      }
+    },
     onSubmitSuccess() {
       this.$store.commit('modalRemove', 'ModalContact')
       this.$apollo.queries.allContacts.refetch()
+    },
+    showMore() {
+      if (!this.allContacts.pageInfo.hasNextPage) return
+
+      this.$apollo.queries.allContacts.fetchMore({
+        variables: {
+          offset: this.allContacts.nodes.length,
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          if (!fetchMoreResult) {
+            return previousResult
+          }
+
+          const newNodes = fetchMoreResult.allContacts.nodes
+          const pageInfo = fetchMoreResult.allContacts.pageInfo
+
+          return {
+            allContacts: {
+              __typename: previousResult.allContacts.__typename,
+              nodes: unionBy(
+                previousResult.allContacts.nodes,
+                newNodes,
+                'nodeId'
+              ),
+              pageInfo,
+            },
+          }
+        },
+      })
     },
   },
 })

@@ -4,38 +4,35 @@
     :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
-    <div v-if="$route.params.username === $store.getters.signedInUsername">
-      <div v-if="event">
-        <!-- TODO: breadcrumbs -->
-        <h1 class="text-center">
-          {{ title }}
-        </h1>
-        <section>
-          <h2>{{ $t('titleInvitations') }}</h2>
-          <InvitationList :event="event" />
-        </section>
-        <section>
-          <h2>{{ $t('titleEdit') }}</h2>
-          <FormEvent :event="event" />
-        </section>
-        <section>
-          <h2>{{ $t('titleDelete') }}</h2>
-          <FormDelete
-            id="deleteEvent"
-            :item-name="$t('event')"
-            :mutation="mutation"
-            :update="updateCacheDelete"
-            :variables="{
-              authorUsername: $route.params.username,
-              slug: $route.params.event_name,
-            }"
-            @success="onDeleteSuccess"
-          />
-        </section>
-      </div>
-      <Error v-else />
+    <div v-if="event">
+      <!-- TODO: breadcrumbs -->
+      <h1 class="text-center">
+        {{ title }}
+      </h1>
+      <section>
+        <h2>{{ $t('titleInvitations') }}</h2>
+        <InvitationList :event="event" />
+      </section>
+      <section>
+        <h2>{{ $t('titleEdit') }}</h2>
+        <FormEvent :event="event" />
+      </section>
+      <section>
+        <h2>{{ $t('titleDelete') }}</h2>
+        <FormDelete
+          id="deleteEvent"
+          :item-name="$t('event')"
+          :mutation="mutation"
+          :update="updateCacheDelete"
+          :variables="{
+            authorUsername: $route.params.username,
+            slug: $route.params.event_name,
+          }"
+          @success="onDeleteSuccess"
+        />
+      </section>
     </div>
-    <Error v-else :status-code="403" />
+    <Error v-else />
   </div>
 </template>
 
@@ -67,9 +64,9 @@ export default defineComponent({
       }
     },
   },
-  middleware({ res, params, store }: Context) {
+  middleware({ error, res, params, store }: Context) {
     if (res && params.username !== store.getters.signedInUsername) {
-      res.statusCode = 403
+      return error({ statusCode: 403 })
     }
   },
   async validate({ app, params }): Promise<boolean> {
