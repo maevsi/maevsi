@@ -109,7 +109,12 @@ export default {
         useLayersText: false,
       },
     ],
-    '@nuxtjs/google-analytics',
+    [
+      '@nuxtjs/google-analytics',
+      {
+        disabled: true,
+      },
+    ],
     '@nuxtjs/html-validator',
     // Doc: https://github.com/nuxt-community/moment-module
     ['@nuxtjs/moment', { locales: ['de'] }],
@@ -121,6 +126,42 @@ export default {
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
+
+  cookies: {
+    necessary: [
+      {
+        name: {
+          de: 'Authentifizierungsdaten',
+          en: 'Authentication Data',
+        },
+        cookies: ['__Secure-apollo-token'],
+      },
+      {
+        name: {
+          de: 'Cookie-Präferenzen',
+          en: 'Cookie Preferences',
+        },
+        cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies'],
+      },
+      {
+        name: {
+          de: 'Spracheinstellungen',
+          en: 'Language Settings',
+        },
+        cookies: ['i18n_redirected'],
+      },
+    ],
+    optional: [
+      {
+        name: 'Google Analytics',
+        identifier: 'ga',
+        cookies: ['_ga'],
+        accepted: () => {
+          window.$nuxt.$ga.enable()
+        },
+      },
+    ],
+  },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['vue-datetime/dist/vue-datetime.min.css'],
@@ -296,6 +337,12 @@ export default {
         },
       },
     ], // Should be declared at the start of the array.
+    [
+      'nuxt-cookie-control',
+      {
+        locales: ['en', 'de'],
+      },
+    ],
     'nuxt-healthcheck',
     [
       '@nuxtjs/i18n',
