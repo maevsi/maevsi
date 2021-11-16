@@ -94,7 +94,6 @@ export default defineComponent({
 #logo {
   background-image: url('/assets/static/logos/maevsi.svg');
   background-repeat: no-repeat;
-  background-size: contain;
 }
 
 html.dark #logo {
