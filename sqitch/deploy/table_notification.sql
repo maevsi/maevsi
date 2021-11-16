@@ -20,13 +20,15 @@ COMMENT ON COLUMN maevsi_private.notification.timestamp IS 'The notification''s 
 
 CREATE FUNCTION maevsi_private.notify() RETURNS TRIGGER AS $$
 BEGIN
-  PERFORM pg_notify(
-    NEW.channel,
-    jsonb_pretty(jsonb_build_object(
-        'id', NEW.id,
-        'payload', NEW.payload
-    ))
-  );
+  IF (NEW.is_acknowledged IS NOT TRUE) THEN
+    PERFORM pg_notify(
+      NEW.channel,
+      jsonb_pretty(jsonb_build_object(
+          'id', NEW.id,
+          'payload', NEW.payload
+      ))
+    );
+  END IF;
   RETURN NEW;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
