@@ -1,3 +1,10 @@
+# [0.105.0](https://github.com/maevsi/maevsi/compare/0.104.0...0.105.0) (2021-11-16)
+
+
+### Features
+
+* **cookie:** add consent notice ([96bf1ba](https://github.com/maevsi/maevsi/commit/96bf1ba19fa088211dccc113188e6ebe0684144d)), closes [#357](https://github.com/maevsi/maevsi/issues/357)
+
 # [0.104.0](https://github.com/maevsi/maevsi/compare/0.103.1...0.104.0) (2021-11-16)
 
 
