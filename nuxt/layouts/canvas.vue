@@ -33,6 +33,12 @@ export default defineComponent({
 
     window.onresize = this.canvasResize
     window.setInterval(() => window.requestAnimationFrame(this.draw), 17)
+
+    const redirect = this.$route.query.redirect
+
+    if (redirect && typeof redirect === 'string') {
+      setTimeout(() => this.$router.push(redirect), 1000)
+    }
   },
   methods: {
     canvasResize() {

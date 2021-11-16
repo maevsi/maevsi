@@ -56,19 +56,58 @@
 </template>
 
 <script lang="ts">
-import { required } from 'vuelidate/lib/validators'
+import { Context } from '@nuxt/types'
 import { defineComponent } from '@nuxtjs/composition-api'
+import { required } from 'vuelidate/lib/validators'
+
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 
 const consola = require('consola')
 
 export default defineComponent({
-  layout({ $global, route }: Context) {
-    return route.query.ic &&
-      typeof route.query.ic === 'string' &&
-      $global.REGEX_UUID.test(route.query.ic)
+  layout(context: Context) {
+    return isQueryIcFormatValid(context) && !('error' in context.route.query)
       ? 'canvas'
       : 'default'
+  },
+  async middleware(context: Context): Promise<void> {
+    const { $global, app, redirect, route, store } = context
+
+    if (isQueryIcFormatValid(context)) {
+      const res = await eventUnlock(context)
+      if (!res) {
+        return redirect(
+          app.localePath({
+            query: {
+              ...route.query,
+              error: null,
+            },
+          })
+        )
+      }
+
+      await $global.jwtStore(
+        app.apolloProvider!.defaultClient,
+        store,
+        undefined,
+        res.jwt
+      )
+
+      if ('quick' in route.query) {
+        return redirect(
+          app.localePath(`/event/${res.authorUsername}/${res.eventSlug}`)
+        )
+      } else {
+        return redirect({
+          query: {
+            ...route.query,
+            redirect: app.localePath(
+              `/event/${res.authorUsername}/${res.eventSlug}`
+            ),
+          },
+        })
+      }
+    }
   },
   data() {
     return {
@@ -123,8 +162,12 @@ export default defineComponent({
     },
   },
   mounted() {
-    if (this.$route.query.ic !== undefined) {
+    if (this.$route.query.ic) {
       this.$v.form.invitationCode?.$touch()
+
+      if ('error' in this.$route.query) {
+        this.submit()
+      }
     }
   },
   methods: {
@@ -178,6 +221,32 @@ export default defineComponent({
     }
   },
 })
+
+async function eventUnlock(context: Context) {
+  const { $global, app, route } = context
+  return await app
+    .apolloProvider!.defaultClient.mutate({
+      mutation: EVENT_UNLOCK_MUTATION,
+      variables: {
+        invitationCode: route.query.ic,
+      },
+    })
+    .then(({ data }: any) =>
+      $global.getNested(data, 'eventUnlock', 'eventUnlockResponse')
+    )
+    .catch((reason: any) => {
+      consola.error(reason)
+    })
+}
+
+function isQueryIcFormatValid(context: Context) {
+  const { $global, route } = context
+  return (
+    route.query.ic &&
+    typeof route.query.ic === 'string' &&
+    $global.REGEX_UUID.test(route.query.ic)
+  )
+}
 </script>
 
 <i18n lang="yml">
