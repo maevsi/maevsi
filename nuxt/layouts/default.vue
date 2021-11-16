@@ -51,6 +51,7 @@
       <Menu v-if="isMenuItemsVisible" is-closable @onMenuHide="menuHide" />
     </div>
     <Modal />
+    <CookieControl :locale="$i18n.locale" />
   </div>
 </template>
 
