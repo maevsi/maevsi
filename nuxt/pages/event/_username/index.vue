@@ -1,5 +1,8 @@
 <template>
-  <EventList :username="$route.params.username" />
+  <div>
+    <h1>{{ title }}</h1>
+    <EventList :username="$route.params.username" />
+  </div>
 </template>
 
 <script lang="ts">

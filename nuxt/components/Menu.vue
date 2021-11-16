@@ -51,6 +51,18 @@
         <hr v-if="signedInUsername" class="opacity-40" />
         <Button
           v-if="signedInUsername"
+          :aria-label="$t('events')"
+          class="text-left"
+          :to="localePath(`/event/${signedInUsername}`)"
+          @click.native="$emit('onMenuHide')"
+        >
+          <div class="inline-block text-center w-8">
+            <FontAwesomeIcon :icon="['fas', 'calendar-day']" size="lg" />
+          </div>
+          {{ $t('events') }}
+        </Button>
+        <Button
+          v-if="signedInUsername"
           :aria-label="$t('contacts')"
           class="text-left"
           :to="localePath('/contact')"
@@ -122,7 +134,7 @@
             :to="localePath('/event')"
             @click="$emit('onMenuHide')"
           >
-            {{ $t('events') }}
+            {{ $t('eventsExplore') }}
           </AppLink>
         </div>
       </div>
@@ -152,7 +164,8 @@ de:
   accountSettings: Konto bearbeiten
   contacts: Kontakte
   eventNew: Veranstaltung erstellen
-  events: Veranstaltungen entdecken
+  events: Veranstaltungen
+  eventsExplore: Veranstaltungen entdecken
   menuHide: Menü verstecken
   settings: Einstellungen
   signIn: Anmelden
@@ -162,7 +175,8 @@ en:
   accountSettings: Edit account
   contacts: Contacts
   eventNew: Create event
-  events: Explore events
+  events: Events
+  eventsExplore: Explore events
   menuHide: Hide menu
   settings: Settings
   signIn: Sign in

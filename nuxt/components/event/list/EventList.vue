@@ -4,9 +4,6 @@
     :error-message="graphqlError ? String(graphqlError) : undefined"
   />
   <div v-else>
-    <h2 v-if="username" class="text-left truncate">
-      {{ $t('titleEvents', { username: $route.params.username }) }}
-    </h2>
     <ButtonList>
       <ButtonEventList v-if="showButtonEventList" />
       <ButtonEventNew v-if="showButtonEventNew" />
@@ -114,10 +111,8 @@ de:
   createEvent: Veranstaltung erstellen
   eventAuthor: von {username}
   noEvents: Aktuell gibt es keine Veranstaltungen 😕
-  titleEvents: Veranstaltungen von {username}
 en:
   createEvent: Create event
   eventAuthor: by {username}
   noEvents: There are currently no events 😕
-  titleEvents: Events by {username}
 </i18n>

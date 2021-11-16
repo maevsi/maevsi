@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ $t('titleImageUploads') }}</h1>
+    <h1>{{ title }}</h1>
     <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
     <ImageUploadGallery
       :username="signedInUsername"

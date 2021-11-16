@@ -16,7 +16,6 @@
         {{ $route.params.username }}
       </h1>
     </div>
-    <EventList :username="$route.params.username" />
   </div>
 </template>
 
