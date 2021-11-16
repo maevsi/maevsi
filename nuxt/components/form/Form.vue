@@ -4,8 +4,7 @@
     ref="form"
     :class="[
       {
-        'animate-shake border border-red-500 rounded':
-          graphqlErrorComputed !== undefined,
+        'animate-shake border border-red-500 rounded': graphqlErrorComputed,
       },
       formClass,
     ]"
@@ -32,33 +31,19 @@
         </FormInputError>
       </div>
       <CardAlert
-        class="mt-4"
+        class="my-4"
         :error-message="
           graphqlErrorComputed ? String(graphqlErrorComputed) : undefined
         "
-      >
-        <ButtonColored
-          v-if="
-            graphqlErrorComputed &&
-            graphqlErrorComputed.startsWith('Account not verified!')
-          "
-          :aria-label="$t('verificationMailResend')"
-          @click="accountRegistrationRefresh"
-        >
-          <!-- https://github.com/maevsi/maevsi/issues/209 -->
-          {{ $t('verificationMailResend') }}
-        </ButtonColored>
-      </CardAlert>
+      />
+      <slot name="assistance" />
     </Card>
   </form>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import ACCOUNT_REGISTRATION_MUTATION_REFRESH from '~/gql/mutation/account/accountRegistrationRefresh.gql'
 import Button from '~/components/button/Button.vue'
-
-const consola = require('consola')
 
 const Form = defineComponent({
   props: {
@@ -89,11 +74,6 @@ const Form = defineComponent({
       type: String,
     },
   },
-  data() {
-    return {
-      graphqlErrorInternal: undefined as any,
-    }
-  },
   computed: {
     graphqlErrorComputed(): any {
       if (!this.graphqlError) {
@@ -104,38 +84,10 @@ const Form = defineComponent({
         ...((this.graphqlError as any).graphQLErrors?.map(
           (e: Error) => e.message
         ) ?? []),
-        ...(this.graphqlErrorInternal ? [this.graphqlErrorInternal] : []),
       ].join(', ')
     },
   },
   methods: {
-    async accountRegistrationRefresh() {
-      const res = await this.$apollo
-        .mutate({
-          mutation: ACCOUNT_REGISTRATION_MUTATION_REFRESH,
-          variables: {
-            language: this.$i18n.locale,
-            username: this.form.username.$model,
-          },
-        })
-        .then(({ data }) =>
-          this.$global.getNested(data, 'accountRegistrationRefresh')
-        )
-        .catch((reason) => {
-          this.graphqlErrorInternal = reason
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return
-      }
-
-      this.$swal({
-        icon: 'success',
-        text: this.$t('registrationRefreshSuccess') as string,
-        title: this.$t('sent'),
-      })
-    },
     reset() {
       ;(this.$refs.form as HTMLFormElement).reset()
     },
@@ -154,13 +106,7 @@ export type FormType = InstanceType<typeof Form>
 
 <i18n lang="yml">
 de:
-  registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
-  sent: Gesendet!
   submit: Absenden
-  verificationMailResend: Verifizierungsmail erneut senden
 en:
-  registrationRefreshSuccess: A new welcome email is on its way to you.
-  sent: Sent!
   submit: Submit
-  verificationMailResend: Resend verification mail
 </i18n>
