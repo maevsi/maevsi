@@ -4,7 +4,7 @@
     ref="form"
     :class="[
       {
-        'animate-shake border border-red-500':
+        'animate-shake border border-red-500 rounded':
           graphqlErrorComputed !== undefined,
       },
       formClass,
