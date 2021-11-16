@@ -236,6 +236,11 @@ export default defineComponent({
       return sizeByteTotal
     },
   },
+  beforeUnmount() {
+    if (this.uppy) {
+      this.uppy.close()
+    }
+  },
   methods: {
     bytesToString(
       bytes: number | string | undefined | null
