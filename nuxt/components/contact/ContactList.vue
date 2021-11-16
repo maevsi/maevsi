@@ -90,7 +90,7 @@ export default defineComponent({
       return {
         query: CONTACTS_ALL_QUERY,
         variables: {
-          authorAccountUsername: 'jonas',
+          authorAccountUsername: this.signedInUsername,
           first: this.$global.ITEMS_PER_PAGE,
           offset: null,
         },
