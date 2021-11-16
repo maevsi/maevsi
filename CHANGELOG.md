@@ -1,3 +1,33 @@
+# [0.104.0](https://github.com/maevsi/maevsi/compare/0.103.1...0.104.0) (2021-11-16)
+
+
+### Bug Fixes
+
+* **apollo:** correct client clear order ([39dacb4](https://github.com/maevsi/maevsi/commit/39dacb4275431475f1cabc238df3fb764a7d1330))
+* **contacts:** correct contact name ordering ([ac5e28d](https://github.com/maevsi/maevsi/commit/ac5e28d1f4cc2ad3da55cb11e27bfe779e718adb))
+* **form:** round error border ([fa72935](https://github.com/maevsi/maevsi/commit/fa729357a80ed7453ad1719c18baa5db61a11e2b))
+* **menu:** correct visibility for guests ([0ac3fc6](https://github.com/maevsi/maevsi/commit/0ac3fc66fc59f4866f0d9e608c0c85cc292b9116))
+* **profile-picture:** use global emit for update ([9e76720](https://github.com/maevsi/maevsi/commit/9e767205d3b428d08c05c98c500263a55be6d184))
+* **prose:** fix dark mode ([19d9b49](https://github.com/maevsi/maevsi/commit/19d9b49be5f7808dbfc2c30829d2578b06eb6eb6))
+* **storybook:** correct contact directory ([14e880d](https://github.com/maevsi/maevsi/commit/14e880d6d9809c00eeecf332a63dc42c5dbacdd4))
+* **uppy:** use named export ([0b399bd](https://github.com/maevsi/maevsi/commit/0b399bdffed90fb24ecfc65daa5eea3c26fe7db3))
+
+
+### Features
+
+* **account:** move content from settings to profile ([9a0b8f1](https://github.com/maevsi/maevsi/commit/9a0b8f140d42d0940fcf9b11222f15fb6dd0fa69))
+* **contact-list:** implement infinite scroll ([be60076](https://github.com/maevsi/maevsi/commit/be60076410ed8361877a2cc9bc68f2bd7ae11155))
+* **contact, upload:** add unique endpoints ([55e9183](https://github.com/maevsi/maevsi/commit/55e9183db52510804521525c163a207883b25d6d))
+* **error:** improve wording ([43efeb9](https://github.com/maevsi/maevsi/commit/43efeb99f238a83aab8ce8d47a6bef994b04783c))
+* **layout:** add canvas ([d849bab](https://github.com/maevsi/maevsi/commit/d849baba44e8cdf1ef8446e66baf181922ec6da2)), closes [#413](https://github.com/maevsi/maevsi/issues/413)
+* **layout:** add transitions ([69f1a31](https://github.com/maevsi/maevsi/commit/69f1a31c996e401476cd51e747d7fc651ae9bd7c))
+* **menu:** add events link ([334f37e](https://github.com/maevsi/maevsi/commit/334f37e72453372d1c82ec6d1e71bf5d48c646f9))
+* **modal:** use sweet alert 2 ([52232fb](https://github.com/maevsi/maevsi/commit/52232fb87632211e619135ece2afce4b37c5900d)), closes [#355](https://github.com/maevsi/maevsi/issues/355)
+* **postgraphile:** switch from cursor to offset based navigation ([9aa913f](https://github.com/maevsi/maevsi/commit/9aa913f108aaf24b90d16da55364d43574aace7a))
+* **settings:** use error instead of 403 only ([73124e7](https://github.com/maevsi/maevsi/commit/73124e76384851a803c9af3d26d4e944ea8b5f37))
+* **sign-in:** use map getters ([2999f10](https://github.com/maevsi/maevsi/commit/2999f103706ef9424ae9dc9aa96996e9c1333531))
+* **unlock:** extend query parameters ([e35ba5f](https://github.com/maevsi/maevsi/commit/e35ba5fca3376ab84ab8ac5f578847d0c40be68f))
+
 ## [0.103.1](https://github.com/maevsi/maevsi/compare/0.103.0...0.103.1) (2021-11-08)
 
 
