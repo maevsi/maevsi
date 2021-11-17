@@ -155,7 +155,7 @@ export default {
       {
         name: 'Google Analytics',
         identifier: 'ga',
-        cookies: ['_ga'],
+        cookies: ['_ga', '_gat', '_gid'],
         accepted: () => {
           window.$nuxt.$ga.enable()
         },
