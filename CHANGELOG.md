@@ -1,3 +1,18 @@
+# [0.107.0](https://github.com/maevsi/maevsi/compare/0.106.0...0.107.0) (2021-11-17)
+
+
+### Bug Fixes
+
+* **analytics:** reenable plugin ([af7c244](https://github.com/maevsi/maevsi/commit/af7c2448d3218cb9c1f05213990d3493e467817e))
+* **cookies:** add missing google analytics cookie names ([c8f83bd](https://github.com/maevsi/maevsi/commit/c8f83bdb8a7ea41d03cefa864c2afa9548dee82e))
+* **event:** correct typing ([074993e](https://github.com/maevsi/maevsi/commit/074993eface89a844a79c3d6f58bd11a5a19d091))
+* **types:** correct event contructor ([21c3604](https://github.com/maevsi/maevsi/commit/21c36043490bbbe28b363631a6eb4a1541d328f9))
+
+
+### Features
+
+* **event:** add templating to event description ([d3c69be](https://github.com/maevsi/maevsi/commit/d3c69be4cd7c4a6474da74d5ba04c589266b87bc)), closes [#118](https://github.com/maevsi/maevsi/issues/118)
+
 # [0.106.0](https://github.com/maevsi/maevsi/compare/0.105.0...0.106.0) (2021-11-17)
 
 
