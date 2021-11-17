@@ -276,6 +276,7 @@ module.exports = {
           backgroundColor: theme('colors.gray.50'),
           borderColor: theme('colors.gray.300'),
           borderRadius: theme('borderRadius.DEFAULT'),
+          borderWidth: theme('borderWidth.DEFAULT'),
           boxShadow: theme('boxShadow.sm'),
           color: theme('colors.text.dark'),
           lineHeight: theme('lineHeight.tight'),

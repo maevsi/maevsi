@@ -21,7 +21,10 @@
         :event="event"
       />
       <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
-        <ButtonColored :aria-label="$t('globalPagingMore')" @click="showMore">
+        <ButtonColored
+          :aria-label="$t('globalPagingMore')"
+          @click="$global.loadMore($apollo, 'allEvents', allEvents)"
+        >
           {{ $t('globalPagingMore') }}
         </ButtonColored>
       </div>
@@ -77,31 +80,6 @@ export default defineComponent({
     return {
       graphqlError: undefined as any,
     }
-  },
-  methods: {
-    showMore() {
-      this.$apollo.queries.allEvents.fetchMore({
-        variables: {
-          offset: (this.allEvents as any).nodes.length,
-        },
-        updateQuery: (previousResult, { fetchMoreResult }) => {
-          if (!fetchMoreResult) {
-            return previousResult
-          }
-
-          const newNodes = fetchMoreResult.allEvents.nodes
-          const pageInfo = fetchMoreResult.allEvents.pageInfo
-
-          return {
-            allEvents: {
-              __typename: previousResult.allEvents.__typename,
-              nodes: [...previousResult.allEvents.nodes, ...newNodes],
-              pageInfo,
-            },
-          }
-        },
-      })
-    },
   },
 })
 </script>

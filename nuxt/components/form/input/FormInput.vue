@@ -12,7 +12,7 @@
         <label
           class="
             font-semibold
-            flex
+            inline-flex
             md:flex-col
             items-baseline
             md:items-end

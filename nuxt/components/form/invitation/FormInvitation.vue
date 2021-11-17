@@ -82,6 +82,7 @@
 <script lang="ts">
 import { minLength, minValue, required } from 'vuelidate/lib/validators'
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { ApolloQueryResult } from 'apollo-client'
 import { mapGetters } from 'vuex'
 
 import INVITATION_CREATE_MUTATION from '~/gql/mutation/invitation/invitationCreate.gql'
@@ -101,7 +102,15 @@ export default defineComponent({
           first: this.$global.ITEMS_PER_PAGE,
           offset: null,
         },
-        update: (data: any) => data.allContacts,
+        result(result: ApolloQueryResult<any>, key: string) {
+          if (
+            !this.$apollo.queries.allContacts.loading &&
+            result.data &&
+            result.data[key].pageInfo.hasNextPage
+          ) {
+            this.loadMore()
+          }
+        },
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
           consola.error(error)
@@ -117,6 +126,7 @@ export default defineComponent({
   },
   data() {
     return {
+      allContacts: undefined as any,
       form: {
         sent: false,
         contactId: undefined as string | undefined,
@@ -170,6 +180,9 @@ export default defineComponent({
       // } else {
       //   this.form.contactIds.splice(index, 1)
       // }
+    },
+    loadMore() {
+      this.$global.loadMore(this.$apollo, 'allContacts', this.allContacts)
     },
     async submit() {
       try {

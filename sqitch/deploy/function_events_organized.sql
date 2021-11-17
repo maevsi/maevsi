@@ -4,7 +4,6 @@
 -- requires: table_event
 -- requires: role_account
 -- requires: role_anonymous
--- requires: role_stomper
 
 BEGIN;
 
@@ -19,6 +18,6 @@ $$ LANGUAGE PLPGSQL STRICT STABLE SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi.events_organized() IS 'Add a function that returns all event ids for which the invoker is the author.';
 
-GRANT EXECUTE ON FUNCTION maevsi.events_organized() TO maevsi_account, maevsi_anonymous, maevsi_stomper;
+GRANT EXECUTE ON FUNCTION maevsi.events_organized() TO maevsi_account, maevsi_anonymous;
 
 COMMIT;

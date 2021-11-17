@@ -181,9 +181,9 @@ export default defineComponent({
     })
   },
   beforeUnmount() {
-    if (!this.editor) return
-
-    this.editor.destroy()
+    if (this.editor) {
+      this.editor.destroy()
+    }
   },
   methods: {
     setLink() {

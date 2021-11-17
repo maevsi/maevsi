@@ -6,7 +6,6 @@
 -- requires: function_events_organized
 -- requires: role_account
 -- requires: role_anonymous
--- requires: role_stomper
 
 BEGIN;
 
@@ -22,6 +21,6 @@ $$ LANGUAGE PLPGSQL STRICT STABLE SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi.invitation_contact_ids() IS 'Returns contact ids that are accessible through invitations.';
 
-GRANT EXECUTE ON FUNCTION maevsi.invitation_contact_ids() TO maevsi_account, maevsi_anonymous, maevsi_stomper;
+GRANT EXECUTE ON FUNCTION maevsi.invitation_contact_ids() TO maevsi_account, maevsi_anonymous;
 
 COMMIT;

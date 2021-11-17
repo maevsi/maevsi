@@ -1,13 +1,20 @@
 #import "../../fragments/contactFields.gql"
 #import "../../fragments/invitationFields.gql"
 
-query allInvitations($eventId: BigInt!) {
-  allInvitations(condition: { eventId: $eventId }) {
+query allInvitations($first: Int!, $offset: Int, $eventId: BigInt!) {
+  allInvitations(
+    condition: { eventId: $eventId }
+    first: $first
+    offset: $offset
+  ) {
     nodes {
       ...invitationFields
       contactByContactId {
         ...contactFields
       }
+    }
+    pageInfo {
+      hasNextPage
     }
     totalCount
   }
