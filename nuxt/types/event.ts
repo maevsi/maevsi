@@ -18,14 +18,14 @@ export class Event {
   constructor(
     id: string,
     authorUsername: string,
-    end: string,
+    end: Date,
     isArchived: boolean,
     isInPerson: boolean,
     isRemote: boolean,
     location: string,
     name: string,
-    start: string,
-    visibility: Visibility,
+    start: Date,
+    visibility: Visibility
   ) {
     this.id = id
     this.authorUsername = authorUsername
