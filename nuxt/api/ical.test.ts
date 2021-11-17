@@ -23,13 +23,18 @@ test('gets ical string', () => {
 
   expect(
     getIcalString({
+      id: '1',
       authorUsername: 'authorUsername',
       description: '<p>description</p>',
       end: new Date(),
+      isArchived: false,
+      isInPerson: false,
+      isRemote: false,
       location: 'location',
       name: 'name',
       slug: 'slug',
       start: new Date(),
+      visibility: 'PUBLIC',
     })
   ).toBe(
     `BEGIN:VCALENDAR\r

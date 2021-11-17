@@ -1,35 +1,36 @@
 import { ServerResponse } from 'http'
 
+import mustache from 'mustache'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
 
 import { IncomingMessageWithBody } from '~/types/http'
-
-interface Event {
-  authorUsername: string
-  description: string
-  end: Date
-  location: string
-  name: string
-  slug: string
-  start: Date
-}
+import { Contact } from '~/types/contact'
+import { Event as MaevsiEvent } from '~/types/event'
+import { Invitation } from '~/types/invitation'
 
 export default function (
   req: IncomingMessageWithBody,
   res: ServerResponse,
   _next: any
 ) {
-  const event: Event = req.body.event
+  const contact: Contact = req.body.contact
+  const event: MaevsiEvent = req.body.event
+  const invitation: Invitation = req.body.invitation
+
   res.setHeader('Content-Type', 'text/calendar')
   res.setHeader(
     'Content-Disposition',
     'attachment; filename="' + event.authorUsername + '_' + event.slug + '.ics"'
   )
-  res.end(getIcalString(event))
+  res.end(getIcalString(event, contact, invitation))
 }
 
-export function getIcalString(event: Event): string {
+export function getIcalString(
+  event: MaevsiEvent,
+  contact?: Contact,
+  invitation?: Invitation
+): string {
   const { htmlToText } = require('html-to-text')
   const moment = require('moment')
 
@@ -39,9 +40,14 @@ export function getIcalString(event: Event): string {
     (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
     '/event/' +
     userEventPath
-  const eventDescriptionHtml = event.description
-    ? `${eventUrl}\n${event.description}`
-    : ''
+  const eventDescriptionHtml = mustache.render(
+    event.description ? `${eventUrl}\n${event.description}` : '',
+    {
+      contact,
+      event,
+      invitation,
+    }
+  )
 
   return ical({
     // `prodId` is generated automatically.

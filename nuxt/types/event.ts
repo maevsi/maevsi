@@ -1,21 +1,41 @@
 export type Visibility = 'PUBLIC' | 'PRIVATE'
 
-export interface Event {
-  id: string
-  name: string
-  description?: string
+export class Event {
   authorUsername: string
-  slug?: string
-
+  description?: string
+  end: Date
+  id: string
   isArchived: boolean
-  visibility: Visibility
-
-  location: string
-  url?: string
-
   isInPerson: boolean
   isRemote: boolean
+  location: string
+  name: string
+  slug?: string
+  start: Date
+  url?: string
+  visibility: Visibility
 
-  start: string
-  end: string
+  constructor(
+    id: string,
+    authorUsername: string,
+    end: Date,
+    isArchived: boolean,
+    isInPerson: boolean,
+    isRemote: boolean,
+    location: string,
+    name: string,
+    start: Date,
+    visibility: Visibility
+  ) {
+    this.id = id
+    this.authorUsername = authorUsername
+    this.end = end
+    this.isArchived = isArchived
+    this.isInPerson = isInPerson
+    this.isRemote = isRemote
+    this.location = location
+    this.name = name
+    this.start = start
+    this.visibility = visibility
+  }
 }
