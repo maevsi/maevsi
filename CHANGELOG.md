@@ -1,3 +1,23 @@
+# [0.106.0](https://github.com/maevsi/maevsi/compare/0.105.0...0.106.0) (2021-11-17)
+
+
+### Bug Fixes
+
+* **contact-list:** correct author account username ([b6f507b](https://github.com/maevsi/maevsi/commit/b6f507b33805e1d0027b505e4ce5a7d9acdf7267))
+* **event:** check contact existence ([4218f61](https://github.com/maevsi/maevsi/commit/4218f61a172366dbb7fc4f9316984234672676a0))
+* **form-event:** improve input layout ([93704a9](https://github.com/maevsi/maevsi/commit/93704a918016a0b2b92fa24aa34f6c95054cfc41))
+* **notification:** don't notify for ack'd notifications ([9cfbe3d](https://github.com/maevsi/maevsi/commit/9cfbe3d257ea605c77bc171aed9554ce0a097e31))
+* **stylelint:** ignore some browser incompatibility ([687696a](https://github.com/maevsi/maevsi/commit/687696aa7ebbf21e0b73eab99e1d6457e49f0334))
+* **stylelint:** use viewbox ([7816e8d](https://github.com/maevsi/maevsi/commit/7816e8dc340edcfe9673f522ab27b0cfe2e5c32a))
+
+
+### Features
+
+* **invitation:** enable invitees added by username to receive invitation mail ([1e5631a](https://github.com/maevsi/maevsi/commit/1e5631a3ecb0ce378349554610bbde616893a3c9)), closes [#343](https://github.com/maevsi/maevsi/issues/343)
+* **memory:** unload uppy and writer ([0c96750](https://github.com/maevsi/maevsi/commit/0c967503ed7a7ca674f6e7deb2f5d71c43276854))
+* **scroll-container:** extract to own component ([520fd03](https://github.com/maevsi/maevsi/commit/520fd03e497efa4d151b03458e520f38268fc790))
+* **sqitch:** remove now unnecessary tusd access ([8060b34](https://github.com/maevsi/maevsi/commit/8060b34cc38c09cef2a69da6c5113c8a402a05a4))
+
 # [0.105.0](https://github.com/maevsi/maevsi/compare/0.104.0...0.105.0) (2021-11-16)
 
 
