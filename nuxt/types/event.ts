@@ -3,7 +3,7 @@ export type Visibility = 'PUBLIC' | 'PRIVATE'
 export class Event {
   authorUsername: string
   description?: string
-  end: string
+  end: Date
   id: string
   isArchived: boolean
   isInPerson: boolean
@@ -11,7 +11,7 @@ export class Event {
   location: string
   name: string
   slug?: string
-  start: string
+  start: Date
   url?: string
   visibility: Visibility
 
