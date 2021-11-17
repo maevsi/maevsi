@@ -202,7 +202,7 @@
       </div>
       <div v-if="event.description">
         <hr class="my-4" />
-        <div v-dompurify-html="event.description" class="maevsi-prose" />
+        <div v-dompurify-html="eventDescriptionTemplate" class="maevsi-prose" />
       </div>
     </Card>
   </div>
@@ -211,11 +211,14 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import { Context } from '@nuxt/types'
+import { GraphQLError } from 'graphql'
+import mustache from 'mustache'
 import { mapGetters } from 'vuex'
+
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitationUpdateById.gql'
-import { Event } from '~/types/event'
+import { Event as MaevsiEvent } from '~/types/event'
 import { Contact } from '~/types/contact'
 import { Invitation } from '~/types/invitation'
 
@@ -253,8 +256,8 @@ export default defineComponent({
 
     return eventIsExisting
   },
-  async asyncData({ $global, app, error, params, query }: Context) {
-    let graphqlError: any
+  async asyncData({ app, error, params, query }: Context) {
+    let graphqlError: GraphQLError | undefined
     const event = (await app
       .apolloProvider!.defaultClient.query({
         query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
@@ -268,23 +271,23 @@ export default defineComponent({
       .catch((reason) => {
         graphqlError = reason
         consola.error(reason)
-      })) as Event | undefined | null
+      })) as MaevsiEvent | undefined | null
 
     if (!event) {
       return error({ statusCode: 403 })
     }
 
-    const invitations: Invitation[] = $global.getNested(
-      event,
-      'invitationsByEventId',
-      'nodes'
-    )
-
-    return { event, graphqlError, invitations }
+    return { event, graphqlError }
+  },
+  data() {
+    return {
+      event: undefined as MaevsiEvent | undefined, // Set by asyncData, added only for typechecking.
+      graphqlError: undefined as GraphQLError | undefined, // Set by asyncData, added only for typechecking.
+    }
   },
   head() {
     const title = this.title as string
-    const event = this.event as Event
+    const event = this.event as MaevsiEvent
     return {
       meta: [
         {
@@ -328,6 +331,15 @@ export default defineComponent({
     ...mapGetters(['jwtDecoded']),
     contact(): Contact | undefined {
       return this.$global.getNested(this.invitation, 'contactByContactId')
+    },
+    eventDescriptionTemplate(): string | undefined {
+      if (!this.event?.description) return
+
+      return mustache.render(this.event.description, {
+        contact: this.contact,
+        event: this.event,
+        invitation: this.invitation,
+      })
     },
     invitation(): Invitation | undefined {
       const invitations = this.$global.getNested(
@@ -412,7 +424,13 @@ export default defineComponent({
           }
         }
       }
-      xhr.send(JSON.stringify({ event: this.event }))
+      xhr.send(
+        JSON.stringify({
+          contact: this.contact,
+          event: this.event,
+          invitation: this.invitation,
+        })
+      )
     },
     update(id: string, invitationPatch: Partial<Invitation>) {
       this.$apollo

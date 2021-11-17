@@ -37,10 +37,14 @@
           </div>
         </div>
         <p
-          v-if="event.description"
+          v-if="eventDescriptionTemplate"
           class="line-clamp-2 overflow-ellipsis text-text-dark"
         >
-          {{ $htmlToText($domPurify.sanitize(event.description)) }}
+          {{
+            $htmlToText($domPurify.sanitize(eventDescriptionTemplate), {
+              selectors: [{ selector: 'a', options: { ignoreHref: true } }],
+            })
+          }}
         </p>
       </Card>
     </AppLink>
@@ -50,17 +54,26 @@
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { mapGetters } from 'vuex'
-import { Event } from '~/types/event'
+import mustache from 'mustache'
+
+import { Event as MaevsiEvent } from '~/types/event'
 
 export default defineComponent({
   props: {
     event: {
       required: true,
-      type: Object as PropType<Event>,
+      type: Object as PropType<MaevsiEvent>,
     },
   },
   computed: {
     ...mapGetters(['jwtDecoded']),
+    eventDescriptionTemplate(): string | undefined {
+      if (!this.event?.description) return
+
+      return mustache.render(this.event.description, {
+        event: this.event,
+      })
+    },
   },
 })
 </script>
