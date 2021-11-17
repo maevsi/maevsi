@@ -10,7 +10,7 @@ BEGIN;
 
 CREATE TABLE maevsi.event (
   id                       BIGSERIAL PRIMARY KEY,
-  author_username          TEXT REFERENCES maevsi_private.account(username) NOT NULL,
+  author_username          TEXT REFERENCES maevsi_private.account(username) ON UPDATE CASCADE NOT NULL,
   "description"            TEXT CHECK (char_length("description") > 0 AND char_length("description") < 10000),
   "end"                    TIMESTAMP WITH TIME ZONE,
   invitee_count_maximum    INTEGER CHECK (invitee_count_maximum > 0),
