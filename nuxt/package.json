@@ -72,7 +72,7 @@
     "node-fetch": "3.0.0",
     "node-zopfli-es": "1.0.7",
     "nuxt": "2.15.8",
-    "nuxt-cookie-control": "1.9.9",
+    "nuxt-cookie-control": "1.9.91",
     "nuxt-healthcheck": "1.0.1",
     "nuxt-helmet": "2.0.1",
     "pg": "8.7.1",

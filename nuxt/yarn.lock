@@ -15645,10 +15645,10 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt-cookie-control@1.9.9:
-  version "1.9.9"
-  resolved "https://registry.yarnpkg.com/nuxt-cookie-control/-/nuxt-cookie-control-1.9.9.tgz#d3e9e239387c524c7a75bb5f0599dc55bd1b7e40"
-  integrity sha512-eAxQ4NJuC9DNI5oeUiSweVSjMdze9IhJpRfHnLneiRF6swZWPAm1PXbJWPEusIe3gnJvYiE7147Qkkp8ENjFrQ==
+nuxt-cookie-control@1.9.91:
+  version "1.9.91"
+  resolved "https://registry.yarnpkg.com/nuxt-cookie-control/-/nuxt-cookie-control-1.9.91.tgz#d7c661ef3d0a7371e8daa39299458e73534b22e6"
+  integrity sha512-y0raNsNYlKlTgpvVpEIGOwBTepFxBO1nEkheKbSUC6+l97rBFUPJdIAtdcUfNL8C2pBLOLoYhYjYRQdk+DXngw==
   dependencies:
     css-vars-ponyfill "^2.0.2"
     node-sass "^6.0"
