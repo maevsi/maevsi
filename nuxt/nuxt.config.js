@@ -109,12 +109,7 @@ export default {
         useLayersText: false,
       },
     ],
-    [
-      '@nuxtjs/google-analytics',
-      {
-        disabled: true,
-      },
-    ],
+    '@nuxtjs/google-analytics',
     '@nuxtjs/html-validator',
     // Doc: https://github.com/nuxt-community/moment-module
     ['@nuxtjs/moment', { locales: ['de'] }],
