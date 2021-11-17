@@ -21,7 +21,7 @@
         {{ $t('settings') }}
       </ButtonColored>
     </div>
-    <CardInfo v-if="$route.query.ic">
+    <CardInfo v-if="$route.query.ic && contact">
       {{ $t('invitationViewFor', { name: $global.getContactName(contact) }) }}
       <ButtonColored
         append
