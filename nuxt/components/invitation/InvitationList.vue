@@ -55,12 +55,14 @@
               />
               <ButtonTableInteraction
                 :aria-label="
+                  invitation.contactByContactId.accountUsername ||
                   invitation.contactByContactId.emailAddress
                     ? $t('invitationSend')
                     : $t('disabledReasonEmailAddressNone')
                 "
                 :disabled="
-                  !invitation.contactByContactId.emailAddress ||
+                  (!invitation.contactByContactId.accountUsername &&
+                    !invitation.contactByContactId.emailAddress) ||
                   pending.sends.includes(invitation.uuid)
                 "
                 :icon-id="['fas', 'paper-plane']"
