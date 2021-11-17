@@ -4,7 +4,15 @@
     <div class="flex">
       <div
         v-if="signedInUsername"
-        class="bg-background-bright dark:bg-background-dark hidden md:block"
+        class="
+          bg-background-bright
+          dark:bg-background-dark
+          hidden
+          md:block
+          max-w-[16rem]
+          lg:max-w-xs
+          xl:max-w-sm
+        "
       >
         <Menu />
       </div>
@@ -24,6 +32,7 @@
         right-0
         top-0
         transition-opacity
+        z-10
       "
       :class="isMenuVisible ? 'opacity-50 visible' : 'opacity-0 invisible'"
       @click="menuHide()"
@@ -45,6 +54,7 @@
         top-0
         transform-gpu
         transition-transform
+        z-10
       "
       :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >

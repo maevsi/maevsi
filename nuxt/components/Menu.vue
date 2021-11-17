@@ -15,6 +15,7 @@
             class="
               flex
               items-center
+              min-w-0
               space-x-2
               text-text-dark
               dark:text-text-bright
@@ -29,8 +30,9 @@
               :username="signedInUsername"
               width="40"
             />
-            <span>{{ signedInUsername }}</span>
+            <span class="truncate">{{ signedInUsername }}</span>
           </AppLink>
+          <!-- Fills the remaining space -->
           <div class="flex-1 w-12" />
           <div class="flex items-center space-x-2">
             <ButtonIcon
