@@ -4,7 +4,6 @@
 -- requires: table_invitation
 -- requires: role_account
 -- requires: role_anonymous
--- requires: role_stomper
 
 BEGIN;
 
@@ -17,6 +16,6 @@ $$ LANGUAGE PLPGSQL STRICT STABLE SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi.invitee_count(BIGINT) IS 'Returns the invitee count for an event.';
 
-GRANT EXECUTE ON FUNCTION maevsi.invitee_count(BIGINT) TO maevsi_account, maevsi_anonymous, maevsi_stomper;
+GRANT EXECUTE ON FUNCTION maevsi.invitee_count(BIGINT) TO maevsi_account, maevsi_anonymous;
 
 COMMIT;

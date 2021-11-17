@@ -6,7 +6,6 @@
 -- requires: table_contact
 -- requires: role_account
 -- requires: role_anonymous
--- requires: role_stomper
 
 BEGIN;
 
@@ -23,6 +22,6 @@ $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi_private.events_invited() IS 'Add a function that returns all event ids for which the invoker is invited.';
 
-GRANT EXECUTE ON FUNCTION maevsi_private.events_invited() TO maevsi_account, maevsi_anonymous, maevsi_stomper;
+GRANT EXECUTE ON FUNCTION maevsi_private.events_invited() TO maevsi_account, maevsi_anonymous;
 
 COMMIT;
