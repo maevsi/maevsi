@@ -99,7 +99,7 @@ export default defineComponent({
         query: CONTACTS_ALL_QUERY,
         variables: {
           authorAccountUsername: this.signedInUsername,
-          first: this.$global.ITEMS_PER_PAGE,
+          first: this.$global.ITEMS_PER_PAGE_LARGE,
           offset: null,
         },
         result(result: ApolloQueryResult<any>, key: string) {
@@ -143,7 +143,7 @@ export default defineComponent({
       }
 
       if (!this.searchString || this.searchString === '') {
-        return (this.allContacts as any).nodes.slice(0, 3)
+        return (this.allContacts as any).nodes
       }
 
       const searchStringParts = this.searchString.split(' ')
@@ -165,7 +165,7 @@ export default defineComponent({
         }
       )
 
-      return allContactsFiltered.slice(0, 3)
+      return allContactsFiltered
     },
   },
   methods: {
