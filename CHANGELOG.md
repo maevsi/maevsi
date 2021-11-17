@@ -1,3 +1,12 @@
+## [0.107.1](https://github.com/maevsi/maevsi/compare/0.107.0...0.107.1) (2021-11-17)
+
+
+### Bug Fixes
+
+* **event:** cascade username changes ([f944c04](https://github.com/maevsi/maevsi/commit/f944c049a2c1fe75cf661c02de542d94d6b86cda))
+* **form-invitation:** make more performant ([c88d591](https://github.com/maevsi/maevsi/commit/c88d5919282d3a4bd2d2a652b11041053cef19ff))
+* **menu:** set maximum width ([24e7d5e](https://github.com/maevsi/maevsi/commit/24e7d5e4b9bc5455031071a0287e2aee8815ded4))
+
 # [0.107.0](https://github.com/maevsi/maevsi/compare/0.106.0...0.107.0) (2021-11-17)
 
 
