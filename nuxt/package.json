@@ -50,7 +50,7 @@
     "@tailwindcss/typography": "0.4.1",
     "@tiptap/extension-link": "2.0.0-beta.28",
     "@tiptap/starter-kit": "2.0.0-beta.141",
-    "@tiptap/vue-2": "2.0.0-beta.68",
+    "@tiptap/vue-2": "2.0.0-beta.69",
     "@uppy/core": "2.1.2",
     "@uppy/tus": "2.1.1",
     "apollo-cache-inmemory": "1.6.6",
