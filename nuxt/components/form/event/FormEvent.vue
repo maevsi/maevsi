@@ -453,6 +453,7 @@ export default defineComponent({
           required,
         },
         url: {
+          formatUrlHttps: this.$global.VALIDATION_FORMAT_URL_HTTPS,
           maxLength: maxLength(
             this.$global.VALIDATION_EVENT_URL_LENGTH_MAXIMUM
           ),

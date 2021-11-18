@@ -270,6 +270,7 @@ export default defineComponent({
           formatPhoneNumber: this.$global.VALIDATION_FORMAT_PHONE_NUMBER,
         },
         url: {
+          formatUrlHttps: this.$global.VALIDATION_FORMAT_URL_HTTPS,
           maxLength: maxLength(
             this.$global.VALIDATION_EVENT_URL_LENGTH_MAXIMUM
           ),
