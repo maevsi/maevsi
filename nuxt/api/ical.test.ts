@@ -4,7 +4,6 @@ const OLD_ENV = process.env
 
 beforeAll(() => {
   const date = new Date(0)
-  date.setTime(date.getTime() + date.getTimezoneOffset() * 60 * 1000)
 
   jest.useFakeTimers('modern')
   jest.setSystemTime(date)
@@ -47,9 +46,9 @@ X-WR-CALNAME:authorUsername_slug\r
 BEGIN:VEVENT\r
 UID:authorUsername/slug\r
 SEQUENCE:0\r
-DTSTAMP:19691231T230000Z\r
-DTSTART:19691231T230000Z\r
-DTEND:19691231T230000Z\r
+DTSTAMP:19700101T000000Z\r
+DTSTART:19700101T000000Z\r
+DTEND:19700101T000000Z\r
 SUMMARY:name\r
 LOCATION:location\r
 DESCRIPTION:https://maevsi.test/event/authorUsername/slug\\n\\ndescription\r
