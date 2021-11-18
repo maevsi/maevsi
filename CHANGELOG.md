@@ -1,3 +1,28 @@
+# [0.108.0](https://github.com/maevsi/maevsi/compare/0.107.1...0.108.0) (2021-11-18)
+
+
+### Bug Fixes
+
+* **contact:** allow addition of username only once ([827ac26](https://github.com/maevsi/maevsi/commit/827ac26c9102520aaffbb3f0f99972f037ac2430)), closes [#477](https://github.com/maevsi/maevsi/issues/477)
+* **contact:** url expects https but is prepended ([e2e009a](https://github.com/maevsi/maevsi/commit/e2e009af96fc84d1ec396152ade7c2685440c7db)), closes [#476](https://github.com/maevsi/maevsi/issues/476)
+* **cookie:** add declined hook ([81df8a8](https://github.com/maevsi/maevsi/commit/81df8a88b748eefbeccb59cdc0b92a5e03e69182))
+* **cookie:** hide confusing cookie names ([e0eb09e](https://github.com/maevsi/maevsi/commit/e0eb09e14ea5c7c4ac1da71e01ef594ed446180c))
+* **cookie:** improve interaction with analytics ([ca6ff26](https://github.com/maevsi/maevsi/commit/ca6ff26d470c1bb4e237780add82e38578336180))
+* **event:** shorten update confirmation ([96de249](https://github.com/maevsi/maevsi/commit/96de2490d268f3e439149e43e4cb0f67b41750fc))
+* **i18n:** improve wording ([eeec91f](https://github.com/maevsi/maevsi/commit/eeec91fa776f156ceadaaf7c1157e79086fb0d14)), closes [#479](https://github.com/maevsi/maevsi/issues/479)
+* **ical:** correct test ([828bdd8](https://github.com/maevsi/maevsi/commit/828bdd815847a611062d4149b6958dca2ca72522))
+* **ical:** correct test ([4919014](https://github.com/maevsi/maevsi/commit/4919014f1a34ff6b4aaa097cc92f84a0aa49a313))
+* **invitation-list:** remove email address from send confirmation ([41f3371](https://github.com/maevsi/maevsi/commit/41f33719789d477f8598f9065e6fe49a1f167b68)), closes [#480](https://github.com/maevsi/maevsi/issues/480)
+* **modal:** correct keypress event listening ([fdf270b](https://github.com/maevsi/maevsi/commit/fdf270be20049fbfca954442a241d1b70e9ff4ef)), closes [#473](https://github.com/maevsi/maevsi/issues/473)
+* **scroll-container:** load more items, trigger load more earlier ([8ba45cc](https://github.com/maevsi/maevsi/commit/8ba45cc384b939c0aa32f97d91b2938244198609)), closes [#482](https://github.com/maevsi/maevsi/issues/482)
+
+
+### Features
+
+* **event-settings:** extract invitation management ([ad3cb0a](https://github.com/maevsi/maevsi/commit/ad3cb0a86ee384feb226f9bd80d9b1aa35edd1ce)), closes [#483](https://github.com/maevsi/maevsi/issues/483)
+* **header:** switch buttons when logged in ([9d9718a](https://github.com/maevsi/maevsi/commit/9d9718a96fb42081934ad15ceadb3d15194bb7fa))
+* **table:** hide columns on smaller screens ([716c60c](https://github.com/maevsi/maevsi/commit/716c60cb7b3838d5e2543ce0c60f61a314385260))
+
 ## [0.107.1](https://github.com/maevsi/maevsi/compare/0.107.0...0.107.1) (2021-11-17)
 
 
