@@ -350,7 +350,9 @@ export default defineComponent({
           .then(() => {
             this.$swal({
               icon: 'success',
-              text: this.$t('eventUpdateSuccess') as string,
+              showConfirmButton: false,
+              timer: 1500,
+              timerProgressBar: true,
               title: this.$t('updated'),
             })
           })
@@ -451,6 +453,7 @@ export default defineComponent({
           required,
         },
         url: {
+          formatUrlHttps: this.$global.VALIDATION_FORMAT_URL_HTTPS,
           maxLength: maxLength(
             this.$global.VALIDATION_EVENT_URL_LENGTH_MAXIMUM
           ),
@@ -474,7 +477,6 @@ de:
   eventCreate: Veranstaltung erstellen
   eventCreateSuccess: Veranstaltung erfolgreich erstellt.
   eventUpdate: Veranstaltung aktualisieren
-  eventUpdateSuccess: Veranstaltung erfolgreich aktualisiert.
   inputInfoLocation: Ein Suchbegriff für Google Maps.
   inputInfoUrl: Eine Web-URL für digitale Veranstaltungen.
   isInPerson: vor Ort
@@ -488,7 +490,7 @@ de:
   slug: Slug
   slugPlaceholder: willkommensfeier
   start: Beginn
-  updated: Aktualisiert!
+  updated: Aktualisiert
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
@@ -501,7 +503,6 @@ en:
   eventCreate: Create event
   eventCreateSuccess: Event created successfully.
   eventUpdate: Update event
-  eventUpdateSuccess: Event updated successfully.
   inputInfoLocation: A search phrase for Google Maps.
   inputInfoUrl: A web URL for remote events.
   isInPerson: in person
@@ -515,7 +516,7 @@ en:
   slug: Slug
   slugPlaceholder: welcome-party
   start: Start
-  updated: Updated!
+  updated: Updated
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public

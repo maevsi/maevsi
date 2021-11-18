@@ -76,6 +76,11 @@
         </button>
       </div>
     </div>
+    <template slot="assistance">
+      <p class="text-center text-gray-500 text-xs">
+        {{ $t('selectAssistance') }}
+      </p>
+    </template>
   </Form>
 </template>
 
@@ -234,9 +239,11 @@ de:
   iconSearch: Suche
   placeholderContact: Max Mustermann
   select: Auswählen
+  selectAssistance: Die Einladung wird angelegt, aber noch nicht versendet.
 en:
   contact: Contact
   iconSearch: Search
   placeholderContact: John Doe
   select: Select
+  selectAssistance: The invitation is created but not yet sent.
 </i18n>

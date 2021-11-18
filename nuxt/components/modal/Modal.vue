@@ -141,17 +141,15 @@ export default defineComponent({
   },
   watch: {
     isVisibleComputed(newState: boolean) {
-      if (!newState) {
+      if (newState) {
+        window.addEventListener('keydown', this.modalKeydowns)
+      } else {
+        window.removeEventListener('keydown', this.modalKeydowns)
+
         this.errorMessage = undefined
         this.$emit('close')
       }
     },
-  },
-  beforeMount() {
-    window.addEventListener('keydown', this.modalKeydowns)
-  },
-  beforeUnmount() {
-    window.removeEventListener('keydown', this.modalKeydowns)
   },
   methods: {
     close() {
@@ -164,16 +162,16 @@ export default defineComponent({
       }
     },
     modalKeydowns(e: KeyboardEvent) {
-      if (!this.isVisible) {
+      if (!this.isVisibleComputed) {
         return
       }
 
-      switch (e.keyCode) {
-        case 13: // Enter
+      switch (e.key) {
+        case 'Enter': // Enter
           this.submit()
           break
-        case 27: // Escape
-          this.isVisible = false
+        case 'Escape': // Escape
+          this.close()
           break
       }
     },
@@ -185,7 +183,7 @@ export default defineComponent({
         this.$emit('submitSuccess', value)
         this.onSubmitComputed()
         this.close()
-      } catch (error) {
+      } catch (error: any) {
         this.errorMessage = error
         consola.error(error)
       }

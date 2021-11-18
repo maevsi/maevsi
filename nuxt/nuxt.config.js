@@ -69,6 +69,7 @@ export default {
             'faCog',
             'faDownload',
             'faEdit',
+            'faEnvelope',
             'faExclamationCircle',
             'faEye',
             'faGlobeAfrica',
@@ -109,7 +110,22 @@ export default {
         useLayersText: false,
       },
     ],
-    '@nuxtjs/google-analytics',
+    [
+      '@nuxtjs/google-analytics',
+      {
+        disabled: () => {
+          const enabledCookies =
+            document.cookie
+              .match(
+                '(^|;)\\s*' +
+                  'cookie_control_enabled_cookies' +
+                  '\\s*=\\s*([^;]+)'
+              )
+              ?.pop() || ''
+          return !enabledCookies.split(',').includes('ga')
+        },
+      },
+    ],
     '@nuxtjs/html-validator',
     // Doc: https://github.com/nuxt-community/moment-module
     ['@nuxtjs/moment', { locales: ['de'] }],
@@ -129,30 +145,33 @@ export default {
           de: 'Authentifizierungsdaten',
           en: 'Authentication Data',
         },
-        cookies: ['__Secure-apollo-token'],
+        // cookies: ['__Secure-apollo-token'],
       },
       {
         name: {
           de: 'Cookie-Präferenzen',
           en: 'Cookie Preferences',
         },
-        cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies'],
+        // cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies'],
       },
       {
         name: {
           de: 'Spracheinstellungen',
           en: 'Language Settings',
         },
-        cookies: ['i18n_redirected'],
+        // cookies: ['i18n_redirected'],
       },
     ],
     optional: [
       {
         name: 'Google Analytics',
         identifier: 'ga',
-        cookies: ['_ga', '_gat', '_gid'],
+        // cookies: ['_ga', '_gat', '_gid'],
         accepted: () => {
           window.$nuxt.$ga.enable()
+        },
+        declined: () => {
+          window.$nuxt.$ga.disable()
         },
       },
     ],

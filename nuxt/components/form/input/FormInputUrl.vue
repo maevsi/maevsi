@@ -7,7 +7,7 @@
     :title="$t('url')"
   >
     <div class="flex">
-      <span
+      <!-- <span
         class="
           cursor-default
           inline-flex
@@ -20,7 +20,7 @@
         "
       >
         {{ $t('https') }}
-      </span>
+      </span> -->
       <input
         :id="`input-${id}`"
         class="form-input rounded-l-none"
@@ -33,6 +33,12 @@
     <template slot="inputError">
       <FormInputError :form-input="formInput" validation-property="maxLength">
         {{ $t('globalValidationLength') }}
+      </FormInputError>
+      <FormInputError
+        :form-input="formInput"
+        validation-property="formatUrlHttps"
+      >
+        {{ $t('globalValidationFormatUrlHttps') }}
       </FormInputError>
     </template>
   </FormInput>
@@ -62,9 +68,9 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  https: https://
+  // https: https://
   url: Link
 en:
-  https: https://
+  // https: https://
   url: Link
 </i18n>

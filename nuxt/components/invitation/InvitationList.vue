@@ -129,7 +129,7 @@ export default defineComponent({
         query: INVITATIONS_ALL_QUERY,
         variables: {
           eventId: +this.event.id,
-          first: this.$global.ITEMS_PER_PAGE,
+          first: this.$global.ITEMS_PER_PAGE_LARGE,
           offset: null,
         },
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {
@@ -196,9 +196,7 @@ export default defineComponent({
         .then((_value) => {
           this.$swal({
             icon: 'success',
-            text: this.$t('sendSuccess', {
-              emailAddress: invitation.contactByContactId.emailAddress,
-            }) as string,
+            text: this.$t('sendSuccess') as string,
             title: this.$t('sent'),
           })
           this.$apollo.queries.allInvitations &&
@@ -236,7 +234,7 @@ de:
   invitationSend: Einladung versenden
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
-  sendSuccess: Einladung an {emailAddress} erfolgreich angefordert.
+  sendSuccess: Einladung erfolgreich angefordert.
   sent: Gesendet!
 en:
   contact: Contact
@@ -247,6 +245,6 @@ en:
   invitationSend: Send invitation
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
-  sendSuccess: Invitation to {emailAddress} requested successfully.
+  sendSuccess: Invitation requested successfully.
   sent: Sent!
 </i18n>

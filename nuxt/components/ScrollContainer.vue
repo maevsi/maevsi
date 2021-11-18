@@ -56,7 +56,8 @@ export default defineComponent({
 
       if (
         scrollBar &&
-        scrollBar.scrollTop + scrollBar.clientHeight >= scrollBar.scrollHeight
+        scrollBar.scrollTop + scrollBar.clientHeight >=
+          scrollBar.scrollHeight - 500
       ) {
         debounce(this.emit, 100)()
       }
