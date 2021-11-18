@@ -44,14 +44,12 @@ URL:https://maevsi.test/event/authorUsername/slug\r
 METHOD:REQUEST\r
 NAME:authorUsername_slug\r
 X-WR-CALNAME:authorUsername_slug\r
-TIMEZONE-ID:UTC\r
-X-WR-TIMEZONE:UTC\r
 BEGIN:VEVENT\r
 UID:authorUsername/slug\r
 SEQUENCE:0\r
-DTSTAMP:19700101T000000\r
-DTSTART:19700101T000000\r
-DTEND:19700101T000000\r
+DTSTAMP:19691231T230000Z\r
+DTSTART:19691231T230000Z\r
+DTEND:19691231T230000Z\r
 SUMMARY:name\r
 LOCATION:location\r
 DESCRIPTION:https://maevsi.test/event/authorUsername/slug\\n\\ndescription\r
