@@ -1,5 +1,5 @@
 import { ServerResponse } from 'http'
-import cookie from 'cookie'
+import { serialize } from 'cookie'
 import { verify } from 'jsonwebtoken'
 
 import { IncomingMessageWithBody } from '~/types/http'
@@ -44,7 +44,7 @@ export default function (
 
   res.setHeader(
     'Set-Cookie',
-    cookie.serialize('__Secure-apollo-token', jwt, {
+    serialize('__Secure-apollo-token', jwt, {
       expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
       httpOnly: true,
       path: '/',

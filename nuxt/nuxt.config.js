@@ -109,7 +109,22 @@ export default {
         useLayersText: false,
       },
     ],
-    '@nuxtjs/google-analytics',
+    [
+      '@nuxtjs/google-analytics',
+      {
+        disabled: () => {
+          const enabledCookies =
+            document.cookie
+              .match(
+                '(^|;)\\s*' +
+                  'cookie_control_enabled_cookies' +
+                  '\\s*=\\s*([^;]+)'
+              )
+              ?.pop() || ''
+          return !enabledCookies.split(',').includes('ga')
+        },
+      },
+    ],
     '@nuxtjs/html-validator',
     // Doc: https://github.com/nuxt-community/moment-module
     ['@nuxtjs/moment', { locales: ['de'] }],
