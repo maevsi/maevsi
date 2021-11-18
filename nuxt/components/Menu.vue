@@ -164,24 +164,24 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   accountSettings: Konto bearbeiten
-  contacts: Kontakte
+  contacts: Meine Kontakte
   eventNew: Veranstaltung erstellen
-  events: Veranstaltungen
+  events: Meine Veranstaltungen
   eventsExplore: Veranstaltungen entdecken
   menuHide: Menü verstecken
   settings: Einstellungen
   signIn: Anmelden
   signOut: Abmelden
-  uploads: Uploads
+  uploads: Meine Bilder
 en:
   accountSettings: Edit account
-  contacts: Contacts
+  contacts: My contacts
   eventNew: Create event
-  events: Events
+  events: My events
   eventsExplore: Explore events
   menuHide: Hide menu
   settings: Settings
   signIn: Sign in
   signOut: Sign out
-  uploads: Uploads
+  uploads: My images
 </i18n>
