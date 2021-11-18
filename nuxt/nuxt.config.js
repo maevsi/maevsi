@@ -129,28 +129,28 @@ export default {
           de: 'Authentifizierungsdaten',
           en: 'Authentication Data',
         },
-        cookies: ['__Secure-apollo-token'],
+        // cookies: ['__Secure-apollo-token'],
       },
       {
         name: {
           de: 'Cookie-Präferenzen',
           en: 'Cookie Preferences',
         },
-        cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies'],
+        // cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies'],
       },
       {
         name: {
           de: 'Spracheinstellungen',
           en: 'Language Settings',
         },
-        cookies: ['i18n_redirected'],
+        // cookies: ['i18n_redirected'],
       },
     ],
     optional: [
       {
         name: 'Google Analytics',
         identifier: 'ga',
-        cookies: ['_ga', '_gat', '_gid'],
+        // cookies: ['_ga', '_gat', '_gid'],
         accepted: () => {
           window.$nuxt.$ga.enable()
         },
