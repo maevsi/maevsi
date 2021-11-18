@@ -15,16 +15,16 @@
             <th scope="col">
               {{ $t('contact') }}
             </th>
-            <th scope="col">
+            <th class="hidden xl:table-cell" scope="col">
               {{ $t('emailAddress') }}
             </th>
-            <th scope="col">
+            <th class="hidden xl:table-cell" scope="col">
               {{ $t('address') }}
             </th>
-            <th scope="col">
+            <th class="hidden xl:table-cell" scope="col">
               {{ $t('phoneNumber') }}
             </th>
-            <th scope="col">
+            <th class="hidden xl:table-cell" scope="col">
               {{ $t('url') }}
             </th>
             <th scope="col" />
