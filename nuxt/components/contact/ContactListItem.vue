@@ -9,16 +9,16 @@
     <td>
       <ContactPreview :contact="contact" />
     </td>
-    <td>
+    <td class="hidden xl:table-cell">
       {{ contact.emailAddress || '–' }}
     </td>
-    <td>
+    <td class="hidden xl:table-cell">
       {{ (contact.address || '').replace('\n', ', ') || '–' }}
     </td>
-    <td>
+    <td class="hidden xl:table-cell">
       {{ contact.phoneNumber || '–' }}
     </td>
-    <td>
+    <td class="hidden xl:table-cell">
       {{ contact.url || '–' }}
     </td>
     <td>

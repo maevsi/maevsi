@@ -15,7 +15,7 @@
             <th scope="col">
               {{ $t('contact') }}
             </th>
-            <th class="hidden lg:table-cell" scope="col">
+            <th class="hidden xl:table-cell" scope="col">
               {{ $t('invitationCode') }}
             </th>
             <th />
@@ -36,7 +36,7 @@
                 :feedback="invitation.feedback"
               />
             </td>
-            <td class="hidden lg:table-cell">
+            <td class="hidden xl:table-cell">
               {{ invitation.uuid }}
             </td>
             <td class="flex items-center justify-evenly ml-4 text-gray-700">
