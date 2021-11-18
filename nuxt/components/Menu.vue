@@ -1,5 +1,16 @@
 <template>
-  <nav class="h-full max-w-max w-full">
+  <nav
+    class="
+      bg-background-bright
+      dark:bg-background-dark
+      h-full
+      w-64
+      md:w-72
+      lg:w-80
+      xl:w-96
+      p-2
+    "
+  >
     <div class="flex flex-col">
       <ButtonIcon
         v-if="isClosable"

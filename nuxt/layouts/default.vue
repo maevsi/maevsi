@@ -2,18 +2,7 @@
   <div>
     <Header @onMenuShow="menuShow" />
     <div class="flex">
-      <div
-        v-if="signedInUsername"
-        class="
-          bg-background-bright
-          dark:bg-background-dark
-          hidden
-          md:block
-          max-w-[16rem]
-          lg:max-w-xs
-          xl:max-w-sm
-        "
-      >
+      <div v-if="signedInUsername" class="hidden md:block">
         <Menu />
       </div>
       <main class="container flex-1 min-h-screen mx-auto px-4 md:px-8 py-8">
@@ -39,18 +28,12 @@
     />
     <div
       class="
-        bg-background-bright
-        dark:bg-background-dark
         bottom-0
         duration-500
         fixed
         md:hidden
-        flex-col
-        inline-flex
-        items-start
         left-0
         overflow-auto
-        p-2
         top-0
         transform-gpu
         transition-transform
