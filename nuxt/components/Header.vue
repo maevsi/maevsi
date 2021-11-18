@@ -60,13 +60,9 @@
             dark:text-text-bright
           "
           :is-colored="false"
-          :to="
-            signedInUsername
-              ? localePath('/task/event/create')
-              : localePath('/account')
-          "
+          :to="signedInUsername ? localePath('/event') : localePath('/account')"
         >
-          {{ signedInUsername ? $t('eventNew') : $t('signIn') }}
+          {{ signedInUsername ? $t('events') : $t('signIn') }}
         </AppLink>
         <AppLink
           class="
@@ -84,9 +80,13 @@
             dark:text-text-dark
           "
           :is-colored="false"
-          :to="localePath('/event')"
+          :to="
+            signedInUsername
+              ? localePath('/task/event/create')
+              : localePath('/event')
+          "
         >
-          {{ $t('events') }}
+          {{ signedInUsername ? $t('eventNew') : $t('events') }}
         </AppLink>
       </div>
     </div>
