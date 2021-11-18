@@ -129,7 +129,7 @@ export default defineComponent({
         query: INVITATIONS_ALL_QUERY,
         variables: {
           eventId: +this.event.id,
-          first: this.$global.ITEMS_PER_PAGE,
+          first: this.$global.ITEMS_PER_PAGE_LARGE,
           offset: null,
         },
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {
