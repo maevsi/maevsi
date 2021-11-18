@@ -154,6 +154,9 @@ export default {
         accepted: () => {
           window.$nuxt.$ga.enable()
         },
+        declined: () => {
+          window.$nuxt.$ga.disable()
+        },
       },
     ],
   },
