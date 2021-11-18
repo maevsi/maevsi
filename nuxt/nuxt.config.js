@@ -69,6 +69,7 @@ export default {
             'faCog',
             'faDownload',
             'faEdit',
+            'faEnvelope',
             'faExclamationCircle',
             'faEye',
             'faGlobeAfrica',

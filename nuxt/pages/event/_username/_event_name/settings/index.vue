@@ -10,10 +10,6 @@
         {{ title }}
       </h1>
       <section>
-        <h2>{{ $t('titleInvitations') }}</h2>
-        <InvitationList :event="event" />
-      </section>
-      <section>
         <h2>{{ $t('titleEdit') }}</h2>
         <FormEvent :event="event" />
       </section>
@@ -43,7 +39,7 @@ import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAutho
 import EVENT_DELETE_MUTATION from '~/gql/mutation/event/eventDelete.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
-import { Event } from '~/types/event'
+import { Event as MaevsiEvent } from '~/types/event'
 
 const consola = require('consola')
 
@@ -84,6 +80,7 @@ export default defineComponent({
   },
   data() {
     return {
+      event: undefined as MaevsiEvent | undefined,
       graphqlError: undefined as any,
       mutation: EVENT_DELETE_MUTATION,
     }
@@ -119,8 +116,10 @@ export default defineComponent({
       if (
         this.$route.params.username === this.$store.getters.signedInUsername
       ) {
-        // @ts-ignore
-        return this.$global.getNested(this.event, 'name')
+        return `${this.$t('settings')} · ${this.$global.getNested(
+          this.event,
+          'name'
+        )}`
       }
       return '403'
     },
@@ -179,7 +178,7 @@ export default defineComponent({
 
       // const index = data.allEvents.nodes.find(
       const index = data.allEvents.nodes.findIndex(
-        (x: Event) =>
+        (x: MaevsiEvent) =>
           x.authorUsername === this.$route.params.username &&
           x.slug === this.$route.params.event_name
       )
@@ -199,12 +198,12 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   event: Veranstaltung
+  settings: Einstellungen
   titleDelete: Veranstaltung löschen
   titleEdit: Veranstaltung bearbeiten
-  titleInvitations: Einladungen
 en:
   event: event
+  settings: Settings
   titleDelete: Delete event
   titleEdit: Edit event
-  titleInvitations: Invitations
 </i18n>

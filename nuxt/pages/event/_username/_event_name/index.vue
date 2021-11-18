@@ -14,6 +14,14 @@
     >
       <ButtonColored
         append
+        :aria-label="$t('invitations')"
+        :icon-id="['fas', 'envelope']"
+        to="invitations"
+      >
+        {{ $t('invitations') }}
+      </ButtonColored>
+      <ButtonColored
+        append
         :aria-label="$t('settings')"
         :icon-id="['fas', 'cog']"
         to="settings"
@@ -476,6 +484,7 @@ de:
   invitationCardKindDigital: Digital
   invitationSelectionClear: Auswahl der Einladung löschen
   invitationViewFor: Du schaust dir die Einladung für {name} an.
+  invitations: Einladungen
   requestSelection: Bitte auswählen
   saved: Gespeichert!
   settings: Einstellungen
@@ -497,6 +506,7 @@ en:
   invitationCardKindDigital: Digital
   invitationSelectionClear: Clear invitation selection
   invitationViewFor: You're viewing the invitation for {name}.
+  invitations: Invitations
   requestSelection: Please select
   saved: Saved!
   settings: Settings
