@@ -1,3 +1,10 @@
+## [0.108.1](https://github.com/maevsi/maevsi/compare/0.108.0...0.108.1) (2021-11-19)
+
+
+### Bug Fixes
+
+* **style:** correct typography and event list item background color ([1a258ba](https://github.com/maevsi/maevsi/commit/1a258ba7d322b921e4db82b6bc5cbda9993826e5))
+
 # [0.108.0](https://github.com/maevsi/maevsi/compare/0.107.1...0.108.0) (2021-11-18)
 
 
