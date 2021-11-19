@@ -9852,10 +9852,10 @@ eslint-plugin-vue@^7.20.0:
     semver "^6.3.0"
     vue-eslint-parser "^7.10.0"
 
-eslint-plugin-yml@0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-yml/-/eslint-plugin-yml-0.11.0.tgz#e6870447bfe0dcc0ebab6a076742a3709f6324f4"
-  integrity sha512-fcET9tPUCvCraK8BDfzCfoAHt8NiYDBTQjX5NltgiFw50I7Y/5GiFp/wfxVJvQiJmEzpixTfx1mFuQJr4p6ZiQ==
+eslint-plugin-yml@0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-yml/-/eslint-plugin-yml-0.12.0.tgz#919644116a86c153e3af22dc07dd128531167bf3"
+  integrity sha512-aS82M+diohZTusadiByzh/bKDrfi+Y6VBQkD3ym/7JH+KF9WUB9qKCizLfTaCACwtRrHpqaLz3G8GKmslshyiw==
   dependencies:
     debug "^4.3.2"
     lodash "^4.17.21"
