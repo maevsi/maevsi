@@ -13,11 +13,11 @@ function heading(theme) {
 function prose(theme) {
   return {
     css: {
+      color: theme('colors.text.dark'),
       a: {
         color: theme('colors.link.dark'),
         textDecoration: 'none',
       },
-      color: theme('colors.text.dark'),
       h1: {
         lineHeight: theme('lineHeight.snug'),
       },
@@ -105,10 +105,10 @@ module.exports = {
         '2xl': prose(theme),
         dark: {
           css: {
+            color: theme('colors.text.bright'),
             a: {
               color: theme('colors.link.bright'),
             },
-            color: theme('colors.text.bright'),
             h1: {
               color: theme('colors.text.bright'),
             },

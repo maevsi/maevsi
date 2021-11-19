@@ -10,13 +10,14 @@
   >
     <AppLink
       class="flex flex-col"
-      :class="{
-        'bg-yellow-100':
-          jwtDecoded && event.authorUsername === jwtDecoded.username,
-      }"
       :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >
-      <Card>
+      <Card
+        :class="{
+          'bg-yellow-100':
+            jwtDecoded && event.authorUsername === jwtDecoded.username,
+        }"
+      >
         <div class="flex items-center mb-2 text-text-dark text-sm">
           <div
             class="font-medium truncate"
