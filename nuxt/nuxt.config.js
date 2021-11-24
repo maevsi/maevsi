@@ -426,8 +426,8 @@ export default {
     '~/plugins/global.ts',
     '~/plugins/htmlToText.ts',
     '~/plugins/i18n.ts',
-    '~/plugins/vuelidate.ts',
     '~/plugins/slugify.ts',
+    '~/plugins/vuelidate.ts',
   ],
 
   publicRuntimeConfig: {
@@ -472,7 +472,7 @@ export default {
           'https://static.cloudflareinsights.com/beacon.min.js',
           'https://www.google-analytics.com/analytics.js',
         ],
-        'style-src': ["'self'"], // Tailwind
+        'style-src': ["'self'", "'unsafe-inline'"], // Tailwind, ChartJS (TODO: https://www.chartjs.org/docs/latest/getting-started/integration.html#content-security-policy)
       },
       reportOnly: false,
     },
