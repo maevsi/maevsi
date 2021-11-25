@@ -34,14 +34,7 @@
             />
             <div v-if="allowDeletion">
               <div
-                class="
-                  absolute
-                  bg-red-600
-                  opacity-75
-                  right-0
-                  rounded-bl-lg
-                  top-0
-                "
+                class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0"
               >
                 <div class="flex h-full justify-center items-center">
                   <FontAwesomeIcon

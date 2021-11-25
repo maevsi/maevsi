@@ -3,18 +3,7 @@
     <section id="overview" class="flex items-center mb-16 md:mb-32">
       <div class="w-full lg:w-1/2">
         <i18n
-          class="
-            font-extrabold
-            leading-snug
-            sm:leading-snug
-            md:leading-snug
-            xl:leading-snug
-            text-4xl
-            sm:text-5xl
-            md:text-5xl
-            xl:text-7xl
-            text-left
-          "
+          class="font-extrabold leading-snug sm:leading-snug md:leading-snug xl:leading-snug text-4xl sm:text-5xl md:text-5xl xl:text-7xl text-left"
           path="title"
           tag="h1"
         >

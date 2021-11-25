@@ -1,15 +1,6 @@
 <template>
   <section
-    class="
-      flex flex-1 flex-basis-auto
-      sm:flex-basis-33
-      flex-col
-      items-center
-      px-4
-      sm:px-8
-      py-8
-      w-full
-    "
+    class="flex flex-1 flex-basis-auto sm:flex-basis-33 flex-col items-center px-4 sm:px-8 py-8 w-full"
   >
     <LoaderImage
       :alt="title"

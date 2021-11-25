@@ -5,16 +5,7 @@
       :class="{ fixed: !$config.STORYBOOK }"
     />
     <div
-      class="
-        bottom-0
-        flex
-        items-center
-        justify-center
-        left-0
-        right-0
-        top-0
-        z-20
-      "
+      class="bottom-0 flex items-center justify-center left-0 right-0 top-0 z-20"
       :class="{ fixed: !$config.STORYBOOK }"
     >
       <Card class="max-h-[90vh] overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3">
