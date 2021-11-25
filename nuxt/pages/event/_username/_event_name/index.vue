@@ -149,14 +149,7 @@
           </div>
           <div
             v-if="invitation.feedback === 'ACCEPTED'"
-            class="
-              col-span-1
-              bg-gray-500
-              m-auto
-              px-2
-              rounded-full
-              text-text-bright
-            "
+            class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-text-bright"
           >
             {{ $t('step1Of2') }}
           </div>
@@ -195,14 +188,7 @@
             v-if="
               invitation.feedback !== null && invitation.feedback === 'ACCEPTED'
             "
-            class="
-              col-span-1
-              bg-gray-500
-              m-auto
-              px-2
-              rounded-full
-              text-text-bright
-            "
+            class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-text-bright"
           >
             {{ $t('step2Of2') }}
           </div>

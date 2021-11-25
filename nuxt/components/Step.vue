@@ -6,14 +6,7 @@
       </span>
     </div>
     <div
-      class="
-        flex flex-1 flex-basis-auto
-        sm:flex-basis-33
-        flex-col
-        items-center
-        mt-8
-        z-20
-      "
+      class="flex flex-1 flex-basis-auto sm:flex-basis-33 flex-col items-center mt-8 z-20"
     >
       <h3 class="text-center">{{ title }}</h3>
       <p class="text-center">{{ description }}</p>

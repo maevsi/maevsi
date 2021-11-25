@@ -21,14 +21,7 @@
       />
       <InvitationFeedbackIcon
         v-if="feedback"
-        class="
-          absolute
-          bg-white
-          border-2 border-white
-          bottom-0
-          right-0
-          rounded-full
-        "
+        class="absolute bg-white border-2 border-white bottom-0 right-0 rounded-full"
         :feedback="feedback"
       />
     </div>

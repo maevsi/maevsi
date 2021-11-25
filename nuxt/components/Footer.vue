@@ -91,15 +91,7 @@
         <div class="bg-gray-900 dark:bg-white h-px flex-1" />
         <LoaderImage
           :alt="$t('maevsiLogo')"
-          class="
-            brightness-0
-            contrast-75
-            dark:contrast-100
-            h-12
-            dark:invert
-            mx-12
-            w-12
-          "
+          class="brightness-0 contrast-75 dark:contrast-100 h-12 dark:invert mx-12 w-12"
           height="48"
           src="/assets/static/logos/maevsi.svg"
           width="48"

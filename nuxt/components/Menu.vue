@@ -1,15 +1,6 @@
 <template>
   <nav
-    class="
-      bg-background-bright
-      dark:bg-background-dark
-      h-full
-      w-64
-      md:w-72
-      lg:w-80
-      xl:w-96
-      p-2
-    "
+    class="bg-background-bright dark:bg-background-dark h-full w-64 md:w-72 lg:w-80 xl:w-96 p-2"
   >
     <div class="flex flex-col">
       <ButtonIcon
@@ -23,14 +14,7 @@
       <div class="flex flex-col p-6 lg:p-8 space-y-8">
         <div v-if="signedInUsername" class="flex mt-0 md:mt-auto">
           <AppLink
-            class="
-              flex
-              items-center
-              min-w-0
-              space-x-2
-              text-text-dark
-              dark:text-text-bright
-            "
+            class="flex items-center min-w-0 space-x-2 text-text-dark dark:text-text-bright"
             :is-colored="false"
             :to="localePath(`/account/${signedInUsername}`)"
             @click="$emit('onMenuHide')"
@@ -101,22 +85,7 @@
         <hr v-if="signedInUsername" class="md:hidden opacity-40" />
         <div class="flex flex-col space-y-4">
           <AppLink
-            class="
-              bg-background-bright
-              hover:bg-gray-200
-              dark:bg-background-dark dark:hover:bg-black
-              border border-gray-300
-              dark:border-gray-600
-              font-medium
-              md:hidden
-              px-4
-              py-2
-              rounded-md
-              shadow-sm
-              dark:shadow-sm-white
-              text-center text-text-dark
-              dark:text-text-bright
-            "
+            class="bg-background-bright hover:bg-gray-200 dark:bg-background-dark dark:hover:bg-black border border-gray-300 dark:border-gray-600 font-medium md:hidden px-4 py-2 rounded-md shadow-sm dark:shadow-sm-white text-center text-text-dark dark:text-text-bright"
             :is-colored="false"
             :to="
               signedInUsername
@@ -128,21 +97,7 @@
             {{ signedInUsername ? $t('eventNew') : $t('signIn') }}
           </AppLink>
           <AppLink
-            class="
-              bg-gray-800
-              hover:bg-black
-              dark:bg-gray-100 dark:hover:bg-gray-200
-              border border-transparent
-              md:hidden
-              px-4
-              py-2
-              rounded-md
-              shadow-sm
-              dark:shadow-sm-white
-              font-medium
-              text-center text-text-bright
-              dark:text-text-dark
-            "
+            class="bg-gray-800 hover:bg-black dark:bg-gray-100 dark:hover:bg-gray-200 border border-transparent md:hidden px-4 py-2 rounded-md shadow-sm dark:shadow-sm-white font-medium text-center text-text-bright dark:text-text-dark"
             :is-colored="false"
             :to="localePath('/event')"
             @click="$emit('onMenuHide')"

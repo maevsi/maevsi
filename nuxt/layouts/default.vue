@@ -11,34 +11,12 @@
     </div>
     <Footer />
     <div
-      class="
-        bg-black
-        bottom-0
-        duration-500
-        fixed
-        md:hidden
-        left-0
-        right-0
-        top-0
-        transition-opacity
-        z-10
-      "
+      class="bg-black bottom-0 duration-500 fixed md:hidden left-0 right-0 top-0 transition-opacity z-10"
       :class="isMenuVisible ? 'opacity-50 visible' : 'opacity-0 invisible'"
       @click="menuHide()"
     />
     <div
-      class="
-        bottom-0
-        duration-500
-        fixed
-        md:hidden
-        left-0
-        overflow-auto
-        top-0
-        transform-gpu
-        transition-transform
-        z-10
-      "
+      class="bottom-0 duration-500 fixed md:hidden left-0 overflow-auto top-0 transform-gpu transition-transform z-10"
       :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >
       <Menu v-if="isMenuItemsVisible" is-closable @onMenuHide="menuHide" />
