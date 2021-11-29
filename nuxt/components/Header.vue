@@ -65,6 +65,7 @@ import { mapGetters } from 'vuex'
 const supportedBrowsers = require('~/supportedBrowsers')
 
 export default defineComponent({
+  name: 'MaevsiHeader',
   data() {
     return {
       isBrowserSupported: true,

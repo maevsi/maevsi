@@ -6,6 +6,7 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
+  name: 'IndexPage',
   middleware({ res }) {
     if (res) {
       res.statusCode = 418

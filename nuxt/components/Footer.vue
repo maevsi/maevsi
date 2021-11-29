@@ -104,6 +104,13 @@
     </div>
   </footer>
 </template>
+<script>
+import { defineComponent } from '@vue/composition-api'
+
+export default defineComponent({
+  name: 'MaevsiFooter',
+})
+</script>
 
 <i18n lang="yml">
 de:

@@ -8,6 +8,7 @@ import { defineComponent, PropType } from '@nuxtjs/composition-api'
 type Error = { statusCode: number }
 
 export default defineComponent({
+  name: 'MaevsiError',
   props: {
     error: {
       type: Object as PropType<Error | undefined>,

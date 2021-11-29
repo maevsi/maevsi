@@ -38,6 +38,7 @@
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
 
 export default defineComponent({
+  name: 'MaevsiButton',
   props: {
     append: {
       default: false,

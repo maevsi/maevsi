@@ -6,6 +6,7 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
+  name: 'MaevsiCanvas',
   data() {
     return {
       ctx: undefined as CanvasRenderingContext2D | undefined | null,
