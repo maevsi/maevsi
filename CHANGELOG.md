@@ -1,3 +1,11 @@
+## [0.108.2](https://github.com/maevsi/maevsi/compare/0.108.1...0.108.2) (2021-11-29)
+
+
+### Bug Fixes
+
+* **components:** add name ([bf81fb4](https://github.com/maevsi/maevsi/commit/bf81fb44ec5b9e2f19264e93e45f177ca454e5a0))
+* **release:** schedule release ([4c4fd05](https://github.com/maevsi/maevsi/commit/4c4fd05f553f2e5f621af34796232a16d85c603f))
+
 ## [0.108.1](https://github.com/maevsi/maevsi/compare/0.108.0...0.108.1) (2021-11-19)
 
 
