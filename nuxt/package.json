@@ -59,7 +59,7 @@
     "body-parser": "1.19.0",
     "consola": "2.15.3",
     "cookie": "0.4.1",
-    "core-js": "3.19.1",
+    "core-js": "3.19.2",
     "css-element-queries": "1.2.3",
     "downloadjs": "1.4.7",
     "graphql": "16.0.1",
