@@ -46,6 +46,7 @@ import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import Button from '~/components/button/Button.vue'
 
 const Form = defineComponent({
+  name: 'MaevsiForm',
   props: {
     form: {
       required: true,

@@ -31,6 +31,7 @@ import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/
 const consola = require('consola')
 
 export default defineComponent({
+  name: 'IndexPage',
   middleware({ app, query, redirect }: Context) {
     if (Array.isArray(query.code) || !app.$global.REGEX_UUID.test(query.code)) {
       return redirect(app.localePath('/'))

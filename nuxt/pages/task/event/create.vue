@@ -9,6 +9,7 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
+  name: 'IndexPage',
   middleware({ app, store, redirect, route }) {
     if (
       store.getters.jwtDecoded &&

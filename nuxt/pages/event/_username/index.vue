@@ -9,6 +9,7 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
+  name: 'IndexPage',
   validate({ app, params }) {
     return app.$global.REGEX_SLUG.test(params.username)
   },

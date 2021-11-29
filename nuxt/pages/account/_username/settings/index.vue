@@ -45,6 +45,7 @@ import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 
 export default defineComponent({
+  name: 'IndexPage',
   middleware({ error, params, res, store }) {
     if (res && params.username !== store.getters.signedInUsername) {
       return error({ statusCode: 403 })

@@ -65,6 +65,7 @@ import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 const consola = require('consola')
 
 export default defineComponent({
+  name: 'IndexPage',
   layout(context: Context) {
     return isQueryIcFormatValid(context) && !('error' in context.route.query)
       ? 'canvas'

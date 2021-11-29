@@ -14,6 +14,7 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import { mapGetters } from 'vuex'
 
 export default defineComponent({
+  name: 'IndexPage',
   middleware({ error, store }) {
     if (!store.getters.signedInUsername) {
       return error({ statusCode: 403 })

@@ -26,6 +26,7 @@ import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import twemoji from 'twemoji'
 
 export default defineComponent({
+  name: 'MaevsiError',
   props: {
     statusCode: {
       default: undefined,

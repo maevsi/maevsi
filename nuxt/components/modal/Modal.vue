@@ -64,6 +64,7 @@ import { Modal } from '~/types/modal'
 const consola = require('consola')
 
 export default defineComponent({
+  name: 'MaevsiModal',
   props: {
     // contentBody is provided by the default slot above.
     id: {

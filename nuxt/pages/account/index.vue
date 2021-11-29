@@ -49,6 +49,7 @@ import { FormAccountRegistrationType } from '~/components/form/account/FormAccou
 import { FormAccountSignInType } from '~/components/form/account/FormAccountSignIn.vue'
 
 export default defineComponent({
+  name: 'IndexPage',
   middleware({ app, store, redirect, route }: Context): void {
     if (store.getters.jwtDecoded && store.getters.jwtDecoded.username) {
       return redirect(

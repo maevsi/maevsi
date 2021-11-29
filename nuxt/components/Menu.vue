@@ -115,6 +115,7 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import { mapGetters } from 'vuex'
 
 export default defineComponent({
+  name: 'MaevsiMenu',
   props: {
     isClosable: {
       default: false,

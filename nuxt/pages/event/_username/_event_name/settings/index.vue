@@ -44,6 +44,7 @@ import { Event as MaevsiEvent } from '~/types/event'
 const consola = require('consola')
 
 export default defineComponent({
+  name: 'IndexPage',
   apollo: {
     event(): any {
       return {

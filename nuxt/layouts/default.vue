@@ -31,6 +31,7 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import { mapGetters } from 'vuex'
 
 export default defineComponent({
+  name: 'IndexPage',
   data() {
     return {
       isMenuVisible: false,

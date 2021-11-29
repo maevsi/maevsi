@@ -219,6 +219,7 @@ import { Invitation } from '~/types/invitation'
 const consola = require('consola')
 
 export default defineComponent({
+  name: 'IndexPage',
   // TODO: Either use smart query or asyncData query.
   apollo: {
     event(): any {
@@ -273,12 +274,6 @@ export default defineComponent({
 
     return { event, graphqlError }
   },
-  data() {
-    return {
-      event: undefined as MaevsiEvent | undefined, // Set by asyncData, added only for typechecking.
-      graphqlError: undefined as GraphQLError | undefined, // Set by asyncData, added only for typechecking.
-    }
-  },
   head() {
     const title = this.title as string
     const event = this.event as MaevsiEvent
@@ -327,9 +322,11 @@ export default defineComponent({
       return this.$global.getNested(this.invitation, 'contactByContactId')
     },
     eventDescriptionTemplate(): string | undefined {
-      if (!this.event?.description) return
+      const event = this.event as MaevsiEvent | undefined
 
-      return mustache.render(this.event.description, {
+      if (!event?.description) return
+
+      return mustache.render(event.description, {
         contact: this.contact,
         event: this.event,
         invitation: this.invitation,

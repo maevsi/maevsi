@@ -24,6 +24,7 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 
 export default defineComponent({
+  name: 'IndexPage',
   async validate({ app, params }) {
     const {
       data: { accountIsExisting },

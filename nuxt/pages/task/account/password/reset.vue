@@ -10,6 +10,7 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import { Context } from '@nuxt/types'
 
 export default defineComponent({
+  name: 'IndexPage',
   middleware({ app, query, redirect }: Context) {
     if (Array.isArray(query.code) || !app.$global.REGEX_UUID.test(query.code)) {
       return redirect(app.localePath('/'))
