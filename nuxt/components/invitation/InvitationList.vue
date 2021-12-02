@@ -102,7 +102,12 @@
         })
       }}
     </p>
-    <PieChart :chart-data="data" :options="options" />
+    <!-- https://github.com/reg-viz/storycap/issues/501 -->
+    <PieChart
+      v-if="!$config.STORYBOOK"
+      :chart-data="data"
+      :options="chartOptions"
+    />
     <Modal id="ModalInvitation">
       <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
       <template slot="header">
