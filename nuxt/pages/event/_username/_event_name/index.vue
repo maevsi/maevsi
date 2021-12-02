@@ -22,6 +22,14 @@
       </ButtonColored>
       <ButtonColored
         append
+        :aria-label="$t('attendances')"
+        :icon-id="['fas', 'user-check']"
+        to="attendance"
+      >
+        {{ $t('attendances') }}
+      </ButtonColored>
+      <ButtonColored
+        append
         :aria-label="$t('settings')"
         :icon-id="['fas', 'cog']"
         to="settings"
@@ -217,7 +225,6 @@
     <Modal v-if="contact" id="ModalInvitationQrCode">
       <QrcodeVue
         class="flex justify-center"
-        render-as="svg"
         :value="invitation.uuid"
         size="300"
       />
@@ -483,6 +490,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
+  attendances: Anwesenheiten
   greeting: Hey{usernameString}!
   greetingDescription: 'Du wurdest zu folgender Veranstaltung eingeladen:'
   iCalDownload: Zum Kalender hinzufügen
@@ -506,6 +514,7 @@ de:
   step2Of2: 2/2
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
+  attendances: Attendances
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event:"
   iCalDownload: Add to calendar

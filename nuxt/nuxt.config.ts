@@ -101,7 +101,9 @@ export default defineNuxtConfig({
             'faUnlink',
             'faUpload',
             'faUser',
+            'faUserCheck',
             'faUserClock',
+            'faUserTag',
             'faWifi',
             'faWindowClose',
           ],
@@ -463,6 +465,7 @@ export default defineNuxtConfig({
         'form-action': ["'none'"], // Mozilla Observatory.
         'frame-ancestors': ["'none'"], // Mozilla Observatory.
         'img-src': [
+          'blob:',
           'data:',
           `https://*.${STACK_DOMAIN}`,
           'https://twemoji.maxcdn.com/',
@@ -473,6 +476,7 @@ export default defineNuxtConfig({
         'manifest-src': ["'self'"], // Chrome
         'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
         'script-src': [
+          'blob:',
           "'self'",
           'https://static.cloudflareinsights.com/beacon.min.js',
           'https://www.google-analytics.com/analytics.js',
