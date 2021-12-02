@@ -4168,12 +4168,12 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-italic/-/extension-italic-2.0.0-beta.24.tgz#0a08d06dbd8dbf10f18ed17f019aa42d7ac9dbe0"
   integrity sha512-pMAWFaLFb0Z0SC5pjoTKzC6m4CQOdUYeVlHvTS/550Z9lf8cqMawQ8H6Yk6brIuANyh7iUi4/zpq4H4rAdUCuw==
 
-"@tiptap/extension-link@2.0.0-beta.29":
-  version "2.0.0-beta.29"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-link/-/extension-link-2.0.0-beta.29.tgz#d419acbb242b1b482b09a8a3f0d7bdab7d5e7746"
-  integrity sha512-Hwd4lt+UYMa6BHI2QB9gavYA+i/Nlqq1CowMi7cgtQqC5ZD6IOyN/LK1SxDd934eRABgBqzzD75F71MXLGprAA==
+"@tiptap/extension-link@2.0.0-beta.30":
+  version "2.0.0-beta.30"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-link/-/extension-link-2.0.0-beta.30.tgz#2cf1789c0c39d573fceba79c2ff72f6ad6691ecc"
+  integrity sha512-luqaNiMYAuf1k5QdxpGFqa8xGu3965SXtUux/zFCR+oHlpSS7mKrDyDVuwEIrSxc0AdecxgPBL+dOFMQSP/+wQ==
   dependencies:
-    linkifyjs "^3.0.3"
+    linkifyjs "^3.0.4"
     prosemirror-state "^1.3.4"
 
 "@tiptap/extension-list-item@^2.0.0-beta.19":
@@ -14318,10 +14318,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-linkifyjs@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-3.0.3.tgz#51ea2160b4c60c2c87c27757a1e9eacd422c6076"
-  integrity sha512-ba5opS5wRHSbDC8VaiDdN14nPGm6LqyRsIPQZGG4qXV4scFdrPneT/uoZOaq9QAPBf6W9I9D/6tNSzWH//815Q==
+linkifyjs@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-3.0.4.tgz#469a1b44903d179e3b23317fd3c4e995453765b9"
+  integrity sha512-JWw1HHMx54g8mEsG7JwI8I/xh7qeJbF6L9u1dQOYW91RdRqDYpnTn1UaNXYkmLD967Vk0xGuyHzuRnkSApby3w==
 
 lint-staged@12.1.2:
   version "12.1.2"
