@@ -1,3 +1,15 @@
+# [0.109.0](https://github.com/maevsi/maevsi/compare/0.108.2...0.109.0) (2021-12-02)
+
+
+### Bug Fixes
+
+* **storycap:** workaround canvas issue ([fe203e5](https://github.com/maevsi/maevsi/commit/fe203e5862dacbb35b7db7d692bc32ae1e98b74e))
+
+
+### Features
+
+* **invitations:** add pie chart ([1b53f05](https://github.com/maevsi/maevsi/commit/1b53f052c342db6e9f62bf9a3278e130e36d5d65)), closes [#345](https://github.com/maevsi/maevsi/issues/345)
+
 ## [0.108.2](https://github.com/maevsi/maevsi/compare/0.108.1...0.108.2) (2021-11-29)
 
 
