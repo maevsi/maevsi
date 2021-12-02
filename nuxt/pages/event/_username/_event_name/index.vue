@@ -79,14 +79,24 @@
         <EventDashletLocation :event="event" />
         <EventDashletAttendanceType :event="event" />
       </div>
-      <ButtonColored
-        :aria-label="$t('iCalDownload')"
-        :icon-id="['fas', 'download']"
-        class="text-text-bright"
-        @click="downloadIcal"
-      >
-        {{ $t('iCalDownload') }}
-      </ButtonColored>
+      <div class="flex gap-4 justify-center">
+        <ButtonColored
+          :aria-label="$t('qrCodeShow')"
+          :icon-id="['fas', 'qrcode']"
+          class="text-text-bright"
+          @click="qrCodeShow"
+        >
+          {{ $t('qrCodeShow') }}
+        </ButtonColored>
+        <ButtonColored
+          :aria-label="$t('iCalDownload')"
+          :icon-id="['fas', 'download']"
+          class="text-text-bright"
+          @click="downloadIcal"
+        >
+          {{ $t('iCalDownload') }}
+        </ButtonColored>
+      </div>
       <div v-if="invitation">
         <hr class="my-4" />
         <div class="grid grid-cols-6 justify-content-center">
@@ -204,6 +214,14 @@
         <!-- eslint-enable vue/no-v-html -->
       </div>
     </Card>
+    <Modal v-if="contact" id="ModalInvitationQrCode">
+      <QrcodeVue
+        class="flex justify-center"
+        render-as="svg"
+        :value="invitation.uuid"
+        size="300"
+      />
+    </Modal>
   </div>
 </template>
 
@@ -212,6 +230,7 @@ import { Context } from '@nuxt/types'
 import consola from 'consola'
 import { GraphQLError } from 'graphql'
 import mustache from 'mustache'
+import QrcodeVue from 'qrcode.vue'
 import { mapGetters } from 'vuex'
 
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
@@ -225,6 +244,9 @@ import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
+  components: {
+    QrcodeVue,
+  },
   // TODO: Either use smart query or asyncData query.
   apollo: {
     event(): any {
@@ -428,6 +450,9 @@ export default defineComponent({
         })
       )
     },
+    qrCodeShow() {
+      this.$store.commit('modalAdd', { id: 'ModalInvitationQrCode' })
+    },
     update(id: string, invitationPatch: Partial<Invitation>) {
       this.$apollo
         .mutate({
@@ -473,6 +498,7 @@ de:
   invitationSelectionClear: Auswahl der Einladung löschen
   invitationViewFor: Du schaust dir die Einladung für {name} an.
   invitations: Einladungen
+  qrCodeShow: QR-Code anzeigen
   requestSelection: Bitte auswählen
   saved: Gespeichert!
   settings: Einstellungen
@@ -495,6 +521,7 @@ en:
   invitationSelectionClear: Clear invitation selection
   invitationViewFor: You're viewing the invitation for {name}.
   invitations: Invitations
+  qrCodeShow: Show qr code
   requestSelection: Please select
   saved: Saved!
   settings: Settings

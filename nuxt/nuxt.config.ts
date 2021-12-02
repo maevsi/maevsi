@@ -87,6 +87,7 @@ export default defineNuxtConfig({
             'faPaperPlane',
             'faParagraph',
             'faPlus',
+            'faQrcode',
             'faQuestionCircle',
             'faQuoteRight',
             'faRedo',
