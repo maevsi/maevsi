@@ -22053,10 +22053,10 @@ vue-apollo@^3.0.5:
     serialize-javascript "^4.0.0"
     throttle-debounce "^2.1.0"
 
-vue-chart-3@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/vue-chart-3/-/vue-chart-3-2.0.1.tgz#8e801b7dcf31ed10e679009a38e9bc57cce6bcac"
-  integrity sha512-aR2U5NVXkHwZ1495c8tS7bQzjJB25G3cogQvbnN0BnLt+Pg1bfCAkLdAD4iit5y4RPvpnQIUBqmgkqw7wwntQA==
+vue-chart-3@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/vue-chart-3/-/vue-chart-3-2.0.2.tgz#fcf4444a82f5c49640c9a688dcc287e84fd296ec"
+  integrity sha512-78ZsjLHIeY7G/gmr666RM+eDTR65LYncxuqJfobevOoa0Zc9C0QYfnJVvALmjqo20O9Q0NI0/lme4jOSUaBLuA==
   dependencies:
     "@vue/composition-api" "^1.4.0"
     csstype "3.0.9"
