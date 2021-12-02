@@ -16,7 +16,7 @@
         append
         :aria-label="$t('invitations')"
         :icon-id="['fas', 'envelope']"
-        to="invitations"
+        to="invitation"
       >
         {{ $t('invitations') }}
       </ButtonColored>
