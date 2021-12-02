@@ -102,6 +102,12 @@
         })
       }}
     </p>
+    <!-- https://github.com/reg-viz/storycap/issues/501 -->
+    <PieChart
+      v-if="!$config.STORYBOOK"
+      :chart-data="data"
+      :options="chartOptions"
+    />
     <Modal id="ModalInvitation">
       <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
       <template slot="header">
@@ -114,6 +120,17 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import {
+  ArcElement,
+  CategoryScale,
+  Chart,
+  Legend,
+  LinearScale,
+  PieController,
+  Title,
+  Tooltip,
+} from 'chart.js'
+import { PieChart } from 'vue-chart-3'
 
 import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDelete.gql'
 import INVITE_MUTATION from '~/gql/mutation/invitation/invite.gql'
@@ -122,7 +139,20 @@ import { Event as MaevsiEvent } from '~/types/event'
 
 const consola = require('consola')
 
+Chart.register(
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  PieController,
+  Title,
+  Tooltip,
+  Legend
+)
+
 export default defineComponent({
+  components: {
+    PieChart,
+  },
   apollo: {
     allInvitations(): any {
       return {
@@ -131,6 +161,45 @@ export default defineComponent({
           eventId: +this.event.id,
           first: this.$global.ITEMS_PER_PAGE_LARGE,
           offset: null,
+        },
+        result: (data: any) => {
+          const invitations = this.$global.getNested(
+            data,
+            'data',
+            'allInvitations',
+            'nodes'
+          )
+          const datasetData = [0, 0, 0]
+
+          for (const invitation of invitations) {
+            switch (invitation.feedback) {
+              case 'ACCEPTED':
+                datasetData[0] += 1
+                break
+              case 'CANCELED':
+                datasetData[1] = datasetData[1] + 1
+                break
+              case null:
+                datasetData[2] = datasetData[2] + 1
+                break
+              default:
+                consola.error('Unexpected invitation type.')
+            }
+          }
+
+          this.data = {
+            labels: [
+              this.$t('accepted'),
+              this.$t('canceled'),
+              this.$t('noFeedback'),
+            ],
+            datasets: [
+              {
+                data: datasetData,
+                backgroundColor: ['#00FF00', '#FF0000', '#888888'],
+              },
+            ],
+          }
         },
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {
           this.graphqlError = error
@@ -148,6 +217,7 @@ export default defineComponent({
   data() {
     return {
       allInvitations: undefined as any,
+      data: {} as any,
       graphqlError: undefined as any,
       pending: {
         deletions: [] as string[],
@@ -181,6 +251,9 @@ export default defineComponent({
         .finally(() => {
           this.pending.deletions.splice(this.pending.deletions.indexOf(uuid), 1)
         })
+    },
+    loadMore() {
+      this.$global.loadMore(this.$apollo, 'allInvitations', this.allInvitations)
     },
     send(invitation: any) {
       this.pending.sends.push(invitation.uuid)
@@ -217,15 +290,14 @@ export default defineComponent({
       this.$store.commit('modalRemove', 'ModalInvitation')
       this.$apollo.queries.allInvitations.refetch()
     },
-    loadMore() {
-      this.$global.loadMore(this.$apollo, 'allInvitations', this.allInvitations)
-    },
   },
 })
 </script>
 
 <i18n lang="yml">
 de:
+  accepted: akzeptiert
+  canceled: abgelehnt
   contact: Kontakt
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   invitationAdd: Einladung hinzufügen
@@ -234,9 +306,12 @@ de:
   invitationSend: Einladung versenden
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
+  noFeedback: kein Feedback
   sendSuccess: Einladung erfolgreich angefordert.
   sent: Gesendet!
 en:
+  accepted: accepted
+  canceled: canceled
   contact: Contact
   disabledReasonEmailAddressNone: This contact is missing an email address.
   invitationAdd: Add invitation
@@ -245,6 +320,7 @@ en:
   invitationSend: Send invitation
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
+  noFeedback: no feedback
   sendSuccess: Invitation requested successfully.
   sent: Sent!
 </i18n>
