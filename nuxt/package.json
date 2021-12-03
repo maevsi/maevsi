@@ -50,7 +50,7 @@
     "@tailwindcss/typography": "0.4.1",
     "@tiptap/extension-link": "2.0.0-beta.31",
     "@tiptap/starter-kit": "2.0.0-beta.150",
-    "@tiptap/vue-2": "2.0.0-beta.70",
+    "@tiptap/vue-2": "2.0.0-beta.71",
     "@uppy/core": "2.1.2",
     "@uppy/tus": "2.1.1",
     "@vue/composition-api": "1.4.1",
