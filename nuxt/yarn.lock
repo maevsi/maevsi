@@ -4168,10 +4168,10 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-italic/-/extension-italic-2.0.0-beta.25.tgz#c2ec95cc5baf855134883c5e261da4ab0d3b9479"
   integrity sha512-7PvhioTX9baVp5+AmmZU0qna+dFPZCRlSEN/GciH57N77d2uhJ/ZW5iQWTbvy5HBNddQB4Jts1UDIaC7WASrGA==
 
-"@tiptap/extension-link@2.0.0-beta.31":
-  version "2.0.0-beta.31"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-link/-/extension-link-2.0.0-beta.31.tgz#966d8d86f5384e5f451ec4fceb99f6d5aec421db"
-  integrity sha512-0zVqb2kEkkQWX1mb+XLHwVgMdRwXqPhe2mPTxR7trj+GQeS0z67Om6ccZur8t881x/26C66BWaVnSozP/jwc0A==
+"@tiptap/extension-link@2.0.0-beta.32":
+  version "2.0.0-beta.32"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-link/-/extension-link-2.0.0-beta.32.tgz#2d896767e1ffeebec23a4f4482fdd359da65c81c"
+  integrity sha512-tsaRGGmOeZt5to8PKeHSoc7dKtwSNGgPx2EoHrp8BI7vSRF+FFYbi1KcIBjirqDr7426/K4nI62hPkcZHOzS8w==
   dependencies:
     linkifyjs "^3.0.4"
     prosemirror-model "^1.15.0"
