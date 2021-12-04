@@ -33,6 +33,9 @@ export default {
      ** https://github.com/nuxt-community/nuxt-property-decorator
      */
     babel: {
+      plugins: [
+        '@upleveled/remove-node-prefix', // Can be removed in Nuxt 3.
+      ],
       presets({ _isServer }) {
         return [['@nuxt/babel-preset-app', { corejs: { version: 3 } }]]
       },
