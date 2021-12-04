@@ -1,3 +1,10 @@
+## [0.109.1](https://github.com/maevsi/maevsi/compare/0.109.0...0.109.1) (2021-12-04)
+
+
+### Bug Fixes
+
+* **node-fetch:** add babel plugin for new node prefix ([9c08f23](https://github.com/maevsi/maevsi/commit/9c08f23d80f49bb4912af3afe7304e63370d3759))
+
 # [0.109.0](https://github.com/maevsi/maevsi/compare/0.108.2...0.109.0) (2021-12-02)
 
 
