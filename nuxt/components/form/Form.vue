@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { defineComponent, PropType, ref } from '@nuxtjs/composition-api'
 import Button from '~/components/button/Button.vue'
 
 const Form = defineComponent({
@@ -75,6 +75,20 @@ const Form = defineComponent({
       type: String,
     },
   },
+  setup() {
+    const buttonSubmit = ref<InstanceType<typeof Button>>()
+
+    const submit = () => {
+      if (buttonSubmit) {
+        buttonSubmit.value?.click()
+      }
+    }
+
+    return {
+      buttonSubmit,
+      submit,
+    }
+  },
   computed: {
     graphqlErrorComputed(): any {
       if (!this.graphqlError) {
@@ -91,11 +105,6 @@ const Form = defineComponent({
   methods: {
     reset() {
       ;(this.$refs.form as HTMLFormElement).reset()
-    },
-    submit() {
-      if (this.$refs.buttonSubmit) {
-        ;(this.$refs.buttonSubmit as InstanceType<typeof Button>).click()
-      }
     },
   },
 })

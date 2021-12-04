@@ -9,7 +9,6 @@ import { Store } from 'vuex'
 import { ApolloClient } from 'apollo-client'
 import { Context } from '@nuxt/types'
 import { Inject } from '@nuxt/types/app'
-import { Dictionary } from 'vue-router/types/router'
 
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
@@ -18,6 +17,8 @@ import { Contact } from '~/types/contact'
 import { State } from '~/store'
 
 const consola = require('consola')
+
+type Dictionary<T> = { [key: string]: T } // import { Dictionary } from 'vue-router/types/router'
 
 export const ITEMS_PER_PAGE = 8
 export const ITEMS_PER_PAGE_LARGE = 100

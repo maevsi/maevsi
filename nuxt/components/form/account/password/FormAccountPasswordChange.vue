@@ -1,6 +1,6 @@
 <template>
   <Form
-    ref="form"
+    ref="formRef"
     :form="$v.form"
     :form-sent="form.sent"
     :graphql-error="graphqlError"
@@ -38,14 +38,27 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, ref } from '@nuxtjs/composition-api'
 import { minLength, required, sameAs } from 'vuelidate/lib/validators'
-import { defineComponent } from '@nuxtjs/composition-api'
+
 import ACCOUNT_PASSWORD_CHANGE_MUTATION from '~/gql/mutation/account/accountPasswordChange.gql'
 import { FormType } from '~/components/form/Form.vue'
 
 const consola = require('consola')
 
 const FormAccountPasswordChange = defineComponent({
+  setup() {
+    const formRef = ref<FormType>()
+
+    const resetForm = () => {
+      formRef.value?.reset()
+    }
+
+    return {
+      formRef,
+      resetForm,
+    }
+  },
   data() {
     return {
       form: {
@@ -79,7 +92,7 @@ const FormAccountPasswordChange = defineComponent({
             text: this.$t('passwordChangeSuccess') as string,
             title: this.$t('changed'),
           })
-          ;(this.$refs.form as FormType).reset()
+          this.resetForm()
         })
         .catch((reason) => {
           this.graphqlError = reason

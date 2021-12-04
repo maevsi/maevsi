@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, ref } from '@nuxtjs/composition-api'
 import { Context } from '@nuxt/types'
 import { TabFlipType } from '~/components/TabFlip.vue'
 import { FormAccountPasswordResetRequestType } from '~/components/form/account/password/FormAccountPasswordResetRequest.vue'
@@ -56,6 +56,123 @@ export default defineComponent({
         (route.query.referrer as string) ||
           app.localePath('/account/' + store.getters.jwtDecoded.username)
       )
+    }
+  },
+  setup() {
+    const formPasswordResetRequest = ref<FormAccountPasswordResetRequestType>()
+    const formRegistration = ref<FormAccountRegistrationType>()
+    const formSignIn = ref<FormAccountSignInType>()
+    const tabFlip = ref<TabFlipType>()
+
+    const onAccountPasswordResetRequest = () => {
+      if (formPasswordResetRequest.value) {
+        formPasswordResetRequest.value.form.emailAddress = undefined
+      }
+
+      if (formRegistration.value) {
+        formRegistration.value.form.emailAddress = undefined
+      }
+    }
+
+    const onClickPasswordForgotten = () => {
+      if (formPasswordResetRequest.value) {
+        formPasswordResetRequest.value.form.emailAddress =
+          formRegistration.value?.form.emailAddress
+      }
+    }
+
+    const onFormPasswordResetRequest = (form: any) => {
+      if (
+        formRegistration.value &&
+        formRegistration.value.form.emailAddress !== form.emailAddress
+      ) {
+        formRegistration.value.form.emailAddress = form.emailAddress
+      }
+    }
+
+    const onFormRegistration = (form: any) => {
+      if (
+        formSignIn.value &&
+        formSignIn.value.form.username !== form.username
+      ) {
+        formSignIn.value.form.username = form.username
+      }
+
+      if (
+        formSignIn.value &&
+        formSignIn.value.form.password !== form.password
+      ) {
+        formSignIn.value.form.password = form.password
+      }
+
+      if (
+        formPasswordResetRequest.value &&
+        formPasswordResetRequest.value.form.emailAddress !== form.emailAddress
+      ) {
+        formPasswordResetRequest.value.form.emailAddress = form.emailAddress
+      }
+    }
+
+    const onFormSignIn = (form: any) => {
+      if (
+        formRegistration.value &&
+        formRegistration.value.form.username !== form.username
+      ) {
+        formRegistration.value.form.username = form.username
+      }
+      if (
+        formRegistration.value &&
+        formRegistration.value.form.password !== form.password
+      ) {
+        formRegistration.value.form.password = form.password
+      }
+    }
+
+    const onRegistered = () => {
+      resetFormPasswordResetRequest()
+      resetFormRegistration()
+      resetFormSignIn()
+      tabFlip.value?.tabSelect('signIn')
+    }
+
+    const resetFormPasswordResetRequest = () => {
+      if (formPasswordResetRequest.value) {
+        formPasswordResetRequest.value.form.emailAddress = undefined
+        formPasswordResetRequest.value.$v.form.$reset()
+      }
+    }
+
+    const resetFormRegistration = () => {
+      if (formRegistration.value) {
+        formRegistration.value.form.username = undefined
+        formRegistration.value.form.password = undefined
+        formRegistration.value.form.emailAddress = undefined
+        formRegistration.value.$v.form.$reset()
+      }
+    }
+
+    const resetFormSignIn = () => {
+      if (formSignIn.value) {
+        formSignIn.value.form.username = undefined
+        formSignIn.value.form.password = undefined
+        formSignIn.value.$v.form.$reset()
+      }
+    }
+
+    return {
+      formPasswordResetRequest,
+      formRegistration,
+      formSignIn,
+      tabFlip,
+      onAccountPasswordResetRequest,
+      onClickPasswordForgotten,
+      onFormPasswordResetRequest,
+      onFormRegistration,
+      onFormSignIn,
+      onRegistered,
+      resetFormPasswordResetRequest,
+      resetFormRegistration,
+      resetFormSignIn,
     }
   },
   data() {
@@ -92,92 +209,6 @@ export default defineComponent({
   computed: {
     showFormPasswordResetRequest(): boolean {
       return this.$route.query.pw === 'lost'
-    },
-  },
-  methods: {
-    onAccountPasswordResetRequest() {
-      const formPasswordResetRequest = this.$refs
-        .formPasswordResetRequest as FormAccountPasswordResetRequestType
-      if (formPasswordResetRequest) {
-        formPasswordResetRequest.form.emailAddress = undefined
-      }
-
-      ;(
-        this.$refs.formRegistration as FormAccountRegistrationType
-      ).form.emailAddress = undefined
-    },
-    onClickPasswordForgotten() {
-      const formPasswordResetRequest = this.$refs
-        .formPasswordResetRequest as FormAccountPasswordResetRequestType
-      if (formPasswordResetRequest) {
-        formPasswordResetRequest.form.emailAddress = (
-          this.$refs.formRegistration as FormAccountRegistrationType
-        ).form.emailAddress
-      }
-    },
-    onFormPasswordResetRequest(form: any) {
-      const formRegistration = this.$refs
-        .formRegistration as FormAccountRegistrationType
-      if (formRegistration.form.emailAddress !== form.emailAddress) {
-        formRegistration.form.emailAddress = form.emailAddress
-      }
-    },
-    onFormRegistration(form: any) {
-      const formSignIn = this.$refs.formSignIn as FormAccountSignInType
-      if (formSignIn.form.username !== form.username) {
-        formSignIn.form.username = form.username
-      }
-
-      if (formSignIn.form.password !== form.password) {
-        formSignIn.form.password = form.password
-      }
-
-      const formPasswordResetRequest = this.$refs
-        .formPasswordResetRequest as FormAccountPasswordResetRequestType
-      if (
-        formPasswordResetRequest &&
-        formPasswordResetRequest.form.emailAddress !== form.emailAddress
-      ) {
-        formPasswordResetRequest.form.emailAddress = form.emailAddress
-      }
-    },
-    onFormSignIn(form: any) {
-      const formRegistration = this.$refs
-        .formRegistration as FormAccountRegistrationType
-      if (formRegistration.form.username !== form.username) {
-        formRegistration.form.username = form.username
-      }
-      if (formRegistration.form.password !== form.password) {
-        formRegistration.form.password = form.password
-      }
-    },
-    onRegistered() {
-      this.resetFormPasswordResetRequest()
-      this.resetFormRegistration()
-      this.resetFormSignIn()
-      ;(this.$refs.tabFlip as TabFlipType).tabSelect('signIn')
-    },
-    resetFormPasswordResetRequest() {
-      const formPasswordResetRequest = this.$refs
-        .formPasswordResetRequest as FormAccountPasswordResetRequestType
-      if (formPasswordResetRequest) {
-        formPasswordResetRequest.form.emailAddress = undefined
-        formPasswordResetRequest.$v.form.$reset()
-      }
-    },
-    resetFormRegistration() {
-      const formRegistration = this.$refs
-        .formRegistration as FormAccountRegistrationType
-      formRegistration.form.username = undefined
-      formRegistration.form.password = undefined
-      formRegistration.form.emailAddress = undefined
-      formRegistration.$v.form.$reset()
-    },
-    resetFormSignIn() {
-      const formSignIn = this.$refs.formSignIn as FormAccountSignInType
-      formSignIn.form.username = undefined
-      formSignIn.form.password = undefined
-      formSignIn.$v.form.$reset()
     },
   },
 })

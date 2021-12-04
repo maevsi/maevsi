@@ -1,3 +1,4 @@
+import { NuxtConfig } from '@nuxt/types'
 import { json } from 'body-parser'
 import shrinkRay from 'shrink-ray-current'
 
@@ -26,14 +27,14 @@ for (const exclusion of EXCLUSIONS) {
   }
 }
 
-export default {
+const config: NuxtConfig = {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     /*
      ** https://github.com/nuxt-community/nuxt-property-decorator
      */
     babel: {
-      presets({ _isServer }) {
+      presets() {
         return [['@nuxt/babel-preset-app', { corejs: { version: 3 } }]]
       },
     },
@@ -466,7 +467,7 @@ export default {
           "'self'",
         ],
         'manifest-src': ["'self'"], // Chrome
-        'report-uri': 'https://dargmuesli.report-uri.com/r/d/csp/enforce',
+        'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
         'script-src': [
           "'self'",
           'https://static.cloudflareinsights.com/beacon.min.js',
@@ -480,7 +481,7 @@ export default {
 
   serverMiddleware: [
     json(),
-    { handler: '~/middleware/server/headers.ts' },
+    '~/middleware/server/headers.ts',
     { path: '/auth', handler: '~/api/auth.ts' },
     { path: '/ical', handler: '~/api/ical.ts' },
     { path: '/tusd', handler: '~/api/tusd.ts' },
@@ -490,9 +491,19 @@ export default {
     addons: ['@storybook/addon-a11y'],
   },
 
+  typescript: {
+    typeCheck: {
+      eslint: {
+        files: './**/*.{ts,js,vue}',
+      },
+    },
+  },
+
   vue: {
     config: {
       productionTip: false,
     },
   },
 }
+
+export default config
