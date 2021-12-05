@@ -484,7 +484,7 @@ const config: NuxtConfig = {
 
   serverMiddleware: [
     json(),
-    '~/middleware/server/headers.ts',
+    { path: '/', handler: '~/middleware/server/headers.ts' },
     { path: '/auth', handler: '~/api/auth.ts' },
     { path: '/ical', handler: '~/api/ical.ts' },
     { path: '/tusd', handler: '~/api/tusd.ts' },
