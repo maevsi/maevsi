@@ -1,3 +1,16 @@
+# [0.110.0](https://github.com/maevsi/maevsi/compare/0.109.1...0.110.0) (2021-12-05)
+
+
+### Bug Fixes
+
+* **config:** correct storybook error ([946cd1f](https://github.com/maevsi/maevsi/commit/946cd1f72e57572c7cc4e9968e37200e64de2bbd))
+* **config:** extend transpile array ([e54bf24](https://github.com/maevsi/maevsi/commit/e54bf24bdf05fded7ed5d2153bc9cf56e81e4c26))
+
+
+### Features
+
+* further typescript migration ([71a4cbe](https://github.com/maevsi/maevsi/commit/71a4cbe177b0ef516b7cf37855578d26be2e0a2f))
+
 ## [0.109.1](https://github.com/maevsi/maevsi/compare/0.109.0...0.109.1) (2021-12-04)
 
 
