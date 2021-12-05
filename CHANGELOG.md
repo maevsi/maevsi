@@ -1,3 +1,10 @@
+## [0.110.1](https://github.com/maevsi/maevsi/compare/0.110.0...0.110.1) (2021-12-05)
+
+
+### Bug Fixes
+
+* **nuxt:** use default export for body parser ([80c0bd0](https://github.com/maevsi/maevsi/commit/80c0bd03bde56ac485b96a8fb08c324823c2954c))
+
 # [0.110.0](https://github.com/maevsi/maevsi/compare/0.109.1...0.110.0) (2021-12-05)
 
 
