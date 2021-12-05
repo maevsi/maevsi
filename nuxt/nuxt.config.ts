@@ -1,5 +1,5 @@
 import { NuxtConfig } from '@nuxt/types'
-import { json } from 'body-parser'
+import bodyParser from 'body-parser'
 import shrinkRay from 'shrink-ray-current'
 
 import localeDe from './locales/de.json'
@@ -490,7 +490,7 @@ const config: NuxtConfig = {
   },
 
   serverMiddleware: [
-    json(),
+    bodyParser.json(),
     { path: '/', handler: '~/middleware/server/headers.ts' },
     { path: '/auth', handler: '~/api/auth.ts' },
     { path: '/ical', handler: '~/api/ical.ts' },
