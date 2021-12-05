@@ -1,10 +1,6 @@
-import { IncomingMessage, ServerResponse } from 'http'
+import { ServerMiddleware } from '@nuxt/types'
 
-export default function (
-  _req: IncomingMessage,
-  res: ServerResponse,
-  next: any
-) {
+const myServerMiddleware: ServerMiddleware = function (_req, res, next) {
   res.setHeader('Permissions-Policy', '')
   // // Disabled until there is better browser support (https://caniuse.com/?search=report-to)
   // res.setHeader(
@@ -13,3 +9,5 @@ export default function (
   // )
   next()
 }
+
+export default myServerMiddleware
