@@ -46,7 +46,14 @@ const config: NuxtConfig = {
      */
     extend(_config, _ctx) {},
     extractCSS: true,
-    transpile: ['fetch-blob', 'lodash-es', 'node-fetch', /\.mjs$/],
+    transpile: [
+      'data-uri-to-buffer',
+      'fetch-blob',
+      'formdata-polyfill',
+      'lodash-es',
+      'node-fetch',
+      /\.mjs$/,
+    ],
   },
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
