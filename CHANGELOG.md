@@ -1,3 +1,10 @@
+# [0.111.0](https://github.com/maevsi/maevsi/compare/0.110.1...0.111.0) (2021-12-06)
+
+
+### Features
+
+* **nuxt:** migrate to bridge ([3cc07ab](https://github.com/maevsi/maevsi/commit/3cc07ab339fea81d89201a6388a564493125d94c))
+
 ## [0.110.1](https://github.com/maevsi/maevsi/compare/0.110.0...0.110.1) (2021-12-05)
 
 
