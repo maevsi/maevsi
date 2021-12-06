@@ -1,5 +1,4 @@
-import { NuxtConfig } from '@nuxt/types'
-import bodyParser from 'body-parser'
+import { defineNuxtConfig } from '@nuxt/bridge'
 import shrinkRay from 'shrink-ray-current'
 
 import localeDe from './locales/de.json'
@@ -27,7 +26,11 @@ for (const exclusion of EXCLUSIONS) {
   }
 }
 
-const config: NuxtConfig = {
+export default defineNuxtConfig({
+  alias: {
+    tslib: 'tslib/tslib.es6.js',
+    'tus-js-client': 'tus-js-client/lib.es5/browser/index.js',
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     /*
@@ -41,27 +44,12 @@ const config: NuxtConfig = {
         return [['@nuxt/babel-preset-app', { corejs: { version: 3 } }]]
       },
     },
-    /*
-     ** You can extend webpack config here
-     */
-    extend(_config, _ctx) {},
     extractCSS: true,
-    transpile: [
-      'data-uri-to-buffer',
-      'fetch-blob',
-      'formdata-polyfill',
-      'lodash-es',
-      'node-fetch',
-      /\.mjs$/,
-    ],
+    transpile: ['lodash-es'],
   },
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
-    // https://composition-api.nuxtjs.org/
-    '@nuxtjs/composition-api/module',
     [
       '@nuxtjs/fontawesome',
       {
@@ -143,7 +131,12 @@ const config: NuxtConfig = {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss',
+    [
+      '@nuxtjs/tailwindcss',
+      {
+        viewer: false,
+      },
+    ],
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -340,7 +333,7 @@ const config: NuxtConfig = {
           content: 'maevsi',
         },
       ],
-      titleTemplate: (titleChunk) => {
+      titleTemplate: (titleChunk: string) => {
         return titleChunk ? `${titleChunk} · maevsi` : 'maevsi'
       },
     }
@@ -408,14 +401,14 @@ const config: NuxtConfig = {
         classSuffix: '',
       },
     ],
-    [
-      '@nuxtjs/google-adsense',
-      {
-        id: process.env.GOOGLE_ADSENSE_ID,
-        analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
-        analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
-      },
-    ],
+    // [
+    //   '@nuxtjs/google-adsense',
+    //   {
+    //     id: process.env.GOOGLE_ADSENSE_ID,
+    //     analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
+    //     analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
+    //   },
+    // ],
     [
       '@nuxtjs/robots',
       {
@@ -443,11 +436,11 @@ const config: NuxtConfig = {
 
   publicRuntimeConfig: {
     dev: process.env.NODE_ENV !== 'production',
-    'google-adsense': {
-      id: process.env.GOOGLE_ADSENSE_ID,
-      analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
-      analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
-    },
+    // 'google-adsense': {
+    //   id: process.env.GOOGLE_ADSENSE_ID,
+    //   analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
+    //   analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
+    // },
     googleAnalytics: {
       id: process.env.GOOGLE_ANALYTICS_ID,
       debug: process.env.NODE_ENV !== 'production',
@@ -490,23 +483,14 @@ const config: NuxtConfig = {
   },
 
   serverMiddleware: [
-    bodyParser.json(),
-    { path: '/', handler: '~/middleware/server/headers.ts' },
-    { path: '/auth', handler: '~/api/auth.ts' },
-    { path: '/ical', handler: '~/api/ical.ts' },
-    { path: '/tusd', handler: '~/api/tusd.ts' },
+    // { path: '/', handler: '~/middleware/server/headers.ts' },
+    // { path: '/auth', handler: '~/api/auth.ts' },
+    // { path: '/ical', handler: '~/api/ical.ts' },
+    // { path: '/tusd', handler: '~/api/tusd.ts' },
   ],
 
   storybook: {
     addons: ['@storybook/addon-a11y'],
-  },
-
-  typescript: {
-    typeCheck: {
-      eslint: {
-        files: './**/*.{ts,js,vue}',
-      },
-    },
   },
 
   vue: {
@@ -514,6 +498,4 @@ const config: NuxtConfig = {
       productionTip: false,
     },
   },
-}
-
-export default config
+})

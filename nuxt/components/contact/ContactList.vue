@@ -66,7 +66,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
+import consola from 'consola'
 import { debounce } from 'lodash-es'
 import VueI18n from 'vue-i18n'
 import { mapGetters } from 'vuex'
@@ -75,7 +75,7 @@ import CONTACT_DELETE_MUTATION from '~/gql/mutation/contact/contactDelete.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
 import { Contact } from '~/types/contact'
 
-const consola = require('consola')
+import { defineComponent } from '#app'
 
 export default defineComponent({
   apollo: {

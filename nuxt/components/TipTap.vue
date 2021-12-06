@@ -126,10 +126,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import { Editor, EditorContent } from '@tiptap/vue-2'
 import { Link } from '@tiptap/extension-link'
 import StarterKit from '@tiptap/starter-kit'
+
+import { defineComponent } from '#app'
 
 Link.configure({
   HTMLAttributes: {

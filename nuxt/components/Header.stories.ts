@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import Header from './Header.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: Header,

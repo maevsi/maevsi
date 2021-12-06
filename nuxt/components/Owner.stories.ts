@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import Owner from './Owner.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: Owner,

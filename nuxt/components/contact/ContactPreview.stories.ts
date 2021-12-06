@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import ContactPreview from './ContactPreview.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: ContactPreview,

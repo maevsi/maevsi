@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import EventDashletVisibility from './EventDashletVisibility.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: EventDashletVisibility,

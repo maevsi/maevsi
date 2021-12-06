@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import FormEvent from './FormEvent.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: FormEvent,

@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import Menu from './Menu.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: Menu,

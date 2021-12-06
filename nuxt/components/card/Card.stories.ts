@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import Card from './Card.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: Card,

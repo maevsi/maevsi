@@ -20,8 +20,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
+
+import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',

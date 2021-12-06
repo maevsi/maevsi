@@ -75,8 +75,8 @@
 </template>
 
 <script lang="ts">
+import consola from 'consola'
 import { minLength, minValue, required } from 'vuelidate/lib/validators'
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { ApolloQueryResult } from 'apollo-client'
 import { mapGetters } from 'vuex'
 
@@ -85,7 +85,7 @@ import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
 import { Event } from '~/types/event'
 import { Contact } from '~/types/contact'
 
-const consola = require('consola')
+import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
   apollo: {

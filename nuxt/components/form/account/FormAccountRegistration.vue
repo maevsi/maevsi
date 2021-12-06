@@ -27,11 +27,12 @@
 </template>
 
 <script lang="ts">
+import consola from 'consola'
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
 import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
 
-const consola = require('consola')
+import { defineComponent, PropType } from '#app'
 
 const FormAccountRegistration = defineComponent({
   props: {

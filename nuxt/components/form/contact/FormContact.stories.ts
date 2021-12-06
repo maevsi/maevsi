@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import FormContact from './FormContact.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: FormContact,

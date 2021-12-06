@@ -57,12 +57,12 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types'
-import { defineComponent } from '@nuxtjs/composition-api'
+import consola from 'consola'
 import { required } from 'vuelidate/lib/validators'
 
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 
-const consola = require('consola')
+import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',

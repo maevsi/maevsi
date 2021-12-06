@@ -9,9 +9,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import { ResizeSensor } from 'css-element-queries'
 import { debounce } from 'lodash-es'
+
+import { defineComponent } from '#app'
 
 export default defineComponent({
   props: {

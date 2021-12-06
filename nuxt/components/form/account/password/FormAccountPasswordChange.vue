@@ -38,13 +38,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
+import consola from 'consola'
 import { minLength, required, sameAs } from 'vuelidate/lib/validators'
 
 import ACCOUNT_PASSWORD_CHANGE_MUTATION from '~/gql/mutation/account/accountPasswordChange.gql'
 import { FormType } from '~/components/form/Form.vue'
 
-const consola = require('consola')
+import { defineComponent, ref } from '#app'
 
 const FormAccountPasswordChange = defineComponent({
   setup() {

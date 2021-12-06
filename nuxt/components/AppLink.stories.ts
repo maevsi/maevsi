@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import AppLink from './AppLink.vue'
+
+import { defineComponent } from '#app'
 
 const argTypes = { click: { action: 'click' } }
 type ArgTypesType = { argTypes: typeof argTypes }

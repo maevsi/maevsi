@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import FormInputError from './FormInputError.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: FormInputError,

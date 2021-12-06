@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import LoaderIndicatorSpinner from './LoaderIndicatorSpinner.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: LoaderIndicatorSpinner,
