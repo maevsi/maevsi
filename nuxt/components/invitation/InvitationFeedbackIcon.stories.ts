@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import InvitationFeedbackIcon from './InvitationFeedbackIcon.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: InvitationFeedbackIcon,

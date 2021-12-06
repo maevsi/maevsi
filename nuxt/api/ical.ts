@@ -1,22 +1,26 @@
 import { ServerResponse } from 'http'
 
-import mustache from 'mustache'
+import { useBody } from 'h3'
+import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
+import moment from 'moment'
+import mustache from 'mustache'
 
 import { IncomingMessageWithBody } from '~/types/http'
 import { Contact } from '~/types/contact'
 import { Event as MaevsiEvent } from '~/types/event'
 import { Invitation } from '~/types/invitation'
 
-export default function (
+export default async function (
   req: IncomingMessageWithBody,
-  res: ServerResponse,
-  _next: any
+  res: ServerResponse
 ) {
-  const contact: Contact = req.body.contact
-  const event: MaevsiEvent = req.body.event
-  const invitation: Invitation = req.body.invitation
+  const body = await useBody(req)
+
+  const contact: Contact = body.contact
+  const event: MaevsiEvent = body.event
+  const invitation: Invitation = body.invitation
 
   res.setHeader('Content-Type', 'text/calendar')
   res.setHeader(
@@ -31,9 +35,6 @@ export function getIcalString(
   contact?: Contact,
   invitation?: Invitation
 ): string {
-  const { htmlToText } = require('html-to-text')
-  const moment = require('moment')
-
   const userEventPath = event.authorUsername + '/' + event.slug
   const eventUrl =
     'https://' +

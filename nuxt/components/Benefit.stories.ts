@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import Benefit from './Benefit.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: Benefit,

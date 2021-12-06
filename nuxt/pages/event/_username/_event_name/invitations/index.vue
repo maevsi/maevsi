@@ -19,14 +19,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import { Context } from '@nuxt/types'
+import consola from 'consola'
 
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { Event as MaevsiEvent } from '~/types/event'
 
-const consola = require('consola')
+import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',

@@ -53,11 +53,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { mapGetters } from 'vuex'
 import mustache from 'mustache'
 
 import { Event as MaevsiEvent } from '~/types/event'
+
+import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
   props: {

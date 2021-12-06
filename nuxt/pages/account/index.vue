@@ -41,12 +41,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api'
 import { Context } from '@nuxt/types'
+
 import { TabFlipType } from '~/components/TabFlip.vue'
 import { FormAccountPasswordResetRequestType } from '~/components/form/account/password/FormAccountPasswordResetRequest.vue'
 import { FormAccountRegistrationType } from '~/components/form/account/FormAccountRegistration.vue'
 import { FormAccountSignInType } from '~/components/form/account/FormAccountSignIn.vue'
+
+import { defineComponent, ref } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',

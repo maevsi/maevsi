@@ -18,8 +18,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profilePictureSet.gql'
+
+import { defineComponent } from '#app'
 
 export default defineComponent({
   data() {

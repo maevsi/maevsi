@@ -16,11 +16,11 @@
 </template>
 
 <script lang="ts">
+import consola from 'consola'
 import { minLength, required } from 'vuelidate/lib/validators'
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { DocumentNode } from 'graphql'
 
-const consola = require('consola')
+import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
   props: {

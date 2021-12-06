@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import ButtonEventList from './ButtonEventList.vue'
+
+import { defineComponent } from '#app'
 
 const argTypes = { click: { action: 'click' } }
 type ArgTypesType = { argTypes: typeof argTypes }

@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import Footer from './Footer.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: Footer,

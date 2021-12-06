@@ -24,11 +24,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import { Context } from '@nuxt/types'
+import consola from 'consola'
+
 import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/accountEmailAddressVerification.gql'
 
-const consola = require('consola')
+import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',

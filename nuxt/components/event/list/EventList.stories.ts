@@ -1,7 +1,8 @@
 import { graphql } from 'msw'
 
-import { defineComponent } from '@nuxtjs/composition-api'
 import EventList from './EventList.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: EventList,

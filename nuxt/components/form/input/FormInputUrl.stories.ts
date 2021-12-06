@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import FormInputUrl from './FormInputUrl.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: FormInputUrl,

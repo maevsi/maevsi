@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import FormAccountPasswordResetRequest from './FormAccountPasswordResetRequest.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: FormAccountPasswordResetRequest,

@@ -22,8 +22,9 @@
 
 <script lang="ts">
 import status from '@http-util/status-i18n'
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import twemoji from 'twemoji'
+
+import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'MaevsiError',

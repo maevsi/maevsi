@@ -1,10 +1,10 @@
+import fs from 'fs'
 import { ServerResponse } from 'http'
+
 import { serialize } from 'cookie'
-import { verify } from 'jsonwebtoken'
+import jsonwebtoken from 'jsonwebtoken'
 
 import { IncomingMessageWithBody } from '~/types/http'
-
-const fs = require('fs')
 
 const secretPostgraphileJwtSecretPath = '/run/secrets/postgraphile_jwt-secret'
 const secretPostgraphileJwtSecret = fs.existsSync(
@@ -13,11 +13,7 @@ const secretPostgraphileJwtSecret = fs.existsSync(
   ? fs.readFileSync(secretPostgraphileJwtSecretPath, 'utf-8')
   : undefined
 
-export default function (
-  req: IncomingMessageWithBody,
-  res: ServerResponse,
-  _next: any
-) {
+export default function (req: IncomingMessageWithBody, res: ServerResponse) {
   if (secretPostgraphileJwtSecret === undefined) {
     res.statusCode = 500
     res.end('Secret missing!')
@@ -31,11 +27,12 @@ export default function (
     jwt = req.headers.authorization.substring(7)
 
     try {
-      verify(jwt, secretPostgraphileJwtSecret, {
+      // eslint-disable-next-line import/no-named-as-default-member
+      jsonwebtoken.verify(jwt, secretPostgraphileJwtSecret, {
         audience: 'postgraphile',
         issuer: 'postgraphile',
       })
-    } catch (err) {
+    } catch (err: any) {
       res.statusCode = 401
       res.end('Json web token verification failed: "' + err.message + '"!')
       return

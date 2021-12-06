@@ -8,8 +8,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { FormInputType } from '~/components/form/input/FormInput.vue'
+
+import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
   props: {

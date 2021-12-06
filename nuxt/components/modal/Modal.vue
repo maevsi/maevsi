@@ -58,10 +58,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import consola from 'consola'
+
 import { Modal } from '~/types/modal'
 
-const consola = require('consola')
+import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
   name: 'MaevsiModal',

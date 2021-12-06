@@ -1,7 +1,8 @@
 import { Store } from 'vuex'
 
-import { defineComponent } from '@nuxtjs/composition-api'
 import Modal from './Modal.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: Modal,

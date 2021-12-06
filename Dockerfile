@@ -35,7 +35,7 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["dev", "--hostname", "0.0.0.0"]
-HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/healthcheck || exit 1
+HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://localhost:3000/healthcheck || exit 1
 
 
 ########################

@@ -14,8 +14,8 @@
         <template v-if="allUploads">
           <li
             v-for="upload in allUploads.nodes"
-            :id="uploadIdPrefix + upload.uuid"
-            :key="upload.uuid"
+            :id="upload.id"
+            :key="upload.id"
             :class="{
               'border-red-600': selectable && upload === selectedItem,
             }"
@@ -47,7 +47,7 @@
               </div>
               <div
                 class="absolute right-0 top-0"
-                @click="deleteImageUpload(upload.uuid)"
+                @click="deleteImageUpload(upload.id)"
               >
                 <button
                   :aria-label="$t('iconTrashLabel')"
@@ -137,16 +137,17 @@
 <script lang="ts">
 import { Uppy, UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
+import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
 import { mapGetters } from 'vuex'
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
+
 import ACCOUNT_UPLOAD_QUOTA_BYTES from '~/gql/query/account/accountUploadQuotaBytes.gql'
 import UPLOADS_ALL_QUERY from '~/gql/query/upload/uploadsAll.gql'
 import UPLOAD_CREATE_MUTATION from '~/gql/mutation/upload/uploadCreate.gql'
 
-require('@uppy/core/dist/style.css')
+import { defineComponent, PropType } from '#app'
 
-const consola = require('consola')
+require('@uppy/core/dist/style.css')
 
 interface Item {
   storageKey: string
@@ -248,16 +249,14 @@ export default defineComponent({
         document.querySelector('#input-profile-picture') as HTMLInputElement
       ).click()
     },
-    deleteImageUpload(uploadUuid: string) {
-      const element = document.getElementById(
-        this.uploadIdPrefix + uploadUuid
-      ) as Element
+    deleteImageUpload(uploadId: string) {
+      const element = document.getElementById(uploadId) as Element
 
       element.classList.add('disabled')
 
       const xhr = new XMLHttpRequest()
 
-      xhr.open('DELETE', '/tusd?uploadId=' + uploadUuid, true)
+      xhr.open('DELETE', '/tusd?uploadId=' + uploadId, true)
       xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
       xhr.setRequestHeader('Authorization', 'Bearer ' + this.jwt)
       xhr.onreadystatechange = () => {

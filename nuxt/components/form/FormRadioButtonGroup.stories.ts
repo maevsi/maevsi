@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import FormRadioButtonGroup from './FormRadioButtonGroup.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: FormRadioButtonGroup,

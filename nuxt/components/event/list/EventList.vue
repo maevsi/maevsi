@@ -34,10 +34,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import consola from 'consola'
+
 import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
 
-const consola = require('consola')
+import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
   apollo: {

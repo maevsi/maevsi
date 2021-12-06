@@ -59,10 +59,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import { mapGetters } from 'vuex'
 
-const supportedBrowsers = require('~/supportedBrowsers')
+import supportedBrowsers from '~/supportedBrowsers'
+
+import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'MaevsiHeader',

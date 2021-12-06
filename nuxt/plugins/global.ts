@@ -1,4 +1,9 @@
 import { IncomingMessage, ServerResponse } from 'http'
+
+import { Context } from '@nuxt/types'
+import { Inject } from '@nuxt/types/app'
+import { ApolloClient } from 'apollo-client'
+import consola from 'consola'
 import { serialize, parse } from 'cookie'
 import { decode, JwtPayload } from 'jsonwebtoken'
 import { unionBy } from 'lodash-es'
@@ -6,17 +11,12 @@ import moment from 'moment'
 import { DollarApollo } from 'vue-apollo/types/vue-apollo'
 import { helpers } from 'vuelidate/lib/validators'
 import { Store } from 'vuex'
-import { ApolloClient } from 'apollo-client'
-import { Context } from '@nuxt/types'
-import { Inject } from '@nuxt/types/app'
 
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 import { Contact } from '~/types/contact'
 import { State } from '~/store'
-
-const consola = require('consola')
 
 type Dictionary<T> = { [key: string]: T } // import { Dictionary } from 'vue-router/types/router'
 

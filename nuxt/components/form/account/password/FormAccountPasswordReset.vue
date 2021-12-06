@@ -16,11 +16,12 @@
 </template>
 
 <script lang="ts">
+import consola from 'consola'
 import { minLength, required } from 'vuelidate/lib/validators'
-import { defineComponent } from '@nuxtjs/composition-api'
+
 import ACCOUNT_PASSWORD_RESET_MUTATION from '~/gql/mutation/account/accountPasswordReset.gql'
 
-const consola = require('consola')
+import { defineComponent } from '#app'
 
 const FormAccountPasswordReset = defineComponent({
   props: {

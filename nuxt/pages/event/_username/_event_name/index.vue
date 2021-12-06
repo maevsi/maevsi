@@ -196,15 +196,20 @@
       </div>
       <div v-if="event.description">
         <hr class="my-4" />
-        <div v-dompurify-html="eventDescriptionTemplate" class="maevsi-prose" />
+        <!-- eslint-disable vue/no-v-html -->
+        <div
+          class="maevsi-prose"
+          v-html="$domPurify.sanitize(eventDescriptionTemplate)"
+        />
+        <!-- eslint-enable vue/no-v-html -->
       </div>
     </Card>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import { Context } from '@nuxt/types'
+import consola from 'consola'
 import { GraphQLError } from 'graphql'
 import mustache from 'mustache'
 import { mapGetters } from 'vuex'
@@ -216,7 +221,7 @@ import { Event as MaevsiEvent } from '~/types/event'
 import { Contact } from '~/types/contact'
 import { Invitation } from '~/types/invitation'
 
-const consola = require('consola')
+import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',

@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import FormAccountSignIn from './FormAccountSignIn.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: FormAccountSignIn,

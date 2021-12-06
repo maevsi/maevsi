@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import FormCheckbox from './FormCheckbox.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: FormCheckbox,

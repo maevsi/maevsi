@@ -3,8 +3,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import { Context } from '@nuxt/types'
+
+import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',

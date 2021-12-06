@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import FormAccountRegistration from './FormAccountRegistration.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: FormAccountRegistration,

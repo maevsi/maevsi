@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import EventDashletAttendanceType from './EventDashletAttendanceType.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: EventDashletAttendanceType,

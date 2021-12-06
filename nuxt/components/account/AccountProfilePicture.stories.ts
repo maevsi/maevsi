@@ -1,7 +1,8 @@
 import { graphql } from 'msw'
 
-import { defineComponent } from '@nuxtjs/composition-api'
 import AccountProfilePicture from './AccountProfilePicture.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: AccountProfilePicture,

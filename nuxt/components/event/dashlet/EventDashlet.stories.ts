@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import EventDashlet from './EventDashlet.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: EventDashlet,

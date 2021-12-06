@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import Step from './Step.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: Step,

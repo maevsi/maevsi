@@ -238,6 +238,7 @@
 </template>
 
 <script lang="ts">
+import consola from 'consola'
 import { Datetime } from 'vue-datetime'
 import {
   maxLength,
@@ -245,14 +246,13 @@ import {
   minValue,
   required,
 } from 'vuelidate/lib/validators'
-import { defineComponent } from '@nuxtjs/composition-api'
 import { mapGetters } from 'vuex'
 
 import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate.gql'
 import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById.gql'
 import { Visibility } from '~/types/event'
 
-const consola = require('consola')
+import { defineComponent } from '#app'
 
 export default defineComponent({
   components: {

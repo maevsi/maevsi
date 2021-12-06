@@ -1,8 +1,9 @@
 import { Store } from 'vuex'
 import { graphql } from 'msw'
 
-import { defineComponent } from '@nuxtjs/composition-api'
 import ModalImageSelection from './ModalImageSelection.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: ModalImageSelection,

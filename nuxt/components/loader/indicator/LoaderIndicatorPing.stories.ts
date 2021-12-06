@@ -1,5 +1,6 @@
-import { defineComponent } from '@nuxtjs/composition-api'
 import LoaderIndicatorPing from './LoaderIndicatorPing.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: LoaderIndicatorPing,

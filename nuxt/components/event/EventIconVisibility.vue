@@ -18,8 +18,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { Event } from '~/types/event'
+
+import { defineComponent } from '#app'
 
 export default defineComponent({
   props: {

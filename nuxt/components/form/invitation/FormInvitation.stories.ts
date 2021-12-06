@@ -1,7 +1,8 @@
 import { graphql } from 'msw'
 
-import { defineComponent } from '@nuxtjs/composition-api'
 import FormInvitation from './FormInvitation.vue'
+
+import { defineComponent } from '#app'
 
 export default {
   component: FormInvitation,
