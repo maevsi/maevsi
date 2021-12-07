@@ -13,7 +13,7 @@
     "lint": "yarn lint:js && yarn lint:style",
     "lint:quiet": "yarn lint:js --quiet && yarn lint:style --quiet",
     "lint:fix": "yarn lint:js --fix && yarn lint:style --fix",
-    "storycap:base": "storycap http://localhost:6006 --viewport 640x1020 --viewport 1280x1020",
+    "storycap:base": "storycap http://localhost:6006 --serverTimeout 30000 --viewport 640x1020 --viewport 1280x1020",
     "storycap:actual": "yarn storycap:base --outDir .storybook/storycap/images/actual",
     "storycap:expected": "yarn storycap:base --outDir .storybook/storycap/images/expected",
     "storycap:update": "sh ./.storybook/storycap/update.sh",
