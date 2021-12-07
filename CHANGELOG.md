@@ -1,3 +1,20 @@
+# [0.112.0](https://github.com/maevsi/maevsi/compare/0.111.0...0.112.0) (2021-12-07)
+
+
+### Bug Fixes
+
+* **git:** add missing gitignore for eslint cache ([f9712be](https://github.com/maevsi/maevsi/commit/f9712be50b59e4552bcc1a59129337562a480423))
+* **ts:** disable declaration order rule for nfc types ([74e9ccb](https://github.com/maevsi/maevsi/commit/74e9ccbec2d46eaca1bdf24a9d21c4ba270239af))
+
+
+### Features
+
+* **attendance:** improve ux ([29c85b1](https://github.com/maevsi/maevsi/commit/29c85b1a573e61da6d143101514ad4457c1d00fe))
+* **attendance:** read qr codes, write nfc ([6e132cd](https://github.com/maevsi/maevsi/commit/6e132cda75127166f48859c6da29eb0f1ba6c099))
+* improve base components ([e78cbe8](https://github.com/maevsi/maevsi/commit/e78cbe84f863047bee92e2ea8054469510be5c7e))
+* **invitation:** add qr code ([c3e67f4](https://github.com/maevsi/maevsi/commit/c3e67f4c96469ce6616aec82337c833c9ac0d24b))
+* **invitation:** move path to singular ([f8b44cc](https://github.com/maevsi/maevsi/commit/f8b44ccbfcaded290cad5af701941e277b5e7966))
+
 # [0.111.0](https://github.com/maevsi/maevsi/compare/0.110.1...0.111.0) (2021-12-06)
 
 
