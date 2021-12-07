@@ -1,3 +1,17 @@
+# [0.113.0](https://github.com/maevsi/maevsi/compare/0.112.1...0.113.0) (2021-12-07)
+
+
+### Bug Fixes
+
+* **get-nested:** remove where possible or required ([9ea1237](https://github.com/maevsi/maevsi/commit/9ea123756b4bf044aada2c8bb3275a92d1a47a6d))
+* **storycap:** increase server timeout ([2b407ea](https://github.com/maevsi/maevsi/commit/2b407ea156ee2a5f672e771386640a6d0010a7a3))
+
+
+### Features
+
+* **nuxt:** add transpiles ([97a4c1d](https://github.com/maevsi/maevsi/commit/97a4c1dc05261d3452afb8c2a7e5c4c015ec6857))
+* **plugin:** remove vue-reactive-refs ([2c2d256](https://github.com/maevsi/maevsi/commit/2c2d256bfce7dec62c49c77152fc6e7fd3d61373))
+
 ## [0.112.1](https://github.com/maevsi/maevsi/compare/0.112.0...0.112.1) (2021-12-07)
 
 
