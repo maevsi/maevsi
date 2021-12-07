@@ -8,14 +8,24 @@
       class="bottom-0 flex items-center justify-center left-0 right-0 top-0 z-20"
       :class="{ fixed: !$config.STORYBOOK }"
     >
-      <Card class="max-h-[90vh] overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3">
-        <div class="relative">
-          <h2 class="mt-0 px-4 text-center">
+      <Card
+        class="max-h-[90vh] overflow-auto space-y-2 w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3"
+      >
+        <div class="flex justify-end">
+          <ButtonIcon
+            :aria-label="$t('cancel')"
+            class="invisible"
+            :disabled="isSubmitting"
+            @click="close()"
+          >
+            <FontAwesomeIcon :icon="['fas', 'times']" />
+          </ButtonIcon>
+          <h2 v-if="$slots.header" class="flex-1 m-0 px-4 text-center">
             <slot name="header" />
           </h2>
           <ButtonIcon
             :aria-label="$t('cancel')"
-            class="absolute right-0 top-0"
+            class="self-start"
             :disabled="isSubmitting"
             @click="close()"
           >
