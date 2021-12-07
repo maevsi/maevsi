@@ -376,7 +376,6 @@ export default defineNuxtConfig({
         locales: ['en', 'de'],
       },
     ],
-    'nuxt-healthcheck',
     [
       '@nuxtjs/i18n',
       {
@@ -497,13 +496,6 @@ export default defineNuxtConfig({
       reportOnly: false,
     },
   },
-
-  serverMiddleware: [
-    // { path: '/', handler: '~/middleware/server/headers.ts' },
-    // { path: '/auth', handler: '~/api/auth.ts' },
-    // { path: '/ical', handler: '~/api/ical.ts' },
-    // { path: '/tusd', handler: '~/api/tusd.ts' },
-  ],
 
   storybook: {
     addons: ['@storybook/addon-a11y'],

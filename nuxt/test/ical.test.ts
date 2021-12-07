@@ -1,4 +1,4 @@
-import { getIcalString } from './ical'
+import { getIcalString } from '../server/api/ical'
 
 const OLD_ENV = process.env
 
