@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 // Type definitions for Web NFC
 // Project: https://github.com/w3c/web-nfc
 // Definitions by: Takefumi Yoshii <https://github.com/takefumi-yoshii>
