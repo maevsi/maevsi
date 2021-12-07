@@ -45,7 +45,19 @@ export default defineNuxtConfig({
       },
     },
     extractCSS: true,
-    transpile: ['lodash-es'],
+    transpile: [
+      '@http-util/status-i18n',
+      'cross-fetch',
+      'graphql',
+      'hash.js',
+      'lodash',
+      'lodash-es',
+      'moment',
+      'node-fetch',
+      'subscriptions-transport-ws',
+      'tslib',
+      'universal-cookie',
+    ],
   },
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
