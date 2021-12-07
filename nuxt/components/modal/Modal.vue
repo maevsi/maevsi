@@ -113,18 +113,13 @@ export default defineComponent({
   },
   computed: {
     contentBodyComputed(): any {
-      return this.$global.getNested(this.modalComputed, 'contentBody') // The default slot above is used as alternative.
+      return this.modalComputed?.contentBody // The default slot above is used as alternative.
     },
     isVisibleComputed(): boolean {
-      return (
-        this.$global.getNested(this.modalComputed, 'isVisible') ||
-        this.isVisible
-      )
+      return this.modalComputed?.isVisible || this.isVisible
     },
     onSubmitComputed(): () => void {
-      return (
-        this.$global.getNested(this.modalComputed, 'onSubmit') || this.onSubmit
-      )
+      return this.modalComputed?.onSubmit || this.onSubmit
     },
     modalComputed(): Modal | undefined {
       const modals: Modal[] = this.$store.getters.modals
