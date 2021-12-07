@@ -497,14 +497,6 @@ export default defineNuxtConfig({
     },
   },
 
-  serverMiddleware: [
-    { path: '*', handler: '~/middleware/server/headers.ts' },
-    { path: '/auth', handler: '~/api/auth.ts' },
-    { path: '/ical', handler: '~/api/ical.ts' },
-    { path: '/tusd', handler: '~/api/tusd.ts' },
-    { path: '/healthcheck', handler: '~/api/healthcheck.ts' },
-  ],
-
   storybook: {
     addons: ['@storybook/addon-a11y'],
   },
