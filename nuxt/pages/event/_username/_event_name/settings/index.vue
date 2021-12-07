@@ -118,10 +118,7 @@ export default defineComponent({
       if (
         this.$route.params.username === this.$store.getters.signedInUsername
       ) {
-        return `${this.$t('settings')} · ${this.$global.getNested(
-          this.event,
-          'name'
-        )}`
+        return `${this.$t('settings')} · ${this.event?.name}`
       }
       return '403'
     },

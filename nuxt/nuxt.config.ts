@@ -45,7 +45,19 @@ export default defineNuxtConfig({
       },
     },
     extractCSS: true,
-    transpile: ['lodash-es'],
+    transpile: [
+      '@http-util/status-i18n',
+      'cross-fetch',
+      'graphql',
+      'hash.js',
+      'lodash',
+      'lodash-es',
+      'moment',
+      'node-fetch',
+      'subscriptions-transport-ws',
+      'tslib',
+      'universal-cookie',
+    ],
   },
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
@@ -429,7 +441,6 @@ export default defineNuxtConfig({
     '~/plugins/baseUrl.ts',
     '~/plugins/croppa.js',
     '~/plugins/domPurify.ts',
-    '~/plugins/dynamicReactiveRefs.ts',
     '~/plugins/global.ts',
     '~/plugins/htmlToText.ts',
     '~/plugins/i18n.ts',
