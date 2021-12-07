@@ -1,3 +1,11 @@
+## [0.113.1](https://github.com/maevsi/maevsi/compare/0.113.0...0.113.1) (2021-12-07)
+
+
+### Bug Fixes
+
+* **api:** reenable paths ([d272ef7](https://github.com/maevsi/maevsi/commit/d272ef749810156b682481a0b78c71c710d479bd))
+* **server-middleware:** use directories ([2b3e350](https://github.com/maevsi/maevsi/commit/2b3e350c1bf141ca3d0b2e6d6b6863815f4d22ad))
+
 # [0.113.0](https://github.com/maevsi/maevsi/compare/0.112.1...0.113.0) (2021-12-07)
 
 
