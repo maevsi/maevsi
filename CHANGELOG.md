@@ -1,3 +1,10 @@
+## [0.113.2](https://github.com/maevsi/maevsi/compare/0.113.1...0.113.2) (2021-12-07)
+
+
+### Bug Fixes
+
+* **docker:** correct healthcheck endpoint ([b7e1241](https://github.com/maevsi/maevsi/commit/b7e1241afac30c414b0182b843d8709f572e6607))
+
 ## [0.113.1](https://github.com/maevsi/maevsi/compare/0.113.0...0.113.1) (2021-12-07)
 
 
