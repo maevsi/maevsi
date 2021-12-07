@@ -1,3 +1,10 @@
+## [0.112.1](https://github.com/maevsi/maevsi/compare/0.112.0...0.112.1) (2021-12-07)
+
+
+### Bug Fixes
+
+* **package:** readd missing start command ([789eb0c](https://github.com/maevsi/maevsi/commit/789eb0c223135eb2ba32c68ba71cdcd7ea2597ac))
+
 # [0.112.0](https://github.com/maevsi/maevsi/compare/0.111.0...0.112.0) (2021-12-07)
 
 
