@@ -24385,11 +24385,6 @@ vue-qrcode-reader@3.0.6:
     vue "^2.6.11"
     webrtc-adapter "7.7.0"
 
-vue-reactive-refs@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/vue-reactive-refs/-/vue-reactive-refs-0.0.2.tgz#d86be268c5c8f522fae1ee7a9d41d1e9ce93859a"
-  integrity sha512-icPpa9XifGouavoXf+fkQPbURPFX0gzD9KpxhNlDRuI/FTJEl8kOzx0SJaGxQ/28YVci8uAQATI8pODMWfrFxg==
-
 vue-router@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.5.3.tgz#041048053e336829d05dafacf6a8fb669a2e7999"

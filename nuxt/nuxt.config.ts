@@ -429,7 +429,6 @@ export default defineNuxtConfig({
     '~/plugins/baseUrl.ts',
     '~/plugins/croppa.js',
     '~/plugins/domPurify.ts',
-    '~/plugins/dynamicReactiveRefs.ts',
     '~/plugins/global.ts',
     '~/plugins/htmlToText.ts',
     '~/plugins/i18n.ts',
