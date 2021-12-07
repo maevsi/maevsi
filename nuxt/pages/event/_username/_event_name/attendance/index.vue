@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <span>{{ invitationCode }}</span>
     <div class="flex flex-col gap-4 justify-center">
       <ButtonColored
         :aria-label="$t('qrCodeScan')"
@@ -11,17 +10,27 @@
       >
         {{ $t('qrCodeScan') }}
       </ButtonColored>
-      <ButtonColored
-        v-if="invitationCode"
-        :aria-label="$t('nfcWrite')"
-        :icon-id="['fas', 'user-tag']"
-        class="text-text-bright"
-        @click="onClick"
-      >
-        {{ $t('nfcWrite') }}
-      </ButtonColored>
+      <span v-if="invitationCode" class="text-center">
+        {{ $t('scanned', { scanResult: invitationCode }) }}
+      </span>
+      <div v-if="invitationCode" class="flex flex-col items-center">
+        <ButtonColored
+          :aria-label="$t('nfcWrite')"
+          :disabled="isNfcWritableErrorMessage"
+          :icon-id="['fas', 'user-tag']"
+          class="text-text-bright"
+          @click="onClick"
+        >
+          {{ $t('nfcWrite') }}
+        </ButtonColored>
+        <span class="text-gray-500">{{ isNfcWritableErrorMessage }}</span>
+      </div>
     </div>
-    <Modal id="ModalAttendanceScanQrCode">
+    <Modal
+      id="ModalAttendanceScanQrCode"
+      :submit-icon-id="['fas', 'times-circle']"
+      :submit-name="$t('close')"
+    >
       <QrCodeStream @decode="onDecode" @init="onInit">
         <div v-if="loading" class="text-center">
           {{ $t('globalLoading') }}
@@ -32,13 +41,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
 import { Context } from '@nuxt/types'
 import consola from 'consola'
 
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { Event as MaevsiEvent } from '~/types/event'
+
+import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -87,7 +97,8 @@ export default defineComponent({
     return {
       event: undefined as MaevsiEvent | undefined,
       graphqlError: undefined as any,
-      invitationCode: undefined as String | undefined,
+      invitationCode: undefined as string | undefined,
+      isNfcWritableErrorMessage: undefined as string | undefined,
       loading: false,
     }
   },
@@ -130,6 +141,11 @@ export default defineComponent({
       return '403'
     },
   },
+  mounted() {
+    ;(this.checkWriteTag as Function)().catch((err: Error) => {
+      this.isNfcWritableErrorMessage = err.message
+    })
+  },
   methods: {
     qrCodeScan() {
       this.$store.commit('modalAdd', { id: 'ModalAttendanceScanQrCode' })
@@ -139,29 +155,37 @@ export default defineComponent({
 
       try {
         await promise
-      } catch (error) {
-        consola.error(error)
-        // if (error.name === 'NotAllowedError') {
-        //   // user denied camera access permisson
-        // } else if (error.name === 'NotFoundError') {
-        //   // no suitable camera device installed
-        // } else if (error.name === 'NotSupportedError') {
-        //   // page is not served over HTTPS (or localhost)
-        // } else if (error.name === 'NotReadableError') {
-        //   // maybe camera is already in use
-        // } else if (error.name === 'OverconstrainedError') {
-        //   // did you requested the front camera although there is none?
-        // } else if (error.name === 'StreamApiNotSupportedError') {
-        //   // browser seems to be lacking features
-        // }
+      } catch (error: any) {
+        let errorMessage: string = error.message
+
+        if (error.name === 'NotAllowedError') {
+          errorMessage = this.$t('errorCameraNotAllowed') as string
+        } else if (error.name === 'NotFoundError') {
+          errorMessage = this.$t('errorCameraNotFound') as string
+        } else if (error.name === 'NotSupportedError') {
+          errorMessage = this.$t('errorCameraNotSupported') as string
+        } else if (error.name === 'NotReadableError') {
+          errorMessage = this.$t('errorCameraNotReadable') as string
+        } else if (error.name === 'OverconstrainedError') {
+          errorMessage = this.$t('errorCameraOverconstrained') as string
+        } else if (error.name === 'StreamApiNotSupportedError') {
+          errorMessage = this.$t('errorCameraStreamApiNotSupported') as string
+        }
+
+        this.$swal({
+          icon: 'error',
+          text: errorMessage,
+          title: this.$t('globalStatusError'),
+        }).then(() =>
+          this.$store.commit('modalRemove', 'ModalAttendanceScanQrCode')
+        )
+        consola.error(errorMessage)
       } finally {
         this.loading = false
       }
     },
     async onClick() {
-      if (await (this.checkWriteTag as Function)()) {
-        await (this.writeTag as Function)(this.invitationCode)
-      }
+      await (this.writeTag as Function)(this.invitationCode)
     },
     onDecode(e: any): void {
       this.invitationCode = e
@@ -173,54 +197,58 @@ export default defineComponent({
         this.$store.commit('modalRemove', 'ModalAttendanceScanQrCode')
       )
     },
-    // async readTag() {
-    //   if ('NDEFReader' in window) {
-    //     const ndef = new NDEFReader()
-    //     try {
-    //       await ndef.scan()
-    //       ndef.onreading = (event: any) => {
-    //         const decoder = new TextDecoder()
-    //         for (const record of event.message.records) {
-    //           this.consoleLog('Record type:  ' + record.recordType)
-    //           this.consoleLog('MIME type:    ' + record.mediaType)
-    //           this.consoleLog('=== data ===\n' + decoder.decode(record.data))
-    //         }
-    //       }
-    //     } catch (error) {
-    //       this.consoleLog(error)
-    //     }
-    //   } else {
-    //     this.consoleLog('Web NFC is not supported.')
-    //   }
-    // },
-    async checkWriteTag(): Promise<Boolean> {
+    async checkWriteTag(): Promise<void> {
       if (!('NDEFReader' in window)) {
-        alert('Web NFC is not supported!')
-        return Promise.resolve(false)
+        return Promise.reject(Error('Web NFC is not supported!'))
       }
 
       if (!navigator.permissions) {
-        alert('Navigator permissions are not supported!')
-        return Promise.resolve(false)
+        return Promise.reject(Error('Navigator permissions are not supported!'))
       } else {
         const nfcPermissionStatus = await navigator.permissions.query({
           name: 'nfc' as PermissionName,
         })
 
         if (nfcPermissionStatus.state === 'granted') {
-          return Promise.resolve(true)
+          return Promise.resolve()
         } else {
-          alert(nfcPermissionStatus.state)
-          return Promise.resolve(false)
+          return Promise.reject(Error(nfcPermissionStatus.state))
         }
       }
     },
     async writeTag(e: any): Promise<void> {
       try {
         await new NDEFReader().write(e)
-        alert('NDEF message written!')
+        this.$swal({
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500,
+        })
       } catch (error) {
-        alert(error)
+        if (error instanceof DOMException) {
+          let errorMessage: string = error.message
+
+          if (error.name === 'AbortError') {
+            errorMessage = this.$t('errorNfcAbort') as string
+          } else if (error.name === 'NotAllowedError') {
+            errorMessage = this.$t('errorNfcNotAllowed') as string
+          } else if (error.name === 'NotSupportedError') {
+            errorMessage = this.$t('errorNfcNotSupported') as string
+          } else if (error.name === 'NotReadableError') {
+            errorMessage = this.$t('errorNfcNotReadable') as string
+          } else if (error.name === 'NetworkError') {
+            errorMessage = this.$t('errorNfcNetwork') as string
+          }
+
+          this.$swal({
+            icon: 'error',
+            text: errorMessage,
+            title: this.$t('globalStatusError'),
+          })
+          consola.error(errorMessage)
+        } else {
+          alert(`Unexpected error: ${error}`)
+        }
       }
     },
   },
@@ -229,11 +257,37 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  nfcWrite: NFC schreiben
+  close: Schließen
+  errorCameraNotAllowed: Berechtigung zum Kamerazugriff fehlt.
+  errorCameraNotFound: Konnte keine geeignete Kamera finden.
+  errorCameraNotReadable: Zugriff auf die Kamera nicht möglich. Wird sie von einem anderen Programm verwendet?
+  errorCameraNotSupported: Die Webseite wird nicht über eine sichere Verbindung geladen.
+  errorCameraOverconstrained: Frontkamerazugriff ist nicht möglich.
+  errorCameraStreamApiNotSupported: Der Browser unterstützt den Zugriff auf Videostreams nicht.
+  errorNfcAbort: Der NFC-Scan wurde unterbrochen.
+  errorNfcNetwork: Die NFC-Übertragung wurde unterbrochen.
+  errorNfcNotAllowed: Berechtigung zum NFC-Zugriff fehlt.
+  errorNfcNotReadable: Zugriff auf den NFC-Adapter nicht möglich. Wird er von einem anderen Programm verwendet?
+  errorNfcNotSupported: Es wurde kein kompatibler NFC-Adapter gefunden.
+  nfcWrite: NFC-Tag schreiben
   qrCodeScan: QR-Code scannen
+  scanned: 'Gescannt: {scanResult}'
   title: Anwesenheiten
 en:
-  nfcWrite: Write NFC
+  close: Close
+  errorCameraNotAllowed: Camera access permisson is missing.
+  errorCameraNotFound: Could not find a suitable camera.
+  errorCameraNotReadable: Could not access camera. Is it used by another program?
+  errorCameraNotSupported: The web page is not loaded over a secure connection.
+  errorCameraOverconstrained: Front camera access is not possible.
+  errorCameraStreamApiNotSupported: The browser does not support access to video streams.
+  errorNfcAbort: The NFC scan was interrupted.
+  errorNfcNetwork: The NFC transmission was interrupted.
+  errorNfcNotAllowed: NFC access permission is missing.
+  errorNfcNotReadable: Could not access NFC adapter. Is it used by another program?
+  errorNfcNotSupported: No compatible NFC adapter was found.
+  nfcWrite: Write NFC tag
   qrCodeScan: Scan QR-Code
+  scanned: 'Scanned: {scanResult}'
   title: Attendances
 </i18n>
