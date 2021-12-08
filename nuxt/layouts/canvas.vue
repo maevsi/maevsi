@@ -38,7 +38,7 @@ export default defineComponent({
     const redirect = this.$route.query.redirect
 
     if (redirect && typeof redirect === 'string') {
-      setTimeout(() => this.$router.push(redirect), 1000)
+      setTimeout(() => this.$router.replace(redirect), 1000)
     }
   },
   methods: {
