@@ -62,10 +62,9 @@ import { defineComponent } from '#app'
 export default defineComponent({
   name: 'IndexPage',
   components: {
-    QrCodeStream: async () => {
+    QrCodeStream: () => {
       if (process.server) return
-      const { QrcodeStream } = await import('vue-qrcode-reader')
-      return QrcodeStream
+      return import('vue-qrcode-reader/src/components/QrcodeStream.vue')
     },
   },
   apollo: {
