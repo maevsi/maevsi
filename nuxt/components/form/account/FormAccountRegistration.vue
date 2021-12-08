@@ -65,7 +65,7 @@ const FormAccountRegistration = defineComponent({
   methods: {
     async submit() {
       try {
-        await this.$global.formPreSubmit(this)
+        await this.$util.formPreSubmit(this)
       } catch (error) {
         return
       }
@@ -80,7 +80,7 @@ const FormAccountRegistration = defineComponent({
             username: this.form.username,
           },
         })
-        .then(({ data }) => this.$global.getNested(data, 'accountRegistration'))
+        .then(({ data }) => this.$util.getNested(data, 'accountRegistration'))
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)
@@ -102,19 +102,19 @@ const FormAccountRegistration = defineComponent({
     return {
       form: {
         username: {
-          formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$global.VALIDATION_USERNAME_LENGTH_MAXIMUM),
+          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
           required,
         },
         password: {
-          minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
         emailAddress: {
           email,
-          formatUppercaseNone: this.$global.VALIDATION_FORMAT_UPPERCASE_NONE,
+          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
           maxLength: maxLength(
-            this.$global.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
+            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
           ),
           required,
         },

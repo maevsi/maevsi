@@ -5685,46 +5685,46 @@
   resolved "https://registry.yarnpkg.com/@upleveled/babel-plugin-remove-node-prefix/-/babel-plugin-remove-node-prefix-1.0.4.tgz#45592ffe739d272526cadac89c487a423fb97b7a"
   integrity sha512-EBiMQNjGgDWhe/BcDRbb1R4q4SqS9bMH+NDFZMVMk1XrEHUr4Q5kMKZYDtj79y5QSASYCMQ29dLk9SvCv6haVQ==
 
-"@uppy/companion-client@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-2.0.3.tgz#d3cd30ebbc9f87d27374d13258b5d304366f10d5"
-  integrity sha512-I1baKKBpb3d//q3agRtNV3UD/sA7EecFOfoVSpMlPkFu6oQqxjSC5OFXTf3fa8X+wo4Lcutv1++3igPJ1zrgbA==
+"@uppy/companion-client@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-2.0.4.tgz#74002391aa602b34cf5d1d169dc4a534413ad7b0"
+  integrity sha512-Uc3bJzgSdvB+wKYoAbmhY7jv5DlziZQdK0w+5Eku2M93xcOictgJPoti94rj/PtZRH3gyszDkwACERs/bfbI7g==
   dependencies:
-    "@uppy/utils" "^4.0.3"
+    "@uppy/utils" "^4.0.4"
     namespace-emitter "^2.0.1"
 
-"@uppy/core@2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-2.1.2.tgz#a06cf70902fac79d9def21456d845a2e0968b512"
-  integrity sha512-w5wE2THkGxYxwxfZ/89q1s8umGNswCXmgjwUxB52faOnosvtu3BLp/hJltmWUQ6YNlsRsjrzxA5IyZ+/J3ApNQ==
+"@uppy/core@2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-2.1.3.tgz#c581b86733b5aa7ba413128116769770291abdce"
+  integrity sha512-o17+zdnZFTl7AtNQc2rT1f96yWqybHuy55Q3P0wWS/nVQzOPgKshhPONNDK3qJgYQFG0oZf3h/rioXd3PJJz3w==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.7"
-    "@uppy/store-default" "^2.0.2"
-    "@uppy/utils" "^4.0.3"
+    "@uppy/store-default" "^2.0.3"
+    "@uppy/utils" "^4.0.4"
     lodash.throttle "^4.1.1"
     mime-match "^1.0.2"
     namespace-emitter "^2.0.1"
     nanoid "^3.1.25"
     preact "^10.5.13"
 
-"@uppy/store-default@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-2.0.2.tgz#c0464e92452fdc7d4cd1548d2c7453017cad7a98"
-  integrity sha512-D9oz08EYBoc4fDotvaevd2Q7uVldS61HYFOXK20b5M/xXF/uxepapaqQnMu1DfCVsA77rhp7DMemxnWc9y8xTQ==
+"@uppy/store-default@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-2.0.3.tgz#47ad4fc4816d21955ff37d6bb5096a93278c29e2"
+  integrity sha512-2BGlN1sW0cFv4rOqTK8dfSg579S984N1HxCJxLFqeW9nWD6zd/O8Omyd85tbxGQ+FLZLTmLOm/feD0YeCBMahg==
 
-"@uppy/tus@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-2.1.1.tgz#4d8f187340e0850a188a79581ce39dacf9a681d0"
-  integrity sha512-pLcjK9JE8U374tfKXULS7OSc4WmU8DqdkFfl3BUro4jh8hqLgCvOBVkLqo0rmTeqt8/1AZXF3ngYittgmd1/og==
+"@uppy/tus@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-2.1.2.tgz#9c52540eed27a219dce2250ea65d1f1f327aa1a8"
+  integrity sha512-CmirNbR+NLGZ5tWFhU0g6vh8rTbxGCbbhz9wEGgC2ExDgRdd1R+2AqRxRKZCHJ/XOZ/lquwq8d22LJduBxC/WQ==
   dependencies:
-    "@uppy/companion-client" "^2.0.3"
-    "@uppy/utils" "^4.0.3"
+    "@uppy/companion-client" "^2.0.4"
+    "@uppy/utils" "^4.0.4"
     tus-js-client "^2.1.1"
 
-"@uppy/utils@^4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-4.0.3.tgz#181fdd161e1450d31af0cf7bc97946a99196a8fe"
-  integrity sha512-LApneC8lNvTonzSJFupxzuEvKhwp/Klc1otq8t+zXpdgjLVVSuW/rJBFfdIDrmDoqSzVLQKYjMy07CmhDAWfKg==
+"@uppy/utils@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@uppy/utils/-/utils-4.0.4.tgz#5275ff65b25b451aa323e4af9bebeb0edfa9b3ff"
+  integrity sha512-FhYTQ2Z3t4t1ZHL2R0vNO1iBoMhQt/cBT54fVGxyky5T0DdivTYYbZNEbhqFsWfaaNVY3p+aK9/pfnBSi3685A==
   dependencies:
     lodash.throttle "^4.1.1"
 
@@ -14710,14 +14710,14 @@ isobject@^4.0.0:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-4.0.0.tgz#3f1c9155e73b192022a80819bacd0343711697b0"
   integrity sha512-S/2fF5wH8SJA/kmwr6HYhK/RI/OkhD84k8ntalo0iJjZikgq1XFvR5M8NPT1x5F7fBwCG3qHfnzeP/Vh/ZxCUA==
 
-isomorphic-dompurify@0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/isomorphic-dompurify/-/isomorphic-dompurify-0.16.0.tgz#4c8dd90f033538e8278ebb9ed7aac765f81e7d6a"
-  integrity sha512-o598ifhryrDU6sZCAz6EAQfb+GJcJqBcST23OHCD57jS8kO+OAAVC7XuLbQqbHgU2qcogFxnZwa7QhasQXEqkw==
+isomorphic-dompurify@0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-dompurify/-/isomorphic-dompurify-0.17.0.tgz#4e6abf82d1f343222d82d2fc057322bc431c0a06"
+  integrity sha512-Du051CR3B4nHeuInAJvYEDjQCWzsro7IPKSlNfPBGnQtuF/kbFJpB8VoabZqlcntDOy0GAbbRCgVfdZCnV3lDA==
   dependencies:
     "@types/dompurify" "^2.3.1"
     dompurify "^2.3.3"
-    jsdom "^18.0.0"
+    jsdom "^19.0.0"
 
 isomorphic-ws@4.0.1:
   version "4.0.1"
@@ -15403,10 +15403,10 @@ jsdom@^16.6.0:
     ws "^7.4.6"
     xml-name-validator "^3.0.0"
 
-jsdom@^18.0.0:
-  version "18.1.1"
-  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-18.1.1.tgz#15ec896f5ab7df9669a62375606f47c8c09551aa"
-  integrity sha512-NmJQbjQ/gpS/1at/ce3nCx89HbXL/f5OcenBe8wU1Eik0ROhyUc3LtmG3567dEHAGXkN8rmILW/qtCOPxPHQJw==
+jsdom@^19.0.0:
+  version "19.0.0"
+  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-19.0.0.tgz#93e67c149fe26816d38a849ea30ac93677e16b6a"
+  integrity sha512-RYAyjCbxy/vri/CfnjUWJQQtZ3LKlLnDqj+9XLNnJPgEGeirZs3hllKR20re8LUZ6o1b1X4Jat+Qd26zmP41+A==
   dependencies:
     abab "^2.0.5"
     acorn "^8.5.0"

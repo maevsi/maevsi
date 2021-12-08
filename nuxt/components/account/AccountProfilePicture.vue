@@ -30,14 +30,14 @@ export default defineComponent({
           username: this.username,
         },
         update: (data: any) => {
-          const profilePictureByUsername = this.$global.getNested(
+          const profilePictureByUsername = this.$util.getNested(
             data,
             'profilePictureByUsername'
           )
 
           if (profilePictureByUsername) {
             this.profilePictureUrl =
-              this.$global.TUSD_FILES_URL +
+              this.$util.TUSD_FILES_URL +
               profilePictureByUsername.uploadStorageKey +
               '+'
           } else {

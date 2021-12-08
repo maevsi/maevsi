@@ -26,7 +26,7 @@
               :alt="upload.storageKey ? $t('uploadAlt') : $t('uploadAltFailed')"
               class="h-32 w-32"
               height="128"
-              :src="$global.TUSD_FILES_URL + upload.storageKey + '+'"
+              :src="$util.TUSD_FILES_URL + upload.storageKey + '+'"
               :title="
                 $t('uploadSize', { size: bytesToString(upload.sizeByte) })
               "
@@ -106,7 +106,7 @@
       >
         <ButtonColored
           :aria-label="$t('globalPagingMore')"
-          @click="$global.loadMore($apollo, 'allUploads', allUploads)"
+          @click="$util.loadMore($apollo, 'allUploads', allUploads)"
         >
           {{ $t('globalPagingMore') }}
         </ButtonColored>
@@ -159,7 +159,7 @@ export default defineComponent({
       return {
         query: UPLOADS_ALL_QUERY,
         variables: {
-          first: this.$global.ITEMS_PER_PAGE,
+          first: this.$util.ITEMS_PER_PAGE,
           offset: null,
           username: this.username,
         },
@@ -333,7 +333,7 @@ export default defineComponent({
                 },
               },
             })
-            .then(({ data }) => this.$global.getNested(data, 'uploadCreate'))
+            .then(({ data }) => this.$util.getNested(data, 'uploadCreate'))
             .catch((reason) => {
               consola.error(reason)
               reject(reason)
@@ -370,7 +370,7 @@ export default defineComponent({
           })
 
           this.uppy.use(Tus, {
-            endpoint: this.$global.TUSD_FILES_URL,
+            endpoint: this.$util.TUSD_FILES_URL,
             limit: 1,
             removeFingerprintOnSuccess: true,
           })

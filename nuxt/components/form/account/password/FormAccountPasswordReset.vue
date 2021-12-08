@@ -42,7 +42,7 @@ const FormAccountPasswordReset = defineComponent({
   methods: {
     async submit() {
       try {
-        await this.$global.formPreSubmit(this)
+        await this.$util.formPreSubmit(this)
       } catch (error) {
         return
       }
@@ -55,9 +55,7 @@ const FormAccountPasswordReset = defineComponent({
             password: this.form.password,
           },
         })
-        .then(({ data }) =>
-          this.$global.getNested(data, 'accountPasswordReset')
-        )
+        .then(({ data }) => this.$util.getNested(data, 'accountPasswordReset'))
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)
@@ -82,7 +80,7 @@ const FormAccountPasswordReset = defineComponent({
     return {
       form: {
         password: {
-          minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },

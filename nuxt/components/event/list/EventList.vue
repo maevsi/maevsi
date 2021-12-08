@@ -23,7 +23,7 @@
       <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
         <ButtonColored
           :aria-label="$t('globalPagingMore')"
-          @click="$global.loadMore($apollo, 'allEvents', allEvents)"
+          @click="$util.loadMore($apollo, 'allEvents', allEvents)"
         >
           {{ $t('globalPagingMore') }}
         </ButtonColored>
@@ -47,7 +47,7 @@ export default defineComponent({
         query: EVENTS_ALL_QUERY,
         variables: {
           authorUsername: this.username,
-          first: this.$global.ITEMS_PER_PAGE,
+          first: this.$util.ITEMS_PER_PAGE,
           offset: null,
         },
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {

@@ -20,7 +20,7 @@
     <div class="flex flex-col items-center justify-between">
       <AppLink
         :to="
-          $global.getQueryString({
+          $util.getQueryString({
             ...$route.query,
             pw: $route.query.pw === 'lost' ? 'found' : 'lost',
           })
@@ -108,7 +108,7 @@ const FormAccountSignIn = defineComponent({
           },
         })
         .then(({ data }) =>
-          this.$global.getNested(data, 'accountRegistrationRefresh')
+          this.$util.getNested(data, 'accountRegistrationRefresh')
         )
         .catch((reason) => {
           this.graphqlErrorInternal = reason
@@ -127,7 +127,7 @@ const FormAccountSignIn = defineComponent({
     },
     async submit() {
       try {
-        await this.$global.formPreSubmit(this)
+        await this.$util.formPreSubmit(this)
       } catch (error) {
         return
       }
@@ -140,7 +140,7 @@ const FormAccountSignIn = defineComponent({
             password: this.form.password,
           },
         })
-        .then(({ data }) => this.$global.getNested(data, 'authenticate'))
+        .then(({ data }) => this.$util.getNested(data, 'authenticate'))
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)
@@ -150,7 +150,7 @@ const FormAccountSignIn = defineComponent({
         return
       }
 
-      this.$global.jwtStore(
+      this.$util.jwtStore(
         this.$apollo.getClient(),
         this.$store,
         undefined,
@@ -162,12 +162,12 @@ const FormAccountSignIn = defineComponent({
     return {
       form: {
         username: {
-          formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$global.VALIDATION_USERNAME_LENGTH_MAXIMUM),
+          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
           required,
         },
         password: {
-          minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },

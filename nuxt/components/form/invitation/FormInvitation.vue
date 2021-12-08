@@ -94,7 +94,7 @@ export default defineComponent({
         query: CONTACTS_ALL_QUERY,
         variables: {
           authorAccountUsername: this.signedInUsername,
-          first: this.$global.ITEMS_PER_PAGE_LARGE,
+          first: this.$util.ITEMS_PER_PAGE_LARGE,
           offset: null,
         },
         result(result: ApolloQueryResult<any>, key: string) {
@@ -177,11 +177,11 @@ export default defineComponent({
       // }
     },
     loadMore() {
-      this.$global.loadMore(this.$apollo, 'allContacts', this.allContacts)
+      this.$util.loadMore(this.$apollo, 'allContacts', this.allContacts)
     },
     async submit() {
       try {
-        await this.$global.formPreSubmit(this)
+        await this.$util.formPreSubmit(this)
       } catch (error) {
         return
       }

@@ -115,9 +115,7 @@
       label-for="input-start"
       required
       :title="$t('start')"
-      :warning="
-        !$global.VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))
-      "
+      :warning="!$util.VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))"
     >
       <Datetime
         v-model="$v.form.start.$model"
@@ -127,9 +125,7 @@
       />
       <template slot="inputWarning">
         <FormInputWarning
-          v-if="
-            !$global.VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))
-          "
+          v-if="!$util.VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))"
         >
           {{ $t('globalValidationNowOrFuture') }}
         </FormInputWarning>
@@ -315,7 +311,7 @@ export default defineComponent({
   methods: {
     async submit() {
       try {
-        await this.$global.formPreSubmit(this)
+        await this.$util.formPreSubmit(this)
       } catch (error) {
         return
       }
@@ -421,7 +417,7 @@ export default defineComponent({
         authorUsername: {},
         description: {
           maxLength: maxLength(
-            this.$global.VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM
+            this.$util.VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM
           ),
         },
         end: {},
@@ -433,30 +429,24 @@ export default defineComponent({
         isRemote: {},
         location: {
           maxLength: maxLength(
-            this.$global.VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM
+            this.$util.VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM
           ),
         },
         name: {
-          maxLength: maxLength(
-            this.$global.VALIDATION_EVENT_NAME_LENGTH_MAXIMUM
-          ),
+          maxLength: maxLength(this.$util.VALIDATION_EVENT_NAME_LENGTH_MAXIMUM),
           required,
         },
         slug: {
-          maxLength: maxLength(
-            this.$global.VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM
-          ),
+          maxLength: maxLength(this.$util.VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
           required,
-          formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
+          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
         },
         start: {
           required,
         },
         url: {
-          formatUrlHttps: this.$global.VALIDATION_FORMAT_URL_HTTPS,
-          maxLength: maxLength(
-            this.$global.VALIDATION_EVENT_URL_LENGTH_MAXIMUM
-          ),
+          formatUrlHttps: this.$util.VALIDATION_FORMAT_URL_HTTPS,
+          maxLength: maxLength(this.$util.VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
         },
         visibility: {
           required,

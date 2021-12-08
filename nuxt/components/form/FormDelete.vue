@@ -53,7 +53,7 @@ export default defineComponent({
   methods: {
     async submit() {
       try {
-        await this.$global.formPreSubmit(this)
+        await this.$util.formPreSubmit(this)
       } catch (error) {
         return
       }
@@ -70,7 +70,7 @@ export default defineComponent({
         .then((_value) => {
           this.$swal({
             icon: 'success',
-            text: this.$global.capitalizeFirstLetter(
+            text: this.$util.capitalizeFirstLetter(
               this.$t('success', { item: this.itemName }) as string
             ),
             title: this.$t('deleted'),
@@ -86,7 +86,7 @@ export default defineComponent({
     return {
       form: {
         password: {
-          minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },

@@ -11,7 +11,7 @@ import { defineComponent } from '#app'
 export default defineComponent({
   name: 'IndexPage',
   validate({ app, params }) {
-    return app.$global.REGEX_SLUG.test(params.username)
+    return app.$util.REGEX_SLUG.test(params.username)
   },
   data() {
     return {

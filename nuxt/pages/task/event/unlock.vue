@@ -72,7 +72,7 @@ export default defineComponent({
       : 'default'
   },
   async middleware(context: Context): Promise<void> {
-    const { $global, app, redirect, route, store } = context
+    const { $util, app, redirect, route, store } = context
 
     if (isQueryIcFormatValid(context)) {
       const res = await eventUnlock(context)
@@ -87,7 +87,7 @@ export default defineComponent({
         )
       }
 
-      await $global.jwtStore(
+      await $util.jwtStore(
         app.apolloProvider!.defaultClient,
         store,
         undefined,
@@ -174,7 +174,7 @@ export default defineComponent({
   methods: {
     async submit() {
       try {
-        await this.$global.formPreSubmit(this)
+        await this.$util.formPreSubmit(this)
       } catch (error) {
         return
       }
@@ -187,7 +187,7 @@ export default defineComponent({
           },
         })
         .then(({ data }) =>
-          this.$global.getNested(data, 'eventUnlock', 'eventUnlockResponse')
+          this.$util.getNested(data, 'eventUnlock', 'eventUnlockResponse')
         )
         .catch((reason) => {
           this.graphqlError = reason
@@ -198,7 +198,7 @@ export default defineComponent({
         return
       }
 
-      await this.$global.jwtStore(
+      await this.$util.jwtStore(
         this.$apollo.getClient(),
         this.$store,
         undefined,
@@ -216,7 +216,7 @@ export default defineComponent({
       form: {
         invitationCode: {
           required,
-          formatUuid: this.$global.VALIDATION_FORMAT_UUID,
+          formatUuid: this.$util.VALIDATION_FORMAT_UUID,
         },
       },
     }
@@ -224,7 +224,7 @@ export default defineComponent({
 })
 
 async function eventUnlock(context: Context) {
-  const { $global, app, route } = context
+  const { $util, app, route } = context
   return await app
     .apolloProvider!.defaultClient.mutate({
       mutation: EVENT_UNLOCK_MUTATION,
@@ -233,7 +233,7 @@ async function eventUnlock(context: Context) {
       },
     })
     .then(({ data }: any) =>
-      $global.getNested(data, 'eventUnlock', 'eventUnlockResponse')
+      $util.getNested(data, 'eventUnlock', 'eventUnlockResponse')
     )
     .catch((reason: any) => {
       consola.error(reason)
@@ -241,11 +241,11 @@ async function eventUnlock(context: Context) {
 }
 
 function isQueryIcFormatValid(context: Context) {
-  const { $global, route } = context
+  const { $util, route } = context
   return (
     route.query.ic &&
     typeof route.query.ic === 'string' &&
-    $global.REGEX_UUID.test(route.query.ic)
+    $util.REGEX_UUID.test(route.query.ic)
   )
 }
 </script>

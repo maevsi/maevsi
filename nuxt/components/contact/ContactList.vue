@@ -84,7 +84,7 @@ export default defineComponent({
         query: CONTACTS_ALL_QUERY,
         variables: {
           authorAccountUsername: this.signedInUsername,
-          first: this.$global.ITEMS_PER_PAGE_LARGE,
+          first: this.$util.ITEMS_PER_PAGE_LARGE,
           offset: null,
         },
         error(error: any, _vm: any, _key: any, _type: any, _options: any) {
@@ -169,7 +169,7 @@ export default defineComponent({
       this.$apollo.queries.allContacts.refetch()
     },
     loadMore() {
-      this.$global.loadMore(this.$apollo, 'allContacts', this.allContacts)
+      this.$util.loadMore(this.$apollo, 'allContacts', this.allContacts)
     },
   },
 })

@@ -39,7 +39,7 @@
             </ButtonIcon>
             <ButtonIcon
               :aria-label="$t('signOut')"
-              @click="$global.signOut($apollo.getClient(), $store)"
+              @click="$util.signOut($apollo.getClient(), $store)"
             >
               <IconLogout class="h-6 w-6" />
             </ButtonIcon>

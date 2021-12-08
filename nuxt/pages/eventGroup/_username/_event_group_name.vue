@@ -12,7 +12,7 @@ import { defineComponent } from '#app'
 
 export default defineComponent({
   validate({ app, params }: Context): boolean {
-    return app.$global.REGEX_SLUG.test(params.username)
+    return app.$util.REGEX_SLUG.test(params.username)
   },
   head() {
     return { title: this.$route.params.event_group_name }
