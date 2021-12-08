@@ -480,7 +480,7 @@ export default defineNuxtConfig({
           'blob:',
           'data:',
           `https://*.${STACK_DOMAIN}`,
-          'https://twemoji.maxcdn.com/',
+          'https://twemoji.maxcdn.com',
           'https://www.google-analytics.com',
           'https://www.gravatar.com/avatar/',
           "'self'",
@@ -490,7 +490,7 @@ export default defineNuxtConfig({
         'script-src': [
           'blob:',
           "'self'",
-          'https://static.cloudflareinsights.com/beacon.min.js',
+          'https://static.cloudflareinsights.com',
           'https://www.google-analytics.com/analytics.js',
         ],
         'style-src': ["'self'", "'unsafe-inline'"], // Tailwind, ChartJS (TODO: https://www.chartjs.org/docs/latest/getting-started/integration.html#content-security-policy)
