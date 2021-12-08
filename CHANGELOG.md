@@ -1,3 +1,10 @@
+## [0.113.6](https://github.com/maevsi/maevsi/compare/0.113.5...0.113.6) (2021-12-08)
+
+
+### Bug Fixes
+
+* **attendance:** correct error handling ([3345936](https://github.com/maevsi/maevsi/commit/3345936165991ad190398ec3d97561237578064c))
+
 ## [0.113.5](https://github.com/maevsi/maevsi/compare/0.113.4...0.113.5) (2021-12-08)
 
 

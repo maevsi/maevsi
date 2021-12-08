@@ -1,7 +1,7 @@
 {
   "name": "maevsi",
   "private": true,
-  "version": "0.113.5",
+  "version": "0.113.6",
   "scheduleVersion": "0.108.2",
   "description": "The manager for events supported by invitees.",
   "scripts": {
