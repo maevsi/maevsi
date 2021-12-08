@@ -171,7 +171,7 @@ export default defineComponent({
   methods: {
     async submit() {
       try {
-        await this.$global.formPreSubmit(this)
+        await this.$util.formPreSubmit(this)
       } catch (error) {
         return
       }
@@ -243,38 +243,32 @@ export default defineComponent({
       form: {
         id: {},
         accountUsername: {
-          existence: this.$global.validateUsername(this.$apollo as any),
-          formatSlug: this.$global.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$global.VALIDATION_USERNAME_LENGTH_MAXIMUM),
+          existence: this.$util.validateUsername(this.$apollo as any),
+          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
         },
         address: {
-          maxLength: maxLength(this.$global.VALIDATION_ADDRESS_LENGTH_MAXIMUM),
+          maxLength: maxLength(this.$util.VALIDATION_ADDRESS_LENGTH_MAXIMUM),
         },
         emailAddress: {
           email,
-          formatUppercaseNone: this.$global.VALIDATION_FORMAT_UPPERCASE_NONE,
+          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
           maxLength: maxLength(
-            this.$global.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
+            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
           ),
         },
         firstName: {
-          maxLength: maxLength(
-            this.$global.VALIDATION_FIRST_NAME_LENGTH_MAXIMUM
-          ),
+          maxLength: maxLength(this.$util.VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
         },
         lastName: {
-          maxLength: maxLength(
-            this.$global.VALIDATION_LAST_NAME_LENGTH_MAXIMUM
-          ),
+          maxLength: maxLength(this.$util.VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
         },
         phoneNumber: {
-          formatPhoneNumber: this.$global.VALIDATION_FORMAT_PHONE_NUMBER,
+          formatPhoneNumber: this.$util.VALIDATION_FORMAT_PHONE_NUMBER,
         },
         url: {
-          formatUrlHttps: this.$global.VALIDATION_FORMAT_URL_HTTPS,
-          maxLength: maxLength(
-            this.$global.VALIDATION_EVENT_URL_LENGTH_MAXIMUM
-          ),
+          formatUrlHttps: this.$util.VALIDATION_FORMAT_URL_HTTPS,
+          maxLength: maxLength(this.$util.VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
         },
       },
     }

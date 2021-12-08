@@ -155,11 +155,11 @@ export default defineComponent({
         query: INVITATIONS_ALL_QUERY,
         variables: {
           eventId: +this.event.id,
-          first: this.$global.ITEMS_PER_PAGE_LARGE,
+          first: this.$util.ITEMS_PER_PAGE_LARGE,
           offset: null,
         },
         result: (data: any) => {
-          const invitations = this.$global.getNested(
+          const invitations = this.$util.getNested(
             data,
             'data',
             'allInvitations',
@@ -249,7 +249,7 @@ export default defineComponent({
         })
     },
     loadMore() {
-      this.$global.loadMore(this.$apollo, 'allInvitations', this.allInvitations)
+      this.$util.loadMore(this.$apollo, 'allInvitations', this.allInvitations)
     },
     send(invitation: any) {
       this.pending.sends.push(invitation.uuid)

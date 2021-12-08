@@ -429,7 +429,7 @@ const global = {
 }
 
 export default async ({ app, req, res, store }: Context, inject: Inject) => {
-  inject('global', global)
+  inject('util', global)
 
   // Either authenticate anonymously or refresh token on page load.
   if (process.server) {
@@ -447,15 +447,15 @@ export default async ({ app, req, res, store }: Context, inject: Inject) => {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $global: typeof global
+    $util: typeof global
   }
 }
 
 declare module '@nuxt/types' {
   interface NuxtAppOptions {
-    $global: typeof global
+    $util: typeof global
   }
   interface Context {
-    $global: typeof global
+    $util: typeof global
   }
 }

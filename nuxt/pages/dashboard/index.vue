@@ -67,14 +67,14 @@ export default defineComponent({
     ...mapGetters(['jwtDecoded']),
     sessionExpiryTime(): string {
       return this.$moment(
-        this.$global.getNested(this.$store.getters.jwtDecoded, 'exp'),
+        this.$util.getNested(this.$store.getters.jwtDecoded, 'exp'),
         'X'
       ).format('llll')
     },
   },
   methods: {
     onSessionExitClick() {
-      this.$global.signOut(this.$apollo.getClient(), this.$store)
+      this.$util.signOut(this.$apollo.getClient(), this.$store)
     },
   },
 })

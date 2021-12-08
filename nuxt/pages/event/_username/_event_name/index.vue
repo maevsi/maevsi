@@ -38,7 +38,7 @@
       </ButtonColored>
     </div>
     <CardInfo v-if="$route.query.ic && contact">
-      {{ $t('invitationViewFor', { name: $global.getContactName(contact) }) }}
+      {{ $t('invitationViewFor', { name: $util.getContactName(contact) }) }}
       <ButtonColored
         append
         :aria-label="$t('invitationSelectionClear')"
@@ -59,8 +59,8 @@
       <p class="font-bold mb-2 text-2xl">
         {{
           $t('greeting', {
-            usernameString: $global.getContactName(contact)
-              ? ' ' + $global.getContactName(contact)
+            usernameString: $util.getContactName(contact)
+              ? ' ' + $util.getContactName(contact)
               : '',
           })
         }}
@@ -353,7 +353,7 @@ export default defineComponent({
   computed: {
     ...mapGetters(['jwtDecoded']),
     contact(): Contact | undefined {
-      return this.$global.getNested(this.invitation, 'contactByContactId')
+      return this.$util.getNested(this.invitation, 'contactByContactId')
     },
     eventDescriptionTemplate(): string | undefined {
       const event = this.event as MaevsiEvent | undefined
@@ -367,7 +367,7 @@ export default defineComponent({
       })
     },
     invitation(): Invitation | undefined {
-      const invitations = this.$global.getNested(
+      const invitations = this.$util.getNested(
         this.event,
         'invitationsByEventId',
         'nodes'
@@ -393,7 +393,7 @@ export default defineComponent({
       return undefined
     },
     title(): string | undefined {
-      return this.$global.getNested(this.event, 'name')
+      return this.$util.getNested(this.event, 'name')
     },
   },
   methods: {

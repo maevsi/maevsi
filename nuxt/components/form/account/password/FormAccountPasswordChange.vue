@@ -73,7 +73,7 @@ const FormAccountPasswordChange = defineComponent({
   methods: {
     async submit() {
       try {
-        await this.$global.formPreSubmit(this)
+        await this.$util.formPreSubmit(this)
       } catch (error) {
         return
       }
@@ -104,11 +104,11 @@ const FormAccountPasswordChange = defineComponent({
     return {
       form: {
         passwordCurrent: {
-          minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
         passwordNew: {
-          minLength: minLength(this.$global.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
         passwordNewConfirmation: {

@@ -12,7 +12,7 @@
       <ButtonList>
         <ButtonSignIn
           v-if="
-            $global.getNested($store.getters.jwtDecoded, 'role') ===
+            $util.getNested($store.getters.jwtDecoded, 'role') ===
             'maevsi_anonymous'
           "
           :is-referring="false"
@@ -34,7 +34,7 @@ import { defineComponent } from '#app'
 export default defineComponent({
   name: 'IndexPage',
   middleware({ app, query, redirect }: Context) {
-    if (Array.isArray(query.code) || !app.$global.REGEX_UUID.test(query.code)) {
+    if (Array.isArray(query.code) || !app.$util.REGEX_UUID.test(query.code)) {
       return redirect(app.localePath('/'))
     }
   },

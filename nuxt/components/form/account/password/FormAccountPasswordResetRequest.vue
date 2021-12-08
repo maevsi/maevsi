@@ -53,7 +53,7 @@ const FormAccountPasswordResetRequest = defineComponent({
   methods: {
     async submit() {
       try {
-        await this.$global.formPreSubmit(this)
+        await this.$util.formPreSubmit(this)
       } catch (error) {
         return
       }
@@ -67,7 +67,7 @@ const FormAccountPasswordResetRequest = defineComponent({
           },
         })
         .then(({ data }) =>
-          this.$global.getNested(data, 'accountPasswordResetRequest')
+          this.$util.getNested(data, 'accountPasswordResetRequest')
         )
         .catch((reason) => {
           this.graphqlError = reason
@@ -91,9 +91,9 @@ const FormAccountPasswordResetRequest = defineComponent({
       form: {
         emailAddress: {
           email,
-          formatUppercaseNone: this.$global.VALIDATION_FORMAT_UPPERCASE_NONE,
+          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
           maxLength: maxLength(
-            this.$global.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
+            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
           ),
           required,
         },

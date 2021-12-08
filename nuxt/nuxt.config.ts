@@ -440,10 +440,10 @@ export default defineNuxtConfig({
     '~/plugins/baseUrl.ts',
     '~/plugins/croppa.js',
     '~/plugins/domPurify.ts',
-    '~/plugins/global.ts',
     '~/plugins/htmlToText.ts',
     '~/plugins/i18n.ts',
     '~/plugins/slugify.ts',
+    '~/plugins/util.ts',
     '~/plugins/vuelidate.ts',
   ],
 

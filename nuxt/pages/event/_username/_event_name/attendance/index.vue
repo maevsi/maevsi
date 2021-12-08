@@ -133,7 +133,7 @@ export default defineComponent({
       if (
         this.$route.params.username === this.$store.getters.signedInUsername
       ) {
-        return `${this.$t('title')} · ${this.$global.getNested(
+        return `${this.$t('title')} · ${this.$util.getNested(
           this.event,
           'name'
         )}`
