@@ -1,3 +1,11 @@
+## [0.113.5](https://github.com/maevsi/maevsi/compare/0.113.4...0.113.5) (2021-12-08)
+
+
+### Bug Fixes
+
+* **csp:** remove trailing slashes ([c160b96](https://github.com/maevsi/maevsi/commit/c160b963d133df4ee5883f3185a9b0f862bd0bb9))
+* **nuxt:** add missing transpiles ([febec4e](https://github.com/maevsi/maevsi/commit/febec4e6b31524e2b7d98ccd86a09108768ff366))
+
 ## [0.113.4](https://github.com/maevsi/maevsi/compare/0.113.3...0.113.4) (2021-12-08)
 
 
