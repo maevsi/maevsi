@@ -384,7 +384,7 @@ export function xhrPromise(
   })
 }
 
-const global = {
+const util = {
   ITEMS_PER_PAGE,
   ITEMS_PER_PAGE_LARGE,
   REGEX_PHONE_NUMBER,
@@ -429,7 +429,7 @@ const global = {
 }
 
 export default async ({ app, req, res, store }: Context, inject: Inject) => {
-  inject('util', global)
+  inject('util', util)
 
   // Either authenticate anonymously or refresh token on page load.
   if (process.server) {
@@ -447,15 +447,15 @@ export default async ({ app, req, res, store }: Context, inject: Inject) => {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $util: typeof global
+    $util: typeof util
   }
 }
 
 declare module '@nuxt/types' {
   interface NuxtAppOptions {
-    $util: typeof global
+    $util: typeof util
   }
   interface Context {
-    $util: typeof global
+    $util: typeof util
   }
 }
