@@ -84,7 +84,7 @@
     "vue-datetime": "1.0.0-beta.14",
     "vue-qrcode-reader": "3.0.6",
     "vue-sweetalert2": "5.0.2",
-    "vuelidate": "0.7.6",
+    "vuelidate": "0.7.7",
     "weekstart": "1.1.0"
   },
   "devDependencies": {
