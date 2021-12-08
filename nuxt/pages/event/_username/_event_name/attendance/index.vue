@@ -31,7 +31,7 @@
           "
           class="text-gray-500"
         >
-          {{ isNfcWritableErrorMessage }}
+          {{ $t('errorMessage', { message: isNfcWritableErrorMessage }) }}
         </span>
       </div>
     </div>
@@ -151,7 +151,7 @@ export default defineComponent({
   },
   mounted() {
     ;(this.checkWriteTag as Function)().catch((err: Error) => {
-      this.isNfcWritableErrorMessage = `Error: ${err.message}`
+      this.isNfcWritableErrorMessage = err.message
     })
   },
   methods: {
@@ -272,6 +272,7 @@ de:
   errorCameraNotSupported: Die Webseite wird nicht über eine sichere Verbindung geladen.
   errorCameraOverconstrained: Frontkamerazugriff ist nicht möglich.
   errorCameraStreamApiNotSupported: Der Browser unterstützt den Zugriff auf Videostreams nicht.
+  errorMessage: 'Fehler: {message}'
   errorNfcAbort: Der NFC-Scan wurde unterbrochen.
   errorNfcNetwork: Die NFC-Übertragung wurde unterbrochen.
   errorNfcNotAllowed: Berechtigung zum NFC-Zugriff fehlt.
@@ -289,6 +290,7 @@ en:
   errorCameraNotSupported: The web page is not loaded over a secure connection.
   errorCameraOverconstrained: Front camera access is not possible.
   errorCameraStreamApiNotSupported: The browser does not support access to video streams.
+  errorMessage: 'Error: {message}'
   errorNfcAbort: The NFC scan was interrupted.
   errorNfcNetwork: The NFC transmission was interrupted.
   errorNfcNotAllowed: NFC access permission is missing.
