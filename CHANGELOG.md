@@ -1,3 +1,13 @@
+## [0.113.4](https://github.com/maevsi/maevsi/compare/0.113.3...0.113.4) (2021-12-08)
+
+
+### Bug Fixes
+
+* **attendance:** import specific component ([b4bb923](https://github.com/maevsi/maevsi/commit/b4bb9239e6ba47df09b8fec04524952b9f1c7dbf))
+* **canvas:** replace instead of redirect ([596dd1d](https://github.com/maevsi/maevsi/commit/596dd1d555203bf3029cc5f7be2a8cac341f5162))
+* **nfc:** exclude prompt from errors ([1c94338](https://github.com/maevsi/maevsi/commit/1c94338723a73c92a8328f2b6aef679bbddd486f))
+* **util:** rename variable to new filename ([d9ac20a](https://github.com/maevsi/maevsi/commit/d9ac20a54a7f14570c5e13cf3e79fde11309bce4))
+
 ## [0.113.3](https://github.com/maevsi/maevsi/compare/0.113.2...0.113.3) (2021-12-08)
 
 
