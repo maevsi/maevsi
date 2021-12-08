@@ -16,14 +16,23 @@
       <div v-if="invitationCode" class="flex flex-col items-center">
         <ButtonColored
           :aria-label="$t('nfcWrite')"
-          :disabled="isNfcWritableErrorMessage"
+          :disabled="
+            isNfcWritableErrorMessage && isNfcWritableErrorMessage !== 'prompt'
+          "
           :icon-id="['fas', 'user-tag']"
           class="text-text-bright"
           @click="onClick"
         >
           {{ $t('nfcWrite') }}
         </ButtonColored>
-        <span class="text-gray-500">{{ isNfcWritableErrorMessage }}</span>
+        <span
+          v-if="
+            isNfcWritableErrorMessage && isNfcWritableErrorMessage !== 'prompt'
+          "
+          class="text-gray-500"
+        >
+          {{ isNfcWritableErrorMessage }}
+        </span>
       </div>
     </div>
     <Modal
@@ -143,7 +152,7 @@ export default defineComponent({
   },
   mounted() {
     ;(this.checkWriteTag as Function)().catch((err: Error) => {
-      this.isNfcWritableErrorMessage = err.message
+      this.isNfcWritableErrorMessage = `Error: ${err.message}`
     })
   },
   methods: {
