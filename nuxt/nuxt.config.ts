@@ -47,6 +47,7 @@ export default defineNuxtConfig({
     extractCSS: true,
     transpile: [
       '@http-util/status-i18n',
+      'barcode-detector',
       'cross-fetch',
       'graphql',
       'hash.js',
@@ -57,6 +58,7 @@ export default defineNuxtConfig({
       'subscriptions-transport-ws',
       'tslib',
       'universal-cookie',
+      'webrtc-adapter',
     ],
   },
 
