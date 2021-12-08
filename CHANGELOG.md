@@ -1,3 +1,10 @@
+## [0.113.3](https://github.com/maevsi/maevsi/compare/0.113.2...0.113.3) (2021-12-08)
+
+
+### Bug Fixes
+
+* **plugin:** rename global plugin ([1f5b440](https://github.com/maevsi/maevsi/commit/1f5b440f63d06cc847de56c7039df337f539fe2e))
+
 ## [0.113.2](https://github.com/maevsi/maevsi/compare/0.113.1...0.113.2) (2021-12-07)
 
 
