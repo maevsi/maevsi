@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 function heading(theme) {
   return {
@@ -42,7 +43,6 @@ function prose(theme) {
 
 module.exports = {
   darkMode: 'class',
-  mode: 'jit',
   theme: {
     extend: {
       animation: {
@@ -58,12 +58,12 @@ module.exports = {
           dark: '#202020',
         },
         link: {
-          bright: defaultTheme.colors.blue['400'],
-          dark: defaultTheme.colors.blue['700'],
+          bright: colors.blue['400'],
+          dark: colors.blue['700'],
         },
         text: {
-          bright: defaultTheme.colors.gray['50'],
-          dark: defaultTheme.colors.gray['900'],
+          bright: colors.gray['50'],
+          dark: colors.gray['900'],
         },
       },
       fontFamily: {
@@ -160,12 +160,6 @@ module.exports = {
           },
         },
       }),
-    },
-  },
-  variants: {
-    extend: {
-      margin: ['last'],
-      typography: ['dark'],
     },
   },
   plugins: [

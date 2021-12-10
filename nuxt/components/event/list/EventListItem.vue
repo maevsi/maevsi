@@ -39,7 +39,7 @@
         </div>
         <p
           v-if="eventDescriptionTemplate"
-          class="line-clamp-2 overflow-ellipsis text-text-dark"
+          class="line-clamp-2 text-ellipsis text-text-dark"
         >
           {{
             $htmlToText($domPurify.sanitize(eventDescriptionTemplate), {
