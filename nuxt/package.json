@@ -102,7 +102,7 @@
     "@nuxtjs/stylelint-module": "4.1.0",
     "@nuxtjs/tailwindcss": "4.2.1",
     "@storybook/addon-a11y": "6.4.9",
-    "@types/dompurify": "2.3.1",
+    "@types/dompurify": "2.3.2",
     "@types/html-to-text": "8.0.1",
     "@types/jest": "27.0.3",
     "@types/jsonwebtoken": "8.5.6",
