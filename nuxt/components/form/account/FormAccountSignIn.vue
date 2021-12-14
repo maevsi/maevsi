@@ -150,12 +150,16 @@ const FormAccountSignIn = defineComponent({
         return
       }
 
-      this.$util.jwtStore(
-        this.$apollo.getClient(),
-        this.$store,
-        undefined,
-        res.jwt
-      )
+      this.$util
+        .jwtStore(this.$apollo.getClient(), this.$store, undefined, res.jwt)
+        .catch(
+          async () =>
+            await this.$swal({
+              icon: 'error',
+              text: this.$t('jwtStoreFail') as string,
+              title: this.$t('globalStatusError'),
+            })
+        )
     },
   },
   validations() {
@@ -182,6 +186,7 @@ export type FormAccountSignInType = InstanceType<typeof FormAccountSignIn>
 
 <i18n lang="yml">
 de:
+  jwtStoreFail: Fehler beim Speichern der Authentifizierungsdaten!
   passwordFound: Passwort wiedergefunden?
   passwordLost: Passwort verloren?
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
@@ -190,6 +195,7 @@ de:
   username: Nutzername
   verificationMailResend: Verifizierungsmail erneut senden
 en:
+  jwtStoreFail: Failed to store the authentication information!
   passwordFound: Password found?
   passwordLost: Password lost?
   registrationRefreshSuccess: A new welcome email is on its way to you.

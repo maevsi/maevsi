@@ -272,13 +272,13 @@ export async function jwtStore(
       })
     )
   } else {
-    xhrPromise('POST', '/api/auth', jwt || '').then(
-      (_value) => callback(),
-      (_reason) =>
-        store.commit('modalAdd', {
-          contentBody: 'Authorization failed!',
-        })
-    )
+    try {
+      await xhrPromise('POST', '/api/auth', jwt || '')
+    } catch (error: any) {
+      return Promise.reject(Error('Authentication api call failed.'))
+    }
+
+    callback() // TODO: Move callback to caller.
   }
 }
 
