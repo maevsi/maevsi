@@ -272,7 +272,7 @@ export async function jwtStore(
       })
     )
   } else {
-    xhrPromise('POST', '/auth', jwt || '').then(
+    xhrPromise('POST', '/api/auth', jwt || '').then(
       (_value) => callback(),
       (_reason) =>
         store.commit('modalAdd', {

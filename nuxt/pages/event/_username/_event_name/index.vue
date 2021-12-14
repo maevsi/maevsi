@@ -426,7 +426,7 @@ export default defineComponent({
         this.$route.params.event_name +
         '.ics'
 
-      xhr.open('POST', '/ical', true)
+      xhr.open('POST', '/api/ical', true)
       xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
