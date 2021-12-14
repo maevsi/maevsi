@@ -46,7 +46,7 @@
         @click="
           $router.push({
             append: true,
-            path: 'invitations',
+            path: 'invitation',
             query: { ...$route.query, ic: undefined },
           })
         "
