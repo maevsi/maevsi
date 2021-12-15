@@ -46,7 +46,7 @@
         @click="
           $router.push({
             append: true,
-            path: 'invitations',
+            path: 'invitation',
             query: { ...$route.query, ic: undefined },
           })
         "
@@ -222,10 +222,12 @@
         <!-- eslint-enable vue/no-v-html -->
       </div>
     </Card>
-    <Modal v-if="contact" id="ModalInvitationQrCode">
+    <Modal id="ModalInvitationQrCode">
       <QrcodeVue
         class="flex justify-center"
-        :value="invitation.uuid"
+        :value="
+          invitation ? invitation.uuid : '00000000-0000-0000-0000-000000000000'
+        "
         size="300"
       />
     </Modal>
@@ -426,7 +428,7 @@ export default defineComponent({
         this.$route.params.event_name +
         '.ics'
 
-      xhr.open('POST', '/ical', true)
+      xhr.open('POST', '/api/ical', true)
       xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
