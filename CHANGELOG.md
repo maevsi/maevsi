@@ -1,3 +1,17 @@
+# [0.114.0](https://github.com/maevsi/maevsi/compare/0.113.6...0.114.0) (2021-12-15)
+
+
+### Bug Fixes
+
+* **api:** use new paths ([75bcdb9](https://github.com/maevsi/maevsi/commit/75bcdb96976a862a3d732903f242880fbb71f0c2))
+* **invitation:** correct path ([0b46bd9](https://github.com/maevsi/maevsi/commit/0b46bd99519898bc0fb67284a8c6a9633d175ec2))
+* **qr-code:** add fallback for no invitation ([65e0265](https://github.com/maevsi/maevsi/commit/65e0265d813a2fd8b65f10cafb03ed3cd0ebbff2))
+
+
+### Features
+
+* **authentication:** improve error ux ([aacc0db](https://github.com/maevsi/maevsi/commit/aacc0dbdaa20218753338d955cb74e1e574a4a0e))
+
 ## [0.113.6](https://github.com/maevsi/maevsi/compare/0.113.5...0.113.6) (2021-12-08)
 
 
