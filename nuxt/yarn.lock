@@ -4398,17 +4398,17 @@
     lodash.merge "^4.6.2"
     lodash.uniq "^4.5.0"
 
-"@tiptap/core@^2.0.0-beta.154":
-  version "2.0.0-beta.154"
-  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.154.tgz#fed029b06069ca63c83fab33d2ff86e8781df66d"
-  integrity sha512-evtLM2wdHrUtrj0G5ieP+bNcMsFxfXLmfQQ3pmOpjvuVA+cxA3SxXroYZNHDwxZGa1ksA+WAvJttti/QMcFYBQ==
+"@tiptap/core@^2.0.0-beta.156":
+  version "2.0.0-beta.156"
+  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.156.tgz#8bb9baed5bee1589394ce00c187dafa2520a8781"
+  integrity sha512-sOGOOBL6F4/h1GoyYqddfHG6XMqkpE9rf9gfvcbLikPRS5HUwOSGw3ivdcYyQxhRF/xTBowVDKxvp40zr0olww==
   dependencies:
     "@types/prosemirror-commands" "^1.0.4"
     "@types/prosemirror-keymap" "^1.0.4"
     "@types/prosemirror-model" "^1.13.2"
     "@types/prosemirror-schema-list" "^1.0.3"
     "@types/prosemirror-state" "^1.2.8"
-    "@types/prosemirror-transform" "^1.1.4"
+    "@types/prosemirror-transform" "^1.1.5"
     "@types/prosemirror-view" "^1.19.2"
     prosemirror-commands "^1.1.12"
     prosemirror-keymap "^1.1.5"
@@ -4548,12 +4548,12 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-text/-/extension-text-2.0.0-beta.15.tgz#f08cff1b78f1c6996464dfba1fef8ec1e107617f"
   integrity sha512-S3j2+HyV2gsXZP8Wg/HA+YVXQsZ3nrXgBM9HmGAxB0ESOO50l7LWfip0f3qcw1oRlh5H3iLPkA6/f7clD2/TFA==
 
-"@tiptap/starter-kit@2.0.0-beta.158":
-  version "2.0.0-beta.158"
-  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.158.tgz#3dcf62614cef5b261389c250a7e7cee452b9d920"
-  integrity sha512-iJu3a+vwq7UwWPBoUqwg9N7z3Ir+owisTZIW7LqzEIN+r0/uDNjJqrN4xIPQn8zCSvyhk7+lTFcLrbjw9ZObWQ==
+"@tiptap/starter-kit@2.0.0-beta.160":
+  version "2.0.0-beta.160"
+  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.160.tgz#d20b240000f2ce5af8a0ee638694a3614ed12d02"
+  integrity sha512-Vb4odCSciaJYDA8BR5Oj0/avHmX2pDZjvtJxoaV9ZS7Mm6pazb+dZwX43f+6KpxBdoJOpTB7dbXgN8AokMsZXQ==
   dependencies:
-    "@tiptap/core" "^2.0.0-beta.154"
+    "@tiptap/core" "^2.0.0-beta.156"
     "@tiptap/extension-blockquote" "^2.0.0-beta.26"
     "@tiptap/extension-bold" "^2.0.0-beta.25"
     "@tiptap/extension-bullet-list" "^2.0.0-beta.25"
@@ -5282,10 +5282,17 @@
     "@types/prosemirror-transform" "*"
     "@types/prosemirror-view" "*"
 
-"@types/prosemirror-transform@*", "@types/prosemirror-transform@^1.1.4":
+"@types/prosemirror-transform@*":
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@types/prosemirror-transform/-/prosemirror-transform-1.1.4.tgz#c3565e81b2ef3ce3254e6927d6f63eb8d7bb20d0"
   integrity sha512-HP1PauvkqSgDquZut8HaLOTUDQ6jja/LAy4OA7tTS1XG7wqRnX3gLUyEj0mD6vFd4y8BPkNddNdOh/BeGHlUjg==
+  dependencies:
+    "@types/prosemirror-model" "*"
+
+"@types/prosemirror-transform@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@types/prosemirror-transform/-/prosemirror-transform-1.1.5.tgz#e6949398c64a5d3ca53e6081352751aa9e9ce76e"
+  integrity sha512-Wr2HXaEF4JPklWpC17RTxE6PxyU54Taqk5FMhK1ojgcN93J+GpkYW8s0mD3rl7KfTmlhVwZPCHE9o0cYf2Go5A==
   dependencies:
     "@types/prosemirror-model" "*"
 
