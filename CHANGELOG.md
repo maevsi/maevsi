@@ -1,3 +1,11 @@
+# [0.115.0](https://github.com/maevsi/maevsi/compare/0.114.0...0.115.0) (2021-12-16)
+
+
+### Features
+
+* **event:** show warning for multiple invitation codes ([d90c7df](https://github.com/maevsi/maevsi/commit/d90c7dfaaa621093ea52b9cacf80f219353c3272))
+* **qr:** decrease size ([28220a9](https://github.com/maevsi/maevsi/commit/28220a954c75289666030d74f46968d07e801ead))
+
 # [0.114.0](https://github.com/maevsi/maevsi/compare/0.113.6...0.114.0) (2021-12-15)
 
 
