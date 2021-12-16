@@ -5177,10 +5177,10 @@
   resolved "https://registry.yarnpkg.com/@types/parse5/-/parse5-5.0.3.tgz#e7b5aebbac150f8b5fdd4a46e7f0bd8e65e19109"
   integrity sha512-kUNnecmtkunAoQ3CnjmMkzNU/gtxG8guhi+Fk2U/kOpIKjIMKnXGp4IJCgQJrXSgMsWYimYG4TGjz/UzbGEBTw==
 
-"@types/pg@8.6.1":
-  version "8.6.1"
-  resolved "https://registry.yarnpkg.com/@types/pg/-/pg-8.6.1.tgz#099450b8dc977e8197a44f5229cedef95c8747f9"
-  integrity sha512-1Kc4oAGzAl7uqUStZCDvaLFqZrW9qWSjXOmBfdgyBP5La7Us6Mg4GBvRlSoaZMhQF/zSj1C8CtKMBkoiT8eL8w==
+"@types/pg@8.6.2":
+  version "8.6.2"
+  resolved "https://registry.yarnpkg.com/@types/pg/-/pg-8.6.2.tgz#eba3df3287eae69b374479eda94a569d72b9ae15"
+  integrity sha512-UbLp6B77Papo68M7jKXJHTqd3pBjodCsCE1WzsjSxeYtdxcOfpAk5NemXbuLaLhmlAbapIHJCBdv39UpiG4dsg==
   dependencies:
     "@types/node" "*"
     pg-protocol "*"
