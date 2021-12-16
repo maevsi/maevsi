@@ -382,14 +382,16 @@ export default defineComponent({
             )
           : invitations
 
-      if (invitationsMatchingUuid.length === 0) {
-        return undefined
-      } else if (invitationsMatchingUuid.length === 1) {
+      if (invitationsMatchingUuid.length > 0) {
+        if (invitationsMatchingUuid.length > 1) {
+          this.$swal({
+            icon: 'warning',
+            text: this.$t('invitationCodeMultipleWarning') as string,
+            title: this.$t('globalStatusWarning'),
+          })
+        }
+
         return invitationsMatchingUuid[0]
-      } else {
-        consola.error(
-          'An unexpected amount of matching invitation codes have been found!'
-        )
       }
 
       return undefined
@@ -505,6 +507,7 @@ de:
   invitationCardKindNone: Keine
   invitationCardKindPaper: Papier
   invitationCardKindDigital: Digital
+  invitationCodeMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
   invitationSelectionClear: Auswahl der Einladung löschen
   invitationViewFor: Du schaust dir die Einladung für {name} an.
   invitations: Einladungen
@@ -529,6 +532,7 @@ en:
   invitationCardKindNone: None
   invitationCardKindPaper: Paper
   invitationCardKindDigital: Digital
+  invitationCodeMultipleWarning: Multiple invitation codes were redeemed for the same event! This page shows data for the first code found.
   invitationSelectionClear: Clear invitation selection
   invitationViewFor: You're viewing the invitation for {name}.
   invitations: Invitations
