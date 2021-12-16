@@ -228,7 +228,7 @@
         :value="
           invitation ? invitation.uuid : '00000000-0000-0000-0000-000000000000'
         "
-        size="300"
+        size="200"
       />
     </Modal>
   </div>
