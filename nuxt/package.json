@@ -45,7 +45,7 @@
     "@nuxtjs/sitemap": "2.4.0",
     "@tailwindcss/forms": "0.4.0",
     "@tailwindcss/line-clamp": "0.3.0",
-    "@tailwindcss/typography": "0.4.1",
+    "@tailwindcss/typography": "0.5.0",
     "@tiptap/extension-link": "2.0.0-beta.33",
     "@tiptap/starter-kit": "2.0.0-beta.163",
     "@tiptap/vue-2": "2.0.0-beta.72",
