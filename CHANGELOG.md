@@ -1,3 +1,16 @@
+# [0.116.0](https://github.com/maevsi/maevsi/compare/0.115.0...0.116.0) (2021-12-22)
+
+
+### Bug Fixes
+
+* **nuxt:** merge css properties ([016303a](https://github.com/maevsi/maevsi/commit/016303a2ce683a8a6b64bd6c2327912169d1f9c5))
+
+
+### Features
+
+* drop tailwindcss plugin ([6d11e7e](https://github.com/maevsi/maevsi/commit/6d11e7e0964463babe9aabf29857362e0259b3ad))
+* **tailwind:** upgrade to v3 ([d81ca01](https://github.com/maevsi/maevsi/commit/d81ca01fbb410bd73e9d32376018bea3503b60e2))
+
 # [0.115.0](https://github.com/maevsi/maevsi/compare/0.114.0...0.115.0) (2021-12-16)
 
 
