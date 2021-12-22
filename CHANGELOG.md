@@ -1,3 +1,16 @@
+# [0.117.0](https://github.com/maevsi/maevsi/compare/0.116.0...0.117.0) (2021-12-22)
+
+
+### Bug Fixes
+
+* **babel:** exclude core-js ([2509773](https://github.com/maevsi/maevsi/commit/2509773a260eb4f5171b3769df135bb2090e294d))
+
+
+### Features
+
+* **style:** darken buttons ([c178243](https://github.com/maevsi/maevsi/commit/c1782435d87899747b28b1f8be22087206f05c02))
+* **style:** overall tweaks ([03b379a](https://github.com/maevsi/maevsi/commit/03b379afb32fa03e58cc67371e372e0421cdf200))
+
 # [0.116.0](https://github.com/maevsi/maevsi/compare/0.115.0...0.116.0) (2021-12-22)
 
 
