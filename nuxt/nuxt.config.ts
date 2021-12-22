@@ -37,6 +37,7 @@ export default defineNuxtConfig({
      ** https://github.com/nuxt-community/nuxt-property-decorator
      */
     babel: {
+      exclude: [/core-js/],
       plugins: [
         '@upleveled/remove-node-prefix', // Can be removed in Nuxt 3.
       ],
