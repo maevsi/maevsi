@@ -45,6 +45,7 @@ export default defineNuxtConfig({
       },
     },
     extractCSS: true,
+    postcss: { plugins: { tailwindcss: {}, autoprefixer: {} } },
     transpile: [
       '@http-util/status-i18n',
       'barcode-detector',
@@ -147,17 +148,12 @@ export default defineNuxtConfig({
     ['@nuxtjs/moment', { locales: ['de'] }],
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
-    // https://go.nuxtjs.dev/tailwindcss
-    [
-      '@nuxtjs/tailwindcss',
-      {
-        viewer: false,
-      },
-    ],
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
+
+  css: ['@/assets/css/main.css'],
 
   cookies: {
     necessary: [
