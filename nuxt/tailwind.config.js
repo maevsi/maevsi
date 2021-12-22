@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 function heading(theme) {
   return {
@@ -41,133 +42,15 @@ function prose(theme) {
 }
 
 module.exports = {
+  content: [
+    './components/**/*.{js,vue,ts}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './plugins/**/*.{js,ts}',
+    './nuxt.config.js',
+    './nuxt.config.ts',
+  ],
   darkMode: 'class',
-  mode: 'jit',
-  theme: {
-    extend: {
-      animation: {
-        shake: 'shake 0.6s ease-in-out 0s 1 normal forwards running',
-      },
-      boxShadow: {
-        'sm-white': '0 1px 2px 0 rgba(255, 255, 255, 0.05)',
-      },
-      colors: {
-        background: {
-          body: '#282828',
-          bright: '#f0f0f0',
-          dark: '#202020',
-        },
-        link: {
-          bright: defaultTheme.colors.blue['400'],
-          dark: defaultTheme.colors.blue['700'],
-        },
-        text: {
-          bright: defaultTheme.colors.gray['50'],
-          dark: defaultTheme.colors.gray['900'],
-        },
-      },
-      fontFamily: {
-        sans: ['Manrope', ...defaultTheme.fontFamily.sans],
-      },
-      keyframes: {
-        shake: {
-          '0%': {
-            transform: 'translateX(0)',
-          },
-          '15%': {
-            transform: 'translateX(0.375rem)',
-          },
-          '30%': {
-            transform: 'translateX(-0.375rem)',
-          },
-          '45%': {
-            transform: 'translateX(0.375rem)',
-          },
-          '60%': {
-            transform: 'translateX(-0.375rem)',
-          },
-          '75%': {
-            transform: 'translateX(0.375rem)',
-          },
-          '90%': {
-            transform: 'translateX(-0.375rem)',
-          },
-          '100%': {
-            transform: 'translateX(0)',
-          },
-        },
-      },
-      typography: (theme) => ({
-        sm: prose(theme),
-        DEFAULT: prose(theme),
-        lg: prose(theme),
-        xl: prose(theme),
-        '2xl': prose(theme),
-        dark: {
-          css: {
-            color: theme('colors.text.bright'),
-            a: {
-              color: theme('colors.link.bright'),
-            },
-            h1: {
-              color: theme('colors.text.bright'),
-            },
-            h2: {
-              color: theme('colors.text.bright'),
-            },
-            h3: {
-              color: theme('colors.text.bright'),
-            },
-            h4: {
-              color: theme('colors.text.bright'),
-            },
-            h5: {
-              color: theme('colors.text.bright'),
-            },
-            h6: {
-              color: theme('colors.text.bright'),
-            },
-            strong: {
-              color: theme('colors.text.bright'),
-            },
-            '.card &': {
-              color: theme('colors.text.dark'),
-              a: {
-                color: theme('colors.link.dark'),
-              },
-              h1: {
-                color: theme('colors.text.dark'),
-              },
-              h2: {
-                color: theme('colors.text.dark'),
-              },
-              h3: {
-                color: theme('colors.text.dark'),
-              },
-              h4: {
-                color: theme('colors.text.dark'),
-              },
-              h5: {
-                color: theme('colors.text.dark'),
-              },
-              h6: {
-                color: theme('colors.text.dark'),
-              },
-              strong: {
-                color: theme('colors.text.dark'),
-              },
-            },
-          },
-        },
-      }),
-    },
-  },
-  variants: {
-    extend: {
-      margin: ['last'],
-      typography: ['dark'],
-    },
-  },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp'),
@@ -315,12 +198,6 @@ module.exports = {
         },
       })
       addUtilities({
-        '.button-list': {
-          margin: theme('margin.2') + ' ' + theme('margin.-2'),
-          '> *': {
-            margin: theme('margin.2'),
-          },
-        },
         '.disabled': {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
@@ -350,4 +227,123 @@ module.exports = {
       })
     },
   ],
+  theme: {
+    extend: {
+      animation: {
+        shake: 'shake 0.6s ease-in-out 0s 1 normal forwards running',
+      },
+      boxShadow: {
+        'sm-white': '0 1px 2px 0 rgba(255, 255, 255, 0.05)',
+      },
+      colors: {
+        background: {
+          body: '#282828',
+          bright: '#f0f0f0',
+          dark: '#202020',
+        },
+        link: {
+          bright: colors.blue['400'],
+          dark: colors.blue['700'],
+        },
+        text: {
+          bright: colors.gray['50'],
+          dark: colors.gray['900'],
+        },
+      },
+      fontFamily: {
+        sans: ['Manrope', ...defaultTheme.fontFamily.sans],
+      },
+      keyframes: {
+        shake: {
+          '0%': {
+            transform: 'translateX(0)',
+          },
+          '15%': {
+            transform: 'translateX(0.375rem)',
+          },
+          '30%': {
+            transform: 'translateX(-0.375rem)',
+          },
+          '45%': {
+            transform: 'translateX(0.375rem)',
+          },
+          '60%': {
+            transform: 'translateX(-0.375rem)',
+          },
+          '75%': {
+            transform: 'translateX(0.375rem)',
+          },
+          '90%': {
+            transform: 'translateX(-0.375rem)',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+          },
+        },
+      },
+      typography: (theme) => ({
+        sm: prose(theme),
+        DEFAULT: prose(theme),
+        lg: prose(theme),
+        xl: prose(theme),
+        '2xl': prose(theme),
+        dark: {
+          css: {
+            color: theme('colors.text.bright'),
+            a: {
+              color: theme('colors.link.bright'),
+            },
+            h1: {
+              color: theme('colors.text.bright'),
+            },
+            h2: {
+              color: theme('colors.text.bright'),
+            },
+            h3: {
+              color: theme('colors.text.bright'),
+            },
+            h4: {
+              color: theme('colors.text.bright'),
+            },
+            h5: {
+              color: theme('colors.text.bright'),
+            },
+            h6: {
+              color: theme('colors.text.bright'),
+            },
+            strong: {
+              color: theme('colors.text.bright'),
+            },
+            '.card &': {
+              color: theme('colors.text.dark'),
+              a: {
+                color: theme('colors.link.dark'),
+              },
+              h1: {
+                color: theme('colors.text.dark'),
+              },
+              h2: {
+                color: theme('colors.text.dark'),
+              },
+              h3: {
+                color: theme('colors.text.dark'),
+              },
+              h4: {
+                color: theme('colors.text.dark'),
+              },
+              h5: {
+                color: theme('colors.text.dark'),
+              },
+              h6: {
+                color: theme('colors.text.dark'),
+              },
+              strong: {
+                color: theme('colors.text.dark'),
+              },
+            },
+          },
+        },
+      }),
+    },
+  },
 }

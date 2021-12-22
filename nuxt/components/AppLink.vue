@@ -47,6 +47,7 @@ export default defineComponent({
   computed: {
     linkClasses(): string {
       return [
+        'inline-block',
         'rounded',
         ...(this.isColored ? ['text-link-dark dark:text-link-bright'] : []),
       ].join(' ')
