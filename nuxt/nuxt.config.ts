@@ -153,8 +153,6 @@ export default defineNuxtConfig({
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
-  css: ['@/assets/css/main.css'],
-
   cookies: {
     necessary: [
       {
@@ -195,7 +193,7 @@ export default defineNuxtConfig({
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['vue-datetime/dist/vue-datetime.min.css'],
+  css: ['@/assets/css/main.css', 'vue-datetime/dist/vue-datetime.min.css'],
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head() {
