@@ -1,7 +1,7 @@
 <template>
   <div>
     <section id="overview" class="flex items-center mb-16 md:mb-32">
-      <div class="w-full lg:w-1/2">
+      <div class="flex flex-col gap-4 w-full lg:w-1/2">
         <i18n
           class="font-extrabold text-4xl sm:text-5xl md:text-5xl xl:text-7xl text-left"
           path="title"
@@ -17,16 +17,14 @@
             <span class="text-red-600">{{ $t('titleProfessional') }}</span>
           </template>
         </i18n>
-        <div class="my-4">
+        <div>
           <p class="font-normal leading-8 text-lg">
             {{ $t('maevsiDescription') }}
           </p>
           <p class="font-normal leading-8 text-lg">{{ $t('alpha') }}</p>
         </div>
-        <div class="py-2" />
         <ButtonColored
           :aria-label="$t('testNowFree')"
-          class="text-left"
           :to="localePath('/event')"
         >
           {{ $t('testNowFree') }}
@@ -78,21 +76,14 @@
         src="/assets/static/images/smartphone.png"
         width="750"
       />
-      <div class="lg:w-1/2">
+      <div class="flex flex-col gap-4 lg:w-1/2">
         <h2 class="font-extrabold text-4xl text-left">
           {{ $t('smartphoneTitle') }}
         </h2>
-        <div class="my-4">
-          <p class="font-normal leading-8 text-lg">
-            {{ $t('smartphoneDescription') }}
-          </p>
-        </div>
-        <div class="py-2" />
-        <ButtonColored
-          :aria-label="$t('testNow')"
-          class="text-left"
-          :to="localePath('/event')"
-        >
+        <p class="font-normal leading-8 text-lg">
+          {{ $t('smartphoneDescription') }}
+        </p>
+        <ButtonColored :aria-label="$t('testNow')" :to="localePath('/event')">
           {{ $t('testNow') }}
         </ButtonColored>
       </div>

@@ -33,16 +33,15 @@
         />
       </div>
       <div
-        class="col-start-3 hidden md:flex items-center justify-self-end whitespace-nowrap"
+        class="col-start-3 hidden md:flex gap-4 items-center justify-self-end whitespace-nowrap"
       >
-        <Button
-          class="bg-background-bright hover:bg-gray-200 dark:bg-background-dark dark:hover:bg-black border border-gray-300 dark:border-gray-600 mr-6 font-medium px-4 py-2 rounded-md shadow-sm dark:shadow-sm-white text-center text-text-dark dark:text-text-bright"
+        <ButtonColored
+          :is-primary="false"
           :to="signedInUsername ? localePath('/event') : localePath('/account')"
         >
           {{ signedInUsername ? $t('events') : $t('signIn') }}
-        </Button>
-        <Button
-          class="bg-gray-800 hover:bg-black dark:bg-gray-100 dark:hover:bg-gray-200 border border-transparent px-4 py-2 rounded-md shadow-sm dark:shadow-sm-white font-medium text-center text-text-bright dark:text-text-dark"
+        </ButtonColored>
+        <ButtonColored
           :to="
             signedInUsername
               ? localePath('/task/event/create')
@@ -50,7 +49,7 @@
           "
         >
           {{ signedInUsername ? $t('eventNew') : $t('events') }}
-        </Button>
+        </ButtonColored>
       </div>
     </div>
   </header>

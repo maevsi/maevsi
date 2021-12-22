@@ -136,7 +136,6 @@
                   invitation.feedback === 'CANCELED'
                 "
                 :aria-label="$t('invitationAccept')"
-                secondary
                 @click="accept"
               >
                 {{ $t('invitationAccept') }}

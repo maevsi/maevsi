@@ -16,7 +16,7 @@
           <Button
             class="flex items-center min-w-0 space-x-2 text-text-dark dark:text-text-bright"
             :to="localePath(`/account/${signedInUsername}`)"
-            @click="$emit('onMenuHide')"
+            @click.native="$emit('onMenuHide')"
           >
             <AccountProfilePicture
               height="40"
@@ -32,13 +32,13 @@
             <ButtonIcon
               :aria-label="$t('accountSettings')"
               :to="localePath(`/account/${signedInUsername}/settings`)"
-              @click="$emit('onMenuHide')"
+              @click.native="$emit('onMenuHide')"
             >
               <IconCog class="h-6 w-6" />
             </ButtonIcon>
             <ButtonIcon
               :aria-label="$t('signOut')"
-              @click="$util.signOut($apollo.getClient(), $store)"
+              @click.native="$util.signOut($apollo.getClient(), $store)"
             >
               <IconLogout class="h-6 w-6" />
             </ButtonIcon>
@@ -82,25 +82,26 @@
           {{ $t('uploads') }}
         </Button>
         <hr v-if="signedInUsername" class="md:hidden opacity-40" />
-        <div class="flex flex-col space-y-4">
-          <Button
-            class="bg-background-bright hover:bg-gray-200 dark:bg-background-dark dark:hover:bg-black border border-gray-300 dark:border-gray-600 font-medium md:hidden px-4 py-2 rounded-md shadow-sm dark:shadow-sm-white text-center text-text-dark dark:text-text-bright"
+        <div class="flex md:hidden flex-col space-y-4">
+          <ButtonColored
+            :is-block="true"
+            :is-primary="false"
             :to="
               signedInUsername
                 ? localePath('/task/event/create')
                 : localePath('/account')
             "
-            @click="$emit('onMenuHide')"
+            @click.native="$emit('onMenuHide')"
           >
             {{ signedInUsername ? $t('eventNew') : $t('signIn') }}
-          </Button>
-          <Button
-            class="bg-gray-800 hover:bg-black dark:bg-gray-100 dark:hover:bg-gray-200 border border-transparent md:hidden px-4 py-2 rounded-md shadow-sm dark:shadow-sm-white font-medium text-center text-text-bright dark:text-text-dark"
+          </ButtonColored>
+          <ButtonColored
+            :is-block="true"
             :to="localePath('/event')"
-            @click="$emit('onMenuHide')"
+            @click.native="$emit('onMenuHide')"
           >
             {{ $t('eventsExplore') }}
-          </Button>
+          </ButtonColored>
         </div>
       </div>
     </div>

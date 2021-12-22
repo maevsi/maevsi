@@ -46,11 +46,7 @@ export default defineComponent({
   },
   computed: {
     linkClasses(): string {
-      return [
-        'inline-block',
-        'rounded',
-        ...(this.isUnderlined ? ['underline'] : []),
-      ].join(' ')
+      return ['rounded', ...(this.isUnderlined ? ['underline'] : [])].join(' ')
     },
   },
 })

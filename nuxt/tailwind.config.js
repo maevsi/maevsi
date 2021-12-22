@@ -183,15 +183,6 @@ module.exports = {
         '.flex-basis-50': {
           flexBasis: '50%',
         },
-        '.inline-grid': {
-          display: 'inline-grid',
-        },
-        '.shadow-md-white': {
-          '--tw-shadow':
-            '0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)',
-          boxShadow:
-            'var(--tw-ring-offset-shadow, 0 0 #ffff), var(--tw-ring-shadow, 0 0 #ffff), var(--tw-shadow)',
-        },
       })
     },
   ],
@@ -200,18 +191,11 @@ module.exports = {
       animation: {
         shake: 'shake 0.6s ease-in-out 0s 1 normal forwards running',
       },
-      boxShadow: {
-        'sm-white': '0 1px 2px 0 rgba(255, 255, 255, 0.05)',
-      },
       colors: {
         background: {
           body: '#282828',
           bright: '#f0f0f0',
           dark: '#202020',
-        },
-        link: {
-          bright: colors.blue['400'],
-          dark: colors.blue['700'],
         },
         text: {
           bright: colors.gray['50'],
