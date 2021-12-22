@@ -3,7 +3,7 @@
     <section id="overview" class="flex items-center mb-16 md:mb-32">
       <div class="w-full lg:w-1/2">
         <i18n
-          class="font-extrabold leading-snug sm:leading-snug md:leading-snug xl:leading-snug text-4xl sm:text-5xl md:text-5xl xl:text-7xl text-left"
+          class="font-extrabold text-4xl sm:text-5xl md:text-5xl xl:text-7xl text-left"
           path="title"
           tag="h1"
         >
@@ -41,7 +41,7 @@
       />
     </section>
     <section class="mb-16 md:mb-32">
-      <h2 class="font-extrabold leading-snug text-center text-5xl">
+      <h2 class="font-extrabold text-center text-5xl">
         {{ $t('stepsTitle') }}
       </h2>
       <p class="leading-relaxed text-center text-lg">
@@ -79,7 +79,7 @@
         width="750"
       />
       <div class="lg:w-1/2">
-        <h2 class="font-extrabold leading-snug text-4xl text-left">
+        <h2 class="font-extrabold text-4xl text-left">
           {{ $t('smartphoneTitle') }}
         </h2>
         <div class="my-4">
@@ -99,7 +99,7 @@
     </section>
     <section id="features" class="mb-16">
       <i18n
-        class="font-extrabold leading-snug text-center text-5xl"
+        class="font-extrabold text-center text-5xl"
         path="benefitsTitle"
         tag="h2"
       >

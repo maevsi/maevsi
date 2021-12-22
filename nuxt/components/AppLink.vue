@@ -31,7 +31,7 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
-    isColored: {
+    isUnderlined: {
       default: true,
       type: Boolean,
     },
@@ -49,7 +49,7 @@ export default defineComponent({
       return [
         'inline-block',
         'rounded',
-        ...(this.isColored ? ['text-link-dark dark:text-link-bright'] : []),
+        ...(this.isUnderlined ? ['underline'] : []),
       ].join(' ')
     },
   },

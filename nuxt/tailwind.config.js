@@ -6,38 +6,6 @@ function heading(theme) {
     fontWeight: theme('fontWeight.bold'),
     marginBottom: theme('margin.1'),
     marginTop: theme('margin.4'),
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  }
-}
-
-function prose(theme) {
-  return {
-    css: {
-      color: theme('colors.text.dark'),
-      a: {
-        color: theme('colors.link.dark'),
-        textDecoration: 'none',
-      },
-      h1: {
-        lineHeight: theme('lineHeight.snug'),
-      },
-      h2: {
-        lineHeight: theme('lineHeight.snug'),
-      },
-      h3: {
-        lineHeight: theme('lineHeight.snug'),
-      },
-      h4: {
-        lineHeight: theme('lineHeight.snug'),
-      },
-      h5: {
-        lineHeight: theme('lineHeight.snug'),
-      },
-      h6: {
-        lineHeight: theme('lineHeight.snug'),
-      },
-    },
   }
 }
 
@@ -281,69 +249,6 @@ module.exports = {
           },
         },
       },
-      typography: (theme) => ({
-        sm: prose(theme),
-        DEFAULT: prose(theme),
-        lg: prose(theme),
-        xl: prose(theme),
-        '2xl': prose(theme),
-        dark: {
-          css: {
-            color: theme('colors.text.bright'),
-            a: {
-              color: theme('colors.link.bright'),
-            },
-            h1: {
-              color: theme('colors.text.bright'),
-            },
-            h2: {
-              color: theme('colors.text.bright'),
-            },
-            h3: {
-              color: theme('colors.text.bright'),
-            },
-            h4: {
-              color: theme('colors.text.bright'),
-            },
-            h5: {
-              color: theme('colors.text.bright'),
-            },
-            h6: {
-              color: theme('colors.text.bright'),
-            },
-            strong: {
-              color: theme('colors.text.bright'),
-            },
-            '.card &': {
-              color: theme('colors.text.dark'),
-              a: {
-                color: theme('colors.link.dark'),
-              },
-              h1: {
-                color: theme('colors.text.dark'),
-              },
-              h2: {
-                color: theme('colors.text.dark'),
-              },
-              h3: {
-                color: theme('colors.text.dark'),
-              },
-              h4: {
-                color: theme('colors.text.dark'),
-              },
-              h5: {
-                color: theme('colors.text.dark'),
-              },
-              h6: {
-                color: theme('colors.text.dark'),
-              },
-              strong: {
-                color: theme('colors.text.dark'),
-              },
-            },
-          },
-        },
-      }),
     },
   },
 }

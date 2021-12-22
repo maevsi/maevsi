@@ -8,7 +8,7 @@
       }"
       class="md:flex flex-wrap md:items-center"
     >
-      <div class="leading-snug mb-1 md:mb-0 md:pr-4 md:text-right md:w-1/3">
+      <div class="mb-1 md:mb-0 md:pr-4 md:text-right md:w-1/3">
         <label
           class="font-semibold inline-flex md:flex-col items-baseline md:items-end space-x-2 md:space-x-0"
           :class="{

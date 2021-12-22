@@ -14,13 +14,13 @@
       >
         <IconMenu class="h-8 w-8" />
       </ButtonIcon>
-      <AppLink
+      <Button
         :aria-label="$t('home')"
         class="justify-self-center md:justify-self-start"
         :to="localePath('/')"
       >
         <div id="logo" class="h-10 w-32" />
-      </AppLink>
+      </Button>
       <div>
         <label class="hidden" for="search">{{ $t('search') }}</label>
         <input
@@ -35,16 +35,14 @@
       <div
         class="col-start-3 hidden md:flex items-center justify-self-end whitespace-nowrap"
       >
-        <AppLink
+        <Button
           class="bg-background-bright hover:bg-gray-200 dark:bg-background-dark dark:hover:bg-black border border-gray-300 dark:border-gray-600 mr-6 font-medium px-4 py-2 rounded-md shadow-sm dark:shadow-sm-white text-center text-text-dark dark:text-text-bright"
-          :is-colored="false"
           :to="signedInUsername ? localePath('/event') : localePath('/account')"
         >
           {{ signedInUsername ? $t('events') : $t('signIn') }}
-        </AppLink>
-        <AppLink
+        </Button>
+        <Button
           class="bg-gray-800 hover:bg-black dark:bg-gray-100 dark:hover:bg-gray-200 border border-transparent px-4 py-2 rounded-md shadow-sm dark:shadow-sm-white font-medium text-center text-text-bright dark:text-text-dark"
-          :is-colored="false"
           :to="
             signedInUsername
               ? localePath('/task/event/create')
@@ -52,7 +50,7 @@
           "
         >
           {{ signedInUsername ? $t('eventNew') : $t('events') }}
-        </AppLink>
+        </Button>
       </div>
     </div>
   </header>

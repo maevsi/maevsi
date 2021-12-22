@@ -6,7 +6,7 @@
     :aria-label="ariaLabel"
     :class="[...(buttonClass ? [buttonClass] : [])].join(' ')"
     :disabled="disabled"
-    :is-colored="false"
+    :is-underlined="false"
     :to="to"
   >
     <FontAwesomeIcon
