@@ -50,7 +50,6 @@
               :aria-label="submitName"
               :disabled="isSubmitting || isSubmitDisabled"
               :icon-id="submitIconId"
-              secondary
               type="submit"
               @click="submit()"
             >

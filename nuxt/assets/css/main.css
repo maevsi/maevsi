@@ -73,7 +73,7 @@
   }
 
   .maevsi-prose-scheme {
-    @apply maevsi-prose dark:prose-dark sm:dark:prose-dark lg:dark:prose-dark xl:dark:prose-dark;
+    @apply maevsi-prose dark:prose-invert;
   }
 }
 
@@ -87,6 +87,8 @@
   opacity: 0;
 }
 
-.ProseMirror > * { /* stylelint-disable-line selector-class-pattern */
+.ProseMirror { /* stylelint-disable-line selector-class-pattern */
   @apply maevsi-prose;
+
+  max-width: none;
 }

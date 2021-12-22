@@ -8,7 +8,7 @@
         : $moment(event.start).isBefore($moment()),
     }"
   >
-    <AppLink
+    <Button
       class="flex flex-col"
       :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >
@@ -48,7 +48,7 @@
           }}
         </p>
       </Card>
-    </AppLink>
+    </Button>
   </li>
 </template>
 

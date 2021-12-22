@@ -88,17 +88,17 @@
       </div>
       <div class="p-2" />
       <div class="flex items-center mx-auto w-9/12">
-        <div class="bg-gray-900 dark:bg-white h-px flex-1" />
+        <div class="bg-gray-500 dark:bg-gray-400 h-px flex-1" />
         <LoaderImage
           :alt="$t('maevsiLogo')"
-          class="brightness-0 contrast-75 dark:contrast-100 h-12 dark:invert mx-12 w-12"
+          class="brightness-0 h-12 dark:invert mx-12 opacity-50 dark:opacity-60 w-12"
           height="48"
           src="/assets/static/logos/maevsi.svg"
           width="48"
         />
-        <div class="bg-gray-900 dark:bg-white h-px flex-1" />
+        <div class="bg-gray-500 dark:bg-gray-400 h-px flex-1" />
       </div>
-      <p class="p-2 text-center">
+      <p class="p-2 text-center text-gray-500 dark:text-gray-400">
         {{ $t('copyright', { year: new Date().getFullYear() }) }}
       </p>
     </div>
