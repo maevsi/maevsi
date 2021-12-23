@@ -222,13 +222,17 @@
       </div>
     </Card>
     <Modal id="ModalInvitationQrCode">
-      <QrcodeVue
-        class="flex justify-center"
-        :value="
-          invitation ? invitation.uuid : '00000000-0000-0000-0000-000000000000'
-        "
-        size="200"
-      />
+      <div class="flex justify-center">
+        <QrcodeVue
+          class="bg-white p-4"
+          :value="
+            invitation
+              ? invitation.uuid
+              : '00000000-0000-0000-0000-000000000000'
+          "
+          size="200"
+        />
+      </div>
     </Modal>
   </div>
 </template>
