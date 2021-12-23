@@ -9,8 +9,10 @@
       :has-next-page="allContacts.pageInfo.hasNextPage"
       @loadMore="loadMore"
     >
-      <table class="divide-y divide-gray-200">
-        <thead class="sticky top-0 z-10">
+      <table class="border border-neutral-300 dark:border-neutral-600">
+        <thead
+          class="bg-background-bright dark:bg-background-dark sticky top-0 z-10"
+        >
           <tr>
             <th scope="col">
               {{ $t('contact') }}
@@ -30,7 +32,7 @@
             <th scope="col" />
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
+        <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
           <ContactListItem
             v-for="contact in allContacts.nodes"
             :id="contact.nodeId"

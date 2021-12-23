@@ -9,8 +9,10 @@
       :has-next-page="allInvitations.pageInfo.hasNextPage"
       @loadMore="loadMore"
     >
-      <table class="divide-y divide-gray-200">
-        <thead class="sticky top-0 z-10">
+      <table class="border border-neutral-300 dark:border-neutral-600">
+        <thead
+          class="bg-background-bright dark:bg-background-dark sticky top-0 z-10"
+        >
           <tr>
             <th scope="col">
               {{ $t('contact') }}
@@ -21,7 +23,7 @@
             <th />
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
+        <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
           <tr
             v-for="invitation in allInvitations.nodes"
             :key="invitation.uuid"
@@ -39,7 +41,9 @@
             <td class="hidden xl:table-cell">
               {{ invitation.uuid }}
             </td>
-            <td class="flex items-center justify-evenly ml-4 text-gray-700">
+            <td
+              class="flex items-center justify-evenly ml-4 text-text-dark dark:text-text-bright"
+            >
               <ButtonTableInteraction
                 :aria-label="$t('invitationView')"
                 :icon-id="['fas', 'eye']"
@@ -94,7 +98,7 @@
     >
       {{ $t('invitationAdd') }}
     </ButtonColored>
-    <p class="text-center text-gray-500">
+    <p class="text-center text-gray-500 dark:text-gray-400">
       {{
         $t('invitationsUsed', {
           amountCurrent: allInvitations.totalCount,

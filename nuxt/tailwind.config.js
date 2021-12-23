@@ -81,16 +81,9 @@ module.exports = {
         table: {
           width: '100%',
         },
-        tbody: {
-          color: theme('colors.text.dark'),
-          backgroundColor: theme('colors.white'),
-        },
         td: {
           padding: theme('padding.4') + ' ' + theme('padding.6'),
           whiteSpace: 'nowrap',
-        },
-        thead: {
-          backgroundColor: theme('colors.gray.50'),
         },
         th: {
           padding: theme('padding.3') + ' ' + theme('padding.6'),
@@ -99,7 +92,6 @@ module.exports = {
           fontWeight: theme('fontWeight.medium'),
           textTransform: 'uppercase',
           letterSpacing: theme('letterSpacing.wider'),
-          color: theme('colors.gray.500'),
         },
       })
       addComponents({

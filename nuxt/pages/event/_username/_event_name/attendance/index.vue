@@ -29,7 +29,7 @@
           v-if="
             isNfcWritableErrorMessage && isNfcWritableErrorMessage !== 'prompt'
           "
-          class="text-gray-500"
+          class="text-gray-500 dark:text-gray-400"
         >
           {{ $t('errorMessage', { message: isNfcWritableErrorMessage }) }}
         </span>

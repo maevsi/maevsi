@@ -67,15 +67,13 @@
       </p>
       <p>{{ $t('greetingDescription') }}</p>
     </div>
-    <Card
-      class="flex flex-col items-center mt-4"
-      :class="{
-        'bg-yellow-100':
-          !$route.query.ic &&
-          jwtDecoded &&
-          event.authorUsername === jwtDecoded.username,
-      }"
-    >
+    <!-- :class="{ -->
+    <!-- 'bg-yellow-100': -->
+    <!-- !$route.query.ic && -->
+    <!-- jwtDecoded && -->
+    <!-- event.authorUsername === jwtDecoded.username, -->
+    <!-- }" -->
+    <Card class="flex flex-col items-center mt-4">
       <h1 class="mb-0 truncate max-w-full">
         {{ event.name }}
       </h1>
@@ -215,7 +213,7 @@
         <hr class="my-4" />
         <!-- eslint-disable vue/no-v-html -->
         <div
-          class="maevsi-prose"
+          class="maevsi-prose-scheme"
           v-html="$domPurify.sanitize(eventDescriptionTemplate)"
         />
         <!-- eslint-enable vue/no-v-html -->
