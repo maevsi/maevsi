@@ -19,7 +19,9 @@
           :for="labelFor"
         >
           <span>{{ title }}</span>
-          <span class="font-medium md:text-right text-xs text-gray-500">
+          <span
+            class="font-medium md:text-right text-xs text-gray-500 dark:text-gray-400"
+          >
             <span v-if="required">
               {{ $t('required') }}
             </span>
@@ -29,7 +31,7 @@
           </span>
         </label>
       </div>
-      <div class="md:mt-1 md:w-2/3 text-black">
+      <div class="md:mt-1 md:w-2/3">
         <slot />
       </div>
       <div class="md:w-1/3" />
@@ -37,7 +39,7 @@
         <slot name="inputSuccess" />
       </div>
       <div class="md:w-1/3" />
-      <div class="text-gray-500 text-left text-sm md:w-2/3">
+      <div class="text-gray-500 dark:text-gray-400 text-left text-sm md:w-2/3">
         <slot name="inputInfo" />
       </div>
       <div class="md:w-1/3" />

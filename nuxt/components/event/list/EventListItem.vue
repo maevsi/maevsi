@@ -12,23 +12,26 @@
       class="flex flex-col"
       :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >
-      <Card
-        :class="{
-          'bg-yellow-100':
-            jwtDecoded && event.authorUsername === jwtDecoded.username,
-        }"
-      >
-        <div class="flex items-center mb-2 text-text-dark text-sm">
+      <Card>
+        <!-- <div
+          :class="{
+            'bg-yellow-100 dark:bg-yellow-900':
+              jwtDecoded && event.authorUsername === jwtDecoded.username,
+          }"
+        > -->
+        <div class="flex items-center mb-2 text-sm">
           <div
             class="font-medium truncate"
             :class="{
-              'text-green-700': $moment(event.start).isSameOrAfter($moment()),
+              'text-green-700 dark:text-green-600': $moment(
+                event.start
+              ).isSameOrAfter($moment()),
             }"
           >
             {{ $moment(event.start).format('lll') }}
           </div>
         </div>
-        <div class="flex items-center mb-2 text-text-dark text-sm">
+        <div class="flex items-center mb-2 text-sm">
           <EventIconVisibility :event="event" :show-text="false" />
           <div class="flex items-baseline truncate">
             <div class="font-bold mx-2 text-xl truncate">
@@ -37,16 +40,14 @@
             <Owner :username="event.authorUsername" />
           </div>
         </div>
-        <p
-          v-if="eventDescriptionTemplate"
-          class="line-clamp-2 text-ellipsis text-text-dark"
-        >
+        <p v-if="eventDescriptionTemplate" class="line-clamp-2 text-ellipsis">
           {{
             $htmlToText($domPurify.sanitize(eventDescriptionTemplate), {
               selectors: [{ selector: 'a', options: { ignoreHref: true } }],
             })
           }}
         </p>
+        <!-- </div> -->
       </Card>
     </Button>
   </li>

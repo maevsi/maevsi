@@ -54,20 +54,21 @@
     </FormInput>
     <div v-if="allContacts" class="divide-transparent divide-y-4">
       <div v-for="contact in contactsFiltered" :key="contact.id">
-        <button
-          class="border cursor-pointer rounded w-full"
+        <Button
+          class="border border-neutral-300 dark:border-neutral-600 rounded w-full"
           :class="{
-            'border-2 border-indigo-600': form.contactId === contact.id,
+            'border-2 border-blue-600 dark:border-blue-600':
+              form.contactId === contact.id,
           }"
           type="button"
           @click="selectToggle(contact)"
         >
           <ContactPreview class="px-4 py-2" :contact="contact" />
-        </button>
+        </Button>
       </div>
     </div>
     <template slot="assistance">
-      <p class="text-center text-gray-500 text-xs">
+      <p class="text-center text-gray-500 dark:text-gray-400 text-xs">
         {{ $t('selectAssistance') }}
       </p>
     </template>

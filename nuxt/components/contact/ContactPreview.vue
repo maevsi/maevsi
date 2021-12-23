@@ -30,7 +30,7 @@
         {{ contact.firstName || $t('placeholder') }}
         {{ contact.lastName || $t('placeholder') }}
       </div>
-      <div class="text-gray-500">
+      <div class="text-gray-500 dark:text-gray-400">
         {{
           contact.accountUsername
             ? `@${contact.accountUsername}`

@@ -1,5 +1,7 @@
 <template>
-  <div class="bg-white border border-gray-300 p-4 rounded text-text-dark">
+  <div
+    class="border border-neutral-300 dark:border-neutral-600 p-4 rounded text-text-dark dark:text-text-bright"
+  >
     <slot />
   </div>
 </template>
