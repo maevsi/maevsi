@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <div
-      class="border font-medium px-4 py-2 rounded-md"
+      class="border font-medium rounded-md"
       :class="
         [
           ...(isPrimary
@@ -20,6 +20,7 @@
         ref="button"
         :append="append"
         :aria-label="ariaLabel"
+        button-class="px-4 py-2"
         :disabled="disabled"
         :icon-id="iconId"
         :to="to"
