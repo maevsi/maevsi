@@ -1,3 +1,16 @@
+# [0.118.0](https://github.com/maevsi/maevsi/compare/0.117.0...0.118.0) (2021-12-23)
+
+
+### Bug Fixes
+
+* **app-link:** correct padding ([82d4a83](https://github.com/maevsi/maevsi/commit/82d4a831aeeb328ddd14ff9911a8c57ccddd69be))
+* **qr:** add white padding ([2e16f1d](https://github.com/maevsi/maevsi/commit/2e16f1d763908b3f492d65daef305b433d9679d5))
+
+
+### Features
+
+* **style:** improve dark mode ([e93f368](https://github.com/maevsi/maevsi/commit/e93f3686d9e32df6c7c76e7204c6c5214dfaf846))
+
 # [0.117.0](https://github.com/maevsi/maevsi/compare/0.116.0...0.117.0) (2021-12-22)
 
 
