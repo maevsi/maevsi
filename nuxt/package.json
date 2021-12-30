@@ -103,7 +103,7 @@
     "@storybook/addon-a11y": "6.4.9",
     "@types/dompurify": "2.3.2",
     "@types/html-to-text": "8.0.1",
-    "@types/jest": "27.0.3",
+    "@types/jest": "27.4.0",
     "@types/jsonwebtoken": "8.5.6",
     "@types/lodash-es": "4.17.5",
     "@types/mustache": "4.1.2",
