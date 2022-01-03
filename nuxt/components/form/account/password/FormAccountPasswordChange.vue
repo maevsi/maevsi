@@ -41,10 +41,9 @@
 import consola from 'consola'
 import { minLength, required, sameAs } from 'vuelidate/lib/validators'
 
+import { defineComponent, ref } from '#app'
 import ACCOUNT_PASSWORD_CHANGE_MUTATION from '~/gql/mutation/account/accountPasswordChange.gql'
 import { FormType } from '~/components/form/Form.vue'
-
-import { defineComponent, ref } from '#app'
 
 const FormAccountPasswordChange = defineComponent({
   setup() {

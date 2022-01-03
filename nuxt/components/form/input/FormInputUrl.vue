@@ -45,9 +45,8 @@
 </template>
 
 <script lang="ts">
-import { FormInputType } from '~/components/form/input/FormInput.vue'
-
 import { defineComponent, PropType } from '#app'
+import { FormInputType } from '~/components/form/input/FormInput.vue'
 
 export default defineComponent({
   props: {

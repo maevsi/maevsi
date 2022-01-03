@@ -20,9 +20,8 @@
 </template>
 
 <script lang="ts">
-import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
-
 import { defineComponent } from '#app'
+import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 
 export default defineComponent({
   name: 'IndexPage',

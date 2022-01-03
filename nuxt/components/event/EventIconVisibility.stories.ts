@@ -1,6 +1,5 @@
-import EventIconVisibility from './EventIconVisibility.vue'
-
 import { defineComponent } from '#app'
+import EventIconVisibility from './EventIconVisibility.vue'
 
 export default {
   component: EventIconVisibility,

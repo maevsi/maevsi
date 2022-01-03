@@ -30,9 +30,8 @@
 import consola from 'consola'
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
-
 import { defineComponent, PropType } from '#app'
+import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
 
 const FormAccountRegistration = defineComponent({
   props: {

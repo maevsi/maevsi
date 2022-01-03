@@ -1,6 +1,5 @@
-import FormInput from './FormInput.vue'
-
 import { defineComponent } from '#app'
+import FormInput from './FormInput.vue'
 
 export default {
   component: FormInput,

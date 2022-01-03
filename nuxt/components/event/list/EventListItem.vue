@@ -57,9 +57,8 @@
 import { mapGetters } from 'vuex'
 import mustache from 'mustache'
 
-import { Event as MaevsiEvent } from '~/types/event'
-
 import { defineComponent, PropType } from '#app'
+import { Event as MaevsiEvent } from '~/types/event'
 
 export default defineComponent({
   props: {

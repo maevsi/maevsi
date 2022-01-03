@@ -20,9 +20,8 @@
 import consola from 'consola'
 import { email, maxLength, required } from 'vuelidate/lib/validators'
 
-import ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION from '~/gql/mutation/account/accountPasswordResetRequest.gql'
-
 import { defineComponent, PropType } from '#app'
+import ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION from '~/gql/mutation/account/accountPasswordResetRequest.gql'
 
 const FormAccountPasswordResetRequest = defineComponent({
   props: {

@@ -243,14 +243,13 @@ import mustache from 'mustache'
 import QrcodeVue from 'qrcode.vue'
 import { mapGetters } from 'vuex'
 
+import { defineComponent } from '#app'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitationUpdateById.gql'
 import { Event as MaevsiEvent } from '~/types/event'
 import { Contact } from '~/types/contact'
 import { Invitation } from '~/types/invitation'
-
-import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',

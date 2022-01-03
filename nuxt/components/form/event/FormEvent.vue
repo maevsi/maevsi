@@ -244,11 +244,10 @@ import {
 } from 'vuelidate/lib/validators'
 import { mapGetters } from 'vuex'
 
+import { defineComponent } from '#app'
 import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate.gql'
 import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById.gql'
 import { Visibility } from '~/types/event'
-
-import { defineComponent } from '#app'
 
 export default defineComponent({
   components: {

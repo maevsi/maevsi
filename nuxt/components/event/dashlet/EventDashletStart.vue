@@ -10,9 +10,8 @@
 </template>
 
 <script lang="ts">
-import { Event } from '~/types/event'
-
 import { defineComponent, PropType } from '#app'
+import { Event } from '~/types/event'
 
 export default defineComponent({
   props: {

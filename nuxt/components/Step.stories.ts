@@ -1,6 +1,5 @@
-import Step from './Step.vue'
-
 import { defineComponent } from '#app'
+import Step from './Step.vue'
 
 export default {
   component: Step,

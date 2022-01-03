@@ -36,9 +36,8 @@
 <script lang="ts">
 import consola from 'consola'
 
-import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
-
 import { defineComponent, PropType } from '#app'
+import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
 
 export default defineComponent({
   apollo: {

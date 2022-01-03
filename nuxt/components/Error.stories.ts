@@ -1,6 +1,5 @@
-import Error from './Error.vue'
-
 import { defineComponent } from '#app'
+import Error from './Error.vue'
 
 export default {
   component: Error,

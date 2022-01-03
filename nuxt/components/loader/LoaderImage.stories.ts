@@ -1,6 +1,5 @@
-import LoaderImage from './LoaderImage.vue'
-
 import { defineComponent } from '#app'
+import LoaderImage from './LoaderImage.vue'
 
 export default {
   component: LoaderImage,

@@ -1,6 +1,5 @@
-import LoaderIndicatorText from './LoaderIndicatorText.vue'
-
 import { defineComponent } from '#app'
+import LoaderIndicatorText from './LoaderIndicatorText.vue'
 
 export default {
   component: LoaderIndicatorText,

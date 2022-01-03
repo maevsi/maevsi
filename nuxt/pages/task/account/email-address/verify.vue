@@ -27,9 +27,8 @@
 import { Context } from '@nuxt/types'
 import consola from 'consola'
 
-import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/accountEmailAddressVerification.gql'
-
 import { defineComponent } from '#app'
+import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/accountEmailAddressVerification.gql'
 
 export default defineComponent({
   name: 'IndexPage',

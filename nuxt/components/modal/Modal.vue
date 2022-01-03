@@ -69,9 +69,8 @@
 <script lang="ts">
 import consola from 'consola'
 
-import { Modal } from '~/types/modal'
-
 import { defineComponent, PropType } from '#app'
+import { Modal } from '~/types/modal'
 
 export default defineComponent({
   name: 'MaevsiModal',

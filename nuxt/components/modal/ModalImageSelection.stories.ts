@@ -1,9 +1,8 @@
 import { Store } from 'vuex'
 import { graphql } from 'msw'
 
-import ModalImageSelection from './ModalImageSelection.vue'
-
 import { defineComponent } from '#app'
+import ModalImageSelection from './ModalImageSelection.vue'
 
 export default {
   component: ModalImageSelection,
