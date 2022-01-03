@@ -132,12 +132,11 @@ import {
 import consola from 'consola'
 import { PieChart } from 'vue-chart-3'
 
+import { defineComponent, PropType } from '#app'
 import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDelete.gql'
 import INVITE_MUTATION from '~/gql/mutation/invitation/invite.gql'
 import INVITATIONS_ALL_QUERY from '~/gql/query/invitation/invitationsAll.gql'
 import { Event as MaevsiEvent } from '~/types/event'
-
-import { defineComponent, PropType } from '#app'
 
 Chart.register(
   ArcElement,

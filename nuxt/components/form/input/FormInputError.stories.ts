@@ -1,6 +1,5 @@
-import FormInputError from './FormInputError.vue'
-
 import { defineComponent } from '#app'
+import FormInputError from './FormInputError.vue'
 
 export default {
   component: FormInputError,

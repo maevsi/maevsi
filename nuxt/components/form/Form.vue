@@ -42,9 +42,8 @@
 </template>
 
 <script lang="ts">
-import Button from '~/components/button/Button.vue'
-
 import { defineComponent, PropType, ref } from '#app'
+import Button from '~/components/button/Button.vue'
 
 const Form = defineComponent({
   name: 'MaevsiForm',

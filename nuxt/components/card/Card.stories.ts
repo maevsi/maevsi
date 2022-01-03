@@ -1,6 +1,5 @@
-import Card from './Card.vue'
-
 import { defineComponent } from '#app'
+import Card from './Card.vue'
 
 export default {
   component: Card,

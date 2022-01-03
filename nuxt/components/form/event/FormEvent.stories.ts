@@ -1,6 +1,5 @@
-import FormEvent from './FormEvent.vue'
-
 import { defineComponent } from '#app'
+import FormEvent from './FormEvent.vue'
 
 export default {
   component: FormEvent,

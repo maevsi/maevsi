@@ -58,9 +58,8 @@
 <script lang="ts">
 import { mapGetters } from 'vuex'
 
-import supportedBrowsers from '~/supportedBrowsers'
-
 import { defineComponent } from '#app'
+import supportedBrowsers from '~/supportedBrowsers'
 
 export default defineComponent({
   name: 'MaevsiHeader',

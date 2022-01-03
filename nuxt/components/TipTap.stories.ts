@@ -1,6 +1,5 @@
-import TipTap from './TipTap.vue'
-
 import { defineComponent } from '#app'
+import TipTap from './TipTap.vue'
 
 export default {
   component: TipTap,

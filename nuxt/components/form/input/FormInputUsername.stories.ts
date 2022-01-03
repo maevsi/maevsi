@@ -1,6 +1,5 @@
-import FormInputUsername from './FormInputUsername.vue'
-
 import { defineComponent } from '#app'
+import FormInputUsername from './FormInputUsername.vue'
 
 export default {
   component: FormInputUsername,

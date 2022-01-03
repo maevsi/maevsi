@@ -1,7 +1,6 @@
+import { defineComponent } from '#app'
 import Button from './Button.vue'
 import ButtonList from './ButtonList.vue'
-
-import { defineComponent } from '#app'
 
 const argTypes = { click: { action: 'click' } }
 type ArgTypesType = { argTypes: typeof argTypes }

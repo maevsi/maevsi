@@ -18,9 +18,8 @@
 </template>
 
 <script lang="ts">
-import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profilePictureSet.gql'
-
 import { defineComponent } from '#app'
+import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profilePictureSet.gql'
 
 export default defineComponent({
   data() {

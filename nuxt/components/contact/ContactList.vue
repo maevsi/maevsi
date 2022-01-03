@@ -73,11 +73,10 @@ import { debounce } from 'lodash-es'
 import VueI18n from 'vue-i18n'
 import { mapGetters } from 'vuex'
 
+import { defineComponent } from '#app'
 import CONTACT_DELETE_MUTATION from '~/gql/mutation/contact/contactDelete.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
 import { Contact } from '~/types/contact'
-
-import { defineComponent } from '#app'
 
 export default defineComponent({
   apollo: {

@@ -81,12 +81,11 @@ import { minLength, minValue, required } from 'vuelidate/lib/validators'
 import { ApolloQueryResult } from 'apollo-client'
 import { mapGetters } from 'vuex'
 
+import { defineComponent, PropType } from '#app'
 import INVITATION_CREATE_MUTATION from '~/gql/mutation/invitation/invitationCreate.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
 import { Event } from '~/types/event'
 import { Contact } from '~/types/contact'
-
-import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
   apollo: {

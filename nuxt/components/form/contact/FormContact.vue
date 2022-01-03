@@ -120,11 +120,10 @@
 import consola from 'consola'
 import { email, maxLength } from 'vuelidate/lib/validators'
 
+import { defineComponent, PropType } from '#app'
 import CONTACT_CREATE_MUTATION from '~/gql/mutation/contact/contactCreate.gql'
 import CONTACT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/contact/contactUpdateById.gql'
 import { Contact } from '~/types/contact'
-
-import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
   props: {

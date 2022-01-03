@@ -17,9 +17,8 @@
 <script lang="ts">
 import consola from 'consola'
 
-import PROFILE_PICTURE_BY_USERNAME_QUERY from '~/gql/query/profilePicture/profilePictureByUsername.gql'
-
 import { defineComponent } from '#app'
+import PROFILE_PICTURE_BY_USERNAME_QUERY from '~/gql/query/profilePicture/profilePictureByUsername.gql'
 
 export default defineComponent({
   apollo: {

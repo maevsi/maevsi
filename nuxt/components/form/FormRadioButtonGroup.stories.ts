@@ -1,6 +1,5 @@
-import FormRadioButtonGroup from './FormRadioButtonGroup.vue'
-
 import { defineComponent } from '#app'
+import FormRadioButtonGroup from './FormRadioButtonGroup.vue'
 
 export default {
   component: FormRadioButtonGroup,

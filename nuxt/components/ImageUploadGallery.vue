@@ -141,11 +141,10 @@ import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
 import { mapGetters } from 'vuex'
 
+import { defineComponent, PropType } from '#app'
 import ACCOUNT_UPLOAD_QUOTA_BYTES from '~/gql/query/account/accountUploadQuotaBytes.gql'
 import UPLOADS_ALL_QUERY from '~/gql/query/upload/uploadsAll.gql'
 import UPLOAD_CREATE_MUTATION from '~/gql/mutation/upload/uploadCreate.gql'
-
-import { defineComponent, PropType } from '#app'
 
 require('@uppy/core/dist/style.css')
 

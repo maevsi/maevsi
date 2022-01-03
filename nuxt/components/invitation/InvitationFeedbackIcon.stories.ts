@@ -1,6 +1,5 @@
-import InvitationFeedbackIcon from './InvitationFeedbackIcon.vue'
-
 import { defineComponent } from '#app'
+import InvitationFeedbackIcon from './InvitationFeedbackIcon.vue'
 
 export default {
   component: InvitationFeedbackIcon,
