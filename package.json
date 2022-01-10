@@ -3,7 +3,7 @@
     "@commitlint/cli": "16.0.2",
     "@commitlint/config-conventional": "16.0.0",
     "husky": "7.0.4",
-    "shx": "0.3.3"
+    "shx": "0.3.4"
   },
   "private": true,
   "scripts": {
