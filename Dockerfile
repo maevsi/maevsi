@@ -8,16 +8,12 @@ FROM node:16.13.1@sha256:32605ead97ed57bd39a8a7b0e919240e1a3218974dfc6965e61b54a
 
 # Update and install dependencies.
 # - `git` is required by the `yarn` command
-# - `sqitch` is required by the entrypoint
+# - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
 # - `wget` is required by the healthcheck
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         git \
-    && apt-get install --no-install-recommends -y \
-        libdbd-pg-perl \
-        postgresql-client \
-        sqitch \
-    && apt-get install --no-install-recommends -y \
+        libdbd-pg-perl postgresql-client sqitch \
         wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -29,7 +25,6 @@ COPY ./nuxt/package.json ./nuxt/yarn.lock ./
 RUN yarn install
 
 COPY ./nuxt/ ./
-
 COPY ./sqitch/ /srv/sqitch/
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
@@ -88,14 +83,11 @@ FROM node:16.13.1@sha256:32605ead97ed57bd39a8a7b0e919240e1a3218974dfc6965e61b54a
 ENV NODE_ENV=production
 
 # Update and install dependencies.
-# - `sqitch` is required by the entrypoint
+# - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
 # - `wget` is required by the healthcheck
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-        libdbd-pg-perl \
-        postgresql-client \
-        sqitch \
-    && apt-get install --no-install-recommends -y \
+        libdbd-pg-perl postgresql-client sqitch \
         wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
