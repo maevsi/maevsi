@@ -1,3 +1,11 @@
+## [0.118.2](https://github.com/maevsi/maevsi/compare/0.118.1...0.118.2) (2022-01-10)
+
+
+### Bug Fixes
+
+* **button:** add missing aria labels ([27a439a](https://github.com/maevsi/maevsi/commit/27a439a16fcea81b596ab3c12ccf6bedae8086fa))
+* **tiptap:** align preview with result display ([47ed971](https://github.com/maevsi/maevsi/commit/47ed971e4a14d7523ea84a8797c5490449d8f15b))
+
 ## [0.118.1](https://github.com/maevsi/maevsi/compare/0.118.0...0.118.1) (2022-01-03)
 
 
