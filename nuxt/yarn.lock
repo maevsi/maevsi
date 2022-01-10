@@ -4310,14 +4310,14 @@
     lodash.merge "^4.6.2"
     lodash.uniq "^4.5.0"
 
-"@tiptap/core@^2.0.0-beta.160":
-  version "2.0.0-beta.160"
-  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.160.tgz#98f0625dc12a3498c6bbe2ae4aed4667b62a2a11"
-  integrity sha512-oKtx4vn4ew+mCH3kiBeD4UdPa5IVLLBCuSgGNnqdoIuRv397uh5SwOz7TiL5A+vTa6yke0xLSKxZ+QNR2qfVXg==
+"@tiptap/core@^2.0.0-beta.161":
+  version "2.0.0-beta.161"
+  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.161.tgz#d91f4639c6ea5ad02fe1194cd7466daf9f12a2eb"
+  integrity sha512-SRp4dia0O3xxRYfoghYId0LWLkLeMrnYm1CyboJHsFMH28qL4ckzTTaWQ0UwO8FdvziSNCNUIUFWL1bXOiqwXw==
   dependencies:
     "@types/prosemirror-commands" "^1.0.4"
     "@types/prosemirror-keymap" "^1.0.4"
-    "@types/prosemirror-model" "^1.13.2"
+    "@types/prosemirror-model" "^1.16.0"
     "@types/prosemirror-schema-list" "^1.0.3"
     "@types/prosemirror-state" "^1.2.8"
     "@types/prosemirror-transform" "^1.1.5"
@@ -4460,12 +4460,12 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-text/-/extension-text-2.0.0-beta.15.tgz#f08cff1b78f1c6996464dfba1fef8ec1e107617f"
   integrity sha512-S3j2+HyV2gsXZP8Wg/HA+YVXQsZ3nrXgBM9HmGAxB0ESOO50l7LWfip0f3qcw1oRlh5H3iLPkA6/f7clD2/TFA==
 
-"@tiptap/starter-kit@2.0.0-beta.168":
-  version "2.0.0-beta.168"
-  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.168.tgz#a13f186916b4425ea148c5d323c98dc58ad0ae59"
-  integrity sha512-qBIWGIkHUNfGRej46BuFLoOxmzgXLQKkhxVcsRpMbmJWhnvKZ4zqanMbSWefo5NvHa6jCYfayBbWs30At5Dbwg==
+"@tiptap/starter-kit@2.0.0-beta.169":
+  version "2.0.0-beta.169"
+  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.169.tgz#e65e9354b2bdb4682f59723477be6b45c3e33ce7"
+  integrity sha512-SWyo6FPoiwrEkzf4SlZP7j35i5QTKc7Qyy+A14In94OjvDfPRl0cdGLfgFzh/KlEbMsfUT0KTLlNcsB3tMLg8A==
   dependencies:
-    "@tiptap/core" "^2.0.0-beta.160"
+    "@tiptap/core" "^2.0.0-beta.161"
     "@tiptap/extension-blockquote" "^2.0.0-beta.26"
     "@tiptap/extension-bold" "^2.0.0-beta.25"
     "@tiptap/extension-bullet-list" "^2.0.0-beta.26"
@@ -5162,7 +5162,7 @@
     "@types/prosemirror-state" "*"
     "@types/prosemirror-view" "*"
 
-"@types/prosemirror-model@*", "@types/prosemirror-model@^1.13.2":
+"@types/prosemirror-model@*", "@types/prosemirror-model@^1.16.0":
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/@types/prosemirror-model/-/prosemirror-model-1.16.0.tgz#8b22c7431a4c93f7f550fc89c4b0e2d44d42c8b6"
   integrity sha512-nv93YLyTEcDDl17OB90EldxZjyJQJll2WSMLDvLzTewbpvE/vtMjHT3j4mik3uSzQ6YD486AcloCO3WODY/lDg==
