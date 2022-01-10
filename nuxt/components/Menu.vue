@@ -14,6 +14,7 @@
       <div class="flex flex-col p-6 lg:p-8 space-y-8">
         <div v-if="signedInUsername" class="flex mt-0 md:mt-auto">
           <Button
+            :aria-label="signedInUsername"
             class="flex items-center min-w-0 space-x-2 text-text-dark dark:text-text-bright"
             :to="localePath(`/account/${signedInUsername}`)"
             @click.native="$emit('onMenuHide')"
@@ -84,6 +85,7 @@
         <hr v-if="signedInUsername" class="md:hidden opacity-40" />
         <div class="flex md:hidden flex-col space-y-4">
           <ButtonColored
+            :aria-label="signedInUsername ? $t('eventNew') : $t('signIn')"
             :is-block="true"
             :is-primary="false"
             :to="
@@ -96,6 +98,7 @@
             {{ signedInUsername ? $t('eventNew') : $t('signIn') }}
           </ButtonColored>
           <ButtonColored
+            :aria-label="$t('eventsExplore')"
             :is-block="true"
             :to="localePath('/event')"
             @click.native="$emit('onMenuHide')"
