@@ -121,7 +121,7 @@
         code block
       </button> -->
     </div>
-    <EditorContent :editor="editor" />
+    <EditorContent class="form-input" :editor="editor" />
   </div>
 </template>
 
@@ -170,11 +170,6 @@ export default defineComponent({
     this.editor = new Editor({
       content: this.value,
       extensions: [StarterKit, Link],
-      editorProps: {
-        attributes: {
-          class: 'form-input',
-        },
-      },
       onUpdate: () => {
         if (!this.editor) return
         this.$emit('input', this.editor.getHTML())

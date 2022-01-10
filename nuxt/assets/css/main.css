@@ -89,6 +89,4 @@
 
 .ProseMirror { /* stylelint-disable-line selector-class-pattern */
   @apply maevsi-prose;
-
-  max-width: none;
 }
