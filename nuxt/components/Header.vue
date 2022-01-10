@@ -36,12 +36,14 @@
         class="col-start-3 hidden md:flex gap-4 items-center justify-self-end whitespace-nowrap"
       >
         <ButtonColored
+          :aria-label="signedInUsername ? $t('events') : $t('signIn')"
           :is-primary="false"
           :to="signedInUsername ? localePath('/event') : localePath('/account')"
         >
           {{ signedInUsername ? $t('events') : $t('signIn') }}
         </ButtonColored>
         <ButtonColored
+          :aria-label="signedInUsername ? $t('eventNew') : $t('events')"
           :to="
             signedInUsername
               ? localePath('/task/event/create')
