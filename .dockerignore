@@ -7,7 +7,7 @@ nuxt/node_modules/
 
 # Nuxt.js build / generate output
 nuxt/.nuxt
-nuxt/dist
+nuxt/.output
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 
