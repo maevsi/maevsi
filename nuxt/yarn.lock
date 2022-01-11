@@ -4485,10 +4485,10 @@
     "@tiptap/extension-strike" "^2.0.0-beta.27"
     "@tiptap/extension-text" "^2.0.0-beta.15"
 
-"@tiptap/vue-2@2.0.0-beta.74":
-  version "2.0.0-beta.74"
-  resolved "https://registry.yarnpkg.com/@tiptap/vue-2/-/vue-2-2.0.0-beta.74.tgz#da9e56113018525d0cb55812a2452d57b9710d26"
-  integrity sha512-OY6RhR2DSvP4iIxtoWeg2qmQ1uYP4kJkdMT5ePQBFqVzs6l5+FpSjETskS8EwZVgM/IrLTMp5lHfKboP/YacOA==
+"@tiptap/vue-2@2.0.0-beta.75":
+  version "2.0.0-beta.75"
+  resolved "https://registry.yarnpkg.com/@tiptap/vue-2/-/vue-2-2.0.0-beta.75.tgz#879105bb3e2557ddfb4864683e65d99e8edc4d10"
+  integrity sha512-Ub9VfVLQ/fvTNv8sTkuLSyNeIM8AR982ELjVoQ4JIXGM7hvhYgkrfrPsX5A0mzPDbq7s7Zfc+8SjosMLF3KjMg==
   dependencies:
     "@tiptap/extension-bubble-menu" "^2.0.0-beta.54"
     "@tiptap/extension-floating-menu" "^2.0.0-beta.49"
