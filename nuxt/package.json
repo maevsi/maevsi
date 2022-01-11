@@ -108,7 +108,7 @@
     "@types/lodash-es": "4.17.5",
     "@types/mustache": "4.1.2",
     "@types/node": "16.11.19",
-    "@types/pg": "8.6.3",
+    "@types/pg": "8.6.4",
     "@types/twemoji": "12.1.2",
     "@types/vue-datetime": "1.0.1",
     "@types/vue-moment": "4.0.3",
