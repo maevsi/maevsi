@@ -16762,10 +16762,10 @@ nan@^2.12.1, nan@^2.13.2:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.15.0.tgz#3f34a473ff18e15c1b5626b62903b5ad6e665fee"
   integrity sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==
 
-nanoid@3.1.30:
-  version "3.1.30"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.30.tgz#63f93cc548d2a113dc5dfbc63bfa09e2b9b64362"
-  integrity sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==
+nanoid@3.1.31:
+  version "3.1.31"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.31.tgz#f5b58a1ce1b7604da5f0605757840598d8974dc6"
+  integrity sha512-ZivnJm0o9bb13p2Ot5CpgC2rQdzB9Uxm/mFZweqm5eMViqOJe3PV6LU2E30SiLgheesmcPrjquqraoolONSA0A==
 
 nanoid@^3.1.23, nanoid@^3.1.25, nanoid@^3.1.30, nanoid@^3.1.32:
   version "3.2.0"
@@ -23784,15 +23784,15 @@ vue-bundle-renderer@^0.3.5:
   dependencies:
     bundle-runner "^0.0.1"
 
-vue-chart-3@2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/vue-chart-3/-/vue-chart-3-2.0.5.tgz#66d7ef6b3d1c51cc7d570690eb06129ae6e6aeb6"
-  integrity sha512-RxINE50nxt/qonaF6uTzMecYg3xx0HgOZ+q3kACdOHErRF2BYmMd17fvq/Q94QPhDXPNS3lVeUDLUHAyvoogEg==
+vue-chart-3@2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/vue-chart-3/-/vue-chart-3-2.0.6.tgz#e59afb5dade3b7c20e1b0c4fe581ae2d7a0ad217"
+  integrity sha512-tpIVLf5tp+8wHSjysSPI/Cbt7qlvoXoRNW8pJL56Z8tMe0oin+L8UBWp94YI+pYQoUryboAGph52GwoVSJAazA==
   dependencies:
     "@vue/composition-api" "^1.4.1"
     csstype "3.0.10"
     lodash latest
-    nanoid "3.1.30"
+    nanoid "3.1.31"
 
 vue-cli-plugin-apollo@^0.22.2:
   version "0.22.2"
