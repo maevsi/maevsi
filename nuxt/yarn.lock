@@ -17274,10 +17274,10 @@ nuxt-edge@latest:
     "@nuxt/vue-renderer-edge" "2.16.0-27358576.777a4b7f"
     "@nuxt/webpack-edge" "2.16.0-27358576.777a4b7f"
 
-nuxt-helmet@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/nuxt-helmet/-/nuxt-helmet-2.1.0.tgz#6237d91a77feaf60b6fd4b713a0a055abfe2f27d"
-  integrity sha512-AX2vDNEoMlsyCmb5YtAonJYf+YbjpwHOGbWkDr0/DzdEimRk0ss/ic/p/T0e0yo2cb64DQxza2WIQkUtQrXkGw==
+nuxt-helmet@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/nuxt-helmet/-/nuxt-helmet-3.0.0.tgz#983c02b2767f61f4b0ac73e914de816daab5c1a0"
+  integrity sha512-rPQz9vdh+DzARVJdSUrZIX0ojWPt0RbZiEf6mXvvk7/Y1gVm2w+6VA/199G+XQVdNNzYsDM92UXXCDU6UQHpRA==
   dependencies:
     consola "^2.11.3"
     helmet "^5.0.1"
