@@ -4310,10 +4310,10 @@
     lodash.merge "^4.6.2"
     lodash.uniq "^4.5.0"
 
-"@tiptap/core@^2.0.0-beta.167":
-  version "2.0.0-beta.167"
-  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.167.tgz#c3cbc1f427c16b68d717d4e9fd5042399c44fdca"
-  integrity sha512-v//X/+2WoN4Him/3M/owcdKYczMSVpGQxGFkivqhHu4LDnVanaDirHXdKccctzqD786Mo/WYR5Chn95vp0pr6w==
+"@tiptap/core@^2.0.0-beta.168":
+  version "2.0.0-beta.168"
+  resolved "https://registry.yarnpkg.com/@tiptap/core/-/core-2.0.0-beta.168.tgz#32a833b889b409feb4f2d6c3bc1a848a0082a370"
+  integrity sha512-lx3y/Z7LSOjm3zqWCDP8qdhDYprPMT9XaUSLmb2K3Rz/K/GAehqyt6FIEUsgSMhcGRLlh7pLFAwSjVNVxDFznA==
   dependencies:
     "@types/prosemirror-commands" "^1.0.4"
     "@types/prosemirror-keymap" "^1.0.4"
@@ -4354,10 +4354,10 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-bullet-list/-/extension-bullet-list-2.0.0-beta.26.tgz#b42126d2d984c04041b14037e8d3ec1bcf16e7ec"
   integrity sha512-1n5HV8gY1tLjPk4x48nva6SZlFHoPlRfF6pqSu9JcJxPO7FUSPxUokuz4swYNe0LRrtykfyNz44dUcxKVhoFow==
 
-"@tiptap/extension-code-block@^2.0.0-beta.36":
-  version "2.0.0-beta.36"
-  resolved "https://registry.yarnpkg.com/@tiptap/extension-code-block/-/extension-code-block-2.0.0-beta.36.tgz#f47c79bf47c1b498f4eca95f929751a0f87d9539"
-  integrity sha512-3igHw6LhNyfpejNejBi5JHPwDVLinPfqSNhAkeJd4sVMVK0ynREb5spZPhmSQz/0FWMNMrd8VbzF7S+X8BcWCw==
+"@tiptap/extension-code-block@^2.0.0-beta.37":
+  version "2.0.0-beta.37"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-code-block/-/extension-code-block-2.0.0-beta.37.tgz#c07c007248a21d9e0434458fd05c363b7078227f"
+  integrity sha512-mJAM+PHaNoKRYwM3D36lZ51/aoPxxvZNQn3UBnZ6G7l0ZJSgB3JvBEzqK6S8nNFeYIIxGwv4QF6vXe4MG9ie2g==
   dependencies:
     prosemirror-state "^1.3.4"
 
@@ -4460,17 +4460,17 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-text/-/extension-text-2.0.0-beta.15.tgz#f08cff1b78f1c6996464dfba1fef8ec1e107617f"
   integrity sha512-S3j2+HyV2gsXZP8Wg/HA+YVXQsZ3nrXgBM9HmGAxB0ESOO50l7LWfip0f3qcw1oRlh5H3iLPkA6/f7clD2/TFA==
 
-"@tiptap/starter-kit@2.0.0-beta.176":
-  version "2.0.0-beta.176"
-  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.176.tgz#bb3c1df3f062e10eefa67a35f61a025912fa98b2"
-  integrity sha512-fCuyNgnEkuX8CGA2k0kD/7Rd2pKoGJu/F8MbtuL156JgQ00hI8lLkd2D0M7e7jN1PyUudC2r9opE0eAU+qU6Gg==
+"@tiptap/starter-kit@2.0.0-beta.177":
+  version "2.0.0-beta.177"
+  resolved "https://registry.yarnpkg.com/@tiptap/starter-kit/-/starter-kit-2.0.0-beta.177.tgz#748f80b92d84b80a63db56759b3a234b1a2ab75e"
+  integrity sha512-9HeVS9dBjBLCUTqCNyiGZFehrT/cl4TXzx2OjrY4DqLD8naabGBaoB+Sw9EQdBDSwg8Q/8mAu3svzj8C9YLB9w==
   dependencies:
-    "@tiptap/core" "^2.0.0-beta.167"
+    "@tiptap/core" "^2.0.0-beta.168"
     "@tiptap/extension-blockquote" "^2.0.0-beta.26"
     "@tiptap/extension-bold" "^2.0.0-beta.25"
     "@tiptap/extension-bullet-list" "^2.0.0-beta.26"
     "@tiptap/extension-code" "^2.0.0-beta.26"
-    "@tiptap/extension-code-block" "^2.0.0-beta.36"
+    "@tiptap/extension-code-block" "^2.0.0-beta.37"
     "@tiptap/extension-document" "^2.0.0-beta.15"
     "@tiptap/extension-dropcursor" "^2.0.0-beta.25"
     "@tiptap/extension-gapcursor" "^2.0.0-beta.34"
