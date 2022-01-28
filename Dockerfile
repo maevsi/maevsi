@@ -4,7 +4,7 @@
 # Should be the specific version of node:buster.
 # `node-zopfli-es` and `sqitch` require at least buster.
 # `node-zopfli-es` requires non-slim.
-FROM node:16.13.2@sha256:bdcdc627284297b040e2acc0bc9b27fa6578539d6e057925889690a7a9996fdf AS development
+FROM node:16.13.2@sha256:2033f4cc18f9d8b5d0baa7f276aaeffd202e1a2c6fe9af408af05a34fe68cbfb AS development
 
 # Update and install dependencies.
 # - `git` is required by the `yarn` command
@@ -39,7 +39,7 @@ HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://local
 # Should be the specific version of node:buster.
 # `node-zopfli-es` and `sqitch` require at least buster.
 # `node-zopfli-es` requires non-slim.
-FROM node:16.13.2@sha256:bdcdc627284297b040e2acc0bc9b27fa6578539d6e057925889690a7a9996fdf AS build
+FROM node:16.13.2@sha256:2033f4cc18f9d8b5d0baa7f276aaeffd202e1a2c6fe9af408af05a34fe68cbfb AS build
 
 ARG HOST_IP=127.0.0.1
 ENV HOST_IP ${HOST_IP}
@@ -78,7 +78,7 @@ RUN yarn install
 # Should be the specific version of node:buster.
 # `node-zopfli-es` and `sqitch` require at least buster.
 # `node-zopfli-es` requires non-slim.
-FROM node:16.13.2@sha256:bdcdc627284297b040e2acc0bc9b27fa6578539d6e057925889690a7a9996fdf AS production
+FROM node:16.13.2@sha256:2033f4cc18f9d8b5d0baa7f276aaeffd202e1a2c6fe9af408af05a34fe68cbfb AS production
 
 ENV NODE_ENV=production
 
