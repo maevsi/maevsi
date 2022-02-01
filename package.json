@@ -7,6 +7,6 @@
   },
   "private": true,
   "scripts": {
-    "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks"
+    "prepare": "if [[ -d '.git' && -d '.husky' ]]; then husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks; fi"
   }
 }
