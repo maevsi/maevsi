@@ -1,3 +1,10 @@
+## [0.118.4](https://github.com/maevsi/maevsi/compare/0.118.3...0.118.4) (2022-02-07)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([8cfd9c6](https://github.com/maevsi/maevsi/commit/8cfd9c66f216bc2210ecf650b542c488f3aaf24d))
+
 ## [0.118.3](https://github.com/maevsi/maevsi/compare/0.118.2...0.118.3) (2022-01-24)
 
 
