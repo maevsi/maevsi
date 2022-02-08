@@ -128,7 +128,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-yml": "0.13.0",
     "graphql-tag": "2.12.6",
-    "jest": "27.5.0",
+    "jest": "27.5.1",
     "lint-staged": "12.3.3",
     "mockdate": "3.0.5",
     "msw": "0.36.8",
