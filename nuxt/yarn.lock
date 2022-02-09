@@ -21822,11 +21822,12 @@ stylelint-config-prettier@9.0.3:
   resolved "https://registry.yarnpkg.com/stylelint-config-prettier/-/stylelint-config-prettier-9.0.3.tgz#0dccebeff359dcc393c9229184408b08964d561c"
   integrity sha512-5n9gUDp/n5tTMCq1GLqSpA30w2sqWITSSEiAWQlpxkKGAUbjcemQ0nbkRvRUa0B1LgD3+hCvdL7B1eTxy1QHJg==
 
-stylelint-config-recommended-vue@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/stylelint-config-recommended-vue/-/stylelint-config-recommended-vue-1.1.0.tgz#e0217c12475141babc9809e2c4abc137841cf6c9"
-  integrity sha512-6O9gHdZ5nmnpq+qJv19pLEcZTZ/BV7ZzBmtl0J/kx92tGwe4CRqoO//SswibLWQP/1VwOaTrjJxN497pNfw7VA==
+stylelint-config-recommended-vue@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-recommended-vue/-/stylelint-config-recommended-vue-1.2.0.tgz#877a54b6bb7ea13cc7ce1fa194d18e94f997bc5c"
+  integrity sha512-UQ/InhKRc2iEDlCNsJfaVd7AxnhJedijoppaMP7B+uGzaHFc2GEkiGhq3zyqR8yvKb9cjfZP8jMzJsbkA1Pg4g==
   dependencies:
+    semver "^7.3.5"
     stylelint-config-html ">=1.0.0"
     stylelint-config-recommended ">=6.0.0"
 
