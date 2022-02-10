@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="grid">
-      <div class="border border-b-0 border-gray-300 e1 rounded-t">
+      <div class="rounded-t border border-b-0 border-gray-300 e1">
         <ul
           class="pills rounded-t"
           :class="dark ? 'bg-gray-400' : 'bg-gray-300'"
@@ -13,7 +13,7 @@
           </li>
         </ul>
       </div>
-      <ul class="border border-b-0 border-gray-300 e1 pills rounded-t">
+      <ul class="pills rounded-t border border-b-0 border-gray-300 e1">
         <li
           class="rounded-t duration-700"
           :class="[
@@ -31,11 +31,11 @@
           </Button>
         </li>
       </ul>
-      <ul class="border border-b-0 border-gray-300 e1 pills rounded-t z-0">
+      <ul class="pills z-0 rounded-t border border-b-0 border-gray-300 e1">
         <li>
           <Button
             :aria-label="tabs[0][1]"
-            class="rounded-t justify-center"
+            class="justify-center rounded-t"
             :class="dark ? 'text-text-bright' : 'text-text-dark'"
             @click="tabSelect(tabs[0][0])"
           >
@@ -45,7 +45,7 @@
         <li>
           <Button
             :aria-label="tabs[1][1]"
-            class="rounded-t justify-center"
+            class="justify-center rounded-t"
             :class="dark ? 'text-text-bright' : 'text-text-dark'"
             @click="tabSelect(tabs[1][0])"
           >
@@ -56,10 +56,10 @@
     </div>
     <div class="flip-card" :class="{ flipped: tabIdSelected === tabs[0][0] }">
       <div class="flip-card-inner grid">
-        <div class="e1 flip-card-front">
+        <div class="flip-card-front e1">
           <slot name="front" />
         </div>
-        <div class="e1 flip-card-back">
+        <div class="flip-card-back e1">
           <slot name="back" />
         </div>
       </div>

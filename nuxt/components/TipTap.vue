@@ -1,6 +1,6 @@
 <template>
   <div v-if="editor" class="flex flex-col gap-1">
-    <div class="flex overflow-auto gap-4">
+    <div class="flex gap-4 overflow-auto">
       <div class="flex gap-1">
         <Button
           :aria-label="$t('undo')"

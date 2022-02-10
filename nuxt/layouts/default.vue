@@ -5,18 +5,18 @@
       <div v-if="signedInUsername" class="hidden md:block">
         <Menu />
       </div>
-      <main class="container flex-1 min-h-screen mx-auto px-4 md:px-8 py-8">
+      <main class="container mx-auto min-h-screen flex-1 px-4 py-8 md:px-8">
         <nuxt />
       </main>
     </div>
     <Footer />
     <div
-      class="bg-black bottom-0 duration-500 fixed md:hidden left-0 right-0 top-0 transition-opacity z-10"
-      :class="isMenuVisible ? 'opacity-50 visible' : 'opacity-0 invisible'"
+      class="fixed bottom-0 left-0 right-0 top-0 z-10 bg-black transition-opacity duration-500 md:hidden"
+      :class="isMenuVisible ? 'visible opacity-50' : 'invisible opacity-0'"
       @click="menuHide()"
     />
     <div
-      class="bottom-0 duration-500 fixed md:hidden left-0 overflow-auto top-0 transform-gpu transition-transform z-10"
+      class="fixed bottom-0 left-0 top-0 z-10 transform-gpu overflow-auto transition-transform duration-500 md:hidden"
       :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >
       <Menu v-if="isMenuItemsVisible" is-closable @onMenuHide="menuHide" />

@@ -1,8 +1,8 @@
 <template>
   <div
-    class="flex flex-1 md:flex-none flex-basis-50 md:flex-basis-auto flex-col items-start p-4"
+    class="flex flex-1 flex-col items-start p-4 flex-basis-50 md:flex-none md:flex-basis-auto"
   >
-    <span class="font-medium leading-7 text-lg whitespace-nowrap">
+    <span class="whitespace-nowrap text-lg font-medium leading-7">
       {{ heading }}
     </span>
     <slot />

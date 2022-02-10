@@ -1,15 +1,15 @@
 <template>
   <div class="text-center">
     <div
-      class="border rounded-md"
+      class="rounded-md border"
       :class="
         [
           ...(isPrimary
             ? [
-                'bg-gray-800 hover:bg-black dark:bg-gray-100 dark:hover:bg-gray-200 border-transparent text-text-bright dark:text-text-dark',
+                'border-transparent bg-gray-800 text-text-bright hover:bg-black dark:bg-gray-100 dark:text-text-dark dark:hover:bg-gray-200',
               ]
             : [
-                'bg-background-bright hover:bg-gray-200 dark:bg-background-dark dark:hover:bg-black border-gray-300 dark:border-gray-600 text-text-dark dark:text-text-bright',
+                'border-gray-300 bg-background-bright text-text-dark hover:bg-gray-200 dark:border-gray-600 dark:bg-background-dark dark:text-text-bright dark:hover:bg-black',
               ]),
           ...(isBlock ? ['block'] : ['inline-block']),
           ...(buttonClass ? [buttonClass] : []),
@@ -20,7 +20,7 @@
         ref="button"
         :append="append"
         :aria-label="ariaLabel"
-        class="font-medium justify-center px-4 py-2"
+        class="justify-center px-4 py-2 font-medium"
         :disabled="disabled"
         :to="to"
         :type="type"

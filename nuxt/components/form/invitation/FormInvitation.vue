@@ -23,7 +23,7 @@
           type="text"
         />
         <span
-          class="cursor-default inline-flex items-center pointer-events-none px-3 rounded-r border border-l-0 border-gray-300 bg-gray-100 text-gray-500"
+          class="pointer-events-none inline-flex cursor-default items-center rounded-r border border-l-0 border-gray-300 bg-gray-100 px-3 text-gray-500"
         >
           <IconSearch :title="$t('iconSearch')" />
         </span>
@@ -49,10 +49,10 @@
         </FormInputError>
       </template>
     </FormInput>
-    <div v-if="allContacts" class="divide-transparent divide-y-4">
+    <div v-if="allContacts" class="divide-y-4 divide-transparent">
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button
-          class="border border-neutral-300 dark:border-neutral-600 rounded w-full"
+          class="w-full rounded border border-neutral-300 dark:border-neutral-600"
           :class="{
             'border-2 border-blue-600 dark:border-blue-600':
               form.contactId === contact.id,
@@ -65,7 +65,7 @@
       </div>
     </div>
     <template slot="assistance">
-      <p class="text-center text-gray-500 dark:text-gray-400 text-xs">
+      <p class="text-center text-xs text-gray-500 dark:text-gray-400">
         {{ $t('selectAssistance') }}
       </p>
     </template>

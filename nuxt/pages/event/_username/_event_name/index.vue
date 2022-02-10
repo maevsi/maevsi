@@ -52,7 +52,7 @@
     </CardInfo>
     <br />
     <div v-if="contact" class="text-center">
-      <p class="font-bold mb-2 text-2xl">
+      <p class="mb-2 text-2xl font-bold">
         {{
           $t('greeting', {
             usernameString: $util.getContactName(contact)
@@ -69,19 +69,19 @@
     <!-- jwtDecoded && -->
     <!-- event.authorUsername === jwtDecoded.username, -->
     <!-- }" -->
-    <Card class="flex flex-col items-center mt-4">
-      <h1 class="mb-0 truncate max-w-full">
+    <Card class="mt-4 flex flex-col items-center">
+      <h1 class="mb-0 max-w-full truncate">
         {{ event.name }}
       </h1>
       <Owner class="mb-4" link :username="event.authorUsername" />
-      <div class="flex flex-col sm:flex-row m-auto">
+      <div class="m-auto flex flex-col sm:flex-row">
         <EventDashletVisibility :event="event" with-text />
         <EventDashletStart :event="event" />
         <EventDashletDuration :event="event" />
         <EventDashletLocation :event="event" />
         <EventDashletAttendanceType :event="event" />
       </div>
-      <div class="flex gap-4 justify-center">
+      <div class="flex justify-center gap-4">
         <ButtonColored
           :aria-label="$t('qrCodeShow')"
           class="text-text-bright"
@@ -105,9 +105,9 @@
       </div>
       <div v-if="invitation">
         <hr class="my-4" />
-        <div class="grid grid-cols-6 justify-content-center">
+        <div class="justify-content-center grid grid-cols-6">
           <div
-            class="text-text-bright m-2"
+            class="m-2 text-text-bright"
             :class="{
               'col-span-5': invitation.feedback === 'ACCEPTED',
               'col-span-6':
@@ -115,10 +115,10 @@
                 invitation.feedback === 'CANCELED',
             }"
           >
-            <div class="flex gap-4 justify-center">
+            <div class="flex justify-center gap-4">
               <div
                 v-if="invitation.feedback === 'CANCELED'"
-                class="flex font-semibold items-center text-red-600"
+                class="flex items-center font-semibold text-red-600"
               >
                 <IconXCircle class="mr-2" title="canceled" />
                 {{ $t('invitationCanceled') }}
@@ -138,7 +138,7 @@
               </ButtonColored>
               <div
                 v-if="invitation.feedback === 'ACCEPTED'"
-                class="flex font-semibold items-center text-green-600"
+                class="flex items-center font-semibold text-green-600"
               >
                 <IconCheckCircle class="mr-2" title="accepted" />
                 {{ $t('invitationAccepted') }}
@@ -160,7 +160,7 @@
           </div>
           <div
             v-if="invitation.feedback === 'ACCEPTED'"
-            class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-text-bright"
+            class="col-span-1 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
           >
             {{ $t('step1Of2') }}
           </div>
@@ -199,7 +199,7 @@
             v-if="
               invitation.feedback !== null && invitation.feedback === 'ACCEPTED'
             "
-            class="col-span-1 bg-gray-500 m-auto px-2 rounded-full text-text-bright"
+            class="col-span-1 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
           >
             {{ $t('step2Of2') }}
           </div>

@@ -6,11 +6,11 @@
         'form-input-warning': warning,
         'form-input-error': error,
       }"
-      class="md:flex flex-wrap md:items-center"
+      class="flex-wrap md:flex md:items-center"
     >
-      <div class="mb-1 md:mb-0 md:pr-4 md:text-right md:w-1/3">
+      <div class="mb-1 md:mb-0 md:w-1/3 md:pr-4 md:text-right">
         <label
-          class="font-semibold inline-flex md:flex-col items-baseline md:items-end gap-2 md:gap-0"
+          class="inline-flex items-baseline gap-2 font-semibold md:flex-col md:items-end md:gap-0"
           :class="{
             'form-input-success': success,
             'form-input-warning': warning,
@@ -20,7 +20,7 @@
         >
           <span>{{ title }}</span>
           <span
-            class="font-medium md:text-right text-xs text-gray-500 dark:text-gray-400"
+            class="text-xs font-medium text-gray-500 dark:text-gray-400 md:text-right"
           >
             <span v-if="required">
               {{ $t('required') }}

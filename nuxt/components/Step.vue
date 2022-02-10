@@ -1,12 +1,12 @@
 <template>
-  <section class="flex-1 flex-basis-50 xl:flex-basis-auto p-8 relative">
-    <div class="absolute left-1/2 -translate-x-1/2 z-0">
-      <span class="font-extrabold leading-snug opacity-10 text-7xl">
+  <section class="relative flex-1 p-8 flex-basis-50 xl:flex-basis-auto">
+    <div class="absolute left-1/2 z-0 -translate-x-1/2">
+      <span class="text-7xl font-extrabold leading-snug opacity-10">
         {{ number }}
       </span>
     </div>
     <div
-      class="flex flex-1 flex-basis-auto sm:flex-basis-33 flex-col items-center mt-8 z-20"
+      class="z-20 mt-8 flex flex-1 flex-col items-center flex-basis-auto sm:flex-basis-33"
     >
       <h3 class="text-center">{{ title }}</h3>
       <p class="text-center">{{ description }}</p>

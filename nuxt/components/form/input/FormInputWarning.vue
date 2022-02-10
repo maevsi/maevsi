@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-1 items-center text-yellow-600">
+  <div class="flex items-center gap-1 text-yellow-600">
     <IconExclamationCircle />
     <slot />
   </div>

@@ -2,7 +2,7 @@
   <div>
     <!-- eslint-disable vue/no-v-html -->
     <p
-      class="font-black text-center text-xl"
+      class="text-center text-xl font-black"
       v-html="twemoji.parse($t('maevNo'), { className: 'h-5 inline-block' })"
     />
     <!--eslint-enable-->

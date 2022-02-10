@@ -21,11 +21,11 @@
       />
       <InvitationFeedbackIcon
         v-if="feedback"
-        class="absolute bg-background-bright dark:bg-background-dark bottom-0 right-0 rounded-full"
+        class="absolute bottom-0 right-0 rounded-full bg-background-bright dark:bg-background-dark"
         :feedback="feedback"
       />
     </div>
-    <div class="flex flex-col justify-center ml-4">
+    <div class="ml-4 flex flex-col justify-center">
       <div class="font-medium">
         {{ contact.firstName || $t('placeholder') }}
         {{ contact.lastName || $t('placeholder') }}
