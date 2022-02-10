@@ -1,7 +1,7 @@
 <template>
   <EventDashlet v-if="event && event.start">
     <span>
-      <FontAwesomeIcon :icon="['fas', 'calendar-day']" :title="$t('start')" />
+      <IconCalendar :title="$t('start')" />
     </span>
     {{ $moment(event.start).format('lll') }}
     <br />

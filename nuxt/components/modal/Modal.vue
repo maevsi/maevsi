@@ -9,7 +9,7 @@
       :class="{ fixed: !$config.STORYBOOK }"
     >
       <Card
-        class="bg-background-bright dark:bg-background-dark max-h-[90vh] overflow-auto space-y-2 w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3"
+        class="bg-background-bright dark:bg-background-dark flex flex-col gap-2 max-h-[90vh] overflow-auto w-5/6 sm:w-2/3 lg:w-1/2 xl:w-1/3"
       >
         <div class="flex justify-end">
           <ButtonIcon
@@ -18,7 +18,7 @@
             :disabled="isSubmitting"
             @click="close()"
           >
-            <FontAwesomeIcon :icon="['fas', 'times']" />
+            <IconX />
           </ButtonIcon>
           <h2 v-if="$slots.header" class="flex-1 m-0 px-4 text-center">
             <slot name="header" />
@@ -29,7 +29,7 @@
             :disabled="isSubmitting"
             @click="close()"
           >
-            <FontAwesomeIcon :icon="['fas', 'times']" />
+            <IconX />
           </ButtonIcon>
         </div>
         <div :class="{ 'disabled pointer-events-none relative': isSubmitting }">
@@ -49,11 +49,15 @@
             <ButtonColored
               :aria-label="submitName"
               :disabled="isSubmitting || isSubmitDisabled"
-              :icon-id="submitIconId"
               type="submit"
               @click="submit()"
             >
               {{ submitName }}
+              <template slot="prefix">
+                <slot name="submit-icon">
+                  <IconCheckCircle />
+                </slot>
+              </template>
             </ButtonColored>
           </slot>
         </div>
@@ -89,12 +93,6 @@ export default defineComponent({
         return this.$t('ok') as string
       },
       type: String,
-    },
-    submitIconId: {
-      default(): string[] {
-        return ['fas', 'check-circle']
-      },
-      type: Array as PropType<string[]>,
     },
     submitTaskProvider: {
       default: () => Promise.resolve(),

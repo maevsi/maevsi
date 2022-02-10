@@ -7,7 +7,9 @@
           :class="dark ? 'bg-gray-400' : 'bg-gray-300'"
         >
           <li class="invisible">
-            <button type="button">{{ $t('fillerSymbol') }}</button>
+            <Button :aria-label="$t('fillerSymbol')">
+              {{ $t('fillerSymbol') }}
+            </Button>
           </li>
         </ul>
       </div>
@@ -19,34 +21,36 @@
             dark ? 'bg-black opacity-25' : 'bg-white',
           ]"
         >
-          <button class="invisible" type="button">
+          <Button :aria-label="$t('fillerSymbol')" class="invisible">
             {{ $t('fillerSymbol') }}
-          </button>
+          </Button>
         </li>
         <li class="invisible">
-          <button type="button">{{ $t('fillerSymbol') }}</button>
+          <Button :aria-label="$t('fillerSymbol')">
+            {{ $t('fillerSymbol') }}
+          </Button>
         </li>
       </ul>
       <ul class="border border-b-0 border-gray-300 e1 pills rounded-t z-0">
         <li>
-          <button
-            class="rounded-t"
+          <Button
+            :aria-label="tabs[0][1]"
+            class="rounded-t justify-center"
             :class="dark ? 'text-text-bright' : 'text-text-dark'"
-            type="button"
             @click="tabSelect(tabs[0][0])"
           >
             {{ tabs[0][1] }}
-          </button>
+          </Button>
         </li>
         <li>
-          <button
-            class="rounded-t"
+          <Button
+            :aria-label="tabs[1][1]"
+            class="rounded-t justify-center"
             :class="dark ? 'text-text-bright' : 'text-text-dark'"
-            type="button"
             @click="tabSelect(tabs[1][0])"
           >
             {{ tabs[1][1] }}
-          </button>
+          </Button>
         </li>
       </ul>
     </div>

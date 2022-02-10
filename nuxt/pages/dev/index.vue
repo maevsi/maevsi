@@ -11,10 +11,12 @@
       <br />
       <ButtonColored
         :aria-label="$t('sessionExit')"
-        :icon-id="['fas', 'sign-out-alt']"
         @click="onSessionExitClick()"
       >
         {{ $t('sessionExit') }}
+        <template slot="prefix">
+          <IconSignOut />
+        </template>
       </ButtonColored>
     </div>
   </div>

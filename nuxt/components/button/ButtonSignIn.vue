@@ -1,7 +1,6 @@
 <template>
   <ButtonColored
     :aria-label="$t('signIn')"
-    :icon-id="['fas', 'user']"
     :to="
       localePath({
         path: '/account',
@@ -14,6 +13,9 @@
     @click="$emit('click')"
   >
     {{ $t('signIn') }}
+    <template slot="prefix">
+      <IconUser />
+    </template>
   </ButtonColored>
 </template>
 

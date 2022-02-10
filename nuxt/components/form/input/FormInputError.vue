@@ -6,12 +6,9 @@
         validationProperty in formInput &&
         !formInput[validationProperty])
     "
-    class="text-red-600 text-left"
+    class="flex gap-1 items-center text-red-600"
   >
-    <FontAwesomeIcon
-      v-if="formInput && validationProperty"
-      :icon="['fas', 'exclamation-circle']"
-    />
+    <IconExclamationCircle v-if="formInput && validationProperty" />
     <slot />
   </div>
 </template>

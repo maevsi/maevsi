@@ -3,7 +3,6 @@
     :form="$v.form"
     :form-sent="form.sent"
     :graphql-error="graphqlError"
-    :icon-id="['fa', 'trash']"
     :submit-name="$t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
@@ -12,6 +11,9 @@
       :form-input="$v.form.password"
       @input="form.password = $event"
     />
+    <template slot="submit-icon">
+      <IconTrash />
+    </template>
   </Form>
 </template>
 

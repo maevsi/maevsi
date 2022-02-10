@@ -4,11 +4,13 @@
     <div class="flex flex-col gap-4 justify-center">
       <ButtonColored
         :aria-label="$t('qrCodeScan')"
-        :icon-id="['fas', 'qrcode']"
         class="text-text-bright"
         @click="qrCodeScan"
       >
         {{ $t('qrCodeScan') }}
+        <template slot="prefix">
+          <IconQrcode />
+        </template>
       </ButtonColored>
       <span v-if="invitationCode" class="text-center">
         {{ $t('scanned', { scanResult: invitationCode }) }}
@@ -19,11 +21,13 @@
           :disabled="
             isNfcWritableErrorMessage && isNfcWritableErrorMessage !== 'prompt'
           "
-          :icon-id="['fas', 'user-tag']"
           class="text-text-bright"
           @click="onClick"
         >
           {{ $t('nfcWrite') }}
+          <template slot="prefix">
+            <IconUserTag />
+          </template>
         </ButtonColored>
         <span
           v-if="
@@ -35,16 +39,15 @@
         </span>
       </div>
     </div>
-    <Modal
-      id="ModalAttendanceScanQrCode"
-      :submit-icon-id="['fas', 'times-circle']"
-      :submit-name="$t('close')"
-    >
+    <Modal id="ModalAttendanceScanQrCode" :submit-name="$t('close')">
       <QrCodeStream @decode="onDecode" @init="onInit">
         <div v-if="loading" class="text-center">
           {{ $t('globalLoading') }}
         </div>
       </QrCodeStream>
+      <template slot="submit-icon">
+        <IconXCircle />
+      </template>
     </Modal>
   </div>
 </template>

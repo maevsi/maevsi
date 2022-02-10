@@ -1,5 +1,5 @@
 <template>
-  <div v-if="contact" class="flex text-left whitespace-nowrap">
+  <div v-if="contact" class="flex whitespace-nowrap">
     <div class="relative">
       <AccountProfilePicture
         v-if="contact.accountUsername"
@@ -21,7 +21,7 @@
       />
       <InvitationFeedbackIcon
         v-if="feedback"
-        class="absolute bg-white border-2 border-white bottom-0 right-0 rounded-full"
+        class="absolute bg-background-bright dark:bg-background-dark bottom-0 right-0 rounded-full"
         :feedback="feedback"
       />
     </div>

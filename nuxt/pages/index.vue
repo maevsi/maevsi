@@ -77,7 +77,7 @@
         width="750"
       />
       <div class="flex flex-col gap-4 lg:w-1/2">
-        <h2 class="font-extrabold text-4xl text-left">
+        <h2 class="font-extrabold text-4xl">
           {{ $t('smartphoneTitle') }}
         </h2>
         <p class="font-normal leading-8 text-lg">
@@ -235,7 +235,7 @@ en:
   smartphoneTitle: Do you still organize your event like that?
   smartphoneDescription: Using meavsi you no longer have to create your birthdays, events and parties in a boring chat group. You manage your invitations, your meals, your music requests and your program easily within one application - together with all guests
   statistics: Statistics
-  statisticsDescription: Anaylse your event and optimize it next time
+  statisticsDescription: Analyze your event and optimize it next time
   stepCreateTitle: Create your event
   stepCreateDescription: Create your first event
   stepCreateNumber: '2'

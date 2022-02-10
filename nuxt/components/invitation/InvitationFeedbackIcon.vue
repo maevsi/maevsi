@@ -1,26 +1,20 @@
 <template>
-  <FontAwesomeIcon
+  <IconCheckCircle
     v-if="feedback === 'ACCEPTED'"
     class="text-green-600"
-    :icon="['fas', 'check-circle']"
-    size="lg"
     :title="$t('feedbackAccepted')"
   />
-  <FontAwesomeIcon
+  <IconXCircle
     v-else-if="feedback === 'CANCELED'"
     class="text-red-600"
-    :icon="['fas', 'times-circle']"
-    size="lg"
     :title="$t('feedbackCanceled')"
   />
-  <FontAwesomeIcon
+  <IconQuestionCircle
     v-else-if="feedback === null"
     class="text-gray-600"
-    :icon="['fas', 'question-circle']"
-    size="lg"
     :title="$t('feedbackNone')"
   />
-  <FontAwesomeIcon v-else :icon="['fas', 'bug']" :title="$t('bug')" />
+  <IconBug v-else :title="$t('bug')" />
 </template>
 
 <script lang="ts">

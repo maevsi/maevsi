@@ -3,9 +3,9 @@
     <div
       class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
     >
-      <button
+      <Button
+        :aria-label="$t('profilePictureChange')"
         class="sm:mr-4"
-        type="button"
         @click="$store.commit('modalAdd', { id: 'ModalImageSelection' })"
       >
         <AccountProfilePicture
@@ -14,7 +14,7 @@
           :username="$route.params.username"
           width="96"
         />
-      </button>
+      </Button>
       <h1 class="truncate max-w-full sm:w-auto">
         {{ $route.params.username }}
       </h1>
@@ -103,10 +103,12 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   account: Konto
+  profilePictureChange: Profilbild ändern
   titleAccountDelete: Konto löschen
   titlePasswordChange: Password ändern
 en:
   account: account
+  profilePictureChange: Change profile picture
   titleAccountDelete: Delete account
   titlePasswordChange: Change password
 </i18n>

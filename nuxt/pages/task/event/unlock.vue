@@ -26,12 +26,14 @@
           type="text"
         />
         <template slot="inputInfo">
-          <div v-if="$route.query.ic">
-            {{ $t('invitationCodeAutomatic') }}
-            <AppLink :to="localePath('/task/event/unlock')">
-              {{ $t('invitationCodeManual') }}
-            </AppLink>
-          </div>
+          <FormInputInfo v-if="$route.query.ic">
+            <div>
+              {{ $t('invitationCodeAutomatic') }}
+              <AppLink :to="localePath('/task/event/unlock')">
+                {{ $t('invitationCodeManual') }}
+              </AppLink>
+            </div>
+          </FormInputInfo>
         </template>
         <template slot="inputError">
           <FormInputError
@@ -49,7 +51,7 @@
         </template>
       </FormInput>
     </Form>
-    <p class="mt-2 text-left">
+    <p class="mt-2">
       {{ $t('greetingExplanation') }}
     </p>
   </div>

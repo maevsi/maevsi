@@ -21,11 +21,7 @@
         class="absolute px-3 right-0 top-1/2 -translate-y-1/2"
       >
         <div class="bg-gray-50 rounded-full">
-          <FontAwesomeIcon
-            class="text-green-600"
-            :icon="['fas', 'check-circle']"
-            :title="$t('iconCheck')"
-          />
+          <IconCheckCircle class="text-green-600" :title="$t('iconCheck')" />
         </div>
       </span>
     </div>

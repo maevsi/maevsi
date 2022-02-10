@@ -31,7 +31,9 @@
         </FormInputError>
       </template>
       <template slot="inputInfo">
-        {{ $t('passwordConfirmation') }}
+        <FormInputInfo>
+          {{ $t('passwordConfirmation') }}
+        </FormInputInfo>
       </template>
     </FormInputPassword>
   </Form>

@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <div
-      class="border font-medium rounded-md"
+      class="border rounded-md"
       :class="
         [
           ...(isPrimary
@@ -20,14 +20,16 @@
         ref="button"
         :append="append"
         :aria-label="ariaLabel"
-        button-class="px-4 py-2"
+        class="font-medium justify-center px-4 py-2"
         :disabled="disabled"
-        :icon-id="iconId"
         :to="to"
         :type="type"
         @click="$emit('click')"
       >
         <slot />
+        <template slot="prefix">
+          <slot name="prefix" />
+        </template>
       </Button>
     </div>
   </div>
@@ -53,10 +55,6 @@ export default defineComponent({
     disabled: {
       default: false,
       type: Boolean,
-    },
-    iconId: {
-      default: undefined,
-      type: Array as PropType<string[] | undefined>,
     },
     isBlock: {
       default: false,

@@ -13,7 +13,6 @@
       v-if="
         allEvents !== undefined && allEvents.nodes && allEvents.nodes.length
       "
-      class="text-left"
     >
       <EventListItem
         v-for="event in allEvents.nodes"
