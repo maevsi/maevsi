@@ -1,3 +1,10 @@
+# [0.119.0](https://github.com/maevsi/maevsi/compare/0.118.4...0.119.0) (2022-02-10)
+
+
+### Features
+
+* replace font-awesome with separate icons ([7b6af54](https://github.com/maevsi/maevsi/commit/7b6af54a2e7bbdc161794e0147a1bb077a0ec76e))
+
 ## [0.118.4](https://github.com/maevsi/maevsi/compare/0.118.3...0.118.4) (2022-02-07)
 
 
