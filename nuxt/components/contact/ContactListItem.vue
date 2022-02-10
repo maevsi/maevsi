@@ -22,7 +22,7 @@
       {{ contact.url || '–' }}
     </td>
     <td>
-      <div class="flex items-center justify-evenly">
+      <div class="flex gap-2 items-center justify-evenly">
         <ButtonTableInteraction
           :aria-label="
             contact.authorAccountUsername !== signedInUsername
@@ -34,17 +34,19 @@
           :disabled="
             contact.authorAccountUsername !== signedInUsername || isEditing
           "
-          :icon-id="['fas', 'edit']"
           is-title-show
           @click="$emit('edit')"
-        />
+        >
+          <IconPencil />
+        </ButtonTableInteraction>
         <ButtonTableInteraction
           :aria-label="$t('contactDelete')"
           :disabled="isDeleting"
-          :icon-id="['fas', 'trash']"
           is-title-show
           @click="$emit('delete')"
-        />
+        >
+          <IconTrash />
+        </ButtonTableInteraction>
       </div>
     </td>
   </tr>

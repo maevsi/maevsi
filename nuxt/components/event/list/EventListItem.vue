@@ -9,10 +9,9 @@
     }"
   >
     <Button
-      class="flex flex-col"
       :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >
-      <Card>
+      <Card class="flex-1">
         <!-- <div
           :class="{
             'bg-yellow-100 dark:bg-yellow-900':

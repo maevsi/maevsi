@@ -10,7 +10,7 @@
     >
       <div class="mb-1 md:mb-0 md:pr-4 md:text-right md:w-1/3">
         <label
-          class="font-semibold inline-flex md:flex-col items-baseline md:items-end space-x-2 md:space-x-0"
+          class="font-semibold inline-flex md:flex-col items-baseline md:items-end gap-2 md:gap-0"
           :class="{
             'form-input-success': success,
             'form-input-warning': warning,
@@ -39,7 +39,7 @@
         <slot name="inputSuccess" />
       </div>
       <div class="md:w-1/3" />
-      <div class="text-gray-500 dark:text-gray-400 text-left text-sm md:w-2/3">
+      <div class="md:w-2/3">
         <slot name="inputInfo" />
       </div>
       <div class="md:w-1/3" />

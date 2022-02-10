@@ -41,45 +41,50 @@
             <td class="hidden xl:table-cell">
               {{ invitation.uuid }}
             </td>
-            <td
-              class="flex items-center justify-evenly ml-4 text-text-dark dark:text-text-bright"
-            >
-              <ButtonTableInteraction
-                :aria-label="$t('invitationView')"
-                :icon-id="['fas', 'eye']"
-                is-title-show
-                @click="
-                  $router.push({
-                    path: localePath(
-                      `/event/${event.authorUsername}/${event.slug}`
-                    ),
-                    query: { ic: invitation.uuid },
-                  })
-                "
-              />
-              <ButtonTableInteraction
-                :aria-label="
-                  invitation.contactByContactId.accountUsername ||
-                  invitation.contactByContactId.emailAddress
-                    ? $t('invitationSend')
-                    : $t('disabledReasonEmailAddressNone')
-                "
-                :disabled="
-                  (!invitation.contactByContactId.accountUsername &&
-                    !invitation.contactByContactId.emailAddress) ||
-                  pending.sends.includes(invitation.uuid)
-                "
-                :icon-id="['fas', 'paper-plane']"
-                is-title-show
-                @click="send(invitation)"
-              />
-              <ButtonTableInteraction
-                :aria-label="$t('invitationDelete')"
-                :disabled="pending.deletions.includes(invitation.uuid)"
-                :icon-id="['fas', 'trash']"
-                is-title-show
-                @click="delete_(invitation.uuid)"
-              />
+            <td>
+              <div
+                class="flex items-center justify-evenly ml-4 text-text-dark dark:text-text-bright"
+              >
+                <ButtonTableInteraction
+                  :aria-label="$t('invitationView')"
+                  is-title-show
+                  @click="
+                    $router.push({
+                      path: localePath(
+                        `/event/${event.authorUsername}/${event.slug}`
+                      ),
+                      query: { ic: invitation.uuid },
+                    })
+                  "
+                >
+                  <IconEye />
+                </ButtonTableInteraction>
+                <ButtonTableInteraction
+                  :aria-label="
+                    invitation.contactByContactId.accountUsername ||
+                    invitation.contactByContactId.emailAddress
+                      ? $t('invitationSend')
+                      : $t('disabledReasonEmailAddressNone')
+                  "
+                  :disabled="
+                    (!invitation.contactByContactId.accountUsername &&
+                      !invitation.contactByContactId.emailAddress) ||
+                    pending.sends.includes(invitation.uuid)
+                  "
+                  is-title-show
+                  @click="send(invitation)"
+                >
+                  <IconPaperPlane />
+                </ButtonTableInteraction>
+                <ButtonTableInteraction
+                  :aria-label="$t('invitationDelete')"
+                  :disabled="pending.deletions.includes(invitation.uuid)"
+                  is-title-show
+                  @click="delete_(invitation.uuid)"
+                >
+                  <IconTrash />
+                </ButtonTableInteraction>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -93,10 +98,12 @@
           ? allInvitations.totalCount >= event.inviteeCountMaximum
           : false
       "
-      :icon-id="['fas', 'plus']"
       @click="add()"
     >
       {{ $t('invitationAdd') }}
+      <template slot="prefix">
+        <IconPlus />
+      </template>
     </ButtonColored>
     <p class="text-center text-gray-500 dark:text-gray-400">
       {{

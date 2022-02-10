@@ -6,7 +6,7 @@
     "
   >
     <span>
-      <FontAwesomeIcon :icon="['fas', 'map-marker']" :title="$t('location')" />
+      <IconMapMarker :title="$t('location')" />
     </span>
     <AppLink
       v-if="event.isInPerson && event.location"

@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="formInput && formInput.$model && !formInput.$invalid"
-    class="text-green-600 text-left"
+    class="flex gap-1 items-center text-green-600"
   >
     <slot />
   </div>

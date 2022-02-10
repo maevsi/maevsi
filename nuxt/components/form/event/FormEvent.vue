@@ -94,7 +94,6 @@
       <FormRadioButtonGroup
         id="input-visibility"
         v-model="$v.form.visibility.$model"
-        class="text-left"
         name="visibility"
         :titles-values="[
           [$t('visibilityPublic'), 'PUBLIC'],
@@ -181,7 +180,9 @@
         </FormInputError>
       </template>
       <template slot="inputInfo">
-        {{ $t('inputInfoLocation') }}
+        <FormInputInfo>
+          {{ $t('inputInfoLocation') }}
+        </FormInputInfo>
       </template>
     </FormInput>
     <FormInputUrl

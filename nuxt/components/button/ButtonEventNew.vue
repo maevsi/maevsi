@@ -1,11 +1,13 @@
 <template>
   <ButtonColored
     :aria-label="$t('new')"
-    :icon-id="['fas', 'plus']"
     :to="localePath('/task/event/create')"
     @click="$emit('click')"
   >
     {{ $t('new') }}
+    <template slot="prefix">
+      <IconPlus />
+    </template>
   </ButtonColored>
 </template>
 

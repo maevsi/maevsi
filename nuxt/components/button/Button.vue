@@ -4,32 +4,24 @@
     ref="button"
     :append="append"
     :aria-label="ariaLabel"
-    :class="[...(buttonClass ? [buttonClass] : [])].join(' ')"
+    class="flex gap-2 items-center"
     :disabled="disabled"
     :is-underlined="false"
     :to="to"
   >
-    <FontAwesomeIcon
-      v-if="iconId"
-      :class="{ 'mr-2': $slots.default }"
-      :icon="iconId"
-    />
+    <slot name="prefix" />
     <slot />
   </AppLink>
   <button
     v-else
     ref="button"
     :aria-label="ariaLabel"
-    :class="[...(buttonClass ? [buttonClass] : [])].join(' ')"
+    class="flex gap-2 items-center"
     :disabled="disabled"
     :type="type"
     @click="$emit('click')"
   >
-    <FontAwesomeIcon
-      v-if="iconId"
-      :class="{ 'mr-2': $slots.default }"
-      :icon="iconId"
-    />
+    <slot name="prefix" />
     <slot />
   </button>
 </template>
@@ -48,17 +40,9 @@ export default defineComponent({
       required: true,
       type: String,
     },
-    buttonClass: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
     disabled: {
       default: false,
       type: Boolean,
-    },
-    iconId: {
-      default: undefined,
-      type: Array as PropType<string[] | undefined>,
     },
     to: {
       default: undefined,

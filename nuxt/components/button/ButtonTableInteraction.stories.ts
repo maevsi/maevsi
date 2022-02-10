@@ -16,11 +16,9 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
     props: Object.keys(argTypes),
     template:
       // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<ButtonTableInteraction v-bind="$props" @click="click">ButtonTableInteraction</ButtonTableInteraction>',
+      '<ButtonTableInteraction v-bind="$props" @click="click"><IconHome /></ButtonTableInteraction>',
   })
 
 export const Default = Template.bind({})
 // @ts-ignore
-Default.args = {
-  iconId: ['fas', 'home'],
-}
+Default.args = {}

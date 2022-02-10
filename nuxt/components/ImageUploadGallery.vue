@@ -36,37 +36,29 @@
               <div
                 class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0"
               >
-                <div class="flex h-full justify-center items-center">
-                  <FontAwesomeIcon
-                    :icon="['fas', 'trash']"
-                    class="m-2"
-                    size="lg"
-                    :title="$t('iconTrash')"
-                  />
+                <div class="flex h-full items-center justify-center">
+                  <IconTrash class="m-2" :title="$t('iconTrash')" />
                 </div>
               </div>
               <div
                 class="absolute right-0 top-0"
                 @click="deleteImageUpload(upload.id)"
               >
-                <button
+                <Button
                   :aria-label="$t('iconTrashLabel')"
-                  class="flex h-full justify-center items-center"
-                  type="button"
+                  class="flex h-full items-center justify-center"
                 >
-                  <FontAwesomeIcon
-                    :icon="['fas', 'trash']"
+                  <IconTrash
                     class="m-2 text-text-bright"
-                    size="lg"
                     :title="$t('iconTrash')"
                   />
-                </button>
+                </Button>
               </div>
             </div>
           </li>
         </template>
         <li>
-          <button
+          <Button
             v-if="allowAddition"
             :aria-label="
               $t('iconAdd', {
@@ -74,22 +66,17 @@
                 sizeTotal: bytesToString(accountUploadQuotaBytes),
               })
             "
-            class="bg-gray-200 h-32 m-1 w-32"
+            class="bg-gray-200 flex h-32 items-center justify-center w-32"
             :title="
               $t('iconAdd', {
                 sizeUsed: bytesToString(sizeByteTotal),
                 sizeTotal: bytesToString(accountUploadQuotaBytes),
               })
             "
-            type="button"
             @click="changeProfilePicture"
           >
-            <FontAwesomeIcon
-              :icon="['fas', 'plus']"
-              class="text-gray-500"
-              size="2x"
-            />
-          </button>
+            <IconPlus classes="h-12 text-gray-500 w-12" />
+          </Button>
           <input
             id="input-profile-picture"
             accept="image/*"
@@ -115,7 +102,6 @@
     <p v-else class="text-center">{{ $t('noPictures') }}</p>
     <Modal
       id="ModalImageUploadGallery"
-      :submit-icon-id="['fas', 'upload']"
       :submit-name="$t('upload')"
       :submit-task-provider="() => getUploadBlobPromise()"
     >
@@ -130,6 +116,7 @@
         />
       </div>
       <template slot="header">{{ $t('uploadNew') }}</template>
+      <template slot="submit-icon"><IconUpload /></template>
     </Modal>
   </div>
 </template>

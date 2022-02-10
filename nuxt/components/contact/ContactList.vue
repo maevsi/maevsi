@@ -47,12 +47,11 @@
       </table>
     </ScrollContainer>
     <br />
-    <ButtonColored
-      :aria-label="$t('contactAdd')"
-      :icon-id="['fas', 'plus']"
-      @click="add()"
-    >
+    <ButtonColored :aria-label="$t('contactAdd')" @click="add()">
       {{ $t('contactAdd') }}
+      <template slot="prefix">
+        <IconPlus />
+      </template>
     </ButtonColored>
     <Modal id="ModalContact" @close="onClose">
       <FormContact

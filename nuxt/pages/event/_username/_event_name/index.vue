@@ -12,29 +12,23 @@
       "
       class="flex justify-evenly"
     >
-      <ButtonColored
-        append
-        :aria-label="$t('invitations')"
-        :icon-id="['fas', 'envelope']"
-        to="invitation"
-      >
+      <ButtonColored append :aria-label="$t('invitations')" to="invitation">
         {{ $t('invitations') }}
+        <template slot="prefix">
+          <IconEnvelope />
+        </template>
       </ButtonColored>
-      <ButtonColored
-        append
-        :aria-label="$t('attendances')"
-        :icon-id="['fas', 'user-check']"
-        to="attendance"
-      >
+      <ButtonColored append :aria-label="$t('attendances')" to="attendance">
         {{ $t('attendances') }}
+        <template slot="prefix">
+          <IconUserCheck />
+        </template>
       </ButtonColored>
-      <ButtonColored
-        append
-        :aria-label="$t('settings')"
-        :icon-id="['fas', 'cog']"
-        to="settings"
-      >
+      <ButtonColored append :aria-label="$t('settings')" to="settings">
         {{ $t('settings') }}
+        <template slot="prefix">
+          <IconCog />
+        </template>
       </ButtonColored>
     </div>
     <CardInfo v-if="$route.query.ic && contact">
@@ -42,7 +36,6 @@
       <ButtonColored
         append
         :aria-label="$t('invitationSelectionClear')"
-        :icon-id="['fas', 'times']"
         @click="
           $router.push({
             append: true,
@@ -52,6 +45,9 @@
         "
       >
         {{ $t('invitationSelectionClear') }}
+        <template slot="prefix">
+          <IconX />
+        </template>
       </ButtonColored>
     </CardInfo>
     <br />
@@ -88,19 +84,23 @@
       <div class="flex gap-4 justify-center">
         <ButtonColored
           :aria-label="$t('qrCodeShow')"
-          :icon-id="['fas', 'qrcode']"
           class="text-text-bright"
           @click="qrCodeShow"
         >
           {{ $t('qrCodeShow') }}
+          <template slot="prefix">
+            <IconQrcode />
+          </template>
         </ButtonColored>
         <ButtonColored
           :aria-label="$t('iCalDownload')"
-          :icon-id="['fas', 'download']"
           class="text-text-bright"
           @click="downloadIcal"
         >
           {{ $t('iCalDownload') }}
+          <template slot="prefix">
+            <IconDownload />
+          </template>
         </ButtonColored>
       </div>
       <div v-if="invitation">
@@ -120,13 +120,11 @@
                 v-if="invitation.feedback === 'CANCELED'"
                 class="flex font-semibold items-center text-red-600"
               >
-                <FontAwesomeIcon
-                  class="mr-2"
-                  :icon="['fas', 'times-circle']"
-                  size="lg"
-                  title="canceled"
-                />
+                <IconXCircle class="mr-2" title="canceled" />
                 {{ $t('invitationCanceled') }}
+                <template slot="prefix">
+                  <IconXCircle />
+                </template>
               </div>
               <ButtonColored
                 v-if="
@@ -142,13 +140,11 @@
                 v-if="invitation.feedback === 'ACCEPTED'"
                 class="flex font-semibold items-center text-green-600"
               >
-                <FontAwesomeIcon
-                  class="mr-2"
-                  :icon="['fas', 'check-circle']"
-                  size="lg"
-                  title="accepted"
-                />
+                <IconCheckCircle class="mr-2" title="accepted" />
                 {{ $t('invitationAccepted') }}
+                <template slot="prefix">
+                  <IconCheckCircle />
+                </template>
               </div>
               <ButtonColored
                 v-if="

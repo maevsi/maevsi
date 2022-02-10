@@ -1,24 +1,18 @@
 <template>
-  <FontAwesomeIcon
-    v-if="event && event.isArchived"
-    :icon="['fas', 'archive']"
-    :title="$t('archived')"
-  />
-  <FontAwesomeIcon
+  <IconArchive v-if="event && event.isArchived" :title="$t('archived')" />
+  <IconGlobe
     v-else-if="event && event.visibility === 'PUBLIC'"
-    :icon="['fas', 'globe-africa']"
     :title="$t('public')"
   />
-  <FontAwesomeIcon
+  <IconKey
     v-else-if="event && event.visibility === 'PRIVATE'"
-    :icon="['fas', 'key']"
     :title="$t('private')"
   />
-  <FontAwesomeIcon v-else :icon="['fas', 'bug']" :title="$t('bug')" />
+  <IconBug v-else :title="$t('bug')" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from '#app'
+import { defineComponent, PropType } from '#app'
 import { Event } from '~/types/event'
 
 export default defineComponent({

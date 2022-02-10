@@ -1,125 +1,165 @@
 <template>
-  <div v-if="editor">
-    <div class="flex overflow-auto space-x-4">
-      <div class="flex space-x-1">
+  <div v-if="editor" class="flex flex-col gap-1">
+    <div class="flex overflow-auto gap-4">
+      <div class="flex gap-1">
         <Button
           :aria-label="$t('undo')"
-          :icon-id="['fas', 'undo']"
           :title="$t('undo')"
           @click="editor.chain().focus().undo().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconArrowRotateLeft />
+          </template>
+        </Button>
         <Button
           :aria-label="$t('redo')"
-          :icon-id="['fas', 'redo']"
           :title="$t('redo')"
           @click="editor.chain().focus().redo().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconArrowRotateRight />
+          </template>
+        </Button>
       </div>
-      <div class="flex space-x-1">
+      <div class="flex gap-1">
         <Button
           :aria-label="$t('bold')"
           :class="{ 'is-active': editor.isActive('bold') }"
-          :icon-id="['fas', 'bold']"
           :title="$t('bold')"
           @click="editor.chain().focus().toggleBold().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconBold />
+          </template>
+        </Button>
         <Button
           :aria-label="$t('italic')"
           :class="{ 'is-active': editor.isActive('italic') }"
-          :icon-id="['fas', 'italic']"
           :title="$t('italic')"
           @click="editor.chain().focus().toggleItalic().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconItalic />
+          </template>
+        </Button>
         <Button
           :aria-label="$t('strike')"
           :class="{ 'is-active': editor.isActive('strike') }"
-          :icon-id="['fas', 'strikethrough']"
           :title="$t('strike')"
           @click="editor.chain().focus().toggleStrike().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconStrikeThrough />
+          </template>
+        </Button>
       </div>
-      <div class="flex space-x-1">
+      <div class="flex gap-1">
         <Button
           :aria-label="$t('paragraph')"
-          :icon-id="['fas', 'paragraph']"
           :title="$t('paragraph')"
           @click="editor.chain().focus().setParagraph().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconParagraph />
+          </template>
+        </Button>
         <Button
           :aria-label="$t('heading')"
-          :icon-id="['fas', 'heading']"
           :title="$t('heading')"
           @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-        />
+        >
+          <template slot="prefix">
+            <IconHeading />
+          </template>
+        </Button>
         <Button
           :aria-label="$t('heading')"
-          :icon-id="['fas', 'heading']"
           :title="$t('heading')"
           @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-        />
+        >
+          <template slot="prefix">
+            <IconHeading />
+          </template>
+        </Button>
         <Button
           :aria-label="$t('heading')"
-          :icon-id="['fas', 'heading']"
           :title="$t('heading')"
           @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-        />
+        >
+          <template slot="prefix">
+            <IconHeading />
+          </template>
+        </Button>
       </div>
-      <div class="flex space-x-1">
+      <div class="flex gap-1">
         <Button
           :aria-label="$t('listUl')"
-          :icon-id="['fas', 'list-ul']"
           :title="$t('listUl')"
           @click="editor.chain().focus().toggleBulletList().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconListUl />
+          </template>
+        </Button>
         <Button
           :aria-label="$t('listOl')"
-          :icon-id="['fas', 'list-ol']"
           :title="$t('listOl')"
           @click="editor.chain().focus().toggleOrderedList().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconListOl />
+          </template>
+        </Button>
       </div>
-      <div class="flex space-x-1">
-        <Button
-          :aria-label="$t('link')"
-          :icon-id="['fas', 'link']"
-          :title="$t('link')"
-          @click="setLink"
-        />
+      <div class="flex gap-1">
+        <Button :aria-label="$t('link')" :title="$t('link')" @click="setLink">
+          <template slot="prefix">
+            <IconLink />
+          </template>
+        </Button>
         <Button
           :aria-label="$t('linkRemove')"
           :disabled="!editor.isActive('link')"
-          :icon-id="['fas', 'unlink']"
           :title="$t('linkRemove')"
           @click="editor.chain().focus().unsetLink().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconLinkSlash />
+          </template>
+        </Button>
         <Button
           :aria-label="$t('blockquote')"
-          :icon-id="['fas', 'quote-right']"
           :title="$t('blockquote')"
           @click="editor.chain().focus().toggleBlockquote().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconQuoteLeft />
+          </template>
+        </Button>
         <Button
           :aria-label="$t('code')"
-          :icon-id="['fas', 'code']"
           :title="$t('code')"
           @click="editor.chain().focus().toggleCode().run()"
-        />
+        >
+          <template slot="prefix">
+            <IconCode />
+          </template>
+        </Button>
       </div>
-      <div class="flex space-x-1">
-        <Button
+      <div class="flex gap-1">
+        <IconMinus
           :aria-label="$t('horizontalRule')"
-          :icon-id="['fas', 'arrows-alt-v']"
           :title="$t('horizontalRule')"
           @click="editor.chain().focus().setHorizontalRule().run()"
         />
       </div>
       <!--
-      <button
+      <Button
         :class="{ 'is-active': editor.isActive('codeBlock') }"
         @click="editor.chain().focus().toggleCodeBlock().run()"
       >
         code block
-      </button> -->
+      </Button> -->
     </div>
     <EditorContent class="form-input" :editor="editor" />
   </div>

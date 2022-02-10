@@ -25,10 +25,7 @@
         <span
           class="cursor-default inline-flex items-center pointer-events-none px-3 rounded-r border border-l-0 border-gray-300 bg-gray-100 text-gray-500"
         >
-          <FontAwesomeIcon
-            :icon="['fas', 'search']"
-            :title="$t('iconSearch')"
-          />
+          <IconSearch :title="$t('iconSearch')" />
         </span>
       </div>
       <template slot="inputError">

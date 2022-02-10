@@ -12,7 +12,7 @@
         class="md:hidden justify-self-start"
         @click="$emit('onMenuShow')"
       >
-        <IconMenu class="h-8 w-8" />
+        <IconMenu classes="h-8 w-8" />
       </ButtonIcon>
       <Button
         :aria-label="$t('home')"
