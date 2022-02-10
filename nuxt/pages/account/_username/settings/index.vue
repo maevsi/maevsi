@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="flex flex-col sm:flex-row items-center justify-center min-w-0 py-4"
+      class="flex min-w-0 flex-col items-center justify-center py-4 sm:flex-row"
     >
       <Button
         :aria-label="$t('profilePictureChange')"
@@ -15,7 +15,7 @@
           width="96"
         />
       </Button>
-      <h1 class="truncate max-w-full sm:w-auto">
+      <h1 class="max-w-full truncate sm:w-auto">
         {{ $route.params.username }}
       </h1>
       <ModalImageSelection

@@ -22,7 +22,7 @@
       {{ contact.url || '–' }}
     </td>
     <td>
-      <div class="flex gap-2 items-center justify-evenly">
+      <div class="flex items-center justify-evenly gap-2">
         <ButtonTableInteraction
           :aria-label="
             contact.authorAccountUsername !== signedInUsername

@@ -19,7 +19,7 @@
             :class="{
               'border-red-600': selectable && upload === selectedItem,
             }"
-            class="border-4 border-transparent box-border relative"
+            class="relative box-border border-4 border-transparent"
             @click="toggleSelect(upload)"
           >
             <LoaderImage
@@ -34,7 +34,7 @@
             />
             <div v-if="allowDeletion">
               <div
-                class="absolute bg-red-600 opacity-75 right-0 rounded-bl-lg top-0"
+                class="absolute right-0 top-0 rounded-bl-lg bg-red-600 opacity-75"
               >
                 <div class="flex h-full items-center justify-center">
                   <IconTrash class="m-2" :title="$t('iconTrash')" />
@@ -66,7 +66,7 @@
                 sizeTotal: bytesToString(accountUploadQuotaBytes),
               })
             "
-            class="bg-gray-200 flex h-32 items-center justify-center w-32"
+            class="flex h-32 w-32 items-center justify-center bg-gray-200"
             :title="
               $t('iconAdd', {
                 sizeUsed: bytesToString(sizeByteTotal),

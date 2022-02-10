@@ -1,10 +1,10 @@
 <template>
   <footer
-    class="bg-background-bright dark:bg-background-dark leading-6 text-sm"
+    class="bg-background-bright text-sm leading-6 dark:bg-background-dark"
   >
     <div class="container mx-auto px-2 py-8">
       <!-- Justifying evenly, instead of "between", centers a single element. -->
-      <div class="flex flex-wrap justify-evenly mx-auto w-5/6">
+      <div class="mx-auto flex w-5/6 flex-wrap justify-evenly">
         <FooterCategory :heading="$t('product')">
           <AppLink :to="localePath('/#overview')">
             {{ $t('overview') }}
@@ -87,16 +87,16 @@
         </FooterCategory>
       </div>
       <div class="p-2" />
-      <div class="flex items-center mx-auto w-9/12">
-        <div class="bg-gray-500 dark:bg-gray-400 h-px flex-1" />
+      <div class="mx-auto flex w-9/12 items-center">
+        <div class="h-px flex-1 bg-gray-500 dark:bg-gray-400" />
         <LoaderImage
           :alt="$t('maevsiLogo')"
-          class="brightness-0 h-12 dark:invert mx-12 opacity-50 dark:opacity-60 w-12"
+          class="mx-12 h-12 w-12 opacity-50 brightness-0 dark:opacity-60 dark:invert"
           height="48"
           src="/assets/static/logos/maevsi.svg"
           width="48"
         />
-        <div class="bg-gray-500 dark:bg-gray-400 h-px flex-1" />
+        <div class="h-px flex-1 bg-gray-500 dark:bg-gray-400" />
       </div>
       <p class="p-2 text-center text-gray-500 dark:text-gray-400">
         {{ $t('copyright', { year: new Date().getFullYear() }) }}

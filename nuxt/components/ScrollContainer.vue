@@ -1,7 +1,7 @@
 <template>
   <div
     ref="scrollContainer"
-    class="border-b border-neutral-300 dark:border-neutral-600 max-h-[70vh] overflow-auto sm:rounded-lg"
+    class="max-h-[70vh] overflow-auto border-b border-neutral-300 dark:border-neutral-600 sm:rounded-lg"
     @scroll.passive="onScroll"
   >
     <slot />

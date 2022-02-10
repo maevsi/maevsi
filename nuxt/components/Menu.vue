@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="bg-background-bright dark:bg-background-dark h-full w-64 md:w-72 lg:w-80 xl:w-96 p-2"
+    class="h-full w-64 bg-background-bright p-2 dark:bg-background-dark md:w-72 lg:w-80 xl:w-96"
   >
     <div class="flex flex-col">
       <ButtonIcon
@@ -11,11 +11,11 @@
       >
         <IconX />
       </ButtonIcon>
-      <div class="flex flex-col p-6 lg:p-8 gap-8">
-        <div v-if="signedInUsername" class="flex mt-0 md:mt-auto">
+      <div class="flex flex-col gap-8 p-6 lg:p-8">
+        <div v-if="signedInUsername" class="mt-0 flex md:mt-auto">
           <Button
             :aria-label="signedInUsername"
-            class="flex items-center min-w-0 gap-2 text-text-dark dark:text-text-bright"
+            class="flex min-w-0 items-center gap-2 text-text-dark dark:text-text-bright"
             :to="localePath(`/account/${signedInUsername}`)"
             @click.native="$emit('onMenuHide')"
           >
@@ -28,7 +28,7 @@
             <span class="truncate">{{ signedInUsername }}</span>
           </Button>
           <!-- Fills the remaining space -->
-          <div class="flex-1 w-12" />
+          <div class="w-12 flex-1" />
           <div class="flex items-center gap-2">
             <ButtonIcon
               :aria-label="$t('accountSettings')"
@@ -73,8 +73,8 @@
           <IconImages />
           {{ $t('uploads') }}
         </Button>
-        <hr v-if="signedInUsername" class="md:hidden opacity-40" />
-        <div class="flex md:hidden flex-col gap-4">
+        <hr v-if="signedInUsername" class="opacity-40 md:hidden" />
+        <div class="flex flex-col gap-4 md:hidden">
           <ButtonColored
             :aria-label="signedInUsername ? $t('eventNew') : $t('signIn')"
             :is-block="true"

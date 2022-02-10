@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-full items-center justify-center">
-    <div class="bg-white dark:bg-black rounded-full">
+    <div class="rounded-full bg-white dark:bg-black">
       <svg
         class="animate-spin text-black dark:text-white"
         xmlns="http://www.w3.org/2000/svg"

@@ -18,9 +18,9 @@
       />
       <span
         v-if="isVerifiable && formInput.$model && !formInput.$invalid"
-        class="absolute px-3 right-0 top-1/2 -translate-y-1/2"
+        class="absolute right-0 top-1/2 -translate-y-1/2 px-3"
       >
-        <div class="bg-gray-50 rounded-full">
+        <div class="rounded-full bg-gray-50">
           <IconCheckCircle class="text-green-600" :title="$t('iconCheck')" />
         </div>
       </span>

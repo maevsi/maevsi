@@ -4,12 +4,12 @@
       {{ $t('browserUnsupported') }}
     </CardInfo>
     <div
-      class="grid grid-cols-3 items-center mx-auto p-4 md:px-8"
+      class="mx-auto grid grid-cols-3 items-center p-4 md:px-8"
       :class="{ container: !signedInUsername }"
     >
       <ButtonIcon
         :aria-label="$t('menuShow')"
-        class="md:hidden justify-self-start"
+        class="justify-self-start md:hidden"
         @click="$emit('onMenuShow')"
       >
         <IconMenu classes="h-8 w-8" />
@@ -25,7 +25,7 @@
         <label class="hidden" for="search">{{ $t('search') }}</label>
         <input
           id="search"
-          class="col-span-2 md:col-span-1 hidden md:invisible rounded"
+          class="col-span-2 hidden rounded md:invisible md:col-span-1"
           :class="{ 'md:col-span-2': signedInUsername }"
           disabled
           placeholder="search"
@@ -33,7 +33,7 @@
         />
       </div>
       <div
-        class="col-start-3 hidden md:flex gap-4 items-center justify-self-end whitespace-nowrap"
+        class="col-start-3 hidden items-center gap-4 justify-self-end whitespace-nowrap md:flex"
       >
         <ButtonColored
           :aria-label="signedInUsername ? $t('events') : $t('signIn')"

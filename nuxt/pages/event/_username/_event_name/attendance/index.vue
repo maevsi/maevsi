@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <div class="flex flex-col gap-4 justify-center">
+    <div class="flex flex-col justify-center gap-4">
       <ButtonColored
         :aria-label="$t('qrCodeScan')"
         class="text-text-bright"

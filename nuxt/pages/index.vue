@@ -1,9 +1,9 @@
 <template>
   <div>
-    <section id="overview" class="flex items-center mb-16 md:mb-32">
-      <div class="flex flex-col gap-4 w-full lg:w-1/2">
+    <section id="overview" class="mb-16 flex items-center md:mb-32">
+      <div class="flex w-full flex-col gap-4 lg:w-1/2">
         <i18n
-          class="font-extrabold text-4xl sm:text-5xl md:text-5xl xl:text-7xl text-left"
+          class="text-left text-4xl font-extrabold sm:text-5xl md:text-5xl xl:text-7xl"
           path="title"
           tag="h1"
         >
@@ -18,10 +18,10 @@
           </template>
         </i18n>
         <div>
-          <p class="font-normal leading-8 text-lg">
+          <p class="text-lg font-normal leading-8">
             {{ $t('maevsiDescription') }}
           </p>
-          <p class="font-normal leading-8 text-lg">{{ $t('alpha') }}</p>
+          <p class="text-lg font-normal leading-8">{{ $t('alpha') }}</p>
         </div>
         <ButtonColored
           :aria-label="$t('testNowFree')"
@@ -32,17 +32,17 @@
       </div>
       <LoaderImage
         :alt="$t('heroImage')"
-        class="hidden lg:block p-4 lg:w-1/2"
+        class="hidden p-4 lg:block lg:w-1/2"
         height="861"
         src="/assets/static/images/hero_background.png"
         width="750"
       />
     </section>
     <section class="mb-16 md:mb-32">
-      <h2 class="font-extrabold text-center text-5xl">
+      <h2 class="text-center text-5xl font-extrabold">
         {{ $t('stepsTitle') }}
       </h2>
-      <p class="leading-relaxed text-center text-lg">
+      <p class="text-center text-lg leading-relaxed">
         {{ $t('stepsDescription') }}
       </p>
       <div class="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap">
@@ -68,7 +68,7 @@
         />
       </div>
     </section>
-    <section class="lg:flex items-center mb-16 md:mb-32">
+    <section class="mb-16 items-center md:mb-32 lg:flex">
       <LoaderImage
         :alt="$t('heroImage')"
         class="mx-auto sm:mr-8 lg:w-1/2"
@@ -77,10 +77,10 @@
         width="750"
       />
       <div class="flex flex-col gap-4 lg:w-1/2">
-        <h2 class="font-extrabold text-4xl">
+        <h2 class="text-4xl font-extrabold">
           {{ $t('smartphoneTitle') }}
         </h2>
-        <p class="font-normal leading-8 text-lg">
+        <p class="text-lg font-normal leading-8">
           {{ $t('smartphoneDescription') }}
         </p>
         <ButtonColored :aria-label="$t('testNow')" :to="localePath('/event')">
@@ -90,7 +90,7 @@
     </section>
     <section id="features" class="mb-16">
       <i18n
-        class="font-extrabold text-center text-5xl"
+        class="text-center text-5xl font-extrabold"
         path="benefitsTitle"
         tag="h2"
       >

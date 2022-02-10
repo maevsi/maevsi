@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border border-neutral-300 dark:border-neutral-600 p-4 rounded text-text-dark dark:text-text-bright"
+    class="rounded border border-neutral-300 p-4 text-text-dark dark:border-neutral-600 dark:text-text-bright"
   >
     <slot />
   </div>

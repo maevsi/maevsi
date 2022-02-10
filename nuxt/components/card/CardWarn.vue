@@ -1,6 +1,6 @@
 <template>
   <Card
-    class="bg-yellow-600 border-0 font-medium overflow-hidden text-center text-white"
+    class="overflow-hidden border-0 bg-yellow-600 text-center font-medium text-white"
     :class="{ 'rounded-none': isEdgy }"
   >
     <slot />

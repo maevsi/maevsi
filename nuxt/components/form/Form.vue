@@ -4,7 +4,7 @@
     ref="form"
     :class="[
       {
-        'animate-shake border border-red-500 rounded': graphqlErrorComputed,
+        'animate-shake rounded border border-red-500': graphqlErrorComputed,
       },
       formClass,
     ]"
@@ -13,7 +13,7 @@
   >
     <Card>
       <slot />
-      <div class="flex flex-col items-center justify-between mb-4 mt-6">
+      <div class="mb-4 mt-6 flex flex-col items-center justify-between">
         <ButtonColored
           ref="buttonSubmit"
           :aria-label="submitName"

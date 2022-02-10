@@ -18,9 +18,9 @@
               jwtDecoded && event.authorUsername === jwtDecoded.username,
           }"
         > -->
-        <div class="flex items-center mb-2 text-sm">
+        <div class="mb-2 flex items-center text-sm">
           <div
-            class="font-medium truncate"
+            class="truncate font-medium"
             :class="{
               'text-green-700 dark:text-green-600': $moment(
                 event.start
@@ -30,16 +30,16 @@
             {{ $moment(event.start).format('lll') }}
           </div>
         </div>
-        <div class="flex items-center mb-2 text-sm">
+        <div class="mb-2 flex items-center text-sm">
           <EventIconVisibility :event="event" :show-text="false" />
           <div class="flex items-baseline truncate">
-            <div class="font-bold mx-2 text-xl truncate">
+            <div class="mx-2 truncate text-xl font-bold">
               {{ event.name }}
             </div>
             <Owner :username="event.authorUsername" />
           </div>
         </div>
-        <p v-if="eventDescriptionTemplate" class="line-clamp-2 text-ellipsis">
+        <p v-if="eventDescriptionTemplate" class="text-ellipsis line-clamp-2">
           {{
             $htmlToText($domPurify.sanitize(eventDescriptionTemplate), {
               selectors: [{ selector: 'a', options: { ignoreHref: true } }],

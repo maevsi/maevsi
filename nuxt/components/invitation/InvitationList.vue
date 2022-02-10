@@ -11,7 +11,7 @@
     >
       <table class="border border-neutral-300 dark:border-neutral-600">
         <thead
-          class="bg-background-bright dark:bg-background-dark sticky top-0 z-10"
+          class="sticky top-0 z-10 bg-background-bright dark:bg-background-dark"
         >
           <tr>
             <th scope="col">
@@ -43,7 +43,7 @@
             </td>
             <td>
               <div
-                class="flex items-center justify-evenly ml-4 text-text-dark dark:text-text-bright"
+                class="ml-4 flex items-center justify-evenly text-text-dark dark:text-text-bright"
               >
                 <ButtonTableInteraction
                   :aria-label="$t('invitationView')"
