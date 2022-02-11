@@ -1,3 +1,10 @@
+## [0.119.1](https://github.com/maevsi/maevsi/compare/0.119.0...0.119.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* **tailwind:** reorder classes ([ab43181](https://github.com/maevsi/maevsi/commit/ab431819c56240c1986cf8b9f2dfbba251e79199))
+
 # [0.119.0](https://github.com/maevsi/maevsi/compare/0.118.4...0.119.0) (2022-02-10)
 
 
