@@ -57,6 +57,7 @@ export default defineNuxtConfig({
       'lodash-es',
       'moment',
       'node-fetch',
+      'pretty-bytes',
       'subscriptions-transport-ws',
       'tslib',
       'universal-cookie',
