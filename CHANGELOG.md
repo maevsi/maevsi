@@ -1,3 +1,10 @@
+## [0.119.2](https://github.com/maevsi/maevsi/compare/0.119.1...0.119.2) (2022-02-13)
+
+
+### Bug Fixes
+
+* **nuxt:** transpile pretty-bytes ([995bf22](https://github.com/maevsi/maevsi/commit/995bf22ccd84968ab43fae0fe33536eee91d1adf))
+
 ## [0.119.1](https://github.com/maevsi/maevsi/compare/0.119.0...0.119.1) (2022-02-11)
 
 
