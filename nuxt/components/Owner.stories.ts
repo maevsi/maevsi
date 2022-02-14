@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import Owner from './Owner.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: Owner,

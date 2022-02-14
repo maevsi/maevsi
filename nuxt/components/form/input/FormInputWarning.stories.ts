@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import FormInputWarning from './FormInputWarning.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: FormInputWarning,

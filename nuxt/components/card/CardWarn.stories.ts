@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import CardWarn from './CardWarn.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: CardWarn,

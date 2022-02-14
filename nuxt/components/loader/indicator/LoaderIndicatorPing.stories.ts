@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import LoaderIndicatorPing from './LoaderIndicatorPing.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: LoaderIndicatorPing,

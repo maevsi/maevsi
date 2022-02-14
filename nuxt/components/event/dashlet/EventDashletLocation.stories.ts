@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import EventDashletLocation from './EventDashletLocation.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: EventDashletLocation,

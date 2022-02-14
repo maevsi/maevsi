@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import EventDashletVisibility from './EventDashletVisibility.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: EventDashletVisibility,

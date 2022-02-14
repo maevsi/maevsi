@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import FormInputSuccess from './FormInputSuccess.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: FormInputSuccess,

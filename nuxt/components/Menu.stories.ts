@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import Menu from './Menu.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: Menu,
