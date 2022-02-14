@@ -1,7 +1,7 @@
 import { graphql } from 'msw'
 
-import { defineComponent } from '#app'
 import ImageUploadGallery from './ImageUploadGallery.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: ImageUploadGallery,

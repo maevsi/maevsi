@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import FormInputInfo from './FormInputInfo.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: FormInputInfo,

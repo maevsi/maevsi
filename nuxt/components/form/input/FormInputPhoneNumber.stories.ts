@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import FormInputPhoneNumber from './FormInputPhoneNumber.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: FormInputPhoneNumber,

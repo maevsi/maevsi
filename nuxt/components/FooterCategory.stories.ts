@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import FooterCategory from './FooterCategory.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: FooterCategory,

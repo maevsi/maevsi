@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import ScrollContainer from './ScrollContainer.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: ScrollContainer,

@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import FormInputEmailAddress from './FormInputEmailAddress.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: FormInputEmailAddress,

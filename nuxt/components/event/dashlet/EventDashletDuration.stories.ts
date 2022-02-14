@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import EventDashletDuration from './EventDashletDuration.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: EventDashletDuration,

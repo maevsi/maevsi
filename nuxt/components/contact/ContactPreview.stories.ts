@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import ContactPreview from './ContactPreview.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: ContactPreview,

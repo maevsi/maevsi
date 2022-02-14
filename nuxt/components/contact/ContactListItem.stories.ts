@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import ContactListItem from './ContactListItem.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: ContactListItem,

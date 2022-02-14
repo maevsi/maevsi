@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import EventDashletAttendanceType from './EventDashletAttendanceType.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: EventDashletAttendanceType,

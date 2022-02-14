@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import FormInputPassword from './FormInputPassword.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: FormInputPassword,

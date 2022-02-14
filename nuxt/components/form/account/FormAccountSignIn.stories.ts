@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import FormAccountSignIn from './FormAccountSignIn.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: FormAccountSignIn,

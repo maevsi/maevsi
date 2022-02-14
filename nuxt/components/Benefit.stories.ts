@@ -1,5 +1,5 @@
-import { defineComponent } from '#app'
 import Benefit from './Benefit.vue'
+import { defineComponent } from '#app'
 
 export default {
   component: Benefit,
