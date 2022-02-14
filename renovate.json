@@ -1,5 +1,11 @@
 {
   "extends": [
     "github>dargmuesli/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["puppeteer"],
+      "allowedVersions": "<=13.1.3"
+    }
   ]
 }
