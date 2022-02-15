@@ -23321,10 +23321,10 @@ vue-bundle-renderer@^0.3.5:
   dependencies:
     bundle-runner "^0.0.1"
 
-vue-chart-3@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vue-chart-3/-/vue-chart-3-2.1.0.tgz#1ba0c3bd31eb4b666aeaa1c1677874b7a204eff6"
-  integrity sha512-lnavgBofFk2XB3B8Ffaz3x8IGWtI2DM5sZdeTa61U0TpzGnr8eiqpjH8z72xFNeJJEIQmLSLKwV+uA5a+GxDeA==
+vue-chart-3@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vue-chart-3/-/vue-chart-3-2.1.1.tgz#2548ec9b80a56f3bf5b720942496c8d5f3f5008d"
+  integrity sha512-DJqJn3qfP7i4AU/2AsPE1p/mL4G37FKYqOoY0zE3q/gPd1/52dceyZzdb3t3SV7lKcHN9sDdWK7+IfKCMEfJlg==
   dependencies:
     "@vue/composition-api" "^1.4.5"
     csstype "3.0.10"
