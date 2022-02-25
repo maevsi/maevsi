@@ -1,5 +1,5 @@
-import ButtonHome from './ButtonHome.vue'
 import { defineComponent } from '#app'
+import ButtonHome from './ButtonHome.vue'
 
 const argTypes = { click: { action: 'click' } }
 type ArgTypesType = { argTypes: typeof argTypes }

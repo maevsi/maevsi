@@ -1,5 +1,5 @@
-import ContactAvatar from './ContactAvatar.vue'
 import { defineComponent } from '#app'
+import ContactAvatar from './ContactAvatar.vue'
 
 export default {
   component: ContactAvatar,

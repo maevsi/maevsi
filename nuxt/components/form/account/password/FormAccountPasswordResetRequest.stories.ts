@@ -1,5 +1,5 @@
-import FormAccountPasswordResetRequest from './FormAccountPasswordResetRequest.vue'
 import { defineComponent } from '#app'
+import FormAccountPasswordResetRequest from './FormAccountPasswordResetRequest.vue'
 
 export default {
   component: FormAccountPasswordResetRequest,

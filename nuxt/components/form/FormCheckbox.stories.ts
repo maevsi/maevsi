@@ -1,5 +1,5 @@
-import FormCheckbox from './FormCheckbox.vue'
 import { defineComponent } from '#app'
+import FormCheckbox from './FormCheckbox.vue'
 
 export default {
   component: FormCheckbox,

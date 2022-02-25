@@ -1,5 +1,5 @@
-import FormDelete from './FormDelete.vue'
 import { defineComponent } from '#app'
+import FormDelete from './FormDelete.vue'
 
 export default {
   component: FormDelete,

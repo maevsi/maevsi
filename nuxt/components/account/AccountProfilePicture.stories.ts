@@ -1,7 +1,7 @@
 import { graphql } from 'msw'
 
-import AccountProfilePicture from './AccountProfilePicture.vue'
 import { defineComponent } from '#app'
+import AccountProfilePicture from './AccountProfilePicture.vue'
 
 export default {
   component: AccountProfilePicture,

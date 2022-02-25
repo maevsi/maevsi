@@ -1,7 +1,7 @@
 import { graphql } from 'msw'
 
-import FormInvitation from './FormInvitation.vue'
 import { defineComponent } from '#app'
+import FormInvitation from './FormInvitation.vue'
 
 export default {
   component: FormInvitation,

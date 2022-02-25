@@ -1,5 +1,5 @@
-import EventDashletAttendanceType from './EventDashletAttendanceType.vue'
 import { defineComponent } from '#app'
+import EventDashletAttendanceType from './EventDashletAttendanceType.vue'
 
 export default {
   component: EventDashletAttendanceType,

@@ -1,5 +1,5 @@
-import FormAccountPasswordChange from './FormAccountPasswordChange.vue'
 import { defineComponent } from '#app'
+import FormAccountPasswordChange from './FormAccountPasswordChange.vue'
 
 export default {
   component: FormAccountPasswordChange,

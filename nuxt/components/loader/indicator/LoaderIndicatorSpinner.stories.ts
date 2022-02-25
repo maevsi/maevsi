@@ -1,5 +1,5 @@
-import LoaderIndicatorSpinner from './LoaderIndicatorSpinner.vue'
 import { defineComponent } from '#app'
+import LoaderIndicatorSpinner from './LoaderIndicatorSpinner.vue'
 
 export default {
   component: LoaderIndicatorSpinner,

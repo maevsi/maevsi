@@ -1,5 +1,5 @@
-import Footer from './Footer.vue'
 import { defineComponent } from '#app'
+import Footer from './Footer.vue'
 
 export default {
   component: Footer,

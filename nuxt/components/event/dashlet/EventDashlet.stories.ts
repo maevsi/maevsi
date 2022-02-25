@@ -1,5 +1,5 @@
-import EventDashlet from './EventDashlet.vue'
 import { defineComponent } from '#app'
+import EventDashlet from './EventDashlet.vue'
 
 export default {
   component: EventDashlet,

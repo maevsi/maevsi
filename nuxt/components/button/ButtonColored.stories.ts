@@ -1,5 +1,5 @@
-import ButtonColored from './ButtonColored.vue'
 import { defineComponent } from '#app'
+import ButtonColored from './ButtonColored.vue'
 
 const argTypes = { click: { action: 'click' } }
 type ArgTypesType = { argTypes: typeof argTypes }

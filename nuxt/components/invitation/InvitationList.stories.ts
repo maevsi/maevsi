@@ -1,7 +1,7 @@
 import { graphql } from 'msw'
 
-import InvitationList from './InvitationList.vue'
 import { defineComponent } from '#app'
+import InvitationList from './InvitationList.vue'
 
 export default {
   component: InvitationList,
