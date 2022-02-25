@@ -1,5 +1,5 @@
-import TabFlip from './TabFlip.vue'
 import { defineComponent } from '#app'
+import TabFlip from './TabFlip.vue'
 
 export default {
   component: TabFlip,

@@ -1,5 +1,5 @@
-import Loader from './Loader.vue'
 import { defineComponent } from '#app'
+import Loader from './Loader.vue'
 
 export default {
   component: Loader,

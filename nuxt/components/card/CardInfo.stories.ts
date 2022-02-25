@@ -1,5 +1,5 @@
-import CardInfo from './CardInfo.vue'
 import { defineComponent } from '#app'
+import CardInfo from './CardInfo.vue'
 
 export default {
   component: CardInfo,

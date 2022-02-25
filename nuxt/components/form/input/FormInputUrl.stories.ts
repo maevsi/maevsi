@@ -1,5 +1,5 @@
-import FormInputUrl from './FormInputUrl.vue'
 import { defineComponent } from '#app'
+import FormInputUrl from './FormInputUrl.vue'
 
 export default {
   component: FormInputUrl,

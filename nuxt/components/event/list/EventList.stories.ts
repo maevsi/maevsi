@@ -1,7 +1,7 @@
 import { graphql } from 'msw'
 
-import EventList from './EventList.vue'
 import { defineComponent } from '#app'
+import EventList from './EventList.vue'
 
 export default {
   component: EventList,

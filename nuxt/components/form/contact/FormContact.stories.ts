@@ -1,5 +1,5 @@
-import FormContact from './FormContact.vue'
 import { defineComponent } from '#app'
+import FormContact from './FormContact.vue'
 
 export default {
   component: FormContact,

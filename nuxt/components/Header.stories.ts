@@ -1,5 +1,5 @@
-import Header from './Header.vue'
 import { defineComponent } from '#app'
+import Header from './Header.vue'
 
 export default {
   component: Header,

@@ -1,5 +1,5 @@
-import Form from './Form.vue'
 import { defineComponent } from '#app'
+import Form from './Form.vue'
 
 export default {
   component: Form,

@@ -1,7 +1,7 @@
 import { Store } from 'vuex'
 
-import Modal from './Modal.vue'
 import { defineComponent } from '#app'
+import Modal from './Modal.vue'
 
 export default {
   component: Modal,

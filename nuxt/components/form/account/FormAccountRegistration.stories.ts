@@ -1,5 +1,5 @@
-import FormAccountRegistration from './FormAccountRegistration.vue'
 import { defineComponent } from '#app'
+import FormAccountRegistration from './FormAccountRegistration.vue'
 
 export default {
   component: FormAccountRegistration,

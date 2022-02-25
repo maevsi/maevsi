@@ -1,5 +1,5 @@
-import ButtonTableInteraction from './ButtonTableInteraction.vue'
 import { defineComponent } from '#app'
+import ButtonTableInteraction from './ButtonTableInteraction.vue'
 
 const argTypes = { click: { action: 'click' } }
 type ArgTypesType = { argTypes: typeof argTypes }
