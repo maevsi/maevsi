@@ -1,3 +1,10 @@
+## [0.119.4](https://github.com/maevsi/maevsi/compare/0.119.3...0.119.4) (2022-02-25)
+
+
+### Bug Fixes
+
+* **icon-menu:** remove incorrect icon tag ([452b6a7](https://github.com/maevsi/maevsi/commit/452b6a754109fe417c48b994c7fd8057139ff8f5))
+
 ## [0.119.3](https://github.com/maevsi/maevsi/compare/0.119.2...0.119.3) (2022-02-14)
 
 
