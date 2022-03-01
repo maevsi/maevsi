@@ -64,7 +64,7 @@
     "lodash-es": "4.17.21",
     "luxon": "1.28.0",
     "mustache": "4.2.0",
-    "node-fetch": "3.2.0",
+    "node-fetch": "3.2.1",
     "node-zopfli-es": "1.0.7",
     "nuxt-cookie-control": "1.9.91",
     "nuxt-edge": "latest",
