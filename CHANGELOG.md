@@ -1,3 +1,10 @@
+## [0.119.5](https://github.com/maevsi/maevsi/compare/0.119.4...0.119.5) (2022-03-03)
+
+
+### Bug Fixes
+
+* **tailwind:** move placeholder styling to components ([c3ff022](https://github.com/maevsi/maevsi/commit/c3ff0227d7921b964edb28748aa57871d46e8ac5))
+
 ## [0.119.4](https://github.com/maevsi/maevsi/compare/0.119.3...0.119.4) (2022-02-25)
 
 
