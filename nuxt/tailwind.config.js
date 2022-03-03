@@ -29,12 +29,6 @@ module.exports = {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
         },
-        '::placeholder': {
-          fontStyle: 'italic',
-          'input&,textarea&': {
-            opacity: 0.5,
-          },
-        },
         '::selection': {
           color: theme('colors.text.bright'),
           background: '#e53e3e',
@@ -95,6 +89,12 @@ module.exports = {
         },
       })
       addComponents({
+        '::placeholder': {
+          fontStyle: 'italic',
+          '.form-input&,.form-textarea&': {
+            opacity: 0.5,
+          },
+        },
         '.flip-card': {
           perspective: '1000px',
         },
