@@ -4903,10 +4903,10 @@
     "@types/relateurl" "*"
     "@types/uglify-js" "*"
 
-"@types/html-to-text@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@types/html-to-text/-/html-to-text-8.0.1.tgz#e449513df2283b1adedc85bdc2f6b7187f32972a"
-  integrity sha512-0B/OifmJYmk5r9z9+KJtGWOF0LEjbTN4D2QeCh+mAw81JkJwC83NvNWUZFEqRT5PpnjX7vX0ab1SMGcwCs3Lag==
+"@types/html-to-text@8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@types/html-to-text/-/html-to-text-8.1.0.tgz#dad0bf5d199f7e3f67eae50a36c13eadb1b56d1b"
+  integrity sha512-54YF2fGmN4g62/w+T85uQ8n0FyBhMY5cjKZ1imsbIh4Pgbeno1mAaQktC/pv/+C2ToUYkTZis9ADgn9GRRz9nQ==
 
 "@types/http-assert@*":
   version "1.5.3"
