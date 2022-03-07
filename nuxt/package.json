@@ -128,7 +128,7 @@
     "mockdate": "3.0.5",
     "msw": "0.38.2",
     "msw-storybook-addon": "1.6.1",
-    "postcss": "8.4.7",
+    "postcss": "8.4.8",
     "postcss-html": "1.3.0",
     "prettier": "2.5.1",
     "prettier-plugin-tailwindcss": "0.1.8",
