@@ -65,7 +65,7 @@
     "luxon": "1.28.0",
     "mustache": "4.2.0",
     "node-fetch": "3.2.3",
-    "node-zopfli-es": "1.0.7",
+    "node-zopfli-es": "2.0.0",
     "nuxt-cookie-control": "1.9.91",
     "nuxt-edge": "latest",
     "nuxt-helmet": "3.0.0",
