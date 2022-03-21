@@ -13095,10 +13095,10 @@ hyperlinker@^1.0.0:
   resolved "https://registry.yarnpkg.com/hyperlinker/-/hyperlinker-1.0.0.tgz#23dc9e38a206b208ee49bc2d6c8ef47027df0c0e"
   integrity sha512-Ty8UblRWFEcfSuIaajM34LdPXIhbs1ajEX/BBPv24J+enSVaEVY63xQ6lTO9VRYS5LAoghIG0IDJ+p+IPzKUQQ==
 
-ical-generator@3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-3.2.1.tgz#cf3101faa721c8a6e89302fa86162099c0444e99"
-  integrity sha512-mUvSpy5k6mgddz5PwlCcTiyIq34vL8i94LSq9f1T19/8CWO6jl9uvczE7qwjbn0SpVk8EdqqoF8ipO6pzecZNQ==
+ical-generator@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-3.4.0.tgz#a7ffd040bc0aa90a1588d2a1b49e26186bbed9ff"
+  integrity sha512-olY4Opl1EUbPuUBLVTo7Qaq9B4pMJgxqgZcO7Uy5lHtSnjiu6/rlqm2wJn004r+v792o2GELGF8Je/EcXerMvA==
   dependencies:
     uuid-random "^1.3.2"
 
