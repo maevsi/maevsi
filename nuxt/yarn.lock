@@ -9077,7 +9077,7 @@ core-js-pure@^3.10.2, core-js-pure@^3.20.2, core-js-pure@^3.8.2:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.21.1.tgz#8c4d1e78839f5f46208de7230cebfb72bc3bdb51"
   integrity sha512-12VZfFIu+wyVbBebyHmRTuEE/tZrB4tJToWcwAMcsp3h4+sHR+fMJWbKpYiCRWlhFBq+KNyO8rIV9rTkeVmznQ==
 
-core-js@3.21.1, core-js@^3.0.1, core-js@^3.0.4, core-js@^3.16.2, core-js@^3.19.0, core-js@^3.2.1, core-js@^3.21.0, core-js@^3.6.5, core-js@^3.8.2:
+core-js@3.21.1, core-js@^3.0.1, core-js@^3.0.4, core-js@^3.16.2, core-js@^3.19.0, core-js@^3.21.0, core-js@^3.6.5, core-js@^3.8.2:
   version "3.21.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.21.1.tgz#f2e0ddc1fc43da6f904706e8e955bc19d06a0d94"
   integrity sha512-FRq5b/VMrWlrmCzwRrpDYNxyHP9BcAZC+xHJaqTgIE5091ZV1NTmyh0sGOg5XqpnHvR0svdy0sv1gWA1zmhxig==
@@ -21575,10 +21575,10 @@ storybook-addon-outline@^1.4.1:
     "@storybook/core-events" "~6.3.0"
     ts-dedent "^2.1.1"
 
-storycap@3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/storycap/-/storycap-3.1.5.tgz#f9dc8609b310e88d223bbbe211e7cd930ffaf34f"
-  integrity sha512-5OXbMd5A20ToFk5cQxvVzPnC5mPIUlJbsvcdDNyHWBkd6hhKOZocA9729eiv/tM8UohBMpjNQ9fyXaxclfUh2g==
+storycap@3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/storycap/-/storycap-3.1.6.tgz#833c1a3ac2cf4b0c544789b9bedf9000f925904e"
+  integrity sha512-zxOZbBOC/vTGSov8ErmCsPtv4iXY8ryEFvyjV9KwAQSmwVn+QNxdcQZqJKBs2jJ2ZPkO+rkEKyTHA4wx++HQ/w==
   dependencies:
     "@types/minimatch" "^3.0.3"
     "@types/mkdirp" "^1.0.0"
@@ -21586,19 +21586,18 @@ storycap@3.1.5:
     "@types/rimraf" "^3.0.0"
     "@types/wait-on" "^5.0.0"
     "@types/yargs" "^16.0.0"
-    core-js "^3.2.1"
     minimatch "^3.0.4"
     mkdirp "^1.0.0"
     puppeteer-core "^9.0.0"
     rimraf "^3.0.0"
     sanitize-filename "^1.6.3"
-    storycrawler "^3.1.5"
+    storycrawler "^3.1.6"
     yargs "^16.0.0"
 
-storycrawler@^3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/storycrawler/-/storycrawler-3.1.5.tgz#a84e4c5f83c0dbd288a336dd2107973040df1398"
-  integrity sha512-QvxBci0n38PQZX7ggZcsgsNPa2Nuc1N04U+1xgKcSHF5pKQwaEayodpHvmX0Wk5hWJGfvlalBNC/2q++TU5MqA==
+storycrawler@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/storycrawler/-/storycrawler-3.1.6.tgz#0986cdbe25b5a24db1471e0f08729a2a8ba8ef55"
+  integrity sha512-82yVk5mj0uXghwOZXZmiZINMSHcYHmy+1X1bjqQR0v2To+5LYb5ww6Mc/YaGr/U4KEBkkFgufuuJy6mQgUTlOw==
   dependencies:
     "@types/chalk" "^2.2.0"
     "@types/node" "^16.0.0"
