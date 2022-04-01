@@ -104,7 +104,7 @@
     "@types/mustache": "4.1.2",
     "@types/node": "16.11.26",
     "@types/pg": "8.6.5",
-    "@types/twemoji": "12.1.2",
+    "@types/twemoji": "13.1.1",
     "@types/vue-datetime": "1.0.1",
     "@types/vue-moment": "4.0.3",
     "@types/vuelidate": "0.7.15",
