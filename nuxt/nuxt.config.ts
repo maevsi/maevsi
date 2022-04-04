@@ -308,7 +308,7 @@ export default defineNuxtConfig({
       },
     ], // Should be declared at the start of the array.
     [
-      'nuxt-cookie-control',
+      '@dargmuesli/nuxt-cookie-control',
       {
         locales: ['en', 'de'],
       },

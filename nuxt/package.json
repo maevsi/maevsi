@@ -32,6 +32,7 @@
     "*.{css,vue}": "stylelint"
   },
   "dependencies": {
+    "@dargmuesli/nuxt-cookie-control": "1.9.9",
     "@http-util/status-i18n": "0.3.0",
     "@nuxt/types": "2.15.8",
     "@nuxtjs/apollo": "4.0.1-rc.5",
@@ -66,7 +67,6 @@
     "mustache": "4.2.0",
     "node-fetch": "3.2.3",
     "node-zopfli-es": "2.0.0",
-    "nuxt-cookie-control": "1.9.91",
     "nuxt-edge": "latest",
     "nuxt-helmet": "3.0.0",
     "pg": "8.7.3",
