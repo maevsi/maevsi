@@ -1,3 +1,15 @@
+# [0.120.0](https://github.com/maevsi/maevsi/compare/0.119.8...0.120.0) (2022-04-04)
+
+
+### Bug Fixes
+
+* **nuxt-bridge:** downgrade ([a500fa2](https://github.com/maevsi/maevsi/commit/a500fa24358bc0a849917c362a535a74f8de03e7))
+
+
+### Features
+
+* **cookie:** use fork @dargmuesli/nuxt-cookie-control ([86c4ac2](https://github.com/maevsi/maevsi/commit/86c4ac27551e3a002f6b02d978a0ce8829043ee7))
+
 ## [0.119.8](https://github.com/maevsi/maevsi/compare/0.119.7...0.119.8) (2022-04-04)
 
 
