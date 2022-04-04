@@ -436,6 +436,18 @@ export default defineNuxtConfig({
 
   storybook: {
     addons: ['@storybook/addon-a11y'],
+    webpackFinal(config: any) {
+      config.module?.rules.push({
+        test: /\.cjs$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      })
+      return config
+    },
   },
 
   vue: {
