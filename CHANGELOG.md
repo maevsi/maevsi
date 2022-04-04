@@ -1,3 +1,10 @@
+## [0.119.8](https://github.com/maevsi/maevsi/compare/0.119.7...0.119.8) (2022-04-04)
+
+
+### Bug Fixes
+
+* **storybook:** use babel-loader ([dcb9d22](https://github.com/maevsi/maevsi/commit/dcb9d22b0fca7a7c889f94e5151dc2ff5f217092))
+
 ## [0.119.7](https://github.com/maevsi/maevsi/compare/0.119.6...0.119.7) (2022-03-28)
 
 
