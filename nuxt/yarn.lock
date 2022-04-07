@@ -1919,10 +1919,10 @@
   dependencies:
     "@intlify/shared" "9.1.9"
 
-"@intlify/eslint-plugin-vue-i18n@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@intlify/eslint-plugin-vue-i18n/-/eslint-plugin-vue-i18n-1.4.0.tgz#f8fe791892c2dce7d189a364b6a908c87e1c3ac9"
-  integrity sha512-anB1eBf6rpxpWyW883gi6O1hozQy4Q02VyzyodOUnohOqT07GATVSxnr2J9/qQSV47xWukV+9LiRErJcU7d/uA==
+"@intlify/eslint-plugin-vue-i18n@1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@intlify/eslint-plugin-vue-i18n/-/eslint-plugin-vue-i18n-1.4.1.tgz#81f3bbc262bc48c9a7fffd1f3bd8fef12e71d47f"
+  integrity sha512-vnhwxcUTYCL/tCeBkXMDz959DVHNaDd3SRt3jdyX5ZwHaSSx93aD7kZV7ZmJpq4lZlq7Q1eVRGhpmpTNGdvU9w==
   dependencies:
     "@eslint/eslintrc" "^1.2.0"
     "@intlify/core-base" "^9.1.9"

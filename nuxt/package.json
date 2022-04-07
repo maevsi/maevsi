@@ -85,7 +85,7 @@
   },
   "devDependencies": {
     "@babel/runtime-corejs3": "7.17.9",
-    "@intlify/eslint-plugin-vue-i18n": "1.4.0",
+    "@intlify/eslint-plugin-vue-i18n": "1.4.1",
     "@nuxt/babel-preset-app": "2.15.8",
     "@nuxt/bridge": "npm:@nuxt/bridge-edge",
     "@nuxtjs/eslint-config-typescript": "9.0.0",
