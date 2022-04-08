@@ -89,7 +89,7 @@
     "@nuxt/babel-preset-app": "2.15.8",
     "@nuxt/bridge": "npm:@nuxt/bridge-edge",
     "@nuxtjs/eslint-config-typescript": "9.0.0",
-    "@nuxtjs/eslint-module": "3.0.2",
+    "@nuxtjs/eslint-module": "3.1.0",
     "@nuxtjs/google-analytics": "2.4.0",
     "@nuxtjs/html-validator": "0.6.0",
     "@nuxtjs/moment": "1.6.1",
