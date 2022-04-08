@@ -12928,10 +12928,10 @@ html-tags@^3.1.0:
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-3.1.0.tgz#7b5e6f7e665e9fb41f30007ed9e0d41e97fb2140"
   integrity sha512-1qYz89hW3lFDEazhjW0yVAV87lw8lVkrJocr72XmBkMKsoSVJCQx3W8BXsC7hO2qAt8BoVjYjtAcZ9perqGnNg==
 
-html-to-text@8.1.1:
-  version "8.1.1"
-  resolved "https://registry.yarnpkg.com/html-to-text/-/html-to-text-8.1.1.tgz#69838e566a62cef3e365442571d91aa0e33be26a"
-  integrity sha512-uHdOmIGMy0Z1tJdcJzhbUQm3+V+6Q8YmFYCr1+SxjjwlO2Ha9S/D2eq1P8NLjH5fTzJCLQTL9xCXZNuIwraipw==
+html-to-text@8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/html-to-text/-/html-to-text-8.2.0.tgz#8b35e280ba7fc27710b7aa76d4500aab30731924"
+  integrity sha512-CLXExYn1b++Lgri+ZyVvbUEFwzkLZppjjZOwB7X1qv2jIi8MrMEvxWX5KQ7zATAzTvcqgmtO00M2kCRMtEdOKQ==
   dependencies:
     "@selderee/plugin-htmlparser2" "^0.6.0"
     deepmerge "^4.2.2"
