@@ -1,21 +1,17 @@
 import { ServerResponse } from 'http'
 
-import { useBody } from 'h3'
+import { useBody, CompatibilityEvent } from 'h3'
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
 import moment from 'moment'
 import mustache from 'mustache'
 
-import { IncomingMessageWithBody } from '~/types/http'
 import { Contact } from '~/types/contact'
 import { Event as MaevsiEvent } from '~/types/event'
 import { Invitation } from '~/types/invitation'
 
-export default async function (
-  req: IncomingMessageWithBody,
-  res: ServerResponse
-) {
+export default async function (req: CompatibilityEvent, res: ServerResponse) {
   const body = await useBody(req)
 
   const contact: Contact = body.contact
