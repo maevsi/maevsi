@@ -1,3 +1,10 @@
+## [0.120.1](https://github.com/maevsi/maevsi/compare/0.120.0...0.120.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* **api:** correct ical typings ([cf68535](https://github.com/maevsi/maevsi/commit/cf6853506ec8da1fed13d2bdf102b0ce1f3d8e8c))
+
 # [0.120.0](https://github.com/maevsi/maevsi/compare/0.119.8...0.120.0) (2022-04-04)
 
 
