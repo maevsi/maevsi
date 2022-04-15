@@ -18274,10 +18274,10 @@ postcss-gap-properties@^3.0.3:
   resolved "https://registry.yarnpkg.com/postcss-gap-properties/-/postcss-gap-properties-3.0.3.tgz#6401bb2f67d9cf255d677042928a70a915e6ba60"
   integrity sha512-rPPZRLPmEKgLk/KlXMqRaNkYTUpE7YC+bOIQFN5xcu1Vp11Y4faIXv6/Jpft6FMnl6YRxZqDZG0qQOW80stzxQ==
 
-postcss-html@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/postcss-html/-/postcss-html-1.3.1.tgz#27f7a1b6b27ab747828ae46c7a90dc1a58a7034d"
-  integrity sha512-SJ7iRw+IngyZv3Z9lChlZU30a9y9MZjZZcoUJmx0T/nKE9S+hetJ8fAv/MRu4bPnGDsXhVlaFs5+umpK3yaaQQ==
+postcss-html@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/postcss-html/-/postcss-html-1.4.1.tgz#da6d4693138c1c243867c00a5d01ec1337e0624e"
+  integrity sha512-OKihuWxPuBQrQeLNsavP7ytJ9IYNj/ViAXB2v7Qjh56LnfESKrkahKA9si4VfPN8xtz6oqUE6KdL0bTPrHJr6g==
   dependencies:
     htmlparser2 "^7.1.2"
     postcss "^8.4.0"
