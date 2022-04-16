@@ -86,7 +86,7 @@ export default defineComponent({
       if (this.profilePictureUrl !== undefined) {
         return this.profilePictureUrl
       } else {
-        return require('~/static/assets/static/images/blank-profile-picture.svg')
+        return require('~/public/assets/static/images/blank-profile-picture.svg')
       }
     },
   },
