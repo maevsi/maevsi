@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from '@nuxt/bridge'
-import shrinkRay from 'shrink-ray-current'
+import compressionWithBrotli from 'compression-with-brotli'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
@@ -399,7 +399,7 @@ export default defineNuxtConfig({
   },
 
   render: {
-    compressor: shrinkRay(),
+    compressor: compressionWithBrotli(),
     csp: {
       policies: {
         'base-uri': ["'none'"], // Mozilla Observatory.
