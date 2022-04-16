@@ -62,7 +62,7 @@ export default defineNuxtConfig({
       'subscriptions-transport-ws',
       'tslib',
       'universal-cookie',
-      'vue-chart-3',
+      'vue-chartjs',
       'vue-qrcode-reader',
       'webrtc-adapter',
     ],
@@ -430,7 +430,7 @@ export default defineNuxtConfig({
           'https://static.cloudflareinsights.com',
           'https://www.google-analytics.com/analytics.js',
         ],
-        'style-src': ["'self'", "'unsafe-inline'"], // Tailwind, ChartJS (TODO: https://www.chartjs.org/docs/latest/getting-started/integration.html#content-security-policy)
+        'style-src': ["'self'", "'unsafe-inline'"], // Tailwind
       },
       reportOnly: false,
     },

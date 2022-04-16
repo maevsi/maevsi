@@ -114,7 +114,9 @@
       }}
     </p>
     <!-- https://github.com/reg-viz/storycap/issues/501 -->
-    <PieChart v-if="!$config.STORYBOOK" :chart-data="data" />
+    <div class="m-auto w-1/4">
+      <Pie v-if="!$config.STORYBOOK" :chart-data="data" />
+    </div>
     <Modal id="ModalInvitation">
       <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
       <template slot="header">
@@ -137,7 +139,7 @@ import {
   Tooltip,
 } from 'chart.js'
 import consola from 'consola'
-import { PieChart } from 'vue-chart-3'
+import { Pie } from 'vue-chartjs/legacy'
 
 import { defineComponent, PropType } from '#app'
 import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDelete.gql'
@@ -157,7 +159,7 @@ Chart.register(
 
 export default defineComponent({
   components: {
-    PieChart,
+    Pie,
   },
   apollo: {
     allInvitations(): any {
