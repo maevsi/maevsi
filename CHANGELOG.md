@@ -1,3 +1,16 @@
+# [0.121.0](https://github.com/maevsi/maevsi/compare/0.120.1...0.121.0) (2022-04-16)
+
+
+### Bug Fixes
+
+* **nuxt:** transpile vue-chart-3 ([13979f1](https://github.com/maevsi/maevsi/commit/13979f10eb7c78dbcbc12cd38fc8cc9454393386))
+
+
+### Features
+
+* **compression:** fix brotli ([0eb77ac](https://github.com/maevsi/maevsi/commit/0eb77ace4b2e31487f756cf0af31bef3ec151bf4))
+* **error:** update status-i18n to v0.5.0 ([71011a3](https://github.com/maevsi/maevsi/commit/71011a3bee95020f86c0d7c4a6c48dffe59c3159))
+
 ## [0.120.1](https://github.com/maevsi/maevsi/compare/0.120.0...0.120.1) (2022-04-12)
 
 
