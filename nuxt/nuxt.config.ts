@@ -62,6 +62,7 @@ export default defineNuxtConfig({
       'subscriptions-transport-ws',
       'tslib',
       'universal-cookie',
+      'vue-chart-3',
       'vue-qrcode-reader',
       'webrtc-adapter',
     ],
