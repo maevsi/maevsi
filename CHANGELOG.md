@@ -1,3 +1,15 @@
+# [0.122.0](https://github.com/maevsi/maevsi/compare/0.121.0...0.122.0) (2022-04-16)
+
+
+### Bug Fixes
+
+* **static:** work around nitro issue ([ed164e0](https://github.com/maevsi/maevsi/commit/ed164e09cf0a7c6f78b2e80020d9c7005c7470fb))
+
+
+### Features
+
+* **chart:** migrate to vue-chartjs ([254b316](https://github.com/maevsi/maevsi/commit/254b316c3c673998a28298293f09ed21b659d3d4))
+
 # [0.121.0](https://github.com/maevsi/maevsi/compare/0.120.1...0.121.0) (2022-04-16)
 
 
