@@ -672,6 +672,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.16.7"
 
+"@babel/plugin-syntax-import-assertions@7.16.7":
+  version "7.16.7"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-import-assertions/-/plugin-syntax-import-assertions-7.16.7.tgz#78288980e36f1614a4024d45937f4c8ca7185ac3"
+  integrity sha512-DoM/wsaMaDXpM2fa+QkZeqqfYs340WTY+boLRiZ7ckqt3PAFt1CdGmMXVniFCcN8RuStim2Z4Co3bIKdWjTXIQ==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.16.7"
+
 "@babel/plugin-syntax-import-meta@^7.8.3":
   version "7.10.4"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-import-meta/-/plugin-syntax-import-meta-7.10.4.tgz#ee601348c370fa334d2207be158777496521fd51"
@@ -1872,10 +1879,10 @@
     kleur "^4.0.0"
     text-table "^0.2.0"
 
-"@http-util/status-i18n@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@http-util/status-i18n/-/status-i18n-0.3.0.tgz#b1bfb55ad1638a6fa10f6fe5b96ecb4a6e867270"
-  integrity sha512-C7Juvz06RyAjZcCNtfJbJIEffA90q8vAtucRdOmD5CWZfJauyQqiMoXLyib4/aCsxnzrZ7qE1+fKh51C49h9Zw==
+"@http-util/status-i18n@0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@http-util/status-i18n/-/status-i18n-0.6.0.tgz#5b88c63f64b01d7710f6510edc142a91960e26cf"
+  integrity sha512-Z4KY+LMxYYcfZTtsqBlbZyB6KStO9ozVYiMwKFGtsnRwRUAoyPWySYXFKMgKHGXtyy2dCrO6gF1KVE0MTNhk/A==
 
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"

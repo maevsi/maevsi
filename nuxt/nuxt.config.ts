@@ -39,6 +39,7 @@ export default defineNuxtConfig({
     babel: {
       exclude: [/core-js/],
       plugins: [
+        '@babel/plugin-syntax-import-assertions', // Necessary for status-i18n.
         '@upleveled/remove-node-prefix', // Can be removed in Nuxt 3.
       ],
       presets() {
@@ -61,6 +62,7 @@ export default defineNuxtConfig({
       'subscriptions-transport-ws',
       'tslib',
       'universal-cookie',
+      'vue-chart-3',
       'vue-qrcode-reader',
       'webrtc-adapter',
     ],
