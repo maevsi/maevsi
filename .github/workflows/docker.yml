@@ -9,7 +9,9 @@ on:
 jobs:
   docker:
     name: Docker
-    uses: dargmuesli/github-actions/.github/workflows/docker.yml@0.7.0
+    uses: dargmuesli/github-actions/.github/workflows/docker.yml@0.8.0
+    with:
+      ATTACH_HEAD: true
     secrets:
       DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
