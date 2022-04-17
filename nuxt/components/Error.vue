@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import status from '@http-util/status-i18n'
+import { status } from '@http-util/status-i18n'
 import twemoji from 'twemoji'
 
 import { defineComponent, PropType } from '#app'
