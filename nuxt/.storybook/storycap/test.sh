@@ -7,6 +7,7 @@ rm -rf "$THIS"/working-directory/expected/*
 mkdir -p "$THIS"/working-directory/expected
 cp -r "$THIS"/images/expected/* "$THIS"/working-directory/expected
 yarn reg-suit compare
+yarn reg-suit publish -n
 
 result=$(cat "$THIS"/working-directory/out.json)
 deletedItems=$(echo "$result" | jq -r '.deletedItems')
