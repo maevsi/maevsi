@@ -25,6 +25,7 @@ COPY ./nuxt/package.json ./nuxt/yarn.lock ./
 RUN yarn install
 
 COPY ./nuxt/ ./
+COPY ./.git/ ./.git/
 COPY ./sqitch/ /srv/sqitch/
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
