@@ -8,7 +8,7 @@ mkdir -p "$THIS"/working-directory/expected
 cp -r "$THIS"/images/expected/* "$THIS"/working-directory/expected
 yarn reg-suit compare
 
-if [[ -n "$CI" ]]; then
+if [[ "$CI" = "true" ]]; then
   yarn reg-suit publish -n
 fi
 
