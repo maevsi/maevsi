@@ -42,8 +42,6 @@ HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://local
 # `node-zopfli-es` requires non-slim.
 FROM node:16.14.2@sha256:ffe804d6fcced29bcfc3477de079d03a9c2b0e4917e44bfeafb1a6b0f875e383 AS build
 
-ARG HOST_IP=127.0.0.1
-ENV HOST_IP ${HOST_IP}
 ARG CI=false
 ENV CI ${CI}
 ARG NUXT_ENV_STACK_DOMAIN=maev.si

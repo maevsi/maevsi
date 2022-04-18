@@ -50,7 +50,7 @@ export default {
     ],
   },
 
-  title: 'event/InvitationList',
+  title: 'invitation/InvitationList',
 }
 
 const Template = (_: never, { argTypes }: any) =>
