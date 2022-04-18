@@ -115,7 +115,7 @@
     </p>
     <div class="m-auto w-1/4">
       <!-- https://github.com/reg-viz/storycap/issues/501 -->
-      <Pie :chart-data="data" />
+      <Pie v-if="!$config.STORYBOOK" :chart-data="data" />
     </div>
     <Modal id="ModalInvitation">
       <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
