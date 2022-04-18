@@ -1,9 +1,10 @@
 #############
 # Serve Nuxt in development mode.
 
-# Should be the specific version of node:slim.
-# `sqitch` requires at least `buster`.
-FROM node:16.14.2-slim@sha256:9ab0b2c165183814b061bb7b755944c9d064e8142f7f715b26191949be16a75f AS development
+# Should be the specific version of node:buster.
+# `node-zopfli-es` and `sqitch` require at least buster.
+# `node-zopfli-es` requires non-slim.
+FROM node:16.14.2@sha256:ffe804d6fcced29bcfc3477de079d03a9c2b0e4917e44bfeafb1a6b0f875e383 AS development
 
 # Update and install dependencies.
 # - `git` is required by the `yarn` command
@@ -36,10 +37,13 @@ HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://local
 ########################
 # Build Nuxt.
 
-# Should be the specific version of node:slim.
-# `sqitch` requires at least `buster`.
-FROM node:16.14.2-slim@sha256:9ab0b2c165183814b061bb7b755944c9d064e8142f7f715b26191949be16a75f AS build
+# Should be the specific version of node:buster.
+# `node-zopfli-es` and `sqitch` require at least buster.
+# `node-zopfli-es` requires non-slim.
+FROM node:16.14.2@sha256:ffe804d6fcced29bcfc3477de079d03a9c2b0e4917e44bfeafb1a6b0f875e383 AS build
 
+ARG HOST_IP=127.0.0.1
+ENV HOST_IP ${HOST_IP}
 ARG CI=false
 ENV CI ${CI}
 ARG NUXT_ENV_STACK_DOMAIN=maev.si
@@ -72,9 +76,10 @@ RUN yarn install
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-# Should be the specific version of node:slim.
-# `sqitch` requires at least `buster`.
-FROM node:16.14.2-slim@sha256:9ab0b2c165183814b061bb7b755944c9d064e8142f7f715b26191949be16a75f AS production
+# Should be the specific version of node:buster.
+# `node-zopfli-es` and `sqitch` require at least buster.
+# `node-zopfli-es` requires non-slim.
+FROM node:16.14.2@sha256:ffe804d6fcced29bcfc3477de079d03a9c2b0e4917e44bfeafb1a6b0f875e383 AS production
 
 ENV NODE_ENV=production
 
