@@ -1,12 +1,8 @@
 <template>
   <div v-if="isVisibleComputed">
-    <div
-      class="bottom-0 left-0 right-0 top-0 z-10 bg-black opacity-50"
-      :class="{ fixed: !$config.STORYBOOK }"
-    />
+    <div class="bottom-0 left-0 right-0 top-0 z-10 bg-black opacity-50" />
     <div
       class="bottom-0 left-0 right-0 top-0 z-20 flex items-center justify-center"
-      :class="{ fixed: !$config.STORYBOOK }"
     >
       <Card
         class="flex max-h-[90vh] w-5/6 flex-col gap-2 overflow-auto bg-background-bright dark:bg-background-dark sm:w-2/3 lg:w-1/2 xl:w-1/3"
