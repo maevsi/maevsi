@@ -18,6 +18,6 @@ export const Default = Template.bind({})
 // @ts-ignore
 Default.args = {
   title: 'Title',
-  number: 1,
+  number: '1',
   description: 'Description',
 }

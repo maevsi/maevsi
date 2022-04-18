@@ -10,7 +10,7 @@
       :allow-addition="false"
       :allow-deletion="false"
       selectable
-      :username="$route.params.username"
+      :username="$config.STORYBOOK ? 'username' : $route.params.username"
       @selection="selectProfilePictureStorageKey"
     />
     <template slot="header">{{ $t('header') }}</template>

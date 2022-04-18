@@ -21,4 +21,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
 
 export const Default = Template.bind({})
 // @ts-ignore
-Default.args = {}
+Default.args = {
+  ariaLabel: 'ButtonTableInteraction',
+}
