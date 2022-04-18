@@ -1,3 +1,21 @@
+# [0.124.0](https://github.com/maevsi/maevsi/compare/0.123.0...0.124.0) (2022-04-18)
+
+
+### Bug Fixes
+
+* **docker:** copy .git directory ([8b2fcde](https://github.com/maevsi/maevsi/commit/8b2fcdeb368203892ca92a7e56425ae3127d51f1))
+* **revert): "feat(docker:** switch to slim" ([b9f3b9d](https://github.com/maevsi/maevsi/commit/b9f3b9d6d5e515a4c7ea28d0194e243e80f46c2c))
+* **storycap:** test CI explicitly ([aa9419c](https://github.com/maevsi/maevsi/commit/aa9419c90538bf113ea68e1e542c09cee3508e3e))
+
+
+### Features
+
+* **deps:** update status-i18n to v0.6.1 ([fbad848](https://github.com/maevsi/maevsi/commit/fbad848d9b143f0856626d1f589120b415dc3eae))
+* **docker:** remove host ip ([f4d3eef](https://github.com/maevsi/maevsi/commit/f4d3eefabb4689ac0e44afffa2d3d32b7d1fcc14))
+* **docker:** switch to slim ([9988247](https://github.com/maevsi/maevsi/commit/9988247c57942ce0d1deb2e99acb07f035da024f))
+* **storycap:** add publish notification ([2ec758f](https://github.com/maevsi/maevsi/commit/2ec758f3946b79aa6933211e21bb6a9b2089b934))
+* **storycap:** publish only on CI ([5fef627](https://github.com/maevsi/maevsi/commit/5fef62751d95c357446b4e7f2be83c34c5a81780))
+
 # [0.123.0](https://github.com/maevsi/maevsi/compare/0.122.1...0.123.0) (2022-04-18)
 
 
