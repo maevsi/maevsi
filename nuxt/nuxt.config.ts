@@ -138,10 +138,6 @@ export default defineNuxtConfig({
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['@/assets/css/main.css', 'vue-datetime/dist/vue-datetime.min.css'],
 
-  dir: {
-    static: 'public',
-  },
-
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head() {
     return {
