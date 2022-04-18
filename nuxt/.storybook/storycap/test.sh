@@ -8,6 +8,10 @@ mkdir -p "$THIS"/working-directory/expected
 cp -r "$THIS"/images/expected/* "$THIS"/working-directory/expected
 yarn reg-suit compare
 
+if [[ "$CI" = "true" ]]; then
+  yarn reg-suit publish -n
+fi
+
 result=$(cat "$THIS"/working-directory/out.json)
 deletedItems=$(echo "$result" | jq -r '.deletedItems')
 failedItems=$(echo "$result" | jq -r '.failedItems')
