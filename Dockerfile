@@ -40,8 +40,6 @@ HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://local
 # `sqitch` requires at least `buster`.
 FROM node:16.14.2-slim@sha256:9ab0b2c165183814b061bb7b755944c9d064e8142f7f715b26191949be16a75f AS build
 
-ARG HOST_IP=127.0.0.1
-ENV HOST_IP ${HOST_IP}
 ARG CI=false
 ENV CI ${CI}
 ARG NUXT_ENV_STACK_DOMAIN=maev.si
