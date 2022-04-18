@@ -1,3 +1,18 @@
+# [0.123.0](https://github.com/maevsi/maevsi/compare/0.122.1...0.123.0) (2022-04-18)
+
+
+### Bug Fixes
+
+* **docker:** add git directory ([c0265ea](https://github.com/maevsi/maevsi/commit/c0265eab89d5e44feb6eaac69a802145ba366bde))
+* **revert): "feat(docker:** switch to slim" ([06d9a2c](https://github.com/maevsi/maevsi/commit/06d9a2ca7fa542caca39199bbfadc8c7d2315eee))
+* **revert): "feat(nuxt:** remove dir setter" ([097f45b](https://github.com/maevsi/maevsi/commit/097f45b89d9443d16f444977fa3f028c75cde5df))
+
+
+### Features
+
+* **docker:** switch to slim ([d3bb080](https://github.com/maevsi/maevsi/commit/d3bb0802fde37651f7298688a35d619ea7a91124))
+* **nuxt:** remove dir setter ([dd99064](https://github.com/maevsi/maevsi/commit/dd990646800ec73fcff2ee73267af6060c2d752c))
+
 ## [0.122.1](https://github.com/maevsi/maevsi/compare/0.122.0...0.122.1) (2022-04-18)
 
 
