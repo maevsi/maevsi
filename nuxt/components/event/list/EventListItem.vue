@@ -9,6 +9,7 @@
     }"
   >
     <Button
+      :aria-label="event.name"
       :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >
       <Card class="flex-1">

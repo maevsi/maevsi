@@ -1,10 +1,9 @@
 #############
 # Serve Nuxt in development mode.
 
-# Should be the specific version of node:buster.
-# `node-zopfli-es` and `sqitch` require at least buster.
-# `node-zopfli-es` requires non-slim.
-FROM node:16.14.2@sha256:ffe804d6fcced29bcfc3477de079d03a9c2b0e4917e44bfeafb1a6b0f875e383 AS development
+# Should be the specific version of node:slim.
+# `sqitch` requires at least `buster`.
+FROM node:16.14.2-slim@sha256:9ab0b2c165183814b061bb7b755944c9d064e8142f7f715b26191949be16a75f AS development
 
 # Update and install dependencies.
 # - `git` is required by the `yarn` command
@@ -37,10 +36,9 @@ HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://local
 ########################
 # Build Nuxt.
 
-# Should be the specific version of node:buster.
-# `node-zopfli-es` and `sqitch` require at least buster.
-# `node-zopfli-es` requires non-slim.
-FROM node:16.14.2@sha256:ffe804d6fcced29bcfc3477de079d03a9c2b0e4917e44bfeafb1a6b0f875e383 AS build
+# Should be the specific version of node:slim.
+# `sqitch` requires at least `buster`.
+FROM node:16.14.2-slim@sha256:9ab0b2c165183814b061bb7b755944c9d064e8142f7f715b26191949be16a75f AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -49,11 +47,13 @@ ENV NUXT_ENV_STACK_DOMAIN=${NUXT_ENV_STACK_DOMAIN}
 ENV NODE_ENV=production
 
 # Update and install dependencies.
-# - `fonts-noto-color-emoji gconf-service`, ... is required by `puppeteer`
+# - `fonts-dejavu-core gconf-service`, ... is required by `puppeteer`
+# - `procps` is required by `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
 # - `jq` is required for storycap
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-        gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdbus-1-3 libdrm2 libgbm1 libgconf-2-4 libgtk-3-0 libnspr4 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 fonts-liberation libappindicator1 libnss3 libxshmfence1 lsb-release xdg-utils \
+        fonts-dejavu-core gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdbus-1-3 libdrm2 libgbm1 libgconf-2-4 libgtk-3-0 libnspr4 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 fonts-liberation libappindicator1 libnss3 libxshmfence1 lsb-release xdg-utils \
+        procps \
         jq \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -74,10 +74,9 @@ RUN yarn install
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-# Should be the specific version of node:buster.
-# `node-zopfli-es` and `sqitch` require at least buster.
-# `node-zopfli-es` requires non-slim.
-FROM node:16.14.2@sha256:ffe804d6fcced29bcfc3477de079d03a9c2b0e4917e44bfeafb1a6b0f875e383 AS production
+# Should be the specific version of node:slim.
+# `sqitch` requires at least `buster`.
+FROM node:16.14.2-slim@sha256:9ab0b2c165183814b061bb7b755944c9d064e8142f7f715b26191949be16a75f AS production
 
 ENV NODE_ENV=production
 

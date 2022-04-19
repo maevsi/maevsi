@@ -19,6 +19,7 @@ export default {
                 //   storageKey: '',
                 //   username,
                 //   uuid: '',
+                //   nodeId: 'WyJldmVudHMiLDFd',
                 //   __typename: 'Upload',
                 // },
               ],
@@ -46,3 +47,7 @@ const Template = (_: never, { argTypes }: any) =>
   })
 
 export const Default = Template.bind({})
+// @ts-ignore
+Default.args = {
+  username: 'username',
+}

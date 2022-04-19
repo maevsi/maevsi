@@ -184,7 +184,7 @@ export default defineComponent({
   },
   props: {
     value: {
-      required: true,
+      default: '',
       type: String,
     },
   },

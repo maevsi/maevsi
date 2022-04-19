@@ -19,9 +19,14 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
   })
 
 export const Default = Template.bind({})
+// @ts-ignore
+Default.args = {
+  ariaLabel: 'Button',
+}
 
 export const Disabled = Template.bind({})
 // @ts-ignore
 Disabled.args = {
+  ariaLabel: 'Button',
   disabled: true,
 }

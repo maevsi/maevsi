@@ -113,8 +113,8 @@
         })
       }}
     </p>
-    <!-- https://github.com/reg-viz/storycap/issues/501 -->
     <div class="m-auto w-1/4">
+      <!-- https://github.com/reg-viz/storycap/issues/501 -->
       <Pie v-if="!$config.STORYBOOK" :chart-data="data" />
     </div>
     <Modal id="ModalInvitation">
