@@ -3,7 +3,7 @@
 
 # Should be the specific version of node:slim.
 # `sqitch` requires at least `buster`.
-FROM node:16.14.2-slim@sha256:9ab0b2c165183814b061bb7b755944c9d064e8142f7f715b26191949be16a75f AS development
+FROM node:16.14.2-slim@sha256:9b43cdacd070d1b38976a804aec78f03139c600865a3c72501af3bbec8d4bdee AS development
 
 # Update and install dependencies.
 # - `git` is required by the `yarn` command
@@ -38,7 +38,7 @@ HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://local
 
 # Should be the specific version of node:slim.
 # `sqitch` requires at least `buster`.
-FROM node:16.14.2-slim@sha256:9ab0b2c165183814b061bb7b755944c9d064e8142f7f715b26191949be16a75f AS build
+FROM node:16.14.2-slim@sha256:9b43cdacd070d1b38976a804aec78f03139c600865a3c72501af3bbec8d4bdee AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -76,7 +76,7 @@ RUN yarn install
 
 # Should be the specific version of node:slim.
 # `sqitch` requires at least `buster`.
-FROM node:16.14.2-slim@sha256:9ab0b2c165183814b061bb7b755944c9d064e8142f7f715b26191949be16a75f AS production
+FROM node:16.14.2-slim@sha256:9b43cdacd070d1b38976a804aec78f03139c600865a3c72501af3bbec8d4bdee AS production
 
 ENV NODE_ENV=production
 
