@@ -1,3 +1,23 @@
+# [0.125.0](https://github.com/maevsi/maevsi/compare/0.124.0...0.125.0) (2022-04-19)
+
+
+### Bug Fixes
+
+* **docker:** add fonts-dejavu-core ([5fc7285](https://github.com/maevsi/maevsi/commit/5fc72853deaf3611c60680b1940343a9b7265a05))
+* **docker:** install procps ([113dc39](https://github.com/maevsi/maevsi/commit/113dc39d3f106e97507108776d9721fb3f1f2937))
+* **storycap:** downgrade ([012f0a0](https://github.com/maevsi/maevsi/commit/012f0a0a6abc6dbbb505eb86fedc705afdb50920))
+
+
+### Features
+
+* **docker:** switch to slim ([db933e2](https://github.com/maevsi/maevsi/commit/db933e2ed7a9b9f2018da96bdb49e3298753e52d))
+* **storybook:** resolve component warnings ([d8a12c2](https://github.com/maevsi/maevsi/commit/d8a12c2f36abd2f1761df8b23bb9709be853cb17))
+
+
+### Reverts
+
+* **storycap:** readd conditional chart display ([81ec2c1](https://github.com/maevsi/maevsi/commit/81ec2c1199d842759d73f1dfb9b2ccd4a87240f3))
+
 # [0.124.0](https://github.com/maevsi/maevsi/compare/0.123.0...0.124.0) (2022-04-18)
 
 
