@@ -1884,10 +1884,10 @@
     kleur "^4.0.0"
     text-table "^0.2.0"
 
-"@http-util/status-i18n@0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@http-util/status-i18n/-/status-i18n-0.6.1.tgz#586682b8c1525e65630a6e0b1a0f87b8a857083f"
-  integrity sha512-KM2eK2JPGKce8MC8Q+Aj5yYwWwkXPu8zb/ZLuzhSQVqNVuLTWPiGGiDpo6KA5injs9pw10500TEflck6MOif1w==
+"@http-util/status-i18n@0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@http-util/status-i18n/-/status-i18n-0.6.2.tgz#dbdc35cfd3083f45d82696e3c7f1d52cf98f8c82"
+  integrity sha512-+QxqGFw1c1guxuoW8o8wGCqAWxEbxK0s/+ltYgJtMVLxV8M8dis14UUg0xreMpAYxt9vN7z361uxxqoM3gI7dw==
 
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
