@@ -1,10 +1,8 @@
 import fs from 'fs'
-import { ServerResponse } from 'http'
+import { CompatibilityEvent } from 'h3'
 
 import { serialize } from 'cookie'
 import jsonwebtoken from 'jsonwebtoken'
-
-import { IncomingMessageWithBody } from '~/types/http'
 
 const secretPostgraphileJwtSecretPath = '/run/secrets/postgraphile_jwt-secret'
 const secretPostgraphileJwtSecret = fs.existsSync(
@@ -13,7 +11,9 @@ const secretPostgraphileJwtSecret = fs.existsSync(
   ? fs.readFileSync(secretPostgraphileJwtSecretPath, 'utf-8')
   : undefined
 
-export default function (req: IncomingMessageWithBody, res: ServerResponse) {
+export default function (event: CompatibilityEvent) {
+  const { req, res } = event
+
   if (secretPostgraphileJwtSecret === undefined) {
     res.statusCode = 500
     res.end('Secret missing!')
