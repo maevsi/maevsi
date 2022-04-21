@@ -57,7 +57,7 @@
             </div>
           </li>
         </template>
-        <li>
+        <li class="relative box-border border-4 border-transparent">
           <Button
             v-if="allowAddition"
             :aria-label="
