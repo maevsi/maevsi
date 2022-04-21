@@ -1,5 +1,5 @@
 import fs from 'fs'
-import http, { ServerResponse } from 'http'
+import { ServerResponse } from 'http'
 import { useBody, useQuery, useMethod, CompatibilityEvent } from 'h3'
 import consola from 'consola'
 import jsonwebtoken from 'jsonwebtoken'
