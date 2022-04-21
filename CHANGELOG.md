@@ -1,3 +1,13 @@
+## [0.125.1](https://github.com/maevsi/maevsi/compare/0.125.0...0.125.1) (2022-04-21)
+
+
+### Bug Fixes
+
+* **api:** migrate to h3 ([3cd94ad](https://github.com/maevsi/maevsi/commit/3cd94ad40c7ac8485bc34c5aa5a9f1d6d3ba116f))
+* **api:** remove unused import ([88dcdd0](https://github.com/maevsi/maevsi/commit/88dcdd022b66dd9fcb250d788c4b33bd4e9c298a))
+* **image-upload-gallery:** add missing classes ([0eba08a](https://github.com/maevsi/maevsi/commit/0eba08a87d16718918709c0455e9732b80fd0168))
+* **modal:** correct modal backdrop ([a6480c1](https://github.com/maevsi/maevsi/commit/a6480c19ae4e27a48c8ec9580f3e2d1c6c88ffb5))
+
 # [0.125.0](https://github.com/maevsi/maevsi/compare/0.124.0...0.125.0) (2022-04-19)
 
 
