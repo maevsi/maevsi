@@ -1,13 +1,10 @@
-/* eslint-disable no-console */
 import fs from 'fs'
-import http, { IncomingMessage, ServerResponse } from 'http'
-
+import { ServerResponse } from 'http'
+import { useBody, useQuery, useMethod, CompatibilityEvent } from 'h3'
 import consola from 'consola'
-import { useBody } from 'h3'
 import jsonwebtoken from 'jsonwebtoken'
 import pg, { QueryResult } from 'pg'
-
-import { IncomingMessageWithBody } from '~/types/http'
+import fetch from 'node-fetch'
 
 const secretPostgresDbPath = '/run/secrets/postgres_db'
 const secretPostgraphileJwtSecretPath = '/run/secrets/postgraphile_jwt-secret'
@@ -32,51 +29,52 @@ const pool = new pg.Pool({
   user: 'maevsi_tusd', // lgtm [js/hardcoded-credentials]
 })
 
-export default function (req: IncomingMessageWithBody, res: ServerResponse) {
-  switch (req.method) {
+export default async function (event: CompatibilityEvent) {
+  const method = useMethod(event)
+
+  switch (method) {
     case 'DELETE':
-      tusdDelete(req, res)
+      await tusdDelete(event)
       break
     case 'POST':
-      tusdPost(req, res)
+      await tusdPost(event)
       break
     default:
-      consola.warn(`Unexpected request method: ` + req.method)
+      consola.warn(`Unexpected request method: ` + method)
   }
 }
 
-function deleteUpload(res: ServerResponse, uploadId: any, storageKey: any) {
-  pool.query(
-    'DELETE FROM maevsi.profile_picture WHERE upload_storage_key = $1;',
-    [storageKey],
-    (err: Error, _queryRes: QueryResult<any>) => {
-      if (err) {
-        res.statusCode = 500
-        res.end(err.message)
-        return
-      }
-
-      pool.query(
-        'DELETE FROM maevsi.upload WHERE id = $1;',
-        [uploadId],
-        (err: Error, _queryRes: QueryResult<any>) => {
-          if (err) {
-            res.statusCode = 500
-            res.end(err.message)
-            return
-          }
-
+async function deleteUpload(
+  res: ServerResponse,
+  uploadId: any,
+  storageKey: any
+) {
+  await pool
+    .query(
+      'DELETE FROM maevsi.profile_picture WHERE upload_storage_key = $1;',
+      [storageKey]
+    )
+    .then(async (_queryRes: QueryResult<any>) => {
+      await pool
+        .query('DELETE FROM maevsi.upload WHERE id = $1;', [uploadId])
+        .then((_queryRes: QueryResult<any>) => {
           res.statusCode = 204
           res.end()
-        }
-      )
-    }
-  )
+        })
+        .catch((err) => {
+          res.statusCode = 500
+          res.end(err.message)
+        })
+    })
+    .catch((err) => {
+      res.statusCode = 500
+      res.end(err.message)
+    })
 }
 
-function tusdDelete(req: IncomingMessage, res: ServerResponse) {
-  // eslint-disable-next-line compat/compat
-  const uploadId = new URLSearchParams(req.url?.substring(1)).get('uploadId')
+async function tusdDelete(event: CompatibilityEvent) {
+  const { req, res } = event
+  const uploadId = useQuery(event).uploadId
 
   consola.log('tusdDelete: ' + uploadId)
 
@@ -108,16 +106,9 @@ function tusdDelete(req: IncomingMessage, res: ServerResponse) {
     return
   }
 
-  pool.query(
-    'SELECT * FROM maevsi.upload WHERE id = $1;',
-    [uploadId],
-    (err: Error, queryRes: QueryResult<any>) => {
-      if (err) {
-        res.statusCode = 500
-        res.end(err.message)
-        return
-      }
-
+  await pool
+    .query('SELECT * FROM maevsi.upload WHERE id = $1;', [uploadId])
+    .then(async (queryRes: QueryResult<any>) => {
       if (queryRes.rows.length === 0) {
         res.statusCode = 500
         res.end('No result found for id "' + uploadId + '"!')
@@ -127,62 +118,54 @@ function tusdDelete(req: IncomingMessage, res: ServerResponse) {
       const storageKey = queryRes.rows[0] ? queryRes.rows[0].storage_key : null
 
       if (storageKey !== null) {
-        const reqTusd = http
-          .request(
-            'http://tusd:1080/files/' + storageKey + '+',
-            {
-              headers: {
-                'Tus-Resumable': '1.0.0',
-              },
-              method: 'DELETE',
+        const httpResp = await fetch(
+          'http://tusd:1080/files/' + storageKey + '+',
+          {
+            headers: {
+              'Tus-Resumable': '1.0.0',
             },
-            (httpResp: any) => {
-              httpResp.on('data', () => {}) // Do not remove! If you do, the 'end' event won't fire.
-              httpResp.on('end', () => {
-                if (httpResp.statusCode === 204) {
-                  deleteUpload(res, uploadId, storageKey)
-                  res.statusCode = 204
-                  res.end()
-                } else if (httpResp.statusCode === 404) {
-                  deleteUpload(res, uploadId, storageKey)
-                } else {
-                  res.statusCode = 500
-                  res.end('Tusd status was "' + httpResp.statusCode + '".')
-                }
-              })
-            }
-          )
-          .on('error', (err: any) => {
-            res.statusCode = 500
-            res.end('Internal delete failed: "' + err.message + '"!')
-          })
+            method: 'DELETE',
+          }
+        )
 
-        reqTusd.end()
+        if (httpResp.ok) {
+          if (httpResp.status === 204) {
+            await deleteUpload(res, uploadId, storageKey)
+            res.statusCode = 204
+            res.end()
+          } else if (httpResp.status === 404) {
+            await deleteUpload(res, uploadId, storageKey)
+          } else {
+            res.statusCode = 500
+            res.end('Tusd status was "' + httpResp.status + '".')
+          }
+        } else {
+          res.statusCode = 500
+          res.end('Internal delete failed: "' + httpResp.statusText + '"!')
+        }
       } else {
-        deleteUpload(res, uploadId, storageKey)
+        await deleteUpload(res, uploadId, storageKey)
       }
-    }
-  )
+    })
+    .catch((err) => {
+      res.statusCode = 500
+      res.end(err.message)
+    })
 }
 
-async function tusdPost(req: IncomingMessageWithBody, res: ServerResponse) {
-  const body = await useBody(req)
+async function tusdPost(event: CompatibilityEvent) {
+  const { req, res } = event
+  const body = await useBody(event)
 
   switch (req.headers['hook-name']) {
     case 'pre-create':
       consola.log('tusd/pre-create')
 
-      pool.query(
-        'SELECT EXISTS(SELECT * FROM maevsi.upload WHERE uuid = $1);',
-        [body.Upload.MetaData.maevsiUploadUuid],
-        (err: Error, queryRes: QueryResult<any>) => {
-          if (err) {
-            consola.error(err)
-            res.statusCode = 500
-            res.end()
-            return
-          }
-
+      await pool
+        .query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE uuid = $1);', [
+          body.Upload.MetaData.maevsiUploadUuid,
+        ])
+        .then((queryRes: QueryResult<any>) => {
           if (!queryRes.rows[0].exists) {
             consola.error('Upload id does not exist!')
             res.statusCode = 500
@@ -191,31 +174,34 @@ async function tusdPost(req: IncomingMessageWithBody, res: ServerResponse) {
           }
 
           res.end()
-        }
-      )
+        })
+        .catch((err) => {
+          consola.error(err)
+          res.statusCode = 500
+          res.end()
+        })
 
       break
     case 'post-finish':
       consola.log('tusd/post-finish: ' + body.Upload.Storage.Key)
 
-      pool.query(
-        'UPDATE maevsi.upload SET storage_key = $1 WHERE uuid = $2;',
-        [body.Upload.Storage.Key, body.Upload.MetaData.maevsiUploadUuid],
-        (err: Error, _queryRes: QueryResult<any>) => {
-          if (err) {
-            res.statusCode = 500
-            res.end(err.message)
-            return
-          }
-
+      await pool
+        .query('UPDATE maevsi.upload SET storage_key = $1 WHERE uuid = $2;', [
+          body.Upload.Storage.Key,
+          body.Upload.MetaData.maevsiUploadUuid,
+        ])
+        .then((_queryRes: QueryResult<any>) => {
           res.end()
-        }
-      )
+        })
+        .catch((err) => {
+          res.statusCode = 500
+          res.end(err.message)
+        })
 
       break
     case 'post-terminate':
       consola.log('tusd/post-terminate: ' + body.Upload.Storage.Key)
-      deleteUpload(
+      await deleteUpload(
         res,
         body.Upload.MetaData.maevsiUploadUuid,
         body.Upload.Storage.Key

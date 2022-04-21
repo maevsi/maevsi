@@ -1,5 +1,3 @@
-import { ServerResponse } from 'http'
-
 import { useBody, CompatibilityEvent } from 'h3'
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
@@ -11,7 +9,8 @@ import { Contact } from '~/types/contact'
 import { Event as MaevsiEvent } from '~/types/event'
 import { Invitation } from '~/types/invitation'
 
-export default async function (req: CompatibilityEvent, res: ServerResponse) {
+export default async function (compatibilityEvent: CompatibilityEvent) {
+  const { req, res } = compatibilityEvent
   const body = await useBody(req)
 
   const contact: Contact = body.contact
