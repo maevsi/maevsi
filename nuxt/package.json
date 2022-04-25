@@ -58,7 +58,7 @@
     "core-js": "3.22.2",
     "css-element-queries": "1.2.3",
     "downloadjs": "1.4.7",
-    "graphql": "16.3.0",
+    "graphql": "16.4.0",
     "html-to-text": "8.2.0",
     "ical-generator": "3.4.1",
     "isomorphic-dompurify": "0.18.0",
