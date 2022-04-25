@@ -102,7 +102,7 @@
     "@types/jsonwebtoken": "8.5.8",
     "@types/lodash-es": "4.17.6",
     "@types/mustache": "4.1.2",
-    "@types/node": "16.11.28",
+    "@types/node": "16.11.29",
     "@types/pg": "8.6.5",
     "@types/twemoji": "13.1.1",
     "@types/vue-datetime": "1.0.1",
