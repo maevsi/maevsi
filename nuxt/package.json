@@ -109,7 +109,7 @@
     "@types/vue-moment": "4.0.3",
     "@types/vuelidate": "0.7.15",
     "@upleveled/babel-plugin-remove-node-prefix": "1.0.4",
-    "autoprefixer": "10.4.5",
+    "autoprefixer": "10.4.6",
     "babel-eslint": "10.1.0",
     "browserlist": "1.0.1",
     "browserslist-useragent-regexp": "3.0.2",
