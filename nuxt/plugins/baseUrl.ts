@@ -1,5 +1,5 @@
-import { Inject } from '@nuxt/types/app'
-import { Context } from '@nuxt/types'
+import { Inject } from '@nuxt/types-edge/app'
+import { Context } from '@nuxt/types-edge'
 
 export const STACK_DOMAIN =
   process.env.NUXT_ENV_STACK_DOMAIN || 'localhost:3000'
@@ -18,7 +18,7 @@ declare module 'vue/types/vue' {
   }
 }
 
-declare module '@nuxt/types' {
+declare module '@nuxt/types-edge' {
   interface NuxtAppOptions {
     $baseUrl: string
   }

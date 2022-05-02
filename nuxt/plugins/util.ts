@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http'
 
-import { Context } from '@nuxt/types'
-import { Inject } from '@nuxt/types/app'
+import { Context } from '@nuxt/types-edge'
+import { Inject } from '@nuxt/types-edge/app'
 import { ApolloClient } from 'apollo-client'
 import consola from 'consola'
 import { serialize, parse } from 'cookie'
@@ -451,7 +451,7 @@ declare module 'vue/types/vue' {
   }
 }
 
-declare module '@nuxt/types' {
+declare module '@nuxt/types-edge' {
   interface NuxtAppOptions {
     $util: typeof util
   }

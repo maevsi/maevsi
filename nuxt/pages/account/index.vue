@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types'
+import { Context } from '@nuxt/types-edge'
 
 import { defineComponent, ref } from '#app'
 import { TabFlipType } from '~/components/TabFlip.vue'

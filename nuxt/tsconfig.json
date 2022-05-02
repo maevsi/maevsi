@@ -29,7 +29,7 @@
     },
     "types": [
       "@types/node",
-      "@nuxt/types",
+      "@nuxt/types-edge",
       "@nuxtjs/color-mode",
       "@nuxtjs/google-analytics",
       "@nuxtjs/i18n",

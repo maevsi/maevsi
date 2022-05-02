@@ -1,4 +1,4 @@
-import { ServerMiddleware } from '@nuxt/types'
+import { ServerMiddleware } from '@nuxt/types-edge'
 
 const myServerMiddleware: ServerMiddleware = function (_req, res, next) {
   res.setHeader('Permissions-Policy', '')

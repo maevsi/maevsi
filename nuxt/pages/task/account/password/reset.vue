@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types'
+import { Context } from '@nuxt/types-edge'
 
 import { defineComponent } from '#app'
 
