@@ -1,29 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "lib": [
-      "ESNext",
-      "ESNext.AsyncIterable",
-      "DOM"
-    ],
     "esModuleInterop": true,
-    "allowJs": true,
-    "sourceMap": true,
     "strict": true,
-    "noEmit": true,
+    "sourceMap": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "#app": [
         "node_modules/@nuxt/bridge/dist/runtime/index"
       ],
       "~/*": [
-        "./*"
-      ],
-      "@/*": [
         "./*"
       ]
     },
@@ -35,8 +21,14 @@
       "@nuxtjs/i18n",
       "@nuxtjs/moment",
       "jest",
+      "node",
       "vue-apollo/types",
       "vue-sweetalert2",
+    ],
+    "lib": [
+      "ESNext",
+      "ESNext.AsyncIterable",
+      "DOM"
     ]
   },
   "exclude": [
