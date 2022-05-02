@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types'
+import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 
 import { defineComponent } from '#app'

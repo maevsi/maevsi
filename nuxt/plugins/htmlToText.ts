@@ -1,6 +1,6 @@
 import { htmlToText } from 'html-to-text'
-import { Inject } from '@nuxt/types/app'
-import { Context } from '@nuxt/types'
+import { Inject } from '@nuxt/types-edge/app'
+import { Context } from '@nuxt/types-edge'
 
 export default (_: Context, inject: Inject) => {
   inject('htmlToText', htmlToText)
@@ -12,7 +12,7 @@ declare module 'vue/types/vue' {
   }
 }
 
-declare module '@nuxt/types' {
+declare module '@nuxt/types-edge' {
   interface NuxtAppOptions {
     $htmlToText: typeof htmlToText
   }

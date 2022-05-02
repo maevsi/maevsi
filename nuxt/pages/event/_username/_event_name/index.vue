@@ -232,7 +232,7 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types'
+import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import { GraphQLError } from 'graphql'
 import mustache from 'mustache'
