@@ -124,7 +124,7 @@
     "eslint-plugin-storybook": "0.5.11",
     "eslint-plugin-yml": "0.14.0",
     "graphql-tag": "2.12.6",
-    "jest": "28.0.3",
+    "jest": "28.1.0",
     "lint-staged": "12.4.1",
     "mockdate": "3.0.5",
     "msw": "0.39.2",
