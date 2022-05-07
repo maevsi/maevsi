@@ -1,3 +1,10 @@
+## [0.125.4](https://github.com/maevsi/maevsi/compare/0.125.3...0.125.4) (2022-05-07)
+
+
+### Bug Fixes
+
+* **css:** correct prose sizes ([3213399](https://github.com/maevsi/maevsi/commit/321339923b903c65a883f1cd3f27ad5093119ad8))
+
 ## [0.125.3](https://github.com/maevsi/maevsi/compare/0.125.2...0.125.3) (2022-05-02)
 
 
