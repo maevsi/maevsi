@@ -2,7 +2,7 @@
   "name": "maevsi",
   "private": true,
   "version": "0.125.4",
-  "scheduleVersion": "0.125.3",
+  "scheduleVersion": "0.125.5",
   "description": "The manager for events supported by invitees.",
   "scripts": {
     "dev": "nuxi dev",
