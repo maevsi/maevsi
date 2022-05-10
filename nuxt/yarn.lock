@@ -23288,10 +23288,10 @@ vue-bundle-renderer@^0.3.5:
   dependencies:
     bundle-runner "^0.0.1"
 
-vue-chartjs@4.0.7:
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-4.0.7.tgz#bf15a8f1f2f4482351e22f34e0400adbfd6209fb"
-  integrity sha512-nlUIyZx/+83BlA+b7Q9JTV96IXweb+atiod2ciYiJyoaGgJ7nBAzt/7L9gugW8gpiqeYqS3ogAlE+y9YyhkTzw==
+vue-chartjs@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-4.1.0.tgz#314474d33eb3bb9d0bafe7f075bb03e21e865602"
+  integrity sha512-lHOs5vjb9dDdXz/0TbQWjJuL1/KOLT1tlvo+6b1M+JyyIQjeAf8K9IVsUhx8fdSIR4QD9CBELN/cYgYwKdiJ7g==
 
 vue-cli-plugin-apollo@^0.22.2:
   version "0.22.2"
