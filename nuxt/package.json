@@ -99,7 +99,7 @@
     "@storybook/addon-a11y": "6.4.22",
     "@types/dompurify": "2.3.3",
     "@types/html-to-text": "8.1.0",
-    "@types/jest": "27.5.0",
+    "@types/jest": "27.5.1",
     "@types/jsonwebtoken": "8.5.8",
     "@types/lodash-es": "4.17.6",
     "@types/mustache": "4.1.2",
