@@ -60,7 +60,7 @@
     "downloadjs": "1.4.7",
     "graphql": "16.5.0",
     "html-to-text": "8.2.0",
-    "ical-generator": "3.4.2",
+    "ical-generator": "3.4.3",
     "isomorphic-dompurify": "0.18.0",
     "jsonwebtoken": "8.5.1",
     "lodash-es": "4.17.21",
