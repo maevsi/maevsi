@@ -123,7 +123,7 @@
     "eslint-plugin-nuxt": "3.2.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-storybook": "0.5.11",
-    "eslint-plugin-yml": "0.14.0",
+    "eslint-plugin-yml": "0.15.0",
     "graphql-tag": "2.12.6",
     "jest": "28.1.0",
     "lint-staged": "12.4.1",
