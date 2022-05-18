@@ -85,7 +85,7 @@
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "7.17.12",
     "@babel/runtime-corejs3": "7.17.9",
-    "@intlify/eslint-plugin-vue-i18n": "1.4.1",
+    "@intlify/eslint-plugin-vue-i18n": "2.0.0",
     "@nuxt/babel-preset-app": "2.15.8",
     "@nuxt/bridge": "npm:@nuxt/bridge-edge",
     "@nuxt/postcss8": "1.1.3",
