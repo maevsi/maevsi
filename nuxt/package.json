@@ -128,7 +128,7 @@
     "jest": "28.1.0",
     "lint-staged": "12.4.1",
     "mockdate": "3.0.5",
-    "msw": "0.40.1",
+    "msw": "0.40.2",
     "msw-storybook-addon": "1.6.3",
     "postcss": "8.4.14",
     "postcss-html": "1.4.1",
