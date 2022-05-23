@@ -4754,13 +4754,6 @@
   dependencies:
     browserslist "*"
 
-"@types/chalk@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@types/chalk/-/chalk-2.2.0.tgz#b7f6e446f4511029ee8e3f43075fb5b73fbaa0ba"
-  integrity sha512-1zzPV9FDe1I/WHhRkf9SNgqtRJWZqrBWgu7JGveuHmmyR9CnAPCie2N/x+iHrgnpYBIcCJWHBoMRv2TRWktsvw==
-  dependencies:
-    chalk "*"
-
 "@types/clean-css@*":
   version "4.2.5"
   resolved "https://registry.yarnpkg.com/@types/clean-css/-/clean-css-4.2.5.tgz#69ce62cc13557c90ca40460133f672dc52ceaf89"
@@ -8211,11 +8204,6 @@ ccount@^1.0.0:
   resolved "https://registry.yarnpkg.com/ccount/-/ccount-1.1.0.tgz#246687debb6014735131be8abab2d93898f8d043"
   integrity sha512-vlNK021QdI7PNeiUh/lKkC/mNHHfV0m/Ad5JoI0TYtlBnJAslM/JIkm/tGC88bkLIwO6OQ5uV6ztS6kVAtCDlg==
 
-chalk@*, chalk@^5.0.0, chalk@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.0.1.tgz#ca57d71e82bb534a296df63bbacc4a1c22b2a4b6"
-  integrity sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==
-
 chalk@2.4.2, chalk@^2.0.0, chalk@^2.3.2, chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -8259,6 +8247,11 @@ chalk@^3.0.0:
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
+
+chalk@^5.0.0, chalk@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-5.0.1.tgz#ca57d71e82bb534a296df63bbacc4a1c22b2a4b6"
+  integrity sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==
 
 change-case@^4.0.0:
   version "4.1.2"
@@ -21360,10 +21353,10 @@ storybook-addon-outline@^1.4.1:
     "@storybook/core-events" "~6.3.0"
     ts-dedent "^2.1.1"
 
-storycap@3.1.7:
-  version "3.1.7"
-  resolved "https://registry.yarnpkg.com/storycap/-/storycap-3.1.7.tgz#9447de6bbb97bd001d631fbff954005a8cc35ac1"
-  integrity sha512-f5oOyI2YYeRin8qjn7vmUXGYiqIlXRmVPOoDlSMGKjHT0Fycuj1GIURL2nG5vrznxyKToAYBiGPyn8ljQW9h+A==
+storycap@3.1.8:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/storycap/-/storycap-3.1.8.tgz#0e9cc9fb3f4bcaea29f921484cd34fae62d159fc"
+  integrity sha512-fBu+fDUuAWNn+dER+dvjhqxxbahkQzvnXPUnigqOYn+WzVqjcxq08ohjWVu3cq/bXioSNz6peeLTAzStxGk/+Q==
   dependencies:
     "@types/minimatch" "^3.0.3"
     "@types/mkdirp" "^1.0.0"
@@ -21376,15 +21369,14 @@ storycap@3.1.7:
     puppeteer-core "^9.0.0"
     rimraf "^3.0.0"
     sanitize-filename "^1.6.3"
-    storycrawler "^3.1.7"
+    storycrawler "^3.1.8"
     yargs "^16.0.0"
 
-storycrawler@^3.1.7:
-  version "3.1.7"
-  resolved "https://registry.yarnpkg.com/storycrawler/-/storycrawler-3.1.7.tgz#004acc195a545a815b675206d7286811ccb39bce"
-  integrity sha512-pvdThBPJmXjknv+lRNgB44HzNZkT4XVXKw5g6k7/8SeM/+zYjvHj9PM1SauQfTJ1UtLJtRCGge8qDfeboatreQ==
+storycrawler@^3.1.8:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/storycrawler/-/storycrawler-3.1.8.tgz#f67bc4f574e083920ccac7ec69eabebb567d64b3"
+  integrity sha512-RVsUTizWfBGGPlg5++9bh6KOgUNRkc5rHG2+XnQauxXnOxA6aD1IoX6STMaZwDOr3RjddWdtoQHhlq6vIDFCng==
   dependencies:
-    "@types/chalk" "^2.2.0"
     "@types/node" "^16.0.0"
     "@types/wait-on" "^5.0.0"
     chalk "^2.4.1"
