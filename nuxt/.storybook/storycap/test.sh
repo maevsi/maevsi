@@ -21,19 +21,20 @@ if [ "$deletedItems" = "[]" ]; then
   printf "deleted: none\n\n"
 else
   printf "deleted:\n%s\n\n" "$deletedItems"
-  exit 1
 fi
 
 if [ "$failedItems" = "[]" ]; then
   printf "failed: none\n\n"
 else
   printf "failed:\n%s\n\n" "$failedItems"
-  exit 1
 fi
 
 if [ "$newItems" = "[]" ]; then
   printf "new: none\n\n"
 else
   printf "new:\n%s\n\n" "$newItems"
+fi
+
+if [[ "$newItems" != "[]" || "$failedItems" != "[]" || "$newItems" != "[]" ]]; then
   exit 1
 fi

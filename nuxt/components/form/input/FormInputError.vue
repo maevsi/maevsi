@@ -2,7 +2,8 @@
   <div
     v-if="
       (!formInput && !validationProperty) ||
-      (formInput.$error &&
+      (formInput[validation ? '$invalid' : '$error'] &&
+        !formInput.$pending &&
         validationProperty in formInput &&
         !formInput[validationProperty])
     "
@@ -21,6 +22,10 @@ export default defineComponent({
     formInput: {
       default: undefined,
       type: Object,
+    },
+    validation: {
+      default: false,
+      type: Boolean,
     },
     validationProperty: {
       default: undefined,
