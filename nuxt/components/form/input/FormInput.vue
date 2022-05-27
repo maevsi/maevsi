@@ -31,8 +31,28 @@
           </span>
         </label>
       </div>
-      <div class="md:mt-1 md:w-2/3">
+      <div class="relative md:mt-1 md:w-2/3">
         <slot />
+        <div v-if="validationProperty && isValidatable">
+          <FormInputIconWrapper v-if="validationProperty.$pending">
+            <IconHourglass class="text-blue-600" :title="$t('globalLoading')" />
+          </FormInputIconWrapper>
+          <FormInputIconWrapper
+            v-else-if="
+              validationProperty.$model && !validationProperty.$invalid
+            "
+          >
+            <IconCheckCircle class="text-green-600" :title="$t('valid')" />
+          </FormInputIconWrapper>
+          <FormInputIconWrapper
+            v-else-if="validationProperty.$model && validationProperty.$invalid"
+          >
+            <IconExclamationCircle
+              class="text-red-600"
+              :title="$t('validNot')"
+            />
+          </FormInputIconWrapper>
+        </div>
       </div>
       <div class="md:w-1/3" />
       <div class="md:w-2/3">
@@ -67,6 +87,10 @@ const FormInput = defineComponent({
       default: false,
       type: Boolean,
     },
+    isValidatable: {
+      default: false,
+      type: Boolean,
+    },
     labelFor: {
       default: undefined,
       type: String as PropType<string | undefined>,
@@ -82,6 +106,10 @@ const FormInput = defineComponent({
     title: {
       default: undefined,
       type: String as PropType<string | undefined>,
+    },
+    validationProperty: {
+      default: undefined,
+      type: Object,
     },
     warning: {
       default: false,
@@ -99,7 +127,11 @@ export type FormInputType = InstanceType<typeof FormInput>
 de:
   optional: optional
   required: Pflichtfeld
+  valid: Valide
+  validNot: Invalide
 en:
   optional: optional
   required: required
+  valid: valid
+  validNot: invalid
 </i18n>

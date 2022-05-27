@@ -15,6 +15,7 @@ import { Store } from 'vuex'
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
+import EVENT_IS_EXISTING_MUTATION from '~/gql/query/event/eventIsExisting.gql'
 import { Contact } from '~/types/contact'
 import { State } from '~/store'
 
@@ -336,6 +337,30 @@ export function removeTypename<T extends Object & { __typename?: string }>(
   return clonedObject
 }
 
+export function validateEventSlug(
+  apollo: ApolloClient<any>,
+  signedInUserName: string,
+  invert: boolean
+): (value: string) => Promise<boolean> {
+  return async (value: string) => {
+    if (!helpers.req(value)) {
+      return true
+    }
+
+    const {
+      data: { eventIsExisting },
+    } = await apollo.query({
+      query: EVENT_IS_EXISTING_MUTATION,
+      variables: {
+        authorUsername: signedInUserName,
+        slug: value,
+      },
+    })
+
+    return invert ? !eventIsExisting : eventIsExisting
+  }
+}
+
 export function validateUsername(
   apollo: ApolloClient<any>
 ): (value: string) => Promise<boolean> {
@@ -424,6 +449,7 @@ const util = {
   signOut,
   objectClone,
   removeTypename,
+  validateEventSlug,
   validateUsername,
   xhrPromise,
 }

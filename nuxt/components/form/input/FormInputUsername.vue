@@ -3,28 +3,20 @@
     v-if="formInput"
     :error="formInput.$error"
     :is-optional="isOptional"
+    :is-validatable="isValidatable"
     :label-for="`input-${id}`"
-    :success="isVerifiable && formInput.$model && !formInput.$invalid"
+    :success="isValidatable && formInput.$model && !formInput.$invalid"
     :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
+    :validation-property="formInput"
   >
-    <div class="relative">
-      <input
-        :id="`input-${id}`"
-        class="form-input"
-        type="text"
-        :placeholder="$t('globalPlaceholderUsername')"
-        :value="formInput.$model"
-        @input="$emit('input', $event.target.value)"
-      />
-      <span
-        v-if="isVerifiable && formInput.$model && !formInput.$invalid"
-        class="absolute right-0 top-1/2 -translate-y-1/2 px-3"
-      >
-        <div class="rounded-full bg-gray-50">
-          <IconCheckCircle class="text-green-600" :title="$t('iconCheck')" />
-        </div>
-      </span>
-    </div>
+    <input
+      :id="`input-${id}`"
+      class="form-input"
+      type="text"
+      :placeholder="$t('globalPlaceholderUsername')"
+      :value="formInput.$model"
+      @input="$emit('input', $event.target.value)"
+    />
     <template slot="inputError">
       <FormInputError :form-input="formInput" validation-property="existence">
         {{ $t('globalValidationExistence') }}
@@ -36,7 +28,7 @@
         {{ $t('globalValidationRequired') }}
       </FormInputError>
     </template>
-    <template v-if="isVerifiable" slot="inputSuccess">
+    <template v-if="isValidatable" slot="inputSuccess">
       <FormInputSuccess :form-input="formInput">
         {{ $t('globalVerificationExistence') }}
       </FormInputSuccess>
@@ -62,7 +54,7 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
-    isVerifiable: {
+    isValidatable: {
       default: false,
       type: Boolean,
     },

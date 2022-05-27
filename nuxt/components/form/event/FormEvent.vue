@@ -24,8 +24,10 @@
     <FormInput
       :error="$v.form.name.$error"
       label-for="input-name"
+      :validation-property="$v.form.slug"
       required
       :title="$t('name')"
+      is-validatable
     >
       <input
         id="input-name"
@@ -35,7 +37,23 @@
         :placeholder="$t('namePlaceholder')"
         @input="updateSlug"
       />
+      <template slot="inputInfo">
+        <FormInputInfo>
+          {{
+            $t('slugInfo', {
+              slug: $v.form.slug.$model || $t('slugPlaceholder'),
+            })
+          }}
+        </FormInputInfo>
+      </template>
       <template slot="inputError">
+        <FormInputError
+          :form-input="$v.form.slug"
+          validation
+          validation-property="existenceNone"
+        >
+          {{ $t('globalValidationExistenceNone') }}
+        </FormInputError>
         <FormInputError
           :form-input="$v.form.name"
           validation-property="maxLength"
@@ -437,6 +455,11 @@ export default defineComponent({
           required,
         },
         slug: {
+          existenceNone: this.$util.validateEventSlug(
+            this.$apollo as any,
+            this.signedInUsername,
+            true
+          ),
           maxLength: maxLength(this.$util.VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
           required,
           formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
@@ -478,6 +501,7 @@ de:
   preview: Vorschau
   previewNoContent: Kein Inhalt für die Vorschau 😕
   slug: Slug
+  slugInfo: Deine Veranstaltung hat die ID '{slug}'.
   slugPlaceholder: willkommensfeier
   start: Beginn
   updated: Aktualisiert
@@ -504,6 +528,7 @@ en:
   preview: Preview
   previewNoContent: No content to preview 😕
   slug: Slug
+  slugInfo: Your event has the id "{slug}".
   slugPlaceholder: welcome-party
   start: Start
   updated: Updated
