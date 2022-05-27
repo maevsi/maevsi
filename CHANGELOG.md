@@ -1,3 +1,15 @@
+# [0.126.0](https://github.com/maevsi/maevsi/compare/0.125.7...0.126.0) (2022-05-27)
+
+
+### Bug Fixes
+
+* **storycap:** print all changes on test ([9c1f8f1](https://github.com/maevsi/maevsi/commit/9c1f8f1208018bafc45a03bfb013eb88415793d5))
+
+
+### Features
+
+* **form-input:** implement generic input validation icon ([4e573b1](https://github.com/maevsi/maevsi/commit/4e573b1ed1e6ef728792065066bba8fa18780f91)), closes [#503](https://github.com/maevsi/maevsi/issues/503)
+
 ## [0.125.7](https://github.com/maevsi/maevsi/compare/0.125.6...0.125.7) (2022-05-23)
 
 
