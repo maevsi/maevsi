@@ -1,3 +1,12 @@
+## [0.126.1](https://github.com/maevsi/maevsi/compare/0.126.0...0.126.1) (2022-05-29)
+
+
+### Bug Fixes
+
+* **header:** change translations ([6597cdb](https://github.com/maevsi/maevsi/commit/6597cdbf22ca45d9f2efc21fe8c8d85f8f4c0976))
+* **release-schedule:** correct job order ([92265ad](https://github.com/maevsi/maevsi/commit/92265ad9eb3bd4104d7106e6f52e38004fae9ef1))
+* **release:** schedule release ([7bbedad](https://github.com/maevsi/maevsi/commit/7bbedadde6ad88053943c362caf3b374ec25d900))
+
 # [0.126.0](https://github.com/maevsi/maevsi/compare/0.125.7...0.126.0) (2022-05-27)
 
 
