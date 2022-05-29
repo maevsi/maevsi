@@ -81,7 +81,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  browserUnsupported: Die Version deines Browsers wird nicht offiziell unterstützt. Bitte verwende eine aktuelle Version.
+  browserUnsupported: Dein Browser scheint veraltet zu sein. Manche Dinge könnten deshalb nicht funktionieren oder komisch aussehen.
   eventNew: Veranstaltung erstellen
   events: Veranstaltungen entdecken
   home: Nach Hause
@@ -89,7 +89,7 @@ de:
   search: Suche
   signIn: Anmelden
 en:
-  browserUnsupported: "Your browser's version is not officially supported. Please use a version that is up to date."
+  browserUnsupported: Your browser seems outdated. Some things might not work or look funny because of this.
   eventNew: Create event
   events: Explore events
   home: Head home
