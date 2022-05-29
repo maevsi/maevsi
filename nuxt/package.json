@@ -17,7 +17,7 @@
     "storybook:build": "cross-env STORYBOOK=true nuxt storybook build",
     "storybook:serve": "npx http-server ./storybook-static -p 6006",
     "storybook:static": "yarn storybook:build && yarn storybook:serve",
-    "storycap": "yarn test:visual && storycap:update",
+    "storycap": "!(yarn test:visual); yarn storycap:update",
     "storycap:base": "storycap http://localhost:6006 --serverTimeout 60000 --viewport 640x1020 --viewport 1280x1020",
     "storycap:actual": "yarn storycap:base --outDir .storybook/storycap/images/actual",
     "storycap:expected": "yarn storycap:base --outDir .storybook/storycap/images/expected",
