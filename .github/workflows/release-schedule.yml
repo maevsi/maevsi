@@ -7,7 +7,7 @@ on:
 
 jobs:
   browserslist-regex:
-    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.12.1
+    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.12.2
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
@@ -15,7 +15,7 @@ jobs:
       OUTPUT_PATH: nuxt/supportedBrowsers.js
   release-schedule:
     needs: browserslist-regex
-    uses: dargmuesli/github-actions/.github/workflows/release-schedule.yml@0.12.1
+    uses: dargmuesli/github-actions/.github/workflows/release-schedule.yml@0.12.2
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
