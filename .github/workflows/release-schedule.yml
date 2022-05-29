@@ -3,12 +3,19 @@ name: 'Release: Scheduled'
 on:
   schedule:
     - cron: '0 0 * * 1' # Every Monday at 00:00 AM UTC on the default branch
+  workflow_dispatch:
 
 jobs:
+  browserslist-regex:
+    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.12.0
+    secrets:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    with:
+      CACHE_PATH: nuxt/yarn.lock
+      OUTPUT_PATH: nuxt/supportedBrowsers.js
   release-schedule:
-    name: 'Release: Scheduled'
     uses: dargmuesli/github-actions/.github/workflows/release-schedule.yml@0.11.7
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
-      PACKAGE_JSON_PATH: 'nuxt/package.json'
+      PACKAGE_JSON_PATH: nuxt/package.json
