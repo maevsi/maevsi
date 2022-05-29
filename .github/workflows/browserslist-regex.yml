@@ -7,9 +7,10 @@ on:
 
 jobs:
   browserslist-regex:
-    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.13.0
+    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.14.0
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
       CACHE_PATH: nuxt/yarn.lock
+      ESLINT_PACKAGES: eslint @intlify/eslint-plugin-vue-i18n @nuxtjs/eslint-config-typescript eslint-config-prettier eslint-plugin-compat eslint-plugin-nuxt eslint-plugin-prettier eslint-plugin-storybook eslint-plugin-yml
       OUTPUT_PATH: nuxt/supportedBrowsers.js
