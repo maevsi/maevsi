@@ -13,4 +13,5 @@ jobs:
     with:
       CACHE_PATH: nuxt/yarn.lock
       DIRECTORY: nuxt/
+      NODE_VERSION: 16
       OUTPUT_PATH: supportedBrowsers.js
