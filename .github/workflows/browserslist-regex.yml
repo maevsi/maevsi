@@ -1,0 +1,15 @@
+name: 'Browserslist: Regex'
+
+on:
+  schedule:
+    - cron: '0 0 * * 2' # Every Tuesday at 00:00 AM UTC on the default branch
+  workflow_dispatch:
+
+jobs:
+  browserslist-regex:
+    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.12.2
+    secrets:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    with:
+      CACHE_PATH: nuxt/yarn.lock
+      OUTPUT_PATH: nuxt/supportedBrowsers.js
