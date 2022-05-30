@@ -4,17 +4,18 @@ import { CompatibilityEvent } from 'h3'
 import { serialize } from 'cookie'
 import jsonwebtoken from 'jsonwebtoken'
 
-const secretPostgraphileJwtSecretPath = '/run/secrets/postgraphile_jwt-secret'
-const secretPostgraphileJwtSecret = fs.existsSync(
-  secretPostgraphileJwtSecretPath
+const configPostgraphileJwtPublicKeyPath =
+  process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE || ''
+const configPostgraphileJwtPublicKey = fs.existsSync(
+  configPostgraphileJwtPublicKeyPath
 )
-  ? fs.readFileSync(secretPostgraphileJwtSecretPath, 'utf-8')
+  ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
   : undefined
 
 export default function (event: CompatibilityEvent) {
   const { req, res } = event
 
-  if (secretPostgraphileJwtSecret === undefined) {
+  if (configPostgraphileJwtPublicKey === undefined) {
     res.statusCode = 500
     res.end('Secret missing!')
     return
@@ -28,7 +29,8 @@ export default function (event: CompatibilityEvent) {
 
     try {
       // eslint-disable-next-line import/no-named-as-default-member
-      jsonwebtoken.verify(jwt, secretPostgraphileJwtSecret, {
+      jsonwebtoken.verify(jwt, configPostgraphileJwtPublicKey, {
+        algorithms: ['RS256'],
         audience: 'postgraphile',
         issuer: 'postgraphile',
       })
