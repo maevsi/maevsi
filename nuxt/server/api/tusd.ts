@@ -6,15 +6,16 @@ import jsonwebtoken from 'jsonwebtoken'
 import pg, { QueryResult } from 'pg'
 import fetch from 'node-fetch'
 
-const secretPostgresDbPath = '/run/secrets/postgres_db'
-const secretPostgraphileJwtSecretPath = '/run/secrets/postgraphile_jwt-secret'
+const configPostgraphileJwtPublicKeyPath =
+  process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE || ''
+const secretPostgresDbPath = process.env.POSTGRES_DB_FILE || ''
 const secretPostgresRoleMaevsiTusdPasswordPath =
-  '/run/secrets/postgres_role_maevsi-tusd_password'
+  process.env.POSTGRES_ROLE_MAEVSI_TUSD_PASSWORD_FILE || ''
 
-const secretPostgraphileJwtSecret = fs.existsSync(
-  secretPostgraphileJwtSecretPath
+const configPostgraphileJwtPublicKey = fs.existsSync(
+  configPostgraphileJwtPublicKeyPath
 )
-  ? fs.readFileSync(secretPostgraphileJwtSecretPath, 'utf-8')
+  ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
   : undefined
 
 // eslint-disable-next-line import/no-named-as-default-member
@@ -84,7 +85,7 @@ async function tusdDelete(event: CompatibilityEvent) {
     return
   }
 
-  if (secretPostgraphileJwtSecret === undefined) {
+  if (configPostgraphileJwtPublicKey === undefined) {
     res.statusCode = 500
     res.end('Secret missing!')
     return
@@ -94,8 +95,9 @@ async function tusdDelete(event: CompatibilityEvent) {
     // eslint-disable-next-line import/no-named-as-default-member
     jsonwebtoken.verify(
       req.headers.authorization.substring(7),
-      secretPostgraphileJwtSecret,
+      configPostgraphileJwtPublicKey,
       {
+        algorithms: ['RS256'],
         audience: 'postgraphile',
         issuer: 'postgraphile',
       }
