@@ -340,10 +340,15 @@ export function removeTypename<T extends Object & { __typename?: string }>(
 export function validateEventSlug(
   apollo: ApolloClient<any>,
   signedInUserName: string,
-  invert: boolean
+  invert: boolean,
+  exclude?: string
 ): (value: string) => Promise<boolean> {
   return async (value: string) => {
     if (!helpers.req(value)) {
+      return true
+    }
+
+    if (value === exclude) {
       return true
     }
 
