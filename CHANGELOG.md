@@ -1,3 +1,10 @@
+# [0.127.0](https://github.com/maevsi/maevsi/compare/0.126.2...0.127.0) (2022-05-30)
+
+
+### Features
+
+* **api:** use public key for verification ([7358fe4](https://github.com/maevsi/maevsi/commit/7358fe48467169114bfc566027e16894c9c1810b))
+
 ## [0.126.2](https://github.com/maevsi/maevsi/compare/0.126.1...0.126.2) (2022-05-30)
 
 
