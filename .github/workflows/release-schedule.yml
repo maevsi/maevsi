@@ -7,7 +7,7 @@ on:
 
 jobs:
   release-schedule:
-    uses: dargmuesli/github-actions/.github/workflows/release-schedule.yml@0.12.2
+    uses: dargmuesli/github-actions/.github/workflows/release-schedule.yml@0.15.3
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
