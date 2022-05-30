@@ -37,35 +37,35 @@
         :placeholder="$t('namePlaceholder')"
         @input="updateSlug"
       />
-      <template slot="inputInfo">
-        <FormInputInfo>
+      <template slot="stateInfo">
+        <FormInputStateInfo>
           {{
             $t('slugInfo', {
               slug: $v.form.slug.$model || $t('slugPlaceholder'),
             })
           }}
-        </FormInputInfo>
+        </FormInputStateInfo>
       </template>
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.slug"
           validation
           validation-property="existenceNone"
         >
           {{ $t('globalValidationExistenceNone') }}
-        </FormInputError>
-        <FormInputError
+        </FormInputStateError>
+        <FormInputStateError
           :form-input="$v.form.name"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputError>
-        <FormInputError
+        </FormInputStateError>
+        <FormInputStateError
           :form-input="$v.form.name"
           validation-property="required"
         >
           {{ $t('globalValidationRequired') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <FormInput
@@ -82,25 +82,25 @@
         type="text"
         :placeholder="$t('slugPlaceholder')"
       />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.slug"
           validation-property="formatSlug"
         >
           {{ $t('globalValidationFormat') }}
-        </FormInputError>
-        <FormInputError
+        </FormInputStateError>
+        <FormInputStateError
           :form-input="$v.form.slug"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputError>
-        <FormInputError
+        </FormInputStateError>
+        <FormInputStateError
           :form-input="$v.form.slug"
           validation-property="required"
         >
           {{ $t('globalValidationRequired') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <FormInput
@@ -118,13 +118,13 @@
           [$t('visibilityPrivate'), 'PRIVATE'],
         ]"
       />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.visibility"
           validation-property="required"
         >
           {{ $t('globalValidationRequired') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <FormInput
@@ -140,12 +140,12 @@
         input-id="input-start"
         type="datetime"
       />
-      <template slot="inputWarning">
-        <FormInputWarning
+      <template slot="stateWarning">
+        <FormInputStateWarning
           v-if="!$util.VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))"
         >
           {{ $t('globalValidationNowOrFuture') }}
-        </FormInputWarning>
+        </FormInputStateWarning>
       </template>
     </FormInput>
     <FormInput
@@ -189,18 +189,18 @@
         class="form-input"
         type="text"
       />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.location"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
-      <template slot="inputInfo">
-        <FormInputInfo>
-          {{ $t('inputInfoLocation') }}
-        </FormInputInfo>
+      <template slot="stateInfo">
+        <FormInputStateInfo>
+          {{ $t('stateInfoLocation') }}
+        </FormInputStateInfo>
       </template>
     </FormInput>
     <FormInputUrl
@@ -214,13 +214,13 @@
       :title="$t('description')"
     >
       <TipTap v-model="$v.form.description.$model" class="h-full rounded-b" />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.description"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <FormInput
@@ -234,19 +234,19 @@
         class="form-input"
         type="number"
       />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.inviteeCountMaximum"
           validation-property="maxValue"
         >
           {{ $t('globalValidationMaxValue') }}
-        </FormInputError>
-        <FormInputError
+        </FormInputStateError>
+        <FormInputStateError
           :form-input="$v.form.inviteeCountMaximum"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
   </Form>
@@ -476,8 +476,8 @@ de:
   eventCreate: Veranstaltung erstellen
   eventCreateSuccess: Veranstaltung erfolgreich erstellt.
   eventUpdate: Veranstaltung aktualisieren
-  inputInfoLocation: Ein Suchbegriff für Google Maps.
-  inputInfoUrl: Eine Web-URL für digitale Veranstaltungen.
+  stateInfoLocation: Ein Suchbegriff für Google Maps.
+  stateInfoUrl: Eine Web-URL für digitale Veranstaltungen.
   isInPerson: vor Ort
   isRemote: digital
   maximumInviteeCount: Maximale Gästezahl
@@ -503,8 +503,8 @@ en:
   eventCreate: Create event
   eventCreateSuccess: Event created successfully.
   eventUpdate: Update event
-  inputInfoLocation: A search phrase for Google Maps.
-  inputInfoUrl: A web URL for remote events.
+  stateInfoLocation: A search phrase for Google Maps.
+  stateInfoUrl: A web URL for remote events.
   isInPerson: in person
   isRemote: remote
   maximumInviteeCount: Maximum invitee count

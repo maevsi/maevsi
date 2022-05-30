@@ -44,13 +44,13 @@
         type="text"
         :placeholder="$t('globalPlaceholderFirstName')"
       />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.firstName"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <FormInput
@@ -66,13 +66,13 @@
         type="text"
         :placeholder="$t('globalPlaceholderLastName')"
       />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.lastName"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <FormInputEmailAddress
@@ -94,13 +94,13 @@
         :placeholder="$t('globalPlaceholderAddress')"
         rows="2"
       />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.address"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <FormInputPhoneNumber

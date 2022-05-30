@@ -28,25 +28,25 @@
           <IconSearch :title="$t('iconSearch')" />
         </span>
       </div>
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.contactId"
           validation-property="required"
         >
           {{ $t('globalValidationRequired') }}
-        </FormInputError>
-        <FormInputError
+        </FormInputStateError>
+        <FormInputStateError
           :form-input="$v.form.contactId"
           validation-property="minLength"
         >
           {{ $t('globalValidationMinLength') }}
-        </FormInputError>
-        <FormInputError
+        </FormInputStateError>
+        <FormInputStateError
           :form-input="$v.form.contactId"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <div v-if="allContacts" class="divide-y-4 divide-transparent">

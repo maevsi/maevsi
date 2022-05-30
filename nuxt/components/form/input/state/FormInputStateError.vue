@@ -7,7 +7,7 @@
         validationProperty in formInput &&
         !formInput[validationProperty])
     "
-    class="flex items-center gap-1 text-red-600"
+    class="flex items-center gap-1 text-sm text-red-600"
   >
     <IconExclamationCircle v-if="formInput && validationProperty" />
     <slot />

@@ -22,18 +22,18 @@
       :form-input="$v.form.passwordNewConfirmation"
       @input="form.passwordNewConfirmation = $event"
     >
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.passwordNewConfirmation"
           validation-property="sameAs"
         >
           {{ $t('globalValidationSameAs') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
-      <template slot="inputInfo">
-        <FormInputInfo>
+      <template slot="stateInfo">
+        <FormInputStateInfo>
           {{ $t('passwordConfirmation') }}
-        </FormInputInfo>
+        </FormInputStateInfo>
       </template>
     </FormInputPassword>
   </Form>

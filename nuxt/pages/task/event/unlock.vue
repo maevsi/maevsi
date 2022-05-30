@@ -25,29 +25,29 @@
           placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
           type="text"
         />
-        <template slot="inputInfo">
-          <FormInputInfo v-if="$route.query.ic">
+        <template slot="stateInfo">
+          <FormInputStateInfo v-if="$route.query.ic">
             <div>
               {{ $t('invitationCodeAutomatic') }}
               <AppLink :to="localePath('/task/event/unlock')">
                 {{ $t('invitationCodeManual') }}
               </AppLink>
             </div>
-          </FormInputInfo>
+          </FormInputStateInfo>
         </template>
-        <template slot="inputError">
-          <FormInputError
+        <template slot="stateError">
+          <FormInputStateError
             :form-input="$v.form.invitationCode"
             validation-property="formatUuid"
           >
             {{ $t('globalValidationFormat') }}
-          </FormInputError>
-          <FormInputError
+          </FormInputStateError>
+          <FormInputStateError
             :form-input="$v.form.invitationCode"
             validation-property="required"
           >
             {{ $t('globalValidationRequired') }}
-          </FormInputError>
+          </FormInputStateError>
         </template>
       </FormInput>
     </Form>

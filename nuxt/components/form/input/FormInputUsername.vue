@@ -17,21 +17,30 @@
       :value="formInput.$model"
       @input="$emit('input', $event.target.value)"
     />
-    <template slot="inputError">
-      <FormInputError :form-input="formInput" validation-property="existence">
+    <template slot="stateError">
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="existence"
+      >
         {{ $t('globalValidationExistence') }}
-      </FormInputError>
-      <FormInputError :form-input="formInput" validation-property="formatSlug">
+      </FormInputStateError>
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="formatSlug"
+      >
         {{ $t('globalValidationFormat') }}
-      </FormInputError>
-      <FormInputError :form-input="formInput" validation-property="required">
+      </FormInputStateError>
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="required"
+      >
         {{ $t('globalValidationRequired') }}
-      </FormInputError>
+      </FormInputStateError>
     </template>
-    <template v-if="isValidatable" slot="inputSuccess">
-      <FormInputSuccess :form-input="formInput">
+    <template v-if="isValidatable" slot="stateSuccess">
+      <FormInputStateSuccess :form-input="formInput">
         {{ $t('globalVerificationExistence') }}
-      </FormInputSuccess>
+      </FormInputStateSuccess>
     </template>
   </FormInput>
 </template>

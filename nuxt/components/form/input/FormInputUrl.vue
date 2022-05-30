@@ -30,16 +30,19 @@
         @input="$emit('input', $event.target.value)"
       />
     </div>
-    <template slot="inputError">
-      <FormInputError :form-input="formInput" validation-property="maxLength">
+    <template slot="stateError">
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="maxLength"
+      >
         {{ $t('globalValidationLength') }}
-      </FormInputError>
-      <FormInputError
+      </FormInputStateError>
+      <FormInputStateError
         :form-input="formInput"
         validation-property="formatUrlHttps"
       >
         {{ $t('globalValidationFormatUrlHttps') }}
-      </FormInputError>
+      </FormInputStateError>
     </template>
   </FormInput>
 </template>

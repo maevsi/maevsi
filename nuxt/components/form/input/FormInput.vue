@@ -56,19 +56,19 @@
       </div>
       <div class="md:w-1/3" />
       <div class="md:w-2/3">
-        <slot name="inputSuccess" />
+        <slot name="stateSuccess" />
       </div>
       <div class="md:w-1/3" />
       <div class="md:w-2/3">
-        <slot name="inputInfo" />
+        <slot name="stateInfo" />
       </div>
       <div class="md:w-1/3" />
       <div class="md:w-2/3">
-        <slot name="inputWarning" />
+        <slot name="stateWarning" />
       </div>
       <div class="md:w-1/3" />
       <div class="md:w-2/3">
-        <slot name="inputError" />
+        <slot name="stateError" />
       </div>
     </div>
   </div>

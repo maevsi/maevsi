@@ -14,26 +14,29 @@
       :value="formInput.$model"
       @input="$emit('input', $event.target.value)"
     />
-    <template slot="inputError">
-      <FormInputError :form-input="formInput" validation-property="email">
+    <template slot="stateError">
+      <FormInputStateError :form-input="formInput" validation-property="email">
         {{ $t('globalValidationFormat') }}
-      </FormInputError>
-      <FormInputError
+      </FormInputStateError>
+      <FormInputStateError
         :form-input="formInput"
         validation-property="formatUppercaseNone"
       >
         {{ $t('globalValidationFormatUppercaseNone') }}
-      </FormInputError>
-      <FormInputError :form-input="formInput" validation-property="maxLength">
+      </FormInputStateError>
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="maxLength"
+      >
         {{ $t('globalValidationLength') }}
-      </FormInputError>
-      <FormInputError
+      </FormInputStateError>
+      <FormInputStateError
         v-if="required"
         :form-input="formInput"
         validation-property="required"
       >
         {{ $t('globalValidationRequired') }}
-      </FormInputError>
+      </FormInputStateError>
     </template>
   </FormInput>
 </template>

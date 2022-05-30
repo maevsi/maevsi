@@ -13,17 +13,23 @@
       :value="formInput.$model"
       @input="$emit('input', $event.target.value)"
     />
-    <template slot="inputError">
-      <FormInputError :form-input="formInput" validation-property="minLength">
+    <template slot="stateError">
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="minLength"
+      >
         {{ $t('globalValidationShortness') }}
-      </FormInputError>
-      <FormInputError :form-input="formInput" validation-property="required">
+      </FormInputStateError>
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="required"
+      >
         {{ $t('globalValidationRequired') }}
-      </FormInputError>
-      <slot name="inputError" />
+      </FormInputStateError>
+      <slot name="stateError" />
     </template>
-    <template slot="inputInfo">
-      <slot name="inputInfo" />
+    <template slot="stateInfo">
+      <slot name="stateInfo" />
     </template>
   </FormInput>
 </template>

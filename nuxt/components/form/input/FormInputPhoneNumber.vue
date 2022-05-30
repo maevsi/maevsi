@@ -14,13 +14,13 @@
       :value="formInput.$model"
       @input="$emit('input', $event.target.value)"
     />
-    <template slot="inputError">
-      <FormInputError
+    <template slot="stateError">
+      <FormInputStateError
         :form-input="formInput"
         validation-property="formatPhoneNumber"
       >
         {{ $t('globalValidationFormat') }}
-      </FormInputError>
+      </FormInputStateError>
     </template>
   </FormInput>
 </template>
