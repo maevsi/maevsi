@@ -263,7 +263,7 @@ import {
 } from 'vuelidate/lib/validators'
 import { mapGetters } from 'vuex'
 
-import { defineComponent } from '#app'
+import { defineComponent, PropType } from '#app'
 import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate.gql'
 import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById.gql'
 import { Event, Visibility } from '~/types/event'
@@ -275,7 +275,7 @@ export default defineComponent({
   props: {
     event: {
       default: undefined,
-      type: Event,
+      type: Object as PropType<Event | undefined>,
     },
   },
   data() {
@@ -444,7 +444,7 @@ export default defineComponent({
             this.$apollo as any,
             this.signedInUsername,
             true,
-            (this.event as Event).slug
+            (this.event as Event | undefined)?.slug
           ),
           maxLength: maxLength(this.$util.VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
           required,
