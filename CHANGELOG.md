@@ -1,3 +1,11 @@
+## [0.127.1](https://github.com/maevsi/maevsi/compare/0.127.0...0.127.1) (2022-05-31)
+
+
+### Bug Fixes
+
+* **event:** allow unchanged slug ([c77733b](https://github.com/maevsi/maevsi/commit/c77733b793d2637846ab2a3d05b631117cf62b2b)), closes [#613](https://github.com/maevsi/maevsi/issues/613)
+* **form-event:** correct prop type ([d57390a](https://github.com/maevsi/maevsi/commit/d57390aeb1865ae5b4ddd3c64a1c8c162aff75d2))
+
 # [0.127.0](https://github.com/maevsi/maevsi/compare/0.126.2...0.127.0) (2022-05-30)
 
 
