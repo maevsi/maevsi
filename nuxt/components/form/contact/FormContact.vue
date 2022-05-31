@@ -150,21 +150,9 @@ export default defineComponent({
   },
   created() {
     if (this.contact) {
-      ;[
-        'id',
-        'accountUsername',
-        'address',
-        'emailAddress',
-        'firstName',
-        'lastName',
-        'phoneNumber',
-        'url',
-      ].forEach(
-        (property) =>
-          ((this.form as Record<string, any>)[property] = (
-            this.contact as Record<string, any>
-          )[property])
-      )
+      for (const [k, v] of Object.entries(this.contact)) {
+        ;(this.form as Record<string, any>)[k] = v
+      }
     }
   },
   methods: {

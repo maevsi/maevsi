@@ -263,10 +263,10 @@ import {
 } from 'vuelidate/lib/validators'
 import { mapGetters } from 'vuex'
 
-import { defineComponent } from '#app'
+import { defineComponent, PropType } from '#app'
 import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate.gql'
 import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById.gql'
-import { Visibility } from '~/types/event'
+import { Event, Visibility } from '~/types/event'
 
 export default defineComponent({
   components: {
@@ -275,7 +275,7 @@ export default defineComponent({
   props: {
     event: {
       default: undefined,
-      type: Object,
+      type: Object as PropType<Event | undefined>,
     },
   },
   data() {
@@ -306,24 +306,9 @@ export default defineComponent({
   },
   created() {
     if (this.event) {
-      ;[
-        'id',
-        'authorUsername',
-        'description',
-        'end',
-        'inviteeCountMaximum',
-        'isInPerson',
-        'isRemote',
-        'location',
-        'name',
-        'slug',
-        'start',
-        'url',
-        'visibility',
-      ].forEach(
-        (property) =>
-          ((this.form as Record<string, any>)[property] = this.event[property])
-      )
+      for (const [k, v] of Object.entries(this.event)) {
+        ;(this.form as Record<string, any>)[k] = v
+      }
     }
   },
   methods: {
@@ -458,7 +443,8 @@ export default defineComponent({
           existenceNone: this.$util.validateEventSlug(
             this.$apollo as any,
             this.signedInUsername,
-            true
+            true,
+            (this.event as Event | undefined)?.slug
           ),
           maxLength: maxLength(this.$util.VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
           required,
