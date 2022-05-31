@@ -15,9 +15,3 @@ const Template = (_: never, { argTypes }: any) =>
   })
 
 export const Default = Template.bind({})
-
-export const Error = Template.bind({})
-// @ts-ignore
-Error.args = {
-  errorMessage: 'errorMessage',
-}
