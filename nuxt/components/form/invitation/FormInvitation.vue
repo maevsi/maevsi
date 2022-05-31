@@ -123,7 +123,7 @@ export default defineComponent({
         sent: false,
         contactId: undefined as string | undefined,
       },
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       searchString: undefined as string | undefined,
     }
   },
@@ -135,11 +135,11 @@ export default defineComponent({
       }
 
       if (!this.searchString || this.searchString === '') {
-        return (this.allContacts as any).nodes
+        return this.allContacts.nodes
       }
 
       const searchStringParts = this.searchString.split(' ')
-      const allContactsFiltered = (this.allContacts as any).nodes.filter(
+      const allContactsFiltered = this.allContacts.nodes.filter(
         (contact: Contact) => {
           for (const contactProperty of [
             ...(contact.accountUsername ? [contact.accountUsername] : []),

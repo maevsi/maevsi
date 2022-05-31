@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
     <Loader
       v-if="loading || graphqlError"
-      :error-message="graphqlError ? String(graphqlError) : undefined"
+      :errors="$util.getGqlErrorMessages(graphqlError, this)"
     />
     <div v-else>
       <p class="text-center">
@@ -39,7 +39,7 @@ export default defineComponent({
   },
   data() {
     return {
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       loading: true,
       title: this.$t('title'),
     }
@@ -97,8 +97,10 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   emailAddressVerificationSuccess: E-Mail-Adresse erfolgreich verifiziert.
+  P0002: Unbekannter Verifizierungscode! Hast du deine E-Mail-Adresse vielleicht schon verifiziert?
   title: Verifizierung
 en:
   emailAddressVerificationSuccess: Email address verified successfully.
+  P0002: Unknown verification code! Have you perhaps already verified your email address?
   title: Verification
 </i18n>

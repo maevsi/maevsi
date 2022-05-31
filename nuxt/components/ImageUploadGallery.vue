@@ -1,7 +1,7 @@
 <template>
   <Loader
     v-if="($apollo.loading && !allUploads) || graphqlError"
-    :error-message="graphqlError ? String(graphqlError) : undefined"
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
     <Card
@@ -181,7 +181,7 @@ export default defineComponent({
       allUploads: undefined as any,
       croppy: {},
       fileSelectedUrl: undefined as string | undefined,
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       selectedItem: undefined as Item | undefined,
       uploadIdPrefix: 'upid_',
       uppy: undefined as Uppy | undefined,
@@ -359,6 +359,7 @@ export default defineComponent({
             endpoint: this.$util.TUSD_FILES_URL,
             limit: 1,
             removeFingerprintOnSuccess: true,
+            // onShouldRetry: (err, _retryAttempt, _options, next) => next(err), // https://github.com/transloadit/uppy/pull/3720#discussion_r885152986
           })
 
           this.uppy.addFile({

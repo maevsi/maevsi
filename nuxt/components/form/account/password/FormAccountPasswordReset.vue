@@ -32,10 +32,10 @@ const FormAccountPasswordReset = defineComponent({
   data() {
     return {
       form: {
-        password: undefined,
-        sent: false,
+        password: undefined as string | undefined,
+        sent: false as boolean,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as Error | undefined,
     }
   },
   methods: {

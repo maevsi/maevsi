@@ -36,7 +36,7 @@ const FormAccountPasswordResetRequest = defineComponent({
         emailAddress: undefined as string | undefined,
         sent: false,
       },
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
     }
   },
   watch: {

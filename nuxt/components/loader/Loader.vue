@@ -1,8 +1,14 @@
 <template>
-  <CardAlert
-    v-if="errorMessage !== undefined"
-    :error-message="String(errorMessage)"
-  />
+  <CardStateAlert v-if="errors">
+    <ol v-if="errors.length > 1" class="list-decimal">
+      <li v-for="error in errors" :key="error">
+        {{ error }}
+      </li>
+    </ol>
+    <span v-else>
+      {{ errors[0] }}
+    </span>
+  </CardStateAlert>
   <LoaderIndicatorPing v-else-if="indicator === 'ping'" />
   <LoaderIndicatorSpinner v-else-if="indicator === 'spinner'" />
   <LoaderIndicatorText v-else-if="indicator === 'text'" />
@@ -15,9 +21,9 @@ import { defineComponent, PropType } from '#app'
 export default defineComponent({
   name: 'MaevsiLoader',
   props: {
-    errorMessage: {
+    errors: {
       default: undefined,
-      type: String as PropType<string | undefined>,
+      type: Array as PropType<string[] | undefined>,
     },
     indicator: {
       default: undefined,

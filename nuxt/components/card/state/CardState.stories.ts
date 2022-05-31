@@ -1,17 +1,17 @@
 import { defineComponent } from '#app'
-import CardAlert from './CardAlert.vue'
+import CardState from './CardState.vue'
 
 export default {
-  component: CardAlert,
-  title: 'card/CardAlert',
+  component: CardState,
+  title: 'card/state/CardState',
 }
 
 const Template = (_: never, { argTypes }: any) =>
   defineComponent({
-    components: { CardAlert },
+    components: { CardState },
     props: Object.keys(argTypes),
     // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-    template: '<CardAlert v-bind="$props">CardAlert</CardAlert>',
+    template: '<CardState v-bind="$props">CardState</CardState>',
   })
 
 export const Default = Template.bind({})

@@ -145,7 +145,7 @@ export default defineComponent({
         phoneNumber: undefined as string | undefined,
         url: undefined as string | undefined,
       },
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
     }
   },
   created() {
@@ -242,7 +242,7 @@ export default defineComponent({
       form: {
         id: {},
         accountUsername: {
-          existence: this.$util.validateUsername(this.$apollo as any),
+          existence: this.$util.validateUsername(this.$apollo),
           formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
           maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
         },

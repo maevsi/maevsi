@@ -298,7 +298,7 @@ export default defineComponent({
         url: undefined as string | undefined,
         visibility: undefined as Visibility | undefined,
       },
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
     }
   },
   computed: {

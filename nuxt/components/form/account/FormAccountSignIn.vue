@@ -35,13 +35,13 @@
     <template slot="assistance">
       <ButtonColored
         v-if="
-          graphqlErrorComputed &&
-          graphqlErrorComputed.startsWith('Account not verified!')
+          graphqlError &&
+          graphqlError.graphQLErrors.filter((e) => e.code === '55000').length >
+            0
         "
         :aria-label="$t('verificationMailResend')"
         @click="accountRegistrationRefresh"
       >
-        <!-- https://github.com/maevsi/maevsi/issues/209 -->
         {{ $t('verificationMailResend') }}
       </ButtonColored>
     </template>
@@ -70,21 +70,8 @@ const FormAccountSignIn = defineComponent({
         sent: false,
         username: undefined,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as Error | undefined,
     }
-  },
-  computed: {
-    graphqlErrorComputed(): any {
-      if (!this.graphqlError) {
-        return
-      }
-
-      return [
-        ...((this.graphqlError as any).graphQLErrors?.map(
-          (e: Error) => e.message
-        ) ?? []),
-      ].join(', ')
-    },
   },
   watch: {
     form: {
@@ -110,7 +97,7 @@ const FormAccountSignIn = defineComponent({
           this.$util.getNested(data, 'accountRegistrationRefresh')
         )
         .catch((reason) => {
-          this.graphqlErrorInternal = reason
+          this.graphqlError = reason
           consola.error(reason)
         })
 

@@ -46,7 +46,7 @@ BEGIN
       INTO _jwt;
 
     IF (_jwt IS NULL) THEN
-      RAISE 'Account not found!' USING ERRCODE = 'no_data_found';
+      RAISE 'Could not sign in!' USING ERRCODE = 'no_data_found';
     END IF;
   END IF;
 

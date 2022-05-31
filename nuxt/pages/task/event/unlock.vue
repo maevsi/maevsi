@@ -100,14 +100,16 @@ export default defineComponent({
           app.localePath(`/event/${res.authorUsername}/${res.eventSlug}`)
         )
       } else {
-        return redirect({
-          query: {
-            ...route.query,
-            redirect: app.localePath(
-              `/event/${res.authorUsername}/${res.eventSlug}`
-            ),
-          },
-        })
+        return redirect(
+          app.localePath({
+            query: {
+              ...route.query,
+              redirect: app.localePath(
+                `/event/${res.authorUsername}/${res.eventSlug}`
+              ),
+            },
+          })
+        )
       }
     }
   },
@@ -118,7 +120,7 @@ export default defineComponent({
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
         sent: false,
       },
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       title: this.$t('title'),
     }
   },

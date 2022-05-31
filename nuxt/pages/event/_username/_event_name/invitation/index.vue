@@ -1,7 +1,7 @@
 <template>
   <Loader
     v-if="($apollo.loading && !event) || graphqlError"
-    :error-message="graphqlError ? String(graphqlError) : undefined"
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
     <div v-if="event">
@@ -66,7 +66,7 @@ export default defineComponent({
   data() {
     return {
       event: undefined as MaevsiEvent | undefined,
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
     }
   },
   head() {

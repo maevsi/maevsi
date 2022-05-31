@@ -48,7 +48,7 @@ const FormAccountRegistration = defineComponent({
         sent: false,
         username: undefined as string | undefined,
       },
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
     }
   },
   watch: {

@@ -68,7 +68,7 @@ const FormAccountPasswordChange = defineComponent({
         passwordNewConfirmation: undefined as string | undefined,
         sent: false,
       },
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
     }
   },
   methods: {

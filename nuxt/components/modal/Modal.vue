@@ -61,10 +61,9 @@
             </ButtonColored>
           </slot>
         </div>
-        <CardAlert
-          class="mb-4"
-          :error-message="errorMessage ? String(errorMessage) : undefined"
-        />
+        <CardStateAlert v-if="errorMessage" class="mb-4">
+          {{ errorMessage }}
+        </CardStateAlert>
       </Card>
     </div>
   </div>

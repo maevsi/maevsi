@@ -4,7 +4,7 @@
     ref="form"
     :class="[
       {
-        'animate-shake rounded border border-red-500': graphqlErrorComputed,
+        'animate-shake rounded border border-red-500': graphqlError,
       },
       formClass,
     ]"
@@ -32,11 +32,10 @@
           {{ $t('globalValidationFailed') }}
         </FormInputError>
       </div>
-      <CardAlert
+      <Loader
+        v-if="graphqlError"
         class="my-4"
-        :error-message="
-          graphqlErrorComputed ? String(graphqlErrorComputed) : undefined
-        "
+        :errors="$util.getGqlErrorMessages(graphqlError, this)"
       />
       <slot name="assistance" />
     </Card>
@@ -64,7 +63,7 @@ const Form = defineComponent({
     },
     graphqlError: {
       default: undefined,
-      type: Error as PropType<any>,
+      type: Error as PropType<Error | undefined>,
     },
     submitName: {
       default() {
@@ -86,19 +85,6 @@ const Form = defineComponent({
       buttonSubmit,
       submit,
     }
-  },
-  computed: {
-    graphqlErrorComputed(): any {
-      if (!this.graphqlError) {
-        return
-      }
-
-      return [
-        ...((this.graphqlError as any).graphQLErrors?.map(
-          (e: Error) => e.message
-        ) ?? []),
-      ].join(', ')
-    },
   },
   methods: {
     reset() {

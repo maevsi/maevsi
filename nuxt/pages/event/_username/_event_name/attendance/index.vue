@@ -106,7 +106,7 @@ export default defineComponent({
   data() {
     return {
       event: undefined as MaevsiEvent | undefined,
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       invitationCode: undefined as string | undefined,
       isNfcWritableErrorMessage: undefined as string | undefined,
       loading: false,
@@ -152,7 +152,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    ;(this.checkWriteTag as Function)().catch((err: Error) => {
+    this.checkWriteTag().catch((err: Error) => {
       this.isNfcWritableErrorMessage = err.message
     })
   },
@@ -195,7 +195,7 @@ export default defineComponent({
       }
     },
     async onClick() {
-      await (this.writeTag as Function)(this.invitationCode)
+      await this.writeTag(this.invitationCode)
     },
     onDecode(e: any): void {
       this.invitationCode = e

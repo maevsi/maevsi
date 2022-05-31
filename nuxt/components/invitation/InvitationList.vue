@@ -1,7 +1,7 @@
 <template>
   <Loader
     v-if="($apollo.loading && !allInvitations) || graphqlError"
-    :error-message="graphqlError ? String(graphqlError) : undefined"
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
     <ScrollContainer
@@ -226,7 +226,7 @@ export default defineComponent({
     return {
       allInvitations: undefined as any,
       data: {} as any,
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       pending: {
         deletions: [] as string[],
         edits: [] as string[],
