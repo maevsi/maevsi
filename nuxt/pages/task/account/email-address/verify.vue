@@ -2,7 +2,7 @@
   <div>
     <h1>{{ title }}</h1>
     <Loader
-      v-if="$apollo.loading || graphqlError"
+      v-if="loading || graphqlError"
       :error-message="graphqlError ? String(graphqlError) : undefined"
     />
     <div v-else>
