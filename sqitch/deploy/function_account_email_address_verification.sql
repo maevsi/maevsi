@@ -25,7 +25,7 @@ BEGIN
   END IF;
 
   IF (_account.email_address_verification_valid_until < NOW()) THEN
-    RAISE 'Verification code expired!' USING ERRCODE = 'no_data_found';
+    RAISE 'Verification code expired!' USING ERRCODE = 'object_not_in_prerequisite_state';
   END IF;
 
   UPDATE maevsi_private.account

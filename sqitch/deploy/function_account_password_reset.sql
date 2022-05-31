@@ -30,7 +30,7 @@ BEGIN
   END IF;
 
   IF (_account.password_reset_verification_valid_until < NOW()) THEN
-    RAISE 'Reset code expired!' USING ERRCODE = 'no_data_found';
+    RAISE 'Reset code expired!' USING ERRCODE = 'object_not_in_prerequisite_state';
   END IF;
 
   UPDATE maevsi_private.account
