@@ -6,9 +6,9 @@
       :errors="$util.getGqlErrorMessages(graphqlError, this)"
     />
     <div v-else>
-      <p class="text-center">
+      <CardStateSuccess>
         {{ $t('emailAddressVerificationSuccess') }}
-      </p>
+      </CardStateSuccess>
       <ButtonList>
         <ButtonSignIn
           v-if="
