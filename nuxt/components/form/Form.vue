@@ -4,7 +4,8 @@
     ref="form"
     :class="[
       {
-        'animate-shake rounded border border-red-500': graphqlError,
+        'animate-shake rounded border border-red-500':
+          errors && errors.length > 0,
       },
       formClass,
     ]"
@@ -32,11 +33,7 @@
           {{ $t('globalValidationFailed') }}
         </FormInputError>
       </div>
-      <Loader
-        v-if="graphqlError"
-        class="my-4"
-        :errors="$util.getGqlErrorMessages(graphqlError, this)"
-      />
+      <Loader v-if="errors" class="my-4" :errors="errors" />
       <slot name="assistance" />
     </Card>
   </form>
@@ -49,6 +46,10 @@ import Button from '~/components/button/Button.vue'
 const Form = defineComponent({
   name: 'MaevsiForm',
   props: {
+    errors: {
+      default: undefined,
+      type: Array as PropType<string[] | undefined>,
+    },
     form: {
       required: true,
       type: Object,
@@ -60,10 +61,6 @@ const Form = defineComponent({
     formSent: {
       required: true,
       type: Boolean,
-    },
-    graphqlError: {
-      default: undefined,
-      type: Error as PropType<Error | undefined>,
     },
     submitName: {
       default() {

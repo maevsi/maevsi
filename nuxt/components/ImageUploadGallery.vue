@@ -320,7 +320,8 @@ export default defineComponent({
               },
             })
             .then(({ data }) => this.$util.getNested(data, 'uploadCreate'))
-            .catch((reason) => {
+            .catch((graphqlError) => {
+              const reason = this.$util.getGqlErrorMessages(graphqlError, this)
               consola.error(reason)
               reject(reason)
             })
@@ -359,7 +360,6 @@ export default defineComponent({
             endpoint: this.$util.TUSD_FILES_URL,
             limit: 1,
             removeFingerprintOnSuccess: true,
-            // onShouldRetry: (err, _retryAttempt, _options, next) => next(err), // https://github.com/transloadit/uppy/pull/3720#discussion_r885152986
           })
 
           this.uppy.addFile({
@@ -401,6 +401,7 @@ de:
   iconTrash: löschen
   iconTrashLabel: Dieses hochgeladene Bild löschen.
   noPictures: Du hast keine hochgeladenen Bilder 😕
+  postgres53100: Der Speicherplatz deines Accounts ist aufgebraucht!
   upload: Hochladen
   uploadAlt: Ein hochgeladenes Bild.
   uploadAltFailed: Ein Bild, das nicht vollständig hochgeladen wurde.
@@ -416,6 +417,7 @@ en:
   iconTrash: trash
   iconTrashLabel: Delete this uploaded image.
   noPictures: "You don't have any uploaded pictures 😕"
+  postgres53100: Your account space has been used up!
   upload: Upload
   uploadAlt: An uploaded image.
   uploadAltFailed: An image for which the upload didn't finish.

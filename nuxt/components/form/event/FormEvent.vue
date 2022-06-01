@@ -1,9 +1,9 @@
 <template>
   <Form
     ref="form"
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
     :form="$v.form"
     :form-sent="form.sent"
-    :graphql-error="graphqlError"
     :submit-name="form.id ? $t('eventUpdate') : $t('eventCreate')"
     @submit.prevent="submit"
   >

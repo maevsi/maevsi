@@ -23,7 +23,7 @@ BEGIN
       DELETE FROM maevsi_private.account WHERE account.username = _current_username;
     END IF;
   ELSE
-    RAISE 'Account with given password not found!' USING ERRCODE = 'no_data_found';
+    RAISE 'Account with given password not found!' USING ERRCODE = 'invalid_password';
   END IF;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;

@@ -34,7 +34,7 @@ BEGIN
     INTO _notify_data;
 
   IF (_notify_data IS NULL) THEN
-    RAISE 'Nothing changed!' USING ERRCODE = 'no_data_found';
+    RAISE 'Account not found!' USING ERRCODE = 'no_data_found';
   ELSE
     INSERT INTO maevsi_private.notification (channel, payload) VALUES (
       'account_password_reset_request',

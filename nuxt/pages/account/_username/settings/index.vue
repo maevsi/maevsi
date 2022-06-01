@@ -30,8 +30,10 @@
       <h2>{{ $t('titleAccountDelete') }}</h2>
       <FormDelete
         id="deleteAccount"
+        :errors="$util.getGqlErrorMessages(graphqlError, this)"
         :item-name="$t('account')"
         :mutation="accountDeleteMutation"
+        @error="onDeleteError"
         @success="$util.signOut($apollo.getClient(), $store)"
       />
     </section>
@@ -69,6 +71,7 @@ export default defineComponent({
         this.$route.params.username === this.$store.getters.signedInUsername
           ? this.$route.params.username
           : '403',
+      graphqlError: undefined as Error | undefined,
     }
   },
   head() {
@@ -97,17 +100,26 @@ export default defineComponent({
       title,
     }
   },
+  methods: {
+    onDeleteError(error: Error) {
+      this.graphqlError = error
+    },
+  },
 })
 </script>
 
 <i18n lang="yml">
 de:
   account: Konto
+  postgres23503: Dir gehören noch Veranstaltungen! Lösche erst all deine Veranstaltungen.
+  postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   profilePictureChange: Profilbild ändern
   titleAccountDelete: Konto löschen
   titlePasswordChange: Password ändern
 en:
   account: account
+  postgres23503: You still own events! First delete all your events.
+  postgres28P01: Password incorrect! Check that you have written everything correctly.
   profilePictureChange: Change profile picture
   titleAccountDelete: Delete account
   titlePasswordChange: Change password

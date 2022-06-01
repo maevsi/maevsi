@@ -17,6 +17,7 @@
         <h2>{{ $t('titleDelete') }}</h2>
         <FormDelete
           id="deleteEvent"
+          :errors="$util.getGqlErrorMessages(graphqlErrorDelete, this)"
           :item-name="$t('event')"
           :mutation="mutation"
           :update="updateCacheDelete"
@@ -24,6 +25,7 @@
             authorUsername: $route.params.username,
             slug: $route.params.event_name,
           }"
+          @error="onDeleteError"
           @success="onDeleteSuccess"
         />
       </section>
@@ -83,6 +85,7 @@ export default defineComponent({
     return {
       event: undefined as MaevsiEvent | undefined,
       graphqlError: undefined as Error | undefined,
+      graphqlErrorDelete: undefined as Error | undefined,
       mutation: EVENT_DELETE_MUTATION,
     }
   },
@@ -123,6 +126,9 @@ export default defineComponent({
     },
   },
   methods: {
+    onDeleteError(error: Error) {
+      this.graphqlErrorDelete = error
+    },
     onDeleteSuccess() {
       this.$router.push(this.localePath(`/event`))
       this.$apollo.queries.allEvents && this.$apollo.queries.allEvents.refetch()
@@ -196,11 +202,15 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   event: Veranstaltung
+  postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
+  postgresP0002: Die Veranstaltung wurde nicht gefunden!
   settings: Einstellungen
   titleDelete: Veranstaltung löschen
   titleEdit: Veranstaltung bearbeiten
 en:
   event: event
+  postgres28P01: Password incorrect! Check that you have written everything correctly.
+  postgresP0002: The event was not found!
   settings: Settings
   titleDelete: Delete event
   titleEdit: Edit event

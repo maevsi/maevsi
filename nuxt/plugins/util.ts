@@ -174,9 +174,10 @@ export function getGqlErrorMessages(
 ): string[] | undefined {
   if (!graphqlError) return
   return graphqlError.graphQLErrors.map((e) => {
-    const translation = that.$t(e.code)
+    const translationId = 'postgres' + e.code
+    const translation = that.$t(translationId)
 
-    if (translation === e.code) {
+    if (translation === translationId) {
       return e.message
     } else {
       return translation

@@ -97,10 +97,12 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   emailAddressVerificationSuccess: E-Mail-Adresse erfolgreich verifiziert.
-  P0002: Unbekannter Verifizierungscode! Hast du deine E-Mail-Adresse vielleicht schon verifiziert?
+  postgres55000: Der Verifizierungscode ist abgelaufen!
+  postgresP0002: Unbekannter Verifizierungscode! Hast du deine E-Mail-Adresse vielleicht schon verifiziert?
   title: Verifizierung
 en:
   emailAddressVerificationSuccess: Email address verified successfully.
-  P0002: Unknown verification code! Have you perhaps already verified your email address?
+  postgres55000: The verification code has expired!
+  postgresP0002: Unknown verification code! Have you perhaps already verified your email address?
   title: Verification
 </i18n>

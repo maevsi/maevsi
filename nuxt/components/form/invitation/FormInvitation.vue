@@ -2,9 +2,9 @@
   <Form
     v-if="event"
     ref="form"
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
     :form="$v.form"
     :form-sent="form.sent"
-    :graphql-error="graphqlError"
     :submit-name="$t('select')"
     @submit.prevent="submit"
   >
@@ -52,6 +52,7 @@
     <div v-if="allContacts" class="divide-y-4 divide-transparent">
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button
+          :aria-label="$t('buttonContact')"
           class="w-full rounded border border-neutral-300 dark:border-neutral-600"
           :class="{
             'border-2 border-blue-600 dark:border-blue-600':
@@ -222,12 +223,14 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
+  buttonContact: Ein Kontakt
   contact: Kontakt
   iconSearch: Suche
   placeholderContact: Max Mustermann
   select: Auswählen
   selectAssistance: Die Einladung wird angelegt, aber noch nicht versendet.
 en:
+  buttonContact: A contact
   contact: Contact
   iconSearch: Search
   placeholderContact: John Doe

@@ -61,9 +61,7 @@
             </ButtonColored>
           </slot>
         </div>
-        <CardStateAlert v-if="errorMessage" class="mb-4">
-          {{ errorMessage }}
-        </CardStateAlert>
+        <Loader v-if="errors" class="mb-4" :errors="errors" />
       </Card>
     </div>
   </div>
@@ -100,7 +98,7 @@ export default defineComponent({
   },
   data() {
     return {
-      errorMessage: undefined,
+      errors: undefined,
       isVisible: false,
       isSubmitting: false,
       onSubmit: () => {},
@@ -139,7 +137,7 @@ export default defineComponent({
       } else {
         window.removeEventListener('keydown', this.modalKeydowns)
 
-        this.errorMessage = undefined
+        this.errors = undefined
         this.$emit('close')
       }
     },
@@ -176,9 +174,9 @@ export default defineComponent({
         this.$emit('submitSuccess', value)
         this.onSubmitComputed()
         this.close()
-      } catch (error: any) {
-        this.errorMessage = error
-        consola.error(error)
+      } catch (errors: any) {
+        this.errors = errors
+        consola.error(errors)
       }
 
       this.isSubmitting = false

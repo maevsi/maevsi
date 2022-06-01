@@ -1,9 +1,9 @@
 <template>
   <Form
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
     :form="$v.form"
     :form-class="formClass"
     :form-sent="form.sent"
-    :graphql-error="graphqlError"
     :submit-name="$t('accountPasswordResetRequest')"
     @submit.prevent="submit"
   >
@@ -112,9 +112,13 @@ export type FormAccountPasswordResetRequestType = InstanceType<
 de:
   accountPasswordResetRequest: Passwort zurücksetzen
   accountPasswordResetRequestSuccess: Vergib ein neues Password über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.
+  postgres55000: Die E-Mail-Adresse ist noch nicht verifiziert!
+  postgresP0002: Es gibt keinen Account mit dieser E-Mail-Adresse! Überprüfe deine Eingaben auf Schreibfehler.
   requestAccepted: Anfrage angenommen!
 en:
   accountPasswordResetRequest: Reset password
   accountPasswordResetRequestSuccess: "Set a new password using the link that you can find in the email that you'll receive shortly."
+  postgres55000: The email address is not yet verified!
+  postgresP0002: There is no account with this email address! Check your input for spelling mistakes.
   requestAccepted: Request accepted!
 </i18n>
