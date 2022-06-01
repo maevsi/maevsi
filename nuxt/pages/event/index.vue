@@ -12,8 +12,8 @@ export default defineComponent({
   name: 'IndexPage',
   data() {
     return {
-      graphqlError: undefined,
-      title: this.$t('title'),
+      graphqlError: undefined as Error | undefined,
+      title: this.$t('title') as string,
     }
   },
   head() {

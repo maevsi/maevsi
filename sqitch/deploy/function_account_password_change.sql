@@ -24,7 +24,7 @@ BEGIN
   IF (EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.username = _current_username AND account.password_hash = maevsi.crypt($1, account.password_hash))) THEN
     UPDATE maevsi_private.account SET password_hash = maevsi.crypt($2, maevsi.gen_salt('bf')) WHERE account.username = _current_username;
   ELSE
-    RAISE 'Account with given password not found!' USING ERRCODE = 'no_data_found';
+    RAISE 'Account with given password not found!' USING ERRCODE = 'invalid_password';
   END IF;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;

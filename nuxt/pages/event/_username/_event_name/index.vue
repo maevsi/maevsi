@@ -1,7 +1,7 @@
 <template>
   <Loader
     v-if="($apollo.loading && !event) || graphqlError"
-    :error-message="graphqlError ? String(graphqlError) : undefined"
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
     <div
@@ -31,7 +31,7 @@
         </template>
       </ButtonColored>
     </div>
-    <CardInfo v-if="$route.query.ic && contact">
+    <CardStateInfo v-if="$route.query.ic && contact">
       {{ $t('invitationViewFor', { name: $util.getContactName(contact) }) }}
       <ButtonColored
         append
@@ -49,7 +49,7 @@
           <IconX />
         </template>
       </ButtonColored>
-    </CardInfo>
+    </CardStateInfo>
     <br />
     <div v-if="contact" class="text-center">
       <p class="mb-2 text-2xl font-bold">

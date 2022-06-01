@@ -1,8 +1,8 @@
 <template>
   <div>
-    <CardInfo v-if="$route.query.referrer">
+    <CardStateInfo v-if="$route.query.referrer">
       {{ $t('accountRequired') }}
-    </CardInfo>
+    </CardStateInfo>
     <h1>{{ title }}</h1>
     <TabFlip
       ref="tabFlip"
@@ -54,7 +54,7 @@ export default defineComponent({
   middleware({ app, store, redirect, route }: Context): void {
     if (store.getters.jwtDecoded && store.getters.jwtDecoded.username) {
       return redirect(
-        (route.query.referrer as string) ||
+        route.query.referrer ||
           app.localePath('/account/' + store.getters.jwtDecoded.username)
       )
     }

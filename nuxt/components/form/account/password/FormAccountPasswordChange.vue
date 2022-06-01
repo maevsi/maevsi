@@ -1,9 +1,9 @@
 <template>
   <Form
     ref="formRef"
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
     :form="$v.form"
     :form-sent="form.sent"
-    :graphql-error="graphqlError"
     :submit-name="$t('passwordChange')"
     @submit.prevent="submit"
   >
@@ -68,7 +68,7 @@ const FormAccountPasswordChange = defineComponent({
         passwordNewConfirmation: undefined as string | undefined,
         sent: false,
       },
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
     }
   },
   methods: {
@@ -134,9 +134,13 @@ de:
   passwordChange: Passwort ändern
   passwordChangeSuccess: Passwort erfolgreich geändert.
   passwordConfirmation: Wiederhole das neue Passwort, um Tippfehler auszuschließen.
+  postgres22023: Das neue Passwort ist zu kurz! Überlege dir ein längeres.
+  postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
 en:
   changed: Changed!
   passwordChange: Change password
   passwordChangeSuccess: Password changed successfully.
   passwordConfirmation: Repeat the new password to rule out typos.
+  postgres22023: The new password is too short! Think about a longer one.
+  postgres28P01: Password incorrect! Check that you have written everything correctly.
 </i18n>

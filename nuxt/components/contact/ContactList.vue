@@ -1,7 +1,7 @@
 <template>
   <Loader
     v-if="($apollo.loading && !allContacts) || graphqlError"
-    :error-message="graphqlError ? String(graphqlError) : undefined"
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
     <ScrollContainer
@@ -98,7 +98,7 @@ export default defineComponent({
     return {
       allContacts: undefined as any,
       formContactHeading: undefined as VueI18n.TranslateResult | undefined,
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       pending: {
         deletions: [] as string[],
         edits: [] as string[],

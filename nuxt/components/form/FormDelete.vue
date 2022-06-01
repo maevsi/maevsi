@@ -1,8 +1,8 @@
 <template>
   <Form
+    :errors="errors"
     :form="$v.form"
     :form-sent="form.sent"
-    :graphql-error="graphqlError"
     :submit-name="$t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
@@ -26,6 +26,10 @@ import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
   props: {
+    errors: {
+      default: undefined,
+      type: Array as PropType<string[] | undefined>,
+    },
     itemName: {
       default: undefined,
       type: String as PropType<string | undefined>,
@@ -49,7 +53,6 @@ export default defineComponent({
         password: undefined as string | undefined,
         sent: false,
       },
-      graphqlError: undefined as any,
     }
   },
   methods: {
@@ -78,9 +81,9 @@ export default defineComponent({
             title: this.$t('deleted'),
           }).then(() => this.$emit('success'))
         })
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
+        .catch((graphqlError) => {
+          this.$emit('error', graphqlError)
+          consola.error(graphqlError)
         })
     },
   },

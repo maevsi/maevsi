@@ -1,8 +1,8 @@
 <template>
   <header class="bg-background-bright dark:bg-background-dark">
-    <CardInfo v-if="!isBrowserSupported" is-edgy>
+    <CardStateInfo v-if="!isBrowserSupported" is-edgy>
       {{ $t('browserUnsupported') }}
-    </CardInfo>
+    </CardStateInfo>
     <div
       class="mx-auto grid grid-cols-3 items-center p-4 md:px-8"
       :class="{ container: !signedInUsername }"

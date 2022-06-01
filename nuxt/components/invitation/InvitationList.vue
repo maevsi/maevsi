@@ -1,7 +1,7 @@
 <template>
   <Loader
     v-if="($apollo.loading && !allInvitations) || graphqlError"
-    :error-message="graphqlError ? String(graphqlError) : undefined"
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
     <ScrollContainer
@@ -226,7 +226,7 @@ export default defineComponent({
     return {
       allInvitations: undefined as any,
       data: {} as any,
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       pending: {
         deletions: [] as string[],
         edits: [] as string[],
@@ -315,6 +315,7 @@ de:
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
   noFeedback: kein Feedback
+  postgresP0002: Die Einladung konnte nicht versandt werden! Möglicherweise hast du aktuell keinen Zugriff auf die notwendigen Daten. Versuche die Seite neu zu laden.
   sendSuccess: Einladung erfolgreich angefordert.
   sent: Gesendet!
 en:
@@ -329,6 +330,7 @@ en:
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
   noFeedback: no feedback
+  postgresP0002: The invitation could not be sent! You may not currently have access to the necessary data. Try to reload the page.
   sendSuccess: Invitation requested successfully.
   sent: Sent!
 </i18n>

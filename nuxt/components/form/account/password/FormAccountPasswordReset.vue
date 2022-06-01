@@ -1,9 +1,9 @@
 <template>
   <Form
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
     :form="$v.form"
     :form-class="formClass"
     :form-sent="form.sent"
-    :graphql-error="graphqlError"
     :submit-name="$t('accountPasswordReset')"
     @submit.prevent="submit"
   >
@@ -32,10 +32,10 @@ const FormAccountPasswordReset = defineComponent({
   data() {
     return {
       form: {
-        password: undefined,
-        sent: false,
+        password: undefined as string | undefined,
+        sent: false as boolean,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as Error | undefined,
     }
   },
   methods: {
@@ -98,9 +98,15 @@ export type FormAccountPasswordResetType = InstanceType<
 de:
   accountPasswordReset: Passwort zurücksetzen
   accountPasswordResetSuccess: Passwort erfolgreich zurückgesetzt.
+  postgres22023: Das Passwort ist zu kurz! Überlege dir ein längeres.
+  postgresP0002: Unbekannter Zurücksetzungscode! Hast du dein Passwort vielleicht schon zurückgesetzt?
+  postgres55000: Der Zurücksetzungscode ist abgelaufen!
   reset: Zurückgesetzt!
 en:
   accountPasswordReset: Reset password
   accountPasswordResetSuccess: Password reset successfully.
+  postgres22023: The password is too short! Think about a longer one.
+  postgresP0002: Unknown reset code! Have you perhaps already reset your password?
+  postgres55000: The reset code has expired!
   reset: Reset!
 </i18n>

@@ -1,7 +1,7 @@
 <template>
   <Loader
     v-if="($apollo.loading && !allUploads) || graphqlError"
-    :error-message="graphqlError ? String(graphqlError) : undefined"
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
     <Card
@@ -181,7 +181,7 @@ export default defineComponent({
       allUploads: undefined as any,
       croppy: {},
       fileSelectedUrl: undefined as string | undefined,
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       selectedItem: undefined as Item | undefined,
       uploadIdPrefix: 'upid_',
       uppy: undefined as Uppy | undefined,
@@ -320,7 +320,8 @@ export default defineComponent({
               },
             })
             .then(({ data }) => this.$util.getNested(data, 'uploadCreate'))
-            .catch((reason) => {
+            .catch((graphqlError) => {
+              const reason = this.$util.getGqlErrorMessages(graphqlError, this)
               consola.error(reason)
               reject(reason)
             })
@@ -400,6 +401,7 @@ de:
   iconTrash: löschen
   iconTrashLabel: Dieses hochgeladene Bild löschen.
   noPictures: Du hast keine hochgeladenen Bilder 😕
+  postgres53100: Der Speicherplatz deines Accounts ist aufgebraucht!
   upload: Hochladen
   uploadAlt: Ein hochgeladenes Bild.
   uploadAltFailed: Ein Bild, das nicht vollständig hochgeladen wurde.
@@ -415,6 +417,7 @@ en:
   iconTrash: trash
   iconTrashLabel: Delete this uploaded image.
   noPictures: "You don't have any uploaded pictures 😕"
+  postgres53100: Your account space has been used up!
   upload: Upload
   uploadAlt: An uploaded image.
   uploadAltFailed: An image for which the upload didn't finish.

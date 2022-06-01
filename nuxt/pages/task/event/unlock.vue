@@ -2,9 +2,9 @@
   <div class="m-auto max-w-xl">
     <h1>{{ title }}</h1>
     <Form
+      :errors="$util.getGqlErrorMessages(graphqlError, this)"
       :form="$v.form"
       :form-sent="form.sent"
-      :graphql-error="graphqlError"
       :submit-name="$t('submit')"
       @submit.prevent="submit"
     >
@@ -100,14 +100,16 @@ export default defineComponent({
           app.localePath(`/event/${res.authorUsername}/${res.eventSlug}`)
         )
       } else {
-        return redirect({
-          query: {
-            ...route.query,
-            redirect: app.localePath(
-              `/event/${res.authorUsername}/${res.eventSlug}`
-            ),
-          },
-        })
+        return redirect(
+          app.localePath({
+            query: {
+              ...route.query,
+              redirect: app.localePath(
+                `/event/${res.authorUsername}/${res.eventSlug}`
+              ),
+            },
+          })
+        )
       }
     }
   },
@@ -118,7 +120,7 @@ export default defineComponent({
           this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
         sent: false,
       },
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       title: this.$t('title'),
     }
   },
@@ -257,6 +259,7 @@ de:
   invitationCode: Einladungscode
   invitationCodeAutomatic: Der Einladungscode wurde automatisch eingegeben.
   invitationCodeManual: Code selbst eingeben.
+  postgresP0002: Zu diesem Einladungscode wurde keine Veranstaltung gefunden! Überprüfe deine Eingaben auf Schreibfehler.
   submit: Zur Veranstaltungsseite
   title: Veranstaltung freischalten
 en:
@@ -264,6 +267,7 @@ en:
   invitationCode: Invitation code
   invitationCodeAutomatic: The invitation code was entered automatically.
   invitationCodeManual: Enter it yourself.
+  postgresP0002: No event was found for this invitation code! Check your input for spelling mistakes.
   submit: Show event page
   title: Unlock event
 </i18n>

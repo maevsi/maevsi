@@ -34,12 +34,6 @@ export default defineComponent({
       type: String,
     },
   },
-  data() {
-    const graphqlError: string | undefined = undefined
-    return {
-      graphqlError,
-    }
-  },
   computed: {
     classComputed(): string {
       return [this.classes, ...(this.rounded ? ['rounded-full'] : [])].join(' ')

@@ -1,10 +1,7 @@
 <template>
-  <Card
-    class="overflow-hidden border-0 bg-yellow-600 text-center font-medium text-white"
-    :class="{ 'rounded-none': isEdgy }"
-  >
+  <CardState class="bg-blue-600" :is-edgy="isEdgy">
     <slot />
-  </Card>
+  </CardState>
 </template>
 
 <script lang="ts">

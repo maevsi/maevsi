@@ -1,9 +1,9 @@
 <template>
   <Form
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
     :form="$v.form"
     :form-class="formClass"
     :form-sent="form.sent"
-    :graphql-error="graphqlError"
     :submit-name="$t('signIn')"
     @submit.prevent="submit"
   >
@@ -35,13 +35,13 @@
     <template slot="assistance">
       <ButtonColored
         v-if="
-          graphqlErrorComputed &&
-          graphqlErrorComputed.startsWith('Account not verified!')
+          graphqlError &&
+          graphqlError.graphQLErrors.filter((e) => e.errcode === '55000')
+            .length > 0
         "
         :aria-label="$t('verificationMailResend')"
         @click="accountRegistrationRefresh"
       >
-        <!-- https://github.com/maevsi/maevsi/issues/209 -->
         {{ $t('verificationMailResend') }}
       </ButtonColored>
     </template>
@@ -70,21 +70,8 @@ const FormAccountSignIn = defineComponent({
         sent: false,
         username: undefined,
       },
-      graphqlError: undefined,
+      graphqlError: undefined as Error | undefined,
     }
-  },
-  computed: {
-    graphqlErrorComputed(): any {
-      if (!this.graphqlError) {
-        return
-      }
-
-      return [
-        ...((this.graphqlError as any).graphQLErrors?.map(
-          (e: Error) => e.message
-        ) ?? []),
-      ].join(', ')
-    },
   },
   watch: {
     form: {
@@ -110,7 +97,7 @@ const FormAccountSignIn = defineComponent({
           this.$util.getNested(data, 'accountRegistrationRefresh')
         )
         .catch((reason) => {
-          this.graphqlErrorInternal = reason
+          this.graphqlError = reason
           consola.error(reason)
         })
 
@@ -188,6 +175,9 @@ de:
   jwtStoreFail: Fehler beim Speichern der Authentifizierungsdaten!
   passwordFound: Passwort wiedergefunden?
   passwordLost: Passwort verloren?
+  postgres22023: Ein Konto mit diesem Benutzernamen existiert nicht! Überprüfe deine Eingaben auf Schreibfehler.
+  postgres55000: Die E-Mail-Adresse ist noch nicht verifiziert!
+  postgresP0002: Anmeldung fehlgeschlagen! Überprüfe deine Eingaben auf Schreibfehler.
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
   sent: Gesendet!
   signIn: Anmelden
@@ -197,6 +187,9 @@ en:
   jwtStoreFail: Failed to store the authentication information!
   passwordFound: Password found?
   passwordLost: Password lost?
+  postgres22023: An account with this username does not exists! Check your input for spelling mistakes.
+  postgres55000: The email address is not yet verified!
+  postgresP0002: Login failed! Check your input for spelling mistakes.
   registrationRefreshSuccess: A new welcome email is on its way to you.
   sent: Sent!
   signIn: Sign in

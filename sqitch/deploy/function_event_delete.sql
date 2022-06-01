@@ -28,7 +28,7 @@ BEGIN
       RETURN _rows_affected;
     END IF;
   ELSE
-    RAISE 'Account with given password not found!' USING ERRCODE = 'no_data_found';
+    RAISE 'Account with given password not found!' USING ERRCODE = 'invalid_password';
   END IF;
 END;
 $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;

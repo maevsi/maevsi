@@ -62,7 +62,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            (this.$router.currentRoute.fullPath as string),
+            this.$router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

@@ -2,13 +2,13 @@
   <div>
     <h1>{{ title }}</h1>
     <Loader
-      v-if="$apollo.loading || graphqlError"
-      :error-message="graphqlError ? String(graphqlError) : undefined"
+      v-if="loading || graphqlError"
+      :errors="$util.getGqlErrorMessages(graphqlError, this)"
     />
     <div v-else>
-      <p class="text-center">
+      <CardStateSuccess>
         {{ $t('emailAddressVerificationSuccess') }}
-      </p>
+      </CardStateSuccess>
       <ButtonList>
         <ButtonSignIn
           v-if="
@@ -39,7 +39,7 @@ export default defineComponent({
   },
   data() {
     return {
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
       loading: true,
       title: this.$t('title'),
     }
@@ -97,8 +97,12 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   emailAddressVerificationSuccess: E-Mail-Adresse erfolgreich verifiziert.
+  postgres55000: Der Verifizierungscode ist abgelaufen!
+  postgresP0002: Unbekannter Verifizierungscode! Hast du deine E-Mail-Adresse vielleicht schon verifiziert?
   title: Verifizierung
 en:
   emailAddressVerificationSuccess: Email address verified successfully.
+  postgres55000: The verification code has expired!
+  postgresP0002: Unknown verification code! Have you perhaps already verified your email address?
   title: Verification
 </i18n>

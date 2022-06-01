@@ -41,7 +41,7 @@ BEGIN
     FROM maevsi.event
     WHERE id = _event_id);
   ELSE
-      RAISE 'No event for this invitation code found!' USING ERRCODE = 'no_data_found';
+    RAISE 'No event for this invitation code found!' USING ERRCODE = 'no_data_found';
   END IF;
 END $$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
 

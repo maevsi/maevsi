@@ -1,9 +1,9 @@
 <template>
   <Form
+    :errors="$util.getGqlErrorMessages(graphqlError, this)"
     :form="$v.form"
     :form-class="formClass"
     :form-sent="form.sent"
-    :graphql-error="graphqlError"
     :submit-name="$t('register')"
     @submit.prevent="submit"
   >
@@ -48,7 +48,7 @@ const FormAccountRegistration = defineComponent({
         sent: false,
         username: undefined as string | undefined,
       },
-      graphqlError: undefined as any,
+      graphqlError: undefined as Error | undefined,
     }
   },
   watch: {
@@ -132,11 +132,15 @@ export type FormAccountRegistrationType = InstanceType<
 <i18n lang="yml">
 de:
   emailAddress: E-Mail-Adresse
+  postgres22023: Das Passwort ist zu kurz! Überlege dir ein längeres.
+  postgres23505: Es gibt bereits einen Account mit diesem Nutzernamen oder dieser E-Mail-Adresse! Überlege dir einen neuen Namen oder versuche dich anzumelden.
   register: Registrieren
   registrationSuccessBody: Verifiziere deinen Account über den Link in der E-Mail, die du in Kürze erhalten wirst.
   registrationSuccessTitle: Registrierung erfolgreich.
 en:
   emailAddress: Email address
+  postgres22023: The password is too short! Think about a longer one.
+  postgres23505: There is already an account with this username or email address! Think of a new name or try signing in.
   register: Register
   registrationSuccessBody: "Verify your account using the link in the email you'll receive shortly."
   registrationSuccessTitle: Registration successful.

@@ -5,6 +5,7 @@ import { Inject } from '@nuxt/types-edge/app'
 import { ApolloClient } from 'apollo-client'
 import consola from 'consola'
 import { serialize, parse } from 'cookie'
+import { GraphQLError } from 'graphql'
 import { decode, JwtPayload } from 'jsonwebtoken'
 import { unionBy } from 'lodash-es'
 import moment from 'moment'
@@ -161,6 +162,27 @@ export function getDeferredPromise<T>(then?: (value: any) => T): Promise<T> {
   }
 
   return promise
+}
+
+export function getGqlErrorMessages(
+  graphqlError:
+    | {
+        graphQLErrors: (GraphQLError & { errcode: string })[]
+      }
+    | undefined,
+  that: any
+): string[] | undefined {
+  if (!graphqlError) return
+  return graphqlError.graphQLErrors.map((e) => {
+    const translationId = 'postgres' + e.errcode
+    const translation = that.$t(translationId)
+
+    if (translation === translationId) {
+      return e.message
+    } else {
+      return translation
+    }
+  })
 }
 
 export function getJwtFromCookie(
@@ -367,7 +389,7 @@ export function validateEventSlug(
 }
 
 export function validateUsername(
-  apollo: ApolloClient<any>
+  apollo: DollarApollo<Vue>
 ): (value: string) => Promise<boolean> {
   return async (value: string) => {
     if (!helpers.req(value)) {
@@ -445,6 +467,7 @@ const util = {
   formPreSubmit,
   getContactName,
   getDeferredPromise,
+  getGqlErrorMessages,
   getJwtFromCookie,
   getNested,
   getQueryString,
