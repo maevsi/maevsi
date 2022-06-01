@@ -36,8 +36,8 @@
       <ButtonColored
         v-if="
           graphqlError &&
-          graphqlError.graphQLErrors.filter((e) => e.code === '55000').length >
-            0
+          graphqlError.graphQLErrors.filter((e) => e.errcode === '55000')
+            .length > 0
         "
         :aria-label="$t('verificationMailResend')"
         @click="accountRegistrationRefresh"

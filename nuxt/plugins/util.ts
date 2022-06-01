@@ -167,14 +167,14 @@ export function getDeferredPromise<T>(then?: (value: any) => T): Promise<T> {
 export function getGqlErrorMessages(
   graphqlError:
     | {
-        graphQLErrors: (GraphQLError & { code: string })[]
+        graphQLErrors: (GraphQLError & { errcode: string })[]
       }
     | undefined,
   that: any
 ): string[] | undefined {
   if (!graphqlError) return
   return graphqlError.graphQLErrors.map((e) => {
-    const translationId = 'postgres' + e.code
+    const translationId = 'postgres' + e.errcode
     const translation = that.$t(translationId)
 
     if (translation === translationId) {
