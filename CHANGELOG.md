@@ -1,3 +1,19 @@
+# [0.128.0](https://github.com/maevsi/maevsi/compare/0.127.1...0.128.0) (2022-06-01)
+
+
+### Bug Fixes
+
+* **email-verification:** correct loading indicator ([5f6b31c](https://github.com/maevsi/maevsi/commit/5f6b31c4fb585e0725b8b709a98c65583dd5c54c))
+* **graphql:** correct error code property name ([73c467e](https://github.com/maevsi/maevsi/commit/73c467e01b0be9072b42978d8a474dff2615f281))
+
+
+### Features
+
+* **account:** add success card for email verification ([e2f5659](https://github.com/maevsi/maevsi/commit/e2f56591942229db6c0311d1a65a53d8956d3efd)), closes [#463](https://github.com/maevsi/maevsi/issues/463)
+* **i18n:** translate sql RAISE errors ([61a645c](https://github.com/maevsi/maevsi/commit/61a645c6a0174d8d24ed8e019d66b1c258b88da7)), closes [#209](https://github.com/maevsi/maevsi/issues/209)
+* rework graphql errors ([8f2b2ed](https://github.com/maevsi/maevsi/commit/8f2b2edacd51af7ee18dba277029a00c1a346b18)), closes [#209](https://github.com/maevsi/maevsi/issues/209) [#338](https://github.com/maevsi/maevsi/issues/338)
+* **sqitch:** differentiate error codes ([a7ea4d1](https://github.com/maevsi/maevsi/commit/a7ea4d1e9d94a0929b97e974e9cedbb65eb92365))
+
 ## [0.127.1](https://github.com/maevsi/maevsi/compare/0.127.0...0.127.1) (2022-05-31)
 
 
