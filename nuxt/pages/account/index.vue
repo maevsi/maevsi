@@ -1,6 +1,8 @@
 <template>
   <div>
-    <CardStateInfo v-if="$route.query.referrer">
+    <CardStateInfo
+      v-if="$route.query.referrer && !$route.query.isRedirectNoticeHidden"
+    >
       {{ $t('accountRequired') }}
     </CardStateInfo>
     <h1>{{ title }}</h1>

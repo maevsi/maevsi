@@ -6,7 +6,10 @@
         path: '/account',
         query: {
           tab: 'signIn',
-          ...(isReferring && { referrer: $route.fullPath }),
+          ...(isReferring && {
+            referrer: $route.fullPath,
+            isRedirectNoticeHidden: true,
+          }),
         },
       })
     "
