@@ -5,7 +5,7 @@ const OLD_ENV = process.env
 beforeAll(() => {
   const date = new Date(0)
 
-  jest.useFakeTimers('modern')
+  jest.useFakeTimers()
   jest.setSystemTime(date)
 
   jest.resetModules()
