@@ -20,7 +20,7 @@
     <FormInputEmailAddress
       id="email-address-registration"
       :form-input="$v.form.emailAddress"
-      required
+      is-required
       @input="form.emailAddress = $event"
     />
   </Form>

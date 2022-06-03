@@ -8,46 +8,41 @@
       :submit-name="$t('submit')"
       @submit.prevent="submit"
     >
+      <!-- The id's suffix `-maevsi` makes browser suggest inputs just for this service. -->
       <FormInput
-        :error="$v.form.invitationCode.$error"
-        :label-for="inputId"
+        :id-label="`input-invitation-code-maevsi-${
+          $config.dev ? 'dev' : 'prod'
+        }`"
+        :is-disabled="!!$route.query.ic"
+        placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         :title="$t('invitationCode')"
+        type="text"
+        :value="$v.form.invitationCode"
+        @input="form.invitationCode = $event"
       >
-        <!--
-          The id's suffix `-maevsi` makes browser suggest inputs just for this
-          service.
-        -->
-        <input
-          :id="inputId"
-          v-model.trim="invitationCodeModel"
-          class="form-input"
-          :disabled="$route.query.ic"
-          placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-          type="text"
-        />
-        <template slot="inputInfo">
-          <FormInputInfo v-if="$route.query.ic">
+        <template slot="stateInfo">
+          <FormInputStateInfo v-if="$route.query.ic">
             <div>
               {{ $t('invitationCodeAutomatic') }}
               <AppLink :to="localePath('/task/event/unlock')">
                 {{ $t('invitationCodeManual') }}
               </AppLink>
             </div>
-          </FormInputInfo>
+          </FormInputStateInfo>
         </template>
-        <template slot="inputError">
-          <FormInputError
+        <template slot="stateError">
+          <FormInputStateError
             :form-input="$v.form.invitationCode"
             validation-property="formatUuid"
           >
             {{ $t('globalValidationFormat') }}
-          </FormInputError>
-          <FormInputError
+          </FormInputStateError>
+          <FormInputStateError
             :form-input="$v.form.invitationCode"
             validation-property="required"
           >
             {{ $t('globalValidationRequired') }}
-          </FormInputError>
+          </FormInputStateError>
         </template>
       </FormInput>
     </Form>
@@ -76,7 +71,20 @@ export default defineComponent({
     const { $util, app, redirect, route, store } = context
 
     if (isQueryIcFormatValid(context)) {
-      const res = await eventUnlock(context)
+      const res = await app
+        .apolloProvider!.defaultClient.mutate({
+          mutation: EVENT_UNLOCK_MUTATION,
+          variables: {
+            invitationCode: route.query.ic,
+          },
+        })
+        .then(({ data }: any) =>
+          $util.getNested(data, 'eventUnlock', 'eventUnlockResponse')
+        )
+        .catch((reason: any) => {
+          consola.error(reason)
+        })
+
       if (!res) {
         return redirect(
           app.localePath({
@@ -150,21 +158,6 @@ export default defineComponent({
       title,
     }
   },
-  computed: {
-    inputId() {
-      return `input-invitation-code-maevsi-${this.$config.dev ? 'dev' : 'prod'}`
-    },
-    invitationCodeModel: {
-      get(): string {
-        return this.$route.query.ic !== undefined
-          ? this.$route.query.ic
-          : this.$v.form.invitationCode?.$model
-      },
-      set(value: string) {
-        this.form.invitationCode = value
-      },
-    },
-  },
   mounted() {
     if (this.$route.query.ic) {
       this.$v.form.invitationCode?.$touch()
@@ -226,25 +219,7 @@ export default defineComponent({
   },
 })
 
-async function eventUnlock(context: Context) {
-  const { $util, app, route } = context
-  return await app
-    .apolloProvider!.defaultClient.mutate({
-      mutation: EVENT_UNLOCK_MUTATION,
-      variables: {
-        invitationCode: route.query.ic,
-      },
-    })
-    .then(({ data }: any) =>
-      $util.getNested(data, 'eventUnlock', 'eventUnlockResponse')
-    )
-    .catch((reason: any) => {
-      consola.error(reason)
-    })
-}
-
-function isQueryIcFormatValid(context: Context) {
-  const { $util, route } = context
+function isQueryIcFormatValid({ $util, route }: Context) {
   return (
     route.query.ic &&
     typeof route.query.ic === 'string' &&

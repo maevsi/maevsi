@@ -13,9 +13,9 @@
       {{ $t('403hint') }}
     </p>
     <ButtonList>
-      <ButtonHome />
-      <ButtonEventUnlock v-if="statusCode === 403" />
       <ButtonSignIn v-if="statusCode === 403" />
+      <ButtonEventUnlock v-if="statusCode === 403" />
+      <ButtonHome />
     </ButtonList>
   </div>
 </template>

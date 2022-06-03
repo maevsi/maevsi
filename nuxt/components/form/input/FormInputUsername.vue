@@ -1,37 +1,41 @@
 <template>
   <FormInput
     v-if="formInput"
-    :error="formInput.$error"
     :is-optional="isOptional"
     :is-validatable="isValidatable"
-    :label-for="`input-${id}`"
+    :id-label="`input-${id}`"
+    :placeholder="$t('globalPlaceholderUsername')"
     :success="isValidatable && formInput.$model && !formInput.$invalid"
     :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
+    type="text"
     :validation-property="formInput"
+    :value="formInput"
+    @input="$emit('input', $event)"
   >
-    <input
-      :id="`input-${id}`"
-      class="form-input"
-      type="text"
-      :placeholder="$t('globalPlaceholderUsername')"
-      :value="formInput.$model"
-      @input="$emit('input', $event.target.value)"
-    />
-    <template slot="inputError">
-      <FormInputError :form-input="formInput" validation-property="existence">
+    <template slot="stateError">
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="existence"
+      >
         {{ $t('globalValidationExistence') }}
-      </FormInputError>
-      <FormInputError :form-input="formInput" validation-property="formatSlug">
+      </FormInputStateError>
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="formatSlug"
+      >
         {{ $t('globalValidationFormat') }}
-      </FormInputError>
-      <FormInputError :form-input="formInput" validation-property="required">
+      </FormInputStateError>
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="required"
+      >
         {{ $t('globalValidationRequired') }}
-      </FormInputError>
+      </FormInputStateError>
     </template>
-    <template v-if="isValidatable" slot="inputSuccess">
-      <FormInputSuccess :form-input="formInput">
+    <template v-if="isValidatable" slot="stateSuccess">
+      <FormInputStateSuccess :form-input="formInput">
         {{ $t('globalVerificationExistence') }}
-      </FormInputSuccess>
+      </FormInputStateSuccess>
     </template>
   </FormInput>
 </template>

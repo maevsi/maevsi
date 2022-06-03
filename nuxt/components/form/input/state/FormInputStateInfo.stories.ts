@@ -1,18 +1,18 @@
 import { defineComponent } from '#app'
-import FormInputInfo from './FormInputInfo.vue'
+import FormInputStateInfo from './FormInputStateInfo.vue'
 
 export default {
-  component: FormInputInfo,
-  title: 'form/input/FormInputInfo',
+  component: FormInputStateInfo,
+  title: 'form/input/state/FormInputStateInfo',
 }
 
 const Template = (_: never, { argTypes }: any) =>
   defineComponent({
-    components: { FormInputInfo },
+    components: { FormInputStateInfo },
     props: Object.keys(argTypes),
     template:
       // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<FormInputInfo v-bind="$props">FormInputInfo</FormInputInfo>',
+      '<FormInputStateInfo v-bind="$props">FormInputStateInfo</FormInputStateInfo>',
   })
 
 export const Default = Template.bind({})

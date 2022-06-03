@@ -1,26 +1,21 @@
 <template>
   <FormInput
     v-if="formInput"
-    :error="formInput.$error"
     :is-optional="isOptional"
-    :label-for="`input-${id}`"
+    :id-label="`input-${id}`"
+    :placeholder="$t('globalPlaceholderPhoneNumber')"
     :title="$t('phoneNumber')"
+    type="tel"
+    :value="formInput"
+    @input="$emit('input', $event)"
   >
-    <input
-      :id="`input-${id}`"
-      class="form-input"
-      :placeholder="$t('globalPlaceholderPhoneNumber')"
-      type="url"
-      :value="formInput.$model"
-      @input="$emit('input', $event.target.value)"
-    />
-    <template slot="inputError">
-      <FormInputError
+    <template slot="stateError">
+      <FormInputStateError
         :form-input="formInput"
         validation-property="formatPhoneNumber"
       >
         {{ $t('globalValidationFormat') }}
-      </FormInputError>
+      </FormInputStateError>
     </template>
   </FormInput>
 </template>

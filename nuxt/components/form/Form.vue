@@ -29,9 +29,9 @@
             <slot name="submit-icon" />
           </template>
         </ButtonColored>
-        <FormInputError v-if="form.$anyError" class="mt-2">
+        <FormInputStateError v-if="form.$anyError" class="mt-2">
           {{ $t('globalValidationFailed') }}
-        </FormInputError>
+        </FormInputStateError>
       </div>
       <Loader v-if="errors" class="my-4" :errors="errors" />
       <slot name="assistance" />

@@ -9,44 +9,36 @@
     @submit.prevent="submit"
   >
     <FormInput
-      :error="$v.form.contactId.$error"
-      label-for="input-contact-id"
-      required
+      id-label="input-contact-id"
+      is-required
+      :placeholder="$t('placeholderContact')"
       :title="$t('contact')"
+      type="text"
+      :value="$v.form.searchString"
+      @input="form.searchString = $event"
     >
-      <div class="flex">
-        <input
-          id="input-contact-id"
-          v-model.trim="searchString"
-          class="form-input rounded-r-none"
-          :placeholder="$t('placeholderContact')"
-          type="text"
-        />
-        <span
-          class="pointer-events-none inline-flex cursor-default items-center rounded-r border border-l-0 border-gray-300 bg-gray-100 px-3 text-gray-500"
-        >
-          <IconSearch :title="$t('iconSearch')" />
-        </span>
-      </div>
-      <template slot="inputError">
-        <FormInputError
+      <template slot="icon">
+        <IconSearch />
+      </template>
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.contactId"
           validation-property="required"
         >
           {{ $t('globalValidationRequired') }}
-        </FormInputError>
-        <FormInputError
+        </FormInputStateError>
+        <FormInputStateError
           :form-input="$v.form.contactId"
           validation-property="minLength"
         >
           {{ $t('globalValidationMinLength') }}
-        </FormInputError>
-        <FormInputError
+        </FormInputStateError>
+        <FormInputStateError
           :form-input="$v.form.contactId"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <div v-if="allContacts" class="divide-y-4 divide-transparent">
@@ -123,9 +115,9 @@ export default defineComponent({
       form: {
         sent: false,
         contactId: undefined as string | undefined,
+        searchString: undefined as string | undefined,
       },
       graphqlError: undefined as Error | undefined,
-      searchString: undefined as string | undefined,
     }
   },
   computed: {
@@ -135,11 +127,11 @@ export default defineComponent({
         return undefined
       }
 
-      if (!this.searchString || this.searchString === '') {
+      if (!this.form.searchString || this.form.searchString === '') {
         return this.allContacts.nodes
       }
 
-      const searchStringParts = this.searchString.split(' ')
+      const searchStringParts = this.form.searchString.split(' ')
       const allContactsFiltered = this.allContacts.nodes.filter(
         (contact: Contact) => {
           for (const contactProperty of [
@@ -215,6 +207,7 @@ export default defineComponent({
           minLength: minLength(1),
           required,
         },
+        searchString: {},
       },
     }
   },
@@ -225,15 +218,13 @@ export default defineComponent({
 de:
   buttonContact: Ein Kontakt
   contact: Kontakt
-  iconSearch: Suche
   placeholderContact: Max Mustermann
   select: Auswählen
-  selectAssistance: Die Einladung wird angelegt, aber noch nicht versendet.
+  selectAssistance: Die Einladung wird noch nicht versandt, nur angelegt.
 en:
   buttonContact: A contact
   contact: Contact
-  iconSearch: Search
   placeholderContact: John Doe
   select: Select
-  selectAssistance: The invitation is created but not yet sent.
+  selectAssistance: The invitation is not yet sent, only created.
 </i18n>

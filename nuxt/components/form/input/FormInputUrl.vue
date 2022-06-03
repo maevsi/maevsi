@@ -1,45 +1,27 @@
 <template>
   <FormInput
     v-if="formInput"
-    :error="formInput.$error"
     :is-optional="isOptional"
-    :label-for="`input-${id}`"
+    :id-label="`input-${id}`"
+    :placeholder="$t('globalPlaceholderUrl')"
     :title="$t('url')"
+    type="url"
+    :value="formInput"
+    @input="$emit('input', $event)"
   >
-    <div class="flex">
-      <!-- <span
-        class="
-          cursor-default
-          inline-flex
-          items-center
-          px-3
-          rounded-l
-          border border-r-0 border-gray-300
-          bg-gray-100
-          text-gray-500
-        "
+    <template slot="stateError">
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="maxLength"
       >
-        {{ $t('https') }}
-      </span> -->
-      <input
-        :id="`input-${id}`"
-        class="form-input rounded-l-none"
-        :placeholder="$t('globalPlaceholderUrl')"
-        type="url"
-        :value="formInput.$model"
-        @input="$emit('input', $event.target.value)"
-      />
-    </div>
-    <template slot="inputError">
-      <FormInputError :form-input="formInput" validation-property="maxLength">
         {{ $t('globalValidationLength') }}
-      </FormInputError>
-      <FormInputError
+      </FormInputStateError>
+      <FormInputStateError
         :form-input="formInput"
         validation-property="formatUrlHttps"
       >
         {{ $t('globalValidationFormatUrlHttps') }}
-      </FormInputError>
+      </FormInputStateError>
     </template>
   </FormInput>
 </template>

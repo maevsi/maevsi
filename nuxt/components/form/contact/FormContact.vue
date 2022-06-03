@@ -9,18 +9,13 @@
   >
     <FormInput
       class="hidden"
-      :error="$v.form.id.$error"
-      label-for="input-id"
+      id-label="input-id"
+      placeholder="id"
       title="id"
-    >
-      <input
-        id="input-id"
-        v-model.trim="$v.form.id.$model"
-        class="form-input"
-        type="number"
-        placeholder="id"
-      />
-    </FormInput>
+      type="number"
+      :value="$v.form.id"
+      @input="form.id = $event"
+    />
     <FormInputUsername
       id="username"
       :form-input="$v.form.accountUsername"
@@ -32,47 +27,39 @@
       {{ $t('accountOverride') }}
     </div>
     <FormInput
-      :error="$v.form.firstName.$error"
+      id-label="input-first-name"
       is-optional
-      label-for="input-first-name"
+      :placeholder="$t('globalPlaceholderFirstName')"
       :title="$t('firstName')"
+      type="text"
+      :value="$v.form.firstName"
+      @input="form.firstName = $event"
     >
-      <input
-        id="input-first-name"
-        v-model.trim="$v.form.firstName.$model"
-        class="form-input"
-        type="text"
-        :placeholder="$t('globalPlaceholderFirstName')"
-      />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.firstName"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <FormInput
-      :error="$v.form.lastName.$error"
+      id-label="input-last-name"
       is-optional
-      label-for="input-last-name"
+      :placeholder="$t('globalPlaceholderLastName')"
       :title="$t('lastName')"
+      type="text"
+      :value="$v.form.lastName"
+      @input="form.lastName = $event"
     >
-      <input
-        id="input-last-name"
-        v-model.trim="$v.form.lastName.$model"
-        class="form-input"
-        type="text"
-        :placeholder="$t('globalPlaceholderLastName')"
-      />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.lastName"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <FormInputEmailAddress
@@ -82,10 +69,12 @@
       @input="form.emailAddress = $event"
     />
     <FormInput
-      :error="$v.form.address.$error"
+      id-label="input-address"
       is-optional
-      label-for="input-address"
       :title="$t('address')"
+      type="textarea"
+      :value="$v.form.address"
+      @input="form.address = $event"
     >
       <textarea
         id="input-address"
@@ -94,13 +83,13 @@
         :placeholder="$t('globalPlaceholderAddress')"
         rows="2"
       />
-      <template slot="inputError">
-        <FormInputError
+      <template slot="stateError">
+        <FormInputStateError
           :form-input="$v.form.address"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputError>
+        </FormInputStateError>
       </template>
     </FormInput>
     <FormInputPhoneNumber

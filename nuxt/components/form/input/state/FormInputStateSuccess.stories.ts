@@ -1,18 +1,18 @@
 import { defineComponent } from '#app'
-import FormInputSuccess from './FormInputSuccess.vue'
+import FormInputStateSuccess from './FormInputStateSuccess.vue'
 
 export default {
-  component: FormInputSuccess,
-  title: 'form/input/FormInputSuccess',
+  component: FormInputStateSuccess,
+  title: 'form/input/state/FormInputStateSuccess',
 }
 
 const Template = (_: never, { argTypes }: any) =>
   defineComponent({
-    components: { FormInputSuccess },
+    components: { FormInputStateSuccess },
     props: Object.keys(argTypes),
     template:
       // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<FormInputSuccess v-bind="$props">FormInputSuccess</FormInputSuccess>',
+      '<FormInputStateSuccess v-bind="$props">FormInputStateSuccess</FormInputStateSuccess>',
   })
 
 export const Default = Template.bind({})

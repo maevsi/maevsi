@@ -1,18 +1,18 @@
 import { defineComponent } from '#app'
-import FormInputError from './FormInputError.vue'
+import FormInputStateWarning from './FormInputStateWarning.vue'
 
 export default {
-  component: FormInputError,
-  title: 'form/input/FormInputError',
+  component: FormInputStateWarning,
+  title: 'form/input/state/FormInputStateWarning',
 }
 
 const Template = (_: never, { argTypes }: any) =>
   defineComponent({
-    components: { FormInputError },
+    components: { FormInputStateWarning },
     props: Object.keys(argTypes),
     template:
       // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<FormInputError v-bind="$props">FormInputError</FormInputError>',
+      '<FormInputStateWarning v-bind="$props">FormInputStateWarning</FormInputStateWarning>',
   })
 
 export const Default = Template.bind({})

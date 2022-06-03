@@ -1,29 +1,30 @@
 <template>
   <FormInput
     v-if="formInput"
-    :error="formInput.$error"
-    :label-for="`input-${id}`"
+    :id-label="`input-${id}`"
+    placeholder="**********"
     :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
+    type="password"
+    :value="formInput"
+    @input="$emit('input', $event)"
   >
-    <input
-      :id="`input-${id}`"
-      class="form-input"
-      type="password"
-      placeholder="**********"
-      :value="formInput.$model"
-      @input="$emit('input', $event.target.value)"
-    />
-    <template slot="inputError">
-      <FormInputError :form-input="formInput" validation-property="minLength">
+    <template slot="stateError">
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="minLength"
+      >
         {{ $t('globalValidationShortness') }}
-      </FormInputError>
-      <FormInputError :form-input="formInput" validation-property="required">
+      </FormInputStateError>
+      <FormInputStateError
+        :form-input="formInput"
+        validation-property="required"
+      >
         {{ $t('globalValidationRequired') }}
-      </FormInputError>
-      <slot name="inputError" />
+      </FormInputStateError>
+      <slot name="stateError" />
     </template>
-    <template slot="inputInfo">
-      <slot name="inputInfo" />
+    <template slot="stateInfo">
+      <slot name="stateInfo" />
     </template>
   </FormInput>
 </template>
