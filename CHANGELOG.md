@@ -1,3 +1,15 @@
+# [0.129.0](https://github.com/maevsi/maevsi/compare/0.128.0...0.129.0) (2022-06-03)
+
+
+### Bug Fixes
+
+* **sign-in:** hide redirect notice ([6d5ecd6](https://github.com/maevsi/maevsi/commit/6d5ecd6a2d878be5c773cd9bccdeb57236347fde))
+
+
+### Features
+
+* **form-input:** rework input design ([c54233a](https://github.com/maevsi/maevsi/commit/c54233a15361c5cb5e7d36bae0f4c761220e22ff)), closes [#339](https://github.com/maevsi/maevsi/issues/339)
+
 # [0.128.0](https://github.com/maevsi/maevsi/compare/0.127.1...0.128.0) (2022-06-01)
 
 
