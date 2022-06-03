@@ -1,19 +1,14 @@
 <template>
   <FormInput
     v-if="formInput"
-    :error="formInput.$error"
     :is-optional="isOptional"
-    :label-for="`input-${id}`"
+    :id-label="`input-${id}`"
+    :placeholder="$t('globalPlaceholderEmailAddress')"
     :title="$t('emailAddress')"
+    type="email"
+    :value="formInput"
+    @input="$emit('input', $event)"
   >
-    <input
-      :id="`input-${id}`"
-      class="form-input"
-      :placeholder="$t('globalPlaceholderEmailAddress')"
-      type="email"
-      :value="formInput.$model"
-      @input="$emit('input', $event.target.value)"
-    />
     <template slot="stateError">
       <FormInputStateError :form-input="formInput" validation-property="email">
         {{ $t('globalValidationFormat') }}
@@ -31,7 +26,7 @@
         {{ $t('globalValidationLength') }}
       </FormInputStateError>
       <FormInputStateError
-        v-if="required"
+        v-if="isRequired"
         :form-input="formInput"
         validation-property="required"
       >
@@ -59,7 +54,7 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
-    required: {
+    isRequired: {
       default: false,
       type: Boolean,
     },

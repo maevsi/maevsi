@@ -1,22 +1,17 @@
 <template>
   <FormInput
     v-if="formInput"
-    :error="formInput.$error"
     :is-optional="isOptional"
     :is-validatable="isValidatable"
-    :label-for="`input-${id}`"
+    :id-label="`input-${id}`"
+    :placeholder="$t('globalPlaceholderUsername')"
     :success="isValidatable && formInput.$model && !formInput.$invalid"
     :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
+    type="text"
     :validation-property="formInput"
+    :value="formInput"
+    @input="$emit('input', $event)"
   >
-    <input
-      :id="`input-${id}`"
-      class="form-input"
-      type="text"
-      :placeholder="$t('globalPlaceholderUsername')"
-      :value="formInput.$model"
-      @input="$emit('input', $event.target.value)"
-    />
     <template slot="stateError">
       <FormInputStateError
         :form-input="formInput"

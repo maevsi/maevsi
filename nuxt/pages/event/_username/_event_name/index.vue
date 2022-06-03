@@ -171,8 +171,9 @@
             class="col-span-5"
           >
             <FormInput
-              label-for="input-paper-invitation-feedback"
+              id-label="input-paper-invitation-feedback"
               :title="$t('invitationCardKind')"
+              type="select"
             >
               <select
                 id="input-paper-invitation-feedback"
