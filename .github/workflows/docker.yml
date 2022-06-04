@@ -9,7 +9,7 @@ on:
 jobs:
   lint:
     name: 'Lint'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.1
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.2
     with:
       TARGET: lint
     secrets:
@@ -17,7 +17,7 @@ jobs:
       DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
   test-code:
     name: 'Test: code'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.1
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.2
     with:
       TARGET: test
     secrets:
@@ -25,7 +25,7 @@ jobs:
       DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
   test-visual:
     name: 'Test: visual'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.1
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.2
     with:
       TARGET: test-visual
     secrets:
@@ -34,7 +34,7 @@ jobs:
   build:
     needs: [lint, test-code, test-visual]
     name: 'Build'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.1
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.2
     with:
       TARGET: production
     secrets:
@@ -43,10 +43,10 @@ jobs:
   release-semantic:
     needs: build
     name: Semantic Release
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.16.1
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.16.2
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
   release-assets:
     needs: release-semantic
     name: Release Assets
-    uses: dargmuesli/github-actions/.github/workflows/release-assets.yml@0.16.1
+    uses: dargmuesli/github-actions/.github/workflows/release-assets.yml@0.16.2
