@@ -33,6 +33,7 @@ export default defineComponent({
       variables: {
         username: params.username,
       },
+      fetchPolicy: 'network-only',
     })
 
     return accountIsExisting

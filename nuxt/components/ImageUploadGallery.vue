@@ -193,6 +193,7 @@ export default defineComponent({
     this.accountUploadQuotaBytes = await this.$apollo
       .query({
         query: ACCOUNT_UPLOAD_QUOTA_BYTES,
+        fetchPolicy: 'network-only',
       })
       .then(({ data }) => data.accountUploadQuotaBytes)
       .catch((reason) => {

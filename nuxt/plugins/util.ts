@@ -382,6 +382,7 @@ export function validateEventSlug(
         authorUsername: signedInUserName,
         slug: value,
       },
+      fetchPolicy: 'network-only',
     })
 
     return invert ? !eventIsExisting : eventIsExisting
@@ -403,6 +404,7 @@ export function validateUsername(
       variables: {
         username: value,
       },
+      fetchPolicy: 'network-only',
     })
 
     return accountIsExisting
