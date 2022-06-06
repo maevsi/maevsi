@@ -9,7 +9,7 @@ on:
 jobs:
   prepare:
     name: 'Prepare'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.6
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.8
     with:
       TARGET: prepare
     secrets:
@@ -18,7 +18,7 @@ jobs:
   lint:
     needs: prepare
     name: 'Lint'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.6
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.8
     with:
       TARGET: lint
     secrets:
@@ -27,7 +27,7 @@ jobs:
   test-code:
     needs: prepare
     name: 'Test: code'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.6
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.8
     with:
       TARGET: test
     secrets:
@@ -36,28 +36,28 @@ jobs:
   test-visual:
     needs: prepare
     name: 'Test: visual'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.6
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.8
     with:
       TARGET: test-visual
     secrets:
       DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
   build:
-    needs: [lint, test-code, test-visual]
+    needs: prepare
     name: 'Build'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.6
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.8
     with:
       TARGET: production
     secrets:
       DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
   release-semantic:
-    needs: build
+    needs: [lint, test-code, test-visual, build]
     name: Semantic Release
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.16.6
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.16.8
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
   release-assets:
     needs: release-semantic
     name: Release Assets
-    uses: dargmuesli/github-actions/.github/workflows/release-assets.yml@0.16.6
+    uses: dargmuesli/github-actions/.github/workflows/release-assets.yml@0.16.8
