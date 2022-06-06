@@ -37,6 +37,9 @@ export default defineComponent({
       return redirect(app.localePath('/'))
     }
   },
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       graphqlError: undefined as Error | undefined,

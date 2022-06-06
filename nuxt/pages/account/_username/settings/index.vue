@@ -65,6 +65,9 @@ export default defineComponent({
 
     return accountIsExisting
   },
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       accountDeleteMutation: ACCOUNT_DELETE_MUTATION,

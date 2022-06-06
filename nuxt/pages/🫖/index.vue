@@ -12,6 +12,9 @@ export default defineComponent({
       res.statusCode = 418
     }
   },
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       graphqlError: undefined as Error | undefined,

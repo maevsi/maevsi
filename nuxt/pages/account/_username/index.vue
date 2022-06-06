@@ -38,6 +38,9 @@ export default defineComponent({
 
     return accountIsExisting
   },
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       title: this.$route.params.username,

@@ -13,6 +13,9 @@ export default defineComponent({
   validate({ app, params }) {
     return app.$util.REGEX_SLUG.test(params.username)
   },
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       title: this.$t('title', { username: this.$route.params.username }),

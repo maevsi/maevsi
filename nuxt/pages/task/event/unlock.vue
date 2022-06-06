@@ -121,6 +121,9 @@ export default defineComponent({
       }
     }
   },
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       form: {

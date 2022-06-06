@@ -14,6 +14,9 @@ export default defineComponent({
   validate({ app, params }: Context): boolean {
     return app.$util.REGEX_SLUG.test(params.username)
   },
+  transition: {
+    name: 'layout',
+  },
   head() {
     return { title: this.$route.params.event_group_name }
   },

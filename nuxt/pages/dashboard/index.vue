@@ -32,6 +32,9 @@ import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       title: this.$t('title'),
