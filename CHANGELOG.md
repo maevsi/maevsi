@@ -1,3 +1,11 @@
+## [0.129.1](https://github.com/maevsi/maevsi/compare/0.129.0...0.129.1) (2022-06-06)
+
+
+### Bug Fixes
+
+* **form-event:** set maximum datetime ([3edd83d](https://github.com/maevsi/maevsi/commit/3edd83d3e789d7d71bc0ee5cdaa72690cab164f8)), closes [#630](https://github.com/maevsi/maevsi/issues/630)
+* **validate:** fetch network only ([27f8698](https://github.com/maevsi/maevsi/commit/27f869883adc4d2705d8b0c85181400f57ffc3ad)), closes [#631](https://github.com/maevsi/maevsi/issues/631)
+
 # [0.129.0](https://github.com/maevsi/maevsi/compare/0.128.0...0.129.0) (2022-06-03)
 
 
