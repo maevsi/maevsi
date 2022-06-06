@@ -61,6 +61,9 @@ export default defineComponent({
       )
     }
   },
+  transition: {
+    name: 'layout',
+  },
   setup() {
     const formPasswordResetRequest = ref<FormAccountPasswordResetRequestType>()
     const formRegistration = ref<FormAccountRegistrationType>()

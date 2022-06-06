@@ -285,6 +285,9 @@ export default defineComponent({
 
     return eventIsExisting
   },
+  transition: {
+    name: 'layout',
+  },
   async asyncData({ app, error, params, query }: Context) {
     let graphqlError: GraphQLError | undefined
     const event = (await app

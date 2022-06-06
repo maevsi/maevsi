@@ -256,6 +256,9 @@
 import { defineComponent } from '#app'
 
 export default defineComponent({
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       title: this.$t('title') as string,

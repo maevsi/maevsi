@@ -10,6 +10,9 @@ import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       graphqlError: undefined as Error | undefined,

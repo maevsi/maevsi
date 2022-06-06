@@ -79,7 +79,7 @@
 
 .layout-enter-active,
 .layout-leave-active {
-  transition: opacity 0.5s; /* stylelint-disable-line plugin/no-unsupported-browser-features */
+  transition: opacity 0.1s; /* stylelint-disable-line plugin/no-unsupported-browser-features */
 }
 
 .layout-enter,

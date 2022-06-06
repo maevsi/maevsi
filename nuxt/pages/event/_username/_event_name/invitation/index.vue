@@ -64,6 +64,9 @@ export default defineComponent({
 
     return eventIsExisting
   },
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       event: undefined as MaevsiEvent | undefined,

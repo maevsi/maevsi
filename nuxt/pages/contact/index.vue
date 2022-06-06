@@ -15,6 +15,9 @@ export default defineComponent({
       return error({ statusCode: 403 })
     }
   },
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       title: this.$t('titleContacts'),

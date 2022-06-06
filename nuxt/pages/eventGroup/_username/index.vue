@@ -12,5 +12,8 @@ export default defineComponent({
   validate({ app, params }: Context): boolean {
     return app.$util.REGEX_SLUG.test(params.username)
   },
+  transition: {
+    name: 'layout',
+  },
 })
 </script>

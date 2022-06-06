@@ -17,6 +17,9 @@ export default defineComponent({
       return redirect(app.localePath('/'))
     }
   },
+  transition: {
+    name: 'layout',
+  },
   data() {
     return {
       title: this.$t('title'),
