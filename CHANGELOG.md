@@ -1,3 +1,15 @@
+# [0.130.0](https://github.com/maevsi/maevsi/compare/0.129.2...0.130.0) (2022-06-06)
+
+
+### Bug Fixes
+
+* **font:** update manrope ([381ee0d](https://github.com/maevsi/maevsi/commit/381ee0d8341787a2bc62a19ae129d347469795d8))
+
+
+### Features
+
+* **pages:** add transition ([59318a9](https://github.com/maevsi/maevsi/commit/59318a90a85f2a89b88f96ef6ff406ded20a1100)), closes [#174](https://github.com/maevsi/maevsi/issues/174)
+
 ## [0.129.2](https://github.com/maevsi/maevsi/compare/0.129.1...0.129.2) (2022-06-06)
 
 
