@@ -1,3 +1,10 @@
+## [0.129.2](https://github.com/maevsi/maevsi/compare/0.129.1...0.129.2) (2022-06-06)
+
+
+### Bug Fixes
+
+* **ufo:** resolve to v0.8.4 ([34c3a75](https://github.com/maevsi/maevsi/commit/34c3a757fe186ad8e219328b2a182d787d62a004))
+
 ## [0.129.1](https://github.com/maevsi/maevsi/compare/0.129.0...0.129.1) (2022-06-06)
 
 
