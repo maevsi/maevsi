@@ -77,6 +77,7 @@ export default defineComponent({
         slug: params.event_name,
         authorUsername: params.username,
       },
+      fetchPolicy: 'network-only',
     })
 
     return eventIsExisting

@@ -280,6 +280,7 @@ export default defineComponent({
         slug: params.event_name,
         authorUsername: params.username,
       },
+      fetchPolicy: 'network-only',
     })
 
     return eventIsExisting
@@ -294,6 +295,7 @@ export default defineComponent({
           slug: params.event_name,
           invitationUuid: query.ic,
         },
+        fetchPolicy: 'network-only',
       })
       .then(({ data }) => data.eventByAuthorUsernameAndSlug)
       .catch((reason) => {
