@@ -131,6 +131,7 @@
         v-model="$v.form.start.$model"
         input-class="form-input"
         input-id="input-start"
+        :max-datetime="$v.form.end.$model"
         :minute-step="5"
         type="datetime"
       />
