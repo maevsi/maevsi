@@ -1,3 +1,10 @@
+## [0.130.1](https://github.com/maevsi/maevsi/compare/0.130.0...0.130.1) (2022-06-07)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([28c2556](https://github.com/maevsi/maevsi/commit/28c255602ec8a8ad386691e4a57a38b846eda229))
+
 # [0.130.0](https://github.com/maevsi/maevsi/compare/0.129.2...0.130.0) (2022-06-06)
 
 
