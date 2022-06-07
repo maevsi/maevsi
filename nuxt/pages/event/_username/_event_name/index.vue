@@ -158,6 +158,7 @@
               </ButtonColored>
             </div>
           </div>
+          <!--
           <div
             v-if="invitation.feedback === 'ACCEPTED'"
             class="col-span-1 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
@@ -203,7 +204,7 @@
             class="col-span-1 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
           >
             {{ $t('step2Of2') }}
-          </div>
+          </div> -->
         </div>
       </div>
       <div v-if="event.description">
