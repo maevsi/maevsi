@@ -124,7 +124,7 @@ export default defineComponent({
       if (
         this.$route.params.username === this.$store.getters.signedInUsername
       ) {
-        return `${this.$t('settings')} · ${this.event?.name}`
+        return this.$t('settings', { eventName: this.event?.name }) as string
       }
       return '403'
     },
@@ -208,14 +208,14 @@ de:
   event: Veranstaltung
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   postgresP0002: Die Veranstaltung wurde nicht gefunden!
-  settings: Einstellungen
+  settings: Einstellungen · {eventName}
   titleDelete: Veranstaltung löschen
   titleEdit: Veranstaltung bearbeiten
 en:
   event: event
   postgres28P01: Password incorrect! Check that you have written everything correctly.
   postgresP0002: The event was not found!
-  settings: Settings
+  settings: Settings · {eventName}
   titleDelete: Delete event
   titleEdit: Edit event
 </i18n>
