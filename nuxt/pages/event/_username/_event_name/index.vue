@@ -496,7 +496,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  attendances: Anwesenheiten
+  attendances: Check-in
   greeting: Hey{usernameString}!
   greetingDescription: 'Du wurdest zu folgender Veranstaltung eingeladen:'
   iCalDownload: Zum Kalender hinzufügen
@@ -513,7 +513,7 @@ de:
   invitationSelectionClear: Auswahl der Einladung löschen
   invitationViewFor: Du schaust dir die Einladung für {name} an.
   invitations: Einladungen
-  qrCodeShow: QR-Code anzeigen
+  qrCodeShow: Check-in-Code anzeigen
   requestSelection: Bitte auswählen
   saved: Gespeichert!
   settings: Einstellungen
@@ -521,7 +521,7 @@ de:
   step2Of2: 2/2
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
-  attendances: Attendances
+  attendances: Check in
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event:"
   iCalDownload: Add to calendar
@@ -538,7 +538,7 @@ en:
   invitationSelectionClear: Clear invitation selection
   invitationViewFor: You're viewing the invitation for {name}.
   invitations: Invitations
-  qrCodeShow: Show qr code
+  qrCodeShow: Show check in code
   requestSelection: Please select
   saved: Saved!
   settings: Settings

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <div class="flex flex-col justify-center gap-4">
+    <div class="flex flex-col items-center justify-center gap-4">
       <ButtonColored
         :aria-label="$t('qrCodeScan')"
         class="text-text-bright"
@@ -12,6 +12,9 @@
           <IconQrcode />
         </template>
       </ButtonColored>
+      <FormInputStateInfo v-if="!invitationCode">
+        {{ $t('qrHint') }}
+      </FormInputStateInfo>
       <span v-if="invitationCode" class="text-center">
         {{ $t('scanned', { scanResult: invitationCode }) }}
       </span>
@@ -285,9 +288,10 @@ de:
   errorNfcNotReadable: Zugriff auf den NFC-Adapter nicht möglich. Wird er von einem anderen Programm verwendet?
   errorNfcNotSupported: Es wurde kein kompatibler NFC-Adapter gefunden.
   nfcWrite: NFC-Tag schreiben
-  qrCodeScan: QR-Code scannen
+  qrCodeScan: Check-in-Code scannen
+  qrHint: Lass dir von Gästen den QR-Code auf ihrer Einladungsseite zeigen
   scanned: 'Gescannt: {scanResult}'
-  title: Anwesenheiten
+  title: Check-ins
 en:
   close: Close
   errorCameraNotAllowed: Camera access permisson is missing.
@@ -303,7 +307,8 @@ en:
   errorNfcNotReadable: Could not access NFC adapter. Is it used by another program?
   errorNfcNotSupported: No compatible NFC adapter was found.
   nfcWrite: Write NFC tag
-  qrCodeScan: Scan QR-Code
+  qrCodeScan: Scan check in code
+  qrHint: Have guests show you the QR code on their invitation page
   scanned: 'Scanned: {scanResult}'
-  title: Attendances
+  title: Check ins
 </i18n>
