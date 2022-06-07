@@ -56,11 +56,20 @@
           <ContactPreview class="px-4 py-2" :contact="contact" />
         </Button>
       </div>
+      <ButtonColored
+        :aria-label="$t('contactsAdd')"
+        :to="localePath('/contact')"
+      >
+        {{ $t('contactsAdd') }}
+        <template slot="prefix">
+          <IconPlus />
+        </template>
+      </ButtonColored>
     </div>
     <template slot="assistance">
-      <p class="text-center text-xs text-gray-500 dark:text-gray-400">
+      <FormInputStateInfo>
         {{ $t('selectAssistance') }}
-      </p>
+      </FormInputStateInfo>
     </template>
   </Form>
 </template>
@@ -218,13 +227,15 @@ export default defineComponent({
 de:
   buttonContact: Ein Kontakt
   contact: Kontakt
+  contactsAdd: Kontakte hinzufügen
   placeholderContact: Max Mustermann
-  select: Auswählen
-  selectAssistance: Die Einladung wird noch nicht versandt, nur angelegt.
+  select: Einladung anlegen
+  selectAssistance: Die Einladung wird noch nicht versandt!
 en:
   buttonContact: A contact
   contact: Contact
+  contactsAdd: Add contacts
   placeholderContact: John Doe
-  select: Select
-  selectAssistance: The invitation is not yet sent, only created.
+  select: Add invitation
+  selectAssistance: The invitation is not yet sent!
 </i18n>
