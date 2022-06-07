@@ -99,7 +99,15 @@
         </ButtonColored>
       </div>
     </Card>
-    <p v-else class="text-center">{{ $t('noPictures') }}</p>
+    <div v-else class="flex flex-col gap-1 py-2">
+      <p class="text-center">{{ $t('noPictures') }}</p>
+      <ButtonColored
+        :aria-label="$t('uploadImages')"
+        :to="localePath('/upload')"
+      >
+        {{ $t('uploadImages') }}
+      </ButtonColored>
+    </div>
     <Modal
       id="ModalImageUploadGallery"
       :submit-name="$t('upload')"
@@ -409,6 +417,7 @@ de:
   uploadDeleteFailed: Das Löschen des Elements ist fehlgeschlagen!
   uploadDeleteUnexpectedStatusCode: Beim Löschen des Elements trat ein unerwarteter Statuscode auf.
   uploadError: 'Fehler: Dateien wurden nicht erfolgreich hochgeladen!'
+  uploadImages: Bilder hochladen
   uploadNew: Lade ein neues Bild hoch
   uploadSize: 'Größe: {size}'
 en:
@@ -425,6 +434,7 @@ en:
   uploadDeleteFailed: Deleting upload failed!
   uploadDeleteUnexpectedStatusCode: Deleting upload returned an unexpected status code.
   uploadError: 'Error: Some files did not upload successfully!'
+  uploadImages: Upload pictures
   uploadNew: Upload a new image
   uploadSize: 'Size: {size}'
 </i18n>
