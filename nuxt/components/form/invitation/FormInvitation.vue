@@ -45,7 +45,7 @@
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button
           :aria-label="$t('buttonContact')"
-          class="w-full rounded border border-neutral-300 dark:border-neutral-600"
+          class="w-full rounded border border-neutral-300 text-left dark:border-neutral-600"
           :class="{
             'border-2 border-blue-600 dark:border-blue-600':
               form.contactId === contact.id,
