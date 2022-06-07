@@ -1,3 +1,10 @@
+## [0.130.2](https://github.com/maevsi/maevsi/compare/0.130.1...0.130.2) (2022-06-07)
+
+
+### Bug Fixes
+
+* **ci:** add push flag ([bcc6379](https://github.com/maevsi/maevsi/commit/bcc6379f9ec12cb64fd11a57fd95fa0bba63e3cf))
+
 ## [0.130.1](https://github.com/maevsi/maevsi/compare/0.130.0...0.130.1) (2022-06-07)
 
 
