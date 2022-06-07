@@ -9,7 +9,7 @@ on:
 jobs:
   prepare:
     name: 'Prepare'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.11
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.12
     with:
       TARGET: prepare
     secrets:
@@ -18,7 +18,7 @@ jobs:
   lint:
     needs: prepare
     name: 'Lint'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.11
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.12
     with:
       CACHE: prepare
       TARGET: lint
@@ -28,7 +28,7 @@ jobs:
   test-code:
     needs: prepare
     name: 'Test: code'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.11
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.12
     with:
       CACHE: prepare
       TARGET: test
@@ -38,7 +38,7 @@ jobs:
   test-visual:
     needs: prepare
     name: 'Test: visual'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.11
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.12
     with:
       CACHE: prepare
       TARGET: test-visual
@@ -48,7 +48,7 @@ jobs:
   build:
     needs: prepare
     name: 'Build'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.11
+    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.12
     with:
       CACHE: prepare
       TARGET: production
@@ -58,10 +58,10 @@ jobs:
   release-semantic:
     needs: [lint, test-code, test-visual, build]
     name: Semantic Release
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.16.11
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.16.12
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
   release-assets:
     needs: release-semantic
     name: Release Assets
-    uses: dargmuesli/github-actions/.github/workflows/release-assets.yml@0.16.11
+    uses: dargmuesli/github-actions/.github/workflows/release-assets.yml@0.16.12
