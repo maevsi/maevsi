@@ -218,16 +218,19 @@
       </div>
     </Card>
     <Modal id="ModalInvitationQrCode">
-      <div class="flex justify-center">
+      <div v-if="invitation" class="flex flex-col items-center gap-2 pb-4">
         <QrcodeVue
+          id="qrCode"
           class="bg-white p-4"
-          :value="
-            invitation
-              ? invitation.uuid
-              : '00000000-0000-0000-0000-000000000000'
-          "
+          :value="invitation.uuid"
           size="200"
         />
+        <ButtonColored v-if="false" :aria-label="$p('print')" @click="print">
+          {{ $t('print') }}
+        </ButtonColored>
+        <FormInputStateInfo>
+          {{ $t('hintQrCode') }}
+        </FormInputStateInfo>
       </div>
     </Modal>
   </div>
@@ -238,6 +241,7 @@ import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import { GraphQLError } from 'graphql'
 import mustache from 'mustache'
+// import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 import { mapGetters } from 'vuex'
 
@@ -464,6 +468,12 @@ export default defineComponent({
         })
       )
     },
+    print() {
+      // prntr({
+      //   printable: 'qrCode',
+      //   type: 'html',
+      // })
+    },
     qrCodeShow() {
       this.$store.commit('modalAdd', { id: 'ModalInvitationQrCode' })
     },
@@ -500,6 +510,7 @@ de:
   attendances: Check-in
   greeting: Hey{usernameString}!
   greetingDescription: 'Du wurdest zu folgender Veranstaltung eingeladen:'
+  hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
   iCalDownload: Zum Kalender hinzufügen
   iCalUnexpectedStatusCode: 'iCal-Daten konnten nicht geladen werden: Statuscode {statusCode}.'
   invitationAccept: Einladung annehmen
@@ -514,6 +525,7 @@ de:
   invitationSelectionClear: Auswahl der Einladung löschen
   invitationViewFor: Du schaust dir die Einladung für {name} an.
   invitations: Einladungen
+  print: Drucken
   qrCodeShow: Check-in-Code anzeigen
   requestSelection: Bitte auswählen
   saved: Gespeichert!
@@ -525,6 +537,7 @@ en:
   attendances: Check in
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event:"
+  hintQrCode: This picture is your access authorization for the event
   iCalDownload: Add to calendar
   iCalUnexpectedStatusCode: 'Could not get iCal data: Status code {statusCode}.'
   invitationAccept: Accept invitation
@@ -539,6 +552,7 @@ en:
   invitationSelectionClear: Clear invitation selection
   invitationViewFor: You're viewing the invitation for {name}.
   invitations: Invitations
+  print: Print
   qrCodeShow: Show check in code
   requestSelection: Please select
   saved: Saved!

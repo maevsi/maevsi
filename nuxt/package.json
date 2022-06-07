@@ -71,6 +71,7 @@
     "nuxt-helmet": "3.0.0",
     "pg": "8.7.3",
     "pretty-bytes": "6.0.0",
+    "prntr": "2.0.13",
     "qrcode.vue": "1.7.0",
     "slugify": "1.6.5",
     "twemoji": "14.0.2",
