@@ -3,7 +3,7 @@
     v-if="($apollo.loading && !allEvents) || graphqlError"
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
-  <div v-else>
+  <div v-else class="flex flex-col gap-2">
     <ButtonList>
       <ButtonEventList v-if="showButtonEventList" />
       <ButtonEventNew v-if="showButtonEventNew" />

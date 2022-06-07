@@ -1,15 +1,15 @@
 <template>
-  <EventDashlet v-if="event && event.isInPerson && event.location">
+  <EventDashlet v-if="event && event.isRemote && event.url">
     <span>
-      <IconMapMarker :title="$t('location')" />
+      <IconLink :title="$t('url')" />
     </span>
     <AppLink
-      v-if="event.isInPerson && event.location"
+      v-if="event.isRemote && event.url"
       class="w-full overflow-hidden text-ellipsis break-words line-clamp-2"
       nofollow
-      :to="`https://maps.google.de/?q=${encodeURIComponent(event.location)}`"
+      :to="event.url"
     >
-      {{ event.location }}
+      {{ event.url }}
     </AppLink>
   </EventDashlet>
 </template>
@@ -30,7 +30,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  location: Ort
+  url: Link
 en:
-  location: location
+  url: Link
 </i18n>
