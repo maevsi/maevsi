@@ -1,10 +1,10 @@
 <template>
-  <div
+  <FormInputState
     v-if="formInput && formInput.$model && !formInput.$invalid"
-    class="flex items-center gap-1 text-sm text-green-600"
+    class="text-green-600"
   >
     <slot />
-  </div>
+  </FormInputState>
 </template>
 
 <script lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <div
+  <FormInputState
     v-if="
       (!formInput && !validationProperty) ||
       (formInput[validation ? '$invalid' : '$error'] &&
@@ -7,11 +7,11 @@
         validationProperty in formInput &&
         !formInput[validationProperty])
     "
-    class="flex items-center gap-1 text-sm text-red-600"
+    class="text-red-600"
   >
     <IconExclamationCircle v-if="formInput && validationProperty" />
     <slot />
-  </div>
+  </FormInputState>
 </template>
 
 <script lang="ts">
