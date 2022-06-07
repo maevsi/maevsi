@@ -12,6 +12,12 @@
       "
       class="flex justify-evenly"
     >
+      <ButtonColored append :aria-label="$t('settings')" to="settings">
+        {{ $t('settings') }}
+        <template slot="prefix">
+          <IconPencil />
+        </template>
+      </ButtonColored>
       <ButtonColored append :aria-label="$t('invitations')" to="invitation">
         {{ $t('invitations') }}
         <template slot="prefix">
@@ -22,12 +28,6 @@
         {{ $t('attendances') }}
         <template slot="prefix">
           <IconUserCheck />
-        </template>
-      </ButtonColored>
-      <ButtonColored append :aria-label="$t('settings')" to="settings">
-        {{ $t('settings') }}
-        <template slot="prefix">
-          <IconCog />
         </template>
       </ButtonColored>
     </div>
@@ -516,7 +516,7 @@ de:
   qrCodeShow: Check-in-Code anzeigen
   requestSelection: Bitte auswählen
   saved: Gespeichert!
-  settings: Einstellungen
+  settings: Bearbeiten
   step1Of2: 1/2
   step2Of2: 2/2
   success: Deine Eingabe wurde erfolgreich gespeichert.
@@ -541,7 +541,7 @@ en:
   qrCodeShow: Show check in code
   requestSelection: Please select
   saved: Saved!
-  settings: Settings
+  settings: Edit
   step1Of2: 1/2
   step2Of2: 2/2
   success: Your input was saved succesfully.
