@@ -1,3 +1,26 @@
+# [0.131.0](https://github.com/maevsi/maevsi/compare/0.130.2...0.131.0) (2022-06-08)
+
+
+### Bug Fixes
+
+* **event-settings:** make title fully translatable ([9f3f67b](https://github.com/maevsi/maevsi/commit/9f3f67b1e4bc2cca8fe8788b610c19f16c51faa4))
+* **form-input-state-success:** add icon ([2f02053](https://github.com/maevsi/maevsi/commit/2f0205374420fa36b51b31cdc1cbdcf58814975f))
+* **form-invitation:** correct button text align ([ad8cc5e](https://github.com/maevsi/maevsi/commit/ad8cc5ea8d138f2b6942e3186cf308f324e288e3))
+
+
+### Features
+
+* **attendance:** improve error messages ([d122060](https://github.com/maevsi/maevsi/commit/d12206033d6ad89071ae8d73fd4e8b2463ffc119))
+* **attendance:** prepare qr code print ([a9d4e0f](https://github.com/maevsi/maevsi/commit/a9d4e0f4794e906b7fc6da69ed33678e370eeba8))
+* **attendance:** rename to check-in ([ccbebe4](https://github.com/maevsi/maevsi/commit/ccbebe4a25e66a5633a3d0c8ea081d332392d00f)), closes [#649](https://github.com/maevsi/maevsi/issues/649)
+* **event:** disable invitation card selection ([ade33ad](https://github.com/maevsi/maevsi/commit/ade33adfd6ae3f0b5cedf3043e3920ec06429ea3))
+* **event:** rename settings to edit ([a058065](https://github.com/maevsi/maevsi/commit/a05806554ac4cf33ee239401d7a07e8a689ab3e1))
+* **form-invitation:** add button to contact creation ([e0795c4](https://github.com/maevsi/maevsi/commit/e0795c499dd9cc56210dc40847932e4df387ca73)), closes [#651](https://github.com/maevsi/maevsi/issues/651)
+* **form-registration:** add existence check for username ([62441e1](https://github.com/maevsi/maevsi/commit/62441e189bb9950d2753681797a5f5bfe7e30ec2)), closes [#647](https://github.com/maevsi/maevsi/issues/647)
+* **form:** use link buttons for redirects ([2ae6bbb](https://github.com/maevsi/maevsi/commit/2ae6bbbc057ecd4b08b58ffcea09d8682de24aa7))
+* **image-upload-gallery:** add link to upload page ([b36e0a5](https://github.com/maevsi/maevsi/commit/b36e0a5135c2e4554d7b46f7a276b328e1efb913)), closes [#654](https://github.com/maevsi/maevsi/issues/654)
+* **invitation:** improve invitation ux ([29d6562](https://github.com/maevsi/maevsi/commit/29d6562006fea76f9197e9e3191c1f493e19608f)), closes [#653](https://github.com/maevsi/maevsi/issues/653)
+
 ## [0.130.2](https://github.com/maevsi/maevsi/compare/0.130.1...0.130.2) (2022-06-07)
 
 
