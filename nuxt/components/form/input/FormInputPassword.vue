@@ -3,7 +3,7 @@
     v-if="formInput"
     :id-label="`input-${id}`"
     placeholder="**********"
-    :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
+    :title="title"
     type="password"
     :value="formInput"
     @input="$emit('input', $event)"
@@ -43,6 +43,12 @@ export default defineComponent({
       required: true,
       type: Object as PropType<FormInputType>,
     },
+    title: {
+      default() {
+        return this.$t('password')
+      },
+      type: String,
+    },
   },
 })
 </script>
@@ -50,12 +56,6 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   password: Passwort
-  passwordCurrent: Aktuelles Passwort
-  passwordNew: Neues Passwort
-  passwordNewConfirmation: Neues Passwort
 en:
   password: Password
-  passwordCurrent: Current Password
-  passwordNew: New Password
-  passwordNewConfirmation: New Password
 </i18n>
