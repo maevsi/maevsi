@@ -30,8 +30,9 @@ HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://local
 ########################
 # Prepare Nuxt.
 
-# Should be the specific version of `node:alpine`.
-FROM node:16.15.0-alpine@sha256:bb776153f81d6e931211e3cadd7eef92c811e7086993b685d1f40242d486b9bb AS prepare
+# Should be the specific version of `node:slim`.
+# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
+FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS prepare
 
 WORKDIR /srv/app/
 
@@ -46,8 +47,9 @@ RUN yarn nuxi prepare
 ########################
 # Build Nuxt.
 
-# Should be the specific version of `node:alpine`.
-FROM node:16.15.0-alpine@sha256:bb776153f81d6e931211e3cadd7eef92c811e7086993b685d1f40242d486b9bb AS build
+# Should be the specific version of `node:slim`.
+# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
+FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -67,8 +69,9 @@ RUN yarn run build \
 ########################
 # Nuxt: lint
 
-# Should be the specific version of node:alpine.
-FROM node:16.15.0-alpine@sha256:bb776153f81d6e931211e3cadd7eef92c811e7086993b685d1f40242d486b9bb AS lint
+# Should be the specific version of `node:slim`.
+# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
+FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS lint
 
 WORKDIR /srv/app/
 
@@ -80,8 +83,9 @@ RUN yarn run lint
 ########################
 # Nuxt: test (code)
 
-# Should be the specific version of node:alpine.
-FROM node:16.15.0-alpine@sha256:bb776153f81d6e931211e3cadd7eef92c811e7086993b685d1f40242d486b9bb AS test
+# Should be the specific version of `node:slim`.
+# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
+FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS test
 
 WORKDIR /srv/app/
 
