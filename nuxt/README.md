@@ -2,7 +2,7 @@
 
 ## Build Setup
 
-```bash
+```sh
 # install dependencies
 $ yarn install
 

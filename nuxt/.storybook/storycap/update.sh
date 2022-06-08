@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 THIS=$(dirname "$(readlink -f "$0")")
 
@@ -12,9 +12,9 @@ if [ "$deletedItems" = "" ]; then
 else
   printf "deleted:\n%s\n\n" "$deletedItems"
 
-  while IFS= read -r p; do
+  echo "$deletedItems" | while read -r p; do
     rm "$THIS/images/expected/$p"
-  done <<< "$deletedItems"
+  done
 fi
 
 if [ "$failedItems" = "" ]; then
@@ -22,9 +22,9 @@ if [ "$failedItems" = "" ]; then
 else
   printf "failed:\n%s\n\n" "$failedItems"
 
-  while IFS= read -r p; do
+  echo "$failedItems" | while read -r p; do
     cp "$THIS/images/actual/$p" "$THIS/images/expected/$p"
-  done <<< "$failedItems"
+  done
 fi
 
 if [ "$newItems" = "" ]; then
@@ -32,8 +32,8 @@ if [ "$newItems" = "" ]; then
 else
   printf "new:\n%s\n\n" "$newItems"
 
-  while IFS= read -r p; do
+  echo "$newItems" | while read -r p; do
     mkdir -p "$(dirname "$THIS/images/expected/$p")"
     cp "$THIS/images/actual/$p" "$THIS/images/expected/$p"
-  done <<< "$newItems"
+  done
 fi

@@ -25,7 +25,7 @@
     "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js",
     "test": "yarn test:code && yarn test:visual",
     "test:code": "jest",
-    "test:visual": "start-server-and-test 'yarn storybook --ci' 6006 'bash ./.storybook/storycap/test.sh'"
+    "test:visual": "start-server-and-test 'yarn storybook --ci' 6006 'sh ./.storybook/storycap/test.sh'"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",

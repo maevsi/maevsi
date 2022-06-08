@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 THIS=$(dirname "$(readlink -f "$0")")
 
@@ -8,7 +8,7 @@ mkdir -p "$THIS"/working-directory/expected
 cp -r "$THIS"/images/expected/* "$THIS"/working-directory/expected
 yarn reg-suit compare
 
-if [[ "$CI" = "true" ]]; then
+if [ "$CI" = "true" ]; then
   yarn reg-suit publish -n
 fi
 
@@ -35,6 +35,6 @@ else
   printf "new:\n%s\n\n" "$newItems"
 fi
 
-if [[ "$newItems" != "[]" || "$failedItems" != "[]" || "$newItems" != "[]" ]]; then
+if [ "$newItems" != "[]" ] || [ "$failedItems" != "[]" ] || [ "$newItems" != "[]" ]; then
   exit 1
 fi
