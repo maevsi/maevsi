@@ -92,10 +92,10 @@
         class="flex justify-center"
       >
         <ButtonColored
-          :aria-label="$t('globalPagingMore')"
+          :aria-label="$t('globalShowMore')"
           @click="$util.loadMore($apollo, 'allUploads', allUploads)"
         >
-          {{ $t('globalPagingMore') }}
+          {{ $t('globalShowMore') }}
         </ButtonColored>
       </div>
     </Card>
