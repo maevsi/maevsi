@@ -3,7 +3,7 @@
     v-if="($apollo.loading && !allInvitations) || graphqlError"
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
-  <div v-else>
+  <div v-else class="flex flex-col gap-4">
     <ScrollContainer
       v-if="allInvitations && event"
       :has-next-page="allInvitations.pageInfo.hasNextPage"
@@ -27,102 +27,116 @@
           <tr
             v-for="invitation in allInvitations.nodes"
             :key="invitation.uuid"
-            class="px-6 py-4"
             :class="{
               'animate-pulse': pending.deletions.includes(invitation.uuid),
             }"
           >
-            <td>
+            <td class="max-w-0">
               <ContactPreview
                 :contact="invitation.contactByContactId"
                 :feedback="invitation.feedback"
               />
             </td>
-            <td class="hidden xl:table-cell">
+            <td class="hidden max-w-0 xl:table-cell">
               {{ invitation.uuid }}
             </td>
-            <td>
+            <td class="max-w-0">
               <div
-                class="ml-4 flex items-center justify-evenly text-text-dark dark:text-text-bright"
+                class="flex items-center justify-evenly gap-4 text-text-dark dark:text-text-bright"
               >
-                <ButtonTableInteraction
-                  :aria-label="$t('invitationView')"
-                  is-title-show
-                  @click="
-                    $router.push({
-                      path: localePath(
-                        `/event/${event.authorUsername}/${event.slug}`
-                      ),
-                      query: { ic: invitation.uuid },
-                    })
-                  "
-                >
-                  <IconEye />
-                </ButtonTableInteraction>
-                <ButtonTableInteraction
-                  :aria-label="$t('invitationLink')"
-                  is-title-show
-                  @click="copyLink(event, invitation)"
-                >
-                  <IconLink />
-                </ButtonTableInteraction>
-                <ButtonTableInteraction
-                  :aria-label="
-                    invitation.contactByContactId.accountUsername ||
-                    invitation.contactByContactId.emailAddress
-                      ? $t('invitationSend')
-                      : $t('disabledReasonEmailAddressNone')
-                  "
-                  :disabled="
-                    (!invitation.contactByContactId.accountUsername &&
-                      !invitation.contactByContactId.emailAddress) ||
-                    pending.sends.includes(invitation.uuid)
-                  "
-                  is-title-show
-                  @click="send(invitation)"
-                >
-                  <IconPaperPlane />
-                </ButtonTableInteraction>
-                <ButtonTableInteraction
-                  :aria-label="$t('invitationDelete')"
-                  :disabled="pending.deletions.includes(invitation.uuid)"
-                  is-title-show
-                  @click="delete_(invitation.uuid)"
-                >
-                  <IconTrash />
-                </ButtonTableInteraction>
+                <DropDown>
+                  <ButtonTableInteraction
+                    :aria-label="$t('globalShowMore')"
+                    is-title-show
+                  >
+                    <IconDotsVertical />
+                  </ButtonTableInteraction>
+                  <template slot="content">
+                    <ButtonTableInteraction
+                      :aria-label="$t('invitationLink')"
+                      is-title-show
+                      @click="copyLink(event, invitation)"
+                    >
+                      <IconLink />
+                    </ButtonTableInteraction>
+                    <ButtonTableInteraction
+                      :aria-label="
+                        invitation.contactByContactId.accountUsername ||
+                        invitation.contactByContactId.emailAddress
+                          ? $t('invitationSend')
+                          : $t('disabledReasonEmailAddressNone')
+                      "
+                      :disabled="
+                        (!invitation.contactByContactId.accountUsername &&
+                          !invitation.contactByContactId.emailAddress) ||
+                        pending.sends.includes(invitation.uuid)
+                      "
+                      is-title-show
+                      @click="send(invitation)"
+                    >
+                      <IconPaperPlane />
+                    </ButtonTableInteraction>
+                    <ButtonTableInteraction
+                      :aria-label="$t('invitationView')"
+                      is-title-show
+                      @click="
+                        $router.push({
+                          path: localePath(
+                            `/event/${event.authorUsername}/${event.slug}`
+                          ),
+                          query: { ic: invitation.uuid },
+                        })
+                      "
+                    >
+                      <IconEye />
+                    </ButtonTableInteraction>
+                    <ButtonTableInteraction
+                      :aria-label="$t('invitationDelete')"
+                      :disabled="pending.deletions.includes(invitation.uuid)"
+                      is-title-show
+                      @click="delete_(invitation.uuid)"
+                    >
+                      <IconTrash />
+                    </ButtonTableInteraction>
+                  </template>
+                </DropDown>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
     </ScrollContainer>
-    <br />
-    <ButtonColored
-      :aria-label="$t('invitationAdd')"
-      :disabled="
-        event.inviteeCountMaximum
-          ? allInvitations.totalCount >= event.inviteeCountMaximum
-          : false
-      "
-      @click="add()"
-    >
-      {{ $t('invitationAdd') }}
-      <template slot="prefix">
-        <IconPlus />
-      </template>
-    </ButtonColored>
-    <p class="text-center text-gray-500 dark:text-gray-400">
-      {{
-        $t('invitationsUsed', {
-          amountCurrent: allInvitations.totalCount,
-          amountMaximum: event.inviteeCountMaximum || '∞',
-        })
-      }}
-    </p>
+    <div class="flex flex-col gap-1">
+      <ButtonColored
+        :aria-label="$t('invitationAdd')"
+        :disabled="
+          event.inviteeCountMaximum
+            ? allInvitations.totalCount >= event.inviteeCountMaximum
+            : false
+        "
+        @click="add()"
+      >
+        {{ $t('invitationAdd') }}
+        <template slot="prefix">
+          <IconPlus />
+        </template>
+      </ButtonColored>
+      <p class="text-center text-gray-500 dark:text-gray-400">
+        {{
+          $t('invitationsUsed', {
+            amountCurrent: allInvitations.totalCount,
+            amountMaximum: event.inviteeCountMaximum || '∞',
+          })
+        }}
+      </p>
+    </div>
     <div class="m-auto w-1/4">
       <!-- https://github.com/reg-viz/storycap/issues/501 -->
-      <Pie v-if="!$config.STORYBOOK" :chart-data="data" />
+      <Pie
+        v-if="!$config.STORYBOOK"
+        :chart-data="data"
+        :chart-options="options"
+      />
     </div>
     <Modal id="ModalInvitation">
       <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
@@ -235,6 +249,19 @@ export default defineComponent({
       allInvitations: undefined as any,
       data: {} as any,
       graphqlError: undefined as Error | undefined,
+      options: {
+        plugins: {
+          legend: {
+            labels: {
+              font: {
+                fontFamily:
+                  'Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+                size: 16,
+              },
+            },
+          },
+        },
+      },
       pending: {
         deletions: [] as string[],
         edits: [] as string[],
@@ -253,7 +280,13 @@ export default defineComponent({
         `${window.location.origin}${this.localePath(
           `/event/${event.authorUsername}/${event.slug}`
         )}?ic=${invitation.uuid}`
-      )
+      ).then(() => {
+        this.$swal({
+          icon: 'success',
+          text: this.$t('copySuccess') as string,
+          title: this.$t('copied'),
+        })
+      })
     },
     delete_(uuid: string) {
       this.pending.deletions.push(uuid)
@@ -325,6 +358,8 @@ de:
   canceled: abgelehnt
   contact: Kontakt
   contactSelect: Kontakt auswählen
+  copied: Kopiert
+  copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   invitationAdd: Einladung hinzufügen
   invitationCode: Einladungscode
@@ -342,6 +377,8 @@ en:
   canceled: canceled
   contact: Contact
   contactSelect: Select Contact
+  copied: Copied
+  copySuccess: The invitation link was copied to the clipboard.
   disabledReasonEmailAddressNone: This contact is missing an email address.
   invitationAdd: Add invitation
   invitationCode: Invitation code
