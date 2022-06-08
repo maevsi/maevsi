@@ -2,7 +2,7 @@
   <FormInputState
     v-if="
       (!formInput && !validationProperty) ||
-      (formInput[validation ? '$invalid' : '$error'] &&
+      (formInput[isValidationLive ? '$invalid' : '$error'] &&
         !formInput.$pending &&
         validationProperty in formInput &&
         !formInput[validationProperty])
@@ -23,7 +23,7 @@ export default defineComponent({
       default: undefined,
       type: Object,
     },
-    validation: {
+    isValidationLive: {
       default: false,
       type: Boolean,
     },
