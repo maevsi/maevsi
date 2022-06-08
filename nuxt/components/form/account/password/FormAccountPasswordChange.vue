@@ -25,14 +25,6 @@
       :title="$t('passwordNew')"
       @input="form.passwordNewConfirmation = $event"
     >
-      <template slot="stateError">
-        <FormInputStateError
-          :form-input="$v.form.passwordNewConfirmation"
-          validation-property="sameAs"
-        >
-          {{ $t('globalValidationSameAs') }}
-        </FormInputStateError>
-      </template>
       <template slot="stateInfo">
         <FormInputStateInfo>
           {{ $t('passwordConfirmation') }}

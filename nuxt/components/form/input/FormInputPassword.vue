@@ -21,6 +21,9 @@
       >
         {{ $t('globalValidationRequired') }}
       </FormInputStateError>
+      <FormInputStateError :form-input="formInput" validation-property="sameAs">
+        {{ $t('globalValidationSameAs') }}
+      </FormInputStateError>
       <slot name="stateError" />
     </template>
     <template slot="stateInfo">
