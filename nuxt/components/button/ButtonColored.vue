@@ -30,6 +30,9 @@
         <template slot="prefix">
           <slot name="prefix" />
         </template>
+        <template slot="suffix">
+          <slot name="suffix" />
+        </template>
       </Button>
     </div>
   </div>

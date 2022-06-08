@@ -56,15 +56,14 @@
           <ContactPreview class="px-4 py-2" :contact="contact" />
         </Button>
       </div>
-      <ButtonColored
-        :aria-label="$t('contactsAdd')"
-        :to="localePath('/contact')"
-      >
-        {{ $t('contactsAdd') }}
-        <template slot="prefix">
-          <IconPlus />
-        </template>
-      </ButtonColored>
+      <div class="flex justify-center">
+        <Button :aria-label="$t('contactsAdd')" :to="localePath('/contact')">
+          {{ $t('contactsAdd') }}
+          <template slot="suffix">
+            <IconArrowRight />
+          </template>
+        </Button>
+      </div>
     </div>
     <template slot="assistance">
       <FormInputStateInfo>
