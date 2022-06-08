@@ -1,5 +1,5 @@
 <template>
-  <div v-if="contact" class="flex whitespace-nowrap">
+  <div v-if="contact" class="flex gap-4">
     <div class="relative">
       <AccountProfilePicture
         v-if="contact.accountUsername"
@@ -25,12 +25,12 @@
         :feedback="feedback"
       />
     </div>
-    <div class="ml-4 flex flex-col justify-center">
-      <div class="font-medium">
+    <div class="flex flex-col justify-center overflow-hidden">
+      <div class="truncate font-medium">
         {{ contact.firstName || $t('placeholder') }}
         {{ contact.lastName || $t('placeholder') }}
       </div>
-      <div class="text-gray-500 dark:text-gray-400">
+      <div class="truncate text-gray-500 dark:text-gray-400">
         {{
           contact.accountUsername
             ? `@${contact.accountUsername}`
