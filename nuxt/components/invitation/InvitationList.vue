@@ -60,6 +60,13 @@
                   <IconEye />
                 </ButtonTableInteraction>
                 <ButtonTableInteraction
+                  :aria-label="$t('invitationLink')"
+                  is-title-show
+                  @click="copyLink(event, invitation)"
+                >
+                  <IconLink />
+                </ButtonTableInteraction>
+                <ButtonTableInteraction
                   :aria-label="
                     invitation.contactByContactId.accountUsername ||
                     invitation.contactByContactId.emailAddress
@@ -146,6 +153,7 @@ import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDele
 import INVITE_MUTATION from '~/gql/mutation/invitation/invite.gql'
 import INVITATIONS_ALL_QUERY from '~/gql/query/invitation/invitationsAll.gql'
 import { Event as MaevsiEvent } from '~/types/event'
+import { Invitation } from '~/types/invitation'
 
 Chart.register(
   ArcElement,
@@ -238,6 +246,15 @@ export default defineComponent({
     add() {
       this.$store.commit('modalAdd', { id: 'ModalInvitation' })
     },
+    copyLink(event: MaevsiEvent, invitation: Invitation): void {
+      if (!process.browser) return
+
+      this.$copyText(
+        `${window.location.origin}${this.localePath(
+          `/event/${event.authorUsername}/${event.slug}`
+        )}?ic=${invitation.uuid}`
+      )
+    },
     delete_(uuid: string) {
       this.pending.deletions.push(uuid)
       this.graphqlError = undefined
@@ -312,6 +329,7 @@ de:
   invitationAdd: Einladung hinzufügen
   invitationCode: Einladungscode
   invitationDelete: Einladung löschen
+  invitationLink: Einladungslink kopieren
   invitationSend: Einladung versenden
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
@@ -328,6 +346,7 @@ en:
   invitationAdd: Add invitation
   invitationCode: Invitation code
   invitationDelete: Delete invitation
+  invitationLink: Copy invitation link
   invitationSend: Send invitation
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'

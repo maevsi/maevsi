@@ -67,6 +67,7 @@
     "luxon": "1.28.0",
     "mustache": "4.2.0",
     "node-fetch": "3.2.5",
+    "nuxt-clipboard2": "0.2.1",
     "nuxt-edge": "latest",
     "nuxt-helmet": "3.0.0",
     "pg": "8.7.3",
@@ -151,7 +152,8 @@
     "vue": "2.6.14"
   },
   "resolutions": {
-    "ufo": "0.8.4"
+    "ufo": "0.8.4",
+    "vue-clipboard2": "0.3.3"
   },
   "msw": {
     "workerDirectory": "static"
