@@ -15,9 +15,17 @@
     <template slot="stateError">
       <FormInputStateError
         :form-input="formInput"
+        :is-validation-live="!isValidationInverted"
         validation-property="existence"
       >
         {{ $t('globalValidationExistence') }}
+      </FormInputStateError>
+      <FormInputStateError
+        :form-input="formInput"
+        :is-validation-live="isValidationInverted"
+        validation-property="existenceNone"
+      >
+        {{ $t('globalValidationExistenceNone') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
@@ -33,8 +41,15 @@
       </FormInputStateError>
     </template>
     <template v-if="isValidatable" slot="stateSuccess">
-      <FormInputStateSuccess :form-input="formInput">
-        {{ $t('globalVerificationExistence') }}
+      <FormInputStateSuccess
+        :form-input="formInput"
+        validation-property="existence"
+      >
+        {{
+          isValidationInverted
+            ? $t('globalVerificationExistenceNone')
+            : $t('globalVerificationExistence')
+        }}
       </FormInputStateSuccess>
     </template>
   </FormInput>
@@ -59,6 +74,10 @@ export default defineComponent({
       type: Boolean,
     },
     isValidatable: {
+      default: false,
+      type: Boolean,
+    },
+    isValidationInverted: {
       default: false,
       type: Boolean,
     },

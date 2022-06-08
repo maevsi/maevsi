@@ -1,6 +1,6 @@
 <template>
-  <div class="flex items-center gap-1 text-sm text-yellow-600">
+  <FormInputState class="text-yellow-600">
     <IconExclamationCircle />
     <slot />
-  </div>
+  </FormInputState>
 </template>

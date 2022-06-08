@@ -120,7 +120,7 @@
     <Modal id="ModalInvitation">
       <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
       <template slot="header">
-        {{ $t('invitationAdd') }}
+        {{ $t('contactSelect') }}
       </template>
       <div slot="footer" />
     </Modal>
@@ -307,6 +307,7 @@ de:
   accepted: akzeptiert
   canceled: abgelehnt
   contact: Kontakt
+  contactSelect: Kontakt auswählen
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   invitationAdd: Einladung hinzufügen
   invitationCode: Einladungscode
@@ -322,6 +323,7 @@ en:
   accepted: accepted
   canceled: canceled
   contact: Contact
+  contactSelect: Select Contact
   disabledReasonEmailAddressNone: This contact is missing an email address.
   invitationAdd: Add invitation
   invitationCode: Invitation code

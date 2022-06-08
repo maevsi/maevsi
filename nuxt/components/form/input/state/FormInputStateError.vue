@@ -1,17 +1,17 @@
 <template>
-  <div
+  <FormInputState
     v-if="
       (!formInput && !validationProperty) ||
-      (formInput[validation ? '$invalid' : '$error'] &&
+      (formInput[isValidationLive ? '$invalid' : '$error'] &&
         !formInput.$pending &&
         validationProperty in formInput &&
         !formInput[validationProperty])
     "
-    class="flex items-center gap-1 text-sm text-red-600"
+    class="text-red-600"
   >
     <IconExclamationCircle v-if="formInput && validationProperty" />
     <slot />
-  </div>
+  </FormInputState>
 </template>
 
 <script lang="ts">
@@ -23,7 +23,7 @@ export default defineComponent({
       default: undefined,
       type: Object,
     },
-    validation: {
+    isValidationLive: {
       default: false,
       type: Boolean,
     },

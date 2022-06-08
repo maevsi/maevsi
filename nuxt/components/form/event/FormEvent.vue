@@ -42,7 +42,7 @@
       <template slot="stateError">
         <FormInputStateError
           :form-input="$v.form.slug"
-          validation
+          is-validation-live
           validation-property="existenceNone"
         >
           {{ $t('globalValidationExistenceNone') }}

@@ -10,26 +10,21 @@
     <FormInputPassword
       id="passwordCurrent"
       :form-input="$v.form.passwordCurrent"
+      :title="$t('passwordCurrent')"
       @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
       :form-input="$v.form.passwordNew"
+      :title="$t('passwordNew')"
       @input="form.passwordNew = $event"
     />
     <FormInputPassword
       id="passwordNewConfirmation"
       :form-input="$v.form.passwordNewConfirmation"
+      :title="$t('passwordNew')"
       @input="form.passwordNewConfirmation = $event"
     >
-      <template slot="stateError">
-        <FormInputStateError
-          :form-input="$v.form.passwordNewConfirmation"
-          validation-property="sameAs"
-        >
-          {{ $t('globalValidationSameAs') }}
-        </FormInputStateError>
-      </template>
       <template slot="stateInfo">
         <FormInputStateInfo>
           {{ $t('passwordConfirmation') }}
@@ -134,6 +129,8 @@ de:
   passwordChange: Passwort ändern
   passwordChangeSuccess: Passwort erfolgreich geändert.
   passwordConfirmation: Wiederhole das neue Passwort, um Tippfehler auszuschließen.
+  passwordCurrent: Aktuelles Passwort
+  passwordNew: Neues Passwort
   postgres22023: Das neue Passwort ist zu kurz! Überlege dir ein längeres.
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
 en:
@@ -141,6 +138,8 @@ en:
   passwordChange: Change password
   passwordChangeSuccess: Password changed successfully.
   passwordConfirmation: Repeat the new password to rule out typos.
+  passwordCurrent: Current Password
+  passwordNew: New Password
   postgres22023: The new password is too short! Think about a longer one.
   postgres28P01: Password incorrect! Check that you have written everything correctly.
 </i18n>

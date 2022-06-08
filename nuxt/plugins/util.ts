@@ -390,7 +390,8 @@ export function validateEventSlug(
 }
 
 export function validateUsername(
-  apollo: DollarApollo<Vue>
+  apollo: DollarApollo<Vue>,
+  invert?: boolean
 ): (value: string) => Promise<boolean> {
   return async (value: string) => {
     if (!helpers.req(value)) {
@@ -407,7 +408,7 @@ export function validateUsername(
       fetchPolicy: 'network-only',
     })
 
-    return accountIsExisting
+    return invert ? !accountIsExisting : accountIsExisting
   }
 }
 

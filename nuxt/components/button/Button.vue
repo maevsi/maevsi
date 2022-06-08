@@ -11,6 +11,7 @@
   >
     <slot name="prefix" />
     <slot />
+    <slot name="suffix" />
   </AppLink>
   <button
     v-else
@@ -23,6 +24,7 @@
   >
     <slot name="prefix" />
     <slot />
+    <slot name="suffix" />
   </button>
 </template>
 

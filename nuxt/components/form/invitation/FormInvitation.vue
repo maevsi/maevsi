@@ -45,7 +45,7 @@
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button
           :aria-label="$t('buttonContact')"
-          class="w-full rounded border border-neutral-300 dark:border-neutral-600"
+          class="w-full rounded border border-neutral-300 text-left dark:border-neutral-600"
           :class="{
             'border-2 border-blue-600 dark:border-blue-600':
               form.contactId === contact.id,
@@ -56,11 +56,19 @@
           <ContactPreview class="px-4 py-2" :contact="contact" />
         </Button>
       </div>
+      <div class="flex justify-center">
+        <Button :aria-label="$t('contactsAdd')" :to="localePath('/contact')">
+          {{ $t('contactsAdd') }}
+          <template slot="suffix">
+            <IconArrowRight />
+          </template>
+        </Button>
+      </div>
     </div>
     <template slot="assistance">
-      <p class="text-center text-xs text-gray-500 dark:text-gray-400">
+      <FormInputStateInfo>
         {{ $t('selectAssistance') }}
-      </p>
+      </FormInputStateInfo>
     </template>
   </Form>
 </template>
@@ -218,13 +226,15 @@ export default defineComponent({
 de:
   buttonContact: Ein Kontakt
   contact: Kontakt
+  contactsAdd: Kontakte hinzufügen
   placeholderContact: Max Mustermann
-  select: Auswählen
-  selectAssistance: Die Einladung wird noch nicht versandt, nur angelegt.
+  select: Einladung anlegen
+  selectAssistance: Die Einladung wird noch nicht versandt!
 en:
   buttonContact: A contact
   contact: Contact
+  contactsAdd: Add contacts
   placeholderContact: John Doe
-  select: Select
-  selectAssistance: The invitation is not yet sent, only created.
+  select: Add invitation
+  selectAssistance: The invitation is not yet sent!
 </i18n>

@@ -27,5 +27,6 @@
   "globalValidationRequired": "Pflichtfeld",
   "globalValidationSameAs": "Ist nicht identisch",
   "globalValidationShortness": "Zu kurz",
-  "globalVerificationExistence": "Existiert"
+  "globalVerificationExistence": "Existiert",
+  "globalVerificationExistenceNone": "Existiert noch nicht"
 }

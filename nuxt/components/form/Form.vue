@@ -34,7 +34,9 @@
         </FormInputStateError>
       </div>
       <Loader v-if="errors" class="my-4" :errors="errors" />
-      <slot name="assistance" />
+      <div class="flex justify-center">
+        <slot name="assistance" />
+      </div>
     </Card>
   </form>
 </template>

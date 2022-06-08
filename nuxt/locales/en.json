@@ -27,5 +27,6 @@
   "globalValidationRequired": "Required",
   "globalValidationSameAs": "Is not identical",
   "globalValidationShortness": "Too short",
-  "globalVerificationExistence": "Does exist"
+  "globalVerificationExistence": "Does exist",
+  "globalVerificationExistenceNone": "Does not exist yet"
 }

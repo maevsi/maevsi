@@ -5643,18 +5643,18 @@
   resolved "https://registry.yarnpkg.com/@upleveled/babel-plugin-remove-node-prefix/-/babel-plugin-remove-node-prefix-1.0.4.tgz#45592ffe739d272526cadac89c487a423fb97b7a"
   integrity sha512-EBiMQNjGgDWhe/BcDRbb1R4q4SqS9bMH+NDFZMVMk1XrEHUr4Q5kMKZYDtj79y5QSASYCMQ29dLk9SvCv6haVQ==
 
-"@uppy/companion-client@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-2.2.0.tgz#2334f5339fa2bd61926491a1d143ec1ae226a9c9"
-  integrity sha512-OIQebxBNNKg0wFaOYOw/anBDa06PoKpYv3S0bzcmAq1cmm88To7drCSwQonKmey5Ou8w2wlfMg5ZeHTSAUC+Yg==
+"@uppy/companion-client@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@uppy/companion-client/-/companion-client-2.2.1.tgz#cef4b15185dd8ee6024386c8aae809e8e05dcd53"
+  integrity sha512-Y3E10NJLMfp/wjgthNhx3gJtT67fzFCPNPFwpNNRs5iJsW6PANhJ420eyMUFzfmEZ56ZzGYxr5pzJZx8YxHICQ==
   dependencies:
     "@uppy/utils" "^4.1.0"
     namespace-emitter "^2.0.1"
 
-"@uppy/core@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-2.3.0.tgz#3b344c75a9331d63b36b9618fd2730805c914b77"
-  integrity sha512-qGTFmaZkf1C6an6XZ6V3rWWTyk21BhcwxkFqOuQ3pNtyC5kJkVkIjZCWpcxpFDO1dLhCRSaoHvyil89+eImHGg==
+"@uppy/core@2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@uppy/core/-/core-2.3.1.tgz#1d7a40f0a0b96a2709115bf7d087b4e6ab1403f4"
+  integrity sha512-KV04X7ueYbYX1p37/i3QsoQSw8IDP8Yb+Bh9KNN0X2Vcun6K2VnNjhVtPmPXtyjDZooK7lVIqhRX8TZWcSfgSQ==
   dependencies:
     "@transloadit/prettier-bytes" "0.0.7"
     "@uppy/store-default" "^2.1.0"
@@ -5670,12 +5670,12 @@
   resolved "https://registry.yarnpkg.com/@uppy/store-default/-/store-default-2.1.0.tgz#3fbcac626dd515668b88762d812017bd4f9b75d4"
   integrity sha512-BkcR1wGw6Kwbvr8m1tKF9EDDWSTJoTGnVseBF/iW4bzR22assbtxZIE1iroo68UMqYEG4rv63SX4BUEtNvVjdA==
 
-"@uppy/tus@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-2.4.0.tgz#64865524b551a6483c020da9ba8eb46bee930dbe"
-  integrity sha512-9y6CkRcLZ2BNFW0BjzZaqmZt4K3Aes3G2uJQ06guWGFYr+sfSCAQx3mxy5hhKWQAt/WkRPsyYgfOt+f2vSh/2Q==
+"@uppy/tus@2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@uppy/tus/-/tus-2.4.1.tgz#22abc696c1032015652b9fc8621e3bbe37547e4f"
+  integrity sha512-l++ZCpQ6VG1wwrg6lBH1/JA8FgJAypmJFPu4fAAy1s+7PCcEAL8A17tBHQvQVeWlPhxB0jOCnpgmj1NYANxKDQ==
   dependencies:
-    "@uppy/companion-client" "^2.2.0"
+    "@uppy/companion-client" "^2.2.1"
     "@uppy/utils" "^4.1.0"
     tus-js-client "^2.1.1"
 
@@ -7569,6 +7569,11 @@ boolean@^3.0.1:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/boolean/-/boolean-3.2.0.tgz#9e5294af4e98314494cbb17979fa54ca159f116b"
   integrity sha512-d0II/GO9uf9lfUHH2BQsjxzRJZBdsjgsBiW4BvhWk/3qoKwQFjIDVN19PfX8F2D/r9PCMTtLWjYVCFrpeYUzsw==
+
+bowser@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/bowser/-/bowser-2.11.0.tgz#5ca3c35757a7aa5771500c70a73a9f91ef420a8f"
+  integrity sha512-AlcaJBi/pqqJBIQ8U9Mcpc9i8Aqxn88Skv5d+xBX006BY5u8N3mGLHa5Lgppa7L/HfwgwLgZ6NYs+Ag6uUmJRA==
 
 boxen@^4.2.0:
   version "4.2.0"
@@ -18847,6 +18852,13 @@ prismjs@~1.27.0:
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.27.0.tgz#bb6ee3138a0b438a3653dd4d6ce0cc6510a45057"
   integrity sha512-t13BGPUlFDR7wRB5kQDG4jjl7XeuH6jbJGt11JHPL96qwsEHNX2+68tFXqc1/k+/jALsbSWJKUOT/hcYAZ5LkA==
+
+prntr@2.0.13:
+  version "2.0.13"
+  resolved "https://registry.yarnpkg.com/prntr/-/prntr-2.0.13.tgz#d25172be4604bc40bd82d499c9ac47b121edde0d"
+  integrity sha512-QVYIMUf4eKL0GxgXTzX60Fc3hLkkIC+4oZtsRqSlqMrBAwe1PXBqjC5gy4bkFhhN+fD+wxq/p3z4fv0a9H4DuA==
+  dependencies:
+    bowser "^2.11.0"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"

@@ -10,6 +10,8 @@
     <FormInputUsername
       id="username-registration"
       :form-input="$v.form.username"
+      is-validatable
+      is-validation-inverted
       @input="form.username = $event"
     />
     <FormInputPassword
@@ -101,6 +103,7 @@ const FormAccountRegistration = defineComponent({
     return {
       form: {
         username: {
+          existenceNone: this.$util.validateUsername(this.$apollo, true),
           formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
           maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
           required,

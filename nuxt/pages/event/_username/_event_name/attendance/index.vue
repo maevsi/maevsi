@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <div class="flex flex-col justify-center gap-4">
+    <div class="flex flex-col items-center justify-center gap-4">
       <ButtonColored
         :aria-label="$t('qrCodeScan')"
         class="text-text-bright"
@@ -12,15 +12,16 @@
           <IconQrcode />
         </template>
       </ButtonColored>
-      <span v-if="invitationCode" class="text-center">
+      <FormInputStateInfo v-if="!invitationCode">
+        {{ $t('qrHint') }}
+      </FormInputStateInfo>
+      <CardStateInfo v-if="invitationCode">
         {{ $t('scanned', { scanResult: invitationCode }) }}
-      </span>
+      </CardStateInfo>
       <div v-if="invitationCode" class="flex flex-col items-center">
         <ButtonColored
           :aria-label="$t('nfcWrite')"
-          :disabled="
-            isNfcWritableErrorMessage && isNfcWritableErrorMessage !== 'prompt'
-          "
+          :disabled="isNfcError"
           class="text-text-bright"
           @click="onClick"
         >
@@ -29,14 +30,9 @@
             <IconUserTag />
           </template>
         </ButtonColored>
-        <span
-          v-if="
-            isNfcWritableErrorMessage && isNfcWritableErrorMessage !== 'prompt'
-          "
-          class="text-gray-500 dark:text-gray-400"
-        >
-          {{ $t('errorMessage', { message: isNfcWritableErrorMessage }) }}
-        </span>
+        <CardStateAlert v-if="isNfcError">
+          {{ isNfcWritableErrorMessage }}
+        </CardStateAlert>
       </div>
     </div>
     <Modal id="ModalAttendanceScanQrCode" :submit-name="$t('close')">
@@ -143,6 +139,12 @@ export default defineComponent({
     }
   },
   computed: {
+    isNfcError(): boolean {
+      return !!(
+        this.isNfcWritableErrorMessage &&
+        this.isNfcWritableErrorMessage !== 'prompt'
+      )
+    },
     title(): string | undefined {
       if (
         this.$route.params.username === this.$store.getters.signedInUsername
@@ -173,7 +175,9 @@ export default defineComponent({
         let errorMessage: string = error.message
 
         if (error.name === 'NotAllowedError') {
-          errorMessage = this.$t('errorCameraNotAllowed') as string
+          errorMessage = this.$t('errorCameraNotAllowed', {
+            hintBrowserSettings: this.$t('hintBrowserSettings'),
+          }) as string
         } else if (error.name === 'NotFoundError') {
           errorMessage = this.$t('errorCameraNotFound') as string
         } else if (error.name === 'NotSupportedError') {
@@ -213,11 +217,23 @@ export default defineComponent({
     },
     async checkWriteTag(): Promise<void> {
       if (!('NDEFReader' in window)) {
-        return Promise.reject(Error('Web NFC is not supported!'))
+        return Promise.reject(
+          Error(
+            this.$t('errorNfcNotSupported', {
+              hintUpdateOrChrome: this.$t('hintUpdateOrChrome'),
+            }) as string
+          )
+        )
       }
 
       if (!navigator.permissions) {
-        return Promise.reject(Error('Navigator permissions are not supported!'))
+        return Promise.reject(
+          Error(
+            this.$t('errorNavigatorPermissionsNotSupported', {
+              hintUpdateOrChrome: this.$t('hintUpdateOrChrome'),
+            }) as string
+          )
+        )
       } else {
         const nfcPermissionStatus = await navigator.permissions.query({
           name: 'nfc' as PermissionName,
@@ -243,15 +259,21 @@ export default defineComponent({
           let errorMessage: string = error.message
 
           if (error.name === 'AbortError') {
-            errorMessage = this.$t('errorNfcAbort') as string
+            errorMessage = this.$t('errorNfcAbort', {
+              hintTryAgain: this.$t('hintTryAgain'),
+            }) as string
           } else if (error.name === 'NotAllowedError') {
-            errorMessage = this.$t('errorNfcNotAllowed') as string
+            errorMessage = this.$t('errorNfcNotAllowed', {
+              hintBrowserSettings: this.$t('hintBrowserSettings'),
+            }) as string
           } else if (error.name === 'NotSupportedError') {
             errorMessage = this.$t('errorNfcNotSupported') as string
           } else if (error.name === 'NotReadableError') {
             errorMessage = this.$t('errorNfcNotReadable') as string
           } else if (error.name === 'NetworkError') {
-            errorMessage = this.$t('errorNfcNetwork') as string
+            errorMessage = this.$t('errorNfcNetwork', {
+              hintTryAgain: this.$t('hintTryAgain'),
+            }) as string
           }
 
           this.$swal({
@@ -272,22 +294,26 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   close: Schließen
-  errorCameraNotAllowed: Berechtigung zum Kamerazugriff fehlt.
+  errorCameraNotAllowed: Berechtigung zum Kamerazugriff fehlt. {hintBrowserSettings}
   errorCameraNotFound: Konnte keine geeignete Kamera finden.
   errorCameraNotReadable: Zugriff auf die Kamera nicht möglich. Wird sie von einem anderen Programm verwendet?
   errorCameraNotSupported: Die Webseite wird nicht über eine sichere Verbindung geladen.
   errorCameraOverconstrained: Frontkamerazugriff ist nicht möglich.
   errorCameraStreamApiNotSupported: Der Browser unterstützt den Zugriff auf Videostreams nicht.
-  errorMessage: 'Fehler: {message}'
-  errorNfcAbort: Der NFC-Scan wurde unterbrochen.
-  errorNfcNetwork: Die NFC-Übertragung wurde unterbrochen.
-  errorNfcNotAllowed: Berechtigung zum NFC-Zugriff fehlt.
+  errorNavigatorPermissionsNotSupported: Navigator-Berechtigungen werden nicht unterstützt! {hintUpdateOrChrome}
+  errorNfcAbort: Der NFC-Scan wurde unterbrochen! {hintTryAgain}
+  errorNfcNetwork: Die NFC-Übertragung wurde unterbrochen! {hintTryAgain}
+  errorNfcNotAllowed: Berechtigung zum NFC-Zugriff fehlt! {hintBrowserSettings}
   errorNfcNotReadable: Zugriff auf den NFC-Adapter nicht möglich. Wird er von einem anderen Programm verwendet?
-  errorNfcNotSupported: Es wurde kein kompatibler NFC-Adapter gefunden.
+  errorNfcNotSupported: Es wurde kein kompatibler NFC-Adapter gefunden. {hintUpdateOrChrome}
+  hintBrowserSettings: Sieh in deinen Browser-Einstellungen nach.
+  hintUpdateOrChrome: Versuche deinen Browser zu aktualisieren oder Google Chrome zu verwenden.
+  hintTryAgain: Versuch es noch einmal.
   nfcWrite: NFC-Tag schreiben
-  qrCodeScan: QR-Code scannen
+  qrCodeScan: Check-in-Code scannen
+  qrHint: Lass dir von Gästen den QR-Code auf ihrer Einladungsseite zeigen
   scanned: 'Gescannt: {scanResult}'
-  title: Anwesenheiten
+  title: Check-ins
 en:
   close: Close
   errorCameraNotAllowed: Camera access permisson is missing.
@@ -296,14 +322,18 @@ en:
   errorCameraNotSupported: The web page is not loaded over a secure connection.
   errorCameraOverconstrained: Front camera access is not possible.
   errorCameraStreamApiNotSupported: The browser does not support access to video streams.
-  errorMessage: 'Error: {message}'
-  errorNfcAbort: The NFC scan was interrupted.
-  errorNfcNetwork: The NFC transmission was interrupted.
-  errorNfcNotAllowed: NFC access permission is missing.
+  errorNavigatorPermissionsNotSupported: Navigator permissions are not supported! {hintUpdateOrChrome}
+  errorNfcAbort: The NFC scan was interrupted! {hintTryAgain}
+  errorNfcNetwork: The NFC transmission was interrupted! {hintTryAgain}
+  errorNfcNotAllowed: NFC access permission is missing! {hintBrowserSettings}
   errorNfcNotReadable: Could not access NFC adapter. Is it used by another program?
-  errorNfcNotSupported: No compatible NFC adapter was found.
+  errorNfcNotSupported: No compatible NFC adapter was found. {hintUpdateOrChrome}
+  hintBrowserSettings: Check your browser settings.
+  hintUpdateOrChrome: Try to update your browser or to use Google Chrome.
+  hintTryAgain: Try again.
   nfcWrite: Write NFC tag
-  qrCodeScan: Scan QR-Code
+  qrCodeScan: Scan check in code
+  qrHint: Have guests show you the QR code on their invitation page
   scanned: 'Scanned: {scanResult}'
-  title: Attendances
+  title: Check ins
 </i18n>
