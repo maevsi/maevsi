@@ -41,7 +41,7 @@
               :aria-label="$t('signOut')"
               @click.native="$util.signOut($apollo.getClient(), $store)"
             >
-              <IconLogout />
+              <IconSignOut />
             </ButtonIcon>
           </div>
         </div>
