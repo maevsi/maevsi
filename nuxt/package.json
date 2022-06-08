@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
+    "docker:build:test-visual": "docker build -t maevsi/maevsi:test-visual --target test-visual_standalone ../",
     "start": "node .output/server/index.mjs",
     "lint": "yarn lint:js && yarn lint:style",
     "lint:js": "eslint --cache --ext .js,.ts,.vue --ignore-path .gitignore .",
@@ -18,6 +19,7 @@
     "storybook:serve": "npx http-server ./storybook-static -p 6006",
     "storybook:static": "yarn storybook:build && yarn storybook:serve",
     "storycap": "!(yarn test:visual); yarn storycap:update",
+    "storycap:docker": "yarn docker:build:test-visual && docker run -v \"$PWD:/srv/app/\" maevsi/maevsi:test-visual",
     "storycap:base": "storycap http://localhost:6006 --serverTimeout 100000 --viewport 640x1020 --viewport 1280x1020",
     "storycap:actual": "yarn storycap:base --outDir .storybook/storycap/images/actual",
     "storycap:expected": "yarn storycap:base --outDir .storybook/storycap/images/expected",
