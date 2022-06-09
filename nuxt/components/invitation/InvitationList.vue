@@ -58,6 +58,7 @@
                       @click="copyLink(event, invitation)"
                     >
                       <IconLink />
+                      {{ $t('invitationLink') }}
                     </ButtonTableInteraction>
                     <ButtonTableInteraction
                       :aria-label="
@@ -75,6 +76,12 @@
                       @click="send(invitation)"
                     >
                       <IconPaperPlane />
+                      {{
+                        invitation.contactByContactId.accountUsername ||
+                        invitation.contactByContactId.emailAddress
+                          ? $t('invitationSend')
+                          : $t('disabledReasonEmailAddressNone')
+                      }}
                     </ButtonTableInteraction>
                     <ButtonTableInteraction
                       :aria-label="$t('invitationView')"
@@ -89,6 +96,7 @@
                       "
                     >
                       <IconEye />
+                      {{ $t('invitationView') }}
                     </ButtonTableInteraction>
                     <ButtonTableInteraction
                       :aria-label="$t('invitationDelete')"
@@ -97,6 +105,7 @@
                       @click="delete_(invitation.uuid)"
                     >
                       <IconTrash />
+                      {{ $t('invitationDelete') }}
                     </ButtonTableInteraction>
                   </template>
                 </DropDown>
