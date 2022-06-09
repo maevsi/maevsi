@@ -45,22 +45,19 @@
                 class="flex items-center justify-evenly gap-4 text-text-dark dark:text-text-bright"
               >
                 <DropDown>
-                  <ButtonTableInteraction
-                    :aria-label="$t('globalShowMore')"
-                    is-title-show
-                  >
+                  <ButtonTable :aria-label="$t('globalShowMore')" is-title-show>
                     <IconDotsVertical />
-                  </ButtonTableInteraction>
+                  </ButtonTable>
                   <template slot="content">
-                    <ButtonTableInteraction
+                    <ButtonTable
                       :aria-label="$t('invitationLink')"
                       is-title-show
                       @click="copyLink(event, invitation)"
                     >
                       <IconLink />
                       {{ $t('invitationLink') }}
-                    </ButtonTableInteraction>
-                    <ButtonTableInteraction
+                    </ButtonTable>
+                    <ButtonTable
                       :aria-label="
                         invitation.contactByContactId.accountUsername ||
                         invitation.contactByContactId.emailAddress
@@ -82,8 +79,8 @@
                           ? $t('invitationSend')
                           : $t('disabledReasonEmailAddressNone')
                       }}
-                    </ButtonTableInteraction>
-                    <ButtonTableInteraction
+                    </ButtonTable>
+                    <ButtonTable
                       :aria-label="$t('invitationView')"
                       is-title-show
                       @click="
@@ -97,8 +94,8 @@
                     >
                       <IconEye />
                       {{ $t('invitationView') }}
-                    </ButtonTableInteraction>
-                    <ButtonTableInteraction
+                    </ButtonTable>
+                    <ButtonTable
                       :aria-label="$t('invitationDelete')"
                       :disabled="pending.deletions.includes(invitation.uuid)"
                       is-title-show
@@ -106,7 +103,7 @@
                     >
                       <IconTrash />
                       {{ $t('invitationDelete') }}
-                    </ButtonTableInteraction>
+                    </ButtonTable>
                   </template>
                 </DropDown>
               </div>
