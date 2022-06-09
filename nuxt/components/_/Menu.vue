@@ -46,33 +46,32 @@
           </div>
         </div>
         <hr v-if="signedInUsername" class="opacity-40" />
-        <Button
-          v-if="signedInUsername"
-          :aria-label="$t('events')"
-          :to="localePath(`/event/${signedInUsername}`)"
-          @click.native="$emit('onMenuHide')"
-        >
-          <IconCalendar />
-          {{ $t('events') }}
-        </Button>
-        <Button
-          v-if="signedInUsername"
-          :aria-label="$t('contacts')"
-          :to="localePath('/contact')"
-          @click.native="$emit('onMenuHide')"
-        >
-          <IconAddressBook />
-          {{ $t('contacts') }}
-        </Button>
-        <Button
-          v-if="signedInUsername"
-          :aria-label="$t('uploads')"
-          :to="localePath('/upload')"
-          @click.native="$emit('onMenuHide')"
-        >
-          <IconImages />
-          {{ $t('uploads') }}
-        </Button>
+        <div class="flex flex-col gap-2">
+          <ButtonMenu
+            v-if="signedInUsername"
+            :aria-label="$t('events')"
+            :to="localePath(`/event/${signedInUsername}`)"
+          >
+            <IconCalendar />
+            {{ $t('events') }}
+          </ButtonMenu>
+          <ButtonMenu
+            v-if="signedInUsername"
+            :aria-label="$t('contacts')"
+            :to="localePath('/contact')"
+          >
+            <IconAddressBook />
+            {{ $t('contacts') }}
+          </ButtonMenu>
+          <ButtonMenu
+            v-if="signedInUsername"
+            :aria-label="$t('uploads')"
+            :to="localePath('/upload')"
+          >
+            <IconImages />
+            {{ $t('uploads') }}
+          </ButtonMenu>
+        </div>
         <hr v-if="signedInUsername" class="opacity-40 md:hidden" />
         <div class="flex flex-col gap-4 md:hidden">
           <ButtonColored
