@@ -130,13 +130,19 @@
         }}
       </p>
     </div>
-    <div class="m-auto w-1/4">
-      <!-- https://github.com/reg-viz/storycap/issues/501 -->
-      <Pie
-        v-if="!$config.STORYBOOK"
-        :chart-data="data"
-        :chart-options="options"
-      />
+    <div>
+      <h2>
+        {{ $t('feedback') }}
+      </h2>
+      <div class="m-auto w-1/4">
+        <!-- https://github.com/reg-viz/storycap/issues/501 -->
+        <Doughnut
+          v-if="!$config.STORYBOOK"
+          ref="doughnut"
+          :chart-data="data"
+          :chart-options="options"
+        />
+      </div>
     </div>
     <Modal id="ModalInvitation">
       <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
@@ -153,14 +159,14 @@ import {
   ArcElement,
   CategoryScale,
   Chart,
+  DoughnutController,
   Legend,
   LinearScale,
-  PieController,
   Title,
   Tooltip,
 } from 'chart.js'
 import consola from 'consola'
-import { Pie } from 'vue-chartjs/legacy'
+import { Doughnut } from 'vue-chartjs/legacy'
 
 import { defineComponent, PropType } from '#app'
 import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDelete.gql'
@@ -173,7 +179,7 @@ Chart.register(
   ArcElement,
   CategoryScale,
   LinearScale,
-  PieController,
+  DoughnutController,
   Title,
   Tooltip,
   Legend
@@ -181,7 +187,7 @@ Chart.register(
 
 export default defineComponent({
   components: {
-    Pie,
+    Doughnut,
   },
   apollo: {
     allInvitations(): any {
@@ -268,6 +274,13 @@ export default defineComponent({
         sends: [] as string[],
       },
     }
+  },
+  mounted() {
+    Chart.defaults.color = () =>
+      this.$colorMode.value === 'dark' ? '#fff' : '#000'
+    this.$colorMode.$watch('value', () => {
+      ;(this.$refs.doughnut as any).getCurrentChart()?.update()
+    })
   },
   methods: {
     add() {
@@ -361,6 +374,7 @@ de:
   copied: Kopiert
   copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
+  feedback: Zu- & Absagen
   invitationAdd: Einladung hinzufügen
   invitationCode: Einladungscode
   invitationDelete: Einladung löschen
@@ -380,6 +394,7 @@ en:
   copied: Copied
   copySuccess: The invitation link was copied to the clipboard.
   disabledReasonEmailAddressNone: This contact is missing an email address.
+  feedback: Feedback
   invitationAdd: Add invitation
   invitationCode: Invitation code
   invitationDelete: Delete invitation
