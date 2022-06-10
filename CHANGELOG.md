@@ -1,3 +1,23 @@
+# [0.132.0](https://github.com/maevsi/maevsi/compare/0.131.0...0.132.0) (2022-06-10)
+
+
+### Bug Fixes
+
+* **contact-preview:** truncate long text in scroll container ([25c2ce1](https://github.com/maevsi/maevsi/commit/25c2ce15f1f021cd219329a6f088d2e8ea764eae))
+* **invitation-list:** add dropdown ([072f14c](https://github.com/maevsi/maevsi/commit/072f14c05146f05883d810bb817cd6126f02e581))
+
+
+### Features
+
+* **docker:** use slim in all stages ([8dfaa0e](https://github.com/maevsi/maevsi/commit/8dfaa0ee0715419375bc698f93cbbff4a3b45d0f))
+* **dropdown:** allow close by clicking outside ([f33dc7d](https://github.com/maevsi/maevsi/commit/f33dc7d83d4744c549b427b970a7ac3ef943ba4f))
+* **invitation-list:** add link copy button ([60d0e34](https://github.com/maevsi/maevsi/commit/60d0e345c0e6fceec494ae40210bac5ba7739abc))
+* **invitation-list:** graph color scheme support ([c902ed9](https://github.com/maevsi/maevsi/commit/c902ed9852d6f566879037e97105e8c658687f0a))
+* **invitation-list:** show more buttons on larger screen ([9250df2](https://github.com/maevsi/maevsi/commit/9250df2642c48250685e42fd81db0846f9253db4))
+* **menu:** add button menu component ([88f4ba6](https://github.com/maevsi/maevsi/commit/88f4ba6a2082b11338299aa2f97b66fa8455b7de))
+* **storycap:** add dockerized script ([be20e75](https://github.com/maevsi/maevsi/commit/be20e75dbcb1f7c8553acd1c3418bb62d9fb149c))
+* **storycap:** use sh ([645bb73](https://github.com/maevsi/maevsi/commit/645bb73ce3a3d926017c43fe7891c15667bb9045))
+
 # [0.131.0](https://github.com/maevsi/maevsi/compare/0.130.2...0.131.0) (2022-06-08)
 
 
