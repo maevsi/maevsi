@@ -9,7 +9,7 @@
       >
         {{ $t('qrCodeScan') }}
         <template slot="prefix">
-          <IconQrcode />
+          <IconQrCode />
         </template>
       </ButtonColored>
       <FormInputStateInfo v-if="!invitationCode">

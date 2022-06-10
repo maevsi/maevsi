@@ -21,10 +21,10 @@
       />
       <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
         <ButtonColored
-          :aria-label="$t('globalPagingMore')"
+          :aria-label="$t('globalShowMore')"
           @click="$util.loadMore($apollo, 'allEvents', allEvents)"
         >
-          {{ $t('globalPagingMore') }}
+          {{ $t('globalShowMore') }}
         </ButtonColored>
       </div>
     </ul>

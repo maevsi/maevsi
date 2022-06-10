@@ -35,7 +35,7 @@
       >
         {{ $t('qrCodeShow') }}
         <template slot="prefix">
-          <IconQrcode />
+          <IconQrCode />
         </template>
       </ButtonColored>
       <p class="mb-2 text-2xl font-bold">
