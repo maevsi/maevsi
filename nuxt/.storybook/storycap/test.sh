@@ -2,6 +2,7 @@
 
 THIS=$(dirname "$(readlink -f "$0")")
 
+rm -rf "$THIS"/working-directory/actual/*
 yarn storycap:actual
 rm -rf "$THIS"/working-directory/expected/*
 mkdir -p "$THIS"/working-directory/expected
