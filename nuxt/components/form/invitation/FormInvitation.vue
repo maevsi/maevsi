@@ -41,7 +41,7 @@
         </FormInputStateError>
       </template>
     </FormInput>
-    <div v-if="allContacts" class="divide-y-4 divide-transparent">
+    <div v-if="allContacts" class="flex flex-col gap-2">
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button
           :aria-label="$t('buttonContact')"

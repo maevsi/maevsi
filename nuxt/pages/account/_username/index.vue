@@ -12,7 +12,7 @@
           width="96"
         />
       </div>
-      <h1 class="max-w-full truncate sm:w-auto">
+      <h1 class="max-w-full overflow-hidden text-ellipsis sm:w-auto">
         {{ $route.params.username }}
       </h1>
     </div>

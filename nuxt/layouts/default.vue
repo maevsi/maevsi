@@ -5,7 +5,9 @@
       <div v-if="signedInUsername" class="hidden md:block">
         <Menu />
       </div>
-      <main class="container mx-auto min-h-screen flex-1 px-4 py-8 md:px-8">
+      <main
+        class="container mx-auto min-h-screen flex-1 overflow-hidden px-4 py-8 md:px-8"
+      >
         <nuxt />
       </main>
     </div>

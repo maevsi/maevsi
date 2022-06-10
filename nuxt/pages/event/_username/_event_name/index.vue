@@ -188,14 +188,14 @@
       </ButtonColored>
     </div>
     <Card class="flex flex-col items-center gap-8">
-      <div>
-        <h1 class="mb-0 max-w-full truncate">
+      <div class="flex max-w-full flex-col items-center">
+        <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
           {{ event.name }}
         </h1>
         <Owner link :username="event.authorUsername" />
       </div>
-      <div class="flex flex-col items-center gap-4">
-        <div class="m-auto flex flex-col flex-wrap sm:flex-row">
+      <div class="flex flex-col items-center gap-4 self-stretch">
+        <div class="flex flex-row flex-wrap self-stretch">
           <EventDashletStart :event="event" />
           <EventDashletDuration :event="event" />
           <EventDashletVisibility :event="event" with-text />

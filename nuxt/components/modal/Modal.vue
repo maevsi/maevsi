@@ -32,7 +32,10 @@
             <IconX />
           </ButtonIcon>
         </div>
-        <div :class="{ 'pointer-events-none relative disabled': isSubmitting }">
+        <div
+          class="overflow-y-auto"
+          :class="{ 'pointer-events-none relative disabled': isSubmitting }"
+        >
           <div v-if="contentBodyComputed">
             {{ contentBodyComputed }}
           </div>
