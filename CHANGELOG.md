@@ -1,3 +1,11 @@
+## [0.132.1](https://github.com/maevsi/maevsi/compare/0.132.0...0.132.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* overflow fixes ([67a477a](https://github.com/maevsi/maevsi/commit/67a477a6931135fcb70463ba9accf9d553b23758))
+* **storycap:** remove actual directory ([5e3ecec](https://github.com/maevsi/maevsi/commit/5e3ecec5789d940276a4c781f351859b407f0f78))
+
 # [0.132.0](https://github.com/maevsi/maevsi/compare/0.131.0...0.132.0) (2022-06-10)
 
 
