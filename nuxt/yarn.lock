@@ -2169,7 +2169,7 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@jest/types@^28.1.1":
+"@jest/types@^28.1.0", "@jest/types@^28.1.1":
   version "28.1.1"
   resolved "https://registry.yarnpkg.com/@jest/types/-/types-28.1.1.tgz#d059bbc80e6da6eda9f081f293299348bd78ee0b"
   integrity sha512-vRXVqSg1VhDnB8bWcmvLzmg0Bt9CRKVgHPXqYwvWMX3TvAjeO+nRuK6+VdTKCtWOvYlmkF/HqNAL/z+N3B53Kw==
