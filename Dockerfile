@@ -3,7 +3,7 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS development
+FROM node:16.15.1-slim@sha256:3c8acd4934617f60dad7e4cc941faa064aa5a14da437dc156bdcad9d4a67bc4e AS development
 
 # Update and install dependencies.
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
@@ -32,7 +32,7 @@ HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://local
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS prepare
+FROM node:16.15.1-slim@sha256:3c8acd4934617f60dad7e4cc941faa064aa5a14da437dc156bdcad9d4a67bc4e AS prepare
 
 WORKDIR /srv/app/
 
@@ -49,7 +49,7 @@ RUN yarn nuxi prepare
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS build
+FROM node:16.15.1-slim@sha256:3c8acd4934617f60dad7e4cc941faa064aa5a14da437dc156bdcad9d4a67bc4e AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -71,7 +71,7 @@ RUN yarn run build \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS lint
+FROM node:16.15.1-slim@sha256:3c8acd4934617f60dad7e4cc941faa064aa5a14da437dc156bdcad9d4a67bc4e AS lint
 
 WORKDIR /srv/app/
 
@@ -85,7 +85,7 @@ RUN yarn run lint
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS test
+FROM node:16.15.1-slim@sha256:3c8acd4934617f60dad7e4cc941faa064aa5a14da437dc156bdcad9d4a67bc4e AS test
 
 WORKDIR /srv/app/
 
@@ -99,7 +99,7 @@ RUN yarn run test:code
 
 # Should be the specific version of node:slim.
 # `storycap` requires Debian.
-FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS test-visual
+FROM node:16.15.1-slim@sha256:3c8acd4934617f60dad7e4cc941faa064aa5a14da437dc156bdcad9d4a67bc4e AS test-visual
 
 # Update and install dependencies.
 # - `fonts-dejavu-core gconf-service`, ... is required by `puppeteer`
@@ -125,7 +125,7 @@ RUN yarn run test:visual
 
 # Should be the specific version of node:slim.
 # `storycap` requires Debian.
-FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS test-visual_standalone
+FROM node:16.15.1-slim@sha256:3c8acd4934617f60dad7e4cc941faa064aa5a14da437dc156bdcad9d4a67bc4e AS test-visual_standalone
 
 # Update and install dependencies.
 # - `fonts-dejavu-core gconf-service`, ... is required by `puppeteer`
@@ -150,7 +150,7 @@ CMD ["yarn", "run", "storycap"]
 
 # Should be the specific version of node:slim.
 # `sqitch` requires at least `buster`.
-FROM node:16.15.0-slim@sha256:989dc486196a861f0ccc6c72f2eb7a5d3edb3451f2325bb8e81702ae42ed40e1 AS production
+FROM node:16.15.1-slim@sha256:3c8acd4934617f60dad7e4cc941faa064aa5a14da437dc156bdcad9d4a67bc4e AS production
 
 ENV NODE_ENV=production
 
