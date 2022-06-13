@@ -4,8 +4,9 @@
       <IconCalendar :title="$t('start')" />
     </span>
     {{ $moment(event.start).format('lll') }}
-    <br />
-    {{ $t('embraced', { content: $moment(event.start).fromNow() }) }}
+    <span class="hidden sm:inline">
+      {{ $t('embraced', { content: $moment(event.start).fromNow() }) }}
+    </span>
   </EventDashlet>
 </template>
 

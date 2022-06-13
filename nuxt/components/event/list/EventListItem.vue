@@ -32,7 +32,11 @@
           </div>
         </div>
         <div class="mb-2 flex items-center text-sm">
-          <EventIconVisibility :event="event" :show-text="false" />
+          <EventIconVisibility
+            class="flex-shrink-0"
+            :event="event"
+            :show-text="false"
+          />
           <div class="flex items-baseline truncate">
             <div class="mx-2 truncate text-xl font-bold">
               {{ event.name }}
