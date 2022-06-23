@@ -1,3 +1,11 @@
+# [0.133.0](https://github.com/maevsi/maevsi/compare/0.132.1...0.133.0) (2022-06-23)
+
+
+### Features
+
+* **icon:** disallow flex shrinking ([d5d13c4](https://github.com/maevsi/maevsi/commit/d5d13c48cded0d5b524fe0940a03d1ede31b16d9))
+* **invitation:** add qr code printing button ([76f0d19](https://github.com/maevsi/maevsi/commit/76f0d19eedb8849b21c59e0c73267821dab342e6))
+
 ## [0.132.1](https://github.com/maevsi/maevsi/compare/0.132.0...0.132.1) (2022-06-13)
 
 
