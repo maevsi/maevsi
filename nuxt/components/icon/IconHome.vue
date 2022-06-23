@@ -21,7 +21,7 @@ import { defineComponent } from '#app'
 export default defineComponent({
   props: {
     classes: {
-      default: 'h-5 md:h-6 w-5 md:w-6',
+      default: 'h-5 md:h-6 w-5 md:w-6 shrink-0',
       type: String,
     },
   },

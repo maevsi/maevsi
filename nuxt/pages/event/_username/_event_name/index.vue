@@ -232,7 +232,7 @@
           :value="invitation.uuid"
           size="200"
         />
-        <ButtonColored v-if="false" :aria-label="$p('print')" @click="print">
+        <ButtonColored :aria-label="$t('print')" @click="print">
           {{ $t('print') }}
         </ButtonColored>
         <FormInputStateInfo>
@@ -248,7 +248,7 @@ import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import { GraphQLError } from 'graphql'
 import mustache from 'mustache'
-// import prntr from 'prntr'
+import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 import { mapGetters } from 'vuex'
 
@@ -476,10 +476,10 @@ export default defineComponent({
       )
     },
     print() {
-      // prntr({
-      //   printable: 'qrCode',
-      //   type: 'html',
-      // })
+      prntr({
+        printable: 'qrCode',
+        type: 'html',
+      })
     },
     qrCodeShow() {
       this.$store.commit('modalAdd', { id: 'ModalInvitationQrCode' })
