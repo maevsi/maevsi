@@ -9,7 +9,7 @@
     <TabFlip
       ref="tabFlip"
       class="m-auto max-w-lg"
-      tab-id-default="signIn"
+      tab-id-default="register"
       :tabs="[
         ['register', $t('register')],
         ['signIn', $t('signIn')],
