@@ -154,7 +154,6 @@
     "vue": "2.6.14"
   },
   "resolutions": {
-    "ufo": "0.8.4",
     "vue-clipboard2": "0.3.3"
   },
   "msw": {
