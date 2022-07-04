@@ -1,3 +1,10 @@
+## [0.133.2](https://github.com/maevsi/maevsi/compare/0.133.1...0.133.2) (2022-07-04)
+
+
+### Bug Fixes
+
+* **package:** remove ufo from pinned packages ([f22ad19](https://github.com/maevsi/maevsi/commit/f22ad19f540c0ec8b10d9a16202ebf82d505120a))
+
 ## [0.133.1](https://github.com/maevsi/maevsi/compare/0.133.0...0.133.1) (2022-07-04)
 
 
