@@ -22,7 +22,11 @@
       is-optional
       is-validatable
       @input="form.accountUsername = $event"
-    />
+    >
+      <template slot="icon">
+        <IconSearch />
+      </template>
+    </FormInputUsername>
     <FormInputStateInfo>
       {{ $t('accountOverride') }}
     </FormInputStateInfo>
