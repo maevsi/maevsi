@@ -5,7 +5,7 @@
   />
   <div v-else class="flex flex-col gap-4">
     <ScrollContainer
-      v-if="allInvitations && event"
+      v-if="allInvitations && event && allInvitations.nodes.length > 0"
       :has-next-page="allInvitations.pageInfo.hasNextPage"
       @loadMore="loadMore"
     >
