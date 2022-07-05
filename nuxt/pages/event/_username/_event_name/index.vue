@@ -67,53 +67,85 @@
                 true,
             }"
           >
-            <span>
-              {{
-                event.authorUsername === signedInUsername
-                  ? $t('feedbackRequestAuthor')
-                  : $t('feedbackRequest')
-              }}
+            <span v-if="event.authorUsername !== signedInUsername">
+              {{ $t('feedbackRequest') }}
             </span>
-            <div class="flex justify-center gap-4">
+            <div class="flex items-center justify-center gap-4">
               <div
                 v-if="invitation.feedback === 'CANCELED'"
                 class="flex items-center font-semibold text-red-600 dark:border-red-500"
               >
                 <IconXCircle class="mr-2" title="canceled" />
-                {{ $t('invitationCanceled') }}
-                <template slot="prefix">
-                  <IconXCircle />
-                </template>
+                {{
+                  event.authorUsername !== signedInUsername
+                    ? $t('invitationCanceled')
+                    : $t('invitationCanceledAdmin', {
+                        name: $util.getContactName(contact),
+                      })
+                }}
               </div>
               <ButtonColored
                 v-if="
                   invitation.feedback === null ||
                   invitation.feedback === 'CANCELED'
                 "
-                :aria-label="$t('invitationAccept')"
+                :aria-label="
+                  event.authorUsername !== signedInUsername
+                    ? $t('invitationAccept')
+                    : $t('invitationAcceptAdmin', {
+                        name: $util.getContactName(contact),
+                      })
+                "
                 @click="accept"
               >
-                {{ $t('invitationAccept') }}
+                {{
+                  event.authorUsername !== signedInUsername
+                    ? $t('invitationAccept')
+                    : $t('invitationAcceptAdmin', {
+                        name: $util.getContactName(contact),
+                      })
+                }}
+                <template slot="prefix">
+                  <IconCheckCircle />
+                </template>
               </ButtonColored>
               <div
                 v-if="invitation.feedback === 'ACCEPTED'"
                 class="flex items-center font-semibold text-green-600 dark:border-green-500"
               >
                 <IconCheckCircle class="mr-2" title="accepted" />
-                {{ $t('invitationAccepted') }}
-                <template slot="prefix">
-                  <IconCheckCircle />
-                </template>
+                {{
+                  event.authorUsername !== signedInUsername
+                    ? $t('invitationAccepted')
+                    : $t('invitationAcceptedAdmin', {
+                        name: $util.getContactName(contact),
+                      })
+                }}
               </div>
               <ButtonColored
                 v-if="
                   invitation.feedback === null ||
                   invitation.feedback === 'ACCEPTED'
                 "
-                :aria-label="$t('invitationCancel')"
+                :aria-label="
+                  event.authorUsername !== signedInUsername
+                    ? $t('invitationCancel')
+                    : $t('invitationCancelAdmin', {
+                        name: $util.getContactName(contact),
+                      })
+                "
                 @click="cancel"
               >
-                {{ $t('invitationCancel') }}
+                {{
+                  event.authorUsername !== signedInUsername
+                    ? $t('invitationCancel')
+                    : $t('invitationCancelAdmin', {
+                        name: $util.getContactName(contact),
+                      })
+                }}
+                <template slot="prefix">
+                  <IconXCircle />
+                </template>
               </ButtonColored>
             </div>
           </div>
@@ -202,7 +234,7 @@
         <Owner link :username="event.authorUsername" />
       </div>
       <div class="flex flex-col items-center gap-4 self-stretch">
-        <div class="flex flex-row flex-wrap self-stretch">
+        <div class="flex flex-row flex-wrap justify-center self-stretch">
           <EventDashletStart :event="event" />
           <EventDashletDuration :event="event" />
           <EventDashletVisibility :event="event" with-text />
@@ -529,7 +561,6 @@ export default defineComponent({
 de:
   attendances: Check-in
   feedbackRequest: 'Bitte gib hier eine Rückmeldung, ob du teilnehmen wirst:'
-  feedbackRequestAuthor: 'Hier kannst du als Veranstalter*in die Rückmeldung für den Gast anpassen:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
@@ -537,9 +568,13 @@ de:
   iCalHint: Die heruntergeladene Datei kann dann mit deiner Kalender-Anwendung geöffnet werden.
   iCalUnexpectedStatusCode: 'iCal-Daten konnten nicht geladen werden: Statuscode {statusCode}.'
   invitationAccept: Einladung annehmen
+  invitationAcceptAdmin: Einladung für {name} annehmen
   invitationAccepted: Einladung angenommen
+  invitationAcceptedAdmin: Einladung für {name} angenommen
   invitationCancel: Einladung ablehnen
+  invitationCancelAdmin: Einladung für {name} ablehnen
   invitationCanceled: Einladung abgelehnt
+  invitationCanceledAdmin: Einladung für {name} abgelehnt
   invitationCardKind: Art der Einladungskarte
   invitationCardKindNone: Keine
   invitationCardKindPaper: Papier
@@ -559,7 +594,6 @@ de:
 en:
   attendances: Check in
   feedbackRequest: 'Please provide feedback here whether you will be attending:'
-  feedbackRequestAuthor: 'Here you as the organizer can customize the feedback for the guest:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."
   hintQrCode: This picture is your access authorization for the event
@@ -567,9 +601,13 @@ en:
   iCalHint: You can open the downloaded file with your calendar app then.
   iCalUnexpectedStatusCode: 'Could not get iCal data: Status code {statusCode}.'
   invitationAccept: Accept invitation
+  invitationAcceptAdmin: Accept invitation for {name}
   invitationAccepted: Invitation accepted
+  invitationAcceptedAdmin: Invitation accepted for {name}
   invitationCancel: Decline invitation
+  invitationCancelAdmin: Decline invitation for {name}
   invitationCanceled: Invitation declined
+  invitationCanceledAdmin: Invitation declined for {name}
   invitationCardKind: Kind of invitation card
   invitationCardKindNone: None
   invitationCardKindPaper: Paper
