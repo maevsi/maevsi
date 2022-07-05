@@ -1,3 +1,10 @@
+## [0.134.1](https://github.com/maevsi/maevsi/compare/0.134.0...0.134.1) (2022-07-05)
+
+
+### Bug Fixes
+
+* **dropdown:** show above overflow container ([285a8cb](https://github.com/maevsi/maevsi/commit/285a8cb6a0e48326d1695ad67a6eb47ae5e5ac7b))
+
 # [0.134.0](https://github.com/maevsi/maevsi/compare/0.133.2...0.134.0) (2022-07-05)
 
 
