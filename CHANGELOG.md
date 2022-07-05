@@ -1,3 +1,21 @@
+## [0.134.2](https://github.com/maevsi/maevsi/compare/0.134.1...0.134.2) (2022-07-05)
+
+
+### Bug Fixes
+
+* **button:** use colored variant ([b398688](https://github.com/maevsi/maevsi/commit/b398688519559251598a6f2dda11646e5efc8139))
+* **contact-list:** disable own contact deletion ([2943fab](https://github.com/maevsi/maevsi/commit/2943fab87cb9e6d5d2570f3ca142d78452f251cd))
+* **event-icon-visibility:** add missing archive parameter ([305b191](https://github.com/maevsi/maevsi/commit/305b1912bb9045a8216bed002fb585b840098de3))
+* **feedback:** correct color ([f5df417](https://github.com/maevsi/maevsi/commit/f5df417b02749efe47bc8d88f0c57679071a4b25))
+* **form-contact:** test search icon ([c10986f](https://github.com/maevsi/maevsi/commit/c10986fd049a2d9dcf8465edec8ecada71166bd4))
+* **form-delete:** specify password type ([b7fc10b](https://github.com/maevsi/maevsi/commit/b7fc10bb8cd940e464b0e4ca3b69ba1c872583d5))
+* **form-invitation:** shorten i18n ([6ce4902](https://github.com/maevsi/maevsi/commit/6ce49025655903be18891956aac3cb61b3789913))
+* **import:** add missing prop-type imports ([3463fa9](https://github.com/maevsi/maevsi/commit/3463fa9ead5844bdab3a2a4a09a321ee7d8334be))
+* **invitation-list:** move send button to beginning ([7a242f3](https://github.com/maevsi/maevsi/commit/7a242f3b7cdc379d903d0bc8ffe337e3db7f3c91))
+* **invitation-list:** show stats only with content ([e6d6d84](https://github.com/maevsi/maevsi/commit/e6d6d84777ccd5369b10e69f747af65bcd0c6ae9))
+* **invitation:** test different i18n ([10ba81a](https://github.com/maevsi/maevsi/commit/10ba81a5fdd150e9fa46a11c17f961ac8aeef8d2))
+* **modal:** prevent enter on disabled submit ([b22a465](https://github.com/maevsi/maevsi/commit/b22a465e9bf5cacb42837d29c4787b9e739f5720))
+
 ## [0.134.1](https://github.com/maevsi/maevsi/compare/0.134.0...0.134.1) (2022-07-05)
 
 
