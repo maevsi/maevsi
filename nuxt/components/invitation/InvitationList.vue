@@ -45,14 +45,6 @@
                 class="flex items-center justify-evenly gap-4 text-text-dark dark:text-text-bright"
               >
                 <ButtonTable
-                  :aria-label="$t('invitationLink')"
-                  class="hidden md:block"
-                  is-title-show
-                  @click="copyLink(event, invitation)"
-                >
-                  <IconLink />
-                </ButtonTable>
-                <ButtonTable
                   :aria-label="
                     invitation.contactByContactId.accountUsername ||
                     invitation.contactByContactId.emailAddress
@@ -70,20 +62,19 @@
                 >
                   <IconPaperPlane />
                 </ButtonTable>
+                <ButtonTable
+                  :aria-label="$t('invitationLink')"
+                  class="hidden md:block"
+                  is-title-show
+                  @click="copyLink(event, invitation)"
+                >
+                  <IconLink />
+                </ButtonTable>
                 <DropDown>
                   <ButtonTable :aria-label="$t('globalShowMore')" is-title-show>
                     <IconDotsVertical />
                   </ButtonTable>
                   <template slot="content">
-                    <ButtonTable
-                      :aria-label="$t('invitationLink')"
-                      class="block md:hidden"
-                      is-title-show
-                      @click="copyLink(event, invitation)"
-                    >
-                      <IconLink />
-                      {{ $t('invitationLink') }}
-                    </ButtonTable>
                     <ButtonTable
                       :aria-label="
                         invitation.contactByContactId.accountUsername ||
@@ -107,6 +98,15 @@
                           ? $t('invitationSend')
                           : $t('disabledReasonEmailAddressNone')
                       }}
+                    </ButtonTable>
+                    <ButtonTable
+                      :aria-label="$t('invitationLink')"
+                      class="block md:hidden"
+                      is-title-show
+                      @click="copyLink(event, invitation)"
+                    >
+                      <IconLink />
+                      {{ $t('invitationLink') }}
                     </ButtonTable>
                     <ButtonTable
                       :aria-label="$t('invitationView')"
@@ -164,7 +164,7 @@
         }}
       </p>
     </div>
-    <div>
+    <div v-if="allInvitations.totalCount > 0">
       <h2>
         {{ $t('feedback') }}
       </h2>
@@ -313,7 +313,7 @@ export default defineComponent({
     Chart.defaults.color = () =>
       this.$colorMode.value === 'dark' ? '#fff' : '#000'
     this.$colorMode.$watch('value', () => {
-      ;(this.$refs.doughnut as any).getCurrentChart()?.update()
+      ;(this.$refs.doughnut as any)?.getCurrentChart()?.update()
     })
   },
   methods: {

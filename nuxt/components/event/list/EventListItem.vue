@@ -35,6 +35,7 @@
           <EventIconVisibility
             class="flex-shrink-0"
             :show-text="false"
+            :is-archived="event.isArchived"
             :visibility="event.visibility"
           />
           <div class="flex items-baseline truncate">

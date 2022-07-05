@@ -102,12 +102,15 @@
     <div v-else class="flex flex-col gap-1 py-2">
       <!-- <p class="text-center">{{ $t('noPictures') }}</p> -->
       <div class="flex justify-center">
-        <Button :aria-label="$t('uploadImages')" :to="localePath('/upload')">
+        <ButtonColored
+          :aria-label="$t('uploadImages')"
+          :to="localePath('/upload')"
+        >
           {{ $t('uploadImages') }}
           <template slot="suffix">
             <IconArrowRight />
           </template>
-        </Button>
+        </ButtonColored>
       </div>
     </div>
     <Modal

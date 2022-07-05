@@ -12,12 +12,15 @@
       <span>
         {{ $t('formHint') }}
       </span>
-      <Button :aria-label="$t('contactsAdd')" :to="localePath('/contact')">
+      <ButtonColored
+        :aria-label="$t('contactsAdd')"
+        :to="localePath('/contact')"
+      >
         {{ $t('contactsAdd') }}
         <template slot="suffix">
           <IconArrowRight />
         </template>
-      </Button>
+      </ButtonColored>
     </div>
     <FormInput
       id-label="input-contact-id"
@@ -68,11 +71,6 @@
         </Button>
       </div>
     </div>
-    <template slot="assistance">
-      <FormInputStateInfo>
-        {{ $t('selectAssistance') }}
-      </FormInputStateInfo>
-    </template>
   </Form>
 </template>
 
@@ -230,16 +228,14 @@ de:
   buttonContact: Ein Kontakt
   contact: Kontakt
   contactsAdd: Zu meinem Kontaktbuch
-  formHint: Hier kannst du nach Kontakten suchen, die du einladen möchtest. Fehlt ein Kontakt, musst du ihn zuerst deinem Kontaktbuch hinzufügen.
+  formHint: Suche nach Kontakten aus deinem Kontaktbuch.
   placeholderContact: Max Mustermann
-  select: Einladung anlegen
-  selectAssistance: Die Einladung wird noch nicht versandt!
+  select: Einladung ohne Versand anlegen
 en:
   buttonContact: A contact
   contact: Contact
   contactsAdd: To my contact book
   formHint: Here you can search for contacts you want to invite. If a contact is missing, you must first add it to your contact book.
   placeholderContact: John Doe
-  select: Add invitation
-  selectAssistance: The invitation is not yet sent!
+  select: Add invitation without sending
 </i18n>

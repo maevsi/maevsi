@@ -1,7 +1,10 @@
 <template>
   <EventDashlet v-if="event">
     <span>
-      <EventIconVisibility :visibility="event.visibility" />
+      <EventIconVisibility
+        :is-archived="event.isArchived"
+        :visibility="event.visibility"
+      />
     </span>
     <span v-if="event.isArchived" class="block">{{ $t('archived') }}</span>
     <span v-else-if="event.visibility === 'PUBLIC'" class="block">

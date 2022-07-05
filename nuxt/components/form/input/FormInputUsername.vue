@@ -12,6 +12,9 @@
     :value="formInput"
     @input="$emit('input', $event)"
   >
+    <template slot="icon">
+      <slot name="icon" />
+    </template>
     <template slot="stateError">
       <FormInputStateError
         :form-input="formInput"
