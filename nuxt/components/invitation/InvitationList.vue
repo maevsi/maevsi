@@ -164,7 +164,7 @@
         }}
       </p>
     </div>
-    <div>
+    <div v-if="allInvitations.totalCount > 0">
       <h2>
         {{ $t('feedback') }}
       </h2>
@@ -313,7 +313,7 @@ export default defineComponent({
     Chart.defaults.color = () =>
       this.$colorMode.value === 'dark' ? '#fff' : '#000'
     this.$colorMode.$watch('value', () => {
-      ;(this.$refs.doughnut as any).getCurrentChart()?.update()
+      ;(this.$refs.doughnut as any)?.getCurrentChart()?.update()
     })
   },
   methods: {
