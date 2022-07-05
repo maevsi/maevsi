@@ -54,7 +54,9 @@
           :class="
             invitation.feedback === 'ACCEPTED'
               ? 'border-green-600 dark:border-green-500'
-              : 'border-red-600 dark:border-red-500'
+              : invitation.feedback === 'CANCELED'
+              ? 'border-red-600 dark:border-red-500'
+              : 'border-text-dark dark:border-text-bright'
           "
         >
           <div
@@ -73,7 +75,7 @@
             <div class="flex items-center justify-center gap-4">
               <div
                 v-if="invitation.feedback === 'CANCELED'"
-                class="flex items-center font-semibold text-red-600 dark:border-red-500"
+                class="flex items-center font-semibold text-red-600 dark:text-red-500"
               >
                 <IconXCircle class="mr-2" title="canceled" />
                 {{
@@ -111,7 +113,7 @@
               </ButtonColored>
               <div
                 v-if="invitation.feedback === 'ACCEPTED'"
-                class="flex items-center font-semibold text-green-600 dark:border-green-500"
+                class="flex items-center font-semibold text-green-600 dark:text-green-500"
               >
                 <IconCheckCircle class="mr-2" title="accepted" />
                 {{
