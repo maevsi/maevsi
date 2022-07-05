@@ -23,9 +23,9 @@
       is-validatable
       @input="form.accountUsername = $event"
     />
-    <div v-if="form.accountUsername">
+    <FormInputStateInfo>
       {{ $t('accountOverride') }}
-    </div>
+    </FormInputStateInfo>
     <FormInput
       id-label="input-first-name"
       is-optional
@@ -254,14 +254,14 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  accountOverride: Falls die privaten Daten des Accounts unvollständig oder inkorrekt sind, können sie im Folgenden überschrieben werden.
+  accountOverride: Du kannst sowohl ein vorhandenes Konto als Kontakt hinzufügen als auch manuell Kontaktdaten eingeben. Sind beide Daten angegeben, werden die manuell eingebenen Daten bevorzugt verwendet.
   address: Adresse
   firstName: Vorname
   lastName: Nachname
   phoneNumber: Telefonnummer
   save: Speichern
 en:
-  accountOverride: If the account's private data is incomplete or incorrect, it can be overwritten below.
+  accountOverride: You can add an existing account as a contact or enter contact data manually. If both data are entered, the manually entered data will be used preferentially.
   address: Address
   firstName: First name
   lastName: Last name

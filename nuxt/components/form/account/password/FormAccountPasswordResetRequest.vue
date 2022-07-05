@@ -81,6 +81,8 @@ const FormAccountPasswordResetRequest = defineComponent({
       this.$swal({
         icon: 'success',
         text: this.$t('accountPasswordResetRequestSuccess') as string,
+        timer: 3000,
+        timerProgressBar: true,
         title: this.$t('requestAccepted'),
       })
     },

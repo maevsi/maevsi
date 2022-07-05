@@ -211,6 +211,7 @@ export default defineComponent({
         icon: 'success',
         showConfirmButton: false,
         timer: 1500,
+        timerProgressBar: true,
       }).then(() =>
         this.$store.commit('modalRemove', 'ModalAttendanceScanQrCode')
       )
@@ -253,6 +254,7 @@ export default defineComponent({
           icon: 'success',
           showConfirmButton: false,
           timer: 1500,
+          timerProgressBar: true,
         })
       } catch (error) {
         if (error instanceof DOMException) {

@@ -86,6 +86,8 @@ const FormAccountPasswordChange = defineComponent({
           this.$swal({
             icon: 'success',
             text: this.$t('passwordChangeSuccess') as string,
+            timer: 3000,
+            timerProgressBar: true,
             title: this.$t('changed'),
           })
           this.resetForm()

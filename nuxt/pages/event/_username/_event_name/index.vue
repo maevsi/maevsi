@@ -58,7 +58,7 @@
           "
         >
           <div
-            class="m-4"
+            class="m-4 flex flex-col gap-1"
             :class="{
               'col-span-5': invitation.feedback === 'ACCEPTED' && false,
               'col-span-6':
@@ -67,6 +67,13 @@
                 true,
             }"
           >
+            <span>
+              {{
+                event.authorUsername === signedInUsername
+                  ? $t('feedbackRequestAuthor')
+                  : $t('feedbackRequest')
+              }}
+            </span>
             <div class="flex justify-center gap-4">
               <div
                 v-if="invitation.feedback === 'CANCELED'"
@@ -203,16 +210,21 @@
           <EventDashletLocation :event="event" />
           <EventDashletLink :event="event" />
         </div>
-        <ButtonColored
-          :aria-label="$t('iCalDownload')"
-          class="text-text-bright"
-          @click="downloadIcal"
-        >
-          {{ $t('iCalDownload') }}
-          <template slot="prefix">
-            <IconDownload />
-          </template>
-        </ButtonColored>
+        <div>
+          <ButtonColored
+            :aria-label="$t('iCalDownload')"
+            class="text-text-bright"
+            @click="downloadIcal"
+          >
+            {{ $t('iCalDownload') }}
+            <template slot="prefix">
+              <IconDownload />
+            </template>
+          </ButtonColored>
+          <FormInputStateInfo>
+            {{ $t('iCalHint') }}
+          </FormInputStateInfo>
+        </div>
       </div>
       <div v-if="event.description">
         <hr class="my-4" />
@@ -367,7 +379,7 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapGetters(['jwtDecoded']),
+    ...mapGetters(['jwtDecoded', 'signedInUsername']),
     contact(): Contact | undefined {
       return this.$util.getNested(this.invitation, 'contactByContactId')
     },
@@ -500,6 +512,7 @@ export default defineComponent({
             showConfirmButton: false,
             timer: 1500,
             text: this.$t('success') as string,
+            timerProgressBar: true,
             title: this.$t('saved'),
           })
         })
@@ -515,10 +528,13 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   attendances: Check-in
+  feedbackRequest: 'Bitte gib hier eine Rückmeldung, ob du teilnehmen wirst:'
+  feedbackRequestAuthor: 'Hier kannst du als Veranstalter*in die Rückmeldung für den Gast anpassen:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
-  iCalDownload: Zum Kalender hinzufügen
+  iCalDownload: Als Kalendereintrag herunterladen
+  iCalHint: Die heruntergeladene Datei kann dann mit deiner Kalender-Anwendung geöffnet werden.
   iCalUnexpectedStatusCode: 'iCal-Daten konnten nicht geladen werden: Statuscode {statusCode}.'
   invitationAccept: Einladung annehmen
   invitationAccepted: Einladung angenommen
@@ -530,7 +546,7 @@ de:
   invitationCardKindDigital: Digital
   invitationCodeMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
   invitationSelectionClear: Zurück zur Einladungsübersicht
-  invitationViewFor: Du schaust dir die Einladung für {name} an.
+  invitationViewFor: Du schaust dir die Einladung für {name} an. Nur du und {name} können diese Seite sehen.
   invitations: Einladungen
   print: Drucken
   qrCodeShow: Check-in-Code anzeigen
@@ -542,22 +558,25 @@ de:
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
   attendances: Check in
+  feedbackRequest: 'Please provide feedback here whether you will be attending:'
+  feedbackRequestAuthor: 'Here you as the organizer can customize the feedback for the guest:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."
   hintQrCode: This picture is your access authorization for the event
-  iCalDownload: Add to calendar
+  iCalDownload: Download as calendar item
+  iCalHint: You can open the downloaded file with your calendar app then.
   iCalUnexpectedStatusCode: 'Could not get iCal data: Status code {statusCode}.'
   invitationAccept: Accept invitation
   invitationAccepted: Invitation accepted
-  invitationCancel: Cancel invitation
-  invitationCanceled: Invitation canceled
+  invitationCancel: Decline invitation
+  invitationCanceled: Invitation declined
   invitationCardKind: Kind of invitation card
   invitationCardKindNone: None
   invitationCardKindPaper: Paper
   invitationCardKindDigital: Digital
   invitationCodeMultipleWarning: Multiple invitation codes were redeemed for the same event! This page shows data for the first code found.
   invitationSelectionClear: Back to the invitation overview
-  invitationViewFor: You're viewing the invitation for {name}.
+  invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
   invitations: Invitations
   print: Print
   qrCodeShow: Show check in code

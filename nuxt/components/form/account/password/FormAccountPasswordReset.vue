@@ -68,6 +68,8 @@ const FormAccountPasswordReset = defineComponent({
       this.$swal({
         icon: 'success',
         text: this.$t('accountPasswordResetSuccess') as string,
+        timer: 3000,
+        timerProgressBar: true,
         title: this.$t('reset'),
       })
       this.$router.push({

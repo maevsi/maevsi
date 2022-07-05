@@ -1,25 +1,18 @@
 <template>
-  <IconArchive v-if="event && event.isArchived" :title="$t('archived')" />
-  <IconGlobe
-    v-else-if="event && event.visibility === 'PUBLIC'"
-    :title="$t('public')"
-  />
-  <IconKey
-    v-else-if="event && event.visibility === 'PRIVATE'"
-    :title="$t('private')"
-  />
+  <IconArchive v-if="isArchived" :title="$t('archived')" />
+  <IconGlobe v-else-if="visibility === 'PUBLIC'" :title="$t('public')" />
+  <IconKey v-else-if="visibility === 'PRIVATE'" :title="$t('private')" />
   <IconBug v-else :title="$t('bug')" />
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '#app'
-import { Event } from '~/types/event'
+import { defineComponent } from '#app'
 
 export default defineComponent({
   props: {
-    event: {
+    visibility: {
       required: true,
-      type: Object as PropType<Event>,
+      type: String,
     },
   },
 })

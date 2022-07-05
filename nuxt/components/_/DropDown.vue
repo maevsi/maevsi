@@ -10,7 +10,7 @@
     />
     <div
       v-if="isOpen"
-      class="absolute right-0 z-10 mt-2 flex origin-top-right flex-col gap-4 rounded-md bg-background-dark p-4 shadow-lg"
+      class="absolute right-0 z-10 mt-2 flex flex-col gap-4 rounded-md bg-background-bright p-4 shadow-lg dark:bg-background-dark"
     >
       <slot name="content" />
     </div>

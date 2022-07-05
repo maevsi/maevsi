@@ -8,6 +8,17 @@
     :submit-name="$t('select')"
     @submit.prevent="submit"
   >
+    <div class="flex flex-col items-center gap-4">
+      <span>
+        {{ $t('formHint') }}
+      </span>
+      <Button :aria-label="$t('contactsAdd')" :to="localePath('/contact')">
+        {{ $t('contactsAdd') }}
+        <template slot="suffix">
+          <IconArrowRight />
+        </template>
+      </Button>
+    </div>
     <FormInput
       id-label="input-contact-id"
       is-required
@@ -54,14 +65,6 @@
           @click="selectToggle(contact)"
         >
           <ContactPreview class="px-4 py-2" :contact="contact" />
-        </Button>
-      </div>
-      <div class="flex justify-center">
-        <Button :aria-label="$t('contactsAdd')" :to="localePath('/contact')">
-          {{ $t('contactsAdd') }}
-          <template slot="suffix">
-            <IconArrowRight />
-          </template>
         </Button>
       </div>
     </div>
@@ -226,14 +229,16 @@ export default defineComponent({
 de:
   buttonContact: Ein Kontakt
   contact: Kontakt
-  contactsAdd: Kontakte hinzufügen
+  contactsAdd: Zu meinem Kontaktbuch
+  formHint: Hier kannst du nach Kontakten suchen, die du einladen möchtest. Fehlt ein Kontakt, musst du ihn zuerst deinem Kontaktbuch hinzufügen.
   placeholderContact: Max Mustermann
   select: Einladung anlegen
   selectAssistance: Die Einladung wird noch nicht versandt!
 en:
   buttonContact: A contact
   contact: Contact
-  contactsAdd: Add contacts
+  contactsAdd: To my contact book
+  formHint: Here you can search for contacts you want to invite. If a contact is missing, you must first add it to your contact book.
   placeholderContact: John Doe
   select: Add invitation
   selectAssistance: The invitation is not yet sent!

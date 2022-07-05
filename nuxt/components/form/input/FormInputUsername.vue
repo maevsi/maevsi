@@ -31,7 +31,7 @@
         :form-input="formInput"
         validation-property="formatSlug"
       >
-        {{ $t('globalValidationFormat') }}
+        {{ $t('validationFormat') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
@@ -39,6 +39,15 @@
       >
         {{ $t('globalValidationRequired') }}
       </FormInputStateError>
+    </template>
+    <template slot="stateInfo">
+      <FormInputStateInfo
+        :form-input="formInput"
+        :is-validation-live="!isValidationInverted"
+        validation-property="existence"
+      >
+        {{ $t('validationExistenceHint') }}
+      </FormInputStateInfo>
     </template>
     <template v-if="isValidatable" slot="stateSuccess">
       <FormInputStateSuccess
@@ -89,7 +98,11 @@ export default defineComponent({
 de:
   iconCheck: Verifiziert
   username: Nutzername
+  validationExistenceHint: Hast du Groß- und Kleinbuchstaben richtig verwendet?
+  validationFormat: Darf nur Buchstaben, Ziffern und Bindestriche enthalten.
 en:
   iconCheck: Verified
   username: Username
+  validationExistenceHint: Did you use upper and lower case letters correctly?
+  validationFormat: May only contain letter, digits and dashes.
 </i18n>

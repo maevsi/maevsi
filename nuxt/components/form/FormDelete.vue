@@ -78,6 +78,8 @@ export default defineComponent({
             text: this.$util.capitalizeFirstLetter(
               this.$t('success', { item: this.itemName }) as string
             ),
+            timer: 3000,
+            timerProgressBar: true,
             title: this.$t('deleted'),
           }).then(() => this.$emit('success'))
         })

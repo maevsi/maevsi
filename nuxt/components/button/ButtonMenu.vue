@@ -3,7 +3,7 @@
     :aria-label="ariaLabel"
     class="p-4"
     :class="{
-      'bg-background-body': $route.fullPath === to,
+      'bg-white dark:bg-background-body': $route.fullPath === to,
     }"
     :to="to"
     @click.native="$emit('onMenuHide')"

@@ -18,7 +18,5 @@ const Template = (_: never, { argTypes }: any) =>
 export const Default = Template.bind({})
 // @ts-ignore
 Default.args = {
-  event: {
-    visibility: 'PUBLIC',
-  },
+  visibility: 'PUBLIC',
 }

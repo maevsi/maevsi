@@ -16,6 +16,7 @@
           <Button
             :aria-label="signedInUsername"
             class="flex min-w-0 items-center gap-2 text-text-dark dark:text-text-bright"
+            :title="$t('profileLink')"
             :to="localePath(`/account/${signedInUsername}`)"
             @click.native="$emit('onMenuHide')"
           >
@@ -32,6 +33,7 @@
           <div class="flex items-center gap-2">
             <ButtonIcon
               :aria-label="$t('accountSettings')"
+              :title="$t('accountSettings')"
               :to="localePath(`/account/${signedInUsername}/settings`)"
               @click.native="$emit('onMenuHide')"
             >
@@ -39,6 +41,7 @@
             </ButtonIcon>
             <ButtonIcon
               :aria-label="$t('signOut')"
+              :title="$t('signOut')"
               @click.native="$util.signOut($apollo.getClient(), $store)"
             >
               <IconSignOut />
@@ -128,6 +131,7 @@ de:
   events: Meine Veranstaltungen
   eventsExplore: Veranstaltungen entdecken
   menuHide: Menü verstecken
+  profileLink: Profilseite anzeigen
   settings: Einstellungen
   signIn: Anmelden
   signOut: Abmelden
@@ -139,6 +143,7 @@ en:
   events: My events
   eventsExplore: Explore events
   menuHide: Hide menu
+  profileLink: Show profile page
   settings: Settings
   signIn: Sign in
   signOut: Sign out
