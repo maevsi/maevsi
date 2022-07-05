@@ -25,6 +25,11 @@
       is-required
       @input="form.emailAddress = $event"
     />
+    <template slot="assistance">
+      <FormInputStateInfo>
+        {{ $t('accountDeletionNotice') }}
+      </FormInputStateInfo>
+    </template>
   </Form>
 </template>
 
@@ -134,6 +139,7 @@ export type FormAccountRegistrationType = InstanceType<
 
 <i18n lang="yml">
 de:
+  accountDeletionNotice: Du wirst deinen Account jederzeit wieder löschen können.
   emailAddress: E-Mail-Adresse
   postgres22023: Das Passwort ist zu kurz! Überlege dir ein längeres.
   postgres23505: Es gibt bereits einen Account mit diesem Nutzernamen oder dieser E-Mail-Adresse! Überlege dir einen neuen Namen oder versuche dich anzumelden.
@@ -141,6 +147,7 @@ de:
   registrationSuccessBody: Verifiziere deinen Account über den Link in der E-Mail, die du in Kürze erhalten wirst.
   registrationSuccessTitle: Registrierung erfolgreich.
 en:
+  accountDeletionNotice: "You'll be able to delete your account at any time."
   emailAddress: Email address
   postgres22023: The password is too short! Think about a longer one.
   postgres23505: There is already an account with this username or email address! Think of a new name or try signing in.

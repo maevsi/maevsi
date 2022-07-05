@@ -225,12 +225,12 @@ en:
   benefitsTitle: Your benefits with {maevsi}
   events: Events
   flexibility: Flexibility
-  flexibilityDescription: No matter who accepts or cancels. Always manage the event universally
+  flexibilityDescription: No matter who accepts or declines. Always manage the event universally
   heroImage: Hero image.
   maevsi: maevsi
   maevsiDescription: maevsi is the manager for events supported by invitees
   management: Management
-  managementDescription: Who accepted or canceled? Clearly presented
+  managementDescription: Who accepted or declined? Clearly presented
   modules: Special modules
   modulesDescription: "You're missing a feature? Access lots of free modules"
   openSource: Open Source

@@ -39,6 +39,6 @@ de:
 en:
   bug: Bug
   feedbackAccepted: Accepted
-  feedbackCanceled: Canceled
+  feedbackCanceled: Declined
   feedbackNone: No feedback yet
 </i18n>

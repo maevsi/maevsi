@@ -177,7 +177,7 @@ de:
   passwordLost: Passwort verloren?
   postgres22023: Ein Konto mit diesem Benutzernamen existiert nicht! Überprüfe deine Eingaben auf Schreibfehler.
   postgres55000: Die E-Mail-Adresse ist noch nicht verifiziert!
-  postgresP0002: Anmeldung fehlgeschlagen! Überprüfe deine Eingaben auf Schreibfehler.
+  postgresP0002: Anmeldung fehlgeschlagen! Hast du dich schon registriert? Überprüfe deine Eingaben auf Schreibfehler.
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
   sent: Gesendet!
   signIn: Anmelden
@@ -189,7 +189,7 @@ en:
   passwordLost: Password lost?
   postgres22023: An account with this username does not exists! Check your input for spelling mistakes.
   postgres55000: The email address is not yet verified!
-  postgresP0002: Login failed! Check your input for spelling mistakes.
+  postgresP0002: Login failed! Have you registered yet? Check your input for spelling mistakes.
   registrationRefreshSuccess: A new welcome email is on its way to you.
   sent: Sent!
   signIn: Sign in

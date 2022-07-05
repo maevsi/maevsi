@@ -478,7 +478,7 @@ export default defineComponent({
 de:
   attendanceType: Anwesenheitstyp
   created: Erstellt!
-  description: Beschreibung
+  description: Einladungstext
   edit: Bearbeiten
   end: Ende
   eventCreate: Veranstaltung erstellen
@@ -506,7 +506,7 @@ de:
 en:
   attendanceType: Attendance type
   created: Created!
-  description: Description
+  description: Invitation text
   edit: Edit
   end: End
   eventCreate: Create event

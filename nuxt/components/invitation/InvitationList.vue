@@ -418,11 +418,11 @@ de:
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
   noFeedback: kein Feedback
   postgresP0002: Die Einladung konnte nicht versandt werden! Möglicherweise hast du aktuell keinen Zugriff auf die notwendigen Daten. Versuche die Seite neu zu laden.
-  sendSuccess: Einladung erfolgreich angefordert.
+  sendSuccess: Die Einladung wurde erfolgreich per E-Mail versandt.
   sent: Gesendet!
 en:
   accepted: accepted
-  canceled: canceled
+  canceled: declined
   contact: Contact
   contactSelect: Select Contact
   copied: Copied
@@ -438,6 +438,6 @@ en:
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
   noFeedback: no feedback
   postgresP0002: The invitation could not be sent! You may not currently have access to the necessary data. Try to reload the page.
-  sendSuccess: Invitation requested successfully.
+  sendSuccess: The invitation was successfully sent by email.
   sent: Sent!
 </i18n>
