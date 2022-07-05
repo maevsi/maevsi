@@ -9,6 +9,7 @@
     <FormInputPassword
       id="password"
       :form-input="$v.form.password"
+      :title="$t('passwordAccount')"
       @input="form.password = $event"
     />
     <template slot="submit-icon">
@@ -106,9 +107,11 @@ export default defineComponent({
 de:
   deleted: Gelöscht!
   deletion: '{item} löschen'
+  passwordAccount: Konto-Passwort
   success: '{item} erfolgreich gelöscht.'
 en:
   deleted: Deleted!
   deletion: 'Delete {item}'
+  passwordAccount: Account password
   success: '{item} deleted successfully.'
 </i18n>
