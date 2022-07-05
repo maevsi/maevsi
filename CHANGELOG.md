@@ -1,3 +1,21 @@
+# [0.134.0](https://github.com/maevsi/maevsi/compare/0.133.2...0.134.0) (2022-07-05)
+
+
+### Bug Fixes
+
+* **components:** correct bright mode background color ([fcd754b](https://github.com/maevsi/maevsi/commit/fcd754bb7bae5f1443918c30ed0af198d19e34b9))
+* **drop-down:** remove unnecessary class ([a338602](https://github.com/maevsi/maevsi/commit/a338602105c4e0ac3be1bfae008c5cd1221bdc54))
+
+
+### Features
+
+* **account:** start with registration ([fa2bf65](https://github.com/maevsi/maevsi/commit/fa2bf6568e082fa36f955dbd109dcb28ca2404d3))
+* **event-list:** add icon legend ([af99369](https://github.com/maevsi/maevsi/commit/af993695dc7d7d694716203ed42c58bde3a5fc38))
+* **event-list:** hide event unlock button on user's page ([1e23430](https://github.com/maevsi/maevsi/commit/1e2343032c979bad273d01082d1bc398259f8a71))
+* **i18n:** improve explanations ([505f2b0](https://github.com/maevsi/maevsi/commit/505f2b097e227d3eb848445007d67ac98003262c))
+* **invitation-list:** hide table with no entries ([e33276e](https://github.com/maevsi/maevsi/commit/e33276e6ad7e9216d202168e508e87dbd159db35))
+* **swal:** add timer and progressbar to all success modals ([95baae9](https://github.com/maevsi/maevsi/commit/95baae961c7e47a173c21318a8f6328fa3446853))
+
 ## [0.133.2](https://github.com/maevsi/maevsi/compare/0.133.1...0.133.2) (2022-07-04)
 
 
