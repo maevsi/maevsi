@@ -41,7 +41,9 @@
         </ButtonTable>
         <ButtonTable
           :aria-label="$t('contactDelete')"
-          :disabled="isDeleting"
+          :disabled="
+            isDeleting || contact.authorAccountUsername === signedInUsername
+          "
           is-title-show
           @click="$emit('delete')"
         >
