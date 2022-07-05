@@ -331,6 +331,8 @@ export default defineComponent({
         this.$swal({
           icon: 'success',
           text: this.$t('copySuccess') as string,
+          timer: 3000,
+          timerProgressBar: true,
           title: this.$t('copied'),
         })
       })
@@ -375,6 +377,8 @@ export default defineComponent({
           this.$swal({
             icon: 'success',
             text: this.$t('sendSuccess') as string,
+            timer: 3000,
+            timerProgressBar: true,
             title: this.$t('sent'),
           })
           this.$apollo.queries.allInvitations &&

@@ -399,6 +399,8 @@ export default defineComponent({
             this.$swal({
               icon: 'success',
               text: this.$t('eventCreateSuccess') as string,
+              timer: 3000,
+              timerProgressBar: true,
               title: this.$t('created'),
             }).then(() =>
               this.$router.push(

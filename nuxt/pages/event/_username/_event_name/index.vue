@@ -512,6 +512,7 @@ export default defineComponent({
             showConfirmButton: false,
             timer: 1500,
             text: this.$t('success') as string,
+            timerProgressBar: true,
             title: this.$t('saved'),
           })
         })
