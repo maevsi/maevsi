@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div>
     <div @click="toggleIsOpen">
       <slot />
     </div>
@@ -10,7 +10,8 @@
     />
     <div
       v-if="isOpen"
-      class="absolute right-0 z-10 mt-2 flex flex-col gap-4 rounded-md bg-background-bright p-4 shadow-lg dark:bg-background-dark"
+      ref="dropdown"
+      class="fixed z-20 mt-2 flex -translate-x-full flex-col gap-4 rounded-md bg-background-bright p-4 shadow-lg dark:bg-background-dark"
     >
       <slot name="content" />
     </div>
@@ -27,8 +28,19 @@ export default defineComponent({
     }
   },
   methods: {
-    toggleIsOpen() {
+    toggleIsOpen(e: MouseEvent) {
       this.isOpen = !this.isOpen
+
+      if (this.isOpen) {
+        document.body.classList.add('overflow-hidden')
+
+        this.$nuxt.$nextTick(() => {
+          ;(this.$refs.dropdown as HTMLElement).style.top = e.clientY + 'px'
+          ;(this.$refs.dropdown as HTMLElement).style.left = e.clientX + 'px'
+        })
+      } else {
+        document.body.classList.remove('overflow-hidden')
+      }
     },
   },
 })
