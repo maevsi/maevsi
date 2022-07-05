@@ -55,7 +55,7 @@
 <script lang="ts">
 import { mapGetters } from 'vuex'
 
-import { defineComponent } from '#app'
+import { defineComponent, PropType } from '#app'
 import { Contact } from '~/types/contact'
 
 export default defineComponent({

@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '#app'
+import { defineComponent, PropType } from '#app'
 import { Contact } from '~/types/contact'
 
 export default defineComponent({
