@@ -1,11 +1,16 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <EventList :username="$route.params.username" />
+    <EventList
+      :show-button-event-unlock="$route.params.username !== signedInUsername"
+      :username="$route.params.username"
+    />
   </div>
 </template>
 
 <script lang="ts">
+import { mapGetters } from 'vuex'
+
 import { defineComponent } from '#app'
 
 export default defineComponent({
@@ -56,6 +61,9 @@ export default defineComponent({
       ],
       title,
     }
+  },
+  computed: {
+    ...mapGetters(['signedInUsername']),
   },
 })
 </script>
