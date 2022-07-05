@@ -162,7 +162,9 @@ export default defineComponent({
 
       switch (e.key) {
         case 'Enter': // Enter
-          this.submit()
+          if (!this.isSubmitting && !this.isSubmitDisabled) {
+            this.submit()
+          }
           break
         case 'Escape': // Escape
           this.close()
