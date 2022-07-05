@@ -12,12 +12,15 @@
       <span>
         {{ $t('formHint') }}
       </span>
-      <Button :aria-label="$t('contactsAdd')" :to="localePath('/contact')">
+      <ButtonColored
+        :aria-label="$t('contactsAdd')"
+        :to="localePath('/contact')"
+      >
         {{ $t('contactsAdd') }}
         <template slot="suffix">
           <IconArrowRight />
         </template>
-      </Button>
+      </ButtonColored>
     </div>
     <FormInput
       id-label="input-contact-id"
