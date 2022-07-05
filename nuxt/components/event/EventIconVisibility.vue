@@ -10,6 +10,10 @@ import { defineComponent } from '#app'
 
 export default defineComponent({
   props: {
+    isArchived: {
+      default: false,
+      type: Boolean,
+    },
     visibility: {
       required: true,
       type: String,
