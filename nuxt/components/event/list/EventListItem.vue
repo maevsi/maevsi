@@ -34,8 +34,8 @@
         <div class="mb-2 flex items-center text-sm">
           <EventIconVisibility
             class="flex-shrink-0"
-            :event="event"
             :show-text="false"
+            :visibility="event.visibility"
           />
           <div class="flex items-baseline truncate">
             <div class="mx-2 truncate text-xl font-bold">
