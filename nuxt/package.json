@@ -151,7 +151,7 @@
     "tailwindcss": "3.1.4",
     "ts-jest": "28.0.5",
     "typescript": "4.7.4",
-    "vue": "2.6.14"
+    "vue": "2.7.3"
   },
   "resolutions": {
     "vue-clipboard2": "0.3.3"
