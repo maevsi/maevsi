@@ -45,7 +45,7 @@
     "@tailwindcss/forms": "0.5.2",
     "@tailwindcss/line-clamp": "0.4.0",
     "@tailwindcss/typography": "0.5.2",
-    "@tiptap/extension-link": "2.0.0-beta.42",
+    "@tiptap/extension-link": "2.0.0-beta.43",
     "@tiptap/starter-kit": "2.0.0-beta.189",
     "@tiptap/vue-2": "2.0.0-beta.83",
     "@uppy/core": "2.3.1",
