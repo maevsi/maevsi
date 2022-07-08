@@ -365,7 +365,7 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.10.4.tgz#2f75a831269d4f677de49986dff59927533cf375"
   integrity sha512-O4KCvQA6lLiMU9l2eawBPMf1xPP8xPfB3iEQw150hOVTqj/rfXz0ThTb4HEzqQfs2Bmo5Ay8BzxfzVtBrr9dVg==
 
-"@babel/helper-plugin-utils@^7.0.0", "@babel/helper-plugin-utils@^7.10.4", "@babel/helper-plugin-utils@^7.12.13", "@babel/helper-plugin-utils@^7.13.0", "@babel/helper-plugin-utils@^7.14.5", "@babel/helper-plugin-utils@^7.17.12", "@babel/helper-plugin-utils@^7.18.6", "@babel/helper-plugin-utils@^7.8.0", "@babel/helper-plugin-utils@^7.8.3":
+"@babel/helper-plugin-utils@^7.0.0", "@babel/helper-plugin-utils@^7.10.4", "@babel/helper-plugin-utils@^7.12.13", "@babel/helper-plugin-utils@^7.13.0", "@babel/helper-plugin-utils@^7.14.5", "@babel/helper-plugin-utils@^7.18.6", "@babel/helper-plugin-utils@^7.8.0", "@babel/helper-plugin-utils@^7.8.3":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.18.6.tgz#9448974dd4fb1d80fefe72e8a0af37809cd30d6d"
   integrity sha512-gvZnm1YAAxh13eJdkb9EWHBnF3eAub3XTLCZEehHT2kWxiKVRL64+ae5Y6Ivne0mVHmMYKT+xWgZO+gQhuLUBg==
@@ -696,14 +696,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.18.6"
 
-"@babel/plugin-syntax-import-assertions@7.17.12":
-  version "7.17.12"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-import-assertions/-/plugin-syntax-import-assertions-7.17.12.tgz#58096a92b11b2e4e54b24c6a0cc0e5e607abcedd"
-  integrity sha512-n/loy2zkq9ZEM8tEOwON9wTQSTNDTDEz6NujPtJGLU7qObzT1N4c4YZZf8E6ATB2AjNQg/Ib2AIpO03EZaCehw==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.17.12"
-
-"@babel/plugin-syntax-import-assertions@^7.18.6":
+"@babel/plugin-syntax-import-assertions@7.18.6", "@babel/plugin-syntax-import-assertions@^7.18.6":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-import-assertions/-/plugin-syntax-import-assertions-7.18.6.tgz#cd6190500a4fa2fe31990a963ffab4b63e4505e4"
   integrity sha512-/DU3RXad9+bZwrgWJQKbr39gYbJpLJHezqEzRzi/BHRlJ9zsQb4CK2CA/5apllXNomwA1qHwzvHl+AdEmC5krQ==
@@ -1248,10 +1241,10 @@
     pirates "^4.0.5"
     source-map-support "^0.5.16"
 
-"@babel/runtime-corejs3@7.18.3":
-  version "7.18.3"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.18.3.tgz#52f0241a31e0ec61a6187530af6227c2846bd60c"
-  integrity sha512-l4ddFwrc9rnR+EJsHsh+TJ4A35YqQz/UqcjtlX2ov53hlJYG5CxtQmNZxyajwDVmCxwy++rtvGU5HazCK4W41Q==
+"@babel/runtime-corejs3@7.18.6":
+  version "7.18.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.18.6.tgz#6f02c5536911f4b445946a2179554b95c8838635"
+  integrity sha512-cOu5wH2JFBgMjje+a+fz2JNIWU4GzYpl05oSob3UDvBEh6EuIn+TXFHMmBbhSb+k/4HMzgKCQfEEDArAWNF9Cw==
   dependencies:
     core-js-pure "^3.20.2"
     regenerator-runtime "^0.13.4"
