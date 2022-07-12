@@ -32,7 +32,7 @@
         </label>
       </div>
       <div class="flex md:mt-1 md:w-2/3">
-        <div class="relative grow">
+        <div class="relative min-w-0 grow">
           <slot v-if="$slots.default" />
           <input
             v-else
