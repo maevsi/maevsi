@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col gap-4">
     <!-- eslint-disable vue/no-v-html -->
     <p
       class="text-center text-xl font-black"

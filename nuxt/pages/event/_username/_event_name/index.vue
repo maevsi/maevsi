@@ -192,13 +192,12 @@
         </div>
       </div>
     </div>
-    <div
+    <ButtonList
       v-if="
         !$route.query.ic &&
         jwtDecoded &&
         event.authorUsername === jwtDecoded.username
       "
-      class="flex justify-evenly"
     >
       <ButtonColored append :aria-label="$t('settings')" to="settings">
         {{ $t('settings') }}
@@ -218,7 +217,7 @@
           <IconUserCheck />
         </template>
       </ButtonColored>
-    </div>
+    </ButtonList>
     <Card class="flex flex-col items-center gap-8">
       <div class="flex max-w-full flex-col items-center">
         <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
@@ -235,7 +234,7 @@
           <EventDashletLocation :event="event" />
           <EventDashletLink :event="event" />
         </div>
-        <div>
+        <div class="flex flex-col gap-2">
           <ButtonColored
             :aria-label="$t('iCalDownload')"
             class="text-text-bright"
@@ -251,7 +250,7 @@
           </FormInputStateInfo>
         </div>
       </div>
-      <div v-if="event.description">
+      <div v-if="event.description" class="flex flex-col gap-4">
         <hr class="my-4" />
         <!-- eslint-disable vue/no-v-html -->
         <div
