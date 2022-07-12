@@ -88,7 +88,7 @@
       </div>
       <div class="p-2" />
       <div class="mx-auto flex w-9/12 items-center">
-        <div class="h-px flex-1 bg-gray-500 dark:bg-gray-400" />
+        <Hr />
         <LoaderImage
           :alt="$t('maevsiLogo')"
           class="mx-12 h-12 w-12 opacity-50 brightness-0 dark:opacity-60 dark:invert"
@@ -96,7 +96,7 @@
           src="/assets/static/logos/maevsi.svg"
           width="48"
         />
-        <div class="h-px flex-1 bg-gray-500 dark:bg-gray-400" />
+        <Hr />
       </div>
       <p class="p-2 text-center text-gray-500 dark:text-gray-400">
         {{ $t('copyright', { year: new Date().getFullYear() }) }}

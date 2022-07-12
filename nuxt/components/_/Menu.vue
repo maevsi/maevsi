@@ -48,7 +48,7 @@
             </ButtonIcon>
           </div>
         </div>
-        <hr v-if="signedInUsername" class="opacity-40" />
+        <Hr v-if="signedInUsername" />
         <div class="flex flex-col gap-2">
           <ButtonMenu
             v-if="signedInUsername"
@@ -75,7 +75,7 @@
             {{ $t('uploads') }}
           </ButtonMenu>
         </div>
-        <hr v-if="signedInUsername" class="opacity-40 md:hidden" />
+        <Hr v-if="signedInUsername" class="md:hidden" />
         <div class="flex flex-col gap-4 md:hidden">
           <ButtonColored
             :aria-label="signedInUsername ? $t('eventNew') : $t('signIn')"

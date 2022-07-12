@@ -251,7 +251,7 @@
         </div>
       </div>
       <div v-if="event.description" class="flex flex-col gap-4">
-        <hr class="my-4" />
+        <Hr />
         <!-- eslint-disable vue/no-v-html -->
         <div
           class="maevsi-prose-scheme"
