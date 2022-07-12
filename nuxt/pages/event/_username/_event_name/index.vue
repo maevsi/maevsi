@@ -50,7 +50,7 @@
       <p>{{ $t('greetingDescription') }}</p>
       <div v-if="invitation" class="fixed bottom-0 z-10">
         <div
-          class="justify-content-center grid grid-cols-6 rounded-t-lg border-2 border-b-0 bg-background-bright dark:bg-background-dark"
+          class="justify-content-center inline-block rounded-t-lg border-2 border-b-0 bg-background-bright dark:bg-background-dark"
           :class="
             invitation.feedback === 'ACCEPTED'
               ? 'border-green-600 dark:border-green-500'
@@ -59,33 +59,11 @@
               : 'border-text-dark dark:border-text-bright'
           "
         >
-          <div
-            class="m-4 flex flex-col gap-1"
-            :class="{
-              'col-span-5': invitation.feedback === 'ACCEPTED' && false,
-              'col-span-6':
-                invitation.feedback === null ||
-                invitation.feedback === 'CANCELED' ||
-                true,
-            }"
-          >
+          <div class="m-4 flex flex-col gap-1">
             <span v-if="event.authorUsername !== signedInUsername">
               {{ $t('feedbackRequest') }}
             </span>
             <div class="flex items-center justify-center gap-4">
-              <div
-                v-if="invitation.feedback === 'CANCELED'"
-                class="flex items-center font-semibold text-red-600 dark:text-red-500"
-              >
-                <IconXCircle class="mr-2" title="canceled" />
-                {{
-                  event.authorUsername !== signedInUsername
-                    ? $t('invitationCanceled')
-                    : $t('invitationCanceledAdmin', {
-                        name: $util.getContactName(contact),
-                      })
-                }}
-              </div>
               <ButtonColored
                 v-if="
                   invitation.feedback === null ||
@@ -149,6 +127,19 @@
                   <IconXCircle />
                 </template>
               </ButtonColored>
+              <div
+                v-if="invitation.feedback === 'CANCELED'"
+                class="flex items-center font-semibold text-red-600 dark:text-red-500"
+              >
+                <IconXCircle class="mr-2" title="canceled" />
+                {{
+                  event.authorUsername !== signedInUsername
+                    ? $t('invitationCanceled')
+                    : $t('invitationCanceledAdmin', {
+                        name: $util.getContactName(contact),
+                      })
+                }}
+              </div>
             </div>
           </div>
           <!--
