@@ -7,62 +7,19 @@ on:
     types: [published]
 
 jobs:
-  prepare:
-    name: 'Prepare'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.18
-    with:
-      TARGET: prepare
-    secrets:
-      DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
-  lint:
-    needs: prepare
-    name: 'Lint'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.18
-    with:
-      CACHE: prepare
-      TARGET: lint
-    secrets:
-      DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
-  test-code:
-    needs: prepare
-    name: 'Test: code'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.18
-    with:
-      CACHE: prepare
-      TARGET: test
-    secrets:
-      DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
-  test-visual:
-    needs: prepare
-    name: 'Test: visual'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.18
-    with:
-      CACHE: prepare
-      TARGET: test-visual
-    secrets:
-      DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
   build:
-    needs: prepare
-    name: 'Build'
-    uses: dargmuesli/github-actions/.github/workflows/docker2.yml@0.16.18
-    with:
-      CACHE: prepare
-      IS_PUSH_ENABLED: true
-      TARGET: production
+    name: Build
+    uses: dargmuesli/github-actions/.github/workflows/docker.yml@0.16.18
     secrets:
       DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
   release-semantic:
-    needs: [lint, test-code, test-visual, build]
-    name: Semantic Release
+    needs: build
+    name: Release (semantic)
     uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.16.18
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
   release-assets:
     needs: release-semantic
-    name: Release Assets
+    name: Release (assets)
     uses: dargmuesli/github-actions/.github/workflows/release-assets.yml@0.16.18
