@@ -68,7 +68,7 @@
     "lodash-es": "4.17.21",
     "luxon": "1.28.0",
     "mustache": "4.2.0",
-    "node-fetch": "3.2.6",
+    "node-fetch": "3.2.7",
     "nuxt-clipboard2": "0.2.1",
     "nuxt-edge": "2.16.0-27616340.013f051b",
     "nuxt-helmet": "3.0.0",
