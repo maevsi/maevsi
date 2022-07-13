@@ -185,12 +185,13 @@ FROM node:16.16.0-slim@sha256:67ac68a9452c8e174d508babe0e99e0580a6c73ba8b1998cf2
 
 WORKDIR /srv/app/
 
+COPY --from=build /srv/app/ ./
+RUN rm -rf node_modules
+COPY --from=install /srv/app/node_modules/ ./node_modules/
 COPY --from=lint /srv/app/package.json /tmp/lint/package.json
 COPY --from=test /srv/app/package.json /tmp/test/package.json
 COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
 COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
-COPY --from=build /srv/app/ ./
-COPY --from=install /srv/app/node_modules/ ./node_modules/
 
 #######################
 # Provide a web server.
