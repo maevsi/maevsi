@@ -38,7 +38,7 @@ WORKDIR /srv/app/
 
 COPY ./nuxt/package.json ./nuxt/yarn.lock ./
 
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 COPY ./nuxt/ ./
 RUN yarn nuxi prepare
@@ -56,7 +56,7 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 
 ########################
