@@ -1,6 +1,22 @@
 <template>
-  <div>
-    <h1>{{ title }}</h1>
+  <div class="flex flex-col gap-4">
+    <Breadcrumbs
+      :prefixes="[
+        { name: $t('events'), to: '../../..', append: true },
+        { name: $route.params.username, to: '../..', append: true },
+        { name: $route.params.event_name, to: '..', append: true },
+      ]"
+    >
+      {{ $t('checkIns') }}
+    </Breadcrumbs>
+    <h1>
+      {{ $t('title') }}
+    </h1>
+    <Steps
+      :active="$t('qrCodeScan')"
+      :steps="[$t('qrCodeScan'), $t('nfcWrite')]"
+    />
+    <Hr />
     <div class="flex flex-col items-center justify-center gap-4">
       <ButtonColored
         :aria-label="$t('qrCodeScan')"
@@ -295,6 +311,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
+  checkIns: Check-ins
   close: Schließen
   errorCameraNotAllowed: Berechtigung zum Kamerazugriff fehlt. {hintBrowserSettings}
   errorCameraNotFound: Konnte keine geeignete Kamera finden.
@@ -308,6 +325,7 @@ de:
   errorNfcNotAllowed: Berechtigung zum NFC-Zugriff fehlt! {hintBrowserSettings}
   errorNfcNotReadable: Zugriff auf den NFC-Adapter nicht möglich. Wird er von einem anderen Programm verwendet?
   errorNfcNotSupported: Es wurde kein kompatibler NFC-Adapter gefunden. {hintUpdateOrChrome}
+  events: Veranstaltungen
   hintBrowserSettings: Sieh in deinen Browser-Einstellungen nach.
   hintUpdateOrChrome: Versuche deinen Browser zu aktualisieren oder Google Chrome zu verwenden.
   hintTryAgain: Versuch es noch einmal.
@@ -317,6 +335,7 @@ de:
   scanned: 'Gescannt: {scanResult}'
   title: Check-ins
 en:
+  checkIns: check ins
   close: Close
   errorCameraNotAllowed: Camera access permisson is missing.
   errorCameraNotFound: Could not find a suitable camera.
@@ -330,6 +349,7 @@ en:
   errorNfcNotAllowed: NFC access permission is missing! {hintBrowserSettings}
   errorNfcNotReadable: Could not access NFC adapter. Is it used by another program?
   errorNfcNotSupported: No compatible NFC adapter was found. {hintUpdateOrChrome}
+  events: events
   hintBrowserSettings: Check your browser settings.
   hintUpdateOrChrome: Try to update your browser or to use Google Chrome.
   hintTryAgain: Try again.

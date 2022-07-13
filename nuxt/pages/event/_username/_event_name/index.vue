@@ -4,6 +4,14 @@
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else class="flex flex-col gap-4">
+    <Breadcrumbs
+      :prefixes="[
+        { name: $t('events'), to: '../..', append: true },
+        { name: $route.params.username, to: '..', append: true },
+      ]"
+    >
+      {{ $route.params.event_name }}
+    </Breadcrumbs>
     <CardStateInfo
       v-if="$route.query.ic && contact"
       class="flex flex-col gap-2"
@@ -552,6 +560,7 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   attendances: Check-in
+  events: Veranstaltungen
   feedbackRequest: 'Bitte gib hier eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
@@ -585,6 +594,7 @@ de:
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
   attendances: Check in
+  events: events
   feedbackRequest: 'Please provide feedback here whether you will be attending:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."

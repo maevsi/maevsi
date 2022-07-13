@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
+    <Breadcrumbs>
+      {{ $t('contacts') }}
+    </Breadcrumbs>
+    <h1>
+      {{ title }}
+    </h1>
     <ContactList />
   </div>
 </template>
@@ -20,7 +25,7 @@ export default defineComponent({
   },
   data() {
     return {
-      title: this.$t('titleContacts'),
+      title: this.$t('title'),
     }
   },
   head() {
@@ -54,7 +59,9 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  titleContacts: Kontakte
+  contacts: Kontakte
+  title: Kontaktbuch
 en:
-  titleContacts: Contacts
+  contacts: contacts
+  title: Contact book
 </i18n>

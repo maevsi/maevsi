@@ -6,7 +6,7 @@
         <Menu />
       </div>
       <main
-        class="container mx-auto min-h-screen flex-1 overflow-hidden px-4 py-8 md:px-8"
+        class="container mx-auto min-h-screen flex-1 overflow-hidden p-4 md:px-8"
       >
         <nuxt />
       </main>

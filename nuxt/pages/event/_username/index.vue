@@ -1,6 +1,15 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
+    <Breadcrumbs :prefixes="[{ name: $t('events'), to: '..', append: true }]">
+      {{ $route.params.username }}
+    </Breadcrumbs>
+    <i18n path="title" tag="h1">
+      <template #name>
+        <AppLink :to="localePath(`/account/${$route.params.username}`)">
+          {{ $route.params.username }}
+        </AppLink>
+      </template>
+    </i18n>
     <EventList
       :show-button-event-unlock="$route.params.username !== signedInUsername"
       :username="$route.params.username"
@@ -23,7 +32,7 @@ export default defineComponent({
   },
   data() {
     return {
-      title: this.$t('title', { username: this.$route.params.username }),
+      title: this.$t('title', { name: this.$route.params.username }),
     }
   },
   head() {
@@ -70,7 +79,9 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  title: Veranstaltungen von {username}
+  events: Veranstaltungen
+  title: Veranstaltungen von {name}
 en:
-  title: Events by {username}
+  events: events
+  title: Events by {name}
 </i18n>
