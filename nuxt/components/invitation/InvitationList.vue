@@ -168,7 +168,7 @@
       <h2>
         {{ $t('feedback') }}
       </h2>
-      <div class="m-auto w-1/4">
+      <div class="m-auto w-3/4 sm:w-1/2 xl:w-1/3 2xl:w-1/4">
         <!-- https://github.com/reg-viz/storycap/issues/501 -->
         <Doughnut
           v-if="!$config.STORYBOOK"
