@@ -157,6 +157,8 @@ COPY --from=test /srv/app/package.json /tmp/test/package.json
 COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
 COPY --from=build /srv/app/ ./
 
+RUN WAIT_ON_TIMEOUT=5000 yarn start-server-and-test 'yarn start' 3000 'wget http://localhost:3000'
+
 #######################
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
