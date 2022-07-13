@@ -126,7 +126,7 @@ WORKDIR /srv/app/
 
 COPY --from=build /srv/app/ ./
 
-RUN WAIT_ON_TIMEOUT=10000 yarn start-server-and-test 'yarn start' 3000 'wget http://0.0.0.0:3000/'
+RUN WAIT_ON_TIMEOUT=6000 yarn start-server-and-test 'yarn start' 3000 'wget http://0.0.0.0:3000/'
 
 
 ########################
