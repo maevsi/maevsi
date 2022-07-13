@@ -19,4 +19,5 @@ nuxt/.storybook/storycap/images/actual
 nuxt/.storybook/storycap/working-directory
 
 # Git
+.git
 nuxt/**/!.gitkeep
