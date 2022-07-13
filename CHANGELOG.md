@@ -1,3 +1,10 @@
+## [0.135.1](https://github.com/maevsi/maevsi/compare/0.135.0...0.135.1) (2022-07-13)
+
+
+### Bug Fixes
+
+* **package:** downgrade isomorphic-dompurify to v0.15.0 ([069bdbe](https://github.com/maevsi/maevsi/commit/069bdbeb5b019dd395318251d21e143156dbeecc))
+
 # [0.135.0](https://github.com/maevsi/maevsi/compare/0.134.2...0.135.0) (2022-07-13)
 
 
