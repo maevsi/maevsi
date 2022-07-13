@@ -49,6 +49,21 @@ RUN yarn nuxi prepare
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
+FROM node:16.16.0-slim@sha256:fa082419449c20b1beedb42126e397bff9ba719ccf7e971598022fbdfef67fdb AS install
+
+WORKDIR /srv/app/
+
+COPY --from=prepare /srv/app/ ./
+
+ENV NODE_ENV=production
+RUN yarn install
+
+
+########################
+# Build Nuxt.
+
+# Should be the specific version of `node:slim`.
+# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:16.16.0-slim@sha256:fa082419449c20b1beedb42126e397bff9ba719ccf7e971598022fbdfef67fdb AS build
 
 ARG CI=false
@@ -61,9 +76,7 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
-RUN yarn run build \
-    # Discard devDependencies.
-    && yarn install
+RUN yarn run build
 
 
 ########################
@@ -95,6 +108,28 @@ RUN yarn run test:code
 
 
 ########################
+# Nuxt: test (integration)
+
+# Should be the specific version of `node:slim`.
+# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
+FROM node:16.16.0-slim@sha256:fa082419449c20b1beedb42126e397bff9ba719ccf7e971598022fbdfef67fdb AS test-integration
+
+# Update and install dependencies.
+# - `wget` is used for testing
+# - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        wget \
+        procps
+
+WORKDIR /srv/app/
+
+COPY --from=build /srv/app/ ./
+
+RUN WAIT_ON_TIMEOUT=5000 yarn start-server-and-test 'yarn start' 3000 'wget http://0.0.0.0:3000/'
+
+
+########################
 # Nuxt: test (visual)
 
 # Should be the specific version of node:slim.
@@ -109,9 +144,7 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         fonts-dejavu-core gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdbus-1-3 libdrm2 libgbm1 libgconf-2-4 libgtk-3-0 libnspr4 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 fonts-liberation libappindicator1 libnss3 libxshmfence1 lsb-release xdg-utils \
         procps \
-        jq \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+        jq
 
 WORKDIR /srv/app/
 
@@ -154,10 +187,10 @@ WORKDIR /srv/app/
 
 COPY --from=lint /srv/app/package.json /tmp/lint/package.json
 COPY --from=test /srv/app/package.json /tmp/test/package.json
+COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
 COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
 COPY --from=build /srv/app/ ./
-
-RUN WAIT_ON_TIMEOUT=5000 yarn start-server-and-test 'yarn start' 3000 'wget http://localhost:3000'
+COPY --from=install /srv/app/node_modules/ ./node_modules/
 
 #######################
 # Provide a web server.
