@@ -1,7 +1,12 @@
 <template>
-  <div class="m-auto max-w-xl">
-    <h1>{{ title }}</h1>
-    <section>
+  <div>
+    <Breadcrumbs>
+      {{ $t('dashboard') }}
+    </Breadcrumbs>
+    <h1>
+      {{ title }}
+    </h1>
+    <section class="flex flex-col gap-4">
       <h2>{{ $t('invitationCodes') }}</h2>
       <div v-if="jwtDecoded && jwtDecoded.invitations">
         <p>
@@ -19,7 +24,6 @@
       <p v-else>
         {{ $t('codesEnteredNone') }}
       </p>
-      <br />
       <ButtonEventUnlock />
     </section>
   </div>
@@ -87,11 +91,13 @@ export default defineComponent({
 de:
   codesEntered: 'Du hast die folgenden Codes eingegeben:'
   codesEnteredNone: Du hast bisher keine Codes eingegeben 😕
+  dashboard: Dashboard
   invitationCodes: Einladungscodes
   title: Dashboard
 en:
   codesEntered: 'You entered the following codes:'
   codesEnteredNone: You have no codes entered yet 😕
+  dashboard: dashboard
   invitationCodes: Invitation codes
   title: Dashboard
 </i18n>

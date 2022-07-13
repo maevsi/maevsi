@@ -1,5 +1,8 @@
 <template>
   <div>
+    <Breadcrumbs>
+      {{ $t('uploads') }}
+    </Breadcrumbs>
     <h1>{{ title }}</h1>
     <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
     <ImageUploadGallery
@@ -26,7 +29,7 @@ export default defineComponent({
   },
   data() {
     return {
-      title: this.$t('titleImageUploads'),
+      title: this.$t('title'),
     }
   },
   head() {
@@ -63,7 +66,9 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  titleImageUploads: Hochgeladene Bilder
+  title: Bildgalerie
+  uploads: Uploads
 en:
-  titleImageUploads: Image uploads
+  title: Image gallery
+  uploads: uploads
 </i18n>

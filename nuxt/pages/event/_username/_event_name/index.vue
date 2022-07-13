@@ -4,6 +4,14 @@
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else class="flex flex-col gap-4">
+    <Breadcrumbs
+      :prefixes="[
+        { name: $t('events'), to: '../..', append: true },
+        { name: $route.params.username, to: '..', append: true },
+      ]"
+    >
+      {{ $route.params.event_name }}
+    </Breadcrumbs>
     <CardStateInfo
       v-if="$route.query.ic && contact"
       class="flex flex-col gap-2"
@@ -50,7 +58,7 @@
       <p>{{ $t('greetingDescription') }}</p>
       <div v-if="invitation" class="fixed bottom-0 z-10">
         <div
-          class="justify-content-center grid grid-cols-6 rounded-t-lg border-2 border-b-0 bg-background-bright dark:bg-background-dark"
+          class="justify-content-center inline-block rounded-t-lg border-2 border-b-0 bg-background-bright dark:bg-background-dark"
           :class="
             invitation.feedback === 'ACCEPTED'
               ? 'border-green-600 dark:border-green-500'
@@ -59,33 +67,11 @@
               : 'border-text-dark dark:border-text-bright'
           "
         >
-          <div
-            class="m-4 flex flex-col gap-1"
-            :class="{
-              'col-span-5': invitation.feedback === 'ACCEPTED' && false,
-              'col-span-6':
-                invitation.feedback === null ||
-                invitation.feedback === 'CANCELED' ||
-                true,
-            }"
-          >
+          <div class="m-4 flex flex-col gap-1">
             <span v-if="event.authorUsername !== signedInUsername">
               {{ $t('feedbackRequest') }}
             </span>
             <div class="flex items-center justify-center gap-4">
-              <div
-                v-if="invitation.feedback === 'CANCELED'"
-                class="flex items-center font-semibold text-red-600 dark:text-red-500"
-              >
-                <IconXCircle class="mr-2" title="canceled" />
-                {{
-                  event.authorUsername !== signedInUsername
-                    ? $t('invitationCanceled')
-                    : $t('invitationCanceledAdmin', {
-                        name: $util.getContactName(contact),
-                      })
-                }}
-              </div>
               <ButtonColored
                 v-if="
                   invitation.feedback === null ||
@@ -149,6 +135,19 @@
                   <IconXCircle />
                 </template>
               </ButtonColored>
+              <div
+                v-if="invitation.feedback === 'CANCELED'"
+                class="flex items-center font-semibold text-red-600 dark:text-red-500"
+              >
+                <IconXCircle class="mr-2" title="canceled" />
+                {{
+                  event.authorUsername !== signedInUsername
+                    ? $t('invitationCanceled')
+                    : $t('invitationCanceledAdmin', {
+                        name: $util.getContactName(contact),
+                      })
+                }}
+              </div>
             </div>
           </div>
           <!--
@@ -201,13 +200,12 @@
         </div>
       </div>
     </div>
-    <div
+    <ButtonList
       v-if="
         !$route.query.ic &&
         jwtDecoded &&
         event.authorUsername === jwtDecoded.username
       "
-      class="flex justify-evenly"
     >
       <ButtonColored append :aria-label="$t('settings')" to="settings">
         {{ $t('settings') }}
@@ -227,7 +225,7 @@
           <IconUserCheck />
         </template>
       </ButtonColored>
-    </div>
+    </ButtonList>
     <Card class="flex flex-col items-center gap-8">
       <div class="flex max-w-full flex-col items-center">
         <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
@@ -244,7 +242,7 @@
           <EventDashletLocation :event="event" />
           <EventDashletLink :event="event" />
         </div>
-        <div>
+        <div class="flex flex-col gap-2">
           <ButtonColored
             :aria-label="$t('iCalDownload')"
             class="text-text-bright"
@@ -260,8 +258,8 @@
           </FormInputStateInfo>
         </div>
       </div>
-      <div v-if="event.description">
-        <hr class="my-4" />
+      <div v-if="event.description" class="flex flex-col gap-4">
+        <Hr />
         <!-- eslint-disable vue/no-v-html -->
         <div
           class="maevsi-prose-scheme"
@@ -562,6 +560,7 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   attendances: Check-in
+  events: Veranstaltungen
   feedbackRequest: 'Bitte gib hier eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
@@ -595,6 +594,7 @@ de:
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
   attendances: Check in
+  events: events
   feedbackRequest: 'Please provide feedback here whether you will be attending:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."

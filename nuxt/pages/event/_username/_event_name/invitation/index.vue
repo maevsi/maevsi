@@ -4,15 +4,20 @@
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
-    <div v-if="event">
-      <!-- TODO: breadcrumbs -->
-      <h1 class="text-center">
-        {{ title }}
+    <div v-if="event" class="flex flex-col gap-4">
+      <Breadcrumbs
+        :prefixes="[
+          { name: $t('events'), to: '../../..', append: true },
+          { name: $route.params.username, to: '../..', append: true },
+          { name: $route.params.event_name, to: '..', append: true },
+        ]"
+      >
+        {{ $t('invitations') }}
+      </Breadcrumbs>
+      <h1>
+        {{ $t('title') }}
       </h1>
-      <section>
-        <h2>{{ $t('invitations') }}</h2>
-        <InvitationList :event="event" />
-      </section>
+      <InvitationList :event="event" />
     </div>
     <Error v-else />
   </div>
@@ -104,7 +109,10 @@ export default defineComponent({
       if (
         this.$route.params.username === this.$store.getters.signedInUsername
       ) {
-        return `${this.$t('invitations')} · ${this.event?.name}`
+        return `${this.$t('title')} · ${this.$util.getNested(
+          this.event,
+          'name'
+        )}`
       }
       return '403'
     },
@@ -115,8 +123,12 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   event: Veranstaltung
+  events: Veranstaltungen
   invitations: Einladungen
+  title: Einladungen
 en:
   event: event
-  invitations: Invitations
+  events: events
+  invitations: invitations
+  title: Invitations
 </i18n>

@@ -1,8 +1,9 @@
 <template>
-  <div>
-    <div
-      class="flex min-w-0 flex-col items-center justify-center py-4 sm:flex-row"
-    >
+  <div class="flex flex-col gap-4">
+    <Breadcrumbs :prefixes="[{ name: $t('accounts'), to: '..', append: true }]">
+      {{ $route.params.username }}
+    </Breadcrumbs>
+    <div class="flex min-w-0 flex-col items-center justify-center sm:flex-row">
       <div class="sm:mr-4">
         <AccountProfilePicture
           ref="profilePicture"
@@ -12,15 +13,46 @@
           width="96"
         />
       </div>
-      <h1 class="max-w-full overflow-hidden text-ellipsis sm:w-auto">
+      <h2 class="max-w-full overflow-hidden text-ellipsis sm:w-auto">
         {{ $route.params.username }}
-      </h1>
+      </h2>
     </div>
+    <ButtonList>
+      <ButtonColored
+        :aria-label="$t('eventsTheir', { name: $route.params.username })"
+        :to="localePath(`/event/${$route.params.username}`)"
+      >
+        {{ $t('eventsTheir', { name: $route.params.username }) }}
+        <template slot="prefix">
+          <IconCalendar />
+        </template>
+      </ButtonColored>
+    </ButtonList>
+    <ButtonList v-if="signedInUsername === $route.params.username">
+      <ButtonColored :aria-label="$t('settings')" to="settings" append>
+        {{ $t('settings') }}
+        <template slot="prefix">
+          <IconPencil />
+        </template>
+      </ButtonColored>
+      <ButtonColored
+        :aria-label="$t('signOut')"
+        @click.native="$util.signOut($apollo.getClient(), $store)"
+      >
+        {{ $t('signOut') }}
+        <template slot="prefix">
+          <IconSignOut />
+        </template>
+      </ButtonColored>
+    </ButtonList>
   </div>
 </template>
 
 <script lang="ts">
+import { mapGetters } from 'vuex'
+
 import { defineComponent } from '#app'
+
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 
 export default defineComponent({
@@ -82,5 +114,21 @@ export default defineComponent({
       title,
     }
   },
+  computed: {
+    ...mapGetters(['signedInUsername']),
+  },
 })
 </script>
+
+<i18n lang="yml">
+de:
+  accounts: Konten
+  eventsTheir: Veranstaltungen von {name}
+  settings: Bearbeiten
+  signOut: Abmelden
+en:
+  accounts: accounts
+  eventsTheir: Events by {name}
+  settings: Edit
+  signOut: Sign out
+</i18n>

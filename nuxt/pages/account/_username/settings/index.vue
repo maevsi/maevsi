@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <div
-      class="flex min-w-0 flex-col items-center justify-center py-4 sm:flex-row"
+  <div class="flex flex-col gap-4">
+    <Breadcrumbs
+      :prefixes="[
+        { name: $t('accounts'), to: '../..', append: true },
+        { name: $route.params.username, to: '..', append: true },
+      ]"
     >
+      {{ $t('settings') }}
+    </Breadcrumbs>
+    <div class="flex min-w-0 flex-col items-center justify-center sm:flex-row">
       <Button
         :aria-label="$t('profilePictureChange')"
         class="sm:mr-4"
@@ -115,16 +121,20 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   account: Konto
+  accounts: Konten
   postgres23503: Dir gehören noch Veranstaltungen! Lösche erst all deine Veranstaltungen.
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   profilePictureChange: Profilbild ändern
+  settings: Einstellungen
   titleAccountDelete: Konto löschen
   titlePasswordChange: Password ändern
 en:
   account: account
+  accounts: accounts
   postgres23503: You still own events! First delete all your events.
   postgres28P01: Password incorrect! Check that you have written everything correctly.
   profilePictureChange: Change profile picture
+  settings: settings
   titleAccountDelete: Delete account
   titlePasswordChange: Change password
 </i18n>

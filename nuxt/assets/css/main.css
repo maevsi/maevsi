@@ -89,4 +89,15 @@
 
 .ProseMirror { /* stylelint-disable-line selector-class-pattern */
   @apply maevsi-prose;
+
+  max-width: 100%;
+  margin: 0;
+}
+
+.ProseMirror > p:first-child { /* stylelint-disable-line selector-class-pattern */
+  margin-top: 0;
+}
+
+.ProseMirror > p:last-child { /* stylelint-disable-line selector-class-pattern */
+  margin-bottom: 0;
 }

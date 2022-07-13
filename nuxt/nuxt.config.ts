@@ -54,6 +54,7 @@ export default defineNuxtConfig({
       'cross-fetch',
       'graphql',
       'hash.js',
+      'headers-polyfill',
       'lodash',
       'lodash-es',
       'moment',

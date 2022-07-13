@@ -1,14 +1,18 @@
 <template>
-  <div class="m-auto max-w-xl">
-    <h1>{{ title }}</h1>
-    <div>
+  <div>
+    <Breadcrumbs>
+      {{ $t('session') }}
+    </Breadcrumbs>
+    <h1>
+      {{ title }}
+    </h1>
+    <div class="flex flex-col gap-4">
       <p v-if="sessionExpiryTime !== 'Invalid date'">
         {{ $t('sessionExpiry', { exp: sessionExpiryTime }) }}
       </p>
       <p v-else>
         {{ $t('sessionExpired') }}
       </p>
-      <br />
       <ButtonColored
         :aria-label="$t('sessionExit')"
         @click="onSessionExitClick()"
@@ -79,11 +83,13 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
+  session: Sitzung
   sessionExit: Diese Sitzung beenden
   sessionExpired: Deine Sitzung ist abgelaufen.
   sessionExpiry: Deine Sitzung läuft am {exp} ab.
   title: Sitzung
 en:
+  session: session
   sessionExit: Exit this session
   sessionExpired: Your session expired.
   sessionExpiry: Your session expires on {exp}.

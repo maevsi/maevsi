@@ -4,11 +4,17 @@
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
-    <div v-if="event">
-      <!-- TODO: breadcrumbs -->
-      <h1 class="text-center">
-        {{ title }}
-      </h1>
+    <div v-if="event" class="flex flex-col gap-4">
+      <Breadcrumbs
+        :prefixes="[
+          { name: $t('events'), to: '../../..', append: true },
+          { name: $route.params.username, to: '../..', append: true },
+          { name: $route.params.event_name, to: '..', append: true },
+        ]"
+      >
+        {{ $t('settings') }}
+      </Breadcrumbs>
+      <h1>{{ $t('title') }}</h1>
       <section>
         <h2>{{ $t('titleEdit') }}</h2>
         <FormEvent :event="event" />
@@ -124,7 +130,10 @@ export default defineComponent({
       if (
         this.$route.params.username === this.$store.getters.signedInUsername
       ) {
-        return this.$t('settings', { eventName: this.event?.name }) as string
+        return `${this.$t('title')} · ${this.$util.getNested(
+          this.event,
+          'name'
+        )}`
       }
       return '403'
     },
@@ -206,16 +215,20 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   event: Veranstaltung
+  events: Veranstaltung
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   postgresP0002: Die Veranstaltung wurde nicht gefunden!
-  settings: Einstellungen · {eventName}
+  settings: Einstellungen
+  title: Einstellungen
   titleDelete: Veranstaltung löschen
   titleEdit: Veranstaltung bearbeiten
 en:
   event: event
+  events: events
   postgres28P01: Password incorrect! Check that you have written everything correctly.
   postgresP0002: The event was not found!
-  settings: Settings · {eventName}
+  settings: settings
+  title: Settings
   titleDelete: Delete event
   titleEdit: Edit event
 </i18n>

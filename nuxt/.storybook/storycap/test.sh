@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 THIS=$(dirname "$(readlink -f "$0")")
 
 rm -rf "$THIS"/working-directory/actual/*

@@ -5,7 +5,9 @@
     >
       {{ $t('accountRequired') }}
     </CardStateInfo>
-    <h1>{{ title }}</h1>
+    <Breadcrumbs>
+      {{ title }}
+    </Breadcrumbs>
     <TabFlip
       ref="tabFlip"
       class="m-auto max-w-lg"
@@ -225,10 +227,10 @@ de:
   accountRequired: Melde dich an, um fortzufahren.
   register: Registrieren
   signIn: Anmelden
-  title: Konto
+  title: Konten
 en:
   accountRequired: Sign in to continue.
   register: Register
   signIn: Sign In
-  title: Account
+  title: accounts
 </i18n>
