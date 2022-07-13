@@ -145,6 +145,19 @@ CMD ["yarn", "run", "storycap"]
 
 
 #######################
+# Collect build, lint and test results.
+
+# Should be the specific version of node:slim.
+FROM node:16.16.0-slim@sha256:fa082419449c20b1beedb42126e397bff9ba719ccf7e971598022fbdfef67fdb AS collect
+
+WORKDIR /srv/app/
+
+COPY --from=lint /srv/app/package.json /tmp/lint/package.json
+COPY --from=test /srv/app/package.json /tmp/test/package.json
+COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
+COPY --from=build /srv/app/ ./
+
+#######################
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
@@ -166,7 +179,7 @@ RUN apt-get update \
 
 WORKDIR /srv/app/
 
-COPY --from=build /srv/app/ ./
+COPY --from=collect /srv/app/ ./
 
 COPY ./sqitch/ /srv/sqitch/
 COPY ./docker-entrypoint.sh /usr/local/bin/
