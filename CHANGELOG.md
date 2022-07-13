@@ -1,3 +1,28 @@
+# [0.135.0](https://github.com/maevsi/maevsi/compare/0.134.2...0.135.0) (2022-07-13)
+
+
+### Bug Fixes
+
+* **contact-list-item:** correct contact username check ([1d7fa12](https://github.com/maevsi/maevsi/commit/1d7fa12e87b3d09392ddbc33490693321a632181))
+* **form-input-state-warning:** correct icon ([2c6a7e8](https://github.com/maevsi/maevsi/commit/2c6a7e88a40dec35207cb588f6c0aaa9dacb11b3))
+* **form-input:** prevent flex overflow ([686ae9d](https://github.com/maevsi/maevsi/commit/686ae9d5828ce3817d117e125e3a9c6082d87ba4))
+* **icon-x-circle:** use filled variant ([81b2cec](https://github.com/maevsi/maevsi/commit/81b2cecd844d7ced87266fea88837aff1811ff86))
+* **invitation-list:** correct feedback size ([5f3ea5c](https://github.com/maevsi/maevsi/commit/5f3ea5c02fd62f056cdcc3e6e538ba852c6a62ce))
+* **invitation:** correct button order ([d92437c](https://github.com/maevsi/maevsi/commit/d92437c223ed5abe2b2ee299aa1368bfe709e130))
+* minor spacing fixes ([f6d123f](https://github.com/maevsi/maevsi/commit/f6d123fa33a6098d3e80d3455de2ced4fa2ff240))
+* **nuxt:** transpile headers-polyfill ([45c4640](https://github.com/maevsi/maevsi/commit/45c4640144eb813eabe41b1b54e348ac9f48988f))
+* **storycap:** make test throw on error ([4d7c173](https://github.com/maevsi/maevsi/commit/4d7c173bca0315266af32ce5fad6861fa18aeac0))
+* **tailwind:** overflow with ellipsis for all headings ([572b2db](https://github.com/maevsi/maevsi/commit/572b2db5dbaeb7b1804dd22bfcaa86b9fa2c0787))
+
+
+### Features
+
+* add breadcrumb navigation ([edc56f4](https://github.com/maevsi/maevsi/commit/edc56f4385f899c4f7dc9b9be44d47f54898fd49)), closes [#144](https://github.com/maevsi/maevsi/issues/144)
+* **hr:** add component ([e48a269](https://github.com/maevsi/maevsi/commit/e48a269b643c6c56b18a5968bc77ee411d5f8a24))
+* **index:** redirect to dashboard when logged in ([5505f6d](https://github.com/maevsi/maevsi/commit/5505f6d8d99bab1665150c3dae8cfd1f85fd84b1))
+* **index:** redirect to event list instead of profile for signed in users ([fbff2fe](https://github.com/maevsi/maevsi/commit/fbff2feb2c4b67ecb2bb1009d2a3ed5244b2adc7))
+* **steps:** add proof of concept ([b60ca94](https://github.com/maevsi/maevsi/commit/b60ca940e292d054544e17d2f8e7387839788e97))
+
 ## [0.134.2](https://github.com/maevsi/maevsi/compare/0.134.1...0.134.2) (2022-07-05)
 
 
