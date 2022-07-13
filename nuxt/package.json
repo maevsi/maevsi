@@ -20,7 +20,7 @@
     "storybook:static": "yarn storybook:build && yarn storybook:serve",
     "storycap": "!(yarn test:visual); yarn storycap:update",
     "storycap:docker": "yarn docker:build:test-visual && docker run -v \"$PWD:/srv/app/\" maevsi/maevsi:test-visual",
-    "storycap:base": "storycap http://localhost:6006 --serverTimeout 100000 --viewport 640x1020 --viewport 1280x1020",
+    "storycap:base": "storycap http://localhost:6006 --serverTimeout 125000 --viewport 640x1020 --viewport 1280x1020",
     "storycap:actual": "yarn storycap:base --outDir .storybook/storycap/images/actual",
     "storycap:expected": "yarn storycap:base --outDir .storybook/storycap/images/expected",
     "storycap:update": "sh ./.storybook/storycap/update.sh",
