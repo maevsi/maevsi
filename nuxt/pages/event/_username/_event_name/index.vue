@@ -207,12 +207,6 @@
         event.authorUsername === jwtDecoded.username
       "
     >
-      <ButtonColored append :aria-label="$t('settings')" to="settings">
-        {{ $t('settings') }}
-        <template slot="prefix">
-          <IconPencil />
-        </template>
-      </ButtonColored>
       <ButtonColored append :aria-label="$t('invitations')" to="invitation">
         {{ $t('invitations') }}
         <template slot="prefix">
@@ -223,6 +217,12 @@
         {{ $t('attendances') }}
         <template slot="prefix">
           <IconUserCheck />
+        </template>
+      </ButtonColored>
+      <ButtonColored append :aria-label="$t('settings')" to="settings">
+        {{ $t('settings') }}
+        <template slot="prefix">
+          <IconPencil />
         </template>
       </ButtonColored>
     </ButtonList>
