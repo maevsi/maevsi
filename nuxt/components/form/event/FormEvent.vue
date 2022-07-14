@@ -207,7 +207,7 @@
     <FormInput
       v-if="form.isInPerson"
       id-label="input-location"
-      :placeholder="$t('locationPlaceholder')"
+      :placeholder="$t('globalPlaceholderAddress').replace('\n', ' ')"
       :title="$t('location')"
       type="text"
       :value="$v.form.location"
@@ -487,7 +487,6 @@ de:
   stateInfoUrl: Eine Web-URL für digitale Veranstaltungen.
   isInPerson: vor Ort
   isRemote: digital
-  locationPlaceholder: Veranstaltungsstraße 1, 12345 Gaststadt
   maximumInviteeCount: Maximale Gästezahl
   name: Name
   namePlaceholder: Willkommensfeier
@@ -515,7 +514,6 @@ en:
   stateInfoUrl: A web URL for remote events.
   isInPerson: in person
   isRemote: remote
-  locationPlaceholder: Eventstreet 1, 12345 Guestcity
   maximumInviteeCount: Maximum guest count
   name: Name
   namePlaceholder: Welcome Party
