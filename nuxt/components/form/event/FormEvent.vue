@@ -30,22 +30,13 @@
         updateSlug()
       "
     >
-      <template slot="stateInfo">
-        <FormInputStateInfo>
-          {{
-            $t('slugInfo', {
-              slug: $v.form.slug.$model || $t('slugPlaceholder'),
-            })
-          }}
-        </FormInputStateInfo>
-      </template>
       <template slot="stateError">
         <FormInputStateError
           :form-input="$v.form.slug"
           is-validation-live
           validation-property="existenceNone"
         >
-          {{ $t('globalValidationExistenceNone') }}
+          {{ $t('validationExistenceNone', { slug: $v.form.slug.$model }) }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="$v.form.name"
@@ -115,6 +106,29 @@
           validation-property="required"
         >
           {{ $t('globalValidationRequired') }}
+        </FormInputStateError>
+      </template>
+    </FormInput>
+    <FormInput
+      v-if="form.visibility === 'PUBLIC'"
+      id-label="input-invitee-count-maximum"
+      :title="$t('maximumInviteeCount')"
+      type="number"
+      :value="$v.form.inviteeCountMaximum"
+      @input="form.inviteeCountMaximum = $event"
+    >
+      <template slot="stateError">
+        <FormInputStateError
+          :form-input="$v.form.inviteeCountMaximum"
+          validation-property="maxValue"
+        >
+          {{ $t('globalValidationMaxValue') }}
+        </FormInputStateError>
+        <FormInputStateError
+          :form-input="$v.form.inviteeCountMaximum"
+          validation-property="minValue"
+        >
+          {{ $t('globalValidationMinValue') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -232,28 +246,6 @@
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
-        </FormInputStateError>
-      </template>
-    </FormInput>
-    <FormInput
-      id-label="input-invitee-count-maximum"
-      :title="$t('maximumInviteeCount')"
-      type="number"
-      :value="$v.form.inviteeCountMaximum"
-      @input="form.inviteeCountMaximum = $event"
-    >
-      <template slot="stateError">
-        <FormInputStateError
-          :form-input="$v.form.inviteeCountMaximum"
-          validation-property="maxValue"
-        >
-          {{ $t('globalValidationMaxValue') }}
-        </FormInputStateError>
-        <FormInputStateError
-          :form-input="$v.form.inviteeCountMaximum"
-          validation-property="minValue"
-        >
-          {{ $t('globalValidationMinValue') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -503,10 +495,10 @@ de:
   preview: Vorschau
   previewNoContent: Kein Inhalt für die Vorschau 😕
   slug: Slug
-  slugInfo: Deine Veranstaltung hat die ID '{slug}'.
   slugPlaceholder: willkommensfeier
   start: Beginn
   updated: Aktualisiert
+  validationExistenceNone: Du hast bereits eine Veranstaltung mit der ID "{slug}" angelegt.
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
@@ -524,17 +516,17 @@ en:
   isInPerson: in person
   isRemote: remote
   locationPlaceholder: Eventstreet 1, 12345 Guestcity
-  maximumInviteeCount: Maximum invitee count
+  maximumInviteeCount: Maximum guest count
   name: Name
   namePlaceholder: Welcome Party
   location: Location
   preview: Preview
   previewNoContent: No content to preview 😕
   slug: Slug
-  slugInfo: Your event has the id "{slug}".
   slugPlaceholder: welcome-party
   start: Start
   updated: Updated
+  validationExistenceNone: You've already created an event with id "{slug}".
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public
