@@ -27,14 +27,14 @@
           id="search"
           class="form-input cursor-pointer rounded-r-none"
           :class="{ 'md:col-span-2': signedInUsername }"
-          :placeholder="$t('events')"
+          :placeholder="$t('search')"
           readonly
           type="text"
-          @click="navigateToEvents"
+          @click="navigateToSearch"
         />
         <span
           class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500"
-          @click="navigateToEvents"
+          @click="navigateToSearch"
         >
           <IconSearch />
         </span>
@@ -42,7 +42,12 @@
       <div
         class="col-start-3 hidden items-center gap-4 justify-self-end whitespace-nowrap md:flex"
       >
-        <ButtonEventNew />
+        <ButtonColored :aria-label="$t('events')" :to="localePath('/event')">
+          {{ $t('events') }}
+          <template slot="prefix">
+            <IconTelescope />
+          </template>
+        </ButtonColored>
         <ButtonColored
           v-if="signedInUsername"
           :aria-label="$t('signOut')"
@@ -84,9 +89,9 @@ export default defineComponent({
     this.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
   },
   methods: {
-    navigateToEvents() {
+    navigateToSearch() {
       this.$router.push({
-        path: this.localePath(`/event`),
+        path: this.localePath(`/task/search`),
         query: { q: 'search phrase' },
       })
     },

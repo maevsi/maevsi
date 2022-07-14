@@ -1,12 +1,9 @@
 <template>
   <div>
-    <Breadcrumbs>
-      {{ $t('events') }}
-    </Breadcrumbs>
-    <h1>
-      {{ title }}
-    </h1>
-    <EventList />
+    <h1>{{ title }}</h1>
+    <CardStateInfo>
+      {{ $t('filterSoon') }}
+    </CardStateInfo>
   </div>
 </template>
 
@@ -20,8 +17,7 @@ export default defineComponent({
   },
   data() {
     return {
-      graphqlError: undefined as Error | undefined,
-      title: this.$t('title') as string,
+      title: this.$t('title'),
     }
   },
   head() {
@@ -50,23 +46,14 @@ export default defineComponent({
       title,
     }
   },
-  computed: {
-    signedIn(): boolean {
-      return (
-        this.$store.getters.jwtDecoded &&
-        this.$store.getters.jwtDecoded.role === 'maevsi_account' &&
-        this.$store.getters.jwtDecoded.exp > Math.floor(Date.now() / 1000)
-      )
-    },
-  },
 })
 </script>
 
 <i18n lang="yml">
 de:
-  events: Veranstaltungen
-  title: Veranstaltungen
+  filterSoon: Es wird bald möglich sein, nach Veranstaltungen oder Nutzern zu suchen.
+  title: Suchergebnisse
 en:
-  events: events
-  title: Events
+  filterSoon: It will soon be possible to search for events or users.
+  title: Search results
 </i18n>
