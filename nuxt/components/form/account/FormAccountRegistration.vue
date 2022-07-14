@@ -106,8 +106,6 @@ const FormAccountRegistration = defineComponent({
       this.$swal({
         icon: 'success',
         text: this.$t('registrationSuccessBody') as string,
-        timer: 3000,
-        timerProgressBar: true,
         title: this.$t('registrationSuccessTitle'),
       })
     },
