@@ -11,10 +11,7 @@
       </CardStateSuccess>
       <ButtonList>
         <ButtonSignIn
-          v-if="
-            $util.getNested($store.getters.jwtDecoded, 'role') ===
-            'maevsi_anonymous'
-          "
+          v-if="$store.getters.jwtDecoded?.role === 'maevsi_anonymous'"
           :is-referring="false"
         />
         <ButtonHome />

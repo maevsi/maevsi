@@ -19,11 +19,8 @@ import { defineComponent } from '#app'
 export default defineComponent({
   name: 'IndexPage',
   middleware({ app, store, redirect, route }: Context): void {
-    if (store.getters.jwtDecoded && store.getters.jwtDecoded.username) {
-      return redirect(
-        route.query.referrer ||
-          app.localePath('/account/' + store.getters.jwtDecoded.username)
-      )
+    if (store.getters.jwtDecoded?.role === 'maevsi_account') {
+      return redirect(route.query.referrer || app.localePath('/dashboard/'))
     }
   },
   transition: {
