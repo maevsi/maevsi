@@ -10,10 +10,7 @@
         </AppLink>
       </template>
     </i18n>
-    <EventList
-      :show-button-event-unlock="$route.params.username !== signedInUsername"
-      :username="$route.params.username"
-    />
+    <EventList :username="$route.params.username" />
   </div>
 </template>
 

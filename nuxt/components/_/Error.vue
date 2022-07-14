@@ -14,7 +14,6 @@
     </p>
     <ButtonList>
       <ButtonSignIn v-if="statusCode === 403" />
-      <ButtonEventUnlock v-if="statusCode === 403" />
       <ButtonHome />
     </ButtonList>
   </div>

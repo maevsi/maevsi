@@ -8,7 +8,6 @@
       <ButtonList>
         <ButtonEventList v-if="showButtonEventList" />
         <ButtonEventNew v-if="showButtonEventNew" />
-        <ButtonEventUnlock v-if="showButtonEventUnlock" />
       </ButtonList>
       <div class="flex gap-4">
         <div class="flex gap-1">
@@ -78,10 +77,6 @@ export default defineComponent({
       default() {
         return this.$route?.name?.replace(/___.+$/, '') !== 'event'
       },
-      type: Boolean,
-    },
-    showButtonEventUnlock: {
-      default: true,
       type: Boolean,
     },
     username: {

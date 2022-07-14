@@ -17,9 +17,6 @@
             <th scope="col">
               {{ $t('contact') }}
             </th>
-            <th class="hidden xl:table-cell" scope="col">
-              {{ $t('invitationCode') }}
-            </th>
             <th />
           </tr>
         </thead>
@@ -36,9 +33,6 @@
                 :contact="invitation.contactByContactId"
                 :feedback="invitation.feedback"
               />
-            </td>
-            <td class="hidden max-w-0 xl:table-cell">
-              {{ invitation.uuid }}
             </td>
             <td class="max-w-0">
               <div
@@ -414,7 +408,6 @@ de:
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   feedback: Zu- & Absagen
   invitationAdd: Einladung hinzufügen
-  invitationCode: Einladungscode
   invitationDelete: Einladung löschen
   invitationLink: Einladungslink kopieren
   invitationSend: Einladung versenden
@@ -434,7 +427,6 @@ en:
   disabledReasonEmailAddressNone: This contact is missing an email address.
   feedback: Feedback
   invitationAdd: Add invitation
-  invitationCode: Invitation code
   invitationDelete: Delete invitation
   invitationLink: Copy invitation link
   invitationSend: Send invitation
