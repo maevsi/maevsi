@@ -10,7 +10,7 @@
         { name: $route.params.username, to: '..', append: true },
       ]"
     >
-      {{ $route.params.event_name }}
+      {{ event.name }}
     </Breadcrumbs>
     <CardStateInfo
       v-if="$route.query.ic && contact"
