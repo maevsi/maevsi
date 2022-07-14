@@ -149,7 +149,7 @@
       type="datetime-local"
       :value="$v.form.end"
       @input="form.end = $event"
-      @click="$v.form.end.$model = undefined"
+      @delete="$v.form.end.$model = undefined"
     >
       <Datetime
         v-model="$v.form.end.$model"

@@ -76,7 +76,7 @@
         <span
           v-if="$slots.icon"
           class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500"
-          @click="$emit('click')"
+          @click="$emit('delete')"
         >
           <slot name="icon" />
         </span>
