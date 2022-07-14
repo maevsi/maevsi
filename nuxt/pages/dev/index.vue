@@ -47,6 +47,7 @@
 </template>
 
 <script lang="ts">
+import { mapGetters } from 'vuex'
 import { defineComponent } from '#app'
 
 export default defineComponent({
@@ -86,6 +87,7 @@ export default defineComponent({
     }
   },
   computed: {
+    ...mapGetters(['jwtDecoded']),
     sessionExpiryTime(): string {
       return this.$moment(
         this.$util.getNested(this.$store.getters.jwtDecoded, 'exp'),
