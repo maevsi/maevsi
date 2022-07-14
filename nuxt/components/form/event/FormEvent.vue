@@ -129,11 +129,13 @@
     >
       <Datetime
         v-model="$v.form.start.$model"
+        :format="DateTime.DATETIME_SHORT"
         input-class="form-input"
         input-id="input-start"
         :max-datetime="$v.form.end.$model"
         :minute-step="5"
         type="datetime"
+        :use12-hour="$i18n.locale === 'en'"
       />
       <template slot="stateWarning">
         <FormInputStateWarning
@@ -153,6 +155,7 @@
     >
       <Datetime
         v-model="$v.form.end.$model"
+        :format="DateTime.DATETIME_SHORT"
         :input-class="[
           'form-input',
           ...(!!$v.form.end.$model ? ['rounded-r-none'] : []),
@@ -161,6 +164,7 @@
         :min-datetime="$v.form.start.$model"
         :minute-step="5"
         type="datetime"
+        :use12-hour="$i18n.locale === 'en'"
       />
       <template v-if="!!$v.form.end.$model" slot="icon">
         <IconX />
@@ -259,6 +263,7 @@
 <script lang="ts">
 import consola from 'consola'
 import { Datetime } from 'vue-datetime'
+import { DateTime, Settings } from 'luxon'
 import {
   maxLength,
   maxValue,
@@ -284,6 +289,7 @@ export default defineComponent({
   },
   data() {
     return {
+      DateTime,
       form: {
         sent: false,
         id: undefined as string | undefined,
@@ -314,6 +320,8 @@ export default defineComponent({
         ;(this.form as Record<string, any>)[k] = v
       }
     }
+
+    Settings.defaultLocale = this.$i18n.locale
   },
   methods: {
     async submit() {
