@@ -161,7 +161,7 @@
         code block
       </Button> -->
     </div>
-    <EditorContent class="form-input" :editor="editor" />
+    <EditorContent :editor="editor" />
   </div>
 </template>
 
@@ -209,6 +209,11 @@ export default defineComponent({
   mounted() {
     this.editor = new Editor({
       content: this.value,
+      editorProps: {
+        attributes: {
+          class: 'form-input',
+        },
+      },
       extensions: [StarterKit, Link],
       onUpdate: () => {
         if (!this.editor) return
