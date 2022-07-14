@@ -141,7 +141,7 @@ export default defineComponent({
   name: 'IndexPage',
   middleware({ app, store, redirect }: Context): void {
     if (store.getters.jwtDecoded?.username) {
-      return redirect(app.localePath('/event/'))
+      return redirect(app.localePath('/dashboard'))
     }
   },
   transition: {

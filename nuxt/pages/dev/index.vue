@@ -6,7 +6,7 @@
     <h1>
       {{ title }}
     </h1>
-    <div class="flex flex-col gap-4">
+    <section class="flex flex-col gap-4">
       <p v-if="sessionExpiryTime !== 'Invalid date'">
         {{ $t('sessionExpiry', { exp: sessionExpiryTime }) }}
       </p>
@@ -22,7 +22,27 @@
           <IconSignOut />
         </template>
       </ButtonColored>
-    </div>
+    </section>
+    <section class="flex flex-col gap-4">
+      <h2>{{ $t('codes') }}</h2>
+      <div v-if="jwtDecoded && jwtDecoded.invitations">
+        <p>
+          {{ $t('codesEntered') }}
+        </p>
+        <ul class="list-disc">
+          <li
+            v-for="invitationCode in jwtDecoded.invitations"
+            :key="invitationCode"
+          >
+            {{ invitationCode }}
+          </li>
+        </ul>
+      </div>
+      <p v-else>
+        {{ $t('codesEnteredNone') }}
+      </p>
+      <ButtonEventUnlock />
+    </section>
   </div>
 </template>
 
@@ -83,12 +103,18 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
+  codes: Einladungscodes
+  codesEntered: 'Du hast die folgenden Codes eingegeben:'
+  codesEnteredNone: Du hast bisher keine Codes eingegeben 😕
   session: Sitzung
   sessionExit: Diese Sitzung beenden
   sessionExpired: Deine Sitzung ist abgelaufen.
   sessionExpiry: Deine Sitzung läuft am {exp} ab.
   title: Sitzung
 en:
+  codes: Invitation codes
+  codesEntered: 'You entered the following codes:'
+  codesEnteredNone: You have no codes entered yet 😕
   session: session
   sessionExit: Exit this session
   sessionExpired: Your session expired.

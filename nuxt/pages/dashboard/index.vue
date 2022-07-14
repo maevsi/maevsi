@@ -6,32 +6,49 @@
     <h1>
       {{ title }}
     </h1>
-    <section class="flex flex-col gap-4">
-      <h2>{{ $t('invitationCodes') }}</h2>
-      <div v-if="jwtDecoded && jwtDecoded.invitations">
-        <p>
-          {{ $t('codesEntered') }}
-        </p>
-        <ul class="list-disc">
-          <li
-            v-for="invitationCode in jwtDecoded.invitations"
-            :key="invitationCode"
-          >
-            {{ invitationCode }}
-          </li>
-        </ul>
+    <div class="flex flex-col gap-4">
+      <ButtonList>
+        <ButtonColored
+          :aria-label="$t('contactBook')"
+          :to="localePath('/contact')"
+        >
+          {{ $t('contactBook') }}
+          <template slot="prefix">
+            <IconAddressBook />
+          </template>
+        </ButtonColored>
+        <ButtonColored :aria-label="$t('gallery')" :to="localePath('/upload')">
+          {{ $t('gallery') }}
+          <template slot="prefix">
+            <IconImages />
+          </template>
+        </ButtonColored>
+      </ButtonList>
+      <div class="flex gap-4">
+        <section class="lg:w-1/2">
+          <h2>{{ $t('eventsMine') }}</h2>
+          <CardStateInfo>
+            {{ $t('eventsMineDescription') }}
+          </CardStateInfo>
+        </section>
+        <section class="lg:w-1/2">
+          <h2>{{ $t('invitationsMine') }}</h2>
+          <CardStateInfo>
+            {{ $t('invitationsMineDescription') }}
+          </CardStateInfo>
+        </section>
       </div>
-      <p v-else>
-        {{ $t('codesEnteredNone') }}
-      </p>
-      <ButtonEventUnlock />
-    </section>
+      <section>
+        <h2>{{ $t('news') }}</h2>
+        <CardStateInfo>
+          {{ $t('newsDescription') }}
+        </CardStateInfo>
+      </section>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
-
 import { defineComponent } from '#app'
 
 export default defineComponent({
@@ -70,34 +87,34 @@ export default defineComponent({
       title,
     }
   },
-  computed: {
-    ...mapGetters(['jwtDecoded']),
-    sessionExpiryTime(): string {
-      return this.$moment(
-        this.$util.getNested(this.$store.getters.jwtDecoded, 'exp'),
-        'X'
-      ).format('llll')
-    },
-  },
-  methods: {
-    onSessionExitClick() {
-      this.$util.signOut(this.$apollo.getClient(), this.$store)
-    },
-  },
 })
 </script>
 
 <i18n lang="yml">
 de:
-  codesEntered: 'Du hast die folgenden Codes eingegeben:'
-  codesEnteredNone: Du hast bisher keine Codes eingegeben 😕
+  contactBook: Kontaktbuch
   dashboard: Dashboard
-  invitationCodes: Einladungscodes
+  events: Alle Veranstaltungen
+  eventsMine: Meine Veranstaltungen
+  eventsMineDescription: Hier wirst du bald deine Veranstaltungen sehen.
+  gallery: Bildergalerie
+  invitationsMine: Meine Einladungen
+  invitationsMineDescription: Hier wirst du bald die Veranstaltungen sehen, zu denen du eingeladen bist.
+  news: Ereignisverlauf
+  newsDescription: Hier wirst du bald alle für dich relevanten Neuigkeiten sehen.
+  profile: Profil
   title: Dashboard
 en:
-  codesEntered: 'You entered the following codes:'
-  codesEnteredNone: You have no codes entered yet 😕
+  contactBook: Contact book
   dashboard: dashboard
-  invitationCodes: Invitation codes
+  events: All events
+  eventsMine: My events
+  eventsMineDescription: Here you will soon see your events.
+  gallery: Image gallery
+  invitationsMine: My invitations
+  invitationsMineDescription: Here you will soon see the events to which you are invited.
+  news: Recent changes history
+  newsDescription: Here you will soon see all the news relevant to you.
+  profile: Profile
   title: Dashboard
 </i18n>
