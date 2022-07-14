@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <FormEvent />
+    <FormAccountPasswordResetRequest />
   </div>
 </template>
 
@@ -10,19 +10,6 @@ import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, store, redirect, route }) {
-    if (
-      store.getters.jwtDecoded &&
-      store.getters.jwtDecoded.role !== 'maevsi_account'
-    ) {
-      return redirect(
-        app.localePath({
-          path: '/task/account/sign-in',
-          query: { referrer: route.fullPath },
-        })
-      )
-    }
-  },
   transition: {
     name: 'layout',
   },
@@ -62,7 +49,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  title: Veranstaltung erstellen
+  title: Passwort zurücksetzen
 en:
-  title: Create event
+  title: Reset password
 </i18n>

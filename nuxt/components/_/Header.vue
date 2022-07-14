@@ -60,7 +60,7 @@
           v-else
           :aria-label="$t('signIn')"
           :is-primary="false"
-          :to="localePath('/account')"
+          :to="localePath('/task/account/sign-in')"
         >
           {{ $t('signIn') }}
         </ButtonColored>

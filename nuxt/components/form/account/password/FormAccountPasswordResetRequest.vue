@@ -11,6 +11,7 @@
       id="email-address-password-reset-request"
       :form-input="$v.form.emailAddress"
       is-required
+      :title="$t('emailAddressYours')"
       @input="form.emailAddress = $event"
     />
   </Form>
@@ -112,14 +113,16 @@ export type FormAccountPasswordResetRequestType = InstanceType<
 
 <i18n lang="yml">
 de:
-  accountPasswordResetRequest: Passwort zurücksetzen
+  accountPasswordResetRequest: E-Mail senden
   accountPasswordResetRequestSuccess: Vergib ein neues Password über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.
+  emailAddressYours: Deine E-Mail-Adresse
   postgres55000: Die E-Mail-Adresse ist noch nicht verifiziert!
   postgresP0002: Es gibt keinen Account mit dieser E-Mail-Adresse! Überprüfe deine Eingaben auf Schreibfehler.
   requestAccepted: Anfrage angenommen!
 en:
-  accountPasswordResetRequest: Reset password
+  accountPasswordResetRequest: Send email
   accountPasswordResetRequestSuccess: "Set a new password using the link that you can find in the email that you'll receive shortly."
+  emailAddressYours: Yeine email address
   postgres55000: The email address is not yet verified!
   postgresP0002: There is no account with this email address! Check your input for spelling mistakes.
   requestAccepted: Request accepted!

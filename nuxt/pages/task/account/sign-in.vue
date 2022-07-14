@@ -1,25 +1,28 @@
 <template>
   <div>
+    <CardStateInfo
+      v-if="$route.query.referrer && !$route.query.isRedirectNoticeHidden"
+    >
+      {{ $t('accountRequired') }}
+    </CardStateInfo>
     <h1>{{ title }}</h1>
-    <FormEvent />
+    <div class="flex justify-center">
+      <FormAccountSignIn class="max-w-lg grow" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import { Context } from '@nuxt/types-edge'
 import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, store, redirect, route }) {
-    if (
-      store.getters.jwtDecoded &&
-      store.getters.jwtDecoded.role !== 'maevsi_account'
-    ) {
+  middleware({ app, store, redirect, route }: Context): void {
+    if (store.getters.jwtDecoded && store.getters.jwtDecoded.username) {
       return redirect(
-        app.localePath({
-          path: '/task/account/sign-in',
-          query: { referrer: route.fullPath },
-        })
+        route.query.referrer ||
+          app.localePath('/account/' + store.getters.jwtDecoded.username)
       )
     }
   },
@@ -62,7 +65,9 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  title: Veranstaltung erstellen
+  accountRequired: Melde dich an, um fortzufahren.
+  title: Anmelden
 en:
-  title: Create event
+  accountRequired: Sign in to continue.
+  title: Sign in
 </i18n>

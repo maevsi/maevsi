@@ -84,7 +84,7 @@
             :to="
               signedInUsername
                 ? localePath('/task/event/create')
-                : localePath('/account')
+                : localePath('/task/account/sign-in')
             "
             @click.native="$emit('onMenuHide')"
           >
