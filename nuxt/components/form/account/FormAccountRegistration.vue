@@ -151,7 +151,7 @@ de:
   postgres23505: Es gibt bereits einen Account mit diesem Nutzernamen oder dieser E-Mail-Adresse! Überlege dir einen neuen Namen oder versuche dich anzumelden.
   register: Registrieren
   registrationSuccessBody: Verifiziere deinen Account über den Link in der E-Mail, die du in Kürze erhalten wirst.
-  registrationSuccessTitle: Registrierung erfolgreich.
+  registrationSuccessTitle: Verifizierungs-E-Mail gesendet.
   signIn: Oder stattdessen anmelden
 en:
   accountDeletionNotice: "You'll be able to delete your account at any time."
@@ -160,6 +160,6 @@ en:
   postgres23505: There is already an account with this username or email address! Think of a new name or try signing in.
   register: Register
   registrationSuccessBody: "Verify your account using the link in the email you'll receive shortly."
-  registrationSuccessTitle: Registration successful.
+  registrationSuccessTitle: Verification email sent.
   signIn: Or sign in instead
 </i18n>

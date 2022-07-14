@@ -190,5 +190,5 @@ en:
   sent: Sent!
   signIn: Sign in
   username: Username
-  verificationMailResend: Resend verification mail
+  verificationMailResend: Resend verification email
 </i18n>
