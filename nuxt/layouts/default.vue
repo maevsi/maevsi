@@ -2,7 +2,7 @@
   <div>
     <Header @onMenuShow="menuShow" />
     <div class="flex">
-      <div v-if="signedInUsername" class="hidden md:block">
+      <div v-if="signedInUsername" class="hidden md:flex">
         <Menu />
       </div>
       <main
@@ -18,7 +18,7 @@
       @click="menuHide()"
     />
     <div
-      class="fixed bottom-0 left-0 top-0 z-10 transform-gpu overflow-auto transition-transform duration-500 md:hidden"
+      class="fixed bottom-0 left-0 top-0 z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 md:hidden"
       :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >
       <Menu v-if="isMenuItemsVisible" is-closable @onMenuHide="menuHide" />
