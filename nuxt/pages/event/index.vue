@@ -1,5 +1,8 @@
 <template>
   <div>
+    <CardStateInfo v-if="$route.query.q">
+      {{ $t('filterSoon') }}
+    </CardStateInfo>
     <Breadcrumbs>
       {{ $t('events') }}
     </Breadcrumbs>
@@ -65,8 +68,10 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   events: Veranstaltungen
+  filterSoon: Es wird bald möglich sein, Veranstaltungen zu filtern.
   title: Veranstaltungen
 en:
   events: events
+  filterSoon: It will soon be possible to filter events.
   title: Events
 </i18n>
