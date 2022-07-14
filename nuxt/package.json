@@ -34,6 +34,7 @@
     "*.{css,vue}": "stylelint"
   },
   "dependencies": {
+    "@dargmuesli/nuxt-clipboard2": "0.2.2",
     "@dargmuesli/nuxt-cookie-control": "1.9.9",
     "@http-util/status-i18n": "0.6.2",
     "@nuxt/types-edge": "2.16.0-27616340.013f051b",
@@ -69,7 +70,6 @@
     "luxon": "1.28.0",
     "mustache": "4.2.0",
     "node-fetch": "3.2.8",
-    "nuxt-clipboard2": "0.2.1",
     "nuxt-edge": "2.16.0-27616340.013f051b",
     "nuxt-helmet": "3.0.0",
     "pg": "8.7.3",
@@ -84,7 +84,8 @@
     "vue-qrcode-reader": "3.1.0",
     "vue-sweetalert2": "5.0.5",
     "vuelidate": "0.7.7",
-    "weekstart": "1.1.0"
+    "weekstart": "1.1.0",
+    "vuex": "3.6.2"
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "7.18.6",
@@ -153,9 +154,6 @@
     "typescript": "4.7.4",
     "vue": "2.7.5",
     "webpack": "4.46.0"
-  },
-  "resolutions": {
-    "vue-clipboard2": "0.3.3"
   },
   "msw": {
     "workerDirectory": "static"

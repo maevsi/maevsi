@@ -315,7 +315,7 @@ export default defineNuxtConfig({
         },
       },
     ], // Should be declared at the start of the array.
-    'nuxt-clipboard2',
+    '@dargmuesli/nuxt-clipboard2',
     [
       '@dargmuesli/nuxt-cookie-control',
       {
