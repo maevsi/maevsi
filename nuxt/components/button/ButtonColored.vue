@@ -9,7 +9,7 @@
                 'border-transparent bg-gray-800 text-text-bright hover:bg-black dark:bg-gray-100 dark:text-text-dark dark:hover:bg-gray-200',
               ]
             : [
-                'border-gray-300 bg-background-bright text-text-dark hover:bg-gray-200 dark:border-gray-600 dark:bg-background-dark dark:text-text-bright dark:hover:bg-black',
+                'border-gray-300 text-text-dark hover:bg-black/5 dark:border-gray-600 dark:text-text-bright dark:hover:bg-black/30',
               ]),
           ...(isBlock ? ['block'] : ['inline-block']),
           ...(buttonClass ? [buttonClass] : []),
