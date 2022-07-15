@@ -36,12 +36,13 @@ FROM node:16.16.0-slim@sha256:67ac68a9452c8e174d508babe0e99e0580a6c73ba8b1998cf2
 
 WORKDIR /srv/app/
 
-COPY ./nuxt/package.json ./nuxt/yarn.lock ./
+COPY ./nuxt/package.json ./nuxt/pnpm-lock.yaml ./
 
-RUN yarn install --frozen-lockfile
+RUN corepack enable && \
+    pnpm install
 
 COPY ./nuxt/ ./
-RUN yarn nuxi prepare
+RUN pnpm nuxi prepare
 
 
 ########################
@@ -56,7 +57,8 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
-RUN yarn install --frozen-lockfile
+RUN corepack enable && \
+    pnpm install
 
 
 ########################
@@ -76,7 +78,8 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
-RUN yarn run build
+RUN corepack enable && \
+    pnpm run build
 
 
 ########################
@@ -90,7 +93,8 @@ WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
-RUN yarn run lint
+RUN corepack enable && \
+    pnpm run lint
 
 
 ########################
@@ -104,7 +108,8 @@ WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
-RUN yarn run test:code
+RUN corepack enable && \
+    pnpm run test:code
 
 
 ########################
@@ -126,7 +131,8 @@ WORKDIR /srv/app/
 
 COPY --from=build /srv/app/ ./
 
-RUN WAIT_ON_TIMEOUT=6000 yarn start-server-and-test 'yarn start' 3000 'wget http://0.0.0.0:3000/'
+RUN corepack enable && \
+    WAIT_ON_TIMEOUT=6000 pnpm start-server-and-test 'pnpm start' 3000 'wget http://0.0.0.0:3000/'
 
 
 ########################
@@ -150,7 +156,8 @@ WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
-RUN yarn run test:visual
+RUN corepack enable && \
+    pnpm run test:visual
 
 
 ########################
@@ -174,7 +181,7 @@ RUN apt-get update \
 
 WORKDIR /srv/app/
 
-CMD ["yarn", "run", "storycap"]
+CMD ["pnpm", "run", "storycap"]
 
 
 #######################

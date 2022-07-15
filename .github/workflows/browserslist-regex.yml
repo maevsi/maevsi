@@ -11,7 +11,7 @@ jobs:
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
-      CACHE_PATH: nuxt/yarn.lock
+      CACHE_PATH: nuxt/pnpm-lock.yaml
       DIRECTORY: nuxt/
       NODE_VERSION: 16
       OUTPUT_PATH: supportedBrowsers.js

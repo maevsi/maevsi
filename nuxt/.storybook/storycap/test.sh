@@ -5,14 +5,14 @@ set -e
 THIS=$(dirname "$(readlink -f "$0")")
 
 rm -rf "$THIS"/working-directory/actual/*
-yarn storycap:actual
+pnpm run storycap:actual
 rm -rf "$THIS"/working-directory/expected/*
 mkdir -p "$THIS"/working-directory/expected
 cp -r "$THIS"/images/expected/* "$THIS"/working-directory/expected
-yarn reg-suit compare
+pnpm reg-suit compare
 
 if [ "$CI" = "true" ]; then
-  yarn reg-suit publish -n
+  pnpm reg-suit publish -n
 fi
 
 result=$(cat "$THIS"/working-directory/out.json)
