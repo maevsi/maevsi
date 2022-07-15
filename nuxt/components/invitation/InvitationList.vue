@@ -293,6 +293,7 @@ export default defineComponent({
                 size: 16,
               },
             },
+            onClick: null,
           },
         },
       },
