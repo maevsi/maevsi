@@ -407,7 +407,7 @@ de:
   copied: Kopiert
   copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
-  feedback: Zu- & Absagen
+  feedback: Rückmeldungen
   invitationAdd: Einladung hinzufügen
   invitationDelete: Einladung löschen
   invitationLink: Einladungslink kopieren
