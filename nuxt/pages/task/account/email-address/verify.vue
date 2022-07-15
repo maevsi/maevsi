@@ -5,18 +5,6 @@
       v-if="loading || graphqlError"
       :errors="$util.getGqlErrorMessages(graphqlError, this)"
     />
-    <div v-else>
-      <CardStateSuccess>
-        {{ $t('emailAddressVerificationSuccess') }}
-      </CardStateSuccess>
-      <ButtonList>
-        <ButtonSignIn
-          v-if="$store.getters.jwtDecoded?.role === 'maevsi_anonymous'"
-          :is-referring="false"
-        />
-        <ButtonHome />
-      </ButtonList>
-    </div>
   </div>
 </template>
 
@@ -82,6 +70,16 @@ export default defineComponent({
             code: this.$route.query.code,
           },
         })
+        .then(() => {
+          this.$swal({
+            icon: 'success',
+            text: this.$t('verifiedBody') as string,
+            title: this.$t('verified'),
+          })
+          this.$router.push({
+            path: this.localePath(`/task/account/sign-in`),
+          })
+        })
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)
@@ -100,9 +98,13 @@ de:
   postgres55000: Der Verifizierungscode ist abgelaufen!
   postgresP0002: Unbekannter Verifizierungscode! Hast du deine E-Mail-Adresse vielleicht schon verifiziert?
   title: Verifizierung
+  verified: E-Mail-Adresse verifiziert.
+  verifiedBody: Du kannst dich nun anmelden.
 en:
   emailAddressVerificationSuccess: Email address verified successfully.
   postgres55000: The verification code has expired!
   postgresP0002: Unknown verification code! Have you perhaps already verified your email address?
   title: Verification
+  verified: Email address verified.
+  verifiedBody: You may sign in now.
 </i18n>
