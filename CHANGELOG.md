@@ -1,3 +1,40 @@
+# [0.136.0](https://github.com/maevsi/maevsi/compare/0.135.1...0.136.0) (2022-07-15)
+
+
+### Bug Fixes
+
+* **button-colored:** improve secondary background colors ([3a01aed](https://github.com/maevsi/maevsi/commit/3a01aed1a2a1c551636c0b6580c78d2b7820fc81))
+* **chart:** disable label click ([a65db41](https://github.com/maevsi/maevsi/commit/a65db41939293f3c7eed61867a4a3a8a40984551))
+* **dev:** add missing store variable ([e9553e7](https://github.com/maevsi/maevsi/commit/e9553e75fea33fbac036a7a5d79638be7417db9a))
+* **event:** show name instead of slug in breadcrumbs ([285c493](https://github.com/maevsi/maevsi/commit/285c49330ad76d656f4c7f4247399f14c18515be))
+* **form-event:** i18n datetimes ([690b323](https://github.com/maevsi/maevsi/commit/690b3239d340db0a1d4dcc5a0eb9eb5d8c929ee9))
+* **form-invitation:** search for lowercase usernames ([3b2f0b7](https://github.com/maevsi/maevsi/commit/3b2f0b7c732806105d12e57c8b309dd52912cecc))
+* **icon-link:** use hero icon ([15f7b91](https://github.com/maevsi/maevsi/commit/15f7b9120dc307244187f7ffc354e05746179627))
+* **invitation-list:** correct i18n ([804aae0](https://github.com/maevsi/maevsi/commit/804aae0faad6fd1129e8204e71af9c0fab2ad2dc))
+* **menu:** correct background sizing ([4a874bc](https://github.com/maevsi/maevsi/commit/4a874bcca49d243e98a2ceb40638cd7d53b8754c))
+* **pages:** correct middleware redirects ([c0a5263](https://github.com/maevsi/maevsi/commit/c0a5263ab105467501c39da33b64050f67985b98))
+* **tip-tap:** correct class usage ([2989aef](https://github.com/maevsi/maevsi/commit/2989aef7135ff6e6e835a7d314d4b2354c22d04f))
+
+
+### Features
+
+* **account:** migrate to tasks ([57a5f14](https://github.com/maevsi/maevsi/commit/57a5f14c9eead924088b5523c252b024a456fbac))
+* **contact:** improve address placeholder ([e651eeb](https://github.com/maevsi/maevsi/commit/e651eeba677295199bfe082024e3ccaf2d3dafc9))
+* **dashboard:** add content ([abbf720](https://github.com/maevsi/maevsi/commit/abbf7207300487ae1f0ec96073d6cec2044d6f2e))
+* **event:** move edit button to last ([23dfbaa](https://github.com/maevsi/maevsi/commit/23dfbaabf23398f3ff210876b571d9542be93bb9))
+* **form-account-password-change:** remove confirmation ([e30f895](https://github.com/maevsi/maevsi/commit/e30f8958f91aded48c30dff7f1cc2ff60ef0d75b))
+* **form-account:** improve i18n ([f107cce](https://github.com/maevsi/maevsi/commit/f107cce46ff9eb4d2395018279b37949865d4411))
+* **form-account:** remove modal timers where unwanted ([ce35871](https://github.com/maevsi/maevsi/commit/ce3587129b18d2c7e85b1d86d9c71b45dded0932))
+* **form-event:** improve modality ([fb751a6](https://github.com/maevsi/maevsi/commit/fb751a667ae242929a9f698009f856fa6f94be4a))
+* **form-input-password:** make password viewable ([43c7ef7](https://github.com/maevsi/maevsi/commit/43c7ef7821bdc0fe652ceb6e80cff55f557ea761))
+* **form-input:** improve labels ([29e7643](https://github.com/maevsi/maevsi/commit/29e7643c43c0ea429e8dd6a391f4f0e83ac2ec6e))
+* **header:** add search bar ([0428750](https://github.com/maevsi/maevsi/commit/042875064487f777236347b40a9fe177065614e2))
+* rework navigation ([08038bc](https://github.com/maevsi/maevsi/commit/08038bcff2e700d240f2545c70523ad03f97bab9))
+* **search:** add task ([b32a39f](https://github.com/maevsi/maevsi/commit/b32a39f48794d2c2f693295f60b4e9ebe9b5f9ce))
+* **twemoji:** use svg instead ([8162082](https://github.com/maevsi/maevsi/commit/816208219fd334ced490dc561ec834009e6459d6))
+* **unlock:** remove interaction ([030c6ff](https://github.com/maevsi/maevsi/commit/030c6ffa40b88aefbb41637c119465ed1ca33d0d))
+* **verify:** redirect to sign in on success ([9475f34](https://github.com/maevsi/maevsi/commit/9475f34fbd506541351f465c1658294a8b44862b))
+
 ## [0.135.1](https://github.com/maevsi/maevsi/compare/0.135.0...0.135.1) (2022-07-13)
 
 
