@@ -5043,10 +5043,10 @@
   resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.2.tgz#b74129719fc8d11c01868010082d483b7545591a"
   integrity sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==
 
-"@types/luxon@1.15.2":
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.15.2.tgz#528f11f7d6dc08cec0445d4bea8065a5bb6989b2"
-  integrity sha512-zHPoyVrLvNaiMRYdhmh88Rn489ZgAgbc6iLxR5Yi0VCNfeNYHcszbhJV2vDHLNrVGy35BPtWBRn4OP2F9BBvFw==
+"@types/luxon@1.27.1":
+  version "1.27.1"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.27.1.tgz#aceeb2d5be8fccf541237e184e37ecff5faa9096"
+  integrity sha512-cPiXpOvPFDr2edMnOXlz3UBDApwUfR+cpizvxCy0n3vp9bz/qe8BWzHPIEFcy+ogUOyjKuCISgyq77ELZPmkkg==
 
 "@types/markdown-to-jsx@^6.11.3":
   version "6.11.3"
