@@ -1,3 +1,10 @@
+## [0.137.1](https://github.com/maevsi/maevsi/compare/0.137.0...0.137.1) (2022-07-15)
+
+
+### Bug Fixes
+
+* **docker:** correct entrypoint ([903a582](https://github.com/maevsi/maevsi/commit/903a582f73ca86fad060a5257a1ed830340d4180))
+
 # [0.137.0](https://github.com/maevsi/maevsi/compare/0.136.0...0.137.0) (2022-07-15)
 
 
