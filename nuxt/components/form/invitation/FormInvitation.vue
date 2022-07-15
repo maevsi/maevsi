@@ -144,7 +144,9 @@ export default defineComponent({
       const allContactsFiltered = this.allContacts.nodes.filter(
         (contact: Contact) => {
           for (const contactProperty of [
-            ...(contact.accountUsername ? [contact.accountUsername] : []),
+            ...(contact.accountUsername
+              ? [contact.accountUsername.toLowerCase()]
+              : []),
             ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
             ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
           ]) {
