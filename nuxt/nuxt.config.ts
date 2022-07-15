@@ -315,7 +315,7 @@ export default defineNuxtConfig({
         },
       },
     ], // Should be declared at the start of the array.
-    'nuxt-clipboard2',
+    '@dargmuesli/nuxt-clipboard2',
     [
       '@dargmuesli/nuxt-cookie-control',
       {
@@ -424,7 +424,6 @@ export default defineNuxtConfig({
           'blob:',
           'data:',
           `https://*.${STACK_DOMAIN}`,
-          'https://twemoji.maxcdn.com',
           'https://www.google-analytics.com',
           'https://www.gravatar.com/avatar/',
           "'self'",

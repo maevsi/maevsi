@@ -30,22 +30,13 @@
         updateSlug()
       "
     >
-      <template slot="stateInfo">
-        <FormInputStateInfo>
-          {{
-            $t('slugInfo', {
-              slug: $v.form.slug.$model || $t('slugPlaceholder'),
-            })
-          }}
-        </FormInputStateInfo>
-      </template>
       <template slot="stateError">
         <FormInputStateError
           :form-input="$v.form.slug"
           is-validation-live
           validation-property="existenceNone"
         >
-          {{ $t('globalValidationExistenceNone') }}
+          {{ $t('validationExistenceNone', { slug: $v.form.slug.$model }) }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="$v.form.name"
@@ -119,6 +110,29 @@
       </template>
     </FormInput>
     <FormInput
+      v-if="form.visibility === 'PUBLIC'"
+      id-label="input-invitee-count-maximum"
+      :title="$t('maximumInviteeCount')"
+      type="number"
+      :value="$v.form.inviteeCountMaximum"
+      @input="form.inviteeCountMaximum = $event"
+    >
+      <template slot="stateError">
+        <FormInputStateError
+          :form-input="$v.form.inviteeCountMaximum"
+          validation-property="maxValue"
+        >
+          {{ $t('globalValidationMaxValue') }}
+        </FormInputStateError>
+        <FormInputStateError
+          :form-input="$v.form.inviteeCountMaximum"
+          validation-property="minValue"
+        >
+          {{ $t('globalValidationMinValue') }}
+        </FormInputStateError>
+      </template>
+    </FormInput>
+    <FormInput
       id-label="input-start"
       is-required
       :title="$t('start')"
@@ -129,11 +143,13 @@
     >
       <Datetime
         v-model="$v.form.start.$model"
+        :format="DateTime.DATETIME_SHORT"
         input-class="form-input"
         input-id="input-start"
         :max-datetime="$v.form.end.$model"
         :minute-step="5"
         type="datetime"
+        :use12-hour="$i18n.locale === 'en'"
       />
       <template slot="stateWarning">
         <FormInputStateWarning
@@ -149,10 +165,11 @@
       type="datetime-local"
       :value="$v.form.end"
       @input="form.end = $event"
-      @click="$v.form.end.$model = undefined"
+      @icon="$v.form.end.$model = undefined"
     >
       <Datetime
         v-model="$v.form.end.$model"
+        :format="DateTime.DATETIME_SHORT"
         :input-class="[
           'form-input',
           ...(!!$v.form.end.$model ? ['rounded-r-none'] : []),
@@ -161,6 +178,7 @@
         :min-datetime="$v.form.start.$model"
         :minute-step="5"
         type="datetime"
+        :use12-hour="$i18n.locale === 'en'"
       />
       <template v-if="!!$v.form.end.$model" slot="icon">
         <IconX />
@@ -189,7 +207,7 @@
     <FormInput
       v-if="form.isInPerson"
       id-label="input-location"
-      :placeholder="$t('locationPlaceholder')"
+      :placeholder="$t('globalPlaceholderAddress').replace('\n', ' ')"
       :title="$t('location')"
       type="text"
       :value="$v.form.location"
@@ -231,34 +249,13 @@
         </FormInputStateError>
       </template>
     </FormInput>
-    <FormInput
-      id-label="input-invitee-count-maximum"
-      :title="$t('maximumInviteeCount')"
-      type="number"
-      :value="$v.form.inviteeCountMaximum"
-      @input="form.inviteeCountMaximum = $event"
-    >
-      <template slot="stateError">
-        <FormInputStateError
-          :form-input="$v.form.inviteeCountMaximum"
-          validation-property="maxValue"
-        >
-          {{ $t('globalValidationMaxValue') }}
-        </FormInputStateError>
-        <FormInputStateError
-          :form-input="$v.form.inviteeCountMaximum"
-          validation-property="minValue"
-        >
-          {{ $t('globalValidationMinValue') }}
-        </FormInputStateError>
-      </template>
-    </FormInput>
   </Form>
 </template>
 
 <script lang="ts">
 import consola from 'consola'
 import { Datetime } from 'vue-datetime'
+import { DateTime, Settings } from 'luxon'
 import {
   maxLength,
   maxValue,
@@ -284,6 +281,7 @@ export default defineComponent({
   },
   data() {
     return {
+      DateTime,
       form: {
         sent: false,
         id: undefined as string | undefined,
@@ -314,6 +312,8 @@ export default defineComponent({
         ;(this.form as Record<string, any>)[k] = v
       }
     }
+
+    Settings.defaultLocale = this.$i18n.locale
   },
   methods: {
     async submit() {
@@ -487,7 +487,6 @@ de:
   stateInfoUrl: Eine Web-URL für digitale Veranstaltungen.
   isInPerson: vor Ort
   isRemote: digital
-  locationPlaceholder: Veranstaltungsstraße 1, 12345 Gaststadt
   maximumInviteeCount: Maximale Gästezahl
   name: Name
   namePlaceholder: Willkommensfeier
@@ -495,10 +494,10 @@ de:
   preview: Vorschau
   previewNoContent: Kein Inhalt für die Vorschau 😕
   slug: Slug
-  slugInfo: Deine Veranstaltung hat die ID '{slug}'.
   slugPlaceholder: willkommensfeier
   start: Beginn
   updated: Aktualisiert
+  validationExistenceNone: Du hast bereits eine Veranstaltung mit der ID "{slug}" angelegt.
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
@@ -515,18 +514,17 @@ en:
   stateInfoUrl: A web URL for remote events.
   isInPerson: in person
   isRemote: remote
-  locationPlaceholder: Eventstreet 1, 12345 Guestcity
-  maximumInviteeCount: Maximum invitee count
+  maximumInviteeCount: Maximum guest count
   name: Name
   namePlaceholder: Welcome Party
   location: Location
   preview: Preview
   previewNoContent: No content to preview 😕
   slug: Slug
-  slugInfo: Your event has the id "{slug}".
   slugPlaceholder: welcome-party
   start: Start
   updated: Updated
+  validationExistenceNone: You've already created an event with id "{slug}".
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public

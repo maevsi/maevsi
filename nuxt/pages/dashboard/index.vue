@@ -1,41 +1,78 @@
 <template>
   <div>
-    <Breadcrumbs>
-      {{ $t('dashboard') }}
-    </Breadcrumbs>
     <h1>
       {{ title }}
     </h1>
-    <section class="flex flex-col gap-4">
-      <h2>{{ $t('invitationCodes') }}</h2>
-      <div v-if="jwtDecoded && jwtDecoded.invitations">
-        <p>
-          {{ $t('codesEntered') }}
-        </p>
-        <ul class="list-disc">
-          <li
-            v-for="invitationCode in jwtDecoded.invitations"
-            :key="invitationCode"
+    <div class="flex flex-col gap-4">
+      <div class="flex gap-4">
+        <section class="lg:w-1/2">
+          <h2>{{ $t('eventsMine') }}</h2>
+          <ButtonColored
+            :aria-label="$t('eventsMine')"
+            :to="localePath(`/event/${signedInUsername}`)"
           >
-            {{ invitationCode }}
-          </li>
-        </ul>
+            {{ $t('eventsMine') }}
+            <template slot="prefix">
+              <IconCalendar />
+            </template>
+          </ButtonColored>
+        </section>
+        <section class="lg:w-1/2">
+          <h2>{{ $t('invitationsMine') }}</h2>
+          <CardStateInfo>
+            {{ $t('invitationsMineDescription') }}
+          </CardStateInfo>
+        </section>
       </div>
-      <p v-else>
-        {{ $t('codesEnteredNone') }}
-      </p>
-      <ButtonEventUnlock />
-    </section>
+      <div class="flex gap-4">
+        <section class="lg:w-1/2">
+          <h2>{{ $t('contactsMine') }}</h2>
+          <ButtonColored
+            :aria-label="$t('contactBook')"
+            :to="localePath('/contact')"
+          >
+            {{ $t('contactBook') }}
+            <template slot="prefix">
+              <IconAddressBook />
+            </template>
+          </ButtonColored>
+        </section>
+        <section class="lg:w-1/2">
+          <h2>{{ $t('uploadsMine') }}</h2>
+          <ButtonColored
+            :aria-label="$t('gallery')"
+            :to="localePath('/upload')"
+          >
+            {{ $t('gallery') }}
+            <template slot="prefix">
+              <IconImages />
+            </template>
+          </ButtonColored>
+        </section>
+      </div>
+      <section>
+        <h2>{{ $t('news') }}</h2>
+        <CardStateInfo>
+          {{ $t('newsDescription') }}
+        </CardStateInfo>
+      </section>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
+import { Context } from '@nuxt/types-edge'
 import { mapGetters } from 'vuex'
 
 import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
+  middleware({ app, store, redirect }: Context): void {
+    if (store.getters.jwtDecoded?.role === 'maevsi_anonymous') {
+      return redirect(app.localePath('/'))
+    }
+  },
   transition: {
     name: 'layout',
   },
@@ -71,33 +108,38 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapGetters(['jwtDecoded']),
-    sessionExpiryTime(): string {
-      return this.$moment(
-        this.$util.getNested(this.$store.getters.jwtDecoded, 'exp'),
-        'X'
-      ).format('llll')
-    },
-  },
-  methods: {
-    onSessionExitClick() {
-      this.$util.signOut(this.$apollo.getClient(), this.$store)
-    },
+    ...mapGetters(['signedInUsername']),
   },
 })
 </script>
 
 <i18n lang="yml">
 de:
-  codesEntered: 'Du hast die folgenden Codes eingegeben:'
-  codesEnteredNone: Du hast bisher keine Codes eingegeben 😕
+  contactBook: Kontaktbuch
+  contactsMine: Meine Kontake
   dashboard: Dashboard
-  invitationCodes: Einladungscodes
+  eventsMine: Meine Veranstaltungen
+  eventsMineDescription: Hier wirst du bald deine Veranstaltungen sehen.
+  gallery: Bildergalerie
+  invitationsMine: Meine Einladungen
+  invitationsMineDescription: Hier wirst du bald die Veranstaltungen sehen, zu denen du eingeladen bist.
+  news: Ereignisverlauf
+  newsDescription: Hier wirst du bald alle für dich relevanten Neuigkeiten sehen.
+  profile: Profil
   title: Dashboard
+  uploadsMine: Meine Uploads
 en:
-  codesEntered: 'You entered the following codes:'
-  codesEnteredNone: You have no codes entered yet 😕
+  contactBook: Contact book
+  contactsMine: My contacts
   dashboard: dashboard
-  invitationCodes: Invitation codes
+  eventsMine: My events
+  eventsMineDescription: Here you will soon see your events.
+  gallery: Image gallery
+  invitationsMine: My invitations
+  invitationsMineDescription: Here you will soon see the events to which you are invited.
+  news: Recent changes
+  newsDescription: Here you will soon see all the news relevant to you.
+  profile: Profile
   title: Dashboard
+  uploadsMine: My uploads
 </i18n>

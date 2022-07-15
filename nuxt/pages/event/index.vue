@@ -1,8 +1,5 @@
 <template>
   <div>
-    <Breadcrumbs>
-      {{ $t('events') }}
-    </Breadcrumbs>
     <h1>
       {{ title }}
     </h1>
@@ -53,9 +50,8 @@ export default defineComponent({
   computed: {
     signedIn(): boolean {
       return (
-        this.$store.getters.jwtDecoded &&
-        this.$store.getters.jwtDecoded.role === 'maevsi_account' &&
-        this.$store.getters.jwtDecoded.exp > Math.floor(Date.now() / 1000)
+        this.$store.getters.jwtDecoded?.role === 'maevsi_account' &&
+        this.$store.getters.jwtDecoded?.exp > Math.floor(Date.now() / 1000)
       )
     },
   },
@@ -64,9 +60,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  events: Veranstaltungen
   title: Veranstaltungen
 en:
-  events: events
   title: Events
 </i18n>

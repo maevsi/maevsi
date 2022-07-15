@@ -11,13 +11,10 @@ import { defineComponent } from '#app'
 export default defineComponent({
   name: 'IndexPage',
   middleware({ app, store, redirect, route }) {
-    if (
-      store.getters.jwtDecoded &&
-      store.getters.jwtDecoded.role !== 'maevsi_account'
-    ) {
+    if (store.getters.jwtDecoded?.role !== 'maevsi_account') {
       return redirect(
         app.localePath({
-          path: '/account',
+          path: '/task/account/sign-in',
           query: { referrer: route.fullPath },
         })
       )

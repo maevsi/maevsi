@@ -1,6 +1,7 @@
 <template>
   <ButtonColored
     :aria-label="$t('new')"
+    :is-primary="false"
     :to="localePath('/task/event/create')"
     @click="$emit('click')"
   >

@@ -19,24 +19,12 @@
       :title="$t('passwordNew')"
       @input="form.passwordNew = $event"
     />
-    <FormInputPassword
-      id="passwordNewConfirmation"
-      :form-input="$v.form.passwordNewConfirmation"
-      :title="$t('passwordNew')"
-      @input="form.passwordNewConfirmation = $event"
-    >
-      <template slot="stateInfo">
-        <FormInputStateInfo>
-          {{ $t('passwordConfirmation') }}
-        </FormInputStateInfo>
-      </template>
-    </FormInputPassword>
   </Form>
 </template>
 
 <script lang="ts">
 import consola from 'consola'
-import { minLength, required, sameAs } from 'vuelidate/lib/validators'
+import { minLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent, ref } from '#app'
 import ACCOUNT_PASSWORD_CHANGE_MUTATION from '~/gql/mutation/account/accountPasswordChange.gql'
@@ -60,7 +48,6 @@ const FormAccountPasswordChange = defineComponent({
       form: {
         passwordCurrent: undefined as string | undefined,
         passwordNew: undefined as string | undefined,
-        passwordNewConfirmation: undefined as string | undefined,
         sent: false,
       },
       graphqlError: undefined as Error | undefined,
@@ -109,10 +96,6 @@ const FormAccountPasswordChange = defineComponent({
           minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
-        passwordNewConfirmation: {
-          required,
-          sameAs: sameAs('passwordNew'),
-        },
       },
     }
   },
@@ -130,18 +113,16 @@ de:
   changed: Geändert!
   passwordChange: Passwort ändern
   passwordChangeSuccess: Passwort erfolgreich geändert.
-  passwordConfirmation: Wiederhole das neue Passwort, um Tippfehler auszuschließen.
   passwordCurrent: Aktuelles Passwort
   passwordNew: Neues Passwort
   postgres22023: Das neue Passwort ist zu kurz! Überlege dir ein längeres.
-  postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
+  postgres28P01: Aktuelles Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
 en:
   changed: Changed!
   passwordChange: Change password
   passwordChangeSuccess: Password changed successfully.
-  passwordConfirmation: Repeat the new password to rule out typos.
   passwordCurrent: Current Password
   passwordNew: New Password
   postgres22023: The new password is too short! Think about a longer one.
-  postgres28P01: Password incorrect! Check that you have written everything correctly.
+  postgres28P01: Current password incorrect! Check that you have written everything correctly.
 </i18n>

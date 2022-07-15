@@ -1,52 +1,58 @@
 <template>
-  <Form
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    :form="$v.form"
-    :form-class="formClass"
-    :form-sent="form.sent"
-    :submit-name="$t('register')"
-    @submit.prevent="submit"
-  >
-    <FormInputUsername
-      id="username-registration"
-      :form-input="$v.form.username"
-      is-validatable
-      is-validation-inverted
-      @input="form.username = $event"
-    />
-    <FormInputPassword
-      id="password-registration"
-      :form-input="$v.form.password"
-      @input="form.password = $event"
-    />
-    <FormInputEmailAddress
-      id="email-address-registration"
-      :form-input="$v.form.emailAddress"
-      is-required
-      @input="form.emailAddress = $event"
-    />
-    <template slot="assistance">
-      <FormInputStateInfo>
-        {{ $t('accountDeletionNotice') }}
-      </FormInputStateInfo>
-    </template>
-  </Form>
+  <div class="flex flex-col items-center gap-4">
+    <ButtonColored
+      :is-primary="false"
+      :aria-label="$t('register')"
+      :to="localePath('/task/account/sign-in')"
+    >
+      {{ $t('signIn') }}
+      <template slot="prefix">
+        <IconArrowRight />
+      </template>
+    </ButtonColored>
+    <Form
+      :errors="$util.getGqlErrorMessages(graphqlError, this)"
+      :form="$v.form"
+      form-class="w-full"
+      :form-sent="form.sent"
+      :submit-name="$t('register')"
+      @submit.prevent="submit"
+    >
+      <FormInputUsername
+        id="username-registration"
+        :form-input="$v.form.username"
+        is-validatable
+        is-validation-inverted
+        @input="form.username = $event"
+      />
+      <FormInputPassword
+        id="password-registration"
+        :form-input="$v.form.password"
+        @input="form.password = $event"
+      />
+      <FormInputEmailAddress
+        id="email-address-registration"
+        :form-input="$v.form.emailAddress"
+        is-required
+        @input="form.emailAddress = $event"
+      />
+      <template slot="assistance">
+        <FormInputStateInfo>
+          {{ $t('accountDeletionNotice') }}
+        </FormInputStateInfo>
+      </template>
+    </Form>
+  </div>
 </template>
 
 <script lang="ts">
 import consola from 'consola'
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent, PropType } from '#app'
+import { defineComponent } from '#app'
 import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
 
 const FormAccountRegistration = defineComponent({
-  props: {
-    formClass: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-  },
   data() {
     return {
       form: {
@@ -100,8 +106,6 @@ const FormAccountRegistration = defineComponent({
       this.$swal({
         icon: 'success',
         text: this.$t('registrationSuccessBody') as string,
-        timer: 3000,
-        timerProgressBar: true,
         title: this.$t('registrationSuccessTitle'),
       })
     },
@@ -141,13 +145,14 @@ export type FormAccountRegistrationType = InstanceType<
 
 <i18n lang="yml">
 de:
-  accountDeletionNotice: Du wirst deinen Account jederzeit wieder löschen können.
+  accountDeletionNotice: Du wirst deinen Account jederzeit löschen können.
   emailAddress: E-Mail-Adresse
   postgres22023: Das Passwort ist zu kurz! Überlege dir ein längeres.
   postgres23505: Es gibt bereits einen Account mit diesem Nutzernamen oder dieser E-Mail-Adresse! Überlege dir einen neuen Namen oder versuche dich anzumelden.
   register: Registrieren
   registrationSuccessBody: Verifiziere deinen Account über den Link in der E-Mail, die du in Kürze erhalten wirst.
-  registrationSuccessTitle: Registrierung erfolgreich.
+  registrationSuccessTitle: Verifizierungs-E-Mail gesendet.
+  signIn: Oder stattdessen anmelden
 en:
   accountDeletionNotice: "You'll be able to delete your account at any time."
   emailAddress: Email address
@@ -155,5 +160,6 @@ en:
   postgres23505: There is already an account with this username or email address! Think of a new name or try signing in.
   register: Register
   registrationSuccessBody: "Verify your account using the link in the email you'll receive shortly."
-  registrationSuccessTitle: Registration successful.
+  registrationSuccessTitle: Verification email sent.
+  signIn: Or sign in instead
 </i18n>

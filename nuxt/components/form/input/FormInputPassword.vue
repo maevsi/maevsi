@@ -2,12 +2,17 @@
   <FormInput
     v-if="formInput"
     :id-label="`input-${id}`"
-    placeholder="**********"
+    :placeholder="isVisible ? 'H<3j,G;%' : '**********'"
     :title="title"
-    type="password"
+    :type="isVisible ? 'text' : 'password'"
     :value="formInput"
     @input="$emit('input', $event)"
+    @icon="isVisible = !isVisible"
   >
+    <template slot="icon">
+      <IconEye v-if="!isVisible" />
+      <IconEyeOff v-else />
+    </template>
     <template slot="stateError">
       <FormInputStateError
         :form-input="formInput"
@@ -52,6 +57,11 @@ export default defineComponent({
       },
       type: String,
     },
+  },
+  data() {
+    return {
+      isVisible: false,
+    }
   },
 })
 </script>

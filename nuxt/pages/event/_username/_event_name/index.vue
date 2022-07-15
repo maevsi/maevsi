@@ -10,7 +10,7 @@
         { name: $route.params.username, to: '..', append: true },
       ]"
     >
-      {{ $route.params.event_name }}
+      {{ event.name }}
     </Breadcrumbs>
     <CardStateInfo
       v-if="$route.query.ic && contact"
@@ -207,12 +207,6 @@
         event.authorUsername === jwtDecoded.username
       "
     >
-      <ButtonColored append :aria-label="$t('settings')" to="settings">
-        {{ $t('settings') }}
-        <template slot="prefix">
-          <IconPencil />
-        </template>
-      </ButtonColored>
       <ButtonColored append :aria-label="$t('invitations')" to="invitation">
         {{ $t('invitations') }}
         <template slot="prefix">
@@ -223,6 +217,12 @@
         {{ $t('attendances') }}
         <template slot="prefix">
           <IconUserCheck />
+        </template>
+      </ButtonColored>
+      <ButtonColored append :aria-label="$t('settings')" to="settings">
+        {{ $t('settings') }}
+        <template slot="prefix">
+          <IconPencil />
         </template>
       </ButtonColored>
     </ButtonList>
@@ -245,6 +245,7 @@
         <div class="flex flex-col gap-2">
           <ButtonColored
             :aria-label="$t('iCalDownload')"
+            :is-primary="false"
             class="text-text-bright"
             @click="downloadIcal"
           >

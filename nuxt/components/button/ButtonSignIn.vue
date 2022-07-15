@@ -3,7 +3,7 @@
     :aria-label="$t('signIn')"
     :to="
       localePath({
-        path: '/account',
+        path: '/task/account/sign-in',
         query: {
           tab: 'signIn',
           ...(isReferring && {

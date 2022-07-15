@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="h-full w-64 bg-background-bright p-2 dark:bg-background-dark md:w-72 lg:w-80 xl:w-96"
+    class="w-64 grow bg-background-bright p-2 dark:bg-background-dark md:w-72 lg:w-80 xl:w-96"
   >
     <div class="flex flex-col">
       <ButtonIcon
@@ -12,7 +12,7 @@
         <IconX />
       </ButtonIcon>
       <div class="flex flex-col gap-8 p-6 lg:p-8">
-        <div v-if="signedInUsername" class="mt-0 flex md:mt-auto">
+        <!-- <div v-if="signedInUsername" class="mt-0 flex md:mt-auto">
           <Button
             :aria-label="signedInUsername"
             class="flex min-w-0 items-center gap-2 text-text-dark dark:text-text-bright"
@@ -28,7 +28,6 @@
             />
             <span class="truncate">{{ signedInUsername }}</span>
           </Button>
-          <!-- Fills the remaining space -->
           <div class="w-12 flex-1" />
           <div class="flex items-center gap-2">
             <ButtonIcon
@@ -75,29 +74,21 @@
             {{ $t('uploads') }}
           </ButtonMenu>
         </div>
-        <Hr v-if="signedInUsername" class="md:hidden" />
+        <Hr v-if="signedInUsername" class="md:hidden" /> -->
         <div class="flex flex-col gap-4 md:hidden">
-          <ButtonColored
-            :aria-label="signedInUsername ? $t('eventNew') : $t('signIn')"
-            :is-block="true"
-            :is-primary="false"
-            :to="
-              signedInUsername
-                ? localePath('/task/event/create')
-                : localePath('/account')
-            "
-            @click.native="$emit('onMenuHide')"
-          >
-            {{ signedInUsername ? $t('eventNew') : $t('signIn') }}
-          </ButtonColored>
           <ButtonColored
             :aria-label="$t('eventsExplore')"
             :is-block="true"
+            :is-primary="false"
             :to="localePath('/event')"
             @click.native="$emit('onMenuHide')"
           >
             {{ $t('eventsExplore') }}
+            <template slot="prefix">
+              <IconTelescope />
+            </template>
           </ButtonColored>
+          <ButtonEventNew @click.native="$emit('onMenuHide')" />
         </div>
       </div>
     </div>

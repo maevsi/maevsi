@@ -1,16 +1,11 @@
 <template>
   <div>
     <Header @onMenuShow="menuShow" />
-    <div class="flex">
-      <div v-if="signedInUsername" class="hidden md:block">
-        <Menu />
-      </div>
-      <main
-        class="container mx-auto min-h-screen flex-1 overflow-hidden p-4 md:px-8"
-      >
-        <nuxt />
-      </main>
-    </div>
+    <main
+      class="container mx-auto min-h-screen flex-1 overflow-hidden p-4 md:px-8"
+    >
+      <nuxt />
+    </main>
     <Footer />
     <div
       class="fixed bottom-0 left-0 right-0 top-0 z-10 bg-black transition-opacity duration-500 md:hidden"
@@ -18,12 +13,11 @@
       @click="menuHide()"
     />
     <div
-      class="fixed bottom-0 left-0 top-0 z-10 transform-gpu overflow-auto transition-transform duration-500 md:hidden"
+      class="fixed bottom-0 left-0 top-0 z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 md:hidden"
       :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >
       <Menu v-if="isMenuItemsVisible" is-closable @onMenuHide="menuHide" />
     </div>
-    <Modal />
     <CookieControl :locale="$i18n.locale" />
   </div>
 </template>
