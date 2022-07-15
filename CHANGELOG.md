@@ -1,3 +1,10 @@
+# [0.137.0](https://github.com/maevsi/maevsi/compare/0.136.0...0.137.0) (2022-07-15)
+
+
+### Features
+
+* **docker:** use output only ([c41bde2](https://github.com/maevsi/maevsi/commit/c41bde2e95a59824d5dae5c7f0c9126d13760c68))
+
 # [0.136.0](https://github.com/maevsi/maevsi/compare/0.135.1...0.136.0) (2022-07-15)
 
 
