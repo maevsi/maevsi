@@ -1,8 +1,5 @@
 <template>
   <div>
-    <Breadcrumbs>
-      {{ $t('events') }}
-    </Breadcrumbs>
     <h1>
       {{ title }}
     </h1>
@@ -63,9 +60,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  events: Veranstaltungen
   title: Veranstaltungen
 en:
-  events: events
   title: Events
 </i18n>

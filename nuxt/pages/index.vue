@@ -133,17 +133,10 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types-edge'
-
 import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, store, redirect, route }: Context): void {
-    if (store.getters.jwtDecoded?.role === 'maevsi_account' && !route.hash) {
-      return redirect(app.localePath('/dashboard'))
-    }
-  },
   transition: {
     name: 'layout',
   },

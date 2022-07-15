@@ -3,6 +3,23 @@
     <Breadcrumbs :prefixes="[{ name: $t('accounts'), to: '..', append: true }]">
       {{ $route.params.username }}
     </Breadcrumbs>
+    <ButtonList v-if="signedInUsername === $route.params.username">
+      <ButtonColored :aria-label="$t('settings')" to="settings" append>
+        {{ $t('settings') }}
+        <template slot="prefix">
+          <IconPencil />
+        </template>
+      </ButtonColored>
+      <ButtonColored
+        :aria-label="$t('signOut')"
+        @click.native="$util.signOut($apollo.getClient(), $store)"
+      >
+        {{ $t('signOut') }}
+        <template slot="prefix">
+          <IconSignOut />
+        </template>
+      </ButtonColored>
+    </ButtonList>
     <div class="flex min-w-0 flex-col items-center justify-center sm:flex-row">
       <div class="sm:mr-4">
         <AccountProfilePicture
@@ -20,28 +37,12 @@
     <ButtonList>
       <ButtonColored
         :aria-label="$t('eventsTheir', { name: $route.params.username })"
+        :is-primary="false"
         :to="localePath(`/event/${$route.params.username}`)"
       >
         {{ $t('eventsTheir', { name: $route.params.username }) }}
         <template slot="prefix">
           <IconCalendar />
-        </template>
-      </ButtonColored>
-    </ButtonList>
-    <ButtonList v-if="signedInUsername === $route.params.username">
-      <ButtonColored :aria-label="$t('settings')" to="settings" append>
-        {{ $t('settings') }}
-        <template slot="prefix">
-          <IconPencil />
-        </template>
-      </ButtonColored>
-      <ButtonColored
-        :aria-label="$t('signOut')"
-        @click.native="$util.signOut($apollo.getClient(), $store)"
-      >
-        {{ $t('signOut') }}
-        <template slot="prefix">
-          <IconSignOut />
         </template>
       </ButtonColored>
     </ButtonList>

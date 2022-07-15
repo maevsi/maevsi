@@ -1,8 +1,5 @@
 <template>
   <div>
-    <Breadcrumbs>
-      {{ $t('uploads') }}
-    </Breadcrumbs>
     <h1>{{ title }}</h1>
     <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
     <ImageUploadGallery
@@ -67,8 +64,6 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   title: Bildgalerie
-  uploads: Uploads
 en:
   title: Image gallery
-  uploads: uploads
 </i18n>

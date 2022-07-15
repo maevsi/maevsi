@@ -1,12 +1,10 @@
 <template>
   <div>
-    <Breadcrumbs>
-      {{ $t('session') }}
-    </Breadcrumbs>
     <h1>
       {{ title }}
     </h1>
     <section class="flex flex-col gap-4">
+      <h2>{{ $t('session') }}</h2>
       <p v-if="sessionExpiryTime !== 'Invalid date'">
         {{ $t('sessionExpiry', { exp: sessionExpiryTime }) }}
       </p>
@@ -112,7 +110,7 @@ de:
   sessionExit: Diese Sitzung beenden
   sessionExpired: Deine Sitzung ist abgelaufen.
   sessionExpiry: Deine Sitzung läuft am {exp} ab.
-  title: Sitzung
+  title: Einstellungen
 en:
   codes: Invitation codes
   codesEntered: 'You entered the following codes:'
@@ -121,5 +119,5 @@ en:
   sessionExit: Exit this session
   sessionExpired: Your session expired.
   sessionExpiry: Your session expires on {exp}.
-  title: Session
+  title: Settings
 </i18n>

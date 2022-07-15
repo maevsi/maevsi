@@ -245,6 +245,7 @@
         <div class="flex flex-col gap-2">
           <ButtonColored
             :aria-label="$t('iCalDownload')"
+            :is-primary="false"
             class="text-text-bright"
             @click="downloadIcal"
           >

@@ -7,7 +7,6 @@
     <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
       <ButtonList>
         <ButtonEventList v-if="showButtonEventList" />
-        <ButtonEventNew v-if="showButtonEventNew" />
       </ButtonList>
       <div class="flex gap-4">
         <div class="flex gap-1">
@@ -69,10 +68,6 @@ export default defineComponent({
     },
   },
   props: {
-    showButtonEventNew: {
-      default: true,
-      type: Boolean,
-    },
     showButtonEventList: {
       default() {
         return this.$route?.name?.replace(/___.+$/, '') !== 'event'

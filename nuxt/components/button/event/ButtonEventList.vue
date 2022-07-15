@@ -1,6 +1,7 @@
 <template>
   <ButtonColored
     :aria-label="$t('eventAll')"
+    :is-primary="false"
     :to="localePath('/event')"
     @click="$emit('click')"
   >

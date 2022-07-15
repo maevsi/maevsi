@@ -1,41 +1,53 @@
 <template>
   <div>
-    <Breadcrumbs>
-      {{ $t('dashboard') }}
-    </Breadcrumbs>
     <h1>
       {{ title }}
     </h1>
     <div class="flex flex-col gap-4">
-      <ButtonList>
-        <ButtonColored
-          :aria-label="$t('contactBook')"
-          :to="localePath('/contact')"
-        >
-          {{ $t('contactBook') }}
-          <template slot="prefix">
-            <IconAddressBook />
-          </template>
-        </ButtonColored>
-        <ButtonColored :aria-label="$t('gallery')" :to="localePath('/upload')">
-          {{ $t('gallery') }}
-          <template slot="prefix">
-            <IconImages />
-          </template>
-        </ButtonColored>
-      </ButtonList>
       <div class="flex gap-4">
         <section class="lg:w-1/2">
           <h2>{{ $t('eventsMine') }}</h2>
-          <CardStateInfo>
-            {{ $t('eventsMineDescription') }}
-          </CardStateInfo>
+          <ButtonColored
+            :aria-label="$t('eventsMine')"
+            :to="localePath(`/event/${signedInUsername}`)"
+          >
+            {{ $t('eventsMine') }}
+            <template slot="prefix">
+              <IconCalendar />
+            </template>
+          </ButtonColored>
         </section>
         <section class="lg:w-1/2">
           <h2>{{ $t('invitationsMine') }}</h2>
           <CardStateInfo>
             {{ $t('invitationsMineDescription') }}
           </CardStateInfo>
+        </section>
+      </div>
+      <div class="flex gap-4">
+        <section class="lg:w-1/2">
+          <h2>{{ $t('contactsMine') }}</h2>
+          <ButtonColored
+            :aria-label="$t('contactBook')"
+            :to="localePath('/contact')"
+          >
+            {{ $t('contactBook') }}
+            <template slot="prefix">
+              <IconAddressBook />
+            </template>
+          </ButtonColored>
+        </section>
+        <section class="lg:w-1/2">
+          <h2>{{ $t('uploadsMine') }}</h2>
+          <ButtonColored
+            :aria-label="$t('gallery')"
+            :to="localePath('/upload')"
+          >
+            {{ $t('gallery') }}
+            <template slot="prefix">
+              <IconImages />
+            </template>
+          </ButtonColored>
         </section>
       </div>
       <section>
@@ -50,6 +62,7 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { mapGetters } from 'vuex'
 
 import { defineComponent } from '#app'
 
@@ -94,14 +107,17 @@ export default defineComponent({
       title,
     }
   },
+  computed: {
+    ...mapGetters(['signedInUsername']),
+  },
 })
 </script>
 
 <i18n lang="yml">
 de:
   contactBook: Kontaktbuch
+  contactsMine: Meine Kontake
   dashboard: Dashboard
-  events: Alle Veranstaltungen
   eventsMine: Meine Veranstaltungen
   eventsMineDescription: Hier wirst du bald deine Veranstaltungen sehen.
   gallery: Bildergalerie
@@ -111,17 +127,19 @@ de:
   newsDescription: Hier wirst du bald alle für dich relevanten Neuigkeiten sehen.
   profile: Profil
   title: Dashboard
+  uploadsMine: Meine Uploads
 en:
   contactBook: Contact book
+  contactsMine: My contacts
   dashboard: dashboard
-  events: All events
   eventsMine: My events
   eventsMineDescription: Here you will soon see your events.
   gallery: Image gallery
   invitationsMine: My invitations
   invitationsMineDescription: Here you will soon see the events to which you are invited.
-  news: Recent changes history
+  news: Recent changes
   newsDescription: Here you will soon see all the news relevant to you.
   profile: Profile
   title: Dashboard
+  uploadsMine: My uploads
 </i18n>

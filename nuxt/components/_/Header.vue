@@ -4,29 +4,37 @@
       {{ $t('browserUnsupported') }}
     </CardStateInfo>
     <div
-      class="mx-auto grid grid-cols-3 items-center p-4 md:px-8"
+      class="container mx-auto flex items-center justify-between gap-4 p-4 md:px-8"
       :class="{ container: !signedInUsername }"
     >
       <ButtonIcon
         :aria-label="$t('menuShow')"
-        class="justify-self-start md:hidden"
+        class="md:hidden"
         @click="$emit('onMenuShow')"
       >
         <IconMenu classes="h-8 w-8" />
       </ButtonIcon>
-      <Button
-        :aria-label="$t('home')"
-        class="justify-self-center md:justify-self-start"
-        :to="localePath('/')"
-      >
+      <Button :aria-label="$t('home')" :to="localePath('/')">
         <div id="logo" class="h-10 w-32" />
       </Button>
-      <div class="hidden xl:flex">
+      <div class="hidden gap-4 md:flex">
+        <ButtonColored
+          :aria-label="$t('events')"
+          :to="localePath('/event')"
+          :is-primary="false"
+        >
+          {{ $t('events') }}
+          <template slot="prefix">
+            <IconTelescope />
+          </template>
+        </ButtonColored>
+        <ButtonEventNew />
+      </div>
+      <!-- <div class="hidden xl:flex">
         <label class="hidden" for="search">{{ $t('search') }}</label>
         <input
           id="search"
           class="form-input cursor-pointer rounded-r-none"
-          :class="{ 'md:col-span-2': signedInUsername }"
           :placeholder="$t('search')"
           readonly
           type="text"
@@ -38,24 +46,32 @@
         >
           <IconSearch />
         </span>
-      </div>
-      <div
-        class="col-start-3 hidden items-center gap-4 justify-self-end whitespace-nowrap md:flex"
-      >
-        <ButtonColored :aria-label="$t('events')" :to="localePath('/event')">
-          {{ $t('events') }}
-          <template slot="prefix">
-            <IconTelescope />
-          </template>
-        </ButtonColored>
+      </div> -->
+      <div class="flex items-center gap-4 whitespace-nowrap">
         <ButtonColored
           v-if="signedInUsername"
-          :aria-label="$t('signOut')"
+          :aria-label="$t('dashboard')"
+          class="hidden md:block"
           :is-primary="false"
-          @click="$util.signOut($apollo.getClient(), $store)"
+          :to="localePath('/dashboard')"
         >
-          {{ $t('signOut') }}
+          {{ $t('dashboard') }}
         </ButtonColored>
+        <Button
+          v-if="signedInUsername"
+          :aria-label="signedInUsername"
+          class="flex min-w-0 items-center gap-2 text-text-dark dark:text-text-bright"
+          :title="$t('profileLink')"
+          :to="localePath(`/account/${signedInUsername}`)"
+          @click.native="$emit('onMenuHide')"
+        >
+          <AccountProfilePicture
+            height="40"
+            rounded
+            :username="signedInUsername"
+            width="40"
+          />
+        </Button>
         <ButtonColored
           v-else
           :aria-label="$t('signIn')"
@@ -102,17 +118,21 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   browserUnsupported: Dein Browser scheint veraltet zu sein. Manche Dinge könnten deshalb nicht funktionieren oder komisch aussehen.
+  dashboard: Dashboard
   events: Veranstaltungen entdecken
   home: Nach Hause
   menuShow: Menü anzeigen
+  profileLink: Profilseite anzeigen
   search: Suche
   signIn: Anmelden
   signOut: Abmelden
 en:
   browserUnsupported: Your browser seems outdated. Some things might not work or look funny because of this.
+  dashboard: Dashboard
   events: Explore events
   home: Head home
   menuShow: Show menu
+  profileLink: Show profile page
   search: Search
   signIn: Sign in
   signOut: Sign out
