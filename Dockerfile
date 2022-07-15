@@ -23,7 +23,7 @@ VOLUME /srv/app
 VOLUME /srv/sqitch
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["dev"]
+CMD ["pnpm", "run", "dev"]
 HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
 
 
@@ -226,5 +226,5 @@ COPY ./sqitch/ /srv/sqitch/
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["start"]
+CMD ["node", ".output/server/index.mjs"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
