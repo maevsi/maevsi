@@ -37,6 +37,13 @@ export default defineNuxtConfig({
         return [['@nuxt/babel-preset-app', { corejs: { version: 3 } }]]
       },
     },
+    extend(config) {
+      config.module?.rules.push({
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
+      })
+    },
     extractCSS: true,
     postcss: {
       plugins: { tailwindcss: {}, autoprefixer: {} },
@@ -336,19 +343,6 @@ export default defineNuxtConfig({
       },
     ],
     [
-      '@nuxtjs/apollo',
-      {
-        clientConfigs: {
-          default: '~/plugins/apollo-config.ts',
-        },
-        defaultOptions: {
-          $query: {
-            fetchPolicy: 'cache-and-network',
-          },
-        },
-      },
-    ],
-    [
       '@nuxtjs/color-mode',
       {
         classSuffix: '',
@@ -376,6 +370,7 @@ export default defineNuxtConfig({
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    '~/plugins/apollo.ts',
     '~/plugins/baseUrl.ts',
     '~/plugins/croppa.js',
     '~/plugins/domPurify.ts',
