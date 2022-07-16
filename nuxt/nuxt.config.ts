@@ -1,9 +1,8 @@
 import { defineNuxtConfig } from '@nuxt/bridge'
-import compressionWithBrotli from 'compression-with-brotli'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import { BASE_URL, STACK_DOMAIN } from './plugins/baseUrl'
+import { BASE_URL } from './plugins/baseUrl'
 
 const LOCALES = [
   {
@@ -401,40 +400,40 @@ export default defineNuxtConfig({
     STORYBOOK: process.env.STORYBOOK,
   },
 
-  render: {
-    compressor: compressionWithBrotli(),
-    csp: {
-      policies: {
-        'base-uri': ["'none'"], // Mozilla Observatory.
-        'connect-src': [
-          `https://*.${STACK_DOMAIN}`,
-          'https://www.google-analytics.com',
-        ],
-        'default-src': ["'none'"],
-        'font-src': ["'self'"],
-        'form-action': ["'none'"], // Mozilla Observatory.
-        'frame-ancestors': ["'none'"], // Mozilla Observatory.
-        'img-src': [
-          'blob:',
-          'data:',
-          `https://*.${STACK_DOMAIN}`,
-          'https://www.google-analytics.com',
-          'https://www.gravatar.com/avatar/',
-          "'self'",
-        ],
-        'manifest-src': ["'self'"], // Chrome
-        'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
-        'script-src': [
-          'blob:',
-          "'self'",
-          'https://static.cloudflareinsights.com',
-          'https://www.google-analytics.com/analytics.js',
-        ],
-        'style-src': ["'self'", "'unsafe-inline'"], // Tailwind
-      },
-      reportOnly: false,
-    },
-  },
+  // render: {
+  //   compressor: compressionWithBrotli(),
+  //   csp: {
+  //     policies: {
+  //       'base-uri': ["'none'"], // Mozilla Observatory.
+  //       'connect-src': [
+  //         `https://*.${STACK_DOMAIN}`,
+  //         'https://www.google-analytics.com',
+  //       ],
+  //       'default-src': ["'none'"],
+  //       'font-src': ["'self'"],
+  //       'form-action': ["'none'"], // Mozilla Observatory.
+  //       'frame-ancestors': ["'none'"], // Mozilla Observatory.
+  //       'img-src': [
+  //         'blob:',
+  //         'data:',
+  //         `https://*.${STACK_DOMAIN}`,
+  //         'https://www.google-analytics.com',
+  //         'https://www.gravatar.com/avatar/',
+  //         "'self'",
+  //       ],
+  //       'manifest-src': ["'self'"], // Chrome
+  //       'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
+  //       'script-src': [
+  //         'blob:',
+  //         "'self'",
+  //         'https://static.cloudflareinsights.com',
+  //         'https://www.google-analytics.com/analytics.js',
+  //       ],
+  //       'style-src': ["'self'", "'unsafe-inline'"], // Tailwind
+  //     },
+  //     reportOnly: false,
+  //   },
+  // },
 
   storybook: {
     addons: ['@storybook/addon-a11y'],
