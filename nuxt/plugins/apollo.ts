@@ -8,7 +8,7 @@ import VueApollo from 'vue-apollo'
 
 Vue.use(VueApollo)
 
-export default (_: Context, inject: Inject) => {
+export default ({ app }: Context, inject: Inject) => {
   const httpLink = createHttpLink({
     uri: process.server
       ? 'http://postgraphile:5000/graphql'
@@ -41,6 +41,8 @@ export default (_: Context, inject: Inject) => {
   const apolloProvider = new VueApollo({
     defaultClient: apolloClient,
   })
+
+  app.apolloProvider = apolloProvider
 
   inject('apolloProvider', apolloProvider)
 }
