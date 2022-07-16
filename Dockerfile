@@ -50,22 +50,6 @@ RUN pnpm nuxi prepare
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.6.0-slim@sha256:dc51bdd082f355574f0c534ffa1c0d5fcdb825ed673da6486ecd566091b8d8f0 AS install
-
-WORKDIR /srv/app/
-
-COPY --from=prepare /srv/app/ ./
-
-ENV NODE_ENV=production
-RUN npm install -g pnpm && \
-    pnpm install
-
-
-########################
-# Build Nuxt.
-
-# Should be the specific version of `node:slim`.
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:18.6.0-slim@sha256:dc51bdd082f355574f0c534ffa1c0d5fcdb825ed673da6486ecd566091b8d8f0 AS build
 
 ARG CI=false
