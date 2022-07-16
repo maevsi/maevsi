@@ -110,7 +110,7 @@
     "@types/cookie": "0.5.1",
     "@types/dompurify": "2.3.3",
     "@types/html-to-text": "8.1.0",
-    "@types/jest": "28.1.5",
+    "@types/jest": "28.1.6",
     "@types/jsonwebtoken": "8.5.8",
     "@types/lodash-es": "4.17.6",
     "@types/luxon": "1.27.1",
