@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     },
     extractCSS: true,
     postcss: {
-      postcssOptions: { plugins: { tailwindcss: {}, autoprefixer: {} } },
+      plugins: { tailwindcss: {}, autoprefixer: {} },
     },
     transpile: [
       '@http-util/status-i18n',
