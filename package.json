@@ -3,15 +3,10 @@
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
     "husky": "8.0.1",
-    "lint-staged": "13.0.3",
     "shx": "0.3.4"
   },
   "private": true,
   "scripts": {
     "prepare": "if [[ -d '.git' && -d '.husky' ]]; then husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks; fi"
-  },
-  "lint-staged": {
-    "*.{js,vue}": "eslint",
-    "*.{css,vue}": "stylelint"
   }
 }
