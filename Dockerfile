@@ -36,9 +36,9 @@ FROM node:16.16.0-slim@sha256:67ac68a9452c8e174d508babe0e99e0580a6c73ba8b1998cf2
 
 WORKDIR /srv/app/
 
-COPY ./nuxt/package.json ./nuxt/pnpm-lock.yaml ./
+COPY ./nuxt/package.json ./nuxt/pnpm-lock.yaml ./nuxt/.npmrc ./
 
-RUN corepack enable && \
+RUN npm install -g pnpm && \
     pnpm install
 
 COPY ./nuxt/ ./
@@ -57,7 +57,7 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
-RUN corepack enable && \
+RUN npm install -g pnpm && \
     pnpm install
 
 
@@ -78,7 +78,7 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
-RUN corepack enable && \
+RUN npm install -g pnpm && \
     pnpm run build
 
 
@@ -93,7 +93,7 @@ WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
-RUN corepack enable && \
+RUN npm install -g pnpm && \
     pnpm run lint
 
 
@@ -108,7 +108,7 @@ WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
-RUN corepack enable && \
+RUN npm install -g pnpm && \
     pnpm run test:code
 
 
@@ -131,7 +131,7 @@ WORKDIR /srv/app/
 
 COPY --from=build /srv/app/ ./
 
-RUN corepack enable && \
+RUN npm install -g pnpm && \
     WAIT_ON_TIMEOUT=6000 pnpm start-server-and-test 'pnpm start' 3000 'wget http://0.0.0.0:3000/'
 
 
@@ -156,7 +156,7 @@ WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
-RUN corepack enable && \
+RUN npm install -g pnpm && \
     pnpm run test:visual
 
 
