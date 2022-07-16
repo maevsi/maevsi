@@ -5,6 +5,7 @@ specifiers:
   '@babel/eslint-parser': 7.18.2
   '@babel/plugin-syntax-import-assertions': 7.18.6
   '@babel/preset-env': 7.18.6
+  '@babel/runtime-corejs3': 7.18.6
   '@dargmuesli/nuxt-clipboard2': 0.2.2
   '@dargmuesli/nuxt-cookie-control': 1.9.9
   '@http-util/status-i18n': 0.6.2
@@ -68,6 +69,7 @@ specifiers:
   compression-with-brotli: 1.7.5
   consola: 2.15.3
   cookie: 0.5.0
+  core-js: 3.23.4
   cross-env: 7.0.3
   css-element-queries: 1.2.3
   css-loader: 5.2.7
@@ -160,6 +162,7 @@ dependencies:
   compression-with-brotli: 1.7.5
   consola: 2.15.3
   cookie: 0.5.0
+  core-js: 3.23.4
   css-element-queries: 1.2.3
   downloadjs: 1.4.7
   graphql: 14.7.0
@@ -195,6 +198,7 @@ devDependencies:
   '@babel/eslint-parser': 7.18.2_ygqbvsyswrl2cmipz2mlfqys74
   '@babel/plugin-syntax-import-assertions': 7.18.6_@babel+core@7.18.6
   '@babel/preset-env': 7.18.6_@babel+core@7.18.6
+  '@babel/runtime-corejs3': 7.18.6
   '@intlify/eslint-plugin-vue-i18n': 2.0.0_eslint@8.19.0
   '@jest/globals': 27.5.1
   '@jest/types': 28.1.3
@@ -1813,6 +1817,14 @@ packages:
       make-dir: 2.1.0
       pirates: 4.0.5
       source-map-support: 0.5.21
+    dev: true
+
+  /@babel/runtime-corejs3/7.18.6:
+    resolution: {integrity: sha512-cOu5wH2JFBgMjje+a+fz2JNIWU4GzYpl05oSob3UDvBEh6EuIn+TXFHMmBbhSb+k/4HMzgKCQfEEDArAWNF9Cw==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      core-js-pure: 3.23.4
+      regenerator-runtime: 0.13.9
     dev: true
 
   /@babel/runtime/7.18.6:
