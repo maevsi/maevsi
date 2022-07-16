@@ -1,7 +1,7 @@
 {
   "name": "maevsi",
   "private": true,
-  "version": "0.137.1",
+  "version": "0.137.2",
   "scheduleVersion": "0.133.1",
   "description": "The manager for events supported by invitees.",
   "scripts": {
@@ -111,12 +111,12 @@
     "@types/cookie": "0.5.1",
     "@types/dompurify": "2.3.3",
     "@types/html-to-text": "8.1.0",
-    "@types/jest": "28.1.5",
+    "@types/jest": "28.1.6",
     "@types/jsonwebtoken": "8.5.8",
     "@types/lodash-es": "4.17.6",
     "@types/luxon": "1.27.1",
     "@types/mustache": "3.2.0",
-    "@types/node": "16.11.44",
+    "@types/node": "16.11.45",
     "@types/pg": "8.6.5",
     "@types/vue-datetime": "1.0.1",
     "@types/vue-moment": "4.0.3",
