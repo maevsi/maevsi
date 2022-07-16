@@ -26,7 +26,7 @@ specifiers:
   '@nuxtjs/moment': 1.6.1
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
-  '@nuxtjs/storybook': 4.2.0
+  '@nuxtjs/storybook': 4.1.1
   '@nuxtjs/stylelint-module': 4.1.0
   '@storybook/addon-a11y': 6.5.9
   '@storybook/components': 6.5.9
@@ -210,7 +210,7 @@ devDependencies:
   '@nuxtjs/google-analytics': 2.4.0
   '@nuxtjs/html-validator': 0.7.0_zjrsui4v3s2dnbs4fdcgzajzrm
   '@nuxtjs/moment': 1.6.1_webpack@4.46.0
-  '@nuxtjs/storybook': 4.2.0_kopbl5nsjyosblojil7trprbmy
+  '@nuxtjs/storybook': 4.1.1_kopbl5nsjyosblojil7trprbmy
   '@nuxtjs/stylelint-module': 4.1.0_i5ajrxva6ul7wdcj4mkdlazhme
   '@storybook/addon-a11y': 6.5.9_wcqkhtmu7mswc6yz4uyexck3ty
   '@storybook/components': 6.5.9_wcqkhtmu7mswc6yz4uyexck3ty
@@ -1853,7 +1853,7 @@ packages:
       '@babel/generator': 7.18.7
       '@babel/helper-function-name': 7.18.6
       '@babel/helper-split-export-declaration': 7.18.6
-      '@babel/parser': 7.12.16
+      '@babel/parser': 7.18.8
       '@babel/types': 7.18.8
       debug: 4.3.4
       globals: 11.12.0
@@ -3586,8 +3586,15 @@ packages:
       - supports-color
     dev: false
 
+  /@nuxt/devalue/1.2.5:
+    resolution: {integrity: sha512-Tg86C7tqzvZtZli2BQVqgzZN136mZDTgauvJXagglKkP2xt5Kw3NUIiJyjX0Ww/IZy2xVmD0LN+CEPpij4dB2g==}
+    dependencies:
+      consola: 2.15.3
+    dev: true
+
   /@nuxt/devalue/2.0.0:
     resolution: {integrity: sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==}
+    dev: false
 
   /@nuxt/friendly-errors-webpack-plugin/2.5.2_webpack@4.46.0:
     resolution: {integrity: sha512-LLc+90lnxVbpKkMqk5z1EWpXoODhc6gRkqqXJCInJwF5xabHAE7biFvbULfvTRmtaTzAaP8IV4HQDLUgeAUTTw==}
@@ -4105,24 +4112,24 @@ packages:
       sitemap: 4.1.1
     dev: false
 
-  /@nuxtjs/storybook/4.2.0_kopbl5nsjyosblojil7trprbmy:
-    resolution: {integrity: sha512-pi4qa+4bLeH3wEjVLCJ9ETrxvOZLIlJfWB0plCVcnKP6WVgPNiVEMsSN4BZHYB66KbMOmPqkITgPEZcY2rlIbQ==}
+  /@nuxtjs/storybook/4.1.1_kopbl5nsjyosblojil7trprbmy:
+    resolution: {integrity: sha512-ajePuoT/AS2shA+ef9d8XUJL0+TzyVT9jG99Cr6AyCnZ+x1gQcZqRdP0fNIzXuUYnukOYu1pmFdvkcNi8rM/0Q==}
     hasBin: true
     dependencies:
-      '@nuxt/devalue': 2.0.0
+      '@nuxt/devalue': 1.2.5
       '@nuxt/postcss8': 1.1.3_webpack@4.46.0
       '@storybook/addon-essentials': 6.3.13_42mnwuzs34lx3bbgjsfi4fwuau
       '@storybook/addon-postcss': 2.0.0_webpack@4.46.0
-      '@storybook/react-docgen-typescript-plugin': 1.0.1_hrl2l4xchpnd6hlkqocppvpxx4
-      '@storybook/vue': 6.3.13_qcnypbdi6mksotfrltuj4p7uia
+      '@storybook/react-docgen-typescript-plugin': 0.7.2-canary.abb479f.0_hrl2l4xchpnd6hlkqocppvpxx4
+      '@storybook/vue': 6.3.13_zncg3x7rhv2zo6he7ebmal7amm
       arg: 5.0.2
       consola: 2.15.3
       create-require: 1.1.1
-      css-loader: 6.7.1_webpack@4.46.0
+      css-loader: 5.2.7_webpack@4.46.0
       jiti: 1.14.0
       postcss: 8.4.14
       upath: 2.0.1
-      vue-loader: 15.10.0_3pcej4ovaf7ld7ajuk6crytd34
+      vue-loader: 15.10.0_cv3leqw7tsxyj7nitzqqo4tnpi
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/preset-env'
@@ -4850,7 +4857,7 @@ packages:
       '@storybook/postinstall': 6.3.13
       '@storybook/source-loader': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
-      '@storybook/vue': 6.3.13_qcnypbdi6mksotfrltuj4p7uia
+      '@storybook/vue': 6.3.13_zncg3x7rhv2zo6he7ebmal7amm
       acorn: 7.4.1
       acorn-jsx: 5.3.2_acorn@7.4.1
       acorn-walk: 7.2.0
@@ -4926,7 +4933,7 @@ packages:
       '@storybook/addons': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/api': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/node-logger': 6.3.13
-      '@storybook/vue': 6.3.13_qcnypbdi6mksotfrltuj4p7uia
+      '@storybook/vue': 6.3.13_zncg3x7rhv2zo6he7ebmal7amm
       babel-loader: 8.2.5_xcbjw3zjektbxpb7yraegegdpi
       core-js: 3.23.4
       react: 16.14.0
@@ -5699,8 +5706,8 @@ packages:
       core-js: 3.23.4
     dev: true
 
-  /@storybook/react-docgen-typescript-plugin/1.0.1_hrl2l4xchpnd6hlkqocppvpxx4:
-    resolution: {integrity: sha512-dqbHa+5gaxaklFCuV1WTvljVPTo3QIJgpW4Ln+QeME7osPZUnUhjN2/djvo+sxrWUrTTuqX5jkn291aDngu9Tw==}
+  /@storybook/react-docgen-typescript-plugin/0.7.2-canary.abb479f.0_hrl2l4xchpnd6hlkqocppvpxx4:
+    resolution: {integrity: sha512-Vx6CDrVfIKG0YJCfd1mZskO+9ZUyR35e7eUmb46uyRNpXnjlha57jdlK2clN9TvKZx4589EsoqxDC0QT3+Nm4A==}
     peerDependencies:
       typescript: '>= 3.x'
       webpack: '>= 4'
@@ -5710,10 +5717,11 @@ packages:
       find-cache-dir: 3.3.2
       flat-cache: 3.0.4
       micromatch: 4.0.5
-      react-docgen-typescript: 2.2.2_typescript@4.7.4
+      react-docgen-typescript: 1.22.0_typescript@4.7.4
       tslib: 2.4.0
       typescript: 4.7.4
       webpack: 4.46.0
+      webpack-sources: 2.3.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5859,7 +5867,7 @@ packages:
       - '@types/react'
     dev: true
 
-  /@storybook/vue/6.3.13_qcnypbdi6mksotfrltuj4p7uia:
+  /@storybook/vue/6.3.13_zncg3x7rhv2zo6he7ebmal7amm:
     resolution: {integrity: sha512-FderpjccSg+pPFMItjy61FACXfqgDylBNjM2U2dD4/AG5rHIW2HfxujypvFgh/ZAxqEcT2In2Pn4nGnineSwpQ==}
     engines: {node: '>=10.13.0'}
     hasBin: true
@@ -5878,7 +5886,7 @@ packages:
       '@types/webpack-env': 1.17.0
       babel-loader: 8.2.5_xcbjw3zjektbxpb7yraegegdpi
       core-js: 3.23.4
-      css-loader: 6.7.1_webpack@4.46.0
+      css-loader: 5.2.7_webpack@4.46.0
       global: 4.4.0
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
@@ -5889,7 +5897,7 @@ packages:
       vue: 2.7.6
       vue-docgen-api: 4.47.0_vue@2.7.6
       vue-docgen-loader: 1.5.1_3hyiw6qs3fvchdwl7x7egijmlq
-      vue-loader: 15.10.0_3pcej4ovaf7ld7ajuk6crytd34
+      vue-loader: 15.10.0_cv3leqw7tsxyj7nitzqqo4tnpi
       vue-template-compiler: 2.7.6
       webpack: 4.46.0
     transitivePeerDependencies:
@@ -11166,23 +11174,6 @@ packages:
       webpack: 4.46.0
     dev: true
 
-  /css-loader/6.7.1_webpack@4.46.0:
-    resolution: {integrity: sha512-yB5CNFa14MbPJcomwNh3wLThtkZgcNyI2bNMRt8iE5Z8Vwl7f8vQXFAzn2HDOJvtDq2NTZBUGMSUNNyrv3/+cw==}
-    engines: {node: '>= 12.13.0'}
-    peerDependencies:
-      webpack: ^5.0.0
-    dependencies:
-      icss-utils: 5.1.0_postcss@8.4.14
-      postcss: 8.4.14
-      postcss-modules-extract-imports: 3.0.0_postcss@8.4.14
-      postcss-modules-local-by-default: 4.0.0_postcss@8.4.14
-      postcss-modules-scope: 3.0.0_postcss@8.4.14
-      postcss-modules-values: 4.0.0_postcss@8.4.14
-      postcss-value-parser: 4.2.0
-      semver: 7.3.7
-      webpack: 4.46.0
-    dev: true
-
   /css-prefers-color-scheme/3.1.1:
     resolution: {integrity: sha512-MTu6+tMs9S3EUqzmqLXEcgNRbNkkD/TGFvowpeoWJn5Vfq7FMgsmRQs9X5NXAURiOBmOxm/lLjsDNXDE6k9bhg==}
     engines: {node: '>=6.0.0'}
@@ -11688,7 +11679,7 @@ packages:
     engines: {node: '>= 4.2.1'}
     hasBin: true
     dependencies:
-      address: 1.1.2
+      address: 1.2.0
       debug: 2.6.9
     transitivePeerDependencies:
       - supports-color
@@ -21094,10 +21085,10 @@ packages:
       - webpack
     dev: true
 
-  /react-docgen-typescript/2.2.2_typescript@4.7.4:
-    resolution: {integrity: sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==}
+  /react-docgen-typescript/1.22.0_typescript@4.7.4:
+    resolution: {integrity: sha512-MPLbF8vzRwAG3GcjdL+OHQlhgtWsLTXs+7uJiHfEeT3Ur7IsZaNYqRTLQ9sj2nB6M6jylcPCeCmH7qbszJmecg==}
     peerDependencies:
-      typescript: '>= 4.3.x'
+      typescript: '>= 3.x'
     dependencies:
       typescript: 4.7.4
     dev: true
@@ -24928,7 +24919,7 @@ packages:
       vue-inbrowser-compiler-demi: 4.45.0_vue@2.7.6
     dev: true
 
-  /vue-loader/15.10.0_3pcej4ovaf7ld7ajuk6crytd34:
+  /vue-loader/15.10.0_cv3leqw7tsxyj7nitzqqo4tnpi:
     resolution: {integrity: sha512-VU6tuO8eKajrFeBzMssFUP9SvakEeeSi1BxdTH5o3+1yUyrldp8IERkSdXlMI2t4kxF2sqYUDsQY+WJBxzBmZg==}
     peerDependencies:
       '@vue/compiler-sfc': ^3.0.8
@@ -24945,7 +24936,7 @@ packages:
         optional: true
     dependencies:
       '@vue/component-compiler-utils': 3.3.0_32jdnt757lggs5hn5pwcsijtja
-      css-loader: 6.7.1_webpack@4.46.0
+      css-loader: 5.2.7_webpack@4.46.0
       hash-sum: 1.0.2
       loader-utils: 1.4.0
       vue-hot-reload-api: 2.3.4
@@ -25365,6 +25356,14 @@ packages:
     dependencies:
       source-list-map: 2.0.1
       source-map: 0.6.1
+
+  /webpack-sources/2.3.1:
+    resolution: {integrity: sha512-y9EI9AO42JjEcrTJFOYmVywVZdKVUfOvDUPsJea5GIr1JOEGFVqwlY2K098fFoIjOkDzHn2AjRvM8dsBZu+gCA==}
+    engines: {node: '>=10.13.0'}
+    dependencies:
+      source-list-map: 2.0.1
+      source-map: 0.6.1
+    dev: true
 
   /webpack-sources/3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
