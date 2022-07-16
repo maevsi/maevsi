@@ -129,7 +129,7 @@
     "chalk": "4.1.2",
     "cross-env": "7.0.3",
     "css-loader": "5.2.7",
-    "eslint": "8.19.0",
+    "eslint": "8.20.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-compat": "4.0.2",
     "eslint-plugin-nuxt": "3.2.0",
