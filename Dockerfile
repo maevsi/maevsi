@@ -5,6 +5,12 @@
 # `sqitch` requires at least `buster`.
 FROM node:16.16.0-slim@sha256:67ac68a9452c8e174d508babe0e99e0580a6c73ba8b1998cf2b5c80cdda38217 AS development
 
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
+WORKDIR /srv/app/
+
+COPY ./docker-entrypoint.sh /usr/local/bin/
+
 # Update and install dependencies.
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
 # - `wget` is required by the healthcheck
@@ -13,12 +19,10 @@ RUN apt-get update \
         libdbd-pg-perl postgresql-client sqitch \
         wget \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && npm install -g pnpm
 
-WORKDIR /srv/app/
-
-COPY ./docker-entrypoint.sh /usr/local/bin/
-
+VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 VOLUME /srv/sqitch
 
@@ -36,13 +40,15 @@ FROM node:16.16.0-slim@sha256:67ac68a9452c8e174d508babe0e99e0580a6c73ba8b1998cf2
 
 WORKDIR /srv/app/
 
-COPY ./nuxt/package.json ./nuxt/pnpm-lock.yaml ./nuxt/.npmrc ./
+COPY ./nuxt/pnpm-lock.yaml ./
 
 RUN npm install -g pnpm && \
-    pnpm install
+    pnpm fetch
 
 COPY ./nuxt/ ./
-RUN pnpm nuxi prepare
+
+RUN pnpm install --offline && \
+    pnpm nuxi prepare
 
 
 ########################
