@@ -1,3 +1,10 @@
+## [0.137.2](https://github.com/maevsi/maevsi/compare/0.137.1...0.137.2) (2022-07-16)
+
+
+### Bug Fixes
+
+* **pnpm:** install via npm ([f63fd3f](https://github.com/maevsi/maevsi/commit/f63fd3fbe77316abe99bc5108840c2d3573152a8))
+
 ## [0.137.1](https://github.com/maevsi/maevsi/compare/0.137.0...0.137.1) (2022-07-15)
 
 
