@@ -45,7 +45,7 @@ specifiers:
   '@types/lodash-es': 4.17.6
   '@types/luxon': 1.27.1
   '@types/mustache': 3.2.0
-  '@types/node': 16.11.44
+  '@types/node': 16.11.45
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
   '@types/vue-moment': 4.0.3
@@ -138,7 +138,7 @@ dependencies:
   '@dargmuesli/nuxt-cookie-control': 1.9.9_webpack@4.46.0
   '@http-util/status-i18n': 0.6.2
   '@nuxt/types-edge': 2.16.0-27616340.013f051b_webpack@4.46.0
-  '@nuxtjs/apollo': 4.0.1-rc.5_gugkuib6ihmqfqdzrt4z24pqne
+  '@nuxtjs/apollo': 4.0.1-rc.5_zbjtzc4odtrfvqy2qyramczwpq
   '@nuxtjs/color-mode': 2.1.1
   '@nuxtjs/i18n': 7.2.2
   '@nuxtjs/robots': 2.5.0
@@ -163,7 +163,7 @@ dependencies:
   graphql: 14.7.0
   h3: 0.7.10
   html-to-text: 8.2.0
-  ical-generator: 3.4.3_vvbyxui3kdozd4uywvzwnlwlcq
+  ical-generator: 3.4.3_ao2iyzh77vhnwlqixxhj53gn5m
   isomorphic-dompurify: 0.15.0
   jsonwebtoken: 8.5.1
   lodash-es: 4.17.21
@@ -218,7 +218,7 @@ devDependencies:
   '@types/lodash-es': 4.17.6
   '@types/luxon': 1.27.1
   '@types/mustache': 3.2.0
-  '@types/node': 16.11.44
+  '@types/node': 16.11.45
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
   '@types/vue-moment': 4.0.3
@@ -240,7 +240,7 @@ devDependencies:
   eslint-plugin-storybook: 0.6.1_4x5o4skxv6sl53vpwefgt23khm
   eslint-plugin-yml: 1.0.0_eslint@8.19.0
   graphql-tag: 2.12.6_graphql@14.7.0
-  jest: 28.1.3_@types+node@16.11.44
+  jest: 28.1.3_@types+node@16.11.45
   lint-staged: 13.0.3
   mockdate: 3.0.5
   msw: 0.44.1_typescript@4.7.4
@@ -2516,7 +2516,7 @@ packages:
       tslib: 2.0.3
     dev: false
 
-  /@graphql-tools/url-loader/6.10.1_cb6yaqvwfsw34pl7objof54fee:
+  /@graphql-tools/url-loader/6.10.1_drz52me6usax3sgo2d42tn36ga:
     resolution: {integrity: sha512-DSDrbhQIv7fheQ60pfDpGD256ixUQIR6Hhf9Z5bRjVkXOCvO5XrkwoWLiU7iHL81GB1r0Ba31bf+sl+D4nyyfw==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0
@@ -2535,7 +2535,7 @@ packages:
       is-promise: 4.0.0
       isomorphic-ws: 4.0.1_ws@7.4.5
       lodash: 4.17.21
-      meros: 1.1.4_@types+node@16.11.44
+      meros: 1.1.4_@types+node@16.11.45
       subscriptions-transport-ws: 0.9.19_graphql@15.8.0
       sync-fetch: 0.3.0
       tslib: 2.2.0
@@ -3085,7 +3085,7 @@ packages:
       '@jest/schemas': 28.1.3
       '@types/istanbul-lib-coverage': 2.0.4
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 16.11.44
+      '@types/node': 18.0.0
       '@types/yargs': 17.0.10
       chalk: 4.1.2
     dev: true
@@ -3936,7 +3936,7 @@ packages:
       - whiskers
     dev: false
 
-  /@nuxtjs/apollo/4.0.1-rc.5_gugkuib6ihmqfqdzrt4z24pqne:
+  /@nuxtjs/apollo/4.0.1-rc.5_zbjtzc4odtrfvqy2qyramczwpq:
     resolution: {integrity: sha512-A5ITCdks87NND6t116nBFTqENiMfUYkFy+b8xDTRV4rz5NHhpYAfoDZDRKDnlszOBYOCvBjro/GDJH+KWW7siQ==}
     peerDependencies:
       apollo-cache-inmemory: ^1.6.6
@@ -3945,7 +3945,7 @@ packages:
       cross-fetch: 3.1.5
       universal-cookie: 4.0.4
       vue-apollo: 3.1.0_graphql-tag@2.12.6
-      vue-cli-plugin-apollo: 0.22.2_cm36tbikwruuv6k6tepxv2cneq
+      vue-cli-plugin-apollo: 0.22.2_wypfrbwhnnrde4nssg4m6wkswi
       webpack-node-externals: 2.5.2
     transitivePeerDependencies:
       - '@types/node'
@@ -6464,7 +6464,7 @@ packages:
   /@types/jsonwebtoken/8.5.8:
     resolution: {integrity: sha512-zm6xBQpFDIDM6o9r6HSgDeIcLy82TKWctCXEPbJJcXb5AKmi5BNNdLXneixK4lplX3PqIVcwLBCGE/kAGnlD4A==}
     dependencies:
-      '@types/node': 16.11.44
+      '@types/node': 18.0.0
     dev: true
 
   /@types/keygrip/1.0.2:
@@ -6577,8 +6577,8 @@ packages:
     resolution: {integrity: sha512-qzaYbXVzin6EPjghf/hTdIbnVW1ErMx8rPzwRNJhlbyJhu2SyqlvjGOY/tbUt6VFyzg56lROcOeSQRInpt63Yw==}
     dev: true
 
-  /@types/node/16.11.44:
-    resolution: {integrity: sha512-gwP6+QDgL5TDBIWh1lbYh3EFPU11pa+8xcamcsA3ROkp3A9X+/3Y5cRgq93VPEEE+CGfxlQnqkg1kkWGBgh3fw==}
+  /@types/node/16.11.45:
+    resolution: {integrity: sha512-3rKg/L5x0rofKuuUt5zlXzOnKyIHXmIu5R8A0TuNDMF2062/AOIDBciFIjToLEJ/9F9DzkHNot+BpNsMI1OLdQ==}
 
   /@types/node/18.0.0:
     resolution: {integrity: sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==}
@@ -6614,7 +6614,7 @@ packages:
   /@types/pg/8.6.5:
     resolution: {integrity: sha512-tOkGtAqRVkHa/PVZicq67zuujI4Oorfglsr2IbKofDwBSysnaqSx7W1mDqFqdkGE6Fbgh+PZAl0r/BWON/mozw==}
     dependencies:
-      '@types/node': 16.11.44
+      '@types/node': 18.0.0
       pg-protocol: 1.5.0
       pg-types: 2.2.0
     dev: true
@@ -9437,7 +9437,7 @@ packages:
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
-      '@types/node': 16.11.44
+      '@types/node': 16.11.45
       argue-cli: 1.2.1
       browserslist: 4.21.2
       chalk: 4.1.2
@@ -14253,7 +14253,7 @@ packages:
       uuid: 3.4.0
     dev: false
 
-  /graphql-tools/6.2.6_2nhovcofgzkro2pnkt2nmpdiri:
+  /graphql-tools/6.2.6_smpkmdozrnsiacmozr5dypx5vi:
     resolution: {integrity: sha512-OyhSvK5ALVVD6bFiWjAqv2+lRyvjIRfb6Br5Tkjrv++rxnXDodPH/zhMbDGRw+W3SD5ioGEEz84yO48iPiN7jA==}
     deprecated: This package has been deprecated and now it only exports makeExecutableSchema.\nAnd it will no longer receive updates.\nWe recommend you to migrate to scoped packages such as @graphql-tools/schema, @graphql-tools/utils and etc.\nCheck out https://www.graphql-tools.com to learn what package you should use instead
     peerDependencies:
@@ -14278,7 +14278,7 @@ packages:
       '@graphql-tools/resolvers-composition': 6.5.0_graphql@15.8.0
       '@graphql-tools/schema': 6.2.4_graphql@15.8.0
       '@graphql-tools/stitch': 6.2.4_graphql@15.8.0
-      '@graphql-tools/url-loader': 6.10.1_cb6yaqvwfsw34pl7objof54fee
+      '@graphql-tools/url-loader': 6.10.1_drz52me6usax3sgo2d42tn36ga
       '@graphql-tools/utils': 6.2.4_graphql@15.8.0
       '@graphql-tools/wrap': 6.2.4_graphql@15.8.0
       graphql: 15.8.0
@@ -14705,7 +14705,7 @@ packages:
       espree: 9.3.2
       glob: 8.0.3
       ignore: 5.2.0
-      jest: 28.1.3_@types+node@16.11.44
+      jest: 28.1.3_@types+node@16.11.45
       kleur: 4.1.5
       minimist: 1.2.6
       prompts: 2.4.2
@@ -14851,7 +14851,7 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /ical-generator/3.4.3_vvbyxui3kdozd4uywvzwnlwlcq:
+  /ical-generator/3.4.3_ao2iyzh77vhnwlqixxhj53gn5m:
     resolution: {integrity: sha512-9NkhRZ1cnfgIeXfv9iPPXIqBLYlKBUq8iteSDQxf1qEzhrmWgwb4jitTDGKOLvCoHB/pPmmtBTVHQw1WgCK3dg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -14885,7 +14885,7 @@ packages:
         optional: true
     dependencies:
       '@types/luxon': 1.27.1
-      '@types/node': 16.11.44
+      '@types/node': 16.11.45
       luxon: 1.28.0
       moment: 2.29.4
       uuid-random: 1.3.2
@@ -15875,7 +15875,7 @@ packages:
       - supports-color
     dev: true
 
-  /jest-cli/28.1.3_@types+node@16.11.44:
+  /jest-cli/28.1.3_@types+node@16.11.45:
     resolution: {integrity: sha512-roY3kvrv57Azn1yPgdTebPAXvdR2xfezaKKYzVxZ6It/5NCxzJym6tUI5P1zkdWhfUYkxEI9uZWcQdaFLo8mJQ==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
@@ -15892,7 +15892,7 @@ packages:
       exit: 0.1.2
       graceful-fs: 4.2.10
       import-local: 3.1.0
-      jest-config: 28.1.3_@types+node@16.11.44
+      jest-config: 28.1.3_@types+node@16.11.45
       jest-util: 28.1.3
       jest-validate: 28.1.3
       prompts: 2.4.2
@@ -15903,7 +15903,7 @@ packages:
       - ts-node
     dev: true
 
-  /jest-config/28.1.3_@types+node@16.11.44:
+  /jest-config/28.1.3_@types+node@16.11.45:
     resolution: {integrity: sha512-MG3INjByJ0J4AsNBm7T3hsuxKQqFIiRo/AUqb1q9LRKI5UU6Aar9JHbr9Ivn1TVwfUD9KirRoM/T6u8XlcQPHQ==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     peerDependencies:
@@ -15918,7 +15918,7 @@ packages:
       '@babel/core': 7.18.6
       '@jest/test-sequencer': 28.1.3
       '@jest/types': 28.1.3
-      '@types/node': 16.11.44
+      '@types/node': 16.11.45
       babel-jest: 28.1.3_@babel+core@7.18.6
       chalk: 4.1.2
       ci-info: 3.3.2
@@ -16383,7 +16383,7 @@ packages:
       supports-color: 8.1.1
     dev: true
 
-  /jest/28.1.3_@types+node@16.11.44:
+  /jest/28.1.3_@types+node@16.11.45:
     resolution: {integrity: sha512-N4GT5on8UkZgH0O5LUavMRV1EDEhNTL0KEfRmDIeZHSV7p2XgLoY9t9VDUgL6o+yfdgYHVxuz81G8oB9VG5uyA==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
@@ -16396,7 +16396,7 @@ packages:
       '@jest/core': 28.1.3
       '@jest/types': 28.1.3
       import-local: 3.1.0
-      jest-cli: 28.1.3_@types+node@16.11.44
+      jest-cli: 28.1.3_@types+node@16.11.45
     transitivePeerDependencies:
       - '@types/node'
       - supports-color
@@ -17491,7 +17491,7 @@ packages:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
 
-  /meros/1.1.4_@types+node@16.11.44:
+  /meros/1.1.4_@types+node@16.11.45:
     resolution: {integrity: sha512-E9ZXfK9iQfG9s73ars9qvvvbSIkJZF5yOo9j4tcwM5tN8mUKfj/EKN5PzOr3ZH0y5wL7dLAHw3RVEfpQV9Q7VQ==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -17500,7 +17500,7 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@types/node': 16.11.44
+      '@types/node': 16.11.45
     dev: false
 
   /methods/1.1.2:
@@ -22728,7 +22728,7 @@ packages:
     dependencies:
       '@types/minimatch': 3.0.5
       '@types/mkdirp': 1.0.2
-      '@types/node': 16.11.44
+      '@types/node': 16.11.45
       '@types/rimraf': 3.0.2
       '@types/wait-on': 5.3.1
       '@types/yargs': 16.0.4
@@ -22750,7 +22750,7 @@ packages:
   /storycrawler/3.1.8:
     resolution: {integrity: sha512-RVsUTizWfBGGPlg5++9bh6KOgUNRkc5rHG2+XnQauxXnOxA6aD1IoX6STMaZwDOr3RjddWdtoQHhlq6vIDFCng==}
     dependencies:
-      '@types/node': 16.11.44
+      '@types/node': 16.11.45
       '@types/wait-on': 5.3.1
       chalk: 2.4.2
       puppeteer-core: 9.1.1
@@ -23806,7 +23806,7 @@ packages:
       '@jest/types': 28.1.3
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 28.1.3_@types+node@16.11.44
+      jest: 28.1.3_@types+node@16.11.45
       jest-util: 28.1.3
       json5: 2.2.1
       lodash.memoize: 4.1.2
@@ -24750,7 +24750,7 @@ packages:
       vue: 2.7.6
     dev: false
 
-  /vue-cli-plugin-apollo/0.22.2_cm36tbikwruuv6k6tepxv2cneq:
+  /vue-cli-plugin-apollo/0.22.2_wypfrbwhnnrde4nssg4m6wkswi:
     resolution: {integrity: sha512-HatlgKTChTnaSFTU2rdYDlL6Ui8t8Lzl9aqWiEd4vpbylZA/OlMFSbuNH33UoIgyJl783yo1WFod7FqNTj2zsg==}
     peerDependencies:
       '@vue/cli-shared-utils': ^3.0.0 || ^4.0.0-0
@@ -24782,7 +24782,7 @@ packages:
       graphql: 15.8.0
       graphql-subscriptions: 1.2.1_graphql@15.8.0
       graphql-tag: 2.12.6_graphql@15.8.0
-      graphql-tools: 6.2.6_2nhovcofgzkro2pnkt2nmpdiri
+      graphql-tools: 6.2.6_smpkmdozrnsiacmozr5dypx5vi
       node-fetch: 2.6.7
       nodemon: 2.0.19
       subscriptions-transport-ws: 0.9.19_graphql@15.8.0
