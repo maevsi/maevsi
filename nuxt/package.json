@@ -10,11 +10,11 @@
     "docker:build:test-visual": "docker build -t maevsi/maevsi:test-visual --target test-visual_standalone ../",
     "start": "node .output/server/index.mjs",
     "lint": "pnpm lint:js && pnpm lint:style",
+    "lint:staged": "pnpm lint-staged",
     "lint:js": "eslint --cache --ext .js,.ts,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint:quiet": "pnpm lint:js --quiet && pnpm lint:style --quiet",
     "lint:fix": "pnpm lint:js --fix && pnpm lint:style --fix",
-    "lint:staged": "pnpm lint-staged",
     "storybook": "cross-env STORYBOOK=true nuxt storybook -p 6006",
     "storybook:build": "cross-env STORYBOOK=true nuxt storybook build",
     "storybook:serve": "npx http-server ./storybook-static -p 6006",
@@ -140,7 +140,7 @@
     "jest": "28.1.3",
     "lint-staged": "13.0.3",
     "mockdate": "3.0.5",
-    "msw": "0.39.2",
+    "msw": "0.44.1",
     "msw-storybook-addon": "1.6.3",
     "postcss": "8.4.14",
     "postcss-html": "1.5.0",
@@ -166,7 +166,7 @@
     "webpack": "4.46.0"
   },
   "msw": {
-    "workerDirectory": "static"
+    "workerDirectory": "public"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",
