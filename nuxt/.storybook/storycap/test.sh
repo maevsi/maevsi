@@ -38,6 +38,6 @@ else
   printf "new:\n%s\n\n" "$newItems"
 fi
 
-if [ "$newItems" != "[]" ] || [ "$failedItems" != "[]" ] || [ "$newItems" != "[]" ]; then
+if [ "$deletedItems" != "[]" ] || [ "$failedItems" != "[]" ] || [ "$newItems" != "[]" ]; then
   exit 1
 fi
