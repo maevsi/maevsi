@@ -33,21 +33,10 @@ export default defineNuxtConfig({
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    /*
-     ** https://github.com/nuxt-community/nuxt-property-decorator
-     */
-    babel: {
-      exclude: [/core-js/],
-      plugins: [
-        '@babel/plugin-syntax-import-assertions', // Necessary for status-i18n.
-        '@upleveled/remove-node-prefix', // Can be removed in Nuxt 3.
-      ],
-      presets() {
-        return [['@nuxt/babel-preset-app', { corejs: { version: 3 } }]]
-      },
-    },
     extractCSS: true,
-    postcss: { plugins: { tailwindcss: {}, autoprefixer: {} } },
+    postcss: {
+      postcssOptions: { plugins: { tailwindcss: {}, autoprefixer: {} } },
+    },
     transpile: [
       '@http-util/status-i18n',
       'barcode-detector',
