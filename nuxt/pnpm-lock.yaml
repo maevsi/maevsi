@@ -118,7 +118,7 @@ specifiers:
   stylelint-config-standard: 26.0.0
   stylelint-no-unsupported-browser-features: 5.0.3
   tailwindcss: 3.1.6
-  ts-jest: 28.0.6
+  ts-jest: 28.0.7
   typescript: 4.7.4
   vue: 2.7.6
   vue-apollo: 3.1.0
@@ -262,7 +262,7 @@ devDependencies:
   stylelint-config-standard: 26.0.0_stylelint@14.9.1
   stylelint-no-unsupported-browser-features: 5.0.3_stylelint@14.9.1
   tailwindcss: 3.1.6
-  ts-jest: 28.0.6_k6golhwauqch3cid7i46v6vltm
+  ts-jest: 28.0.7_k6golhwauqch3cid7i46v6vltm
   typescript: 4.7.4
   vue: 2.7.6
   vue-template-compiler: 2.7.6
@@ -23783,8 +23783,8 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /ts-jest/28.0.6_k6golhwauqch3cid7i46v6vltm:
-    resolution: {integrity: sha512-yLAWoaSJ6c9o+IT7+nyutp5uvwGzhMYb/LD5WEQAi2tBq4ZSAPay4Lf69pP/IU+GFYg87pdg5eADSzuNAFSK4g==}
+  /ts-jest/28.0.7_k6golhwauqch3cid7i46v6vltm:
+    resolution: {integrity: sha512-wWXCSmTwBVmdvWrOpYhal79bDpioDy4rTT+0vyUnE3ZzM7LOAAGG9NXwzkEL/a516rQEgnMmS/WKP9jBPCVJyA==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
     peerDependencies:
@@ -23796,6 +23796,8 @@ packages:
       typescript: '>=4.3'
     peerDependenciesMeta:
       '@babel/core':
+        optional: true
+      '@jest/types':
         optional: true
       babel-jest:
         optional: true
