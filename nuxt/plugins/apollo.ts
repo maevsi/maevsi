@@ -1,15 +1,21 @@
 import { Context } from '@nuxt/types-edge'
-import { ApolloClient, ApolloClientOptions, Resolvers } from 'apollo-client'
-import { ApolloLink, DocumentNode, from } from 'apollo-link'
-import { setContext } from 'apollo-link-context'
-import { createPersistedQueryLink } from 'apollo-link-persisted-queries'
-import { HttpOptions } from 'apollo-link-http-common'
-import { withClientState, ClientStateConfig } from 'apollo-link-state'
 import {
-  InMemoryCache,
+  ApolloClient,
+  ApolloClientOptions,
+  ApolloLink,
+  DocumentNode,
+  from,
+  HttpOptions,
   InMemoryCacheConfig,
   NormalizedCacheObject,
-} from 'apollo-cache-inmemory'
+  Resolvers,
+} from '@apollo/client/core'
+import { InMemoryCache } from '@apollo/client/cache'
+import {
+  createPersistedQueryLink,
+  PersistedQueryLink,
+} from '@apollo/client/link/persisted-queries'
+import { setContext } from '@apollo/client/link/context'
 import { createUploadLink } from 'apollo-upload-client'
 import Vue from 'vue'
 import VueApollo from 'vue-apollo'
@@ -21,7 +27,6 @@ import config from './apollo-config'
 export interface ApolloClientClientConfig<TCacheShape> {
   apollo?: ApolloClientOptions<TCacheShape>
   cache?: InMemoryCache | false
-  clientState?: ClientStateConfig
   defaultHttpLink?: boolean
   httpEndpoint?: string
   httpLinkOptions?: HttpOptions
@@ -124,9 +129,9 @@ export default (ctx: Context) => {
   app.apolloProvider = apolloProvider
 
   if (process.server) {
-    const apolloSSR = require('vue-apollo/ssr')
+    const ApolloSSR = require('vue-apollo/ssr')
     beforeNuxtRender(({ nuxtState }) => {
-      nuxtState.apollo = apolloSSR.getStates(apolloProvider)
+      nuxtState.apollo = ApolloSSR.getStates(apolloProvider)
     })
   }
 }
@@ -161,7 +166,6 @@ export function createApolloClient<TCacheShape>(
   const {
     apollo,
     clientId,
-    clientState,
     defaultHttpLink,
     httpEndpoint,
     httpLinkOptions,
@@ -230,7 +234,7 @@ export function createApolloClient<TCacheShape>(
     }
 
     if (!disableHttp) {
-      let persistingOpts = {}
+      let persistingOpts = {} as PersistedQueryLink.Options
       if (typeof persisting === 'object' && persisting != null) {
         persistingOpts = persisting
         persisting = true
@@ -239,18 +243,6 @@ export function createApolloClient<TCacheShape>(
         link = createPersistedQueryLink(persistingOpts).concat(link)
       }
     }
-  }
-
-  if (clientState && link) {
-    consola.warn(
-      'clientState is deprecated, see https://vue-cli-plugin-apollo.netlify.com/guide/client-state.html'
-    )
-    stateLink = withClientState({
-      cache,
-      ...clientState,
-      resolvers: undefined,
-    })
-    link = from([stateLink, link])
   }
 
   const apolloClient = new ApolloClient({
