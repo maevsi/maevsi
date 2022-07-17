@@ -304,12 +304,17 @@ export default defineComponent({
       },
     }
   },
+  watch: {
+    $colorMode: {
+      handler() {
+        ;(this.$refs.doughnut as any)?.getCurrentChart()?.update()
+      },
+      deep: true,
+    },
+  },
   mounted() {
     Chart.defaults.color = () =>
       this.$colorMode.value === 'dark' ? '#fff' : '#000'
-    this.$colorMode.$watch('value', () => {
-      ;(this.$refs.doughnut as any)?.getCurrentChart()?.update()
-    })
   },
   methods: {
     add() {
