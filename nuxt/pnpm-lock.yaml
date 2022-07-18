@@ -11,7 +11,7 @@ specifiers:
   '@jest/globals': 27.5.1
   '@jest/types': 28.1.3
   '@nuxt/babel-preset-app': 2.15.8
-  '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27628751.3df21c7
+  '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27636329.42ea75b
   '@nuxt/postcss8': 1.1.3
   '@nuxt/types-edge': 2.16.0-27616340.013f051b
   '@nuxtjs/color-mode': 3.1.4
@@ -208,7 +208,7 @@ devDependencies:
   '@jest/globals': 27.5.1
   '@jest/types': 28.1.3
   '@nuxt/babel-preset-app': 2.15.8_vue@2.7.7
-  '@nuxt/bridge': /@nuxt/bridge-edge/3.0.0-27628751.3df21c7_ybyy3ylip4neoxi5cemjbq7qva
+  '@nuxt/bridge': /@nuxt/bridge-edge/3.0.0-27636329.42ea75b_ybyy3ylip4neoxi5cemjbq7qva
   '@nuxt/postcss8': 1.1.3_webpack@4.46.0
   '@nuxtjs/eslint-config-typescript': 10.0.0_he2ccbldppg44uulnyq4rwocfa
   '@nuxtjs/eslint-module': 3.1.0_rcrc74i36nnzx6b6tiapiefiuu
@@ -2667,8 +2667,8 @@ packages:
       - vue
     dev: true
 
-  /@nuxt/bridge-edge/3.0.0-27628751.3df21c7_ybyy3ylip4neoxi5cemjbq7qva:
-    resolution: {integrity: sha512-qzuLUz2P3pY7WTYQZJxuy0x2hXvn3OXBfZ8Xp3kb1ut2imRTiXlpPsn6KCDP+hurYbPqS5br1BZFkhBIoSnQww==}
+  /@nuxt/bridge-edge/3.0.0-27636329.42ea75b_ybyy3ylip4neoxi5cemjbq7qva:
+    resolution: {integrity: sha512-TMqeLv0ApKKmuxoo0jh3IH+524HkYAGzxbkpqLvoMxFtRQmdYiuKaLnVp5wgSRi1X4QKURVxfT7Pa595mCzonw==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     hasBin: true
     dependencies:
