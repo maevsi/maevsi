@@ -127,7 +127,7 @@
     "@types/vue-datetime": "1.0.1",
     "@types/vue-moment": "4.0.3",
     "@types/vuelidate": "0.7.15",
-    "@vue/cli-shared-utils": "4.5.19",
+    "@vue/cli-shared-utils": "5.0.8",
     "autoprefixer": "10.4.7",
     "babel-loader": "8.2.5",
     "browserlist": "1.0.1",
