@@ -98,7 +98,7 @@ specifiers:
   msw: 0.44.1
   msw-storybook-addon: 1.6.3
   mustache: 3.2.1
-  node-fetch: 3.2.8
+  node-fetch: 3.2.9
   nuxt-edge: 2.16.0-27616340.013f051b
   nuxt-helmet: 3.0.0
   pg: 8.7.3
@@ -181,7 +181,7 @@ dependencies:
   luxon: 1.28.0
   moment: 2.29.4
   mustache: 3.2.1
-  node-fetch: 3.2.8
+  node-fetch: 3.2.9
   nuxt-edge: 2.16.0-27616340.013f051b_hg2lmj57ltjteqgzwhwaifxdru
   nuxt-helmet: 3.0.0
   pg: 8.7.3
@@ -2698,7 +2698,7 @@ packages:
       magic-string: 0.26.2
       mlly: 0.5.4
       nitropack: 0.4.12_vite@2.9.14+webpack@4.46.0
-      node-fetch: 3.2.8
+      node-fetch: 3.2.9
       nuxi: 3.0.0-rc.6
       ohash: 0.1.4
       pathe: 0.3.2
@@ -15786,8 +15786,8 @@ packages:
     dependencies:
       whatwg-url: 5.0.0
 
-  /node-fetch/3.2.8:
-    resolution: {integrity: sha512-KtpD1YhGszhntMpBDyp5lyagk8KIMopC1LEb7cQUAh7zcosaX5uK8HnbNb2i3NTQK3sIawCItS0uFC3QzcLHdg==}
+  /node-fetch/3.2.9:
+    resolution: {integrity: sha512-/2lI+DBecVvVm9tDhjziTVjo2wmTsSxSk58saUYP0P/fRJ3xxtfMDY24+CKTkfm0Dlhyn3CSXNL0SoRiCZ8Rzg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       data-uri-to-buffer: 4.0.0
