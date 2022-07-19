@@ -95,7 +95,7 @@ specifiers:
   luxon: 1.28.0
   mockdate: 3.0.5
   moment: 2.29.4
-  msw: 0.44.1
+  msw: 0.44.2
   msw-storybook-addon: 1.6.3
   mustache: 3.2.1
   node-fetch: 3.2.9
@@ -255,8 +255,8 @@ devDependencies:
   jest: 28.1.3_x6e2yyr2lbaimmiyai5r7oajlm
   lint-staged: 13.0.3
   mockdate: 3.0.5
-  msw: 0.44.1_typescript@4.7.4
-  msw-storybook-addon: 1.6.3_cqinhqtvxnwlmolp5j4cbajb7a
+  msw: 0.44.2_typescript@4.7.4
+  msw-storybook-addon: 1.6.3_scupfcytfy4oiu6s7h4pnl4e2i
   postcss: 8.4.14
   postcss-html: 1.5.0
   prettier: 2.7.1
@@ -15534,21 +15534,21 @@ packages:
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  /msw-storybook-addon/1.6.3_cqinhqtvxnwlmolp5j4cbajb7a:
+  /msw-storybook-addon/1.6.3_scupfcytfy4oiu6s7h4pnl4e2i:
     resolution: {integrity: sha512-Ps80WdRmXsmenoTwfrgKMNpQD8INUUFyUFyZOecx8QjuqSlL++UYrLaGyACXN2goOn+/VS6rb0ZapbjrasPClg==}
     peerDependencies:
       msw: '>=0.35.0 <1.0.0'
     dependencies:
       '@storybook/addons': 6.5.9_wcqkhtmu7mswc6yz4uyexck3ty
       is-node-process: 1.0.1
-      msw: 0.44.1_typescript@4.7.4
+      msw: 0.44.2_typescript@4.7.4
     transitivePeerDependencies:
       - react
       - react-dom
     dev: true
 
-  /msw/0.44.1_typescript@4.7.4:
-    resolution: {integrity: sha512-QhTZJQCCv+y4G5l2dLz+2N4K+wWEiz+HfvW6o3ZznDDHbKhQyYmzymU7bWVXXhLbUw7xgxPRxxm1XsYVb6WR7Q==}
+  /msw/0.44.2_typescript@4.7.4:
+    resolution: {integrity: sha512-u8wjzzcMWouoZtuIShCwx4M3wFF5sBAV1f8K4a0WX8kiihFjzl89IKE1VYmTclLyMIwpOq8qQ1HTpuh2BFX/3A==}
     engines: {node: '>=14'}
     hasBin: true
     requiresBuild: true
