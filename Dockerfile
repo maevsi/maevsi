@@ -138,13 +138,13 @@ ENV CI ${CI}
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # Update and install dependencies.
-# - `curl` is required by test.sh
+# - `ca-certificates curl` is required by test.sh
 # - `fonts-dejavu-core gconf-service`, ... is required by `puppeteer`
 # - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
 # - `jq` is required for storycap
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-        curl \
+        ca-certificates curl \
         fonts-dejavu-core gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdbus-1-3 libdrm2 libgbm1 libgconf-2-4 libgtk-3-0 libnspr4 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 fonts-liberation libayatana-appindicator1 libnss3 libxshmfence1 lsb-release xdg-utils \
         procps \
         jq
