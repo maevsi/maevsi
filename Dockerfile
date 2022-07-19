@@ -151,7 +151,7 @@ RUN apt-get update \
 
 WORKDIR /srv/app/
 
-COPY ./.git ./
+COPY ./.git ./.git
 COPY --from=prepare /srv/app/ ./
 
 RUN npm install -g pnpm && \
