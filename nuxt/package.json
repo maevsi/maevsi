@@ -15,6 +15,7 @@
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint:quiet": "pnpm lint:js --quiet && pnpm lint:style --quiet",
     "lint:fix": "pnpm lint:js --fix && pnpm lint:style --fix",
+    "postinstall": "pnpm msw init public",
     "storybook": "cross-env STORYBOOK=true nuxt storybook -p 6006",
     "storybook:build": "cross-env STORYBOOK=true nuxt storybook build",
     "storybook:serve": "npx http-server ./storybook-static -p 6006",
