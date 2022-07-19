@@ -133,6 +133,8 @@ RUN npm install -g pnpm && \
 # `storycap` requires Debian.
 FROM node:18.6.0-slim@sha256:dc51bdd082f355574f0c534ffa1c0d5fcdb825ed673da6486ecd566091b8d8f0 AS test-visual
 
+ARG CI=false
+ENV CI ${CI}
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # Update and install dependencies.
