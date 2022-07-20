@@ -1,3 +1,17 @@
+# [0.138.0](https://github.com/maevsi/maevsi/compare/0.137.2...0.138.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* **apollo:** add provider to app ([d363fa7](https://github.com/maevsi/maevsi/commit/d363fa7674c1d639db605304babb8593dcb23559))
+
+
+### Features
+
+* **apollo:** complete own plugin ([f53a204](https://github.com/maevsi/maevsi/commit/f53a204bff673535d2f637f29489c404d09ecd70))
+* **apollo:** use own module ([0a3a708](https://github.com/maevsi/maevsi/commit/0a3a7081d85f8aa7f56325c67ba31b6ee5f41702))
+* **apollo:** use ssr ([4dda1ee](https://github.com/maevsi/maevsi/commit/4dda1eeecb28903eaf75f1e606d2574e9498185a))
+
 ## [0.137.2](https://github.com/maevsi/maevsi/compare/0.137.1...0.137.2) (2022-07-16)
 
 
