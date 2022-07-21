@@ -84,7 +84,7 @@ specifiers:
   eslint-plugin-yml: 1.0.0
   graphql: 15.8.0
   graphql-tag: 2.12.6
-  h3: 0.7.10
+  h3: 0.7.12
   html-to-text: 8.2.0
   ical-generator: 3.4.3
   isomorphic-dompurify: 0.15.0
@@ -172,7 +172,7 @@ dependencies:
   css-element-queries: 1.2.3
   downloadjs: 1.4.7
   graphql: 15.8.0
-  h3: 0.7.10
+  h3: 0.7.12
   html-to-text: 8.2.0
   ical-generator: 3.4.3_ao2iyzh77vhnwlqixxhj53gn5m
   isomorphic-dompurify: 0.15.0
@@ -2692,7 +2692,7 @@ packages:
       fs-extra: 10.1.0
       get-port-please: 2.5.0
       globby: 13.1.2
-      h3: 0.7.10
+      h3: 0.7.12
       hash-sum: 2.0.0
       knitwork: 0.1.2
       magic-string: 0.26.2
@@ -11495,6 +11495,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
 
   /filename-regex/2.0.1:
     resolution: {integrity: sha512-BTCqyBaWBTsauvnHiE8i562+EdJj+oUpkqWp2R1iCoR8f6oo8STRu3of7WJJ0TqWtxN50a5YFpzYK4Jj9esYfQ==}
@@ -12296,8 +12297,8 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /h3/0.7.10:
-    resolution: {integrity: sha512-HcUQxlOocG2uf6PQLu3Bxk0KSXcTuxSF6kRclFBDO7y74Ml0wCwTvmoN5zmrzoxbNHecDNUrcGr8qSNGcOqAHQ==}
+  /h3/0.7.12:
+    resolution: {integrity: sha512-RLil5Hr4lzK52eQL3zEG6rE7OqYC8SwmPkcc1AoLIgJAqGRRgfrtkb/NYUWui0/DMeErzhGjaO0pjEuXyILzOw==}
     dependencies:
       cookie-es: 0.5.0
       destr: 1.1.1
@@ -15708,7 +15709,7 @@ packages:
       fs-extra: 10.1.0
       globby: 13.1.2
       gzip-size: 7.0.0
-      h3: 0.7.10
+      h3: 0.7.12
       hookable: 5.1.1
       http-proxy: 1.18.1
       is-primitive: 3.0.1
@@ -21840,7 +21841,7 @@ packages:
       anymatch: 3.1.2
       chokidar: 3.5.3
       destr: 1.1.1
-      h3: 0.7.10
+      h3: 0.7.12
       ioredis: 5.2.1
       listhen: 0.2.13
       mri: 1.2.0
@@ -22929,7 +22930,7 @@ packages:
   /wide-align/1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
-      string-width: 1.0.2
+      string-width: 4.2.3
     dev: true
 
   /widest-line/3.1.0:
