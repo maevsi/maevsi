@@ -12,7 +12,6 @@ specifiers:
   '@jest/types': 28.1.3
   '@nuxt/babel-preset-app': 2.15.8
   '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27639120.e7a7f9b
-  '@nuxt/postcss8': 1.1.3
   '@nuxt/types-edge': 2.16.0-27616340.013f051b
   '@nuxtjs/color-mode': 3.1.4
   '@nuxtjs/eslint-config-typescript': 10.0.0
@@ -209,7 +208,6 @@ devDependencies:
   '@jest/types': 28.1.3
   '@nuxt/babel-preset-app': 2.15.8_vue@2.7.7
   '@nuxt/bridge': /@nuxt/bridge-edge/3.0.0-27639120.e7a7f9b_ybyy3ylip4neoxi5cemjbq7qva
-  '@nuxt/postcss8': 1.1.3_webpack@4.46.0
   '@nuxtjs/eslint-config-typescript': 10.0.0_he2ccbldppg44uulnyq4rwocfa
   '@nuxtjs/eslint-module': 3.1.0_rcrc74i36nnzx6b6tiapiefiuu
   '@nuxtjs/google-analytics': 2.4.0

@@ -92,7 +92,6 @@ export default defineNuxtConfig({
     ['@nuxtjs/moment', { locales: ['de'] }],
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
-    '@nuxt/postcss8',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
