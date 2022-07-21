@@ -131,6 +131,9 @@ export default defineNuxtConfig({
     ],
   },
   css: ['@/assets/css/main.css', 'vue-datetime/dist/vue-datetime.min.css'],
+  dir: {
+    static: 'public',
+  },
   head() {
     return {
       bodyAttrs: {
@@ -416,6 +419,9 @@ export default defineNuxtConfig({
   // },
   storybook: {
     addons: ['@storybook/addon-a11y'],
+  },
+  typescript: {
+    strict: true,
   },
   vue: {
     config: {
