@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from '@nuxt/bridge'
+import { Configuration } from 'webpack'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
@@ -30,14 +31,13 @@ export default defineNuxtConfig({
     tslib: 'tslib/tslib.es6.js',
     'tus-js-client': 'tus-js-client/lib.es5/browser/index.js',
   },
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     babel: {
       presets() {
         return [['@nuxt/babel-preset-app', { corejs: { version: 3 } }]]
       },
     },
-    extend(config) {
+    extend(config: Configuration) {
       config.module?.rules.push({
         test: /\.(graphql|gql)$/,
         exclude: /node_modules/,
@@ -68,8 +68,6 @@ export default defineNuxtConfig({
       'webrtc-adapter',
     ],
   },
-
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     [
       '@nuxtjs/google-analytics',
@@ -92,12 +90,8 @@ export default defineNuxtConfig({
     ['@nuxtjs/moment', { locales: ['de'] }],
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
-    '@nuxt/postcss8',
   ],
-
-  // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
-
+  components: true, // Auto import components
   cookies: {
     necessary: [
       {
@@ -136,15 +130,10 @@ export default defineNuxtConfig({
       },
     ],
   },
-
-  // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['@/assets/css/main.css', 'vue-datetime/dist/vue-datetime.min.css'],
-
   dir: {
     static: 'public',
   },
-
-  // Global page headers (https://go.nuxtjs.dev/config-head)
   head() {
     return {
       bodyAttrs: {
@@ -298,13 +287,7 @@ export default defineNuxtConfig({
       },
     }
   },
-
-  /*
-   ** Customize the progress-bar color
-   */
-  loading: { color: '#fff' },
-
-  // Modules (https://go.nuxtjs.dev/config-modules)
+  loading: { color: '#fff' }, // Customize the progress-bar color
   modules: [
     [
       'nuxt-helmet',
@@ -367,8 +350,15 @@ export default defineNuxtConfig({
     'vue-sweetalert2/nuxt',
     ['@nuxtjs/sitemap', { exclude: EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
   ],
-
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
+  nitro: {
+    autoImport: {
+      exclude: [
+        /[\\/]node_modules[\\/]/,
+        /[\\/]\.git[\\/]/,
+        /[\\/]\.nuxt[\\/]/,
+      ], // Can be removed in unjs/nitro > v0.4.12
+    },
+  },
   plugins: [
     '~/plugins/apollo.ts',
     '~/plugins/baseUrl.ts',
@@ -380,7 +370,6 @@ export default defineNuxtConfig({
     '~/plugins/util.ts',
     '~/plugins/vuelidate.ts',
   ],
-
   publicRuntimeConfig: {
     dev: process.env.NODE_ENV !== 'production',
     // 'google-adsense': {
@@ -394,7 +383,6 @@ export default defineNuxtConfig({
     },
     STORYBOOK: process.env.STORYBOOK,
   },
-
   // render: {
   //   compressor: compressionWithBrotli(),
   //   csp: {
@@ -429,14 +417,15 @@ export default defineNuxtConfig({
   //     reportOnly: false,
   //   },
   // },
-
   storybook: {
     addons: ['@storybook/addon-a11y'],
   },
-
+  typescript: {
+    strict: true,
+  },
   vue: {
     config: {
-      productionTip: false,
+      productionTip: false, // Remove in vue 3.
     },
   },
 })
