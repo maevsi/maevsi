@@ -171,7 +171,7 @@
     "vue": "2.7.8",
     "vue-clipboard2": "0.3.3",
     "vue-template-compiler": "2.7.8",
-    "vue-tsc": "0.38.9",
+    "vue-tsc": "0.39.0",
     "webpack": "4.46.0"
   },
   "msw": {
