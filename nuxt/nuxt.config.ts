@@ -371,6 +371,7 @@ export default defineNuxtConfig({
     '~/plugins/apollo.ts',
     '~/plugins/croppa.js',
     '~/plugins/i18n.ts',
+    '~/plugins/urql.ts',
     '~/plugins/util.ts',
     '~/plugins/vuelidate.ts',
   ],

@@ -1,12 +1,12 @@
 <template>
   <Loader
-    v-if="($apollo.loading && !allEvents) || graphqlError"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
+    v-if="(isFetching && !data) || error"
+    :errors="$util.getGqlErrorMessages(error, this)"
   />
   <div v-else class="flex flex-col gap-4">
     <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
       <ButtonList>
-        <ButtonEventList v-if="showButtonEventList" />
+        <ButtonEventList v-if="isButtonEventListShown" />
       </ButtonList>
       <div class="flex gap-4">
         <div class="flex gap-1">
@@ -21,16 +21,19 @@
         </div>
       </div>
     </div>
-    <ul v-if="allEvents.nodes.length">
+    <ul v-if="data?.allEvents?.nodes?.length">
       <EventListItem
-        v-for="event in allEvents.nodes"
+        v-for="event in data.allEvents.nodes"
         :key="event.id"
         :event="event"
       />
-      <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
+      <div
+        v-if="data.allEvents.pageInfo.hasNextPage"
+        class="flex justify-center"
+      >
         <ButtonColored
           :aria-label="$t('globalShowMore')"
-          @click="$util.loadMore($apollo, 'allEvents', allEvents)"
+          @click="after = data.allEvents.pageInfo.endCursor"
         >
           {{ $t('globalShowMore') }}
         </ButtonColored>
@@ -41,43 +44,45 @@
 </template>
 
 <script lang="ts">
+import { useQuery } from '@urql/vue'
 import consola from 'consola'
+import { ref, watch } from 'vue'
 
-import { defineComponent, PropType } from '#app'
+import { useNuxtApp, useRoute, defineComponent, PropType } from '#app'
+
 import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
 
 export default defineComponent({
-  apollo: {
-    allEvents(): any {
-      return {
-        query: EVENTS_ALL_QUERY,
-        variables: {
-          authorUsername: this.username,
-          first: this.$util.ITEMS_PER_PAGE,
-          offset: null,
-        },
-        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
-          this.graphqlError = error
-          consola.error(error)
-        },
-      }
-    },
-  },
   props: {
-    showButtonEventList: {
-      default() {
-        return this.$route?.name?.replace(/___.+$/, '') !== 'event'
-      },
-      type: Boolean,
-    },
     username: {
       default: undefined,
       type: String as PropType<string | undefined>,
     },
   },
-  data() {
+  setup(props) {
+    const nuxtApp = useNuxtApp()
+    const route = useRoute()
+    const after = ref<string>()
+
+    const result = useQuery({
+      query: EVENTS_ALL_QUERY,
+      variables: {
+        after,
+        authorUsername: props.username,
+        first: nuxtApp.nuxt2Context.$util.ITEMS_PER_PAGE,
+      },
+    })
+
+    watch(result.error, (currentValue, _oldValue) => {
+      if (currentValue) consola.error(currentValue)
+    })
+
     return {
-      graphqlError: undefined as Error | undefined,
+      after,
+      data: result.data,
+      error: result.error,
+      isButtonEventListShown: route.name?.replace(/___.+$/, '') !== 'event',
+      isFetching: result.fetching,
     }
   },
 })
