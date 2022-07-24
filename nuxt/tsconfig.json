@@ -37,5 +37,8 @@
     ".nuxt",
     "dist"
   ],
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "vueCompilerOptions": {
+    "target": 2.7,
+  }
 }

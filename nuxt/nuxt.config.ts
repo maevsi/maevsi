@@ -367,6 +367,7 @@ export default defineNuxtConfig({
     '~/plugins/htmlToText.ts',
     '~/plugins/i18n.ts',
     '~/plugins/slugify.ts',
+    '~/plugins/urql.ts',
     '~/plugins/util.ts',
     '~/plugins/vuelidate.ts',
   ],
