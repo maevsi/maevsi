@@ -131,6 +131,7 @@
     "@types/vue-moment": "4.0.3",
     "@types/vuelidate": "0.7.15",
     "@types/webpack": "4.41.32",
+    "@urql/devtools": "2.0.3",
     "autoprefixer": "10.4.7",
     "babel-loader": "8.2.5",
     "browserlist": "1.0.1",
