@@ -6,6 +6,7 @@ import {
 } from '@urql/core'
 import { cacheExchange } from '@urql/exchange-graphcache'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
+import { devtoolsExchange } from '@urql/devtools'
 // import schema from '../gql/introspection';
 // import { GraphCacheConfig } from '~/gql/schema';
 import { provideClient } from '@urql/vue'
@@ -70,6 +71,7 @@ export default defineNuxtPlugin((nuxt) => {
         (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
         '/graphql',
     exchanges: [
+      ...(process.env.NODE_ENV === 'production' ? [] : [devtoolsExchange]),
       dedupExchange,
       cache,
       ssr, // add `ssr` before `fetchExchange`
