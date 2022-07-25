@@ -4,12 +4,13 @@ import {
   dedupExchange,
   fetchExchange,
 } from '@urql/core'
-import { cacheExchange } from '@urql/exchange-graphcache'
+import { cacheExchange, Variables } from '@urql/exchange-graphcache'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 // import schema from '../gql/introspection';
 // import { GraphCacheConfig } from '~/gql/schema';
 import { provideClient } from '@urql/vue'
+import consola from 'consola'
 
 import { defineNuxtPlugin, useNuxtApp } from '#app'
 
@@ -47,7 +48,6 @@ export default defineNuxtPlugin((nuxt) => {
   //   }
   //   // storage: process.client ? makeDefaultStorage() : undefined
   // }
-  // const cache = graphCacheExchange(cacheConfig)
   const cache = cacheExchange({
     resolvers: {
       Query: {
@@ -56,15 +56,35 @@ export default defineNuxtPlugin((nuxt) => {
         allUploads: relayPagination(),
       },
     },
+    updates: {
+      Mutation: {
+        eventDelete(_parent, args, cache, _info) {
+          debugger
+          cache.invalidate({
+            __typename: 'Event',
+            id: (args.input as Variables).id as string | number,
+          })
+        },
+      },
+    },
   })
 
   const client = createClient({
-    //   fetchOptions: () => {
-    //     const token = 123
-    //     return {
-    //       headers: { authorization: token ? `Bearer ${token}` : '' },
-    //     }
-    //   },
+    fetchOptions: () => {
+      const jwt: string = nuxt.$store.state.jwt
+
+      if (jwt) {
+        consola.trace('Apollo request authenticated with: ' + jwt)
+        return {
+          headers: { authorization: `Bearer ${jwt}` },
+        }
+      } else {
+        consola.trace('Apollo request without authentication.')
+        return {
+          headers: { authorization: '' },
+        }
+      }
+    },
     url: process.server
       ? 'http://postgraphile:5000/graphql'
       : 'https://postgraphile.' +

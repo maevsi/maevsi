@@ -19,12 +19,14 @@
 </template>
 
 <script lang="ts">
+import { useMutation } from '@urql/vue'
 import consola from 'consola'
-import Swal from 'sweetalert2'
-import { minLength, required } from 'vuelidate/lib/validators'
 import { DocumentNode } from 'graphql'
+import Swal from 'sweetalert2'
+import { ref } from 'vue'
+import { minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent, PropType } from '#app'
+import { useNuxtApp, defineComponent, PropType } from '#app'
 
 export default defineComponent({
   props: {
@@ -33,63 +35,60 @@ export default defineComponent({
       type: Array as PropType<string[] | undefined>,
     },
     itemName: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
+      required: true,
+      type: String as PropType<string>,
     },
     mutation: {
-      default: undefined,
-      type: Object as PropType<DocumentNode | undefined>,
-    },
-    update: {
-      default: undefined,
-      type: Function,
+      required: true,
+      type: Object as PropType<DocumentNode>,
     },
     variables: {
-      default: undefined,
-      type: Object as PropType<Record<any, any> | undefined>,
+      default: {} as PropType<Record<string, any>>,
+      type: Object as PropType<Record<string, any>>,
     },
   },
-  data() {
-    return {
-      form: {
-        password: undefined as string | undefined,
-        sent: false,
+  setup(props, { emit }) {
+    const nuxtApp = useNuxtApp()
+
+    const data = {
+      form: ref({
+        password: ref<string>(),
+        sent: ref<boolean>(),
+      }),
+    }
+
+    const { executeMutation } = useMutation(props.mutation)
+
+    const methods = {
+      submit() {
+        executeMutation({
+          password: data.form.value.password,
+          ...props.variables,
+        }).then((result) => {
+          if (result.error) {
+            emit('error', result.error)
+            consola.error(result.error)
+          } else {
+            Swal.fire({
+              icon: 'success',
+              text: nuxtApp.nuxt2Context.$util.capitalizeFirstLetter(
+                nuxtApp.nuxt2Context.$t('success', {
+                  item: props.itemName,
+                }) as string
+              ),
+              timer: 3000,
+              timerProgressBar: true,
+              title: nuxtApp.nuxt2Context.$t('deleted'),
+            }).then(() => emit('success'))
+          }
+        })
       },
     }
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
 
-      this.$apollo
-        .mutate({
-          mutation: this.mutation!!,
-          variables: {
-            password: this.form.password,
-            ...(this.variables ?? {}),
-          },
-          ...(this.update !== undefined ? { update: this.update } : {}),
-        })
-        .then((_value) => {
-          Swal.fire({
-            icon: 'success',
-            text: this.$util.capitalizeFirstLetter(
-              this.$t('success', { item: this.itemName }) as string
-            ),
-            timer: 3000,
-            timerProgressBar: true,
-            title: this.$t('deleted'),
-          }).then(() => this.$emit('success'))
-        })
-        .catch((graphqlError) => {
-          this.$emit('error', graphqlError)
-          consola.error(graphqlError)
-        })
-    },
+    return {
+      ...data,
+      ...methods,
+    }
   },
   validations() {
     return {
