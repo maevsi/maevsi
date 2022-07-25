@@ -61,9 +61,9 @@ const Form = defineComponent({
       type: String as PropType<string | undefined>,
     },
     formSent: {
-      required: true,
-      type: Boolean,
-    },
+      default: false,
+      type: Boolean as PropType<boolean | undefined>,
+    }, // TODO: remove?
     submitName: {
       default() {
         return this.$t('submit') as string

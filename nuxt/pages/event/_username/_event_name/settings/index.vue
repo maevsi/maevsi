@@ -26,10 +26,8 @@
           :errors="$util.getGqlErrorMessages(graphqlErrorDelete, this)"
           :item-name="$t('event')"
           :mutation="mutation"
-          :update="updateCacheDelete"
           :variables="{
-            authorUsername: $route.params.username,
-            slug: $route.params.event_name,
+            id: event.id,
           }"
           @error="onDeleteError"
           @success="onDeleteSuccess"
@@ -48,7 +46,6 @@ import { defineComponent } from '#app'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_DELETE_MUTATION from '~/gql/mutation/event/eventDelete.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
-import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
 import { Event as MaevsiEvent } from '~/types/event'
 
 export default defineComponent({
@@ -145,68 +142,6 @@ export default defineComponent({
     onDeleteSuccess() {
       this.$router.push(this.localePath(`/event`))
       this.$apollo.queries.allEvents && this.$apollo.queries.allEvents.refetch()
-    },
-
-    // /////////////////////////////////////////////////////////////////////////
-    // TODO: Use apollo client v3.
-    // https://www.apollographql.com/docs/react/caching/cache-configuration/
-    // https://apollo.vuejs.org/guide/components/mutation.html
-
-    // update(cache, {data: mutationData}) {
-    //   if (mutationData) {
-    //     const removedMatchId = mutationData.removeMatch;
-    //     cache.modify('ROOT_QUERY', {
-    //       matches: (matches: Reference[], helpers) => {
-    //         const removedMatchRef = helpers.toReference({
-    //           __typename: 'Match',
-    //           id: removedMatchId,
-    //         });
-    //         return matches.filter(({__ref}) => __ref !== removedMatchRef.__ref);
-    //       },
-    //     });
-    //   }
-    // },
-
-    // cache.evict(cache.identify(result.data.updateActivity));
-
-    // const [deleteExpressHelp] = useDeleteExpressHelpMutation({
-    //   update: (cache, {data}) => {
-    //     cache.evict({
-    //       id: cache.identify({
-    //         __typename: 'express_help',
-    //         id: data?.delete_express_help_by_pk?.id,
-    //       }),
-    //     });
-    //   },
-    // });
-    // /////////////////////////////////////////////////////////////////////////
-
-    // Just an example. Doesn't respect parameters like a conditional username that is set for this query on event lists on users' profiles.
-    // Currently, the apollo fetch policy is `cache-and-network`: https://github.com/maevsi/maevsi/commit/02cbcd9c9a9784e9076c6a360f78a603623c819b#diff-ce51f9f2a4d27fb6594bd8d6dce05dcbca68a6a99999078c96dbab4033472650R247
-    updateCacheDelete(store: any, { data: { _eventDelete } }: any) {
-      const query = { query: EVENTS_ALL_QUERY }
-      let data
-
-      try {
-        data = store.readQuery(query)
-      } catch (e) {
-        return
-      }
-
-      // const index = data.allEvents.nodes.find(
-      const index = data.allEvents.nodes.findIndex(
-        (x: MaevsiEvent) =>
-          x.authorUsername === this.$route.params.username &&
-          x.slug === this.$route.params.event_name
-      )
-
-      if (index !== -1) {
-        data.allEvents.nodes.splice(index, 1)
-        store.writeQuery({
-          ...query,
-          data,
-        })
-      }
     },
   },
 })

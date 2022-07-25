@@ -77,12 +77,20 @@ export default defineComponent({
       if (currentValue) consola.error(currentValue)
     })
 
-    return {
+    const apiData = {
       after,
       data: result.data,
       error: result.error,
-      isButtonEventListShown: route.name?.replace(/___.+$/, '') !== 'event',
       isFetching: result.fetching,
+    }
+
+    const data = {
+      isButtonEventListShown: route.name?.replace(/___.+$/, '') !== 'event',
+    }
+
+    return {
+      ...apiData,
+      ...data,
     }
   },
 })
