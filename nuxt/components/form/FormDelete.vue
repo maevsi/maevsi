@@ -48,7 +48,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const nuxtApp = useNuxtApp()
+    const { $t, $util } = useNuxtApp()
 
     const data = {
       form: ref({
@@ -60,7 +60,13 @@ export default defineComponent({
     const { executeMutation } = useMutation(props.mutation)
 
     const methods = {
-      submit() {
+      async submit() {
+        try {
+          await $util.formPreSubmit(this)
+        } catch (error) {
+          return
+        }
+
         executeMutation({
           password: data.form.value.password,
           ...props.variables,
@@ -71,14 +77,14 @@ export default defineComponent({
           } else {
             Swal.fire({
               icon: 'success',
-              text: nuxtApp.nuxt2Context.$util.capitalizeFirstLetter(
-                nuxtApp.nuxt2Context.$t('success', {
+              text: $util.capitalizeFirstLetter(
+                $t('success', {
                   item: props.itemName,
                 }) as string
               ),
               timer: 3000,
               timerProgressBar: true,
-              title: nuxtApp.nuxt2Context.$t('deleted'),
+              title: $t('deleted'),
             }).then(() => emit('success'))
           }
         })
