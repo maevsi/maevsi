@@ -1,14 +1,14 @@
 <template>
   <Loader
-    v-if="($apollo.loading && !allUploads) || graphqlError"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
+    v-if="(isFetching && !data) || error"
+    :errors="$util.getGqlErrorMessages(error, this)"
   />
   <div v-else>
-    <Card v-if="allUploads?.nodes.length || allowAddition">
+    <Card v-if="data?.allUploads?.nodes?.length || allowAddition">
       <ul class="flex flex-wrap justify-center">
-        <template v-if="allUploads">
+        <template v-if="data?.allUploads?.nodes?.length">
           <li
-            v-for="upload in allUploads.nodes"
+            v-for="upload in data.allUploads.nodes"
             :id="upload.id"
             :key="upload.id"
             :class="{
@@ -82,7 +82,10 @@
           />
         </li>
       </ul>
-      <div v-if="allUploads?.pageInfo.hasNextPage" class="flex justify-center">
+      <div
+        v-if="data?.allUploads.pageInfo.hasNextPage"
+        class="flex justify-center"
+      >
         <ButtonColored
           :aria-label="$t('globalShowMore')"
           @click="$util.loadMore($apollo, 'allUploads', allUploads)"
@@ -129,15 +132,18 @@
 <script lang="ts">
 import { Uppy, UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
+import { useQuery } from '@urql/vue'
 import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
 import Swal from 'sweetalert2'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { mapGetters } from 'vuex'
 
-import { defineComponent, PropType } from '#app'
+import { useNuxtApp, defineComponent, PropType } from '#app'
 import ACCOUNT_UPLOAD_QUOTA_BYTES from '~/gql/query/account/accountUploadQuotaBytes.gql'
 import UPLOADS_ALL_QUERY from '~/gql/query/upload/uploadsAll.gql'
 import UPLOAD_CREATE_MUTATION from '~/gql/mutation/upload/uploadCreate.gql'
+import { Upload } from '~/types/upload'
 
 require('@uppy/core/dist/style.css')
 
@@ -146,23 +152,6 @@ interface Item {
 }
 
 export default defineComponent({
-  apollo: {
-    allUploads(): any {
-      return {
-        query: UPLOADS_ALL_QUERY,
-        variables: {
-          first: this.$util.ITEMS_PER_PAGE,
-          offset: null,
-          username: this.username,
-        },
-        update: (data: any) => data.allUploads,
-        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
-          this.graphqlError = error
-          consola.error(error)
-        },
-      }
-    },
-  },
   props: {
     allowAddition: {
       default: true,
@@ -181,16 +170,242 @@ export default defineComponent({
       type: String as PropType<string | undefined>,
     },
   },
-  data() {
-    return {
-      accountUploadQuotaBytes: undefined as number | undefined,
-      allUploads: undefined as any,
-      croppy: {},
-      fileSelectedUrl: undefined as string | undefined,
-      graphqlError: undefined as Error | undefined,
-      selectedItem: undefined as Item | undefined,
+  setup(props, { emit }) {
+    const { nuxt2Context, $store } = useNuxtApp()
+    const after = ref<string>()
+
+    const result = useQuery<{
+      allUploads: { nodes: Array<Upload>; pageInfo: { hasNextPage: boolean } }
+    }>({
+      query: UPLOADS_ALL_QUERY,
+      variables: {
+        after,
+        authorUsername: props.username,
+        first: nuxt2Context.$util.ITEMS_PER_PAGE,
+      },
+    })
+
+    watch(result.error, (currentValue, _oldValue) => {
+      if (currentValue) consola.error(currentValue)
+    })
+
+    const apiData = {
+      after,
+      data: result.data,
+      error: result.error,
+      isFetching: result.fetching,
+    }
+
+    const data = {
+      accountUploadQuotaBytes: ref<number>(),
+      croppy: ref<any>(null),
+      fileSelectedUrl: ref<string>(),
+      selectedItem: ref<Item>(),
       uploadIdPrefix: 'upid_',
-      uppy: undefined as Uppy | undefined,
+      uppy: ref<Uppy>(),
+    }
+
+    const computations = {
+      ...mapGetters(['jwt', 'signedInUsername']),
+      sizeByteTotal: computed((): number | undefined => {
+        if (!result.data.value?.allUploads) {
+          return undefined
+        }
+
+        let sizeByteTotal = 0
+
+        for (const upload of result.data.value.allUploads.nodes) {
+          sizeByteTotal += upload.sizeByte
+        }
+
+        return sizeByteTotal
+      }),
+    }
+
+    const methods = {
+      bytesToString(
+        bytes: number | string | undefined | null
+      ): string | undefined {
+        if (bytes === undefined || bytes === null) {
+          return undefined
+        }
+        return prettyBytes(+bytes)
+      },
+      changeProfilePicture() {
+        ;(
+          document.querySelector('#input-profile-picture') as HTMLInputElement
+        ).click()
+      },
+      deleteImageUpload(uploadId: string) {
+        const element = document.getElementById(uploadId) as Element
+
+        element.classList.add('disabled')
+
+        const xhr = new XMLHttpRequest()
+
+        xhr.open('DELETE', '/api/tusd?uploadId=' + uploadId, true)
+        xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
+        xhr.setRequestHeader('Authorization', 'Bearer ' + computations.jwt)
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            element.classList.remove('disabled')
+
+            switch (xhr.status) {
+              case 204:
+                this.$apollo.queries.allUploads.refetch()
+                emit('deletion')
+                break
+              case 500:
+                Swal.fire({
+                  icon: 'error',
+                  text: nuxt2Context.$t('uploadDeleteFailed') as string,
+                  title: nuxt2Context.$t('globalStatusError'),
+                })
+                break
+              default:
+                Swal.fire({
+                  icon: 'warning',
+                  text: nuxt2Context.$t(
+                    'uploadDeleteUnexpectedStatusCode'
+                  ) as string,
+                  title: nuxt2Context.$t('globalStatusWarning'),
+                })
+            }
+          }
+        }
+        xhr.send()
+      },
+      fileLoaded(e: ProgressEvent<FileReader>) {
+        data.fileSelectedUrl.value = e.target?.result as string | undefined
+        $store.commit('modalAdd', { id: 'ModalImageUploadGallery' })
+      },
+      loadProfilePicture(event: InputEvent) {
+        const target = event.target as HTMLInputElement
+        const files = Array.from(target.files ?? [])
+
+        if (files.length !== 1) {
+          return
+        }
+
+        const file = files[0]
+
+        try {
+          const fileReader = new FileReader()
+          fileReader.onload = (e) => this.fileLoaded(e)
+          fileReader.readAsDataURL(file)
+        } catch (err: any) {
+          if (err.isRestriction) {
+            consola.log('Restriction error: ' + err)
+          } else {
+            consola.error(err)
+          }
+        }
+      },
+      toggleSelect(upload: any) {
+        if (data.selectedItem.value === upload) {
+          data.selectedItem.value = undefined
+          emit('selection', undefined)
+        } else {
+          data.selectedItem.value = upload
+          emit('selection', data.selectedItem.value?.storageKey)
+        }
+      },
+      getUploadBlobPromise() {
+        return new Promise<void>((resolve, reject) => {
+          data.croppy.value?.promisedBlob().then(async (blob: Blob) => {
+            const res = await this.$apollo
+              .mutate({
+                mutation: UPLOAD_CREATE_MUTATION,
+                variables: {
+                  uploadCreateInput: {
+                    sizeByte: blob.size,
+                  },
+                },
+              })
+              .then(({ data }) =>
+                nuxt2Context.$util.getNested(data, 'uploadCreate')
+              )
+              .catch((graphqlError) => {
+                const reason = nuxt2Context.$util.getGqlErrorMessages(
+                  graphqlError,
+                  this
+                )
+                consola.error(reason)
+                reject(reason)
+              })
+
+            if (!res) {
+              return
+            }
+
+            data.uppy.value = new Uppy({
+              id: 'profile-picture',
+              debug: process.env.NODE_ENV !== 'production',
+              restrictions: {
+                maxFileSize: 1048576,
+                maxNumberOfFiles: 1,
+                minNumberOfFiles: 1,
+                allowedFileTypes: ['image/*'],
+              },
+              meta: {
+                maevsiUploadUuid: res.uuid,
+              },
+              onBeforeUpload: (files: { [key: string]: UppyFile }) => {
+                const updatedFiles: Record<string, any> = {}
+
+                Object.keys(files).forEach((fileID) => {
+                  updatedFiles[fileID] = {
+                    ...files[fileID],
+                    name: '/profile-pictures/' + files[fileID].name,
+                  }
+                })
+
+                return updatedFiles
+              },
+            })
+
+            data.uppy.value.use(Tus, {
+              endpoint: nuxt2Context.$util.TUSD_FILES_URL,
+              limit: 1,
+              removeFingerprintOnSuccess: true,
+            })
+
+            data.uppy.value.addFile({
+              source: 'croppy',
+              name: (
+                document.querySelector(
+                  '#input-profile-picture'
+                ) as HTMLInputElement
+              ).files![0]!.name,
+              type: blob.type,
+              data: blob,
+            })
+
+            data.uppy.value.upload().then((value: UploadResult) => {
+              this.$apollo.queries.allUploads.refetch()
+
+              if (value.failed.length > 0) {
+                reject(nuxt2Context.$t('uploadError'))
+              } else {
+                resolve()
+              }
+            })
+          })
+        })
+      },
+    }
+
+    onBeforeUnmount(() => {
+      if (data.uppy.value) {
+        data.uppy.value.close()
+      }
+    })
+
+    return {
+      ...apiData,
+      ...data,
+      ...computations,
+      ...methods,
     }
   },
   async fetch() {
@@ -206,192 +421,6 @@ export default defineComponent({
         this.graphqlError = reason
         consola.error(reason)
       })
-  },
-  computed: {
-    ...mapGetters(['jwt', 'signedInUsername']),
-    sizeByteTotal(): number | undefined {
-      if (!this.allUploads) {
-        return undefined
-      }
-
-      let sizeByteTotal = 0
-
-      for (const upload of this.allUploads.nodes) {
-        sizeByteTotal += upload.sizeByte
-      }
-
-      return sizeByteTotal
-    },
-  },
-  beforeUnmount() {
-    if (this.uppy) {
-      this.uppy.close()
-    }
-  },
-  methods: {
-    bytesToString(
-      bytes: number | string | undefined | null
-    ): string | undefined {
-      if (bytes === undefined || bytes === null) {
-        return undefined
-      }
-      return prettyBytes(+bytes)
-    },
-    changeProfilePicture() {
-      ;(
-        document.querySelector('#input-profile-picture') as HTMLInputElement
-      ).click()
-    },
-    deleteImageUpload(uploadId: string) {
-      const element = document.getElementById(uploadId) as Element
-
-      element.classList.add('disabled')
-
-      const xhr = new XMLHttpRequest()
-
-      xhr.open('DELETE', '/api/tusd?uploadId=' + uploadId, true)
-      xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
-      xhr.setRequestHeader('Authorization', 'Bearer ' + this.jwt)
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4) {
-          element.classList.remove('disabled')
-
-          switch (xhr.status) {
-            case 204:
-              this.$apollo.queries.allUploads.refetch()
-              this.$emit('deletion')
-              break
-            case 500:
-              Swal.fire({
-                icon: 'error',
-                text: this.$t('uploadDeleteFailed') as string,
-                title: this.$t('globalStatusError'),
-              })
-              break
-            default:
-              Swal.fire({
-                icon: 'warning',
-                text: this.$t('uploadDeleteUnexpectedStatusCode') as string,
-                title: this.$t('globalStatusWarning'),
-              })
-          }
-        }
-      }
-      xhr.send()
-    },
-    fileLoaded(e: ProgressEvent<FileReader>) {
-      this.fileSelectedUrl = e.target?.result as string | undefined
-      this.$store.commit('modalAdd', { id: 'ModalImageUploadGallery' })
-    },
-    loadProfilePicture(event: InputEvent) {
-      const target = event.target as HTMLInputElement
-      const files = Array.from(target.files ?? [])
-
-      if (files.length !== 1) {
-        return
-      }
-
-      const file = files[0]
-
-      try {
-        const fileReader = new FileReader()
-        fileReader.onload = (e) => this.fileLoaded(e)
-        fileReader.readAsDataURL(file)
-      } catch (err: any) {
-        if (err.isRestriction) {
-          consola.log('Restriction error: ' + err)
-        } else {
-          consola.error(err)
-        }
-      }
-    },
-    toggleSelect(upload: any) {
-      if (this.selectedItem === upload) {
-        this.selectedItem = undefined
-        this.$emit('selection', undefined)
-      } else {
-        this.selectedItem = upload
-        this.$emit('selection', this.selectedItem?.storageKey)
-      }
-    },
-    getUploadBlobPromise() {
-      return new Promise<void>((resolve, reject) => {
-        ;(this.$refs.croppy as any).promisedBlob().then(async (blob: Blob) => {
-          const res = await this.$apollo
-            .mutate({
-              mutation: UPLOAD_CREATE_MUTATION,
-              variables: {
-                uploadCreateInput: {
-                  sizeByte: blob.size,
-                },
-              },
-            })
-            .then(({ data }) => data.uploadCreate)
-            .catch((graphqlError) => {
-              const reason = this.$util.getGqlErrorMessages(graphqlError, this)
-              consola.error(reason)
-              reject(reason)
-            })
-
-          if (!res) {
-            return
-          }
-
-          this.uppy = new Uppy({
-            id: 'profile-picture',
-            debug: process.env.NODE_ENV !== 'production',
-            restrictions: {
-              maxFileSize: 1048576,
-              maxNumberOfFiles: 1,
-              minNumberOfFiles: 1,
-              allowedFileTypes: ['image/*'],
-            },
-            meta: {
-              maevsiUploadUuid: res.uuid,
-            },
-            onBeforeUpload: (files: { [key: string]: UppyFile }) => {
-              const updatedFiles: Record<string, any> = {}
-
-              Object.keys(files).forEach((fileID) => {
-                updatedFiles[fileID] = {
-                  ...files[fileID],
-                  name: '/profile-pictures/' + files[fileID].name,
-                }
-              })
-
-              return updatedFiles
-            },
-          })
-
-          this.uppy.use(Tus, {
-            endpoint: this.$util.TUSD_FILES_URL,
-            limit: 1,
-            removeFingerprintOnSuccess: true,
-          })
-
-          this.uppy.addFile({
-            source: 'croppy',
-            name: (
-              document.querySelector(
-                '#input-profile-picture'
-              ) as HTMLInputElement
-            ).files![0]!.name,
-            type: blob.type,
-            data: blob,
-          })
-
-          this.uppy.upload().then((value: UploadResult) => {
-            this.$apollo.queries.allUploads.refetch()
-
-            if (value.failed.length > 0) {
-              reject(this.$t('uploadError'))
-            } else {
-              resolve()
-            }
-          })
-        })
-      })
-    },
   },
 })
 </script>
