@@ -1,6 +1,6 @@
 #import "../../fragments/eventFields.gql"
 
-query allEvents($after: Cursor, $first: Int!, $authorUsername: String) {
+query allEvents($after: Cursor, $authorUsername: String, $first: Int!) {
   allEvents(
     after: $after
     condition: { authorUsername: $authorUsername }
@@ -14,5 +14,6 @@ query allEvents($after: Cursor, $first: Int!, $authorUsername: String) {
       hasNextPage
       endCursor
     }
+    totalCount
   }
 }
