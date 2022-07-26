@@ -4,11 +4,9 @@ import {
   dedupExchange,
   fetchExchange,
 } from '@urql/core'
-import { cacheExchange, Variables } from '@urql/exchange-graphcache'
+import { cacheExchange } from '@urql/exchange-graphcache'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
-// import schema from '../gql/introspection';
-// import { GraphCacheConfig } from '~/gql/schema';
 import { provideClient } from '@urql/vue'
 import consola from 'consola'
 
@@ -17,8 +15,6 @@ import { defineNuxtPlugin, useNuxtApp } from '#app'
 const ssrKey = '__URQL_DATA__'
 
 export default defineNuxtPlugin((nuxt) => {
-  // const { vueApp } = nuxt
-
   const ssr = ssrExchange({
     isClient: process.client,
   })
@@ -35,19 +31,6 @@ export default defineNuxtPlugin((nuxt) => {
     })
   }
 
-  // // use urql graphcache
-  // const cacheConfig: GraphCacheConfig = {
-  //   schema,
-  //   keys: {
-  //     Country: (data) => data.code || null
-  //   },
-  //   resolvers: {
-  //     Query: {
-  //       country: (_, args) => ({__typename: "Country", code: args.code})
-  //     }
-  //   }
-  //   // storage: process.client ? makeDefaultStorage() : undefined
-  // }
   const cache = cacheExchange({
     resolvers: {
       Query: {
@@ -56,20 +39,20 @@ export default defineNuxtPlugin((nuxt) => {
         allUploads: relayPagination(),
       },
     },
-    updates: {
-      Mutation: {
-        eventDelete(_parent, args, cache, _info) {
-          debugger
-          cache.invalidate({
-            __typename: 'Event',
-            id: (args.input as Variables).id as string | number,
-          })
-        },
-      },
-    },
+    // updates: {
+    //   Mutation: {
+    //     eventDelete(_parent, args, cache, _info) {
+    //       cache.invalidate({
+    //         __typename: 'Event',
+    //         id: (args.input as Variables).id as string | number,
+    //       })
+    //     },
+    //   },
+    // },
   })
 
   const client = createClient({
+    requestPolicy: 'network-only', // TODO: https://github.com/maevsi/maevsi/issues/720
     fetchOptions: () => {
       const jwt: string = nuxt.$store.state.jwt
 
@@ -100,16 +83,9 @@ export default defineNuxtPlugin((nuxt) => {
   })
 
   nuxt.provide('urql', client)
-  // vueApp.provide('$urql', ref(client))
 
   nuxt.hook('vue:setup', () => {
     const { $urql } = useNuxtApp()
     provideClient($urql)
   })
 })
-
-// declare module '#app' {
-//   interface NuxtApp {
-//     $urql: Client
-//   }
-// }
