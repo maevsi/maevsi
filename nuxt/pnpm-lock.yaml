@@ -81,7 +81,7 @@ specifiers:
   eslint-plugin-nuxt: 3.2.0
   eslint-plugin-prettier: 4.2.1
   eslint-plugin-storybook: 0.6.1
-  eslint-plugin-yml: 1.0.0
+  eslint-plugin-yml: 1.1.0
   graphql: 15.8.0
   graphql-tag: 2.12.6
   h3: 0.7.12
@@ -252,7 +252,7 @@ devDependencies:
   eslint-plugin-nuxt: 3.2.0_eslint@8.20.0
   eslint-plugin-prettier: 4.2.1_g4fztgbwjyq2fvmcscny2sj6fy
   eslint-plugin-storybook: 0.6.1_he2ccbldppg44uulnyq4rwocfa
-  eslint-plugin-yml: 1.0.0_eslint@8.20.0
+  eslint-plugin-yml: 1.1.0_eslint@8.20.0
   graphql-tag: 2.12.6_graphql@15.8.0
   jest: 28.1.3_n3y7gbm6osqlqy7i5larxoh53i
   lint-staged: 13.0.3
@@ -10983,8 +10983,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-yml/1.0.0_eslint@8.20.0:
-    resolution: {integrity: sha512-0RVoUFh5vpznE2DIP5agSpWO/nU8GgAWwoTAHWopU2X+1SCB5ykHU6DwS0GrZ5Hvejtk6CcADQllpQQJB4C5QA==}
+  /eslint-plugin-yml/1.1.0_eslint@8.20.0:
+    resolution: {integrity: sha512-64g3vWwolk9d+FykuqxXGLn3oGEK2ZecIAyfIEsyuSHBQkR8utp5h8e75R6tGph1IRggoGl27QQ2oi2M1IF1Vw==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
@@ -10993,7 +10993,7 @@ packages:
       eslint: 8.20.0
       lodash: 4.17.21
       natural-compare: 1.4.0
-      yaml-eslint-parser: 1.0.1
+      yaml-eslint-parser: 1.1.0
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -23150,6 +23150,15 @@ packages:
 
   /yaml-eslint-parser/1.0.1:
     resolution: {integrity: sha512-acQYWneSXwnJgPQbTyJvDxWx9zlJ/rq267p/zzQMSCE7ljJxQ8elefsQase1gEIJMo+pIqmLRczoo7fPt6VbKQ==}
+    engines: {node: ^14.17.0 || >=16.0.0}
+    dependencies:
+      eslint-visitor-keys: 3.3.0
+      lodash: 4.17.21
+      yaml: 2.1.1
+    dev: true
+
+  /yaml-eslint-parser/1.1.0:
+    resolution: {integrity: sha512-b464Q1fYiX1oYx2kE8k4mEp6S9Prk+tfDsY/IPxQ0FCjEuj3AKko5Skf3/yQJeYTTDyjDE+aWIJemnv29HvEWQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     dependencies:
       eslint-visitor-keys: 3.3.0
