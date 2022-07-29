@@ -85,7 +85,12 @@ export default defineNuxtConfig({
         },
       },
     ],
-    '@nuxtjs/html-validator',
+    [
+      '@nuxtjs/html-validator',
+      {
+        failOnError: true,
+      },
+    ],
     // Doc: https://github.com/nuxt-community/moment-module
     ['@nuxtjs/moment', { locales: ['de'] }],
   ],
