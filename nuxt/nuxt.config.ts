@@ -88,8 +88,6 @@ export default defineNuxtConfig({
     '@nuxtjs/html-validator',
     // Doc: https://github.com/nuxt-community/moment-module
     ['@nuxtjs/moment', { locales: ['de'] }],
-    // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module',
   ],
   components: true, // Auto import components
   cookies: {
