@@ -22,6 +22,7 @@ const csp: Record<string, Array<string>> = {
     "'self'",
   ],
   'manifest-src': ["'self'"], // Chrome
+  'prefetch-src': ["'self'"],
   'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
   'script-src': [
     'blob:',
@@ -47,7 +48,7 @@ function getCspAsString(): string {
 
 export default defineEventHandler((event) => {
   appendHeader(event, 'Content-Security-Policy', getCspAsString())
-  appendHeader(event, 'Cross-Origin-Embedder-Policy', 'require-corp')
+  // appendHeader(event, 'Cross-Origin-Embedder-Policy', 'require-corp') // https://stackoverflow.com/questions/71904052/getting-notsameoriginafterdefaultedtosameoriginbycoep-error-with-helmet
   appendHeader(event, 'Cross-Origin-Opener-Policy', 'same-origin')
   appendHeader(event, 'Cross-Origin-Resource-Policy', 'same-origin')
   appendHeader(event, 'Expect-CT', 'max-age=0')
