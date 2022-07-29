@@ -292,7 +292,6 @@ export default defineNuxtConfig({
   },
   loading: { color: '#fff' }, // Customize the progress-bar color
   modules: [
-    '@dargmuesli/nuxt-clipboard2',
     [
       '@dargmuesli/nuxt-cookie-control',
       {

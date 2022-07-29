@@ -4,7 +4,6 @@ specifiers:
   '@babel/core': 7.18.9
   '@babel/preset-env': 7.18.9
   '@babel/runtime-corejs3': 7.18.9
-  '@dargmuesli/nuxt-clipboard2': 0.2.2
   '@dargmuesli/nuxt-cookie-control': 1.9.9
   '@http-util/status-i18n': 0.6.2
   '@intlify/eslint-plugin-vue-i18n': 2.0.0
@@ -67,6 +66,7 @@ specifiers:
   buffer: 6.0.3
   chalk: 4.1.2
   chart.js: 3.8.2
+  clipboard: 2.0.11
   consola: 2.15.3
   cookie: 0.5.0
   core-js: 3.24.1
@@ -127,7 +127,6 @@ specifiers:
   vue: 2.7.8
   vue-apollo: 3.1.0
   vue-chartjs: 4.1.1
-  vue-clipboard2: 0.3.3
   vue-croppa: 1.3.8
   vue-datetime: 1.0.0-beta.14
   vue-qrcode-reader: 3.1.0
@@ -140,7 +139,6 @@ specifiers:
   weekstart: 1.1.0
 
 dependencies:
-  '@dargmuesli/nuxt-clipboard2': 0.2.2
   '@dargmuesli/nuxt-cookie-control': 1.9.9_webpack@4.46.0
   '@http-util/status-i18n': 0.6.2
   '@nuxt/types-edge': 2.16.0-27616340.013f051b_webpack@4.46.0
@@ -166,6 +164,7 @@ dependencies:
   apollo-link-state: 0.4.2_ibic65ou5gcu5tyd74dbskbpnm
   apollo-upload-client: 13.0.0_graphql@15.8.0
   chart.js: 3.8.2
+  clipboard: 2.0.11
   consola: 2.15.3
   cookie: 0.5.0
   core-js: 3.24.1
@@ -275,7 +274,6 @@ devDependencies:
   ts-jest: 28.0.7_mt5ngoclsyp2v2e2vsjhjxdleu
   typescript: 4.7.4
   vue: 2.7.8
-  vue-clipboard2: 0.3.3
   vue-template-compiler: 2.7.8
   vue-tsc: 0.39.2_typescript@4.7.4
   webpack: 4.46.0
@@ -1833,12 +1831,6 @@ packages:
       postcss: 8.4.14
       postcss-selector-parser: 6.0.10
     dev: true
-
-  /@dargmuesli/nuxt-clipboard2/0.2.2:
-    resolution: {integrity: sha512-iloEDrEoLykZPOuvZIYVcLiTGQIN1rF6+Din9VwZ93kUIP/JvzmtD8CfWz01Gwh0vfC68GJmmsKOmS108iAc5Q==}
-    dependencies:
-      vue-clipboard2: 0.3.3
-    dev: false
 
   /@dargmuesli/nuxt-cookie-control/1.9.9_webpack@4.46.0:
     resolution: {integrity: sha512-Kp3tGUGwwNb5dDMvQp5Voem6cL4KfTg2gHwEcGx3HhqKcXUm87juo3w377Uy9XiEPh2CDENneKUdTLIqaGbPlg==}
@@ -8495,6 +8487,7 @@ packages:
       good-listener: 1.2.2
       select: 1.1.2
       tiny-emitter: 2.1.0
+    dev: false
 
   /clipboardy/3.0.0:
     resolution: {integrity: sha512-Su+uU5sr1jkUy1sGRpLKjKrvEOVXgSgiSInwa/qeID6aJ07yh+5NWc3h2QfjHjBnfX4LhtFcuAWKUsJ3r+fjbg==}
@@ -9905,6 +9898,7 @@ packages:
 
   /delegate/3.2.0:
     resolution: {integrity: sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==}
+    dev: false
 
   /delegates/1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
@@ -12275,6 +12269,7 @@ packages:
     resolution: {integrity: sha512-goW1b+d9q/HIwbVYZzZ6SsTr4IgE+WA44A0GmPIQstuOrgsFcT7VEJ48nmr9GaRtNu0XTKacFLGnBPAM6Afouw==}
     dependencies:
       delegate: 3.2.0
+    dev: false
 
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
@@ -19725,6 +19720,7 @@ packages:
 
   /select/1.1.2:
     resolution: {integrity: sha512-OwpTSOfy6xSs1+pwcNrv0RBMOzI39Lp3qQKUTPVVPRjCdNa5JH/oPRiqsesIskK8TVgmRiHwO4KXlV2Li9dANA==}
+    dev: false
 
   /selfsigned/2.0.1:
     resolution: {integrity: sha512-LmME957M1zOsUhG+67rAjKfiWFox3SBxE/yymatMZsAx+oMrJ0YQ8AToOnyCm7xbeg2ep37IHLxdu0o2MavQOQ==}
@@ -21092,6 +21088,7 @@ packages:
 
   /tiny-emitter/2.1.0:
     resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}
+    dev: false
 
   /tippy.js/6.3.7:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
@@ -22185,11 +22182,6 @@ packages:
   /vue-client-only/2.1.0:
     resolution: {integrity: sha512-vKl1skEKn8EK9f8P2ZzhRnuaRHLHrlt1sbRmazlvsx6EiC3A8oWF8YCBrMJzoN+W3OnElwIGbVjsx6/xelY1AA==}
     dev: false
-
-  /vue-clipboard2/0.3.3:
-    resolution: {integrity: sha512-aNWXIL2DKgJyY/1OOeITwAQz1fHaCIGvUFHf9h8UcoQBG5a74MkdhS/xqoYe7DNZdQmZRL+TAdIbtUs9OyVjbw==}
-    dependencies:
-      clipboard: 2.0.11
 
   /vue-croppa/1.3.8:
     resolution: {integrity: sha512-WwYgEKscTCD7BzhnbfRJfzWIU6RcMq2JRimB3aI5gGzpADmpKuqmDh9+oVfiZaEnpmRthgXZxcAvbxU6CeIU9w==}

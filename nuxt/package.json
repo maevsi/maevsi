@@ -33,7 +33,6 @@
     "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "dependencies": {
-    "@dargmuesli/nuxt-clipboard2": "0.2.2",
     "@dargmuesli/nuxt-cookie-control": "1.9.9",
     "@http-util/status-i18n": "0.6.2",
     "@nuxt/types-edge": "2.16.0-27616340.013f051b",
@@ -59,6 +58,7 @@
     "apollo-link-state": "0.4.2",
     "apollo-upload-client": "13.0.0",
     "chart.js": "3.8.2",
+    "clipboard": "2.0.11",
     "consola": "2.15.3",
     "cookie": "0.5.0",
     "core-js": "3.24.1",
@@ -168,7 +168,6 @@
     "ts-jest": "28.0.7",
     "typescript": "4.7.4",
     "vue": "2.7.8",
-    "vue-clipboard2": "0.3.3",
     "vue-template-compiler": "2.7.8",
     "vue-tsc": "0.39.2",
     "webpack": "4.46.0"

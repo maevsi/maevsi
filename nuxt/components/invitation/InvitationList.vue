@@ -200,6 +200,7 @@ import { defineComponent, PropType } from '#app'
 import INVITATION_DELETE_MUTATION from '~/gql/mutation/invitation/invitationDelete.gql'
 import INVITE_MUTATION from '~/gql/mutation/invitation/invite.gql'
 import INVITATIONS_ALL_QUERY from '~/gql/query/invitation/invitationsAll.gql'
+import { copyText } from '~/plugins/static/util'
 import { Event as MaevsiEvent } from '~/types/event'
 import { Invitation } from '~/types/invitation'
 
@@ -323,7 +324,7 @@ export default defineComponent({
     copyLink(event: MaevsiEvent, invitation: Invitation): void {
       if (!process.browser) return
 
-      this.$copyText(
+      copyText(
         `${window.location.origin}${this.localePath(
           `/event/${event.authorUsername}/${event.slug}`
         )}?ic=${invitation.uuid}`
