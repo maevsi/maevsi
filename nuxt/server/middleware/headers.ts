@@ -21,7 +21,7 @@ const csp: Record<string, Array<string>> = {
     'https://www.gravatar.com/avatar/',
     "'self'",
   ],
-  'manifest-src': ["'self'"], // Chrome
+  'manifest-src': ["'self'"],
   'prefetch-src': ["'self'"],
   'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
   'script-src': [
@@ -52,21 +52,19 @@ export default defineEventHandler((event) => {
   appendHeader(event, 'Cross-Origin-Opener-Policy', 'same-origin')
   appendHeader(event, 'Cross-Origin-Resource-Policy', 'same-origin')
   appendHeader(event, 'Expect-CT', 'max-age=0')
-  // // Depends on "Report-To".
-  // appendHeader(
-  //   event,
-  //   'NEL',
-  //   '\'{"report_to":"default","max_age":31536000,"include_subdomains":true}\''
-  // )
+  appendHeader(
+    event,
+    'NEL',
+    '\'{"report_to":"default","max_age":31536000,"include_subdomains":true}\''
+  )
   appendHeader(event, 'Origin-Agent-Cluster', '?1')
   appendHeader(event, 'Permissions-Policy', '')
   appendHeader(event, 'Referrer-Policy', 'no-referrer')
-  // // Disabled until there is better browser support. (https://caniuse.com/?search=report-to)
-  // appendHeader(
-  //   event,
-  //   'Report-To',
-  //   '\'{"group":"default","max_age":31536000,"endpoints":[{"url":"https://dargmuesli.report-uri.com/a/d/g"}],"include_subdomains":true}\''
-  // )
+  appendHeader(
+    event,
+    'Report-To',
+    '\'{"group":"default","max_age":31536000,"endpoints":[{"url":"https://dargmuesli.report-uri.com/a/d/g"}],"include_subdomains":true}\''
+  )
   appendHeader(
     event,
     'Strict-Transport-Security',
