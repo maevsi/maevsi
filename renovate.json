@@ -4,8 +4,12 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["puppeteer"],
-      "allowedVersions": "<=9.1.1"
+      "matchPackageNames": ["css-loader"],
+      "allowedVersions": "<6"
+    },
+    {
+      "matchPackageNames": ["qrcode.vue"],
+      "allowedVersions": "<2"
     },
     {
       "matchPackageNames": ["vue"],
@@ -14,6 +18,10 @@
     {
       "matchPackageNames": ["vuex"],
       "allowedVersions": "<4"
+    },
+    {
+      "matchPackageNames": ["webpack"],
+      "allowedVersions": "<5"
     }
   ]
 }
