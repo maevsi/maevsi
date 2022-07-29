@@ -99,7 +99,6 @@ specifiers:
   mustache: 3.2.1
   node-fetch: 3.2.9
   nuxt-edge: 2.16.0-27616340.013f051b
-  nuxt-helmet: 3.0.0
   pg: 8.7.3
   postcss: 8.4.14
   postcss-html: 1.5.0
@@ -184,7 +183,6 @@ dependencies:
   mustache: 3.2.1
   node-fetch: 3.2.9
   nuxt-edge: 2.16.0-27616340.013f051b_zumjig5klwsdqp4maicvhj2xrm
-  nuxt-helmet: 3.0.0
   pg: 8.7.3
   pretty-bytes: 6.0.0
   prntr: 2.0.15
@@ -12556,11 +12554,6 @@ packages:
     resolution: {integrity: sha512-lOhQU7iG3AMcjmb8NIWCa+KwfJw5bY44BoWPtrj5A4iDbSD3ylGf5QcYr0ZyQnhkKQ2GgWNLdF2rfrXtXlF3nQ==}
     dev: true
 
-  /helmet/5.1.1:
-    resolution: {integrity: sha512-/yX0oVZBggA9cLJh8aw3PPCfedBnbd7J2aowjzsaWwZh7/UFY0nccn/aHAggIgWUFfnykX8GKd3a1pSbrmlcVQ==}
-    engines: {node: '>=12.0.0'}
-    dev: false
-
   /hex-color-regex/1.1.0:
     resolution: {integrity: sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==}
     dev: false
@@ -16123,13 +16116,6 @@ packages:
       - webpack-cli
       - webpack-command
       - whiskers
-    dev: false
-
-  /nuxt-helmet/3.0.0:
-    resolution: {integrity: sha512-rPQz9vdh+DzARVJdSUrZIX0ojWPt0RbZiEf6mXvvk7/Y1gVm2w+6VA/199G+XQVdNNzYsDM92UXXCDU6UQHpRA==}
-    dependencies:
-      consola: 2.15.3
-      helmet: 5.1.1
     dev: false
 
   /nwsapi/2.2.1:

@@ -292,15 +292,6 @@ export default defineNuxtConfig({
   },
   loading: { color: '#fff' }, // Customize the progress-bar color
   modules: [
-    [
-      'nuxt-helmet',
-      {
-        hsts: {
-          maxAge: 31536000,
-          preload: true,
-        },
-      },
-    ], // Should be declared at the start of the array.
     '@dargmuesli/nuxt-clipboard2',
     [
       '@dargmuesli/nuxt-cookie-control',
@@ -386,39 +377,9 @@ export default defineNuxtConfig({
     },
     STORYBOOK: process.env.STORYBOOK,
   },
+  // // seemed to still work in v0.137.1
   // render: {
   //   compressor: compressionWithBrotli(),
-  //   csp: {
-  //     policies: {
-  //       'base-uri': ["'none'"], // Mozilla Observatory.
-  //       'connect-src': [
-  //         `https://*.${STACK_DOMAIN}`,
-  //         'https://www.google-analytics.com',
-  //       ],
-  //       'default-src': ["'none'"],
-  //       'font-src': ["'self'"],
-  //       'form-action': ["'none'"], // Mozilla Observatory.
-  //       'frame-ancestors': ["'none'"], // Mozilla Observatory.
-  //       'img-src': [
-  //         'blob:',
-  //         'data:',
-  //         `https://*.${STACK_DOMAIN}`,
-  //         'https://www.google-analytics.com',
-  //         'https://www.gravatar.com/avatar/',
-  //         "'self'",
-  //       ],
-  //       'manifest-src': ["'self'"], // Chrome
-  //       'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
-  //       'script-src': [
-  //         'blob:',
-  //         "'self'",
-  //         'https://static.cloudflareinsights.com',
-  //         'https://www.google-analytics.com/analytics.js',
-  //       ],
-  //       'style-src': ["'self'", "'unsafe-inline'"], // Tailwind
-  //     },
-  //     reportOnly: false,
-  //   },
   // },
   storybook: {
     addons: ['@storybook/addon-a11y'],
