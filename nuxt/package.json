@@ -5,31 +5,37 @@
   "scheduleVersion": "0.133.1",
   "description": "The manager for events supported by invitees.",
   "scripts": {
+    "postinstall": "pnpm msw init public",
+
     "dev": "nuxi dev",
     "build": "nuxi build",
-    "docker:build:test-visual": "docker build -t maevsi/maevsi:test-visual --target test-visual_standalone ../",
+    "generate": "nuxi generate",
     "start": "node .output/server/index.mjs",
+
+    "test": "pnpm test:code && pnpm test:visual",
+    "test:code": "jest",
+    "test:visual": "WAIT_ON_TIMEOUT=600000 start-server-and-test 'pnpm storybook --ci' 6006 'sh ./.storybook/storycap/test.sh'",
+    "docker:build:test-visual": "docker build -t maevsi/maevsi:test-visual --target test-visual_standalone ../",
+
     "lint": "pnpm lint:js && pnpm lint:style",
-    "lint:staged": "pnpm lint-staged",
     "lint:js": "eslint --cache --ext .js,.ts,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
-    "lint:quiet": "pnpm lint:js --quiet && pnpm lint:style --quiet",
     "lint:fix": "pnpm lint:js --fix && pnpm lint:style --fix",
-    "postinstall": "pnpm msw init public",
+    "lint:quiet": "pnpm lint:js --quiet && pnpm lint:style --quiet",
+    "lint:staged": "pnpm lint-staged",
+
     "storybook": "cross-env STORYBOOK=true nuxt storybook -p 6006",
     "storybook:build": "cross-env STORYBOOK=true nuxt storybook build",
-    "storybook:serve": "npx http-server ./storybook-static -p 6006",
     "storybook:static": "pnpm storybook:build && pnpm storybook:serve",
+    "storybook:serve": "npx http-server ./storybook-static -p 6006",
     "storycap": "!(pnpm test:visual); pnpm storycap:update",
     "storycap:docker": "pnpm docker:build:test-visual && docker run -v \"$PWD:/srv/app/\" maevsi/maevsi:test-visual",
     "storycap:base": "storycap http://localhost:6006 --delay 1000 --serverTimeout 120000 --viewport 640x1020 --viewport 1280x1020",
     "storycap:actual": "pnpm storycap:base --outDir .storybook/storycap/images/actual",
     "storycap:expected": "pnpm storycap:base --outDir .storybook/storycap/images/expected",
     "storycap:update": "sh ./.storybook/storycap/update.sh",
-    "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js",
-    "test": "pnpm test:code && pnpm test:visual",
-    "test:code": "jest",
-    "test:visual": "WAIT_ON_TIMEOUT=600000 start-server-and-test 'pnpm storybook --ci' 6006 'sh ./.storybook/storycap/test.sh'"
+
+    "supportedBrowsers": "echo \"module.exports = $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "dependencies": {
     "@dargmuesli/nuxt-clipboard2": "0.2.2",
