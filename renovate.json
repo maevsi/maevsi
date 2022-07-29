@@ -4,10 +4,6 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["puppeteer"],
-      "allowedVersions": "<=9.1.1"
-    },
-    {
       "matchPackageNames": ["vue"],
       "allowedVersions": "<3"
     },
