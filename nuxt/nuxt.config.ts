@@ -45,6 +45,18 @@ export default defineNuxtConfig({
       })
     },
     extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /.(css|vue)$/,
+            chunks: 'all',
+            enforce: true
+          }
+        }
+      }
+    }, // https://github.com/nuxt/bridge/issues/43
     postcss: {
       plugins: { tailwindcss: {}, autoprefixer: {} },
     },
