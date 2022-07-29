@@ -20,7 +20,7 @@
       "allowedVersions": "<4"
     },
     {
-      "matchPackageNames": ["webpack"],
+      "matchPackageNames": ["@types/webpack", "webpack"],
       "allowedVersions": "<5"
     }
   ]
