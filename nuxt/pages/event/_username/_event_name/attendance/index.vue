@@ -67,6 +67,7 @@
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
+import Swal from 'sweetalert2'
 
 import { defineComponent } from '#app'
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
@@ -206,7 +207,7 @@ export default defineComponent({
           errorMessage = this.$t('errorCameraStreamApiNotSupported') as string
         }
 
-        this.$swal({
+        Swal.fire({
           icon: 'error',
           text: errorMessage,
           title: this.$t('globalStatusError'),
@@ -223,7 +224,7 @@ export default defineComponent({
     },
     onDecode(e: any): void {
       this.invitationCode = e
-      this.$swal({
+      Swal.fire({
         icon: 'success',
         showConfirmButton: false,
         timer: 1500,
@@ -266,7 +267,7 @@ export default defineComponent({
     async writeTag(e: any): Promise<void> {
       try {
         await new NDEFReader().write(e)
-        this.$swal({
+        Swal.fire({
           icon: 'success',
           showConfirmButton: false,
           timer: 1500,
@@ -294,7 +295,7 @@ export default defineComponent({
             }) as string
           }
 
-          this.$swal({
+          Swal.fire({
             icon: 'error',
             text: errorMessage,
             title: this.$t('globalStatusError'),

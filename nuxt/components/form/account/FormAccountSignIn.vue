@@ -52,6 +52,7 @@
 
 <script lang="ts">
 import consola from 'consola'
+import Swal from 'sweetalert2'
 import { maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent } from '#app'
@@ -101,7 +102,7 @@ const FormAccountSignIn = defineComponent({
         return
       }
 
-      this.$swal({
+      Swal.fire({
         icon: 'success',
         text: this.$t('registrationRefreshSuccess') as string,
         title: this.$t('sent'),
@@ -136,7 +137,7 @@ const FormAccountSignIn = defineComponent({
         .jwtStore(this.$apollo.getClient(), this.$store, undefined, res.jwt)
         .catch(
           async () =>
-            await this.$swal({
+            await Swal.fire({
               icon: 'error',
               text: this.$t('jwtStoreFail') as string,
               title: this.$t('globalStatusError'),

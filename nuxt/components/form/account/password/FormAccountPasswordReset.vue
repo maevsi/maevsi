@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import consola from 'consola'
+import Swal from 'sweetalert2'
 import { minLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent } from '#app'
@@ -65,7 +66,7 @@ const FormAccountPasswordReset = defineComponent({
         return
       }
 
-      this.$swal({
+      Swal.fire({
         icon: 'success',
         text: this.$t('accountPasswordResetSuccess') as string,
         timer: 3000,

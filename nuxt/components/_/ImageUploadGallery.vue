@@ -139,6 +139,7 @@ import { Uppy, UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
 import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
+import Swal from 'sweetalert2'
 import { mapGetters } from 'vuex'
 
 import { defineComponent, PropType } from '#app'
@@ -269,14 +270,14 @@ export default defineComponent({
               this.$emit('deletion')
               break
             case 500:
-              this.$swal({
+              Swal.fire({
                 icon: 'error',
                 text: this.$t('uploadDeleteFailed') as string,
                 title: this.$t('globalStatusError'),
               })
               break
             default:
-              this.$swal({
+              Swal.fire({
                 icon: 'warning',
                 text: this.$t('uploadDeleteUnexpectedStatusCode') as string,
                 title: this.$t('globalStatusWarning'),

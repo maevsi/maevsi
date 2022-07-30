@@ -68,7 +68,7 @@
 
 <script lang="ts">
 import consola from 'consola'
-import { debounce } from 'lodash-es'
+import debounce from 'lodash-es/debounce'
 import VueI18n from 'vue-i18n'
 import { mapGetters } from 'vuex'
 

@@ -24,7 +24,6 @@
       "node",
       "vue-apollo/types",
       "vue-clipboard2",
-      "vue-sweetalert2",
     ],
     "lib": [
       "ESNext",

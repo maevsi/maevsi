@@ -4,7 +4,6 @@ specifiers:
   '@babel/core': 7.18.9
   '@babel/preset-env': 7.18.9
   '@babel/runtime-corejs3': 7.18.9
-  '@dargmuesli/nuxt-clipboard2': 0.2.2
   '@dargmuesli/nuxt-cookie-control': 1.9.9
   '@http-util/status-i18n': 0.6.2
   '@intlify/eslint-plugin-vue-i18n': 2.0.0
@@ -23,7 +22,6 @@ specifiers:
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
   '@nuxtjs/storybook': 4.1.1
-  '@nuxtjs/stylelint-module': 4.1.0
   '@storybook/addon-a11y': 6.5.9
   '@storybook/components': 6.5.9
   '@storybook/core-events': 6.5.9
@@ -68,6 +66,7 @@ specifiers:
   buffer: 6.0.3
   chalk: 4.1.2
   chart.js: 3.8.2
+  clipboard: 2.0.11
   consola: 2.15.3
   cookie: 0.5.0
   core-js: 3.24.1
@@ -100,7 +99,6 @@ specifiers:
   mustache: 3.2.1
   node-fetch: 3.2.9
   nuxt-edge: 2.16.0-27616340.013f051b
-  nuxt-helmet: 3.0.0
   pg: 8.7.3
   postcss: 8.4.14
   postcss-html: 1.5.0
@@ -122,6 +120,7 @@ specifiers:
   stylelint-config-recommended-vue: 1.4.0
   stylelint-config-standard: 26.0.0
   stylelint-no-unsupported-browser-features: 5.0.3
+  sweetalert2: 11.4.24
   tailwindcss: 3.1.7
   ts-jest: 28.0.7
   ts-node: 10.9.1
@@ -129,11 +128,9 @@ specifiers:
   vue: 2.7.8
   vue-apollo: 3.1.0
   vue-chartjs: 4.1.1
-  vue-clipboard2: 0.3.3
   vue-croppa: 1.3.8
   vue-datetime: 1.0.0-beta.14
   vue-qrcode-reader: 3.1.0
-  vue-sweetalert2: 5.0.5
   vue-template-compiler: 2.7.8
   vue-tsc: 0.39.2
   vuelidate: 0.7.7
@@ -142,7 +139,6 @@ specifiers:
   weekstart: 1.1.0
 
 dependencies:
-  '@dargmuesli/nuxt-clipboard2': 0.2.2
   '@dargmuesli/nuxt-cookie-control': 1.9.9_webpack@4.46.0
   '@http-util/status-i18n': 0.6.2
   '@nuxt/types-edge': 2.16.0-27616340.013f051b_webpack@4.46.0
@@ -168,6 +164,7 @@ dependencies:
   apollo-link-state: 0.4.2_ibic65ou5gcu5tyd74dbskbpnm
   apollo-upload-client: 13.0.0_graphql@15.8.0
   chart.js: 3.8.2
+  clipboard: 2.0.11
   consola: 2.15.3
   cookie: 0.5.0
   core-js: 3.24.1
@@ -185,19 +182,18 @@ dependencies:
   mustache: 3.2.1
   node-fetch: 3.2.9
   nuxt-edge: 2.16.0-27616340.013f051b_zumjig5klwsdqp4maicvhj2xrm
-  nuxt-helmet: 3.0.0
   pg: 8.7.3
   pretty-bytes: 6.0.0
   prntr: 2.0.15
   qrcode.vue: 1.7.0_vue@2.7.8
   slugify: 1.6.5
+  sweetalert2: 11.4.24
   ts-node: 10.9.1_nffhatmfv277bvws7shomq2g3e
   vue-apollo: 3.1.0_graphql-tag@2.12.6
   vue-chartjs: 4.1.1_chart.js@3.8.2+vue@2.7.8
   vue-croppa: 1.3.8
   vue-datetime: 1.0.0-beta.14_y3fz2mruelrp7zq6b4472vub3y
   vue-qrcode-reader: 3.1.0
-  vue-sweetalert2: 5.0.5_vue@2.7.8
   vuelidate: 0.7.7
   vuex: 3.6.2_vue@2.7.8
   weekstart: 1.1.0
@@ -217,7 +213,6 @@ devDependencies:
   '@nuxtjs/html-validator': 0.7.0_zjrsui4v3s2dnbs4fdcgzajzrm
   '@nuxtjs/moment': 1.6.1_webpack@4.46.0
   '@nuxtjs/storybook': 4.1.1_pqknbvegbsj74zrmz2z7ezi3mi
-  '@nuxtjs/stylelint-module': 4.1.0_i5ajrxva6ul7wdcj4mkdlazhme
   '@storybook/addon-a11y': 6.5.9_wcqkhtmu7mswc6yz4uyexck3ty
   '@storybook/components': 6.5.9_wcqkhtmu7mswc6yz4uyexck3ty
   '@storybook/core-events': 6.5.9
@@ -279,7 +274,6 @@ devDependencies:
   ts-jest: 28.0.7_mt5ngoclsyp2v2e2vsjhjxdleu
   typescript: 4.7.4
   vue: 2.7.8
-  vue-clipboard2: 0.3.3
   vue-template-compiler: 2.7.8
   vue-tsc: 0.39.2_typescript@4.7.4
   webpack: 4.46.0
@@ -751,7 +745,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.18.9
       '@babel/plugin-syntax-object-rest-spread': 7.8.3_@babel+core@7.12.9
       '@babel/plugin-transform-parameters': 7.18.8_@babel+core@7.12.9
     dev: true
@@ -1837,12 +1831,6 @@ packages:
       postcss: 8.4.14
       postcss-selector-parser: 6.0.10
     dev: true
-
-  /@dargmuesli/nuxt-clipboard2/0.2.2:
-    resolution: {integrity: sha512-iloEDrEoLykZPOuvZIYVcLiTGQIN1rF6+Din9VwZ93kUIP/JvzmtD8CfWz01Gwh0vfC68GJmmsKOmS108iAc5Q==}
-    dependencies:
-      vue-clipboard2: 0.3.3
-    dev: false
 
   /@dargmuesli/nuxt-cookie-control/1.9.9_webpack@4.46.0:
     resolution: {integrity: sha512-Kp3tGUGwwNb5dDMvQp5Voem6cL4KfTg2gHwEcGx3HhqKcXUm87juo3w377Uy9XiEPh2CDENneKUdTLIqaGbPlg==}
@@ -3553,18 +3541,6 @@ packages:
       - webpack-cli
       - webpack-command
       - whiskers
-    dev: true
-
-  /@nuxtjs/stylelint-module/4.1.0_i5ajrxva6ul7wdcj4mkdlazhme:
-    resolution: {integrity: sha512-XeUZobXlSVW5VDbZBDktB3oFkBm+4JhYlyvZqu4tD7F3Qf4IU5aFwlELbK+VLVewbGgKSEg4QaT5nZdWpgXQBw==}
-    peerDependencies:
-      stylelint: ^13.0.0 || ^14.0.0
-      webpack: ^4.0.0 || ^5.0.0
-    dependencies:
-      consola: 2.15.3
-      stylelint: 14.9.1
-      stylelint-webpack-plugin: 2.4.0_i5ajrxva6ul7wdcj4mkdlazhme
-      webpack: 4.46.0
     dev: true
 
   /@nuxtjs/youch/4.2.3:
@@ -5393,7 +5369,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.5
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: false
 
   /@types/eslint/7.29.0:
@@ -5406,7 +5382,7 @@ packages:
   /@types/eslint/8.4.5:
     resolution: {integrity: sha512-dhsC09y1gpJWnK+Ff4SGvCuSnk9DaU0BJZSzOwa6GVSg65XtTugLBITDAAzRU5duGBoXBHpdR/9jHGxJjNflJQ==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: false
 
@@ -5420,7 +5396,6 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
-    dev: true
 
   /@types/etag/1.8.1:
     resolution: {integrity: sha512-bsKkeSqN7HYyYntFRAmzcwx/dKW4Wa+KVMTInANlI72PWLQmOpZu96j0OqHZGArW4VQwCmJPteQlXaUDeOB0WQ==}
@@ -8512,6 +8487,7 @@ packages:
       good-listener: 1.2.2
       select: 1.1.2
       tiny-emitter: 2.1.0
+    dev: false
 
   /clipboardy/3.0.0:
     resolution: {integrity: sha512-Su+uU5sr1jkUy1sGRpLKjKrvEOVXgSgiSInwa/qeID6aJ07yh+5NWc3h2QfjHjBnfX4LhtFcuAWKUsJ3r+fjbg==}
@@ -9922,6 +9898,7 @@ packages:
 
   /delegate/3.2.0:
     resolution: {integrity: sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==}
+    dev: false
 
   /delegates/1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
@@ -12292,6 +12269,7 @@ packages:
     resolution: {integrity: sha512-goW1b+d9q/HIwbVYZzZ6SsTr4IgE+WA44A0GmPIQstuOrgsFcT7VEJ48nmr9GaRtNu0XTKacFLGnBPAM6Afouw==}
     dependencies:
       delegate: 3.2.0
+    dev: false
 
   /graceful-fs/4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
@@ -12570,11 +12548,6 @@ packages:
   /headers-polyfill/3.0.10:
     resolution: {integrity: sha512-lOhQU7iG3AMcjmb8NIWCa+KwfJw5bY44BoWPtrj5A4iDbSD3ylGf5QcYr0ZyQnhkKQ2GgWNLdF2rfrXtXlF3nQ==}
     dev: true
-
-  /helmet/5.1.1:
-    resolution: {integrity: sha512-/yX0oVZBggA9cLJh8aw3PPCfedBnbd7J2aowjzsaWwZh7/UFY0nccn/aHAggIgWUFfnykX8GKd3a1pSbrmlcVQ==}
-    engines: {node: '>=12.0.0'}
-    dev: false
 
   /hex-color-regex/1.1.0:
     resolution: {integrity: sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==}
@@ -16138,13 +16111,6 @@ packages:
       - webpack-cli
       - webpack-command
       - whiskers
-    dev: false
-
-  /nuxt-helmet/3.0.0:
-    resolution: {integrity: sha512-rPQz9vdh+DzARVJdSUrZIX0ojWPt0RbZiEf6mXvvk7/Y1gVm2w+6VA/199G+XQVdNNzYsDM92UXXCDU6UQHpRA==}
-    dependencies:
-      consola: 2.15.3
-      helmet: 5.1.1
     dev: false
 
   /nwsapi/2.2.1:
@@ -19754,6 +19720,7 @@ packages:
 
   /select/1.1.2:
     resolution: {integrity: sha512-OwpTSOfy6xSs1+pwcNrv0RBMOzI39Lp3qQKUTPVVPRjCdNa5JH/oPRiqsesIskK8TVgmRiHwO4KXlV2Li9dANA==}
+    dev: false
 
   /selfsigned/2.0.1:
     resolution: {integrity: sha512-LmME957M1zOsUhG+67rAjKfiWFox3SBxE/yymatMZsAx+oMrJ0YQ8AToOnyCm7xbeg2ep37IHLxdu0o2MavQOQ==}
@@ -20681,23 +20648,6 @@ packages:
       stylelint: 14.9.1
     dev: true
 
-  /stylelint-webpack-plugin/2.4.0_i5ajrxva6ul7wdcj4mkdlazhme:
-    resolution: {integrity: sha512-MhXDqd8HPXdY51nGeDeUEXToximoIbc0Z5TQC1M0ApR0ejrOwj9dRZKiL/00MDRrQfuAGkjcJ6sOVvc4gRzbgQ==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      stylelint: ^13.0.0 || ^14.0.0
-      webpack: ^4.0.0 || ^5.0.0
-    dependencies:
-      arrify: 2.0.1
-      globby: 11.1.0
-      jest-worker: 28.1.3
-      micromatch: 4.0.5
-      normalize-path: 3.0.0
-      schema-utils: 3.1.1
-      stylelint: 14.9.1
-      webpack: 4.46.0
-    dev: true
-
   /stylelint/14.9.1:
     resolution: {integrity: sha512-RdAkJdPiLqHawCSnu21nE27MjNXaVd4WcOHA4vK5GtIGjScfhNnaOuWR2wWdfKFAvcWQPOYe311iveiVKSmwsA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -21138,6 +21088,7 @@ packages:
 
   /tiny-emitter/2.1.0:
     resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}
+    dev: false
 
   /tippy.js/6.3.7:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
@@ -22232,11 +22183,6 @@ packages:
     resolution: {integrity: sha512-vKl1skEKn8EK9f8P2ZzhRnuaRHLHrlt1sbRmazlvsx6EiC3A8oWF8YCBrMJzoN+W3OnElwIGbVjsx6/xelY1AA==}
     dev: false
 
-  /vue-clipboard2/0.3.3:
-    resolution: {integrity: sha512-aNWXIL2DKgJyY/1OOeITwAQz1fHaCIGvUFHf9h8UcoQBG5a74MkdhS/xqoYe7DNZdQmZRL+TAdIbtUs9OyVjbw==}
-    dependencies:
-      clipboard: 2.0.11
-
   /vue-croppa/1.3.8:
     resolution: {integrity: sha512-WwYgEKscTCD7BzhnbfRJfzWIU6RcMq2JRimB3aI5gGzpADmpKuqmDh9+oVfiZaEnpmRthgXZxcAvbxU6CeIU9w==}
     dependencies:
@@ -22557,15 +22503,6 @@ packages:
     dependencies:
       hash-sum: 1.0.2
       loader-utils: 1.4.0
-
-  /vue-sweetalert2/5.0.5_vue@2.7.8:
-    resolution: {integrity: sha512-Q7+TjQxNwGruT2jfPaSKMz18HHWs81r4umEwlrrtOf/QL5Iwl1T+tUaNkcvKB7Rf9rYftubt7NnOMjfDMnDH3A==}
-    peerDependencies:
-      vue: '*'
-    dependencies:
-      sweetalert2: 11.4.24
-      vue: 2.7.8
-    dev: false
 
   /vue-template-compiler/2.7.8:
     resolution: {integrity: sha512-eQqdcUpJKJpBRPDdxCNsqUoT0edNvdt1jFjtVnVS/LPPmr0BU2jWzXlrf6BVMeODtdLewB3j8j3WjNiB+V+giw==}
@@ -22998,7 +22935,7 @@ packages:
   /wide-align/1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
-      string-width: 1.0.2
+      string-width: 4.2.3
     dev: true
 
   /widest-line/3.1.0:

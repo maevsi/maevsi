@@ -45,6 +45,22 @@ export default defineNuxtConfig({
       })
     },
     extractCSS: true,
+    ...(process.env.NODE_ENV === 'production'
+      ? {}
+      : {
+          optimization: {
+            splitChunks: {
+              cacheGroups: {
+                styles: {
+                  name: 'styles',
+                  test: /.(css|vue)$/,
+                  chunks: 'all',
+                  enforce: true,
+                },
+              },
+            },
+          },
+        }), // https://github.com/nuxt/bridge/issues/43
     postcss: {
       plugins: { tailwindcss: {}, autoprefixer: {} },
     },
@@ -85,11 +101,14 @@ export default defineNuxtConfig({
         },
       },
     ],
-    '@nuxtjs/html-validator',
+    [
+      '@nuxtjs/html-validator',
+      {
+        failOnError: true,
+      },
+    ],
     // Doc: https://github.com/nuxt-community/moment-module
     ['@nuxtjs/moment', { locales: ['de'] }],
-    // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module',
   ],
   components: true, // Auto import components
   cookies: {
@@ -290,16 +309,6 @@ export default defineNuxtConfig({
   loading: { color: '#fff' }, // Customize the progress-bar color
   modules: [
     [
-      'nuxt-helmet',
-      {
-        hsts: {
-          maxAge: 31536000,
-          preload: true,
-        },
-      },
-    ], // Should be declared at the start of the array.
-    '@dargmuesli/nuxt-clipboard2',
-    [
       '@dargmuesli/nuxt-cookie-control',
       {
         locales: ['en', 'de'],
@@ -347,7 +356,6 @@ export default defineNuxtConfig({
         Sitemap: BASE_URL + '/sitemap.xml',
       },
     ],
-    'vue-sweetalert2/nuxt',
     ['@nuxtjs/sitemap', { exclude: EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
   ],
   nitro: {
@@ -383,39 +391,9 @@ export default defineNuxtConfig({
     },
     STORYBOOK: process.env.STORYBOOK,
   },
+  // // seemed to still work in v0.137.1
   // render: {
   //   compressor: compressionWithBrotli(),
-  //   csp: {
-  //     policies: {
-  //       'base-uri': ["'none'"], // Mozilla Observatory.
-  //       'connect-src': [
-  //         `https://*.${STACK_DOMAIN}`,
-  //         'https://www.google-analytics.com',
-  //       ],
-  //       'default-src': ["'none'"],
-  //       'font-src': ["'self'"],
-  //       'form-action': ["'none'"], // Mozilla Observatory.
-  //       'frame-ancestors': ["'none'"], // Mozilla Observatory.
-  //       'img-src': [
-  //         'blob:',
-  //         'data:',
-  //         `https://*.${STACK_DOMAIN}`,
-  //         'https://www.google-analytics.com',
-  //         'https://www.gravatar.com/avatar/',
-  //         "'self'",
-  //       ],
-  //       'manifest-src': ["'self'"], // Chrome
-  //       'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
-  //       'script-src': [
-  //         'blob:',
-  //         "'self'",
-  //         'https://static.cloudflareinsights.com',
-  //         'https://www.google-analytics.com/analytics.js',
-  //       ],
-  //       'style-src': ["'self'", "'unsafe-inline'"], // Tailwind
-  //     },
-  //     reportOnly: false,
-  //   },
   // },
   storybook: {
     addons: ['@storybook/addon-a11y'],
