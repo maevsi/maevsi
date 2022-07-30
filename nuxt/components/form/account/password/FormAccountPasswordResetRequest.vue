@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import consola from 'consola'
+import Swal from 'sweetalert2'
 import { email, maxLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent, PropType } from '#app'
@@ -79,7 +80,7 @@ const FormAccountPasswordResetRequest = defineComponent({
       }
 
       this.$emit('account-password-reset-request')
-      this.$swal({
+      Swal.fire({
         icon: 'success',
         text: this.$t('accountPasswordResetRequestSuccess') as string,
         title: this.$t('requestAccepted'),

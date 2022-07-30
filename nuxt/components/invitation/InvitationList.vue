@@ -194,6 +194,7 @@ import {
   Tooltip,
 } from 'chart.js'
 import consola from 'consola'
+import Swal from 'sweetalert2'
 import { Doughnut } from 'vue-chartjs/legacy'
 
 import { defineComponent, PropType } from '#app'
@@ -329,7 +330,7 @@ export default defineComponent({
           `/event/${event.authorUsername}/${event.slug}`
         )}?ic=${invitation.uuid}`
       ).then(() => {
-        this.$swal({
+        Swal.fire({
           icon: 'success',
           text: this.$t('copySuccess') as string,
           timer: 3000,
@@ -375,7 +376,7 @@ export default defineComponent({
           },
         })
         .then((_value) => {
-          this.$swal({
+          Swal.fire({
             icon: 'success',
             text: this.$t('sendSuccess') as string,
             timer: 3000,

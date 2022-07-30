@@ -47,6 +47,7 @@
 
 <script lang="ts">
 import consola from 'consola'
+import Swal from 'sweetalert2'
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent } from '#app'
@@ -103,7 +104,7 @@ const FormAccountRegistration = defineComponent({
       }
 
       this.$emit('registered')
-      this.$swal({
+      Swal.fire({
         icon: 'success',
         text: this.$t('registrationSuccessBody') as string,
         title: this.$t('registrationSuccessTitle'),

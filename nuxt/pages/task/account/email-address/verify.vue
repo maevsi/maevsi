@@ -11,6 +11,7 @@
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
+import Swal from 'sweetalert2'
 
 import { defineComponent } from '#app'
 import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/accountEmailAddressVerification.gql'
@@ -71,7 +72,7 @@ export default defineComponent({
           },
         })
         .then(() => {
-          this.$swal({
+          Swal.fire({
             icon: 'success',
             text: this.$t('verifiedBody') as string,
             title: this.$t('verified'),

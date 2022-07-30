@@ -295,6 +295,7 @@ import { GraphQLError } from 'graphql'
 import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
+import Swal from 'sweetalert2'
 import { mapGetters } from 'vuex'
 
 import { defineComponent } from '#app'
@@ -443,7 +444,7 @@ export default defineComponent({
 
       if (invitationsMatchingUuid.length > 0) {
         if (invitationsMatchingUuid.length > 1) {
-          this.$swal({
+          Swal.fire({
             icon: 'warning',
             text: this.$t('invitationCodeMultipleWarning') as string,
             title: this.$t('globalStatusWarning'),
@@ -502,7 +503,7 @@ export default defineComponent({
               )
               return
             default:
-              this.$swal({
+              Swal.fire({
                 icon: 'error',
                 text: this.$t('iCalUnexpectedStatusCode', {
                   statusCode: xhr.status,
@@ -540,7 +541,7 @@ export default defineComponent({
         })
         .then((_value) => {
           this.$apollo.queries.event.refetch()
-          this.$swal({
+          Swal.fire({
             icon: 'success',
             showConfirmButton: false,
             timer: 1500,

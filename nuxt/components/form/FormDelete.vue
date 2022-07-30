@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import consola from 'consola'
+import Swal from 'sweetalert2'
 import { minLength, required } from 'vuelidate/lib/validators'
 import { DocumentNode } from 'graphql'
 
@@ -74,7 +75,7 @@ export default defineComponent({
           ...(this.update !== undefined ? { update: this.update } : {}),
         })
         .then((_value) => {
-          this.$swal({
+          Swal.fire({
             icon: 'success',
             text: this.$util.capitalizeFirstLetter(
               this.$t('success', { item: this.itemName }) as string

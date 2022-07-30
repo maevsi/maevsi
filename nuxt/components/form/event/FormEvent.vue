@@ -256,6 +256,7 @@
 import consola from 'consola'
 import { Datetime } from 'vue-datetime'
 import { DateTime, Settings } from 'luxon'
+import Swal from 'sweetalert2'
 import {
   maxLength,
   maxValue,
@@ -351,7 +352,7 @@ export default defineComponent({
             },
           })
           .then(() => {
-            this.$swal({
+            Swal.fire({
               icon: 'success',
               showConfirmButton: false,
               timer: 1500,
@@ -393,7 +394,7 @@ export default defineComponent({
             },
           })
           .then(() => {
-            this.$swal({
+            Swal.fire({
               icon: 'success',
               text: this.$t('eventCreateSuccess') as string,
               timer: 3000,
