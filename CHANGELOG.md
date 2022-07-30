@@ -1,3 +1,21 @@
+## [0.138.1](https://github.com/maevsi/maevsi/compare/0.138.0...0.138.1) (2022-07-30)
+
+
+### Bug Fixes
+
+* **headers:** enable all ([fe8430e](https://github.com/maevsi/maevsi/commit/fe8430e9ffd0bba080468f82bbc9e3f4d78fee72))
+* **html-validator:** fail on error ([e6bc0bb](https://github.com/maevsi/maevsi/commit/e6bc0bb3ade9e4c65302b37fa6ef8486319f445d))
+* **nuxt:** disable css workaround for production ([bd9b42c](https://github.com/maevsi/maevsi/commit/bd9b42c66428ceda55bf7fc0f425f9acac70e9a6))
+* **nuxt:** workaround webpack error ([e52f3a2](https://github.com/maevsi/maevsi/commit/e52f3a28784f1e461693f75479d7c1e77fd0db6e))
+* readd csp headers ([81d008f](https://github.com/maevsi/maevsi/commit/81d008f970cc9ed300cecd0c531d1efcf00e0843))
+* **server:** correct csp headers ([3afe0b3](https://github.com/maevsi/maevsi/commit/3afe0b31d05551cfa042d76d4cc4ea33ab88df35))
+
+
+### Performance Improvements
+
+* decrease clipboard dependency depth ([408a945](https://github.com/maevsi/maevsi/commit/408a945ce944887155dfa972465932ed815dc072))
+* decrease sweetalert dependency depth ([e32b251](https://github.com/maevsi/maevsi/commit/e32b251cc8bd503b296e2245dd76e7cf7d7ead06))
+
 # [0.138.0](https://github.com/maevsi/maevsi/compare/0.137.2...0.138.0) (2022-07-18)
 
 
