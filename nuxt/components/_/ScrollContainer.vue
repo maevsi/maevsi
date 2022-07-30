@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { ResizeSensor } from 'css-element-queries'
-import { debounce } from 'lodash-es'
+import debounce from 'lodash-es/debounce'
 
 import { defineComponent } from '#app'
 
