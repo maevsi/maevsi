@@ -45,20 +45,22 @@ export default defineNuxtConfig({
       })
     },
     extractCSS: true,
-    ...(process.env.NODE_ENV === 'production' ? {} : {
-      optimization: {
-        splitChunks: {
-          cacheGroups: {
-            styles: {
-              name: 'styles',
-              test: /.(css|vue)$/,
-              chunks: 'all',
-              enforce: true
-            }
-          }
-        }
-      }
-    }), // https://github.com/nuxt/bridge/issues/43
+    ...(process.env.NODE_ENV === 'production'
+      ? {}
+      : {
+          optimization: {
+            splitChunks: {
+              cacheGroups: {
+                styles: {
+                  name: 'styles',
+                  test: /.(css|vue)$/,
+                  chunks: 'all',
+                  enforce: true,
+                },
+              },
+            },
+          },
+        }), // https://github.com/nuxt/bridge/issues/43
     postcss: {
       plugins: { tailwindcss: {}, autoprefixer: {} },
     },
