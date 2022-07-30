@@ -66,7 +66,7 @@
     "downloadjs": "1.4.7",
     "graphql": "15.8.0",
     "h3": "0.7.12",
-    "html-to-text": "8.2.0",
+    "html-to-text": "8.2.1",
     "ical-generator": "3.5.1",
     "isomorphic-dompurify": "0.15.0",
     "jsonwebtoken": "8.5.1",
