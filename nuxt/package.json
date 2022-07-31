@@ -74,7 +74,7 @@
     "luxon": "1.28.0",
     "moment": "2.29.4",
     "mustache": "3.2.1",
-    "node-fetch": "3.2.9",
+    "node-fetch": "3.2.10",
     "nuxt-edge": "2.16.0-27616340.013f051b",
     "pg": "8.7.3",
     "pretty-bytes": "6.0.0",
