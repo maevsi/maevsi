@@ -239,7 +239,9 @@
       :value="$v.form.description"
       @input="form.description = $event"
     >
-      <TipTap v-model.trim="$v.form.description.$model" />
+      <client-only>
+        <TipTap v-model.trim="$v.form.description.$model" />
+      </client-only>
       <template slot="stateError">
         <FormInputStateError
           :form-input="$v.form.description"
