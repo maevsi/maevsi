@@ -41,7 +41,7 @@ specifiers:
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash-es': 4.17.6
   '@types/luxon': 1.27.1
-  '@types/mustache': 3.2.0
+  '@types/mustache': 4.2.1
   '@types/node': 16.11.47
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
@@ -226,7 +226,7 @@ devDependencies:
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash-es': 4.17.6
   '@types/luxon': 1.27.1
-  '@types/mustache': 3.2.0
+  '@types/mustache': 4.2.1
   '@types/node': 16.11.47
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
@@ -5578,8 +5578,8 @@ packages:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: true
 
-  /@types/mustache/3.2.0:
-    resolution: {integrity: sha512-wpzYsmClHJ/QDHo2gIlzaN3lzIK2VI7/+mgT9R48iQwWTrb+mGEVX06FfDgBEcM1OpfpsS1gQ0bAUGECwDiStw==}
+  /@types/mustache/4.2.1:
+    resolution: {integrity: sha512-gFAlWL9Ik21nJioqjlGCnNYbf9zHi0sVbaZ/1hQEBcCEuxfLJDvz4bVJSV6v6CUaoLOz0XEIoP7mSrhJ6o237w==}
     dev: true
 
   /@types/node-fetch/2.6.2:

@@ -120,7 +120,7 @@
     "@types/jsonwebtoken": "8.5.8",
     "@types/lodash-es": "4.17.6",
     "@types/luxon": "1.27.1",
-    "@types/mustache": "3.2.0",
+    "@types/mustache": "4.2.1",
     "@types/node": "16.11.47",
     "@types/pg": "8.6.5",
     "@types/vue-datetime": "1.0.1",
