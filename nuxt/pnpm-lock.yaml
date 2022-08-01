@@ -17,7 +17,7 @@ specifiers:
   '@nuxtjs/eslint-module': 3.1.0
   '@nuxtjs/google-analytics': 2.4.0
   '@nuxtjs/html-validator': 0.7.0
-  '@nuxtjs/i18n': 7.2.2
+  '@nuxtjs/i18n': 7.2.3
   '@nuxtjs/moment': 1.6.1
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
@@ -143,7 +143,7 @@ dependencies:
   '@http-util/status-i18n': 0.6.2
   '@nuxt/types-edge': 2.16.0-27616340.013f051b_webpack@4.46.0
   '@nuxtjs/color-mode': 3.1.4_webpack@4.46.0
-  '@nuxtjs/i18n': 7.2.2
+  '@nuxtjs/i18n': 7.2.3
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.7
@@ -597,14 +597,6 @@ packages:
     hasBin: true
     dependencies:
       '@babel/types': 7.18.10
-
-  /@babel/parser/7.18.9:
-    resolution: {integrity: sha512-9uJveS9eY9DJ0t64YbIBZICtJy8a5QrDEVdiLCG97fVLpDTpGX7t8mMSb6OWw6Lrnjqj4O8zwjELX3dhoMgiBg==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-    dependencies:
-      '@babel/types': 7.18.10
-    dev: false
 
   /@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/7.18.6_@babel+core@7.18.10:
     resolution: {integrity: sha512-Dgxsyg54Fx1d4Nge8UnvTrED63vrwOdPmyvPzlNN/boaliRP54pm3pGzZD1SJUwrBA+Cs/xdG8kXX6Mn/RfISQ==}
@@ -1660,24 +1652,6 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
-
-  /@babel/traverse/7.18.9:
-    resolution: {integrity: sha512-LcPAnujXGwBgv3/WHv01pHtb2tihcyW1XuL9wd7jqh1Z8AQkTd+QVjMrMijrln0T7ED3UXLIy36P9Ao7W75rYg==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/code-frame': 7.18.6
-      '@babel/generator': 7.18.10
-      '@babel/helper-environment-visitor': 7.18.9
-      '@babel/helper-function-name': 7.18.9
-      '@babel/helper-hoist-variables': 7.18.6
-      '@babel/helper-split-export-declaration': 7.18.6
-      '@babel/parser': 7.18.10
-      '@babel/types': 7.18.10
-      debug: 4.3.4
-      globals: 11.12.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /@babel/types/7.18.10:
     resolution: {integrity: sha512-MJvnbEiiNkpjo+LknnmRrqbY1GPUUggjv+wQVjetM/AONoupqRALB7I6jGqNUAZsKcRIEu2J6FRFvsczljjsaQ==}
@@ -3427,11 +3401,12 @@ packages:
       - jest-snapshot
     dev: true
 
-  /@nuxtjs/i18n/7.2.2:
-    resolution: {integrity: sha512-rLbJ1Mn22QeDXa0znWag4RiNafUTnYFO2+F4z/+gYOuJuOzLWMJJXtCGkVP2U0Jaq8xF1hvfpJzfGTVIv0Ik+Q==}
+  /@nuxtjs/i18n/7.2.3:
+    resolution: {integrity: sha512-Zi/1df2ISXtsPs5+IhdHbh3ebWLq4V+tU71SkAuB2F9Es2qANF5EIq2dT9rCDW/1bbfO48MQU/eUWectDX6D7g==}
+    engines: {node: '>=14.16'}
     dependencies:
-      '@babel/parser': 7.18.9
-      '@babel/traverse': 7.18.9
+      '@babel/parser': 7.18.10
+      '@babel/traverse': 7.18.10
       '@intlify/vue-i18n-extensions': 1.0.2
       '@intlify/vue-i18n-loader': 1.1.0
       cookie: 0.5.0
