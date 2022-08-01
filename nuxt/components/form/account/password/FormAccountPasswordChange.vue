@@ -2,20 +2,20 @@
   <Form
     ref="formRef"
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    :form="$v.form"
-    :form-sent="form.sent"
+    :form="v$.form"
+    :form-sent="isFormSent"
     :submit-name="$t('passwordChange')"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="passwordCurrent"
-      :form-input="$v.form.passwordCurrent"
+      :form-input="v$.form.passwordCurrent"
       :title="$t('passwordCurrent')"
       @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
-      :form-input="$v.form.passwordNew"
+      :form-input="v$.form.passwordNew"
       :title="$t('passwordNew')"
       @input="form.passwordNew = $event"
     />
@@ -23,35 +23,53 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { minLength, required } from 'vuelidate/lib/validators'
+import { reactive, ref } from 'vue'
 
-import { defineComponent, ref } from '#app'
+import { defineComponent, useNuxtApp } from '#app'
 import ACCOUNT_PASSWORD_CHANGE_MUTATION from '~/gql/mutation/account/accountPasswordChange.gql'
 import { FormType } from '~/components/form/Form.vue'
 
 const FormAccountPasswordChange = defineComponent({
   setup() {
-    const formRef = ref<FormType>()
-
-    const resetForm = () => {
-      formRef.value?.reset()
-    }
-
-    return {
-      formRef,
-      resetForm,
-    }
-  },
-  data() {
-    return {
-      form: {
+    const { $util } = useNuxtApp()
+    const data = {
+      form: reactive({
         passwordCurrent: undefined as string | undefined,
         passwordNew: undefined as string | undefined,
-        sent: false,
+      }),
+      isFormSent: ref(false),
+      graphqlError: ref<Error>(),
+    }
+    const rules = {
+      form: {
+        passwordCurrent: {
+          minLength: minLength($util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
+        passwordNew: {
+          minLength: minLength($util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
       },
-      graphqlError: undefined as Error | undefined,
+    }
+    const v$ = useVuelidate(rules, data)
+    const refs = {
+      formRef: ref<FormType>(),
+    }
+    const methods = {
+      resetForm: () => {
+        refs.formRef.value?.reset()
+      },
+    }
+    return {
+      ...data,
+      ...refs,
+      ...methods,
+      v$,
     }
   },
   methods: {
@@ -59,6 +77,7 @@ const FormAccountPasswordChange = defineComponent({
       try {
         await this.$util.formPreSubmit(this)
       } catch (error) {
+        consola.debug(error)
         return
       }
 
@@ -85,20 +104,6 @@ const FormAccountPasswordChange = defineComponent({
           consola.error(reason)
         })
     },
-  },
-  validations() {
-    return {
-      form: {
-        passwordCurrent: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-        passwordNew: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
   },
 })
 

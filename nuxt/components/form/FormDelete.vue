@@ -1,14 +1,14 @@
 <template>
   <Form
     :errors="errors"
-    :form="$v.form"
-    :form-sent="form.sent"
+    :form="v$.form"
+    :form-sent="isFormSent"
     :submit-name="$t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="password"
-      :form-input="$v.form.password"
+      :form-input="v$.form.password"
       :title="$t('passwordAccount')"
       @input="form.password = $event"
     />
@@ -19,12 +19,14 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
-import Swal from 'sweetalert2'
-import { minLength, required } from 'vuelidate/lib/validators'
 import { DocumentNode } from 'graphql'
+import Swal from 'sweetalert2'
+import { reactive, ref } from 'vue'
 
-import { defineComponent, PropType } from '#app'
+import { defineComponent, PropType, useNuxtApp } from '#app'
 
 export default defineComponent({
   props: {
@@ -49,12 +51,26 @@ export default defineComponent({
       type: Object as PropType<Record<any, any> | undefined>,
     },
   },
-  data() {
-    return {
-      form: {
+  setup() {
+    const { $util } = useNuxtApp()
+    const data = {
+      form: reactive({
         password: undefined as string | undefined,
-        sent: false,
+      }),
+      isFormSent: ref(false),
+    }
+    const rules = {
+      form: {
+        password: {
+          minLength: minLength($util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
       },
+    }
+    const v$ = useVuelidate(rules, data)
+    return {
+      ...data,
+      v$,
     }
   },
   methods: {
@@ -62,6 +78,7 @@ export default defineComponent({
       try {
         await this.$util.formPreSubmit(this)
       } catch (error) {
+        consola.debug(error)
         return
       }
 
@@ -90,16 +107,6 @@ export default defineComponent({
           consola.error(graphqlError)
         })
     },
-  },
-  validations() {
-    return {
-      form: {
-        password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
   },
 })
 </script>

@@ -376,7 +376,6 @@ export default defineNuxtConfig({
     '~/plugins/i18n.ts',
     '~/plugins/slugify.ts',
     '~/plugins/util.ts',
-    '~/plugins/vuelidate.ts',
   ],
   publicRuntimeConfig: {
     dev: process.env.NODE_ENV !== 'production',

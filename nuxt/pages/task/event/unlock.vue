@@ -3,8 +3,8 @@
     <h1>{{ title }}</h1>
     <Form
       :errors="$util.getGqlErrorMessages(graphqlError, this)"
-      :form="$v.form"
-      :form-sent="form.sent"
+      :form="v$.form"
+      :form-sent="isFormSent"
       :submit-name="$t('submit')"
       @submit.prevent="submit"
     >
@@ -17,7 +17,7 @@
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         :title="$t('invitationCode')"
         type="text"
-        :value="$v.form.invitationCode"
+        :value="v$.form.invitationCode"
         @input="form.invitationCode = $event"
       >
         <template slot="stateInfo">
@@ -32,13 +32,13 @@
         </template>
         <template slot="stateError">
           <FormInputStateError
-            :form-input="$v.form.invitationCode"
+            :form-input="v$.form.invitationCode"
             validation-property="formatUuid"
           >
             {{ $t('globalValidationFormat') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="$v.form.invitationCode"
+            :form-input="v$.form.invitationCode"
             validation-property="required"
           >
             {{ $t('globalValidationRequired') }}
@@ -53,11 +53,13 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
-import { required } from 'vuelidate/lib/validators'
+import { reactive, ref } from 'vue'
 
-import { defineComponent } from '#app'
+import { defineComponent, useNuxtApp } from '#app'
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 
 export default defineComponent({
@@ -124,15 +126,31 @@ export default defineComponent({
   transition: {
     name: 'layout',
   },
-  data() {
-    return {
-      form: {
+  setup() {
+    const { $route, $t, $util } = useNuxtApp()
+    const data = {
+      form: reactive({
         invitationCode:
-          this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
-        sent: false,
+          $route.query.ic === undefined
+            ? undefined
+            : ($route.query.ic as string | undefined),
+      }),
+      isFormSent: ref(false),
+      graphqlError: ref<Error>(),
+      title: ref<string>($t('title')),
+    }
+    const rules = {
+      form: {
+        invitationCode: {
+          required,
+          formatUuid: $util.VALIDATION_FORMAT_UUID,
+        },
       },
-      graphqlError: undefined as Error | undefined,
-      title: this.$t('title'),
+    }
+    const v$ = useVuelidate(rules, data)
+    return {
+      ...data,
+      v$,
     }
   },
   head() {
@@ -163,7 +181,7 @@ export default defineComponent({
   },
   mounted() {
     if (this.$route.query.ic) {
-      this.$v.form.invitationCode?.$touch()
+      this.v$.form.invitationCode?.$touch()
 
       if ('error' in this.$route.query) {
         this.submit()
@@ -175,6 +193,7 @@ export default defineComponent({
       try {
         await this.$util.formPreSubmit(this)
       } catch (error) {
+        consola.debug(error)
         return
       }
 
@@ -209,16 +228,6 @@ export default defineComponent({
         }
       )
     },
-  },
-  validations() {
-    return {
-      form: {
-        invitationCode: {
-          required,
-          formatUuid: this.$util.VALIDATION_FORMAT_UUID,
-        },
-      },
-    }
   },
 })
 

@@ -1,15 +1,15 @@
 <template>
   <Form
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    :form="$v.form"
+    :form="v$.form"
     :form-class="formClass"
-    :form-sent="form.sent"
+    :form-sent="isFormSent"
     :submit-name="$t('accountPasswordReset')"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="password"
-      :form-input="$v.form.password"
+      :form-input="v$.form.password"
       :title="$t('passwordNew')"
       @input="form.password = $event"
     />
@@ -17,11 +17,13 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { minLength, required } from 'vuelidate/lib/validators'
+import { reactive, ref } from 'vue'
 
-import { defineComponent } from '#app'
+import { defineComponent, useNuxtApp } from '#app'
 import ACCOUNT_PASSWORD_RESET_MUTATION from '~/gql/mutation/account/accountPasswordReset.gql'
 
 const FormAccountPasswordReset = defineComponent({
@@ -31,13 +33,27 @@ const FormAccountPasswordReset = defineComponent({
       type: String,
     },
   },
-  data() {
-    return {
-      form: {
+  setup() {
+    const { $util } = useNuxtApp()
+    const data = {
+      form: reactive({
         password: undefined as string | undefined,
-        sent: false as boolean,
+      }),
+      isFormSent: ref(false),
+      graphqlError: ref<Error>(),
+    }
+    const rules = {
+      form: {
+        password: {
+          minLength: minLength($util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
       },
-      graphqlError: undefined as Error | undefined,
+    }
+    const v$ = useVuelidate(rules, data)
+    return {
+      ...data,
+      v$,
     }
   },
   methods: {
@@ -45,6 +61,7 @@ const FormAccountPasswordReset = defineComponent({
       try {
         await this.$util.formPreSubmit(this)
       } catch (error) {
+        consola.debug(error)
         return
       }
 
@@ -78,16 +95,6 @@ const FormAccountPasswordReset = defineComponent({
         query: { ...this.$route.query, tab: 'signIn' },
       })
     },
-  },
-  validations() {
-    return {
-      form: {
-        password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
   },
 })
 

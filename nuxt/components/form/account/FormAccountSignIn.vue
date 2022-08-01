@@ -12,20 +12,20 @@
     </ButtonColored>
     <Form
       :errors="$util.getGqlErrorMessages(graphqlError, this)"
-      :form="$v.form"
+      :form="v$.form"
       form-class="w-full"
-      :form-sent="form.sent"
+      :form-sent="isFormSent"
       :submit-name="$t('signIn')"
       @submit.prevent="submit"
     >
       <FormInputUsername
         id="username-sign-in"
-        :form-input="$v.form.username"
+        :form-input="v$.form.username"
         @input="form.username = $event"
       />
       <FormInputPassword
         id="password-sign-in"
-        :form-input="$v.form.password"
+        :form-input="v$.form.password"
         @input="form.password = $event"
       />
       <div class="flex justify-center">
@@ -51,23 +51,44 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { maxLength, minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { maxLength, minLength, required } from 'vuelidate/lib/validators'
+import { reactive, ref } from 'vue'
 
-import { defineComponent } from '#app'
+import { defineComponent, useNuxtApp } from '#app'
 import ACCOUNT_REGISTRATION_MUTATION_REFRESH from '~/gql/mutation/account/accountRegistrationRefresh.gql'
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 
 const FormAccountSignIn = defineComponent({
-  data() {
-    return {
+  setup() {
+    const { $util } = useNuxtApp()
+    const data = {
+      form: reactive({
+        password: undefined as string | undefined,
+        username: undefined as string | undefined,
+      }),
+      isFormSent: ref(false),
+      graphqlError: ref<Error>(),
+    }
+    const rules = {
       form: {
-        password: undefined,
-        sent: false,
-        username: undefined,
+        username: {
+          formatSlug: $util.VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength($util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
+          required,
+        },
+        password: {
+          minLength: minLength($util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
       },
-      graphqlError: undefined as Error | undefined,
+    }
+    const v$ = useVuelidate(rules, data)
+    return {
+      ...data,
+      v$,
     }
   },
   watch: {
@@ -87,7 +108,7 @@ const FormAccountSignIn = defineComponent({
           mutation: ACCOUNT_REGISTRATION_MUTATION_REFRESH,
           variables: {
             language: this.$i18n.locale,
-            username: this.$v.form.username?.$model,
+            username: this.form.username,
           },
         })
         .then(({ data }) =>
@@ -112,6 +133,7 @@ const FormAccountSignIn = defineComponent({
       try {
         await this.$util.formPreSubmit(this)
       } catch (error) {
+        consola.debug(error)
         return
       }
 
@@ -144,21 +166,6 @@ const FormAccountSignIn = defineComponent({
             })
         )
     },
-  },
-  validations() {
-    return {
-      form: {
-        username: {
-          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
-          required,
-        },
-        password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
   },
 })
 

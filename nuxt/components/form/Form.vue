@@ -1,7 +1,7 @@
 <template>
   <form
     v-if="form"
-    ref="form"
+    ref="formRef"
     :class="[
       {
         'animate-shake rounded border border-red-500':
@@ -16,10 +16,10 @@
       <slot />
       <div class="mb-4 mt-6 flex flex-col items-center justify-between">
         <ButtonColored
-          ref="buttonSubmit"
+          ref="buttonSubmitRef"
           :aria-label="submitName"
           :class="{
-            'animate-shake': form.$anyError,
+            'animate-shake': form.$error,
           }"
           type="submit"
           @click="$emit('click')"
@@ -29,7 +29,7 @@
             <slot name="submit-icon" />
           </template>
         </ButtonColored>
-        <FormInputStateError v-if="form.$anyError" class="mt-2">
+        <FormInputStateError v-if="form.$error" class="mt-2">
           {{ $t('globalValidationFailed') }}
         </FormInputStateError>
       </div>
@@ -42,7 +42,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from '#app'
+import { ref } from 'vue'
+
+import { defineComponent, PropType } from '#app'
+
 import Button from '~/components/button/Button.vue'
 
 const Form = defineComponent({
@@ -72,23 +75,24 @@ const Form = defineComponent({
     },
   },
   setup() {
-    const buttonSubmit = ref<InstanceType<typeof Button>>()
+    const refs = {
+      formRef: ref<HTMLFormElement>(),
+      buttonSubmitRef: ref<InstanceType<typeof Button>>(),
+    }
 
-    const submit = () => {
-      if (buttonSubmit) {
-        buttonSubmit.value?.click()
-      }
+    const methods = {
+      submit: () => {
+        refs.buttonSubmitRef.value?.click()
+      },
+      reset: () => {
+        refs.formRef.value?.reset()
+      },
     }
 
     return {
-      buttonSubmit,
-      submit,
+      ...refs,
+      ...methods,
     }
-  },
-  methods: {
-    reset() {
-      ;(this.$refs.form as HTMLFormElement).reset()
-    },
   },
 })
 

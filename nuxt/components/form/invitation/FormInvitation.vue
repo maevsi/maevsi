@@ -1,10 +1,9 @@
 <template>
   <Form
     v-if="event"
-    ref="form"
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    :form="$v.form"
-    :form-sent="form.sent"
+    :form="v$.form"
+    :form-sent="isFormSent"
     :submit-name="$t('select')"
     @submit.prevent="submit"
   >
@@ -28,7 +27,7 @@
       :placeholder="$t('placeholderContact')"
       :title="$t('contact')"
       type="text"
-      :value="$v.form.searchString"
+      :value="v$.form.searchString"
       @input="form.searchString = $event"
     >
       <template slot="icon">
@@ -36,19 +35,19 @@
       </template>
       <template slot="stateError">
         <FormInputStateError
-          :form-input="$v.form.contactId"
+          :form-input="v$.form.contactId"
           validation-property="required"
         >
           {{ $t('globalValidationRequired') }}
         </FormInputStateError>
         <FormInputStateError
-          :form-input="$v.form.contactId"
+          :form-input="v$.form.contactId"
           validation-property="minLength"
         >
           {{ $t('globalValidationMinLength') }}
         </FormInputStateError>
         <FormInputStateError
-          :form-input="$v.form.contactId"
+          :form-input="v$.form.contactId"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
@@ -75,9 +74,11 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { minValue, required } from '@vuelidate/validators'
 import consola from 'consola'
-import { minLength, minValue, required } from 'vuelidate/lib/validators'
 import { ApolloQueryResult } from 'apollo-client'
+import { computed, reactive, ref } from 'vue'
 import { mapGetters } from 'vuex'
 
 import { defineComponent, PropType } from '#app'
@@ -118,51 +119,72 @@ export default defineComponent({
       type: Object as PropType<Event>,
     },
   },
-  data() {
-    return {
-      allContacts: undefined as any,
-      form: {
-        sent: false,
+  setup() {
+    const data = {
+      allContacts: ref<{ nodes: Array<Contact> }>(),
+      form: reactive({
         contactId: undefined as string | undefined,
         searchString: undefined as string | undefined,
+      }),
+      isFormSent: ref(false),
+      graphqlError: ref<Error>(),
+    }
+    const rules = {
+      form: {
+        contactId: {
+          // $each: {
+          minValue: minValue(1),
+          required,
+          // },
+          // minLength: minLength(1),
+          // required,
+        },
+        searchString: {},
       },
-      graphqlError: undefined as Error | undefined,
+    }
+    const v$ = useVuelidate(rules, data)
+    const computations = {
+      contactsFiltered: computed((): Contact[] | undefined => {
+        if (!data.allContacts.value) {
+          return undefined
+        }
+
+        if (!data.form.searchString || data.form.searchString === '') {
+          return data.allContacts.value.nodes
+        }
+
+        const searchStringParts = data.form.searchString?.split(' ')
+        const allContactsFiltered = data.allContacts.value.nodes.filter(
+          (contact: Contact) => {
+            for (const contactProperty of [
+              ...(contact.accountUsername
+                ? [contact.accountUsername.toLowerCase()]
+                : []),
+              ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
+              ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
+            ]) {
+              for (const searchStringPart of searchStringParts) {
+                if (contactProperty.includes(searchStringPart.toLowerCase())) {
+                  return true
+                }
+              }
+            }
+
+            return false
+          }
+        )
+
+        return allContactsFiltered
+      }),
+    }
+    return {
+      ...computations,
+      ...data,
+      v$,
     }
   },
   computed: {
     ...mapGetters(['signedInUsername']),
-    contactsFiltered(): Contact[] | undefined {
-      if (!this.allContacts) {
-        return undefined
-      }
-
-      if (!this.form.searchString || this.form.searchString === '') {
-        return this.allContacts.nodes
-      }
-
-      const searchStringParts = this.form.searchString.split(' ')
-      const allContactsFiltered = this.allContacts.nodes.filter(
-        (contact: Contact) => {
-          for (const contactProperty of [
-            ...(contact.accountUsername
-              ? [contact.accountUsername.toLowerCase()]
-              : []),
-            ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
-            ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
-          ]) {
-            for (const searchStringPart of searchStringParts) {
-              if (contactProperty.includes(searchStringPart.toLowerCase())) {
-                return true
-              }
-            }
-          }
-
-          return false
-        }
-      )
-
-      return allContactsFiltered
-    },
   },
   methods: {
     selectToggle(contact: Contact) {
@@ -184,6 +206,7 @@ export default defineComponent({
       try {
         await this.$util.formPreSubmit(this)
       } catch (error) {
+        consola.debug(error)
         return
       }
 
@@ -206,21 +229,6 @@ export default defineComponent({
           consola.error(reason)
         })
     },
-  },
-  validations() {
-    return {
-      form: {
-        contactId: {
-          $each: {
-            minValue: minValue(1),
-            required,
-          },
-          minLength: minLength(1),
-          required,
-        },
-        searchString: {},
-      },
-    }
   },
 })
 </script>

@@ -1,15 +1,15 @@
 <template>
   <Form
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    :form="$v.form"
+    :form="v$.form"
     :form-class="formClass"
-    :form-sent="form.sent"
+    :form-sent="isFormSent"
     :submit-name="$t('accountPasswordResetRequest')"
     @submit.prevent="submit"
   >
     <FormInputEmailAddress
       id="email-address-password-reset-request"
-      :form-input="$v.form.emailAddress"
+      :form-input="v$.form.emailAddress"
       is-required
       :title="$t('emailAddressYours')"
       @input="form.emailAddress = $event"
@@ -18,11 +18,13 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { email, maxLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { email, maxLength, required } from 'vuelidate/lib/validators'
+import { reactive, ref } from 'vue'
 
-import { defineComponent, PropType } from '#app'
+import { defineComponent, PropType, useNuxtApp } from '#app'
 import ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION from '~/gql/mutation/account/accountPasswordResetRequest.gql'
 
 const FormAccountPasswordResetRequest = defineComponent({
@@ -32,13 +34,29 @@ const FormAccountPasswordResetRequest = defineComponent({
       type: String as PropType<string | undefined>,
     },
   },
-  data() {
-    return {
-      form: {
+  setup() {
+    const { $util } = useNuxtApp()
+    const data = {
+      form: reactive({
         emailAddress: undefined as string | undefined,
-        sent: false,
+      }),
+      isFormSent: ref(false),
+      graphqlError: ref<Error>(),
+    }
+    const rules = {
+      form: {
+        emailAddress: {
+          email,
+          formatUppercaseNone: $util.VALIDATION_FORMAT_UPPERCASE_NONE,
+          maxLength: maxLength($util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+          required,
+        },
       },
-      graphqlError: undefined as Error | undefined,
+    }
+    const v$ = useVuelidate(rules, data)
+    return {
+      ...data,
+      v$,
     }
   },
   watch: {
@@ -56,6 +74,7 @@ const FormAccountPasswordResetRequest = defineComponent({
       try {
         await this.$util.formPreSubmit(this)
       } catch (error) {
+        consola.debug(error)
         return
       }
 
@@ -86,20 +105,6 @@ const FormAccountPasswordResetRequest = defineComponent({
         title: this.$t('requestAccepted'),
       })
     },
-  },
-  validations() {
-    return {
-      form: {
-        emailAddress: {
-          email,
-          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(
-            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
-          ),
-          required,
-        },
-      },
-    }
   },
 })
 

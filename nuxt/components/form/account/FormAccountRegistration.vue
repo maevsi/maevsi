@@ -7,32 +7,33 @@
     >
       {{ $t('signIn') }}
       <template slot="prefix">
-        <IconArrowRight />
+        <IconArrowLeft />
       </template>
     </ButtonColored>
     <Form
+      ref="formRef"
       :errors="$util.getGqlErrorMessages(graphqlError, this)"
-      :form="$v.form"
+      :form="v$.form"
       form-class="w-full"
-      :form-sent="form.sent"
+      :form-sent="isFormSent"
       :submit-name="$t('register')"
       @submit.prevent="submit"
     >
       <FormInputUsername
         id="username-registration"
-        :form-input="$v.form.username"
+        :form-input="v$.form.username"
         is-validatable
         is-validation-inverted
         @input="form.username = $event"
       />
       <FormInputPassword
         id="password-registration"
-        :form-input="$v.form.password"
+        :form-input="v$.form.password"
         @input="form.password = $event"
       />
       <FormInputEmailAddress
         id="email-address-registration"
-        :form-input="$v.form.emailAddress"
+        :form-input="v$.form.emailAddress"
         is-required
         @input="form.emailAddress = $event"
       />
@@ -46,23 +47,71 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import {
+  email,
+  helpers,
+  maxLength,
+  minLength,
+  required,
+} from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
+import { reactive, ref } from 'vue'
 
-import { defineComponent } from '#app'
+import { defineComponent, useNuxtApp } from '#app'
+
+import { FormType } from '../Form.vue'
 import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
 
 const FormAccountRegistration = defineComponent({
-  data() {
-    return {
-      form: {
+  setup() {
+    const { $apollo, $util } = useNuxtApp()
+    const data = {
+      form: reactive({
         emailAddress: undefined as string | undefined,
         password: undefined as string | undefined,
-        sent: false,
         username: undefined as string | undefined,
+      }),
+      isFormSent: ref(false),
+      graphqlError: ref<Error>(),
+    }
+    const rules = {
+      form: {
+        username: {
+          existenceNone: helpers.withAsync(
+            $util.validateUsername($apollo, true)
+          ),
+          formatSlug: $util.VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength($util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
+          required,
+        },
+        password: {
+          minLength: minLength($util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
+        emailAddress: {
+          email,
+          formatUppercaseNone: $util.VALIDATION_FORMAT_UPPERCASE_NONE,
+          maxLength: maxLength($util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+          required,
+        },
       },
-      graphqlError: undefined as Error | undefined,
+    }
+    const v$ = useVuelidate(rules, data)
+    const refs = {
+      formRef: ref<FormType>(),
+    }
+    const methods = {
+      resetForm: () => {
+        refs.formRef.value?.reset()
+      },
+    }
+    return {
+      ...data,
+      ...refs,
+      ...methods,
+      v$,
     }
   },
   watch: {
@@ -80,6 +129,7 @@ const FormAccountRegistration = defineComponent({
       try {
         await this.$util.formPreSubmit(this)
       } catch (error) {
+        consola.debug(error)
         return
       }
 
@@ -109,31 +159,8 @@ const FormAccountRegistration = defineComponent({
         text: this.$t('registrationSuccessBody') as string,
         title: this.$t('registrationSuccessTitle'),
       })
+      this.resetForm()
     },
-  },
-  validations() {
-    return {
-      form: {
-        username: {
-          existenceNone: this.$util.validateUsername(this.$apollo, true),
-          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
-          required,
-        },
-        password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-        emailAddress: {
-          email,
-          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(
-            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
-          ),
-          required,
-        },
-      },
-    }
   },
 })
 

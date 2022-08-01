@@ -1,9 +1,8 @@
 <template>
   <Form
-    ref="form"
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    :form="$v.form"
-    :form-sent="form.sent"
+    :form="v$.form"
+    :form-sent="isFormSent"
     :submit-name="$t('save')"
     @submit.prevent="submit"
   >
@@ -13,12 +12,12 @@
       placeholder="id"
       title="id"
       type="number"
-      :value="$v.form.id"
+      :value="v$.form.id"
       @input="form.id = $event"
     />
     <FormInputUsername
       id="username"
-      :form-input="$v.form.accountUsername"
+      :form-input="v$.form.accountUsername"
       is-optional
       is-validatable
       @input="form.accountUsername = $event"
@@ -36,12 +35,12 @@
       :placeholder="$t('globalPlaceholderFirstName')"
       :title="$t('firstName')"
       type="text"
-      :value="$v.form.firstName"
+      :value="v$.form.firstName"
       @input="form.firstName = $event"
     >
       <template slot="stateError">
         <FormInputStateError
-          :form-input="$v.form.firstName"
+          :form-input="v$.form.firstName"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
@@ -54,12 +53,12 @@
       :placeholder="$t('globalPlaceholderLastName')"
       :title="$t('lastName')"
       type="text"
-      :value="$v.form.lastName"
+      :value="v$.form.lastName"
       @input="form.lastName = $event"
     >
       <template slot="stateError">
         <FormInputStateError
-          :form-input="$v.form.lastName"
+          :form-input="v$.form.lastName"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
@@ -68,7 +67,7 @@
     </FormInput>
     <FormInputEmailAddress
       id="email-address"
-      :form-input="$v.form.emailAddress"
+      :form-input="v$.form.emailAddress"
       is-optional
       @input="form.emailAddress = $event"
     />
@@ -77,19 +76,19 @@
       is-optional
       :title="$t('address')"
       type="textarea"
-      :value="$v.form.address"
+      :value="v$.form.address"
       @input="form.address = $event"
     >
       <textarea
         id="input-address"
-        v-model.trim="$v.form.address.$model"
+        v-model.trim="v$.form.address.$model"
         class="form-input"
         :placeholder="$t('globalPlaceholderAddress')"
         rows="2"
       />
       <template slot="stateError">
         <FormInputStateError
-          :form-input="$v.form.address"
+          :form-input="v$.form.address"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
@@ -97,12 +96,12 @@
       </template>
     </FormInput>
     <FormInputPhoneNumber
-      :form-input="$v.form.phoneNumber"
+      :form-input="v$.form.phoneNumber"
       is-optional
       @input="form.phoneNumber = $event"
     />
     <FormInputUrl
-      :form-input="$v.form.url"
+      :form-input="v$.form.url"
       is-optional
       @input="form.url = $event"
     />
@@ -110,10 +109,12 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { email, helpers, maxLength } from '@vuelidate/validators'
 import consola from 'consola'
-import { email, maxLength } from 'vuelidate/lib/validators'
+import { reactive, ref } from 'vue'
 
-import { defineComponent, PropType } from '#app'
+import { defineComponent, PropType, useNuxtApp } from '#app'
 import CONTACT_CREATE_MUTATION from '~/gql/mutation/contact/contactCreate.gql'
 import CONTACT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/contact/contactUpdateById.gql'
 import { Contact } from '~/types/contact'
@@ -125,10 +126,10 @@ export default defineComponent({
       type: Object as PropType<Contact | undefined>,
     },
   },
-  data() {
-    return {
-      form: {
-        sent: false,
+  setup() {
+    const { $util } = useNuxtApp()
+    const data = {
+      form: reactive({
         id: undefined as string | undefined,
         accountUsername: undefined as string | undefined,
         address: undefined as string | undefined,
@@ -137,8 +138,45 @@ export default defineComponent({
         lastName: undefined as string | undefined,
         phoneNumber: undefined as string | undefined,
         url: undefined as string | undefined,
+      }),
+      isFormSent: ref(false),
+      graphqlError: ref<Error>(),
+    }
+    const rules = {
+      form: {
+        id: {},
+        accountUsername: {
+          existence: helpers.withAsync($util.validateUsername(this.$apollo)),
+          formatSlug: $util.VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength($util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
+        },
+        address: {
+          maxLength: maxLength($util.VALIDATION_ADDRESS_LENGTH_MAXIMUM),
+        },
+        emailAddress: {
+          email,
+          formatUppercaseNone: $util.VALIDATION_FORMAT_UPPERCASE_NONE,
+          maxLength: maxLength($util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+        },
+        firstName: {
+          maxLength: maxLength($util.VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
+        },
+        lastName: {
+          maxLength: maxLength($util.VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
+        },
+        phoneNumber: {
+          formatPhoneNumber: $util.VALIDATION_FORMAT_PHONE_NUMBER,
+        },
+        url: {
+          formatUrlHttps: $util.VALIDATION_FORMAT_URL_HTTPS,
+          maxLength: maxLength($util.VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
+        },
       },
-      graphqlError: undefined as Error | undefined,
+    }
+    const v$ = useVuelidate(rules, data)
+    return {
+      ...data,
+      v$,
     }
   },
   created() {
@@ -153,6 +191,7 @@ export default defineComponent({
       try {
         await this.$util.formPreSubmit(this)
       } catch (error) {
+        consola.debug(error)
         return
       }
 
@@ -217,41 +256,6 @@ export default defineComponent({
           })
       }
     },
-  },
-  validations() {
-    return {
-      form: {
-        id: {},
-        accountUsername: {
-          existence: this.$util.validateUsername(this.$apollo),
-          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
-        },
-        address: {
-          maxLength: maxLength(this.$util.VALIDATION_ADDRESS_LENGTH_MAXIMUM),
-        },
-        emailAddress: {
-          email,
-          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(
-            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
-          ),
-        },
-        firstName: {
-          maxLength: maxLength(this.$util.VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
-        },
-        lastName: {
-          maxLength: maxLength(this.$util.VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
-        },
-        phoneNumber: {
-          formatPhoneNumber: this.$util.VALIDATION_FORMAT_PHONE_NUMBER,
-        },
-        url: {
-          formatUrlHttps: this.$util.VALIDATION_FORMAT_URL_HTTPS,
-          maxLength: maxLength(this.$util.VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
-        },
-      },
-    }
   },
 })
 </script>
