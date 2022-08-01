@@ -1,3 +1,10 @@
+## [0.138.2](https://github.com/maevsi/maevsi/compare/0.138.1...0.138.2) (2022-08-01)
+
+
+### Bug Fixes
+
+* **tiptap:** add client-only tags ([7fba994](https://github.com/maevsi/maevsi/commit/7fba9947370e700fc55bd496ba7ea93017c6fc9a))
+
 ## [0.138.1](https://github.com/maevsi/maevsi/compare/0.138.0...0.138.1) (2022-07-30)
 
 
