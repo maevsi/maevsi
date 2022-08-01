@@ -221,7 +221,7 @@ export default defineComponent({
       },
     })
   },
-  beforeUnmount() {
+  beforeDestroy() {
     if (this.editor) {
       this.editor.destroy()
     }
