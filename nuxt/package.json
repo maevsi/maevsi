@@ -93,8 +93,8 @@
     "weekstart": "1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "7.18.9",
-    "@babel/preset-env": "7.18.9",
+    "@babel/core": "7.18.10",
+    "@babel/preset-env": "7.18.10",
     "@babel/runtime-corejs3": "7.18.9",
     "@intlify/eslint-plugin-vue-i18n": "2.0.0",
     "@jest/globals": "27.5.1",
