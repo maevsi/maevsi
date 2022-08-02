@@ -10,7 +10,7 @@ specifiers:
   '@jest/globals': 27.5.1
   '@jest/types': 28.1.3
   '@nuxt/babel-preset-app': 2.15.8
-  '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27639120.e7a7f9b
+  '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27657000.c87fdbe
   '@nuxt/types-edge': 2.16.0-27616340.013f051b
   '@nuxtjs/color-mode': 3.1.4
   '@nuxtjs/eslint-config-typescript': 10.0.0
@@ -206,7 +206,7 @@ devDependencies:
   '@jest/globals': 27.5.1
   '@jest/types': 28.1.3
   '@nuxt/babel-preset-app': 2.15.8_vue@2.7.8
-  '@nuxt/bridge': /@nuxt/bridge-edge/3.0.0-27639120.e7a7f9b_2turem7ylvilxdlmncyfdur3m4
+  '@nuxt/bridge': /@nuxt/bridge-edge/3.0.0-27657000.c87fdbe_2turem7ylvilxdlmncyfdur3m4
   '@nuxtjs/eslint-config-typescript': 10.0.0_qugx7qdu5zevzvxaiqyxfiwquq
   '@nuxtjs/eslint-module': 3.1.0_pfo3ge5a7dhg5w52ro6wyzpxsq
   '@nuxtjs/google-analytics': 2.4.0
@@ -2670,8 +2670,8 @@ packages:
       - vue
     dev: true
 
-  /@nuxt/bridge-edge/3.0.0-27639120.e7a7f9b_2turem7ylvilxdlmncyfdur3m4:
-    resolution: {integrity: sha512-PKPT8fGjxTGZYGZCE6a25o5LsH2RwPovwv7+X0VjN5fIkA3Qv0WNw/UBQ3aTz4OJ8pGt1STh8C7zRP900lukxw==}
+  /@nuxt/bridge-edge/3.0.0-27657000.c87fdbe_2turem7ylvilxdlmncyfdur3m4:
+    resolution: {integrity: sha512-8LNnFtZSU3JxDztSTTlCaZwd1meE1dWgIbWTNKmqKr+cMJHU4lg+9PMJCOnP9wA/p9wgBxDo3kek9XWB6fch0A==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     hasBin: true
     dependencies:
