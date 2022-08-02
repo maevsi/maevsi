@@ -65,7 +65,7 @@ specifiers:
   browserslist-useragent-regexp: 3.0.2
   buffer: 6.0.3
   chalk: 4.1.2
-  chart.js: 3.8.2
+  chart.js: 3.9.0
   clipboard: 2.0.11
   consola: 2.15.3
   cookie: 0.5.0
@@ -163,7 +163,7 @@ dependencies:
   apollo-link-persisted-queries: 0.2.5_graphql@15.8.0
   apollo-link-state: 0.4.2_ibic65ou5gcu5tyd74dbskbpnm
   apollo-upload-client: 13.0.0_graphql@15.8.0
-  chart.js: 3.8.2
+  chart.js: 3.9.0
   clipboard: 2.0.11
   consola: 2.15.3
   cookie: 0.5.0
@@ -190,7 +190,7 @@ dependencies:
   sweetalert2: 11.4.24
   ts-node: 10.9.1_ow5yu25silzxcp7pmv7jv4j54m
   vue-apollo: 3.1.0_graphql-tag@2.12.6
-  vue-chartjs: 4.1.1_chart.js@3.8.2+vue@2.7.8
+  vue-chartjs: 4.1.1_chart.js@3.9.0+vue@2.7.8
   vue-croppa: 1.3.8
   vue-datetime: 1.0.0-beta.14_y3fz2mruelrp7zq6b4472vub3y
   vue-qrcode-reader: 3.1.0
@@ -8292,8 +8292,8 @@ packages:
   /chardet/0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
 
-  /chart.js/3.8.2:
-    resolution: {integrity: sha512-7rqSlHWMUKFyBDOJvmFGW2lxULtcwaPLegDjX/Nu5j6QybY+GCiQkEY+6cqHw62S5tcwXMD8Y+H5OBGoR7d+ZQ==}
+  /chart.js/3.9.0:
+    resolution: {integrity: sha512-SHOC6eCTe3dXe6owLHnO56xTLBbVeMHskkAlgPPVkd6xa0mv3EPhH5azRLg1cucYFsp4UloH/4NjSG0oOIFJtw==}
     dev: false
 
   /check-more-types/2.24.0:
@@ -22089,13 +22089,13 @@ packages:
       bundle-runner: 0.0.1
     dev: true
 
-  /vue-chartjs/4.1.1_chart.js@3.8.2+vue@2.7.8:
+  /vue-chartjs/4.1.1_chart.js@3.9.0+vue@2.7.8:
     resolution: {integrity: sha512-rKIQ3jPrjhwxjKdNJppnYxRuBSrx4QeM3nNHsfIxEqjX6QS4Jq6e6vnZBxh2MDpURDC2uvuI2N0eIt1cWXbBVA==}
     peerDependencies:
       chart.js: ^3.7.0
       vue: ^3.0.0-0 || ^2.6.0
     dependencies:
-      chart.js: 3.8.2
+      chart.js: 3.9.0
       vue: 2.7.8
     dev: false
 
