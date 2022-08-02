@@ -12,7 +12,7 @@
       "allowedVersions": "<6"
     },
     {
-      "matchPackageNames": ["mustache"],
+      "matchPackageNames": ["@types/mustache", "mustache"],
       "allowedVersions": "<4"
     },
     {
