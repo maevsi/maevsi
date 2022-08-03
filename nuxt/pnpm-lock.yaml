@@ -79,7 +79,7 @@ specifiers:
   eslint-plugin-compat: 4.0.2
   eslint-plugin-nuxt: 3.2.0
   eslint-plugin-prettier: 4.2.1
-  eslint-plugin-storybook: 0.6.2
+  eslint-plugin-storybook: 0.6.3
   eslint-plugin-yml: 1.1.0
   graphql: 15.8.0
   graphql-tag: 2.12.6
@@ -246,7 +246,7 @@ devDependencies:
   eslint-plugin-compat: 4.0.2_eslint@8.21.0
   eslint-plugin-nuxt: 3.2.0_eslint@8.21.0
   eslint-plugin-prettier: 4.2.1_h62lvancfh4b7r6zn2dgodrh5e
-  eslint-plugin-storybook: 0.6.2_qugx7qdu5zevzvxaiqyxfiwquq
+  eslint-plugin-storybook: 0.6.3_qugx7qdu5zevzvxaiqyxfiwquq
   eslint-plugin-yml: 1.1.0_eslint@8.21.0
   graphql-tag: 2.12.6_graphql@15.8.0
   jest: 28.1.3_pqtjtaupojlaguyui6z2iois64
@@ -10898,8 +10898,8 @@ packages:
       eslint: 8.21.0
     dev: true
 
-  /eslint-plugin-storybook/0.6.2_qugx7qdu5zevzvxaiqyxfiwquq:
-    resolution: {integrity: sha512-lL69axZtp+IhF3Y812dQL9JJh9dsuInrdVA4ARAAtcyEOlvDOQXBNLwaFizche/jah7kfuLNhvkR62+UEG9KWA==}
+  /eslint-plugin-storybook/0.6.3_qugx7qdu5zevzvxaiqyxfiwquq:
+    resolution: {integrity: sha512-e0zIqHsgUz3Bs3PSyiYwCZ3QqyVmRgNQceBtYlnWXscCJLgdvBH8WwqBOvZUb3SAB4ZTYDLG3GMqpxI6PJZwKg==}
     engines: {node: 12.x || 14.x || >= 16}
     peerDependencies:
       eslint: '>=6'
@@ -10908,6 +10908,7 @@ packages:
       '@typescript-eslint/experimental-utils': 5.31.0_qugx7qdu5zevzvxaiqyxfiwquq
       eslint: 8.21.0
       requireindex: 1.2.0
+      ts-dedent: 2.2.0
     transitivePeerDependencies:
       - supports-color
       - typescript
