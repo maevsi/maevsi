@@ -23,7 +23,6 @@
       "jest",
       "node",
       "vue-apollo/types",
-      "vue-clipboard2",
     ],
     "lib": [
       "ESNext",
