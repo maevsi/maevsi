@@ -106,7 +106,7 @@ specifiers:
   prettier-plugin-tailwindcss: 0.1.13
   pretty-bytes: 6.0.0
   prntr: 2.0.15
-  puppeteer: 15.5.0
+  puppeteer: 16.0.0
   qrcode.vue: 1.7.0
   react: 16.14.0
   react-dom: 16.14.0
@@ -258,7 +258,7 @@ devDependencies:
   postcss-html: 1.5.0
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
-  puppeteer: 15.5.0
+  puppeteer: 16.0.0
   react: 16.14.0
   react-dom: 16.14.0_react@16.14.0
   reg-notify-github-plugin: 0.12.1
@@ -18527,8 +18527,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /puppeteer/15.5.0:
-    resolution: {integrity: sha512-+vZPU8iBSdCx1Kn5hHas80fyo0TiVyMeqLGv/1dygX2HKhAZjO9YThadbRTCoTYq0yWw+w/CysldPsEekDtjDQ==}
+  /puppeteer/16.0.0:
+    resolution: {integrity: sha512-FgSe21IHNHkqv1SiJiob4ANsxVujcINa4p3MaDEMyoZsocbgSgwYE0c9lnF8eoinw4id3vx4DOXwhFdOOwVlDg==}
     engines: {node: '>=14.1.0'}
     requiresBuild: true
     dependencies:
@@ -18543,7 +18543,7 @@ packages:
       rimraf: 3.0.2
       tar-fs: 2.1.1
       unbzip2-stream: 1.4.3
-      ws: 8.8.0
+      ws: 8.8.1
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -23044,19 +23044,6 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
-
-  /ws/8.8.0:
-    resolution: {integrity: sha512-JDAgSYQ1ksuwqfChJusw1LSJ8BizJ2e/vVu5Lxjq3YvNJNlROv1ui4i+c/kUUrPheBvQl4c5UbERhTwKa6QBJQ==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: ^5.0.2
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-    dev: true
 
   /ws/8.8.1:
     resolution: {integrity: sha512-bGy2JzvzkPowEJV++hF07hAD6niYSr0JzBNo/J29WsB57A2r7Wlc1UFcTR9IzrPvuNVO4B8LGqF8qcpsVOhJCA==}
