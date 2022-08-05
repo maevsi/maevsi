@@ -259,13 +259,10 @@
           </FormInputStateInfo>
         </div>
       </div>
-      <div v-if="event.description" class="flex flex-col gap-4">
+      <div v-if="eventDescriptionTemplate" class="flex flex-col gap-4">
         <Hr />
         <!-- eslint-disable vue/no-v-html -->
-        <div
-          class="maevsi-prose-scheme"
-          v-html="$domPurify.sanitize(eventDescriptionTemplate)"
-        />
+        <div class="maevsi-prose-scheme" v-html="eventDescriptionTemplate" />
         <!-- eslint-enable vue/no-v-html -->
       </div>
     </Card>
@@ -292,6 +289,7 @@
 import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import { GraphQLError } from 'graphql'
+import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
@@ -422,11 +420,13 @@ export default defineComponent({
 
       if (!event?.description) return
 
-      return mustache.render(event.description, {
-        contact: this.contact,
-        event: this.event,
-        invitation: this.invitation,
-      })
+      return DOMPurify.sanitize(
+        mustache.render(event.description, {
+          contact: this.contact,
+          event: this.event,
+          invitation: this.invitation,
+        })
+      )
     },
     invitation(): Invitation | undefined {
       const invitations = this.$util.getNested(

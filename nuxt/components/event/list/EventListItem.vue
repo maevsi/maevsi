@@ -46,11 +46,7 @@
           </div>
         </div>
         <p v-if="eventDescriptionTemplate" class="text-ellipsis line-clamp-2">
-          {{
-            $htmlToText($domPurify.sanitize(eventDescriptionTemplate), {
-              selectors: [{ selector: 'a', options: { ignoreHref: true } }],
-            })
-          }}
+          {{ eventDescriptionTemplate }}
         </p>
         <!-- </div> -->
       </Card>
@@ -59,6 +55,8 @@
 </template>
 
 <script lang="ts">
+import { htmlToText } from 'html-to-text'
+import DOMPurify from 'isomorphic-dompurify'
 import { mapGetters } from 'vuex'
 import mustache from 'mustache'
 
@@ -77,9 +75,16 @@ export default defineComponent({
     eventDescriptionTemplate(): string | undefined {
       if (!this.event?.description) return
 
-      return mustache.render(this.event.description, {
-        event: this.event,
-      })
+      return htmlToText(
+        DOMPurify.sanitize(
+          mustache.render(this.event.description, {
+            event: this.event,
+          })
+        ),
+        {
+          selectors: [{ selector: 'a', options: { ignoreHref: true } }],
+        }
+      )
     },
   },
 })
