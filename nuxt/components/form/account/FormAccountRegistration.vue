@@ -51,6 +51,7 @@ import Swal from 'sweetalert2'
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent } from '#app'
+
 import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
 
 const FormAccountRegistration = defineComponent({
@@ -93,7 +94,7 @@ const FormAccountRegistration = defineComponent({
             username: this.form.username,
           },
         })
-        .then(({ data }) => this.$util.getNested(data, 'accountRegistration'))
+        .then(({ data }) => data.accountRegistration)
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)

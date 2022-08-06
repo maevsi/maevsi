@@ -70,6 +70,7 @@ import consola from 'consola'
 import Swal from 'sweetalert2'
 
 import { defineComponent } from '#app'
+
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { Event as MaevsiEvent } from '~/types/event'
@@ -164,12 +165,10 @@ export default defineComponent({
     },
     title(): string | undefined {
       if (
-        this.$route.params.username === this.$store.getters.signedInUsername
+        this.$route.params.username === this.$store.getters.signedInUsername &&
+        this.event
       ) {
-        return `${this.$t('title')} · ${this.$util.getNested(
-          this.event,
-          'name'
-        )}`
+        return `${this.$t('title')} · ${this.event.name}`
       }
       return '403'
     },

@@ -36,8 +36,7 @@ export const mutations = {
     state.jwt = jwt
     state.jwtDecoded = jwtDecoded
     state.signedInUsername =
-      jwtDecoded &&
-      jwtDecoded.role === 'maevsi_account' &&
+      jwtDecoded?.role === 'maevsi_account' &&
       jwtDecoded.exp !== undefined &&
       jwtDecoded.exp > Math.floor(Date.now() / 1000)
         ? jwtDecoded.username

@@ -73,6 +73,7 @@ import VueI18n from 'vue-i18n'
 import { mapGetters } from 'vuex'
 
 import { defineComponent } from '#app'
+
 import CONTACT_DELETE_MUTATION from '~/gql/mutation/contact/contactDelete.gql'
 import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
 import { Contact } from '~/types/contact'
@@ -126,8 +127,7 @@ export default defineComponent({
           },
         })
         .then((_value) => {
-          this.$apollo.queries.allContacts &&
-            this.$apollo.queries.allContacts.refetch()
+          this.$apollo.queries.allContacts.refetch()
         })
         .catch((reason) => {
           this.graphqlError = reason

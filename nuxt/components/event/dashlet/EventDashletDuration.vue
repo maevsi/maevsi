@@ -1,5 +1,5 @@
 <template>
-  <EventDashlet v-if="event && event.end && event.start">
+  <EventDashlet v-if="event.end && event.start">
     <span>
       <IconHourglass :title="$t('duration')" />
     </span>

@@ -3,10 +3,7 @@
     v-if="form"
     ref="form"
     :class="[
-      {
-        'animate-shake rounded border border-red-500':
-          errors && errors.length > 0,
-      },
+      { 'animate-shake rounded border border-red-500': errors?.length },
       formClass,
     ]"
     novalidate

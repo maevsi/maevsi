@@ -4,12 +4,7 @@
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
-    <Card
-      v-if="
-        (allUploads !== undefined && allUploads.nodes.length > 0) ||
-        allowAddition
-      "
-    >
+    <Card v-if="allUploads?.nodes.length || allowAddition">
       <ul class="flex flex-wrap justify-center">
         <template v-if="allUploads">
           <li
@@ -87,10 +82,7 @@
           />
         </li>
       </ul>
-      <div
-        v-if="allUploads !== undefined && allUploads.pageInfo.hasNextPage"
-        class="flex justify-center"
-      >
+      <div v-if="allUploads?.pageInfo.hasNextPage" class="flex justify-center">
         <ButtonColored
           :aria-label="$t('globalShowMore')"
           @click="$util.loadMore($apollo, 'allUploads', allUploads)"
@@ -334,7 +326,7 @@ export default defineComponent({
                 },
               },
             })
-            .then(({ data }) => this.$util.getNested(data, 'uploadCreate'))
+            .then(({ data }) => data.uploadCreate)
             .catch((graphqlError) => {
               const reason = this.$util.getGqlErrorMessages(graphqlError, this)
               consola.error(reason)

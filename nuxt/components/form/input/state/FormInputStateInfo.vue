@@ -4,6 +4,7 @@
       (!formInput && !validationProperty) ||
       (formInput[isValidationLive ? '$invalid' : '$error'] &&
         !formInput.$pending &&
+        validationProperty &&
         validationProperty in formInput &&
         !formInput[validationProperty])
     "

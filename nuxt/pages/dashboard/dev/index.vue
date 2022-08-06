@@ -23,7 +23,7 @@
     </section>
     <section class="flex flex-col gap-4">
       <h2>{{ $t('codes') }}</h2>
-      <div v-if="jwtDecoded && jwtDecoded.invitations">
+      <div v-if="jwtDecoded.invitations">
         <p>
           {{ $t('codesEntered') }}
         </p>
@@ -87,10 +87,9 @@ export default defineComponent({
   computed: {
     ...mapGetters(['jwtDecoded']),
     sessionExpiryTime(): string {
-      return this.$moment(
-        this.$util.getNested(this.$store.getters.jwtDecoded, 'exp'),
-        'X'
-      ).format('llll')
+      return this.$moment(this.$store.getters.jwtDecoded.exp, 'X').format(
+        'llll'
+      )
     },
   },
   methods: {

@@ -226,7 +226,7 @@
         </template>
       </ButtonColored>
     </ButtonList>
-    <Card class="flex flex-col items-center gap-8">
+    <Card v-if="event" class="flex flex-col items-center gap-8">
       <div class="flex max-w-full flex-col items-center">
         <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
           {{ event.name }}
@@ -288,6 +288,7 @@
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
+import downloadJs from 'downloadjs'
 import { GraphQLError } from 'graphql'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
@@ -297,6 +298,7 @@ import Swal from 'sweetalert2'
 import { mapGetters } from 'vuex'
 
 import { defineComponent } from '#app'
+
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitationUpdateById.gql'
@@ -413,7 +415,7 @@ export default defineComponent({
   computed: {
     ...mapGetters(['jwtDecoded', 'signedInUsername']),
     contact(): Contact | undefined {
-      return this.$util.getNested(this.invitation, 'contactByContactId')
+      return this.invitation?.contactByContactId
     },
     eventDescriptionTemplate(): string | undefined {
       const event = this.event as MaevsiEvent | undefined
@@ -429,11 +431,8 @@ export default defineComponent({
       )
     },
     invitation(): Invitation | undefined {
-      const invitations = this.$util.getNested(
-        this.event,
-        'invitationsByEventId',
-        'nodes'
-      )
+      const invitations = this.event.invitationsByEventId.nodes
+
       const invitationsMatchingUuid =
         this.$store.getters.signedInUsername === this.$route.params.username
           ? invitations.filter(
@@ -457,7 +456,7 @@ export default defineComponent({
       return undefined
     },
     title(): string | undefined {
-      return this.$util.getNested(this.event, 'name')
+      return this.event.name
     },
   },
   methods: {
@@ -496,7 +495,7 @@ export default defineComponent({
         if (xhr.readyState === 4) {
           switch (xhr.status) {
             case 200:
-              require('downloadjs')(
+              downloadJs(
                 new Blob([xhr.responseText]),
                 fileName,
                 'text/calendar'

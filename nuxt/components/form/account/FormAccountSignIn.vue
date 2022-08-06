@@ -36,8 +36,7 @@
       <template slot="assistance">
         <ButtonColored
           v-if="
-            graphqlError &&
-            graphqlError.graphQLErrors.filter((e) => e.errcode === '55000')
+            graphqlError?.graphQLErrors.filter((e) => e.errcode === '55000')
               .length > 0
           "
           :aria-label="$t('verificationMailResend')"
@@ -56,6 +55,7 @@ import Swal from 'sweetalert2'
 import { maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent } from '#app'
+
 import ACCOUNT_REGISTRATION_MUTATION_REFRESH from '~/gql/mutation/account/accountRegistrationRefresh.gql'
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 
@@ -90,9 +90,7 @@ const FormAccountSignIn = defineComponent({
             username: this.$v.form.username?.$model,
           },
         })
-        .then(({ data }) =>
-          this.$util.getNested(data, 'accountRegistrationRefresh')
-        )
+        .then(({ data }) => data.accountRegistrationRefresh)
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)
@@ -123,7 +121,7 @@ const FormAccountSignIn = defineComponent({
             password: this.form.password,
           },
         })
-        .then(({ data }) => this.$util.getNested(data, 'authenticate'))
+        .then(({ data }) => data.authenticate)
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)

@@ -36,6 +36,7 @@ specifiers:
   '@types/apollo-upload-client': 8.1.3
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.3.3
+  '@types/downloadjs': 1.4.3
   '@types/html-to-text': 8.1.0
   '@types/jest': 28.1.6
   '@types/jsonwebtoken': 8.5.8
@@ -221,6 +222,7 @@ devDependencies:
   '@types/apollo-upload-client': 8.1.3
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.3.3
+  '@types/downloadjs': 1.4.3
   '@types/html-to-text': 8.1.0
   '@types/jest': 28.1.6
   '@types/jsonwebtoken': 8.5.8
@@ -5428,6 +5430,10 @@ packages:
     resolution: {integrity: sha512-nnVQSgRVuZ/843oAfhA25eRSNzUFcBPk/LOiw5gm8mD9/X7CNcbRkQu/OsjCewO8+VIYfPxUnXvPEVGenw14+w==}
     dependencies:
       '@types/trusted-types': 2.0.2
+
+  /@types/downloadjs/1.4.3:
+    resolution: {integrity: sha512-MjJepFle/tLtT2/jmDNth6ZnwWzEhm40L+olE5HKR70ISUCfgT55eqreeHldAzFLY2HDUGsn8zgyto8KygN0CA==}
+    dev: true
 
   /@types/eslint-scope/3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}

@@ -4,7 +4,7 @@
       :class="{
         'form-input-success': success,
         'form-input-warning': warning,
-        'form-input-error': value && value.$error,
+        'form-input-error': value?.$error,
       }"
       class="flex-wrap md:flex md:items-center"
     >
@@ -14,7 +14,7 @@
           :class="{
             'form-input-success': success,
             'form-input-warning': warning,
-            'form-input-error': value && value.$error,
+            'form-input-error': value?.$error,
           }"
           :for="idLabel"
         >
@@ -44,8 +44,8 @@
             :disabled="isDisabled"
             :placeholder="placeholder"
             :type="type"
-            :value="value.$model"
-            @input="$emit('input', $event.target.value)"
+            :value="value?.$model"
+            @input="$emit('input', $event.target?.value)"
           />
           <div v-if="validationProperty && isValidatable">
             <FormInputIconWrapper v-if="validationProperty.$pending">
@@ -88,7 +88,7 @@
       <div class="md:w-1/3" />
       <div class="md:w-2/3">
         <slot name="stateInfo" />
-        <FormInputStateInfo v-if="value && value.$pending">
+        <FormInputStateInfo v-if="value?.$pending">
           {{ $t('globalLoading') }}
         </FormInputStateInfo>
       </div>

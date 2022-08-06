@@ -47,7 +47,7 @@ export default (ctx: Context) => {
   const tokenName = 'apollo-token'
   // const cookieAttributes = { expires: 7, path: '/', secure: false }
   const authenticationType = 'Bearer'
-  const cookies = req && req.headers.cookie && parse(req.headers.cookie)
+  const cookies = req?.headers.cookie && parse(req.headers.cookie)
 
   const clientConfig = config(ctx) as ApolloClientClientConfig<unknown>
   const defaultValidateToken = () => true
@@ -73,12 +73,7 @@ export default (ctx: Context) => {
           : undefined
       )
 
-  if (
-    !process.server &&
-    window.__NUXT__ &&
-    window.__NUXT__.apollo &&
-    window.__NUXT__.apollo.defaultClient
-  ) {
+  if (!process.server && window.__NUXT__.apollo?.defaultClient) {
     defaultCache.restore(window.__NUXT__.apollo.defaultClient)
   }
 
@@ -94,7 +89,7 @@ export default (ctx: Context) => {
   clientConfig.cache = defaultCache
   // clientConfig.tokenName = defaultTokenName
 
-  if (process.server && req && req.headers && req.headers.cookie) {
+  if (process.server && req?.headers.cookie) {
     if (!clientConfig.httpLinkOptions) {
       clientConfig.httpLinkOptions = {}
     }

@@ -58,6 +58,7 @@ import consola from 'consola'
 import { required } from 'vuelidate/lib/validators'
 
 import { defineComponent } from '#app'
+
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 
 export default defineComponent({
@@ -78,9 +79,7 @@ export default defineComponent({
             invitationCode: route.query.ic,
           },
         })
-        .then(({ data }: any) =>
-          $util.getNested(data, 'eventUnlock', 'eventUnlockResponse')
-        )
+        .then(({ data }: any) => data.eventUnlock.eventUnlockResponse)
         .catch((reason: any) => {
           consola.error(reason)
         })
@@ -185,9 +184,7 @@ export default defineComponent({
             invitationCode: this.form.invitationCode,
           },
         })
-        .then(({ data }) =>
-          this.$util.getNested(data, 'eventUnlock', 'eventUnlockResponse')
-        )
+        .then(({ data }) => data.eventUnlock.eventUnlockResponse)
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)
@@ -224,9 +221,7 @@ export default defineComponent({
 
 function isQueryIcFormatValid({ $util, route }: Context) {
   return (
-    route.query.ic &&
-    typeof route.query.ic === 'string' &&
-    $util.REGEX_UUID.test(route.query.ic)
+    typeof route.query.ic === 'string' && $util.REGEX_UUID.test(route.query.ic)
   )
 }
 </script>

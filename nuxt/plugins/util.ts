@@ -17,10 +17,9 @@ import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gq
 import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
 import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
 import EVENT_IS_EXISTING_MUTATION from '~/gql/query/event/eventIsExisting.gql'
+import { JWT_NAME } from '~/plugins/static/constants'
 import { Contact } from '~/types/contact'
 import { State } from '~/store'
-
-type Dictionary<T> = { [key: string]: T } // import { Dictionary } from 'vue-router/types/router'
 
 export const ITEMS_PER_PAGE = 8
 export const ITEMS_PER_PAGE_LARGE = 100
@@ -78,7 +77,7 @@ export async function authenticateAnonymous(
         password: '',
       },
     })
-    .then(({ data }) => getNested(data, 'authenticate'))
+    .then(({ data }) => data.authenticate)
     .catch((reason) => {
       consola.error(reason)
     })
@@ -191,12 +190,12 @@ export function getJwtFromCookie(
   if (req.headers.cookie) {
     const cookies = parse(req.headers.cookie)
 
-    if (cookies['__Secure-apollo-token']) {
-      const cookie = decode(cookies['__Secure-apollo-token']) as JwtPayload
+    if (cookies[JWT_NAME]) {
+      const cookie = decode(cookies[JWT_NAME]) as JwtPayload
 
       if (cookie.exp !== undefined && cookie.exp > Date.now() / 1000) {
         return {
-          jwt: cookies['__Secure-apollo-token'],
+          jwt: cookies[JWT_NAME],
           jwtDecoded: cookie,
         }
       } else {
@@ -210,22 +209,8 @@ export function getJwtFromCookie(
   }
 }
 
-export function getNested(
-  obj: any | undefined | null,
-  level: keyof any,
-  ...rest: (keyof any)[]
-): undefined | any {
-  if (obj === undefined || obj === null) return undefined
-  if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
-    return obj[level]
-  // @ts-ignore
-  return getNested(obj[level], ...rest)
-}
-
 export function getQueryString(
-  queryParametersObject: Dictionary<
-    string | ((string | null)[] & { pw: 'lost' | 'found' })
-  >
+  queryParametersObject: Record<string, any>
 ): string {
   return (
     '?' +
@@ -256,7 +241,7 @@ export async function jwtRefresh(
         id,
       },
     })
-    .then(({ data }) => getNested(data, 'jwtRefresh'))
+    .then(({ data }) => data.jwtRefresh)
     .catch((reason) => {
       consola.error(reason)
       signOut(apolloClient, store, res)
@@ -286,7 +271,7 @@ export async function jwtStore(
   if (process.server) {
     res?.setHeader(
       'Set-Cookie',
-      serialize('__Secure-apollo-token', jwt || '', {
+      serialize(JWT_NAME, jwt || '', {
         expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
         httpOnly: true,
         path: '/',
@@ -351,9 +336,9 @@ export function objectClone<T>(object: T): T {
   return JSON.parse(JSON.stringify(object))
 }
 
-export function removeTypename<T extends Object & { __typename?: string }>(
-  object: T
-): Omit<T, '__typename'> {
+export function removeTypename<
+  T extends Record<string, unknown> & { __typename?: string }
+>(object: T): Omit<T, '__typename'> {
   const clonedObject = objectClone<T>(object)
   delete clonedObject.__typename
   return clonedObject
@@ -472,7 +457,6 @@ const util = {
   getDeferredPromise,
   getGqlErrorMessages,
   getJwtFromCookie,
-  getNested,
   getQueryString,
   jwtRefresh,
   jwtStore,

@@ -5,7 +5,7 @@
   />
   <div v-else class="flex flex-col gap-4">
     <ScrollContainer
-      v-if="allInvitations && event && allInvitations.nodes.length > 0"
+      v-if="event && allInvitations.nodes.length > 0"
       :has-next-page="allInvitations.pageInfo.hasNextPage"
       @loadMore="loadMore"
     >
@@ -229,12 +229,7 @@ export default defineComponent({
           offset: null,
         },
         result: (data: any) => {
-          const invitations = this.$util.getNested(
-            data,
-            'data',
-            'allInvitations',
-            'nodes'
-          )
+          const invitations = data.data.allInvitations.nodes
           const datasetData = [0, 0, 0]
 
           for (const invitation of invitations) {
@@ -350,8 +345,7 @@ export default defineComponent({
           },
         })
         .then((_value) => {
-          this.$apollo.queries.allInvitations &&
-            this.$apollo.queries.allInvitations.refetch()
+          this.$apollo.queries.allInvitations.refetch()
         })
         .catch((reason) => {
           this.graphqlError = reason
@@ -383,8 +377,7 @@ export default defineComponent({
             timerProgressBar: true,
             title: this.$t('sent'),
           })
-          this.$apollo.queries.allInvitations &&
-            this.$apollo.queries.allInvitations.refetch()
+          this.$apollo.queries.allInvitations.refetch()
         })
         .catch((reason) => {
           this.graphqlError = reason

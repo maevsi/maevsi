@@ -67,9 +67,7 @@ const FormAccountPasswordResetRequest = defineComponent({
             language: this.$i18n.locale,
           },
         })
-        .then(({ data }) =>
-          this.$util.getNested(data, 'accountPasswordResetRequest')
-        )
+        .then(({ data }) => data.accountPasswordResetRequest)
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)

@@ -21,11 +21,7 @@
         </div>
       </div>
     </div>
-    <ul
-      v-if="
-        allEvents !== undefined && allEvents.nodes && allEvents.nodes.length
-      "
-    >
+    <ul v-if="allEvents.nodes.length">
       <EventListItem
         v-for="event in allEvents.nodes"
         :key="event.id"

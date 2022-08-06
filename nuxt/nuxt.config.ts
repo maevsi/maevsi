@@ -3,7 +3,7 @@ import { Configuration } from 'webpack'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import { BASE_URL } from './plugins/baseUrl'
+import { BASE_URL } from './plugins/static/constants'
 
 const LOCALES = [
   {
@@ -118,7 +118,7 @@ export default defineNuxtConfig({
           de: 'Authentifizierungsdaten',
           en: 'Authentication Data',
         },
-        // cookies: ['__Secure-apollo-token'],
+        // cookies: ['JWT_NAME'],
       },
       {
         name: {
@@ -369,7 +369,6 @@ export default defineNuxtConfig({
   },
   plugins: [
     '~/plugins/apollo.ts',
-    '~/plugins/baseUrl.ts',
     '~/plugins/croppa.js',
     '~/plugins/i18n.ts',
     '~/plugins/util.ts',

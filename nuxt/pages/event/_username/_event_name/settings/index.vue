@@ -45,6 +45,7 @@ import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 
 import { defineComponent } from '#app'
+
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_DELETE_MUTATION from '~/gql/mutation/event/eventDelete.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
@@ -128,12 +129,10 @@ export default defineComponent({
   computed: {
     title(): string | undefined {
       if (
-        this.$route.params.username === this.$store.getters.signedInUsername
+        this.$route.params.username === this.$store.getters.signedInUsername &&
+        this.event
       ) {
-        return `${this.$t('title')} · ${this.$util.getNested(
-          this.event,
-          'name'
-        )}`
+        return `${this.$t('title')} · ${this.event.name}`
       }
       return '403'
     },
@@ -144,7 +143,7 @@ export default defineComponent({
     },
     onDeleteSuccess() {
       this.$router.push(this.localePath(`/event`))
-      this.$apollo.queries.allEvents && this.$apollo.queries.allEvents.refetch()
+      this.$apollo.queries.allEvents.refetch()
     },
 
     // /////////////////////////////////////////////////////////////////////////
