@@ -87,10 +87,9 @@ export default defineComponent({
   computed: {
     ...mapGetters(['jwtDecoded']),
     sessionExpiryTime(): string {
-      return this.$moment(
-        this.$util.getNested(this.$store.getters.jwtDecoded, 'exp'),
-        'X'
-      ).format('llll')
+      return this.$moment(this.$store.getters.jwtDecoded.exp, 'X').format(
+        'llll'
+      )
     },
   },
   methods: {

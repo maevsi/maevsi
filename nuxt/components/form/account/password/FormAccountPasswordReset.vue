@@ -57,7 +57,7 @@ const FormAccountPasswordReset = defineComponent({
             password: this.form.password,
           },
         })
-        .then(({ data }) => this.$util.getNested(data, 'accountPasswordReset'))
+        .then(({ data }) => data.accountPasswordReset)
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)

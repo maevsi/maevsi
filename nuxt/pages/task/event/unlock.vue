@@ -79,9 +79,7 @@ export default defineComponent({
             invitationCode: route.query.ic,
           },
         })
-        .then(({ data }: any) =>
-          $util.getNested(data, 'eventUnlock', 'eventUnlockResponse')
-        )
+        .then(({ data }: any) => data.eventUnlock.eventUnlockResponse)
         .catch((reason: any) => {
           consola.error(reason)
         })
@@ -186,9 +184,7 @@ export default defineComponent({
             invitationCode: this.form.invitationCode,
           },
         })
-        .then(({ data }) =>
-          this.$util.getNested(data, 'eventUnlock', 'eventUnlockResponse')
-        )
+        .then(({ data }) => data.eventUnlock.eventUnlockResponse)
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)

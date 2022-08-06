@@ -94,7 +94,7 @@ const FormAccountRegistration = defineComponent({
             username: this.form.username,
           },
         })
-        .then(({ data }) => this.$util.getNested(data, 'accountRegistration'))
+        .then(({ data }) => data.accountRegistration)
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)

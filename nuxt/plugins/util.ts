@@ -77,7 +77,7 @@ export async function authenticateAnonymous(
         password: '',
       },
     })
-    .then(({ data }) => getNested(data, 'authenticate'))
+    .then(({ data }) => data.authenticate)
     .catch((reason) => {
       consola.error(reason)
     })
@@ -209,18 +209,6 @@ export function getJwtFromCookie(
   }
 }
 
-export function getNested(
-  obj: any | undefined | null,
-  level: keyof any,
-  ...rest: (keyof any)[]
-): undefined | any {
-  if (obj === undefined || obj === null) return undefined
-  if (rest.length === 0 && Object.prototype.hasOwnProperty.call(obj, level))
-    return obj[level]
-  // @ts-ignore
-  return getNested(obj[level], ...rest)
-}
-
 export function getQueryString(
   queryParametersObject: Record<string, any>
 ): string {
@@ -253,7 +241,7 @@ export async function jwtRefresh(
         id,
       },
     })
-    .then(({ data }) => getNested(data, 'jwtRefresh'))
+    .then(({ data }) => data.jwtRefresh)
     .catch((reason) => {
       consola.error(reason)
       signOut(apolloClient, store, res)
@@ -469,7 +457,6 @@ const util = {
   getDeferredPromise,
   getGqlErrorMessages,
   getJwtFromCookie,
-  getNested,
   getQueryString,
   jwtRefresh,
   jwtStore,

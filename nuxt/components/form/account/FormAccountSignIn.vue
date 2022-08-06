@@ -91,9 +91,7 @@ const FormAccountSignIn = defineComponent({
             username: this.$v.form.username?.$model,
           },
         })
-        .then(({ data }) =>
-          this.$util.getNested(data, 'accountRegistrationRefresh')
-        )
+        .then(({ data }) => data.accountRegistrationRefresh)
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)
@@ -124,7 +122,7 @@ const FormAccountSignIn = defineComponent({
             password: this.form.password,
           },
         })
-        .then(({ data }) => this.$util.getNested(data, 'authenticate'))
+        .then(({ data }) => data.authenticate)
         .catch((reason) => {
           this.graphqlError = reason
           consola.error(reason)

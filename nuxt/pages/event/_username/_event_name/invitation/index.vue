@@ -108,12 +108,10 @@ export default defineComponent({
   computed: {
     title(): string | undefined {
       if (
-        this.$route.params.username === this.$store.getters.signedInUsername
+        this.$route.params.username === this.$store.getters.signedInUsername &&
+        this.event
       ) {
-        return `${this.$t('title')} · ${this.$util.getNested(
-          this.event,
-          'name'
-        )}`
+        return `${this.$t('title')} · ${this.event.name}`
       }
       return '403'
     },

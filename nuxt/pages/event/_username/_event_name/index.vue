@@ -415,7 +415,7 @@ export default defineComponent({
   computed: {
     ...mapGetters(['jwtDecoded', 'signedInUsername']),
     contact(): Contact | undefined {
-      return this.$util.getNested(this.invitation, 'contactByContactId')
+      return this.invitation?.contactByContactId
     },
     eventDescriptionTemplate(): string | undefined {
       const event = this.event as MaevsiEvent | undefined
@@ -431,11 +431,8 @@ export default defineComponent({
       )
     },
     invitation(): Invitation | undefined {
-      const invitations = this.$util.getNested(
-        this.event,
-        'invitationsByEventId',
-        'nodes'
-      )
+      const invitations = this.event.invitationsByEventId.nodes
+
       const invitationsMatchingUuid =
         this.$store.getters.signedInUsername === this.$route.params.username
           ? invitations.filter(
@@ -459,7 +456,7 @@ export default defineComponent({
       return undefined
     },
     title(): string | undefined {
-      return this.$util.getNested(this.event, 'name')
+      return this.event.name
     },
   },
   methods: {

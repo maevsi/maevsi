@@ -334,7 +334,7 @@ export default defineComponent({
                 },
               },
             })
-            .then(({ data }) => this.$util.getNested(data, 'uploadCreate'))
+            .then(({ data }) => data.uploadCreate)
             .catch((graphqlError) => {
               const reason = this.$util.getGqlErrorMessages(graphqlError, this)
               consola.error(reason)

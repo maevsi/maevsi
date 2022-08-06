@@ -29,10 +29,7 @@ export default defineComponent({
           username: this.username,
         },
         update: (data: any) => {
-          const profilePictureByUsername = this.$util.getNested(
-            data,
-            'profilePictureByUsername'
-          )
+          const profilePictureByUsername = data.profilePictureByUsername
 
           if (profilePictureByUsername) {
             this.profilePictureUrl =

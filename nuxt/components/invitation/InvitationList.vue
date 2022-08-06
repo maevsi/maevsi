@@ -229,12 +229,7 @@ export default defineComponent({
           offset: null,
         },
         result: (data: any) => {
-          const invitations = this.$util.getNested(
-            data,
-            'data',
-            'allInvitations',
-            'nodes'
-          )
+          const invitations = data.data.allInvitations.nodes
           const datasetData = [0, 0, 0]
 
           for (const invitation of invitations) {
