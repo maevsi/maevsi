@@ -1,3 +1,15 @@
+# [0.139.0](https://github.com/maevsi/maevsi/compare/0.138.2...0.139.0) (2022-08-06)
+
+
+### Bug Fixes
+
+* **event:** check for event definition ([f662ca0](https://github.com/maevsi/maevsi/commit/f662ca018136965eeb9177e8a827c94f80a94543))
+
+
+### Features
+
+* **card-state-alert:** set selection background color to purple ([3389964](https://github.com/maevsi/maevsi/commit/3389964d59b79cd4410f9aa3fedb5ac9ae721ef6))
+
 ## [0.138.2](https://github.com/maevsi/maevsi/compare/0.138.1...0.138.2) (2022-08-01)
 
 
