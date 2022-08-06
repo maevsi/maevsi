@@ -1,7 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http'
 
-import { Context } from '@nuxt/types-edge'
-import { Inject } from '@nuxt/types-edge/app'
 import { ApolloClient } from 'apollo-client'
 import consola from 'consola'
 import { serialize, parse } from 'cookie'
@@ -12,6 +10,8 @@ import moment from 'moment'
 import { DollarApollo } from 'vue-apollo/types/vue-apollo'
 import { helpers } from 'vuelidate/lib/validators'
 import { Store } from 'vuex'
+
+import { defineNuxtPlugin, useRequestEvent } from '#app'
 
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
@@ -485,34 +485,26 @@ const util = {
   xhrPromise,
 }
 
-export default async ({ app, req, res, store }: Context, inject: Inject) => {
-  inject('util', util)
-
+export default defineNuxtPlugin(async (nuxtApp) => {
   // Either authenticate anonymously or refresh token on page load.
   if (process.server) {
-    const jwtData = getJwtFromCookie(req)
+    const event = useRequestEvent()
+    const { app, store } = nuxtApp.nuxt2Context
+
+    const jwtData = getJwtFromCookie(event.req)
 
     const apolloClient = app.apolloProvider!.defaultClient
 
     if (jwtData) {
-      await jwtRefresh(apolloClient, store, res, jwtData.jwtDecoded.id)
+      await jwtRefresh(apolloClient, store, event.res, jwtData.jwtDecoded.id)
     } else {
-      await authenticateAnonymous(apolloClient, store, res)
+      await authenticateAnonymous(apolloClient, store, event.res)
     }
   }
-}
 
-declare module 'vue/types/vue' {
-  interface Vue {
-    $util: typeof util
+  return {
+    provide: {
+      util,
+    },
   }
-}
-
-declare module '@nuxt/types-edge' {
-  interface NuxtAppOptions {
-    $util: typeof util
-  }
-  interface Context {
-    $util: typeof util
-  }
-}
+})
