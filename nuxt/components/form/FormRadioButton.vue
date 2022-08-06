@@ -15,6 +15,8 @@
 </template>
 
 <script lang="ts">
+import slugify from 'slugify'
+
 import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
@@ -38,7 +40,7 @@ export default defineComponent({
   },
   computed: {
     titleSlug(): string {
-      return this.$slugify(this.title, { lower: true, strict: true })
+      return slugify(this.title, { lower: true, strict: true })
     },
   },
 })

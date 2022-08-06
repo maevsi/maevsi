@@ -258,6 +258,7 @@
 import consola from 'consola'
 import { Datetime } from 'vue-datetime'
 import { DateTime, Settings } from 'luxon'
+import slugify from 'slugify'
 import Swal from 'sweetalert2'
 import {
   maxLength,
@@ -417,7 +418,7 @@ export default defineComponent({
       }
     },
     updateSlug() {
-      this.form.slug = this.$slugify(this.form.name ?? '', {
+      this.form.slug = slugify(this.form.name ?? '', {
         lower: true,
         strict: true,
       })
