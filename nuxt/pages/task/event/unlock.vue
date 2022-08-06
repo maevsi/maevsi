@@ -58,6 +58,7 @@ import consola from 'consola'
 import { required } from 'vuelidate/lib/validators'
 
 import { defineComponent } from '#app'
+
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 
 export default defineComponent({

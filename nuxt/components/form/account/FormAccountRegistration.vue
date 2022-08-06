@@ -51,6 +51,7 @@ import Swal from 'sweetalert2'
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent } from '#app'
+
 import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
 
 const FormAccountRegistration = defineComponent({

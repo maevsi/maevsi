@@ -56,6 +56,7 @@ import Swal from 'sweetalert2'
 import { maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent } from '#app'
+
 import ACCOUNT_REGISTRATION_MUTATION_REFRESH from '~/gql/mutation/account/accountRegistrationRefresh.gql'
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 

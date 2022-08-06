@@ -70,6 +70,7 @@ import consola from 'consola'
 import Swal from 'sweetalert2'
 
 import { defineComponent } from '#app'
+
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { Event as MaevsiEvent } from '~/types/event'

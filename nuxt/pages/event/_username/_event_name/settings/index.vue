@@ -45,6 +45,7 @@ import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 
 import { defineComponent } from '#app'
+
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_DELETE_MUTATION from '~/gql/mutation/event/eventDelete.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'

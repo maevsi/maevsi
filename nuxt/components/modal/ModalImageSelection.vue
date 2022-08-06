@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { defineComponent } from '#app'
+
 import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profilePictureSet.gql'
 
 export default defineComponent({
