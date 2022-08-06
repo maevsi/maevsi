@@ -288,6 +288,7 @@
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
+import downloadJs from 'downloadjs'
 import { GraphQLError } from 'graphql'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
@@ -297,6 +298,7 @@ import Swal from 'sweetalert2'
 import { mapGetters } from 'vuex'
 
 import { defineComponent } from '#app'
+
 import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import INVITATION_UPDATE_BY_ID_MUTATION from '~/gql/mutation/invitation/invitationUpdateById.gql'
@@ -496,7 +498,7 @@ export default defineComponent({
         if (xhr.readyState === 4) {
           switch (xhr.status) {
             case 200:
-              require('downloadjs')(
+              downloadJs(
                 new Blob([xhr.responseText]),
                 fileName,
                 'text/calendar'
