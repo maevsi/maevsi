@@ -20,8 +20,6 @@ import EVENT_IS_EXISTING_MUTATION from '~/gql/query/event/eventIsExisting.gql'
 import { Contact } from '~/types/contact'
 import { State } from '~/store'
 
-type Dictionary<T> = { [key: string]: T } // import { Dictionary } from 'vue-router/types/router'
-
 export const ITEMS_PER_PAGE = 8
 export const ITEMS_PER_PAGE_LARGE = 100
 export const REGEX_PHONE_NUMBER =
@@ -223,9 +221,7 @@ export function getNested(
 }
 
 export function getQueryString(
-  queryParametersObject: Dictionary<
-    string | ((string | null)[] & { pw: 'lost' | 'found' })
-  >
+  queryParametersObject: Record<string, any>
 ): string {
   return (
     '?' +
@@ -351,9 +347,9 @@ export function objectClone<T>(object: T): T {
   return JSON.parse(JSON.stringify(object))
 }
 
-export function removeTypename<T extends Object & { __typename?: string }>(
-  object: T
-): Omit<T, '__typename'> {
+export function removeTypename<
+  T extends Record<string, unknown> & { __typename?: string }
+>(object: T): Omit<T, '__typename'> {
   const clonedObject = objectClone<T>(object)
   delete clonedObject.__typename
   return clonedObject
