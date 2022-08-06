@@ -22,7 +22,6 @@
       "@nuxtjs/moment",
       "jest",
       "node",
-      "vue-apollo/types",
     ],
     "lib": [
       "ESNext",

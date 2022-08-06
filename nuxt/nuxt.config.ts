@@ -368,7 +368,6 @@ export default defineNuxtConfig({
     },
   },
   plugins: [
-    '~/plugins/apollo.ts',
     '~/plugins/croppa.js',
     '~/plugins/i18n.ts',
     '~/plugins/urql.ts',
