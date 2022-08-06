@@ -221,9 +221,7 @@ export default defineComponent({
 
 function isQueryIcFormatValid({ $util, route }: Context) {
   return (
-    route.query.ic &&
-    typeof route.query.ic === 'string' &&
-    $util.REGEX_UUID.test(route.query.ic)
+    typeof route.query.ic === 'string' && $util.REGEX_UUID.test(route.query.ic)
   )
 }
 </script>

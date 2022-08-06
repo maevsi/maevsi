@@ -1,5 +1,5 @@
 <template>
-  <EventDashlet v-if="event && event.start">
+  <EventDashlet v-if="event.start">
     <span>
       <IconCalendar :title="$t('start')" />
     </span>

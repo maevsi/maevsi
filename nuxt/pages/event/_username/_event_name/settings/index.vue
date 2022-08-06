@@ -143,7 +143,7 @@ export default defineComponent({
     },
     onDeleteSuccess() {
       this.$router.push(this.localePath(`/event`))
-      this.$apollo.queries.allEvents && this.$apollo.queries.allEvents.refetch()
+      this.$apollo.queries.allEvents.refetch()
     },
 
     // /////////////////////////////////////////////////////////////////////////

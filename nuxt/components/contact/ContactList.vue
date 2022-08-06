@@ -127,8 +127,7 @@ export default defineComponent({
           },
         })
         .then((_value) => {
-          this.$apollo.queries.allContacts &&
-            this.$apollo.queries.allContacts.refetch()
+          this.$apollo.queries.allContacts.refetch()
         })
         .catch((reason) => {
           this.graphqlError = reason

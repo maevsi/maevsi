@@ -23,7 +23,7 @@
     </section>
     <section class="flex flex-col gap-4">
       <h2>{{ $t('codes') }}</h2>
-      <div v-if="jwtDecoded && jwtDecoded.invitations">
+      <div v-if="jwtDecoded.invitations">
         <p>
           {{ $t('codesEntered') }}
         </p>

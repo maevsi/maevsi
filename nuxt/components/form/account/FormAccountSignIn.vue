@@ -36,8 +36,7 @@
       <template slot="assistance">
         <ButtonColored
           v-if="
-            graphqlError &&
-            graphqlError.graphQLErrors.filter((e) => e.errcode === '55000')
+            graphqlError?.graphQLErrors.filter((e) => e.errcode === '55000')
               .length > 0
           "
           :aria-label="$t('verificationMailResend')"

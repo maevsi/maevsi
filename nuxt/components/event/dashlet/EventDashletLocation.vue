@@ -1,5 +1,5 @@
 <template>
-  <EventDashlet v-if="event && event.isInPerson && event.location">
+  <EventDashlet>
     <span>
       <IconMapMarker :title="$t('location')" />
     </span>
