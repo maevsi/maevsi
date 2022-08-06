@@ -1,6 +1,6 @@
 import { appendHeader, defineEventHandler } from 'h3'
 
-import { STACK_DOMAIN } from '~/plugins/baseUrl'
+import { STACK_DOMAIN } from '~/plugins/static/constants'
 
 const csp: Record<string, Array<string>> = {
   'base-uri': ["'none'"], // Mozilla Observatory.

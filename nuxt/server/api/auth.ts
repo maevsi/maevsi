@@ -1,8 +1,10 @@
 import fs from 'fs'
-import { CompatibilityEvent } from 'h3'
 
 import { serialize } from 'cookie'
+import { CompatibilityEvent } from 'h3'
 import jsonwebtoken from 'jsonwebtoken'
+
+import { JWT_NAME } from '~/plugins/static/constants'
 
 const configPostgraphileJwtPublicKeyPath =
   process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE || ''
@@ -43,7 +45,7 @@ export default function (event: CompatibilityEvent) {
 
   res.setHeader(
     'Set-Cookie',
-    serialize('__Secure-apollo-token', jwt, {
+    serialize(JWT_NAME, jwt, {
       expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
       httpOnly: true,
       path: '/',
