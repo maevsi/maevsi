@@ -226,7 +226,7 @@
         </template>
       </ButtonColored>
     </ButtonList>
-    <Card class="flex flex-col items-center gap-8">
+    <Card v-if="event" class="flex flex-col items-center gap-8">
       <div class="flex max-w-full flex-col items-center">
         <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
           {{ event.name }}
