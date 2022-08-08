@@ -84,7 +84,7 @@ specifiers:
   eslint-plugin-yml: 1.1.0
   graphql: 15.8.0
   graphql-tag: 2.12.6
-  h3: 0.7.13
+  h3: 0.7.14
   html-to-text: 8.2.1
   ical-generator: 3.5.1
   isomorphic-dompurify: 0.15.0
@@ -172,7 +172,7 @@ dependencies:
   css-element-queries: 1.2.3
   downloadjs: 1.4.7
   graphql: 15.8.0
-  h3: 0.7.13
+  h3: 0.7.14
   html-to-text: 8.2.1
   ical-generator: 3.5.1_lvxrafunp5sh2baouldrrloij4
   isomorphic-dompurify: 0.15.0
@@ -751,7 +751,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.18.9
       '@babel/plugin-syntax-object-rest-spread': 7.8.3_@babel+core@7.12.9
       '@babel/plugin-transform-parameters': 7.18.8_@babel+core@7.12.9
     dev: true
@@ -2646,7 +2646,7 @@ packages:
       fs-extra: 10.1.0
       get-port-please: 2.5.0
       globby: 13.1.2
-      h3: 0.7.13
+      h3: 0.7.14
       hash-sum: 2.0.0
       knitwork: 0.1.2
       magic-string: 0.26.2
@@ -5332,7 +5332,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.5
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: false
 
   /@types/eslint/7.29.0:
@@ -5345,7 +5345,7 @@ packages:
   /@types/eslint/8.4.5:
     resolution: {integrity: sha512-dhsC09y1gpJWnK+Ff4SGvCuSnk9DaU0BJZSzOwa6GVSg65XtTugLBITDAAzRU5duGBoXBHpdR/9jHGxJjNflJQ==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: false
 
@@ -5359,7 +5359,6 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
-    dev: true
 
   /@types/etag/1.8.1:
     resolution: {integrity: sha512-bsKkeSqN7HYyYntFRAmzcwx/dKW4Wa+KVMTInANlI72PWLQmOpZu96j0OqHZGArW4VQwCmJPteQlXaUDeOB0WQ==}
@@ -12310,8 +12309,8 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /h3/0.7.13:
-    resolution: {integrity: sha512-3rs+iokAwin4GnToWc+4JeASAYPujojMWicaTgv5WMucED94cFVVGctlk7N6iJfQ7SZ2N5CtmQ2C3L2aDFpd2w==}
+  /h3/0.7.14:
+    resolution: {integrity: sha512-qF49Le5rhn9L+Kg7Dbd5JPdxr/JldWCLDMvFi46D/Pvqdzp6WQJyje2zm/ShfO8Ni+MFwA3efn1ldEAhznkAJQ==}
     dependencies:
       cookie-es: 0.5.0
       destr: 1.1.1
@@ -15664,7 +15663,7 @@ packages:
       fs-extra: 10.1.0
       globby: 13.1.2
       gzip-size: 7.0.0
-      h3: 0.7.13
+      h3: 0.7.14
       hookable: 5.1.1
       http-proxy: 1.18.1
       is-primitive: 3.0.1
@@ -21766,7 +21765,7 @@ packages:
       anymatch: 3.1.2
       chokidar: 3.5.3
       destr: 1.1.1
-      h3: 0.7.13
+      h3: 0.7.14
       ioredis: 5.2.2
       listhen: 0.2.13
       mri: 1.2.0
