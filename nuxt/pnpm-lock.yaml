@@ -10,7 +10,7 @@ specifiers:
   '@jest/globals': 28.1.3
   '@jest/types': 28.1.3
   '@nuxt/babel-preset-app': 2.15.8
-  '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27657000.c87fdbe
+  '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27666083.80ccd51
   '@nuxt/types-edge': 2.16.0-27616340.013f051b
   '@nuxtjs/color-mode': 3.1.4
   '@nuxtjs/eslint-config-typescript': 10.0.0
@@ -207,7 +207,7 @@ devDependencies:
   '@jest/globals': 28.1.3
   '@jest/types': 28.1.3
   '@nuxt/babel-preset-app': 2.15.8_vue@2.7.8
-  '@nuxt/bridge': /@nuxt/bridge-edge/3.0.0-27657000.c87fdbe_2turem7ylvilxdlmncyfdur3m4
+  '@nuxt/bridge': /@nuxt/bridge-edge/3.0.0-27666083.80ccd51_2turem7ylvilxdlmncyfdur3m4
   '@nuxtjs/eslint-config-typescript': 10.0.0_qugx7qdu5zevzvxaiqyxfiwquq
   '@nuxtjs/eslint-module': 3.1.0_pfo3ge5a7dhg5w52ro6wyzpxsq
   '@nuxtjs/google-analytics': 2.4.0
@@ -2621,8 +2621,8 @@ packages:
       - vue
     dev: true
 
-  /@nuxt/bridge-edge/3.0.0-27657000.c87fdbe_2turem7ylvilxdlmncyfdur3m4:
-    resolution: {integrity: sha512-8LNnFtZSU3JxDztSTTlCaZwd1meE1dWgIbWTNKmqKr+cMJHU4lg+9PMJCOnP9wA/p9wgBxDo3kek9XWB6fch0A==}
+  /@nuxt/bridge-edge/3.0.0-27666083.80ccd51_2turem7ylvilxdlmncyfdur3m4:
+    resolution: {integrity: sha512-tRMvUjABsiyjSE7LtrJyDQSrq0bEOiiwK6UMXhY6FWW1ek79Yy0R6zMMsJ8CU9EgCpkbRnfHM2odvO+n//SiwA==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     hasBin: true
     dependencies:
@@ -2632,7 +2632,7 @@ packages:
       '@nuxt/kit': 3.0.0-rc.6_vite@2.9.14+webpack@4.46.0
       '@nuxt/postcss8': 1.1.3_webpack@4.46.0
       '@nuxt/schema': 3.0.0-rc.6_vite@2.9.14+webpack@4.46.0
-      '@nuxt/ui-templates': 0.2.2
+      '@nuxt/ui-templates': 0.3.0
       '@vitejs/plugin-legacy': 1.8.2_vite@2.9.14
       '@vitejs/plugin-vue2': 1.1.2_vite@2.9.14+vue@2.7.8
       acorn: 8.8.0
@@ -2662,12 +2662,12 @@ packages:
       postcss-import-resolver: 2.0.0
       postcss-preset-env: 7.7.2_postcss@8.4.16
       postcss-url: 10.1.3_postcss@8.4.16
-      scule: 0.2.1
+      scule: 0.3.2
       semver: 7.3.7
       std-env: 3.1.1
       ufo: 0.8.5
-      unimport: 0.4.7_vite@2.9.14+webpack@4.46.0
-      unplugin: 0.7.2_vite@2.9.14+webpack@4.46.0
+      unimport: 0.6.5_vite@2.9.14+webpack@4.46.0
+      unplugin: 0.8.1_vite@2.9.14+webpack@4.46.0
       untyped: 0.4.5
       vite: 2.9.14
       vue-bundle-renderer: 0.3.9
@@ -3103,8 +3103,8 @@ packages:
       - webpack-cli
     dev: false
 
-  /@nuxt/ui-templates/0.2.2:
-    resolution: {integrity: sha512-M6/x5Rvz/+YiYdEQISEXuVstu2S71lu2Q9rlQv/SQG3gm+u0O7ZNxvQDx8RFMCYitf99MhOYUArXz36UtjwyHw==}
+  /@nuxt/ui-templates/0.3.0:
+    resolution: {integrity: sha512-Ubpaj/yy8qcY5wFg/+AwVQmOE8YsYqqVP6iu2cY2WA0mK1+ymGi33rzgFFZqBMUR/Fz4Syv2ZDQT1M05rlaS3w==}
     dev: true
 
   /@nuxt/utils-edge/2.16.0-27616340.013f051b:
@@ -21537,6 +21537,26 @@ packages:
       - webpack
     dev: false
 
+  /unimport/0.6.5_vite@2.9.14+webpack@4.46.0:
+    resolution: {integrity: sha512-B8x6+GiYUzDphN6Iaoshu99mUo8n7QCq13QTY2Z8saj1QBmGKXf+vJJlptfL3MdOmzxpve2Ikx91UZ4Qoz4dVQ==}
+    dependencies:
+      '@rollup/pluginutils': 4.2.1
+      escape-string-regexp: 5.0.0
+      fast-glob: 3.2.11
+      local-pkg: 0.4.2
+      magic-string: 0.26.2
+      mlly: 0.5.7
+      pathe: 0.3.3
+      scule: 0.3.2
+      strip-literal: 0.4.0
+      unplugin: 0.8.1_vite@2.9.14+webpack@4.46.0
+    transitivePeerDependencies:
+      - esbuild
+      - rollup
+      - vite
+      - webpack
+    dev: true
+
   /union-value/1.0.1:
     resolution: {integrity: sha512-tJfXmxMeWYnczCVs7XAEvIV7ieppALdyepWMkHkwciRpZraG/xwT+s2JN8+pr1+8jCRf80FFzvr+MpQeeoF4Xg==}
     engines: {node: '>=0.10.0'}
@@ -21748,6 +21768,31 @@ packages:
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.4.4
     dev: false
+
+  /unplugin/0.8.1_vite@2.9.14+webpack@4.46.0:
+    resolution: {integrity: sha512-o7rUZoPLG1fH4LKinWgb77gDtTE6mw/iry0Pq0Z5UPvZ9+HZ1/4+7fic7t58s8/CGkPrDpGq+RltO+DmswcR4g==}
+    peerDependencies:
+      esbuild: '>=0.13'
+      rollup: ^2.50.0
+      vite: ^2.3.0 || ^3.0.0-0
+      webpack: 4 || 5
+    peerDependenciesMeta:
+      esbuild:
+        optional: true
+      rollup:
+        optional: true
+      vite:
+        optional: true
+      webpack:
+        optional: true
+    dependencies:
+      acorn: 8.8.0
+      chokidar: 3.5.3
+      vite: 2.9.14
+      webpack: 4.46.0
+      webpack-sources: 3.2.3
+      webpack-virtual-modules: 0.4.4
+    dev: true
 
   /unquote/1.1.1:
     resolution: {integrity: sha512-vRCqFv6UhXpWxZPyGDh/F3ZpNv8/qo7w6iufLpQg9aKnQ71qM4B5KiI7Mia9COcjEhrO9LueHpMYjYzsWH3OIg==}
