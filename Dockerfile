@@ -110,8 +110,6 @@ RUN npm install -g pnpm && \
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:18.7.0-slim@sha256:46f854a8f54b0460702602f45eca29aecc4c39135056e378fa7707a81da3744d AS test-integration
 
-ENV NODE_OPTIONS=--experimental-specifier-resolution=node
-
 # Update and install dependencies.
 # - `wget` is used for testing
 # - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
@@ -207,7 +205,6 @@ COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
 FROM node:18.7.0-slim@sha256:46f854a8f54b0460702602f45eca29aecc4c39135056e378fa7707a81da3744d AS production
 
 ENV NODE_ENV=production
-ENV NODE_OPTIONS=--experimental-specifier-resolution=node
 
 # Update and install dependencies.
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
