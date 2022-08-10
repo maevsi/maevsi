@@ -28,6 +28,7 @@ specifiers:
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
   '@nuxtjs/storybook': 4.1.1
+  '@pinia/nuxt': 0.3.1
   '@storybook/addon-a11y': 6.5.10
   '@storybook/components': 6.5.10
   '@storybook/core-events': 6.5.10
@@ -101,6 +102,7 @@ specifiers:
   node-fetch: 3.2.10
   nuxt-edge: 2.16.0-27616340.013f051b
   pg: 8.7.3
+  pinia: 2.0.17
   postcss: 8.4.16
   postcss-html: 1.5.0
   prettier: 2.7.1
@@ -135,7 +137,6 @@ specifiers:
   vue-template-compiler: 2.7.8
   vue-tsc: 0.39.5
   vuelidate: 0.7.7
-  vuex: 3.6.2
   webpack: 4.46.0
   weekstart: 1.1.0
 
@@ -147,6 +148,7 @@ dependencies:
   '@nuxtjs/i18n': 7.2.3
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
+  '@pinia/nuxt': 0.3.1_tyrzjfyzwbglexdioz5qzycjl4
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
   '@tailwindcss/line-clamp': 0.4.0_tailwindcss@3.1.8
   '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
@@ -178,6 +180,7 @@ dependencies:
   node-fetch: 3.2.10
   nuxt-edge: 2.16.0-27616340.013f051b_zumjig5klwsdqp4maicvhj2xrm
   pg: 8.7.3
+  pinia: 2.0.17_typescript@4.7.4+vue@2.7.8
   pretty-bytes: 6.0.0
   prntr: 2.0.15
   qrcode.vue: 1.7.0_vue@2.7.8
@@ -190,7 +193,6 @@ dependencies:
   vue-i18n: 8.27.2
   vue-qrcode-reader: 3.1.0
   vuelidate: 0.7.7
-  vuex: 3.6.2_vue@2.7.8
   weekstart: 1.1.0
 
 devDependencies:
@@ -4101,6 +4103,22 @@ packages:
       webcrypto-core: 1.7.5
     dev: true
 
+  /@pinia/nuxt/0.3.1_tyrzjfyzwbglexdioz5qzycjl4:
+    resolution: {integrity: sha512-JoDvTolUrJPfe9xEmvHz0jRqd3vYzuStqtt1k3SgwHChIWxxnlZ8hmU1RlXIh51RGL549LeXupSiKGydDIYc2A==}
+    dependencies:
+      '@nuxt/kit': 3.0.0-rc.6_webpack@4.46.0
+      pinia: 2.0.17_typescript@4.7.4+vue@2.7.8
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - esbuild
+      - rollup
+      - supports-color
+      - typescript
+      - vite
+      - vue
+      - webpack
+    dev: false
+
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: false
@@ -7023,6 +7041,10 @@ packages:
       - velocityjs
       - walrus
       - whiskers
+    dev: false
+
+  /@vue/devtools-api/6.2.1:
+    resolution: {integrity: sha512-OEgAMeQXvCoJ+1x8WyQuVZzFo0wcyCmUR3baRVLmKBo1LmYZWMlRiXlux5jd0fqVJu6PfDbOrZItVqUEzLobeQ==}
     dev: false
 
   /@vue/reactivity-transform/3.2.37:
@@ -17567,6 +17589,24 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  /pinia/2.0.17_typescript@4.7.4+vue@2.7.8:
+    resolution: {integrity: sha512-AtwLwEWQgIjofjgeFT+nxbnK5lT2QwQjaHNEDqpsi2AiCwf/NY78uWTeHUyEhiiJy8+sBmw0ujgQMoQbWiZDfA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.2.1
+      typescript: 4.7.4
+      vue: 2.7.8
+      vue-demi: 0.13.6_vue@2.7.8
+    dev: false
+
   /pinkie-promise/2.0.1:
     resolution: {integrity: sha512-0Gni6D4UcLTbv9c57DfxDGdr41XfgUjqWZu492f0cIGr16zDU06BWP/RAEvOuo7CQ0CNjHaLlM59YJJFm3NWlw==}
     engines: {node: '>=0.10.0'}
@@ -23105,6 +23145,21 @@ packages:
       luxon: 1.28.0
       vue: 2.7.8
       weekstart: 1.1.0
+    dev: false
+
+  /vue-demi/0.13.6_vue@2.7.8:
+    resolution: {integrity: sha512-02NYpxgyGE2kKGegRPYlNQSL1UWfA/+JqvzhGCOYjhfbLWXU5QQX0+9pAm/R2sCOPKr5NBxVIab7fvFU0B1RxQ==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 2.7.8
     dev: false
 
   /vue-docgen-api/4.52.0_vue@2.7.8:

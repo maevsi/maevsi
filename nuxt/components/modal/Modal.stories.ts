@@ -1,7 +1,7 @@
-import { Store } from 'vuex'
-
 import { defineComponent } from '#app'
+
 import Modal from './Modal.vue'
+import { useMaevsiStore } from '~/store'
 
 export default {
   component: Modal,
@@ -12,14 +12,14 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { Modal },
     props: Object.keys(argTypes),
-    store: new Store({
-      state: {
-        modals: [{ contentBody: 'contentBody', id: 'Modal', isVisible: true }],
-      },
-      getters: {
-        modals: (state) => state.modals,
-      },
-    }),
+    setup() {
+      const store = useMaevsiStore()
+      store.modalAdd({
+        contentBody: 'contentBody',
+        id: 'Modal',
+        isVisible: true,
+      })
+    },
     // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<Modal v-bind="$props" id="Modal">Modal</Modal>',
   })

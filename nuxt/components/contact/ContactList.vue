@@ -73,10 +73,12 @@ import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'
 import { useAllContactsQuery, useDeleteContactMutation } from '~/gql/generated'
 import { Contact } from '~/types/contact'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   setup() {
-    const { $store, $t } = useNuxtApp()
+    const { $t } = useNuxtApp()
+    const store = useMaevsiStore()
     const { executeMutation: executeMutationContactDelete } =
       useDeleteContactMutation()
 
@@ -86,7 +88,7 @@ export default defineComponent({
     const contactsQuery = useAllContactsQuery({
       variables: {
         after: refs.apiContactsAfter,
-        authorAccountUsername: $store.getters.signedInUsername,
+        authorAccountUsername: store.signedInUsername,
         first: ITEMS_PER_PAGE_LARGE,
       },
     })
@@ -112,7 +114,7 @@ export default defineComponent({
       add() {
         data.formContactHeading = $t('contactAdd')
         data.selectedContact = undefined
-        $store.commit('modalAdd', { id: 'ModalContact' })
+        store.modalAdd({ id: 'ModalContact' })
       },
       async delete_(nodeId: string) {
         data.pending.deletions.push(nodeId)
@@ -137,7 +139,7 @@ export default defineComponent({
         data.pending.edits.push(contact.nodeId)
         data.formContactHeading = $t('contactEdit')
         data.selectedContact = contact
-        $store.commit('modalAdd', { id: 'ModalContact' })
+        store.modalAdd({ id: 'ModalContact' })
       },
       loadMore() {
         refs.apiContactsAfter.value =
@@ -162,7 +164,7 @@ export default defineComponent({
         }
       },
       onSubmitSuccess() {
-        $store.commit('modalRemove', 'ModalContact')
+        store.modalRemove('ModalContact')
         // TODO: cache update (allContacts)
       },
     }

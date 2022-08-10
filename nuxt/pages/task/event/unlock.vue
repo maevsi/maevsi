@@ -68,6 +68,7 @@ import {
 } from '~/plugins/util/validation'
 import { getApiMeta } from '~/plugins/util/util'
 import { useEventUnlockMutation } from '~/gql/generated'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -77,7 +78,9 @@ export default defineComponent({
       : 'default'
   },
   async middleware(context: Context): Promise<void> {
-    const { app, redirect, res, route, store } = context
+    const { app, redirect, res, route, $pinia } = context
+
+    const store = useMaevsiStore($pinia)
 
     if (isQueryIcFormatValid(context)) {
       const result = await app.$urql.value

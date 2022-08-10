@@ -75,15 +75,9 @@
 <script lang="ts">
 import consola from 'consola'
 
-import {
-  computed,
-  defineComponent,
-  PropType,
-  reactive,
-  useNuxtApp,
-  watch,
-} from '#app'
+import { computed, defineComponent, PropType, reactive, watch } from '#app'
 import { Modal } from '~/types/modal'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'MaevsiModal',
@@ -107,7 +101,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { $store } = useNuxtApp()
+    const store = useMaevsiStore()
 
     const data = reactive({
       errors: undefined,
@@ -117,22 +111,20 @@ export default defineComponent({
     })
     const computations = {
       contentBodyComputed: computed(() => {
-        return getModalsFiltered($store.getters.modals, props.id)?.contentBody // The default slot above is used as alternative.
+        return getModalsFiltered(store.modals, props.id)?.contentBody // The default slot above is used as alternative.
       }),
       isVisibleComputed: computed(() => {
         return (
-          getModalsFiltered($store.getters.modals, props.id)?.isVisible ||
-          data.isVisible
+          getModalsFiltered(store.modals, props.id)?.isVisible || data.isVisible
         )
       }),
       onSubmitComputed: computed(() => {
         return (
-          getModalsFiltered($store.getters.modals, props.id)?.onSubmit ||
-          data.onSubmit
+          getModalsFiltered(store.modals, props.id)?.onSubmit || data.onSubmit
         )
       }),
       modalComputed: computed(() => {
-        return getModalsFiltered($store.getters.modals, props.id)
+        return getModalsFiltered(store.modals, props.id)
       }),
     }
     const methods = {
@@ -140,7 +132,7 @@ export default defineComponent({
         // NOT = "cancel"! Used by `submit` too.
 
         if (computations.modalComputed) {
-          $store.commit('modalRemove', props.id)
+          store.modalRemove(props.id)
         } else {
           data.isVisible = false
         }

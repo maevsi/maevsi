@@ -12,7 +12,7 @@
       <Button
         :aria-label="$t('profilePictureChange')"
         class="sm:mr-4"
-        @click="$store.commit('modalAdd', { id: 'ModalImageSelection' })"
+        @click="showModalImageSelection"
       >
         <AccountProfilePicture
           classes="h-24 rounded w-24"
@@ -47,18 +47,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { defineComponent, reactive, useRoute } from '#app'
 import { CombinedError } from '@urql/core'
 
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import { useSignOut } from '~/plugins/util/auth'
 import { getApiMeta } from '~/plugins/util/util'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ error, params, res, store }) {
-    if (res && params.username !== store.getters.signedInUsername) {
+  middleware({ error, params, res, $pinia }) {
+    const store = useMaevsiStore($pinia)
+
+    if (res && params.username !== store.signedInUsername) {
       return error({ statusCode: 403 })
     }
   },
@@ -77,7 +80,7 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $store } = useNuxtApp()
+    const store = useMaevsiStore()
     const { signOut } = useSignOut()
     const route = useRoute()
 
@@ -89,13 +92,16 @@ export default defineComponent({
     const data = reactive({
       accountDeleteMutation: ACCOUNT_DELETE_MUTATION,
       title:
-        route.params.username === $store.getters.signedInUsername
+        route.params.username === store.signedInUsername
           ? route.params.username
           : '403',
     })
     const methods = {
       onDeleteError(error: CombinedError) {
         apiData.api.errors.push(error)
+      },
+      showModalImageSelection() {
+        store.modalAdd({ id: 'ModalImageSelection' })
       },
       signOut,
     }

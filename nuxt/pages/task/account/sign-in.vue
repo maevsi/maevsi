@@ -15,11 +15,14 @@
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
 import { defineComponent } from '#app'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, store, redirect, route }: Context): void {
-    if (store.getters.jwtDecoded?.role === 'maevsi_account') {
+  middleware({ app, redirect, route, $pinia }: Context): void {
+    const store = useMaevsiStore($pinia)
+
+    if (store.jwtDecoded?.role === 'maevsi_account') {
       return redirect(route.query.referrer || app.localePath('/dashboard/'))
     }
   },

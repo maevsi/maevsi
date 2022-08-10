@@ -54,11 +54,14 @@ import {
   useEventByAuthorUsernameAndSlugQuery,
   useEventDeleteMutation,
 } from '~/gql/generated'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ error, res, params, store }: Context) {
-    if (res && params.username !== store.getters.signedInUsername) {
+  middleware({ error, res, params, $pinia }: Context) {
+    const store = useMaevsiStore($pinia)
+
+    if (res && params.username !== store.signedInUsername) {
       return error({ statusCode: 403 })
     }
   },
@@ -78,7 +81,8 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $router, $store, $t, localePath } = useNuxtApp()
+    const { $router, $t, localePath } = useNuxtApp()
+    const store = useMaevsiStore()
     const route = useRoute()
     const { executeMutation: executeMutationEventDelete } =
       useEventDeleteMutation()
@@ -112,10 +116,7 @@ export default defineComponent({
     }
     const computations = {
       title: computed((): string | undefined => {
-        if (
-          route.params.username === $store.getters.signedInUsername &&
-          apiData.event
-        ) {
+        if (route.params.username === store.signedInUsername && apiData.event) {
           return `${$t('title')} · ${apiData.event.name}`
         }
         return '403'

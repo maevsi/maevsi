@@ -3,21 +3,22 @@
     <h1>{{ title }}</h1>
     <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
     <ImageUploadGallery
-      :username="signedInUsername()"
+      :username="signedInUsername"
       @deletion="$nuxt.$emit('profilePictureReload')"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
-
 import { defineComponent, reactive, useNuxtApp } from '#app'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ error, store }) {
-    if (!store.getters.signedInUsername) {
+  middleware({ error, $pinia }) {
+    const store = useMaevsiStore($pinia)
+
+    if (!store.signedInUsername) {
       return error({ statusCode: 403 })
     }
   },
@@ -26,17 +27,15 @@ export default defineComponent({
   },
   setup() {
     const { $t } = useNuxtApp()
+    const store = useMaevsiStore()
 
     const data = reactive({
+      signedInUsername: store.signedInUsername,
       title: $t('title'),
     })
-    const computations = {
-      ...mapGetters(['signedInUsername']),
-    }
 
     return {
       ...data,
-      ...computations,
     }
   },
   head() {

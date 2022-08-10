@@ -9,11 +9,14 @@
 
 <script lang="ts">
 import { defineComponent } from '#app'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ error, store }) {
-    if (!store.getters.signedInUsername) {
+  middleware({ error, $pinia }) {
+    const store = useMaevsiStore($pinia)
+
+    if (!store.signedInUsername) {
       return error({ statusCode: 403 })
     }
   },

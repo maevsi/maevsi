@@ -5,7 +5,7 @@
     </CardStateInfo>
     <div
       class="container mx-auto flex items-center justify-between gap-4 p-4 md:px-8"
-      :class="{ container: !signedInUsername() }"
+      :class="{ container: !signedInUsername }"
     >
       <ButtonIcon
         :aria-label="$t('menuShow')"
@@ -49,7 +49,7 @@
       </div> -->
       <div class="flex items-center gap-4 whitespace-nowrap">
         <ButtonColored
-          v-if="signedInUsername()"
+          v-if="signedInUsername"
           :aria-label="$t('dashboard')"
           class="hidden md:block"
           :is-primary="false"
@@ -58,17 +58,17 @@
           {{ $t('dashboard') }}
         </ButtonColored>
         <Button
-          v-if="signedInUsername()"
-          :aria-label="signedInUsername()"
+          v-if="signedInUsername"
+          :aria-label="signedInUsername"
           class="flex min-w-0 items-center gap-2 text-text-dark dark:text-text-bright"
           :title="$t('profileLink')"
-          :to="localePath(`/account/${signedInUsername()}`)"
+          :to="localePath(`/account/${signedInUsername}`)"
           @click.native="$emit('onMenuHide')"
         >
           <AccountProfilePicture
             height="40"
             rounded
-            :username="signedInUsername()"
+            :username="signedInUsername"
             width="40"
           />
         </Button>
@@ -86,9 +86,8 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
-
 import { defineComponent, onBeforeMount, reactive, useNuxtApp } from '#app'
+import { useMaevsiStore } from '~/store'
 
 import supportedBrowsers from '~/supportedBrowsers'
 
@@ -96,9 +95,11 @@ export default defineComponent({
   name: 'MaevsiHeader',
   setup(_props) {
     const { $router, localePath } = useNuxtApp()
+    const store = useMaevsiStore()
 
     const data = reactive({
       isBrowserSupported: true,
+      signedInUsername: store.signedInUsername,
     })
     const methods = {
       navigateToSearch() {
@@ -108,9 +109,6 @@ export default defineComponent({
         })
       },
     }
-    const computations = {
-      ...mapGetters(['signedInUsername']),
-    }
 
     onBeforeMount(() => {
       data.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
@@ -119,7 +117,6 @@ export default defineComponent({
     return {
       ...data,
       ...methods,
-      ...computations,
     }
   },
 })

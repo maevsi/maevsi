@@ -8,16 +8,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '#app'
+import { computed, defineComponent, reactive, useNuxtApp } from '#app'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
   transition: {
     name: 'layout',
   },
-  data() {
+  setup() {
+    const { $t } = useNuxtApp()
+    const store = useMaevsiStore()
+
+    const data = reactive({
+      title: $t('title') as string,
+    })
+    const computations = {
+      signedIn: computed(() => {
+        return (
+          store.jwtDecoded?.role === 'maevsi_account' &&
+          store.jwtDecoded?.exp &&
+          store.jwtDecoded.exp > Math.floor(Date.now() / 1000)
+        )
+      }),
+    }
+
     return {
-      title: this.$t('title') as string,
+      ...data,
+      ...computations,
     }
   },
   head() {
@@ -45,14 +63,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  computed: {
-    signedIn(): boolean {
-      return (
-        this.$store.getters.jwtDecoded?.role === 'maevsi_account' &&
-        this.$store.getters.jwtDecoded?.exp > Math.floor(Date.now() / 1000)
-      )
-    },
   },
 })
 </script>

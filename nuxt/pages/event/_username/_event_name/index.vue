@@ -63,7 +63,7 @@
             "
           >
             <div class="m-4 flex flex-col gap-1">
-              <span v-if="event.authorUsername !== signedInUsername()">
+              <span v-if="event.authorUsername !== signedInUsername">
                 {{ $t('feedbackRequest') }}
               </span>
               <div class="flex items-center justify-center gap-4">
@@ -73,7 +73,7 @@
                     invitation.feedback === 'CANCELED'
                   "
                   :aria-label="
-                    event.authorUsername !== signedInUsername()
+                    event.authorUsername !== signedInUsername
                       ? $t('invitationAccept')
                       : $t('invitationAcceptAdmin', {
                           name: contactName,
@@ -82,7 +82,7 @@
                   @click="accept"
                 >
                   {{
-                    event.authorUsername !== signedInUsername()
+                    event.authorUsername !== signedInUsername
                       ? $t('invitationAccept')
                       : $t('invitationAcceptAdmin', {
                           name: contactName,
@@ -98,7 +98,7 @@
                 >
                   <IconCheckCircle class="mr-2" title="accepted" />
                   {{
-                    event.authorUsername !== signedInUsername()
+                    event.authorUsername !== signedInUsername
                       ? $t('invitationAccepted')
                       : $t('invitationAcceptedAdmin', {
                           name: contactName,
@@ -111,7 +111,7 @@
                     invitation.feedback === 'ACCEPTED'
                   "
                   :aria-label="
-                    event.authorUsername !== signedInUsername()
+                    event.authorUsername !== signedInUsername
                       ? $t('invitationCancel')
                       : $t('invitationCancelAdmin', {
                           name: contactName,
@@ -120,7 +120,7 @@
                   @click="cancel"
                 >
                   {{
-                    event.authorUsername !== signedInUsername()
+                    event.authorUsername !== signedInUsername
                       ? $t('invitationCancel')
                       : $t('invitationCancelAdmin', {
                           name: contactName,
@@ -136,7 +136,7 @@
                 >
                   <IconXCircle class="mr-2" title="canceled" />
                   {{
-                    event.authorUsername !== signedInUsername()
+                    event.authorUsername !== signedInUsername
                       ? $t('invitationCanceled')
                       : $t('invitationCanceledAdmin', {
                           name: contactName,
@@ -198,8 +198,8 @@
       <ButtonList
         v-if="
           !$route.query.ic &&
-          jwtDecoded() &&
-          event.authorUsername === jwtDecoded().username
+          jwtDecoded &&
+          event.authorUsername === jwtDecoded.username
         "
       >
         <ButtonColored append :aria-label="$t('invitations')" to="invitation">
@@ -290,7 +290,6 @@ import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 import Swal from 'sweetalert2'
-import { mapGetters } from 'vuex'
 
 import {
   computed,
@@ -312,6 +311,7 @@ import {
   useEventByAuthorUsernameAndSlugQuery,
   useUpdateInvitationByIdMutation,
 } from '~/gql/generated'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -334,7 +334,8 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $store, $t } = useNuxtApp()
+    const { $t } = useNuxtApp()
+    const store = useMaevsiStore()
     const route = useRoute()
     const { executeMutation: executeMutationUpdateInvitationById } =
       useUpdateInvitationByIdMutation()
@@ -359,6 +360,8 @@ export default defineComponent({
     const data = reactive({
       contact: undefined as Contact | undefined,
       invitation: undefined as Invitation | undefined,
+      jwtDecoded: store.jwtDecoded,
+      signedInUsername: store.signedInUsername,
     })
     const methods = {
       accept() {
@@ -429,7 +432,7 @@ export default defineComponent({
         })
       },
       qrCodeShow() {
-        $store.commit('modalAdd', { id: 'ModalInvitationQrCode' })
+        store.modalAdd({ id: 'ModalInvitationQrCode' })
       },
       async update(id: string, invitationPatch: Partial<Invitation>) {
         const result = await executeMutationUpdateInvitationById({
@@ -458,7 +461,6 @@ export default defineComponent({
       },
     }
     const computations = {
-      ...mapGetters(['jwtDecoded', 'signedInUsername']),
       contact: computed((): Contact | undefined => {
         return data.invitation?.contactByContactId
       }),
@@ -482,8 +484,7 @@ export default defineComponent({
         const invitations = apiData.event?.invitationsByEventId.nodes
 
         const invitationsMatchingUuid =
-          $store.getters.signedInUsername === route.params.username &&
-          invitations
+          store.signedInUsername === route.params.username && invitations
             ? invitations.filter(
                 (invitation: Invitation) => invitation.uuid === route.query.ic
               )

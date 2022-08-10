@@ -136,7 +136,6 @@ import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
 import Swal from 'sweetalert2'
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
-import { mapGetters } from 'vuex'
 
 import { useNuxtApp, defineComponent, PropType, reactive } from '#app'
 
@@ -148,6 +147,7 @@ import {
 import { TUSD_FILES_URL } from '~/plugins/util/validation'
 import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'
+import { useMaevsiStore } from '~/store'
 
 require('@uppy/core/dist/style.css')
 
@@ -175,7 +175,8 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { $store, $t } = useNuxtApp()
+    const { $t } = useNuxtApp()
+    const store = useMaevsiStore()
 
     const { executeMutation: executeMutationUploadCreate } =
       useUploadCreateMutation()
@@ -207,11 +208,12 @@ export default defineComponent({
     })
     const data = reactive({
       fileSelectedUrl: undefined as string | undefined,
+      jwt: store.jwt,
       selectedItem: undefined as Item | undefined,
+      signedInUsername: store.signedInUsername,
       uppy: undefined as Uppy | undefined,
     })
     const computations = {
-      ...mapGetters(['jwt', 'signedInUsername']),
       sizeByteTotal: computed((): number | undefined => {
         if (!apiData.uploads) {
           return undefined
@@ -249,7 +251,7 @@ export default defineComponent({
 
         xhr.open('DELETE', '/api/tusd?uploadId=' + uploadId, true)
         xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
-        xhr.setRequestHeader('Authorization', 'Bearer ' + computations.jwt())
+        xhr.setRequestHeader('Authorization', 'Bearer ' + data.jwt)
         xhr.onreadystatechange = () => {
           if (xhr.readyState === 4) {
             element.classList.remove('disabled')
@@ -279,7 +281,7 @@ export default defineComponent({
       },
       fileLoaded(e: ProgressEvent<FileReader>) {
         data.fileSelectedUrl = e.target?.result as string | undefined
-        $store.commit('modalAdd', { id: 'ModalImageUploadGallery' })
+        store.modalAdd({ id: 'ModalImageUploadGallery' })
       },
       getUploadImageSrc(uploadStorageKey: string) {
         return TUSD_FILES_URL + uploadStorageKey + '+'

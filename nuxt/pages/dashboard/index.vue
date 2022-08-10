@@ -9,7 +9,7 @@
           <h2>{{ $t('eventsMine') }}</h2>
           <ButtonColored
             :aria-label="$t('eventsMine')"
-            :to="localePath(`/event/${signedInUsername()}`)"
+            :to="localePath(`/event/${signedInUsername}`)"
           >
             {{ $t('eventsMine') }}
             <template slot="prefix">
@@ -62,14 +62,16 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
-import { mapGetters } from 'vuex'
 
 import { defineComponent, reactive, useNuxtApp } from '#app'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, store, redirect }: Context): void {
-    if (store.getters.jwtDecoded?.role === 'maevsi_anonymous') {
+  middleware({ app, redirect, $pinia }: Context): void {
+    const store = useMaevsiStore($pinia)
+
+    if (store.jwtDecoded?.role === 'maevsi_anonymous') {
       return redirect(app.localePath('/'))
     }
   },
@@ -78,17 +80,15 @@ export default defineComponent({
   },
   setup() {
     const { $t } = useNuxtApp()
+    const store = useMaevsiStore()
 
     const data = reactive({
+      signedInUsername: store.signedInUsername,
       title: $t('title'),
     })
-    const computations = {
-      ...mapGetters(['signedInUsername']),
-    }
 
     return {
       ...data,
-      ...computations,
     }
   },
   head() {

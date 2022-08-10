@@ -4,7 +4,7 @@ import { Client } from '@urql/vue'
 import consola from 'consola'
 import { parse, serialize } from 'cookie'
 import { decode, JwtPayload } from 'jsonwebtoken'
-import { Store } from 'vuex/types/index'
+import { Store } from 'pinia'
 
 import { useNuxtApp, useRequestEvent } from '#app'
 
@@ -12,12 +12,12 @@ import { JWT_NAME } from './constants'
 import { xhrPromise } from './util'
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
 import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
-import { State } from '~/store'
+import { useMaevsiStore } from '~/store'
 
 export async function authenticationAnonymous(
   client: Client,
   $urqlReset: () => void,
-  $store: Store<State>,
+  store: Store,
   res: ServerResponse
 ) {
   consola.trace('Authenticating anonymously...')
@@ -36,17 +36,18 @@ export async function authenticationAnonymous(
       return
     }
 
-    await jwtStore($urqlReset, $store, res, result.data.authenticate.jwt)
+    await jwtStore($urqlReset, store, res, result.data.authenticate.jwt)
   }
 }
 
 export function useAuthenticationAnonymous() {
-  const { $store, $urql, $urqlReset } = useNuxtApp()
+  const { $urql, $urqlReset } = useNuxtApp()
+  const store = useMaevsiStore()
   const event = useRequestEvent()
 
   return {
     async authenticationAnonymous() {
-      await authenticationAnonymous($urql, $urqlReset, $store, event.res)
+      await authenticationAnonymous($urql, $urqlReset, store, event.res)
     },
   }
 }
@@ -87,7 +88,7 @@ export function useJwtFromCookie() {
 export async function jwtRefresh(
   client: Client,
   $urqlReset: () => void,
-  $store: Store<State>,
+  store: Store,
   res: ServerResponse,
   id: string
 ) {
@@ -97,28 +98,29 @@ export async function jwtRefresh(
 
   if (result.error) {
     consola.error(result.error)
-    await signOut($urqlReset, $store, res)
+    await signOut($urqlReset, store, res)
   } else if (!result.data.jwtRefresh.jwt) {
-    await authenticationAnonymous(client, $urqlReset, $store, res)
+    await authenticationAnonymous(client, $urqlReset, store, res)
   } else {
-    await jwtStore($urqlReset, $store, res, result.data.jwtRefresh.jwt)
+    await jwtStore($urqlReset, store, res, result.data.jwtRefresh.jwt)
   }
 }
 
 export function useJwtRefresh() {
-  const { $store, $urql, $urqlReset } = useNuxtApp()
+  const { $urql, $urqlReset } = useNuxtApp()
+  const store = useMaevsiStore()
   const event = useRequestEvent()
 
   return {
     async jwtRefresh(id: string) {
-      await jwtRefresh($urql, $urqlReset, $store, event.res, id)
+      await jwtRefresh($urql, $urqlReset, store, event.res, id)
     },
   }
 }
 
 export async function jwtStore(
   $urqlReset: () => void,
-  $store: Store<State>,
+  store: Store,
   res: ServerResponse,
   jwt: string | undefined,
   callback = () => {
@@ -128,7 +130,7 @@ export async function jwtStore(
   $urqlReset()
 
   consola.trace('Storing the following JWT: ' + jwt)
-  $store.commit('jwtSet', jwt)
+  ;(store as unknown as { jwtSet: (jwtNew?: string) => void }).jwtSet(jwt)
 
   if (process.server) {
     res?.setHeader(
@@ -153,31 +155,33 @@ export async function jwtStore(
 }
 
 export function useJwtStore() {
-  const { $store, $urqlReset } = useNuxtApp()
+  const { $urqlReset } = useNuxtApp()
+  const store = useMaevsiStore()
   const event = useRequestEvent()
 
   return {
     async jwtStore(jwt: string | undefined, callback?: () => void) {
-      await jwtStore($urqlReset, $store, event.res, jwt, callback)
+      await jwtStore($urqlReset, store, event.res, jwt, callback)
     },
   }
 }
 
 export async function signOut(
   $urqlReset: () => void,
-  $store: Store<State>,
+  store: Store,
   res: ServerResponse
 ) {
-  await jwtStore($urqlReset, $store, res, undefined)
+  await jwtStore($urqlReset, store, res, undefined)
 }
 
 export function useSignOut() {
-  const { $store, $urqlReset } = useNuxtApp()
+  const { $urqlReset } = useNuxtApp()
+  const store = useMaevsiStore()
   const event = useRequestEvent()
 
   return {
     async signOut() {
-      await signOut($urqlReset, $store, event.res)
+      await signOut($urqlReset, store, event.res)
     },
   }
 }
