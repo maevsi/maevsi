@@ -1,3 +1,10 @@
+# [0.140.0](https://github.com/maevsi/maevsi/compare/0.139.0...0.140.0) (2022-08-10)
+
+
+### Features
+
+* **sqitch:** mark function events-invited as stable ([6b28a9c](https://github.com/maevsi/maevsi/commit/6b28a9c0ca870c66f87eaffad1456aadc9e59e92))
+
 # [0.139.0](https://github.com/maevsi/maevsi/compare/0.138.2...0.139.0) (2022-08-06)
 
 
