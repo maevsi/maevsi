@@ -1,3 +1,11 @@
+## [0.140.1](https://github.com/maevsi/maevsi/compare/0.140.0...0.140.1) (2022-08-10)
+
+
+### Bug Fixes
+
+* **docker-entrypoint:** set pnpm store not in production ([b8be764](https://github.com/maevsi/maevsi/commit/b8be764162f8114637d28fe74a75db4e21b46c5a))
+* **tailwind:** solve line-height overflow once and for all, hopefully ([8364c18](https://github.com/maevsi/maevsi/commit/8364c18cda6997312d2f7f5458c0e384396d9a26))
+
 # [0.140.0](https://github.com/maevsi/maevsi/compare/0.139.0...0.140.0) (2022-08-10)
 
 
