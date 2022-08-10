@@ -232,12 +232,12 @@ de:
   contactsAdd: Zu meinem Kontaktbuch
   formHint: Suche nach Kontakten aus deinem Kontaktbuch.
   placeholderContact: Max Mustermann
-  select: Einladung ohne Versand anlegen
+  select: Gast hinzufügen
 en:
   buttonContact: A contact
   contact: Contact
   contactsAdd: To my contact book
   formHint: Here you can search for contacts you want to invite. If a contact is missing, you must first add it to your contact book.
   placeholderContact: John Doe
-  select: Add invitation without sending
+  select: Add guest
 </i18n>
