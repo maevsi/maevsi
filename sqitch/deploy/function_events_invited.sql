@@ -18,7 +18,7 @@ BEGIN
       invitation.contact_id IN (SELECT id FROM maevsi.contact WHERE contact.account_username = current_setting('jwt.claims.username', true)::TEXT) -- The contact selection does not return rows where account_username "IS" null due to the equality comparison.
   OR  invitation.uuid = ANY (maevsi.invitation_claim_array());
 END
-$$ LANGUAGE PLPGSQL STRICT SECURITY DEFINER;
+$$ LANGUAGE PLPGSQL STRICT STABLE SECURITY DEFINER;
 
 COMMENT ON FUNCTION maevsi_private.events_invited() IS 'Add a function that returns all event ids for which the invoker is invited.';
 
