@@ -2,9 +2,9 @@
   <div class="m-auto max-w-xl">
     <h1>{{ title }}</h1>
     <Form
-      :errors="$util.getGqlErrorMessages(graphqlError, this)"
+      :errors="api.errors"
       :form="$v.form"
-      :form-sent="form.sent"
+      :is-form-sent="isFormSent"
       :submit-name="$t('submit')"
       @submit.prevent="submit"
     >
@@ -57,9 +57,17 @@ import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import { required } from 'vuelidate/lib/validators'
 
-import { defineComponent } from '#app'
+import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 
+import { jwtStore, useJwtStore } from '~/plugins/util/auth'
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
+import {
+  formPreSubmit,
+  REGEX_UUID,
+  VALIDATION_FORMAT_UUID,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useEventUnlockMutation } from '~/gql/generated'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -69,22 +77,20 @@ export default defineComponent({
       : 'default'
   },
   async middleware(context: Context): Promise<void> {
-    const { $util, app, redirect, route, store } = context
+    const { app, redirect, res, route, store } = context
 
     if (isQueryIcFormatValid(context)) {
-      const res = await app
-        .apolloProvider!.defaultClient.mutate({
-          mutation: EVENT_UNLOCK_MUTATION,
-          variables: {
-            invitationCode: route.query.ic,
-          },
+      const result = await app.$urql.value
+        .query(EVENT_UNLOCK_MUTATION, {
+          invitationCode: route.query.ic,
         })
-        .then(({ data }: any) => data.eventUnlock.eventUnlockResponse)
-        .catch((reason: any) => {
-          consola.error(reason)
-        })
+        .toPromise()
 
-      if (!res) {
+      if (result.error) {
+        consola.error(result.error)
+      }
+
+      if (!result.data.eventUnlock.eventUnlockResponse) {
         return redirect(
           app.localePath({
             query: {
@@ -95,16 +101,11 @@ export default defineComponent({
         )
       }
 
-      await $util.jwtStore(
-        app.apolloProvider!.defaultClient,
-        store,
-        undefined,
-        res.jwt
-      )
+      await jwtStore(app.$urqlReset, store, res, result.jwt)
 
       if ('quick' in route.query) {
         return redirect(
-          app.localePath(`/event/${res.authorUsername}/${res.eventSlug}`)
+          app.localePath(`/event/${result.authorUsername}/${result.eventSlug}`)
         )
       } else {
         return redirect(
@@ -112,7 +113,7 @@ export default defineComponent({
             query: {
               ...route.query,
               redirect: app.localePath(
-                `/event/${res.authorUsername}/${res.eventSlug}`
+                `/event/${result.authorUsername}/${result.eventSlug}`
               ),
             },
           })
@@ -123,15 +124,66 @@ export default defineComponent({
   transition: {
     name: 'layout',
   },
-  data() {
-    return {
+  setup() {
+    const { jwtStore } = useJwtStore()
+    const { $router, $t, localePath } = useNuxtApp()
+    const route = useRoute()
+    const eventUnlockMutation = useEventUnlockMutation()
+
+    const apiData = reactive({
+      api: {
+        data: {
+          ...eventUnlockMutation.data.value,
+        },
+        ...getApiMeta([eventUnlockMutation]),
+      },
+    })
+    const data = reactive({
       form: {
         invitationCode:
-          this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
-        sent: false,
+          route.query.ic === undefined ? undefined : route.query.ic,
       },
-      graphqlError: undefined as Error | undefined,
-      title: this.$t('title'),
+      isFormSent: false,
+      title: $t('title'),
+    })
+    const methods = {
+      async submit() {
+        try {
+          await formPreSubmit(this)
+        } catch (error) {
+          return
+        }
+
+        const result = await eventUnlockMutation.executeMutation({
+          invitationCode: data.form.invitationCode,
+        })
+
+        if (result.error) {
+          apiData.api.errors.push(result.error)
+          consola.error(result.error)
+        }
+
+        if (!result.data?.eventUnlock?.eventUnlockResponse) {
+          return
+        }
+
+        await jwtStore(
+          result.data?.eventUnlock?.eventUnlockResponse?.jwt,
+          () => {
+            $router.push(
+              localePath(
+                `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
+              )
+            )
+          }
+        )
+      },
+    }
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
     }
   },
   head() {
@@ -169,60 +221,20 @@ export default defineComponent({
       }
     }
   },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
-
-      const res = await this.$apollo
-        .mutate({
-          mutation: EVENT_UNLOCK_MUTATION,
-          variables: {
-            invitationCode: this.form.invitationCode,
-          },
-        })
-        .then(({ data }) => data.eventUnlock.eventUnlockResponse)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return
-      }
-
-      await this.$util.jwtStore(
-        this.$apollo.getClient(),
-        this.$store,
-        undefined,
-        res.jwt,
-        () => {
-          this.$router.push(
-            this.localePath(`/event/${res.authorUsername}/${res.eventSlug}`)
-          )
-        }
-      )
-    },
-  },
   validations() {
     return {
       form: {
         invitationCode: {
           required,
-          formatUuid: this.$util.VALIDATION_FORMAT_UUID,
+          formatUuid: VALIDATION_FORMAT_UUID,
         },
       },
     }
   },
 })
 
-function isQueryIcFormatValid({ $util, route }: Context) {
-  return (
-    typeof route.query.ic === 'string' && $util.REGEX_UUID.test(route.query.ic)
-  )
+function isQueryIcFormatValid({ route }: Context) {
+  return typeof route.query.ic === 'string' && REGEX_UUID.test(route.query.ic)
 }
 </script>
 

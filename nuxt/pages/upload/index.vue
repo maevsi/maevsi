@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
     <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
     <ImageUploadGallery
-      :username="signedInUsername"
+      :username="signedInUsername()"
       @deletion="$nuxt.$emit('profilePictureReload')"
     />
   </div>
@@ -12,7 +12,7 @@
 <script lang="ts">
 import { mapGetters } from 'vuex'
 
-import { defineComponent } from '#app'
+import { defineComponent, reactive, useNuxtApp } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -24,9 +24,19 @@ export default defineComponent({
   transition: {
     name: 'layout',
   },
-  data() {
+  setup() {
+    const { $t } = useNuxtApp()
+
+    const data = reactive({
+      title: $t('title'),
+    })
+    const computations = {
+      ...mapGetters(['signedInUsername']),
+    }
+
     return {
-      title: this.$t('title'),
+      ...data,
+      ...computations,
     }
   },
   head() {
@@ -54,9 +64,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
   },
 })
 </script>

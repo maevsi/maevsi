@@ -15,14 +15,14 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
-
 import { defineComponent } from '#app'
+
+import { REGEX_SLUG } from '~/plugins/util/validation'
 
 export default defineComponent({
   name: 'IndexPage',
-  validate({ app, params }) {
-    return app.$util.REGEX_SLUG.test(params.username)
+  validate({ params }) {
+    return REGEX_SLUG.test(params.username)
   },
   transition: {
     name: 'layout',
@@ -67,9 +67,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
   },
 })
 </script>

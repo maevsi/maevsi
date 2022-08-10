@@ -4,7 +4,7 @@ import { serialize } from 'cookie'
 import { CompatibilityEvent } from 'h3'
 import jsonwebtoken from 'jsonwebtoken'
 
-import { JWT_NAME } from '~/plugins/static/constants'
+import { JWT_NAME } from '~/plugins/util/constants'
 
 const configPostgraphileJwtPublicKeyPath =
   process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE || ''

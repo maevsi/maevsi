@@ -133,20 +133,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '#app'
+import { defineComponent, reactive, useNuxtApp } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
   transition: {
     name: 'layout',
   },
-  data() {
-    return {
-      title: this.$t('title', {
-        easy: this.$t('titleEasy'),
-        fast: this.$t('titleFast'),
-        professional: this.$t('titleProfessional'),
+  setup() {
+    const { $t } = useNuxtApp()
+
+    const data = reactive({
+      title: $t('title', {
+        easy: $t('titleEasy'),
+        fast: $t('titleFast'),
+        professional: $t('titleProfessional'),
       }),
+    })
+
+    return {
+      ...data,
     }
   },
   head() {

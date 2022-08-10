@@ -3,7 +3,7 @@ import { Configuration } from 'webpack'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import { BASE_URL } from './plugins/static/constants'
+import { BASE_URL } from './plugins/util/constants'
 
 const LOCALES = [
   {
@@ -49,7 +49,9 @@ export default defineNuxtConfig({
       ? {}
       : {
           optimization: {
+            runtimeChunk: true,
             splitChunks: {
+              name: true,
               cacheGroups: {
                 styles: {
                   name: 'styles',
@@ -368,10 +370,9 @@ export default defineNuxtConfig({
     },
   },
   plugins: [
-    '~/plugins/apollo.ts',
     '~/plugins/croppa.js',
     '~/plugins/i18n.ts',
-    '~/plugins/util.ts',
+    '~/plugins/urql.ts',
     '~/plugins/vuelidate.ts',
   ],
   publicRuntimeConfig: {

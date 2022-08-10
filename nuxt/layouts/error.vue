@@ -1,18 +1,18 @@
 <template>
-  <Error :status-code="+error.statusCode" />
+  <Error :status-code="error?.statusCode ? +error?.statusCode : undefined" />
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from '#app'
 
-type Error = { statusCode: number }
+type Error = { statusCode: string }
 
 export default defineComponent({
   name: 'MaevsiError',
   props: {
     error: {
-      type: Object as PropType<Error | undefined>,
       default: undefined,
+      type: Object as PropType<Error | undefined>,
     },
   },
   head() {

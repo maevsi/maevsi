@@ -1,9 +1,9 @@
 <template>
   <Form
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
+    :errors="api.errors"
     :form="$v.form"
     :form-class="formClass"
-    :form-sent="form.sent"
+    :is-form-sent="isFormSent"
     :submit-name="$t('accountPasswordResetRequest')"
     @submit.prevent="submit"
   >
@@ -22,8 +22,15 @@ import consola from 'consola'
 import Swal from 'sweetalert2'
 import { email, maxLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent, PropType } from '#app'
-import ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION from '~/gql/mutation/account/accountPasswordResetRequest.gql'
+import { defineComponent, PropType, reactive, useNuxtApp } from '#app'
+
+import {
+  formPreSubmit,
+  VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
+  VALIDATION_FORMAT_UPPERCASE_NONE,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAccountPasswordResetRequestMutation } from '~/gql/generated'
 
 const FormAccountPasswordResetRequest = defineComponent({
   props: {
@@ -32,68 +39,69 @@ const FormAccountPasswordResetRequest = defineComponent({
       type: String as PropType<string | undefined>,
     },
   },
-  data() {
-    return {
+  setup(_props, { emit }) {
+    const { $i18n, $t } = useNuxtApp()
+    const passwordResetRequestMutation =
+      useAccountPasswordResetRequestMutation()
+
+    const apiData = reactive({
+      api: {
+        data: {
+          ...passwordResetRequestMutation.data.value,
+        },
+        ...getApiMeta([passwordResetRequestMutation]),
+      },
+    })
+    const data = reactive({
       form: {
-        emailAddress: undefined as string | undefined,
-        sent: false,
+        emailAddress: '',
       },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  watch: {
-    form: {
-      handler(val) {
-        if (JSON.stringify(val) !== '{}') {
-          this.$emit('form', val)
+      isFormSent: false,
+    })
+    const methods = {
+      async submit() {
+        try {
+          await formPreSubmit(this)
+        } catch (error) {
+          return
         }
+
+        const result = await passwordResetRequestMutation.executeMutation({
+          emailAddress: data.form.emailAddress,
+          language: $i18n.locale,
+        })
+
+        if (result.error) {
+          apiData.api.errors.push(result.error)
+          consola.error(result.error)
+        }
+
+        if (!result.data) {
+          return
+        }
+
+        emit('account-password-reset-request')
+        Swal.fire({
+          icon: 'success',
+          text: $t('accountPasswordResetRequestSuccess') as string,
+          title: $t('requestAccepted'),
+        })
       },
-      deep: true,
-    },
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
+    }
 
-      const res = await this.$apollo
-        .mutate({
-          mutation: ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION,
-          variables: {
-            emailAddress: this.form.emailAddress,
-            language: this.$i18n.locale,
-          },
-        })
-        .then(({ data }) => data.accountPasswordResetRequest)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return
-      }
-
-      this.$emit('account-password-reset-request')
-      Swal.fire({
-        icon: 'success',
-        text: this.$t('accountPasswordResetRequestSuccess') as string,
-        title: this.$t('requestAccepted'),
-      })
-    },
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+    }
   },
   validations() {
     return {
       form: {
         emailAddress: {
           email,
-          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(
-            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
-          ),
+          formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+          maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
           required,
         },
       },

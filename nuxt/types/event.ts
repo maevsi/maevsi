@@ -1,3 +1,5 @@
+import { Invitation } from './invitation'
+
 export type Visibility = 'PUBLIC' | 'PRIVATE'
 
 export class Event {
@@ -5,6 +7,8 @@ export class Event {
   description?: string
   end: Date
   id: string
+  invitationsByEventId: { nodes: Invitation[] }
+  inviteeCountMaximum: number
   isArchived: boolean
   isInPerson: boolean
   isRemote: boolean
@@ -19,6 +23,8 @@ export class Event {
     id: string,
     authorUsername: string,
     end: Date,
+    invitationsByEventId: { nodes: Invitation[] },
+    inviteeCountMaximum: number,
     isArchived: boolean,
     isInPerson: boolean,
     isRemote: boolean,
@@ -30,6 +36,8 @@ export class Event {
     this.id = id
     this.authorUsername = authorUsername
     this.end = end
+    this.invitationsByEventId = invitationsByEventId
+    this.inviteeCountMaximum = inviteeCountMaximum
     this.isArchived = isArchived
     this.isInPerson = isInPerson
     this.isRemote = isRemote

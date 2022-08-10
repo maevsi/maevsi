@@ -1,5 +1,3 @@
-#import "../../fragments/eventFields.gql"
-
 mutation createEvent($createEventInput: CreateEventInput!) {
   createEvent(input: $createEventInput) {
     event {

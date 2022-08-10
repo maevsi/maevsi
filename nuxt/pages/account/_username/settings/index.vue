@@ -36,21 +36,24 @@
       <h2>{{ $t('titleAccountDelete') }}</h2>
       <FormDelete
         id="deleteAccount"
-        :errors="$util.getGqlErrorMessages(graphqlError, this)"
+        :errors="api.errors"
         :item-name="$t('account')"
         :mutation="accountDeleteMutation"
         @error="onDeleteError"
-        @success="$util.signOut($apollo.getClient(), $store)"
+        @success="signOut"
       />
     </section>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '#app'
+import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { CombinedError } from '@urql/core'
 
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
-import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
+import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
+import { useSignOut } from '~/plugins/util/auth'
+import { getApiMeta } from '~/plugins/util/util'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -62,27 +65,45 @@ export default defineComponent({
   async validate({ app, params }) {
     const {
       data: { accountIsExisting },
-    } = await app.apolloProvider!.defaultClient.query({
-      query: ACCOUNT_IS_EXISTING_MUTATION,
-      variables: {
+    } = await app.$urql.value
+      .query(ACCOUNT_IS_EXISTING_QUERY, {
         username: params.username,
-      },
-      fetchPolicy: 'network-only',
-    })
+      })
+      .toPromise()
 
     return accountIsExisting
   },
   transition: {
     name: 'layout',
   },
-  data() {
-    return {
+  setup() {
+    const { $store } = useNuxtApp()
+    const { signOut } = useSignOut()
+    const route = useRoute()
+
+    const apiData = reactive({
+      api: {
+        ...getApiMeta([]),
+      },
+    })
+    const data = reactive({
       accountDeleteMutation: ACCOUNT_DELETE_MUTATION,
       title:
-        this.$route.params.username === this.$store.getters.signedInUsername
-          ? this.$route.params.username
+        route.params.username === $store.getters.signedInUsername
+          ? route.params.username
           : '403',
-      graphqlError: undefined as Error | undefined,
+    })
+    const methods = {
+      onDeleteError(error: CombinedError) {
+        apiData.api.errors.push(error)
+      },
+      signOut,
+    }
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
     }
   },
   head() {
@@ -110,11 +131,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  methods: {
-    onDeleteError(error: Error) {
-      this.graphqlError = error
-    },
   },
 })
 </script>

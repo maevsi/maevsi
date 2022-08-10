@@ -50,12 +50,12 @@
         <div class="flex justify-evenly">
           <slot name="footer">
             <ButtonColored
-              :aria-label="submitName"
+              :aria-label="submitName || $t('ok')"
               :disabled="isSubmitting || isSubmitDisabled"
               type="submit"
               @click="submit()"
             >
-              {{ submitName }}
+              {{ submitName || $t('ok') }}
               <template slot="prefix">
                 <slot name="submit-icon">
                   <IconCheckCircle />
@@ -64,7 +64,9 @@
             </ButtonColored>
           </slot>
         </div>
-        <Loader v-if="errors" class="mb-4" :errors="errors" />
+        <CardStateAlert v-if="errors" class="mb-4">
+          <SpanList :span="errors" />
+        </CardStateAlert>
       </Card>
     </div>
   </div>
@@ -73,7 +75,14 @@
 <script lang="ts">
 import consola from 'consola'
 
-import { defineComponent, PropType } from '#app'
+import {
+  computed,
+  defineComponent,
+  PropType,
+  reactive,
+  useNuxtApp,
+  watch,
+} from '#app'
 import { Modal } from '~/types/modal'
 
 export default defineComponent({
@@ -89,9 +98,7 @@ export default defineComponent({
       type: Boolean,
     },
     submitName: {
-      default(): string {
-        return this.$t('ok') as string
-      },
+      default: undefined,
       type: String,
     },
     submitTaskProvider: {
@@ -99,95 +106,110 @@ export default defineComponent({
       type: Function as PropType<() => Promise<any>>,
     },
   },
-  data() {
-    return {
+  setup(props, { emit }) {
+    const { $store } = useNuxtApp()
+
+    const data = reactive({
       errors: undefined,
       isVisible: false,
       isSubmitting: false,
       onSubmit: () => {},
+    })
+    const computations = {
+      contentBodyComputed: computed(() => {
+        return getModalsFiltered($store.getters.modals, props.id)?.contentBody // The default slot above is used as alternative.
+      }),
+      isVisibleComputed: computed(() => {
+        return (
+          getModalsFiltered($store.getters.modals, props.id)?.isVisible ||
+          data.isVisible
+        )
+      }),
+      onSubmitComputed: computed(() => {
+        return (
+          getModalsFiltered($store.getters.modals, props.id)?.onSubmit ||
+          data.onSubmit
+        )
+      }),
+      modalComputed: computed(() => {
+        return getModalsFiltered($store.getters.modals, props.id)
+      }),
+    }
+    const methods = {
+      close() {
+        // NOT = "cancel"! Used by `submit` too.
+
+        if (computations.modalComputed) {
+          $store.commit('modalRemove', props.id)
+        } else {
+          data.isVisible = false
+        }
+      },
+      modalKeydowns(e: KeyboardEvent) {
+        if (!computations.isVisibleComputed) {
+          return
+        }
+
+        switch (e.key) {
+          case 'Enter': // Enter
+            if (!data.isSubmitting && !props.isSubmitDisabled) {
+              methods.submit()
+            }
+            break
+          case 'Escape': // Escape
+            methods.close()
+            break
+        }
+      },
+      async submit() {
+        data.isSubmitting = true
+
+        try {
+          const value = await props.submitTaskProvider()
+          emit('submitSuccess', value)
+          computations.onSubmitComputed.value()
+          methods.close()
+        } catch (errors: any) {
+          data.errors = errors
+          consola.error(errors)
+        }
+
+        data.isSubmitting = false
+      },
+    }
+
+    watch(computations.isVisibleComputed, (newValue: boolean, _oldvalue) => {
+      if (newValue) {
+        window.addEventListener('keydown', methods.modalKeydowns)
+      } else {
+        window.removeEventListener('keydown', methods.modalKeydowns)
+
+        data.errors = undefined
+        emit('close')
+      }
+    })
+
+    return {
+      ...data,
+      ...computations,
+      ...methods,
     }
   },
-  computed: {
-    contentBodyComputed(): any {
-      return this.modalComputed?.contentBody // The default slot above is used as alternative.
-    },
-    isVisibleComputed(): boolean {
-      return this.modalComputed?.isVisible || this.isVisible
-    },
-    onSubmitComputed(): () => void {
-      return this.modalComputed?.onSubmit || this.onSubmit
-    },
-    modalComputed(): Modal | undefined {
-      const modals: Modal[] = this.$store.getters.modals
-
-      if (!modals || modals.length === 0) {
-        return undefined
-      }
-
-      const modalsFiltered = modals.filter((modal) => modal.id === this.id)
-
-      if (!modalsFiltered || modalsFiltered.length === 0) {
-        return undefined
-      }
-
-      return modalsFiltered[0]
-    },
-  },
-  watch: {
-    isVisibleComputed(newState: boolean) {
-      if (newState) {
-        window.addEventListener('keydown', this.modalKeydowns)
-      } else {
-        window.removeEventListener('keydown', this.modalKeydowns)
-
-        this.errors = undefined
-        this.$emit('close')
-      }
-    },
-  },
-  methods: {
-    close() {
-      // NOT = "cancel"! Used by `submit` too.
-
-      if (this.modalComputed) {
-        this.$store.commit('modalRemove', this.id)
-      } else {
-        this.isVisible = false
-      }
-    },
-    modalKeydowns(e: KeyboardEvent) {
-      if (!this.isVisibleComputed) {
-        return
-      }
-
-      switch (e.key) {
-        case 'Enter': // Enter
-          if (!this.isSubmitting && !this.isSubmitDisabled) {
-            this.submit()
-          }
-          break
-        case 'Escape': // Escape
-          this.close()
-          break
-      }
-    },
-    async submit() {
-      this.isSubmitting = true
-
-      try {
-        const value = await this.submitTaskProvider()
-        this.$emit('submitSuccess', value)
-        this.onSubmitComputed()
-        this.close()
-      } catch (errors: any) {
-        this.errors = errors
-        consola.error(errors)
-      }
-
-      this.isSubmitting = false
-    },
-  },
 })
+
+function getModalsFiltered(modals: Modal[], id: string) {
+  if (!modals || modals.length === 0) {
+    return undefined
+  }
+
+  const modalsFiltered = modals.filter((modal) => modal.id === id)
+
+  if (!modalsFiltered || modalsFiltered.length === 0) {
+    return undefined
+  }
+
+  return modalsFiltered[0]
+}
 </script>
 
 <i18n lang="yml">

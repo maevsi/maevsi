@@ -18,7 +18,6 @@ export const Default = Template.bind({})
 // @ts-ignore
 Default.args = {
   form: {},
-  formSent: false,
-  graphqlError: undefined,
+  isFormSent: false,
   submitName: 'submitName',
 }

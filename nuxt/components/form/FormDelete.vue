@@ -2,7 +2,7 @@
   <Form
     :errors="errors"
     :form="$v.form"
-    :form-sent="form.sent"
+    :is-form-sent="isFormSent"
     :submit-name="$t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
@@ -19,83 +19,91 @@
 </template>
 
 <script lang="ts">
+import { CombinedError, UseMutationResponse } from '@urql/vue'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { minLength, required } from 'vuelidate/lib/validators'
-import { DocumentNode } from 'graphql'
 
-import { defineComponent, PropType } from '#app'
+import { useNuxtApp, defineComponent, PropType, reactive } from '#app'
+
+import { capitalizeFirstLetter } from '~/plugins/util/util'
+import {
+  formPreSubmit,
+  VALIDATION_PASSWORD_LENGTH_MINIMUM,
+} from '~/plugins/util/validation'
 
 export default defineComponent({
   props: {
     errors: {
       default: undefined,
-      type: Array as PropType<string[] | undefined>,
+      type: Array as PropType<CombinedError[] | undefined>,
     },
     itemName: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
+      required: true,
+      type: String as PropType<string>,
     },
     mutation: {
-      default: undefined,
-      type: Object as PropType<DocumentNode | undefined>,
-    },
-    update: {
-      default: undefined,
-      type: Function,
+      required: true,
+      type: Object as PropType<UseMutationResponse<any, any>>,
     },
     variables: {
-      default: undefined,
-      type: Object as PropType<Record<any, any> | undefined>,
+      default: {} as PropType<Record<string, any>>,
+      type: Object as PropType<Record<string, any>>,
     },
   },
-  data() {
-    return {
+  setup(props, { emit }) {
+    const { $t } = useNuxtApp()
+
+    const data = reactive({
       form: {
         password: undefined as string | undefined,
-        sent: false,
+      },
+      isFormSent: false,
+    })
+    const methods = {
+      async submit() {
+        try {
+          await formPreSubmit(this)
+        } catch (error) {
+          return
+        }
+
+        props.mutation
+          .executeMutation({
+            password: data.form.password,
+            ...props.variables,
+          })
+          .then((result) => {
+            if (result.error) {
+              emit('error', result.error)
+              consola.error(result.error)
+            } else {
+              Swal.fire({
+                icon: 'success',
+                text: capitalizeFirstLetter(
+                  $t('success', {
+                    item: props.itemName,
+                  }) as string
+                ),
+                timer: 3000,
+                timerProgressBar: true,
+                title: $t('deleted'),
+              }).then(() => emit('success'))
+            }
+          })
       },
     }
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
 
-      this.$apollo
-        .mutate({
-          mutation: this.mutation!!,
-          variables: {
-            password: this.form.password,
-            ...(this.variables ?? {}),
-          },
-          ...(this.update !== undefined ? { update: this.update } : {}),
-        })
-        .then((_value) => {
-          Swal.fire({
-            icon: 'success',
-            text: this.$util.capitalizeFirstLetter(
-              this.$t('success', { item: this.itemName }) as string
-            ),
-            timer: 3000,
-            timerProgressBar: true,
-            title: this.$t('deleted'),
-          }).then(() => this.$emit('success'))
-        })
-        .catch((graphqlError) => {
-          this.$emit('error', graphqlError)
-          consola.error(graphqlError)
-        })
-    },
+    return {
+      ...data,
+      ...methods,
+    }
   },
   validations() {
     return {
       form: {
         password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },

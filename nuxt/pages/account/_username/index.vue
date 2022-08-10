@@ -3,17 +3,14 @@
     <Breadcrumbs :prefixes="[{ name: $t('accounts'), to: '..', append: true }]">
       {{ $route.params.username }}
     </Breadcrumbs>
-    <ButtonList v-if="signedInUsername === $route.params.username">
+    <ButtonList v-if="signedInUsername() === $route.params.username">
       <ButtonColored :aria-label="$t('settings')" to="settings" append>
         {{ $t('settings') }}
         <template slot="prefix">
           <IconPencil />
         </template>
       </ButtonColored>
-      <ButtonColored
-        :aria-label="$t('signOut')"
-        @click.native="$util.signOut($apollo.getClient(), $store)"
-      >
+      <ButtonColored :aria-label="$t('signOut')" @click.native="signOut">
         {{ $t('signOut') }}
         <template slot="prefix">
           <IconSignOut />
@@ -52,31 +49,45 @@
 <script lang="ts">
 import { mapGetters } from 'vuex'
 
-import { defineComponent } from '#app'
+import { defineComponent, reactive, useRoute } from '#app'
 
-import ACCOUNT_IS_EXISTING_MUTATION from '~/gql/query/account/accountIsExisting.gql'
+import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
+import { useSignOut } from '~/plugins/util/auth'
 
 export default defineComponent({
   name: 'IndexPage',
   async validate({ app, params }) {
     const {
       data: { accountIsExisting },
-    } = await app.apolloProvider!.defaultClient.query({
-      query: ACCOUNT_IS_EXISTING_MUTATION,
-      variables: {
+    } = await app.$urql.value
+      .query(ACCOUNT_IS_EXISTING_QUERY, {
         username: params.username,
-      },
-      fetchPolicy: 'network-only',
-    })
+      })
+      .toPromise()
 
     return accountIsExisting
   },
   transition: {
     name: 'layout',
   },
-  data() {
+  setup() {
+    const { signOut } = useSignOut()
+    const route = useRoute()
+
+    const data = reactive({
+      title: route.params.username,
+    })
+    const methods = {
+      signOut,
+    }
+    const computations = {
+      ...mapGetters(['signedInUsername']),
+    }
+
     return {
-      title: this.$route.params.username,
+      ...data,
+      ...methods,
+      ...computations,
     }
   },
   head() {
@@ -114,9 +125,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
   },
 })
 </script>

@@ -26,6 +26,10 @@ test('gets ical string', () => {
       authorUsername: 'authorUsername',
       description: '<p>description</p>',
       end: new Date(),
+      invitationsByEventId: {
+        nodes: [],
+      },
+      inviteeCountMaximum: 0,
       isArchived: false,
       isInPerson: false,
       isRemote: false,

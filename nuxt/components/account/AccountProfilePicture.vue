@@ -1,52 +1,32 @@
 <template>
-  <Loader
-    v-if="($apollo.loading && !profilePictureByUsername) || graphqlError"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    indicator="ping"
-  />
-  <LoaderImage
-    v-else
-    :alt="$t('profilePictureAlt', { username })"
-    :class="classComputed"
-    :height="height"
-    :src="imageSrc"
-    :width="width"
-  />
+  <Loader :api="api" indicator="ping">
+    <LoaderImage
+      :alt="$t('profilePictureAlt', { username })"
+      :class="classComputed"
+      :height="height"
+      :src="imageSrc"
+      :width="width"
+    />
+  </Loader>
 </template>
 
 <script lang="ts">
 import consola from 'consola'
 
-import { defineComponent, PropType } from '#app'
-import PROFILE_PICTURE_BY_USERNAME_QUERY from '~/gql/query/profilePicture/profilePictureByUsername.gql'
+import {
+  computed,
+  defineComponent,
+  PropType,
+  reactive,
+  useNuxtApp,
+  watch,
+} from '#app'
+
+import { TUSD_FILES_URL } from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useProfilePictureByUsernameQuery } from '~/gql/generated'
 
 export default defineComponent({
-  apollo: {
-    profilePictureByUsername(): any {
-      return {
-        query: PROFILE_PICTURE_BY_USERNAME_QUERY,
-        variables: {
-          username: this.username,
-        },
-        update: (data: any) => {
-          const profilePictureByUsername = data.profilePictureByUsername
-
-          if (profilePictureByUsername) {
-            this.profilePictureUrl =
-              this.$util.TUSD_FILES_URL +
-              profilePictureByUsername.uploadStorageKey +
-              '+'
-          } else {
-            this.profilePictureUrl = undefined
-          }
-        },
-        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
-          this.graphqlError = error
-          consola.error(error)
-        },
-      }
-    },
-  },
   props: {
     classes: {
       default: undefined,
@@ -69,38 +49,60 @@ export default defineComponent({
       type: String,
     },
   },
-  data() {
-    return {
-      graphqlError: undefined as Error | undefined,
-      profilePictureUrl: undefined as string | undefined,
+  setup(props) {
+    const { $nuxt } = useNuxtApp()
+
+    const profilePictureQuery = useProfilePictureByUsernameQuery({
+      variables: {
+        username: props.username,
+      },
+    })
+
+    const apiData = reactive({
+      api: {
+        data: {
+          ...profilePictureQuery.data.value,
+        },
+        ...getApiMeta([profilePictureQuery]),
+      },
+      profilePicture: profilePictureQuery.data.value?.profilePictureByUsername,
+    })
+    const data = reactive({
+      profilePictureUrl: apiData.profilePicture?.uploadStorageKey
+        ? TUSD_FILES_URL + apiData.profilePicture.uploadStorageKey + '+'
+        : undefined,
+    })
+    const methods = {
+      reloadProfilePicture() {
+        // TODO: cache update (profilePictureByUsername, props.username)
+      },
     }
-  },
-  computed: {
-    classComputed(): string {
-      return [this.classes, ...(this.rounded ? ['rounded-full'] : [])].join(' ')
-    },
-    imageSrc(): string | any {
-      if (this.profilePictureUrl !== undefined) {
-        return this.profilePictureUrl
-      } else {
-        return require('~/public/assets/static/images/blank-profile-picture.svg')
-      }
-    },
-  },
-  watch: {
-    username() {
-      this.reloadProfilePicture()
-    },
-  },
-  created() {
-    this.$nuxt.$on('profilePictureReload', this.reloadProfilePicture)
-  },
-  methods: {
-    reloadProfilePicture() {
-      this.$apollo.queries.profilePictureByUsername.refetch({
-        username: this.username,
-      })
-    },
+    const computations = {
+      classComputed: computed(() => {
+        return [props.classes, ...(props.rounded ? ['rounded-full'] : [])].join(
+          ' '
+        )
+      }),
+      imageSrc: computed(() => {
+        if (data.profilePictureUrl !== undefined) {
+          return data.profilePictureUrl
+        } else {
+          return require('~/public/assets/static/images/blank-profile-picture.svg')
+        }
+      }),
+    }
+
+    $nuxt.$on('profilePictureReload', methods.reloadProfilePicture)
+
+    watch(profilePictureQuery.error, (currentValue, _oldValue) => {
+      if (currentValue) consola.error(currentValue)
+    })
+
+    return {
+      ...apiData,
+      ...data,
+      ...computations,
+    }
   },
 })
 </script>

@@ -92,7 +92,7 @@ const TabFlip = defineComponent({
       type: String,
     },
     tabIdInitial: {
-      default(): string {
+      default() {
         const queryTabId = this.$route.query[this.queryTabKey]
         if (!Array.isArray(queryTabId) && queryTabId !== undefined) {
           return queryTabId

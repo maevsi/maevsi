@@ -1,9 +1,5 @@
 <template>
-  <Loader
-    v-if="($apollo.loading && !event) || graphqlError"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
-  />
-  <div v-else>
+  <Loader :api="api">
     <div v-if="event" class="flex flex-col gap-4">
       <Breadcrumbs
         :prefixes="[
@@ -23,13 +19,11 @@
         <h2>{{ $t('titleDelete') }}</h2>
         <FormDelete
           id="deleteEvent"
-          :errors="$util.getGqlErrorMessages(graphqlErrorDelete, this)"
+          :errors="api.errors"
           :item-name="$t('event')"
           :mutation="mutation"
-          :update="updateCacheDelete"
           :variables="{
-            authorUsername: $route.params.username,
-            slug: $route.params.event_name,
+            id: event.id,
           }"
           @error="onDeleteError"
           @success="onDeleteSuccess"
@@ -37,39 +31,32 @@
       </section>
     </div>
     <Error v-else />
-  </div>
+  </Loader>
 </template>
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { CombinedError } from '@urql/vue'
 import consola from 'consola'
 
-import { defineComponent } from '#app'
+import {
+  computed,
+  defineComponent,
+  reactive,
+  useNuxtApp,
+  useRoute,
+  watch,
+} from '#app'
 
-import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
-import EVENT_DELETE_MUTATION from '~/gql/mutation/event/eventDelete.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
-import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
-import { Event as MaevsiEvent } from '~/types/event'
+import { getApiMeta } from '~/plugins/util/util'
+import {
+  useEventByAuthorUsernameAndSlugQuery,
+  useEventDeleteMutation,
+} from '~/gql/generated'
 
 export default defineComponent({
   name: 'IndexPage',
-  apollo: {
-    event(): any {
-      return {
-        query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
-        variables: {
-          authorUsername: this.$route.params.username,
-          slug: this.$route.params.event_name,
-        },
-        update: (data: any) => data.eventByAuthorUsernameAndSlug,
-        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
-          this.graphqlError = error
-          consola.error(error)
-        },
-      }
-    },
-  },
   middleware({ error, res, params, store }: Context) {
     if (res && params.username !== store.getters.signedInUsername) {
       return error({ statusCode: 403 })
@@ -78,26 +65,72 @@ export default defineComponent({
   async validate({ app, params }): Promise<boolean> {
     const {
       data: { eventIsExisting },
-    } = await app.apolloProvider!.defaultClient.query({
-      query: EVENT_IS_EXISTING_QUERY,
-      variables: {
+    } = await app.$urql.value
+      .query(EVENT_IS_EXISTING_QUERY, {
         slug: params.event_name,
         authorUsername: params.username,
-      },
-      fetchPolicy: 'network-only',
-    })
+      })
+      .toPromise()
 
     return eventIsExisting
   },
   transition: {
     name: 'layout',
   },
-  data() {
+  setup() {
+    const { $router, $store, $t, localePath } = useNuxtApp()
+    const route = useRoute()
+    const { executeMutation: executeMutationEventDelete } =
+      useEventDeleteMutation()
+
+    const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+      variables: {
+        authorUsername: route.params.username,
+        slug: route.params.event_name,
+      },
+    })
+    const apiData = reactive({
+      api: {
+        data: {
+          ...eventQuery.data.value,
+        },
+        ...getApiMeta([eventQuery]),
+      },
+      event: eventQuery.data.value?.eventByAuthorUsernameAndSlug,
+    })
+    const data = reactive({
+      mutation: executeMutationEventDelete,
+    })
+    const methods = {
+      onDeleteError(error: CombinedError) {
+        apiData.api.errors.push(error)
+      },
+      onDeleteSuccess() {
+        $router.push(localePath(`/event`))
+        // TODO: cache update (allEvents)
+      },
+    }
+    const computations = {
+      title: computed((): string | undefined => {
+        if (
+          route.params.username === $store.getters.signedInUsername &&
+          apiData.event
+        ) {
+          return `${$t('title')} · ${apiData.event.name}`
+        }
+        return '403'
+      }),
+    }
+
+    watch(eventQuery.error, (currentValue, _oldValue) => {
+      if (currentValue) consola.error(currentValue)
+    })
+
     return {
-      event: undefined as MaevsiEvent | undefined,
-      graphqlError: undefined as Error | undefined,
-      graphqlErrorDelete: undefined as Error | undefined,
-      mutation: EVENT_DELETE_MUTATION,
+      ...apiData,
+      ...data,
+      ...methods,
+      ...computations,
     }
   },
   head() {
@@ -125,88 +158,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  computed: {
-    title(): string | undefined {
-      if (
-        this.$route.params.username === this.$store.getters.signedInUsername &&
-        this.event
-      ) {
-        return `${this.$t('title')} · ${this.event.name}`
-      }
-      return '403'
-    },
-  },
-  methods: {
-    onDeleteError(error: Error) {
-      this.graphqlErrorDelete = error
-    },
-    onDeleteSuccess() {
-      this.$router.push(this.localePath(`/event`))
-      this.$apollo.queries.allEvents.refetch()
-    },
-
-    // /////////////////////////////////////////////////////////////////////////
-    // TODO: Use apollo client v3.
-    // https://www.apollographql.com/docs/react/caching/cache-configuration/
-    // https://apollo.vuejs.org/guide/components/mutation.html
-
-    // update(cache, {data: mutationData}) {
-    //   if (mutationData) {
-    //     const removedMatchId = mutationData.removeMatch;
-    //     cache.modify('ROOT_QUERY', {
-    //       matches: (matches: Reference[], helpers) => {
-    //         const removedMatchRef = helpers.toReference({
-    //           __typename: 'Match',
-    //           id: removedMatchId,
-    //         });
-    //         return matches.filter(({__ref}) => __ref !== removedMatchRef.__ref);
-    //       },
-    //     });
-    //   }
-    // },
-
-    // cache.evict(cache.identify(result.data.updateActivity));
-
-    // const [deleteExpressHelp] = useDeleteExpressHelpMutation({
-    //   update: (cache, {data}) => {
-    //     cache.evict({
-    //       id: cache.identify({
-    //         __typename: 'express_help',
-    //         id: data?.delete_express_help_by_pk?.id,
-    //       }),
-    //     });
-    //   },
-    // });
-    // /////////////////////////////////////////////////////////////////////////
-
-    // Just an example. Doesn't respect parameters like a conditional username that is set for this query on event lists on users' profiles.
-    // Currently, the apollo fetch policy is `cache-and-network`: https://github.com/maevsi/maevsi/commit/02cbcd9c9a9784e9076c6a360f78a603623c819b#diff-ce51f9f2a4d27fb6594bd8d6dce05dcbca68a6a99999078c96dbab4033472650R247
-    updateCacheDelete(store: any, { data: { _eventDelete } }: any) {
-      const query = { query: EVENTS_ALL_QUERY }
-      let data
-
-      try {
-        data = store.readQuery(query)
-      } catch (e) {
-        return
-      }
-
-      // const index = data.allEvents.nodes.find(
-      const index = data.allEvents.nodes.findIndex(
-        (x: MaevsiEvent) =>
-          x.authorUsername === this.$route.params.username &&
-          x.slug === this.$route.params.event_name
-      )
-
-      if (index !== -1) {
-        data.allEvents.nodes.splice(index, 1)
-        store.writeQuery({
-          ...query,
-          data,
-        })
-      }
-    },
   },
 })
 </script>

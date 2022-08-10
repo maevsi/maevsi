@@ -1,9 +1,9 @@
 <template>
   <Form
     ref="formRef"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
+    :errors="api.errors"
     :form="$v.form"
-    :form-sent="form.sent"
+    :is-form-sent="isFormSent"
     :submit-name="$t('passwordChange')"
     @submit.prevent="submit"
   >
@@ -27,74 +27,92 @@ import consola from 'consola'
 import Swal from 'sweetalert2'
 import { minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent, ref } from '#app'
-import ACCOUNT_PASSWORD_CHANGE_MUTATION from '~/gql/mutation/account/accountPasswordChange.gql'
+import { defineComponent, reactive, ref, useNuxtApp } from '#app'
+
 import { FormType } from '~/components/form/Form.vue'
+import {
+  formPreSubmit,
+  VALIDATION_PASSWORD_LENGTH_MINIMUM,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAccountPasswordChangeMutation } from '~/gql/generated'
 
 const FormAccountPasswordChange = defineComponent({
   setup() {
-    const formRef = ref<FormType>()
+    const { $t } = useNuxtApp()
+    const accountPasswordChangeMutation = useAccountPasswordChangeMutation()
 
-    const resetForm = () => {
-      formRef.value?.reset()
+    const refs = {
+      formRef: ref<FormType>(),
     }
 
-    return {
-      formRef,
-      resetForm,
-    }
-  },
-  data() {
-    return {
-      form: {
-        passwordCurrent: undefined as string | undefined,
-        passwordNew: undefined as string | undefined,
-        sent: false,
+    const apiData = reactive({
+      api: {
+        data: {
+          ...accountPasswordChangeMutation.data.value,
+        },
+        ...getApiMeta([accountPasswordChangeMutation]),
       },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
+    })
+    const data = reactive({
+      form: {
+        passwordCurrent: '',
+        passwordNew: '',
+      },
+      isFormSent: false,
+    })
+    const methods = {
+      resetForm() {
+        refs.formRef.value?.reset()
+      },
+      async submit() {
+        try {
+          await formPreSubmit(this)
+        } catch (error) {
+          return
+        }
 
-      this.$apollo
-        .mutate({
-          mutation: ACCOUNT_PASSWORD_CHANGE_MUTATION,
-          variables: {
-            passwordCurrent: this.form.passwordCurrent,
-            passwordNew: this.form.passwordNew,
-          },
+        const result = await accountPasswordChangeMutation.executeMutation({
+          passwordCurrent: data.form.passwordCurrent,
+          passwordNew: data.form.passwordNew,
         })
-        .then((_value) => {
-          Swal.fire({
-            icon: 'success',
-            text: this.$t('passwordChangeSuccess') as string,
-            timer: 3000,
-            timerProgressBar: true,
-            title: this.$t('changed'),
-          })
-          this.resetForm()
+
+        if (result.error) {
+          apiData.api.errors.push(result.error)
+          consola.error(result.error)
+        }
+
+        if (!result.data) {
+          return
+        }
+
+        Swal.fire({
+          icon: 'success',
+          text: $t('passwordChangeSuccess') as string,
+          timer: 3000,
+          timerProgressBar: true,
+          title: $t('changed'),
         })
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-    },
+        methods.resetForm()
+      },
+    }
+
+    return {
+      ...refs,
+      ...apiData,
+      ...data,
+      ...methods,
+    }
   },
   validations() {
     return {
       form: {
         passwordCurrent: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
         passwordNew: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },

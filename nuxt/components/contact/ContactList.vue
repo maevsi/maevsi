@@ -1,12 +1,8 @@
 <template>
-  <Loader
-    v-if="($apollo.loading && !allContacts) || graphqlError"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
-  />
-  <div v-else>
+  <Loader :api="api">
     <ScrollContainer
-      v-if="allContacts"
-      :has-next-page="allContacts.pageInfo.hasNextPage"
+      v-if="contacts"
+      :has-next-page="api.data.allContacts?.pageInfo.hasNextPage"
       @loadMore="loadMore"
     >
       <table class="border border-neutral-300 dark:border-neutral-600">
@@ -34,7 +30,7 @@
         </thead>
         <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
           <ContactListItem
-            v-for="contact in allContacts.nodes"
+            v-for="contact in contacts"
             :id="contact.nodeId"
             :key="contact.nodeId"
             :contact="contact"
@@ -63,114 +59,123 @@
       </template>
       <div slot="footer" />
     </Modal>
-  </div>
+  </Loader>
 </template>
 
 <script lang="ts">
 import consola from 'consola'
 import debounce from 'lodash-es/debounce'
 import VueI18n from 'vue-i18n'
-import { mapGetters } from 'vuex'
 
-import { defineComponent } from '#app'
+import { defineComponent, reactive, ref, useNuxtApp, watch } from '#app'
 
-import CONTACT_DELETE_MUTATION from '~/gql/mutation/contact/contactDelete.gql'
-import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
+import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAllContactsQuery, useDeleteContactMutation } from '~/gql/generated'
 import { Contact } from '~/types/contact'
 
 export default defineComponent({
-  apollo: {
-    allContacts(): any {
-      return {
-        query: CONTACTS_ALL_QUERY,
-        variables: {
-          authorAccountUsername: this.signedInUsername,
-          first: this.$util.ITEMS_PER_PAGE_LARGE,
-          offset: null,
+  setup() {
+    const { $store, $t } = useNuxtApp()
+    const { executeMutation: executeMutationContactDelete } =
+      useDeleteContactMutation()
+
+    const refs = {
+      apiContactsAfter: ref<string>(),
+    }
+    const contactsQuery = useAllContactsQuery({
+      variables: {
+        after: refs.apiContactsAfter,
+        authorAccountUsername: $store.getters.signedInUsername,
+        first: ITEMS_PER_PAGE_LARGE,
+      },
+    })
+
+    const apiData = reactive({
+      api: {
+        data: {
+          ...contactsQuery.data.value,
         },
-        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
-          this.graphqlError = error
-          consola.error(error)
-        },
-      }
-    },
-  },
-  data() {
-    return {
-      allContacts: undefined as any,
+        ...getApiMeta([contactsQuery]),
+      },
+      contacts: contactsQuery.data.value?.allContacts?.nodes,
+    })
+    const data = reactive({
       formContactHeading: undefined as VueI18n.TranslateResult | undefined,
-      graphqlError: undefined as Error | undefined,
       pending: {
         deletions: [] as string[],
         edits: [] as string[],
       },
       selectedContact: undefined as Contact | undefined,
+    })
+    const methods = {
+      add() {
+        data.formContactHeading = $t('contactAdd')
+        data.selectedContact = undefined
+        $store.commit('modalAdd', { id: 'ModalContact' })
+      },
+      async delete_(nodeId: string) {
+        data.pending.deletions.push(nodeId)
+        apiData.api.errors = []
+        const result = await executeMutationContactDelete({
+          nodeId,
+        })
+
+        if (result.error) {
+          apiData.api.errors.push(result.error)
+          consola.error(result.error)
+        }
+
+        data.pending.deletions.slice(data.pending.deletions.indexOf(nodeId), 1)
+
+        // if (!result.data) {
+        //   return
+        // }
+        // TODO: cache update (allContacts)
+      },
+      edit(contact: Contact) {
+        data.pending.edits.push(contact.nodeId)
+        data.formContactHeading = $t('contactEdit')
+        data.selectedContact = contact
+        $store.commit('modalAdd', { id: 'ModalContact' })
+      },
+      loadMore() {
+        refs.apiContactsAfter.value =
+          apiData.api.data.allContacts?.pageInfo.endCursor
+      },
+      onClose() {
+        if (!data.selectedContact) return
+
+        data.pending.edits.splice(
+          data.pending.edits.indexOf(data.selectedContact.nodeId),
+          1
+        )
+      },
+      onScroll(e: Event) {
+        const scrollBar = e.target as Element
+
+        if (
+          scrollBar &&
+          scrollBar.scrollTop + scrollBar.clientHeight >= scrollBar.scrollHeight
+        ) {
+          debounce(methods.loadMore, 100)()
+        }
+      },
+      onSubmitSuccess() {
+        $store.commit('modalRemove', 'ModalContact')
+        // TODO: cache update (allContacts)
+      },
     }
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
-  },
-  methods: {
-    add() {
-      this.formContactHeading = this.$t('contactAdd')
-      this.selectedContact = undefined
-      this.$store.commit('modalAdd', { id: 'ModalContact' })
-    },
-    delete_(nodeId: string) {
-      this.pending.deletions.push(nodeId)
-      this.graphqlError = undefined
-      this.$apollo
-        .mutate({
-          mutation: CONTACT_DELETE_MUTATION,
-          variables: {
-            nodeId,
-          },
-        })
-        .then((_value) => {
-          this.$apollo.queries.allContacts.refetch()
-        })
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-        .finally(() => {
-          this.pending.deletions.slice(
-            this.pending.deletions.indexOf(nodeId),
-            1
-          )
-        })
-    },
-    edit(contact: Contact) {
-      this.pending.edits.push(contact.nodeId)
-      this.formContactHeading = this.$t('contactEdit')
-      this.selectedContact = contact
-      this.$store.commit('modalAdd', { id: 'ModalContact' })
-    },
-    onClose() {
-      if (!this.selectedContact) return
 
-      this.pending.edits.splice(
-        this.pending.edits.indexOf(this.selectedContact.nodeId),
-        1
-      )
-    },
-    onScroll(e: Event) {
-      const scrollBar = e.target as Element
+    watch(contactsQuery.error, (currentValue, _oldValue) => {
+      if (currentValue) consola.error(currentValue)
+    })
 
-      if (
-        scrollBar &&
-        scrollBar.scrollTop + scrollBar.clientHeight >= scrollBar.scrollHeight
-      ) {
-        debounce(this.loadMore, 100)()
-      }
-    },
-    onSubmitSuccess() {
-      this.$store.commit('modalRemove', 'ModalContact')
-      this.$apollo.queries.allContacts.refetch()
-    },
-    loadMore() {
-      this.$util.loadMore(this.$apollo, 'allContacts', this.allContacts)
-    },
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+    }
   },
 })
 </script>

@@ -1,9 +1,9 @@
 import fs from 'fs'
 import {
   createError,
-  useBody,
-  useQuery,
-  useMethod,
+  readBody,
+  getQuery,
+  getMethod,
   CompatibilityEvent,
   send,
   sendError,
@@ -38,7 +38,7 @@ const pool = new pg.Pool({
 })
 
 export default async function (event: CompatibilityEvent) {
-  const method = useMethod(event)
+  const method = getMethod(event)
 
   switch (method) {
     case 'DELETE':
@@ -88,7 +88,7 @@ async function deleteUpload(
 
 async function tusdDelete(event: CompatibilityEvent) {
   const { req } = event
-  const uploadId = useQuery(event).uploadId
+  const uploadId = getQuery(event).uploadId
 
   consola.log('tusdDelete: ' + uploadId)
 
@@ -197,7 +197,7 @@ async function tusdDelete(event: CompatibilityEvent) {
 
 async function tusdPost(event: CompatibilityEvent) {
   const { req } = event
-  const body = await useBody(event)
+  const body = await readBody(event)
 
   switch (req.headers['hook-name']) {
     case 'pre-create': {

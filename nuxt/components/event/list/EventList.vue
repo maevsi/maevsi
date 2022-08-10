@@ -1,83 +1,93 @@
 <template>
-  <Loader
-    v-if="($apollo.loading && !allEvents) || graphqlError"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
-  />
-  <div v-else class="flex flex-col gap-4">
-    <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
-      <ButtonList>
-        <ButtonEventList v-if="showButtonEventList" />
-      </ButtonList>
-      <div class="flex gap-4">
-        <div class="flex gap-1">
-          <EventIconVisibility visibility="PUBLIC" />
-          <span>{{ $t('legendSeparator') }}</span>
-          <span>{{ $t('public') }}</span>
-        </div>
-        <div class="flex gap-1">
-          <EventIconVisibility visibility="PRIVATE" />
-          <span>{{ $t('legendSeparator') }}</span>
-          <span>{{ $t('private') }}</span>
+  <Loader :api="api">
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
+        <ButtonList>
+          <ButtonEventList v-if="isButtonEventListShown" />
+        </ButtonList>
+        <div class="flex gap-4">
+          <div class="flex gap-1">
+            <EventIconVisibility visibility="PUBLIC" />
+            <span>{{ $t('legendSeparator') }}</span>
+            <span>{{ $t('public') }}</span>
+          </div>
+          <div class="flex gap-1">
+            <EventIconVisibility visibility="PRIVATE" />
+            <span>{{ $t('legendSeparator') }}</span>
+            <span>{{ $t('private') }}</span>
+          </div>
         </div>
       </div>
-    </div>
-    <ul v-if="allEvents.nodes.length">
-      <EventListItem
-        v-for="event in allEvents.nodes"
-        :key="event.id"
-        :event="event"
-      />
-      <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
-        <ButtonColored
-          :aria-label="$t('globalShowMore')"
-          @click="$util.loadMore($apollo, 'allEvents', allEvents)"
+      <ul v-if="events?.length">
+        <EventListItem v-for="event in events" :key="event.id" :event="event" />
+        <div
+          v-if="api.data.allEvents?.pageInfo.hasNextPage"
+          class="flex justify-center"
         >
-          {{ $t('globalShowMore') }}
-        </ButtonColored>
-      </div>
-    </ul>
-    <p v-else class="text-center">{{ $t('noEvents') }}</p>
-  </div>
+          <ButtonColored
+            :aria-label="$t('globalShowMore')"
+            @click="after = api.data.allEvents?.pageInfo.endCursor"
+          >
+            {{ $t('globalShowMore') }}
+          </ButtonColored>
+        </div>
+      </ul>
+      <p v-else class="text-center">{{ $t('noEvents') }}</p>
+    </div>
+  </Loader>
 </template>
 
 <script lang="ts">
 import consola from 'consola'
+import { reactive, ref, watch } from 'vue'
 
-import { defineComponent, PropType } from '#app'
-import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
+import { useRoute, defineComponent, PropType } from '#app'
+
+import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAllEventsQuery } from '~/gql/generated'
 
 export default defineComponent({
-  apollo: {
-    allEvents(): any {
-      return {
-        query: EVENTS_ALL_QUERY,
-        variables: {
-          authorUsername: this.username,
-          first: this.$util.ITEMS_PER_PAGE,
-          offset: null,
-        },
-        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
-          this.graphqlError = error
-          consola.error(error)
-        },
-      }
-    },
-  },
   props: {
-    showButtonEventList: {
-      default() {
-        return this.$route?.name?.replace(/___.+$/, '') !== 'event'
-      },
-      type: Boolean,
-    },
     username: {
       default: undefined,
       type: String as PropType<string | undefined>,
     },
   },
-  data() {
+  setup(props) {
+    const route = useRoute()
+
+    const refs = {
+      after: ref<string>(),
+    }
+    const eventsQuery = useAllEventsQuery({
+      variables: {
+        after: refs.after,
+        authorUsername: props.username,
+        first: ITEMS_PER_PAGE,
+      },
+    })
+    const apiData = reactive({
+      api: {
+        data: {
+          ...eventsQuery.data.value,
+        },
+        ...getApiMeta([eventsQuery]),
+      },
+      events: eventsQuery.data.value?.allEvents?.nodes,
+    })
+    const data = reactive({
+      isButtonEventListShown: route.name?.replace(/___.+$/, '') !== 'event',
+    })
+
+    watch(eventsQuery.error, (currentValue, _oldValue) => {
+      if (currentValue) consola.error(currentValue)
+    })
+
     return {
-      graphqlError: undefined as Error | undefined,
+      ...refs,
+      ...apiData,
+      ...data,
     }
   },
 })

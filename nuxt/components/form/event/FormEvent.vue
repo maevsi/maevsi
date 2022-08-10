@@ -1,9 +1,9 @@
 <template>
   <Form
     ref="form"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
+    :errors="api.errors"
     :form="$v.form"
-    :form-sent="form.sent"
+    :is-form-sent="isFormSent"
     :submit-name="form.id ? $t('eventUpdate') : $t('eventCreate')"
     @submit.prevent="submit"
   >
@@ -25,10 +25,7 @@
       type="text"
       :validation-property="$v.form.slug"
       :value="$v.form.name"
-      @input="
-        form.name = $event
-        updateSlug()
-      "
+      @input="onInputName($event)"
     >
       <template slot="stateError">
         <FormInputStateError
@@ -36,7 +33,7 @@
           is-validation-live
           validation-property="existenceNone"
         >
-          {{ $t('validationExistenceNone', { slug: $v.form.slug.$model }) }}
+          {{ $t('validationExistenceNone', { slug: $v.form.slug?.$model }) }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="$v.form.name"
@@ -84,6 +81,7 @@
       </template>
     </FormInput>
     <FormInput
+      v-if="$v.form.visibility"
       id-label="input-visibility"
       is-required
       :title="$t('visibility')"
@@ -133,17 +131,18 @@
       </template>
     </FormInput>
     <FormInput
+      v-if="$v.form.start && $v.form.end"
       id-label="input-start"
       is-required
       :title="$t('start')"
       type="datetime-local"
       :value="$v.form.start"
-      :warning="!$util.VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))"
+      :warning="isWarningStartPastShown"
       @input="form.start = $event"
     >
       <Datetime
         v-model="$v.form.start.$model"
-        :format="DateTime.DATETIME_SHORT"
+        :format="formatDateTimeShort"
         input-class="form-input"
         input-id="input-start"
         :max-datetime="$v.form.end.$model"
@@ -152,24 +151,23 @@
         :use12-hour="$i18n.locale === 'en'"
       />
       <template slot="stateWarning">
-        <FormInputStateWarning
-          v-if="!$util.VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))"
-        >
+        <FormInputStateWarning v-if="isWarningStartPastShown">
           {{ $t('globalValidationNowOrFuture') }}
         </FormInputStateWarning>
       </template>
     </FormInput>
     <FormInput
+      v-if="$v.form.end && $v.form.start"
       id-label="input-end"
       :title="$t('end')"
       type="datetime-local"
       :value="$v.form.end"
       @input="form.end = $event"
-      @icon="$v.form.end.$model = undefined"
+      @icon="form.end = ''"
     >
       <Datetime
         v-model="$v.form.end.$model"
-        :format="DateTime.DATETIME_SHORT"
+        :format="formatDateTimeShort"
         :input-class="[
           'form-input',
           ...(!!$v.form.end.$model ? ['rounded-r-none'] : []),
@@ -190,6 +188,7 @@
       type="checkbox"
     >
       <FormCheckbox
+        v-if="$v.form.isInPerson"
         form-key="is-in-person"
         :value="$v.form.isInPerson.$model"
         @change="form.isInPerson = $event"
@@ -197,6 +196,7 @@
         {{ $t('isInPerson') }}
       </FormCheckbox>
       <FormCheckbox
+        v-if="$v.form.isRemote"
         form-key="is-remote"
         :value="$v.form.isRemote.$model"
         @change="form.isRemote = $event"
@@ -239,7 +239,7 @@
       :value="$v.form.description"
       @input="form.description = $event"
     >
-      <client-only>
+      <client-only v-if="$v.form.description">
         <TipTap v-model.trim="$v.form.description.$model" />
       </client-only>
       <template slot="stateError">
@@ -268,10 +268,27 @@ import {
 } from 'vuelidate/lib/validators'
 import { mapGetters } from 'vuex'
 
-import { defineComponent, PropType } from '#app'
-import EVENT_CREATE_MUTATION from '~/gql/mutation/event/eventCreate.gql'
-import EVENT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/event/eventUpdateById.gql'
-import { Event, Visibility } from '~/types/event'
+import { computed, defineComponent, PropType, reactive, useNuxtApp } from '#app'
+
+import { Event } from '~/types/event'
+import {
+  formPreSubmit,
+  validateEventSlug,
+  VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_NAME_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
+  VALIDATION_FORMAT_SLUG,
+  VALIDATION_FORMAT_URL_HTTPS,
+  VALIDATION_NOW_OR_FUTURE,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import {
+  EventVisibility,
+  useCreateEventMutation,
+  useUpdateEventByIdMutation,
+} from '~/gql/generated'
 
 export default defineComponent({
   components: {
@@ -283,146 +300,168 @@ export default defineComponent({
       type: Object as PropType<Event | undefined>,
     },
   },
-  data() {
-    return {
-      DateTime,
+  setup(props) {
+    const { $i18n, $moment, $router, $t, $v, localePath } = useNuxtApp()
+    const createEventMutation = useCreateEventMutation()
+    const updateEventMutation = useUpdateEventByIdMutation()
+
+    const apiData = reactive({
+      api: {
+        ...getApiMeta([createEventMutation, updateEventMutation]),
+      },
+    })
+    const data = reactive({
       form: {
-        sent: false,
-        id: undefined as string | undefined,
-        authorUsername: undefined as string | undefined,
-        description: undefined as string | undefined,
-        end: undefined as string | undefined,
-        inviteeCountMaximum: undefined as string | undefined,
-        isInPerson: undefined as boolean | undefined,
-        isRemote: undefined as boolean | undefined,
-        location: undefined as string | undefined,
-        name: undefined as string | undefined,
-        slug: undefined as string | undefined,
+        id: '',
+        authorUsername: '',
+        description: '',
+        end: '',
+        inviteeCountMaximum: '',
+        isInPerson: false,
+        isRemote: false,
+        location: '',
+        name: '',
+        slug: '',
         start: new Date(
           new Date().getTime() + 24 * 60 * 60 * 1000
         ).toISOString(), // Must be initialized, otherwise yields an error instantly: https://github.com/mariomka/vue-datetime/issues/177
-        url: undefined as string | undefined,
-        visibility: undefined as Visibility | undefined,
+        url: '',
+        visibility: undefined as EventVisibility | undefined,
       },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
-  },
-  created() {
-    if (this.event) {
-      for (const [k, v] of Object.entries(this.event)) {
-        ;(this.form as Record<string, any>)[k] = v
-      }
-    }
+      formatDateTimeShort: DateTime.DATETIME_SHORT,
+      isFormSent: false,
+    })
+    const methods = {
+      onInputName($event: any) {
+        data.form.name = $event
+        methods.updateSlug()
+      },
+      async submit() {
+        try {
+          await formPreSubmit(this)
+        } catch (error) {
+          return
+        }
 
-    Settings.defaultLocale = this.$i18n.locale
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
+        if (data.form.id) {
+          // Edit
+          const result = await updateEventMutation.executeMutation({
+            id: data.form.id,
+            eventPatch: {
+              authorUsername: computations.signedInUsername(),
+              description: data.form.description,
+              end: data.form.end !== '' ? data.form.end : undefined,
+              inviteeCountMaximum:
+                data.form.inviteeCountMaximum &&
+                data.form.inviteeCountMaximum !== ''
+                  ? +data.form.inviteeCountMaximum
+                  : undefined,
+              isInPerson: data.form.isInPerson,
+              isRemote: data.form.isRemote,
+              location:
+                data.form.location !== '' ? data.form.location : undefined,
+              name: data.form.name,
+              slug: data.form.slug,
+              start: data.form.start,
+              url: data.form.url !== '' ? data.form.url : undefined,
+              visibility: data.form.visibility || EventVisibility.Private,
+            },
+          })
 
-      if (this.form.id) {
-        // Edit
-        this.$apollo
-          .mutate({
-            mutation: EVENT_UPDATE_BY_ID_MUTATION,
-            variables: {
-              id: this.form.id,
-              eventPatch: {
-                authorUsername: this.signedInUsername,
-                description: this.form.description,
-                end: this.form.end !== '' ? this.form.end : null,
+          if (result.error) {
+            apiData.api.errors.push(result.error)
+            consola.error(result.error)
+          }
+
+          if (!result.data) {
+            return
+          }
+
+          Swal.fire({
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            title: $t('updated'),
+          })
+        } else {
+          // Add
+          const result = await createEventMutation.executeMutation({
+            createEventInput: {
+              event: {
+                authorUsername: computations.signedInUsername(),
+                description: data.form.description,
+                end: data.form.end !== '' ? data.form.end : undefined,
                 inviteeCountMaximum:
-                  this.form.inviteeCountMaximum &&
-                  this.form.inviteeCountMaximum !== ''
-                    ? +this.form.inviteeCountMaximum
-                    : null,
-                isInPerson: this.form.isInPerson,
-                isRemote: this.form.isRemote,
-                location: this.form.location !== '' ? this.form.location : null,
-                name: this.form.name,
-                slug: this.form.slug,
-                start: this.form.start,
-                url: this.form.url !== '' ? this.form.url : null,
-                visibility: this.form.visibility,
+                  data.form.inviteeCountMaximum &&
+                  data.form.inviteeCountMaximum !== ''
+                    ? +data.form.inviteeCountMaximum
+                    : undefined,
+                isInPerson: data.form.isInPerson,
+                isRemote: data.form.isRemote,
+                location:
+                  data.form.location !== '' ? data.form.location : undefined,
+                name: data.form.name,
+                slug: data.form.slug,
+                start: data.form.start,
+                url: data.form.url !== '' ? data.form.url : undefined,
+                visibility: data.form.visibility || EventVisibility.Private,
               },
             },
           })
-          .then(() => {
-            Swal.fire({
-              icon: 'success',
-              showConfirmButton: false,
-              timer: 1500,
-              timerProgressBar: true,
-              title: this.$t('updated'),
-            })
-          })
-          .catch((reason) => {
-            this.graphqlError = reason
-            consola.error(reason)
-          })
-      } else {
-        // Add
-        this.$apollo
-          .mutate({
-            mutation: EVENT_CREATE_MUTATION,
-            variables: {
-              createEventInput: {
-                event: {
-                  authorUsername: this.signedInUsername,
-                  description: this.form.description,
-                  end: this.form.end !== '' ? this.form.end : null,
-                  inviteeCountMaximum:
-                    this.form.inviteeCountMaximum &&
-                    this.form.inviteeCountMaximum !== ''
-                      ? +this.form.inviteeCountMaximum
-                      : null,
-                  isInPerson: this.form.isInPerson,
-                  isRemote: this.form.isRemote,
-                  location:
-                    this.form.location !== '' ? this.form.location : null,
-                  name: this.form.name,
-                  slug: this.form.slug,
-                  start: this.form.start,
-                  url: this.form.url !== '' ? this.form.url : null,
-                  visibility: this.form.visibility,
-                },
-              },
-            },
-          })
-          .then(() => {
-            Swal.fire({
-              icon: 'success',
-              text: this.$t('eventCreateSuccess') as string,
-              timer: 3000,
-              timerProgressBar: true,
-              title: this.$t('created'),
-            }).then(() =>
-              this.$router.push(
-                this.localePath(
-                  `/event/${this.signedInUsername}/${this.form.slug}`
-                )
+
+          if (result.error) {
+            apiData.api.errors.push(result.error)
+            consola.error(result.error)
+          }
+
+          if (!result.data) {
+            return
+          }
+
+          Swal.fire({
+            icon: 'success',
+            text: $t('eventCreateSuccess') as string,
+            timer: 3000,
+            timerProgressBar: true,
+            title: $t('created'),
+          }).then(() =>
+            $router.push(
+              localePath(
+                `/event/${computations.signedInUsername()}/${data.form.slug}`
               )
             )
-          })
-          .catch((reason) => {
-            this.graphqlError = reason
-            consola.error(reason)
-          })
+          )
+        }
+      },
+      updateSlug() {
+        data.form.slug = slugify(data.form.name ?? '', {
+          lower: true,
+          strict: true,
+        })
+      },
+    }
+    const computations = {
+      ...mapGetters(['signedInUsername']),
+      isWarningStartPastShown: computed(
+        () => !VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))
+      ),
+    }
+
+    if (props.event) {
+      for (const [k, v] of Object.entries(props.event)) {
+        ;(data.form as Record<string, any>)[k] = v
       }
-    },
-    updateSlug() {
-      this.form.slug = slugify(this.form.name ?? '', {
-        lower: true,
-        strict: true,
-      })
-    },
+    }
+
+    Settings.defaultLocale = $i18n.locale
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      ...computations,
+    }
   },
   validations() {
     return {
@@ -430,9 +469,7 @@ export default defineComponent({
         id: {},
         authorUsername: {},
         description: {
-          maxLength: maxLength(
-            this.$util.VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM
-          ),
+          maxLength: maxLength(VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM),
         },
         end: {},
         inviteeCountMaximum: {
@@ -442,31 +479,28 @@ export default defineComponent({
         isInPerson: {},
         isRemote: {},
         location: {
-          maxLength: maxLength(
-            this.$util.VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM
-          ),
+          maxLength: maxLength(VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM),
         },
         name: {
-          maxLength: maxLength(this.$util.VALIDATION_EVENT_NAME_LENGTH_MAXIMUM),
+          maxLength: maxLength(VALIDATION_EVENT_NAME_LENGTH_MAXIMUM),
           required,
         },
         slug: {
-          existenceNone: this.$util.validateEventSlug(
-            this.$apollo as any,
-            this.signedInUsername,
+          existenceNone: validateEventSlug(
+            this.signedInUsername(),
             true,
             (this.event as Event | undefined)?.slug
           ),
-          maxLength: maxLength(this.$util.VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
+          maxLength: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
           required,
-          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
+          formatSlug: VALIDATION_FORMAT_SLUG,
         },
         start: {
           required,
         },
         url: {
-          formatUrlHttps: this.$util.VALIDATION_FORMAT_URL_HTTPS,
-          maxLength: maxLength(this.$util.VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
+          formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
+          maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
         },
         visibility: {
           required,

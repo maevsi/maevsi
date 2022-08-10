@@ -10,9 +10,11 @@ import { Context } from '@nuxt/types-edge'
 
 import { defineComponent } from '#app'
 
+import { REGEX_SLUG } from '~/plugins/util/validation'
+
 export default defineComponent({
-  validate({ app, params }: Context): boolean {
-    return app.$util.REGEX_SLUG.test(params.username)
+  validate({ params }: Context): boolean {
+    return REGEX_SLUG.test(params.username)
   },
   transition: {
     name: 'layout',

@@ -14,7 +14,7 @@
       </li>
     </ul>
     <span>{{ $t('separator') }}</span>
-    <AppLink :to="$util.getQueryString($route.query)">
+    <AppLink :to="queryString">
       <h1 class="m-0 whitespace-nowrap text-2xl"><slot /></h1>
     </AppLink>
     <ul v-if="suffixes" class="flex items-center gap-2">
@@ -33,7 +33,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '#app'
+import { computed, defineComponent, PropType, useRoute } from '#app'
+import { getQueryString } from '~/plugins/util/util'
 
 interface Breadcrumb {
   append: boolean
@@ -52,6 +53,17 @@ export default defineComponent({
       default: undefined,
       type: Array as PropType<Array<Breadcrumb>>,
     },
+  },
+  setup() {
+    const route = useRoute()
+
+    const computations = {
+      queryString: computed(() => getQueryString(route.query)),
+    }
+
+    return {
+      ...computations,
+    }
   },
 })
 </script>

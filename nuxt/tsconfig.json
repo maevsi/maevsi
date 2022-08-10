@@ -22,7 +22,6 @@
       "@nuxtjs/moment",
       "jest",
       "node",
-      "vue-apollo/types",
     ],
     "lib": [
       "ESNext",
@@ -35,5 +34,8 @@
     ".nuxt",
     "dist"
   ],
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "vueCompilerOptions": {
+    "target": 2.7,
+  }
 }

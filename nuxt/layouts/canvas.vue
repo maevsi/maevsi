@@ -3,74 +3,95 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '#app'
+import {
+  defineComponent,
+  onMounted,
+  reactive,
+  ref,
+  useNuxtApp,
+  useRoute,
+} from '#app'
 
 export default defineComponent({
   name: 'MaevsiCanvas',
-  data() {
-    return {
+  setup() {
+    const { $i18n, $moment, $router } = useNuxtApp()
+    const route = useRoute()
+
+    const refs = {
+      canvas: ref<HTMLCanvasElement>(),
+    }
+    const data = reactive({
       ctx: undefined as CanvasRenderingContext2D | undefined | null,
       image: undefined as HTMLImageElement | undefined,
       imageSize: 200,
+    })
+    const methods = {
+      canvasResize() {
+        if (!data.ctx) return
+
+        data.ctx.canvas.height = window.innerHeight
+        data.ctx.canvas.width = window.innerWidth
+
+        data.ctx.translate(
+          data.ctx.canvas.width / 2,
+          data.ctx.canvas.height / 2
+        )
+      },
+      draw() {
+        if (!data.ctx || !data.image) return
+
+        methods.clear()
+        data.ctx.drawImage(
+          data.image,
+          -(data.imageSize / 2),
+          -(data.imageSize / 2),
+          data.imageSize,
+          data.imageSize
+        )
+        data.ctx.rotate(Math.PI / 256)
+      },
+      clear() {
+        if (!data.ctx) return
+
+        data.ctx.save()
+        data.ctx.setTransform(1, 0, 0, 1, 0, 0)
+        data.ctx.clearRect(0, 0, data.ctx.canvas.width, data.ctx.canvas.height)
+        data.ctx.restore()
+      },
+    }
+
+    $moment.locale($i18n.locale)
+
+    onMounted(() => {
+      data.image = new Image()
+      data.image.src = '/assets/static/logos/maevsi.svg'
+
+      const canvas = refs.canvas.value
+      if (!canvas) return
+
+      data.ctx = canvas.getContext('2d')
+      if (!data.ctx) return
+
+      methods.canvasResize()
+
+      window.onresize = methods.canvasResize
+      window.setInterval(() => window.requestAnimationFrame(methods.draw), 17)
+
+      const redirect = route.query.redirect
+
+      if (redirect && typeof redirect === 'string') {
+        setTimeout(() => $router.replace(redirect), 1000)
+      }
+    })
+
+    return {
+      ...refs,
+      ...data,
     }
   },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
-  },
-  beforeCreate() {
-    this.$moment.locale(this.$i18n.locale)
-  },
-  mounted() {
-    this.image = new Image()
-    this.image.src = '/assets/static/logos/maevsi.svg'
-
-    const canvas = this.$refs.canvas as HTMLCanvasElement
-    if (!canvas) return
-
-    this.ctx = canvas.getContext('2d')
-    if (!this.ctx) return
-
-    this.canvasResize()
-
-    window.onresize = this.canvasResize
-    window.setInterval(() => window.requestAnimationFrame(this.draw), 17)
-
-    const redirect = this.$route.query.redirect
-
-    if (redirect && typeof redirect === 'string') {
-      setTimeout(() => this.$router.replace(redirect), 1000)
-    }
-  },
-  methods: {
-    canvasResize() {
-      if (!this.ctx) return
-
-      this.ctx.canvas.height = window.innerHeight
-      this.ctx.canvas.width = window.innerWidth
-
-      this.ctx.translate(this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
-    },
-    draw() {
-      if (!this.ctx || !this.image) return
-
-      this.clear()
-      this.ctx.drawImage(
-        this.image,
-        -(this.imageSize / 2),
-        -(this.imageSize / 2),
-        this.imageSize,
-        this.imageSize
-      )
-      this.ctx.rotate(Math.PI / 256)
-    },
-    clear() {
-      if (!this.ctx) return
-
-      this.ctx.save()
-      this.ctx.setTransform(1, 0, 0, 1, 0, 0)
-      this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
-      this.ctx.restore()
-    },
   },
 })
 </script>

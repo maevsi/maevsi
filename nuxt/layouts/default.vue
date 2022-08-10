@@ -10,7 +10,7 @@
     <div
       class="fixed bottom-0 left-0 right-0 top-0 z-10 bg-black transition-opacity duration-500 md:hidden"
       :class="isMenuVisible ? 'visible opacity-50' : 'invisible opacity-0'"
-      @click="menuHide()"
+      @click="menuHide"
     />
     <div
       class="fixed bottom-0 left-0 top-0 z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 md:hidden"
@@ -23,38 +23,41 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
+import { reactive } from 'vue'
 
-import { defineComponent } from '#app'
+import { defineComponent, useNuxtApp } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
-  data() {
-    return {
+  setup() {
+    const { $i18n, $moment } = useNuxtApp()
+
+    const data = reactive({
       isMenuVisible: false,
       isMenuItemsVisible: false,
+    })
+    const methods = {
+      menuHide(): void {
+        data.isMenuVisible = false
+        setTimeout(() => {
+          data.isMenuItemsVisible = false
+        }, 500)
+      },
+      menuShow(): void {
+        data.isMenuItemsVisible = true
+        data.isMenuVisible = true
+      },
+    }
+
+    $moment.locale($i18n.locale)
+
+    return {
+      ...data,
+      ...methods,
     }
   },
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true })
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
-  },
-  beforeCreate() {
-    this.$moment.locale(this.$i18n.locale)
-  },
-  methods: {
-    menuHide() {
-      this.isMenuVisible = false
-      setTimeout(() => {
-        this.isMenuItemsVisible = false
-      }, 500)
-    },
-    menuShow() {
-      this.isMenuItemsVisible = true
-      this.isMenuVisible = true
-    },
   },
 })
 </script>
