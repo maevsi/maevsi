@@ -1,5 +1,3 @@
-#import "../../fragments/eventFields.gql"
-
 query allEvents($after: Cursor, $authorUsername: String, $first: Int!) {
   allEvents(
     after: $after

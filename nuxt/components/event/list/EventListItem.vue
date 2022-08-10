@@ -16,7 +16,7 @@
         <!-- <div
           :class="{
             'bg-yellow-100 dark:bg-yellow-900':
-              jwtDecoded && event.authorUsername === jwtDecoded.username,
+              jwtDecoded() && event.authorUsername === jwtDecoded().username,
           }"
         > -->
         <div class="mb-2 flex items-center text-sm">
@@ -60,7 +60,7 @@ import DOMPurify from 'isomorphic-dompurify'
 import { mapGetters } from 'vuex'
 import mustache from 'mustache'
 
-import { defineComponent, PropType } from '#app'
+import { computed, defineComponent, PropType } from '#app'
 import { Event as MaevsiEvent } from '~/types/event'
 
 export default defineComponent({
@@ -70,22 +70,28 @@ export default defineComponent({
       type: Object as PropType<MaevsiEvent>,
     },
   },
-  computed: {
-    ...mapGetters(['jwtDecoded']),
-    eventDescriptionTemplate(): string | undefined {
-      if (!this.event?.description) return
+  setup(props) {
+    const computations = {
+      ...mapGetters(['jwtDecoded']),
+      eventDescriptionTemplate: computed(() => {
+        if (!props.event?.description) return
 
-      return htmlToText(
-        DOMPurify.sanitize(
-          mustache.render(this.event.description, {
-            event: this.event,
-          })
-        ),
-        {
-          selectors: [{ selector: 'a', options: { ignoreHref: true } }],
-        }
-      )
-    },
+        return htmlToText(
+          DOMPurify.sanitize(
+            mustache.render(props.event.description, {
+              event: props.event,
+            })
+          ),
+          {
+            selectors: [{ selector: 'a', options: { ignoreHref: true } }],
+          }
+        )
+      }),
+    }
+
+    return {
+      ...computations,
+    }
   },
 })
 </script>

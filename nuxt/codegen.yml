@@ -1,0 +1,32 @@
+overwrite: true
+schema: "https://postgraphile.maevsi.test/graphql"
+documents: "gql/**/*.gql"
+# hooks:
+#   afterOneFileWrite:
+#     - eslint --fix
+#     - prettier --write
+config:
+  maybeValue: T | undefined
+generates:
+  gql/schema.ts:
+    plugins:
+      - typescript
+      - typescript-urql-graphcache
+  gql/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-vue-urql
+  # gql/:
+  #   preset: near-operation-file
+  #   presetConfig:
+  #     baseTypesPath: schema.ts
+  #     extension: .ts
+  #   plugins:
+  #     - typescript-document-nodes
+  gql/introspection.ts:
+    plugins:
+      - urql-introspection
+  # introspection.schema.json:
+  #   plugins:
+  #     - introspection

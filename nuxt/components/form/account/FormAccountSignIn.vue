@@ -11,10 +11,10 @@
       </template>
     </ButtonColored>
     <Form
-      :errors="$util.getGqlErrorMessages(graphqlError, this)"
+      :errors="api.errors"
       :form="$v.form"
       form-class="w-full"
-      :form-sent="form.sent"
+      :is-form-sent="isFormSent"
       :submit-name="$t('signIn')"
       @submit.prevent="submit"
     >
@@ -36,8 +36,7 @@
       <template slot="assistance">
         <ButtonColored
           v-if="
-            graphqlError?.graphQLErrors.filter((e) => e.errcode === '55000')
-              .length > 0
+            api.errors.graphQLErrors.filter((e) => e.errcode === '55000').length
           "
           :aria-label="$t('verificationMailResend')"
           @click="accountRegistrationRefresh"
@@ -52,107 +51,103 @@
 <script lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { reactive } from 'vue'
 import { maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent } from '#app'
+import { useNuxtApp, defineComponent } from '#app'
 
-import ACCOUNT_REGISTRATION_MUTATION_REFRESH from '~/gql/mutation/account/accountRegistrationRefresh.gql'
-import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
+import {
+  formPreSubmit,
+  VALIDATION_FORMAT_SLUG,
+  VALIDATION_PASSWORD_LENGTH_MINIMUM,
+  VALIDATION_USERNAME_LENGTH_MAXIMUM,
+} from '~/plugins/util/validation'
+import { useJwtStore } from '~/plugins/util/auth'
+import { getApiDataDefault } from '~/plugins/util/util'
+import {
+  useAccountRegistrationRefreshMutation,
+  useAuthenticateMutation,
+} from '~/gql/generated'
 
 const FormAccountSignIn = defineComponent({
-  data() {
-    return {
+  setup() {
+    const { jwtStore } = useJwtStore()
+    const { $i18n, $t } = useNuxtApp()
+    const { executeMutation: executeMutationAccountRegistrationRefresh } =
+      useAccountRegistrationRefreshMutation()
+    const { executeMutation: executeMutationAuthentication } =
+      useAuthenticateMutation()
+
+    const apiData = reactive(getApiDataDefault())
+    const data = reactive({
       form: {
-        password: undefined,
-        sent: false,
-        username: undefined,
+        password: '',
+        username: '',
       },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  watch: {
-    form: {
-      handler(val) {
-        if (JSON.stringify(val) !== '{}') {
-          this.$emit('form', val)
-        }
-      },
-      deep: true,
-    },
-  },
-  methods: {
-    async accountRegistrationRefresh() {
-      const res = await this.$apollo
-        .mutate({
-          mutation: ACCOUNT_REGISTRATION_MUTATION_REFRESH,
-          variables: {
-            language: this.$i18n.locale,
-            username: this.$v.form.username?.$model,
-          },
-        })
-        .then(({ data }) => data.accountRegistrationRefresh)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return
-      }
-
-      Swal.fire({
-        icon: 'success',
-        text: this.$t('registrationRefreshSuccess') as string,
-        title: this.$t('sent'),
-      })
-    },
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
-
-      const res = await this.$apollo
-        .mutate({
-          mutation: AUTHENTICATE_MUTATION,
-          variables: {
-            username: this.form.username,
-            password: this.form.password,
-          },
-        })
-        .then(({ data }) => data.authenticate)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return
-      }
-
-      this.$util
-        .jwtStore(this.$apollo.getClient(), this.$store, undefined, res.jwt)
-        .catch(
-          async () =>
-            await Swal.fire({
-              icon: 'error',
-              text: this.$t('jwtStoreFail') as string,
-              title: this.$t('globalStatusError'),
+      isFormSent: false,
+    })
+    const methods = {
+      accountRegistrationRefresh() {
+        executeMutationAccountRegistrationRefresh({
+          language: $i18n.locale,
+          username: data.form.username,
+        }).then((result) => {
+          if (result.error) {
+            apiData.api.errors.push(result.error)
+            consola.error(result.error)
+          } else {
+            Swal.fire({
+              icon: 'success',
+              text: $t('registrationRefreshSuccess') as string,
+              title: $t('sent'),
             })
-        )
-    },
+          }
+        })
+      },
+      async submit() {
+        try {
+          await formPreSubmit(this)
+        } catch (error) {
+          return
+        }
+
+        executeMutationAuthentication({
+          username: data.form.username,
+          password: data.form.password,
+        }).then(async (result) => {
+          if (result.error) {
+            apiData.api.errors.push(result.error)
+            consola.error(result.error)
+          } else {
+            await jwtStore(result.data?.authenticate?.jwt).catch(
+              async () =>
+                await Swal.fire({
+                  icon: 'error',
+                  text: $t('jwtStoreFail') as string,
+                  title: $t('globalStatusError'),
+                })
+            )
+          }
+        })
+      },
+    }
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+    }
   },
   validations() {
     return {
       form: {
         username: {
-          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
+          formatSlug: VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
           required,
         },
         password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },

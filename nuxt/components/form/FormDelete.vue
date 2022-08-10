@@ -2,7 +2,7 @@
   <Form
     :errors="errors"
     :form="$v.form"
-    :form-sent="form.sent"
+    :is-form-sent="isFormSent"
     :submit-name="$t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
@@ -19,20 +19,24 @@
 </template>
 
 <script lang="ts">
-import { useMutation } from '@urql/vue'
+import { CombinedError, UseMutationResponse } from '@urql/vue'
 import consola from 'consola'
-import { DocumentNode } from 'graphql'
 import Swal from 'sweetalert2'
-import { ref } from 'vue'
 import { minLength, required } from 'vuelidate/lib/validators'
 
-import { useNuxtApp, defineComponent, PropType } from '#app'
+import { useNuxtApp, defineComponent, PropType, reactive } from '#app'
+
+import { capitalizeFirstLetter } from '~/plugins/util/util'
+import {
+  formPreSubmit,
+  VALIDATION_PASSWORD_LENGTH_MINIMUM,
+} from '~/plugins/util/validation'
 
 export default defineComponent({
   props: {
     errors: {
       default: undefined,
-      type: Array as PropType<string[] | undefined>,
+      type: Array as PropType<CombinedError[] | undefined>,
     },
     itemName: {
       required: true,
@@ -40,7 +44,7 @@ export default defineComponent({
     },
     mutation: {
       required: true,
-      type: Object as PropType<DocumentNode>,
+      type: Object as PropType<UseMutationResponse<any, any>>,
     },
     variables: {
       default: {} as PropType<Record<string, any>>,
@@ -48,46 +52,45 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { $t, $util } = useNuxtApp()
+    const { $t } = useNuxtApp()
 
-    const data = {
-      form: ref({
-        password: ref<string>(),
-        sent: ref<boolean>(),
-      }),
-    }
-
-    const { executeMutation } = useMutation(props.mutation)
-
+    const data = reactive({
+      form: {
+        password: undefined as string | undefined,
+      },
+      isFormSent: false,
+    })
     const methods = {
       async submit() {
         try {
-          await $util.formPreSubmit(this)
+          await formPreSubmit(this)
         } catch (error) {
           return
         }
 
-        executeMutation({
-          password: data.form.value.password,
-          ...props.variables,
-        }).then((result) => {
-          if (result.error) {
-            emit('error', result.error)
-            consola.error(result.error)
-          } else {
-            Swal.fire({
-              icon: 'success',
-              text: $util.capitalizeFirstLetter(
-                $t('success', {
-                  item: props.itemName,
-                }) as string
-              ),
-              timer: 3000,
-              timerProgressBar: true,
-              title: $t('deleted'),
-            }).then(() => emit('success'))
-          }
-        })
+        props.mutation
+          .executeMutation({
+            password: data.form.password,
+            ...props.variables,
+          })
+          .then((result) => {
+            if (result.error) {
+              emit('error', result.error)
+              consola.error(result.error)
+            } else {
+              Swal.fire({
+                icon: 'success',
+                text: capitalizeFirstLetter(
+                  $t('success', {
+                    item: props.itemName,
+                  }) as string
+                ),
+                timer: 3000,
+                timerProgressBar: true,
+                title: $t('deleted'),
+              }).then(() => emit('success'))
+            }
+          })
       },
     }
 
@@ -100,7 +103,7 @@ export default defineComponent({
     return {
       form: {
         password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },

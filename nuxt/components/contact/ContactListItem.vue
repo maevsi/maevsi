@@ -25,14 +25,14 @@
       <div class="flex items-center justify-evenly gap-2">
         <ButtonTable
           :aria-label="
-            contact.authorAccountUsername !== signedInUsername
+            contact.authorAccountUsername !== signedInUsername()
               ? $t('disabledReasonCreatorNot', {
                   authorAccountUsername: contact.authorAccountUsername,
                 })
               : $t('contactEdit')
           "
           :disabled="
-            contact.authorAccountUsername !== signedInUsername || isEditing
+            contact.authorAccountUsername !== signedInUsername() || isEditing
           "
           is-title-show
           @click="$emit('edit')"
@@ -41,7 +41,9 @@
         </ButtonTable>
         <ButtonTable
           :aria-label="$t('contactDelete')"
-          :disabled="isDeleting || contact.accountUsername === signedInUsername"
+          :disabled="
+            isDeleting || contact.accountUsername === signedInUsername()
+          "
           is-title-show
           @click="$emit('delete')"
         >
@@ -73,8 +75,14 @@ export default defineComponent({
       type: Boolean,
     },
   },
-  computed: {
-    ...mapGetters(['signedInUsername']),
+  setup() {
+    const computations = {
+      ...mapGetters(['signedInUsername']),
+    }
+
+    return {
+      ...computations,
+    }
   },
 })
 </script>

@@ -11,10 +11,7 @@
       <p v-else>
         {{ $t('sessionExpired') }}
       </p>
-      <ButtonColored
-        :aria-label="$t('sessionExit')"
-        @click="onSessionExitClick()"
-      >
+      <ButtonColored :aria-label="$t('sessionExit')" @click="signOut">
         {{ $t('sessionExit') }}
         <template slot="prefix">
           <IconSignOut />
@@ -23,13 +20,13 @@
     </section>
     <section class="flex flex-col gap-4">
       <h2>{{ $t('codes') }}</h2>
-      <div v-if="jwtDecoded.invitations">
+      <div v-if="jwtDecoded().invitations">
         <p>
           {{ $t('codesEntered') }}
         </p>
         <ul class="list-disc">
           <li
-            v-for="invitationCode in jwtDecoded.invitations"
+            v-for="invitationCode in jwtDecoded().invitations"
             :key="invitationCode"
           >
             {{ invitationCode }}
@@ -46,16 +43,37 @@
 
 <script lang="ts">
 import { mapGetters } from 'vuex'
-import { defineComponent } from '#app'
+
+import { computed, defineComponent, reactive, useNuxtApp } from '#app'
+
+import { useSignOut } from '~/plugins/util/auth'
 
 export default defineComponent({
   name: 'IndexPage',
   transition: {
     name: 'layout',
   },
-  data() {
+  setup() {
+    const { signOut } = useSignOut()
+    const { $moment, $store, $t } = useNuxtApp()
+
+    const data = reactive({
+      title: $t('title'),
+    })
+    const methods = {
+      signOut,
+    }
+    const computations = {
+      ...mapGetters(['jwtDecoded']),
+      sessionExpiryTime: computed((): string => {
+        return $moment($store.getters.jwtDecoded().exp, 'X').format('llll')
+      }),
+    }
+
     return {
-      title: this.$t('title'),
+      ...data,
+      ...methods,
+      ...computations,
     }
   },
   head() {
@@ -83,19 +101,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  computed: {
-    ...mapGetters(['jwtDecoded']),
-    sessionExpiryTime(): string {
-      return this.$moment(this.$store.getters.jwtDecoded.exp, 'X').format(
-        'llll'
-      )
-    },
-  },
-  methods: {
-    onSessionExitClick() {
-      this.$util.signOut(this.$apollo.getClient(), this.$store)
-    },
   },
 })
 </script>

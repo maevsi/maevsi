@@ -14,14 +14,14 @@
       <div class="mb-4 mt-6 flex flex-col items-center justify-between">
         <ButtonColored
           ref="buttonSubmit"
-          :aria-label="submitName"
+          :aria-label="submitName || $t('submit')"
           :class="{
             'animate-shake': form.$anyError,
           }"
           type="submit"
           @click="$emit('click')"
         >
-          {{ submitName }}
+          {{ submitName || $t('submit') }}
           <template slot="prefix">
             <slot name="submit-icon" />
           </template>
@@ -30,7 +30,9 @@
           {{ $t('globalValidationFailed') }}
         </FormInputStateError>
       </div>
-      <Loader v-if="errors" class="my-4" :errors="errors" />
+      <CardStateAlert v-if="errorMessages?.length" class="my-4">
+        <SpanList :span="errorMessages" />
+      </CardStateAlert>
       <div class="flex justify-center">
         <slot name="assistance" />
       </div>
@@ -39,15 +41,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from '#app'
+import { CombinedError } from '@urql/core'
+
+import { computed, defineComponent, PropType, ref } from '#app'
+
 import Button from '~/components/button/Button.vue'
+import { useGetCombinedErrorMessages } from '~/plugins/util/util'
 
 const Form = defineComponent({
   name: 'MaevsiForm',
   props: {
     errors: {
       default: undefined,
-      type: Array as PropType<string[] | undefined>,
+      type: Array as PropType<CombinedError[] | undefined>,
     },
     form: {
       required: true,
@@ -57,35 +63,43 @@ const Form = defineComponent({
       default: undefined,
       type: String as PropType<string | undefined>,
     },
-    formSent: {
+    isFormSent: {
       default: false,
       type: Boolean as PropType<boolean | undefined>,
     }, // TODO: remove?
     submitName: {
-      default() {
-        return this.$t('submit') as string
-      },
-      type: String,
+      default: undefined,
+      type: String as PropType<string | undefined>,
     },
   },
-  setup() {
-    const buttonSubmit = ref<InstanceType<typeof Button>>()
+  setup(props) {
+    const { getCombinedErrorMessages } = useGetCombinedErrorMessages()
 
-    const submit = () => {
-      if (buttonSubmit) {
-        buttonSubmit.value?.click()
-      }
+    const refs = {
+      buttonSubmit: ref<InstanceType<typeof Button>>(),
+      form: ref<HTMLFormElement>(),
+    }
+    const methods = {
+      reset() {
+        refs.form.value?.reset()
+      },
+      submit() {
+        if (refs.buttonSubmit) {
+          refs.buttonSubmit.value?.click()
+        }
+      },
+    }
+    const computations = {
+      errorMessages: computed(() =>
+        props.errors ? getCombinedErrorMessages(props.errors) : undefined
+      ),
     }
 
     return {
-      buttonSubmit,
-      submit,
+      ...refs,
+      ...methods,
+      ...computations,
     }
-  },
-  methods: {
-    reset() {
-      ;(this.$refs.form as HTMLFormElement).reset()
-    },
   },
 })
 

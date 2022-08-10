@@ -1,9 +1,9 @@
 <template>
   <Form
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
+    :errors="api.errors"
     :form="$v.form"
     :form-class="formClass"
-    :form-sent="form.sent"
+    :is-form-sent="isFormSent"
     :submit-name="$t('accountPasswordReset')"
     @submit.prevent="submit"
   >
@@ -21,9 +21,14 @@ import consola from 'consola'
 import Swal from 'sweetalert2'
 import { minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent } from '#app'
+import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 
-import ACCOUNT_PASSWORD_RESET_MUTATION from '~/gql/mutation/account/accountPasswordReset.gql'
+import {
+  formPreSubmit,
+  VALIDATION_PASSWORD_LENGTH_MINIMUM,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAccountPasswordResetMutation } from '~/gql/generated'
 
 const FormAccountPasswordReset = defineComponent({
   props: {
@@ -32,59 +37,72 @@ const FormAccountPasswordReset = defineComponent({
       type: String,
     },
   },
-  data() {
-    return {
-      form: {
-        password: undefined as string | undefined,
-        sent: false as boolean,
+  setup() {
+    const { $router, $t, localePath } = useNuxtApp()
+    const route = useRoute()
+    const passwordResetMutation = useAccountPasswordResetMutation()
+
+    const apiData = reactive({
+      api: {
+        data: {
+          ...passwordResetMutation.data.value,
+        },
+        ...getApiMeta([passwordResetMutation]),
       },
-      graphqlError: undefined as Error | undefined,
+    })
+    const data = reactive({
+      form: {
+        password: '',
+      },
+      isFormSent: false,
+    })
+    const methods = {
+      async submit() {
+        try {
+          await formPreSubmit(this)
+        } catch (error) {
+          return
+        }
+
+        const result = await passwordResetMutation.executeMutation({
+          code: route.query.code,
+          password: data.form.password,
+        })
+
+        if (result.error) {
+          apiData.api.errors.push(result.error)
+          consola.error(result.error)
+        }
+
+        if (!result.data) {
+          return
+        }
+
+        Swal.fire({
+          icon: 'success',
+          text: $t('accountPasswordResetSuccess') as string,
+          timer: 3000,
+          timerProgressBar: true,
+          title: $t('reset'),
+        })
+        $router.push({
+          path: localePath(`/account`),
+          query: { ...route.query, tab: 'signIn' },
+        })
+      },
     }
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
 
-      const res = await this.$apollo
-        .mutate({
-          mutation: ACCOUNT_PASSWORD_RESET_MUTATION,
-          variables: {
-            code: this.$route.query.code,
-            password: this.form.password,
-          },
-        })
-        .then(({ data }) => data.accountPasswordReset)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return
-      }
-
-      Swal.fire({
-        icon: 'success',
-        text: this.$t('accountPasswordResetSuccess') as string,
-        timer: 3000,
-        timerProgressBar: true,
-        title: this.$t('reset'),
-      })
-      this.$router.push({
-        path: this.localePath(`/account`),
-        query: { ...this.$route.query, tab: 'signIn' },
-      })
-    },
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+    }
   },
   validations() {
     return {
       form: {
         password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },

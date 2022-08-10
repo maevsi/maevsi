@@ -3,7 +3,7 @@
     v-if="formInput"
     :id-label="`input-${id}`"
     :placeholder="isVisible ? 'H<3j,G;%' : '**********'"
-    :title="title"
+    :title="title || $t('password')"
     :type="isVisible ? 'text' : 'password'"
     :value="formInput"
     @input="$emit('input', $event)"
@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '#app'
+import { defineComponent, PropType, reactive } from '#app'
 import { FormInputType } from '~/components/form/input/FormInput.vue'
 
 export default defineComponent({
@@ -52,15 +52,17 @@ export default defineComponent({
       type: Object as PropType<FormInputType>,
     },
     title: {
-      default() {
-        return this.$t('password')
-      },
+      default: undefined,
       type: String,
     },
   },
-  data() {
-    return {
+  setup() {
+    const data = reactive({
       isVisible: false,
+    })
+
+    return {
+      ...data,
     }
   },
 })

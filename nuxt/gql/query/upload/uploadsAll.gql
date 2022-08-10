@@ -1,5 +1,3 @@
-#import "../../fragments/uploadFields.gql"
-
 query allUploads($after: Cursor, $first: Int!, $username: String) {
   allUploads(
     after: $after

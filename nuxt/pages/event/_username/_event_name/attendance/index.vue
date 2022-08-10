@@ -69,11 +69,19 @@ import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 
-import { defineComponent } from '#app'
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  reactive,
+  useNuxtApp,
+  useRoute,
+  watch,
+} from '#app'
 
-import EVENT_BY_ORGANIZER_USERNAME_AND_SLUG from '~/gql/query/event/eventByAuthorUsernameAndSlug.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
-import { Event as MaevsiEvent } from '~/types/event'
+import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
+import { getApiMeta } from '~/plugins/util/util'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -81,22 +89,6 @@ export default defineComponent({
     QrCodeStream: () => {
       if (process.server) return
       return import('vue-qrcode-reader/src/components/QrcodeStream.vue')
-    },
-  },
-  apollo: {
-    event(): any {
-      return {
-        query: EVENT_BY_ORGANIZER_USERNAME_AND_SLUG,
-        variables: {
-          authorUsername: this.$route.params.username,
-          slug: this.$route.params.event_name,
-        },
-        update: (data: any) => data.eventByAuthorUsernameAndSlug,
-        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
-          this.graphqlError = error
-          consola.error(error)
-        },
-      }
     },
   },
   middleware({ error, res, params, store }: Context) {
@@ -107,27 +99,201 @@ export default defineComponent({
   async validate({ app, params }): Promise<boolean> {
     const {
       data: { eventIsExisting },
-    } = await app.apolloProvider!.defaultClient.query({
-      query: EVENT_IS_EXISTING_QUERY,
-      variables: {
+    } = await app.$urql.value
+      .query(EVENT_IS_EXISTING_QUERY, {
         slug: params.event_name,
         authorUsername: params.username,
-      },
-      fetchPolicy: 'network-only',
-    })
+      })
+      .toPromise()
 
     return eventIsExisting
   },
   transition: {
     name: 'layout',
   },
-  data() {
-    return {
-      event: undefined as MaevsiEvent | undefined,
-      graphqlError: undefined as Error | undefined,
+  setup() {
+    const { $store, $t } = useNuxtApp()
+    const route = useRoute()
+
+    const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+      variables: {
+        authorUsername: route.params.username,
+        slug: route.params.event_name,
+      },
+    })
+    const apiData = reactive({
+      api: {
+        data: {
+          ...eventQuery.data.value,
+        },
+        ...getApiMeta([eventQuery]),
+      },
+      event: eventQuery.data.value?.eventByAuthorUsernameAndSlug,
+    })
+    const data = reactive({
       invitationCode: undefined as string | undefined,
       isNfcWritableErrorMessage: undefined as string | undefined,
       loading: false,
+    })
+    const computations = {
+      isNfcError: computed(() => {
+        return !!(
+          data.isNfcWritableErrorMessage &&
+          data.isNfcWritableErrorMessage !== 'prompt'
+        )
+      }),
+      title: computed(() => {
+        if (
+          route.params.username === $store.getters.signedInUsername &&
+          apiData.event
+        ) {
+          return `${$t('title')} · ${apiData.event.name}`
+        }
+        return '403'
+      }),
+    }
+    const methods = {
+      qrCodeScan() {
+        $store.commit('modalAdd', { id: 'ModalAttendanceScanQrCode' })
+      },
+      async onInit(promise: Promise<any>) {
+        data.loading = true
+
+        try {
+          await promise
+        } catch (error: any) {
+          let errorMessage: string = error.message
+
+          if (error.name === 'NotAllowedError') {
+            errorMessage = $t('errorCameraNotAllowed', {
+              hintBrowserSettings: $t('hintBrowserSettings'),
+            }) as string
+          } else if (error.name === 'NotFoundError') {
+            errorMessage = $t('errorCameraNotFound') as string
+          } else if (error.name === 'NotSupportedError') {
+            errorMessage = $t('errorCameraNotSupported') as string
+          } else if (error.name === 'NotReadableError') {
+            errorMessage = $t('errorCameraNotReadable') as string
+          } else if (error.name === 'OverconstrainedError') {
+            errorMessage = $t('errorCameraOverconstrained') as string
+          } else if (error.name === 'StreamApiNotSupportedError') {
+            errorMessage = $t('errorCameraStreamApiNotSupported') as string
+          }
+
+          Swal.fire({
+            icon: 'error',
+            text: errorMessage,
+            title: $t('globalStatusError'),
+          }).then(() =>
+            $store.commit('modalRemove', 'ModalAttendanceScanQrCode')
+          )
+          consola.error(errorMessage)
+        } finally {
+          data.loading = false
+        }
+      },
+      async onClick() {
+        await methods.writeTag(data.invitationCode)
+      },
+      onDecode(e: any): void {
+        data.invitationCode = e
+        Swal.fire({
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+        }).then(() => $store.commit('modalRemove', 'ModalAttendanceScanQrCode'))
+      },
+      async checkWriteTag(): Promise<void> {
+        if (!('NDEFReader' in window)) {
+          return Promise.reject(
+            Error(
+              $t('errorNfcNotSupported', {
+                hintUpdateOrChrome: $t('hintUpdateOrChrome'),
+              }) as string
+            )
+          )
+        }
+
+        if (!navigator.permissions) {
+          return Promise.reject(
+            Error(
+              $t('errorNavigatorPermissionsNotSupported', {
+                hintUpdateOrChrome: $t('hintUpdateOrChrome'),
+              }) as string
+            )
+          )
+        } else {
+          const nfcPermissionStatus = await navigator.permissions.query({
+            name: 'nfc' as PermissionName,
+          })
+
+          if (nfcPermissionStatus.state === 'granted') {
+            return Promise.resolve()
+          } else {
+            return Promise.reject(Error(nfcPermissionStatus.state))
+          }
+        }
+      },
+      async writeTag(e: any): Promise<void> {
+        try {
+          await new NDEFReader().write(e)
+          Swal.fire({
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+          })
+        } catch (error) {
+          if (error instanceof DOMException) {
+            let errorMessage: string = error.message
+
+            if (error.name === 'AbortError') {
+              errorMessage = $t('errorNfcAbort', {
+                hintTryAgain: $t('hintTryAgain'),
+              }) as string
+            } else if (error.name === 'NotAllowedError') {
+              errorMessage = $t('errorNfcNotAllowed', {
+                hintBrowserSettings: $t('hintBrowserSettings'),
+              }) as string
+            } else if (error.name === 'NotSupportedError') {
+              errorMessage = $t('errorNfcNotSupported') as string
+            } else if (error.name === 'NotReadableError') {
+              errorMessage = $t('errorNfcNotReadable') as string
+            } else if (error.name === 'NetworkError') {
+              errorMessage = $t('errorNfcNetwork', {
+                hintTryAgain: $t('hintTryAgain'),
+              }) as string
+            }
+
+            Swal.fire({
+              icon: 'error',
+              text: errorMessage,
+              title: $t('globalStatusError'),
+            })
+            consola.error(errorMessage)
+          } else {
+            alert(`Unexpected error: ${error}`)
+          }
+        }
+      },
+    }
+
+    onMounted(() => {
+      methods.checkWriteTag().catch((err: Error) => {
+        data.isNfcWritableErrorMessage = err.message
+      })
+    })
+
+    watch(eventQuery.error, (currentValue, _oldValue) => {
+      if (currentValue) consola.error(currentValue)
+    })
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      ...computations,
     }
   },
   head() {
@@ -155,156 +321,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  computed: {
-    isNfcError(): boolean {
-      return !!(
-        this.isNfcWritableErrorMessage &&
-        this.isNfcWritableErrorMessage !== 'prompt'
-      )
-    },
-    title(): string | undefined {
-      if (
-        this.$route.params.username === this.$store.getters.signedInUsername &&
-        this.event
-      ) {
-        return `${this.$t('title')} · ${this.event.name}`
-      }
-      return '403'
-    },
-  },
-  mounted() {
-    this.checkWriteTag().catch((err: Error) => {
-      this.isNfcWritableErrorMessage = err.message
-    })
-  },
-  methods: {
-    qrCodeScan() {
-      this.$store.commit('modalAdd', { id: 'ModalAttendanceScanQrCode' })
-    },
-    async onInit(promise: Promise<any>) {
-      this.loading = true
-
-      try {
-        await promise
-      } catch (error: any) {
-        let errorMessage: string = error.message
-
-        if (error.name === 'NotAllowedError') {
-          errorMessage = this.$t('errorCameraNotAllowed', {
-            hintBrowserSettings: this.$t('hintBrowserSettings'),
-          }) as string
-        } else if (error.name === 'NotFoundError') {
-          errorMessage = this.$t('errorCameraNotFound') as string
-        } else if (error.name === 'NotSupportedError') {
-          errorMessage = this.$t('errorCameraNotSupported') as string
-        } else if (error.name === 'NotReadableError') {
-          errorMessage = this.$t('errorCameraNotReadable') as string
-        } else if (error.name === 'OverconstrainedError') {
-          errorMessage = this.$t('errorCameraOverconstrained') as string
-        } else if (error.name === 'StreamApiNotSupportedError') {
-          errorMessage = this.$t('errorCameraStreamApiNotSupported') as string
-        }
-
-        Swal.fire({
-          icon: 'error',
-          text: errorMessage,
-          title: this.$t('globalStatusError'),
-        }).then(() =>
-          this.$store.commit('modalRemove', 'ModalAttendanceScanQrCode')
-        )
-        consola.error(errorMessage)
-      } finally {
-        this.loading = false
-      }
-    },
-    async onClick() {
-      await this.writeTag(this.invitationCode)
-    },
-    onDecode(e: any): void {
-      this.invitationCode = e
-      Swal.fire({
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 1500,
-        timerProgressBar: true,
-      }).then(() =>
-        this.$store.commit('modalRemove', 'ModalAttendanceScanQrCode')
-      )
-    },
-    async checkWriteTag(): Promise<void> {
-      if (!('NDEFReader' in window)) {
-        return Promise.reject(
-          Error(
-            this.$t('errorNfcNotSupported', {
-              hintUpdateOrChrome: this.$t('hintUpdateOrChrome'),
-            }) as string
-          )
-        )
-      }
-
-      if (!navigator.permissions) {
-        return Promise.reject(
-          Error(
-            this.$t('errorNavigatorPermissionsNotSupported', {
-              hintUpdateOrChrome: this.$t('hintUpdateOrChrome'),
-            }) as string
-          )
-        )
-      } else {
-        const nfcPermissionStatus = await navigator.permissions.query({
-          name: 'nfc' as PermissionName,
-        })
-
-        if (nfcPermissionStatus.state === 'granted') {
-          return Promise.resolve()
-        } else {
-          return Promise.reject(Error(nfcPermissionStatus.state))
-        }
-      }
-    },
-    async writeTag(e: any): Promise<void> {
-      try {
-        await new NDEFReader().write(e)
-        Swal.fire({
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 1500,
-          timerProgressBar: true,
-        })
-      } catch (error) {
-        if (error instanceof DOMException) {
-          let errorMessage: string = error.message
-
-          if (error.name === 'AbortError') {
-            errorMessage = this.$t('errorNfcAbort', {
-              hintTryAgain: this.$t('hintTryAgain'),
-            }) as string
-          } else if (error.name === 'NotAllowedError') {
-            errorMessage = this.$t('errorNfcNotAllowed', {
-              hintBrowserSettings: this.$t('hintBrowserSettings'),
-            }) as string
-          } else if (error.name === 'NotSupportedError') {
-            errorMessage = this.$t('errorNfcNotSupported') as string
-          } else if (error.name === 'NotReadableError') {
-            errorMessage = this.$t('errorNfcNotReadable') as string
-          } else if (error.name === 'NetworkError') {
-            errorMessage = this.$t('errorNfcNetwork', {
-              hintTryAgain: this.$t('hintTryAgain'),
-            }) as string
-          }
-
-          Swal.fire({
-            icon: 'error',
-            text: errorMessage,
-            title: this.$t('globalStatusError'),
-          })
-          consola.error(errorMessage)
-        } else {
-          alert(`Unexpected error: ${error}`)
-        }
-      }
-    },
   },
 })
 </script>

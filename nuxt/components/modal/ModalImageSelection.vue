@@ -1,7 +1,7 @@
 <template>
   <Modal
     id="ModalImageSelection"
-    :is-submit-disabled="selectedProfilePictureStorageKey === undefined"
+    :is-submit-disabled="!!selectedProfilePictureStorageKey"
     :submit-task-provider="setProfilePicture"
     @close="selectedProfilePictureStorageKey = undefined"
     @submitSuccess="$emit('submitSuccess')"
@@ -18,28 +18,49 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '#app'
+import consola from 'consola'
 
-import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profilePictureSet.gql'
+import { defineComponent, reactive } from '#app'
+
+import { useProfilePictureSetMutation } from '~/gql/generated'
+import { getApiMeta } from '~/plugins/util/util'
 
 export default defineComponent({
-  data() {
-    return {
+  setup() {
+    const profilePictureSetMutation = useProfilePictureSetMutation()
+
+    const apiData = reactive({
+      api: {
+        data: {
+          ...profilePictureSetMutation.data.value,
+        },
+        ...getApiMeta([profilePictureSetMutation]),
+      },
+    })
+    const data = reactive({
       selectedProfilePictureStorageKey: undefined as string | undefined,
-      setProfilePicture: () =>
-        this.$apollo.mutate({
-          mutation: PROFILE_PICTURE_SET_MUTATION,
-          variables: {
-            // @ts-ignore
-            storageKey: this.selectedProfilePictureStorageKey,
-          },
-        }),
+    })
+    const methods = {
+      selectProfilePictureStorageKey(storageKey: string) {
+        data.selectedProfilePictureStorageKey = storageKey
+      },
+      setProfilePicture: async () => {
+        const result = await profilePictureSetMutation.executeMutation({
+          storageKey: data.selectedProfilePictureStorageKey || '',
+        })
+
+        if (result.error) {
+          apiData.api.errors.push(result.error)
+          consola.error(result.error)
+        }
+      },
     }
-  },
-  methods: {
-    selectProfilePictureStorageKey(storageKey: string) {
-      this.selectedProfilePictureStorageKey = storageKey
-    },
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+    }
   },
 })
 </script>

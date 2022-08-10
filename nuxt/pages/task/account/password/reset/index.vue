@@ -10,10 +10,12 @@ import { Context } from '@nuxt/types-edge'
 
 import { defineComponent } from '#app'
 
+import { REGEX_UUID } from '~/plugins/util/validation'
+
 export default defineComponent({
   name: 'IndexPage',
   middleware({ app, query, redirect }: Context) {
-    if (Array.isArray(query.code) || !app.$util.REGEX_UUID.test(query.code)) {
+    if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {
       return redirect(app.localePath('/'))
     }
   },

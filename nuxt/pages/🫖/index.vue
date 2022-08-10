@@ -17,7 +17,6 @@ export default defineComponent({
   },
   data() {
     return {
-      graphqlError: undefined as Error | undefined,
       title: this.$t('title') as string,
     }
   },

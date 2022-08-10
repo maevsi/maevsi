@@ -2,9 +2,9 @@
   <Form
     v-if="event"
     ref="form"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
+    :errors="api.errors"
     :form="$v.form"
-    :form-sent="form.sent"
+    :is-form-sent="isFormSent"
     :submit-name="$t('select')"
     @submit.prevent="submit"
   >
@@ -55,7 +55,7 @@
         </FormInputStateError>
       </template>
     </FormInput>
-    <div v-if="allContacts" class="flex flex-col gap-2">
+    <div v-if="contacts" class="flex flex-col gap-2">
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button
           :aria-label="$t('buttonContact')"
@@ -77,135 +77,153 @@
 <script lang="ts">
 import consola from 'consola'
 import { minLength, minValue, required } from 'vuelidate/lib/validators'
-import { ApolloQueryResult } from 'apollo-client'
-import { mapGetters } from 'vuex'
 
-import { defineComponent, PropType } from '#app'
-import INVITATION_CREATE_MUTATION from '~/gql/mutation/invitation/invitationCreate.gql'
-import CONTACTS_ALL_QUERY from '~/gql/query/contact/contactsAll.gql'
-import { Event } from '~/types/event'
+import {
+  computed,
+  defineComponent,
+  PropType,
+  reactive,
+  ref,
+  useNuxtApp,
+  watch,
+} from '#app'
+import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
+import { formPreSubmit } from '~/plugins/util/validation'
 import { Contact } from '~/types/contact'
+import { getApiMeta } from '~/plugins/util/util'
+import {
+  Event,
+  useAllContactsQuery,
+  useCreateInvitationMutation,
+} from '~/gql/generated'
 
 export default defineComponent({
-  apollo: {
-    allContacts(): any {
-      return {
-        query: CONTACTS_ALL_QUERY,
-        variables: {
-          authorAccountUsername: this.signedInUsername,
-          first: this.$util.ITEMS_PER_PAGE_LARGE,
-          offset: null,
-        },
-        result(result: ApolloQueryResult<any>, key: string) {
-          if (
-            !this.$apollo.queries.allContacts.loading &&
-            result.data &&
-            result.data[key].pageInfo.hasNextPage
-          ) {
-            this.loadMore()
-          }
-        },
-        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
-          this.graphqlError = error
-          consola.error(error)
-        },
-      }
-    },
-  },
   props: {
     event: {
       required: true,
       type: Object as PropType<Event>,
     },
   },
-  data() {
-    return {
-      allContacts: undefined as any,
+  setup(props, { emit }) {
+    const { $store } = useNuxtApp()
+    const { executeMutation: executeMutationCreateInvitation } =
+      useCreateInvitationMutation()
+
+    const refs = {
+      after: ref<string>(),
+    }
+    const allContactsQuery = useAllContactsQuery({
+      variables: {
+        after: refs.after,
+        authorAccountUsername: $store.getters.signedInUsername,
+        first: ITEMS_PER_PAGE_LARGE,
+      },
+    })
+
+    const apiData = reactive({
+      api: {
+        data: {
+          ...allContactsQuery.data.value,
+        },
+        ...getApiMeta([allContactsQuery]),
+      },
+      contacts: allContactsQuery.data.value?.allContacts?.nodes,
+    })
+    const data = reactive({
       form: {
-        sent: false,
         contactId: undefined as string | undefined,
         searchString: undefined as string | undefined,
       },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
-    contactsFiltered(): Contact[] | undefined {
-      if (!this.allContacts) {
-        return undefined
-      }
+      isFormSent: false,
+    })
+    const methods = {
+      selectToggle(contact: Contact) {
+        data.form.contactId = contact.id
 
-      if (!this.form.searchString || this.form.searchString === '') {
-        return this.allContacts.nodes
-      }
-
-      const searchStringParts = this.form.searchString.split(' ')
-      const allContactsFiltered = this.allContacts.nodes.filter(
-        (contact: Contact) => {
-          for (const contactProperty of [
-            ...(contact.accountUsername
-              ? [contact.accountUsername.toLowerCase()]
-              : []),
-            ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
-            ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
-          ]) {
-            for (const searchStringPart of searchStringParts) {
-              if (contactProperty.includes(searchStringPart.toLowerCase())) {
-                return true
-              }
-            }
-          }
-
-          return false
+        // For multiple contact selections:
+        //
+        // const index = this.form.contactIds.indexOf(contact.nodeId)
+        // if (index === -1) {
+        //   this.form.contactIds.push(contact.nodeId)
+        // } else {
+        //   this.form.contactIds.splice(index, 1)
+        // }
+      },
+      async submit() {
+        try {
+          await formPreSubmit(this)
+        } catch (error) {
+          return
         }
-      )
 
-      return allContactsFiltered
-    },
-  },
-  methods: {
-    selectToggle(contact: Contact) {
-      this.form.contactId = contact.id
-
-      // For multiple contact selections:
-      //
-      // const index = this.form.contactIds.indexOf(contact.nodeId)
-      // if (index === -1) {
-      //   this.form.contactIds.push(contact.nodeId)
-      // } else {
-      //   this.form.contactIds.splice(index, 1)
-      // }
-    },
-    loadMore() {
-      this.$util.loadMore(this.$apollo, 'allContacts', this.allContacts)
-    },
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
-
-      this.$apollo
-        .mutate({
-          mutation: INVITATION_CREATE_MUTATION,
-          variables: {
-            invitationInput: {
-              contactId:
-                this.form.contactId && this.form.contactId !== ''
-                  ? +this.form.contactId
-                  : null,
-              eventId: +this.event.id,
-            },
+        const result = await executeMutationCreateInvitation({
+          invitationInput: {
+            contactId:
+              data.form.contactId && data.form.contactId !== ''
+                ? +data.form.contactId
+                : null,
+            eventId: +props.event.id,
           },
         })
-        .then(async () => await (this.$listeners.submitSuccess as Function)())
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-    },
+
+        if (result.error) {
+          apiData.api.errors.push(result.error)
+          consola.error(result.error)
+        }
+
+        if (!result.data) {
+          return
+        }
+
+        emit('submitSuccess')
+      },
+    }
+    const computations = {
+      contactsFiltered: computed((): Contact[] | undefined => {
+        if (!apiData.contacts) {
+          return undefined
+        }
+
+        if (!data.form.searchString || data.form.searchString === '') {
+          return apiData.contacts
+        }
+
+        const searchStringParts = data.form.searchString.split(' ')
+        const allContactsFiltered = apiData.contacts.filter(
+          (contact: Contact) => {
+            for (const contactProperty of [
+              ...(contact.accountUsername
+                ? [contact.accountUsername.toLowerCase()]
+                : []),
+              ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
+              ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
+            ]) {
+              for (const searchStringPart of searchStringParts) {
+                if (contactProperty.includes(searchStringPart.toLowerCase())) {
+                  return true
+                }
+              }
+            }
+
+            return false
+          }
+        )
+
+        return allContactsFiltered
+      }),
+    }
+
+    watch(allContactsQuery.error, (currentValue, _oldValue) => {
+      if (currentValue) consola.error(currentValue)
+    })
+
+    return {
+      ...refs,
+      ...apiData,
+      ...data,
+      ...methods,
+      ...computations,
+    }
   },
   validations() {
     return {

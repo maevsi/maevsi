@@ -5,7 +5,7 @@
     </CardStateInfo>
     <div
       class="container mx-auto flex items-center justify-between gap-4 p-4 md:px-8"
-      :class="{ container: !signedInUsername }"
+      :class="{ container: !signedInUsername() }"
     >
       <ButtonIcon
         :aria-label="$t('menuShow')"
@@ -49,7 +49,7 @@
       </div> -->
       <div class="flex items-center gap-4 whitespace-nowrap">
         <ButtonColored
-          v-if="signedInUsername"
+          v-if="signedInUsername()"
           :aria-label="$t('dashboard')"
           class="hidden md:block"
           :is-primary="false"
@@ -58,17 +58,17 @@
           {{ $t('dashboard') }}
         </ButtonColored>
         <Button
-          v-if="signedInUsername"
-          :aria-label="signedInUsername"
+          v-if="signedInUsername()"
+          :aria-label="signedInUsername()"
           class="flex min-w-0 items-center gap-2 text-text-dark dark:text-text-bright"
           :title="$t('profileLink')"
-          :to="localePath(`/account/${signedInUsername}`)"
+          :to="localePath(`/account/${signedInUsername()}`)"
           @click.native="$emit('onMenuHide')"
         >
           <AccountProfilePicture
             height="40"
             rounded
-            :username="signedInUsername"
+            :username="signedInUsername()"
             width="40"
           />
         </Button>
@@ -88,30 +88,39 @@
 <script lang="ts">
 import { mapGetters } from 'vuex'
 
-import { defineComponent } from '#app'
+import { defineComponent, onBeforeMount, reactive, useNuxtApp } from '#app'
 
 import supportedBrowsers from '~/supportedBrowsers'
 
 export default defineComponent({
   name: 'MaevsiHeader',
-  data() {
-    return {
+  setup(_props) {
+    const { $router, localePath } = useNuxtApp()
+
+    const data = reactive({
       isBrowserSupported: true,
+    })
+    const methods = {
+      navigateToSearch() {
+        $router.push({
+          path: localePath(`/task/search`),
+          query: { q: 'search phrase' },
+        })
+      },
     }
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
-  },
-  beforeMount() {
-    this.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
-  },
-  methods: {
-    navigateToSearch() {
-      this.$router.push({
-        path: this.localePath(`/task/search`),
-        query: { q: 'search phrase' },
-      })
-    },
+    const computations = {
+      ...mapGetters(['signedInUsername']),
+    }
+
+    onBeforeMount(() => {
+      data.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
+    })
+
+    return {
+      ...data,
+      ...methods,
+      ...computations,
+    }
   },
 })
 </script>

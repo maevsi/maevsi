@@ -1,10 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <Loader
-      v-if="loading || graphqlError"
-      :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    />
+    <Loader :api="api" />
   </div>
 </template>
 
@@ -13,25 +10,63 @@ import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 
-import { defineComponent } from '#app'
+import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 
-import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/accountEmailAddressVerification.gql'
+import { REGEX_UUID } from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 
 export default defineComponent({
   name: 'IndexPage',
   middleware({ app, query, redirect }: Context) {
-    if (Array.isArray(query.code) || !app.$util.REGEX_UUID.test(query.code)) {
+    if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {
       return redirect(app.localePath('/'))
     }
   },
   transition: {
     name: 'layout',
   },
-  data() {
+  setup() {
+    const { $router, $t, localePath } = useNuxtApp()
+    const route = useRoute()
+    const accountEmailAddressVerificationMutation =
+      useAccountEmailAddressVerificationMutation()
+
+    const apiData = reactive({
+      api: {
+        data: {
+          ...accountEmailAddressVerificationMutation.data.value,
+        },
+        ...getApiMeta([accountEmailAddressVerificationMutation]),
+      },
+    })
+    const data = reactive({
+      title: $t('title'),
+    })
+
+    accountEmailAddressVerificationMutation
+      .executeMutation({
+        code: route.query.code,
+      })
+      .then((result) => {
+        if (result.error) {
+          apiData.api.errors.push(result.error)
+          consola.error(result.error)
+        } else {
+          Swal.fire({
+            icon: 'success',
+            text: $t('verifiedBody') as string,
+            title: $t('verified'),
+          })
+          $router.push({
+            path: localePath(`/task/account/sign-in`),
+          })
+        }
+      })
+
     return {
-      graphqlError: undefined as Error | undefined,
-      loading: true,
-      title: this.$t('title'),
+      ...apiData,
+      ...data,
     }
   },
   head() {
@@ -59,37 +94,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  beforeMount() {
-    this.accountEmailAddressVerification()
-  },
-  methods: {
-    accountEmailAddressVerification() {
-      this.$apollo
-        .mutate({
-          mutation: ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION,
-          variables: {
-            code: this.$route.query.code,
-          },
-        })
-        .then(() => {
-          Swal.fire({
-            icon: 'success',
-            text: this.$t('verifiedBody') as string,
-            title: this.$t('verified'),
-          })
-          this.$router.push({
-            path: this.localePath(`/task/account/sign-in`),
-          })
-        })
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-        .finally(() => {
-          this.loading = false
-        })
-    },
   },
 })
 </script>

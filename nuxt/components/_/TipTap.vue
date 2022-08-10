@@ -5,7 +5,7 @@
         <Button
           :aria-label="$t('undo')"
           :title="$t('undo')"
-          @click="editor.chain().focus().undo().run()"
+          @click="editor?.chain().focus().undo().run()"
         >
           <template slot="prefix">
             <IconArrowRotateLeft />
@@ -14,7 +14,7 @@
         <Button
           :aria-label="$t('redo')"
           :title="$t('redo')"
-          @click="editor.chain().focus().redo().run()"
+          @click="editor?.chain().focus().redo().run()"
         >
           <template slot="prefix">
             <IconArrowRotateRight />
@@ -26,7 +26,7 @@
           :aria-label="$t('bold')"
           :class="{ 'is-active': editor.isActive('bold') }"
           :title="$t('bold')"
-          @click="editor.chain().focus().toggleBold().run()"
+          @click="editor?.chain().focus().toggleBold().run()"
         >
           <template slot="prefix">
             <IconBold />
@@ -36,7 +36,7 @@
           :aria-label="$t('italic')"
           :class="{ 'is-active': editor.isActive('italic') }"
           :title="$t('italic')"
-          @click="editor.chain().focus().toggleItalic().run()"
+          @click="editor?.chain().focus().toggleItalic().run()"
         >
           <template slot="prefix">
             <IconItalic />
@@ -46,7 +46,7 @@
           :aria-label="$t('strike')"
           :class="{ 'is-active': editor.isActive('strike') }"
           :title="$t('strike')"
-          @click="editor.chain().focus().toggleStrike().run()"
+          @click="editor?.chain().focus().toggleStrike().run()"
         >
           <template slot="prefix">
             <IconStrikeThrough />
@@ -57,7 +57,7 @@
         <Button
           :aria-label="$t('paragraph')"
           :title="$t('paragraph')"
-          @click="editor.chain().focus().setParagraph().run()"
+          @click="editor?.chain().focus().setParagraph().run()"
         >
           <template slot="prefix">
             <IconParagraph />
@@ -66,7 +66,7 @@
         <Button
           :aria-label="$t('heading')"
           :title="$t('heading')"
-          @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
+          @click="editor?.chain().focus().toggleHeading({ level: 1 }).run()"
         >
           <template slot="prefix">
             <IconHeading />
@@ -75,7 +75,7 @@
         <Button
           :aria-label="$t('heading')"
           :title="$t('heading')"
-          @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+          @click="editor?.chain().focus().toggleHeading({ level: 2 }).run()"
         >
           <template slot="prefix">
             <IconHeading />
@@ -84,7 +84,7 @@
         <Button
           :aria-label="$t('heading')"
           :title="$t('heading')"
-          @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
+          @click="editor?.chain().focus().toggleHeading({ level: 3 }).run()"
         >
           <template slot="prefix">
             <IconHeading />
@@ -95,7 +95,7 @@
         <Button
           :aria-label="$t('listUl')"
           :title="$t('listUl')"
-          @click="editor.chain().focus().toggleBulletList().run()"
+          @click="editor?.chain().focus().toggleBulletList().run()"
         >
           <template slot="prefix">
             <IconListUl />
@@ -104,7 +104,7 @@
         <Button
           :aria-label="$t('listOl')"
           :title="$t('listOl')"
-          @click="editor.chain().focus().toggleOrderedList().run()"
+          @click="editor?.chain().focus().toggleOrderedList().run()"
         >
           <template slot="prefix">
             <IconListOl />
@@ -121,7 +121,7 @@
           :aria-label="$t('linkRemove')"
           :disabled="!editor.isActive('link')"
           :title="$t('linkRemove')"
-          @click="editor.chain().focus().unsetLink().run()"
+          @click="editor?.chain().focus().unsetLink().run()"
         >
           <template slot="prefix">
             <IconLinkSlash />
@@ -130,7 +130,7 @@
         <Button
           :aria-label="$t('blockquote')"
           :title="$t('blockquote')"
-          @click="editor.chain().focus().toggleBlockquote().run()"
+          @click="editor?.chain().focus().toggleBlockquote().run()"
         >
           <template slot="prefix">
             <IconQuoteLeft />
@@ -139,7 +139,7 @@
         <Button
           :aria-label="$t('code')"
           :title="$t('code')"
-          @click="editor.chain().focus().toggleCode().run()"
+          @click="editor?.chain().focus().toggleCode().run()"
         >
           <template slot="prefix">
             <IconCode />
@@ -150,13 +150,13 @@
         <IconMinus
           :aria-label="$t('horizontalRule')"
           :title="$t('horizontalRule')"
-          @click="editor.chain().focus().setHorizontalRule().run()"
+          @click="editor?.chain().focus().setHorizontalRule().run()"
         />
       </div>
       <!--
       <Button
         :class="{ 'is-active': editor.isActive('codeBlock') }"
-        @click="editor.chain().focus().toggleCodeBlock().run()"
+        @click="editor?.chain().focus().toggleCodeBlock().run()"
       >
         code block
       </Button> -->

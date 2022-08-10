@@ -11,10 +11,10 @@
       </template>
     </ButtonColored>
     <Form
-      :errors="$util.getGqlErrorMessages(graphqlError, this)"
+      :errors="api.errors"
       :form="$v.form"
       form-class="w-full"
-      :form-sent="form.sent"
+      :is-form-sent="isFormSent"
       :submit-name="$t('register')"
       @submit.prevent="submit"
     >
@@ -50,87 +50,96 @@ import consola from 'consola'
 import Swal from 'sweetalert2'
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent } from '#app'
+import { defineComponent, reactive, useNuxtApp } from '#app'
 
-import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
+import {
+  formPreSubmit,
+  validateUsername,
+  VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
+  VALIDATION_FORMAT_SLUG,
+  VALIDATION_FORMAT_UPPERCASE_NONE,
+  VALIDATION_PASSWORD_LENGTH_MINIMUM,
+  VALIDATION_USERNAME_LENGTH_MAXIMUM,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAccountRegistrationMutation } from '~/gql/generated'
 
 const FormAccountRegistration = defineComponent({
-  data() {
-    return {
+  setup(_props, { emit }) {
+    const { $i18n, $t } = useNuxtApp()
+    const { executeMutation: executeMutationAccountRegistration } =
+      useAccountRegistrationMutation()
+
+    const apiData = reactive({
+      api: {
+        data: {},
+        ...getApiMeta([]),
+      },
+    })
+    const data = reactive({
       form: {
-        emailAddress: undefined as string | undefined,
-        password: undefined as string | undefined,
-        sent: false,
-        username: undefined as string | undefined,
+        emailAddress: '',
+        password: '',
+        username: '',
       },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  watch: {
-    form: {
-      handler(val) {
-        if (JSON.stringify(val) !== '{}') {
-          this.$emit('form', val)
+      isFormSent: false,
+    })
+    const methods = {
+      async submit() {
+        try {
+          await formPreSubmit(this)
+        } catch (error) {
+          return
         }
+
+        const result = await executeMutationAccountRegistration({
+          emailAddress: data.form.emailAddress,
+          language: $i18n.locale,
+          password: data.form.password,
+          username: data.form.username,
+        })
+
+        if (result.error) {
+          apiData.api.errors.push(result.error)
+          consola.error(result.error)
+        }
+
+        if (!result.data) {
+          return
+        }
+
+        emit('registered')
+        Swal.fire({
+          icon: 'success',
+          text: $t('registrationSuccessBody') as string,
+          title: $t('registrationSuccessTitle'),
+        })
       },
-      deep: true,
-    },
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
+    }
 
-      const res = await this.$apollo
-        .mutate({
-          mutation: ACCOUNT_REGISTRATION_MUTATION,
-          variables: {
-            emailAddress: this.form.emailAddress,
-            language: this.$i18n.locale,
-            password: this.form.password,
-            username: this.form.username,
-          },
-        })
-        .then(({ data }) => data.accountRegistration)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return
-      }
-
-      this.$emit('registered')
-      Swal.fire({
-        icon: 'success',
-        text: this.$t('registrationSuccessBody') as string,
-        title: this.$t('registrationSuccessTitle'),
-      })
-    },
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+    }
   },
   validations() {
     return {
       form: {
         username: {
-          existenceNone: this.$util.validateUsername(this.$apollo, true),
-          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
+          existenceNone: validateUsername(true),
+          formatSlug: VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
           required,
         },
         password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
         emailAddress: {
           email,
-          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(
-            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
-          ),
+          formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+          maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
           required,
         },
       },

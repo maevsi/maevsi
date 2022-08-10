@@ -26,7 +26,7 @@
 <script lang="ts">
 import { status } from '@http-util/status-i18n'
 
-import { defineComponent, PropType } from '#app'
+import { computed, defineComponent, PropType, useNuxtApp } from '#app'
 
 export default defineComponent({
   name: 'MaevsiError',
@@ -36,13 +36,18 @@ export default defineComponent({
       type: Number as PropType<number | undefined>,
     },
   },
-  computed: {
-    statusReason(): string {
-      return (
-        status(this.statusCode, this.$i18n.locale) ||
-        (this.$t('error') as string)
-      )
-    },
+  setup(props) {
+    const { $i18n, $t } = useNuxtApp()
+
+    const computations = {
+      statusReason: computed(() => {
+        return status(props.statusCode, $i18n.locale) || ($t('error') as string)
+      }),
+    }
+
+    return {
+      ...computations,
+    }
   },
 })
 </script>

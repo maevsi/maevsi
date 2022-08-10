@@ -1,5 +1,3 @@
-#import "../../fragments/eventFields.gql"
-
 mutation eventDelete($id: BigInt!, $password: String!) {
   eventDelete(
     input: {

@@ -1,9 +1,9 @@
 <template>
   <Form
     ref="form"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
+    :errors="api.errors"
     :form="$v.form"
-    :form-sent="form.sent"
+    :is-form-sent="isFormSent"
     :submit-name="$t('save')"
     @submit.prevent="submit"
   >
@@ -81,6 +81,7 @@
       @input="form.address = $event"
     >
       <textarea
+        v-if="$v.form.address"
         id="input-address"
         v-model.trim="$v.form.address.$model"
         class="form-input"
@@ -113,10 +114,27 @@
 import consola from 'consola'
 import { email, maxLength } from 'vuelidate/lib/validators'
 
-import { defineComponent, PropType } from '#app'
-import CONTACT_CREATE_MUTATION from '~/gql/mutation/contact/contactCreate.gql'
-import CONTACT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/contact/contactUpdateById.gql'
+import { defineComponent, PropType, reactive, useNuxtApp } from '#app'
 import { Contact } from '~/types/contact'
+import {
+  formPreSubmit,
+  validateUsername,
+  VALIDATION_ADDRESS_LENGTH_MAXIMUM,
+  VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
+  VALIDATION_FIRST_NAME_LENGTH_MAXIMUM,
+  VALIDATION_FORMAT_PHONE_NUMBER,
+  VALIDATION_FORMAT_SLUG,
+  VALIDATION_FORMAT_UPPERCASE_NONE,
+  VALIDATION_FORMAT_URL_HTTPS,
+  VALIDATION_LAST_NAME_LENGTH_MAXIMUM,
+  VALIDATION_USERNAME_LENGTH_MAXIMUM,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import {
+  useCreateContactMutation,
+  useUpdateContactByIdMutation,
+} from '~/gql/generated'
 
 export default defineComponent({
   props: {
@@ -125,130 +143,152 @@ export default defineComponent({
       type: Object as PropType<Contact | undefined>,
     },
   },
-  data() {
-    return {
-      form: {
-        sent: false,
-        id: undefined as string | undefined,
-        accountUsername: undefined as string | undefined,
-        address: undefined as string | undefined,
-        emailAddress: undefined as string | undefined,
-        firstName: undefined as string | undefined,
-        lastName: undefined as string | undefined,
-        phoneNumber: undefined as string | undefined,
-        url: undefined as string | undefined,
-      },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  created() {
-    if (this.contact) {
-      for (const [k, v] of Object.entries(this.contact)) {
-        ;(this.form as Record<string, any>)[k] = v
-      }
-    }
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
+  setup(props, { emit }) {
+    const { $store } = useNuxtApp()
+    const updateContactByIdMutation = useUpdateContactByIdMutation()
+    const createContactMutation = useCreateContactMutation()
 
-      if (this.form.id) {
-        // Edit
-        await this.$apollo
-          .mutate({
-            mutation: CONTACT_UPDATE_BY_ID_MUTATION,
-            variables: {
-              id: this.form.id,
-              contactPatch: {
-                accountUsername:
-                  this.form.accountUsername === ''
-                    ? null
-                    : this.form.accountUsername,
-                address: this.form.address === '' ? null : this.form.address,
-                authorAccountUsername: this.$store.getters.jwtDecoded?.username,
-                emailAddress:
-                  this.form.emailAddress === '' ? null : this.form.emailAddress,
-                firstName:
-                  this.form.firstName === '' ? null : this.form.firstName,
-                lastName: this.form.lastName === '' ? null : this.form.lastName,
-                phoneNumber:
-                  this.form.phoneNumber !== '' ? this.form.phoneNumber : null,
-                url: this.form.url !== '' ? this.form.url : null,
-              },
+    const apiData = reactive({
+      api: {
+        data: {
+          ...updateContactByIdMutation.data.value,
+        },
+        ...getApiMeta([updateContactByIdMutation]),
+      },
+    })
+    const data = reactive({
+      form: {
+        id: '',
+        accountUsername: '',
+        address: '',
+        emailAddress: '',
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        url: '',
+      },
+      isFormSent: false,
+    })
+    const methods = {
+      async submit() {
+        try {
+          await formPreSubmit(this)
+        } catch (error) {
+          return
+        }
+
+        if (data.form.id) {
+          // Edit
+          const result = await updateContactByIdMutation.executeMutation({
+            id: data.form.id,
+            contactPatch: {
+              accountUsername:
+                data.form.accountUsername === ''
+                  ? undefined
+                  : data.form.accountUsername,
+              address: data.form.address === '' ? undefined : data.form.address,
+              authorAccountUsername: $store.getters.jwtDecoded?.username,
+              emailAddress:
+                data.form.emailAddress === ''
+                  ? undefined
+                  : data.form.emailAddress,
+              firstName:
+                data.form.firstName === '' ? undefined : data.form.firstName,
+              lastName:
+                data.form.lastName === '' ? undefined : data.form.lastName,
+              phoneNumber:
+                data.form.phoneNumber !== ''
+                  ? data.form.phoneNumber
+                  : undefined,
+              url: data.form.url !== '' ? data.form.url : undefined,
             },
           })
-          .then(async () => await (this.$listeners.submitSuccess as Function)())
-          .catch((reason) => {
-            this.graphqlError = reason
-            consola.error(reason)
-          })
-      } else {
-        // Add
-        await this.$apollo
-          .mutate({
-            mutation: CONTACT_CREATE_MUTATION,
-            variables: {
-              contactInput: {
-                accountUsername:
-                  this.form.accountUsername === ''
-                    ? null
-                    : this.form.accountUsername,
-                address: this.form.address === '' ? null : this.form.address,
-                authorAccountUsername: this.$store.getters.jwtDecoded?.username,
-                emailAddress:
-                  this.form.emailAddress === '' ? null : this.form.emailAddress,
-                firstName:
-                  this.form.firstName === '' ? null : this.form.firstName,
-                lastName: this.form.lastName === '' ? null : this.form.lastName,
-                phoneNumber:
-                  this.form.phoneNumber !== '' ? this.form.phoneNumber : null,
-                url: this.form.url !== '' ? this.form.url : null,
-              },
+
+          if (result.error) {
+            apiData.api.errors.push(result.error)
+            consola.error(result.error)
+          }
+        } else {
+          // Add
+          const result = await createContactMutation.executeMutation({
+            contactInput: {
+              accountUsername:
+                data.form.accountUsername === ''
+                  ? undefined
+                  : data.form.accountUsername,
+              address: data.form.address === '' ? undefined : data.form.address,
+              authorAccountUsername: $store.getters.jwtDecoded?.username,
+              emailAddress:
+                data.form.emailAddress === ''
+                  ? undefined
+                  : data.form.emailAddress,
+              firstName:
+                data.form.firstName === '' ? undefined : data.form.firstName,
+              lastName:
+                data.form.lastName === '' ? undefined : data.form.lastName,
+              phoneNumber:
+                data.form.phoneNumber !== ''
+                  ? data.form.phoneNumber
+                  : undefined,
+              url: data.form.url !== '' ? data.form.url : undefined,
             },
           })
-          .then(async () => await (this.$listeners.submitSuccess as Function)())
-          .catch((reason) => {
-            this.graphqlError = reason
-            consola.error(reason)
-          })
+
+          if (result.error) {
+            apiData.api.errors.push(result.error)
+            consola.error(result.error)
+          }
+
+          if (!result.data) {
+            return
+          }
+
+          emit('submitSuccess')
+        }
+      },
+    }
+
+    if (props.contact) {
+      for (const [k, v] of Object.entries(props.contact)) {
+        ;(data.form as Record<string, any>)[k] = v
       }
-    },
+    }
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+    }
   },
   validations() {
     return {
       form: {
         id: {},
         accountUsername: {
-          existence: this.$util.validateUsername(this.$apollo),
-          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
+          existence: validateUsername(),
+          formatSlug: VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
         },
         address: {
-          maxLength: maxLength(this.$util.VALIDATION_ADDRESS_LENGTH_MAXIMUM),
+          maxLength: maxLength(VALIDATION_ADDRESS_LENGTH_MAXIMUM),
         },
         emailAddress: {
           email,
-          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(
-            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
-          ),
+          formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+          maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
         },
         firstName: {
-          maxLength: maxLength(this.$util.VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
+          maxLength: maxLength(VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
         },
         lastName: {
-          maxLength: maxLength(this.$util.VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
+          maxLength: maxLength(VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
         },
         phoneNumber: {
-          formatPhoneNumber: this.$util.VALIDATION_FORMAT_PHONE_NUMBER,
+          formatPhoneNumber: VALIDATION_FORMAT_PHONE_NUMBER,
         },
         url: {
-          formatUrlHttps: this.$util.VALIDATION_FORMAT_URL_HTTPS,
-          maxLength: maxLength(this.$util.VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
+          formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
+          maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
         },
       },
     }

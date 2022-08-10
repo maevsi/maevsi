@@ -1,6 +1,7 @@
 fragment contactFields on Contact {
-  id
   nodeId
+  id
+
   accountUsername
   address
   authorAccountUsername

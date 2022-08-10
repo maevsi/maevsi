@@ -1,56 +1,51 @@
 <template>
-  <Loader
-    v-if="(isFetching && !data) || error"
-    :errors="$util.getGqlErrorMessages(error, this)"
-  />
-  <div v-else class="flex flex-col gap-4">
-    <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
-      <ButtonList>
-        <ButtonEventList v-if="isButtonEventListShown" />
-      </ButtonList>
-      <div class="flex gap-4">
-        <div class="flex gap-1">
-          <EventIconVisibility visibility="PUBLIC" />
-          <span>{{ $t('legendSeparator') }}</span>
-          <span>{{ $t('public') }}</span>
-        </div>
-        <div class="flex gap-1">
-          <EventIconVisibility visibility="PRIVATE" />
-          <span>{{ $t('legendSeparator') }}</span>
-          <span>{{ $t('private') }}</span>
+  <Loader :api="api">
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
+        <ButtonList>
+          <ButtonEventList v-if="isButtonEventListShown" />
+        </ButtonList>
+        <div class="flex gap-4">
+          <div class="flex gap-1">
+            <EventIconVisibility visibility="PUBLIC" />
+            <span>{{ $t('legendSeparator') }}</span>
+            <span>{{ $t('public') }}</span>
+          </div>
+          <div class="flex gap-1">
+            <EventIconVisibility visibility="PRIVATE" />
+            <span>{{ $t('legendSeparator') }}</span>
+            <span>{{ $t('private') }}</span>
+          </div>
         </div>
       </div>
-    </div>
-    <ul v-if="data?.allEvents?.nodes?.length">
-      <EventListItem
-        v-for="event in data.allEvents.nodes"
-        :key="event.id"
-        :event="event"
-      />
-      <div
-        v-if="data.allEvents.pageInfo.hasNextPage"
-        class="flex justify-center"
-      >
-        <ButtonColored
-          :aria-label="$t('globalShowMore')"
-          @click="after = data.allEvents.pageInfo.endCursor"
+      <ul v-if="events?.length">
+        <EventListItem v-for="event in events" :key="event.id" :event="event" />
+        <div
+          v-if="api.data.allEvents?.pageInfo.hasNextPage"
+          class="flex justify-center"
         >
-          {{ $t('globalShowMore') }}
-        </ButtonColored>
-      </div>
-    </ul>
-    <p v-else class="text-center">{{ $t('noEvents') }}</p>
-  </div>
+          <ButtonColored
+            :aria-label="$t('globalShowMore')"
+            @click="after = api.data.allEvents?.pageInfo.endCursor"
+          >
+            {{ $t('globalShowMore') }}
+          </ButtonColored>
+        </div>
+      </ul>
+      <p v-else class="text-center">{{ $t('noEvents') }}</p>
+    </div>
+  </Loader>
 </template>
 
 <script lang="ts">
-import { useQuery } from '@urql/vue'
 import consola from 'consola'
-import { ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 
-import { useNuxtApp, useRoute, defineComponent, PropType } from '#app'
+import { useRoute, defineComponent, PropType } from '#app'
 
-import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
+import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAllEventsQuery } from '~/gql/generated'
 
 export default defineComponent({
   props: {
@@ -60,35 +55,37 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const nuxtApp = useNuxtApp()
     const route = useRoute()
-    const after = ref<string>()
 
-    const result = useQuery({
-      query: EVENTS_ALL_QUERY,
+    const refs = {
+      after: ref<string>(),
+    }
+    const eventsQuery = useAllEventsQuery({
       variables: {
-        after,
+        after: refs.after,
         authorUsername: props.username,
-        first: nuxtApp.nuxt2Context.$util.ITEMS_PER_PAGE,
+        first: ITEMS_PER_PAGE,
       },
     })
+    const apiData = reactive({
+      api: {
+        data: {
+          ...eventsQuery.data.value,
+        },
+        ...getApiMeta([eventsQuery]),
+      },
+      events: eventsQuery.data.value?.allEvents?.nodes,
+    })
+    const data = reactive({
+      isButtonEventListShown: route.name?.replace(/___.+$/, '') !== 'event',
+    })
 
-    watch(result.error, (currentValue, _oldValue) => {
+    watch(eventsQuery.error, (currentValue, _oldValue) => {
       if (currentValue) consola.error(currentValue)
     })
 
-    const apiData = {
-      after,
-      data: result.data,
-      error: result.error,
-      isFetching: result.fetching,
-    }
-
-    const data = {
-      isButtonEventListShown: route.name?.replace(/___.+$/, '') !== 'event',
-    }
-
     return {
+      ...refs,
       ...apiData,
       ...data,
     }

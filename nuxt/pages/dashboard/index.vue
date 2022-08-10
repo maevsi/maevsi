@@ -9,7 +9,7 @@
           <h2>{{ $t('eventsMine') }}</h2>
           <ButtonColored
             :aria-label="$t('eventsMine')"
-            :to="localePath(`/event/${signedInUsername}`)"
+            :to="localePath(`/event/${signedInUsername()}`)"
           >
             {{ $t('eventsMine') }}
             <template slot="prefix">
@@ -64,7 +64,7 @@
 import { Context } from '@nuxt/types-edge'
 import { mapGetters } from 'vuex'
 
-import { defineComponent } from '#app'
+import { defineComponent, reactive, useNuxtApp } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -76,9 +76,19 @@ export default defineComponent({
   transition: {
     name: 'layout',
   },
-  data() {
+  setup() {
+    const { $t } = useNuxtApp()
+
+    const data = reactive({
+      title: $t('title'),
+    })
+    const computations = {
+      ...mapGetters(['signedInUsername']),
+    }
+
     return {
-      title: this.$t('title'),
+      ...data,
+      ...computations,
     }
   },
   head() {
@@ -106,9 +116,6 @@ export default defineComponent({
       ],
       title,
     }
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
   },
 })
 </script>

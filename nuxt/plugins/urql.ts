@@ -3,35 +3,47 @@ import {
   ssrExchange,
   dedupExchange,
   fetchExchange,
+  ClientOptions,
 } from '@urql/core'
 import { cacheExchange } from '@urql/exchange-graphcache'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 import { provideClient } from '@urql/vue'
 import consola from 'consola'
+import { ref } from 'vue'
 
 import { defineNuxtPlugin, useNuxtApp } from '#app'
 
+import schema from '~/gql/introspection'
+import { GraphCacheConfig } from '~/gql/schema'
+
+import {
+  authenticationAnonymous,
+  jwtFromCookie,
+  jwtRefresh,
+} from '~/plugins/util/auth'
+
 const ssrKey = '__URQL_DATA__'
 
-export default defineNuxtPlugin((nuxt) => {
+export default defineNuxtPlugin(async (nuxtApp) => {
   const ssr = ssrExchange({
     isClient: process.client,
   })
 
   if (process.client) {
-    nuxt.hook('app:created', () => {
-      ssr.restoreData(nuxt.payload[ssrKey])
+    nuxtApp.hook('app:created', () => {
+      ssr.restoreData(nuxtApp.payload[ssrKey])
     })
   }
 
   if (process.server) {
-    nuxt.hook('app:rendered', () => {
-      nuxt.payload[ssrKey] = ssr.extractData()
+    nuxtApp.hook('app:rendered', () => {
+      nuxtApp.payload[ssrKey] = ssr.extractData()
     })
   }
 
-  const cache = cacheExchange({
+  const cacheConfig: GraphCacheConfig = {
+    schema,
     resolvers: {
       Query: {
         allContacts: relayPagination(),
@@ -49,23 +61,23 @@ export default defineNuxtPlugin((nuxt) => {
     //     },
     //   },
     // },
-  })
+  }
 
-  const client = createClient({
+  const cache = cacheExchange(cacheConfig)
+
+  const options: ClientOptions = {
     requestPolicy: 'network-only', // TODO: https://github.com/maevsi/maevsi/issues/720
     fetchOptions: () => {
-      const jwt: string = nuxt.$store.state.jwt
+      const jwt: string = nuxtApp.nuxt2Context.store.state.jwt
 
       if (jwt) {
-        consola.trace('Apollo request authenticated with: ' + jwt)
+        consola.trace('GraphQL request authenticated with: ' + jwt)
         return {
           headers: { authorization: `Bearer ${jwt}` },
         }
       } else {
-        consola.trace('Apollo request without authentication.')
-        return {
-          headers: { authorization: '' },
-        }
+        consola.trace('GraphQL request without authentication.')
+        return {}
       }
     },
     url: process.server
@@ -80,12 +92,51 @@ export default defineNuxtPlugin((nuxt) => {
       ssr, // add `ssr` before `fetchExchange`
       fetchExchange,
     ],
-  })
+  }
+  const client = ref(createClient(options))
 
-  nuxt.provide('urql', client)
+  function urqlReset() {
+    client.value = createClient(options)
+  }
 
-  nuxt.hook('vue:setup', () => {
+  nuxtApp.hook('vue:setup', () => {
     const { $urql } = useNuxtApp()
     provideClient($urql)
   })
+
+  // Either authenticate anonymously or refresh token on page load.
+  if (process.server && nuxtApp.ssrContext) {
+    const jwtData = jwtFromCookie(nuxtApp.ssrContext.req)
+
+    if (jwtData?.jwtDecoded.id) {
+      await jwtRefresh(
+        client.value,
+        urqlReset,
+        nuxtApp.nuxt2Context.store,
+        nuxtApp.ssrContext.res,
+        jwtData.jwtDecoded.id
+      )
+    } else {
+      await authenticationAnonymous(
+        client.value,
+        urqlReset,
+        nuxtApp.nuxt2Context.store,
+        nuxtApp.ssrContext.res
+      )
+    }
+  }
+
+  return {
+    provide: {
+      urql: client,
+      urqlReset,
+    },
+  }
 })
+
+// declare module '#app' {
+//   interface NuxtAppCompat {
+//     $urql: Ref<Client>
+//     urqlReset: () => undefined
+//   }
+// }

@@ -12,7 +12,13 @@
 import { ResizeSensor } from 'css-element-queries'
 import debounce from 'lodash-es/debounce'
 
-import { defineComponent } from '#app'
+import {
+  defineComponent,
+  onBeforeUnmount,
+  onMounted,
+  reactive,
+  ref,
+} from '#app'
 
 export default defineComponent({
   props: {
@@ -21,42 +27,56 @@ export default defineComponent({
       type: Boolean,
     },
   },
-  data() {
-    return {
-      resizeSensor: undefined as ResizeSensor | undefined,
+  setup(props, { emit }) {
+    const refs = {
+      scrollContainer: ref<HTMLElement>(),
     }
-  },
-  mounted() {
-    const scrollContainer = this.$refs.scrollContainer as HTMLElement
-    this.resizeSensor = new ResizeSensor(scrollContainer, () => {
-      if (
-        scrollContainer.scrollHeight === scrollContainer.clientHeight &&
-        this.hasNextPage
-      ) {
-        this.$emit('loadMore')
+    const data = reactive({
+      resizeSensor: undefined as ResizeSensor | undefined,
+    })
+    const methods = {
+      emit() {
+        emit('loadMore')
+      },
+      onScroll(e: Event) {
+        const scrollBar = e.target as Element
+
+        if (
+          scrollBar &&
+          scrollBar.scrollTop + scrollBar.clientHeight >=
+            scrollBar.scrollHeight - 500
+        ) {
+          debounce(methods.emit, 100)()
+        }
+      },
+    }
+
+    onMounted(() => {
+      const scrollContainer = refs.scrollContainer.value
+
+      if (!scrollContainer) return
+
+      data.resizeSensor = new ResizeSensor(scrollContainer, () => {
+        if (
+          scrollContainer.scrollHeight === scrollContainer.clientHeight &&
+          props.hasNextPage
+        ) {
+          methods.emit()
+        }
+      })
+    })
+
+    onBeforeUnmount(() => {
+      if (data.resizeSensor) {
+        data.resizeSensor.detach()
       }
     })
-  },
-  beforeUnmount() {
-    if (this.resizeSensor) {
-      this.resizeSensor.detach()
-    }
-  },
-  methods: {
-    emit() {
-      this.$emit('loadMore')
-    },
-    onScroll(e: Event) {
-      const scrollBar = e.target as Element
 
-      if (
-        scrollBar &&
-        scrollBar.scrollTop + scrollBar.clientHeight >=
-          scrollBar.scrollHeight - 500
-      ) {
-        debounce(this.emit, 100)()
-      }
-    },
+    return {
+      ...refs,
+      ...data,
+      ...methods,
+    }
   },
 })
 </script>
