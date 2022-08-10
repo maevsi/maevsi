@@ -15,7 +15,7 @@
     "test:visual": "WAIT_ON_TIMEOUT=600000 start-server-and-test 'pnpm storybook --ci' 6006 'sh ./.storybook/storycap/test.sh'",
     "docker:build:test-visual": "docker build -t maevsi/maevsi:test-visual --target test-visual_standalone ../",
     "lint": "pnpm lint:js && pnpm lint:style",
-    "lint:js": "eslint --cache --ext .js,.ts,.vue --ignore-path .gitignore .",
+    "lint:js": "eslint --cache --ext .js,.ts,.vue --ignore-path .gitignore . && pnpm nuxi typecheck",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint:fix": "pnpm lint:js --fix && pnpm lint:style --fix",
     "lint:quiet": "pnpm lint:js --quiet && pnpm lint:style --quiet",
