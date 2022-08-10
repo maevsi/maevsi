@@ -1,10 +1,9 @@
 <template>
-  <EventDashlet>
+  <EventDashlet v-if="event.isRemote && event.url">
     <span>
       <IconLink :title="$t('url')" />
     </span>
     <AppLink
-      v-if="event.isRemote && event.url"
       class="w-full overflow-hidden text-ellipsis break-words line-clamp-2"
       nofollow
       :to="event.url"

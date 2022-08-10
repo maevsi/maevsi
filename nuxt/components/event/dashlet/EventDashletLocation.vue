@@ -1,10 +1,9 @@
 <template>
-  <EventDashlet>
+  <EventDashlet v-if="event.isInPerson && event.location">
     <span>
       <IconMapMarker :title="$t('location')" />
     </span>
     <AppLink
-      v-if="event.isInPerson && event.location"
       class="w-full overflow-hidden text-ellipsis break-words line-clamp-2"
       nofollow
       :to="`https://maps.google.de/?q=${encodeURIComponent(event.location)}`"
