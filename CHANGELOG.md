@@ -1,3 +1,19 @@
+# [0.141.0](https://github.com/maevsi/maevsi/compare/0.140.1...0.141.0) (2022-08-10)
+
+
+### Bug Fixes
+
+* **event-dashlet:** move display conditional ([95600b8](https://github.com/maevsi/maevsi/commit/95600b871a0b22fb5d188ffa2843a5631419624d))
+* **i18n:** improve texts ([61e3223](https://github.com/maevsi/maevsi/commit/61e3223f5f8840f12d8ebf3773b67b90b55ba518))
+
+
+### Features
+
+* **contact-preview:** add link to username ([e580e0c](https://github.com/maevsi/maevsi/commit/e580e0c0464aeafe14b8c94c0b08fca6cc1f9c62))
+* **form-input-password:** show required password length ([6e83873](https://github.com/maevsi/maevsi/commit/6e838734ac52fda2b4e985de97759374acb88899))
+* **invitation:** rename add invitation to add guest ([fe3ac40](https://github.com/maevsi/maevsi/commit/fe3ac40b050c58bcb7e9940e4e962b74d7726dba))
+* **tiptap:** hide paragraph button ([6b2c204](https://github.com/maevsi/maevsi/commit/6b2c20431b9e28b5953cc65ade6d0127580df9b0))
+
 ## [0.140.1](https://github.com/maevsi/maevsi/compare/0.140.0...0.140.1) (2022-08-10)
 
 
