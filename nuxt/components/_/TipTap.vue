@@ -54,7 +54,7 @@
         </Button>
       </div>
       <div class="flex gap-1">
-        <Button
+        <!-- <Button
           :aria-label="$t('paragraph')"
           :title="$t('paragraph')"
           @click="editor.chain().focus().setParagraph().run()"
@@ -62,7 +62,7 @@
           <template slot="prefix">
             <IconParagraph />
           </template>
-        </Button>
+        </Button> -->
         <Button
           :aria-label="$t('heading')"
           :title="$t('heading')"

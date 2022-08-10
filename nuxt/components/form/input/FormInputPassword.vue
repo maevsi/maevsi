@@ -32,6 +32,14 @@
       <slot name="stateError" />
     </template>
     <template slot="stateInfo">
+      <FormInputStateInfo
+        :form-input="formInput"
+        validation-property="minLength"
+      >
+        {{
+          $t('validationFormat', { length: validationPasswordLengthMaximum })
+        }}
+      </FormInputStateInfo>
       <slot name="stateInfo" />
     </template>
   </FormInput>
@@ -39,7 +47,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from '#app'
+
 import { FormInputType } from '~/components/form/input/FormInput.vue'
+import { VALIDATION_PASSWORD_LENGTH_MINIMUM } from '~/plugins/util'
 
 export default defineComponent({
   props: {
@@ -61,6 +71,7 @@ export default defineComponent({
   data() {
     return {
       isVisible: false,
+      validationPasswordLengthMaximum: VALIDATION_PASSWORD_LENGTH_MINIMUM,
     }
   },
 })
@@ -69,6 +80,8 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   password: Passwort
+  validationFormat: Muss {length} Zeichen lang sein
 en:
   password: Password
+  validationFormat: Must be {length} characters long
 </i18n>

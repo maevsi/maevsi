@@ -31,11 +31,15 @@
         {{ contact.lastName || $t('placeholder') }}
       </div>
       <div class="truncate text-gray-500 dark:text-gray-400">
-        {{
-          contact.accountUsername
-            ? `@${contact.accountUsername}`
-            : $t('placeholder')
-        }}
+        <AppLink
+          v-if="contact.accountUsername"
+          :to="localePath(`/account/${contact.accountUsername}`)"
+        >
+          {{ `@${contact.accountUsername}` }}
+        </AppLink>
+        <div v-else>
+          {{ $t('placeholder') }}
+        </div>
       </div>
     </div>
   </div>

@@ -408,7 +408,7 @@ de:
   copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   feedback: Rückmeldungen
-  invitationAdd: Einladung hinzufügen
+  invitationAdd: Gäste hinzufügen
   invitationDelete: Einladung löschen
   invitationLink: Einladungslink kopieren
   invitationSend: Einladung versenden
@@ -427,7 +427,7 @@ en:
   copySuccess: The invitation link was copied to the clipboard.
   disabledReasonEmailAddressNone: This contact is missing an email address.
   feedback: Feedback
-  invitationAdd: Add invitation
+  invitationAdd: Add guests
   invitationDelete: Delete invitation
   invitationLink: Copy invitation link
   invitationSend: Send invitation

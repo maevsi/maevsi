@@ -128,7 +128,7 @@ de:
   profilePictureChange: Profilbild ändern
   settings: Einstellungen
   titleAccountDelete: Konto löschen
-  titlePasswordChange: Password ändern
+  titlePasswordChange: Password des Kontos ändern
 en:
   account: account
   accounts: accounts
@@ -137,5 +137,5 @@ en:
   profilePictureChange: Change profile picture
   settings: settings
   titleAccountDelete: Delete account
-  titlePasswordChange: Change password
+  titlePasswordChange: Change account password
 </i18n>
