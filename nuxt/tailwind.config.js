@@ -6,7 +6,8 @@ function heading(theme) {
     fontWeight: theme('fontWeight.bold'),
     marginBottom: theme('margin.1'),
     marginTop: theme('margin.4'),
-    overflow: 'hidden',
+    overflowX: 'hidden',
+    overflowY: 'clip',
     textOverflow: 'ellipsis',
   }
 }
