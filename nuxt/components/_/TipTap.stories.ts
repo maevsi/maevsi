@@ -17,5 +17,6 @@ const Template = (_: never, { argTypes }: any) =>
 export const Default = Template.bind({})
 // @ts-ignore
 Default.args = {
-  value: '<p>Test <strong>strong</strong> <a href="https://example.com" target="_blank" rel="noopener noreferrer nofollow">link</a></p>',
+  value:
+    '<p>Test <strong>strong</strong> <a href="https://example.com" target="_blank" rel="noopener noreferrer nofollow">link</a></p>',
 }
