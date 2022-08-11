@@ -1,3 +1,18 @@
+# [0.142.0](https://github.com/maevsi/maevsi/compare/0.141.0...0.142.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **i18n:** implement feedback ([be68ddc](https://github.com/maevsi/maevsi/commit/be68ddcbf14592ce6d9c5f662552bbb6e6b7b8f9))
+* **lint:** correct line break ([4b016c7](https://github.com/maevsi/maevsi/commit/4b016c787f991906321b8d03c721eff77ea976b9))
+* **tiptap:** correct icons ([6218f8f](https://github.com/maevsi/maevsi/commit/6218f8fdc05b6ef3db0e2fbc73ec1e15871688b2))
+
+
+### Features
+
+* **form-event:** add warning for name change ([139e179](https://github.com/maevsi/maevsi/commit/139e1791bf2b434b856b8237399262387e0bdd58))
+* **ui:** implement suggestions ([6250ae1](https://github.com/maevsi/maevsi/commit/6250ae14252b920b425170b881d5b3cab8d63fb7))
+
 # [0.141.0](https://github.com/maevsi/maevsi/compare/0.140.1...0.141.0) (2022-08-10)
 
 
