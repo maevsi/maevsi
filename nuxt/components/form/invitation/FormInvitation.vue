@@ -67,7 +67,11 @@
           type="button"
           @click="selectToggle(contact)"
         >
-          <ContactPreview class="px-4 py-2" :contact="contact" />
+          <ContactPreview
+            class="px-4 py-2"
+            :contact="contact"
+            :is-username-linked="false"
+          />
         </Button>
       </div>
     </div>

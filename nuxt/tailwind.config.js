@@ -6,9 +6,7 @@ function heading(theme) {
     fontWeight: theme('fontWeight.bold'),
     marginBottom: theme('margin.1'),
     marginTop: theme('margin.4'),
-    overflowX: 'hidden',
-    overflowY: 'clip',
-    textOverflow: 'ellipsis',
+    // set overflow truncate/ellipsis in the surrounding container, or larger fonts will be cut off due to their line-heights
   }
 }
 

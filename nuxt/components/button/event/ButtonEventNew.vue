@@ -1,5 +1,5 @@
 <template>
-  <ButtonColored
+  <ButtonText
     :aria-label="$t('new')"
     :is-primary="false"
     :to="localePath('/task/event/create')"
@@ -9,7 +9,7 @@
     <template slot="prefix">
       <IconPlus />
     </template>
-  </ButtonColored>
+  </ButtonText>
 </template>
 
 <i18n lang="yml">

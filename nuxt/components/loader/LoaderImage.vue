@@ -2,7 +2,6 @@
   <img
     v-if="srcWhenLoaded"
     :alt="alt"
-    class="max-w-none"
     :class="{ 'rounded-full': rounded }"
     :src="srcWhenLoaded"
   />

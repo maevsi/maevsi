@@ -7,7 +7,7 @@
     >
       {{ $t('signIn') }}
       <template slot="prefix">
-        <IconArrowRight />
+        <IconArrowLeft />
       </template>
     </ButtonColored>
     <Form

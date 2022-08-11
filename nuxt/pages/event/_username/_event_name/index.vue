@@ -242,11 +242,10 @@
           <EventDashletLocation :event="event" />
           <EventDashletLink :event="event" />
         </div>
-        <div class="flex flex-col gap-2">
+        <div class="flex gap-2 items-center">
           <ButtonColored
             :aria-label="$t('iCalDownload')"
             :is-primary="false"
-            class="text-text-bright"
             @click="downloadIcal"
           >
             {{ $t('iCalDownload') }}
@@ -254,9 +253,7 @@
               <IconDownload />
             </template>
           </ButtonColored>
-          <FormInputStateInfo>
-            {{ $t('iCalHint') }}
-          </FormInputStateInfo>
+          <FormInputStateInfo :title="$t('iCalHint')" />
         </div>
       </div>
       <div v-if="eventDescriptionTemplate" class="flex flex-col gap-4">

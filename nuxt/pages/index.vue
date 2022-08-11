@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <section id="overview" class="mb-16 flex items-center md:mb-32">
-      <div class="flex w-full flex-col gap-4 lg:w-1/2">
+  <div class="flex flex-col gap-16 md:gap-32 mt-16 mb-16">
+    <section id="overview" class="flex gap-8 items-center">
+      <div class="flex w-full flex-col gap-8 items-start lg:w-1/2">
         <i18n
-          class="text-left text-4xl font-extrabold sm:text-5xl md:text-5xl xl:text-7xl"
+          class="text-left text-4xl font-extrabold m-0 sm:text-5xl md:text-5xl xl:text-7xl"
           path="title"
           tag="h1"
         >
@@ -17,11 +17,13 @@
             <span class="text-red-600">{{ $t('titleProfessional') }}</span>
           </template>
         </i18n>
-        <div>
-          <p class="text-lg font-normal leading-8">
-            {{ $t('maevsiDescription') }}
+        <div class="text-lg font-normal leading-8">
+          <p>
+            {{ $t('maevsiDescription1') }}
           </p>
-          <p class="text-lg font-normal leading-8">{{ $t('alpha') }}</p>
+          <p>
+            {{ $t('maevsiDescription2') }}
+          </p>
         </div>
         <ButtonColored
           :aria-label="$t('testNowFree')"
@@ -32,63 +34,64 @@
       </div>
       <LoaderImage
         :alt="$t('heroImage')"
-        class="hidden p-4 lg:block lg:w-1/2"
+        class="hidden lg:block lg:w-1/2"
         height="861"
         src="/assets/static/images/hero_background.png"
         width="750"
       />
     </section>
-    <section class="mb-16 md:mb-32">
+    <section>
       <h2 class="text-center text-5xl font-extrabold">
         {{ $t('stepsTitle') }}
       </h2>
-      <p class="text-center text-lg leading-relaxed">
-        {{ $t('stepsDescription') }}
-      </p>
       <div class="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap">
         <Step
-          :description="$t('stepLoginDescription')"
-          :number="$t('stepLoginNumber')"
-          :title="$t('stepLoginTitle')"
-        />
-        <Step
-          :description="$t('stepCreateDescription')"
+          class="sm:w-1/4"
           :number="$t('stepCreateNumber')"
           :title="$t('stepCreateTitle')"
-        />
+        >
+          {{ $t('stepCreateDescription') }}
+        </Step>
         <Step
-          :description="$t('stepDefineDescription')"
-          :number="$t('stepDefineNumber')"
-          :title="$t('stepDefineTitle')"
-        />
-        <Step
-          :description="$t('stepInviteDescription')"
+          class="sm:w-1/4"
           :number="$t('stepInviteNumber')"
           :title="$t('stepInviteTitle')"
-        />
+        >
+          {{ $t('stepInviteDescription') }}
+        </Step>
+        <Step
+          class="sm:w-1/4"
+          :number="$t('stepDefineNumber')"
+          :title="$t('stepDefineTitle')"
+        >
+          {{ $t('stepDefineDescription') }}
+        </Step>
       </div>
     </section>
-    <section class="mb-16 items-center md:mb-32 lg:flex">
+    <section class="flex flex-col lg:flex-row gap-8 items-center">
       <LoaderImage
         :alt="$t('heroImage')"
-        class="mx-auto sm:mr-8 lg:w-1/2"
+        class="lg:w-1/2"
         height="750"
         src="/assets/static/images/smartphone.png"
         width="750"
       />
-      <div class="flex flex-col gap-4 lg:w-1/2">
+      <div class="flex flex-col gap-4 items-start lg:w-1/2">
         <h2 class="text-4xl font-extrabold">
           {{ $t('smartphoneTitle') }}
         </h2>
         <p class="text-lg font-normal leading-8">
           {{ $t('smartphoneDescription') }}
         </p>
-        <ButtonColored :aria-label="$t('testNow')" :to="localePath('/event')">
+        <ButtonColored
+          :aria-label="$t('testNow')"
+          :to="localePath('/task/event/create')"
+        >
           {{ $t('testNow') }}
         </ButtonColored>
       </div>
     </section>
-    <section id="features" class="mb-16">
+    <section id="features" class="flex flex-col gap-8">
       <i18n
         class="text-center text-5xl font-extrabold"
         path="benefitsTitle"
@@ -98,34 +101,34 @@
       </i18n>
       <div class="flex flex-wrap">
         <Benefit
-          :description="$t('statisticsDescription')"
-          icon-path="/assets/static/icons/statistics.svg"
-          :title="$t('statistics')"
-        />
-        <Benefit
-          :description="$t('flexibilityDescription')"
+          :description="$t('benefitInformationDescription')"
           icon-path="/assets/static/icons/flexibility.svg"
-          :title="$t('flexibility')"
+          :title="$t('benefitInformation')"
         />
         <Benefit
-          :description="$t('userFriendlyDescription')"
-          icon-path="/assets/static/icons/user-friendly.svg"
-          :title="$t('userFriendly')"
+          :description="$t('benefitPersonalDescription')"
+          icon-path="/assets/static/icons/statistics.svg"
+          :title="$t('benefitPersonal')"
         />
         <Benefit
-          :description="$t('openSourceDescription')"
-          icon-path="/assets/static/icons/open-source.svg"
-          :title="$t('openSource')"
-        />
-        <Benefit
-          :description="$t('managementDescription')"
+          :description="$t('benefitControlDescription')"
           icon-path="/assets/static/icons/management.svg"
-          :title="$t('management')"
+          :title="$t('benefitControl')"
         />
         <Benefit
-          :description="$t('modulesDescription')"
+          :description="$t('benefitUserFriendlyDescription')"
+          icon-path="/assets/static/icons/user-friendly.svg"
+          :title="$t('benefitUserFriendly')"
+        />
+        <Benefit
+          :description="$t('benefitSecureDescription')"
           icon-path="/assets/static/icons/modules.svg"
-          :title="$t('modules')"
+          :title="$t('benefitSecure')"
+        />
+        <Benefit
+          :description="$t('benefitOpenSourceDescription')"
+          icon-path="/assets/static/icons/open-source.svg"
+          :title="$t('benefitOpenSource')"
         />
       </div>
     </section>
@@ -180,85 +183,79 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  alpha: 'Diese Webseite befindet sich derzeit im Alpha-Stadium: Alles kann sich jederzeit ändern und Daten können verlorengehen.'
+  benefitControl: Kontrolle
+  benefitControlDescription: Du kannst genau planen, was deine Gäste brauchen
+  benefitInformation: Klare Infos
+  benefitInformationDescription: Kein Durcheinander, wie in Gruppen-Chats
+  benefitOpenSource: Open Source
+  benefitOpenSourceDescription: 'Keine Geheimnisse: du kannst sehen wie maevsi funktioniert'
+  benefitPersonal: Persönlich
+  benefitPersonalDescription: Digitaler Komfort, kombiniert mit individuellen Einladungen
+  benefitSecure: Sicher
+  benefitSecureDescription: Du bestimmst, wer welche Daten sehen kann
   benefitsTitle: Deine Vorteile mit {maevsi}
+  benefitUserFriendly: Benutzerfreundlich
+  benefitUserFriendlyDescription: Gäste können ganz einfach teilnehmen, komplett ohne Login
   events: Veranstaltungen
-  flexibility: Flexibilität
-  flexibilityDescription: Egal wer zu- oder absagt. Manage immer deine gesamte Veranstaltung
   heroImage: Heldenbild.
   maevsi: maevsi
-  maevsiDescription: maevsi ist der Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden
-  management: Management
-  managementDescription: Wer hat zugesagt und wer abgesagt? Übersichtlich dargestellt
-  modules: Spezielle Module
-  modulesDescription: Dir fehlt ein Feature? Greife auf jede Menge freie Module zu.
-  openSource: Open Source
-  openSourceDescription: Du hast Lust etwas zu verbessern? Dann ergänze deinen Code
+  maevsiDescription: maevsi ist der Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden.
+  maevsiDescription1: Persönliche Einladungen. Geordnetes Feedback.
+  maevsiDescription2: Verpasse keine Veranstaltungen, zu denen deine Freunde gehen.
+  smartphoneDescription: Mit meavsi musst du deine Veranstaltungen nicht mehr öde per Chat-Gruppe organisieren. Du kommunizierst sauber alle wichtigen Informationen, behältst die Kontrolle über individuelle Einladungen und hast den Kopf frei für den Inhalt deiner Veranstaltung – deine Gäste werden es dir danken
   smartphoneTitle: Organisierst du noch so deine Veranstaltung?
-  smartphoneDescription: Mit meavsi musst du deine Geburtstage, Events und Partys nicht mehr öde per Chat-Gruppe erstellen. Du verwaltest deine Einladungen, dein Essen, deine Musikwünsche und dein Programm problemlos innerhalb einer Anwendung - Mit allen Gästen gemeinsam
-  statistics: Statistiken
-  statisticsDescription: Analysiere deine Veranstaltung und optimiere sie beim nächsten Mal
-  stepCreateTitle: Erstelle dein Event
-  stepCreateDescription: Erstelle dein erstes Event
-  stepCreateNumber: '2'
-  stepDefineTitle: Definiere Inhalte
-  stepDefineDescription: Was soll gegessen werden? Was wird gespielt und gehört?
+  stepCreateDescription: Ruhe für dich und deine Gäste, statt wuseligem Gruppenchat
+  stepCreateNumber: '1'
+  stepCreateTitle: Erstelle ein Event
+  stepDefineDescription: du hast alle Zu- und Absagen im Griff
   stepDefineNumber: '3'
+  stepDefineTitle: Erhalte Rückmeldung
+  stepInviteDescription: erziele Aufmerksamkeit durch persönliche Einladungstexte
+  stepInviteNumber: '2'
   stepInviteTitle: Lade Gäste ein
-  stepInviteDescription: Verteile den Einladungslink an deine Gäste
-  stepInviteNumber: '4'
-  stepLoginTitle: Kostenlos anmelden
-  stepLoginDescription: Melde dich einfach an. Deine Gästen brauchen keinen Account
-  stepLoginNumber: '1'
   stepsTitle: So einfach geht’s
-  stepsDescription: Der Prozess ist für dich so problemlos wie möglich gestaltet
   testNow: Jetzt testen
   testNowFree: Jetzt kostenlos testen
   title: Veranstaltungen {easy}, {fast}, {professional}.
   titleEasy: einfach
   titleFast: schnell
   titleProfessional: professionell
-  userFriendly: Benutzerfreundlich
-  userFriendlyDescription: Gäste können ganz einfach teilnehmen. Komplett ohne Login
 en:
-  alpha: 'This site is currently in alpha: anything can change at any time and data is volatile.'
+  benefitControl: Control
+  benefitControlDescription: You can plan exactly for what your guests need
+  benefitInformation: Clear info
+  benefitInformationDescription: No clutter, like in group chats
+  benefitOpenSource: Open Source
+  benefitOpenSourceDescription: "No secrets: you're free to see how maevsi works"
+  benefitPersonal: Personal
+  benefitPersonalDescription: Digital convenience combined with individual invitations
+  benefitSecure: Secure
+  benefitSecureDescription: You decide who can see which data
   benefitsTitle: Your benefits with {maevsi}
+  benefitUserFriendly: User friendly
+  benefitUserFriendlyDescription: Guests can participate easily, completely without login
   events: Events
-  flexibility: Flexibility
-  flexibilityDescription: No matter who accepts or declines. Always manage the event universally
   heroImage: Hero image.
   maevsi: maevsi
-  maevsiDescription: maevsi is the manager for events supported by invitees
-  management: Management
-  managementDescription: Who accepted or declined? Clearly presented
-  modules: Special modules
-  modulesDescription: "You're missing a feature? Access lots of free modules"
-  openSource: Open Source
-  openSourceDescription: You want to improve something? Simply contribute your code
+  maevsiDescription: maevsi is the manager for events supported by invitees.
+  maevsiDescription1: Personal invitations. Proper feedback.
+  maevsiDescription2: Don't miss out on events your friends are going to.
+  smartphoneDescription: With meavsi you no longer have to organize your events via chat group anymore. You communicate all important information clearly, keep control over individual invitations and have your head free for the content of your event - your guests will thank you for it.
   smartphoneTitle: Do you still organize your event like that?
-  smartphoneDescription: Using meavsi you no longer have to create your birthdays, events and parties in a boring chat group. You manage your invitations, your meals, your music requests and your program easily within one application - together with all guests
-  statistics: Statistics
-  statisticsDescription: Analyze your event and optimize it next time
-  stepCreateTitle: Create your event
-  stepCreateDescription: Create your first event
-  stepCreateNumber: '2'
-  stepDefineTitle: Define content
-  stepDefineDescription: What shall be eaten? What is played and listened to?
+  stepCreateDescription: Rest for you and your guests, instead of a bustling group chat
+  stepCreateNumber: '1'
+  stepCreateTitle: Create an event
+  stepDefineDescription: you have all acceptances and declinatures under control
   stepDefineNumber: '3'
+  stepDefineTitle: Receive feedback
+  stepInviteDescription: get attention through personal invitation texts
+  stepInviteNumber: '2'
   stepInviteTitle: Invite guests
-  stepInviteDescription: Distribute the invitation link to your guests
-  stepInviteNumber: '4'
-  stepLoginTitle: Register for free
-  stepLoginDescription: "Just sign up. Your guests don't need an account"
-  stepLoginNumber: '1'
   stepsTitle: "It's as easy as that"
-  stepsDescription: The process is designed to be as easy as possible for you
   testNow: Test now
   testNowFree: Test now for free
   title: Events {easy}, {fast}, {professional}.
   titleEasy: easy
   titleFast: fast
   titleProfessional: professional
-  userFriendly: User friendly
-  userFriendlyDescription: Guests can participate easily. Completely without login
 </i18n>

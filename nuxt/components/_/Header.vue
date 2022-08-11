@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-background-bright dark:bg-background-dark">
+  <header class="">
     <CardStateInfo v-if="!isBrowserSupported" is-edgy>
       {{ $t('browserUnsupported') }}
     </CardStateInfo>
@@ -17,19 +17,7 @@
       <Button :aria-label="$t('home')" :to="localePath('/')">
         <div id="logo" class="h-10 w-32" />
       </Button>
-      <div class="hidden gap-4 md:flex">
-        <ButtonColored
-          :aria-label="$t('events')"
-          :to="localePath('/event')"
-          :is-primary="false"
-        >
-          {{ $t('events') }}
-          <template slot="prefix">
-            <IconTelescope />
-          </template>
-        </ButtonColored>
-        <ButtonEventNew />
-      </div>
+      <div class="hidden md:block flex-grow" />
       <!-- <div class="hidden xl:flex">
         <label class="hidden" for="search">{{ $t('search') }}</label>
         <input
@@ -47,7 +35,22 @@
           <IconSearch />
         </span>
       </div> -->
-      <div class="flex items-center gap-4 whitespace-nowrap">
+      <div class="flex items-center gap-2 lg:gap-4 whitespace-nowrap">
+        <ButtonText
+          :aria-label="$t('events')"
+          class="hidden md:flex"
+          :to="localePath('/event')"
+          :is-primary="false"
+        >
+          {{ $t('events') }}
+          <template slot="prefix">
+            <IconTelescope />
+          </template>
+        </ButtonText>
+        <ButtonEventNew class="hidden md:flex" />
+        <div
+          class="bg-gray-400 dark:bg-gray-500 self-stretch w-px hidden md:flex"
+        />
         <ButtonColored
           v-if="signedInUsername"
           :aria-label="$t('dashboard')"
@@ -72,14 +75,14 @@
             width="40"
           />
         </Button>
-        <ButtonColored
+        <ButtonText
           v-else
           :aria-label="$t('signIn')"
           :is-primary="false"
           :to="localePath('/task/account/sign-in')"
         >
           {{ $t('signIn') }}
-        </ButtonColored>
+        </ButtonText>
       </div>
     </div>
   </header>
