@@ -427,7 +427,8 @@ export default defineComponent({
           contact: this.contact,
           event: this.event,
           invitation: this.invitation,
-        })
+        }),
+        { ADD_ATTR: ['target'] }
       )
     },
     invitation(): Invitation | undefined {
