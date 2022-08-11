@@ -30,6 +30,11 @@
         updateSlug()
       "
     >
+      <template slot="stateWarning">
+        <FormInputStateWarning v-if="event && event.name !== form.name">
+          {{ $t('validationWarningNameChangeSlug') }}
+        </FormInputStateWarning>
+      </template>
       <template slot="stateError">
         <FormInputStateError
           :form-input="$v.form.slug"
@@ -501,7 +506,8 @@ de:
   slugPlaceholder: willkommensfeier
   start: Beginn
   updated: Aktualisiert
-  validationExistenceNone: Du hast bereits eine Veranstaltung mit der ID "{slug}" angelegt.
+  validationExistenceNone: Du hast bereits eine Veranstaltung mit der ID "{slug}" angelegt
+  validationWarningNameChangeSlug: Wenn du den Namen änderst, funktionieren bestehende Links zur Veranstaltung möglicherweise nicht mehr
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
@@ -528,7 +534,8 @@ en:
   slugPlaceholder: welcome-party
   start: Start
   updated: Updated
-  validationExistenceNone: You've already created an event with id "{slug}".
+  validationExistenceNone: You've already created an event with id "{slug}"
+  validationWarningNameChangeSlug: If you change the name, existing links to the event may no longer work
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public
