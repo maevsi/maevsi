@@ -311,7 +311,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  checkIns: Check-ins
+  checkIns: Check-in
   close: Schließen
   errorCameraNotAllowed: Berechtigung zum Kamerazugriff fehlt. {hintBrowserSettings}
   errorCameraNotFound: Konnte keine geeignete Kamera finden.
@@ -333,9 +333,9 @@ de:
   qrCodeScan: Check-in-Code scannen
   qrHint: Lass dir von Gästen den QR-Code auf ihrer Einladungsseite zeigen
   scanned: 'Gescannt: {scanResult}'
-  title: Check-ins
+  title: Check-in
 en:
-  checkIns: check ins
+  checkIns: check in
   close: Close
   errorCameraNotAllowed: Camera access permisson is missing.
   errorCameraNotFound: Could not find a suitable camera.
@@ -357,5 +357,5 @@ en:
   qrCodeScan: Scan check in code
   qrHint: Have guests show you the QR code on their invitation page
   scanned: 'Scanned: {scanResult}'
-  title: Check ins
+  title: Check in
 </i18n>

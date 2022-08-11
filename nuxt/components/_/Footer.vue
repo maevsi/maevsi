@@ -118,7 +118,7 @@ de:
   colorSchemeDark: Dunkel
   colorSchemeLight: Hell
   colorSchemeSystem: System
-  contact: Kontakt
+  contact: Kontakt & Feedback
   copyright: © {year} maevsi-Team. Alle Rechte vorbehalten.
   features: Funktionen
   githubLinkTitle: maevsi auf GitHub
@@ -139,7 +139,7 @@ en:
   colorSchemeDark: Dark
   colorSchemeLight: Light
   colorSchemeSystem: System
-  contact: Contact
+  contact: Contact & feedback
   copyright: © {year} maevsi team. All rights reserved.
   features: Features
   githubLinkTitle: maevsi on GitHub

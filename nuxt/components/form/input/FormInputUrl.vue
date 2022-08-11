@@ -50,7 +50,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  url: Webseite
+  url: Weblink
 en:
-  url: Website
+  url: Weblink
 </i18n>

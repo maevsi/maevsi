@@ -487,11 +487,10 @@ de:
   attendanceType: Anwesenheitstyp
   created: Erstellt!
   description: Einladungstext
-  edit: Bearbeiten
   end: Ende
   eventCreate: Veranstaltung erstellen
   eventCreateSuccess: Veranstaltung erfolgreich erstellt.
-  eventUpdate: Veranstaltung aktualisieren
+  eventUpdate: Änderungen speichern
   stateInfoLocation: Ein Suchbegriff für Google Maps.
   stateInfoUrl: Eine Web-URL für digitale Veranstaltungen.
   isInPerson: vor Ort
@@ -515,11 +514,10 @@ en:
   attendanceType: Attendance type
   created: Created!
   description: Invitation text
-  edit: Edit
   end: End
   eventCreate: Create event
   eventCreateSuccess: Event created successfully.
-  eventUpdate: Update event
+  eventUpdate: Save changes
   stateInfoLocation: A search phrase for Google Maps.
   stateInfoUrl: A web URL for remote events.
   isInPerson: in person

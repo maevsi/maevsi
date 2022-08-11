@@ -230,14 +230,14 @@ de:
   buttonContact: Ein Kontakt
   contact: Kontakt
   contactsAdd: Zu meinem Kontaktbuch
-  formHint: Suche nach Kontakten aus deinem Kontaktbuch.
+  formHint: Wähle aus Kontakten deines Kontaktbuchs.
   placeholderContact: Max Mustermann
   select: Gast hinzufügen
 en:
   buttonContact: A contact
   contact: Contact
   contactsAdd: To my contact book
-  formHint: Here you can search for contacts you want to invite. If a contact is missing, you must first add it to your contact book.
+  formHint: Choose from contacts in your contact book.
   placeholderContact: John Doe
   select: Add guest
 </i18n>

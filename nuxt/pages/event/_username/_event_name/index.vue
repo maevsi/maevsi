@@ -571,13 +571,13 @@ de:
   iCalHint: Die heruntergeladene Datei kann dann mit deiner Kalender-Anwendung geöffnet werden.
   iCalUnexpectedStatusCode: 'iCal-Daten konnten nicht geladen werden: Statuscode {statusCode}.'
   invitationAccept: Einladung annehmen
-  invitationAcceptAdmin: Einladung für {name} annehmen
+  invitationAcceptAdmin: Einladung im Namen von {name} annehmen
   invitationAccepted: Einladung angenommen
-  invitationAcceptedAdmin: Einladung für {name} angenommen
+  invitationAcceptedAdmin: Einladung im Namen von {name} angenommen
   invitationCancel: Einladung ablehnen
-  invitationCancelAdmin: Einladung für {name} ablehnen
+  invitationCancelAdmin: Einladung im Namen von {name} ablehnen
   invitationCanceled: Einladung abgelehnt
-  invitationCanceledAdmin: Einladung für {name} abgelehnt
+  invitationCanceledAdmin: Einladung im Namen von {name} abgelehnt
   invitationCardKind: Art der Einladungskarte
   invitationCardKindNone: Keine
   invitationCardKindPaper: Papier
@@ -605,13 +605,13 @@ en:
   iCalHint: You can open the downloaded file with your calendar app then.
   iCalUnexpectedStatusCode: 'Could not get iCal data: Status code {statusCode}.'
   invitationAccept: Accept invitation
-  invitationAcceptAdmin: Accept invitation for {name}
+  invitationAcceptAdmin: Accept invitation on behalf of {name}
   invitationAccepted: Invitation accepted
-  invitationAcceptedAdmin: Invitation accepted for {name}
+  invitationAcceptedAdmin: Invitation accepted on behalf of {name}
   invitationCancel: Decline invitation
-  invitationCancelAdmin: Decline invitation for {name}
+  invitationCancelAdmin: Decline invitation on behalf of {name}
   invitationCanceled: Invitation declined
-  invitationCanceledAdmin: Invitation declined for {name}
+  invitationCanceledAdmin: Invitation declined on behalf of {name}
   invitationCardKind: Kind of invitation card
   invitationCardKindNone: None
   invitationCardKindPaper: Paper

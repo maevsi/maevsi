@@ -126,7 +126,7 @@ de:
   postgres23503: Dir gehören noch Veranstaltungen! Lösche erst all deine Veranstaltungen.
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   profilePictureChange: Profilbild ändern
-  settings: Einstellungen
+  settings: bearbeiten
   titleAccountDelete: Konto löschen
   titlePasswordChange: Password des Kontos ändern
 en:
@@ -135,7 +135,7 @@ en:
   postgres23503: You still own events! First delete all your events.
   postgres28P01: Password incorrect! Check that you have written everything correctly.
   profilePictureChange: Change profile picture
-  settings: settings
+  settings: edit
   titleAccountDelete: Delete account
   titlePasswordChange: Change account password
 </i18n>
