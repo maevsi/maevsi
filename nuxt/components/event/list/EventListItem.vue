@@ -9,6 +9,7 @@
     }"
   >
     <Button
+      class="w-full"
       :aria-label="event.name"
       :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >

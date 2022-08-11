@@ -4,7 +4,7 @@
     ref="button"
     :append="append"
     :aria-label="ariaLabel"
-    class="flex items-center gap-2"
+    class="inline-flex items-center gap-2"
     :disabled="disabled"
     :is-underlined="false"
     :to="to"
@@ -17,7 +17,7 @@
     v-else
     ref="button"
     :aria-label="ariaLabel"
-    class="flex items-center gap-2"
+    class="inline-flex items-center gap-2"
     :disabled="disabled"
     :type="type"
     @click="$emit('click')"

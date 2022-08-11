@@ -69,7 +69,10 @@
           @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
         >
           <template slot="prefix">
-            <IconHeading />
+            <div class="flex align-end">
+              <IconHeading />
+              <span>{{ $t('1') }}</span>
+            </div>
           </template>
         </Button>
         <Button
@@ -78,7 +81,10 @@
           @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
         >
           <template slot="prefix">
-            <IconHeading />
+            <div class="flex align-end">
+              <IconHeading />
+              <span>{{ $t('2') }}</span>
+            </div>
           </template>
         </Button>
         <Button
@@ -87,7 +93,10 @@
           @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
         >
           <template slot="prefix">
-            <IconHeading />
+            <div class="flex align-end">
+              <IconHeading />
+              <span>{{ $t('3') }}</span>
+            </div>
           </template>
         </Button>
       </div>
@@ -259,6 +268,9 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
+  1: 1
+  2: 2
+  3: 3
   blockquote: Anführungszeichen
   bold: Fett
   code: Code
@@ -274,6 +286,9 @@ de:
   strike: Durchgestrichen
   undo: Rückgängig machen
 en:
+  1: 1
+  2: 2
+  3: 3
   blockquote: Blockquote
   bold: Bold
   code: Code

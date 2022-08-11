@@ -76,7 +76,7 @@
         </div>
         <Hr v-if="signedInUsername" class="md:hidden" /> -->
         <div class="flex flex-col gap-4 md:hidden">
-          <ButtonColored
+          <ButtonText
             :aria-label="$t('eventsExplore')"
             :is-block="true"
             :is-primary="false"
@@ -87,7 +87,7 @@
             <template slot="prefix">
               <IconTelescope />
             </template>
-          </ButtonColored>
+          </ButtonText>
           <ButtonEventNew @click.native="$emit('onMenuHide')" />
         </div>
       </div>

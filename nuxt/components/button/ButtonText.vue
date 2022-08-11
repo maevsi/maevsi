@@ -3,16 +3,9 @@
     ref="button"
     :append="append"
     :aria-label="ariaLabel"
-    class="rounded-md border justify-center px-4 py-2 font-medium"
+    class="font-medium px-4 py-2"
     :class="
       [
-        ...(isPrimary
-          ? [
-              'border-transparent bg-gray-800 text-text-bright hover:bg-black dark:bg-gray-100 dark:text-text-dark dark:hover:bg-gray-200',
-            ]
-          : [
-              'border-gray-300 text-text-dark hover:bg-black/5 dark:border-gray-600 dark:text-text-bright dark:hover:bg-black/30',
-            ]),
         ...(isBlock ? ['block'] : ['inline-block']),
         ...(buttonClass ? [buttonClass] : []),
       ].join(' ')
@@ -51,14 +44,6 @@ export default defineComponent({
     },
     disabled: {
       default: false,
-      type: Boolean,
-    },
-    isBlock: {
-      default: false,
-      type: Boolean,
-    },
-    isPrimary: {
-      default: true,
       type: Boolean,
     },
     to: {

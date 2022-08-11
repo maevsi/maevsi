@@ -30,6 +30,11 @@
         updateSlug()
       "
     >
+      <template slot="stateWarning">
+        <FormInputStateWarning v-if="event && event.name !== form.name">
+          {{ $t('validationWarningNameChangeSlug') }}
+        </FormInputStateWarning>
+      </template>
       <template slot="stateError">
         <FormInputStateError
           :form-input="$v.form.slug"
@@ -482,11 +487,10 @@ de:
   attendanceType: Anwesenheitstyp
   created: Erstellt!
   description: Einladungstext
-  edit: Bearbeiten
   end: Ende
   eventCreate: Veranstaltung erstellen
   eventCreateSuccess: Veranstaltung erfolgreich erstellt.
-  eventUpdate: Veranstaltung aktualisieren
+  eventUpdate: Änderungen speichern
   stateInfoLocation: Ein Suchbegriff für Google Maps.
   stateInfoUrl: Eine Web-URL für digitale Veranstaltungen.
   isInPerson: vor Ort
@@ -501,7 +505,8 @@ de:
   slugPlaceholder: willkommensfeier
   start: Beginn
   updated: Aktualisiert
-  validationExistenceNone: Du hast bereits eine Veranstaltung mit der ID "{slug}" angelegt.
+  validationExistenceNone: Du hast bereits eine Veranstaltung mit der ID "{slug}" angelegt
+  validationWarningNameChangeSlug: Wenn du den Namen änderst, funktionieren bestehende Links zur Veranstaltung möglicherweise nicht mehr
   visibility: Sichtbarkeit
   visibilityPrivate: privat
   visibilityPublic: öffentlich
@@ -509,11 +514,10 @@ en:
   attendanceType: Attendance type
   created: Created!
   description: Invitation text
-  edit: Edit
   end: End
   eventCreate: Create event
   eventCreateSuccess: Event created successfully.
-  eventUpdate: Update event
+  eventUpdate: Save changes
   stateInfoLocation: A search phrase for Google Maps.
   stateInfoUrl: A web URL for remote events.
   isInPerson: in person
@@ -528,7 +532,8 @@ en:
   slugPlaceholder: welcome-party
   start: Start
   updated: Updated
-  validationExistenceNone: You've already created an event with id "{slug}".
+  validationExistenceNone: You've already created an event with id "{slug}"
+  validationWarningNameChangeSlug: If you change the name, existing links to the event may no longer work
   visibility: Visibility
   visibilityPrivate: private
   visibilityPublic: public

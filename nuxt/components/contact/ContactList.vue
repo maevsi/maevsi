@@ -3,7 +3,7 @@
     v-if="($apollo.loading && !allContacts) || graphqlError"
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
-  <div v-else>
+  <div v-else class="flex flex-col gap-4">
     <ScrollContainer
       v-if="allContacts"
       :has-next-page="allContacts.pageInfo.hasNextPage"
@@ -46,13 +46,14 @@
         </tbody>
       </table>
     </ScrollContainer>
-    <br />
-    <ButtonColored :aria-label="$t('contactAdd')" @click="add()">
-      {{ $t('contactAdd') }}
-      <template slot="prefix">
-        <IconPlus />
-      </template>
-    </ButtonColored>
+    <div class="flex justify-center">
+      <ButtonColored :aria-label="$t('contactAdd')" @click="add()">
+        {{ $t('contactAdd') }}
+        <template slot="prefix">
+          <IconPlus />
+        </template>
+      </ButtonColored>
+    </div>
     <Modal id="ModalContact" @close="onClose">
       <FormContact
         :contact="selectedContact"

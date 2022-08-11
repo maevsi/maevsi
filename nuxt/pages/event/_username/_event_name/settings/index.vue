@@ -14,26 +14,25 @@
       >
         {{ $t('settings') }}
       </Breadcrumbs>
-      <h1>{{ $t('title') }}</h1>
       <section>
-        <h2>{{ $t('titleEdit') }}</h2>
+        <h1>{{ $t('title') }}</h1>
         <FormEvent :event="event" />
-      </section>
-      <section>
-        <h2>{{ $t('titleDelete') }}</h2>
-        <FormDelete
-          id="deleteEvent"
-          :errors="$util.getGqlErrorMessages(graphqlErrorDelete, this)"
-          :item-name="$t('event')"
-          :mutation="mutation"
-          :update="updateCacheDelete"
-          :variables="{
-            authorUsername: $route.params.username,
-            slug: $route.params.event_name,
-          }"
-          @error="onDeleteError"
-          @success="onDeleteSuccess"
-        />
+        <section>
+          <h2>{{ $t('titleDelete') }}</h2>
+          <FormDelete
+            id="deleteEvent"
+            :errors="$util.getGqlErrorMessages(graphqlErrorDelete, this)"
+            :item-name="$t('event')"
+            :mutation="mutation"
+            :update="updateCacheDelete"
+            :variables="{
+              authorUsername: $route.params.username,
+              slug: $route.params.event_name,
+            }"
+            @error="onDeleteError"
+            @success="onDeleteSuccess"
+          />
+        </section>
       </section>
     </div>
     <Error v-else />
@@ -217,17 +216,15 @@ de:
   events: Veranstaltung
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   postgresP0002: Die Veranstaltung wurde nicht gefunden!
-  settings: Einstellungen
-  title: Einstellungen
+  settings: bearbeiten
+  title: Veranstaltung bearbeiten
   titleDelete: Veranstaltung löschen
-  titleEdit: Veranstaltung bearbeiten
 en:
   event: event
   events: events
   postgres28P01: Password incorrect! Check that you have written everything correctly.
   postgresP0002: The event was not found!
-  settings: settings
-  title: Settings
+  settings: edit
+  title: Edit event
   titleDelete: Delete event
-  titleEdit: Edit event
 </i18n>

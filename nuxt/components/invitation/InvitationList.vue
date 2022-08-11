@@ -134,7 +134,7 @@
         </tbody>
       </table>
     </ScrollContainer>
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col items-center gap-1">
       <ButtonColored
         :aria-label="$t('invitationAdd')"
         :disabled="
