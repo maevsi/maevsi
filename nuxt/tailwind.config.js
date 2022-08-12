@@ -190,6 +190,10 @@ module.exports = {
           bright: '#f0f0f0',
           dark: '#202020',
         },
+        link: {
+          bright: colors.blue['400'],
+          dark: colors.blue['600'],
+        },
         text: {
           bright: colors.gray['50'],
           dark: colors.gray['900'],

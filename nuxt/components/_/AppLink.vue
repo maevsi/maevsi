@@ -31,8 +31,12 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
-    isUnderlined: {
+    isColored: {
       default: true,
+      type: Boolean,
+    },
+    isUnderlined: {
+      default: false,
       type: Boolean,
     },
     nofollow: {
@@ -46,7 +50,11 @@ export default defineComponent({
   },
   computed: {
     linkClasses(): string {
-      return ['rounded', ...(this.isUnderlined ? ['underline'] : [])].join(' ')
+      return [
+        'rounded',
+        ...(this.isColored ? ['text-link-dark dark:text-link-bright'] : []),
+        ...(this.isUnderlined ? ['underline'] : []),
+      ].join(' ')
     },
   },
 })

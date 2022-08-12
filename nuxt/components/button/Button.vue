@@ -6,7 +6,7 @@
     :aria-label="ariaLabel"
     class="inline-flex items-center gap-2"
     :disabled="disabled"
-    :is-underlined="false"
+    :is-colored="false"
     :to="to"
   >
     <slot name="prefix" />
