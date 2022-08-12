@@ -75,14 +75,22 @@
             width="40"
           />
         </Button>
-        <ButtonText
-          v-else
-          :aria-label="$t('signIn')"
-          :is-primary="false"
-          :to="localePath('/task/account/sign-in')"
-        >
-          {{ $t('signIn') }}
-        </ButtonText>
+        <div v-else>
+          <ButtonIcon
+            :aria-label="$t('signIn')"
+            class="md:hidden h-8 w-8"
+            :to="localePath('/task/account/sign-in')"
+          >
+            <IconSignIn classes="h-6 w-6" />
+          </ButtonIcon>
+          <ButtonText
+            :aria-label="$t('signIn')"
+            class="hidden md:inline-block"
+            :to="localePath('/task/account/sign-in')"
+          >
+            {{ $t('signIn') }}
+          </ButtonText>
+        </div>
       </div>
     </div>
   </header>

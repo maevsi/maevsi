@@ -78,7 +78,6 @@
         <div class="flex flex-col gap-4 md:hidden">
           <ButtonText
             :aria-label="$t('eventsExplore')"
-            :is-block="true"
             :is-primary="false"
             :to="localePath('/event')"
             @click.native="$emit('onMenuHide')"
