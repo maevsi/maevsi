@@ -4,23 +4,6 @@
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else class="flex flex-col gap-4">
-    <div class="flex flex-col items-center justify-between gap-4 lg:flex-row">
-      <ButtonList>
-        <ButtonEventList v-if="showButtonEventList" />
-      </ButtonList>
-      <div class="flex gap-4">
-        <div class="flex gap-1">
-          <EventIconVisibility visibility="PUBLIC" />
-          <span>{{ $t('legendSeparator') }}</span>
-          <span>{{ $t('public') }}</span>
-        </div>
-        <div class="flex gap-1">
-          <EventIconVisibility visibility="PRIVATE" />
-          <span>{{ $t('legendSeparator') }}</span>
-          <span>{{ $t('private') }}</span>
-        </div>
-      </div>
-    </div>
     <ul v-if="allEvents.nodes.length">
       <EventListItem
         v-for="event in allEvents.nodes"
@@ -85,17 +68,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  createEvent: Veranstaltung erstellen
-  eventAuthor: von {username}
-  legendSeparator: '-'
   noEvents: Aktuell gibt es keine Veranstaltungen 😕
-  private: privat
-  public: öffentlich
 en:
-  createEvent: Create event
-  eventAuthor: by {username}
-  legendSeparator: '-'
   noEvents: There are currently no events 😕
-  private: private
-  public: public
 </i18n>

@@ -1,24 +1,24 @@
 import { defineComponent } from '#app'
-import TabFlip from './TabFlip.vue'
+import Tag from './Tag.vue'
 
 export default {
-  component: TabFlip,
-  title: 'TabFlip',
+  component: Tag,
+  title: 'Tag',
 }
 
 const Template = (_: never, { argTypes }: any) =>
   defineComponent({
-    components: { TabFlip },
+    components: { Tag },
     props: Object.keys(argTypes),
     // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-    template: '<TabFlip v-bind="$props">TabFlip</TabFlip>',
+    template: '<Tag v-bind="$props">Tag</Tag>',
   })
 
 export const Default = Template.bind({})
 // @ts-ignore
 Default.args = {
   tabs: [
-    ['TabFlip1', 'TabFlip'],
-    ['TabFlip2', 'TabFlip'],
+    ['Tag1', 'Tag'],
+    ['Tag2', 'Tag'],
   ],
 }
