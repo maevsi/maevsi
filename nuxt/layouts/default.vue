@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div class="container mx-auto p-4 md:px-8">
     <Header @onMenuShow="menuShow" />
-    <main
-      class="container-extended min-h-screen flex-1 overflow-hidden md:px-8"
-    >
+    <main class="min-h-screen flex-1 overflow-hidden">
       <nuxt />
     </main>
     <Footer />

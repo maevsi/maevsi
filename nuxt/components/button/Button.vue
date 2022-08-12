@@ -4,7 +4,7 @@
     ref="button"
     :append="append"
     :aria-label="ariaLabel"
-    class="inline-flex items-center gap-2"
+    :class="isBlock ? 'block' : 'inline-flex items-center gap-2'"
     :disabled="disabled"
     :is-colored="false"
     :to="to"
@@ -17,7 +17,7 @@
     v-else
     ref="button"
     :aria-label="ariaLabel"
-    class="inline-flex items-center gap-2"
+    :class="isBlock ? 'block' : 'inline-flex items-center gap-2'"
     :disabled="disabled"
     :type="type"
     @click="$emit('click')"
@@ -43,6 +43,10 @@ export default defineComponent({
       type: String,
     },
     disabled: {
+      default: false,
+      type: Boolean,
+    },
+    isBlock: {
       default: false,
       type: Boolean,
     },

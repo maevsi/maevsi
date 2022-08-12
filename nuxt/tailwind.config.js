@@ -163,15 +163,6 @@ module.exports = {
           gridRow: '1',
           gridColumn: '1',
         },
-        '.flex-basis-auto': {
-          flexBasis: 'auto',
-        },
-        '.flex-basis-33': {
-          flexBasis: '33.333333%',
-        },
-        '.flex-basis-50': {
-          flexBasis: '50%',
-        },
       })
     },
   ],
@@ -182,9 +173,9 @@ module.exports = {
       },
       colors: {
         background: {
-          body: '#282828',
-          bright: '#f0f0f0',
-          dark: '#202020',
+          body: colors.gray['800'],
+          bright: colors.gray['100'],
+          dark: colors.gray['900'],
         },
         link: {
           bright: colors.blue['400'],

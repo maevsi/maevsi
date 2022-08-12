@@ -1,11 +1,9 @@
 <template>
-  <header class="">
+  <header class="mb-8">
     <CardStateInfo v-if="!isBrowserSupported" is-edgy>
       {{ $t('browserUnsupported') }}
     </CardStateInfo>
-    <div
-      class="container-extended flex items-center justify-between gap-4 md:px-8"
-    >
+    <div class="flex items-center justify-between gap-4">
       <ButtonIcon
         :aria-label="$t('menuShow')"
         class="md:hidden"
