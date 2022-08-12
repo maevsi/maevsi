@@ -1,3 +1,19 @@
+# [0.143.0](https://github.com/maevsi/maevsi/compare/0.142.0...0.143.0) (2022-08-12)
+
+
+### Bug Fixes
+
+* **i18n:** improve wordin ([2576f31](https://github.com/maevsi/maevsi/commit/2576f316edfb718ebd713106fb7e4013273f04ab))
+* **index:** improve i18n ([fff0d9d](https://github.com/maevsi/maevsi/commit/fff0d9d94256acb3b7a16d1a74b696b1a6ea1b5c))
+* tweak line colors ([d48fea1](https://github.com/maevsi/maevsi/commit/d48fea16211397bd96b7083fca366b4873849a6b))
+
+
+### Features
+
+* **css:** add container-extended ([82372c1](https://github.com/maevsi/maevsi/commit/82372c12fb10b278740d56c923ea557d670ddd5e))
+* **event-list:** replace legend with tags ([c3964b2](https://github.com/maevsi/maevsi/commit/c3964b288b9a888d74a3765cbab21763688e13b4))
+* **header:** add sign-in button ([145aa59](https://github.com/maevsi/maevsi/commit/145aa598060563b1e0dfb1aef9c3e16bd51e9228))
+
 # [0.142.0](https://github.com/maevsi/maevsi/compare/0.141.0...0.142.0) (2022-08-11)
 
 
