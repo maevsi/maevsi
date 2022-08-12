@@ -2,9 +2,9 @@
   <footer
     class="bg-background-bright text-sm leading-6 dark:bg-background-dark"
   >
-    <div class="container mx-auto px-2 py-8">
+    <div class="container-extended py-8">
       <!-- Justifying evenly, instead of "between", centers a single element. -->
-      <div class="mx-auto flex w-5/6 flex-wrap justify-evenly">
+      <div class="flex flex-wrap justify-evenly">
         <FooterCategory :heading="$t('product')">
           <AppLink :to="localePath('/#overview')">
             {{ $t('overview') }}

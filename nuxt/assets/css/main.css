@@ -65,6 +65,12 @@
     @apply ring;
     @apply rounded;
   }
+
+  .container-extended {
+    @apply container;
+    @apply mx-auto;
+    @apply p-4;
+  }
 }
 
 @layer utilities {

@@ -4,8 +4,7 @@
       {{ $t('browserUnsupported') }}
     </CardStateInfo>
     <div
-      class="container mx-auto flex items-center justify-between gap-4 p-4 md:px-8"
-      :class="{ container: !signedInUsername }"
+      class="container-extended flex items-center justify-between gap-4 md:px-8"
     >
       <ButtonIcon
         :aria-label="$t('menuShow')"
