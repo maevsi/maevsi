@@ -1,7 +1,7 @@
 <template>
   <li
     v-if="event"
-    class="mb-2 last:mb-0"
+    class="last:mb-0"
     :class="{
       'opacity-75': event.end
         ? $moment(event.end).isBefore($moment())
@@ -13,14 +13,8 @@
       :aria-label="event.name"
       :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >
-      <Card class="flex-1">
-        <!-- <div
-          :class="{
-            'bg-yellow-100 dark:bg-yellow-900':
-              jwtDecoded && event.authorUsername === jwtDecoded.username,
-          }"
-        > -->
-        <div class="mb-2 flex items-center text-sm">
+      <Card class="flex flex-1 flex-col gap-2">
+        <div class="flex items-center justify-between gap-2">
           <div
             class="truncate font-medium"
             :class="{
@@ -31,25 +25,25 @@
           >
             {{ $moment(event.start).format('lll') }}
           </div>
-        </div>
-        <div class="mb-2 flex items-center text-sm">
-          <EventIconVisibility
-            class="flex-shrink-0"
-            :show-text="false"
-            :is-archived="event.isArchived"
-            :visibility="event.visibility"
-          />
-          <div class="flex items-baseline truncate">
-            <div class="mx-2 truncate text-xl font-bold">
-              {{ event.name }}
+          <Tag
+            v-if="event.visibility === 'PRIVATE'"
+            class="self-start font-medium text-sm"
+          >
+            <div class="flex items-center gap-1">
+              <IconKey classes="h-5 w-5" :title="$t('private')" />
+              {{ $t('private') }}
             </div>
-            <Owner :username="event.authorUsername" />
+          </Tag>
+        </div>
+        <div class="flex items-baseline truncate gap-2">
+          <div class="truncate text-xl font-bold">
+            {{ event.name }}
           </div>
+          <Owner :username="event.authorUsername" />
         </div>
         <p v-if="eventDescriptionTemplate" class="text-ellipsis line-clamp-2">
           {{ eventDescriptionTemplate }}
         </p>
-        <!-- </div> -->
       </Card>
     </Button>
   </li>
@@ -90,3 +84,10 @@ export default defineComponent({
   },
 })
 </script>
+
+<i18n lang="yml">
+de:
+  private: privat
+en:
+  private: private
+</i18n>

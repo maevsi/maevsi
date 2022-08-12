@@ -233,22 +233,22 @@ en:
   benefitSecureDescription: You decide who can see which data
   benefitsTitle: Your benefits with {maevsi}
   benefitUserFriendly: User friendly
-  benefitUserFriendlyDescription: Guests can participate easily, completely without login
+  benefitUserFriendlyDescription: Guests can participate easily, without any login
   events: Events
   heroImage: Hero image.
   maevsi: maevsi
   maevsiDescription: maevsi is the manager for events supported by invitees.
   maevsiDescription1: Personal invitations. Proper feedback.
   maevsiDescription2: Don't miss out on events your friends are going to.
-  smartphoneDescription: With meavsi you no longer have to organize your events via chat group anymore. You communicate all important information clearly, keep control over individual invitations and have your head free for the content of your event - your guests will thank you for it.
+  smartphoneDescription: With meavsi you no longer have to organize your events via chat groups anymore. You communicate all important information clearly, keep control over individual invitations and have your head free for the content of your event – your guests will thank you for it.
   smartphoneTitle: Do you still organize your event like that?
-  stepCreateDescription: Rest for you and your guests, instead of a bustling group chat
+  stepCreateDescription: Piece of mind for you and your guests, instead of a bustling group chat
   stepCreateNumber: '1'
   stepCreateTitle: Create an event
-  stepDefineDescription: you have all acceptances and declinatures under control
+  stepDefineDescription: all acceptances and declines under your control
   stepDefineNumber: '3'
   stepDefineTitle: Receive feedback
-  stepInviteDescription: get attention through personal invitation texts
+  stepInviteDescription: achieve attention through personal invitation texts
   stepInviteNumber: '2'
   stepInviteTitle: Invite guests
   stepsTitle: "It's as easy as that"

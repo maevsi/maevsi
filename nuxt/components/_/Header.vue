@@ -4,8 +4,7 @@
       {{ $t('browserUnsupported') }}
     </CardStateInfo>
     <div
-      class="container mx-auto flex items-center justify-between gap-4 p-4 md:px-8"
-      :class="{ container: !signedInUsername }"
+      class="container-extended flex items-center justify-between gap-4 md:px-8"
     >
       <ButtonIcon
         :aria-label="$t('menuShow')"
@@ -49,12 +48,12 @@
         </ButtonText>
         <ButtonEventNew class="hidden md:flex" />
         <div
-          class="bg-gray-400 dark:bg-gray-500 self-stretch w-px hidden md:flex"
+          class="bg-gray-300 dark:bg-gray-600 self-stretch w-px hidden md:flex my-1"
         />
         <ButtonColored
           v-if="signedInUsername"
           :aria-label="$t('dashboard')"
-          class="hidden md:block"
+          class="hidden md:block mx-2"
           :is-primary="false"
           :to="localePath('/dashboard')"
         >
@@ -75,14 +74,22 @@
             width="40"
           />
         </Button>
-        <ButtonText
-          v-else
-          :aria-label="$t('signIn')"
-          :is-primary="false"
-          :to="localePath('/task/account/sign-in')"
-        >
-          {{ $t('signIn') }}
-        </ButtonText>
+        <div v-else>
+          <ButtonIcon
+            :aria-label="$t('signIn')"
+            class="md:hidden h-8 w-8"
+            :to="localePath('/task/account/sign-in')"
+          >
+            <IconSignIn classes="h-6 w-6" />
+          </ButtonIcon>
+          <ButtonText
+            :aria-label="$t('signIn')"
+            class="hidden md:inline-block"
+            :to="localePath('/task/account/sign-in')"
+          >
+            {{ $t('signIn') }}
+          </ButtonText>
+        </div>
       </div>
     </div>
   </header>

@@ -4,12 +4,6 @@
     :append="append"
     :aria-label="ariaLabel"
     class="font-medium px-4 py-2"
-    :class="
-      [
-        ...(isBlock ? ['block'] : ['inline-block']),
-        ...(buttonClass ? [buttonClass] : []),
-      ].join(' ')
-    "
     :disabled="disabled"
     :to="to"
     :type="type"
@@ -37,10 +31,6 @@ export default defineComponent({
     ariaLabel: {
       required: true,
       type: String,
-    },
-    buttonClass: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
     },
     disabled: {
       default: false,

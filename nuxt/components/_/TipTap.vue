@@ -64,8 +64,8 @@
           </template>
         </Button> -->
         <Button
-          :aria-label="$t('heading')"
-          :title="$t('heading')"
+          :aria-label="$t('heading1')"
+          :title="$t('heading1')"
           @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
         >
           <template slot="prefix">
@@ -76,8 +76,8 @@
           </template>
         </Button>
         <Button
-          :aria-label="$t('heading')"
-          :title="$t('heading')"
+          :aria-label="$t('heading2')"
+          :title="$t('heading2')"
           @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
         >
           <template slot="prefix">
@@ -88,8 +88,8 @@
           </template>
         </Button>
         <Button
-          :aria-label="$t('heading')"
-          :title="$t('heading')"
+          :aria-label="$t('heading3')"
+          :title="$t('heading3')"
           @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
         >
           <template slot="prefix">
@@ -274,7 +274,9 @@ de:
   blockquote: Anführungszeichen
   bold: Fett
   code: Code
-  heading: Überschrift
+  heading1: Überschrift (groß)
+  heading2: Überschrift (mittelgroß)
+  heading3: Überschrift (klein)
   horizontalRule: Horizontaler Trennstrich
   italic: Kursiv
   link: Link
@@ -292,7 +294,9 @@ en:
   blockquote: Blockquote
   bold: Bold
   code: Code
-  heading: Heading
+  heading1: Heading (large)
+  heading2: Heading (medium)
+  heading3: Heading (small)
   horizontalRule: Horizontal rule
   link: Link
   linkRemove: Unlink

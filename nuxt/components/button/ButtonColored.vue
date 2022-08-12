@@ -13,8 +13,6 @@
           : [
               'border-gray-300 text-text-dark hover:bg-black/5 dark:border-gray-600 dark:text-text-bright dark:hover:bg-black/30',
             ]),
-        ...(isBlock ? ['block'] : ['inline-block']),
-        ...(buttonClass ? [buttonClass] : []),
       ].join(' ')
     "
     :disabled="disabled"
@@ -45,15 +43,7 @@ export default defineComponent({
       required: true,
       type: String,
     },
-    buttonClass: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
     disabled: {
-      default: false,
-      type: Boolean,
-    },
-    isBlock: {
       default: false,
       type: Boolean,
     },
