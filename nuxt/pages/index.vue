@@ -245,7 +245,7 @@ en:
   stepCreateDescription: Piece of mind for you and your guests, instead of a bustling group chat
   stepCreateNumber: '1'
   stepCreateTitle: Create an event
-  stepDefineDescription: all acceptances and declinatures under your control
+  stepDefineDescription: all acceptances and declines under your control
   stepDefineNumber: '3'
   stepDefineTitle: Receive feedback
   stepInviteDescription: achieve attention through personal invitation texts

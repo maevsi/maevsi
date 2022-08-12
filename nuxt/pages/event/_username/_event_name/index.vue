@@ -560,7 +560,7 @@ export default defineComponent({
 de:
   attendances: Check-in
   events: Veranstaltungen
-  feedbackRequest: 'Bitte gib hier eine Rückmeldung, ob du teilnehmen wirst:'
+  feedbackRequest: 'Bitte gib eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
@@ -594,7 +594,7 @@ de:
 en:
   attendances: Check in
   events: events
-  feedbackRequest: 'Please provide feedback here whether you will be attending:'
+  feedbackRequest: 'Please provide feedback whether you will be attending:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."
   hintQrCode: This picture is your access authorization for the event
