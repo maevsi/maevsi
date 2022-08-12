@@ -48,12 +48,12 @@
         </ButtonText>
         <ButtonEventNew class="hidden md:flex" />
         <div
-          class="bg-gray-400 dark:bg-gray-500 self-stretch w-px hidden md:flex"
+          class="bg-gray-300 dark:bg-gray-600 self-stretch w-px hidden md:flex my-1"
         />
         <ButtonColored
           v-if="signedInUsername"
           :aria-label="$t('dashboard')"
-          class="hidden md:block"
+          class="hidden md:block mx-2"
           :is-primary="false"
           :to="localePath('/dashboard')"
         >
