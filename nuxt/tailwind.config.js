@@ -30,10 +30,6 @@ module.exports = {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
         },
-        '::selection': {
-          color: theme('colors.text.bright'),
-          background: '#e53e3e',
-        },
         'a[target="_blank"]:after': {
           backgroundColor: 'currentColor',
           content: '""',
