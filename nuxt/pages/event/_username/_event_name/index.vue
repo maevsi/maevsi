@@ -34,31 +34,35 @@
         </template>
       </ButtonColored>
     </CardStateInfo>
-    <div v-if="contact" class="flex flex-col items-center gap-2 text-center">
-      <ButtonColored
-        v-if="invitation.feedback === 'ACCEPTED'"
-        :aria-label="$t('qrCodeShow')"
-        class="text-text-bright"
-        @click="qrCodeShow"
-      >
-        {{ $t('qrCodeShow') }}
-        <template slot="prefix">
-          <IconQrCode />
-        </template>
-      </ButtonColored>
-      <p class="mb-2 text-2xl font-bold">
-        {{
-          $t('greeting', {
-            usernameString: $util.getContactName(contact)
-              ? ' ' + $util.getContactName(contact)
-              : '',
-          })
-        }}
-      </p>
-      <p>{{ $t('greetingDescription') }}</p>
-      <div v-if="invitation" class="fixed bottom-0 z-10">
+    <div v-if="contact" class="flex flex-col gap-2">
+      <div class="flex items-center gap-2 justify-between">
+        <div>
+          <p class="mb-2 text-2xl font-bold">
+            {{
+              $t('greeting', {
+                usernameString: $util.getContactName(contact)
+                  ? ' ' + $util.getContactName(contact)
+                  : '',
+              })
+            }}
+          </p>
+          <p>{{ $t('greetingDescription') }}</p>
+        </div>
+        <ButtonColored
+          v-if="invitation.feedback === 'ACCEPTED'"
+          :aria-label="$t('qrCodeShow')"
+          class="text-text-bright"
+          @click="qrCodeShow"
+        >
+          {{ $t('qrCodeShow') }}
+          <template slot="prefix">
+            <IconQrCode />
+          </template>
+        </ButtonColored>
+      </div>
+      <div v-if="invitation" class="fixed bottom-0 right-0 left-0 z-10">
         <div
-          class="justify-content-center inline-block rounded-t-lg border-2 border-b-0 bg-background-brighten dark:bg-background-darken"
+          class="border-t-2 bg-background-bright dark:bg-background-dark"
           :class="
             invitation.feedback === 'ACCEPTED'
               ? 'border-green-600 dark:border-green-500'
@@ -67,7 +71,7 @@
               : 'border-text-dark dark:border-text-bright'
           "
         >
-          <div class="m-4 flex flex-col gap-1">
+          <div class="p-4 flex flex-col gap-1">
             <span v-if="event.authorUsername !== signedInUsername">
               {{ $t('feedbackRequest') }}
             </span>
