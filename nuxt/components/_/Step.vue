@@ -5,9 +5,7 @@
         {{ number }}
       </span>
     </div>
-    <div
-      class="z-20 mt-14 flex flex-1 flex-col items-center basis-auto sm:basis-1/3"
-    >
+    <div class="z-20 mt-14 flex flex-col items-center">
       <h3 class="text-center">{{ title }}</h3>
       <p class="text-center"><slot /></p>
     </div>

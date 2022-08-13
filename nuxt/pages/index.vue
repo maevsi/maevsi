@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col gap-16 md:gap-32">
+  <div class="flex flex-col gap-32 md:gap-32">
     <section id="overview" class="flex gap-8 items-center">
-      <div class="flex w-full flex-col gap-8 items-start lg:w-1/2">
+      <div class="flex w-full flex-col gap-8 md:gap-16 items-start lg:w-1/2">
         <i18n
           class="text-left text-4xl font-extrabold m-0 sm:text-5xl md:text-5xl xl:text-7xl"
           path="title"
@@ -17,7 +17,7 @@
             <span class="text-red-600">{{ $t('titleProfessional') }}</span>
           </template>
         </i18n>
-        <div class="text-lg font-normal leading-8">
+        <div class="flex flex-col gap-2 text-lg md:text-xl">
           <p>
             {{ $t('maevsiDescription1') }}
           </p>
@@ -27,6 +27,7 @@
         </div>
         <ButtonColored
           :aria-label="$t('testNowFree')"
+          class="text-xl"
           :to="localePath('/event')"
         >
           {{ $t('testNowFree') }}
