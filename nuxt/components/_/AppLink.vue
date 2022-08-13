@@ -1,7 +1,7 @@
 <template>
   <a
     v-if="to.match(/^((ftp|http(s)?):\/\/|(mailto):)/)"
-    :class="linkClasses"
+    :class="classes"
     :href="to"
     :rel="
       [...(nofollow ? ['nofollow'] : []), 'noopener', 'noreferrer'].join(' ')
@@ -14,7 +14,7 @@
   <nuxt-link
     v-else
     :append="append"
-    :class="linkClasses"
+    :class="classes"
     :to="to"
     @click.native="$emit('click')"
   >
@@ -49,7 +49,7 @@ export default defineComponent({
     },
   },
   computed: {
-    linkClasses(): string {
+    classes(): string {
       return [
         'rounded',
         ...(this.isColored ? ['text-link-dark dark:text-link-bright'] : []),

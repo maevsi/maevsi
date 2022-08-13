@@ -1,5 +1,5 @@
 <template>
-  <CardState class="bg-green-600" :is-edgy="isEdgy" role="alert">
+  <CardState background-color="bg-green-600" :is-edgy="isEdgy" role="alert">
     <slot />
   </CardState>
 </template>
