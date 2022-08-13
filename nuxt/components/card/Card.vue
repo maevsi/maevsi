@@ -1,6 +1,6 @@
 <template>
   <div
-    class="overflow-hidden rounded border border-neutral-300 p-4 text-text-dark dark:border-neutral-600 dark:text-text-bright"
+    class="overflow-hidden rounded-lg p-4 dark:bg-background-darken bg-background-brighten"
   >
     <slot />
   </div>
