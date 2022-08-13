@@ -14,7 +14,7 @@
     </Breadcrumbs>
     <CardStateInfo
       v-if="$route.query.ic && contact"
-      class="flex flex-col gap-2"
+      class="flex flex-col items-center gap-2"
     >
       {{ $t('invitationViewFor', { name: $util.getContactName(contact) }) }}
       <ButtonColored
@@ -34,31 +34,35 @@
         </template>
       </ButtonColored>
     </CardStateInfo>
-    <div v-if="contact" class="flex flex-col items-center gap-2 text-center">
-      <ButtonColored
-        v-if="invitation.feedback === 'ACCEPTED'"
-        :aria-label="$t('qrCodeShow')"
-        class="text-text-bright"
-        @click="qrCodeShow"
-      >
-        {{ $t('qrCodeShow') }}
-        <template slot="prefix">
-          <IconQrCode />
-        </template>
-      </ButtonColored>
-      <p class="mb-2 text-2xl font-bold">
-        {{
-          $t('greeting', {
-            usernameString: $util.getContactName(contact)
-              ? ' ' + $util.getContactName(contact)
-              : '',
-          })
-        }}
-      </p>
-      <p>{{ $t('greetingDescription') }}</p>
-      <div v-if="invitation" class="fixed bottom-0 z-10">
+    <div v-if="contact" class="flex flex-col gap-2">
+      <div class="flex items-center gap-2 justify-between">
+        <div>
+          <p class="mb-2 text-2xl font-bold">
+            {{
+              $t('greeting', {
+                usernameString: $util.getContactName(contact)
+                  ? ' ' + $util.getContactName(contact)
+                  : '',
+              })
+            }}
+          </p>
+          <p>{{ $t('greetingDescription') }}</p>
+        </div>
+        <ButtonColored
+          v-if="invitation.feedback === 'ACCEPTED'"
+          :aria-label="$t('qrCodeShow')"
+          class="text-text-bright"
+          @click="qrCodeShow"
+        >
+          {{ $t('qrCodeShow') }}
+          <template slot="prefix">
+            <IconQrCode />
+          </template>
+        </ButtonColored>
+      </div>
+      <div v-if="invitation" class="fixed bottom-0 right-0 left-0 z-10">
         <div
-          class="justify-content-center inline-block rounded-t-lg border-2 border-b-0 bg-background-bright dark:bg-background-dark"
+          class="border-t-2 bg-background-bright dark:bg-background-dark"
           :class="
             invitation.feedback === 'ACCEPTED'
               ? 'border-green-600 dark:border-green-500'
@@ -67,7 +71,7 @@
               : 'border-text-dark dark:border-text-bright'
           "
         >
-          <div class="m-4 flex flex-col gap-1">
+          <div class="p-4 flex flex-col gap-1">
             <span v-if="event.authorUsername !== signedInUsername">
               {{ $t('feedbackRequest') }}
             </span>
@@ -226,37 +230,37 @@
         </template>
       </ButtonColored>
     </ButtonList>
-    <Card v-if="event" class="flex flex-col items-center gap-8">
-      <div class="flex max-w-full flex-col items-center">
+    <div class="flex flex-col md:flex-row justify-between gap-2">
+      <div class="flex max-w-full items-baseline gap-2">
         <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
           {{ event.name }}
         </h1>
         <Owner link :username="event.authorUsername" />
       </div>
-      <div class="flex flex-col items-center gap-4 self-stretch">
-        <div class="flex flex-row flex-wrap justify-center self-stretch">
-          <EventDashletStart :event="event" />
-          <EventDashletDuration :event="event" />
-          <EventDashletVisibility :event="event" with-text />
-          <EventDashletAttendanceType :event="event" />
-          <EventDashletLocation :event="event" />
-          <EventDashletLink :event="event" />
-        </div>
-        <div class="flex gap-2 items-center">
-          <ButtonColored
-            :aria-label="$t('iCalDownload')"
-            :is-primary="false"
-            @click="downloadIcal"
-          >
-            {{ $t('iCalDownload') }}
-            <template slot="prefix">
-              <IconDownload />
-            </template>
-          </ButtonColored>
-          <FormInputStateInfo :title="$t('iCalHint')" />
-        </div>
+      <div class="flex gap-2 items-center">
+        <ButtonColored
+          :aria-label="$t('iCalDownload')"
+          :is-primary="false"
+          @click="downloadIcal"
+        >
+          {{ $t('iCalDownload') }}
+          <template slot="prefix">
+            <IconDownload />
+          </template>
+        </ButtonColored>
+        <FormInputStateInfo :title="$t('iCalHint')" />
       </div>
-      <div v-if="eventDescriptionTemplate" class="flex flex-col gap-4">
+    </div>
+    <Card v-if="event" class="flex flex-col items-center gap-8">
+      <div class="flex flex-row flex-wrap justify-center self-stretch">
+        <EventDashletStart :event="event" />
+        <EventDashletDuration :event="event" />
+        <EventDashletVisibility :event="event" with-text />
+        <EventDashletAttendanceType :event="event" />
+        <EventDashletLocation :event="event" />
+        <EventDashletLink :event="event" />
+      </div>
+      <div v-if="eventDescriptionTemplate" class="flex flex-col gap-4 w-full">
         <Hr />
         <!-- eslint-disable vue/no-v-html -->
         <div class="maevsi-prose-scheme" v-html="eventDescriptionTemplate" />

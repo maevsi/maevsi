@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col gap-16 md:gap-32 mt-16 mb-16">
+  <div class="flex flex-col gap-32 md:gap-32">
     <section id="overview" class="flex gap-8 items-center">
-      <div class="flex w-full flex-col gap-8 items-start lg:w-1/2">
+      <div class="flex w-full flex-col gap-8 md:gap-16 items-start lg:w-1/2">
         <i18n
           class="text-left text-4xl font-extrabold m-0 sm:text-5xl md:text-5xl xl:text-7xl"
           path="title"
@@ -17,7 +17,7 @@
             <span class="text-red-600">{{ $t('titleProfessional') }}</span>
           </template>
         </i18n>
-        <div class="text-lg font-normal leading-8">
+        <div class="flex flex-col gap-2 text-lg md:text-xl">
           <p>
             {{ $t('maevsiDescription1') }}
           </p>
@@ -27,6 +27,7 @@
         </div>
         <ButtonColored
           :aria-label="$t('testNowFree')"
+          class="text-lg md:text-xl"
           :to="localePath('/event')"
         >
           {{ $t('testNowFree') }}
@@ -40,7 +41,7 @@
         width="750"
       />
     </section>
-    <section>
+    <section id="steps" ref="sectionSteps">
       <h2 class="text-center text-5xl font-extrabold">
         {{ $t('stepsTitle') }}
       </h2>
@@ -76,7 +77,7 @@
         src="/assets/static/images/smartphone.png"
         width="750"
       />
-      <div class="flex flex-col gap-4 items-start lg:w-1/2">
+      <div class="flex flex-col gap-8 items-start lg:w-1/2">
         <h2 class="text-4xl font-extrabold">
           {{ $t('smartphoneTitle') }}
         </h2>
@@ -132,6 +133,16 @@
         />
       </div>
     </section>
+    <div
+      ref="scrollHint"
+      class="duration-300 fixed flex flex-col items-center bottom-4 left-1/2 -translate-x-1/2 text-xl gap-2 transition"
+      :class="isScrollHintShown ? 'opacity-10' : 'opacity-0'"
+    >
+      <IconChevronDoubleDown
+        classes="h-16 w-16 animate-bounce"
+        @click.native="scrollToSteps"
+      />
+    </div>
   </div>
 </template>
 
@@ -145,6 +156,8 @@ export default defineComponent({
   },
   data() {
     return {
+      eventListenerScroll: undefined,
+      isScrollHintShown: false,
       title: this.$t('title', {
         easy: this.$t('titleEasy'),
         fast: this.$t('titleFast'),
@@ -177,6 +190,25 @@ export default defineComponent({
       ],
       title,
     }
+  },
+  mounted() {
+    if (window.pageYOffset === 0) {
+      this.isScrollHintShown = true
+
+      this.eventListenerScroll = window.addEventListener('scroll', () => {
+        this.isScrollHintShown = false
+      })
+    }
+  },
+  beforeUnmount() {
+    if (this.eventListenerScroll) {
+      window.removeEventListener(this.eventListenerScroll)
+    }
+  },
+  methods: {
+    scrollToSteps() {
+      this.$refs.sectionSteps.scrollIntoView({ behavior: 'smooth' })
+    },
   },
 })
 </script>

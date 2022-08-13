@@ -1,6 +1,8 @@
 <template>
   <div class="mb-4 flex items-center gap-2 overflow-auto p-1">
-    <AppLink :to="localePath('/')"><IconHome classes="h-6 w-6" /></AppLink>
+    <AppLink :is-colored="false" :to="localePath('/')">
+      <IconHome classes="h-6 w-6" />
+    </AppLink>
     <ul v-if="prefixes" class="flex items-center gap-2">
       <li
         v-for="prefix in prefixes"
@@ -8,13 +10,13 @@
         class="flex items-center gap-2"
       >
         <span>{{ $t('separator') }}</span>
-        <AppLink :to="prefix.to" :append="prefix.append">
+        <AppLink :append="prefix.append" :is-colored="false" :to="prefix.to">
           <span class="whitespace-nowrap text-2xl">{{ prefix.name }}</span>
         </AppLink>
       </li>
     </ul>
     <span>{{ $t('separator') }}</span>
-    <AppLink :to="$util.getQueryString($route.query)">
+    <AppLink :is-colored="false" :to="$util.getQueryString($route.query)">
       <h1 class="m-0 whitespace-nowrap text-2xl"><slot /></h1>
     </AppLink>
     <ul v-if="suffixes" class="flex items-center gap-2">
@@ -24,7 +26,7 @@
         class="flex items-center gap-2"
       >
         <span>{{ $t('separator') }}</span>
-        <AppLink :to="suffix.to" :append="suffix.append">
+        <AppLink :append="suffix.append" :is-colored="false" :to="suffix.to">
           <span class="whitespace-nowrap text-2xl">{{ suffix.name }}</span>
         </AppLink>
       </li>

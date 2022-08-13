@@ -1,6 +1,6 @@
 <template>
   <CardState
-    class="bg-red-600 selection:bg-violet-600"
+    background-color="bg-red-600 selection:bg-violet-600"
     :is-edgy="isEdgy"
     role="alert"
   >

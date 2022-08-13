@@ -6,9 +6,9 @@
       class="flex items-center gap-2"
     >
       <div
-        class="flex h-8 w-8 items-center justify-center rounded-full border border-background-dark font-bold dark:border-background-bright"
+        class="flex h-8 w-8 items-center justify-center rounded-full border border-background-darken font-bold dark:border-background-brighten"
         :class="{
-          'bg-background-dark text-text-bright dark:bg-background-bright dark:text-text-dark':
+          'bg-background-darken text-text-bright dark:bg-background-brighten dark:text-text-dark':
             step === active,
         }"
       >

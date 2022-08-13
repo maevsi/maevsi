@@ -51,27 +51,24 @@
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
   }
-}
 
-@layer components {
   a:focus {
-    @apply outline-none;
-    @apply ring;
-    @apply rounded;
+    @apply outline-none ring rounded;
   }
 
   button:focus {
-    @apply outline-none;
-    @apply ring;
-    @apply rounded;
+    @apply outline-none ring rounded;
   }
 
-  .container-extended {
-    @apply container;
-    @apply mx-auto;
-    @apply p-4;
+  thead {
+    @apply sticky top-0 z-10 maevsi-bg-darken;
+  }
+
+  tbody {
+    @apply divide-y maevsi-divide-darken;
   }
 }
+
 
 @layer utilities {
   .maevsi-prose {
@@ -80,6 +77,18 @@
 
   .maevsi-prose-scheme {
     @apply maevsi-prose dark:prose-invert;
+  }
+
+  .maevsi-divide-darken {
+    @apply divide-background-brighten dark:divide-background-darken
+  }
+
+  .maevsi-bg-darken {
+    @apply bg-background-brighten dark:bg-background-darken
+  }
+
+  .maevsi-border-darken {
+    @apply border-background-brighten dark:border-background-darken
   }
 }
 

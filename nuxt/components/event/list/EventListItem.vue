@@ -1,7 +1,6 @@
 <template>
   <li
     v-if="event"
-    class="last:mb-0"
     :class="{
       'opacity-75': event.end
         ? $moment(event.end).isBefore($moment())
@@ -9,11 +8,11 @@
     }"
   >
     <Button
-      class="w-full"
       :aria-label="event.name"
+      is-block
       :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >
-      <Card class="flex flex-1 flex-col gap-2">
+      <Card class="flex flex-col gap-2">
         <div class="flex items-center justify-between gap-2">
           <div
             class="truncate font-medium"

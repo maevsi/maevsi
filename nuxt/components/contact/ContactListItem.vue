@@ -23,7 +23,7 @@
     </td>
     <td>
       <div class="flex items-center justify-evenly gap-2">
-        <ButtonTable
+        <ButtonIcon
           :aria-label="
             contact.authorAccountUsername !== signedInUsername
               ? $t('disabledReasonCreatorNot', {
@@ -34,19 +34,17 @@
           :disabled="
             contact.authorAccountUsername !== signedInUsername || isEditing
           "
-          is-title-show
           @click="$emit('edit')"
         >
           <IconPencil />
-        </ButtonTable>
-        <ButtonTable
+        </ButtonIcon>
+        <ButtonIcon
           :aria-label="$t('contactDelete')"
           :disabled="isDeleting || contact.accountUsername === signedInUsername"
-          is-title-show
           @click="$emit('delete')"
         >
           <IconTrash />
-        </ButtonTable>
+        </ButtonIcon>
       </div>
     </td>
   </tr>

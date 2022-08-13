@@ -1,8 +1,8 @@
 <template>
   <Card
+    :background-color="backgroundColor"
     class="overflow-hidden border-0 text-center font-medium text-white"
     :class="{ 'rounded-none': isEdgy }"
-    role="alert"
   >
     <slot />
   </Card>
@@ -13,6 +13,10 @@ import { defineComponent } from '#app'
 
 export default defineComponent({
   props: {
+    backgroundColor: {
+      default: undefined,
+      type: String,
+    },
     isEdgy: {
       default: false,
       type: Boolean,

@@ -4,7 +4,7 @@
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else class="flex flex-col gap-4">
-    <ul v-if="allEvents.nodes.length">
+    <ul v-if="allEvents.nodes.length" class="flex flex-col gap-4">
       <EventListItem
         v-for="event in allEvents.nodes"
         :key="event.id"

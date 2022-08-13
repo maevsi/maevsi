@@ -9,10 +9,8 @@
       :has-next-page="allInvitations.pageInfo.hasNextPage"
       @loadMore="loadMore"
     >
-      <table class="border border-neutral-300 dark:border-neutral-600">
-        <thead
-          class="sticky top-0 z-10 bg-background-bright dark:bg-background-dark"
-        >
+      <table>
+        <thead>
           <tr>
             <th scope="col">
               {{ $t('contact') }}
@@ -20,7 +18,7 @@
             <th />
           </tr>
         </thead>
-        <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
+        <tbody>
           <tr
             v-for="invitation in allInvitations.nodes"
             :key="invitation.uuid"
@@ -38,7 +36,7 @@
               <div
                 class="flex items-center justify-evenly gap-4 text-text-dark dark:text-text-bright"
               >
-                <ButtonTable
+                <ButtonIcon
                   :aria-label="
                     invitation.contactByContactId.accountUsername ||
                     invitation.contactByContactId.emailAddress
@@ -51,25 +49,23 @@
                       !invitation.contactByContactId.emailAddress) ||
                     pending.sends.includes(invitation.uuid)
                   "
-                  is-title-show
                   @click="send(invitation)"
                 >
                   <IconPaperPlane />
-                </ButtonTable>
-                <ButtonTable
+                </ButtonIcon>
+                <ButtonIcon
                   :aria-label="$t('invitationLink')"
                   class="hidden md:block"
-                  is-title-show
                   @click="copyLink(event, invitation)"
                 >
                   <IconLink />
-                </ButtonTable>
+                </ButtonIcon>
                 <DropDown>
-                  <ButtonTable :aria-label="$t('globalShowMore')" is-title-show>
+                  <ButtonIcon :aria-label="$t('globalShowMore')">
                     <IconDotsVertical />
-                  </ButtonTable>
+                  </ButtonIcon>
                   <template slot="content">
-                    <ButtonTable
+                    <ButtonText
                       :aria-label="
                         invitation.contactByContactId.accountUsername ||
                         invitation.contactByContactId.emailAddress
@@ -82,7 +78,6 @@
                           !invitation.contactByContactId.emailAddress) ||
                         pending.sends.includes(invitation.uuid)
                       "
-                      is-title-show
                       @click="send(invitation)"
                     >
                       <IconPaperPlane />
@@ -92,19 +87,17 @@
                           ? $t('invitationSend')
                           : $t('disabledReasonEmailAddressNone')
                       }}
-                    </ButtonTable>
-                    <ButtonTable
+                    </ButtonText>
+                    <ButtonText
                       :aria-label="$t('invitationLink')"
                       class="block md:hidden"
-                      is-title-show
                       @click="copyLink(event, invitation)"
                     >
                       <IconLink />
                       {{ $t('invitationLink') }}
-                    </ButtonTable>
-                    <ButtonTable
+                    </ButtonText>
+                    <ButtonText
                       :aria-label="$t('invitationView')"
-                      is-title-show
                       @click="
                         $router.push({
                           path: localePath(
@@ -116,16 +109,15 @@
                     >
                       <IconEye />
                       {{ $t('invitationView') }}
-                    </ButtonTable>
-                    <ButtonTable
+                    </ButtonText>
+                    <ButtonText
                       :aria-label="$t('invitationDelete')"
                       :disabled="pending.deletions.includes(invitation.uuid)"
-                      is-title-show
                       @click="delete_(invitation.uuid)"
                     >
                       <IconTrash />
                       {{ $t('invitationDelete') }}
-                    </ButtonTable>
+                    </ButtonText>
                   </template>
                 </DropDown>
               </div>
