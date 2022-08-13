@@ -4,8 +4,8 @@
       <slot />
     </div>
     <div
-      v-if="isOpen"
-      class="fixed top-0 left-0 right-0 bottom-0 z-10"
+      class="fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm transition"
+      :class="isOpen ? 'opacity-100' : 'invisible opacity-0'"
       @click="toggleIsOpen"
     />
     <div
