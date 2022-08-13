@@ -1,3 +1,32 @@
+# [0.144.0](https://github.com/maevsi/maevsi/compare/0.143.0...0.144.0) (2022-08-13)
+
+
+### Bug Fixes
+
+* **card-state:** correct background color ([595bf23](https://github.com/maevsi/maevsi/commit/595bf239f085a19e40ed6031c9ca6228ef0f87e4))
+* **contact-preview:** correct feedback icon background color ([751a371](https://github.com/maevsi/maevsi/commit/751a37194d5fd65b715cfea53e88c87d07b4f457))
+* **event-dashlet-start:** correct line height ([c48f0fe](https://github.com/maevsi/maevsi/commit/c48f0fefab705d273eb92790964116bb3b14e7de))
+* **event-list:** readd gap ([a96fd2c](https://github.com/maevsi/maevsi/commit/a96fd2c37d168d7d4b9e82dc946dde4dcde162e5))
+* **invitation:** correct button width ([4727860](https://github.com/maevsi/maevsi/commit/472786083b7ce5f2af1ba9bf9fe1a56700a52811))
+
+
+### Features
+
+* **app-link:** replace underline with color ([b350916](https://github.com/maevsi/maevsi/commit/b350916a5a67a79f7b707cbb23e465cff9c2fabd))
+* **backdrop-blur:** improve fade ([52d89f1](https://github.com/maevsi/maevsi/commit/52d89f13e628127e97ac0830315a24b33dd710cb))
+* **button:** remove button-table ([76f75dd](https://github.com/maevsi/maevsi/commit/76f75dd7cba79fdb05b4d2c3fd22ff849b3c48a7))
+* **card:** replace border with background color ([1bc66cb](https://github.com/maevsi/maevsi/commit/1bc66cb71918856095d3cfe146854cbae7e06df7))
+* **event:** tweak ui ([2d1b65c](https://github.com/maevsi/maevsi/commit/2d1b65cb88a83bafd806a09b7ccf1af885f60dc5))
+* **header:** change breakpoint ([9b83793](https://github.com/maevsi/maevsi/commit/9b83793437fbfdf0728361c24b7a3f73073cd263))
+* **index:** add scroll hint ([dd7eaa5](https://github.com/maevsi/maevsi/commit/dd7eaa5b1b8e9102f6841d32324bba1f674c4623))
+* **index:** tweak ui ([78de8af](https://github.com/maevsi/maevsi/commit/78de8af95152877d9869f7ac2cff5849d5bee8c8))
+* **invitation-list:** tweak table colors ([dd8a452](https://github.com/maevsi/maevsi/commit/dd8a452be14eae162a9143a473ee99c453387084))
+* **invitation:** slight feedback redesign ([e7ee188](https://github.com/maevsi/maevsi/commit/e7ee1888286455e594f2a3b8a9cb8c6a616c9795))
+* **tailwind:** improve background color naming ([06184c9](https://github.com/maevsi/maevsi/commit/06184c938cd27c783a0b7ec0e948778445ef8029))
+* **tailwind:** remove selection color ([3fdf238](https://github.com/maevsi/maevsi/commit/3fdf2387190ebd729e101741cbc487632e9c030a))
+* **tailwind:** replace backdrop darken with blur ([a0d81bd](https://github.com/maevsi/maevsi/commit/a0d81bd8b117b1618942f410431c7c9a32bed11e))
+* **tailwind:** tweak colors ([a5fe01a](https://github.com/maevsi/maevsi/commit/a5fe01a216072ee2058f06abfff6d7423eec5c40))
+
 # [0.143.0](https://github.com/maevsi/maevsi/compare/0.142.0...0.143.0) (2022-08-12)
 
 
