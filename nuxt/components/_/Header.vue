@@ -6,7 +6,7 @@
     <div class="flex items-center justify-between gap-4">
       <ButtonIcon
         :aria-label="$t('menuShow')"
-        class="md:hidden"
+        class="lg:hidden"
         @click="$emit('onMenuShow')"
       >
         <IconMenu classes="h-8 w-8" />
@@ -14,7 +14,7 @@
       <Button :aria-label="$t('home')" :to="localePath('/')">
         <div id="logo" class="h-10 w-32" />
       </Button>
-      <div class="hidden md:block flex-grow" />
+      <div class="hidden lg:block flex-grow" />
       <!-- <div class="hidden xl:flex">
         <label class="hidden" for="search">{{ $t('search') }}</label>
         <input
@@ -35,7 +35,7 @@
       <div class="flex items-center gap-2 lg:gap-4 whitespace-nowrap">
         <ButtonText
           :aria-label="$t('events')"
-          class="hidden md:flex"
+          class="hidden lg:flex"
           :to="localePath('/event')"
           :is-primary="false"
         >
@@ -44,23 +44,23 @@
             <IconTelescope />
           </template>
         </ButtonText>
-        <ButtonEventNew class="hidden md:flex" />
+        <ButtonEventNew class="hidden lg:flex" />
         <div
-          class="bg-gray-300 dark:bg-gray-600 self-stretch w-px hidden md:flex my-1"
+          class="flex-none bg-gray-300 dark:bg-gray-600 self-stretch w-px hidden lg:flex my-1"
         />
         <ButtonColored
           v-if="signedInUsername"
           :aria-label="$t('dashboard')"
-          class="hidden md:block mx-2"
+          class="hidden lg:block mx-2"
           :is-primary="false"
           :to="localePath('/dashboard')"
         >
           {{ $t('dashboard') }}
         </ButtonColored>
-        <Button
+        <ButtonIcon
           v-if="signedInUsername"
           :aria-label="signedInUsername"
-          class="flex min-w-0 items-center gap-2 text-text-dark dark:text-text-bright"
+          class="flex-none"
           :title="$t('profileLink')"
           :to="localePath(`/account/${signedInUsername}`)"
           @click.native="$emit('onMenuHide')"
@@ -71,18 +71,18 @@
             :username="signedInUsername"
             width="40"
           />
-        </Button>
+        </ButtonIcon>
         <div v-else>
           <ButtonIcon
             :aria-label="$t('signIn')"
-            class="md:hidden h-8 w-8"
+            class="lg:hidden h-8 w-8"
             :to="localePath('/task/account/sign-in')"
           >
             <IconSignIn classes="h-6 w-6" />
           </ButtonIcon>
           <ButtonText
             :aria-label="$t('signIn')"
-            class="hidden md:inline-block"
+            class="hidden lg:inline-block"
             :to="localePath('/task/account/sign-in')"
           >
             {{ $t('signIn') }}
