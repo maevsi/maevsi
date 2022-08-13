@@ -58,7 +58,7 @@
       <p>{{ $t('greetingDescription') }}</p>
       <div v-if="invitation" class="fixed bottom-0 z-10">
         <div
-          class="justify-content-center inline-block rounded-t-lg border-2 border-b-0 bg-background-bright dark:bg-background-dark"
+          class="justify-content-center inline-block rounded-t-lg border-2 border-b-0 bg-background-brighten dark:bg-background-darken"
           :class="
             invitation.feedback === 'ACCEPTED'
               ? 'border-green-600 dark:border-green-500'

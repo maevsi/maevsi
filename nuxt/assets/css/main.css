@@ -76,15 +76,15 @@
   }
 
   .maevsi-divide-darken {
-    @apply divide-background-bright dark:divide-background-dark
+    @apply divide-background-brighten dark:divide-background-darken
   }
 
   .maevsi-bg-darken {
-    @apply bg-background-bright dark:bg-background-dark
+    @apply bg-background-brighten dark:bg-background-darken
   }
 
   .maevsi-border-darken {
-    @apply border-background-bright dark:border-background-dark
+    @apply border-background-brighten dark:border-background-darken
   }
 }
 

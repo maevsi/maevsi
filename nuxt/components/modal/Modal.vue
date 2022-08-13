@@ -9,7 +9,7 @@
       :class="{ fixed: !$config.STORYBOOK }"
     >
       <Card
-        class="flex max-h-[90vh] w-5/6 flex-col gap-2 overflow-auto bg-background-bright dark:bg-background-dark sm:w-2/3 lg:w-1/2 xl:w-1/3"
+        class="flex max-h-[90vh] w-5/6 flex-col gap-2 overflow-auto bg-background-brighten dark:bg-background-darken sm:w-2/3 lg:w-1/2 xl:w-1/3"
       >
         <div class="flex justify-end">
           <ButtonIcon

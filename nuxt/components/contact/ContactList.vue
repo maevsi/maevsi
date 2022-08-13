@@ -11,7 +11,7 @@
     >
       <table class="border border-neutral-300 dark:border-neutral-600">
         <thead
-          class="sticky top-0 z-10 bg-background-bright dark:bg-background-dark"
+          class="sticky top-0 z-10 bg-background-brighten dark:bg-background-darken"
         >
           <tr>
             <th scope="col">

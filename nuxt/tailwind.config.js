@@ -175,9 +175,10 @@ module.exports = {
       },
       colors: {
         background: {
-          body: gray['800'],
-          bright: gray['200'],
-          dark: gray['700'],
+          bright: colors.white,
+          brighten: gray['200'],
+          dark: gray['800'],
+          darken: gray['700'],
         },
         link: {
           bright: colors.blue['400'],

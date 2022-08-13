@@ -157,7 +157,7 @@ export default defineNuxtConfig({
     return {
       bodyAttrs: {
         class:
-          'bg-white dark:bg-background-body font-sans text-text-dark dark:text-text-bright',
+          'bg-background-bright dark:bg-background-dark font-sans text-text-dark dark:text-text-bright',
       },
       link: [
         {
