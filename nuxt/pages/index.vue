@@ -27,7 +27,7 @@
         </div>
         <ButtonColored
           :aria-label="$t('testNowFree')"
-          class="text-xl"
+          class="text-lg md:text-xl"
           :to="localePath('/event')"
         >
           {{ $t('testNowFree') }}
@@ -77,7 +77,7 @@
         src="/assets/static/images/smartphone.png"
         width="750"
       />
-      <div class="flex flex-col gap-4 items-start lg:w-1/2">
+      <div class="flex flex-col gap-8 items-start lg:w-1/2">
         <h2 class="text-4xl font-extrabold">
           {{ $t('smartphoneTitle') }}
         </h2>
