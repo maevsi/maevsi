@@ -14,7 +14,7 @@
     </Breadcrumbs>
     <CardStateInfo
       v-if="$route.query.ic && contact"
-      class="flex flex-col gap-2"
+      class="flex flex-col items-center gap-2"
     >
       {{ $t('invitationViewFor', { name: $util.getContactName(contact) }) }}
       <ButtonColored
