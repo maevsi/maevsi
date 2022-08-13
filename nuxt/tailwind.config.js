@@ -94,25 +94,6 @@ module.exports = {
             opacity: 0.5,
           },
         },
-        '.flip-card': {
-          perspective: '1000px',
-        },
-        '.flip-card-inner': {
-          transition: 'transform 0.7s',
-          transformStyle: 'preserve-3d',
-        },
-        '.flip-card.flipped .flip-card-inner': {
-          transform: 'rotateY(180deg)',
-        },
-        '.flip-card-front, .flip-card-back': {
-          backfaceVisibility: 'hidden',
-        },
-        '.flip-card-front': {
-          transform: 'rotateY(-180deg)',
-        },
-        '.flip-card-back': {
-          transform: 'rotateY(0deg)',
-        },
         '.form-input': {
           appearance: 'none',
           backgroundColor: theme('colors.gray.50'),
@@ -141,18 +122,6 @@ module.exports = {
         '.form-input-warning': {
           input: {
             borderColor: theme('colors.yellow.600'),
-          },
-        },
-        '.pills': {
-          display: 'flex',
-          justifyContent: 'space-between',
-          li: {
-            width: theme('width.full'),
-            button: {
-              fontWeight: theme('fontWeight.semibold'),
-              padding: theme('padding.2') + ' ' + theme('padding.4'),
-              width: theme('width.full'),
-            },
           },
         },
       })

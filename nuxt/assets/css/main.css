@@ -53,15 +53,19 @@
   }
 
   a:focus {
-    @apply outline-none;
-    @apply ring;
-    @apply rounded;
+    @apply outline-none ring rounded;
   }
 
   button:focus {
-    @apply outline-none;
-    @apply ring;
-    @apply rounded;
+    @apply outline-none ring rounded;
+  }
+
+  thead {
+    @apply sticky top-0 z-10 maevsi-bg-darken;
+  }
+
+  tbody {
+    @apply divide-y maevsi-divide-darken;
   }
 }
 
