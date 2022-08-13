@@ -230,37 +230,37 @@
         </template>
       </ButtonColored>
     </ButtonList>
-    <Card v-if="event" class="flex flex-col items-center gap-8">
-      <div class="flex max-w-full flex-col items-center">
+    <div class="flex flex-col md:flex-row justify-between gap-2">
+      <div class="flex max-w-full items-baseline gap-2">
         <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
           {{ event.name }}
         </h1>
         <Owner link :username="event.authorUsername" />
       </div>
-      <div class="flex flex-col items-center gap-4 self-stretch">
-        <div class="flex flex-row flex-wrap justify-center self-stretch">
-          <EventDashletStart :event="event" />
-          <EventDashletDuration :event="event" />
-          <EventDashletVisibility :event="event" with-text />
-          <EventDashletAttendanceType :event="event" />
-          <EventDashletLocation :event="event" />
-          <EventDashletLink :event="event" />
-        </div>
-        <div class="flex gap-2 items-center">
-          <ButtonColored
-            :aria-label="$t('iCalDownload')"
-            :is-primary="false"
-            @click="downloadIcal"
-          >
-            {{ $t('iCalDownload') }}
-            <template slot="prefix">
-              <IconDownload />
-            </template>
-          </ButtonColored>
-          <FormInputStateInfo :title="$t('iCalHint')" />
-        </div>
+      <div class="flex gap-2 items-center">
+        <ButtonColored
+          :aria-label="$t('iCalDownload')"
+          :is-primary="false"
+          @click="downloadIcal"
+        >
+          {{ $t('iCalDownload') }}
+          <template slot="prefix">
+            <IconDownload />
+          </template>
+        </ButtonColored>
+        <FormInputStateInfo :title="$t('iCalHint')" />
       </div>
-      <div v-if="eventDescriptionTemplate" class="flex flex-col gap-4">
+    </div>
+    <Card v-if="event" class="flex flex-col items-center gap-8">
+      <div class="flex flex-row flex-wrap justify-center self-stretch">
+        <EventDashletStart :event="event" />
+        <EventDashletDuration :event="event" />
+        <EventDashletVisibility :event="event" with-text />
+        <EventDashletAttendanceType :event="event" />
+        <EventDashletLocation :event="event" />
+        <EventDashletLink :event="event" />
+      </div>
+      <div v-if="eventDescriptionTemplate" class="flex flex-col gap-4 w-full">
         <Hr />
         <!-- eslint-disable vue/no-v-html -->
         <div class="maevsi-prose-scheme" v-html="eventDescriptionTemplate" />
