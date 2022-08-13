@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div @click="toggleIsOpen">
+    <div class="flex items-center justify-center" @click="toggleIsOpen">
       <slot />
     </div>
     <div
@@ -11,7 +11,7 @@
     <div
       v-if="isOpen"
       ref="dropdown"
-      class="fixed z-20 mt-2 flex -translate-x-full flex-col gap-4 rounded-md bg-background-bright p-4 shadow-lg dark:bg-background-dark"
+      class="fixed z-20 mt-2 flex -translate-x-full flex-col gap-2 rounded-md bg-background-bright p-2 shadow-lg dark:bg-background-dark"
     >
       <slot name="content" />
     </div>

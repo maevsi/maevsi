@@ -10,6 +10,8 @@ function heading(theme) {
   }
 }
 
+const gray = colors.gray // or slate, zinc, neutral, stone
+
 module.exports = {
   content: [
     './components/**/*.{js,vue,ts}',
@@ -173,17 +175,17 @@ module.exports = {
       },
       colors: {
         background: {
-          body: colors.gray['800'],
-          bright: colors.gray['100'],
-          dark: colors.gray['900'],
+          body: gray['800'],
+          bright: gray['200'],
+          dark: gray['700'],
         },
         link: {
           bright: colors.blue['400'],
           dark: colors.blue['600'],
         },
         text: {
-          bright: colors.gray['50'],
-          dark: colors.gray['900'],
+          bright: gray['50'],
+          dark: gray['900'],
         },
       },
       fontFamily: {

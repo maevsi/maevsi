@@ -74,6 +74,18 @@
   .maevsi-prose-scheme {
     @apply maevsi-prose dark:prose-invert;
   }
+
+  .maevsi-divide-darken {
+    @apply divide-background-bright dark:divide-background-dark
+  }
+
+  .maevsi-bg-darken {
+    @apply bg-background-bright dark:bg-background-dark
+  }
+
+  .maevsi-border-darken {
+    @apply border-background-bright dark:border-background-dark
+  }
 }
 
 .layout-enter-active,

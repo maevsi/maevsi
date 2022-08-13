@@ -6,13 +6,12 @@
   <div v-else class="flex flex-col gap-4">
     <ScrollContainer
       v-if="event && allInvitations.nodes.length > 0"
+      class="border maevsi-border-darken rounded-lg"
       :has-next-page="allInvitations.pageInfo.hasNextPage"
       @loadMore="loadMore"
     >
-      <table class="border border-neutral-300 dark:border-neutral-600">
-        <thead
-          class="sticky top-0 z-10 bg-background-bright dark:bg-background-dark"
-        >
+      <table>
+        <thead class="sticky top-0 z-10 maevsi-bg-darken">
           <tr>
             <th scope="col">
               {{ $t('contact') }}
@@ -20,7 +19,7 @@
             <th />
           </tr>
         </thead>
-        <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
+        <tbody class="divide-y maevsi-divide-darken">
           <tr
             v-for="invitation in allInvitations.nodes"
             :key="invitation.uuid"
