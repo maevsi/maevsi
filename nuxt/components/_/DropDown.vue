@@ -4,8 +4,12 @@
       <slot />
     </div>
     <div
-      class="fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm transition"
-      :class="isOpen ? 'opacity-100' : 'invisible opacity-0'"
+      class="fixed top-0 left-0 right-0 bottom-0 z-10 transition"
+      :class="
+        isOpen
+          ? 'backdrop-blur-sm backdrop-brightness-75'
+          : 'invisible backdrop-blur-0 backdrop-brightness-100'
+      "
       @click="toggleIsOpen"
     />
     <div

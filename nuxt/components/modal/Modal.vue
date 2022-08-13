@@ -1,12 +1,12 @@
 <template>
   <div :class="{ invisible: !isVisibleComputed }">
     <div
-      class="fixed bottom-0 left-0 right-0 top-0 z-10 backdrop-blur transition"
+      class="fixed bottom-0 left-0 right-0 top-0 z-10 transition"
       :class="[
         ...($config.STORYBOOK ? [] : ['fixed']),
         ...(isVisibleComputed
-          ? ['opacity-100 backdrop-brightness-50']
-          : ['opacity-0 backdrop-brightness-100']),
+          ? ['backdrop-blur backdrop-brightness-50']
+          : ['backdrop-blur-0 backdrop-brightness-100']),
       ]"
       @click="close"
     />

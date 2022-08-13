@@ -6,15 +6,20 @@
     </main>
     <Footer />
     <div
-      class="fixed bottom-0 left-0 right-0 top-0 z-10 bg-black transition-opacity duration-500 md:hidden"
-      :class="isMenuVisible ? 'visible opacity-50' : 'invisible opacity-0'"
+      class="fixed bottom-0 left-0 right-0 top-0 z-10 transition duration-500"
+      :class="[
+        ...(isMenuVisible
+          ? ['backdrop-brightness-50 backdrop-blur']
+          : ['backdrop-brightness-100 backdrop-blur-0']),
+        ...(isMenuVisiblePartly ? [] : ['invisible']),
+      ]"
       @click="menuHide()"
     />
     <div
-      class="fixed bottom-0 left-0 top-0 z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 md:hidden"
+      class="fixed bottom-0 left-0 top-0 z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 lg:hidden"
       :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >
-      <Menu v-if="isMenuItemsVisible" is-closable @onMenuHide="menuHide" />
+      <Menu v-if="isMenuVisiblePartly" is-closable @onMenuHide="menuHide" />
     </div>
     <CookieControl :locale="$i18n.locale" />
   </div>
@@ -30,7 +35,7 @@ export default defineComponent({
   data() {
     return {
       isMenuVisible: false,
-      isMenuItemsVisible: false,
+      isMenuVisiblePartly: false,
     }
   },
   head() {
@@ -46,11 +51,11 @@ export default defineComponent({
     menuHide() {
       this.isMenuVisible = false
       setTimeout(() => {
-        this.isMenuItemsVisible = false
+        this.isMenuVisiblePartly = false
       }, 500)
     },
     menuShow() {
-      this.isMenuItemsVisible = true
+      this.isMenuVisiblePartly = true
       this.isMenuVisible = true
     },
   },
