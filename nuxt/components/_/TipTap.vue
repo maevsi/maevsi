@@ -268,9 +268,9 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  1: 1
-  2: 2
-  3: 3
+  1: '1'
+  2: '2'
+  3: '3'
   blockquote: Anführungszeichen
   bold: Fett
   code: Code
@@ -288,9 +288,9 @@ de:
   strike: Durchgestrichen
   undo: Rückgängig machen
 en:
-  1: 1
-  2: 2
-  3: 3
+  1: '1'
+  2: '2'
+  3: '3'
   blockquote: Blockquote
   bold: Bold
   code: Code
