@@ -56,7 +56,7 @@
                 <ButtonIcon
                   :aria-label="$t('invitationLink')"
                   class="hidden md:block"
-                  @click="copyLink(event, invitation)"
+                  @click="copyLink(invitation)"
                 >
                   <IconLink />
                 </ButtonIcon>
@@ -91,7 +91,7 @@
                     <ButtonText
                       :aria-label="$t('invitationLink')"
                       class="block md:hidden"
-                      @click="copyLink(event, invitation)"
+                      @click="copyLink(invitation)"
                     >
                       <IconLink />
                       {{ $t('invitationLink') }}
@@ -309,13 +309,13 @@ export default defineComponent({
     add() {
       this.$store.commit('modalAdd', { id: 'ModalInvitation' })
     },
-    copyLink(event: MaevsiEvent, invitation: Invitation): void {
+    copyLink(invitation: Invitation): void {
       if (!process.browser) return
 
       copyText(
-        `${window.location.origin}${this.localePath(
-          `/event/${event.authorUsername}/${event.slug}`
-        )}?ic=${invitation.uuid}`
+        `${window.location.origin}${this.localePath(`/task/event/unlock`)}?ic=${
+          invitation.uuid
+        }`
       ).then(() => {
         Swal.fire({
           icon: 'success',
