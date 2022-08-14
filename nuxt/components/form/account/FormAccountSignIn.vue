@@ -132,7 +132,16 @@ const FormAccountSignIn = defineComponent({
       }
 
       this.$util
-        .jwtStore(this.$apollo.getClient(), this.$store, undefined, res.jwt)
+        .jwtStore(
+          this.$apollo.getClient(),
+          this.$store,
+          undefined,
+          res.jwt,
+          () => {}
+        )
+        .then(() => {
+          this.$router.push(this.localePath(`/dashboard`))
+        })
         .catch(
           async () =>
             await Swal.fire({
