@@ -141,7 +141,7 @@ export default defineComponent({
       this.graphqlErrorDelete = error
     },
     onDeleteSuccess() {
-      this.$router.push(this.localePath(`/event`))
+      this.$router.push(this.localePath(`/dashboard`))
       this.$apollo.queries.allEvents.refetch()
     },
 
