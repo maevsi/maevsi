@@ -66,8 +66,10 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useHead } from '@vueuse/head'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 
 import {
   computed,
@@ -112,7 +114,8 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $store, $t } = useNuxtApp()
+    const { $router, $store } = useNuxtApp()
+    const { t } = useI18n()
     const route = useRoute()
 
     const eventQuery = useEventByAuthorUsernameAndSlugQuery({
@@ -121,19 +124,24 @@ export default defineComponent({
         slug: route.params.event_name,
       },
     })
-    const apiData = reactive({
-      api: {
-        data: {
-          ...eventQuery.data.value,
-        },
-        ...getApiMeta([eventQuery]),
-      },
-      event: eventQuery.data.value?.eventByAuthorUsernameAndSlug,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...eventQuery.data.value,
+          },
+          ...getApiMeta([eventQuery]),
+        }
+      }),
+      event: computed(
+        () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
+      ),
+    }
     const data = reactive({
       invitationCode: undefined as string | undefined,
       isNfcWritableErrorMessage: undefined as string | undefined,
       loading: false,
+      title: t('title'),
     })
     const computations = {
       isNfcError: computed(() => {
@@ -145,9 +153,9 @@ export default defineComponent({
       title: computed(() => {
         if (
           route.params.username === $store.getters.signedInUsername &&
-          apiData.event
+          apiData.event.value
         ) {
-          return `${$t('title')} · ${apiData.event.name}`
+          return `${t('title')} · ${apiData.event.value.name}`
         }
         return '403'
       }),
@@ -165,25 +173,25 @@ export default defineComponent({
           let errorMessage: string = error.message
 
           if (error.name === 'NotAllowedError') {
-            errorMessage = $t('errorCameraNotAllowed', {
-              hintBrowserSettings: $t('hintBrowserSettings'),
+            errorMessage = t('errorCameraNotAllowed', {
+              hintBrowserSettings: t('hintBrowserSettings'),
             }) as string
           } else if (error.name === 'NotFoundError') {
-            errorMessage = $t('errorCameraNotFound') as string
+            errorMessage = t('errorCameraNotFound') as string
           } else if (error.name === 'NotSupportedError') {
-            errorMessage = $t('errorCameraNotSupported') as string
+            errorMessage = t('errorCameraNotSupported') as string
           } else if (error.name === 'NotReadableError') {
-            errorMessage = $t('errorCameraNotReadable') as string
+            errorMessage = t('errorCameraNotReadable') as string
           } else if (error.name === 'OverconstrainedError') {
-            errorMessage = $t('errorCameraOverconstrained') as string
+            errorMessage = t('errorCameraOverconstrained') as string
           } else if (error.name === 'StreamApiNotSupportedError') {
-            errorMessage = $t('errorCameraStreamApiNotSupported') as string
+            errorMessage = t('errorCameraStreamApiNotSupported') as string
           }
 
           Swal.fire({
             icon: 'error',
             text: errorMessage,
-            title: $t('globalStatusError'),
+            title: t('globalStatusError'),
           }).then(() =>
             $store.commit('modalRemove', 'ModalAttendanceScanQrCode')
           )
@@ -208,8 +216,8 @@ export default defineComponent({
         if (!('NDEFReader' in window)) {
           return Promise.reject(
             Error(
-              $t('errorNfcNotSupported', {
-                hintUpdateOrChrome: $t('hintUpdateOrChrome'),
+              t('errorNfcNotSupported', {
+                hintUpdateOrChrome: t('hintUpdateOrChrome'),
               }) as string
             )
           )
@@ -218,8 +226,8 @@ export default defineComponent({
         if (!navigator.permissions) {
           return Promise.reject(
             Error(
-              $t('errorNavigatorPermissionsNotSupported', {
-                hintUpdateOrChrome: $t('hintUpdateOrChrome'),
+              t('errorNavigatorPermissionsNotSupported', {
+                hintUpdateOrChrome: t('hintUpdateOrChrome'),
               }) as string
             )
           )
@@ -249,27 +257,27 @@ export default defineComponent({
             let errorMessage: string = error.message
 
             if (error.name === 'AbortError') {
-              errorMessage = $t('errorNfcAbort', {
-                hintTryAgain: $t('hintTryAgain'),
+              errorMessage = t('errorNfcAbort', {
+                hintTryAgain: t('hintTryAgain'),
               }) as string
             } else if (error.name === 'NotAllowedError') {
-              errorMessage = $t('errorNfcNotAllowed', {
-                hintBrowserSettings: $t('hintBrowserSettings'),
+              errorMessage = t('errorNfcNotAllowed', {
+                hintBrowserSettings: t('hintBrowserSettings'),
               }) as string
             } else if (error.name === 'NotSupportedError') {
-              errorMessage = $t('errorNfcNotSupported') as string
+              errorMessage = t('errorNfcNotSupported') as string
             } else if (error.name === 'NotReadableError') {
-              errorMessage = $t('errorNfcNotReadable') as string
+              errorMessage = t('errorNfcNotReadable') as string
             } else if (error.name === 'NetworkError') {
-              errorMessage = $t('errorNfcNetwork', {
-                hintTryAgain: $t('hintTryAgain'),
+              errorMessage = t('errorNfcNetwork', {
+                hintTryAgain: t('hintTryAgain'),
               }) as string
             }
 
             Swal.fire({
               icon: 'error',
               text: errorMessage,
-              title: $t('globalStatusError'),
+              title: t('globalStatusError'),
             })
             consola.error(errorMessage)
           } else {
@@ -289,21 +297,12 @@ export default defineComponent({
       if (currentValue) consola.error(currentValue)
     })
 
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      ...computations,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: data.title,
         },
         {
           hid: 'og:url',
@@ -311,15 +310,22 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: data.title,
         },
       ],
-      title,
+      title: data.title,
+    })
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      ...computations,
     }
   },
 })

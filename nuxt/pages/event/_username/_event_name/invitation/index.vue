@@ -21,7 +21,9 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useHead } from '@vueuse/head'
 import consola from 'consola'
+import { useI18n } from 'vue-i18n-composable'
 
 import {
   computed,
@@ -60,7 +62,8 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute()
-    const { $store, $t } = useNuxtApp()
+    const { $router, $store } = useNuxtApp()
+    const { t } = useI18n()
 
     const eventQuery = useEventByAuthorUsernameAndSlugQuery({
       variables: {
@@ -69,22 +72,29 @@ export default defineComponent({
       },
     })
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...eventQuery.data.value,
-        },
-        ...getApiMeta([eventQuery]),
-      },
-      event: eventQuery.data.value?.eventByAuthorUsernameAndSlug,
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...eventQuery.data.value,
+          },
+          ...getApiMeta([eventQuery]),
+        }
+      }),
+      event: computed(
+        () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
+      ),
+    }
+    const data = reactive({
+      title: t('title'),
     })
     const computations = {
       title: computed((): string | undefined => {
         if (
           route.params.username === $store.getters.signedInUsername &&
-          apiData.event
+          apiData.event.value
         ) {
-          return `${$t('title')} · ${apiData.event.name}`
+          return `${t('title')} · ${apiData.event.value.name}`
         }
         return '403'
       }),
@@ -94,19 +104,12 @@ export default defineComponent({
       if (currentValue) consola.error(currentValue)
     })
 
-    return {
-      ...apiData,
-      ...computations,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: data.title,
         },
         {
           hid: 'og:url',
@@ -114,15 +117,20 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: data.title,
         },
       ],
-      title,
+      title: data.title,
+    })
+
+    return {
+      ...apiData,
+      ...computations,
     }
   },
 })

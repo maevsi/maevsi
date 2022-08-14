@@ -136,6 +136,7 @@ import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
 import Swal from 'sweetalert2'
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n-composable'
 import { mapGetters } from 'vuex'
 
 import { useNuxtApp, defineComponent, PropType, reactive } from '#app'
@@ -175,7 +176,8 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { $store, $t } = useNuxtApp()
+    const { $store } = useNuxtApp()
+    const { t } = useI18n()
 
     const { executeMutation: executeMutationUploadCreate } =
       useUploadCreateMutation()
@@ -193,18 +195,21 @@ export default defineComponent({
     })
     const accountUploadQuotaBytesQuery = useAccountUploadQuotaBytesQuery()
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...allUploadsQuery.data.value,
-          ...accountUploadQuotaBytesQuery.data.value,
-        },
-        ...getApiMeta([allUploadsQuery, accountUploadQuotaBytesQuery]),
-      },
-      uploads: allUploadsQuery.data.value?.allUploads?.nodes,
-      accountUploadQuotaBytes:
-        accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...allUploadsQuery.data.value,
+            ...accountUploadQuotaBytesQuery.data.value,
+          },
+          ...getApiMeta([allUploadsQuery, accountUploadQuotaBytesQuery]),
+        }
+      }),
+      uploads: computed(() => allUploadsQuery.data.value?.allUploads?.nodes),
+      accountUploadQuotaBytes: computed(
+        () => accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes
+      ),
+    }
     const data = reactive({
       fileSelectedUrl: undefined as string | undefined,
       selectedItem: undefined as Item | undefined,
@@ -213,13 +218,13 @@ export default defineComponent({
     const computations = {
       ...mapGetters(['jwt', 'signedInUsername']),
       sizeByteTotal: computed((): number | undefined => {
-        if (!apiData.uploads) {
+        if (!apiData.uploads.value) {
           return undefined
         }
 
         let sizeByteTotal = 0
 
-        for (const upload of apiData.uploads) {
+        for (const upload of apiData.uploads.value) {
           sizeByteTotal += upload.sizeByte
         }
 
@@ -262,15 +267,15 @@ export default defineComponent({
               case 500:
                 Swal.fire({
                   icon: 'error',
-                  text: $t('uploadDeleteFailed') as string,
-                  title: $t('globalStatusError'),
+                  text: t('uploadDeleteFailed') as string,
+                  title: t('globalStatusError'),
                 })
                 break
               default:
                 Swal.fire({
                   icon: 'warning',
-                  text: $t('uploadDeleteUnexpectedStatusCode') as string,
-                  title: $t('globalStatusWarning'),
+                  text: t('uploadDeleteUnexpectedStatusCode') as string,
+                  title: t('globalStatusWarning'),
                 })
             }
           }
@@ -325,7 +330,7 @@ export default defineComponent({
             })
 
             if (result.error) {
-              apiData.api.errors.push(result.error)
+              apiData.api.value.errors.push(result.error)
               consola.error(result.error)
               return reject(result.error)
             }
@@ -381,7 +386,7 @@ export default defineComponent({
               // TODO: cache update (allUploads)
 
               if (value.failed.length > 0) {
-                reject($t('uploadError'))
+                reject(t('uploadError'))
               } else {
                 resolve()
               }

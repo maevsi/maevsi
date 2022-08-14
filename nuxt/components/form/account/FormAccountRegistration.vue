@@ -48,9 +48,10 @@
 <script lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent, reactive, useNuxtApp } from '#app'
+import { computed, defineComponent, reactive, useNuxtApp } from '#app'
 
 import {
   formPreSubmit,
@@ -66,16 +67,19 @@ import { useAccountRegistrationMutation } from '~/gql/generated'
 
 const FormAccountRegistration = defineComponent({
   setup(_props, { emit }) {
-    const { $i18n, $t } = useNuxtApp()
+    const { $i18n } = useNuxtApp()
+    const { t } = useI18n()
     const { executeMutation: executeMutationAccountRegistration } =
       useAccountRegistrationMutation()
 
-    const apiData = reactive({
-      api: {
-        data: {},
-        ...getApiMeta([]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {},
+          ...getApiMeta([]),
+        }
+      }),
+    }
     const data = reactive({
       form: {
         emailAddress: '',
@@ -100,7 +104,7 @@ const FormAccountRegistration = defineComponent({
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -111,8 +115,8 @@ const FormAccountRegistration = defineComponent({
         emit('registered')
         Swal.fire({
           icon: 'success',
-          text: $t('registrationSuccessBody') as string,
-          title: $t('registrationSuccessTitle'),
+          text: t('registrationSuccessBody') as string,
+          title: t('registrationSuccessTitle'),
         })
       },
     }

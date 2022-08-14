@@ -114,7 +114,7 @@
 import consola from 'consola'
 import { email, maxLength } from 'vuelidate/lib/validators'
 
-import { defineComponent, PropType, reactive, useNuxtApp } from '#app'
+import { computed, defineComponent, PropType, reactive, useNuxtApp } from '#app'
 import { Contact } from '~/types/contact'
 import {
   formPreSubmit,
@@ -148,14 +148,16 @@ export default defineComponent({
     const updateContactByIdMutation = useUpdateContactByIdMutation()
     const createContactMutation = useCreateContactMutation()
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...updateContactByIdMutation.data.value,
-        },
-        ...getApiMeta([updateContactByIdMutation]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...updateContactByIdMutation.data.value,
+          },
+          ...getApiMeta([updateContactByIdMutation]),
+        }
+      }),
+    }
     const data = reactive({
       form: {
         id: '',
@@ -205,7 +207,7 @@ export default defineComponent({
           })
 
           if (result.error) {
-            apiData.api.errors.push(result.error)
+            apiData.api.value.errors.push(result.error)
             consola.error(result.error)
           }
         } else {
@@ -235,7 +237,7 @@ export default defineComponent({
           })
 
           if (result.error) {
-            apiData.api.errors.push(result.error)
+            apiData.api.value.errors.push(result.error)
             consola.error(result.error)
           }
 

@@ -23,7 +23,7 @@ specifiers:
   '@nuxtjs/eslint-module': 3.1.0
   '@nuxtjs/google-analytics': 2.4.0
   '@nuxtjs/html-validator': 0.7.0
-  '@nuxtjs/i18n': 7.2.3
+  '@nuxtjs/i18n': dargmuesli/nuxt-i18n-module#d8874f150bc0f55d7c38d0bd3fbfb3ffd10a974e
   '@nuxtjs/moment': 1.6.1
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
@@ -60,6 +60,7 @@ specifiers:
   '@urql/devtools': 2.0.3
   '@urql/exchange-graphcache': 4.4.3
   '@urql/vue': 0.6.4
+  '@vueuse/head': 0.7.9
   autoprefixer: 10.4.8
   babel-loader: 8.2.5
   browserlist: 1.0.1
@@ -131,6 +132,7 @@ specifiers:
   vue-croppa: 1.3.8
   vue-datetime: 1.0.0-beta.14
   vue-i18n: 8.27.2
+  vue-i18n-composable: 2.0.0
   vue-qrcode-reader: 3.1.0
   vue-template-compiler: 2.7.8
   vue-tsc: 0.39.5
@@ -144,7 +146,7 @@ dependencies:
   '@http-util/status-i18n': 0.6.2
   '@nuxt/types-edge': 2.16.0-27616340.013f051b_webpack@4.46.0
   '@nuxtjs/color-mode': 3.1.4_webpack@4.46.0
-  '@nuxtjs/i18n': 7.2.3
+  '@nuxtjs/i18n': github.com/dargmuesli/nuxt-i18n-module/d8874f150bc0f55d7c38d0bd3fbfb3ffd10a974e_vue@2.7.8
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
@@ -158,6 +160,7 @@ dependencies:
   '@urql/core': 2.6.1_graphql@15.8.0
   '@urql/exchange-graphcache': 4.4.3_graphql@15.8.0
   '@urql/vue': 0.6.4_graphql@15.8.0+vue@2.7.8
+  '@vueuse/head': 0.7.9_vue@2.7.8
   chart.js: 3.9.1
   clipboard: 2.0.11
   consola: 2.15.3
@@ -188,6 +191,7 @@ dependencies:
   vue-croppa: 1.3.8
   vue-datetime: 1.0.0-beta.14_y3fz2mruelrp7zq6b4472vub3y
   vue-i18n: 8.27.2
+  vue-i18n-composable: 2.0.0_vue-i18n@8.27.2+vue@2.7.8
   vue-qrcode-reader: 3.1.0
   vuelidate: 0.7.7
   vuex: 3.6.2_vue@2.7.8
@@ -3911,26 +3915,6 @@ packages:
       - jest-snapshot
     dev: true
 
-  /@nuxtjs/i18n/7.2.3:
-    resolution: {integrity: sha512-Zi/1df2ISXtsPs5+IhdHbh3ebWLq4V+tU71SkAuB2F9Es2qANF5EIq2dT9rCDW/1bbfO48MQU/eUWectDX6D7g==}
-    engines: {node: '>=14.16'}
-    dependencies:
-      '@babel/parser': 7.18.11
-      '@babel/traverse': 7.18.11
-      '@intlify/vue-i18n-extensions': 1.0.2
-      '@intlify/vue-i18n-loader': 1.1.0
-      cookie: 0.5.0
-      devalue: 2.0.1
-      is-https: 4.0.0
-      js-cookie: 3.0.1
-      klona: 2.0.5
-      lodash.merge: 4.6.2
-      ufo: 0.8.5
-      vue-i18n: 8.27.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /@nuxtjs/moment/1.6.1_webpack@4.46.0:
     resolution: {integrity: sha512-Mo2/3NQB0XryMQuNCTVnAclrDvt9I9sr6dwVm56KhYCoiWTKgQ78tDV9tmrxw7lahw1IBwyPGhw+3pwkM4phAA==}
     dependencies:
@@ -7044,6 +7028,14 @@ packages:
   /@vue/shared/3.2.37:
     resolution: {integrity: sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==}
     dev: true
+
+  /@vueuse/head/0.7.9_vue@2.7.8:
+    resolution: {integrity: sha512-5wnRiH2XIUSLLXJDLDDTcpvAg5QXgTIVZl46AU7to/T91KHsdBLHSE4WhRO7kP0jbkAhlxnx64E29cQtwBrMjg==}
+    peerDependencies:
+      vue: '>=3'
+    dependencies:
+      vue: 2.7.8
+    dev: false
 
   /@webassemblyjs/ast/1.11.1:
     resolution: {integrity: sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw==}
@@ -23182,6 +23174,16 @@ packages:
   /vue-hot-reload-api/2.3.4:
     resolution: {integrity: sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==}
 
+  /vue-i18n-composable/2.0.0_vue-i18n@8.27.2+vue@2.7.8:
+    resolution: {integrity: sha512-oCiX+xoNZKISv7/G1ZtSpi4/E16mQnI5DkZlBlEt++YVj6PZBCyqaiNotfzqDXz8TODnugi8sM39x+MRe+8ziA==}
+    peerDependencies:
+      vue: '>=2.7 <3'
+      vue-i18n: '>=8 <9'
+    dependencies:
+      vue: 2.7.8
+      vue-i18n: 8.27.2
+    dev: false
+
   /vue-i18n/8.27.2:
     resolution: {integrity: sha512-QVzn7u2WVH8F7eSKIM00lujC7x1mnuGPaTnDTmB01Hd709jDtB9kYtBqM+MWmp5AJRx3gnqAdZbee9MelqwFBg==}
     dev: false
@@ -24144,3 +24146,28 @@ packages:
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: true
+
+  github.com/dargmuesli/nuxt-i18n-module/d8874f150bc0f55d7c38d0bd3fbfb3ffd10a974e_vue@2.7.8:
+    resolution: {tarball: https://codeload.github.com/dargmuesli/nuxt-i18n-module/tar.gz/d8874f150bc0f55d7c38d0bd3fbfb3ffd10a974e}
+    id: github.com/dargmuesli/nuxt-i18n-module/d8874f150bc0f55d7c38d0bd3fbfb3ffd10a974e
+    name: '@nuxtjs/i18n'
+    version: 7.2.3
+    engines: {node: '>=14.16'}
+    dependencies:
+      '@babel/parser': 7.18.11
+      '@babel/traverse': 7.18.11
+      '@intlify/vue-i18n-extensions': 1.0.2
+      '@intlify/vue-i18n-loader': 1.1.0
+      cookie: 0.5.0
+      devalue: 2.0.1
+      is-https: 4.0.0
+      js-cookie: 3.0.1
+      klona: 2.0.5
+      lodash.merge: 4.6.2
+      ufo: 0.8.5
+      vue-i18n: 8.27.2
+      vue-i18n-composable: 2.0.0_vue-i18n@8.27.2+vue@2.7.8
+    transitivePeerDependencies:
+      - supports-color
+      - vue
+    dev: false

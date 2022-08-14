@@ -65,7 +65,9 @@
 <script lang="ts">
 import consola from 'consola'
 import debounce from 'lodash-es/debounce'
+import { computed } from 'vue'
 import VueI18n from 'vue-i18n'
+import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, reactive, ref, useNuxtApp, watch } from '#app'
 
@@ -76,7 +78,8 @@ import { Contact } from '~/types/contact'
 
 export default defineComponent({
   setup() {
-    const { $store, $t } = useNuxtApp()
+    const { $store } = useNuxtApp()
+    const { t } = useI18n()
     const { executeMutation: executeMutationContactDelete } =
       useDeleteContactMutation()
 
@@ -91,15 +94,17 @@ export default defineComponent({
       },
     })
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...contactsQuery.data.value,
-        },
-        ...getApiMeta([contactsQuery]),
-      },
-      contacts: contactsQuery.data.value?.allContacts?.nodes,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...contactsQuery.data.value,
+          },
+          ...getApiMeta([contactsQuery]),
+        }
+      }),
+      contacts: computed(() => contactsQuery.data.value?.allContacts?.nodes),
+    }
     const data = reactive({
       formContactHeading: undefined as VueI18n.TranslateResult | undefined,
       pending: {
@@ -110,19 +115,19 @@ export default defineComponent({
     })
     const methods = {
       add() {
-        data.formContactHeading = $t('contactAdd')
+        data.formContactHeading = t('contactAdd')
         data.selectedContact = undefined
         $store.commit('modalAdd', { id: 'ModalContact' })
       },
       async delete_(nodeId: string) {
         data.pending.deletions.push(nodeId)
-        apiData.api.errors = []
+        apiData.api.value.errors = []
         const result = await executeMutationContactDelete({
           nodeId,
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -135,13 +140,13 @@ export default defineComponent({
       },
       edit(contact: Contact) {
         data.pending.edits.push(contact.nodeId)
-        data.formContactHeading = $t('contactEdit')
+        data.formContactHeading = t('contactEdit')
         data.selectedContact = contact
         $store.commit('modalAdd', { id: 'ModalContact' })
       },
       loadMore() {
         refs.apiContactsAfter.value =
-          apiData.api.data.allContacts?.pageInfo.endCursor
+          apiData.api.value.data.allContacts?.pageInfo.endCursor
       },
       onClose() {
         if (!data.selectedContact) return

@@ -10,7 +10,9 @@
 </template>
 
 <script lang="ts">
+import { useHead } from '@vueuse/head'
 import { mapGetters } from 'vuex'
+import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, reactive, useNuxtApp } from '#app'
 
@@ -25,28 +27,22 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $t } = useNuxtApp()
+    const { $router } = useNuxtApp()
+    const { t } = useI18n()
 
     const data = reactive({
-      title: $t('title'),
+      title: t('title'),
     })
     const computations = {
       ...mapGetters(['signedInUsername']),
     }
 
-    return {
-      ...data,
-      ...computations,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: data.title,
         },
         {
           hid: 'og:url',
@@ -54,15 +50,20 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: data.title,
         },
       ],
-      title,
+      title: data.title,
+    })
+
+    return {
+      ...data,
+      ...computations,
     }
   },
 })

@@ -3,6 +3,8 @@
 </template>
 
 <script lang="ts">
+import { useHead } from '@vueuse/head'
+
 import {
   defineComponent,
   onMounted,
@@ -15,7 +17,7 @@ import {
 export default defineComponent({
   name: 'MaevsiCanvas',
   setup() {
-    const { $i18n, $moment, $router } = useNuxtApp()
+    const { $i18n, $moment, $router, $nuxtI18nHead } = useNuxtApp()
     const route = useRoute()
 
     const refs = {
@@ -85,13 +87,14 @@ export default defineComponent({
       }
     })
 
+    useHead({
+      ...$nuxtI18nHead({ addSeoAttributes: true }),
+    })
+
     return {
       ...refs,
       ...data,
     }
-  },
-  head() {
-    return this.$nuxtI18nHead({ addSeoAttributes: true })
   },
 })
 </script>

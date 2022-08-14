@@ -7,8 +7,10 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useHead } from '@vueuse/head'
+import { useI18n } from 'vue-i18n-composable'
 
-import { defineComponent } from '#app'
+import { defineComponent, reactive, useNuxtApp } from '#app'
 
 import { REGEX_UUID } from '~/plugins/util/validation'
 
@@ -22,19 +24,20 @@ export default defineComponent({
   transition: {
     name: 'layout',
   },
-  data() {
-    return {
-      title: this.$t('title'),
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+  setup() {
+    const { $router } = useNuxtApp()
+    const { t } = useI18n()
+
+    const data = reactive({
+      title: t('title'),
+    })
+
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: data.title,
         },
         {
           hid: 'og:url',
@@ -42,15 +45,19 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: data.title,
         },
       ],
-      title,
+      title: data.title,
+    })
+
+    return {
+      ...data,
     }
   },
 })

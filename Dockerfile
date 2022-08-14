@@ -14,10 +14,12 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 # Update and install dependencies.
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
 # - `wget` is required by the healthcheck
+# - `ca-certificates git` is required by npm dependencies from GitHub (dargmuesli/nuxt-i18n-module)
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         libdbd-pg-perl postgresql-client sqitch \
         wget \
+        ca-certificates git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g pnpm

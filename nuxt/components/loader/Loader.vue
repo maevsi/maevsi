@@ -6,7 +6,7 @@
       <LoaderIndicatorText v-else-if="indicator === 'text'" />
       <LoaderIndicatorText v-else />
     </div>
-    <CardStateAlert v-if="errorMessages">
+    <CardStateAlert v-if="errorMessages.length">
       <SpanList :span="errorMessages" />
     </CardStateAlert>
     <slot v-if="Object.keys(api.data).length" />
@@ -26,7 +26,7 @@ export default defineComponent({
       default: () => {
         return {
           data: {},
-          errors: undefined,
+          errors: [],
           isFetching: false,
         }
       },

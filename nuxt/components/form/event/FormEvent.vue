@@ -260,6 +260,7 @@ import { Datetime } from 'vue-datetime'
 import { DateTime, Settings } from 'luxon'
 import slugify from 'slugify'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 import {
   maxLength,
   maxValue,
@@ -301,15 +302,18 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { $i18n, $moment, $router, $t, $v, localePath } = useNuxtApp()
+    const { $i18n, $moment, $router, $v, localePath } = useNuxtApp()
+    const { t } = useI18n()
     const createEventMutation = useCreateEventMutation()
     const updateEventMutation = useUpdateEventByIdMutation()
 
-    const apiData = reactive({
-      api: {
-        ...getApiMeta([createEventMutation, updateEventMutation]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          ...getApiMeta([createEventMutation, updateEventMutation]),
+        }
+      }),
+    }
     const data = reactive({
       form: {
         id: '',
@@ -369,7 +373,7 @@ export default defineComponent({
           })
 
           if (result.error) {
-            apiData.api.errors.push(result.error)
+            apiData.api.value.errors.push(result.error)
             consola.error(result.error)
           }
 
@@ -382,7 +386,7 @@ export default defineComponent({
             showConfirmButton: false,
             timer: 1500,
             timerProgressBar: true,
-            title: $t('updated'),
+            title: t('updated'),
           })
         } else {
           // Add
@@ -411,7 +415,7 @@ export default defineComponent({
           })
 
           if (result.error) {
-            apiData.api.errors.push(result.error)
+            apiData.api.value.errors.push(result.error)
             consola.error(result.error)
           }
 
@@ -421,10 +425,10 @@ export default defineComponent({
 
           Swal.fire({
             icon: 'success',
-            text: $t('eventCreateSuccess') as string,
+            text: t('eventCreateSuccess') as string,
             timer: 3000,
             timerProgressBar: true,
-            title: $t('created'),
+            title: t('created'),
           }).then(() =>
             $router.push(
               localePath(

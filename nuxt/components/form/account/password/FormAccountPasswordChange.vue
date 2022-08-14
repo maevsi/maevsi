@@ -25,9 +25,10 @@
 <script lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 import { minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent, reactive, ref, useNuxtApp } from '#app'
+import { computed, defineComponent, reactive, ref } from '#app'
 
 import { FormType } from '~/components/form/Form.vue'
 import {
@@ -39,21 +40,23 @@ import { useAccountPasswordChangeMutation } from '~/gql/generated'
 
 const FormAccountPasswordChange = defineComponent({
   setup() {
-    const { $t } = useNuxtApp()
+    const { t } = useI18n()
     const accountPasswordChangeMutation = useAccountPasswordChangeMutation()
 
     const refs = {
       formRef: ref<FormType>(),
     }
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...accountPasswordChangeMutation.data.value,
-        },
-        ...getApiMeta([accountPasswordChangeMutation]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...accountPasswordChangeMutation.data.value,
+          },
+          ...getApiMeta([accountPasswordChangeMutation]),
+        }
+      }),
+    }
     const data = reactive({
       form: {
         passwordCurrent: '',
@@ -78,7 +81,7 @@ const FormAccountPasswordChange = defineComponent({
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -88,10 +91,10 @@ const FormAccountPasswordChange = defineComponent({
 
         Swal.fire({
           icon: 'success',
-          text: $t('passwordChangeSuccess') as string,
+          text: t('passwordChangeSuccess') as string,
           timer: 3000,
           timerProgressBar: true,
-          title: $t('changed'),
+          title: t('changed'),
         })
         methods.resetForm()
       },

@@ -58,18 +58,22 @@ export default defineComponent({
       },
     })
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...profilePictureQuery.data.value,
-        },
-        ...getApiMeta([profilePictureQuery]),
-      },
-      profilePicture: profilePictureQuery.data.value?.profilePictureByUsername,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...profilePictureQuery.data.value,
+          },
+          ...getApiMeta([profilePictureQuery]),
+        }
+      }),
+      profilePicture: computed(
+        () => profilePictureQuery.data.value?.profilePictureByUsername
+      ),
+    }
     const data = reactive({
-      profilePictureUrl: apiData.profilePicture?.uploadStorageKey
-        ? TUSD_FILES_URL + apiData.profilePicture.uploadStorageKey + '+'
+      profilePictureUrl: apiData.profilePicture?.value?.uploadStorageKey
+        ? TUSD_FILES_URL + apiData.profilePicture.value.uploadStorageKey + '+'
         : undefined,
     })
     const methods = {

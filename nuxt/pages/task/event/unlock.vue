@@ -54,10 +54,12 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useHead } from '@vueuse/head'
 import consola from 'consola'
+import { useI18n } from 'vue-i18n-composable'
 import { required } from 'vuelidate/lib/validators'
 
-import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 
 import { jwtStore, useJwtStore } from '~/plugins/util/auth'
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
@@ -126,25 +128,28 @@ export default defineComponent({
   },
   setup() {
     const { jwtStore } = useJwtStore()
-    const { $router, $t, localePath } = useNuxtApp()
+    const { $router, localePath } = useNuxtApp()
+    const { t } = useI18n()
     const route = useRoute()
     const eventUnlockMutation = useEventUnlockMutation()
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...eventUnlockMutation.data.value,
-        },
-        ...getApiMeta([eventUnlockMutation]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...eventUnlockMutation.data.value,
+          },
+          ...getApiMeta([eventUnlockMutation]),
+        }
+      }),
+    }
     const data = reactive({
       form: {
         invitationCode:
           route.query.ic === undefined ? undefined : route.query.ic,
       },
       isFormSent: false,
-      title: $t('title'),
+      title: t('title'),
     })
     const methods = {
       async submit() {
@@ -159,7 +164,7 @@ export default defineComponent({
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -180,20 +185,12 @@ export default defineComponent({
       },
     }
 
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: data.title,
         },
         {
           hid: 'og:url',
@@ -201,15 +198,21 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: data.title,
         },
       ],
-      title,
+      title: data.title,
+    })
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
     }
   },
   mounted() {

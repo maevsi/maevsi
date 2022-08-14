@@ -22,9 +22,10 @@
 import { CombinedError, UseMutationResponse } from '@urql/vue'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 import { minLength, required } from 'vuelidate/lib/validators'
 
-import { useNuxtApp, defineComponent, PropType, reactive } from '#app'
+import { defineComponent, PropType, reactive } from '#app'
 
 import { capitalizeFirstLetter } from '~/plugins/util/util'
 import {
@@ -52,7 +53,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { $t } = useNuxtApp()
+    const { t } = useI18n()
 
     const data = reactive({
       form: {
@@ -81,13 +82,13 @@ export default defineComponent({
               Swal.fire({
                 icon: 'success',
                 text: capitalizeFirstLetter(
-                  $t('success', {
+                  t('success', {
                     item: props.itemName,
                   }) as string
                 ),
                 timer: 3000,
                 timerProgressBar: true,
-                title: $t('deleted'),
+                title: t('deleted'),
               }).then(() => emit('success'))
             }
           })

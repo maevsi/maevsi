@@ -3,6 +3,8 @@
 </template>
 
 <script lang="ts">
+import { useHead } from '@vueuse/head'
+
 import { defineComponent, PropType } from '#app'
 
 type Error = { statusCode: string }
@@ -15,9 +17,10 @@ export default defineComponent({
       type: Object as PropType<Error | undefined>,
     },
   },
-  head() {
-    const error = this.error as Error | undefined
-    return { title: error?.statusCode?.toString() }
+  setup(props) {
+    useHead({
+      title: props.error?.statusCode?.toString(),
+    })
   },
 })
 </script>

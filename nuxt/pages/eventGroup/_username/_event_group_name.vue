@@ -7,8 +7,9 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useHead } from '@vueuse/head'
 
-import { defineComponent } from '#app'
+import { defineComponent, useRoute } from '#app'
 
 import { REGEX_SLUG } from '~/plugins/util/validation'
 
@@ -19,8 +20,12 @@ export default defineComponent({
   transition: {
     name: 'layout',
   },
-  head() {
-    return { title: this.$route.params.event_group_name }
+  setup() {
+    const route = useRoute()
+
+    useHead({
+      title: route.params.event_group_name,
+    })
   },
 })
 </script>

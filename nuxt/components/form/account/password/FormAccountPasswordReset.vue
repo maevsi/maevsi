@@ -19,9 +19,10 @@
 <script lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 import { minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 
 import {
   formPreSubmit,
@@ -38,18 +39,21 @@ const FormAccountPasswordReset = defineComponent({
     },
   },
   setup() {
-    const { $router, $t, localePath } = useNuxtApp()
+    const { $router, localePath } = useNuxtApp()
+    const { t } = useI18n()
     const route = useRoute()
     const passwordResetMutation = useAccountPasswordResetMutation()
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...passwordResetMutation.data.value,
-        },
-        ...getApiMeta([passwordResetMutation]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...passwordResetMutation.data.value,
+          },
+          ...getApiMeta([passwordResetMutation]),
+        }
+      }),
+    }
     const data = reactive({
       form: {
         password: '',
@@ -70,7 +74,7 @@ const FormAccountPasswordReset = defineComponent({
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -80,10 +84,10 @@ const FormAccountPasswordReset = defineComponent({
 
         Swal.fire({
           icon: 'success',
-          text: $t('accountPasswordResetSuccess') as string,
+          text: t('accountPasswordResetSuccess') as string,
           timer: 3000,
           timerProgressBar: true,
-          title: $t('reset'),
+          title: t('reset'),
         })
         $router.push({
           path: localePath(`/account`),

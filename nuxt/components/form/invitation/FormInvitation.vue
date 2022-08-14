@@ -120,15 +120,17 @@ export default defineComponent({
       },
     })
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...allContactsQuery.data.value,
-        },
-        ...getApiMeta([allContactsQuery]),
-      },
-      contacts: allContactsQuery.data.value?.allContacts?.nodes,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...allContactsQuery.data.value,
+          },
+          ...getApiMeta([allContactsQuery]),
+        }
+      }),
+      contacts: computed(() => allContactsQuery.data.value?.allContacts?.nodes),
+    }
     const data = reactive({
       form: {
         contactId: undefined as string | undefined,
@@ -167,7 +169,7 @@ export default defineComponent({
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -185,11 +187,11 @@ export default defineComponent({
         }
 
         if (!data.form.searchString || data.form.searchString === '') {
-          return apiData.contacts
+          return apiData.contacts.value
         }
 
         const searchStringParts = data.form.searchString.split(' ')
-        const allContactsFiltered = apiData.contacts.filter(
+        const allContactsFiltered = apiData.contacts.value?.filter(
           (contact: Contact) => {
             for (const contactProperty of [
               ...(contact.accountUsername

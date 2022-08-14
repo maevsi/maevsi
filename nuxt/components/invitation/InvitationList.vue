@@ -197,6 +197,7 @@ import {
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { Doughnut } from 'vue-chartjs/legacy'
+import { useI18n } from 'vue-i18n-composable'
 
 import {
   computed,
@@ -239,7 +240,8 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { $colorMode, $i18n, $store, $t, localePath } = useNuxtApp()
+    const { $colorMode, $i18n, $store, localePath } = useNuxtApp()
+    const { t } = useI18n()
     const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
     const inviteMutation = useInviteMutation()
 
@@ -255,19 +257,23 @@ export default defineComponent({
       },
     })
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...invitationsQuery.data.value,
-        },
-        ...getApiMeta([
-          deleteInvitationByUuidMutation,
-          inviteMutation,
-          invitationsQuery,
-        ]),
-      },
-      invitations: invitationsQuery.data.value?.allInvitations?.nodes,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...invitationsQuery.data.value,
+          },
+          ...getApiMeta([
+            deleteInvitationByUuidMutation,
+            inviteMutation,
+            invitationsQuery,
+          ]),
+        }
+      }),
+      invitations: computed(
+        () => invitationsQuery.data.value?.allInvitations?.nodes
+      ),
+    }
     const data = reactive({
       options: {
         plugins: {
@@ -303,16 +309,16 @@ export default defineComponent({
         ).then(() => {
           Swal.fire({
             icon: 'success',
-            text: $t('copySuccess') as string,
+            text: t('copySuccess') as string,
             timer: 3000,
             timerProgressBar: true,
-            title: $t('copied'),
+            title: t('copied'),
           })
         })
       },
       async delete_(uuid: string) {
         data.pending.deletions.push(uuid)
-        apiData.api.errors = []
+        apiData.api.value.errors = []
 
         const result = await deleteInvitationByUuidMutation.executeMutation({
           uuid,
@@ -321,7 +327,7 @@ export default defineComponent({
         data.pending.deletions.splice(data.pending.deletions.indexOf(uuid), 1)
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -333,7 +339,7 @@ export default defineComponent({
       loadMore() {},
       async send(invitation: any) {
         data.pending.sends.push(invitation.uuid)
-        apiData.api.errors = []
+        apiData.api.value.errors = []
 
         const result = await inviteMutation.executeMutation({
           invitationId: invitation.id,
@@ -346,7 +352,7 @@ export default defineComponent({
         )
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -356,10 +362,10 @@ export default defineComponent({
 
         Swal.fire({
           icon: 'success',
-          text: $t('sendSuccess') as string,
+          text: t('sendSuccess') as string,
           timer: 3000,
           timerProgressBar: true,
-          title: $t('sent'),
+          title: t('sent'),
         })
         // TODO: cache update (allInvitations)
       },
@@ -372,8 +378,8 @@ export default defineComponent({
       dataComputed: computed(() => {
         const datasetData = [0, 0, 0]
 
-        if (apiData.invitations) {
-          for (const invitation of apiData.invitations) {
+        if (apiData.invitations.value) {
+          for (const invitation of apiData.invitations.value) {
             switch (invitation.feedback) {
               case 'ACCEPTED':
                 datasetData[0] += 1
@@ -391,7 +397,7 @@ export default defineComponent({
         }
 
         return {
-          labels: [$t('accepted'), $t('canceled'), $t('noFeedback')],
+          labels: [t('accepted'), t('canceled'), t('noFeedback')],
           datasets: [
             {
               data: datasetData,
