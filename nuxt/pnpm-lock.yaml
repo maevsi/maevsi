@@ -60,6 +60,7 @@ specifiers:
   '@urql/devtools': 2.0.3
   '@urql/exchange-graphcache': 4.4.3
   '@urql/vue': 0.6.4
+  '@vueuse/head': 0.7.9
   autoprefixer: 10.4.8
   babel-loader: 8.2.5
   browserlist: 1.0.1
@@ -159,6 +160,7 @@ dependencies:
   '@urql/core': 2.6.1_graphql@15.8.0
   '@urql/exchange-graphcache': 4.4.3_graphql@15.8.0
   '@urql/vue': 0.6.4_graphql@15.8.0+vue@2.7.8
+  '@vueuse/head': 0.7.9_vue@2.7.8
   chart.js: 3.9.1
   clipboard: 2.0.11
   consola: 2.15.3
@@ -7026,6 +7028,14 @@ packages:
   /@vue/shared/3.2.37:
     resolution: {integrity: sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==}
     dev: true
+
+  /@vueuse/head/0.7.9_vue@2.7.8:
+    resolution: {integrity: sha512-5wnRiH2XIUSLLXJDLDDTcpvAg5QXgTIVZl46AU7to/T91KHsdBLHSE4WhRO7kP0jbkAhlxnx64E29cQtwBrMjg==}
+    peerDependencies:
+      vue: '>=3'
+    dependencies:
+      vue: 2.7.8
+    dev: false
 
   /@webassemblyjs/ast/1.11.1:
     resolution: {integrity: sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw==}

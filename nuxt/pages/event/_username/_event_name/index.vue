@@ -283,6 +283,7 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useHead } from '@vueuse/head'
 import consola from 'consola'
 import downloadJs from 'downloadjs'
 import DOMPurify from 'isomorphic-dompurify'
@@ -308,7 +309,6 @@ import { Invitation } from '~/types/invitation'
 import { getApiMeta } from '~/plugins/util/util'
 import { getContactName } from '~/plugins/util/model'
 import {
-  Event as MaevsiEvent,
   InvitationFeedback,
   useEventByAuthorUsernameAndSlugQuery,
   useUpdateInvitationByIdMutation,
@@ -335,7 +335,7 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $store } = useNuxtApp()
+    const { $router, $store } = useNuxtApp()
     const { t } = useI18n()
     const route = useRoute()
     const { executeMutation: executeMutationUpdateInvitationById } =
@@ -518,22 +518,12 @@ export default defineComponent({
       if (currentValue) consola.error(currentValue)
     })
 
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      ...computations,
-    }
-  },
-  head() {
-    const title = this.title as string
-    const event = this.event as MaevsiEvent
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: computations.title,
         },
         {
           hid: 'og:url',
@@ -541,30 +531,37 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'description',
           property: 'description',
-          content: event.description!,
+          content: apiData.event.value?.description,
         },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: event.description!,
+          content: apiData.event.value?.description,
         },
         {
           hid: 'twitter:description',
           property: 'twitter:description',
-          content: event.description!,
+          content: apiData.event.value?.description,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: computations.title,
         },
       ],
-      title,
+      title: computations.title.value,
+    })
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      ...computations,
     }
   },
 })

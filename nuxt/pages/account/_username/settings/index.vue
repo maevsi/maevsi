@@ -49,6 +49,7 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 import { CombinedError } from '@urql/core'
+import { useHead } from '@vueuse/head'
 
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
@@ -77,7 +78,7 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $store } = useNuxtApp()
+    const { $router, $store } = useNuxtApp()
     const { signOut } = useSignOut()
     const route = useRoute()
 
@@ -102,20 +103,12 @@ export default defineComponent({
       signOut,
     }
 
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: data.title,
         },
         {
           hid: 'og:url',
@@ -123,15 +116,21 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: data.title,
         },
       ],
-      title,
+      title: data.title,
+    })
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
     }
   },
 })

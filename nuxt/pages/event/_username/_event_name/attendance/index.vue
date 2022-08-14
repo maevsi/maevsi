@@ -66,6 +66,7 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useHead } from '@vueuse/head'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { useI18n } from 'vue-i18n-composable'
@@ -113,7 +114,7 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $store } = useNuxtApp()
+    const { $router, $store } = useNuxtApp()
     const { t } = useI18n()
     const route = useRoute()
 
@@ -140,6 +141,7 @@ export default defineComponent({
       invitationCode: undefined as string | undefined,
       isNfcWritableErrorMessage: undefined as string | undefined,
       loading: false,
+      title: t('title'),
     })
     const computations = {
       isNfcError: computed(() => {
@@ -295,21 +297,12 @@ export default defineComponent({
       if (currentValue) consola.error(currentValue)
     })
 
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      ...computations,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: data.title,
         },
         {
           hid: 'og:url',
@@ -317,15 +310,22 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: data.title,
         },
       ],
-      title,
+      title: data.title,
+    })
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      ...computations,
     }
   },
 })

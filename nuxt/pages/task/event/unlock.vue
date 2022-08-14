@@ -54,6 +54,7 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useHead } from '@vueuse/head'
 import consola from 'consola'
 import { useI18n } from 'vue-i18n-composable'
 import { required } from 'vuelidate/lib/validators'
@@ -184,20 +185,12 @@ export default defineComponent({
       },
     }
 
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: data.title,
         },
         {
           hid: 'og:url',
@@ -205,15 +198,21 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: data.title,
         },
       ],
-      title,
+      title: data.title,
+    })
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
     }
   },
   mounted() {

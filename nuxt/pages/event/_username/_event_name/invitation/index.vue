@@ -21,10 +21,18 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useHead } from '@vueuse/head'
 import consola from 'consola'
 import { useI18n } from 'vue-i18n-composable'
 
-import { computed, defineComponent, useNuxtApp, useRoute, watch } from '#app'
+import {
+  computed,
+  defineComponent,
+  reactive,
+  useNuxtApp,
+  useRoute,
+  watch,
+} from '#app'
 
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { getApiMeta } from '~/plugins/util/util'
@@ -54,7 +62,7 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute()
-    const { $store } = useNuxtApp()
+    const { $router, $store } = useNuxtApp()
     const { t } = useI18n()
 
     const eventQuery = useEventByAuthorUsernameAndSlugQuery({
@@ -77,6 +85,9 @@ export default defineComponent({
         () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
       ),
     }
+    const data = reactive({
+      title: t('title'),
+    })
     const computations = {
       title: computed((): string | undefined => {
         if (
@@ -93,19 +104,12 @@ export default defineComponent({
       if (currentValue) consola.error(currentValue)
     })
 
-    return {
-      ...apiData,
-      ...computations,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: data.title,
         },
         {
           hid: 'og:url',
@@ -113,15 +117,20 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: data.title,
         },
       ],
-      title,
+      title: data.title,
+    })
+
+    return {
+      ...apiData,
+      ...computations,
     }
   },
 })

@@ -47,9 +47,10 @@
 </template>
 
 <script lang="ts">
+import { useHead } from '@vueuse/head'
 import { mapGetters } from 'vuex'
 
-import { defineComponent, reactive, useRoute } from '#app'
+import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import { useSignOut } from '~/plugins/util/auth'
@@ -72,6 +73,7 @@ export default defineComponent({
   },
   setup() {
     const { signOut } = useSignOut()
+    const { $router } = useNuxtApp()
     const route = useRoute()
 
     const data = reactive({
@@ -84,20 +86,12 @@ export default defineComponent({
       ...mapGetters(['signedInUsername']),
     }
 
-    return {
-      ...data,
-      ...methods,
-      ...computations,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: data.title,
         },
         {
           hid: 'og:url',
@@ -105,7 +99,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'og:type',
@@ -115,15 +109,21 @@ export default defineComponent({
         {
           hid: 'profile:username',
           property: 'profile:username',
-          content: this.$route.params.username,
+          content: route.params.username,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: data.title,
         },
       ],
-      title,
+      title: data.title,
+    })
+
+    return {
+      ...data,
+      ...methods,
+      ...computations,
     }
   },
 })

@@ -36,6 +36,7 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useHead } from '@vueuse/head'
 import { CombinedError } from '@urql/vue'
 import consola from 'consola'
 import { useI18n } from 'vue-i18n-composable'
@@ -132,21 +133,12 @@ export default defineComponent({
       if (currentValue) consola.error(currentValue)
     })
 
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      ...computations,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
+    useHead({
       meta: [
         {
           hid: 'og:title',
           property: 'og:title',
-          content: title,
+          content: computations.title,
         },
         {
           hid: 'og:url',
@@ -154,15 +146,22 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
+            $router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
           property: 'twitter:title',
-          content: title,
+          content: computations.title,
         },
       ],
-      title,
+      title: computations.title.value,
+    })
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      ...computations,
     }
   },
 })
