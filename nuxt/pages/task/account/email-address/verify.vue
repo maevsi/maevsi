@@ -11,7 +11,7 @@ import consola from 'consola'
 import Swal from 'sweetalert2'
 import { useI18n } from 'vue-i18n-composable'
 
-import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 
 import { REGEX_UUID } from '~/plugins/util/validation'
 import { getApiMeta } from '~/plugins/util/util'
@@ -34,14 +34,16 @@ export default defineComponent({
     const accountEmailAddressVerificationMutation =
       useAccountEmailAddressVerificationMutation()
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...accountEmailAddressVerificationMutation.data.value,
-        },
-        ...getApiMeta([accountEmailAddressVerificationMutation]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...accountEmailAddressVerificationMutation.data.value,
+          },
+          ...getApiMeta([accountEmailAddressVerificationMutation]),
+        }
+      }),
+    }
     const data = reactive({
       title: t('title'),
     })
@@ -52,7 +54,7 @@ export default defineComponent({
       })
       .then((result) => {
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         } else {
           Swal.fire({

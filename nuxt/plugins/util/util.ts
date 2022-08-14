@@ -1,6 +1,6 @@
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
-import { Ref } from 'vue'
+import { computed, Ref } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
 
 export function capitalizeFirstLetter(string: string): string {
@@ -53,10 +53,12 @@ export function copyText(text: string) {
 
 export function getApiDataDefault() {
   return {
-    api: {
-      data: {},
-      ...getApiMeta([]),
-    },
+    api: computed(() => {
+      return {
+        data: {},
+        ...getApiMeta([]),
+      }
+    }),
   }
 }
 

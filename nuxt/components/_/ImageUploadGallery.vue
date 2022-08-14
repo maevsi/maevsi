@@ -195,18 +195,21 @@ export default defineComponent({
     })
     const accountUploadQuotaBytesQuery = useAccountUploadQuotaBytesQuery()
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...allUploadsQuery.data.value,
-          ...accountUploadQuotaBytesQuery.data.value,
-        },
-        ...getApiMeta([allUploadsQuery, accountUploadQuotaBytesQuery]),
-      },
-      uploads: allUploadsQuery.data.value?.allUploads?.nodes,
-      accountUploadQuotaBytes:
-        accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...allUploadsQuery.data.value,
+            ...accountUploadQuotaBytesQuery.data.value,
+          },
+          ...getApiMeta([allUploadsQuery, accountUploadQuotaBytesQuery]),
+        }
+      }),
+      uploads: computed(() => allUploadsQuery.data.value?.allUploads?.nodes),
+      accountUploadQuotaBytes: computed(
+        () => accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes
+      ),
+    }
     const data = reactive({
       fileSelectedUrl: undefined as string | undefined,
       selectedItem: undefined as Item | undefined,
@@ -215,13 +218,13 @@ export default defineComponent({
     const computations = {
       ...mapGetters(['jwt', 'signedInUsername']),
       sizeByteTotal: computed((): number | undefined => {
-        if (!apiData.uploads) {
+        if (!apiData.uploads.value) {
           return undefined
         }
 
         let sizeByteTotal = 0
 
-        for (const upload of apiData.uploads) {
+        for (const upload of apiData.uploads.value) {
           sizeByteTotal += upload.sizeByte
         }
 
@@ -327,7 +330,7 @@ export default defineComponent({
             })
 
             if (result.error) {
-              apiData.api.errors.push(result.error)
+              apiData.api.value.errors.push(result.error)
               consola.error(result.error)
               return reject(result.error)
             }

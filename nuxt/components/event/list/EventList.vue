@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import consola from 'consola'
-import { reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 
 import { useRoute, defineComponent, PropType } from '#app'
 
@@ -67,15 +67,17 @@ export default defineComponent({
         first: ITEMS_PER_PAGE,
       },
     })
-    const apiData = reactive({
-      api: {
-        data: {
-          ...eventsQuery.data.value,
-        },
-        ...getApiMeta([eventsQuery]),
-      },
-      events: eventsQuery.data.value?.allEvents?.nodes,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...eventsQuery.data.value,
+          },
+          ...getApiMeta([eventsQuery]),
+        }
+      }),
+      events: computed(() => eventsQuery.data.value?.allEvents?.nodes),
+    }
     const data = reactive({
       isButtonEventListShown: route.name?.replace(/___.+$/, '') !== 'event',
     })

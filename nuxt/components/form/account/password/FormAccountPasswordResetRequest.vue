@@ -23,7 +23,7 @@ import Swal from 'sweetalert2'
 import { useI18n } from 'vue-i18n-composable'
 import { email, maxLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent, PropType, reactive, useNuxtApp } from '#app'
+import { computed, defineComponent, PropType, reactive, useNuxtApp } from '#app'
 
 import {
   formPreSubmit,
@@ -46,14 +46,16 @@ const FormAccountPasswordResetRequest = defineComponent({
     const passwordResetRequestMutation =
       useAccountPasswordResetRequestMutation()
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...passwordResetRequestMutation.data.value,
-        },
-        ...getApiMeta([passwordResetRequestMutation]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...passwordResetRequestMutation.data.value,
+          },
+          ...getApiMeta([passwordResetRequestMutation]),
+        }
+      }),
+    }
     const data = reactive({
       form: {
         emailAddress: '',
@@ -74,7 +76,7 @@ const FormAccountPasswordResetRequest = defineComponent({
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 

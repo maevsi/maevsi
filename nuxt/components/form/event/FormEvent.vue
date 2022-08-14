@@ -307,11 +307,13 @@ export default defineComponent({
     const createEventMutation = useCreateEventMutation()
     const updateEventMutation = useUpdateEventByIdMutation()
 
-    const apiData = reactive({
-      api: {
-        ...getApiMeta([createEventMutation, updateEventMutation]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          ...getApiMeta([createEventMutation, updateEventMutation]),
+        }
+      }),
+    }
     const data = reactive({
       form: {
         id: '',
@@ -371,7 +373,7 @@ export default defineComponent({
           })
 
           if (result.error) {
-            apiData.api.errors.push(result.error)
+            apiData.api.value.errors.push(result.error)
             consola.error(result.error)
           }
 
@@ -413,7 +415,7 @@ export default defineComponent({
           })
 
           if (result.error) {
-            apiData.api.errors.push(result.error)
+            apiData.api.value.errors.push(result.error)
             consola.error(result.error)
           }
 

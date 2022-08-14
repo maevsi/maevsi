@@ -58,7 +58,7 @@ import consola from 'consola'
 import { useI18n } from 'vue-i18n-composable'
 import { required } from 'vuelidate/lib/validators'
 
-import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 
 import { jwtStore, useJwtStore } from '~/plugins/util/auth'
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
@@ -132,14 +132,16 @@ export default defineComponent({
     const route = useRoute()
     const eventUnlockMutation = useEventUnlockMutation()
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...eventUnlockMutation.data.value,
-        },
-        ...getApiMeta([eventUnlockMutation]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...eventUnlockMutation.data.value,
+          },
+          ...getApiMeta([eventUnlockMutation]),
+        }
+      }),
+    }
     const data = reactive({
       form: {
         invitationCode:
@@ -161,7 +163,7 @@ export default defineComponent({
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 

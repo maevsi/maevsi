@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 import { CombinedError } from '@urql/core'
 
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
@@ -81,11 +81,13 @@ export default defineComponent({
     const { signOut } = useSignOut()
     const route = useRoute()
 
-    const apiData = reactive({
-      api: {
-        ...getApiMeta([]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          ...getApiMeta([]),
+        }
+      }),
+    }
     const data = reactive({
       accountDeleteMutation: ACCOUNT_DELETE_MUTATION,
       title:
@@ -95,7 +97,7 @@ export default defineComponent({
     })
     const methods = {
       onDeleteError(error: CombinedError) {
-        apiData.api.errors.push(error)
+        apiData.api.value.errors.push(error)
       },
       signOut,
     }

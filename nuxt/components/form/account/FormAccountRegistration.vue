@@ -51,7 +51,7 @@ import Swal from 'sweetalert2'
 import { useI18n } from 'vue-i18n-composable'
 import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent, reactive, useNuxtApp } from '#app'
+import { computed, defineComponent, reactive, useNuxtApp } from '#app'
 
 import {
   formPreSubmit,
@@ -72,12 +72,14 @@ const FormAccountRegistration = defineComponent({
     const { executeMutation: executeMutationAccountRegistration } =
       useAccountRegistrationMutation()
 
-    const apiData = reactive({
-      api: {
-        data: {},
-        ...getApiMeta([]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {},
+          ...getApiMeta([]),
+        }
+      }),
+    }
     const data = reactive({
       form: {
         emailAddress: '',
@@ -102,7 +104,7 @@ const FormAccountRegistration = defineComponent({
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 

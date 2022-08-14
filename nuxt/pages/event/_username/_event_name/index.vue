@@ -349,15 +349,19 @@ export default defineComponent({
       },
     })
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...eventQuery.data.value,
-        },
-        ...getApiMeta([eventQuery]),
-      },
-      event: eventQuery.data.value?.eventByAuthorUsernameAndSlug,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...eventQuery.data.value,
+          },
+          ...getApiMeta([eventQuery]),
+        }
+      }),
+      event: computed(
+        () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
+      ),
+    }
     const data = reactive({
       contact: undefined as Contact | undefined,
       invitation: undefined as Invitation | undefined,
@@ -440,7 +444,7 @@ export default defineComponent({
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -470,10 +474,10 @@ export default defineComponent({
           : undefined
       }),
       eventDescriptionTemplate: computed(() => {
-        if (!apiData.event?.description) return
+        if (!apiData.event?.value?.description) return
 
         return DOMPurify.sanitize(
-          mustache.render(apiData.event.description, {
+          mustache.render(apiData.event.value.description, {
             contact: data.contact,
             event: apiData.event,
             invitation: data.invitation,
@@ -481,7 +485,7 @@ export default defineComponent({
         )
       }),
       invitation: computed((): Invitation | undefined => {
-        const invitations = apiData.event?.invitationsByEventId.nodes
+        const invitations = apiData.event?.value?.invitationsByEventId.nodes
 
         const invitationsMatchingUuid =
           $store.getters.signedInUsername === route.params.username &&
@@ -506,7 +510,7 @@ export default defineComponent({
         return undefined
       }),
       title: computed(() => {
-        return apiData.event?.name
+        return apiData.event?.value?.name
       }),
     }
 

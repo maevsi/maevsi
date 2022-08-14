@@ -65,6 +65,7 @@
 <script lang="ts">
 import consola from 'consola'
 import debounce from 'lodash-es/debounce'
+import { computed } from 'vue'
 import VueI18n from 'vue-i18n'
 import { useI18n } from 'vue-i18n-composable'
 
@@ -93,15 +94,17 @@ export default defineComponent({
       },
     })
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...contactsQuery.data.value,
-        },
-        ...getApiMeta([contactsQuery]),
-      },
-      contacts: contactsQuery.data.value?.allContacts?.nodes,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...contactsQuery.data.value,
+          },
+          ...getApiMeta([contactsQuery]),
+        }
+      }),
+      contacts: computed(() => contactsQuery.data.value?.allContacts?.nodes),
+    }
     const data = reactive({
       formContactHeading: undefined as VueI18n.TranslateResult | undefined,
       pending: {
@@ -118,13 +121,13 @@ export default defineComponent({
       },
       async delete_(nodeId: string) {
         data.pending.deletions.push(nodeId)
-        apiData.api.errors = []
+        apiData.api.value.errors = []
         const result = await executeMutationContactDelete({
           nodeId,
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -143,7 +146,7 @@ export default defineComponent({
       },
       loadMore() {
         refs.apiContactsAfter.value =
-          apiData.api.data.allContacts?.pageInfo.endCursor
+          apiData.api.value.data.allContacts?.pageInfo.endCursor
       },
       onClose() {
         if (!data.selectedContact) return

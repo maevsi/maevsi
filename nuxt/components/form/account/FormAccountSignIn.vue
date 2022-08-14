@@ -36,7 +36,9 @@
       <template slot="assistance">
         <ButtonColored
           v-if="
-            api.errors.graphQLErrors.filter((e) => e.errcode === '55000').length
+            api.errors.filter(
+              (e) => e.graphQLErrors.filter((g) => g.errcode === '55000').length
+            ).length
           "
           :aria-label="$t('verificationMailResend')"
           @click="accountRegistrationRefresh"
@@ -80,7 +82,7 @@ const FormAccountSignIn = defineComponent({
     const { executeMutation: executeMutationAuthentication } =
       useAuthenticateMutation()
 
-    const apiData = reactive(getApiDataDefault())
+    const apiData = getApiDataDefault()
     const data = reactive({
       form: {
         password: '',
@@ -95,7 +97,7 @@ const FormAccountSignIn = defineComponent({
           username: data.form.username,
         }).then((result) => {
           if (result.error) {
-            apiData.api.errors.push(result.error)
+            apiData.api.value.errors.push(result.error)
             consola.error(result.error)
           } else {
             Swal.fire({
@@ -118,7 +120,7 @@ const FormAccountSignIn = defineComponent({
           password: data.form.password,
         }).then(async (result) => {
           if (result.error) {
-            apiData.api.errors.push(result.error)
+            apiData.api.value.errors.push(result.error)
             consola.error(result.error)
           } else {
             await jwtStore(result.data?.authenticate?.jwt).catch(

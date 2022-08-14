@@ -20,7 +20,7 @@
 <script lang="ts">
 import consola from 'consola'
 
-import { defineComponent, reactive } from '#app'
+import { computed, defineComponent, reactive } from '#app'
 
 import { useProfilePictureSetMutation } from '~/gql/generated'
 import { getApiMeta } from '~/plugins/util/util'
@@ -29,14 +29,16 @@ export default defineComponent({
   setup() {
     const profilePictureSetMutation = useProfilePictureSetMutation()
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...profilePictureSetMutation.data.value,
-        },
-        ...getApiMeta([profilePictureSetMutation]),
-      },
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...profilePictureSetMutation.data.value,
+          },
+          ...getApiMeta([profilePictureSetMutation]),
+        }
+      }),
+    }
     const data = reactive({
       selectedProfilePictureStorageKey: undefined as string | undefined,
     })
@@ -50,7 +52,7 @@ export default defineComponent({
         })
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
       },

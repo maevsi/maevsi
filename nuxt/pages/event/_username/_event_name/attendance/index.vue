@@ -123,15 +123,19 @@ export default defineComponent({
         slug: route.params.event_name,
       },
     })
-    const apiData = reactive({
-      api: {
-        data: {
-          ...eventQuery.data.value,
-        },
-        ...getApiMeta([eventQuery]),
-      },
-      event: eventQuery.data.value?.eventByAuthorUsernameAndSlug,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...eventQuery.data.value,
+          },
+          ...getApiMeta([eventQuery]),
+        }
+      }),
+      event: computed(
+        () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
+      ),
+    }
     const data = reactive({
       invitationCode: undefined as string | undefined,
       isNfcWritableErrorMessage: undefined as string | undefined,
@@ -147,9 +151,9 @@ export default defineComponent({
       title: computed(() => {
         if (
           route.params.username === $store.getters.signedInUsername &&
-          apiData.event
+          apiData.event.value
         ) {
-          return `${t('title')} · ${apiData.event.name}`
+          return `${t('title')} · ${apiData.event.value.name}`
         }
         return '403'
       }),

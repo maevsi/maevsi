@@ -24,14 +24,7 @@ import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import { useI18n } from 'vue-i18n-composable'
 
-import {
-  computed,
-  defineComponent,
-  reactive,
-  useNuxtApp,
-  useRoute,
-  watch,
-} from '#app'
+import { computed, defineComponent, useNuxtApp, useRoute, watch } from '#app'
 
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { getApiMeta } from '~/plugins/util/util'
@@ -71,22 +64,26 @@ export default defineComponent({
       },
     })
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...eventQuery.data.value,
-        },
-        ...getApiMeta([eventQuery]),
-      },
-      event: eventQuery.data.value?.eventByAuthorUsernameAndSlug,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...eventQuery.data.value,
+          },
+          ...getApiMeta([eventQuery]),
+        }
+      }),
+      event: computed(
+        () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
+      ),
+    }
     const computations = {
       title: computed((): string | undefined => {
         if (
           route.params.username === $store.getters.signedInUsername &&
-          apiData.event
+          apiData.event.value
         ) {
-          return `${t('title')} · ${apiData.event.name}`
+          return `${t('title')} · ${apiData.event.value.name}`
         }
         return '403'
       }),

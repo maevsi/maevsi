@@ -257,19 +257,23 @@ export default defineComponent({
       },
     })
 
-    const apiData = reactive({
-      api: {
-        data: {
-          ...invitationsQuery.data.value,
-        },
-        ...getApiMeta([
-          deleteInvitationByUuidMutation,
-          inviteMutation,
-          invitationsQuery,
-        ]),
-      },
-      invitations: invitationsQuery.data.value?.allInvitations?.nodes,
-    })
+    const apiData = {
+      api: computed(() => {
+        return {
+          data: {
+            ...invitationsQuery.data.value,
+          },
+          ...getApiMeta([
+            deleteInvitationByUuidMutation,
+            inviteMutation,
+            invitationsQuery,
+          ]),
+        }
+      }),
+      invitations: computed(
+        () => invitationsQuery.data.value?.allInvitations?.nodes
+      ),
+    }
     const data = reactive({
       options: {
         plugins: {
@@ -314,7 +318,7 @@ export default defineComponent({
       },
       async delete_(uuid: string) {
         data.pending.deletions.push(uuid)
-        apiData.api.errors = []
+        apiData.api.value.errors = []
 
         const result = await deleteInvitationByUuidMutation.executeMutation({
           uuid,
@@ -323,7 +327,7 @@ export default defineComponent({
         data.pending.deletions.splice(data.pending.deletions.indexOf(uuid), 1)
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -335,7 +339,7 @@ export default defineComponent({
       loadMore() {},
       async send(invitation: any) {
         data.pending.sends.push(invitation.uuid)
-        apiData.api.errors = []
+        apiData.api.value.errors = []
 
         const result = await inviteMutation.executeMutation({
           invitationId: invitation.id,
@@ -348,7 +352,7 @@ export default defineComponent({
         )
 
         if (result.error) {
-          apiData.api.errors.push(result.error)
+          apiData.api.value.errors.push(result.error)
           consola.error(result.error)
         }
 
@@ -374,8 +378,8 @@ export default defineComponent({
       dataComputed: computed(() => {
         const datasetData = [0, 0, 0]
 
-        if (apiData.invitations) {
-          for (const invitation of apiData.invitations) {
+        if (apiData.invitations.value) {
+          for (const invitation of apiData.invitations.value) {
             switch (invitation.feedback) {
               case 'ACCEPTED':
                 datasetData[0] += 1
