@@ -126,6 +126,12 @@
         </tbody>
       </table>
     </ScrollContainer>
+    <div v-else class="flex flex-col items-center gap-2">
+      {{ $t('invitationNone') }}
+      <FormInputStateInfo>
+        {{ $t('hintInviteSelf') }}
+      </FormInputStateInfo>
+    </div>
     <div class="flex flex-col items-center gap-1">
       <ButtonColored
         :aria-label="$t('invitationAdd')"
@@ -400,13 +406,15 @@ de:
   copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   feedback: Rückmeldungen
+  hintInviteSelf: 'Tipp: du kannst dich auch zuerst selbst einladen'
   invitationAdd: Gäste hinzufügen
   invitationDelete: Einladung löschen
   invitationLink: Einladungslink kopieren
+  invitationNone: Es wurde noch kein Gast hinzugefügt 😕
   invitationSend: Einladung versenden
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
-  noFeedback: kein Feedback
+  noFeedback: keine Rückmeldung
   postgresP0002: Die Einladung konnte nicht versandt werden! Möglicherweise hast du aktuell keinen Zugriff auf die notwendigen Daten. Versuche die Seite neu zu laden.
   sendSuccess: Die Einladung wurde erfolgreich per E-Mail versandt.
   sent: Gesendet!
@@ -418,14 +426,16 @@ en:
   copied: Copied
   copySuccess: The invitation link was copied to the clipboard.
   disabledReasonEmailAddressNone: This contact is missing an email address.
-  feedback: Feedback
+  feedback: Invitation responses
+  hintInviteSelf: 'Hint: you can also invite yourself first'
   invitationAdd: Add guests
   invitationDelete: Delete invitation
   invitationLink: Copy invitation link
+  invitationNone: No guest has been added yet 😕
   invitationSend: Send invitation
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
-  noFeedback: no feedback
+  noFeedback: no response
   postgresP0002: The invitation could not be sent! You may not currently have access to the necessary data. Try to reload the page.
   sendSuccess: The invitation was successfully sent by email.
   sent: Sent!

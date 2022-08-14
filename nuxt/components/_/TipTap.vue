@@ -2,165 +2,141 @@
   <div v-if="editor" class="flex flex-col gap-1">
     <div class="flex gap-4 overflow-auto">
       <div class="flex gap-1">
-        <Button
+        <ButtonIcon
           :aria-label="$t('undo')"
           :title="$t('undo')"
           @click="editor.chain().focus().undo().run()"
         >
-          <template slot="prefix">
-            <IconArrowRotateLeft />
-          </template>
-        </Button>
-        <Button
+          <IconArrowRotateLeft />
+        </ButtonIcon>
+        <ButtonIcon
           :aria-label="$t('redo')"
           :title="$t('redo')"
           @click="editor.chain().focus().redo().run()"
         >
-          <template slot="prefix">
-            <IconArrowRotateRight />
-          </template>
-        </Button>
+          <IconArrowRotateRight />
+        </ButtonIcon>
       </div>
       <div class="flex gap-1">
-        <Button
+        <ButtonIcon
           :aria-label="$t('bold')"
           :class="{ 'is-active': editor.isActive('bold') }"
           :title="$t('bold')"
           @click="editor.chain().focus().toggleBold().run()"
         >
-          <template slot="prefix">
-            <IconBold />
-          </template>
-        </Button>
-        <Button
+          <IconBold />
+        </ButtonIcon>
+        <ButtonIcon
           :aria-label="$t('italic')"
           :class="{ 'is-active': editor.isActive('italic') }"
           :title="$t('italic')"
           @click="editor.chain().focus().toggleItalic().run()"
         >
-          <template slot="prefix">
-            <IconItalic />
-          </template>
-        </Button>
-        <Button
+          <IconItalic />
+        </ButtonIcon>
+        <ButtonIcon
           :aria-label="$t('strike')"
           :class="{ 'is-active': editor.isActive('strike') }"
           :title="$t('strike')"
           @click="editor.chain().focus().toggleStrike().run()"
         >
-          <template slot="prefix">
-            <IconStrikeThrough />
-          </template>
-        </Button>
+          <IconStrikeThrough />
+        </ButtonIcon>
       </div>
       <div class="flex gap-1">
-        <!-- <Button
+        <!-- <ButtonIcon
           :aria-label="$t('paragraph')"
           :title="$t('paragraph')"
           @click="editor.chain().focus().setParagraph().run()"
         >
-          <template slot="prefix">
-            <IconParagraph />
-          </template>
-        </Button> -->
-        <Button
+          <IconParagraph />
+        </ButtonIcon> -->
+        <ButtonIcon
           :aria-label="$t('heading1')"
           :title="$t('heading1')"
           @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
         >
-          <template slot="prefix">
-            <div class="flex align-end">
-              <IconHeading />
-              <span>{{ $t('1') }}</span>
-            </div>
-          </template>
-        </Button>
-        <Button
+          <div class="flex align-end">
+            <IconHeading />
+            <span>{{ $t('1') }}</span>
+          </div>
+        </ButtonIcon>
+        <ButtonIcon
           :aria-label="$t('heading2')"
           :title="$t('heading2')"
           @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
         >
-          <template slot="prefix">
-            <div class="flex align-end">
-              <IconHeading />
-              <span>{{ $t('2') }}</span>
-            </div>
-          </template>
-        </Button>
-        <Button
+          <div class="flex align-end">
+            <IconHeading />
+            <span>{{ $t('2') }}</span>
+          </div>
+        </ButtonIcon>
+        <ButtonIcon
           :aria-label="$t('heading3')"
           :title="$t('heading3')"
           @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
         >
-          <template slot="prefix">
-            <div class="flex align-end">
-              <IconHeading />
-              <span>{{ $t('3') }}</span>
-            </div>
-          </template>
-        </Button>
+          <div class="flex align-end">
+            <IconHeading />
+            <span>{{ $t('3') }}</span>
+          </div>
+        </ButtonIcon>
       </div>
       <div class="flex gap-1">
-        <Button
+        <ButtonIcon
           :aria-label="$t('listUl')"
           :title="$t('listUl')"
           @click="editor.chain().focus().toggleBulletList().run()"
         >
-          <template slot="prefix">
-            <IconListUl />
-          </template>
-        </Button>
-        <Button
+          <IconListUl />
+        </ButtonIcon>
+        <ButtonIcon
           :aria-label="$t('listOl')"
           :title="$t('listOl')"
           @click="editor.chain().focus().toggleOrderedList().run()"
         >
-          <template slot="prefix">
-            <IconListOl />
-          </template>
-        </Button>
+          <IconListOl />
+        </ButtonIcon>
       </div>
       <div class="flex gap-1">
-        <Button :aria-label="$t('link')" :title="$t('link')" @click="setLink">
-          <template slot="prefix">
-            <IconLink />
-          </template>
-        </Button>
-        <Button
+        <ButtonIcon
+          :aria-label="$t('link')"
+          :title="$t('link')"
+          @click="setLink"
+        >
+          <IconLink />
+        </ButtonIcon>
+        <ButtonIcon
           :aria-label="$t('linkRemove')"
           :disabled="!editor.isActive('link')"
           :title="$t('linkRemove')"
           @click="editor.chain().focus().unsetLink().run()"
         >
-          <template slot="prefix">
-            <IconLinkSlash />
-          </template>
-        </Button>
-        <Button
+          <IconLinkSlash />
+        </ButtonIcon>
+        <ButtonIcon
           :aria-label="$t('blockquote')"
           :title="$t('blockquote')"
           @click="editor.chain().focus().toggleBlockquote().run()"
         >
-          <template slot="prefix">
-            <IconQuoteLeft />
-          </template>
-        </Button>
-        <Button
+          <IconQuoteLeft />
+        </ButtonIcon>
+        <ButtonIcon
           :aria-label="$t('code')"
           :title="$t('code')"
           @click="editor.chain().focus().toggleCode().run()"
         >
-          <template slot="prefix">
-            <IconCode />
-          </template>
-        </Button>
+          <IconCode />
+        </ButtonIcon>
       </div>
       <div class="flex gap-1">
-        <IconMinus
+        <ButtonIcon
           :aria-label="$t('horizontalRule')"
           :title="$t('horizontalRule')"
           @click="editor.chain().focus().setHorizontalRule().run()"
-        />
+        >
+          <IconMinus />
+        </ButtonIcon>
       </div>
       <!--
       <Button
@@ -220,7 +196,7 @@ export default defineComponent({
       content: this.value,
       editorProps: {
         attributes: {
-          class: 'form-input',
+          class: 'form-input min-h-[100px]',
         },
       },
       extensions: [StarterKit, Link],
@@ -268,9 +244,9 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  1: 1
-  2: 2
-  3: 3
+  1: '1'
+  2: '2'
+  3: '3'
   blockquote: Anführungszeichen
   bold: Fett
   code: Code
@@ -288,9 +264,9 @@ de:
   strike: Durchgestrichen
   undo: Rückgängig machen
 en:
-  1: 1
-  2: 2
-  3: 3
+  1: '1'
+  2: '2'
+  3: '3'
   blockquote: Blockquote
   bold: Bold
   code: Code

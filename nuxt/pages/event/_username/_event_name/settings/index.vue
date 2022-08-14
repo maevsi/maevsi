@@ -26,7 +26,8 @@
             :mutation="mutation"
             :update="updateCacheDelete"
             :variables="{
-              id: event.id,
+              authorUsername: $route.params.username,
+              slug: $route.params.event_name,
             }"
             @error="onDeleteError"
             @success="onDeleteSuccess"
@@ -79,8 +80,8 @@ export default defineComponent({
     } = await app.apolloProvider!.defaultClient.query({
       query: EVENT_IS_EXISTING_QUERY,
       variables: {
-        slug: params.event_name,
         authorUsername: params.username,
+        slug: params.event_name,
       },
       fetchPolicy: 'network-only',
     })
@@ -140,7 +141,7 @@ export default defineComponent({
       this.graphqlErrorDelete = error
     },
     onDeleteSuccess() {
-      this.$router.push(this.localePath(`/event`))
+      this.$router.push(this.localePath(`/dashboard`))
       this.$apollo.queries.allEvents.refetch()
     },
 

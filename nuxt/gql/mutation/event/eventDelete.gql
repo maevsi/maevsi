@@ -1,10 +1,11 @@
 #import "../../fragments/eventFields.gql"
 
-mutation eventDelete($id: BigInt!, $password: String!) {
+mutation eventDelete($authorUsername: String!, $password: String!, $slug: String!) {
   eventDelete(
     input: {
-      id: $id
+      authorUsername: $authorUsername
       password: $password
+      slug: $slug
     }
   ) {
     clientMutationId

@@ -160,11 +160,12 @@ export default defineComponent({
       }
 
       switch (e.key) {
-        case 'Enter': // Enter
-          if (!this.isSubmitting && !this.isSubmitDisabled) {
-            this.submit()
-          }
-          break
+        // // Temporarily disabled until https://github.com/maevsi/maevsi/issues/765
+        // case 'Enter': // Enter
+        //   if (!this.isSubmitting && !this.isSubmitDisabled) {
+        //     this.submit()
+        //   }
+        //   break
         case 'Escape': // Escape
           this.close()
           break
