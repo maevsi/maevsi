@@ -47,7 +47,7 @@
           <LoaderIndicatorSpinner class="m-auto h-8 w-8" />
         </div>
       </div>
-      <div class="flex justify-evenly">
+      <div class="flex gap-8 justify-center">
         <slot name="footer">
           <ButtonColored
             :aria-label="submitName"
