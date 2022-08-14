@@ -267,7 +267,7 @@
         <!-- eslint-enable vue/no-v-html -->
       </div>
     </Card>
-    <Modal id="ModalInvitationQrCode">
+    <Modal id="ModalInvitationQrCode" ref="ModalCheckInCode">
       <div v-if="invitation" class="flex flex-col items-center gap-2 pb-4">
         <QrcodeVue
           id="qrCode"
@@ -275,13 +275,31 @@
           :value="invitation.uuid"
           size="200"
         />
-        <ButtonColored :aria-label="$t('print')" @click="print">
-          {{ $t('print') }}
-        </ButtonColored>
         <FormInputStateInfo>
           {{ $t('hintQrCode') }}
         </FormInputStateInfo>
       </div>
+      <template slot="footer">
+        <ButtonColored
+          :aria-label="$t('print')"
+          :is-primary="false"
+          @click="print"
+        >
+          {{ $t('print') }}
+          <template slot="prefix">
+            <IconPrinter />
+          </template>
+        </ButtonColored>
+        <ButtonColored
+          :aria-label="$t('close')"
+          @click="closeModalInvitationQrCode()"
+        >
+          {{ $t('close') }}
+          <template slot="prefix">
+            <IconX />
+          </template>
+        </ButtonColored>
+      </template>
     </Modal>
   </div>
 </template>
@@ -474,6 +492,9 @@ export default defineComponent({
       }
       this.update(this.invitation.id, { feedback: 'CANCELED' })
     },
+    closeModalInvitationQrCode() {
+      this.$refs.ModalCheckInCode.close()
+    },
     paperInvitationFeedback() {
       if (this.invitation === undefined) {
         return
@@ -563,6 +584,7 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   attendances: Check-in
+  close: Schließen
   events: Veranstaltungen
   feedbackRequest: 'Bitte gib eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
@@ -597,6 +619,7 @@ de:
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
   attendances: Check in
+  close: Close
   events: events
   feedbackRequest: 'Please provide feedback whether you will be attending:'
   greeting: Hey{usernameString}!
