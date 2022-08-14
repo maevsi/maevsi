@@ -26,8 +26,7 @@
             :mutation="mutation"
             :update="updateCacheDelete"
             :variables="{
-              authorUsername: $route.params.username,
-              slug: $route.params.event_name,
+              id: event.id,
             }"
             @error="onDeleteError"
             @success="onDeleteSuccess"

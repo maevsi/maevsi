@@ -29,7 +29,7 @@
             class="self-start font-medium text-sm"
           >
             <div class="flex items-center gap-1">
-              <IconKey classes="h-5 w-5" :title="$t('private')" />
+              <IconEyeOff classes="h-5 w-5" :title="$t('private')" />
               {{ $t('private') }}
             </div>
           </Tag>

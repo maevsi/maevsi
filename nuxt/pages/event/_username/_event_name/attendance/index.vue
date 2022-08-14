@@ -34,7 +34,7 @@
       <CardStateInfo v-if="invitationCode">
         {{ $t('scanned', { scanResult: invitationCode }) }}
       </CardStateInfo>
-      <div v-if="invitationCode" class="flex flex-col items-center">
+      <div v-if="invitationCode" class="flex flex-col items-center gap-2">
         <ButtonColored
           :aria-label="$t('nfcWrite')"
           :disabled="isNfcError"

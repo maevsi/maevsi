@@ -4,17 +4,19 @@
     :errors="$util.getGqlErrorMessages(graphqlError, this)"
   />
   <div v-else>
-    <Card v-if="allUploads?.nodes.length || allowAddition">
+    <Card>
       <ul class="flex flex-wrap justify-center">
         <template v-if="allUploads">
           <li
             v-for="upload in allUploads.nodes"
             :id="upload.id"
             :key="upload.id"
-            :class="{
-              'border-red-600': selectable && upload === selectedItem,
-            }"
-            class="relative box-border border-4 border-transparent"
+            :class="
+              selectable && upload === selectedItem
+                ? 'border-red-600'
+                : 'border-transparent'
+            "
+            class="relative box-border border-4"
             @click="toggleSelect(upload)"
           >
             <LoaderImage
@@ -54,7 +56,6 @@
         </template>
         <li class="relative box-border border-4 border-transparent">
           <Button
-            v-if="allowAddition"
             :aria-label="
               $t('iconAdd', {
                 sizeUsed: bytesToString(sizeByteTotal),
@@ -91,20 +92,6 @@
         </ButtonColored>
       </div>
     </Card>
-    <div v-else class="flex flex-col gap-1 py-2">
-      <!-- <p class="text-center">{{ $t('noPictures') }}</p> -->
-      <div class="flex justify-center">
-        <ButtonColored
-          :aria-label="$t('uploadImages')"
-          :to="localePath('/upload')"
-        >
-          {{ $t('uploadImages') }}
-          <template slot="suffix">
-            <IconArrowRight />
-          </template>
-        </ButtonColored>
-      </div>
-    </div>
     <Modal
       id="ModalImageUploadGallery"
       :submit-name="$t('upload')"
@@ -164,10 +151,6 @@ export default defineComponent({
     },
   },
   props: {
-    allowAddition: {
-      default: true,
-      type: Boolean,
-    },
     allowDeletion: {
       default: true,
       type: Boolean,
@@ -407,7 +390,6 @@ de:
   iconAdd: 'Ein neues Bild hochladen. Genutzter Speicherplatz: {sizeUsed}/{sizeTotal}.'
   iconTrash: löschen
   iconTrashLabel: Dieses hochgeladene Bild löschen.
-  noPictures: Du hast keine hochgeladenen Bilder 😕
   postgres53100: Der Speicherplatz deines Accounts ist aufgebraucht!
   upload: Hochladen
   uploadAlt: Ein hochgeladenes Bild.
@@ -424,7 +406,6 @@ en:
   iconAdd: 'Upload a new image. Used storage space: {sizeUsed}/{sizeTotal}.'
   iconTrash: trash
   iconTrashLabel: Delete this uploaded image.
-  noPictures: "You don't have any uploaded pictures 😕"
   postgres53100: Your account space has been used up!
   upload: Upload
   uploadAlt: An uploaded image.

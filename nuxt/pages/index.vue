@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-32 md:gap-32">
+  <div class="flex flex-col gap-32 md:gap-32 mt-8">
     <section id="overview" class="flex gap-8 items-center">
       <div class="flex w-full flex-col gap-8 md:gap-16 items-start lg:w-1/2">
         <i18n
@@ -136,7 +136,7 @@
     <div
       ref="scrollHint"
       class="duration-300 fixed flex flex-col items-center bottom-4 left-1/2 -translate-x-1/2 text-xl gap-2 transition"
-      :class="isScrollHintShown ? 'opacity-10' : 'opacity-0'"
+      :class="isScrollHintShown ? 'opacity-20' : 'opacity-0'"
     >
       <IconChevronDoubleDown
         classes="h-16 w-16 animate-bounce"
