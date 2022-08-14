@@ -1,3 +1,10 @@
+## [0.145.1](https://github.com/maevsi/maevsi/compare/0.145.0...0.145.1) (2022-08-14)
+
+
+### Bug Fixes
+
+* **headers:** allow self and cloudflare connect sources ([ebaa220](https://github.com/maevsi/maevsi/commit/ebaa2201914e5a40c2c351fd6f7eb9ee7bdba810))
+
 # [0.145.0](https://github.com/maevsi/maevsi/compare/0.144.1...0.145.0) (2022-08-14)
 
 
