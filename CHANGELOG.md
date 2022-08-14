@@ -1,3 +1,18 @@
+## [0.144.1](https://github.com/maevsi/maevsi/compare/0.144.0...0.144.1) (2022-08-14)
+
+
+### Bug Fixes
+
+* **account:** improve deletion error message ([2f8e2ec](https://github.com/maevsi/maevsi/commit/2f8e2ec1243cd8dd1e5d1669883e94225f576f74))
+* correct spacing ([5b53e2a](https://github.com/maevsi/maevsi/commit/5b53e2a94e2bc5eed01ca05e48442f7528beb343))
+* **even:** fix deletion ([e551674](https://github.com/maevsi/maevsi/commit/e5516746c0c2ab6c0f7686fab0a98a79c07d6a0c))
+* **event:** replace key eye-off icon for private events ([7f7a248](https://github.com/maevsi/maevsi/commit/7f7a2481609c4251caf782faa091e5da355c17c6))
+* **image-upload-gallery:** correct border color ([221f0d0](https://github.com/maevsi/maevsi/commit/221f0d04d4345d35bbc2a04d03a5ccf51dc25150))
+* **index:** fix spacing, increase opacity ([2cabcf1](https://github.com/maevsi/maevsi/commit/2cabcf1af04a45439fac2fe454e77a71bec673a1))
+* **invitation-list:** correct invitation link ([d6a9e4a](https://github.com/maevsi/maevsi/commit/d6a9e4afe14a7470e0add5bb1cfa39a423df3a38))
+* **invitation:** improve check in code ui ([4376883](https://github.com/maevsi/maevsi/commit/4376883f5c6a9684b6b7caaf6a6ad6a6a2ce6996))
+* **modal-image-selection:** default to direct image addition ([149ebf9](https://github.com/maevsi/maevsi/commit/149ebf90a54bb8133a99409c72f9ddbc4d3609b4))
+
 # [0.144.0](https://github.com/maevsi/maevsi/compare/0.143.0...0.144.0) (2022-08-13)
 
 
