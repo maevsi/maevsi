@@ -172,16 +172,19 @@ export function getGqlErrorMessages(
   that: any
 ): string[] | undefined {
   if (!graphqlError) return
-  return graphqlError.graphQLErrors.map((e) => {
-    const translationId = 'postgres' + e.errcode
-    const translation = that.$t(translationId)
+  return [
+    ...(graphqlError.networkError ? [graphqlError.networkError.message] : []),
+    ...graphqlError.graphQLErrors.map((e) => {
+      const translationId = 'postgres' + e.errcode
+      const translation = that.$t(translationId)
 
-    if (translation === translationId) {
-      return e.message
-    } else {
-      return translation
-    }
-  })
+      if (translation === translationId) {
+        return e.message
+      } else {
+        return translation
+      }
+    }),
+  ]
 }
 
 export function getJwtFromCookie(
