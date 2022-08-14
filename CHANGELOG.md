@@ -1,3 +1,10 @@
+## [0.145.2](https://github.com/maevsi/maevsi/compare/0.145.1...0.145.2) (2022-08-14)
+
+
+### Bug Fixes
+
+* **headers:** allow postgraphile and tusd ([2d445ac](https://github.com/maevsi/maevsi/commit/2d445ac15f83883d469d7b3d38abbb0c97445afe))
+
 ## [0.145.1](https://github.com/maevsi/maevsi/compare/0.145.0...0.145.1) (2022-08-14)
 
 
