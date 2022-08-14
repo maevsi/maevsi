@@ -1,3 +1,25 @@
+# [0.145.0](https://github.com/maevsi/maevsi/compare/0.144.1...0.145.0) (2022-08-14)
+
+
+### Bug Fixes
+
+* **event:** redirect to dashboard after deletion ([ef991ce](https://github.com/maevsi/maevsi/commit/ef991cedad6bbad25043d5ae1a1bfc64f5cc4c8c))
+* **event:** revert event deletion changes ([1f162ff](https://github.com/maevsi/maevsi/commit/1f162ffc6e14ac72435fc6d8c213dc8dfd8b5be5))
+* **form:** reenable submit button ([f616a06](https://github.com/maevsi/maevsi/commit/f616a0683f32a70cd35022554a58be55f523bd4e))
+* **invitation-list:** rename feedback to response ([56417d6](https://github.com/maevsi/maevsi/commit/56417d6bcff000c76df1b70aae71d57847e45694))
+* **invitation:** improve spacing ([398e800](https://github.com/maevsi/maevsi/commit/398e80059400d86b719825f8d755c2ef16fd8860))
+* **tiptap:** add minimum height ([7cbf4d5](https://github.com/maevsi/maevsi/commit/7cbf4d540acfcac6c5b0a795a82a61fbed2198f1))
+* **tiptap:** correct hr button ([592d7be](https://github.com/maevsi/maevsi/commit/592d7be2a786b269b63931d94acd70fd9b712a52))
+* **tiptap:** correct number translations ([de38891](https://github.com/maevsi/maevsi/commit/de3889197be7062678cdf57dcf68cf05e75e8126))
+* **util:** add network error to graphql error list ([d3eac2e](https://github.com/maevsi/maevsi/commit/d3eac2ec934150948918dea7976338951862ed96))
+
+
+### Features
+
+* **invitation-list:** add hint about inviting the organizer ([6f0f22a](https://github.com/maevsi/maevsi/commit/6f0f22ac4f0b3464a0df31e2f8b6c59486a5a871))
+* **sign-in:** replace page reload with navigation ([462f5fe](https://github.com/maevsi/maevsi/commit/462f5fef5cb926c4ae03e6746c0c0588c22c1874)), closes [#752](https://github.com/maevsi/maevsi/issues/752)
+* temporarily disable enter submit on form and modal ([3e20d76](https://github.com/maevsi/maevsi/commit/3e20d763606d0be2f745123fa517c123b8765cc1)), closes [#765](https://github.com/maevsi/maevsi/issues/765)
+
 ## [0.144.1](https://github.com/maevsi/maevsi/compare/0.144.0...0.144.1) (2022-08-14)
 
 
