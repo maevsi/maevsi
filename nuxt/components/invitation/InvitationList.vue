@@ -406,7 +406,7 @@ de:
   invitationSend: Einladung versenden
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
-  noFeedback: kein Feedback
+  noFeedback: keine Rückmeldung
   postgresP0002: Die Einladung konnte nicht versandt werden! Möglicherweise hast du aktuell keinen Zugriff auf die notwendigen Daten. Versuche die Seite neu zu laden.
   sendSuccess: Die Einladung wurde erfolgreich per E-Mail versandt.
   sent: Gesendet!
@@ -418,14 +418,14 @@ en:
   copied: Copied
   copySuccess: The invitation link was copied to the clipboard.
   disabledReasonEmailAddressNone: This contact is missing an email address.
-  feedback: Feedback
+  feedback: Invitation responses
   invitationAdd: Add guests
   invitationDelete: Delete invitation
   invitationLink: Copy invitation link
   invitationSend: Send invitation
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
-  noFeedback: no feedback
+  noFeedback: no response
   postgresP0002: The invitation could not be sent! You may not currently have access to the necessary data. Try to reload the page.
   sendSuccess: The invitation was successfully sent by email.
   sent: Sent!
