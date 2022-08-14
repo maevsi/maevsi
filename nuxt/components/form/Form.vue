@@ -12,13 +12,13 @@
     <Card>
       <slot />
       <div class="mb-4 mt-6 flex flex-col items-center justify-between">
-        <!-- type="submit" disabled until https://github.com/maevsi/maevsi/issues/765 -->
         <ButtonColored
           ref="buttonSubmit"
           :aria-label="submitName"
           :class="{
             'animate-shake': form.$anyError,
           }"
+          type="submit"
           @click="$emit('click')"
         >
           {{ submitName }}
