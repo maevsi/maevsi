@@ -220,7 +220,7 @@ export default defineComponent({
       content: this.value,
       editorProps: {
         attributes: {
-          class: 'form-input',
+          class: 'form-input min-h-[100px]',
         },
       },
       extensions: [StarterKit, Link],
