@@ -11,10 +11,12 @@
             v-for="upload in allUploads.nodes"
             :id="upload.id"
             :key="upload.id"
-            :class="{
-              'border-red-600': selectable && upload === selectedItem,
-            }"
-            class="relative box-border border-4 border-transparent"
+            :class="
+              selectable && upload === selectedItem
+                ? 'border-red-600'
+                : 'border-transparent'
+            "
+            class="relative box-border border-4"
             @click="toggleSelect(upload)"
           >
             <LoaderImage
