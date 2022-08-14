@@ -6,6 +6,7 @@ const csp: Record<string, Array<string>> = {
   'base-uri': ["'none'"], // Mozilla Observatory.
   'connect-src': [
     'self', // XHR (HMR)
+    `https://postgraphile.${STACK_DOMAIN}`,
     'https://maev.si/cdn-cgi/rum', // Cloudflare real user management (browser insights)
     'https://www.google-analytics.com',
   ],
@@ -16,7 +17,7 @@ const csp: Record<string, Array<string>> = {
   'img-src': [
     'blob:',
     'data:',
-    `https://*.${STACK_DOMAIN}`,
+    `https://tusd.${STACK_DOMAIN}`,
     'https://www.google-analytics.com',
     'https://www.gravatar.com/avatar/',
     "'self'",
