@@ -71,7 +71,7 @@
               : 'border-text-dark dark:border-text-bright'
           "
         >
-          <div class="p-4 flex flex-col gap-1">
+          <div class="p-4 flex flex-col items-center gap-2">
             <span v-if="event.authorUsername !== signedInUsername">
               {{ $t('feedbackRequest') }}
             </span>
