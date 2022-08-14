@@ -126,6 +126,12 @@
         </tbody>
       </table>
     </ScrollContainer>
+    <div v-else class="flex flex-col items-center gap-2">
+      {{ $t('invitationNone') }}
+      <FormInputStateInfo>
+        {{ $t('hintInviteSelf') }}
+      </FormInputStateInfo>
+    </div>
     <div class="flex flex-col items-center gap-1">
       <ButtonColored
         :aria-label="$t('invitationAdd')"
@@ -400,9 +406,11 @@ de:
   copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   feedback: Rückmeldungen
+  hintInviteSelf: 'Tipp: du kannst dich auch zuerst selbst einladen'
   invitationAdd: Gäste hinzufügen
   invitationDelete: Einladung löschen
   invitationLink: Einladungslink kopieren
+  invitationNone: Es wurde noch kein Gast hinzugefügt 😕
   invitationSend: Einladung versenden
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
@@ -419,9 +427,11 @@ en:
   copySuccess: The invitation link was copied to the clipboard.
   disabledReasonEmailAddressNone: This contact is missing an email address.
   feedback: Invitation responses
+  hintInviteSelf: 'Hint: you can also invite yourself first'
   invitationAdd: Add guests
   invitationDelete: Delete invitation
   invitationLink: Copy invitation link
+  invitationNone: No guest has been added yet 😕
   invitationSend: Send invitation
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
