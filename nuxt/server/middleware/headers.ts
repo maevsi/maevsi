@@ -5,8 +5,8 @@ import { STACK_DOMAIN } from '~/plugins/static/constants'
 const csp: Record<string, Array<string>> = {
   'base-uri': ["'none'"], // Mozilla Observatory.
   'connect-src': [
-    ...(process.env.NODE_ENV === 'production' ? [] : ["'self'"]), // HMR
-    `https://*.${STACK_DOMAIN}`,
+    'self', // XHR (HMR)
+    'https://maev.si/cdn-cgi/rum', // Cloudflare real user management (browser insights)
     'https://www.google-analytics.com',
   ],
   'default-src': ["'none'"],
