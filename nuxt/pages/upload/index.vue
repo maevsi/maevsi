@@ -11,8 +11,9 @@
 
 <script lang="ts">
 import { mapGetters } from 'vuex'
+import { useI18n } from 'vue-i18n-composable'
 
-import { defineComponent, reactive, useNuxtApp } from '#app'
+import { defineComponent, reactive } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -25,10 +26,10 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $t } = useNuxtApp()
+    const { t } = useI18n()
 
     const data = reactive({
-      title: $t('title'),
+      title: t('title'),
     })
     const computations = {
       ...mapGetters(['signedInUsername']),

@@ -42,6 +42,7 @@
 </template>
 
 <script lang="ts">
+import { useI18n } from 'vue-i18n-composable'
 import { mapGetters } from 'vuex'
 
 import { computed, defineComponent, reactive, useNuxtApp } from '#app'
@@ -55,10 +56,11 @@ export default defineComponent({
   },
   setup() {
     const { signOut } = useSignOut()
-    const { $moment, $store, $t } = useNuxtApp()
+    const { $moment, $store } = useNuxtApp()
+    const { t } = useI18n()
 
     const data = reactive({
-      title: $t('title'),
+      title: t('title'),
     })
     const methods = {
       signOut,

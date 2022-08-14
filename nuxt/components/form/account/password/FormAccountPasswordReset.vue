@@ -19,6 +19,7 @@
 <script lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 import { minLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
@@ -38,7 +39,8 @@ const FormAccountPasswordReset = defineComponent({
     },
   },
   setup() {
-    const { $router, $t, localePath } = useNuxtApp()
+    const { $router, localePath } = useNuxtApp()
+    const { t } = useI18n()
     const route = useRoute()
     const passwordResetMutation = useAccountPasswordResetMutation()
 
@@ -80,10 +82,10 @@ const FormAccountPasswordReset = defineComponent({
 
         Swal.fire({
           icon: 'success',
-          text: $t('accountPasswordResetSuccess') as string,
+          text: t('accountPasswordResetSuccess') as string,
           timer: 3000,
           timerProgressBar: true,
-          title: $t('reset'),
+          title: t('reset'),
         })
         $router.push({
           path: localePath(`/account`),

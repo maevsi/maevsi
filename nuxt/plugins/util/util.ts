@@ -1,8 +1,7 @@
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
 import { Ref } from 'vue'
-
-import { useNuxtApp } from '#app'
+import { useI18n } from 'vue-i18n-composable'
 
 export function capitalizeFirstLetter(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -103,11 +102,11 @@ export function getCombinedErrorMessages($t: any, errors: CombinedError[]) {
 }
 
 export function useGetCombinedErrorMessages() {
-  const { $t } = useNuxtApp()
+  const { t } = useI18n()
 
   return {
     getCombinedErrorMessages(errors: CombinedError[]) {
-      return getCombinedErrorMessages($t, errors)
+      return getCombinedErrorMessages(t, errors)
     },
   }
 }

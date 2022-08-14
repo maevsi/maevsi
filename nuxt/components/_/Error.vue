@@ -25,6 +25,7 @@
 
 <script lang="ts">
 import { status } from '@http-util/status-i18n'
+import { useI18n } from 'vue-i18n-composable'
 
 import { computed, defineComponent, PropType, useNuxtApp } from '#app'
 
@@ -37,11 +38,12 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { $i18n, $t } = useNuxtApp()
+    const { $i18n } = useNuxtApp()
+    const { t } = useI18n()
 
     const computations = {
       statusReason: computed(() => {
-        return status(props.statusCode, $i18n.locale) || ($t('error') as string)
+        return status(props.statusCode, $i18n.locale) || (t('error') as string)
       }),
     }
 

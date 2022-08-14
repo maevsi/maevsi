@@ -136,6 +136,7 @@ import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
 import Swal from 'sweetalert2'
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n-composable'
 import { mapGetters } from 'vuex'
 
 import { useNuxtApp, defineComponent, PropType, reactive } from '#app'
@@ -175,7 +176,8 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { $store, $t } = useNuxtApp()
+    const { $store } = useNuxtApp()
+    const { t } = useI18n()
 
     const { executeMutation: executeMutationUploadCreate } =
       useUploadCreateMutation()
@@ -262,15 +264,15 @@ export default defineComponent({
               case 500:
                 Swal.fire({
                   icon: 'error',
-                  text: $t('uploadDeleteFailed') as string,
-                  title: $t('globalStatusError'),
+                  text: t('uploadDeleteFailed') as string,
+                  title: t('globalStatusError'),
                 })
                 break
               default:
                 Swal.fire({
                   icon: 'warning',
-                  text: $t('uploadDeleteUnexpectedStatusCode') as string,
-                  title: $t('globalStatusWarning'),
+                  text: t('uploadDeleteUnexpectedStatusCode') as string,
+                  title: t('globalStatusWarning'),
                 })
             }
           }
@@ -381,7 +383,7 @@ export default defineComponent({
               // TODO: cache update (allUploads)
 
               if (value.failed.length > 0) {
-                reject($t('uploadError'))
+                reject(t('uploadError'))
               } else {
                 resolve()
               }

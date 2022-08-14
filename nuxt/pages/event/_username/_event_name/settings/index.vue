@@ -38,6 +38,7 @@
 import { Context } from '@nuxt/types-edge'
 import { CombinedError } from '@urql/vue'
 import consola from 'consola'
+import { useI18n } from 'vue-i18n-composable'
 
 import {
   computed,
@@ -78,7 +79,8 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $router, $store, $t, localePath } = useNuxtApp()
+    const { $router, $store, localePath } = useNuxtApp()
+    const { t } = useI18n()
     const route = useRoute()
     const { executeMutation: executeMutationEventDelete } =
       useEventDeleteMutation()
@@ -116,7 +118,7 @@ export default defineComponent({
           route.params.username === $store.getters.signedInUsername &&
           apiData.event
         ) {
-          return `${$t('title')} · ${apiData.event.name}`
+          return `${t('title')} · ${apiData.event.name}`
         }
         return '403'
       }),

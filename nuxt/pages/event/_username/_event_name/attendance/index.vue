@@ -68,6 +68,7 @@
 import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 
 import {
   computed,
@@ -112,7 +113,8 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $store, $t } = useNuxtApp()
+    const { $store } = useNuxtApp()
+    const { t } = useI18n()
     const route = useRoute()
 
     const eventQuery = useEventByAuthorUsernameAndSlugQuery({
@@ -147,7 +149,7 @@ export default defineComponent({
           route.params.username === $store.getters.signedInUsername &&
           apiData.event
         ) {
-          return `${$t('title')} · ${apiData.event.name}`
+          return `${t('title')} · ${apiData.event.name}`
         }
         return '403'
       }),
@@ -165,25 +167,25 @@ export default defineComponent({
           let errorMessage: string = error.message
 
           if (error.name === 'NotAllowedError') {
-            errorMessage = $t('errorCameraNotAllowed', {
-              hintBrowserSettings: $t('hintBrowserSettings'),
+            errorMessage = t('errorCameraNotAllowed', {
+              hintBrowserSettings: t('hintBrowserSettings'),
             }) as string
           } else if (error.name === 'NotFoundError') {
-            errorMessage = $t('errorCameraNotFound') as string
+            errorMessage = t('errorCameraNotFound') as string
           } else if (error.name === 'NotSupportedError') {
-            errorMessage = $t('errorCameraNotSupported') as string
+            errorMessage = t('errorCameraNotSupported') as string
           } else if (error.name === 'NotReadableError') {
-            errorMessage = $t('errorCameraNotReadable') as string
+            errorMessage = t('errorCameraNotReadable') as string
           } else if (error.name === 'OverconstrainedError') {
-            errorMessage = $t('errorCameraOverconstrained') as string
+            errorMessage = t('errorCameraOverconstrained') as string
           } else if (error.name === 'StreamApiNotSupportedError') {
-            errorMessage = $t('errorCameraStreamApiNotSupported') as string
+            errorMessage = t('errorCameraStreamApiNotSupported') as string
           }
 
           Swal.fire({
             icon: 'error',
             text: errorMessage,
-            title: $t('globalStatusError'),
+            title: t('globalStatusError'),
           }).then(() =>
             $store.commit('modalRemove', 'ModalAttendanceScanQrCode')
           )
@@ -208,8 +210,8 @@ export default defineComponent({
         if (!('NDEFReader' in window)) {
           return Promise.reject(
             Error(
-              $t('errorNfcNotSupported', {
-                hintUpdateOrChrome: $t('hintUpdateOrChrome'),
+              t('errorNfcNotSupported', {
+                hintUpdateOrChrome: t('hintUpdateOrChrome'),
               }) as string
             )
           )
@@ -218,8 +220,8 @@ export default defineComponent({
         if (!navigator.permissions) {
           return Promise.reject(
             Error(
-              $t('errorNavigatorPermissionsNotSupported', {
-                hintUpdateOrChrome: $t('hintUpdateOrChrome'),
+              t('errorNavigatorPermissionsNotSupported', {
+                hintUpdateOrChrome: t('hintUpdateOrChrome'),
               }) as string
             )
           )
@@ -249,27 +251,27 @@ export default defineComponent({
             let errorMessage: string = error.message
 
             if (error.name === 'AbortError') {
-              errorMessage = $t('errorNfcAbort', {
-                hintTryAgain: $t('hintTryAgain'),
+              errorMessage = t('errorNfcAbort', {
+                hintTryAgain: t('hintTryAgain'),
               }) as string
             } else if (error.name === 'NotAllowedError') {
-              errorMessage = $t('errorNfcNotAllowed', {
-                hintBrowserSettings: $t('hintBrowserSettings'),
+              errorMessage = t('errorNfcNotAllowed', {
+                hintBrowserSettings: t('hintBrowserSettings'),
               }) as string
             } else if (error.name === 'NotSupportedError') {
-              errorMessage = $t('errorNfcNotSupported') as string
+              errorMessage = t('errorNfcNotSupported') as string
             } else if (error.name === 'NotReadableError') {
-              errorMessage = $t('errorNfcNotReadable') as string
+              errorMessage = t('errorNfcNotReadable') as string
             } else if (error.name === 'NetworkError') {
-              errorMessage = $t('errorNfcNetwork', {
-                hintTryAgain: $t('hintTryAgain'),
+              errorMessage = t('errorNfcNetwork', {
+                hintTryAgain: t('hintTryAgain'),
               }) as string
             }
 
             Swal.fire({
               icon: 'error',
               text: errorMessage,
-              title: $t('globalStatusError'),
+              title: t('globalStatusError'),
             })
             consola.error(errorMessage)
           } else {

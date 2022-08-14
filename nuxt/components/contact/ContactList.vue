@@ -66,6 +66,7 @@
 import consola from 'consola'
 import debounce from 'lodash-es/debounce'
 import VueI18n from 'vue-i18n'
+import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, reactive, ref, useNuxtApp, watch } from '#app'
 
@@ -76,7 +77,8 @@ import { Contact } from '~/types/contact'
 
 export default defineComponent({
   setup() {
-    const { $store, $t } = useNuxtApp()
+    const { $store } = useNuxtApp()
+    const { t } = useI18n()
     const { executeMutation: executeMutationContactDelete } =
       useDeleteContactMutation()
 
@@ -110,7 +112,7 @@ export default defineComponent({
     })
     const methods = {
       add() {
-        data.formContactHeading = $t('contactAdd')
+        data.formContactHeading = t('contactAdd')
         data.selectedContact = undefined
         $store.commit('modalAdd', { id: 'ModalContact' })
       },
@@ -135,7 +137,7 @@ export default defineComponent({
       },
       edit(contact: Contact) {
         data.pending.edits.push(contact.nodeId)
-        data.formContactHeading = $t('contactEdit')
+        data.formContactHeading = t('contactEdit')
         data.selectedContact = contact
         $store.commit('modalAdd', { id: 'ModalContact' })
       },

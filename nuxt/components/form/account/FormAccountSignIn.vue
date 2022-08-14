@@ -52,6 +52,7 @@
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { reactive } from 'vue'
+import { useI18n } from 'vue-i18n-composable'
 import { maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import { useNuxtApp, defineComponent } from '#app'
@@ -72,7 +73,8 @@ import {
 const FormAccountSignIn = defineComponent({
   setup() {
     const { jwtStore } = useJwtStore()
-    const { $i18n, $t } = useNuxtApp()
+    const { $i18n } = useNuxtApp()
+    const { t } = useI18n()
     const { executeMutation: executeMutationAccountRegistrationRefresh } =
       useAccountRegistrationRefreshMutation()
     const { executeMutation: executeMutationAuthentication } =
@@ -98,8 +100,8 @@ const FormAccountSignIn = defineComponent({
           } else {
             Swal.fire({
               icon: 'success',
-              text: $t('registrationRefreshSuccess') as string,
-              title: $t('sent'),
+              text: t('registrationRefreshSuccess') as string,
+              title: t('sent'),
             })
           }
         })
@@ -123,8 +125,8 @@ const FormAccountSignIn = defineComponent({
               async () =>
                 await Swal.fire({
                   icon: 'error',
-                  text: $t('jwtStoreFail') as string,
-                  title: $t('globalStatusError'),
+                  text: t('jwtStoreFail') as string,
+                  title: t('globalStatusError'),
                 })
             )
           }

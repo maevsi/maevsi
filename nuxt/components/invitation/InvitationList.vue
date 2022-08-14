@@ -197,6 +197,7 @@ import {
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { Doughnut } from 'vue-chartjs/legacy'
+import { useI18n } from 'vue-i18n-composable'
 
 import {
   computed,
@@ -239,7 +240,8 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { $colorMode, $i18n, $store, $t, localePath } = useNuxtApp()
+    const { $colorMode, $i18n, $store, localePath } = useNuxtApp()
+    const { t } = useI18n()
     const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
     const inviteMutation = useInviteMutation()
 
@@ -303,10 +305,10 @@ export default defineComponent({
         ).then(() => {
           Swal.fire({
             icon: 'success',
-            text: $t('copySuccess') as string,
+            text: t('copySuccess') as string,
             timer: 3000,
             timerProgressBar: true,
-            title: $t('copied'),
+            title: t('copied'),
           })
         })
       },
@@ -356,10 +358,10 @@ export default defineComponent({
 
         Swal.fire({
           icon: 'success',
-          text: $t('sendSuccess') as string,
+          text: t('sendSuccess') as string,
           timer: 3000,
           timerProgressBar: true,
-          title: $t('sent'),
+          title: t('sent'),
         })
         // TODO: cache update (allInvitations)
       },
@@ -391,7 +393,7 @@ export default defineComponent({
         }
 
         return {
-          labels: [$t('accepted'), $t('canceled'), $t('noFeedback')],
+          labels: [t('accepted'), t('canceled'), t('noFeedback')],
           datasets: [
             {
               data: datasetData,

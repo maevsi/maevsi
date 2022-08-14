@@ -290,6 +290,7 @@ import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 import { mapGetters } from 'vuex'
 
 import {
@@ -334,7 +335,8 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $store, $t } = useNuxtApp()
+    const { $store } = useNuxtApp()
+    const { t } = useI18n()
     const route = useRoute()
     const { executeMutation: executeMutationUpdateInvitationById } =
       useUpdateInvitationByIdMutation()
@@ -406,10 +408,10 @@ export default defineComponent({
               default:
                 Swal.fire({
                   icon: 'error',
-                  text: $t('iCalUnexpectedStatusCode', {
+                  text: t('iCalUnexpectedStatusCode', {
                     statusCode: xhr.status,
                   }) as string,
-                  title: $t('globalStatusError'),
+                  title: t('globalStatusError'),
                 })
             }
           }
@@ -450,9 +452,9 @@ export default defineComponent({
           icon: 'success',
           showConfirmButton: false,
           timer: 1500,
-          text: $t('success') as string,
+          text: t('success') as string,
           timerProgressBar: true,
-          title: $t('saved'),
+          title: t('saved'),
         })
         // TODO: cache update (event)
       },
@@ -493,8 +495,8 @@ export default defineComponent({
           if (invitationsMatchingUuid.length > 1) {
             Swal.fire({
               icon: 'warning',
-              text: $t('invitationCodeMultipleWarning') as string,
-              title: $t('globalStatusWarning'),
+              text: t('invitationCodeMultipleWarning') as string,
+              title: t('globalStatusWarning'),
             })
           }
 

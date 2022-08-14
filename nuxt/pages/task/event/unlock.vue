@@ -55,6 +55,7 @@
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
+import { useI18n } from 'vue-i18n-composable'
 import { required } from 'vuelidate/lib/validators'
 
 import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
@@ -126,7 +127,8 @@ export default defineComponent({
   },
   setup() {
     const { jwtStore } = useJwtStore()
-    const { $router, $t, localePath } = useNuxtApp()
+    const { $router, localePath } = useNuxtApp()
+    const { t } = useI18n()
     const route = useRoute()
     const eventUnlockMutation = useEventUnlockMutation()
 
@@ -144,7 +146,7 @@ export default defineComponent({
           route.query.ic === undefined ? undefined : route.query.ic,
       },
       isFormSent: false,
-      title: $t('title'),
+      title: t('title'),
     })
     const methods = {
       async submit() {

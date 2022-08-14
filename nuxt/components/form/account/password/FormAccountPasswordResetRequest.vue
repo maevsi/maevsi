@@ -20,6 +20,7 @@
 <script lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 import { email, maxLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent, PropType, reactive, useNuxtApp } from '#app'
@@ -40,7 +41,8 @@ const FormAccountPasswordResetRequest = defineComponent({
     },
   },
   setup(_props, { emit }) {
-    const { $i18n, $t } = useNuxtApp()
+    const { $i18n } = useNuxtApp()
+    const { t } = useI18n()
     const passwordResetRequestMutation =
       useAccountPasswordResetRequestMutation()
 
@@ -83,8 +85,8 @@ const FormAccountPasswordResetRequest = defineComponent({
         emit('account-password-reset-request')
         Swal.fire({
           icon: 'success',
-          text: $t('accountPasswordResetRequestSuccess') as string,
-          title: $t('requestAccepted'),
+          text: t('accountPasswordResetRequestSuccess') as string,
+          title: t('requestAccepted'),
         })
       },
     }

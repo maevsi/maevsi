@@ -22,6 +22,7 @@
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
+import { useI18n } from 'vue-i18n-composable'
 
 import {
   computed,
@@ -60,7 +61,8 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute()
-    const { $store, $t } = useNuxtApp()
+    const { $store } = useNuxtApp()
+    const { t } = useI18n()
 
     const eventQuery = useEventByAuthorUsernameAndSlugQuery({
       variables: {
@@ -84,7 +86,7 @@ export default defineComponent({
           route.params.username === $store.getters.signedInUsername &&
           apiData.event
         ) {
-          return `${$t('title')} · ${apiData.event.name}`
+          return `${t('title')} · ${apiData.event.name}`
         }
         return '403'
       }),

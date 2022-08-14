@@ -9,6 +9,7 @@
 import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 
@@ -27,7 +28,8 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $router, $t, localePath } = useNuxtApp()
+    const { $router, localePath } = useNuxtApp()
+    const { t } = useI18n()
     const route = useRoute()
     const accountEmailAddressVerificationMutation =
       useAccountEmailAddressVerificationMutation()
@@ -41,7 +43,7 @@ export default defineComponent({
       },
     })
     const data = reactive({
-      title: $t('title'),
+      title: t('title'),
     })
 
     accountEmailAddressVerificationMutation
@@ -55,8 +57,8 @@ export default defineComponent({
         } else {
           Swal.fire({
             icon: 'success',
-            text: $t('verifiedBody') as string,
-            title: $t('verified'),
+            text: t('verifiedBody') as string,
+            title: t('verified'),
           })
           $router.push({
             path: localePath(`/task/account/sign-in`),
