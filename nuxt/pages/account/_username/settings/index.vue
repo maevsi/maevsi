@@ -140,19 +140,19 @@ export default defineComponent({
 de:
   account: Konto
   accounts: Konten
-  postgres23503: Dir gehören noch Veranstaltungen! Lösche erst all deine Veranstaltungen.
+  postgres23503: Dir gehören noch Daten! Lösche erst all deine Veranstaltungen, Kontakte und Bilder.
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   profilePictureChange: Profilbild ändern
-  settings: Einstellungen
+  settings: bearbeiten
   titleAccountDelete: Konto löschen
-  titlePasswordChange: Password ändern
+  titlePasswordChange: Password des Kontos ändern
 en:
   account: account
   accounts: accounts
-  postgres23503: You still own events! First delete all your events.
+  postgres23503: You still own data! First delete all your events, contacts and images.
   postgres28P01: Password incorrect! Check that you have written everything correctly.
   profilePictureChange: Change profile picture
-  settings: settings
+  settings: edit
   titleAccountDelete: Delete account
-  titlePasswordChange: Change password
+  titlePasswordChange: Change account password
 </i18n>

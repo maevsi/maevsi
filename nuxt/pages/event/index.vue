@@ -68,7 +68,7 @@ export default defineComponent({
 
 <i18n lang="yml">
 de:
-  title: Veranstaltungen
+  title: Veranstaltungen entdecken
 en:
-  title: Events
+  title: Explore events
 </i18n>

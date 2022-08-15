@@ -31,29 +31,33 @@
           </template>
         </ButtonColored>
       </CardStateInfo>
-      <div v-if="contact" class="flex flex-col items-center gap-2 text-center">
-        <ButtonColored
-          v-if="invitation?.feedback === 'ACCEPTED'"
-          :aria-label="$t('qrCodeShow')"
-          class="text-text-bright"
-          @click="qrCodeShow"
-        >
-          {{ $t('qrCodeShow') }}
-          <template slot="prefix">
-            <IconQrCode />
-          </template>
-        </ButtonColored>
-        <p class="mb-2 text-2xl font-bold">
-          {{
-            $t('greeting', {
-              usernameString: contactName ? ' ' + contactName : '',
-            })
-          }}
-        </p>
-        <p>{{ $t('greetingDescription') }}</p>
-        <div v-if="invitation" class="fixed bottom-0 z-10">
+      <div v-if="contact" class="flex flex-col gap-2">
+        <div class="flex items-center gap-2 justify-between">
+          <div>
+            <p class="mb-2 text-2xl font-bold">
+              {{
+                $t('greeting', {
+                  usernameString: contactName ? ' ' + contactName : '',
+                })
+              }}
+            </p>
+            <p>{{ $t('greetingDescription') }}</p>
+          </div>
+          <ButtonColored
+            v-if="invitation?.feedback === 'ACCEPTED'"
+            :aria-label="$t('qrCodeShow')"
+            class="text-text-bright"
+            @click="qrCodeShow"
+          >
+            {{ $t('qrCodeShow') }}
+            <template slot="prefix">
+              <IconQrCode />
+            </template>
+          </ButtonColored>
+        </div>
+        <div v-if="invitation" class="fixed bottom-0 right-0 left-0 z-10">
           <div
-            class="justify-content-center inline-block rounded-t-lg border-2 border-b-0 bg-background-bright dark:bg-background-dark"
+            class="border-t-2 bg-background-brighten dark:bg-background-darken"
             :class="
               invitation.feedback === 'ACCEPTED'
                 ? 'border-green-600 dark:border-green-500'
@@ -62,7 +66,7 @@
                 : 'border-text-dark dark:border-text-bright'
             "
           >
-            <div class="m-4 flex flex-col gap-1">
+            <div class="p-4 flex flex-col items-center gap-2">
               <span v-if="event.authorUsername !== signedInUsername()">
                 {{ $t('feedbackRequest') }}
               </span>
@@ -221,47 +225,44 @@
           </template>
         </ButtonColored>
       </ButtonList>
-      <Card v-if="event" class="flex flex-col items-center gap-8">
-        <div class="flex max-w-full flex-col items-center">
+      <div class="flex flex-col md:flex-row justify-between gap-2">
+        <div class="flex max-w-full items-baseline gap-2">
           <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
             {{ event.name }}
           </h1>
           <Owner link :username="event.authorUsername" />
         </div>
-        <div class="flex flex-col items-center gap-4 self-stretch">
-          <div class="flex flex-row flex-wrap justify-center self-stretch">
-            <EventDashletStart :event="event" />
-            <EventDashletDuration :event="event" />
-            <EventDashletVisibility :event="event" with-text />
-            <EventDashletAttendanceType :event="event" />
-            <EventDashletLocation :event="event" />
-            <EventDashletLink :event="event" />
-          </div>
-          <div class="flex flex-col gap-2">
-            <ButtonColored
-              :aria-label="$t('iCalDownload')"
-              :is-primary="false"
-              class="text-text-bright"
-              @click="downloadIcal"
-            >
-              {{ $t('iCalDownload') }}
-              <template slot="prefix">
-                <IconDownload />
-              </template>
-            </ButtonColored>
-            <FormInputStateInfo>
-              {{ $t('iCalHint') }}
-            </FormInputStateInfo>
-          </div>
+        <div class="flex gap-2 items-center">
+          <ButtonColored
+            :aria-label="$t('iCalDownload')"
+            :is-primary="false"
+            @click="downloadIcal"
+          >
+            {{ $t('iCalDownload') }}
+            <template slot="prefix">
+              <IconDownload />
+            </template>
+          </ButtonColored>
+          <FormInputStateInfo :title="$t('iCalHint')" />
         </div>
-        <div v-if="eventDescriptionTemplate" class="flex flex-col gap-4">
+      </div>
+      <Card v-if="event" class="flex flex-col items-center gap-8">
+        <div class="flex flex-row flex-wrap justify-center self-stretch">
+          <EventDashletStart :event="event" />
+          <EventDashletDuration :event="event" />
+          <EventDashletVisibility :event="event" with-text />
+          <EventDashletAttendanceType :event="event" />
+          <EventDashletLocation :event="event" />
+          <EventDashletLink :event="event" />
+        </div>
+        <div v-if="eventDescriptionTemplate" class="flex flex-col gap-4 w-full">
           <Hr />
           <!-- eslint-disable vue/no-v-html -->
           <div class="maevsi-prose-scheme" v-html="eventDescriptionTemplate" />
           <!-- eslint-enable vue/no-v-html -->
         </div>
       </Card>
-      <Modal id="ModalInvitationQrCode">
+      <Modal id="ModalInvitationQrCode" ref="ModalCheckInCode">
         <div v-if="invitation" class="flex flex-col items-center gap-2 pb-4">
           <QrcodeVue
             id="qrCode"
@@ -269,13 +270,31 @@
             :value="invitation.uuid"
             size="200"
           />
-          <ButtonColored :aria-label="$t('print')" @click="print">
-            {{ $t('print') }}
-          </ButtonColored>
           <FormInputStateInfo>
             {{ $t('hintQrCode') }}
           </FormInputStateInfo>
         </div>
+        <template slot="footer">
+          <ButtonColored
+            :aria-label="$t('print')"
+            :is-primary="false"
+            @click="print"
+          >
+            {{ $t('print') }}
+            <template slot="prefix">
+              <IconPrinter />
+            </template>
+          </ButtonColored>
+          <ButtonColored
+            :aria-label="$t('close')"
+            @click="closeModalInvitationQrCode()"
+          >
+            {{ $t('close') }}
+            <template slot="prefix">
+              <IconX />
+            </template>
+          </ButtonColored>
+        </template>
       </Modal>
     </div>
   </Loader>
@@ -298,6 +317,7 @@ import {
   computed,
   defineComponent,
   reactive,
+  ref,
   useNuxtApp,
   useRoute,
   watch,
@@ -349,6 +369,9 @@ export default defineComponent({
       },
     })
 
+    const refs = {
+      ModalCheckInCode: ref(),
+    }
     const apiData = {
       api: computed(() => {
         return {
@@ -382,6 +405,9 @@ export default defineComponent({
         methods.update(data.invitation.id, {
           feedback: InvitationFeedback.Canceled,
         })
+      },
+      closeModalInvitationQrCode() {
+        refs.ModalCheckInCode.value.close()
       },
       // paperInvitationFeedback() {
       //   if (data.invitation === undefined) {
@@ -570,8 +596,9 @@ export default defineComponent({
 <i18n lang="yml">
 de:
   attendances: Check-in
+  close: Schließen
   events: Veranstaltungen
-  feedbackRequest: 'Bitte gib hier eine Rückmeldung, ob du teilnehmen wirst:'
+  feedbackRequest: 'Bitte gib eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
@@ -579,13 +606,13 @@ de:
   iCalHint: Die heruntergeladene Datei kann dann mit deiner Kalender-Anwendung geöffnet werden.
   iCalUnexpectedStatusCode: 'iCal-Daten konnten nicht geladen werden: Statuscode {statusCode}.'
   invitationAccept: Einladung annehmen
-  invitationAcceptAdmin: Einladung für {name} annehmen
+  invitationAcceptAdmin: Einladung im Namen von {name} annehmen
   invitationAccepted: Einladung angenommen
-  invitationAcceptedAdmin: Einladung für {name} angenommen
+  invitationAcceptedAdmin: Einladung im Namen von {name} angenommen
   invitationCancel: Einladung ablehnen
-  invitationCancelAdmin: Einladung für {name} ablehnen
+  invitationCancelAdmin: Einladung im Namen von {name} ablehnen
   invitationCanceled: Einladung abgelehnt
-  invitationCanceledAdmin: Einladung für {name} abgelehnt
+  invitationCanceledAdmin: Einladung im Namen von {name} abgelehnt
   invitationCardKind: Art der Einladungskarte
   invitationCardKindNone: Keine
   invitationCardKindPaper: Papier
@@ -604,8 +631,9 @@ de:
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
   attendances: Check in
+  close: Close
   events: events
-  feedbackRequest: 'Please provide feedback here whether you will be attending:'
+  feedbackRequest: 'Please provide feedback whether you will be attending:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."
   hintQrCode: This picture is your access authorization for the event
@@ -613,13 +641,13 @@ en:
   iCalHint: You can open the downloaded file with your calendar app then.
   iCalUnexpectedStatusCode: 'Could not get iCal data: Status code {statusCode}.'
   invitationAccept: Accept invitation
-  invitationAcceptAdmin: Accept invitation for {name}
+  invitationAcceptAdmin: Accept invitation on behalf of {name}
   invitationAccepted: Invitation accepted
-  invitationAcceptedAdmin: Invitation accepted for {name}
+  invitationAcceptedAdmin: Invitation accepted on behalf of {name}
   invitationCancel: Decline invitation
-  invitationCancelAdmin: Decline invitation for {name}
+  invitationCancelAdmin: Decline invitation on behalf of {name}
   invitationCanceled: Invitation declined
-  invitationCanceledAdmin: Invitation declined for {name}
+  invitationCanceledAdmin: Invitation declined on behalf of {name}
   invitationCardKind: Kind of invitation card
   invitationCardKindNone: None
   invitationCardKindPaper: Paper

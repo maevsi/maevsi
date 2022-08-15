@@ -1,7 +1,7 @@
 <template>
   <IconArchive v-if="isArchived" :title="$t('archived')" />
   <IconGlobe v-else-if="visibility === 'PUBLIC'" :title="$t('public')" />
-  <IconKey v-else-if="visibility === 'PRIVATE'" :title="$t('private')" />
+  <IconEyeOff v-else-if="visibility === 'PRIVATE'" :title="$t('private')" />
   <IconBug v-else :title="$t('bug')" />
 </template>
 

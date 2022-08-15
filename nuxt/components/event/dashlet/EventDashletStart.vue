@@ -3,10 +3,14 @@
     <span>
       <IconCalendar :title="$t('start')" />
     </span>
-    {{ $moment(event.start).format('lll') }}
-    <span class="hidden sm:inline">
-      {{ $t('embraced', { content: $moment(event.start).fromNow() }) }}
-    </span>
+    <div class="flex flex-col">
+      <span>
+        {{ $moment(event.start).format('lll') }}
+      </span>
+      <span class="hidden sm:inline">
+        {{ $t('embraced', { content: $moment(event.start).fromNow() }) }}
+      </span>
+    </div>
   </EventDashlet>
 </template>
 

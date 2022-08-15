@@ -4,7 +4,7 @@ set -e
 
 THIS=$(dirname "$(readlink -f "$0")")
 
-rm -rf "$THIS"/working-directory/actual/*
+rm -rf "$THIS"/images/actual/*
 pnpm run storycap:actual
 rm -rf "$THIS"/working-directory/expected/*
 mkdir -p "$THIS"/working-directory/expected

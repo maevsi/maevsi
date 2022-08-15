@@ -131,7 +131,7 @@ de:
 en:
   accountPasswordResetRequest: Send email
   accountPasswordResetRequestSuccess: "Set a new password using the link that you can find in the email that you'll receive shortly."
-  emailAddressYours: Yeine email address
+  emailAddressYours: Your email address
   postgres55000: The email address is not yet verified!
   postgresP0002: There is no account with this email address! Check your input for spelling mistakes.
   requestAccepted: Request accepted!

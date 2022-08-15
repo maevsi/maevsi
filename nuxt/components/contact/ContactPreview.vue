@@ -31,11 +31,18 @@
         {{ contact.lastName || $t('placeholder') }}
       </div>
       <div class="truncate text-gray-500 dark:text-gray-400">
-        {{
-          contact.accountUsername
-            ? `@${contact.accountUsername}`
-            : $t('placeholder')
-        }}
+        <div v-if="!contact.accountUsername">
+          {{ $t('placeholder') }}
+        </div>
+        <AppLink
+          v-else-if="isUsernameLinked"
+          :to="localePath(`/account/${contact.accountUsername}`)"
+        >
+          {{ `@${contact.accountUsername}` }}
+        </AppLink>
+        <div v-else>
+          {{ `@${contact.accountUsername}` }}
+        </div>
       </div>
     </div>
   </div>
@@ -54,6 +61,10 @@ export default defineComponent({
     feedback: {
       default: undefined,
       type: String as PropType<string | undefined>,
+    },
+    isUsernameLinked: {
+      default: true,
+      type: Boolean,
     },
   },
 })

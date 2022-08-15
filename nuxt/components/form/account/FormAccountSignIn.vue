@@ -75,7 +75,7 @@ import {
 const FormAccountSignIn = defineComponent({
   setup() {
     const { jwtStore } = useJwtStore()
-    const { $i18n } = useNuxtApp()
+    const { $i18n, $router, localePath } = useNuxtApp()
     const { t } = useI18n()
     const { executeMutation: executeMutationAccountRegistrationRefresh } =
       useAccountRegistrationRefreshMutation()
@@ -123,14 +123,18 @@ const FormAccountSignIn = defineComponent({
             apiData.api.value.errors.push(result.error)
             consola.error(result.error)
           } else {
-            await jwtStore(result.data?.authenticate?.jwt).catch(
-              async () =>
-                await Swal.fire({
-                  icon: 'error',
-                  text: t('jwtStoreFail') as string,
-                  title: t('globalStatusError'),
-                })
-            )
+            await jwtStore(result.data?.authenticate?.jwt, () => {})
+              .then(() => {
+                $router.push(localePath(`/dashboard`))
+              })
+              .catch(
+                async () =>
+                  await Swal.fire({
+                    icon: 'error',
+                    text: t('jwtStoreFail') as string,
+                    title: t('globalStatusError'),
+                  })
+              )
           }
         })
       },

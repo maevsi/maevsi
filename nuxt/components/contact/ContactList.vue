@@ -1,64 +1,65 @@
 <template>
   <Loader :api="api">
-    <ScrollContainer
-      v-if="contacts"
-      :has-next-page="api.data.allContacts?.pageInfo.hasNextPage"
-      @loadMore="loadMore"
-    >
-      <table class="border border-neutral-300 dark:border-neutral-600">
-        <thead
-          class="sticky top-0 z-10 bg-background-bright dark:bg-background-dark"
-        >
-          <tr>
-            <th scope="col">
-              {{ $t('contact') }}
-            </th>
-            <th class="hidden xl:table-cell" scope="col">
-              {{ $t('emailAddress') }}
-            </th>
-            <th class="hidden xl:table-cell" scope="col">
-              {{ $t('address') }}
-            </th>
-            <th class="hidden xl:table-cell" scope="col">
-              {{ $t('phoneNumber') }}
-            </th>
-            <th class="hidden xl:table-cell" scope="col">
-              {{ $t('url') }}
-            </th>
-            <th scope="col" />
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
-          <ContactListItem
-            v-for="contact in contacts"
-            :id="contact.nodeId"
-            :key="contact.nodeId"
-            :contact="contact"
-            :is-deleting="pending.deletions.includes(contact.nodeId)"
-            :is-editing="pending.edits.includes(contact.nodeId)"
-            @delete="delete_(contact.nodeId)"
-            @edit="edit(contact)"
-          />
-        </tbody>
-      </table>
-    </ScrollContainer>
-    <br />
-    <ButtonColored :aria-label="$t('contactAdd')" @click="add()">
-      {{ $t('contactAdd') }}
-      <template slot="prefix">
-        <IconPlus />
-      </template>
-    </ButtonColored>
-    <Modal id="ModalContact" @close="onClose">
-      <FormContact
-        :contact="selectedContact"
-        @submitSuccess="onSubmitSuccess"
-      />
-      <template slot="header">
-        {{ formContactHeading }}
-      </template>
-      <div slot="footer" />
-    </Modal>
+    <div class="flex flex-col gap-4">
+      <ScrollContainer
+        v-if="contacts"
+        :has-next-page="api.data.allContacts?.pageInfo.hasNextPage"
+        @loadMore="loadMore"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">
+                {{ $t('contact') }}
+              </th>
+              <th class="hidden xl:table-cell" scope="col">
+                {{ $t('emailAddress') }}
+              </th>
+              <th class="hidden xl:table-cell" scope="col">
+                {{ $t('address') }}
+              </th>
+              <th class="hidden xl:table-cell" scope="col">
+                {{ $t('phoneNumber') }}
+              </th>
+              <th class="hidden xl:table-cell" scope="col">
+                {{ $t('url') }}
+              </th>
+              <th scope="col" />
+            </tr>
+          </thead>
+          <tbody>
+            <ContactListItem
+              v-for="contact in contacts"
+              :id="contact.nodeId"
+              :key="contact.nodeId"
+              :contact="contact"
+              :is-deleting="pending.deletions.includes(contact.nodeId)"
+              :is-editing="pending.edits.includes(contact.nodeId)"
+              @delete="delete_(contact.nodeId)"
+              @edit="edit(contact)"
+            />
+          </tbody>
+        </table>
+      </ScrollContainer>
+      <div class="flex justify-center">
+        <ButtonColored :aria-label="$t('contactAdd')" @click="add()">
+          {{ $t('contactAdd') }}
+          <template slot="prefix">
+            <IconPlus />
+          </template>
+        </ButtonColored>
+      </div>
+      <Modal id="ModalContact" @close="onClose">
+        <FormContact
+          :contact="selectedContact"
+          @submitSuccess="onSubmitSuccess"
+        />
+        <template slot="header">
+          {{ formContactHeading }}
+        </template>
+        <div slot="footer" />
+      </Modal>
+    </div>
   </Loader>
 </template>
 

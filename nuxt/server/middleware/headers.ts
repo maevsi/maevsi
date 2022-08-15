@@ -5,8 +5,9 @@ import { STACK_DOMAIN } from '~/plugins/util/constants'
 const csp: Record<string, Array<string>> = {
   'base-uri': ["'none'"], // Mozilla Observatory.
   'connect-src': [
-    ...(process.env.NODE_ENV === 'production' ? [] : ["'self'"]), // HMR
-    `https://*.${STACK_DOMAIN}`,
+    'self', // XHR (HMR)
+    `https://postgraphile.${STACK_DOMAIN}`,
+    'https://maev.si/cdn-cgi/rum', // Cloudflare real user management (browser insights)
     'https://www.google-analytics.com',
   ],
   'default-src': ["'none'"],
@@ -16,7 +17,7 @@ const csp: Record<string, Array<string>> = {
   'img-src': [
     'blob:',
     'data:',
-    `https://*.${STACK_DOMAIN}`,
+    `https://tusd.${STACK_DOMAIN}`,
     'https://www.google-analytics.com',
     'https://www.gravatar.com/avatar/',
     "'self'",

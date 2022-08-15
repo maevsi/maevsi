@@ -1,10 +1,19 @@
 <template>
-  <footer
-    class="bg-background-bright text-sm leading-6 dark:bg-background-dark"
-  >
-    <div class="container mx-auto px-2 py-8">
+  <footer class="text-sm leading-6 mt-32">
+    <div class="flex flex-col gap-8">
+      <div class="flex items-center">
+        <Hr />
+        <LoaderImage
+          :alt="$t('maevsiLogo')"
+          class="mx-12 h-12 w-12 opacity-50 brightness-0 dark:opacity-60 dark:invert"
+          height="48"
+          src="/assets/static/logos/maevsi.svg"
+          width="48"
+        />
+        <Hr />
+      </div>
       <!-- Justifying evenly, instead of "between", centers a single element. -->
-      <div class="mx-auto flex w-5/6 flex-wrap justify-evenly">
+      <div class="flex flex-wrap justify-between">
         <FooterCategory :heading="$t('product')">
           <AppLink :to="localePath('/#overview')">
             {{ $t('overview') }}
@@ -86,19 +95,7 @@
           </AppLink>
         </FooterCategory>
       </div>
-      <div class="p-2" />
-      <div class="mx-auto flex w-9/12 items-center">
-        <Hr />
-        <LoaderImage
-          :alt="$t('maevsiLogo')"
-          class="mx-12 h-12 w-12 opacity-50 brightness-0 dark:opacity-60 dark:invert"
-          height="48"
-          src="/assets/static/logos/maevsi.svg"
-          width="48"
-        />
-        <Hr />
-      </div>
-      <p class="p-2 text-center text-gray-500 dark:text-gray-400">
+      <p class="text-center text-gray-500 dark:text-gray-400">
         {{ $t('copyright', { year: new Date().getFullYear() }) }}
       </p>
     </div>
@@ -118,7 +115,7 @@ de:
   colorSchemeDark: Dunkel
   colorSchemeLight: Hell
   colorSchemeSystem: System
-  contact: Kontakt
+  contact: Kontakt & Feedback
   copyright: © {year} maevsi-Team. Alle Rechte vorbehalten.
   features: Funktionen
   githubLinkTitle: maevsi auf GitHub
@@ -139,7 +136,7 @@ en:
   colorSchemeDark: Dark
   colorSchemeLight: Light
   colorSchemeSystem: System
-  contact: Contact
+  contact: Contact & feedback
   copyright: © {year} maevsi team. All rights reserved.
   features: Features
   githubLinkTitle: maevsi on GitHub

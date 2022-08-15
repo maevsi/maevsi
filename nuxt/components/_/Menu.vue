@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="w-64 grow bg-background-bright p-2 dark:bg-background-dark md:w-72 lg:w-80 xl:w-96"
+    class="w-64 grow bg-background-brighten p-2 dark:bg-background-darken md:w-72 lg:w-80 xl:w-96"
   >
     <div class="flex flex-col">
       <ButtonIcon
@@ -76,9 +76,8 @@
         </div>
         <Hr v-if="signedInUsername()" class="md:hidden" /> -->
         <div class="flex flex-col gap-4 md:hidden">
-          <ButtonColored
+          <ButtonText
             :aria-label="$t('eventsExplore')"
-            :is-block="true"
             :is-primary="false"
             :to="localePath('/event')"
             @click.native="$emit('onMenuHide')"
@@ -87,7 +86,7 @@
             <template slot="prefix">
               <IconTelescope />
             </template>
-          </ButtonColored>
+          </ButtonText>
           <ButtonEventNew @click.native="$emit('onMenuHide')" />
         </div>
       </div>

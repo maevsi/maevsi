@@ -1,3 +1,145 @@
+## [0.145.2](https://github.com/maevsi/maevsi/compare/0.145.1...0.145.2) (2022-08-14)
+
+
+### Bug Fixes
+
+* **headers:** allow postgraphile and tusd ([2d445ac](https://github.com/maevsi/maevsi/commit/2d445ac15f83883d469d7b3d38abbb0c97445afe))
+
+## [0.145.1](https://github.com/maevsi/maevsi/compare/0.145.0...0.145.1) (2022-08-14)
+
+
+### Bug Fixes
+
+* **headers:** allow self and cloudflare connect sources ([ebaa220](https://github.com/maevsi/maevsi/commit/ebaa2201914e5a40c2c351fd6f7eb9ee7bdba810))
+
+# [0.145.0](https://github.com/maevsi/maevsi/compare/0.144.1...0.145.0) (2022-08-14)
+
+
+### Bug Fixes
+
+* **event:** redirect to dashboard after deletion ([ef991ce](https://github.com/maevsi/maevsi/commit/ef991cedad6bbad25043d5ae1a1bfc64f5cc4c8c))
+* **event:** revert event deletion changes ([1f162ff](https://github.com/maevsi/maevsi/commit/1f162ffc6e14ac72435fc6d8c213dc8dfd8b5be5))
+* **form:** reenable submit button ([f616a06](https://github.com/maevsi/maevsi/commit/f616a0683f32a70cd35022554a58be55f523bd4e))
+* **invitation-list:** rename feedback to response ([56417d6](https://github.com/maevsi/maevsi/commit/56417d6bcff000c76df1b70aae71d57847e45694))
+* **invitation:** improve spacing ([398e800](https://github.com/maevsi/maevsi/commit/398e80059400d86b719825f8d755c2ef16fd8860))
+* **tiptap:** add minimum height ([7cbf4d5](https://github.com/maevsi/maevsi/commit/7cbf4d540acfcac6c5b0a795a82a61fbed2198f1))
+* **tiptap:** correct hr button ([592d7be](https://github.com/maevsi/maevsi/commit/592d7be2a786b269b63931d94acd70fd9b712a52))
+* **tiptap:** correct number translations ([de38891](https://github.com/maevsi/maevsi/commit/de3889197be7062678cdf57dcf68cf05e75e8126))
+* **util:** add network error to graphql error list ([d3eac2e](https://github.com/maevsi/maevsi/commit/d3eac2ec934150948918dea7976338951862ed96))
+
+
+### Features
+
+* **invitation-list:** add hint about inviting the organizer ([6f0f22a](https://github.com/maevsi/maevsi/commit/6f0f22ac4f0b3464a0df31e2f8b6c59486a5a871))
+* **sign-in:** replace page reload with navigation ([462f5fe](https://github.com/maevsi/maevsi/commit/462f5fef5cb926c4ae03e6746c0c0588c22c1874)), closes [#752](https://github.com/maevsi/maevsi/issues/752)
+* temporarily disable enter submit on form and modal ([3e20d76](https://github.com/maevsi/maevsi/commit/3e20d763606d0be2f745123fa517c123b8765cc1)), closes [#765](https://github.com/maevsi/maevsi/issues/765)
+
+## [0.144.1](https://github.com/maevsi/maevsi/compare/0.144.0...0.144.1) (2022-08-14)
+
+
+### Bug Fixes
+
+* **account:** improve deletion error message ([2f8e2ec](https://github.com/maevsi/maevsi/commit/2f8e2ec1243cd8dd1e5d1669883e94225f576f74))
+* correct spacing ([5b53e2a](https://github.com/maevsi/maevsi/commit/5b53e2a94e2bc5eed01ca05e48442f7528beb343))
+* **even:** fix deletion ([e551674](https://github.com/maevsi/maevsi/commit/e5516746c0c2ab6c0f7686fab0a98a79c07d6a0c))
+* **event:** replace key eye-off icon for private events ([7f7a248](https://github.com/maevsi/maevsi/commit/7f7a2481609c4251caf782faa091e5da355c17c6))
+* **image-upload-gallery:** correct border color ([221f0d0](https://github.com/maevsi/maevsi/commit/221f0d04d4345d35bbc2a04d03a5ccf51dc25150))
+* **index:** fix spacing, increase opacity ([2cabcf1](https://github.com/maevsi/maevsi/commit/2cabcf1af04a45439fac2fe454e77a71bec673a1))
+* **invitation-list:** correct invitation link ([d6a9e4a](https://github.com/maevsi/maevsi/commit/d6a9e4afe14a7470e0add5bb1cfa39a423df3a38))
+* **invitation:** improve check in code ui ([4376883](https://github.com/maevsi/maevsi/commit/4376883f5c6a9684b6b7caaf6a6ad6a6a2ce6996))
+* **modal-image-selection:** default to direct image addition ([149ebf9](https://github.com/maevsi/maevsi/commit/149ebf90a54bb8133a99409c72f9ddbc4d3609b4))
+
+# [0.144.0](https://github.com/maevsi/maevsi/compare/0.143.0...0.144.0) (2022-08-13)
+
+
+### Bug Fixes
+
+* **card-state:** correct background color ([595bf23](https://github.com/maevsi/maevsi/commit/595bf239f085a19e40ed6031c9ca6228ef0f87e4))
+* **contact-preview:** correct feedback icon background color ([751a371](https://github.com/maevsi/maevsi/commit/751a37194d5fd65b715cfea53e88c87d07b4f457))
+* **event-dashlet-start:** correct line height ([c48f0fe](https://github.com/maevsi/maevsi/commit/c48f0fefab705d273eb92790964116bb3b14e7de))
+* **event-list:** readd gap ([a96fd2c](https://github.com/maevsi/maevsi/commit/a96fd2c37d168d7d4b9e82dc946dde4dcde162e5))
+* **invitation:** correct button width ([4727860](https://github.com/maevsi/maevsi/commit/472786083b7ce5f2af1ba9bf9fe1a56700a52811))
+
+
+### Features
+
+* **app-link:** replace underline with color ([b350916](https://github.com/maevsi/maevsi/commit/b350916a5a67a79f7b707cbb23e465cff9c2fabd))
+* **backdrop-blur:** improve fade ([52d89f1](https://github.com/maevsi/maevsi/commit/52d89f13e628127e97ac0830315a24b33dd710cb))
+* **button:** remove button-table ([76f75dd](https://github.com/maevsi/maevsi/commit/76f75dd7cba79fdb05b4d2c3fd22ff849b3c48a7))
+* **card:** replace border with background color ([1bc66cb](https://github.com/maevsi/maevsi/commit/1bc66cb71918856095d3cfe146854cbae7e06df7))
+* **event:** tweak ui ([2d1b65c](https://github.com/maevsi/maevsi/commit/2d1b65cb88a83bafd806a09b7ccf1af885f60dc5))
+* **header:** change breakpoint ([9b83793](https://github.com/maevsi/maevsi/commit/9b83793437fbfdf0728361c24b7a3f73073cd263))
+* **index:** add scroll hint ([dd7eaa5](https://github.com/maevsi/maevsi/commit/dd7eaa5b1b8e9102f6841d32324bba1f674c4623))
+* **index:** tweak ui ([78de8af](https://github.com/maevsi/maevsi/commit/78de8af95152877d9869f7ac2cff5849d5bee8c8))
+* **invitation-list:** tweak table colors ([dd8a452](https://github.com/maevsi/maevsi/commit/dd8a452be14eae162a9143a473ee99c453387084))
+* **invitation:** slight feedback redesign ([e7ee188](https://github.com/maevsi/maevsi/commit/e7ee1888286455e594f2a3b8a9cb8c6a616c9795))
+* **tailwind:** improve background color naming ([06184c9](https://github.com/maevsi/maevsi/commit/06184c938cd27c783a0b7ec0e948778445ef8029))
+* **tailwind:** remove selection color ([3fdf238](https://github.com/maevsi/maevsi/commit/3fdf2387190ebd729e101741cbc487632e9c030a))
+* **tailwind:** replace backdrop darken with blur ([a0d81bd](https://github.com/maevsi/maevsi/commit/a0d81bd8b117b1618942f410431c7c9a32bed11e))
+* **tailwind:** tweak colors ([a5fe01a](https://github.com/maevsi/maevsi/commit/a5fe01a216072ee2058f06abfff6d7423eec5c40))
+
+# [0.143.0](https://github.com/maevsi/maevsi/compare/0.142.0...0.143.0) (2022-08-12)
+
+
+### Bug Fixes
+
+* **i18n:** improve wordin ([2576f31](https://github.com/maevsi/maevsi/commit/2576f316edfb718ebd713106fb7e4013273f04ab))
+* **index:** improve i18n ([fff0d9d](https://github.com/maevsi/maevsi/commit/fff0d9d94256acb3b7a16d1a74b696b1a6ea1b5c))
+* tweak line colors ([d48fea1](https://github.com/maevsi/maevsi/commit/d48fea16211397bd96b7083fca366b4873849a6b))
+
+
+### Features
+
+* **css:** add container-extended ([82372c1](https://github.com/maevsi/maevsi/commit/82372c12fb10b278740d56c923ea557d670ddd5e))
+* **event-list:** replace legend with tags ([c3964b2](https://github.com/maevsi/maevsi/commit/c3964b288b9a888d74a3765cbab21763688e13b4))
+* **header:** add sign-in button ([145aa59](https://github.com/maevsi/maevsi/commit/145aa598060563b1e0dfb1aef9c3e16bd51e9228))
+
+# [0.142.0](https://github.com/maevsi/maevsi/compare/0.141.0...0.142.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **i18n:** implement feedback ([be68ddc](https://github.com/maevsi/maevsi/commit/be68ddcbf14592ce6d9c5f662552bbb6e6b7b8f9))
+* **lint:** correct line break ([4b016c7](https://github.com/maevsi/maevsi/commit/4b016c787f991906321b8d03c721eff77ea976b9))
+* **tiptap:** correct icons ([6218f8f](https://github.com/maevsi/maevsi/commit/6218f8fdc05b6ef3db0e2fbc73ec1e15871688b2))
+
+
+### Features
+
+* **form-event:** add warning for name change ([139e179](https://github.com/maevsi/maevsi/commit/139e1791bf2b434b856b8237399262387e0bdd58))
+* **ui:** implement suggestions ([6250ae1](https://github.com/maevsi/maevsi/commit/6250ae14252b920b425170b881d5b3cab8d63fb7))
+
+# [0.141.0](https://github.com/maevsi/maevsi/compare/0.140.1...0.141.0) (2022-08-10)
+
+
+### Bug Fixes
+
+* **event-dashlet:** move display conditional ([95600b8](https://github.com/maevsi/maevsi/commit/95600b871a0b22fb5d188ffa2843a5631419624d))
+* **i18n:** improve texts ([61e3223](https://github.com/maevsi/maevsi/commit/61e3223f5f8840f12d8ebf3773b67b90b55ba518))
+
+
+### Features
+
+* **contact-preview:** add link to username ([e580e0c](https://github.com/maevsi/maevsi/commit/e580e0c0464aeafe14b8c94c0b08fca6cc1f9c62))
+* **form-input-password:** show required password length ([6e83873](https://github.com/maevsi/maevsi/commit/6e838734ac52fda2b4e985de97759374acb88899))
+* **invitation:** rename add invitation to add guest ([fe3ac40](https://github.com/maevsi/maevsi/commit/fe3ac40b050c58bcb7e9940e4e962b74d7726dba))
+* **tiptap:** hide paragraph button ([6b2c204](https://github.com/maevsi/maevsi/commit/6b2c20431b9e28b5953cc65ade6d0127580df9b0))
+
+## [0.140.1](https://github.com/maevsi/maevsi/compare/0.140.0...0.140.1) (2022-08-10)
+
+
+### Bug Fixes
+
+* **docker-entrypoint:** set pnpm store not in production ([b8be764](https://github.com/maevsi/maevsi/commit/b8be764162f8114637d28fe74a75db4e21b46c5a))
+* **tailwind:** solve line-height overflow once and for all, hopefully ([8364c18](https://github.com/maevsi/maevsi/commit/8364c18cda6997312d2f7f5458c0e384396d9a26))
+
+# [0.140.0](https://github.com/maevsi/maevsi/compare/0.139.0...0.140.0) (2022-08-10)
+
+
+### Features
+
+* **sqitch:** mark function events-invited as stable ([6b28a9c](https://github.com/maevsi/maevsi/commit/6b28a9c0ca870c66f87eaffad1456aadc9e59e92))
+
 # [0.139.0](https://github.com/maevsi/maevsi/compare/0.138.2...0.139.0) (2022-08-06)
 
 

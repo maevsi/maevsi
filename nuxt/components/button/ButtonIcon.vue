@@ -1,7 +1,9 @@
 <template>
   <Button
     :aria-label="ariaLabel"
+    class="flex items-center justify-center"
     :disabled="disabled"
+    :title="ariaLabel"
     :to="to"
     :type="type"
     @click="$emit('click')"

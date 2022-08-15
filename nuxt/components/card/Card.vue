@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="overflow-hidden rounded border border-neutral-300 p-4 text-text-dark dark:border-neutral-600 dark:text-text-bright"
-  >
+  <div class="overflow-hidden rounded-lg p-4" :class="backgroundColor">
     <slot />
   </div>
 </template>
@@ -11,5 +9,11 @@ import { defineComponent } from '#app'
 
 export default defineComponent({
   name: 'MaevsiCard',
+  props: {
+    backgroundColor: {
+      default: 'bg-background-brighten dark:bg-background-darken',
+      type: String,
+    },
+  },
 })
 </script>

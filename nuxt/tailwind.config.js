@@ -6,10 +6,11 @@ function heading(theme) {
     fontWeight: theme('fontWeight.bold'),
     marginBottom: theme('margin.1'),
     marginTop: theme('margin.4'),
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
+    // set overflow truncate/ellipsis in the surrounding container, or larger fonts will be cut off due to their line-heights
   }
 }
+
+const gray = colors.gray // or slate, zinc, neutral, stone
 
 module.exports = {
   content: [
@@ -31,14 +32,10 @@ module.exports = {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
         },
-        '::selection': {
-          color: theme('colors.text.bright'),
-          background: '#e53e3e',
-        },
         'a[target="_blank"]:after': {
           backgroundColor: 'currentColor',
           content: '""',
-          display: 'inline-block',
+          display: 'inline-table', // inline-table centers the element vertically in the tiptap text area, instead of inline-block
           mask: 'url(data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJhcnJvdy11cC1yaWdodC1mcm9tLXNxdWFyZSIgY2xhc3M9InN2Zy1pbmxpbmUtLWZhIGZhLWFycm93LXVwLXJpZ2h0LWZyb20tc3F1YXJlIiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDUxMiA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTM4NCAzMjBjLTE3LjY3IDAtMzIgMTQuMzMtMzIgMzJ2OTZINjRWMTYwaDk2YzE3LjY3IDAgMzItMTQuMzIgMzItMzJzLTE0LjMzLTMyLTMyLTMyTDY0IDk2Yy0zNS4zNSAwLTY0IDI4LjY1LTY0IDY0VjQ0OGMwIDM1LjM0IDI4LjY1IDY0IDY0IDY0aDI4OGMzNS4zNSAwIDY0LTI4LjY2IDY0LTY0di05NkM0MTYgMzM0LjMgNDAxLjcgMzIwIDM4NCAzMjB6TTUwMi42IDkuMzY3QzQ5Ni44IDMuNTc4IDQ4OC44IDAgNDgwIDBoLTE2MGMtMTcuNjcgMC0zMS4xIDE0LjMyLTMxLjEgMzEuMWMwIDE3LjY3IDE0LjMyIDMxLjEgMzEuOTkgMzEuMWg4Mi43NUwxNzguNyAyOTAuN2MtMTIuNSAxMi41LTEyLjUgMzIuNzYgMCA0NS4yNkMxOTEuMiAzNDguNSAyMTEuNSAzNDguNSAyMjQgMzM2bDIyNC0yMjYuOFYxOTJjMCAxNy42NyAxNC4zMyAzMS4xIDMxLjEgMzEuMVM1MTIgMjA5LjcgNTEyIDE5MlYzMS4xQzUxMiAyMy4xNiA1MDguNCAxNS4xNiA1MDIuNiA5LjM2N3oiPjwvcGF0aD48L3N2Zz4K) no-repeat 50% 50%',
           maskSize: 'cover',
           height: theme('fontSize.xs'),
@@ -97,25 +94,6 @@ module.exports = {
             opacity: 0.5,
           },
         },
-        '.flip-card': {
-          perspective: '1000px',
-        },
-        '.flip-card-inner': {
-          transition: 'transform 0.7s',
-          transformStyle: 'preserve-3d',
-        },
-        '.flip-card.flipped .flip-card-inner': {
-          transform: 'rotateY(180deg)',
-        },
-        '.flip-card-front, .flip-card-back': {
-          backfaceVisibility: 'hidden',
-        },
-        '.flip-card-front': {
-          transform: 'rotateY(-180deg)',
-        },
-        '.flip-card-back': {
-          transform: 'rotateY(0deg)',
-        },
         '.form-input': {
           appearance: 'none',
           backgroundColor: theme('colors.gray.50'),
@@ -146,18 +124,6 @@ module.exports = {
             borderColor: theme('colors.yellow.600'),
           },
         },
-        '.pills': {
-          display: 'flex',
-          justifyContent: 'space-between',
-          li: {
-            width: theme('width.full'),
-            button: {
-              fontWeight: theme('fontWeight.semibold'),
-              padding: theme('padding.2') + ' ' + theme('padding.4'),
-              width: theme('width.full'),
-            },
-          },
-        },
       })
       addUtilities({
         '.disabled': {
@@ -167,15 +133,6 @@ module.exports = {
         '.e1': {
           gridRow: '1',
           gridColumn: '1',
-        },
-        '.flex-basis-auto': {
-          flexBasis: 'auto',
-        },
-        '.flex-basis-33': {
-          flexBasis: '33.333333%',
-        },
-        '.flex-basis-50': {
-          flexBasis: '50%',
         },
       })
     },
@@ -187,13 +144,18 @@ module.exports = {
       },
       colors: {
         background: {
-          body: '#282828',
-          bright: '#f0f0f0',
-          dark: '#202020',
+          bright: colors.white,
+          brighten: gray['200'],
+          dark: gray['800'],
+          darken: gray['700'],
+        },
+        link: {
+          bright: colors.blue['400'],
+          dark: colors.blue['600'],
         },
         text: {
-          bright: colors.gray['50'],
-          dark: colors.gray['900'],
+          bright: gray['50'],
+          dark: gray['900'],
         },
       },
       fontFamily: {

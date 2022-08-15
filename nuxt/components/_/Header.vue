@@ -1,15 +1,12 @@
 <template>
-  <header class="bg-background-bright dark:bg-background-dark">
+  <header class="mb-8">
     <CardStateInfo v-if="!isBrowserSupported" is-edgy>
       {{ $t('browserUnsupported') }}
     </CardStateInfo>
-    <div
-      class="container mx-auto flex items-center justify-between gap-4 p-4 md:px-8"
-      :class="{ container: !signedInUsername() }"
-    >
+    <div class="flex items-center justify-between gap-4">
       <ButtonIcon
         :aria-label="$t('menuShow')"
-        class="md:hidden"
+        class="lg:hidden"
         @click="$emit('onMenuShow')"
       >
         <IconMenu classes="h-8 w-8" />
@@ -17,19 +14,7 @@
       <Button :aria-label="$t('home')" :to="localePath('/')">
         <div id="logo" class="h-10 w-32" />
       </Button>
-      <div class="hidden gap-4 md:flex">
-        <ButtonColored
-          :aria-label="$t('events')"
-          :to="localePath('/event')"
-          :is-primary="false"
-        >
-          {{ $t('events') }}
-          <template slot="prefix">
-            <IconTelescope />
-          </template>
-        </ButtonColored>
-        <ButtonEventNew />
-      </div>
+      <div class="hidden lg:block flex-grow" />
       <!-- <div class="hidden xl:flex">
         <label class="hidden" for="search">{{ $t('search') }}</label>
         <input
@@ -47,20 +32,35 @@
           <IconSearch />
         </span>
       </div> -->
-      <div class="flex items-center gap-4 whitespace-nowrap">
+      <div class="flex items-center gap-2 lg:gap-4 whitespace-nowrap">
+        <ButtonText
+          :aria-label="$t('events')"
+          class="hidden lg:flex"
+          :to="localePath('/event')"
+          :is-primary="false"
+        >
+          {{ $t('events') }}
+          <template slot="prefix">
+            <IconTelescope />
+          </template>
+        </ButtonText>
+        <ButtonEventNew class="hidden lg:flex" />
+        <div
+          class="flex-none bg-gray-300 dark:bg-gray-600 self-stretch w-px hidden lg:flex my-1"
+        />
         <ButtonColored
           v-if="signedInUsername()"
           :aria-label="$t('dashboard')"
-          class="hidden md:block"
+          class="hidden lg:block mx-2"
           :is-primary="false"
           :to="localePath('/dashboard')"
         >
           {{ $t('dashboard') }}
         </ButtonColored>
-        <Button
+        <ButtonIcon
           v-if="signedInUsername()"
           :aria-label="signedInUsername()"
-          class="flex min-w-0 items-center gap-2 text-text-dark dark:text-text-bright"
+          class="flex-none"
           :title="$t('profileLink')"
           :to="localePath(`/account/${signedInUsername()}`)"
           @click.native="$emit('onMenuHide')"
@@ -71,15 +71,23 @@
             :username="signedInUsername()"
             width="40"
           />
-        </Button>
-        <ButtonColored
-          v-else
-          :aria-label="$t('signIn')"
-          :is-primary="false"
-          :to="localePath('/task/account/sign-in')"
-        >
-          {{ $t('signIn') }}
-        </ButtonColored>
+        </ButtonIcon>
+        <div v-else>
+          <ButtonIcon
+            :aria-label="$t('signIn')"
+            class="lg:hidden h-8 w-8"
+            :to="localePath('/task/account/sign-in')"
+          >
+            <IconSignIn classes="h-6 w-6" />
+          </ButtonIcon>
+          <ButtonText
+            :aria-label="$t('signIn')"
+            class="hidden lg:inline-block"
+            :to="localePath('/task/account/sign-in')"
+          >
+            {{ $t('signIn') }}
+          </ButtonText>
+        </div>
       </div>
     </div>
   </header>

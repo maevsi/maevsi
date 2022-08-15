@@ -35,7 +35,7 @@
                 <div
                   class="flex items-center justify-evenly gap-4 text-text-dark dark:text-text-bright"
                 >
-                  <ButtonTable
+                  <ButtonIcon
                     :aria-label="
                       invitation.contactByContactId?.accountUsername ||
                       invitation.contactByContactId?.emailAddress
@@ -48,28 +48,23 @@
                         !invitation.contactByContactId?.emailAddress) ||
                       pending.sends.includes(invitation.uuid)
                     "
-                    is-title-show
                     @click="send(invitation)"
                   >
                     <IconPaperPlane />
-                  </ButtonTable>
-                  <ButtonTable
+                  </ButtonIcon>
+                  <ButtonIcon
                     :aria-label="$t('invitationLink')"
                     class="hidden md:block"
-                    is-title-show
-                    @click="copyLink(event, invitation)"
+                    @click="copyLink(invitation)"
                   >
                     <IconLink />
-                  </ButtonTable>
+                  </ButtonIcon>
                   <DropDown>
-                    <ButtonTable
-                      :aria-label="$t('globalShowMore')"
-                      is-title-show
-                    >
+                    <ButtonIcon :aria-label="$t('globalShowMore')">
                       <IconDotsVertical />
-                    </ButtonTable>
+                    </ButtonIcon>
                     <template slot="content">
-                      <ButtonTable
+                      <ButtonIcon
                         :aria-label="
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
@@ -82,7 +77,6 @@
                             !invitation.contactByContactId?.emailAddress) ||
                           pending.sends.includes(invitation.uuid)
                         "
-                        is-title-show
                         @click="send(invitation)"
                       >
                         <IconPaperPlane />
@@ -92,19 +86,17 @@
                             ? $t('invitationSend')
                             : $t('disabledReasonEmailAddressNone')
                         }}
-                      </ButtonTable>
-                      <ButtonTable
+                      </ButtonIcon>
+                      <ButtonIcon
                         :aria-label="$t('invitationLink')"
                         class="block md:hidden"
-                        is-title-show
-                        @click="copyLink(event, invitation)"
+                        @click="copyLink(invitation)"
                       >
                         <IconLink />
                         {{ $t('invitationLink') }}
-                      </ButtonTable>
-                      <ButtonTable
+                      </ButtonIcon>
+                      <ButtonIcon
                         :aria-label="$t('invitationView')"
-                        is-title-show
                         @click="
                           $router.push({
                             path: localePath(
@@ -116,16 +108,15 @@
                       >
                         <IconEye />
                         {{ $t('invitationView') }}
-                      </ButtonTable>
-                      <ButtonTable
+                      </ButtonIcon>
+                      <ButtonIcon
                         :aria-label="$t('invitationDelete')"
                         :disabled="pending.deletions.includes(invitation.uuid)"
-                        is-title-show
                         @click="delete_(invitation.uuid)"
                       >
                         <IconTrash />
                         {{ $t('invitationDelete') }}
-                      </ButtonTable>
+                      </ButtonIcon>
                     </template>
                   </DropDown>
                 </div>
@@ -134,7 +125,13 @@
           </tbody>
         </table>
       </ScrollContainer>
-      <div class="flex flex-col gap-1">
+      <div v-else class="flex flex-col items-center gap-2">
+        {{ $t('invitationNone') }}
+        <FormInputStateInfo>
+          {{ $t('hintInviteSelf') }}
+        </FormInputStateInfo>
+      </div>
+      <div class="flex flex-col items-center gap-1">
         <ButtonColored
           :aria-label="$t('invitationAdd')"
           :disabled="
@@ -299,13 +296,13 @@ export default defineComponent({
       add() {
         $store.commit('modalAdd', { id: 'ModalInvitation' })
       },
-      copyLink(event: Event, invitation: Invitation): void {
+      copyLink(invitation: Invitation): void {
         if (!process.browser) return
 
         copyText(
-          `${window.location.origin}${localePath(
-            `/event/${event.authorUsername}/${event.slug}`
-          )}?ic=${invitation.uuid}`
+          `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
+            invitation.uuid
+          }`
         ).then(() => {
           Swal.fire({
             icon: 'success',
@@ -446,13 +443,15 @@ de:
   copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   feedback: Rückmeldungen
-  invitationAdd: Einladung hinzufügen
+  hintInviteSelf: 'Tipp: du kannst dich auch zuerst selbst einladen'
+  invitationAdd: Gäste hinzufügen
   invitationDelete: Einladung löschen
   invitationLink: Einladungslink kopieren
+  invitationNone: Es wurde noch kein Gast hinzugefügt 😕
   invitationSend: Einladung versenden
   invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
-  noFeedback: kein Feedback
+  noFeedback: keine Rückmeldung
   postgresP0002: Die Einladung konnte nicht versandt werden! Möglicherweise hast du aktuell keinen Zugriff auf die notwendigen Daten. Versuche die Seite neu zu laden.
   sendSuccess: Die Einladung wurde erfolgreich per E-Mail versandt.
   sent: Gesendet!
@@ -464,14 +463,16 @@ en:
   copied: Copied
   copySuccess: The invitation link was copied to the clipboard.
   disabledReasonEmailAddressNone: This contact is missing an email address.
-  feedback: Feedback
-  invitationAdd: Add invitation
+  feedback: Invitation responses
+  hintInviteSelf: 'Hint: you can also invite yourself first'
+  invitationAdd: Add guests
   invitationDelete: Delete invitation
   invitationLink: Copy invitation link
+  invitationNone: No guest has been added yet 😕
   invitationSend: Send invitation
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
-  noFeedback: no feedback
+  noFeedback: no response
   postgresP0002: The invitation could not be sent! You may not currently have access to the necessary data. Try to reload the page.
   sendSuccess: The invitation was successfully sent by email.
   sent: Sent!

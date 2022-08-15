@@ -7,7 +7,6 @@
     @submitSuccess="$emit('submitSuccess')"
   >
     <ImageUploadGallery
-      :allow-addition="false"
       :allow-deletion="false"
       selectable
       :username="$config.STORYBOOK ? 'username' : $route.params.username"

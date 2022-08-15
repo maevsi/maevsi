@@ -1,22 +1,25 @@
 <template>
-  <div>
+  <div class="container mx-auto p-4 md:px-8">
     <Header @onMenuShow="menuShow" />
-    <main
-      class="container mx-auto min-h-screen flex-1 overflow-hidden p-4 md:px-8"
-    >
+    <main class="min-h-screen flex-1 overflow-hidden">
       <nuxt />
     </main>
     <Footer />
     <div
-      class="fixed bottom-0 left-0 right-0 top-0 z-10 bg-black transition-opacity duration-500 md:hidden"
-      :class="isMenuVisible ? 'visible opacity-50' : 'invisible opacity-0'"
+      class="fixed bottom-0 left-0 right-0 top-0 z-10 transition duration-500"
+      :class="[
+        ...(isMenuVisible
+          ? ['backdrop-brightness-50 backdrop-blur']
+          : ['backdrop-brightness-100 backdrop-blur-0']),
+        ...(isMenuVisiblePartly ? [] : ['invisible']),
+      ]"
       @click="menuHide"
     />
     <div
-      class="fixed bottom-0 left-0 top-0 z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 md:hidden"
+      class="fixed bottom-0 left-0 top-0 z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 lg:hidden"
       :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >
-      <Menu v-if="isMenuItemsVisible" is-closable @onMenuHide="menuHide" />
+      <Menu v-if="isMenuVisiblePartly" is-closable @onMenuHide="menuHide" />
     </div>
     <CookieControl :locale="$i18n.locale" />
   </div>
@@ -39,17 +42,17 @@ export default defineComponent({
 
     const data = reactive({
       isMenuVisible: false,
-      isMenuItemsVisible: false,
+      isMenuVisiblePartly: false,
     })
     const methods = {
       menuHide(): void {
         data.isMenuVisible = false
         setTimeout(() => {
-          data.isMenuItemsVisible = false
+          data.isMenuVisiblePartly = false
         }, 500)
       },
       menuShow(): void {
-        data.isMenuItemsVisible = true
+        data.isMenuVisiblePartly = true
         data.isMenuVisible = true
       },
     }
@@ -59,7 +62,7 @@ export default defineComponent({
     useHead({
       bodyAttrs: {
         class:
-          'bg-white dark:bg-background-body font-sans text-text-dark dark:text-text-bright',
+          'bg-background-bright dark:bg-background-dark font-sans text-text-dark dark:text-text-bright',
       },
       link: [
         {
@@ -201,7 +204,7 @@ export default defineComponent({
           content: 'maevsi',
         },
       ],
-      titleTemplate: (titleChunk) => {
+      titleTemplate: (titleChunk: string) => {
         return titleChunk ? `${titleChunk} · maevsi` : 'maevsi'
       },
       ...$nuxtI18nHead({ addSeoAttributes: true }),

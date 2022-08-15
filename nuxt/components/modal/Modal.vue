@@ -1,74 +1,73 @@
 <template>
-  <div v-if="isVisibleComputed">
+  <div :class="{ invisible: !isVisibleComputed }">
     <div
-      class="bottom-0 left-0 right-0 top-0 z-10 bg-black opacity-50"
-      :class="{ fixed: !$config.STORYBOOK }"
+      class="fixed bottom-0 left-0 right-0 top-0 z-10 transition"
+      :class="[
+        ...($config.STORYBOOK ? [] : ['fixed']),
+        ...(isVisibleComputed
+          ? ['backdrop-blur backdrop-brightness-50']
+          : ['backdrop-blur-0 backdrop-brightness-100']),
+      ]"
+      @click="close"
     />
-    <div
-      class="bottom-0 left-0 right-0 top-0 z-20 flex items-center justify-center"
+    <Card
+      class="fixed top-[10%] max-h-[80%] left-1/2 -translate-x-1/2 z-20 flex w-5/6 flex-col gap-2 overflow-auto bg-background-brighten dark:bg-background-darken sm:w-2/3 lg:w-1/2 xl:w-1/3"
       :class="{ fixed: !$config.STORYBOOK }"
     >
-      <Card
-        class="flex max-h-[90vh] w-5/6 flex-col gap-2 overflow-auto bg-background-bright dark:bg-background-dark sm:w-2/3 lg:w-1/2 xl:w-1/3"
-      >
-        <div class="flex justify-end">
-          <ButtonIcon
-            :aria-label="$t('cancel')"
-            class="invisible"
-            :disabled="isSubmitting"
-            @click="close()"
-          >
-            <IconX />
-          </ButtonIcon>
-          <h2 v-if="$slots.header" class="m-0 flex-1 px-4 text-center">
-            <slot name="header" />
-          </h2>
-          <ButtonIcon
-            :aria-label="$t('cancel')"
-            class="self-start"
-            :disabled="isSubmitting"
-            @click="close()"
-          >
-            <IconX />
-          </ButtonIcon>
-        </div>
-        <div
-          class="overflow-y-auto"
-          :class="{ 'pointer-events-none relative disabled': isSubmitting }"
+      <div class="flex justify-end">
+        <ButtonIcon
+          :aria-label="$t('cancel')"
+          class="invisible"
+          :disabled="isSubmitting"
+          @click="close()"
         >
-          <div v-if="contentBodyComputed">
-            {{ contentBodyComputed }}
-          </div>
-          <slot v-else />
-          <div
-            v-if="isSubmitting"
-            class="absolute bottom-0 left-0 right-0 top-0"
+          <IconX />
+        </ButtonIcon>
+        <h2 v-if="$slots.header" class="m-0 flex-1 px-4 text-center">
+          <slot name="header" />
+        </h2>
+        <ButtonIcon
+          :aria-label="$t('cancel')"
+          class="self-start"
+          :disabled="isSubmitting"
+          @click="close()"
+        >
+          <IconX />
+        </ButtonIcon>
+      </div>
+      <div
+        class="overflow-y-auto"
+        :class="{ 'pointer-events-none relative disabled': isSubmitting }"
+      >
+        <div v-if="contentBodyComputed">
+          {{ contentBodyComputed }}
+        </div>
+        <slot v-else />
+        <div v-if="isSubmitting" class="absolute bottom-0 left-0 right-0 top-0">
+          <LoaderIndicatorSpinner class="m-auto h-8 w-8" />
+        </div>
+      </div>
+      <div class="flex gap-8 justify-center">
+        <slot name="footer">
+          <ButtonColored
+            :aria-label="submitName || $t('ok')"
+            :disabled="isSubmitting || isSubmitDisabled"
+            type="submit"
+            @click="submit()"
           >
-            <LoaderIndicatorSpinner class="m-auto h-8 w-8" />
-          </div>
-        </div>
-        <div class="flex justify-evenly">
-          <slot name="footer">
-            <ButtonColored
-              :aria-label="submitName || $t('ok')"
-              :disabled="isSubmitting || isSubmitDisabled"
-              type="submit"
-              @click="submit()"
-            >
-              {{ submitName || $t('ok') }}
-              <template slot="prefix">
-                <slot name="submit-icon">
-                  <IconCheckCircle />
-                </slot>
-              </template>
-            </ButtonColored>
-          </slot>
-        </div>
-        <CardStateAlert v-if="errors" class="mb-4">
-          <SpanList :span="errors" />
-        </CardStateAlert>
-      </Card>
-    </div>
+            {{ submitName || $t('ok') }}
+            <template slot="prefix">
+              <slot name="submit-icon">
+                <IconCheckCircle />
+              </slot>
+            </template>
+          </ButtonColored>
+        </slot>
+      </div>
+      <CardStateAlert v-if="errors" class="mb-4">
+        <SpanList :span="errors" />
+      </CardStateAlert>
+    </Card>
   </div>
 </template>
 
@@ -151,11 +150,12 @@ export default defineComponent({
         }
 
         switch (e.key) {
-          case 'Enter': // Enter
-            if (!data.isSubmitting && !props.isSubmitDisabled) {
-              methods.submit()
-            }
-            break
+          // // Temporarily disabled until https://github.com/maevsi/maevsi/issues/765
+          // case 'Enter': // Enter
+          //   if (!this.isSubmitting && !this.isSubmitDisabled) {
+          //     this.submit()
+          //   }
+          //   break
           case 'Escape': // Escape
             methods.close()
             break

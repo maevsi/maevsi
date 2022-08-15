@@ -10,9 +10,8 @@
       >
         {{ $t('settings') }}
       </Breadcrumbs>
-      <h1>{{ $t('title') }}</h1>
       <section>
-        <h2>{{ $t('titleEdit') }}</h2>
+        <h1>{{ $t('title') }}</h1>
         <FormEvent :event="event" />
       </section>
       <section>
@@ -23,7 +22,8 @@
           :item-name="$t('event')"
           :mutation="mutation"
           :variables="{
-            id: event.id,
+            authorUsername: $route.params.username,
+            slug: $route.params.event_name,
           }"
           @error="onDeleteError"
           @success="onDeleteSuccess"
@@ -69,8 +69,8 @@ export default defineComponent({
       data: { eventIsExisting },
     } = await app.$urql.value
       .query(EVENT_IS_EXISTING_QUERY, {
-        slug: params.event_name,
         authorUsername: params.username,
+        slug: params.event_name,
       })
       .toPromise()
 
@@ -113,7 +113,7 @@ export default defineComponent({
         apiData.api.value.errors.push(error)
       },
       onDeleteSuccess() {
-        $router.push(localePath(`/event`))
+        $router.push(localePath(`/dashboard`))
         // TODO: cache update (allEvents)
       },
     }
@@ -173,17 +173,15 @@ de:
   events: Veranstaltung
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   postgresP0002: Die Veranstaltung wurde nicht gefunden!
-  settings: Einstellungen
-  title: Einstellungen
+  settings: bearbeiten
+  title: Veranstaltung bearbeiten
   titleDelete: Veranstaltung löschen
-  titleEdit: Veranstaltung bearbeiten
 en:
   event: event
   events: events
   postgres28P01: Password incorrect! Check that you have written everything correctly.
   postgresP0002: The event was not found!
-  settings: settings
-  title: Settings
+  settings: edit
+  title: Edit event
   titleDelete: Delete event
-  titleEdit: Edit event
 </i18n>
