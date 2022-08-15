@@ -123,7 +123,7 @@ specifiers:
   stylelint-no-unsupported-browser-features: 5.0.3
   sweetalert2: 11.4.26
   tailwindcss: 3.1.8
-  ts-jest: 28.0.7
+  ts-jest: 28.0.8
   ts-node: 10.9.1
   typescript: 4.7.4
   vue: 2.7.8
@@ -273,7 +273,7 @@ devDependencies:
   stylelint-config-standard: 27.0.0_stylelint@14.10.0
   stylelint-no-unsupported-browser-features: 5.0.3_stylelint@14.10.0
   tailwindcss: 3.1.8_ts-node@10.9.1
-  ts-jest: 28.0.7_domhqx63i3eqyw25e7t4mgxmiy
+  ts-jest: 28.0.8_domhqx63i3eqyw25e7t4mgxmiy
   typescript: 4.7.4
   vue: 2.7.8
   vue-template-compiler: 2.7.8
@@ -751,7 +751,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.18.9
       '@babel/plugin-syntax-object-rest-spread': 7.8.3_@babel+core@7.12.9
       '@babel/plugin-transform-parameters': 7.18.8_@babel+core@7.12.9
     dev: true
@@ -5342,7 +5342,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.5
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: false
 
   /@types/eslint/7.29.0:
@@ -5355,7 +5355,7 @@ packages:
   /@types/eslint/8.4.5:
     resolution: {integrity: sha512-dhsC09y1gpJWnK+Ff4SGvCuSnk9DaU0BJZSzOwa6GVSg65XtTugLBITDAAzRU5duGBoXBHpdR/9jHGxJjNflJQ==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: false
 
@@ -5369,7 +5369,6 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
-    dev: true
 
   /@types/etag/1.8.1:
     resolution: {integrity: sha512-bsKkeSqN7HYyYntFRAmzcwx/dKW4Wa+KVMTInANlI72PWLQmOpZu96j0OqHZGArW4VQwCmJPteQlXaUDeOB0WQ==}
@@ -21317,8 +21316,8 @@ packages:
     dependencies:
       tslib: 1.14.1
 
-  /ts-jest/28.0.7_domhqx63i3eqyw25e7t4mgxmiy:
-    resolution: {integrity: sha512-wWXCSmTwBVmdvWrOpYhal79bDpioDy4rTT+0vyUnE3ZzM7LOAAGG9NXwzkEL/a516rQEgnMmS/WKP9jBPCVJyA==}
+  /ts-jest/28.0.8_domhqx63i3eqyw25e7t4mgxmiy:
+    resolution: {integrity: sha512-5FaG0lXmRPzApix8oFG8RKjAz4ehtm8yMKOTy5HX3fY6W8kmvOrmcY0hKDElW52FJov+clhUbrKAqofnj4mXTg==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
     peerDependencies:
