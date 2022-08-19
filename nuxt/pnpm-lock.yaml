@@ -107,7 +107,7 @@ specifiers:
   prettier-plugin-tailwindcss: 0.1.13
   pretty-bytes: 6.0.0
   prntr: 2.0.15
-  puppeteer: 16.1.1
+  puppeteer: 16.2.0
   qrcode.vue: 1.7.0
   react: 16.14.0
   react-dom: 16.14.0
@@ -260,7 +260,7 @@ devDependencies:
   postcss-html: 1.5.0
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
-  puppeteer: 16.1.1
+  puppeteer: 16.2.0
   react: 16.14.0
   react-dom: 16.14.0_react@16.14.0
   reg-notify-github-plugin: 0.12.1
@@ -18586,8 +18586,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /puppeteer/16.1.1:
-    resolution: {integrity: sha512-lBneizsNF0zi1/iog9c0ogVnvDHJG4IWpkdIAgE2oiDKhr0MJRV8JeM2xbhUwCwhDJXjjVS2TNCZdLsMp9Ojdg==}
+  /puppeteer/16.2.0:
+    resolution: {integrity: sha512-7Au6iC98rS6WEAD110V4Bxd0iIbqoFtzz9XzkG1BSofidS1VAJ881E1+GFR7Xn2Yea0hbj8n0ErzRyseMp1Ctg==}
     engines: {node: '>=14.1.0'}
     requiresBuild: true
     dependencies:
@@ -18596,7 +18596,6 @@ packages:
       devtools-protocol: 0.0.1019158
       extract-zip: 2.0.1
       https-proxy-agent: 5.0.1
-      pkg-dir: 4.2.0
       progress: 2.0.3
       proxy-from-env: 1.1.0
       rimraf: 3.0.2
