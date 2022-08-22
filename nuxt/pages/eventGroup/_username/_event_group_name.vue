@@ -7,9 +7,9 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
-import { useHead } from '@vueuse/head'
 
 import { defineComponent, useRoute } from '#app'
+import { useHead } from '#head'
 
 import { REGEX_SLUG } from '~/plugins/util/validation'
 

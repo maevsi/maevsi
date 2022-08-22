@@ -7,10 +7,10 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
-import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, reactive, useNuxtApp } from '#app'
+import { useHead } from '#head'
 
 import { REGEX_UUID } from '~/plugins/util/validation'
 

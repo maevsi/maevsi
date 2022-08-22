@@ -47,10 +47,10 @@
 </template>
 
 <script lang="ts">
-import { useHead } from '@vueuse/head'
 import { mapGetters } from 'vuex'
 
 import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { useHead } from '#head'
 
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import { useSignOut } from '~/plugins/util/auth'

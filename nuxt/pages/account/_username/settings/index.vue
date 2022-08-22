@@ -49,7 +49,8 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 import { CombinedError } from '@urql/core'
-import { useHead } from '@vueuse/head'
+
+import { useHead } from '#head'
 
 import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'

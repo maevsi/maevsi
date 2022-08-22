@@ -26,18 +26,18 @@
 </template>
 
 <script lang="ts">
-import { useHead } from '@vueuse/head'
 import { reactive } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, useNuxtApp } from '#app'
+import { useHead } from '#head'
 
 import { BASE_URL } from '~/plugins/util/constants'
 
 export default defineComponent({
   name: 'IndexPage',
   setup() {
-    const { $i18n, $moment, $router, $nuxtI18nHead } = useNuxtApp()
+    const { $i18n, $moment, $router } = useNuxtApp()
     const { t } = useI18n()
 
     const data = reactive({
@@ -207,7 +207,8 @@ export default defineComponent({
       titleTemplate: (titleChunk: string) => {
         return titleChunk ? `${titleChunk} · maevsi` : 'maevsi'
       },
-      ...$nuxtI18nHead({ addSeoAttributes: true }),
+      // TODO: wait for https://github.com/nuxt-community/i18n-module/tree/next
+      // ...$nuxtI18nHead({ addSeoAttributes: true }),
     })
 
     return {

@@ -7,12 +7,12 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
-import { useHead } from '@vueuse/head'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { useI18n } from 'vue-i18n-composable'
 
 import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { useHead } from '#head'
 
 import { REGEX_UUID } from '~/plugins/util/validation'
 import { getApiMeta } from '~/plugins/util/util'

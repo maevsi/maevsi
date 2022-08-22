@@ -62,11 +62,11 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
-import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n-composable'
 import { mapGetters } from 'vuex'
 
 import { defineComponent, reactive, useNuxtApp } from '#app'
+import { useHead } from '#head'
 
 export default defineComponent({
   name: 'IndexPage',

@@ -42,11 +42,11 @@
 </template>
 
 <script lang="ts">
-import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n-composable'
 import { mapGetters } from 'vuex'
 
 import { computed, defineComponent, reactive, useNuxtApp } from '#app'
+import { useHead } from '#head'
 
 import { useSignOut } from '~/plugins/util/auth'
 

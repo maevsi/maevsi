@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
-import { useHead } from '@vueuse/head'
 import consola from 'consola'
 import { useI18n } from 'vue-i18n-composable'
 
@@ -33,6 +32,7 @@ import {
   useRoute,
   watch,
 } from '#app'
+import { useHead } from '#head'
 
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { getApiMeta } from '~/plugins/util/util'

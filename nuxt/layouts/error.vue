@@ -3,8 +3,7 @@
 </template>
 
 <script lang="ts">
-import { useHead } from '@vueuse/head'
-
+import { useHead } from '#head'
 import { defineComponent, PropType } from '#app'
 
 type Error = { statusCode: string }

@@ -15,10 +15,10 @@
 </template>
 
 <script lang="ts">
-import { useHead } from '@vueuse/head'
 import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { useHead } from '#head'
 
 import { REGEX_SLUG } from '~/plugins/util/validation'
 

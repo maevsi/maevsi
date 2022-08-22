@@ -10,11 +10,11 @@
 </template>
 
 <script lang="ts">
-import { useHead } from '@vueuse/head'
 import { mapGetters } from 'vuex'
 import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, reactive, useNuxtApp } from '#app'
+import { useHead } from '#head'
 
 export default defineComponent({
   name: 'IndexPage',

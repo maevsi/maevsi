@@ -54,12 +54,12 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
-import { useHead } from '@vueuse/head'
 import consola from 'consola'
 import { useI18n } from 'vue-i18n-composable'
 import { required } from 'vuelidate/lib/validators'
 
 import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { useHead } from '#head'
 
 import { jwtStore, useJwtStore } from '~/plugins/util/auth'
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'

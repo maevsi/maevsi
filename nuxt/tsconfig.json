@@ -5,14 +5,6 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "baseUrl": ".",
-    "paths": {
-      "#app": [
-        "node_modules/@nuxt/bridge/dist/runtime/index"
-      ],
-      "~/*": [
-        "./*"
-      ]
-    },
     "types": [
       "@types/node",
       "@nuxt/types-edge",

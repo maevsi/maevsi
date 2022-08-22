@@ -42,7 +42,7 @@
 import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, reactive, useNuxtApp } from '#app'
-import { useHead } from '@vueuse/head'
+import { useHead } from '#head'
 
 export default defineComponent({
   transition: {
