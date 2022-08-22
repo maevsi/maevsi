@@ -9,7 +9,7 @@
           <h2>{{ $t('eventsMine') }}</h2>
           <ButtonColored
             :aria-label="$t('eventsMine')"
-            :to="localePath(`/event/${signedInUsername()}`)"
+            :to="localePath(`/event/${signedInUsername}`)"
           >
             {{ $t('eventsMine') }}
             <template slot="prefix">
@@ -63,15 +63,18 @@
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
 import { useI18n } from 'vue-i18n-composable'
-import { mapGetters } from 'vuex'
 
 import { defineComponent, reactive, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
+import { useMaevsiStore } from '~/store'
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, store, redirect }: Context): void {
-    if (store.getters.jwtDecoded?.role === 'maevsi_anonymous') {
+  middleware({ app, redirect, $pinia }: Context): void {
+    const store = useMaevsiStore($pinia)
+
+    if (store.jwtDecoded?.role === 'maevsi_anonymous') {
       return redirect(app.localePath('/'))
     }
   },
@@ -81,13 +84,12 @@ export default defineComponent({
   setup() {
     const { $router } = useNuxtApp()
     const { t } = useI18n()
+    const store = useMaevsiStore()
 
     const data = reactive({
+      signedInUsername: store.signedInUsername,
       title: t('title'),
     })
-    const computations = {
-      ...mapGetters(['signedInUsername']),
-    }
 
     useHead({
       meta: [
@@ -115,7 +117,6 @@ export default defineComponent({
 
     return {
       ...data,
-      ...computations,
     }
   },
 })

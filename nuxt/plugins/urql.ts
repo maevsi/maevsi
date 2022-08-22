@@ -22,6 +22,7 @@ import {
   jwtFromCookie,
   jwtRefresh,
 } from '~/plugins/util/auth'
+import { useMaevsiStore } from '~/store'
 
 // const ssrKey = '__URQL_DATA__'
 
@@ -69,7 +70,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const options: ClientOptions = {
     requestPolicy: 'network-only', // TODO: https://github.com/maevsi/maevsi/issues/720
     fetchOptions: () => {
-      const jwt: string = nuxtApp.nuxt2Context.store.state.jwt
+      const store = useMaevsiStore(nuxtApp.nuxt2Context.$pinia)
+      const jwt = store.jwt
 
       if (jwt) {
         consola.trace('GraphQL request authenticated with: ' + jwt)
@@ -107,13 +109,14 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // Either authenticate anonymously or refresh token on page load.
   if (process.server && nuxtApp.ssrContext) {
+    const store = useMaevsiStore(nuxtApp.ssrContext.$pinia)
     const jwtData = jwtFromCookie(nuxtApp.ssrContext.req)
 
     if (jwtData?.jwtDecoded.id) {
       await jwtRefresh(
         client.value,
         urqlReset,
-        nuxtApp.nuxt2Context.store,
+        store,
         nuxtApp.ssrContext.res,
         jwtData.jwtDecoded.id
       )
@@ -121,7 +124,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       await authenticationAnonymous(
         client.value,
         urqlReset,
-        nuxtApp.nuxt2Context.store,
+        store,
         nuxtApp.ssrContext.res
       )
     }

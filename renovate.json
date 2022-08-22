@@ -28,10 +28,6 @@
       "allowedVersions": "<3"
     },
     {
-      "matchPackageNames": ["vuex"],
-      "allowedVersions": "<4"
-    },
-    {
       "matchPackageNames": ["@types/webpack", "webpack"],
       "allowedVersions": "<5"
     }

@@ -20,13 +20,13 @@
     </section>
     <section class="flex flex-col gap-4">
       <h2>{{ $t('codes') }}</h2>
-      <div v-if="jwtDecoded().invitations">
+      <div v-if="jwtDecoded?.invitations">
         <p>
           {{ $t('codesEntered') }}
         </p>
         <ul class="list-disc">
           <li
-            v-for="invitationCode in jwtDecoded().invitations"
+            v-for="invitationCode in jwtDecoded?.invitations"
             :key="invitationCode"
           >
             {{ invitationCode }}
@@ -43,12 +43,12 @@
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n-composable'
-import { mapGetters } from 'vuex'
 
 import { computed, defineComponent, reactive, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
 import { useSignOut } from '~/plugins/util/auth'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -57,19 +57,20 @@ export default defineComponent({
   },
   setup() {
     const { signOut } = useSignOut()
-    const { $moment, $router, $store } = useNuxtApp()
+    const { $moment, $router } = useNuxtApp()
     const { t } = useI18n()
+    const store = useMaevsiStore()
 
     const data = reactive({
+      jwtDecoded: store.jwtDecoded,
       title: t('title'),
     })
     const methods = {
       signOut,
     }
     const computations = {
-      ...mapGetters(['jwtDecoded']),
       sessionExpiryTime: computed((): string => {
-        return $moment($store.getters.jwtDecoded().exp, 'X').format('llll')
+        return $moment(store.jwtDecoded?.exp, 'X').format('llll')
       }),
     }
 

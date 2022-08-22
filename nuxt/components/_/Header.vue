@@ -49,7 +49,7 @@
           class="flex-none bg-gray-300 dark:bg-gray-600 self-stretch w-px hidden lg:flex my-1"
         />
         <ButtonColored
-          v-if="signedInUsername()"
+          v-if="signedInUsername"
           :aria-label="$t('dashboard')"
           class="hidden lg:block mx-2"
           :is-primary="false"
@@ -58,17 +58,17 @@
           {{ $t('dashboard') }}
         </ButtonColored>
         <ButtonIcon
-          v-if="signedInUsername()"
-          :aria-label="signedInUsername()"
+          v-if="signedInUsername"
+          :aria-label="signedInUsername"
           class="flex-none"
           :title="$t('profileLink')"
-          :to="localePath(`/account/${signedInUsername()}`)"
+          :to="localePath(`/account/${signedInUsername}`)"
           @click.native="$emit('onMenuHide')"
         >
           <AccountProfilePicture
             height="40"
             rounded
-            :username="signedInUsername()"
+            :username="signedInUsername"
             width="40"
           />
         </ButtonIcon>
@@ -94,9 +94,8 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
-
 import { defineComponent, onBeforeMount, reactive, useNuxtApp } from '#app'
+import { useMaevsiStore } from '~/store'
 
 import supportedBrowsers from '~/supportedBrowsers'
 
@@ -104,9 +103,11 @@ export default defineComponent({
   name: 'MaevsiHeader',
   setup(_props) {
     const { $router, localePath } = useNuxtApp()
+    const store = useMaevsiStore()
 
     const data = reactive({
       isBrowserSupported: true,
+      signedInUsername: store.signedInUsername,
     })
     const methods = {
       navigateToSearch() {
@@ -116,9 +117,6 @@ export default defineComponent({
         })
       },
     }
-    const computations = {
-      ...mapGetters(['signedInUsername']),
-    }
 
     onBeforeMount(() => {
       data.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
@@ -127,7 +125,6 @@ export default defineComponent({
     return {
       ...data,
       ...methods,
-      ...computations,
     }
   },
 })

@@ -84,6 +84,7 @@ import { useHead } from '#head'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
 import { getApiMeta } from '~/plugins/util/util'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -93,8 +94,10 @@ export default defineComponent({
       return import('vue-qrcode-reader/src/components/QrcodeStream.vue')
     },
   },
-  middleware({ error, res, params, store }: Context) {
-    if (res && params.username !== store.getters.signedInUsername) {
+  middleware({ error, res, params, $pinia }: Context) {
+    const store = useMaevsiStore($pinia)
+
+    if (res && params.username !== store.signedInUsername) {
       return error({ statusCode: 403 })
     }
   },
@@ -114,8 +117,9 @@ export default defineComponent({
     name: 'layout',
   },
   setup() {
-    const { $router, $store } = useNuxtApp()
+    const { $router } = useNuxtApp()
     const { t } = useI18n()
+    const store = useMaevsiStore()
     const route = useRoute()
 
     const eventQuery = useEventByAuthorUsernameAndSlugQuery({
@@ -152,7 +156,7 @@ export default defineComponent({
       }),
       title: computed(() => {
         if (
-          route.params.username === $store.getters.signedInUsername &&
+          route.params.username === store.signedInUsername &&
           apiData.event.value
         ) {
           return `${t('title')} · ${apiData.event.value.name}`
@@ -162,7 +166,7 @@ export default defineComponent({
     }
     const methods = {
       qrCodeScan() {
-        $store.commit('modalAdd', { id: 'ModalAttendanceScanQrCode' })
+        store.modalAdd({ id: 'ModalAttendanceScanQrCode' })
       },
       async onInit(promise: Promise<any>) {
         data.loading = true
@@ -192,9 +196,7 @@ export default defineComponent({
             icon: 'error',
             text: errorMessage,
             title: t('globalStatusError'),
-          }).then(() =>
-            $store.commit('modalRemove', 'ModalAttendanceScanQrCode')
-          )
+          }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
           consola.error(errorMessage)
         } finally {
           data.loading = false
@@ -210,7 +212,7 @@ export default defineComponent({
           showConfirmButton: false,
           timer: 1500,
           timerProgressBar: true,
-        }).then(() => $store.commit('modalRemove', 'ModalAttendanceScanQrCode'))
+        }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
       },
       async checkWriteTag(): Promise<void> {
         if (!('NDEFReader' in window)) {

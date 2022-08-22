@@ -3,7 +3,7 @@
     <Breadcrumbs :prefixes="[{ name: $t('accounts'), to: '..', append: true }]">
       {{ $route.params.username }}
     </Breadcrumbs>
-    <ButtonList v-if="signedInUsername() === $route.params.username">
+    <ButtonList v-if="signedInUsername === $route.params.username">
       <ButtonColored :aria-label="$t('settings')" to="settings" append>
         {{ $t('settings') }}
         <template slot="prefix">
@@ -47,13 +47,12 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
-
 import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 import { useHead } from '#head'
 
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import { useSignOut } from '~/plugins/util/auth'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -74,16 +73,15 @@ export default defineComponent({
   setup() {
     const { signOut } = useSignOut()
     const { $router } = useNuxtApp()
+    const store = useMaevsiStore()
     const route = useRoute()
 
     const data = reactive({
+      signedInUsername: store.signedInUsername,
       title: route.params.username,
     })
     const methods = {
       signOut,
-    }
-    const computations = {
-      ...mapGetters(['signedInUsername']),
     }
 
     useHead({
@@ -123,7 +121,6 @@ export default defineComponent({
     return {
       ...data,
       ...methods,
-      ...computations,
     }
   },
 })

@@ -115,6 +115,7 @@ export default defineNuxtConfig({
     ],
     // Doc: https://github.com/nuxt-community/moment-module
     ['@nuxtjs/moment', { locales: ['de'] }],
+    '@pinia/nuxt',
   ],
   components: true, // Auto import components
   cookies: {

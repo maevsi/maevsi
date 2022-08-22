@@ -13,13 +13,15 @@ import { useI18n } from 'vue-i18n-composable'
 import { defineComponent, reactive, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
+import { useMaevsiStore } from '~/store'
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, store, redirect }: Context): void {
-    if (store.getters.jwtDecoded?.role === 'maevsi_account') {
-      return redirect(
-        app.localePath('/account/' + store.getters.jwtDecoded.username)
-      )
+  middleware({ app, redirect, $pinia }: Context): void {
+    const store = useMaevsiStore($pinia)
+
+    if (store.jwtDecoded?.role === 'maevsi_account') {
+      return redirect(app.localePath('/account/' + store.jwtDecoded.username))
     } else {
       return redirect(app.localePath('/task/account/sign-in'))
     }

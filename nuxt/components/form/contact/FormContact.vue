@@ -114,7 +114,7 @@
 import consola from 'consola'
 import { email, maxLength } from 'vuelidate/lib/validators'
 
-import { computed, defineComponent, PropType, reactive, useNuxtApp } from '#app'
+import { computed, defineComponent, PropType, reactive } from '#app'
 import { Contact } from '~/types/contact'
 import {
   formPreSubmit,
@@ -135,6 +135,7 @@ import {
   useCreateContactMutation,
   useUpdateContactByIdMutation,
 } from '~/gql/generated'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   props: {
@@ -144,7 +145,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { $store } = useNuxtApp()
+    const store = useMaevsiStore()
     const updateContactByIdMutation = useUpdateContactByIdMutation()
     const createContactMutation = useCreateContactMutation()
 
@@ -189,7 +190,7 @@ export default defineComponent({
                   ? undefined
                   : data.form.accountUsername,
               address: data.form.address === '' ? undefined : data.form.address,
-              authorAccountUsername: $store.getters.jwtDecoded?.username,
+              authorAccountUsername: store.jwtDecoded?.username,
               emailAddress:
                 data.form.emailAddress === ''
                   ? undefined
@@ -219,7 +220,7 @@ export default defineComponent({
                   ? undefined
                   : data.form.accountUsername,
               address: data.form.address === '' ? undefined : data.form.address,
-              authorAccountUsername: $store.getters.jwtDecoded?.username,
+              authorAccountUsername: store.jwtDecoded?.username,
               emailAddress:
                 data.form.emailAddress === ''
                   ? undefined

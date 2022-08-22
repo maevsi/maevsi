@@ -272,7 +272,6 @@ import {
   minValue,
   required,
 } from 'vuelidate/lib/validators'
-import { mapGetters } from 'vuex'
 
 import { computed, defineComponent, PropType, reactive, useNuxtApp } from '#app'
 
@@ -295,6 +294,7 @@ import {
   useCreateEventMutation,
   useUpdateEventByIdMutation,
 } from '~/gql/generated'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   components: {
@@ -309,6 +309,7 @@ export default defineComponent({
   setup(props) {
     const { $i18n, $moment, $router, $v, localePath } = useNuxtApp()
     const { t } = useI18n()
+    const store = useMaevsiStore()
     const createEventMutation = useCreateEventMutation()
     const updateEventMutation = useUpdateEventByIdMutation()
 
@@ -339,6 +340,7 @@ export default defineComponent({
       },
       formatDateTimeShort: DateTime.DATETIME_SHORT,
       isFormSent: false,
+      signedInUsername: store.signedInUsername,
     })
     const methods = {
       onInputName($event: any) {
@@ -357,7 +359,7 @@ export default defineComponent({
           const result = await updateEventMutation.executeMutation({
             id: data.form.id,
             eventPatch: {
-              authorUsername: computations.signedInUsername(),
+              authorUsername: data.signedInUsername,
               description: data.form.description,
               end: data.form.end !== '' ? data.form.end : undefined,
               inviteeCountMaximum:
@@ -398,7 +400,7 @@ export default defineComponent({
           const result = await createEventMutation.executeMutation({
             createEventInput: {
               event: {
-                authorUsername: computations.signedInUsername(),
+                authorUsername: data.signedInUsername || '',
                 description: data.form.description,
                 end: data.form.end !== '' ? data.form.end : undefined,
                 inviteeCountMaximum:
@@ -436,9 +438,7 @@ export default defineComponent({
             title: t('created'),
           }).then(() =>
             $router.push(
-              localePath(
-                `/event/${computations.signedInUsername()}/${data.form.slug}`
-              )
+              localePath(`/event/${data.signedInUsername}/${data.form.slug}`)
             )
           )
         }
@@ -451,7 +451,6 @@ export default defineComponent({
       },
     }
     const computations = {
-      ...mapGetters(['signedInUsername']),
       isWarningStartPastShown: computed(
         () => !VALIDATION_NOW_OR_FUTURE($moment($v.form.start.$model))
       ),
@@ -496,7 +495,7 @@ export default defineComponent({
         },
         slug: {
           existenceNone: validateEventSlug(
-            this.signedInUsername(),
+            this.signedInUsername,
             true,
             (this.event as Event | undefined)?.slug
           ),

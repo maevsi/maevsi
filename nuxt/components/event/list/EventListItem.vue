@@ -51,10 +51,10 @@
 <script lang="ts">
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
-import { mapGetters } from 'vuex'
 import mustache from 'mustache'
 
 import { computed, defineComponent, PropType } from '#app'
+
 import { Event as MaevsiEvent } from '~/types/event'
 
 export default defineComponent({
@@ -66,7 +66,6 @@ export default defineComponent({
   },
   setup(props) {
     const computations = {
-      ...mapGetters(['jwtDecoded']),
       eventDescriptionTemplate: computed(() => {
         if (!props.event?.description) return
 

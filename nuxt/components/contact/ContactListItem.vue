@@ -25,14 +25,14 @@
       <div class="flex items-center justify-evenly gap-2">
         <ButtonIcon
           :aria-label="
-            contact.authorAccountUsername !== signedInUsername()
+            contact.authorAccountUsername !== signedInUsername
               ? $t('disabledReasonCreatorNot', {
                   authorAccountUsername: contact.authorAccountUsername,
                 })
               : $t('contactEdit')
           "
           :disabled="
-            contact.authorAccountUsername !== signedInUsername() || isEditing
+            contact.authorAccountUsername !== signedInUsername || isEditing
           "
           @click="$emit('edit')"
         >
@@ -40,9 +40,7 @@
         </ButtonIcon>
         <ButtonIcon
           :aria-label="$t('contactDelete')"
-          :disabled="
-            isDeleting || contact.accountUsername === signedInUsername()
-          "
+          :disabled="isDeleting || contact.accountUsername === signedInUsername"
           @click="$emit('delete')"
         >
           <IconTrash />
@@ -53,9 +51,9 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
+import { defineComponent, PropType, reactive } from '#app'
 
-import { defineComponent, PropType } from '#app'
+import { useMaevsiStore } from '~/store'
 import { Contact } from '~/types/contact'
 
 export default defineComponent({
@@ -74,12 +72,14 @@ export default defineComponent({
     },
   },
   setup() {
-    const computations = {
-      ...mapGetters(['signedInUsername']),
-    }
+    const store = useMaevsiStore()
+
+    const data = reactive({
+      signedInUsername: store.signedInUsername,
+    })
 
     return {
-      ...computations,
+      ...data,
     }
   },
 })

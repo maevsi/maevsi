@@ -13,14 +13,17 @@ import { useI18n } from 'vue-i18n-composable'
 import { computed, defineComponent, reactive, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
+import { useMaevsiStore } from '~/store'
+
 export default defineComponent({
   name: 'IndexPage',
   transition: {
     name: 'layout',
   },
   setup() {
-    const { $router, $store } = useNuxtApp()
+    const { $router } = useNuxtApp()
     const { t } = useI18n()
+    const store = useMaevsiStore()
 
     const data = reactive({
       title: t('title'),
@@ -28,8 +31,9 @@ export default defineComponent({
     const computations = {
       signedIn: computed(() => {
         return (
-          $store.getters.jwtDecoded?.role === 'maevsi_account' &&
-          $store.getters.jwtDecoded?.exp > Math.floor(Date.now() / 1000)
+          store.jwtDecoded?.role === 'maevsi_account' &&
+          store.jwtDecoded?.exp &&
+          store.jwtDecoded.exp > Math.floor(Date.now() / 1000)
         )
       }),
     }

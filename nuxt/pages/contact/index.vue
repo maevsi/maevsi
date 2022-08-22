@@ -13,10 +13,14 @@ import { useI18n } from 'vue-i18n-composable'
 import { defineComponent, reactive, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
+import { useMaevsiStore } from '~/store'
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ error, store }) {
-    if (!store.getters.signedInUsername) {
+  middleware({ error, $pinia }) {
+    const store = useMaevsiStore($pinia)
+
+    if (!store.signedInUsername) {
       return error({ statusCode: 403 })
     }
   },

@@ -12,6 +12,7 @@
       "@nuxtjs/google-analytics",
       "@nuxtjs/i18n",
       "@nuxtjs/moment",
+      "@pinia/nuxt",
       "jest",
       "node",
     ],

@@ -82,15 +82,7 @@
 import consola from 'consola'
 import { minLength, minValue, required } from 'vuelidate/lib/validators'
 
-import {
-  computed,
-  defineComponent,
-  PropType,
-  reactive,
-  ref,
-  useNuxtApp,
-  watch,
-} from '#app'
+import { computed, defineComponent, PropType, reactive, ref, watch } from '#app'
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import { formPreSubmit } from '~/plugins/util/validation'
 import { Contact } from '~/types/contact'
@@ -100,6 +92,7 @@ import {
   useAllContactsQuery,
   useCreateInvitationMutation,
 } from '~/gql/generated'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   props: {
@@ -109,7 +102,7 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { $store } = useNuxtApp()
+    const store = useMaevsiStore()
     const { executeMutation: executeMutationCreateInvitation } =
       useCreateInvitationMutation()
 
@@ -119,7 +112,7 @@ export default defineComponent({
     const allContactsQuery = useAllContactsQuery({
       variables: {
         after: refs.after,
-        authorAccountUsername: $store.getters.signedInUsername,
+        authorAccountUsername: store.signedInUsername,
         first: ITEMS_PER_PAGE_LARGE,
       },
     })

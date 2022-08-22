@@ -215,6 +215,7 @@ import {
   useDeleteInvitationByUuidMutation,
   useInviteMutation,
 } from '~/gql/generated'
+import { useMaevsiStore } from '~/store'
 
 Chart.register(
   ArcElement,
@@ -237,8 +238,9 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { $colorMode, $i18n, $store, localePath } = useNuxtApp()
+    const { $colorMode, $i18n, localePath } = useNuxtApp()
     const { t } = useI18n()
+    const store = useMaevsiStore()
     const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
     const inviteMutation = useInviteMutation()
 
@@ -294,7 +296,7 @@ export default defineComponent({
     })
     const methods = {
       add() {
-        $store.commit('modalAdd', { id: 'ModalInvitation' })
+        store.modalAdd({ id: 'ModalInvitation' })
       },
       copyLink(invitation: Invitation): void {
         if (!process.browser) return
@@ -367,7 +369,7 @@ export default defineComponent({
         // TODO: cache update (allInvitations)
       },
       onSubmitSuccess() {
-        $store.commit('modalRemove', 'ModalInvitation')
+        store.modalRemove('ModalInvitation')
         // TODO: cache update (allInvitations)
       },
     }

@@ -19,10 +19,14 @@ import { useI18n } from 'vue-i18n-composable'
 import { defineComponent, reactive, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
+import { useMaevsiStore } from '~/store'
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, store, redirect, route }: Context): void {
-    if (store.getters.jwtDecoded?.role === 'maevsi_account') {
+  middleware({ app, redirect, route, $pinia }: Context): void {
+    const store = useMaevsiStore($pinia)
+
+    if (store.jwtDecoded?.role === 'maevsi_account') {
       return redirect(route.query.referrer || app.localePath('/dashboard/'))
     }
   },

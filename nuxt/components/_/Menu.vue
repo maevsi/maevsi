@@ -12,28 +12,28 @@
         <IconX />
       </ButtonIcon>
       <div class="flex flex-col gap-8 p-6 lg:p-8">
-        <!-- <div v-if="signedInUsername()" class="mt-0 flex md:mt-auto">
+        <!-- <div v-if="signedInUsername" class="mt-0 flex md:mt-auto">
           <Button
-            :aria-label="signedInUsername()"
+            :aria-label="signedInUsername"
             class="flex min-w-0 items-center gap-2 text-text-dark dark:text-text-bright"
             :title="$t('profileLink')"
-            :to="localePath(`/account/${signedInUsername()}`)"
+            :to="localePath(`/account/${signedInUsername}`)"
             @click.native="$emit('onMenuHide')"
           >
             <AccountProfilePicture
               height="40"
               rounded
-              :username="signedInUsername()"
+              :username="signedInUsername"
               width="40"
             />
-            <span class="truncate">{{ signedInUsername() }}</span>
+            <span class="truncate">{{ signedInUsername }}</span>
           </Button>
           <div class="w-12 flex-1" />
           <div class="flex items-center gap-2">
             <ButtonIcon
               :aria-label="$t('accountSettings')"
               :title="$t('accountSettings')"
-              :to="localePath(`/account/${signedInUsername()}/settings`)"
+              :to="localePath(`/account/${signedInUsername}/settings`)"
               @click.native="$emit('onMenuHide')"
             >
               <IconCog />
@@ -41,24 +41,24 @@
             <ButtonIcon
               :aria-label="$t('signOut')"
               :title="$t('signOut')"
-              @click.native="signOut($urql, $store)"
+              @click.native="signOut($urql, store)"
             >
               <IconSignOut />
             </ButtonIcon>
           </div>
         </div>
-        <Hr v-if="signedInUsername()" />
+        <Hr v-if="signedInUsername" />
         <div class="flex flex-col gap-2">
           <ButtonMenu
-            v-if="signedInUsername()"
+            v-if="signedInUsername"
             :aria-label="$t('events')"
-            :to="localePath(`/event/${signedInUsername()}`)"
+            :to="localePath(`/event/${signedInUsername}`)"
           >
             <IconCalendar />
             {{ $t('events') }}
           </ButtonMenu>
           <ButtonMenu
-            v-if="signedInUsername()"
+            v-if="signedInUsername"
             :aria-label="$t('contacts')"
             :to="localePath('/contact')"
           >
@@ -66,7 +66,7 @@
             {{ $t('contacts') }}
           </ButtonMenu>
           <ButtonMenu
-            v-if="signedInUsername()"
+            v-if="signedInUsername"
             :aria-label="$t('uploads')"
             :to="localePath('/upload')"
           >
@@ -74,7 +74,7 @@
             {{ $t('uploads') }}
           </ButtonMenu>
         </div>
-        <Hr v-if="signedInUsername()" class="md:hidden" /> -->
+        <Hr v-if="signedInUsername" class="md:hidden" /> -->
         <div class="flex flex-col gap-4 md:hidden">
           <ButtonText
             :aria-label="$t('eventsExplore')"
@@ -95,9 +95,9 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from 'vuex'
+import { defineComponent, reactive } from '#app'
 
-import { defineComponent } from '#app'
+import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'MaevsiMenu',
@@ -108,12 +108,14 @@ export default defineComponent({
     },
   },
   setup() {
-    const computations = {
-      ...mapGetters(['signedInUsername']),
-    }
+    const store = useMaevsiStore()
+
+    const data = reactive({
+      signedInUsername: store.signedInUsername,
+    })
 
     return {
-      ...computations,
+      ...data,
     }
   },
 })
