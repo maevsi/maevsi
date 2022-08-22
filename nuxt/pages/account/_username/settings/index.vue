@@ -47,8 +47,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 import { CombinedError } from '@urql/core'
+import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
 
 import { useHead } from '#head'
 
