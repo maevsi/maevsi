@@ -221,12 +221,7 @@ export default defineNuxtConfig({
       ], // Can be removed in unjs/nitro > v0.4.12
     },
   },
-  plugins: [
-    '~/plugins/croppa.js',
-    '~/plugins/i18n.ts',
-    '~/plugins/urql.ts',
-    '~/plugins/vuelidate.ts',
-  ],
+  plugins: ['~/plugins/croppa.js', '~/plugins/i18n.ts', '~/plugins/urql.ts'],
   publicRuntimeConfig: {
     dev: process.env.NODE_ENV !== 'production',
     // 'google-adsense': {

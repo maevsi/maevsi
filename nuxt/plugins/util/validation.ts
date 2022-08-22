@@ -1,5 +1,5 @@
+import { helpers } from '@vuelidate/validators'
 import moment from 'moment'
-import { helpers } from 'vuelidate/lib/validators'
 import {
   useAccountIsExistingQuery,
   useEventIsExistingQuery,
@@ -24,51 +24,30 @@ export const VALIDATION_EVENT_NAME_LENGTH_MAXIMUM = 100
 export const VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM = 100
 export const VALIDATION_EVENT_URL_LENGTH_MAXIMUM = 300
 export const VALIDATION_FIRST_NAME_LENGTH_MAXIMUM = 100
-export const VALIDATION_FORMAT_PHONE_NUMBER = helpers.regex(
-  'phone-number',
-  REGEX_PHONE_NUMBER
-)
-export const VALIDATION_FORMAT_SLUG = helpers.regex('slug', REGEX_SLUG)
-export const VALIDATION_FORMAT_UPPERCASE_NONE = helpers.regex(
-  'uppercase-none',
-  REGEX_UPPERCASE_NONE
-)
-export const VALIDATION_FORMAT_URL_HTTPS = helpers.regex(
-  'url-https',
-  REGEX_URL_HTTPS
-)
-export const VALIDATION_FORMAT_UUID = helpers.regex('uuid', REGEX_UUID)
+export const VALIDATION_FORMAT_PHONE_NUMBER = helpers.regex(REGEX_PHONE_NUMBER)
+export const VALIDATION_FORMAT_SLUG = helpers.regex(REGEX_SLUG)
+export const VALIDATION_FORMAT_UPPERCASE_NONE =
+  helpers.regex(REGEX_UPPERCASE_NONE)
+export const VALIDATION_FORMAT_URL_HTTPS = helpers.regex(REGEX_URL_HTTPS)
+export const VALIDATION_FORMAT_UUID = helpers.regex(REGEX_UUID)
 export const VALIDATION_LAST_NAME_LENGTH_MAXIMUM = 100
 export const VALIDATION_NOW_OR_FUTURE = (value: moment.Moment) =>
   value.isSameOrAfter(moment())
 export const VALIDATION_PASSWORD_LENGTH_MINIMUM = 8
 export const VALIDATION_USERNAME_LENGTH_MAXIMUM = 100
 
-export function formPreSubmit(that: any): Promise<void> {
-  return new Promise<void>((resolve, reject) => {
-    that.graphqlError = undefined
-    that.$v.$touch()
+export async function formPreSubmit(that: any): Promise<boolean> {
+  that.graphqlError = undefined
+  that.v$.$touch()
 
-    // Workaround until https://vuelidate-next.netlify.app/.
-    const waitPending = () => {
-      if (that.$v.$pending) {
-        setTimeout(() => {
-          waitPending()
-        }, 100)
-      } else {
-        if (that.$v.$invalid) {
-          reject(Error('Form is invalid!'))
-          return
-        }
+  const isFormValid = await that.v$.$validate()
+  that.isFormSent = isFormValid
 
-        that.form.sent = true
+  if (!isFormValid) {
+    throw new Error('Form is invalid!')
+  }
 
-        resolve()
-      }
-    }
-
-    waitPending()
-  })
+  return isFormValid
 }
 
 export function validateEventSlug(

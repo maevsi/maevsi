@@ -12,7 +12,7 @@
     </ButtonColored>
     <Form
       :errors="api.errors"
-      :form="$v.form"
+      :form="v$.form"
       form-class="w-full"
       :is-form-sent="isFormSent"
       :submit-name="$t('register')"
@@ -20,19 +20,19 @@
     >
       <FormInputUsername
         id="username-registration"
-        :form-input="$v.form.username"
+        :form-input="v$.form.username"
         is-validatable
         is-validation-inverted
         @input="form.username = $event"
       />
       <FormInputPassword
         id="password-registration"
-        :form-input="$v.form.password"
+        :form-input="v$.form.password"
         @input="form.password = $event"
       />
       <FormInputEmailAddress
         id="email-address-registration"
-        :form-input="$v.form.emailAddress"
+        :form-input="v$.form.emailAddress"
         is-required
         @input="form.emailAddress = $event"
       />
@@ -46,10 +46,17 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import {
+  email,
+  helpers,
+  maxLength,
+  minLength,
+  required,
+} from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { useI18n } from 'vue-i18n-composable'
-import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import { computed, defineComponent, reactive, useNuxtApp } from '#app'
 
@@ -120,18 +127,10 @@ const FormAccountRegistration = defineComponent({
         })
       },
     }
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
-  validations() {
-    return {
+    const rules = {
       form: {
         username: {
-          existenceNone: validateUsername(true),
+          existenceNone: helpers.withAsync(validateUsername(true)),
           formatSlug: VALIDATION_FORMAT_SLUG,
           maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
           required,
@@ -147,6 +146,14 @@ const FormAccountRegistration = defineComponent({
           required,
         },
       },
+    }
+    const v$ = useVuelidate(rules, data)
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      v$,
     }
   },
 })

@@ -1,7 +1,7 @@
 <template>
   <Form
     :errors="api.errors"
-    :form="$v.form"
+    :form="v$.form"
     :form-class="formClass"
     :is-form-sent="isFormSent"
     :submit-name="$t('accountPasswordReset')"
@@ -9,7 +9,7 @@
   >
     <FormInputPassword
       id="password"
-      :form-input="$v.form.password"
+      :form-input="v$.form.password"
       :title="$t('passwordNew')"
       @input="form.password = $event"
     />
@@ -17,12 +17,14 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { reactive } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
-import { minLength, required } from 'vuelidate/lib/validators'
 
-import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { computed, defineComponent, useNuxtApp, useRoute } from '#app'
 
 import {
   formPreSubmit,
@@ -95,21 +97,21 @@ const FormAccountPasswordReset = defineComponent({
         })
       },
     }
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
-  validations() {
-    return {
+    const rules = {
       form: {
         password: {
           minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },
+    }
+    const v$ = useVuelidate(rules, data)
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      v$,
     }
   },
 })

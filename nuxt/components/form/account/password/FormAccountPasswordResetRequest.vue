@@ -1,7 +1,7 @@
 <template>
   <Form
     :errors="api.errors"
-    :form="$v.form"
+    :form="v$.form"
     :form-class="formClass"
     :is-form-sent="isFormSent"
     :submit-name="$t('accountPasswordResetRequest')"
@@ -9,7 +9,7 @@
   >
     <FormInputEmailAddress
       id="email-address-password-reset-request"
-      :form-input="$v.form.emailAddress"
+      :form-input="v$.form.emailAddress"
       is-required
       :title="$t('emailAddressYours')"
       @input="form.emailAddress = $event"
@@ -18,12 +18,14 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { email, maxLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { reactive } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
-import { email, maxLength, required } from 'vuelidate/lib/validators'
 
-import { computed, defineComponent, PropType, reactive, useNuxtApp } from '#app'
+import { computed, defineComponent, PropType, useNuxtApp } from '#app'
 
 import {
   formPreSubmit,
@@ -67,6 +69,7 @@ const FormAccountPasswordResetRequest = defineComponent({
         try {
           await formPreSubmit(this)
         } catch (error) {
+          consola.debug(error)
           return
         }
 
@@ -92,15 +95,7 @@ const FormAccountPasswordResetRequest = defineComponent({
         })
       },
     }
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
-  validations() {
-    return {
+    const rules = {
       form: {
         emailAddress: {
           email,
@@ -109,6 +104,14 @@ const FormAccountPasswordResetRequest = defineComponent({
           required,
         },
       },
+    }
+    const v$ = useVuelidate(rules, data)
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      v$,
     }
   },
 })

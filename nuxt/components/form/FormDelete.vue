@@ -1,14 +1,14 @@
 <template>
   <Form
     :errors="errors"
-    :form="$v.form"
+    :form="v$.form"
     :is-form-sent="isFormSent"
     :submit-name="$t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="password"
-      :form-input="$v.form.password"
+      :form-input="v$.form.password"
       :title="$t('passwordAccount')"
       @input="form.password = $event"
     />
@@ -19,11 +19,12 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { minLength, required } from '@vuelidate/validators'
 import { CombinedError, UseMutationResponse } from '@urql/vue'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { useI18n } from 'vue-i18n-composable'
-import { minLength, required } from 'vuelidate/lib/validators'
 
 import { defineComponent, PropType, reactive } from '#app'
 
@@ -66,6 +67,7 @@ export default defineComponent({
         try {
           await formPreSubmit(this)
         } catch (error) {
+          consola.debug(error)
           return
         }
 
@@ -94,20 +96,20 @@ export default defineComponent({
           })
       },
     }
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
-  validations() {
-    return {
+    const rules = {
       form: {
         password: {
           minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
           required,
         },
       },
+    }
+    const v$ = useVuelidate(rules, data)
+
+    return {
+      ...data,
+      ...methods,
+      v$,
     }
   },
 })

@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Validation } from 'vuelidate/vuelidate'
+import { Validation } from '@vuelidate/core'
 
 import { defineComponent, PropType } from '#app'
 

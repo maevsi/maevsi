@@ -2,20 +2,20 @@
   <Form
     ref="formRef"
     :errors="api.errors"
-    :form="$v.form"
+    :form="v$.form"
     :is-form-sent="isFormSent"
     :submit-name="$t('passwordChange')"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="passwordCurrent"
-      :form-input="$v.form.passwordCurrent"
+      :form-input="v$.form.passwordCurrent"
       :title="$t('passwordCurrent')"
       @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
-      :form-input="$v.form.passwordNew"
+      :form-input="v$.form.passwordNew"
       :title="$t('passwordNew')"
       @input="form.passwordNew = $event"
     />
@@ -23,12 +23,14 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
-import { minLength, required } from 'vuelidate/lib/validators'
 
-import { computed, defineComponent, reactive, ref } from '#app'
+import { computed, defineComponent } from '#app'
 
 import { FormType } from '~/components/form/Form.vue'
 import {
@@ -99,16 +101,7 @@ const FormAccountPasswordChange = defineComponent({
         methods.resetForm()
       },
     }
-
-    return {
-      ...refs,
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
-  validations() {
-    return {
+    const rules = {
       form: {
         passwordCurrent: {
           minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
@@ -119,6 +112,15 @@ const FormAccountPasswordChange = defineComponent({
           required,
         },
       },
+    }
+    const v$ = useVuelidate(rules, data)
+
+    return {
+      ...refs,
+      ...apiData,
+      ...data,
+      ...methods,
+      v$,
     }
   },
 })

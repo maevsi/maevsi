@@ -105,8 +105,8 @@
 </template>
 
 <script lang="ts">
+import { Validation } from '@vuelidate/core'
 import consola from 'consola'
-import { Validation } from 'vuelidate/vuelidate'
 
 import { defineComponent, PropType } from '#app'
 

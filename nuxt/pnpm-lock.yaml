@@ -53,7 +53,6 @@ specifiers:
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
   '@types/vue-moment': 4.0.3
-  '@types/vuelidate': 0.7.15
   '@types/webpack': 4.41.32
   '@uppy/core': 2.3.3
   '@uppy/tus': 2.4.3
@@ -61,6 +60,8 @@ specifiers:
   '@urql/devtools': 2.0.3
   '@urql/exchange-graphcache': 4.4.3
   '@urql/vue': 0.6.4
+  '@vuelidate/core': 2.0.0-alpha.43
+  '@vuelidate/validators': 2.0.0-alpha.31
   '@vueuse/head': 0.7.9
   autoprefixer: 10.4.8
   babel-loader: 8.2.5
@@ -138,7 +139,6 @@ specifiers:
   vue-qrcode-reader: 3.1.0
   vue-template-compiler: 2.7.9
   vue-tsc: 0.40.1
-  vuelidate: 0.7.7
   webpack: 4.46.0
   weekstart: 1.1.0
 
@@ -162,6 +162,8 @@ dependencies:
   '@urql/core': 2.6.1_graphql@15.8.0
   '@urql/exchange-graphcache': 4.4.3_graphql@15.8.0
   '@urql/vue': 0.6.4_graphql@15.8.0+vue@2.7.9
+  '@vuelidate/core': 2.0.0-alpha.43_vue@2.7.9
+  '@vuelidate/validators': 2.0.0-alpha.31_vue@2.7.9
   '@vueuse/head': 0.7.9_vue@2.7.9
   chart.js: 3.9.1
   clipboard: 2.0.11
@@ -196,7 +198,6 @@ dependencies:
   vue-i18n: 8.27.2
   vue-i18n-composable: 2.0.0_vue-i18n@8.27.2+vue@2.7.9
   vue-qrcode-reader: 3.1.0
-  vuelidate: 0.7.7
   weekstart: 1.1.0
 
 devDependencies:
@@ -238,7 +239,6 @@ devDependencies:
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
   '@types/vue-moment': 4.0.3
-  '@types/vuelidate': 0.7.15
   '@types/webpack': 4.41.32
   '@urql/devtools': 2.0.3_vyhv5qba3dgtvej5fm5bhhqozm
   autoprefixer: 10.4.8_postcss@8.4.16
@@ -6391,12 +6391,6 @@ packages:
       vue: 2.7.9
     dev: true
 
-  /@types/vuelidate/0.7.15:
-    resolution: {integrity: sha512-U3uabs0vVuRmxx4+cwa5Hhq1edxWuMODEf/u98PQ4+EJtZCs4TZep9q6zrGuqWmVImUc2DlKD33kXmSZqakV/A==}
-    dependencies:
-      vue: 2.7.9
-    dev: true
-
   /@types/wait-on/5.3.1:
     resolution: {integrity: sha512-2FFOKCF/YydrMUaqg+fkk49qf0e5rDgwt6aQsMzFQzbS419h2gNOXyiwp/o2yYy27bi/C1z+HgfncryjGzlvgQ==}
     dependencies:
@@ -7102,6 +7096,24 @@ packages:
   /@vue/shared/3.2.37:
     resolution: {integrity: sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==}
     dev: true
+
+  /@vuelidate/core/2.0.0-alpha.43_vue@2.7.9:
+    resolution: {integrity: sha512-0/IoC8+A/wgNqmTIQc2eFYYnBlwIkvfM+riVDG1HAG3amdH7iNrFxNRkiHH/XJ810ZpOYPfYVslqYLbgq6E5HQ==}
+    dependencies:
+      vue-demi: 0.13.8_vue@2.7.9
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
+  /@vuelidate/validators/2.0.0-alpha.31_vue@2.7.9:
+    resolution: {integrity: sha512-+MFA9nZ7Y9zCpq383/voPDk/hiAmu6KqiJJhLOYB/FmrUPVoyKnuKnI9Bwiq8ok9GZlVkI8BnIrKPKGj9QpwiQ==}
+    dependencies:
+      vue-demi: 0.13.8_vue@2.7.9
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
 
   /@vueuse/head/0.7.9_vue@2.7.9:
     resolution: {integrity: sha512-5wnRiH2XIUSLLXJDLDDTcpvAg5QXgTIVZl46AU7to/T91KHsdBLHSE4WhRO7kP0jbkAhlxnx64E29cQtwBrMjg==}
@@ -23741,11 +23753,6 @@ packages:
     dependencies:
       '@vue/compiler-sfc': 2.7.9
       csstype: 3.1.0
-
-  /vuelidate/0.7.7:
-    resolution: {integrity: sha512-pT/U2lDI67wkIqI4tum7cMSIfGcAMfB+Phtqh2ttdXURwvHRBJEAQ0tVbUsW9Upg83Q5QH59bnCoXI7A9JDGnA==}
-    engines: {node: '>= 4.0.0', npm: '>= 3.0.0'}
-    dev: false
 
   /vuex/3.6.2_vue@2.7.9:
     resolution: {integrity: sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw==}

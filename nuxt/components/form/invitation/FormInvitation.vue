@@ -3,7 +3,7 @@
     v-if="event"
     ref="form"
     :errors="api.errors"
-    :form="$v.form"
+    :form="v$.form"
     :is-form-sent="isFormSent"
     :submit-name="$t('select')"
     @submit.prevent="submit"
@@ -28,7 +28,7 @@
       :placeholder="$t('placeholderContact')"
       :title="$t('contact')"
       type="text"
-      :value="$v.form.searchString"
+      :value="v$.form.searchString"
       @input="form.searchString = $event"
     >
       <template slot="icon">
@@ -36,19 +36,19 @@
       </template>
       <template slot="stateError">
         <FormInputStateError
-          :form-input="$v.form.contactId"
+          :form-input="v$.form.contactId"
           validation-property="required"
         >
           {{ $t('globalValidationRequired') }}
         </FormInputStateError>
         <FormInputStateError
-          :form-input="$v.form.contactId"
+          :form-input="v$.form.contactId"
           validation-property="minLength"
         >
           {{ $t('globalValidationMinLength') }}
         </FormInputStateError>
         <FormInputStateError
-          :form-input="$v.form.contactId"
+          :form-input="v$.form.contactId"
           validation-property="minValue"
         >
           {{ $t('globalValidationMinValue') }}
@@ -79,10 +79,12 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { minValue, required } from '@vuelidate/validators'
 import consola from 'consola'
-import { minLength, minValue, required } from 'vuelidate/lib/validators'
+import { computed, reactive, ref } from 'vue'
 
-import { computed, defineComponent, PropType, reactive, ref, watch } from '#app'
+import { defineComponent, PropType, watch } from '#app'
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import { formPreSubmit } from '~/plugins/util/validation'
 import { Contact } from '~/types/contact'
@@ -152,6 +154,7 @@ export default defineComponent({
         try {
           await formPreSubmit(this)
         } catch (error) {
+          consola.debug(error)
           return
         }
 
@@ -211,6 +214,20 @@ export default defineComponent({
         return allContactsFiltered
       }),
     }
+    const rules = {
+      form: {
+        contactId: {
+          // $each: {
+          minValue: minValue(1),
+          required,
+          // },
+          // minLength: minLength(1),
+          // required,
+        },
+        searchString: {},
+      },
+    }
+    const v$ = useVuelidate(rules, data)
 
     watch(allContactsQuery.error, (currentValue, _oldValue) => {
       if (currentValue) consola.error(currentValue)
@@ -222,21 +239,7 @@ export default defineComponent({
       ...data,
       ...methods,
       ...computations,
-    }
-  },
-  validations() {
-    return {
-      form: {
-        contactId: {
-          $each: {
-            minValue: minValue(1),
-            required,
-          },
-          minLength: minLength(1),
-          required,
-        },
-        searchString: {},
-      },
+      v$,
     }
   },
 })

@@ -3,7 +3,7 @@
     <h1>{{ title }}</h1>
     <Form
       :errors="api.errors"
-      :form="$v.form"
+      :form="v$.form"
       :is-form-sent="isFormSent"
       :submit-name="$t('submit')"
       @submit.prevent="submit"
@@ -17,7 +17,7 @@
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         :title="$t('invitationCode')"
         type="text"
-        :value="$v.form.invitationCode"
+        :value="v$.form.invitationCode"
         @input="form.invitationCode = $event"
       >
         <template slot="stateInfo">
@@ -32,13 +32,13 @@
         </template>
         <template slot="stateError">
           <FormInputStateError
-            :form-input="$v.form.invitationCode"
+            :form-input="v$.form.invitationCode"
             validation-property="formatUuid"
           >
             {{ $t('globalValidationFormat') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="$v.form.invitationCode"
+            :form-input="v$.form.invitationCode"
             validation-property="required"
           >
             {{ $t('globalValidationRequired') }}
@@ -54,11 +54,13 @@
 
 <script lang="ts">
 import { Context } from '@nuxt/types-edge'
+import { useVuelidate } from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 import consola from 'consola'
+import { computed, onMounted, reactive } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
-import { required } from 'vuelidate/lib/validators'
 
-import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { defineComponent, useNuxtApp, useRoute } from '#app'
 import { useHead } from '#head'
 
 import { jwtStore, useJwtStore } from '~/plugins/util/auth'
@@ -187,6 +189,15 @@ export default defineComponent({
         )
       },
     }
+    const rules = {
+      form: {
+        invitationCode: {
+          required,
+          formatUuid: VALIDATION_FORMAT_UUID,
+        },
+      },
+    }
+    const v$ = useVuelidate(rules, data)
 
     useHead({
       meta: [
@@ -212,29 +223,21 @@ export default defineComponent({
       title: data.title,
     })
 
+    onMounted(() => {
+      if (route.query.ic) {
+        v$.value.form.invitationCode?.$touch()
+
+        if ('error' in route.query) {
+          methods.submit()
+        }
+      }
+    })
+
     return {
       ...apiData,
       ...data,
       ...methods,
-    }
-  },
-  mounted() {
-    if (this.$route.query.ic) {
-      this.$v.form.invitationCode?.$touch()
-
-      if ('error' in this.$route.query) {
-        this.submit()
-      }
-    }
-  },
-  validations() {
-    return {
-      form: {
-        invitationCode: {
-          required,
-          formatUuid: VALIDATION_FORMAT_UUID,
-        },
-      },
+      v$,
     }
   },
 })

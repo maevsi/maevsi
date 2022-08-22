@@ -12,7 +12,7 @@
     </ButtonColored>
     <Form
       :errors="api.errors"
-      :form="$v.form"
+      :form="v$.form"
       form-class="w-full"
       :is-form-sent="isFormSent"
       :submit-name="$t('signIn')"
@@ -20,12 +20,12 @@
     >
       <FormInputUsername
         id="username-sign-in"
-        :form-input="$v.form.username"
+        :form-input="v$.form.username"
         @input="form.username = $event"
       />
       <FormInputPassword
         id="password-sign-in"
-        :form-input="$v.form.password"
+        :form-input="v$.form.password"
         @input="form.password = $event"
       />
       <div class="flex justify-center">
@@ -51,11 +51,12 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { maxLength, minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { reactive } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
-import { maxLength, minLength, required } from 'vuelidate/lib/validators'
 
 import { useNuxtApp, defineComponent } from '#app'
 
@@ -139,15 +140,7 @@ const FormAccountSignIn = defineComponent({
         })
       },
     }
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
-  validations() {
-    return {
+    const rules = {
       form: {
         username: {
           formatSlug: VALIDATION_FORMAT_SLUG,
@@ -159,6 +152,14 @@ const FormAccountSignIn = defineComponent({
           required,
         },
       },
+    }
+    const v$ = useVuelidate(rules, data)
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      v$,
     }
   },
 })

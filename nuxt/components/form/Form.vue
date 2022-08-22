@@ -1,7 +1,7 @@
 <template>
   <form
     v-if="form"
-    ref="form"
+    ref="formRef"
     :class="[
       { 'animate-shake rounded border border-red-500': errors?.length },
       formClass,
@@ -13,10 +13,10 @@
       <slot />
       <div class="mb-4 mt-6 flex flex-col items-center justify-between">
         <ButtonColored
-          ref="buttonSubmit"
+          ref="buttonSubmitRef"
           :aria-label="submitName || $t('submit')"
           :class="{
-            'animate-shake': form.$anyError,
+            'animate-shake': form.$error,
           }"
           type="submit"
           @click="$emit('click')"
@@ -26,7 +26,7 @@
             <slot name="submit-icon" />
           </template>
         </ButtonColored>
-        <FormInputStateError v-if="form.$anyError" class="mt-2">
+        <FormInputStateError v-if="form.$error" class="mt-2">
           {{ $t('globalValidationFailed') }}
         </FormInputStateError>
       </div>
@@ -42,8 +42,9 @@
 
 <script lang="ts">
 import { CombinedError } from '@urql/core'
+import { ref } from 'vue'
 
-import { computed, defineComponent, PropType, ref } from '#app'
+import { computed, defineComponent, PropType } from '#app'
 
 import Button from '~/components/button/Button.vue'
 import { useGetCombinedErrorMessages } from '~/plugins/util/util'
@@ -76,17 +77,15 @@ const Form = defineComponent({
     const { getCombinedErrorMessages } = useGetCombinedErrorMessages()
 
     const refs = {
-      buttonSubmit: ref<InstanceType<typeof Button>>(),
-      form: ref<HTMLFormElement>(),
+      buttonSubmitRef: ref<InstanceType<typeof Button>>(),
+      formRef: ref<HTMLFormElement>(),
     }
     const methods = {
       reset() {
-        refs.form.value?.reset()
+        refs.formRef.value?.reset()
       },
       submit() {
-        if (refs.buttonSubmit) {
-          refs.buttonSubmit.value?.click()
-        }
+        refs.buttonSubmitRef.value?.click()
       },
     }
     const computations = {

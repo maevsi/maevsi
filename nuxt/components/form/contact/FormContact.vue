@@ -2,7 +2,7 @@
   <Form
     ref="form"
     :errors="api.errors"
-    :form="$v.form"
+    :form="v$.form"
     :is-form-sent="isFormSent"
     :submit-name="$t('save')"
     @submit.prevent="submit"
@@ -13,12 +13,12 @@
       placeholder="id"
       title="id"
       type="number"
-      :value="$v.form.id"
+      :value="v$.form.id"
       @input="form.id = $event"
     />
     <FormInputUsername
       id="username"
-      :form-input="$v.form.accountUsername"
+      :form-input="v$.form.accountUsername"
       is-optional
       is-validatable
       @input="form.accountUsername = $event"
@@ -36,12 +36,12 @@
       :placeholder="$t('globalPlaceholderFirstName')"
       :title="$t('firstName')"
       type="text"
-      :value="$v.form.firstName"
+      :value="v$.form.firstName"
       @input="form.firstName = $event"
     >
       <template slot="stateError">
         <FormInputStateError
-          :form-input="$v.form.firstName"
+          :form-input="v$.form.firstName"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
@@ -54,12 +54,12 @@
       :placeholder="$t('globalPlaceholderLastName')"
       :title="$t('lastName')"
       type="text"
-      :value="$v.form.lastName"
+      :value="v$.form.lastName"
       @input="form.lastName = $event"
     >
       <template slot="stateError">
         <FormInputStateError
-          :form-input="$v.form.lastName"
+          :form-input="v$.form.lastName"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
@@ -68,7 +68,7 @@
     </FormInput>
     <FormInputEmailAddress
       id="email-address"
-      :form-input="$v.form.emailAddress"
+      :form-input="v$.form.emailAddress"
       is-optional
       @input="form.emailAddress = $event"
     />
@@ -77,20 +77,20 @@
       is-optional
       :title="$t('address')"
       type="textarea"
-      :value="$v.form.address"
+      :value="v$.form.address"
       @input="form.address = $event"
     >
       <textarea
-        v-if="$v.form.address"
+        v-if="v$.form.address"
         id="input-address"
-        v-model.trim="$v.form.address.$model"
+        v-model.trim="v$.form.address.$model"
         class="form-input"
         :placeholder="$t('globalPlaceholderAddress')"
         rows="2"
       />
       <template slot="stateError">
         <FormInputStateError
-          :form-input="$v.form.address"
+          :form-input="v$.form.address"
           validation-property="maxLength"
         >
           {{ $t('globalValidationLength') }}
@@ -98,12 +98,12 @@
       </template>
     </FormInput>
     <FormInputPhoneNumber
-      :form-input="$v.form.phoneNumber"
+      :form-input="v$.form.phoneNumber"
       is-optional
       @input="form.phoneNumber = $event"
     />
     <FormInputUrl
-      :form-input="$v.form.url"
+      :form-input="v$.form.url"
       is-optional
       @input="form.url = $event"
     />
@@ -111,10 +111,12 @@
 </template>
 
 <script lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { email, helpers, maxLength } from '@vuelidate/validators'
 import consola from 'consola'
-import { email, maxLength } from 'vuelidate/lib/validators'
+import { reactive } from 'vue'
 
-import { computed, defineComponent, PropType, reactive } from '#app'
+import { computed, defineComponent, PropType } from '#app'
 import { Contact } from '~/types/contact'
 import {
   formPreSubmit,
@@ -177,6 +179,7 @@ export default defineComponent({
         try {
           await formPreSubmit(this)
         } catch (error) {
+          consola.debug(error)
           return
         }
 
@@ -250,25 +253,11 @@ export default defineComponent({
         }
       },
     }
-
-    if (props.contact) {
-      for (const [k, v] of Object.entries(props.contact)) {
-        ;(data.form as Record<string, any>)[k] = v
-      }
-    }
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
-  validations() {
-    return {
+    const rules = {
       form: {
         id: {},
         accountUsername: {
-          existence: validateUsername(),
+          existence: helpers.withAsync(validateUsername()),
           formatSlug: VALIDATION_FORMAT_SLUG,
           maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
         },
@@ -294,6 +283,20 @@ export default defineComponent({
           maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
         },
       },
+    }
+    const v$ = useVuelidate(rules, data)
+
+    if (props.contact) {
+      for (const [k, v] of Object.entries(props.contact)) {
+        ;(data.form as Record<string, any>)[k] = v
+      }
+    }
+
+    return {
+      ...apiData,
+      ...data,
+      ...methods,
+      v$,
     }
   },
 })
