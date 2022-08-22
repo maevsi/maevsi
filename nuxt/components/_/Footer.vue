@@ -73,11 +73,11 @@
         <FooterCategory :heading="$t('languages')">
           <AppLink
             v-for="locale in $i18n.locales"
-            :key="locale.code"
-            :to="switchLocalePath(locale.code)"
+            :key="getLocaleCode(locale)"
+            :to="switchLocalePath(getLocaleCode(locale))"
           >
-            <span :class="{ disabled: locale.code === $i18n.locale }">
-              {{ locale.name }}
+            <span :class="{ disabled: getLocaleCode(locale) === $i18n.locale }">
+              {{ getLocaleName(locale) }}
             </span>
           </AppLink>
         </FooterCategory>
@@ -86,10 +86,10 @@
             v-for="colorScheme in ['System', 'Light', 'Dark']"
             :key="colorScheme"
             :class="{
-              disabled: $colorMode.preference === colorScheme.toLowerCase(),
+              disabled: colorModePreference === colorScheme.toLowerCase(),
             }"
             to=""
-            @click="$colorMode.preference = colorScheme.toLowerCase()"
+            @click="colorModePreference = colorScheme.toLowerCase()"
           >
             {{ $t(`colorScheme${colorScheme}`) }}
           </AppLink>
@@ -102,10 +102,47 @@
   </footer>
 </template>
 <script lang="ts">
+import { useColorMode } from '@nuxtjs/color-mode/dist/runtime/composables'
+import { LocaleObject } from '@nuxtjs/i18n/types'
+
 import { defineComponent } from '#app'
+
+import { LOCALES } from '~~/nuxt.config'
 
 export default defineComponent({
   name: 'MaevsiFooter',
+  setup() {
+    const colorMode = useColorMode()
+
+    const data = {
+      colorModePreference: colorMode.preference,
+    }
+    const methods = {
+      getLocaleCode(locale: string | LocaleObject) {
+        return typeof locale === 'string' ? locale : locale.code
+      },
+      getLocaleName(locale: string | LocaleObject) {
+        if (typeof locale === 'string') {
+          const locales: LocaleObject[] = LOCALES.filter(
+            (localeObject) => localeObject.code === locale
+          )
+
+          if (locales.length) {
+            return locales[0].name
+          } else {
+            return undefined
+          }
+        } else {
+          return locale.name
+        }
+      },
+    }
+
+    return {
+      ...data,
+      ...methods,
+    }
+  },
 })
 </script>
 

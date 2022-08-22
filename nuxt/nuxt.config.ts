@@ -1,11 +1,12 @@
 import { defineNuxtConfig } from '@nuxt/bridge'
+import { LocaleObject } from '@nuxtjs/i18n/types'
 import { Configuration } from 'webpack'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
 import { BASE_URL } from './plugins/util/constants'
 
-const LOCALES = [
+export const LOCALES: LocaleObject[] = [
   {
     code: 'en',
     name: 'English',
