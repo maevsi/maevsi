@@ -6,7 +6,7 @@
       class="rounded"
       type="checkbox"
       :checked="value"
-      @change="$emit('change', $event.target.checked)"
+      @change="onChange"
     />
     <label class="pl-2" :for="`input-${formKey}`"><slot /></label>
   </div>
@@ -25,6 +25,17 @@ export default defineComponent({
       default: undefined,
       type: Boolean as PropType<boolean | undefined>,
     },
+  },
+  setup(_props, { emit }) {
+    const methods = {
+      onChange(payload: Event) {
+        emit('change', (payload.target as HTMLInputElement).checked)
+      },
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

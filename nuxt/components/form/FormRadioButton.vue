@@ -6,7 +6,7 @@
       :name="groupName"
       type="radio"
       :value="value ? value : titleSlug"
-      @change="$emit('change', $event.target.value)"
+      @change="onChange"
     />
     <label class="pl-2" :for="`input-${groupName}-${titleSlug}`">
       {{ title }}
@@ -17,7 +17,7 @@
 <script lang="ts">
 import slugify from 'slugify'
 
-import { defineComponent, PropType } from '#app'
+import { computed, defineComponent, PropType } from '#app'
 
 export default defineComponent({
   props: {
@@ -38,10 +38,22 @@ export default defineComponent({
       type: String,
     },
   },
-  computed: {
-    titleSlug(): string {
-      return slugify(this.title, { lower: true, strict: true })
-    },
+  setup(props, { emit }) {
+    const methods = {
+      onChange(payload: Event) {
+        emit('change', (payload.target as HTMLInputElement).value)
+      },
+    }
+    const computations = {
+      titleSlug: computed(() => {
+        return slugify(props.title, { lower: true, strict: true })
+      }),
+    }
+
+    return {
+      ...methods,
+      ...computations,
+    }
   },
 })
 </script>

@@ -45,7 +45,7 @@
             :placeholder="placeholder"
             :type="type"
             :value="value?.$model"
-            @input="$emit('input', $event.target?.value)"
+            @input="onInput"
           />
           <div v-if="validationProperty && isValidatable">
             <FormInputIconWrapper v-if="validationProperty.$pending">
@@ -106,6 +106,8 @@
 
 <script lang="ts">
 import consola from 'consola'
+import { Validation } from 'vuelidate/vuelidate'
+
 import { defineComponent, PropType } from '#app'
 
 const FormInput = defineComponent({
@@ -152,17 +154,23 @@ const FormInput = defineComponent({
     },
     value: {
       default: undefined,
-      type: Object as PropType<object | undefined>,
+      type: Object as PropType<Validation | undefined>,
     },
     warning: {
       default: false,
       type: Boolean,
     },
   },
-  created() {
+  setup(props, { emit }) {
+    const methods = {
+      onInput(payload: Event) {
+        emit('input', (payload.target as HTMLInputElement)?.value)
+      },
+    }
+
     if (
-      !this.placeholder &&
-      this.type &&
+      !props.placeholder &&
+      props.type &&
       ![
         'checkbox',
         'datetime-local',
@@ -171,17 +179,21 @@ const FormInput = defineComponent({
         'textarea',
         'tiptap',
         'radio',
-      ].includes(this.type)
+      ].includes(props.type)
     ) {
-      consola.warn(`placeholder is missing for ${this.idLabel}!`)
+      consola.warn(`placeholder is missing for ${props.idLabel}!`)
     }
 
     if (
-      !this.value &&
-      this.type &&
-      !['checkbox', 'select'].includes(this.type)
+      !props.value &&
+      props.type &&
+      !['checkbox', 'select'].includes(props.type)
     ) {
-      consola.warn(`value is missing for ${this.idLabel}!`)
+      consola.warn(`value is missing for ${props.idLabel}!`)
+    }
+
+    return {
+      ...methods,
     }
   },
 })
