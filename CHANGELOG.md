@@ -1,3 +1,17 @@
+## [0.145.4](https://github.com/maevsi/maevsi/compare/0.145.3...0.145.4) (2022-08-22)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([c63e317](https://github.com/maevsi/maevsi/commit/c63e317050d14fdde08b89748e61304bbeeb2105))
+
+## [0.145.3](https://github.com/maevsi/maevsi/compare/0.145.2...0.145.3) (2022-08-15)
+
+
+### Bug Fixes
+
+* **headers:** specify self hostname ([95286b8](https://github.com/maevsi/maevsi/commit/95286b89b8d6edf2431eee10bb6e29ac74edfec2))
+
 ## [0.145.2](https://github.com/maevsi/maevsi/compare/0.145.1...0.145.2) (2022-08-14)
 
 

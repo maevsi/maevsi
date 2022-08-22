@@ -5,9 +5,8 @@ import { STACK_DOMAIN } from '~/plugins/util/constants'
 const csp: Record<string, Array<string>> = {
   'base-uri': ["'none'"], // Mozilla Observatory.
   'connect-src': [
-    'self', // XHR (HMR)
+    "'self'", // XHR (HMR), Cloudflare real user management (browser insights, on /cdn-cgi/rum)
     `https://postgraphile.${STACK_DOMAIN}`,
-    'https://maev.si/cdn-cgi/rum', // Cloudflare real user management (browser insights)
     'https://www.google-analytics.com',
   ],
   'default-src': ["'none'"],
@@ -25,6 +24,7 @@ const csp: Record<string, Array<string>> = {
   'manifest-src': ["'self'"],
   'prefetch-src': ["'self'"],
   'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
+  'require-trusted-types-for': ["'script'"], // csp-evaluator
   'script-src': [
     'blob:',
     "'self'",
