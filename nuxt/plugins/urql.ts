@@ -23,24 +23,25 @@ import {
   jwtRefresh,
 } from '~/plugins/util/auth'
 
-const ssrKey = '__URQL_DATA__'
+// const ssrKey = '__URQL_DATA__'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const ssr = ssrExchange({
     isClient: process.client,
   })
 
-  if (process.client) {
-    nuxtApp.hook('app:created', () => {
-      ssr.restoreData(nuxtApp.payload[ssrKey])
-    })
-  }
+  // TODO: Enable when SSR hooks are available in Nuxt bridge or when migrated to Nuxt 3. (https://github.com/maevsi/maevsi/issues/283)
+  // if (process.client) {
+  //   nuxtApp.hook('app:created', () => {
+  //     ssr.restoreData(nuxtApp.payload[ssrKey])
+  //   })
+  // }
 
-  if (process.server) {
-    nuxtApp.hook('app:rendered', () => {
-      nuxtApp.payload[ssrKey] = ssr.extractData()
-    })
-  }
+  // if (process.server) {
+  //   nuxtApp.hook('app:rendered', () => {
+  //     nuxtApp.payload[ssrKey] = ssr.extractData()
+  //   })
+  // }
 
   const cacheConfig: GraphCacheConfig = {
     schema,
