@@ -107,7 +107,7 @@ import { LocaleObject } from '@nuxtjs/i18n/types'
 
 import { defineComponent } from '#app'
 
-import { LOCALES } from '~~/nuxt.config'
+import { LOCALES } from '~/plugins/util/constants'
 
 export default defineComponent({
   name: 'MaevsiFooter',

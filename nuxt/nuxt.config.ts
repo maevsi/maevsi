@@ -1,29 +1,18 @@
 import { defineNuxtConfig } from '@nuxt/bridge'
-import { LocaleObject } from '@nuxtjs/i18n/types'
 import { Configuration } from 'webpack'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import { BASE_URL } from './plugins/util/constants'
+import {
+  BASE_URL,
+  SITEMAP_EXCLUSIONS,
+  SITEMAP_EXCLUSIONS_LOCALIZED,
+  LOCALES,
+} from './plugins/util/constants'
 
-export const LOCALES: LocaleObject[] = [
-  {
-    code: 'en',
-    name: 'English',
-    iso: 'en', // Will be used as catchall locale by default.
-  },
-  {
-    code: 'de',
-    name: 'Deutsch',
-    iso: 'de',
-  },
-]
-const EXCLUSIONS = ['/%F0%9F%AB%96']
-const EXCLUSIONS_LOCALIZED = []
-
-for (const exclusion of EXCLUSIONS) {
+for (const exclusion of SITEMAP_EXCLUSIONS) {
   for (const locale of LOCALES) {
-    EXCLUSIONS_LOCALIZED.push(`/${locale.code}${exclusion}`)
+    SITEMAP_EXCLUSIONS_LOCALIZED.push(`/${locale.code}${exclusion}`)
   }
 }
 
@@ -210,7 +199,7 @@ export default defineNuxtConfig({
         Sitemap: BASE_URL + '/sitemap.xml',
       },
     ],
-    ['@nuxtjs/sitemap', { exclude: EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
+    ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
   ],
   nitro: {
     autoImport: {
