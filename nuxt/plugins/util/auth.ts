@@ -127,7 +127,6 @@ export async function jwtStore(
     window.location.reload()
   }
 ) {
-  debugger
   $urqlReset()
 
   consola.trace('Storing the following JWT: ' + jwt)
