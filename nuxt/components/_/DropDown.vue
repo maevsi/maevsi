@@ -14,7 +14,7 @@
     />
     <div
       v-if="isOpen"
-      ref="dropdown"
+      ref="dropdownRef"
       class="fixed z-20 mt-2 flex -translate-x-full flex-col gap-2 rounded-md bg-background-brighten p-2 shadow-lg dark:bg-background-darken"
     >
       <slot name="content" />
@@ -23,29 +23,45 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '#app'
+import { reactive, ref } from 'vue'
+
+import { defineComponent, useNuxtApp } from '#app'
 
 export default defineComponent({
-  data() {
-    return {
-      isOpen: false,
+  setup() {
+    const { $nuxt } = useNuxtApp()
+
+    const refs = {
+      dropdownRef: ref<HTMLElement>(),
     }
-  },
-  methods: {
-    toggleIsOpen(e: MouseEvent) {
-      this.isOpen = !this.isOpen
+    const data = reactive({
+      isOpen: false,
+    })
 
-      if (this.isOpen) {
-        document.body.classList.add('overflow-hidden')
+    const methods = {
+      toggleIsOpen(e: MouseEvent) {
+        data.isOpen = !data.isOpen
 
-        this.$nuxt.$nextTick(() => {
-          ;(this.$refs.dropdown as HTMLElement).style.top = e.clientY + 'px'
-          ;(this.$refs.dropdown as HTMLElement).style.left = e.clientX + 'px'
-        })
-      } else {
-        document.body.classList.remove('overflow-hidden')
-      }
-    },
+        if (data.isOpen) {
+          document.body.classList.add('overflow-hidden')
+
+          $nuxt.$nextTick(() => {
+            if (refs.dropdownRef.value) {
+              refs.dropdownRef.value.style.top = e.clientY + 'px'
+              refs.dropdownRef.value.style.left = e.clientX + 'px'
+            }
+          })
+        } else {
+          document.body.classList.remove('overflow-hidden')
+        }
+      },
+    }
+
+    return {
+      ...refs,
+      ...data,
+      ...methods,
+    }
   },
 })
 </script>

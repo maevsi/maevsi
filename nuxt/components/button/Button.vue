@@ -1,7 +1,7 @@
 <template>
   <AppLink
     v-if="to"
-    ref="button"
+    ref="buttonRef"
     :append="append"
     :aria-label="ariaLabel"
     :class="isBlock ? 'block' : 'inline-flex items-center gap-2'"
@@ -15,7 +15,7 @@
   </AppLink>
   <button
     v-else
-    ref="button"
+    ref="buttonRef"
     :aria-label="ariaLabel"
     :class="isBlock ? 'block' : 'inline-flex items-center gap-2'"
     :disabled="disabled"
@@ -29,6 +29,8 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue'
+
 import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
@@ -59,10 +61,20 @@ export default defineComponent({
       type: String as PropType<'button' | 'submit' | 'reset' | undefined>,
     },
   },
-  methods: {
-    click() {
-      ;(this.$refs.button as HTMLButtonElement).click()
-    },
+  setup() {
+    const refs = {
+      buttonRef: ref<HTMLButtonElement>(),
+    }
+    const methods = {
+      click() {
+        refs.buttonRef.value?.click()
+      },
+    }
+
+    return {
+      ...refs,
+      ...methods,
+    }
   },
 })
 </script>

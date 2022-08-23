@@ -4,7 +4,7 @@
     :is-optional="isOptional"
     :id-label="`input-${id}`"
     :placeholder="$t('globalPlaceholderEmailAddress')"
-    :title="title"
+    :title="title || $t('emailAddress')"
     type="email"
     :value="formInput"
     @input="$emit('input', $event)"
@@ -59,10 +59,8 @@ export default defineComponent({
       type: Boolean,
     },
     title: {
-      default() {
-        return this.$t('emailAddress')
-      },
-      type: String,
+      default: undefined,
+      type: String as PropType<string | undefined>,
     },
   },
 })

@@ -9,6 +9,8 @@
 </template>
 
 <script lang="ts">
+import { computed } from 'vue'
+
 import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
@@ -34,17 +36,25 @@ export default defineComponent({
       type: String,
     },
   },
-  computed: {
-    classComputed(): string {
-      return [this.classes, ...(this.rounded ? ['rounded-full'] : [])].join(' ')
-    },
-    imageSrc(): string {
-      if (this.emailAddress && this.emailAddressHash) {
-        return `https://www.gravatar.com/avatar/${this.emailAddressHash}?d=mp&s=${this.size}`
-      } else {
-        return require('~/public/assets/static/images/blank-profile-picture.svg')
-      }
-    },
+  setup(props) {
+    const computations = {
+      classComputed: computed(() => {
+        return [props.classes, ...(props.rounded ? ['rounded-full'] : [])].join(
+          ' '
+        )
+      }),
+      imageSrc: computed(() => {
+        if (props.emailAddress && props.emailAddressHash) {
+          return `https://www.gravatar.com/avatar/${props.emailAddressHash}?d=mp&s=${props.size}`
+        } else {
+          return require('~/public/assets/static/images/blank-profile-picture.svg')
+        }
+      }),
+    }
+
+    return {
+      ...computations,
+    }
   },
 })
 </script>

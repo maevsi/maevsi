@@ -157,11 +157,11 @@ export default defineComponent({
 
         // For multiple contact selections:
         //
-        // const index = this.form.contactIds.indexOf(contact.nodeId)
+        // const index = data.form.contactIds.indexOf(contact.nodeId)
         // if (index === -1) {
-        //   this.form.contactIds.push(contact.nodeId)
+        //   data.form.contactIds.push(contact.nodeId)
         // } else {
-        //   this.form.contactIds.splice(index, 1)
+        //   data.form.contactIds.splice(index, 1)
         // }
       },
       async submit() {

@@ -1,6 +1,6 @@
 <template>
   <Button
-    ref="button"
+    ref="buttonRef"
     :append="append"
     :aria-label="ariaLabel"
     class="font-medium px-4 py-2"
@@ -20,6 +20,8 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue'
+
 import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
@@ -45,10 +47,20 @@ export default defineComponent({
       type: String,
     },
   },
-  methods: {
-    click() {
-      ;(this.$refs.button as HTMLButtonElement).click()
-    },
+  setup() {
+    const refs = {
+      buttonRef: ref<HTMLButtonElement>(),
+    }
+    const methods = {
+      click() {
+        refs.buttonRef.value?.click()
+      },
+    }
+
+    return {
+      ...refs,
+      ...methods,
+    }
   },
 })
 </script>

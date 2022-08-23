@@ -144,8 +144,8 @@ export default defineComponent({
         switch (e.key) {
           // // Temporarily disabled until https://github.com/maevsi/maevsi/issues/765
           // case 'Enter': // Enter
-          //   if (!this.isSubmitting && !this.isSubmitDisabled) {
-          //     this.submit()
+          //   if (!data.isSubmitting && !props.isSubmitDisabled) {
+          //     methods.submit()
           //   }
           //   break
           case 'Escape': // Escape

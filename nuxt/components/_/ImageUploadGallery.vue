@@ -285,7 +285,7 @@ export default defineComponent({
 
         try {
           const fileReader = new FileReader()
-          fileReader.onload = (e) => this.fileLoaded(e)
+          fileReader.onload = (e) => methods.fileLoaded(e)
           fileReader.readAsDataURL(file)
         } catch (err: any) {
           if (err.isRestriction) {

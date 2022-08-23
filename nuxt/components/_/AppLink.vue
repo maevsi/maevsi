@@ -23,6 +23,8 @@
 </template>
 
 <script lang="ts">
+import { computed } from 'vue'
+
 import { defineComponent } from '#app'
 
 export default defineComponent({
@@ -48,14 +50,20 @@ export default defineComponent({
       type: String,
     },
   },
-  computed: {
-    classes(): string {
-      return [
-        'rounded',
-        ...(this.isColored ? ['text-link-dark dark:text-link-bright'] : []),
-        ...(this.isUnderlined ? ['underline'] : []),
-      ].join(' ')
-    },
+  setup(props) {
+    const computations = {
+      classes: computed(() => {
+        return [
+          'rounded',
+          ...(props.isColored ? ['text-link-dark dark:text-link-bright'] : []),
+          ...(props.isUnderlined ? ['underline'] : []),
+        ].join(' ')
+      }),
+    }
+
+    return {
+      ...computations,
+    }
   },
 })
 </script>

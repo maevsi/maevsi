@@ -12,6 +12,8 @@
 </template>
 
 <script lang="ts">
+import { reactive, watch } from 'vue'
+
 import { defineComponent, PropType } from '#app'
 
 export default defineComponent({
@@ -29,33 +31,39 @@ export default defineComponent({
       type: String,
     },
   },
-  data() {
-    return {
+  setup(props) {
+    const data = reactive({
       srcWhenLoaded: undefined as string | undefined,
+    })
+    const methods = {
+      async updateSource() {
+        data.srcWhenLoaded = process.server
+          ? props.src
+          : await new Promise<string>((resolve) => {
+              const img = new Image()
+
+              img.onload = () => {
+                resolve(img.src)
+              }
+
+              img.src = props.src
+            })
+      },
     }
-  },
-  async fetch() {
-    await this.updateSource()
-  },
-  watch: {
-    async src() {
-      await this.updateSource()
-    },
-  },
-  methods: {
-    async updateSource() {
-      this.srcWhenLoaded = process.server
-        ? this.src
-        : await new Promise<string>((resolve) => {
-            const img = new Image()
 
-            img.onload = () => {
-              resolve(img.src)
-            }
+    watch(
+      () => props.src,
+      async (_currentValue, _oldValue) => {
+        await methods.updateSource()
+      }
+    )
 
-            img.src = this.src
-          })
-    },
+    methods.updateSource()
+
+    return {
+      ...data,
+      ...methods,
+    }
   },
 })
 </script>
