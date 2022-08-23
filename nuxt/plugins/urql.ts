@@ -65,6 +65,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     // },
   }
 
+  // @ts-ignore https://github.com/FormidableLabs/urql/issues/2639
   const cache = cacheExchange(cacheConfig)
 
   const options: ClientOptions = {
