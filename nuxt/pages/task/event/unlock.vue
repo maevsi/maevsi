@@ -57,7 +57,7 @@ import { Context } from '@nuxt/types-edge'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
-import { computed, onMounted, reactive } from 'vue'
+import { computed, onMounted, reactive, toRef } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, useNuxtApp, useRoute } from '#app'
@@ -156,11 +156,21 @@ export default defineComponent({
       isFormSent: false,
       title: t('title'),
     })
+    const rules = {
+      form: {
+        invitationCode: {
+          required,
+          formatUuid: VALIDATION_FORMAT_UUID,
+        },
+      },
+    }
+    const v$ = useVuelidate(rules, data)
     const methods = {
       async submit() {
         try {
-          await formPreSubmit(this)
+          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
         } catch (error) {
+          consola.debug(error)
           return
         }
 
@@ -189,15 +199,6 @@ export default defineComponent({
         )
       },
     }
-    const rules = {
-      form: {
-        invitationCode: {
-          required,
-          formatUuid: VALIDATION_FORMAT_UUID,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
 
     useHead({
       meta: [

@@ -114,7 +114,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import { email, helpers, maxLength } from '@vuelidate/validators'
 import consola from 'consola'
-import { reactive } from 'vue'
+import { reactive, toRef } from 'vue'
 
 import { computed, defineComponent, PropType } from '#app'
 import { Contact } from '~/types/contact'
@@ -174,10 +174,42 @@ export default defineComponent({
       },
       isFormSent: false,
     })
+    const rules = {
+      form: {
+        id: {},
+        accountUsername: {
+          existence: helpers.withAsync(validateUsername()),
+          formatSlug: VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+        },
+        address: {
+          maxLength: maxLength(VALIDATION_ADDRESS_LENGTH_MAXIMUM),
+        },
+        emailAddress: {
+          email,
+          formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+          maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+        },
+        firstName: {
+          maxLength: maxLength(VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
+        },
+        lastName: {
+          maxLength: maxLength(VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
+        },
+        phoneNumber: {
+          formatPhoneNumber: VALIDATION_FORMAT_PHONE_NUMBER,
+        },
+        url: {
+          formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
+          maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
+        },
+      },
+    }
+    const v$ = useVuelidate(rules, data)
     const methods = {
       async submit() {
         try {
-          await formPreSubmit(this)
+          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
         } catch (error) {
           consola.debug(error)
           return
@@ -253,38 +285,6 @@ export default defineComponent({
         }
       },
     }
-    const rules = {
-      form: {
-        id: {},
-        accountUsername: {
-          existence: helpers.withAsync(validateUsername()),
-          formatSlug: VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-        },
-        address: {
-          maxLength: maxLength(VALIDATION_ADDRESS_LENGTH_MAXIMUM),
-        },
-        emailAddress: {
-          email,
-          formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-        },
-        firstName: {
-          maxLength: maxLength(VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
-        },
-        lastName: {
-          maxLength: maxLength(VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
-        },
-        phoneNumber: {
-          formatPhoneNumber: VALIDATION_FORMAT_PHONE_NUMBER,
-        },
-        url: {
-          formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
-          maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
 
     if (props.contact) {
       for (const [k, v] of Object.entries(props.contact)) {

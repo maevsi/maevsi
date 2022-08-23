@@ -261,12 +261,6 @@
 
 <script lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import consola from 'consola'
-import { Datetime } from 'vue-datetime'
-import { DateTime, Settings } from 'luxon'
-import slugify from 'slugify'
-import Swal from 'sweetalert2'
-import { useI18n } from 'vue-i18n-composable'
 import {
   helpers,
   maxLength,
@@ -274,6 +268,13 @@ import {
   minValue,
   required,
 } from '@vuelidate/validators'
+import consola from 'consola'
+import { Datetime } from 'vue-datetime'
+import { DateTime, Settings } from 'luxon'
+import slugify from 'slugify'
+import Swal from 'sweetalert2'
+import { toRef } from 'vue'
+import { useI18n } from 'vue-i18n-composable'
 
 import { computed, defineComponent, PropType, reactive, useNuxtApp } from '#app'
 
@@ -318,6 +319,7 @@ export default defineComponent({
     const apiData = {
       api: computed(() => {
         return {
+          data: {},
           ...getApiMeta([createEventMutation, updateEventMutation]),
         }
       }),
@@ -344,6 +346,52 @@ export default defineComponent({
       isFormSent: false,
       signedInUsername: store.signedInUsername,
     })
+    const rules = {
+      form: {
+        id: {},
+        authorUsername: {},
+        description: {
+          maxLength: maxLength(VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM),
+        },
+        end: {},
+        inviteeCountMaximum: {
+          maxValue: maxValue(Math.pow(2, 31) - 1), // PostgrSQL's positive end of range for integers.
+          minValue: minValue(1),
+        },
+        isInPerson: {},
+        isRemote: {},
+        location: {
+          maxLength: maxLength(VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM),
+        },
+        name: {
+          maxLength: maxLength(VALIDATION_EVENT_NAME_LENGTH_MAXIMUM),
+          required,
+        },
+        slug: {
+          existenceNone: helpers.withAsync(
+            validateEventSlug(
+              store.signedInUsername || '',
+              true,
+              props.event?.slug
+            )
+          ),
+          maxLength: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
+          required,
+          formatSlug: VALIDATION_FORMAT_SLUG,
+        },
+        start: {
+          required,
+        },
+        url: {
+          formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
+          maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
+        },
+        visibility: {
+          required,
+        },
+      },
+    }
+    const v$ = useVuelidate(rules, data)
     const methods = {
       onInputName($event: any) {
         data.form.name = $event
@@ -351,7 +399,7 @@ export default defineComponent({
       },
       async submit() {
         try {
-          await formPreSubmit(this)
+          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
         } catch (error) {
           consola.debug(error)
           return
@@ -453,52 +501,6 @@ export default defineComponent({
         })
       },
     }
-    const rules = {
-      form: {
-        id: {},
-        authorUsername: {},
-        description: {
-          maxLength: maxLength(VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM),
-        },
-        end: {},
-        inviteeCountMaximum: {
-          maxValue: maxValue(Math.pow(2, 31) - 1), // PostgrSQL's positive end of range for integers.
-          minValue: minValue(1),
-        },
-        isInPerson: {},
-        isRemote: {},
-        location: {
-          maxLength: maxLength(VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM),
-        },
-        name: {
-          maxLength: maxLength(VALIDATION_EVENT_NAME_LENGTH_MAXIMUM),
-          required,
-        },
-        slug: {
-          existenceNone: helpers.withAsync(
-            validateEventSlug(
-              store.signedInUsername || '',
-              true,
-              props.event?.slug
-            )
-          ),
-          maxLength: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
-          required,
-          formatSlug: VALIDATION_FORMAT_SLUG,
-        },
-        start: {
-          required,
-        },
-        url: {
-          formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
-          maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
-        },
-        visibility: {
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
     const computations = {
       isWarningStartPastShown: computed(
         () => !VALIDATION_NOW_OR_FUTURE($moment(v$.value.form.start.$model))

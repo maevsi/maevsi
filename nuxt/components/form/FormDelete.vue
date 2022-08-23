@@ -24,11 +24,12 @@ import { minLength, required } from '@vuelidate/validators'
 import { CombinedError, UseMutationResponse } from '@urql/vue'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { toRef } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
 
 import { defineComponent, PropType, reactive } from '#app'
 
-import { capitalizeFirstLetter } from '~/plugins/util/util'
+import { capitalizeFirstLetter, getApiDataDefault } from '~/plugins/util/util'
 import {
   formPreSubmit,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
@@ -56,16 +57,26 @@ export default defineComponent({
   setup(props, { emit }) {
     const { t } = useI18n()
 
+    const apiData = getApiDataDefault()
     const data = reactive({
       form: {
         password: undefined as string | undefined,
       },
       isFormSent: false,
     })
+    const rules = {
+      form: {
+        password: {
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
+      },
+    }
+    const v$ = useVuelidate(rules, data)
     const methods = {
       async submit() {
         try {
-          await formPreSubmit(this)
+          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
         } catch (error) {
           consola.debug(error)
           return
@@ -96,15 +107,6 @@ export default defineComponent({
           })
       },
     }
-    const rules = {
-      form: {
-        password: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
 
     return {
       ...data,

@@ -55,7 +55,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { maxLength, minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { reactive } from 'vue'
+import { reactive, toRef } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
 
 import { useNuxtApp, defineComponent } from '#app'
@@ -91,6 +91,20 @@ const FormAccountSignIn = defineComponent({
       },
       isFormSent: false,
     })
+    const rules = {
+      form: {
+        username: {
+          formatSlug: VALIDATION_FORMAT_SLUG,
+          maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+          required,
+        },
+        password: {
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
+      },
+    }
+    const v$ = useVuelidate(rules, data)
     const methods = {
       accountRegistrationRefresh() {
         executeMutationAccountRegistrationRefresh({
@@ -111,8 +125,9 @@ const FormAccountSignIn = defineComponent({
       },
       async submit() {
         try {
-          await formPreSubmit(this)
+          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
         } catch (error) {
+          consola.debug(error)
           return
         }
 
@@ -128,32 +143,18 @@ const FormAccountSignIn = defineComponent({
               .then(() => {
                 $router.push(localePath(`/dashboard`))
               })
-              .catch(
-                async () =>
-                  await Swal.fire({
-                    icon: 'error',
-                    text: t('jwtStoreFail') as string,
-                    title: t('globalStatusError'),
-                  })
-              )
+              .catch(async (error) => {
+                consola.debug(error)
+                await Swal.fire({
+                  icon: 'error',
+                  text: t('jwtStoreFail') as string,
+                  title: t('globalStatusError'),
+                })
+              })
           }
         })
       },
     }
-    const rules = {
-      form: {
-        username: {
-          formatSlug: VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-          required,
-        },
-        password: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
 
     return {
       ...apiData,

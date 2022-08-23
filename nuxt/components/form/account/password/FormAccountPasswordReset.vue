@@ -21,7 +21,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { reactive } from 'vue'
+import { reactive, toRef } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
 
 import { computed, defineComponent, useNuxtApp, useRoute } from '#app'
@@ -62,11 +62,21 @@ const FormAccountPasswordReset = defineComponent({
       },
       isFormSent: false,
     })
+    const rules = {
+      form: {
+        password: {
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
+      },
+    }
+    const v$ = useVuelidate(rules, data)
     const methods = {
       async submit() {
         try {
-          await formPreSubmit(this)
+          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
         } catch (error) {
+          consola.debug(error)
           return
         }
 
@@ -97,15 +107,6 @@ const FormAccountPasswordReset = defineComponent({
         })
       },
     }
-    const rules = {
-      form: {
-        password: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
 
     return {
       ...apiData,

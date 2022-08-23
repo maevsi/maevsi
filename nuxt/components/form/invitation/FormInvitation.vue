@@ -82,7 +82,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import { minValue, required } from '@vuelidate/validators'
 import consola from 'consola'
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, toRef } from 'vue'
 
 import { defineComponent, PropType, watch } from '#app'
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
@@ -137,6 +137,20 @@ export default defineComponent({
       },
       isFormSent: false,
     })
+    const rules = {
+      form: {
+        contactId: {
+          // $each: {
+          minValue: minValue(1),
+          required,
+          // },
+          // minLength: minLength(1),
+          // required,
+        },
+        searchString: {},
+      },
+    }
+    const v$ = useVuelidate(rules, data)
     const methods = {
       selectToggle(contact: Contact) {
         data.form.contactId = contact.id
@@ -152,7 +166,7 @@ export default defineComponent({
       },
       async submit() {
         try {
-          await formPreSubmit(this)
+          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
         } catch (error) {
           consola.debug(error)
           return
@@ -214,20 +228,6 @@ export default defineComponent({
         return allContactsFiltered
       }),
     }
-    const rules = {
-      form: {
-        contactId: {
-          // $each: {
-          minValue: minValue(1),
-          required,
-          // },
-          // minLength: minLength(1),
-          // required,
-        },
-        searchString: {},
-      },
-    }
-    const v$ = useVuelidate(rules, data)
 
     watch(allContactsQuery.error, (currentValue, _oldValue) => {
       if (currentValue) consola.error(currentValue)

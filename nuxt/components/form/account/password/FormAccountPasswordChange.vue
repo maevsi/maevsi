@@ -27,7 +27,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { reactive, ref } from 'vue'
+import { reactive, ref, toRef } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
 
 import { computed, defineComponent } from '#app'
@@ -66,14 +66,28 @@ const FormAccountPasswordChange = defineComponent({
       },
       isFormSent: false,
     })
+    const rules = {
+      form: {
+        passwordCurrent: {
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
+        passwordNew: {
+          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+          required,
+        },
+      },
+    }
+    const v$ = useVuelidate(rules, data)
     const methods = {
       resetForm() {
         refs.formRef.value?.reset()
       },
       async submit() {
         try {
-          await formPreSubmit(this)
+          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
         } catch (error) {
+          consola.debug(error)
           return
         }
 
@@ -101,19 +115,6 @@ const FormAccountPasswordChange = defineComponent({
         methods.resetForm()
       },
     }
-    const rules = {
-      form: {
-        passwordCurrent: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-        passwordNew: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
 
     return {
       ...refs,

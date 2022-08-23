@@ -22,7 +22,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { email, maxLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { reactive } from 'vue'
+import { reactive, toRef } from 'vue'
 import { useI18n } from 'vue-i18n-composable'
 
 import { computed, defineComponent, PropType, useNuxtApp } from '#app'
@@ -64,10 +64,21 @@ const FormAccountPasswordResetRequest = defineComponent({
       },
       isFormSent: false,
     })
+    const rules = {
+      form: {
+        emailAddress: {
+          email,
+          formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+          maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+          required,
+        },
+      },
+    }
+    const v$ = useVuelidate(rules, data)
     const methods = {
       async submit() {
         try {
-          await formPreSubmit(this)
+          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
         } catch (error) {
           consola.debug(error)
           return
@@ -95,17 +106,6 @@ const FormAccountPasswordResetRequest = defineComponent({
         })
       },
     }
-    const rules = {
-      form: {
-        emailAddress: {
-          email,
-          formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
 
     return {
       ...apiData,

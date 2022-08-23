@@ -1,5 +1,8 @@
 import { helpers } from '@vuelidate/validators'
 import moment from 'moment'
+import { Ref } from 'vue'
+
+import { getApiDataDefault } from './util'
 import {
   useAccountIsExistingQuery,
   useEventIsExistingQuery,
@@ -36,12 +39,16 @@ export const VALIDATION_NOW_OR_FUTURE = (value: moment.Moment) =>
 export const VALIDATION_PASSWORD_LENGTH_MINIMUM = 8
 export const VALIDATION_USERNAME_LENGTH_MAXIMUM = 100
 
-export async function formPreSubmit(that: any): Promise<boolean> {
-  that.graphqlError = undefined
-  that.v$.$touch()
+export async function formPreSubmit(
+  apiData: ReturnType<typeof getApiDataDefault>,
+  v$: any,
+  isFormSent: Ref<boolean>
+): Promise<boolean> {
+  apiData.api.value.errors = []
+  v$.value.$touch()
 
-  const isFormValid = await that.v$.$validate()
-  that.isFormSent = isFormValid
+  const isFormValid = await v$.value.$validate()
+  isFormSent.value = isFormValid
 
   if (!isFormValid) {
     throw new Error('Form is invalid!')
