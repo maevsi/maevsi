@@ -6,7 +6,7 @@
         !formInput.$pending &&
         validationProperty &&
         validationProperty in formInput &&
-        !formInput[validationProperty])
+        !formInput[validationProperty].$invalid)
     "
     class="text-red-600"
   >
