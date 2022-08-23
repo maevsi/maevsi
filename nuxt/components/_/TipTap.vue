@@ -154,6 +154,7 @@
 import { Editor, EditorContent } from '@tiptap/vue-2'
 import { Link } from '@tiptap/extension-link'
 import StarterKit from '@tiptap/starter-kit'
+import { onMounted, onBeforeUnmount, reactive, watch } from 'vue'
 
 import { defineComponent } from '#app'
 
@@ -173,71 +174,81 @@ export default defineComponent({
       type: String,
     },
   },
-  data() {
-    return {
+  setup(props, { emit }) {
+    const data = reactive({
       editor: null as Editor | null,
-    }
-  },
-  watch: {
-    value(value) {
-      if (!this.editor) return
-
-      const isSame = this.editor.getHTML() === value
-
-      if (isSame) {
-        return
-      }
-
-      this.editor.commands.setContent(value, false)
-    },
-  },
-  mounted() {
-    this.editor = new Editor({
-      content: this.value,
-      editorProps: {
-        attributes: {
-          class: 'form-input min-h-[100px]',
-        },
-      },
-      extensions: [StarterKit, Link],
-      onUpdate: () => {
-        if (!this.editor) return
-        this.$emit('input', this.editor.getHTML())
-      },
     })
-  },
-  beforeDestroy() {
-    if (this.editor) {
-      this.editor.destroy()
+    const methods = {
+      setLink() {
+        if (!data.editor) return
+
+        const previousUrl = data.editor.getAttributes('link').href
+        const url = window.prompt('URL', previousUrl)
+
+        // cancelled
+        if (url === null) {
+          return
+        }
+
+        // empty
+        if (url === '') {
+          data.editor.chain().focus().extendMarkRange('link').unsetLink().run()
+
+          return
+        }
+
+        // update link
+        data.editor
+          .chain()
+          .focus()
+          .extendMarkRange('link')
+          .setLink({ href: url, target: '_blank' })
+          .run()
+      },
     }
-  },
-  methods: {
-    setLink() {
-      if (!this.editor) return
 
-      const previousUrl = this.editor.getAttributes('link').href
-      const url = window.prompt('URL', previousUrl)
+    watch(
+      () => props.value,
+      (currentValue, _oldValue) => {
+        if (!data.editor) return
 
-      // cancelled
-      if (url === null) {
-        return
+        const isSame = data.editor.getHTML() === currentValue
+
+        if (isSame) {
+          return
+        }
+
+        data.editor.commands.setContent(currentValue, false)
       }
+    )
 
-      // empty
-      if (url === '') {
-        this.editor.chain().focus().extendMarkRange('link').unsetLink().run()
+    onMounted(() => {
+      // @ts-ignore
+      data.editor = new Editor({
+        content: props.value,
+        editorProps: {
+          attributes: {
+            class: 'form-input min-h-[100px]',
+          },
+        },
+        extensions: [StarterKit, Link],
+        onUpdate: () => {
+          if (!data.editor) return
+          emit('input', data.editor.getHTML())
+        },
+      })
+    })
 
-        return
+    onBeforeUnmount(() => {
+      if (data.editor) {
+        data.editor.destroy()
       }
+    })
 
-      // update link
-      this.editor
-        .chain()
-        .focus()
-        .extendMarkRange('link')
-        .setLink({ href: url, target: '_blank' })
-        .run()
-    },
+    return {
+      ...data,
+      ...methods,
+    }
   },
 })
 </script>
