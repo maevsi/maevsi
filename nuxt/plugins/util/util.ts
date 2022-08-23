@@ -75,27 +75,36 @@ export function getApiMeta(
       } else {
         return p
       }
-    }, [] as CombinedError[]),
+    }, [] as (CombinedError | { errcode: string })[]),
     isFetching: queries.reduce((p, c) => p || c.fetching.value, false),
   }
 }
 
-export function getCombinedErrorMessages($t: any, errors: CombinedError[]) {
+export function getCombinedErrorMessages(
+  $t: any,
+  errors: (CombinedError | { errcode: string; message: string })[]
+) {
   const errorMessages: string[] = []
 
-  for (const combinedError of errors) {
-    if (combinedError.networkError) {
-      errorMessages.push(combinedError.networkError.message)
-    }
-
-    for (const graphqlError of combinedError.graphQLErrors) {
-      const translationId = 'postgres' + graphqlError.errcode
+  for (const error of errors) {
+    if ('errcode' in error) {
+      const translationId = 'postgres' + error.errcode
       const translation = $t(translationId)
 
       if (translation === translationId) {
-        errorMessages.push(graphqlError.message)
+        errorMessages.push(error.message)
       } else {
         errorMessages.push(translation)
+      }
+    } else {
+      const combinedError = error
+
+      if (combinedError.networkError) {
+        errorMessages.push(combinedError.message)
+      }
+
+      for (const graphqlError of combinedError.graphQLErrors) {
+        errorMessages.push(graphqlError.message)
       }
     }
   }
