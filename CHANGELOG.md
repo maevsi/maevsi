@@ -1,3 +1,11 @@
+## [0.145.5](https://github.com/maevsi/maevsi/compare/0.145.4...0.145.5) (2022-08-22)
+
+
+### Bug Fixes
+
+* **header:** add missing require-trusted-types-for header ([5ea3de1](https://github.com/maevsi/maevsi/commit/5ea3de17c508f79d1ab5900a98ff87137f09c1f5))
+* **header:** correct quotes ([44f48d0](https://github.com/maevsi/maevsi/commit/44f48d0bf693cd67283cdd5bfd1c4296c6a76714))
+
 ## [0.145.4](https://github.com/maevsi/maevsi/compare/0.145.3...0.145.4) (2022-08-22)
 
 
