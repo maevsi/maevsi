@@ -121,12 +121,13 @@ export function useJwtRefresh() {
 export async function jwtStore(
   $urqlReset: () => void,
   store: Store,
-  res: ServerResponse,
+  res: ServerResponse | undefined,
   jwt: string | undefined,
   callback = () => {
     window.location.reload()
   }
 ) {
+  debugger
   $urqlReset()
 
   consola.trace('Storing the following JWT: ' + jwt)
@@ -161,7 +162,13 @@ export function useJwtStore() {
 
   return {
     async jwtStore(jwt: string | undefined, callback?: () => void) {
-      await jwtStore($urqlReset, store, event.res, jwt, callback)
+      await jwtStore(
+        $urqlReset,
+        store,
+        process.server ? event.res : undefined,
+        jwt,
+        callback
+      )
     },
   }
 }
@@ -169,7 +176,7 @@ export function useJwtStore() {
 export async function signOut(
   $urqlReset: () => void,
   store: Store,
-  res: ServerResponse
+  res: ServerResponse | undefined
 ) {
   await jwtStore($urqlReset, store, res, undefined)
 }
@@ -181,7 +188,7 @@ export function useSignOut() {
 
   return {
     async signOut() {
-      await signOut($urqlReset, store, event.res)
+      await signOut($urqlReset, store, process.server ? event.res : undefined)
     },
   }
 }
