@@ -67,7 +67,7 @@ export default defineComponent({
     const route = useRoute()
     const { $router } = useNuxtApp()
     const { t } = useI18n()
-    const store = useMaevsiStore($pinia)
+    const store = useMaevsiStore()
 
     const eventQuery = useEventByAuthorUsernameAndSlugQuery({
       variables: {
