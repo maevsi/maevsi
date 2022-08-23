@@ -57,6 +57,7 @@ export default defineNuxtConfig({
           },
         }), // https://github.com/nuxt/bridge/issues/43
     postcss: {
+      // @ts-ignore https://github.com/nuxt/bridge/issues/29
       plugins: { tailwindcss: {}, autoprefixer: {} },
     },
     transpile: [
@@ -104,7 +105,6 @@ export default defineNuxtConfig({
     ],
     // Doc: https://github.com/nuxt-community/moment-module
     ['@nuxtjs/moment', { locales: ['de'] }],
-    '@pinia/nuxt',
   ],
   components: true, // Auto import components
   cookies: {
@@ -199,6 +199,7 @@ export default defineNuxtConfig({
         Sitemap: BASE_URL + '/sitemap.xml',
       },
     ],
+    '@pinia/nuxt',
     ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
   ],
   nitro: {
