@@ -37,7 +37,7 @@ specifiers:
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.3.4
   '@types/downloadjs': 1.4.3
-  '@types/html-to-text': 8.1.0
+  '@types/html-to-text': 8.1.1
   '@types/jest': 28.1.7
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash-es': 4.17.6
@@ -223,7 +223,7 @@ devDependencies:
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.3.4
   '@types/downloadjs': 1.4.3
-  '@types/html-to-text': 8.1.0
+  '@types/html-to-text': 8.1.1
   '@types/jest': 28.1.7
   '@types/jsonwebtoken': 8.5.8
   '@types/lodash-es': 4.17.6
@@ -5458,8 +5458,8 @@ packages:
       '@types/uglify-js': 3.17.0
     dev: false
 
-  /@types/html-to-text/8.1.0:
-    resolution: {integrity: sha512-54YF2fGmN4g62/w+T85uQ8n0FyBhMY5cjKZ1imsbIh4Pgbeno1mAaQktC/pv/+C2ToUYkTZis9ADgn9GRRz9nQ==}
+  /@types/html-to-text/8.1.1:
+    resolution: {integrity: sha512-QFcqfc7TiVbvIX8Fc2kWUxakruI1Ay6uitaGCYHzI5M0WHQROV5D2XeSaVrK0FmvssivXum4yERVnJsiuH61Ww==}
     dev: true
 
   /@types/is-function/1.0.1:

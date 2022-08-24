@@ -116,7 +116,7 @@
     "@types/cookie": "0.5.1",
     "@types/dompurify": "2.3.4",
     "@types/downloadjs": "1.4.3",
-    "@types/html-to-text": "8.1.0",
+    "@types/html-to-text": "8.1.1",
     "@types/jest": "28.1.7",
     "@types/jsonwebtoken": "8.5.8",
     "@types/lodash-es": "4.17.6",
