@@ -5,7 +5,7 @@
 # `sqitch` requires at least `buster`.
 FROM node:18.7.0-slim@sha256:302f1b7084d1f72ba21da2c9cc57888d32bff9e8902bc92c9f71dceab1bcb378 AS development
 
-ENV NODE_OPTIONS=--openssl-legacy-provider
+ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
 
 WORKDIR /srv/app/
 
@@ -30,7 +30,6 @@ VOLUME /srv/sqitch
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["pnpm", "run", "dev"]
-HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
 
 
 ########################

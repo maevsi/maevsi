@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import CardStateWarn from './CardStateWarn.vue'
 
 export default {

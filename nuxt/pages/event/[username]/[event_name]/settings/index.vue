@@ -4,8 +4,8 @@
       <Breadcrumbs
         :prefixes="[
           { name: $t('events'), to: '../../..', append: true },
-          { name: $route.params.username, to: '../..', append: true },
-          { name: $route.params.event_name, to: '..', append: true },
+          { name: routeParamUsername, to: '../..', append: true },
+          { name: routeParamEventName, to: '..', append: true },
         ]"
       >
         {{ $t('settings') }}
@@ -22,8 +22,8 @@
           :item-name="$t('event')"
           :mutation="mutation"
           :variables="{
-            authorUsername: $route.params.username,
-            slug: $route.params.event_name,
+            authorUsername: routeParamUsername,
+            slug: routeParamEventName,
           }"
           @error="onDeleteError"
           @success="onDeleteSuccess"
@@ -35,10 +35,10 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types-edge'
 import { CombinedError } from '@urql/vue'
 import consola from 'consola'
-import { useI18n } from 'vue-i18n-composable'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { useI18n } from 'vue-i18n'
 
 import {
   computed,
@@ -46,7 +46,10 @@ import {
   reactive,
   useNuxtApp,
   useRoute,
+  navigateTo,
+  useRouter,
   watch,
+abortNavigation,
 } from '#app'
 import { useHead } from '#head'
 
@@ -58,32 +61,38 @@ import {
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
 
+definePageMeta({
+  middleware: [
+    async function (_to: any, _from: any) {
+      const { $urql } = useNuxtApp()
+      const route = useRoute()
+      const store = useMaevsiStore()
+
+      if (res && route.params.username !== store.signedInUsername) {
+        return error({ statusCode: 403 })
+      }
+
+      const {
+        data: { eventIsExisting },
+      } = await $urql.value
+        .query(EVENT_IS_EXISTING_QUERY, {
+          slug: route.params.event_name,
+          authorUsername: route.params.username,
+        })
+        .toPromise()
+
+      if (!eventIsExisting) {
+        return abortNavigation({ statusCode: 404 })
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ error, res, params, $pinia }: Context) {
-    const store = useMaevsiStore($pinia)
-
-    if (res && params.username !== store.signedInUsername) {
-      return error({ statusCode: 403 })
-    }
-  },
-  async validate({ app, params }): Promise<boolean> {
-    const {
-      data: { eventIsExisting },
-    } = await app.$urql.value
-      .query(EVENT_IS_EXISTING_QUERY, {
-        authorUsername: params.username,
-        slug: params.event_name,
-      })
-      .toPromise()
-
-    return eventIsExisting
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router, localePath } = useNuxtApp()
+    const { localePath } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
     const route = useRoute()
@@ -111,13 +120,15 @@ export default defineComponent({
     }
     const data = reactive({
       mutation: executeMutationEventDelete,
+      routeParamEventName: route.params.event_name,
+      routeParamUsername: route.params.username,
     })
     const methods = {
       onDeleteError(error: CombinedError) {
         apiData.api.value.errors.push(error)
       },
       onDeleteSuccess() {
-        $router.push(localePath(`/dashboard`))
+        navigateTo(localePath(`/dashboard`))
         // TODO: cache update (allEvents)
       },
     }
@@ -150,7 +161,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

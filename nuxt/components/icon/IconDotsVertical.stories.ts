@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import IconDotsVertical from './IconDotsVertical.vue'
 
 const argTypes = { click: { action: 'click' } }

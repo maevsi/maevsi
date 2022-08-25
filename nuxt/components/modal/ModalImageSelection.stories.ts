@@ -1,6 +1,6 @@
 import { graphql } from 'msw'
 
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 
 import ModalImageSelection from './ModalImageSelection.vue'
 import { useMaevsiStore } from '~/store'

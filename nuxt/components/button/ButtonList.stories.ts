@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import Button from './Button.vue'
 import ButtonList from './ButtonList.vue'
 

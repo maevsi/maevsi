@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import FormInputUsername from './FormInputUsername.vue'
 
 export default {

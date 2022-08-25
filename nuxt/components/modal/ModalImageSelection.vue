@@ -9,7 +9,7 @@
     <ImageUploadGallery
       :allow-deletion="false"
       selectable
-      :username="$config.STORYBOOK ? 'username' : $route.params.username"
+      :username="isStorybookActive ? 'username' : routeParamUsername"
       @selection="selectProfilePictureStorageKey"
     />
     <template slot="header">{{ $t('header') }}</template>
@@ -19,14 +19,22 @@
 <script lang="ts">
 import consola from 'consola'
 
-import { computed, defineComponent, reactive } from '#app'
+import {
+  computed,
+  defineComponent,
+  reactive,
+  useRuntimeConfig,
+  useRoute,
+} from '#app'
 
 import { useProfilePictureSetMutation } from '~/gql/generated'
 import { getApiMeta } from '~/plugins/util/util'
 
 export default defineComponent({
   setup() {
+    const route = useRoute()
     const profilePictureSetMutation = useProfilePictureSetMutation()
+    const config = useRuntimeConfig()
 
     const apiData = {
       api: computed(() => {
@@ -39,6 +47,8 @@ export default defineComponent({
       }),
     }
     const data = reactive({
+      isStorybookActive: config.public.STORYBOOK,
+      routeParamUsername: route.params.username,
       selectedProfilePictureStorageKey: undefined as string | undefined,
     })
     const methods = {

@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import ButtonEventNew from './ButtonEventNew.vue'
 
 const argTypes = { click: { action: 'click' } }

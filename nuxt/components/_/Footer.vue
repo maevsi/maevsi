@@ -105,7 +105,7 @@
 import { useColorMode } from '@nuxtjs/color-mode/dist/runtime/composables'
 import { LocaleObject } from '@nuxtjs/i18n/types'
 
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 
 import { LOCALES } from '~/plugins/util/constants'
 

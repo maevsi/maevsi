@@ -2,7 +2,7 @@
   <div class="container mx-auto p-4 md:px-8">
     <Header @onMenuShow="menuShow" />
     <main class="min-h-screen flex-1 overflow-hidden">
-      <nuxt />
+      <slot />
     </main>
     <Footer />
     <div
@@ -26,10 +26,10 @@
 </template>
 
 <script lang="ts">
-import { reactive } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
+import { defineComponent, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { defineComponent, useNuxtApp } from '#app'
+import { useNuxtApp, useRouter } from '#app'
 import { useHead } from '#head'
 
 import { BASE_URL } from '~/plugins/util/constants'
@@ -37,7 +37,8 @@ import { BASE_URL } from '~/plugins/util/constants'
 export default defineComponent({
   name: 'IndexPage',
   setup() {
-    const { $i18n, $moment, $router } = useNuxtApp()
+    const { $i18n, $moment } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
 
     const data = reactive({
@@ -169,7 +170,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:card',

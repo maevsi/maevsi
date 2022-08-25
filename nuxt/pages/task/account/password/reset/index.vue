@@ -6,26 +6,32 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types-edge'
-import { useI18n } from 'vue-i18n-composable'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { defineComponent, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { defineComponent, reactive, useNuxtApp } from '#app'
+import { useRouter, navigateTo, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
 import { REGEX_UUID } from '~/plugins/util/validation'
 
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { localePath } = useNuxtApp()
+      const query = useQuery()
+
+      if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {
+        return navigateTo(localePath('/'))
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, query, redirect }: Context) {
-    if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {
-      return redirect(app.localePath('/'))
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
 
     const data = reactive({
@@ -45,7 +51,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

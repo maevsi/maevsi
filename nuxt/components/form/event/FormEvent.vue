@@ -274,9 +274,16 @@ import { DateTime, Settings } from 'luxon'
 import slugify from 'slugify'
 import Swal from 'sweetalert2'
 import { toRef } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
-import { computed, defineComponent, PropType, reactive, useNuxtApp } from '#app'
+import {
+  computed,
+  defineComponent,
+  PropType,
+  reactive,
+  useNuxtApp,
+  navigateTo,
+} from '#app'
 
 import { Event } from '~/types/event'
 import {
@@ -310,7 +317,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { $i18n, $moment, $router, localePath } = useNuxtApp()
+    const { $i18n, $moment, localePath } = useNuxtApp()
     const { t } = useI18n()
     const store = useMaevsiStore()
     const createEventMutation = useCreateEventMutation()
@@ -488,7 +495,7 @@ export default defineComponent({
             timerProgressBar: true,
             title: t('created'),
           }).then(() =>
-            $router.push(
+            navigateTo(
               localePath(`/event/${data.signedInUsername}/${data.form.slug}`)
             )
           )

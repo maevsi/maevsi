@@ -123,7 +123,7 @@ import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
 import Swal from 'sweetalert2'
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
 import { defineComponent, PropType, reactive } from '#app'
 

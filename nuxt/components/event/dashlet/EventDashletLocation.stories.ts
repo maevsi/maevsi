@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import EventDashletLocation from './EventDashletLocation.vue'
 
 export default {

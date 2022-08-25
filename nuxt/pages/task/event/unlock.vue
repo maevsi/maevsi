@@ -11,9 +11,9 @@
       <!-- The id's suffix `-maevsi` makes browser suggest inputs just for this service. -->
       <FormInput
         :id-label="`input-invitation-code-maevsi-${
-          $config.dev ? 'dev' : 'prod'
+          isDevelopmentActive ? 'dev' : 'prod'
         }`"
-        :is-disabled="!!$route.query.ic"
+        :is-disabled="!!routeQueryIc"
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         :title="$t('invitationCode')"
         type="text"
@@ -21,7 +21,7 @@
         @input="form.invitationCode = $event"
       >
         <template slot="stateInfo">
-          <FormInputStateInfo v-if="$route.query.ic">
+          <FormInputStateInfo v-if="routeQueryIc">
             <div>
               {{ $t('invitationCodeAutomatic') }}
               <AppLink :to="localePath('/task/event/unlock')">
@@ -53,14 +53,20 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types-edge'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
-import { computed, onMounted, reactive, toRef } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { computed, defineComponent, onMounted, reactive, toRef } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { defineComponent, useNuxtApp, useRoute } from '#app'
+import {
+  navigateTo,
+  useNuxtApp,
+  useRoute,
+  useRuntimeConfig,
+  useRouter,
+} from '#app'
 import { useHead } from '#head'
 
 import { jwtStore, useJwtStore } from '~/plugins/util/auth'
@@ -74,6 +80,58 @@ import { getApiMeta } from '~/plugins/util/util'
 import { useEventUnlockMutation } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
 
+definePageMeta({
+  middleware: [
+    async function (_to: any, _from: any) {
+      const { $urql, $urqlReset, localePath } = useNuxtApp()
+      const route = useRoute()
+      const store = useMaevsiStore()
+
+      if (isQueryIcFormatValid(context)) {
+        const result = await $urql.value
+          .query(EVENT_UNLOCK_MUTATION, {
+            invitationCode: route.query.ic,
+          })
+          .toPromise()
+
+        if (result.error) {
+          consola.error(result.error)
+        }
+
+        if (!result.data.eventUnlock.eventUnlockResponse) {
+          return navigateTo(
+            localePath({
+              query: {
+                ...route.query,
+                error: null,
+              },
+            })
+          )
+        }
+
+        await jwtStore($urqlReset, store, res, result.jwt)
+
+        if ('quick' in route.query) {
+          return navigateTo(
+            localePath(`/event/${result.authorUsername}/${result.eventSlug}`)
+          )
+        } else {
+          return navigateTo(
+            localePath({
+              query: {
+                ...route.query,
+                redirect: localePath(
+                  `/event/${result.authorUsername}/${result.eventSlug}`
+                ),
+              },
+            })
+          )
+        }
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
   layout(context: Context) {
@@ -81,62 +139,14 @@ export default defineComponent({
       ? 'canvas'
       : 'default'
   },
-  async middleware(context: Context): Promise<void> {
-    const { app, redirect, res, route, $pinia } = context
-
-    const store = useMaevsiStore($pinia)
-
-    if (isQueryIcFormatValid(context)) {
-      const result = await app.$urql.value
-        .query(EVENT_UNLOCK_MUTATION, {
-          invitationCode: route.query.ic,
-        })
-        .toPromise()
-
-      if (result.error) {
-        consola.error(result.error)
-      }
-
-      if (!result.data.eventUnlock.eventUnlockResponse) {
-        return redirect(
-          app.localePath({
-            query: {
-              ...route.query,
-              error: null,
-            },
-          })
-        )
-      }
-
-      await jwtStore(app.$urqlReset, store, res, result.jwt)
-
-      if ('quick' in route.query) {
-        return redirect(
-          app.localePath(`/event/${result.authorUsername}/${result.eventSlug}`)
-        )
-      } else {
-        return redirect(
-          app.localePath({
-            query: {
-              ...route.query,
-              redirect: app.localePath(
-                `/event/${result.authorUsername}/${result.eventSlug}`
-              ),
-            },
-          })
-        )
-      }
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
     const { jwtStore } = useJwtStore()
-    const { $router, localePath } = useNuxtApp()
+    const { localePath } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
     const route = useRoute()
     const eventUnlockMutation = useEventUnlockMutation()
+    const config = useRuntimeConfig()
 
     const apiData = {
       api: computed(() => {
@@ -153,7 +163,9 @@ export default defineComponent({
         invitationCode:
           route.query.ic === undefined ? undefined : route.query.ic,
       },
+      isDevelopmentActive: config.public.dev,
       isFormSent: false,
+      routeQueryIc: route.query.ic,
       title: t('title'),
     })
     const rules = {
@@ -190,7 +202,7 @@ export default defineComponent({
         await jwtStore(
           result.data?.eventUnlock?.eventUnlockResponse?.jwt,
           () => {
-            $router.push(
+            navigateTo(
               localePath(
                 `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
               )
@@ -213,7 +225,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

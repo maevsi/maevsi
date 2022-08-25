@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import IconQrCode from './IconQrCode.vue'
 
 const argTypes = { click: { action: 'click' } }

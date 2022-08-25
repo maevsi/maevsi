@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import FormInputStateWarning from './FormInputStateWarning.vue'
 
 export default {

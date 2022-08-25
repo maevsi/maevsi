@@ -29,9 +29,7 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-
-import { defineComponent, PropType } from '#app'
+import { defineComponent, PropType, ref } from 'vue'
 
 export default defineComponent({
   name: 'MaevsiButton',

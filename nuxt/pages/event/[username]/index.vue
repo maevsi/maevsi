@@ -1,41 +1,55 @@
 <template>
   <div>
     <Breadcrumbs :prefixes="[{ name: $t('events'), to: '..', append: true }]">
-      {{ $route.params.username }}
+      {{ routeParamUsername }}
     </Breadcrumbs>
     <i18n path="title" tag="h1">
       <template #name>
-        <AppLink :to="localePath(`/account/${$route.params.username}`)">
-          {{ $route.params.username }}
+        <AppLink :to="localePath(`/account/${routeParamUsername}`)">
+          {{ routeParamUsername }}
         </AppLink>
       </template>
     </i18n>
-    <EventList :username="$route.params.username" />
+    <EventList :username="routeParamUsername" />
   </div>
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { useI18n } from 'vue-i18n'
 
-import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import {
+  defineComponent,
+  reactive,
+  useRouter,
+  useRoute,
+  abortNavigation,
+} from '#app'
 import { useHead } from '#head'
 
 import { REGEX_SLUG } from '~/plugins/util/validation'
 
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const route = useRoute()
+
+      if (!REGEX_SLUG.test(route.params.username)) {
+        return abortNavigation()
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
-  validate({ params }) {
-    return REGEX_SLUG.test(params.username)
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
     const route = useRoute()
 
     const data = reactive({
+      routeParamUsername: route.params.username,
       title: t('title', { name: route.params.username }),
     })
 
@@ -52,7 +66,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'og:type',

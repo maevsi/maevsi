@@ -108,7 +108,7 @@
 import { Validation } from '@vuelidate/core'
 import consola from 'consola'
 
-import { defineComponent, PropType } from '#app'
+import { defineComponent, PropType } from 'vue'
 
 const FormInput = defineComponent({
   props: {

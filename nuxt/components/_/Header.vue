@@ -94,7 +94,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeMount, reactive, useNuxtApp } from '#app'
+import {
+  defineComponent,
+  navigateTo,
+  onBeforeMount,
+  reactive,
+  useNuxtApp,
+} from '#app'
 import { useMaevsiStore } from '~/store'
 
 import supportedBrowsers from '~/supportedBrowsers'
@@ -102,7 +108,7 @@ import supportedBrowsers from '~/supportedBrowsers'
 export default defineComponent({
   name: 'MaevsiHeader',
   setup(_props) {
-    const { $router, localePath } = useNuxtApp()
+    const { localePath } = useNuxtApp()
     const store = useMaevsiStore()
 
     const data = reactive({
@@ -111,7 +117,7 @@ export default defineComponent({
     })
     const methods = {
       navigateToSearch() {
-        $router.push({
+        navigateTo({
           path: localePath(`/task/search`),
           query: { q: 'search phrase' },
         })

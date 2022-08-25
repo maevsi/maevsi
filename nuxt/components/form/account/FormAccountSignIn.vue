@@ -56,9 +56,9 @@ import { maxLength, minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { reactive, toRef } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
-import { useNuxtApp, defineComponent } from '#app'
+import { useNuxtApp, defineComponent, useRouter, navigateTo } from '#app'
 
 import {
   formPreSubmit,
@@ -76,7 +76,7 @@ import {
 const FormAccountSignIn = defineComponent({
   setup() {
     const { jwtStore } = useJwtStore()
-    const { $i18n, $router, localePath } = useNuxtApp()
+    const { $i18n, localePath } = useNuxtApp()
     const { t } = useI18n()
     const { executeMutation: executeMutationAccountRegistrationRefresh } =
       useAccountRegistrationRefreshMutation()
@@ -141,7 +141,7 @@ const FormAccountSignIn = defineComponent({
           } else {
             await jwtStore(result.data?.authenticate?.jwt, () => {})
               .then(() => {
-                $router.push(localePath(`/dashboard`))
+                navigateTo(localePath(`/dashboard`))
               })
               .catch(async (error) => {
                 consola.debug(error)

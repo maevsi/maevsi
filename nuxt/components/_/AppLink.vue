@@ -11,7 +11,7 @@
   >
     <slot />
   </a>
-  <nuxt-link
+  <NuxtLink
     v-else
     :append="append"
     :class="classes"
@@ -19,13 +19,11 @@
     @click.native="$emit('click')"
   >
     <slot />
-  </nuxt-link>
+  </NuxtLink>
 </template>
 
 <script lang="ts">
-import { computed } from 'vue'
-
-import { defineComponent } from '#app'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
   props: {

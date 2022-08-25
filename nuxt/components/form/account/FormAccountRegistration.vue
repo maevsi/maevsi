@@ -57,7 +57,7 @@ import {
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { toRef } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
 import { computed, defineComponent, reactive, useNuxtApp } from '#app'
 

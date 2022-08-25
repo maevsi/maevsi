@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import IconXCircle from './IconXCircle.vue'
 
 const argTypes = { click: { action: 'click' } }

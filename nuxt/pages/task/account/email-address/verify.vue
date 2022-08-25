@@ -6,30 +6,37 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
 import Swal from 'sweetalert2'
-import { useI18n } from 'vue-i18n-composable'
+import { computed, defineComponent, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { useNuxtApp, useRoute, useRouter, navigateTo } from '#app'
 import { useHead } from '#head'
 
 import { REGEX_UUID } from '~/plugins/util/validation'
 import { getApiMeta } from '~/plugins/util/util'
 import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { localePath } = useNuxtApp()
+      const query = useQuery()
+
+      if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {
+        return navigateTo(localePath('/'))
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, query, redirect }: Context) {
-    if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {
-      return redirect(app.localePath('/'))
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router, localePath } = useNuxtApp()
+    const { localePath } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
     const route = useRoute()
     const accountEmailAddressVerificationMutation =
@@ -63,7 +70,7 @@ export default defineComponent({
             text: t('verifiedBody') as string,
             title: t('verified'),
           })
-          $router.push({
+          navigateTo({
             path: localePath(`/task/account/sign-in`),
           })
         }
@@ -82,7 +89,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

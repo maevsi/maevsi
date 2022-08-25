@@ -253,17 +253,15 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+import { defineComponent, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { defineComponent, reactive, useNuxtApp } from '#app'
+import { useRouter } from '#app'
 import { useHead } from '#head'
 
 export default defineComponent({
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
 
     const data = reactive({
@@ -283,7 +281,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

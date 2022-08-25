@@ -3,8 +3,8 @@
     <Breadcrumbs
       :prefixes="[
         { name: $t('events'), to: '../../..', append: true },
-        { name: $route.params.username, to: '../..', append: true },
-        { name: $route.params.event_name, to: '..', append: true },
+        { name: routeParamUsername, to: '../..', append: true },
+        { name: routeParamEventName, to: '..', append: true },
       ]"
     >
       {{ $t('checkIns') }}
@@ -65,26 +65,46 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
 import Swal from 'sweetalert2'
-import { useI18n } from 'vue-i18n-composable'
+import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  reactive,
-  useNuxtApp,
-  useRoute,
-  watch,
-} from '#app'
+import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
 import { getApiMeta } from '~/plugins/util/util'
 import { useMaevsiStore } from '~/store'
+
+definePageMeta({
+  middleware: [
+    async function (_to: any, _from: any) {
+      const { $urql } = useNuxtApp()
+      const route = useRoute()
+      const store = useMaevsiStore()
+
+      if (res && route.params.username !== store.signedInUsername) {
+        return error({ statusCode: 403 })
+      }
+
+      const {
+        data: { eventIsExisting },
+      } = await $urql.value
+        .query(EVENT_IS_EXISTING_QUERY, {
+          slug: route.params.event_name,
+          authorUsername: route.params.username,
+        })
+        .toPromise()
+
+      if (!eventIsExisting) {
+        return abortNavigation({ statusCode: 404 })
+      }
+    },
+  ],
+})
 
 export default defineComponent({
   name: 'IndexPage',
@@ -94,30 +114,8 @@ export default defineComponent({
       return import('vue-qrcode-reader/src/components/QrcodeStream.vue')
     },
   },
-  middleware({ error, res, params, $pinia }: Context) {
-    const store = useMaevsiStore($pinia)
-
-    if (res && params.username !== store.signedInUsername) {
-      return error({ statusCode: 403 })
-    }
-  },
-  async validate({ app, params }): Promise<boolean> {
-    const {
-      data: { eventIsExisting },
-    } = await app.$urql.value
-      .query(EVENT_IS_EXISTING_QUERY, {
-        slug: params.event_name,
-        authorUsername: params.username,
-      })
-      .toPromise()
-
-    return eventIsExisting
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
     const route = useRoute()
@@ -145,6 +143,8 @@ export default defineComponent({
       invitationCode: undefined as string | undefined,
       isNfcWritableErrorMessage: undefined as string | undefined,
       loading: false,
+      routeParamEventName: route.params.event_name,
+      routeParamUsername: route.params.username,
       title: t('title'),
     })
     const computations = {
@@ -312,7 +312,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

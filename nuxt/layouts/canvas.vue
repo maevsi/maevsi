@@ -12,12 +12,14 @@ import {
   ref,
   useNuxtApp,
   useRoute,
+  useRouter,
 } from '#app'
 
 export default defineComponent({
   name: 'MaevsiCanvas',
   setup() {
-    const { $i18n, $moment, $router, $nuxtI18nHead } = useNuxtApp()
+    const { $i18n, $moment, $nuxtI18nHead } = useNuxtApp()
+    const router = useRouter()
     const route = useRoute()
 
     const refs = {
@@ -83,7 +85,7 @@ export default defineComponent({
       const redirect = route.query.redirect
 
       if (redirect && typeof redirect === 'string') {
-        setTimeout(() => $router.replace(redirect), 1000)
+        setTimeout(() => router.replace(redirect), 1000)
       }
     })
 

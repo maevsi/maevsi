@@ -42,9 +42,15 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
-import { computed, defineComponent, reactive, useNuxtApp } from '#app'
+import {
+  computed,
+  defineComponent,
+  reactive,
+  useNuxtApp,
+  useRouter,
+} from '#app'
 import { useHead } from '#head'
 
 import { useSignOut } from '~/plugins/util/auth'
@@ -52,12 +58,10 @@ import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
-  transition: {
-    name: 'layout',
-  },
   setup() {
     const { signOut } = useSignOut()
-    const { $moment, $router } = useNuxtApp()
+    const { $moment } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
 
@@ -87,7 +91,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

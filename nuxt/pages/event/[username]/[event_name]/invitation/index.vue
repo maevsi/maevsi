@@ -4,8 +4,8 @@
       <Breadcrumbs
         :prefixes="[
           { name: $t('events'), to: '../../..', append: true },
-          { name: $route.params.username, to: '../..', append: true },
-          { name: $route.params.event_name, to: '..', append: true },
+          { name: routeParamUsername, to: '../..', append: true },
+          { name: routeParamEventName, to: '..', append: true },
         ]"
       >
         {{ $t('invitations') }}
@@ -20,17 +20,19 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
-import { useI18n } from 'vue-i18n-composable'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { useI18n } from 'vue-i18n'
 
 import {
   computed,
   defineComponent,
   reactive,
-  useNuxtApp,
+  useRouter,
   useRoute,
   watch,
+  abortNavigation,
+useNuxtApp,
 } from '#app'
 import { useHead } from '#head'
 
@@ -39,33 +41,38 @@ import { getApiMeta } from '~/plugins/util/util'
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
 
+definePageMeta({
+  middleware: [
+    async function (_to: any, _from: any) {
+      const { $urql } = useNuxtApp()
+      const route = useRoute()
+      const store = useMaevsiStore()
+
+      if (res && route.params.username !== store.signedInUsername) {
+        return error({ statusCode: 403 })
+      }
+
+      const {
+        data: { eventIsExisting },
+      } = await $urql.value
+        .query(EVENT_IS_EXISTING_QUERY, {
+          slug: route.params.event_name,
+          authorUsername: route.params.username,
+        })
+        .toPromise()
+
+      if (!eventIsExisting) {
+        return abortNavigation({ statusCode: 404 })
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ error, res, params, $pinia }: Context) {
-    const store = useMaevsiStore($pinia)
-
-    if (res && params.username !== store.signedInUsername) {
-      return error({ statusCode: 403 })
-    }
-  },
-  async validate({ app, params }): Promise<boolean> {
-    const {
-      data: { eventIsExisting },
-    } = await app.$urql.value
-      .query(EVENT_IS_EXISTING_QUERY, {
-        slug: params.event_name,
-        authorUsername: params.username,
-      })
-      .toPromise()
-
-    return eventIsExisting
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
     const route = useRoute()
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
 
@@ -90,6 +97,8 @@ export default defineComponent({
       ),
     }
     const data = reactive({
+      routeParamEventName: route.params.event_name,
+      routeParamUsername: route.params.username,
       title: t('title'),
     })
     const computations = {
@@ -121,7 +130,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

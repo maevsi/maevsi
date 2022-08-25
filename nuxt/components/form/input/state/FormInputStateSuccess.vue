@@ -11,7 +11,7 @@
 <script lang="ts">
 import { Validation } from '@vuelidate/core'
 
-import { defineComponent, PropType } from '#app'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   props: {

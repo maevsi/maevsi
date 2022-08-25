@@ -147,26 +147,17 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+import { defineComponent, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import { useHead } from '#head'
 
-import {
-  defineComponent,
-  onBeforeUnmount,
-  onMounted,
-  reactive,
-  ref,
-  useNuxtApp,
-} from '#app'
+import { useRouter } from '#app'
 
 export default defineComponent({
   name: 'IndexPage',
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
 
     const refs = {
@@ -203,7 +194,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

@@ -3,23 +3,29 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { defineComponent, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { defineComponent, reactive, useNuxtApp } from '#app'
+import { useRouter } from '#app'
 import { useHead } from '#head'
+
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const store = useMaevsiStore()
+
+      if (res) {
+        res.statusCode = 418
+      }
+    },
+  ],
+})
 
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ res }) {
-    if (res) {
-      res.statusCode = 418
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
 
     const data = reactive({
@@ -39,7 +45,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

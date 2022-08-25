@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import FormAccountPasswordResetRequest from './FormAccountPasswordResetRequest.vue'
 
 export default {

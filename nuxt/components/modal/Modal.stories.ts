@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 
 import Modal from './Modal.vue'
 import { useMaevsiStore } from '~/store'

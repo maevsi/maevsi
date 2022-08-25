@@ -22,7 +22,7 @@
 <script lang="ts">
 import { ref } from 'vue'
 
-import { defineComponent, PropType } from '#app'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   props: {

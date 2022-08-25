@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { status } from '@http-util/status-i18n'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
 import { computed, defineComponent, PropType, useNuxtApp } from '#app'
 

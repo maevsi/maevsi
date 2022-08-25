@@ -23,7 +23,7 @@ import { email, maxLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { reactive, toRef } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
 import { computed, defineComponent, PropType, useNuxtApp } from '#app'
 

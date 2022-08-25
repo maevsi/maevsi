@@ -3,7 +3,7 @@
     <div
       class="fixed bottom-0 left-0 right-0 top-0 z-10 transition"
       :class="[
-        ...($config.STORYBOOK ? [] : ['fixed']),
+        ...(isStorybookActive ? [] : ['fixed']),
         ...(isVisibleComputed
           ? ['backdrop-blur backdrop-brightness-50']
           : ['backdrop-blur-0 backdrop-brightness-100']),
@@ -12,7 +12,7 @@
     />
     <Card
       class="fixed top-[10%] max-h-[80%] left-1/2 -translate-x-1/2 z-20 flex w-5/6 flex-col gap-2 overflow-auto bg-background-brighten dark:bg-background-darken sm:w-2/3 lg:w-1/2 xl:w-1/3"
-      :class="{ fixed: !$config.STORYBOOK }"
+      :class="{ fixed: !isStorybookActive }"
     >
       <div class="flex justify-end">
         <ButtonIcon
@@ -74,7 +74,14 @@
 <script lang="ts">
 import consola from 'consola'
 
-import { computed, defineComponent, PropType, reactive, watch } from '#app'
+import {
+  computed,
+  defineComponent,
+  PropType,
+  reactive,
+  watch,
+  useRuntimeConfig,
+} from '#app'
 import { Modal } from '~/types/modal'
 import { useMaevsiStore } from '~/store'
 
@@ -101,10 +108,12 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const store = useMaevsiStore()
+    const config = useRuntimeConfig()
 
     const data = reactive({
       errors: undefined,
       isVisible: false,
+      isStorybookActive: config.public.STORYBOOK,
       isSubmitting: false,
       onSubmit: () => {},
     })

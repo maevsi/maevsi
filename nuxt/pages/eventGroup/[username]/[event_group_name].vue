@@ -1,29 +1,36 @@
 <template>
   <div>
-    <h1>{{ $route.params.event_group_name }}</h1>
+    <h1>{{ routeParamEventGroupName }}</h1>
     <p>{{ $t('futureEventGroups') }}</p>
   </div>
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types-edge'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
 
-import { defineComponent, useRoute } from '#app'
+import { abortNavigation, defineComponent, useRoute } from '#app'
 import { useHead } from '#head'
 
 import { REGEX_SLUG } from '~/plugins/util/validation'
 
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const route = useRoute()
+
+      if (!REGEX_SLUG.test(route.params.username)) {
+        return abortNavigation()
+      }
+    },
+  ],
+})
+
 export default defineComponent({
-  validate({ params }: Context): boolean {
-    return REGEX_SLUG.test(params.username)
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
     const route = useRoute()
 
     useHead({
+      routeParamEventGroupName: route.params.event_group_name,
       title: route.params.event_group_name,
     })
   },

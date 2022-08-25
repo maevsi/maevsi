@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import IconPaperPlane from './IconPaperPlane.vue'
 
 const argTypes = { click: { action: 'click' } }

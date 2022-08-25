@@ -1,7 +1,7 @@
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
 import { computed, Ref } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
 export function capitalizeFirstLetter(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1)

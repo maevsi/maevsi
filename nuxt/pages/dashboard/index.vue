@@ -61,28 +61,30 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types-edge'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
-import { defineComponent, reactive, useNuxtApp } from '#app'
+import { defineComponent, reactive, useRouter, navigateTo, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
 import { useMaevsiStore } from '~/store'
 
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { localePath } = useNuxtApp()
+      const store = useMaevsiStore()
+
+      if (store.jwtDecoded?.role === 'maevsi_anonymous') {
+        return navigateTo(localePath('/'))
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, redirect, $pinia }: Context): void {
-    const store = useMaevsiStore($pinia)
-
-    if (store.jwtDecoded?.role === 'maevsi_anonymous') {
-      return redirect(app.localePath('/'))
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
 
@@ -104,7 +106,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

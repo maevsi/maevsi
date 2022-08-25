@@ -22,9 +22,15 @@ import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { reactive, toRef } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
-import { computed, defineComponent, useNuxtApp, useRoute } from '#app'
+import {
+  computed,
+  defineComponent,
+  useNuxtApp,
+  useRoute,
+  navigateTo,
+} from '#app'
 
 import {
   formPreSubmit,
@@ -41,7 +47,7 @@ const FormAccountPasswordReset = defineComponent({
     },
   },
   setup() {
-    const { $router, localePath } = useNuxtApp()
+    const { localePath } = useNuxtApp()
     const { t } = useI18n()
     const route = useRoute()
     const passwordResetMutation = useAccountPasswordResetMutation()
@@ -101,7 +107,7 @@ const FormAccountPasswordReset = defineComponent({
           timerProgressBar: true,
           title: t('reset'),
         })
-        $router.push({
+        navigateTo({
           path: localePath(`/account`),
           query: { ...route.query, tab: 'signIn' },
         })

@@ -98,7 +98,7 @@
                       <ButtonIcon
                         :aria-label="$t('invitationView')"
                         @click="
-                          $router.push({
+                          navigateTo({
                             path: localePath(
                               `/event/${event.authorUsername}/${event.slug}`
                             ),
@@ -162,7 +162,7 @@
         <div class="m-auto w-3/4 sm:w-1/2 xl:w-1/3 2xl:w-1/4">
           <!-- https://github.com/reg-viz/storycap/issues/501 -->
           <Doughnut
-            v-if="!$config.STORYBOOK"
+            v-if="!isStorybookActive"
             ref="doughnut"
             :chart-data="dataComputed"
             :chart-options="options"
@@ -194,7 +194,7 @@ import {
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { Doughnut } from 'vue-chartjs/legacy'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
 import {
   computed,
@@ -204,6 +204,7 @@ import {
   reactive,
   ref,
   useNuxtApp,
+  useRuntimeConfig,
   watch,
 } from '#app'
 import { copyText, getApiMeta } from '~/plugins/util/util'
@@ -243,6 +244,7 @@ export default defineComponent({
     const store = useMaevsiStore()
     const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
     const inviteMutation = useInviteMutation()
+    const config = useRuntimeConfig()
 
     const refs = {
       apiContactsAfter: ref<string>(),
@@ -274,6 +276,7 @@ export default defineComponent({
       ),
     }
     const data = reactive({
+      isStorybookActive: config.public.STORYBOOK,
       options: {
         plugins: {
           legend: {

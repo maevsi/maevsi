@@ -1,6 +1,6 @@
 import MockDate from 'mockdate'
 
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import EventListItem from './EventListItem.vue'
 
 MockDate.set('1970-01-01 00:00:00')

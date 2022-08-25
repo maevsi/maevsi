@@ -6,32 +6,38 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { defineComponent, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { defineComponent, reactive, useNuxtApp } from '#app'
+import { useRouter, navigateTo, useRoute, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
 import { useMaevsiStore } from '~/store'
 
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { localePath } = useNuxtApp()
+      const route = useRoute()
+      const store = useMaevsiStore()
+
+      if (store.jwtDecoded?.role !== 'maevsi_account') {
+        return navigateTo(
+          localePath({
+            path: '/task/account/sign-in',
+            query: { referrer: route.fullPath },
+          })
+        )
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ app, redirect, route, $pinia }) {
-    const store = useMaevsiStore($pinia)
-
-    if (store.jwtDecoded?.role !== 'maevsi_account') {
-      return redirect(
-        app.localePath({
-          path: '/task/account/sign-in',
-          query: { referrer: route.fullPath },
-        })
-      )
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
 
     const data = reactive({
@@ -51,7 +57,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

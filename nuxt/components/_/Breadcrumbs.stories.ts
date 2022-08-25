@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import Breadcrumbs from './Breadcrumbs.vue'
 
 export default {

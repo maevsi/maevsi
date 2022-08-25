@@ -8,20 +8,18 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+import { computed, defineComponent, reactive } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import { computed, defineComponent, reactive, useNuxtApp } from '#app'
+import { useRouter } from '#app'
 import { useHead } from '#head'
 
 import { useMaevsiStore } from '~/store'
 
 export default defineComponent({
   name: 'IndexPage',
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
 
@@ -51,7 +49,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',

@@ -151,12 +151,10 @@
 </template>
 
 <script lang="ts">
-import { Editor, EditorContent } from '@tiptap/vue-2'
+import { useEditor, EditorContent } from '@tiptap/vue-3'
 import { Link } from '@tiptap/extension-link'
 import StarterKit from '@tiptap/starter-kit'
-import { onMounted, onBeforeUnmount, reactive, watch } from 'vue'
-
-import { defineComponent } from '#app'
+import { defineComponent, reactive, watch } from 'vue'
 
 Link.configure({
   HTMLAttributes: {
@@ -175,8 +173,22 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    const editor = useEditor({
+      content: props.value,
+      editorProps: {
+        attributes: {
+          class: 'form-input min-h-[100px]',
+        },
+      },
+      extensions: [StarterKit, Link],
+      onUpdate: () => {
+        if (!data.editor) return
+        emit('input', data.editor.getHTML())
+      },
+    })
+
     const data = reactive({
-      editor: null as Editor | null,
+      editor,
     })
     const methods = {
       setLink() {
@@ -221,29 +233,6 @@ export default defineComponent({
         data.editor.commands.setContent(currentValue, false)
       }
     )
-
-    onMounted(() => {
-      // @ts-ignore
-      data.editor = new Editor({
-        content: props.value,
-        editorProps: {
-          attributes: {
-            class: 'form-input min-h-[100px]',
-          },
-        },
-        extensions: [StarterKit, Link],
-        onUpdate: () => {
-          if (!data.editor) return
-          emit('input', data.editor.getHTML())
-        },
-      })
-    })
-
-    onBeforeUnmount(() => {
-      if (data.editor) {
-        data.editor.destroy()
-      }
-    })
 
     return {
       ...data,

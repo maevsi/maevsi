@@ -68,7 +68,7 @@ import consola from 'consola'
 import debounce from 'lodash-es/debounce'
 import { computed } from 'vue'
 import VueI18n from 'vue-i18n'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
 import { defineComponent, reactive, ref, watch } from '#app'
 

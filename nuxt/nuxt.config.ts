@@ -1,5 +1,5 @@
-import { defineNuxtConfig } from '@nuxt/bridge'
-import { Configuration } from 'webpack'
+import { defineNuxtConfig } from 'nuxt'
+// import { Configuration } from 'webpack'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
@@ -25,88 +25,67 @@ export default defineNuxtConfig({
     meta: true,
   },
   build: {
-    babel: {
-      presets() {
-        return [['@nuxt/babel-preset-app', { corejs: { version: 3 } }]]
-      },
-    },
-    extend(config: Configuration) {
-      config.module?.rules.push({
-        test: /\.(graphql|gql)$/,
-        exclude: /node_modules/,
-        loader: 'graphql-tag/loader',
-      })
-    },
-    extractCSS: true,
-    ...(process.env.NODE_ENV === 'production'
-      ? {}
-      : {
-          optimization: {
-            runtimeChunk: true,
-            splitChunks: {
-              name: true,
-              cacheGroups: {
-                styles: {
-                  name: 'styles',
-                  test: /.(css|vue)$/,
-                  chunks: 'all',
-                  enforce: true,
-                },
-              },
-            },
-          },
-        }), // https://github.com/nuxt/bridge/issues/43
-    postcss: {
-      // @ts-ignore https://github.com/nuxt/bridge/issues/29
-      plugins: { tailwindcss: {}, autoprefixer: {} },
-    },
-    transpile: [
-      '@http-util/status-i18n',
-      'barcode-detector',
-      'cross-fetch',
-      'graphql',
-      'hash.js',
-      'headers-polyfill',
-      'lodash',
-      'lodash-es',
-      'moment',
-      'node-fetch',
-      'pretty-bytes',
-      'subscriptions-transport-ws',
-      'tslib',
-      'universal-cookie',
-      'vue-chartjs',
-      'vue-qrcode-reader',
-      'webrtc-adapter',
-    ],
+    // babel: {
+    //   presets() {
+    //     return [['@nuxt/babel-preset-app', { corejs: { version: 3 } }]]
+    //   },
+    // },
+    // extend(config: Configuration) {
+    //   config.module?.rules.push({
+    //     test: /\.(graphql|gql)$/,
+    //     exclude: /node_modules/,
+    //     loader: 'graphql-tag/loader',
+    //   })
+    // },
+    // extractCSS: true,
+    // ...(process.env.NODE_ENV === 'production'
+    //   ? {}
+    //   : {
+    //       optimization: {
+    //         runtimeChunk: true,
+    //         splitChunks: {
+    //           name: true,
+    //           cacheGroups: {
+    //             styles: {
+    //               name: 'styles',
+    //               test: /.(css|vue)$/,
+    //               chunks: 'all',
+    //               enforce: true,
+    //             },
+    //           },
+    //         },
+    //       },
+    //     }), // https://github.com/nuxt/bridge/issues/43
+    // postcss: {
+    //   // @ts-ignore https://github.com/nuxt/bridge/issues/29
+    //   plugins: { tailwindcss: {}, autoprefixer: {} },
+    // },
+    // transpile: [
+    //   '@http-util/status-i18n',
+    //   '@uppy/companion-client',
+    //   '@uppy/core',
+    //   '@uppy/store-default',
+    //   '@uppy/tus',
+    //   '@uppy/utils',
+    //   'barcode-detector',
+    //   'cross-fetch',
+    //   'graphql',
+    //   'hash.js',
+    //   'headers-polyfill',
+    //   'lodash',
+    //   'lodash-es',
+    //   'moment',
+    //   'nanoid',
+    //   'node-fetch',
+    //   'pretty-bytes',
+    //   'subscriptions-transport-ws',
+    //   'tslib',
+    //   'universal-cookie',
+    //   'vue-chartjs',
+    //   'vue-qrcode-reader',
+    //   'webrtc-adapter',
+    // ],
   },
-  buildModules: [
-    [
-      '@nuxtjs/google-analytics',
-      {
-        disabled: () => {
-          const enabledCookies =
-            document.cookie
-              .match(
-                '(^|;)\\s*' +
-                  'cookie_control_enabled_cookies' +
-                  '\\s*=\\s*([^;]+)'
-              )
-              ?.pop() || ''
-          return !enabledCookies.split(',').includes('ga')
-        },
-      },
-    ],
-    [
-      '@nuxtjs/html-validator',
-      {
-        failOnError: true,
-      },
-    ],
-    // Doc: https://github.com/nuxt-community/moment-module
-    ['@nuxtjs/moment', { locales: ['de'] }],
-  ],
-  components: true, // Auto import components
   cookies: {
     necessary: [
       {
@@ -150,13 +129,44 @@ export default defineNuxtConfig({
     static: 'public',
   },
   loading: { color: '#fff' }, // Customize the progress-bar color
+  layoutTransition: {
+    name: 'layout',
+  },
   modules: [
+    // [
+    //   '@dargmuesli/nuxt-cookie-control',
+    //   {
+    //     locales: ['en', 'de'],
+    //   },
+    // ],
     [
-      '@dargmuesli/nuxt-cookie-control',
+      '@nuxtjs/color-mode',
       {
-        locales: ['en', 'de'],
+        classSuffix: '',
       },
     ],
+    // [
+    //   '@nuxtjs/google-analytics',
+    //   {
+    //     disabled: () => {
+    //       const enabledCookies =
+    //         document.cookie
+    //           .match(
+    //             '(^|;)\\s*' +
+    //               'cookie_control_enabled_cookies' +
+    //               '\\s*=\\s*([^;]+)'
+    //           )
+    //           ?.pop() || ''
+    //       return !enabledCookies.split(',').includes('ga')
+    //     },
+    //   },
+    // ],
+    // [
+    //   '@nuxtjs/html-validator',
+    //   {
+    //     failOnError: true,
+    //   },
+    // ],
     [
       '@nuxtjs/i18n',
       {
@@ -177,12 +187,7 @@ export default defineNuxtConfig({
         vueI18nLoader: true,
       },
     ],
-    [
-      '@nuxtjs/color-mode',
-      {
-        classSuffix: '',
-      },
-    ],
+    ['@nuxtjs/moment', { locales: ['de'] }],
     // [
     //   '@nuxtjs/google-adsense',
     //   {
@@ -200,7 +205,7 @@ export default defineNuxtConfig({
       },
     ],
     '@pinia/nuxt',
-    ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
+    // ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
   ],
   nitro: {
     autoImport: {
@@ -211,19 +216,24 @@ export default defineNuxtConfig({
       ], // Can be removed in unjs/nitro > v0.4.12
     },
   },
-  plugins: ['~/plugins/croppa.js', '~/plugins/i18n.ts', '~/plugins/urql.ts'],
-  publicRuntimeConfig: {
-    dev: process.env.NODE_ENV !== 'production',
-    // 'google-adsense': {
-    //   id: process.env.GOOGLE_ADSENSE_ID,
-    //   analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
-    //   analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
-    // },
-    googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_ID,
-      debug: process.env.NODE_ENV !== 'production',
+  postcss: {
+    // @ts-ignore https://github.com/nuxt/bridge/issues/29
+    plugins: { tailwindcss: {}, autoprefixer: {} },
+  },
+  runtimeConfig: {
+    public: {
+      dev: process.env.NODE_ENV !== 'production',
+      // 'google-adsense': {
+      //   id: process.env.GOOGLE_ADSENSE_ID,
+      //   analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
+      //   analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
+      // },
+      googleAnalytics: {
+        id: process.env.GOOGLE_ANALYTICS_ID,
+        debug: process.env.NODE_ENV !== 'production',
+      },
+      STORYBOOK: process.env.STORYBOOK,
     },
-    STORYBOOK: process.env.STORYBOOK,
   },
   // // seemed to still work in v0.137.1
   // render: {
@@ -233,11 +243,7 @@ export default defineNuxtConfig({
     addons: ['@storybook/addon-a11y'],
   },
   typescript: {
+    shim: false,
     strict: true,
-  },
-  vue: {
-    config: {
-      productionTip: false, // Remove in vue 3.
-    },
   },
 })

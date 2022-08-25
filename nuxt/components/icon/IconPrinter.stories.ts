@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import IconPrinter from './IconPrinter.vue'
 
 const argTypes = { click: { action: 'click' } }

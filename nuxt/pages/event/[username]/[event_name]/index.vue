@@ -4,24 +4,21 @@
       <Breadcrumbs
         :prefixes="[
           { name: $t('events'), to: '../..', append: true },
-          { name: $route.params.username, to: '..', append: true },
+          { name: routeParamUsername, to: '..', append: true },
         ]"
       >
         {{ event.name }}
       </Breadcrumbs>
-      <CardStateInfo
-        v-if="$route.query.ic && contact"
-        class="flex flex-col gap-2"
-      >
+      <CardStateInfo v-if="routeQueryIc && contact" class="flex flex-col gap-2">
         {{ $t('invitationViewFor', { name: contactName }) }}
         <ButtonColored
           append
           :aria-label="$t('invitationSelectionClear')"
           @click="
-            $router.push({
+            navigateTo({
               append: true,
               path: 'invitation',
-              query: { ...$route.query, ic: undefined },
+              query: { ...routeQuery, ic: undefined },
             })
           "
         >
@@ -201,7 +198,7 @@
       </div>
       <ButtonList
         v-if="
-          !$route.query.ic &&
+          !routeQueryIc &&
           jwtDecoded &&
           event.authorUsername === jwtDecoded.username
         "
@@ -301,24 +298,26 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types-edge'
 import consola from 'consola'
 import downloadJs from 'downloadjs'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 import Swal from 'sweetalert2'
-import { useI18n } from 'vue-i18n-composable'
+import { useI18n } from 'vue-i18n'
 
 import {
   computed,
   defineComponent,
   reactive,
   ref,
-  useNuxtApp,
+  useRouter,
   useRoute,
   watch,
+abortNavigation,
+useNuxtApp,
 } from '#app'
 import { useHead } from '#head'
 
@@ -334,28 +333,35 @@ import {
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
 
+definePageMeta({
+  middleware: [
+    async function (_to: any, _from: any) {
+      const { $urql } = useNuxtApp()
+      const route = useRoute()
+
+      const {
+        data: { eventIsExisting },
+      } = await $urql.value
+        .query(EVENT_IS_EXISTING_QUERY, {
+          slug: route.params.event_name,
+          authorUsername: route.params.username,
+        })
+        .toPromise()
+
+      if (!eventIsExisting) {
+        return abortNavigation()
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
   components: {
     QrcodeVue,
   },
-  async validate({ app, params }: Context): Promise<boolean> {
-    const {
-      data: { eventIsExisting },
-    } = await app.$urql.value
-      .query(EVENT_IS_EXISTING_QUERY, {
-        slug: params.event_name,
-        authorUsername: params.username,
-      })
-      .toPromise()
-
-    return eventIsExisting
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
     const route = useRoute()
@@ -390,6 +396,9 @@ export default defineComponent({
       contact: undefined as Contact | undefined,
       invitation: undefined as Invitation | undefined,
       jwtDecoded: store.jwtDecoded,
+      routeParamUsername: route.params.username,
+      routeQuery: route.query,
+      routeQueryIc: route.query.ic,
       signedInUsername: store.signedInUsername,
     })
     const methods = {
@@ -558,7 +567,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'description',

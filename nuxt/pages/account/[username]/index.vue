@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col gap-4">
     <Breadcrumbs :prefixes="[{ name: $t('accounts'), to: '..', append: true }]">
-      {{ $route.params.username }}
+      {{ routeParamUsername }}
     </Breadcrumbs>
-    <ButtonList v-if="signedInUsername === $route.params.username">
+    <ButtonList v-if="signedInUsername === routeParamUsername">
       <ButtonColored :aria-label="$t('settings')" to="settings" append>
         {{ $t('settings') }}
         <template slot="prefix">
@@ -23,21 +23,21 @@
           ref="profilePicture"
           classes="h-24 rounded w-24"
           height="96"
-          :username="$route.params.username"
+          :username="routeParamUsername"
           width="96"
         />
       </div>
       <h2 class="max-w-full overflow-hidden text-ellipsis sm:w-auto">
-        {{ $route.params.username }}
+        {{ routeParamUsername }}
       </h2>
     </div>
     <ButtonList>
       <ButtonColored
-        :aria-label="$t('eventsTheir', { name: $route.params.username })"
+        :aria-label="$t('eventsTheir', { name: routeParamUsername })"
         :is-primary="false"
-        :to="localePath(`/event/${$route.params.username}`)"
+        :to="localePath(`/event/${routeParamUsername}`)"
       >
-        {{ $t('eventsTheir', { name: $route.params.username }) }}
+        {{ $t('eventsTheir', { name: routeParamUsername }) }}
         <template slot="prefix">
           <IconCalendar />
         </template>
@@ -47,37 +47,48 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { defineComponent, reactive } from 'vue'
+
+import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 
+definePageMeta({
+  middleware: [
+    async function (_to: any, _from: any) {
+      const { $urql } = useNuxtApp()
+      const route = useRoute()
+
+      const {
+        data: { accountIsExisting },
+      } = await $urql.value
+        .query(ACCOUNT_IS_EXISTING_QUERY, {
+          username: route.params.username,
+        })
+        .toPromise()
+
+      if (!accountIsExisting) {
+        return abortNavigation()
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
-  async validate({ app, params }) {
-    const {
-      data: { accountIsExisting },
-    } = await app.$urql.value
-      .query(ACCOUNT_IS_EXISTING_QUERY, {
-        username: params.username,
-      })
-      .toPromise()
-
-    return accountIsExisting
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
     const { signOut } = useSignOut()
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const store = useMaevsiStore()
     const route = useRoute()
 
     const data = reactive({
       signedInUsername: store.signedInUsername,
+      routeParamUsername: route.params.username,
       title: route.params.username,
     })
     const methods = {
@@ -97,7 +108,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'og:type',

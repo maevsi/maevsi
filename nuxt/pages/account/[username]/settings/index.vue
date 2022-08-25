@@ -3,7 +3,7 @@
     <Breadcrumbs
       :prefixes="[
         { name: $t('accounts'), to: '../..', append: true },
-        { name: $route.params.username, to: '..', append: true },
+        { name: routeParamUsername, to: '..', append: true },
       ]"
     >
       {{ $t('settings') }}
@@ -17,12 +17,12 @@
         <AccountProfilePicture
           classes="h-24 rounded w-24"
           height="96"
-          :username="$route.params.username"
+          :username="routeParamUsername"
           width="96"
         />
       </Button>
       <h1 class="max-w-full overflow-hidden text-ellipsis sm:w-auto">
-        {{ $route.params.username }}
+        {{ routeParamUsername }}
       </h1>
       <ModalImageSelection
         @submitSuccess="$nuxt.$emit('profilePictureReload')"
@@ -48,7 +48,9 @@
 
 <script lang="ts">
 import { CombinedError } from '@urql/core'
-import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
+import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { computed, defineComponent, reactive } from 'vue'
+import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'
 
 import { useHead } from '#head'
 
@@ -58,31 +60,36 @@ import { useSignOut } from '~/plugins/util/auth'
 import { getApiMeta } from '~/plugins/util/util'
 import { useMaevsiStore } from '~/store'
 
+definePageMeta({
+  middleware: [
+    async function (_to: any, _from: any) {
+      const { $urql } = useNuxtApp()
+      const route = useRoute()
+      const store = useMaevsiStore()
+
+      if (res && route.params.username !== store.signedInUsername) {
+        return abortNavigation({ statusCode: 403 })
+      }
+
+      const {
+        data: { accountIsExisting },
+      } = await $urql.value
+        .query(ACCOUNT_IS_EXISTING_QUERY, {
+          username: route.params.username,
+        })
+        .toPromise()
+
+      if (!accountIsExisting) {
+        return abortNavigation({ statusCode: 404 })
+      }
+    },
+  ],
+})
+
 export default defineComponent({
   name: 'IndexPage',
-  middleware({ error, params, res, $pinia }) {
-    const store = useMaevsiStore($pinia)
-
-    if (res && params.username !== store.signedInUsername) {
-      return error({ statusCode: 403 })
-    }
-  },
-  async validate({ app, params }) {
-    const {
-      data: { accountIsExisting },
-    } = await app.$urql.value
-      .query(ACCOUNT_IS_EXISTING_QUERY, {
-        username: params.username,
-      })
-      .toPromise()
-
-    return accountIsExisting
-  },
-  transition: {
-    name: 'layout',
-  },
   setup() {
-    const { $router } = useNuxtApp()
+    const router = useRouter()
     const store = useMaevsiStore()
     const { signOut } = useSignOut()
     const route = useRoute()
@@ -96,6 +103,7 @@ export default defineComponent({
     }
     const data = reactive({
       accountDeleteMutation: ACCOUNT_DELETE_MUTATION,
+      routeParamUsername: route.params.username,
       title:
         route.params.username === store.signedInUsername
           ? route.params.username
@@ -124,7 +132,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
+            router.currentRoute.fullPath,
         },
         {
           hid: 'twitter:title',
