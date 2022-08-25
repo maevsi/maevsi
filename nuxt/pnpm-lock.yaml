@@ -106,7 +106,7 @@ specifiers:
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13
   pretty-bytes: 6.0.0
-  prntr: 2.0.15
+  prntr: 2.0.16
   puppeteer: 16.2.0
   qrcode.vue: 1.7.0
   react: 16.14.0
@@ -185,7 +185,7 @@ dependencies:
   nuxt-edge: 2.16.0-27616340.013f051b_nuvfsgol6dayaiz52l3vqukcpq
   pg: 8.8.0
   pretty-bytes: 6.0.0
-  prntr: 2.0.15
+  prntr: 2.0.16
   qrcode.vue: 1.7.0_vue@2.7.10
   slugify: 1.6.5
   sweetalert2: 11.4.29
@@ -18238,8 +18238,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /prntr/2.0.15:
-    resolution: {integrity: sha512-8yPEVDjjv+JHfWL9cNYPdQzIfePFVGH3faQFUGMPNGhJVLiYvnrVrpoR2XM1OoDaob9SdC7PyzpuYdGbluIO2Q==}
+  /prntr/2.0.16:
+    resolution: {integrity: sha512-csUOdXFaihFLzyxDaKxwJykdGfClluhTxJ2VoF5PLBU+CWoZKTu+qBVweIltR76p8/nD+hReU0FHS4V2sO1bgw==}
     dependencies:
       bowser: 2.11.0
     dev: false
