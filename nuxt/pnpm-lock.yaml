@@ -70,7 +70,7 @@ specifiers:
   clipboard: 2.0.11
   consola: 2.15.3
   cookie: 0.5.0
-  core-js: 3.24.1
+  core-js: 3.25.0
   cross-env: 7.0.3
   css-element-queries: 1.2.3
   css-loader: 5.2.7
@@ -168,7 +168,7 @@ dependencies:
   clipboard: 2.0.11
   consola: 2.15.3
   cookie: 0.5.0
-  core-js: 3.24.1
+  core-js: 3.25.0
   css-element-queries: 1.2.3
   downloadjs: 1.4.7
   graphql: 15.8.0
@@ -2618,7 +2618,7 @@ packages:
       '@babel/preset-env': 7.18.10_@babel+core@7.18.13
       '@babel/runtime': 7.18.9
       '@vue/babel-preset-jsx': 1.3.1_d4nzpive36rkayolpiak62ahei
-      core-js: 3.24.1
+      core-js: 3.25.0
       core-js-compat: 3.24.1
       regenerator-runtime: 0.13.9
     transitivePeerDependencies:
@@ -3739,7 +3739,7 @@ packages:
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/theming': 6.5.10_wcqkhtmu7mswc6yz4uyexck3ty
       axe-core: 4.4.3
-      core-js: 3.24.1
+      core-js: 3.25.0
       global: 4.4.0
       lodash: 4.17.21
       react: 16.14.0
@@ -3767,7 +3767,7 @@ packages:
       '@storybook/components': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/core-events': 6.3.13
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
-      core-js: 3.24.1
+      core-js: 3.25.0
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
@@ -3801,7 +3801,7 @@ packages:
       '@storybook/components': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/core-events': 6.3.13
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
-      core-js: 3.24.1
+      core-js: 3.25.0
       global: 4.4.0
       memoizerific: 1.11.3
       react: 16.14.0
@@ -3830,7 +3830,7 @@ packages:
       '@storybook/components': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/node-logger': 6.3.13
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
-      core-js: 3.24.1
+      core-js: 3.25.0
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
       ts-dedent: 2.2.0
@@ -3906,7 +3906,7 @@ packages:
       acorn: 7.4.1
       acorn-jsx: 5.3.2_acorn@7.4.1
       acorn-walk: 7.2.0
-      core-js: 3.24.1
+      core-js: 3.25.0
       doctrine: 3.0.0
       escodegen: 2.0.0
       fast-deep-equal: 3.1.3
@@ -3980,7 +3980,7 @@ packages:
       '@storybook/node-logger': 6.3.13
       '@storybook/vue': 6.3.13_lp2x5t2o7ps3cviefl4nj4xw2a
       babel-loader: 8.2.5_li4tts7salxwv3rbqjnooz7t7e
-      core-js: 3.24.1
+      core-js: 3.25.0
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
       regenerator-runtime: 0.13.9
@@ -4064,7 +4064,7 @@ packages:
       '@storybook/client-api': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/components': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
-      core-js: 3.24.1
+      core-js: 3.25.0
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
       regenerator-runtime: 0.13.9
@@ -4089,7 +4089,7 @@ packages:
       '@storybook/components': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/core-events': 6.3.13
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
-      core-js: 3.24.1
+      core-js: 3.25.0
       global: 4.4.0
       memoizerific: 1.11.3
       prop-types: 15.8.1
@@ -4112,7 +4112,7 @@ packages:
       '@storybook/core-events': 6.3.13
       '@storybook/router': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
-      core-js: 3.24.1
+      core-js: 3.25.0
       global: 4.4.0
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
@@ -4133,7 +4133,7 @@ packages:
       '@storybook/router': 6.5.10_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/theming': 6.5.10_wcqkhtmu7mswc6yz4uyexck3ty
       '@types/webpack-env': 1.18.0
-      core-js: 3.24.1
+      core-js: 3.25.0
       global: 4.4.0
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
@@ -4155,7 +4155,7 @@ packages:
       '@storybook/semver': 7.3.2
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@types/reach__router': 1.3.10
-      core-js: 3.24.1
+      core-js: 3.25.0
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
@@ -4183,7 +4183,7 @@ packages:
       '@storybook/router': 6.5.10_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/semver': 7.3.2
       '@storybook/theming': 6.5.10_wcqkhtmu7mswc6yz4uyexck3ty
-      core-js: 3.24.1
+      core-js: 3.25.0
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
@@ -4249,7 +4249,7 @@ packages:
       babel-plugin-macros: 2.8.0
       babel-plugin-polyfill-corejs3: 0.1.7_@babel+core@7.18.13
       case-sensitive-paths-webpack-plugin: 2.4.0
-      core-js: 3.24.1
+      core-js: 3.25.0
       css-loader: 3.6.0_webpack@4.46.0
       dotenv-webpack: 1.8.0_webpack@4.46.0
       file-loader: 6.2.0_webpack@4.46.0
@@ -4296,7 +4296,7 @@ packages:
       '@storybook/channels': 6.3.13
       '@storybook/client-logger': 6.3.13
       '@storybook/core-events': 6.3.13
-      core-js: 3.24.1
+      core-js: 3.25.0
       global: 4.4.0
       qs: 6.11.0
       telejson: 5.3.3
@@ -4305,7 +4305,7 @@ packages:
   /@storybook/channels/6.3.13:
     resolution: {integrity: sha512-LQEJ9tox/RIRV4mOMPniesfPdWGOU3YI27+MY7NGnhrG58np9h9Sp2dJTpH5X7jmZT0zK5/XpwlbKmz+CeFiGQ==}
     dependencies:
-      core-js: 3.24.1
+      core-js: 3.25.0
       ts-dedent: 2.2.0
       util-deprecate: 1.0.2
     dev: true
@@ -4313,7 +4313,7 @@ packages:
   /@storybook/channels/6.5.10:
     resolution: {integrity: sha512-lo26YZ6kWpHXLhuHJF4P/bICY7jD/rXEZqReKtGOSk1Lv99/xvG6pqmcy3hWLf3v3Dy/8otjRPSR7izFVIIZgQ==}
     dependencies:
-      core-js: 3.24.1
+      core-js: 3.25.0
       ts-dedent: 2.2.0
       util-deprecate: 1.0.2
     dev: true
@@ -4332,7 +4332,7 @@ packages:
       '@storybook/csf': 0.0.1
       '@types/qs': 6.9.7
       '@types/webpack-env': 1.18.0
-      core-js: 3.24.1
+      core-js: 3.25.0
       global: 4.4.0
       lodash: 4.17.21
       memoizerific: 1.11.3
@@ -4349,14 +4349,14 @@ packages:
   /@storybook/client-logger/6.3.13:
     resolution: {integrity: sha512-4cPsx6V2UsK3KODYHp/k7FMG3HIIgkGh2v3yrpHFoZqYSvFzjoToapc11jYw91maZ4Prj0Agl6GccDxzcsBecQ==}
     dependencies:
-      core-js: 3.24.1
+      core-js: 3.25.0
       global: 4.4.0
     dev: true
 
   /@storybook/client-logger/6.5.10:
     resolution: {integrity: sha512-/xA0MHOevXev68hyLMQw8Qo8KczSIdXOxliAgrycMTkDmw5eKeA8TP7B8zP3wGuq/e3MrdD9/8MWhb/IQBNC3w==}
     dependencies:
-      core-js: 3.24.1
+      core-js: 3.25.0
       global: 4.4.0
     dev: true
 
@@ -4374,7 +4374,7 @@ packages:
       '@types/overlayscrollbars': 1.12.1
       '@types/react-syntax-highlighter': 11.0.5
       color-convert: 2.0.1
-      core-js: 3.24.1
+      core-js: 3.25.0
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
@@ -4405,7 +4405,7 @@ packages:
       '@storybook/client-logger': 6.5.10
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/theming': 6.5.10_wcqkhtmu7mswc6yz4uyexck3ty
-      core-js: 3.24.1
+      core-js: 3.25.0
       memoizerific: 1.11.3
       qs: 6.11.0
       react: 16.14.0
@@ -4434,7 +4434,7 @@ packages:
       '@storybook/ui': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       airbnb-js-shims: 2.2.1
       ansi-to-html: 0.6.15
-      core-js: 3.24.1
+      core-js: 3.25.0
       global: 4.4.0
       lodash: 4.17.21
       qs: 6.11.0
@@ -4491,7 +4491,7 @@ packages:
       babel-plugin-macros: 3.1.0
       babel-plugin-polyfill-corejs3: 0.1.7_@babel+core@7.18.13
       chalk: 4.1.2
-      core-js: 3.24.1
+      core-js: 3.25.0
       express: 4.18.1
       file-system-cache: 1.1.0
       find-up: 5.0.0
@@ -4522,13 +4522,13 @@ packages:
   /@storybook/core-events/6.3.13:
     resolution: {integrity: sha512-0uuyrlIn3nOlJMcM+rJtZs+eF/7LUzDxsgcxESdzqCl9WWHb7+ERmEaxOryQZjdSnRbm1mxhTw4RbWbwqBuckg==}
     dependencies:
-      core-js: 3.24.1
+      core-js: 3.25.0
     dev: true
 
   /@storybook/core-events/6.5.10:
     resolution: {integrity: sha512-EVb1gO1172klVIAABLOoigFMx0V88uctY0K/qVCO8n6v+wd2+0Ccn63kl+gTxsAC3WZ8XhXh9q2w5ImHklVECw==}
     dependencies:
-      core-js: 3.24.1
+      core-js: 3.25.0
     dev: true
 
   /@storybook/core-server/6.3.13_3wxtyd3cg45hfvsn4cjk7hgbae:
@@ -4565,7 +4565,7 @@ packages:
       cli-table3: 0.6.2
       commander: 6.2.1
       compression: 1.7.4
-      core-js: 3.24.1
+      core-js: 3.25.0
       cpy: 8.1.2
       detect-port: 1.3.0
       express: 4.18.1
@@ -4639,7 +4639,7 @@ packages:
       '@babel/types': 7.18.13
       '@mdx-js/mdx': 1.6.22
       '@storybook/csf': 0.0.1
-      core-js: 3.24.1
+      core-js: 3.25.0
       fs-extra: 9.1.0
       js-string-escape: 1.0.1
       lodash: 4.17.21
@@ -4686,7 +4686,7 @@ packages:
       babel-loader: 8.2.5_li4tts7salxwv3rbqjnooz7t7e
       case-sensitive-paths-webpack-plugin: 2.4.0
       chalk: 4.1.2
-      core-js: 3.24.1
+      core-js: 3.25.0
       css-loader: 3.6.0_webpack@4.46.0
       dotenv-webpack: 1.8.0_webpack@4.46.0
       express: 4.18.1
@@ -4728,7 +4728,7 @@ packages:
     dependencies:
       '@types/npmlog': 4.1.4
       chalk: 4.1.2
-      core-js: 3.24.1
+      core-js: 3.25.0
       npmlog: 4.1.2
       pretty-hrtime: 1.0.3
     dev: true
@@ -4738,7 +4738,7 @@ packages:
     dependencies:
       '@types/npmlog': 4.1.4
       chalk: 4.1.2
-      core-js: 3.24.1
+      core-js: 3.25.0
       npmlog: 5.0.1
       pretty-hrtime: 1.0.3
     dev: true
@@ -4746,7 +4746,7 @@ packages:
   /@storybook/postinstall/6.3.13:
     resolution: {integrity: sha512-pxMjazJ43bkb0YmorZH+RmhHuhizZPb47GKQc7tODei+/wg0vLrTo19Kj1lBhvptnQGY/EQhVKlc/6Mv6xXeWw==}
     dependencies:
-      core-js: 3.24.1
+      core-js: 3.25.0
     dev: true
 
   /@storybook/react-docgen-typescript-plugin/0.7.2-canary.abb479f.0_hrl2l4xchpnd6hlkqocppvpxx4:
@@ -4778,7 +4778,7 @@ packages:
       '@reach/router': 1.3.4_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/client-logger': 6.3.13
       '@types/reach__router': 1.3.10
-      core-js: 3.24.1
+      core-js: 3.25.0
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
@@ -4796,7 +4796,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 6.5.10
-      core-js: 3.24.1
+      core-js: 3.25.0
       memoizerific: 1.11.3
       qs: 6.11.0
       react: 16.14.0
@@ -4809,7 +4809,7 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      core-js: 3.24.1
+      core-js: 3.25.0
       find-up: 4.1.0
     dev: true
 
@@ -4822,7 +4822,7 @@ packages:
       '@storybook/addons': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/client-logger': 6.3.13
       '@storybook/csf': 0.0.1
-      core-js: 3.24.1
+      core-js: 3.25.0
       estraverse: 5.3.0
       global: 4.4.0
       loader-utils: 2.0.2
@@ -4843,7 +4843,7 @@ packages:
       '@emotion/is-prop-valid': 0.8.8
       '@emotion/styled': 10.3.0_qzeatvug73zaio2r3dlvejynye
       '@storybook/client-logger': 6.3.13
-      core-js: 3.24.1
+      core-js: 3.25.0
       deep-object-diff: 1.1.7
       emotion-theming: 10.3.0_qzeatvug73zaio2r3dlvejynye
       global: 4.4.0
@@ -4862,7 +4862,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 6.5.10
-      core-js: 3.24.1
+      core-js: 3.25.0
       memoizerific: 1.11.3
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
@@ -4887,7 +4887,7 @@ packages:
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@types/markdown-to-jsx': 6.11.3
       copy-to-clipboard: 3.3.2
-      core-js: 3.24.1
+      core-js: 3.25.0
       core-js-pure: 3.24.1
       downshift: 6.1.9_react@16.14.0
       emotion-theming: 10.3.0_qzeatvug73zaio2r3dlvejynye
@@ -4928,7 +4928,7 @@ packages:
       '@storybook/core-common': 6.3.13_gsjaonwjv6ncsjsztbgyabtvjy
       '@types/webpack-env': 1.18.0
       babel-loader: 8.2.5_li4tts7salxwv3rbqjnooz7t7e
-      core-js: 3.24.1
+      core-js: 3.25.0
       css-loader: 5.2.7_webpack@4.46.0
       global: 4.4.0
       react: 16.14.0
@@ -6088,7 +6088,7 @@ packages:
       vite: ^2.8.0
     dependencies:
       '@babel/standalone': 7.18.13
-      core-js: 3.24.1
+      core-js: 3.25.0
       magic-string: 0.26.2
       regenerator-runtime: 0.13.9
       systemjs: 6.12.3
@@ -9146,8 +9146,8 @@ packages:
     requiresBuild: true
     dev: true
 
-  /core-js/3.24.1:
-    resolution: {integrity: sha512-0QTBSYSUZ6Gq21utGzkfITDylE8jWC9Ne1D2MrhvlsZBI1x39OdDIVbzSqtgMndIy6BlHxBXpMGqzZmnztg2rg==}
+  /core-js/3.25.0:
+    resolution: {integrity: sha512-CVU1xvJEfJGhyCpBrzzzU1kjCfgsGUxhEvwUV2e/cOedYWHdmluamx+knDnmhqALddMG16fZvIqvs9aijsHHaA==}
     requiresBuild: true
 
   /core-util-is/1.0.2:
@@ -10985,7 +10985,7 @@ packages:
       ast-metadata-inferer: 0.7.0
       browserslist: 4.21.3
       caniuse-lite: 1.0.30001382
-      core-js: 3.24.1
+      core-js: 3.25.0
       eslint: 8.22.0
       find-up: 5.0.0
       lodash.memoize: 4.1.2
@@ -14733,7 +14733,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.18.9
       app-root-dir: 1.0.2
-      core-js: 3.24.1
+      core-js: 3.25.0
       dotenv: 8.6.0
       dotenv-expand: 5.1.0
     dev: true
@@ -22583,7 +22583,7 @@ packages:
     dependencies:
       barcode-detector: 1.0.0
       callforth: 0.3.1
-      core-js: 3.24.1
+      core-js: 3.25.0
       vue: 2.7.10
       webrtc-adapter: 7.7.0
     dev: false
