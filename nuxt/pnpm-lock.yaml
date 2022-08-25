@@ -17,7 +17,7 @@ specifiers:
   '@nuxtjs/eslint-module': 3.1.0
   '@nuxtjs/google-analytics': 2.4.0
   '@nuxtjs/html-validator': 0.7.0
-  '@nuxtjs/i18n': 7.2.3
+  '@nuxtjs/i18n': 7.3.0
   '@nuxtjs/moment': 1.6.1
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
@@ -144,7 +144,7 @@ dependencies:
   '@http-util/status-i18n': 0.6.2
   '@nuxt/types-edge': 2.16.0-27616340.013f051b_webpack@4.46.0
   '@nuxtjs/color-mode': 3.1.4_webpack@4.46.0
-  '@nuxtjs/i18n': 7.2.3_vue@2.7.10
+  '@nuxtjs/i18n': 7.3.0_vue@2.7.10
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
@@ -3386,8 +3386,8 @@ packages:
       - jest-snapshot
     dev: true
 
-  /@nuxtjs/i18n/7.2.3_vue@2.7.10:
-    resolution: {integrity: sha512-Zi/1df2ISXtsPs5+IhdHbh3ebWLq4V+tU71SkAuB2F9Es2qANF5EIq2dT9rCDW/1bbfO48MQU/eUWectDX6D7g==}
+  /@nuxtjs/i18n/7.3.0_vue@2.7.10:
+    resolution: {integrity: sha512-KBmFzgHjaJ/b+I/nISWUkAxcigjc5FiR1ScRzq/eC8Ahxi5zIulfF8vRROmYbW1gP6B2yYBblOuWemW/T/YM0A==}
     engines: {node: '>=14.16'}
     dependencies:
       '@babel/parser': 7.18.13
