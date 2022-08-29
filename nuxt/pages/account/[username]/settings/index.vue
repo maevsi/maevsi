@@ -48,7 +48,6 @@
 
 <script lang="ts">
 import { CombinedError } from '@urql/core'
-import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
 import { computed, defineComponent, reactive } from 'vue'
 import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'
 

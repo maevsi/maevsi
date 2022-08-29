@@ -21,19 +21,10 @@
 
 <script lang="ts">
 import consola from 'consola'
-import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { computed, defineComponent, reactive, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import {
-  computed,
-  defineComponent,
-  reactive,
-  useRouter,
-  useRoute,
-  watch,
-  abortNavigation,
-useNuxtApp,
-} from '#app'
+import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'

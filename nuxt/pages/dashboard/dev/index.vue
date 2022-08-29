@@ -43,14 +43,9 @@
 
 <script lang="ts">
 import { useI18n } from 'vue-i18n'
+import { computed, defineComponent, reactive } from 'vue'
 
-import {
-  computed,
-  defineComponent,
-  reactive,
-  useNuxtApp,
-  useRouter,
-} from '#app'
+import { useNuxtApp, useRouter } from '#app'
 import { useHead } from '#head'
 
 import { useSignOut } from '~/plugins/util/auth'

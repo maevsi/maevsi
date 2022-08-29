@@ -6,9 +6,9 @@
 </template>
 
 <script lang="ts">
-import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { defineComponent } from 'vue'
 
-import { abortNavigation, defineComponent, useRoute } from '#app'
+import { abortNavigation, useRoute } from '#app'
 import { useHead } from '#head'
 
 import { REGEX_SLUG } from '~/plugins/util/validation'

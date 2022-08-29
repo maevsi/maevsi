@@ -37,19 +37,15 @@
 <script lang="ts">
 import { CombinedError } from '@urql/vue'
 import consola from 'consola'
-import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
+import { computed, defineComponent, reactive, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import {
-  computed,
-  defineComponent,
-  reactive,
   useNuxtApp,
   useRoute,
   navigateTo,
   useRouter,
-  watch,
-abortNavigation,
+  abortNavigation,
 } from '#app'
 import { useHead } from '#head'
 

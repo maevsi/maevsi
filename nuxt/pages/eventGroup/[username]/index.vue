@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts">
-import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
 import { defineComponent } from 'vue'
 
 import { abortNavigation, useRoute } from '#app'

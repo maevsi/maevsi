@@ -47,7 +47,6 @@
 </template>
 
 <script lang="ts">
-import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
 import { defineComponent, reactive } from 'vue'
 
 import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'

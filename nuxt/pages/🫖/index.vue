@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts">
-import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
 import { defineComponent, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -13,8 +12,6 @@ import { useHead } from '#head'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const store = useMaevsiStore()
-
       if (res) {
         res.statusCode = 418
       }

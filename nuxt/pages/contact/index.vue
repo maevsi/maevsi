@@ -8,8 +8,7 @@
 </template>
 
 <script lang="ts">
-import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { useRouter } from '#app'

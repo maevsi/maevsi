@@ -56,7 +56,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
-import { definePageMeta } from 'nuxt/dist/pages/runtime/composables'
 import { computed, defineComponent, onMounted, reactive, toRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
