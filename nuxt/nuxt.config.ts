@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n'
 // import { Configuration } from 'webpack'
 
 import localeDe from './locales/de.json'
@@ -245,5 +246,8 @@ export default defineNuxtConfig({
   typescript: {
     shim: false,
     strict: true,
+  },
+  vite: {
+    plugins: [VueI18nPlugin.vite({})],
   },
 })
