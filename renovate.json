@@ -12,6 +12,10 @@
       "allowedVersions": "<6"
     },
     {
+      "matchPackageNames": ["@types/luxon", "luxon"],
+      "allowedVersions": "<2"
+    },
+    {
       "matchPackageNames": ["@types/mustache", "mustache"],
       "allowedVersions": "<4"
     },
