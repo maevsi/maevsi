@@ -1,5 +1,6 @@
 import { defineNuxtConfig } from 'nuxt'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n'
+import graphqlPlugin from '@rollup/plugin-graphql'
 // import { Configuration } from 'webpack'
 
 import localeDe from './locales/de.json'
@@ -248,6 +249,6 @@ export default defineNuxtConfig({
     strict: true,
   },
   vite: {
-    plugins: [VueI18nPlugin.vite({})],
+    plugins: [VueI18nPlugin.vite({}), graphqlPlugin()],
   },
 })
