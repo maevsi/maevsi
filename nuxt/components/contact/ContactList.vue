@@ -67,7 +67,7 @@
 import consola from 'consola'
 import debounce from 'lodash-es/debounce'
 import { computed, defineComponent, reactive, ref, watch } from 'vue'
-import VueI18n, { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n'
 
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'
@@ -105,7 +105,7 @@ export default defineComponent({
       contacts: computed(() => contactsQuery.data.value?.allContacts?.nodes),
     }
     const data = reactive({
-      formContactHeading: undefined as VueI18n.TranslateResult | undefined,
+      formContactHeading: undefined as string | undefined,
       pending: {
         deletions: [] as string[],
         edits: [] as string[],

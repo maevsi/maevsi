@@ -2,7 +2,7 @@ import fs from 'fs'
 
 import { serialize } from 'cookie'
 import { CompatibilityEvent } from 'h3'
-import jsonwebtoken from 'jsonwebtoken'
+import { verify } from 'jsonwebtoken'
 
 import { JWT_NAME } from '~/plugins/util/constants'
 
@@ -30,8 +30,7 @@ export default function (event: CompatibilityEvent) {
     jwt = req.headers.authorization.substring(7)
 
     try {
-      // eslint-disable-next-line import/no-named-as-default-member
-      jsonwebtoken.verify(jwt, configPostgraphileJwtPublicKey, {
+      verify(jwt, configPostgraphileJwtPublicKey, {
         algorithms: ['RS256'],
         audience: 'postgraphile',
         issuer: 'postgraphile',
