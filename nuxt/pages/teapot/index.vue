@@ -12,8 +12,10 @@ import { useHead } from '#head'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      if (res) {
-        res.statusCode = 418
+      const { ssrContext } = useNuxtApp()
+
+      if (ssrContext && ssrContext.event.res) {
+        ssrContext.event.res.statusCode = 418
       }
     },
   ],
@@ -42,7 +44,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'twitter:title',

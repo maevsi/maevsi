@@ -57,7 +57,7 @@ export default defineComponent({
     },
     type: {
       default: 'button',
-      type: String,
+      type: String as PropType<'button' | 'reset' | 'submit' | undefined>,
     },
   },
   setup() {

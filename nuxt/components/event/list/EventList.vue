@@ -69,7 +69,9 @@ export default defineComponent({
       events: computed(() => eventsQuery.data.value?.allEvents?.nodes),
     }
     const data = reactive({
-      isButtonEventListShown: route.name?.replace(/___.+$/, '') !== 'event',
+      isButtonEventListShown:
+        typeof route.name === 'string' &&
+        route.name?.replace(/___.+$/, '') !== 'event',
     })
 
     watch(eventsQuery.error, (currentValue, _oldValue) => {

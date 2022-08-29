@@ -52,7 +52,9 @@ const Form = defineComponent({
   props: {
     errors: {
       default: undefined,
-      type: Array as PropType<CombinedError[] | undefined>,
+      type: Array as PropType<
+        (CombinedError | { errcode: string; message: string })[] | undefined
+      >,
     },
     form: {
       required: true,

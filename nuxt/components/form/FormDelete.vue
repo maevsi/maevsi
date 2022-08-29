@@ -21,7 +21,12 @@
 <script lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
-import { CombinedError, UseMutationResponse } from '@urql/vue'
+import {
+  AnyVariables,
+  CombinedError,
+  OperationContext,
+  OperationResult,
+} from '@urql/vue'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { toRef, defineComponent, PropType, reactive } from 'vue'
@@ -32,12 +37,15 @@ import {
   formPreSubmit,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
 } from '~/plugins/util/validation'
+import { Exact, EventDeleteMutation } from '~~/gql/generated'
 
 export default defineComponent({
   props: {
     errors: {
       default: undefined,
-      type: Array as PropType<CombinedError[] | undefined>,
+      type: Array as PropType<
+        (CombinedError | { errcode: string; message: string })[] | undefined
+      >,
     },
     itemName: {
       required: true,
@@ -45,7 +53,12 @@ export default defineComponent({
     },
     mutation: {
       required: true,
-      type: Object as PropType<UseMutationResponse<any, any>>,
+      type: Function as PropType<
+        (
+          variables: Exact<any>,
+          context?: Partial<OperationContext> | undefined
+        ) => Promise<OperationResult<EventDeleteMutation, AnyVariables>>
+      >,
     },
     variables: {
       default: {} as PropType<Record<string, any>>,
@@ -73,6 +86,8 @@ export default defineComponent({
     const v$ = useVuelidate(rules, data)
     const methods = {
       async submit() {
+        if (!data.form.password) return
+
         try {
           await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
         } catch (error) {
@@ -80,8 +95,8 @@ export default defineComponent({
           return
         }
 
-        props.mutation
-          .executeMutation({
+        props
+          .mutation({
             password: data.form.password,
             ...props.variables,
           })

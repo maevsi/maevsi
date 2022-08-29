@@ -3,6 +3,10 @@ import Clipboard from 'clipboard'
 import { computed, Ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+export function append(path: string, pathToAppend: string): string {
+  return path + (path.endsWith('/') ? '' : '/') + pathToAppend
+}
+
 export function capitalizeFirstLetter(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
@@ -75,7 +79,7 @@ export function getApiMeta(
       } else {
         return p
       }
-    }, [] as (CombinedError | { errcode: string })[]),
+    }, [] as (CombinedError | { errcode: string; message: string })[]),
     isFetching: queries.reduce((p, c) => p || c.fetching.value, false),
   }
 }
@@ -116,7 +120,9 @@ export function useGetCombinedErrorMessages() {
   const { t } = useI18n()
 
   return {
-    getCombinedErrorMessages(errors: CombinedError[]) {
+    getCombinedErrorMessages(
+      errors: (CombinedError | { errcode: string; message: string })[]
+    ) {
       return getCombinedErrorMessages(t, errors)
     },
   }

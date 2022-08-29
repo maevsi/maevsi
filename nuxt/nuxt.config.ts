@@ -118,10 +118,12 @@ export default defineNuxtConfig({
         identifier: 'ga',
         // cookies: ['_ga', '_gat', '_gid'],
         accepted: () => {
-          window.$nuxt.$ga.enable()
+          const { $ga } = useNuxtApp()
+          $ga.enable()
         },
         declined: () => {
-          window.$nuxt.$ga.disable()
+          const { $ga } = useNuxtApp()
+          $ga.disable()
         },
       },
     ],
@@ -186,7 +188,7 @@ export default defineNuxtConfig({
           },
           silentFallbackWarn: true,
         },
-        vueI18nLoader: true,
+        // vueI18nLoader: true,
       },
     ],
     ['@nuxtjs/moment', { locales: ['de'] }],
@@ -249,6 +251,7 @@ export default defineNuxtConfig({
     strict: true,
   },
   vite: {
+    // @ts-ignore https://github.com/rollup/plugins/issues/1243
     plugins: [VueI18nPlugin.vite({}), graphqlPlugin()],
   },
 })

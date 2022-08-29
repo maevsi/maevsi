@@ -37,14 +37,14 @@
 </template>
 
 <script lang="ts">
+import { BaseValidation } from '@vuelidate/core'
 import { defineComponent, PropType } from 'vue'
-import { FormInputType } from '~/components/form/input/FormInput.vue'
 
 export default defineComponent({
   props: {
     formInput: {
       required: true,
-      type: Object as PropType<FormInputType>,
+      type: Object as PropType<BaseValidation | undefined>,
     },
     id: {
       default: undefined,

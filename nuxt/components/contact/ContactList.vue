@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-4">
       <ScrollContainer
         v-if="contacts"
-        :has-next-page="api.data.allContacts?.pageInfo.hasNextPage"
+        :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
         @loadMore="loadMore"
       >
         <table>

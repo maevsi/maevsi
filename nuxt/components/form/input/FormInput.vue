@@ -105,7 +105,7 @@
 </template>
 
 <script lang="ts">
-import { Validation } from '@vuelidate/core'
+import { BaseValidation } from '@vuelidate/core'
 import consola from 'consola'
 
 import { defineComponent, PropType } from 'vue'
@@ -154,7 +154,7 @@ const FormInput = defineComponent({
     },
     value: {
       default: undefined,
-      type: Object as PropType<Validation | undefined>,
+      type: Object as PropType<BaseValidation | undefined>,
     },
     warning: {
       default: false,

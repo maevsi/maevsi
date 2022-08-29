@@ -28,7 +28,7 @@ definePageMeta({
     function (_to: any, _from: any) {
       const route = useRoute()
 
-      if (!REGEX_SLUG.test(route.params.username)) {
+      if (!REGEX_SLUG.test(route.params.username as string)) {
         return abortNavigation()
       }
     },
@@ -44,7 +44,7 @@ export default defineComponent({
     const localePath = useLocalePath()
 
     const data = reactive({
-      routeParamUsername: route.params.username,
+      routeParamUsername: route.params.username as string,
       title: t('title', { name: route.params.username }),
     })
     const methods = {
@@ -64,7 +64,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'og:type',

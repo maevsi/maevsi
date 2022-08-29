@@ -46,9 +46,9 @@
 </template>
 
 <script lang="ts">
+import { BaseValidation } from '@vuelidate/core'
 import { defineComponent, PropType, reactive } from 'vue'
 
-import { FormInputType } from '~/components/form/input/FormInput.vue'
 import { VALIDATION_PASSWORD_LENGTH_MINIMUM } from '~/plugins/util/validation'
 
 export default defineComponent({
@@ -59,7 +59,7 @@ export default defineComponent({
     },
     formInput: {
       required: true,
-      type: Object as PropType<FormInputType>,
+      type: Object as PropType<BaseValidation | undefined>,
     },
     title: {
       default: undefined,

@@ -5,7 +5,7 @@
     :is-validatable="isValidatable"
     :id-label="`input-${id}`"
     :placeholder="$t('globalPlaceholderUsername')"
-    :success="isValidatable && formInput.$model && !formInput.$invalid"
+    :success="isValidatable && !formInput.$invalid"
     :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
     type="text"
     :validation-property="formInput"
@@ -68,7 +68,7 @@
 </template>
 
 <script lang="ts">
-import { Validation } from '@vuelidate/core'
+import { BaseValidation } from '@vuelidate/core'
 
 import { defineComponent, PropType } from 'vue'
 
@@ -76,7 +76,7 @@ export default defineComponent({
   props: {
     formInput: {
       required: true,
-      type: Object as PropType<Validation | undefined>,
+      type: Object as PropType<BaseValidation | undefined>,
     },
     id: {
       required: true,

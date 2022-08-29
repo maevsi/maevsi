@@ -22,9 +22,13 @@ definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
       const localePath = useLocalePath()
-      const query = useQuery()
+      const route = useRoute()
 
-      if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {
+      if (
+        Array.isArray(route.query.code) ||
+        route.query.code === null ||
+        !REGEX_UUID.test(route.query.code)
+      ) {
         return navigateTo(localePath('/'))
       }
     },
@@ -88,7 +92,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'twitter:title',

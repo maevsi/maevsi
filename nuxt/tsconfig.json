@@ -1,32 +1,27 @@
 {
-  // "compilerOptions": {
-  //   "esModuleInterop": true,
-  //   "strict": true,
+  "compilerOptions": {
+    "esModuleInterop": true,
   //   "sourceMap": true,
   //   "experimentalDecorators": true,
-  //   "baseUrl": ".",
-  //   "types": [
+    "types": [
   //     "@types/node",
   //     "@nuxtjs/color-mode",
   //     "@nuxtjs/google-analytics",
-  //     "@nuxtjs/i18n",
+      // "@nuxtjs/i18n",
   //     "@nuxtjs/moment",
-  //     "jest",
+      "jest",
   //     "node",
-  //   ],
+    ],
   //   "lib": [
   //     "ESNext",
   //     "ESNext.AsyncIterable",
   //     "DOM"
   //   ]
-  // },
+  },
   // "exclude": [
   //   "node_modules",
   //   ".nuxt",
   //   "dist"
   // ],
   "extends": "./.nuxt/tsconfig.json",
-  // "vueCompilerOptions": {
-  //   "target": 2.7,
-  // }
 }

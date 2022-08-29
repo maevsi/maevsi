@@ -2,7 +2,8 @@
   <FormInputState
     v-if="
       (!formInput && !validationProperty) ||
-      (formInput[isValidationLive ? '$invalid' : '$error'] &&
+      (formInput &&
+        formInput[isValidationLive ? '$invalid' : '$error'] &&
         !formInput.$pending &&
         validationProperty &&
         validationProperty in formInput &&

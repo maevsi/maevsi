@@ -24,7 +24,7 @@ definePageMeta({
       const store = useMaevsiStore()
 
       if (!store.signedInUsername) {
-        return error({ statusCode: 403 })
+        throw createError({ statusCode: 403 })
       }
     },
   ],
@@ -55,7 +55,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'twitter:title',

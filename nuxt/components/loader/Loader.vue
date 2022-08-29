@@ -32,7 +32,7 @@ export default defineComponent({
       },
       type: Object as PropType<{
         data: Object
-        errors: CombinedError[]
+        errors: (CombinedError | { errcode: string; message: string })[]
         isFetching: boolean
       }>,
     },

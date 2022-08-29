@@ -54,13 +54,13 @@ import DOMPurify from 'isomorphic-dompurify'
 import { render } from 'mustache'
 import { computed, defineComponent, PropType } from 'vue'
 
-import { Event as MaevsiEvent } from '~/types/event'
+import { Event } from '~/types/event'
 
 export default defineComponent({
   props: {
     event: {
       required: true,
-      type: Object as PropType<MaevsiEvent>,
+      type: Object as PropType<Event>,
     },
   },
   setup(props) {

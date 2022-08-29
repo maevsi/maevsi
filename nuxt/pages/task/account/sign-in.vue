@@ -28,7 +28,10 @@ definePageMeta({
       const route = useRoute()
       const store = useMaevsiStore()
 
-      if (store.jwtDecoded?.role === 'maevsi_account') {
+      if (
+        store.jwtDecoded?.role === 'maevsi_account' &&
+        !Array.isArray(route.query.referrer)
+      ) {
         return navigateTo(route.query.referrer || localePath('/dashboard/'))
       }
     },
@@ -61,7 +64,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'twitter:title',

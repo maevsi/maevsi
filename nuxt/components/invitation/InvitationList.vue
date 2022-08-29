@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-4">
       <ScrollContainer
         v-if="event && invitations?.length"
-        :has-next-page="api.data.allInvitations?.pageInfo.hasNextPage"
+        :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
         @loadMore="loadMore"
       >
         <table class="border border-neutral-300 dark:border-neutral-600">
@@ -27,6 +27,7 @@
             >
               <td class="max-w-0">
                 <ContactPreview
+                  v-if="invitation.contactByContactId"
                   :contact="invitation.contactByContactId"
                   :feedback="invitation.feedback"
                 />
@@ -193,7 +194,7 @@ import {
 } from 'chart.js'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { Doughnut } from 'vue-chartjs/legacy'
+import { Doughnut } from 'vue-chartjs'
 import {
   computed,
   defineComponent,
@@ -210,12 +211,12 @@ import { copyText, getApiMeta } from '~/plugins/util/util'
 import { Invitation } from '~/types/invitation'
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import {
-  Event,
   useAllInvitationsQuery,
   useDeleteInvitationByUuidMutation,
   useInviteMutation,
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
+import { Event } from '~/types/event'
 
 Chart.register(
   ArcElement,
