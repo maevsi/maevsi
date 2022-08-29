@@ -392,7 +392,7 @@ de:
   mandatoryInfoProcessingRestrictionList4: Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
   mandatoryInfoProcessingRestrictionTitle: Recht auf Einschränkung der Verarbeitung
   mandatoryInfoResponsibleAddressCity: 34117 Kassel
-  mandatoryInfoResponsibleAddressEmail: 'E-Mail: mail+privacy-policy@maev.si'
+  mandatoryInfoResponsibleAddressEmail: "E-Mail: mail+privacy-policy{'@'}maev.si"
   mandatoryInfoResponsibleAddressName: Jonas Thelemann
   mandatoryInfoResponsibleAddressStreet: Fünffensterstraße 18
   mandatoryInfoResponsibleDescription1: 'Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:'
@@ -541,7 +541,7 @@ en:
   mandatoryInfoProcessingRestrictionList4: If you have lodged an objection pursuant to Art. 21 (1) GDPR, a balancing of your and our interests must be carried out. As long as it has not yet been determined whose interests prevail, you have the right to request the restriction of the processing of your personal data.
   mandatoryInfoProcessingRestrictionTitle: Right to restriction of processing
   mandatoryInfoResponsibleAddressCity: 34117 Kassel
-  mandatoryInfoResponsibleAddressEmail: 'E-mail: mail+privacy-policy@maev.si'
+  mandatoryInfoResponsibleAddressEmail: "E-mail: mail+privacy-policy{'@'}maev.si"
   mandatoryInfoResponsibleAddressName: Jonas Thelemann
   mandatoryInfoResponsibleAddressStreet: Fünffensterstraße 18
   mandatoryInfoResponsibleDescription1: 'The responsible party for data processing on this website is:'
