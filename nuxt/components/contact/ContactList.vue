@@ -66,11 +66,8 @@
 <script lang="ts">
 import consola from 'consola'
 import debounce from 'lodash-es/debounce'
-import { computed } from 'vue'
-import VueI18n from 'vue-i18n'
-import { useI18n } from 'vue-i18n'
-
-import { defineComponent, reactive, ref, watch } from '#app'
+import { computed, defineComponent, reactive, ref, watch } from 'vue'
+import VueI18n, { useI18n } from 'vue-i18n'
 
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'

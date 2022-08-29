@@ -95,7 +95,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '#app'
+import { defineComponent, reactive } from 'vue'
 
 import { useMaevsiStore } from '~/store'
 

@@ -21,16 +21,10 @@ import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { reactive, toRef } from 'vue'
+import { reactive, toRef, computed, defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import {
-  computed,
-  defineComponent,
-  useNuxtApp,
-  useRoute,
-  navigateTo,
-} from '#app'
+import { useNuxtApp, useRoute, navigateTo } from '#app'
 
 import {
   formPreSubmit,

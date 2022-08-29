@@ -35,7 +35,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, useRoute } from '#app'
+import { computed, defineComponent, PropType } from 'vue'
+
+import { useRoute } from '#app'
+
 import { getQueryString } from '~/plugins/util/util'
 
 interface Breadcrumb {

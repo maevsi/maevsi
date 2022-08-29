@@ -16,8 +16,7 @@
 
 <script lang="ts">
 import slugify from 'slugify'
-
-import { computed, defineComponent, PropType } from '#app'
+import { computed, defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   props: {

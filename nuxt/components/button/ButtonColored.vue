@@ -31,9 +31,7 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, ref } from 'vue'
 
 export default defineComponent({
   props: {

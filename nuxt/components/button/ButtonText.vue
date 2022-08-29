@@ -20,9 +20,7 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-
-import { defineComponent, PropType } from 'vue'
+import { ref, defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   props: {

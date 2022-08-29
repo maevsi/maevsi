@@ -12,15 +12,9 @@
 
 <script lang="ts">
 import consola from 'consola'
+import { computed, defineComponent, PropType, reactive, watch } from 'vue'
 
-import {
-  computed,
-  defineComponent,
-  PropType,
-  reactive,
-  useNuxtApp,
-  watch,
-} from '#app'
+import { useNuxtApp } from '#app'
 
 import { TUSD_FILES_URL } from '~/plugins/util/validation'
 import { getApiMeta } from '~/plugins/util/util'

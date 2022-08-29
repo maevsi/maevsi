@@ -273,17 +273,10 @@ import { Datetime } from 'vue-datetime'
 import { DateTime, Settings } from 'luxon'
 import slugify from 'slugify'
 import Swal from 'sweetalert2'
-import { toRef } from 'vue'
+import { computed, defineComponent, PropType, reactive, toRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import {
-  computed,
-  defineComponent,
-  PropType,
-  reactive,
-  useNuxtApp,
-  navigateTo,
-} from '#app'
+import { useNuxtApp, navigateTo } from '#app'
 
 import { Event } from '~/types/event'
 import {

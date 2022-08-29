@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive } from '#app'
+import { defineComponent, PropType, reactive } from 'vue'
 
 import { FormInputType } from '~/components/form/input/FormInput.vue'
 import { VALIDATION_PASSWORD_LENGTH_MINIMUM } from '~/plugins/util/validation'

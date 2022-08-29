@@ -15,8 +15,8 @@
 
 <script lang="ts">
 import { CombinedError } from '@urql/core/dist/types/utils/error'
+import { computed, defineComponent, PropType } from 'vue'
 
-import { computed, defineComponent, PropType } from '#app'
 import { useGetCombinedErrorMessages } from '~/plugins/util/util'
 
 export default defineComponent({

@@ -25,9 +25,10 @@
 
 <script lang="ts">
 import { status } from '@http-util/status-i18n'
+import { computed, defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { computed, defineComponent, PropType, useNuxtApp } from '#app'
+import { useNuxtApp } from '#app'
 
 export default defineComponent({
   name: 'MaevsiError',

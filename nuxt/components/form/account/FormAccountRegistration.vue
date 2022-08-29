@@ -56,10 +56,10 @@ import {
 } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { toRef } from 'vue'
+import { computed, defineComponent, reactive, toRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { computed, defineComponent, reactive, useNuxtApp } from '#app'
+import { useNuxtApp } from '#app'
 
 import {
   formPreSubmit,

@@ -94,15 +94,11 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  navigateTo,
-  onBeforeMount,
-  reactive,
-  useNuxtApp,
-} from '#app'
-import { useMaevsiStore } from '~/store'
+import { defineComponent, onBeforeMount, reactive } from 'vue'
 
+import { navigateTo, useNuxtApp } from '#app'
+
+import { useMaevsiStore } from '~/store'
 import supportedBrowsers from '~/supportedBrowsers'
 
 export default defineComponent({

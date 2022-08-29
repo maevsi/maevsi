@@ -24,10 +24,8 @@ import { minLength, required } from '@vuelidate/validators'
 import { CombinedError, UseMutationResponse } from '@urql/vue'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { toRef } from 'vue'
+import { toRef, defineComponent, PropType, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
-
-import { defineComponent, PropType, reactive } from '#app'
 
 import { capitalizeFirstLetter, getApiDataDefault } from '~/plugins/util/util'
 import {

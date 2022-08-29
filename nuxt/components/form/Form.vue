@@ -42,9 +42,7 @@
 
 <script lang="ts">
 import { CombinedError } from '@urql/core'
-import { ref } from 'vue'
-
-import { computed, defineComponent, PropType } from '#app'
+import { ref, computed, defineComponent, PropType } from 'vue'
 
 import Button from '~/components/button/Button.vue'
 import { useGetCombinedErrorMessages } from '~/plugins/util/util'

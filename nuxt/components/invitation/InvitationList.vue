@@ -194,8 +194,6 @@ import {
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { Doughnut } from 'vue-chartjs/legacy'
-import { useI18n } from 'vue-i18n'
-
 import {
   computed,
   defineComponent,
@@ -203,10 +201,11 @@ import {
   PropType,
   reactive,
   ref,
-  useNuxtApp,
-  useRuntimeConfig,
   watch,
-} from '#app'
+} from 'vue'
+import { useI18n } from 'vue-i18n'
+
+import { useNuxtApp, useRuntimeConfig } from '#app'
 import { copyText, getApiMeta } from '~/plugins/util/util'
 import { Invitation } from '~/types/invitation'
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'

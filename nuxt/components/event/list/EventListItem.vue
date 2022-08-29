@@ -52,8 +52,7 @@
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
-
-import { computed, defineComponent, PropType } from '#app'
+import { computed, defineComponent, PropType } from 'vue'
 
 import { Event as MaevsiEvent } from '~/types/event'
 

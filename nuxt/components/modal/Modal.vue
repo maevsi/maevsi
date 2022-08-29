@@ -73,15 +73,9 @@
 
 <script lang="ts">
 import consola from 'consola'
+import { computed, defineComponent, PropType, reactive, watch } from 'vue'
 
-import {
-  computed,
-  defineComponent,
-  PropType,
-  reactive,
-  watch,
-  useRuntimeConfig,
-} from '#app'
+import { useRuntimeConfig } from '#app'
 import { Modal } from '~/types/modal'
 import { useMaevsiStore } from '~/store'
 

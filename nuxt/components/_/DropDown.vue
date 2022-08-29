@@ -23,9 +23,9 @@
 </template>
 
 <script lang="ts">
-import { reactive, ref } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 
-import { defineComponent, useNuxtApp } from '#app'
+import { useNuxtApp } from '#app'
 
 export default defineComponent({
   setup() {

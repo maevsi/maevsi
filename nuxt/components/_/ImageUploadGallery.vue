@@ -122,10 +122,16 @@ import Tus from '@uppy/tus'
 import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
 import Swal from 'sweetalert2'
-import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import {
+  defineComponent,
+  PropType,
+  reactive,
+  computed,
+  onBeforeUnmount,
+  ref,
+  watch,
+} from 'vue'
 import { useI18n } from 'vue-i18n'
-
-import { defineComponent, PropType, reactive } from '#app'
 
 import {
   useAccountUploadQuotaBytesQuery,

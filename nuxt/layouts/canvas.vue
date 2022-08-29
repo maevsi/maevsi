@@ -3,17 +3,10 @@
 </template>
 
 <script lang="ts">
-import { useHead } from '#head'
+import { defineComponent, onMounted, reactive, ref } from 'vue'
 
-import {
-  defineComponent,
-  onMounted,
-  reactive,
-  ref,
-  useNuxtApp,
-  useRoute,
-  useRouter,
-} from '#app'
+import { useHead } from '#head'
+import { useNuxtApp, useRoute, useRouter } from '#app'
 
 export default defineComponent({
   name: 'MaevsiCanvas',

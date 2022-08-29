@@ -61,9 +61,10 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { defineComponent, reactive, useRouter, navigateTo, useNuxtApp } from '#app'
+import { useRouter, navigateTo, useNuxtApp } from '#app'
 import { useHead } from '#head'
 
 import { useMaevsiStore } from '~/store'
