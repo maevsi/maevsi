@@ -72,11 +72,11 @@
         </FooterCategory>
         <FooterCategory :heading="$t('languages')">
           <AppLink
-            v-for="locale in $i18n.locales"
+            v-for="locale in locales"
             :key="getLocaleCode(locale)"
             :to="switchLocalePath(getLocaleCode(locale))"
           >
-            <span :class="{ disabled: getLocaleCode(locale) === $i18n.locale }">
+            <span :class="{ disabled: getLocaleCode(locale) === locale }">
               {{ getLocaleName(locale) }}
             </span>
           </AppLink>
@@ -102,8 +102,7 @@
   </footer>
 </template>
 <script lang="ts">
-import { LocaleObject } from '@nuxtjs/i18n/types'
-
+import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 import { defineComponent } from 'vue'
 
 import { LOCALES } from '~/plugins/util/constants'
@@ -112,9 +111,14 @@ export default defineComponent({
   name: 'MaevsiFooter',
   setup() {
     const colorMode = useColorMode()
+    const localePath = useLocalePath()
+    const switchLocalePath = useSwitchLocalePath()
+    const { locale, locales } = useI18n()
 
     const data = {
       colorModePreference: colorMode.preference,
+      locale,
+      locales,
     }
     const methods = {
       getLocaleCode(locale: string | LocaleObject) {
@@ -135,6 +139,8 @@ export default defineComponent({
           return locale.name
         }
       },
+      localePath,
+      switchLocalePath,
     }
 
     return {

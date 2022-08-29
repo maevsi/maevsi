@@ -96,7 +96,7 @@
 <script lang="ts">
 import { defineComponent, onBeforeMount, reactive } from 'vue'
 
-import { navigateTo, useNuxtApp } from '#app'
+import { navigateTo } from '#app'
 
 import { useMaevsiStore } from '~/store'
 import supportedBrowsers from '~/supportedBrowsers'
@@ -104,14 +104,15 @@ import supportedBrowsers from '~/supportedBrowsers'
 export default defineComponent({
   name: 'MaevsiHeader',
   setup(_props) {
-    const { localePath } = useNuxtApp()
     const store = useMaevsiStore()
+    const localePath = useLocalePath()
 
     const data = reactive({
       isBrowserSupported: true,
       signedInUsername: store.signedInUsername,
     })
     const methods = {
+      localePath,
       navigateToSearch() {
         navigateTo({
           path: localePath(`/task/search`),

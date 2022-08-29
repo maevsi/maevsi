@@ -11,9 +11,11 @@ import { useNuxtApp, useRoute, useRouter } from '#app'
 export default defineComponent({
   name: 'MaevsiCanvas',
   setup() {
-    const { $i18n, $moment, $nuxtI18nHead } = useNuxtApp()
+    const { $moment } = useNuxtApp()
+    const head = useLocaleHead({ addSeoAttributes: true })
     const router = useRouter()
     const route = useRoute()
+    const { locale } = useI18n()
 
     const refs = {
       canvas: ref<HTMLCanvasElement>(),
@@ -58,7 +60,7 @@ export default defineComponent({
       },
     }
 
-    $moment.locale($i18n.locale)
+    $moment.locale(locale.value)
 
     onMounted(() => {
       data.image = new Image()
@@ -83,7 +85,7 @@ export default defineComponent({
     })
 
     useHead({
-      ...$nuxtI18nHead({ addSeoAttributes: true }),
+      ...head.value,
     })
 
     return {

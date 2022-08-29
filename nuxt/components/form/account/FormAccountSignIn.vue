@@ -58,7 +58,7 @@ import Swal from 'sweetalert2'
 import { reactive, toRef, defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useNuxtApp, navigateTo } from '#app'
+import { navigateTo } from '#app'
 
 import {
   formPreSubmit,
@@ -76,8 +76,8 @@ import {
 const FormAccountSignIn = defineComponent({
   setup() {
     const { jwtStore } = useJwtStore()
-    const { $i18n, localePath } = useNuxtApp()
-    const { t } = useI18n()
+    const { locale, t } = useI18n()
+    const localePath = useLocalePath()
     const { executeMutation: executeMutationAccountRegistrationRefresh } =
       useAccountRegistrationRefreshMutation()
     const { executeMutation: executeMutationAuthentication } =
@@ -108,7 +108,7 @@ const FormAccountSignIn = defineComponent({
     const methods = {
       accountRegistrationRefresh() {
         executeMutationAccountRegistrationRefresh({
-          language: $i18n.locale,
+          language: locale.value,
           username: data.form.username,
         }).then((result) => {
           if (result.error) {
@@ -123,6 +123,7 @@ const FormAccountSignIn = defineComponent({
           }
         })
       },
+      localePath,
       async submit() {
         try {
           await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))

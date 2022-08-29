@@ -67,6 +67,17 @@ export default defineComponent({
       type: Boolean,
     },
   },
+  setup() {
+    const localePath = useLocalePath()
+
+    const methods = {
+      localePath,
+    }
+
+    return {
+      ...methods,
+    }
+  },
 })
 </script>
 

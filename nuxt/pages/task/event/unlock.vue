@@ -140,7 +140,7 @@ export default defineComponent({
   },
   setup() {
     const { jwtStore } = useJwtStore()
-    const { localePath } = useNuxtApp()
+    const localePath = useLocalePath()
     const router = useRouter()
     const { t } = useI18n()
     const route = useRoute()
@@ -177,6 +177,7 @@ export default defineComponent({
     }
     const v$ = useVuelidate(rules, data)
     const methods = {
+      localePath,
       async submit() {
         try {
           await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
@@ -224,7 +225,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'twitter:title',

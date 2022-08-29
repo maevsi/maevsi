@@ -24,7 +24,7 @@ import Swal from 'sweetalert2'
 import { reactive, toRef, computed, defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useNuxtApp, useRoute, navigateTo } from '#app'
+import { useRoute, navigateTo } from '#app'
 
 import {
   formPreSubmit,
@@ -41,9 +41,9 @@ const FormAccountPasswordReset = defineComponent({
     },
   },
   setup() {
-    const { localePath } = useNuxtApp()
     const { t } = useI18n()
     const route = useRoute()
+    const localePath = useLocalePath()
     const passwordResetMutation = useAccountPasswordResetMutation()
 
     const apiData = {
@@ -72,6 +72,7 @@ const FormAccountPasswordReset = defineComponent({
     }
     const v$ = useVuelidate(rules, data)
     const methods = {
+      localePath,
       async submit() {
         try {
           await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))

@@ -64,7 +64,7 @@
 import { defineComponent, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useRouter, navigateTo, useNuxtApp } from '#app'
+import { useRouter, navigateTo } from '#app'
 import { useHead } from '#head'
 
 import { useMaevsiStore } from '~/store'
@@ -72,7 +72,7 @@ import { useMaevsiStore } from '~/store'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const { localePath } = useNuxtApp()
+      const localePath = useLocalePath()
       const store = useMaevsiStore()
 
       if (store.jwtDecoded?.role === 'maevsi_anonymous') {
@@ -88,11 +88,15 @@ export default defineComponent({
     const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
+    const localePath = useLocalePath()
 
     const data = reactive({
       signedInUsername: store.signedInUsername,
       title: t('title'),
     })
+    const methods = {
+      localePath,
+    }
 
     useHead({
       meta: [
@@ -120,6 +124,7 @@ export default defineComponent({
 
     return {
       ...data,
+      ...methods,
     }
   },
 })

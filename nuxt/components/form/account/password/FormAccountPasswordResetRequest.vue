@@ -25,8 +25,6 @@ import Swal from 'sweetalert2'
 import { reactive, toRef, computed, defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useNuxtApp } from '#app'
-
 import {
   formPreSubmit,
   VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
@@ -43,8 +41,7 @@ const FormAccountPasswordResetRequest = defineComponent({
     },
   },
   setup(_props, { emit }) {
-    const { $i18n } = useNuxtApp()
-    const { t } = useI18n()
+    const { locale, t } = useI18n()
     const passwordResetRequestMutation =
       useAccountPasswordResetRequestMutation()
 
@@ -86,7 +83,7 @@ const FormAccountPasswordResetRequest = defineComponent({
 
         const result = await passwordResetRequestMutation.executeMutation({
           emailAddress: data.form.emailAddress,
-          language: $i18n.locale,
+          language: locale.value,
         })
 
         if (result.error) {

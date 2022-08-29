@@ -51,7 +51,7 @@
 <script lang="ts">
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
-import mustache from 'mustache'
+import { render } from 'mustache'
 import { computed, defineComponent, PropType } from 'vue'
 
 import { Event as MaevsiEvent } from '~/types/event'
@@ -64,13 +64,18 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const localePath = useLocalePath()
+
+    const methods = {
+      localePath,
+    }
     const computations = {
       eventDescriptionTemplate: computed(() => {
         if (!props.event?.description) return
 
         return htmlToText(
           DOMPurify.sanitize(
-            mustache.render(props.event.description, {
+            render(props.event.description, {
               event: props.event,
             })
           ),
@@ -83,6 +88,7 @@ export default defineComponent({
 
     return {
       ...computations,
+      ...methods,
     }
   },
 })

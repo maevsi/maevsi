@@ -41,11 +41,15 @@ export default defineComponent({
     const router = useRouter()
     const { t } = useI18n()
     const route = useRoute()
+    const localePath = useLocalePath()
 
     const data = reactive({
       routeParamUsername: route.params.username,
       title: t('title', { name: route.params.username }),
     })
+    const methods = {
+      localePath,
+    }
 
     useHead({
       meta: [
@@ -83,6 +87,7 @@ export default defineComponent({
 
     return {
       ...data,
+      ...methods,
     }
   },
 })

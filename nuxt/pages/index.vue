@@ -159,6 +159,7 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const { t } = useI18n()
+    const localePath = useLocalePath()
 
     const refs = {
       sectionSteps: ref<HTMLElement>(),
@@ -176,6 +177,7 @@ export default defineComponent({
       hideScrollHint() {
         data.isScrollHintShown = false
       },
+      localePath,
       scrollToSteps() {
         refs.sectionSteps.value?.scrollIntoView({ behavior: 'smooth' })
       },
@@ -194,7 +196,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'twitter:title',

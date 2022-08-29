@@ -21,7 +21,7 @@
     >
       <Menu v-if="isMenuVisiblePartly" is-closable @onMenuHide="menuHide" />
     </div>
-    <CookieControl :locale="$i18n.locale" />
+    <CookieControl :locale="locale" />
   </div>
 </template>
 
@@ -37,13 +37,15 @@ import { BASE_URL } from '~/plugins/util/constants'
 export default defineComponent({
   name: 'IndexPage',
   setup() {
-    const { $i18n, $moment } = useNuxtApp()
+    const { $moment } = useNuxtApp()
     const router = useRouter()
-    const { t } = useI18n()
+    const { locale, t } = useI18n()
+    const head = useLocaleHead({ addSeoAttributes: true })
 
     const data = reactive({
       isMenuVisible: false,
       isMenuVisiblePartly: false,
+      locale,
     })
     const methods = {
       menuHide(): void {
@@ -58,7 +60,7 @@ export default defineComponent({
       },
     }
 
-    $moment.locale($i18n.locale)
+    $moment.locale(locale.value)
 
     useHead({
       bodyAttrs: {
@@ -208,8 +210,7 @@ export default defineComponent({
       titleTemplate: (titleChunk: string) => {
         return titleChunk ? `${titleChunk} · maevsi` : 'maevsi'
       },
-      // TODO: wait for https://github.com/nuxt-community/i18n-module/tree/next
-      // ...$nuxtI18nHead({ addSeoAttributes: true }),
+      ...head.value,
     })
 
     return {

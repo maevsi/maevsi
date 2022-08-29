@@ -238,8 +238,9 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { $colorMode, $i18n, localePath } = useNuxtApp()
-    const { t } = useI18n()
+    const { $colorMode } = useNuxtApp()
+    const { locale, t } = useI18n()
+    const localePath = useLocalePath()
     const store = useMaevsiStore()
     const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
     const inviteMutation = useInviteMutation()
@@ -276,6 +277,7 @@ export default defineComponent({
     }
     const data = reactive({
       isStorybookActive: config.public.STORYBOOK,
+      locale,
       options: {
         plugins: {
           legend: {
@@ -337,6 +339,7 @@ export default defineComponent({
         // }
         // TODO: cache update (allInvitations)
       },
+      localePath,
       loadMore() {},
       async send(invitation: any) {
         data.pending.sends.push(invitation.uuid)
@@ -344,7 +347,7 @@ export default defineComponent({
 
         const result = await inviteMutation.executeMutation({
           invitationId: invitation.id,
-          language: $i18n.locale,
+          language: locale.value,
         })
 
         data.pending.sends.splice(

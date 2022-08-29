@@ -109,13 +109,18 @@ export default defineComponent({
   },
   setup() {
     const store = useMaevsiStore()
+    const localePath = useLocalePath()
 
     const data = reactive({
       signedInUsername: store.signedInUsername,
     })
+    const methods = {
+      localePath,
+    }
 
     return {
       ...data,
+      ...methods,
     }
   },
 })

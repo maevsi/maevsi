@@ -26,6 +26,17 @@ export default defineComponent({
       type: String,
     },
   },
+  setup() {
+    const localePath = useLocalePath()
+
+    const methods = {
+      localePath,
+    }
+
+    return {
+      ...methods,
+    }
+  },
 })
 </script>
 

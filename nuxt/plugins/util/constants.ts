@@ -1,4 +1,4 @@
-import { LocaleObject } from '@nuxtjs/i18n/types'
+import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
 export const STACK_DOMAIN =
   process.env.NUXT_ENV_STACK_DOMAIN || 'localhost:3000'

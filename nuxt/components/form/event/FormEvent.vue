@@ -153,7 +153,7 @@
         :max-datetime="v$.form.end.$model"
         :minute-step="5"
         type="datetime"
-        :use12-hour="$i18n.locale === 'en'"
+        :use12-hour="locale === 'en'"
       />
       <template slot="stateWarning">
         <FormInputStateWarning v-if="isWarningStartPastShown">
@@ -181,7 +181,7 @@
         :min-datetime="v$.form.start.$model"
         :minute-step="5"
         type="datetime"
-        :use12-hour="$i18n.locale === 'en'"
+        :use12-hour="locale === 'en'"
       />
       <template v-if="!!v$.form.end.$model" slot="icon">
         <IconX />
@@ -310,8 +310,9 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { $i18n, $moment, localePath } = useNuxtApp()
-    const { t } = useI18n()
+    const { $moment } = useNuxtApp()
+    const localePath = useLocalePath()
+    const { locale, t } = useI18n()
     const store = useMaevsiStore()
     const createEventMutation = useCreateEventMutation()
     const updateEventMutation = useUpdateEventByIdMutation()
@@ -344,6 +345,7 @@ export default defineComponent({
       },
       formatDateTimeShort: DateTime.DATETIME_SHORT,
       isFormSent: false,
+      locale,
       signedInUsername: store.signedInUsername,
     })
     const rules = {
@@ -393,6 +395,7 @@ export default defineComponent({
     }
     const v$ = useVuelidate(rules, data)
     const methods = {
+      localePath,
       onInputName($event: any) {
         data.form.name = $event
         methods.updateSlug()
@@ -487,10 +490,11 @@ export default defineComponent({
             timer: 3000,
             timerProgressBar: true,
             title: t('created'),
-          }).then(() =>
-            navigateTo(
-              localePath(`/event/${data.signedInUsername}/${data.form.slug}`)
-            )
+          }).then(
+            async () =>
+              await navigateTo(
+                localePath(`/event/${data.signedInUsername}/${data.form.slug}`)
+              )
           )
         }
       },
@@ -513,7 +517,7 @@ export default defineComponent({
       }
     }
 
-    Settings.defaultLocale = $i18n.locale
+    Settings.defaultLocale = locale.value
 
     return {
       ...apiData,

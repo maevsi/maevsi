@@ -9,7 +9,7 @@
 import { defineComponent, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useRouter, navigateTo, useRoute, useNuxtApp } from '#app'
+import { useRouter, navigateTo, useRoute } from '#app'
 import { useHead } from '#head'
 
 import { useMaevsiStore } from '~/store'
@@ -17,7 +17,7 @@ import { useMaevsiStore } from '~/store'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const { localePath } = useNuxtApp()
+      const localePath = useLocalePath()
       const route = useRoute()
       const store = useMaevsiStore()
 
@@ -56,7 +56,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'twitter:title',

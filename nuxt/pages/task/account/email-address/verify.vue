@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 import { computed, defineComponent, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useNuxtApp, useRoute, useRouter, navigateTo } from '#app'
+import { useRoute, useRouter, navigateTo } from '#app'
 import { useHead } from '#head'
 
 import { REGEX_UUID } from '~/plugins/util/validation'
@@ -21,7 +21,7 @@ import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const { localePath } = useNuxtApp()
+      const localePath = useLocalePath()
       const query = useQuery()
 
       if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {
@@ -34,7 +34,7 @@ definePageMeta({
 export default defineComponent({
   name: 'IndexPage',
   setup() {
-    const { localePath } = useNuxtApp()
+    const localePath = useLocalePath()
     const router = useRouter()
     const { t } = useI18n()
     const route = useRoute()

@@ -9,7 +9,7 @@
 import { defineComponent, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useRouter, navigateTo, useNuxtApp } from '#app'
+import { useRouter, navigateTo } from '#app'
 import { useHead } from '#head'
 
 import { REGEX_UUID } from '~/plugins/util/validation'
@@ -17,7 +17,7 @@ import { REGEX_UUID } from '~/plugins/util/validation'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const { localePath } = useNuxtApp()
+      const localePath = useLocalePath()
       const query = useQuery()
 
       if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {

@@ -11,6 +11,24 @@
   </ButtonColored>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  setup() {
+    const localePath = useLocalePath()
+
+    const methods = {
+      localePath,
+    }
+
+    return {
+      ...methods,
+    }
+  },
+})
+</script>
+
 <i18n lang="yml">
 de:
   home: Nach Hause

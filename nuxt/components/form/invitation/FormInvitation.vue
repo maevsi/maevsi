@@ -97,11 +97,11 @@ import { formPreSubmit } from '~/plugins/util/validation'
 import { Contact } from '~/types/contact'
 import { getApiMeta } from '~/plugins/util/util'
 import {
-  Event,
   useAllContactsQuery,
   useCreateInvitationMutation,
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
+import { Event } from '~/types/event'
 
 export default defineComponent({
   props: {
@@ -114,6 +114,7 @@ export default defineComponent({
     const store = useMaevsiStore()
     const { executeMutation: executeMutationCreateInvitation } =
       useCreateInvitationMutation()
+    const localePath = useLocalePath()
 
     const refs = {
       after: ref<string>(),
@@ -159,6 +160,7 @@ export default defineComponent({
     }
     const v$ = useVuelidate(rules, data)
     const methods = {
+      localePath,
       selectToggle(contact: Contact) {
         data.form.contactId = contact.id
 

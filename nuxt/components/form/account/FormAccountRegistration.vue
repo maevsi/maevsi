@@ -59,8 +59,6 @@ import Swal from 'sweetalert2'
 import { computed, defineComponent, reactive, toRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useNuxtApp } from '#app'
-
 import {
   formPreSubmit,
   validateUsername,
@@ -75,8 +73,8 @@ import { useAccountRegistrationMutation } from '~/gql/generated'
 
 const FormAccountRegistration = defineComponent({
   setup(_props, { emit }) {
-    const { $i18n } = useNuxtApp()
-    const { t } = useI18n()
+    const { locale, t } = useI18n()
+    const localePath = useLocalePath()
     const { executeMutation: executeMutationAccountRegistration } =
       useAccountRegistrationMutation()
 
@@ -118,6 +116,7 @@ const FormAccountRegistration = defineComponent({
     }
     const v$ = useVuelidate(rules, data)
     const methods = {
+      localePath,
       async submit() {
         try {
           await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
@@ -128,7 +127,7 @@ const FormAccountRegistration = defineComponent({
 
         const result = await executeMutationAccountRegistration({
           emailAddress: data.form.emailAddress,
-          language: $i18n.locale,
+          language: locale.value,
           password: data.form.password,
           username: data.form.username,
         })

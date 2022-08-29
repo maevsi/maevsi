@@ -61,13 +61,18 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute()
+    const localePath = useLocalePath()
 
     const computations = {
       queryString: computed(() => getQueryString(route.query)),
     }
+    const methods = {
+      localePath,
+    }
 
     return {
       ...computations,
+      ...methods,
     }
   },
 })

@@ -87,7 +87,7 @@ definePageMeta({
 export default defineComponent({
   name: 'IndexPage',
   setup() {
-    const { localePath } = useNuxtApp()
+    const localePath = useLocalePath()
     const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
@@ -120,6 +120,7 @@ export default defineComponent({
       routeParamUsername: route.params.username,
     })
     const methods = {
+      localePath,
       onDeleteError(error: CombinedError) {
         apiData.api.value.errors.push(error)
       },

@@ -28,8 +28,6 @@ import { status } from '@http-util/status-i18n'
 import { computed, defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useNuxtApp } from '#app'
-
 export default defineComponent({
   name: 'MaevsiError',
   props: {
@@ -39,12 +37,11 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { $i18n } = useNuxtApp()
-    const { t } = useI18n()
+    const { locale, t } = useI18n()
 
     const computations = {
       statusReason: computed(() => {
-        return status(props.statusCode, $i18n.locale) || (t('error') as string)
+        return status(props.statusCode, locale.value) || (t('error') as string)
       }),
     }
 
