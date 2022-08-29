@@ -49,29 +49,29 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 
-import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'
+import { useRouter, useRoute, abortNavigation } from '#app'
 import { useHead } from '#head'
 
-import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
+import { useAccountIsExistingQuery } from '~/gql/generated'
 
 definePageMeta({
   middleware: [
-    async function (_to: any, _from: any) {
-      const { $urql } = useNuxtApp()
+    function (_to: any, _from: any) {
       const route = useRoute()
 
-      const {
-        data: { accountIsExisting },
-      } = await $urql.value
-        .query(ACCOUNT_IS_EXISTING_QUERY, {
-          username: route.params.username,
-        })
-        .toPromise()
+      const accountIsExisting = useAccountIsExistingQuery({
+        variables: {
+          username: route.params.username as string,
+        },
+      }).executeQuery()
 
-      if (!accountIsExisting) {
-        return abortNavigation()
+      if (
+        accountIsExisting.error ||
+        accountIsExisting.data.value?.accountIsExisting
+      ) {
+        return abortNavigation() // TODO: { statusCode: 403 }
       }
     },
   ],
@@ -84,13 +84,15 @@ export default defineComponent({
     const router = useRouter()
     const store = useMaevsiStore()
     const route = useRoute()
+    const localePath = useLocalePath()
 
     const data = reactive({
       signedInUsername: store.signedInUsername,
-      routeParamUsername: route.params.username,
-      title: route.params.username,
+      routeParamUsername: route.params.username as string,
+      title: route.params.username as string,
     })
     const methods = {
+      localePath,
       signOut,
     }
 
@@ -107,7 +109,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'og:type',

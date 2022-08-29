@@ -24,36 +24,38 @@ import consola from 'consola'
 import { computed, defineComponent, reactive, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'
+import { useRouter, useRoute } from '#app'
 import { useHead } from '#head'
 
-import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { getApiMeta } from '~/plugins/util/util'
-import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
+import {
+  useEventByAuthorUsernameAndSlugQuery,
+  useEventIsExistingQuery,
+} from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   middleware: [
-    async function (_to: any, _from: any) {
-      const { $urql } = useNuxtApp()
+    function (_to: any, _from: any) {
       const route = useRoute()
       const store = useMaevsiStore()
 
-      if (res && route.params.username !== store.signedInUsername) {
-        return error({ statusCode: 403 })
+      if (route.params.username !== store.signedInUsername) {
+        throw createError({ statusCode: 403 })
       }
 
-      const {
-        data: { eventIsExisting },
-      } = await $urql.value
-        .query(EVENT_IS_EXISTING_QUERY, {
-          slug: route.params.event_name,
-          authorUsername: route.params.username,
-        })
-        .toPromise()
+      const eventIsExisting = useEventIsExistingQuery({
+        variables: {
+          slug: route.params.event_name as string,
+          authorUsername: route.params.username as string,
+        },
+      }).executeQuery()
 
-      if (!eventIsExisting) {
-        return abortNavigation({ statusCode: 404 })
+      if (
+        eventIsExisting.error ||
+        eventIsExisting.data.value?.eventIsExisting
+      ) {
+        return abortNavigation() // TODO: { statusCode: 403 }
       }
     },
   ],
@@ -69,8 +71,8 @@ export default defineComponent({
 
     const eventQuery = useEventByAuthorUsernameAndSlugQuery({
       variables: {
-        authorUsername: route.params.username,
-        slug: route.params.event_name,
+        authorUsername: route.params.username as string,
+        slug: route.params.event_name as string,
       },
     })
 
@@ -88,8 +90,8 @@ export default defineComponent({
       ),
     }
     const data = reactive({
-      routeParamEventName: route.params.event_name,
-      routeParamUsername: route.params.username,
+      routeParamEventName: route.params.event_name as string,
+      routeParamUsername: route.params.username as string,
       title: t('title'),
     })
     const computations = {
@@ -121,7 +123,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'twitter:title',
@@ -134,6 +136,7 @@ export default defineComponent({
 
     return {
       ...apiData,
+      ...data,
       ...computations,
     }
   },

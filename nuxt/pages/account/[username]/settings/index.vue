@@ -38,7 +38,7 @@
         id="deleteAccount"
         :errors="api.errors"
         :item-name="$t('account')"
-        :mutation="accountDeleteMutation"
+        :mutation="mutation"
         @error="onDeleteError"
         @success="signOut"
       />
@@ -53,33 +53,40 @@ import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'
 
 import { useHead } from '#head'
 
-import ACCOUNT_DELETE_MUTATION from '~/gql/mutation/account/accountDelete.gql'
-import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import { useSignOut } from '~/plugins/util/auth'
 import { getApiMeta } from '~/plugins/util/util'
 import { useMaevsiStore } from '~/store'
+import {
+  useAccountDeleteMutation,
+  useAccountIsExistingQuery,
+} from '~~/gql/generated'
 
 definePageMeta({
   middleware: [
-    async function (_to: any, _from: any) {
-      const { $urql } = useNuxtApp()
+    function (_to: any, _from: any) {
+      const { ssrContext } = useNuxtApp()
       const route = useRoute()
       const store = useMaevsiStore()
 
-      if (res && route.params.username !== store.signedInUsername) {
-        return abortNavigation({ statusCode: 403 })
+      if (
+        ssrContext &&
+        ssrContext.event.res &&
+        route.params.username !== store.signedInUsername
+      ) {
+        return abortNavigation() // TODO: { statusCode: 403 } or navigateTo('', { statusCode: 403 })
       }
 
-      const {
-        data: { accountIsExisting },
-      } = await $urql.value
-        .query(ACCOUNT_IS_EXISTING_QUERY, {
-          username: route.params.username,
-        })
-        .toPromise()
+      const accountIsExisting = useAccountIsExistingQuery({
+        variables: {
+          username: route.params.username as string,
+        },
+      }).executeQuery()
 
-      if (!accountIsExisting) {
-        return abortNavigation({ statusCode: 404 })
+      if (
+        accountIsExisting.error ||
+        accountIsExisting.data.value?.accountIsExisting
+      ) {
+        return abortNavigation() // TODO: { statusCode: 403 }
       }
     },
   ],
@@ -92,6 +99,8 @@ export default defineComponent({
     const store = useMaevsiStore()
     const { signOut } = useSignOut()
     const route = useRoute()
+    const { executeMutation: executeMutationAccoutDelete } =
+      useAccountDeleteMutation()
 
     const apiData = {
       api: computed(() => {
@@ -101,8 +110,8 @@ export default defineComponent({
       }),
     }
     const data = reactive({
-      accountDeleteMutation: ACCOUNT_DELETE_MUTATION,
-      routeParamUsername: route.params.username,
+      mutation: executeMutationAccoutDelete,
+      routeParamUsername: route.params.username as string,
       title:
         route.params.username === store.signedInUsername
           ? route.params.username
@@ -131,7 +140,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'twitter:title',

@@ -16,8 +16,7 @@
           :aria-label="$t('invitationSelectionClear')"
           @click="
             navigateTo({
-              append: true,
-              path: 'invitation',
+              path: append($route.path, 'invitation'),
               query: { ...routeQuery, ic: undefined },
             })
           "
@@ -265,7 +264,7 @@
             id="qrCode"
             class="bg-white p-4"
             :value="invitation.uuid"
-            size="200"
+            :size="200"
           />
           <FormInputStateInfo>
             {{ $t('hintQrCode') }}
@@ -308,38 +307,38 @@ import Swal from 'sweetalert2'
 import { computed, defineComponent, reactive, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'
+import { useRouter, useRoute, abortNavigation } from '#app'
 import { useHead } from '#head'
 
-import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { Contact } from '~/types/contact'
 import { Invitation } from '~/types/invitation'
-import { getApiMeta } from '~/plugins/util/util'
+import { append, getApiMeta } from '~/plugins/util/util'
 import { getContactName } from '~/plugins/util/model'
 import {
   InvitationFeedback,
   useEventByAuthorUsernameAndSlugQuery,
+  useEventIsExistingQuery,
   useUpdateInvitationByIdMutation,
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   middleware: [
-    async function (_to: any, _from: any) {
-      const { $urql } = useNuxtApp()
+    function (_to: any, _from: any) {
       const route = useRoute()
 
-      const {
-        data: { eventIsExisting },
-      } = await $urql.value
-        .query(EVENT_IS_EXISTING_QUERY, {
-          slug: route.params.event_name,
-          authorUsername: route.params.username,
-        })
-        .toPromise()
+      const eventIsExisting = useEventIsExistingQuery({
+        variables: {
+          slug: route.params.event_name as string,
+          authorUsername: route.params.username as string,
+        },
+      }).executeQuery()
 
-      if (!eventIsExisting) {
-        return abortNavigation()
+      if (
+        eventIsExisting.error ||
+        eventIsExisting.data.value?.eventIsExisting
+      ) {
+        return abortNavigation() // TODO: { statusCode: 403 }
       }
     },
   ],
@@ -360,8 +359,8 @@ export default defineComponent({
 
     const eventQuery = useEventByAuthorUsernameAndSlugQuery({
       variables: {
-        authorUsername: route.params.username,
-        slug: route.params.event_name,
+        authorUsername: route.params.username as string,
+        slug: route.params.event_name as string,
         invitationUuid: route.query.ic,
       },
     })
@@ -386,7 +385,7 @@ export default defineComponent({
       contact: undefined as Contact | undefined,
       invitation: undefined as Invitation | undefined,
       jwtDecoded: store.jwtDecoded,
-      routeParamUsername: route.params.username,
+      routeParamUsername: route.params.username as string,
       routeQuery: route.query,
       routeQueryIc: route.query.ic,
       signedInUsername: store.signedInUsername,
@@ -400,6 +399,7 @@ export default defineComponent({
           feedback: InvitationFeedback.Accepted,
         })
       },
+      append,
       cancel() {
         if (data.invitation === undefined) {
           return
@@ -557,7 +557,7 @@ export default defineComponent({
           content:
             'https://' +
             (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.fullPath,
+            router.currentRoute.value.fullPath,
         },
         {
           hid: 'description',

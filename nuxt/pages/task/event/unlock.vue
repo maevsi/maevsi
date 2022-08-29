@@ -69,7 +69,6 @@ import {
 import { useHead } from '#head'
 
 import { jwtStore, useJwtStore } from '~/plugins/util/auth'
-import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 import {
   formPreSubmit,
   REGEX_UUID,
@@ -80,24 +79,32 @@ import { useEventUnlockMutation } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
 
 definePageMeta({
+  layout:
+    // TODO:
+    REGEX_UUID.test('routeQueryIc') && !('error' in ['context.route.query'])
+      ? 'canvas'
+      : 'default',
   middleware: [
     async function (_to: any, _from: any) {
-      const { $urql, $urqlReset, localePath } = useNuxtApp()
+      const { $urqlReset, ssrContext } = useNuxtApp()
+      const localePath = useLocalePath()
       const route = useRoute()
       const store = useMaevsiStore()
 
-      if (isQueryIcFormatValid(context)) {
-        const result = await $urql.value
-          .query(EVENT_UNLOCK_MUTATION, {
-            invitationCode: route.query.ic,
-          })
-          .toPromise()
+      if (
+        !Array.isArray(route.query.ic) &&
+        route.query.ic &&
+        REGEX_UUID.test(route.query.ic)
+      ) {
+        const result = await useEventUnlockMutation().executeMutation({
+          invitationCode: route.query.ic,
+        })
 
         if (result.error) {
           consola.error(result.error)
         }
 
-        if (!result.data.eventUnlock.eventUnlockResponse) {
+        if (!result.data?.eventUnlock?.eventUnlockResponse) {
           return navigateTo(
             localePath({
               query: {
@@ -108,11 +115,18 @@ definePageMeta({
           )
         }
 
-        await jwtStore($urqlReset, store, res, result.jwt)
+        await jwtStore(
+          $urqlReset,
+          store,
+          ssrContext ? ssrContext.event.res : undefined,
+          result.data.eventUnlock.eventUnlockResponse.jwt
+        )
 
         if ('quick' in route.query) {
           return navigateTo(
-            localePath(`/event/${result.authorUsername}/${result.eventSlug}`)
+            localePath(
+              `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+            )
           )
         } else {
           return navigateTo(
@@ -120,7 +134,7 @@ definePageMeta({
               query: {
                 ...route.query,
                 redirect: localePath(
-                  `/event/${result.authorUsername}/${result.eventSlug}`
+                  `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
                 ),
               },
             })
@@ -133,11 +147,6 @@ definePageMeta({
 
 export default defineComponent({
   name: 'IndexPage',
-  layout(context: Context) {
-    return isQueryIcFormatValid(context) && !('error' in context.route.query)
-      ? 'canvas'
-      : 'default'
-  },
   setup() {
     const { jwtStore } = useJwtStore()
     const localePath = useLocalePath()
@@ -254,10 +263,6 @@ export default defineComponent({
     }
   },
 })
-
-function isQueryIcFormatValid({ route }: Context) {
-  return typeof route.query.ic === 'string' && REGEX_UUID.test(route.query.ic)
-}
 </script>
 
 <i18n lang="yml">
