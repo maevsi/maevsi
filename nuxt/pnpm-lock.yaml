@@ -49,8 +49,8 @@ specifiers:
   '@types/vue-moment': 4.0.3
   '@types/vuelidate': 0.7.15
   '@types/webpack': 4.41.32
-  '@uppy/core': 3.0.0
-  '@uppy/tus': 3.0.0
+  '@uppy/core': 3.0.1
+  '@uppy/tus': 3.0.1
   apollo-cache-inmemory: 1.6.6
   apollo-client: 2.6.10
   apollo-link: 1.2.14
@@ -153,8 +153,8 @@ dependencies:
   '@tiptap/extension-link': 2.0.0-beta.43_jdrcmhoxj44u3cq7gnenksjiqq
   '@tiptap/starter-kit': 2.0.0-beta.191
   '@tiptap/vue-2': 2.0.0-beta.84_f3o6mpuochypy3xjnq2eemnb54
-  '@uppy/core': 3.0.0
-  '@uppy/tus': 3.0.0_@uppy+core@3.0.0
+  '@uppy/core': 3.0.1
+  '@uppy/tus': 3.0.1_@uppy+core@3.0.1
   apollo-cache-inmemory: 1.6.6_graphql@15.8.0
   apollo-client: 2.6.10_graphql@15.8.0
   apollo-link: 1.2.14_graphql@15.8.0
@@ -6029,19 +6029,19 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@uppy/companion-client/3.0.0:
-    resolution: {integrity: sha512-kejhmsPr+3D+lCn9J82rc5X2TUPSsckWfXtQNxeEl34HgotZluFCLi2dlBe24PsDC+F6xGZXrQ8Qmqc3x/LeEA==}
+  /@uppy/companion-client/3.0.1:
+    resolution: {integrity: sha512-7ZhdhdbhzOpcUGanQBrLgoVHKvj5KSSwVjaqj1OgpFuiTGh1HRBQlQsM4w6aZR2gLJfEOPdUcm0LquZvrZ3fNw==}
     dependencies:
-      '@uppy/utils': 5.0.0
+      '@uppy/utils': 5.0.1
       namespace-emitter: 2.0.1
     dev: false
 
-  /@uppy/core/3.0.0:
-    resolution: {integrity: sha512-yt+f8R7+SJk98f8liqBC7UDWFq++9soWRQlMzNe1D1ELNePdqMTNfIcxcRfQEv8rqgV8523EikBxlHSHSoO0Rw==}
+  /@uppy/core/3.0.1:
+    resolution: {integrity: sha512-iDCpiiFxv0QQL7vTe8LmkdN8hD7CkZ6Xk0uKcXSS6hOSScZgshTqHjUnI3aTet63Mxq0wGBargjj917oe9+9IQ==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.9
-      '@uppy/store-default': 3.0.0
-      '@uppy/utils': 5.0.0
+      '@uppy/store-default': 3.0.1
+      '@uppy/utils': 5.0.1
       lodash.throttle: 4.1.1
       mime-match: 1.0.2
       namespace-emitter: 2.0.1
@@ -6049,23 +6049,23 @@ packages:
       preact: 10.10.6
     dev: false
 
-  /@uppy/store-default/3.0.0:
-    resolution: {integrity: sha512-PsenzIVqrR0LDeLHzlhn81ADgCcbuwi0IvO7orv6hEmWwFiIXuct5/U76apO5hIWZrq5nWr9Vy034kcEpD9r8w==}
+  /@uppy/store-default/3.0.1:
+    resolution: {integrity: sha512-igsRSxGEZ9Yh2kQ7OpgOdE4eaC3yZSv2lj+dtlV7FOZVbTdC18ihvOXNYi3NtENAv05pVh5wSkF7nccuTe5bOA==}
     dev: false
 
-  /@uppy/tus/3.0.0_@uppy+core@3.0.0:
-    resolution: {integrity: sha512-iQ5hNZ8EVwFwCmFAvAVCarmjNTK03++3FEWoKzrPFUxO/ZznL6CSbEE6S52aRrsSHmGsGWgYiNrglLZDeC1CWw==}
+  /@uppy/tus/3.0.1_@uppy+core@3.0.1:
+    resolution: {integrity: sha512-WdIEkrpDklTBYbDq2nobQmMo7aB4p0QKFYH+W/5Il7UBiH8NBM/leyFj+WvEIicJ/3KC4yIUFh2clD475XN3Qw==}
     peerDependencies:
-      '@uppy/core': ^3.0.0
+      '@uppy/core': ^3.0.1
     dependencies:
-      '@uppy/companion-client': 3.0.0
-      '@uppy/core': 3.0.0
-      '@uppy/utils': 5.0.0
+      '@uppy/companion-client': 3.0.1
+      '@uppy/core': 3.0.1
+      '@uppy/utils': 5.0.1
       tus-js-client: 3.0.0
     dev: false
 
-  /@uppy/utils/5.0.0:
-    resolution: {integrity: sha512-AbOGYt/+tAmWp8jXE5pY5JsEL1x6j3/jg1ECkUeIMtAs6ZMZ0irVUSOZ1PvULivAyyU56EmrdUIYWDGt0E6VVw==}
+  /@uppy/utils/5.0.1:
+    resolution: {integrity: sha512-pPcNTDGlH6+P6VFwBY+jTTNeYPi6pYhv6Om4NvRqrlEk1zdWbAOh0OluKfmeslj8IveL4mOhalcPh3K9Ys4N8g==}
     dependencies:
       lodash.throttle: 4.1.1
     dev: false
