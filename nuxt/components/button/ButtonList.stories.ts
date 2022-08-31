@@ -1,5 +1,5 @@
 import { defineComponent } from '#app'
-import Button from './Button.vue'
+import MaevsiButton from './Button.vue'
 import ButtonList from './ButtonList.vue'
 
 const argTypes = { click: { action: 'click' } }
@@ -13,7 +13,7 @@ export default {
 
 const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
-    components: { Button, ButtonList },
+    components: { MaevsiButton, ButtonList },
     props: Object.keys(argTypes),
     template:
       // eslint-disable-next-line @intlify/vue-i18n/no-raw-text

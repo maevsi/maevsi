@@ -113,9 +113,9 @@ export default defineComponent({
     isVisibleComputed(): boolean {
       return this.modalComputed?.isVisible || this.isVisible
     },
-    onSubmitComputed(): () => void {
-      return this.modalComputed?.onSubmit || this.onSubmit
-    },
+    // onSubmitComputed(): () => void {
+    //   return this.modalComputed?.onSubmit || this.onSubmit
+    // },
     modalComputed(): Modal | undefined {
       const modals: Modal[] = this.$store.getters.modals
 
@@ -177,7 +177,7 @@ export default defineComponent({
       try {
         const value = await this.submitTaskProvider()
         this.$emit('submitSuccess', value)
-        this.onSubmitComputed()
+        ;(this.modalComputed?.onSubmit || this.onSubmit)() // this.onSubmitComputed()
         this.close()
       } catch (errors: any) {
         this.errors = errors
