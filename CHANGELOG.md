@@ -1,3 +1,10 @@
+## [0.145.6](https://github.com/maevsi/maevsi/compare/0.145.5...0.145.6) (2022-08-31)
+
+
+### Bug Fixes
+
+* **csp:** temporarily disable trusted-types header ([f317b69](https://github.com/maevsi/maevsi/commit/f317b6935c984d964970eeb6e10be9b09789ac26)), closes [#825](https://github.com/maevsi/maevsi/issues/825)
+
 ## [0.145.5](https://github.com/maevsi/maevsi/compare/0.145.4...0.145.5) (2022-08-22)
 
 
