@@ -10,7 +10,7 @@ specifiers:
   '@jest/globals': 28.1.3
   '@jest/types': 28.1.3
   '@nuxt/babel-preset-app': 2.15.8
-  '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27690335.da95eff
+  '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27699693.0bb392e
   '@nuxt/types-edge': 2.16.0-27616340.013f051b
   '@nuxtjs/color-mode': 3.1.4
   '@nuxtjs/eslint-config-typescript': 11.0.0
@@ -207,7 +207,7 @@ devDependencies:
   '@jest/globals': 28.1.3
   '@jest/types': 28.1.3
   '@nuxt/babel-preset-app': 2.15.8_vue@2.7.10
-  '@nuxt/bridge': /@nuxt/bridge-edge/3.0.0-27690335.da95eff_gt75cye3kvmp6u7jw2jaapmv3y
+  '@nuxt/bridge': /@nuxt/bridge-edge/3.0.0-27699693.0bb392e_gt75cye3kvmp6u7jw2jaapmv3y
   '@nuxtjs/eslint-config-typescript': 11.0.0_yqf6kl63nyoq5megxukfnom5rm
   '@nuxtjs/eslint-module': 3.1.0_cdjqwdp6v6x7dxt6w5yixlvvha
   '@nuxtjs/google-analytics': 2.4.0
@@ -2655,14 +2655,15 @@ packages:
       - vue
     dev: true
 
-  /@nuxt/bridge-edge/3.0.0-27690335.da95eff_gt75cye3kvmp6u7jw2jaapmv3y:
-    resolution: {integrity: sha512-TweZvyfL9ZjQL6uWRX2Z3cd7/bymhlEm54kjhojY2IMwA+Au3StEMe3zcvp0p3aDbLYeTRJ2gkN0lfeEGtd7Bw==}
+  /@nuxt/bridge-edge/3.0.0-27699693.0bb392e_gt75cye3kvmp6u7jw2jaapmv3y:
+    resolution: {integrity: sha512-ezoLqoEOsT4EjPM0HpQ0qK21pH05sOveMc/y2YNUCx8iu93r2KytJ1jaRYCWU1x8zXZxElqACy5r+eK4JEYPDw==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     hasBin: true
     dependencies:
       '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6_@babel+core@7.18.13
       '@babel/plugin-proposal-optional-chaining': 7.18.9_@babel+core@7.18.13
       '@babel/plugin-transform-typescript': 7.18.12_@babel+core@7.18.13
+      '@nuxt/devalue': 2.0.0
       '@nuxt/kit': 3.0.0-rc.8_vite@2.9.15+webpack@4.46.0
       '@nuxt/postcss8': 1.1.3_webpack@4.46.0
       '@nuxt/schema': 3.0.0-rc.8_vite@2.9.15+webpack@4.46.0
@@ -2692,7 +2693,7 @@ packages:
       pathe: 0.3.5
       perfect-debounce: 0.1.3
       postcss: 8.4.16
-      postcss-import: 14.1.0_postcss@8.4.16
+      postcss-import: 15.0.0_postcss@8.4.16
       postcss-import-resolver: 2.0.0
       postcss-preset-env: 7.8.0_postcss@8.4.16
       postcss-url: 10.1.3_postcss@8.4.16
@@ -2890,7 +2891,6 @@ packages:
 
   /@nuxt/devalue/2.0.0:
     resolution: {integrity: sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==}
-    dev: false
 
   /@nuxt/friendly-errors-webpack-plugin/2.5.2_webpack@4.46.0:
     resolution: {integrity: sha512-LLc+90lnxVbpKkMqk5z1EWpXoODhc6gRkqqXJCInJwF5xabHAE7biFvbULfvTRmtaTzAaP8IV4HQDLUgeAUTTw==}
@@ -17498,6 +17498,18 @@ packages:
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.1
+
+  /postcss-import/15.0.0_postcss@8.4.16:
+    resolution: {integrity: sha512-Y20shPQ07RitgBGv2zvkEAu9bqvrD77C9axhj/aA1BQj4czape2MdClCExvB27EwYEJdGgKZBpKanb0t1rK2Kg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss: 8.4.16
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.1
+    dev: true
 
   /postcss-initial/3.0.4:
     resolution: {integrity: sha512-3RLn6DIpMsK1l5UUy9jxQvoDeUN4gP939tDcKUHD/kM8SGSKbFAnvkpFpj3Bhtz3HGk1jWY5ZNWX6mPta5M9fg==}
