@@ -24,7 +24,7 @@ const csp: Record<string, Array<string>> = {
   'manifest-src': ["'self'"],
   'prefetch-src': ["'self'"],
   'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
-  'require-trusted-types-for': ["'script'"], // csp-evaluator
+  // 'require-trusted-types-for': ["'script'"], // csp-evaluator // https://github.com/maevsi/maevsi/issues/830
   'script-src': [
     'blob:',
     "'self'",
