@@ -28,7 +28,7 @@ specifiers:
   '@storybook/theming': 6.5.10
   '@tailwindcss/forms': 0.5.2
   '@tailwindcss/line-clamp': 0.4.1
-  '@tailwindcss/typography': 0.5.4
+  '@tailwindcss/typography': 0.5.6
   '@tiptap/core': 2.0.0-beta.182
   '@tiptap/extension-link': 2.0.0-beta.43
   '@tiptap/starter-kit': 2.0.0-beta.191
@@ -149,7 +149,7 @@ dependencies:
   '@nuxtjs/sitemap': 2.4.0
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
   '@tailwindcss/line-clamp': 0.4.1_tailwindcss@3.1.8
-  '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
+  '@tailwindcss/typography': 0.5.6_tailwindcss@3.1.8
   '@tiptap/extension-link': 2.0.0-beta.43_jdrcmhoxj44u3cq7gnenksjiqq
   '@tiptap/starter-kit': 2.0.0-beta.191
   '@tiptap/vue-2': 2.0.0-beta.84_f3o6mpuochypy3xjnq2eemnb54
@@ -4991,14 +4991,15 @@ packages:
       tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
     dev: false
 
-  /@tailwindcss/typography/0.5.4_tailwindcss@3.1.8:
-    resolution: {integrity: sha512-QEdg40EmGvE7kKoDei8zr5sf4D1pIayHj4R31bH3lX8x2BtTiR+jNejYPOkhbmy3DXgkMF9jC8xqNiGFAuL9Sg==}
+  /@tailwindcss/typography/0.5.6_tailwindcss@3.1.8:
+    resolution: {integrity: sha512-d7gNgMl43SmUlC3H7UFWuDVtgU6Slr0h4k0idVfwZ/gFRpjTgFpkD3WIs8AhvwELmWvhI8GwklAeInrhXxFu7A==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
+      postcss-selector-parser: 6.0.10
       tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
     dev: false
 
