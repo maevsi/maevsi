@@ -26,7 +26,7 @@ specifiers:
   '@storybook/components': 6.5.10
   '@storybook/core-events': 6.5.10
   '@storybook/theming': 6.5.10
-  '@tailwindcss/forms': 0.5.2
+  '@tailwindcss/forms': 0.5.3
   '@tailwindcss/line-clamp': 0.4.1
   '@tailwindcss/typography': 0.5.6
   '@tiptap/core': 2.0.0-beta.182
@@ -147,7 +147,7 @@ dependencies:
   '@nuxtjs/i18n': 7.3.0_vue@2.7.10
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
-  '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
+  '@tailwindcss/forms': 0.5.3_tailwindcss@3.1.8
   '@tailwindcss/line-clamp': 0.4.1_tailwindcss@3.1.8
   '@tailwindcss/typography': 0.5.6_tailwindcss@3.1.8
   '@tiptap/extension-link': 2.0.0-beta.43_jdrcmhoxj44u3cq7gnenksjiqq
@@ -4974,8 +4974,8 @@ packages:
       - webpack-command
     dev: true
 
-  /@tailwindcss/forms/0.5.2_tailwindcss@3.1.8:
-    resolution: {integrity: sha512-pSrFeJB6Bg1Mrg9CdQW3+hqZXAKsBrSG9MAfFLKy1pVA4Mb4W7C0k7mEhlmS2Dfo/otxrQOET7NJiJ9RrS563w==}
+  /@tailwindcss/forms/0.5.3_tailwindcss@3.1.8:
+    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
