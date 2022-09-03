@@ -28,7 +28,7 @@ specifiers:
   '@storybook/theming': 6.5.10
   '@tailwindcss/forms': 0.5.3
   '@tailwindcss/line-clamp': 0.4.2
-  '@tailwindcss/typography': 0.5.6
+  '@tailwindcss/typography': 0.5.7
   '@tiptap/core': 2.0.0-beta.182
   '@tiptap/extension-link': 2.0.0-beta.43
   '@tiptap/starter-kit': 2.0.0-beta.191
@@ -149,7 +149,7 @@ dependencies:
   '@nuxtjs/sitemap': 2.4.0
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.1.8
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.1.8
-  '@tailwindcss/typography': 0.5.6_tailwindcss@3.1.8
+  '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
   '@tiptap/extension-link': 2.0.0-beta.43_jdrcmhoxj44u3cq7gnenksjiqq
   '@tiptap/starter-kit': 2.0.0-beta.191
   '@tiptap/vue-2': 2.0.0-beta.84_f3o6mpuochypy3xjnq2eemnb54
@@ -4991,8 +4991,8 @@ packages:
       tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
     dev: false
 
-  /@tailwindcss/typography/0.5.6_tailwindcss@3.1.8:
-    resolution: {integrity: sha512-d7gNgMl43SmUlC3H7UFWuDVtgU6Slr0h4k0idVfwZ/gFRpjTgFpkD3WIs8AhvwELmWvhI8GwklAeInrhXxFu7A==}
+  /@tailwindcss/typography/0.5.7_tailwindcss@3.1.8:
+    resolution: {integrity: sha512-JTTSTrgZfp6Ki4svhPA4mkd9nmQ/j9EfE7SbHJ1cLtthKkpW2OxsFXzSmxbhYbEkfNIyAyhle5p4SYyKRbz/jg==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
