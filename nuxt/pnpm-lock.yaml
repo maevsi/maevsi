@@ -32,7 +32,7 @@ specifiers:
   '@tiptap/core': 2.0.0-beta.183
   '@tiptap/extension-link': 2.0.0-beta.43
   '@tiptap/starter-kit': 2.0.0-beta.192
-  '@tiptap/vue-2': 2.0.0-beta.84
+  '@tiptap/vue-2': 2.0.0-beta.85
   '@types/apollo-upload-client': 8.1.3
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.3.4
@@ -152,7 +152,7 @@ dependencies:
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
   '@tiptap/extension-link': 2.0.0-beta.43_ngwxlaqnk6fwzlupw2ne24im6m
   '@tiptap/starter-kit': 2.0.0-beta.192
-  '@tiptap/vue-2': 2.0.0-beta.84_a44ybolsl2sys35ill34etseey
+  '@tiptap/vue-2': 2.0.0-beta.85_a44ybolsl2sys35ill34etseey
   '@uppy/core': 3.0.1
   '@uppy/tus': 3.0.1_@uppy+core@3.0.1
   apollo-cache-inmemory: 1.6.6_graphql@15.8.0
@@ -5030,8 +5030,8 @@ packages:
       '@tiptap/core': 2.0.0-beta.183
     dev: false
 
-  /@tiptap/extension-bubble-menu/2.0.0-beta.61_ngwxlaqnk6fwzlupw2ne24im6m:
-    resolution: {integrity: sha512-T3Yx+y1sUnXAJjK1CUfsQewSxOpDca9KzKqN2H9c9RZ9UlorR9XmZg6YYW7m9a7adeihj+o3cCO9jRd8dV+nnA==}
+  /@tiptap/extension-bubble-menu/2.0.0-beta.62_ngwxlaqnk6fwzlupw2ne24im6m:
+    resolution: {integrity: sha512-kULfrsizAo5siu77bkr8ftzIIzRsywtizubFfjD9dlR4PPBQb4QN/tN2kIjOQXvWgYPKSLoBKC5E3El4mV7sJQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.1
     dependencies:
@@ -5220,14 +5220,14 @@ packages:
       '@tiptap/extension-text': 2.0.0-beta.17_ngwxlaqnk6fwzlupw2ne24im6m
     dev: false
 
-  /@tiptap/vue-2/2.0.0-beta.84_a44ybolsl2sys35ill34etseey:
-    resolution: {integrity: sha512-LJGVqD69pQn+8ZxYpROcRG4Zv2eAK7mFsKGf/tywtews09OkEynLbwyAePsF1nxsUASiA8M7rEiWoKWGFtJ6Qg==}
+  /@tiptap/vue-2/2.0.0-beta.85_a44ybolsl2sys35ill34etseey:
+    resolution: {integrity: sha512-MahZOX/qTqVPiOM1WuRCjyo9fdhypjQXuNCDhuzX4JaDTJAPckVaEqUvsKXyfCTqOqoaNHGFBJ+ZALYJaYsKqA==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.1
       vue: ^2.6.0
     dependencies:
       '@tiptap/core': 2.0.0-beta.183
-      '@tiptap/extension-bubble-menu': 2.0.0-beta.61_ngwxlaqnk6fwzlupw2ne24im6m
+      '@tiptap/extension-bubble-menu': 2.0.0-beta.62_ngwxlaqnk6fwzlupw2ne24im6m
       '@tiptap/extension-floating-menu': 2.0.0-beta.56_ngwxlaqnk6fwzlupw2ne24im6m
       prosemirror-view: 1.26.2
       vue: 2.7.10
