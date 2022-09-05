@@ -1,14 +1,14 @@
 import { defineComponent } from 'vue'
-import Form from './Form.vue'
+import MaevsiForm from './Form.vue'
 
 export default {
-  component: Form,
+  component: MaevsiForm,
   title: 'form/Form',
 }
 
 const Template = (_: never, { argTypes }: any) =>
   defineComponent({
-    components: { Form },
+    components: { MaevsiForm },
     props: Object.keys(argTypes),
     // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<Form v-bind="$props">Form</Form>',
