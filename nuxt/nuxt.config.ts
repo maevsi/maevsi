@@ -212,13 +212,7 @@ export default defineNuxtConfig({
     // ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
   ],
   nitro: {
-    autoImport: {
-      exclude: [
-        /[\\/]node_modules[\\/]/,
-        /[\\/]\.git[\\/]/,
-        /[\\/]\.nuxt[\\/]/,
-      ], // Can be removed in unjs/nitro > v0.4.12
-    },
+    compressPublicAssets: true,
   },
   postcss: {
     // @ts-ignore https://github.com/nuxt/bridge/issues/29
