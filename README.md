@@ -21,7 +21,6 @@ This project is deployed within the [maevsi_stack](https://github.com/maevsi/mae
 
 The database management tool *Sqitch* needs special configuration.
 
-- run `mkdir -p /mnt/dev/postgresql/` to create the database's socket mount point, which Sqitch uses to connect to the database
 - run `cd sqitch` from this project's root directory
 - run `cp SQITCH_TARGET.env.template SQITCH_TARGET.env` and fill in the correct target
 - run `./sqitch` with appropriate parameters
