@@ -1,3 +1,11 @@
+# [0.146.0](https://github.com/maevsi/maevsi/compare/0.145.6...0.146.0) (2022-09-09)
+
+
+### Features
+
+* **sqitch:** mount run for socket ([bf36b12](https://github.com/maevsi/maevsi/commit/bf36b122e057ed5dd780971316335e5af734dac0))
+* **sqitch:** remove target environment variable template ([3661ad9](https://github.com/maevsi/maevsi/commit/3661ad988e08247ef842d108667cbe14fd4d63f4))
+
 ## [0.145.6](https://github.com/maevsi/maevsi/compare/0.145.5...0.145.6) (2022-08-31)
 
 
