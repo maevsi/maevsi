@@ -58,7 +58,7 @@ specifiers:
   '@urql/vue': 1.0.2
   '@vuelidate/core': 2.0.0-alpha.44
   '@vuelidate/validators': 2.0.0-alpha.31
-  '@vueuse/head': 0.7.9
+  '@vueuse/head': 0.7.10
   autoprefixer: 10.4.8
   babel-loader: 8.2.5
   browserlist: 1.0.1
@@ -160,7 +160,7 @@ dependencies:
   '@urql/vue': 1.0.2_graphql@15.8.0+vue@3.2.38
   '@vuelidate/core': 2.0.0-alpha.44_vue@3.2.38
   '@vuelidate/validators': 2.0.0-alpha.31_vue@3.2.38
-  '@vueuse/head': 0.7.9_vue@3.2.38
+  '@vueuse/head': 0.7.10_vue@3.2.38
   chart.js: 3.9.1
   clipboard: 2.0.11
   consola: 2.15.3
@@ -6384,10 +6384,10 @@ packages:
       - vue
     dev: false
 
-  /@vueuse/head/0.7.9_vue@3.2.38:
-    resolution: {integrity: sha512-5wnRiH2XIUSLLXJDLDDTcpvAg5QXgTIVZl46AU7to/T91KHsdBLHSE4WhRO7kP0jbkAhlxnx64E29cQtwBrMjg==}
+  /@vueuse/head/0.7.10_vue@3.2.38:
+    resolution: {integrity: sha512-hkvxpl99xiziDV7qAMtuzTZt5oHn6sOpdUuSlT27KhB/jVSpPrrIUKD1L/0JhLw8gCQoHGxmWalc3P7AYuzkoA==}
     peerDependencies:
-      vue: '>=3'
+      vue: '>=2.7 || >=3'
     dependencies:
       vue: 3.2.38
 
@@ -15856,7 +15856,7 @@ packages:
       '@nuxt/vite-builder': 3.0.0-rc.9_bx3oqtd7nrknomol36z3rbf2xu
       '@vue/reactivity': 3.2.38
       '@vue/shared': 3.2.38
-      '@vueuse/head': 0.7.9_vue@3.2.38
+      '@vueuse/head': 0.7.10_vue@3.2.38
       chokidar: 3.5.3
       cookie-es: 0.5.0
       defu: 6.1.0
