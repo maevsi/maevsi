@@ -1,3 +1,10 @@
+## [0.146.1](https://github.com/maevsi/maevsi/compare/0.146.0...0.146.1) (2022-09-10)
+
+
+### Bug Fixes
+
+* **docker:** temporarily disable healthcheck ([2037c4b](https://github.com/maevsi/maevsi/commit/2037c4b6eb67912c589ad707b451e3c9f4dc85b0))
+
 # [0.146.0](https://github.com/maevsi/maevsi/compare/0.145.6...0.146.0) (2022-09-09)
 
 
