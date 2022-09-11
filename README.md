@@ -36,7 +36,7 @@ The following steps show how to start the full development stack:
 
 1. create a directory named `maevsi` in a directory of your liking
 1. download the project modules [maevsi](https://github.com/maevsi/maevsi), [maevsi_stack](https://github.com/maevsi/maevsi_stack) and [stomper](https://github.com/maevsi/stomper) into that newly created directory:
-    ```
+    ```sh
     cd maevsi
     git clone https://github.com/maevsi/maevsi.git
     git clone https://github.com/maevsi/maevsi_stack.git
@@ -44,13 +44,13 @@ The following steps show how to start the full development stack:
     ```
     **maevsi** contains the frontend and database migrations, **maevsi_stack** the service configuration and **stomper** is the service that sends out emails.
 1. switch into the `maevsi` subdirectory and setup Node:
-    ```
+    ```sh
     cd maevsi
     nvm install
     nvm use
     ```
 1. then install all dependencies using [pnpm](https://pnpm.io/), including the **nuxt** directory:
-    ```
+    ```sh
     corepack enable
     pnpm install
 
@@ -59,30 +59,29 @@ The following steps show how to start the full development stack:
     ```
     If there is an issue regarding OpenSSL, then you might want to set the environment variable `NODE_OPTIONS=--openssl-legacy-provider` and try again.
 1. configure maevsi's [DargStack](https://github.com/dargmuesli/dargstack) then:
-    ```
+    ```sh
     cd ../../maevsi_stack/src/development
     cp stack.env.template stack.env
-    ```
-    Edit the newly created `stack.env` file then and fill `PNPM_STORE_DIR` with what's printed by the following command:
-    ```
     pnpm store path
+    vim stack.env # fill PNPM_STORE_DIR with what's printed by the previous command
     ```
 1. install a root development certificate on your system and create subcertificates for the application
-    ```
+    ```sh
     mkcert -install
     ./certificates/mkcert.sh
     ```
 1. you are now ready to start everything up!
-    ```
+    ```sh
     cd ../../
     dargstack deploy
     ```
 1. Finally, create the Docker development images for `maevsi` and `stomper` so that their services start successfully:
-    ```
+    ```sh
     cd ../maevsi
     dargstack build
 
     cd ../stomper
+    yarn install
     dargstack build
     ```
 
@@ -90,8 +89,8 @@ The following steps show how to start the full development stack:
 ### Container Management
 
 To see if services are running or not you can use [Portainer](https://www.portainer.io/) if you prefer a web view instead of the command line:
-```
-docker run --name portainer --restart=always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+```sh
+sudo docker run --name portainer --restart=always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
 ```
 Access Portainer on `http://localhost:9000` then.
 Create a user, add an environment, start the Docker wizard, choose "Socket", name it e.g. "local" and close the wizard.
