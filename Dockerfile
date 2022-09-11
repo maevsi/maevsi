@@ -126,7 +126,7 @@ COPY --from=build /srv/app/ ./
 
 RUN npm install -g pnpm && \
     WAIT_ON_TIMEOUT=6000 pnpm start-server-and-test 'pnpm start' 3000 'wget http://0.0.0.0:3000/' && \
-    WAIT_ON_TIMEOUT=6000 pnpm start-server-and-test 'pnpm dev' 3000 'wget http://0.0.0.0:3000/'
+    WAIT_ON_TIMEOUT=100000 pnpm start-server-and-test 'pnpm dev' 3000 'wget http://0.0.0.0:3000/'
 
 
 ########################
