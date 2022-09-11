@@ -29,6 +29,7 @@ The following steps show how to start the full development stack:
 1. [install Docker](https://docs.docker.com/engine/install/) so that all services run in their own [containers](https://en.wikipedia.org/wiki/Containerization)
 1. [install dargstack](https://github.com/dargmuesli/dargstack#installation-example) to bootstrap a [Docker stack](https://docs.docker.com/engine/reference/commandline/stack/) setup
 1. [install nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to be able to switch the currently active [Node.js](https://nodejs.org/en/) version on your machine
+1. [install mkcert](https://github.com/FiloSottile/mkcert#installation) for development certificate generation and installation, so that all services are available through https
 
 
 ### Setup
@@ -65,6 +66,11 @@ The following steps show how to start the full development stack:
     Edit the newly created `stack.env` file then and fill `PNPM_STORE_DIR` with what's printed by the following command:
     ```
     pnpm store path
+    ```
+1. install a root development certificate on your system and create subcertificates for the application
+    ```
+    mkcert -install
+    ./certificates/mkcert.sh
     ```
 1. you are now ready to start everything up!
     ```
