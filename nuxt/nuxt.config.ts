@@ -18,10 +18,10 @@ for (const exclusion of SITEMAP_EXCLUSIONS) {
 }
 
 export default defineNuxtConfig({
-  alias: {
-    tslib: 'tslib/tslib.es6.js',
-    'tus-js-client': 'tus-js-client/lib.es5/browser/index.js',
-  },
+  // alias: {
+  //   tslib: 'tslib/tslib.es6.js',
+  //   'tus-js-client': 'tus-js-client/lib.es5/browser/index.js',
+  // },
   bridge: {
     meta: true,
   },
