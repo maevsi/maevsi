@@ -112,6 +112,8 @@ RUN npm install -g pnpm && \
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:18.9.0-slim@sha256:40e3b696ef30fdd8010a0090d32c244a2b365f0425f1a698274db85b85219919 AS test-integration
 
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
 # Update and install dependencies.
 # - `wget` is used for testing
 # - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
@@ -125,7 +127,8 @@ WORKDIR /srv/app/
 COPY --from=build /srv/app/ ./
 
 RUN npm install -g pnpm && \
-    WAIT_ON_TIMEOUT=6000 pnpm start-server-and-test 'pnpm start' 3000 'wget http://0.0.0.0:3000/'
+    WAIT_ON_TIMEOUT=6000 pnpm start-server-and-test 'pnpm start' 3000 'wget http://0.0.0.0:3000/' && \
+    WAIT_ON_TIMEOUT=100000 pnpm start-server-and-test 'pnpm dev' 3000 'wget http://0.0.0.0:3000/'
 
 
 ########################
