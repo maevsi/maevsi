@@ -51,7 +51,7 @@
 <script lang="ts">
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
-import { render } from 'mustache'
+import mustache from 'mustache'
 import { computed, defineComponent, PropType } from 'vue'
 
 import { Event } from '~/types/event'
@@ -75,7 +75,8 @@ export default defineComponent({
 
         return htmlToText(
           DOMPurify.sanitize(
-            render(props.event.description, {
+            // eslint-disable-next-line import/no-named-as-default-member
+            mustache.render(props.event.description, {
               event: props.event,
             })
           ),

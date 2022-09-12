@@ -3,7 +3,7 @@ import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
 import moment from 'moment'
-import { render } from 'mustache'
+import mustache from 'mustache'
 
 import { Contact } from '~/types/contact'
 import { Event as MaevsiEvent } from '~/types/event'
@@ -36,7 +36,8 @@ export function getIcalString(
     (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
     '/event/' +
     userEventPath
-  const eventDescriptionHtml = render(
+  // eslint-disable-next-line import/no-named-as-default-member
+  const eventDescriptionHtml = mustache.render(
     event.description ? `${eventUrl}\n${event.description}` : '',
     {
       contact,

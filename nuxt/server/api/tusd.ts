@@ -9,8 +9,8 @@ import {
   sendError,
 } from 'h3'
 import consola from 'consola'
-import { verify } from 'jsonwebtoken'
-import { Pool } from 'pg'
+import jsonwebtoken from 'jsonwebtoken'
+import pg from 'pg'
 import fetch from 'node-fetch'
 
 const configPostgraphileJwtPublicKeyPath =
@@ -25,7 +25,8 @@ const configPostgraphileJwtPublicKey = fs.existsSync(
   ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
   : undefined
 
-const pool = new Pool({
+// eslint-disable-next-line import/no-named-as-default-member
+const pool = new pg.Pool({
   database: fs.existsSync(secretPostgresDbPath)
     ? fs.readFileSync(secretPostgresDbPath, 'utf-8')
     : undefined,
@@ -112,7 +113,8 @@ async function tusdDelete(event: CompatibilityEvent) {
   }
 
   try {
-    verify(
+    // eslint-disable-next-line import/no-named-as-default-member
+    jsonwebtoken.verify(
       req.headers.authorization.substring(7),
       configPostgraphileJwtPublicKey,
       {
