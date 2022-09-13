@@ -3,7 +3,7 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:18.9.0-slim@sha256:d415eea4eb02c933213cee0a591ff2198a92abc3941c46bbcd1364290cbdb92b AS development
+FROM node:18.9.0-slim@sha256:025173d7ce52ce7db9c8c171735b7903be21ddecf93fae4161137c87e710c145 AS development
 
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
@@ -38,7 +38,7 @@ CMD ["pnpm", "run", "dev"]
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.9.0-slim@sha256:d415eea4eb02c933213cee0a591ff2198a92abc3941c46bbcd1364290cbdb92b AS prepare
+FROM node:18.9.0-slim@sha256:025173d7ce52ce7db9c8c171735b7903be21ddecf93fae4161137c87e710c145 AS prepare
 
 WORKDIR /srv/app/
 
@@ -58,7 +58,7 @@ RUN pnpm install --offline && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.9.0-slim@sha256:d415eea4eb02c933213cee0a591ff2198a92abc3941c46bbcd1364290cbdb92b AS build
+FROM node:18.9.0-slim@sha256:025173d7ce52ce7db9c8c171735b7903be21ddecf93fae4161137c87e710c145 AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -80,7 +80,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.9.0-slim@sha256:d415eea4eb02c933213cee0a591ff2198a92abc3941c46bbcd1364290cbdb92b AS lint
+FROM node:18.9.0-slim@sha256:025173d7ce52ce7db9c8c171735b7903be21ddecf93fae4161137c87e710c145 AS lint
 
 WORKDIR /srv/app/
 
@@ -95,7 +95,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.9.0-slim@sha256:d415eea4eb02c933213cee0a591ff2198a92abc3941c46bbcd1364290cbdb92b AS test
+FROM node:18.9.0-slim@sha256:025173d7ce52ce7db9c8c171735b7903be21ddecf93fae4161137c87e710c145 AS test
 
 WORKDIR /srv/app/
 
@@ -110,7 +110,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.9.0-slim@sha256:d415eea4eb02c933213cee0a591ff2198a92abc3941c46bbcd1364290cbdb92b AS test-integration
+FROM node:18.9.0-slim@sha256:025173d7ce52ce7db9c8c171735b7903be21ddecf93fae4161137c87e710c145 AS test-integration
 
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
@@ -136,7 +136,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of node:slim.
 # `storycap` requires Debian.
-FROM node:18.9.0-slim@sha256:d415eea4eb02c933213cee0a591ff2198a92abc3941c46bbcd1364290cbdb92b AS test-visual
+FROM node:18.9.0-slim@sha256:025173d7ce52ce7db9c8c171735b7903be21ddecf93fae4161137c87e710c145 AS test-visual
 
 ARG CI=false
 ENV CI ${CI}
@@ -168,7 +168,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of node:slim.
 # `storycap` requires Debian.
-FROM node:18.9.0-slim@sha256:d415eea4eb02c933213cee0a591ff2198a92abc3941c46bbcd1364290cbdb92b AS test-visual_standalone
+FROM node:18.9.0-slim@sha256:025173d7ce52ce7db9c8c171735b7903be21ddecf93fae4161137c87e710c145 AS test-visual_standalone
 
 # Update and install dependencies.
 # - `fonts-dejavu-core gconf-service`, ... is required by `puppeteer`
@@ -191,7 +191,7 @@ CMD ["pnpm", "run", "storycap"]
 # Collect build, lint and test results.
 
 # Should be the specific version of node:slim.
-FROM node:18.9.0-slim@sha256:d415eea4eb02c933213cee0a591ff2198a92abc3941c46bbcd1364290cbdb92b AS collect
+FROM node:18.9.0-slim@sha256:025173d7ce52ce7db9c8c171735b7903be21ddecf93fae4161137c87e710c145 AS collect
 
 WORKDIR /srv/app/
 
@@ -207,7 +207,7 @@ COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
 
 # Should be the specific version of node:slim.
 # `sqitch` requires at least `buster`.
-FROM node:18.9.0-slim@sha256:d415eea4eb02c933213cee0a591ff2198a92abc3941c46bbcd1364290cbdb92b AS production
+FROM node:18.9.0-slim@sha256:025173d7ce52ce7db9c8c171735b7903be21ddecf93fae4161137c87e710c145 AS production
 
 ENV NODE_ENV=production
 
