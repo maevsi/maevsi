@@ -3,13 +3,13 @@
     <Breadcrumbs :prefixes="[{ name: $t('events'), to: '..', append: true }]">
       {{ routeParamUsername }}
     </Breadcrumbs>
-    <i18n path="title" tag="h1">
+    <i18n-t keypath="title" tag="h1">
       <template #name>
         <AppLink :to="localePath(`/account/${routeParamUsername}`)">
           {{ routeParamUsername }}
         </AppLink>
       </template>
-    </i18n>
+    </i18n-t>
     <EventList :username="routeParamUsername" />
   </div>
 </template>

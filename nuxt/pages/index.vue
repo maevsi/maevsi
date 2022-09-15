@@ -2,9 +2,9 @@
   <div class="flex flex-col gap-32 md:gap-32 mt-8">
     <section id="overview" class="flex gap-8 items-center">
       <div class="flex w-full flex-col gap-8 md:gap-16 items-start lg:w-1/2">
-        <i18n
+        <i18n-t
           class="text-left text-4xl font-extrabold m-0 sm:text-5xl md:text-5xl xl:text-7xl"
-          path="title"
+          keypath="title"
           tag="h1"
         >
           <template #easy>
@@ -16,7 +16,7 @@
           <template #professional>
             <span class="text-red-600">{{ $t('titleProfessional') }}</span>
           </template>
-        </i18n>
+        </i18n-t>
         <div class="flex flex-col gap-2 text-lg md:text-xl">
           <p>
             {{ $t('maevsiDescription1') }}
@@ -93,13 +93,13 @@
       </div>
     </section>
     <section id="features" class="flex flex-col gap-8">
-      <i18n
+      <i18n-t
         class="text-center text-5xl font-extrabold"
-        path="benefitsTitle"
+        keypath="benefitsTitle"
         tag="h2"
       >
         <template #maevsi><br />{{ $t('maevsi') }}</template>
-      </i18n>
+      </i18n-t>
       <div class="flex flex-wrap">
         <Benefit
           :description="$t('benefitInformationDescription')"

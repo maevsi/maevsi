@@ -153,11 +153,11 @@
       <p>{{ $t('newsletterDataDescription2') }}</p>
       <p>{{ $t('newsletterDataDescription3') }}</p>
 
-      <i18n path="newsletterDataDescription4" tag="p">
+      <i18n-t keypath="newsletterDataDescription4" tag="p">
         <template #strong>
           <strong>{{ $t('newsletterDataDescription4_1') }}</strong>
         </template>
-      </i18n>
+      </i18n-t>
 
       <h2>{{ $t('pluginsTools') }}</h2>
       <h3>{{ $t('pluginsToolsYouTubeTitle') }}</h3>
@@ -167,17 +167,17 @@
       <p>{{ $t('pluginsToolsYouTubeDescription4') }}</p>
       <p>{{ $t('pluginsToolsYouTubeDescription5') }}</p>
       <p>{{ $t('pluginsToolsYouTubeDescription6') }}</p>
-      <i18n path="pluginsToolsYouTubeDescription7" tag="p">
+      <i18n-t keypath="pluginsToolsYouTubeDescription7" tag="p">
         <template #linkPrivacy>
           <AppLink :to="$t('pluginsToolsYouTubeDescription7_1')">
             {{ $t('pluginsToolsYouTubeDescription7_1') }}
           </AppLink>
         </template>
-      </i18n>
+      </i18n-t>
 
       <h3>{{ $t('pluginsToolsGoogleWebFontsTitle') }}</h3>
       <p>{{ $t('pluginsToolsGoogleWebFontsDescription1') }}</p>
-      <i18n path="pluginsToolsGoogleWebFontsDescription2" tag="p">
+      <i18n-t keypath="pluginsToolsGoogleWebFontsDescription2" tag="p">
         <template #linkFaq>
           <AppLink :to="$t('pluginsToolsGoogleWebFontsDescription2_1')">
             {{ $t('pluginsToolsGoogleWebFontsDescription2_1') }}
@@ -188,23 +188,23 @@
             {{ $t('pluginsToolsGoogleWebFontsDescription2_2') }}
           </AppLink>
         </template>
-      </i18n>
+      </i18n-t>
 
       <h3>{{ $t('pluginsToolsFontAwesomeTitle') }}</h3>
       <p>{{ $t('pluginsToolsFontAwesomeDescription1') }}</p>
-      <i18n path="pluginsToolsFontAwesomeDescription2" tag="p">
+      <i18n-t keypath="pluginsToolsFontAwesomeDescription2" tag="p">
         <template #linkPrivacy>
           <AppLink :to="$t('pluginsToolsFontAwesomeDescription2_1')">
             {{ $t('pluginsToolsFontAwesomeDescription2_1') }}
           </AppLink>
         </template>
-      </i18n>
+      </i18n-t>
 
       <h3>{{ $t('pluginsToolsGoogleMapsTitle') }}</h3>
       <p>{{ $t('pluginsToolsGoogleMapsDescription1') }}</p>
       <p>{{ $t('pluginsToolsGoogleMapsDescription2') }}</p>
       <p>{{ $t('pluginsToolsGoogleMapsDescription3') }}</p>
-      <i18n path="pluginsToolsGoogleMapsDescription4" tag="p">
+      <i18n-t keypath="pluginsToolsGoogleMapsDescription4" tag="p">
         <template #linkGdpr>
           <AppLink
             to="https://privacy.google.com/businesses/gdprcontrollerterms/"
@@ -219,21 +219,21 @@
             {{ $t('pluginsToolsGoogleMapsDescription4_2') }}
           </AppLink>
         </template>
-      </i18n>
-      <i18n path="pluginsToolsGoogleMapsDescription5" tag="p">
+      </i18n-t>
+      <i18n-t keypath="pluginsToolsGoogleMapsDescription5" tag="p">
         <template #linkPrivacy>
           <AppLink :to="$t('pluginsToolsGoogleMapsDescription5_1')">
             {{ $t('pluginsToolsGoogleMapsDescription5_1') }}
           </AppLink>
         </template>
-      </i18n>
+      </i18n-t>
 
       <h3>{{ $t('pluginsToolsGoogleReCaptchaTitle') }}</h3>
       <p>{{ $t('pluginsToolsGoogleReCaptchaDescription1') }}</p>
       <p>{{ $t('pluginsToolsGoogleReCaptchaDescription2') }}</p>
       <p>{{ $t('pluginsToolsGoogleReCaptchaDescription3') }}</p>
       <p>{{ $t('pluginsToolsGoogleReCaptchaDescription4') }}</p>
-      <i18n path="pluginsToolsGoogleReCaptchaDescription5" tag="p">
+      <i18n-t keypath="pluginsToolsGoogleReCaptchaDescription5" tag="p">
         <template #linkPrivacy>
           <AppLink :to="$t('pluginsToolsGoogleReCaptchaDescription5_1')">
             {{ $t('pluginsToolsGoogleReCaptchaDescription5_1') }}
@@ -244,7 +244,7 @@
             {{ $t('pluginsToolsGoogleReCaptchaDescription5_2') }}
           </AppLink>
         </template>
-      </i18n>
+      </i18n-t>
       <p>
         <AppLink to="https://www.e-recht24.de">{{ $t('source') }}</AppLink>
       </p>

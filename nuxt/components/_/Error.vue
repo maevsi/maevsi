@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-col gap-4">
     <!-- eslint-disable vue/no-v-html -->
-    <i18n
-      path="maevNo"
+    <i18n-t
+      keypath="maevNo"
       class="flex items-center justify-center gap-1 text-xl font-black"
     >
       <template slot="emojiFacePleading">
         <EmojiFacePleading />
       </template>
-    </i18n>
+    </i18n-t>
     <!--eslint-enable-->
     <h1>{{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}</h1>
     <p v-if="statusCode === 403" class="text-center">
