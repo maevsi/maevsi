@@ -45,7 +45,9 @@ export default defineComponent({
         if (props.emailAddress && props.emailAddressHash) {
           return `https://www.gravatar.com/avatar/${props.emailAddressHash}?d=mp&s=${props.size}`
         } else {
-          return require('~/public/assets/static/images/blank-profile-picture.svg')
+          return import(
+            '~/public/assets/static/images/blank-profile-picture.svg'
+          )
         }
       }),
     }

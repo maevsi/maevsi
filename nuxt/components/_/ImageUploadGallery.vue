@@ -143,8 +143,6 @@ import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'
 import { useMaevsiStore } from '~/store'
 
-require('@uppy/core/dist/style.css')
-
 interface Item {
   storageKey: string
 }
@@ -408,6 +406,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@import '~/node_modules/@uppy/core/dist/style.css';
 @import '~/node_modules/vue-croppa/dist/vue-croppa.min.css';
 </style>
 
