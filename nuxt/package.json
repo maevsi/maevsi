@@ -40,7 +40,7 @@
     "@dargmuesli/vue-qrcode-reader": "3.1.0-vue3-compatibility.2",
     "@http-util/status-i18n": "0.6.2",
     "@nuxtjs/color-mode": "3.1.5",
-    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-alpha.1-27719481.1bdc1e7",
+    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-alpha.1-27720079.0d0af16",
     "@nuxtjs/robots": "2.5.0",
     "@nuxtjs/sitemap": "2.4.0",
     "@pinia/nuxt": "0.4.2",

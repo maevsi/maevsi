@@ -20,7 +20,7 @@ specifiers:
   '@nuxtjs/eslint-config-typescript': 11.0.0
   '@nuxtjs/eslint-module': 3.1.0
   '@nuxtjs/google-analytics': 2.4.0
-  '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-alpha.1-27719481.1bdc1e7
+  '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-alpha.1-27720079.0d0af16
   '@nuxtjs/moment': 1.6.1
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
@@ -145,7 +145,7 @@ dependencies:
   '@dargmuesli/vue-qrcode-reader': 3.1.0-vue3-compatibility.2
   '@http-util/status-i18n': 0.6.2
   '@nuxtjs/color-mode': 3.1.5_fur7awe7sddig5uusmg32radwu
-  '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-alpha.1-27719481.1bdc1e7_zlgppil2w4sxmjpbhaerdidxlu
+  '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-alpha.1-27720079.0d0af16_zlgppil2w4sxmjpbhaerdidxlu
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
   '@pinia/nuxt': 0.4.2_t2kobuqigknhz5ushckpzw3p6y
@@ -3391,8 +3391,8 @@ packages:
       vue-analytics: 5.22.1
     dev: true
 
-  /@nuxtjs/i18n-edge/8.0.0-alpha.1-27719481.1bdc1e7_zlgppil2w4sxmjpbhaerdidxlu:
-    resolution: {integrity: sha512-ogsYg2YXnrWDiJifvIHPC3UKiVDc3SjXXPDHAl+17erTBDE+O0OClXqiaf45VTy4IB70cPmPtlmyi9pI52PgCA==}
+  /@nuxtjs/i18n-edge/8.0.0-alpha.1-27720079.0d0af16_zlgppil2w4sxmjpbhaerdidxlu:
+    resolution: {integrity: sha512-EoJDtFb8mUm/ddyfyp3zAFV5EzbZgubB9z4VL9qrSTxxAgggl16x25lUGLb/wUXiqO1dX5TIYzYdIHjftUsNiA==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     dependencies:
       '@intlify/bundle-utils': 3.1.0_vue-i18n@9.2.2

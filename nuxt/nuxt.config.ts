@@ -25,69 +25,68 @@ export default defineNuxtConfig({
   bridge: {
     meta: true,
   },
-  build: {
-    //   babel: {
-    //     presets() {
-    //       return [['@nuxt/babel-preset-app', { corejs: { version: 3 } }]]
-    //     },
-    //   },
-    //   extend(config: Configuration) {
-    //     config.module?.rules.push({
-    //       test: /\.(graphql|gql)$/,
-    //       exclude: /node_modules/,
-    //       loader: 'graphql-tag/loader',
-    //     })
-    //   },
-    //   extractCSS: true,
-    //   ...(process.env.NODE_ENV === 'production'
-    //     ? {}
-    //     : {
-    //         optimization: {
-    //           runtimeChunk: true,
-    //           splitChunks: {
-    //             name: true,
-    //             cacheGroups: {
-    //               styles: {
-    //                 name: 'styles',
-    //                 test: /.(css|vue)$/,
-    //                 chunks: 'all',
-    //                 enforce: true,
-    //               },
-    //             },
-    //           },
-    //         },
-    //       }), // https://github.com/nuxt/bridge/issues/43
-    //   postcss: {
-    //     // @ts-ignore https://github.com/nuxt/bridge/issues/29
-    //     plugins: { tailwindcss: {}, autoprefixer: {} },
-    //   },
-    transpile: [
-      '@nuxtjs/i18n-edge', // https://github.com/nuxt-community/i18n-module/pull/1516
-      //     '@http-util/status-i18n',
-      //     '@uppy/companion-client',
-      //     '@uppy/core',
-      //     '@uppy/store-default',
-      //     '@uppy/tus',
-      //     '@uppy/utils',
-      //     'barcode-detector',
-      //     'cross-fetch',
-      //     'graphql',
-      //     'hash.js',
-      //     'headers-polyfill',
-      //     'lodash',
-      //     'lodash-es',
-      //     'moment',
-      //     'nanoid',
-      //     'node-fetch',
-      //     'pretty-bytes',
-      //     'subscriptions-transport-ws',
-      //     'tslib',
-      //     'universal-cookie',
-      //     'vue-chartjs',
-      //     'vue-qrcode-reader',
-      //     'webrtc-adapter',
-    ],
-  },
+  // build: {
+  //   babel: {
+  //     presets() {
+  //       return [['@nuxt/babel-preset-app', { corejs: { version: 3 } }]]
+  //     },
+  //   },
+  //   extend(config: Configuration) {
+  //     config.module?.rules.push({
+  //       test: /\.(graphql|gql)$/,
+  //       exclude: /node_modules/,
+  //       loader: 'graphql-tag/loader',
+  //     })
+  //   },
+  //   extractCSS: true,
+  //   ...(process.env.NODE_ENV === 'production'
+  //     ? {}
+  //     : {
+  //         optimization: {
+  //           runtimeChunk: true,
+  //           splitChunks: {
+  //             name: true,
+  //             cacheGroups: {
+  //               styles: {
+  //                 name: 'styles',
+  //                 test: /.(css|vue)$/,
+  //                 chunks: 'all',
+  //                 enforce: true,
+  //               },
+  //             },
+  //           },
+  //         },
+  //       }), // https://github.com/nuxt/bridge/issues/43
+  //   postcss: {
+  //     // @ts-ignore https://github.com/nuxt/bridge/issues/29
+  //     plugins: { tailwindcss: {}, autoprefixer: {} },
+  //   },
+  //   transpile: [
+  //     '@http-util/status-i18n',
+  //     '@uppy/companion-client',
+  //     '@uppy/core',
+  //     '@uppy/store-default',
+  //     '@uppy/tus',
+  //     '@uppy/utils',
+  //     'barcode-detector',
+  //     'cross-fetch',
+  //     'graphql',
+  //     'hash.js',
+  //     'headers-polyfill',
+  //     'lodash',
+  //     'lodash-es',
+  //     'moment',
+  //     'nanoid',
+  //     'node-fetch',
+  //     'pretty-bytes',
+  //     'subscriptions-transport-ws',
+  //     'tslib',
+  //     'universal-cookie',
+  //     'vue-chartjs',
+  //     'vue-qrcode-reader',
+  //     'webrtc-adapter',
+  //   ],
+  // },
   cookies: {
     necessary: [
       {
