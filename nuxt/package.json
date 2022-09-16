@@ -35,7 +35,7 @@
   "dependencies": {
     "@dargmuesli/nuxt-cookie-control": "1.9.9",
     "@http-util/status-i18n": "0.6.2",
-    "@nuxt/types-edge": "2.16.0-27715704.54e852f",
+    "@nuxt/types-edge": "2.16.0-27720022.54e852f",
     "@nuxtjs/color-mode": "3.1.5",
     "@nuxtjs/i18n": "7.3.0",
     "@nuxtjs/robots": "2.5.0",
@@ -75,7 +75,7 @@
     "moment": "2.29.4",
     "mustache": "3.2.1",
     "node-fetch": "3.2.10",
-    "nuxt-edge": "2.16.0-27715704.54e852f",
+    "nuxt-edge": "2.16.0-27720022.54e852f",
     "pg": "8.8.0",
     "pretty-bytes": "6.0.0",
     "prntr": "2.0.17",
