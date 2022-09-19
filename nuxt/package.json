@@ -37,7 +37,6 @@
   },
   "dependencies": {
     "@dargmuesli/nuxt-cookie-control": "1.9.9",
-    "@dargmuesli/vue-qrcode-reader": "3.1.0-vue3-compatibility.2",
     "@http-util/status-i18n": "0.6.2",
     "@nuxtjs/color-mode": "3.1.5",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-alpha.1-27720079.0d0af16",
@@ -88,6 +87,7 @@
     "vue-croppa": "1.3.8",
     "vue-datetime": "1.0.0-beta.14",
     "vue-i18n": "9.2.2",
+    "vue-qrcode-reader": "3.1.0-vue3-compatibility.5",
     "weekstart": "1.1.0"
   },
   "devDependencies": {

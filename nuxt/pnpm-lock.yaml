@@ -4,7 +4,6 @@ specifiers:
   '@babel/core': 7.19.1
   '@babel/preset-env': 7.19.1
   '@dargmuesli/nuxt-cookie-control': 1.9.9
-  '@dargmuesli/vue-qrcode-reader': 3.1.0-vue3-compatibility.2
   '@graphql-codegen/cli': 2.12.0
   '@graphql-codegen/typescript': 2.7.3
   '@graphql-codegen/typescript-operations': 2.5.3
@@ -134,6 +133,7 @@ specifiers:
   vue-croppa: 1.3.8
   vue-datetime: 1.0.0-beta.14
   vue-i18n: 9.2.2
+  vue-qrcode-reader: 3.1.0-vue3-compatibility.5
   vue-router: 4.1.5
   vue-template-compiler: 2.7.10
   vue-tsc: 0.40.13
@@ -142,7 +142,6 @@ specifiers:
 
 dependencies:
   '@dargmuesli/nuxt-cookie-control': 1.9.9_webpack@5.74.0
-  '@dargmuesli/vue-qrcode-reader': 3.1.0-vue3-compatibility.2
   '@http-util/status-i18n': 0.6.2
   '@nuxtjs/color-mode': 3.1.5_fur7awe7sddig5uusmg32radwu
   '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-alpha.1-27720079.0d0af16_zlgppil2w4sxmjpbhaerdidxlu
@@ -193,6 +192,7 @@ dependencies:
   vue-croppa: 1.3.8
   vue-datetime: 1.0.0-beta.14_dkiw7fhvoijh5atzshp7jpnxmi
   vue-i18n: 9.2.2_vue@3.2.39
+  vue-qrcode-reader: 3.1.0-vue3-compatibility.5
   weekstart: 1.1.0
 
 devDependencies:
@@ -272,7 +272,7 @@ devDependencies:
   stylelint-config-recommended-vue: 1.4.0_35nbotopgds64plu275w6fpq24
   stylelint-config-standard: 28.0.0_stylelint@14.11.0
   stylelint-no-unsupported-browser-features: 5.0.4_stylelint@14.11.0
-  tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+  tailwindcss: 3.1.8_ts-node@10.9.1
   ts-jest: 29.0.1_65hyrayhq2gvq5ygbjt44aaho4
   typescript: 4.8.3
   vite: 3.1.0
@@ -1826,17 +1826,6 @@ packages:
       - node-sass
     dev: false
 
-  /@dargmuesli/vue-qrcode-reader/3.1.0-vue3-compatibility.2:
-    resolution: {integrity: sha512-7grE71ZRDf45CC4yjNdn0k9IMqX9B77mYfzQ0pvCtNyxY8UQ+qA/NfuW7NAIS8Fj9waSZYBVzlwBGd4dr48R8g==}
-    dependencies:
-      '@vue/compat': 3.2.39_vue@3.2.39
-      barcode-detector: 1.0.0
-      callforth: 0.3.1
-      core-js: 3.25.1
-      vue: 3.2.39
-      webrtc-adapter: 7.7.0
-    dev: false
-
   /@discoveryjs/json-ext/0.5.7:
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
     engines: {node: '>=10.0.0'}
@@ -2490,8 +2479,8 @@ packages:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
     dev: true
 
-  /@intlify/bundle-utils/3.1.0_vue-i18n@9.2.2:
-    resolution: {integrity: sha512-ghlJ0kR2cCQ8D+poKknC0Xx0ncOt3J3os7CcIAqqIWVF7k6AtGoCDnIru+YzlZcvFRNmP9wEZ7jKliojCdAWNg==}
+  /@intlify/bundle-utils/3.1.2_vue-i18n@9.2.2:
+    resolution: {integrity: sha512-amgSo0NN5OKWYdcgFmfJqo2tcUcZ6C66Bxm5ALQnB0m3MUQtS9aJzKoIo+EU9XQiOVmlBFxRtNoZm+psHa5FNA==}
     engines: {node: '>= 12'}
     peerDependencies:
       petite-vue-i18n: '*'
@@ -2584,7 +2573,7 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/bundle-utils': 3.1.0_vue-i18n@9.2.2
+      '@intlify/bundle-utils': 3.1.2_vue-i18n@9.2.2
       '@intlify/shared': 9.3.0-beta.3
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.2.39
@@ -2603,6 +2592,40 @@ packages:
       - supports-color
       - vite
       - webpack
+    dev: true
+
+  /@intlify/unplugin-vue-i18n/0.6.0_xobvgji6amv3vo3x2e3zkxsqqe:
+    resolution: {integrity: sha512-GAXsPBY+VtWpA6PRoqL0Yi4is9eCy2oYifqycEuNIbsL72Cn4iRlOaSRjeRaJJj48qWHGNN9Xm5YH7eB3GI/2g==}
+    engines: {node: '>= 14.16'}
+    peerDependencies:
+      petite-vue-i18n: '*'
+      vue-i18n: '*'
+    peerDependenciesMeta:
+      petite-vue-i18n:
+        optional: true
+      vue-i18n:
+        optional: true
+    dependencies:
+      '@intlify/bundle-utils': 3.1.2_vue-i18n@9.2.2
+      '@intlify/shared': 9.3.0-beta.3
+      '@rollup/pluginutils': 4.2.1
+      '@vue/compiler-sfc': 3.2.39
+      debug: 4.3.4
+      fast-glob: 3.2.12
+      js-yaml: 4.1.0
+      json5: 2.2.1
+      pathe: 0.2.0
+      picocolors: 1.0.0
+      source-map: 0.6.1
+      unplugin: 0.8.1_fur7awe7sddig5uusmg32radwu
+      vue-i18n: 9.2.2_vue@3.2.39
+    transitivePeerDependencies:
+      - esbuild
+      - rollup
+      - supports-color
+      - vite
+      - webpack
+    dev: false
 
   /@intlify/vue-devtools/9.2.2:
     resolution: {integrity: sha512-+dUyqyCHWHb/UcvY1MlIpO87munedm3Gn6E9WWYdWrMuYLcoIoOEVDWSS8xSwtlPU+kA+MEQTP6Q1iI/ocusJg==}
@@ -3395,9 +3418,9 @@ packages:
     resolution: {integrity: sha512-EoJDtFb8mUm/ddyfyp3zAFV5EzbZgubB9z4VL9qrSTxxAgggl16x25lUGLb/wUXiqO1dX5TIYzYdIHjftUsNiA==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     dependencies:
-      '@intlify/bundle-utils': 3.1.0_vue-i18n@9.2.2
+      '@intlify/bundle-utils': 3.1.2_vue-i18n@9.2.2
       '@intlify/shared': 9.2.2
-      '@intlify/unplugin-vue-i18n': 0.5.0_xobvgji6amv3vo3x2e3zkxsqqe
+      '@intlify/unplugin-vue-i18n': 0.6.0_xobvgji6amv3vo3x2e3zkxsqqe
       '@nuxt/kit': 3.0.0-rc.10_fur7awe7sddig5uusmg32radwu
       cookie-es: 0.5.0
       debug: 4.3.4
@@ -5088,7 +5111,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+      tailwindcss: 3.1.8_ts-node@10.9.1
     dev: false
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.1.8:
@@ -5096,7 +5119,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+      tailwindcss: 3.1.8_ts-node@10.9.1
     dev: false
 
   /@tailwindcss/typography/0.5.7_tailwindcss@3.1.8:
@@ -5108,7 +5131,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+      tailwindcss: 3.1.8_ts-node@10.9.1
     dev: false
 
   /@tiptap/core/2.0.0-beta.195:
@@ -17737,12 +17760,6 @@ packages:
   /react-dev-utils/11.0.4_qfp3zio46botzv7wuuirajxqwm:
     resolution: {integrity: sha512-dx0LvIGHcOPtKbeiSUM4jqpBl3TcY7CDjZdfOIcKeznE7BWr9dg0iPG90G5yfVQ+p/rGNMXdbfStvzQZEVEi4A==}
     engines: {node: '>=10'}
-    peerDependencies:
-      typescript: '>=2.7'
-      webpack: '>=4'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
     dependencies:
       '@babel/code-frame': 7.10.4
       address: 1.1.2
@@ -17773,7 +17790,9 @@ packages:
     transitivePeerDependencies:
       - eslint
       - supports-color
+      - typescript
       - vue-template-compiler
+      - webpack
     dev: true
 
   /react-docgen-typescript/1.22.0_typescript@4.8.3:
@@ -19864,12 +19883,10 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss/3.1.8_57znarxsqwmnneadci5z5fd5gu:
+  /tailwindcss/3.1.8_ts-node@10.9.1:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -21555,6 +21572,17 @@ packages:
       - walrus
       - whiskers
     dev: true
+
+  /vue-qrcode-reader/3.1.0-vue3-compatibility.5:
+    resolution: {integrity: sha512-Q/4PcQyOgUfuGUvFHpMD+mSZxJeDpREvX8aMi0h/fMo97bGDZ7f5W+OvguSGgPComIq+Pd96bKyB53gHDjvTQA==}
+    dependencies:
+      '@vue/compat': 3.2.39_vue@3.2.39
+      barcode-detector: 1.0.0
+      callforth: 0.3.1
+      core-js: 3.25.1
+      vue: 3.2.39
+      webrtc-adapter: 7.7.0
+    dev: false
 
   /vue-router/4.1.5_vue@3.2.39:
     resolution: {integrity: sha512-IsvoF5D2GQ/EGTs/Th4NQms9gd2NSqV+yylxIyp/OYp8xOwxmU8Kj/74E9DTSYAyH5LX7idVUngN3JSj1X4xcQ==}
