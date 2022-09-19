@@ -12,7 +12,7 @@ specifiers:
   '@graphql-codegen/urql-introspection': 2.2.1
   '@http-util/status-i18n': 0.6.2
   '@intlify/eslint-plugin-vue-i18n': 2.0.0
-  '@intlify/unplugin-vue-i18n': 0.5.0
+  '@intlify/unplugin-vue-i18n': 0.6.0
   '@jest/globals': 29.0.3
   '@jest/types': 29.0.3
   '@nuxtjs/color-mode': 3.1.5
@@ -205,7 +205,7 @@ devDependencies:
   '@graphql-codegen/typescript-vue-urql': 2.3.3_3jt5ibhtazvod5hvf7xqhzsx4q
   '@graphql-codegen/urql-introspection': 2.2.1_graphql@15.8.0
   '@intlify/eslint-plugin-vue-i18n': 2.0.0_eslint@8.23.1
-  '@intlify/unplugin-vue-i18n': 0.5.0_xobvgji6amv3vo3x2e3zkxsqqe
+  '@intlify/unplugin-vue-i18n': 0.6.0_xobvgji6amv3vo3x2e3zkxsqqe
   '@jest/globals': 29.0.3
   '@jest/types': 29.0.3
   '@nuxtjs/eslint-config-typescript': 11.0.0_irgkl5vooow2ydyo6aokmferha
@@ -2581,39 +2581,6 @@ packages:
     resolution: {integrity: sha512-Z/0TU4GhFKRxKh+0RbwJExik9zz57gXYgxSYaPn7YQdkQ/pabSioCY/SXnYxQHL6HzULF5tmqarFm6glbGqKhw==}
     engines: {node: '>= 14'}
 
-  /@intlify/unplugin-vue-i18n/0.5.0_xobvgji6amv3vo3x2e3zkxsqqe:
-    resolution: {integrity: sha512-hjiNVZnjO4WcuV+bpGWfll+4YQmbgV2V5PUMvX/eG7Aw1iuPQk5S7LbfmEDKk8i2KYLcHR3x/1yCYk/dHvWQWQ==}
-    engines: {node: '>= 14.16'}
-    peerDependencies:
-      petite-vue-i18n: '*'
-      vue-i18n: '*'
-    peerDependenciesMeta:
-      petite-vue-i18n:
-        optional: true
-      vue-i18n:
-        optional: true
-    dependencies:
-      '@intlify/bundle-utils': 3.1.2_vue-i18n@9.2.2
-      '@intlify/shared': 9.3.0-beta.3
-      '@rollup/pluginutils': 4.2.1
-      '@vue/compiler-sfc': 3.2.39
-      debug: 4.3.4
-      fast-glob: 3.2.12
-      js-yaml: 4.1.0
-      json5: 2.2.1
-      pathe: 0.2.0
-      picocolors: 1.0.0
-      source-map: 0.6.1
-      unplugin: 0.8.1_fur7awe7sddig5uusmg32radwu
-      vue-i18n: 9.2.2_vue@3.2.39
-    transitivePeerDependencies:
-      - esbuild
-      - rollup
-      - supports-color
-      - vite
-      - webpack
-    dev: true
-
   /@intlify/unplugin-vue-i18n/0.6.0_xobvgji6amv3vo3x2e3zkxsqqe:
     resolution: {integrity: sha512-GAXsPBY+VtWpA6PRoqL0Yi4is9eCy2oYifqycEuNIbsL72Cn4iRlOaSRjeRaJJj48qWHGNN9Xm5YH7eB3GI/2g==}
     engines: {node: '>= 14.16'}
@@ -2645,7 +2612,6 @@ packages:
       - supports-color
       - vite
       - webpack
-    dev: false
 
   /@intlify/vue-devtools/9.2.2:
     resolution: {integrity: sha512-+dUyqyCHWHb/UcvY1MlIpO87munedm3Gn6E9WWYdWrMuYLcoIoOEVDWSS8xSwtlPU+kA+MEQTP6Q1iI/ocusJg==}

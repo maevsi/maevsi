@@ -100,7 +100,7 @@
     "@graphql-codegen/typescript-vue-urql": "2.3.3",
     "@graphql-codegen/urql-introspection": "2.2.1",
     "@intlify/eslint-plugin-vue-i18n": "2.0.0",
-    "@intlify/unplugin-vue-i18n": "0.5.0",
+    "@intlify/unplugin-vue-i18n": "0.6.0",
     "@jest/globals": "29.0.3",
     "@jest/types": "29.0.3",
     "@nuxtjs/eslint-config-typescript": "11.0.0",

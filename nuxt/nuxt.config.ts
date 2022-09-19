@@ -1,5 +1,7 @@
-import { defineNuxtConfig } from 'nuxt'
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import graphqlPlugin from '@rollup/plugin-graphql'
 
 import localeDe from './locales/de.json'
@@ -240,7 +242,14 @@ export default defineNuxtConfig({
     strict: true,
   },
   vite: {
-    // @ts-ignore https://github.com/rollup/plugins/issues/1243
-    plugins: [VueI18nPlugin.vite({}), graphqlPlugin()],
+    plugins: [
+      VueI18nPlugin({
+        include:
+          '!' +
+          resolve(dirname(fileURLToPath(import.meta.url)), './node_modules/**'), // https://github.com/intlify/bundle-tools/issues/168
+      }),
+      // @ts-ignore https://github.com/rollup/plugins/issues/1243
+      graphqlPlugin(),
+    ],
   },
 })
