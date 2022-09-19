@@ -1,14 +1,14 @@
 <template>
   <EventDashlet v-if="event.start">
     <span>
-      <IconCalendar :title="$t('start')" />
+      <IconCalendar :title="t('start')" />
     </span>
     <div class="flex flex-col">
       <span>
         {{ $moment(event.start).format('lll') }}
       </span>
       <span class="hidden sm:inline">
-        {{ $t('embraced', { content: $moment(event.start).fromNow() }) }}
+        {{ t('embraced', { content: $moment(event.start).fromNow() }) }}
       </span>
     </div>
   </EventDashlet>
@@ -24,6 +24,17 @@ export default defineComponent({
       required: true,
       type: Object as PropType<Event>,
     },
+  },
+  setup() {
+    const { t } = useI18n()
+
+    const methods = {
+      t,
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

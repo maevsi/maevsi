@@ -3,15 +3,15 @@
     <div v-if="event" class="flex flex-col gap-4">
       <Breadcrumbs
         :prefixes="[
-          { name: $t('events'), to: '../../..', append: true },
+          { name: t('events'), to: '../../..', append: true },
           { name: routeParamUsername, to: '../..', append: true },
           { name: routeParamEventName, to: '..', append: true },
         ]"
       >
-        {{ $t('invitations') }}
+        {{ t('invitations') }}
       </Breadcrumbs>
       <h1>
-        {{ $t('title') }}
+        {{ t('title') }}
       </h1>
       <InvitationList :event="event" />
     </div>
@@ -94,6 +94,9 @@ export default defineComponent({
       routeParamUsername: route.params.username as string,
       title: t('title'),
     })
+    const methods = {
+      t,
+    }
     const computations = {
       title: computed((): string | undefined => {
         if (
@@ -137,6 +140,7 @@ export default defineComponent({
     return {
       ...apiData,
       ...data,
+      ...methods,
       ...computations,
     }
   },

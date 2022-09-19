@@ -4,25 +4,25 @@
       {{ title }}
     </h1>
     <section class="flex flex-col gap-4">
-      <h2>{{ $t('session') }}</h2>
+      <h2>{{ t('session') }}</h2>
       <p v-if="sessionExpiryTime !== 'Invalid date'">
-        {{ $t('sessionExpiry', { exp: sessionExpiryTime }) }}
+        {{ t('sessionExpiry', { exp: sessionExpiryTime }) }}
       </p>
       <p v-else>
-        {{ $t('sessionExpired') }}
+        {{ t('sessionExpired') }}
       </p>
-      <ButtonColored :aria-label="$t('sessionExit')" @click="signOut">
-        {{ $t('sessionExit') }}
+      <ButtonColored :aria-label="t('sessionExit')" @click="signOut">
+        {{ t('sessionExit') }}
         <template slot="prefix">
           <IconSignOut />
         </template>
       </ButtonColored>
     </section>
     <section class="flex flex-col gap-4">
-      <h2>{{ $t('codes') }}</h2>
+      <h2>{{ t('codes') }}</h2>
       <div v-if="jwtDecoded?.invitations">
         <p>
-          {{ $t('codesEntered') }}
+          {{ t('codesEntered') }}
         </p>
         <ul class="list-disc">
           <li
@@ -34,7 +34,7 @@
         </ul>
       </div>
       <p v-else>
-        {{ $t('codesEnteredNone') }}
+        {{ t('codesEnteredNone') }}
       </p>
       <ButtonEventUnlock />
     </section>
@@ -66,6 +66,7 @@ export default defineComponent({
     })
     const methods = {
       signOut,
+      t,
     }
     const computations = {
       sessionExpiryTime: computed((): string => {

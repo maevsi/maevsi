@@ -16,7 +16,7 @@
     >
       <div class="flex justify-end">
         <ButtonIcon
-          :aria-label="$t('cancel')"
+          :aria-label="t('cancel')"
           class="invisible"
           :disabled="isSubmitting"
           @click="close()"
@@ -27,7 +27,7 @@
           <slot name="header" />
         </h2>
         <ButtonIcon
-          :aria-label="$t('cancel')"
+          :aria-label="t('cancel')"
           class="self-start"
           :disabled="isSubmitting"
           @click="close()"
@@ -50,12 +50,12 @@
       <div class="flex gap-8 justify-center">
         <slot name="footer">
           <ButtonColored
-            :aria-label="submitName || $t('ok')"
+            :aria-label="submitName || t('ok')"
             :disabled="isSubmitting || isSubmitDisabled"
             type="submit"
             @click="submit()"
           >
-            {{ submitName || $t('ok') }}
+            {{ submitName || t('ok') }}
             <template slot="prefix">
               <slot name="submit-icon">
                 <IconCheckCircle />
@@ -103,6 +103,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const store = useMaevsiStore()
     const config = useRuntimeConfig()
+    const { t } = useI18n()
 
     const data = reactive({
       errors: undefined,
@@ -171,6 +172,7 @@ export default defineComponent({
 
         data.isSubmitting = false
       },
+      t,
     }
 
     watch(computations.isVisibleComputed, (newValue: boolean, _oldvalue) => {

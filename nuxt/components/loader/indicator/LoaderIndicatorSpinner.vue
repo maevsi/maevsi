@@ -5,7 +5,7 @@
         class="animate-spin text-black dark:text-white"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
-        :title="$t('globalLoading')"
+        :title="t('globalLoading')"
         viewBox="0 0 24 24"
       >
         <circle
@@ -25,3 +25,7 @@
     </div>
   </div>
 </template>
+
+<script setup>
+const { t } = useI18n()
+</script>

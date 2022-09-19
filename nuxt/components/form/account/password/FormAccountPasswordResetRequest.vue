@@ -4,14 +4,14 @@
     :form="v$.form"
     :form-class="formClass"
     :is-form-sent="isFormSent"
-    :submit-name="$t('accountPasswordResetRequest')"
+    :submit-name="t('accountPasswordResetRequest')"
     @submit.prevent="submit"
   >
     <FormInputEmailAddress
       id="email-address-password-reset-request"
       :form-input="v$.form.emailAddress"
       is-required
-      :title="$t('emailAddressYours')"
+      :title="t('emailAddressYours')"
       @input="form.emailAddress = $event"
     />
   </Form>
@@ -102,6 +102,7 @@ const FormAccountPasswordResetRequest = defineComponent({
           title: t('requestAccepted'),
         })
       },
+      t,
     }
 
     return {

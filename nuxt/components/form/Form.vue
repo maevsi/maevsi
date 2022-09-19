@@ -14,20 +14,20 @@
       <div class="mb-4 mt-6 flex flex-col items-center justify-between">
         <ButtonColored
           ref="buttonSubmitRef"
-          :aria-label="submitName || $t('submit')"
+          :aria-label="submitName || t('submit')"
           :class="{
             'animate-shake': form.$error,
           }"
           type="submit"
           @click="$emit('click')"
         >
-          {{ submitName || $t('submit') }}
+          {{ submitName || t('submit') }}
           <template slot="prefix">
             <slot name="submit-icon" />
           </template>
         </ButtonColored>
         <FormInputStateError v-if="form.$error" class="mt-2">
-          {{ $t('globalValidationFailed') }}
+          {{ t('globalValidationFailed') }}
         </FormInputStateError>
       </div>
       <CardStateAlert v-if="errorMessages?.length" class="my-4">
@@ -75,6 +75,7 @@ const Form = defineComponent({
   },
   setup(props) {
     const { getCombinedErrorMessages } = useGetCombinedErrorMessages()
+    const { t } = useI18n()
 
     const refs = {
       buttonSubmitRef: ref<InstanceType<typeof Button>>(),
@@ -87,6 +88,7 @@ const Form = defineComponent({
       submit() {
         refs.buttonSubmitRef.value?.click()
       },
+      t,
     }
     const computations = {
       errorMessages: computed(() =>

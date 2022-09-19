@@ -3,8 +3,8 @@
     v-if="formInput"
     :is-optional="isOptional"
     :id-label="`input-${id}`"
-    :placeholder="$t('globalPlaceholderUrl')"
-    :title="$t('url')"
+    :placeholder="t('globalPlaceholderUrl')"
+    :title="t('url')"
     type="url"
     :value="formInput"
     @input="$emit('input', $event)"
@@ -14,13 +14,13 @@
         :form-input="formInput"
         validation-property="maxLength"
       >
-        {{ $t('globalValidationLength') }}
+        {{ t('globalValidationLength') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="formatUrlHttps"
       >
-        {{ $t('globalValidationFormatUrlHttps') }}
+        {{ t('globalValidationFormatUrlHttps') }}
       </FormInputStateError>
     </template>
   </FormInput>
@@ -44,6 +44,17 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
+  },
+  setup() {
+    const { t } = useI18n()
+
+    const methods = {
+      t,
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

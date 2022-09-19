@@ -2,7 +2,7 @@
   <div>
     <h1>{{ title }}</h1>
     <CardStateInfo>
-      {{ $t('filterSoon') }}
+      {{ t('filterSoon') }}
     </CardStateInfo>
   </div>
 </template>
@@ -23,6 +23,9 @@ export default defineComponent({
     const data = reactive({
       title: t('title'),
     })
+    const methods = {
+      t,
+    }
 
     useHead({
       meta: [
@@ -50,6 +53,7 @@ export default defineComponent({
 
     return {
       ...data,
+      ...methods,
     }
   },
 })

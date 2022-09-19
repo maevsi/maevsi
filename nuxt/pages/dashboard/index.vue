@@ -6,44 +6,41 @@
     <div class="flex flex-col gap-4">
       <div class="flex gap-4">
         <section class="lg:w-1/2">
-          <h2>{{ $t('eventsMine') }}</h2>
+          <h2>{{ t('eventsMine') }}</h2>
           <ButtonColored
-            :aria-label="$t('eventsMine')"
+            :aria-label="t('eventsMine')"
             :to="localePath(`/event/${signedInUsername}`)"
           >
-            {{ $t('eventsMine') }}
+            {{ t('eventsMine') }}
             <template slot="prefix">
               <IconCalendar />
             </template>
           </ButtonColored>
         </section>
         <section class="lg:w-1/2">
-          <h2>{{ $t('invitationsMine') }}</h2>
+          <h2>{{ t('invitationsMine') }}</h2>
           <CardStateInfo>
-            {{ $t('invitationsMineDescription') }}
+            {{ t('invitationsMineDescription') }}
           </CardStateInfo>
         </section>
       </div>
       <div class="flex gap-4">
         <section class="lg:w-1/2">
-          <h2>{{ $t('contactsMine') }}</h2>
+          <h2>{{ t('contactsMine') }}</h2>
           <ButtonColored
-            :aria-label="$t('contactBook')"
+            :aria-label="t('contactBook')"
             :to="localePath('/contact')"
           >
-            {{ $t('contactBook') }}
+            {{ t('contactBook') }}
             <template slot="prefix">
               <IconAddressBook />
             </template>
           </ButtonColored>
         </section>
         <section class="lg:w-1/2">
-          <h2>{{ $t('uploadsMine') }}</h2>
-          <ButtonColored
-            :aria-label="$t('gallery')"
-            :to="localePath('/upload')"
-          >
-            {{ $t('gallery') }}
+          <h2>{{ t('uploadsMine') }}</h2>
+          <ButtonColored :aria-label="t('gallery')" :to="localePath('/upload')">
+            {{ t('gallery') }}
             <template slot="prefix">
               <IconImages />
             </template>
@@ -51,9 +48,9 @@
         </section>
       </div>
       <section>
-        <h2>{{ $t('news') }}</h2>
+        <h2>{{ t('news') }}</h2>
         <CardStateInfo>
-          {{ $t('newsDescription') }}
+          {{ t('newsDescription') }}
         </CardStateInfo>
       </section>
     </div>
@@ -96,6 +93,7 @@ export default defineComponent({
     })
     const methods = {
       localePath,
+      t,
     }
 
     useHead({

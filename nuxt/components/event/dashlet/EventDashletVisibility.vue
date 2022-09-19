@@ -6,14 +6,14 @@
         :visibility="event.visibility"
       />
     </span>
-    <span v-if="event.isArchived" class="block">{{ $t('archived') }}</span>
+    <span v-if="event.isArchived" class="block">{{ t('archived') }}</span>
     <span v-else-if="event.visibility === 'PUBLIC'" class="block">
-      {{ $t('public') }}
+      {{ t('public') }}
     </span>
     <span v-else-if="event.visibility === 'PRIVATE'" class="block">
-      {{ $t('private') }}
+      {{ t('private') }}
     </span>
-    <span v-else class="block">{{ $t('bug') }}</span>
+    <span v-else class="block">{{ t('bug') }}</span>
   </EventDashlet>
 </template>
 
@@ -27,6 +27,17 @@ export default defineComponent({
       required: true,
       type: Object as PropType<Event>,
     },
+  },
+  setup() {
+    const { t } = useI18n()
+
+    const methods = {
+      t,
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

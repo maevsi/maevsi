@@ -2,19 +2,19 @@
   <IconCheckCircle
     v-if="feedback === 'ACCEPTED'"
     class="text-green-600"
-    :title="$t('feedbackAccepted')"
+    :title="t('feedbackAccepted')"
   />
   <IconXCircle
     v-else-if="feedback === 'CANCELED'"
     class="text-red-600"
-    :title="$t('feedbackCanceled')"
+    :title="t('feedbackCanceled')"
   />
   <IconQuestionCircle
     v-else-if="feedback === null"
     class="text-gray-600"
-    :title="$t('feedbackNone')"
+    :title="t('feedbackNone')"
   />
-  <IconBug v-else :title="$t('bug')" />
+  <IconBug v-else :title="t('bug')" />
 </template>
 
 <script lang="ts">
@@ -26,6 +26,17 @@ export default defineComponent({
       required: true,
       type: String,
     },
+  },
+  setup() {
+    const { t } = useI18n()
+
+    const methods = {
+      t,
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

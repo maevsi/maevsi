@@ -4,19 +4,19 @@
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
-    :submit-name="$t('passwordChange')"
+    :submit-name="t('passwordChange')"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="passwordCurrent"
       :form-input="v$.form.passwordCurrent"
-      :title="$t('passwordCurrent')"
+      :title="t('passwordCurrent')"
       @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
       :form-input="v$.form.passwordNew"
-      :title="$t('passwordNew')"
+      :title="t('passwordNew')"
       @input="form.passwordNew = $event"
     />
   </Form>
@@ -112,6 +112,7 @@ const FormAccountPasswordChange = defineComponent({
         })
         methods.resetForm()
       },
+      t,
     }
 
     return {

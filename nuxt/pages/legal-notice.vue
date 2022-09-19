@@ -2,37 +2,37 @@
   <div>
     <h1>{{ title }}</h1>
     <div class="maevsi-prose-scheme">
-      <h2>{{ $t('tmg') }}</h2>
+      <h2>{{ t('tmg') }}</h2>
       <p>
-        {{ $t('addressName') }}<br />
-        {{ $t('addressStreet') }}<br />
-        {{ $t('addressCity') }}
+        {{ t('addressName') }}<br />
+        {{ t('addressStreet') }}<br />
+        {{ t('addressCity') }}
       </p>
 
-      <h2>{{ $t('contact') }}</h2>
-      <p>{{ $t('email') }}</p>
+      <h2>{{ t('contact') }}</h2>
+      <p>{{ t('email') }}</p>
 
-      <h2>{{ $t('responsibility') }}</h2>
+      <h2>{{ t('responsibility') }}</h2>
       <p>
-        {{ $t('addressName') }}<br />
-        {{ $t('addressStreet') }}<br />
-        {{ $t('addressCity') }}
+        {{ t('addressName') }}<br />
+        {{ t('addressStreet') }}<br />
+        {{ t('addressCity') }}
       </p>
 
-      <h3>{{ $t('liabilityContentTitle') }}</h3>
-      <p>{{ $t('liabilityContentDescription1') }}</p>
-      <p>{{ $t('liabilityContentDescription2') }}</p>
+      <h3>{{ t('liabilityContentTitle') }}</h3>
+      <p>{{ t('liabilityContentDescription1') }}</p>
+      <p>{{ t('liabilityContentDescription2') }}</p>
 
-      <h3>{{ $t('liabilityLinksTitle') }}</h3>
-      <p>{{ $t('liabilityLinksDescription1') }}</p>
-      <p>{{ $t('liabilityLinksDescription2') }}</p>
+      <h3>{{ t('liabilityLinksTitle') }}</h3>
+      <p>{{ t('liabilityLinksDescription1') }}</p>
+      <p>{{ t('liabilityLinksDescription2') }}</p>
 
-      <h3>{{ $t('copyrightTitle') }}</h3>
-      <p>{{ $t('copyrightDescription1') }}</p>
-      <p>{{ $t('copyrightDescription2') }}</p>
+      <h3>{{ t('copyrightTitle') }}</h3>
+      <p>{{ t('copyrightDescription1') }}</p>
+      <p>{{ t('copyrightDescription2') }}</p>
 
       <p>
-        <AppLink to="https://www.e-recht24.de">{{ $t('source') }}</AppLink>
+        <AppLink to="https://www.e-recht24.de">{{ t('source') }}</AppLink>
       </p>
     </div>
   </div>
@@ -53,6 +53,9 @@ export default defineComponent({
     const data = reactive({
       title: t('title'),
     })
+    const methods = {
+      t,
+    }
 
     useHead({
       meta: [
@@ -80,6 +83,7 @@ export default defineComponent({
 
     return {
       ...data,
+      ...methods,
     }
   },
 })

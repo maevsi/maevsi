@@ -1,6 +1,6 @@
 <template>
   <LoaderImage
-    :alt="$t('profilePictureAlt', { emailAddress })"
+    :alt="t('profilePictureAlt', { emailAddress })"
     :class="classComputed"
     :height="size"
     :src="imageSrc"
@@ -35,6 +35,8 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const { t } = useI18n()
+
     const computations = {
       classComputed: computed(() => {
         return [props.classes, ...(props.rounded ? ['rounded-full'] : [])].join(
@@ -51,9 +53,13 @@ export default defineComponent({
         }
       }),
     }
+    const methods = {
+      t,
+    }
 
     return {
       ...computations,
+      ...methods,
     }
   },
 })

@@ -4,7 +4,7 @@
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
-    :submit-name="form.id ? $t('eventUpdate') : $t('eventCreate')"
+    :submit-name="form.id ? t('eventUpdate') : t('eventCreate')"
     @submit.prevent="submit"
   >
     <FormInput
@@ -20,8 +20,8 @@
       id-label="input-name"
       is-required
       is-validatable
-      :placeholder="$t('namePlaceholder')"
-      :title="$t('name')"
+      :placeholder="t('namePlaceholder')"
+      :title="t('name')"
       type="text"
       :validation-property="v$.form.slug"
       :value="v$.form.name"
@@ -29,7 +29,7 @@
     >
       <template slot="stateWarning">
         <FormInputStateWarning v-if="event && event.name !== form.name">
-          {{ $t('validationWarningNameChangeSlug') }}
+          {{ t('validationWarningNameChangeSlug') }}
         </FormInputStateWarning>
       </template>
       <template slot="stateError">
@@ -38,19 +38,19 @@
           is-validation-live
           validation-property="existenceNone"
         >
-          {{ $t('validationExistenceNone', { slug: v$.form.slug?.$model }) }}
+          {{ t('validationExistenceNone', { slug: v$.form.slug?.$model }) }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.name"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.name"
           validation-property="required"
         >
-          {{ $t('globalValidationRequired') }}
+          {{ t('globalValidationRequired') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -58,8 +58,8 @@
       class="hidden"
       id-label="input-slug"
       is-required
-      :placeholder="$t('slugPlaceholder')"
-      :title="$t('slug')"
+      :placeholder="t('slugPlaceholder')"
+      :title="t('slug')"
       type="text"
       :value="v$.form.slug"
       @input="form.slug = $event"
@@ -69,19 +69,19 @@
           :form-input="v$.form.slug"
           validation-property="formatSlug"
         >
-          {{ $t('globalValidationFormat') }}
+          {{ t('globalValidationFormat') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.slug"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.slug"
           validation-property="required"
         >
-          {{ $t('globalValidationRequired') }}
+          {{ t('globalValidationRequired') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -89,7 +89,7 @@
       v-if="v$.form.visibility"
       id-label="input-visibility"
       is-required
-      :title="$t('visibility')"
+      :title="t('visibility')"
       type="radio"
       :value="v$.form.visibility"
       @input="form.visibility = $event"
@@ -99,8 +99,8 @@
         v-model="v$.form.visibility.$model"
         name="visibility"
         :titles-values="[
-          [$t('visibilityPublic'), 'PUBLIC'],
-          [$t('visibilityPrivate'), 'PRIVATE'],
+          [t('visibilityPublic'), 'PUBLIC'],
+          [t('visibilityPrivate'), 'PRIVATE'],
         ]"
       />
       <template slot="stateError">
@@ -108,14 +108,14 @@
           :form-input="v$.form.visibility"
           validation-property="required"
         >
-          {{ $t('globalValidationRequired') }}
+          {{ t('globalValidationRequired') }}
         </FormInputStateError>
       </template>
     </FormInput>
     <FormInput
       v-if="form.visibility === 'PUBLIC'"
       id-label="input-invitee-count-maximum"
-      :title="$t('maximumInviteeCount')"
+      :title="t('maximumInviteeCount')"
       type="number"
       :value="v$.form.inviteeCountMaximum"
       @input="form.inviteeCountMaximum = $event"
@@ -125,13 +125,13 @@
           :form-input="v$.form.inviteeCountMaximum"
           validation-property="maxValue"
         >
-          {{ $t('globalValidationMaxValue') }}
+          {{ t('globalValidationMaxValue') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.inviteeCountMaximum"
           validation-property="minValue"
         >
-          {{ $t('globalValidationMinValue') }}
+          {{ t('globalValidationMinValue') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -139,7 +139,7 @@
       v-if="v$.form.start && v$.form.end"
       id-label="input-start"
       is-required
-      :title="$t('start')"
+      :title="t('start')"
       type="datetime-local"
       :value="v$.form.start"
       :warning="isWarningStartPastShown"
@@ -157,14 +157,14 @@
       />
       <template slot="stateWarning">
         <FormInputStateWarning v-if="isWarningStartPastShown">
-          {{ $t('globalValidationNowOrFuture') }}
+          {{ t('globalValidationNowOrFuture') }}
         </FormInputStateWarning>
       </template>
     </FormInput>
     <FormInput
       v-if="v$.form.end && v$.form.start"
       id-label="input-end"
-      :title="$t('end')"
+      :title="t('end')"
       type="datetime-local"
       :value="v$.form.end"
       @input="form.end = $event"
@@ -189,7 +189,7 @@
     </FormInput>
     <FormInput
       id-label="input-attendance-type"
-      :title="$t('attendanceType')"
+      :title="t('attendanceType')"
       type="checkbox"
     >
       <FormCheckbox
@@ -198,7 +198,7 @@
         :value="v$.form.isInPerson.$model"
         @change="form.isInPerson = $event"
       >
-        {{ $t('isInPerson') }}
+        {{ t('isInPerson') }}
       </FormCheckbox>
       <FormCheckbox
         v-if="v$.form.isRemote"
@@ -206,14 +206,14 @@
         :value="v$.form.isRemote.$model"
         @change="form.isRemote = $event"
       >
-        {{ $t('isRemote') }}
+        {{ t('isRemote') }}
       </FormCheckbox>
     </FormInput>
     <FormInput
       v-if="form.isInPerson"
       id-label="input-location"
-      :placeholder="$t('globalPlaceholderAddress').replace('\n', ' ')"
-      :title="$t('location')"
+      :placeholder="t('globalPlaceholderAddress').replace('\n', ' ')"
+      :title="t('location')"
       type="text"
       :value="v$.form.location"
       @input="form.location = $event"
@@ -223,12 +223,12 @@
           :form-input="v$.form.location"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
       <template slot="stateInfo">
         <FormInputStateInfo>
-          {{ $t('stateInfoLocation') }}
+          {{ t('stateInfoLocation') }}
         </FormInputStateInfo>
       </template>
     </FormInput>
@@ -239,7 +239,7 @@
     />
     <FormInput
       id-label="input-description"
-      :title="$t('description')"
+      :title="t('description')"
       type="tiptap"
       :value="v$.form.description"
       @input="form.description = $event"
@@ -252,7 +252,7 @@
           :form-input="v$.form.description"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -498,6 +498,7 @@ export default defineComponent({
           )
         }
       },
+      t,
       updateSlug() {
         data.form.slug = slugify(data.form.name ?? '', {
           lower: true,

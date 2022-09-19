@@ -3,17 +3,17 @@
     <div v-if="event" class="flex flex-col gap-4">
       <Breadcrumbs
         :prefixes="[
-          { name: $t('events'), to: '../..', append: true },
+          { name: t('events'), to: '../..', append: true },
           { name: routeParamUsername, to: '..', append: true },
         ]"
       >
         {{ event.name }}
       </Breadcrumbs>
       <CardStateInfo v-if="routeQueryIc && contact" class="flex flex-col gap-2">
-        {{ $t('invitationViewFor', { name: contactName }) }}
+        {{ t('invitationViewFor', { name: contactName }) }}
         <ButtonColored
           append
-          :aria-label="$t('invitationSelectionClear')"
+          :aria-label="t('invitationSelectionClear')"
           @click="
             navigateTo({
               path: append($route.path, 'invitation'),
@@ -21,7 +21,7 @@
             })
           "
         >
-          {{ $t('invitationSelectionClear') }}
+          {{ t('invitationSelectionClear') }}
           <template slot="prefix">
             <IconArrowLeft />
           </template>
@@ -32,20 +32,20 @@
           <div>
             <p class="mb-2 text-2xl font-bold">
               {{
-                $t('greeting', {
+                t('greeting', {
                   usernameString: contactName ? ' ' + contactName : '',
                 })
               }}
             </p>
-            <p>{{ $t('greetingDescription') }}</p>
+            <p>{{ t('greetingDescription') }}</p>
           </div>
           <ButtonColored
             v-if="invitation?.feedback === 'ACCEPTED'"
-            :aria-label="$t('qrCodeShow')"
+            :aria-label="t('qrCodeShow')"
             class="text-text-bright"
             @click="qrCodeShow"
           >
-            {{ $t('qrCodeShow') }}
+            {{ t('qrCodeShow') }}
             <template slot="prefix">
               <IconQrCode />
             </template>
@@ -64,7 +64,7 @@
           >
             <div class="p-4 flex flex-col items-center gap-2">
               <span v-if="event.authorUsername !== signedInUsername">
-                {{ $t('feedbackRequest') }}
+                {{ t('feedbackRequest') }}
               </span>
               <div class="flex items-center justify-center gap-4">
                 <ButtonColored
@@ -74,8 +74,8 @@
                   "
                   :aria-label="
                     event.authorUsername !== signedInUsername
-                      ? $t('invitationAccept')
-                      : $t('invitationAcceptAdmin', {
+                      ? t('invitationAccept')
+                      : t('invitationAcceptAdmin', {
                           name: contactName,
                         })
                   "
@@ -83,8 +83,8 @@
                 >
                   {{
                     event.authorUsername !== signedInUsername
-                      ? $t('invitationAccept')
-                      : $t('invitationAcceptAdmin', {
+                      ? t('invitationAccept')
+                      : t('invitationAcceptAdmin', {
                           name: contactName,
                         })
                   }}
@@ -99,8 +99,8 @@
                   <IconCheckCircle class="mr-2" title="accepted" />
                   {{
                     event.authorUsername !== signedInUsername
-                      ? $t('invitationAccepted')
-                      : $t('invitationAcceptedAdmin', {
+                      ? t('invitationAccepted')
+                      : t('invitationAcceptedAdmin', {
                           name: contactName,
                         })
                   }}
@@ -112,8 +112,8 @@
                   "
                   :aria-label="
                     event.authorUsername !== signedInUsername
-                      ? $t('invitationCancel')
-                      : $t('invitationCancelAdmin', {
+                      ? t('invitationCancel')
+                      : t('invitationCancelAdmin', {
                           name: contactName,
                         })
                   "
@@ -121,8 +121,8 @@
                 >
                   {{
                     event.authorUsername !== signedInUsername
-                      ? $t('invitationCancel')
-                      : $t('invitationCancelAdmin', {
+                      ? t('invitationCancel')
+                      : t('invitationCancelAdmin', {
                           name: contactName,
                         })
                   }}
@@ -137,8 +137,8 @@
                   <IconXCircle class="mr-2" title="canceled" />
                   {{
                     event.authorUsername !== signedInUsername
-                      ? $t('invitationCanceled')
-                      : $t('invitationCanceledAdmin', {
+                      ? t('invitationCanceled')
+                      : t('invitationCanceledAdmin', {
                           name: contactName,
                         })
                   }}
@@ -150,7 +150,7 @@
               v-if="invitation.feedback === 'ACCEPTED'"
               class="col-span-1 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
             >
-              {{ $t('step1Of2') }}
+              {{ t('step1Of2') }}
             </div>
             <div
               v-if="
@@ -160,7 +160,7 @@
             >
               <FormInput
                 id-label="input-paper-invitation-feedback"
-                :title="$t('invitationCardKind')"
+                :title="t('invitationCardKind')"
                 type="select"
               >
                 <select
@@ -170,16 +170,16 @@
                   @change="paperInvitationFeedback"
                 >
                   <option disabled :value="null">
-                    {{ $t('requestSelection') }}
+                    {{ t('requestSelection') }}
                   </option>
                   <option value="NONE">
-                    {{ $t('invitationCardKindNone') }}
+                    {{ t('invitationCardKindNone') }}
                   </option>
                   <option value="PAPER">
-                    {{ $t('invitationCardKindPaper') }}
+                    {{ t('invitationCardKindPaper') }}
                   </option>
                   <option value="DIGITAL">
-                    {{ $t('invitationCardKindDigital') }}
+                    {{ t('invitationCardKindDigital') }}
                   </option>
                 </select>
               </FormInput>
@@ -190,7 +190,7 @@
               "
               class="col-span-1 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
             >
-              {{ $t('step2Of2') }}
+              {{ t('step2Of2') }}
             </div> -->
           </div>
         </div>
@@ -202,20 +202,20 @@
           event.authorUsername === jwtDecoded.username
         "
       >
-        <ButtonColored append :aria-label="$t('invitations')" to="invitation">
-          {{ $t('invitations') }}
+        <ButtonColored append :aria-label="t('invitations')" to="invitation">
+          {{ t('invitations') }}
           <template slot="prefix">
             <IconEnvelope />
           </template>
         </ButtonColored>
-        <ButtonColored append :aria-label="$t('attendances')" to="attendance">
-          {{ $t('attendances') }}
+        <ButtonColored append :aria-label="t('attendances')" to="attendance">
+          {{ t('attendances') }}
           <template slot="prefix">
             <IconUserCheck />
           </template>
         </ButtonColored>
-        <ButtonColored append :aria-label="$t('settings')" to="settings">
-          {{ $t('settings') }}
+        <ButtonColored append :aria-label="t('settings')" to="settings">
+          {{ t('settings') }}
           <template slot="prefix">
             <IconPencil />
           </template>
@@ -230,16 +230,16 @@
         </div>
         <div class="flex gap-2 items-center">
           <ButtonColored
-            :aria-label="$t('iCalDownload')"
+            :aria-label="t('iCalDownload')"
             :is-primary="false"
             @click="downloadIcal"
           >
-            {{ $t('iCalDownload') }}
+            {{ t('iCalDownload') }}
             <template slot="prefix">
               <IconDownload />
             </template>
           </ButtonColored>
-          <FormInputStateInfo :title="$t('iCalHint')" />
+          <FormInputStateInfo :title="t('iCalHint')" />
         </div>
       </div>
       <Card v-if="event" class="flex flex-col items-center gap-8">
@@ -267,25 +267,25 @@
             :size="200"
           />
           <FormInputStateInfo>
-            {{ $t('hintQrCode') }}
+            {{ t('hintQrCode') }}
           </FormInputStateInfo>
         </div>
         <template slot="footer">
           <ButtonColored
-            :aria-label="$t('print')"
+            :aria-label="t('print')"
             :is-primary="false"
             @click="print"
           >
-            {{ $t('print') }}
+            {{ t('print') }}
             <template slot="prefix">
               <IconPrinter />
             </template>
           </ButtonColored>
           <ButtonColored
-            :aria-label="$t('close')"
+            :aria-label="t('close')"
             @click="closeModalInvitationQrCode()"
           >
-            {{ $t('close') }}
+            {{ t('close') }}
             <template slot="prefix">
               <IconX />
             </template>
@@ -465,6 +465,7 @@ export default defineComponent({
       qrCodeShow() {
         store.modalAdd({ id: 'ModalInvitationQrCode' })
       },
+      t,
       async update(id: string, invitationPatch: Partial<Invitation>) {
         const result = await executeMutationUpdateInvitationById({
           id,

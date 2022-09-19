@@ -12,7 +12,7 @@
           >
             <tr>
               <th scope="col">
-                {{ $t('contact') }}
+                {{ t('contact') }}
               </th>
               <th />
             </tr>
@@ -40,8 +40,8 @@
                     :aria-label="
                       invitation.contactByContactId?.accountUsername ||
                       invitation.contactByContactId?.emailAddress
-                        ? $t('invitationSend')
-                        : $t('disabledReasonEmailAddressNone')
+                        ? t('invitationSend')
+                        : t('disabledReasonEmailAddressNone')
                     "
                     class="hidden md:block"
                     :disabled="
@@ -54,14 +54,14 @@
                     <IconPaperPlane />
                   </ButtonIcon>
                   <ButtonIcon
-                    :aria-label="$t('invitationLink')"
+                    :aria-label="t('invitationLink')"
                     class="hidden md:block"
                     @click="copyLink(invitation)"
                   >
                     <IconLink />
                   </ButtonIcon>
                   <DropDown>
-                    <ButtonIcon :aria-label="$t('globalShowMore')">
+                    <ButtonIcon :aria-label="t('globalShowMore')">
                       <IconDotsVertical />
                     </ButtonIcon>
                     <template slot="content">
@@ -69,8 +69,8 @@
                         :aria-label="
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
-                            ? $t('invitationSend')
-                            : $t('disabledReasonEmailAddressNone')
+                            ? t('invitationSend')
+                            : t('disabledReasonEmailAddressNone')
                         "
                         class="block md:hidden"
                         :disabled="
@@ -84,20 +84,20 @@
                         {{
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
-                            ? $t('invitationSend')
-                            : $t('disabledReasonEmailAddressNone')
+                            ? t('invitationSend')
+                            : t('disabledReasonEmailAddressNone')
                         }}
                       </ButtonIcon>
                       <ButtonIcon
-                        :aria-label="$t('invitationLink')"
+                        :aria-label="t('invitationLink')"
                         class="block md:hidden"
                         @click="copyLink(invitation)"
                       >
                         <IconLink />
-                        {{ $t('invitationLink') }}
+                        {{ t('invitationLink') }}
                       </ButtonIcon>
                       <ButtonIcon
-                        :aria-label="$t('invitationView')"
+                        :aria-label="t('invitationView')"
                         @click="
                           navigateTo({
                             path: localePath(
@@ -108,15 +108,15 @@
                         "
                       >
                         <IconEye />
-                        {{ $t('invitationView') }}
+                        {{ t('invitationView') }}
                       </ButtonIcon>
                       <ButtonIcon
-                        :aria-label="$t('invitationDelete')"
+                        :aria-label="t('invitationDelete')"
                         :disabled="pending.deletions.includes(invitation.uuid)"
                         @click="delete_(invitation.uuid)"
                       >
                         <IconTrash />
-                        {{ $t('invitationDelete') }}
+                        {{ t('invitationDelete') }}
                       </ButtonIcon>
                     </template>
                   </DropDown>
@@ -127,14 +127,14 @@
         </table>
       </ScrollContainer>
       <div v-else class="flex flex-col items-center gap-2">
-        {{ $t('invitationNone') }}
+        {{ t('invitationNone') }}
         <FormInputStateInfo>
-          {{ $t('hintInviteSelf') }}
+          {{ t('hintInviteSelf') }}
         </FormInputStateInfo>
       </div>
       <div class="flex flex-col items-center gap-1">
         <ButtonColored
-          :aria-label="$t('invitationAdd')"
+          :aria-label="t('invitationAdd')"
           :disabled="
             event.inviteeCountMaximum && api.data.allInvitations?.totalCount
               ? api.data.allInvitations.totalCount >= event.inviteeCountMaximum
@@ -142,14 +142,14 @@
           "
           @click="add()"
         >
-          {{ $t('invitationAdd') }}
+          {{ t('invitationAdd') }}
           <template slot="prefix">
             <IconPlus />
           </template>
         </ButtonColored>
         <p class="text-center text-gray-500 dark:text-gray-400">
           {{
-            $t('invitationsUsed', {
+            t('invitationsUsed', {
               amountCurrent: api.data.allInvitations?.totalCount,
               amountMaximum: event.inviteeCountMaximum || '∞',
             })
@@ -158,7 +158,7 @@
       </div>
       <div v-if="api.data.allInvitations?.totalCount">
         <h2>
-          {{ $t('feedback') }}
+          {{ t('feedback') }}
         </h2>
         <div class="m-auto w-3/4 sm:w-1/2 xl:w-1/3 2xl:w-1/4">
           <!-- https://github.com/reg-viz/storycap/issues/501 -->
@@ -173,7 +173,7 @@
       <Modal id="ModalInvitation">
         <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
         <template slot="header">
-          {{ $t('contactSelect') }}
+          {{ t('contactSelect') }}
         </template>
         <div slot="footer" />
       </Modal>
@@ -342,6 +342,10 @@ export default defineComponent({
       },
       localePath,
       loadMore() {},
+      onSubmitSuccess() {
+        store.modalRemove('ModalInvitation')
+        // TODO: cache update (allInvitations)
+      },
       async send(invitation: any) {
         data.pending.sends.push(invitation.uuid)
         apiData.api.value.errors = []
@@ -374,10 +378,7 @@ export default defineComponent({
         })
         // TODO: cache update (allInvitations)
       },
-      onSubmitSuccess() {
-        store.modalRemove('ModalInvitation')
-        // TODO: cache update (allInvitations)
-      },
+      t,
     }
     const computations = {
       dataComputed: computed(() => {

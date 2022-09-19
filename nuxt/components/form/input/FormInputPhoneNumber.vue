@@ -3,8 +3,8 @@
     v-if="formInput"
     :is-optional="isOptional"
     :id-label="`input-${id}`"
-    :placeholder="$t('globalPlaceholderPhoneNumber')"
-    :title="$t('phoneNumber')"
+    :placeholder="t('globalPlaceholderPhoneNumber')"
+    :title="t('phoneNumber')"
     type="tel"
     :value="formInput"
     @input="$emit('input', $event)"
@@ -14,7 +14,7 @@
         :form-input="formInput"
         validation-property="formatPhoneNumber"
       >
-        {{ $t('validationFormat') }}
+        {{ t('validationFormat') }}
       </FormInputStateInfo>
     </template>
     <template slot="stateError">
@@ -22,7 +22,7 @@
         :form-input="formInput"
         validation-property="formatPhoneNumber"
       >
-        {{ $t('globalValidationFormat') }}
+        {{ t('globalValidationFormat') }}
       </FormInputStateError>
     </template>
   </FormInput>
@@ -46,6 +46,17 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
+  },
+  setup() {
+    const { t } = useI18n()
+
+    const methods = {
+      t,
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

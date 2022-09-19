@@ -4,13 +4,13 @@
     :form="v$.form"
     :form-class="formClass"
     :is-form-sent="isFormSent"
-    :submit-name="$t('accountPasswordReset')"
+    :submit-name="t('accountPasswordReset')"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="password"
       :form-input="v$.form.password"
-      :title="$t('passwordNew')"
+      :title="t('passwordNew')"
       @input="form.password = $event"
     />
   </Form>
@@ -107,6 +107,7 @@ const FormAccountPasswordReset = defineComponent({
           query: { ...route.query, tab: 'signIn' },
         })
       },
+      t,
     }
 
     return {

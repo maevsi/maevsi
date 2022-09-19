@@ -1,7 +1,7 @@
 <template>
   <Loader :api="api" indicator="ping">
     <LoaderImage
-      :alt="$t('profilePictureAlt', { username })"
+      :alt="t('profilePictureAlt', { username })"
       :class="classComputed"
       :height="height"
       :src="imageSrc"
@@ -45,6 +45,7 @@ export default defineComponent({
   },
   setup(props) {
     const { $nuxt } = useNuxtApp()
+    const { t } = useI18n()
 
     const profilePictureQuery = useProfilePictureByUsernameQuery({
       variables: {
@@ -74,6 +75,7 @@ export default defineComponent({
       reloadProfilePicture() {
         // TODO: cache update (profilePictureByUsername, props.username)
       },
+      t,
     }
     const computations = {
       classComputed: computed(() => {
@@ -101,6 +103,7 @@ export default defineComponent({
     return {
       ...apiData,
       ...data,
+      ...methods,
       ...computations,
     }
   },

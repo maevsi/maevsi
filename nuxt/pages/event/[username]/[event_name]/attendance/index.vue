@@ -2,46 +2,46 @@
   <div class="flex flex-col gap-4">
     <Breadcrumbs
       :prefixes="[
-        { name: $t('events'), to: '../../..', append: true },
+        { name: t('events'), to: '../../..', append: true },
         { name: routeParamUsername, to: '../..', append: true },
         { name: routeParamEventName, to: '..', append: true },
       ]"
     >
-      {{ $t('checkIns') }}
+      {{ t('checkIns') }}
     </Breadcrumbs>
     <h1>
-      {{ $t('title') }}
+      {{ t('title') }}
     </h1>
     <Steps
-      :active="$t('qrCodeScan')"
-      :steps="[$t('qrCodeScan'), $t('nfcWrite')]"
+      :active="t('qrCodeScan')"
+      :steps="[t('qrCodeScan'), t('nfcWrite')]"
     />
     <Hr />
     <div class="flex flex-col items-center justify-center gap-4">
       <ButtonColored
-        :aria-label="$t('qrCodeScan')"
+        :aria-label="t('qrCodeScan')"
         class="text-text-bright"
         @click="qrCodeScan"
       >
-        {{ $t('qrCodeScan') }}
+        {{ t('qrCodeScan') }}
         <template slot="prefix">
           <IconQrCode />
         </template>
       </ButtonColored>
       <FormInputStateInfo v-if="!invitationCode">
-        {{ $t('qrHint') }}
+        {{ t('qrHint') }}
       </FormInputStateInfo>
       <CardStateInfo v-if="invitationCode">
-        {{ $t('scanned', { scanResult: invitationCode }) }}
+        {{ t('scanned', { scanResult: invitationCode }) }}
       </CardStateInfo>
       <div v-if="invitationCode" class="flex flex-col items-center gap-2">
         <ButtonColored
-          :aria-label="$t('nfcWrite')"
+          :aria-label="t('nfcWrite')"
           :disabled="isNfcError"
           class="text-text-bright"
           @click="onClick"
         >
-          {{ $t('nfcWrite') }}
+          {{ t('nfcWrite') }}
           <template slot="prefix">
             <IconUserTag />
           </template>
@@ -51,10 +51,10 @@
         </CardStateAlert>
       </div>
     </div>
-    <Modal id="ModalAttendanceScanQrCode" :submit-name="$t('close')">
+    <Modal id="ModalAttendanceScanQrCode" :submit-name="t('close')">
       <QrCodeStream @decode="onDecode" @init="onInit">
         <div v-if="loading" class="text-center">
-          {{ $t('globalLoading') }}
+          {{ t('globalLoading') }}
         </div>
       </QrCodeStream>
       <template slot="submit-icon">
@@ -217,6 +217,7 @@ export default defineComponent({
           timerProgressBar: true,
         }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
       },
+      t,
       async checkWriteTag(): Promise<void> {
         if (!('NDEFReader' in window)) {
           return Promise.reject(

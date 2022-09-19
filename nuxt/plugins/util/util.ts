@@ -85,7 +85,7 @@ export function getApiMeta(
 }
 
 export function getCombinedErrorMessages(
-  $t: any,
+  t: any,
   errors: (CombinedError | { errcode: string; message: string })[]
 ) {
   const errorMessages: string[] = []
@@ -93,7 +93,7 @@ export function getCombinedErrorMessages(
   for (const error of errors) {
     if ('errcode' in error) {
       const translationId = 'postgres' + error.errcode
-      const translation = $t(translationId)
+      const translation = t(translationId)
 
       if (translation === translationId) {
         errorMessages.push(error.message)

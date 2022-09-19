@@ -2,15 +2,15 @@
   <div class="flex flex-col gap-4">
     <Breadcrumbs
       :prefixes="[
-        { name: $t('accounts'), to: '../..', append: true },
+        { name: t('accounts'), to: '../..', append: true },
         { name: routeParamUsername, to: '..', append: true },
       ]"
     >
-      {{ $t('settings') }}
+      {{ t('settings') }}
     </Breadcrumbs>
     <div class="flex min-w-0 flex-col items-center justify-center sm:flex-row">
       <Button
-        :aria-label="$t('profilePictureChange')"
+        :aria-label="t('profilePictureChange')"
         class="sm:mr-4"
         @click="showModalImageSelection"
       >
@@ -29,15 +29,15 @@
       />
     </div>
     <section>
-      <h2>{{ $t('titlePasswordChange') }}</h2>
+      <h2>{{ t('titlePasswordChange') }}</h2>
       <FormAccountPasswordChange />
     </section>
     <section>
-      <h2>{{ $t('titleAccountDelete') }}</h2>
+      <h2>{{ t('titleAccountDelete') }}</h2>
       <FormDelete
         id="deleteAccount"
         :errors="api.errors"
-        :item-name="$t('account')"
+        :item-name="t('account')"
         :mutation="mutation"
         @error="onDeleteError"
         @success="signOut"
@@ -98,6 +98,7 @@ export default defineComponent({
     const router = useRouter()
     const store = useMaevsiStore()
     const { signOut } = useSignOut()
+    const { t } = useI18n()
     const route = useRoute()
     const { executeMutation: executeMutationAccoutDelete } =
       useAccountDeleteMutation()
@@ -125,6 +126,7 @@ export default defineComponent({
         store.modalAdd({ id: 'ModalImageSelection' })
       },
       signOut,
+      t,
     }
 
     useHead({

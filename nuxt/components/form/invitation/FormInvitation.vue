@@ -5,18 +5,18 @@
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
-    :submit-name="$t('select')"
+    :submit-name="t('select')"
     @submit.prevent="submit"
   >
     <div class="flex flex-col items-center gap-4">
       <span>
-        {{ $t('formHint') }}
+        {{ t('formHint') }}
       </span>
       <ButtonColored
-        :aria-label="$t('contactsAdd')"
+        :aria-label="t('contactsAdd')"
         :to="localePath('/contact')"
       >
-        {{ $t('contactsAdd') }}
+        {{ t('contactsAdd') }}
         <template slot="suffix">
           <IconArrowRight />
         </template>
@@ -25,8 +25,8 @@
     <FormInput
       id-label="input-contact-id"
       is-required
-      :placeholder="$t('placeholderContact')"
-      :title="$t('contact')"
+      :placeholder="t('placeholderContact')"
+      :title="t('contact')"
       type="text"
       :value="v$.form.searchString"
       @input="form.searchString = $event"
@@ -39,26 +39,26 @@
           :form-input="v$.form.contactId"
           validation-property="required"
         >
-          {{ $t('globalValidationRequired') }}
+          {{ t('globalValidationRequired') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.contactId"
           validation-property="minLength"
         >
-          {{ $t('globalValidationMinLength') }}
+          {{ t('globalValidationMinLength') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.contactId"
           validation-property="minValue"
         >
-          {{ $t('globalValidationMinValue') }}
+          {{ t('globalValidationMinValue') }}
         </FormInputStateError>
       </template>
     </FormInput>
     <div v-if="contacts" class="flex flex-col gap-2">
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button
-          :aria-label="$t('buttonContact')"
+          :aria-label="t('buttonContact')"
           class="w-full rounded border border-neutral-300 text-left dark:border-neutral-600"
           :class="{
             'border-2 border-blue-600 dark:border-blue-600':
@@ -115,6 +115,7 @@ export default defineComponent({
     const { executeMutation: executeMutationCreateInvitation } =
       useCreateInvitationMutation()
     const localePath = useLocalePath()
+    const { t } = useI18n()
 
     const refs = {
       after: ref<string>(),
@@ -202,6 +203,7 @@ export default defineComponent({
 
         emit('submitSuccess')
       },
+      t,
     }
     const computations = {
       contactsFiltered: computed((): Contact[] | undefined => {

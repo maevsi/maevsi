@@ -3,7 +3,7 @@
     v-if="formInput"
     :id-label="`input-${id}`"
     :placeholder="isVisible ? 'H<3j,G;%' : '**********'"
-    :title="title || $t('password')"
+    :title="title || t('password')"
     :type="isVisible ? 'text' : 'password'"
     :value="formInput"
     @input="$emit('input', $event)"
@@ -18,16 +18,16 @@
         :form-input="formInput"
         validation-property="minLength"
       >
-        {{ $t('globalValidationShortness') }}
+        {{ t('globalValidationShortness') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="required"
       >
-        {{ $t('globalValidationRequired') }}
+        {{ t('globalValidationRequired') }}
       </FormInputStateError>
       <FormInputStateError :form-input="formInput" validation-property="sameAs">
-        {{ $t('globalValidationSameAs') }}
+        {{ t('globalValidationSameAs') }}
       </FormInputStateError>
       <slot name="stateError" />
     </template>
@@ -36,9 +36,7 @@
         :form-input="formInput"
         validation-property="minLength"
       >
-        {{
-          $t('validationFormat', { length: validationPasswordLengthMaximum })
-        }}
+        {{ t('validationFormat', { length: validationPasswordLengthMaximum }) }}
       </FormInputStateInfo>
       <slot name="stateInfo" />
     </template>
@@ -67,12 +65,18 @@ export default defineComponent({
     },
   },
   setup() {
+    const { t } = useI18n()
+
     const data = reactive({
       isVisible: false,
     })
+    const methods = {
+      t,
+    }
 
     return {
       ...data,
+      ...methods,
       validationPasswordLengthMaximum: VALIDATION_PASSWORD_LENGTH_MINIMUM,
     }
   },

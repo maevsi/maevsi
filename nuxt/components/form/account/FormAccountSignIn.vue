@@ -2,10 +2,10 @@
   <div class="flex flex-col items-center gap-4">
     <ButtonColored
       :is-primary="false"
-      :aria-label="$t('register')"
+      :aria-label="t('register')"
       :to="localePath('/task/account/register')"
     >
-      {{ $t('register') }}
+      {{ t('register') }}
       <template slot="prefix">
         <IconArrowRight />
       </template>
@@ -15,7 +15,7 @@
       :form="v$.form"
       form-class="w-full"
       :is-form-sent="isFormSent"
-      :submit-name="$t('signIn')"
+      :submit-name="t('signIn')"
       @submit.prevent="submit"
     >
       <FormInputUsername
@@ -30,7 +30,7 @@
       />
       <div class="flex justify-center">
         <AppLink :to="localePath('/task/account/password/reset/request')">
-          {{ $t('passwordReset') }}
+          {{ t('passwordReset') }}
         </AppLink>
       </div>
       <template slot="assistance">
@@ -40,10 +40,10 @@
               'errcode' in e ? e.errcode === '55000' : false
             ).length
           "
-          :aria-label="$t('verificationMailResend')"
+          :aria-label="t('verificationMailResend')"
           @click="accountRegistrationRefresh"
         >
-          {{ $t('verificationMailResend') }}
+          {{ t('verificationMailResend') }}
         </ButtonColored>
       </template>
     </Form>
@@ -155,6 +155,7 @@ const FormAccountSignIn = defineComponent({
           }
         })
       },
+      t,
     }
 
     return {

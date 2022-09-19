@@ -3,34 +3,34 @@
     v-if="formInput"
     :is-optional="isOptional"
     :id-label="`input-${id}`"
-    :placeholder="$t('globalPlaceholderEmailAddress')"
-    :title="title || $t('emailAddress')"
+    :placeholder="t('globalPlaceholderEmailAddress')"
+    :title="title || t('emailAddress')"
     type="email"
     :value="formInput"
     @input="$emit('input', $event)"
   >
     <template slot="stateError">
       <FormInputStateError :form-input="formInput" validation-property="email">
-        {{ $t('globalValidationFormat') }}
+        {{ t('globalValidationFormat') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="formatUppercaseNone"
       >
-        {{ $t('globalValidationFormatUppercaseNone') }}
+        {{ t('globalValidationFormatUppercaseNone') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="maxLength"
       >
-        {{ $t('globalValidationLength') }}
+        {{ t('globalValidationLength') }}
       </FormInputStateError>
       <FormInputStateError
         v-if="isRequired"
         :form-input="formInput"
         validation-property="required"
       >
-        {{ $t('globalValidationRequired') }}
+        {{ t('globalValidationRequired') }}
       </FormInputStateError>
     </template>
   </FormInput>
@@ -62,6 +62,17 @@ export default defineComponent({
       default: undefined,
       type: String as PropType<string | undefined>,
     },
+  },
+  setup() {
+    const { t } = useI18n()
+
+    const methods = {
+      t,
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

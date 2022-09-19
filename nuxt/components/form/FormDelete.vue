@@ -3,13 +3,13 @@
     :errors="errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
-    :submit-name="$t('deletion', { item: itemName })"
+    :submit-name="t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="password"
       :form-input="v$.form.password"
-      :title="$t('passwordAccount')"
+      :title="t('passwordAccount')"
       @input="form.password = $event"
     />
     <template slot="submit-icon">
@@ -119,6 +119,7 @@ export default defineComponent({
             }
           })
       },
+      t,
     }
 
     return {

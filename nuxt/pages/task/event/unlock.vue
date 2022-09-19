@@ -5,7 +5,7 @@
       :errors="api.errors"
       :form="v$.form"
       :is-form-sent="isFormSent"
-      :submit-name="$t('submit')"
+      :submit-name="t('submit')"
       @submit.prevent="submit"
     >
       <!-- The id's suffix `-maevsi` makes browser suggest inputs just for this service. -->
@@ -15,7 +15,7 @@
         }`"
         :is-disabled="!!routeQueryIc"
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        :title="$t('invitationCode')"
+        :title="t('invitationCode')"
         type="text"
         :value="v$.form.invitationCode"
         @input="form.invitationCode = $event"
@@ -23,9 +23,9 @@
         <template slot="stateInfo">
           <FormInputStateInfo v-if="routeQueryIc">
             <div>
-              {{ $t('invitationCodeAutomatic') }}
+              {{ t('invitationCodeAutomatic') }}
               <AppLink :to="localePath('/task/event/unlock')">
-                {{ $t('invitationCodeManual') }}
+                {{ t('invitationCodeManual') }}
               </AppLink>
             </div>
           </FormInputStateInfo>
@@ -35,19 +35,19 @@
             :form-input="v$.form.invitationCode"
             validation-property="formatUuid"
           >
-            {{ $t('globalValidationFormat') }}
+            {{ t('globalValidationFormat') }}
           </FormInputStateError>
           <FormInputStateError
             :form-input="v$.form.invitationCode"
             validation-property="required"
           >
-            {{ $t('globalValidationRequired') }}
+            {{ t('globalValidationRequired') }}
           </FormInputStateError>
         </template>
       </FormInput>
     </Form>
     <p class="mt-2">
-      {{ $t('greetingExplanation') }}
+      {{ t('greetingExplanation') }}
     </p>
   </div>
 </template>
@@ -219,6 +219,7 @@ export default defineComponent({
           }
         )
       },
+      t,
     }
 
     useHead({

@@ -1,10 +1,10 @@
 <template>
   <ButtonColored
-    :aria-label="$t('signIn')"
+    :aria-label="t('signIn')"
     :to="localePath({ path: '/task/account/sign-in' })"
     @click="$emit('click')"
   >
-    {{ $t('signIn') }}
+    {{ t('signIn') }}
     <template slot="prefix">
       <IconUser />
     </template>
@@ -17,9 +17,11 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   setup() {
     const localePath = useLocalePath()
+    const { t } = useI18n()
 
     const methods = {
       localePath,
+      t,
     }
 
     return {

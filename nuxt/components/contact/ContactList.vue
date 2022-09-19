@@ -10,19 +10,19 @@
           <thead>
             <tr>
               <th scope="col">
-                {{ $t('contact') }}
+                {{ t('contact') }}
               </th>
               <th class="hidden xl:table-cell" scope="col">
-                {{ $t('emailAddress') }}
+                {{ t('emailAddress') }}
               </th>
               <th class="hidden xl:table-cell" scope="col">
-                {{ $t('address') }}
+                {{ t('address') }}
               </th>
               <th class="hidden xl:table-cell" scope="col">
-                {{ $t('phoneNumber') }}
+                {{ t('phoneNumber') }}
               </th>
               <th class="hidden xl:table-cell" scope="col">
-                {{ $t('url') }}
+                {{ t('url') }}
               </th>
               <th scope="col" />
             </tr>
@@ -42,8 +42,8 @@
         </table>
       </ScrollContainer>
       <div class="flex justify-center">
-        <ButtonColored :aria-label="$t('contactAdd')" @click="add()">
-          {{ $t('contactAdd') }}
+        <ButtonColored :aria-label="t('contactAdd')" @click="add()">
+          {{ t('contactAdd') }}
           <template slot="prefix">
             <IconPlus />
           </template>
@@ -169,6 +169,7 @@ export default defineComponent({
         store.modalRemove('ModalContact')
         // TODO: cache update (allContacts)
       },
+      t,
     }
 
     watch(contactsQuery.error, (currentValue, _oldValue) => {

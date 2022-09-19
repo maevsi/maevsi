@@ -1,17 +1,17 @@
 <template>
   <div class="flex flex-col gap-4">
-    <Breadcrumbs :prefixes="[{ name: $t('accounts'), to: '..', append: true }]">
+    <Breadcrumbs :prefixes="[{ name: t('accounts'), to: '..', append: true }]">
       {{ routeParamUsername }}
     </Breadcrumbs>
     <ButtonList v-if="signedInUsername === routeParamUsername">
-      <ButtonColored :aria-label="$t('settings')" to="settings" append>
-        {{ $t('settings') }}
+      <ButtonColored :aria-label="t('settings')" to="settings" append>
+        {{ t('settings') }}
         <template slot="prefix">
           <IconPencil />
         </template>
       </ButtonColored>
-      <ButtonColored :aria-label="$t('signOut')" @click.native="signOut">
-        {{ $t('signOut') }}
+      <ButtonColored :aria-label="t('signOut')" @click.native="signOut">
+        {{ t('signOut') }}
         <template slot="prefix">
           <IconSignOut />
         </template>
@@ -33,11 +33,11 @@
     </div>
     <ButtonList>
       <ButtonColored
-        :aria-label="$t('eventsTheir', { name: routeParamUsername })"
+        :aria-label="t('eventsTheir', { name: routeParamUsername })"
         :is-primary="false"
         :to="localePath(`/event/${routeParamUsername}`)"
       >
-        {{ $t('eventsTheir', { name: routeParamUsername }) }}
+        {{ t('eventsTheir', { name: routeParamUsername }) }}
         <template slot="prefix">
           <IconCalendar />
         </template>
@@ -81,6 +81,7 @@ export default defineComponent({
   name: 'IndexPage',
   setup() {
     const { signOut } = useSignOut()
+    const { t } = useI18n()
     const router = useRouter()
     const store = useMaevsiStore()
     const route = useRoute()
@@ -94,6 +95,7 @@ export default defineComponent({
     const methods = {
       localePath,
       signOut,
+      t,
     }
 
     useHead({

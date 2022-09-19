@@ -15,14 +15,14 @@
           class="flex justify-center"
         >
           <ButtonColored
-            :aria-label="$t('globalShowMore')"
+            :aria-label="t('globalShowMore')"
             @click="after = api.data.allEvents?.pageInfo.endCursor"
           >
-            {{ $t('globalShowMore') }}
+            {{ t('globalShowMore') }}
           </ButtonColored>
         </div>
       </ul>
-      <p v-else class="text-center">{{ $t('noEvents') }}</p>
+      <p v-else class="text-center">{{ t('noEvents') }}</p>
     </div>
   </Loader>
 </template>
@@ -46,6 +46,7 @@ export default defineComponent({
   },
   setup(props) {
     const route = useRoute()
+    const { t } = useI18n()
 
     const refs = {
       after: ref<string>(),
@@ -73,6 +74,9 @@ export default defineComponent({
         typeof route.name === 'string' &&
         route.name?.replace(/___.+$/, '') !== 'event',
     })
+    const methods = {
+      t,
+    }
 
     watch(eventsQuery.error, (currentValue, _oldValue) => {
       if (currentValue) consola.error(currentValue)
@@ -82,6 +86,7 @@ export default defineComponent({
       ...refs,
       ...apiData,
       ...data,
+      ...methods,
     }
   },
 })

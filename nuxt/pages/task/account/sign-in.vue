@@ -3,7 +3,7 @@
     <CardStateInfo
       v-if="routeQueryReferrer && !routeQueryIsRedirectNoticeHidden"
     >
-      {{ $t('accountRequired') }}
+      {{ t('accountRequired') }}
     </CardStateInfo>
     <h1>{{ title }}</h1>
     <div class="flex justify-center">
@@ -50,6 +50,9 @@ export default defineComponent({
       routeQueryIsRedirectNoticeHidden: route.query.isRedirectNoticeHidden,
       title: t('title'),
     })
+    const methods = {
+      t,
+    }
 
     useHead({
       meta: [
@@ -77,6 +80,7 @@ export default defineComponent({
 
     return {
       ...data,
+      ...methods,
     }
   },
 })

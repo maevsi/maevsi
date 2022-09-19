@@ -1,8 +1,8 @@
 <template>
-  <IconArchive v-if="isArchived" :title="$t('archived')" />
-  <IconGlobe v-else-if="visibility === 'PUBLIC'" :title="$t('public')" />
-  <IconEyeOff v-else-if="visibility === 'PRIVATE'" :title="$t('private')" />
-  <IconBug v-else :title="$t('bug')" />
+  <IconArchive v-if="isArchived" :title="t('archived')" />
+  <IconGlobe v-else-if="visibility === 'PUBLIC'" :title="t('public')" />
+  <IconEyeOff v-else-if="visibility === 'PRIVATE'" :title="t('private')" />
+  <IconBug v-else :title="t('bug')" />
 </template>
 
 <script lang="ts">
@@ -18,6 +18,17 @@ export default defineComponent({
       required: true,
       type: String,
     },
+  },
+  setup() {
+    const { t } = useI18n()
+
+    const methods = {
+      t,
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

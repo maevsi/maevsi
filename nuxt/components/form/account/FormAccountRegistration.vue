@@ -2,10 +2,10 @@
   <div class="flex flex-col items-center gap-4">
     <ButtonColored
       :is-primary="false"
-      :aria-label="$t('register')"
+      :aria-label="t('register')"
       :to="localePath('/task/account/sign-in')"
     >
-      {{ $t('signIn') }}
+      {{ t('signIn') }}
       <template slot="prefix">
         <IconArrowLeft />
       </template>
@@ -15,7 +15,7 @@
       :form="v$.form"
       form-class="w-full"
       :is-form-sent="isFormSent"
-      :submit-name="$t('register')"
+      :submit-name="t('register')"
       @submit.prevent="submit"
     >
       <FormInputUsername
@@ -38,7 +38,7 @@
       />
       <template slot="assistance">
         <FormInputStateInfo>
-          {{ $t('accountDeletionNotice') }}
+          {{ t('accountDeletionNotice') }}
         </FormInputStateInfo>
       </template>
     </Form>
@@ -148,6 +148,7 @@ const FormAccountRegistration = defineComponent({
           title: t('registrationSuccessTitle'),
         })
       },
+      t,
     }
 
     return {

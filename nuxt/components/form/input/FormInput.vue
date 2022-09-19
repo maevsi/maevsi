@@ -23,10 +23,10 @@
             class="text-xs font-medium text-gray-500 dark:text-gray-400 md:text-right"
           >
             <span v-if="isRequired">
-              {{ $t('required') }}
+              {{ t('required') }}
             </span>
             <span v-if="isOptional">
-              {{ $t('optional') }}
+              {{ t('optional') }}
             </span>
           </span>
         </label>
@@ -51,7 +51,7 @@
             <FormInputIconWrapper v-if="validationProperty.$pending">
               <IconHourglass
                 class="text-blue-600"
-                :title="$t('globalLoading')"
+                :title="t('globalLoading')"
               />
             </FormInputIconWrapper>
             <FormInputIconWrapper
@@ -59,7 +59,7 @@
                 validationProperty.$model && !validationProperty.$invalid
               "
             >
-              <IconCheckCircle class="text-green-600" :title="$t('valid')" />
+              <IconCheckCircle class="text-green-600" :title="t('valid')" />
             </FormInputIconWrapper>
             <FormInputIconWrapper
               v-else-if="
@@ -68,7 +68,7 @@
             >
               <IconExclamationCircle
                 class="text-red-600"
-                :title="$t('validNot')"
+                :title="t('validNot')"
               />
             </FormInputIconWrapper>
           </div>
@@ -89,7 +89,7 @@
       <div class="md:w-2/3">
         <slot name="stateInfo" />
         <FormInputStateInfo v-if="value?.$pending">
-          {{ $t('globalLoading') }}
+          {{ t('globalLoading') }}
         </FormInputStateInfo>
       </div>
       <div class="md:w-1/3" />
@@ -162,10 +162,13 @@ const FormInput = defineComponent({
     },
   },
   setup(props, { emit }) {
+    const { t } = useI18n()
+
     const methods = {
       onInput(payload: Event) {
         emit('input', (payload.target as HTMLInputElement)?.value)
       },
+      t,
     }
 
     if (

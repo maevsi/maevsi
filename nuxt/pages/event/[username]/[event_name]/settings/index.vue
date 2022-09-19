@@ -3,23 +3,23 @@
     <div v-if="event" class="flex flex-col gap-4">
       <Breadcrumbs
         :prefixes="[
-          { name: $t('events'), to: '../../..', append: true },
+          { name: t('events'), to: '../../..', append: true },
           { name: routeParamUsername, to: '../..', append: true },
           { name: routeParamEventName, to: '..', append: true },
         ]"
       >
-        {{ $t('settings') }}
+        {{ t('settings') }}
       </Breadcrumbs>
       <section>
-        <h1>{{ $t('title') }}</h1>
+        <h1>{{ t('title') }}</h1>
         <FormEvent :event="event" />
       </section>
       <section>
-        <h2>{{ $t('titleDelete') }}</h2>
+        <h2>{{ t('titleDelete') }}</h2>
         <FormDelete
           id="deleteEvent"
           :errors="api.errors"
-          :item-name="$t('event')"
+          :item-name="t('event')"
           :mutation="mutation"
           :variables="{
             authorUsername: routeParamUsername,
@@ -122,6 +122,7 @@ export default defineComponent({
         navigateTo(localePath(`/dashboard`))
         // TODO: cache update (allEvents)
       },
+      t,
     }
     const computations = {
       title: computed((): string | undefined => {

@@ -4,7 +4,7 @@
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
-    :submit-name="$t('save')"
+    :submit-name="t('save')"
     @submit.prevent="submit"
   >
     <FormInput
@@ -28,13 +28,13 @@
       </template>
     </FormInputUsername>
     <FormInputStateInfo>
-      {{ $t('accountOverride') }}
+      {{ t('accountOverride') }}
     </FormInputStateInfo>
     <FormInput
       id-label="input-first-name"
       is-optional
-      :placeholder="$t('globalPlaceholderFirstName')"
-      :title="$t('firstName')"
+      :placeholder="t('globalPlaceholderFirstName')"
+      :title="t('firstName')"
       type="text"
       :value="v$.form.firstName"
       @input="form.firstName = $event"
@@ -44,15 +44,15 @@
           :form-input="v$.form.firstName"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
     </FormInput>
     <FormInput
       id-label="input-last-name"
       is-optional
-      :placeholder="$t('globalPlaceholderLastName')"
-      :title="$t('lastName')"
+      :placeholder="t('globalPlaceholderLastName')"
+      :title="t('lastName')"
       type="text"
       :value="v$.form.lastName"
       @input="form.lastName = $event"
@@ -62,7 +62,7 @@
           :form-input="v$.form.lastName"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -75,7 +75,7 @@
     <FormInput
       id-label="input-address"
       is-optional
-      :title="$t('address')"
+      :title="t('address')"
       type="textarea"
       :value="v$.form.address"
       @input="form.address = $event"
@@ -85,7 +85,7 @@
         id="input-address"
         v-model.trim="v$.form.address.$model"
         class="form-input"
-        :placeholder="$t('globalPlaceholderAddress')"
+        :placeholder="t('globalPlaceholderAddress')"
         rows="2"
       />
       <template slot="stateError">
@@ -93,7 +93,7 @@
           :form-input="v$.form.address"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -149,6 +149,7 @@ export default defineComponent({
     const store = useMaevsiStore()
     const updateContactByIdMutation = useUpdateContactByIdMutation()
     const createContactMutation = useCreateContactMutation()
+    const { t } = useI18n()
 
     const apiData = {
       api: computed(() => {
@@ -283,6 +284,7 @@ export default defineComponent({
           emit('submitSuccess')
         }
       },
+      t,
     }
 
     if (props.contact) {

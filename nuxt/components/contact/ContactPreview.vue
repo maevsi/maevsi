@@ -27,12 +27,12 @@
     </div>
     <div class="flex flex-col justify-center overflow-hidden">
       <div class="truncate font-medium">
-        {{ contact.firstName || $t('placeholder') }}
-        {{ contact.lastName || $t('placeholder') }}
+        {{ contact.firstName || t('placeholder') }}
+        {{ contact.lastName || t('placeholder') }}
       </div>
       <div class="truncate text-gray-500 dark:text-gray-400">
         <div v-if="!contact.accountUsername">
-          {{ $t('placeholder') }}
+          {{ t('placeholder') }}
         </div>
         <AppLink
           v-else-if="isUsernameLinked"
@@ -69,9 +69,11 @@ export default defineComponent({
   },
   setup() {
     const localePath = useLocalePath()
+    const { t } = useI18n()
 
     const methods = {
       localePath,
+      t,
     }
 
     return {

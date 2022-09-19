@@ -4,7 +4,7 @@
       <div class="flex items-center">
         <Hr />
         <LoaderImage
-          :alt="$t('maevsiLogo')"
+          :alt="t('maevsiLogo')"
           class="mx-12 h-12 w-12 opacity-50 brightness-0 dark:opacity-60 dark:invert"
           height="48"
           src="/assets/static/logos/maevsi.svg"
@@ -14,63 +14,63 @@
       </div>
       <!-- Justifying evenly, instead of "between", centers a single element. -->
       <div class="flex flex-wrap justify-between">
-        <FooterCategory :heading="$t('product')">
+        <FooterCategory :heading="t('product')">
           <AppLink :to="localePath('/#overview')">
-            {{ $t('overview') }}
+            {{ t('overview') }}
           </AppLink>
           <AppLink :to="localePath('/#features')">
-            {{ $t('features') }}
+            {{ t('features') }}
           </AppLink>
           <!--<AppLink :to="localePath('/#pricing')">
-            {{ $t('pricing') }}
+            {{ t('pricing') }}
           </AppLink>-->
           <!-- <AppLink :to="localePath('/about/team')">
-            {{ $t('team') }}
+            {{ t('team') }}
           </AppLink> -->
           <!-- <AppLink :to="localePath('/about/awards')">
-            {{ $t('awards') }}
+            {{ t('awards') }}
           </AppLink> -->
         </FooterCategory>
-        <FooterCategory :heading="$t('legal')">
+        <FooterCategory :heading="t('legal')">
           <AppLink :to="localePath('/legal-notice')">
-            {{ $t('legalNotice') }}
+            {{ t('legalNotice') }}
           </AppLink>
           <AppLink :to="localePath('/privacy-policy')">
-            {{ $t('privacyPolicy') }}
+            {{ t('privacyPolicy') }}
           </AppLink>
           <!-- <AppLink :to="localePath('/code-of-conduct')">
-            {{ $t('codeOfConduct') }}
+            {{ t('codeOfConduct') }}
           </AppLink> -->
         </FooterCategory>
-        <!-- <FooterCategory :heading="$t('support')">
+        <!-- <FooterCategory :heading="t('support')">
           <AppLink :to="localePath('/support/tutorials')">
-            {{ $t('tutorials') }}
+            {{ t('tutorials') }}
           </AppLink>
           <AppLink :to="localePath('/support/contact')">
-            {{ $t('contact') }}
+            {{ t('contact') }}
           </AppLink>
           <AppLink :to="localePath('/support/docs')">
-            {{ $t('documentation') }}
+            {{ t('documentation') }}
           </AppLink>
         </FooterCategory> -->
-        <FooterCategory :heading="$t('quickLinks')">
+        <FooterCategory :heading="t('quickLinks')">
           <AppLink
-            :title="$t('releases')"
+            :title="t('releases')"
             to="https://github.com/maevsi/maevsi/releases"
           >
-            {{ $t('releases') }}
+            {{ t('releases') }}
           </AppLink>
           <AppLink
-            :title="$t('githubLinkTitle')"
+            :title="t('githubLinkTitle')"
             to="https://github.com/maevsi/"
           >
-            {{ $t('sourceCode') }}
+            {{ t('sourceCode') }}
           </AppLink>
           <AppLink to="mailto:mail+support@maev.si">
-            {{ $t('contact') }}
+            {{ t('contact') }}
           </AppLink>
         </FooterCategory>
-        <FooterCategory :heading="$t('languages')">
+        <FooterCategory :heading="t('languages')">
           <AppLink
             v-for="locale in locales"
             :key="getLocaleCode(locale)"
@@ -81,7 +81,7 @@
             </span>
           </AppLink>
         </FooterCategory>
-        <FooterCategory :heading="$t('colorScheme')">
+        <FooterCategory :heading="t('colorScheme')">
           <AppLink
             v-for="colorScheme in ['System', 'Light', 'Dark']"
             :key="colorScheme"
@@ -91,12 +91,12 @@
             to=""
             @click="colorModePreference = colorScheme.toLowerCase()"
           >
-            {{ $t(`colorScheme${colorScheme}`) }}
+            {{ t(`colorScheme${colorScheme}`) }}
           </AppLink>
         </FooterCategory>
       </div>
       <p class="text-center text-gray-500 dark:text-gray-400">
-        {{ $t('copyright', { year: new Date().getFullYear() }) }}
+        {{ t('copyright', { year: new Date().getFullYear() }) }}
       </p>
     </div>
   </footer>
@@ -113,7 +113,7 @@ export default defineComponent({
     const colorMode = useColorMode()
     const localePath = useLocalePath()
     const switchLocalePath = useSwitchLocalePath()
-    const { locale, locales } = useI18n()
+    const { locale, locales, t } = useI18n()
 
     const data = {
       colorModePreference: colorMode.preference,
@@ -141,6 +141,7 @@ export default defineComponent({
       },
       localePath,
       switchLocalePath,
+      t,
     }
 
     return {

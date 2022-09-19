@@ -26,10 +26,10 @@
         <ButtonIcon
           :aria-label="
             contact.authorAccountUsername !== signedInUsername
-              ? $t('disabledReasonCreatorNot', {
+              ? t('disabledReasonCreatorNot', {
                   authorAccountUsername: contact.authorAccountUsername,
                 })
-              : $t('contactEdit')
+              : t('contactEdit')
           "
           :disabled="
             contact.authorAccountUsername !== signedInUsername || isEditing
@@ -39,7 +39,7 @@
           <IconPencil />
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('contactDelete')"
+          :aria-label="t('contactDelete')"
           :disabled="isDeleting || contact.accountUsername === signedInUsername"
           @click="$emit('delete')"
         >
@@ -73,13 +73,18 @@ export default defineComponent({
   },
   setup() {
     const store = useMaevsiStore()
+    const { t } = useI18n()
 
     const data = reactive({
       signedInUsername: store.signedInUsername,
     })
+    const methods = {
+      t,
+    }
 
     return {
       ...data,
+      ...methods,
     }
   },
 })

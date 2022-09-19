@@ -1,7 +1,7 @@
 <template>
   <EventDashlet v-if="event.isInPerson && event.location">
     <span>
-      <IconMapMarker :title="$t('location')" />
+      <IconMapMarker :title="t('location')" />
     </span>
     <AppLink
       class="w-full overflow-hidden text-ellipsis break-words line-clamp-2"
@@ -23,6 +23,17 @@ export default defineComponent({
       required: true,
       type: Object as PropType<Event>,
     },
+  },
+  setup() {
+    const { t } = useI18n()
+
+    const methods = {
+      t,
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

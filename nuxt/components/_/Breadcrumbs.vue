@@ -9,13 +9,13 @@
         :key="prefix.name"
         class="flex items-center gap-2"
       >
-        <span>{{ $t('separator') }}</span>
+        <span>{{ t('separator') }}</span>
         <AppLink :append="prefix.append" :is-colored="false" :to="prefix.to">
           <span class="whitespace-nowrap text-2xl">{{ prefix.name }}</span>
         </AppLink>
       </li>
     </ul>
-    <span>{{ $t('separator') }}</span>
+    <span>{{ t('separator') }}</span>
     <AppLink :is-colored="false" :to="queryString">
       <h1 class="m-0 whitespace-nowrap text-2xl"><slot /></h1>
     </AppLink>
@@ -25,7 +25,7 @@
         :key="suffix.name"
         class="flex items-center gap-2"
       >
-        <span>{{ $t('separator') }}</span>
+        <span>{{ t('separator') }}</span>
         <AppLink :append="suffix.append" :is-colored="false" :to="suffix.to">
           <span class="whitespace-nowrap text-2xl">{{ suffix.name }}</span>
         </AppLink>
@@ -62,12 +62,14 @@ export default defineComponent({
   setup() {
     const route = useRoute()
     const localePath = useLocalePath()
+    const { t } = useI18n()
 
     const computations = {
       queryString: computed(() => getQueryString(route.query)),
     }
     const methods = {
       localePath,
+      t,
     }
 
     return {

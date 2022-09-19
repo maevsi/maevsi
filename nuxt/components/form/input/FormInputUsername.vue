@@ -4,9 +4,9 @@
     :is-optional="isOptional"
     :is-validatable="isValidatable"
     :id-label="`input-${id}`"
-    :placeholder="$t('globalPlaceholderUsername')"
+    :placeholder="t('globalPlaceholderUsername')"
     :success="isValidatable && !formInput.$invalid"
-    :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
+    :title="t(id.replace(/(-registration|-sign-in)$/, ''))"
     type="text"
     :validation-property="formInput"
     :value="formInput"
@@ -21,26 +21,26 @@
         :is-validation-live="!isValidationInverted"
         validation-property="existence"
       >
-        {{ $t('globalValidationExistence') }}
+        {{ t('globalValidationExistence') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         :is-validation-live="isValidationInverted"
         validation-property="existenceNone"
       >
-        {{ $t('globalValidationExistenceNone') }}
+        {{ t('globalValidationExistenceNone') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="formatSlug"
       >
-        {{ $t('validationFormat') }}
+        {{ t('validationFormat') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="required"
       >
-        {{ $t('globalValidationRequired') }}
+        {{ t('globalValidationRequired') }}
       </FormInputStateError>
     </template>
     <template slot="stateInfo">
@@ -49,7 +49,7 @@
         :is-validation-live="!isValidationInverted"
         validation-property="existence"
       >
-        {{ $t('validationExistenceHint') }}
+        {{ t('validationExistenceHint') }}
       </FormInputStateInfo>
     </template>
     <template v-if="isValidatable" slot="stateSuccess">
@@ -59,8 +59,8 @@
       >
         {{
           isValidationInverted
-            ? $t('globalVerificationExistenceNone')
-            : $t('globalVerificationExistence')
+            ? t('globalVerificationExistenceNone')
+            : t('globalVerificationExistence')
         }}
       </FormInputStateSuccess>
     </template>
@@ -94,6 +94,17 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
+  },
+  setup() {
+    const { t } = useI18n()
+
+    const methods = {
+      t,
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

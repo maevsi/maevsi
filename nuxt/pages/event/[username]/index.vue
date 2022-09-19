@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Breadcrumbs :prefixes="[{ name: $t('events'), to: '..', append: true }]">
+    <Breadcrumbs :prefixes="[{ name: t('events'), to: '..', append: true }]">
       {{ routeParamUsername }}
     </Breadcrumbs>
     <i18n-t keypath="title" tag="h1">
@@ -49,6 +49,7 @@ export default defineComponent({
     })
     const methods = {
       localePath,
+      t,
     }
 
     useHead({

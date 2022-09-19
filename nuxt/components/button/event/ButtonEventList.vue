@@ -1,11 +1,11 @@
 <template>
   <ButtonColored
-    :aria-label="$t('eventAll')"
+    :aria-label="t('eventAll')"
     :is-primary="false"
     :to="localePath('/event')"
     @click="$emit('click')"
   >
-    {{ $t('eventAll') }}
+    {{ t('eventAll') }}
     <template slot="prefix">
       <IconListUl />
     </template>
@@ -18,9 +18,11 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   setup() {
     const localePath = useLocalePath()
+    const { t } = useI18n()
 
     const methods = {
       localePath,
+      t,
     }
 
     return {

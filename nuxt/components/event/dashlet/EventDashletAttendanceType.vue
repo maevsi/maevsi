@@ -1,13 +1,13 @@
 <template>
   <EventDashlet v-if="event.isInPerson || event.isRemote">
     <span class="flex gap-2">
-      <IconHandshake v-if="event.isInPerson" :title="$t('inPerson')" />
-      <IconWifi v-if="event.isRemote" :title="$t('remote')" />
+      <IconHandshake v-if="event.isInPerson" :title="t('inPerson')" />
+      <IconWifi v-if="event.isRemote" :title="t('remote')" />
     </span>
     {{
       [
-        ...(event.isInPerson ? [$t('inPerson')] : []),
-        ...(event.isRemote ? [$t('remote')] : []),
+        ...(event.isInPerson ? [t('inPerson')] : []),
+        ...(event.isRemote ? [t('remote')] : []),
       ].join(', ')
     }}
   </EventDashlet>
@@ -23,6 +23,17 @@ export default defineComponent({
       required: true,
       type: Object as PropType<Event>,
     },
+  },
+  setup() {
+    const { t } = useI18n()
+
+    const methods = {
+      t,
+    }
+
+    return {
+      ...methods,
+    }
   },
 })
 </script>

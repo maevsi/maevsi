@@ -29,8 +29,8 @@
             class="self-start font-medium text-sm"
           >
             <div class="flex items-center gap-1">
-              <IconEyeOff classes="h-5 w-5" :title="$t('private')" />
-              {{ $t('private') }}
+              <IconEyeOff classes="h-5 w-5" :title="t('private')" />
+              {{ t('private') }}
             </div>
           </Tag>
         </div>
@@ -65,9 +65,11 @@ export default defineComponent({
   },
   setup(props) {
     const localePath = useLocalePath()
+    const { t } = useI18n()
 
     const methods = {
       localePath,
+      t,
     }
     const computations = {
       eventDescriptionTemplate: computed(() => {

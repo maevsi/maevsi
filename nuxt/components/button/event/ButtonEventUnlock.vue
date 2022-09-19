@@ -1,10 +1,10 @@
 <template>
   <ButtonColored
-    :aria-label="$t('eventUnlock')"
+    :aria-label="t('eventUnlock')"
     :to="localePath('/task/event/unlock')"
     @click="$emit('click')"
   >
-    {{ $t('eventUnlock') }}
+    {{ t('eventUnlock') }}
     <template slot="prefix">
       <IconKey />
     </template>
@@ -17,9 +17,11 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   setup() {
     const localePath = useLocalePath()
+    const { t } = useI18n()
 
     const methods = {
       localePath,
+      t,
     }
 
     return {

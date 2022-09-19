@@ -12,9 +12,9 @@
     <!--eslint-enable-->
     <h1>{{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}</h1>
     <p v-if="statusCode === 403" class="text-center">
-      {{ $t('403description') }}
+      {{ t('403description') }}
       <br />
-      {{ $t('403hint') }}
+      {{ t('403hint') }}
     </p>
     <ButtonList>
       <ButtonSignIn v-if="statusCode === 403" />
@@ -44,9 +44,13 @@ export default defineComponent({
         return status(props.statusCode, locale.value) || (t('error') as string)
       }),
     }
+    const methods = {
+      t,
+    }
 
     return {
       ...computations,
+      ...methods,
     }
   },
 })

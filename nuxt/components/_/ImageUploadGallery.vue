@@ -17,14 +17,12 @@
           >
             <div v-if="upload.storageKey">
               <LoaderImage
-                :alt="
-                  upload.storageKey ? $t('uploadAlt') : $t('uploadAltFailed')
-                "
+                :alt="upload.storageKey ? t('uploadAlt') : t('uploadAltFailed')"
                 class="h-32 w-32"
                 height="128"
                 :src="getUploadImageSrc(upload.storageKey)"
                 :title="
-                  $t('uploadSize', { size: bytesToString(upload.sizeByte) })
+                  t('uploadSize', { size: bytesToString(upload.sizeByte) })
                 "
                 width="128"
               />
@@ -33,7 +31,7 @@
                   class="absolute right-0 top-0 rounded-bl-lg bg-red-600 opacity-75"
                 >
                   <div class="flex h-full items-center justify-center">
-                    <IconTrash class="m-2" :title="$t('iconTrash')" />
+                    <IconTrash class="m-2" :title="t('iconTrash')" />
                   </div>
                 </div>
                 <div
@@ -41,12 +39,12 @@
                   @click="deleteImageUpload(upload.id)"
                 >
                   <Button
-                    :aria-label="$t('iconTrashLabel')"
+                    :aria-label="t('iconTrashLabel')"
                     class="flex h-full items-center justify-center"
                   >
                     <IconTrash
                       class="m-2 text-text-bright"
-                      :title="$t('iconTrash')"
+                      :title="t('iconTrash')"
                     />
                   </Button>
                 </div>
@@ -57,14 +55,14 @@
         <li class="relative box-border border-4 border-transparent">
           <Button
             :aria-label="
-              $t('iconAdd', {
+              t('iconAdd', {
                 sizeUsed: bytesToString(sizeByteTotal),
                 sizeTotal: bytesToString(accountUploadQuotaBytes),
               })
             "
             class="flex h-32 w-32 items-center justify-center bg-gray-200"
             :title="
-              $t('iconAdd', {
+              t('iconAdd', {
                 sizeUsed: bytesToString(sizeByteTotal),
                 sizeTotal: bytesToString(accountUploadQuotaBytes),
               })
@@ -88,29 +86,29 @@
         class="flex justify-center"
       >
         <ButtonColored
-          :aria-label="$t('globalShowMore')"
+          :aria-label="t('globalShowMore')"
           @click="apiUploadsAfter = api.data.allUploads?.pageInfo.endCursor"
         >
-          {{ $t('globalShowMore') }}
+          {{ t('globalShowMore') }}
         </ButtonColored>
       </div>
     </Card>
     <Modal
       id="ModalImageUploadGallery"
-      :submit-name="$t('upload')"
+      :submit-name="t('upload')"
       :submit-task-provider="() => getUploadBlobPromise()"
     >
       <div class="text-center">
         <croppa
           ref="croppy"
           :initial-image="fileSelectedUrl"
-          :placeholder="$t('croppaPlaceholder')"
+          :placeholder="t('croppaPlaceholder')"
           :placeholder-font-size="17.5"
           prevent-white-space
           :show-remove-button="false"
         />
       </div>
-      <template slot="header">{{ $t('uploadNew') }}</template>
+      <template slot="header">{{ t('uploadNew') }}</template>
       <template slot="submit-icon"><IconUpload /></template>
     </Modal>
   </Loader>
@@ -299,6 +297,7 @@ export default defineComponent({
           }
         }
       },
+      t,
       toggleSelect(upload: any) {
         if (data.selectedItem === upload) {
           data.selectedItem = undefined
