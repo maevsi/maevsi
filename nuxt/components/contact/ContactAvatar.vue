@@ -11,7 +11,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
 
-import blankProfilePicture from '~/public/assets/static/images/blank-profile-picture.svg'
+import blankProfilePicture from '~/src/assets/static/images/blank-profile-picture.svg'
 
 export default defineComponent({
   props: {
