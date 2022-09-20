@@ -12,6 +12,14 @@ module.exports = {
     'plugin:yml/standard',
     'plugin:storybook/recommended',
   ],
+  overrides: [
+    {
+      files: ['*.stories.ts'],
+      rules: {
+        '@intlify/vue-i18n/no-raw-text': 'off',
+      },
+    },
+  ],
   root: true,
   rules: {
     '@intlify/vue-i18n/no-missing-keys': 'error',

@@ -15,7 +15,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
     components: { IconEnvelope },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<IconEnvelope v-bind="$props" @click="click">IconEnvelope</IconEnvelope>',
   })
 

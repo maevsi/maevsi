@@ -16,7 +16,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
     components: { MaevsiButton, ButtonList },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<ButtonList v-bind="$props" @click="click"><ButtonColored aria-label="ButtonColored">ButtonList</ButtonColored><ButtonColored aria-label="ButtonColored">ButtonList</ButtonColored><ButtonColored aria-label="ButtonColored">ButtonList</ButtonColored><ButtonColored aria-label="ButtonColored">ButtonList</ButtonColored><ButtonColored aria-label="ButtonColored">ButtonList</ButtonColored></ButtonList>',
   })
 

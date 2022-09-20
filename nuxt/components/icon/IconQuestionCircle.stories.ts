@@ -15,7 +15,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
     components: { IconQuestionCircle },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<IconQuestionCircle v-bind="$props" @click="click">IconQuestionCircle</IconQuestionCircle>',
   })
 

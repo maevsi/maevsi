@@ -24,7 +24,6 @@ const Template = (_: never, { argTypes }: any) =>
     components: { AccountProfilePicture },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<AccountProfilePicture v-bind="$props" class="h-12 w-12">AccountProfilePicture</AccountProfilePicture>',
   })
 

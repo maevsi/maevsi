@@ -15,7 +15,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
     components: { IconArrowRotateRight },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<IconArrowRotateRight v-bind="$props" @click="click">IconArrowRotateRight</IconArrowRotateRight>',
   })
 

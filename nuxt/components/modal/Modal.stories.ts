@@ -20,7 +20,6 @@ const Template = (_: never, { argTypes }: any) =>
         isVisible: true,
       })
     },
-    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<Modal v-bind="$props" id="Modal">Modal</Modal>',
   })
 

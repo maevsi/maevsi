@@ -11,7 +11,6 @@ const Template = (_: never, { argTypes }: any) =>
     components: { FormInputIconWrapper },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<FormInputIconWrapper v-bind="$props">FormInputIconWrapper</FormInputIconWrapper>',
   })
 

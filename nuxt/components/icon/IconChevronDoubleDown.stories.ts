@@ -15,7 +15,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
     components: { IconChevronDoubleDown },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<IconChevronDoubleDown v-bind="$props" @click="click">IconChevronDoubleDown</IconChevronDoubleDown>',
   })
 

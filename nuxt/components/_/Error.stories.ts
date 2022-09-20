@@ -10,7 +10,6 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { Error },
     props: Object.keys(argTypes),
-    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<Error v-bind="$props">Error</Error>',
   })
 

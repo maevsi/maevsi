@@ -14,9 +14,7 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
     components: { IconKey },
     props: Object.keys(argTypes),
-    template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<IconKey v-bind="$props" @click="click">IconKey</IconKey>',
+    template: '<IconKey v-bind="$props" @click="click">IconKey</IconKey>',
   })
 
 export const Default = Template.bind({})

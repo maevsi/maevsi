@@ -11,6 +11,5 @@ module.exports = {
       'assets': ['CHANGELOG.md', './nuxt/package.json']
     }]
   ],
-  // eslint-disable-next-line no-template-curly-in-string
   tagFormat: '${version}'
 }

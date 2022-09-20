@@ -14,7 +14,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
     components: { AppLink },
     props: Object.keys(argTypes),
-    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<AppLink v-bind="$props" @click="click">AppLink</AppLink>',
   })
 

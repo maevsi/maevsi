@@ -15,7 +15,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
     components: { IconStrikeThrough },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<IconStrikeThrough v-bind="$props" @click="click">IconStrikeThrough</IconStrikeThrough>',
   })
 

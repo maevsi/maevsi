@@ -10,9 +10,7 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { FormContact },
     props: Object.keys(argTypes),
-    template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<FormContact v-bind="$props">FormContact</FormContact>',
+    template: '<FormContact v-bind="$props">FormContact</FormContact>',
   })
 
 export const Default = Template.bind({})

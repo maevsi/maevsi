@@ -14,9 +14,7 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
     components: { IconMenu },
     props: Object.keys(argTypes),
-    template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<IconMenu v-bind="$props" @click="click">IconMenu</IconMenu>',
+    template: '<IconMenu v-bind="$props" @click="click">IconMenu</IconMenu>',
   })
 
 export const Default = Template.bind({})

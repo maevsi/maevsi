@@ -14,7 +14,6 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { EventListItem },
     props: Object.keys(argTypes),
-    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<EventListItem v-bind="$props">EventListItem</EventListItem>',
   })
 

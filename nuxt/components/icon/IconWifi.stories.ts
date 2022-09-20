@@ -14,9 +14,7 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
     components: { IconWifi },
     props: Object.keys(argTypes),
-    template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<IconWifi v-bind="$props" @click="click">IconWifi</IconWifi>',
+    template: '<IconWifi v-bind="$props" @click="click">IconWifi</IconWifi>',
   })
 
 export const Default = Template.bind({})

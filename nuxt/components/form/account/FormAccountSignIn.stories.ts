@@ -11,7 +11,6 @@ const Template = (_: never, { argTypes }: any) =>
     components: { FormAccountSignIn },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<FormAccountSignIn v-bind="$props">FormAccountSignIn</FormAccountSignIn>',
   })
 
