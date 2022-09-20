@@ -47,7 +47,7 @@ export function useAuthenticationAnonymous() {
 
   return {
     async authenticationAnonymous() {
-      await authenticationAnonymous($urql, $urqlReset, store, event.res)
+      await authenticationAnonymous($urql.value, $urqlReset, store, event.res)
     },
   }
 }
@@ -113,7 +113,7 @@ export function useJwtRefresh() {
 
   return {
     async jwtRefresh(id: string) {
-      await jwtRefresh($urql, $urqlReset, store, event.res, id)
+      await jwtRefresh($urql.value, $urqlReset, store, event.res, id)
     },
   }
 }
