@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { BaseValidation } from '@vuelidate/core'
+import { BaseValidation } from '@vuelidate/core' // eslint-disable-line import/named
 import { defineComponent, PropType, reactive } from 'vue'
 
 import { VALIDATION_PASSWORD_LENGTH_MINIMUM } from '~/plugins/util/validation'

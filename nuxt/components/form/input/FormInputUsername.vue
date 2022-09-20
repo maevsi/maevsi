@@ -68,7 +68,7 @@
 </template>
 
 <script lang="ts">
-import { BaseValidation } from '@vuelidate/core'
+import { BaseValidation } from '@vuelidate/core' // eslint-disable-line import/named
 
 import { defineComponent, PropType } from 'vue'
 
