@@ -11,6 +11,8 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
 
+import blankProfilePicture from '~/public/assets/static/images/blank-profile-picture.svg'
+
 export default defineComponent({
   props: {
     classes: {
@@ -47,9 +49,7 @@ export default defineComponent({
         if (props.emailAddress && props.emailAddressHash) {
           return `https://www.gravatar.com/avatar/${props.emailAddressHash}?d=mp&s=${props.size}`
         } else {
-          return import(
-            '~/public/assets/static/images/blank-profile-picture.svg'
-          )
+          return blankProfilePicture
         }
       }),
     }
