@@ -71,7 +71,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const options: ClientOptions = {
     requestPolicy: 'network-only', // TODO: https://github.com/maevsi/maevsi/issues/720
     fetchOptions: () => {
-      const store = useMaevsiStore(nuxtApp.nuxt2Context.$pinia)
+      const store = useMaevsiStore(nuxtApp.$pinia)
       const jwt = store.jwt
 
       if (jwt) {
