@@ -107,7 +107,7 @@ specifiers:
   prettier-plugin-tailwindcss: 0.1.13
   pretty-bytes: 6.0.0
   prntr: 2.0.17
-  puppeteer: 18.0.3
+  puppeteer: 18.0.4
   qrcode.vue: 1.7.0
   react: 16.14.0
   react-dom: 16.14.0
@@ -260,7 +260,7 @@ devDependencies:
   postcss-html: 1.5.0
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
-  puppeteer: 18.0.3
+  puppeteer: 18.0.4
   react: 16.14.0
   react-dom: 16.14.0_react@16.14.0
   reg-notify-github-plugin: 0.12.1
@@ -18885,8 +18885,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /puppeteer/18.0.3:
-    resolution: {integrity: sha512-IiW4Zz0xbphl1lQEAB7grPucbk/aM+GND4aJ7I8gOzOSp7Ika1bz35maox4FbELpPL8sqXsVQRNrXQnzBMiCzQ==}
+  /puppeteer/18.0.4:
+    resolution: {integrity: sha512-42WMdCu2wJdrkWijox/ZWsgNdv3+H+9xhLmiIl7KZIvDwMJWGz28HMgG1Ey5J6xb8wcwzjF9uI1Iw4UNyXXf5A==}
     engines: {node: '>=14.1.0'}
     requiresBuild: true
     dependencies:
