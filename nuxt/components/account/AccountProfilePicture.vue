@@ -19,7 +19,7 @@ import { useNuxtApp } from '#app'
 import { TUSD_FILES_URL } from '~/plugins/util/validation'
 import { getApiMeta } from '~/plugins/util/util'
 import { useProfilePictureByUsernameQuery } from '~/gql/generated'
-import blankProfilePicture from '~/assets/static/images/blank-profile-picture.svg'
+import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
 
 export default defineComponent({
   props: {
