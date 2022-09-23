@@ -36,7 +36,6 @@ export function getIcalString(
     (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
     '/event/' +
     userEventPath
-  // eslint-disable-next-line import/no-named-as-default-member
   const eventDescriptionHtml = mustache.render(
     event.description ? `${eventUrl}\n${event.description}` : '',
     {

@@ -30,6 +30,8 @@ export default function (event: CompatibilityEvent) {
     jwt = req.headers.authorization.substring(7)
 
     try {
+      // https://github.com/auth0/node-jsonwebtoken/issues/785
+      // https://github.com/auth0/node-jsonwebtoken/issues/655
       // eslint-disable-next-line import/no-named-as-default-member
       jsonwebtoken.verify(jwt, configPostgraphileJwtPublicKey, {
         algorithms: ['RS256'],

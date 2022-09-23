@@ -77,7 +77,6 @@ export default defineComponent({
 
         return htmlToText(
           DOMPurify.sanitize(
-            // eslint-disable-next-line import/no-named-as-default-member
             mustache.render(props.event.description, {
               event: props.event,
             })

@@ -25,6 +25,8 @@ const configPostgraphileJwtPublicKey = fs.existsSync(
   ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
   : undefined
 
+// https://github.com/brianc/node-postgres/issues/2137
+// https://github.com/brianc/node-postgres/issues/2353
 // eslint-disable-next-line import/no-named-as-default-member
 const pool = new pg.Pool({
   database: fs.existsSync(secretPostgresDbPath)
@@ -113,6 +115,8 @@ async function tusdDelete(event: CompatibilityEvent) {
   }
 
   try {
+    // https://github.com/auth0/node-jsonwebtoken/issues/785
+    // https://github.com/auth0/node-jsonwebtoken/issues/655
     // eslint-disable-next-line import/no-named-as-default-member
     jsonwebtoken.verify(
       req.headers.authorization.substring(7),
