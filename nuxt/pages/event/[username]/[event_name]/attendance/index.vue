@@ -113,7 +113,6 @@ export default defineComponent({
   components: {
     QrCodeStream: () => {
       if (process.server) return
-      // @ts-ignore
       return import('vue-qrcode-reader/src/components/QrcodeStream.vue')
     },
   },
