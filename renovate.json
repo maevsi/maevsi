@@ -4,10 +4,6 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["css-loader"],
-      "allowedVersions": "<6"
-    },
-    {
       "matchPackageNames": ["@types/luxon", "luxon"],
       "allowedVersions": "<2"
     },

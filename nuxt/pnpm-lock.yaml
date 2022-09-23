@@ -72,7 +72,6 @@ specifiers:
   core-js: 3.25.2
   cross-env: 7.0.3
   css-element-queries: 1.2.3
-  css-loader: 5.2.7
   downloadjs: 1.4.7
   eslint: 8.23.1
   eslint-config-prettier: 8.5.0
@@ -240,7 +239,6 @@ devDependencies:
   buffer: 6.0.3
   chalk: 5.0.1
   cross-env: 7.0.3
-  css-loader: 5.2.7_webpack@5.74.0
   eslint: 8.23.1
   eslint-config-prettier: 8.5.0_eslint@8.23.1
   eslint-plugin-compat: 4.0.2_eslint@8.23.1
