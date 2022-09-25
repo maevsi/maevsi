@@ -17,7 +17,6 @@ specifiers:
   '@jest/types': 29.0.3
   '@nuxtjs/color-mode': 3.1.5
   '@nuxtjs/eslint-config-typescript': 11.0.0
-  '@nuxtjs/eslint-module': 3.1.0
   '@nuxtjs/google-analytics': 2.4.0
   '@nuxtjs/html-validator': 1.0.0
   '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-alpha.1-27720079.0d0af16
@@ -209,7 +208,6 @@ devDependencies:
   '@jest/globals': 29.0.3
   '@jest/types': 29.0.3
   '@nuxtjs/eslint-config-typescript': 11.0.0_irgkl5vooow2ydyo6aokmferha
-  '@nuxtjs/eslint-module': 3.1.0_cnsurwdbw57xgwxuf5k544xt5e
   '@nuxtjs/google-analytics': 2.4.0
   '@nuxtjs/html-validator': 1.0.0_jest@29.0.3
   '@nuxtjs/moment': 1.6.1_webpack@5.74.0
@@ -3308,19 +3306,6 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/eslint-module/3.1.0_cnsurwdbw57xgwxuf5k544xt5e:
-    resolution: {integrity: sha512-9bK8AOJBflWmbQeL77SHIsgyGzhiW2b1BdwOtZ53Yyfa7Km3XMMVd8CtLA7z4+03eS+4TVQMxw62yRpJH5icZA==}
-    peerDependencies:
-      eslint: '>=7'
-    dependencies:
-      consola: 2.15.3
-      defu: 6.1.0
-      eslint: 8.23.1
-      eslint-webpack-plugin: 2.7.0_cnsurwdbw57xgwxuf5k544xt5e
-    transitivePeerDependencies:
-      - webpack
-    dev: true
-
   /@nuxtjs/google-analytics/2.4.0:
     resolution: {integrity: sha512-rDQTwHIjyjVrx8GywHPuWykJ3jRFGaHl5Iqji/y8tQWUc0yGEeHxOoR0yimzxnTS1Ph2/PubQYpgnVeEPEdL/A==}
     dependencies:
@@ -5407,13 +5392,6 @@ packages:
     dependencies:
       '@types/eslint': 8.4.6
       '@types/estree': 0.0.51
-
-  /@types/eslint/7.29.0:
-    resolution: {integrity: sha512-VNcvioYDH8/FxaeTKkM4/TiTwt6pBV9E3OfGmvaw8tPl0rrHCJ4Ll15HRT+pMiFAf/MLQvAzC+6RzUMEL9Ceng==}
-    dependencies:
-      '@types/estree': 1.0.0
-      '@types/json-schema': 7.0.11
-    dev: true
 
   /@types/eslint/8.4.6:
     resolution: {integrity: sha512-/fqTbjxyFUaYNO7VcW5g+4npmqVACz1bB7RTHYuLj+PRjw9hrCwrUXVQFpChUS0JsyEFvMZ7U/PfmvWgxJhI9g==}
@@ -10650,23 +10628,6 @@ packages:
   /eslint-visitor-keys/3.3.0:
     resolution: {integrity: sha512-mQ+suqKJVyeuwGYHAdjMFqjCyfl8+Ldnxuyp3ldiMBFKkvytrXUZWaiPCEav8qDHKty44bD+qV1IP4T+w+xXRA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dev: true
-
-  /eslint-webpack-plugin/2.7.0_cnsurwdbw57xgwxuf5k544xt5e:
-    resolution: {integrity: sha512-bNaVVUvU4srexGhVcayn/F4pJAz19CWBkKoMx7aSQ4wtTbZQCnG5O9LHCE42mM+JSKOUp7n6vd5CIwzj7lOVGA==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      eslint: ^7.0.0 || ^8.0.0
-      webpack: ^4.0.0 || ^5.0.0
-    dependencies:
-      '@types/eslint': 7.29.0
-      arrify: 2.0.1
-      eslint: 8.23.1
-      jest-worker: 27.5.1
-      micromatch: 4.0.5
-      normalize-path: 3.0.0
-      schema-utils: 3.1.1
-      webpack: 5.74.0
     dev: true
 
   /eslint/8.23.1:
