@@ -166,12 +166,12 @@ export default defineNuxtConfig({
     //     },
     //   },
     // ],
-    // [
-    //   '@nuxtjs/html-validator',
-    //   {
-    //     failOnError: true,
-    //   },
-    // ],
+    [
+      '@nuxtjs/html-validator',
+      {
+        failOnError: true,
+      },
+    ],
     [
       '@nuxtjs/i18n',
       {
