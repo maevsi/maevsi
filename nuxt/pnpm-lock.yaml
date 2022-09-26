@@ -49,7 +49,7 @@ specifiers:
   '@types/vue-moment': 4.0.3
   '@types/vuelidate': 0.7.15
   '@types/webpack': 4.41.32
-  '@uppy/core': 2.3.3
+  '@uppy/core': 2.3.4
   '@uppy/tus': 2.4.4
   apollo-cache-inmemory: 1.6.6
   apollo-client: 2.6.10
@@ -153,8 +153,8 @@ dependencies:
   '@tiptap/extension-link': 2.0.0-beta.196_wfvnwgzkyirymnacbqpm22v55m
   '@tiptap/starter-kit': 2.0.0-beta.196
   '@tiptap/vue-2': 2.0.0-beta.196_ukucu3ij6j7s4ktec5ewo7visu
-  '@uppy/core': 2.3.3
-  '@uppy/tus': 2.4.4_@uppy+core@2.3.3
+  '@uppy/core': 2.3.4
+  '@uppy/tus': 2.4.4_@uppy+core@2.3.4
   apollo-cache-inmemory: 1.6.6_graphql@15.8.0
   apollo-client: 2.6.10_graphql@15.8.0
   apollo-link: 1.2.14_graphql@15.8.0
@@ -6204,8 +6204,8 @@ packages:
       namespace-emitter: 2.0.1
     dev: false
 
-  /@uppy/core/2.3.3:
-    resolution: {integrity: sha512-oTFYZT02dIoUGm8Ar6+Tg/xbL8MliwiPQdiuoCimPBmY19ZhuJm/K4wEYZ6nOFeYsgBWYi1yWfsmdx8LvFVx4g==}
+  /@uppy/core/2.3.4:
+    resolution: {integrity: sha512-iWAqppC8FD8mMVqewavCz+TNaet6HPXitmGXpGGREGrakZ4FeuWytVdrelydzTdXx6vVKkOmI2FLztGg73sENQ==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.7
       '@uppy/store-default': 2.1.1
@@ -6221,13 +6221,13 @@ packages:
     resolution: {integrity: sha512-xnpTxvot2SeAwGwbvmJ899ASk5tYXhmZzD/aCFsXePh/v8rNvR2pKlcQUH7cF/y4baUGq3FHO/daKCok/mpKqQ==}
     dev: false
 
-  /@uppy/tus/2.4.4_@uppy+core@2.3.3:
+  /@uppy/tus/2.4.4_@uppy+core@2.3.4:
     resolution: {integrity: sha512-c/gUHnJe4SGoam+zue64VN0sxAwmX6wkjmdWiJk+JVS+FiRCCYmFFq4xl2shGoW8MZn279q1L4OCz/2erxpI2A==}
     peerDependencies:
       '@uppy/core': ^2.3.3
     dependencies:
       '@uppy/companion-client': 2.2.2
-      '@uppy/core': 2.3.3
+      '@uppy/core': 2.3.4
       '@uppy/utils': 4.1.3
       tus-js-client: 2.3.2
     dev: false
