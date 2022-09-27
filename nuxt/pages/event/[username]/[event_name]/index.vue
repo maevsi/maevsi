@@ -305,7 +305,6 @@ import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 import Swal from 'sweetalert2'
 import { computed, defineComponent, reactive, ref, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { useRouter, useRoute, abortNavigation } from '#app'
 import { useHead } from '#head'

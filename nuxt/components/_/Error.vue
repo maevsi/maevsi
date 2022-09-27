@@ -26,7 +26,6 @@
 <script lang="ts">
 import { status } from '@http-util/status-i18n'
 import { computed, defineComponent, PropType } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'MaevsiError',

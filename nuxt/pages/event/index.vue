@@ -9,7 +9,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { useRouter } from '#app'
 import { useHead } from '#head'

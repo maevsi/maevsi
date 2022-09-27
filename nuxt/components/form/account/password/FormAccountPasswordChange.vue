@@ -28,7 +28,6 @@ import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { reactive, ref, toRef, computed, defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { FormType } from '~/components/form/Form.vue'
 import {

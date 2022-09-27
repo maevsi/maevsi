@@ -57,7 +57,6 @@ import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
 import { computed, defineComponent, onMounted, reactive, toRef } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import {
   navigateTo,

@@ -27,7 +27,6 @@
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { useNuxtApp, useRouter } from '#app'
 import { useHead } from '#head'

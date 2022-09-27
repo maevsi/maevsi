@@ -38,7 +38,6 @@
 import { CombinedError } from '@urql/vue'
 import consola from 'consola'
 import { computed, defineComponent, reactive, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { useRoute, navigateTo, useRouter } from '#app'
 import { useHead } from '#head'

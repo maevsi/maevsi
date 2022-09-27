@@ -30,7 +30,6 @@ import {
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { toRef, defineComponent, PropType, reactive } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { capitalizeFirstLetter, getApiDataDefault } from '~/plugins/util/util'
 import {

@@ -22,7 +22,6 @@
 <script lang="ts">
 import consola from 'consola'
 import { computed, defineComponent, reactive, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { useRouter, useRoute } from '#app'
 import { useHead } from '#head'

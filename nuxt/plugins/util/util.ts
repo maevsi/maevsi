@@ -1,7 +1,6 @@
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
 import { computed, Ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 export function append(path: string, pathToAppend: string): string {
   return path + (path.endsWith('/') ? '' : '/') + pathToAppend

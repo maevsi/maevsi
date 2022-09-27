@@ -274,7 +274,6 @@ import { DateTime, Settings } from 'luxon'
 import slugify from 'slugify'
 import Swal from 'sweetalert2'
 import { computed, defineComponent, PropType, reactive, toRef } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { useNuxtApp, navigateTo } from '#app'
 

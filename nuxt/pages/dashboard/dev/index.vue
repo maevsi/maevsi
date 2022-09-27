@@ -42,7 +42,6 @@
 </template>
 
 <script lang="ts">
-import { useI18n } from 'vue-i18n'
 import { computed, defineComponent, reactive } from 'vue'
 
 import { useNuxtApp, useRouter } from '#app'

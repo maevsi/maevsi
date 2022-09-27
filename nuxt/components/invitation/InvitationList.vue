@@ -204,7 +204,6 @@ import {
   ref,
   watch,
 } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { useNuxtApp, useRuntimeConfig } from '#app'
 import { copyText, getApiMeta } from '~/plugins/util/util'

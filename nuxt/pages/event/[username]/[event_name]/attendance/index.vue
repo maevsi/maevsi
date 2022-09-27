@@ -68,7 +68,6 @@
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 import { useRouter, useRoute, abortNavigation } from '#app'
 import { useHead } from '#head'
