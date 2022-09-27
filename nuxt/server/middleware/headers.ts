@@ -5,6 +5,7 @@ import { STACK_DOMAIN } from '~/plugins/util/constants'
 const csp: Record<string, Array<string>> = {
   'base-uri': ["'none'"], // Mozilla Observatory.
   'connect-src': [
+    `http://localhost:24678/_nuxt/`, // Nuxt development
     `ws://localhost:24678/_nuxt/`, // Nuxt development
     `https://${STACK_DOMAIN}/cdn-cgi/rum`, // Cloudflare real user management (browser insights)
     `https://postgraphile.${STACK_DOMAIN}`,
