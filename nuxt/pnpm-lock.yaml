@@ -20,7 +20,6 @@ specifiers:
   '@nuxtjs/google-analytics': 2.4.0
   '@nuxtjs/html-validator': 1.0.0
   '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-alpha.1-27733858.ee9bcc7
-  '@nuxtjs/moment': 1.6.1
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
   '@nuxtjs/storybook': 4.1.1
@@ -49,7 +48,6 @@ specifiers:
   '@types/node': 18.7.23
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
-  '@types/vue-moment': 4.0.3
   '@uppy/core': 3.0.2
   '@uppy/tus': 3.0.2
   '@urql/core': 3.0.3
@@ -208,7 +206,6 @@ devDependencies:
   '@nuxtjs/eslint-config-typescript': 11.0.0_7ilbxdl5iguzcjriqqcg2m5cku
   '@nuxtjs/google-analytics': 2.4.0
   '@nuxtjs/html-validator': 1.0.0_jest@29.0.3
-  '@nuxtjs/moment': 1.6.1_webpack@5.74.0
   '@nuxtjs/storybook': 4.1.1_gkm4jog3rmvcfyzucp74wg74im
   '@rollup/plugin-graphql': 1.1.0_wvgxa4tpgmyetagc7e4kukhube
   '@storybook/addon-a11y': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
@@ -228,7 +225,6 @@ devDependencies:
   '@types/node': 18.7.23
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
-  '@types/vue-moment': 4.0.3
   '@urql/devtools': 2.0.3_piontxvufcgqglruagbmoe2tyi
   autoprefixer: 10.4.12_postcss@8.4.16
   babel-loader: 8.2.5_rhsdbzevgb5tizdhlla5jsbgyu
@@ -3453,17 +3449,6 @@ packages:
       - webpack
     dev: false
 
-  /@nuxtjs/moment/1.6.1_webpack@5.74.0:
-    resolution: {integrity: sha512-Mo2/3NQB0XryMQuNCTVnAclrDvt9I9sr6dwVm56KhYCoiWTKgQ78tDV9tmrxw7lahw1IBwyPGhw+3pwkM4phAA==}
-    dependencies:
-      moment: 2.29.4
-      moment-locales-webpack-plugin: 1.2.0_5fbxvk7lyx2wu2elg42ubenq7a
-      moment-timezone: 0.5.37
-      moment-timezone-data-webpack-plugin: 1.5.1_wfyaqqtq24sun6mraijzb4t7ia
-    transitivePeerDependencies:
-      - webpack
-    dev: true
-
   /@nuxtjs/robots/2.5.0:
     resolution: {integrity: sha512-z1F3HXb05NiZga8Cuq6k5bbowfJOScPtbSOakip0nege+1aI9pGoajzap8eR5s1qwLXAk9Ts+NcgetoUn5lwrQ==}
     dev: false
@@ -5813,13 +5798,6 @@ packages:
   /@types/vue-datetime/1.0.1:
     resolution: {integrity: sha512-MbuhT/JbOLvLIrMGwvq0KxghgM5Ud65sHRi+zNHcx6iWhkIv221KJzSXaEFufbWlkZSrSCNa+utaiqjNjBahVQ==}
     dependencies:
-      vue: 2.7.10
-    dev: true
-
-  /@types/vue-moment/4.0.3:
-    resolution: {integrity: sha512-DVvCp60TL0fseoxuHkF3430bDozBE8/JzN0dU223ZOLZrP+C1QPOm88kBMkwQnfpgSG179d7vhydAdzxqmw2+g==}
-    dependencies:
-      moment: 2.29.4
       vue: 2.7.10
     dev: true
 
@@ -15252,37 +15230,9 @@ packages:
     resolution: {integrity: sha512-iniQP4rj1FhBdBYS/+eQv7j1tadJ9lJtdzgOpvsOHng/GbcDh2Fhdeq+ZRldrPYdXvCyfFUmFeEwEGXZB5I/AQ==}
     dev: true
 
-  /moment-locales-webpack-plugin/1.2.0_5fbxvk7lyx2wu2elg42ubenq7a:
-    resolution: {integrity: sha512-QAi5v0OlPUP7GXviKMtxnpBAo8WmTHrUNN7iciAhNOEAd9evCOvuN0g1N7ThIg3q11GLCkjY1zQ2saRcf/43nQ==}
-    peerDependencies:
-      moment: ^2.8.0
-      webpack: ^1 || ^2 || ^3 || ^4 || ^5
-    dependencies:
-      lodash.difference: 4.5.0
-      moment: 2.29.4
-      webpack: 5.74.0
-    dev: true
-
-  /moment-timezone-data-webpack-plugin/1.5.1_wfyaqqtq24sun6mraijzb4t7ia:
-    resolution: {integrity: sha512-1le6a35GgYdWMVYFzrfpE/F6Pk4bj0M3QKD6Iv6ba9LqWGoVqHQRHyCTLvLis5E1J98Sz40ET6yhZzMVakwpjg==}
-    peerDependencies:
-      moment-timezone: '>= 0.1.0'
-      webpack: 4.x.x || 5.x.x
-    dependencies:
-      find-cache-dir: 3.3.2
-      make-dir: 3.1.0
-      moment-timezone: 0.5.37
-      webpack: 5.74.0
-    dev: true
-
-  /moment-timezone/0.5.37:
-    resolution: {integrity: sha512-uEDzDNFhfaywRl+vwXxffjjq1q0Vzr+fcQpQ1bU0kbzorfS7zVtZnCnGc8mhWmF39d4g4YriF6kwA75mJKE/Zg==}
-    dependencies:
-      moment: 2.29.4
-    dev: true
-
   /moment/2.29.4:
     resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: false
 
   /moo/0.5.1:
     resolution: {integrity: sha512-I1mnb5xn4fO80BH9BLcF0yLypy2UKl+Cb01Fu0hJRkJjlCRtxZMWkTdAtDd5ZqCOxtCkhmRwyI57vWT+1iZ67w==}
