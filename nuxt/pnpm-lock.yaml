@@ -32,7 +32,7 @@ specifiers:
   '@tiptap/core': 2.0.0-beta.197
   '@tiptap/extension-link': 2.0.0-beta.197
   '@tiptap/starter-kit': 2.0.0-beta.197
-  '@tiptap/vue-2': 2.0.0-beta.196
+  '@tiptap/vue-2': 2.0.0-beta.197
   '@types/apollo-upload-client': 8.1.3
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.3.4
@@ -152,7 +152,7 @@ dependencies:
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
   '@tiptap/extension-link': 2.0.0-beta.197_7ucu3cj5vc65mnzl27ajc44kci
   '@tiptap/starter-kit': 2.0.0-beta.197
-  '@tiptap/vue-2': 2.0.0-beta.196_nhgstknvezcdvw47eqdb4pcg6m
+  '@tiptap/vue-2': 2.0.0-beta.197_nhgstknvezcdvw47eqdb4pcg6m
   '@uppy/core': 2.3.4
   '@uppy/tus': 2.4.4_@uppy+core@2.3.4
   apollo-cache-inmemory: 1.6.6_graphql@15.8.0
@@ -5242,14 +5242,14 @@ packages:
       '@tiptap/core': 2.0.0-beta.197
     dev: false
 
-  /@tiptap/extension-bubble-menu/2.0.0-beta.196_7ucu3cj5vc65mnzl27ajc44kci:
-    resolution: {integrity: sha512-4WC4UoJBVgNWOq5mIGOA3ouPToJi+pK6LLjUnmrCw8J9LukueV0nuR2rpPr59RZ2F8obm1O/sqqT1xu/SImoOQ==}
+  /@tiptap/extension-bubble-menu/2.0.0-beta.197_7ucu3cj5vc65mnzl27ajc44kci:
+    resolution: {integrity: sha512-Vcg9nSN9sDDifmTqW3eycH0bmEO658x6CktJPNooaTeb4l7H50BqS0LuZXwaH3+JI/KKjVV5rRBRO7x+2WArfA==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
       '@tiptap/core': 2.0.0-beta.197
       prosemirror-state: 1.4.1
-      prosemirror-view: 1.26.2
+      prosemirror-view: 1.28.2
       tippy.js: 6.3.7
     dev: false
 
@@ -5295,14 +5295,14 @@ packages:
       prosemirror-dropcursor: 1.5.0
     dev: false
 
-  /@tiptap/extension-floating-menu/2.0.0-beta.196_7ucu3cj5vc65mnzl27ajc44kci:
-    resolution: {integrity: sha512-4qJHmCsK5KcmG5qDi6dwLuJcQ/iw/SuKYcBMiUxllrzM+zswP4nxFuyDzpVGsmoXR1gH8g79lEbuqb81VdIpEA==}
+  /@tiptap/extension-floating-menu/2.0.0-beta.197_7ucu3cj5vc65mnzl27ajc44kci:
+    resolution: {integrity: sha512-Is9JD7HwUZ4XGjID3I9Q1nxhNaGwYL2VHLB/Qo9+qxlmad0CKSWETX/AKCxDbVoswBog/L1KVHlrb8V+FBx2iw==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
       '@tiptap/core': 2.0.0-beta.197
       prosemirror-state: 1.4.1
-      prosemirror-view: 1.26.2
+      prosemirror-view: 1.28.2
       tippy.js: 6.3.7
     dev: false
 
@@ -5432,16 +5432,16 @@ packages:
       '@tiptap/extension-text': 2.0.0-beta.197_7ucu3cj5vc65mnzl27ajc44kci
     dev: false
 
-  /@tiptap/vue-2/2.0.0-beta.196_nhgstknvezcdvw47eqdb4pcg6m:
-    resolution: {integrity: sha512-rxz38oWKlxyTHCLt3nJhgXL+J+XYW9J1rZvAl5b7zi7rmXeCTLzx9kuBFb1vqaG0oQ9l1F6PBzljYThX2/LXJw==}
+  /@tiptap/vue-2/2.0.0-beta.197_nhgstknvezcdvw47eqdb4pcg6m:
+    resolution: {integrity: sha512-4TCJAwfyk4hJpwhIRqRPtt6BTYT+P6s7ehTbqG2BF1TGDN5iDANriMcmy7/S5q9Apwecp5F0nreQMNo49sCIYQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
       vue: ^2.6.0
     dependencies:
       '@tiptap/core': 2.0.0-beta.197
-      '@tiptap/extension-bubble-menu': 2.0.0-beta.196_7ucu3cj5vc65mnzl27ajc44kci
-      '@tiptap/extension-floating-menu': 2.0.0-beta.196_7ucu3cj5vc65mnzl27ajc44kci
-      prosemirror-view: 1.26.2
+      '@tiptap/extension-bubble-menu': 2.0.0-beta.197_7ucu3cj5vc65mnzl27ajc44kci
+      '@tiptap/extension-floating-menu': 2.0.0-beta.197_7ucu3cj5vc65mnzl27ajc44kci
+      prosemirror-view: 1.28.2
       vue: 2.7.10
     dev: false
 
@@ -18728,14 +18728,6 @@ packages:
     resolution: {integrity: sha512-O4T697Cqilw06Zvc3Wm+e237R6eZtJL/xGMliCi+Uo8VL6qHk6afz1qq0zNjT3eZMuYwnP8ZS0+YxX/tfcE9TQ==}
     dependencies:
       prosemirror-model: 1.18.1
-
-  /prosemirror-view/1.26.2:
-    resolution: {integrity: sha512-CGKw+GadkfSBEwRAJTHCEKJ4DlV6/3IhAdjpwGyZHUHtbP7jX4Ol4zmi7xa2c6GOabDlIJLYXJydoNYLX7lNeQ==}
-    dependencies:
-      prosemirror-model: 1.18.1
-      prosemirror-state: 1.4.1
-      prosemirror-transform: 1.7.0
-    dev: false
 
   /prosemirror-view/1.28.2:
     resolution: {integrity: sha512-uK28mJbu0GI8Oz7Aclt6BKL4g+C59EBShBXDB0Y9Y71H25p4bQgmLQLfDWjsT1J9XOw0bR8QQajZmdK8RvXI9g==}
