@@ -120,7 +120,7 @@ specifiers:
   stylelint-config-prettier: 9.0.3
   stylelint-config-recommended-vue: 1.4.0
   stylelint-config-standard: 28.0.0
-  stylelint-no-unsupported-browser-features: 5.0.4
+  stylelint-no-unsupported-browser-features: 6.0.0
   sweetalert2: 11.4.35
   tailwindcss: 3.1.8
   ts-jest: 29.0.3
@@ -271,7 +271,7 @@ devDependencies:
   stylelint-config-prettier: 9.0.3_stylelint@14.13.0
   stylelint-config-recommended-vue: 1.4.0_xhez2jbrlm5gsznvnryddq5rcu
   stylelint-config-standard: 28.0.0_stylelint@14.13.0
-  stylelint-no-unsupported-browser-features: 5.0.4_stylelint@14.13.0
+  stylelint-no-unsupported-browser-features: 6.0.0_stylelint@14.13.0
   tailwindcss: 3.1.8_m6qswdslzu5ddi7v2thd72jv24
   ts-jest: 29.0.3_prldchuhqkklg64grgbutfbtq4
   typescript: 4.8.4
@@ -5677,7 +5677,7 @@ packages:
   /@types/glob/8.0.0:
     resolution: {integrity: sha512-l6NQsDDyQUVeoTynNpC9uRvCUint/gSUXQA2euwmTuWGvPY5LSDUu6tkCtJB2SvGQlJQzLaKqcGZP4//7EDveA==}
     dependencies:
-      '@types/minimatch': 3.0.5
+      '@types/minimatch': 5.1.2
       '@types/node': 18.0.0
     dev: true
 
@@ -8503,10 +8503,6 @@ packages:
     resolution: {integrity: sha512-fKDH0F1KOJvR+mWSOvhj8lVRr/Q/mc5u5nabU2vi1/sgvlSqEsE8dOq0Hy/BqVbDkCYQPRRHB1WRjW6PGB/7PA==}
     dev: true
 
-  /caniuse-lite/1.0.30001399:
-    resolution: {integrity: sha512-4vQ90tMKS+FkvuVWS5/QY1+d805ODxZiKFzsU8o/RsVJz49ZSRR8EjykLJbqhzdPgadbX6wB538wOzle3JniRA==}
-    dev: true
-
   /caniuse-lite/1.0.30001409:
     resolution: {integrity: sha512-V0mnJ5dwarmhYv8/MzhJ//aW68UpvnQBXv8lJ2QUsvn2pHcmAuNtu8hQEDz37XnA1iE+lRR9CIfGWWpgJ5QedQ==}
 
@@ -10334,8 +10330,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      browserslist: 4.21.3
-      caniuse-lite: 1.0.30001399
+      browserslist: 4.21.4
+      caniuse-lite: 1.0.30001409
       css-rule-stream: 1.1.0
       duplexer2: 0.0.2
       ldjson-stream: 1.2.1
@@ -21080,11 +21076,11 @@ packages:
       stylelint-config-recommended: 9.0.0_stylelint@14.13.0
     dev: true
 
-  /stylelint-no-unsupported-browser-features/5.0.4_stylelint@14.13.0:
-    resolution: {integrity: sha512-05DeIsWv262DXTSWhbQURDOxno9Tsu81sNnOpG1gD39WT+NNsEjhR2BQvwvNpZ/J/lS8vHxjhHULU2OGKSswvA==}
-    engines: {node: '>=12'}
+  /stylelint-no-unsupported-browser-features/6.0.0_stylelint@14.13.0:
+    resolution: {integrity: sha512-Jziz54qTcDLCSHnqK+xRiwV2kraBopENwqpCvXTDCHR+ng03fdUFfCLRbyMSP6BWK0diLC8pvvbncHUJpK+zTA==}
+    engines: {node: ^14 || ^16}
     peerDependencies:
-      stylelint: '>=13.0.0'
+      stylelint: ^14.0.0
     dependencies:
       doiuse: 4.4.1
       lodash: 4.17.21
