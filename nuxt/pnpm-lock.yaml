@@ -120,7 +120,7 @@ specifiers:
   stylelint-config-prettier: 9.0.3
   stylelint-config-recommended-vue: 1.4.0
   stylelint-config-standard: 28.0.0
-  stylelint-no-unsupported-browser-features: 6.0.0
+  stylelint-no-unsupported-browser-features: 6.0.1
   sweetalert2: 11.4.35
   tailwindcss: 3.1.8
   ts-jest: 29.0.3
@@ -271,7 +271,7 @@ devDependencies:
   stylelint-config-prettier: 9.0.3_stylelint@14.13.0
   stylelint-config-recommended-vue: 1.4.0_xhez2jbrlm5gsznvnryddq5rcu
   stylelint-config-standard: 28.0.0_stylelint@14.13.0
-  stylelint-no-unsupported-browser-features: 6.0.0_stylelint@14.13.0
+  stylelint-no-unsupported-browser-features: 6.0.1_stylelint@14.13.0
   tailwindcss: 3.1.8_m6qswdslzu5ddi7v2thd72jv24
   ts-jest: 29.0.3_zxuwrsyq5mdl5xkbp5j6pnhore
   typescript: 4.8.4
@@ -21141,9 +21141,9 @@ packages:
       stylelint-config-recommended: 9.0.0_stylelint@14.13.0
     dev: true
 
-  /stylelint-no-unsupported-browser-features/6.0.0_stylelint@14.13.0:
-    resolution: {integrity: sha512-Jziz54qTcDLCSHnqK+xRiwV2kraBopENwqpCvXTDCHR+ng03fdUFfCLRbyMSP6BWK0diLC8pvvbncHUJpK+zTA==}
-    engines: {node: ^14 || ^16}
+  /stylelint-no-unsupported-browser-features/6.0.1_stylelint@14.13.0:
+    resolution: {integrity: sha512-cuhp3gU+SMp0I5dCykjQ0iSTtBsWeA7qNZlNBYnCW7L4KPudunRYyGQ8gcClRJtFpGkElQUtsfLMALNFZVdEFw==}
+    engines: {node: '>=14'}
     peerDependencies:
       stylelint: ^14.0.0
     dependencies:
