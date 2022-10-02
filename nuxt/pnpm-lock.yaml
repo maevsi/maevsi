@@ -121,7 +121,7 @@ specifiers:
   stylelint-config-recommended-vue: 1.4.0
   stylelint-config-standard: 28.0.0
   stylelint-no-unsupported-browser-features: 6.0.1
-  sweetalert2: 11.4.36
+  sweetalert2: 11.4.37
   tailwindcss: 3.1.8
   ts-jest: 29.0.3
   ts-node: 10.9.1
@@ -188,7 +188,7 @@ dependencies:
   prntr: 2.0.18
   qrcode.vue: 1.7.0_vue@2.7.10
   slugify: 1.6.5
-  sweetalert2: 11.4.36
+  sweetalert2: 11.4.37
   ts-node: 10.9.1_qj2pceye7x36wjy4gpgxephk74
   vue-apollo: 3.1.0_graphql-tag@2.12.6
   vue-chartjs: 4.1.2_chart.js@3.9.1+vue@2.7.10
@@ -21260,8 +21260,8 @@ packages:
       util.promisify: 1.0.1
     dev: false
 
-  /sweetalert2/11.4.36:
-    resolution: {integrity: sha512-9c9Cj7wn+1ekv2sKcBrgsTbx8malW+11NInepn+0wWeejXFQUeJUxt27ASpo1GdS4CfeHfN9UXBDvU519y0ygw==}
+  /sweetalert2/11.4.37:
+    resolution: {integrity: sha512-8thABjykReRzpMlgEY0BP876ZqI6dD9WxMpFftHt4dmUKQzDv23Td6Q6cz6YybyiYWPCodBk57PeIobqaGNgqw==}
     dev: false
 
   /symbol-observable/1.2.0:
