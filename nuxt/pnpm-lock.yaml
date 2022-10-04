@@ -12,7 +12,7 @@ specifiers:
   '@nuxt/babel-preset-app': 2.15.8
   '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27718481.b03ca40
   '@nuxt/types-edge': 2.16.0-27720022.54e852f
-  '@nuxtjs/color-mode': 3.1.6
+  '@nuxtjs/color-mode': 3.1.7
   '@nuxtjs/eslint-config-typescript': 11.0.0
   '@nuxtjs/eslint-module': 3.1.0
   '@nuxtjs/google-analytics': 2.4.0
@@ -143,7 +143,7 @@ dependencies:
   '@dargmuesli/nuxt-cookie-control': 1.9.9_webpack@4.46.0
   '@http-util/status-i18n': 0.6.2
   '@nuxt/types-edge': 2.16.0-27720022.54e852f_webpack@4.46.0
-  '@nuxtjs/color-mode': 3.1.6_webpack@4.46.0
+  '@nuxtjs/color-mode': 3.1.7_webpack@4.46.0
   '@nuxtjs/i18n': 7.3.0_vue@2.7.10
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
@@ -3054,37 +3054,6 @@ packages:
       - supports-color
       - vite
       - webpack
-    dev: true
-
-  /@nuxt/kit/3.0.0-rc.9_webpack@4.46.0:
-    resolution: {integrity: sha512-Y+db0iw/1pKiLMEG7L/6HCq8O9xsbVJT/ksePY1Q8o3fV40Q9gCWI0YumCIzVdBiAFFEOCNASsxmGj7kPSdpCA==}
-    engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
-    dependencies:
-      '@nuxt/schema': 3.0.0-rc.9_webpack@4.46.0
-      c12: 0.2.13
-      consola: 2.15.3
-      defu: 6.1.0
-      globby: 13.1.2
-      hash-sum: 2.0.0
-      ignore: 5.2.0
-      jiti: 1.16.0
-      knitwork: 0.1.2
-      lodash.template: 4.5.0
-      mlly: 0.5.16
-      pathe: 0.3.8
-      pkg-types: 0.3.5
-      scule: 0.3.2
-      semver: 7.3.7
-      unctx: 2.0.2_webpack@4.46.0
-      unimport: 0.6.7_webpack@4.46.0
-      untyped: 0.4.7
-    transitivePeerDependencies:
-      - esbuild
-      - rollup
-      - supports-color
-      - vite
-      - webpack
-    dev: false
 
   /@nuxt/loading-screen/2.0.4:
     resolution: {integrity: sha512-xpEDAoRu75tLUYCkUJCIvJkWJSuwr8pqomvQ+fkXpSrkxZ/9OzlBFjAbVdOAWTMj4aV/LVQso4vcEdircKeFIQ==}
@@ -3167,28 +3136,6 @@ packages:
       - rollup
       - vite
       - webpack
-    dev: true
-
-  /@nuxt/schema/3.0.0-rc.9_webpack@4.46.0:
-    resolution: {integrity: sha512-oxrsJE3v7WC8tqTPxutK4LFxR/6u00Zt2PfPm1XTWwx8fojDk4C5iCv5mxydHwXffsIp5JeP5hddd/oqnbDSpQ==}
-    engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
-    dependencies:
-      c12: 0.2.13
-      create-require: 1.1.1
-      defu: 6.1.0
-      jiti: 1.16.0
-      pathe: 0.3.8
-      postcss-import-resolver: 2.0.0
-      scule: 0.3.2
-      std-env: 3.2.1
-      ufo: 0.8.5
-      unimport: 0.6.7_webpack@4.46.0
-    transitivePeerDependencies:
-      - esbuild
-      - rollup
-      - vite
-      - webpack
-    dev: false
 
   /@nuxt/server-edge/2.16.0-27720022.54e852f:
     resolution: {integrity: sha512-Hs85OoG63l1hMdauJ2EgGxv4RWsZOi+vBEEhdMiOM2W3Ij6ACF/wW++cyxD5ARCO5qRwf2gnKziUvLTVo6u4Kw==}
@@ -3433,12 +3380,12 @@ packages:
       - whiskers
     dev: false
 
-  /@nuxtjs/color-mode/3.1.6_webpack@4.46.0:
-    resolution: {integrity: sha512-vTjlWCw+KHK9XLaiUWRPLhRGtiqkNm1RxW2GnzXaKlMONaruACtsrbJMRiwa/NB4G17uH+3pIri9z7ozADkgEw==}
+  /@nuxtjs/color-mode/3.1.7_webpack@4.46.0:
+    resolution: {integrity: sha512-+jnGPvmwQJ5jrE4akIX/Efz6fhU9wznysj5V2CK5+I5HhW7UfmwLOMxfOH8Wjho189QFMlO/l1Wufg8c3zonbg==}
     dependencies:
-      '@nuxt/kit': 3.0.0-rc.9_webpack@4.46.0
+      '@nuxt/kit': 3.0.0-rc.11_webpack@4.46.0
       lodash.template: 4.5.0
-      pathe: 0.3.7
+      pathe: 0.3.8
     transitivePeerDependencies:
       - esbuild
       - rollup
@@ -17147,10 +17094,6 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
 
-  /pathe/0.3.7:
-    resolution: {integrity: sha512-yz7GK+kSsS27x727jtXpd5VT4dDfP/JDIQmaowfxyWCnFjOWtE1VIh7i6TzcSfzW0n4+bRQztj1VdKnITNq/MA==}
-    dev: false
-
   /pathe/0.3.8:
     resolution: {integrity: sha512-c71n61F1skhj/jzZe+fWE9XDoTYjWbUwIKVwFftZ5IOgiX44BVkTkD+/803YDgR50tqeO4eXWxLyVHBLWQAD1g==}
 
@@ -22336,17 +22279,6 @@ packages:
       - utf-8-validate
     dev: true
 
-  /untyped/0.4.7:
-    resolution: {integrity: sha512-hBgCv7fnqIRzAagn2cUZxxVmhTE7NcMAgI8CfQelFVacG4O55VrurigpK0G504ph4sQSqVsGEo52O5EKFCnJ9g==}
-    dependencies:
-      '@babel/core': 7.19.3
-      '@babel/standalone': 7.19.0
-      '@babel/types': 7.19.3
-      scule: 0.3.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /untyped/0.5.0:
     resolution: {integrity: sha512-2Sre5A1a7G61bjaAKZnSFaVgbJMwwbbYQpJFH69hAYcDfN7kIaktlSphS02XJilz4+/jR1tsJ5MHo1oMoCezxg==}
     dependencies:
@@ -22356,7 +22288,6 @@ packages:
       scule: 0.3.2
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /upath/1.2.0:
     resolution: {integrity: sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==}

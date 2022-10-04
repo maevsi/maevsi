@@ -36,7 +36,7 @@
     "@dargmuesli/nuxt-cookie-control": "1.9.9",
     "@http-util/status-i18n": "0.6.2",
     "@nuxt/types-edge": "2.16.0-27720022.54e852f",
-    "@nuxtjs/color-mode": "3.1.6",
+    "@nuxtjs/color-mode": "3.1.7",
     "@nuxtjs/i18n": "7.3.0",
     "@nuxtjs/robots": "2.5.0",
     "@nuxtjs/sitemap": "2.4.0",
