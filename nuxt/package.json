@@ -122,7 +122,7 @@
     "@types/lodash-es": "4.17.6",
     "@types/luxon": "1.27.1",
     "@types/mustache": "3.2.0",
-    "@types/node": "16.11.63",
+    "@types/node": "16.11.64",
     "@types/pg": "8.6.5",
     "@types/vue-datetime": "1.0.1",
     "@types/vue-moment": "4.0.3",
