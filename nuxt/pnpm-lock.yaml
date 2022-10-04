@@ -95,7 +95,7 @@ specifiers:
   luxon: 1.28.0
   mockdate: 3.0.5
   moment: 2.29.4
-  msw: 0.47.3
+  msw: 0.47.4
   msw-storybook-addon: 1.6.3
   mustache: 3.2.1
   node-fetch: 3.2.10
@@ -254,8 +254,8 @@ devDependencies:
   jest: 29.1.2_yu2f43ltp6fau7k5sa35k5xfri
   lint-staged: 13.0.3
   mockdate: 3.0.5
-  msw: 0.47.3_typescript@4.8.4
-  msw-storybook-addon: 1.6.3_nklfx5srtvcmdm23mdfyrqfzde
+  msw: 0.47.4_typescript@4.8.4
+  msw-storybook-addon: 1.6.3_pgjd6evbqklj7jt66souu62ktm
   postcss: 8.4.17
   postcss-html: 1.5.0
   prettier: 2.7.1
@@ -2635,7 +2635,7 @@ packages:
       debug: 4.3.4
       headers-polyfill: 3.1.0
       outvariant: 1.3.0
-      strict-event-emitter: 0.2.4
+      strict-event-emitter: 0.2.6
       web-encoding: 1.1.5
     transitivePeerDependencies:
       - supports-color
@@ -16064,21 +16064,21 @@ packages:
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  /msw-storybook-addon/1.6.3_nklfx5srtvcmdm23mdfyrqfzde:
+  /msw-storybook-addon/1.6.3_pgjd6evbqklj7jt66souu62ktm:
     resolution: {integrity: sha512-Ps80WdRmXsmenoTwfrgKMNpQD8INUUFyUFyZOecx8QjuqSlL++UYrLaGyACXN2goOn+/VS6rb0ZapbjrasPClg==}
     peerDependencies:
       msw: '>=0.35.0 <1.0.0'
     dependencies:
       '@storybook/addons': 6.5.10_wcqkhtmu7mswc6yz4uyexck3ty
       is-node-process: 1.0.1
-      msw: 0.47.3_typescript@4.8.4
+      msw: 0.47.4_typescript@4.8.4
     transitivePeerDependencies:
       - react
       - react-dom
     dev: true
 
-  /msw/0.47.3_typescript@4.8.4:
-    resolution: {integrity: sha512-X3w/1fi29mEqoCajgFV59hrmns+mdD/FPegYMRwW7CK0vi//yX9NVy07/XspdBm6W1TNtb8Giv79SmS2BAb0Wg==}
+  /msw/0.47.4_typescript@4.8.4:
+    resolution: {integrity: sha512-Psftt8Yfl0+l+qqg9OlmKEsxF8S/vtda0CmlR6y8wTaWrMMzuCDa55n2hEGC0ZRDwuV6FFWc/4CjoDsBpATKBw==}
     engines: {node: '>=14'}
     hasBin: true
     requiresBuild: true
@@ -16105,7 +16105,7 @@ packages:
       outvariant: 1.3.0
       path-to-regexp: 6.2.1
       statuses: 2.0.1
-      strict-event-emitter: 0.2.4
+      strict-event-emitter: 0.2.6
       type-fest: 2.19.0
       typescript: 4.8.4
       yargs: 17.5.1
@@ -20840,8 +20840,8 @@ packages:
   /stream-shift/1.0.1:
     resolution: {integrity: sha512-AiisoFqQ0vbGcZgQPY1cdP2I76glaVA/RauYR4G4thNFgkTqr90yXTo4LYX60Jl+sIlPNHHdGSwo01AvbKUSVQ==}
 
-  /strict-event-emitter/0.2.4:
-    resolution: {integrity: sha512-xIqTLS5azUH1djSUsLH9DbP6UnM/nI18vu8d43JigCQEoVsnY+mrlE+qv6kYqs6/1OkMnMIiL6ffedQSZStuoQ==}
+  /strict-event-emitter/0.2.6:
+    resolution: {integrity: sha512-qDZOqEBoNtKLPb/qAutkXUt7hs3zXgYA1xX4pVa+gZHCZZVLr2r81AzHsK5YrQQhRNphMtkOUyAyOr9e1IxJTw==}
     dependencies:
       events: 3.3.0
     dev: true
