@@ -15,11 +15,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-
-import { useRouter, useRoute, abortNavigation } from '#app'
-import { useHead } from '#head'
-
 import { REGEX_SLUG } from '~/plugins/util/validation'
 
 definePageMeta({
@@ -37,7 +32,6 @@ definePageMeta({
 export default defineComponent({
   name: 'IndexPage',
   setup() {
-    const router = useRouter()
     const { t } = useI18n()
     const route = useRoute()
     const localePath = useLocalePath()
@@ -51,21 +45,8 @@ export default defineComponent({
       t,
     }
 
-    useHead({
+    useHeadDefault(data.title, {
       meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.value.fullPath,
-        },
         {
           hid: 'og:type',
           property: 'og:type',
@@ -74,15 +55,9 @@ export default defineComponent({
         {
           hid: 'profile:username',
           property: 'profile:username',
-          content: data.title,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
+          content: route.params.username,
         },
       ],
-      title: data.title,
     })
 
     return {

@@ -147,16 +147,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
-
-import { useHead } from '#head'
-
-import { useRouter } from '#app'
-
 export default defineComponent({
   name: 'IndexPage',
   setup() {
-    const router = useRouter()
     const { t } = useI18n()
     const localePath = useLocalePath()
 
@@ -183,29 +176,7 @@ export default defineComponent({
       t,
     }
 
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.value.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
+    useHeadDefault(data.title)
 
     onMounted(() => {
       if (window.pageYOffset === 0) {

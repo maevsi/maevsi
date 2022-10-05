@@ -8,10 +8,6 @@
 <script lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { computed, defineComponent, reactive } from 'vue'
-
-import { useRoute, useRouter, navigateTo } from '#app'
-import { useHead } from '#head'
 
 import { REGEX_UUID } from '~/plugins/util/validation'
 import { getApiMeta } from '~/plugins/util/util'
@@ -38,7 +34,6 @@ export default defineComponent({
   name: 'IndexPage',
   setup() {
     const localePath = useLocalePath()
-    const router = useRouter()
     const { t } = useI18n()
     const route = useRoute()
     const accountEmailAddressVerificationMutation =
@@ -78,29 +73,7 @@ export default defineComponent({
         }
       })
 
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.value.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
+    useHeadDefault(data.title)
 
     return {
       ...apiData,

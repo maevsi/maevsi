@@ -37,10 +37,6 @@
 <script lang="ts">
 import { CombinedError } from '@urql/vue'
 import consola from 'consola'
-import { computed, defineComponent, reactive, watch } from 'vue'
-
-import { useRoute, navigateTo, useRouter } from '#app'
-import { useHead } from '#head'
 
 import { getApiMeta } from '~/plugins/util/util'
 import {
@@ -81,7 +77,6 @@ export default defineComponent({
   name: 'IndexPage',
   setup() {
     const localePath = useLocalePath()
-    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
     const route = useRoute()
@@ -124,7 +119,7 @@ export default defineComponent({
       t,
     }
     const computations = {
-      title: computed((): string | undefined => {
+      title: computed(() => {
         if (
           route.params.username === store.signedInUsername &&
           apiData.event.value
@@ -139,29 +134,7 @@ export default defineComponent({
       if (currentValue) consola.error(currentValue)
     })
 
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: computations.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.value.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: computations.title,
-        },
-      ],
-      title: computations.title.value,
-    })
+    useHeadDefault(computations.title.value)
 
     return {
       ...apiData,

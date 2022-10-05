@@ -67,10 +67,6 @@
 <script lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { computed, defineComponent, onMounted, reactive, watch } from 'vue'
-
-import { useRouter, useRoute, abortNavigation } from '#app'
-import { useHead } from '#head'
 
 import {
   useEventByAuthorUsernameAndSlugQuery,
@@ -116,7 +112,6 @@ export default defineComponent({
     },
   },
   setup() {
-    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
     const route = useRoute()
@@ -301,29 +296,7 @@ export default defineComponent({
       if (currentValue) consola.error(currentValue)
     })
 
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.value.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
+    useHeadDefault(data.title)
 
     return {
       ...apiData,

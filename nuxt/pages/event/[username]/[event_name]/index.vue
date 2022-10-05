@@ -304,10 +304,6 @@ import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 import Swal from 'sweetalert2'
-import { computed, defineComponent, reactive, ref, watch } from 'vue'
-
-import { useRouter, useRoute, abortNavigation } from '#app'
-import { useHead } from '#head'
 
 import { Contact } from '~/types/contact'
 import { Invitation } from '~/types/invitation'
@@ -349,7 +345,6 @@ export default defineComponent({
     QrcodeVue,
   },
   setup() {
-    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
     const route = useRoute()
@@ -500,8 +495,11 @@ export default defineComponent({
           ? getContactName(data.invitation?.contactByContactId)
           : undefined
       }),
+      eventDescription: computed(() => {
+        return apiData.event.value?.description || methods.t('globalLoading')
+      }),
       eventDescriptionTemplate: computed(() => {
-        if (!apiData.event?.value?.description) return
+        if (!apiData.event.value?.description) return
 
         return DOMPurify.sanitize(
           mustache.render(apiData.event.value.description, {
@@ -536,7 +534,7 @@ export default defineComponent({
         return undefined
       }),
       title: computed(() => {
-        return apiData.event?.value?.name
+        return apiData.event?.value?.name || methods.t('globalLoading')
       }),
     }
 
@@ -544,43 +542,24 @@ export default defineComponent({
       if (currentValue) consola.error(currentValue)
     })
 
-    useHead({
+    useHeadDefault(computations.title.value, {
       meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: computations.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.value.fullPath,
-        },
         {
           hid: 'description',
           property: 'description',
-          content: apiData.event.value?.description,
+          content: computations.eventDescription.value,
         },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: apiData.event.value?.description,
+          content: computations.eventDescription.value,
         },
         {
           hid: 'twitter:description',
           property: 'twitter:description',
-          content: apiData.event.value?.description,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: computations.title,
+          content: computations.eventDescription.value,
         },
       ],
-      title: computations.title.value,
     })
 
     return {

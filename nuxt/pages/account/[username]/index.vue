@@ -47,11 +47,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-
-import { useRouter, useRoute, abortNavigation } from '#app'
-import { useHead } from '#head'
-
 import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 import { useAccountIsExistingQuery } from '~/gql/generated'
@@ -82,7 +77,6 @@ export default defineComponent({
   setup() {
     const { signOut } = useSignOut()
     const { t } = useI18n()
-    const router = useRouter()
     const store = useMaevsiStore()
     const route = useRoute()
     const localePath = useLocalePath()
@@ -98,21 +92,8 @@ export default defineComponent({
       t,
     }
 
-    useHead({
+    useHeadDefault(data.title, {
       meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.value.fullPath,
-        },
         {
           hid: 'og:type',
           property: 'og:type',
@@ -123,13 +104,7 @@ export default defineComponent({
           property: 'profile:username',
           content: route.params.username,
         },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
       ],
-      title: data.title,
     })
 
     return {

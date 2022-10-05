@@ -31,8 +31,6 @@ import { defineComponent, reactive } from 'vue'
 import { useNuxtApp, useRouter } from '#app'
 import { useHead } from '#head'
 
-import { BASE_URL } from '~/plugins/util/constants'
-
 export default defineComponent({
   name: 'IndexPage',
   setup() {
@@ -40,6 +38,7 @@ export default defineComponent({
     const router = useRouter()
     const { locale, t } = useI18n()
     const head = useLocaleHead({ addSeoAttributes: true })
+    const host = useHost()
 
     const data = reactive({
       isMenuVisible: false,
@@ -132,8 +131,7 @@ export default defineComponent({
         {
           hid: 'og:image',
           property: 'og:image',
-          content:
-            BASE_URL + '/assets/static/logos/maevsi_with-text_open-graph.png', // Does not support .svg as of 2021-06.
+          content: `https://${host}/assets/static/logos/maevsi_with-text_open-graph.png`, // Does not support .svg as of 2021-06.
         },
         {
           hid: 'og:image:alt',
@@ -168,10 +166,7 @@ export default defineComponent({
         {
           hid: 'og:url',
           property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.value.fullPath,
+          content: 'https://' + host + router.currentRoute.value.fullPath,
         },
         {
           hid: 'twitter:card',
@@ -186,8 +181,7 @@ export default defineComponent({
         {
           hid: 'twitter:image',
           property: 'twitter:image',
-          content:
-            BASE_URL + '/assets/static/logos/maevsi_with-text_open-graph.png', // Does not support .svg as of 2021-06.
+          content: `https://${host}/assets/static/logos/maevsi_with-text_open-graph.png`, // Does not support .svg as of 2021-06.
         },
         {
           hid: 'twitter:image:alt',

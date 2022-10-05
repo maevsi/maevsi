@@ -48,10 +48,6 @@
 
 <script lang="ts">
 import { CombinedError } from '@urql/core'
-import { computed, defineComponent, reactive } from 'vue'
-import { useRouter, useRoute, abortNavigation, useNuxtApp } from '#app'
-
-import { useHead } from '#head'
 
 import { useSignOut } from '~/plugins/util/auth'
 import { getApiMeta } from '~/plugins/util/util'
@@ -95,7 +91,6 @@ definePageMeta({
 export default defineComponent({
   name: 'IndexPage',
   setup() {
-    const router = useRouter()
     const store = useMaevsiStore()
     const { signOut } = useSignOut()
     const { t } = useI18n()
@@ -129,29 +124,7 @@ export default defineComponent({
       t,
     }
 
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.value.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
+    useHeadDefault(data.title)
 
     return {
       ...apiData,

@@ -42,11 +42,6 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive } from 'vue'
-
-import { useNuxtApp, useRouter } from '#app'
-import { useHead } from '#head'
-
 import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 
@@ -55,7 +50,6 @@ export default defineComponent({
   setup() {
     const { signOut } = useSignOut()
     const { $moment } = useNuxtApp()
-    const router = useRouter()
     const { t } = useI18n()
     const store = useMaevsiStore()
 
@@ -73,29 +67,7 @@ export default defineComponent({
       }),
     }
 
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            router.currentRoute.value.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
+    useHeadDefault(data.title)
 
     return {
       ...data,
