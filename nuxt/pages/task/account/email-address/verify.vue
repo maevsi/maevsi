@@ -16,7 +16,7 @@ import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const localePath = useLocalePath()
+      const { $localePath } = useNuxtApp()
       const route = useRoute()
 
       if (
@@ -24,7 +24,7 @@ definePageMeta({
         route.query.code === null ||
         !REGEX_UUID.test(route.query.code)
       ) {
-        return navigateTo(localePath('/'))
+        return navigateTo($localePath('/'))
       }
     },
   ],

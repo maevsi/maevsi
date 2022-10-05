@@ -76,7 +76,7 @@ definePageMeta({
   middleware: [
     async function (_to: any, _from: any) {
       const { $urqlReset, ssrContext } = useNuxtApp()
-      const localePath = useLocalePath()
+      const { $localePath } = useNuxtApp()
       const route = useRoute()
       const store = useMaevsiStore()
 
@@ -95,7 +95,7 @@ definePageMeta({
 
         if (!result.data?.eventUnlock?.eventUnlockResponse) {
           return navigateTo(
-            localePath({
+            $localePath({
               query: {
                 ...route.query,
                 error: null,
@@ -113,16 +113,16 @@ definePageMeta({
 
         if ('quick' in route.query) {
           return navigateTo(
-            localePath(
+            $localePath(
               `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
             )
           )
         } else {
           return navigateTo(
-            localePath({
+            $localePath({
               query: {
                 ...route.query,
-                redirect: localePath(
+                redirect: $localePath(
                   `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
                 ),
               },
