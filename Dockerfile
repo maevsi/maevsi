@@ -24,6 +24,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g pnpm
 
+
+ENV DOCKER=true
+
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 VOLUME /srv/sqitch

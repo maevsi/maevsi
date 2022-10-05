@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "postinstall": "pnpm msw init public",
-    "dev": "nuxi dev",
+    "dev": "sh dev.sh",
     "build": "nuxi build",
     "generate": "nuxi generate",
     "start": "node .output/server/index.mjs",
