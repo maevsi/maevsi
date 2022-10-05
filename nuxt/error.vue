@@ -2,23 +2,17 @@
   <Error :status-code="error?.statusCode ? +error?.statusCode : undefined" />
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
+<script setup lang="ts">
+export type Error = { statusCode: string }
+export interface Props {
+  error?: Error
+}
 
-type Error = { statusCode: string }
+const props = withDefaults(defineProps<Props>(), {
+  error: undefined,
+})
 
-export default defineComponent({
-  name: 'MaevsiError',
-  props: {
-    error: {
-      default: undefined,
-      type: Object as PropType<Error | undefined>,
-    },
-  },
-  setup(props) {
-    useHead({
-      title: props.error?.statusCode?.toString(),
-    })
-  },
+useHead({
+  title: props.error?.statusCode?.toString(),
 })
 </script>

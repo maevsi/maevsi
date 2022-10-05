@@ -12,27 +12,17 @@
   </Button>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
+<script setup lang="ts">
+export interface Props {
+  ariaLabel: string
+  disabled?: boolean
+  to?: string
+  type?: 'button' | 'submit' | 'reset'
+}
 
-export default defineComponent({
-  props: {
-    ariaLabel: {
-      required: true,
-      type: String,
-    },
-    disabled: {
-      default: false,
-      type: Boolean,
-    },
-    to: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    type: {
-      default: 'button',
-      type: String as PropType<'button' | 'submit' | 'reset' | undefined>,
-    },
-  },
+withDefaults(defineProps<Props>(), {
+  disabled: false,
+  to: undefined,
+  type: 'button',
 })
 </script>
