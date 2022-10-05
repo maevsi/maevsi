@@ -21,7 +21,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { email, maxLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { reactive, toRef, computed, defineComponent, PropType } from 'vue'
+import { PropType } from 'vue'
 
 import {
   formPreSubmit,

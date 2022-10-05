@@ -26,11 +26,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-
-import { useNuxtApp, useRouter } from '#app'
-import { useHead } from '#head'
-
 export default defineComponent({
   name: 'IndexPage',
   setup() {

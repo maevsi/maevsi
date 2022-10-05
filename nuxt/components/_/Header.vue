@@ -94,10 +94,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeMount, reactive } from 'vue'
-
-import { navigateTo } from '#app'
-
 import { useMaevsiStore } from '~/store'
 import supportedBrowsers from '~/supportedBrowsers'
 

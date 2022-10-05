@@ -3,9 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-
-import { useHead } from '#head'
+import { PropType } from 'vue'
 
 type Error = { statusCode: string }
 

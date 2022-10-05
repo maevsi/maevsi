@@ -112,7 +112,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import { email, helpers, maxLength } from '@vuelidate/validators'
 import consola from 'consola'
-import { reactive, toRef, computed, defineComponent, PropType } from 'vue'
+import { PropType } from 'vue'
 
 import { Contact } from '~/types/contact'
 import {

@@ -45,7 +45,7 @@
 
 <script lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
-import { defineComponent, PropType, reactive } from 'vue'
+import { PropType } from 'vue'
 
 import { VALIDATION_PASSWORD_LENGTH_MINIMUM } from '~/plugins/util/validation'
 

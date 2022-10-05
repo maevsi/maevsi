@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { reactive, watch, defineComponent, PropType } from 'vue'
+import { PropType } from 'vue'
 
 export default defineComponent({
   props: {

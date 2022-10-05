@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+import { PropType } from 'vue'
 
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
 

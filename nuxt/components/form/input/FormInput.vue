@@ -107,8 +107,7 @@
 <script lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
 import consola from 'consola'
-
-import { defineComponent, PropType } from 'vue'
+import { PropType } from 'vue'
 
 const FormInput = defineComponent({
   props: {

@@ -53,9 +53,6 @@ import { useVuelidate } from '@vuelidate/core'
 import { maxLength, minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { reactive, toRef, defineComponent } from 'vue'
-
-import { navigateTo } from '#app'
 
 import {
   formPreSubmit,

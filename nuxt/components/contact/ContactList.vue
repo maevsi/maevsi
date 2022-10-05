@@ -66,7 +66,6 @@
 <script lang="ts">
 import consola from 'consola'
 import debounce from 'lodash-es/debounce'
-import { computed, defineComponent, reactive, ref, watch } from 'vue'
 
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'

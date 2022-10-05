@@ -35,9 +35,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
-
-import { useRoute } from '#app'
+import { PropType } from 'vue'
 
 import { getQueryString } from '~/plugins/util/util'
 

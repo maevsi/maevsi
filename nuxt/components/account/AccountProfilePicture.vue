@@ -12,9 +12,7 @@
 
 <script lang="ts">
 import consola from 'consola'
-import { computed, defineComponent, PropType, reactive, watch } from 'vue'
-
-import { useNuxtApp } from '#app'
+import { PropType } from 'vue'
 
 import { getApiMeta } from '~/plugins/util/util'
 import { useProfilePictureByUsernameQuery } from '~/gql/generated'

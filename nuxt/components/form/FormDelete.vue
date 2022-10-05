@@ -28,7 +28,7 @@ import {
 } from '@urql/vue'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { toRef, defineComponent, PropType, reactive } from 'vue'
+import { PropType } from 'vue'
 
 import { capitalizeFirstLetter, getApiDataDefault } from '~/plugins/util/util'
 import {

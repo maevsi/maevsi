@@ -29,9 +29,7 @@
 
 <script lang="ts">
 import consola from 'consola'
-import { computed, reactive, ref, watch, defineComponent, PropType } from 'vue'
-
-import { useRoute } from '#app'
+import { PropType } from 'vue'
 
 import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'

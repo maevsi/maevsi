@@ -23,10 +23,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
-
-import { useNuxtApp } from '#app'
-
 export default defineComponent({
   setup() {
     const { $nuxt } = useNuxtApp()

@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive } from 'vue'
+import { PropType } from 'vue'
 
 import { useMaevsiStore } from '~/store'
 import { Contact } from '~/types/contact'

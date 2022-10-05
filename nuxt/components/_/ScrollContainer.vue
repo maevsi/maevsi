@@ -11,7 +11,6 @@
 <script lang="ts">
 import { ResizeSensor } from 'css-element-queries'
 import debounce from 'lodash-es/debounce'
-import { defineComponent, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 
 export default defineComponent({
   props: {

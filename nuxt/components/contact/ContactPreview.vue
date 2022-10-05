@@ -49,7 +49,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { PropType } from 'vue'
+
 import { Contact } from '~/types/contact'
 
 export default defineComponent({

@@ -13,9 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, reactive } from 'vue'
-
-import { useRoute } from '#app'
+import { PropType } from 'vue'
 
 export default defineComponent({
   props: {

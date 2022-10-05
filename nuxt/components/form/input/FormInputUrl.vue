@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
-import { defineComponent, PropType } from 'vue'
+import { PropType } from 'vue'
 
 export default defineComponent({
   props: {

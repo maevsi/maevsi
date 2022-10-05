@@ -18,9 +18,6 @@
 
 <script lang="ts">
 import consola from 'consola'
-import { computed, defineComponent, reactive } from 'vue'
-
-import { useRuntimeConfig, useRoute } from '#app'
 
 import { useProfilePictureSetMutation } from '~/gql/generated'
 import { getApiMeta } from '~/plugins/util/util'

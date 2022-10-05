@@ -52,7 +52,7 @@
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
-import { computed, defineComponent, PropType } from 'vue'
+import { PropType } from 'vue'
 
 import { Event } from '~/types/event'
 

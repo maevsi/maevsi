@@ -194,18 +194,9 @@ import {
 } from 'chart.js'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { PropType } from 'vue'
 import { Doughnut } from 'vue-chartjs'
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  PropType,
-  reactive,
-  ref,
-  watch,
-} from 'vue'
 
-import { useNuxtApp, useRuntimeConfig } from '#app'
 import { copyText, getApiMeta } from '~/plugins/util/util'
 import { Invitation } from '~/types/invitation'
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
