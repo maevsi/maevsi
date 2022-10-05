@@ -68,7 +68,7 @@ export default defineEventHandler((event) => {
   // appendHeader(event, 'Cross-Origin-Embedder-Policy', 'require-corp') // https://stackoverflow.com/questions/71904052/getting-notsameoriginafterdefaultedtosameoriginbycoep-error-with-helmet
   appendHeader(event, 'Cross-Origin-Opener-Policy', 'same-origin')
   appendHeader(event, 'Cross-Origin-Resource-Policy', 'same-origin')
-  appendHeader(event, 'Expect-CT', 'max-age=0')
+  // appendHeader(event, 'Expect-CT', 'max-age=0') // deprecated (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expect-CT)
   appendHeader(
     event,
     'NEL',
