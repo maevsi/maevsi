@@ -162,7 +162,7 @@ export default defineNuxtConfig({
         id: process.env.GOOGLE_ANALYTICS_ID,
         debug: process.env.NODE_ENV !== 'production',
       },
-      STORYBOOK: process.env.STORYBOOK,
+      STORYBOOK: !!process.env.STORYBOOK,
     },
   },
   storybook: {
