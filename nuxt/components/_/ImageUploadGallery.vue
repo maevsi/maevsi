@@ -135,7 +135,6 @@ import {
   useAllUploadsQuery,
   useUploadCreateMutation,
 } from '~/gql/generated'
-import { TUSD_FILES_URL } from '~/plugins/util/validation'
 import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'
 import { useMaevsiStore } from '~/store'
@@ -162,6 +161,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const { t } = useI18n()
     const store = useMaevsiStore()
+    const TUSD_FILES_URL = useTusdFilesUrl()
 
     const { executeMutation: executeMutationUploadCreate } =
       useUploadCreateMutation()
