@@ -3,7 +3,7 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:18.10.0-slim@sha256:16cc38f70ce9fe2a6ef87ab0998bd9fde6df17cdbae5b46b836f356ace2f1c9d AS development
+FROM node:18.10.0-slim@sha256:6b6c5fbcba9d33ccbcdcda670f1fe37685d6e990a538eec30a66f8c4b6191bf2 AS development
 
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
@@ -38,7 +38,7 @@ CMD ["pnpm", "run", "dev"]
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.10.0-slim@sha256:16cc38f70ce9fe2a6ef87ab0998bd9fde6df17cdbae5b46b836f356ace2f1c9d AS prepare
+FROM node:18.10.0-slim@sha256:6b6c5fbcba9d33ccbcdcda670f1fe37685d6e990a538eec30a66f8c4b6191bf2 AS prepare
 
 WORKDIR /srv/app/
 
@@ -58,7 +58,7 @@ RUN pnpm install --offline && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.10.0-slim@sha256:16cc38f70ce9fe2a6ef87ab0998bd9fde6df17cdbae5b46b836f356ace2f1c9d AS build
+FROM node:18.10.0-slim@sha256:6b6c5fbcba9d33ccbcdcda670f1fe37685d6e990a538eec30a66f8c4b6191bf2 AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -80,7 +80,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.10.0-slim@sha256:16cc38f70ce9fe2a6ef87ab0998bd9fde6df17cdbae5b46b836f356ace2f1c9d AS lint
+FROM node:18.10.0-slim@sha256:6b6c5fbcba9d33ccbcdcda670f1fe37685d6e990a538eec30a66f8c4b6191bf2 AS lint
 
 WORKDIR /srv/app/
 
@@ -95,7 +95,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.10.0-slim@sha256:16cc38f70ce9fe2a6ef87ab0998bd9fde6df17cdbae5b46b836f356ace2f1c9d AS test
+FROM node:18.10.0-slim@sha256:6b6c5fbcba9d33ccbcdcda670f1fe37685d6e990a538eec30a66f8c4b6191bf2 AS test
 
 WORKDIR /srv/app/
 
@@ -110,7 +110,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.10.0-slim@sha256:16cc38f70ce9fe2a6ef87ab0998bd9fde6df17cdbae5b46b836f356ace2f1c9d AS test-integration
+FROM node:18.10.0-slim@sha256:6b6c5fbcba9d33ccbcdcda670f1fe37685d6e990a538eec30a66f8c4b6191bf2 AS test-integration
 
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
@@ -136,7 +136,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of node:slim.
 # `storycap` requires Debian.
-FROM node:18.10.0-slim@sha256:16cc38f70ce9fe2a6ef87ab0998bd9fde6df17cdbae5b46b836f356ace2f1c9d AS test-visual
+FROM node:18.10.0-slim@sha256:6b6c5fbcba9d33ccbcdcda670f1fe37685d6e990a538eec30a66f8c4b6191bf2 AS test-visual
 
 ARG CI=false
 ENV CI ${CI}
@@ -168,7 +168,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of node:slim.
 # `storycap` requires Debian.
-FROM node:18.10.0-slim@sha256:16cc38f70ce9fe2a6ef87ab0998bd9fde6df17cdbae5b46b836f356ace2f1c9d AS test-visual_standalone
+FROM node:18.10.0-slim@sha256:6b6c5fbcba9d33ccbcdcda670f1fe37685d6e990a538eec30a66f8c4b6191bf2 AS test-visual_standalone
 
 # Update and install dependencies.
 # - `fonts-dejavu-core gconf-service`, ... is required by `puppeteer`
@@ -191,7 +191,7 @@ CMD ["pnpm", "run", "storycap"]
 # Collect build, lint and test results.
 
 # Should be the specific version of node:slim.
-FROM node:18.10.0-slim@sha256:16cc38f70ce9fe2a6ef87ab0998bd9fde6df17cdbae5b46b836f356ace2f1c9d AS collect
+FROM node:18.10.0-slim@sha256:6b6c5fbcba9d33ccbcdcda670f1fe37685d6e990a538eec30a66f8c4b6191bf2 AS collect
 
 WORKDIR /srv/app/
 
@@ -207,7 +207,7 @@ COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
 
 # Should be the specific version of node:slim.
 # `sqitch` requires at least `buster`.
-FROM node:18.10.0-slim@sha256:16cc38f70ce9fe2a6ef87ab0998bd9fde6df17cdbae5b46b836f356ace2f1c9d AS production
+FROM node:18.10.0-slim@sha256:6b6c5fbcba9d33ccbcdcda670f1fe37685d6e990a538eec30a66f8c4b6191bf2 AS production
 
 ENV NODE_ENV=production
 
