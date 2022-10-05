@@ -27,6 +27,7 @@ import { useMaevsiStore } from '~/store'
 // const ssrKey = '__URQL_DATA__'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
+  const host = useHost()
   const ssr = ssrExchange({
     isClient: process.client,
   })
@@ -86,9 +87,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     },
     url: process.server
       ? 'http://postgraphile:5000/graphql'
-      : 'https://postgraphile.' +
-        (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-        '/graphql',
+      : 'https://postgraphile.' + host + '/graphql',
     exchanges: [
       ...(config.public.isInDevelopment ? [devtoolsExchange] : []),
       dedupExchange,

@@ -7,7 +7,6 @@ import graphqlPlugin from '@rollup/plugin-graphql'
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
 import {
-  BASE_URL,
   SITEMAP_EXCLUSIONS,
   SITEMAP_EXCLUSIONS_LOCALIZED,
   LOCALES,
@@ -18,6 +17,10 @@ for (const exclusion of SITEMAP_EXCLUSIONS) {
     SITEMAP_EXCLUSIONS_LOCALIZED.push(`/${locale.code}${exclusion}`)
   }
 }
+
+const BASE_URL =
+  'https://' + process.env.NUXT_PUBLIC_STACK_DOMAIN ||
+  `${process.env.HOST || 'localhost'}:3000` // TODO: deprecated
 
 export default defineNuxtConfig({
   cookies: {

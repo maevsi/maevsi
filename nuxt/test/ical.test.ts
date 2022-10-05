@@ -18,10 +18,8 @@ afterAll(() => {
 })
 
 test('gets ical string', () => {
-  process.env.NUXT_ENV_STACK_DOMAIN = undefined
-
   expect(
-    getIcalString({
+    getIcalString('maevsi.test', {
       id: '1',
       authorUsername: 'authorUsername',
       description: '<p>description</p>',

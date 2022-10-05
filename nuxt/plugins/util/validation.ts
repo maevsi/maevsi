@@ -15,10 +15,6 @@ export const REGEX_UPPERCASE_NONE = /^[^A-Z]+$/
 export const REGEX_URL_HTTPS = /^https:\/\//
 export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
-export const TUSD_FILES_URL =
-  'https://tusd.' +
-  (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-  '/files/'
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 320
 export const VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM = 10000
