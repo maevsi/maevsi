@@ -6,7 +6,7 @@
     @click="$emit('click')"
   >
     {{ t('eventAll') }}
-    <template slot="prefix">
+    <template #prefix>
       <IconListUl />
     </template>
   </ButtonColored>

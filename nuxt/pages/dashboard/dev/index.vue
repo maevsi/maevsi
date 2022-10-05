@@ -13,7 +13,7 @@
       </p>
       <ButtonColored :aria-label="t('sessionExit')" @click="signOut">
         {{ t('sessionExit') }}
-        <template slot="prefix">
+        <template #prefix>
           <IconSignOut />
         </template>
       </ButtonColored>

@@ -5,7 +5,7 @@
     @click="$emit('click')"
   >
     {{ t('eventUnlock') }}
-    <template slot="prefix">
+    <template #prefix>
       <IconKey />
     </template>
   </ButtonColored>

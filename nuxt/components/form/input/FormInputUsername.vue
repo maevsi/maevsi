@@ -12,10 +12,10 @@
     :value="formInput"
     @input="$emit('input', $event)"
   >
-    <template slot="icon">
+    <template #icon>
       <slot name="icon" />
     </template>
-    <template slot="stateError">
+    <template #stateError>
       <FormInputStateError
         :form-input="formInput"
         :is-validation-live="!isValidationInverted"
@@ -43,7 +43,7 @@
         {{ t('globalValidationRequired') }}
       </FormInputStateError>
     </template>
-    <template slot="stateInfo">
+    <template #stateInfo>
       <FormInputStateInfo
         :form-input="formInput"
         :is-validation-live="!isValidationInverted"
@@ -52,7 +52,7 @@
         {{ t('validationExistenceHint') }}
       </FormInputStateInfo>
     </template>
-    <template v-if="isValidatable" slot="stateSuccess">
+    <template v-if="isValidatable" #stateSuccess>
       <FormInputStateSuccess
         :form-input="formInput"
         validation-property="existence"

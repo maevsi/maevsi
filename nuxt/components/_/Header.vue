@@ -40,7 +40,7 @@
           :is-primary="false"
         >
           {{ t('events') }}
-          <template slot="prefix">
+          <template #prefix>
             <IconTelescope />
           </template>
         </ButtonText>

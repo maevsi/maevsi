@@ -83,7 +83,7 @@
             @click.native="$emit('onMenuHide')"
           >
             {{ t('eventsExplore') }}
-            <template slot="prefix">
+            <template #prefix>
               <IconTelescope />
             </template>
           </ButtonText>

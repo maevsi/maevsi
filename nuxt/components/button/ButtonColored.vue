@@ -21,10 +21,10 @@
     @click="$emit('click')"
   >
     <slot />
-    <template slot="prefix">
+    <template #prefix>
       <slot name="prefix" />
     </template>
-    <template slot="suffix">
+    <template #suffix>
       <slot name="suffix" />
     </template>
   </Button>

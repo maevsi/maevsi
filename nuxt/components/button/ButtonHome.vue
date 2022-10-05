@@ -5,7 +5,7 @@
     @click="$emit('click')"
   >
     {{ t('home') }}
-    <template slot="prefix">
+    <template #prefix>
       <IconHome />
     </template>
   </ButtonColored>

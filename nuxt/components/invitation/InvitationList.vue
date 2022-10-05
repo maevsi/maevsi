@@ -64,7 +64,7 @@
                     <ButtonIcon :aria-label="t('globalShowMore')">
                       <IconDotsVertical />
                     </ButtonIcon>
-                    <template slot="content">
+                    <template #content>
                       <ButtonIcon
                         :aria-label="
                           invitation.contactByContactId?.accountUsername ||
@@ -143,7 +143,7 @@
           @click="add()"
         >
           {{ t('invitationAdd') }}
-          <template slot="prefix">
+          <template #prefix>
             <IconPlus />
           </template>
         </ButtonColored>
@@ -172,10 +172,10 @@
       </div>
       <Modal id="ModalInvitation">
         <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
-        <template slot="header">
+        <template #header>
           {{ t('contactSelect') }}
         </template>
-        <div slot="footer" />
+        <template #footer />
       </Modal>
     </div>
   </Loader>

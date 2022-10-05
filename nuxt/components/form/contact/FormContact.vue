@@ -23,7 +23,7 @@
       is-validatable
       @input="form.accountUsername = $event"
     >
-      <template slot="icon">
+      <template #icon>
         <IconSearch />
       </template>
     </FormInputUsername>
@@ -39,7 +39,7 @@
       :value="v$.form.firstName"
       @input="form.firstName = $event"
     >
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.firstName"
           validation-property="maxLength"
@@ -57,7 +57,7 @@
       :value="v$.form.lastName"
       @input="form.lastName = $event"
     >
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.lastName"
           validation-property="maxLength"
@@ -88,7 +88,7 @@
         :placeholder="t('globalPlaceholderAddress')"
         rows="2"
       />
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.address"
           validation-property="maxLength"

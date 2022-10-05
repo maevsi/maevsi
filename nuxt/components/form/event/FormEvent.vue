@@ -27,12 +27,12 @@
       :value="v$.form.name"
       @input="onInputName($event)"
     >
-      <template slot="stateWarning">
+      <template #stateWarning>
         <FormInputStateWarning v-if="event && event.name !== form.name">
           {{ t('validationWarningNameChangeSlug') }}
         </FormInputStateWarning>
       </template>
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.slug"
           is-validation-live
@@ -64,7 +64,7 @@
       :value="v$.form.slug"
       @input="form.slug = $event"
     >
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.slug"
           validation-property="formatSlug"
@@ -103,7 +103,7 @@
           [t('visibilityPrivate'), 'PRIVATE'],
         ]"
       />
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.visibility"
           validation-property="required"
@@ -120,7 +120,7 @@
       :value="v$.form.inviteeCountMaximum"
       @input="form.inviteeCountMaximum = $event"
     >
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.inviteeCountMaximum"
           validation-property="maxValue"
@@ -155,7 +155,7 @@
         type="datetime"
         :use12-hour="locale === 'en'"
       />
-      <template slot="stateWarning">
+      <template #stateWarning>
         <FormInputStateWarning v-if="isWarningStartPastShown">
           {{ t('globalValidationNowOrFuture') }}
         </FormInputStateWarning>
@@ -183,7 +183,7 @@
         type="datetime"
         :use12-hour="locale === 'en'"
       />
-      <template v-if="!!v$.form.end.$model" slot="icon">
+      <template v-if="!!v$.form.end.$model" #icon>
         <IconX />
       </template>
     </FormInput>
@@ -218,7 +218,7 @@
       :value="v$.form.location"
       @input="form.location = $event"
     >
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.location"
           validation-property="maxLength"
@@ -226,7 +226,7 @@
           {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
-      <template slot="stateInfo">
+      <template #stateInfo>
         <FormInputStateInfo>
           {{ t('stateInfoLocation') }}
         </FormInputStateInfo>
@@ -247,7 +247,7 @@
       <client-only v-if="v$.form.description">
         <TipTap v-model.trim="v$.form.description.$model" />
       </client-only>
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.description"
           validation-property="maxLength"

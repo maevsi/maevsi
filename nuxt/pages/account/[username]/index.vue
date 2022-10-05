@@ -6,13 +6,13 @@
     <ButtonList v-if="signedInUsername === routeParamUsername">
       <ButtonColored :aria-label="t('settings')" to="settings" append>
         {{ t('settings') }}
-        <template slot="prefix">
+        <template #prefix>
           <IconPencil />
         </template>
       </ButtonColored>
       <ButtonColored :aria-label="t('signOut')" @click.native="signOut">
         {{ t('signOut') }}
-        <template slot="prefix">
+        <template #prefix>
           <IconSignOut />
         </template>
       </ButtonColored>
@@ -38,7 +38,7 @@
         :to="localePath(`/event/${routeParamUsername}`)"
       >
         {{ t('eventsTheir', { name: routeParamUsername }) }}
-        <template slot="prefix">
+        <template #prefix>
           <IconCalendar />
         </template>
       </ButtonColored>

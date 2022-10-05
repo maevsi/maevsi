@@ -22,7 +22,7 @@
           @click="$emit('click')"
         >
           {{ submitName || t('submit') }}
-          <template slot="prefix">
+          <template #prefix>
             <slot name="submit-icon" />
           </template>
         </ButtonColored>

@@ -17,7 +17,7 @@
         :to="localePath('/contact')"
       >
         {{ t('contactsAdd') }}
-        <template slot="suffix">
+        <template #suffix>
           <IconArrowRight />
         </template>
       </ButtonColored>
@@ -31,10 +31,10 @@
       :value="v$.form.searchString"
       @input="form.searchString = $event"
     >
-      <template slot="icon">
+      <template #icon>
         <IconSearch />
       </template>
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.contactId"
           validation-property="required"

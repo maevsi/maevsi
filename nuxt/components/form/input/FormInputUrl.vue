@@ -9,7 +9,7 @@
     :value="formInput"
     @input="$emit('input', $event)"
   >
-    <template slot="stateError">
+    <template #stateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="maxLength"

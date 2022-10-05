@@ -108,8 +108,8 @@
           :show-remove-button="false"
         />
       </div>
-      <template slot="header">{{ t('uploadNew') }}</template>
-      <template slot="submit-icon"><IconUpload /></template>
+      <template #header>{{ t('uploadNew') }}</template>
+      <template #submit-icon><IconUpload /></template>
     </Modal>
   </Loader>
 </template>

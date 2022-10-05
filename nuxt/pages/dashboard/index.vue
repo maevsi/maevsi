@@ -12,7 +12,7 @@
             :to="localePath(`/event/${signedInUsername}`)"
           >
             {{ t('eventsMine') }}
-            <template slot="prefix">
+            <template #prefix>
               <IconCalendar />
             </template>
           </ButtonColored>
@@ -32,7 +32,7 @@
             :to="localePath('/contact')"
           >
             {{ t('contactBook') }}
-            <template slot="prefix">
+            <template #prefix>
               <IconAddressBook />
             </template>
           </ButtonColored>
@@ -41,7 +41,7 @@
           <h2>{{ t('uploadsMine') }}</h2>
           <ButtonColored :aria-label="t('gallery')" :to="localePath('/upload')">
             {{ t('gallery') }}
-            <template slot="prefix">
+            <template #prefix>
               <IconImages />
             </template>
           </ButtonColored>

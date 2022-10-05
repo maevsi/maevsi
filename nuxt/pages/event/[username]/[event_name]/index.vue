@@ -22,7 +22,7 @@
           "
         >
           {{ t('invitationSelectionClear') }}
-          <template slot="prefix">
+          <template #prefix>
             <IconArrowLeft />
           </template>
         </ButtonColored>
@@ -46,7 +46,7 @@
             @click="qrCodeShow"
           >
             {{ t('qrCodeShow') }}
-            <template slot="prefix">
+            <template #prefix>
               <IconQrCode />
             </template>
           </ButtonColored>
@@ -88,7 +88,7 @@
                           name: contactName,
                         })
                   }}
-                  <template slot="prefix">
+                  <template #prefix>
                     <IconCheckCircle />
                   </template>
                 </ButtonColored>
@@ -126,7 +126,7 @@
                           name: contactName,
                         })
                   }}
-                  <template slot="prefix">
+                  <template #prefix>
                     <IconXCircle />
                   </template>
                 </ButtonColored>
@@ -204,19 +204,19 @@
       >
         <ButtonColored append :aria-label="t('invitations')" to="invitation">
           {{ t('invitations') }}
-          <template slot="prefix">
+          <template #prefix>
             <IconEnvelope />
           </template>
         </ButtonColored>
         <ButtonColored append :aria-label="t('attendances')" to="attendance">
           {{ t('attendances') }}
-          <template slot="prefix">
+          <template #prefix>
             <IconUserCheck />
           </template>
         </ButtonColored>
         <ButtonColored append :aria-label="t('settings')" to="settings">
           {{ t('settings') }}
-          <template slot="prefix">
+          <template #prefix>
             <IconPencil />
           </template>
         </ButtonColored>
@@ -235,7 +235,7 @@
             @click="downloadIcal"
           >
             {{ t('iCalDownload') }}
-            <template slot="prefix">
+            <template #prefix>
               <IconDownload />
             </template>
           </ButtonColored>
@@ -270,14 +270,14 @@
             {{ t('hintQrCode') }}
           </FormInputStateInfo>
         </div>
-        <template slot="footer">
+        <template #footer>
           <ButtonColored
             :aria-label="t('print')"
             :is-primary="false"
             @click="print"
           >
             {{ t('print') }}
-            <template slot="prefix">
+            <template #prefix>
               <IconPrinter />
             </template>
           </ButtonColored>
@@ -286,7 +286,7 @@
             @click="closeModalInvitationQrCode()"
           >
             {{ t('close') }}
-            <template slot="prefix">
+            <template #prefix>
               <IconX />
             </template>
           </ButtonColored>

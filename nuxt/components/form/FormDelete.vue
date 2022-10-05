@@ -12,7 +12,7 @@
       :title="t('passwordAccount')"
       @input="form.password = $event"
     />
-    <template slot="submit-icon">
+    <template #submit-icon>
       <IconTrash />
     </template>
   </Form>

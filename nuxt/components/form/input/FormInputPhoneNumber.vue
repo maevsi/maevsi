@@ -9,7 +9,7 @@
     :value="formInput"
     @input="$emit('input', $event)"
   >
-    <template slot="stateInfo">
+    <template #stateInfo>
       <FormInputStateInfo
         :form-input="formInput"
         validation-property="formatPhoneNumber"
@@ -17,7 +17,7 @@
         {{ t('validationFormat') }}
       </FormInputStateInfo>
     </template>
-    <template slot="stateError">
+    <template #stateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="formatPhoneNumber"

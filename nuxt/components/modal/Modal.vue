@@ -56,7 +56,7 @@
             @click="submit()"
           >
             {{ submitName || t('ok') }}
-            <template slot="prefix">
+            <template #prefix>
               <slot name="submit-icon">
                 <IconCheckCircle />
               </slot>

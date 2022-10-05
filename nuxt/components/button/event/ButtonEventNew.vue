@@ -6,7 +6,7 @@
     @click="$emit('click')"
   >
     {{ t('new') }}
-    <template slot="prefix">
+    <template #prefix>
       <IconPlus />
     </template>
   </ButtonText>

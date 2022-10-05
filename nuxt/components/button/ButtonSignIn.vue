@@ -5,7 +5,7 @@
     @click="$emit('click')"
   >
     {{ t('signIn') }}
-    <template slot="prefix">
+    <template #prefix>
       <IconUser />
     </template>
   </ButtonColored>

@@ -5,7 +5,7 @@
       keypath="maevNo"
       class="flex items-center justify-center gap-1 text-xl font-black"
     >
-      <template slot="emojiFacePleading">
+      <template #emojiFacePleading>
         <EmojiFacePleading />
       </template>
     </i18n-t>

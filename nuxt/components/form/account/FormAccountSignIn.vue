@@ -6,7 +6,7 @@
       :to="localePath('/task/account/register')"
     >
       {{ t('register') }}
-      <template slot="prefix">
+      <template #prefix>
         <IconArrowRight />
       </template>
     </ButtonColored>
@@ -33,7 +33,7 @@
           {{ t('passwordReset') }}
         </AppLink>
       </div>
-      <template slot="assistance">
+      <template #assistance>
         <ButtonColored
           v-if="
             api.errors.filter((e) =>

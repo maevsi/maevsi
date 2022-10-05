@@ -24,7 +24,7 @@
         @click="qrCodeScan"
       >
         {{ t('qrCodeScan') }}
-        <template slot="prefix">
+        <template #prefix>
           <IconQrCode />
         </template>
       </ButtonColored>
@@ -42,7 +42,7 @@
           @click="onClick"
         >
           {{ t('nfcWrite') }}
-          <template slot="prefix">
+          <template #prefix>
             <IconUserTag />
           </template>
         </ButtonColored>
@@ -57,7 +57,7 @@
           {{ t('globalLoading') }}
         </div>
       </QrCodeStream>
-      <template slot="submit-icon">
+      <template #submit-icon>
         <IconXCircle />
       </template>
     </Modal>

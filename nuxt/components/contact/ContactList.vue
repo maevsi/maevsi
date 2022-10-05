@@ -44,7 +44,7 @@
       <div class="flex justify-center">
         <ButtonColored :aria-label="t('contactAdd')" @click="add()">
           {{ t('contactAdd') }}
-          <template slot="prefix">
+          <template #prefix>
             <IconPlus />
           </template>
         </ButtonColored>
@@ -54,10 +54,10 @@
           :contact="selectedContact"
           @submitSuccess="onSubmitSuccess"
         />
-        <template slot="header">
+        <template #header>
           {{ formContactHeading }}
         </template>
-        <div slot="footer" />
+        <template #footer />
       </Modal>
     </div>
   </Loader>

@@ -20,7 +20,7 @@
         :value="v$.form.invitationCode"
         @input="form.invitationCode = $event"
       >
-        <template slot="stateInfo">
+        <template #stateInfo>
           <FormInputStateInfo v-if="routeQueryIc">
             <div>
               {{ t('invitationCodeAutomatic') }}
@@ -30,7 +30,7 @@
             </div>
           </FormInputStateInfo>
         </template>
-        <template slot="stateError">
+        <template #stateError>
           <FormInputStateError
             :form-input="v$.form.invitationCode"
             validation-property="formatUuid"

@@ -6,7 +6,7 @@
       :to="localePath('/task/account/sign-in')"
     >
       {{ t('signIn') }}
-      <template slot="prefix">
+      <template #prefix>
         <IconArrowLeft />
       </template>
     </ButtonColored>
@@ -36,7 +36,7 @@
         is-required
         @input="form.emailAddress = $event"
       />
-      <template slot="assistance">
+      <template #assistance>
         <FormInputStateInfo>
           {{ t('accountDeletionNotice') }}
         </FormInputStateInfo>

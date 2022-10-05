@@ -12,7 +12,7 @@
       :username="isStorybookActive ? 'username' : routeParamUsername"
       @selection="selectProfilePictureStorageKey"
     />
-    <template slot="header">{{ t('header') }}</template>
+    <template #header>{{ t('header') }}</template>
   </Modal>
 </template>
 

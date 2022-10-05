@@ -9,11 +9,11 @@
     @input="$emit('input', $event)"
     @icon="isVisible = !isVisible"
   >
-    <template slot="icon">
+    <template #icon>
       <IconEye v-if="!isVisible" />
       <IconEyeOff v-else />
     </template>
-    <template slot="stateError">
+    <template #stateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="minLength"
@@ -31,7 +31,7 @@
       </FormInputStateError>
       <slot name="stateError" />
     </template>
-    <template slot="stateInfo">
+    <template #stateInfo>
       <FormInputStateInfo
         :form-input="formInput"
         validation-property="minLength"
