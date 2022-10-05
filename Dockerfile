@@ -24,6 +24,8 @@ WORKDIR /srv/app/
 
 ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
 
+# https://github.com/nuxt/framework/issues/7828
+ENV HOST=0.0.0.0
 
 ENV DOCKER=true
 
