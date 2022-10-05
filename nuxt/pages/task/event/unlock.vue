@@ -159,7 +159,7 @@ export default defineComponent({
         invitationCode:
           route.query.ic === undefined ? undefined : route.query.ic,
       },
-      isDevelopmentActive: config.public.dev,
+      isDevelopmentActive: config.public.isInDevelopment,
       isFormSent: false,
       routeQueryIc: route.query.ic,
       title: t('title'),

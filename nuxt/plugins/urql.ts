@@ -90,7 +90,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
         '/graphql',
     exchanges: [
-      ...(process.env.NODE_ENV === 'production' ? [] : [devtoolsExchange]),
+      ...(config.public.isInDevelopment ? [devtoolsExchange] : []),
       dedupExchange,
       cache,
       ssr, // add `ssr` before `fetchExchange`

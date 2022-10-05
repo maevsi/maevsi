@@ -162,6 +162,7 @@ export default defineComponent({
     const { t } = useI18n()
     const store = useMaevsiStore()
     const TUSD_FILES_URL = useTusdFilesUrl()
+    const config = useRuntimeConfig()
 
     const { executeMutation: executeMutationUploadCreate } =
       useUploadCreateMutation()
@@ -327,7 +328,7 @@ export default defineComponent({
 
             data.uppy = new Uppy({
               id: 'profile-picture',
-              debug: process.env.NODE_ENV !== 'production',
+              debug: config.public.isInDevelopment,
               restrictions: {
                 maxFileSize: 1048576,
                 maxNumberOfFiles: 1,
