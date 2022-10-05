@@ -107,7 +107,7 @@ specifiers:
   prettier-plugin-tailwindcss: 0.1.13
   pretty-bytes: 6.0.0
   prntr: 2.0.18
-  puppeteer: 18.0.5
+  puppeteer: 18.1.0
   qrcode.vue: 1.7.0
   react: 16.14.0
   react-dom: 16.14.0
@@ -260,7 +260,7 @@ devDependencies:
   postcss-html: 1.5.0
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
-  puppeteer: 18.0.5
+  puppeteer: 18.1.0
   react: 16.14.0
   react-dom: 16.14.0_react@16.14.0
   reg-notify-github-plugin: 0.12.1
@@ -10214,8 +10214,8 @@ packages:
     resolution: {integrity: sha512-I2TiqT5iWBEyB8GRfTDP0hiLZ0YeDJZ+upDxjBfOC2lebO5LezQMv7QvIUTzdb64jQyAKLf1AHADtGN+jw6v8Q==}
     dev: false
 
-  /devtools-protocol/0.0.1036444:
-    resolution: {integrity: sha512-0y4f/T8H9lsESV9kKP1HDUXgHxCdniFeJh6Erq+FbdOEvp/Ydp9t8kcAAM5gOd17pMrTDlFWntoHtzzeTUWKNw==}
+  /devtools-protocol/0.0.1045489:
+    resolution: {integrity: sha512-D+PTmWulkuQW4D1NTiCRCFxF7pQPn0hgp4YyX4wAQ6xYXKOadSWPR3ENGDQ47MW/Ewc9v2rpC/UEEGahgBYpSQ==}
     dev: true
 
   /devtools-protocol/0.0.869402:
@@ -18940,14 +18940,14 @@ packages:
       - utf-8-validate
     dev: true
 
-  /puppeteer/18.0.5:
-    resolution: {integrity: sha512-s4erjxU0VtKojPvF+KvLKG6OHUPw7gO2YV1dtOsoryyCbhrs444fXb4QZqGWuTv3V/rgSCUzeixxu34g0ZkSMA==}
+  /puppeteer/18.1.0:
+    resolution: {integrity: sha512-2RCVWIF+pZOSfksWlQU0Hh6CeUT5NYt66CDDgRyuReu6EvBAk1y+/Q7DuzYNvGChSecGMb7QPN0hkxAa3guAog==}
     engines: {node: '>=14.1.0'}
     requiresBuild: true
     dependencies:
       cross-fetch: 3.1.5
       debug: 4.3.4
-      devtools-protocol: 0.0.1036444
+      devtools-protocol: 0.0.1045489
       extract-zip: 2.0.1
       https-proxy-agent: 5.0.1
       progress: 2.0.3
@@ -18955,7 +18955,7 @@ packages:
       rimraf: 3.0.2
       tar-fs: 2.1.1
       unbzip2-stream: 1.4.3
-      ws: 8.8.1
+      ws: 8.9.0
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -22272,7 +22272,7 @@ packages:
       mri: 1.2.0
       ohmyfetch: 0.4.18
       ufo: 0.8.5
-      ws: 8.8.1
+      ws: 8.9.0
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -23446,8 +23446,8 @@ packages:
       utf-8-validate:
         optional: true
 
-  /ws/8.8.1:
-    resolution: {integrity: sha512-bGy2JzvzkPowEJV++hF07hAD6niYSr0JzBNo/J29WsB57A2r7Wlc1UFcTR9IzrPvuNVO4B8LGqF8qcpsVOhJCA==}
+  /ws/8.9.0:
+    resolution: {integrity: sha512-Ja7nszREasGaYUYCI2k4lCKIRTt+y7XuqVoHR44YpI49TtryyqbqvDMn5eqfW7e6HzTukDRIsXqzVHScqRcafg==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
