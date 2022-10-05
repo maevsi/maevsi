@@ -223,7 +223,7 @@ export default defineComponent({
                   ? undefined
                   : data.form.accountUsername,
               address: data.form.address === '' ? undefined : data.form.address,
-              authorAccountUsername: store.jwtDecoded?.username,
+              authorAccountUsername: store.jwtDecoded?.username as string,
               emailAddress:
                 data.form.emailAddress === ''
                   ? undefined
@@ -253,7 +253,7 @@ export default defineComponent({
                   ? undefined
                   : data.form.accountUsername,
               address: data.form.address === '' ? undefined : data.form.address,
-              authorAccountUsername: store.jwtDecoded?.username,
+              authorAccountUsername: store.jwtDecoded?.username as string,
               emailAddress:
                 data.form.emailAddress === ''
                   ? undefined

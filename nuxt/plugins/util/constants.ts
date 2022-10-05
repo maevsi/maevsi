@@ -17,4 +17,5 @@ export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
 
 export const ITEMS_PER_PAGE = 8
 export const ITEMS_PER_PAGE_LARGE = 100
+export const JWT_ALGORITHM = 'RS256'
 export const JWT_NAME = '__Secure-jwt'

@@ -27,6 +27,7 @@ import { useMaevsiStore } from '~/store'
 // const ssrKey = '__URQL_DATA__'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
+  const config = useRuntimeConfig()
   const host = useHost()
   const ssr = ssrExchange({
     isClient: process.client,
@@ -118,7 +119,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         urqlReset,
         store,
         nuxtApp.ssrContext.event.res,
-        jwtData.jwtDecoded.id
+        jwtData.jwtDecoded.id as string
       )
     } else {
       await authenticationAnonymous(

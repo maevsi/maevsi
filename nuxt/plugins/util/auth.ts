@@ -3,7 +3,7 @@ import { IncomingMessage, ServerResponse } from 'node:http'
 import { Client } from '@urql/vue'
 import consola from 'consola'
 import { parse, serialize } from 'cookie'
-import { decode, JwtPayload } from 'jsonwebtoken'
+import { decodeJwt } from 'jose'
 import { Store } from 'pinia'
 
 import { useNuxtApp, useRequestEvent } from '#app'
@@ -57,7 +57,7 @@ export function jwtFromCookie(req: IncomingMessage) {
     const cookies = parse(req.headers.cookie)
 
     if (cookies[JWT_NAME]) {
-      const cookie = decode(cookies[JWT_NAME]) as JwtPayload
+      const cookie = decodeJwt(cookies[JWT_NAME])
 
       if (cookie.exp !== undefined && cookie.exp > Date.now() / 1000) {
         return {
