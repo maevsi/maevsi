@@ -276,7 +276,7 @@ export default defineComponent({
       ),
     }
     const data = reactive({
-      isStorybookActive: config.public.STORYBOOK,
+      isStorybookActive: config.public.isStorybookActive,
       locale,
       options: {
         plugins: {

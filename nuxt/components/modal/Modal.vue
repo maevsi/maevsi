@@ -108,7 +108,7 @@ export default defineComponent({
     const data = reactive({
       errors: undefined,
       isVisible: false,
-      isStorybookActive: config.public.STORYBOOK,
+      isStorybookActive: config.public.isStorybookActive,
       isSubmitting: false,
       onSubmit: () => {},
     })

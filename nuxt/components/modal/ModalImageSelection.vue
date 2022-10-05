@@ -43,7 +43,7 @@ export default defineComponent({
       }),
     }
     const data = reactive({
-      isStorybookActive: config.public.STORYBOOK,
+      isStorybookActive: config.public.isStorybookActive,
       routeParamUsername: route.params.username as string,
       selectedProfilePictureStorageKey: undefined as string | undefined,
     })
