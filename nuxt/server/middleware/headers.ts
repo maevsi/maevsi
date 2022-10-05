@@ -1,5 +1,7 @@
 import { appendHeader, defineEventHandler } from 'h3'
 
+import { getHost } from '~/plugins/util/util'
+
 function getCsp(host: string): Record<string, Array<string>> {
   const hostName = host.replace(/:[0-9]+$/, '')
   const config = useRuntimeConfig()
@@ -62,7 +64,7 @@ function getCspAsString(host: string): string {
 }
 
 export default defineEventHandler((event) => {
-  const host = useHost()
+  const host = getHost(event)
 
   appendHeader(event, 'Content-Security-Policy', getCspAsString(host))
   // appendHeader(event, 'Cross-Origin-Embedder-Policy', 'require-corp') // https://stackoverflow.com/questions/71904052/getting-notsameoriginafterdefaultedtosameoriginbycoep-error-with-helmet
