@@ -6,7 +6,7 @@
     :id-label="`input-${id}`"
     :placeholder="t('globalPlaceholderUsername')"
     :success="isValidatable && !formInput.$invalid"
-    :title="t(id.replace(/(-registration|-sign-in)$/, ''))"
+    :title="t(id)"
     type="text"
     :validation-property="formInput"
     :value="formInput"
@@ -79,7 +79,7 @@ export default defineComponent({
       type: Object as PropType<BaseValidation | undefined>,
     },
     id: {
-      required: true,
+      default: 'username',
       type: String,
     },
     isOptional: {

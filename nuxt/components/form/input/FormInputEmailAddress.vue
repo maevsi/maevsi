@@ -47,8 +47,8 @@ export default defineComponent({
       type: Object as PropType<BaseValidation | undefined>,
     },
     id: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
+      default: 'email-address',
+      type: String,
     },
     isOptional: {
       default: false,

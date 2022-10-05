@@ -52,7 +52,7 @@ import { VALIDATION_PASSWORD_LENGTH_MINIMUM } from '~/plugins/util/validation'
 export default defineComponent({
   props: {
     id: {
-      required: true,
+      default: 'password',
       type: String,
     },
     formInput: {

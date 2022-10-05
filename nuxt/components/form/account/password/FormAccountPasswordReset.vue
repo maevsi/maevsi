@@ -8,7 +8,6 @@
     @submit.prevent="submit"
   >
     <FormInputPassword
-      id="password"
       :form-input="v$.form.password"
       :title="t('passwordNew')"
       @input="form.password = $event"

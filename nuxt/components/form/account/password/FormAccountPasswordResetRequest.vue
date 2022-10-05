@@ -8,7 +8,6 @@
     @submit.prevent="submit"
   >
     <FormInputEmailAddress
-      id="email-address-password-reset-request"
       :form-input="v$.form.emailAddress"
       is-required
       :title="t('emailAddressYours')"

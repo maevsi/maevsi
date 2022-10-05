@@ -19,12 +19,10 @@
       @submit.prevent="submit"
     >
       <FormInputUsername
-        id="username-sign-in"
         :form-input="v$.form.username"
         @input="form.username = $event"
       />
       <FormInputPassword
-        id="password-sign-in"
         :form-input="v$.form.password"
         @input="form.password = $event"
       />

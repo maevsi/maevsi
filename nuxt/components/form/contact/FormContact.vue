@@ -17,7 +17,6 @@
       @input="form.id = $event"
     />
     <FormInputUsername
-      id="username"
       :form-input="v$.form.accountUsername"
       is-optional
       is-validatable
@@ -67,7 +66,6 @@
       </template>
     </FormInput>
     <FormInputEmailAddress
-      id="email-address"
       :form-input="v$.form.emailAddress"
       is-optional
       @input="form.emailAddress = $event"

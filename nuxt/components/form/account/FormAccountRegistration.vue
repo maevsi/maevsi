@@ -19,19 +19,16 @@
       @submit.prevent="submit"
     >
       <FormInputUsername
-        id="username-registration"
         :form-input="v$.form.username"
         is-validatable
         is-validation-inverted
         @input="form.username = $event"
       />
       <FormInputPassword
-        id="password-registration"
         :form-input="v$.form.password"
         @input="form.password = $event"
       />
       <FormInputEmailAddress
-        id="email-address-registration"
         :form-input="v$.form.emailAddress"
         is-required
         @input="form.emailAddress = $event"
