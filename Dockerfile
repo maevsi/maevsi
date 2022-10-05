@@ -5,10 +5,6 @@
 # `sqitch` requires at least `buster`.
 FROM node:18.8.0-slim@sha256:12b15efcc41e137ca24d9a13acade91f67c8da3729be8af48dd1dd089d0046ce AS development
 
-ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
-
-WORKDIR /srv/app/
-
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 # Update and install dependencies.
@@ -23,6 +19,10 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g pnpm
+
+WORKDIR /srv/app/
+
+ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
 
 
 ENV DOCKER=true
