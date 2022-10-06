@@ -82,17 +82,18 @@
           </AppLink>
         </FooterCategory>
         <FooterCategory :heading="t('colorScheme')">
-          <AppLink
+          <Button
             v-for="colorScheme in ['System', 'Light', 'Dark']"
             :key="colorScheme"
+            :aria-label="t(`colorScheme${colorScheme}`)"
+            is-link-colored
             :class="{
               disabled: colorMode.preference === colorScheme.toLowerCase(),
             }"
-            to=""
             @click="colorMode.preference = colorScheme.toLowerCase()"
           >
             {{ t(`colorScheme${colorScheme}`) }}
-          </AppLink>
+          </Button>
         </FooterCategory>
       </div>
       <p class="text-center text-gray-500 dark:text-gray-400">
