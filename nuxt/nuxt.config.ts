@@ -19,8 +19,9 @@ for (const exclusion of SITEMAP_EXCLUSIONS) {
 }
 
 const BASE_URL =
-  'https://' + process.env.NUXT_PUBLIC_STACK_DOMAIN ||
-  `${process.env.HOST || 'localhost'}:3000` // TODO: deprecated
+  'https://' +
+  (process.env.NUXT_PUBLIC_STACK_DOMAIN ||
+    `${process.env.HOST || 'localhost'}:3000`) // TODO: deprecated
 
 export default defineNuxtConfig({
   cookies: {
