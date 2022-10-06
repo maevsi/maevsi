@@ -34,48 +34,35 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
-
+<script setup lang="ts">
 import { getQueryString } from '~/plugins/util/util'
 
-interface Breadcrumb {
+export interface Breadcrumb {
   append: boolean
   name: string
   to: string
 }
 
-export default defineComponent({
-  name: 'MaevsiBreadcrumbs',
-  props: {
-    prefixes: {
-      default: undefined,
-      type: Array as PropType<Array<Breadcrumb>>,
-    },
-    suffixes: {
-      default: undefined,
-      type: Array as PropType<Array<Breadcrumb>>,
-    },
-  },
-  setup() {
-    const route = useRoute()
-    const localePath = useLocalePath()
-    const { t } = useI18n()
-
-    const computations = {
-      queryString: computed(() => getQueryString(route.query)),
-    }
-    const methods = {
-      localePath,
-      t,
-    }
-
-    return {
-      ...computations,
-      ...methods,
-    }
-  },
+export interface Props {
+  prefixes?: Array<Breadcrumb>
+  suffixes?: Array<Breadcrumb>
+}
+withDefaults(defineProps<Props>(), {
+  prefixes: undefined,
+  suffixes: undefined,
 })
+
+const route = useRoute()
+const localePath = useLocalePath()
+const { t } = useI18n()
+
+const queryString = computed(() => getQueryString(route.query))
+</script>
+
+<script>
+export default {
+  name: 'MaevsiBreadcrumbs',
+}
 </script>
 
 <i18n lang="yml">
