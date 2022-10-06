@@ -188,7 +188,7 @@ const jwt = store.jwt
 const selectedItem = ref<Item | undefined>()
 const uppy = ref<Uppy | undefined>()
 
-const sizeByteTotal = computed((): number | undefined => {
+const sizeByteTotal = computed(() => {
   if (!uploads.value) {
     return undefined
   }

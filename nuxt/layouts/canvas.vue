@@ -2,91 +2,86 @@
   <canvas ref="canvas" />
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  name: 'MaevsiCanvas',
-  setup() {
-    const { $moment } = useNuxtApp()
-    const head = useLocaleHead({ addSeoAttributes: true })
-    const router = useRouter()
-    const route = useRoute()
-    const { locale } = useI18n()
+<script setup lang="ts">
+// uses
+const { $moment } = useNuxtApp()
+const head = useLocaleHead({ addSeoAttributes: true })
+const router = useRouter()
+const route = useRoute()
+const { locale } = useI18n()
 
-    const refs = {
-      canvas: ref<HTMLCanvasElement>(),
-    }
-    const data = reactive({
-      ctx: undefined as CanvasRenderingContext2D | undefined | null,
-      image: undefined as HTMLImageElement | undefined,
-      imageSize: 200,
-    })
-    const methods = {
-      canvasResize() {
-        if (!data.ctx) return
+// refs
+const canvas = ref<HTMLCanvasElement>()
 
-        data.ctx.canvas.height = window.innerHeight
-        data.ctx.canvas.width = window.innerWidth
+// data
+const ctx = ref<CanvasRenderingContext2D | undefined | null>()
+const image = ref<HTMLImageElement>()
+const imageSize = 200
 
-        data.ctx.translate(
-          data.ctx.canvas.width / 2,
-          data.ctx.canvas.height / 2
-        )
-      },
-      draw() {
-        if (!data.ctx || !data.image) return
+// methods
+function canvasResize() {
+  if (!ctx.value) return
 
-        methods.clear()
-        data.ctx.drawImage(
-          data.image,
-          -(data.imageSize / 2),
-          -(data.imageSize / 2),
-          data.imageSize,
-          data.imageSize
-        )
-        data.ctx.rotate(Math.PI / 256)
-      },
-      clear() {
-        if (!data.ctx) return
+  ctx.value.canvas.height = window.innerHeight
+  ctx.value.canvas.width = window.innerWidth
 
-        data.ctx.save()
-        data.ctx.setTransform(1, 0, 0, 1, 0, 0)
-        data.ctx.clearRect(0, 0, data.ctx.canvas.width, data.ctx.canvas.height)
-        data.ctx.restore()
-      },
-    }
+  ctx.value.translate(ctx.value.canvas.width / 2, ctx.value.canvas.height / 2)
+}
+function draw() {
+  if (!ctx.value || !image.value) return
 
-    $moment.locale(locale.value)
+  clear()
+  ctx.value.drawImage(
+    image.value,
+    -(imageSize / 2),
+    -(imageSize / 2),
+    imageSize,
+    imageSize
+  )
+  ctx.value.rotate(Math.PI / 256)
+}
+function clear() {
+  if (!ctx.value) return
 
-    onMounted(() => {
-      data.image = new Image()
-      data.image.src = '/assets/static/logos/maevsi.svg'
+  ctx.value.save()
+  ctx.value.setTransform(1, 0, 0, 1, 0, 0)
+  ctx.value.clearRect(0, 0, ctx.value.canvas.width, ctx.value.canvas.height)
+  ctx.value.restore()
+}
 
-      const canvas = refs.canvas.value
-      if (!canvas) return
-
-      data.ctx = canvas.getContext('2d')
-      if (!data.ctx) return
-
-      methods.canvasResize()
-
-      window.onresize = methods.canvasResize
-      window.setInterval(() => window.requestAnimationFrame(methods.draw), 17)
-
-      const redirect = route.query.redirect
-
-      if (redirect && typeof redirect === 'string') {
-        setTimeout(() => router.replace(redirect), 1000)
-      }
-    })
-
-    useHead({
-      ...head.value,
-    })
-
-    return {
-      ...refs,
-      ...data,
-    }
-  },
+// lifecycle
+useHead({
+  ...head.value,
 })
+
+onMounted(() => {
+  image.value = new Image()
+  image.value.src = '/assets/static/logos/maevsi.svg'
+
+  const canvasLocal = canvas.value
+  if (!canvasLocal) return
+
+  ctx.value = canvasLocal.getContext('2d')
+  if (!ctx.value) return
+
+  canvasResize()
+
+  window.onresize = canvasResize
+  window.setInterval(() => window.requestAnimationFrame(draw), 17)
+
+  const redirect = route.query.redirect
+
+  if (redirect && typeof redirect === 'string') {
+    setTimeout(() => router.replace(redirect), 1000)
+  }
+})
+
+// initialization
+$moment.locale(locale.value)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiCanvas',
+}
 </script>

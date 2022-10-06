@@ -78,11 +78,10 @@
   </Form>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { minValue, required } from '@vuelidate/validators'
 import consola from 'consola'
-import { PropType } from 'vue'
 
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import { formPreSubmit } from '~/plugins/util/validation'
@@ -95,157 +94,144 @@ import {
 import { useMaevsiStore } from '~/store'
 import { Event } from '~/types/event'
 
-export default defineComponent({
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<Event>,
-    },
-  },
-  setup(props, { emit }) {
-    const store = useMaevsiStore()
-    const { executeMutation: executeMutationCreateInvitation } =
-      useCreateInvitationMutation()
-    const localePath = useLocalePath()
-    const { t } = useI18n()
+export interface Props {
+  event: Event
+}
+const props = withDefaults(defineProps<Props>(), {})
 
-    const refs = {
-      after: ref<string>(),
-    }
-    const allContactsQuery = useAllContactsQuery({
-      variables: {
-        after: refs.after,
-        authorAccountUsername: store.signedInUsername,
-        first: ITEMS_PER_PAGE_LARGE,
-      },
-    })
+const emit = defineEmits<{
+  (e: 'submitSuccess'): void
+}>()
 
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...allContactsQuery.data.value,
-          },
-          ...getApiMeta([allContactsQuery]),
-        }
-      }),
-      contacts: computed(() => allContactsQuery.data.value?.allContacts?.nodes),
-    }
-    const data = reactive({
-      form: {
-        contactId: undefined as string | undefined,
-        searchString: undefined as string | undefined,
-      },
-      isFormSent: false,
-    })
-    const rules = {
-      form: {
-        contactId: {
-          // $each: {
-          minValue: minValue(1),
-          required,
-          // },
-          // minLength: minLength(1),
-          // required,
-        },
-        searchString: {},
-      },
-    }
-    const v$ = useVuelidate(rules, data)
-    const methods = {
-      localePath,
-      selectToggle(contact: Contact) {
-        data.form.contactId = contact.id
+// uses
+const store = useMaevsiStore()
+const { executeMutation: executeMutationCreateInvitation } =
+  useCreateInvitationMutation()
+const localePath = useLocalePath()
+const { t } = useI18n()
 
-        // For multiple contact selections:
-        //
-        // const index = data.form.contactIds.indexOf(contact.nodeId)
-        // if (index === -1) {
-        //   data.form.contactIds.push(contact.nodeId)
-        // } else {
-        //   data.form.contactIds.splice(index, 1)
-        // }
-      },
-      async submit() {
-        try {
-          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
-        } catch (error) {
-          consola.debug(error)
-          return
-        }
+// refs
+const after = ref<string>()
 
-        const result = await executeMutationCreateInvitation({
-          invitationInput: {
-            contactId:
-              data.form.contactId && data.form.contactId !== ''
-                ? +data.form.contactId
-                : null,
-            eventId: +props.event.id,
-          },
-        })
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        if (!result.data) {
-          return
-        }
-
-        emit('submitSuccess')
-      },
-      t,
-    }
-    const computations = {
-      contactsFiltered: computed((): Contact[] | undefined => {
-        if (!apiData.contacts) {
-          return undefined
-        }
-
-        if (!data.form.searchString || data.form.searchString === '') {
-          return apiData.contacts.value
-        }
-
-        const searchStringParts = data.form.searchString.split(' ')
-        const allContactsFiltered = apiData.contacts.value?.filter(
-          (contact: Contact) => {
-            for (const contactProperty of [
-              ...(contact.accountUsername
-                ? [contact.accountUsername.toLowerCase()]
-                : []),
-              ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
-              ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
-            ]) {
-              for (const searchStringPart of searchStringParts) {
-                if (contactProperty.includes(searchStringPart.toLowerCase())) {
-                  return true
-                }
-              }
-            }
-
-            return false
-          }
-        )
-
-        return allContactsFiltered
-      }),
-    }
-
-    watch(allContactsQuery.error, (currentValue, _oldValue) => {
-      if (currentValue) consola.error(currentValue)
-    })
-
-    return {
-      ...refs,
-      ...apiData,
-      ...data,
-      ...methods,
-      ...computations,
-      v$,
-    }
+const allContactsQuery = useAllContactsQuery({
+  variables: {
+    after,
+    authorAccountUsername: store.signedInUsername,
+    first: ITEMS_PER_PAGE_LARGE,
   },
 })
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...allContactsQuery.data.value,
+    },
+    ...getApiMeta([allContactsQuery]),
+  }
+})
+const contacts = computed(() => allContactsQuery.data.value?.allContacts?.nodes)
+
+// data
+const form = reactive({
+  contactId: ref<string>(),
+  searchString: ref<string>(),
+})
+const isFormSent = ref(false)
+
+// methods
+function selectToggle(contact: Contact) {
+  form.contactId = contact.id
+
+  // For multiple contact selections:
+  //
+  // const index = data.form.contactIds.indexOf(contact.nodeId)
+  // if (index === -1) {
+  //   data.form.contactIds.push(contact.nodeId)
+  // } else {
+  //   data.form.contactIds.splice(index, 1)
+  // }
+}
+async function submit() {
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  const result = await executeMutationCreateInvitation({
+    invitationInput: {
+      contactId:
+        form.contactId && form.contactId !== '' ? +form.contactId : null,
+      eventId: +props.event.id,
+    },
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data) {
+    return
+  }
+
+  emit('submitSuccess')
+}
+
+// computations
+const contactsFiltered = computed(() => {
+  if (!contacts) {
+    return undefined
+  }
+
+  if (!form.searchString || form.searchString === '') {
+    return contacts.value
+  }
+
+  const searchStringParts = form.searchString.split(' ')
+  const allContactsFiltered = contacts.value?.filter((contact: Contact) => {
+    for (const contactProperty of [
+      ...(contact.accountUsername
+        ? [contact.accountUsername.toLowerCase()]
+        : []),
+      ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
+      ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
+    ]) {
+      for (const searchStringPart of searchStringParts) {
+        if (contactProperty.includes(searchStringPart.toLowerCase())) {
+          return true
+        }
+      }
+    }
+
+    return false
+  })
+
+  return allContactsFiltered
+})
+
+// lifecycle
+watch(allContactsQuery.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
+})
+
+// vuelidate
+const rules = {
+  form: {
+    contactId: {
+      // $each: {
+      minValue: minValue(1),
+      required,
+      // },
+      // minLength: minLength(1),
+      // required,
+    },
+    searchString: {},
+  },
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">

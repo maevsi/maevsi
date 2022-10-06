@@ -63,9 +63,8 @@
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import consola from 'consola'
-import debounce from 'lodash-es/debounce'
 
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'
@@ -73,113 +72,88 @@ import { useAllContactsQuery, useDeleteContactMutation } from '~/gql/generated'
 import { Contact } from '~/types/contact'
 import { useMaevsiStore } from '~/store'
 
-export default defineComponent({
-  setup() {
-    const { t } = useI18n()
-    const store = useMaevsiStore()
-    const { executeMutation: executeMutationContactDelete } =
-      useDeleteContactMutation()
+const { t } = useI18n()
+const store = useMaevsiStore()
+const { executeMutation: executeMutationContactDelete } =
+  useDeleteContactMutation()
 
-    const refs = {
-      apiContactsAfter: ref<string>(),
-    }
-    const contactsQuery = useAllContactsQuery({
-      variables: {
-        after: refs.apiContactsAfter,
-        authorAccountUsername: store.signedInUsername,
-        first: ITEMS_PER_PAGE_LARGE,
-      },
-    })
+// refs
+const after = ref<string>()
 
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...contactsQuery.data.value,
-          },
-          ...getApiMeta([contactsQuery]),
-        }
-      }),
-      contacts: computed(() => contactsQuery.data.value?.allContacts?.nodes),
-    }
-    const data = reactive({
-      formContactHeading: undefined as string | undefined,
-      pending: {
-        deletions: [] as string[],
-        edits: [] as string[],
-      },
-      selectedContact: undefined as Contact | undefined,
-    })
-    const methods = {
-      add() {
-        data.formContactHeading = t('contactAdd')
-        data.selectedContact = undefined
-        store.modalAdd({ id: 'ModalContact' })
-      },
-      async delete_(nodeId: string) {
-        data.pending.deletions.push(nodeId)
-        apiData.api.value.errors = []
-        const result = await executeMutationContactDelete({
-          nodeId,
-        })
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        data.pending.deletions.slice(data.pending.deletions.indexOf(nodeId), 1)
-
-        // if (!result.data) {
-        //   return
-        // }
-        // TODO: cache update (allContacts)
-      },
-      edit(contact: Contact) {
-        data.pending.edits.push(contact.nodeId)
-        data.formContactHeading = t('contactEdit')
-        data.selectedContact = contact
-        store.modalAdd({ id: 'ModalContact' })
-      },
-      loadMore() {
-        refs.apiContactsAfter.value =
-          apiData.api.value.data.allContacts?.pageInfo.endCursor
-      },
-      onClose() {
-        if (!data.selectedContact) return
-
-        data.pending.edits.splice(
-          data.pending.edits.indexOf(data.selectedContact.nodeId),
-          1
-        )
-      },
-      onScroll(e: Event) {
-        const scrollBar = e.target as Element
-
-        if (
-          scrollBar &&
-          scrollBar.scrollTop + scrollBar.clientHeight >= scrollBar.scrollHeight
-        ) {
-          debounce(methods.loadMore, 100)()
-        }
-      },
-      onSubmitSuccess() {
-        store.modalRemove('ModalContact')
-        // TODO: cache update (allContacts)
-      },
-      t,
-    }
-
-    watch(contactsQuery.error, (currentValue, _oldValue) => {
-      if (currentValue) consola.error(currentValue)
-    })
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
+const contactsQuery = useAllContactsQuery({
+  variables: {
+    after,
+    authorAccountUsername: store.signedInUsername,
+    first: ITEMS_PER_PAGE_LARGE,
   },
+})
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...contactsQuery.data.value,
+    },
+    ...getApiMeta([contactsQuery]),
+  }
+})
+const contacts = computed(() => contactsQuery.data.value?.allContacts?.nodes)
+
+// data
+const formContactHeading = ref<string>()
+const pending = reactive({
+  deletions: ref<string[]>([]),
+  edits: ref<string[]>([]),
+})
+const selectedContact = ref<Contact>()
+
+// methods
+function add() {
+  formContactHeading.value = t('contactAdd')
+  selectedContact.value = undefined
+  store.modalAdd({ id: 'ModalContact' })
+}
+async function delete_(nodeId: string) {
+  pending.deletions.push(nodeId)
+  api.value.errors = []
+  const result = await executeMutationContactDelete({
+    nodeId,
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  pending.deletions.slice(pending.deletions.indexOf(nodeId), 1)
+
+  // if (!result.data) {
+  //   return
+  // }
+  // TODO: cache update (allContacts)
+}
+function edit(contact: Contact) {
+  pending.edits.push(contact.nodeId)
+  formContactHeading.value = t('contactEdit')
+  selectedContact.value = contact
+  store.modalAdd({ id: 'ModalContact' })
+}
+function loadMore() {
+  after.value = api.value.data.allContacts?.pageInfo.endCursor
+}
+function onClose() {
+  if (!selectedContact.value) return
+
+  pending.edits.splice(pending.edits.indexOf(selectedContact.value.nodeId), 1)
+}
+function onSubmitSuccess() {
+  store.modalRemove('ModalContact')
+  // TODO: cache update (allContacts)
+}
+
+// lifecycle
+watch(contactsQuery.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
 })
 </script>
 

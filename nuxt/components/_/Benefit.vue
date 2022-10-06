@@ -17,22 +17,17 @@
   </section>
 </template>
 
+<script setup lang="ts">
+export interface Props {
+  description: string
+  iconPath: string
+  title: string
+}
+withDefaults(defineProps<Props>(), {})
+</script>
+
 <script lang="ts">
-export default defineComponent({
+export default {
   name: 'MaevsiBenefit',
-  props: {
-    description: {
-      required: true,
-      type: String,
-    },
-    iconPath: {
-      required: true,
-      type: String,
-    },
-    title: {
-      required: true,
-      type: String,
-    },
-  },
-})
+}
 </script>

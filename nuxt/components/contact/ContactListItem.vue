@@ -50,44 +50,24 @@
   </tr>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
-
+<script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 import { Contact } from '~/types/contact'
 
-export default defineComponent({
-  props: {
-    contact: {
-      required: true,
-      type: Object as PropType<Contact>,
-    },
-    isDeleting: {
-      default: false,
-      type: Boolean,
-    },
-    isEditing: {
-      default: false,
-      type: Boolean,
-    },
-  },
-  setup() {
-    const store = useMaevsiStore()
-    const { t } = useI18n()
-
-    const data = reactive({
-      signedInUsername: store.signedInUsername,
-    })
-    const methods = {
-      t,
-    }
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
+export interface Props {
+  contact: Contact
+  isDeleting?: boolean
+  isEditing?: boolean
+}
+withDefaults(defineProps<Props>(), {
+  isDeleting: false,
+  isEditing: false,
 })
+
+const store = useMaevsiStore()
+const { t } = useI18n()
+
+const signedInUsername = store.signedInUsername
 </script>
 
 <i18n lang="yml">

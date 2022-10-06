@@ -19,46 +19,27 @@
   </Button>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
-
-export default defineComponent({
-  props: {
-    append: {
-      default: false,
-      type: Boolean,
-    },
-    ariaLabel: {
-      required: true,
-      type: String,
-    },
-    disabled: {
-      default: false,
-      type: Boolean,
-    },
-    to: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    type: {
-      default: 'button',
-      type: String as PropType<'button' | 'submit' | 'reset' | undefined>,
-    },
-  },
-  setup() {
-    const refs = {
-      buttonRef: ref<HTMLButtonElement>(),
-    }
-    const methods = {
-      click() {
-        refs.buttonRef.value?.click()
-      },
-    }
-
-    return {
-      ...refs,
-      ...methods,
-    }
-  },
+<script setup lang="ts">
+export interface Props {
+  append?: boolean
+  ariaLabel: string
+  disabled?: boolean
+  to?: string
+  type?: 'button' | 'reset' | 'submit'
+}
+withDefaults(defineProps<Props>(), {
+  append: false,
+  disabled: false,
+  to: undefined,
+  type: 'button',
 })
+
+// const refs = {
+//   buttonRef: ref<HTMLButtonElement>(),
+// }
+// const methods = {
+//   click() {
+//     refs.buttonRef.value?.click()
+//   },
+// }
 </script>

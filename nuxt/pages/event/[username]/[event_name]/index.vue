@@ -296,7 +296,7 @@
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import consola from 'consola'
 import downloadJs from 'downloadjs'
 import DOMPurify from 'isomorphic-dompurify'
@@ -305,7 +305,6 @@ import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 import Swal from 'sweetalert2'
 
-import { Contact } from '~/types/contact'
 import { Invitation } from '~/types/invitation'
 import { append, getApiMeta } from '~/plugins/util/util'
 import { getContactName } from '~/plugins/util/model'
@@ -339,237 +338,221 @@ definePageMeta({
   ],
 })
 
-export default defineComponent({
-  name: 'IndexPage',
-  components: {
-    QrcodeVue,
-  },
-  setup() {
-    const { t } = useI18n()
-    const store = useMaevsiStore()
-    const route = useRoute()
-    const { executeMutation: executeMutationUpdateInvitationById } =
-      useUpdateInvitationByIdMutation()
-
-    const eventQuery = useEventByAuthorUsernameAndSlugQuery({
-      variables: {
-        authorUsername: route.params.username as string,
-        slug: route.params.event_name as string,
-        invitationUuid: route.query.ic,
-      },
-    })
-
-    const refs = {
-      ModalCheckInCode: ref(),
-    }
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...eventQuery.data.value,
-          },
-          ...getApiMeta([eventQuery]),
-        }
-      }),
-      event: computed(
-        () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
-      ),
-    }
-    const data = reactive({
-      contact: undefined as Contact | undefined,
-      invitation: undefined as Invitation | undefined,
-      jwtDecoded: store.jwtDecoded,
-      routeParamUsername: route.params.username as string,
-      routeQuery: route.query,
-      routeQueryIc: route.query.ic,
-      signedInUsername: store.signedInUsername,
-    })
-    const methods = {
-      accept() {
-        if (data.invitation === undefined) {
-          return
-        }
-        methods.update(data.invitation.id, {
-          feedback: InvitationFeedback.Accepted,
-        })
-      },
-      append,
-      cancel() {
-        if (data.invitation === undefined) {
-          return
-        }
-        methods.update(data.invitation.id, {
-          feedback: InvitationFeedback.Canceled,
-        })
-      },
-      closeModalInvitationQrCode() {
-        refs.ModalCheckInCode.value.close()
-      },
-      // paperInvitationFeedback() {
-      //   if (data.invitation === undefined) {
-      //     return
-      //   }
-      //   const invitation = data.invitation as Invitation
-      //   methods.update(invitation.id, {
-      //     feedbackPaper: invitation.feedbackPaper,
-      //   })
-      // },
-      downloadIcal() {
-        const xhr = new XMLHttpRequest()
-        const fileName =
-          route.params.username + '_' + route.params.event_name + '.ics'
-
-        xhr.open('POST', '/api/ical', true)
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
-        xhr.onreadystatechange = () => {
-          if (xhr.readyState === 4) {
-            switch (xhr.status) {
-              case 200:
-                downloadJs(
-                  new Blob([xhr.responseText]),
-                  fileName,
-                  'text/calendar'
-                )
-                return
-              default:
-                Swal.fire({
-                  icon: 'error',
-                  text: t('iCalUnexpectedStatusCode', {
-                    statusCode: xhr.status,
-                  }) as string,
-                  title: t('globalStatusError'),
-                })
-            }
-          }
-        }
-        xhr.send(
-          JSON.stringify({
-            contact: data.contact,
-            event: apiData.event,
-            invitation: data.invitation,
-          })
-        )
-      },
-      print() {
-        prntr({
-          printable: 'qrCode',
-          type: 'html',
-        })
-      },
-      qrCodeShow() {
-        store.modalAdd({ id: 'ModalInvitationQrCode' })
-      },
-      t,
-      async update(id: string, invitationPatch: Partial<Invitation>) {
-        const result = await executeMutationUpdateInvitationById({
-          id,
-          invitationPatch,
-        })
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        if (!result.data) {
-          return
-        }
-
-        Swal.fire({
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 1500,
-          text: t('success') as string,
-          timerProgressBar: true,
-          title: t('saved'),
-        })
-        // TODO: cache update (event)
-      },
-    }
-    const computations = {
-      contact: computed((): Contact | undefined => {
-        return data.invitation?.contactByContactId
-      }),
-      contactName: computed(() => {
-        return data.invitation?.contactByContactId
-          ? getContactName(data.invitation?.contactByContactId)
-          : undefined
-      }),
-      eventDescription: computed(() => {
-        return apiData.event.value?.description || methods.t('globalLoading')
-      }),
-      eventDescriptionTemplate: computed(() => {
-        if (!apiData.event.value?.description) return
-
-        return DOMPurify.sanitize(
-          mustache.render(apiData.event.value.description, {
-            contact: data.contact,
-            event: apiData.event,
-            invitation: data.invitation,
-          })
-        )
-      }),
-      invitation: computed((): Invitation | undefined => {
-        const invitations = apiData.event?.value?.invitationsByEventId.nodes
-
-        const invitationsMatchingUuid =
-          store.signedInUsername === route.params.username && invitations
-            ? invitations.filter(
-                (invitation: Invitation) => invitation.uuid === route.query.ic
-              )
-            : invitations
-
-        if (invitationsMatchingUuid?.length) {
-          if (invitationsMatchingUuid.length > 1) {
-            Swal.fire({
-              icon: 'warning',
-              text: t('invitationCodeMultipleWarning') as string,
-              title: t('globalStatusWarning'),
-            })
-          }
-
-          return invitationsMatchingUuid[0]
-        }
-
-        return undefined
-      }),
-      title: computed(() => {
-        return apiData.event?.value?.name || methods.t('globalLoading')
-      }),
-    }
-
-    watch(eventQuery.error, (currentValue, _oldValue) => {
-      if (currentValue) consola.error(currentValue)
-    })
-
-    useHeadDefault(computations.title.value, {
-      meta: [
-        {
-          hid: 'description',
-          property: 'description',
-          content: computations.eventDescription.value,
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: computations.eventDescription.value,
-        },
-        {
-          hid: 'twitter:description',
-          property: 'twitter:description',
-          content: computations.eventDescription.value,
-        },
-      ],
-    })
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      ...computations,
-    }
+// uses
+const { t } = useI18n()
+const store = useMaevsiStore()
+const route = useRoute()
+const { executeMutation: executeMutationUpdateInvitationById } =
+  useUpdateInvitationByIdMutation()
+const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+  variables: {
+    authorUsername: route.params.username as string,
+    slug: route.params.event_name as string,
+    invitationUuid: route.query.ic,
   },
 })
+
+// refs
+const ModalCheckInCode = ref()
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...eventQuery.data.value,
+    },
+    ...getApiMeta([eventQuery]),
+  }
+})
+const event = computed(
+  () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
+)
+
+// data
+const jwtDecoded = store.jwtDecoded
+const routeParamUsername = route.params.username as string
+const routeQuery = route.query
+const routeQueryIc = route.query.ic
+const signedInUsername = store.signedInUsername
+
+// methods
+function accept() {
+  if (invitation.value === undefined) {
+    return
+  }
+  update(invitation.value.id, {
+    feedback: InvitationFeedback.Accepted,
+  })
+}
+function cancel() {
+  if (invitation.value === undefined) {
+    return
+  }
+  update(invitation.value.id, {
+    feedback: InvitationFeedback.Canceled,
+  })
+}
+function closeModalInvitationQrCode() {
+  ModalCheckInCode.value.close()
+}
+// paperInvitationFeedback() {
+//   if (data.invitation === undefined) {
+//     return
+//   }
+//   const invitation = data.invitation as Invitation
+//   methods.update(invitation.id, {
+//     feedbackPaper: invitation.feedbackPaper,
+//   })
+// },
+function downloadIcal() {
+  const xhr = new XMLHttpRequest()
+  const fileName =
+    route.params.username + '_' + route.params.event_name + '.ics'
+
+  xhr.open('POST', '/api/ical', true)
+  xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4) {
+      switch (xhr.status) {
+        case 200:
+          downloadJs(new Blob([xhr.responseText]), fileName, 'text/calendar')
+          return
+        default:
+          Swal.fire({
+            icon: 'error',
+            text: t('iCalUnexpectedStatusCode', {
+              statusCode: xhr.status,
+            }) as string,
+            title: t('globalStatusError'),
+          })
+      }
+    }
+  }
+  xhr.send(
+    JSON.stringify({
+      contact: contact.value,
+      event,
+      invitation: invitation.value,
+    })
+  )
+}
+function print() {
+  prntr({
+    printable: 'qrCode',
+    type: 'html',
+  })
+}
+function qrCodeShow() {
+  store.modalAdd({ id: 'ModalInvitationQrCode' })
+}
+async function update(id: string, invitationPatch: Partial<Invitation>) {
+  const result = await executeMutationUpdateInvitationById({
+    id,
+    invitationPatch,
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data) {
+    return
+  }
+
+  Swal.fire({
+    icon: 'success',
+    showConfirmButton: false,
+    timer: 1500,
+    text: t('success') as string,
+    timerProgressBar: true,
+    title: t('saved'),
+  })
+  // TODO: cache update (event)
+}
+
+// computations
+const contact = computed(() => {
+  return invitation?.value?.contactByContactId
+})
+const contactName = computed(() => {
+  return invitation?.value?.contactByContactId
+    ? getContactName(invitation?.value.contactByContactId)
+    : undefined
+})
+const eventDescription = computed(() => {
+  return event.value?.description || t('globalLoading')
+})
+const eventDescriptionTemplate = computed(() => {
+  if (!event.value?.description) return
+
+  return DOMPurify.sanitize(
+    mustache.render(event.value.description, {
+      contact: contact.value,
+      event,
+      invitation: invitation.value,
+    })
+  )
+})
+const invitation = computed(() => {
+  const invitations = event?.value?.invitationsByEventId.nodes
+
+  const invitationsMatchingUuid =
+    store.signedInUsername === route.params.username && invitations
+      ? invitations.filter(
+          (invitation: Invitation) => invitation.uuid === route.query.ic
+        )
+      : invitations
+
+  if (invitationsMatchingUuid?.length) {
+    if (invitationsMatchingUuid.length > 1) {
+      Swal.fire({
+        icon: 'warning',
+        text: t('invitationCodeMultipleWarning') as string,
+        title: t('globalStatusWarning'),
+      })
+    }
+
+    return invitationsMatchingUuid[0]
+  }
+
+  return undefined
+})
+const title = computed(() => {
+  return event?.value?.name || t('globalLoading')
+})
+
+// lifecycle
+watch(eventQuery.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
+})
+
+// initialization
+useHeadDefault(title.value, {
+  meta: [
+    {
+      hid: 'description',
+      property: 'description',
+      content: eventDescription.value,
+    },
+    {
+      hid: 'og:description',
+      property: 'og:description',
+      content: eventDescription.value,
+    },
+    {
+      hid: 'twitter:description',
+      property: 'twitter:description',
+      content: eventDescription.value,
+    },
+  ],
+})
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

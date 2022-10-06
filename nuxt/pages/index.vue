@@ -146,56 +146,50 @@
   </div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  name: 'IndexPage',
-  setup() {
-    const { t } = useI18n()
-    const localePath = useLocalePath()
+<script setup lang="ts">
+// uses
+const { t } = useI18n()
+const localePath = useLocalePath()
 
-    const refs = {
-      sectionSteps: ref<HTMLElement>(),
-    }
+// refs
+const sectionSteps = ref<HTMLElement>()
 
-    const data = reactive({
-      isScrollHintShown: false,
-      title: t('title', {
-        easy: t('titleEasy'),
-        fast: t('titleFast'),
-        professional: t('titleProfessional'),
-      }),
-    })
-    const methods = {
-      hideScrollHint() {
-        data.isScrollHintShown = false
-      },
-      localePath,
-      scrollToSteps() {
-        refs.sectionSteps.value?.scrollIntoView({ behavior: 'smooth' })
-      },
-      t,
-    }
-
-    useHeadDefault(data.title)
-
-    onMounted(() => {
-      if (window.pageYOffset === 0) {
-        data.isScrollHintShown = true
-
-        window.addEventListener('scroll', methods.hideScrollHint)
-      }
-    })
-
-    onBeforeUnmount(() => {
-      window.removeEventListener('scroll', methods.hideScrollHint)
-    })
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
+// data
+const isScrollHintShown = ref(false)
+const title = t('title', {
+  easy: t('titleEasy'),
+  fast: t('titleFast'),
+  professional: t('titleProfessional'),
 })
+
+// methods
+function hideScrollHint() {
+  isScrollHintShown.value = false
+}
+function scrollToSteps() {
+  sectionSteps.value?.scrollIntoView({ behavior: 'smooth' })
+}
+
+// lifecycle
+onMounted(() => {
+  if (window.pageYOffset === 0) {
+    isScrollHintShown.value = true
+
+    window.addEventListener('scroll', hideScrollHint)
+  }
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', hideScrollHint)
+})
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

@@ -94,36 +94,23 @@
   </nav>
 </template>
 
-<script lang="ts">
-import { useMaevsiStore } from '~/store'
-
-export default defineComponent({
-  name: 'MaevsiMenu',
-  props: {
-    isClosable: {
-      default: false,
-      type: Boolean,
-    },
-  },
-  setup() {
-    const store = useMaevsiStore()
-    const localePath = useLocalePath()
-    const { t } = useI18n()
-
-    const data = reactive({
-      signedInUsername: store.signedInUsername,
-    })
-    const methods = {
-      localePath,
-      t,
-    }
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
+<script setup lang="ts">
+export interface Props {
+  isClosable?: boolean
+}
+withDefaults(defineProps<Props>(), {
+  isClosable: false,
 })
+
+// uses
+const localePath = useLocalePath()
+const { t } = useI18n()
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiMenu',
+}
 </script>
 
 <i18n lang="yml">

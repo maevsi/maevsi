@@ -181,7 +181,7 @@
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import {
   ArcElement,
   CategoryScale,
@@ -194,7 +194,6 @@ import {
 } from 'chart.js'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { PropType } from 'vue'
 import { Doughnut } from 'vue-chartjs'
 
 import { copyText, getApiMeta } from '~/plugins/util/util'
@@ -208,6 +207,198 @@ import {
 import { useMaevsiStore } from '~/store'
 import { Event } from '~/types/event'
 
+export interface Props {
+  event: Event
+}
+const props = withDefaults(defineProps<Props>(), {})
+
+const { $colorMode } = useNuxtApp()
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
+const store = useMaevsiStore()
+const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
+const inviteMutation = useInviteMutation()
+const config = useRuntimeConfig()
+
+// refs
+const after = ref<string>()
+const doughnut = ref()
+
+const invitationsQuery = useAllInvitationsQuery({
+  variables: {
+    after,
+    eventId: +props.event.id,
+    first: ITEMS_PER_PAGE_LARGE,
+  },
+})
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...invitationsQuery.data.value,
+    },
+    ...getApiMeta([
+      deleteInvitationByUuidMutation,
+      inviteMutation,
+      invitationsQuery,
+    ]),
+  }
+})
+const invitations = computed(
+  () => invitationsQuery.data.value?.allInvitations?.nodes
+)
+
+// data
+const isStorybookActive = config.public.isStorybookActive
+const options = {
+  plugins: {
+    legend: {
+      labels: {
+        font: {
+          fontFamily:
+            'Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+          size: 16,
+        },
+      },
+      onClick: () => {},
+    },
+  },
+}
+const pending = reactive({
+  deletions: ref<string[]>([]),
+  edits: ref<string[]>([]),
+  sends: ref<string[]>([]),
+})
+
+// methods
+function add() {
+  store.modalAdd({ id: 'ModalInvitation' })
+}
+function copyLink(invitation: Invitation): void {
+  if (!process.browser) return
+
+  copyText(
+    `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
+      invitation.uuid
+    }`
+  ).then(() => {
+    Swal.fire({
+      icon: 'success',
+      text: t('copySuccess') as string,
+      timer: 3000,
+      timerProgressBar: true,
+      title: t('copied'),
+    })
+  })
+}
+async function delete_(uuid: string) {
+  pending.deletions.push(uuid)
+  api.value.errors = []
+
+  const result = await deleteInvitationByUuidMutation.executeMutation({
+    uuid,
+  })
+
+  pending.deletions.splice(pending.deletions.indexOf(uuid), 1)
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  // if (!result.data) {
+  //   return
+  // }
+  // TODO: cache update (allInvitations)
+}
+function loadMore() {}
+function onSubmitSuccess() {
+  store.modalRemove('ModalInvitation')
+  // TODO: cache update (allInvitations)
+}
+async function send(invitation: any) {
+  pending.sends.push(invitation.uuid)
+  api.value.errors = []
+
+  const result = await inviteMutation.executeMutation({
+    invitationId: invitation.id,
+    language: locale.value,
+  })
+
+  pending.sends.splice(pending.sends.indexOf(invitation.uuid), 1)
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data) {
+    return
+  }
+
+  Swal.fire({
+    icon: 'success',
+    text: t('sendSuccess') as string,
+    timer: 3000,
+    timerProgressBar: true,
+    title: t('sent'),
+  })
+  // TODO: cache update (allInvitations)
+}
+
+// computations
+const dataComputed = computed(() => {
+  const datasetData = [0, 0, 0]
+
+  if (invitations.value) {
+    for (const invitation of invitations.value) {
+      switch (invitation.feedback) {
+        case 'ACCEPTED':
+          datasetData[0] += 1
+          break
+        case 'CANCELED':
+          datasetData[1] = datasetData[1] + 1
+          break
+        case null:
+          datasetData[2] = datasetData[2] + 1
+          break
+        default:
+          consola.error('Unexpected invitation type.')
+      }
+    }
+  }
+
+  return {
+    labels: [t('accepted'), t('canceled'), t('noFeedback')],
+    datasets: [
+      {
+        data: datasetData,
+        backgroundColor: ['#00FF00', '#FF0000', '#888888'],
+      },
+    ],
+  }
+})
+
+// lifecycle
+onMounted(() => {
+  Chart.defaults.color = () => ($colorMode.value === 'dark' ? '#fff' : '#000')
+})
+
+watch(
+  $colorMode,
+  (_currentValue, _oldValue) => {
+    doughnut.value.getCurrentChart()?.update()
+  },
+  { deep: true }
+)
+
+watch(invitationsQuery.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
+})
+
+// initialization
+
 Chart.register(
   ArcElement,
   CategoryScale,
@@ -217,219 +408,6 @@ Chart.register(
   Tooltip,
   Legend
 )
-
-export default defineComponent({
-  components: {
-    Doughnut,
-  },
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<Event>,
-    },
-  },
-  setup(props) {
-    const { $colorMode } = useNuxtApp()
-    const { locale, t } = useI18n()
-    const localePath = useLocalePath()
-    const store = useMaevsiStore()
-    const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
-    const inviteMutation = useInviteMutation()
-    const config = useRuntimeConfig()
-
-    const refs = {
-      apiContactsAfter: ref<string>(),
-      doughnut: ref(),
-    }
-    const invitationsQuery = useAllInvitationsQuery({
-      variables: {
-        after: refs.apiContactsAfter,
-        eventId: +props.event.id,
-        first: ITEMS_PER_PAGE_LARGE,
-      },
-    })
-
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...invitationsQuery.data.value,
-          },
-          ...getApiMeta([
-            deleteInvitationByUuidMutation,
-            inviteMutation,
-            invitationsQuery,
-          ]),
-        }
-      }),
-      invitations: computed(
-        () => invitationsQuery.data.value?.allInvitations?.nodes
-      ),
-    }
-    const data = reactive({
-      isStorybookActive: config.public.isStorybookActive,
-      locale,
-      options: {
-        plugins: {
-          legend: {
-            labels: {
-              font: {
-                fontFamily:
-                  'Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-                size: 16,
-              },
-            },
-            onClick: null,
-          },
-        },
-      },
-      pending: {
-        deletions: [] as string[],
-        edits: [] as string[],
-        sends: [] as string[],
-      },
-    })
-    const methods = {
-      add() {
-        store.modalAdd({ id: 'ModalInvitation' })
-      },
-      copyLink(invitation: Invitation): void {
-        if (!process.browser) return
-
-        copyText(
-          `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
-            invitation.uuid
-          }`
-        ).then(() => {
-          Swal.fire({
-            icon: 'success',
-            text: t('copySuccess') as string,
-            timer: 3000,
-            timerProgressBar: true,
-            title: t('copied'),
-          })
-        })
-      },
-      async delete_(uuid: string) {
-        data.pending.deletions.push(uuid)
-        apiData.api.value.errors = []
-
-        const result = await deleteInvitationByUuidMutation.executeMutation({
-          uuid,
-        })
-
-        data.pending.deletions.splice(data.pending.deletions.indexOf(uuid), 1)
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        // if (!result.data) {
-        //   return
-        // }
-        // TODO: cache update (allInvitations)
-      },
-      localePath,
-      loadMore() {},
-      onSubmitSuccess() {
-        store.modalRemove('ModalInvitation')
-        // TODO: cache update (allInvitations)
-      },
-      async send(invitation: any) {
-        data.pending.sends.push(invitation.uuid)
-        apiData.api.value.errors = []
-
-        const result = await inviteMutation.executeMutation({
-          invitationId: invitation.id,
-          language: locale.value,
-        })
-
-        data.pending.sends.splice(
-          data.pending.sends.indexOf(invitation.uuid),
-          1
-        )
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        if (!result.data) {
-          return
-        }
-
-        Swal.fire({
-          icon: 'success',
-          text: t('sendSuccess') as string,
-          timer: 3000,
-          timerProgressBar: true,
-          title: t('sent'),
-        })
-        // TODO: cache update (allInvitations)
-      },
-      t,
-    }
-    const computations = {
-      dataComputed: computed(() => {
-        const datasetData = [0, 0, 0]
-
-        if (apiData.invitations.value) {
-          for (const invitation of apiData.invitations.value) {
-            switch (invitation.feedback) {
-              case 'ACCEPTED':
-                datasetData[0] += 1
-                break
-              case 'CANCELED':
-                datasetData[1] = datasetData[1] + 1
-                break
-              case null:
-                datasetData[2] = datasetData[2] + 1
-                break
-              default:
-                consola.error('Unexpected invitation type.')
-            }
-          }
-        }
-
-        return {
-          labels: [t('accepted'), t('canceled'), t('noFeedback')],
-          datasets: [
-            {
-              data: datasetData,
-              backgroundColor: ['#00FF00', '#FF0000', '#888888'],
-            },
-          ],
-        }
-      }),
-    }
-
-    onMounted(() => {
-      Chart.defaults.color = () =>
-        $colorMode.value === 'dark' ? '#fff' : '#000'
-    })
-
-    watch(
-      $colorMode,
-      (_currentValue, _oldValue) => {
-        refs.doughnut.value.getCurrentChart()?.update()
-      },
-      { deep: true }
-    )
-
-    watch(invitationsQuery.error, (currentValue, _oldValue) => {
-      if (currentValue) consola.error(currentValue)
-    })
-
-    return {
-      ...apiData,
-      ...refs,
-      ...data,
-      ...methods,
-      ...computations,
-    }
-  },
-})
 </script>
 
 <i18n lang="yml">

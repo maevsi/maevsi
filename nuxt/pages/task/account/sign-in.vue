@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 
 definePageMeta({
@@ -32,29 +32,23 @@ definePageMeta({
   ],
 })
 
-export default defineComponent({
+// uses
+const route = useRoute()
+const { t } = useI18n()
+
+// data
+const routeQueryReferrer = route.query.referrer
+const routeQueryIsRedirectNoticeHidden = route.query.isRedirectNoticeHidden
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
   name: 'IndexPage',
-  setup() {
-    const route = useRoute()
-    const { t } = useI18n()
-
-    const data = reactive({
-      routeQueryReferrer: route.query.referrer,
-      routeQueryIsRedirectNoticeHidden: route.query.isRedirectNoticeHidden,
-      title: t('title'),
-    })
-    const methods = {
-      t,
-    }
-
-    useHeadDefault(data.title)
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
-})
+}
 </script>
 
 <i18n lang="yml">

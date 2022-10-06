@@ -7,27 +7,21 @@
   </div>
 </template>
 
+<script setup lang="ts">
+// uses
+const { t } = useI18n()
+
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
 <script lang="ts">
-export default defineComponent({
+export default {
   name: 'IndexPage',
-  setup() {
-    const { t } = useI18n()
-
-    const data = reactive({
-      title: t('title'),
-    })
-    const methods = {
-      t,
-    }
-
-    useHeadDefault(data.title)
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
-})
+}
 </script>
 
 <i18n lang="yml">

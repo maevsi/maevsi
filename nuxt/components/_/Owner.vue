@@ -11,31 +11,23 @@
   </i18n-t>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  name: 'MaevsiOwner',
-  props: {
-    link: {
-      default: false,
-      type: Boolean,
-    },
-    username: {
-      required: true,
-      type: String,
-    },
-  },
-  setup() {
-    const localePath = useLocalePath()
-
-    const methods = {
-      localePath,
-    }
-
-    return {
-      ...methods,
-    }
-  },
+<script setup lang="ts">
+export interface Props {
+  link?: boolean
+  username: string
+}
+withDefaults(defineProps<Props>(), {
+  link: false,
 })
+
+// uses
+const localePath = useLocalePath()
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiOwner',
+}
 </script>
 
 <i18n lang="yml">

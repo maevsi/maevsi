@@ -71,128 +71,66 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import consola from 'consola'
-import { PropType } from 'vue'
 
 import { Modal } from '~/types/modal'
 import { useMaevsiStore } from '~/store'
 
-export default defineComponent({
-  name: 'MaevsiModal',
-  props: {
-    // contentBody is provided by the default slot above.
-    id: {
-      default: 'ModalGlobal',
-      type: String,
-    },
-    isSubmitDisabled: {
-      default: false,
-      type: Boolean,
-    },
-    submitName: {
-      default: undefined,
-      type: String,
-    },
-    submitTaskProvider: {
-      default: () => Promise.resolve(),
-      type: Function as PropType<() => Promise<any>>,
-    },
-  },
-  setup(props, { emit }) {
-    const store = useMaevsiStore()
-    const config = useRuntimeConfig()
-    const { t } = useI18n()
-
-    const data = reactive({
-      errors: undefined,
-      isVisible: false,
-      isStorybookActive: config.public.isStorybookActive,
-      isSubmitting: false,
-      onSubmit: () => {},
-    })
-    const computations = {
-      contentBodyComputed: computed(() => {
-        return getModalsFiltered(store.modals, props.id)?.contentBody // The default slot above is used as alternative.
-      }),
-      isVisibleComputed: computed(() => {
-        return (
-          getModalsFiltered(store.modals, props.id)?.isVisible || data.isVisible
-        )
-      }),
-      onSubmitComputed: computed(() => {
-        return (
-          getModalsFiltered(store.modals, props.id)?.onSubmit || data.onSubmit
-        )
-      }),
-      modalComputed: computed(() => {
-        return getModalsFiltered(store.modals, props.id)
-      }),
-    }
-    const methods = {
-      close() {
-        // NOT = "cancel"! Used by `submit` too.
-
-        if (computations.modalComputed) {
-          store.modalRemove(props.id)
-        } else {
-          data.isVisible = false
-        }
-      },
-      modalKeydowns(e: KeyboardEvent) {
-        if (!computations.isVisibleComputed) {
-          return
-        }
-
-        switch (e.key) {
-          // // Temporarily disabled until https://github.com/maevsi/maevsi/issues/765
-          // case 'Enter': // Enter
-          //   if (!data.isSubmitting && !props.isSubmitDisabled) {
-          //     methods.submit()
-          //   }
-          //   break
-          case 'Escape': // Escape
-            methods.close()
-            break
-        }
-      },
-      async submit() {
-        data.isSubmitting = true
-
-        try {
-          const value = await props.submitTaskProvider()
-          emit('submitSuccess', value)
-          computations.onSubmitComputed.value()
-          methods.close()
-        } catch (errors: any) {
-          data.errors = errors
-          consola.error(errors)
-        }
-
-        data.isSubmitting = false
-      },
-      t,
-    }
-
-    watch(computations.isVisibleComputed, (newValue: boolean, _oldvalue) => {
-      if (newValue) {
-        window.addEventListener('keydown', methods.modalKeydowns)
-      } else {
-        window.removeEventListener('keydown', methods.modalKeydowns)
-
-        data.errors = undefined
-        emit('close')
-      }
-    })
-
-    return {
-      ...data,
-      ...computations,
-      ...methods,
-    }
-  },
+export interface Props {
+  id?: string
+  isSubmitDisabled?: boolean
+  submitName?: string
+  submitTaskProvider?: () => Promise<any>
+}
+const props = withDefaults(defineProps<Props>(), {
+  id: 'ModalGlobal',
+  isSubmitDisabled: false,
+  submitName: undefined,
+  submitTaskProvider: () => Promise.resolve(),
 })
 
+const emit = defineEmits<{
+  (e: 'close'): void
+  (e: 'submitSuccess', submitSuccess: any): void
+}>()
+
+// uses
+const store = useMaevsiStore()
+const config = useRuntimeConfig()
+const { t } = useI18n()
+
+// data
+const errors = ref()
+const isVisible = ref(false)
+const isStorybookActive = config.public.isStorybookActive
+const isSubmitting = ref(false)
+const onSubmit = ref(() => {})
+
+// computations = {
+const contentBodyComputed = computed(() => {
+  return getModalsFiltered(store.modals, props.id)?.contentBody // The default slot above is used as alternative.
+})
+const isVisibleComputed = computed(() => {
+  return getModalsFiltered(store.modals, props.id)?.isVisible || isVisible.value
+})
+const onSubmitComputed = computed(() => {
+  return getModalsFiltered(store.modals, props.id)?.onSubmit || onSubmit.value
+})
+const modalComputed = computed(() => {
+  return getModalsFiltered(store.modals, props.id)
+})
+
+// methods
+function close() {
+  // NOT = "cancel"! Used by `submit` too.
+
+  if (modalComputed.value) {
+    store.modalRemove(props.id)
+  } else {
+    isVisible.value = false
+  }
+}
 function getModalsFiltered(modals: Modal[], id: string) {
   if (!modals || modals.length === 0) {
     return undefined
@@ -205,6 +143,56 @@ function getModalsFiltered(modals: Modal[], id: string) {
   }
 
   return modalsFiltered[0]
+}
+function modalKeydowns(e: KeyboardEvent) {
+  if (!isVisibleComputed.value) {
+    return
+  }
+
+  switch (e.key) {
+    // // Temporarily disabled until https://github.com/maevsi/maevsi/issues/765
+    // case 'Enter': // Enter
+    //   if (!data.isSubmitting && !props.isSubmitDisabled) {
+    //     methods.submit()
+    //   }
+    //   break
+    case 'Escape': // Escape
+      close()
+      break
+  }
+}
+async function submit() {
+  isSubmitting.value = true
+
+  try {
+    const value = await props.submitTaskProvider()
+    emit('submitSuccess', value)
+    onSubmitComputed.value()
+    close()
+  } catch (errorsLocal: any) {
+    errors.value = errorsLocal
+    consola.error(errorsLocal)
+  }
+
+  isSubmitting.value = false
+}
+
+// lifecycle
+watch(isVisibleComputed, (newValue: boolean, _oldvalue) => {
+  if (newValue) {
+    window.addEventListener('keydown', modalKeydowns)
+  } else {
+    window.removeEventListener('keydown', modalKeydowns)
+
+    errors.value = undefined
+    emit('close')
+  }
+})
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiModal',
 }
 </script>
 

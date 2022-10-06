@@ -36,45 +36,24 @@
   </FormInput>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
-import { PropType } from 'vue'
 
-export default defineComponent({
-  props: {
-    formInput: {
-      required: true,
-      type: Object as PropType<BaseValidation | undefined>,
-    },
-    id: {
-      default: 'email-address',
-      type: String,
-    },
-    isOptional: {
-      default: false,
-      type: Boolean,
-    },
-    isRequired: {
-      default: false,
-      type: Boolean,
-    },
-    title: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-  },
-  setup() {
-    const { t } = useI18n()
-
-    const methods = {
-      t,
-    }
-
-    return {
-      ...methods,
-    }
-  },
+export interface Props {
+  formInput: BaseValidation
+  id?: string
+  isOptional?: boolean
+  isRequired?: boolean
+  title?: string
+}
+withDefaults(defineProps<Props>(), {
+  id: 'email-address',
+  isOptional: false,
+  isRequired: false,
+  title: undefined,
 })
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

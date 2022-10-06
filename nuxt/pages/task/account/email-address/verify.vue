@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
 
@@ -30,57 +30,52 @@ definePageMeta({
   ],
 })
 
-export default defineComponent({
-  name: 'IndexPage',
-  setup() {
-    const localePath = useLocalePath()
-    const { t } = useI18n()
-    const route = useRoute()
-    const accountEmailAddressVerificationMutation =
-      useAccountEmailAddressVerificationMutation()
+const localePath = useLocalePath()
+const { t } = useI18n()
+const route = useRoute()
+const accountEmailAddressVerificationMutation =
+  useAccountEmailAddressVerificationMutation()
 
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...accountEmailAddressVerificationMutation.data.value,
-          },
-          ...getApiMeta([accountEmailAddressVerificationMutation]),
-        }
-      }),
-    }
-    const data = reactive({
-      title: t('title'),
-    })
-
-    accountEmailAddressVerificationMutation
-      .executeMutation({
-        code: route.query.code,
-      })
-      .then((result) => {
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        } else {
-          Swal.fire({
-            icon: 'success',
-            text: t('verifiedBody') as string,
-            title: t('verified'),
-          })
-          navigateTo({
-            path: localePath(`/task/account/sign-in`),
-          })
-        }
-      })
-
-    useHeadDefault(data.title)
-
-    return {
-      ...apiData,
-      ...data,
-    }
-  },
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...accountEmailAddressVerificationMutation.data.value,
+    },
+    ...getApiMeta([accountEmailAddressVerificationMutation]),
+  }
 })
+
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+accountEmailAddressVerificationMutation
+  .executeMutation({
+    code: route.query.code,
+  })
+  .then((result) => {
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    } else {
+      Swal.fire({
+        icon: 'success',
+        text: t('verifiedBody') as string,
+        title: t('verified'),
+      })
+      navigateTo({
+        path: localePath(`/task/account/sign-in`),
+      })
+    }
+  })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

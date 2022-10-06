@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { REGEX_SLUG } from '~/plugins/util/validation'
 
 definePageMeta({
@@ -29,43 +29,36 @@ definePageMeta({
   ],
 })
 
-export default defineComponent({
-  name: 'IndexPage',
-  setup() {
-    const { t } = useI18n()
-    const route = useRoute()
-    const localePath = useLocalePath()
+// uses
+const { t } = useI18n()
+const route = useRoute()
+const localePath = useLocalePath()
 
-    const data = reactive({
-      routeParamUsername: route.params.username as string,
-      title: t('title', { name: route.params.username }),
-    })
-    const methods = {
-      localePath,
-      t,
-    }
+// data
+const routeParamUsername = route.params.username as string
+const title = t('title', { name: route.params.username })
 
-    useHeadDefault(data.title, {
-      meta: [
-        {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'profile',
-        },
-        {
-          hid: 'profile:username',
-          property: 'profile:username',
-          content: route.params.username,
-        },
-      ],
-    })
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
+// initialization
+useHeadDefault(title, {
+  meta: [
+    {
+      hid: 'og:type',
+      property: 'og:type',
+      content: 'profile',
+    },
+    {
+      hid: 'profile:username',
+      property: 'profile:username',
+      content: route.params.username,
+    },
+  ],
 })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

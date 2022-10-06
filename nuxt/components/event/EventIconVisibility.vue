@@ -5,30 +5,16 @@
   <IconBug v-else :title="t('bug')" />
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  props: {
-    isArchived: {
-      default: false,
-      type: Boolean,
-    },
-    visibility: {
-      required: true,
-      type: String,
-    },
-  },
-  setup() {
-    const { t } = useI18n()
-
-    const methods = {
-      t,
-    }
-
-    return {
-      ...methods,
-    }
-  },
+<script setup lang="ts">
+export interface Props {
+  isArchived?: boolean
+  visibility: string
+}
+withDefaults(defineProps<Props>(), {
+  isArchived: false,
 })
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

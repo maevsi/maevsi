@@ -48,51 +48,36 @@
   </li>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
-import { PropType } from 'vue'
 
 import { Event } from '~/types/event'
 
-export default defineComponent({
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<Event>,
-    },
-  },
-  setup(props) {
-    const localePath = useLocalePath()
-    const { t } = useI18n()
+export interface Props {
+  event: Event
+}
+const props = withDefaults(defineProps<Props>(), {})
 
-    const methods = {
-      localePath,
-      t,
-    }
-    const computations = {
-      eventDescriptionTemplate: computed(() => {
-        if (!props.event?.description) return
+// uses
+const localePath = useLocalePath()
+const { t } = useI18n()
 
-        return htmlToText(
-          DOMPurify.sanitize(
-            mustache.render(props.event.description, {
-              event: props.event,
-            })
-          ),
-          {
-            selectors: [{ selector: 'a', options: { ignoreHref: true } }],
-          }
-        )
-      }),
-    }
+// computations
+const eventDescriptionTemplate = computed(() => {
+  if (!props.event?.description) return
 
-    return {
-      ...computations,
-      ...methods,
+  return htmlToText(
+    DOMPurify.sanitize(
+      mustache.render(props.event.description, {
+        event: props.event,
+      })
+    ),
+    {
+      selectors: [{ selector: 'a', options: { ignoreHref: true } }],
     }
-  },
+  )
 })
 </script>
 

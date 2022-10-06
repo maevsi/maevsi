@@ -12,30 +12,22 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
-
-export default defineComponent({
-  props: {
-    formKey: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    value: {
-      default: undefined,
-      type: Boolean as PropType<boolean | undefined>,
-    },
-  },
-  setup(_props, { emit }) {
-    const methods = {
-      onChange(payload: Event) {
-        emit('change', (payload.target as HTMLInputElement).checked)
-      },
-    }
-
-    return {
-      ...methods,
-    }
-  },
+<script setup lang="ts">
+export interface Props {
+  formKey: string
+  value: boolean
+}
+withDefaults(defineProps<Props>(), {
+  formKey: undefined,
+  value: undefined,
 })
+
+const emit = defineEmits<{
+  (e: 'change', change: boolean): void
+}>()
+
+// methods
+function onChange(payload: Event) {
+  emit('change', (payload.target as HTMLInputElement).checked)
+}
 </script>
