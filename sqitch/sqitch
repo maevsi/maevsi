@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# source: https://raw.githubusercontent.com/sqitchers/docker-sqitch/main/docker-sqitch.sh
 
 # Determine which Docker image to run.
 SQITCH_IMAGE=${SQITCH_IMAGE:=sqitch/sqitch:latest}
@@ -25,7 +26,7 @@ case "$(uname -s)" in
         passopt+=(-u "$(id -u "${user}")":"$(id -g "${user}")")
         ;;
     Darwin*)
-        passopt+=(-e "SQITCH_ORIG_FULLNAME=$(id -P "$user" | awk -F '[:]' '{print $8}')")
+        passopt+=(-e "SQITCH_ORIG_FULLNAME=$(/usr/bin/id -P "$user" | awk -F '[:]' '{print $8}')")
         ;;
     MINGW*|CYGWIN*)
         passopt+=(-e "SQITCH_ORIG_FULLNAME=$(net user "$user")")
@@ -45,7 +46,7 @@ for var in \
     TNS_ADMIN TWO_TASK ORACLE_SID \
     ISC_USER ISC_PASSWORD \
     VSQL_HOST VSQL_PORT VSQL_USER VSQL_PASSWORD VSQL_SSLMODE \
-    SNOWSQL_ACCOUNT SNOWSQL_USER SNOWSQL_PWD SNOWSQL_HOST SNOWSQL_PORT SNOWSQL_DATABASE SNOWSQL_REGION SNOWSQL_WAREHOUSE
+    SNOWSQL_ACCOUNT SNOWSQL_USER SNOWSQL_PWD SNOWSQL_HOST SNOWSQL_PORT SNOWSQL_DATABASE SNOWSQL_REGION SNOWSQL_WAREHOUSE SNOWSQL_PRIVATE_KEY_PASSPHRASE
 do
     if [ -n "${!var}" ]; then
        passopt+=(-e "$var")
@@ -60,12 +61,19 @@ fi
 # Set HOME, since the user ID likely won't be the same as for the sqitch user.
 passopt+=(-e "HOME=${homedst}")
 
+# Determine necessary flags when stdin and/or stdout are opened on a TTY.
+if [ -t 0 ] && [ -t 1 ]; then
+    passopt+=(--interactive --tty)
+elif [ ! -t 0 ]; then
+    passopt+=(--interactive)
+fi
+
 # Run the container with the current and home directories mounted.
-docker run -it --rm --network host \
+docker run --rm --network host \
     --mount "type=bind,src=$(pwd),dst=/repo" \
     --mount "type=bind,src=$HOME,dst=$homedst" \
     --mount "type=bind,src=$PWD/../../maevsi_stack/src/development/secrets/postgres/role_maevsi-postgraphile_password.secret,dst=/run/secrets/postgres_role_maevsi-postgraphile_password" \
     --mount "type=bind,src=$PWD/../../maevsi_stack/src/development/secrets/postgres/role_maevsi-stomper_password.secret,dst=/run/secrets/postgres_role_maevsi-stomper_password" \
     --mount "type=bind,src=$PWD/../../maevsi_stack/src/development/secrets/postgres/role_maevsi-tusd_password.secret,dst=/run/secrets/postgres_role_maevsi-tusd_password" \
-    --mount "type=bind,src=/mnt/dev/postgresql/,dst=/var/run/postgresql/" \
+    --mount "type=bind,src=/run/postgresql/,dst=/run/postgresql/" \
     "${passopt[@]}" "$SQITCH_IMAGE" "$@"

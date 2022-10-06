@@ -1,3 +1,32 @@
+## [0.146.3](https://github.com/maevsi/maevsi/compare/0.146.2...0.146.3) (2022-10-03)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([c6af218](https://github.com/maevsi/maevsi/commit/c6af2187e6022c23098ff440762ba1328e2358c2))
+
+## [0.146.2](https://github.com/maevsi/maevsi/compare/0.146.1...0.146.2) (2022-09-19)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([8c56d98](https://github.com/maevsi/maevsi/commit/8c56d9883a165b6d5519058d9bfbed4d5d7ca69b))
+
+## [0.146.1](https://github.com/maevsi/maevsi/compare/0.146.0...0.146.1) (2022-09-10)
+
+
+### Bug Fixes
+
+* **docker:** temporarily disable healthcheck ([2037c4b](https://github.com/maevsi/maevsi/commit/2037c4b6eb67912c589ad707b451e3c9f4dc85b0))
+
+# [0.146.0](https://github.com/maevsi/maevsi/compare/0.145.6...0.146.0) (2022-09-09)
+
+
+### Features
+
+* **sqitch:** mount run for socket ([bf36b12](https://github.com/maevsi/maevsi/commit/bf36b122e057ed5dd780971316335e5af734dac0))
+* **sqitch:** remove target environment variable template ([3661ad9](https://github.com/maevsi/maevsi/commit/3661ad988e08247ef842d108667cbe14fd4d63f4))
+
 ## [0.145.6](https://github.com/maevsi/maevsi/compare/0.145.5...0.145.6) (2022-08-31)
 
 
