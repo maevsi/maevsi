@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 // data
-const srcWhenLoaded = ref<string | undefined>()
+const srcWhenLoaded = ref<string>()
 
 // methods
 async function updateSource() {

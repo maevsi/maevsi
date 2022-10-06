@@ -76,7 +76,7 @@
         <span
           v-if="$slots.icon"
           class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-600"
-          @click="$emit('icon')"
+          @click="emit('icon')"
         >
           <slot name="icon" />
         </span>
@@ -104,105 +104,74 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
 import consola from 'consola'
-import { PropType } from 'vue'
 
-const FormInput = defineComponent({
-  props: {
-    isDisabled: {
-      default: false,
-      type: Boolean,
-    },
-    isOptional: {
-      default: false,
-      type: Boolean,
-    },
-    isRequired: {
-      default: false,
-      type: Boolean,
-    },
-    isValidatable: {
-      default: false,
-      type: Boolean,
-    },
-    idLabel: {
-      required: true,
-      type: String as PropType<string | undefined>,
-    },
-    placeholder: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    success: {
-      default: false,
-      type: Boolean,
-    },
-    title: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    type: {
-      required: true,
-      type: String as PropType<string | undefined>,
-    },
-    validationProperty: {
-      default: undefined,
-      type: Object,
-    },
-    value: {
-      default: undefined,
-      type: Object as PropType<BaseValidation | undefined>,
-    },
-    warning: {
-      default: false,
-      type: Boolean,
-    },
-  },
-  setup(props, { emit }) {
-    const { t } = useI18n()
-
-    const methods = {
-      onInput(payload: Event) {
-        emit('input', (payload.target as HTMLInputElement)?.value)
-      },
-      t,
-    }
-
-    if (
-      !props.placeholder &&
-      props.type &&
-      ![
-        'checkbox',
-        'datetime-local',
-        'number',
-        'select',
-        'textarea',
-        'tiptap',
-        'radio',
-      ].includes(props.type)
-    ) {
-      consola.warn(`placeholder is missing for ${props.idLabel}!`)
-    }
-
-    if (
-      !props.value &&
-      props.type &&
-      !['checkbox', 'select'].includes(props.type)
-    ) {
-      consola.warn(`value is missing for ${props.idLabel}!`)
-    }
-
-    return {
-      ...methods,
-    }
-  },
+export interface Props {
+  isDisabled?: boolean
+  isOptional?: boolean
+  isRequired?: boolean
+  isValidatable?: boolean
+  idLabel: string | undefined
+  placeholder?: string
+  success?: boolean
+  title?: string
+  type: string | undefined
+  validationProperty?: BaseValidation
+  value?: BaseValidation
+  warning?: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  isDisabled: false,
+  isOptional: false,
+  isRequired: false,
+  isValidatable: false,
+  placeholder: undefined,
+  success: false,
+  title: undefined,
+  validationProperty: undefined,
+  value: undefined,
+  warning: false,
 })
 
-export default FormInput
+const emit = defineEmits<{
+  (e: 'icon'): void
+  (e: 'input', input: string): void
+}>()
 
-export type FormInputType = InstanceType<typeof FormInput>
+// uses
+const { t } = useI18n()
+
+// methods
+function onInput(payload: Event) {
+  emit('input', (payload.target as HTMLInputElement)?.value)
+}
+
+// initialization
+if (
+  !props.placeholder &&
+  props.type &&
+  ![
+    'checkbox',
+    'datetime-local',
+    'number',
+    'select',
+    'textarea',
+    'tiptap',
+    'radio',
+  ].includes(props.type)
+) {
+  consola.warn(`placeholder is missing for ${props.idLabel}!`)
+}
+
+if (
+  !props.value &&
+  props.type &&
+  !['checkbox', 'select'].includes(props.type)
+) {
+  consola.warn(`value is missing for ${props.idLabel}!`)
+}
 </script>
 
 <i18n lang="yml">
