@@ -1,29 +1,28 @@
 <template>
   <Loader :api="api">
-    <div class="flex flex-col gap-4">
-      <ul v-if="events?.length">
-        <div
-          class="flex flex-col items-center justify-between gap-4 lg:flex-row"
+    <ul v-if="events?.length" class="flex flex-col gap-4">
+      <div
+        v-if="isButtonEventListShown"
+        class="flex flex-col items-center justify-between gap-4 lg:flex-row"
+      >
+        <ButtonList>
+          <ButtonEventList v-if="isButtonEventListShown" />
+        </ButtonList>
+      </div>
+      <EventListItem v-for="event in events" :key="event.id" :event="event" />
+      <div
+        v-if="api.data.allEvents?.pageInfo.hasNextPage"
+        class="flex justify-center"
+      >
+        <ButtonColored
+          :aria-label="t('globalShowMore')"
+          @click="after = api.data.allEvents?.pageInfo.endCursor"
         >
-          <ButtonList>
-            <ButtonEventList v-if="isButtonEventListShown" />
-          </ButtonList>
-        </div>
-        <EventListItem v-for="event in events" :key="event.id" :event="event" />
-        <div
-          v-if="api.data.allEvents?.pageInfo.hasNextPage"
-          class="flex justify-center"
-        >
-          <ButtonColored
-            :aria-label="t('globalShowMore')"
-            @click="after = api.data.allEvents?.pageInfo.endCursor"
-          >
-            {{ t('globalShowMore') }}
-          </ButtonColored>
-        </div>
-      </ul>
-      <p v-else class="text-center">{{ t('noEvents') }}</p>
-    </div>
+          {{ t('globalShowMore') }}
+        </ButtonColored>
+      </div>
+    </ul>
+    <p v-else class="text-center">{{ t('noEvents') }}</p>
   </Loader>
 </template>
 

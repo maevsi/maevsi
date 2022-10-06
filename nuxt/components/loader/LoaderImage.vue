@@ -11,57 +11,42 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
-
-export default defineComponent({
-  props: {
-    alt: {
-      required: true,
-      type: String,
-    },
-    rounded: {
-      default: undefined,
-      type: Boolean as PropType<boolean | undefined>,
-    },
-    src: {
-      required: true,
-      type: String,
-    },
-  },
-  setup(props) {
-    const data = reactive({
-      srcWhenLoaded: undefined as string | undefined,
-    })
-    const methods = {
-      async updateSource() {
-        data.srcWhenLoaded = process.server
-          ? props.src
-          : await new Promise<string>((resolve) => {
-              const img = new Image()
-
-              img.onload = () => {
-                resolve(img.src)
-              }
-
-              img.src = props.src
-            })
-      },
-    }
-
-    watch(
-      () => props.src,
-      async (_currentValue, _oldValue) => {
-        await methods.updateSource()
-      }
-    )
-
-    methods.updateSource()
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
+<script setup lang="ts">
+export interface Props {
+  alt: string
+  rounded?: boolean
+  src: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  rounded: undefined,
 })
+
+// data
+const srcWhenLoaded = ref<string | undefined>()
+
+// methods
+async function updateSource() {
+  srcWhenLoaded.value = process.server
+    ? props.src
+    : await new Promise<string>((resolve) => {
+        const img = new Image()
+
+        img.onload = () => {
+          resolve(img.src)
+        }
+
+        img.src = props.src
+      })
+}
+
+// lifecycle
+watch(
+  () => props.src,
+  async (_currentValue, _oldValue) => {
+    await updateSource()
+  }
+)
+
+// initialization
+await updateSource()
 </script>
