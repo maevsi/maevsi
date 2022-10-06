@@ -48,7 +48,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { maxLength, minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
@@ -67,103 +67,94 @@ import {
   useAuthenticateMutation,
 } from '~/gql/generated'
 
-const FormAccountSignIn = defineComponent({
-  setup() {
-    const { jwtStore } = useJwtStore()
-    const { locale, t } = useI18n()
-    const localePath = useLocalePath()
-    const { executeMutation: executeMutationAccountRegistrationRefresh } =
-      useAccountRegistrationRefreshMutation()
-    const { executeMutation: executeMutationAuthentication } =
-      useAuthenticateMutation()
+const { jwtStore } = useJwtStore()
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
+const { executeMutation: executeMutationAccountRegistrationRefresh } =
+  useAccountRegistrationRefreshMutation()
+const { executeMutation: executeMutationAuthentication } =
+  useAuthenticateMutation()
 
-    const apiData = getApiDataDefault()
-    const data = reactive({
-      form: {
-        password: '',
-        username: '',
-      },
-      isFormSent: false,
-    })
-    const rules = {
-      form: {
-        username: {
-          formatSlug: VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-          required,
-        },
-        password: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
-    const methods = {
-      accountRegistrationRefresh() {
-        executeMutationAccountRegistrationRefresh({
-          language: locale.value,
-          username: data.form.username,
-        }).then((result) => {
-          if (result.error) {
-            apiData.api.value.errors.push(result.error)
-            consola.error(result.error)
-          } else {
-            Swal.fire({
-              icon: 'success',
-              text: t('registrationRefreshSuccess') as string,
-              title: t('sent'),
-            })
-          }
-        })
-      },
-      localePath,
-      async submit() {
-        try {
-          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
-        } catch (error) {
-          consola.debug(error)
-          return
-        }
+// api data
+const api = getApiDataDefault().api
 
-        executeMutationAuthentication({
-          username: data.form.username,
-          password: data.form.password,
-        }).then(async (result) => {
-          if (result.error) {
-            apiData.api.value.errors.push(result.error)
-            consola.error(result.error)
-          } else {
-            await jwtStore(result.data?.authenticate?.jwt, () => {})
-              .then(() => {
-                navigateTo(localePath(`/dashboard`))
-              })
-              .catch(async (error) => {
-                consola.debug(error)
-                await Swal.fire({
-                  icon: 'error',
-                  text: t('jwtStoreFail') as string,
-                  title: t('globalStatusError'),
-                })
-              })
-          }
-        })
-      },
-      t,
-    }
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      v$,
-    }
-  },
+// data
+const form = reactive({
+  password: ref<string>(),
+  username: ref<string>(),
 })
+const isFormSent = ref(false)
 
-export default FormAccountSignIn
+// methods
+function accountRegistrationRefresh() {
+  if (!form.username) throw new Error('Username is not set!')
 
-export type FormAccountSignInType = InstanceType<typeof FormAccountSignIn>
+  executeMutationAccountRegistrationRefresh({
+    language: locale.value,
+    username: form.username,
+  }).then((result) => {
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    } else {
+      Swal.fire({
+        icon: 'success',
+        text: t('registrationRefreshSuccess') as string,
+        title: t('sent'),
+      })
+    }
+  })
+}
+async function submit() {
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  if (!form.username) throw new Error('Username is not set!')
+  if (!form.password) throw new Error('Password is not set!')
+
+  executeMutationAuthentication({
+    username: form.username,
+    password: form.password,
+  }).then(async (result) => {
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    } else {
+      await jwtStore(result.data?.authenticate?.jwt, () => {})
+        .then(() => {
+          navigateTo(localePath(`/dashboard`))
+        })
+        .catch(async (error) => {
+          consola.debug(error)
+          await Swal.fire({
+            icon: 'error',
+            text: t('jwtStoreFail') as string,
+            title: t('globalStatusError'),
+          })
+        })
+    }
+  })
+}
+
+// vuelidate
+const rules = {
+  form: {
+    username: {
+      formatSlug: VALIDATION_FORMAT_SLUG,
+      maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+      required,
+    },
+    password: {
+      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+      required,
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">

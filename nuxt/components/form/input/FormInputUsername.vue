@@ -12,7 +12,7 @@
     :value="formInput"
     @input="$emit('input', $event)"
   >
-    <template #icon>
+    <template v-if="$slots.icon" #icon>
       <slot name="icon" />
     </template>
     <template #stateError>
@@ -67,45 +67,24 @@
   </FormInput>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
-import { PropType } from 'vue'
 
-export default defineComponent({
-  props: {
-    formInput: {
-      required: true,
-      type: Object as PropType<BaseValidation | undefined>,
-    },
-    id: {
-      default: 'username',
-      type: String,
-    },
-    isOptional: {
-      default: false,
-      type: Boolean,
-    },
-    isValidatable: {
-      default: false,
-      type: Boolean,
-    },
-    isValidationInverted: {
-      default: false,
-      type: Boolean,
-    },
-  },
-  setup() {
-    const { t } = useI18n()
-
-    const methods = {
-      t,
-    }
-
-    return {
-      ...methods,
-    }
-  },
+export interface Props {
+  formInput: BaseValidation | undefined
+  id?: string
+  isOptional?: boolean
+  isValidatable?: boolean
+  isValidationInverted?: boolean
+}
+withDefaults(defineProps<Props>(), {
+  id: 'username',
+  isOptional: false,
+  isValidatable: false,
+  isValidationInverted: false,
 })
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

@@ -36,7 +36,7 @@ export const VALIDATION_PASSWORD_LENGTH_MINIMUM = 8
 export const VALIDATION_USERNAME_LENGTH_MAXIMUM = 100
 
 export async function formPreSubmit(
-  apiData: ReturnType<typeof getApiDataDefault>,
+  apiData: ReturnType<typeof getApiDataDefault>, // TODO: change to "api"
   v$: any,
   isFormSent: Ref<boolean>
 ): Promise<boolean> {
