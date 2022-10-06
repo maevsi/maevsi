@@ -26,66 +26,54 @@
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import consola from 'consola'
-import { PropType } from 'vue'
 
 import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'
 import { useAllEventsQuery } from '~/gql/generated'
 
-export default defineComponent({
-  props: {
-    username: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
+export interface Props {
+  username?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  username: undefined,
+})
+
+const route = useRoute()
+const { t } = useI18n()
+
+// refs
+const after = ref<string>()
+
+const eventsQuery = useAllEventsQuery({
+  variables: {
+    after,
+    authorUsername: props.username,
+    first: ITEMS_PER_PAGE,
+  },
+})
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...eventsQuery.data.value,
     },
-  },
-  setup(props) {
-    const route = useRoute()
-    const { t } = useI18n()
+    ...getApiMeta([eventsQuery]),
+  }
+})
+const events = computed(() => eventsQuery.data.value?.allEvents?.nodes)
 
-    const refs = {
-      after: ref<string>(),
-    }
-    const eventsQuery = useAllEventsQuery({
-      variables: {
-        after: refs.after,
-        authorUsername: props.username,
-        first: ITEMS_PER_PAGE,
-      },
-    })
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...eventsQuery.data.value,
-          },
-          ...getApiMeta([eventsQuery]),
-        }
-      }),
-      events: computed(() => eventsQuery.data.value?.allEvents?.nodes),
-    }
-    const data = reactive({
-      isButtonEventListShown:
-        typeof route.name === 'string' &&
-        route.name?.replace(/___.+$/, '') !== 'event',
-    })
-    const methods = {
-      t,
-    }
+// data
+const isButtonEventListShown = ref(
+  typeof route.name === 'string' &&
+    route.name?.replace(/___.+$/, '') !== 'event'
+)
 
-    watch(eventsQuery.error, (currentValue, _oldValue) => {
-      if (currentValue) consola.error(currentValue)
-    })
-
-    return {
-      ...refs,
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
+// lifecycle
+watch(eventsQuery.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
 })
 </script>
 

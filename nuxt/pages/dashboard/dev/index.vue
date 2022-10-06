@@ -41,41 +41,32 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 
-export default defineComponent({
-  name: 'IndexPage',
-  setup() {
-    const { signOut } = useSignOut()
-    const { $moment } = useNuxtApp()
-    const { t } = useI18n()
-    const store = useMaevsiStore()
+// uses
+const { signOut } = useSignOut()
+const { $moment } = useNuxtApp()
+const { t } = useI18n()
+const store = useMaevsiStore()
 
-    const data = reactive({
-      jwtDecoded: store.jwtDecoded,
-      title: t('title'),
-    })
-    const methods = {
-      signOut,
-      t,
-    }
-    const computations = {
-      sessionExpiryTime: computed((): string => {
-        return $moment(store.jwtDecoded?.exp, 'X').format('llll')
-      }),
-    }
+// data
+const jwtDecoded = store.jwtDecoded
+const title = t('title')
 
-    useHeadDefault(data.title)
-
-    return {
-      ...data,
-      ...methods,
-      ...computations,
-    }
-  },
+// computations
+const sessionExpiryTime = computed(() => {
+  return $moment(store.jwtDecoded?.exp, 'X').format('llll')
 })
+
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

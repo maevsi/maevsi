@@ -252,26 +252,15 @@
   </div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  setup() {
-    const { t } = useI18n()
+<script setup lang="ts">
+// uses
+const { t } = useI18n()
 
-    const data = reactive({
-      title: t('title') as string,
-    })
-    const methods = {
-      t,
-    }
+// data
+const title = t('title')
 
-    useHeadDefault(data.title)
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
-})
+// initialization
+useHeadDefault(title)
 </script>
 
 <i18n lang="yml">

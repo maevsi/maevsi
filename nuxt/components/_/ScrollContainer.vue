@@ -8,67 +8,59 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { ResizeSensor } from 'css-element-queries'
 import debounce from 'lodash-es/debounce'
 
-export default defineComponent({
-  props: {
-    hasNextPage: {
-      required: true,
-      type: Boolean,
-    },
-  },
-  setup(props, { emit }) {
-    const refs = {
-      scrollContainer: ref<HTMLElement>(),
+export interface Props {
+  hasNextPage: boolean
+}
+const props = withDefaults(defineProps<Props>(), {})
+
+const emit = defineEmits<{
+  (e: 'loadMore'): void
+}>()
+
+// refs
+const scrollContainer = ref<HTMLElement>()
+
+// data
+const resizeSensor = ref<ResizeSensor>()
+
+// methods
+function emitLoadMore() {
+  emit('loadMore')
+}
+function onScroll(e: Event) {
+  const scrollBar = e.target as Element
+
+  if (
+    scrollBar &&
+    scrollBar.scrollTop + scrollBar.clientHeight >= scrollBar.scrollHeight - 500
+  ) {
+    debounce(emitLoadMore, 100)()
+  }
+}
+
+// lifecycle
+onMounted(() => {
+  const scrollContainerLocal = scrollContainer.value
+
+  if (!scrollContainerLocal) return
+
+  resizeSensor.value = new ResizeSensor(scrollContainerLocal, () => {
+    if (
+      scrollContainerLocal.scrollHeight === scrollContainerLocal.clientHeight &&
+      props.hasNextPage
+    ) {
+      emitLoadMore()
     }
-    const data = reactive({
-      resizeSensor: undefined as ResizeSensor | undefined,
-    })
-    const methods = {
-      emit() {
-        emit('loadMore')
-      },
-      onScroll(e: Event) {
-        const scrollBar = e.target as Element
+  })
+})
 
-        if (
-          scrollBar &&
-          scrollBar.scrollTop + scrollBar.clientHeight >=
-            scrollBar.scrollHeight - 500
-        ) {
-          debounce(methods.emit, 100)()
-        }
-      },
-    }
-
-    onMounted(() => {
-      const scrollContainer = refs.scrollContainer.value
-
-      if (!scrollContainer) return
-
-      data.resizeSensor = new ResizeSensor(scrollContainer, () => {
-        if (
-          scrollContainer.scrollHeight === scrollContainer.clientHeight &&
-          props.hasNextPage
-        ) {
-          methods.emit()
-        }
-      })
-    })
-
-    onBeforeUnmount(() => {
-      if (data.resizeSensor) {
-        data.resizeSensor.detach()
-      }
-    })
-
-    return {
-      ...refs,
-      ...data,
-      ...methods,
-    }
-  },
+onBeforeUnmount(() => {
+  if (resizeSensor.value) {
+    resizeSensor.value.detach()
+  }
 })
 </script>

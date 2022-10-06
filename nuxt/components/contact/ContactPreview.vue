@@ -48,40 +48,21 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
-
+<script setup lang="ts">
 import { Contact } from '~/types/contact'
 
-export default defineComponent({
-  props: {
-    contact: {
-      required: true,
-      type: Object as PropType<Contact>,
-    },
-    feedback: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    isUsernameLinked: {
-      default: true,
-      type: Boolean,
-    },
-  },
-  setup() {
-    const localePath = useLocalePath()
-    const { t } = useI18n()
-
-    const methods = {
-      localePath,
-      t,
-    }
-
-    return {
-      ...methods,
-    }
-  },
+export interface Props {
+  contact: Contact
+  feedback: string
+  isUsernameLinked: boolean
+}
+withDefaults(defineProps<Props>(), {
+  feedback: undefined,
+  isUsernameLinked: true,
 })
+
+const localePath = useLocalePath()
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

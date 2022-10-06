@@ -34,7 +34,7 @@
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { CombinedError } from '@urql/vue'
 import consola from 'consola'
 
@@ -73,77 +73,67 @@ definePageMeta({
   ],
 })
 
-export default defineComponent({
-  name: 'IndexPage',
-  setup() {
-    const localePath = useLocalePath()
-    const { t } = useI18n()
-    const store = useMaevsiStore()
-    const route = useRoute()
-    const { executeMutation: executeMutationEventDelete } =
-      useEventDeleteMutation()
-
-    const eventQuery = useEventByAuthorUsernameAndSlugQuery({
-      variables: {
-        authorUsername: route.params.username as string,
-        slug: route.params.event_name as string,
-      },
-    })
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...eventQuery.data.value,
-          },
-          ...getApiMeta([eventQuery]),
-        }
-      }),
-      event: computed(
-        () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
-      ),
-    }
-    const data = reactive({
-      mutation: executeMutationEventDelete,
-      routeParamEventName: route.params.event_name as string,
-      routeParamUsername: route.params.username as string,
-    })
-    const methods = {
-      localePath,
-      onDeleteError(error: CombinedError) {
-        apiData.api.value.errors.push(error)
-      },
-      onDeleteSuccess() {
-        navigateTo(localePath(`/dashboard`))
-        // TODO: cache update (allEvents)
-      },
-      t,
-    }
-    const computations = {
-      title: computed(() => {
-        if (
-          route.params.username === store.signedInUsername &&
-          apiData.event.value
-        ) {
-          return `${t('title')} · ${apiData.event.value.name}`
-        }
-        return '403'
-      }),
-    }
-
-    watch(eventQuery.error, (currentValue, _oldValue) => {
-      if (currentValue) consola.error(currentValue)
-    })
-
-    useHeadDefault(computations.title.value)
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      ...computations,
-    }
+// uses
+const localePath = useLocalePath()
+const { t } = useI18n()
+const store = useMaevsiStore()
+const route = useRoute()
+const { executeMutation: executeMutationEventDelete } = useEventDeleteMutation()
+const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+  variables: {
+    authorUsername: route.params.username as string,
+    slug: route.params.event_name as string,
   },
 })
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...eventQuery.data.value,
+    },
+    ...getApiMeta([eventQuery]),
+  }
+})
+const event = computed(
+  () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
+)
+
+// data
+const mutation = executeMutationEventDelete
+const routeParamEventName = route.params.event_name as string
+const routeParamUsername = route.params.username as string
+
+// methods
+function onDeleteError(error: CombinedError) {
+  api.value.errors.push(error)
+}
+function onDeleteSuccess() {
+  navigateTo(localePath(`/dashboard`))
+  // TODO: cache update (allEvents)
+}
+
+// computations
+const title = computed(() => {
+  if (route.params.username === store.signedInUsername && event.value) {
+    return `${t('title')} · ${event.value.name}`
+  }
+  return '403'
+})
+
+// lifecycle
+watch(eventQuery.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
+})
+
+// initialization
+useHeadDefault(title.value)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

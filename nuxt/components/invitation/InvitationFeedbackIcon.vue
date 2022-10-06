@@ -17,26 +17,13 @@
   <IconBug v-else :title="t('bug')" />
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  props: {
-    feedback: {
-      required: true,
-      type: String,
-    },
-  },
-  setup() {
-    const { t } = useI18n()
+<script setup lang="ts">
+export interface Props {
+  feedback: string
+}
+withDefaults(defineProps<Props>(), {})
 
-    const methods = {
-      t,
-    }
-
-    return {
-      ...methods,
-    }
-  },
-})
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

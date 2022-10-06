@@ -13,13 +13,11 @@
   </svg>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  props: {
-    classes: {
-      default: 'h-5 md:h-6 w-5 md:w-6 shrink-0',
-      type: String,
-    },
-  },
+<script setup lang="ts">
+export interface Props {
+  classes?: string
+}
+withDefaults(defineProps<Props>(), {
+  classes: 'h-5 md:h-6 w-5 md:w-6 shrink-0',
 })
 </script>

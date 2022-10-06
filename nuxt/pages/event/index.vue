@@ -7,36 +7,21 @@
   </div>
 </template>
 
+<script setup lang="ts">
+// uses
+const { t } = useI18n()
+
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
 <script lang="ts">
-import { useMaevsiStore } from '~/store'
-
-export default defineComponent({
+export default {
   name: 'IndexPage',
-  setup() {
-    const { t } = useI18n()
-    const store = useMaevsiStore()
-
-    const data = reactive({
-      title: t('title'),
-    })
-    const computations = {
-      signedIn: computed(() => {
-        return (
-          store.jwtDecoded?.role === 'maevsi_account' &&
-          store.jwtDecoded?.exp &&
-          store.jwtDecoded.exp > Math.floor(Date.now() / 1000)
-        )
-      }),
-    }
-
-    useHeadDefault(data.title)
-
-    return {
-      ...data,
-      ...computations,
-    }
-  },
-})
+}
 </script>
 
 <i18n lang="yml">

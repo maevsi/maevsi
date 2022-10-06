@@ -23,36 +23,29 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { status } from '@http-util/status-i18n'
-import { PropType } from 'vue'
 
-export default defineComponent({
-  name: 'MaevsiError',
-  props: {
-    statusCode: {
-      default: undefined,
-      type: Number as PropType<number | undefined>,
-    },
-  },
-  setup(props) {
-    const { locale, t } = useI18n()
-
-    const computations = {
-      statusReason: computed(() => {
-        return status(props.statusCode, locale.value) || (t('error') as string)
-      }),
-    }
-    const methods = {
-      t,
-    }
-
-    return {
-      ...computations,
-      ...methods,
-    }
-  },
+export interface Props {
+  statusCode?: number
+}
+const props = withDefaults(defineProps<Props>(), {
+  statusCode: undefined,
 })
+
+// uses
+const { locale, t } = useI18n()
+
+// computations
+const statusReason = computed(() => {
+  return status(props.statusCode, locale.value) || (t('error') as string)
+})
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiError',
+}
 </script>
 
 <i18n lang="yml">

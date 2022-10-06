@@ -19,7 +19,7 @@
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import consola from 'consola'
 import { getApiMeta } from '~/plugins/util/util'
 import {
@@ -55,67 +55,55 @@ definePageMeta({
   ],
 })
 
-export default defineComponent({
-  name: 'IndexPage',
-  setup() {
-    const route = useRoute()
-    const { t } = useI18n()
-    const store = useMaevsiStore()
-
-    const eventQuery = useEventByAuthorUsernameAndSlugQuery({
-      variables: {
-        authorUsername: route.params.username as string,
-        slug: route.params.event_name as string,
-      },
-    })
-
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...eventQuery.data.value,
-          },
-          ...getApiMeta([eventQuery]),
-        }
-      }),
-      event: computed(
-        () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
-      ),
-    }
-    const data = reactive({
-      routeParamEventName: route.params.event_name as string,
-      routeParamUsername: route.params.username as string,
-      title: t('title'),
-    })
-    const methods = {
-      t,
-    }
-    const computations = {
-      title: computed((): string | undefined => {
-        if (
-          route.params.username === store.signedInUsername &&
-          apiData.event.value
-        ) {
-          return `${t('title')} · ${apiData.event.value.name}`
-        }
-        return '403'
-      }),
-    }
-
-    watch(eventQuery.error, (currentValue, _oldValue) => {
-      if (currentValue) consola.error(currentValue)
-    })
-
-    useHeadDefault(data.title)
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      ...computations,
-    }
+// uses
+const route = useRoute()
+const { t } = useI18n()
+const store = useMaevsiStore()
+const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+  variables: {
+    authorUsername: route.params.username as string,
+    slug: route.params.event_name as string,
   },
 })
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...eventQuery.data.value,
+    },
+    ...getApiMeta([eventQuery]),
+  }
+})
+const event = computed(
+  () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
+)
+
+// data
+const routeParamEventName = route.params.event_name as string
+const routeParamUsername = route.params.username as string
+
+// computations
+const title = computed(() => {
+  if (route.params.username === store.signedInUsername && event.value) {
+    return `${t('title')} · ${event.value.name}`
+  }
+  return '403'
+})
+
+// lifecycle
+watch(eventQuery.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
+})
+
+// initialization
+useHeadDefault(title.value)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

@@ -46,7 +46,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { CombinedError } from '@urql/core'
 
 import { useSignOut } from '~/plugins/util/auth'
@@ -88,51 +88,44 @@ definePageMeta({
   ],
 })
 
-export default defineComponent({
-  name: 'IndexPage',
-  setup() {
-    const store = useMaevsiStore()
-    const { signOut } = useSignOut()
-    const { t } = useI18n()
-    const route = useRoute()
-    const { executeMutation: executeMutationAccoutDelete } =
-      useAccountDeleteMutation()
+// uses
+const store = useMaevsiStore()
+const { signOut } = useSignOut()
+const { t } = useI18n()
+const route = useRoute()
+const { executeMutation: executeMutationAccoutDelete } =
+  useAccountDeleteMutation()
 
-    const apiData = {
-      api: computed(() => {
-        return {
-          ...getApiMeta([]),
-        }
-      }),
-    }
-    const data = reactive({
-      mutation: executeMutationAccoutDelete,
-      routeParamUsername: route.params.username as string,
-      title:
-        route.params.username === store.signedInUsername
-          ? route.params.username
-          : '403',
-    })
-    const methods = {
-      onDeleteError(error: CombinedError) {
-        apiData.api.value.errors.push(error)
-      },
-      showModalImageSelection() {
-        store.modalAdd({ id: 'ModalImageSelection' })
-      },
-      signOut,
-      t,
-    }
-
-    useHeadDefault(data.title)
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
+// api data
+const api = computed(() => {
+  return {
+    ...getApiMeta([]),
+  }
 })
+
+// data
+const mutation = executeMutationAccoutDelete
+const routeParamUsername = route.params.username as string
+const title =
+  route.params.username === store.signedInUsername
+    ? route.params.username
+    : '403'
+
+// methods
+function onDeleteError(error: CombinedError) {
+  api.value.errors.push(error)
+}
+function showModalImageSelection() {
+  store.modalAdd({ id: 'ModalImageSelection' })
+}
+
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

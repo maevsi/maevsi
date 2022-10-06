@@ -146,95 +146,86 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import { Link } from '@tiptap/extension-link'
 import { StarterKit } from '@tiptap/starter-kit'
 
-Link.configure({
-  HTMLAttributes: {
-    rel: 'nofollow noopener noreferrer',
+export interface Props {
+  value: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  value: '',
+})
+
+const emit = defineEmits<{
+  (e: 'input', input: string): void
+}>()
+
+// uses
+const { t } = useI18n()
+const editor = useEditor({
+  content: props.value,
+  editorProps: {
+    attributes: {
+      class: 'form-input min-h-[100px]',
+    },
+  },
+  extensions: [StarterKit, Link],
+  onUpdate: () => {
+    if (!editor.value) return
+    emit('input', editor.value.getHTML())
   },
 })
 
-export default defineComponent({
-  components: {
-    EditorContent,
-  },
-  props: {
-    value: {
-      default: '',
-      type: String,
-    },
-  },
-  setup(props, { emit }) {
-    const { t } = useI18n()
-    const editor = useEditor({
-      content: props.value,
-      editorProps: {
-        attributes: {
-          class: 'form-input min-h-[100px]',
-        },
-      },
-      extensions: [StarterKit, Link],
-      onUpdate: () => {
-        if (!data.editor) return
-        emit('input', data.editor.getHTML())
-      },
-    })
+// methods
+function setLink() {
+  if (!editor.value) return
 
-    const data = reactive({
-      editor,
-    })
-    const methods = {
-      setLink() {
-        if (!data.editor) return
+  const previousUrl = editor.value.getAttributes('link').href
+  const url = window.prompt('URL', previousUrl)
 
-        const previousUrl = data.editor.getAttributes('link').href
-        const url = window.prompt('URL', previousUrl)
+  // cancelled
+  if (url === null) {
+    return
+  }
 
-        // cancelled
-        if (url === null) {
-          return
-        }
+  // empty
+  if (url === '') {
+    editor.value.chain().focus().extendMarkRange('link').unsetLink().run()
 
-        // empty
-        if (url === '') {
-          data.editor.chain().focus().extendMarkRange('link').unsetLink().run()
+    return
+  }
 
-          return
-        }
+  // update link
+  editor.value
+    .chain()
+    .focus()
+    .extendMarkRange('link')
+    .setLink({ href: url, target: '_blank' })
+    .run()
+}
 
-        // update link
-        data.editor
-          .chain()
-          .focus()
-          .extendMarkRange('link')
-          .setLink({ href: url, target: '_blank' })
-          .run()
-      },
-      t,
+// lifecycle
+watch(
+  () => props.value,
+  (currentValue, _oldValue) => {
+    if (!editor.value) return
+
+    const isSame = editor.value.getHTML() === currentValue
+
+    if (isSame) {
+      return
     }
 
-    watch(
-      () => props.value,
-      (currentValue, _oldValue) => {
-        if (!data.editor) return
+    editor.value.commands.setContent(currentValue, false)
+  }
+)
 
-        const isSame = data.editor.getHTML() === currentValue
-
-        if (isSame) {
-          return
-        }
-
-        data.editor.commands.setContent(currentValue, false)
-      }
-    )
-
-    return {
-      ...data,
-      ...methods,
-    }
+// initialization
+Link.configure({
+  HTMLAttributes: {
+    rel: 'nofollow noopener noreferrer',
   },
 })
 </script>

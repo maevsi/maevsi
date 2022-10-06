@@ -8,16 +8,11 @@
   </FormInputState>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
-import { PropType } from 'vue'
 
-export default defineComponent({
-  props: {
-    formInput: {
-      required: true,
-      type: Object as PropType<BaseValidation | undefined>,
-    },
-  },
-})
+export interface Props {
+  formInput: BaseValidation
+}
+withDefaults(defineProps<Props>(), {})
 </script>

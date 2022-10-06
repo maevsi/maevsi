@@ -14,30 +14,15 @@
   </EventDashlet>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
-
+<script setup lang="ts">
 import { Event } from '~/types/event'
 
-export default defineComponent({
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<Event>,
-    },
-  },
-  setup() {
-    const { t } = useI18n()
+export interface Props {
+  event: Event
+}
+withDefaults(defineProps<Props>(), {})
 
-    const methods = {
-      t,
-    }
-
-    return {
-      ...methods,
-    }
-  },
-})
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

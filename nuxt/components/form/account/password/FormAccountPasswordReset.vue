@@ -15,7 +15,7 @@
   </Form>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
@@ -28,97 +28,81 @@ import {
 import { getApiMeta } from '~/plugins/util/util'
 import { useAccountPasswordResetMutation } from '~/gql/generated'
 
-const FormAccountPasswordReset = defineComponent({
-  props: {
-    formClass: {
-      default: undefined,
-      type: String,
-    },
-  },
-  setup() {
-    const { t } = useI18n()
-    const route = useRoute()
-    const localePath = useLocalePath()
-    const passwordResetMutation = useAccountPasswordResetMutation()
-
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...passwordResetMutation.data.value,
-          },
-          ...getApiMeta([passwordResetMutation]),
-        }
-      }),
-    }
-    const data = reactive({
-      form: {
-        password: '',
-      },
-      isFormSent: false,
-    })
-    const rules = {
-      form: {
-        password: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
-    const methods = {
-      localePath,
-      async submit() {
-        try {
-          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
-        } catch (error) {
-          consola.debug(error)
-          return
-        }
-
-        const result = await passwordResetMutation.executeMutation({
-          code: route.query.code,
-          password: data.form.password,
-        })
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        if (!result.data) {
-          return
-        }
-
-        Swal.fire({
-          icon: 'success',
-          text: t('accountPasswordResetSuccess') as string,
-          timer: 3000,
-          timerProgressBar: true,
-          title: t('reset'),
-        })
-        navigateTo({
-          path: localePath(`/account`),
-          query: { ...route.query, tab: 'signIn' },
-        })
-      },
-      t,
-    }
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      v$,
-    }
-  },
+export interface Props {
+  formClass: string
+}
+withDefaults(defineProps<Props>(), {
+  formClass: undefined,
 })
 
-export default FormAccountPasswordReset
+const { t } = useI18n()
+const route = useRoute()
+const localePath = useLocalePath()
+const passwordResetMutation = useAccountPasswordResetMutation()
 
-export type FormAccountPasswordResetType = InstanceType<
-  typeof FormAccountPasswordReset
->
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...passwordResetMutation.data.value,
+    },
+    ...getApiMeta([passwordResetMutation]),
+  }
+})
+// data
+const form = reactive({
+  password: ref<string>(),
+})
+const isFormSent = ref(false)
+
+// methods
+async function submit() {
+  if (!form.password) throw new Error('Password is not set!')
+
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  const result = await passwordResetMutation.executeMutation({
+    code: route.query.code,
+    password: form.password,
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data) {
+    return
+  }
+
+  Swal.fire({
+    icon: 'success',
+    text: t('accountPasswordResetSuccess') as string,
+    timer: 3000,
+    timerProgressBar: true,
+    title: t('reset'),
+  })
+  navigateTo({
+    path: localePath(`/account`),
+    query: { ...route.query, tab: 'signIn' },
+  })
+}
+
+// vuelidate
+const rules = {
+  form: {
+    password: {
+      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+      required,
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">

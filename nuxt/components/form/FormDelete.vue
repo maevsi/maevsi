@@ -17,7 +17,7 @@
   </Form>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import {
@@ -28,7 +28,6 @@ import {
 } from '@urql/vue'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { PropType } from 'vue'
 
 import { capitalizeFirstLetter, getApiDataDefault } from '~/plugins/util/util'
 import {
@@ -37,96 +36,83 @@ import {
 } from '~/plugins/util/validation'
 import { Exact, EventDeleteMutation } from '~~/gql/generated'
 
-export default defineComponent({
-  props: {
-    errors: {
-      default: undefined,
-      type: Array as PropType<
-        (CombinedError | { errcode: string; message: string })[] | undefined
-      >,
-    },
-    itemName: {
-      required: true,
-      type: String as PropType<string>,
-    },
-    mutation: {
-      required: true,
-      type: Function as PropType<
-        (
-          variables: Exact<any>,
-          context?: Partial<OperationContext> | undefined
-        ) => Promise<OperationResult<EventDeleteMutation, AnyVariables>>
-      >,
-    },
-    variables: {
-      default: {} as PropType<Record<string, any>>,
-      type: Object as PropType<Record<string, any>>,
-    },
-  },
-  setup(props, { emit }) {
-    const { t } = useI18n()
-
-    const apiData = getApiDataDefault()
-    const data = reactive({
-      form: {
-        password: undefined as string | undefined,
-      },
-      isFormSent: false,
-    })
-    const rules = {
-      form: {
-        password: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
-    const methods = {
-      async submit() {
-        if (!data.form.password) return
-
-        try {
-          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
-        } catch (error) {
-          consola.debug(error)
-          return
-        }
-
-        props
-          .mutation({
-            password: data.form.password,
-            ...props.variables,
-          })
-          .then((result) => {
-            if (result.error) {
-              emit('error', result.error)
-              consola.error(result.error)
-            } else {
-              Swal.fire({
-                icon: 'success',
-                text: capitalizeFirstLetter(
-                  t('success', {
-                    item: props.itemName,
-                  }) as string
-                ),
-                timer: 3000,
-                timerProgressBar: true,
-                title: t('deleted'),
-              }).then(() => emit('success'))
-            }
-          })
-      },
-      t,
-    }
-
-    return {
-      ...data,
-      ...methods,
-      v$,
-    }
-  },
+export interface Props {
+  errors?: (CombinedError | { errcode: string; message: string })[]
+  itemName: string
+  mutation: (
+    variables: Exact<any>,
+    context?: Partial<OperationContext> | undefined
+  ) => Promise<OperationResult<EventDeleteMutation, AnyVariables>>
+  variables?: Record<string, any>
+}
+const props = withDefaults(defineProps<Props>(), {
+  errors: undefined,
+  variables: undefined,
 })
+
+const emit = defineEmits<{
+  (e: 'success'): void
+  (e: 'error', error: CombinedError): void
+}>()
+
+// uses
+const { t } = useI18n()
+
+// api data
+const api = getApiDataDefault().api
+
+// data
+const form = reactive({
+  password: ref<string>(),
+})
+const isFormSent = ref(false)
+
+// methods
+async function submit() {
+  if (!form.password) return
+
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  props
+    .mutation({
+      password: form.password,
+      ...props.variables,
+    })
+    .then((result) => {
+      if (result.error) {
+        emit('error', result.error)
+        consola.error(result.error)
+      } else {
+        Swal.fire({
+          icon: 'success',
+          text: capitalizeFirstLetter(
+            t('success', {
+              item: props.itemName,
+            }) as string
+          ),
+          timer: 3000,
+          timerProgressBar: true,
+          title: t('deleted'),
+        }).then(() => emit('success'))
+      }
+    })
+}
+
+// vuelidate
+const rules = {
+  form: {
+    password: {
+      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+      required,
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">

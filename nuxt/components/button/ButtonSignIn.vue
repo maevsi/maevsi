@@ -11,22 +11,9 @@
   </ButtonColored>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  setup() {
-    const localePath = useLocalePath()
-    const { t } = useI18n()
-
-    const methods = {
-      localePath,
-      t,
-    }
-
-    return {
-      ...methods,
-    }
-  },
-})
+<script setup lang="ts">
+const localePath = useLocalePath()
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

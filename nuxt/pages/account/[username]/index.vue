@@ -46,7 +46,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 import { useAccountIsExistingQuery } from '~/gql/generated'
@@ -72,47 +72,38 @@ definePageMeta({
   ],
 })
 
-export default defineComponent({
-  name: 'IndexPage',
-  setup() {
-    const { signOut } = useSignOut()
-    const { t } = useI18n()
-    const store = useMaevsiStore()
-    const route = useRoute()
-    const localePath = useLocalePath()
+const { signOut } = useSignOut()
+const { t } = useI18n()
+const store = useMaevsiStore()
+const route = useRoute()
+const localePath = useLocalePath()
 
-    const data = reactive({
-      signedInUsername: store.signedInUsername,
-      routeParamUsername: route.params.username as string,
-      title: route.params.username as string,
-    })
-    const methods = {
-      localePath,
-      signOut,
-      t,
-    }
+// data
+const signedInUsername = store.signedInUsername
+const routeParamUsername = route.params.username as string
+const title = route.params.username as string
 
-    useHeadDefault(data.title, {
-      meta: [
-        {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'profile',
-        },
-        {
-          hid: 'profile:username',
-          property: 'profile:username',
-          content: route.params.username,
-        },
-      ],
-    })
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
+// initialization
+useHeadDefault(title, {
+  meta: [
+    {
+      hid: 'og:type',
+      property: 'og:type',
+      content: 'profile',
+    },
+    {
+      hid: 'profile:username',
+      property: 'profile:username',
+      content: route.params.username,
+    },
+  ],
 })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

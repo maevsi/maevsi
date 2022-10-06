@@ -2,7 +2,7 @@
   <Error :status-code="418" />
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
@@ -15,22 +15,20 @@ definePageMeta({
   ],
 })
 
-export default defineComponent({
+// uses
+const { t } = useI18n()
+
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
   name: 'IndexPage',
-  setup() {
-    const { t } = useI18n()
-
-    const data = reactive({
-      title: t('title'),
-    })
-
-    useHeadDefault(data.title)
-
-    return {
-      ...data,
-    }
-  },
-})
+}
 </script>
 
 <i18n lang="yml">

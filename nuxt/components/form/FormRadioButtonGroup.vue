@@ -14,23 +14,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
-
-export default defineComponent({
-  props: {
-    name: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    titlesValues: {
-      required: true,
-      type: Array as PropType<string[] | string[][]>,
-    },
-    value: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-  },
+<script setup lang="ts">
+export interface Props {
+  name?: string
+  titlesValues: string[] | string[][]
+  value?: string
+}
+withDefaults(defineProps<Props>(), {
+  name: undefined,
+  value: undefined,
 })
 </script>

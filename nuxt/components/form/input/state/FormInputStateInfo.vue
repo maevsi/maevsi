@@ -16,23 +16,17 @@
   </FormInputState>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
+<script setup lang="ts">
+import type { BaseValidation } from '@vuelidate/core'
 
-export default defineComponent({
-  props: {
-    formInput: {
-      default: undefined,
-      type: Object,
-    },
-    isValidationLive: {
-      default: false,
-      type: Boolean,
-    },
-    validationProperty: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-  },
+export interface Props {
+  formInput?: BaseValidation
+  isValidationLive?: boolean
+  validationProperty?: string
+}
+withDefaults(defineProps<Props>(), {
+  formInput: undefined,
+  isValidationLive: false,
+  validationProperty: undefined,
 })
 </script>

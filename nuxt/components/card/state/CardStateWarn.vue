@@ -4,13 +4,11 @@
   </CardState>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  props: {
-    isEdgy: {
-      default: false,
-      type: Boolean,
-    },
-  },
+<script setup lang="ts">
+export interface Props {
+  isEdgy?: boolean
+}
+withDefaults(defineProps<Props>(), {
+  isEdgy: false,
 })
 </script>

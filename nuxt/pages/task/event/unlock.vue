@@ -52,12 +52,12 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
 
-import { jwtStore, useJwtStore } from '~/plugins/util/auth'
+import { useJwtStore } from '~/plugins/util/auth'
 import {
   formPreSubmit,
   REGEX_UUID,
@@ -104,12 +104,7 @@ definePageMeta({
           )
         }
 
-        await jwtStore(
-          $urqlReset,
-          store,
-          ssrContext ? ssrContext.event.res : undefined,
-          result.data.eventUnlock.eventUnlockResponse.jwt
-        )
+        await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
 
         if ('quick' in route.query) {
           return navigateTo(
@@ -134,102 +129,96 @@ definePageMeta({
   ],
 })
 
-export default defineComponent({
-  name: 'IndexPage',
-  setup() {
-    const { jwtStore } = useJwtStore()
-    const localePath = useLocalePath()
-    const { t } = useI18n()
-    const route = useRoute()
-    const eventUnlockMutation = useEventUnlockMutation()
-    const config = useRuntimeConfig()
+// uses
+const { jwtStore } = useJwtStore()
+const localePath = useLocalePath()
+const { t } = useI18n()
+const route = useRoute()
+const eventUnlockMutation = useEventUnlockMutation()
+const config = useRuntimeConfig()
 
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...eventUnlockMutation.data.value,
-          },
-          ...getApiMeta([eventUnlockMutation]),
-        }
-      }),
-    }
-    const data = reactive({
-      form: {
-        invitationCode:
-          route.query.ic === undefined ? undefined : route.query.ic,
-      },
-      isDevelopmentActive: config.public.isInDevelopment,
-      isFormSent: false,
-      routeQueryIc: route.query.ic,
-      title: t('title'),
-    })
-    const rules = {
-      form: {
-        invitationCode: {
-          required,
-          formatUuid: VALIDATION_FORMAT_UUID,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
-    const methods = {
-      localePath,
-      async submit() {
-        try {
-          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
-        } catch (error) {
-          consola.debug(error)
-          return
-        }
-
-        const result = await eventUnlockMutation.executeMutation({
-          invitationCode: data.form.invitationCode,
-        })
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        if (!result.data?.eventUnlock?.eventUnlockResponse) {
-          return
-        }
-
-        await jwtStore(
-          result.data?.eventUnlock?.eventUnlockResponse?.jwt,
-          () => {
-            navigateTo(
-              localePath(
-                `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
-              )
-            )
-          }
-        )
-      },
-      t,
-    }
-
-    useHeadDefault(data.title)
-
-    onMounted(() => {
-      if (route.query.ic) {
-        v$.value.form.invitationCode?.$touch()
-
-        if ('error' in route.query) {
-          methods.submit()
-        }
-      }
-    })
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      v$,
-    }
-  },
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...eventUnlockMutation.data.value,
+    },
+    ...getApiMeta([eventUnlockMutation]),
+  }
 })
+
+// data
+const form = reactive({
+  invitationCode: ref(
+    route.query.ic === undefined ? undefined : route.query.ic
+  ),
+})
+const isDevelopmentActive = config.public.isInDevelopment
+const isFormSent = ref(false)
+const routeQueryIc = route.query.ic
+const title = t('title')
+
+// methods
+async function submit() {
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  const result = await eventUnlockMutation.executeMutation({
+    invitationCode: form.invitationCode,
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data?.eventUnlock?.eventUnlockResponse) {
+    return
+  }
+
+  await jwtStore(result.data?.eventUnlock?.eventUnlockResponse?.jwt, () => {
+    navigateTo(
+      localePath(
+        `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
+      )
+    )
+  })
+}
+
+// lifecycle
+onMounted(() => {
+  if (route.query.ic) {
+    v$.value.form.invitationCode?.$touch()
+
+    if ('error' in route.query) {
+      submit()
+    }
+  }
+})
+
+// initialization
+useHeadDefault(title)
+
+// vuelidate
+const rules = {
+  form: {
+    invitationCode: {
+      required,
+      formatUuid: VALIDATION_FORMAT_UUID,
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

@@ -12,18 +12,16 @@
   </section>
 </template>
 
+<script setup lang="ts">
+export interface Props {
+  number: string
+  title: string
+}
+withDefaults(defineProps<Props>(), {})
+</script>
+
 <script lang="ts">
-export default defineComponent({
+export default {
   name: 'MaevsiStep',
-  props: {
-    number: {
-      required: true,
-      type: String, // Cannot be Number as translations are always of type String.
-    },
-    title: {
-      required: true,
-      type: String,
-    },
-  },
-})
+}
 </script>

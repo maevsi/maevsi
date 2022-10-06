@@ -36,51 +36,34 @@
         :form-input="formInput"
         validation-property="minLength"
       >
-        {{ t('validationFormat', { length: validationPasswordLengthMaximum }) }}
+        {{
+          t('validationFormat', { length: VALIDATION_PASSWORD_LENGTH_MINIMUM })
+        }}
       </FormInputStateInfo>
       <slot name="stateInfo" />
     </template>
   </FormInput>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
-import { PropType } from 'vue'
 
 import { VALIDATION_PASSWORD_LENGTH_MINIMUM } from '~/plugins/util/validation'
 
-export default defineComponent({
-  props: {
-    id: {
-      default: 'password',
-      type: String,
-    },
-    formInput: {
-      required: true,
-      type: Object as PropType<BaseValidation | undefined>,
-    },
-    title: {
-      default: undefined,
-      type: String,
-    },
-  },
-  setup() {
-    const { t } = useI18n()
-
-    const data = reactive({
-      isVisible: false,
-    })
-    const methods = {
-      t,
-    }
-
-    return {
-      ...data,
-      ...methods,
-      validationPasswordLengthMaximum: VALIDATION_PASSWORD_LENGTH_MINIMUM,
-    }
-  },
+export interface Props {
+  id?: string
+  formInput: BaseValidation
+  title?: string
+}
+withDefaults(defineProps<Props>(), {
+  id: 'password',
+  title: undefined,
 })
+
+const { t } = useI18n()
+
+// data
+const isVisible = ref(false)
 </script>
 
 <i18n lang="yml">

@@ -28,66 +28,44 @@
   </button>
 </template>
 
-<script lang="ts">
-import { PropType } from 'vue'
-
-export default defineComponent({
-  name: 'MaevsiButton',
-  props: {
-    append: {
-      default: false,
-      type: Boolean,
-    },
-    ariaLabel: {
-      required: true,
-      type: String,
-    },
-    disabled: {
-      default: false,
-      type: Boolean,
-    },
-    isBlock: {
-      default: false,
-      type: Boolean,
-    },
-    isLinkColored: {
-      default: false,
-      type: Boolean,
-    },
-    to: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    type: {
-      default: 'button',
-      type: String as PropType<'button' | 'submit' | 'reset' | undefined>,
-    },
-  },
-  setup(props) {
-    const refs = {
-      buttonRef: ref<HTMLButtonElement>(),
-    }
-    const methods = {
-      click() {
-        refs.buttonRef.value?.click()
-      },
-    }
-    const computations = {
-      classes: computed(() => {
-        return [
-          ...(props.isBlock ? ['block'] : ['inline-flex items-center gap-2']),
-          ...(props.isLinkColored
-            ? ['text-link-dark dark:text-link-bright']
-            : []),
-        ].join(' ')
-      }),
-    }
-
-    return {
-      ...refs,
-      ...methods,
-      ...computations,
-    }
-  },
+<script setup lang="ts">
+export interface Props {
+  append?: boolean
+  ariaLabel: string
+  disabled?: boolean
+  isBlock?: boolean
+  isLinkColored?: boolean
+  to?: string
+  type?: 'button' | 'submit' | 'reset'
+}
+const props = withDefaults(defineProps<Props>(), {
+  append: false,
+  disabled: false,
+  isBlock: false,
+  isLinkColored: false,
+  to: undefined,
+  type: 'button',
 })
+
+// refs
+const buttonRef = ref<HTMLButtonElement>()
+
+// // methods
+// function click() {
+//   buttonRef.value?.click()
+// }
+
+// computations
+const classes = computed(() => {
+  return [
+    ...(props.isBlock ? ['block'] : ['inline-flex items-center gap-2']),
+    ...(props.isLinkColored ? ['text-link-dark dark:text-link-bright'] : []),
+  ].join(' ')
+})
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiButton',
+}
 </script>
