@@ -19,6 +19,7 @@ function getCsp(host: string): Record<string, Array<string>> {
         : [
             `https://${host}/cdn-cgi/rum`, // Cloudflare real user management (browser insights)
           ]),
+      "'self'",
       `https://postgraphile.${host}`,
       'https://www.google-analytics.com',
     ],
