@@ -7,67 +7,21 @@
   </div>
 </template>
 
+<script setup lang="ts">
+// uses
+const { t } = useI18n()
+
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
 <script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
-
-import { computed, defineComponent, reactive, useNuxtApp } from '#app'
-import { useHead } from '#head'
-
-import { useMaevsiStore } from '~/store'
-
-export default defineComponent({
+export default {
   name: 'IndexPage',
-  transition: {
-    name: 'layout',
-  },
-  setup() {
-    const { $router } = useNuxtApp()
-    const { t } = useI18n()
-    const store = useMaevsiStore()
-
-    const data = reactive({
-      title: t('title'),
-    })
-    const computations = {
-      signedIn: computed(() => {
-        return (
-          store.jwtDecoded?.role === 'maevsi_account' &&
-          store.jwtDecoded?.exp &&
-          store.jwtDecoded.exp > Math.floor(Date.now() / 1000)
-        )
-      }),
-    }
-
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
-
-    return {
-      ...data,
-      ...computations,
-    }
-  },
-})
+}
 </script>
 
 <i18n lang="yml">

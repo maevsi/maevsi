@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-4">
       <ScrollContainer
         v-if="event && invitations?.length"
-        :has-next-page="api.data.allInvitations?.pageInfo.hasNextPage"
+        :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
         @loadMore="loadMore"
       >
         <table class="border border-neutral-300 dark:border-neutral-600">
@@ -12,7 +12,7 @@
           >
             <tr>
               <th scope="col">
-                {{ $t('contact') }}
+                {{ t('contact') }}
               </th>
               <th />
             </tr>
@@ -27,6 +27,7 @@
             >
               <td class="max-w-0">
                 <ContactPreview
+                  v-if="invitation.contactByContactId"
                   :contact="invitation.contactByContactId"
                   :feedback="invitation.feedback"
                 />
@@ -39,8 +40,8 @@
                     :aria-label="
                       invitation.contactByContactId?.accountUsername ||
                       invitation.contactByContactId?.emailAddress
-                        ? $t('invitationSend')
-                        : $t('disabledReasonEmailAddressNone')
+                        ? t('invitationSend')
+                        : t('disabledReasonEmailAddressNone')
                     "
                     class="hidden md:block"
                     :disabled="
@@ -53,23 +54,23 @@
                     <IconPaperPlane />
                   </ButtonIcon>
                   <ButtonIcon
-                    :aria-label="$t('invitationLink')"
+                    :aria-label="t('invitationLink')"
                     class="hidden md:block"
                     @click="copyLink(invitation)"
                   >
                     <IconLink />
                   </ButtonIcon>
                   <DropDown>
-                    <ButtonIcon :aria-label="$t('globalShowMore')">
+                    <ButtonIcon :aria-label="t('globalShowMore')">
                       <IconDotsVertical />
                     </ButtonIcon>
-                    <template slot="content">
+                    <template #content>
                       <ButtonIcon
                         :aria-label="
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
-                            ? $t('invitationSend')
-                            : $t('disabledReasonEmailAddressNone')
+                            ? t('invitationSend')
+                            : t('disabledReasonEmailAddressNone')
                         "
                         class="block md:hidden"
                         :disabled="
@@ -83,22 +84,22 @@
                         {{
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
-                            ? $t('invitationSend')
-                            : $t('disabledReasonEmailAddressNone')
+                            ? t('invitationSend')
+                            : t('disabledReasonEmailAddressNone')
                         }}
                       </ButtonIcon>
                       <ButtonIcon
-                        :aria-label="$t('invitationLink')"
+                        :aria-label="t('invitationLink')"
                         class="block md:hidden"
                         @click="copyLink(invitation)"
                       >
                         <IconLink />
-                        {{ $t('invitationLink') }}
+                        {{ t('invitationLink') }}
                       </ButtonIcon>
                       <ButtonIcon
-                        :aria-label="$t('invitationView')"
+                        :aria-label="t('invitationView')"
                         @click="
-                          $router.push({
+                          navigateTo({
                             path: localePath(
                               `/event/${event.authorUsername}/${event.slug}`
                             ),
@@ -107,15 +108,15 @@
                         "
                       >
                         <IconEye />
-                        {{ $t('invitationView') }}
+                        {{ t('invitationView') }}
                       </ButtonIcon>
                       <ButtonIcon
-                        :aria-label="$t('invitationDelete')"
+                        :aria-label="t('invitationDelete')"
                         :disabled="pending.deletions.includes(invitation.uuid)"
                         @click="delete_(invitation.uuid)"
                       >
                         <IconTrash />
-                        {{ $t('invitationDelete') }}
+                        {{ t('invitationDelete') }}
                       </ButtonIcon>
                     </template>
                   </DropDown>
@@ -126,14 +127,14 @@
         </table>
       </ScrollContainer>
       <div v-else class="flex flex-col items-center gap-2">
-        {{ $t('invitationNone') }}
+        {{ t('invitationNone') }}
         <FormInputStateInfo>
-          {{ $t('hintInviteSelf') }}
+          {{ t('hintInviteSelf') }}
         </FormInputStateInfo>
       </div>
       <div class="flex flex-col items-center gap-1">
         <ButtonColored
-          :aria-label="$t('invitationAdd')"
+          :aria-label="t('invitationAdd')"
           :disabled="
             event.inviteeCountMaximum && api.data.allInvitations?.totalCount
               ? api.data.allInvitations.totalCount >= event.inviteeCountMaximum
@@ -141,14 +142,14 @@
           "
           @click="add()"
         >
-          {{ $t('invitationAdd') }}
-          <template slot="prefix">
+          {{ t('invitationAdd') }}
+          <template #prefix>
             <IconPlus />
           </template>
         </ButtonColored>
         <p class="text-center text-gray-500 dark:text-gray-400">
           {{
-            $t('invitationsUsed', {
+            t('invitationsUsed', {
               amountCurrent: api.data.allInvitations?.totalCount,
               amountMaximum: event.inviteeCountMaximum || '∞',
             })
@@ -157,12 +158,12 @@
       </div>
       <div v-if="api.data.allInvitations?.totalCount">
         <h2>
-          {{ $t('feedback') }}
+          {{ t('feedback') }}
         </h2>
         <div class="m-auto w-3/4 sm:w-1/2 xl:w-1/3 2xl:w-1/4">
           <!-- https://github.com/reg-viz/storycap/issues/501 -->
           <Doughnut
-            v-if="!$config.STORYBOOK"
+            v-if="!isStorybookActive"
             ref="doughnut"
             :chart-data="dataComputed"
             :chart-options="options"
@@ -171,16 +172,16 @@
       </div>
       <Modal id="ModalInvitation">
         <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
-        <template slot="header">
-          {{ $t('contactSelect') }}
+        <template #header>
+          {{ t('contactSelect') }}
         </template>
-        <div slot="footer" />
+        <template #footer />
       </Modal>
     </div>
   </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import {
   ArcElement,
   CategoryScale,
@@ -193,29 +194,210 @@ import {
 } from 'chart.js'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { Doughnut } from 'vue-chartjs/legacy'
-import { useI18n } from 'vue-i18n-composable'
+import { Doughnut } from 'vue-chartjs'
 
-import {
-  computed,
-  defineComponent,
-  onMounted,
-  PropType,
-  reactive,
-  ref,
-  useNuxtApp,
-  watch,
-} from '#app'
 import { copyText, getApiMeta } from '~/plugins/util/util'
 import { Invitation } from '~/types/invitation'
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import {
-  Event,
   useAllInvitationsQuery,
   useDeleteInvitationByUuidMutation,
   useInviteMutation,
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
+import { Event } from '~/types/event'
+
+export interface Props {
+  event: Event
+}
+const props = withDefaults(defineProps<Props>(), {})
+
+const { $colorMode } = useNuxtApp()
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
+const store = useMaevsiStore()
+const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
+const inviteMutation = useInviteMutation()
+const config = useRuntimeConfig()
+
+// refs
+const after = ref<string>()
+const doughnut = ref()
+
+const invitationsQuery = useAllInvitationsQuery({
+  variables: {
+    after,
+    eventId: +props.event.id,
+    first: ITEMS_PER_PAGE_LARGE,
+  },
+})
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...invitationsQuery.data.value,
+    },
+    ...getApiMeta([
+      deleteInvitationByUuidMutation,
+      inviteMutation,
+      invitationsQuery,
+    ]),
+  }
+})
+const invitations = computed(
+  () => invitationsQuery.data.value?.allInvitations?.nodes
+)
+
+// data
+const isStorybookActive = config.public.isStorybookActive
+const options = {
+  plugins: {
+    legend: {
+      labels: {
+        font: {
+          fontFamily:
+            'Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+          size: 16,
+        },
+      },
+      onClick: () => {},
+    },
+  },
+}
+const pending = reactive({
+  deletions: ref<string[]>([]),
+  edits: ref<string[]>([]),
+  sends: ref<string[]>([]),
+})
+
+// methods
+function add() {
+  store.modalAdd({ id: 'ModalInvitation' })
+}
+function copyLink(invitation: Invitation): void {
+  if (!process.browser) return
+
+  copyText(
+    `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
+      invitation.uuid
+    }`
+  ).then(() => {
+    Swal.fire({
+      icon: 'success',
+      text: t('copySuccess') as string,
+      timer: 3000,
+      timerProgressBar: true,
+      title: t('copied'),
+    })
+  })
+}
+async function delete_(uuid: string) {
+  pending.deletions.push(uuid)
+  api.value.errors = []
+
+  const result = await deleteInvitationByUuidMutation.executeMutation({
+    uuid,
+  })
+
+  pending.deletions.splice(pending.deletions.indexOf(uuid), 1)
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  // if (!result.data) {
+  //   return
+  // }
+  // TODO: cache update (allInvitations)
+}
+function loadMore() {}
+function onSubmitSuccess() {
+  store.modalRemove('ModalInvitation')
+  // TODO: cache update (allInvitations)
+}
+async function send(invitation: any) {
+  pending.sends.push(invitation.uuid)
+  api.value.errors = []
+
+  const result = await inviteMutation.executeMutation({
+    invitationId: invitation.id,
+    language: locale.value,
+  })
+
+  pending.sends.splice(pending.sends.indexOf(invitation.uuid), 1)
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data) {
+    return
+  }
+
+  Swal.fire({
+    icon: 'success',
+    text: t('sendSuccess') as string,
+    timer: 3000,
+    timerProgressBar: true,
+    title: t('sent'),
+  })
+  // TODO: cache update (allInvitations)
+}
+
+// computations
+const dataComputed = computed(() => {
+  const datasetData = [0, 0, 0]
+
+  if (invitations.value) {
+    for (const invitation of invitations.value) {
+      switch (invitation.feedback) {
+        case 'ACCEPTED':
+          datasetData[0] += 1
+          break
+        case 'CANCELED':
+          datasetData[1] = datasetData[1] + 1
+          break
+        case null:
+          datasetData[2] = datasetData[2] + 1
+          break
+        default:
+          consola.error('Unexpected invitation type.')
+      }
+    }
+  }
+
+  return {
+    labels: [t('accepted'), t('canceled'), t('noFeedback')],
+    datasets: [
+      {
+        data: datasetData,
+        backgroundColor: ['#00FF00', '#FF0000', '#888888'],
+      },
+    ],
+  }
+})
+
+// lifecycle
+onMounted(() => {
+  Chart.defaults.color = () => ($colorMode.value === 'dark' ? '#fff' : '#000')
+})
+
+watch(
+  $colorMode,
+  (_currentValue, _oldValue) => {
+    doughnut.value.getCurrentChart()?.update()
+  },
+  { deep: true }
+)
+
+watch(invitationsQuery.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
+})
+
+// initialization
 
 Chart.register(
   ArcElement,
@@ -226,213 +408,6 @@ Chart.register(
   Tooltip,
   Legend
 )
-
-export default defineComponent({
-  components: {
-    Doughnut,
-  },
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<Event>,
-    },
-  },
-  setup(props) {
-    const { $colorMode, $i18n, localePath } = useNuxtApp()
-    const { t } = useI18n()
-    const store = useMaevsiStore()
-    const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
-    const inviteMutation = useInviteMutation()
-
-    const refs = {
-      apiContactsAfter: ref<string>(),
-      doughnut: ref(),
-    }
-    const invitationsQuery = useAllInvitationsQuery({
-      variables: {
-        after: refs.apiContactsAfter,
-        eventId: +props.event.id,
-        first: ITEMS_PER_PAGE_LARGE,
-      },
-    })
-
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...invitationsQuery.data.value,
-          },
-          ...getApiMeta([
-            deleteInvitationByUuidMutation,
-            inviteMutation,
-            invitationsQuery,
-          ]),
-        }
-      }),
-      invitations: computed(
-        () => invitationsQuery.data.value?.allInvitations?.nodes
-      ),
-    }
-    const data = reactive({
-      options: {
-        plugins: {
-          legend: {
-            labels: {
-              font: {
-                fontFamily:
-                  'Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-                size: 16,
-              },
-            },
-            onClick: null,
-          },
-        },
-      },
-      pending: {
-        deletions: [] as string[],
-        edits: [] as string[],
-        sends: [] as string[],
-      },
-    })
-    const methods = {
-      add() {
-        store.modalAdd({ id: 'ModalInvitation' })
-      },
-      copyLink(invitation: Invitation): void {
-        if (!process.browser) return
-
-        copyText(
-          `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
-            invitation.uuid
-          }`
-        ).then(() => {
-          Swal.fire({
-            icon: 'success',
-            text: t('copySuccess') as string,
-            timer: 3000,
-            timerProgressBar: true,
-            title: t('copied'),
-          })
-        })
-      },
-      async delete_(uuid: string) {
-        data.pending.deletions.push(uuid)
-        apiData.api.value.errors = []
-
-        const result = await deleteInvitationByUuidMutation.executeMutation({
-          uuid,
-        })
-
-        data.pending.deletions.splice(data.pending.deletions.indexOf(uuid), 1)
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        // if (!result.data) {
-        //   return
-        // }
-        // TODO: cache update (allInvitations)
-      },
-      loadMore() {},
-      async send(invitation: any) {
-        data.pending.sends.push(invitation.uuid)
-        apiData.api.value.errors = []
-
-        const result = await inviteMutation.executeMutation({
-          invitationId: invitation.id,
-          language: $i18n.locale,
-        })
-
-        data.pending.sends.splice(
-          data.pending.sends.indexOf(invitation.uuid),
-          1
-        )
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        if (!result.data) {
-          return
-        }
-
-        Swal.fire({
-          icon: 'success',
-          text: t('sendSuccess') as string,
-          timer: 3000,
-          timerProgressBar: true,
-          title: t('sent'),
-        })
-        // TODO: cache update (allInvitations)
-      },
-      onSubmitSuccess() {
-        store.modalRemove('ModalInvitation')
-        // TODO: cache update (allInvitations)
-      },
-    }
-    const computations = {
-      dataComputed: computed(() => {
-        const datasetData = [0, 0, 0]
-
-        if (apiData.invitations.value) {
-          for (const invitation of apiData.invitations.value) {
-            switch (invitation.feedback) {
-              case 'ACCEPTED':
-                datasetData[0] += 1
-                break
-              case 'CANCELED':
-                datasetData[1] = datasetData[1] + 1
-                break
-              case null:
-                datasetData[2] = datasetData[2] + 1
-                break
-              default:
-                consola.error('Unexpected invitation type.')
-            }
-          }
-        }
-
-        return {
-          labels: [t('accepted'), t('canceled'), t('noFeedback')],
-          datasets: [
-            {
-              data: datasetData,
-              backgroundColor: ['#00FF00', '#FF0000', '#888888'],
-            },
-          ],
-        }
-      }),
-    }
-
-    onMounted(() => {
-      Chart.defaults.color = () =>
-        $colorMode.value === 'dark' ? '#fff' : '#000'
-    })
-
-    watch(
-      $colorMode,
-      (_currentValue, _oldValue) => {
-        refs.doughnut.value.getCurrentChart()?.update()
-      },
-      { deep: true }
-    )
-
-    watch(invitationsQuery.error, (currentValue, _oldValue) => {
-      if (currentValue) consola.error(currentValue)
-    })
-
-    return {
-      ...apiData,
-      ...refs,
-      ...data,
-      ...methods,
-      ...computations,
-    }
-  },
-})
 </script>
 
 <i18n lang="yml">

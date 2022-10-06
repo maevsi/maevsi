@@ -22,46 +22,30 @@
   </div>
 </template>
 
-<script lang="ts">
-import { reactive, ref } from 'vue'
+<script setup lang="ts">
+const { $nuxt } = useNuxtApp()
 
-import { defineComponent, useNuxtApp } from '#app'
+// refs
+const dropdownRef = ref<HTMLElement>()
 
-export default defineComponent({
-  setup() {
-    const { $nuxt } = useNuxtApp()
+// data
+const isOpen = ref(false)
 
-    const refs = {
-      dropdownRef: ref<HTMLElement>(),
-    }
-    const data = reactive({
-      isOpen: false,
+// methods
+function toggleIsOpen(e: MouseEvent) {
+  isOpen.value = !isOpen.value
+
+  if (isOpen.value) {
+    document.body.classList.add('overflow-hidden')
+
+    $nuxt.$nextTick(() => {
+      if (dropdownRef.value) {
+        dropdownRef.value.style.top = e.clientY + 'px'
+        dropdownRef.value.style.left = e.clientX + 'px'
+      }
     })
-
-    const methods = {
-      toggleIsOpen(e: MouseEvent) {
-        data.isOpen = !data.isOpen
-
-        if (data.isOpen) {
-          document.body.classList.add('overflow-hidden')
-
-          $nuxt.$nextTick(() => {
-            if (refs.dropdownRef.value) {
-              refs.dropdownRef.value.style.top = e.clientY + 'px'
-              refs.dropdownRef.value.style.left = e.clientX + 'px'
-            }
-          })
-        } else {
-          document.body.classList.remove('overflow-hidden')
-        }
-      },
-    }
-
-    return {
-      ...refs,
-      ...data,
-      ...methods,
-    }
-  },
-})
+  } else {
+    document.body.classList.remove('overflow-hidden')
+  }
+}
 </script>

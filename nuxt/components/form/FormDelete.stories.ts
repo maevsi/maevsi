@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import FormDelete from './FormDelete.vue'
 
 export default {
@@ -10,7 +10,6 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { FormDelete },
     props: Object.keys(argTypes),
-    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<FormDelete v-bind="$props">FormDelete</FormDelete>',
   })
 

@@ -1,25 +1,20 @@
 <template>
-  <IconArchive v-if="isArchived" :title="$t('archived')" />
-  <IconGlobe v-else-if="visibility === 'PUBLIC'" :title="$t('public')" />
-  <IconEyeOff v-else-if="visibility === 'PRIVATE'" :title="$t('private')" />
-  <IconBug v-else :title="$t('bug')" />
+  <IconArchive v-if="isArchived" :title="t('archived')" />
+  <IconGlobe v-else-if="visibility === 'PUBLIC'" :title="t('public')" />
+  <IconEyeOff v-else-if="visibility === 'PRIVATE'" :title="t('private')" />
+  <IconBug v-else :title="t('bug')" />
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
-
-export default defineComponent({
-  props: {
-    isArchived: {
-      default: false,
-      type: Boolean,
-    },
-    visibility: {
-      required: true,
-      type: String,
-    },
-  },
+<script setup lang="ts">
+export interface Props {
+  isArchived?: boolean
+  visibility: string
+}
+withDefaults(defineProps<Props>(), {
+  isArchived: false,
 })
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

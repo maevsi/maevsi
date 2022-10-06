@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import ButtonEventList from './ButtonEventList.vue'
 
 const argTypes = { click: { action: 'click' } }
@@ -15,7 +15,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
     components: { ButtonEventList },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<ButtonEventList v-bind="$props" @click="click">ButtonEventList</ButtonEventList>',
   })
 

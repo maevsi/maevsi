@@ -1,31 +1,28 @@
 <template>
   <EventDashlet v-if="event.start">
     <span>
-      <IconCalendar :title="$t('start')" />
+      <IconCalendar :title="t('start')" />
     </span>
     <div class="flex flex-col">
       <span>
         {{ $moment(event.start).format('lll') }}
       </span>
       <span class="hidden sm:inline">
-        {{ $t('embraced', { content: $moment(event.start).fromNow() }) }}
+        {{ t('embraced', { content: $moment(event.start).fromNow() }) }}
       </span>
     </div>
   </EventDashlet>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
+<script setup lang="ts">
 import { Event } from '~/types/event'
 
-export default defineComponent({
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<Event>,
-    },
-  },
-})
+export interface Props {
+  event: Event
+}
+withDefaults(defineProps<Props>(), {})
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

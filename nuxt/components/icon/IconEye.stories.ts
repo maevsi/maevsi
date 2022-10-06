@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import IconEye from './IconEye.vue'
 
 const argTypes = { click: { action: 'click' } }
@@ -14,9 +14,7 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
     components: { IconEye },
     props: Object.keys(argTypes),
-    template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<IconEye v-bind="$props" @click="click">IconEye</IconEye>',
+    template: '<IconEye v-bind="$props" @click="click">IconEye</IconEye>',
   })
 
 export const Default = Template.bind({})

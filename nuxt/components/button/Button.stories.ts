@@ -1,20 +1,19 @@
-import { defineComponent } from '#app'
-import Button from './Button.vue'
+import { defineComponent } from 'vue'
+import MaevsiButton from './Button.vue'
 
 const argTypes = { click: { action: 'click' } }
 type ArgTypesType = { argTypes: typeof argTypes }
 
 export default {
-  component: Button,
+  component: MaevsiButton,
   title: 'button/Button',
   argTypes,
 }
 
 const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
-    components: { Button },
+    components: { MaevsiButton },
     props: Object.keys(argTypes),
-    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<Button v-bind="$props" @click="click">Button</Button>',
   })
 

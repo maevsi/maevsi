@@ -1,5 +1,5 @@
 <template>
-  <i18n class="max-w-full truncate" path="eventAuthor">
+  <i18n-t class="max-w-full truncate" keypath="eventAuthor">
     <template #username>
       <AppLink v-if="link" :to="localePath('/account/' + username)">
         {{ username }}
@@ -8,25 +8,26 @@
         {{ username }}
       </span>
     </template>
-  </i18n>
+  </i18n-t>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
-
-export default defineComponent({
-  name: 'MaevsiOwner',
-  props: {
-    link: {
-      default: false,
-      type: Boolean,
-    },
-    username: {
-      required: true,
-      type: String,
-    },
-  },
+<script setup lang="ts">
+export interface Props {
+  link?: boolean
+  username: string
+}
+withDefaults(defineProps<Props>(), {
+  link: false,
 })
+
+// uses
+const localePath = useLocalePath()
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiOwner',
+}
 </script>
 
 <i18n lang="yml">

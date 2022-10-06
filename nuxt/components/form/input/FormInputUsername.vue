@@ -4,98 +4,87 @@
     :is-optional="isOptional"
     :is-validatable="isValidatable"
     :id-label="`input-${id}`"
-    :placeholder="$t('globalPlaceholderUsername')"
-    :success="isValidatable && formInput.$model && !formInput.$invalid"
-    :title="$t(id.replace(/(-registration|-sign-in)$/, ''))"
+    :placeholder="t('globalPlaceholderUsername')"
+    :success="isValidatable && !formInput.$invalid"
+    :title="t(id)"
     type="text"
     :validation-property="formInput"
     :value="formInput"
     @input="$emit('input', $event)"
   >
-    <template slot="icon">
+    <template v-if="$slots.icon" #icon>
       <slot name="icon" />
     </template>
-    <template slot="stateError">
+    <template #stateError>
       <FormInputStateError
         :form-input="formInput"
         :is-validation-live="!isValidationInverted"
         validation-property="existence"
       >
-        {{ $t('globalValidationExistence') }}
+        {{ t('globalValidationExistence') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         :is-validation-live="isValidationInverted"
         validation-property="existenceNone"
       >
-        {{ $t('globalValidationExistenceNone') }}
+        {{ t('globalValidationExistenceNone') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="formatSlug"
       >
-        {{ $t('validationFormat') }}
+        {{ t('validationFormat') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="required"
       >
-        {{ $t('globalValidationRequired') }}
+        {{ t('globalValidationRequired') }}
       </FormInputStateError>
     </template>
-    <template slot="stateInfo">
+    <template #stateInfo>
       <FormInputStateInfo
         :form-input="formInput"
         :is-validation-live="!isValidationInverted"
         validation-property="existence"
       >
-        {{ $t('validationExistenceHint') }}
+        {{ t('validationExistenceHint') }}
       </FormInputStateInfo>
     </template>
-    <template v-if="isValidatable" slot="stateSuccess">
+    <template v-if="isValidatable" #stateSuccess>
       <FormInputStateSuccess
         :form-input="formInput"
         validation-property="existence"
       >
         {{
           isValidationInverted
-            ? $t('globalVerificationExistenceNone')
-            : $t('globalVerificationExistence')
+            ? t('globalVerificationExistenceNone')
+            : t('globalVerificationExistence')
         }}
       </FormInputStateSuccess>
     </template>
   </FormInput>
 </template>
 
-<script lang="ts">
-import { Validation } from '@vuelidate/core'
+<script setup lang="ts">
+import type { BaseValidation } from '@vuelidate/core'
 
-import { defineComponent, PropType } from '#app'
-
-export default defineComponent({
-  props: {
-    formInput: {
-      required: true,
-      type: Object as PropType<Validation | undefined>,
-    },
-    id: {
-      required: true,
-      type: String,
-    },
-    isOptional: {
-      default: false,
-      type: Boolean,
-    },
-    isValidatable: {
-      default: false,
-      type: Boolean,
-    },
-    isValidationInverted: {
-      default: false,
-      type: Boolean,
-    },
-  },
+export interface Props {
+  formInput: BaseValidation | undefined
+  id?: string
+  isOptional?: boolean
+  isValidatable?: boolean
+  isValidationInverted?: boolean
+}
+withDefaults(defineProps<Props>(), {
+  id: 'username',
+  isOptional: false,
+  isValidatable: false,
+  isValidationInverted: false,
 })
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

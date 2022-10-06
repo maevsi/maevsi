@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import FormInputPhoneNumber from './FormInputPhoneNumber.vue'
 
 export default {
@@ -11,7 +11,6 @@ const Template = (_: never, { argTypes }: any) =>
     components: { FormInputPhoneNumber },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<FormInputPhoneNumber v-bind="$props">FormInputPhoneNumber</FormInputPhoneNumber>',
   })
 

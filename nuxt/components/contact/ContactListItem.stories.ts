@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import ContactListItem from './ContactListItem.vue'
 
 export default {
@@ -11,7 +11,6 @@ const Template = (_: never, { argTypes }: any) =>
     components: { ContactListItem },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<ContactListItem v-bind="$props">ContactListItem</ContactListItem>',
   })
 

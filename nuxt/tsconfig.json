@@ -1,33 +1,27 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "strict": true,
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "baseUrl": ".",
+  //   "sourceMap": true,
+  //   "experimentalDecorators": true,
     "types": [
-      "@types/node",
-      "@nuxt/types-edge",
-      "@nuxtjs/color-mode",
-      "@nuxtjs/google-analytics",
-      "@nuxtjs/i18n",
-      "@nuxtjs/moment",
+  //     "@types/node",
+  //     "@nuxtjs/color-mode",
+  //     "@nuxtjs/google-analytics",
+      // "@nuxtjs/i18n",
+  //     "@nuxtjs/moment",
       "jest",
-      "node",
+  //     "node",
     ],
-    "lib": [
-      "ESNext",
-      "ESNext.AsyncIterable",
-      "DOM"
-    ]
+  //   "lib": [
+  //     "ESNext",
+  //     "ESNext.AsyncIterable",
+  //     "DOM"
+  //   ]
   },
-  "exclude": [
-    "node_modules",
-    ".nuxt",
-    "dist"
-  ],
+  // "exclude": [
+  //   "node_modules",
+  //   ".nuxt",
+  //   "dist"
+  // ],
   "extends": "./.nuxt/tsconfig.json",
-  "vueCompilerOptions": {
-    "target": 2.7,
-  }
 }

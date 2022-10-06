@@ -2,11 +2,11 @@
   <div class="flex flex-col items-center gap-4">
     <ButtonColored
       :is-primary="false"
-      :aria-label="$t('register')"
+      :aria-label="t('register')"
       :to="localePath('/task/account/sign-in')"
     >
-      {{ $t('signIn') }}
-      <template slot="prefix">
+      {{ t('signIn') }}
+      <template #prefix>
         <IconArrowLeft />
       </template>
     </ButtonColored>
@@ -15,30 +15,27 @@
       :form="v$.form"
       form-class="w-full"
       :is-form-sent="isFormSent"
-      :submit-name="$t('register')"
+      :submit-name="t('register')"
       @submit.prevent="submit"
     >
       <FormInputUsername
-        id="username-registration"
         :form-input="v$.form.username"
         is-validatable
         is-validation-inverted
         @input="form.username = $event"
       />
       <FormInputPassword
-        id="password-registration"
         :form-input="v$.form.password"
         @input="form.password = $event"
       />
       <FormInputEmailAddress
-        id="email-address-registration"
         :form-input="v$.form.emailAddress"
         is-required
         @input="form.emailAddress = $event"
       />
-      <template slot="assistance">
+      <template #assistance>
         <FormInputStateInfo>
-          {{ $t('accountDeletionNotice') }}
+          {{ t('accountDeletionNotice') }}
         </FormInputStateInfo>
       </template>
     </Form>
@@ -56,10 +53,6 @@ import {
 } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { toRef } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
-
-import { computed, defineComponent, reactive, useNuxtApp } from '#app'
 
 import {
   formPreSubmit,
@@ -75,8 +68,8 @@ import { useAccountRegistrationMutation } from '~/gql/generated'
 
 const FormAccountRegistration = defineComponent({
   setup(_props, { emit }) {
-    const { $i18n } = useNuxtApp()
-    const { t } = useI18n()
+    const { locale, t } = useI18n()
+    const localePath = useLocalePath()
     const { executeMutation: executeMutationAccountRegistration } =
       useAccountRegistrationMutation()
 
@@ -118,6 +111,7 @@ const FormAccountRegistration = defineComponent({
     }
     const v$ = useVuelidate(rules, data)
     const methods = {
+      localePath,
       async submit() {
         try {
           await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
@@ -128,7 +122,7 @@ const FormAccountRegistration = defineComponent({
 
         const result = await executeMutationAccountRegistration({
           emailAddress: data.form.emailAddress,
-          language: $i18n.locale,
+          language: locale.value,
           password: data.form.password,
           username: data.form.username,
         })
@@ -149,6 +143,7 @@ const FormAccountRegistration = defineComponent({
           title: t('registrationSuccessTitle'),
         })
       },
+      t,
     }
 
     return {

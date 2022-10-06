@@ -2,39 +2,39 @@
   <div class="flex flex-col gap-32 md:gap-32 mt-8">
     <section id="overview" class="flex gap-8 items-center">
       <div class="flex w-full flex-col gap-8 md:gap-16 items-start lg:w-1/2">
-        <i18n
+        <i18n-t
           class="text-left text-4xl font-extrabold m-0 sm:text-5xl md:text-5xl xl:text-7xl"
-          path="title"
+          keypath="title"
           tag="h1"
         >
           <template #easy>
-            <span class="text-blue-600">{{ $t('titleEasy') }}</span>
+            <span class="text-blue-600">{{ t('titleEasy') }}</span>
           </template>
           <template #fast>
-            <span class="text-green-600">{{ $t('titleFast') }}</span>
+            <span class="text-green-600">{{ t('titleFast') }}</span>
           </template>
           <template #professional>
-            <span class="text-red-600">{{ $t('titleProfessional') }}</span>
+            <span class="text-red-600">{{ t('titleProfessional') }}</span>
           </template>
-        </i18n>
+        </i18n-t>
         <div class="flex flex-col gap-2 text-lg md:text-xl">
           <p>
-            {{ $t('maevsiDescription1') }}
+            {{ t('maevsiDescription1') }}
           </p>
           <p>
-            {{ $t('maevsiDescription2') }}
+            {{ t('maevsiDescription2') }}
           </p>
         </div>
         <ButtonColored
-          :aria-label="$t('testNowFree')"
+          :aria-label="t('testNowFree')"
           class="text-lg md:text-xl"
           :to="localePath('/event')"
         >
-          {{ $t('testNowFree') }}
+          {{ t('testNowFree') }}
         </ButtonColored>
       </div>
       <LoaderImage
-        :alt="$t('heroImage')"
+        :alt="t('heroImage')"
         class="hidden lg:block lg:w-1/2"
         height="861"
         src="/assets/static/images/hero_background.png"
@@ -43,35 +43,35 @@
     </section>
     <section id="steps" ref="sectionSteps">
       <h2 class="text-center text-5xl font-extrabold">
-        {{ $t('stepsTitle') }}
+        {{ t('stepsTitle') }}
       </h2>
       <div class="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap">
         <Step
           class="sm:w-1/4"
-          :number="$t('stepCreateNumber')"
-          :title="$t('stepCreateTitle')"
+          :number="t('stepCreateNumber')"
+          :title="t('stepCreateTitle')"
         >
-          {{ $t('stepCreateDescription') }}
+          {{ t('stepCreateDescription') }}
         </Step>
         <Step
           class="sm:w-1/4"
-          :number="$t('stepInviteNumber')"
-          :title="$t('stepInviteTitle')"
+          :number="t('stepInviteNumber')"
+          :title="t('stepInviteTitle')"
         >
-          {{ $t('stepInviteDescription') }}
+          {{ t('stepInviteDescription') }}
         </Step>
         <Step
           class="sm:w-1/4"
-          :number="$t('stepDefineNumber')"
-          :title="$t('stepDefineTitle')"
+          :number="t('stepDefineNumber')"
+          :title="t('stepDefineTitle')"
         >
-          {{ $t('stepDefineDescription') }}
+          {{ t('stepDefineDescription') }}
         </Step>
       </div>
     </section>
     <section class="flex flex-col lg:flex-row gap-8 items-center">
       <LoaderImage
-        :alt="$t('heroImage')"
+        :alt="t('heroImage')"
         class="lg:w-1/2"
         height="750"
         src="/assets/static/images/smartphone.png"
@@ -79,57 +79,57 @@
       />
       <div class="flex flex-col gap-8 items-start lg:w-1/2">
         <h2 class="text-4xl font-extrabold">
-          {{ $t('smartphoneTitle') }}
+          {{ t('smartphoneTitle') }}
         </h2>
         <p class="text-lg font-normal leading-8">
-          {{ $t('smartphoneDescription') }}
+          {{ t('smartphoneDescription') }}
         </p>
         <ButtonColored
-          :aria-label="$t('testNow')"
+          :aria-label="t('testNow')"
           :to="localePath('/task/event/create')"
         >
-          {{ $t('testNow') }}
+          {{ t('testNow') }}
         </ButtonColored>
       </div>
     </section>
     <section id="features" class="flex flex-col gap-8">
-      <i18n
+      <i18n-t
         class="text-center text-5xl font-extrabold"
-        path="benefitsTitle"
+        keypath="benefitsTitle"
         tag="h2"
       >
-        <template #maevsi><br />{{ $t('maevsi') }}</template>
-      </i18n>
+        <template #maevsi><br />{{ t('maevsi') }}</template>
+      </i18n-t>
       <div class="flex flex-wrap">
         <Benefit
-          :description="$t('benefitInformationDescription')"
+          :description="t('benefitInformationDescription')"
           icon-path="/assets/static/icons/flexibility.svg"
-          :title="$t('benefitInformation')"
+          :title="t('benefitInformation')"
         />
         <Benefit
-          :description="$t('benefitPersonalDescription')"
+          :description="t('benefitPersonalDescription')"
           icon-path="/assets/static/icons/statistics.svg"
-          :title="$t('benefitPersonal')"
+          :title="t('benefitPersonal')"
         />
         <Benefit
-          :description="$t('benefitControlDescription')"
+          :description="t('benefitControlDescription')"
           icon-path="/assets/static/icons/management.svg"
-          :title="$t('benefitControl')"
+          :title="t('benefitControl')"
         />
         <Benefit
-          :description="$t('benefitUserFriendlyDescription')"
+          :description="t('benefitUserFriendlyDescription')"
           icon-path="/assets/static/icons/user-friendly.svg"
-          :title="$t('benefitUserFriendly')"
+          :title="t('benefitUserFriendly')"
         />
         <Benefit
-          :description="$t('benefitSecureDescription')"
+          :description="t('benefitSecureDescription')"
           icon-path="/assets/static/icons/modules.svg"
-          :title="$t('benefitSecure')"
+          :title="t('benefitSecure')"
         />
         <Benefit
-          :description="$t('benefitOpenSourceDescription')"
+          :description="t('benefitOpenSourceDescription')"
           icon-path="/assets/static/icons/open-source.svg"
-          :title="$t('benefitOpenSource')"
+          :title="t('benefitOpenSource')"
         />
       </div>
     </section>
@@ -146,92 +146,50 @@
   </div>
 </template>
 
-<script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+<script setup lang="ts">
+// uses
+const { t } = useI18n()
+const localePath = useLocalePath()
 
-import { useHead } from '#head'
+// refs
+const sectionSteps = ref<HTMLElement>()
 
-import {
-  defineComponent,
-  onBeforeUnmount,
-  onMounted,
-  reactive,
-  ref,
-  useNuxtApp,
-} from '#app'
-
-export default defineComponent({
-  name: 'IndexPage',
-  transition: {
-    name: 'layout',
-  },
-  setup() {
-    const { $router } = useNuxtApp()
-    const { t } = useI18n()
-
-    const refs = {
-      sectionSteps: ref<HTMLElement>(),
-    }
-
-    const data = reactive({
-      isScrollHintShown: false,
-      title: t('title', {
-        easy: t('titleEasy'),
-        fast: t('titleFast'),
-        professional: t('titleProfessional'),
-      }),
-    })
-    const methods = {
-      hideScrollHint() {
-        data.isScrollHintShown = false
-      },
-      scrollToSteps() {
-        refs.sectionSteps.value?.scrollIntoView({ behavior: 'smooth' })
-      },
-    }
-
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
-
-    onMounted(() => {
-      if (window.pageYOffset === 0) {
-        data.isScrollHintShown = true
-
-        window.addEventListener('scroll', methods.hideScrollHint)
-      }
-    })
-
-    onBeforeUnmount(() => {
-      window.removeEventListener('scroll', methods.hideScrollHint)
-    })
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
+// data
+const isScrollHintShown = ref(false)
+const title = t('title', {
+  easy: t('titleEasy'),
+  fast: t('titleFast'),
+  professional: t('titleProfessional'),
 })
+
+// methods
+function hideScrollHint() {
+  isScrollHintShown.value = false
+}
+function scrollToSteps() {
+  sectionSteps.value?.scrollIntoView({ behavior: 'smooth' })
+}
+
+// lifecycle
+onMounted(() => {
+  if (window.pageYOffset === 0) {
+    isScrollHintShown.value = true
+
+    window.addEventListener('scroll', hideScrollHint)
+  }
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', hideScrollHint)
+})
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

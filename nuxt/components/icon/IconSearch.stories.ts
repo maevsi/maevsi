@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import IconSearch from './IconSearch.vue'
 
 const argTypes = { click: { action: 'click' } }
@@ -15,7 +15,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
     components: { IconSearch },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<IconSearch v-bind="$props" @click="click">IconSearch</IconSearch>',
   })
 

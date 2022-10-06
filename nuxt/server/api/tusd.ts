@@ -9,9 +9,11 @@ import {
   sendError,
 } from 'h3'
 import consola from 'consola'
-import jsonwebtoken from 'jsonwebtoken'
+import { jwtVerify, importSPKI } from 'jose'
 import pg from 'pg'
 import fetch from 'node-fetch'
+
+import { JWT_ALGORITHM } from '~/plugins/util/constants'
 
 const configPostgraphileJwtPublicKeyPath =
   process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE || ''
@@ -25,6 +27,8 @@ const configPostgraphileJwtPublicKey = fs.existsSync(
   ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
   : undefined
 
+// https://github.com/brianc/node-postgres/issues/2137
+// https://github.com/brianc/node-postgres/issues/2353
 // eslint-disable-next-line import/no-named-as-default-member
 const pool = new pg.Pool({
   database: fs.existsSync(secretPostgresDbPath)
@@ -113,12 +117,11 @@ async function tusdDelete(event: CompatibilityEvent) {
   }
 
   try {
-    // eslint-disable-next-line import/no-named-as-default-member
-    jsonwebtoken.verify(
+    jwtVerify(
       req.headers.authorization.substring(7),
-      configPostgraphileJwtPublicKey,
+      await importSPKI(configPostgraphileJwtPublicKey, JWT_ALGORITHM),
       {
-        algorithms: ['RS256'],
+        algorithms: [JWT_ALGORITHM],
         audience: 'postgraphile',
         issuer: 'postgraphile',
       }

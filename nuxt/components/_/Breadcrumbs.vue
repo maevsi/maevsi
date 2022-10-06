@@ -9,13 +9,13 @@
         :key="prefix.name"
         class="flex items-center gap-2"
       >
-        <span>{{ $t('separator') }}</span>
+        <span>{{ t('separator') }}</span>
         <AppLink :append="prefix.append" :is-colored="false" :to="prefix.to">
           <span class="whitespace-nowrap text-2xl">{{ prefix.name }}</span>
         </AppLink>
       </li>
     </ul>
-    <span>{{ $t('separator') }}</span>
+    <span>{{ t('separator') }}</span>
     <AppLink :is-colored="false" :to="queryString">
       <h1 class="m-0 whitespace-nowrap text-2xl"><slot /></h1>
     </AppLink>
@@ -25,7 +25,7 @@
         :key="suffix.name"
         class="flex items-center gap-2"
       >
-        <span>{{ $t('separator') }}</span>
+        <span>{{ t('separator') }}</span>
         <AppLink :append="suffix.append" :is-colored="false" :to="suffix.to">
           <span class="whitespace-nowrap text-2xl">{{ suffix.name }}</span>
         </AppLink>
@@ -34,40 +34,35 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, PropType, useRoute } from '#app'
+<script setup lang="ts">
 import { getQueryString } from '~/plugins/util/util'
 
-interface Breadcrumb {
+export interface Breadcrumb {
   append: boolean
   name: string
   to: string
 }
 
-export default defineComponent({
-  name: 'MaevsiBreadcrumbs',
-  props: {
-    prefixes: {
-      default: undefined,
-      type: Array as PropType<Array<Breadcrumb>>,
-    },
-    suffixes: {
-      default: undefined,
-      type: Array as PropType<Array<Breadcrumb>>,
-    },
-  },
-  setup() {
-    const route = useRoute()
-
-    const computations = {
-      queryString: computed(() => getQueryString(route.query)),
-    }
-
-    return {
-      ...computations,
-    }
-  },
+export interface Props {
+  prefixes?: Array<Breadcrumb>
+  suffixes?: Array<Breadcrumb>
+}
+withDefaults(defineProps<Props>(), {
+  prefixes: undefined,
+  suffixes: undefined,
 })
+
+const route = useRoute()
+const localePath = useLocalePath()
+const { t } = useI18n()
+
+const queryString = computed(() => getQueryString(route.query))
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiBreadcrumbs',
+}
 </script>
 
 <i18n lang="yml">

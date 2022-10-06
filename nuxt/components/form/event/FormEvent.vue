@@ -4,7 +4,7 @@
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
-    :submit-name="form.id ? $t('eventUpdate') : $t('eventCreate')"
+    :submit-name="form.id ? t('eventUpdate') : t('eventCreate')"
     @submit.prevent="submit"
   >
     <FormInput
@@ -20,37 +20,37 @@
       id-label="input-name"
       is-required
       is-validatable
-      :placeholder="$t('namePlaceholder')"
-      :title="$t('name')"
+      :placeholder="t('namePlaceholder')"
+      :title="t('name')"
       type="text"
       :validation-property="v$.form.slug"
       :value="v$.form.name"
       @input="onInputName($event)"
     >
-      <template slot="stateWarning">
+      <template #stateWarning>
         <FormInputStateWarning v-if="event && event.name !== form.name">
-          {{ $t('validationWarningNameChangeSlug') }}
+          {{ t('validationWarningNameChangeSlug') }}
         </FormInputStateWarning>
       </template>
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.slug"
           is-validation-live
           validation-property="existenceNone"
         >
-          {{ $t('validationExistenceNone', { slug: v$.form.slug?.$model }) }}
+          {{ t('validationExistenceNone', { slug: v$.form.slug?.$model }) }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.name"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.name"
           validation-property="required"
         >
-          {{ $t('globalValidationRequired') }}
+          {{ t('globalValidationRequired') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -58,30 +58,30 @@
       class="hidden"
       id-label="input-slug"
       is-required
-      :placeholder="$t('slugPlaceholder')"
-      :title="$t('slug')"
+      :placeholder="t('slugPlaceholder')"
+      :title="t('slug')"
       type="text"
       :value="v$.form.slug"
       @input="form.slug = $event"
     >
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.slug"
           validation-property="formatSlug"
         >
-          {{ $t('globalValidationFormat') }}
+          {{ t('globalValidationFormat') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.slug"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.slug"
           validation-property="required"
         >
-          {{ $t('globalValidationRequired') }}
+          {{ t('globalValidationRequired') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -89,49 +89,49 @@
       v-if="v$.form.visibility"
       id-label="input-visibility"
       is-required
-      :title="$t('visibility')"
+      :title="t('visibility')"
       type="radio"
       :value="v$.form.visibility"
-      @input="form.visibility = $event"
+      @input="form.visibility = $event as EventVisibility"
     >
       <FormRadioButtonGroup
         id="input-visibility"
         v-model="v$.form.visibility.$model"
         name="visibility"
         :titles-values="[
-          [$t('visibilityPublic'), 'PUBLIC'],
-          [$t('visibilityPrivate'), 'PRIVATE'],
+          [t('visibilityPublic'), 'PUBLIC'],
+          [t('visibilityPrivate'), 'PRIVATE'],
         ]"
       />
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.visibility"
           validation-property="required"
         >
-          {{ $t('globalValidationRequired') }}
+          {{ t('globalValidationRequired') }}
         </FormInputStateError>
       </template>
     </FormInput>
     <FormInput
       v-if="form.visibility === 'PUBLIC'"
       id-label="input-invitee-count-maximum"
-      :title="$t('maximumInviteeCount')"
+      :title="t('maximumInviteeCount')"
       type="number"
       :value="v$.form.inviteeCountMaximum"
       @input="form.inviteeCountMaximum = $event"
     >
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.inviteeCountMaximum"
           validation-property="maxValue"
         >
-          {{ $t('globalValidationMaxValue') }}
+          {{ t('globalValidationMaxValue') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.form.inviteeCountMaximum"
           validation-property="minValue"
         >
-          {{ $t('globalValidationMinValue') }}
+          {{ t('globalValidationMinValue') }}
         </FormInputStateError>
       </template>
     </FormInput>
@@ -139,7 +139,7 @@
       v-if="v$.form.start && v$.form.end"
       id-label="input-start"
       is-required
-      :title="$t('start')"
+      :title="t('start')"
       type="datetime-local"
       :value="v$.form.start"
       :warning="isWarningStartPastShown"
@@ -153,18 +153,18 @@
         :max-datetime="v$.form.end.$model"
         :minute-step="5"
         type="datetime"
-        :use12-hour="$i18n.locale === 'en'"
+        :use12-hour="locale === 'en'"
       />
-      <template slot="stateWarning">
+      <template #stateWarning>
         <FormInputStateWarning v-if="isWarningStartPastShown">
-          {{ $t('globalValidationNowOrFuture') }}
+          {{ t('globalValidationNowOrFuture') }}
         </FormInputStateWarning>
       </template>
     </FormInput>
     <FormInput
       v-if="v$.form.end && v$.form.start"
       id-label="input-end"
-      :title="$t('end')"
+      :title="t('end')"
       type="datetime-local"
       :value="v$.form.end"
       @input="form.end = $event"
@@ -181,15 +181,15 @@
         :min-datetime="v$.form.start.$model"
         :minute-step="5"
         type="datetime"
-        :use12-hour="$i18n.locale === 'en'"
+        :use12-hour="locale === 'en'"
       />
-      <template v-if="!!v$.form.end.$model" slot="icon">
+      <template v-if="!!v$.form.end.$model" #icon>
         <IconX />
       </template>
     </FormInput>
     <FormInput
       id-label="input-attendance-type"
-      :title="$t('attendanceType')"
+      :title="t('attendanceType')"
       type="checkbox"
     >
       <FormCheckbox
@@ -198,7 +198,7 @@
         :value="v$.form.isInPerson.$model"
         @change="form.isInPerson = $event"
       >
-        {{ $t('isInPerson') }}
+        {{ t('isInPerson') }}
       </FormCheckbox>
       <FormCheckbox
         v-if="v$.form.isRemote"
@@ -206,29 +206,29 @@
         :value="v$.form.isRemote.$model"
         @change="form.isRemote = $event"
       >
-        {{ $t('isRemote') }}
+        {{ t('isRemote') }}
       </FormCheckbox>
     </FormInput>
     <FormInput
       v-if="form.isInPerson"
       id-label="input-location"
-      :placeholder="$t('globalPlaceholderAddress').replace('\n', ' ')"
-      :title="$t('location')"
+      :placeholder="t('globalPlaceholderAddress').replace('\n', ' ')"
+      :title="t('location')"
       type="text"
       :value="v$.form.location"
       @input="form.location = $event"
     >
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.location"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
-      <template slot="stateInfo">
+      <template #stateInfo>
         <FormInputStateInfo>
-          {{ $t('stateInfoLocation') }}
+          {{ t('stateInfoLocation') }}
         </FormInputStateInfo>
       </template>
     </FormInput>
@@ -239,7 +239,7 @@
     />
     <FormInput
       id-label="input-description"
-      :title="$t('description')"
+      :title="t('description')"
       type="tiptap"
       :value="v$.form.description"
       @input="form.description = $event"
@@ -247,19 +247,19 @@
       <client-only v-if="v$.form.description">
         <TipTap v-model.trim="v$.form.description.$model" />
       </client-only>
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
           :form-input="v$.form.description"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
     </FormInput>
   </Form>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import {
   helpers,
@@ -273,10 +273,6 @@ import { Datetime } from 'vue-datetime'
 import { DateTime, Settings } from 'luxon'
 import slugify from 'slugify'
 import Swal from 'sweetalert2'
-import { toRef } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
-
-import { computed, defineComponent, PropType, reactive, useNuxtApp } from '#app'
 
 import { Event } from '~/types/event'
 import {
@@ -299,231 +295,219 @@ import {
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
 
-export default defineComponent({
-  components: {
-    Datetime,
-  },
-  props: {
-    event: {
-      default: undefined,
-      type: Object as PropType<Event | undefined>,
+export interface Props {
+  event: Event | undefined
+}
+const props = withDefaults(defineProps<Props>(), {
+  event: undefined,
+})
+
+// uses
+const { $moment } = useNuxtApp()
+const localePath = useLocalePath()
+const { locale, t } = useI18n()
+const store = useMaevsiStore()
+const createEventMutation = useCreateEventMutation()
+const updateEventMutation = useUpdateEventByIdMutation()
+
+// api data
+const api = computed(() => {
+  return {
+    data: {},
+    ...getApiMeta([createEventMutation, updateEventMutation]),
+  }
+})
+
+// data
+const form = reactive({
+  id: ref<string>(),
+  authorUsername: ref<string>(),
+  description: ref<string>(),
+  end: ref<string>(),
+  inviteeCountMaximum: ref<string>(),
+  isInPerson: ref(false),
+  isRemote: ref(false),
+  location: ref<string>(),
+  name: ref<string>(),
+  slug: ref<string>(),
+  start: ref(
+    new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString()
+  ), // Must be initialized, otherwise yields an error instantly: https://github.com/mariomka/vue-datetime/issues/177
+  url: ref<string>(),
+  visibility: ref<EventVisibility>(),
+})
+const formatDateTimeShort = ref(DateTime.DATETIME_SHORT)
+const isFormSent = ref(false)
+const signedInUsername = ref(store.signedInUsername)
+
+// methods
+function onInputName($event: any) {
+  form.name = $event
+  updateSlug()
+}
+async function submit() {
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  if (form.id) {
+    // Edit
+    // TODO: extract object
+    const result = await updateEventMutation.executeMutation({
+      id: form.id,
+      eventPatch: {
+        authorUsername: signedInUsername.value,
+        description: form.description,
+        end: form.end !== '' ? form.end : undefined,
+        inviteeCountMaximum:
+          form.inviteeCountMaximum && form.inviteeCountMaximum !== ''
+            ? +form.inviteeCountMaximum
+            : undefined,
+        isInPerson: form.isInPerson,
+        isRemote: form.isRemote,
+        location: form.location !== '' ? form.location : undefined,
+        name: form.name,
+        slug: form.slug,
+        start: form.start,
+        url: form.url !== '' ? form.url : undefined,
+        visibility: form.visibility || EventVisibility.Private,
+      },
+    })
+
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    }
+
+    if (!result.data) {
+      return
+    }
+
+    Swal.fire({
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      title: t('updated'),
+    })
+  } else {
+    // Add
+
+    if (!form.name) throw new Error('Name is not set!')
+    if (!form.slug) throw new Error('Slug is not set!')
+
+    const result = await createEventMutation.executeMutation({
+      createEventInput: {
+        event: {
+          authorUsername: signedInUsername.value || '',
+          description: form.description,
+          end: form.end !== '' ? form.end : undefined,
+          inviteeCountMaximum:
+            form.inviteeCountMaximum && form.inviteeCountMaximum !== ''
+              ? +form.inviteeCountMaximum
+              : undefined,
+          isInPerson: form.isInPerson,
+          isRemote: form.isRemote,
+          location: form.location !== '' ? form.location : undefined,
+          name: form.name,
+          slug: form.slug,
+          start: form.start,
+          url: form.url !== '' ? form.url : undefined,
+          visibility: form.visibility || EventVisibility.Private,
+        },
+      },
+    })
+
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    }
+
+    if (!result.data) {
+      return
+    }
+
+    Swal.fire({
+      icon: 'success',
+      text: t('eventCreateSuccess') as string,
+      timer: 3000,
+      timerProgressBar: true,
+      title: t('created'),
+    }).then(
+      async () =>
+        await navigateTo(
+          localePath(`/event/${signedInUsername.value}/${form.slug}`)
+        )
+    )
+  }
+}
+function updateSlug() {
+  form.slug = slugify(form.name ?? '', {
+    lower: true,
+    strict: true,
+  })
+}
+
+// computations
+const isWarningStartPastShown = computed(
+  () => !VALIDATION_NOW_OR_FUTURE($moment(v$.value.form.start.$model))
+)
+
+// initialization
+if (props.event) {
+  for (const [k, v] of Object.entries(props.event)) {
+    ;(form as Record<string, any>)[k] = v
+  }
+}
+
+Settings.defaultLocale = locale.value
+
+// vuelidate
+const rules = {
+  form: {
+    id: {},
+    authorUsername: {},
+    description: {
+      maxLength: maxLength(VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM),
+    },
+    end: {},
+    inviteeCountMaximum: {
+      maxValue: maxValue(Math.pow(2, 31) - 1), // PostgrSQL's positive end of range for integers.
+      minValue: minValue(1),
+    },
+    isInPerson: {},
+    isRemote: {},
+    location: {
+      maxLength: maxLength(VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM),
+    },
+    name: {
+      maxLength: maxLength(VALIDATION_EVENT_NAME_LENGTH_MAXIMUM),
+      required,
+    },
+    slug: {
+      existenceNone: helpers.withAsync(
+        validateEventSlug(store.signedInUsername || '', true, props.event?.slug)
+      ),
+      maxLength: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
+      required,
+      formatSlug: VALIDATION_FORMAT_SLUG,
+    },
+    start: {
+      required,
+    },
+    url: {
+      formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
+      maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
+    },
+    visibility: {
+      required,
     },
   },
-  setup(props) {
-    const { $i18n, $moment, $router, localePath } = useNuxtApp()
-    const { t } = useI18n()
-    const store = useMaevsiStore()
-    const createEventMutation = useCreateEventMutation()
-    const updateEventMutation = useUpdateEventByIdMutation()
-
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {},
-          ...getApiMeta([createEventMutation, updateEventMutation]),
-        }
-      }),
-    }
-    const data = reactive({
-      form: {
-        id: '',
-        authorUsername: '',
-        description: '',
-        end: '',
-        inviteeCountMaximum: '',
-        isInPerson: false,
-        isRemote: false,
-        location: '',
-        name: '',
-        slug: '',
-        start: new Date(
-          new Date().getTime() + 24 * 60 * 60 * 1000
-        ).toISOString(), // Must be initialized, otherwise yields an error instantly: https://github.com/mariomka/vue-datetime/issues/177
-        url: '',
-        visibility: undefined as EventVisibility | undefined,
-      },
-      formatDateTimeShort: DateTime.DATETIME_SHORT,
-      isFormSent: false,
-      signedInUsername: store.signedInUsername,
-    })
-    const rules = {
-      form: {
-        id: {},
-        authorUsername: {},
-        description: {
-          maxLength: maxLength(VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM),
-        },
-        end: {},
-        inviteeCountMaximum: {
-          maxValue: maxValue(Math.pow(2, 31) - 1), // PostgrSQL's positive end of range for integers.
-          minValue: minValue(1),
-        },
-        isInPerson: {},
-        isRemote: {},
-        location: {
-          maxLength: maxLength(VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM),
-        },
-        name: {
-          maxLength: maxLength(VALIDATION_EVENT_NAME_LENGTH_MAXIMUM),
-          required,
-        },
-        slug: {
-          existenceNone: helpers.withAsync(
-            validateEventSlug(
-              store.signedInUsername || '',
-              true,
-              props.event?.slug
-            )
-          ),
-          maxLength: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
-          required,
-          formatSlug: VALIDATION_FORMAT_SLUG,
-        },
-        start: {
-          required,
-        },
-        url: {
-          formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
-          maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
-        },
-        visibility: {
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
-    const methods = {
-      onInputName($event: any) {
-        data.form.name = $event
-        methods.updateSlug()
-      },
-      async submit() {
-        try {
-          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
-        } catch (error) {
-          consola.debug(error)
-          return
-        }
-
-        if (data.form.id) {
-          // Edit
-          const result = await updateEventMutation.executeMutation({
-            id: data.form.id,
-            eventPatch: {
-              authorUsername: data.signedInUsername,
-              description: data.form.description,
-              end: data.form.end !== '' ? data.form.end : undefined,
-              inviteeCountMaximum:
-                data.form.inviteeCountMaximum &&
-                data.form.inviteeCountMaximum !== ''
-                  ? +data.form.inviteeCountMaximum
-                  : undefined,
-              isInPerson: data.form.isInPerson,
-              isRemote: data.form.isRemote,
-              location:
-                data.form.location !== '' ? data.form.location : undefined,
-              name: data.form.name,
-              slug: data.form.slug,
-              start: data.form.start,
-              url: data.form.url !== '' ? data.form.url : undefined,
-              visibility: data.form.visibility || EventVisibility.Private,
-            },
-          })
-
-          if (result.error) {
-            apiData.api.value.errors.push(result.error)
-            consola.error(result.error)
-          }
-
-          if (!result.data) {
-            return
-          }
-
-          Swal.fire({
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 1500,
-            timerProgressBar: true,
-            title: t('updated'),
-          })
-        } else {
-          // Add
-          const result = await createEventMutation.executeMutation({
-            createEventInput: {
-              event: {
-                authorUsername: data.signedInUsername || '',
-                description: data.form.description,
-                end: data.form.end !== '' ? data.form.end : undefined,
-                inviteeCountMaximum:
-                  data.form.inviteeCountMaximum &&
-                  data.form.inviteeCountMaximum !== ''
-                    ? +data.form.inviteeCountMaximum
-                    : undefined,
-                isInPerson: data.form.isInPerson,
-                isRemote: data.form.isRemote,
-                location:
-                  data.form.location !== '' ? data.form.location : undefined,
-                name: data.form.name,
-                slug: data.form.slug,
-                start: data.form.start,
-                url: data.form.url !== '' ? data.form.url : undefined,
-                visibility: data.form.visibility || EventVisibility.Private,
-              },
-            },
-          })
-
-          if (result.error) {
-            apiData.api.value.errors.push(result.error)
-            consola.error(result.error)
-          }
-
-          if (!result.data) {
-            return
-          }
-
-          Swal.fire({
-            icon: 'success',
-            text: t('eventCreateSuccess') as string,
-            timer: 3000,
-            timerProgressBar: true,
-            title: t('created'),
-          }).then(() =>
-            $router.push(
-              localePath(`/event/${data.signedInUsername}/${data.form.slug}`)
-            )
-          )
-        }
-      },
-      updateSlug() {
-        data.form.slug = slugify(data.form.name ?? '', {
-          lower: true,
-          strict: true,
-        })
-      },
-    }
-    const computations = {
-      isWarningStartPastShown: computed(
-        () => !VALIDATION_NOW_OR_FUTURE($moment(v$.value.form.start.$model))
-      ),
-    }
-
-    if (props.event) {
-      for (const [k, v] of Object.entries(props.event)) {
-        ;(data.form as Record<string, any>)[k] = v
-      }
-    }
-
-    Settings.defaultLocale = $i18n.locale
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      ...computations,
-      v$,
-    }
-  },
-})
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">

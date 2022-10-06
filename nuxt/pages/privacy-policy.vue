@@ -2,303 +2,265 @@
   <div>
     <h1>{{ title }}</h1>
     <div class="maevsi-prose-scheme">
-      <h2>{{ $t('summary') }}</h2>
-      <h3>{{ $t('generalNotesTitle') }}</h3>
-      <p>{{ $t('generalNotesDescription') }}</p>
+      <h2>{{ t('summary') }}</h2>
+      <h3>{{ t('generalNotesTitle') }}</h3>
+      <p>{{ t('generalNotesDescription') }}</p>
 
-      <h3>{{ $t('dataCollection') }}</h3>
-      <h4>{{ $t('dataCollectionLiabilityTitle') }}</h4>
-      <p>{{ $t('dataCollectionLiabilityDescription') }}</p>
+      <h3>{{ t('dataCollection') }}</h3>
+      <h4>{{ t('dataCollectionLiabilityTitle') }}</h4>
+      <p>{{ t('dataCollectionLiabilityDescription') }}</p>
 
-      <h4>{{ $t('dataCollectionMethodTitle') }}</h4>
-      <p>{{ $t('dataCollectionMethodDescription1') }}</p>
-      <p>{{ $t('dataCollectionMethodDescription2') }}</p>
+      <h4>{{ t('dataCollectionMethodTitle') }}</h4>
+      <p>{{ t('dataCollectionMethodDescription1') }}</p>
+      <p>{{ t('dataCollectionMethodDescription2') }}</p>
 
-      <h4>{{ $t('dataCollectionUseTitle') }}</h4>
-      <p>{{ $t('dataCollectionUseDescription') }}</p>
+      <h4>{{ t('dataCollectionUseTitle') }}</h4>
+      <p>{{ t('dataCollectionUseDescription') }}</p>
 
-      <h4>{{ $t('dataCollectionRightsTitle') }}</h4>
-      <p>{{ $t('dataCollectionRightsDescription1') }}</p>
-      <p>{{ $t('dataCollectionRightsDescription2') }}</p>
+      <h4>{{ t('dataCollectionRightsTitle') }}</h4>
+      <p>{{ t('dataCollectionRightsDescription1') }}</p>
+      <p>{{ t('dataCollectionRightsDescription2') }}</p>
 
-      <h3>{{ $t('dataCollectionToolsTitle') }}</h3>
-      <p>{{ $t('dataCollectionToolsDescription1') }}</p>
-      <p>{{ $t('dataCollectionToolsDescription2') }}</p>
+      <h3>{{ t('dataCollectionToolsTitle') }}</h3>
+      <p>{{ t('dataCollectionToolsDescription1') }}</p>
+      <p>{{ t('dataCollectionToolsDescription2') }}</p>
 
-      <h2>{{ $t('hostingCdn') }}</h2>
-      <h3>{{ $t('hostingCdnExternalTitle') }}</h3>
-      <p>{{ $t('hostingCdnExternalDescription1') }}</p>
-      <p>{{ $t('hostingCdnExternalDescription2') }}</p>
-      <p>{{ $t('hostingCdnExternalDescription3') }}</p>
-      <p>{{ $t('hostingCdnExternalDescription4') }}</p>
+      <h2>{{ t('hostingCdn') }}</h2>
+      <h3>{{ t('hostingCdnExternalTitle') }}</h3>
+      <p>{{ t('hostingCdnExternalDescription1') }}</p>
+      <p>{{ t('hostingCdnExternalDescription2') }}</p>
+      <p>{{ t('hostingCdnExternalDescription3') }}</p>
+      <p>{{ t('hostingCdnExternalDescription4') }}</p>
       <address>
-        {{ $t('hostingCdnExternalAddressName') }}<br />
-        {{ $t('hostingCdnExternalAddressStreet') }}<br />
-        {{ $t('hostingCdnExternalAddressCity') }}
+        {{ t('hostingCdnExternalAddressName') }}<br />
+        {{ t('hostingCdnExternalAddressStreet') }}<br />
+        {{ t('hostingCdnExternalAddressCity') }}
       </address>
 
-      <h4>{{ $t('hostingCdnExternalProcessingContractTitle') }}</h4>
-      <p>{{ $t('hostingCdnExternalProcessingContractDescription') }}</p>
+      <h4>{{ t('hostingCdnExternalProcessingContractTitle') }}</h4>
+      <p>{{ t('hostingCdnExternalProcessingContractDescription') }}</p>
 
-      <h2>{{ $t('mandatoryInfo') }}</h2>
-      <h3>{{ $t('mandatoryInfoPrivacyTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoPrivacyDescription1') }}</p>
-      <p>{{ $t('mandatoryInfoPrivacyDescription2') }}</p>
-      <p>{{ $t('mandatoryInfoPrivacyDescription3') }}</p>
+      <h2>{{ t('mandatoryInfo') }}</h2>
+      <h3>{{ t('mandatoryInfoPrivacyTitle') }}</h3>
+      <p>{{ t('mandatoryInfoPrivacyDescription1') }}</p>
+      <p>{{ t('mandatoryInfoPrivacyDescription2') }}</p>
+      <p>{{ t('mandatoryInfoPrivacyDescription3') }}</p>
 
-      <h3>{{ $t('mandatoryInfoResponsibleTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoResponsibleDescription1') }}</p>
+      <h3>{{ t('mandatoryInfoResponsibleTitle') }}</h3>
+      <p>{{ t('mandatoryInfoResponsibleDescription1') }}</p>
       <address>
-        {{ $t('mandatoryInfoResponsibleAddressName') }}<br />
-        {{ $t('mandatoryInfoResponsibleAddressStreet') }}<br />
-        {{ $t('mandatoryInfoResponsibleAddressCity') }}<br />
+        {{ t('mandatoryInfoResponsibleAddressName') }}<br />
+        {{ t('mandatoryInfoResponsibleAddressStreet') }}<br />
+        {{ t('mandatoryInfoResponsibleAddressCity') }}<br />
         <br />
-        {{ $t('mandatoryInfoResponsibleAddressEmail') }}
+        {{ t('mandatoryInfoResponsibleAddressEmail') }}
       </address>
-      <p>{{ $t('mandatoryInfoResponsibleDescription2') }}</p>
+      <p>{{ t('mandatoryInfoResponsibleDescription2') }}</p>
 
-      <h3>{{ $t('mandatoryInfoStorageDurationTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoStorageDurationDescription') }}</p>
+      <h3>{{ t('mandatoryInfoStorageDurationTitle') }}</h3>
+      <p>{{ t('mandatoryInfoStorageDurationDescription') }}</p>
 
-      <h3>{{ $t('mandatoryInfoDataSharingUsaTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoDataSharingUsaDescription') }}</p>
+      <h3>{{ t('mandatoryInfoDataSharingUsaTitle') }}</h3>
+      <p>{{ t('mandatoryInfoDataSharingUsaDescription') }}</p>
 
-      <h3>{{ $t('mandatoryInfoConsentRevocationTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoConsentRevocationDescription') }}</p>
+      <h3>{{ t('mandatoryInfoConsentRevocationTitle') }}</h3>
+      <p>{{ t('mandatoryInfoConsentRevocationDescription') }}</p>
 
-      <h3>{{ $t('mandatoryInfoConsentRevocationSpecialTitle') }}</h3>
+      <h3>{{ t('mandatoryInfoConsentRevocationSpecialTitle') }}</h3>
       <p class="font-bold">
-        {{ $t('mandatoryInfoConsentRevocationSpecialDescription1') }}
+        {{ t('mandatoryInfoConsentRevocationSpecialDescription1') }}
       </p>
       <p class="font-bold">
-        {{ $t('mandatoryInfoConsentRevocationSpecialDescription2') }}
+        {{ t('mandatoryInfoConsentRevocationSpecialDescription2') }}
       </p>
 
-      <h3>{{ $t('mandatoryInfoComplaintTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoComplaintDescription') }}</p>
+      <h3>{{ t('mandatoryInfoComplaintTitle') }}</h3>
+      <p>{{ t('mandatoryInfoComplaintDescription') }}</p>
 
-      <h3>{{ $t('mandatoryInfoPortabilityTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoPortabilityDescription') }}</p>
+      <h3>{{ t('mandatoryInfoPortabilityTitle') }}</h3>
+      <p>{{ t('mandatoryInfoPortabilityDescription') }}</p>
 
-      <h3>{{ $t('mandatoryInfoSslTlsTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoSslTlsDescription1') }}</p>
-      <p>{{ $t('mandatoryInfoSslTlsDescription2') }}</p>
+      <h3>{{ t('mandatoryInfoSslTlsTitle') }}</h3>
+      <p>{{ t('mandatoryInfoSslTlsDescription1') }}</p>
+      <p>{{ t('mandatoryInfoSslTlsDescription2') }}</p>
 
-      <h3>{{ $t('mandatoryInfoDataChangeTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoDataChangeDescription') }}</p>
+      <h3>{{ t('mandatoryInfoDataChangeTitle') }}</h3>
+      <p>{{ t('mandatoryInfoDataChangeDescription') }}</p>
 
-      <h3>{{ $t('mandatoryInfoProcessingRestrictionTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoProcessingRestrictionDescription1') }}</p>
+      <h3>{{ t('mandatoryInfoProcessingRestrictionTitle') }}</h3>
+      <p>{{ t('mandatoryInfoProcessingRestrictionDescription1') }}</p>
       <ul>
-        <li>{{ $t('mandatoryInfoProcessingRestrictionList1') }}</li>
-        <li>{{ $t('mandatoryInfoProcessingRestrictionList2') }}</li>
-        <li>{{ $t('mandatoryInfoProcessingRestrictionList3') }}</li>
-        <li>{{ $t('mandatoryInfoProcessingRestrictionList4') }}</li>
+        <li>{{ t('mandatoryInfoProcessingRestrictionList1') }}</li>
+        <li>{{ t('mandatoryInfoProcessingRestrictionList2') }}</li>
+        <li>{{ t('mandatoryInfoProcessingRestrictionList3') }}</li>
+        <li>{{ t('mandatoryInfoProcessingRestrictionList4') }}</li>
       </ul>
-      <p>{{ $t('mandatoryInfoProcessingRestrictionDescription2') }}</p>
+      <p>{{ t('mandatoryInfoProcessingRestrictionDescription2') }}</p>
 
-      <h3>{{ $t('mandatoryInfoOppositionTitle') }}</h3>
-      <p>{{ $t('mandatoryInfoOppositionDescription') }}</p>
+      <h3>{{ t('mandatoryInfoOppositionTitle') }}</h3>
+      <p>{{ t('mandatoryInfoOppositionDescription') }}</p>
 
-      <h2>{{ $t('dataAcquisition') }}</h2>
-      <h3>{{ $t('dataAcquisitionCookiesTitle') }}</h3>
-      <p>{{ $t('dataAcquisitionCookiesDescription1') }}</p>
-      <p>{{ $t('dataAcquisitionCookiesDescription2') }}</p>
-      <p>{{ $t('dataAcquisitionCookiesDescription3') }}</p>
-      <p>{{ $t('dataAcquisitionCookiesDescription4') }}</p>
-      <p>{{ $t('dataAcquisitionCookiesDescription5') }}</p>
-      <p>{{ $t('dataAcquisitionCookiesDescription6') }}</p>
+      <h2>{{ t('dataAcquisition') }}</h2>
+      <h3>{{ t('dataAcquisitionCookiesTitle') }}</h3>
+      <p>{{ t('dataAcquisitionCookiesDescription1') }}</p>
+      <p>{{ t('dataAcquisitionCookiesDescription2') }}</p>
+      <p>{{ t('dataAcquisitionCookiesDescription3') }}</p>
+      <p>{{ t('dataAcquisitionCookiesDescription4') }}</p>
+      <p>{{ t('dataAcquisitionCookiesDescription5') }}</p>
+      <p>{{ t('dataAcquisitionCookiesDescription6') }}</p>
 
-      <h3>{{ $t('dataAcquisitionLogTitle') }}</h3>
-      <p>{{ $t('dataAcquisitionLogDescription1') }}</p>
+      <h3>{{ t('dataAcquisitionLogTitle') }}</h3>
+      <p>{{ t('dataAcquisitionLogDescription1') }}</p>
       <ul>
-        <li>{{ $t('dataAcquisitionLogItem1') }}</li>
-        <li>{{ $t('dataAcquisitionLogItem2') }}</li>
-        <li>{{ $t('dataAcquisitionLogItem3') }}</li>
-        <li>{{ $t('dataAcquisitionLogItem4') }}</li>
-        <li>{{ $t('dataAcquisitionLogItem5') }}</li>
-        <li>{{ $t('dataAcquisitionLogItem6') }}</li>
+        <li>{{ t('dataAcquisitionLogItem1') }}</li>
+        <li>{{ t('dataAcquisitionLogItem2') }}</li>
+        <li>{{ t('dataAcquisitionLogItem3') }}</li>
+        <li>{{ t('dataAcquisitionLogItem4') }}</li>
+        <li>{{ t('dataAcquisitionLogItem5') }}</li>
+        <li>{{ t('dataAcquisitionLogItem6') }}</li>
       </ul>
-      <p>{{ $t('dataAcquisitionLogDescription2') }}</p>
-      <p>{{ $t('dataAcquisitionLogDescription3') }}</p>
+      <p>{{ t('dataAcquisitionLogDescription2') }}</p>
+      <p>{{ t('dataAcquisitionLogDescription3') }}</p>
 
-      <h3>{{ $t('dataAcquisitionContactFormTitle') }}</h3>
-      <p>{{ $t('dataAcquisitionContactFormDescription1') }}</p>
-      <p>{{ $t('dataAcquisitionContactFormDescription2') }}</p>
-      <p>{{ $t('dataAcquisitionContactFormDescription3') }}</p>
+      <h3>{{ t('dataAcquisitionContactFormTitle') }}</h3>
+      <p>{{ t('dataAcquisitionContactFormDescription1') }}</p>
+      <p>{{ t('dataAcquisitionContactFormDescription2') }}</p>
+      <p>{{ t('dataAcquisitionContactFormDescription3') }}</p>
 
-      <h3>{{ $t('dataAcquisitionContactExternalTitle') }}</h3>
-      <p>{{ $t('dataAcquisitionContactExternalDescription1') }}</p>
-      <p>{{ $t('dataAcquisitionContactExternalDescription2') }}</p>
-      <p>{{ $t('dataAcquisitionContactExternalDescription3') }}</p>
+      <h3>{{ t('dataAcquisitionContactExternalTitle') }}</h3>
+      <p>{{ t('dataAcquisitionContactExternalDescription1') }}</p>
+      <p>{{ t('dataAcquisitionContactExternalDescription2') }}</p>
+      <p>{{ t('dataAcquisitionContactExternalDescription3') }}</p>
 
-      <h3>{{ $t('dataAcquisitionCommentsTitle') }}</h3>
-      <p>{{ $t('dataAcquisitionCommentsDescription') }}</p>
+      <h3>{{ t('dataAcquisitionCommentsTitle') }}</h3>
+      <p>{{ t('dataAcquisitionCommentsDescription') }}</p>
 
-      <h4>{{ $t('dataAcquisitionCommentsIpTitle') }}</h4>
-      <p>{{ $t('dataAcquisitionCommentsIpDescription') }}</p>
+      <h4>{{ t('dataAcquisitionCommentsIpTitle') }}</h4>
+      <p>{{ t('dataAcquisitionCommentsIpDescription') }}</p>
 
-      <h4>{{ $t('dataAcquisitionCommentsSubscribeTitle') }}</h4>
-      <p>{{ $t('dataAcquisitionCommentsSubscribeDescription') }}</p>
+      <h4>{{ t('dataAcquisitionCommentsSubscribeTitle') }}</h4>
+      <p>{{ t('dataAcquisitionCommentsSubscribeDescription') }}</p>
 
-      <h4>{{ $t('dataAcquisitionCommentsStorageDurationTitle') }}</h4>
-      <p>{{ $t('dataAcquisitionCommentsStorageDurationDescription') }}</p>
+      <h4>{{ t('dataAcquisitionCommentsStorageDurationTitle') }}</h4>
+      <p>{{ t('dataAcquisitionCommentsStorageDurationDescription') }}</p>
 
-      <h4>{{ $t('dataAcquisitionCommentsLegalBasisTitle') }}</h4>
-      <p>{{ $t('dataAcquisitionCommentsLegalBasisDescription') }}</p>
+      <h4>{{ t('dataAcquisitionCommentsLegalBasisTitle') }}</h4>
+      <p>{{ t('dataAcquisitionCommentsLegalBasisDescription') }}</p>
 
-      <h2>{{ $t('newsletter') }}</h2>
-      <h3>{{ $t('newsletterDataTitle') }}</h3>
-      <p>{{ $t('newsletterDataDescription1') }}</p>
-      <p>{{ $t('newsletterDataDescription2') }}</p>
-      <p>{{ $t('newsletterDataDescription3') }}</p>
+      <h2>{{ t('newsletter') }}</h2>
+      <h3>{{ t('newsletterDataTitle') }}</h3>
+      <p>{{ t('newsletterDataDescription1') }}</p>
+      <p>{{ t('newsletterDataDescription2') }}</p>
+      <p>{{ t('newsletterDataDescription3') }}</p>
 
-      <i18n path="newsletterDataDescription4" tag="p">
+      <i18n-t keypath="newsletterDataDescription4" tag="p">
         <template #strong>
-          <strong>{{ $t('newsletterDataDescription4_1') }}</strong>
+          <strong>{{ t('newsletterDataDescription4_1') }}</strong>
         </template>
-      </i18n>
+      </i18n-t>
 
-      <h2>{{ $t('pluginsTools') }}</h2>
-      <h3>{{ $t('pluginsToolsYouTubeTitle') }}</h3>
-      <p>{{ $t('pluginsToolsYouTubeDescription1') }}</p>
-      <p>{{ $t('pluginsToolsYouTubeDescription2') }}</p>
-      <p>{{ $t('pluginsToolsYouTubeDescription3') }}</p>
-      <p>{{ $t('pluginsToolsYouTubeDescription4') }}</p>
-      <p>{{ $t('pluginsToolsYouTubeDescription5') }}</p>
-      <p>{{ $t('pluginsToolsYouTubeDescription6') }}</p>
-      <i18n path="pluginsToolsYouTubeDescription7" tag="p">
+      <h2>{{ t('pluginsTools') }}</h2>
+      <h3>{{ t('pluginsToolsYouTubeTitle') }}</h3>
+      <p>{{ t('pluginsToolsYouTubeDescription1') }}</p>
+      <p>{{ t('pluginsToolsYouTubeDescription2') }}</p>
+      <p>{{ t('pluginsToolsYouTubeDescription3') }}</p>
+      <p>{{ t('pluginsToolsYouTubeDescription4') }}</p>
+      <p>{{ t('pluginsToolsYouTubeDescription5') }}</p>
+      <p>{{ t('pluginsToolsYouTubeDescription6') }}</p>
+      <i18n-t keypath="pluginsToolsYouTubeDescription7" tag="p">
         <template #linkPrivacy>
-          <AppLink :to="$t('pluginsToolsYouTubeDescription7_1')">
-            {{ $t('pluginsToolsYouTubeDescription7_1') }}
+          <AppLink :to="t('pluginsToolsYouTubeDescription7_1')">
+            {{ t('pluginsToolsYouTubeDescription7_1') }}
           </AppLink>
         </template>
-      </i18n>
+      </i18n-t>
 
-      <h3>{{ $t('pluginsToolsGoogleWebFontsTitle') }}</h3>
-      <p>{{ $t('pluginsToolsGoogleWebFontsDescription1') }}</p>
-      <i18n path="pluginsToolsGoogleWebFontsDescription2" tag="p">
+      <h3>{{ t('pluginsToolsGoogleWebFontsTitle') }}</h3>
+      <p>{{ t('pluginsToolsGoogleWebFontsDescription1') }}</p>
+      <i18n-t keypath="pluginsToolsGoogleWebFontsDescription2" tag="p">
         <template #linkFaq>
-          <AppLink :to="$t('pluginsToolsGoogleWebFontsDescription2_1')">
-            {{ $t('pluginsToolsGoogleWebFontsDescription2_1') }}
+          <AppLink :to="t('pluginsToolsGoogleWebFontsDescription2_1')">
+            {{ t('pluginsToolsGoogleWebFontsDescription2_1') }}
           </AppLink>
         </template>
         <template #linkPrivacy>
-          <AppLink :to="$t('pluginsToolsGoogleWebFontsDescription2_2')">
-            {{ $t('pluginsToolsGoogleWebFontsDescription2_2') }}
+          <AppLink :to="t('pluginsToolsGoogleWebFontsDescription2_2')">
+            {{ t('pluginsToolsGoogleWebFontsDescription2_2') }}
           </AppLink>
         </template>
-      </i18n>
+      </i18n-t>
 
-      <h3>{{ $t('pluginsToolsFontAwesomeTitle') }}</h3>
-      <p>{{ $t('pluginsToolsFontAwesomeDescription1') }}</p>
-      <i18n path="pluginsToolsFontAwesomeDescription2" tag="p">
+      <h3>{{ t('pluginsToolsFontAwesomeTitle') }}</h3>
+      <p>{{ t('pluginsToolsFontAwesomeDescription1') }}</p>
+      <i18n-t keypath="pluginsToolsFontAwesomeDescription2" tag="p">
         <template #linkPrivacy>
-          <AppLink :to="$t('pluginsToolsFontAwesomeDescription2_1')">
-            {{ $t('pluginsToolsFontAwesomeDescription2_1') }}
+          <AppLink :to="t('pluginsToolsFontAwesomeDescription2_1')">
+            {{ t('pluginsToolsFontAwesomeDescription2_1') }}
           </AppLink>
         </template>
-      </i18n>
+      </i18n-t>
 
-      <h3>{{ $t('pluginsToolsGoogleMapsTitle') }}</h3>
-      <p>{{ $t('pluginsToolsGoogleMapsDescription1') }}</p>
-      <p>{{ $t('pluginsToolsGoogleMapsDescription2') }}</p>
-      <p>{{ $t('pluginsToolsGoogleMapsDescription3') }}</p>
-      <i18n path="pluginsToolsGoogleMapsDescription4" tag="p">
+      <h3>{{ t('pluginsToolsGoogleMapsTitle') }}</h3>
+      <p>{{ t('pluginsToolsGoogleMapsDescription1') }}</p>
+      <p>{{ t('pluginsToolsGoogleMapsDescription2') }}</p>
+      <p>{{ t('pluginsToolsGoogleMapsDescription3') }}</p>
+      <i18n-t keypath="pluginsToolsGoogleMapsDescription4" tag="p">
         <template #linkGdpr>
           <AppLink
             to="https://privacy.google.com/businesses/gdprcontrollerterms/"
           >
-            {{ $t('pluginsToolsGoogleMapsDescription4_1') }}
+            {{ t('pluginsToolsGoogleMapsDescription4_1') }}
           </AppLink>
         </template>
         <template #linkGdprScss>
           <AppLink
             to="https://privacy.google.com/businesses/gdprcontrollerterms/sccs/"
           >
-            {{ $t('pluginsToolsGoogleMapsDescription4_2') }}
+            {{ t('pluginsToolsGoogleMapsDescription4_2') }}
           </AppLink>
         </template>
-      </i18n>
-      <i18n path="pluginsToolsGoogleMapsDescription5" tag="p">
+      </i18n-t>
+      <i18n-t keypath="pluginsToolsGoogleMapsDescription5" tag="p">
         <template #linkPrivacy>
-          <AppLink :to="$t('pluginsToolsGoogleMapsDescription5_1')">
-            {{ $t('pluginsToolsGoogleMapsDescription5_1') }}
+          <AppLink :to="t('pluginsToolsGoogleMapsDescription5_1')">
+            {{ t('pluginsToolsGoogleMapsDescription5_1') }}
           </AppLink>
         </template>
-      </i18n>
+      </i18n-t>
 
-      <h3>{{ $t('pluginsToolsGoogleReCaptchaTitle') }}</h3>
-      <p>{{ $t('pluginsToolsGoogleReCaptchaDescription1') }}</p>
-      <p>{{ $t('pluginsToolsGoogleReCaptchaDescription2') }}</p>
-      <p>{{ $t('pluginsToolsGoogleReCaptchaDescription3') }}</p>
-      <p>{{ $t('pluginsToolsGoogleReCaptchaDescription4') }}</p>
-      <i18n path="pluginsToolsGoogleReCaptchaDescription5" tag="p">
+      <h3>{{ t('pluginsToolsGoogleReCaptchaTitle') }}</h3>
+      <p>{{ t('pluginsToolsGoogleReCaptchaDescription1') }}</p>
+      <p>{{ t('pluginsToolsGoogleReCaptchaDescription2') }}</p>
+      <p>{{ t('pluginsToolsGoogleReCaptchaDescription3') }}</p>
+      <p>{{ t('pluginsToolsGoogleReCaptchaDescription4') }}</p>
+      <i18n-t keypath="pluginsToolsGoogleReCaptchaDescription5" tag="p">
         <template #linkPrivacy>
-          <AppLink :to="$t('pluginsToolsGoogleReCaptchaDescription5_1')">
-            {{ $t('pluginsToolsGoogleReCaptchaDescription5_1') }}
+          <AppLink :to="t('pluginsToolsGoogleReCaptchaDescription5_1')">
+            {{ t('pluginsToolsGoogleReCaptchaDescription5_1') }}
           </AppLink>
         </template>
         <template #linkTerms>
-          <AppLink :to="$t('pluginsToolsGoogleReCaptchaDescription5_2')">
-            {{ $t('pluginsToolsGoogleReCaptchaDescription5_2') }}
+          <AppLink :to="t('pluginsToolsGoogleReCaptchaDescription5_2')">
+            {{ t('pluginsToolsGoogleReCaptchaDescription5_2') }}
           </AppLink>
         </template>
-      </i18n>
+      </i18n-t>
       <p>
-        <AppLink to="https://www.e-recht24.de">{{ $t('source') }}</AppLink>
+        <AppLink to="https://www.e-recht24.de">{{ t('source') }}</AppLink>
       </p>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
+<script setup lang="ts">
+// uses
+const { t } = useI18n()
 
-import { defineComponent, reactive, useNuxtApp } from '#app'
-import { useHead } from '#head'
+// data
+const title = t('title')
 
-export default defineComponent({
-  transition: {
-    name: 'layout',
-  },
-  setup() {
-    const { $router } = useNuxtApp()
-    const { t } = useI18n()
-
-    const data = reactive({
-      title: t('title') as string,
-    })
-
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
-
-    return {
-      ...data,
-    }
-  },
-})
+// initialization
+useHeadDefault(title)
 </script>
 
 <i18n lang="yml">
@@ -394,7 +356,7 @@ de:
   mandatoryInfoProcessingRestrictionList4: Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
   mandatoryInfoProcessingRestrictionTitle: Recht auf Einschränkung der Verarbeitung
   mandatoryInfoResponsibleAddressCity: 34117 Kassel
-  mandatoryInfoResponsibleAddressEmail: 'E-Mail: mail+privacy-policy@maev.si'
+  mandatoryInfoResponsibleAddressEmail: "E-Mail: mail+privacy-policy{'@'}maev.si"
   mandatoryInfoResponsibleAddressName: Jonas Thelemann
   mandatoryInfoResponsibleAddressStreet: Fünffensterstraße 18
   mandatoryInfoResponsibleDescription1: 'Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:'
@@ -543,7 +505,7 @@ en:
   mandatoryInfoProcessingRestrictionList4: If you have lodged an objection pursuant to Art. 21 (1) GDPR, a balancing of your and our interests must be carried out. As long as it has not yet been determined whose interests prevail, you have the right to request the restriction of the processing of your personal data.
   mandatoryInfoProcessingRestrictionTitle: Right to restriction of processing
   mandatoryInfoResponsibleAddressCity: 34117 Kassel
-  mandatoryInfoResponsibleAddressEmail: 'E-mail: mail+privacy-policy@maev.si'
+  mandatoryInfoResponsibleAddressEmail: "E-mail: mail+privacy-policy{'@'}maev.si"
   mandatoryInfoResponsibleAddressName: Jonas Thelemann
   mandatoryInfoResponsibleAddressStreet: Fünffensterstraße 18
   mandatoryInfoResponsibleDescription1: 'The responsible party for data processing on this website is:'

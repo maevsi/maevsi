@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import ContactPreview from './ContactPreview.vue'
 
 export default {
@@ -10,9 +10,7 @@ const Template = (_: never, { argTypes }: { argTypes: any }) =>
   defineComponent({
     components: { ContactPreview },
     props: Object.keys(argTypes),
-    template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<ContactPreview v-bind="$props">ContactPreview</ContactPreview>',
+    template: '<ContactPreview v-bind="$props">ContactPreview</ContactPreview>',
   })
 
 export const Default = Template.bind({})

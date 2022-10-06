@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import IconGlobe from './IconGlobe.vue'
 
 const argTypes = { click: { action: 'click' } }
@@ -14,9 +14,7 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
     components: { IconGlobe },
     props: Object.keys(argTypes),
-    template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<IconGlobe v-bind="$props" @click="click">IconGlobe</IconGlobe>',
+    template: '<IconGlobe v-bind="$props" @click="click">IconGlobe</IconGlobe>',
   })
 
 export const Default = Template.bind({})

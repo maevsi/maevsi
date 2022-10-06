@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import IconQrCode from './IconQrCode.vue'
 
 const argTypes = { click: { action: 'click' } }
@@ -15,7 +15,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
     components: { IconQrCode },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<IconQrCode v-bind="$props" @click="click">IconQrCode</IconQrCode>',
   })
 

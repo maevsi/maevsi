@@ -4,35 +4,31 @@
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
-    :submit-name="$t('passwordChange')"
+    :submit-name="t('passwordChange')"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="passwordCurrent"
       :form-input="v$.form.passwordCurrent"
-      :title="$t('passwordCurrent')"
+      :title="t('passwordCurrent')"
       @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
       :form-input="v$.form.passwordNew"
-      :title="$t('passwordNew')"
+      :title="t('passwordNew')"
       @input="form.passwordNew = $event"
     />
   </Form>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { reactive, ref, toRef } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
 
-import { computed, defineComponent } from '#app'
-
-import { FormType } from '~/components/form/Form.vue'
+import FormType from '~/components/form/Form.vue'
 import {
   formPreSubmit,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
@@ -40,97 +36,83 @@ import {
 import { getApiMeta } from '~/plugins/util/util'
 import { useAccountPasswordChangeMutation } from '~/gql/generated'
 
-const FormAccountPasswordChange = defineComponent({
-  setup() {
-    const { t } = useI18n()
-    const accountPasswordChangeMutation = useAccountPasswordChangeMutation()
+const { t } = useI18n()
+const accountPasswordChangeMutation = useAccountPasswordChangeMutation()
 
-    const refs = {
-      formRef: ref<FormType>(),
-    }
+const refs = {
+  formRef: ref<typeof FormType>(),
+}
 
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...accountPasswordChangeMutation.data.value,
-          },
-          ...getApiMeta([accountPasswordChangeMutation]),
-        }
-      }),
-    }
-    const data = reactive({
-      form: {
-        passwordCurrent: '',
-        passwordNew: '',
-      },
-      isFormSent: false,
-    })
-    const rules = {
-      form: {
-        passwordCurrent: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-        passwordNew: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
-    const methods = {
-      resetForm() {
-        refs.formRef.value?.reset()
-      },
-      async submit() {
-        try {
-          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
-        } catch (error) {
-          consola.debug(error)
-          return
-        }
-
-        const result = await accountPasswordChangeMutation.executeMutation({
-          passwordCurrent: data.form.passwordCurrent,
-          passwordNew: data.form.passwordNew,
-        })
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        if (!result.data) {
-          return
-        }
-
-        Swal.fire({
-          icon: 'success',
-          text: t('passwordChangeSuccess') as string,
-          timer: 3000,
-          timerProgressBar: true,
-          title: t('changed'),
-        })
-        methods.resetForm()
-      },
-    }
-
-    return {
-      ...refs,
-      ...apiData,
-      ...data,
-      ...methods,
-      v$,
-    }
-  },
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...accountPasswordChangeMutation.data.value,
+    },
+    ...getApiMeta([accountPasswordChangeMutation]),
+  }
 })
 
-export default FormAccountPasswordChange
+// data
+const form = reactive({
+  passwordCurrent: ref<string>(),
+  passwordNew: ref<string>(),
+})
+const isFormSent = ref(false)
 
-export type FormAccountPasswordChangeType = InstanceType<
-  typeof FormAccountPasswordChange
->
+// methods
+function resetForm() {
+  refs.formRef.value?.reset()
+}
+async function submit() {
+  if (!form.passwordCurrent) throw new Error('Current password is not set!')
+  if (!form.passwordNew) throw new Error('New password is not set!')
+
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  const result = await accountPasswordChangeMutation.executeMutation({
+    passwordCurrent: form.passwordCurrent,
+    passwordNew: form.passwordNew,
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data) {
+    return
+  }
+
+  Swal.fire({
+    icon: 'success',
+    text: t('passwordChangeSuccess') as string,
+    timer: 3000,
+    timerProgressBar: true,
+    title: t('changed'),
+  })
+  resetForm()
+}
+
+// vuelidate
+const rules = {
+  form: {
+    passwordCurrent: {
+      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+      required,
+    },
+    passwordNew: {
+      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+      required,
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">

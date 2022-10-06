@@ -1,4 +1,4 @@
-import { useBody, CompatibilityEvent } from 'h3'
+import { readBody, CompatibilityEvent } from 'h3'
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
@@ -11,7 +11,8 @@ import { Invitation } from '~/types/invitation'
 
 export default async function (compatibilityEvent: CompatibilityEvent) {
   const { req, res } = compatibilityEvent
-  const body = await useBody(req)
+  const body = await readBody(req)
+  const host = useHost()
 
   const contact: Contact = body.contact
   const event: MaevsiEvent = body.event
@@ -22,20 +23,17 @@ export default async function (compatibilityEvent: CompatibilityEvent) {
     'Content-Disposition',
     'attachment; filename="' + event.authorUsername + '_' + event.slug + '.ics"'
   )
-  res.end(getIcalString(event, contact, invitation))
+  res.end(getIcalString(host, event, contact, invitation))
 }
 
 export function getIcalString(
+  host: string,
   event: MaevsiEvent,
   contact?: Contact,
   invitation?: Invitation
 ): string {
   const userEventPath = event.authorUsername + '/' + event.slug
-  const eventUrl =
-    'https://' +
-    (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-    '/event/' +
-    userEventPath
+  const eventUrl = 'https://' + host + '/event/' + userEventPath
   const eventDescriptionHtml = mustache.render(
     event.description ? `${eventUrl}\n${event.description}` : '',
     {
@@ -88,10 +86,7 @@ export function getIcalString(
         ...(event.location && { location: event.location }),
         organizer: {
           name: event.authorUsername,
-          email:
-            event.authorUsername +
-            '@' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test'),
+          email: event.authorUsername + '@' + host,
           // mailto: 'explicit@mailto.com'
         },
         // attendees: [{

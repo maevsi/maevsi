@@ -5,100 +5,77 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Context } from '@nuxt/types-edge'
+<script setup lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { useI18n } from 'vue-i18n-composable'
-
-import { computed, defineComponent, reactive, useNuxtApp, useRoute } from '#app'
-import { useHead } from '#head'
 
 import { REGEX_UUID } from '~/plugins/util/validation'
 import { getApiMeta } from '~/plugins/util/util'
 import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 
-export default defineComponent({
-  name: 'IndexPage',
-  middleware({ app, query, redirect }: Context) {
-    if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {
-      return redirect(app.localePath('/'))
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
-  setup() {
-    const { $router, localePath } = useNuxtApp()
-    const { t } = useI18n()
-    const route = useRoute()
-    const accountEmailAddressVerificationMutation =
-      useAccountEmailAddressVerificationMutation()
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { $localePath } = useNuxtApp()
+      const route = useRoute()
 
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...accountEmailAddressVerificationMutation.data.value,
-          },
-          ...getApiMeta([accountEmailAddressVerificationMutation]),
-        }
-      }),
-    }
-    const data = reactive({
-      title: t('title'),
-    })
-
-    accountEmailAddressVerificationMutation
-      .executeMutation({
-        code: route.query.code,
-      })
-      .then((result) => {
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        } else {
-          Swal.fire({
-            icon: 'success',
-            text: t('verifiedBody') as string,
-            title: t('verified'),
-          })
-          $router.push({
-            path: localePath(`/task/account/sign-in`),
-          })
-        }
-      })
-
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
-
-    return {
-      ...apiData,
-      ...data,
-    }
-  },
+      if (
+        Array.isArray(route.query.code) ||
+        route.query.code === null ||
+        !REGEX_UUID.test(route.query.code)
+      ) {
+        return navigateTo($localePath('/'))
+      }
+    },
+  ],
 })
+
+const localePath = useLocalePath()
+const { t } = useI18n()
+const route = useRoute()
+const accountEmailAddressVerificationMutation =
+  useAccountEmailAddressVerificationMutation()
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...accountEmailAddressVerificationMutation.data.value,
+    },
+    ...getApiMeta([accountEmailAddressVerificationMutation]),
+  }
+})
+
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+accountEmailAddressVerificationMutation
+  .executeMutation({
+    code: route.query.code,
+  })
+  .then((result) => {
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    } else {
+      Swal.fire({
+        icon: 'success',
+        text: t('verifiedBody') as string,
+        title: t('verified'),
+      })
+      navigateTo({
+        path: localePath(`/task/account/sign-in`),
+      })
+    }
+  })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import FormRadioButtonGroup from './FormRadioButtonGroup.vue'
 
 export default {
@@ -11,7 +11,6 @@ const Template = (_: never, { argTypes }: any) =>
     components: { FormRadioButtonGroup },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<FormRadioButtonGroup v-bind="$props">FormRadioButtonGroup</FormRadioButtonGroup>',
   })
 

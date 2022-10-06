@@ -1,5 +1,5 @@
 // This file must exist for the i18n module too, as this file's existence enables the store.
-import { decode, JwtPayload } from 'jsonwebtoken'
+import { decodeJwt, JWTPayload } from 'jose'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -7,7 +7,7 @@ import { Modal } from '~/types/modal'
 
 export const useMaevsiStore = defineStore('maevsi', () => {
   const jwt = ref<string>()
-  const jwtDecoded = ref<JwtPayload>()
+  const jwtDecoded = ref<JWTPayload>()
   const modals = ref<Modal[]>([])
   const signedInUsername = ref<string>()
 
@@ -16,8 +16,7 @@ export const useMaevsiStore = defineStore('maevsi', () => {
   }
 
   function jwtSet(jwtNew?: string) {
-    const jwtDecodedNew =
-      jwtNew !== undefined ? (decode(jwtNew) as JwtPayload) : undefined
+    const jwtDecodedNew = jwtNew !== undefined ? decodeJwt(jwtNew) : undefined
 
     jwt.value = jwtNew
     jwtDecoded.value = jwtDecodedNew
@@ -25,7 +24,7 @@ export const useMaevsiStore = defineStore('maevsi', () => {
       jwtDecodedNew?.role === 'maevsi_account' &&
       jwtDecodedNew.exp !== undefined &&
       jwtDecodedNew.exp > Math.floor(Date.now() / 1000)
-        ? jwtDecodedNew.username
+        ? (jwtDecodedNew.username as string | undefined)
         : undefined
   }
 

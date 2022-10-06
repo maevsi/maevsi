@@ -9,61 +9,53 @@
     <ImageUploadGallery
       :allow-deletion="false"
       selectable
-      :username="$config.STORYBOOK ? 'username' : $route.params.username"
+      :username="isStorybookActive ? 'username' : routeParamUsername"
       @selection="selectProfilePictureStorageKey"
     />
-    <template slot="header">{{ $t('header') }}</template>
+    <template #header>{{ t('header') }}</template>
   </Modal>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import consola from 'consola'
-
-import { computed, defineComponent, reactive } from '#app'
 
 import { useProfilePictureSetMutation } from '~/gql/generated'
 import { getApiMeta } from '~/plugins/util/util'
 
-export default defineComponent({
-  setup() {
-    const profilePictureSetMutation = useProfilePictureSetMutation()
+const route = useRoute()
+const profilePictureSetMutation = useProfilePictureSetMutation()
+const config = useRuntimeConfig()
+const { t } = useI18n()
 
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...profilePictureSetMutation.data.value,
-          },
-          ...getApiMeta([profilePictureSetMutation]),
-        }
-      }),
-    }
-    const data = reactive({
-      selectedProfilePictureStorageKey: undefined as string | undefined,
-    })
-    const methods = {
-      selectProfilePictureStorageKey(storageKey: string) {
-        data.selectedProfilePictureStorageKey = storageKey
-      },
-      setProfilePicture: async () => {
-        const result = await profilePictureSetMutation.executeMutation({
-          storageKey: data.selectedProfilePictureStorageKey || '',
-        })
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-      },
-    }
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-    }
-  },
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...profilePictureSetMutation.data.value,
+    },
+    ...getApiMeta([profilePictureSetMutation]),
+  }
 })
+
+// data
+const isStorybookActive = config.public.isStorybookActive
+const routeParamUsername = route.params.username as string
+const selectedProfilePictureStorageKey = ref<string>()
+
+// methods
+function selectProfilePictureStorageKey(storageKey: string | undefined) {
+  selectedProfilePictureStorageKey.value = storageKey
+}
+async function setProfilePicture() {
+  const result = await profilePictureSetMutation.executeMutation({
+    storageKey: selectedProfilePictureStorageKey.value || '',
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+}
 </script>
 
 <i18n lang="yml">

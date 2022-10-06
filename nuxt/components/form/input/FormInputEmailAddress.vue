@@ -3,67 +3,57 @@
     v-if="formInput"
     :is-optional="isOptional"
     :id-label="`input-${id}`"
-    :placeholder="$t('globalPlaceholderEmailAddress')"
-    :title="title || $t('emailAddress')"
+    :placeholder="t('globalPlaceholderEmailAddress')"
+    :title="title || t('emailAddress')"
     type="email"
     :value="formInput"
     @input="$emit('input', $event)"
   >
-    <template slot="stateError">
+    <template #stateError>
       <FormInputStateError :form-input="formInput" validation-property="email">
-        {{ $t('globalValidationFormat') }}
+        {{ t('globalValidationFormat') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="formatUppercaseNone"
       >
-        {{ $t('globalValidationFormatUppercaseNone') }}
+        {{ t('globalValidationFormatUppercaseNone') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="maxLength"
       >
-        {{ $t('globalValidationLength') }}
+        {{ t('globalValidationLength') }}
       </FormInputStateError>
       <FormInputStateError
         v-if="isRequired"
         :form-input="formInput"
         validation-property="required"
       >
-        {{ $t('globalValidationRequired') }}
+        {{ t('globalValidationRequired') }}
       </FormInputStateError>
     </template>
   </FormInput>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
-import { FormInputType } from '~/components/form/input/FormInput.vue'
+<script setup lang="ts">
+import type { BaseValidation } from '@vuelidate/core'
 
-export default defineComponent({
-  props: {
-    formInput: {
-      required: true,
-      type: Object as PropType<FormInputType>,
-    },
-    id: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    isOptional: {
-      default: false,
-      type: Boolean,
-    },
-    isRequired: {
-      default: false,
-      type: Boolean,
-    },
-    title: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-  },
+export interface Props {
+  formInput: BaseValidation
+  id?: string
+  isOptional?: boolean
+  isRequired?: boolean
+  title?: string
+}
+withDefaults(defineProps<Props>(), {
+  id: 'email-address',
+  isOptional: false,
+  isRequired: false,
+  title: undefined,
 })
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

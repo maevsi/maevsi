@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import FormInputUsername from './FormInputUsername.vue'
 
 export default {
@@ -11,13 +11,11 @@ const Template = (_: never, { argTypes }: any) =>
     components: { FormInputUsername },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<FormInputUsername v-bind="$props">FormInputUsername</FormInputUsername>',
   })
 
 export const Default = Template.bind({})
 // @ts-ignore
 Default.args = {
-  id: 'id',
   formInput: {},
 }

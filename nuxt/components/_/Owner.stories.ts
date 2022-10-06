@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import Owner from './Owner.vue'
 
 export default {
@@ -10,7 +10,6 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { Owner },
     props: Object.keys(argTypes),
-    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<Owner v-bind="$props">Owner</Owner>',
   })
 

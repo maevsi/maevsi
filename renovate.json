@@ -4,32 +4,12 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["chalk"],
-      "allowedVersions": "<4"
-    },
-    {
-      "matchPackageNames": ["css-loader"],
-      "allowedVersions": "<6"
-    },
-    {
-      "matchPackageNames": ["@types/mustache", "mustache"],
-      "allowedVersions": "<4"
-    },
-    {
-      "matchPackageNames": ["qrcode.vue"],
+      "matchPackageNames": ["@types/luxon", "luxon"],
       "allowedVersions": "<2"
     },
     {
       "matchPackageNames": ["react", "react-dom"],
       "allowedVersions": "<17"
-    },
-    {
-      "matchPackageNames": ["vue"],
-      "allowedVersions": "<3"
-    },
-    {
-      "matchPackageNames": ["@types/webpack", "webpack"],
-      "allowedVersions": "<5"
     }
   ]
 }

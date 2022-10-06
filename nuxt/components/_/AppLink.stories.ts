@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import AppLink from './AppLink.vue'
 
 const argTypes = { click: { action: 'click' } }
@@ -14,7 +14,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
     components: { AppLink },
     props: Object.keys(argTypes),
-    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<AppLink v-bind="$props" @click="click">AppLink</AppLink>',
   })
 

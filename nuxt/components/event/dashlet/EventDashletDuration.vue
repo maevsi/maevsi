@@ -1,7 +1,7 @@
 <template>
   <EventDashlet v-if="event.end && event.start">
     <span>
-      <IconHourglass :title="$t('duration')" />
+      <IconHourglass :title="t('duration')" />
     </span>
     {{
       $moment.duration($moment(event.end).diff($moment(event.start))).humanize()
@@ -9,18 +9,15 @@
   </EventDashlet>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
+<script setup lang="ts">
 import { Event } from '~/types/event'
 
-export default defineComponent({
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<Event>,
-    },
-  },
-})
+export interface Props {
+  event: Event
+}
+withDefaults(defineProps<Props>(), {})
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

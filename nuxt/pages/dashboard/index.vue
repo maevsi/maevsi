@@ -6,120 +6,90 @@
     <div class="flex flex-col gap-4">
       <div class="flex gap-4">
         <section class="lg:w-1/2">
-          <h2>{{ $t('eventsMine') }}</h2>
+          <h2>{{ t('eventsMine') }}</h2>
           <ButtonColored
-            :aria-label="$t('eventsMine')"
+            :aria-label="t('eventsMine')"
             :to="localePath(`/event/${signedInUsername}`)"
           >
-            {{ $t('eventsMine') }}
-            <template slot="prefix">
+            {{ t('eventsMine') }}
+            <template #prefix>
               <IconCalendar />
             </template>
           </ButtonColored>
         </section>
         <section class="lg:w-1/2">
-          <h2>{{ $t('invitationsMine') }}</h2>
+          <h2>{{ t('invitationsMine') }}</h2>
           <CardStateInfo>
-            {{ $t('invitationsMineDescription') }}
+            {{ t('invitationsMineDescription') }}
           </CardStateInfo>
         </section>
       </div>
       <div class="flex gap-4">
         <section class="lg:w-1/2">
-          <h2>{{ $t('contactsMine') }}</h2>
+          <h2>{{ t('contactsMine') }}</h2>
           <ButtonColored
-            :aria-label="$t('contactBook')"
+            :aria-label="t('contactBook')"
             :to="localePath('/contact')"
           >
-            {{ $t('contactBook') }}
-            <template slot="prefix">
+            {{ t('contactBook') }}
+            <template #prefix>
               <IconAddressBook />
             </template>
           </ButtonColored>
         </section>
         <section class="lg:w-1/2">
-          <h2>{{ $t('uploadsMine') }}</h2>
-          <ButtonColored
-            :aria-label="$t('gallery')"
-            :to="localePath('/upload')"
-          >
-            {{ $t('gallery') }}
-            <template slot="prefix">
+          <h2>{{ t('uploadsMine') }}</h2>
+          <ButtonColored :aria-label="t('gallery')" :to="localePath('/upload')">
+            {{ t('gallery') }}
+            <template #prefix>
               <IconImages />
             </template>
           </ButtonColored>
         </section>
       </div>
       <section>
-        <h2>{{ $t('news') }}</h2>
+        <h2>{{ t('news') }}</h2>
         <CardStateInfo>
-          {{ $t('newsDescription') }}
+          {{ t('newsDescription') }}
         </CardStateInfo>
       </section>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Context } from '@nuxt/types-edge'
-import { useI18n } from 'vue-i18n-composable'
-
-import { defineComponent, reactive, useNuxtApp } from '#app'
-import { useHead } from '#head'
-
+<script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 
-export default defineComponent({
-  name: 'IndexPage',
-  middleware({ app, redirect, $pinia }: Context): void {
-    const store = useMaevsiStore($pinia)
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { $localePath } = useNuxtApp()
+      const store = useMaevsiStore()
 
-    if (store.jwtDecoded?.role === 'maevsi_anonymous') {
-      return redirect(app.localePath('/'))
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
-  setup() {
-    const { $router } = useNuxtApp()
-    const { t } = useI18n()
-    const store = useMaevsiStore()
-
-    const data = reactive({
-      signedInUsername: store.signedInUsername,
-      title: t('title'),
-    })
-
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
-
-    return {
-      ...data,
-    }
-  },
+      if (store.jwtDecoded?.role === 'maevsi_anonymous') {
+        return navigateTo($localePath('/'))
+      }
+    },
+  ],
 })
+
+// uses
+const { t } = useI18n()
+const store = useMaevsiStore()
+const localePath = useLocalePath()
+
+// data
+const signedInUsername = store.signedInUsername
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

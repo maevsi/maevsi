@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import FormInputStateSuccess from './FormInputStateSuccess.vue'
 
 export default {
@@ -11,7 +11,6 @@ const Template = (_: never, { argTypes }: any) =>
     components: { FormInputStateSuccess },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<FormInputStateSuccess v-bind="$props">FormInputStateSuccess</FormInputStateSuccess>',
   })
 

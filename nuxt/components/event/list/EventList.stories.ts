@@ -1,6 +1,6 @@
 import { graphql } from 'msw'
 
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import EventList from './EventList.vue'
 
 export default {
@@ -49,7 +49,6 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { EventList },
     props: Object.keys(argTypes),
-    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<EventList v-bind="$props">EventList</EventList>',
   })
 

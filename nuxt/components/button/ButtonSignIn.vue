@@ -1,15 +1,20 @@
 <template>
   <ButtonColored
-    :aria-label="$t('signIn')"
+    :aria-label="t('signIn')"
     :to="localePath({ path: '/task/account/sign-in' })"
     @click="$emit('click')"
   >
-    {{ $t('signIn') }}
-    <template slot="prefix">
+    {{ t('signIn') }}
+    <template #prefix>
       <IconUser />
     </template>
   </ButtonColored>
 </template>
+
+<script setup lang="ts">
+const localePath = useLocalePath()
+const { t } = useI18n()
+</script>
 
 <i18n lang="yml">
 de:

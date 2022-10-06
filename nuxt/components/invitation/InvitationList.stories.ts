@@ -1,6 +1,6 @@
 import { graphql } from 'msw'
 
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import InvitationList from './InvitationList.vue'
 
 export default {
@@ -57,9 +57,7 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { InvitationList },
     props: Object.keys(argTypes),
-    template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<InvitationList v-bind="$props">InvitationList</InvitationList>',
+    template: '<InvitationList v-bind="$props">InvitationList</InvitationList>',
   })
 
 export const Default = Template.bind({})

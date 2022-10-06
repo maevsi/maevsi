@@ -1,6 +1,6 @@
 <template>
   <LoaderImage
-    :alt="$t('profilePictureAlt', { emailAddress })"
+    :alt="t('profilePictureAlt', { emailAddress })"
     :class="classComputed"
     :height="size"
     :src="imageSrc"
@@ -8,54 +8,36 @@
   />
 </template>
 
-<script lang="ts">
-import { computed } from 'vue'
+<script setup lang="ts">
+import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
 
-import { defineComponent, PropType } from '#app'
+export interface Props {
+  classes?: string
+  emailAddress?: string
+  emailAddressHash?: string
+  rounded?: boolean
+  size: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  classes: undefined,
+  emailAddress: undefined,
+  emailAddressHash: undefined,
+  rounded: undefined,
+})
 
-export default defineComponent({
-  props: {
-    classes: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    emailAddress: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    emailAddressHash: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    rounded: {
-      default: undefined,
-      type: Boolean as PropType<boolean | undefined>,
-    },
-    size: {
-      required: true,
-      type: String,
-    },
-  },
-  setup(props) {
-    const computations = {
-      classComputed: computed(() => {
-        return [props.classes, ...(props.rounded ? ['rounded-full'] : [])].join(
-          ' '
-        )
-      }),
-      imageSrc: computed(() => {
-        if (props.emailAddress && props.emailAddressHash) {
-          return `https://www.gravatar.com/avatar/${props.emailAddressHash}?d=mp&s=${props.size}`
-        } else {
-          return require('~/public/assets/static/images/blank-profile-picture.svg')
-        }
-      }),
-    }
+// uses
+const { t } = useI18n()
 
-    return {
-      ...computations,
-    }
-  },
+// computations
+const classComputed = computed(() => {
+  return [props.classes, ...(props.rounded ? ['rounded-full'] : [])].join(' ')
+})
+const imageSrc = computed(() => {
+  if (props.emailAddress && props.emailAddressHash) {
+    return `https://www.gravatar.com/avatar/${props.emailAddressHash}?d=mp&s=${props.size}`
+  } else {
+    return blankProfilePicture
+  }
 })
 </script>
 

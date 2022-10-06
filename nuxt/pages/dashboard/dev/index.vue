@@ -4,25 +4,25 @@
       {{ title }}
     </h1>
     <section class="flex flex-col gap-4">
-      <h2>{{ $t('session') }}</h2>
+      <h2>{{ t('session') }}</h2>
       <p v-if="sessionExpiryTime !== 'Invalid date'">
-        {{ $t('sessionExpiry', { exp: sessionExpiryTime }) }}
+        {{ t('sessionExpiry', { exp: sessionExpiryTime }) }}
       </p>
       <p v-else>
-        {{ $t('sessionExpired') }}
+        {{ t('sessionExpired') }}
       </p>
-      <ButtonColored :aria-label="$t('sessionExit')" @click="signOut">
-        {{ $t('sessionExit') }}
-        <template slot="prefix">
+      <ButtonColored :aria-label="t('sessionExit')" @click="signOut">
+        {{ t('sessionExit') }}
+        <template #prefix>
           <IconSignOut />
         </template>
       </ButtonColored>
     </section>
     <section class="flex flex-col gap-4">
-      <h2>{{ $t('codes') }}</h2>
+      <h2>{{ t('codes') }}</h2>
       <div v-if="jwtDecoded?.invitations">
         <p>
-          {{ $t('codesEntered') }}
+          {{ t('codesEntered') }}
         </p>
         <ul class="list-disc">
           <li
@@ -34,77 +34,39 @@
         </ul>
       </div>
       <p v-else>
-        {{ $t('codesEnteredNone') }}
+        {{ t('codesEnteredNone') }}
       </p>
       <ButtonEventUnlock />
     </section>
   </div>
 </template>
 
-<script lang="ts">
-import { useI18n } from 'vue-i18n-composable'
-
-import { computed, defineComponent, reactive, useNuxtApp } from '#app'
-import { useHead } from '#head'
-
+<script setup lang="ts">
 import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 
-export default defineComponent({
-  name: 'IndexPage',
-  transition: {
-    name: 'layout',
-  },
-  setup() {
-    const { signOut } = useSignOut()
-    const { $moment, $router } = useNuxtApp()
-    const { t } = useI18n()
-    const store = useMaevsiStore()
+// uses
+const { signOut } = useSignOut()
+const { $moment } = useNuxtApp()
+const { t } = useI18n()
+const store = useMaevsiStore()
 
-    const data = reactive({
-      jwtDecoded: store.jwtDecoded,
-      title: t('title'),
-    })
-    const methods = {
-      signOut,
-    }
-    const computations = {
-      sessionExpiryTime: computed((): string => {
-        return $moment(store.jwtDecoded?.exp, 'X').format('llll')
-      }),
-    }
+// data
+const jwtDecoded = store.jwtDecoded
+const title = t('title')
 
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
-
-    return {
-      ...data,
-      ...methods,
-      ...computations,
-    }
-  },
+// computations
+const sessionExpiryTime = computed(() => {
+  return $moment(store.jwtDecoded?.exp, 'X').format('llll')
 })
+
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

@@ -1,6 +1,6 @@
 import MockDate from 'mockdate'
 
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import EventListItem from './EventListItem.vue'
 
 MockDate.set('1970-01-01 00:00:00')
@@ -14,7 +14,6 @@ const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { EventListItem },
     props: Object.keys(argTypes),
-    // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
     template: '<EventListItem v-bind="$props">EventListItem</EventListItem>',
   })
 

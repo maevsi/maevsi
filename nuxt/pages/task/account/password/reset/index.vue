@@ -5,62 +5,40 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Context } from '@nuxt/types-edge'
-import { useI18n } from 'vue-i18n-composable'
-
-import { defineComponent, reactive, useNuxtApp } from '#app'
-import { useHead } from '#head'
-
+<script setup lang="ts">
 import { REGEX_UUID } from '~/plugins/util/validation'
 
-export default defineComponent({
-  name: 'IndexPage',
-  middleware({ app, query, redirect }: Context) {
-    if (Array.isArray(query.code) || !REGEX_UUID.test(query.code)) {
-      return redirect(app.localePath('/'))
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
-  setup() {
-    const { $router } = useNuxtApp()
-    const { t } = useI18n()
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { $localePath } = useNuxtApp()
+      const route = useRoute()
 
-    const data = reactive({
-      title: t('title'),
-    })
-
-    useHead({
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: data.title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            $router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: data.title,
-        },
-      ],
-      title: data.title,
-    })
-
-    return {
-      ...data,
-    }
-  },
+      if (
+        Array.isArray(route.query.code) ||
+        route.query.code === null ||
+        !REGEX_UUID.test(route.query.code)
+      ) {
+        return navigateTo($localePath('/'))
+      }
+    },
+  ],
 })
+
+// uses
+const { t } = useI18n()
+
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

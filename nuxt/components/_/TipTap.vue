@@ -3,15 +3,15 @@
     <div class="flex gap-4 overflow-auto">
       <div class="flex gap-1">
         <ButtonIcon
-          :aria-label="$t('undo')"
-          :title="$t('undo')"
+          :aria-label="t('undo')"
+          :title="t('undo')"
           @click="editor?.chain().focus().undo().run()"
         >
           <IconArrowRotateLeft />
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('redo')"
-          :title="$t('redo')"
+          :aria-label="t('redo')"
+          :title="t('redo')"
           @click="editor?.chain().focus().redo().run()"
         >
           <IconArrowRotateRight />
@@ -19,25 +19,25 @@
       </div>
       <div class="flex gap-1">
         <ButtonIcon
-          :aria-label="$t('bold')"
+          :aria-label="t('bold')"
           :class="{ 'is-active': editor.isActive('bold') }"
-          :title="$t('bold')"
+          :title="t('bold')"
           @click="editor?.chain().focus().toggleBold().run()"
         >
           <IconBold />
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('italic')"
+          :aria-label="t('italic')"
           :class="{ 'is-active': editor.isActive('italic') }"
-          :title="$t('italic')"
+          :title="t('italic')"
           @click="editor?.chain().focus().toggleItalic().run()"
         >
           <IconItalic />
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('strike')"
+          :aria-label="t('strike')"
           :class="{ 'is-active': editor.isActive('strike') }"
-          :title="$t('strike')"
+          :title="t('strike')"
           @click="editor?.chain().focus().toggleStrike().run()"
         >
           <IconStrikeThrough />
@@ -45,85 +45,81 @@
       </div>
       <div class="flex gap-1">
         <!-- <ButtonIcon
-          :aria-label="$t('paragraph')"
-          :title="$t('paragraph')"
+          :aria-label="t('paragraph')"
+          :title="t('paragraph')"
           @click="editor?.chain().focus().setParagraph().run()"
         >
           <IconParagraph />
         </ButtonIcon /> -->
         <ButtonIcon
-          :aria-label="$t('heading1')"
-          :title="$t('heading1')"
+          :aria-label="t('heading1')"
+          :title="t('heading1')"
           @click="editor?.chain().focus().toggleHeading({ level: 1 }).run()"
         >
           <div class="flex align-end">
             <IconHeading />
-            <span>{{ $t('1') }}</span>
+            <span>{{ t('1') }}</span>
           </div>
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('heading2')"
-          :title="$t('heading2')"
+          :aria-label="t('heading2')"
+          :title="t('heading2')"
           @click="editor?.chain().focus().toggleHeading({ level: 2 }).run()"
         >
           <div class="flex align-end">
             <IconHeading />
-            <span>{{ $t('2') }}</span>
+            <span>{{ t('2') }}</span>
           </div>
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('heading3')"
-          :title="$t('heading3')"
+          :aria-label="t('heading3')"
+          :title="t('heading3')"
           @click="editor?.chain().focus().toggleHeading({ level: 3 }).run()"
         >
           <div class="flex align-end">
             <IconHeading />
-            <span>{{ $t('3') }}</span>
+            <span>{{ t('3') }}</span>
           </div>
         </ButtonIcon>
       </div>
       <div class="flex gap-1">
         <ButtonIcon
-          :aria-label="$t('listUl')"
-          :title="$t('listUl')"
+          :aria-label="t('listUl')"
+          :title="t('listUl')"
           @click="editor?.chain().focus().toggleBulletList().run()"
         >
           <IconListUl />
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('listOl')"
-          :title="$t('listOl')"
+          :aria-label="t('listOl')"
+          :title="t('listOl')"
           @click="editor?.chain().focus().toggleOrderedList().run()"
         >
           <IconListOl />
         </ButtonIcon>
       </div>
       <div class="flex gap-1">
-        <ButtonIcon
-          :aria-label="$t('link')"
-          :title="$t('link')"
-          @click="setLink"
-        >
+        <ButtonIcon :aria-label="t('link')" :title="t('link')" @click="setLink">
           <IconLink />
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('linkRemove')"
+          :aria-label="t('linkRemove')"
           :disabled="!editor.isActive('link')"
-          :title="$t('linkRemove')"
+          :title="t('linkRemove')"
           @click="editor?.chain().focus().unsetLink().run()"
         >
           <IconLinkSlash />
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('blockquote')"
-          :title="$t('blockquote')"
+          :aria-label="t('blockquote')"
+          :title="t('blockquote')"
           @click="editor?.chain().focus().toggleBlockquote().run()"
         >
           <IconQuoteLeft />
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('code')"
-          :title="$t('code')"
+          :aria-label="t('code')"
+          :title="t('code')"
           @click="editor?.chain().focus().toggleCode().run()"
         >
           <IconCode />
@@ -131,8 +127,8 @@
       </div>
       <div class="flex gap-1">
         <ButtonIcon
-          :aria-label="$t('horizontalRule')"
-          :title="$t('horizontalRule')"
+          :aria-label="t('horizontalRule')"
+          :title="t('horizontalRule')"
           @click="editor?.chain().focus().setHorizontalRule().run()"
         >
           <IconMinus />
@@ -150,105 +146,86 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Editor, EditorContent } from '@tiptap/vue-2'
+<script setup lang="ts">
+import { useEditor, EditorContent } from '@tiptap/vue-3'
 import { Link } from '@tiptap/extension-link'
-import StarterKit from '@tiptap/starter-kit'
-import { onMounted, onBeforeUnmount, reactive, watch } from 'vue'
+import { StarterKit } from '@tiptap/starter-kit'
 
-import { defineComponent } from '#app'
+export interface Props {
+  value: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  value: '',
+})
 
-Link.configure({
-  HTMLAttributes: {
-    rel: 'nofollow noopener noreferrer',
+const emit = defineEmits<{
+  (e: 'input', input: string): void
+}>()
+
+// uses
+const { t } = useI18n()
+const editor = useEditor({
+  content: props.value,
+  editorProps: {
+    attributes: {
+      class: 'form-input min-h-[100px]',
+    },
+  },
+  extensions: [StarterKit, Link],
+  onUpdate: () => {
+    if (!editor.value) return
+    emit('input', editor.value.getHTML())
   },
 })
 
-export default defineComponent({
-  components: {
-    EditorContent,
-  },
-  props: {
-    value: {
-      default: '',
-      type: String,
-    },
-  },
-  setup(props, { emit }) {
-    const data = reactive({
-      editor: null as Editor | null,
-    })
-    const methods = {
-      setLink() {
-        if (!data.editor) return
+// methods
+function setLink() {
+  if (!editor.value) return
 
-        const previousUrl = data.editor.getAttributes('link').href
-        const url = window.prompt('URL', previousUrl)
+  const previousUrl = editor.value.getAttributes('link').href
+  const url = window.prompt('URL', previousUrl)
 
-        // cancelled
-        if (url === null) {
-          return
-        }
+  // cancelled
+  if (url === null) {
+    return
+  }
 
-        // empty
-        if (url === '') {
-          data.editor.chain().focus().extendMarkRange('link').unsetLink().run()
+  // empty
+  if (url === '') {
+    editor.value.chain().focus().extendMarkRange('link').unsetLink().run()
 
-          return
-        }
+    return
+  }
 
-        // update link
-        data.editor
-          .chain()
-          .focus()
-          .extendMarkRange('link')
-          .setLink({ href: url, target: '_blank' })
-          .run()
-      },
+  // update link
+  editor.value
+    .chain()
+    .focus()
+    .extendMarkRange('link')
+    .setLink({ href: url, target: '_blank' })
+    .run()
+}
+
+// lifecycle
+watch(
+  () => props.value,
+  (currentValue, _oldValue) => {
+    if (!editor.value) return
+
+    const isSame = editor.value.getHTML() === currentValue
+
+    if (isSame) {
+      return
     }
 
-    watch(
-      () => props.value,
-      (currentValue, _oldValue) => {
-        if (!data.editor) return
+    editor.value.commands.setContent(currentValue, false)
+  }
+)
 
-        const isSame = data.editor.getHTML() === currentValue
-
-        if (isSame) {
-          return
-        }
-
-        data.editor.commands.setContent(currentValue, false)
-      }
-    )
-
-    onMounted(() => {
-      // @ts-ignore
-      data.editor = new Editor({
-        content: props.value,
-        editorProps: {
-          attributes: {
-            class: 'form-input min-h-[100px]',
-          },
-        },
-        extensions: [StarterKit, Link],
-        onUpdate: () => {
-          if (!data.editor) return
-          emit('input', data.editor.getHTML())
-        },
-      })
-    })
-
-    onBeforeUnmount(() => {
-      if (data.editor) {
-        data.editor.destroy()
-      }
-    })
-
-    return {
-      ...data,
-      ...methods,
-    }
+// initialization
+Link.configure({
+  HTMLAttributes: {
+    rel: 'nofollow noopener noreferrer',
   },
 })
 </script>

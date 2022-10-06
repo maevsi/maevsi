@@ -4,28 +4,23 @@
     :form="v$.form"
     :form-class="formClass"
     :is-form-sent="isFormSent"
-    :submit-name="$t('accountPasswordResetRequest')"
+    :submit-name="t('accountPasswordResetRequest')"
     @submit.prevent="submit"
   >
     <FormInputEmailAddress
-      id="email-address-password-reset-request"
       :form-input="v$.form.emailAddress"
       is-required
-      :title="$t('emailAddressYours')"
+      :title="t('emailAddressYours')"
       @input="form.emailAddress = $event"
     />
   </Form>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { email, maxLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { reactive, toRef } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
-
-import { computed, defineComponent, PropType, useNuxtApp } from '#app'
 
 import {
   formPreSubmit,
@@ -35,92 +30,81 @@ import {
 import { getApiMeta } from '~/plugins/util/util'
 import { useAccountPasswordResetRequestMutation } from '~/gql/generated'
 
-const FormAccountPasswordResetRequest = defineComponent({
-  props: {
-    formClass: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-  },
-  setup(_props, { emit }) {
-    const { $i18n } = useNuxtApp()
-    const { t } = useI18n()
-    const passwordResetRequestMutation =
-      useAccountPasswordResetRequestMutation()
-
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {
-            ...passwordResetRequestMutation.data.value,
-          },
-          ...getApiMeta([passwordResetRequestMutation]),
-        }
-      }),
-    }
-    const data = reactive({
-      form: {
-        emailAddress: '',
-      },
-      isFormSent: false,
-    })
-    const rules = {
-      form: {
-        emailAddress: {
-          email,
-          formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
-    const methods = {
-      async submit() {
-        try {
-          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
-        } catch (error) {
-          consola.debug(error)
-          return
-        }
-
-        const result = await passwordResetRequestMutation.executeMutation({
-          emailAddress: data.form.emailAddress,
-          language: $i18n.locale,
-        })
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        if (!result.data) {
-          return
-        }
-
-        emit('account-password-reset-request')
-        Swal.fire({
-          icon: 'success',
-          text: t('accountPasswordResetRequestSuccess') as string,
-          title: t('requestAccepted'),
-        })
-      },
-    }
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      v$,
-    }
-  },
+export interface Props {
+  formClass: string
+}
+withDefaults(defineProps<Props>(), {
+  formClass: undefined,
 })
 
-export default FormAccountPasswordResetRequest
+const emit = defineEmits<{
+  (e: 'account-password-reset-request'): void
+}>()
 
-export type FormAccountPasswordResetRequestType = InstanceType<
-  typeof FormAccountPasswordResetRequest
->
+const { locale, t } = useI18n()
+const passwordResetRequestMutation = useAccountPasswordResetRequestMutation()
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...passwordResetRequestMutation.data.value,
+    },
+    ...getApiMeta([passwordResetRequestMutation]),
+  }
+})
+
+// data
+const form = reactive({
+  emailAddress: ref<string>(),
+})
+const isFormSent = ref(false)
+
+// methods
+async function submit() {
+  if (!form.emailAddress) throw new Error('Email address is not set!')
+
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  const result = await passwordResetRequestMutation.executeMutation({
+    emailAddress: form.emailAddress,
+    language: locale.value,
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data) {
+    return
+  }
+
+  emit('account-password-reset-request')
+  Swal.fire({
+    icon: 'success',
+    text: t('accountPasswordResetRequestSuccess') as string,
+    title: t('requestAccepted'),
+  })
+}
+
+// vuelidate
+const rules = {
+  form: {
+    emailAddress: {
+      email,
+      formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+      maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+      required,
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">

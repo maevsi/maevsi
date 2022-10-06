@@ -1,15 +1,20 @@
 <template>
   <ButtonColored
-    :aria-label="$t('home')"
+    :aria-label="t('home')"
     :to="localePath('/')"
     @click="$emit('click')"
   >
-    {{ $t('home') }}
-    <template slot="prefix">
+    {{ t('home') }}
+    <template #prefix>
       <IconHome />
     </template>
   </ButtonColored>
 </template>
+
+<script setup lang="ts">
+const localePath = useLocalePath()
+const { t } = useI18n()
+</script>
 
 <i18n lang="yml">
 de:

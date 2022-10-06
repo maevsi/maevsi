@@ -1,6 +1,6 @@
 import { graphql } from 'msw'
 
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 
 import ModalImageSelection from './ModalImageSelection.vue'
 import { useMaevsiStore } from '~/store'
@@ -47,7 +47,6 @@ const Template = (_: never, { argTypes }: any) =>
       store.modalAdd({ id: 'ModalImageSelection', isVisible: true })
     },
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<ModalImageSelection v-bind="$props" id="ModalImageSelection">ModalImageSelection</ModalImageSelection>',
   })
 

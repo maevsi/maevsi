@@ -24,25 +24,26 @@ import {
 } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 
-// const ssrKey = '__URQL_DATA__'
+const ssrKey = '__URQL_DATA__'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
+  const config = useRuntimeConfig()
+  const host = useHost()
   const ssr = ssrExchange({
     isClient: process.client,
   })
 
-  // TODO: Enable when SSR hooks are available in Nuxt bridge or when migrated to Nuxt 3. (https://github.com/maevsi/maevsi/issues/283)
-  // if (process.client) {
-  //   nuxtApp.hook('app:created', () => {
-  //     ssr.restoreData(nuxtApp.payload[ssrKey])
-  //   })
-  // }
+  if (process.client) {
+    nuxtApp.hook('app:created', () => {
+      ssr.restoreData(nuxtApp.payload[ssrKey])
+    })
+  }
 
-  // if (process.server) {
-  //   nuxtApp.hook('app:rendered', () => {
-  //     nuxtApp.payload[ssrKey] = ssr.extractData()
-  //   })
-  // }
+  if (process.server) {
+    nuxtApp.hook('app:rendered', () => {
+      nuxtApp.payload[ssrKey] = ssr.extractData()
+    })
+  }
 
   const cacheConfig: GraphCacheConfig = {
     schema,
@@ -71,7 +72,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const options: ClientOptions = {
     requestPolicy: 'network-only', // TODO: https://github.com/maevsi/maevsi/issues/720
     fetchOptions: () => {
-      const store = useMaevsiStore(nuxtApp.nuxt2Context.$pinia)
+      const store = useMaevsiStore(nuxtApp.$pinia)
       const jwt = store.jwt
 
       if (jwt) {
@@ -86,11 +87,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     },
     url: process.server
       ? 'http://postgraphile:5000/graphql'
-      : 'https://postgraphile.' +
-        (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-        '/graphql',
+      : 'https://postgraphile.' + host + '/graphql',
     exchanges: [
-      ...(process.env.NODE_ENV === 'production' ? [] : [devtoolsExchange]),
+      ...(config.public.isInDevelopment ? [devtoolsExchange] : []),
       dedupExchange,
       cache,
       ssr, // add `ssr` before `fetchExchange`
@@ -109,24 +108,24 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   })
 
   // Either authenticate anonymously or refresh token on page load.
-  if (process.server && nuxtApp.ssrContext) {
+  if (nuxtApp.ssrContext?.event) {
     const store = useMaevsiStore(nuxtApp.ssrContext.$pinia)
-    const jwtData = jwtFromCookie(nuxtApp.ssrContext.req)
+    const jwtData = jwtFromCookie(nuxtApp.ssrContext.event.req)
 
     if (jwtData?.jwtDecoded.id) {
       await jwtRefresh(
         client.value,
         urqlReset,
         store,
-        nuxtApp.ssrContext.res,
-        jwtData.jwtDecoded.id
+        nuxtApp.ssrContext.event.res,
+        jwtData.jwtDecoded.id as string
       )
     } else {
       await authenticationAnonymous(
         client.value,
         urqlReset,
         store,
-        nuxtApp.ssrContext.res
+        nuxtApp.ssrContext.event.res
       )
     }
   }

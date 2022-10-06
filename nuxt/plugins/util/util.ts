@@ -1,7 +1,11 @@
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
+import { CompatibilityEvent } from 'h3'
 import { computed, Ref } from 'vue'
-import { useI18n } from 'vue-i18n-composable'
+
+export function append(path: string, pathToAppend: string): string {
+  return path + (path.endsWith('/') ? '' : '/') + pathToAppend
+}
 
 export function capitalizeFirstLetter(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -51,6 +55,12 @@ export function copyText(text: string) {
 //   return promise
 // }
 
+export function getHost(event: CompatibilityEvent) {
+  if (!event.req.headers.host) throw new Error('Host header is not given!')
+
+  return event.req.headers.host
+}
+
 export function getApiDataDefault() {
   return {
     api: computed(() => {
@@ -75,13 +85,13 @@ export function getApiMeta(
       } else {
         return p
       }
-    }, [] as (CombinedError | { errcode: string })[]),
+    }, [] as (CombinedError | { errcode: string; message: string })[]),
     isFetching: queries.reduce((p, c) => p || c.fetching.value, false),
   }
 }
 
 export function getCombinedErrorMessages(
-  $t: any,
+  t: any,
   errors: (CombinedError | { errcode: string; message: string })[]
 ) {
   const errorMessages: string[] = []
@@ -89,7 +99,7 @@ export function getCombinedErrorMessages(
   for (const error of errors) {
     if ('errcode' in error) {
       const translationId = 'postgres' + error.errcode
-      const translation = $t(translationId)
+      const translation = t(translationId)
 
       if (translation === translationId) {
         errorMessages.push(error.message)
@@ -116,7 +126,9 @@ export function useGetCombinedErrorMessages() {
   const { t } = useI18n()
 
   return {
-    getCombinedErrorMessages(errors: CombinedError[]) {
+    getCombinedErrorMessages(
+      errors: (CombinedError | { errcode: string; message: string })[]
+    ) {
       return getCombinedErrorMessages(t, errors)
     },
   }

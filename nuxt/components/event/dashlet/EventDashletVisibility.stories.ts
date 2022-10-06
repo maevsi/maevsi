@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import EventDashletVisibility from './EventDashletVisibility.vue'
 
 export default {
@@ -11,7 +11,6 @@ const Template = (_: never, { argTypes }: any) =>
     components: { EventDashletVisibility },
     props: Object.keys(argTypes),
     template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
       '<EventDashletVisibility v-bind="$props">EventDashletVisibility</EventDashletVisibility>',
   })
 

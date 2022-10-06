@@ -11,7 +11,7 @@
   >
     <slot />
   </a>
-  <nuxt-link
+  <NuxtLink
     v-else
     :append="append"
     :class="classes"
@@ -19,51 +19,30 @@
     @click.native="$emit('click')"
   >
     <slot />
-  </nuxt-link>
+  </NuxtLink>
 </template>
 
-<script lang="ts">
-import { computed } from 'vue'
+<script setup lang="ts">
+export interface Props {
+  append?: boolean
+  isColored?: boolean
+  isUnderlined?: boolean
+  nofollow?: boolean
+  to: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  append: false,
+  isColored: true,
+  isUnderlined: false,
+  nofollow: false,
+})
 
-import { defineComponent } from '#app'
-
-export default defineComponent({
-  props: {
-    append: {
-      default: false,
-      type: Boolean,
-    },
-    isColored: {
-      default: true,
-      type: Boolean,
-    },
-    isUnderlined: {
-      default: false,
-      type: Boolean,
-    },
-    nofollow: {
-      default: false,
-      type: Boolean,
-    },
-    to: {
-      required: true,
-      type: String,
-    },
-  },
-  setup(props) {
-    const computations = {
-      classes: computed(() => {
-        return [
-          'rounded',
-          ...(props.isColored ? ['text-link-dark dark:text-link-bright'] : []),
-          ...(props.isUnderlined ? ['underline'] : []),
-        ].join(' ')
-      }),
-    }
-
-    return {
-      ...computations,
-    }
-  },
+// computations
+const classes = computed(() => {
+  return [
+    'rounded',
+    ...(props.isColored ? ['text-link-dark dark:text-link-bright'] : []),
+    ...(props.isUnderlined ? ['underline'] : []),
+  ].join(' ')
 })
 </script>

@@ -6,29 +6,26 @@
         :visibility="event.visibility"
       />
     </span>
-    <span v-if="event.isArchived" class="block">{{ $t('archived') }}</span>
+    <span v-if="event.isArchived" class="block">{{ t('archived') }}</span>
     <span v-else-if="event.visibility === 'PUBLIC'" class="block">
-      {{ $t('public') }}
+      {{ t('public') }}
     </span>
     <span v-else-if="event.visibility === 'PRIVATE'" class="block">
-      {{ $t('private') }}
+      {{ t('private') }}
     </span>
-    <span v-else class="block">{{ $t('bug') }}</span>
+    <span v-else class="block">{{ t('bug') }}</span>
   </EventDashlet>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
+<script setup lang="ts">
 import { Event } from '~/types/event'
 
-export default defineComponent({
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<Event>,
-    },
-  },
-})
+export interface Props {
+  event: Event
+}
+withDefaults(defineProps<Props>(), {})
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

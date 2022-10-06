@@ -1,4 +1,4 @@
-import { defineComponent } from '#app'
+import { defineComponent } from 'vue'
 import IconCode from './IconCode.vue'
 
 const argTypes = { click: { action: 'click' } }
@@ -14,9 +14,7 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
     components: { IconCode },
     props: Object.keys(argTypes),
-    template:
-      // eslint-disable-next-line @intlify/vue-i18n/no-raw-text
-      '<IconCode v-bind="$props" @click="click">IconCode</IconCode>',
+    template: '<IconCode v-bind="$props" @click="click">IconCode</IconCode>',
   })
 
 export const Default = Template.bind({})

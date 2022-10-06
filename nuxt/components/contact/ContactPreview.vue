@@ -27,12 +27,12 @@
     </div>
     <div class="flex flex-col justify-center overflow-hidden">
       <div class="truncate font-medium">
-        {{ contact.firstName || $t('placeholder') }}
-        {{ contact.lastName || $t('placeholder') }}
+        {{ contact.firstName || t('placeholder') }}
+        {{ contact.lastName || t('placeholder') }}
       </div>
       <div class="truncate text-gray-500 dark:text-gray-400">
         <div v-if="!contact.accountUsername">
-          {{ $t('placeholder') }}
+          {{ t('placeholder') }}
         </div>
         <AppLink
           v-else-if="isUsernameLinked"
@@ -48,26 +48,21 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
+<script setup lang="ts">
 import { Contact } from '~/types/contact'
 
-export default defineComponent({
-  props: {
-    contact: {
-      required: true,
-      type: Object as PropType<Contact>,
-    },
-    feedback: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    isUsernameLinked: {
-      default: true,
-      type: Boolean,
-    },
-  },
+export interface Props {
+  contact: Contact
+  feedback: string
+  isUsernameLinked: boolean
+}
+withDefaults(defineProps<Props>(), {
+  feedback: undefined,
+  isUsernameLinked: true,
 })
+
+const localePath = useLocalePath()
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

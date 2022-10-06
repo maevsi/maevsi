@@ -12,15 +12,9 @@
   </ol>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
-
-export default defineComponent({
-  props: {
-    span: {
-      required: true,
-      type: [String, Array<String>],
-    },
-  },
-})
+<script setup lang="ts">
+export interface Props {
+  span: Array<string | Array<string>>
+}
+withDefaults(defineProps<Props>(), {})
 </script>

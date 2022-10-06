@@ -4,7 +4,7 @@
       <div class="flex items-center">
         <Hr />
         <LoaderImage
-          :alt="$t('maevsiLogo')"
+          :alt="t('maevsiLogo')"
           class="mx-12 h-12 w-12 opacity-50 brightness-0 dark:opacity-60 dark:invert"
           height="48"
           src="/assets/static/logos/maevsi.svg"
@@ -14,136 +14,124 @@
       </div>
       <!-- Justifying evenly, instead of "between", centers a single element. -->
       <div class="flex flex-wrap justify-between">
-        <FooterCategory :heading="$t('product')">
+        <FooterCategory :heading="t('product')">
           <AppLink :to="localePath('/#overview')">
-            {{ $t('overview') }}
+            {{ t('overview') }}
           </AppLink>
           <AppLink :to="localePath('/#features')">
-            {{ $t('features') }}
+            {{ t('features') }}
           </AppLink>
           <!--<AppLink :to="localePath('/#pricing')">
-            {{ $t('pricing') }}
+            {{ t('pricing') }}
           </AppLink>-->
           <!-- <AppLink :to="localePath('/about/team')">
-            {{ $t('team') }}
+            {{ t('team') }}
           </AppLink> -->
           <!-- <AppLink :to="localePath('/about/awards')">
-            {{ $t('awards') }}
+            {{ t('awards') }}
           </AppLink> -->
         </FooterCategory>
-        <FooterCategory :heading="$t('legal')">
+        <FooterCategory :heading="t('legal')">
           <AppLink :to="localePath('/legal-notice')">
-            {{ $t('legalNotice') }}
+            {{ t('legalNotice') }}
           </AppLink>
           <AppLink :to="localePath('/privacy-policy')">
-            {{ $t('privacyPolicy') }}
+            {{ t('privacyPolicy') }}
           </AppLink>
           <!-- <AppLink :to="localePath('/code-of-conduct')">
-            {{ $t('codeOfConduct') }}
+            {{ t('codeOfConduct') }}
           </AppLink> -->
         </FooterCategory>
-        <!-- <FooterCategory :heading="$t('support')">
+        <!-- <FooterCategory :heading="t('support')">
           <AppLink :to="localePath('/support/tutorials')">
-            {{ $t('tutorials') }}
+            {{ t('tutorials') }}
           </AppLink>
           <AppLink :to="localePath('/support/contact')">
-            {{ $t('contact') }}
+            {{ t('contact') }}
           </AppLink>
           <AppLink :to="localePath('/support/docs')">
-            {{ $t('documentation') }}
+            {{ t('documentation') }}
           </AppLink>
         </FooterCategory> -->
-        <FooterCategory :heading="$t('quickLinks')">
+        <FooterCategory :heading="t('quickLinks')">
           <AppLink
-            :title="$t('releases')"
+            :title="t('releases')"
             to="https://github.com/maevsi/maevsi/releases"
           >
-            {{ $t('releases') }}
+            {{ t('releases') }}
           </AppLink>
           <AppLink
-            :title="$t('githubLinkTitle')"
+            :title="t('githubLinkTitle')"
             to="https://github.com/maevsi/"
           >
-            {{ $t('sourceCode') }}
+            {{ t('sourceCode') }}
           </AppLink>
           <AppLink to="mailto:mail+support@maev.si">
-            {{ $t('contact') }}
+            {{ t('contact') }}
           </AppLink>
         </FooterCategory>
-        <FooterCategory :heading="$t('languages')">
+        <FooterCategory :heading="t('languages')">
           <AppLink
-            v-for="locale in $i18n.locales"
-            :key="getLocaleCode(locale)"
-            :to="switchLocalePath(getLocaleCode(locale))"
+            v-for="availableLocale in availableLocales"
+            :key="availableLocale"
+            :to="switchLocalePath(availableLocale)"
           >
-            <span :class="{ disabled: getLocaleCode(locale) === $i18n.locale }">
-              {{ getLocaleName(locale) }}
+            <span :class="{ disabled: availableLocale === locale }">
+              {{ getLocaleName(availableLocale) }}
             </span>
           </AppLink>
         </FooterCategory>
-        <FooterCategory :heading="$t('colorScheme')">
-          <AppLink
+        <FooterCategory :heading="t('colorScheme')">
+          <Button
             v-for="colorScheme in ['System', 'Light', 'Dark']"
             :key="colorScheme"
+            :aria-label="t(`colorScheme${colorScheme}`)"
+            is-link-colored
             :class="{
-              disabled: colorModePreference === colorScheme.toLowerCase(),
+              disabled: colorMode.preference === colorScheme.toLowerCase(),
             }"
-            to=""
-            @click="colorModePreference = colorScheme.toLowerCase()"
+            @click="colorMode.preference = colorScheme.toLowerCase()"
           >
-            {{ $t(`colorScheme${colorScheme}`) }}
-          </AppLink>
+            {{ t(`colorScheme${colorScheme}`) }}
+          </Button>
         </FooterCategory>
       </div>
       <p class="text-center text-gray-500 dark:text-gray-400">
-        {{ $t('copyright', { year: new Date().getFullYear() }) }}
+        {{ t('copyright', { year: new Date().getFullYear() }) }}
       </p>
     </div>
   </footer>
 </template>
-<script lang="ts">
-import { useColorMode } from '@nuxtjs/color-mode/dist/runtime/composables'
-import { LocaleObject } from '@nuxtjs/i18n/types'
 
-import { defineComponent } from '#app'
+<script setup lang="ts">
+import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
 import { LOCALES } from '~/plugins/util/constants'
 
-export default defineComponent({
+// uses
+const colorMode = useColorMode()
+const localePath = useLocalePath()
+const switchLocalePath = useSwitchLocalePath()
+const { locale, availableLocales, t } = useI18n()
+
+// methods
+function getLocaleName(locale: string) {
+  const locales: LocaleObject[] = LOCALES.filter(
+    (localeObject) => localeObject.code === locale
+  )
+
+  if (locales.length) {
+    return locales[0].name
+  } else {
+    return undefined
+  }
+}
+</script>
+
+<script lang="ts">
+export default {
   name: 'MaevsiFooter',
-  setup() {
-    const colorMode = useColorMode()
-
-    const data = {
-      colorModePreference: colorMode.preference,
-    }
-    const methods = {
-      getLocaleCode(locale: string | LocaleObject) {
-        return typeof locale === 'string' ? locale : locale.code
-      },
-      getLocaleName(locale: string | LocaleObject) {
-        if (typeof locale === 'string') {
-          const locales: LocaleObject[] = LOCALES.filter(
-            (localeObject) => localeObject.code === locale
-          )
-
-          if (locales.length) {
-            return locales[0].name
-          } else {
-            return undefined
-          }
-        } else {
-          return locale.name
-        }
-      },
-    }
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
-})
+}
 </script>
 
 <i18n lang="yml">

@@ -21,61 +21,38 @@
     @click="$emit('click')"
   >
     <slot />
-    <template slot="prefix">
+    <template #prefix>
       <slot name="prefix" />
     </template>
-    <template slot="suffix">
+    <template #suffix>
       <slot name="suffix" />
     </template>
   </Button>
 </template>
 
-<script lang="ts">
-import { ref } from 'vue'
-
-import { defineComponent, PropType } from '#app'
-
-export default defineComponent({
-  props: {
-    append: {
-      default: false,
-      type: Boolean,
-    },
-    ariaLabel: {
-      required: true,
-      type: String,
-    },
-    disabled: {
-      default: false,
-      type: Boolean,
-    },
-    isPrimary: {
-      default: true,
-      type: Boolean,
-    },
-    to: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    type: {
-      default: 'button',
-      type: String,
-    },
-  },
-  setup() {
-    const refs = {
-      buttonRef: ref<HTMLButtonElement>(),
-    }
-    const methods = {
-      click() {
-        refs.buttonRef.value?.click()
-      },
-    }
-
-    return {
-      ...refs,
-      ...methods,
-    }
-  },
+<script setup lang="ts">
+export interface Props {
+  append?: boolean
+  ariaLabel: string
+  disabled?: boolean
+  isPrimary?: boolean
+  to?: string
+  type?: 'button' | 'reset' | 'submit'
+}
+withDefaults(defineProps<Props>(), {
+  append: false,
+  disabled: false,
+  isPrimary: true,
+  to: undefined,
+  type: 'button',
 })
+
+// refs
+// const buttonRef = ref<HTMLButtonElement>()
+//
+// const methods = {
+//   click() {
+//     refs.buttonRef.value?.click()
+//   },
+// }
 </script>
