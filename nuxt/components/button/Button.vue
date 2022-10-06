@@ -4,7 +4,7 @@
     ref="buttonRef"
     :append="append"
     :aria-label="ariaLabel"
-    :class="isBlock ? 'block' : 'inline-flex items-center gap-2'"
+    :class="classes"
     :disabled="disabled"
     :is-colored="false"
     :to="to"
@@ -17,7 +17,7 @@
     v-else
     ref="buttonRef"
     :aria-label="ariaLabel"
-    :class="isBlock ? 'block' : 'inline-flex items-center gap-2'"
+    :class="classes"
     :disabled="disabled"
     :type="type"
     @click="$emit('click')"
@@ -50,6 +50,10 @@ export default defineComponent({
       default: false,
       type: Boolean,
     },
+    isLinkColored: {
+      default: false,
+      type: Boolean,
+    },
     to: {
       default: undefined,
       type: String as PropType<string | undefined>,
@@ -59,7 +63,7 @@ export default defineComponent({
       type: String as PropType<'button' | 'submit' | 'reset' | undefined>,
     },
   },
-  setup() {
+  setup(props) {
     const refs = {
       buttonRef: ref<HTMLButtonElement>(),
     }
@@ -68,10 +72,21 @@ export default defineComponent({
         refs.buttonRef.value?.click()
       },
     }
+    const computations = {
+      classes: computed(() => {
+        return [
+          ...(props.isBlock ? ['block'] : ['inline-flex items-center gap-2']),
+          ...(props.isLinkColored
+            ? ['text-link-dark dark:text-link-bright']
+            : []),
+        ].join(' ')
+      }),
+    }
 
     return {
       ...refs,
       ...methods,
+      ...computations,
     }
   },
 })
