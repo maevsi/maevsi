@@ -72,12 +72,12 @@
         </FooterCategory>
         <FooterCategory :heading="t('languages')">
           <AppLink
-            v-for="locale in locales"
-            :key="getLocaleCode(locale)"
-            :to="switchLocalePath(getLocaleCode(locale))"
+            v-for="availableLocale in availableLocales"
+            :key="availableLocale"
+            :to="switchLocalePath(availableLocale)"
           >
-            <span :class="{ disabled: getLocaleCode(locale) === locale }">
-              {{ getLocaleName(locale) }}
+            <span :class="{ disabled: availableLocale === locale }">
+              {{ getLocaleName(availableLocale) }}
             </span>
           </AppLink>
         </FooterCategory>
@@ -86,10 +86,10 @@
             v-for="colorScheme in ['System', 'Light', 'Dark']"
             :key="colorScheme"
             :class="{
-              disabled: colorModePreference === colorScheme.toLowerCase(),
+              disabled: colorMode.preference === colorScheme.toLowerCase(),
             }"
             to=""
-            @click="colorModePreference = colorScheme.toLowerCase()"
+            @click="colorMode.preference = colorScheme.toLowerCase()"
           >
             {{ t(`colorScheme${colorScheme}`) }}
           </AppLink>
@@ -101,55 +101,36 @@
     </div>
   </footer>
 </template>
-<script lang="ts">
+
+<script setup lang="ts">
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
-import { defineComponent } from 'vue'
 
 import { LOCALES } from '~/plugins/util/constants'
 
-export default defineComponent({
+// uses
+const colorMode = useColorMode()
+const localePath = useLocalePath()
+const switchLocalePath = useSwitchLocalePath()
+const { locale, availableLocales, t } = useI18n()
+
+// methods
+function getLocaleName(locale: string) {
+  const locales: LocaleObject[] = LOCALES.filter(
+    (localeObject) => localeObject.code === locale
+  )
+
+  if (locales.length) {
+    return locales[0].name
+  } else {
+    return undefined
+  }
+}
+</script>
+
+<script lang="ts">
+export default {
   name: 'MaevsiFooter',
-  setup() {
-    const colorMode = useColorMode()
-    const localePath = useLocalePath()
-    const switchLocalePath = useSwitchLocalePath()
-    const { locale, locales, t } = useI18n()
-
-    const data = {
-      colorModePreference: colorMode.preference,
-      locale,
-      locales,
-    }
-    const methods = {
-      getLocaleCode(locale: string | LocaleObject) {
-        return typeof locale === 'string' ? locale : locale.code
-      },
-      getLocaleName(locale: string | LocaleObject) {
-        if (typeof locale === 'string') {
-          const locales: LocaleObject[] = LOCALES.filter(
-            (localeObject) => localeObject.code === locale
-          )
-
-          if (locales.length) {
-            return locales[0].name
-          } else {
-            return undefined
-          }
-        } else {
-          return locale.name
-        }
-      },
-      localePath,
-      switchLocalePath,
-      t,
-    }
-
-    return {
-      ...data,
-      ...methods,
-    }
-  },
-})
+}
 </script>
 
 <i18n lang="yml">
