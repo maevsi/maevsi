@@ -49,6 +49,7 @@ function menuShow(): void {
 }
 
 // initialization
+useHead(head.value)
 useHead({
   bodyAttrs: {
     class:
@@ -92,16 +93,14 @@ useHead({
     },
   ],
   meta: [
-    { charset: 'utf-8' },
-    { content: 'width=device-width, initial-scale=1', name: 'viewport' },
     {
-      hid: 'description',
+      key: 'description',
       name: 'description',
       property: 'description',
       content: t('globalOgSeoDescription'),
     },
     {
-      hid: 'og:description',
+      key: 'og:description',
       property: 'og:description',
       content: t('globalOgSeoDescription'),
     },
@@ -118,73 +117,73 @@ useHead({
       name: 'theme-color',
     },
     {
-      hid: 'og:image',
+      key: 'og:image',
       property: 'og:image',
       content: `https://${host}/assets/static/logos/maevsi_with-text_open-graph.png`, // Does not support .svg as of 2021-06.
     },
     {
-      hid: 'og:image:alt',
+      key: 'og:image:alt',
       property: 'og:image:alt',
       content: t('globalOgImageAlt'),
     },
     {
-      hid: 'og:image:height',
+      key: 'og:image:height',
       property: 'og:image:height',
       content: '627',
     },
     {
-      hid: 'og:image:width',
+      key: 'og:image:width',
       property: 'og:image:width',
       content: '1200',
     },
     {
-      hid: 'og:site_name',
+      key: 'og:site_name',
       property: 'og:site_name',
       content: 'maevsi',
     },
     {
-      hid: 'og:type',
+      key: 'og:type',
       property: 'og:type',
       content: 'website', // https://ogp.me/#types
     },
     {
-      hid: 'og:title',
+      key: 'og:title',
       property: 'og:title',
       content: 'maevsi',
     },
     {
-      hid: 'og:url',
+      key: 'og:url',
       property: 'og:url',
       content: 'https://' + host + router.currentRoute.value.fullPath,
     },
     {
-      hid: 'twitter:card',
+      key: 'twitter:card',
       property: 'twitter:card',
       content: 'summary',
     },
     {
-      hid: 'twitter:description',
+      key: 'twitter:description',
       property: 'twitter:description',
       content: t('globalOgSeoDescription'),
     },
     {
-      hid: 'twitter:image',
+      key: 'twitter:image',
       property: 'twitter:image',
       content: `https://${host}/assets/static/logos/maevsi_with-text_open-graph.png`, // Does not support .svg as of 2021-06.
     },
     {
-      hid: 'twitter:image:alt',
+      key: 'twitter:image:alt',
       property: 'twitter:image:alt',
       content: t('globalOgImageAlt'),
     },
     // TODO: Get access to the @maevsi handle.
     // {
-    //   hid: 'twitter:site',
+    //   key: 'twitter:site',
     //   property: 'twitter:site',
     //   content: '@maevsi',
     // },
     {
-      hid: 'twitter:title',
+      key: 'twitter:title',
       property: 'twitter:title',
       content: 'maevsi',
     },
@@ -192,7 +191,6 @@ useHead({
   titleTemplate: (titleChunk: string) => {
     return titleChunk ? `${titleChunk} · maevsi` : 'maevsi'
   },
-  ...head.value,
 })
 
 $moment.locale(locale.value)
