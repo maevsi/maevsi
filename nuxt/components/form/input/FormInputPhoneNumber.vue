@@ -47,7 +47,7 @@ const { t } = useI18n()
 <i18n lang="yml">
 de:
   phoneNumber: Telefonnummer
-  validationFormat: Muss mit einem Plus beginnen und darf ansonsten nur Ziffern enthalten (z.B. +1234567890)
+  validationFormat: Muss mit einem Plus beginnen und darf sonst nur Ziffern enthalten (z.B. +1234567890)
 en:
   phoneNumber: Phone number
   validationFormat: Must start with a plus and may otherwise only contain digits (e.g. +1234567890)

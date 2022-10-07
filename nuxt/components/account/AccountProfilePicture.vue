@@ -86,7 +86,7 @@ watch(profilePictureQuery.error, (currentValue, _oldValue) => {
 
 <i18n lang="yml">
 de:
-  profilePictureAlt: Das Profilbild von {username}.
+  profilePictureAlt: Profilbild von {username}.
 en:
   profilePictureAlt: "{username}'s profile picture."
 </i18n>

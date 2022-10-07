@@ -96,6 +96,6 @@ de:
 en:
   iconCheck: Verified
   username: Username
-  validationExistenceHint: Did you use upper and lower case letters correctly?
+  validationExistenceHint: Have you used upper and lower case letters correctly?
   validationFormat: May only contain letter, digits and dashes.
 </i18n>

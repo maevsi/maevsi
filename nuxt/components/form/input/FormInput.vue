@@ -178,8 +178,8 @@ if (
 de:
   optional: optional
   required: Pflichtfeld
-  valid: Valide
-  validNot: Invalide
+  valid: Gültig
+  validNot: Ungültig
 en:
   optional: optional
   required: required

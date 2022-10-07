@@ -118,8 +118,8 @@ en:
   accountPasswordReset: Reset password
   accountPasswordResetSuccess: Password reset successfully.
   passwordNew: New Password
-  postgres22023: The password is too short! Think about a longer one.
-  postgresP0002: Unknown reset code! Have you perhaps already reset your password?
-  postgres55000: The reset code has expired!
+  postgres22023: This password is too short! Think of a longer one.
+  postgresP0002: Invalid reset code! Have you perhaps already reset your password?
+  postgres55000: This reset code has expired!
   reset: Reset!
 </i18n>

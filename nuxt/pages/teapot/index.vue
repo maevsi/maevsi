@@ -35,5 +35,5 @@ export default {
 de:
   title: Ich werd' keinen Kaffe machen
 en:
-  title: I'll not make coffee
+  title: I won't make coffee
 </i18n>

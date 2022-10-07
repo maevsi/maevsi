@@ -89,7 +89,7 @@ de:
 en:
   emailAddressVerificationSuccess: Email address verified successfully.
   postgres55000: The verification code has expired!
-  postgresP0002: Unknown verification code! Have you perhaps already verified your email address?
+  postgresP0002: Invalid verification code! Have you perhaps already verified your email address?
   title: Verification
   verified: Email address verified.
   verifiedBody: You may sign in now.

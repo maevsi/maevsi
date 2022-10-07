@@ -82,7 +82,7 @@ de:
 en:
   codes: Invitation codes
   codesEntered: 'You entered the following codes:'
-  codesEnteredNone: You have no codes entered yet 😕
+  codesEnteredNone: You have not entered any codes yet 😕
   session: session
   sessionExit: Exit this session
   sessionExpired: Your session expired.

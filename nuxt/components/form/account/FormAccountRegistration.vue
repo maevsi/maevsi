@@ -175,10 +175,10 @@ de:
 en:
   accountDeletionNotice: "You'll be able to delete your account at any time."
   emailAddress: Email address
-  postgres22023: The password is too short! Think about a longer one.
-  postgres23505: There is already an account with this username or email address! Think of a new name or try signing in.
+  postgres22023: Your password is too short! Think of a longer one.
+  postgres23505: This username or email address is already in use! Think of a new name or try signing in instead.
   register: Register
-  registrationSuccessBody: "Verify your account using the link in the email you'll receive shortly."
+  registrationSuccessBody: Verify your account using the verification link sent to you by email.
   registrationSuccessTitle: Verification email sent.
   signIn: Or sign in instead
 </i18n>

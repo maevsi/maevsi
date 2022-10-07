@@ -400,15 +400,15 @@ en:
   croppaPlaceholder: Choose an image
   iconAdd: 'Upload a new image. Used storage space: {sizeUsed}/{sizeTotal}.'
   iconTrash: trash
-  iconTrashLabel: Delete this uploaded image.
-  postgres53100: Your account space has been used up!
+  iconTrashLabel: Delete this image upload.
+  postgres53100: Your account storage space has been used up!
   upload: Upload
   uploadAlt: An uploaded image.
-  uploadAltFailed: An image for which the upload didn't finish.
+  uploadAltFailed: "An image which hasn't been fully uploaded."
   uploadDeleteFailed: Deleting upload failed!
   uploadDeleteUnexpectedStatusCode: Deleting upload returned an unexpected status code.
-  uploadError: 'Error: Some files did not upload successfully!'
-  uploadImages: Upload pictures
+  uploadError: 'Error: Upload failed!'
+  uploadImages: Upload images
   uploadNew: Upload a new image
   uploadSize: 'Size: {size}'
 </i18n>
