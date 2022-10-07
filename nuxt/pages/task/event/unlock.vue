@@ -235,7 +235,7 @@ en:
   invitationCode: Invitation code
   invitationCodeAutomatic: The invitation code was entered automatically.
   invitationCodeManual: Enter it yourself.
-  postgresP0002: No event was found for this invitation code! Check your input for spelling errors.
+  postgresP0002: No event was found for this invitation code! Check your input for spelling mistakes.
   submit: Show event page
   title: Unlock event
 </i18n>

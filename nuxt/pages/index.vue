@@ -251,15 +251,15 @@ en:
   maevsiDescription: maevsi is the manager for events supported by invitees.
   maevsiDescription1: Personal invitations. Proper feedback.
   maevsiDescription2: Don't miss out on events your friends are going to.
-  smartphoneDescription: With meavsi, you no longer have to organize your events via chat groups anymore. You communicate all important informations clearly, keep control over individual invitations and focus on the content of your event without distractions – your guests will thank you for it.
-  smartphoneTitle: You still organize your event like that?
+  smartphoneDescription: With meavsi, you no longer have to organize your events via chat groups anymore. You communicate all important information clearly, keep control over individual invitations and focus on the content of your event without distraction – your guests will thank you for it.
+  smartphoneTitle: Do you still organize your event like that?
   stepCreateDescription: Peace of mind for you and your guests, instead of a bustling group chat
   stepCreateNumber: '1'
   stepCreateTitle: Create an event
   stepDefineDescription: all acceptances and declines under your control
   stepDefineNumber: '3'
   stepDefineTitle: Receive feedback
-  stepInviteDescription: pique interest through personal invitation texts
+  stepInviteDescription: gather attention through personal invitation texts
   stepInviteNumber: '2'
   stepInviteTitle: Invite guests
   stepsTitle: "It's as easy as that"

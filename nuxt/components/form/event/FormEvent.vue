@@ -552,7 +552,7 @@ en:
   isRemote: remote
   maximumInviteeCount: Maximum guest count
   name: Name
-  namePlaceholder: Slug Party
+  namePlaceholder: Welcome Party
   location: Location
   preview: Preview
   previewNoContent: No content to preview 😕

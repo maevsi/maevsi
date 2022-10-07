@@ -117,9 +117,9 @@ de:
   requestAccepted: Anfrage angenommen!
 en:
   accountPasswordResetRequest: Send email
-  accountPasswordResetRequestSuccess: Choose a new password using the verification link provided by email.
+  accountPasswordResetRequestSuccess: Choose a new password using the verification link sent to you by email.
   emailAddressYours: Your email address
   postgres55000: This email address has not been verified yet!
-  postgresP0002: There is no account with this email address! Check your input for spelling errors.
+  postgresP0002: There is no account with this email address! Check your input for spelling mistakes.
   requestAccepted: Request accepted!
 </i18n>

@@ -173,9 +173,9 @@ de:
 en:
   jwtStoreFail: Failed to store the authentication data!
   passwordReset: Reset password
-  postgres22023: This username does not belong to any account! Check your input for spelling errors.
+  postgres22023: This username does not belong to any account! Check your input for spelling mistakes.
   postgres55000: This email address has not been verified yet!
-  postgresP0002: Login failed! Have you registered yet? Check your input for spelling errors.
+  postgresP0002: Login failed! Have you registered yet? Check your input for spelling mistakes.
   register: Or register instead
   registrationRefreshSuccess: A new welcome email is on its way to you.
   sent: Sent!

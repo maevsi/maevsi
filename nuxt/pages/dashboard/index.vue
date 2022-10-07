@@ -112,12 +112,12 @@ en:
   contactsMine: My contacts
   dashboard: dashboard
   eventsMine: My events
-  eventsMineDescription: Here, you will soon see your events.
+  eventsMineDescription: Here you will soon see your events.
   gallery: Image gallery
   invitationsMine: My invitations
-  invitationsMineDescription: Here, you will soon see the events to which you are invited.
+  invitationsMineDescription: Here you will soon see the events to which you are invited.
   news: Recent changes
-  newsDescription: Here, you will soon see all the news relevant to you.
+  newsDescription: Here you will soon see all the news relevant to you.
   profile: Profile
   title: Dashboard
   uploadsMine: My uploads

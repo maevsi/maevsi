@@ -600,7 +600,7 @@ en:
   greetingDescription: "You've been invited to the following event."
   hintQrCode: This picture is your access authorization for the event
   iCalDownload: Download for your calendar
-  iCalHint: You can open the download with your calendar app to load it.
+  iCalHint: You can open the downloaded file in your calendar app.
   iCalUnexpectedStatusCode: 'Could not get iCal data: Status code {statusCode}.'
   invitationAccept: Accept invitation
   invitationAcceptAdmin: Accept invitation on behalf of {name}

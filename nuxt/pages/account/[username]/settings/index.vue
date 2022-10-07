@@ -142,7 +142,7 @@ en:
   account: account
   accounts: accounts
   postgres23503: There's still some data connected to your account! Delete all your events, contacts and images first.
-  postgres28P01: Password incorrect! Check for spelling errors.
+  postgres28P01: Password incorrect! Check for spelling mistakes.
   profilePictureChange: Change profile picture
   settings: edit
   titleAccountDelete: Delete account

@@ -81,5 +81,5 @@ watch(eventsQuery.error, (currentValue, _oldValue) => {
 de:
   noEvents: Aktuell gibt es keine Veranstaltungen 😕
 en:
-  noEvents: Nothing going here... 😕
+  noEvents: There are currently no events 😕
 </i18n>

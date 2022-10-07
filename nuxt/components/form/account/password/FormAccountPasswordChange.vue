@@ -131,5 +131,5 @@ en:
   passwordCurrent: Current password
   passwordNew: New password
   postgres22023: Your new password is too short! Think of a longer one.
-  postgres28P01: Current password incorrect! Check for spelling errors.
+  postgres28P01: Current password incorrect! Check for spelling mistakes.
 </i18n>
