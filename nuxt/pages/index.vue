@@ -259,7 +259,7 @@ en:
   stepDefineDescription: all acceptances and declines under your control
   stepDefineNumber: '3'
   stepDefineTitle: Receive feedback
-  stepInviteDescription: gather attention through personal invitation texts
+  stepInviteDescription: achieve attention through personal invitation texts
   stepInviteNumber: '2'
   stepInviteTitle: Invite guests
   stepsTitle: "It's as easy as that"
