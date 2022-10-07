@@ -136,14 +136,7 @@ export default defineNuxtConfig({
     //     analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
     //   },
     // ],
-    [
-      '@nuxtjs/robots',
-      {
-        Allow: ['/'],
-        Disallow: ['/robots.txt'], // https://webmasters.stackexchange.com/a/117537/70856
-        Sitemap: BASE_URL + '/sitemap.xml',
-      },
-    ],
+    '@nuxtjs/robots',
     '@pinia/nuxt',
     // ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
   ],

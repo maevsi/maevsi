@@ -1,6 +1,6 @@
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
-import { CompatibilityEvent } from 'h3'
+import { IncomingMessage } from 'h3'
 import { computed, Ref } from 'vue'
 
 export function append(path: string, pathToAppend: string): string {
@@ -55,10 +55,10 @@ export function copyText(text: string) {
 //   return promise
 // }
 
-export function getHost(event: CompatibilityEvent) {
-  if (!event.req.headers.host) throw new Error('Host header is not given!')
+export function getHost(req: IncomingMessage) {
+  if (!req.headers.host) throw new Error('Host header is not given!')
 
-  return event.req.headers.host
+  return req.headers.host
 }
 
 export function getApiDataDefault() {
