@@ -12,7 +12,7 @@ specifiers:
   '@nuxt/babel-preset-app': 2.15.8
   '@nuxt/bridge': npm:@nuxt/bridge-edge@3.0.0-27718481.b03ca40
   '@nuxt/types-edge': 2.16.0-27720022.54e852f
-  '@nuxtjs/color-mode': 3.1.7
+  '@nuxtjs/color-mode': 3.1.8
   '@nuxtjs/eslint-config-typescript': 11.0.0
   '@nuxtjs/eslint-module': 3.1.0
   '@nuxtjs/google-analytics': 2.4.0
@@ -143,7 +143,7 @@ dependencies:
   '@dargmuesli/nuxt-cookie-control': 1.9.9_webpack@4.46.0
   '@http-util/status-i18n': 0.6.2
   '@nuxt/types-edge': 2.16.0-27720022.54e852f_webpack@4.46.0
-  '@nuxtjs/color-mode': 3.1.7_webpack@4.46.0
+  '@nuxtjs/color-mode': 3.1.8_webpack@4.46.0
   '@nuxtjs/i18n': 7.3.0_vue@2.7.10
   '@nuxtjs/robots': 2.5.0
   '@nuxtjs/sitemap': 2.4.0
@@ -3373,8 +3373,8 @@ packages:
       - whiskers
     dev: false
 
-  /@nuxtjs/color-mode/3.1.7_webpack@4.46.0:
-    resolution: {integrity: sha512-+jnGPvmwQJ5jrE4akIX/Efz6fhU9wznysj5V2CK5+I5HhW7UfmwLOMxfOH8Wjho189QFMlO/l1Wufg8c3zonbg==}
+  /@nuxtjs/color-mode/3.1.8_webpack@4.46.0:
+    resolution: {integrity: sha512-ahgjmSzpjTpaxvyyGA/1wD2rNcSFXiqs3/A/GEllB1s4BboJVnBIqkwIQpAguq7IDVZG2tMAvqmnZHSfwrI3IA==}
     dependencies:
       '@nuxt/kit': 3.0.0-rc.11_webpack@4.46.0
       lodash.template: 4.5.0
