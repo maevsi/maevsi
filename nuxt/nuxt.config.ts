@@ -169,9 +169,9 @@ export default defineNuxtConfig({
       isStorybookActive: !!process.env.STORYBOOK,
     },
   },
-  storybook: {
-    addons: ['@storybook/addon-a11y'],
-  },
+  // storybook: {
+  //   addons: ['@storybook/addon-a11y'],
+  // },
   typescript: {
     shim: false,
     strict: true,
