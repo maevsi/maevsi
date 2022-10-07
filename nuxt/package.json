@@ -174,5 +174,10 @@
   "lint-staged": {
     "*.{js,vue}": "eslint",
     "*.{css,vue}": "stylelint"
+  },
+  "pnpm": {
+    "overrides": {
+      "htmlparser2": "8.0.1"
+    }
   }
 }
