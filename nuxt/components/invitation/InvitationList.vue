@@ -191,7 +191,8 @@ import {
   LinearScale,
   Title,
   Tooltip,
-} from 'chart.js'
+  // @ts-ignore https://github.com/chartjs/Chart.js/issues/10594
+} from 'chart.js/dist/chart.mjs'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 import { Doughnut } from 'vue-chartjs'
