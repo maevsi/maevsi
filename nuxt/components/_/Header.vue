@@ -143,7 +143,7 @@ de:
   signIn: Anmelden
   signOut: Abmelden
 en:
-  browserUnsupported: Your browser seems outdated. Some things might not work or look funny because of this.
+  browserUnsupported: Your browser version seems outdated. Some things might not work as expected or look funny.
   dashboard: Dashboard
   events: Explore events
   home: Head home

@@ -231,7 +231,7 @@ de:
   submit: Zur Veranstaltungsseite
   title: Veranstaltung freischalten
 en:
-  greetingExplanation: Invitation codes give you access to non-public event pages without the need to create an account. They are valid as long as you are invited to the event they were issued for.
+  greetingExplanation: Invitation codes grant access to non-public event pages without the need to create an account. They are valid as long as you are invited to the event they were issued for.
   invitationCode: Invitation code
   invitationCodeAutomatic: The invitation code was entered automatically.
   invitationCodeManual: Enter it yourself.

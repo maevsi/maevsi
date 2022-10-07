@@ -560,7 +560,7 @@ en:
   slugPlaceholder: welcome-party
   start: Start
   updated: Updated
-  validationExistenceNone: You've already created an event with id "{slug}"
+  validationExistenceNone: You have already created an event with id "{slug}"
   validationWarningNameChangeSlug: If you change the name, existing links to the event may no longer work
   visibility: Visibility
   visibilityPrivate: private

@@ -78,5 +78,5 @@ de:
 en:
   contactEdit: Edit contact
   contactDelete: Delete contact
-  disabledReasonCreatorNot: This contact is being managed by {authorAccountUsername}.
+  disabledReasonCreatorNot: This contact is managed by {authorAccountUsername}.
 </i18n>

@@ -19,7 +19,7 @@ const { t } = useI18n()
 
 <i18n lang="yml">
 de:
-  eventAll: Zeige alle Veranstaltungen
+  eventAll: Alle Veranstaltungen anzeigen
 en:
   eventAll: Show all events
 </i18n>

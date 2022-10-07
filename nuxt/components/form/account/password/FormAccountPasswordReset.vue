@@ -111,15 +111,15 @@ de:
   accountPasswordResetSuccess: Passwort erfolgreich zurückgesetzt.
   passwordNew: Neues Passwort
   postgres22023: Das Passwort ist zu kurz! Überlege dir ein längeres.
-  postgresP0002: Unbekannter Zurücksetzungscode! Hast du dein Passwort vielleicht schon zurückgesetzt?
-  postgres55000: Der Zurücksetzungscode ist abgelaufen!
+  postgresP0002: Unbekannter Zurücksetzungslink! Hast du dein Passwort vielleicht schon zurückgesetzt?
+  postgres55000: Der Zurücksetzungslink ist abgelaufen!
   reset: Zurückgesetzt!
 en:
   accountPasswordReset: Reset password
   accountPasswordResetSuccess: Password reset successfully.
   passwordNew: New Password
-  postgres22023: The password is too short! Think about a longer one.
-  postgresP0002: Unknown reset code! Have you perhaps already reset your password?
-  postgres55000: The reset code has expired!
+  postgres22023: This password is too short! Think of a longer one.
+  postgresP0002: Invalid reset link! Have you perhaps already reset your password?
+  postgres55000: Your reset link has expired!
   reset: Reset!
 </i18n>

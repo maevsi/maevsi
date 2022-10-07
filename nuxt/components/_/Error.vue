@@ -55,8 +55,8 @@ de:
   error: Fehler
   maevNo: maev.no? {emojiFacePleading}
 en:
-  403description: "You're currently missing permissions to view this site."
-  403hint: Did you already sign in or enter an invitation code on this device?
+  403description: "You don't have permission to access this site."
+  403hint: Try signing in or enter an invitation code on this device.
   error: Error
   maevNo: maev.no? {emojiFacePleading}
 </i18n>

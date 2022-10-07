@@ -317,25 +317,25 @@ de:
 en:
   checkIns: check in
   close: Close
-  errorCameraNotAllowed: Camera access permisson is missing.
+  errorCameraNotAllowed: Need camera access permissons.
   errorCameraNotFound: Could not find a suitable camera.
-  errorCameraNotReadable: Could not access camera. Is it used by another program?
+  errorCameraNotReadable: Could not access camera. Is it in use by another program right now?
   errorCameraNotSupported: The web page is not loaded over a secure connection.
-  errorCameraOverconstrained: Front camera access is not possible.
-  errorCameraStreamApiNotSupported: The browser does not support access to video streams.
+  errorCameraOverconstrained: Could not access front camera.
+  errorCameraStreamApiNotSupported: Your browser does not support access to video streams.
   errorNavigatorPermissionsNotSupported: Navigator permissions are not supported! {hintUpdateOrChrome}
   errorNfcAbort: The NFC scan was interrupted! {hintTryAgain}
   errorNfcNetwork: The NFC transmission was interrupted! {hintTryAgain}
-  errorNfcNotAllowed: NFC access permission is missing! {hintBrowserSettings}
-  errorNfcNotReadable: Could not access NFC adapter. Is it used by another program?
+  errorNfcNotAllowed: Need NFC access permission! {hintBrowserSettings}
+  errorNfcNotReadable: Could not access NFC adapter. Is it in use by another program right now?
   errorNfcNotSupported: No compatible NFC adapter was found. {hintUpdateOrChrome}
   events: events
   hintBrowserSettings: Check your browser settings.
-  hintUpdateOrChrome: Try to update your browser or to use Google Chrome.
+  hintUpdateOrChrome: Try updating your browser or use Google Chrome.
   hintTryAgain: Try again.
-  nfcWrite: Write NFC tag
+  nfcWrite: Write to NFC tag
   qrCodeScan: Scan check in code
-  qrHint: Have guests show you the QR code on their invitation page
+  qrHint: Ask guests to show you the QR code on their invitation page
   scanned: 'Scanned: {scanResult}'
   title: Check in
 </i18n>

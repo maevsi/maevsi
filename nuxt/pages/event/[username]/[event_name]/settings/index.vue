@@ -148,8 +148,8 @@ de:
 en:
   event: event
   events: events
-  postgres28P01: Password incorrect! Check that you have written everything correctly.
-  postgresP0002: The event was not found!
+  postgres28P01: Password incorrect! Check for spelling mistakes.
+  postgresP0002: Event could not be found!
   settings: edit
   title: Edit event
   titleDelete: Delete event

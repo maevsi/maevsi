@@ -438,8 +438,8 @@ en:
   contact: Contact
   contactSelect: Select Contact
   copied: Copied
-  copySuccess: The invitation link was copied to the clipboard.
-  disabledReasonEmailAddressNone: This contact is missing an email address.
+  copySuccess: The invitation link has been copied to the clipboard.
+  disabledReasonEmailAddressNone: This contact does not have an associated email address.
   feedback: Invitation responses
   hintInviteSelf: 'Hint: you can also invite yourself first'
   invitationAdd: Add guests
@@ -450,7 +450,7 @@ en:
   invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
   noFeedback: no response
-  postgresP0002: The invitation could not be sent! You may not currently have access to the necessary data. Try to reload the page.
+  postgresP0002: The invitation could not be sent! You may not have access to the necessary data right now. Try reloading the page.
   sendSuccess: The invitation was successfully sent by email.
   sent: Sent!
 </i18n>

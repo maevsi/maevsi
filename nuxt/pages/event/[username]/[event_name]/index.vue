@@ -595,12 +595,12 @@ en:
   attendances: Check in
   close: Close
   events: events
-  feedbackRequest: 'Please provide feedback whether you will be attending:'
+  feedbackRequest: 'Please confirm if you will attend:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."
   hintQrCode: This picture is your access authorization for the event
-  iCalDownload: Download as calendar item
-  iCalHint: You can open the downloaded file with your calendar app then.
+  iCalDownload: Download for your calendar
+  iCalHint: You can open the downloaded file in your calendar app.
   iCalUnexpectedStatusCode: 'Could not get iCal data: Status code {statusCode}.'
   invitationAccept: Accept invitation
   invitationAcceptAdmin: Accept invitation on behalf of {name}
@@ -610,11 +610,11 @@ en:
   invitationCancelAdmin: Decline invitation on behalf of {name}
   invitationCanceled: Invitation declined
   invitationCanceledAdmin: Invitation declined on behalf of {name}
-  invitationCardKind: Kind of invitation card
+  invitationCardKind: Type of invitation card
   invitationCardKindNone: None
   invitationCardKindPaper: Paper
   invitationCardKindDigital: Digital
-  invitationCodeMultipleWarning: Multiple invitation codes were redeemed for the same event! This page shows data for the first code found.
+  invitationCodeMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
   invitationSelectionClear: Back to the invitation overview
   invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
   invitations: Invitations

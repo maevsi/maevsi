@@ -130,6 +130,6 @@ en:
   passwordChangeSuccess: Password changed successfully.
   passwordCurrent: Current password
   passwordNew: New password
-  postgres22023: The new password is too short! Think about a longer one.
-  postgres28P01: Current password incorrect! Check that you have written everything correctly.
+  postgres22023: Your new password is too short! Think of a longer one.
+  postgres28P01: Current password incorrect! Check for spelling mistakes.
 </i18n>

@@ -235,7 +235,7 @@ de:
   1: '1'
   2: '2'
   3: '3'
-  blockquote: Anführungszeichen
+  blockquote: Zitat
   bold: Fett
   code: Code
   heading1: Überschrift (groß)
@@ -245,8 +245,8 @@ de:
   italic: Kursiv
   link: Link
   linkRemove: Link entfernen
-  listOl: Geordnete Liste
-  listUl: Ungeordnete Liste
+  listOl: Aufzählung
+  listUl: Liste
   paragraph: Absatz
   redo: Wiederholen
   strike: Durchgestrichen
@@ -263,9 +263,9 @@ en:
   heading3: Heading (small)
   horizontalRule: Horizontal rule
   link: Link
-  linkRemove: Unlink
-  listOl: Urdered list
-  listUl: Unordered list
+  linkRemove: Remove link
+  listOl: Enumeration
+  listUl: List
   italic: Italic
   paragraph: Paragraph
   redo: Redo
