@@ -5,7 +5,6 @@
 <script setup lang="ts">
 // uses
 const { $moment } = useNuxtApp()
-const head = useLocaleHead({ addSeoAttributes: true })
 const router = useRouter()
 const route = useRoute()
 const { locale } = useI18n()
@@ -50,10 +49,6 @@ function clear() {
 }
 
 // lifecycle
-useHead({
-  ...head.value,
-})
-
 onMounted(() => {
   image.value = new Image()
   image.value.src = '/assets/static/logos/maevsi.svg'
@@ -77,6 +72,7 @@ onMounted(() => {
 })
 
 // initialization
+useHeadLayout()
 $moment.locale(locale.value)
 </script>
 
