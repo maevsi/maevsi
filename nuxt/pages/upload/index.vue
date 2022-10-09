@@ -2,10 +2,7 @@
   <div>
     <h1>{{ title }}</h1>
     <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
-    <ImageUploadGallery
-      :username="signedInUsername"
-      @deletion="$nuxt.$emit('profilePictureReload')"
-    />
+    <ImageUploadGallery :username="signedInUsername" />
   </div>
 </template>
 

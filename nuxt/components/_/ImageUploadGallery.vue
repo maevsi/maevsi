@@ -141,7 +141,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'deletion'): void
   (e: 'selection', storageKey: string | undefined): void
 }>()
 
@@ -236,8 +235,7 @@ function deleteImageUpload(uploadId: string) {
 
       switch (xhr.status) {
         case 204:
-          // TODO: cache update (allUploads)
-          emit('deletion')
+          // TODO: cache update (allUploads, profile picture)
           break
         case 500:
           Swal.fire({

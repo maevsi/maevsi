@@ -24,9 +24,7 @@
       <h1 class="max-w-full overflow-hidden text-ellipsis sm:w-auto">
         {{ routeParamUsername }}
       </h1>
-      <ModalImageSelection
-        @submitSuccess="$nuxt.$emit('profilePictureReload')"
-      />
+      <ModalImageSelection @submitSuccess="reloadProfilePicture" />
     </div>
     <section>
       <h2>{{ t('titlePasswordChange') }}</h2>
@@ -113,6 +111,9 @@ const title =
 // methods
 function onDeleteError(error: CombinedError) {
   api.value.errors.push(error)
+}
+function reloadProfilePicture() {
+  // TODO: cache update (profilePictureByUsername, props.username)
 }
 function showModalImageSelection() {
   store.modalAdd({ id: 'ModalImageSelection' })

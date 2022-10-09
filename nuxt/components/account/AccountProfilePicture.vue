@@ -29,7 +29,6 @@ const props = withDefaults(defineProps<Props>(), {
   rounded: undefined,
 })
 
-const { $nuxt } = useNuxtApp()
 const { t } = useI18n()
 const TUSD_FILES_URL = useTusdFilesUrl()
 
@@ -52,17 +51,13 @@ const api = computed(() => {
 const profilePicture = computed(
   () => profilePictureQuery.data.value?.profilePictureByUsername
 )
+
 // data
 const profilePictureUrl = ref(
   profilePicture?.value?.uploadStorageKey
     ? TUSD_FILES_URL + profilePicture.value.uploadStorageKey + '+'
     : undefined
 )
-
-// methods
-function reloadProfilePicture() {
-  // TODO: cache update (profilePictureByUsername, props.username)
-}
 
 // computations
 const classComputed = computed(() => {
@@ -75,9 +70,6 @@ const imageSrc = computed(() => {
     return blankProfilePicture
   }
 })
-
-// TODO: store
-$nuxt.$on('profilePictureReload', reloadProfilePicture)
 
 // lifecycle
 watch(profilePictureQuery.error, (currentValue, _oldValue) => {
