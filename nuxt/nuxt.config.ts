@@ -136,7 +136,7 @@ export default defineNuxtConfig({
     //     analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
     //   },
     // ],
-    '@nuxtjs/robots',
+    // '@nuxtjs/robots', // https://github.com/maevsi/maevsi/issues/740
     '@pinia/nuxt',
     // ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array. // https://github.com/maevsi/maevsi/issues/741
   ],
