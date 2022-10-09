@@ -138,7 +138,7 @@ export default defineNuxtConfig({
     // ],
     '@nuxtjs/robots',
     '@pinia/nuxt',
-    // ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array.
+    // ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array. // https://github.com/maevsi/maevsi/issues/741
   ],
   nitro: {
     compressPublicAssets: true,
