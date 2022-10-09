@@ -87,7 +87,7 @@
       >
         <ButtonColored
           :aria-label="t('globalShowMore')"
-          @click="apiUploadsAfter = api.data.allUploads?.pageInfo.endCursor"
+          @click="after = api.data.allUploads?.pageInfo.endCursor"
         >
           {{ t('globalShowMore') }}
         </ButtonColored>
@@ -100,7 +100,7 @@
     >
       <div class="text-center">
         <croppa
-          ref="croppy"
+          ref="croppyRef"
           :initial-image="fileSelectedUrl"
           :placeholder="t('croppaPlaceholder')"
           :placeholder-font-size="17.5"
@@ -156,13 +156,13 @@ const { executeMutation: executeMutationUploadCreate } =
   useUploadCreateMutation()
 
 // refs
-const apiUploadsAfter = ref<string>()
-const croppy = ref()
+const after = ref<string>()
+const croppyRef = ref()
 
 // queries
 const allUploadsQuery = useAllUploadsQuery({
   variables: {
-    after: apiUploadsAfter,
+    after,
     username: props.username,
     first: ITEMS_PER_PAGE,
   },
@@ -295,7 +295,7 @@ function toggleSelect(upload: any) {
 }
 function getUploadBlobPromise() {
   return new Promise<void>((resolve, reject) => {
-    croppy.value?.promisedBlob().then(async (blob: Blob) => {
+    croppyRef.value?.promisedBlob().then(async (blob: Blob) => {
       const result = await executeMutationUploadCreate({
         uploadCreateInput: {
           sizeByte: blob.size,

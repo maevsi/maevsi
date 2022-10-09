@@ -258,7 +258,7 @@
           <!-- eslint-enable vue/no-v-html -->
         </div>
       </Card>
-      <Modal id="ModalInvitationQrCode" ref="ModalCheckInCode">
+      <Modal id="ModalInvitationQrCode" ref="modalCheckInCodeRef">
         <div v-if="invitation" class="flex flex-col items-center gap-2 pb-4">
           <QrcodeVue
             id="qrCode"
@@ -354,7 +354,7 @@ const eventQuery = useEventByAuthorUsernameAndSlugQuery({
 })
 
 // refs
-const ModalCheckInCode = ref()
+const modalCheckInCodeRef = ref()
 
 // api data
 const api = computed(() => {
@@ -394,7 +394,7 @@ function cancel() {
   })
 }
 function closeModalInvitationQrCode() {
-  ModalCheckInCode.value.close()
+  modalCheckInCodeRef.value.close()
 }
 // paperInvitationFeedback() {
 //   if (data.invitation === undefined) {

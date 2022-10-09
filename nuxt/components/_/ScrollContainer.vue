@@ -1,6 +1,6 @@
 <template>
   <div
-    ref="scrollContainer"
+    ref="scrollContainerRef"
     class="max-h-[70vh] overflow-y-auto border maevsi-border-darken rounded-lg"
     @scroll.passive="onScroll"
   >
@@ -22,7 +22,7 @@ const emit = defineEmits<{
 }>()
 
 // refs
-const scrollContainer = ref<HTMLElement>()
+const scrollContainerRef = ref<HTMLElement>()
 
 // data
 const resizeSensor = ref<ResizeSensor>()
@@ -44,7 +44,7 @@ function onScroll(e: Event) {
 
 // lifecycle
 onMounted(() => {
-  const scrollContainerLocal = scrollContainer.value
+  const scrollContainerLocal = scrollContainerRef.value
 
   if (!scrollContainerLocal) return
 

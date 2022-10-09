@@ -41,7 +41,7 @@
         width="750"
       />
     </section>
-    <section id="steps" ref="sectionSteps">
+    <section id="steps" ref="sectionStepsRef">
       <h2 class="text-center text-5xl font-extrabold">
         {{ t('stepsTitle') }}
       </h2>
@@ -151,7 +151,7 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 
 // refs
-const sectionSteps = ref<HTMLElement>()
+const sectionStepsRef = ref<HTMLElement>()
 
 // data
 const isScrollHintShown = ref(false)
@@ -166,7 +166,7 @@ function hideScrollHint() {
   isScrollHintShown.value = false
 }
 function scrollToSteps() {
-  sectionSteps.value?.scrollIntoView({ behavior: 'smooth' })
+  sectionStepsRef.value?.scrollIntoView({ behavior: 'smooth' })
 }
 
 // lifecycle

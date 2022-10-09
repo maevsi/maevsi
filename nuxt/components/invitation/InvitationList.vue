@@ -164,7 +164,7 @@
           <!-- https://github.com/reg-viz/storycap/issues/501 -->
           <Doughnut
             v-if="!isStorybookActive"
-            ref="doughnut"
+            ref="doughnutRef"
             :chart-data="dataComputed"
             :chart-options="options"
           />
@@ -223,7 +223,7 @@ const config = useRuntimeConfig()
 
 // refs
 const after = ref<string>()
-const doughnut = ref()
+const doughnutRef = ref()
 
 // queries
 const invitationsQuery = useAllInvitationsQuery({
@@ -389,7 +389,7 @@ onMounted(() => {
 watch(
   $colorMode,
   (_currentValue, _oldValue) => {
-    doughnut.value.getCurrentChart()?.update()
+    doughnutRef.value.getCurrentChart()?.update()
   },
   { deep: true }
 )

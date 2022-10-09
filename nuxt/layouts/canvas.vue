@@ -1,5 +1,5 @@
 <template>
-  <canvas ref="canvas" />
+  <canvas ref="canvasRef" />
 </template>
 
 <script setup lang="ts">
@@ -9,7 +9,7 @@ const route = useRoute()
 const { locale } = useI18n()
 
 // refs
-const canvas = ref<HTMLCanvasElement>()
+const canvasRef = ref<HTMLCanvasElement>()
 
 // data
 const ctx = ref<CanvasRenderingContext2D | undefined | null>()
@@ -52,7 +52,7 @@ onMounted(() => {
   image.value = new Image()
   image.value.src = '/assets/static/logos/maevsi.svg'
 
-  const canvasLocal = canvas.value
+  const canvasLocal = canvasRef.value
   if (!canvasLocal) return
 
   ctx.value = canvasLocal.getContext('2d')
