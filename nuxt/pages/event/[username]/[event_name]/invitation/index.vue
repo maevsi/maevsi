@@ -55,10 +55,11 @@ definePageMeta({
   ],
 })
 
-// uses
 const route = useRoute()
 const { t } = useI18n()
 const store = useMaevsiStore()
+
+// queries
 const eventQuery = useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,

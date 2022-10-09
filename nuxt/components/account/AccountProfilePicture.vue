@@ -33,6 +33,7 @@ const { $nuxt } = useNuxtApp()
 const { t } = useI18n()
 const TUSD_FILES_URL = useTusdFilesUrl()
 
+// queries
 const profilePictureQuery = useProfilePictureByUsernameQuery({
   variables: {
     username: props.username,

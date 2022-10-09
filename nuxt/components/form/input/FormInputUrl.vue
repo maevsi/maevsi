@@ -39,7 +39,6 @@ withDefaults(defineProps<Props>(), {
   isOptional: false,
 })
 
-// uses
 const { t } = useI18n()
 </script>
 

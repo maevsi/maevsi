@@ -36,6 +36,7 @@ const emit = defineEmits<{
 function onChange(payload: Event) {
   emit('change', (payload.target as HTMLInputElement).value)
 }
+
 // computations
 const titleSlug = computed(() => {
   return slugify(props.title, { lower: true, strict: true })

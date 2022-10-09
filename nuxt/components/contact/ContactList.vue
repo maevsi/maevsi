@@ -80,6 +80,7 @@ const { executeMutation: executeMutationContactDelete } =
 // refs
 const after = ref<string>()
 
+// queries
 const contactsQuery = useAllContactsQuery({
   variables: {
     after,

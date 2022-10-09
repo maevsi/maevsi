@@ -21,6 +21,5 @@ withDefaults(defineProps<Props>(), {
   to: undefined,
 })
 
-// uses
 const route = useRoute()
 </script>

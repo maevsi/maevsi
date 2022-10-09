@@ -73,7 +73,6 @@ definePageMeta({
   ],
 })
 
-// uses
 const { t } = useI18n()
 const store = useMaevsiStore()
 const localePath = useLocalePath()

@@ -225,6 +225,7 @@ const config = useRuntimeConfig()
 const after = ref<string>()
 const doughnut = ref()
 
+// queries
 const invitationsQuery = useAllInvitationsQuery({
   variables: {
     after,
@@ -385,7 +386,6 @@ const dataComputed = computed(() => {
 onMounted(() => {
   Chart.defaults.color = () => ($colorMode.value === 'dark' ? '#fff' : '#000')
 })
-
 watch(
   $colorMode,
   (_currentValue, _oldValue) => {
@@ -393,13 +393,11 @@ watch(
   },
   { deep: true }
 )
-
 watch(invitationsQuery.error, (currentValue, _oldValue) => {
   if (currentValue) consola.error(currentValue)
 })
 
 // initialization
-
 Chart.register(
   ArcElement,
   CategoryScale,

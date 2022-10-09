@@ -20,7 +20,6 @@ withDefaults(defineProps<Props>(), {
   link: false,
 })
 
-// uses
 const localePath = useLocalePath()
 </script>
 

@@ -55,7 +55,6 @@ const emit = defineEmits<{
   (e: 'error', error: CombinedError): void
 }>()
 
-// uses
 const { t } = useI18n()
 
 // api data

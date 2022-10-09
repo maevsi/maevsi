@@ -147,7 +147,6 @@
 </template>
 
 <script setup lang="ts">
-// uses
 const { t } = useI18n()
 const localePath = useLocalePath()
 

@@ -95,7 +95,6 @@ const emit = defineEmits<{
   (e: 'submitSuccess', submitSuccess: any): void
 }>()
 
-// uses
 const store = useMaevsiStore()
 const config = useRuntimeConfig()
 const { t } = useI18n()

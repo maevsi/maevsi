@@ -338,12 +338,13 @@ definePageMeta({
   ],
 })
 
-// uses
 const { t } = useI18n()
 const store = useMaevsiStore()
 const route = useRoute()
 const { executeMutation: executeMutationUpdateInvitationById } =
   useUpdateInvitationByIdMutation()
+
+// queries
 const eventQuery = useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,

@@ -39,9 +39,8 @@ import { useAccountPasswordChangeMutation } from '~/gql/generated'
 const { t } = useI18n()
 const accountPasswordChangeMutation = useAccountPasswordChangeMutation()
 
-const refs = {
-  formRef: ref<typeof FormType>(),
-}
+// refs
+const formRef = ref<typeof FormType>()
 
 // api data
 const api = computed(() => {
@@ -62,7 +61,7 @@ const isFormSent = ref(false)
 
 // methods
 function resetForm() {
-  refs.formRef.value?.reset()
+  formRef.value?.reset()
 }
 async function submit() {
   if (!form.passwordCurrent) throw new Error('Current password is not set!')

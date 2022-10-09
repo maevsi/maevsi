@@ -45,7 +45,6 @@
 import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 
-// uses
 const { signOut } = useSignOut()
 const { $moment } = useNuxtApp()
 const { t } = useI18n()
@@ -60,6 +59,7 @@ const sessionExpiryTime = computed(() => {
   return $moment(store.jwtDecoded?.exp, 'X').format('llll')
 })
 
+// initialization
 useHeadDefault(title)
 </script>
 

@@ -102,7 +102,6 @@ withDefaults(defineProps<Props>(), {
   isClosable: false,
 })
 
-// uses
 const localePath = useLocalePath()
 const { t } = useI18n()
 </script>

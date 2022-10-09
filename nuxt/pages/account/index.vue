@@ -24,7 +24,6 @@ definePageMeta({
   ],
 })
 
-// uses
 const { t } = useI18n()
 
 // data

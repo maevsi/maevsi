@@ -93,42 +93,36 @@
   </header>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 import supportedBrowsers from '~/supportedBrowsers'
 
-export default defineComponent({
-  name: 'MaevsiHeader',
-  setup(_props) {
-    const store = useMaevsiStore()
-    const localePath = useLocalePath()
-    const { t } = useI18n()
+const store = useMaevsiStore()
+const localePath = useLocalePath()
+const { t } = useI18n()
 
-    const data = reactive({
-      isBrowserSupported: true,
-      signedInUsername: store.signedInUsername,
-    })
-    const methods = {
-      localePath,
-      navigateToSearch() {
-        navigateTo({
-          path: localePath(`/task/search`),
-          query: { q: 'search phrase' },
-        })
-      },
-      t,
-    }
+// data
+const isBrowserSupported = ref(true)
+const signedInUsername = store.signedInUsername
 
-    onBeforeMount(() => {
-      data.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
-    })
+// // methods
+// function navigateToSearch() {
+//   navigateTo({
+//     path: localePath(`/task/search`),
+//     query: { q: 'search phrase' },
+//   })
+// }
 
-    return {
-      ...data,
-      ...methods,
-    }
-  },
+// lifecycle
+onBeforeMount(() => {
+  isBrowserSupported.value = supportedBrowsers.test(navigator.userAgent)
 })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiHeader',
+}
 </script>
 
 <i18n lang="yml">

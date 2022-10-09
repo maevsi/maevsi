@@ -153,13 +153,14 @@ const { t } = useI18n()
 const store = useMaevsiStore()
 const TUSD_FILES_URL = useTusdFilesUrl()
 const config = useRuntimeConfig()
-
 const { executeMutation: executeMutationUploadCreate } =
   useUploadCreateMutation()
 
+// refs
 const apiUploadsAfter = ref<string>()
 const croppy = ref()
 
+// queries
 const allUploadsQuery = useAllUploadsQuery({
   variables: {
     after: apiUploadsAfter,
@@ -169,6 +170,7 @@ const allUploadsQuery = useAllUploadsQuery({
 })
 const accountUploadQuotaBytesQuery = useAccountUploadQuotaBytesQuery()
 
+// api data
 const api = computed(() => {
   return {
     data: {
@@ -183,11 +185,13 @@ const accountUploadQuotaBytes = computed(
   () => accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes
 )
 
+// data
 const fileSelectedUrl = ref<string | undefined>()
 const jwt = store.jwt
 const selectedItem = ref<Item | undefined>()
 const uppy = ref<Uppy | undefined>()
 
+// computations
 const sizeByteTotal = computed(() => {
   if (!uploads.value) {
     return undefined
@@ -201,6 +205,8 @@ const sizeByteTotal = computed(() => {
 
   return sizeByteTotal
 })
+
+// methods
 function bytesToString(
   bytes: number | string | undefined | null
 ): string | undefined {
@@ -362,12 +368,12 @@ function getUploadBlobPromise() {
   })
 }
 
+// lifecycle
 onBeforeUnmount(() => {
   if (uppy.value) {
     uppy.value.close()
   }
 })
-
 watch(allUploadsQuery.error, (currentValue, _oldValue) => {
   if (currentValue) consola.error(currentValue)
 })

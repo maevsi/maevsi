@@ -108,7 +108,6 @@ import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
 import { LOCALES } from '~/plugins/util/constants'
 
-// uses
 const colorMode = useColorMode()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()

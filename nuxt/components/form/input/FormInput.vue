@@ -140,7 +140,6 @@ const emit = defineEmits<{
   (e: 'input', input: string): void
 }>()
 
-// uses
 const { t } = useI18n()
 
 // methods

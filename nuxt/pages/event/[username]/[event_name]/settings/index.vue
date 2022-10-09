@@ -73,12 +73,13 @@ definePageMeta({
   ],
 })
 
-// uses
 const localePath = useLocalePath()
 const { t } = useI18n()
 const store = useMaevsiStore()
 const route = useRoute()
 const { executeMutation: executeMutationEventDelete } = useEventDeleteMutation()
+
+// queries
 const eventQuery = useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,

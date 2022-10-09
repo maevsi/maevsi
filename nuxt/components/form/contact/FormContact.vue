@@ -146,7 +146,6 @@ const emit = defineEmits<{
   (e: 'submitSuccess'): void
 }>()
 
-// uses
 const store = useMaevsiStore()
 const updateContactByIdMutation = useUpdateContactByIdMutation()
 const createContactMutation = useCreateContactMutation()

@@ -103,7 +103,6 @@ const emit = defineEmits<{
   (e: 'submitSuccess'): void
 }>()
 
-// uses
 const store = useMaevsiStore()
 const { executeMutation: executeMutationCreateInvitation } =
   useCreateInvitationMutation()
@@ -113,6 +112,7 @@ const { t } = useI18n()
 // refs
 const after = ref<string>()
 
+// queries
 const allContactsQuery = useAllContactsQuery({
   variables: {
     after,

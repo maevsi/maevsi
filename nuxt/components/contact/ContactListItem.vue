@@ -67,6 +67,7 @@ withDefaults(defineProps<Props>(), {
 const store = useMaevsiStore()
 const { t } = useI18n()
 
+// data
 const signedInUsername = store.signedInUsername
 </script>
 

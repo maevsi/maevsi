@@ -60,7 +60,6 @@ export interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {})
 
-// uses
 const localePath = useLocalePath()
 const { t } = useI18n()
 

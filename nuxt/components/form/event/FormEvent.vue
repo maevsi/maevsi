@@ -302,7 +302,6 @@ const props = withDefaults(defineProps<Props>(), {
   event: undefined,
 })
 
-// uses
 const { $moment } = useNuxtApp()
 const localePath = useLocalePath()
 const { locale, t } = useI18n()
@@ -456,15 +455,6 @@ const isWarningStartPastShown = computed(
   () => !VALIDATION_NOW_OR_FUTURE($moment(v$.value.form.start.$model))
 )
 
-// initialization
-if (props.event) {
-  for (const [k, v] of Object.entries(props.event)) {
-    ;(form as Record<string, any>)[k] = v
-  }
-}
-
-Settings.defaultLocale = locale.value
-
 // vuelidate
 const rules = {
   form: {
@@ -508,6 +498,15 @@ const rules = {
   },
 }
 const v$ = useVuelidate(rules, { form })
+
+// initialization
+if (props.event) {
+  for (const [k, v] of Object.entries(props.event)) {
+    ;(form as Record<string, any>)[k] = v
+  }
+}
+
+Settings.defaultLocale = locale.value
 </script>
 
 <i18n lang="yml">

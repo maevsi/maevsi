@@ -25,7 +25,6 @@ const props = withDefaults(defineProps<Props>(), {
   rounded: undefined,
 })
 
-// uses
 const { t } = useI18n()
 
 // computations

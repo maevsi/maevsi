@@ -33,7 +33,6 @@ const props = withDefaults(defineProps<Props>(), {
   statusCode: undefined,
 })
 
-// uses
 const { locale, t } = useI18n()
 
 // computations

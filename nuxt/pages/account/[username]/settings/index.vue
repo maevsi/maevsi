@@ -88,7 +88,6 @@ definePageMeta({
   ],
 })
 
-// uses
 const store = useMaevsiStore()
 const { signOut } = useSignOut()
 const { t } = useI18n()
@@ -119,6 +118,7 @@ function showModalImageSelection() {
   store.modalAdd({ id: 'ModalImageSelection' })
 }
 
+// initialization
 useHeadDefault(title)
 </script>
 

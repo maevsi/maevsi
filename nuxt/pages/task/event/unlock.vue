@@ -129,7 +129,6 @@ definePageMeta({
   ],
 })
 
-// uses
 const { jwtStore } = useJwtStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
@@ -200,9 +199,6 @@ onMounted(() => {
   }
 })
 
-// initialization
-useHeadDefault(title)
-
 // vuelidate
 const rules = {
   form: {
@@ -213,6 +209,9 @@ const rules = {
   },
 }
 const v$ = useVuelidate(rules, { form })
+
+// initialization
+useHeadDefault(title)
 </script>
 
 <script lang="ts">

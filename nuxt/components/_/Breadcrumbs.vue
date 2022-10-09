@@ -56,6 +56,7 @@ const route = useRoute()
 const localePath = useLocalePath()
 const { t } = useI18n()
 
+// computations
 const queryString = computed(() => getQueryString(route.query))
 </script>
 

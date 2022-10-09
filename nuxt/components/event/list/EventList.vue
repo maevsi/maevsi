@@ -46,6 +46,7 @@ const { t } = useI18n()
 // refs
 const after = ref<string>()
 
+// queries
 const eventsQuery = useAllEventsQuery({
   variables: {
     after,

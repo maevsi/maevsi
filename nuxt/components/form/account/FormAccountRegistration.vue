@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import {
   email,
@@ -66,100 +66,90 @@ import {
 import { getApiMeta } from '~/plugins/util/util'
 import { useAccountRegistrationMutation } from '~/gql/generated'
 
-const FormAccountRegistration = defineComponent({
-  setup(_props, { emit }) {
-    const { locale, t } = useI18n()
-    const localePath = useLocalePath()
-    const { executeMutation: executeMutationAccountRegistration } =
-      useAccountRegistrationMutation()
+const emit = defineEmits<{
+  (e: 'registered'): void
+}>()
 
-    const apiData = {
-      api: computed(() => {
-        return {
-          data: {},
-          ...getApiMeta([]),
-        }
-      }),
-    }
-    const data = reactive({
-      form: {
-        emailAddress: '',
-        password: '',
-        username: '',
-      },
-      isFormSent: false,
-    })
-    const rules = {
-      form: {
-        username: {
-          existenceNone: helpers.withAsync(validateUsername(true)),
-          formatSlug: VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-          required,
-        },
-        password: {
-          minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-        emailAddress: {
-          email,
-          formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-          required,
-        },
-      },
-    }
-    const v$ = useVuelidate(rules, data)
-    const methods = {
-      localePath,
-      async submit() {
-        try {
-          await formPreSubmit(apiData, v$, toRef(data, 'isFormSent'))
-        } catch (error) {
-          consola.debug(error)
-          return
-        }
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
+const { executeMutation: executeMutationAccountRegistration } =
+  useAccountRegistrationMutation()
 
-        const result = await executeMutationAccountRegistration({
-          emailAddress: data.form.emailAddress,
-          language: locale.value,
-          password: data.form.password,
-          username: data.form.username,
-        })
-
-        if (result.error) {
-          apiData.api.value.errors.push(result.error)
-          consola.error(result.error)
-        }
-
-        if (!result.data) {
-          return
-        }
-
-        emit('registered')
-        Swal.fire({
-          icon: 'success',
-          text: t('registrationSuccessBody') as string,
-          title: t('registrationSuccessTitle'),
-        })
-      },
-      t,
-    }
-
-    return {
-      ...apiData,
-      ...data,
-      ...methods,
-      v$,
-    }
-  },
+// api data
+const api = computed(() => {
+  return {
+    data: {},
+    ...getApiMeta([]),
+  }
 })
 
-export default FormAccountRegistration
+// data
+const form = reactive({
+  emailAddress: ref<string>(),
+  password: ref<string>(),
+  username: ref<string>(),
+})
+const isFormSent = ref(false)
 
-export type FormAccountRegistrationType = InstanceType<
-  typeof FormAccountRegistration
->
+// methods
+async function submit() {
+  if (!form.emailAddress) throw new Error('Email address is not set!')
+  if (!form.password) throw new Error('Password is not set!')
+  if (!form.username) throw new Error('Username is not set!')
+
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  const result = await executeMutationAccountRegistration({
+    emailAddress: form.emailAddress,
+    language: locale.value,
+    password: form.password,
+    username: form.username,
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data) {
+    return
+  }
+
+  emit('registered')
+  Swal.fire({
+    icon: 'success',
+    text: t('registrationSuccessBody') as string,
+    title: t('registrationSuccessTitle'),
+  })
+}
+
+// vuelidate
+const rules = {
+  form: {
+    username: {
+      existenceNone: helpers.withAsync(validateUsername(true)),
+      formatSlug: VALIDATION_FORMAT_SLUG,
+      maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+      required,
+    },
+    password: {
+      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+      required,
+    },
+    emailAddress: {
+      email,
+      formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+      maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+      required,
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">

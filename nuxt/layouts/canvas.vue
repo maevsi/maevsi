@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-// uses
 const { $moment } = useNuxtApp()
 const router = useRouter()
 const route = useRoute()

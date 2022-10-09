@@ -57,7 +57,6 @@ onMounted(() => {
     }
   })
 })
-
 onBeforeUnmount(() => {
   if (resizeSensor.value) {
     resizeSensor.value.detach()

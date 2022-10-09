@@ -32,7 +32,6 @@ definePageMeta({
   ],
 })
 
-// uses
 const route = useRoute()
 const { t } = useI18n()
 

@@ -29,7 +29,6 @@ definePageMeta({
   ],
 })
 
-// uses
 const { t } = useI18n()
 const route = useRoute()
 const localePath = useLocalePath()
