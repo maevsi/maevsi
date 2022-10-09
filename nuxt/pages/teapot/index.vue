@@ -2,6 +2,7 @@
   <Error :status-code="418" />
 </template>
 
+<!-- https://github.com/nuxt/framework/issues/8041 -->
 <script setup lang="ts">
 definePageMeta({
   middleware: [
