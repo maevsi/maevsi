@@ -23,8 +23,6 @@
 </template>
 
 <script setup lang="ts">
-const { $nuxt } = useNuxtApp()
-
 // refs
 const dropdownRef = ref<HTMLElement>()
 
@@ -32,18 +30,18 @@ const dropdownRef = ref<HTMLElement>()
 const isOpen = ref(false)
 
 // methods
-function toggleIsOpen(e: MouseEvent) {
+async function toggleIsOpen(e: MouseEvent) {
   isOpen.value = !isOpen.value
 
   if (isOpen.value) {
     document.body.classList.add('overflow-hidden')
 
-    $nuxt.$nextTick(() => {
-      if (dropdownRef.value) {
-        dropdownRef.value.style.top = e.clientY + 'px'
-        dropdownRef.value.style.left = e.clientX + 'px'
-      }
-    })
+    await nextTick()
+
+    if (dropdownRef.value) {
+      dropdownRef.value.style.top = e.clientY + 'px'
+      dropdownRef.value.style.left = e.clientX + 'px'
+    }
   } else {
     document.body.classList.remove('overflow-hidden')
   }
