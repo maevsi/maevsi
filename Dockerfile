@@ -119,23 +119,32 @@ RUN npm install -g pnpm && \
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:18.10.0-slim@sha256:d900c28d8cbb51cee5473215e5941b6334d9b02da75ef60f490d4c0c13160bb1 AS test-integration
 
-ENV NODE_OPTIONS=--openssl-legacy-provider
+ENV NODE_OPTIONS=--use-openssl-ca
+
+# Set timeout for `start-server-and-test` to 20 seconds.
+ENV WAIT_ON_TIMEOUT=20000
 
 # Update and install dependencies.
-# - `wget` is used for testing
+# - `curl` is used for testing
 # - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
+# - `ca-certificates libnss3-tools` and `mkcert` provide the certificates for secure connections
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-        wget \
-        procps
+        curl wget \
+        procps \
+        ca-certificates libnss3-tools \
+    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
+    && chmod +x mkcert-v*-linux-amd64 \
+    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
 
 WORKDIR /srv/app/
 
 COPY --from=build /srv/app/ ./
 
 RUN npm install -g pnpm && \
-    WAIT_ON_TIMEOUT=6000 pnpm start-server-and-test 'pnpm start' 3000 'wget http://0.0.0.0:3000/' && \
-    WAIT_ON_TIMEOUT=120000 pnpm start-server-and-test 'pnpm dev' 3000 'wget http://0.0.0.0:3000/'
+    mkcert -install && \
+    pnpm start-server-and-test 'pnpm start' 'http://127.0.0.1:3000' 'wget http://127.0.0.1:3000' && \
+    pnpm start-server-and-test 'pnpm dev' 'https://127.0.0.1:3000' 'wget https://127.0.0.1:3000'
 
 
 ########################
