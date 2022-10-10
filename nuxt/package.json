@@ -94,8 +94,8 @@
   },
   "devDependencies": {
     "@babel/core": "7.19.3",
-    "@babel/preset-env": "7.19.3",
-    "@babel/runtime-corejs3": "7.19.1",
+    "@babel/preset-env": "7.19.4",
+    "@babel/runtime-corejs3": "7.19.4",
     "@intlify/eslint-plugin-vue-i18n": "2.0.0",
     "@jest/globals": "29.1.2",
     "@jest/types": "29.1.2",
