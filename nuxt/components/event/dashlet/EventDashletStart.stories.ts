@@ -1,4 +1,3 @@
-import { Story } from '@storybook/vue3'
 import MockDate from 'mockdate'
 
 import { defineComponent } from 'vue'
@@ -11,7 +10,7 @@ export default {
   title: 'event/dashlet/EventDashletStart',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { EventDashletStart },
     props: Object.keys(argTypes),
@@ -20,6 +19,7 @@ const Template: Story = (_, { argTypes }) =>
   })
 
 export const Default = Template.bind({})
+// @ts-ignore
 Default.args = {
   event: {
     start: new Date(),

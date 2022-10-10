@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import FormInputIconWrapper from './FormInputIconWrapper.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'form/input/FormInputIconWrapper',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { FormInputIconWrapper },
     props: Object.keys(argTypes),

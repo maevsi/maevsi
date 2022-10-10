@@ -1,8 +1,6 @@
 import { graphql } from 'msw'
 
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import ContactList from './ContactList.vue'
 
 export default {
@@ -28,7 +26,7 @@ export default {
   title: 'contact/ContactList',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { ContactList },
     props: Object.keys(argTypes),

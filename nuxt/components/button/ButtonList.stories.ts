@@ -1,10 +1,9 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import MaevsiButton from './Button.vue'
 import ButtonList from './ButtonList.vue'
 
 const argTypes = { click: { action: 'click' } }
+type ArgTypesType = { argTypes: typeof argTypes }
 
 export default {
   component: ButtonList,
@@ -12,7 +11,7 @@ export default {
   argTypes,
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: ArgTypesType) =>
   defineComponent({
     components: { MaevsiButton, ButtonList },
     props: Object.keys(argTypes),

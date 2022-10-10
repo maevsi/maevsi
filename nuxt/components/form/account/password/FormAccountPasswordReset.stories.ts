@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import FormAccountPasswordReset from './FormAccountPasswordReset.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'form/account/password/FormAccountPasswordReset',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { FormAccountPasswordReset },
     props: Object.keys(argTypes),

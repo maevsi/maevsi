@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import FormInputStateInfo from './FormInputStateInfo.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'form/input/state/FormInputStateInfo',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { FormInputStateInfo },
     props: Object.keys(argTypes),

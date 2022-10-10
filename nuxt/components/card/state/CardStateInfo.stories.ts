@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import CardStateInfo from './CardStateInfo.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'card/state/CardStateInfo',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { CardStateInfo },
     props: Object.keys(argTypes),

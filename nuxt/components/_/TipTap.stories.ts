@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import TipTap from './TipTap.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'TipTap',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { TipTap },
     props: Object.keys(argTypes),
@@ -16,6 +14,7 @@ const Template: Story = (_, { argTypes }) =>
   })
 
 export const Default = Template.bind({})
+// @ts-ignore
 Default.args = {
   value:
     '<p>Test <strong>strong</strong> <a href="https://example.com" target="_blank" rel="noopener noreferrer nofollow">link</a></p>',

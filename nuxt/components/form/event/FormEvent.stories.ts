@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import FormEvent from './FormEvent.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'form/event/FormEvent',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { FormEvent },
     props: Object.keys(argTypes),

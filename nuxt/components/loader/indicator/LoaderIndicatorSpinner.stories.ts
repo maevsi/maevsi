@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import LoaderIndicatorSpinner from './LoaderIndicatorSpinner.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'loader/LoaderIndicatorSpinner',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { LoaderIndicatorSpinner },
     props: Object.keys(argTypes),

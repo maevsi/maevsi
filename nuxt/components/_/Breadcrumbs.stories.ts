@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import Breadcrumbs from './Breadcrumbs.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'Breadcrumbs',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { Breadcrumbs },
     props: Object.keys(argTypes),

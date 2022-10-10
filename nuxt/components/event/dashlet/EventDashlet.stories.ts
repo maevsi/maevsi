@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import EventDashlet from './EventDashlet.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'event/dashlet/EventDashlet',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { EventDashlet },
     props: Object.keys(argTypes),

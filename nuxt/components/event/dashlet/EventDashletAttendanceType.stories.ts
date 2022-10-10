@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import EventDashletAttendanceType from './EventDashletAttendanceType.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'event/dashlet/EventDashletAttendanceType',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { EventDashletAttendanceType },
     props: Object.keys(argTypes),
@@ -17,6 +15,7 @@ const Template: Story = (_, { argTypes }) =>
   })
 
 export const Default = Template.bind({})
+// @ts-ignore
 Default.args = {
   event: {
     isInPerson: true,
@@ -25,6 +24,7 @@ Default.args = {
 }
 
 export const One = Template.bind({})
+// @ts-ignore
 One.args = {
   event: {
     isInPerson: true,

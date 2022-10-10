@@ -1,4 +1,3 @@
-import { Story } from '@storybook/vue3'
 import { graphql } from 'msw'
 
 import { defineComponent } from 'vue'
@@ -27,7 +26,7 @@ export default {
   title: 'form/invitation/FormInvitation',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { FormInvitation },
     props: Object.keys(argTypes),
@@ -35,6 +34,7 @@ const Template: Story = (_, { argTypes }) =>
   })
 
 export const Default = Template.bind({})
+// @ts-ignore
 Default.args = {
   event: {},
 }

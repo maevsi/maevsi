@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import FormDelete from './FormDelete.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'form/FormDelete',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { FormDelete },
     props: Object.keys(argTypes),

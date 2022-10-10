@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import FormInputStateError from './FormInputStateError.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'form/input/state/FormInputStateError',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { FormInputStateError },
     props: Object.keys(argTypes),

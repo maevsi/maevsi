@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import EventDashletDuration from './EventDashletDuration.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'event/dashlet/EventDashletDuration',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { EventDashletDuration },
     props: Object.keys(argTypes),
@@ -17,6 +15,7 @@ const Template: Story = (_, { argTypes }) =>
   })
 
 export const Default = Template.bind({})
+// @ts-ignore
 Default.args = {
   event: {
     start: '1970-01-01 00:00:00+00',

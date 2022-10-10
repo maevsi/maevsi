@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import MaevsiForm from './Form.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'form/Form',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { MaevsiForm },
     props: Object.keys(argTypes),
@@ -16,6 +14,7 @@ const Template: Story = (_, { argTypes }) =>
   })
 
 export const Default = Template.bind({})
+// @ts-ignore
 Default.args = {
   form: {},
   isFormSent: false,

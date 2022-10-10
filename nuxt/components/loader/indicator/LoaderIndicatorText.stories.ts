@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import LoaderIndicatorText from './LoaderIndicatorText.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'loader/LoaderIndicatorText',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { LoaderIndicatorText },
     props: Object.keys(argTypes),

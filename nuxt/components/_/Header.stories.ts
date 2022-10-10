@@ -1,6 +1,4 @@
-import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
-
 import MaevsiHeader from './Header.vue'
 
 export default {
@@ -8,7 +6,7 @@ export default {
   title: 'Header',
 }
 
-const Template: Story = (_, { argTypes }) =>
+const Template = (_: never, { argTypes }: any) =>
   defineComponent({
     components: { MaevsiHeader },
     props: Object.keys(argTypes),
