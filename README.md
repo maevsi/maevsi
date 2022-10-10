@@ -35,7 +35,7 @@ The following steps show how to start the full development stack:
 ### Setup
 
 1. create a directory named `maevsi` in a directory of your liking
-1. download the project modules [maevsi](https://github.com/maevsi/maevsi), [maevsi_stack](https://github.com/maevsi/maevsi_stack), and [stomper](https://github.com/maevsi/stomper) into that newly created directory:
+1. download the project modules [maevsi](https://github.com/maevsi/maevsi), [maevsi_stack](https://github.com/maevsi/maevsi_stack) and [stomper](https://github.com/maevsi/stomper) into that newly created directory:
     ```sh
     cd maevsi
     git clone https://github.com/maevsi/maevsi.git
@@ -95,7 +95,7 @@ sudo docker run --name portainer --restart=always -d -p 9000:9000 -v /var/run/do
 Access Portainer on `http://localhost:9000` then.
 Create a user, add an environment, start the Docker wizard, choose "Socket", name it e.g. "local" and close the wizard.
 Under "home", select the newly created environment then.
-You'll have access to all containers, images, volumes, and more via the left sidebar then.
+You'll have access to all containers, images, volumes and more via the left sidebar then.
 
 
 ### Sqitch
@@ -103,7 +103,7 @@ You'll have access to all containers, images, volumes, and more via the left sid
 In case you want to apply or revert the database migrations, you need to use [Sqitch](https://sqitch.org/).
 
 The `sqitch` directory in this repository contains a `sqitch` executable that you can use to interact with the migrations residing in the directory's subdirectories.
-For example, run `./sqitch deploy` to fill the database with structure like tables, types, and policies.
+For example, run `./sqitch deploy` to fill the database with structure like tables, types and policies.
 
 In case you want to be able to simple call `sqitch deploy` without `./` instead, add an `alias sqitch="./sqitch"` to your shell configuration (`~/.bashrc`, `~/.zshrc`, ...).
 
