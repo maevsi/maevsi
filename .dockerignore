@@ -22,4 +22,4 @@ nuxt/.storybook/storycap/working-directory
 nuxt/**/!.gitkeep
 
 # Environment variables
-.env
+**/.env

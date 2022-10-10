@@ -26,6 +26,7 @@ ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
 
 # https://github.com/nuxt/framework/issues/7828
 ENV HOST=0.0.0.0
+ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 
 ENV DOCKER=true
 
@@ -123,6 +124,7 @@ ENV NODE_OPTIONS="--openssl-legacy-provider --use-openssl-ca"
 
 # https://github.com/nuxt/framework/issues/7828
 ENV HOST=0.0.0.0
+ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 
 # Set timeout for `start-server-and-test` to 20 seconds.
 ENV WAIT_ON_TIMEOUT=30000
