@@ -121,6 +121,9 @@ FROM node:18.10.0-slim@sha256:d900c28d8cbb51cee5473215e5941b6334d9b02da75ef60f49
 
 ENV NODE_OPTIONS="--openssl-legacy-provider --use-openssl-ca"
 
+# https://github.com/nuxt/framework/issues/7828
+ENV HOST=0.0.0.0
+
 # Set timeout for `start-server-and-test` to 20 seconds.
 ENV WAIT_ON_TIMEOUT=30000
 

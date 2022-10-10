@@ -20,3 +20,6 @@ nuxt/.storybook/storycap/working-directory
 
 # Git
 nuxt/**/!.gitkeep
+
+# Environment variables
+.env
