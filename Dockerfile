@@ -119,10 +119,10 @@ RUN npm install -g pnpm && \
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:18.10.0-slim@sha256:d900c28d8cbb51cee5473215e5941b6334d9b02da75ef60f490d4c0c13160bb1 AS test-integration
 
-ENV NODE_OPTIONS=--use-openssl-ca
+ENV NODE_OPTIONS="--openssl-legacy-provider --use-openssl-ca"
 
 # Set timeout for `start-server-and-test` to 20 seconds.
-ENV WAIT_ON_TIMEOUT=20000
+ENV WAIT_ON_TIMEOUT=30000
 
 # Update and install dependencies.
 # - `curl` is used for testing
