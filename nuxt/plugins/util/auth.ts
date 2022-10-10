@@ -6,8 +6,6 @@ import { parse, serialize } from 'cookie'
 import { decodeJwt } from 'jose'
 import { Store } from 'pinia'
 
-import { useNuxtApp, useRequestEvent } from '#app'
-
 import { JWT_NAME } from './constants'
 import { xhrPromise } from './util'
 import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
