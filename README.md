@@ -5,7 +5,7 @@
 
 The manager for events supported by invitees: [maev.si](https://maev.si/).
 
-This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance to the [DargStack template](https://github.com/dargmuesli/dargstack_template/) to make deployment a breeze.
+This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance with the [DargStack template](https://github.com/dargmuesli/dargstack_template/) to make deployment a breeze.
 
 ![Welcome](docs/assets/hero.png "maevsi")
 
@@ -26,7 +26,7 @@ The following steps show how to start the full development stack:
 
 1. if you're on Windows, [setup WSL](https://docs.microsoft.com/en-us/windows/wsl/install) to be able to use all Linux functionality this project utilizes
 1. [install Git](https://git-scm.com/) to download this project's modules and participate in version management
-1. [install Docker](https://docs.docker.com/engine/install/) so that all services run in their own [containers](https://en.wikipedia.org/wiki/Containerization)
+1. [install Docker](https://docs.docker.com/engine/install/) so that all services run in their [containers](https://en.wikipedia.org/wiki/Containerization)
 1. [install dargstack](https://github.com/dargmuesli/dargstack#installation-example) to bootstrap a [Docker stack](https://docs.docker.com/engine/reference/commandline/stack/) setup
 1. [install nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to be able to switch the currently active [Node.js](https://nodejs.org/en/) version on your machine
 1. [install mkcert](https://github.com/FiloSottile/mkcert#installation) for development certificate generation and installation, so that all services are available through https
@@ -42,7 +42,7 @@ The following steps show how to start the full development stack:
     git clone https://github.com/maevsi/maevsi_stack.git
     git clone https://github.com/maevsi/stomper.git
     ```
-    **maevsi** contains the frontend and database migrations, **maevsi_stack** the service configuration and **stomper** is the service that sends out emails.
+    **maevsi** contains the frontend and database migrations, **maevsi_stack** is the service configuration and **stomper** is the service that sends out emails.
 1. switch into the `maevsi` subdirectory and setup Node:
     ```sh
     cd maevsi
