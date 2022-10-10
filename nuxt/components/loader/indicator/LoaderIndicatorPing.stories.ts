@@ -1,4 +1,6 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import LoaderIndicatorPing from './LoaderIndicatorPing.vue'
 
 export default {
@@ -6,7 +8,7 @@ export default {
   title: 'loader/LoaderIndicatorPing',
 }
 
-const Template = (_: never, { argTypes }: any) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { LoaderIndicatorPing },
     props: Object.keys(argTypes),

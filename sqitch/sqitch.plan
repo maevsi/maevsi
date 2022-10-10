@@ -60,3 +60,4 @@ function_invite [privilege_execute_revoke schema_public table_invitation functio
 function_account_registration_refresh [privilege_execute_revoke schema_public schema_private table_account table_notification role_anonymous] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Refreshes an account's email address verification validity period.
 function_notification_acknowledge [privilege_execute_revoke schema_public schema_private table_notification] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Allows to set the acknowledgement state of a notification.
 function_account_upload_quota_bytes [privilege_execute_revoke schema_public schema_private table_account role_account] 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Gets the total upload quota in bytes for the invoking account.
+data_test 1970-01-01T00:00:00Z Jonas Thelemann <e-mail@jonas-thelemann.de> # Add test data.

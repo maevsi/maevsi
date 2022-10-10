@@ -1,8 +1,9 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import IconCode from './IconCode.vue'
 
 const argTypes = { click: { action: 'click' } }
-type ArgTypesType = { argTypes: typeof argTypes }
 
 export default {
   component: IconCode,
@@ -10,7 +11,7 @@ export default {
   argTypes,
 }
 
-const Template = (_: never, { argTypes }: ArgTypesType) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { IconCode },
     props: Object.keys(argTypes),

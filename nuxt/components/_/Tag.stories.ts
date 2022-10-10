@@ -1,4 +1,6 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import Tag from './Tag.vue'
 
 export default {
@@ -6,7 +8,7 @@ export default {
   title: 'Tag',
 }
 
-const Template = (_: never, { argTypes }: any) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { Tag },
     props: Object.keys(argTypes),
@@ -14,7 +16,6 @@ const Template = (_: never, { argTypes }: any) =>
   })
 
 export const Default = Template.bind({})
-// @ts-ignore
 Default.args = {
   tabs: [
     ['Tag1', 'Tag'],

@@ -1,4 +1,6 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import FormCheckbox from './FormCheckbox.vue'
 
 export default {
@@ -6,7 +8,7 @@ export default {
   title: 'form/FormCheckbox',
 }
 
-const Template = (_: never, { argTypes }: any) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { FormCheckbox },
     props: Object.keys(argTypes),

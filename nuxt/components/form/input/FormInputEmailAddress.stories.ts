@@ -1,4 +1,6 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import FormInputEmailAddress from './FormInputEmailAddress.vue'
 
 export default {
@@ -6,7 +8,7 @@ export default {
   title: 'form/input/FormInputEmailAddress',
 }
 
-const Template = (_: never, { argTypes }: any) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { FormInputEmailAddress },
     props: Object.keys(argTypes),
@@ -15,7 +17,6 @@ const Template = (_: never, { argTypes }: any) =>
   })
 
 export const Default = Template.bind({})
-// @ts-ignore
 Default.args = {
   formInput: {},
 }

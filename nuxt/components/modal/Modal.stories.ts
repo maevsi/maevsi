@@ -1,3 +1,4 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
 
 import Modal from './Modal.vue'
@@ -8,7 +9,7 @@ export default {
   title: 'modal/Modal',
 }
 
-const Template = (_: never, { argTypes }: any) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { Modal },
     props: Object.keys(argTypes),
@@ -24,7 +25,7 @@ const Template = (_: never, { argTypes }: any) =>
   })
 
 export const Default = Template.bind({})
-// @ts-ignore
+
 Default.args = {
   submitName: 'submitName',
   submitTaskProvider: () => Promise.resolve(),
