@@ -2,7 +2,7 @@
   "name": "maevsi",
   "private": true,
   "version": "0.146.3",
-  "scheduleVersion": "0.146.3",
+  "scheduleVersion": "0.146.4",
   "description": "The manager for events supported by invitees.",
   "scripts": {
     "postinstall": "pnpm msw init public",
