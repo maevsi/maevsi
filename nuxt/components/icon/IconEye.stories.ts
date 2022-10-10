@@ -1,8 +1,9 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import IconEye from './IconEye.vue'
 
 const argTypes = { click: { action: 'click' } }
-type ArgTypesType = { argTypes: typeof argTypes }
 
 export default {
   component: IconEye,
@@ -10,7 +11,7 @@ export default {
   argTypes,
 }
 
-const Template = (_: never, { argTypes }: ArgTypesType) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { IconEye },
     props: Object.keys(argTypes),

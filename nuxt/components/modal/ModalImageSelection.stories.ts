@@ -1,5 +1,5 @@
+import { Story } from '@storybook/vue3'
 import { graphql } from 'msw'
-
 import { defineComponent } from 'vue'
 
 import ModalImageSelection from './ModalImageSelection.vue'
@@ -38,7 +38,7 @@ export default {
   title: 'modal/ModalImageSelection',
 }
 
-const Template = (_: never, { argTypes }: any) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { ModalImageSelection },
     props: Object.keys(argTypes),

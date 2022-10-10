@@ -1,4 +1,6 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import Owner from './Owner.vue'
 
 export default {
@@ -6,7 +8,7 @@ export default {
   title: 'Owner',
 }
 
-const Template = (_: never, { argTypes }: any) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { Owner },
     props: Object.keys(argTypes),
@@ -14,15 +16,12 @@ const Template = (_: never, { argTypes }: any) =>
   })
 
 export const Default = Template.bind({})
-// @ts-ignore
 Default.args = {
   username: 'Owner',
 }
 
 export const Linked = Template.bind({})
-// @ts-ignore
 Linked.args = {
-  // @ts-ignore
   ...Default.args,
   link: true,
 }

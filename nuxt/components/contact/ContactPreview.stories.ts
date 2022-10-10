@@ -1,4 +1,6 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import ContactPreview from './ContactPreview.vue'
 
 export default {
@@ -6,7 +8,7 @@ export default {
   title: 'contact/ContactPreview',
 }
 
-const Template = (_: never, { argTypes }: { argTypes: any }) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { ContactPreview },
     props: Object.keys(argTypes),
@@ -14,7 +16,6 @@ const Template = (_: never, { argTypes }: { argTypes: any }) =>
   })
 
 export const Default = Template.bind({})
-// @ts-ignore
 Default.args = {
   contact: {
     firstName: 'firstName',

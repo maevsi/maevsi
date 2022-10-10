@@ -1,8 +1,9 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import ButtonText from './ButtonText.vue'
 
 const argTypes = { click: { action: 'click' } }
-type ArgTypesType = { argTypes: typeof argTypes }
 
 export default {
   component: ButtonText,
@@ -10,7 +11,7 @@ export default {
   argTypes,
 }
 
-const Template = (_: never, { argTypes }: ArgTypesType) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { ButtonText },
     props: Object.keys(argTypes),
@@ -19,7 +20,6 @@ const Template = (_: never, { argTypes }: ArgTypesType) =>
   })
 
 export const Default = Template.bind({})
-// @ts-ignore
 Default.args = {
   ariaLabel: 'ButtonText',
 }

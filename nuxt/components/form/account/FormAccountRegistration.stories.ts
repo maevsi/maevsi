@@ -1,4 +1,6 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import FormAccountRegistration from './FormAccountRegistration.vue'
 
 export default {
@@ -6,7 +8,7 @@ export default {
   title: 'form/account/FormAccountRegistration',
 }
 
-const Template = (_: never, { argTypes }: any) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { FormAccountRegistration },
     props: Object.keys(argTypes),

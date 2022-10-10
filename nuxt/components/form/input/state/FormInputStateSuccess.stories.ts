@@ -1,4 +1,6 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import FormInputStateSuccess from './FormInputStateSuccess.vue'
 
 export default {
@@ -6,7 +8,7 @@ export default {
   title: 'form/input/state/FormInputStateSuccess',
 }
 
-const Template = (_: never, { argTypes }: any) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { FormInputStateSuccess },
     props: Object.keys(argTypes),
@@ -15,7 +17,6 @@ const Template = (_: never, { argTypes }: any) =>
   })
 
 export const Default = Template.bind({})
-// @ts-ignore
 Default.args = {
   formInput: {
     $model: 'x',

@@ -1,4 +1,6 @@
+import { Story } from '@storybook/vue3'
 import { defineComponent } from 'vue'
+
 import FormContact from './FormContact.vue'
 
 export default {
@@ -6,7 +8,7 @@ export default {
   title: 'form/contact/FormContact',
 }
 
-const Template = (_: never, { argTypes }: any) =>
+const Template: Story = (_, { argTypes }) =>
   defineComponent({
     components: { FormContact },
     props: Object.keys(argTypes),
@@ -14,7 +16,6 @@ const Template = (_: never, { argTypes }: any) =>
   })
 
 export const Default = Template.bind({})
-// @ts-ignore
 Default.args = {
   contact: {},
 }
