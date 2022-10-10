@@ -11,7 +11,7 @@
     "build": "nuxi build",
     "generate": "nuxi generate",
     "start": "node .output/server/index.mjs",
-    "test": "pnpm test:code && pnpm test:visual",
+    "test": "pnpm test:code",
     "test:code": "jest",
     "test:visual": "WAIT_ON_TIMEOUT=600000 start-server-and-test 'pnpm storybook --ci' 6006 'sh ./.storybook/storycap/test.sh'",
     "docker:build:test-visual": "docker build -t maevsi/maevsi:test-visual --target test-visual_standalone ../",
