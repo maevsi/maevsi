@@ -28,10 +28,6 @@ WORKDIR /srv/app/
 
 ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
 
-# https://github.com/nuxt/framework/issues/7828
-ENV HOST=0.0.0.0
-ENV NODE_TLS_REJECT_UNAUTHORIZED=0
-
 ENV DOCKER=true
 
 VOLUME /srv/.pnpm-store
@@ -61,8 +57,8 @@ RUN npm install -g pnpm && \
 
 COPY ./nuxt/ ./
 
-RUN pnpm install --offline && \
-    pnpm nuxi prepare
+RUN pnpm install --offline \
+  && pnpm nuxi prepare
 
 
 ########################
@@ -103,45 +99,63 @@ RUN npm install -g pnpm && \
 
 
 ########################
-# Nuxt: test (code)
+# Nuxt: test (unit)
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.10.0-slim@sha256:d900c28d8cbb51cee5473215e5941b6334d9b02da75ef60f490d4c0c13160bb1 AS test
+FROM node:18.10.0-slim@sha256:d900c28d8cbb51cee5473215e5941b6334d9b02da75ef60f490d4c0c13160bb1 AS test-unit
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
 RUN npm install -g pnpm && \
-    pnpm run test:code
+    pnpm run test:unit
 
 
 ########################
 # Nuxt: test (integration)
 
-# Should be the specific version of `node:slim`.
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.10.0-slim@sha256:d900c28d8cbb51cee5473215e5941b6334d9b02da75ef60f490d4c0c13160bb1 AS test-integration
+# Should be the specific version of `cypress/included`.
+FROM cypress/included:10.9.0@sha256:de9f7c27905a7d6127b134653ecbe092c7cdc9248272283ba87e5f42aa3fc693 AS test-integration_base
 
-ENV NODE_OPTIONS="--openssl-legacy-provider --use-openssl-ca"
+# ENV DEBUG="start-server-and-test"
 
-# https://github.com/nuxt/framework/issues/7828
-ENV HOST=0.0.0.0
-ENV NODE_TLS_REJECT_UNAUTHORIZED=0
-
-# Set timeout for `start-server-and-test` to 20 seconds.
-ENV WAIT_ON_TIMEOUT=30000
+WORKDIR /srv/app/
 
 # Update and install dependencies.
-# - `curl` is used for testing
-# - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
-# - `ca-certificates libnss3-tools` and `mkcert` provide the certificates for secure connections
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-        curl wget \
-        procps \
-        ca-certificates libnss3-tools \
+        # `curl ca-certificates libnss3-tools` are required by `mkcert`
+        curl ca-certificates libnss3-tools \
+    # pnpm
+    && npm install -g pnpm \
+    # mkcert
+    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
+    && chmod +x mkcert-v*-linux-amd64 \
+    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert \
+    && mkcert -install \
+    && mkdir -p /home/node/.local/share/mkcert \
+    && mv /root/.local/share/mkcert /home/node/.local/share/ \
+    && chown node:node /home/node/.local/share/mkcert -R \
+    # clean
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+VOLUME /srv/app
+
+
+########################
+# Nuxt: test (integration)
+
+# Should be the specific version of `cypress/included`.
+FROM cypress/included:10.9.0@sha256:de9f7c27905a7d6127b134653ecbe092c7cdc9248272283ba87e5f42aa3fc693 AS test-integration
+
+# Update and install dependencies.
+# - `curl ca-certificates libnss3-tools` and `mkcert` provide the certificates for secure connections
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        curl ca-certificates libnss3-tools \
     && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
     && chmod +x mkcert-v*-linux-amd64 \
     && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
@@ -151,9 +165,8 @@ WORKDIR /srv/app/
 COPY --from=build /srv/app/ ./
 
 RUN npm install -g pnpm && \
-    mkcert -install && \
-    pnpm start-server-and-test 'pnpm start' 'http://127.0.0.1:3000' 'wget http://127.0.0.1:3000' && \
-    pnpm start-server-and-test 'pnpm dev' 'https://127.0.0.1:3000' 'wget https://127.0.0.1:3000'
+    pnpm test:integration:prod && \
+    pnpm test:integration:dev
 
 
 ########################
@@ -222,7 +235,7 @@ WORKDIR /srv/app/
 
 COPY --from=build /srv/app/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/lint/package.json
-COPY --from=test /srv/app/package.json /tmp/test/package.json
+COPY --from=test-unit /srv/app/package.json /tmp/test/package.json
 COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
 # COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
 

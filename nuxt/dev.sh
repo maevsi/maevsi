@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 THIS=$(dirname "$(readlink -f "$0")")
 
 create() {
@@ -20,8 +22,19 @@ create() {
     cat "$(mkcert -CAROOT)/rootCA.pem" >> "$certfile"
 }
 
-rm "$THIS"/.nuxt/*.key "$THIS"/.nuxt/*.crt
+if [ ! -d ".nuxt" ]; then
+  mkdir ".nuxt"
+fi
 
+if ls "$THIS"/.nuxt/*.key 1> /dev/null 2>&1; then
+  rm "$THIS"/.nuxt/*.key
+fi
+
+if ls "$THIS"/.nuxt/*.crt 1> /dev/null 2>&1; then
+  rm "$THIS"/.nuxt/*.crt
+fi
+
+mkcert -install
 create "localhost" "localhost" "127.0.0.1"
 
 sslCert="$THIS/.nuxt/localhost.crt"

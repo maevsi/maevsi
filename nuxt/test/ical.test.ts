@@ -1,3 +1,5 @@
+import { expect } from '@jest/globals'
+
 import { getIcalString } from '../server/api/ical'
 
 const OLD_ENV = process.env

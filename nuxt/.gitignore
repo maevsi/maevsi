@@ -21,3 +21,11 @@ storybook-static
 
 # ESLint
 .eslintcache
+
+# Cypress
+cypress/results
+cypress/reports
+cypress/screenshots
+cypress/snapshots/actual
+cypress/snapshots/diff
+cypress/videos

@@ -27,3 +27,11 @@ nuxt/**/!.gitkeep
 
 # ESLint
 .eslintcache
+
+# Cypress
+nuxt/cypress/results
+nuxt/cypress/reports
+nuxt/cypress/screenshots
+nuxt/cypress/snapshots/actual
+nuxt/cypress/snapshots/diff
+nuxt/cypress/videos

@@ -134,9 +134,9 @@
       </div>
     </section>
     <div
-      ref="scrollHint"
       class="duration-300 fixed flex flex-col items-center bottom-4 left-1/2 -translate-x-1/2 text-xl gap-2 transition"
       :class="isScrollHintShown ? 'opacity-20' : 'opacity-0'"
+      data-testid="scroll-hint"
     >
       <IconChevronDoubleDown
         classes="h-16 w-16 animate-bounce"
