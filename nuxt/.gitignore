@@ -14,7 +14,10 @@ storybook-static
 .storybook/storycap/working-directory
 
 # Git
-!.gitkeep
+**/!.gitkeep
+
+# Environment variables
+**/.env
 
 # ESLint
 .eslintcache

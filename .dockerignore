@@ -11,6 +11,7 @@ nuxt/.output
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 
+# Storybook
 nuxt/.nuxt-storybook/
 nuxt/storybook-static/
 
@@ -23,3 +24,6 @@ nuxt/**/!.gitkeep
 
 # Environment variables
 **/.env
+
+# ESLint
+.eslintcache
