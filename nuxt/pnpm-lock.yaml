@@ -114,7 +114,7 @@ specifiers:
   stylelint-config-recommended-vue: 1.4.0
   stylelint-config-standard: 28.0.0
   stylelint-no-unsupported-browser-features: 6.0.1
-  sweetalert2: 11.4.38
+  sweetalert2: 11.5.1
   tailwindcss: 3.1.8
   ts-jest: 29.0.3
   ts-node: 10.9.1
@@ -178,7 +178,7 @@ dependencies:
   prntr: 2.0.18
   qrcode.vue: 3.3.3_vue@3.2.40
   slugify: 1.6.5
-  sweetalert2: 11.4.38
+  sweetalert2: 11.5.1
   ts-node: 10.9.1_xtdkmayvpbwqd3kc4kczaw2zvm
   vue-chartjs: 4.1.2_chart.js@3.9.1+vue@3.2.40
   vue-croppa: 1.3.8
@@ -12769,8 +12769,8 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /sweetalert2/11.4.38:
-    resolution: {integrity: sha512-H8FDIiL7hLe7uUEdTO6xwk2Vexvr05IL7FGZAIHEFmjjnZRWtRrSUYm//r+4bL8d6XhjWFRHXBs32ZCwH+ir8g==}
+  /sweetalert2/11.5.1:
+    resolution: {integrity: sha512-xkNfWDrA57rP6s4pescNWiHzZiRwizWlh0qGzl66C2jm/5OArA/0tFkhB8Poh18EeEr8s5sRA61OXcPzyUOuyw==}
     dev: false
 
   /symbol-tree/3.2.4:
