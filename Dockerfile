@@ -152,20 +152,23 @@ VOLUME /srv/app
 FROM cypress/included:10.9.0@sha256:de9f7c27905a7d6127b134653ecbe092c7cdc9248272283ba87e5f42aa3fc693 AS test-integration
 
 # Update and install dependencies.
-# - `curl ca-certificates libnss3-tools` and `mkcert` provide the certificates for secure connections
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
+        # `curl ca-certificates libnss3-tools` are required by `mkcert`
         curl ca-certificates libnss3-tools \
+    # pnpm
+    && npm install -g pnpm \
+    # mkcert
     && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
     && chmod +x mkcert-v*-linux-amd64 \
     && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
 
 WORKDIR /srv/app/
 
+COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=build /srv/app/ ./
 
-RUN npm install -g pnpm && \
-    pnpm test:integration:prod && \
+RUN pnpm test:integration:prod && \
     pnpm test:integration:dev
 
 
