@@ -67,7 +67,7 @@
     "graphql": "15.8.0",
     "h3": "0.7.21",
     "html-to-text": "8.2.1",
-    "ical-generator": "3.5.2",
+    "ical-generator": "3.6.0",
     "isomorphic-dompurify": "0.15.0",
     "jsonwebtoken": "8.5.1",
     "lodash-es": "4.17.21",
