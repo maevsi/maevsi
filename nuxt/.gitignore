@@ -5,14 +5,6 @@ nuxt.d.ts
 .output
 .env
 
-# Storybook
-.nuxt-storybook
-storybook-static
-
-# Storycap
-.storybook/storycap/images/actual
-.storybook/storycap/working-directory
-
 # Git
 **/!.gitkeep
 
@@ -28,4 +20,5 @@ cypress/reports
 cypress/screenshots
 cypress/snapshots/actual
 cypress/snapshots/diff
+cypress/snapshots/result
 cypress/videos

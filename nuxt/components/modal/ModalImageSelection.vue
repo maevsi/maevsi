@@ -9,7 +9,7 @@
     <ImageUploadGallery
       :allow-deletion="false"
       selectable
-      :username="isStorybookActive ? 'username' : routeParamUsername"
+      :username="isTesting ? 'username' : routeParamUsername"
       @selection="selectProfilePictureStorageKey"
     />
     <template #header>{{ t('header') }}</template>
@@ -38,7 +38,7 @@ const api = computed(() => {
 })
 
 // data
-const isStorybookActive = config.public.isStorybookActive
+const isTesting = config.public.isTesting
 const routeParamUsername = route.params.username as string
 const selectedProfilePictureStorageKey = ref<string>()
 

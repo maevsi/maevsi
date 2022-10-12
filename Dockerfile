@@ -169,62 +169,6 @@ RUN npm install -g pnpm && \
     pnpm test:integration:dev
 
 
-########################
-# Nuxt: test (visual)
-
-# Should be the specific version of node:slim.
-# `storycap` requires Debian.
-FROM node:18.10.0-slim@sha256:d900c28d8cbb51cee5473215e5941b6334d9b02da75ef60f490d4c0c13160bb1 AS test-visual
-
-ARG CI=false
-ENV CI ${CI}
-ENV NODE_OPTIONS=--openssl-legacy-provider
-
-# Update and install dependencies.
-# - `ca-certificates curl` is required by test.sh
-# - `fonts-dejavu-core gconf-service`, ... is required by `puppeteer`
-# - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
-# - `jq` is required for storycap
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        ca-certificates curl \
-        fonts-dejavu-core gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdbus-1-3 libdrm2 libgbm1 libgconf-2-4 libgtk-3-0 libnspr4 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 fonts-liberation libayatana-appindicator1 libnss3 libxshmfence1 lsb-release xdg-utils \
-        procps \
-        jq
-
-WORKDIR /srv/app/
-
-COPY ./.git ./.git
-COPY --from=prepare /srv/app/ ./
-
-RUN npm install -g pnpm && \
-    pnpm run test:visual
-
-
-########################
-# Nuxt: test (visual, standalone)
-
-# Should be the specific version of node:slim.
-# `storycap` requires Debian.
-FROM node:18.10.0-slim@sha256:d900c28d8cbb51cee5473215e5941b6334d9b02da75ef60f490d4c0c13160bb1 AS test-visual_standalone
-
-# Update and install dependencies.
-# - `fonts-dejavu-core gconf-service`, ... is required by `puppeteer`
-# - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
-# - `jq` is required for storycap
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        fonts-dejavu-core gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdbus-1-3 libdrm2 libgbm1 libgconf-2-4 libgtk-3-0 libnspr4 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 fonts-liberation libayatana-appindicator1 libnss3 libxshmfence1 lsb-release xdg-utils \
-        procps \
-        jq \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-WORKDIR /srv/app/
-
-CMD ["pnpm", "run", "storycap"]
-
-
 #######################
 # Collect build, lint and test results.
 

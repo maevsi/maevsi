@@ -1,5 +1,5 @@
 {
     "ignoredFiles": [
-        "nuxt/.storybook/storycap/images/*"
+        "nuxt/cypress/snapshots/base/*"
     ]
 }

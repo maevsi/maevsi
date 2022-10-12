@@ -159,12 +159,9 @@ export default defineNuxtConfig({
         id: process.env.GOOGLE_ANALYTICS_ID,
         debug: process.env.NODE_ENV !== 'production',
       },
-      isStorybookActive: !!process.env.STORYBOOK,
+      isTesting: !!process.env.CYPRESS,
     },
   },
-  // storybook: {
-  //   addons: ['@storybook/addon-a11y'],
-  // },
   typescript: {
     shim: false,
     strict: true,

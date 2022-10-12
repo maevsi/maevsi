@@ -3,7 +3,7 @@
     <div
       class="fixed bottom-0 left-0 right-0 top-0 z-10 transition"
       :class="[
-        ...(isStorybookActive ? [] : ['fixed']),
+        ...(isTesting ? [] : ['fixed']),
         ...(isVisibleComputed
           ? ['backdrop-blur backdrop-brightness-50']
           : ['backdrop-blur-0 backdrop-brightness-100']),
@@ -12,7 +12,7 @@
     />
     <Card
       class="fixed top-[10%] max-h-[80%] left-1/2 -translate-x-1/2 z-20 flex w-5/6 flex-col gap-2 overflow-auto bg-background-brighten dark:bg-background-darken sm:w-2/3 lg:w-1/2 xl:w-1/3"
-      :class="{ fixed: !isStorybookActive }"
+      :class="{ fixed: !isTesting }"
     >
       <div class="flex justify-end">
         <ButtonIcon
@@ -102,7 +102,7 @@ const { t } = useI18n()
 // data
 const errors = ref()
 const isVisible = ref(false)
-const isStorybookActive = config.public.isStorybookActive
+const isTesting = config.public.isTesting
 const isSubmitting = ref(false)
 const onSubmit = ref(() => {})
 

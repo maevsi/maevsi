@@ -10,7 +10,6 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:nuxt/recommended',
     'plugin:yml/standard',
-    // 'plugin:storybook/recommended',
   ],
   overrides: [
     {
