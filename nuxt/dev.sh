@@ -22,27 +22,27 @@ create() {
     cat "$(mkcert -CAROOT)/rootCA.pem" >> "$certfile"
 }
 
-if [ ! -d ".nuxt" ]; then
-  mkdir ".nuxt"
-fi
+if [ "$CERTIFICATE_PATH" != "" ]; then
+  sslCert="$CERTIFICATE_PATH.crt"
+  sslKey="$CERTIFICATE_PATH.key"
+else
+  if [ ! -d ".nuxt" ]; then
+    mkdir ".nuxt"
+  fi
 
-if ls "$THIS"/.nuxt/*.key 1> /dev/null 2>&1; then
-  rm "$THIS"/.nuxt/*.key
-fi
+  if ls "$THIS"/.nuxt/*.key 1> /dev/null 2>&1; then
+    rm "$THIS"/.nuxt/*.key
+  fi
 
-if ls "$THIS"/.nuxt/*.crt 1> /dev/null 2>&1; then
-  rm "$THIS"/.nuxt/*.crt
-fi
+  if ls "$THIS"/.nuxt/*.crt 1> /dev/null 2>&1; then
+    rm "$THIS"/.nuxt/*.crt
+  fi
 
-mkcert -install
-create "localhost" "localhost" "127.0.0.1"
+  mkcert -install
+  create "localhost" "localhost" "127.0.0.1" "0.0.0.0"
 
-sslCert="$THIS/.nuxt/localhost.crt"
-sslKey="$THIS/.nuxt/localhost.key"
-
-if [ -n "$DOCKER" ]; then
-  sslCert="/srv/certificates/maevsi.crt"
-  sslKey="/srv/certificates/maevsi.key"
+  sslCert="$THIS/.nuxt/localhost.crt"
+  sslKey="$THIS/.nuxt/localhost.key"
 fi
 
 nuxi dev --https --ssl-cert "$sslCert" --ssl-key "$sslKey"

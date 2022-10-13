@@ -26,9 +26,8 @@ RUN apt-get update \
 
 WORKDIR /srv/app/
 
+ENV CERTIFICATE_PATH=/srv/certificates/maevsi
 ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
-
-ENV DOCKER=true
 
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
