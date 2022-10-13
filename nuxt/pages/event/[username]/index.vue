@@ -48,7 +48,7 @@ useHeadDefault(title, {
     {
       hid: 'profile:username',
       property: 'profile:username',
-      content: route.params.username,
+      content: route.params.username as string,
     },
   ],
 })

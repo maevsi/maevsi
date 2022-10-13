@@ -38,7 +38,8 @@ export const useHeadLayout = () => {
         rel: 'manifest',
       },
       {
-        color: '#202020',
+        // @ts-ignore
+        color: '#202020', // TODO: https://github.com/harlan-zw/zhead/pull/5
         href: '/assets/static/favicon/safari-pinned-tab.svg?v=bOXMwoKlJr',
         rel: 'mask-icon',
       },
@@ -143,7 +144,7 @@ export const useHeadLayout = () => {
         content: 'maevsi',
       },
     ],
-    titleTemplate: (titleChunk: string) => {
+    titleTemplate: (titleChunk?: string) => {
       return titleChunk ? `${titleChunk} · maevsi` : 'maevsi'
     },
   })
