@@ -52,11 +52,11 @@
       </div>
     </div>
     <Modal id="ModalAttendanceScanQrCode" :submit-name="t('close')">
-      <QrCodeStream @decode="onDecode" @init="onInit">
+      <!-- <QrCodeStream @decode="onDecode" @init="onInit">
         <div v-if="loading" class="text-center">
           {{ t('globalLoading') }}
         </div>
-      </QrCodeStream>
+      </QrCodeStream> -->
       <template #submit-icon>
         <IconXCircle />
       </template>
@@ -122,7 +122,7 @@ const event = computed(
 // data
 const invitationCode = ref<string>()
 const isNfcWritableErrorMessage = ref<string>()
-const loading = ref(false)
+// const loading = ref(false)
 const routeParamEventName = route.params.event_name as string
 const routeParamUsername = route.params.username as string
 
@@ -144,52 +144,52 @@ const title = computed(() => {
 function qrCodeScan() {
   store.modalAdd({ id: 'ModalAttendanceScanQrCode' })
 }
-async function onInit(promise: Promise<any>) {
-  loading.value = true
+// async function onInit(promise: Promise<any>) {
+//   loading.value = true
 
-  try {
-    await promise
-  } catch (error: any) {
-    let errorMessage: string = error.message
+//   try {
+//     await promise
+//   } catch (error: any) {
+//     let errorMessage: string = error.message
 
-    if (error.name === 'NotAllowedError') {
-      errorMessage = t('errorCameraNotAllowed', {
-        hintBrowserSettings: t('hintBrowserSettings'),
-      }) as string
-    } else if (error.name === 'NotFoundError') {
-      errorMessage = t('errorCameraNotFound') as string
-    } else if (error.name === 'NotSupportedError') {
-      errorMessage = t('errorCameraNotSupported') as string
-    } else if (error.name === 'NotReadableError') {
-      errorMessage = t('errorCameraNotReadable') as string
-    } else if (error.name === 'OverconstrainedError') {
-      errorMessage = t('errorCameraOverconstrained') as string
-    } else if (error.name === 'StreamApiNotSupportedError') {
-      errorMessage = t('errorCameraStreamApiNotSupported') as string
-    }
+//     if (error.name === 'NotAllowedError') {
+//       errorMessage = t('errorCameraNotAllowed', {
+//         hintBrowserSettings: t('hintBrowserSettings'),
+//       }) as string
+//     } else if (error.name === 'NotFoundError') {
+//       errorMessage = t('errorCameraNotFound') as string
+//     } else if (error.name === 'NotSupportedError') {
+//       errorMessage = t('errorCameraNotSupported') as string
+//     } else if (error.name === 'NotReadableError') {
+//       errorMessage = t('errorCameraNotReadable') as string
+//     } else if (error.name === 'OverconstrainedError') {
+//       errorMessage = t('errorCameraOverconstrained') as string
+//     } else if (error.name === 'StreamApiNotSupportedError') {
+//       errorMessage = t('errorCameraStreamApiNotSupported') as string
+//     }
 
-    Swal.fire({
-      icon: 'error',
-      text: errorMessage,
-      title: t('globalStatusError'),
-    }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
-    consola.error(errorMessage)
-  } finally {
-    loading.value = false
-  }
-}
+//     Swal.fire({
+//       icon: 'error',
+//       text: errorMessage,
+//       title: t('globalStatusError'),
+//     }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
+//     consola.error(errorMessage)
+//   } finally {
+//     loading.value = false
+//   }
+// }
 async function onClick() {
   await writeTag(invitationCode.value)
 }
-function onDecode(e: any): void {
-  invitationCode.value = e
-  Swal.fire({
-    icon: 'success',
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-  }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
-}
+// function onDecode(e: any): void {
+//   invitationCode.value = e
+//   Swal.fire({
+//     icon: 'success',
+//     showConfirmButton: false,
+//     timer: 1500,
+//     timerProgressBar: true,
+//   }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
+// }
 async function checkWriteTag(): Promise<void> {
   if (!('NDEFReader' in window)) {
     return Promise.reject(
@@ -282,9 +282,10 @@ useHeadDefault(title.value)
 export default {
   name: 'IndexPage',
   components: {
-    QrCodeStream: defineAsyncComponent(
-      () => import('vue-qrcode-reader/src/components/QrcodeStream.vue')
-    ),
+    // TODO: https://github.com/nuxt/framework/issues/6781
+    // QrCodeStream: defineAsyncComponent(
+    //   () => import('vue-qrcode-reader/src/components/QrcodeStream.vue')
+    // ),
   },
 }
 </script>
