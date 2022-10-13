@@ -190,11 +190,10 @@ import {
   LinearScale,
   Title,
   Tooltip,
-  // @ts-ignore https://github.com/chartjs/Chart.js/issues/10594
-} from 'chart.js/dist/chart.mjs'
+} from 'chart.js'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { Doughnut } from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs/dist/index' // TODO: https://github.com/apertureless/vue-chartjs/pull/934
 
 import { copyText, getApiMeta } from '~/plugins/util/util'
 import { Invitation } from '~/types/invitation'
