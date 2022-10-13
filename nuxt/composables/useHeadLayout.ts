@@ -38,8 +38,7 @@ export const useHeadLayout = () => {
         rel: 'manifest',
       },
       {
-        // @ts-ignore
-        color: '#202020', // TODO: https://github.com/harlan-zw/zhead/pull/5
+        color: '#202020',
         href: '/assets/static/favicon/safari-pinned-tab.svg?v=bOXMwoKlJr',
         rel: 'mask-icon',
       },
