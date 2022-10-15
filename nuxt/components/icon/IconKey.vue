@@ -3,7 +3,7 @@
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
-    :title="t('title')"
+    :title="title"
   >
     <path
       stroke-linecap="round"
@@ -15,7 +15,15 @@
 </template>
 
 <script setup lang="ts">
+export interface Props {
+  title?: string
+}
+
 const { t } = useI18n()
+
+withDefaults(defineProps<Props>(), {
+  title: t('title'),
+})
 </script>
 
 <i18n lang="yml">

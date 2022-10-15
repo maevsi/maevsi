@@ -1,5 +1,5 @@
 <template>
-  <IconContainer :title="t('title')" viewBox="0 0 36 36">
+  <IconContainer :title="title" viewBox="0 0 36 36">
     <circle fill="currentColor" cx="17" cy="20" r="3" />
     <path
       fill="currentColor"
@@ -29,7 +29,15 @@
 </template>
 
 <script setup lang="ts">
+export interface Props {
+  title?: string
+}
+
 const { t } = useI18n()
+
+withDefaults(defineProps<Props>(), {
+  title: t('title'),
+})
 </script>
 
 <i18n lang="yml">
