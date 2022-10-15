@@ -22,5 +22,5 @@ const { t } = useI18n()
 de:
   title: Ausloggen
 en:
-  title: Sign-out
+  title: Sign out
 </i18n>
