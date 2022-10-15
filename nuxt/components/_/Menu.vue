@@ -75,7 +75,7 @@
           </ButtonMenu>
         </div>
         <Hr v-if="signedInUsername" class="md:hidden" /> -->
-        <div class="flex flex-col gap-4 md:hidden">
+        <div class="flex flex-col gap-4">
           <ButtonText
             :aria-label="t('eventsExplore')"
             :is-primary="false"
