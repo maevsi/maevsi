@@ -16,5 +16,5 @@ const { t } = useI18n()
 de:
   title: Fehlerhaft
 en:
-  title: Invalid
+  title: Erroneous
 </i18n>
