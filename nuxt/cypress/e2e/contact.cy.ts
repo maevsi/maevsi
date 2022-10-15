@@ -1,4 +1,4 @@
-describe('contact test', () => {
+describe('contact page', () => {
   beforeEach(() => {
     cy.visit({
       url: '/contact',
@@ -7,7 +7,7 @@ describe('contact test', () => {
   })
 
   context('pages load correctly', () => {
-    it('check: access denied (no log-in)', () => {
+    it('denies access when not logged in', () => {
       cy.request({
         url: '/contact',
         failOnStatusCode: false,

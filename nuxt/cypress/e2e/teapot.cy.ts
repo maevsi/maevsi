@@ -1,4 +1,4 @@
-describe('teapot test', () => {
+describe('teapot page', () => {
   beforeEach(() => {
     cy.visit({
       url: '/teapot',
@@ -7,7 +7,7 @@ describe('teapot test', () => {
   })
 
   context('pages load correctly', () => {
-    it('check: teapot error', () => {
+    it('refuses to brew coffee', () => {
       cy.request({
         url: '/teapot',
         failOnStatusCode: false,

@@ -1,4 +1,4 @@
-describe('upload test', () => {
+describe('upload page', () => {
   beforeEach(() => {
     cy.visit({
       url: '/upload',
@@ -7,7 +7,7 @@ describe('upload test', () => {
   })
 
   context('pages load correctly', () => {
-    it('check: access denied (no log-in)', () => {
+    it('denies access when not logged in', () => {
       cy.request({
         url: '/upload',
         failOnStatusCode: false,
