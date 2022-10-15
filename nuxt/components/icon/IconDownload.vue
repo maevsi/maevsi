@@ -20,7 +20,7 @@ const { t } = useI18n()
 
 <i18n lang="yml">
 de:
-  title: Download
+  title: Herunterladen
 en:
   title: Download
 </i18n>
