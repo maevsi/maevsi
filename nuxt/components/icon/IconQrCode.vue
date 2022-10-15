@@ -20,7 +20,7 @@ const { t } = useI18n()
 
 <i18n lang="yml">
 de:
-  title: QR Code
+  title: QR-Code
 en:
-  title: QR Code
+  title: QR code
 </i18n>
