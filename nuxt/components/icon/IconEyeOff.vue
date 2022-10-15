@@ -20,7 +20,7 @@ const { t } = useI18n()
 
 <i18n lang="yml">
 de:
-  title: Privat
+  title: Verstecken
 en:
-  title: Private
+  title: Hide
 </i18n>
