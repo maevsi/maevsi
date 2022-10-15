@@ -1,5 +1,5 @@
 <template>
-  <svg :class="classes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+  <IconContainer :title="title || t('title')" viewBox="0 0 36 36">
     <circle fill="currentColor" cx="17" cy="20" r="3" />
     <path
       fill="currentColor"
@@ -25,14 +25,21 @@
       d="M9.467 36l3.344-7.152c.468-1 .036-2.191-.965-2.658-1-.469-2.191-.037-2.658.965L5.052 36h4.415zm15.065 0h4.416l-4.137-8.846c-.467-1.002-1.658-1.434-2.658-.965-1.001.467-1.433 1.658-.965 2.658L24.532 36zM19 36v-8c0-1.104-.896-2-2-2s-2 .896-2 2v8h4z"
       fill="currentColor"
     />
-  </svg>
+  </IconContainer>
 </template>
 
 <script setup lang="ts">
 export interface Props {
-  classes?: string
+  title?: string // eslint-disable-line vue/require-default-prop
 }
-withDefaults(defineProps<Props>(), {
-  classes: 'h-5 md:h-6 w-5 md:w-6 shrink-0',
-})
+withDefaults(defineProps<Props>(), {})
+
+const { t } = useI18n()
 </script>
+
+<i18n lang="yml">
+de:
+  title: Entdecken
+en:
+  title: Explore
+</i18n>

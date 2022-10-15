@@ -1,10 +1,9 @@
 <template>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    :class="classes"
+  <IconContainer
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
+    :title="title || t('title')"
   >
     <path
       stroke-linecap="round"
@@ -12,14 +11,21 @@
       stroke-width="2"
       d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
     />
-  </svg>
+  </IconContainer>
 </template>
 
 <script setup lang="ts">
 export interface Props {
-  classes?: string
+  title?: string // eslint-disable-line vue/require-default-prop
 }
-withDefaults(defineProps<Props>(), {
-  classes: 'h-5 md:h-6 w-5 md:w-6 shrink-0',
-})
+withDefaults(defineProps<Props>(), {})
+
+const { t } = useI18n()
 </script>
+
+<i18n lang="yml">
+de:
+  title: Archiv
+en:
+  title: Archive
+</i18n>
