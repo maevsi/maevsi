@@ -1,7 +1,6 @@
 <template>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    :class="classes"
+  <IconContainer
+    :title="t('title')"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -12,14 +11,16 @@
       stroke-width="2"
       d="M20 12H4"
     />
-  </svg>
+  </IconContainer>
 </template>
 
 <script setup lang="ts">
-export interface Props {
-  classes?: string
-}
-withDefaults(defineProps<Props>(), {
-  classes: 'h-5 md:h-6 w-5 md:w-6 shrink-0',
-})
+const { t } = useI18n()
 </script>
+
+<i18n lang="yml">
+de:
+  title: Vor
+en:
+  title: Forward
+</i18n>

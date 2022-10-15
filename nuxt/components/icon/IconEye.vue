@@ -1,10 +1,9 @@
 <template>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    :class="classes"
+  <IconContainer
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
+    :title="t('title')"
   >
     <path
       stroke-linecap="round"
@@ -18,14 +17,16 @@
       stroke-width="2"
       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
     />
-  </svg>
+  </IconContainer>
 </template>
 
 <script setup lang="ts">
-export interface Props {
-  classes?: string
-}
-withDefaults(defineProps<Props>(), {
-  classes: 'h-5 md:h-6 w-5 md:w-6 shrink-0',
-})
+const { t } = useI18n()
 </script>
+
+<i18n lang="yml">
+de:
+  title: Anzeigen
+en:
+  title: Show
+</i18n>
