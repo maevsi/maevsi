@@ -20,7 +20,7 @@ const { t } = useI18n()
 
 <i18n lang="yml">
 de:
-  title: User
+  title: Benutzer
 en:
   title: User
 </i18n>
