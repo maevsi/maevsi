@@ -34,7 +34,7 @@ const { t } = useI18n()
 
 <i18n lang="yml">
 de:
-  title: Events
+  title: Entdecken
 en:
-  title: Events
+  title: Explore
 </i18n>
