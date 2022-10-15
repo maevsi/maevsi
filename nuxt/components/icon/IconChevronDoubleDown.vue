@@ -4,7 +4,7 @@
     viewBox="0 0 24 24"
     stroke="currentColor"
     stroke-width="2"
-    :title="title"
+    :title="title || t('title')"
   >
     <path
       stroke-linecap="round"
@@ -16,14 +16,10 @@
 
 <script setup lang="ts">
 export interface Props {
-  title?: string
+  title?: string // eslint-disable-line vue/require-default-prop
 }
-withDefaults(defineProps<Props>(), {
-  title: t('title'), // eslint-disable-line no-use-before-define
-})
-</script>
+withDefaults(defineProps<Props>(), {})
 
-<script lang="ts">
 const { t } = useI18n()
 </script>
 

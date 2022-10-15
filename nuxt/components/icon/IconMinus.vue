@@ -1,6 +1,6 @@
 <template>
   <IconContainer
-    :title="title"
+    :title="title || t('title')"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -16,14 +16,10 @@
 
 <script setup lang="ts">
 export interface Props {
-  title?: string
+  title?: string // eslint-disable-line vue/require-default-prop
 }
-withDefaults(defineProps<Props>(), {
-  title: t('title'), // eslint-disable-line no-use-before-define
-})
-</script>
+withDefaults(defineProps<Props>(), {})
 
-<script lang="ts">
 const { t } = useI18n()
 </script>
 

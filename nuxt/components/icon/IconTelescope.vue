@@ -1,5 +1,5 @@
 <template>
-  <IconContainer :title="title" viewBox="0 0 36 36">
+  <IconContainer :title="title || t('title')" viewBox="0 0 36 36">
     <circle fill="currentColor" cx="17" cy="20" r="3" />
     <path
       fill="currentColor"
@@ -30,14 +30,10 @@
 
 <script setup lang="ts">
 export interface Props {
-  title?: string
+  title?: string // eslint-disable-line vue/require-default-prop
 }
-withDefaults(defineProps<Props>(), {
-  title: t('title'), // eslint-disable-line no-use-before-define
-})
-</script>
+withDefaults(defineProps<Props>(), {})
 
-<script lang="ts">
 const { t } = useI18n()
 </script>
 
