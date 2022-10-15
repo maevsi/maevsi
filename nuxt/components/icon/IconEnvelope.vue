@@ -21,7 +21,7 @@ const { t } = useI18n()
 
 <i18n lang="yml">
 de:
-  title: Einladungen
+  title: Umschlag
 en:
-  title: Invitations
+  title: Envelope
 </i18n>
