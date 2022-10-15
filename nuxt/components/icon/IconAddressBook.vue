@@ -21,7 +21,7 @@ const { t } = useI18n()
 
 <i18n lang="yml">
 de:
-  title: Addressbuch
+  title: Adressbuch
 en:
-  title: Adress Book
+  title: Address book
 </i18n>
