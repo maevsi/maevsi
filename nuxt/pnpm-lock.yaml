@@ -48,7 +48,7 @@ specifiers:
   '@types/vue-datetime': 1.0.1
   '@types/vue-moment': 4.0.3
   '@types/vuelidate': 0.7.15
-  '@types/webpack': 4.41.32
+  '@types/webpack': 4.41.33
   '@uppy/core': 2.3.4
   '@uppy/tus': 2.4.4
   apollo-cache-inmemory: 1.6.6
@@ -234,7 +234,7 @@ devDependencies:
   '@types/vue-datetime': 1.0.1
   '@types/vue-moment': 4.0.3
   '@types/vuelidate': 0.7.15
-  '@types/webpack': 4.41.32
+  '@types/webpack': 4.41.33
   autoprefixer: 10.4.12_postcss@8.4.18
   babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
   browserlist: 1.0.1
@@ -4379,7 +4379,7 @@ packages:
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/ui': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@types/node': 14.18.26
-      '@types/webpack': 4.41.32
+      '@types/webpack': 4.41.33
       autoprefixer: 9.8.8
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
       babel-plugin-macros: 2.8.0
@@ -4715,7 +4715,7 @@ packages:
       '@types/node': 14.18.26
       '@types/node-fetch': 2.6.2
       '@types/pretty-hrtime': 1.0.1
-      '@types/webpack': 4.41.32
+      '@types/webpack': 4.41.33
       better-opn: 2.1.1
       boxen: 4.2.0
       chalk: 4.1.2
@@ -4839,7 +4839,7 @@ packages:
       '@storybook/theming': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/ui': 6.3.13_wcqkhtmu7mswc6yz4uyexck3ty
       '@types/node': 14.18.26
-      '@types/webpack': 4.41.32
+      '@types/webpack': 4.41.33
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
       case-sensitive-paths-webpack-plugin: 2.4.0
       chalk: 4.1.2
@@ -5608,7 +5608,7 @@ packages:
   /@types/file-loader/5.0.1:
     resolution: {integrity: sha512-FHPPuRb/Ts/25qvNU/mQGwRZUp793nBxYqXd/KwApykxATagqrO4+2EEcGDm/DuXyV/EkOa04umS1DQ8tQSomg==}
     dependencies:
-      '@types/webpack': 4.41.32
+      '@types/webpack': 4.41.33
     dev: false
 
   /@types/glob-base/0.3.0:
@@ -5801,7 +5801,7 @@ packages:
   /@types/optimize-css-assets-webpack-plugin/5.0.5:
     resolution: {integrity: sha512-txpFQcyPPVaXFgTL7aTy43CqbQkvtzWXpzS/n663Lz8QB7qYDbQau/O+URRsvt96/u4QsjZLsZ/4KW7UnPfiYw==}
     dependencies:
-      '@types/webpack': 4.41.32
+      '@types/webpack': 4.41.33
     dev: false
 
   /@types/overlayscrollbars/1.12.1:
@@ -5936,7 +5936,7 @@ packages:
   /@types/terser-webpack-plugin/4.2.1:
     resolution: {integrity: sha512-x688KsgQKJF8PPfv4qSvHQztdZNHLlWJdolN9/ptAGimHVy3rY+vHdfglQDFh1Z39h7eMWOd6fQ7ke3PKQcdyA==}
     dependencies:
-      '@types/webpack': 4.41.32
+      '@types/webpack': 4.41.33
       terser: 4.8.1
     dev: false
 
@@ -6025,6 +6025,17 @@ packages:
 
   /@types/webpack/4.41.32:
     resolution: {integrity: sha512-cb+0ioil/7oz5//7tZUSwbrSAN/NWHrQylz5cW8G0dWTcF/g+/dSdMlKVZspBYuMAN1+WnwHrkxiRrLcwd0Heg==}
+    dependencies:
+      '@types/node': 18.0.0
+      '@types/tapable': 1.0.8
+      '@types/uglify-js': 3.17.0
+      '@types/webpack-sources': 3.2.0
+      anymatch: 3.1.2
+      source-map: 0.6.1
+    dev: false
+
+  /@types/webpack/4.41.33:
+    resolution: {integrity: sha512-PPajH64Ft2vWevkerISMtnZ8rTs4YmRbs+23c402J0INmxDKCrhZNvwZYtzx96gY2wAtXdrK1BS2fiC8MlLr3g==}
     dependencies:
       '@types/node': 18.0.0
       '@types/tapable': 1.0.8
@@ -13130,7 +13141,7 @@ packages:
     dependencies:
       '@types/html-minifier-terser': 5.1.2
       '@types/tapable': 1.0.8
-      '@types/webpack': 4.41.32
+      '@types/webpack': 4.41.33
       html-minifier-terser: 5.1.1
       loader-utils: 1.4.0
       lodash: 4.17.21

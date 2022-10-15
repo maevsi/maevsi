@@ -127,7 +127,7 @@
     "@types/vue-datetime": "1.0.1",
     "@types/vue-moment": "4.0.3",
     "@types/vuelidate": "0.7.15",
-    "@types/webpack": "4.41.32",
+    "@types/webpack": "4.41.33",
     "autoprefixer": "10.4.12",
     "babel-loader": "8.2.5",
     "browserlist": "1.0.1",
