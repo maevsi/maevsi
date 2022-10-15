@@ -16,7 +16,7 @@ specifiers:
   '@nuxtjs/eslint-config-typescript': 11.0.0
   '@nuxtjs/eslint-module': 3.1.0
   '@nuxtjs/google-analytics': 2.4.0
-  '@nuxtjs/html-validator': 1.0.0
+  '@nuxtjs/html-validator': 1.1.0
   '@nuxtjs/i18n': 7.3.0
   '@nuxtjs/moment': 1.6.1
   '@nuxtjs/robots': 2.5.0
@@ -211,7 +211,7 @@ devDependencies:
   '@nuxtjs/eslint-config-typescript': 11.0.0_z4bbprzjrhnsfa24uvmcbu7f5q
   '@nuxtjs/eslint-module': 3.1.0_wzbqx5hzprsxsjud6nom6p2u5q
   '@nuxtjs/google-analytics': 2.4.0
-  '@nuxtjs/html-validator': 1.0.0_jest@29.2.0+webpack@4.46.0
+  '@nuxtjs/html-validator': 1.1.0_jest@29.2.0+webpack@4.46.0
   '@nuxtjs/moment': 1.6.1_webpack@4.46.0
   '@nuxtjs/storybook': 4.1.1_bghalp6ml6jbpjs4m2px42dnza
   '@storybook/addon-a11y': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
@@ -3444,12 +3444,12 @@ packages:
       vue-analytics: 5.22.1
     dev: true
 
-  /@nuxtjs/html-validator/1.0.0_jest@29.2.0+webpack@4.46.0:
-    resolution: {integrity: sha512-FvgaDFonKZKbtamrIFZ0JAyPmEGFBzYIlgSUec2XMOu0g8r8D9vGC6BvpRBGRJ6G8zAZT/X/szT8cGmc9qv+9g==}
+  /@nuxtjs/html-validator/1.1.0_jest@29.2.0+webpack@4.46.0:
+    resolution: {integrity: sha512-g4SvV0JtbX6RMYV+aLpfQoPKr1s3ODfDILkvn42Xn4B9Bnsz7/DrhWxKMaYIeTT607iiv3PA3lgfmOf7Dw1WaQ==}
     dependencies:
       '@nuxt/kit': 3.0.0-rc.11_webpack@4.46.0
-      chalk: 5.0.1
-      html-validate: 7.5.0_jest@29.2.0
+      chalk: 5.1.2
+      html-validate: 7.6.0_jest@29.2.0
       prettier: 2.7.1
     transitivePeerDependencies:
       - esbuild
@@ -8500,8 +8500,8 @@ packages:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  /chalk/5.0.1:
-    resolution: {integrity: sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==}
+  /chalk/5.1.2:
+    resolution: {integrity: sha512-E5CkT4jWURs1Vy5qGJye+XwCkNj7Od3Af7CP6SujMetSMkLs8Do2RWJK5yx1wamHV/op8Rz+9rltjaTQWDnEFQ==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
     dev: true
 
@@ -13097,8 +13097,8 @@ packages:
       selderee: 0.6.0
     dev: false
 
-  /html-validate/7.5.0_jest@29.2.0:
-    resolution: {integrity: sha512-eNcIQBlTv0+L+V+K5On+WuBdOVsqhPVPOK5Si4JpLLIgjBffEjw/5Wz4+UB8yPeBIvOzAnmZYnRxr4GBmNK6UQ==}
+  /html-validate/7.6.0_jest@29.2.0:
+    resolution: {integrity: sha512-6Ib433N0/ou2/0oLjfUmFjaAVFW8KKU/fOBBhrZXNuPcYCUsZExAD3xOqKl1bp5ANHb4PItXEK9vcKL/L7Da0Q==}
     engines: {node: '>= 14.0'}
     hasBin: true
     peerDependencies:
@@ -16175,7 +16175,7 @@ packages:
       '@vercel/nft': 0.22.1
       archiver: 5.3.1
       c12: 0.2.13
-      chalk: 5.0.1
+      chalk: 5.1.2
       chokidar: 3.5.3
       consola: 2.15.3
       cookie-es: 0.5.0
