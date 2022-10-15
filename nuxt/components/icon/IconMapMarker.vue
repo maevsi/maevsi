@@ -24,12 +24,13 @@
 export interface Props {
   title?: string
 }
-
-const { t } = useI18n()
-
 withDefaults(defineProps<Props>(), {
-  title: t('title'),
+  title: t('title'), // eslint-disable-line no-use-before-define
 })
+</script>
+
+<script lang="ts">
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">
