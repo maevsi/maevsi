@@ -1,6 +1,7 @@
+import { IncomingMessage } from 'node:http'
+
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
-import { IncomingMessage } from 'h3'
 import { computed, Ref } from 'vue'
 
 export function append(path: string, pathToAppend: string): string {

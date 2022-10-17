@@ -1,4 +1,4 @@
-import { readBody, CompatibilityEvent } from 'h3'
+import { readBody, H3Event } from 'h3'
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
@@ -9,9 +9,9 @@ import { Contact } from '~/types/contact'
 import { Event as MaevsiEvent } from '~/types/event'
 import { Invitation } from '~/types/invitation'
 
-export default async function (compatibilityEvent: CompatibilityEvent) {
-  const { req, res } = compatibilityEvent
-  const body = await readBody(req)
+export default async function (h3Event: H3Event) {
+  const { res } = h3Event
+  const body = await readBody(h3Event)
   const host = useHost()
 
   const contact: Contact = body.contact
