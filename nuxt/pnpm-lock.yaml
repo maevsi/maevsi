@@ -23,7 +23,7 @@ specifiers:
   '@nuxtjs/robots': 3.0.0-1
   '@nuxtjs/sitemap': 2.4.0
   '@pinia/nuxt': 0.4.3
-  '@rollup/plugin-graphql': 1.1.0
+  '@rollup/plugin-graphql': 2.0.0
   '@tailwindcss/forms': 0.5.3
   '@tailwindcss/line-clamp': 0.4.2
   '@tailwindcss/typography': 0.5.7
@@ -135,7 +135,7 @@ devDependencies:
   '@nuxtjs/robots': 3.0.0-1
   '@nuxtjs/sitemap': 2.4.0
   '@pinia/nuxt': 0.4.3_l7r24p6nevbtlimqmqcwa3ouhu
-  '@rollup/plugin-graphql': 1.1.0_wvgxa4tpgmyetagc7e4kukhube
+  '@rollup/plugin-graphql': 2.0.0_wvgxa4tpgmyetagc7e4kukhube
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.1.8
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.1.8
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
@@ -2556,11 +2556,15 @@ packages:
       rollup: 2.79.1
     dev: true
 
-  /@rollup/plugin-graphql/1.1.0_wvgxa4tpgmyetagc7e4kukhube:
-    resolution: {integrity: sha512-X+H6oFlprDlnO3D0UiEytdW97AMphPXO0C7KunS7i/rBXIGQRQVDU5WKTXnBu2tfyYbjCTtfhXMSGI0i885PNg==}
+  /@rollup/plugin-graphql/2.0.0_wvgxa4tpgmyetagc7e4kukhube:
+    resolution: {integrity: sha512-vbC0uL6VNhdcy5pUhFPnpuBNmRTLnV5SAmfbD1H4+1ko0qvxzDd5GJCKazYxhPp8nzENHDLIDK3iFa5Y5hn4YQ==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
       graphql: '>=0.9.0'
-      rollup: ^1.20.0 || ^2.0.0
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
     dependencies:
       '@rollup/pluginutils': 4.2.1
       graphql: 16.6.0
@@ -3049,13 +3053,13 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.6
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: true
 
   /@types/eslint/8.4.6:
     resolution: {integrity: sha512-/fqTbjxyFUaYNO7VcW5g+4npmqVACz1bB7RTHYuLj+PRjw9hrCwrUXVQFpChUS0JsyEFvMZ7U/PfmvWgxJhI9g==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: true
 
