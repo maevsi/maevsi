@@ -70,7 +70,7 @@ specifiers:
   eslint-plugin-yml: 1.2.0
   graphql: 16.6.0
   graphql-tag: 2.12.6
-  h3: 0.7.21
+  h3: 0.8.1
   html-to-text: 8.2.1
   ical-generator: 3.6.0
   isomorphic-dompurify: 0.23.0
@@ -182,7 +182,7 @@ devDependencies:
   eslint-plugin-yml: 1.2.0_eslint@8.25.0
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
-  h3: 0.7.21
+  h3: 0.8.1
   html-to-text: 8.2.1
   ical-generator: 3.6.0_iwjys7ellpp5wkw4o3gistaau4
   isomorphic-dompurify: 0.23.0
@@ -213,7 +213,7 @@ devDependencies:
   stylelint-config-standard: 29.0.0_stylelint@14.14.0
   stylelint-no-unsupported-browser-features: 6.0.1_stylelint@14.14.0
   sweetalert2: 11.5.1
-  tailwindcss: 3.1.8_ts-node@10.9.1
+  tailwindcss: 3.1.8_neo3lunb2qpadwxplzw7r2isgm
   ts-jest: 29.0.3_shd42o4n4w4ntrjq72eylakh5u
   ts-node: 10.9.1_xtdkmayvpbwqd3kc4kczaw2zvm
   typescript: 4.8.4
@@ -2759,7 +2759,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_neo3lunb2qpadwxplzw7r2isgm
     dev: true
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.1.8:
@@ -2767,7 +2767,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_neo3lunb2qpadwxplzw7r2isgm
     dev: true
 
   /@tailwindcss/typography/0.5.7_tailwindcss@3.1.8:
@@ -2779,7 +2779,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_neo3lunb2qpadwxplzw7r2isgm
     dev: true
 
   /@tiptap/core/2.0.0-beta.199:
@@ -7425,6 +7425,15 @@ packages:
       ufo: 0.8.5
     dev: true
 
+  /h3/0.8.1:
+    resolution: {integrity: sha512-HWTShxx4RKpse3f2h5KOWTEAIZLKq9SHWaVBZkOhBH+fH8uRGYY1iNO7VDwImFwARtR/Pg+bVI8feXX9NIdQRQ==}
+    dependencies:
+      cookie-es: 0.5.0
+      destr: 1.1.1
+      radix3: 0.2.1
+      ufo: 0.8.5
+    dev: true
+
   /har-schema/2.0.0:
     resolution: {integrity: sha512-Oqluz6zhGX8cyRaTQlFMPw80bSJVG2x/cFb8ZPhUILGgHka9SsokCCOQgpveePerqidZOrT14ipqfJb7ILcW5Q==}
     engines: {node: '>=4'}
@@ -11189,6 +11198,10 @@ packages:
     resolution: {integrity: sha512-Mpfd/OuX0zoJ6ojLD/RTOHvJPg6e6PjINtmYzV87kIXc5iUtDz34i7gg4SV4XjqRJTmSiYO/g9i/mKWGf4z8wg==}
     dev: true
 
+  /radix3/0.2.1:
+    resolution: {integrity: sha512-FnhArTl5Tq7dodiLeSPKrDUyCQuJqEncP8cKdyy399g8F/cz7GH6FmzA3Rkosu2IZMkpswFFwXfb2ERSiL06pg==}
+    dev: true
+
   /railroad-diagrams/1.0.0:
     resolution: {integrity: sha512-cz93DjNeLY0idrCNOH6PviZGRN9GJhsdm9hpn1YCS879fj4W+x5IFJhhkRZcwVgMmFF7R82UA/7Oh+R8lLZg6A==}
     dev: true
@@ -12381,10 +12394,12 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss/3.1.8_ts-node@10.9.1:
+  /tailwindcss/3.1.8_neo3lunb2qpadwxplzw7r2isgm:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
