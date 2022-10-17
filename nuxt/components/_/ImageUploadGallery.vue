@@ -378,8 +378,8 @@ watch(allUploadsQuery.error, (currentValue, _oldValue) => {
 </script>
 
 <style scoped>
-@import '~/node_modules/@uppy/core/dist/style.css';
-@import '~/node_modules/vue-croppa/dist/vue-croppa.min.css';
+@import url('~/node_modules/@uppy/core/dist/style.css');
+@import url('~/node_modules/vue-croppa/dist/vue-croppa.min.css');
 </style>
 
 <i18n lang="yml">
