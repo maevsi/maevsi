@@ -1,3 +1,10 @@
+## [0.146.6](https://github.com/maevsi/maevsi/compare/0.146.5...0.146.6) (2022-10-17)
+
+
+### Bug Fixes
+
+* **image-upload-gallery:** use url for import ([8397fc6](https://github.com/maevsi/maevsi/commit/8397fc697d86f0585a0b536727c43e51dcc3667a))
+
 ## [0.146.5](https://github.com/maevsi/maevsi/compare/0.146.4...0.146.5) (2022-10-17)
 
 
