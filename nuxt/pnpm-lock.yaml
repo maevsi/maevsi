@@ -45,7 +45,7 @@ specifiers:
   '@uppy/tus': 3.0.2
   '@urql/core': 3.0.3
   '@urql/devtools': 2.0.3
-  '@urql/exchange-graphcache': 5.0.1
+  '@urql/exchange-graphcache': 5.0.2
   '@urql/vue': 1.0.2
   '@vuelidate/core': 2.0.0
   '@vuelidate/validators': 2.0.0
@@ -120,7 +120,7 @@ devDependencies:
   '@graphql-codegen/cli': 2.13.6_bcskau5n4us7t7edj5bgrx4upa
   '@graphql-codegen/typescript': 2.7.4_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.4_graphql@16.6.0
-  '@graphql-codegen/typescript-urql-graphcache': 2.4.1_ocpfxqujlu2fx2f6xxxamgrs5u
+  '@graphql-codegen/typescript-urql-graphcache': 2.4.1_g2kdkeexlemmmd32lkutiqn6o4
   '@graphql-codegen/typescript-vue-urql': 2.3.4_sy4knu3obj4ys7pjcqbyfxmqle
   '@graphql-codegen/urql-introspection': 2.2.1_graphql@16.6.0
   '@http-util/status-i18n': 0.6.2
@@ -157,7 +157,7 @@ devDependencies:
   '@uppy/tus': 3.0.2_@uppy+core@3.0.2
   '@urql/core': 3.0.3_graphql@16.6.0
   '@urql/devtools': 2.0.3_piontxvufcgqglruagbmoe2tyi
-  '@urql/exchange-graphcache': 5.0.1_graphql@16.6.0
+  '@urql/exchange-graphcache': 5.0.2_graphql@16.6.0
   '@urql/vue': 1.0.2_graphql@16.6.0+vue@3.2.40
   '@vuelidate/core': 2.0.0_vue@3.2.40
   '@vuelidate/validators': 2.0.0_vue@3.2.40
@@ -213,7 +213,7 @@ devDependencies:
   stylelint-config-standard: 29.0.0_stylelint@14.14.0
   stylelint-no-unsupported-browser-features: 6.0.1_stylelint@14.14.0
   sweetalert2: 11.5.1
-  tailwindcss: 3.1.8_ts-node@10.9.1
+  tailwindcss: 3.1.8_neo3lunb2qpadwxplzw7r2isgm
   ts-jest: 29.0.3_shd42o4n4w4ntrjq72eylakh5u
   ts-node: 10.9.1_xtdkmayvpbwqd3kc4kczaw2zvm
   typescript: 4.8.4
@@ -1178,7 +1178,7 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/typescript-urql-graphcache/2.4.1_ocpfxqujlu2fx2f6xxxamgrs5u:
+  /@graphql-codegen/typescript-urql-graphcache/2.4.1_g2kdkeexlemmmd32lkutiqn6o4:
     resolution: {integrity: sha512-djGphSN10pJuAJpgWevsRhWX65eAWw2NeoYdgr12vH8lKAK7xO/iSA2ArPfETRRyIGEkRgoqP439/SAnw6r9rA==}
     peerDependencies:
       '@urql/exchange-graphcache': ^4.1.1 || ^5.0.0
@@ -1187,7 +1187,7 @@ packages:
     dependencies:
       '@graphql-codegen/plugin-helpers': 2.7.1_graphql@16.6.0
       '@graphql-codegen/visitor-plugin-common': 2.12.2_graphql@16.6.0
-      '@urql/exchange-graphcache': 5.0.1_graphql@16.6.0
+      '@urql/exchange-graphcache': 5.0.2_graphql@16.6.0
       auto-bind: 4.0.0
       change-case-all: 1.0.14
       graphql: 16.6.0
@@ -2759,7 +2759,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_neo3lunb2qpadwxplzw7r2isgm
     dev: true
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.1.8:
@@ -2767,7 +2767,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_neo3lunb2qpadwxplzw7r2isgm
     dev: true
 
   /@tailwindcss/typography/0.5.7_tailwindcss@3.1.8:
@@ -2779,7 +2779,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.1.8_ts-node@10.9.1
+      tailwindcss: 3.1.8_neo3lunb2qpadwxplzw7r2isgm
     dev: true
 
   /@tiptap/core/2.0.0-beta.199:
@@ -3460,6 +3460,16 @@ packages:
       wonka: 6.1.0
     dev: true
 
+  /@urql/core/3.0.4_graphql@16.6.0:
+    resolution: {integrity: sha512-7c12WLHKjmxcxM8nrVdtaYHQnS0WXSfYCf5lg28eRL2ySbo2rOPINLblblDo8UwGTeyrNzjSRVd0I0NlTN6XTA==}
+    peerDependencies:
+      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@graphql-typed-document-node/core': 3.1.1_graphql@16.6.0
+      graphql: 16.6.0
+      wonka: 6.1.0
+    dev: true
+
   /@urql/devtools/2.0.3_piontxvufcgqglruagbmoe2tyi:
     resolution: {integrity: sha512-TktPLiBS9LcBPHD6qcnb8wqOVcg3Bx0iCtvQ80uPpfofwwBGJmqnQTjUdEFU6kwaLOFZULQ9+Uo4831G823mQw==}
     peerDependencies:
@@ -3471,12 +3481,12 @@ packages:
       wonka: 6.1.0
     dev: true
 
-  /@urql/exchange-graphcache/5.0.1_graphql@16.6.0:
-    resolution: {integrity: sha512-sbornx6SaAADycfEex0+npdJwhImSKa+76DAnOjF48wls5bYlG+ewDe0ipWdmV+gQ+t9SDFPLAHBzFURTlQacQ==}
+  /@urql/exchange-graphcache/5.0.2_graphql@16.6.0:
+    resolution: {integrity: sha512-sTqoYewIB/aiSpJoMAjzJDGTO3xnvl3NeWI9fzqg6qFRp9df2uf3W7hy6oS4NKqOK7CZfo+Ct0coawoF/RK5Kg==}
     peerDependencies:
       graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@urql/core': 3.0.3_graphql@16.6.0
+      '@urql/core': 3.0.4_graphql@16.6.0
       graphql: 16.6.0
       wonka: 6.1.0
     dev: true
@@ -12381,10 +12391,12 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss/3.1.8_ts-node@10.9.1:
+  /tailwindcss/3.1.8_neo3lunb2qpadwxplzw7r2isgm:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
