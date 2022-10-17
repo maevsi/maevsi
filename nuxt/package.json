@@ -11,7 +11,7 @@
     "start": "node .output/server/index.mjs",
     "cypress:open": "cypress open",
     "cypress:test": "cypress run --env type=actual",
-    "test": "pnpm test:unit && pnpm test:integration",
+    "test": "pnpm test:unit && pnpm test:integration:dev",
     "test:unit": "jest",
     "test:integration:dev": "cross-env WAIT_ON_TIMEOUT=30000 NODE_OPTIONS=--use-openssl-ca start-server-and-test 'pnpm dev' 'https://0.0.0.0:3000' 'pnpm cypress:test'",
     "test:integration:prod": "cross-env WAIT_ON_TIMEOUT=100000 NODE_ENV=production start-server-and-test 'pnpm build && pnpm start' 'http://0.0.0.0:3000' 'pnpm cypress:test'",
