@@ -1,9 +1,9 @@
 <template>
   <div>
     <CardStateInfo
-      v-if="$route.query.referrer && !$route.query.isRedirectNoticeHidden"
+      v-if="routeQueryReferrer && !routeQueryIsRedirectNoticeHidden"
     >
-      {{ $t('accountRequired') }}
+      {{ t('accountRequired') }}
     </CardStateInfo>
     <h1>{{ title }}</h1>
     <div class="flex justify-center">
@@ -12,52 +12,42 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Context } from '@nuxt/types-edge'
-import { defineComponent } from '#app'
+<script setup lang="ts">
+import { useMaevsiStore } from '~/store'
 
-export default defineComponent({
-  name: 'IndexPage',
-  middleware({ app, store, redirect, route }: Context): void {
-    if (store.getters.jwtDecoded?.role === 'maevsi_account') {
-      return redirect(route.query.referrer || app.localePath('/dashboard/'))
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
-  data() {
-    return {
-      title: this.$t('title'),
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: title,
-        },
-      ],
-      title,
-    }
-  },
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { $localePath } = useNuxtApp()
+      const route = useRoute()
+      const store = useMaevsiStore()
+
+      if (
+        store.jwtDecoded?.role === 'maevsi_account' &&
+        !Array.isArray(route.query.referrer)
+      ) {
+        return navigateTo(route.query.referrer || $localePath('/dashboard/'))
+      }
+    },
+  ],
 })
+
+const route = useRoute()
+const { t } = useI18n()
+
+// data
+const routeQueryReferrer = route.query.referrer
+const routeQueryIsRedirectNoticeHidden = route.query.isRedirectNoticeHidden
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

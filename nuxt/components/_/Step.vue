@@ -12,20 +12,16 @@
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
+<script setup lang="ts">
+export interface Props {
+  number: string
+  title: string
+}
+withDefaults(defineProps<Props>(), {})
+</script>
 
-export default defineComponent({
+<script lang="ts">
+export default {
   name: 'MaevsiStep',
-  props: {
-    number: {
-      required: true,
-      type: String, // Cannot be Number as translations are always of type String.
-    },
-    title: {
-      required: true,
-      type: String,
-    },
-  },
-})
+}
 </script>

@@ -11,51 +11,42 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
-
-export default defineComponent({
-  props: {
-    alt: {
-      required: true,
-      type: String,
-    },
-    rounded: {
-      default: undefined,
-      type: Boolean as PropType<boolean | undefined>,
-    },
-    src: {
-      required: true,
-      type: String,
-    },
-  },
-  data() {
-    return {
-      srcWhenLoaded: undefined as string | undefined,
-    }
-  },
-  async fetch() {
-    await this.updateSource()
-  },
-  watch: {
-    async src() {
-      await this.updateSource()
-    },
-  },
-  methods: {
-    async updateSource() {
-      this.srcWhenLoaded = process.server
-        ? this.src
-        : await new Promise<string>((resolve) => {
-            const img = new Image()
-
-            img.onload = () => {
-              resolve(img.src)
-            }
-
-            img.src = this.src
-          })
-    },
-  },
+<script setup lang="ts">
+export interface Props {
+  alt: string
+  rounded?: boolean
+  src: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  rounded: undefined,
 })
+
+// data
+const srcWhenLoaded = ref<string>()
+
+// methods
+async function updateSource() {
+  srcWhenLoaded.value = process.server
+    ? props.src
+    : await new Promise<string>((resolve) => {
+        const img = new Image()
+
+        img.onload = () => {
+          resolve(img.src)
+        }
+
+        img.src = props.src
+      })
+}
+
+// lifecycle
+watch(
+  () => props.src,
+  async (_currentValue, _oldValue) => {
+    await updateSource()
+  }
+)
+
+// initialization
+await updateSource()
 </script>

@@ -4,32 +4,29 @@
       {{ title }}
     </h1>
     <section class="flex flex-col gap-4">
-      <h2>{{ $t('session') }}</h2>
+      <h2>{{ t('session') }}</h2>
       <p v-if="sessionExpiryTime !== 'Invalid date'">
-        {{ $t('sessionExpiry', { exp: sessionExpiryTime }) }}
+        {{ t('sessionExpiry', { exp: sessionExpiryTime }) }}
       </p>
       <p v-else>
-        {{ $t('sessionExpired') }}
+        {{ t('sessionExpired') }}
       </p>
-      <ButtonColored
-        :aria-label="$t('sessionExit')"
-        @click="onSessionExitClick()"
-      >
-        {{ $t('sessionExit') }}
-        <template slot="prefix">
+      <ButtonColored :aria-label="t('sessionExit')" @click="signOut">
+        {{ t('sessionExit') }}
+        <template #prefix>
           <IconSignOut />
         </template>
       </ButtonColored>
     </section>
     <section class="flex flex-col gap-4">
-      <h2>{{ $t('codes') }}</h2>
-      <div v-if="jwtDecoded.invitations">
+      <h2>{{ t('codes') }}</h2>
+      <div v-if="jwtDecoded?.invitations">
         <p>
-          {{ $t('codesEntered') }}
+          {{ t('codesEntered') }}
         </p>
         <ul class="list-disc">
           <li
-            v-for="invitationCode in jwtDecoded.invitations"
+            v-for="invitationCode in jwtDecoded?.invitations"
             :key="invitationCode"
           >
             {{ invitationCode }}
@@ -37,67 +34,39 @@
         </ul>
       </div>
       <p v-else>
-        {{ $t('codesEnteredNone') }}
+        {{ t('codesEnteredNone') }}
       </p>
       <ButtonEventUnlock />
     </section>
   </div>
 </template>
 
-<script lang="ts">
-import { mapGetters } from 'vuex'
-import { defineComponent } from '#app'
+<script setup lang="ts">
+import { useSignOut } from '~/plugins/util/auth'
+import { useMaevsiStore } from '~/store'
 
-export default defineComponent({
-  name: 'IndexPage',
-  transition: {
-    name: 'layout',
-  },
-  data() {
-    return {
-      title: this.$t('title'),
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: title,
-        },
-      ],
-      title,
-    }
-  },
-  computed: {
-    ...mapGetters(['jwtDecoded']),
-    sessionExpiryTime(): string {
-      return this.$moment(this.$store.getters.jwtDecoded.exp, 'X').format(
-        'llll'
-      )
-    },
-  },
-  methods: {
-    onSessionExitClick() {
-      this.$util.signOut(this.$apollo.getClient(), this.$store)
-    },
-  },
+const { signOut } = useSignOut()
+const { $moment } = useNuxtApp()
+const { t } = useI18n()
+const store = useMaevsiStore()
+
+// data
+const jwtDecoded = store.jwtDecoded
+const title = t('title')
+
+// computations
+const sessionExpiryTime = computed(() => {
+  return $moment(store.jwtDecoded?.exp, 'X').format('llll')
 })
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">
@@ -113,7 +82,7 @@ de:
 en:
   codes: Invitation codes
   codesEntered: 'You entered the following codes:'
-  codesEnteredNone: You have no codes entered yet 😕
+  codesEnteredNone: You have not entered any codes yet 😕
   session: session
   sessionExit: Exit this session
   sessionExpired: Your session expired.

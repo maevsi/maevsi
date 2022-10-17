@@ -1,5 +1,3 @@
-#import "../../fragments/profilePictureFields.gql"
-
 query profilePictureByUsername($username: String!) {
   profilePictureByUsername(username: $username) {
     ...profilePictureFields

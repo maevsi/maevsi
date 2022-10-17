@@ -6,57 +6,37 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Context } from '@nuxt/types-edge'
+<script setup lang="ts">
+import { useMaevsiStore } from '~/store'
 
-import { defineComponent } from '#app'
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { $localePath } = useNuxtApp()
+      const store = useMaevsiStore()
 
-export default defineComponent({
-  name: 'IndexPage',
-  middleware({ app, store, redirect }: Context): void {
-    if (store.getters.jwtDecoded?.role === 'maevsi_account') {
-      return redirect(
-        app.localePath('/account/' + store.getters.jwtDecoded.username)
-      )
-    } else {
-      return redirect(app.localePath('/task/account/sign-in'))
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
-  data() {
-    return {
-      title: this.$t('title'),
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: title,
-        },
-      ],
-      title,
-    }
-  },
+      if (store.jwtDecoded?.role === 'maevsi_account') {
+        return navigateTo($localePath('/account/' + store.jwtDecoded.username))
+      } else {
+        return navigateTo($localePath('/task/account/sign-in'))
+      }
+    },
+  ],
 })
+
+const { t } = useI18n()
+
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

@@ -7,55 +7,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
+<script setup lang="ts">
+const { t } = useI18n()
 
-export default defineComponent({
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
   name: 'IndexPage',
-  transition: {
-    name: 'layout',
-  },
-  data() {
-    return {
-      graphqlError: undefined as Error | undefined,
-      title: this.$t('title') as string,
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: title,
-        },
-      ],
-      title,
-    }
-  },
-  computed: {
-    signedIn(): boolean {
-      return (
-        this.$store.getters.jwtDecoded?.role === 'maevsi_account' &&
-        this.$store.getters.jwtDecoded?.exp > Math.floor(Date.now() / 1000)
-      )
-    },
-  },
-})
+}
 </script>
 
 <i18n lang="yml">

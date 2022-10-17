@@ -1,5 +1,3 @@
-#import "../../fragments/contactFields.gql"
-
 mutation createContact($contactInput: ContactInput!) {
   createContact(input: { contact: $contactInput }) {
     contact {

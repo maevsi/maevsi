@@ -1,17 +1,17 @@
-#import "../../fragments/eventFields.gql"
-
-query allEvents($first: Int!, $offset: Int, $authorUsername: String) {
+query allEvents($after: Cursor, $authorUsername: String, $first: Int!) {
   allEvents(
+    after: $after
     condition: { authorUsername: $authorUsername }
     first: $first
-    offset: $offset
     orderBy: START_DESC
-  ) @connection(filter: ["condition"], key: "allEvents") {
+  ) {
     nodes {
       ...eventFields
     }
     pageInfo {
       hasNextPage
+      endCursor
     }
+    totalCount
   }
 }

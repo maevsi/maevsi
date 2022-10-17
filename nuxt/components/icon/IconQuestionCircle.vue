@@ -1,10 +1,9 @@
 <template>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    :class="classes"
+  <IconContainer
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
+    :title="title || t('title')"
   >
     <path
       stroke-linecap="round"
@@ -12,18 +11,21 @@
       stroke-width="2"
       d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
     />
-  </svg>
+  </IconContainer>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
+<script setup lang="ts">
+export interface Props {
+  title?: string // eslint-disable-line vue/require-default-prop
+}
+withDefaults(defineProps<Props>(), {})
 
-export default defineComponent({
-  props: {
-    classes: {
-      default: 'h-5 md:h-6 w-5 md:w-6 shrink-0',
-      type: String,
-    },
-  },
-})
+const { t } = useI18n()
 </script>
+
+<i18n lang="yml">
+de:
+  title: Feedback
+en:
+  title: Feedback
+</i18n>

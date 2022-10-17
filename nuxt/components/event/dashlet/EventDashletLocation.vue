@@ -1,7 +1,7 @@
 <template>
   <EventDashlet v-if="event.isInPerson && event.location">
     <span>
-      <IconMapMarker :title="$t('location')" />
+      <IconMapMarker :title="t('location')" />
     </span>
     <AppLink
       class="w-full overflow-hidden text-ellipsis break-words line-clamp-2"
@@ -13,18 +13,15 @@
   </EventDashlet>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
+<script setup lang="ts">
 import { Event } from '~/types/event'
 
-export default defineComponent({
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<Event>,
-    },
-  },
-})
+export interface Props {
+  event: Event
+}
+withDefaults(defineProps<Props>(), {})
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

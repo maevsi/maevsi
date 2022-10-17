@@ -1,7 +1,7 @@
 <template>
   <EventDashlet v-if="event.isRemote && event.url">
     <span>
-      <IconLink :title="$t('url')" />
+      <IconLink :title="t('url')" />
     </span>
     <AppLink
       class="w-full overflow-hidden text-ellipsis break-words line-clamp-2"
@@ -13,18 +13,15 @@
   </EventDashlet>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
+<script setup lang="ts">
 import { Event } from '~/types/event'
 
-export default defineComponent({
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<Event>,
-    },
-  },
-})
+export interface Props {
+  event: Event
+}
+withDefaults(defineProps<Props>(), {})
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

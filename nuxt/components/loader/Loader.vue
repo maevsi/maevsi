@@ -1,34 +1,48 @@
 <template>
-  <CardStateAlert v-if="errors">
-    <ol v-if="errors.length > 1" class="list-decimal">
-      <li v-for="error in errors" :key="error">
-        {{ error }}
-      </li>
-    </ol>
-    <span v-else>
-      {{ errors[0] }}
-    </span>
-  </CardStateAlert>
-  <LoaderIndicatorPing v-else-if="indicator === 'ping'" />
-  <LoaderIndicatorSpinner v-else-if="indicator === 'spinner'" />
-  <LoaderIndicatorText v-else-if="indicator === 'text'" />
-  <LoaderIndicatorText v-else />
+  <div>
+    <div v-if="api.isFetching">
+      <LoaderIndicatorPing v-if="indicator === 'ping'" />
+      <LoaderIndicatorSpinner v-else-if="indicator === 'spinner'" />
+      <LoaderIndicatorText v-else-if="indicator === 'text'" />
+      <LoaderIndicatorText v-else />
+    </div>
+    <CardStateAlert v-if="errorMessages.length">
+      <SpanList :span="errorMessages" />
+    </CardStateAlert>
+    <slot v-if="Object.keys(api.data).length" />
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
+<script setup lang="ts">
+import { CombinedError } from '@urql/core/dist/types/utils/error'
 
-export default defineComponent({
-  name: 'MaevsiLoader',
-  props: {
-    errors: {
-      default: undefined,
-      type: Array as PropType<string[] | undefined>,
-    },
-    indicator: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-  },
+import { useGetCombinedErrorMessages } from '~/plugins/util/util'
+
+export interface Props {
+  api: {
+    data: Object
+    errors: (CombinedError | { errcode: string; message: string })[]
+    isFetching: boolean
+  }
+  indicator: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  api: () => ({
+    data: {},
+    errors: [],
+    isFetching: false,
+  }),
+  indicator: undefined,
 })
+
+const { getCombinedErrorMessages } = useGetCombinedErrorMessages()
+
+// computations
+const errorMessages = computed(() => getCombinedErrorMessages(props.api.errors))
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiLoader',
+}
 </script>

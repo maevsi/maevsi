@@ -1,30 +1,32 @@
 <template>
-  <svg
+  <IconContainer
     aria-hidden="true"
     focusable="false"
     data-prefix="fas"
     data-icon="quote-left"
-    :class="classes"
     role="img"
-    xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 448 512"
+    :title="title || t('title')"
   >
     <path
       fill="currentColor"
       d="M96 224C84.72 224 74.05 226.3 64 229.9V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32S145.7 96 128 96C57.42 96 0 153.4 0 224v96c0 53.02 42.98 96 96 96s96-42.98 96-96S149 224 96 224zM352 224c-11.28 0-21.95 2.305-32 5.879V224c0-35.3 28.7-64 64-64c17.67 0 32-14.33 32-32s-14.33-32-32-32c-70.58 0-128 57.42-128 128v96c0 53.02 42.98 96 96 96s96-42.98 96-96S405 224 352 224z"
     />
-  </svg>
+  </IconContainer>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
+<script setup lang="ts">
+export interface Props {
+  title?: string // eslint-disable-line vue/require-default-prop
+}
+withDefaults(defineProps<Props>(), {})
 
-export default defineComponent({
-  props: {
-    classes: {
-      default: 'h-5 md:h-6 w-5 md:w-6 shrink-0',
-      type: String,
-    },
-  },
-})
+const { t } = useI18n()
 </script>
+
+<i18n lang="yml">
+de:
+  title: Zitat
+en:
+  title: Blockquote
+</i18n>

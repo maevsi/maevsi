@@ -1,5 +1,3 @@
-#import "../../fragments/contactFields.gql"
-
 mutation deleteContact($nodeId: ID!) {
   deleteContact(
     input: {

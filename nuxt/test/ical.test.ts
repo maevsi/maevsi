@@ -1,3 +1,5 @@
+import { expect } from '@jest/globals'
+
 import { getIcalString } from '../server/api/ical'
 
 const OLD_ENV = process.env
@@ -18,14 +20,16 @@ afterAll(() => {
 })
 
 test('gets ical string', () => {
-  process.env.NUXT_ENV_STACK_DOMAIN = undefined
-
   expect(
-    getIcalString({
+    getIcalString('maevsi.test', {
       id: '1',
       authorUsername: 'authorUsername',
       description: '<p>description</p>',
       end: new Date(),
+      invitationsByEventId: {
+        nodes: [],
+      },
+      inviteeCountMaximum: 0,
       isArchived: false,
       isInPerson: false,
       isRemote: false,

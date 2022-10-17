@@ -1,11 +1,8 @@
-#import "../../fragments/contactFields.gql"
-#import "../../fragments/invitationFields.gql"
-
-query allInvitations($first: Int!, $offset: Int, $eventId: BigInt!) {
+query allInvitations($after: Cursor, $eventId: BigInt!, $first: Int!) {
   allInvitations(
+    after: $after
     condition: { eventId: $eventId }
     first: $first
-    offset: $offset
   ) {
     nodes {
       ...invitationFields

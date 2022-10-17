@@ -1,4 +1,8 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import Croppa from 'vue-croppa'
 
-Vue.use(Croppa)
+const app = createApp({})
+
+app.use(Croppa, {})
+
+export default () => {}

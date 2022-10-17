@@ -1,26 +1,26 @@
 <template>
   <header class="mb-8">
     <CardStateInfo v-if="!isBrowserSupported" is-edgy>
-      {{ $t('browserUnsupported') }}
+      {{ t('browserUnsupported') }}
     </CardStateInfo>
     <div class="flex items-center justify-between gap-4">
       <ButtonIcon
-        :aria-label="$t('menuShow')"
+        :aria-label="t('menuShow')"
         class="lg:hidden"
         @click="$emit('onMenuShow')"
       >
         <IconMenu classes="h-8 w-8" />
       </ButtonIcon>
-      <Button :aria-label="$t('home')" :to="localePath('/')">
+      <Button :aria-label="t('home')" :to="localePath('/')">
         <div id="logo" class="h-10 w-32" />
       </Button>
       <div class="hidden lg:block flex-grow" />
       <!-- <div class="hidden xl:flex">
-        <label class="hidden" for="search">{{ $t('search') }}</label>
+        <label class="hidden" for="search">{{ t('search') }}</label>
         <input
           id="search"
           class="form-input cursor-pointer rounded-r-none"
-          :placeholder="$t('search')"
+          :placeholder="t('search')"
           readonly
           type="text"
           @click="navigateToSearch"
@@ -34,13 +34,13 @@
       </div> -->
       <div class="flex items-center gap-2 lg:gap-4 whitespace-nowrap">
         <ButtonText
-          :aria-label="$t('events')"
+          :aria-label="t('events')"
           class="hidden lg:flex"
           :to="localePath('/event')"
           :is-primary="false"
         >
-          {{ $t('events') }}
-          <template slot="prefix">
+          {{ t('events') }}
+          <template #prefix>
             <IconTelescope />
           </template>
         </ButtonText>
@@ -50,18 +50,18 @@
         />
         <ButtonColored
           v-if="signedInUsername"
-          :aria-label="$t('dashboard')"
+          :aria-label="t('dashboard')"
           class="hidden lg:block mx-2"
           :is-primary="false"
           :to="localePath('/dashboard')"
         >
-          {{ $t('dashboard') }}
+          {{ t('dashboard') }}
         </ButtonColored>
         <ButtonIcon
           v-if="signedInUsername"
           :aria-label="signedInUsername"
           class="flex-none"
-          :title="$t('profileLink')"
+          :title="t('profileLink')"
           :to="localePath(`/account/${signedInUsername}`)"
           @click.native="$emit('onMenuHide')"
         >
@@ -74,18 +74,18 @@
         </ButtonIcon>
         <div v-else>
           <ButtonIcon
-            :aria-label="$t('signIn')"
+            :aria-label="t('signIn')"
             class="lg:hidden h-8 w-8"
             :to="localePath('/task/account/sign-in')"
           >
             <IconSignIn classes="h-6 w-6" />
           </ButtonIcon>
           <ButtonText
-            :aria-label="$t('signIn')"
+            :aria-label="t('signIn')"
             class="hidden lg:inline-block"
             :to="localePath('/task/account/sign-in')"
           >
-            {{ $t('signIn') }}
+            {{ t('signIn') }}
           </ButtonText>
         </div>
       </div>
@@ -93,35 +93,36 @@
   </header>
 </template>
 
-<script lang="ts">
-import { mapGetters } from 'vuex'
-
-import { defineComponent } from '#app'
-
+<script setup lang="ts">
+import { useMaevsiStore } from '~/store'
 import supportedBrowsers from '~/supportedBrowsers'
 
-export default defineComponent({
-  name: 'MaevsiHeader',
-  data() {
-    return {
-      isBrowserSupported: true,
-    }
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
-  },
-  beforeMount() {
-    this.isBrowserSupported = supportedBrowsers.test(navigator.userAgent)
-  },
-  methods: {
-    navigateToSearch() {
-      this.$router.push({
-        path: this.localePath(`/task/search`),
-        query: { q: 'search phrase' },
-      })
-    },
-  },
+const store = useMaevsiStore()
+const localePath = useLocalePath()
+const { t } = useI18n()
+
+// data
+const isBrowserSupported = ref(true)
+const signedInUsername = store.signedInUsername
+
+// // methods
+// function navigateToSearch() {
+//   navigateTo({
+//     path: localePath(`/task/search`),
+//     query: { q: 'search phrase' },
+//   })
+// }
+
+// lifecycle
+onBeforeMount(() => {
+  isBrowserSupported.value = supportedBrowsers.test(navigator.userAgent)
 })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiHeader',
+}
 </script>
 
 <i18n lang="yml">
@@ -136,7 +137,7 @@ de:
   signIn: Anmelden
   signOut: Abmelden
 en:
-  browserUnsupported: Your browser seems outdated. Some things might not work or look funny because of this.
+  browserUnsupported: Your browser version seems outdated. Some things might not work as expected or look funny.
   dashboard: Dashboard
   events: Explore events
   home: Head home

@@ -1,7 +1,7 @@
 <template>
   <Button
     :aria-label="ariaLabel"
-    class="flex items-center justify-center"
+    class="flex justify-center"
     :disabled="disabled"
     :title="ariaLabel"
     :to="to"
@@ -12,27 +12,17 @@
   </Button>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
+<script setup lang="ts">
+export interface Props {
+  ariaLabel: string
+  disabled?: boolean
+  to?: string
+  type?: 'button' | 'submit' | 'reset'
+}
 
-export default defineComponent({
-  props: {
-    ariaLabel: {
-      required: true,
-      type: String,
-    },
-    disabled: {
-      default: false,
-      type: Boolean,
-    },
-    to: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    type: {
-      default: 'button',
-      type: String,
-    },
-  },
+withDefaults(defineProps<Props>(), {
+  disabled: false,
+  to: undefined,
+  type: 'button',
 })
 </script>

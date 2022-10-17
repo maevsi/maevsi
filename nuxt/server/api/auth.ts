@@ -2,9 +2,9 @@ import fs from 'fs'
 
 import { serialize } from 'cookie'
 import { CompatibilityEvent } from 'h3'
-import jsonwebtoken from 'jsonwebtoken'
+import { jwtVerify, importSPKI } from 'jose'
 
-import { JWT_NAME } from '~/plugins/static/constants'
+import { JWT_NAME, JWT_ALGORITHM } from '~/plugins/util/constants'
 
 const configPostgraphileJwtPublicKeyPath =
   process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE || ''
@@ -14,7 +14,7 @@ const configPostgraphileJwtPublicKey = fs.existsSync(
   ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
   : undefined
 
-export default function (event: CompatibilityEvent) {
+export default async function (event: CompatibilityEvent) {
   const { req, res } = event
 
   if (configPostgraphileJwtPublicKey === undefined) {
@@ -30,12 +30,15 @@ export default function (event: CompatibilityEvent) {
     jwt = req.headers.authorization.substring(7)
 
     try {
-      // eslint-disable-next-line import/no-named-as-default-member
-      jsonwebtoken.verify(jwt, configPostgraphileJwtPublicKey, {
-        algorithms: ['RS256'],
-        audience: 'postgraphile',
-        issuer: 'postgraphile',
-      })
+      jwtVerify(
+        jwt,
+        await importSPKI(configPostgraphileJwtPublicKey, JWT_ALGORITHM),
+        {
+          algorithms: [JWT_ALGORITHM],
+          audience: 'postgraphile',
+          issuer: 'postgraphile',
+        }
+      )
     } catch (err: any) {
       res.statusCode = 401
       res.end('Json web token verification failed: "' + err.message + '"!')

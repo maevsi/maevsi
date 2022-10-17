@@ -1,17 +1,17 @@
-#import "../../fragments/contactFields.gql"
-
-query allContacts($first: Int!, $offset: Int, $authorAccountUsername: String) {
+query allContacts($after: Cursor, $authorAccountUsername: String, $first: Int!) {
   allContacts(
+    after: $after
     condition: { authorAccountUsername: $authorAccountUsername }
     first: $first
-    offset: $offset
     orderBy: [ACCOUNT_USERNAME_ASC, FIRST_NAME_ASC, LAST_NAME_ASC]
-  ) @connection(filter: ["condition"], key: "allContacts") {
+  ) {
     nodes {
       ...contactFields
     }
     pageInfo {
       hasNextPage
+      endCursor
     }
+    totalCount
   }
 }

@@ -23,10 +23,10 @@
             class="text-xs font-medium text-gray-500 dark:text-gray-400 md:text-right"
           >
             <span v-if="isRequired">
-              {{ $t('required') }}
+              {{ t('required') }}
             </span>
             <span v-if="isOptional">
-              {{ $t('optional') }}
+              {{ t('optional') }}
             </span>
           </span>
         </label>
@@ -45,13 +45,13 @@
             :placeholder="placeholder"
             :type="type"
             :value="value?.$model"
-            @input="$emit('input', $event.target?.value)"
+            @input="onInput"
           />
           <div v-if="validationProperty && isValidatable">
             <FormInputIconWrapper v-if="validationProperty.$pending">
               <IconHourglass
                 class="text-blue-600"
-                :title="$t('globalLoading')"
+                :title="t('globalLoading')"
               />
             </FormInputIconWrapper>
             <FormInputIconWrapper
@@ -59,7 +59,7 @@
                 validationProperty.$model && !validationProperty.$invalid
               "
             >
-              <IconCheckCircle class="text-green-600" :title="$t('valid')" />
+              <IconCheckCircle class="text-green-600" :title="t('valid')" />
             </FormInputIconWrapper>
             <FormInputIconWrapper
               v-else-if="
@@ -68,7 +68,7 @@
             >
               <IconExclamationCircle
                 class="text-red-600"
-                :title="$t('validNot')"
+                :title="t('validNot')"
               />
             </FormInputIconWrapper>
           </div>
@@ -76,7 +76,7 @@
         <span
           v-if="$slots.icon"
           class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-600"
-          @click="$emit('icon')"
+          @click="emit('icon')"
         >
           <slot name="icon" />
         </span>
@@ -89,7 +89,7 @@
       <div class="md:w-2/3">
         <slot name="stateInfo" />
         <FormInputStateInfo v-if="value?.$pending">
-          {{ $t('globalLoading') }}
+          {{ t('globalLoading') }}
         </FormInputStateInfo>
       </div>
       <div class="md:w-1/3" />
@@ -104,99 +104,81 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import type { BaseValidation } from '@vuelidate/core'
 import consola from 'consola'
-import { defineComponent, PropType } from '#app'
 
-const FormInput = defineComponent({
-  props: {
-    isDisabled: {
-      default: false,
-      type: Boolean,
-    },
-    isOptional: {
-      default: false,
-      type: Boolean,
-    },
-    isRequired: {
-      default: false,
-      type: Boolean,
-    },
-    isValidatable: {
-      default: false,
-      type: Boolean,
-    },
-    idLabel: {
-      required: true,
-      type: String as PropType<string | undefined>,
-    },
-    placeholder: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    success: {
-      default: false,
-      type: Boolean,
-    },
-    title: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    type: {
-      required: true,
-      type: String as PropType<string | undefined>,
-    },
-    validationProperty: {
-      default: undefined,
-      type: Object,
-    },
-    value: {
-      default: undefined,
-      type: Object as PropType<object | undefined>,
-    },
-    warning: {
-      default: false,
-      type: Boolean,
-    },
-  },
-  created() {
-    if (
-      !this.placeholder &&
-      this.type &&
-      ![
-        'checkbox',
-        'datetime-local',
-        'number',
-        'select',
-        'textarea',
-        'tiptap',
-        'radio',
-      ].includes(this.type)
-    ) {
-      consola.warn(`placeholder is missing for ${this.idLabel}!`)
-    }
-
-    if (
-      !this.value &&
-      this.type &&
-      !['checkbox', 'select'].includes(this.type)
-    ) {
-      consola.warn(`value is missing for ${this.idLabel}!`)
-    }
-  },
+export interface Props {
+  isDisabled?: boolean
+  isOptional?: boolean
+  isRequired?: boolean
+  isValidatable?: boolean
+  idLabel: string | undefined
+  placeholder?: string
+  success?: boolean
+  title?: string
+  type: string | undefined
+  validationProperty?: BaseValidation
+  value?: BaseValidation
+  warning?: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  isDisabled: false,
+  isOptional: false,
+  isRequired: false,
+  isValidatable: false,
+  placeholder: undefined,
+  success: false,
+  title: undefined,
+  validationProperty: undefined,
+  value: undefined,
+  warning: false,
 })
 
-export default FormInput
+const emit = defineEmits<{
+  (e: 'icon'): void
+  (e: 'input', input: string): void
+}>()
 
-export type FormInputType = InstanceType<typeof FormInput>
+const { t } = useI18n()
+
+// methods
+function onInput(payload: Event) {
+  emit('input', (payload.target as HTMLInputElement)?.value)
+}
+
+// initialization
+if (
+  !props.placeholder &&
+  props.type &&
+  ![
+    'checkbox',
+    'datetime-local',
+    'number',
+    'select',
+    'textarea',
+    'tiptap',
+    'radio',
+  ].includes(props.type)
+) {
+  consola.warn(`placeholder is missing for ${props.idLabel}!`)
+}
+
+if (
+  !props.value &&
+  props.type &&
+  !['checkbox', 'select'].includes(props.type)
+) {
+  consola.warn(`value is missing for ${props.idLabel}!`)
+}
 </script>
 
 <i18n lang="yml">
 de:
   optional: optional
   required: Pflichtfeld
-  valid: Valide
-  validNot: Invalide
+  valid: Gültig
+  validNot: Ungültig
 en:
   optional: optional
   required: required

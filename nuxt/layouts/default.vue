@@ -2,7 +2,7 @@
   <div class="container mx-auto p-4 md:px-8">
     <Header @onMenuShow="menuShow" />
     <main class="min-h-screen flex-1 overflow-hidden">
-      <nuxt />
+      <slot />
     </main>
     <Footer />
     <div
@@ -13,7 +13,7 @@
           : ['backdrop-brightness-100 backdrop-blur-0']),
         ...(isMenuVisiblePartly ? [] : ['invisible']),
       ]"
-      @click="menuHide()"
+      @click="menuHide"
     />
     <div
       class="fixed bottom-0 left-0 top-0 z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 lg:hidden"
@@ -21,45 +21,39 @@
     >
       <Menu v-if="isMenuVisiblePartly" is-closable @onMenuHide="menuHide" />
     </div>
-    <CookieControl :locale="$i18n.locale" />
+    <!-- <CookieControl :locale="locale" /> -->
   </div>
 </template>
 
+<script setup lang="ts">
+const { $moment } = useNuxtApp()
+const { locale } = useI18n()
+
+// data
+const isMenuVisible = ref(false)
+const isMenuVisiblePartly = ref(false)
+
+// methods
+function menuHide(): void {
+  isMenuVisible.value = false
+  setTimeout(() => {
+    isMenuVisiblePartly.value = false
+  }, 500)
+}
+function menuShow(): void {
+  isMenuVisiblePartly.value = true
+  isMenuVisible.value = true
+}
+
+// initialization
+useHeadLayout()
+$moment.locale(locale.value)
+</script>
+
 <script lang="ts">
-import { mapGetters } from 'vuex'
-
-import { defineComponent } from '#app'
-
-export default defineComponent({
+export default {
   name: 'IndexPage',
-  data() {
-    return {
-      isMenuVisible: false,
-      isMenuVisiblePartly: false,
-    }
-  },
-  head() {
-    return this.$nuxtI18nHead({ addSeoAttributes: true })
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
-  },
-  beforeCreate() {
-    this.$moment.locale(this.$i18n.locale)
-  },
-  methods: {
-    menuHide() {
-      this.isMenuVisible = false
-      setTimeout(() => {
-        this.isMenuVisiblePartly = false
-      }, 500)
-    },
-    menuShow() {
-      this.isMenuVisiblePartly = true
-      this.isMenuVisible = true
-    },
-  },
-})
+}
 </script>
 
 <style>

@@ -11,12 +11,20 @@ nuxt/.output
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 
-nuxt/.nuxt-storybook/
-nuxt/storybook-static/
-
-# Storycap
-nuxt/.storybook/storycap/images/actual
-nuxt/.storybook/storycap/working-directory
-
 # Git
 nuxt/**/!.gitkeep
+
+# Environment variables
+**/.env
+
+# ESLint
+.eslintcache
+
+# Cypress
+nuxt/cypress/results
+nuxt/cypress/reports
+nuxt/cypress/screenshots
+nuxt/cypress/snapshots/actual
+nuxt/cypress/snapshots/diff
+nuxt/cypress/snapshots/result
+nuxt/cypress/videos

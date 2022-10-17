@@ -1,11 +1,13 @@
-export type Feedback = 'ACCEPTED' | 'CANCELED' | null
-
-export type FeedbackPaper = 'NONE' | 'PAPER' | 'DIGITAL' | null
+import { Contact } from './contact'
+import { InvitationFeedback, InvitationFeedbackPaper } from '~/gql/generated'
 
 export interface Invitation {
+  contactByContactId?: Contact
+  contactId: any
+  eventId: any
+  feedback?: InvitationFeedback
+  feedbackPaper?: InvitationFeedbackPaper
   id: any
+  nodeId: string
   uuid: string
-
-  feedback: Feedback
-  feedbackPaper: FeedbackPaper
 }

@@ -5,53 +5,39 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Context } from '@nuxt/types-edge'
+<script setup lang="ts">
+import { REGEX_UUID } from '~/plugins/util/validation'
 
-import { defineComponent } from '#app'
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { $localePath } = useNuxtApp()
+      const route = useRoute()
 
-export default defineComponent({
-  name: 'IndexPage',
-  middleware({ app, query, redirect }: Context) {
-    if (Array.isArray(query.code) || !app.$util.REGEX_UUID.test(query.code)) {
-      return redirect(app.localePath('/'))
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
-  data() {
-    return {
-      title: this.$t('title'),
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: title,
-        },
-      ],
-      title,
-    }
-  },
+      if (
+        Array.isArray(route.query.code) ||
+        route.query.code === null ||
+        !REGEX_UUID.test(route.query.code)
+      ) {
+        return navigateTo($localePath('/'))
+      }
+    },
+  ],
 })
+
+const { t } = useI18n()
+
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

@@ -29,8 +29,8 @@
             class="self-start font-medium text-sm"
           >
             <div class="flex items-center gap-1">
-              <IconEyeOff classes="h-5 w-5" :title="$t('private')" />
-              {{ $t('private') }}
+              <IconEyeOff classes="h-5 w-5" :title="t('private')" />
+              {{ t('private') }}
             </div>
           </Tag>
         </div>
@@ -48,39 +48,35 @@
   </li>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
-import { mapGetters } from 'vuex'
 import mustache from 'mustache'
 
-import { defineComponent, PropType } from '#app'
-import { Event as MaevsiEvent } from '~/types/event'
+import { Event } from '~/types/event'
 
-export default defineComponent({
-  props: {
-    event: {
-      required: true,
-      type: Object as PropType<MaevsiEvent>,
-    },
-  },
-  computed: {
-    ...mapGetters(['jwtDecoded']),
-    eventDescriptionTemplate(): string | undefined {
-      if (!this.event?.description) return
+export interface Props {
+  event: Event
+}
+const props = withDefaults(defineProps<Props>(), {})
 
-      return htmlToText(
-        DOMPurify.sanitize(
-          mustache.render(this.event.description, {
-            event: this.event,
-          })
-        ),
-        {
-          selectors: [{ selector: 'a', options: { ignoreHref: true } }],
-        }
-      )
-    },
-  },
+const localePath = useLocalePath()
+const { t } = useI18n()
+
+// computations
+const eventDescriptionTemplate = computed(() => {
+  if (!props.event?.description) return
+
+  return htmlToText(
+    DOMPurify.sanitize(
+      mustache.render(props.event.description, {
+        event: props.event,
+      })
+    ),
+    {
+      selectors: [{ selector: 'a', options: { ignoreHref: true } }],
+    }
+  )
 })
 </script>
 

@@ -4,16 +4,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
-
-export default defineComponent({
-  name: 'MaevsiCard',
-  props: {
-    backgroundColor: {
-      default: 'bg-background-brighten dark:bg-background-darken',
-      type: String,
-    },
-  },
+<script setup lang="ts">
+export interface Props {
+  backgroundColor?: string
+}
+withDefaults(defineProps<Props>(), {
+  backgroundColor: 'bg-background-brighten dark:bg-background-darken',
 })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiCard',
+}
 </script>

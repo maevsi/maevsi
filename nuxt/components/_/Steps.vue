@@ -21,20 +21,18 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
-
-export default defineComponent({
-  name: 'MaevsiStep',
-  props: {
-    active: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    steps: {
-      required: true,
-      type: Array as PropType<Array<string> | undefined>,
-    },
-  },
+<script setup lang="ts">
+export interface Props {
+  active?: string
+  steps: Array<string> | undefined
+}
+withDefaults(defineProps<Props>(), {
+  active: undefined,
 })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiStep',
+}
 </script>

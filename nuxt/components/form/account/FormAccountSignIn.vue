@@ -2,176 +2,159 @@
   <div class="flex flex-col items-center gap-4">
     <ButtonColored
       :is-primary="false"
-      :aria-label="$t('register')"
+      :aria-label="t('register')"
       :to="localePath('/task/account/register')"
     >
-      {{ $t('register') }}
-      <template slot="prefix">
+      {{ t('register') }}
+      <template #prefix>
         <IconArrowRight />
       </template>
     </ButtonColored>
     <Form
-      :errors="$util.getGqlErrorMessages(graphqlError, this)"
-      :form="$v.form"
+      :errors="api.errors"
+      :form="v$.form"
       form-class="w-full"
-      :form-sent="form.sent"
-      :submit-name="$t('signIn')"
+      :is-form-sent="isFormSent"
+      :submit-name="t('signIn')"
       @submit.prevent="submit"
     >
       <FormInputUsername
-        id="username-sign-in"
-        :form-input="$v.form.username"
+        :form-input="v$.form.username"
         @input="form.username = $event"
       />
       <FormInputPassword
-        id="password-sign-in"
-        :form-input="$v.form.password"
+        :form-input="v$.form.password"
         @input="form.password = $event"
       />
       <div class="flex justify-center">
         <AppLink :to="localePath('/task/account/password/reset/request')">
-          {{ $t('passwordReset') }}
+          {{ t('passwordReset') }}
         </AppLink>
       </div>
-      <template slot="assistance">
+      <template #assistance>
         <ButtonColored
           v-if="
-            graphqlError?.graphQLErrors.filter((e) => e.errcode === '55000')
-              .length > 0
+            api.errors.filter((e) =>
+              'errcode' in e ? e.errcode === '55000' : false
+            ).length
           "
-          :aria-label="$t('verificationMailResend')"
+          :aria-label="t('verificationMailResend')"
           @click="accountRegistrationRefresh"
         >
-          {{ $t('verificationMailResend') }}
+          {{ t('verificationMailResend') }}
         </ButtonColored>
       </template>
     </Form>
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { maxLength, minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent } from '#app'
+import {
+  formPreSubmit,
+  VALIDATION_FORMAT_SLUG,
+  VALIDATION_PASSWORD_LENGTH_MINIMUM,
+  VALIDATION_USERNAME_LENGTH_MAXIMUM,
+} from '~/plugins/util/validation'
+import { useJwtStore } from '~/plugins/util/auth'
+import { getApiDataDefault } from '~/plugins/util/util'
+import {
+  useAccountRegistrationRefreshMutation,
+  useAuthenticateMutation,
+} from '~/gql/generated'
 
-import ACCOUNT_REGISTRATION_MUTATION_REFRESH from '~/gql/mutation/account/accountRegistrationRefresh.gql'
-import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
+const { jwtStore } = useJwtStore()
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
+const { executeMutation: executeMutationAccountRegistrationRefresh } =
+  useAccountRegistrationRefreshMutation()
+const { executeMutation: executeMutationAuthentication } =
+  useAuthenticateMutation()
 
-const FormAccountSignIn = defineComponent({
-  data() {
-    return {
-      form: {
-        password: undefined,
-        sent: false,
-        username: undefined,
-      },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  watch: {
-    form: {
-      handler(val) {
-        if (JSON.stringify(val) !== '{}') {
-          this.$emit('form', val)
-        }
-      },
-      deep: true,
-    },
-  },
-  methods: {
-    async accountRegistrationRefresh() {
-      const res = await this.$apollo
-        .mutate({
-          mutation: ACCOUNT_REGISTRATION_MUTATION_REFRESH,
-          variables: {
-            language: this.$i18n.locale,
-            username: this.$v.form.username?.$model,
-          },
-        })
-        .then(({ data }) => data.accountRegistrationRefresh)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
+// api data
+const api = getApiDataDefault().api
 
-      if (!res) {
-        return
-      }
+// data
+const form = reactive({
+  password: ref<string>(),
+  username: ref<string>(),
+})
+const isFormSent = ref(false)
 
+// methods
+function accountRegistrationRefresh() {
+  if (!form.username) throw new Error('Username is not set!')
+
+  executeMutationAccountRegistrationRefresh({
+    language: locale.value,
+    username: form.username,
+  }).then((result) => {
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    } else {
       Swal.fire({
         icon: 'success',
-        text: this.$t('registrationRefreshSuccess') as string,
-        title: this.$t('sent'),
+        text: t('registrationRefreshSuccess') as string,
+        title: t('sent'),
       })
-    },
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
-
-      const res = await this.$apollo
-        .mutate({
-          mutation: AUTHENTICATE_MUTATION,
-          variables: {
-            username: this.form.username,
-            password: this.form.password,
-          },
-        })
-        .then(({ data }) => data.authenticate)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return
-      }
-
-      this.$util
-        .jwtStore(
-          this.$apollo.getClient(),
-          this.$store,
-          undefined,
-          res.jwt,
-          () => {}
-        )
-        .then(() => {
-          this.$router.push(this.localePath(`/dashboard`))
-        })
-        .catch(
-          async () =>
-            await Swal.fire({
-              icon: 'error',
-              text: this.$t('jwtStoreFail') as string,
-              title: this.$t('globalStatusError'),
-            })
-        )
-    },
-  },
-  validations() {
-    return {
-      form: {
-        username: {
-          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
-          required,
-        },
-        password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-      },
     }
+  })
+}
+async function submit() {
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  if (!form.username) throw new Error('Username is not set!')
+  if (!form.password) throw new Error('Password is not set!')
+
+  executeMutationAuthentication({
+    username: form.username,
+    password: form.password,
+  }).then(async (result) => {
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    } else {
+      await jwtStore(result.data?.authenticate?.jwt, () => {})
+        .then(() => {
+          navigateTo(localePath(`/dashboard`))
+        })
+        .catch(async (error) => {
+          consola.debug(error)
+          await Swal.fire({
+            icon: 'error',
+            text: t('jwtStoreFail') as string,
+            title: t('globalStatusError'),
+          })
+        })
+    }
+  })
+}
+
+// vuelidate
+const rules = {
+  form: {
+    username: {
+      formatSlug: VALIDATION_FORMAT_SLUG,
+      maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+      required,
+    },
+    password: {
+      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+      required,
+    },
   },
-})
-
-export default FormAccountSignIn
-
-export type FormAccountSignInType = InstanceType<typeof FormAccountSignIn>
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">
@@ -188,10 +171,10 @@ de:
   username: Nutzername
   verificationMailResend: Verifizierungsmail erneut senden
 en:
-  jwtStoreFail: Failed to store the authentication information!
+  jwtStoreFail: Failed to store the authentication data!
   passwordReset: Reset password
-  postgres22023: An account with this username does not exists! Check your input for spelling mistakes.
-  postgres55000: The email address is not yet verified!
+  postgres22023: This username does not belong to any account! Check your input for spelling mistakes.
+  postgres55000: This email address has not been verified yet!
   postgresP0002: Login failed! Have you registered yet? Check your input for spelling mistakes.
   register: Or register instead
   registrationRefreshSuccess: A new welcome email is on its way to you.

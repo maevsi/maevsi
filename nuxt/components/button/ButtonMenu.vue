@@ -3,7 +3,7 @@
     :aria-label="ariaLabel"
     class="p-4"
     :class="{
-      'bg-white dark:bg-gray-800': $route.fullPath === to,
+      'bg-white dark:bg-gray-800': route.fullPath === to,
     }"
     :to="to"
     @click.native="$emit('onMenuHide')"
@@ -12,19 +12,14 @@
   </Button>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
-
-export default defineComponent({
-  props: {
-    ariaLabel: {
-      required: true,
-      type: String,
-    },
-    to: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-  },
+<script setup lang="ts">
+export interface Props {
+  ariaLabel: string
+  to?: string
+}
+withDefaults(defineProps<Props>(), {
+  to: undefined,
 })
+
+const route = useRoute()
 </script>

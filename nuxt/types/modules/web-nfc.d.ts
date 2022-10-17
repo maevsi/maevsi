@@ -7,7 +7,6 @@
 // This type definitions referenced to WebIDL.
 // https://w3c.github.io/web-nfc/#actual-idl-index
 
-// eslint-disable-next-line no-use-before-define
 declare type NDEFRecordDataSource = string | BufferSource | NDEFMessageInit
 
 declare interface NDEFRecordInit {

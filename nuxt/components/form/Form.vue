@@ -1,7 +1,7 @@
 <template>
   <form
     v-if="form"
-    ref="form"
+    ref="formRef"
     :class="[
       { 'animate-shake rounded border border-red-500': errors?.length },
       formClass,
@@ -13,24 +13,26 @@
       <slot />
       <div class="mb-4 mt-6 flex flex-col items-center justify-between">
         <ButtonColored
-          ref="buttonSubmit"
-          :aria-label="submitName"
+          ref="buttonSubmitRef"
+          :aria-label="submitName || t('submit')"
           :class="{
-            'animate-shake': form.$anyError,
+            'animate-shake': form.$error,
           }"
           type="submit"
           @click="$emit('click')"
         >
-          {{ submitName }}
-          <template slot="prefix">
+          {{ submitName || t('submit') }}
+          <template #prefix>
             <slot name="submit-icon" />
           </template>
         </ButtonColored>
-        <FormInputStateError v-if="form.$anyError" class="mt-2">
-          {{ $t('globalValidationFailed') }}
+        <FormInputStateError v-if="form.$error" class="mt-2">
+          {{ t('globalValidationFailed') }}
         </FormInputStateError>
       </div>
-      <Loader v-if="errors" class="my-4" :errors="errors" />
+      <CardStateAlert v-if="errorMessages?.length" class="my-4">
+        <SpanList :span="errorMessages" />
+      </CardStateAlert>
       <div class="flex justify-center">
         <slot name="assistance" />
       </div>
@@ -38,60 +40,52 @@
   </form>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, ref } from '#app'
+<script setup lang="ts">
+import { CombinedError } from '@urql/core'
+import type { BaseValidation } from '@vuelidate/core'
+
 import Button from '~/components/button/Button.vue'
+import { useGetCombinedErrorMessages } from '~/plugins/util/util'
 
-const Form = defineComponent({
-  name: 'MaevsiForm',
-  props: {
-    errors: {
-      default: undefined,
-      type: Array as PropType<string[] | undefined>,
-    },
-    form: {
-      required: true,
-      type: Object,
-    },
-    formClass: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-    formSent: {
-      required: true,
-      type: Boolean,
-    },
-    submitName: {
-      default() {
-        return this.$t('submit') as string
-      },
-      type: String,
-    },
-  },
-  setup() {
-    const buttonSubmit = ref<InstanceType<typeof Button>>()
-
-    const submit = () => {
-      if (buttonSubmit) {
-        buttonSubmit.value?.click()
-      }
-    }
-
-    return {
-      buttonSubmit,
-      submit,
-    }
-  },
-  methods: {
-    reset() {
-      ;(this.$refs.form as HTMLFormElement).reset()
-    },
-  },
+export interface Props {
+  errors?: (CombinedError | { errcode: string; message: string })[]
+  form: BaseValidation
+  formClass?: string
+  isFormSent?: boolean
+  submitName?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  errors: undefined,
+  formClass: undefined,
+  isFormSent: false,
+  submitName: undefined,
 })
 
-export default Form
+const { getCombinedErrorMessages } = useGetCombinedErrorMessages()
+const { t } = useI18n()
 
-export type FormType = InstanceType<typeof Form>
+// refs
+const buttonSubmitRef = ref<InstanceType<typeof Button>>()
+const formRef = ref<HTMLFormElement>()
+
+// // methods
+// function reset() {
+//   formRef.value?.reset()
+// }
+// function submit() {
+//   buttonSubmitRef.value?.click()
+// }
+
+// computations
+const errorMessages = computed(() =>
+  props.errors ? getCombinedErrorMessages(props.errors) : undefined
+)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'MaevsiForm',
+}
 </script>
 
 <i18n lang="yml">

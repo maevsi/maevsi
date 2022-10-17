@@ -1,9 +1,12 @@
 import { defineNuxtPlugin } from '#app'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const { app, $moment } = nuxtApp.nuxt2Context
+  nuxtApp.$i18n.onLanguageSwitched = (
+    _oldLocale: string,
+    newLocale: string
+  ) => {
+    const { $moment } = nuxtApp
 
-  app.i18n.onLanguageSwitched = (_oldLocale, newLocale) => {
     $moment.locale(newLocale)
   }
 })

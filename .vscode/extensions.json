@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "apollographql.vscode-apollo",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "timonwong.shellcheck",
+    "vue.volar",
+  ]
+}

@@ -26,10 +26,10 @@
         <ButtonIcon
           :aria-label="
             contact.authorAccountUsername !== signedInUsername
-              ? $t('disabledReasonCreatorNot', {
+              ? t('disabledReasonCreatorNot', {
                   authorAccountUsername: contact.authorAccountUsername,
                 })
-              : $t('contactEdit')
+              : t('contactEdit')
           "
           :disabled="
             contact.authorAccountUsername !== signedInUsername || isEditing
@@ -39,7 +39,7 @@
           <IconPencil />
         </ButtonIcon>
         <ButtonIcon
-          :aria-label="$t('contactDelete')"
+          :aria-label="t('contactDelete')"
           :disabled="isDeleting || contact.accountUsername === signedInUsername"
           @click="$emit('delete')"
         >
@@ -50,31 +50,25 @@
   </tr>
 </template>
 
-<script lang="ts">
-import { mapGetters } from 'vuex'
-
-import { defineComponent, PropType } from '#app'
+<script setup lang="ts">
+import { useMaevsiStore } from '~/store'
 import { Contact } from '~/types/contact'
 
-export default defineComponent({
-  props: {
-    contact: {
-      required: true,
-      type: Object as PropType<Contact>,
-    },
-    isDeleting: {
-      default: false,
-      type: Boolean,
-    },
-    isEditing: {
-      default: false,
-      type: Boolean,
-    },
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
-  },
+export interface Props {
+  contact: Contact
+  isDeleting?: boolean
+  isEditing?: boolean
+}
+withDefaults(defineProps<Props>(), {
+  isDeleting: false,
+  isEditing: false,
 })
+
+const store = useMaevsiStore()
+const { t } = useI18n()
+
+// data
+const signedInUsername = store.signedInUsername
 </script>
 
 <i18n lang="yml">
@@ -85,5 +79,5 @@ de:
 en:
   contactEdit: Edit contact
   contactDelete: Delete contact
-  disabledReasonCreatorNot: This contact is being managed by {authorAccountUsername}.
+  disabledReasonCreatorNot: This contact is managed by {authorAccountUsername}.
 </i18n>

@@ -1,7 +1,7 @@
 <template>
   <Modal
     id="ModalImageSelection"
-    :is-submit-disabled="selectedProfilePictureStorageKey === undefined"
+    :is-submit-disabled="!!selectedProfilePictureStorageKey"
     :submit-task-provider="setProfilePicture"
     @close="selectedProfilePictureStorageKey = undefined"
     @submitSuccess="$emit('submitSuccess')"
@@ -9,38 +9,53 @@
     <ImageUploadGallery
       :allow-deletion="false"
       selectable
-      :username="$config.STORYBOOK ? 'username' : $route.params.username"
+      :username="isTesting ? 'username' : routeParamUsername"
       @selection="selectProfilePictureStorageKey"
     />
-    <template slot="header">{{ $t('header') }}</template>
+    <template #header>{{ t('header') }}</template>
   </Modal>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
+<script setup lang="ts">
+import consola from 'consola'
 
-import PROFILE_PICTURE_SET_MUTATION from '~/gql/mutation/profilePicture/profilePictureSet.gql'
+import { useProfilePictureSetMutation } from '~/gql/generated'
+import { getApiMeta } from '~/plugins/util/util'
 
-export default defineComponent({
-  data() {
-    return {
-      selectedProfilePictureStorageKey: undefined as string | undefined,
-      setProfilePicture: () =>
-        this.$apollo.mutate({
-          mutation: PROFILE_PICTURE_SET_MUTATION,
-          variables: {
-            // @ts-ignore
-            storageKey: this.selectedProfilePictureStorageKey,
-          },
-        }),
-    }
-  },
-  methods: {
-    selectProfilePictureStorageKey(storageKey: string) {
-      this.selectedProfilePictureStorageKey = storageKey
+const route = useRoute()
+const profilePictureSetMutation = useProfilePictureSetMutation()
+const config = useRuntimeConfig()
+const { t } = useI18n()
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...profilePictureSetMutation.data.value,
     },
-  },
+    ...getApiMeta([profilePictureSetMutation]),
+  }
 })
+
+// data
+const isTesting = config.public.isTesting
+const routeParamUsername = route.params.username as string
+const selectedProfilePictureStorageKey = ref<string>()
+
+// methods
+function selectProfilePictureStorageKey(storageKey: string | undefined) {
+  selectedProfilePictureStorageKey.value = storageKey
+}
+async function setProfilePicture() {
+  const result = await profilePictureSetMutation.executeMutation({
+    storageKey: selectedProfilePictureStorageKey.value || '',
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+}
 </script>
 
 <i18n lang="yml">

@@ -2,147 +2,154 @@
   <div class="flex flex-col items-center gap-4">
     <ButtonColored
       :is-primary="false"
-      :aria-label="$t('register')"
+      :aria-label="t('register')"
       :to="localePath('/task/account/sign-in')"
     >
-      {{ $t('signIn') }}
-      <template slot="prefix">
+      {{ t('signIn') }}
+      <template #prefix>
         <IconArrowLeft />
       </template>
     </ButtonColored>
     <Form
-      :errors="$util.getGqlErrorMessages(graphqlError, this)"
-      :form="$v.form"
+      :errors="api.errors"
+      :form="v$.form"
       form-class="w-full"
-      :form-sent="form.sent"
-      :submit-name="$t('register')"
+      :is-form-sent="isFormSent"
+      :submit-name="t('register')"
       @submit.prevent="submit"
     >
       <FormInputUsername
-        id="username-registration"
-        :form-input="$v.form.username"
+        :form-input="v$.form.username"
         is-validatable
         is-validation-inverted
         @input="form.username = $event"
       />
       <FormInputPassword
-        id="password-registration"
-        :form-input="$v.form.password"
+        :form-input="v$.form.password"
         @input="form.password = $event"
       />
       <FormInputEmailAddress
-        id="email-address-registration"
-        :form-input="$v.form.emailAddress"
+        :form-input="v$.form.emailAddress"
         is-required
         @input="form.emailAddress = $event"
       />
-      <template slot="assistance">
+      <template #assistance>
         <FormInputStateInfo>
-          {{ $t('accountDeletionNotice') }}
+          {{ t('accountDeletionNotice') }}
         </FormInputStateInfo>
       </template>
     </Form>
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import {
+  email,
+  helpers,
+  maxLength,
+  minLength,
+  required,
+} from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { email, maxLength, minLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent } from '#app'
+import {
+  formPreSubmit,
+  validateUsername,
+  VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
+  VALIDATION_FORMAT_SLUG,
+  VALIDATION_FORMAT_UPPERCASE_NONE,
+  VALIDATION_PASSWORD_LENGTH_MINIMUM,
+  VALIDATION_USERNAME_LENGTH_MAXIMUM,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAccountRegistrationMutation } from '~/gql/generated'
 
-import ACCOUNT_REGISTRATION_MUTATION from '~/gql/mutation/account/accountRegistration.gql'
+const emit = defineEmits<{
+  (e: 'registered'): void
+}>()
 
-const FormAccountRegistration = defineComponent({
-  data() {
-    return {
-      form: {
-        emailAddress: undefined as string | undefined,
-        password: undefined as string | undefined,
-        sent: false,
-        username: undefined as string | undefined,
-      },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  watch: {
-    form: {
-      handler(val) {
-        if (JSON.stringify(val) !== '{}') {
-          this.$emit('form', val)
-        }
-      },
-      deep: true,
-    },
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
+const { locale, t } = useI18n()
+const localePath = useLocalePath()
+const { executeMutation: executeMutationAccountRegistration } =
+  useAccountRegistrationMutation()
 
-      const res = await this.$apollo
-        .mutate({
-          mutation: ACCOUNT_REGISTRATION_MUTATION,
-          variables: {
-            emailAddress: this.form.emailAddress,
-            language: this.$i18n.locale,
-            password: this.form.password,
-            username: this.form.username,
-          },
-        })
-        .then(({ data }) => data.accountRegistration)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return
-      }
-
-      this.$emit('registered')
-      Swal.fire({
-        icon: 'success',
-        text: this.$t('registrationSuccessBody') as string,
-        title: this.$t('registrationSuccessTitle'),
-      })
-    },
-  },
-  validations() {
-    return {
-      form: {
-        username: {
-          existenceNone: this.$util.validateUsername(this.$apollo, true),
-          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
-          required,
-        },
-        password: {
-          minLength: minLength(this.$util.VALIDATION_PASSWORD_LENGTH_MINIMUM),
-          required,
-        },
-        emailAddress: {
-          email,
-          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(
-            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
-          ),
-          required,
-        },
-      },
-    }
-  },
+// api data
+const api = computed(() => {
+  return {
+    data: {},
+    ...getApiMeta([]),
+  }
 })
 
-export default FormAccountRegistration
+// data
+const form = reactive({
+  emailAddress: ref<string>(),
+  password: ref<string>(),
+  username: ref<string>(),
+})
+const isFormSent = ref(false)
 
-export type FormAccountRegistrationType = InstanceType<
-  typeof FormAccountRegistration
->
+// methods
+async function submit() {
+  if (!form.emailAddress) throw new Error('Email address is not set!')
+  if (!form.password) throw new Error('Password is not set!')
+  if (!form.username) throw new Error('Username is not set!')
+
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  const result = await executeMutationAccountRegistration({
+    emailAddress: form.emailAddress,
+    language: locale.value,
+    password: form.password,
+    username: form.username,
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data) {
+    return
+  }
+
+  emit('registered')
+  Swal.fire({
+    icon: 'success',
+    text: t('registrationSuccessBody') as string,
+    title: t('registrationSuccessTitle'),
+  })
+}
+
+// vuelidate
+const rules = {
+  form: {
+    username: {
+      existenceNone: helpers.withAsync(validateUsername(true)),
+      formatSlug: VALIDATION_FORMAT_SLUG,
+      maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+      required,
+    },
+    password: {
+      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+      required,
+    },
+    emailAddress: {
+      email,
+      formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+      maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+      required,
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">
@@ -158,10 +165,10 @@ de:
 en:
   accountDeletionNotice: "You'll be able to delete your account at any time."
   emailAddress: Email address
-  postgres22023: The password is too short! Think about a longer one.
-  postgres23505: There is already an account with this username or email address! Think of a new name or try signing in.
+  postgres22023: Your password is too short! Think of a longer one.
+  postgres23505: This username or email address is already in use! Think of a new name or try signing in instead.
   register: Register
-  registrationSuccessBody: "Verify your account using the link in the email you'll receive shortly."
+  registrationSuccessBody: Verify your account using the verification link sent to you by email.
   registrationSuccessTitle: Verification email sent.
   signIn: Or sign in instead
 </i18n>

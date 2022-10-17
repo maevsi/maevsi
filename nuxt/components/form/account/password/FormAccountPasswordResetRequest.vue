@@ -1,111 +1,110 @@
 <template>
   <Form
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    :form="$v.form"
+    :errors="api.errors"
+    :form="v$.form"
     :form-class="formClass"
-    :form-sent="form.sent"
-    :submit-name="$t('accountPasswordResetRequest')"
+    :is-form-sent="isFormSent"
+    :submit-name="t('accountPasswordResetRequest')"
     @submit.prevent="submit"
   >
     <FormInputEmailAddress
-      id="email-address-password-reset-request"
-      :form-input="$v.form.emailAddress"
+      :form-input="v$.form.emailAddress"
       is-required
-      :title="$t('emailAddressYours')"
+      :title="t('emailAddressYours')"
       @input="form.emailAddress = $event"
     />
   </Form>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { email, maxLength, required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { email, maxLength, required } from 'vuelidate/lib/validators'
 
-import { defineComponent, PropType } from '#app'
-import ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION from '~/gql/mutation/account/accountPasswordResetRequest.gql'
+import {
+  formPreSubmit,
+  VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
+  VALIDATION_FORMAT_UPPERCASE_NONE,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAccountPasswordResetRequestMutation } from '~/gql/generated'
 
-const FormAccountPasswordResetRequest = defineComponent({
-  props: {
-    formClass: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-  },
-  data() {
-    return {
-      form: {
-        emailAddress: undefined as string | undefined,
-        sent: false,
-      },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  watch: {
-    form: {
-      handler(val) {
-        if (JSON.stringify(val) !== '{}') {
-          this.$emit('form', val)
-        }
-      },
-      deep: true,
-    },
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
-
-      const res = await this.$apollo
-        .mutate({
-          mutation: ACCOUNT_PASSWORD_RESET_REQUEST_MUTATION,
-          variables: {
-            emailAddress: this.form.emailAddress,
-            language: this.$i18n.locale,
-          },
-        })
-        .then(({ data }) => data.accountPasswordResetRequest)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return
-      }
-
-      this.$emit('account-password-reset-request')
-      Swal.fire({
-        icon: 'success',
-        text: this.$t('accountPasswordResetRequestSuccess') as string,
-        title: this.$t('requestAccepted'),
-      })
-    },
-  },
-  validations() {
-    return {
-      form: {
-        emailAddress: {
-          email,
-          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(
-            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
-          ),
-          required,
-        },
-      },
-    }
-  },
+export interface Props {
+  formClass: string
+}
+withDefaults(defineProps<Props>(), {
+  formClass: undefined,
 })
 
-export default FormAccountPasswordResetRequest
+const emit = defineEmits<{
+  (e: 'account-password-reset-request'): void
+}>()
 
-export type FormAccountPasswordResetRequestType = InstanceType<
-  typeof FormAccountPasswordResetRequest
->
+const { locale, t } = useI18n()
+const passwordResetRequestMutation = useAccountPasswordResetRequestMutation()
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...passwordResetRequestMutation.data.value,
+    },
+    ...getApiMeta([passwordResetRequestMutation]),
+  }
+})
+
+// data
+const form = reactive({
+  emailAddress: ref<string>(),
+})
+const isFormSent = ref(false)
+
+// methods
+async function submit() {
+  if (!form.emailAddress) throw new Error('Email address is not set!')
+
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  const result = await passwordResetRequestMutation.executeMutation({
+    emailAddress: form.emailAddress,
+    language: locale.value,
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data) {
+    return
+  }
+
+  emit('account-password-reset-request')
+  Swal.fire({
+    icon: 'success',
+    text: t('accountPasswordResetRequestSuccess') as string,
+    title: t('requestAccepted'),
+  })
+}
+
+// vuelidate
+const rules = {
+  form: {
+    emailAddress: {
+      email,
+      formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+      maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+      required,
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">
@@ -118,9 +117,9 @@ de:
   requestAccepted: Anfrage angenommen!
 en:
   accountPasswordResetRequest: Send email
-  accountPasswordResetRequestSuccess: "Set a new password using the link that you can find in the email that you'll receive shortly."
+  accountPasswordResetRequestSuccess: Choose a new password using the verification link sent to you by email.
   emailAddressYours: Your email address
-  postgres55000: The email address is not yet verified!
+  postgres55000: This email address has not been verified yet!
   postgresP0002: There is no account with this email address! Check your input for spelling mistakes.
   requestAccepted: Request accepted!
 </i18n>

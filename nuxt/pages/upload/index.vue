@@ -2,63 +2,40 @@
   <div>
     <h1>{{ title }}</h1>
     <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
-    <ImageUploadGallery
-      :username="signedInUsername"
-      @deletion="$nuxt.$emit('profilePictureReload')"
-    />
+    <ImageUploadGallery :username="signedInUsername" />
   </div>
 </template>
 
-<script lang="ts">
-import { mapGetters } from 'vuex'
+<script setup lang="ts">
+import { useMaevsiStore } from '~/store'
 
-import { defineComponent } from '#app'
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const store = useMaevsiStore()
 
-export default defineComponent({
-  name: 'IndexPage',
-  middleware({ error, store }) {
-    if (!store.getters.signedInUsername) {
-      return error({ statusCode: 403 })
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
-  data() {
-    return {
-      title: this.$t('title'),
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: title,
-        },
-      ],
-      title,
-    }
-  },
-  computed: {
-    ...mapGetters(['signedInUsername']),
-  },
+      if (!store.signedInUsername) {
+        throw createError({ statusCode: 403 })
+      }
+    },
+  ],
 })
+
+const { t } = useI18n()
+const store = useMaevsiStore()
+
+// data
+const signedInUsername = store.signedInUsername
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">

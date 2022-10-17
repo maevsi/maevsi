@@ -2,32 +2,28 @@
   <IconCheckCircle
     v-if="feedback === 'ACCEPTED'"
     class="text-green-600"
-    :title="$t('feedbackAccepted')"
+    :title="t('feedbackAccepted')"
   />
   <IconXCircle
     v-else-if="feedback === 'CANCELED'"
     class="text-red-600"
-    :title="$t('feedbackCanceled')"
+    :title="t('feedbackCanceled')"
   />
   <IconQuestionCircle
     v-else-if="feedback === null"
     class="text-gray-600"
-    :title="$t('feedbackNone')"
+    :title="t('feedbackNone')"
   />
-  <IconBug v-else :title="$t('bug')" />
+  <IconBug v-else :title="t('bug')" />
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
+<script setup lang="ts">
+export interface Props {
+  feedback: string
+}
+withDefaults(defineProps<Props>(), {})
 
-export default defineComponent({
-  props: {
-    feedback: {
-      required: true,
-      type: String,
-    },
-  },
-})
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

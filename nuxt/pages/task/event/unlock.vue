@@ -2,227 +2,221 @@
   <div class="m-auto max-w-xl">
     <h1>{{ title }}</h1>
     <Form
-      :errors="$util.getGqlErrorMessages(graphqlError, this)"
-      :form="$v.form"
-      :form-sent="form.sent"
-      :submit-name="$t('submit')"
+      :errors="api.errors"
+      :form="v$.form"
+      :is-form-sent="isFormSent"
+      :submit-name="t('submit')"
       @submit.prevent="submit"
     >
       <!-- The id's suffix `-maevsi` makes browser suggest inputs just for this service. -->
       <FormInput
         :id-label="`input-invitation-code-maevsi-${
-          $config.dev ? 'dev' : 'prod'
+          isDevelopmentActive ? 'dev' : 'prod'
         }`"
-        :is-disabled="!!$route.query.ic"
+        :is-disabled="!!routeQueryIc"
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        :title="$t('invitationCode')"
+        :title="t('invitationCode')"
         type="text"
-        :value="$v.form.invitationCode"
+        :value="v$.form.invitationCode"
         @input="form.invitationCode = $event"
       >
-        <template slot="stateInfo">
-          <FormInputStateInfo v-if="$route.query.ic">
+        <template #stateInfo>
+          <FormInputStateInfo v-if="routeQueryIc">
             <div>
-              {{ $t('invitationCodeAutomatic') }}
+              {{ t('invitationCodeAutomatic') }}
               <AppLink :to="localePath('/task/event/unlock')">
-                {{ $t('invitationCodeManual') }}
+                {{ t('invitationCodeManual') }}
               </AppLink>
             </div>
           </FormInputStateInfo>
         </template>
-        <template slot="stateError">
+        <template #stateError>
           <FormInputStateError
-            :form-input="$v.form.invitationCode"
+            :form-input="v$.form.invitationCode"
             validation-property="formatUuid"
           >
-            {{ $t('globalValidationFormat') }}
+            {{ t('globalValidationFormat') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="$v.form.invitationCode"
+            :form-input="v$.form.invitationCode"
             validation-property="required"
           >
-            {{ $t('globalValidationRequired') }}
+            {{ t('globalValidationRequired') }}
           </FormInputStateError>
         </template>
       </FormInput>
     </Form>
     <p class="mt-2">
-      {{ $t('greetingExplanation') }}
+      {{ t('greetingExplanation') }}
     </p>
   </div>
 </template>
 
-<script lang="ts">
-import { Context } from '@nuxt/types-edge'
+<script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 import consola from 'consola'
-import { required } from 'vuelidate/lib/validators'
 
-import { defineComponent } from '#app'
+import { useJwtStore } from '~/plugins/util/auth'
+import {
+  formPreSubmit,
+  REGEX_UUID,
+  VALIDATION_FORMAT_UUID,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useEventUnlockMutation } from '~/gql/generated'
+import { useMaevsiStore } from '~/store'
 
-import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
-
-export default defineComponent({
-  name: 'IndexPage',
-  layout(context: Context) {
-    return isQueryIcFormatValid(context) && !('error' in context.route.query)
+definePageMeta({
+  layout:
+    // TODO:
+    REGEX_UUID.test('routeQueryIc') && !('error' in ['context.route.query'])
       ? 'canvas'
-      : 'default'
-  },
-  async middleware(context: Context): Promise<void> {
-    const { $util, app, redirect, route, store } = context
+      : 'default',
+  middleware: [
+    async function (_to: any, _from: any) {
+      const { $urqlReset, ssrContext } = useNuxtApp()
+      const { $localePath } = useNuxtApp()
+      const route = useRoute()
+      const store = useMaevsiStore()
 
-    if (isQueryIcFormatValid(context)) {
-      const res = await app
-        .apolloProvider!.defaultClient.mutate({
-          mutation: EVENT_UNLOCK_MUTATION,
-          variables: {
-            invitationCode: route.query.ic,
-          },
-        })
-        .then(({ data }: any) => data.eventUnlock.eventUnlockResponse)
-        .catch((reason: any) => {
-          consola.error(reason)
-        })
-
-      if (!res) {
-        return redirect(
-          app.localePath({
-            query: {
-              ...route.query,
-              error: null,
-            },
-          })
-        )
-      }
-
-      await $util.jwtStore(
-        app.apolloProvider!.defaultClient,
-        store,
-        undefined,
-        res.jwt
-      )
-
-      if ('quick' in route.query) {
-        return redirect(
-          app.localePath(`/event/${res.authorUsername}/${res.eventSlug}`)
-        )
-      } else {
-        return redirect(
-          app.localePath({
-            query: {
-              ...route.query,
-              redirect: app.localePath(
-                `/event/${res.authorUsername}/${res.eventSlug}`
-              ),
-            },
-          })
-        )
-      }
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
-  data() {
-    return {
-      form: {
-        invitationCode:
-          this.$route.query.ic === undefined ? undefined : this.$route.query.ic,
-        sent: false,
-      },
-      graphqlError: undefined as Error | undefined,
-      title: this.$t('title'),
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: title,
-        },
-      ],
-      title,
-    }
-  },
-  mounted() {
-    if (this.$route.query.ic) {
-      this.$v.form.invitationCode?.$touch()
-
-      if ('error' in this.$route.query) {
-        this.submit()
-      }
-    }
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
-
-      const res = await this.$apollo
-        .mutate({
-          mutation: EVENT_UNLOCK_MUTATION,
-          variables: {
-            invitationCode: this.form.invitationCode,
-          },
-        })
-        .then(({ data }) => data.eventUnlock.eventUnlockResponse)
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
+      if (
+        !Array.isArray(route.query.ic) &&
+        route.query.ic &&
+        REGEX_UUID.test(route.query.ic)
+      ) {
+        const result = await useEventUnlockMutation().executeMutation({
+          invitationCode: route.query.ic,
         })
 
-      if (!res) {
-        return
-      }
+        if (result.error) {
+          consola.error(result.error)
+        }
 
-      await this.$util.jwtStore(
-        this.$apollo.getClient(),
-        this.$store,
-        undefined,
-        res.jwt,
-        () => {
-          this.$router.push(
-            this.localePath(`/event/${res.authorUsername}/${res.eventSlug}`)
+        if (!result.data?.eventUnlock?.eventUnlockResponse) {
+          return navigateTo(
+            $localePath({
+              query: {
+                ...route.query,
+                error: null,
+              },
+            })
           )
         }
-      )
+
+        await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
+
+        if ('quick' in route.query) {
+          return navigateTo(
+            $localePath(
+              `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+            )
+          )
+        } else {
+          return navigateTo(
+            $localePath({
+              query: {
+                ...route.query,
+                redirect: $localePath(
+                  `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+                ),
+              },
+            })
+          )
+        }
+      }
     },
-  },
-  validations() {
-    return {
-      form: {
-        invitationCode: {
-          required,
-          formatUuid: this.$util.VALIDATION_FORMAT_UUID,
-        },
-      },
-    }
-  },
+  ],
 })
 
-function isQueryIcFormatValid({ $util, route }: Context) {
-  return (
-    typeof route.query.ic === 'string' && $util.REGEX_UUID.test(route.query.ic)
-  )
+const { jwtStore } = useJwtStore()
+const localePath = useLocalePath()
+const { t } = useI18n()
+const route = useRoute()
+const eventUnlockMutation = useEventUnlockMutation()
+const config = useRuntimeConfig()
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...eventUnlockMutation.data.value,
+    },
+    ...getApiMeta([eventUnlockMutation]),
+  }
+})
+
+// data
+const form = reactive({
+  invitationCode: ref(
+    route.query.ic === undefined ? undefined : route.query.ic
+  ),
+})
+const isDevelopmentActive = config.public.isInDevelopment
+const isFormSent = ref(false)
+const routeQueryIc = route.query.ic
+const title = t('title')
+
+// methods
+async function submit() {
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  const result = await eventUnlockMutation.executeMutation({
+    invitationCode: form.invitationCode,
+  })
+
+  if (result.error) {
+    api.value.errors.push(result.error)
+    consola.error(result.error)
+  }
+
+  if (!result.data?.eventUnlock?.eventUnlockResponse) {
+    return
+  }
+
+  await jwtStore(result.data?.eventUnlock?.eventUnlockResponse?.jwt, () => {
+    navigateTo(
+      localePath(
+        `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
+      )
+    )
+  })
+}
+
+// lifecycle
+onMounted(() => {
+  if (route.query.ic) {
+    v$.value.form.invitationCode?.$touch()
+
+    if ('error' in route.query) {
+      submit()
+    }
+  }
+})
+
+// vuelidate
+const rules = {
+  form: {
+    invitationCode: {
+      required,
+      formatUuid: VALIDATION_FORMAT_UUID,
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
+
+// initialization
+useHeadDefault(title)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
 }
 </script>
 
@@ -236,7 +230,7 @@ de:
   submit: Zur Veranstaltungsseite
   title: Veranstaltung freischalten
 en:
-  greetingExplanation: Invitation codes give you access to non-public event pages without the need to create an account. They are valid as long as you are invited to the event they were issued for.
+  greetingExplanation: Invitation codes grant access to non-public event pages without the need to create an account. They are valid as long as you are invited to the event they were issued for.
   invitationCode: Invitation code
   invitationCodeAutomatic: The invitation code was entered automatically.
   invitationCodeManual: Enter it yourself.

@@ -1,6 +1,6 @@
 <template>
   <FormInputState
-    v-if="formInput.$model && !formInput.$invalid"
+    v-if="formInput && !formInput.$invalid"
     class="text-green-600"
   >
     <IconCheckCircle />
@@ -8,16 +8,11 @@
   </FormInputState>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
-import { FormInputType } from '~/components/form/input/FormInput.vue'
+<script setup lang="ts">
+import type { BaseValidation } from '@vuelidate/core'
 
-export default defineComponent({
-  props: {
-    formInput: {
-      required: true,
-      type: Object as PropType<FormInputType>,
-    },
-  },
-})
+export interface Props {
+  formInput: BaseValidation
+}
+withDefaults(defineProps<Props>(), {})
 </script>

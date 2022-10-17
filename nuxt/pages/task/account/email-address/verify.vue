@@ -1,97 +1,81 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <Loader
-      v-if="loading || graphqlError"
-      :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    />
+    <Loader :api="api" />
   </div>
 </template>
 
-<script lang="ts">
-import { Context } from '@nuxt/types-edge'
+<script setup lang="ts">
 import consola from 'consola'
 import Swal from 'sweetalert2'
 
-import { defineComponent } from '#app'
+import { REGEX_UUID } from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 
-import ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION from '~/gql/mutation/account/accountEmailAddressVerification.gql'
+definePageMeta({
+  middleware: [
+    function (_to: any, _from: any) {
+      const { $localePath } = useNuxtApp()
+      const route = useRoute()
 
-export default defineComponent({
-  name: 'IndexPage',
-  middleware({ app, query, redirect }: Context) {
-    if (Array.isArray(query.code) || !app.$util.REGEX_UUID.test(query.code)) {
-      return redirect(app.localePath('/'))
-    }
-  },
-  transition: {
-    name: 'layout',
-  },
-  data() {
-    return {
-      graphqlError: undefined as Error | undefined,
-      loading: true,
-      title: this.$t('title'),
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: title,
-        },
-      ],
-      title,
-    }
-  },
-  beforeMount() {
-    this.accountEmailAddressVerification()
-  },
-  methods: {
-    accountEmailAddressVerification() {
-      this.$apollo
-        .mutate({
-          mutation: ACCOUNT_EMAIL_ADDRESS_VERIFICATION_MUTATION,
-          variables: {
-            code: this.$route.query.code,
-          },
-        })
-        .then(() => {
-          Swal.fire({
-            icon: 'success',
-            text: this.$t('verifiedBody') as string,
-            title: this.$t('verified'),
-          })
-          this.$router.push({
-            path: this.localePath(`/task/account/sign-in`),
-          })
-        })
-        .catch((reason) => {
-          this.graphqlError = reason
-          consola.error(reason)
-        })
-        .finally(() => {
-          this.loading = false
-        })
+      if (
+        Array.isArray(route.query.code) ||
+        route.query.code === null ||
+        !REGEX_UUID.test(route.query.code)
+      ) {
+        return navigateTo($localePath('/'))
+      }
     },
-  },
+  ],
 })
+
+const localePath = useLocalePath()
+const { t } = useI18n()
+const route = useRoute()
+const accountEmailAddressVerificationMutation =
+  useAccountEmailAddressVerificationMutation()
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...accountEmailAddressVerificationMutation.data.value,
+    },
+    ...getApiMeta([accountEmailAddressVerificationMutation]),
+  }
+})
+
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
+accountEmailAddressVerificationMutation
+  .executeMutation({
+    code: route.query.code,
+  })
+  .then((result) => {
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    } else {
+      Swal.fire({
+        icon: 'success',
+        text: t('verifiedBody') as string,
+        title: t('verified'),
+      })
+      navigateTo({
+        path: localePath(`/task/account/sign-in`),
+      })
+    }
+  })
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IndexPage',
+}
 </script>
 
 <i18n lang="yml">
@@ -105,7 +89,7 @@ de:
 en:
   emailAddressVerificationSuccess: Email address verified successfully.
   postgres55000: The verification code has expired!
-  postgresP0002: Unknown verification code! Have you perhaps already verified your email address?
+  postgresP0002: Invalid verification code! Have you perhaps already verified your email address?
   title: Verification
   verified: Email address verified.
   verifiedBody: You may sign in now.

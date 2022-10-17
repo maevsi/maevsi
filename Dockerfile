@@ -5,22 +5,29 @@
 # `sqitch` requires at least `buster`.
 FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS development
 
-ENV NODE_OPTIONS=--openssl-legacy-provider
-
-WORKDIR /srv/app/
-
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 # Update and install dependencies.
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
-# - `wget` is required by the healthcheck
+# - `ca-certificates git` is required by npm dependencies from GitHub (dargmuesli/nuxt-i18n-module)
+# - `curl`, `ca-certificates libnss3-tools` and `mkcert` provide the certificates for secure connections
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         libdbd-pg-perl postgresql-client sqitch \
-        wget \
+        curl \
+        ca-certificates git \
+        ca-certificates libnss3-tools \
+    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
+    && chmod +x mkcert-v*-linux-amd64 \
+    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g pnpm
+
+WORKDIR /srv/app/
+
+ENV CERTIFICATE_PATH=/srv/certificates/maevsi
+ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
 
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
@@ -49,8 +56,8 @@ RUN npm install -g pnpm && \
 
 COPY ./nuxt/ ./
 
-RUN pnpm install --offline && \
-    pnpm nuxi prepare
+RUN pnpm install --offline \
+  && pnpm nuxi prepare
 
 
 ########################
@@ -62,8 +69,8 @@ FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7
 
 ARG CI=false
 ENV CI ${CI}
-ARG NUXT_ENV_STACK_DOMAIN=maev.si
-ENV NUXT_ENV_STACK_DOMAIN=${NUXT_ENV_STACK_DOMAIN}
+ARG NUXT_PUBLIC_STACK_DOMAIN=maev.si
+ENV NUXT_PUBLIC_STACK_DOMAIN=${NUXT_PUBLIC_STACK_DOMAIN}
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
 WORKDIR /srv/app/
@@ -91,100 +98,77 @@ RUN npm install -g pnpm && \
 
 
 ########################
-# Nuxt: test (code)
+# Nuxt: test (unit)
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS test
+FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS test-unit
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
 RUN npm install -g pnpm && \
-    pnpm run test:code
+    pnpm run test:unit
 
 
 ########################
 # Nuxt: test (integration)
 
-# Should be the specific version of `node:slim`.
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS test-integration
+# Should be the specific version of `cypress/included`.
+FROM cypress/included:10.9.0@sha256:de9f7c27905a7d6127b134653ecbe092c7cdc9248272283ba87e5f42aa3fc693 AS test-integration_base
 
-ENV NODE_OPTIONS=--openssl-legacy-provider
-
-# Update and install dependencies.
-# - `wget` is used for testing
-# - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        wget \
-        procps
+# ENV DEBUG="start-server-and-test"
 
 WORKDIR /srv/app/
 
-COPY --from=build /srv/app/ ./
-
-RUN npm install -g pnpm && \
-    WAIT_ON_TIMEOUT=6000 pnpm start-server-and-test 'pnpm start' 3000 'wget http://0.0.0.0:3000/' && \
-    WAIT_ON_TIMEOUT=120000 pnpm start-server-and-test 'pnpm dev' 3000 'wget http://0.0.0.0:3000/'
-
-
-########################
-# Nuxt: test (visual)
-
-# Should be the specific version of node:slim.
-# `storycap` requires Debian.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS test-visual
-
-ARG CI=false
-ENV CI ${CI}
-ENV NODE_OPTIONS=--openssl-legacy-provider
-
 # Update and install dependencies.
-# - `ca-certificates curl` is required by test.sh
-# - `fonts-dejavu-core gconf-service`, ... is required by `puppeteer`
-# - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
-# - `jq` is required for storycap
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-        ca-certificates curl \
-        fonts-dejavu-core gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdbus-1-3 libdrm2 libgbm1 libgconf-2-4 libgtk-3-0 libnspr4 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 fonts-liberation libayatana-appindicator1 libnss3 libxshmfence1 lsb-release xdg-utils \
-        procps \
-        jq
-
-WORKDIR /srv/app/
-
-COPY ./.git ./.git
-COPY --from=prepare /srv/app/ ./
-
-RUN npm install -g pnpm && \
-    pnpm run test:visual
-
-
-########################
-# Nuxt: test (visual, standalone)
-
-# Should be the specific version of node:slim.
-# `storycap` requires Debian.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS test-visual_standalone
-
-# Update and install dependencies.
-# - `fonts-dejavu-core gconf-service`, ... is required by `puppeteer`
-# - `procps` is required by `start-server-and-test` on `debian:slim` (https://github.com/bahmutov/start-server-and-test/issues/132#issuecomment-448581335)
-# - `jq` is required for storycap
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        fonts-dejavu-core gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdbus-1-3 libdrm2 libgbm1 libgconf-2-4 libgtk-3-0 libnspr4 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxi6 libxrandr2 libxss1 libxtst6 fonts-liberation libayatana-appindicator1 libnss3 libxshmfence1 lsb-release xdg-utils \
-        procps \
-        jq \
+        # `curl ca-certificates libnss3-tools` are required by `mkcert`
+        curl ca-certificates libnss3-tools \
+    # pnpm
+    && npm install -g pnpm \
+    # mkcert
+    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
+    && chmod +x mkcert-v*-linux-amd64 \
+    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert \
+    && mkcert -install \
+    && mkdir -p /home/node/.local/share/mkcert \
+    && mv /root/.local/share/mkcert /home/node/.local/share/ \
+    && chown node:node /home/node/.local/share/mkcert -R \
+    # clean
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+VOLUME /srv/app
+
+
+########################
+# Nuxt: test (integration)
+
+# Should be the specific version of `cypress/included`.
+FROM cypress/included:10.9.0@sha256:de9f7c27905a7d6127b134653ecbe092c7cdc9248272283ba87e5f42aa3fc693 AS test-integration
+
+# Update and install dependencies.
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        # `curl ca-certificates libnss3-tools` are required by `mkcert`
+        curl ca-certificates libnss3-tools \
+    # pnpm
+    && npm install -g pnpm \
+    # mkcert
+    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
+    && chmod +x mkcert-v*-linux-amd64 \
+    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
+
 WORKDIR /srv/app/
 
-CMD ["pnpm", "run", "storycap"]
+COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
+COPY --from=build /srv/app/ ./
+
+RUN pnpm test:integration:prod && \
+    pnpm test:integration:dev
 
 
 #######################
@@ -197,9 +181,9 @@ WORKDIR /srv/app/
 
 COPY --from=build /srv/app/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/lint/package.json
-COPY --from=test /srv/app/package.json /tmp/test/package.json
+COPY --from=test-unit /srv/app/package.json /tmp/test/package.json
 COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
-COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
+# COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
 
 #######################
 # Provide a web server.

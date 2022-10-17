@@ -1,6 +1,3 @@
-#import "../../fragments/contactFields.gql"
-#import "../../fragments/invitationFields.gql"
-
 mutation updateInvitationById($id: BigInt!, $invitationPatch: InvitationPatch!) {
   updateInvitationById(input: { id: $id, invitationPatch: $invitationPatch }) {
     invitation {

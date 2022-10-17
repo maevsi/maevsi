@@ -1,5 +1,3 @@
-#import "../../fragments/contactFields.gql"
-
 mutation createInvitation($invitationInput: InvitationInput!) {
   createInvitation(input: { invitation: $invitationInput }) {
     invitation {

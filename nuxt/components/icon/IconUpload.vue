@@ -1,10 +1,9 @@
 <template>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    :class="classes"
+  <IconContainer
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
+    :title="title || t('title')"
   >
     <path
       stroke-linecap="round"
@@ -12,18 +11,21 @@
       stroke-width="2"
       d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
     />
-  </svg>
+  </IconContainer>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
+<script setup lang="ts">
+export interface Props {
+  title?: string // eslint-disable-line vue/require-default-prop
+}
+withDefaults(defineProps<Props>(), {})
 
-export default defineComponent({
-  props: {
-    classes: {
-      default: 'h-5 md:h-6 w-5 md:w-6 shrink-0',
-      type: String,
-    },
-  },
-})
+const { t } = useI18n()
 </script>
+
+<i18n lang="yml">
+de:
+  title: Hochladen
+en:
+  title: Upload
+</i18n>

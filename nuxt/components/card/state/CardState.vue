@@ -8,19 +8,13 @@
   </Card>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
-
-export default defineComponent({
-  props: {
-    backgroundColor: {
-      default: undefined,
-      type: String,
-    },
-    isEdgy: {
-      default: false,
-      type: Boolean,
-    },
-  },
+<script setup lang="ts">
+export interface Props {
+  backgroundColor?: string
+  isEdgy?: boolean
+}
+withDefaults(defineProps<Props>(), {
+  backgroundColor: undefined,
+  isEdgy: false,
 })
 </script>

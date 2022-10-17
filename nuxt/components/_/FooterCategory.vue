@@ -9,15 +9,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
-
-export default defineComponent({
-  props: {
-    heading: {
-      required: true,
-      type: String,
-    },
-  },
-})
+<script setup lang="ts">
+export interface Props {
+  heading: string
+}
+withDefaults(defineProps<Props>(), {})
 </script>

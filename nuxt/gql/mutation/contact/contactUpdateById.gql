@@ -1,5 +1,3 @@
-#import "../../fragments/contactFields.gql"
-
 mutation updateContactById($id: BigInt!, $contactPatch: ContactPatch!) {
   updateContactById(input: { id: $id, contactPatch: $contactPatch }) {
     contact {

@@ -3,57 +3,51 @@
     v-if="formInput"
     :is-optional="isOptional"
     :id-label="`input-${id}`"
-    :placeholder="$t('globalPlaceholderPhoneNumber')"
-    :title="$t('phoneNumber')"
+    :placeholder="t('globalPlaceholderPhoneNumber')"
+    :title="t('phoneNumber')"
     type="tel"
     :value="formInput"
     @input="$emit('input', $event)"
   >
-    <template slot="stateInfo">
+    <template #stateInfo>
       <FormInputStateInfo
         :form-input="formInput"
         validation-property="formatPhoneNumber"
       >
-        {{ $t('validationFormat') }}
+        {{ t('validationFormat') }}
       </FormInputStateInfo>
     </template>
-    <template slot="stateError">
+    <template #stateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="formatPhoneNumber"
       >
-        {{ $t('globalValidationFormat') }}
+        {{ t('globalValidationFormat') }}
       </FormInputStateError>
     </template>
   </FormInput>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType } from '#app'
-import { FormInputType } from '~/components/form/input/FormInput.vue'
+<script setup lang="ts">
+import type { BaseValidation } from '@vuelidate/core'
 
-export default defineComponent({
-  props: {
-    formInput: {
-      required: true,
-      type: Object as PropType<FormInputType>,
-    },
-    id: {
-      default: 'phone-number',
-      type: String,
-    },
-    isOptional: {
-      default: false,
-      type: Boolean,
-    },
-  },
+export interface Props {
+  formInput: BaseValidation
+  id: string
+  isOptional: boolean
+}
+withDefaults(defineProps<Props>(), {
+  id: 'phone-number',
+  isOptional: false,
 })
+
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">
 de:
   phoneNumber: Telefonnummer
-  validationFormat: Muss mit einem Plus beginnen und darf ansonsten nur Ziffern enthalten (z.B. +1234567890)
+  validationFormat: Muss mit einem Plus beginnen und darf sonst nur Ziffern enthalten (z.B. +1234567890)
 en:
   phoneNumber: Phone number
   validationFormat: Must start with a plus and may otherwise only contain digits (e.g. +1234567890)

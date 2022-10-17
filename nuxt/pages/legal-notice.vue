@@ -2,81 +2,50 @@
   <div>
     <h1>{{ title }}</h1>
     <div class="maevsi-prose-scheme">
-      <h2>{{ $t('tmg') }}</h2>
+      <h2>{{ t('tmg') }}</h2>
       <p>
-        {{ $t('addressName') }}<br />
-        {{ $t('addressStreet') }}<br />
-        {{ $t('addressCity') }}
+        {{ t('addressName') }}<br />
+        {{ t('addressStreet') }}<br />
+        {{ t('addressCity') }}
       </p>
 
-      <h2>{{ $t('contact') }}</h2>
-      <p>{{ $t('email') }}</p>
+      <h2>{{ t('contact') }}</h2>
+      <p>{{ t('email') }}</p>
 
-      <h2>{{ $t('responsibility') }}</h2>
+      <h2>{{ t('responsibility') }}</h2>
       <p>
-        {{ $t('addressName') }}<br />
-        {{ $t('addressStreet') }}<br />
-        {{ $t('addressCity') }}
+        {{ t('addressName') }}<br />
+        {{ t('addressStreet') }}<br />
+        {{ t('addressCity') }}
       </p>
 
-      <h3>{{ $t('liabilityContentTitle') }}</h3>
-      <p>{{ $t('liabilityContentDescription1') }}</p>
-      <p>{{ $t('liabilityContentDescription2') }}</p>
+      <h3>{{ t('liabilityContentTitle') }}</h3>
+      <p>{{ t('liabilityContentDescription1') }}</p>
+      <p>{{ t('liabilityContentDescription2') }}</p>
 
-      <h3>{{ $t('liabilityLinksTitle') }}</h3>
-      <p>{{ $t('liabilityLinksDescription1') }}</p>
-      <p>{{ $t('liabilityLinksDescription2') }}</p>
+      <h3>{{ t('liabilityLinksTitle') }}</h3>
+      <p>{{ t('liabilityLinksDescription1') }}</p>
+      <p>{{ t('liabilityLinksDescription2') }}</p>
 
-      <h3>{{ $t('copyrightTitle') }}</h3>
-      <p>{{ $t('copyrightDescription1') }}</p>
-      <p>{{ $t('copyrightDescription2') }}</p>
+      <h3>{{ t('copyrightTitle') }}</h3>
+      <p>{{ t('copyrightDescription1') }}</p>
+      <p>{{ t('copyrightDescription2') }}</p>
 
       <p>
-        <AppLink to="https://www.e-recht24.de">{{ $t('source') }}</AppLink>
+        <AppLink to="https://www.e-recht24.de">{{ t('source') }}</AppLink>
       </p>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
+<script setup lang="ts">
+const { t } = useI18n()
 
-export default defineComponent({
-  transition: {
-    name: 'layout',
-  },
-  data() {
-    return {
-      title: this.$t('title'),
-    }
-  },
-  head() {
-    const title = this.title as string
-    return {
-      meta: [
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: title,
-        },
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content:
-            'https://' +
-            (process.env.NUXT_ENV_STACK_DOMAIN || 'maevsi.test') +
-            this.$router.currentRoute.fullPath,
-        },
-        {
-          hid: 'twitter:title',
-          property: 'twitter:title',
-          content: title,
-        },
-      ],
-      title,
-    }
-  },
-})
+// data
+const title = t('title')
+
+// initialization
+useHeadDefault(title)
 </script>
 
 <i18n lang="yml">
@@ -88,7 +57,7 @@ de:
   copyrightDescription1: Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.
   copyrightDescription2: Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
   copyrightTitle: Urheberrecht
-  email: 'E-Mail: mail+legal-notice@maev.si'
+  email: "E-Mail: mail+legal-notice{'@'}maev.si"
   liabilityContentDescription1: Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
   liabilityContentDescription2: Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
   liabilityContentTitle: Haftung für Inhalte
@@ -107,7 +76,7 @@ en:
   copyrightDescription1: The content and works created by the site operators on these pages are subject to German copyright law. The reproduction, editing, distribution and any kind of exploitation outside the limits of copyright require the written consent of the respective author or creator. Downloads and copies of this site are only permitted for private, non-commercial use.
   copyrightDescription2: Insofar as the content on this page was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is identified as such. Should you nevertheless become aware of a copyright infringement, we request that you notify us accordingly. If we become aware of any infringements, we will remove such content immediately.
   copyrightTitle: Copyright
-  email: 'Email: mail+legal-notice@maev.si'
+  email: "Email: mail+legal-notice{'@'}maev.si"
   liabilityContentDescription1: As a service provider, we are responsible for our own content on these pages in accordance with general legislation pursuant to Section 7 (1) of the German Telemedia Act (TMG). According to §§ 8 to 10 TMG, however, we are not obligated as a service provider to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.
   liabilityContentDescription2: Obligations to remove or block the use of information according to general laws remain unaffected. However, liability in this regard is only possible from the time of knowledge of a concrete infringement. If we become aware of such infringements, we will remove this content immediately.
   liabilityContentTitle: Liability for content

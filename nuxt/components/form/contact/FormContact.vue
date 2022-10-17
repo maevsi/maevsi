@@ -1,10 +1,10 @@
 <template>
   <Form
     ref="form"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
-    :form="$v.form"
-    :form-sent="form.sent"
-    :submit-name="$t('save')"
+    :errors="api.errors"
+    :form="v$.form"
+    :is-form-sent="isFormSent"
+    :submit-name="t('save')"
     @submit.prevent="submit"
   >
     <FormInput
@@ -13,247 +13,266 @@
       placeholder="id"
       title="id"
       type="number"
-      :value="$v.form.id"
+      :value="v$.form.id"
       @input="form.id = $event"
     />
     <FormInputUsername
-      id="username"
-      :form-input="$v.form.accountUsername"
+      :form-input="v$.form.accountUsername"
       is-optional
       is-validatable
       @input="form.accountUsername = $event"
     >
-      <template slot="icon">
+      <template #icon>
         <IconSearch />
       </template>
     </FormInputUsername>
     <FormInputStateInfo>
-      {{ $t('accountOverride') }}
+      {{ t('accountOverride') }}
     </FormInputStateInfo>
     <FormInput
       id-label="input-first-name"
       is-optional
-      :placeholder="$t('globalPlaceholderFirstName')"
-      :title="$t('firstName')"
+      :placeholder="t('globalPlaceholderFirstName')"
+      :title="t('firstName')"
       type="text"
-      :value="$v.form.firstName"
+      :value="v$.form.firstName"
       @input="form.firstName = $event"
     >
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
-          :form-input="$v.form.firstName"
+          :form-input="v$.form.firstName"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
     </FormInput>
     <FormInput
       id-label="input-last-name"
       is-optional
-      :placeholder="$t('globalPlaceholderLastName')"
-      :title="$t('lastName')"
+      :placeholder="t('globalPlaceholderLastName')"
+      :title="t('lastName')"
       type="text"
-      :value="$v.form.lastName"
+      :value="v$.form.lastName"
       @input="form.lastName = $event"
     >
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
-          :form-input="$v.form.lastName"
+          :form-input="v$.form.lastName"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
     </FormInput>
     <FormInputEmailAddress
-      id="email-address"
-      :form-input="$v.form.emailAddress"
+      :form-input="v$.form.emailAddress"
       is-optional
       @input="form.emailAddress = $event"
     />
     <FormInput
       id-label="input-address"
       is-optional
-      :title="$t('address')"
+      :title="t('address')"
       type="textarea"
-      :value="$v.form.address"
+      :value="v$.form.address"
       @input="form.address = $event"
     >
       <textarea
+        v-if="v$.form.address"
         id="input-address"
-        v-model.trim="$v.form.address.$model"
+        v-model.trim="v$.form.address.$model"
         class="form-input"
-        :placeholder="$t('globalPlaceholderAddress')"
+        :placeholder="t('globalPlaceholderAddress')"
         rows="2"
       />
-      <template slot="stateError">
+      <template #stateError>
         <FormInputStateError
-          :form-input="$v.form.address"
+          :form-input="v$.form.address"
           validation-property="maxLength"
         >
-          {{ $t('globalValidationLength') }}
+          {{ t('globalValidationLength') }}
         </FormInputStateError>
       </template>
     </FormInput>
     <FormInputPhoneNumber
-      :form-input="$v.form.phoneNumber"
+      :form-input="v$.form.phoneNumber"
       is-optional
       @input="form.phoneNumber = $event"
     />
     <FormInputUrl
-      :form-input="$v.form.url"
+      :form-input="v$.form.url"
       is-optional
       @input="form.url = $event"
     />
   </Form>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+import { email, helpers, maxLength } from '@vuelidate/validators'
 import consola from 'consola'
-import { email, maxLength } from 'vuelidate/lib/validators'
 
-import { defineComponent, PropType } from '#app'
-import CONTACT_CREATE_MUTATION from '~/gql/mutation/contact/contactCreate.gql'
-import CONTACT_UPDATE_BY_ID_MUTATION from '~/gql/mutation/contact/contactUpdateById.gql'
 import { Contact } from '~/types/contact'
+import {
+  formPreSubmit,
+  validateUsername,
+  VALIDATION_ADDRESS_LENGTH_MAXIMUM,
+  VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
+  VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
+  VALIDATION_FIRST_NAME_LENGTH_MAXIMUM,
+  VALIDATION_FORMAT_PHONE_NUMBER,
+  VALIDATION_FORMAT_SLUG,
+  VALIDATION_FORMAT_UPPERCASE_NONE,
+  VALIDATION_FORMAT_URL_HTTPS,
+  VALIDATION_LAST_NAME_LENGTH_MAXIMUM,
+  VALIDATION_USERNAME_LENGTH_MAXIMUM,
+} from '~/plugins/util/validation'
+import { getApiMeta } from '~/plugins/util/util'
+import {
+  useCreateContactMutation,
+  useUpdateContactByIdMutation,
+} from '~/gql/generated'
+import { useMaevsiStore } from '~/store'
 
-export default defineComponent({
-  props: {
-    contact: {
-      default: undefined,
-      type: Object as PropType<Contact | undefined>,
-    },
-  },
-  data() {
-    return {
-      form: {
-        sent: false,
-        id: undefined as string | undefined,
-        accountUsername: undefined as string | undefined,
-        address: undefined as string | undefined,
-        emailAddress: undefined as string | undefined,
-        firstName: undefined as string | undefined,
-        lastName: undefined as string | undefined,
-        phoneNumber: undefined as string | undefined,
-        url: undefined as string | undefined,
-      },
-      graphqlError: undefined as Error | undefined,
-    }
-  },
-  created() {
-    if (this.contact) {
-      for (const [k, v] of Object.entries(this.contact)) {
-        ;(this.form as Record<string, any>)[k] = v
-      }
-    }
-  },
-  methods: {
-    async submit() {
-      try {
-        await this.$util.formPreSubmit(this)
-      } catch (error) {
-        return
-      }
-
-      if (this.form.id) {
-        // Edit
-        await this.$apollo
-          .mutate({
-            mutation: CONTACT_UPDATE_BY_ID_MUTATION,
-            variables: {
-              id: this.form.id,
-              contactPatch: {
-                accountUsername:
-                  this.form.accountUsername === ''
-                    ? null
-                    : this.form.accountUsername,
-                address: this.form.address === '' ? null : this.form.address,
-                authorAccountUsername: this.$store.getters.jwtDecoded?.username,
-                emailAddress:
-                  this.form.emailAddress === '' ? null : this.form.emailAddress,
-                firstName:
-                  this.form.firstName === '' ? null : this.form.firstName,
-                lastName: this.form.lastName === '' ? null : this.form.lastName,
-                phoneNumber:
-                  this.form.phoneNumber !== '' ? this.form.phoneNumber : null,
-                url: this.form.url !== '' ? this.form.url : null,
-              },
-            },
-          })
-          .then(async () => await (this.$listeners.submitSuccess as Function)())
-          .catch((reason) => {
-            this.graphqlError = reason
-            consola.error(reason)
-          })
-      } else {
-        // Add
-        await this.$apollo
-          .mutate({
-            mutation: CONTACT_CREATE_MUTATION,
-            variables: {
-              contactInput: {
-                accountUsername:
-                  this.form.accountUsername === ''
-                    ? null
-                    : this.form.accountUsername,
-                address: this.form.address === '' ? null : this.form.address,
-                authorAccountUsername: this.$store.getters.jwtDecoded?.username,
-                emailAddress:
-                  this.form.emailAddress === '' ? null : this.form.emailAddress,
-                firstName:
-                  this.form.firstName === '' ? null : this.form.firstName,
-                lastName: this.form.lastName === '' ? null : this.form.lastName,
-                phoneNumber:
-                  this.form.phoneNumber !== '' ? this.form.phoneNumber : null,
-                url: this.form.url !== '' ? this.form.url : null,
-              },
-            },
-          })
-          .then(async () => await (this.$listeners.submitSuccess as Function)())
-          .catch((reason) => {
-            this.graphqlError = reason
-            consola.error(reason)
-          })
-      }
-    },
-  },
-  validations() {
-    return {
-      form: {
-        id: {},
-        accountUsername: {
-          existence: this.$util.validateUsername(this.$apollo),
-          formatSlug: this.$util.VALIDATION_FORMAT_SLUG,
-          maxLength: maxLength(this.$util.VALIDATION_USERNAME_LENGTH_MAXIMUM),
-        },
-        address: {
-          maxLength: maxLength(this.$util.VALIDATION_ADDRESS_LENGTH_MAXIMUM),
-        },
-        emailAddress: {
-          email,
-          formatUppercaseNone: this.$util.VALIDATION_FORMAT_UPPERCASE_NONE,
-          maxLength: maxLength(
-            this.$util.VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM
-          ),
-        },
-        firstName: {
-          maxLength: maxLength(this.$util.VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
-        },
-        lastName: {
-          maxLength: maxLength(this.$util.VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
-        },
-        phoneNumber: {
-          formatPhoneNumber: this.$util.VALIDATION_FORMAT_PHONE_NUMBER,
-        },
-        url: {
-          formatUrlHttps: this.$util.VALIDATION_FORMAT_URL_HTTPS,
-          maxLength: maxLength(this.$util.VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
-        },
-      },
-    }
-  },
+export interface Props {
+  contact?: Contact
+}
+const props = withDefaults(defineProps<Props>(), {
+  contact: undefined,
 })
+
+const emit = defineEmits<{
+  (e: 'submitSuccess'): void
+}>()
+
+const store = useMaevsiStore()
+const updateContactByIdMutation = useUpdateContactByIdMutation()
+const createContactMutation = useCreateContactMutation()
+const { t } = useI18n()
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...updateContactByIdMutation.data.value,
+    },
+    ...getApiMeta([updateContactByIdMutation]),
+  }
+})
+
+// data
+const form = reactive({
+  id: ref<string>(),
+  accountUsername: ref<string>(),
+  address: ref<string>(),
+  emailAddress: ref<string>(),
+  firstName: ref<string>(),
+  lastName: ref<string>(),
+  phoneNumber: ref<string>(),
+  url: ref<string>(),
+})
+const isFormSent = ref(false)
+
+// methods
+async function submit() {
+  try {
+    await formPreSubmit({ api }, v$, isFormSent)
+  } catch (error) {
+    consola.debug(error)
+    return
+  }
+
+  if (form.id) {
+    // Edit
+    const result = await updateContactByIdMutation.executeMutation({
+      id: form.id,
+      contactPatch: {
+        accountUsername:
+          form.accountUsername === '' ? undefined : form.accountUsername,
+        address: form.address === '' ? undefined : form.address,
+        authorAccountUsername: store.jwtDecoded?.username as string,
+        emailAddress: form.emailAddress === '' ? undefined : form.emailAddress,
+        firstName: form.firstName === '' ? undefined : form.firstName,
+        lastName: form.lastName === '' ? undefined : form.lastName,
+        phoneNumber: form.phoneNumber !== '' ? form.phoneNumber : undefined,
+        url: form.url !== '' ? form.url : undefined,
+      },
+    })
+
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    }
+  } else {
+    // Add
+    const result = await createContactMutation.executeMutation({
+      contactInput: {
+        accountUsername:
+          form.accountUsername === '' ? undefined : form.accountUsername,
+        address: form.address === '' ? undefined : form.address,
+        authorAccountUsername: store.jwtDecoded?.username as string,
+        emailAddress: form.emailAddress === '' ? undefined : form.emailAddress,
+        firstName: form.firstName === '' ? undefined : form.firstName,
+        lastName: form.lastName === '' ? undefined : form.lastName,
+        phoneNumber: form.phoneNumber !== '' ? form.phoneNumber : undefined,
+        url: form.url !== '' ? form.url : undefined,
+      },
+    })
+
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    }
+
+    if (!result.data) {
+      return
+    }
+
+    emit('submitSuccess')
+  }
+}
+
+// initialiuation
+if (props.contact) {
+  for (const [k, v] of Object.entries(props.contact)) {
+    ;(form as Record<string, any>)[k] = v
+  }
+}
+
+// vuelidate
+const rules = {
+  form: {
+    id: {},
+    accountUsername: {
+      existence: helpers.withAsync(validateUsername()),
+      formatSlug: VALIDATION_FORMAT_SLUG,
+      maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+    },
+    address: {
+      maxLength: maxLength(VALIDATION_ADDRESS_LENGTH_MAXIMUM),
+    },
+    emailAddress: {
+      email,
+      formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+      maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+    },
+    firstName: {
+      maxLength: maxLength(VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
+    },
+    lastName: {
+      maxLength: maxLength(VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
+    },
+    phoneNumber: {
+      formatPhoneNumber: VALIDATION_FORMAT_PHONE_NUMBER,
+    },
+    url: {
+      formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
+      maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
+    },
+  },
+}
+const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yml">

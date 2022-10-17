@@ -1,38 +1,19 @@
 <template>
   <ButtonColored
-    :aria-label="$t('signIn')"
-    :to="
-      localePath({
-        path: '/task/account/sign-in',
-        query: {
-          tab: 'signIn',
-          ...(isReferring && {
-            referrer: $route.fullPath,
-            isRedirectNoticeHidden: true,
-          }),
-        },
-      })
-    "
+    :aria-label="t('signIn')"
+    :to="localePath({ path: '/task/account/sign-in' })"
     @click="$emit('click')"
   >
-    {{ $t('signIn') }}
-    <template slot="prefix">
+    {{ t('signIn') }}
+    <template #prefix>
       <IconUser />
     </template>
   </ButtonColored>
 </template>
 
-<script lang="ts">
-import { defineComponent } from '#app'
-
-export default defineComponent({
-  props: {
-    isReferring: {
-      default: true,
-      type: Boolean,
-    },
-  },
-})
+<script setup lang="ts">
+const localePath = useLocalePath()
+const { t } = useI18n()
 </script>
 
 <i18n lang="yml">

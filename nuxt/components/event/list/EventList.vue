@@ -1,68 +1,80 @@
 <template>
-  <Loader
-    v-if="($apollo.loading && !allEvents) || graphqlError"
-    :errors="$util.getGqlErrorMessages(graphqlError, this)"
-  />
-  <div v-else class="flex flex-col gap-4">
-    <ul v-if="allEvents.nodes.length" class="flex flex-col gap-4">
-      <EventListItem
-        v-for="event in allEvents.nodes"
-        :key="event.id"
-        :event="event"
-      />
-      <div v-if="allEvents.pageInfo.hasNextPage" class="flex justify-center">
+  <Loader :api="api">
+    <ul v-if="events?.length" class="flex flex-col gap-4">
+      <div
+        v-if="isButtonEventListShown"
+        class="flex flex-col items-center justify-between gap-4 lg:flex-row"
+      >
+        <ButtonList>
+          <ButtonEventList v-if="isButtonEventListShown" />
+        </ButtonList>
+      </div>
+      <EventListItem v-for="event in events" :key="event.id" :event="event" />
+      <div
+        v-if="api.data.allEvents?.pageInfo.hasNextPage"
+        class="flex justify-center"
+      >
         <ButtonColored
-          :aria-label="$t('globalShowMore')"
-          @click="$util.loadMore($apollo, 'allEvents', allEvents)"
+          :aria-label="t('globalShowMore')"
+          @click="after = api.data.allEvents?.pageInfo.endCursor"
         >
-          {{ $t('globalShowMore') }}
+          {{ t('globalShowMore') }}
         </ButtonColored>
       </div>
     </ul>
-    <p v-else class="text-center">{{ $t('noEvents') }}</p>
-  </div>
+    <p v-else class="text-center">{{ t('noEvents') }}</p>
+  </Loader>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import consola from 'consola'
 
-import { defineComponent, PropType } from '#app'
-import EVENTS_ALL_QUERY from '~/gql/query/event/eventsAll.gql'
+import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
+import { getApiMeta } from '~/plugins/util/util'
+import { useAllEventsQuery } from '~/gql/generated'
 
-export default defineComponent({
-  apollo: {
-    allEvents(): any {
-      return {
-        query: EVENTS_ALL_QUERY,
-        variables: {
-          authorUsername: this.username,
-          first: this.$util.ITEMS_PER_PAGE,
-          offset: null,
-        },
-        error(error: any, _vm: any, _key: any, _type: any, _options: any) {
-          this.graphqlError = error
-          consola.error(error)
-        },
-      }
-    },
+export interface Props {
+  username?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  username: undefined,
+})
+
+const route = useRoute()
+const { t } = useI18n()
+
+// refs
+const after = ref<string>()
+
+// queries
+const eventsQuery = useAllEventsQuery({
+  variables: {
+    after,
+    authorUsername: props.username,
+    first: ITEMS_PER_PAGE,
   },
-  props: {
-    showButtonEventList: {
-      default() {
-        return this.$route?.name?.replace(/___.+$/, '') !== 'event'
-      },
-      type: Boolean,
+})
+
+// api data
+const api = computed(() => {
+  return {
+    data: {
+      ...eventsQuery.data.value,
     },
-    username: {
-      default: undefined,
-      type: String as PropType<string | undefined>,
-    },
-  },
-  data() {
-    return {
-      graphqlError: undefined as Error | undefined,
-    }
-  },
+    ...getApiMeta([eventsQuery]),
+  }
+})
+const events = computed(() => eventsQuery.data.value?.allEvents?.nodes)
+
+// data
+const isButtonEventListShown = ref(
+  typeof route.name === 'string' &&
+    route.name?.replace(/___.+$/, '') !== 'event'
+)
+
+// lifecycle
+watch(eventsQuery.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
 })
 </script>
 
