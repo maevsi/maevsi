@@ -46,7 +46,7 @@
     "@nuxtjs/color-mode": "3.1.8",
     "@nuxtjs/eslint-config-typescript": "11.0.0",
     "@nuxtjs/html-validator": "1.1.0",
-    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-alpha.3-27761004.5f3b0a1",
+    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-alpha.3-27766709.0bc5dba",
     "@nuxtjs/robots": "3.0.0-1",
     "@nuxtjs/sitemap": "2.4.0",
     "@pinia/nuxt": "0.4.3",
