@@ -380,7 +380,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import '~/node_modules/vue-croppa/dist/vue-croppa.min.css';
+@import url('~/node_modules/vue-croppa/dist/vue-croppa.min.css');
 </style>
 
 <i18n lang="yml">
