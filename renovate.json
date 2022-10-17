@@ -8,8 +8,12 @@
       "allowedVersions": "<2"
     },
     {
-      "matchPackageNames": ["react", "react-dom"],
-      "allowedVersions": "<17"
+      "matchPackageNames": ["rollup"],
+      "allowedVersions": "<3"
+    },
+    {
+      "matchPackageNames": ["@rollup/plugin-graphql"],
+      "allowedVersions": "<2"
     }
   ]
 }
