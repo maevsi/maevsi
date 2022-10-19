@@ -110,7 +110,7 @@
     "moment": "2.29.4",
     "mustache": "4.2.0",
     "node-fetch": "3.2.10",
-    "nuxt": "npm:nuxt3@3.0.0-rc.13-27768654.09e5534",
+    "nuxt": "npm:nuxt3@3.0.0-rc.13-27769897.0f2ef5d",
     "pg": "8.8.0",
     "pinia": "2.0.23",
     "postcss": "8.4.18",
