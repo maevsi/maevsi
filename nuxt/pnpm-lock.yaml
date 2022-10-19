@@ -71,7 +71,7 @@ specifiers:
   eslint-plugin-yml: 1.2.0
   graphql: 16.6.0
   graphql-tag: 2.12.6
-  h3: 0.8.4
+  h3: 0.8.5
   html-to-text: 8.2.1
   ical-generator: 3.6.0
   isomorphic-dompurify: 0.23.0
@@ -183,7 +183,7 @@ devDependencies:
   eslint-plugin-yml: 1.2.0_eslint@8.25.0
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
-  h3: 0.8.4
+  h3: 0.8.5
   html-to-text: 8.2.1
   ical-generator: 3.6.0_iwjys7ellpp5wkw4o3gistaau4
   isomorphic-dompurify: 0.23.0
@@ -2288,7 +2288,7 @@ packages:
       consola: 2.15.3
       create-require: 1.1.1
       defu: 6.1.0
-      destr: 1.1.1
+      destr: 1.2.0
       dotenv: 16.0.3
       fs-extra: 10.1.0
       git-url-parse: 13.1.0
@@ -2330,7 +2330,7 @@ packages:
       externality: 0.2.2
       fs-extra: 10.1.0
       get-port-please: 2.6.1
-      h3: 0.8.4
+      h3: 0.8.5
       knitwork: 0.1.2
       magic-string: 0.26.7
       mlly: 0.5.16
@@ -5557,8 +5557,8 @@ packages:
     engines: {node: '>= 0.6.0'}
     dev: true
 
-  /destr/1.1.1:
-    resolution: {integrity: sha512-QqkneF8LrYmwATMdnuD2MLI3GHQIcBnG6qFC2q9bSH430VTCDAVjcspPmUaKhPGtAtPAftIUFqY1obQYQuwmbg==}
+  /destr/1.2.0:
+    resolution: {integrity: sha512-JG+cG4ZPB1L27sl2C2URg8MIOmIUtTbE5wEx02BpmrTCqg/hXxFKXsYsnODl5PdpqNRaS1KQGUQ56V8jk8XpYQ==}
     dev: true
 
   /destroy/1.2.0:
@@ -7370,11 +7370,11 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /h3/0.8.4:
-    resolution: {integrity: sha512-U7ZD/Te+LBS1IpUvsZRe+E+ZiA3zQS0u43DMrZ+raiVObeYe0G5F4Kr/g6Fn2fH92Np0ROkij/wEhkAMbUsBdQ==}
+  /h3/0.8.5:
+    resolution: {integrity: sha512-A+rVzJ+31e67JJzlRf2Ycphu/mvl2qknbpch38xRfrs9HuGSKTtOWuzPnpgaEGIfnzuD/BsDOfhQLJevXEm3ag==}
     dependencies:
       cookie-es: 0.5.0
-      destr: 1.1.1
+      destr: 1.2.0
       radix3: 0.2.1
       ufo: 0.8.6
     dev: true
@@ -9717,7 +9717,7 @@ packages:
       consola: 2.15.3
       cookie-es: 0.5.0
       defu: 6.1.0
-      destr: 1.1.1
+      destr: 1.2.0
       dot-prop: 7.2.0
       esbuild: 0.15.11
       escape-string-regexp: 5.0.0
@@ -9725,7 +9725,7 @@ packages:
       fs-extra: 10.1.0
       globby: 13.1.2
       gzip-size: 7.0.0
-      h3: 0.8.4
+      h3: 0.8.5
       hookable: 5.4.1
       http-proxy: 1.18.1
       is-primitive: 3.0.1
@@ -9927,11 +9927,11 @@ packages:
       chokidar: 3.5.3
       cookie-es: 0.5.0
       defu: 6.1.0
-      destr: 1.1.1
+      destr: 1.2.0
       escape-string-regexp: 5.0.0
       fs-extra: 10.1.0
       globby: 13.1.2
-      h3: 0.8.4
+      h3: 0.8.5
       hash-sum: 2.0.0
       hookable: 5.4.1
       knitwork: 0.1.2
@@ -10026,7 +10026,7 @@ packages:
   /ohmyfetch/0.4.20:
     resolution: {integrity: sha512-+c3/l+X91owrT1reTos1R13rb2j8NGZpKi0bRWwrnxIHlr1FZ8NzghIsNBKpUvk9nsnFoNK4phw+nTnXrcALzA==}
     dependencies:
-      destr: 1.1.1
+      destr: 1.2.0
       node-fetch-native: 0.1.8
       ufo: 0.8.6
       undici: 5.11.0
@@ -11179,7 +11179,7 @@ packages:
     resolution: {integrity: sha512-zbe8+HR2X28eZepAwohuKkebbEsA67h0DO9I7g12QrHa2CQopR9gztOLPIPXXGTvcxeUjAN4wZ+b29t3m/u05g==}
     dependencies:
       defu: 6.1.0
-      destr: 1.1.1
+      destr: 1.2.0
       flat: 5.0.2
     dev: true
 
@@ -12907,8 +12907,8 @@ packages:
     dependencies:
       anymatch: 3.1.2
       chokidar: 3.5.3
-      destr: 1.1.1
-      h3: 0.8.4
+      destr: 1.2.0
+      h3: 0.8.5
       ioredis: 5.2.3
       listhen: 0.3.4
       mkdir: 0.0.2
