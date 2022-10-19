@@ -3,7 +3,7 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS development
+FROM node:19.0.0-slim@sha256:55ad5338aba24b8e9efdaeedf38fdf759c648d840991117b2c442373351995fe AS development
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
@@ -45,7 +45,7 @@ CMD ["pnpm", "run", "dev"]
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS prepare
+FROM node:19.0.0-slim@sha256:55ad5338aba24b8e9efdaeedf38fdf759c648d840991117b2c442373351995fe AS prepare
 
 WORKDIR /srv/app/
 
@@ -65,7 +65,7 @@ RUN pnpm install --offline \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS build
+FROM node:19.0.0-slim@sha256:55ad5338aba24b8e9efdaeedf38fdf759c648d840991117b2c442373351995fe AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -87,7 +87,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS lint
+FROM node:19.0.0-slim@sha256:55ad5338aba24b8e9efdaeedf38fdf759c648d840991117b2c442373351995fe AS lint
 
 WORKDIR /srv/app/
 
@@ -102,7 +102,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS test-unit
+FROM node:19.0.0-slim@sha256:55ad5338aba24b8e9efdaeedf38fdf759c648d840991117b2c442373351995fe AS test-unit
 
 WORKDIR /srv/app/
 
@@ -175,7 +175,7 @@ RUN pnpm test:integration:prod && \
 # Collect build, lint and test results.
 
 # Should be the specific version of node:slim.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS collect
+FROM node:19.0.0-slim@sha256:55ad5338aba24b8e9efdaeedf38fdf759c648d840991117b2c442373351995fe AS collect
 
 WORKDIR /srv/app/
 
@@ -191,7 +191,7 @@ COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
 
 # Should be the specific version of node:slim.
 # `sqitch` requires at least `buster`.
-FROM node:18.11.0-slim@sha256:f916ff4bcfc6bbe6e3a4fa24f29109e7446e7bcd1d788066c7c45f705de95e69 AS production
+FROM node:19.0.0-slim@sha256:55ad5338aba24b8e9efdaeedf38fdf759c648d840991117b2c442373351995fe AS production
 
 ENV NODE_ENV=production
 
