@@ -149,8 +149,7 @@
   },
   "pnpm": {
     "overrides": {
-      "htmlparser2": "8.0.1",
-      "radix3": "0.2.1"
+      "htmlparser2": "8.0.1"
     }
   }
 }
