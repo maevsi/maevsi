@@ -6,7 +6,7 @@ overrides:
 specifiers:
   '@dargmuesli/nuxt-cookie-control': 1.9.9
   '@graphql-codegen/cli': 2.13.7
-  '@graphql-codegen/typescript': 2.7.5
+  '@graphql-codegen/typescript': 2.8.0
   '@graphql-codegen/typescript-operations': 2.5.5
   '@graphql-codegen/typescript-urql-graphcache': 2.4.2
   '@graphql-codegen/typescript-vue-urql': 2.3.5
@@ -118,7 +118,7 @@ specifiers:
 devDependencies:
   '@dargmuesli/nuxt-cookie-control': 1.9.9_webpack@5.74.0
   '@graphql-codegen/cli': 2.13.7_bcskau5n4us7t7edj5bgrx4upa
-  '@graphql-codegen/typescript': 2.7.5_graphql@16.6.0
+  '@graphql-codegen/typescript': 2.8.0_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.5_graphql@16.6.0
   '@graphql-codegen/typescript-urql-graphcache': 2.4.2_g2kdkeexlemmmd32lkutiqn6o4
   '@graphql-codegen/typescript-vue-urql': 2.3.5_sy4knu3obj4ys7pjcqbyfxmqle
@@ -1186,7 +1186,7 @@ packages:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
       '@graphql-codegen/plugin-helpers': 2.7.1_graphql@16.6.0
-      '@graphql-codegen/typescript': 2.7.5_graphql@16.6.0
+      '@graphql-codegen/typescript': 2.8.0_graphql@16.6.0
       '@graphql-codegen/visitor-plugin-common': 2.13.0_graphql@16.6.0
       auto-bind: 4.0.0
       graphql: 16.6.0
@@ -1234,8 +1234,8 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/typescript/2.7.5_graphql@16.6.0:
-    resolution: {integrity: sha512-NZMViINr0KEH+DgtOE3BDWkdrisX7cz3/+m6M73Sa2cMM1udTTCpLbNqFIHRmGl1UyfwjdZB32YoF/fxshjV/Q==}
+  /@graphql-codegen/typescript/2.8.0_graphql@16.6.0:
+    resolution: {integrity: sha512-atQ6NFfMmoknJi0QdVSozPugKcgeJB6t1/cVskbhVtX8tAEFFLjl6H23mpz3t35AH6aGWtvx2LCjUSxHI6P6xA==}
     peerDependencies:
       graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
