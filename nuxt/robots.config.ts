@@ -1,4 +1,4 @@
-import { IncomingMessage } from 'h3'
+import { IncomingMessage } from 'node:http'
 
 import { getHost } from './plugins/util/util'
 

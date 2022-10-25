@@ -1,7 +1,7 @@
 import fs from 'fs'
 
 import { serialize } from 'cookie'
-import { CompatibilityEvent } from 'h3'
+import { H3Event } from 'h3'
 import { jwtVerify, importSPKI } from 'jose'
 
 import { JWT_NAME, JWT_ALGORITHM } from '~/plugins/util/constants'
@@ -14,7 +14,7 @@ const configPostgraphileJwtPublicKey = fs.existsSync(
   ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
   : undefined
 
-export default async function (event: CompatibilityEvent) {
+export default async function (event: H3Event) {
   const { req, res } = event
 
   if (configPostgraphileJwtPublicKey === undefined) {

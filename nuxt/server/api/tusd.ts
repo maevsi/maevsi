@@ -4,7 +4,7 @@ import {
   readBody,
   getQuery,
   getMethod,
-  CompatibilityEvent,
+  H3Event,
   send,
   sendError,
 } from 'h3'
@@ -41,7 +41,7 @@ const pool = new pg.Pool({
   user: 'maevsi_tusd', // lgtm [js/hardcoded-credentials]
 })
 
-export default async function (event: CompatibilityEvent) {
+export default async function (event: H3Event) {
   const method = getMethod(event)
 
   switch (method) {
@@ -56,11 +56,7 @@ export default async function (event: CompatibilityEvent) {
   }
 }
 
-async function deleteUpload(
-  event: CompatibilityEvent,
-  uploadId: any,
-  storageKey: any
-) {
+async function deleteUpload(event: H3Event, uploadId: any, storageKey: any) {
   let queryResult = await pool
     .query(
       'DELETE FROM maevsi.profile_picture WHERE upload_storage_key = $1;',
@@ -90,7 +86,7 @@ async function deleteUpload(
   await send(event)
 }
 
-async function tusdDelete(event: CompatibilityEvent) {
+async function tusdDelete(event: H3Event) {
   const { req } = event
   const uploadId = getQuery(event).uploadId
 
@@ -198,7 +194,7 @@ async function tusdDelete(event: CompatibilityEvent) {
   }
 }
 
-async function tusdPost(event: CompatibilityEvent) {
+async function tusdPost(event: H3Event) {
   const { req } = event
   const body = await readBody(event)
 
