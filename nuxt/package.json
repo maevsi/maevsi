@@ -71,7 +71,7 @@
     "@types/vue-datetime": "1.0.1",
     "@uppy/core": "3.0.4",
     "@uppy/tus": "3.0.4",
-    "@urql/core": "3.0.4",
+    "@urql/core": "3.0.5",
     "@urql/devtools": "2.0.3",
     "@urql/exchange-graphcache": "5.0.2",
     "@urql/vue": "1.0.2",
