@@ -41,8 +41,8 @@ specifiers:
   '@types/node': 18.8.3
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
-  '@uppy/core': 3.0.2
-  '@uppy/tus': 3.0.2
+  '@uppy/core': 3.0.4
+  '@uppy/tus': 3.0.4
   '@urql/core': 3.0.4
   '@urql/devtools': 2.0.3
   '@urql/exchange-graphcache': 5.0.2
@@ -153,8 +153,8 @@ devDependencies:
   '@types/node': 18.8.3
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
-  '@uppy/core': 3.0.2
-  '@uppy/tus': 3.0.2_@uppy+core@3.0.2
+  '@uppy/core': 3.0.4
+  '@uppy/tus': 3.0.4_@uppy+core@3.0.4
   '@urql/core': 3.0.4_graphql@16.6.0
   '@urql/devtools': 2.0.3_x7znji4c6vv5dpjvf25d7ogn7u
   '@urql/exchange-graphcache': 5.0.2_graphql@16.6.0
@@ -3352,8 +3352,8 @@ packages:
       namespace-emitter: 2.0.1
     dev: true
 
-  /@uppy/core/3.0.2:
-    resolution: {integrity: sha512-Y2lP85FfX10XwVaIVDRQNbujcWKGQo7XtHhVUwtWIcdwcbo6NNTABblcsgbXC6YeoasYII1Ij/N/ssDPK8i50Q==}
+  /@uppy/core/3.0.4:
+    resolution: {integrity: sha512-vFofKmmVVsQE9bnOXozAPy94kLQMUdMH/l8m4ncXmxyyGRc2e9VfvY9wiy2EEsoj11O7YVzHOP70FYdRReUpVw==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.9
       '@uppy/store-default': 3.0.2
@@ -3369,13 +3369,13 @@ packages:
     resolution: {integrity: sha512-kIQMCjXui6tjF1E9xGo4YHkvt71McXkU0FStrcQuBrRXuOhb+NcuWh3sMh3KryivVNgT6w5Odrlw2FUFkl9cqA==}
     dev: true
 
-  /@uppy/tus/3.0.2_@uppy+core@3.0.2:
-    resolution: {integrity: sha512-r1I1qRqBkLT6AX1gKV8QAjZNAdokGaNtZVRhpQB1c6mvhuvaEtxgGRUees02hz+nnpbC1boFJjCnjz5CK5/M+g==}
+  /@uppy/tus/3.0.4_@uppy+core@3.0.4:
+    resolution: {integrity: sha512-I+QI/AZBSgQMbnq2N4KlFKqEE5slViiB1Kg0dM/pK43wBpRaQSv6e9bc2cYBkOh348v4+Zd0v3BXga8Anj+Oiw==}
     peerDependencies:
-      '@uppy/core': ^3.0.2
+      '@uppy/core': ^3.0.4
     dependencies:
       '@uppy/companion-client': 3.0.2
-      '@uppy/core': 3.0.2
+      '@uppy/core': 3.0.4
       '@uppy/utils': 5.0.2
       tus-js-client: 3.0.1
     dev: true
