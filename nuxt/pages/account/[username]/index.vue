@@ -49,27 +49,22 @@
 <script setup lang="ts">
 import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
-import { useAccountIsExistingQuery } from '~/gql/generated'
+import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 
 definePageMeta({
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
+  async validate(route) {
+    const { $urql } = useNuxtApp()
 
-      const accountIsExisting = useAccountIsExistingQuery({
-        variables: {
-          username: route.params.username as string,
-        },
-      }).executeQuery()
+    const accountIsExisting = await $urql.value
+      .query(ACCOUNT_IS_EXISTING_QUERY, {
+        username: route.params.username as string,
+      })
+      .toPromise()
 
-      if (
-        accountIsExisting.error ||
-        accountIsExisting.data.value?.accountIsExisting
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 }
-      }
-    },
-  ],
+    return (
+      !accountIsExisting.error && !!accountIsExisting.data?.accountIsExisting
+    )
+  },
 })
 
 const { signOut } = useSignOut()

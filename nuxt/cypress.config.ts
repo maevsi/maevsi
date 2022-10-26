@@ -1,11 +1,11 @@
 import { defineConfig } from 'cypress'
 import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin'
 
+import { CYPRESS_BASE_URL } from './plugins/util/constants'
+
 export default defineConfig({
   e2e: {
-    baseUrl: `http${
-      process.env.NODE_ENV === 'production' ? '' : 's'
-    }://0.0.0.0:3000`,
+    baseUrl: CYPRESS_BASE_URL,
     setupNodeEvents(on, config) {
       getCompareSnapshotsPlugin(on, config)
     },

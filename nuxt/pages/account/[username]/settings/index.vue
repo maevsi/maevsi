@@ -50,37 +50,30 @@ import { CombinedError } from '@urql/core'
 import { useSignOut } from '~/plugins/util/auth'
 import { getApiMeta } from '~/plugins/util/util'
 import { useMaevsiStore } from '~/store'
-import {
-  useAccountDeleteMutation,
-  useAccountIsExistingQuery,
-} from '~~/gql/generated'
+import { useAccountDeleteMutation } from '~/gql/generated'
+import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 
 definePageMeta({
+  async validate(route) {
+    const { $urql } = useNuxtApp()
+
+    const accountIsExisting = await $urql.value
+      .query(ACCOUNT_IS_EXISTING_QUERY, {
+        username: route.params.username as string,
+      })
+      .toPromise()
+
+    return (
+      !accountIsExisting.error && !!accountIsExisting.data?.accountIsExisting
+    )
+  },
   middleware: [
     function (_to: any, _from: any) {
-      const { ssrContext } = useNuxtApp()
       const route = useRoute()
       const store = useMaevsiStore()
 
-      if (
-        ssrContext &&
-        ssrContext.event.res &&
-        route.params.username !== store.signedInUsername
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 } or navigateTo('', { statusCode: 403 })
-      }
-
-      const accountIsExisting = useAccountIsExistingQuery({
-        variables: {
-          username: route.params.username as string,
-        },
-      }).executeQuery()
-
-      if (
-        accountIsExisting.error ||
-        accountIsExisting.data.value?.accountIsExisting
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 }
+      if (route.params.username !== store.signedInUsername) {
+        return abortNavigation({ statusCode: 403 })
       }
     },
   ],

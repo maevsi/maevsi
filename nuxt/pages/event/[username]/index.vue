@@ -18,15 +18,7 @@
 import { REGEX_SLUG } from '~/plugins/util/validation'
 
 definePageMeta({
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
-
-      if (!REGEX_SLUG.test(route.params.username as string)) {
-        return abortNavigation()
-      }
-    },
-  ],
+  validate: (route) => REGEX_SLUG.test(route.params.username as string),
 })
 
 const { t } = useI18n()
