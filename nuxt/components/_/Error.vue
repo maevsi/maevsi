@@ -4,6 +4,7 @@
     <i18n-t
       keypath="maevNo"
       class="flex items-center justify-center gap-1 text-xl font-black"
+      tag="span"
     >
       <template #emojiFacePleading>
         <EmojiFacePleading />

@@ -65,24 +65,20 @@ The following steps show how to start the full development stack:
     pnpm store path
     vim stack.env # fill PNPM_STORE_DIR with what's printed by the previous command
     ```
-1. install a root development certificate on your system and create subcertificates for the application
+1. install a root development certificate on your system and create subcertificates for the application:
     ```sh
     mkcert -install
     ./certificates/mkcert.sh
     ```
-1. you are now ready to start everything up!
+1. you are now ready to start everything up:
     ```sh
     cd ../../
     dargstack deploy
     ```
-1. Finally, create the Docker development images for `maevsi` and `stomper` so that their services start successfully:
+1. finally, create the Docker development images for `maevsi` and `stomper` so that their services start successfully:
     ```sh
-    cd ../maevsi
-    dargstack build
-
-    cd ../stomper
-    yarn install
-    dargstack build
+    dargstack build maevsi
+    dargstack build stomper
     ```
 
 

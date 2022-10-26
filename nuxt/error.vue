@@ -1,5 +1,7 @@
 <template>
-  <Error :status-code="error?.statusCode ? +error?.statusCode : undefined" />
+  <NuxtLayout>
+    <Error :status-code="error?.statusCode ? +error?.statusCode : undefined" />
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
