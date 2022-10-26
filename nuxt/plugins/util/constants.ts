@@ -1,8 +1,8 @@
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
-export const CYPRESS_BASE_URL = `http${
-  process.env.NODE_ENV === 'production' ? '' : 's'
-}://0.0.0.0:3000`
+export function CYPRESS_BASE_URL(env: string) {
+  return `http${env === 'production' ? '' : 's'}://0.0.0.0:3000`
+}
 
 export const LOCALES: LocaleObject[] = [
   {
