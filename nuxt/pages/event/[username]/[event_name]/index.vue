@@ -311,31 +311,26 @@ import { getContactName } from '~/plugins/util/model'
 import {
   InvitationFeedback,
   useEventByAuthorUsernameAndSlugQuery,
-  useEventIsExistingQuery,
   useUpdateInvitationByIdMutation,
 } from '~/gql/generated'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useMaevsiStore } from '~/store'
 
 definePageMeta({
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
+  async validate(route) {
+    const { $urql } = useNuxtApp()
 
-      const eventIsExisting = useEventIsExistingQuery({
-        variables: {
-          slug: route.params.event_name as string,
-          authorUsername: route.params.username as string,
-        },
-      }).executeQuery()
+    const eventIsExisting = await $urql.value
+      .query(EVENT_IS_EXISTING_QUERY, {
+        slug: route.params.event_name as string,
+        authorUsername: route.params.username as string,
+      })
+      .toPromise()
 
-      if (
-        eventIsExisting.error ||
-        eventIsExisting.data.value?.eventIsExisting
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 }
-      }
-    },
-  ],
+    return (
+      !eventIsExisting.error || !!eventIsExisting.data.eventIsExisting // TODO: 403
+    )
+  },
 })
 
 const { t } = useI18n()

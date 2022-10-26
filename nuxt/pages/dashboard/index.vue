@@ -66,8 +66,8 @@ definePageMeta({
       const { $localePath } = useNuxtApp()
       const store = useMaevsiStore()
 
-      if (store.jwtDecoded?.role === 'maevsi_anonymous') {
-        return navigateTo($localePath('/'))
+      if (store.jwtDecoded?.role !== 'maevsi_account') {
+        return navigateTo($localePath('/'), { redirectCode: 307 })
       }
     },
   ],

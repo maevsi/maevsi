@@ -162,13 +162,13 @@ RUN apt-get update \
     && chmod +x mkcert-v*-linux-amd64 \
     && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
 
+COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
+COPY --from=build /srv/app/ /srv/app/
+
 WORKDIR /srv/app/
 
-COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
-COPY --from=build /srv/app/ ./
-
-RUN pnpm test:integration:prod && \
-    pnpm test:integration:dev
+RUN pnpm test:integration:prod \
+    && pnpm test:integration:dev
 
 
 #######################

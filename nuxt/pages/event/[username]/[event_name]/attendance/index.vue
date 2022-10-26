@@ -68,35 +68,30 @@
 import consola from 'consola'
 import Swal from 'sweetalert2'
 
-import {
-  useEventByAuthorUsernameAndSlugQuery,
-  useEventIsExistingQuery,
-} from '~/gql/generated'
+import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useMaevsiStore } from '~/store'
 
 definePageMeta({
+  async validate(route) {
+    const { $urql } = useNuxtApp()
+
+    const eventIsExisting = await $urql.value
+      .query(EVENT_IS_EXISTING_QUERY, {
+        slug: route.params.event_name as string,
+        authorUsername: route.params.username as string,
+      })
+      .toPromise()
+
+    return !eventIsExisting.error || !!eventIsExisting.data.eventIsExisting
+  },
   middleware: [
     function (_to: any, _from: any) {
       const route = useRoute()
       const store = useMaevsiStore()
 
       if (route.params.username !== store.signedInUsername) {
-        throw createError({ statusCode: 403 })
-        // return error({ statusCode: 403 })
-      }
-
-      const eventIsExisting = useEventIsExistingQuery({
-        variables: {
-          slug: route.params.event_name as string,
-          authorUsername: route.params.username as string,
-        },
-      }).executeQuery()
-
-      if (
-        eventIsExisting.error ||
-        eventIsExisting.data.value?.eventIsExisting
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 }
+        throw createError({ statusCode: 403 }) // TODO: abortNavigation?
       }
     },
   ],

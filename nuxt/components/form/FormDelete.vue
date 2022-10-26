@@ -34,7 +34,7 @@ import {
   formPreSubmit,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
 } from '~/plugins/util/validation'
-import { Exact, EventDeleteMutation } from '~~/gql/generated'
+import { Exact, EventDeleteMutation } from '~/gql/generated'
 
 export interface Props {
   errors?: (CombinedError | { errcode: string; message: string })[]
