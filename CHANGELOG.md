@@ -1,3 +1,16 @@
+# [1.0.0-alpha.3](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.2...1.0.0-alpha.3) (2022-10-26)
+
+
+### Bug Fixes
+
+* **tests:** use cypress environment variables ([4b65bf4](https://github.com/maevsi/maevsi/commit/4b65bf4b6f9c086713a7c370246525eb0413f7bc))
+
+
+### Features
+
+* **pages:** correct meta redirects ([d1ce421](https://github.com/maevsi/maevsi/commit/d1ce421dedb3b1be9d0870d84b238d3928f3b197))
+* **tests:** add integration tests - check if page loads ([8010c8d](https://github.com/maevsi/maevsi/commit/8010c8dd93a077d2a013beefcf9717723f312f3e))
+
 # [1.0.0-alpha.2](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.1...1.0.0-alpha.2) (2022-10-26)
 
 
