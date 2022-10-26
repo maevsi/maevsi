@@ -1,3 +1,16 @@
+# [1.0.0-alpha.2](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.1...1.0.0-alpha.2) (2022-10-26)
+
+
+### Bug Fixes
+
+* **error:** add missing layout ([b7eb034](https://github.com/maevsi/maevsi/commit/b7eb034d80dda52940348e9e99e648d0e846bbc2))
+* **i18n:** add missing tags ([ba64bc8](https://github.com/maevsi/maevsi/commit/ba64bc893958b747eb0ece09477eb0c43f41928d))
+
+
+### Features
+
+* **app:** remove wrapping divs ([fd5fa96](https://github.com/maevsi/maevsi/commit/fd5fa96702c98e9db55d940f7b4a95a287443eb1))
+
 # [1.0.0-alpha.1](https://github.com/maevsi/maevsi/compare/0.146.6...1.0.0-alpha.1) (2022-10-18)
 
 
