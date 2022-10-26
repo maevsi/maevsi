@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@commitlint/cli': 17.1.2
   '@commitlint/config-conventional': 17.1.0
-  '@types/node': 18.11.6
+  '@types/node': 18.11.7
   husky: 8.0.1
   shx: 0.3.4
   ts-node: 10.9.1
@@ -12,10 +12,10 @@ specifiers:
 devDependencies:
   '@commitlint/cli': 17.1.2
   '@commitlint/config-conventional': 17.1.0
-  '@types/node': 18.11.6
+  '@types/node': 18.11.7
   husky: 8.0.1
   shx: 0.3.4
-  ts-node: 10.9.1_i7h6rytxt6mnf2cd4ja4puifuq
+  ts-node: 10.9.1_evej5wzm4hojmu6uzxwpspdmsu
   typescript: 4.8.4
 
 packages:
@@ -250,8 +250,8 @@ packages:
     resolution: {integrity: sha512-Y6S38pFr04yb13qqHf8uk1nHE3lXgQ30WZbv1mLliV9pt0NjvqdWttLcrOYLnXbOafknVYRHZGoMSpR9UwfYow==}
     dev: true
 
-  /@types/node/18.11.6:
-    resolution: {integrity: sha512-j3CEDa2vd96K0AXF8Wur7UucACvnjkk8hYyQAHhUNciabZLDl9nfAEVUSwmh245OOZV15bRA3Y590Gi5jUcDJg==}
+  /@types/node/18.11.7:
+    resolution: {integrity: sha512-LhFTglglr63mNXUSRYD8A+ZAIu5sFqNJ4Y2fPuY7UlrySJH87rRRlhtVmMHplmfk5WkoJGmDjE9oiTfyX94CpQ==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -1234,7 +1234,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-node/10.9.1_i7h6rytxt6mnf2cd4ja4puifuq:
+  /ts-node/10.9.1_evej5wzm4hojmu6uzxwpspdmsu:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -1253,7 +1253,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
-      '@types/node': 18.11.6
+      '@types/node': 18.11.7
       acorn: 8.8.0
       acorn-walk: 8.2.0
       arg: 4.1.3
