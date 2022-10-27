@@ -3,8 +3,8 @@
     <div v-if="event" class="flex flex-col gap-4">
       <Breadcrumbs
         :prefixes="[
-          { name: t('events'), to: '../..', append: true },
-          { name: routeParamUsername, to: '..', append: true },
+          { name: t('events'), to: '../..', isToRelative: true },
+          { name: routeParamUsername, to: '..', isToRelative: true },
         ]"
       >
         {{ event.name }}
@@ -12,7 +12,7 @@
       <CardStateInfo v-if="routeQueryIc && contact" class="flex flex-col gap-2">
         {{ t('invitationViewFor', { name: contactName }) }}
         <ButtonColored
-          append
+          is-to-relative
           :aria-label="t('invitationSelectionClear')"
           @click="
             navigateTo({
@@ -202,19 +202,27 @@
           event.authorUsername === jwtDecoded.username
         "
       >
-        <ButtonColored append :aria-label="t('invitations')" to="invitation">
+        <ButtonColored
+          is-to-relative
+          :aria-label="t('invitations')"
+          to="invitation"
+        >
           {{ t('invitations') }}
           <template #prefix>
             <IconEnvelope />
           </template>
         </ButtonColored>
-        <ButtonColored append :aria-label="t('attendances')" to="attendance">
+        <ButtonColored
+          is-to-relative
+          :aria-label="t('attendances')"
+          to="attendance"
+        >
           {{ t('attendances') }}
           <template #prefix>
             <IconUserCheck />
           </template>
         </ButtonColored>
-        <ButtonColored append :aria-label="t('settings')" to="settings">
+        <ButtonColored is-to-relative :aria-label="t('settings')" to="settings">
           {{ t('settings') }}
           <template #prefix>
             <IconPencil />

@@ -2,9 +2,9 @@
   <div class="flex flex-col gap-4">
     <Breadcrumbs
       :prefixes="[
-        { name: t('events'), to: '../../..', append: true },
-        { name: routeParamUsername, to: '../..', append: true },
-        { name: routeParamEventName, to: '..', append: true },
+        { name: t('events'), to: '../../..', isToRelative: true },
+        { name: routeParamUsername, to: '../..', isToRelative: true },
+        { name: routeParamEventName, to: '..', isToRelative: true },
       ]"
     >
       {{ t('checkIns') }}

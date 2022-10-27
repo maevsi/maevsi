@@ -2,7 +2,7 @@
   <AppLink
     v-if="to"
     ref="buttonRef"
-    :append="append"
+    :is-to-relative="isToRelative"
     :aria-label="ariaLabel"
     :class="classes"
     :disabled="disabled"
@@ -30,19 +30,19 @@
 
 <script setup lang="ts">
 export interface Props {
-  append?: boolean
   ariaLabel: string
   disabled?: boolean
   isBlock?: boolean
   isLinkColored?: boolean
+  isToRelative?: boolean
   to?: string
   type?: 'button' | 'submit' | 'reset'
 }
 const props = withDefaults(defineProps<Props>(), {
-  append: false,
   disabled: false,
   isBlock: false,
   isLinkColored: false,
+  isToRelative: false,
   to: undefined,
   type: 'button',
 })

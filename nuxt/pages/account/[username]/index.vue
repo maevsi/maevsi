@@ -1,10 +1,12 @@
 <template>
   <div class="flex flex-col gap-4">
-    <Breadcrumbs :prefixes="[{ name: t('accounts'), to: '..', append: true }]">
+    <Breadcrumbs
+      :prefixes="[{ name: t('accounts'), to: '..', isToRelative: true }]"
+    >
       {{ routeParamUsername }}
     </Breadcrumbs>
     <ButtonList v-if="signedInUsername === routeParamUsername">
-      <ButtonColored :aria-label="t('settings')" to="settings" append>
+      <ButtonColored :aria-label="t('settings')" to="settings" is-to-relative>
         {{ t('settings') }}
         <template #prefix>
           <IconPencil />

@@ -10,7 +10,11 @@
         class="flex items-center gap-2"
       >
         <span>{{ t('separator') }}</span>
-        <AppLink :append="prefix.append" :is-colored="false" :to="prefix.to">
+        <AppLink
+          :is-to-relative="prefix.isToRelative"
+          :is-colored="false"
+          :to="prefix.to"
+        >
           <span class="whitespace-nowrap text-2xl">{{ prefix.name }}</span>
         </AppLink>
       </li>
@@ -26,7 +30,11 @@
         class="flex items-center gap-2"
       >
         <span>{{ t('separator') }}</span>
-        <AppLink :append="suffix.append" :is-colored="false" :to="suffix.to">
+        <AppLink
+          :is-to-relative="suffix.isToRelative"
+          :is-colored="false"
+          :to="suffix.to"
+        >
           <span class="whitespace-nowrap text-2xl">{{ suffix.name }}</span>
         </AppLink>
       </li>
@@ -38,7 +46,7 @@
 import { getQueryString } from '~/plugins/util/util'
 
 export interface Breadcrumb {
-  append: boolean
+  isToRelative: boolean
   name: string
   to: string
 }

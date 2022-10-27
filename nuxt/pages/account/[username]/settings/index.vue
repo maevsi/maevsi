@@ -2,8 +2,8 @@
   <div class="flex flex-col gap-4">
     <Breadcrumbs
       :prefixes="[
-        { name: t('accounts'), to: '../..', append: true },
-        { name: routeParamUsername, to: '..', append: true },
+        { name: t('accounts'), to: '../..', isToRelative: true },
+        { name: routeParamUsername, to: '..', isToRelative: true },
       ]"
     >
       {{ t('settings') }}

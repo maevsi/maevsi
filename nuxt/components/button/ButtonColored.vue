@@ -1,7 +1,7 @@
 <template>
   <Button
     ref="buttonRef"
-    :append="append"
+    :is-to-relative="isToRelative"
     :aria-label="ariaLabel"
     class="rounded-md border justify-center px-4 py-2 font-medium"
     :class="
@@ -32,17 +32,17 @@
 
 <script setup lang="ts">
 export interface Props {
-  append?: boolean
   ariaLabel: string
   disabled?: boolean
   isPrimary?: boolean
+  isToRelative?: boolean
   to?: string
   type?: 'button' | 'reset' | 'submit'
 }
 withDefaults(defineProps<Props>(), {
-  append: false,
   disabled: false,
   isPrimary: true,
+  isToRelative: false,
   to: undefined,
   type: 'button',
 })

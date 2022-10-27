@@ -13,9 +13,8 @@
   </a>
   <NuxtLink
     v-else
-    :append="append"
     :class="classes"
-    :to="to"
+    :to="isToRelative ? append(route.path, to) : to"
     @click.native="$emit('click')"
   >
     <slot />
@@ -23,19 +22,23 @@
 </template>
 
 <script setup lang="ts">
+import { append } from '~/plugins/util/util'
+
 export interface Props {
-  append?: boolean
   isColored?: boolean
+  isToRelative?: boolean
   isUnderlined?: boolean
   nofollow?: boolean
   to: string
 }
 const props = withDefaults(defineProps<Props>(), {
-  append: false,
   isColored: true,
+  isToRelative: false,
   isUnderlined: false,
   nofollow: false,
 })
+
+const route = useRoute()
 
 // computations
 const classes = computed(() => {
