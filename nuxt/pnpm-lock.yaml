@@ -70,7 +70,7 @@ specifiers:
   eslint-plugin-yml: 1.2.0
   graphql: 16.6.0
   graphql-tag: 2.12.6
-  h3: 0.8.5
+  h3: 0.8.6
   html-to-text: 8.2.1
   ical-generator: 3.6.0
   isomorphic-dompurify: 0.23.0
@@ -182,7 +182,7 @@ devDependencies:
   eslint-plugin-yml: 1.2.0_eslint@8.26.0
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
-  h3: 0.8.5
+  h3: 0.8.6
   html-to-text: 8.2.1
   ical-generator: 3.6.0_2yyhe5pvqozaqeq232kmnsa66i
   isomorphic-dompurify: 0.23.0
@@ -2283,7 +2283,7 @@ packages:
       externality: 0.2.2
       fs-extra: 10.1.0
       get-port-please: 2.6.1
-      h3: 0.8.5
+      h3: 0.8.6
       knitwork: 0.1.2
       magic-string: 0.26.7
       mlly: 0.5.16
@@ -7325,8 +7325,8 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /h3/0.8.5:
-    resolution: {integrity: sha512-A+rVzJ+31e67JJzlRf2Ycphu/mvl2qknbpch38xRfrs9HuGSKTtOWuzPnpgaEGIfnzuD/BsDOfhQLJevXEm3ag==}
+  /h3/0.8.6:
+    resolution: {integrity: sha512-CSWNOKa3QGo67rFU2PhbFTp0uPJtilNji2Z0pMiSRQt3+OkIW0u3E1WMJqIycLqaTgb9JyFqH/S4mcTyyGtvyQ==}
     dependencies:
       cookie-es: 0.5.0
       destr: 1.2.0
@@ -9680,7 +9680,7 @@ packages:
       fs-extra: 10.1.0
       globby: 13.1.2
       gzip-size: 7.0.0
-      h3: 0.8.5
+      h3: 0.8.6
       hookable: 5.4.1
       http-proxy: 1.18.1
       is-primitive: 3.0.1
@@ -9886,7 +9886,7 @@ packages:
       escape-string-regexp: 5.0.0
       fs-extra: 10.1.0
       globby: 13.1.2
-      h3: 0.8.5
+      h3: 0.8.6
       hash-sum: 2.0.0
       hookable: 5.4.1
       knitwork: 0.1.2
@@ -12865,7 +12865,7 @@ packages:
       anymatch: 3.1.2
       chokidar: 3.5.3
       destr: 1.2.0
-      h3: 0.8.5
+      h3: 0.8.6
       ioredis: 5.2.3
       listhen: 0.3.4
       mkdir: 0.0.2
