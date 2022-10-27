@@ -19,12 +19,12 @@ import { CombinedError } from '@urql/core/dist/types/utils/error'
 import { useGetCombinedErrorMessages } from '~/plugins/util/util'
 
 export interface Props {
-  api: {
+  api?: {
     data: Object
     errors: (CombinedError | { errcode: string; message: string })[]
     isFetching: boolean
   }
-  indicator: string
+  indicator?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   api: () => ({
