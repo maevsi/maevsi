@@ -1,6 +1,6 @@
 describe('upload page', () => {
-  context('pages load correctly', () => {
-    it('denies access when not logged in', () => {
+  context('page load', () => {
+    it('forbids access when not signed in', () => {
       cy.request({
         url: '/upload',
         failOnStatusCode: false,

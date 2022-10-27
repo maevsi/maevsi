@@ -67,7 +67,7 @@ definePageMeta({
       const store = useMaevsiStore()
 
       if (store.jwtDecoded?.role !== 'maevsi_account') {
-        return navigateTo($localePath('/'), { redirectCode: 307 })
+        return navigateTo($localePath('/'))
       }
     },
   ],

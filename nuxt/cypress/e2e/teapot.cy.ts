@@ -1,5 +1,5 @@
 describe('teapot page', () => {
-  context('pages load correctly', () => {
+  context('page load', () => {
     it('refuses to brew coffee', () => {
       cy.request({
         url: '/teapot',
@@ -8,6 +8,13 @@ describe('teapot page', () => {
         expect(resp.status).to.equal(418)
         expect(resp.redirectedToUrl).to.equal(undefined)
       })
+    })
+  })
+
+  context('visual regression', () => {
+    it('looks as before', () => {
+      cy.visit({ url: '/teapot', failOnStatusCode: false })
+      cy.compareSnapshot('teapot')
     })
   })
 })

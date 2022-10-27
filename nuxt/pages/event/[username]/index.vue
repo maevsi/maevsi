@@ -17,10 +17,22 @@
 </template>
 
 <script setup lang="ts">
-import { REGEX_SLUG } from '~/plugins/util/validation'
+import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 
 definePageMeta({
-  validate: (route) => REGEX_SLUG.test(route.params.username as string),
+  async validate(route) {
+    const { $urql } = useNuxtApp()
+
+    const accountIsExisting = await $urql.value
+      .query(ACCOUNT_IS_EXISTING_QUERY, {
+        username: route.params.username as string,
+      })
+      .toPromise()
+
+    return (
+      !accountIsExisting.error && !!accountIsExisting.data?.accountIsExisting
+    )
+  },
 })
 
 const { t } = useI18n()

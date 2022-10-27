@@ -3,10 +3,9 @@ import moment from 'moment'
 import { Ref } from 'vue'
 
 import { getApiDataDefault } from './util'
-import {
-  useAccountIsExistingQuery,
-  useEventIsExistingQuery,
-} from '~/gql/generated'
+
+import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 
 export const REGEX_PHONE_NUMBER =
   /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/
@@ -57,8 +56,10 @@ export function validateEventSlug(
   signedInUserName: string,
   invert: boolean,
   exclude?: string
-): (value: string) => boolean {
-  return (value: string) => {
+): (value: string) => Promise<boolean> {
+  return async (value: string) => {
+    const { $urql } = useNuxtApp()
+
     if (!helpers.req(value)) {
       return true
     }
@@ -67,37 +68,39 @@ export function validateEventSlug(
       return true
     }
 
-    const result = useEventIsExistingQuery({
-      variables: {
-        authorUsername: signedInUserName,
-        slug: value,
-      },
-    })
+    const result = await $urql.value
+      .query(EVENT_IS_EXISTING_QUERY, {
+        slug: signedInUserName,
+        authorUsername: value,
+      })
+      .toPromise()
 
-    if (!result.data.value?.eventIsExisting) return false
+    if (result.error) return false
 
-    return invert
-      ? !result.data.value.eventIsExisting
-      : result.data.value.eventIsExisting
+    return invert ? !result.data.eventIsExisting : result.data.eventIsExisting
   }
 }
 
-export function validateUsername(invert?: boolean): (value: string) => boolean {
-  return (value: string) => {
+export function validateUsername(
+  invert?: boolean
+): (value: string) => Promise<boolean> {
+  return async (value: string) => {
+    const { $urql } = useNuxtApp()
+
     if (!helpers.req(value)) {
       return true
     }
 
-    const result = useAccountIsExistingQuery({
-      variables: {
+    const result = await $urql.value
+      .query(ACCOUNT_IS_EXISTING_QUERY, {
         username: value,
-      },
-    })
+      })
+      .toPromise()
 
-    if (!result.data.value?.accountIsExisting) return false
+    if (result.error) return false
 
     return invert
-      ? !result.data.value.accountIsExisting
-      : result.data.value.accountIsExisting
+      ? !result.data.accountIsExisting
+      : result.data.accountIsExisting
   }
 }
