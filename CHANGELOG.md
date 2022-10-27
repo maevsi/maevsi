@@ -1,3 +1,17 @@
+# [1.0.0-alpha.4](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.3...1.0.0-alpha.4) (2022-10-27)
+
+
+### Bug Fixes
+
+* **breadcrumbs:** migrate append property to function ([e4ea575](https://github.com/maevsi/maevsi/commit/e4ea57596d6468dfb17b5516e790bb61ab861bb9))
+* **icon:** correct container name ([4765012](https://github.com/maevsi/maevsi/commit/4765012ca583348f7f9d279d9aae545d2cbe16cc))
+* **loader:** correct property requirements ([bf02d66](https://github.com/maevsi/maevsi/commit/bf02d6689152e5125b494cd7551e4d1b551637eb))
+
+
+### Features
+
+* **cypress:** add page tests ([2370a27](https://github.com/maevsi/maevsi/commit/2370a27efe18fdf03eaa18e09826736fd0fce76e))
+
 # [1.0.0-alpha.3](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.2...1.0.0-alpha.3) (2022-10-26)
 
 
