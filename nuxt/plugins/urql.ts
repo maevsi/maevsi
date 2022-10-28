@@ -12,8 +12,6 @@ import { provideClient } from '@urql/vue'
 import consola from 'consola'
 import { ref } from 'vue'
 
-import { defineNuxtPlugin, useNuxtApp } from '#app'
-
 import schema from '~/gql/introspection'
 import { GraphCacheConfig } from '~/gql/schema'
 
