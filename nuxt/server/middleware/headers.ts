@@ -6,6 +6,8 @@ function getCsp(host: string): Record<string, Array<string>> {
   const hostName = host.replace(/:[0-9]+$/, '')
   const config = useRuntimeConfig()
 
+  host = config.public.stagingHost || host
+
   return {
     'base-uri': ["'none'"], // Mozilla Observatory.
     'connect-src': [
@@ -14,6 +16,7 @@ function getCsp(host: string): Record<string, Array<string>> {
             `https://${host}/cdn-cgi/rum`, // Cloudflare real user management (browser insights)
           ]
         : [
+            `https://${host}`,
             `http://${hostName}:24678/_nuxt/`,
             `https://${hostName}:24678/_nuxt/`,
             `ws://${hostName}:24678/_nuxt/`,

@@ -225,8 +225,11 @@ function deleteImageUpload(uploadId: string) {
   element.classList.add('disabled')
 
   const xhr = new XMLHttpRequest()
+  const host = config.public.stagingHost
+    ? `https://${config.public.stagingHost}`
+    : undefined
 
-  xhr.open('DELETE', '/api/tusd?uploadId=' + uploadId, true)
+  xhr.open('DELETE', `${host}/api/tusd?uploadId=${uploadId}`, true)
   xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
   xhr.setRequestHeader('Authorization', 'Bearer ' + jwt)
   xhr.onreadystatechange = () => {

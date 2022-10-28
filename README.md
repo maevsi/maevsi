@@ -11,18 +11,64 @@ This project is deployed within the [maevsi_stack](https://github.com/maevsi/mae
 
 ## Table of Contents
 1. **[Development](#development)**
-    1. **[Preparation](#preparation)**
-    1. **[Setup](#setup)**
-    1. **[Container Management](#container-management)**
-    1. **[Sqitch](#sqitch)**
+    1. **[Frontend only](#frontend-only)**
+    1. **[Fullstack](#fullstack)**
 1. **[Technology](#technology)**
 
 ## Development
 
-You could simply use [Node.js](https://nodejs.org/en/) and [pnpm](https://pnpm.io/) to run `pnpm run dev` and have a development server running on your machine, but you'd be missing a backend to serve data to display.
-The following steps show how to start the full development stack:
+The setup for frontend development is easy! 💅
 
-### Preparation
+The setup for backend development is more complex as it consists of numerous services which are best set up containerized 🧑‍💻
+
+### Frontend only
+
+<details>
+  <summary><b>click here for instructions</b></summary>
+
+#### Preparation
+
+1. [install Git](https://git-scm.com/) to download this project's modules and participate in version management
+1. [install nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to be able to switch the currently active [Node.js](https://nodejs.org/en/) version on your machine (useful when working on multiple Node.js projects)
+1. [install mkcert](https://github.com/FiloSottile/mkcert#installation) for development certificate generation and installation, so that all services are available through https
+
+#### Setup
+
+1. create a directory named `maevsi` in a directory of your liking
+1. download this repository into that newly created directory:
+    ```sh
+    cd maevsi
+    git clone https://github.com/maevsi/maevsi.git
+    ```
+1. switch into the `maevsi` subdirectory and setup Node:
+    ```sh
+    cd maevsi
+    nvm install
+    nvm use
+    ```
+1. then install all dependencies using [pnpm](https://pnpm.io/), including the **nuxt** directory:
+    ```sh
+    corepack enable
+    pnpm install
+
+    cd nuxt
+    pnpm install
+    ```
+    If there is an issue regarding OpenSSL, then you might want to set the environment variable `NODE_OPTIONS=--openssl-legacy-provider` and try again.
+1. finally, start the frontend:
+
+    ```sh
+    pnpm dev
+    ```
+1. you should now be able to access maevsi under https://localhost:3000/! 🎉
+
+</details>
+
+### Fullstack
+<details>
+  <summary><b>click here for instructions</b></summary>
+
+#### Preparation
 
 1. if you're on Windows, [setup WSL](https://docs.microsoft.com/en-us/windows/wsl/install) to be able to use all Linux functionality this project utilizes
 1. [install Git](https://git-scm.com/) to download this project's modules and participate in version management
@@ -32,7 +78,7 @@ The following steps show how to start the full development stack:
 1. [install mkcert](https://github.com/FiloSottile/mkcert#installation) for development certificate generation and installation, so that all services are available through https
 
 
-### Setup
+#### Setup
 
 1. create a directory named `maevsi` in a directory of your liking
 1. download the project modules [maevsi](https://github.com/maevsi/maevsi), [maevsi_stack](https://github.com/maevsi/maevsi_stack) and [stomper](https://github.com/maevsi/stomper) into that newly created directory:
@@ -58,12 +104,16 @@ The following steps show how to start the full development stack:
     pnpm install
     ```
     If there is an issue regarding OpenSSL, then you might want to set the environment variable `NODE_OPTIONS=--openssl-legacy-provider` and try again.
+1. disable the remote backend host to use the local backend instead:
+    ```sh
+    $EDITOR nuxt.config.ts # comment out runtimeConfig.public.stagingHost
+    ```
 1. configure maevsi's [DargStack](https://github.com/dargmuesli/dargstack) then:
     ```sh
     cd ../../maevsi_stack/src/development
     cp stack.env.template stack.env
     pnpm store path
-    vim stack.env # fill PNPM_STORE_DIR with what's printed by the previous command
+    $EDITOR stack.env # fill PNPM_STORE_DIR with what's printed by the previous command
     ```
 1. install a root development certificate on your system and create subcertificates for the application:
     ```sh
@@ -80,9 +130,12 @@ The following steps show how to start the full development stack:
     dargstack build maevsi
     dargstack build stomper
     ```
+1. you should now be able to access maevsi under https://localhost! 🎉
+
+    If there are issues, you can debug the services as described in the following "Container Management" section.
 
 
-### Container Management
+#### Container Management
 
 To see if services are running or not you can use [Portainer](https://www.portainer.io/) if you prefer a web view instead of the command line:
 ```sh
@@ -94,7 +147,7 @@ Under "home", select the newly created environment then.
 You'll have access to all containers, images, volumes and more via the left sidebar then.
 
 
-### Sqitch
+#### Sqitch
 
 In case you want to apply or revert the database migrations, you need to use [Sqitch](https://sqitch.org/).
 
@@ -102,6 +155,7 @@ The `sqitch` directory in this repository contains a `sqitch` executable that yo
 For example, run `./sqitch deploy` to fill the database with structure like tables, types and policies.
 
 In case you want to be able to simple call `sqitch deploy` without `./` instead, add an `alias sqitch="./sqitch"` to your shell configuration (`~/.bashrc`, `~/.zshrc`, ...).
+</details>
 
 
 ## Technology
