@@ -1,4 +1,4 @@
-import { readBody, H3Event } from 'h3'
+import { defineEventHandler, readBody, H3Event } from 'h3'
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
