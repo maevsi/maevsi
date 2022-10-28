@@ -14,7 +14,7 @@ const configPostgraphileJwtPublicKey = fs.existsSync(
   ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
   : undefined
 
-export default async function (event: H3Event) {
+export default defineEventHandler(async function (event: H3Event) {
   const { req, res } = event
 
   if (configPostgraphileJwtPublicKey === undefined) {
@@ -57,4 +57,4 @@ export default async function (event: H3Event) {
     })
   )
   res.end()
-}
+})

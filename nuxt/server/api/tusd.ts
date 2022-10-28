@@ -41,7 +41,7 @@ const pool = new pg.Pool({
   user: 'maevsi_tusd', // lgtm [js/hardcoded-credentials]
 })
 
-export default async function (event: H3Event) {
+export default defineEventHandler(async function (event: H3Event) {
   const method = getMethod(event)
 
   switch (method) {
@@ -54,7 +54,7 @@ export default async function (event: H3Event) {
     default:
       consola.warn(`Unexpected request method: ` + method)
   }
-}
+})
 
 async function deleteUpload(event: H3Event, uploadId: any, storageKey: any) {
   let queryResult = await pool

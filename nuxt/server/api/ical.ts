@@ -9,7 +9,7 @@ import { Contact } from '~/types/contact'
 import { Event as MaevsiEvent } from '~/types/event'
 import { Invitation } from '~/types/invitation'
 
-export default async function (h3Event: H3Event) {
+export default defineEventHandler(async function (h3Event: H3Event) {
   const { res } = h3Event
   const body = await readBody(h3Event)
   const host = useHost()
@@ -24,7 +24,7 @@ export default async function (h3Event: H3Event) {
     'attachment; filename="' + event.authorUsername + '_' + event.slug + '.ics"'
   )
   res.end(getIcalString(host, event, contact, invitation))
-}
+})
 
 export function getIcalString(
   host: string,
