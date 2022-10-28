@@ -1,3 +1,18 @@
+# [1.0.0-alpha.5](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.4...1.0.0-alpha.5) (2022-10-28)
+
+
+### Bug Fixes
+
+* **api:** add missing import ([f58cbd0](https://github.com/maevsi/maevsi/commit/f58cbd0ea6c8e5271dbfb65ec78e46f24f6ff207))
+* **event:** correct page validation ([2f4e360](https://github.com/maevsi/maevsi/commit/2f4e360a1d209958f90f92851c006ff045423005))
+* **server:** add event handler wrapper ([39925c4](https://github.com/maevsi/maevsi/commit/39925c43b3ab2e1273bfafed50ad1312679e410f))
+
+
+### Features
+
+* **auth:** use parameter objects ([4f2e33a](https://github.com/maevsi/maevsi/commit/4f2e33a31636771d6537ee0b0115e7e72736d969))
+* separate stack development ([59bf267](https://github.com/maevsi/maevsi/commit/59bf2670dec079f4882b6ca9bf375e430ee383fc))
+
 # [1.0.0-alpha.4](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.3...1.0.0-alpha.4) (2022-10-27)
 
 
