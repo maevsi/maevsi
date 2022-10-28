@@ -110,23 +110,23 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   // Either authenticate anonymously or refresh token on page load.
   if (nuxtApp.ssrContext?.event) {
     const store = useMaevsiStore(nuxtApp.ssrContext.$pinia)
-    const jwtData = jwtFromCookie(nuxtApp.ssrContext.event.req)
+    const jwtData = jwtFromCookie({ req: nuxtApp.ssrContext.event.req })
 
     if (jwtData?.jwtDecoded.id) {
-      await jwtRefresh(
-        client.value,
-        urqlReset,
+      await jwtRefresh({
+        client: client.value,
+        $urqlReset: urqlReset,
         store,
-        nuxtApp.ssrContext.event.res,
-        jwtData.jwtDecoded.id as string
-      )
+        res: nuxtApp.ssrContext.event.res,
+        id: jwtData.jwtDecoded.id as string,
+      })
     } else {
-      await authenticationAnonymous(
-        client.value,
-        urqlReset,
+      await authenticationAnonymous({
+        client: client.value,
+        $urqlReset: urqlReset,
         store,
-        nuxtApp.ssrContext.event.res
-      )
+        res: nuxtApp.ssrContext.event.res,
+      })
     }
   }
 

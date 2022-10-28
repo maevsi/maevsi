@@ -12,12 +12,17 @@ import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gq
 import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
 import { useMaevsiStore } from '~/store'
 
-export async function authenticationAnonymous(
-  client: Client,
-  $urqlReset: () => void,
-  store: Store,
+export async function authenticationAnonymous({
+  client,
+  $urqlReset,
+  store,
+  res,
+}: {
+  client: Client
+  $urqlReset: () => void
+  store: Store
   res: ServerResponse
-) {
+}) {
   consola.trace('Authenticating anonymously...')
 
   const result = await client
@@ -34,7 +39,12 @@ export async function authenticationAnonymous(
       return
     }
 
-    await jwtStore($urqlReset, store, res, result.data.authenticate.jwt)
+    await jwtStore({
+      $urqlReset,
+      store,
+      res,
+      jwt: result.data.authenticate.jwt,
+    })
   }
 }
 
@@ -45,12 +55,17 @@ export function useAuthenticationAnonymous() {
 
   return {
     async authenticationAnonymous() {
-      await authenticationAnonymous($urql.value, $urqlReset, store, event.res)
+      await authenticationAnonymous({
+        client: $urql.value,
+        $urqlReset,
+        store,
+        res: event.res,
+      })
     },
   }
 }
 
-export function jwtFromCookie(req: IncomingMessage) {
+export function jwtFromCookie({ req }: { req: IncomingMessage }) {
   if (req.headers.cookie) {
     const cookies = parse(req.headers.cookie)
 
@@ -78,29 +93,35 @@ export function useJwtFromCookie() {
 
   return {
     jwtFromCookie() {
-      jwtFromCookie(event.req)
+      jwtFromCookie({ req: event.req })
     },
   }
 }
 
-export async function jwtRefresh(
-  client: Client,
-  $urqlReset: () => void,
-  store: Store,
-  res: ServerResponse,
+export async function jwtRefresh({
+  client,
+  $urqlReset,
+  store,
+  res,
+  id,
+}: {
+  client: Client
+  $urqlReset: () => void
+  store: Store
+  res: ServerResponse
   id: string
-) {
+}) {
   consola.trace('Refreshing a JWT...')
 
   const result = await client.mutation(JWT_REFRESH_MUTATION, { id }).toPromise()
 
   if (result.error) {
     consola.error(result.error)
-    await signOut($urqlReset, store, res)
+    await signOut({ $urqlReset, store, res })
   } else if (!result.data.jwtRefresh.jwt) {
-    await authenticationAnonymous(client, $urqlReset, store, res)
+    await authenticationAnonymous({ client, $urqlReset, store, res })
   } else {
-    await jwtStore($urqlReset, store, res, result.data.jwtRefresh.jwt)
+    await jwtStore({ $urqlReset, store, res, jwt: result.data.jwtRefresh.jwt })
   }
 }
 
@@ -111,20 +132,28 @@ export function useJwtRefresh() {
 
   return {
     async jwtRefresh(id: string) {
-      await jwtRefresh($urql.value, $urqlReset, store, event.res, id)
+      await jwtRefresh({
+        client: $urql.value,
+        $urqlReset,
+        store,
+        res: event.res,
+        id,
+      })
     },
   }
 }
 
-export async function jwtStore(
-  $urqlReset: () => void,
-  store: Store,
-  res: ServerResponse | undefined,
-  jwt: string | undefined,
-  callback = () => {
-    window.location.reload()
-  }
-) {
+export async function jwtStore({
+  $urqlReset,
+  store,
+  res,
+  jwt,
+}: {
+  $urqlReset: () => void
+  store: Store
+  res?: ServerResponse
+  jwt?: string
+}) {
   $urqlReset()
 
   consola.trace('Storing the following JWT: ' + jwt)
@@ -147,8 +176,6 @@ export async function jwtStore(
     } catch (error: any) {
       return Promise.reject(Error('Authentication api call failed.'))
     }
-
-    callback() // TODO: Move callback to caller.
   }
 }
 
@@ -158,24 +185,27 @@ export function useJwtStore() {
   const event = useRequestEvent()
 
   return {
-    async jwtStore(jwt: string | undefined, callback?: () => void) {
-      await jwtStore(
+    async jwtStore(jwt: string | undefined) {
+      await jwtStore({
         $urqlReset,
         store,
-        process.server ? event.res : undefined,
+        res: process.server ? event.res : undefined,
         jwt,
-        callback
-      )
+      })
     },
   }
 }
 
-export async function signOut(
-  $urqlReset: () => void,
-  store: Store,
+export async function signOut({
+  $urqlReset,
+  store,
+  res,
+}: {
+  $urqlReset: () => void
+  store: Store
   res: ServerResponse | undefined
-) {
-  await jwtStore($urqlReset, store, res, undefined)
+}) {
+  await jwtStore({ $urqlReset, store, res })
 }
 
 export function useSignOut() {
@@ -185,7 +215,11 @@ export function useSignOut() {
 
   return {
     async signOut() {
-      await signOut($urqlReset, store, process.server ? event.res : undefined)
+      await signOut({
+        $urqlReset,
+        store,
+        res: process.server ? event.res : undefined,
+      })
     },
   }
 }

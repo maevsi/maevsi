@@ -124,18 +124,19 @@ async function submit() {
       api.value.errors.push(result.error)
       consola.error(result.error)
     } else {
-      await jwtStore(result.data?.authenticate?.jwt, () => {})
-        .then(() => {
-          navigateTo(localePath(`/dashboard`))
+      try {
+        await jwtStore(result.data?.authenticate?.jwt)
+      } catch (error) {
+        consola.debug(error)
+        await Swal.fire({
+          icon: 'error',
+          text: t('jwtStoreFail') as string,
+          title: t('globalStatusError'),
         })
-        .catch(async (error) => {
-          consola.debug(error)
-          await Swal.fire({
-            icon: 'error',
-            text: t('jwtStoreFail') as string,
-            title: t('globalStatusError'),
-          })
-        })
+        return
+      }
+
+      navigateTo(localePath(`/dashboard`))
     }
   })
 }

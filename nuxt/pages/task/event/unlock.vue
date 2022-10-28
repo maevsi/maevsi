@@ -56,6 +56,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
+import Swal from 'sweetalert2'
 
 import { useJwtStore } from '~/plugins/util/auth'
 import {
@@ -104,16 +105,26 @@ definePageMeta({
           )
         }
 
-        await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
+        try {
+          await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
+        } catch (error) {
+          consola.debug(error)
+          await Swal.fire({
+            icon: 'error',
+            text: t('jwtStoreFail') as string,
+            title: t('globalStatusError'),
+          })
+          return
+        }
 
         if ('quick' in route.query) {
-          return navigateTo(
+          navigateTo(
             $localePath(
               `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
             )
           )
         } else {
-          return navigateTo(
+          navigateTo(
             $localePath({
               query: {
                 ...route.query,
@@ -179,13 +190,23 @@ async function submit() {
     return
   }
 
-  await jwtStore(result.data?.eventUnlock?.eventUnlockResponse?.jwt, () => {
-    navigateTo(
-      localePath(
-        `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
-      )
+  try {
+    await jwtStore(result.data?.eventUnlock?.eventUnlockResponse?.jwt)
+  } catch (error) {
+    consola.debug(error)
+    await Swal.fire({
+      icon: 'error',
+      text: t('jwtStoreFail') as string,
+      title: t('globalStatusError'),
+    })
+    return
+  }
+
+  navigateTo(
+    localePath(
+      `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
     )
-  })
+  )
 }
 
 // lifecycle
@@ -226,6 +247,7 @@ de:
   invitationCode: Einladungscode
   invitationCodeAutomatic: Der Einladungscode wurde automatisch eingegeben.
   invitationCodeManual: Code selbst eingeben.
+  jwtStoreFail: Fehler beim Speichern der Authentifizierungsdaten!
   postgresP0002: Zu diesem Einladungscode wurde keine Veranstaltung gefunden! Überprüfe deine Eingaben auf Schreibfehler.
   submit: Zur Veranstaltungsseite
   title: Veranstaltung freischalten
@@ -234,6 +256,7 @@ en:
   invitationCode: Invitation code
   invitationCodeAutomatic: The invitation code was entered automatically.
   invitationCodeManual: Enter it yourself.
+  jwtStoreFail: Failed to store the authentication data!
   postgresP0002: No event was found for this invitation code! Check your input for spelling mistakes.
   submit: Show event page
   title: Unlock event
