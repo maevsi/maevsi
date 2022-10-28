@@ -336,7 +336,7 @@ definePageMeta({
       .toPromise()
 
     return (
-      !eventIsExisting.error || !!eventIsExisting.data?.eventIsExisting // TODO: 403
+      !eventIsExisting.error && !!eventIsExisting.data?.eventIsExisting // TODO: 403
     )
   },
 })

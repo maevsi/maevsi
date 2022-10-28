@@ -57,7 +57,7 @@ definePageMeta({
       })
       .toPromise()
 
-    return !eventIsExisting.error || !!eventIsExisting.data?.eventIsExisting
+    return !eventIsExisting.error && !!eventIsExisting.data?.eventIsExisting
   },
   middleware: [
     function (_to: any, _from: any) {
