@@ -87,7 +87,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       ? 'http://postgraphile:5000/graphql'
       : 'https://postgraphile.' + host + '/graphql',
     exchanges: [
-      ...(config.public.isInDevelopment ? [devtoolsExchange] : []),
+      ...(config.public.isInProduction ? [] : [devtoolsExchange]),
       dedupExchange,
       cache,
       ssr, // add `ssr` before `fetchExchange`

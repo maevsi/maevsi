@@ -150,7 +150,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      isInDevelopment: process.env.NODE_ENV !== 'production',
+      isInProduction: process.env.NODE_ENV === 'production',
       // 'google-adsense': {
       //   id: process.env.GOOGLE_ADSENSE_ID,
       //   analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,

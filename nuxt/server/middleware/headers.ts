@@ -9,15 +9,15 @@ function getCsp(host: string): Record<string, Array<string>> {
   return {
     'base-uri': ["'none'"], // Mozilla Observatory.
     'connect-src': [
-      ...(config.public.isInDevelopment
+      ...(config.public.isInProduction
         ? [
+            `https://${host}/cdn-cgi/rum`, // Cloudflare real user management (browser insights)
+          ]
+        : [
             `http://${hostName}:24678/_nuxt/`,
             `https://${hostName}:24678/_nuxt/`,
             `ws://${hostName}:24678/_nuxt/`,
             `wss://${hostName}:24678/_nuxt/`,
-          ]
-        : [
-            `https://${host}/cdn-cgi/rum`, // Cloudflare real user management (browser insights)
           ]),
       "'self'",
       `https://postgraphile.${host}`,

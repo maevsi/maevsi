@@ -11,7 +11,7 @@
       <!-- The id's suffix `-maevsi` makes browser suggest inputs just for this service. -->
       <FormInput
         :id-label="`input-invitation-code-maevsi-${
-          isDevelopmentActive ? 'dev' : 'prod'
+          config.public.isInProduction ? 'prod' : 'dev'
         }`"
         :is-disabled="!!routeQueryIc"
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -163,7 +163,6 @@ const form = reactive({
     route.query.ic === undefined ? undefined : route.query.ic
   ),
 })
-const isDevelopmentActive = config.public.isInDevelopment
 const isFormSent = ref(false)
 const routeQueryIc = route.query.ic
 const title = t('title')

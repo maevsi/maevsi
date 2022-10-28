@@ -314,7 +314,7 @@ function getUploadBlobPromise() {
 
       uppy.value = new Uppy({
         id: 'profile-picture',
-        debug: config.public.isInDevelopment,
+        debug: !config.public.isInProduction,
         restrictions: {
           maxFileSize: 1048576,
           maxNumberOfFiles: 1,
