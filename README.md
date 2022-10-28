@@ -104,10 +104,6 @@ The setup for backend development is more complex as it consists of numerous ser
     pnpm install
     ```
     If there is an issue regarding OpenSSL, then you might want to set the environment variable `NODE_OPTIONS=--openssl-legacy-provider` and try again.
-1. disable the remote backend host to use the local backend instead:
-    ```sh
-    $EDITOR nuxt.config.ts # comment out runtimeConfig.public.stagingHost
-    ```
 1. configure maevsi's [DargStack](https://github.com/dargmuesli/dargstack) then:
     ```sh
     cd ../../maevsi_stack/src/development
