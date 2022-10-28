@@ -105,6 +105,7 @@ export default defineNuxtConfig({
       '@nuxtjs/html-validator',
       {
         failOnError: true,
+        logLevel: 'warning',
       },
     ],
     [
