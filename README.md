@@ -1,5 +1,9 @@
 [![build status](https://github.com/maevsi/maevsi/workflows/CI/badge.svg)](https://github.com/maevsi/maevsi/actions?query=workflow%3ACI "build status")
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/maevsi/maevsi.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/maevsi/maevsi/context:javascript)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/maevsi/maevsi)](https://github.com/maevsi/maevsi/issues)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/maevsi/maevsi)
+![GitHub language count](https://img.shields.io/github/languages/count/maevsi/maevsi)
+![GitHub top language](https://img.shields.io/github/languages/top/maevsi/maevsi)
+
 
 # maevsi
 
