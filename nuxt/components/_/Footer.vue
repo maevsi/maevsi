@@ -76,6 +76,7 @@
             :key="availableLocale"
             :to="switchLocalePath(availableLocale)"
           >
+            <img :src="bla(availableLocale)" />
             <span :class="{ disabled: availableLocale === locale }">
               {{ getLocaleName(availableLocale) }}
             </span>
@@ -121,6 +122,18 @@ function getLocaleName(locale: string) {
 
   if (locales.length) {
     return locales[0].name
+  } else {
+    return undefined
+  }
+}
+
+function bla(locale: string) {
+  const locales: LocaleObject[] = LOCALES.filter(
+    (localeObject) => localeObject.code === locale
+  )
+
+  if (locales.length) {
+    return locales[0].icon
   } else {
     return undefined
   }
