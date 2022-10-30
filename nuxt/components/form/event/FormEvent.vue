@@ -138,26 +138,17 @@
     <FormInput
       v-if="v$.form.start && v$.form.end"
       id-label="input-start"
-      is-required
       :title="t('start')"
-      type="datetime-local"
+      type="text"
       :value="v$.form.start"
+      v-bind="startDate.formInput"
       :warning="isWarningStartPastShown"
       @input="form.start = $event"
+      @click="$store.commit('modalAdd', { id: 'ModalDateTimeStart' })"
     >
-      <Datetime
-        v-model="v$.form.start.$model"
-        :format="formatDateTimeShort"
-        input-class="form-input"
-        input-id="input-start"
-        :max-datetime="v$.form.end.$model"
-        :minute-step="5"
-        type="datetime"
-        :use12-hour="locale === 'en'"
-      />
-      <template #stateWarning>
-        <FormInputStateWarning v-if="isWarningStartPastShown">
-          {{ t('globalValidationNowOrFuture') }}
+      <template slot="stateWarning">
+        <FormInputStateWarning v-if="!isWarningStartPastShown">
+          {{ $t('globalValidationNowOrFuture') }}
         </FormInputStateWarning>
       </template>
     </FormInput>
@@ -165,25 +156,13 @@
       v-if="v$.form.end && v$.form.start"
       id-label="input-end"
       :title="t('end')"
-      type="datetime-local"
+      v-bind="endDate.formInput"
       :value="v$.form.end"
       @input="form.end = $event"
-      @icon="form.end = ''"
+      @delete="form.end = undefined"
+      @click="$store.commit('modalAdd', { id: 'ModalDateTimeEnd' })"
     >
-      <Datetime
-        v-model="v$.form.end.$model"
-        :format="formatDateTimeShort"
-        :input-class="[
-          'form-input',
-          ...(!!v$.form.end.$model ? ['rounded-r-none'] : []),
-        ]"
-        input-id="input-end"
-        :min-datetime="v$.form.start.$model"
-        :minute-step="5"
-        type="datetime"
-        :use12-hour="locale === 'en'"
-      />
-      <template v-if="!!v$.form.end.$model" #icon>
+      <template v-if="!!form.end" slot="icon">
         <IconX />
       </template>
     </FormInput>
@@ -269,11 +248,11 @@ import {
   required,
 } from '@vuelidate/validators'
 import consola from 'consola'
-import { Datetime } from 'vue-datetime'
 import { DateTime, Settings } from 'luxon'
 import slugify from 'slugify'
 import Swal from 'sweetalert2'
 
+import { useDateTimeInput } from './dateTimeInputSupport'
 import { Event } from '~/types/event'
 import {
   formPreSubmit,
@@ -285,7 +264,7 @@ import {
   VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
   VALIDATION_FORMAT_SLUG,
   VALIDATION_FORMAT_URL_HTTPS,
-  VALIDATION_NOW_OR_FUTURE,
+  VALIDATION_NOW_OR_FUTURE_LUXON,
 } from '~/plugins/util/validation'
 import { getApiMeta } from '~/plugins/util/util'
 import {
@@ -302,7 +281,6 @@ const props = withDefaults(defineProps<Props>(), {
   event: undefined,
 })
 
-const { $moment } = useNuxtApp()
 const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const store = useMaevsiStore()
@@ -322,20 +300,21 @@ const form = reactive({
   id: ref<string>(),
   authorUsername: ref<string>(),
   description: ref<string>(),
-  end: ref<string>(),
+  end: ref<DateTime>(),
   inviteeCountMaximum: ref<string>(),
   isInPerson: ref(false),
   isRemote: ref(false),
   location: ref<string>(),
   name: ref<string>(),
   slug: ref<string>(),
-  start: ref(
-    new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString()
-  ), // Must be initialized, otherwise yields an error instantly: https://github.com/mariomka/vue-datetime/issues/177
+  start: ref<DateTime>(),
   url: ref<string>(),
   visibility: ref<EventVisibility>(),
 })
-const formatDateTimeShort = ref(DateTime.DATETIME_SHORT)
+
+const startDate = useDateTimeInput(toRef(form, 'start'))
+const endDate = useDateTimeInput(toRef(form, 'end'))
+
 const isFormSent = ref(false)
 const signedInUsername = ref(store.signedInUsername)
 
@@ -360,7 +339,7 @@ async function submit() {
       eventPatch: {
         authorUsername: signedInUsername.value,
         description: form.description,
-        end: form.end !== '' ? form.end : undefined,
+        end: form.end?.toISO(),
         inviteeCountMaximum:
           form.inviteeCountMaximum && form.inviteeCountMaximum !== ''
             ? +form.inviteeCountMaximum
@@ -370,7 +349,7 @@ async function submit() {
         location: form.location !== '' ? form.location : undefined,
         name: form.name,
         slug: form.slug,
-        start: form.start,
+        start: form.start?.toISO(),
         url: form.url !== '' ? form.url : undefined,
         visibility: form.visibility || EventVisibility.Private,
       },
@@ -403,7 +382,7 @@ async function submit() {
         event: {
           authorUsername: signedInUsername.value || '',
           description: form.description,
-          end: form.end !== '' ? form.end : undefined,
+          end: form.end?.toISO(),
           inviteeCountMaximum:
             form.inviteeCountMaximum && form.inviteeCountMaximum !== ''
               ? +form.inviteeCountMaximum
@@ -413,7 +392,7 @@ async function submit() {
           location: form.location !== '' ? form.location : undefined,
           name: form.name,
           slug: form.slug,
-          start: form.start,
+          start: form.start?.toISO(),
           url: form.url !== '' ? form.url : undefined,
           visibility: form.visibility || EventVisibility.Private,
         },
@@ -452,7 +431,7 @@ function updateSlug() {
 
 // computations
 const isWarningStartPastShown = computed(
-  () => !VALIDATION_NOW_OR_FUTURE($moment(v$.value.form.start.$model))
+  () => !form.start || !VALIDATION_NOW_OR_FUTURE_LUXON(form.start)
 )
 
 // vuelidate
