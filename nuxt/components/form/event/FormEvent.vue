@@ -1,10 +1,10 @@
 <template>
   <Form
-    ref="form"
+    ref="eventForm"
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
-    :submit-name="form.id ? t('eventUpdate') : t('eventCreate')"
+    :submit-name="eventForm.id ? t('eventUpdate') : t('eventCreate')"
     @submit.prevent="submit"
   >
     <FormInput
@@ -14,7 +14,7 @@
       type="number"
       placeholder="id"
       :value="v$.form.id"
-      @input="form.id = $event"
+      @input="eventForm.id = $event"
     />
     <FormInput
       id-label="input-name"
@@ -28,7 +28,7 @@
       @input="onInputName($event)"
     >
       <template #stateWarning>
-        <FormInputStateWarning v-if="event && event.name !== form.name">
+        <FormInputStateWarning v-if="event && event.name !== eventForm.name">
           {{ t('validationWarningNameChangeSlug') }}
         </FormInputStateWarning>
       </template>
@@ -62,7 +62,7 @@
       :title="t('slug')"
       type="text"
       :value="v$.form.slug"
-      @input="form.slug = $event"
+      @input="eventForm.slug = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -92,7 +92,7 @@
       :title="t('visibility')"
       type="radio"
       :value="v$.form.visibility"
-      @input="form.visibility = $event as EventVisibility"
+      @input="eventForm.visibility = $event as EventVisibility"
     >
       <FormRadioButtonGroup
         id="input-visibility"
@@ -113,12 +113,12 @@
       </template>
     </FormInput>
     <FormInput
-      v-if="form.visibility === 'PUBLIC'"
+      v-if="eventForm.visibility === 'PUBLIC'"
       id-label="input-invitee-count-maximum"
       :title="t('maximumInviteeCount')"
       type="number"
       :value="v$.form.inviteeCountMaximum"
-      @input="form.inviteeCountMaximum = $event"
+      @input="eventForm.inviteeCountMaximum = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -139,13 +139,13 @@
       v-if="v$.form.start && v$.form.end"
       id-label="input-start"
       :title="t('start')"
-      type="text"
       :value="v$.form.start"
       v-bind="startDate.formInput"
       :warning="isWarningStartPastShown"
-      @input="form.start = $event"
-      @click="$store.commit('modalAdd', { id: 'ModalDateTimeStart' })"
+      @input="eventForm.start = $event"
+      @click="store.modalAdd({ id: 'ModalDateTimeStart' })"
     >
+      {{ startDate.formatted.value ?? t('startPlaceholder') }}
       <template slot="stateWarning">
         <FormInputStateWarning v-if="!isWarningStartPastShown">
           {{ $t('globalValidationNowOrFuture') }}
@@ -158,11 +158,12 @@
       :title="t('end')"
       v-bind="endDate.formInput"
       :value="v$.form.end"
-      @input="form.end = $event"
-      @delete="form.end = undefined"
-      @click="$store.commit('modalAdd', { id: 'ModalDateTimeEnd' })"
+      @input="eventForm.end = $event"
+      @delete="eventForm.end = undefined"
+      @click="store.modalAdd({ id: 'ModalDateTimeEnd' })"
     >
-      <template v-if="!!form.end" slot="icon">
+      {{ endDate.formatted.value ?? t('endPlaceholder') }}
+      <template v-if="!!eventForm.end" slot="icon">
         <IconX />
       </template>
     </FormInput>
@@ -175,7 +176,7 @@
         v-if="v$.form.isInPerson"
         form-key="is-in-person"
         :value="v$.form.isInPerson.$model"
-        @change="form.isInPerson = $event"
+        @change="eventForm.isInPerson = $event"
       >
         {{ t('isInPerson') }}
       </FormCheckbox>
@@ -183,19 +184,19 @@
         v-if="v$.form.isRemote"
         form-key="is-remote"
         :value="v$.form.isRemote.$model"
-        @change="form.isRemote = $event"
+        @change="eventForm.isRemote = $event"
       >
         {{ t('isRemote') }}
       </FormCheckbox>
     </FormInput>
     <FormInput
-      v-if="form.isInPerson"
+      v-if="eventForm.isInPerson"
       id-label="input-location"
       :placeholder="t('globalPlaceholderAddress').replace('\n', ' ')"
       :title="t('location')"
       type="text"
       :value="v$.form.location"
-      @input="form.location = $event"
+      @input="eventForm.location = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -212,16 +213,16 @@
       </template>
     </FormInput>
     <FormInputUrl
-      v-if="form.isRemote"
+      v-if="eventForm.isRemote"
       :form-input="v$.form.url"
-      @input="form.url = $event"
+      @input="eventForm.url = $event"
     />
     <FormInput
       id-label="input-description"
       :title="t('description')"
       type="tiptap"
       :value="v$.form.description"
-      @input="form.description = $event"
+      @input="eventForm.description = $event"
     >
       <client-only v-if="v$.form.description">
         <TipTap v-model.trim="v$.form.description.$model" />
@@ -235,6 +236,47 @@
         </FormInputStateError>
       </template>
     </FormInput>
+    <Modal id="ModalDateTimeStart">
+      <client-only>
+        <div class="flex justify-center">
+          <v-date-picker
+            v-model="v$.form.start.$model"
+            input-class="form-input"
+            input-id="input-start"
+            :is24hr="$i18n.locale !== 'en'"
+            :locale="$i18n.locale"
+            :minute-increment="5"
+            mode="dateTime"
+            :masks="{ input: 'YYYY-MM-DD h:mm A' }"
+            color="red"
+            is-dark
+          />
+        </div>
+      </client-only>
+      <!-- :max-datetime="v$.form.end.$model" -->
+    </Modal>
+    <Modal id="ModalDateTimeEnd">
+      <client-only>
+        <div class="flex justify-center">
+          <v-date-picker
+            v-model="v$.form.end.$model"
+            :input-class="[
+              'form-input',
+              ...(!!v$.form.end.$model ? ['rounded-r-none'] : []),
+            ]"
+            input-id="input-end"
+            :is24hr="$i18n.locale !== 'en'"
+            :locale="$i18n.locale"
+            :minute-increment="5"
+            mode="dateTime"
+            :masks="{ input: 'YYYY-MM-DD h:mm A' }"
+            color="red"
+            is-dark
+          />
+        </div>
+      </client-only>
+      <!-- :min-datetime="v$.form.start.$model" -->
+    </Modal>
   </Form>
 </template>
 
@@ -296,31 +338,31 @@ const api = computed(() => {
 })
 
 // data
-const form = reactive({
-  id: ref<string>(),
-  authorUsername: ref<string>(),
-  description: ref<string>(),
-  end: ref<DateTime>(),
-  inviteeCountMaximum: ref<string>(),
-  isInPerson: ref(false),
-  isRemote: ref(false),
-  location: ref<string>(),
-  name: ref<string>(),
-  slug: ref<string>(),
-  start: ref<DateTime>(),
-  url: ref<string>(),
-  visibility: ref<EventVisibility>(),
+const eventForm = reactive({
+  id: undefined as string | undefined,
+  authorUsername: undefined as string | undefined,
+  description: undefined as string | undefined,
+  end: undefined as DateTime | undefined,
+  inviteeCountMaximum: undefined as string | undefined,
+  isInPerson: false,
+  isRemote: false,
+  location: undefined as string | undefined,
+  name: undefined as string | undefined,
+  slug: undefined as string | undefined,
+  start: undefined as DateTime | undefined,
+  url: undefined as string | undefined,
+  visibility: undefined as EventVisibility | undefined,
 })
 
-const startDate = useDateTimeInput(toRef(form, 'start'))
-const endDate = useDateTimeInput(toRef(form, 'end'))
+const startDate = useDateTimeInput(toRef(eventForm, 'start'))
+const endDate = useDateTimeInput(toRef(eventForm, 'end'))
 
 const isFormSent = ref(false)
 const signedInUsername = ref(store.signedInUsername)
 
 // methods
 function onInputName($event: any) {
-  form.name = $event
+  eventForm.name = $event
   updateSlug()
 }
 async function submit() {
@@ -331,27 +373,27 @@ async function submit() {
     return
   }
 
-  if (form.id) {
+  if (eventForm.id) {
     // Edit
     // TODO: extract object
     const result = await updateEventMutation.executeMutation({
-      id: form.id,
+      id: eventForm.id,
       eventPatch: {
         authorUsername: signedInUsername.value,
-        description: form.description,
-        end: form.end?.toISO(),
+        description: eventForm.description,
+        end: eventForm.end?.toISO(),
         inviteeCountMaximum:
-          form.inviteeCountMaximum && form.inviteeCountMaximum !== ''
-            ? +form.inviteeCountMaximum
+          eventForm.inviteeCountMaximum && eventForm.inviteeCountMaximum !== ''
+            ? +eventForm.inviteeCountMaximum
             : undefined,
-        isInPerson: form.isInPerson,
-        isRemote: form.isRemote,
-        location: form.location !== '' ? form.location : undefined,
-        name: form.name,
-        slug: form.slug,
-        start: form.start?.toISO(),
-        url: form.url !== '' ? form.url : undefined,
-        visibility: form.visibility || EventVisibility.Private,
+        isInPerson: eventForm.isInPerson,
+        isRemote: eventForm.isRemote,
+        location: eventForm.location !== '' ? eventForm.location : undefined,
+        name: eventForm.name,
+        slug: eventForm.slug,
+        start: eventForm.start?.toISO(),
+        url: eventForm.url !== '' ? eventForm.url : undefined,
+        visibility: eventForm.visibility || EventVisibility.Private,
       },
     })
 
@@ -374,27 +416,28 @@ async function submit() {
   } else {
     // Add
 
-    if (!form.name) throw new Error('Name is not set!')
-    if (!form.slug) throw new Error('Slug is not set!')
+    if (!eventForm.name) throw new Error('Name is not set!')
+    if (!eventForm.slug) throw new Error('Slug is not set!')
 
     const result = await createEventMutation.executeMutation({
       createEventInput: {
         event: {
           authorUsername: signedInUsername.value || '',
-          description: form.description,
-          end: form.end?.toISO(),
+          description: eventForm.description,
+          end: eventForm.end?.toISO(),
           inviteeCountMaximum:
-            form.inviteeCountMaximum && form.inviteeCountMaximum !== ''
-              ? +form.inviteeCountMaximum
+            eventForm.inviteeCountMaximum &&
+            eventForm.inviteeCountMaximum !== ''
+              ? +eventForm.inviteeCountMaximum
               : undefined,
-          isInPerson: form.isInPerson,
-          isRemote: form.isRemote,
-          location: form.location !== '' ? form.location : undefined,
-          name: form.name,
-          slug: form.slug,
-          start: form.start?.toISO(),
-          url: form.url !== '' ? form.url : undefined,
-          visibility: form.visibility || EventVisibility.Private,
+          isInPerson: eventForm.isInPerson,
+          isRemote: eventForm.isRemote,
+          location: eventForm.location !== '' ? eventForm.location : undefined,
+          name: eventForm.name,
+          slug: eventForm.slug,
+          start: eventForm.start?.toISO(),
+          url: eventForm.url !== '' ? eventForm.url : undefined,
+          visibility: eventForm.visibility || EventVisibility.Private,
         },
       },
     })
@@ -417,13 +460,13 @@ async function submit() {
     }).then(
       async () =>
         await navigateTo(
-          localePath(`/event/${signedInUsername.value}/${form.slug}`)
+          localePath(`/event/${signedInUsername.value}/${eventForm.slug}`)
         )
     )
   }
 }
 function updateSlug() {
-  form.slug = slugify(form.name ?? '', {
+  eventForm.slug = slugify(eventForm.name ?? '', {
     lower: true,
     strict: true,
   })
@@ -431,7 +474,7 @@ function updateSlug() {
 
 // computations
 const isWarningStartPastShown = computed(
-  () => !form.start || !VALIDATION_NOW_OR_FUTURE_LUXON(form.start)
+  () => !eventForm.start || !VALIDATION_NOW_OR_FUTURE_LUXON(eventForm.start)
 )
 
 // vuelidate
@@ -476,12 +519,13 @@ const rules = {
     },
   },
 }
-const v$ = useVuelidate(rules, { form })
+
+const v$ = useVuelidate(rules, { form: eventForm })
 
 // initialization
 if (props.event) {
   for (const [k, v] of Object.entries(props.event)) {
-    ;(form as Record<string, any>)[k] = v
+    ;(eventForm as Record<string, any>)[k] = v
   }
 }
 
@@ -494,6 +538,7 @@ de:
   created: Erstellt!
   description: Einladungstext
   end: Ende
+  endPlaceholder: Keine Angabe
   eventCreate: Veranstaltung erstellen
   eventCreateSuccess: Veranstaltung erfolgreich erstellt.
   eventUpdate: Änderungen speichern
@@ -510,6 +555,7 @@ de:
   slug: Slug
   slugPlaceholder: willkommensfeier
   start: Beginn
+  startPlaceholder: Keine Angabe
   updated: Aktualisiert
   validationExistenceNone: Du hast bereits eine Veranstaltung mit der ID "{slug}" angelegt
   validationWarningNameChangeSlug: Wenn du den Namen änderst, funktionieren bestehende Links zur Veranstaltung möglicherweise nicht mehr
@@ -521,6 +567,7 @@ en:
   created: Created!
   description: Invitation text
   end: End
+  endPlaceholder: Not defined
   eventCreate: Create event
   eventCreateSuccess: Event created successfully.
   eventUpdate: Save changes
@@ -537,6 +584,7 @@ en:
   slug: Slug
   slugPlaceholder: welcome-party
   start: Start
+  startPlaceholder: Not defined
   updated: Updated
   validationExistenceNone: You have already created an event with id "{slug}"
   validationWarningNameChangeSlug: If you change the name, existing links to the event may no longer work

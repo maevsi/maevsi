@@ -16,11 +16,14 @@ export function stringcronizedDate(ref: Ref<string | undefined>) {
 export function useDateTimeInput(value: Ref<DateTime | undefined>) {
   return {
     value,
+    formatted: computed(() =>
+      value.value !== undefined
+        ? value.value.toLocaleString(DEFAULT_FORMAT)
+        : undefined
+    ),
     formInput: {
       type: 'text',
       isReadonly: true,
-      valueFormatter: (dt: DateTime | undefined) =>
-        dt !== undefined ? dt.toLocaleString(DEFAULT_FORMAT) : undefined,
     },
   }
 }
