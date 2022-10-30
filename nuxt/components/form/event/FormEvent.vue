@@ -294,7 +294,7 @@ import { DateTime, Settings } from 'luxon'
 import slugify from 'slugify'
 import Swal from 'sweetalert2'
 
-import { useDateTimeInput } from './dateTimeInputSupport'
+import { useDateTimeInput } from '../input/dateTimeInputUtil'
 import { Event } from '~/types/event'
 import {
   formPreSubmit,
