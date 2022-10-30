@@ -66,7 +66,6 @@ export default defineNuxtConfig({
   },
   css: [
     '@/assets/css/main.css',
-    'vue-datetime/dist/vue-datetime.min.css',
     'v-calendar/dist/style.css',
   ],
   dir: {
