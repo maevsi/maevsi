@@ -55,6 +55,10 @@ import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql
 
 definePageMeta({
   async validate(route) {
+    const store = useMaevsiStore()
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
     const { $urql } = useNuxtApp()
 
     const accountIsExisting = await $urql.value
@@ -67,16 +71,6 @@ definePageMeta({
       !accountIsExisting.error && !!accountIsExisting.data?.accountIsExisting
     )
   },
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
-      const store = useMaevsiStore()
-
-      if (route.params.username !== store.signedInUsername) {
-        return abortNavigation({ statusCode: 403 })
-      }
-    },
-  ],
 })
 
 const store = useMaevsiStore()
