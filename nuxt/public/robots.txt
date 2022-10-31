@@ -1,5 +1,0 @@
-User-Agent: *
-Disallow: /robots.txt
-User-Agent: *
-Allow: /
-Sitemap: https://maev.si/sitemap.xml
