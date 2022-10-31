@@ -100,7 +100,7 @@ specifiers:
   stylelint-config-recommended-vue: 1.4.0
   stylelint-config-standard: 29.0.0
   stylelint-no-unsupported-browser-features: 6.0.1
-  sweetalert2: 11.6.4
+  sweetalert2: 11.6.5
   tailwindcss: 3.2.1
   ts-jest: 29.0.3
   ts-node: 10.9.1
@@ -212,7 +212,7 @@ devDependencies:
   stylelint-config-recommended-vue: 1.4.0_2wb2ag3ubchp7fdo72hd6rkeve
   stylelint-config-standard: 29.0.0_stylelint@14.14.0
   stylelint-no-unsupported-browser-features: 6.0.1_stylelint@14.14.0
-  sweetalert2: 11.6.4
+  sweetalert2: 11.6.5
   tailwindcss: 3.2.1_neo3lunb2qpadwxplzw7r2isgm
   ts-jest: 29.0.3_a2wb2fpmmoypxea2sxiscqqu6y
   ts-node: 10.9.1_7jzoohtnaegavowzoeccrsbhty
@@ -12270,8 +12270,8 @@ packages:
       tslib: 2.4.0
     dev: true
 
-  /sweetalert2/11.6.4:
-    resolution: {integrity: sha512-EfvbqpApvOLbJ7UehO4rjmlltramOGVNpWhh9hBDyeSP1WhoslpmYUXZXI8AiC77Yl6esCfRcWXpzCAKkbvcgg==}
+  /sweetalert2/11.6.5:
+    resolution: {integrity: sha512-4/2dD+HoGbMnemYJlY/IXhLUgVFVxLgH3dlEDLY1yufOAW9HLEI8VHmgCo4+pmXbUBlKZU/pDbSgw3wkysi8jQ==}
     dev: true
 
   /symbol-tree/3.2.4:
