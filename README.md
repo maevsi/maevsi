@@ -1,8 +1,4 @@
 [![build status](https://github.com/maevsi/maevsi/workflows/CI/badge.svg)](https://github.com/maevsi/maevsi/actions?query=workflow%3ACI "build status")
-![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/maevsi/maevsi)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/maevsi/maevsi)](https://github.com/maevsi/maevsi/issues)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/maevsi/maevsi)
-![GitHub top language](https://img.shields.io/github/languages/top/maevsi/maevsi)
 
 
 # maevsi
