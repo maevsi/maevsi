@@ -116,9 +116,10 @@ RUN npm install -g pnpm && \
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:10.10.0@sha256:64c9616b03045dfa938caf6042d2863b7e173f3ef0cedef8ddbc233fad4f64ec AS test-integration_base
+FROM cypress/included:10.10.0@sha256:6ce1c978eec1bb63b630a8b469506c91154935141d56fd8814546fbb162d2b0a AS test-integration_base
 
 # ENV DEBUG="start-server-and-test"
+ENV CAROOT=/root/.local/share/mkcert
 
 WORKDIR /srv/app/
 
@@ -134,12 +135,10 @@ RUN apt-get update \
     && chmod +x mkcert-v*-linux-amd64 \
     && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert \
     && mkcert -install \
-    && mkdir -p /home/node/.local/share/mkcert \
-    && mv /root/.local/share/mkcert /home/node/.local/share/ \
-    && chown node:node /home/node/.local/share/mkcert -R \
     # clean
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && chmod 755 /root/.local/share/mkcert -R
 
 VOLUME /srv/app
 
