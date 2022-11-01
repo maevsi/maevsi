@@ -13,7 +13,7 @@
       {{ contact.emailAddress || '–' }}
     </td>
     <td class="hidden xl:table-cell">
-      {{ (contact.address || '').replace('\n', ', ') || '–' }}
+      {{ (contact.address || '').replace(/\n/g, ', ') || '–' }}
     </td>
     <td class="hidden xl:table-cell">
       {{ contact.phoneNumber || '–' }}

@@ -38,7 +38,7 @@ const pool = new pg.Pool({
   password: fs.existsSync(secretPostgresRoleMaevsiTusdPasswordPath)
     ? fs.readFileSync(secretPostgresRoleMaevsiTusdPasswordPath, 'utf-8')
     : undefined,
-  user: 'maevsi_tusd', // lgtm [js/hardcoded-credentials]
+  user: 'maevsi_tusd',
 })
 
 export default defineEventHandler(async function (event: H3Event) {
