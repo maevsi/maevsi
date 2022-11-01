@@ -48,23 +48,6 @@ export async function authenticationAnonymous({
   }
 }
 
-export function useAuthenticationAnonymous() {
-  const { $urql, $urqlReset } = useNuxtApp()
-  const store = useMaevsiStore()
-  const event = useRequestEvent()
-
-  return {
-    async authenticationAnonymous() {
-      await authenticationAnonymous({
-        client: $urql.value,
-        $urqlReset,
-        store,
-        res: event.res,
-      })
-    },
-  }
-}
-
 export function jwtFromCookie({ req }: { req: IncomingMessage }) {
   if (req.headers.cookie) {
     const cookies = parse(req.headers.cookie)
@@ -85,16 +68,6 @@ export function jwtFromCookie({ req }: { req: IncomingMessage }) {
     }
   } else {
     consola.debug('No cookie header.')
-  }
-}
-
-export function useJwtFromCookie() {
-  const event = useRequestEvent()
-
-  return {
-    jwtFromCookie() {
-      jwtFromCookie({ req: event.req })
-    },
   }
 }
 
@@ -122,24 +95,6 @@ export async function jwtRefresh({
     await authenticationAnonymous({ client, $urqlReset, store, res })
   } else {
     await jwtStore({ $urqlReset, store, res, jwt: result.data.jwtRefresh.jwt })
-  }
-}
-
-export function useJwtRefresh() {
-  const { $urql, $urqlReset } = useNuxtApp()
-  const store = useMaevsiStore()
-  const event = useRequestEvent()
-
-  return {
-    async jwtRefresh(id: string) {
-      await jwtRefresh({
-        client: $urql.value,
-        $urqlReset,
-        store,
-        res: event.res,
-        id,
-      })
-    },
   }
 }
 
