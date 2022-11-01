@@ -48,7 +48,7 @@ export async function authenticationAnonymous({
   }
 }
 
-export function jwtFromCookie({ req }: { req: IncomingMessage }) {
+export function getJwtFromCookie({ req }: { req: IncomingMessage }) {
   if (req.headers.cookie) {
     const cookies = parse(req.headers.cookie)
 
