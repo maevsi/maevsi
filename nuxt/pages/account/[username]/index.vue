@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-4">
     <Breadcrumbs
-      :prefixes="[{ name: t('accounts'), to: '..', isToRelative: true }]"
+      :prefixes="[{ name: t('accounts'), to: localePath('/account') }]"
     >
       {{ routeParamUsername }}
     </Breadcrumbs>

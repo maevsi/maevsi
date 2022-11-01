@@ -2,8 +2,11 @@
   <div class="flex flex-col gap-4">
     <Breadcrumbs
       :prefixes="[
-        { name: t('accounts'), to: '../..', isToRelative: true },
-        { name: routeParamUsername, to: '..', isToRelative: true },
+        { name: t('accounts'), to: localePath('/account') },
+        {
+          name: routeParamUsername,
+          to: localePath(`/account/${route.params.username}`),
+        },
       ]"
     >
       {{ t('settings') }}
@@ -81,7 +84,7 @@ definePageMeta({
 
 const store = useMaevsiStore()
 const { signOut } = useSignOut()
-const { t } = useI18n()
+const { t, localePath } = useI18n()
 const route = useRoute()
 const { executeMutation: executeMutationAccoutDelete } =
   useAccountDeleteMutation()

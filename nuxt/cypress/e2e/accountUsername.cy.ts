@@ -1,3 +1,5 @@
+// import { CYPRESS_BASE_URL } from '~/plugins/util/constants'
+
 describe('account username page', () => {
   context('page load', () => {
     // TODO: mock data
@@ -18,4 +20,34 @@ describe('account username page', () => {
       })
     })
   })
+
+  // TODO: mock data
+  // TODO: add breadcrumb tests for other pages
+  // context('navigation', () => {
+  //   it('has working breadcrumbs', () => {
+  //     cy.visit({
+  //       url: '/account/dargmuesli',
+  //     })
+  //     cy.get('[data-testid="breadcrumb-prefix-/"]').click()
+  //     cy.url().should('equal', `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/`)
+
+  //     cy.visit({
+  //       url: '/account/dargmuesli',
+  //     })
+  //     cy.get('[data-testid="breadcrumb-prefix-/account"]').click()
+  //     cy.url().should(
+  //       'equal',
+  //       `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/task/account/sign-in`
+  //     )
+
+  //     cy.visit({
+  //       url: '/account/dargmuesli',
+  //     })
+  //     cy.get('[data-testid="breadcrumb-?"]').click()
+  //     cy.url().should(
+  //       'equal',
+  //       `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/account/dargmuesli`
+  //     )
+  //   })
+  // })
 })

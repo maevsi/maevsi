@@ -1,8 +1,6 @@
 <template>
   <div>
-    <Breadcrumbs
-      :prefixes="[{ name: t('events'), to: '..', isToRelative: true }]"
-    >
+    <Breadcrumbs :prefixes="[{ name: t('events'), to: localePath('/event') }]">
       {{ routeParamUsername }}
     </Breadcrumbs>
     <i18n-t keypath="title" tag="h1">
