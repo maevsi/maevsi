@@ -1,4 +1,5 @@
 import { helpers } from '@vuelidate/validators'
+import { DateTime } from 'luxon'
 import moment from 'moment'
 import { Ref } from 'vue'
 
@@ -6,7 +7,6 @@ import { getApiDataDefault } from './util'
 
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
-import { DateTime } from 'luxon'
 
 export const REGEX_PHONE_NUMBER =
   /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/
