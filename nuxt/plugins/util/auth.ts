@@ -103,13 +103,11 @@ export async function jwtStore({
   store,
   res,
   jwt,
-  host,
 }: {
   $urqlReset: () => void
   store: Store
   res?: ServerResponse
   jwt?: string
-  host?: string
 }) {
   $urqlReset()
 
@@ -129,7 +127,7 @@ export async function jwtStore({
     )
   } else {
     try {
-      await xhrPromise('POST', `${host}/api/auth`, jwt || '')
+      await xhrPromise('POST', '/api/auth', jwt || '')
     } catch (error: any) {
       return Promise.reject(Error('Authentication api call failed.'))
     }
@@ -140,7 +138,6 @@ export function useJwtStore() {
   const { $urqlReset } = useNuxtApp()
   const store = useMaevsiStore()
   const event = useRequestEvent()
-  const config = useRuntimeConfig()
 
   return {
     async jwtStore(jwt: string | undefined) {
@@ -149,9 +146,6 @@ export function useJwtStore() {
         store,
         res: process.server ? event.res : undefined,
         jwt,
-        host: config.public.stagingHost
-          ? `https://${config.public.stagingHost}`
-          : undefined,
       })
     },
   }
