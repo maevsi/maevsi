@@ -4,13 +4,14 @@ import {
   dedupExchange,
   fetchExchange,
   ClientOptions,
+  Client,
 } from '@urql/core'
 import { cacheExchange } from '@urql/exchange-graphcache'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 import { provideClient } from '@urql/vue'
 import consola from 'consola'
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 
 import schema from '~/gql/introspection'
 import { GraphCacheConfig } from '~/gql/schema'
@@ -138,9 +139,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   }
 })
 
-// declare module '#app' {
-//   interface NuxtAppCompat {
-//     $urql: Ref<Client>
-//     urqlReset: () => undefined
-//   }
-// }
+declare module '#app' {
+  interface NuxtAppCompat {
+    $urql: Ref<Client>
+    urqlReset: () => undefined
+  }
+}
