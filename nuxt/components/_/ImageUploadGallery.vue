@@ -231,7 +231,7 @@ function deleteImageUpload(uploadId: string) {
 
   xhr.open('DELETE', `${host}/api/tusd?uploadId=${uploadId}`, true)
   xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
-  xhr.setRequestHeader('Authorization', 'Bearer ' + jwt)
+  xhr.setRequestHeader('Authorization', 'Bearer ' + jwt.value)
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
       element.classList.remove('disabled')
