@@ -19,7 +19,7 @@ specifiers:
   '@nuxtjs/eslint-config-typescript': 11.0.0
   '@nuxtjs/html-validator': 1.1.0
   '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.1-27775490.1ee240a
-  '@nuxtjs/robots': 3.0.0-1
+  '@nuxtjs/robots': 3.0.0-2
   '@nuxtjs/sitemap': 2.4.0
   '@pinia/nuxt': 0.4.3
   '@rollup/plugin-graphql': 1.1.0
@@ -131,7 +131,7 @@ devDependencies:
   '@nuxtjs/eslint-config-typescript': 11.0.0_wyqvi574yv7oiwfeinomdzmc3m
   '@nuxtjs/html-validator': 1.1.0_jest@29.2.2
   '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.1-27775490.1ee240a_ugnfwh7g6lmpaylz4yfw4sbnry
-  '@nuxtjs/robots': 3.0.0-1
+  '@nuxtjs/robots': 3.0.0-2
   '@nuxtjs/sitemap': 2.4.0
   '@pinia/nuxt': 0.4.3_l7r24p6nevbtlimqmqcwa3ouhu
   '@rollup/plugin-graphql': 1.1.0_wvgxa4tpgmyetagc7e4kukhube
@@ -2409,10 +2409,11 @@ packages:
       - webpack
     dev: true
 
-  /@nuxtjs/robots/3.0.0-1:
-    resolution: {integrity: sha512-t83EUQ99Ac4SSUQ2ruVzGYdj5IMusEZ1hTFw3/ApVr1H1FwB2TOOZJ8MYux+R3749f7aD6w+f08vnEGlIMF8EA==}
+  /@nuxtjs/robots/3.0.0-2:
+    resolution: {integrity: sha512-UuMrmxReyfhZtrMbocS0pVYKma1sxPKw30F7z2pmE9dPs1CW8rU3gtAH3xvScwWAKgepkwXPvt8UsB+QL/EGKg==}
     dependencies:
-      '@nuxt/kit': 3.0.0-rc.11
+      '@nuxt/kit': 3.0.0-rc.12
+      h3: 0.8.6
     transitivePeerDependencies:
       - supports-color
     dev: true

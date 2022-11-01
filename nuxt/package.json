@@ -47,7 +47,7 @@
     "@nuxtjs/eslint-config-typescript": "11.0.0",
     "@nuxtjs/html-validator": "1.1.0",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-beta.1-27775490.1ee240a",
-    "@nuxtjs/robots": "3.0.0-1",
+    "@nuxtjs/robots": "3.0.0-2",
     "@nuxtjs/sitemap": "2.4.0",
     "@pinia/nuxt": "0.4.3",
     "@rollup/plugin-graphql": "1.1.0",
