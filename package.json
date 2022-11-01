@@ -2,7 +2,7 @@
   "devDependencies": {
     "@commitlint/cli": "17.2.0",
     "@commitlint/config-conventional": "17.2.0",
-    "@types/node": "18.11.8",
+    "@types/node": "18.11.9",
     "husky": "8.0.1",
     "shx": "0.3.4",
     "ts-node": "10.9.1",
