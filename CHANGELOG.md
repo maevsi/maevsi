@@ -1,3 +1,10 @@
+# [1.0.0-alpha.7](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.6...1.0.0-alpha.7) (2022-11-01)
+
+
+### Bug Fixes
+
+* **breadcrumb:** fixed routing in breadcrumbs ([93ab582](https://github.com/maevsi/maevsi/commit/93ab5820419f319c5aa6633370df48802f9b472d))
+
 # [1.0.0-alpha.6](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.5...1.0.0-alpha.6) (2022-10-31)
 
 
