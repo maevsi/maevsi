@@ -1,3 +1,12 @@
+# [1.0.0-alpha.10](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.9...1.0.0-alpha.10) (2022-11-01)
+
+
+### Features
+
+* **footer:** add icon flags vue files ([46f8b51](https://github.com/maevsi/maevsi/commit/46f8b519325a9831735260473c762ba519e9a5fd))
+* **footer:** add language flags ([28856c3](https://github.com/maevsi/maevsi/commit/28856c3f682a1715ae74818b9fca2b3a01ccf961))
+* **footer:** fix implementation of locale flags ([f9b5370](https://github.com/maevsi/maevsi/commit/f9b53708765ff779071d386c0f5039ccb1de10cf))
+
 # [1.0.0-alpha.9](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.8...1.0.0-alpha.9) (2022-11-01)
 
 
