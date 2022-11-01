@@ -1,3 +1,23 @@
+# [1.0.0-alpha.9](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.8...1.0.0-alpha.9) (2022-11-01)
+
+
+### Bug Fixes
+
+* **auth:** disable jwt validation for development against staging ([d030af4](https://github.com/maevsi/maevsi/commit/d030af4b274a88edb02a549da5b6f643c851c84f))
+* **card:** remove duplicate class name ([37769f6](https://github.com/maevsi/maevsi/commit/37769f69ab89ae2e27f65745e4f275582d6a4102))
+* compute data where required ([daf0e0e](https://github.com/maevsi/maevsi/commit/daf0e0e6fb0af5929371fc426e0e8048b7972b99))
+* **header:** compute store property ([393a628](https://github.com/maevsi/maevsi/commit/393a628608e81911df12ee5802c29bffc5487aba))
+* **image-upload-gallery:** resolve jwt ref ([b46d0ff](https://github.com/maevsi/maevsi/commit/b46d0ffacfc0818f7257c3a38710ee57a6764998))
+* **pages:** correct locale-path import ([526d223](https://github.com/maevsi/maevsi/commit/526d223ca75ebac9925071989f2008265ef3a2bc))
+* resolve code scanning issues ([9b96d65](https://github.com/maevsi/maevsi/commit/9b96d651299ffecb1e7e1dc9c0299213d90dc369))
+* **sign-in:** compute route query property ([19e9fe9](https://github.com/maevsi/maevsi/commit/19e9fe991d6b760d096feec7309d872b1d741257))
+* **tusd:** use staging host ([e42ee93](https://github.com/maevsi/maevsi/commit/e42ee934cf50eb938713e148f249276f25fcf3b7))
+
+
+### Features
+
+* **pages:** remove title validation ([5e81b50](https://github.com/maevsi/maevsi/commit/5e81b5048cf2c7f1612116b5e8f58388d6e0b1cd))
+
 # [1.0.0-alpha.8](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.7...1.0.0-alpha.8) (2022-11-01)
 
 
