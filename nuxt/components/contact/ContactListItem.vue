@@ -13,7 +13,7 @@
       {{ contact.emailAddress || '–' }}
     </td>
     <td class="hidden xl:table-cell">
-      {{ (contact.address || '').replace('\n', ', ') || '–' }}
+      {{ (contact.address || '').replace(/\n/g, ', ') || '–' }}
     </td>
     <td class="hidden xl:table-cell">
       {{ contact.phoneNumber || '–' }}
@@ -67,8 +67,8 @@ withDefaults(defineProps<Props>(), {
 const store = useMaevsiStore()
 const { t } = useI18n()
 
-// data
-const signedInUsername = store.signedInUsername
+// computations
+const signedInUsername = computed(() => store.signedInUsername)
 </script>
 
 <i18n lang="yml">

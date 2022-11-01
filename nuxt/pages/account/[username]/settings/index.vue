@@ -85,7 +85,8 @@ definePageMeta({
 
 const store = useMaevsiStore()
 const { signOut } = useSignOut()
-const { t, localePath } = useI18n()
+const { t } = useI18n()
+const localePath = useLocalePath()
 const route = useRoute()
 const { executeMutation: executeMutationAccoutDelete } =
   useAccountDeleteMutation()
@@ -100,10 +101,7 @@ const api = computed(() => {
 // data
 const mutation = executeMutationAccoutDelete
 const routeParamUsername = route.params.username as string
-const title =
-  route.params.username === store.signedInUsername
-    ? route.params.username
-    : '403'
+const title = route.params.username as string
 
 // methods
 function onDeleteError(error: CombinedError) {

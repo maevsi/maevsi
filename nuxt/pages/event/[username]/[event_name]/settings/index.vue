@@ -84,7 +84,6 @@ definePageMeta({
 
 const localePath = useLocalePath()
 const { t } = useI18n()
-const store = useMaevsiStore()
 const route = useRoute()
 const { executeMutation: executeMutationEventDelete } = useEventDeleteMutation()
 
@@ -125,10 +124,11 @@ function onDeleteSuccess() {
 
 // computations
 const title = computed(() => {
-  if (route.params.username === store.signedInUsername && event.value) {
-    return `${t('title')} · ${event.value.name}`
+  if (!event.value) {
+    return t('title')
   }
-  return '403'
+
+  return `${t('title')} · ${event.value.name}`
 })
 
 // lifecycle

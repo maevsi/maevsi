@@ -1,8 +1,6 @@
 <template>
   <div>
-    <CardStateInfo
-      v-if="routeQueryReferrer && !routeQueryIsRedirectNoticeHidden"
-    >
+    <CardStateInfo v-if="routeQueryReferrer">
       {{ t('accountRequired') }}
     </CardStateInfo>
     <h1>{{ title }}</h1>
@@ -36,9 +34,10 @@ const route = useRoute()
 const { t } = useI18n()
 
 // data
-const routeQueryReferrer = route.query.referrer
-const routeQueryIsRedirectNoticeHidden = route.query.isRedirectNoticeHidden
 const title = t('title')
+
+// computations
+const routeQueryReferrer = computed(() => route.query.referrer)
 
 // initialization
 useHeadDefault(title)

@@ -108,7 +108,8 @@ definePageMeta({
   },
 })
 
-const { t, localePath } = useI18n()
+const { t } = useI18n()
+const localePath = useLocalePath()
 const store = useMaevsiStore()
 const route = useRoute()
 
@@ -140,10 +141,11 @@ const isNfcError = computed(() => {
   )
 })
 const title = computed(() => {
-  if (route.params.username === store.signedInUsername && event.value) {
-    return `${t('title')} · ${event.value.name}`
+  if (!event.value) {
+    return t('title')
   }
-  return '403'
+
+  return `${t('title')} · ${event.value.name}`
 })
 
 // methods

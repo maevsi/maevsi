@@ -1,3 +1,11 @@
+# [1.0.0-alpha.8](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.7...1.0.0-alpha.8) (2022-11-01)
+
+
+### Bug Fixes
+
+* **middleware:** use validation only ([ab7aee9](https://github.com/maevsi/maevsi/commit/ab7aee9efeb4917fe71b70e895d06c4bb63576c7))
+* **scripts:** fix invalid shell in dev.sh ([71e0a8a](https://github.com/maevsi/maevsi/commit/71e0a8a68a7ab903b2cdcdc6fbbb40ada8dea259))
+
 # [1.0.0-alpha.7](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.6...1.0.0-alpha.7) (2022-11-01)
 
 

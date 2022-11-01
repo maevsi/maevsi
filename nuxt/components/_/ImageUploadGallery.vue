@@ -186,11 +186,11 @@ const accountUploadQuotaBytes = computed(
 
 // data
 const fileSelectedUrl = ref<string | undefined>()
-const jwt = store.jwt
 const selectedItem = ref<Item | undefined>()
 const uppy = ref<Uppy | undefined>()
 
 // computations
+const jwt = computed(() => store.jwt)
 const sizeByteTotal = computed(() => {
   if (!uploads.value) {
     return undefined
@@ -231,7 +231,7 @@ function deleteImageUpload(uploadId: string) {
 
   xhr.open('DELETE', `${host}/api/tusd?uploadId=${uploadId}`, true)
   xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
-  xhr.setRequestHeader('Authorization', 'Bearer ' + jwt)
+  xhr.setRequestHeader('Authorization', 'Bearer ' + jwt.value)
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
       element.classList.remove('disabled')
