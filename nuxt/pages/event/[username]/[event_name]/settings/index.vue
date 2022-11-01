@@ -48,11 +48,8 @@ import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   async validate(route) {
-    const store = useMaevsiStore()
-    if (route.params.username !== store.signedInUsername) {
-      throw createError({ statusCode: 403 })
-    }
     const { $urql } = useNuxtApp()
+    const store = useMaevsiStore()
 
     const eventIsExisting = await $urql.value
       .query(EVENT_IS_EXISTING_QUERY, {
@@ -61,7 +58,19 @@ definePageMeta({
       })
       .toPromise()
 
-    return !eventIsExisting.error && !!eventIsExisting.data?.eventIsExisting
+    if (eventIsExisting.error) {
+      throw createError(eventIsExisting.error)
+    }
+
+    if (!eventIsExisting.data?.eventIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
+
+    return true
   },
 })
 
