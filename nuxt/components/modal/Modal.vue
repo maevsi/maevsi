@@ -106,7 +106,7 @@ const isTesting = config.public.isTesting
 const isSubmitting = ref(false)
 const onSubmit = ref(() => {})
 
-// computations = {
+// computations
 const contentBodyComputed = computed(() => {
   return getModalsFiltered(store.modals, props.id)?.contentBody // The default slot above is used as alternative.
 })

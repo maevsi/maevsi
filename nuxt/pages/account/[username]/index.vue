@@ -82,9 +82,11 @@ const route = useRoute()
 const localePath = useLocalePath()
 
 // data
-const signedInUsername = store.signedInUsername
 const routeParamUsername = route.params.username as string
 const title = route.params.username as string
+
+// computations
+const signedInUsername = computed(() => store.signedInUsername)
 
 // initialization
 useHeadDefault(title, {

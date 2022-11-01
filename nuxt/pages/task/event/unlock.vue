@@ -164,7 +164,6 @@ const form = reactive({
   ),
 })
 const isFormSent = ref(false)
-const routeQueryIc = route.query.ic
 const title = t('title')
 
 // methods
@@ -207,6 +206,9 @@ async function submit() {
     )
   )
 }
+
+// computations
+const routeQueryIc = computed(() => route.query.ic)
 
 // lifecycle
 onMounted(() => {

@@ -18,7 +18,7 @@ import { GraphCacheConfig } from '~/gql/schema'
 
 import {
   authenticationAnonymous,
-  jwtFromCookie,
+  getJwtFromCookie,
   jwtRefresh,
 } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
@@ -111,15 +111,17 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   // Either authenticate anonymously or refresh token on page load.
   if (nuxtApp.ssrContext?.event) {
     const store = useMaevsiStore(nuxtApp.ssrContext.$pinia)
-    const jwtData = jwtFromCookie({ req: nuxtApp.ssrContext.event.req })
+    const jwtFromCookie = getJwtFromCookie({
+      req: nuxtApp.ssrContext.event.req,
+    })
 
-    if (jwtData?.jwtDecoded.id) {
+    if (jwtFromCookie?.jwtDecoded.id) {
       await jwtRefresh({
         client: client.value,
         $urqlReset: urqlReset,
         store,
         res: nuxtApp.ssrContext.event.res,
-        id: jwtData.jwtDecoded.id as string,
+        id: jwtFromCookie.jwtDecoded.id as string,
       })
     } else {
       await authenticationAnonymous({

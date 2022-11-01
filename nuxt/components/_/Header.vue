@@ -103,7 +103,9 @@ const { t } = useI18n()
 
 // data
 const isBrowserSupported = ref(true)
-const signedInUsername = store.signedInUsername
+
+// computations
+const signedInUsername = computed(() => store.signedInUsername)
 
 // // methods
 // function navigateToSearch() {
