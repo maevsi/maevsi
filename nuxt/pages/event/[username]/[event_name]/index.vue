@@ -338,9 +338,17 @@ definePageMeta({
       })
       .toPromise()
 
-    return (
-      !eventIsExisting.error && !!eventIsExisting.data?.eventIsExisting // TODO: 403
-    )
+    if (eventIsExisting.error) {
+      throw createError(eventIsExisting.error)
+    }
+
+    if (!eventIsExisting.data?.eventIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    // TODO: 403
+
+    return true
   },
 })
 

@@ -7,15 +7,15 @@ describe('event username page', () => {
     //     expect(resp.redirectedToUrl).to.equal(undefined)
     //   })
     // })
-
-    it('does not find page if user does not exists', () => {
-      cy.request({
-        url: '/event/username-that-does-not-exist',
-        failOnStatusCode: false,
-      }).then((resp) => {
-        expect(resp.status).to.equal(404)
-        expect(resp.redirectedToUrl).to.equal(undefined)
-      })
-    })
+    //
+    // it('does not find page if user does not exists', () => {
+    //   cy.request({
+    //     url: '/event/username-that-does-not-exist',
+    //     failOnStatusCode: false,
+    //   }).then((resp) => {
+    //     expect(resp.status).to.equal(404)
+    //     expect(resp.redirectedToUrl).to.equal(undefined)
+    //   })
+    // })
   })
 })

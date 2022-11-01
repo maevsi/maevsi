@@ -27,9 +27,15 @@ definePageMeta({
       })
       .toPromise()
 
-    return (
-      !accountIsExisting.error && !!accountIsExisting.data?.accountIsExisting
-    )
+    if (accountIsExisting.error) {
+      throw createError(accountIsExisting.error)
+    }
+
+    if (!accountIsExisting.data?.accountIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    return true
   },
 })
 
