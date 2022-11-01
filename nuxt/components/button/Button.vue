@@ -2,11 +2,11 @@
   <AppLink
     v-if="to"
     ref="buttonRef"
-    :is-to-relative="isToRelative"
     :aria-label="ariaLabel"
     :class="classes"
     :disabled="disabled"
     :is-colored="false"
+    :is-to-relative="isToRelative"
     :to="to"
   >
     <slot name="prefix" />
