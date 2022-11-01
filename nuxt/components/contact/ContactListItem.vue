@@ -34,14 +34,14 @@
           :disabled="
             contact.authorAccountUsername !== signedInUsername || isEditing
           "
-          @click="$emit('edit')"
+          @click="emit('edit')"
         >
           <IconPencil />
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('contactDelete')"
           :disabled="isDeleting || contact.accountUsername === signedInUsername"
-          @click="$emit('delete')"
+          @click="emit('delete')"
         >
           <IconTrash />
         </ButtonIcon>
@@ -63,6 +63,11 @@ withDefaults(defineProps<Props>(), {
   isDeleting: false,
   isEditing: false,
 })
+
+const emit = defineEmits<{
+  (e: 'edit'): void
+  (e: 'delete'): void
+}>()
 
 const store = useMaevsiStore()
 const { t } = useI18n()

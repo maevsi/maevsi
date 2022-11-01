@@ -7,7 +7,7 @@
       formClass,
     ]"
     novalidate
-    @submit="(e) => $emit('submit', e)"
+    @submit="(e) => emit('submit', e)"
   >
     <Card>
       <slot />
@@ -19,7 +19,7 @@
             'animate-shake': form.$error,
           }"
           type="submit"
-          @click="$emit('click')"
+          @click="emit('click')"
         >
           {{ submitName || t('submit') }}
           <template #prefix>
@@ -60,6 +60,11 @@ const props = withDefaults(defineProps<Props>(), {
   isFormSent: false,
   submitName: undefined,
 })
+
+const emit = defineEmits<{
+  (e: 'click'): void
+  (e: 'submit', event: Event): void
+}>()
 
 const { getCombinedErrorMessages } = useGetCombinedErrorMessages()
 const { t } = useI18n()

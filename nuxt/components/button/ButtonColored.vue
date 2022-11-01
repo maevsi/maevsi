@@ -18,7 +18,7 @@
     :disabled="disabled"
     :to="to"
     :type="type"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     <slot />
     <template #prefix>
@@ -46,6 +46,10 @@ withDefaults(defineProps<Props>(), {
   to: undefined,
   type: 'button',
 })
+
+const emit = defineEmits<{
+  (e: 'click'): void
+}>()
 
 // refs
 // const buttonRef = ref<HTMLButtonElement>()

@@ -6,7 +6,7 @@
     :title="title || t('password')"
     :type="isVisible ? 'text' : 'password'"
     :value="formInput"
-    @input="$emit('input', $event)"
+    @input="emit('input', $event)"
     @icon="isVisible = !isVisible"
   >
     <template #icon>
@@ -59,6 +59,10 @@ withDefaults(defineProps<Props>(), {
   id: 'password',
   title: undefined,
 })
+
+const emit = defineEmits<{
+  (e: 'input', event: string): void
+}>()
 
 const { t } = useI18n()
 

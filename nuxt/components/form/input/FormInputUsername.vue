@@ -10,7 +10,7 @@
     type="text"
     :validation-property="formInput"
     :value="formInput"
-    @input="$emit('input', $event)"
+    @input="emit('input', $event)"
   >
     <template v-if="$slots.icon" #icon>
       <slot name="icon" />
@@ -83,6 +83,10 @@ withDefaults(defineProps<Props>(), {
   isValidatable: false,
   isValidationInverted: false,
 })
+
+const emit = defineEmits<{
+  (e: 'input', event: string): void
+}>()
 
 const { t } = useI18n()
 </script>

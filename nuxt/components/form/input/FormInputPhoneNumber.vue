@@ -7,7 +7,7 @@
     :title="t('phoneNumber')"
     type="tel"
     :value="formInput"
-    @input="$emit('input', $event)"
+    @input="emit('input', $event)"
   >
     <template #stateInfo>
       <FormInputStateInfo
@@ -40,6 +40,10 @@ withDefaults(defineProps<Props>(), {
   id: 'phone-number',
   isOptional: false,
 })
+
+const emit = defineEmits<{
+  (e: 'input', event: string): void
+}>()
 
 const { t } = useI18n()
 </script>

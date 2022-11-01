@@ -9,7 +9,6 @@ export type Error = { statusCode: string }
 export interface Props {
   error?: Error
 }
-
 const props = withDefaults(defineProps<Props>(), {
   error: undefined,
 })

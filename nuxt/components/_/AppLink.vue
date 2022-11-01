@@ -7,7 +7,7 @@
       [...(nofollow ? ['nofollow'] : []), 'noopener', 'noreferrer'].join(' ')
     "
     target="_blank"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     <slot />
   </a>
@@ -15,7 +15,7 @@
     v-else
     :class="classes"
     :to="isToRelative ? append(route.path, to) : to"
-    @click.native="$emit('click')"
+    @click.native="emit('click')"
   >
     <slot />
   </NuxtLink>
@@ -37,6 +37,10 @@ const props = withDefaults(defineProps<Props>(), {
   isUnderlined: false,
   nofollow: false,
 })
+
+const emit = defineEmits<{
+  (e: 'click'): void
+}>()
 
 const route = useRoute()
 
