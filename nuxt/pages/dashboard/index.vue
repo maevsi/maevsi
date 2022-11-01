@@ -78,8 +78,10 @@ const store = useMaevsiStore()
 const localePath = useLocalePath()
 
 // data
-const signedInUsername = store.signedInUsername
 const title = t('title')
+
+// computations
+const signedInUsername = computed(() => store.signedInUsername)
 
 // initialization
 useHeadDefault(title)

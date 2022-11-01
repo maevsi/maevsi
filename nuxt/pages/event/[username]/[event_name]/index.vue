@@ -385,11 +385,7 @@ const event = computed(
 )
 
 // data
-const jwtDecoded = store.jwtDecoded
 const routeParamUsername = route.params.username as string
-const routeQuery = route.query
-const routeQueryIc = route.query.ic
-const signedInUsername = store.signedInUsername
 
 // methods
 function accept() {
@@ -534,6 +530,10 @@ const invitation = computed(() => {
 
   return undefined
 })
+const jwtDecoded = computed(() => store.jwtDecoded)
+const routeQuery = computed(() => route.query)
+const routeQueryIc = computed(() => route.query.ic)
+const signedInUsername = computed(() => store.signedInUsername)
 const title = computed(() => {
   return event?.value?.name || t('globalLoading')
 })

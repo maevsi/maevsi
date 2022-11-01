@@ -186,11 +186,11 @@ const accountUploadQuotaBytes = computed(
 
 // data
 const fileSelectedUrl = ref<string | undefined>()
-const jwt = store.jwt
 const selectedItem = ref<Item | undefined>()
 const uppy = ref<Uppy | undefined>()
 
 // computations
+const jwt = computed(() => store.jwt)
 const sizeByteTotal = computed(() => {
   if (!uploads.value) {
     return undefined
