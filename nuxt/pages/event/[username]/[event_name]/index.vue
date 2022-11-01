@@ -3,8 +3,11 @@
     <div v-if="event" class="flex flex-col gap-4">
       <Breadcrumbs
         :prefixes="[
-          { name: t('events'), to: '../..', isToRelative: true },
-          { name: routeParamUsername, to: '..', isToRelative: true },
+          { name: t('events'), to: localePath('/event') },
+          {
+            name: routeParamUsername,
+            to: localePath(`/event/${route.params.username}`),
+          },
         ]"
       >
         {{ event.name }}
@@ -335,13 +338,21 @@ definePageMeta({
       })
       .toPromise()
 
-    return (
-      !eventIsExisting.error && !!eventIsExisting.data?.eventIsExisting // TODO: 403
-    )
+    if (eventIsExisting.error) {
+      throw createError(eventIsExisting.error)
+    }
+
+    if (!eventIsExisting.data?.eventIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    // TODO: 403
+
+    return true
   },
 })
 
-const { t } = useI18n()
+const { t, localePath } = useI18n()
 const store = useMaevsiStore()
 const route = useRoute()
 const { executeMutation: executeMutationUpdateInvitationById } =

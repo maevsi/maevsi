@@ -1,8 +1,6 @@
 <template>
   <div>
-    <Breadcrumbs
-      :prefixes="[{ name: t('events'), to: '..', isToRelative: true }]"
-    >
+    <Breadcrumbs :prefixes="[{ name: t('events'), to: localePath('/event') }]">
       {{ routeParamUsername }}
     </Breadcrumbs>
     <i18n-t keypath="title" tag="h1">
@@ -29,9 +27,15 @@ definePageMeta({
       })
       .toPromise()
 
-    return (
-      !accountIsExisting.error && !!accountIsExisting.data?.accountIsExisting
-    )
+    if (accountIsExisting.error) {
+      throw createError(accountIsExisting.error)
+    }
+
+    if (!accountIsExisting.data?.accountIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    return true
   },
 })
 

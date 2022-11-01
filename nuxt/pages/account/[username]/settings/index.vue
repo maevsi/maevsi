@@ -2,8 +2,11 @@
   <div class="flex flex-col gap-4">
     <Breadcrumbs
       :prefixes="[
-        { name: t('accounts'), to: '../..', isToRelative: true },
-        { name: routeParamUsername, to: '..', isToRelative: true },
+        { name: t('accounts'), to: localePath('/account') },
+        {
+          name: routeParamUsername,
+          to: localePath(`/account/${route.params.username}`),
+        },
       ]"
     >
       {{ t('settings') }}
@@ -56,6 +59,7 @@ import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql
 definePageMeta({
   async validate(route) {
     const { $urql } = useNuxtApp()
+    const store = useMaevsiStore()
 
     const accountIsExisting = await $urql.value
       .query(ACCOUNT_IS_EXISTING_QUERY, {
@@ -63,25 +67,25 @@ definePageMeta({
       })
       .toPromise()
 
-    return (
-      !accountIsExisting.error && !!accountIsExisting.data?.accountIsExisting
-    )
-  },
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
-      const store = useMaevsiStore()
+    if (accountIsExisting.error) {
+      throw createError(accountIsExisting.error)
+    }
 
-      if (route.params.username !== store.signedInUsername) {
-        return abortNavigation({ statusCode: 403 })
-      }
-    },
-  ],
+    if (!accountIsExisting.data?.accountIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
+
+    return true
+  },
 })
 
 const store = useMaevsiStore()
 const { signOut } = useSignOut()
-const { t } = useI18n()
+const { t, localePath } = useI18n()
 const route = useRoute()
 const { executeMutation: executeMutationAccoutDelete } =
   useAccountDeleteMutation()

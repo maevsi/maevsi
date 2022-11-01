@@ -2,9 +2,17 @@
   <div class="flex flex-col gap-4">
     <Breadcrumbs
       :prefixes="[
-        { name: t('events'), to: '../../..', isToRelative: true },
-        { name: routeParamUsername, to: '../..', isToRelative: true },
-        { name: routeParamEventName, to: '..', isToRelative: true },
+        { name: t('events'), to: localePath('/event') },
+        {
+          name: routeParamUsername,
+          to: localePath(`/event/${route.params.username}`),
+        },
+        {
+          name: routeParamEventName,
+          to: localePath(
+            `/event/${route.params.username}/${route.params.event_name}`
+          ),
+        },
       ]"
     >
       {{ t('checkIns') }}
@@ -75,6 +83,7 @@ import { useMaevsiStore } from '~/store'
 definePageMeta({
   async validate(route) {
     const { $urql } = useNuxtApp()
+    const store = useMaevsiStore()
 
     const eventIsExisting = await $urql.value
       .query(EVENT_IS_EXISTING_QUERY, {
@@ -83,21 +92,23 @@ definePageMeta({
       })
       .toPromise()
 
-    return !eventIsExisting.error && !!eventIsExisting.data?.eventIsExisting
-  },
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
-      const store = useMaevsiStore()
+    if (eventIsExisting.error) {
+      throw createError(eventIsExisting.error)
+    }
 
-      if (route.params.username !== store.signedInUsername) {
-        throw createError({ statusCode: 403 }) // TODO: abortNavigation?
-      }
-    },
-  ],
+    if (!eventIsExisting.data?.eventIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
+
+    return true
+  },
 })
 
-const { t } = useI18n()
+const { t, localePath } = useI18n()
 const store = useMaevsiStore()
 const route = useRoute()
 

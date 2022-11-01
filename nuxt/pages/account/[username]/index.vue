@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-4">
     <Breadcrumbs
-      :prefixes="[{ name: t('accounts'), to: '..', isToRelative: true }]"
+      :prefixes="[{ name: t('accounts'), to: localePath('/account') }]"
     >
       {{ routeParamUsername }}
     </Breadcrumbs>
@@ -63,9 +63,15 @@ definePageMeta({
       })
       .toPromise()
 
-    return (
-      !accountIsExisting.error && !!accountIsExisting.data?.accountIsExisting
-    )
+    if (accountIsExisting.error) {
+      throw createError(accountIsExisting.error)
+    }
+
+    if (!accountIsExisting.data?.accountIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    return true
   },
 })
 

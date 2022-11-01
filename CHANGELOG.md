@@ -1,3 +1,17 @@
+# [1.0.0-alpha.7](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.6...1.0.0-alpha.7) (2022-11-01)
+
+
+### Bug Fixes
+
+* **breadcrumb:** fixed routing in breadcrumbs ([93ab582](https://github.com/maevsi/maevsi/commit/93ab5820419f319c5aa6633370df48802f9b472d))
+
+# [1.0.0-alpha.6](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.5...1.0.0-alpha.6) (2022-10-31)
+
+
+### Performance Improvements
+
+* **dev:** do not create certificates without need ([86a0120](https://github.com/maevsi/maevsi/commit/86a012088e49e6288979fdf68adbf5a8f3761f26))
+
 # [1.0.0-alpha.5](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.4...1.0.0-alpha.5) (2022-10-28)
 
 
