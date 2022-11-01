@@ -85,7 +85,8 @@ definePageMeta({
 
 const store = useMaevsiStore()
 const { signOut } = useSignOut()
-const { t, localePath } = useI18n()
+const { t } = useI18n()
+const localePath = useLocalePath()
 const route = useRoute()
 const { executeMutation: executeMutationAccoutDelete } =
   useAccountDeleteMutation()

@@ -63,7 +63,8 @@ definePageMeta({
 })
 
 const route = useRoute()
-const { t, localePath } = useI18n()
+const { t } = useI18n()
+const localePath = useLocalePath()
 const store = useMaevsiStore()
 
 // queries
