@@ -141,10 +141,11 @@ const isNfcError = computed(() => {
   )
 })
 const title = computed(() => {
-  if (route.params.username === store.signedInUsername && event.value) {
-    return `${t('title')} · ${event.value.name}`
+  if (!event.value) {
+    return t('title')
   }
-  return '403'
+
+  return `${t('title')} · ${event.value.name}`
 })
 
 // methods

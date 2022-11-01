@@ -101,10 +101,7 @@ const api = computed(() => {
 // data
 const mutation = executeMutationAccoutDelete
 const routeParamUsername = route.params.username as string
-const title =
-  route.params.username === store.signedInUsername
-    ? route.params.username
-    : '403'
+const title = route.params.username as string
 
 // methods
 function onDeleteError(error: CombinedError) {

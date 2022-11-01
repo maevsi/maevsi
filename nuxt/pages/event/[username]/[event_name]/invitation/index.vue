@@ -65,7 +65,6 @@ definePageMeta({
 const route = useRoute()
 const { t } = useI18n()
 const localePath = useLocalePath()
-const store = useMaevsiStore()
 
 // queries
 const eventQuery = useEventByAuthorUsernameAndSlugQuery({
@@ -94,10 +93,11 @@ const routeParamUsername = route.params.username as string
 
 // computations
 const title = computed(() => {
-  if (route.params.username === store.signedInUsername && event.value) {
-    return `${t('title')} · ${event.value.name}`
+  if (!event.value) {
+    return t('title')
   }
-  return '403'
+
+  return `${t('title')} · ${event.value.name}`
 })
 
 // lifecycle
