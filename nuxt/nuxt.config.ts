@@ -64,7 +64,7 @@ export default defineNuxtConfig({
       },
     ],
   },
-  css: ['@/assets/css/main.css', 'v-calendar/dist/style.css'],
+  css: ['@/assets/css/main.css'],
   dir: {
     static: 'public',
   },

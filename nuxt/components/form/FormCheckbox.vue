@@ -2,7 +2,6 @@
   <div>
     <input
       :id="`input-${formKey}`"
-      autocomplete="off"
       class="rounded"
       type="checkbox"
       :checked="value"

@@ -43,9 +43,11 @@
             }"
             :disabled="isDisabled"
             :placeholder="placeholder"
+            :readonly="isReadonly"
             :type="type"
-            :value="value?.$model"
-            @input="onInput"
+            :value="valueFormatter(value?.$model as string)"
+            @input="emit('input', ($event.target as HTMLInputElement)?.value)"
+            @click="emit('click')"
           />
           <div v-if="validationProperty && isValidatable">
             <FormInputIconWrapper v-if="validationProperty.$pending">
@@ -111,6 +113,7 @@ import consola from 'consola'
 export interface Props {
   isDisabled?: boolean
   isOptional?: boolean
+  isReadonly?: boolean
   isRequired?: boolean
   isValidatable?: boolean
   idLabel?: string
@@ -120,11 +123,13 @@ export interface Props {
   type?: string
   validationProperty?: BaseValidation
   value?: BaseValidation
+  valueFormatter?: (x?: string) => typeof x | undefined
   warning?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   isOptional: false,
+  isReadonly: false,
   isRequired: false,
   isValidatable: false,
   idLabel: undefined,
@@ -134,20 +139,17 @@ const props = withDefaults(defineProps<Props>(), {
   type: undefined,
   validationProperty: undefined,
   value: undefined,
+  valueFormatter: (x?: string) => x,
   warning: false,
 })
 
 const emit = defineEmits<{
   (e: 'icon'): void
   (e: 'input', input: string): void
+  (e: 'click'): void
 }>()
 
 const { t } = useI18n()
-
-// methods
-function onInput(payload: Event) {
-  emit('input', (payload.target as HTMLInputElement)?.value)
-}
 
 // initialization
 if (
