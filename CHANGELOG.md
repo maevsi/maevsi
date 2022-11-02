@@ -1,3 +1,19 @@
+# [1.0.0-alpha.12](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.11...1.0.0-alpha.12) (2022-11-02)
+
+
+### Bug Fixes
+
+* **components:** migrate v-model usage ([67f9451](https://github.com/maevsi/maevsi/commit/67f9451b20a2094c3443ebbaf042f276d6f8e93a))
+* resolve linter issues ([c80a03b](https://github.com/maevsi/maevsi/commit/c80a03b1a794513bef4dea29ab795a536d1cfa6b))
+
+
+### Features
+
+* **calendar:** introduce vCalendar ([7ba11fd](https://github.com/maevsi/maevsi/commit/7ba11fdd9eae83959022fefab57eed5b98befdda))
+* **event:** implement v-calendar modals based on feat/vue/v-calendar ([6681702](https://github.com/maevsi/maevsi/commit/66817024f80c1513f19878063a8742f7d4747b10))
+* **event:** update event form based on feat/vue-3/v-calendar with luxon ([285b82a](https://github.com/maevsi/maevsi/commit/285b82a437b9bf169193b3deb752e78f67284b67))
+* **form-event:** finish date-time picker implementation ([612bc5e](https://github.com/maevsi/maevsi/commit/612bc5ee1c463bbc83f82925b80feb49a4b7378b))
+
 # [1.0.0-alpha.11](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.10...1.0.0-alpha.11) (2022-11-02)
 
 
