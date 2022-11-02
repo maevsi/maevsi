@@ -152,19 +152,19 @@ import { Link } from '@tiptap/extension-link'
 import { StarterKit } from '@tiptap/starter-kit'
 
 export interface Props {
-  value?: string
+  modelValue?: string
 }
 const props = withDefaults(defineProps<Props>(), {
-  value: '',
+  modelValue: '',
 })
 
 const emit = defineEmits<{
-  (e: 'input', input: string): void
+  (e: 'update:modelValue', input: string): void
 }>()
 
 const { t } = useI18n()
 const editor = useEditor({
-  content: props.value,
+  content: props.modelValue,
   editorProps: {
     attributes: {
       class: 'form-input min-h-[100px]',
@@ -173,7 +173,7 @@ const editor = useEditor({
   extensions: [StarterKit, Link],
   onUpdate: () => {
     if (!editor.value) return
-    emit('input', editor.value.getHTML())
+    emit('update:modelValue', editor.value.getHTML())
   },
 })
 
@@ -207,7 +207,7 @@ function setLink() {
 
 // lifecycle
 watch(
-  () => props.value,
+  () => props.modelValue,
   (currentValue, _oldValue) => {
     if (!editor.value) return
 
