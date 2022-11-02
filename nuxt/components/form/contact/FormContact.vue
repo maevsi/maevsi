@@ -232,13 +232,16 @@ async function submit() {
     emit('submitSuccess')
   }
 }
+function updateForm(data: Contact) {
+  if (!data) return
 
-// initialiuation
-if (props.contact) {
-  for (const [k, v] of Object.entries(props.contact)) {
+  for (const [k, v] of Object.entries(data)) {
     ;(form as Record<string, any>)[k] = v
   }
 }
+
+// initialization
+updateForm(props.contact)
 
 // vuelidate
 const rules = {
@@ -272,6 +275,14 @@ const rules = {
     },
   },
 }
+
+// lifecycle
+watch(
+  () => props.contact,
+  (currentValue, _oldValue) => {
+    updateForm(currentValue)
+  }
+)
 const v$ = useVuelidate(rules, { form })
 </script>
 

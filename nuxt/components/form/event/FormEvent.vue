@@ -296,7 +296,7 @@ import {
 import { useMaevsiStore } from '~/store'
 
 export interface Props {
-  event: Event | undefined
+  event?: Event
 }
 const props = withDefaults(defineProps<Props>(), {
   event: undefined,
@@ -443,6 +443,13 @@ async function submit() {
     )
   }
 }
+function updateForm(data: Event) {
+  if (!data) return
+
+  for (const [k, v] of Object.entries(data)) {
+    ;(form as Record<string, any>)[k] = v
+  }
+}
 function updateSlug() {
   form.slug = slugify(form.name ?? '', {
     lower: true,
@@ -499,12 +506,16 @@ const rules = {
 }
 const v$ = useVuelidate(rules, { form })
 
-// initialization
-if (props.event) {
-  for (const [k, v] of Object.entries(props.event)) {
-    ;(form as Record<string, any>)[k] = v
+// lifecycle
+watch(
+  () => props.event,
+  (currentValue, _oldValue) => {
+    updateForm(currentValue)
   }
-}
+)
+
+// initialization
+updateForm(props.event)
 
 Settings.defaultLocale = locale.value
 </script>
