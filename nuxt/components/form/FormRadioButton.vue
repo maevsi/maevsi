@@ -5,8 +5,8 @@
       :checked="checked"
       :name="groupName"
       type="radio"
-      :value="value ? value : titleSlug"
-      @change="onChange"
+      :value="value || titleSlug"
+      @change="emit('change', ($event.target as HTMLInputElement).value)"
     />
     <label class="pl-2" :for="`input-${groupName}-${titleSlug}`">
       {{ title }}
@@ -31,11 +31,6 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   (e: 'change', change: string): void
 }>()
-
-// methods
-function onChange(payload: Event) {
-  emit('change', (payload.target as HTMLInputElement).value)
-}
 
 // computations
 const titleSlug = computed(() => {

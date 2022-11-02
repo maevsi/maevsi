@@ -6,7 +6,7 @@
       class="rounded"
       type="checkbox"
       :checked="value"
-      @change="onChange"
+      @change="emit('change', ($event.target as HTMLInputElement).checked)"
     />
     <label class="pl-2" :for="`input-${formKey}`"><slot /></label>
   </div>
@@ -25,9 +25,4 @@ withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   (e: 'change', change: boolean): void
 }>()
-
-// methods
-function onChange(payload: Event) {
-  emit('change', (payload.target as HTMLInputElement).checked)
-}
 </script>
