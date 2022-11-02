@@ -359,20 +359,19 @@ async function submit() {
       id: form.id,
       eventPatch: {
         authorUsername: signedInUsername.value,
-        description: form.description,
-        end: form.end !== '' ? form.end : undefined,
-        inviteeCountMaximum:
-          form.inviteeCountMaximum && form.inviteeCountMaximum !== ''
-            ? +form.inviteeCountMaximum
-            : undefined,
+        description: form.description || undefined,
+        end: form.end || undefined,
+        inviteeCountMaximum: form.inviteeCountMaximum
+          ? +form.inviteeCountMaximum
+          : undefined,
         isInPerson: form.isInPerson,
         isRemote: form.isRemote,
-        location: form.location !== '' ? form.location : undefined,
-        name: form.name,
-        slug: form.slug,
-        start: form.start,
-        url: form.url !== '' ? form.url : undefined,
-        visibility: form.visibility || EventVisibility.Private,
+        location: form.location || undefined,
+        name: form.name || undefined,
+        slug: form.slug || undefined,
+        start: form.start || undefined,
+        url: form.url || undefined,
+        visibility: form.visibility || undefined,
       },
     })
 
@@ -395,27 +394,28 @@ async function submit() {
   } else {
     // Add
 
+    if (!signedInUsername.value) throw new Error('Author username is not set!')
     if (!form.name) throw new Error('Name is not set!')
     if (!form.slug) throw new Error('Slug is not set!')
+    if (!form.visibility) throw new Error('Visibility is not set!')
 
     const result = await createEventMutation.executeMutation({
       createEventInput: {
         event: {
-          authorUsername: signedInUsername.value || '',
-          description: form.description,
-          end: form.end !== '' ? form.end : undefined,
-          inviteeCountMaximum:
-            form.inviteeCountMaximum && form.inviteeCountMaximum !== ''
-              ? +form.inviteeCountMaximum
-              : undefined,
+          authorUsername: signedInUsername.value,
+          description: form.description || undefined,
+          end: form.end || undefined,
+          inviteeCountMaximum: form.inviteeCountMaximum
+            ? +form.inviteeCountMaximum
+            : undefined,
           isInPerson: form.isInPerson,
           isRemote: form.isRemote,
-          location: form.location !== '' ? form.location : undefined,
+          location: form.location || undefined,
           name: form.name,
           slug: form.slug,
-          start: form.start,
-          url: form.url !== '' ? form.url : undefined,
-          visibility: form.visibility || EventVisibility.Private,
+          start: form.start || undefined,
+          url: form.url || undefined,
+          visibility: form.visibility,
         },
       },
     })
