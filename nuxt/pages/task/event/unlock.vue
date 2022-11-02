@@ -210,17 +210,6 @@ async function submit() {
 // computations
 const routeQueryIc = computed(() => route.query.ic)
 
-// lifecycle
-onMounted(() => {
-  if (route.query.ic) {
-    v$.value.form.invitationCode?.$touch()
-
-    if ('error' in route.query) {
-      submit()
-    }
-  }
-})
-
 // vuelidate
 const rules = {
   form: {
@@ -231,6 +220,17 @@ const rules = {
   },
 }
 const v$ = useVuelidate(rules, { form })
+
+// lifecycle
+onMounted(() => {
+  if (route.query.ic) {
+    v$.value.form.invitationCode?.$touch()
+
+    if ('error' in route.query) {
+      submit()
+    }
+  }
+})
 
 // initialization
 useHeadDefault(title)

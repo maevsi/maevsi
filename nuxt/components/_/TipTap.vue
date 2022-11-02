@@ -152,7 +152,7 @@ import { Link } from '@tiptap/extension-link'
 import { StarterKit } from '@tiptap/starter-kit'
 
 export interface Props {
-  value: string
+  value?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   value: '',

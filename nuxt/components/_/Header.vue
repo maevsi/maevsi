@@ -7,7 +7,7 @@
       <ButtonIcon
         :aria-label="t('menuShow')"
         class="lg:hidden"
-        @click="$emit('onMenuShow')"
+        @click="emit('onMenuShow')"
       >
         <IconMenu classes="h-8 w-8" />
       </ButtonIcon>
@@ -63,7 +63,7 @@
           class="flex-none"
           :title="t('profileLink')"
           :to="localePath(`/account/${signedInUsername}`)"
-          @click.native="$emit('onMenuHide')"
+          @click.native="emit('onMenuHide')"
         >
           <AccountProfilePicture
             height="40"
@@ -96,6 +96,11 @@
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 import supportedBrowsers from '~/supportedBrowsers'
+
+const emit = defineEmits<{
+  (e: 'onMenuShow'): void
+  (e: 'onMenuHide'): void
+}>()
 
 const store = useMaevsiStore()
 const localePath = useLocalePath()

@@ -9,7 +9,7 @@
       :group-name="name"
       :title="Array.isArray(titlesValue) ? titlesValue[0] : titlesValue"
       :value="Array.isArray(titlesValue) ? titlesValue[1] : titlesValue"
-      @change="$emit('input', $event)"
+      @change="emit('input', $event)"
     />
   </div>
 </template>
@@ -24,4 +24,8 @@ withDefaults(defineProps<Props>(), {
   name: undefined,
   value: undefined,
 })
+
+const emit = defineEmits<{
+  (e: 'input', event: string): void
+}>()
 </script>

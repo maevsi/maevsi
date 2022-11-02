@@ -1,7 +1,7 @@
 <template>
   <div :class="{ invisible: !isVisibleComputed }">
     <div
-      class="fixed bottom-0 left-0 right-0 top-0 z-10 transition"
+      class="bottom-0 left-0 right-0 top-0 z-10 transition"
       :class="[
         ...(isTesting ? [] : ['fixed']),
         ...(isVisibleComputed
@@ -11,7 +11,7 @@
       @click="close"
     />
     <Card
-      class="fixed top-[10%] max-h-[80%] left-1/2 -translate-x-1/2 z-20 flex w-5/6 flex-col gap-2 overflow-auto bg-background-brighten dark:bg-background-darken sm:w-2/3 lg:w-1/2 xl:w-1/3"
+      class="top-[10%] max-h-[80%] left-1/2 -translate-x-1/2 z-20 flex w-5/6 flex-col gap-2 overflow-auto sm:w-2/3 lg:w-1/2 xl:w-1/3"
       :class="{ fixed: !isTesting }"
     >
       <div class="flex justify-end">

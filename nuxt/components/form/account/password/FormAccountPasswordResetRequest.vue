@@ -31,7 +31,7 @@ import { getApiMeta } from '~/plugins/util/util'
 import { useAccountPasswordResetRequestMutation } from '~/gql/generated'
 
 export interface Props {
-  formClass: string
+  formClass?: string
 }
 withDefaults(defineProps<Props>(), {
   formClass: undefined,

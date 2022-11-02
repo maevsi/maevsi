@@ -10,7 +10,7 @@
     type="text"
     :validation-property="formInput"
     :value="formInput"
-    @input="$emit('input', $event)"
+    @input="emit('input', $event)"
   >
     <template v-if="$slots.icon" #icon>
       <slot name="icon" />
@@ -71,18 +71,23 @@
 import type { BaseValidation } from '@vuelidate/core'
 
 export interface Props {
-  formInput: BaseValidation | undefined
+  formInput?: BaseValidation
   id?: string
   isOptional?: boolean
   isValidatable?: boolean
   isValidationInverted?: boolean
 }
 withDefaults(defineProps<Props>(), {
+  formInput: undefined,
   id: 'username',
   isOptional: false,
   isValidatable: false,
   isValidationInverted: false,
 })
+
+const emit = defineEmits<{
+  (e: 'input', event: string): void
+}>()
 
 const { t } = useI18n()
 </script>

@@ -41,7 +41,7 @@ export interface Props {
   itemName: string
   mutation: (
     variables: Exact<any>,
-    context?: Partial<OperationContext> | undefined
+    context?: Partial<OperationContext>
   ) => Promise<OperationResult<EventDeleteMutation, AnyVariables>>
   variables?: Record<string, any>
 }

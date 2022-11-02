@@ -1,6 +1,7 @@
 <template>
   <div class="mb-4 flex items-center gap-2 overflow-auto p-1">
     <AppLink
+      :aria-label="t('home')"
       data-testid="breadcrumb-prefix-/"
       :is-colored="false"
       :to="localePath('/')"
@@ -26,12 +27,12 @@
     </ul>
     <span>{{ t('separator') }}</span>
     <AppLink :is-colored="false" :to="queryString">
-      <h1
-        class="m-0 whitespace-nowrap text-2xl"
+      <span
+        class="whitespace-nowrap text-2xl font-bold"
         :data-testid="`breadcrumb-${queryString}`"
       >
         <slot />
-      </h1>
+      </span>
     </AppLink>
     <!-- Suffixes are currently unused.
     <ul v-if="suffixes" class="flex items-center gap-2">
@@ -86,7 +87,9 @@ export default {
 
 <i18n lang="yml">
 de:
+  home: Nach Hause
   separator: /
 en:
+  home: Head home
   separator: /
 </i18n>

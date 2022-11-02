@@ -131,17 +131,18 @@ import { getApiMeta } from '~/plugins/util/util'
 import { useMaevsiStore } from '~/store'
 
 export interface Props {
-  allowDeletion: boolean
-  selectable: boolean
-  username: string | undefined
+  allowDeletion?: boolean
+  selectable?: boolean
+  username?: string
 }
 const props = withDefaults(defineProps<Props>(), {
   allowDeletion: true,
   selectable: false,
+  username: undefined,
 })
 
 const emit = defineEmits<{
-  (e: 'selection', storageKey: string | undefined): void
+  (e: 'selection', storageKey?: string): void
 }>()
 
 interface Item {
@@ -185,9 +186,9 @@ const accountUploadQuotaBytes = computed(
 )
 
 // data
-const fileSelectedUrl = ref<string | undefined>()
-const selectedItem = ref<Item | undefined>()
-const uppy = ref<Uppy | undefined>()
+const fileSelectedUrl = ref<string>()
+const selectedItem = ref<Item>()
+const uppy = ref<Uppy>()
 
 // computations
 const jwt = computed(() => store.jwt)
@@ -206,9 +207,7 @@ const sizeByteTotal = computed(() => {
 })
 
 // methods
-function bytesToString(
-  bytes: number | string | undefined | null
-): string | undefined {
+function bytesToString(bytes?: number | string | null) {
   if (bytes === undefined || bytes === null) {
     return undefined
   }

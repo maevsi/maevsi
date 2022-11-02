@@ -12,7 +12,7 @@ const { locale } = useI18n()
 const canvasRef = ref<HTMLCanvasElement>()
 
 // data
-const ctx = ref<CanvasRenderingContext2D | undefined | null>()
+const ctx = ref<CanvasRenderingContext2D | null>()
 const image = ref<HTMLImageElement>()
 const imageSize = 200
 

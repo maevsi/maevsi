@@ -1,21 +1,23 @@
 <template>
   <a
     v-if="to.match(/^((ftp|http(s)?):\/\/|(mailto):)/)"
+    :aria-label="ariaLabel"
     :class="classes"
     :href="to"
     :rel="
       [...(nofollow ? ['nofollow'] : []), 'noopener', 'noreferrer'].join(' ')
     "
     target="_blank"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     <slot />
   </a>
   <NuxtLink
     v-else
+    :aria-label="ariaLabel"
     :class="classes"
     :to="isToRelative ? append(route.path, to) : to"
-    @click.native="$emit('click')"
+    @click.native="emit('click')"
   >
     <slot />
   </NuxtLink>
@@ -25,6 +27,7 @@
 import { append } from '~/plugins/util/util'
 
 export interface Props {
+  ariaLabel?: string
   isColored?: boolean
   isToRelative?: boolean
   isUnderlined?: boolean
@@ -32,11 +35,16 @@ export interface Props {
   to: string
 }
 const props = withDefaults(defineProps<Props>(), {
+  ariaLabel: undefined,
   isColored: true,
   isToRelative: false,
   isUnderlined: false,
   nofollow: false,
 })
+
+const emit = defineEmits<{
+  (e: 'click'): void
+}>()
 
 const route = useRoute()
 

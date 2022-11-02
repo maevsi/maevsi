@@ -7,7 +7,7 @@
         v-if="isClosable"
         :aria-label="t('menuHide')"
         class="self-end"
-        @click="$emit('onMenuHide')"
+        @click="emit('onMenuHide')"
       >
         <IconX />
       </ButtonIcon>
@@ -18,7 +18,7 @@
             class="flex min-w-0 items-center gap-2 text-text-dark dark:text-text-bright"
             :title="t('profileLink')"
             :to="localePath(`/account/${signedInUsername}`)"
-            @click.native="$emit('onMenuHide')"
+            @click.native="emit('onMenuHide')"
           >
             <AccountProfilePicture
               height="40"
@@ -34,7 +34,7 @@
               :aria-label="t('accountSettings')"
               :title="t('accountSettings')"
               :to="localePath(`/account/${signedInUsername}/settings`)"
-              @click.native="$emit('onMenuHide')"
+              @click.native="emit('onMenuHide')"
             >
               <IconCog />
             </ButtonIcon>
@@ -80,14 +80,14 @@
             :aria-label="t('eventsExplore')"
             :is-primary="false"
             :to="localePath('/event')"
-            @click.native="$emit('onMenuHide')"
+            @click.native="emit('onMenuHide')"
           >
             {{ t('eventsExplore') }}
             <template #prefix>
               <IconTelescope />
             </template>
           </ButtonText>
-          <ButtonEventNew @click.native="$emit('onMenuHide')" />
+          <ButtonEventNew @click.native="emit('onMenuHide')" />
         </div>
       </div>
     </div>
@@ -101,6 +101,11 @@ export interface Props {
 withDefaults(defineProps<Props>(), {
   isClosable: false,
 })
+
+const emit = defineEmits<{
+  (e: 'onMenuShow'): void
+  (e: 'onMenuHide'): void
+}>()
 
 const localePath = useLocalePath()
 const { t } = useI18n()
