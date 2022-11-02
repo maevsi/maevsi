@@ -1,262 +1,269 @@
 <template>
-  <Form
-    ref="form"
-    :errors="api.errors"
-    :form="v$.form"
-    :is-form-sent="isFormSent"
-    :submit-name="form.id ? t('eventUpdate') : t('eventCreate')"
-    @submit.prevent="submit"
-  >
-    <FormInput
-      class="hidden"
-      id-label="input-id"
-      title="id"
-      type="number"
-      placeholder="id"
-      :value="v$.form.id"
-      @input="form.id = $event"
-    />
-    <FormInput
-      id-label="input-name"
-      is-required
-      is-validatable
-      :placeholder="t('namePlaceholder')"
-      :title="t('name')"
-      type="text"
-      :validation-property="v$.form.slug"
-      :value="v$.form.name"
-      @input="onInputName($event)"
+  <div>
+    <Form
+      ref="form"
+      :errors="api.errors"
+      :form="v$.form"
+      :is-form-sent="isFormSent"
+      :submit-name="v$.form.id.$model ? t('eventUpdate') : t('eventCreate')"
+      @submit.prevent="submit"
     >
-      <template #stateWarning>
-        <FormInputStateWarning v-if="event && event.name !== form.name">
-          {{ t('validationWarningNameChangeSlug') }}
-        </FormInputStateWarning>
-      </template>
-      <template #stateError>
-        <FormInputStateError
-          :form-input="v$.form.slug"
-          is-validation-live
-          validation-property="existenceNone"
-        >
-          {{ t('validationExistenceNone', { slug: v$.form.slug?.$model }) }}
-        </FormInputStateError>
-        <FormInputStateError
-          :form-input="v$.form.name"
-          validation-property="maxLength"
-        >
-          {{ t('globalValidationLength') }}
-        </FormInputStateError>
-        <FormInputStateError
-          :form-input="v$.form.name"
-          validation-property="required"
-        >
-          {{ t('globalValidationRequired') }}
-        </FormInputStateError>
-      </template>
-    </FormInput>
-    <FormInput
-      class="hidden"
-      id-label="input-slug"
-      is-required
-      :placeholder="t('slugPlaceholder')"
-      :title="t('slug')"
-      type="text"
-      :value="v$.form.slug"
-      @input="form.slug = $event"
-    >
-      <template #stateError>
-        <FormInputStateError
-          :form-input="v$.form.slug"
-          validation-property="formatSlug"
-        >
-          {{ t('globalValidationFormat') }}
-        </FormInputStateError>
-        <FormInputStateError
-          :form-input="v$.form.slug"
-          validation-property="maxLength"
-        >
-          {{ t('globalValidationLength') }}
-        </FormInputStateError>
-        <FormInputStateError
-          :form-input="v$.form.slug"
-          validation-property="required"
-        >
-          {{ t('globalValidationRequired') }}
-        </FormInputStateError>
-      </template>
-    </FormInput>
-    <FormInput
-      v-if="v$.form.visibility"
-      id-label="input-visibility"
-      is-required
-      :title="t('visibility')"
-      type="radio"
-      :value="v$.form.visibility"
-      @input="form.visibility = $event as EventVisibility"
-    >
-      <FormRadioButtonGroup
-        id="input-visibility"
-        v-model="v$.form.visibility.$model"
-        name="visibility"
-        :titles-values="[
-          [t('visibilityPublic'), 'PUBLIC'],
-          [t('visibilityPrivate'), 'PRIVATE'],
-        ]"
+      <FormInput
+        class="hidden"
+        id-label="input-id"
+        title="id"
+        type="number"
+        placeholder="id"
+        :value="v$.form.id"
+        @input="v$.form.id.$model = $event"
       />
-      <template #stateError>
-        <FormInputStateError
-          :form-input="v$.form.visibility"
-          validation-property="required"
-        >
-          {{ t('globalValidationRequired') }}
-        </FormInputStateError>
-      </template>
-    </FormInput>
-    <FormInput
-      v-if="form.visibility === 'PUBLIC'"
-      id-label="input-invitee-count-maximum"
-      :title="t('maximumInviteeCount')"
-      type="number"
-      :value="v$.form.inviteeCountMaximum"
-      @input="form.inviteeCountMaximum = $event"
-    >
-      <template #stateError>
-        <FormInputStateError
-          :form-input="v$.form.inviteeCountMaximum"
-          validation-property="maxValue"
-        >
-          {{ t('globalValidationMaxValue') }}
-        </FormInputStateError>
-        <FormInputStateError
-          :form-input="v$.form.inviteeCountMaximum"
-          validation-property="minValue"
-        >
-          {{ t('globalValidationMinValue') }}
-        </FormInputStateError>
-      </template>
-    </FormInput>
-    <FormInput
-      v-if="v$.form.start && v$.form.end"
-      id-label="input-start"
-      is-required
-      :title="t('start')"
-      type="datetime-local"
-      :value="v$.form.start"
-      :warning="isWarningStartPastShown"
-      @input="form.start = $event"
-    >
-      <Datetime
-        v-model="v$.form.start.$model"
-        :format="formatDateTimeShort"
-        input-class="form-input"
-        input-id="input-start"
-        :max-datetime="v$.form.end.$model"
-        :minute-step="5"
-        type="datetime"
-        :use12-hour="locale === 'en'"
-      />
-      <template #stateWarning>
-        <FormInputStateWarning v-if="isWarningStartPastShown">
-          {{ t('globalValidationNowOrFuture') }}
-        </FormInputStateWarning>
-      </template>
-    </FormInput>
-    <FormInput
-      v-if="v$.form.end && v$.form.start"
-      id-label="input-end"
-      :title="t('end')"
-      type="datetime-local"
-      :value="v$.form.end"
-      @input="form.end = $event"
-      @icon="form.end = ''"
-    >
-      <Datetime
-        v-model="v$.form.end.$model"
-        :format="formatDateTimeShort"
-        :input-class="[
-          'form-input',
-          ...(!!v$.form.end.$model ? ['rounded-r-none'] : []),
-        ]"
-        input-id="input-end"
-        :min-datetime="v$.form.start.$model"
-        :minute-step="5"
-        type="datetime"
-        :use12-hour="locale === 'en'"
-      />
-      <template v-if="!!v$.form.end.$model" #icon>
-        <IconX />
-      </template>
-    </FormInput>
-    <FormInput
-      id-label="input-attendance-type"
-      :title="t('attendanceType')"
-      type="checkbox"
-    >
-      <FormCheckbox
-        v-if="v$.form.isInPerson"
-        form-key="is-in-person"
-        :value="v$.form.isInPerson.$model"
-        @change="form.isInPerson = $event"
+      <FormInput
+        id-label="input-name"
+        is-required
+        is-validatable
+        :placeholder="t('namePlaceholder')"
+        :title="t('name')"
+        type="text"
+        :validation-property="v$.form.slug"
+        :value="v$.form.name"
+        @input="onInputName($event)"
       >
-        {{ t('isInPerson') }}
-      </FormCheckbox>
-      <FormCheckbox
-        v-if="v$.form.isRemote"
-        form-key="is-remote"
-        :value="v$.form.isRemote.$model"
-        @change="form.isRemote = $event"
+        <template #stateWarning>
+          <FormInputStateWarning v-if="event && event.name !== form.name">
+            {{ t('validationWarningNameChangeSlug') }}
+          </FormInputStateWarning>
+        </template>
+        <template #stateError>
+          <FormInputStateError
+            :form-input="v$.form.slug"
+            is-validation-live
+            validation-property="existenceNone"
+          >
+            {{ t('validationExistenceNone', { slug: v$.form.slug?.$model }) }}
+          </FormInputStateError>
+          <FormInputStateError
+            :form-input="v$.form.name"
+            validation-property="maxLength"
+          >
+            {{ t('globalValidationLength') }}
+          </FormInputStateError>
+          <FormInputStateError
+            :form-input="v$.form.name"
+            validation-property="required"
+          >
+            {{ t('globalValidationRequired') }}
+          </FormInputStateError>
+        </template>
+      </FormInput>
+      <FormInput
+        class="hidden"
+        id-label="input-slug"
+        is-required
+        :placeholder="t('slugPlaceholder')"
+        :title="t('slug')"
+        type="text"
+        :value="v$.form.slug"
+        @input="v$.form.slug.$model = $event"
       >
-        {{ t('isRemote') }}
-      </FormCheckbox>
-    </FormInput>
-    <FormInput
-      v-if="form.isInPerson"
-      id-label="input-location"
-      :placeholder="t('globalPlaceholderAddress').replace('\n', ' ')"
-      :title="t('location')"
-      type="text"
-      :value="v$.form.location"
-      @input="form.location = $event"
-    >
-      <template #stateError>
-        <FormInputStateError
-          :form-input="v$.form.location"
-          validation-property="maxLength"
+        <template #stateError>
+          <FormInputStateError
+            :form-input="v$.form.slug"
+            validation-property="formatSlug"
+          >
+            {{ t('globalValidationFormat') }}
+          </FormInputStateError>
+          <FormInputStateError
+            :form-input="v$.form.slug"
+            validation-property="maxLength"
+          >
+            {{ t('globalValidationLength') }}
+          </FormInputStateError>
+          <FormInputStateError
+            :form-input="v$.form.slug"
+            validation-property="required"
+          >
+            {{ t('globalValidationRequired') }}
+          </FormInputStateError>
+        </template>
+      </FormInput>
+      <FormInput
+        v-if="v$.form.visibility"
+        id-label="input-visibility"
+        is-required
+        :title="t('visibility')"
+        type="radio"
+        :value="v$.form.visibility"
+        @input="v$.form.visibility.$model = $event as EventVisibility"
+      >
+        <FormRadioButtonGroup
+          id="input-visibility"
+          v-model="v$.form.visibility.$model"
+          name="visibility"
+          :titles-values="[
+            [t('visibilityPublic'), 'PUBLIC'],
+            [t('visibilityPrivate'), 'PRIVATE'],
+          ]"
+        />
+        <template #stateError>
+          <FormInputStateError
+            :form-input="v$.form.visibility"
+            validation-property="required"
+          >
+            {{ t('globalValidationRequired') }}
+          </FormInputStateError>
+        </template>
+      </FormInput>
+      <FormInput
+        v-if="v$.form.visibility.$model === 'PUBLIC'"
+        id-label="input-invitee-count-maximum"
+        :title="t('maximumInviteeCount')"
+        type="number"
+        :value="v$.form.inviteeCountMaximum"
+        @input="v$.form.inviteeCountMaximum.$model = $event"
+      >
+        <template #stateError>
+          <FormInputStateError
+            :form-input="v$.form.inviteeCountMaximum"
+            validation-property="maxValue"
+          >
+            {{ t('globalValidationMaxValue') }}
+          </FormInputStateError>
+          <FormInputStateError
+            :form-input="v$.form.inviteeCountMaximum"
+            validation-property="minValue"
+          >
+            {{ t('globalValidationMinValue') }}
+          </FormInputStateError>
+        </template>
+      </FormInput>
+      <FormInput
+        id-label="input-start"
+        is-readonly
+        :placeholder="dateTimeFormatter(new Date().toISOString())"
+        :title="t('start')"
+        type="text"
+        :value="v$.form.start"
+        :value-formatter="dateTimeFormatter"
+        :warning="isWarningStartPastShown"
+        @click="store.modalAdd({ id: 'ModalDateTimeStart' })"
+      >
+        <template #stateWarning>
+          <FormInputStateWarning v-if="isWarningStartPastShown">
+            {{ t('globalValidationNowOrFuture') }}
+          </FormInputStateWarning>
+        </template>
+      </FormInput>
+      <FormInput
+        id-label="input-end"
+        is-readonly
+        :placeholder="dateTimeFormatter(new Date().toISOString())"
+        :title="t('end')"
+        type="text"
+        :value="v$.form.end"
+        :value-formatter="dateTimeFormatter"
+        @click="store.modalAdd({ id: 'ModalDateTimeEnd' })"
+        @icon="v$.form.end.$model = undefined"
+      >
+        <template v-if="v$.form.end.$model" #icon>
+          <IconX />
+        </template>
+      </FormInput>
+      <FormInput :title="t('attendanceType')" type="checkbox">
+        <FormCheckbox
+          form-key="is-in-person"
+          :value="v$.form.isInPerson.$model"
+          @change="v$.form.isInPerson.$model = $event"
         >
-          {{ t('globalValidationLength') }}
-        </FormInputStateError>
-      </template>
-      <template #stateInfo>
-        <FormInputStateInfo>
-          {{ t('stateInfoLocation') }}
-        </FormInputStateInfo>
-      </template>
-    </FormInput>
-    <FormInputUrl
-      v-if="form.isRemote"
-      :form-input="v$.form.url"
-      @input="form.url = $event"
-    />
-    <FormInput
-      id-label="input-description"
-      :title="t('description')"
-      type="tiptap"
-      :value="v$.form.description"
-      @input="form.description = $event"
-    >
-      <client-only v-if="v$.form.description">
-        <TipTap v-model.trim="v$.form.description.$model" />
+          {{ t('isInPerson') }}
+        </FormCheckbox>
+        <FormCheckbox
+          form-key="is-remote"
+          :value="v$.form.isRemote.$model"
+          @change="v$.form.isRemote.$model = $event"
+        >
+          {{ t('isRemote') }}
+        </FormCheckbox>
+      </FormInput>
+      <FormInput
+        v-if="v$.form.isInPerson.$model"
+        id-label="input-location"
+        :placeholder="t('globalPlaceholderAddress').replace('\n', ' ')"
+        :title="t('location')"
+        type="text"
+        :value="v$.form.location"
+        @input="v$.form.location.$model = $event"
+      >
+        <template #stateError>
+          <FormInputStateError
+            :form-input="v$.form.location"
+            validation-property="maxLength"
+          >
+            {{ t('globalValidationLength') }}
+          </FormInputStateError>
+        </template>
+        <template #stateInfo>
+          <FormInputStateInfo>
+            {{ t('stateInfoLocation') }}
+          </FormInputStateInfo>
+        </template>
+      </FormInput>
+      <FormInputUrl
+        v-if="v$.form.isRemote.$model"
+        :form-input="v$.form.url"
+        @input="v$.form.url.$model = $event"
+      />
+      <FormInput
+        :title="t('description')"
+        type="tiptap"
+        :value="v$.form.description"
+        @input="v$.form.description.$model = $event"
+      >
+        <client-only v-if="v$.form.description">
+          <TipTap v-model.trim="v$.form.description.$model" />
+        </client-only>
+        <template #stateError>
+          <FormInputStateError
+            :form-input="v$.form.description"
+            validation-property="maxLength"
+          >
+            {{ t('globalValidationLength') }}
+          </FormInputStateError>
+        </template>
+      </FormInput>
+    </Form>
+    <Modal id="ModalDateTimeStart">
+      <client-only>
+        <div class="flex justify-center">
+          <v-date-picker
+            v-model="v$.form.start.$model"
+            :is24hr="$i18n.locale !== 'en'"
+            is-dark
+            :locale="$i18n.locale"
+            :masks="{ input: 'YYYY-MM-DD h:mm A' }"
+            :max-date="v$.form.end.$model"
+            :minute-increment="5"
+            mode="dateTime"
+          />
+        </div>
       </client-only>
-      <template #stateError>
-        <FormInputStateError
-          :form-input="v$.form.description"
-          validation-property="maxLength"
-        >
-          {{ t('globalValidationLength') }}
-        </FormInputStateError>
-      </template>
-    </FormInput>
-  </Form>
+    </Modal>
+    <Modal id="ModalDateTimeEnd">
+      <client-only>
+        <div class="flex justify-center">
+          <v-date-picker
+            v-model="v$.form.end.$model"
+            :is24hr="$i18n.locale !== 'en'"
+            is-dark
+            :locale="$i18n.locale"
+            :masks="{ input: 'YYYY-MM-DD h:mm A' }"
+            :min-date="v$.form.start.$model"
+            :minute-increment="5"
+            mode="dateTime"
+          />
+        </div>
+      </client-only>
+    </Modal>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -269,8 +276,6 @@ import {
   required,
 } from '@vuelidate/validators'
 import consola from 'consola'
-import { Datetime } from 'vue-datetime'
-import { DateTime, Settings } from 'luxon'
 import slugify from 'slugify'
 import Swal from 'sweetalert2'
 
@@ -285,7 +290,6 @@ import {
   VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
   VALIDATION_FORMAT_SLUG,
   VALIDATION_FORMAT_URL_HTTPS,
-  VALIDATION_NOW_OR_FUTURE,
 } from '~/plugins/util/validation'
 import { getApiMeta } from '~/plugins/util/util'
 import {
@@ -302,7 +306,6 @@ const props = withDefaults(defineProps<Props>(), {
   event: undefined,
 })
 
-const { $moment } = useNuxtApp()
 const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const store = useMaevsiStore()
@@ -324,22 +327,28 @@ const form = reactive({
   description: ref<string>(),
   end: ref<string>(),
   inviteeCountMaximum: ref<string>(),
-  isInPerson: ref(false),
-  isRemote: ref(false),
+  isInPerson: ref<boolean>(),
+  isRemote: ref<boolean>(),
   location: ref<string>(),
   name: ref<string>(),
   slug: ref<string>(),
-  start: ref(
-    new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString()
-  ), // Must be initialized, otherwise yields an error instantly: https://github.com/mariomka/vue-datetime/issues/177
+  start: ref<string>(),
   url: ref<string>(),
   visibility: ref<EventVisibility>(),
 })
-const formatDateTimeShort = ref(DateTime.DATETIME_SHORT)
+
 const isFormSent = ref(false)
 const signedInUsername = ref(store.signedInUsername)
 
 // methods
+function dateTimeFormatter(x?: string) {
+  return x
+    ? new Date(x).toLocaleString(locale.value, {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      })
+    : undefined
+}
 function onInputName($event: any) {
   form.name = $event
   updateSlug()
@@ -459,7 +468,7 @@ function updateSlug() {
 
 // computations
 const isWarningStartPastShown = computed(
-  () => !VALIDATION_NOW_OR_FUTURE($moment(v$.value.form.start.$model))
+  () => !!form.start && new Date(form.start) < new Date()
 )
 
 // vuelidate
@@ -504,6 +513,7 @@ const rules = {
     },
   },
 }
+
 const v$ = useVuelidate(rules, { form })
 
 // lifecycle
@@ -516,9 +526,11 @@ watch(
 
 // initialization
 updateForm(props.event)
-
-Settings.defaultLocale = locale.value
 </script>
+
+<style>
+@import url('~/node_modules/v-calendar/dist/style.css');
+</style>
 
 <i18n lang="yml">
 de:

@@ -1,5 +1,4 @@
 import { helpers } from '@vuelidate/validators'
-import moment from 'moment'
 import { Ref } from 'vue'
 
 import { getApiDataDefault } from './util'
@@ -29,8 +28,6 @@ export const VALIDATION_FORMAT_UPPERCASE_NONE =
 export const VALIDATION_FORMAT_URL_HTTPS = helpers.regex(REGEX_URL_HTTPS)
 export const VALIDATION_FORMAT_UUID = helpers.regex(REGEX_UUID)
 export const VALIDATION_LAST_NAME_LENGTH_MAXIMUM = 100
-export const VALIDATION_NOW_OR_FUTURE = (value: moment.Moment) =>
-  value.isSameOrAfter(moment())
 export const VALIDATION_PASSWORD_LENGTH_MINIMUM = 8
 export const VALIDATION_USERNAME_LENGTH_MAXIMUM = 100
 

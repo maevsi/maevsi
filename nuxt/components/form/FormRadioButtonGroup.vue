@@ -4,12 +4,13 @@
       v-for="titlesValue in titlesValues"
       :key="Array.isArray(titlesValue) ? titlesValue[0] : titlesValue"
       :checked="
-        (Array.isArray(titlesValue) ? titlesValue[1] : titlesValue) === value
+        (Array.isArray(titlesValue) ? titlesValue[1] : titlesValue) ===
+        modelValue
       "
       :group-name="name"
       :title="Array.isArray(titlesValue) ? titlesValue[0] : titlesValue"
       :value="Array.isArray(titlesValue) ? titlesValue[1] : titlesValue"
-      @change="emit('input', $event)"
+      @change="emit('update:modelValue', $event)"
     />
   </div>
 </template>
@@ -18,14 +19,14 @@
 export interface Props {
   name?: string
   titlesValues: string[] | string[][]
-  value?: string
+  modelValue?: string
 }
 withDefaults(defineProps<Props>(), {
   name: undefined,
-  value: undefined,
+  modelValue: undefined,
 })
 
 const emit = defineEmits<{
-  (e: 'input', event: string): void
+  (e: 'update:modelValue', change: string): void
 }>()
 </script>

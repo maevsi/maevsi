@@ -4,10 +4,6 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["@types/luxon", "luxon"],
-      "allowedVersions": "<2"
-    },
-    {
       "matchPackageNames": ["rollup"],
       "allowedVersions": "<3"
     },
