@@ -212,11 +212,6 @@ const contactsFiltered = computed(() => {
   return allContactsFiltered
 })
 
-// lifecycle
-watch(allContactsQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
-})
-
 // vuelidate
 const rules = {
   form: {
@@ -232,6 +227,11 @@ const rules = {
   },
 }
 const v$ = useVuelidate(rules, { form })
+
+// lifecycle
+watch(allContactsQuery.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
+})
 </script>
 
 <i18n lang="yml">

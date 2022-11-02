@@ -7,7 +7,7 @@
     :title="t('phoneNumber')"
     type="tel"
     :value="formInput"
-    @input="$emit('input', $event)"
+    @input="emit('input', $event)"
   >
     <template #stateInfo>
       <FormInputStateInfo
@@ -33,13 +33,17 @@ import type { BaseValidation } from '@vuelidate/core'
 
 export interface Props {
   formInput: BaseValidation
-  id: string
-  isOptional: boolean
+  id?: string
+  isOptional?: boolean
 }
 withDefaults(defineProps<Props>(), {
   id: 'phone-number',
   isOptional: false,
 })
+
+const emit = defineEmits<{
+  (e: 'input', event: string): void
+}>()
 
 const { t } = useI18n()
 </script>

@@ -118,8 +118,6 @@ RUN npm install -g pnpm && \
 # Should be the specific version of `cypress/included`.
 FROM cypress/included:10.11.0@sha256:5518700396412daedc8cd082ac52206d40e353fc26e949bff573d740304aed98 AS test-integration_base
 
-# ENV DEBUG="start-server-and-test"
-
 WORKDIR /srv/app/
 
 # Update and install dependencies.
@@ -183,7 +181,6 @@ COPY --from=build /srv/app/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/lint/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/test/package.json
 COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
-# COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
 
 #######################
 # Provide a web server.

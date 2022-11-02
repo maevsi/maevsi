@@ -6,7 +6,7 @@
     :title="ariaLabel"
     :to="to"
     :type="type"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     <slot />
   </Button>
@@ -19,10 +19,13 @@ export interface Props {
   to?: string
   type?: 'button' | 'submit' | 'reset'
 }
-
 withDefaults(defineProps<Props>(), {
   disabled: false,
   to: undefined,
   type: 'button',
 })
+
+const emit = defineEmits<{
+  (e: 'click'): void
+}>()
 </script>

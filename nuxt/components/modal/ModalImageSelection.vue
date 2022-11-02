@@ -4,7 +4,7 @@
     :is-submit-disabled="!!selectedProfilePictureStorageKey"
     :submit-task-provider="setProfilePicture"
     @close="selectedProfilePictureStorageKey = undefined"
-    @submitSuccess="$emit('submitSuccess')"
+    @submitSuccess="emit('submitSuccess')"
   >
     <ImageUploadGallery
       :allow-deletion="false"
@@ -21,6 +21,10 @@ import consola from 'consola'
 
 import { useProfilePictureSetMutation } from '~/gql/generated'
 import { getApiMeta } from '~/plugins/util/util'
+
+const emit = defineEmits<{
+  (e: 'submitSuccess'): void
+}>()
 
 const route = useRoute()
 const profilePictureSetMutation = useProfilePictureSetMutation()
@@ -43,7 +47,7 @@ const routeParamUsername = route.params.username as string
 const selectedProfilePictureStorageKey = ref<string>()
 
 // methods
-function selectProfilePictureStorageKey(storageKey: string | undefined) {
+function selectProfilePictureStorageKey(storageKey?: string) {
   selectedProfilePictureStorageKey.value = storageKey
 }
 async function setProfilePicture() {

@@ -113,11 +113,11 @@ export interface Props {
   isOptional?: boolean
   isRequired?: boolean
   isValidatable?: boolean
-  idLabel: string | undefined
+  idLabel?: string
   placeholder?: string
   success?: boolean
   title?: string
-  type: string | undefined
+  type?: string
   validationProperty?: BaseValidation
   value?: BaseValidation
   warning?: boolean
@@ -127,9 +127,11 @@ const props = withDefaults(defineProps<Props>(), {
   isOptional: false,
   isRequired: false,
   isValidatable: false,
+  idLabel: undefined,
   placeholder: undefined,
   success: false,
   title: undefined,
+  type: undefined,
   validationProperty: undefined,
   value: undefined,
   warning: false,

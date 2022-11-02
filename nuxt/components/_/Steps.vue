@@ -24,10 +24,11 @@
 <script setup lang="ts">
 export interface Props {
   active?: string
-  steps: Array<string> | undefined
+  steps?: Array<string>
 }
 withDefaults(defineProps<Props>(), {
   active: undefined,
+  steps: undefined,
 })
 </script>
 

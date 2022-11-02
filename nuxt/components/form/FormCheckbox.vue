@@ -14,8 +14,8 @@
 
 <script setup lang="ts">
 export interface Props {
-  formKey: string
-  value: boolean
+  formKey?: string
+  value?: boolean
 }
 withDefaults(defineProps<Props>(), {
   formKey: undefined,

@@ -1,9 +1,6 @@
 import { Contact } from '~/types/contact'
 
-export function getContactName(
-  contact: Contact,
-  isUsernamePreferred = false
-): string | undefined {
+export function getContactName(contact: Contact, isUsernamePreferred = false) {
   let name
 
   if (contact.accountUsername) {

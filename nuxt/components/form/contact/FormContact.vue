@@ -188,15 +188,14 @@ async function submit() {
     const result = await updateContactByIdMutation.executeMutation({
       id: form.id,
       contactPatch: {
-        accountUsername:
-          form.accountUsername === '' ? undefined : form.accountUsername,
-        address: form.address === '' ? undefined : form.address,
+        accountUsername: form.accountUsername || undefined,
+        address: form.address || undefined,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.emailAddress === '' ? undefined : form.emailAddress,
-        firstName: form.firstName === '' ? undefined : form.firstName,
-        lastName: form.lastName === '' ? undefined : form.lastName,
-        phoneNumber: form.phoneNumber !== '' ? form.phoneNumber : undefined,
-        url: form.url !== '' ? form.url : undefined,
+        emailAddress: form.emailAddress || undefined,
+        firstName: form.firstName || undefined,
+        lastName: form.lastName || undefined,
+        phoneNumber: form.phoneNumber || undefined,
+        url: form.url || undefined,
       },
     })
 
@@ -208,15 +207,14 @@ async function submit() {
     // Add
     const result = await createContactMutation.executeMutation({
       contactInput: {
-        accountUsername:
-          form.accountUsername === '' ? undefined : form.accountUsername,
-        address: form.address === '' ? undefined : form.address,
+        accountUsername: form.accountUsername || undefined,
+        address: form.address || undefined,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.emailAddress === '' ? undefined : form.emailAddress,
-        firstName: form.firstName === '' ? undefined : form.firstName,
-        lastName: form.lastName === '' ? undefined : form.lastName,
-        phoneNumber: form.phoneNumber !== '' ? form.phoneNumber : undefined,
-        url: form.url !== '' ? form.url : undefined,
+        emailAddress: form.emailAddress || undefined,
+        firstName: form.firstName || undefined,
+        lastName: form.lastName || undefined,
+        phoneNumber: form.phoneNumber || undefined,
+        url: form.url || undefined,
       },
     })
 
@@ -232,13 +230,16 @@ async function submit() {
     emit('submitSuccess')
   }
 }
+function updateForm(data: Contact) {
+  if (!data) return
 
-// initialiuation
-if (props.contact) {
-  for (const [k, v] of Object.entries(props.contact)) {
+  for (const [k, v] of Object.entries(data)) {
     ;(form as Record<string, any>)[k] = v
   }
 }
+
+// initialization
+updateForm(props.contact)
 
 // vuelidate
 const rules = {
@@ -272,6 +273,14 @@ const rules = {
     },
   },
 }
+
+// lifecycle
+watch(
+  () => props.contact,
+  (currentValue, _oldValue) => {
+    updateForm(currentValue)
+  }
+)
 const v$ = useVuelidate(rules, { form })
 </script>
 

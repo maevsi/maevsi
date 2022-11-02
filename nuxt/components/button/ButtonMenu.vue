@@ -6,7 +6,7 @@
       'bg-white dark:bg-gray-800': route.fullPath === to,
     }"
     :to="to"
-    @click.native="$emit('onMenuHide')"
+    @click.native="emit('onMenuHide')"
   >
     <slot />
   </Button>
@@ -20,6 +20,10 @@ export interface Props {
 withDefaults(defineProps<Props>(), {
   to: undefined,
 })
+
+const emit = defineEmits<{
+  (e: 'onMenuHide'): void
+}>()
 
 const route = useRoute()
 </script>

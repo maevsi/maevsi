@@ -1,10 +1,10 @@
 <template>
   <Form
-    ref="eventForm"
+    ref="form"
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
-    :submit-name="eventForm.id ? t('eventUpdate') : t('eventCreate')"
+    :submit-name="form.id ? t('eventUpdate') : t('eventCreate')"
     @submit.prevent="submit"
   >
     <FormInput
@@ -14,7 +14,7 @@
       type="number"
       placeholder="id"
       :value="v$.form.id"
-      @input="eventForm.id = $event"
+      @input="form.id = $event"
     />
     <FormInput
       id-label="input-name"
@@ -28,7 +28,7 @@
       @input="onInputName($event)"
     >
       <template #stateWarning>
-        <FormInputStateWarning v-if="event && event.name !== eventForm.name">
+        <FormInputStateWarning v-if="event && event.name !== form.name">
           {{ t('validationWarningNameChangeSlug') }}
         </FormInputStateWarning>
       </template>
@@ -62,7 +62,7 @@
       :title="t('slug')"
       type="text"
       :value="v$.form.slug"
-      @input="eventForm.slug = $event"
+      @input="form.slug = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -92,7 +92,7 @@
       :title="t('visibility')"
       type="radio"
       :value="v$.form.visibility"
-      @input="eventForm.visibility = $event as EventVisibility"
+      @input="form.visibility = $event as EventVisibility"
     >
       <FormRadioButtonGroup
         id="input-visibility"
@@ -113,12 +113,12 @@
       </template>
     </FormInput>
     <FormInput
-      v-if="eventForm.visibility === 'PUBLIC'"
+      v-if="form.visibility === 'PUBLIC'"
       id-label="input-invitee-count-maximum"
       :title="t('maximumInviteeCount')"
       type="number"
       :value="v$.form.inviteeCountMaximum"
-      @input="eventForm.inviteeCountMaximum = $event"
+      @input="form.inviteeCountMaximum = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -142,7 +142,7 @@
       :value="v$.form.start"
       v-bind="startDate.formInput"
       :warning="isWarningStartPastShown"
-      @input="eventForm.start = $event"
+      @input="form.start = $event"
       @click="store.modalAdd({ id: 'ModalDateTimeStart' })"
     >
       {{ startDate.formatted.value ?? t('startPlaceholder') }}
@@ -158,12 +158,12 @@
       :title="t('end')"
       v-bind="endDate.formInput"
       :value="v$.form.end"
-      @input="eventForm.end = $event"
-      @delete="eventForm.end = undefined"
+      @input="form.end = $event"
+      @delete="form.end = undefined"
       @click="store.modalAdd({ id: 'ModalDateTimeEnd' })"
     >
       {{ endDate.formatted.value ?? t('endPlaceholder') }}
-      <template v-if="!!eventForm.end" slot="icon">
+      <template v-if="!!form.end" slot="icon">
         <IconX />
       </template>
     </FormInput>
@@ -176,7 +176,7 @@
         v-if="v$.form.isInPerson"
         form-key="is-in-person"
         :value="v$.form.isInPerson.$model"
-        @change="eventForm.isInPerson = $event"
+        @change="form.isInPerson = $event"
       >
         {{ t('isInPerson') }}
       </FormCheckbox>
@@ -184,19 +184,19 @@
         v-if="v$.form.isRemote"
         form-key="is-remote"
         :value="v$.form.isRemote.$model"
-        @change="eventForm.isRemote = $event"
+        @change="form.isRemote = $event"
       >
         {{ t('isRemote') }}
       </FormCheckbox>
     </FormInput>
     <FormInput
-      v-if="eventForm.isInPerson"
+      v-if="form.isInPerson"
       id-label="input-location"
       :placeholder="t('globalPlaceholderAddress').replace('\n', ' ')"
       :title="t('location')"
       type="text"
       :value="v$.form.location"
-      @input="eventForm.location = $event"
+      @input="form.location = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -213,16 +213,16 @@
       </template>
     </FormInput>
     <FormInputUrl
-      v-if="eventForm.isRemote"
+      v-if="form.isRemote"
       :form-input="v$.form.url"
-      @input="eventForm.url = $event"
+      @input="form.url = $event"
     />
     <FormInput
       id-label="input-description"
       :title="t('description')"
       type="tiptap"
       :value="v$.form.description"
-      @input="eventForm.description = $event"
+      @input="form.description = $event"
     >
       <client-only v-if="v$.form.description">
         <TipTap v-model.trim="v$.form.description.$model" />
@@ -317,7 +317,7 @@ import {
 import { useMaevsiStore } from '~/store'
 
 export interface Props {
-  event: Event | undefined
+  event?: Event
 }
 const props = withDefaults(defineProps<Props>(), {
   event: undefined,
@@ -338,7 +338,7 @@ const api = computed(() => {
 })
 
 // data
-const eventForm = reactive({
+const form = reactive({
   id: undefined as string | undefined,
   authorUsername: undefined as string | undefined,
   description: undefined as string | undefined,
@@ -354,15 +354,15 @@ const eventForm = reactive({
   visibility: undefined as EventVisibility | undefined,
 })
 
-const startDate = useDateTimeInput(toRef(eventForm, 'start'))
-const endDate = useDateTimeInput(toRef(eventForm, 'end'))
+const startDate = useDateTimeInput(toRef(form, 'start'))
+const endDate = useDateTimeInput(toRef(form, 'end'))
 
 const isFormSent = ref(false)
 const signedInUsername = ref(store.signedInUsername)
 
 // methods
 function onInputName($event: any) {
-  eventForm.name = $event
+  form.name = $event
   updateSlug()
 }
 async function submit() {
@@ -373,27 +373,26 @@ async function submit() {
     return
   }
 
-  if (eventForm.id) {
+  if (form.id) {
     // Edit
     // TODO: extract object
     const result = await updateEventMutation.executeMutation({
-      id: eventForm.id,
+      id: form.id,
       eventPatch: {
         authorUsername: signedInUsername.value,
-        description: eventForm.description,
-        end: eventForm.end?.toISO(),
-        inviteeCountMaximum:
-          eventForm.inviteeCountMaximum && eventForm.inviteeCountMaximum !== ''
-            ? +eventForm.inviteeCountMaximum
-            : undefined,
-        isInPerson: eventForm.isInPerson,
-        isRemote: eventForm.isRemote,
-        location: eventForm.location !== '' ? eventForm.location : undefined,
-        name: eventForm.name,
-        slug: eventForm.slug,
-        start: eventForm.start?.toISO(),
-        url: eventForm.url !== '' ? eventForm.url : undefined,
-        visibility: eventForm.visibility || EventVisibility.Private,
+        description: form.description || undefined,
+        end: form.end || undefined,
+        inviteeCountMaximum: form.inviteeCountMaximum
+          ? +form.inviteeCountMaximum
+          : undefined,
+        isInPerson: form.isInPerson,
+        isRemote: form.isRemote,
+        location: form.location || undefined,
+        name: form.name || undefined,
+        slug: form.slug || undefined,
+        start: form.start || undefined,
+        url: form.url || undefined,
+        visibility: form.visibility || undefined,
       },
     })
 
@@ -416,28 +415,28 @@ async function submit() {
   } else {
     // Add
 
-    if (!eventForm.name) throw new Error('Name is not set!')
-    if (!eventForm.slug) throw new Error('Slug is not set!')
+    if (!signedInUsername.value) throw new Error('Author username is not set!')
+    if (!form.name) throw new Error('Name is not set!')
+    if (!form.slug) throw new Error('Slug is not set!')
+    if (!form.visibility) throw new Error('Visibility is not set!')
 
     const result = await createEventMutation.executeMutation({
       createEventInput: {
         event: {
-          authorUsername: signedInUsername.value || '',
-          description: eventForm.description,
-          end: eventForm.end?.toISO(),
-          inviteeCountMaximum:
-            eventForm.inviteeCountMaximum &&
-            eventForm.inviteeCountMaximum !== ''
-              ? +eventForm.inviteeCountMaximum
-              : undefined,
-          isInPerson: eventForm.isInPerson,
-          isRemote: eventForm.isRemote,
-          location: eventForm.location !== '' ? eventForm.location : undefined,
-          name: eventForm.name,
-          slug: eventForm.slug,
-          start: eventForm.start?.toISO(),
-          url: eventForm.url !== '' ? eventForm.url : undefined,
-          visibility: eventForm.visibility || EventVisibility.Private,
+          authorUsername: signedInUsername.value,
+          description: form.description || undefined,
+          end: form.end || undefined,
+          inviteeCountMaximum: form.inviteeCountMaximum
+            ? +form.inviteeCountMaximum
+            : undefined,
+          isInPerson: form.isInPerson,
+          isRemote: form.isRemote,
+          location: form.location || undefined,
+          name: form.name,
+          slug: form.slug,
+          start: form.start || undefined,
+          url: form.url || undefined,
+          visibility: form.visibility,
         },
       },
     })
@@ -460,13 +459,20 @@ async function submit() {
     }).then(
       async () =>
         await navigateTo(
-          localePath(`/event/${signedInUsername.value}/${eventForm.slug}`)
+          localePath(`/event/${signedInUsername.value}/${form.slug}`)
         )
     )
   }
 }
+function updateForm(data: Event) {
+  if (!data) return
+
+  for (const [k, v] of Object.entries(data)) {
+    ;(form as Record<string, any>)[k] = v
+  }
+}
 function updateSlug() {
-  eventForm.slug = slugify(eventForm.name ?? '', {
+  form.slug = slugify(form.name ?? '', {
     lower: true,
     strict: true,
   })
@@ -474,7 +480,7 @@ function updateSlug() {
 
 // computations
 const isWarningStartPastShown = computed(
-  () => !eventForm.start || !VALIDATION_NOW_OR_FUTURE_LUXON(eventForm.start)
+  () => !form.start || !VALIDATION_NOW_OR_FUTURE_LUXON(form.start)
 )
 
 // vuelidate
@@ -520,14 +526,18 @@ const rules = {
   },
 }
 
-const v$ = useVuelidate(rules, { form: eventForm })
+const v$ = useVuelidate(rules, { form })
+
+// lifecycle
+watch(
+  () => props.event,
+  (currentValue, _oldValue) => {
+    updateForm(currentValue)
+  }
+)
 
 // initialization
-if (props.event) {
-  for (const [k, v] of Object.entries(props.event)) {
-    ;(eventForm as Record<string, any>)[k] = v
-  }
-}
+updateForm(props.event)
 
 Settings.defaultLocale = locale.value
 </script>

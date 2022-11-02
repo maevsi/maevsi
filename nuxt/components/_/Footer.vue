@@ -76,9 +76,15 @@
             :key="availableLocale"
             :to="switchLocalePath(availableLocale)"
           >
-            <span :class="{ disabled: availableLocale === locale }">
-              {{ getLocaleName(availableLocale) }}
-            </span>
+            <div class="flex gap-2 items-center">
+              <component
+                :is="getLocaleFlag(availableLocale)"
+                :class="{ disabled: availableLocale === locale }"
+              />
+              <span :class="{ disabled: availableLocale === locale }">
+                {{ getLocaleName(availableLocale) }}
+              </span>
+            </div>
           </AppLink>
         </FooterCategory>
         <FooterCategory :heading="t('colorScheme')">
@@ -121,6 +127,23 @@ function getLocaleName(locale: string) {
 
   if (locales.length) {
     return locales[0].name
+  } else {
+    return undefined
+  }
+}
+
+function getLocaleFlag(locale: string) {
+  const map: { [index: string]: any } = {
+    en: resolveComponent('IconFlagUnitedKingdom'),
+    de: resolveComponent('IconFlagGerman'),
+  }
+
+  const locales: LocaleObject[] = LOCALES.filter(
+    (localeObject) => localeObject.code === locale
+  )
+
+  if (locales.length) {
+    return map[locales[0].code]
   } else {
     return undefined
   }
