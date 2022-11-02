@@ -1,3 +1,14 @@
+# [1.0.0-alpha.11](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.10...1.0.0-alpha.11) (2022-11-02)
+
+
+### Bug Fixes
+
+* **components:** resolve html validation errors ([0820d1b](https://github.com/maevsi/maevsi/commit/0820d1b294d7bc050cffe080426b2ccf55c00f16))
+* **event:** type events ([54305ae](https://github.com/maevsi/maevsi/commit/54305ae5633bfd02191ba5326c6011628b4c9937))
+* **form:** simplify form extraction ([5bf809b](https://github.com/maevsi/maevsi/commit/5bf809b7d07bc372651319cc87a386bf8c7a06ce))
+* **form:** watch properties ([ff3762f](https://github.com/maevsi/maevsi/commit/ff3762f9de604a70e7c94eb50c7c0de5f2ef3117)), closes [#834](https://github.com/maevsi/maevsi/issues/834)
+* replace undefined with question mark ([fdafd64](https://github.com/maevsi/maevsi/commit/fdafd64cc4e92895486eac5283663f98be71bc47))
+
 # [1.0.0-alpha.10](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.9...1.0.0-alpha.10) (2022-11-01)
 
 
