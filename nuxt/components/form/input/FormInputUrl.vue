@@ -31,8 +31,8 @@ import type { BaseValidation } from '@vuelidate/core'
 
 export interface Props {
   formInput: BaseValidation
-  id: string
-  isOptional: boolean
+  id?: string
+  isOptional?: boolean
 }
 withDefaults(defineProps<Props>(), {
   id: 'phone-number',

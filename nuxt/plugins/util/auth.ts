@@ -140,7 +140,7 @@ export function useJwtStore() {
   const event = useRequestEvent()
 
   return {
-    async jwtStore(jwt: string | undefined) {
+    async jwtStore(jwt?: string) {
       await jwtStore({
         $urqlReset,
         store,
@@ -158,7 +158,7 @@ export async function signOut({
 }: {
   $urqlReset: () => void
   store: Store
-  res: ServerResponse | undefined
+  res?: ServerResponse
 }) {
   await jwtStore({ $urqlReset, store, res })
 }

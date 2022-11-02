@@ -47,7 +47,7 @@ const routeParamUsername = route.params.username as string
 const selectedProfilePictureStorageKey = ref<string>()
 
 // methods
-function selectProfilePictureStorageKey(storageKey: string | undefined) {
+function selectProfilePictureStorageKey(storageKey?: string) {
   selectedProfilePictureStorageKey.value = storageKey
 }
 async function setProfilePicture() {

@@ -71,13 +71,14 @@
 import type { BaseValidation } from '@vuelidate/core'
 
 export interface Props {
-  formInput: BaseValidation | undefined
+  formInput?: BaseValidation
   id?: string
   isOptional?: boolean
   isValidatable?: boolean
   isValidationInverted?: boolean
 }
 withDefaults(defineProps<Props>(), {
+  formInput: undefined,
   id: 'username',
   isOptional: false,
   isValidatable: false,
