@@ -152,7 +152,7 @@ function selectToggle(contact: Contact) {
 }
 async function submit() {
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
     consola.debug(error)
     return

@@ -96,7 +96,7 @@ async function submit() {
   if (!form.username) throw new Error('Username is not set!')
 
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
     consola.debug(error)
     return

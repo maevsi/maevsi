@@ -26,14 +26,12 @@
         <h2>{{ t('titleDelete') }}</h2>
         <FormDelete
           id="deleteEvent"
-          :errors="api.errors"
           :item-name="t('event')"
           :mutation="mutation"
           :variables="{
             authorUsername: routeParamUsername,
             slug: routeParamEventName,
           }"
-          @error="onDeleteError"
           @success="onDeleteSuccess"
         />
       </section>
@@ -43,7 +41,6 @@
 </template>
 
 <script setup lang="ts">
-import { CombinedError } from '@urql/vue'
 import consola from 'consola'
 
 import { getApiMeta } from '~/plugins/util/util'
@@ -112,9 +109,6 @@ const routeParamEventName = route.params.event_name as string
 const routeParamUsername = route.params.username as string
 
 // methods
-function onDeleteError(error: CombinedError) {
-  api.value.errors.push(error)
-}
 function onDeleteSuccess() {
   navigateTo(localePath(`/dashboard`))
   // TODO: cache update (allEvents)

@@ -63,7 +63,7 @@ async function submit() {
   if (!form.emailAddress) throw new Error('Email address is not set!')
 
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
     consola.debug(error)
     return

@@ -1,7 +1,7 @@
 import { helpers } from '@vuelidate/validators'
 import { Ref } from 'vue'
 
-import { getApiDataDefault } from './util'
+import { ApiData } from './util'
 
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
@@ -32,11 +32,11 @@ export const VALIDATION_PASSWORD_LENGTH_MINIMUM = 8
 export const VALIDATION_USERNAME_LENGTH_MAXIMUM = 100
 
 export async function formPreSubmit(
-  apiData: ReturnType<typeof getApiDataDefault>, // TODO: change to "api"
+  api: ApiData,
   v$: any,
   isFormSent: Ref<boolean>
 ): Promise<boolean> {
-  apiData.api.value.errors = []
+  api.value.errors = []
   v$.value.$touch()
 
   const isFormValid = await v$.value.$validate()
