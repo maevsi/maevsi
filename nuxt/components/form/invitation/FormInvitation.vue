@@ -122,14 +122,12 @@ const allContactsQuery = useAllContactsQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...allContactsQuery.data.value,
-    },
-    ...getApiMeta([allContactsQuery]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...allContactsQuery.data.value,
+  },
+  ...getApiMeta([allContactsQuery]),
+}))
 const contacts = computed(() => allContactsQuery.data.value?.allContacts?.nodes)
 
 // data

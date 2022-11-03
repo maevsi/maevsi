@@ -45,14 +45,12 @@ const { locale, t } = useI18n()
 const passwordResetRequestMutation = useAccountPasswordResetRequestMutation()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...passwordResetRequestMutation.data.value,
-    },
-    ...getApiMeta([passwordResetRequestMutation]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...passwordResetRequestMutation.data.value,
+  },
+  ...getApiMeta([passwordResetRequestMutation]),
+}))
 
 // data
 const form = reactive({

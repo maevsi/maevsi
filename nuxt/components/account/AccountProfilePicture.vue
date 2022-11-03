@@ -40,14 +40,12 @@ const profilePictureQuery = useProfilePictureByUsernameQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...profilePictureQuery.data.value,
-    },
-    ...getApiMeta([profilePictureQuery]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...profilePictureQuery.data.value,
+  },
+  ...getApiMeta([profilePictureQuery]),
+}))
 const profilePicture = computed(
   () => profilePictureQuery.data.value?.profilePictureByUsername
 )

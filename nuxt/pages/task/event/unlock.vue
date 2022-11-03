@@ -148,14 +148,12 @@ const eventUnlockMutation = useEventUnlockMutation()
 const config = useRuntimeConfig()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...eventUnlockMutation.data.value,
-    },
-    ...getApiMeta([eventUnlockMutation]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...eventUnlockMutation.data.value,
+  },
+  ...getApiMeta([eventUnlockMutation]),
+}))
 
 // data
 const form = reactive({

@@ -43,14 +43,12 @@ const accountPasswordChangeMutation = useAccountPasswordChangeMutation()
 const formRef = ref<typeof FormType>()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...accountPasswordChangeMutation.data.value,
-    },
-    ...getApiMeta([accountPasswordChangeMutation]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...accountPasswordChangeMutation.data.value,
+  },
+  ...getApiMeta([accountPasswordChangeMutation]),
+}))
 
 // data
 const form = reactive({

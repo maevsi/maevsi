@@ -233,18 +233,16 @@ const invitationsQuery = useAllInvitationsQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...invitationsQuery.data.value,
-    },
-    ...getApiMeta([
-      deleteInvitationByUuidMutation,
-      inviteMutation,
-      invitationsQuery,
-    ]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...invitationsQuery.data.value,
+  },
+  ...getApiMeta([
+    deleteInvitationByUuidMutation,
+    inviteMutation,
+    invitationsQuery,
+  ]),
+}))
 const invitations = computed(
   () => invitationsQuery.data.value?.allInvitations?.nodes
 )
