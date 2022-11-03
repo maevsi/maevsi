@@ -6,10 +6,11 @@ export const useHeadLayout = () => {
 
   useHead(head.value)
   useHead({
-    bodyAttrs: {
-      class:
-        'bg-background-bright dark:bg-background-dark font-sans text-text-dark dark:text-text-bright',
-    },
+    // TODO: wait for @vueuse/head v1
+    // bodyAttrs: {
+    //   class:
+    //     'bg-background-bright dark:bg-background-dark font-sans text-text-dark dark:text-text-bright',
+    // },
     link: [
       {
         href: '/assets/static/favicon/apple-touch-icon.png?v=bOXMwoKlJr',
