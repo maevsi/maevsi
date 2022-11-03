@@ -277,11 +277,7 @@ function loadProfilePicture(payload: Event) {
     fileReader.onload = (e) => fileLoaded(e)
     fileReader.readAsDataURL(file)
   } catch (err: any) {
-    if (err.isRestriction) {
-      consola.log('Restriction error: ' + err)
-    } else {
-      consola.error(err)
-    }
+    consola.error(err)
   }
 }
 function toggleSelect(upload: any) {

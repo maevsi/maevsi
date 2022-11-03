@@ -355,7 +355,7 @@ async function submit() {
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 

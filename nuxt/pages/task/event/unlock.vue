@@ -108,7 +108,7 @@ definePageMeta({
         try {
           await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
         } catch (error) {
-          consola.debug(error)
+          consola.error(error)
           await Swal.fire({
             icon: 'error',
             text: t('jwtStoreFail') as string,
@@ -169,7 +169,7 @@ async function submit() {
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 
@@ -189,7 +189,7 @@ async function submit() {
   try {
     await jwtStore(result.data?.eventUnlock?.eventUnlockResponse?.jwt)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     await Swal.fire({
       icon: 'error',
       text: t('jwtStoreFail') as string,
