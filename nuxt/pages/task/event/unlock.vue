@@ -70,11 +70,14 @@ import { isQueryIcFormatValid, getApiMeta } from '~/plugins/util/util'
 import { useEventUnlockMutation } from '~/gql/generated'
 
 definePageMeta({
-  layout:
-    // TODO:
-    REGEX_UUID.test('routeQueryIc') && !('error' in ['context.route.query'])
-      ? 'canvas'
-      : 'default',
+  // TODO: fix upstream https://github.com/nuxt/framework/issues/8678
+  // layout: computed(() => {
+  //   const route = useRoute()
+
+  //   return isQueryIcFormatValid(route.query.ic) && !('error' in route.query)
+  //     ? 'canvas'
+  //     : 'default'
+  // }),
   middleware: [
     // TODO: callWithNuxt necessary as described in https://github.com/nuxt/framework/issues/6292
     async function (_to: any, _from: any) {
