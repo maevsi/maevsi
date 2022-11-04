@@ -5,6 +5,7 @@ import ical, * as icalGenerator from 'ical-generator'
 import moment from 'moment'
 import mustache from 'mustache'
 
+import { getHost } from '~/plugins/util/util'
 import { Contact } from '~/types/contact'
 import { Event as MaevsiEvent } from '~/types/event'
 import { Invitation } from '~/types/invitation'
@@ -12,7 +13,7 @@ import { Invitation } from '~/types/invitation'
 export default defineEventHandler(async function (h3Event: H3Event) {
   const { res } = h3Event
   const body = await readBody(h3Event)
-  const host = useHost()
+  const host = getHost(h3Event.req)
 
   const contact: Contact = body.contact
   const event: MaevsiEvent = body.event
