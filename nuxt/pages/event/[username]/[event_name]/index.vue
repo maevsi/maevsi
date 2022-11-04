@@ -441,7 +441,7 @@ function downloadIcal() {
   xhr.send(
     JSON.stringify({
       contact: contact.value,
-      event,
+      event: event.value,
       invitation: invitation.value,
     })
   )
