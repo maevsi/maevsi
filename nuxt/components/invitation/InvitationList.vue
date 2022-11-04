@@ -383,11 +383,10 @@ onMounted(() => {
   Chart.defaults.color = () => ($colorMode.value === 'dark' ? '#fff' : '#000')
 })
 watch(
-  $colorMode,
+  () => $colorMode.value,
   (_currentValue, _oldValue) => {
-    doughnutRef.value.getCurrentChart()?.update()
-  },
-  { deep: true }
+    doughnutRef.value.updateChart()
+  }
 )
 watch(invitationsQuery.error, (currentValue, _oldValue) => {
   if (currentValue) consola.error(currentValue)
