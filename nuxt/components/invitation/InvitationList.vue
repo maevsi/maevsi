@@ -274,7 +274,7 @@ function add() {
   store.modalAdd({ id: 'ModalInvitation' })
 }
 function copyLink(invitation: Invitation): void {
-  if (!process.browser) return
+  if (!process.client) return
 
   copyText(
     `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
