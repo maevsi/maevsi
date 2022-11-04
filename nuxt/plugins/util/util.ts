@@ -3,6 +3,9 @@ import { IncomingMessage } from 'node:http'
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
 import { ComputedRef, Ref } from 'vue'
+import { LocationQueryValue } from 'vue-router'
+
+import { REGEX_UUID } from './validation'
 
 export type BackendError = CombinedError | { errcode: string; message: string }
 
@@ -153,6 +156,10 @@ export function getQueryString(
       .join('&')
   )
 }
+
+export const isQueryIcFormatValid = (
+  ic: LocationQueryValue | LocationQueryValue[]
+) => ic && !Array.isArray(ic) && REGEX_UUID.test(ic)
 
 export function xhrPromise(
   method: string,

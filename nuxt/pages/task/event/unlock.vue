@@ -58,15 +58,16 @@ import { required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 
+import { callWithNuxt } from '#app'
+
+import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 import { useJwtStore } from '~/plugins/util/auth'
 import {
   formPreSubmit,
-  REGEX_UUID,
   VALIDATION_FORMAT_UUID,
 } from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+import { isQueryIcFormatValid, getApiMeta } from '~/plugins/util/util'
 import { useEventUnlockMutation } from '~/gql/generated'
-import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   layout:
@@ -75,64 +76,74 @@ definePageMeta({
       ? 'canvas'
       : 'default',
   middleware: [
+    // TODO: callWithNuxt necessary as described in https://github.com/nuxt/framework/issues/6292
     async function (_to: any, _from: any) {
-      const { $urqlReset, ssrContext } = useNuxtApp()
-      const { $localePath } = useNuxtApp()
+      const nuxtApp = useNuxtApp()
+      const { $localePath, $urql } = useNuxtApp()
       const route = useRoute()
-      const store = useMaevsiStore()
+      const { jwtStore } = useJwtStore()
 
-      if (
-        !Array.isArray(route.query.ic) &&
-        route.query.ic &&
-        REGEX_UUID.test(route.query.ic)
-      ) {
-        const result = await useEventUnlockMutation().executeMutation({
-          invitationCode: route.query.ic,
-        })
+      if (isQueryIcFormatValid(route.query.ic)) {
+        const result = await callWithNuxt(nuxtApp, () =>
+          $urql.value
+            .mutation(EVENT_UNLOCK_MUTATION, {
+              invitationCode: route.query.ic,
+            })
+            .toPromise()
+        )
 
         if (result.error) {
           consola.error(result.error)
         }
 
         if (!result.data?.eventUnlock?.eventUnlockResponse) {
-          return navigateTo(
-            $localePath({
-              query: {
-                ...route.query,
-                error: null,
-              },
-            })
-          )
+          if ('error' in route.query) {
+            return
+          } else {
+            return await callWithNuxt(nuxtApp, () =>
+              navigateTo(
+                $localePath({
+                  query: {
+                    ...route.query,
+                    error: null,
+                  },
+                })
+              )
+            )
+          }
         }
 
         try {
-          await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
+          await callWithNuxt(nuxtApp, () =>
+            jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
+          )
         } catch (error) {
           consola.error(error)
-          await Swal.fire({
-            icon: 'error',
-            text: t('jwtStoreFail') as string,
-            title: t('globalStatusError'),
-          })
+          // TODO: t not available
+          // await Swal.fire({
+          //   icon: 'error',
+          //   text: t('jwtStoreFail') as string,
+          //   title: t('globalStatusError'),
+          // })
           return
         }
 
+        const eventPath = `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+
         if ('quick' in route.query) {
-          navigateTo(
-            $localePath(
-              `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
-            )
+          return await callWithNuxt(nuxtApp, () =>
+            navigateTo($localePath(eventPath))
           )
         } else {
-          navigateTo(
-            $localePath({
-              query: {
-                ...route.query,
-                redirect: $localePath(
-                  `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
-                ),
-              },
-            })
+          return await callWithNuxt(nuxtApp, () =>
+            navigateTo(
+              $localePath({
+                query: {
+                  ...route.query,
+                  redirect: $localePath(eventPath),
+                },
+              })
+            )
           )
         }
       }
