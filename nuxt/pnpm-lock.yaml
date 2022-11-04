@@ -34,7 +34,7 @@ specifiers:
   '@types/dompurify': 2.3.4
   '@types/downloadjs': 1.4.3
   '@types/html-to-text': 8.1.1
-  '@types/jest': 29.2.1
+  '@types/jest': 29.2.2
   '@types/lodash-es': 4.17.6
   '@types/luxon': 1.27.1
   '@types/mustache': 4.2.1
@@ -146,7 +146,7 @@ devDependencies:
   '@types/dompurify': 2.3.4
   '@types/downloadjs': 1.4.3
   '@types/html-to-text': 8.1.1
-  '@types/jest': 29.2.1
+  '@types/jest': 29.2.2
   '@types/lodash-es': 4.17.6
   '@types/luxon': 1.27.1
   '@types/mustache': 4.2.1
@@ -3070,8 +3070,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/29.2.1:
-    resolution: {integrity: sha512-nKixEdnGDqFOZkMTF74avFNr3yRqB1ZJ6sRZv5/28D5x2oLN14KApv7F9mfDT/vUic0L3tRCsh3XWpWjtJisUQ==}
+  /@types/jest/29.2.2:
+    resolution: {integrity: sha512-og1wAmdxKoS71K2ZwSVqWPX6OVn3ihZ6ZT2qvZvZQm90lJVDyXIjYcu4Khx2CNIeaFv12rOU/YObOsI3VOkzog==}
     dependencies:
       expect: 29.2.2
       pretty-format: 29.2.1
