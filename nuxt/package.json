@@ -55,7 +55,7 @@
     "@tailwindcss/line-clamp": "0.4.2",
     "@tailwindcss/typography": "0.5.7",
     "@tiptap/core": "2.0.0-beta.202",
-    "@tiptap/extension-link": "2.0.0-beta.199",
+    "@tiptap/extension-link": "2.0.0-beta.202",
     "@tiptap/starter-kit": "2.0.0-beta.199",
     "@tiptap/vue-3": "2.0.0-beta.199",
     "@types/cookie": "0.5.1",
