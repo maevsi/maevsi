@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { REGEX_UUID } from '~/plugins/util/validation'
+import { REGEX_UUID } from '~/plugins/util/constants'
 
 definePageMeta({
   middleware: [

@@ -5,7 +5,7 @@ import Clipboard from 'clipboard'
 import { ComputedRef, Ref } from 'vue'
 import { LocationQueryValue } from 'vue-router'
 
-import { REGEX_UUID } from './validation'
+import { REGEX_UUID } from './constants'
 
 export type BackendError = CombinedError | { errcode: string; message: string }
 
