@@ -65,7 +65,7 @@ async function submit() {
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.error(error) // TODO: replace other occurrences with .error()
+    consola.error(error)
     return
   }
 
