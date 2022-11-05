@@ -9,7 +9,7 @@
     "node": "18"
   },
   "scripts": {
-    "dev": "cross-env HOST=0.0.0.0 NODE_TLS_REJECT_UNAUTHORIZED=0 sh dev.sh",
+    "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 sh dev.sh",
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
     "cypress:open": "cypress open",
