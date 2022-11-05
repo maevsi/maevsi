@@ -53,10 +53,12 @@
 </template>
 
 <script setup lang="ts">
+import { OperationResult } from '@urql/core/dist/types/types'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { LocationQueryValue } from 'vue-router'
 
 import { callWithNuxt } from '#app'
 
@@ -75,9 +77,7 @@ definePageMeta({
     get: () => {
       const route = useRoute()
 
-      return isQueryIcFormatValid(route.query.ic) && !('error' in route.query)
-        ? 'canvas'
-        : 'default'
+      return 'redirect' in route.query ? 'canvas' : 'default'
     },
     set: () => {},
   }),
@@ -89,69 +89,81 @@ definePageMeta({
       const route = useRoute()
       const { jwtStore } = useJwtStore()
 
-      if (isQueryIcFormatValid(route.query.ic)) {
-        const result = await callWithNuxt(nuxtApp, () =>
-          $urql.value
-            .mutation(EVENT_UNLOCK_MUTATION, {
-              invitationCode: route.query.ic,
-            })
-            .toPromise()
-        )
+      if (
+        !isQueryIcFormatValid(route.query.ic) ||
+        'error' in route.query ||
+        'redirect' in route.query
+      )
+        return
 
-        if (result.error) {
-          consola.error(result.error)
-        }
-
-        if (!result.data?.eventUnlock?.eventUnlockResponse) {
-          if ('error' in route.query) {
-            return
-          } else {
-            return await callWithNuxt(nuxtApp, () =>
-              navigateTo(
-                $localePath({
-                  query: {
-                    ...route.query,
-                    error: null,
-                  },
-                })
-              )
-            )
+      const result = (await callWithNuxt(nuxtApp, () =>
+        $urql.value
+          .mutation(EVENT_UNLOCK_MUTATION, {
+            invitationCode: route.query.ic,
+          })
+          .toPromise()
+      )) as OperationResult<
+        {
+          eventUnlock: {
+            eventUnlockResponse: {
+              jwt: string
+              authorUsername: string
+              eventSlug: string
+            }
           }
+        },
+        {
+          invitationCode: LocationQueryValue | LocationQueryValue[]
         }
+      >
 
-        try {
-          await callWithNuxt(nuxtApp, () =>
-            jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
-          )
-        } catch (error) {
-          consola.error(error)
-          // TODO: t not available
-          // await Swal.fire({
-          //   icon: 'error',
-          //   text: t('jwtStoreFail') as string,
-          //   title: t('globalStatusError'),
-          // })
-          return
-        }
+      if (result.error) {
+        consola.error(result.error)
+      }
 
-        const eventPath = `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+      if (!result.data?.eventUnlock?.eventUnlockResponse?.jwt) {
+        return await callWithNuxt(nuxtApp, () =>
+          navigateTo(
+            $localePath({
+              query: {
+                ...route.query,
+                error: null,
+              },
+            })
+          )
+        )
+      }
 
-        if ('quick' in route.query) {
-          return await callWithNuxt(nuxtApp, () =>
-            navigateTo($localePath(eventPath))
+      try {
+        await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
+      } catch (error) {
+        consola.error(error)
+        // TODO: t not available
+        // await Swal.fire({
+        //   icon: 'error',
+        //   text: t('jwtStoreFail') as string,
+        //   title: t('globalStatusError'),
+        // })
+        return
+      }
+
+      const eventPath = `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+
+      if ('quick' in route.query) {
+        return await callWithNuxt(nuxtApp, () =>
+          navigateTo($localePath(eventPath))
+        )
+      } else {
+        return await callWithNuxt(nuxtApp, () =>
+          navigateTo(
+            $localePath({
+              query: {
+                ...route.query,
+                redirect: $localePath(eventPath),
+              },
+            })
           )
-        } else {
-          return await callWithNuxt(nuxtApp, () =>
-            navigateTo(
-              $localePath({
-                query: {
-                  ...route.query,
-                  redirect: $localePath(eventPath),
-                },
-              })
-            )
-          )
-        }
+        )
       }
     },
   ],
