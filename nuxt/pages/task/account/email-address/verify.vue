@@ -9,7 +9,7 @@
 import consola from 'consola'
 import Swal from 'sweetalert2'
 
-import { REGEX_UUID } from '~/plugins/util/validation'
+import { REGEX_UUID } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'
 import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 
@@ -37,14 +37,12 @@ const accountEmailAddressVerificationMutation =
   useAccountEmailAddressVerificationMutation()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...accountEmailAddressVerificationMutation.data.value,
-    },
-    ...getApiMeta([accountEmailAddressVerificationMutation]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...accountEmailAddressVerificationMutation.data.value,
+  },
+  ...getApiMeta([accountEmailAddressVerificationMutation]),
+}))
 
 // data
 const title = t('title')

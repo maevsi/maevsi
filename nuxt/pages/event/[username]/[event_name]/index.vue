@@ -372,14 +372,12 @@ const eventQuery = useEventByAuthorUsernameAndSlugQuery({
 const modalCheckInCodeRef = ref()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...eventQuery.data.value,
-    },
-    ...getApiMeta([eventQuery]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...eventQuery.data.value,
+  },
+  ...getApiMeta([eventQuery]),
+}))
 const event = computed(
   () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
 )
@@ -443,7 +441,7 @@ function downloadIcal() {
   xhr.send(
     JSON.stringify({
       contact: contact.value,
-      event,
+      event: event.value,
       invitation: invitation.value,
     })
   )

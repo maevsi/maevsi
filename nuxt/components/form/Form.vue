@@ -41,14 +41,13 @@
 </template>
 
 <script setup lang="ts">
-import { CombinedError } from '@urql/core'
 import type { BaseValidation } from '@vuelidate/core'
 
 import Button from '~/components/button/Button.vue'
-import { useGetCombinedErrorMessages } from '~/plugins/util/util'
+import { BackendError, useGetCombinedErrorMessages } from '~/plugins/util/util'
 
 export interface Props {
-  errors?: (CombinedError | { errcode: string; message: string })[]
+  errors?: BackendError[]
   form: BaseValidation
   formClass?: string
   isFormSent?: boolean

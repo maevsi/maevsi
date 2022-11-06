@@ -1,18 +1,18 @@
 import { helpers } from '@vuelidate/validators'
 import { Ref } from 'vue'
 
-import { getApiDataDefault } from './util'
+import {
+  REGEX_PHONE_NUMBER,
+  REGEX_SLUG,
+  REGEX_UPPERCASE_NONE,
+  REGEX_URL_HTTPS,
+  REGEX_UUID,
+} from './constants'
+import { ApiData } from './util'
 
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 
-export const REGEX_PHONE_NUMBER =
-  /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/
-export const REGEX_SLUG = /^[-A-Za-z0-9]+$/
-export const REGEX_UPPERCASE_NONE = /^[^A-Z]+$/
-export const REGEX_URL_HTTPS = /^https:\/\//
-export const REGEX_UUID =
-  /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 320
 export const VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM = 10000
@@ -32,11 +32,11 @@ export const VALIDATION_PASSWORD_LENGTH_MINIMUM = 8
 export const VALIDATION_USERNAME_LENGTH_MAXIMUM = 100
 
 export async function formPreSubmit(
-  apiData: ReturnType<typeof getApiDataDefault>, // TODO: change to "api"
+  api: ApiData,
   v$: any,
   isFormSent: Ref<boolean>
 ): Promise<boolean> {
-  apiData.api.value.errors = []
+  api.value.errors = []
   v$.value.$touch()
 
   const isFormValid = await v$.value.$validate()

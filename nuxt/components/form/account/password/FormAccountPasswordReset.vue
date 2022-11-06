@@ -41,14 +41,12 @@ const localePath = useLocalePath()
 const passwordResetMutation = useAccountPasswordResetMutation()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...passwordResetMutation.data.value,
-    },
-    ...getApiMeta([passwordResetMutation]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...passwordResetMutation.data.value,
+  },
+  ...getApiMeta([passwordResetMutation]),
+}))
 // data
 const form = reactive({
   password: ref<string>(),
@@ -60,9 +58,9 @@ async function submit() {
   if (!form.password) throw new Error('Password is not set!')
 
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 

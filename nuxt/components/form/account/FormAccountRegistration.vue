@@ -76,12 +76,10 @@ const { executeMutation: executeMutationAccountRegistration } =
   useAccountRegistrationMutation()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {},
-    ...getApiMeta([]),
-  }
-})
+const api = computed(() => ({
+  data: {},
+  ...getApiMeta([]),
+}))
 
 // data
 const form = reactive({
@@ -98,9 +96,9 @@ async function submit() {
   if (!form.username) throw new Error('Username is not set!')
 
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 

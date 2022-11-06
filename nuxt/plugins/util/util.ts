@@ -2,7 +2,18 @@ import { IncomingMessage } from 'node:http'
 
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
-import { computed, Ref } from 'vue'
+import { ComputedRef, Ref } from 'vue'
+import { LocationQueryValue } from 'vue-router'
+
+import { REGEX_UUID } from './constants'
+
+export type BackendError = CombinedError | { errcode: string; message: string }
+
+export type ApiData = ComputedRef<{
+  data?: Object
+  errors: BackendError[]
+  isFetching: boolean
+}>
 
 export function append(path: string, pathToAppend: string): string {
   return path + (path.endsWith('/') ? '' : '/') + pathToAppend
@@ -62,39 +73,35 @@ export function getHost(req: IncomingMessage) {
   return req.headers.host
 }
 
-export function getApiDataDefault() {
-  return {
-    api: computed(() => {
-      return {
-        data: {},
-        ...getApiMeta([]),
-      }
-    }),
-  }
-}
+export const getApiDataDefault = (): ApiData =>
+  computed(() =>
+    reactive({
+      data: undefined,
+      ...getApiMeta(),
+    })
+  )
 
-export function getApiMeta(
-  queries: {
+export const getApiMeta = (
+  queries?: {
     error: Ref<CombinedError | undefined>
     fetching: Ref<boolean>
   }[]
-) {
-  return {
-    errors: queries.reduce((p, c) => {
-      if (c.error.value) {
-        return [...p, c.error.value]
-      } else {
-        return p
-      }
-    }, [] as (CombinedError | { errcode: string; message: string })[]),
-    isFetching: queries.reduce((p, c) => p || c.fetching.value, false),
-  }
-}
+) => ({
+  errors: queries
+    ? queries.reduce((p, c) => {
+        if (c.error.value) {
+          return [...p, c.error.value]
+        } else {
+          return p
+        }
+      }, [] as BackendError[])
+    : [],
+  isFetching: queries
+    ? queries.reduce((p, c) => p || c.fetching.value, false)
+    : false,
+})
 
-export function getCombinedErrorMessages(
-  t: any,
-  errors: (CombinedError | { errcode: string; message: string })[]
-) {
+export function getCombinedErrorMessages(t: any, errors: BackendError[]) {
   const errorMessages: string[] = []
 
   for (const error of errors) {
@@ -127,9 +134,7 @@ export function useGetCombinedErrorMessages() {
   const { t } = useI18n()
 
   return {
-    getCombinedErrorMessages(
-      errors: (CombinedError | { errcode: string; message: string })[]
-    ) {
+    getCombinedErrorMessages(errors: BackendError[]) {
       return getCombinedErrorMessages(t, errors)
     },
   }
@@ -151,6 +156,10 @@ export function getQueryString(
       .join('&')
   )
 }
+
+export const isQueryIcFormatValid = (
+  ic: LocationQueryValue | LocationQueryValue[]
+) => ic && !Array.isArray(ic) && REGEX_UUID.test(ic)
 
 export function xhrPromise(
   method: string,

@@ -152,14 +152,12 @@ const createContactMutation = useCreateContactMutation()
 const { t } = useI18n()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...updateContactByIdMutation.data.value,
-    },
-    ...getApiMeta([updateContactByIdMutation]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...updateContactByIdMutation.data.value,
+  },
+  ...getApiMeta([updateContactByIdMutation]),
+}))
 
 // data
 const form = reactive({
@@ -177,9 +175,9 @@ const isFormSent = ref(false)
 // methods
 async function submit() {
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 

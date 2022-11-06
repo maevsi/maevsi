@@ -56,14 +56,12 @@ const eventsQuery = useAllEventsQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...eventsQuery.data.value,
-    },
-    ...getApiMeta([eventsQuery]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...eventsQuery.data.value,
+  },
+  ...getApiMeta([eventsQuery]),
+}))
 const events = computed(() => eventsQuery.data.value?.allEvents?.nodes)
 
 // data

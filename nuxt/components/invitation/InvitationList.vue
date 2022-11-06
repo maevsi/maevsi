@@ -233,18 +233,16 @@ const invitationsQuery = useAllInvitationsQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...invitationsQuery.data.value,
-    },
-    ...getApiMeta([
-      deleteInvitationByUuidMutation,
-      inviteMutation,
-      invitationsQuery,
-    ]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...invitationsQuery.data.value,
+  },
+  ...getApiMeta([
+    deleteInvitationByUuidMutation,
+    inviteMutation,
+    invitationsQuery,
+  ]),
+}))
 const invitations = computed(
   () => invitationsQuery.data.value?.allInvitations?.nodes
 )
@@ -276,7 +274,7 @@ function add() {
   store.modalAdd({ id: 'ModalInvitation' })
 }
 function copyLink(invitation: Invitation): void {
-  if (!process.browser) return
+  if (!process.client) return
 
   copyText(
     `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
@@ -385,11 +383,10 @@ onMounted(() => {
   Chart.defaults.color = () => ($colorMode.value === 'dark' ? '#fff' : '#000')
 })
 watch(
-  $colorMode,
+  () => $colorMode.value,
   (_currentValue, _oldValue) => {
-    doughnutRef.value.getCurrentChart()?.update()
-  },
-  { deep: true }
+    doughnutRef.value.updateChart()
+  }
 )
 watch(invitationsQuery.error, (currentValue, _oldValue) => {
   if (currentValue) consola.error(currentValue)

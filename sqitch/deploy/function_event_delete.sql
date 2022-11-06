@@ -14,7 +14,7 @@ CREATE FUNCTION maevsi.event_delete(
 ) RETURNS maevsi.event AS $$
 DECLARE
   _current_username TEXT;
-  _rows_affected maevsi.event;
+  _event_deleted maevsi.event;
 BEGIN
   _current_username := current_setting('jwt.claims.username', true)::TEXT;
 
@@ -24,12 +24,12 @@ BEGIN
       WHERE
             "event".id = $1
         AND "event".author_username = _current_username
-      RETURNING * INTO _rows_affected;
+      RETURNING * INTO _event_deleted;
 
-    IF (_rows_affected IS NULL) THEN
+    IF (_event_deleted IS NULL) THEN
       RAISE 'Event not found!' USING ERRCODE = 'no_data_found';
     ELSE
-      RETURN _rows_affected;
+      RETURN _event_deleted;
     END IF;
   ELSE
     RAISE 'Account with given password not found!' USING ERRCODE = 'invalid_password';

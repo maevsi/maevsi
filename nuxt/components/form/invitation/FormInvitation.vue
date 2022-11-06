@@ -122,14 +122,12 @@ const allContactsQuery = useAllContactsQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...allContactsQuery.data.value,
-    },
-    ...getApiMeta([allContactsQuery]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...allContactsQuery.data.value,
+  },
+  ...getApiMeta([allContactsQuery]),
+}))
 const contacts = computed(() => allContactsQuery.data.value?.allContacts?.nodes)
 
 // data
@@ -154,9 +152,9 @@ function selectToggle(contact: Contact) {
 }
 async function submit() {
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 

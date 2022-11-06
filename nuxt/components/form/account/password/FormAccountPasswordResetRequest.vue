@@ -45,14 +45,12 @@ const { locale, t } = useI18n()
 const passwordResetRequestMutation = useAccountPasswordResetRequestMutation()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...passwordResetRequestMutation.data.value,
-    },
-    ...getApiMeta([passwordResetRequestMutation]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...passwordResetRequestMutation.data.value,
+  },
+  ...getApiMeta([passwordResetRequestMutation]),
+}))
 
 // data
 const form = reactive({
@@ -65,9 +63,9 @@ async function submit() {
   if (!form.emailAddress) throw new Error('Email address is not set!')
 
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 

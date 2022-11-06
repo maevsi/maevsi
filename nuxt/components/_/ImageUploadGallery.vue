@@ -171,15 +171,13 @@ const allUploadsQuery = useAllUploadsQuery({
 const accountUploadQuotaBytesQuery = useAccountUploadQuotaBytesQuery()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...allUploadsQuery.data.value,
-      ...accountUploadQuotaBytesQuery.data.value,
-    },
-    ...getApiMeta([allUploadsQuery, accountUploadQuotaBytesQuery]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...allUploadsQuery.data.value,
+    ...accountUploadQuotaBytesQuery.data.value,
+  },
+  ...getApiMeta([allUploadsQuery, accountUploadQuotaBytesQuery]),
+}))
 const uploads = computed(() => allUploadsQuery.data.value?.allUploads?.nodes)
 const accountUploadQuotaBytes = computed(
   () => accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes
@@ -279,11 +277,7 @@ function loadProfilePicture(payload: Event) {
     fileReader.onload = (e) => fileLoaded(e)
     fileReader.readAsDataURL(file)
   } catch (err: any) {
-    if (err.isRestriction) {
-      consola.log('Restriction error: ' + err)
-    } else {
-      consola.error(err)
-    }
+    consola.error(err)
   }
 }
 function toggleSelect(upload: any) {

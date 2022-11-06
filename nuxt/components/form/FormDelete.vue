@@ -1,6 +1,6 @@
 <template>
   <Form
-    :errors="errors"
+    :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
     :submit-name="t('deletion', { item: itemName })"
@@ -20,12 +20,7 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
-import {
-  AnyVariables,
-  CombinedError,
-  OperationContext,
-  OperationResult,
-} from '@urql/vue'
+import { AnyVariables, OperationContext, OperationResult } from '@urql/vue'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 
@@ -37,7 +32,6 @@ import {
 import { Exact, EventDeleteMutation } from '~/gql/generated'
 
 export interface Props {
-  errors?: (CombinedError | { errcode: string; message: string })[]
   itemName: string
   mutation: (
     variables: Exact<any>,
@@ -46,19 +40,17 @@ export interface Props {
   variables?: Record<string, any>
 }
 const props = withDefaults(defineProps<Props>(), {
-  errors: undefined,
   variables: undefined,
 })
 
 const emit = defineEmits<{
   (e: 'success'): void
-  (e: 'error', error: CombinedError): void
 }>()
 
 const { t } = useI18n()
 
 // api data
-const api = getApiDataDefault().api
+const api = getApiDataDefault()
 
 // data
 const form = reactive({
@@ -71,9 +63,9 @@ async function submit() {
   if (!form.password) return
 
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 
@@ -84,7 +76,7 @@ async function submit() {
     })
     .then((result) => {
       if (result.error) {
-        emit('error', result.error)
+        api.value.errors.push(result.error)
         consola.error(result.error)
       } else {
         Swal.fire({

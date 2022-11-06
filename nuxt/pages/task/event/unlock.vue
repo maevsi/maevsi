@@ -53,49 +53,77 @@
 </template>
 
 <script setup lang="ts">
+import { OperationResult } from '@urql/core/dist/types/types'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
 import Swal from 'sweetalert2'
+import { LocationQueryValue } from 'vue-router'
 
+import { callWithNuxt } from '#app'
+
+import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 import { useJwtStore } from '~/plugins/util/auth'
 import {
   formPreSubmit,
-  REGEX_UUID,
   VALIDATION_FORMAT_UUID,
 } from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+import { isQueryIcFormatValid, getApiMeta } from '~/plugins/util/util'
 import { useEventUnlockMutation } from '~/gql/generated'
-import { useMaevsiStore } from '~/store'
 
 definePageMeta({
-  layout:
-    // TODO:
-    REGEX_UUID.test('routeQueryIc') && !('error' in ['context.route.query'])
-      ? 'canvas'
-      : 'default',
-  middleware: [
-    async function (_to: any, _from: any) {
-      const { $urqlReset, ssrContext } = useNuxtApp()
-      const { $localePath } = useNuxtApp()
+  // TODO: fix upstream https://github.com/nuxt/framework/issues/8678
+  layout: computed({
+    get: () => {
       const route = useRoute()
-      const store = useMaevsiStore()
+
+      return 'redirect' in route.query ? 'canvas' : 'default'
+    },
+    set: () => {},
+  }),
+  middleware: [
+    // TODO: callWithNuxt necessary as described in https://github.com/nuxt/framework/issues/6292
+    async function (_to: any, _from: any) {
+      const nuxtApp = useNuxtApp()
+      const { $localePath, $urql } = useNuxtApp()
+      const route = useRoute()
+      const { jwtStore } = useJwtStore()
 
       if (
-        !Array.isArray(route.query.ic) &&
-        route.query.ic &&
-        REGEX_UUID.test(route.query.ic)
-      ) {
-        const result = await useEventUnlockMutation().executeMutation({
-          invitationCode: route.query.ic,
-        })
+        !isQueryIcFormatValid(route.query.ic) ||
+        'error' in route.query ||
+        'redirect' in route.query
+      )
+        return
 
-        if (result.error) {
-          consola.error(result.error)
+      const result = (await callWithNuxt(nuxtApp, () =>
+        $urql.value
+          .mutation(EVENT_UNLOCK_MUTATION, {
+            invitationCode: route.query.ic,
+          })
+          .toPromise()
+      )) as OperationResult<
+        {
+          eventUnlock: {
+            eventUnlockResponse: {
+              jwt: string
+              authorUsername: string
+              eventSlug: string
+            }
+          }
+        },
+        {
+          invitationCode: LocationQueryValue | LocationQueryValue[]
         }
+      >
 
-        if (!result.data?.eventUnlock?.eventUnlockResponse) {
-          return navigateTo(
+      if (result.error) {
+        consola.error(result.error)
+      }
+
+      if (!result.data?.eventUnlock?.eventUnlockResponse?.jwt) {
+        return await callWithNuxt(nuxtApp, () =>
+          navigateTo(
             $localePath({
               query: {
                 ...route.query,
@@ -103,38 +131,39 @@ definePageMeta({
               },
             })
           )
-        }
+        )
+      }
 
-        try {
-          await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
-        } catch (error) {
-          consola.debug(error)
-          await Swal.fire({
-            icon: 'error',
-            text: t('jwtStoreFail') as string,
-            title: t('globalStatusError'),
-          })
-          return
-        }
+      try {
+        await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
+      } catch (error) {
+        consola.error(error)
+        // TODO: t not available
+        // await Swal.fire({
+        //   icon: 'error',
+        //   text: t('jwtStoreFail') as string,
+        //   title: t('globalStatusError'),
+        // })
+        return
+      }
 
-        if ('quick' in route.query) {
-          navigateTo(
-            $localePath(
-              `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
-            )
-          )
-        } else {
+      const eventPath = `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+
+      if ('quick' in route.query) {
+        return await callWithNuxt(nuxtApp, () =>
+          navigateTo($localePath(eventPath))
+        )
+      } else {
+        return await callWithNuxt(nuxtApp, () =>
           navigateTo(
             $localePath({
               query: {
                 ...route.query,
-                redirect: $localePath(
-                  `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
-                ),
+                redirect: $localePath(eventPath),
               },
             })
           )
-        }
+        )
       }
     },
   ],
@@ -148,14 +177,12 @@ const eventUnlockMutation = useEventUnlockMutation()
 const config = useRuntimeConfig()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {
-      ...eventUnlockMutation.data.value,
-    },
-    ...getApiMeta([eventUnlockMutation]),
-  }
-})
+const api = computed(() => ({
+  data: {
+    ...eventUnlockMutation.data.value,
+  },
+  ...getApiMeta([eventUnlockMutation]),
+}))
 
 // data
 const form = reactive({
@@ -169,9 +196,9 @@ const title = t('title')
 // methods
 async function submit() {
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 
@@ -191,7 +218,7 @@ async function submit() {
   try {
     await jwtStore(result.data?.eventUnlock?.eventUnlockResponse?.jwt)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     await Swal.fire({
       icon: 'error',
       text: t('jwtStoreFail') as string,

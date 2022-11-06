@@ -37,10 +37,8 @@
       <h2>{{ t('titleAccountDelete') }}</h2>
       <FormDelete
         id="deleteAccount"
-        :errors="api.errors"
         :item-name="t('account')"
         :mutation="mutation"
-        @error="onDeleteError"
         @success="signOut"
       />
     </section>
@@ -48,10 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { CombinedError } from '@urql/core'
-
 import { useSignOut } from '~/plugins/util/auth'
-import { getApiMeta } from '~/plugins/util/util'
 import { useMaevsiStore } from '~/store'
 import { useAccountDeleteMutation } from '~/gql/generated'
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
@@ -91,22 +86,12 @@ const route = useRoute()
 const { executeMutation: executeMutationAccoutDelete } =
   useAccountDeleteMutation()
 
-// api data
-const api = computed(() => {
-  return {
-    ...getApiMeta([]),
-  }
-})
-
 // data
 const mutation = executeMutationAccoutDelete
 const routeParamUsername = route.params.username as string
 const title = route.params.username as string
 
 // methods
-function onDeleteError(error: CombinedError) {
-  api.value.errors.push(error)
-}
 function reloadProfilePicture() {
   // TODO: cache update (profilePictureByUsername, props.username)
 }

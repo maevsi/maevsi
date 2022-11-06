@@ -313,12 +313,10 @@ const createEventMutation = useCreateEventMutation()
 const updateEventMutation = useUpdateEventByIdMutation()
 
 // api data
-const api = computed(() => {
-  return {
-    data: {},
-    ...getApiMeta([createEventMutation, updateEventMutation]),
-  }
-})
+const api = computed(() => ({
+  data: {},
+  ...getApiMeta([createEventMutation, updateEventMutation]),
+}))
 
 // data
 const form = reactive({
@@ -355,9 +353,9 @@ function onInputName($event: any) {
 }
 async function submit() {
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 
