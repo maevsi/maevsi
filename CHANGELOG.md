@@ -1,3 +1,28 @@
+# [1.0.0-alpha.13](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.12...1.0.0-alpha.13) (2022-11-06)
+
+
+### Bug Fixes
+
+* **api:** correct host getter ([5e06db7](https://github.com/maevsi/maevsi/commit/5e06db772d4bd51ed843cd2eba28790a9a8d73d3))
+* **consola:** correct log level ([1f72020](https://github.com/maevsi/maevsi/commit/1f72020c3c6ec3ab1fa6cc807dfa418c6038a6ea))
+* **event-unlock:** correct redirects ([dfc8778](https://github.com/maevsi/maevsi/commit/dfc8778e28a4a879f42c0f4abdabe027f5e2c0c3))
+* **event-unlock:** downgrade nuxt ([97a90c2](https://github.com/maevsi/maevsi/commit/97a90c21c56aa78486aeeed95a3cafdc00d2a9d5))
+* **event-unlock:** reactivate layout ([b155dd6](https://github.com/maevsi/maevsi/commit/b155dd641ff3d651d7ba24361062d84d2978b817))
+* **event-unlock:** temporarily disable canvas layout ([3fa36cb](https://github.com/maevsi/maevsi/commit/3fa36cbb18f8acdf35c27b154dd72f9f7264e944))
+* **event:** correct ical api request ([db3dcdb](https://github.com/maevsi/maevsi/commit/db3dcdbe11fa5ce8bc0bd1127b617facf9fead10))
+* **form:** correct api data reactivity ([91fec6e](https://github.com/maevsi/maevsi/commit/91fec6e1a91c4fbe9de19f192bf0d6a65068051b))
+* **head:** temporarily move body styling to css ([cb6c351](https://github.com/maevsi/maevsi/commit/cb6c35152d301126585ebd4e39374de33a330594))
+* **invitation-list:** correct chart update function ([47e8f21](https://github.com/maevsi/maevsi/commit/47e8f215c8a3b357e1fd335aac99e6aa974ad569))
+* **invitation-list:** correct client check ([b9f0173](https://github.com/maevsi/maevsi/commit/b9f0173b53ad8a2e1d3c306bf7836ce96e8bae23))
+* **jest:** add module mapping ([0814fd9](https://github.com/maevsi/maevsi/commit/0814fd9816d3a08e8b246e5a52d0a4093e44647d))
+* **util:** move uuid to constants ([bde3636](https://github.com/maevsi/maevsi/commit/bde36361db83f96c92eb8972bc9c912afb682af0))
+
+
+### Features
+
+* **api:** add basic input validation for ical ([0993aeb](https://github.com/maevsi/maevsi/commit/0993aeb905abdddacc5d746ac4b6dc3bd51a9bb8))
+* **app:** add move information ([1f65e38](https://github.com/maevsi/maevsi/commit/1f65e383380e8fa36ceb0cb4876704bc2b9dd382))
+
 # [1.0.0-alpha.12](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.11...1.0.0-alpha.12) (2022-11-02)
 
 
