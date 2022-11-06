@@ -1,8 +1,5 @@
 <template>
   <header class="mb-8">
-    <CardStateInfo v-if="!isBrowserSupported" is-edgy>
-      {{ t('browserUnsupported') }}
-    </CardStateInfo>
     <div class="flex items-center justify-between gap-4">
       <ButtonIcon
         :aria-label="t('menuShow')"
@@ -95,7 +92,6 @@
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
-import supportedBrowsers from '~/supportedBrowsers'
 
 const emit = defineEmits<{
   (e: 'onMenuShow'): void
@@ -105,9 +101,6 @@ const emit = defineEmits<{
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
-
-// data
-const isBrowserSupported = ref(true)
 
 // computations
 const signedInUsername = computed(() => store.signedInUsername)
@@ -119,11 +112,6 @@ const signedInUsername = computed(() => store.signedInUsername)
 //     query: { q: 'search phrase' },
 //   })
 // }
-
-// lifecycle
-onBeforeMount(() => {
-  isBrowserSupported.value = supportedBrowsers.test(navigator.userAgent)
-})
 </script>
 
 <script lang="ts">
@@ -134,7 +122,6 @@ export default {
 
 <i18n lang="yml">
 de:
-  browserUnsupported: Dein Browser scheint veraltet zu sein. Manche Dinge könnten deshalb nicht funktionieren oder komisch aussehen.
   dashboard: Dashboard
   events: Veranstaltungen entdecken
   home: Nach Hause
@@ -144,7 +131,6 @@ de:
   signIn: Anmelden
   signOut: Abmelden
 en:
-  browserUnsupported: Your browser version seems outdated. Some things might not work as expected or look funny.
   dashboard: Dashboard
   events: Explore events
   home: Head home
