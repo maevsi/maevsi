@@ -6,6 +6,9 @@ import { getCspAsString, getTimezone } from '~/utils/util'
 export default defineEventHandler(async (event) => {
   event.node.req.headers[TIMEZONE_HEADER_KEY] = await getTimezone(event)
 
+  // Caching
+  appendHeader(event, 'Cache-Control', 'max-age=31536000')
+
   appendHeader(event, 'Content-Security-Policy', getCspAsString(event))
   // appendHeader(event, 'Cross-Origin-Embedder-Policy', 'require-corp') // https://stackoverflow.com/questions/71904052/getting-notsameoriginafterdefaultedtosameoriginbycoep-error-with-helmet
   appendHeader(event, 'Cross-Origin-Opener-Policy', 'same-origin')
