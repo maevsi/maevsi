@@ -10,7 +10,7 @@
     <FormInputPassword
       :form-input="v$.form.password"
       :title="t('passwordNew')"
-      @input="form.password = $event"
+      @input="v$.form.password.$model = $event"
     />
   </Form>
 </template>

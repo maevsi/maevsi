@@ -29,7 +29,7 @@
       :title="t('contact')"
       type="text"
       :value="v$.form.searchString"
-      @input="form.searchString = $event"
+      @input="v$.form.searchString.$model = $event"
     >
       <template #icon>
         <IconSearch />

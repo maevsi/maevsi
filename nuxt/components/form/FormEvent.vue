@@ -348,7 +348,7 @@ function dateTimeFormatter(x?: string) {
     : undefined
 }
 function onInputName($event: any) {
-  form.name = $event
+  v$.value.form.name.$model = $event
   updateSlug()
 }
 async function submit() {

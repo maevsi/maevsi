@@ -22,16 +22,16 @@
         :form-input="v$.form.username"
         is-validatable
         is-validation-inverted
-        @input="form.username = $event"
+        @input="v$.form.username.$model = $event"
       />
       <FormInputPassword
         :form-input="v$.form.password"
-        @input="form.password = $event"
+        @input="v$.form.password.$model = $event"
       />
       <FormInputEmailAddress
         :form-input="v$.form.emailAddress"
         is-required
-        @input="form.emailAddress = $event"
+        @input="v$.form.emailAddress.$model = $event"
       />
       <template #assistance>
         <FormInputStateInfo>

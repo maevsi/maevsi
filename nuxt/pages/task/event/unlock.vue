@@ -18,7 +18,7 @@
         :title="t('invitationCode')"
         type="text"
         :value="v$.form.invitationCode"
-        @input="form.invitationCode = $event"
+        @input="v$.form.invitationCode.$model = $event"
       >
         <template #stateInfo>
           <FormInputStateInfo v-if="routeQueryIc">
