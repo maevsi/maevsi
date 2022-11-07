@@ -25,7 +25,7 @@ specifiers:
   '@rollup/plugin-graphql': 1.1.0
   '@tailwindcss/forms': 0.5.3
   '@tailwindcss/line-clamp': 0.4.2
-  '@tailwindcss/typography': 0.5.7
+  '@tailwindcss/typography': 0.5.8
   '@tiptap/core': 2.0.0-beta.202
   '@tiptap/extension-link': 2.0.0-beta.202
   '@tiptap/starter-kit': 2.0.0-beta.202
@@ -137,7 +137,7 @@ devDependencies:
   '@rollup/plugin-graphql': 1.1.0_wvgxa4tpgmyetagc7e4kukhube
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.2
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.2
-  '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.2
+  '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.2
   '@tiptap/core': 2.0.0-beta.202
   '@tiptap/extension-link': 2.0.0-beta.202_fosglmwb3u6jhi6bbjmnlbdsbu
   '@tiptap/starter-kit': 2.0.0-beta.202
@@ -2706,8 +2706,8 @@ packages:
       tailwindcss: 3.2.2_neo3lunb2qpadwxplzw7r2isgm
     dev: true
 
-  /@tailwindcss/typography/0.5.7_tailwindcss@3.2.2:
-    resolution: {integrity: sha512-JTTSTrgZfp6Ki4svhPA4mkd9nmQ/j9EfE7SbHJ1cLtthKkpW2OxsFXzSmxbhYbEkfNIyAyhle5p4SYyKRbz/jg==}
+  /@tailwindcss/typography/0.5.8_tailwindcss@3.2.2:
+    resolution: {integrity: sha512-xGQEp8KXN8Sd8m6R4xYmwxghmswrd0cPnNI2Lc6fmrC3OojysTBJJGSIVwPV56q4t6THFUK3HJ0EaWwpglSxWw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
