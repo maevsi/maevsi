@@ -160,8 +160,7 @@ async function submit() {
 
   const result = await executeMutationCreateInvitation({
     invitationInput: {
-      contactId:
-        form.contactId && form.contactId !== '' ? +form.contactId : null,
+      contactId: form.contactId || null,
       eventId: +props.event.id,
     },
   })

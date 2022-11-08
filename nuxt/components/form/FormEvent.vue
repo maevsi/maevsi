@@ -366,19 +366,19 @@ async function submit() {
       id: form.id,
       eventPatch: {
         authorUsername: signedInUsername.value,
-        description: form.description || undefined,
-        end: form.end || undefined,
+        description: form.description || null,
+        end: form.end || null,
         inviteeCountMaximum: form.inviteeCountMaximum
           ? +form.inviteeCountMaximum
           : undefined,
         isInPerson: form.isInPerson,
         isRemote: form.isRemote,
-        location: form.location || undefined,
-        name: form.name || undefined,
-        slug: form.slug || undefined,
-        start: form.start || undefined,
-        url: form.url || undefined,
-        visibility: form.visibility || undefined,
+        location: form.location || null,
+        name: form.name || null,
+        slug: form.slug || null,
+        start: form.start || null,
+        url: form.url || null,
+        visibility: form.visibility || null,
       },
     })
 
@@ -410,18 +410,18 @@ async function submit() {
       createEventInput: {
         event: {
           authorUsername: signedInUsername.value,
-          description: form.description || undefined,
-          end: form.end || undefined,
+          description: form.description || null,
+          end: form.end || null,
           inviteeCountMaximum: form.inviteeCountMaximum
             ? +form.inviteeCountMaximum
             : undefined,
           isInPerson: form.isInPerson,
           isRemote: form.isRemote,
-          location: form.location || undefined,
+          location: form.location || null,
           name: form.name,
           slug: form.slug,
-          start: form.start || undefined,
-          url: form.url || undefined,
+          start: form.start || null,
+          url: form.url || null,
           visibility: form.visibility,
         },
       },

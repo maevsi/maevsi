@@ -13,8 +13,8 @@ import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
 
 export interface Props {
   classes?: string
-  emailAddress?: string
-  emailAddressHash?: string
+  emailAddress?: string | null
+  emailAddressHash?: string | null
   rounded?: boolean
   size: string
 }

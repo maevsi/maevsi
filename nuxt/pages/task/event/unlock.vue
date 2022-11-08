@@ -186,9 +186,7 @@ const api = computed(() => ({
 
 // data
 const form = reactive({
-  invitationCode: ref(
-    route.query.ic === undefined ? undefined : route.query.ic
-  ),
+  invitationCode: ref(route.query.ic),
 })
 const isFormSent = ref(false)
 const title = t('title')

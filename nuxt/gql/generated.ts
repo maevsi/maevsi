@@ -1,8 +1,8 @@
 /* eslint-disable no-use-before-define */
 import { gql } from 'graphql-tag'
 import * as Urql from '@urql/vue'
-export type Maybe<T> = T | undefined
-export type InputMaybe<T> = T | undefined
+export type Maybe<T> = T | null
+export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
 }
@@ -3247,15 +3247,15 @@ export type ContactFieldsFragment = {
   __typename?: 'Contact'
   nodeId: string
   id: any
-  accountUsername?: string | undefined
-  address?: string | undefined
+  accountUsername?: string | null
+  address?: string | null
   authorAccountUsername: string
-  emailAddress?: string | undefined
-  emailAddressHash?: string | undefined
-  firstName?: string | undefined
-  lastName?: string | undefined
-  phoneNumber?: string | undefined
-  url?: string | undefined
+  emailAddress?: string | null
+  emailAddressHash?: string | null
+  firstName?: string | null
+  lastName?: string | null
+  phoneNumber?: string | null
+  url?: string | null
 }
 
 export type EventFieldsFragment = {
@@ -3263,17 +3263,17 @@ export type EventFieldsFragment = {
   id: any
   nodeId: string
   authorUsername: string
-  description?: string | undefined
-  end?: any | undefined
-  inviteeCountMaximum?: number | undefined
+  description?: string | null
+  end?: any | null
+  inviteeCountMaximum?: number | null
   isArchived: boolean
-  isInPerson?: boolean | undefined
-  isRemote?: boolean | undefined
-  location?: string | undefined
+  isInPerson?: boolean | null
+  isRemote?: boolean | null
+  location?: string | null
   name: string
   slug: string
   start: any
-  url?: string | undefined
+  url?: string | null
   visibility: EventVisibility
 }
 
@@ -3283,8 +3283,8 @@ export type InvitationFieldsFragment = {
   nodeId: string
   contactId: any
   eventId: any
-  feedback?: InvitationFeedback | undefined
-  feedbackPaper?: InvitationFeedbackPaper | undefined
+  feedback?: InvitationFeedback | null
+  feedbackPaper?: InvitationFeedbackPaper | null
   uuid: any
 }
 
@@ -3301,7 +3301,7 @@ export type UploadFieldsFragment = {
   id: any
   nodeId: string
   sizeByte: any
-  storageKey?: string | undefined
+  storageKey?: string | null
   username: string
   uuid: any
 }
@@ -3313,13 +3313,11 @@ export type AuthenticateMutationVariables = Exact<{
 
 export type AuthenticateMutation = {
   __typename?: 'Mutation'
-  authenticate?:
-    | {
-        __typename?: 'AuthenticatePayload'
-        clientMutationId?: string | undefined
-        jwt?: any | undefined
-      }
-    | undefined
+  authenticate?: {
+    __typename?: 'AuthenticatePayload'
+    clientMutationId?: string | null
+    jwt?: any | null
+  } | null
 }
 
 export type AccountDeleteMutationVariables = Exact<{
@@ -3328,12 +3326,10 @@ export type AccountDeleteMutationVariables = Exact<{
 
 export type AccountDeleteMutation = {
   __typename?: 'Mutation'
-  accountDelete?:
-    | {
-        __typename?: 'AccountDeletePayload'
-        clientMutationId?: string | undefined
-      }
-    | undefined
+  accountDelete?: {
+    __typename?: 'AccountDeletePayload'
+    clientMutationId?: string | null
+  } | null
 }
 
 export type AccountEmailAddressVerificationMutationVariables = Exact<{
@@ -3342,12 +3338,10 @@ export type AccountEmailAddressVerificationMutationVariables = Exact<{
 
 export type AccountEmailAddressVerificationMutation = {
   __typename?: 'Mutation'
-  accountEmailAddressVerification?:
-    | {
-        __typename?: 'AccountEmailAddressVerificationPayload'
-        clientMutationId?: string | undefined
-      }
-    | undefined
+  accountEmailAddressVerification?: {
+    __typename?: 'AccountEmailAddressVerificationPayload'
+    clientMutationId?: string | null
+  } | null
 }
 
 export type JwtRefreshMutationVariables = Exact<{
@@ -3356,13 +3350,11 @@ export type JwtRefreshMutationVariables = Exact<{
 
 export type JwtRefreshMutation = {
   __typename?: 'Mutation'
-  jwtRefresh?:
-    | {
-        __typename?: 'JwtRefreshPayload'
-        clientMutationId?: string | undefined
-        jwt?: any | undefined
-      }
-    | undefined
+  jwtRefresh?: {
+    __typename?: 'JwtRefreshPayload'
+    clientMutationId?: string | null
+    jwt?: any | null
+  } | null
 }
 
 export type AccountPasswordChangeMutationVariables = Exact<{
@@ -3372,12 +3364,10 @@ export type AccountPasswordChangeMutationVariables = Exact<{
 
 export type AccountPasswordChangeMutation = {
   __typename?: 'Mutation'
-  accountPasswordChange?:
-    | {
-        __typename?: 'AccountPasswordChangePayload'
-        clientMutationId?: string | undefined
-      }
-    | undefined
+  accountPasswordChange?: {
+    __typename?: 'AccountPasswordChangePayload'
+    clientMutationId?: string | null
+  } | null
 }
 
 export type AccountPasswordResetMutationVariables = Exact<{
@@ -3387,12 +3377,10 @@ export type AccountPasswordResetMutationVariables = Exact<{
 
 export type AccountPasswordResetMutation = {
   __typename?: 'Mutation'
-  accountPasswordReset?:
-    | {
-        __typename?: 'AccountPasswordResetPayload'
-        clientMutationId?: string | undefined
-      }
-    | undefined
+  accountPasswordReset?: {
+    __typename?: 'AccountPasswordResetPayload'
+    clientMutationId?: string | null
+  } | null
 }
 
 export type AccountPasswordResetRequestMutationVariables = Exact<{
@@ -3402,12 +3390,10 @@ export type AccountPasswordResetRequestMutationVariables = Exact<{
 
 export type AccountPasswordResetRequestMutation = {
   __typename?: 'Mutation'
-  accountPasswordResetRequest?:
-    | {
-        __typename?: 'AccountPasswordResetRequestPayload'
-        clientMutationId?: string | undefined
-      }
-    | undefined
+  accountPasswordResetRequest?: {
+    __typename?: 'AccountPasswordResetRequestPayload'
+    clientMutationId?: string | null
+  } | null
 }
 
 export type AccountRegistrationMutationVariables = Exact<{
@@ -3419,12 +3405,10 @@ export type AccountRegistrationMutationVariables = Exact<{
 
 export type AccountRegistrationMutation = {
   __typename?: 'Mutation'
-  accountRegistration?:
-    | {
-        __typename?: 'AccountRegistrationPayload'
-        clientMutationId?: string | undefined
-      }
-    | undefined
+  accountRegistration?: {
+    __typename?: 'AccountRegistrationPayload'
+    clientMutationId?: string | null
+  } | null
 }
 
 export type AccountRegistrationRefreshMutationVariables = Exact<{
@@ -3434,12 +3418,10 @@ export type AccountRegistrationRefreshMutationVariables = Exact<{
 
 export type AccountRegistrationRefreshMutation = {
   __typename?: 'Mutation'
-  accountRegistrationRefresh?:
-    | {
-        __typename?: 'AccountRegistrationRefreshPayload'
-        clientMutationId?: string | undefined
-      }
-    | undefined
+  accountRegistrationRefresh?: {
+    __typename?: 'AccountRegistrationRefreshPayload'
+    clientMutationId?: string | null
+  } | null
 }
 
 export type CreateContactMutationVariables = Exact<{
@@ -3448,27 +3430,23 @@ export type CreateContactMutationVariables = Exact<{
 
 export type CreateContactMutation = {
   __typename?: 'Mutation'
-  createContact?:
-    | {
-        __typename?: 'CreateContactPayload'
-        contact?:
-          | {
-              __typename?: 'Contact'
-              nodeId: string
-              id: any
-              accountUsername?: string | undefined
-              address?: string | undefined
-              authorAccountUsername: string
-              emailAddress?: string | undefined
-              emailAddressHash?: string | undefined
-              firstName?: string | undefined
-              lastName?: string | undefined
-              phoneNumber?: string | undefined
-              url?: string | undefined
-            }
-          | undefined
-      }
-    | undefined
+  createContact?: {
+    __typename?: 'CreateContactPayload'
+    contact?: {
+      __typename?: 'Contact'
+      nodeId: string
+      id: any
+      accountUsername?: string | null
+      address?: string | null
+      authorAccountUsername: string
+      emailAddress?: string | null
+      emailAddressHash?: string | null
+      firstName?: string | null
+      lastName?: string | null
+      phoneNumber?: string | null
+      url?: string | null
+    } | null
+  } | null
 }
 
 export type DeleteContactMutationVariables = Exact<{
@@ -3477,28 +3455,24 @@ export type DeleteContactMutationVariables = Exact<{
 
 export type DeleteContactMutation = {
   __typename?: 'Mutation'
-  deleteContact?:
-    | {
-        __typename?: 'DeleteContactPayload'
-        clientMutationId?: string | undefined
-        contact?:
-          | {
-              __typename?: 'Contact'
-              nodeId: string
-              id: any
-              accountUsername?: string | undefined
-              address?: string | undefined
-              authorAccountUsername: string
-              emailAddress?: string | undefined
-              emailAddressHash?: string | undefined
-              firstName?: string | undefined
-              lastName?: string | undefined
-              phoneNumber?: string | undefined
-              url?: string | undefined
-            }
-          | undefined
-      }
-    | undefined
+  deleteContact?: {
+    __typename?: 'DeleteContactPayload'
+    clientMutationId?: string | null
+    contact?: {
+      __typename?: 'Contact'
+      nodeId: string
+      id: any
+      accountUsername?: string | null
+      address?: string | null
+      authorAccountUsername: string
+      emailAddress?: string | null
+      emailAddressHash?: string | null
+      firstName?: string | null
+      lastName?: string | null
+      phoneNumber?: string | null
+      url?: string | null
+    } | null
+  } | null
 }
 
 export type UpdateContactByIdMutationVariables = Exact<{
@@ -3508,27 +3482,23 @@ export type UpdateContactByIdMutationVariables = Exact<{
 
 export type UpdateContactByIdMutation = {
   __typename?: 'Mutation'
-  updateContactById?:
-    | {
-        __typename?: 'UpdateContactPayload'
-        contact?:
-          | {
-              __typename?: 'Contact'
-              nodeId: string
-              id: any
-              accountUsername?: string | undefined
-              address?: string | undefined
-              authorAccountUsername: string
-              emailAddress?: string | undefined
-              emailAddressHash?: string | undefined
-              firstName?: string | undefined
-              lastName?: string | undefined
-              phoneNumber?: string | undefined
-              url?: string | undefined
-            }
-          | undefined
-      }
-    | undefined
+  updateContactById?: {
+    __typename?: 'UpdateContactPayload'
+    contact?: {
+      __typename?: 'Contact'
+      nodeId: string
+      id: any
+      accountUsername?: string | null
+      address?: string | null
+      authorAccountUsername: string
+      emailAddress?: string | null
+      emailAddressHash?: string | null
+      firstName?: string | null
+      lastName?: string | null
+      phoneNumber?: string | null
+      url?: string | null
+    } | null
+  } | null
 }
 
 export type CreateEventMutationVariables = Exact<{
@@ -3537,31 +3507,27 @@ export type CreateEventMutationVariables = Exact<{
 
 export type CreateEventMutation = {
   __typename?: 'Mutation'
-  createEvent?:
-    | {
-        __typename?: 'CreateEventPayload'
-        event?:
-          | {
-              __typename?: 'Event'
-              id: any
-              nodeId: string
-              authorUsername: string
-              description?: string | undefined
-              end?: any | undefined
-              inviteeCountMaximum?: number | undefined
-              isArchived: boolean
-              isInPerson?: boolean | undefined
-              isRemote?: boolean | undefined
-              location?: string | undefined
-              name: string
-              slug: string
-              start: any
-              url?: string | undefined
-              visibility: EventVisibility
-            }
-          | undefined
-      }
-    | undefined
+  createEvent?: {
+    __typename?: 'CreateEventPayload'
+    event?: {
+      __typename?: 'Event'
+      id: any
+      nodeId: string
+      authorUsername: string
+      description?: string | null
+      end?: any | null
+      inviteeCountMaximum?: number | null
+      isArchived: boolean
+      isInPerson?: boolean | null
+      isRemote?: boolean | null
+      location?: string | null
+      name: string
+      slug: string
+      start: any
+      url?: string | null
+      visibility: EventVisibility
+    } | null
+  } | null
 }
 
 export type EventDeleteMutationVariables = Exact<{
@@ -3571,32 +3537,28 @@ export type EventDeleteMutationVariables = Exact<{
 
 export type EventDeleteMutation = {
   __typename?: 'Mutation'
-  eventDelete?:
-    | {
-        __typename?: 'EventDeletePayload'
-        clientMutationId?: string | undefined
-        event?:
-          | {
-              __typename?: 'Event'
-              id: any
-              nodeId: string
-              authorUsername: string
-              description?: string | undefined
-              end?: any | undefined
-              inviteeCountMaximum?: number | undefined
-              isArchived: boolean
-              isInPerson?: boolean | undefined
-              isRemote?: boolean | undefined
-              location?: string | undefined
-              name: string
-              slug: string
-              start: any
-              url?: string | undefined
-              visibility: EventVisibility
-            }
-          | undefined
-      }
-    | undefined
+  eventDelete?: {
+    __typename?: 'EventDeletePayload'
+    clientMutationId?: string | null
+    event?: {
+      __typename?: 'Event'
+      id: any
+      nodeId: string
+      authorUsername: string
+      description?: string | null
+      end?: any | null
+      inviteeCountMaximum?: number | null
+      isArchived: boolean
+      isInPerson?: boolean | null
+      isRemote?: boolean | null
+      location?: string | null
+      name: string
+      slug: string
+      start: any
+      url?: string | null
+      visibility: EventVisibility
+    } | null
+  } | null
 }
 
 export type EventUnlockMutationVariables = Exact<{
@@ -3605,19 +3567,15 @@ export type EventUnlockMutationVariables = Exact<{
 
 export type EventUnlockMutation = {
   __typename?: 'Mutation'
-  eventUnlock?:
-    | {
-        __typename?: 'EventUnlockPayload'
-        eventUnlockResponse?:
-          | {
-              __typename?: 'EventUnlockResponse'
-              eventSlug?: string | undefined
-              jwt?: any | undefined
-              authorUsername?: string | undefined
-            }
-          | undefined
-      }
-    | undefined
+  eventUnlock?: {
+    __typename?: 'EventUnlockPayload'
+    eventUnlockResponse?: {
+      __typename?: 'EventUnlockResponse'
+      eventSlug?: string | null
+      jwt?: any | null
+      authorUsername?: string | null
+    } | null
+  } | null
 }
 
 export type UpdateEventByIdMutationVariables = Exact<{
@@ -3627,31 +3585,27 @@ export type UpdateEventByIdMutationVariables = Exact<{
 
 export type UpdateEventByIdMutation = {
   __typename?: 'Mutation'
-  updateEventById?:
-    | {
-        __typename?: 'UpdateEventPayload'
-        event?:
-          | {
-              __typename?: 'Event'
-              id: any
-              nodeId: string
-              authorUsername: string
-              description?: string | undefined
-              end?: any | undefined
-              inviteeCountMaximum?: number | undefined
-              isArchived: boolean
-              isInPerson?: boolean | undefined
-              isRemote?: boolean | undefined
-              location?: string | undefined
-              name: string
-              slug: string
-              start: any
-              url?: string | undefined
-              visibility: EventVisibility
-            }
-          | undefined
-      }
-    | undefined
+  updateEventById?: {
+    __typename?: 'UpdateEventPayload'
+    event?: {
+      __typename?: 'Event'
+      id: any
+      nodeId: string
+      authorUsername: string
+      description?: string | null
+      end?: any | null
+      inviteeCountMaximum?: number | null
+      isArchived: boolean
+      isInPerson?: boolean | null
+      isRemote?: boolean | null
+      location?: string | null
+      name: string
+      slug: string
+      start: any
+      url?: string | null
+      visibility: EventVisibility
+    } | null
+  } | null
 }
 
 export type CreateInvitationMutationVariables = Exact<{
@@ -3660,33 +3614,27 @@ export type CreateInvitationMutationVariables = Exact<{
 
 export type CreateInvitationMutation = {
   __typename?: 'Mutation'
-  createInvitation?:
-    | {
-        __typename?: 'CreateInvitationPayload'
-        invitation?:
-          | {
-              __typename?: 'Invitation'
-              uuid: any
-              contactByContactId?:
-                | {
-                    __typename?: 'Contact'
-                    nodeId: string
-                    id: any
-                    accountUsername?: string | undefined
-                    address?: string | undefined
-                    authorAccountUsername: string
-                    emailAddress?: string | undefined
-                    emailAddressHash?: string | undefined
-                    firstName?: string | undefined
-                    lastName?: string | undefined
-                    phoneNumber?: string | undefined
-                    url?: string | undefined
-                  }
-                | undefined
-            }
-          | undefined
-      }
-    | undefined
+  createInvitation?: {
+    __typename?: 'CreateInvitationPayload'
+    invitation?: {
+      __typename?: 'Invitation'
+      uuid: any
+      contactByContactId?: {
+        __typename?: 'Contact'
+        nodeId: string
+        id: any
+        accountUsername?: string | null
+        address?: string | null
+        authorAccountUsername: string
+        emailAddress?: string | null
+        emailAddressHash?: string | null
+        firstName?: string | null
+        lastName?: string | null
+        phoneNumber?: string | null
+        url?: string | null
+      } | null
+    } | null
+  } | null
 }
 
 export type DeleteInvitationByUuidMutationVariables = Exact<{
@@ -3695,12 +3643,10 @@ export type DeleteInvitationByUuidMutationVariables = Exact<{
 
 export type DeleteInvitationByUuidMutation = {
   __typename?: 'Mutation'
-  deleteInvitationByUuid?:
-    | {
-        __typename?: 'DeleteInvitationPayload'
-        clientMutationId?: string | undefined
-      }
-    | undefined
+  deleteInvitationByUuid?: {
+    __typename?: 'DeleteInvitationPayload'
+    clientMutationId?: string | null
+  } | null
 }
 
 export type UpdateInvitationByIdMutationVariables = Exact<{
@@ -3710,39 +3656,33 @@ export type UpdateInvitationByIdMutationVariables = Exact<{
 
 export type UpdateInvitationByIdMutation = {
   __typename?: 'Mutation'
-  updateInvitationById?:
-    | {
-        __typename?: 'UpdateInvitationPayload'
-        invitation?:
-          | {
-              __typename?: 'Invitation'
-              id: any
-              nodeId: string
-              contactId: any
-              eventId: any
-              feedback?: InvitationFeedback | undefined
-              feedbackPaper?: InvitationFeedbackPaper | undefined
-              uuid: any
-              contactByContactId?:
-                | {
-                    __typename?: 'Contact'
-                    nodeId: string
-                    id: any
-                    accountUsername?: string | undefined
-                    address?: string | undefined
-                    authorAccountUsername: string
-                    emailAddress?: string | undefined
-                    emailAddressHash?: string | undefined
-                    firstName?: string | undefined
-                    lastName?: string | undefined
-                    phoneNumber?: string | undefined
-                    url?: string | undefined
-                  }
-                | undefined
-            }
-          | undefined
-      }
-    | undefined
+  updateInvitationById?: {
+    __typename?: 'UpdateInvitationPayload'
+    invitation?: {
+      __typename?: 'Invitation'
+      id: any
+      nodeId: string
+      contactId: any
+      eventId: any
+      feedback?: InvitationFeedback | null
+      feedbackPaper?: InvitationFeedbackPaper | null
+      uuid: any
+      contactByContactId?: {
+        __typename?: 'Contact'
+        nodeId: string
+        id: any
+        accountUsername?: string | null
+        address?: string | null
+        authorAccountUsername: string
+        emailAddress?: string | null
+        emailAddressHash?: string | null
+        firstName?: string | null
+        lastName?: string | null
+        phoneNumber?: string | null
+        url?: string | null
+      } | null
+    } | null
+  } | null
 }
 
 export type InviteMutationVariables = Exact<{
@@ -3752,9 +3692,10 @@ export type InviteMutationVariables = Exact<{
 
 export type InviteMutation = {
   __typename?: 'Mutation'
-  invite?:
-    | { __typename?: 'InvitePayload'; clientMutationId?: string | undefined }
-    | undefined
+  invite?: {
+    __typename?: 'InvitePayload'
+    clientMutationId?: string | null
+  } | null
 }
 
 export type ProfilePictureSetMutationVariables = Exact<{
@@ -3763,12 +3704,10 @@ export type ProfilePictureSetMutationVariables = Exact<{
 
 export type ProfilePictureSetMutation = {
   __typename?: 'Mutation'
-  profilePictureSet?:
-    | {
-        __typename?: 'ProfilePictureSetPayload'
-        clientMutationId?: string | undefined
-      }
-    | undefined
+  profilePictureSet?: {
+    __typename?: 'ProfilePictureSetPayload'
+    clientMutationId?: string | null
+  } | null
 }
 
 export type UploadCreateMutationVariables = Exact<{
@@ -3777,13 +3716,11 @@ export type UploadCreateMutationVariables = Exact<{
 
 export type UploadCreateMutation = {
   __typename?: 'Mutation'
-  uploadCreate?:
-    | {
-        __typename?: 'UploadCreatePayload'
-        clientMutationId?: string | undefined
-        uuid?: any | undefined
-      }
-    | undefined
+  uploadCreate?: {
+    __typename?: 'UploadCreatePayload'
+    clientMutationId?: string | null
+    uuid?: any | null
+  } | null
 }
 
 export type AccountIsExistingQueryVariables = Exact<{
@@ -3792,7 +3729,7 @@ export type AccountIsExistingQueryVariables = Exact<{
 
 export type AccountIsExistingQuery = {
   __typename?: 'Query'
-  accountIsExisting?: boolean | undefined
+  accountIsExisting?: boolean | null
 }
 
 export type AccountUploadQuotaBytesQueryVariables = Exact<{
@@ -3801,7 +3738,7 @@ export type AccountUploadQuotaBytesQueryVariables = Exact<{
 
 export type AccountUploadQuotaBytesQuery = {
   __typename?: 'Query'
-  accountUploadQuotaBytes?: any | undefined
+  accountUploadQuotaBytes?: any | null
 }
 
 export type AllContactsQueryVariables = Exact<{
@@ -3812,31 +3749,29 @@ export type AllContactsQueryVariables = Exact<{
 
 export type AllContactsQuery = {
   __typename?: 'Query'
-  allContacts?:
-    | {
-        __typename?: 'ContactsConnection'
-        totalCount: number
-        nodes: Array<{
-          __typename?: 'Contact'
-          nodeId: string
-          id: any
-          accountUsername?: string | undefined
-          address?: string | undefined
-          authorAccountUsername: string
-          emailAddress?: string | undefined
-          emailAddressHash?: string | undefined
-          firstName?: string | undefined
-          lastName?: string | undefined
-          phoneNumber?: string | undefined
-          url?: string | undefined
-        }>
-        pageInfo: {
-          __typename?: 'PageInfo'
-          hasNextPage: boolean
-          endCursor?: any | undefined
-        }
-      }
-    | undefined
+  allContacts?: {
+    __typename?: 'ContactsConnection'
+    totalCount: number
+    nodes: Array<{
+      __typename?: 'Contact'
+      nodeId: string
+      id: any
+      accountUsername?: string | null
+      address?: string | null
+      authorAccountUsername: string
+      emailAddress?: string | null
+      emailAddressHash?: string | null
+      firstName?: string | null
+      lastName?: string | null
+      phoneNumber?: string | null
+      url?: string | null
+    }>
+    pageInfo: {
+      __typename?: 'PageInfo'
+      hasNextPage: boolean
+      endCursor?: any | null
+    }
+  } | null
 }
 
 export type EventByAuthorUsernameAndSlugQueryVariables = Exact<{
@@ -3847,55 +3782,51 @@ export type EventByAuthorUsernameAndSlugQueryVariables = Exact<{
 
 export type EventByAuthorUsernameAndSlugQuery = {
   __typename?: 'Query'
-  eventByAuthorUsernameAndSlug?:
-    | {
-        __typename?: 'Event'
+  eventByAuthorUsernameAndSlug?: {
+    __typename?: 'Event'
+    id: any
+    nodeId: string
+    authorUsername: string
+    description?: string | null
+    end?: any | null
+    inviteeCountMaximum?: number | null
+    isArchived: boolean
+    isInPerson?: boolean | null
+    isRemote?: boolean | null
+    location?: string | null
+    name: string
+    slug: string
+    start: any
+    url?: string | null
+    visibility: EventVisibility
+    invitationsByEventId: {
+      __typename?: 'InvitationsConnection'
+      nodes: Array<{
+        __typename?: 'Invitation'
         id: any
         nodeId: string
-        authorUsername: string
-        description?: string | undefined
-        end?: any | undefined
-        inviteeCountMaximum?: number | undefined
-        isArchived: boolean
-        isInPerson?: boolean | undefined
-        isRemote?: boolean | undefined
-        location?: string | undefined
-        name: string
-        slug: string
-        start: any
-        url?: string | undefined
-        visibility: EventVisibility
-        invitationsByEventId: {
-          __typename?: 'InvitationsConnection'
-          nodes: Array<{
-            __typename?: 'Invitation'
-            id: any
-            nodeId: string
-            contactId: any
-            eventId: any
-            feedback?: InvitationFeedback | undefined
-            feedbackPaper?: InvitationFeedbackPaper | undefined
-            uuid: any
-            contactByContactId?:
-              | {
-                  __typename?: 'Contact'
-                  nodeId: string
-                  id: any
-                  accountUsername?: string | undefined
-                  address?: string | undefined
-                  authorAccountUsername: string
-                  emailAddress?: string | undefined
-                  emailAddressHash?: string | undefined
-                  firstName?: string | undefined
-                  lastName?: string | undefined
-                  phoneNumber?: string | undefined
-                  url?: string | undefined
-                }
-              | undefined
-          }>
-        }
-      }
-    | undefined
+        contactId: any
+        eventId: any
+        feedback?: InvitationFeedback | null
+        feedbackPaper?: InvitationFeedbackPaper | null
+        uuid: any
+        contactByContactId?: {
+          __typename?: 'Contact'
+          nodeId: string
+          id: any
+          accountUsername?: string | null
+          address?: string | null
+          authorAccountUsername: string
+          emailAddress?: string | null
+          emailAddressHash?: string | null
+          firstName?: string | null
+          lastName?: string | null
+          phoneNumber?: string | null
+          url?: string | null
+        } | null
+      }>
+    }
+  } | null
 }
 
 export type EventIsExistingQueryVariables = Exact<{
@@ -3905,7 +3836,7 @@ export type EventIsExistingQueryVariables = Exact<{
 
 export type EventIsExistingQuery = {
   __typename?: 'Query'
-  eventIsExisting?: boolean | undefined
+  eventIsExisting?: boolean | null
 }
 
 export type AllEventsQueryVariables = Exact<{
@@ -3916,35 +3847,33 @@ export type AllEventsQueryVariables = Exact<{
 
 export type AllEventsQuery = {
   __typename?: 'Query'
-  allEvents?:
-    | {
-        __typename?: 'EventsConnection'
-        totalCount: number
-        nodes: Array<{
-          __typename?: 'Event'
-          id: any
-          nodeId: string
-          authorUsername: string
-          description?: string | undefined
-          end?: any | undefined
-          inviteeCountMaximum?: number | undefined
-          isArchived: boolean
-          isInPerson?: boolean | undefined
-          isRemote?: boolean | undefined
-          location?: string | undefined
-          name: string
-          slug: string
-          start: any
-          url?: string | undefined
-          visibility: EventVisibility
-        }>
-        pageInfo: {
-          __typename?: 'PageInfo'
-          hasNextPage: boolean
-          endCursor?: any | undefined
-        }
-      }
-    | undefined
+  allEvents?: {
+    __typename?: 'EventsConnection'
+    totalCount: number
+    nodes: Array<{
+      __typename?: 'Event'
+      id: any
+      nodeId: string
+      authorUsername: string
+      description?: string | null
+      end?: any | null
+      inviteeCountMaximum?: number | null
+      isArchived: boolean
+      isInPerson?: boolean | null
+      isRemote?: boolean | null
+      location?: string | null
+      name: string
+      slug: string
+      start: any
+      url?: string | null
+      visibility: EventVisibility
+    }>
+    pageInfo: {
+      __typename?: 'PageInfo'
+      hasNextPage: boolean
+      endCursor?: any | null
+    }
+  } | null
 }
 
 export type AllInvitationsQueryVariables = Exact<{
@@ -3955,39 +3884,35 @@ export type AllInvitationsQueryVariables = Exact<{
 
 export type AllInvitationsQuery = {
   __typename?: 'Query'
-  allInvitations?:
-    | {
-        __typename?: 'InvitationsConnection'
-        totalCount: number
-        nodes: Array<{
-          __typename?: 'Invitation'
-          id: any
-          nodeId: string
-          contactId: any
-          eventId: any
-          feedback?: InvitationFeedback | undefined
-          feedbackPaper?: InvitationFeedbackPaper | undefined
-          uuid: any
-          contactByContactId?:
-            | {
-                __typename?: 'Contact'
-                nodeId: string
-                id: any
-                accountUsername?: string | undefined
-                address?: string | undefined
-                authorAccountUsername: string
-                emailAddress?: string | undefined
-                emailAddressHash?: string | undefined
-                firstName?: string | undefined
-                lastName?: string | undefined
-                phoneNumber?: string | undefined
-                url?: string | undefined
-              }
-            | undefined
-        }>
-        pageInfo: { __typename?: 'PageInfo'; hasNextPage: boolean }
-      }
-    | undefined
+  allInvitations?: {
+    __typename?: 'InvitationsConnection'
+    totalCount: number
+    nodes: Array<{
+      __typename?: 'Invitation'
+      id: any
+      nodeId: string
+      contactId: any
+      eventId: any
+      feedback?: InvitationFeedback | null
+      feedbackPaper?: InvitationFeedbackPaper | null
+      uuid: any
+      contactByContactId?: {
+        __typename?: 'Contact'
+        nodeId: string
+        id: any
+        accountUsername?: string | null
+        address?: string | null
+        authorAccountUsername: string
+        emailAddress?: string | null
+        emailAddressHash?: string | null
+        firstName?: string | null
+        lastName?: string | null
+        phoneNumber?: string | null
+        url?: string | null
+      } | null
+    }>
+    pageInfo: { __typename?: 'PageInfo'; hasNextPage: boolean }
+  } | null
 }
 
 export type ProfilePictureByUsernameQueryVariables = Exact<{
@@ -3996,15 +3921,13 @@ export type ProfilePictureByUsernameQueryVariables = Exact<{
 
 export type ProfilePictureByUsernameQuery = {
   __typename?: 'Query'
-  profilePictureByUsername?:
-    | {
-        __typename?: 'ProfilePicture'
-        id: any
-        nodeId: string
-        uploadStorageKey: string
-        username: string
-      }
-    | undefined
+  profilePictureByUsername?: {
+    __typename?: 'ProfilePicture'
+    id: any
+    nodeId: string
+    uploadStorageKey: string
+    username: string
+  } | null
 }
 
 export type AllUploadsQueryVariables = Exact<{
@@ -4015,26 +3938,24 @@ export type AllUploadsQueryVariables = Exact<{
 
 export type AllUploadsQuery = {
   __typename?: 'Query'
-  allUploads?:
-    | {
-        __typename?: 'UploadsConnection'
-        totalCount: number
-        nodes: Array<{
-          __typename?: 'Upload'
-          id: any
-          nodeId: string
-          sizeByte: any
-          storageKey?: string | undefined
-          username: string
-          uuid: any
-        }>
-        pageInfo: {
-          __typename?: 'PageInfo'
-          hasNextPage: boolean
-          endCursor?: any | undefined
-        }
-      }
-    | undefined
+  allUploads?: {
+    __typename?: 'UploadsConnection'
+    totalCount: number
+    nodes: Array<{
+      __typename?: 'Upload'
+      id: any
+      nodeId: string
+      sizeByte: any
+      storageKey?: string | null
+      username: string
+      uuid: any
+    }>
+    pageInfo: {
+      __typename?: 'PageInfo'
+      hasNextPage: boolean
+      endCursor?: any | null
+    }
+  } | null
 }
 
 export const ContactFieldsFragmentDoc = gql`

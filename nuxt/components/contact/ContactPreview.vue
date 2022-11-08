@@ -53,7 +53,7 @@ import { Contact } from '~/types/contact'
 
 export interface Props {
   contact: Contact
-  feedback?: string
+  feedback?: string | null
   isUsernameLinked?: boolean
 }
 withDefaults(defineProps<Props>(), {

@@ -186,14 +186,14 @@ async function submit() {
     const result = await updateContactByIdMutation.executeMutation({
       id: form.id,
       contactPatch: {
-        accountUsername: form.accountUsername || undefined,
-        address: form.address || undefined,
+        accountUsername: form.accountUsername || null,
+        address: form.address || null,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.emailAddress || undefined,
-        firstName: form.firstName || undefined,
-        lastName: form.lastName || undefined,
-        phoneNumber: form.phoneNumber || undefined,
-        url: form.url || undefined,
+        emailAddress: form.emailAddress || null,
+        firstName: form.firstName || null,
+        lastName: form.lastName || null,
+        phoneNumber: form.phoneNumber || null,
+        url: form.url || null,
       },
     })
 
@@ -205,14 +205,14 @@ async function submit() {
     // Add
     const result = await createContactMutation.executeMutation({
       contactInput: {
-        accountUsername: form.accountUsername || undefined,
-        address: form.address || undefined,
+        accountUsername: form.accountUsername || null,
+        address: form.address || null,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.emailAddress || undefined,
-        firstName: form.firstName || undefined,
-        lastName: form.lastName || undefined,
-        phoneNumber: form.phoneNumber || undefined,
-        url: form.url || undefined,
+        emailAddress: form.emailAddress || null,
+        firstName: form.firstName || null,
+        lastName: form.lastName || null,
+        phoneNumber: form.phoneNumber || null,
+        url: form.url || null,
       },
     })
 
