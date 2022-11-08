@@ -6,7 +6,7 @@
   "description": "The manager for events supported by invitees.",
   "type": "module",
   "engines": {
-    "node": "18"
+    "node": "19"
   },
   "scripts": {
     "dev": "cross-env HOST=0.0.0.0 NODE_TLS_REJECT_UNAUTHORIZED=0 sh dev.sh",
