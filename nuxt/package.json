@@ -32,7 +32,7 @@
     "lint:quiet": "pnpm lint:js --quiet && pnpm lint:style --quiet",
     "lint:staged": "pnpm lint-staged",
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js",
-    "gql:codegen": "graphql-codegen --config codegen.yml"
+    "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "1.9.9",
