@@ -116,7 +116,7 @@ function onDeleteSuccess() {
 
 // computations
 const title = computed(() => {
-  if (!event.value) return t('title') // TODO: add e2e tests for titles
+  if (!event.value) return t('title')
 
   return `${t('title')} · ${event.value.name}`
 })

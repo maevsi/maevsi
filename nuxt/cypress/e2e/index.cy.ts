@@ -1,8 +1,4 @@
 describe('index page', () => {
-  // beforeEach(() => {
-  //   cy.visit('/')
-  // })
-
   context('page load', () => {
     it('loads the page successfully', () => {
       cy.request('/').then((resp) => {
