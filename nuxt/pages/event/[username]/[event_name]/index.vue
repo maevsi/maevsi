@@ -533,7 +533,7 @@ const routeQuery = computed(() => route.query)
 const routeQueryIc = computed(() => route.query.ic)
 const signedInUsername = computed(() => store.signedInUsername)
 const title = computed(() => {
-  return event?.value?.name || t('globalLoading')
+  return event.value?.name || t('globalLoading')
 })
 
 // lifecycle
@@ -542,7 +542,7 @@ watch(eventQuery.error, (currentValue, _oldValue) => {
 })
 
 // initialization
-useHeadDefault(title.value, {
+useHeadDefault(title, {
   meta: [
     {
       hid: 'description',

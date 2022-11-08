@@ -1,7 +1,11 @@
 import { defu } from 'defu'
 import { MetaObject } from 'nuxt/dist/app'
+import { ComputedRef } from 'vue'
 
-export const useHeadDefault = (title: string, extension?: MetaObject) => {
+export const useHeadDefault = (
+  title: string | ComputedRef<string>,
+  extension?: MetaObject
+) => {
   const host = useHost()
   const router = useRouter()
 

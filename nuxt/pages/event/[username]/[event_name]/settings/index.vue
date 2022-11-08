@@ -116,9 +116,7 @@ function onDeleteSuccess() {
 
 // computations
 const title = computed(() => {
-  if (!event.value) {
-    return t('title')
-  }
+  if (!event.value) return t('title') // TODO: add e2e tests for titles
 
   return `${t('title')} · ${event.value.name}`
 })
@@ -129,7 +127,7 @@ watch(eventQuery.error, (currentValue, _oldValue) => {
 })
 
 // initialization
-useHeadDefault(title.value)
+useHeadDefault(title)
 </script>
 
 <script lang="ts">
