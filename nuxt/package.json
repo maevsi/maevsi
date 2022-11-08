@@ -142,6 +142,7 @@
     "vue-tsc": "1.0.9",
     "webpack": "5.74.0"
   },
+  "packageManager": "pnpm@7.14.2",
   "lint-staged": {
     "*.{js,vue}": "eslint",
     "*.{css,vue}": "stylelint"
