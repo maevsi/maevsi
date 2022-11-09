@@ -6,6 +6,7 @@ import {
   ClientOptions,
   Client,
 } from '@urql/core'
+// import type { Data } from '@urql/exchange-graphcache'
 import { Cache, cacheExchange } from '@urql/exchange-graphcache'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
@@ -37,6 +38,33 @@ const invalidateCache = (
         .forEach((field) => {
           cache.invalidate('Query', field.fieldKey)
         })
+// const listPush = (cache: Cache, fieldName: string, data: Data | null) =>
+//   cache
+//     .inspectFields('Query')
+//     .filter((field) => field.fieldName === fieldName)
+//     .forEach((field) => {
+//       const dataField = cache.resolve('Query', field.fieldKey)
+
+//       if (typeof dataField !== 'string')
+//         throw new Error('Data field is no string!')
+
+//       const allInvitations = cache.resolve(dataField, 'nodes')
+
+//       if (
+//         !data ||
+//         !Array.isArray(allInvitations) ||
+//         !isNonEmptyArrayOfStrings(allInvitations)
+//       )
+//         throw new Error('Data field is no array!')
+
+// // TODO: insert IDs, not data
+//       allInvitations.push(data)
+//       cache.link('Query', field.fieldKey, allInvitations)
+//     })
+
+// function isNonEmptyArrayOfStrings(value: unknown): value is (string | Data)[] {
+//   return Array.isArray(value) && value.every((item) => typeof item === 'string')
+// }
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const config = useRuntimeConfig()
@@ -68,9 +96,13 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     },
     updates: {
       Mutation: {
-        createInvitation(_parent, _args, cache, _info) {
-          invalidateCache(cache, 'allInvitations')
-        },
+        // create
+        createInvitation: (_parent, _args, cache, _info) =>
+          invalidateCache(cache, 'allInvitations'),
+        // TODO: create manual updates that do not require invalidation
+        // listPush(cache, 'allInvitations', parent.createInvitation),
+
+        // delete
         eventDelete: (_parent, args, cache, _info) =>
           invalidateCache(cache, 'Event', args),
         deleteInvitationById: (_parent, args, cache, _info) =>
