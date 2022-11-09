@@ -3637,13 +3637,13 @@ export type CreateInvitationMutation = {
   } | null
 }
 
-export type DeleteInvitationByUuidMutationVariables = Exact<{
-  uuid: Scalars['UUID']
+export type DeleteInvitationByIdMutationVariables = Exact<{
+  id: Scalars['BigInt']
 }>
 
-export type DeleteInvitationByUuidMutation = {
+export type DeleteInvitationByIdMutation = {
   __typename?: 'Mutation'
-  deleteInvitationByUuid?: {
+  deleteInvitationById?: {
     __typename?: 'DeleteInvitationPayload'
     clientMutationId?: string | null
   } | null
@@ -4310,19 +4310,19 @@ export function useCreateInvitationMutation() {
     CreateInvitationMutationVariables
   >(CreateInvitationDocument)
 }
-export const DeleteInvitationByUuidDocument = gql`
-  mutation deleteInvitationByUuid($uuid: UUID!) {
-    deleteInvitationByUuid(input: { uuid: $uuid }) {
+export const DeleteInvitationByIdDocument = gql`
+  mutation deleteInvitationById($id: BigInt!) {
+    deleteInvitationById(input: { id: $id }) {
       clientMutationId
     }
   }
 `
 
-export function useDeleteInvitationByUuidMutation() {
+export function useDeleteInvitationByIdMutation() {
   return Urql.useMutation<
-    DeleteInvitationByUuidMutation,
-    DeleteInvitationByUuidMutationVariables
-  >(DeleteInvitationByUuidDocument)
+    DeleteInvitationByIdMutation,
+    DeleteInvitationByIdMutationVariables
+  >(DeleteInvitationByIdDocument)
 }
 export const UpdateInvitationByIdDocument = gql`
   mutation updateInvitationById(

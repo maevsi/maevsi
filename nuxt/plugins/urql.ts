@@ -6,7 +6,7 @@ import {
   ClientOptions,
   Client,
 } from '@urql/core'
-import { cacheExchange } from '@urql/exchange-graphcache'
+import { Cache, cacheExchange } from '@urql/exchange-graphcache'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 import { provideClient } from '@urql/vue'
@@ -24,6 +24,19 @@ import {
 import { useMaevsiStore } from '~/store'
 
 const ssrKey = '__URQL_DATA__'
+const invalidateCache = (
+  cache: Cache,
+  name: string,
+  args?: { input: { id: any } }
+) =>
+  args
+    ? cache.invalidate({ __typename: name, id: args.input.id })
+    : cache
+        .inspectFields('Query')
+        .filter((field) => field.fieldName === name)
+        .forEach((field) => {
+          cache.invalidate('Query', field.fieldKey)
+        })
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const config = useRuntimeConfig()
@@ -53,23 +66,23 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         allUploads: relayPagination(),
       },
     },
-    // updates: {
-    //   Mutation: {
-    //     eventDelete(_parent, args, cache, _info) {
-    //       cache.invalidate({
-    //         __typename: 'Event',
-    //         id: (args.input as Variables).id as string | number,
-    //       })
-    //     },
-    //   },
-    // },
+    updates: {
+      Mutation: {
+        createInvitation(_parent, _args, cache, _info) {
+          invalidateCache(cache, 'allInvitations')
+        },
+        eventDelete: (_parent, args, cache, _info) =>
+          invalidateCache(cache, 'Event', args),
+        deleteInvitationById: (_parent, args, cache, _info) =>
+          invalidateCache(cache, 'Invitation', args),
+      },
+    },
   }
 
-  // @ts-ignore https://github.com/FormidableLabs/urql/issues/2639
   const cache = cacheExchange(cacheConfig)
 
   const options: ClientOptions = {
-    requestPolicy: 'network-only', // TODO: https://github.com/maevsi/maevsi/issues/720
+    requestPolicy: 'cache-and-network',
     fetchOptions: () => {
       const store = useMaevsiStore(nuxtApp.$pinia)
       const jwt = store.jwt
@@ -93,7 +106,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       ...(config.public.isInProduction ? [] : [devtoolsExchange]),
       dedupExchange,
       cache,
-      ssr, // add `ssr` before `fetchExchange`
+      ssr, // `ssr` must be before `fetchExchange`
       fetchExchange,
     ],
   }
