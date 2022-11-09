@@ -370,7 +370,7 @@ async function submit() {
         end: form.end || null,
         inviteeCountMaximum: form.inviteeCountMaximum
           ? +form.inviteeCountMaximum
-          : undefined,
+          : null,
         isInPerson: form.isInPerson,
         isRemote: form.isRemote,
         location: form.location || null,
@@ -414,7 +414,7 @@ async function submit() {
           end: form.end || null,
           inviteeCountMaximum: form.inviteeCountMaximum
             ? +form.inviteeCountMaximum
-            : undefined,
+            : null,
           isInPerson: form.isInPerson,
           isRemote: form.isRemote,
           location: form.location || null,
