@@ -99,14 +99,14 @@
       :submit-task-provider="() => getUploadBlobPromise()"
     >
       <div class="text-center">
-        <croppa
+        <!-- <croppa
           ref="croppyRef"
           :initial-image="fileSelectedUrl"
           :placeholder="t('croppaPlaceholder')"
           :placeholder-font-size="17.5"
           prevent-white-space
           :show-remove-button="false"
-        />
+        /> -->
       </div>
       <template #header>{{ t('uploadNew') }}</template>
       <template #submit-icon><IconUpload /></template>
@@ -375,7 +375,6 @@ watch(allUploadsQuery.error, (currentValue, _oldValue) => {
 
 <style scoped>
 @import url('~/node_modules/@uppy/core/dist/style.css');
-@import url('~/node_modules/vue-croppa/dist/vue-croppa.min.css');
 </style>
 
 <i18n lang="yml">
