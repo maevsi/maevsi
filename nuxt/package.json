@@ -86,7 +86,7 @@
     "cookie": "0.5.0",
     "cross-env": "7.0.3",
     "css-element-queries": "1.2.3",
-    "cypress": "10.11.0",
+    "cypress": "11.0.0",
     "cypress-visual-regression": "1.7.0",
     "defu": "6.1.0",
     "downloadjs": "1.4.7",
