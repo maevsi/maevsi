@@ -1,6 +1,6 @@
 <template>
   <Loader :api="api">
-    <Card v-if="uploads?.length">
+    <Card>
       <ul class="flex flex-wrap justify-center">
         <template v-if="uploads?.length">
           <li
