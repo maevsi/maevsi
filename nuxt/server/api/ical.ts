@@ -24,9 +24,7 @@ export default defineEventHandler(async function (h3Event: H3Event) {
 
   const bodyChecks = [
     { property: undefined, name: 'Body' },
-    { property: 'contact', name: 'Contact' },
     { property: 'event', name: 'Event' },
-    { property: 'invitation', name: 'Invitation' },
   ]
 
   for (const bodyCheck of bodyChecks) {

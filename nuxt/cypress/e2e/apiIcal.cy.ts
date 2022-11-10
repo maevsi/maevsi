@@ -20,9 +20,7 @@ describe('ical api', () => {
     it('validates input data', () => {
       const inputData = [
         { data: undefined, message: 'Body is not set!' },
-        { data: { event: {}, invitation: {} }, message: 'Contact is not set!' },
         { data: { contact: {}, invitation: {} }, message: 'Event is not set!' },
-        { data: { contact: {}, event: {} }, message: 'Invitation is not set!' },
       ]
 
       for (const inputDataElement of inputData) {
