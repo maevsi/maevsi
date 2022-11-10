@@ -35,7 +35,7 @@
               :contact="contact"
               :is-deleting="pending.deletions.includes(contact.nodeId)"
               :is-editing="pending.edits.includes(contact.nodeId)"
-              @delete="delete_(contact.nodeId)"
+              @delete="delete_(contact.nodeId, contact.id)"
               @edit="edit(contact)"
             />
           </tbody>
@@ -68,14 +68,17 @@ import consola from 'consola'
 
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import { getApiMeta } from '~/plugins/util/util'
-import { useAllContactsQuery, useDeleteContactMutation } from '~/gql/generated'
+import {
+  useAllContactsQuery,
+  useDeleteContactByIdMutation,
+} from '~/gql/generated'
 import { Contact } from '~/types/contact'
 import { useMaevsiStore } from '~/store'
 
 const { t } = useI18n()
 const store = useMaevsiStore()
-const { executeMutation: executeMutationContactDelete } =
-  useDeleteContactMutation()
+const { executeMutation: executeMutationContactDeleteById } =
+  useDeleteContactByIdMutation()
 
 // refs
 const after = ref<string>()
@@ -114,12 +117,10 @@ function add() {
   selectedContact.value = undefined
   store.modalAdd({ id: 'ModalContact' })
 }
-async function delete_(nodeId: string) {
+async function delete_(nodeId: string, id: string) {
   pending.deletions.push(nodeId)
   api.value.errors = []
-  const result = await executeMutationContactDelete({
-    nodeId,
-  })
+  const result = await executeMutationContactDeleteById({ id })
 
   if (result.error) {
     api.value.errors.push(result.error)

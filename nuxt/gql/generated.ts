@@ -3449,13 +3449,13 @@ export type CreateContactMutation = {
   } | null
 }
 
-export type DeleteContactMutationVariables = Exact<{
-  nodeId: Scalars['ID']
+export type DeleteContactByIdMutationVariables = Exact<{
+  id: Scalars['BigInt']
 }>
 
-export type DeleteContactMutation = {
+export type DeleteContactByIdMutation = {
   __typename?: 'Mutation'
-  deleteContact?: {
+  deleteContactById?: {
     __typename?: 'DeleteContactPayload'
     clientMutationId?: string | null
     contact?: {
@@ -4188,9 +4188,9 @@ export function useCreateContactMutation() {
     CreateContactMutationVariables
   >(CreateContactDocument)
 }
-export const DeleteContactDocument = gql`
-  mutation deleteContact($nodeId: ID!) {
-    deleteContact(input: { nodeId: $nodeId }) {
+export const DeleteContactByIdDocument = gql`
+  mutation deleteContactById($id: BigInt!) {
+    deleteContactById(input: { id: $id }) {
       clientMutationId
       contact {
         ...contactFields
@@ -4200,11 +4200,11 @@ export const DeleteContactDocument = gql`
   ${ContactFieldsFragmentDoc}
 `
 
-export function useDeleteContactMutation() {
+export function useDeleteContactByIdMutation() {
   return Urql.useMutation<
-    DeleteContactMutation,
-    DeleteContactMutationVariables
-  >(DeleteContactDocument)
+    DeleteContactByIdMutation,
+    DeleteContactByIdMutationVariables
+  >(DeleteContactByIdDocument)
 }
 export const UpdateContactByIdDocument = gql`
   mutation updateContactById($id: BigInt!, $contactPatch: ContactPatch!) {
