@@ -430,9 +430,7 @@ function downloadIcal() {
         default:
           Swal.fire({
             icon: 'error',
-            text: t('iCalUnexpectedStatusCode', {
-              statusCode: xhr.status,
-            }) as string,
+            text: t('iCalUnexpectedStatusCode'), // TODO: add suggestion (https://github.com/maevsi/maevsi/issues/903)
             title: t('globalStatusError'),
           })
       }
@@ -580,7 +578,7 @@ de:
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
   iCalDownload: Als Kalendereintrag herunterladen
   iCalHint: Die heruntergeladene Datei kann dann mit deiner Kalender-Anwendung geöffnet werden.
-  iCalUnexpectedStatusCode: 'iCal-Daten konnten nicht geladen werden: Statuscode {statusCode}.'
+  iCalUnexpectedStatusCode: iCal-Daten konnten nicht geladen werden!
   invitationAccept: Einladung annehmen
   invitationAcceptAdmin: Einladung im Namen von {name} annehmen
   invitationAccepted: Einladung angenommen
@@ -615,7 +613,7 @@ en:
   hintQrCode: This picture is your access authorization for the event
   iCalDownload: Download for your calendar
   iCalHint: You can open the downloaded file in your calendar app.
-  iCalUnexpectedStatusCode: 'Could not get iCal data: Status code {statusCode}.'
+  iCalUnexpectedStatusCode: Could not get iCal data!
   invitationAccept: Accept invitation
   invitationAcceptAdmin: Accept invitation on behalf of {name}
   invitationAccepted: Invitation accepted
