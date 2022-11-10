@@ -79,12 +79,6 @@ const { t } = useI18n()
 const queryString = computed(() => getQueryString(route.query))
 </script>
 
-<script lang="ts">
-export default {
-  name: 'MaevsiBreadcrumbs',
-}
-</script>
-
 <i18n lang="yml">
 de:
   home: Nach Hause

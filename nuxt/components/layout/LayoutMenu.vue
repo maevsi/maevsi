@@ -111,12 +111,6 @@ const localePath = useLocalePath()
 const { t } = useI18n()
 </script>
 
-<script lang="ts">
-export default {
-  name: 'MaevsiMenu',
-}
-</script>
-
 <i18n lang="yml">
 de:
   accountSettings: Konto bearbeiten

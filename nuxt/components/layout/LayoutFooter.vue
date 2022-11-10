@@ -150,12 +150,6 @@ function getLocaleFlag(locale: string) {
 }
 </script>
 
-<script lang="ts">
-export default {
-  name: 'MaevsiFooter',
-}
-</script>
-
 <i18n lang="yml">
 de:
   colorScheme: Farbschema
