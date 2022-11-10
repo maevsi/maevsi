@@ -314,10 +314,12 @@ const createEventMutation = useCreateEventMutation()
 const updateEventMutation = useUpdateEventByIdMutation()
 
 // api data
-const api = computed(() => ({
-  data: {},
-  ...getApiMeta([createEventMutation, updateEventMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {},
+    ...getApiMeta([createEventMutation, updateEventMutation]),
+  })
+)
 
 // data
 const form = reactive({

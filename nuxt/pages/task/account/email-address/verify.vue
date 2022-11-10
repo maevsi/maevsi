@@ -37,12 +37,14 @@ const accountEmailAddressVerificationMutation =
   useAccountEmailAddressVerificationMutation()
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...accountEmailAddressVerificationMutation.data.value,
-  },
-  ...getApiMeta([accountEmailAddressVerificationMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...accountEmailAddressVerificationMutation.data.value,
+    },
+    ...getApiMeta([accountEmailAddressVerificationMutation]),
+  })
+)
 
 // data
 const title = t('title')

@@ -233,16 +233,18 @@ const invitationsQuery = useAllInvitationsQuery({
 })
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...invitationsQuery.data.value,
-  },
-  ...getApiMeta([
-    deleteInvitationByIdMutation,
-    inviteMutation,
-    invitationsQuery,
-  ]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...invitationsQuery.data.value,
+    },
+    ...getApiMeta([
+      deleteInvitationByIdMutation,
+      inviteMutation,
+      invitationsQuery,
+    ]),
+  })
+)
 const invitations = computed(
   () => invitationsQuery.data.value?.allInvitations?.nodes
 )

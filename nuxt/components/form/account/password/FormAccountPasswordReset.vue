@@ -41,12 +41,14 @@ const localePath = useLocalePath()
 const passwordResetMutation = useAccountPasswordResetMutation()
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...passwordResetMutation.data.value,
-  },
-  ...getApiMeta([passwordResetMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...passwordResetMutation.data.value,
+    },
+    ...getApiMeta([passwordResetMutation]),
+  })
+)
 // data
 const form = reactive({
   password: ref<string>(),

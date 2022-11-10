@@ -171,13 +171,15 @@ const allUploadsQuery = useAllUploadsQuery({
 const accountUploadQuotaBytesQuery = useAccountUploadQuotaBytesQuery()
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...allUploadsQuery.data.value,
-    ...accountUploadQuotaBytesQuery.data.value,
-  },
-  ...getApiMeta([allUploadsQuery, accountUploadQuotaBytesQuery]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...allUploadsQuery.data.value,
+      ...accountUploadQuotaBytesQuery.data.value,
+    },
+    ...getApiMeta([allUploadsQuery, accountUploadQuotaBytesQuery]),
+  })
+)
 const uploads = computed(() => allUploadsQuery.data.value?.allUploads?.nodes)
 const accountUploadQuotaBytes = computed(
   () => accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes

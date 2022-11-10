@@ -152,12 +152,14 @@ const createContactMutation = useCreateContactMutation()
 const { t } = useI18n()
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...updateContactByIdMutation.data.value,
-  },
-  ...getApiMeta([updateContactByIdMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...updateContactByIdMutation.data.value,
+    },
+    ...getApiMeta([updateContactByIdMutation]),
+  })
+)
 
 // data
 const form = reactive({

@@ -76,10 +76,12 @@ const { executeMutation: executeMutationAccountRegistration } =
   useAccountRegistrationMutation()
 
 // api data
-const api = computed(() => ({
-  data: {},
-  ...getApiMeta([]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {},
+    ...getApiMeta([]),
+  })
+)
 
 // data
 const form = reactive({

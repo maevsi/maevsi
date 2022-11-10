@@ -93,12 +93,14 @@ const eventQuery = useEventByAuthorUsernameAndSlugQuery({
 })
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...eventQuery.data.value,
-  },
-  ...getApiMeta([eventQuery]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...eventQuery.data.value,
+    },
+    ...getApiMeta([eventQuery]),
+  })
+)
 const event = computed(
   () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
 )
