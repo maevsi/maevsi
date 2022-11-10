@@ -24,7 +24,7 @@ const { t } = useI18n()
 
 <i18n lang="yml">
 de:
-  title: Deutsche Flagge
+  title: Flagge des Vereinigten Königreichs
 en:
-  title: German flag
+  title: United Kingdom's flag
 </i18n>
