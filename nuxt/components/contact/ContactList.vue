@@ -126,7 +126,7 @@ async function delete_(nodeId: string) {
     consola.error(result.error)
   }
 
-  pending.deletions.slice(pending.deletions.indexOf(nodeId), 1)
+  pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
 
   // if (!result.data) {
   //   return
