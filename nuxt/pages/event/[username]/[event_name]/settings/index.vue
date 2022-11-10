@@ -29,8 +29,7 @@
           :item-name="t('event')"
           :mutation="mutation"
           :variables="{
-            authorUsername: routeParamUsername,
-            slug: routeParamEventName,
+            id: event.id,
           }"
           @success="onDeleteSuccess"
         />
