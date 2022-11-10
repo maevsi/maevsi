@@ -42,7 +42,7 @@ specifiers:
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
   '@uppy/core': 3.0.4
-  '@uppy/tus': 3.0.4
+  '@uppy/tus': 3.0.5
   '@urql/core': 3.0.5
   '@urql/devtools': 2.0.3
   '@urql/exchange-graphcache': 5.0.4
@@ -154,7 +154,7 @@ devDependencies:
   '@types/pg': 8.6.5
   '@types/vue-datetime': 1.0.1
   '@uppy/core': 3.0.4
-  '@uppy/tus': 3.0.4_@uppy+core@3.0.4
+  '@uppy/tus': 3.0.5_@uppy+core@3.0.4
   '@urql/core': 3.0.5_graphql@16.6.0
   '@urql/devtools': 2.0.3_mfybxqh6aadwsv45w6sdn3i53a
   '@urql/exchange-graphcache': 5.0.4_graphql@16.6.0
@@ -3352,10 +3352,10 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@uppy/companion-client/3.0.2:
-    resolution: {integrity: sha512-Dv4RQQpuJ+4e6kRp6+KF5q2tjrFuShqXzrTFjk4EgwdX72Yz9QOgWwxhAH4/83vRdGrL/46mCcmvT52ODUJgBQ==}
+  /@uppy/companion-client/3.1.0:
+    resolution: {integrity: sha512-YXoBWCrGnKcE4S84fwAeoMa3S1IAvALEE23nZKQP5BzFJMEMCIHogbkjI0msW5TSWsYZkdHSdKYHRlPmkgVwtw==}
     dependencies:
-      '@uppy/utils': 5.0.2
+      '@uppy/utils': 5.1.0
       namespace-emitter: 2.0.1
     dev: true
 
@@ -3376,19 +3376,25 @@ packages:
     resolution: {integrity: sha512-kIQMCjXui6tjF1E9xGo4YHkvt71McXkU0FStrcQuBrRXuOhb+NcuWh3sMh3KryivVNgT6w5Odrlw2FUFkl9cqA==}
     dev: true
 
-  /@uppy/tus/3.0.4_@uppy+core@3.0.4:
-    resolution: {integrity: sha512-I+QI/AZBSgQMbnq2N4KlFKqEE5slViiB1Kg0dM/pK43wBpRaQSv6e9bc2cYBkOh348v4+Zd0v3BXga8Anj+Oiw==}
+  /@uppy/tus/3.0.5_@uppy+core@3.0.4:
+    resolution: {integrity: sha512-X8RASLyiWMJ+VRVfxLg/THAj2BABZAoW+10+PCrX+U2FKUBbjdnDo2NVZs3vScL/fXsW5pTw4d18vJbZhWcryA==}
     peerDependencies:
       '@uppy/core': ^3.0.4
     dependencies:
-      '@uppy/companion-client': 3.0.2
+      '@uppy/companion-client': 3.1.0
       '@uppy/core': 3.0.4
-      '@uppy/utils': 5.0.2
+      '@uppy/utils': 5.1.0
       tus-js-client: 3.0.1
     dev: true
 
   /@uppy/utils/5.0.2:
     resolution: {integrity: sha512-3LpqR6o60DgdNQSnKx0eXta5wupnHjzcQvTvWNGI/ZA/AYgmhnufybK0Q/t+c0D37MaDUL10RydmFxQ+G/dXvw==}
+    dependencies:
+      lodash.throttle: 4.1.1
+    dev: true
+
+  /@uppy/utils/5.1.0:
+    resolution: {integrity: sha512-kja/HZl115VDMQkS7OjxJvGBN06eOCUEIkln1G95M2YFBBgJZLrzjuVh8zSUFPfj33x6AYlv6FKjES1L+SVx/w==}
     dependencies:
       lodash.throttle: 4.1.1
     dev: true
