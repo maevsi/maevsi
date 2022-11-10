@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-4">
-    <Breadcrumbs
+    <LayoutBreadcrumbs
       :prefixes="[
         { name: t('events'), to: localePath('/event') },
         {
@@ -16,7 +16,7 @@
       ]"
     >
       {{ t('checkIns') }}
-    </Breadcrumbs>
+    </LayoutBreadcrumbs>
     <h1>
       {{ t('title') }}
     </h1>

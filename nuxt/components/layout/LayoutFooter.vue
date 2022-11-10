@@ -14,7 +14,7 @@
       </div>
       <!-- Justifying evenly, instead of "between", centers a single element. -->
       <div class="flex flex-wrap justify-between">
-        <FooterCategory :heading="t('product')">
+        <LayoutFooterCategory :heading="t('product')">
           <AppLink :to="localePath('/#overview')">
             {{ t('overview') }}
           </AppLink>
@@ -30,8 +30,8 @@
           <!-- <AppLink :to="localePath('/about/awards')">
             {{ t('awards') }}
           </AppLink> -->
-        </FooterCategory>
-        <FooterCategory :heading="t('legal')">
+        </LayoutFooterCategory>
+        <LayoutFooterCategory :heading="t('legal')">
           <AppLink :to="localePath('/legal-notice')">
             {{ t('legalNotice') }}
           </AppLink>
@@ -41,8 +41,8 @@
           <!-- <AppLink :to="localePath('/code-of-conduct')">
             {{ t('codeOfConduct') }}
           </AppLink> -->
-        </FooterCategory>
-        <!-- <FooterCategory :heading="t('support')">
+        </LayoutFooterCategory>
+        <!-- <LayoutFooterCategory :heading="t('support')">
           <AppLink :to="localePath('/support/tutorials')">
             {{ t('tutorials') }}
           </AppLink>
@@ -52,8 +52,8 @@
           <AppLink :to="localePath('/support/docs')">
             {{ t('documentation') }}
           </AppLink>
-        </FooterCategory> -->
-        <FooterCategory :heading="t('quickLinks')">
+        </LayoutFooterCategory> -->
+        <LayoutFooterCategory :heading="t('quickLinks')">
           <AppLink
             :title="t('releases')"
             to="https://github.com/maevsi/maevsi/releases"
@@ -69,8 +69,8 @@
           <AppLink to="mailto:mail+support@maev.si">
             {{ t('contact') }}
           </AppLink>
-        </FooterCategory>
-        <FooterCategory :heading="t('languages')">
+        </LayoutFooterCategory>
+        <LayoutFooterCategory :heading="t('languages')">
           <AppLink
             v-for="availableLocale in availableLocales"
             :key="availableLocale"
@@ -86,8 +86,8 @@
               </span>
             </div>
           </AppLink>
-        </FooterCategory>
-        <FooterCategory :heading="t('colorScheme')">
+        </LayoutFooterCategory>
+        <LayoutFooterCategory :heading="t('colorScheme')">
           <Button
             v-for="colorScheme in ['System', 'Light', 'Dark']"
             :key="colorScheme"
@@ -100,7 +100,7 @@
           >
             {{ t(`colorScheme${colorScheme}`) }}
           </Button>
-        </FooterCategory>
+        </LayoutFooterCategory>
       </div>
       <p class="text-center text-gray-500 dark:text-gray-400">
         {{ t('copyright', { year: new Date().getFullYear() }) }}

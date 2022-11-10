@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col gap-4">
-    <Breadcrumbs
+    <LayoutBreadcrumbs
       :prefixes="[{ name: t('accounts'), to: localePath('/account') }]"
     >
       {{ routeParamUsername }}
-    </Breadcrumbs>
+    </LayoutBreadcrumbs>
     <ButtonList v-if="signedInUsername === routeParamUsername">
       <ButtonColored :aria-label="t('settings')" to="settings" is-to-relative>
         {{ t('settings') }}

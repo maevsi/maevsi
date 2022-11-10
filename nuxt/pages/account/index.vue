@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Breadcrumbs>
+    <LayoutBreadcrumbs>
       {{ title }}
-    </Breadcrumbs>
+    </LayoutBreadcrumbs>
   </div>
 </template>
 

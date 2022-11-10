@@ -1,7 +1,7 @@
 <template>
   <Loader :api="api">
     <div v-if="event" class="flex flex-col gap-4">
-      <Breadcrumbs
+      <LayoutBreadcrumbs
         :prefixes="[
           { name: t('events'), to: localePath('/event') },
           {
@@ -17,7 +17,7 @@
         ]"
       >
         {{ t('settings') }}
-      </Breadcrumbs>
+      </LayoutBreadcrumbs>
       <section>
         <h1>{{ t('title') }}</h1>
         <FormEvent :event="event" />

@@ -1,7 +1,7 @@
 <template>
   <Loader :api="api">
     <div v-if="event" class="flex flex-col gap-4">
-      <Breadcrumbs
+      <LayoutBreadcrumbs
         :prefixes="[
           { name: t('events'), to: localePath('/event') },
           {
@@ -11,7 +11,7 @@
         ]"
       >
         {{ event.name }}
-      </Breadcrumbs>
+      </LayoutBreadcrumbs>
       <CardStateInfo v-if="routeQueryIc && contact" class="flex flex-col gap-2">
         {{ t('invitationViewFor', { name: contactName }) }}
         <ButtonColored

@@ -1,10 +1,10 @@
 <template>
   <div class="container mx-auto p-4 md:px-8">
-    <Header @onMenuShow="menuShow" />
+    <LayoutHeader @onMenuShow="menuShow" />
     <main class="min-h-screen flex-1 overflow-hidden">
       <slot />
     </main>
-    <Footer />
+    <LayoutFooter />
     <div
       class="fixed bottom-0 left-0 right-0 top-0 z-10 transition duration-500"
       :class="[
@@ -19,7 +19,11 @@
       class="fixed bottom-0 left-0 top-0 z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 lg:hidden"
       :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >
-      <Menu v-if="isMenuVisiblePartly" is-closable @onMenuHide="menuHide" />
+      <LayoutMenu
+        v-if="isMenuVisiblePartly"
+        is-closable
+        @onMenuHide="menuHide"
+      />
     </div>
     <!-- <CookieControl :locale="locale" /> -->
   </div>
