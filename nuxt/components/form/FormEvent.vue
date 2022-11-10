@@ -139,6 +139,7 @@
       <FormInput
         id-label="input-start"
         is-readonly
+        is-required
         :placeholder="dateTimeFormatter(new Date().toISOString())"
         :title="t('start')"
         type="text"
