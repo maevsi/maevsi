@@ -173,7 +173,7 @@ async function submit() {
     onSubmitComputed.value()
     close()
   } catch (errorsLocal: any) {
-    errors.value = errorsLocal
+    errors.value = [errorsLocal]
     consola.error(errorsLocal)
   }
 
