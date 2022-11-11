@@ -15,39 +15,35 @@
             class="relative box-border border-4"
             @click="toggleSelect(upload)"
           >
-            <div v-if="upload.storageKey">
-              <LoaderImage
-                :alt="upload.storageKey ? t('uploadAlt') : t('uploadAltFailed')"
-                class="h-32 w-32"
-                height="128"
-                :src="getUploadImageSrc(upload.storageKey)"
-                :title="
-                  t('uploadSize', { size: bytesToString(upload.sizeByte) })
-                "
-                width="128"
-              />
-              <div v-if="allowDeletion">
-                <div
-                  class="absolute right-0 top-0 rounded-bl-lg bg-red-600 opacity-75"
-                >
-                  <div class="flex h-full items-center justify-center">
-                    <IconTrash class="m-2" :title="t('iconTrash')" />
-                  </div>
+            <LoaderImage
+              :alt="upload.storageKey ? t('uploadAlt') : t('uploadAltFailed')"
+              class="h-32 w-32"
+              height="128"
+              :src="getUploadImageSrc(upload.storageKey || '')"
+              :title="t('uploadSize', { size: bytesToString(upload.sizeByte) })"
+              width="128"
+            />
+            <div v-if="allowDeletion">
+              <div
+                class="absolute right-0 top-0 rounded-bl-lg bg-red-600 opacity-75"
+              >
+                <div class="flex h-full items-center justify-center">
+                  <IconTrash class="m-2" :title="t('iconTrash')" />
                 </div>
-                <div
-                  class="absolute right-0 top-0"
-                  @click="deleteImageUpload(upload.id)"
+              </div>
+              <div
+                class="absolute right-0 top-0"
+                @click="deleteImageUpload(upload.id)"
+              >
+                <Button
+                  :aria-label="t('iconTrashLabel')"
+                  class="flex h-full items-center justify-center"
                 >
-                  <Button
-                    :aria-label="t('iconTrashLabel')"
-                    class="flex h-full items-center justify-center"
-                  >
-                    <IconTrash
-                      class="m-2 text-text-bright"
-                      :title="t('iconTrash')"
-                    />
-                  </Button>
-                </div>
+                  <IconTrash
+                    class="m-2 text-text-bright"
+                    :title="t('iconTrash')"
+                  />
+                </Button>
               </div>
             </div>
           </li>
@@ -60,7 +56,7 @@
                 sizeTotal: bytesToString(accountUploadQuotaBytes),
               })
             "
-            class="flex h-32 w-32 items-center justify-center bg-gray-200"
+            class="flex h-32 w-32 items-center justify-center bg-gray-300 dark:bg-gray-200"
             :title="
               t('iconAdd', {
                 sizeUsed: bytesToString(sizeByteTotal),
@@ -237,7 +233,7 @@ function deleteImageUpload(uploadId: string) {
 
       switch (xhr.status) {
         case 204:
-          // TODO: cache update (allUploads, profile picture)
+          allUploadsQuery.executeQuery()
           break
         case 500:
           Swal.fire({
@@ -378,7 +374,7 @@ function getUploadBlobPromise() {
       })
 
       uppy.value.upload().then((value: UploadResult) => {
-        // TODO: cache update (allUploads)
+        allUploadsQuery.executeQuery()
 
         if (value.failed.length > 0) {
           reject(t('uploadError'))

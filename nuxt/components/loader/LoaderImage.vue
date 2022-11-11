@@ -22,21 +22,19 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 // data
-const srcWhenLoaded = ref<string>()
+const srcWhenLoaded = ref<string>(props.src)
 
 // methods
-async function updateSource() {
-  srcWhenLoaded.value = process.server
-    ? props.src
-    : await new Promise<string>((resolve) => {
-        const img = new Image()
+function updateSource() {
+  if (process.server) return
 
-        img.onload = () => {
-          resolve(img.src)
-        }
+  const img = new Image()
 
-        img.src = props.src
-      })
+  img.onload = () => {
+    srcWhenLoaded.value = img.src
+  }
+
+  img.src = props.src
 }
 
 // lifecycle
