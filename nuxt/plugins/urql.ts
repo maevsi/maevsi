@@ -97,14 +97,16 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     updates: {
       Mutation: {
         // create
+        createContact: (_parent, _args, cache, _info) =>
+          invalidateCache(cache, 'allContacts'),
         createInvitation: (_parent, _args, cache, _info) =>
           invalidateCache(cache, 'allInvitations'),
         // TODO: create manual updates that do not require invalidation
         // listPush(cache, 'allInvitations', parent.createInvitation),
 
         // delete
-        eventDelete: (_parent, args, cache, _info) =>
-          invalidateCache(cache, 'Event', args),
+        deleteContactById: (_parent, args, cache, _info) =>
+          invalidateCache(cache, 'Contact', args),
         deleteInvitationById: (_parent, args, cache, _info) =>
           invalidateCache(cache, 'Invitation', args),
       },
