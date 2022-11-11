@@ -23,6 +23,7 @@ function getCsp(host: string): Record<string, Array<string>> {
             `wss://${hostName}:24678/_nuxt/`,
           ]),
       "'self'",
+      'blob:', // vue-advanced-cropper
       `https://postgraphile.${host}`,
       'https://www.google-analytics.com',
     ],

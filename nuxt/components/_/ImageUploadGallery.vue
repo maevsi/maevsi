@@ -95,19 +95,17 @@
     </Card>
     <Modal
       id="ModalImageUploadGallery"
+      :is-overflow-y-auto="false"
       :submit-name="t('upload')"
       :submit-task-provider="() => getUploadBlobPromise()"
     >
-      <div class="text-center">
-        <!-- <croppa
-          ref="croppyRef"
-          :initial-image="fileSelectedUrl"
-          :placeholder="t('croppaPlaceholder')"
-          :placeholder-font-size="17.5"
-          prevent-white-space
-          :show-remove-button="false"
-        /> -->
-      </div>
+      <Cropper
+        ref="cropperRef"
+        :src="fileSelectedUrl"
+        :stencil-props="{
+          aspectRatio: 1 / 1,
+        }"
+      />
       <template #header>{{ t('uploadNew') }}</template>
       <template #submit-icon><IconUpload /></template>
     </Modal>
@@ -120,6 +118,7 @@ import Tus from '@uppy/tus'
 import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
 import Swal from 'sweetalert2'
+import { Cropper } from 'vue-advanced-cropper'
 
 import {
   useAccountUploadQuotaBytesQuery,
@@ -158,7 +157,7 @@ const { executeMutation: executeMutationUploadCreate } =
 
 // refs
 const after = ref<string>()
-const croppyRef = ref()
+const cropperRef = ref()
 
 // queries
 const allUploadsQuery = useAllUploadsQuery({
@@ -187,6 +186,7 @@ const accountUploadQuotaBytes = computed(
 
 // data
 const fileSelectedUrl = ref<string>()
+const fileSelectedMimeType = ref<string>()
 const selectedItem = ref<Item>()
 const uppy = ref<Uppy>()
 
@@ -226,7 +226,7 @@ function deleteImageUpload(uploadId: string) {
   const xhr = new XMLHttpRequest()
   const host = config.public.stagingHost
     ? `https://${config.public.stagingHost}`
-    : undefined
+    : ''
 
   xhr.open('DELETE', `${host}/api/tusd?uploadId=${uploadId}`, true)
   xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
@@ -257,26 +257,52 @@ function deleteImageUpload(uploadId: string) {
   }
   xhr.send()
 }
-function fileLoaded(e: ProgressEvent<FileReader>) {
-  fileSelectedUrl.value = e.target?.result as string | undefined
-  store.modalAdd({ id: 'ModalImageUploadGallery' })
+function getMimeType(file: ArrayBuffer, fallback?: string) {
+  const byteArray = new Uint8Array(file).subarray(0, 4)
+  let header = ''
+  for (let i = 0; i < byteArray.length; i++) {
+    header += byteArray[i].toString(16)
+  }
+  switch (header) {
+    case '89504e47':
+      return 'image/png'
+    case '47494638':
+      return 'image/gif'
+    case 'ffd8ffe0':
+    case 'ffd8ffe1':
+    case 'ffd8ffe2':
+    case 'ffd8ffe3':
+    case 'ffd8ffe8':
+      return 'image/jpeg'
+    default:
+      return fallback
+  }
 }
 function getUploadImageSrc(uploadStorageKey: string) {
   return TUSD_FILES_URL + uploadStorageKey + '+'
 }
-function loadProfilePicture(payload: Event) {
-  const target = payload.target as HTMLInputElement
+function loadProfilePicture(event: Event) {
+  const target = event.target as HTMLInputElement
   const files = Array.from(target.files ?? [])
 
-  if (files.length !== 1) {
-    return
-  }
+  if (files.length !== 1) return
 
   const file = files[0]
 
+  if (fileSelectedUrl.value) {
+    URL.revokeObjectURL(fileSelectedUrl.value)
+  }
+
   try {
     const fileReader = new FileReader()
-    fileReader.onload = (e) => fileLoaded(e)
+    fileReader.onload = (e) => {
+      fileSelectedUrl.value = e.target?.result as string
+      fileSelectedMimeType.value = getMimeType(
+        e.target?.result as ArrayBuffer,
+        file.type
+      )
+      store.modalAdd({ id: 'ModalImageUploadGallery' })
+    }
     fileReader.readAsDataURL(file)
   } catch (err: any) {
     consola.error(err)
@@ -293,7 +319,7 @@ function toggleSelect(upload: any) {
 }
 function getUploadBlobPromise() {
   return new Promise<void>((resolve, reject) => {
-    croppyRef.value?.promisedBlob().then(async (blob: Blob) => {
+    cropperRef.value?.getResult().canvas?.toBlob(async (blob: Blob) => {
       const result = await executeMutationUploadCreate({
         uploadCreateInput: {
           sizeByte: blob.size,
@@ -343,7 +369,7 @@ function getUploadBlobPromise() {
       })
 
       uppy.value.addFile({
-        source: 'croppy',
+        source: 'cropper',
         name: (
           document.querySelector('#input-profile-picture') as HTMLInputElement
         ).files![0]!.name,
@@ -360,7 +386,7 @@ function getUploadBlobPromise() {
           resolve()
         }
       })
-    })
+    }, 'image/jpeg')
   })
 }
 
@@ -375,14 +401,13 @@ watch(allUploadsQuery.error, (currentValue, _oldValue) => {
 })
 </script>
 
-<style scoped>
-@import url('~/node_modules/@uppy/core/dist/style.css');
+<style>
+@import url('~/node_modules/vue-advanced-cropper/dist/style.css');
 </style>
 
 <i18n lang="yml">
 de:
   cancel: Abbrechen
-  croppaPlaceholder: Wähle ein Bild
   iconAdd: 'Ein neues Bild hochladen. Genutzter Speicherplatz: {sizeUsed}/{sizeTotal}.'
   iconTrash: löschen
   iconTrashLabel: Dieses hochgeladene Bild löschen.
@@ -398,7 +423,6 @@ de:
   uploadSize: 'Größe: {size}'
 en:
   cancel: Cancel
-  croppaPlaceholder: Choose an image
   iconAdd: 'Upload a new image. Used storage space: {sizeUsed}/{sizeTotal}.'
   iconTrash: trash
   iconTrashLabel: Delete this image upload.

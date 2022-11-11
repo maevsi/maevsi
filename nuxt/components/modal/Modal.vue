@@ -36,8 +36,10 @@
         </ButtonIcon>
       </div>
       <div
-        class="overflow-y-auto"
-        :class="{ 'pointer-events-none relative disabled': isSubmitting }"
+        :class="{
+          'pointer-events-none relative disabled': isSubmitting,
+          'overflow-y-auto': isOverflowYAuto,
+        }"
       >
         <div v-if="contentBodyComputed">
           {{ contentBodyComputed }}
@@ -80,12 +82,14 @@ import { useMaevsiStore } from '~/store'
 export interface Props {
   id?: string
   isSubmitDisabled?: boolean
+  isOverflowYAuto?: boolean
   submitName?: string
   submitTaskProvider?: () => Promise<any>
 }
 const props = withDefaults(defineProps<Props>(), {
   id: 'ModalGlobal',
   isSubmitDisabled: false,
+  isOverflowYAuto: true,
   submitName: undefined,
   submitTaskProvider: () => Promise.resolve(),
 })
