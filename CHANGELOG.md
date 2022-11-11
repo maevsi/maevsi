@@ -1,3 +1,40 @@
+# [1.0.0-alpha.14](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.13...1.0.0-alpha.14) (2022-11-11)
+
+
+### Bug Fixes
+
+* **composable:** support computed ref in head ([7d1f076](https://github.com/maevsi/maevsi/commit/7d1f076aad6b7ecabf7fbbbdf86b284e01b071a7)), closes [#898](https://github.com/maevsi/maevsi/issues/898)
+* **contact:** correctly finish deletions ([a6867ff](https://github.com/maevsi/maevsi/commit/a6867ff5f201f12bc9f52b4f13dfc14692606933))
+* **contact:** delete by id ([889380b](https://github.com/maevsi/maevsi/commit/889380b277c26b275f1c462d82015ef23c77097a))
+* **docker:** set user in build ([e4ff034](https://github.com/maevsi/maevsi/commit/e4ff0348c9128f2bdcb6e850c31c9fcc339ee8a5))
+* **event:** allow to clear maximum invitee count ([d045790](https://github.com/maevsi/maevsi/commit/d045790b97761b0e6ae718ec02f113fc64ace308))
+* **event:** correct deletion parameters ([aa4e2f4](https://github.com/maevsi/maevsi/commit/aa4e2f4f1c8324bd4e2f42fdfa4f9cc467152c82))
+* **event:** readd missing required property ([1bcee49](https://github.com/maevsi/maevsi/commit/1bcee49075d707891a0fff6c4e4befb9771fa5e4))
+* **footer:** add gap ([57a7798](https://github.com/maevsi/maevsi/commit/57a7798a1ddfabfa2d54b9e060f5c0acbc8c45c0))
+* **form:** use vuelidate setter ([4d6894d](https://github.com/maevsi/maevsi/commit/4d6894dfa4cb05317713a31423b10bd856b2564c))
+* **gql:** add null typing ([769f8fc](https://github.com/maevsi/maevsi/commit/769f8fc8600b07a9efc1714e074b3f7f39ab43fa)), closes [#834](https://github.com/maevsi/maevsi/issues/834)
+* **gql:** disable unauthorized tls rejection ([2d421a5](https://github.com/maevsi/maevsi/commit/2d421a5f5aa4bd0fcdcd6ecf5f7aa2fb6627ec15))
+* **i18n:** migrate fallback warning ([47ab45a](https://github.com/maevsi/maevsi/commit/47ab45a6b4efefd8fe2ba76e3dd3af051684db83))
+* **ical:** remove unnecessary parameter validation ([07b0ca8](https://github.com/maevsi/maevsi/commit/07b0ca8bd8d96fed1982a55b723ee98eb733af81))
+* **icon-flag-united-kingdom:** correct translation ([dda0930](https://github.com/maevsi/maevsi/commit/dda0930061891d3a6f2e48b734789128290c1855))
+* **image-upload-gallery:** correct conditional display ([693ec6c](https://github.com/maevsi/maevsi/commit/693ec6cf39099bdf04d60102ae63631896ddf302))
+* **image:** correct display ([cf4bef3](https://github.com/maevsi/maevsi/commit/cf4bef3154bff0493afc1a3a0e70508a6827c3fb))
+* **locales:** remove exclamation mark from title ([735cc22](https://github.com/maevsi/maevsi/commit/735cc22258bd70fda0fe36716bcdbe241044c68d))
+* make api reactive ([d913c9a](https://github.com/maevsi/maevsi/commit/d913c9ab583b5c2049a457976754e1e445fcf599))
+* **modal:** correct error setter ([b28215f](https://github.com/maevsi/maevsi/commit/b28215f6b64d700de1b6c50a5e3f629b5c54136d))
+* **package:** do not install dependencies before build ([d52866c](https://github.com/maevsi/maevsi/commit/d52866c36aa94c9dd2c2f04441135cfe2886d156))
+* **robots:** specify user agent ([82338c9](https://github.com/maevsi/maevsi/commit/82338c9406c4e64a647d44b568edff242afcedd1))
+* **urql:** implement cache updates ([0432e97](https://github.com/maevsi/maevsi/commit/0432e9705bdcdeddeeb7fa64c5ad3def3ee8a6dc)), closes [#720](https://github.com/maevsi/maevsi/issues/720)
+* **urql:** invalidate cache for contacts ([34525f7](https://github.com/maevsi/maevsi/commit/34525f755f2460c802a6e4877962107514eff2da))
+
+
+### Features
+
+* **ical:** hide technical errors ([54d973b](https://github.com/maevsi/maevsi/commit/54d973bfe4c51170f78e5fe4f36365c79f99cbbd))
+* **image-upload-gallery:** add vue-advanced-cropper ([648c2a7](https://github.com/maevsi/maevsi/commit/648c2a7a8aefe96a396dddb0b815ddf9ebc87b83)), closes [#723](https://github.com/maevsi/maevsi/issues/723)
+* **package:** update node to v19 ([3b99ef9](https://github.com/maevsi/maevsi/commit/3b99ef9647569fd8d56911b56b5f856571d1a012))
+* **plugins:** remove croppa ([ae33e74](https://github.com/maevsi/maevsi/commit/ae33e740a820b7ca91970a48dcd0cf6950dbb508)), closes [#723](https://github.com/maevsi/maevsi/issues/723)
+
 # [1.0.0-alpha.13](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.12...1.0.0-alpha.13) (2022-11-06)
 
 
