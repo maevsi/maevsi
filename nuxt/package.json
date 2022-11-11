@@ -101,7 +101,7 @@
     "h3": "0.8.6",
     "html-to-text": "8.2.1",
     "ical-generator": "3.6.0",
-    "isomorphic-dompurify": "0.23.0",
+    "isomorphic-dompurify": "0.24.0",
     "jest": "29.3.1",
     "jose": "4.11.0",
     "lint-staged": "13.0.3",

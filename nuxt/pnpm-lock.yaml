@@ -73,7 +73,7 @@ specifiers:
   h3: 0.8.6
   html-to-text: 8.2.1
   ical-generator: 3.6.0
-  isomorphic-dompurify: 0.23.0
+  isomorphic-dompurify: 0.24.0
   jest: 29.3.1
   jose: 4.11.0
   lint-staged: 13.0.3
@@ -185,7 +185,7 @@ devDependencies:
   h3: 0.8.6
   html-to-text: 8.2.1
   ical-generator: 3.6.0_v5ho524r3vvxy2ncdrpvvuaoz4
-  isomorphic-dompurify: 0.23.0
+  isomorphic-dompurify: 0.24.0
   jest: 29.3.1_odkjkoia5xunhxkdrka32ib6vi
   jose: 4.11.0
   lint-staged: 13.0.3
@@ -5747,8 +5747,8 @@ packages:
       domelementtype: 2.3.0
     dev: true
 
-  /dompurify/2.4.0:
-    resolution: {integrity: sha512-Be9tbQMZds4a3C6xTmz68NlMfeONA//4dOavl/1rNw50E+/QO0KVpbcU0PcaW0nsQxurXls9ZocqFxk8R2mWEA==}
+  /dompurify/2.4.1:
+    resolution: {integrity: sha512-ewwFzHzrrneRjxzmK6oVz/rZn9VWspGFRDb4/rRtIsM1n36t9AKma/ye8syCpcw+XJ25kOK/hOG7t1j2I2yBqA==}
     dev: true
 
   /domutils/2.8.0:
@@ -8192,11 +8192,11 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
-  /isomorphic-dompurify/0.23.0:
-    resolution: {integrity: sha512-4XrxStdPTMkHE8mwOY7EDeBWABDoZnKAkxzikNq5Z8d40XwGRKbHK6jz+vBENfyPlgndg0OD1PB06vamrynIiA==}
+  /isomorphic-dompurify/0.24.0:
+    resolution: {integrity: sha512-YePhHHQAVsU1CYkL3gKQmga+fTAh66eWg+RVQOVFRNfzoLkd+gFhFY5S+g80f8b0v2JBMYg+npqdZI1vOxTOBQ==}
     dependencies:
       '@types/dompurify': 2.3.4
-      dompurify: 2.4.0
+      dompurify: 2.4.1
       jsdom: 20.0.1
     transitivePeerDependencies:
       - bufferutil
