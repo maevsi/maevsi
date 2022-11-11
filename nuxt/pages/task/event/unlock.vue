@@ -18,7 +18,7 @@
         :title="t('invitationCode')"
         type="text"
         :value="v$.form.invitationCode"
-        @input="form.invitationCode = $event"
+        @input="v$.form.invitationCode.$model = $event"
       >
         <template #stateInfo>
           <FormInputStateInfo v-if="routeQueryIc">
@@ -177,18 +177,18 @@ const eventUnlockMutation = useEventUnlockMutation()
 const config = useRuntimeConfig()
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...eventUnlockMutation.data.value,
-  },
-  ...getApiMeta([eventUnlockMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...eventUnlockMutation.data.value,
+    },
+    ...getApiMeta([eventUnlockMutation]),
+  })
+)
 
 // data
 const form = reactive({
-  invitationCode: ref(
-    route.query.ic === undefined ? undefined : route.query.ic
-  ),
+  invitationCode: ref(route.query.ic),
 })
 const isFormSent = ref(false)
 const title = t('title')

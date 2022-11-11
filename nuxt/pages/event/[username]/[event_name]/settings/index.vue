@@ -1,7 +1,7 @@
 <template>
   <Loader :api="api">
     <div v-if="event" class="flex flex-col gap-4">
-      <Breadcrumbs
+      <LayoutBreadcrumbs
         :prefixes="[
           { name: t('events'), to: localePath('/event') },
           {
@@ -17,7 +17,7 @@
         ]"
       >
         {{ t('settings') }}
-      </Breadcrumbs>
+      </LayoutBreadcrumbs>
       <section>
         <h1>{{ t('title') }}</h1>
         <FormEvent :event="event" />
@@ -29,8 +29,7 @@
           :item-name="t('event')"
           :mutation="mutation"
           :variables="{
-            authorUsername: routeParamUsername,
-            slug: routeParamEventName,
+            id: event.id,
           }"
           @success="onDeleteSuccess"
         />
@@ -93,12 +92,14 @@ const eventQuery = useEventByAuthorUsernameAndSlugQuery({
 })
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...eventQuery.data.value,
-  },
-  ...getApiMeta([eventQuery]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...eventQuery.data.value,
+    },
+    ...getApiMeta([eventQuery]),
+  })
+)
 const event = computed(
   () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
 )
@@ -116,9 +117,7 @@ function onDeleteSuccess() {
 
 // computations
 const title = computed(() => {
-  if (!event.value) {
-    return t('title')
-  }
+  if (!event.value) return t('title')
 
   return `${t('title')} · ${event.value.name}`
 })
@@ -129,7 +128,7 @@ watch(eventQuery.error, (currentValue, _oldValue) => {
 })
 
 // initialization
-useHeadDefault(title.value)
+useHeadDefault(title)
 </script>
 
 <script lang="ts">

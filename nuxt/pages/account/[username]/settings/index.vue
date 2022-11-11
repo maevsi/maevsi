@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-4">
-    <Breadcrumbs
+    <LayoutBreadcrumbs
       :prefixes="[
         { name: t('accounts'), to: localePath('/account') },
         {
@@ -10,7 +10,7 @@
       ]"
     >
       {{ t('settings') }}
-    </Breadcrumbs>
+    </LayoutBreadcrumbs>
     <div class="flex min-w-0 flex-col items-center justify-center sm:flex-row">
       <Button
         :aria-label="t('profilePictureChange')"

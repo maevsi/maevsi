@@ -11,7 +11,7 @@
       :form-input="v$.form.emailAddress"
       is-required
       :title="t('emailAddressYours')"
-      @input="form.emailAddress = $event"
+      @input="v$.form.emailAddress.$model = $event"
     />
   </Form>
 </template>
@@ -45,12 +45,14 @@ const { locale, t } = useI18n()
 const passwordResetRequestMutation = useAccountPasswordResetRequestMutation()
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...passwordResetRequestMutation.data.value,
-  },
-  ...getApiMeta([passwordResetRequestMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...passwordResetRequestMutation.data.value,
+    },
+    ...getApiMeta([passwordResetRequestMutation]),
+  })
+)
 
 // data
 const form = reactive({

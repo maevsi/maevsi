@@ -117,7 +117,7 @@ export default defineNuxtConfig({
             de: localeDe,
             en: localeEn,
           },
-          silentFallbackWarn: true,
+          fallbackWarn: false, // TODO: https://github.com/intlify/vue-i18n-next/issues/776
         },
         // vueI18nLoader: true,
       },

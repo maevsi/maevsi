@@ -6,8 +6,8 @@ import {
   StorageAdapter as GraphCacheStorageAdapter,
 } from '@urql/exchange-graphcache'
 import { IntrospectionData } from '@urql/exchange-graphcache/dist/types/ast'
-export type Maybe<T> = T | undefined
-export type InputMaybe<T> = T | undefined
+export type Maybe<T> = T | null
+export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
 }

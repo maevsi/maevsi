@@ -4,19 +4,19 @@ export type Visibility = 'PUBLIC' | 'PRIVATE'
 
 export class Event {
   authorUsername: string
-  description?: string
-  end?: Date
+  description?: string | null
+  end?: Date | null
   id: string
   invitationsByEventId?: { nodes: Invitation[] }
-  inviteeCountMaximum?: number
+  inviteeCountMaximum?: number | null
   isArchived: boolean
-  isInPerson?: boolean
-  isRemote?: boolean
-  location?: string
+  isInPerson?: boolean | null
+  isRemote?: boolean | null
+  location?: string | null
   name: string
   slug?: string
   start: Date
-  url?: string
+  url?: string | null
   visibility: Visibility
 
   constructor(

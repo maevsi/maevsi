@@ -14,13 +14,13 @@
       title="id"
       type="number"
       :value="v$.form.id"
-      @input="form.id = $event"
+      @input="v$.form.id.$model = $event"
     />
     <FormInputUsername
       :form-input="v$.form.accountUsername"
       is-optional
       is-validatable
-      @input="form.accountUsername = $event"
+      @input="v$.form.accountUsername.$model = $event"
     >
       <template #icon>
         <IconSearch />
@@ -36,7 +36,7 @@
       :title="t('firstName')"
       type="text"
       :value="v$.form.firstName"
-      @input="form.firstName = $event"
+      @input="v$.form.firstName.$model = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -54,7 +54,7 @@
       :title="t('lastName')"
       type="text"
       :value="v$.form.lastName"
-      @input="form.lastName = $event"
+      @input="v$.form.lastName.$model = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -68,7 +68,7 @@
     <FormInputEmailAddress
       :form-input="v$.form.emailAddress"
       is-optional
-      @input="form.emailAddress = $event"
+      @input="v$.form.emailAddress.$model = $event"
     />
     <FormInput
       id-label="input-address"
@@ -76,7 +76,7 @@
       :title="t('address')"
       type="textarea"
       :value="v$.form.address"
-      @input="form.address = $event"
+      @input="v$.form.address.$model = $event"
     >
       <textarea
         v-if="v$.form.address"
@@ -98,12 +98,12 @@
     <FormInputPhoneNumber
       :form-input="v$.form.phoneNumber"
       is-optional
-      @input="form.phoneNumber = $event"
+      @input="v$.form.phoneNumber.$model = $event"
     />
     <FormInputUrl
       :form-input="v$.form.url"
       is-optional
-      @input="form.url = $event"
+      @input="v$.form.url.$model = $event"
     />
   </Form>
 </template>
@@ -152,12 +152,14 @@ const createContactMutation = useCreateContactMutation()
 const { t } = useI18n()
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...updateContactByIdMutation.data.value,
-  },
-  ...getApiMeta([updateContactByIdMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...updateContactByIdMutation.data.value,
+    },
+    ...getApiMeta([updateContactByIdMutation]),
+  })
+)
 
 // data
 const form = reactive({
@@ -186,14 +188,14 @@ async function submit() {
     const result = await updateContactByIdMutation.executeMutation({
       id: form.id,
       contactPatch: {
-        accountUsername: form.accountUsername || undefined,
-        address: form.address || undefined,
+        accountUsername: form.accountUsername || null,
+        address: form.address || null,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.emailAddress || undefined,
-        firstName: form.firstName || undefined,
-        lastName: form.lastName || undefined,
-        phoneNumber: form.phoneNumber || undefined,
-        url: form.url || undefined,
+        emailAddress: form.emailAddress || null,
+        firstName: form.firstName || null,
+        lastName: form.lastName || null,
+        phoneNumber: form.phoneNumber || null,
+        url: form.url || null,
       },
     })
 
@@ -205,14 +207,14 @@ async function submit() {
     // Add
     const result = await createContactMutation.executeMutation({
       contactInput: {
-        accountUsername: form.accountUsername || undefined,
-        address: form.address || undefined,
+        accountUsername: form.accountUsername || null,
+        address: form.address || null,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.emailAddress || undefined,
-        firstName: form.firstName || undefined,
-        lastName: form.lastName || undefined,
-        phoneNumber: form.phoneNumber || undefined,
-        url: form.url || undefined,
+        emailAddress: form.emailAddress || null,
+        firstName: form.firstName || null,
+        lastName: form.lastName || null,
+        phoneNumber: form.phoneNumber || null,
+        url: form.url || null,
       },
     })
 

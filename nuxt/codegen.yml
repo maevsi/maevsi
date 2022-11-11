@@ -1,12 +1,10 @@
 overwrite: true
-schema: "https://postgraphile.maevsi.test/graphql"
+schema: "https://postgraphile.localhost/graphql"
 documents: "gql/**/*.gql"
 # hooks:
 #   afterOneFileWrite:
 #     - eslint --fix
 #     - prettier --write
-config:
-  maybeValue: T | undefined
 generates:
   gql/schema.ts:
     plugins:

@@ -32,12 +32,14 @@ const config = useRuntimeConfig()
 const { t } = useI18n()
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...profilePictureSetMutation.data.value,
-  },
-  ...getApiMeta([profilePictureSetMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...profilePictureSetMutation.data.value,
+    },
+    ...getApiMeta([profilePictureSetMutation]),
+  })
+)
 
 // data
 const isTesting = config.public.isTesting

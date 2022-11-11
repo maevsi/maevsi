@@ -29,7 +29,7 @@
       :title="t('contact')"
       type="text"
       :value="v$.form.searchString"
-      @input="form.searchString = $event"
+      @input="v$.form.searchString.$model = $event"
     >
       <template #icon>
         <IconSearch />
@@ -122,12 +122,14 @@ const allContactsQuery = useAllContactsQuery({
 })
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...allContactsQuery.data.value,
-  },
-  ...getApiMeta([allContactsQuery]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...allContactsQuery.data.value,
+    },
+    ...getApiMeta([allContactsQuery]),
+  })
+)
 const contacts = computed(() => allContactsQuery.data.value?.allContacts?.nodes)
 
 // data
@@ -160,8 +162,7 @@ async function submit() {
 
   const result = await executeMutationCreateInvitation({
     invitationInput: {
-      contactId:
-        form.contactId && form.contactId !== '' ? +form.contactId : null,
+      contactId: form.contactId || null,
       eventId: +props.event.id,
     },
   })

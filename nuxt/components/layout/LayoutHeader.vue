@@ -114,12 +114,6 @@ const signedInUsername = computed(() => store.signedInUsername)
 // }
 </script>
 
-<script lang="ts">
-export default {
-  name: 'MaevsiHeader',
-}
-</script>
-
 <i18n lang="yml">
 de:
   dashboard: Dashboard

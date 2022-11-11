@@ -1,0 +1,8 @@
+mutation deleteContactById($id: BigInt!) {
+  deleteContactById(input: { id: $id }) {
+    clientMutationId
+    contact {
+      ...contactFields
+    }
+  }
+}

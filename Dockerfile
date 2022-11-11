@@ -118,6 +118,10 @@ RUN npm install -g pnpm && \
 # Should be the specific version of `cypress/included`.
 FROM cypress/included:10.11.0@sha256:5518700396412daedc8cd082ac52206d40e353fc26e949bff573d740304aed98 AS test-integration_base
 
+ARG UNAME=cypress
+ARG UID=1000
+ARG GID=1000
+
 WORKDIR /srv/app/
 
 # Update and install dependencies.
@@ -127,17 +131,22 @@ RUN apt-get update \
         curl ca-certificates libnss3-tools \
     # pnpm
     && npm install -g pnpm \
+    # user
+    && groupadd -g $GID -o $UNAME \
+    && useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME \
     # mkcert
     && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
     && chmod +x mkcert-v*-linux-amd64 \
     && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert \
     && mkcert -install \
-    && mkdir -p /home/node/.local/share/mkcert \
-    && mv /root/.local/share/mkcert /home/node/.local/share/ \
-    && chown node:node /home/node/.local/share/mkcert -R \
+    # && mkdir -p /home/$UNAME/.local/share/mkcert \
+    # && mv /root/.local/share/mkcert /home/$UNAME/.local/share/ \
+    # && chown $UNAME:$UNAME /home/$UNAME/.local/share/mkcert -R \
     # clean
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+USER $UNAME
 
 VOLUME /srv/app
 

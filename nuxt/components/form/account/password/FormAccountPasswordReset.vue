@@ -10,7 +10,7 @@
     <FormInputPassword
       :form-input="v$.form.password"
       :title="t('passwordNew')"
-      @input="form.password = $event"
+      @input="v$.form.password.$model = $event"
     />
   </Form>
 </template>
@@ -41,12 +41,14 @@ const localePath = useLocalePath()
 const passwordResetMutation = useAccountPasswordResetMutation()
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...passwordResetMutation.data.value,
-  },
-  ...getApiMeta([passwordResetMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...passwordResetMutation.data.value,
+    },
+    ...getApiMeta([passwordResetMutation]),
+  })
+)
 // data
 const form = reactive({
   password: ref<string>(),

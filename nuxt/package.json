@@ -6,10 +6,10 @@
   "description": "The manager for events supported by invitees.",
   "type": "module",
   "engines": {
-    "node": "18"
+    "node": "19"
   },
   "scripts": {
-    "dev": "cross-env HOST=0.0.0.0 NODE_TLS_REJECT_UNAUTHORIZED=0 sh dev.sh",
+    "dev": "pnpm i && cross-env HOST=0.0.0.0 NODE_TLS_REJECT_UNAUTHORIZED=0 sh dev.sh",
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
     "cypress:open": "cypress open",
@@ -19,8 +19,8 @@
     "test:integration:dev": "cross-env WAIT_ON_TIMEOUT=40000 NODE_OPTIONS=--use-openssl-ca start-server-and-test 'pnpm dev' 'https://0.0.0.0:3000' 'pnpm cypress:test'",
     "test:integration:prod": "cross-env WAIT_ON_TIMEOUT=10000 NODE_ENV=production start-server-and-test 'pnpm start' 'http://0.0.0.0:3000' 'pnpm cypress:test'",
     "test:integration:base": "cross-env WAIT_ON_TIMEOUT=40000 NODE_OPTIONS=--use-openssl-ca start-server-and-test 'pnpm dev' 'https://0.0.0.0:3000' 'cypress run --env type=base && rm -rf cypress/*-base-*.png'",
-    "test:integration:docker:build": "docker build -t maevsi/maevsi:test-integration_base --target test-integration_base ../",
-    "test:integration:docker:run": "docker run --rm --entrypoint docker-entrypoint.sh -v \"$PWD:/srv/app\" -u \"$(id -u):$(id -g)\" maevsi/maevsi:test-integration_base",
+    "test:integration:docker:build": "docker build -t maevsi/maevsi:test-integration_base --build-arg UID=$(id -u) --build-arg GID=$(id -g) --target test-integration_base ../",
+    "test:integration:docker:run": "docker run --rm --entrypoint docker-entrypoint.sh -v \"$PWD:/srv/app\" maevsi/maevsi:test-integration_base",
     "test:integration:docker:br": "pnpm test:integration:docker:build && pnpm test:integration:docker:run",
     "test:integration:docker:dev": "pnpm test:integration:docker:br pnpm test:integration:dev",
     "test:integration:docker:prod": "pnpm test:integration:docker:br pnpm test:integration:prod",
@@ -32,7 +32,7 @@
     "lint:quiet": "pnpm lint:js --quiet && pnpm lint:style --quiet",
     "lint:staged": "pnpm lint-staged",
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js",
-    "gql:codegen": "graphql-codegen --config codegen.yml"
+    "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "1.9.9",
@@ -136,12 +136,13 @@
     "v-calendar": "~3.0.0-alpha.8",
     "vite": "3.2.2",
     "vue": "3.2.41",
+    "vue-advanced-cropper": "2.8.6",
     "vue-chartjs": "4.1.2",
-    "vue-croppa": "1.3.8",
     "vue-qrcode-reader": "3.1.0",
     "vue-tsc": "1.0.9",
     "webpack": "5.74.0"
   },
+  "packageManager": "pnpm@7.14.2",
   "lint-staged": {
     "*.{js,vue}": "eslint",
     "*.{css,vue}": "stylelint"

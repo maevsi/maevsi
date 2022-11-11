@@ -4,7 +4,7 @@
       :alt="t('profilePictureAlt', { username })"
       :class="classComputed"
       :height="height"
-      :src="imageSrc"
+      :src="profilePictureUrl || blankProfilePicture"
       :width="width"
     />
   </Loader>
@@ -40,34 +40,27 @@ const profilePictureQuery = useProfilePictureByUsernameQuery({
 })
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...profilePictureQuery.data.value,
-  },
-  ...getApiMeta([profilePictureQuery]),
-}))
-const profilePicture = computed(
-  () => profilePictureQuery.data.value?.profilePictureByUsername
-)
-
-// data
-const profilePictureUrl = ref(
-  profilePicture?.value?.uploadStorageKey
-    ? TUSD_FILES_URL + profilePicture.value.uploadStorageKey + '+'
-    : undefined
+const api = computed(() =>
+  reactive({
+    data: {
+      ...profilePictureQuery.data.value,
+    },
+    ...getApiMeta([profilePictureQuery]),
+  })
 )
 
 // computations
 const classComputed = computed(() => {
   return [props.classes, ...(props.rounded ? ['rounded-full'] : [])].join(' ')
 })
-const imageSrc = computed(() => {
-  if (profilePictureUrl.value !== undefined) {
-    return profilePictureUrl.value
-  } else {
-    return blankProfilePicture
-  }
-})
+const profilePicture = computed(
+  () => profilePictureQuery.data.value?.profilePictureByUsername
+)
+const profilePictureUrl = computed(() =>
+  profilePicture?.value?.uploadStorageKey
+    ? TUSD_FILES_URL + profilePicture.value.uploadStorageKey + '+'
+    : undefined
+)
 
 // lifecycle
 watch(profilePictureQuery.error, (currentValue, _oldValue) => {

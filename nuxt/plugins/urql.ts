@@ -6,7 +6,8 @@ import {
   ClientOptions,
   Client,
 } from '@urql/core'
-import { cacheExchange } from '@urql/exchange-graphcache'
+// import type { Data } from '@urql/exchange-graphcache'
+import { Cache, cacheExchange } from '@urql/exchange-graphcache'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 import { provideClient } from '@urql/vue'
@@ -24,6 +25,46 @@ import {
 import { useMaevsiStore } from '~/store'
 
 const ssrKey = '__URQL_DATA__'
+const invalidateCache = (
+  cache: Cache,
+  name: string,
+  args?: { input: { id: any } }
+) =>
+  args
+    ? cache.invalidate({ __typename: name, id: args.input.id })
+    : cache
+        .inspectFields('Query')
+        .filter((field) => field.fieldName === name)
+        .forEach((field) => {
+          cache.invalidate('Query', field.fieldKey)
+        })
+// const listPush = (cache: Cache, fieldName: string, data: Data | null) =>
+//   cache
+//     .inspectFields('Query')
+//     .filter((field) => field.fieldName === fieldName)
+//     .forEach((field) => {
+//       const dataField = cache.resolve('Query', field.fieldKey)
+
+//       if (typeof dataField !== 'string')
+//         throw new Error('Data field is no string!')
+
+//       const allInvitations = cache.resolve(dataField, 'nodes')
+
+//       if (
+//         !data ||
+//         !Array.isArray(allInvitations) ||
+//         !isNonEmptyArrayOfStrings(allInvitations)
+//       )
+//         throw new Error('Data field is no array!')
+
+// // TODO: insert IDs, not data
+//       allInvitations.push(data)
+//       cache.link('Query', field.fieldKey, allInvitations)
+//     })
+
+// function isNonEmptyArrayOfStrings(value: unknown): value is (string | Data)[] {
+//   return Array.isArray(value) && value.every((item) => typeof item === 'string')
+// }
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const config = useRuntimeConfig()
@@ -53,23 +94,29 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         allUploads: relayPagination(),
       },
     },
-    // updates: {
-    //   Mutation: {
-    //     eventDelete(_parent, args, cache, _info) {
-    //       cache.invalidate({
-    //         __typename: 'Event',
-    //         id: (args.input as Variables).id as string | number,
-    //       })
-    //     },
-    //   },
-    // },
+    updates: {
+      Mutation: {
+        // create
+        createContact: (_parent, _args, cache, _info) =>
+          invalidateCache(cache, 'allContacts'),
+        createInvitation: (_parent, _args, cache, _info) =>
+          invalidateCache(cache, 'allInvitations'),
+        // TODO: create manual updates that do not require invalidation
+        // listPush(cache, 'allInvitations', parent.createInvitation),
+
+        // delete
+        deleteContactById: (_parent, args, cache, _info) =>
+          invalidateCache(cache, 'Contact', args),
+        deleteInvitationById: (_parent, args, cache, _info) =>
+          invalidateCache(cache, 'Invitation', args),
+      },
+    },
   }
 
-  // @ts-ignore https://github.com/FormidableLabs/urql/issues/2639
   const cache = cacheExchange(cacheConfig)
 
   const options: ClientOptions = {
-    requestPolicy: 'network-only', // TODO: https://github.com/maevsi/maevsi/issues/720
+    requestPolicy: 'cache-and-network',
     fetchOptions: () => {
       const store = useMaevsiStore(nuxtApp.$pinia)
       const jwt = store.jwt
@@ -93,7 +140,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       ...(config.public.isInProduction ? [] : [devtoolsExchange]),
       dedupExchange,
       cache,
-      ssr, // add `ssr` before `fetchExchange`
+      ssr, // `ssr` must be before `fetchExchange`
       fetchExchange,
     ],
   }

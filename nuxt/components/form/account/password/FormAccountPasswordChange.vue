@@ -11,13 +11,13 @@
       id="passwordCurrent"
       :form-input="v$.form.passwordCurrent"
       :title="t('passwordCurrent')"
-      @input="form.passwordCurrent = $event"
+      @input="v$.form.passwordCurrent.$model = $event"
     />
     <FormInputPassword
       id="passwordNew"
       :form-input="v$.form.passwordNew"
       :title="t('passwordNew')"
-      @input="form.passwordNew = $event"
+      @input="v$.form.passwordNew.$model = $event"
     />
   </Form>
 </template>
@@ -43,12 +43,14 @@ const accountPasswordChangeMutation = useAccountPasswordChangeMutation()
 const formRef = ref<typeof FormType>()
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...accountPasswordChangeMutation.data.value,
-  },
-  ...getApiMeta([accountPasswordChangeMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...accountPasswordChangeMutation.data.value,
+    },
+    ...getApiMeta([accountPasswordChangeMutation]),
+  })
+)
 
 // data
 const form = reactive({

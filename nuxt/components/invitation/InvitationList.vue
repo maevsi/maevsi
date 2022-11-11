@@ -113,7 +113,7 @@
                       <ButtonIcon
                         :aria-label="t('invitationDelete')"
                         :disabled="pending.deletions.includes(invitation.uuid)"
-                        @click="delete_(invitation.uuid)"
+                        @click="delete_(invitation.id)"
                       >
                         <IconTrash />
                         {{ t('invitationDelete') }}
@@ -200,7 +200,7 @@ import { Invitation } from '~/types/invitation'
 import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import {
   useAllInvitationsQuery,
-  useDeleteInvitationByUuidMutation,
+  useDeleteInvitationByIdMutation,
   useInviteMutation,
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
@@ -215,7 +215,7 @@ const { $colorMode } = useNuxtApp()
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const store = useMaevsiStore()
-const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
+const deleteInvitationByIdMutation = useDeleteInvitationByIdMutation()
 const inviteMutation = useInviteMutation()
 const config = useRuntimeConfig()
 
@@ -233,16 +233,18 @@ const invitationsQuery = useAllInvitationsQuery({
 })
 
 // api data
-const api = computed(() => ({
-  data: {
-    ...invitationsQuery.data.value,
-  },
-  ...getApiMeta([
-    deleteInvitationByUuidMutation,
-    inviteMutation,
-    invitationsQuery,
-  ]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {
+      ...invitationsQuery.data.value,
+    },
+    ...getApiMeta([
+      deleteInvitationByIdMutation,
+      inviteMutation,
+      invitationsQuery,
+    ]),
+  })
+)
 const invitations = computed(
   () => invitationsQuery.data.value?.allInvitations?.nodes
 )
@@ -290,15 +292,15 @@ function copyLink(invitation: Invitation): void {
     })
   })
 }
-async function delete_(uuid: string) {
-  pending.deletions.push(uuid)
+async function delete_(id: string) {
+  pending.deletions.push(id)
   api.value.errors = []
 
-  const result = await deleteInvitationByUuidMutation.executeMutation({
-    uuid,
+  const result = await deleteInvitationByIdMutation.executeMutation({
+    id,
   })
 
-  pending.deletions.splice(pending.deletions.indexOf(uuid), 1)
+  pending.deletions.splice(pending.deletions.indexOf(id), 1)
 
   if (result.error) {
     api.value.errors.push(result.error)

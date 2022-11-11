@@ -139,6 +139,7 @@
       <FormInput
         id-label="input-start"
         is-readonly
+        is-required
         :placeholder="dateTimeFormatter(new Date().toISOString())"
         :title="t('start')"
         type="text"
@@ -313,10 +314,12 @@ const createEventMutation = useCreateEventMutation()
 const updateEventMutation = useUpdateEventByIdMutation()
 
 // api data
-const api = computed(() => ({
-  data: {},
-  ...getApiMeta([createEventMutation, updateEventMutation]),
-}))
+const api = computed(() =>
+  reactive({
+    data: {},
+    ...getApiMeta([createEventMutation, updateEventMutation]),
+  })
+)
 
 // data
 const form = reactive({
@@ -348,7 +351,7 @@ function dateTimeFormatter(x?: string) {
     : undefined
 }
 function onInputName($event: any) {
-  form.name = $event
+  v$.value.form.name.$model = $event
   updateSlug()
 }
 async function submit() {
@@ -366,19 +369,19 @@ async function submit() {
       id: form.id,
       eventPatch: {
         authorUsername: signedInUsername.value,
-        description: form.description || undefined,
-        end: form.end || undefined,
+        description: form.description || null,
+        end: form.end || null,
         inviteeCountMaximum: form.inviteeCountMaximum
           ? +form.inviteeCountMaximum
-          : undefined,
+          : null,
         isInPerson: form.isInPerson,
         isRemote: form.isRemote,
-        location: form.location || undefined,
-        name: form.name || undefined,
-        slug: form.slug || undefined,
-        start: form.start || undefined,
-        url: form.url || undefined,
-        visibility: form.visibility || undefined,
+        location: form.location || null,
+        name: form.name || null,
+        slug: form.slug || null,
+        start: form.start || null,
+        url: form.url || null,
+        visibility: form.visibility || null,
       },
     })
 
@@ -410,18 +413,18 @@ async function submit() {
       createEventInput: {
         event: {
           authorUsername: signedInUsername.value,
-          description: form.description || undefined,
-          end: form.end || undefined,
+          description: form.description || null,
+          end: form.end || null,
           inviteeCountMaximum: form.inviteeCountMaximum
             ? +form.inviteeCountMaximum
-            : undefined,
+            : null,
           isInPerson: form.isInPerson,
           isRemote: form.isRemote,
-          location: form.location || undefined,
+          location: form.location || null,
           name: form.name,
           slug: form.slug,
-          start: form.start || undefined,
-          url: form.url || undefined,
+          start: form.start || null,
+          url: form.url || null,
           visibility: form.visibility,
         },
       },
