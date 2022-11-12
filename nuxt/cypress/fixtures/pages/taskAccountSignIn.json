@@ -1,0 +1,12 @@
+{
+  "errors": [
+    {
+      "errcode": "P0002",
+      "extensions": { "exception": { "errcode": "P0002" } },
+      "message": "Account not found!",
+      "locations": [{ "line": 2, "column": 3 }],
+      "path": ["authenticate"]
+    }
+  ],
+  "data": { "authenticate": null }
+}
