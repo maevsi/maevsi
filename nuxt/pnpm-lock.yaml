@@ -31,7 +31,7 @@ specifiers:
   '@tiptap/starter-kit': 2.0.0-beta.202
   '@tiptap/vue-3': 2.0.0-beta.202
   '@types/cookie': 0.5.1
-  '@types/dompurify': 2.3.4
+  '@types/dompurify': 2.4.0
   '@types/downloadjs': 1.4.3
   '@types/html-to-text': 8.1.1
   '@types/jest': 29.2.2
@@ -143,7 +143,7 @@ devDependencies:
   '@tiptap/starter-kit': 2.0.0-beta.202
   '@tiptap/vue-3': 2.0.0-beta.202_jtnhdqyx7clarsezcvtuxgjsq4
   '@types/cookie': 0.5.1
-  '@types/dompurify': 2.3.4
+  '@types/dompurify': 2.4.0
   '@types/downloadjs': 1.4.3
   '@types/html-to-text': 8.1.1
   '@types/jest': 29.2.2
@@ -3020,8 +3020,8 @@ packages:
     resolution: {integrity: sha512-COUnqfB2+ckwXXSFInsFdOAWQzCCx+a5hq2ruyj+Vjund94RJQd4LG2u9hnvJrTgunKAaax7ancBYlDrNYxA0g==}
     dev: true
 
-  /@types/dompurify/2.3.4:
-    resolution: {integrity: sha512-EXzDatIb5EspL2eb/xPGmaC8pePcTHrkDCONjeisusLFrVfl38Pjea/R0YJGu3k9ZQadSvMqW0WXPI2hEo2Ajg==}
+  /@types/dompurify/2.4.0:
+    resolution: {integrity: sha512-IDBwO5IZhrKvHFUl+clZxgf3hn2b/lU6H1KaBShPkQyGJUQ0xwebezIPSuiyGwfz1UzJWQl4M7BDxtHtCCPlTg==}
     dependencies:
       '@types/trusted-types': 2.0.2
     dev: true
@@ -8163,7 +8163,7 @@ packages:
   /isomorphic-dompurify/0.24.0:
     resolution: {integrity: sha512-YePhHHQAVsU1CYkL3gKQmga+fTAh66eWg+RVQOVFRNfzoLkd+gFhFY5S+g80f8b0v2JBMYg+npqdZI1vOxTOBQ==}
     dependencies:
-      '@types/dompurify': 2.3.4
+      '@types/dompurify': 2.4.0
       dompurify: 2.4.1
       jsdom: 20.0.1
     transitivePeerDependencies:
