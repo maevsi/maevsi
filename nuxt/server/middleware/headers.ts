@@ -1,3 +1,4 @@
+import defu from 'defu'
 import { appendHeader, defineEventHandler } from 'h3'
 
 import { getHost } from '~/plugins/util/util'
@@ -8,20 +9,9 @@ function getCsp(host: string): Record<string, Array<string>> {
 
   host = config.public.stagingHost || host
 
-  return {
+  const base = {
     'base-uri': ["'none'"], // Mozilla Observatory.
     'connect-src': [
-      ...(config.public.isInProduction
-        ? [
-            `https://${host}/cdn-cgi/rum`, // Cloudflare real user management (browser insights)
-          ]
-        : [
-            `https://${host}`,
-            `http://${hostName}:24678/_nuxt/`,
-            `https://${hostName}:24678/_nuxt/`,
-            `ws://${hostName}:24678/_nuxt/`,
-            `wss://${hostName}:24678/_nuxt/`,
-          ]),
       "'self'",
       'blob:', // vue-advanced-cropper
       `https://postgraphile.${host}`,
@@ -55,6 +45,23 @@ function getCsp(host: string): Record<string, Array<string>> {
     ],
     'style-src': ["'self'", "'unsafe-inline'"], // Tailwind
   }
+
+  const development = {
+    'connect-src': [
+      `https://${host}`,
+      `http://${hostName}:24678/_nuxt/`,
+      `https://${hostName}:24678/_nuxt/`,
+      'https://tusd.maev.si/', // TODO: move to staging (https://github.com/maevsi/maevsi/issues/771)
+      `ws://${hostName}:24678/_nuxt/`,
+      `wss://${hostName}:24678/_nuxt/`,
+    ],
+  }
+
+  const production = {
+    'connect-src': [`https://${host}/cdn-cgi/rum`],
+  }
+
+  return defu(base, config.public.isInProduction ? production : development)
 }
 
 function getCspAsString(host: string): string {
