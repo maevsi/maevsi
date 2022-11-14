@@ -1,3 +1,10 @@
+# [1.0.0-alpha.15](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.14...1.0.0-alpha.15) (2022-11-14)
+
+
+### Bug Fixes
+
+* **headers:** fix network error "blocked" when uploading a picture ([e10a4ad](https://github.com/maevsi/maevsi/commit/e10a4ad0b21466283b98e58a42066c60a676725b))
+
 # [1.0.0-alpha.14](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.13...1.0.0-alpha.14) (2022-11-11)
 
 
