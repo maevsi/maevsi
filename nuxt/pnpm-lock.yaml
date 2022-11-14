@@ -5,7 +5,7 @@ overrides:
 
 specifiers:
   '@dargmuesli/nuxt-cookie-control': 1.9.9
-  '@graphql-codegen/cli': 2.13.11
+  '@graphql-codegen/cli': 2.13.12
   '@graphql-codegen/typescript': 2.8.1
   '@graphql-codegen/typescript-operations': 2.5.6
   '@graphql-codegen/typescript-urql-graphcache': 2.4.3
@@ -117,7 +117,7 @@ specifiers:
 
 devDependencies:
   '@dargmuesli/nuxt-cookie-control': 1.9.9_webpack@5.75.0
-  '@graphql-codegen/cli': 2.13.11_5r3mmcyz2qxsj6cwjz753kl35e
+  '@graphql-codegen/cli': 2.13.12_5r3mmcyz2qxsj6cwjz753kl35e
   '@graphql-codegen/typescript': 2.8.1_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.6_graphql@16.6.0
   '@graphql-codegen/typescript-urql-graphcache': 2.4.3_b7rcx4rqjil5ogsklmfwiai3g4
@@ -194,7 +194,7 @@ devDependencies:
   moment: 2.29.4
   mustache: 4.2.0
   node-fetch: 3.3.0
-  nuxt: 3.0.0-rc.12_3b6jxs7g5xzsszbuxxzuyrkx3i
+  nuxt: 3.0.0-rc.12_en7jb4ttnro2iozb75wfjvkyxa
   pg: 8.8.0
   pinia: 2.0.23_zwu2zepfy3m6u2gunxlolp35gi
   postcss: 8.4.19
@@ -1068,8 +1068,8 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/cli/2.13.11_5r3mmcyz2qxsj6cwjz753kl35e:
-    resolution: {integrity: sha512-PJF36a1i6M7Btj1kB4PWWzBUO3u2BJzsd/6KXxRmEugcxrbaCnbTDDktopy0CZYKdqaFbXaowwbRY8Tk8DV99Q==}
+  /@graphql-codegen/cli/2.13.12_5r3mmcyz2qxsj6cwjz753kl35e:
+    resolution: {integrity: sha512-9pr39oseKQyQvm1tRFvW/2kt8c5JmT8u+5X6FZVBqWE18l1g4hB+XOeUNg/oEBdeDfiP7bvYjtQYOZaToXz9IQ==}
     hasBin: true
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -1077,7 +1077,7 @@ packages:
       '@babel/generator': 7.20.4
       '@babel/template': 7.18.10
       '@babel/types': 7.20.2
-      '@graphql-codegen/core': 2.6.5_graphql@16.6.0
+      '@graphql-codegen/core': 2.6.6_graphql@16.6.0
       '@graphql-codegen/plugin-helpers': 2.7.2_graphql@16.6.0
       '@graphql-tools/apollo-engine-loader': 7.3.18_graphql@16.6.0
       '@graphql-tools/code-file-loader': 7.3.11_graphql@16.6.0
@@ -1124,14 +1124,14 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@graphql-codegen/core/2.6.5_graphql@16.6.0:
-    resolution: {integrity: sha512-oSbM8vINFxcV1GUasJTDIemMpEG1t6NkBG8odQCt/3ZExCYmoviHhG9vJB89QqJeU5W06qQB6SJn/dg/gv5Aqg==}
+  /@graphql-codegen/core/2.6.6_graphql@16.6.0:
+    resolution: {integrity: sha512-gU2FUxoLGw2GfcPWfBVXuiN3aDODbZ6Z9I+IGxa2u1Rzxlacw4TMmcwr4/IjC6mkiYJEKTvdVspHaby+brhuAg==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
       '@graphql-codegen/plugin-helpers': 2.7.2_graphql@16.6.0
       '@graphql-tools/schema': 9.0.9_graphql@16.6.0
-      '@graphql-tools/utils': 9.0.0_graphql@16.6.0
+      '@graphql-tools/utils': 9.1.1_graphql@16.6.0
       graphql: 16.6.0
       tslib: 2.4.1
     dev: true
@@ -1624,8 +1624,8 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /@graphql-tools/utils/9.0.0_graphql@16.6.0:
-    resolution: {integrity: sha512-kaCwyWnURxMsYbxzkfylLqFFelu83jKk3BJOOy0GIuxEtgXVS9v7Y/tojljo69Q+jaZ2YxAi3+d8IpM+hx768A==}
+  /@graphql-tools/utils/9.1.0_graphql@16.6.0:
+    resolution: {integrity: sha512-4Ketxo98IwKA/56LP6cI6PgQBwUCujszQcTNkzjq7liJPa2mLjKnmVOJ0bauMwKcEazeYuZagceljb0POmEGvQ==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
@@ -1633,8 +1633,8 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /@graphql-tools/utils/9.1.0_graphql@16.6.0:
-    resolution: {integrity: sha512-4Ketxo98IwKA/56LP6cI6PgQBwUCujszQcTNkzjq7liJPa2mLjKnmVOJ0bauMwKcEazeYuZagceljb0POmEGvQ==}
+  /@graphql-tools/utils/9.1.1_graphql@16.6.0:
+    resolution: {integrity: sha512-DXKLIEDbihK24fktR2hwp/BNIVwULIHaSTNTNhXS+19vgT50eX9wndx1bPxGwHnVBOONcwjXy0roQac49vdt/w==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
@@ -2343,11 +2343,11 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/telemetry/2.1.6:
+  /@nuxt/telemetry/2.1.6_rollup@2.79.1:
     resolution: {integrity: sha512-1+nhSxGTADRC4tMkKvt3gpgI659UHygNDx0eU9PJgNEtNoqeJ7gHAZ5cXyO4vw9g6ujgxbdEmoL8uHuyaANarA==}
     hasBin: true
     dependencies:
-      '@nuxt/kit': 3.0.0-rc.12
+      '@nuxt/kit': 3.0.0-rc.13_rollup@2.79.1
       chalk: 5.1.2
       ci-info: 3.6.1
       consola: 2.15.3
@@ -2368,6 +2368,7 @@ packages:
       rc9: 1.2.2
       std-env: 3.3.0
     transitivePeerDependencies:
+      - rollup
       - supports-color
     dev: true
 
@@ -10008,7 +10009,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /nuxt/3.0.0-rc.12_3b6jxs7g5xzsszbuxxzuyrkx3i:
+  /nuxt/3.0.0-rc.12_en7jb4ttnro2iozb75wfjvkyxa:
     resolution: {integrity: sha512-VhSod1u/w+C3VWsagTd5Prnsjk/VxPRt/bbADhUz3l0zxxajHRhHFX4xZSJWNgzsakducDqhn7N1pY6Ukko9kg==}
     engines: {node: ^14.16.0 || ^16.10.0 || ^17.0.0 || ^18.0.0}
     hasBin: true
@@ -10016,7 +10017,7 @@ packages:
       '@nuxt/devalue': 2.0.0
       '@nuxt/kit': 3.0.0-rc.12
       '@nuxt/schema': 3.0.0-rc.12
-      '@nuxt/telemetry': 2.1.6
+      '@nuxt/telemetry': 2.1.6_rollup@2.79.1
       '@nuxt/ui-templates': 0.4.0
       '@nuxt/vite-builder': 3.0.0-rc.12_xjjpigh3tujrozeqelynrczgia
       '@vue/reactivity': 3.2.45
@@ -10062,6 +10063,7 @@ packages:
       - encoding
       - eslint
       - less
+      - rollup
       - sass
       - stylus
       - sugarss
