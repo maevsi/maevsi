@@ -25,6 +25,7 @@ function getCsp(host: string): Record<string, Array<string>> {
       "'self'",
       'blob:', // vue-advanced-cropper
       `https://postgraphile.${host}`,
+      'https://tusd.maev.si',
       'https://www.google-analytics.com',
     ],
     'default-src': ["'none'"],
