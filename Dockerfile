@@ -3,7 +3,7 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.0.0-slim@sha256:f87456d191c00b6f3fa58e61ba8fc93bbad8bd4a08f3cc04051d8083a090c6d2 AS development
+FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS development
 
 COPY ./docker/entrypoint.sh /usr/local/bin/
 
@@ -45,7 +45,7 @@ CMD ["pnpm", "run", "dev"]
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.0.0-slim@sha256:f87456d191c00b6f3fa58e61ba8fc93bbad8bd4a08f3cc04051d8083a090c6d2 AS prepare
+FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS prepare
 
 WORKDIR /srv/app/
 
@@ -65,7 +65,7 @@ RUN pnpm install --offline \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.0.0-slim@sha256:f87456d191c00b6f3fa58e61ba8fc93bbad8bd4a08f3cc04051d8083a090c6d2 AS build
+FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -87,7 +87,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.0.0-slim@sha256:f87456d191c00b6f3fa58e61ba8fc93bbad8bd4a08f3cc04051d8083a090c6d2 AS lint
+FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS lint
 
 WORKDIR /srv/app/
 
@@ -102,7 +102,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.0.0-slim@sha256:f87456d191c00b6f3fa58e61ba8fc93bbad8bd4a08f3cc04051d8083a090c6d2 AS test-unit
+FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS test-unit
 
 WORKDIR /srv/app/
 
@@ -116,7 +116,7 @@ RUN npm install -g pnpm && \
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:10.11.0@sha256:5518700396412daedc8cd082ac52206d40e353fc26e949bff573d740304aed98 AS test-integration_base
+FROM cypress/included:11.0.1@sha256:9828ff5fb79a0dc1a8cffa87984dec7716959a68ede8cb3a3faa976d64ad909e AS test-integration_base
 
 ARG UNAME=cypress
 ARG UID=1000
@@ -155,7 +155,7 @@ VOLUME /srv/app
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:10.11.0@sha256:5518700396412daedc8cd082ac52206d40e353fc26e949bff573d740304aed98 AS test-integration
+FROM cypress/included:11.0.1@sha256:9828ff5fb79a0dc1a8cffa87984dec7716959a68ede8cb3a3faa976d64ad909e AS test-integration
 
 # Update and install dependencies.
 RUN apt-get update \
@@ -182,7 +182,7 @@ RUN pnpm test:integration:prod \
 # Collect build, lint and test results.
 
 # Should be the specific version of node:slim.
-FROM node:19.0.0-slim@sha256:f87456d191c00b6f3fa58e61ba8fc93bbad8bd4a08f3cc04051d8083a090c6d2 AS collect
+FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS collect
 
 WORKDIR /srv/app/
 
@@ -197,7 +197,7 @@ COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
 
 # Should be the specific version of node:slim.
 # `sqitch` requires at least `buster`.
-FROM node:19.0.0-slim@sha256:f87456d191c00b6f3fa58e61ba8fc93bbad8bd4a08f3cc04051d8083a090c6d2 AS production
+FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS production
 
 ENV NODE_ENV=production
 

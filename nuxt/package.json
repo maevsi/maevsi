@@ -134,7 +134,6 @@
     "ts-node": "10.9.1",
     "typescript": "4.8.4",
     "v-calendar": "~3.0.0-alpha.8",
-    "vite": "3.2.3",
     "vue": "3.2.45",
     "vue-advanced-cropper": "2.8.6",
     "vue-chartjs": "4.1.2",
