@@ -230,7 +230,7 @@ async function submit() {
     emit('submitSuccess')
   }
 }
-function updateForm(data: Contact) {
+function updateForm(data?: Contact) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {

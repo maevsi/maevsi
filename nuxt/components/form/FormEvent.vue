@@ -453,7 +453,7 @@ async function submit() {
     )
   }
 }
-function updateForm(data: Event) {
+function updateForm(data?: Event) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {
