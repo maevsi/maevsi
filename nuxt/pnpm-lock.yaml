@@ -52,7 +52,7 @@ specifiers:
   autoprefixer: 10.4.13
   browserlist: 1.0.1
   browserslist-useragent-regexp: 3.0.2
-  chart.js: 4.0.0-alpha.3
+  chart.js: 4.0.1
   clipboard: 2.0.11
   consola: 2.15.3
   cookie: 0.5.0
@@ -164,7 +164,7 @@ devDependencies:
   autoprefixer: 10.4.13_postcss@8.4.19
   browserlist: 1.0.1
   browserslist-useragent-regexp: 3.0.2
-  chart.js: 4.0.0-alpha.3
+  chart.js: 4.0.1
   clipboard: 2.0.11
   consola: 2.15.3
   cookie: 0.5.0
@@ -219,7 +219,7 @@ devDependencies:
   typescript: 4.8.4
   vite: 3.2.3_@types+node@18.11.9
   vue: 3.2.45
-  vue-chartjs: 4.1.2_3raexrqhqwih3veggqbez44mxu
+  vue-chartjs: 4.1.2_chart.js@4.0.1+vue@3.2.45
   vue-croppa: 1.3.8
   vue-datetime: 1.0.0-beta.14_crd5wje2lp37hpodd2skn4uioq
   vue-qrcode-reader: 3.1.0
@@ -4873,8 +4873,8 @@ packages:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
     dev: true
 
-  /chart.js/4.0.0-alpha.3:
-    resolution: {integrity: sha512-iuRQgWS3DxwOnTxoyMi60KOUXnBx2Z9u7rLIuxwMNmga4JaTpAgvub/29Pwa2RjL4v4K92Fx8dJvToPBW2MJ3Q==}
+  /chart.js/4.0.1:
+    resolution: {integrity: sha512-5/8/9eBivwBZK81mKvmIwTb2Pmw4D/5h1RK9fBWZLLZ8mCJ+kfYNmV9rMrGoa5Hgy2/wVDBMLSUDudul2/9ihA==}
     engines: {pnpm: ^7.0.0}
     dev: true
 
@@ -13344,13 +13344,13 @@ packages:
       ufo: 0.8.6
     dev: true
 
-  /vue-chartjs/4.1.2_3raexrqhqwih3veggqbez44mxu:
+  /vue-chartjs/4.1.2_chart.js@4.0.1+vue@3.2.45:
     resolution: {integrity: sha512-QSggYjeFv/L4jFSBQpX8NzrAvX0B+Ha6nDgxkTG8tEXxYOOTwKI4phRLe+B4f+REnkmg7hgPY24R0cixZJyXBg==}
     peerDependencies:
       chart.js: ^3.7.0
       vue: ^3.0.0-0 || ^2.6.0
     dependencies:
-      chart.js: 4.0.0-alpha.3
+      chart.js: 4.0.1
       vue: 3.2.45
     dev: true
 
