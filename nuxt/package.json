@@ -9,7 +9,7 @@
     "node": "19"
   },
   "scripts": {
-    "dev": "pnpm i && cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 sh start.sh",
+    "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 sh start.sh",
     "build": "nuxi build",
     "start": "NODE_ENV=production sh start.sh",
     "cypress:open": "cypress open",
