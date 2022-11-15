@@ -3,7 +3,7 @@
 
 # maevsi
 
-The manager for events supported by invitees: [maev.si](https://maev.si/).
+Find events, guests and friends: [maev.si](https://maev.si/).
 
 This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance with the [DargStack template](https://github.com/dargmuesli/dargstack_template/) to make deployment a breeze.
 

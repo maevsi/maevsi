@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0-alpha.14",
   "scheduleVersion": "0.146.5",
-  "description": "The manager for events supported by invitees.",
+  "description": "Find events, guests and friends.",
   "type": "module",
   "engines": {
     "node": "19"
