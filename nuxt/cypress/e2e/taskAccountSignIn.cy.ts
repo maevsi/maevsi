@@ -48,7 +48,7 @@ describe('task account sign-in page', () => {
 
   context('visual regression', () => {
     it('looks as before', () => {
-      cy.compareSnapshot('taskAccountSignin')
+      cy.compareSnapshot('taskAccountSignIn')
     })
   })
 })
