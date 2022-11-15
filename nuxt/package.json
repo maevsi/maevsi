@@ -9,9 +9,9 @@
     "node": "19"
   },
   "scripts": {
-    "dev": "pnpm i && cross-env HOST=0.0.0.0 NODE_TLS_REJECT_UNAUTHORIZED=0 sh dev.sh",
+    "dev": "pnpm i && cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 sh start.sh",
     "build": "nuxi build",
-    "start": "node .output/server/index.mjs",
+    "start": "NODE_ENV=production sh start.sh",
     "cypress:open": "cypress open",
     "cypress:test": "cypress run --env type=actual",
     "test": "pnpm test:unit && pnpm test:integration:dev",

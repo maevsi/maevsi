@@ -39,4 +39,13 @@ else
   sslKey="$THIS/.nuxt/localhost.key"
 fi
 
-nuxi dev --https --ssl-cert "$sslCert" --ssl-key "$sslKey"
+if [ "$NODE_ENV" = "production" ]; then
+  sslCertFile=$(cat "$sslCert")
+  sslKeyFile=$(cat "$sslKey")
+  export NITRO_SSL_CERT=$sslCertFile
+  export NITRO_SSL_KEY=$sslKeyFile
+
+  node .output/server/index.mjs
+else
+  nuxi dev --https --ssl-cert "$sslCert" --ssl-key "$sslKey"
+fi
