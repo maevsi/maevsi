@@ -60,7 +60,7 @@ specifiers:
   css-element-queries: 1.2.3
   cypress: 11.0.1
   cypress-visual-regression: 1.7.0
-  defu: 6.1.0
+  defu: 6.1.1
   downloadjs: 1.4.7
   eslint: 8.27.0
   eslint-config-prettier: 8.5.0
@@ -172,7 +172,7 @@ devDependencies:
   css-element-queries: 1.2.3
   cypress: 11.0.1
   cypress-visual-regression: 1.7.0_cypress@11.0.1
-  defu: 6.1.0
+  defu: 6.1.1
   downloadjs: 1.4.7
   eslint: 8.27.0
   eslint-config-prettier: 8.5.0_eslint@8.27.0
@@ -2269,7 +2269,7 @@ packages:
       '@nuxt/schema': 3.0.0-rc.12
       c12: 0.2.13
       consola: 2.15.3
-      defu: 6.1.0
+      defu: 6.1.1
       globby: 13.1.2
       hash-sum: 2.0.0
       ignore: 5.2.0
@@ -2295,7 +2295,7 @@ packages:
       '@nuxt/schema': 3.0.0-rc.13_rollup@2.79.1
       c12: 0.2.13
       consola: 2.15.3
-      defu: 6.1.0
+      defu: 6.1.1
       globby: 13.1.2
       hash-sum: 2.0.0
       ignore: 5.2.0
@@ -2321,7 +2321,7 @@ packages:
     dependencies:
       c12: 0.2.13
       create-require: 1.1.1
-      defu: 6.1.0
+      defu: 6.1.1
       jiti: 1.16.0
       pathe: 0.3.9
       pkg-types: 0.3.6
@@ -2341,7 +2341,7 @@ packages:
     dependencies:
       c12: 0.2.13
       create-require: 1.1.1
-      defu: 6.1.0
+      defu: 6.1.1
       jiti: 1.16.0
       pathe: 0.3.9
       pkg-types: 0.3.6
@@ -2365,7 +2365,7 @@ packages:
       ci-info: 3.6.1
       consola: 2.15.3
       create-require: 1.1.1
-      defu: 6.1.0
+      defu: 6.1.1
       destr: 1.2.0
       dotenv: 16.0.3
       fs-extra: 10.1.0
@@ -2402,7 +2402,7 @@ packages:
       autoprefixer: 10.4.13_postcss@8.4.19
       chokidar: 3.5.3
       cssnano: 5.1.14_postcss@8.4.19
-      defu: 6.1.0
+      defu: 6.1.1
       esbuild: 0.15.13
       escape-string-regexp: 5.0.0
       estree-walker: 3.0.1
@@ -4719,7 +4719,7 @@ packages:
   /c12/0.2.13:
     resolution: {integrity: sha512-wJL0/knDbqM/3moLb+8Xd+w3JdkggkIIhiNBkxZ1mWlskKC/vajb85wM3UPg/D9nK6RbI1NgaVTg6AeXBVbknA==}
     dependencies:
-      defu: 6.1.0
+      defu: 6.1.1
       dotenv: 16.0.3
       gittar: 0.1.1
       jiti: 1.16.0
@@ -5680,8 +5680,8 @@ packages:
     resolution: {integrity: sha512-hsBd2qSVCRE+5PmNdHt1uzyrFu5d3RwmFDKzyNZMFq/EwDNJF7Ee5+D5oEKF0hU6LhtoUF1macFvOe4AskQC1Q==}
     dev: true
 
-  /defu/6.1.0:
-    resolution: {integrity: sha512-pOFYRTIhoKujrmbTRhcW5lYQLBXw/dlTwfI8IguF1QCDJOcJzNH1w+YFjxqy6BAuJrClTy6MUE8q+oKJ2FLsIw==}
+  /defu/6.1.1:
+    resolution: {integrity: sha512-aA964RUCsBt0FGoNIlA3uFgo2hO+WWC0fiC6DBps/0SFzkKcYoM/3CzVLIa5xSsrFjdioMdYgAIbwo80qp2MoA==}
     dev: true
 
   /delayed-stream/1.0.0:
@@ -9158,7 +9158,7 @@ packages:
     dependencies:
       clipboardy: 3.0.0
       colorette: 2.0.19
-      defu: 6.1.0
+      defu: 6.1.1
       get-port-please: 2.6.1
       http-shutdown: 1.2.2
       ip-regex: 5.0.0
@@ -9828,7 +9828,7 @@ packages:
       chokidar: 3.5.3
       consola: 2.15.3
       cookie-es: 0.5.0
-      defu: 6.1.0
+      defu: 6.1.1
       destr: 1.2.0
       dot-prop: 7.2.0
       esbuild: 0.15.13
@@ -10038,7 +10038,7 @@ packages:
       '@vueuse/head': 1.0.6_vue@3.2.45
       chokidar: 3.5.3
       cookie-es: 0.5.0
-      defu: 6.1.0
+      defu: 6.1.1
       destr: 1.2.0
       escape-string-regexp: 5.0.0
       fs-extra: 10.1.0
@@ -11285,7 +11285,7 @@ packages:
   /rc9/1.2.2:
     resolution: {integrity: sha512-zbe8+HR2X28eZepAwohuKkebbEsA67h0DO9I7g12QrHa2CQopR9gztOLPIPXXGTvcxeUjAN4wZ+b29t3m/u05g==}
     dependencies:
-      defu: 6.1.0
+      defu: 6.1.1
       destr: 1.2.0
       flat: 5.0.2
     dev: true
@@ -11831,7 +11831,7 @@ packages:
   /serve-placeholder/2.0.1:
     resolution: {integrity: sha512-rUzLlXk4uPFnbEaIz3SW8VISTxMuONas88nYWjAWaM2W9VDbt9tyFOr3lq8RhVOFrT3XISoBw8vni5una8qMnQ==}
     dependencies:
-      defu: 6.1.0
+      defu: 6.1.1
     dev: true
 
   /serve-static/1.15.0:
@@ -12923,7 +12923,7 @@ packages:
   /unenv/0.6.2:
     resolution: {integrity: sha512-IdQfYsHsGKDkiBdeOmtU4MjWvPYfMDOC63cvFqZPodAc5aVezvfD9Bwr7FL/G78cAMMCaDm5Jux3vYo+Z8c/Dg==}
     dependencies:
-      defu: 6.1.0
+      defu: 6.1.1
       mime: 3.0.0
       node-fetch-native: 0.1.8
       pathe: 0.3.9
