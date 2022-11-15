@@ -177,7 +177,7 @@ if (
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   optional: optional
   required: Pflichtfeld

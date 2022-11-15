@@ -401,7 +401,7 @@ watch(allUploadsQuery.error, (currentValue, _oldValue) => {
 @import url('~/node_modules/vue-advanced-cropper/dist/style.css');
 </style>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   cancel: Abbrechen
   iconAdd: 'Ein neues Bild hochladen. Genutzter Speicherplatz: {sizeUsed}/{sizeTotal}.'

@@ -191,7 +191,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   benefitControl: Kontrolle
   benefitControlDescription: Du kannst genau planen, was deine Gäste brauchen

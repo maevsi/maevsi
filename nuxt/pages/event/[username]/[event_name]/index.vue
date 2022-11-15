@@ -569,7 +569,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   attendances: Check-in
   close: Schließen

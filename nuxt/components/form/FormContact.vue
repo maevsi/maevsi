@@ -284,7 +284,7 @@ watch(
 const v$ = useVuelidate(rules, { form })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accountOverride: Du kannst sowohl ein vorhandenes Konto als Kontakt hinzufügen als auch manuell Kontaktdaten eingeben. Sind beide Daten angegeben, werden die manuell eingebenen Daten bevorzugt verwendet.
   address: Adresse

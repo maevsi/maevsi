@@ -92,7 +92,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   submit: Absenden
 en:

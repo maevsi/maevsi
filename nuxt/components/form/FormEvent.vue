@@ -533,7 +533,7 @@ updateForm(props.event)
 @import url('~/node_modules/v-calendar/dist/style.css');
 </style>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   attendanceType: Anwesenheitstyp
   created: Erstellt!

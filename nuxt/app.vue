@@ -45,7 +45,7 @@ onBeforeMount(() => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   browserUnsupported: Dein Browser scheint veraltet zu sein. Manche Dinge könnten deshalb nicht funktionieren oder komisch aussehen.
   infoEngine: Maevsi ist {move}. Wenn etwas kaputt ist, {tell}!

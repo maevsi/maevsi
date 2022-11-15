@@ -152,7 +152,7 @@ const rules = {
 const v$ = useVuelidate(rules, { form })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accountDeletionNotice: Du wirst deinen Account jederzeit löschen können.
   emailAddress: E-Mail-Adresse

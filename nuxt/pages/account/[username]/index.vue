@@ -111,7 +111,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accounts: Konten
   eventsTheir: Veranstaltungen von {name}

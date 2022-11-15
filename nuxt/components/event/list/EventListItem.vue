@@ -80,7 +80,7 @@ const eventDescriptionTemplate = computed(() => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   private: privat
 en:

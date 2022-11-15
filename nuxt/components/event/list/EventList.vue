@@ -78,7 +78,7 @@ watch(eventsQuery.error, (currentValue, _oldValue) => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   noEvents: Aktuell gibt es keine Veranstaltungen 😕
 en:

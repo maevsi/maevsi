@@ -406,7 +406,7 @@ Chart.register(
 )
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accepted: akzeptiert
   canceled: abgelehnt

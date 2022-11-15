@@ -21,7 +21,7 @@ const emit = defineEmits<{
 }>()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   eventAll: Alle Veranstaltungen anzeigen
 en:

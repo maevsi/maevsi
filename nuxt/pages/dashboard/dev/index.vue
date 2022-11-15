@@ -69,7 +69,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   codes: Einladungscodes
   codesEntered: 'Du hast die folgenden Codes eingegeben:'

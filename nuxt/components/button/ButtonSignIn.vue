@@ -20,7 +20,7 @@ const emit = defineEmits<{
 }>()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   signIn: Anmelden
 en:

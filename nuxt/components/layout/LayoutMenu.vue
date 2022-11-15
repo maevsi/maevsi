@@ -111,7 +111,7 @@ const localePath = useLocalePath()
 const { t } = useI18n()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accountSettings: Konto bearbeiten
   contacts: Meine Kontakte

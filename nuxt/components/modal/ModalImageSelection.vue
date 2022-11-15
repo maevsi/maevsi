@@ -62,7 +62,7 @@ async function setProfilePicture() {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   cancel: Abbrechen
   header: Wähle ein Profilbild

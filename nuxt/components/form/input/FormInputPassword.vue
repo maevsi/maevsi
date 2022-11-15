@@ -70,7 +70,7 @@ const { t } = useI18n()
 const isVisible = ref(false)
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   password: Passwort
   validationFormat: Muss {length} Zeichen lang sein

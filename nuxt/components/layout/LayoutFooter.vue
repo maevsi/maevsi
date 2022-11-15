@@ -151,7 +151,7 @@ function getLocaleFlag(locale: string) {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   colorScheme: Farbschema
   colorSchemeDark: Dunkel

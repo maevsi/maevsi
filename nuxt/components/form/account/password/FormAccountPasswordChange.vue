@@ -114,7 +114,7 @@ const rules = {
 const v$ = useVuelidate(rules, { form })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   changed: Geändert!
   passwordChange: Passwort ändern

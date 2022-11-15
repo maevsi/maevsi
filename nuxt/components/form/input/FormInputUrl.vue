@@ -46,7 +46,7 @@ const emit = defineEmits<{
 const { t } = useI18n()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   url: Weblink
 en:

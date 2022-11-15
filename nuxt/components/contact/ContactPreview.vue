@@ -65,7 +65,7 @@ const localePath = useLocalePath()
 const { t } = useI18n()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   placeholder: –
 en:

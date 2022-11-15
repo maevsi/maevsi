@@ -78,7 +78,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   emailAddressVerificationSuccess: E-Mail-Adresse erfolgreich verifiziert.
   postgres55000: Der Verifizierungscode ist abgelaufen!

@@ -262,7 +262,7 @@ const title = t('title')
 useHeadDefault(title)
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   dataAcquisition: 4. Datenerfassung auf dieser Website
   dataAcquisitionCommentsDescription: Für die Kommentarfunktion auf dieser Seite werden neben Ihrem Kommentar auch Angaben zum Zeitpunkt der Erstellung des Kommentars, Ihre E-Mail-Adresse und, wenn Sie nicht anonym posten, der von Ihnen gewählte Nutzername gespeichert.

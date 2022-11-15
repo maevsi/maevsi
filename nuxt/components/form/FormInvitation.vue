@@ -233,7 +233,7 @@ watch(allContactsQuery.error, (currentValue, _oldValue) => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   buttonContact: Ein Kontakt
   contact: Kontakt
