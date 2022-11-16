@@ -4,7 +4,7 @@
       <ScrollContainer
         v-if="contacts"
         :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
-        @loadMore="after = api.data.allContacts?.pageInfo.endCursor"
+        @load-more="after = api.data.allContacts?.pageInfo.endCursor"
       >
         <table>
           <thead>
@@ -52,7 +52,7 @@
       <Modal id="ModalContact" @close="onClose">
         <FormContact
           :contact="selectedContact"
-          @submitSuccess="store.modalRemove('ModalContact')"
+          @submit-success="store.modalRemove('ModalContact')"
         />
         <template #header>
           {{ formContactHeading }}

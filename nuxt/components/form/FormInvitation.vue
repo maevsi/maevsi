@@ -58,7 +58,7 @@
       v-if="contacts"
       class="flex flex-col gap-2 p-1"
       :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
-      @loadMore="after = api.data.allContacts?.pageInfo.endCursor"
+      @load-more="after = api.data.allContacts?.pageInfo.endCursor"
     >
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button

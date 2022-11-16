@@ -9,7 +9,7 @@
       <ScrollContainer
         v-if="event && invitations?.length"
         :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
-        @loadMore="after = api.data.allInvitations?.pageInfo.endCursor"
+        @load-more="after = api.data.allInvitations?.pageInfo.endCursor"
       >
         <table class="border border-neutral-300 dark:border-neutral-600">
           <thead
@@ -180,7 +180,7 @@
           :invitation-contact-ids-existing="
             invitations?.map((i) => i.contactId)
           "
-          @submitSuccess="store.modalRemove('ModalInvitation')"
+          @submit-success="store.modalRemove('ModalInvitation')"
         />
         <template #header>
           {{ t('contactSelect') }}

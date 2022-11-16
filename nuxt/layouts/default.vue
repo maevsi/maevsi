@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto p-4 md:px-8">
     <div class="min-h-screen pb-32">
-      <LayoutHeader @onMenuShow="menuShow" />
+      <LayoutHeader @on-menu-show="menuShow" />
       <main class="flex-1 overflow-hidden">
         <slot />
       </main>
@@ -24,7 +24,7 @@
       <LayoutMenu
         v-if="isMenuVisiblePartly"
         is-closable
-        @onMenuHide="menuHide"
+        @on-menu-hide="menuHide"
       />
     </div>
     <!-- <CookieControl :locale="locale" /> -->

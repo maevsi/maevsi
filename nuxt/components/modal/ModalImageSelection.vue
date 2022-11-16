@@ -4,7 +4,7 @@
     :is-submit-disabled="!selectedProfilePictureStorageKey"
     :submit-task-provider="setProfilePicture"
     @close="selectedProfilePictureStorageKey = undefined"
-    @submitSuccess="emit('submitSuccess')"
+    @submit-success="emit('submitSuccess')"
   >
     <ImageUploadGallery
       :allow-deletion="false"
