@@ -3,11 +3,7 @@
     <CardStateInfo is-edgy>
       <i18n-t keypath="infoEngine" tag="span">
         <template #move>
-          <AppLink
-            is-underlined
-            :is-colored="false"
-            to="https://nuxt.com/docs/migration/overview"
-          >
+          <AppLink is-underlined :is-colored="false" to="https://nuxt.com/v3">
             {{ t('infoEngineMove') }}
           </AppLink>
         </template>
