@@ -69,7 +69,7 @@
                 sizeTotal: bytesToString(accountUploadQuotaBytes),
               })
             "
-            @click="changeProfilePicture"
+            @click="selectProfilePicture"
           >
             <IconPlus classes="h-12 text-gray-500 w-12" />
           </Button>
@@ -149,7 +149,9 @@ interface Item {
 }
 
 const { t } = useI18n()
+const route = useRoute()
 const store = useMaevsiStore()
+const localePath = useLocalePath()
 const TUSD_FILES_URL = useTusdFilesUrl()
 const config = useRuntimeConfig()
 const { executeMutation: executeMutationUploadCreate } =
@@ -213,10 +215,16 @@ function bytesToString(bytes?: number | string | null) {
   }
   return prettyBytes(+bytes)
 }
-function changeProfilePicture() {
-  ;(
-    document.querySelector('#input-profile-picture') as HTMLInputElement
-  ).click()
+function selectProfilePicture() {
+  const pathUpload = localePath('/upload')
+
+  if (route.path === pathUpload) {
+    ;(
+      document.querySelector('#input-profile-picture') as HTMLInputElement
+    ).click()
+  } else {
+    navigateTo(pathUpload)
+  }
 }
 function deleteImageUpload(uploadId: string) {
   const element = document.getElementById(uploadId) as Element
