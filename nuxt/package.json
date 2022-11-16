@@ -18,7 +18,6 @@
     "test:unit": "jest",
     "test:integration:dev": "cross-env WAIT_ON_TIMEOUT=40000 NODE_OPTIONS=--use-openssl-ca START_SERVER_AND_TEST_INSECURE=1 start-server-and-test 'pnpm dev' 'https://localhost:3000' 'pnpm cypress:test'",
     "test:integration:prod": "cross-env WAIT_ON_TIMEOUT=10000 NODE_OPTIONS=--use-openssl-ca START_SERVER_AND_TEST_INSECURE=1 NODE_ENV=production start-server-and-test 'pnpm start' 'https://localhost:3000' 'pnpm cypress:test'",
-    "test:integration:base": "cross-env WAIT_ON_TIMEOUT=40000 NODE_OPTIONS=--use-openssl-ca start-server-and-test 'pnpm dev' 'https://localhost:3000' 'cypress run --env type=base && rm -rf cypress/*-base-*.png'",
     "test:integration:docker:build": "docker build -t maevsi/maevsi:test-integration_base --build-arg UID=$(id -u) --build-arg GID=$(id -g) --target test-integration_base ../",
     "test:integration:docker:run": "docker run --rm --entrypoint docker-entrypoint.sh -v \"$PWD:/srv/app\" maevsi/maevsi:test-integration_base",
     "test:integration:docker:br": "pnpm test:integration:docker:build && pnpm test:integration:docker:run",
