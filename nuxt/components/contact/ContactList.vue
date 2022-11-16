@@ -4,7 +4,7 @@
       <ScrollContainer
         v-if="contacts"
         :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
-        @loadMore="loadMore"
+        @loadMore="after = api.data.allContacts?.pageInfo.endCursor"
       >
         <table>
           <thead>
@@ -139,9 +139,6 @@ function edit(contact: Contact) {
   formContactHeading.value = t('contactEdit')
   selectedContact.value = contact
   store.modalAdd({ id: 'ModalContact' })
-}
-function loadMore() {
-  after.value = api.value.data.allContacts?.pageInfo.endCursor
 }
 function onClose() {
   if (!selectedContact.value) return

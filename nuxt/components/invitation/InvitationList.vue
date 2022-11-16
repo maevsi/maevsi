@@ -4,7 +4,7 @@
       <ScrollContainer
         v-if="event && invitations?.length"
         :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
-        @loadMore="loadMore"
+        @loadMore="after = api.data.allInvitations?.pageInfo.endCursor"
       >
         <table class="border border-neutral-300 dark:border-neutral-600">
           <thead
@@ -312,7 +312,6 @@ async function delete_(id: string) {
   // }
   // TODO: cache update (allInvitations)
 }
-function loadMore() {}
 function onSubmitSuccess() {
   store.modalRemove('ModalInvitation')
   // TODO: cache update (allInvitations)

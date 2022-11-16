@@ -3911,7 +3911,11 @@ export type AllInvitationsQuery = {
         url?: string | null
       } | null
     }>
-    pageInfo: { __typename?: 'PageInfo'; hasNextPage: boolean }
+    pageInfo: {
+      __typename?: 'PageInfo'
+      hasNextPage: boolean
+      endCursor?: any | null
+    }
   } | null
 }
 
@@ -4435,7 +4439,7 @@ export const AllContactsDocument = gql`
       after: $after
       condition: { authorAccountUsername: $authorAccountUsername }
       first: $first
-      orderBy: [ACCOUNT_USERNAME_ASC, FIRST_NAME_ASC, LAST_NAME_ASC]
+      orderBy: [FIRST_NAME_ASC, LAST_NAME_ASC]
     ) {
       nodes {
         ...contactFields
@@ -4553,6 +4557,7 @@ export const AllInvitationsDocument = gql`
       }
       pageInfo {
         hasNextPage
+        endCursor
       }
       totalCount
     }
