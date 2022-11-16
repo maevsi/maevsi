@@ -12,7 +12,7 @@
         <div id="logo" class="h-10 w-32" />
       </Button>
       <div class="hidden lg:block flex-grow" />
-      <div class="xl:flex">
+      <div class="hidden lg:flex flex-nowrap">
         <label class="hidden" for="search">{{ t('search') }}</label>
         <input
           id="search"
