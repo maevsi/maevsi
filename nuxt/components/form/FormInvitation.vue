@@ -56,19 +56,14 @@
     </FormInput>
     <ScrollContainer
       v-if="contacts"
-      class="flex flex-col gap-2"
+      class="flex flex-col gap-2 p-1"
       :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
       @loadMore="after = api.data.allContacts?.pageInfo.endCursor"
     >
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button
           :aria-label="t('buttonContact')"
-          class="w-full rounded border-2 border-neutral-300 text-left dark:border-neutral-600 flex items-center px-4 py-2 gap-4"
-          :class="{
-            'border-red-600 dark:border-red-600': form.contactIds.includes(
-              contact.id
-            ),
-          }"
+          class="w-full rounded border-2 border-neutral-300 dark:border-neutral-600 flex items-center px-4 py-2 gap-4"
           :disabled="invitationContactIdsExisting?.includes(contact.id)"
           type="button"
           @click="selectToggle(contact)"

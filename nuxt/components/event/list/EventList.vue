@@ -9,7 +9,9 @@
           <ButtonEventList v-if="isButtonEventListShown" />
         </ButtonList>
       </div>
-      <EventListItem v-for="event in events" :key="event.id" :event="event" />
+      <div class="flex flex-col gap-4 p-1">
+        <EventListItem v-for="event in events" :key="event.id" :event="event" />
+      </div>
       <div
         v-if="api.data.allEvents?.pageInfo.hasNextPage"
         class="flex justify-center"
