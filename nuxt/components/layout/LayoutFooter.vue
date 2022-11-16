@@ -1,5 +1,5 @@
 <template>
-  <footer class="text-sm leading-6 mt-32">
+  <footer class="text-sm leading-6">
     <div class="flex flex-col gap-8">
       <div class="flex items-center">
         <Hr />
