@@ -1,7 +1,7 @@
 <template>
   <Modal
     id="ModalImageSelection"
-    :is-submit-disabled="!!selectedProfilePictureStorageKey"
+    :is-submit-disabled="!selectedProfilePictureStorageKey"
     :submit-task-provider="setProfilePicture"
     @close="selectedProfilePictureStorageKey = undefined"
     @submitSuccess="emit('submitSuccess')"
