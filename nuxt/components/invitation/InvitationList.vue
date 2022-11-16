@@ -170,7 +170,13 @@
         </div>
       </div>
       <Modal id="ModalInvitation">
-        <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
+        <FormInvitation
+          :event="event"
+          :invitation-contact-ids-existing="
+            invitations?.map((i) => i.contactId)
+          "
+          @submitSuccess="onSubmitSuccess"
+        />
         <template #header>
           {{ t('contactSelect') }}
         </template>
