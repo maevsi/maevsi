@@ -18,10 +18,11 @@ for (const exclusion of SITEMAP_EXCLUSIONS) {
   }
 }
 
+// TODO: deprecated
 const BASE_URL =
   'https://' +
   (process.env.NUXT_PUBLIC_STACK_DOMAIN ||
-    `${process.env.HOST || 'localhost'}:3000`) // TODO: deprecated
+    `${process.env.HOST || 'localhost'}:3000`)
 
 export default defineNuxtConfig({
   css: ['@/assets/css/main.css'],
@@ -117,7 +118,7 @@ export default defineNuxtConfig({
             de: localeDe,
             en: localeEn,
           },
-          fallbackWarn: false, // TODO: https://github.com/intlify/vue-i18n-next/issues/776
+          fallbackWarn: false, // TODO: don't show incorrect warnings (https://github.com/intlify/vue-i18n-next/issues/776)
         },
         // vueI18nLoader: true,
       },

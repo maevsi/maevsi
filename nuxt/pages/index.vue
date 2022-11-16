@@ -142,7 +142,7 @@
     >
       <IconChevronDoubleDown
         classes="h-16 w-16 animate-bounce"
-        @click.native="scrollToSteps"
+        @click="scrollToSteps"
       />
     </div>
   </div>

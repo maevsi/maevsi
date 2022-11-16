@@ -38,6 +38,7 @@ const invalidateCache = (
         .forEach((field) => {
           cache.invalidate('Query', field.fieldKey)
         })
+// TODO: create manual updates that do not require invalidation (https://github.com/maevsi/maevsi/issues/720)
 // const listPush = (cache: Cache, fieldName: string, data: Data | null) =>
 //   cache
 //     .inspectFields('Query')
@@ -57,7 +58,7 @@ const invalidateCache = (
 //       )
 //         throw new Error('Data field is no array!')
 
-// // TODO: insert IDs, not data
+// // TODO: insert IDs, not data  (https://github.com/maevsi/maevsi/issues/720)
 //       allInvitations.push(data)
 //       cache.link('Query', field.fieldKey, allInvitations)
 //     })
@@ -102,7 +103,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
           invalidateCache(cache, 'allContacts'),
         createInvitation: (_parent, _args, cache, _info) =>
           invalidateCache(cache, 'allInvitations'),
-        // TODO: create manual updates that do not require invalidation
+        // TODO: create manual updates that do not require invalidation (https://github.com/maevsi/maevsi/issues/720)
         // listPush(cache, 'allInvitations', parent.createInvitation),
 
         // update
@@ -164,7 +165,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   if (nuxtApp.ssrContext?.event) {
     const store = useMaevsiStore(nuxtApp.ssrContext.$pinia)
     const jwtFromCookie = getJwtFromCookie({
-      req: nuxtApp.ssrContext.event.req,
+      req: nuxtApp.ssrContext.event.node.req,
     })
 
     if (jwtFromCookie?.jwtDecoded.id) {
@@ -172,7 +173,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         client: client.value,
         $urqlReset: urqlReset,
         store,
-        res: nuxtApp.ssrContext.event.res,
+        res: nuxtApp.ssrContext.event.node.res,
         id: jwtFromCookie.jwtDecoded.id as string,
       })
     } else {
@@ -180,7 +181,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         client: client.value,
         $urqlReset: urqlReset,
         store,
-        res: nuxtApp.ssrContext.event.res,
+        res: nuxtApp.ssrContext.event.node.res,
       })
     }
   }

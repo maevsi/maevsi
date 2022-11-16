@@ -363,7 +363,6 @@ async function submit() {
 
   if (form.value.id) {
     // Edit
-    // TODO: extract object
     const result = await updateEventMutation.executeMutation({
       id: form.value.id,
       eventPatch: {

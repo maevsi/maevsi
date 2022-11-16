@@ -1,6 +1,5 @@
 <template>
   <Button
-    ref="buttonRef"
     :is-to-relative="isToRelative"
     :aria-label="ariaLabel"
     class="rounded-md border justify-center px-4 py-2 font-medium"
@@ -50,13 +49,4 @@ withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   (e: 'click'): void
 }>()
-
-// refs
-// const buttonRef = ref<HTMLButtonElement>()
-//
-// const methods = {
-//   click() {
-//     refs.buttonRef.value?.click()
-//   },
-// }
 </script>

@@ -37,7 +37,7 @@
           :variables="{
             id: event.id,
           }"
-          @success="onDeleteSuccess"
+          @success="navigateTo(localePath(`/dashboard`))"
         />
       </section>
     </div>
@@ -113,12 +113,6 @@ const event = computed(
 const mutation = executeMutationEventDelete
 const routeParamEventName = route.params.event_name as string
 const routeParamUsername = route.params.username as string
-
-// methods
-function onDeleteSuccess() {
-  navigateTo(localePath(`/dashboard`))
-  // TODO: cache update (allEvents)
-}
 
 // computations
 const title = computed(() => {

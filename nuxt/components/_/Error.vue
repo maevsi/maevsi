@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col gap-4">
-    <!-- eslint-disable vue/no-v-html -->
     <i18n-t
       keypath="maevNo"
       class="flex items-center justify-center gap-1 text-xl font-black"
@@ -10,7 +9,6 @@
         <EmojiFacePleading />
       </template>
     </i18n-t>
-    <!--eslint-enable-->
     <h1>{{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}</h1>
     <p v-if="statusCode === 403" class="text-center">
       {{ t('error403Description') }}

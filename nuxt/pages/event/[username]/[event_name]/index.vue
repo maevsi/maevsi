@@ -56,7 +56,7 @@
         </div>
         <div v-if="invitation" class="fixed bottom-0 right-0 left-0 z-10">
           <div
-            class="border-t-2 bg-background-brighten dark:bg-background-darken"
+            class="grid grid-cols-6 border-t-2 bg-background-brighten dark:bg-background-darken"
             :class="
               invitation.feedback === 'ACCEPTED'
                 ? 'border-green-600 dark:border-green-500'
@@ -65,7 +65,18 @@
                 : 'border-text-dark dark:border-text-bright'
             "
           >
-            <div class="p-4 flex flex-col items-center gap-2">
+            <div
+              v-if="invitation.feedback === 'ACCEPTED'"
+              class="col-start-2 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
+            >
+              {{ t('step1Of2') }}
+            </div>
+            <div
+              class="p-4 flex flex-col items-center gap-2"
+              :class="
+                invitation.feedback === 'ACCEPTED' ? 'col-span-3' : 'col-span-6'
+              "
+            >
               <span v-if="event.authorUsername !== signedInUsername">
                 {{ t('feedbackRequest') }}
               </span>
@@ -148,19 +159,21 @@
                 </div>
               </div>
             </div>
-            <!-- TODO: reenable -->
-            <!--
             <div
-              v-if="invitation.feedback === 'ACCEPTED'"
-              class="col-span-1 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
+              v-if="
+                invitation.feedback !== null &&
+                invitation.feedback === 'ACCEPTED'
+              "
+              class="row-start-2 col-span-1 col-start-2 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
             >
-              {{ t('step1Of2') }}
+              {{ t('step2Of2') }}
             </div>
             <div
               v-if="
-                invitation.feedback !== null && invitation.feedback === 'ACCEPTED'
+                invitation.feedback !== null &&
+                invitation.feedback === 'ACCEPTED'
               "
-              class="col-span-5"
+              class="col-span-3"
             >
               <FormInput
                 id-label="input-paper-invitation-feedback"
@@ -188,14 +201,6 @@
                 </select>
               </FormInput>
             </div>
-            <div
-              v-if="
-                invitation.feedback !== null && invitation.feedback === 'ACCEPTED'
-              "
-              class="col-span-1 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
-            >
-              {{ t('step2Of2') }}
-            </div> -->
           </div>
         </div>
       </div>
@@ -296,7 +301,7 @@
           </ButtonColored>
           <ButtonColored
             :aria-label="t('close')"
-            @click="closeModalInvitationQrCode()"
+            @click="store.modalRemove('ModalInvitationQrCode')"
           >
             {{ t('close') }}
             <template #prefix>
@@ -306,6 +311,7 @@
         </template>
       </Modal>
     </div>
+    <Error v-else :status-code="403" />
   </Loader>
 </template>
 
@@ -345,8 +351,6 @@ definePageMeta({
     if (!eventIsExisting.data?.eventIsExisting) {
       return abortNavigation({ statusCode: 404 })
     }
-
-    // TODO: 403
 
     return true
   },
@@ -404,18 +408,13 @@ function cancel() {
     feedback: InvitationFeedback.Canceled,
   })
 }
-function closeModalInvitationQrCode() {
-  modalCheckInCodeRef.value.close()
+function paperInvitationFeedback() {
+  if (!invitation.value) return
+
+  update(invitation.value.id, {
+    feedbackPaper: invitation.value.feedbackPaper,
+  })
 }
-// paperInvitationFeedback() {
-//   if (data.invitation === undefined) {
-//     return
-//   }
-//   const invitation = data.invitation as Invitation
-//   methods.update(invitation.id, {
-//     feedbackPaper: invitation.feedbackPaper,
-//   })
-// },
 function downloadIcal() {
   const xhr = new XMLHttpRequest()
   const fileName =
@@ -478,7 +477,6 @@ async function update(id: string, invitationPatch: Partial<Invitation>) {
     timerProgressBar: true,
     title: t('saved'),
   })
-  // TODO: cache update (event)
 }
 
 // computations
@@ -532,9 +530,9 @@ const jwtDecoded = computed(() => store.jwtDecoded)
 const routeQuery = computed(() => route.query)
 const routeQueryIc = computed(() => route.query.ic)
 const signedInUsername = computed(() => store.signedInUsername)
-const title = computed(() => {
-  return event.value?.name || t('globalLoading')
-})
+const title = computed(() =>
+  api.value.isFetching ? t('globalLoading') : event.value?.name || '403'
+)
 
 // lifecycle
 watch(eventQuery.error, (currentValue, _oldValue) => {
@@ -589,21 +587,21 @@ de:
   invitationCancelAdmin: Einladung im Namen von {name} ablehnen
   invitationCanceled: Einladung abgelehnt
   invitationCanceledAdmin: Einladung im Namen von {name} abgelehnt
-  # invitationCardKind: Art der Einladungskarte
-  # invitationCardKindNone: Keine
-  # invitationCardKindPaper: Papier
-  # invitationCardKindDigital: Digital
+  invitationCardKind: Art der Einladungskarte
+  invitationCardKindNone: Keine
+  invitationCardKindPaper: Papier
+  invitationCardKindDigital: Digital
   invitationCodeMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
   invitationSelectionClear: Zurück zur Einladungsübersicht
   invitationViewFor: Du schaust dir die Einladung für {name} an. Nur du und {name} können diese Seite sehen.
   invitations: Einladungen
   print: Drucken
   qrCodeShow: Check-in-Code anzeigen
-  # requestSelection: Bitte auswählen
+  requestSelection: Bitte auswählen
   saved: Gespeichert!
   settings: Bearbeiten
-  # step1Of2: 1/2
-  # step2Of2: 2/2
+  step1Of2: 1/2
+  step2Of2: 2/2
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
   attendances: Check in
@@ -624,20 +622,20 @@ en:
   invitationCancelAdmin: Decline invitation on behalf of {name}
   invitationCanceled: Invitation declined
   invitationCanceledAdmin: Invitation declined on behalf of {name}
-  # invitationCardKind: Type of invitation card
-  # invitationCardKindNone: None
-  # invitationCardKindPaper: Paper
-  # invitationCardKindDigital: Digital
+  invitationCardKind: Type of invitation card
+  invitationCardKindNone: None
+  invitationCardKindPaper: Paper
+  invitationCardKindDigital: Digital
   invitationCodeMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
   invitationSelectionClear: Back to the invitation overview
   invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
   invitations: Invitations
   print: Print
   qrCodeShow: Show check in code
-  # requestSelection: Please select
+  requestSelection: Please select
   saved: Saved!
   settings: Edit
-  # step1Of2: 1/2
-  # step2Of2: 2/2
+  step1Of2: 1/2
+  step2Of2: 2/2
   success: Your input was saved succesfully.
 </i18n>

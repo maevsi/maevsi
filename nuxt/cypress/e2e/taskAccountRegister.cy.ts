@@ -8,7 +8,7 @@ describe('task account register page', () => {
     })
   })
 
-  // TODO: find out why vuelidate thinks its pending while page load
+  // TODO: find out why vuelidate thinks its pending while page load (maybe: https://github.com/maevsi/maevsi/issues/900)
   // context('visual regression', () => {
   //   it('looks as before', () => {
   //     cy.visit('/task/account/register')

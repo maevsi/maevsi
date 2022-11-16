@@ -6,7 +6,7 @@
       'bg-white dark:bg-gray-800': route.fullPath === to,
     }"
     :to="to"
-    @click.native="emit('onMenuHide')"
+    @click="emit('onMenuHide')"
   >
     <slot />
   </Button>

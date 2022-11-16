@@ -15,7 +15,7 @@
           <IconPencil />
         </template>
       </ButtonColored>
-      <ButtonColored :aria-label="t('signOut')" @click.native="signOut">
+      <ButtonColored :aria-label="t('signOut')" @click="signOut">
         {{ t('signOut') }}
         <template #prefix>
           <IconSignOut />

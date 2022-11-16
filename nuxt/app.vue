@@ -6,7 +6,7 @@
           <AppLink
             is-underlined
             :is-colored="false"
-            to="https://v3.nuxtjs.org/migration/overview"
+            to="https://nuxt.com/docs/migration/overview"
           >
             {{ t('infoEngineMove') }}
           </AppLink>

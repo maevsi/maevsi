@@ -69,7 +69,7 @@ import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 import { useEventUnlockMutation } from '~/gql/generated'
 
 definePageMeta({
-  // TODO: fix upstream https://github.com/nuxt/framework/issues/8678
+  // TODO: get rid of get/set (https://github.com/nuxt/framework/issues/8678)
   layout: computed({
     get: () => {
       const route = useRoute()
@@ -79,7 +79,7 @@ definePageMeta({
     set: () => {},
   }),
   middleware: [
-    // TODO: callWithNuxt necessary as described in https://github.com/nuxt/framework/issues/6292
+    // TODO: use alternative to callWithNuxt (https://github.com/nuxt/framework/issues/6292)
     async function (_to: any, _from: any) {
       const nuxtApp = useNuxtApp()
       const { $localePath, $urql } = useNuxtApp()
@@ -135,12 +135,6 @@ definePageMeta({
         await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
       } catch (error) {
         consola.error(error)
-        // TODO: t not available
-        // await Swal.fire({
-        //   icon: 'error',
-        //   text: t('jwtStoreFail') as string,
-        //   title: t('globalStatusError'),
-        // })
         return
       }
 

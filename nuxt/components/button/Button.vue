@@ -1,13 +1,13 @@
 <template>
   <AppLink
     v-if="to"
-    ref="buttonRef"
     :aria-label="ariaLabel"
     :class="classes"
     :disabled="disabled"
     :is-colored="false"
     :is-to-relative="isToRelative"
     :to="to"
+    @click="emit('click')"
   >
     <slot name="prefix" />
     <slot />
@@ -15,7 +15,6 @@
   </AppLink>
   <button
     v-else
-    ref="buttonRef"
     :aria-label="ariaLabel"
     :class="classes"
     :disabled="disabled"
@@ -50,14 +49,6 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<{
   (e: 'click'): void
 }>()
-
-// refs
-const buttonRef = ref<HTMLButtonElement>()
-
-// // methods
-// function click() {
-//   buttonRef.value?.click()
-// }
 
 // computations
 const classes = computed(() => {

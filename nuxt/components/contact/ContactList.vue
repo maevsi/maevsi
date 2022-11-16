@@ -52,7 +52,7 @@
       <Modal id="ModalContact" @close="onClose">
         <FormContact
           :contact="selectedContact"
-          @submitSuccess="onSubmitSuccess"
+          @submitSuccess="store.modalRemove('ModalContact')"
         />
         <template #header>
           {{ formContactHeading }}
@@ -126,11 +126,6 @@ async function delete_(nodeId: string, id: string) {
   }
 
   pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
-
-  // if (!result.data) {
-  //   return
-  // }
-  // TODO: cache update (allContacts)
 }
 function edit(contact: Contact) {
   pending.edits.push(contact.nodeId)
@@ -142,10 +137,6 @@ function onClose() {
   if (!selectedContact.value) return
 
   pending.edits.splice(pending.edits.indexOf(selectedContact.value.nodeId), 1)
-}
-function onSubmitSuccess() {
-  store.modalRemove('ModalContact')
-  // TODO: cache update (allContacts)
 }
 
 // lifecycle

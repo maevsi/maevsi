@@ -17,7 +17,7 @@
     :aria-label="ariaLabel"
     :class="classes"
     :to="isToRelative ? append(route.path, to) : to"
-    @click.native="emit('click')"
+    @click="emit('click')"
   >
     <slot />
   </NuxtLink>
