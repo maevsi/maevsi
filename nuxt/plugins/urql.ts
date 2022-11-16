@@ -105,6 +105,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         // TODO: create manual updates that do not require invalidation
         // listPush(cache, 'allInvitations', parent.createInvitation),
 
+        // update
+        profilePictureSet: (_parent, _args, cache, _info) =>
+          invalidateCache(cache, 'profilePictureByUsername'),
+
         // delete
         deleteContactById: (_parent, args, cache, _info) =>
           invalidateCache(cache, 'Contact', args),
