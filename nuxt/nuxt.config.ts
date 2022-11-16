@@ -18,7 +18,6 @@ for (const exclusion of SITEMAP_EXCLUSIONS) {
   }
 }
 
-// TODO: deprecated
 const BASE_URL =
   'https://' +
   (process.env.NUXT_PUBLIC_STACK_DOMAIN ||
