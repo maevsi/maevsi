@@ -91,6 +91,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       Query: {
         allContacts: relayPagination(),
         allEvents: relayPagination(),
+        allInvitations: relayPagination(),
         allUploads: relayPagination(),
       },
     },
