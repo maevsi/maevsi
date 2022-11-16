@@ -334,6 +334,7 @@ function getUploadBlobPromise() {
         },
       })
 
+      // TODO: evaluate duplicates in error pushes
       if (result.error) {
         api.value.errors.push(result.error)
         consola.error(result.error)

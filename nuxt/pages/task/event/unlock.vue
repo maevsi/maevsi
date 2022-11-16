@@ -205,11 +205,6 @@ async function submit() {
     invitationCode: form.value.invitationCode,
   })
 
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
-
   if (!result.data?.eventUnlock?.eventUnlockResponse) {
     return
   }
@@ -256,6 +251,9 @@ onMounted(() => {
       submit()
     }
   }
+})
+watch(eventUnlockMutation.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
 })
 
 // initialization
