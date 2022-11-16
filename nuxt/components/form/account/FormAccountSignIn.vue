@@ -85,11 +85,9 @@ const isFormSent = ref(false)
 
 // methods
 function accountRegistrationRefresh() {
-  if (!form.username) throw new Error('Username is not set!')
-
   executeMutationAccountRegistrationRefresh({
     language: locale.value,
-    username: form.username,
+    username: form.username || '',
   }).then((result) => {
     if (result.error) {
       api.value.errors.push(result.error)
@@ -111,12 +109,9 @@ async function submit() {
     return
   }
 
-  if (!form.username) throw new Error('Username is not set!')
-  if (!form.password) throw new Error('Password is not set!')
-
   executeMutationAuthentication({
-    username: form.username,
-    password: form.password,
+    username: form.username || '',
+    password: form.password || '',
   }).then(async (result) => {
     if (result.error) {
       api.value.errors.push(result.error)

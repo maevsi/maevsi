@@ -63,9 +63,6 @@ function resetForm() {
   formRef.value?.reset()
 }
 async function submit() {
-  if (!form.passwordCurrent) throw new Error('Current password is not set!')
-  if (!form.passwordNew) throw new Error('New password is not set!')
-
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
@@ -74,8 +71,8 @@ async function submit() {
   }
 
   const result = await accountPasswordChangeMutation.executeMutation({
-    passwordCurrent: form.passwordCurrent,
-    passwordNew: form.passwordNew,
+    passwordCurrent: form.passwordCurrent || '',
+    passwordNew: form.passwordNew || '',
   })
 
   if (result.error) {

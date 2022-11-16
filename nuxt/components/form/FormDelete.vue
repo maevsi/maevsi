@@ -59,8 +59,6 @@ const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  if (!form.password) return
-
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {

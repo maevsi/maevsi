@@ -402,16 +402,10 @@ async function submit() {
     })
   } else {
     // Add
-
-    if (!signedInUsername.value) throw new Error('Author username is not set!')
-    if (!form.name) throw new Error('Name is not set!')
-    if (!form.slug) throw new Error('Slug is not set!')
-    if (!form.visibility) throw new Error('Visibility is not set!')
-
     const result = await createEventMutation.executeMutation({
       createEventInput: {
         event: {
-          authorUsername: signedInUsername.value,
+          authorUsername: signedInUsername.value || '',
           description: form.description || null,
           end: form.end || null,
           inviteeCountMaximum: form.inviteeCountMaximum
@@ -420,11 +414,11 @@ async function submit() {
           isInPerson: form.isInPerson,
           isRemote: form.isRemote,
           location: form.location || null,
-          name: form.name,
-          slug: form.slug,
+          name: form.name || '',
+          slug: form.slug || '',
           start: form.start || null,
           url: form.url || null,
-          visibility: form.visibility,
+          visibility: form.visibility || EventVisibility.Private,
         },
       },
     })

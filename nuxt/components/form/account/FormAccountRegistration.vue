@@ -92,10 +92,6 @@ const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  if (!form.emailAddress) throw new Error('Email address is not set!')
-  if (!form.password) throw new Error('Password is not set!')
-  if (!form.username) throw new Error('Username is not set!')
-
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
@@ -104,10 +100,10 @@ async function submit() {
   }
 
   const result = await executeMutationAccountRegistration({
-    emailAddress: form.emailAddress,
+    emailAddress: form.emailAddress || '',
     language: locale.value,
-    password: form.password,
-    username: form.username,
+    password: form.password || '',
+    username: form.username || '',
   })
 
   if (result.error) {

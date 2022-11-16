@@ -61,8 +61,6 @@ const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  if (!form.emailAddress) throw new Error('Email address is not set!')
-
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
@@ -71,7 +69,7 @@ async function submit() {
   }
 
   const result = await passwordResetRequestMutation.executeMutation({
-    emailAddress: form.emailAddress,
+    emailAddress: form.emailAddress || '',
     language: locale.value,
   })
 

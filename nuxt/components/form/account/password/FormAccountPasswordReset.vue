@@ -56,8 +56,6 @@ const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  if (!form.password) throw new Error('Password is not set!')
-
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
@@ -67,7 +65,7 @@ async function submit() {
 
   const result = await passwordResetMutation.executeMutation({
     code: route.query.code,
-    password: form.password,
+    password: form.password || '',
   })
 
   if (result.error) {
