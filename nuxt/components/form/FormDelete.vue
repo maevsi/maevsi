@@ -52,9 +52,11 @@ const { t } = useI18n()
 const api = getApiDataDefault()
 
 // data
-const form = reactive({
-  password: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    password: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
@@ -68,7 +70,7 @@ async function submit() {
 
   props
     .mutation({
-      password: form.password,
+      password: form.value.password,
       ...props.variables,
     })
     .then((result) => {

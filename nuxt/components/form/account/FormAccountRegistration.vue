@@ -83,11 +83,13 @@ const api = computed(() =>
 )
 
 // data
-const form = reactive({
-  emailAddress: ref<string>(),
-  password: ref<string>(),
-  username: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    emailAddress: ref<string>(),
+    password: ref<string>(),
+    username: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
@@ -100,10 +102,10 @@ async function submit() {
   }
 
   const result = await executeMutationAccountRegistration({
-    emailAddress: form.emailAddress || '',
+    emailAddress: form.value.emailAddress || '',
     language: locale.value,
-    password: form.password || '',
-    username: form.username || '',
+    password: form.value.password || '',
+    username: form.value.username || '',
   })
 
   if (result.error) {

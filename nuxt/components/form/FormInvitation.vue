@@ -130,15 +130,17 @@ const api = computed(() =>
 const contacts = computed(() => allContactsQuery.data.value?.allContacts?.nodes)
 
 // data
-const form = reactive({
-  contactId: ref<string>(),
-  searchString: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    contactId: ref<string>(),
+    searchString: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
 function selectToggle(contact: Contact) {
-  form.contactId = contact.id
+  form.value.contactId = contact.id
 
   // For multiple contact selections:
   //
@@ -159,7 +161,7 @@ async function submit() {
 
   const result = await executeMutationCreateInvitation({
     invitationInput: {
-      contactId: form.contactId || null,
+      contactId: form.value.contactId || null,
       eventId: +props.event.id,
     },
   })
@@ -182,11 +184,11 @@ const contactsFiltered = computed(() => {
     return undefined
   }
 
-  if (!form.searchString || form.searchString === '') {
+  if (!form.value.searchString || form.value.searchString === '') {
     return contacts.value
   }
 
-  const searchStringParts = form.searchString.split(' ')
+  const searchStringParts = form.value.searchString.split(' ')
   const allContactsFiltered = contacts.value?.filter((contact: Contact) => {
     for (const contactProperty of [
       ...(contact.accountUsername

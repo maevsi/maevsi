@@ -67,8 +67,8 @@ export function validateEventSlug(
 
     const result = await $urql.value
       .query(EVENT_IS_EXISTING_QUERY, {
-        slug: signedInUserName,
-        authorUsername: value,
+        slug: value,
+        authorUsername: signedInUserName,
       })
       .toPromise()
 

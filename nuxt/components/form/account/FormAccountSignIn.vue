@@ -77,17 +77,19 @@ const { executeMutation: executeMutationAuthentication } =
 const api = getApiDataDefault()
 
 // data
-const form = reactive({
-  password: ref<string>(),
-  username: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    password: ref<string>(),
+    username: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
 function accountRegistrationRefresh() {
   executeMutationAccountRegistrationRefresh({
     language: locale.value,
-    username: form.username || '',
+    username: form.value.username || '',
   }).then((result) => {
     if (result.error) {
       api.value.errors.push(result.error)
@@ -110,8 +112,8 @@ async function submit() {
   }
 
   executeMutationAuthentication({
-    username: form.username || '',
-    password: form.password || '',
+    username: form.value.username || '',
+    password: form.value.password || '',
   }).then(async (result) => {
     if (result.error) {
       api.value.errors.push(result.error)

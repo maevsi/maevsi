@@ -79,9 +79,8 @@
       @input="form.address = $event"
     >
       <textarea
-        v-if="v$.form.address"
         id="input-address"
-        v-model.trim="v$.form.address.$model"
+        v-model.trim="form.address"
         class="form-input"
         :placeholder="t('globalPlaceholderAddress')"
         rows="2"
@@ -161,16 +160,18 @@ const api = computed(() =>
 )
 
 // data
-const form = reactive({
-  id: ref<string>(),
-  accountUsername: ref<string>(),
-  address: ref<string>(),
-  emailAddress: ref<string>(),
-  firstName: ref<string>(),
-  lastName: ref<string>(),
-  phoneNumber: ref<string>(),
-  url: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    id: ref<string>(),
+    accountUsername: ref<string>(),
+    address: ref<string>(),
+    emailAddress: ref<string>(),
+    firstName: ref<string>(),
+    lastName: ref<string>(),
+    phoneNumber: ref<string>(),
+    url: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
@@ -182,19 +183,19 @@ async function submit() {
     return
   }
 
-  if (form.id) {
+  if (form.value.id) {
     // Edit
     const result = await updateContactByIdMutation.executeMutation({
-      id: form.id,
+      id: form.value.id,
       contactPatch: {
-        accountUsername: form.accountUsername || null,
-        address: form.address || null,
+        accountUsername: form.value.accountUsername || null,
+        address: form.value.address || null,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.emailAddress || null,
-        firstName: form.firstName || null,
-        lastName: form.lastName || null,
-        phoneNumber: form.phoneNumber || null,
-        url: form.url || null,
+        emailAddress: form.value.emailAddress || null,
+        firstName: form.value.firstName || null,
+        lastName: form.value.lastName || null,
+        phoneNumber: form.value.phoneNumber || null,
+        url: form.value.url || null,
       },
     })
 
@@ -206,14 +207,14 @@ async function submit() {
     // Add
     const result = await createContactMutation.executeMutation({
       contactInput: {
-        accountUsername: form.accountUsername || null,
-        address: form.address || null,
+        accountUsername: form.value.accountUsername || null,
+        address: form.value.address || null,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.emailAddress || null,
-        firstName: form.firstName || null,
-        lastName: form.lastName || null,
-        phoneNumber: form.phoneNumber || null,
-        url: form.url || null,
+        emailAddress: form.value.emailAddress || null,
+        firstName: form.value.firstName || null,
+        lastName: form.value.lastName || null,
+        phoneNumber: form.value.phoneNumber || null,
+        url: form.value.url || null,
       },
     })
 
@@ -233,7 +234,7 @@ function updateForm(data?: Contact) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {
-    ;(form as Record<string, any>)[k] = v
+    ;(form as Record<string, any>).value[k] = v
   }
 }
 

@@ -181,9 +181,11 @@ const api = computed(() =>
 )
 
 // data
-const form = reactive({
-  invitationCode: ref(route.query.ic),
-})
+const form = computed(() =>
+  reactive({
+    invitationCode: ref(route.query.ic),
+  })
+)
 const isFormSent = ref(false)
 const title = t('title')
 
@@ -197,7 +199,7 @@ async function submit() {
   }
 
   const result = await eventUnlockMutation.executeMutation({
-    invitationCode: form.invitationCode,
+    invitationCode: form.value.invitationCode,
   })
 
   if (result.error) {
