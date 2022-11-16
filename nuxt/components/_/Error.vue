@@ -17,7 +17,7 @@
       <br />
       {{ t('403hint') }}
     </p>
-    <ButtonList>
+    <ButtonList class="justify-center">
       <ButtonSignIn v-if="statusCode === 403" />
       <ButtonHome />
     </ButtonList>

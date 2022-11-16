@@ -204,6 +204,7 @@
           jwtDecoded &&
           event.authorUsername === jwtDecoded.username
         "
+        class="justify-center"
       >
         <ButtonColored
           is-to-relative

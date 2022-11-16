@@ -5,7 +5,10 @@
     >
       {{ routeParamUsername }}
     </LayoutBreadcrumbs>
-    <ButtonList v-if="signedInUsername === routeParamUsername">
+    <ButtonList
+      v-if="signedInUsername === routeParamUsername"
+      class="justify-end"
+    >
       <ButtonColored :aria-label="t('settings')" to="settings" is-to-relative>
         {{ t('settings') }}
         <template #prefix>
@@ -33,7 +36,7 @@
         {{ routeParamUsername }}
       </h2>
     </div>
-    <ButtonList>
+    <ButtonList class="justify-center">
       <ButtonColored
         :aria-label="t('eventsTheir', { name: routeParamUsername })"
         :is-primary="false"
