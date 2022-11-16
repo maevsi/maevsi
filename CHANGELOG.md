@@ -1,3 +1,28 @@
+# [1.0.0-alpha.16](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.15...1.0.0-alpha.16) (2022-11-16)
+
+
+### Bug Fixes
+
+* **api:** correct pagination ([3e5f0cf](https://github.com/maevsi/maevsi/commit/3e5f0cf5483442ed6ee10d271722826bf6a06070))
+* **chart:** update to v4 ([70c258f](https://github.com/maevsi/maevsi/commit/70c258fd47c0a40214b0724e3dab5d2e273c4ec9))
+* **event:** increase maximum description length ([1af732f](https://github.com/maevsi/maevsi/commit/1af732fe14ef09c00b44a712e8185566f0ca4d3b))
+* **form:** correct typing ([2bc5db5](https://github.com/maevsi/maevsi/commit/2bc5db5b7bab107f75701176601008567d4f1e89))
+* **h3:** revert upgrade ([fb6e5d7](https://github.com/maevsi/maevsi/commit/fb6e5d7bf744e943f467f7f473ad7d525296d96d))
+* **invitations:** enable relay pagination ([76c20a6](https://github.com/maevsi/maevsi/commit/76c20a641834e082312f5d94e6e3532fb6649f4e))
+* **nuxt:** revert extraction of staging host variable ([36a84ca](https://github.com/maevsi/maevsi/commit/36a84cae19fdc4f04e6a962570be82274d433092))
+* **package:** allow insecure server ([e64ca83](https://github.com/maevsi/maevsi/commit/e64ca833585e49a1f6127117182856bbd5975f70))
+* **package:** remove installation from development ([3f87ca8](https://github.com/maevsi/maevsi/commit/3f87ca83b43cbcf83cab14dd9f2cfded83076a40))
+* **package:** use ssl for production ([584e15d](https://github.com/maevsi/maevsi/commit/584e15dc1f58e592dc6c16e4516ed0d6108f01e9))
+* **scroll-container:** check if there is a next page ([410a59a](https://github.com/maevsi/maevsi/commit/410a59a48a16c041223792bf1233d826c2cd7f34))
+* **scroll-container:** correct debounce usage ([81e7e0a](https://github.com/maevsi/maevsi/commit/81e7e0af566c95f3c81f18d04fca9aeea38d84b6))
+* **sqitch:** use uuid v4 ([7bb8e49](https://github.com/maevsi/maevsi/commit/7bb8e499dd677d76c5d88aba7765d4ff4b72de05)), closes [#47](https://github.com/maevsi/maevsi/issues/47)
+
+
+### Features
+
+* **i18n:** use new slogan ([f45cb88](https://github.com/maevsi/maevsi/commit/f45cb883e6814294e9cfc97a1a454969f33418c4))
+* **node:** use ssl for production ([69725e7](https://github.com/maevsi/maevsi/commit/69725e71cb59676bea9e0efc91b57d495be20659))
+
 # [1.0.0-alpha.15](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.14...1.0.0-alpha.15) (2022-11-14)
 
 
