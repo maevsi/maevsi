@@ -50,6 +50,8 @@ function selectProfilePictureStorageKey(storageKey?: string) {
   selectedProfilePictureStorageKey.value = storageKey
 }
 async function setProfilePicture() {
+  api.value.errors = []
+
   const result = await profilePictureSetMutation.executeMutation({
     storageKey: selectedProfilePictureStorageKey.value || '',
   })

@@ -455,6 +455,8 @@ function qrCodeShow() {
   store.modalAdd({ id: 'ModalInvitationQrCode' })
 }
 async function update(id: string, invitationPatch: Partial<Invitation>) {
+  api.value.errors = []
+
   const result = await executeMutationUpdateInvitationById({
     id,
     invitationPatch,

@@ -328,13 +328,14 @@ function toggleSelect(upload: any) {
 function getUploadBlobPromise() {
   return new Promise<void>((resolve, reject) => {
     cropperRef.value?.getResult().canvas?.toBlob(async (blob: Blob) => {
+      api.value.errors = []
+
       const result = await executeMutationUploadCreate({
         uploadCreateInput: {
           sizeByte: blob.size,
         },
       })
 
-      // TODO: evaluate duplicates in error pushes
       if (result.error) {
         api.value.errors.push(result.error)
         consola.error(result.error)

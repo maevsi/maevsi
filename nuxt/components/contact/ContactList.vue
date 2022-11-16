@@ -118,6 +118,7 @@ function add() {
 async function delete_(nodeId: string, id: string) {
   pending.deletions.push(nodeId)
   api.value.errors = []
+
   const result = await executeMutationContactDeleteById({ id })
 
   if (result.error) {

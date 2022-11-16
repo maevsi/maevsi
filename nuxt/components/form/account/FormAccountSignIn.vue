@@ -92,6 +92,8 @@ const isFormSent = ref(false)
 
 // methods
 function accountRegistrationRefresh() {
+  api.value.errors = []
+
   executeMutationAccountRegistrationRefresh({
     language: locale.value,
     username: form.value.username || '',
