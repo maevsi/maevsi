@@ -2,6 +2,10 @@
   <Form
     ref="formRef"
     :errors="api.errors"
+    :errors-pg-ids="{
+      postgres22023: t('postgres22023'),
+      postgres28P01: t('postgres28P01'),
+    }"
     :form="v$.form"
     :is-form-sent="isFormSent"
     :submit-name="t('passwordChange')"

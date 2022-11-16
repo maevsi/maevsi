@@ -12,6 +12,10 @@
     </ButtonColored>
     <Form
       :errors="api.errors"
+      :errors-pg-ids="{
+        postgres22023: t('postgres22023'),
+        postgres23505: t('postgres23505'),
+      }"
       :form="v$.form"
       form-class="w-full"
       :is-form-sent="isFormSent"
@@ -152,7 +156,6 @@ const v$ = useVuelidate(rules, { form })
 <i18n lang="yaml">
 de:
   accountDeletionNotice: Du wirst deinen Account jederzeit löschen können.
-  emailAddress: E-Mail-Adresse
   postgres22023: Das Passwort ist zu kurz! Überlege dir ein längeres.
   postgres23505: Es gibt bereits einen Account mit diesem Nutzernamen oder dieser E-Mail-Adresse! Überlege dir einen neuen Namen oder versuche dich anzumelden.
   register: Registrieren
@@ -161,7 +164,6 @@ de:
   signIn: Oder stattdessen anmelden
 en:
   accountDeletionNotice: "You'll be able to delete your account at any time."
-  emailAddress: Email address
   postgres22023: Your password is too short! Think of a longer one.
   postgres23505: This username or email address is already in use! Think of a new name or try signing in instead.
   register: Register

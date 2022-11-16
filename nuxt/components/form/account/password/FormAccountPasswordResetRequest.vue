@@ -1,6 +1,10 @@
 <template>
   <Form
     :errors="api.errors"
+    :errors-pg-ids="{
+      postgres55000: t('postgres55000'),
+      postgresP0002: t('postgresP0002'),
+    }"
     :form="v$.form"
     :form-class="formClass"
     :is-form-sent="isFormSent"

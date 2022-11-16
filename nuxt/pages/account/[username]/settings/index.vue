@@ -37,6 +37,10 @@
       <h2>{{ t('titleAccountDelete') }}</h2>
       <FormDelete
         id="deleteAccount"
+        :error-pg-ids="{
+          postgres23503: t('postgres23503'),
+          postgres28P01: t('postgres28P01'),
+        }"
         :item-name="t('account')"
         :mutation="mutation"
         @success="signOut"

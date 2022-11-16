@@ -1,7 +1,13 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <Loader :api="api" />
+    <Loader
+      :api="api"
+      :error-pg-ids="{
+        postgres55000: t('postgres55000'),
+        postgresP0002: t('postgresP0002'),
+      }"
+    />
   </div>
 </template>
 
@@ -78,14 +84,12 @@ export default {
 
 <i18n lang="yaml">
 de:
-  emailAddressVerificationSuccess: E-Mail-Adresse erfolgreich verifiziert.
   postgres55000: Der Verifizierungscode ist abgelaufen!
   postgresP0002: Unbekannter Verifizierungscode! Hast du deine E-Mail-Adresse vielleicht schon verifiziert?
   title: Verifizierung
   verified: E-Mail-Adresse verifiziert.
   verifiedBody: Du kannst dich nun anmelden.
 en:
-  emailAddressVerificationSuccess: Email address verified successfully.
   postgres55000: The verification code has expired!
   postgresP0002: Invalid verification code! Have you perhaps already verified your email address?
   title: Verification

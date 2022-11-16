@@ -290,13 +290,11 @@ de:
   address: Adresse
   firstName: Vorname
   lastName: Nachname
-  phoneNumber: Telefonnummer
   save: Speichern
 en:
   accountOverride: You can add an existing account as a contact or enter contact data manually. If both data are entered, the manually entered data will be used preferentially.
   address: Address
   firstName: First name
   lastName: Last name
-  phoneNumber: Phone number
   save: Save
 </i18n>

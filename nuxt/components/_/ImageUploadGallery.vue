@@ -1,5 +1,10 @@
 <template>
-  <Loader :api="api">
+  <Loader
+    :api="api"
+    :error-pg-ids="{
+      postgres53100: t('postgres53100'),
+    }"
+  >
     <Card>
       <ul class="flex flex-wrap justify-center">
         <template v-if="uploads?.length">
@@ -402,7 +407,6 @@ watch(allUploadsQuery.error, (currentValue, _oldValue) => {
 
 <i18n lang="yaml">
 de:
-  cancel: Abbrechen
   iconAdd: 'Ein neues Bild hochladen. Genutzter Speicherplatz: {sizeUsed}/{sizeTotal}.'
   iconTrash: löschen
   iconTrashLabel: Dieses hochgeladene Bild löschen.
@@ -413,11 +417,9 @@ de:
   uploadDeleteFailed: Das Löschen des Elements ist fehlgeschlagen!
   uploadDeleteUnexpectedStatusCode: Beim Löschen des Elements trat ein unerwarteter Statuscode auf.
   uploadError: 'Fehler: Dateien wurden nicht erfolgreich hochgeladen!'
-  uploadImages: Bilder hochladen
   uploadNew: Lade ein neues Bild hoch
   uploadSize: 'Größe: {size}'
 en:
-  cancel: Cancel
   iconAdd: 'Upload a new image. Used storage space: {sizeUsed}/{sizeTotal}.'
   iconTrash: trash
   iconTrashLabel: Delete this image upload.
@@ -428,7 +430,6 @@ en:
   uploadDeleteFailed: Deleting upload failed!
   uploadDeleteUnexpectedStatusCode: Deleting upload returned an unexpected status code.
   uploadError: 'Error: Upload failed!'
-  uploadImages: Upload images
   uploadNew: Upload a new image
   uploadSize: 'Size: {size}'
 </i18n>

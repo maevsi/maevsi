@@ -12,7 +12,8 @@
         <div id="logo" class="h-10 w-32" />
       </Button>
       <div class="hidden lg:block flex-grow" />
-      <!-- <div class="hidden xl:flex">
+      <!-- xl:flex -->
+      <div class="hidden">
         <label class="hidden" for="search">{{ t('search') }}</label>
         <input
           id="search"
@@ -28,7 +29,7 @@
         >
           <IconSearch />
         </span>
-      </div> -->
+      </div>
       <div class="flex items-center gap-2 lg:gap-4 whitespace-nowrap">
         <ButtonText
           :aria-label="t('events')"
@@ -107,12 +108,12 @@ const { t } = useI18n()
 const signedInUsername = computed(() => store.signedInUsername)
 
 // // methods
-// function navigateToSearch() {
-//   navigateTo({
-//     path: localePath(`/task/search`),
-//     query: { q: 'search phrase' },
-//   })
-// }
+function navigateToSearch() {
+  navigateTo({
+    path: localePath(`/task/search`),
+    query: { q: 'search phrase' },
+  })
+}
 </script>
 
 <i18n lang="yaml">

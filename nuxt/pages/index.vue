@@ -208,7 +208,6 @@ de:
   benefitsTitle: Deine Vorteile mit {maevsi}
   benefitUserFriendly: Benutzerfreundlich
   benefitUserFriendlyDescription: Gäste können ganz einfach teilnehmen, komplett ohne Login
-  events: Veranstaltungen
   heroImage: Heldenbild.
   maevsi: maevsi
   maevsiDescription1: Persönliche Einladungen. Geordnetes Feedback.
@@ -245,7 +244,6 @@ en:
   benefitsTitle: Your benefits with {maevsi}
   benefitUserFriendly: User friendly
   benefitUserFriendlyDescription: Guests can participate easily, without any login
-  events: Events
   heroImage: Hero image.
   maevsi: maevsi
   maevsiDescription1: Personal invitations. Proper feedback.

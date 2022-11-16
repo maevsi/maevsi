@@ -157,7 +157,6 @@ watch(contactsQuery.error, (currentValue, _oldValue) => {
 <i18n lang="yaml">
 de:
   address: Adresse
-  author: Autor
   contact: Kontakt
   contactAdd: Kontakt hinzufügen
   contactEdit: Kontakt bearbeiten
@@ -166,7 +165,6 @@ de:
   url: Webseite
 en:
   address: Address
-  author: author
   contact: Contact
   contactAdd: Add contact
   contactEdit: Kontakt bearbeiten

@@ -12,6 +12,7 @@
         <IconX />
       </ButtonIcon>
       <div class="flex flex-col gap-8 p-6 lg:p-8">
+        <!-- TODO: remove comments when dashboard can be reached from mobile (yml as well) -->
         <!-- <div v-if="signedInUsername" class="mt-0 flex md:mt-auto">
           <Button
             :aria-label="signedInUsername"
@@ -113,27 +114,27 @@ const { t } = useI18n()
 
 <i18n lang="yaml">
 de:
-  accountSettings: Konto bearbeiten
-  contacts: Meine Kontakte
-  eventNew: Veranstaltung erstellen
-  events: Meine Veranstaltungen
+  # accountSettings: Konto bearbeiten
+  # contacts: Meine Kontakte
+  # eventNew: Veranstaltung erstellen
+  # events: Meine Veranstaltungen
   eventsExplore: Veranstaltungen entdecken
   menuHide: Menü verstecken
-  profileLink: Profilseite anzeigen
-  settings: Einstellungen
-  signIn: Anmelden
-  signOut: Abmelden
-  uploads: Meine Bilder
+  # profileLink: Profilseite anzeigen
+  # settings: Einstellungen
+  # signIn: Anmelden
+  # signOut: Abmelden
+  # uploads: Meine Bilder
 en:
-  accountSettings: Edit account
-  contacts: My contacts
-  eventNew: Create event
-  events: My events
+  # accountSettings: Edit account
+  # contacts: My contacts
+  # eventNew: Create event
+  # events: My events
   eventsExplore: Explore events
   menuHide: Hide menu
-  profileLink: Show profile page
-  settings: Settings
-  signIn: Sign in
-  signOut: Sign out
-  uploads: My images
+  # profileLink: Show profile page
+  # settings: Settings
+  # signIn: Sign in
+  # signOut: Sign out
+  # uploads: My images
 </i18n>

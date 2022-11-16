@@ -97,29 +97,23 @@ export default {
 de:
   contactBook: Kontaktbuch
   contactsMine: Meine Kontake
-  dashboard: Dashboard
   eventsMine: Meine Veranstaltungen
-  eventsMineDescription: Hier wirst du bald deine Veranstaltungen sehen.
   gallery: Bildergalerie
   invitationsMine: Meine Einladungen
   invitationsMineDescription: Hier wirst du bald die Veranstaltungen sehen, zu denen du eingeladen bist.
   news: Ereignisverlauf
   newsDescription: Hier wirst du bald alle für dich relevanten Neuigkeiten sehen.
-  profile: Profil
   title: Dashboard
   uploadsMine: Meine Uploads
 en:
   contactBook: Contact book
   contactsMine: My contacts
-  dashboard: dashboard
   eventsMine: My events
-  eventsMineDescription: Here you will soon see your events.
   gallery: Image gallery
   invitationsMine: My invitations
   invitationsMineDescription: Here you will soon see the events to which you are invited.
   news: Recent changes
   newsDescription: Here you will soon see all the news relevant to you.
-  profile: Profile
   title: Dashboard
   uploadsMine: My uploads
 </i18n>

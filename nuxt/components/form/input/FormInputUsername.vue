@@ -3,10 +3,10 @@
     v-if="formInput"
     :is-optional="isOptional"
     :is-validatable="isValidatable"
-    :id-label="`input-${id}`"
+    :id-label="`input-username`"
     :placeholder="t('globalPlaceholderUsername')"
     :success="isValidatable && !formInput.$invalid"
-    :title="t(id)"
+    :title="t('username')"
     type="text"
     :validation-property="formInput"
     :value="formInput"
@@ -72,14 +72,12 @@ import type { BaseValidation } from '@vuelidate/core'
 
 export interface Props {
   formInput?: BaseValidation
-  id?: string
   isOptional?: boolean
   isValidatable?: boolean
   isValidationInverted?: boolean
 }
 withDefaults(defineProps<Props>(), {
   formInput: undefined,
-  id: 'username',
   isOptional: false,
   isValidatable: false,
   isValidationInverted: false,
@@ -94,12 +92,10 @@ const { t } = useI18n()
 
 <i18n lang="yaml">
 de:
-  iconCheck: Verifiziert
   username: Nutzername
   validationExistenceHint: Hast du Groß- und Kleinbuchstaben richtig verwendet?
   validationFormat: Darf nur Buchstaben, Ziffern und Bindestriche enthalten.
 en:
-  iconCheck: Verified
   username: Username
   validationExistenceHint: Have you used upper and lower case letters correctly?
   validationFormat: May only contain letter, digits and dashes.

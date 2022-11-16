@@ -1,5 +1,10 @@
 <template>
-  <Loader :api="api">
+  <Loader
+    :api="api"
+    :error-pg-ids="{
+      postgresP0002: t('postgresP0002'),
+    }"
+  >
     <div class="flex flex-col gap-4">
       <ScrollContainer
         v-if="event && invitations?.length"

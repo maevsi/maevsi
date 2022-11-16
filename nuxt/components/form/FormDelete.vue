@@ -1,6 +1,7 @@
 <template>
   <Form
     :errors="api.errors"
+    :errors-pg-ids="errorsPgIds"
     :form="v$.form"
     :is-form-sent="isFormSent"
     :submit-name="t('deletion', { item: itemName })"
@@ -31,6 +32,7 @@ import {
 import { Exact, EventDeleteMutation } from '~/gql/generated'
 
 export interface Props {
+  errorsPgIds?: Record<string, string>
   itemName: string
   mutation: (
     variables: Exact<any>,
@@ -39,6 +41,7 @@ export interface Props {
   variables?: Record<string, any>
 }
 const props = withDefaults(defineProps<Props>(), {
+  errorsPgIds: undefined,
   variables: undefined,
 })
 

@@ -536,15 +536,12 @@ de:
   eventCreateSuccess: Veranstaltung erfolgreich erstellt.
   eventUpdate: Änderungen speichern
   stateInfoLocation: Ein Suchbegriff für Google Maps.
-  stateInfoUrl: Eine Web-URL für digitale Veranstaltungen.
   isInPerson: vor Ort
   isRemote: digital
   maximumInviteeCount: Maximale Gästezahl
   name: Name
   namePlaceholder: Willkommensfeier
   location: Ort
-  preview: Vorschau
-  previewNoContent: Kein Inhalt für die Vorschau 😕
   slug: Slug
   slugPlaceholder: willkommensfeier
   start: Beginn
@@ -563,15 +560,12 @@ en:
   eventCreateSuccess: Event created successfully.
   eventUpdate: Save changes
   stateInfoLocation: A search phrase for Google Maps.
-  stateInfoUrl: A web URL for remote events.
   isInPerson: in person
   isRemote: remote
   maximumInviteeCount: Maximum guest count
   name: Name
   namePlaceholder: Welcome Party
   location: Location
-  preview: Preview
-  previewNoContent: No content to preview 😕
   slug: Slug
   slugPlaceholder: welcome-party
   start: Start

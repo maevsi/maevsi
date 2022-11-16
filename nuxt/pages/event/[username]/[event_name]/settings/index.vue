@@ -1,5 +1,11 @@
 <template>
-  <Loader :api="api">
+  <Loader
+    :api="api"
+    :error-pg-ids="{
+      postgres28P01: t('postgres28P01'),
+      postgresP0002: t('postgresP0002'),
+    }"
+  >
     <div v-if="event" class="flex flex-col gap-4">
       <LayoutBreadcrumbs
         :prefixes="[

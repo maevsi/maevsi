@@ -12,6 +12,11 @@
     </ButtonColored>
     <Form
       :errors="api.errors"
+      :errors-pg-ids="{
+        postgres22023: t('postgres22023'),
+        postgres55000: t('postgres55000'),
+        postgresP0002: t('postgresP0002'),
+      }"
       :form="v$.form"
       form-class="w-full"
       :is-form-sent="isFormSent"
@@ -164,7 +169,6 @@ de:
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
   sent: Gesendet!
   signIn: Anmelden
-  username: Nutzername
   verificationMailResend: Verifizierungsmail erneut senden
 en:
   jwtStoreFail: Failed to store the authentication data!
@@ -176,6 +180,5 @@ en:
   registrationRefreshSuccess: A new welcome email is on its way to you.
   sent: Sent!
   signIn: Sign in
-  username: Username
   verificationMailResend: Resend verification email
 </i18n>

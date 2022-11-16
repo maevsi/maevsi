@@ -3,6 +3,9 @@
     <h1>{{ title }}</h1>
     <Form
       :errors="api.errors"
+      :errors-pg-ids="{
+        postgresP0002: t('postgresP0002'),
+      }"
       :form="v$.form"
       :is-form-sent="isFormSent"
       :submit-name="t('submit')"

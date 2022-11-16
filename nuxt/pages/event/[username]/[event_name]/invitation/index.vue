@@ -114,12 +114,10 @@ export default {
 
 <i18n lang="yaml">
 de:
-  event: Veranstaltung
   events: Veranstaltungen
   invitations: Einladungen
   title: Einladungen
 en:
-  event: event
   events: events
   invitations: invitations
   title: Invitations

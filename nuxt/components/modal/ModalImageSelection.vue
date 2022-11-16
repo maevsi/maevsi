@@ -63,11 +63,7 @@ async function setProfilePicture() {
 
 <i18n lang="yaml">
 de:
-  cancel: Abbrechen
   header: Wähle ein Profilbild
-  select: Auswählen
 en:
-  cancel: Cancel
   header: Select a profile picture
-  select: Select
 </i18n>

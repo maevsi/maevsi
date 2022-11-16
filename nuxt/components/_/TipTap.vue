@@ -58,7 +58,7 @@
         >
           <div class="flex align-end">
             <IconHeading />
-            <span>{{ t('1') }}</span>
+            <span>{{ t('number1') }}</span>
           </div>
         </ButtonIcon>
         <ButtonIcon
@@ -68,7 +68,7 @@
         >
           <div class="flex align-end">
             <IconHeading />
-            <span>{{ t('2') }}</span>
+            <span>{{ t('number2') }}</span>
           </div>
         </ButtonIcon>
         <ButtonIcon
@@ -78,7 +78,7 @@
         >
           <div class="flex align-end">
             <IconHeading />
-            <span>{{ t('3') }}</span>
+            <span>{{ t('number3') }}</span>
           </div>
         </ButtonIcon>
       </div>
@@ -231,9 +231,6 @@ Link.configure({
 
 <i18n lang="yaml">
 de:
-  1: '1'
-  2: '2'
-  3: '3'
   blockquote: Zitat
   bold: Fett
   code: Code
@@ -246,14 +243,14 @@ de:
   linkRemove: Link entfernen
   listOl: Aufzählung
   listUl: Liste
-  paragraph: Absatz
+  number1: '1'
+  number2: '2'
+  number3: '3'
+  # paragraph: Absatz
   redo: Wiederholen
   strike: Durchgestrichen
   undo: Rückgängig machen
 en:
-  1: '1'
-  2: '2'
-  3: '3'
   blockquote: Blockquote
   bold: Bold
   code: Code
@@ -265,8 +262,11 @@ en:
   linkRemove: Remove link
   listOl: Enumeration
   listUl: List
+  number1: '1'
+  number2: '2'
+  number3: '3'
   italic: Italic
-  paragraph: Paragraph
+  # paragraph: Paragraph
   redo: Redo
   strike: Strikethrough
   undo: Undo

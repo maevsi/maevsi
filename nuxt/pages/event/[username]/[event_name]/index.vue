@@ -148,6 +148,7 @@
                 </div>
               </div>
             </div>
+            <!-- TODO: reenable -->
             <!--
             <div
               v-if="invitation.feedback === 'ACCEPTED'"
@@ -588,21 +589,21 @@ de:
   invitationCancelAdmin: Einladung im Namen von {name} ablehnen
   invitationCanceled: Einladung abgelehnt
   invitationCanceledAdmin: Einladung im Namen von {name} abgelehnt
-  invitationCardKind: Art der Einladungskarte
-  invitationCardKindNone: Keine
-  invitationCardKindPaper: Papier
-  invitationCardKindDigital: Digital
+  # invitationCardKind: Art der Einladungskarte
+  # invitationCardKindNone: Keine
+  # invitationCardKindPaper: Papier
+  # invitationCardKindDigital: Digital
   invitationCodeMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
   invitationSelectionClear: Zurück zur Einladungsübersicht
   invitationViewFor: Du schaust dir die Einladung für {name} an. Nur du und {name} können diese Seite sehen.
   invitations: Einladungen
   print: Drucken
   qrCodeShow: Check-in-Code anzeigen
-  requestSelection: Bitte auswählen
+  # requestSelection: Bitte auswählen
   saved: Gespeichert!
   settings: Bearbeiten
-  step1Of2: 1/2
-  step2Of2: 2/2
+  # step1Of2: 1/2
+  # step2Of2: 2/2
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
   attendances: Check in
@@ -623,20 +624,20 @@ en:
   invitationCancelAdmin: Decline invitation on behalf of {name}
   invitationCanceled: Invitation declined
   invitationCanceledAdmin: Invitation declined on behalf of {name}
-  invitationCardKind: Type of invitation card
-  invitationCardKindNone: None
-  invitationCardKindPaper: Paper
-  invitationCardKindDigital: Digital
+  # invitationCardKind: Type of invitation card
+  # invitationCardKindNone: None
+  # invitationCardKindPaper: Paper
+  # invitationCardKindDigital: Digital
   invitationCodeMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
   invitationSelectionClear: Back to the invitation overview
   invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
   invitations: Invitations
   print: Print
   qrCodeShow: Show check in code
-  requestSelection: Please select
+  # requestSelection: Please select
   saved: Saved!
   settings: Edit
-  step1Of2: 1/2
-  step2Of2: 2/2
+  # step1Of2: 1/2
+  # step2Of2: 2/2
   success: Your input was saved succesfully.
 </i18n>
