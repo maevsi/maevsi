@@ -23,7 +23,7 @@ module.exports = {
   rules: {
     '@intlify/vue-i18n/no-missing-keys': 'error',
     '@intlify/vue-i18n/no-raw-text': 'error',
-    '@intlify/vue-i18n/no-deprecated-i18n-component': 'error',
+    '@intlify/vue-i18n/no-deprecated-i18n-component': 'error', // TODO: https://github.com/intlify/eslint-plugin-vue-i18n/issues/275
     '@intlify/vue-i18n/no-deprecated-i18n-place-attr': 'error',
     '@intlify/vue-i18n/no-deprecated-i18n-places-prop': 'error',
     '@intlify/vue-i18n/no-i18n-t-path-prop': 'error',
