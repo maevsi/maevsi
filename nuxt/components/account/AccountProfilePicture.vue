@@ -1,5 +1,5 @@
 <template>
-  <Loader :api="api" indicator="ping">
+  <Loader :api="api" indicator="ping" :classes="classes">
     <LoaderImage
       :alt="t('profilePictureAlt', { username })"
       :class="classComputed"

@@ -63,6 +63,7 @@
           @click.native="emit('onMenuHide')"
         >
           <AccountProfilePicture
+            classes="h-10 w-10"
             height="40"
             rounded
             :username="signedInUsername"

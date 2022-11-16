@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 // data
-const srcWhenLoaded = ref<string>(props.src)
+const srcWhenLoaded = ref<string>()
 
 // methods
 function updateSource() {
@@ -40,11 +40,11 @@ function updateSource() {
 // lifecycle
 watch(
   () => props.src,
-  async (_currentValue, _oldValue) => {
-    await updateSource()
+  (_currentValue, _oldValue) => {
+    updateSource()
   }
 )
 
 // initialization
-await updateSource()
+updateSource()
 </script>
