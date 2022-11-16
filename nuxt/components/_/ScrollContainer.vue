@@ -36,7 +36,9 @@ function onScroll(e: Event) {
 
   if (
     scrollBar &&
-    scrollBar.scrollTop + scrollBar.clientHeight >= scrollBar.scrollHeight - 500
+    scrollBar.scrollTop + scrollBar.clientHeight >=
+      scrollBar.scrollHeight - 500 &&
+    props.hasNextPage
   ) {
     emitLoadMore()
   }
