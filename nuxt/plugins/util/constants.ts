@@ -26,7 +26,3 @@ export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
 export const SITEMAP_EXCLUSIONS = ['/%F0%9F%AB%96']
 export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
-export const STAGING_HOST =
-  process.env.NODE_ENV !== 'production' && !process.env.NUXT_PUBLIC_STACK_DOMAIN
-    ? 'maev.si'
-    : undefined

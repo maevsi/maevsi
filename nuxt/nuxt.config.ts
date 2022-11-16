@@ -10,7 +10,6 @@ import {
   SITEMAP_EXCLUSIONS,
   SITEMAP_EXCLUSIONS_LOCALIZED,
   LOCALES,
-  STAGING_HOST,
 } from './plugins/util/constants'
 
 for (const exclusion of SITEMAP_EXCLUSIONS) {
@@ -146,7 +145,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       isInProduction: process.env.NODE_ENV === 'production',
-      stagingHost: STAGING_HOST,
+      stagingHost:
+        process.env.NODE_ENV !== 'production' &&
+        !process.env.NUXT_PUBLIC_STACK_DOMAIN
+          ? 'maev.si'
+          : undefined,
       // 'google-adsense': {
       //   id: process.env.GOOGLE_ADSENSE_ID,
       //   analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
