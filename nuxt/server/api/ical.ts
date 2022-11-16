@@ -5,7 +5,7 @@ import ical, * as icalGenerator from 'ical-generator'
 import moment from 'moment'
 import mustache from 'mustache'
 
-import { getHost } from '~/plugins/util/util'
+import { getHost } from '~/utils/util'
 import { Contact } from '~/types/contact'
 import { Event as MaevsiEvent } from '~/types/event'
 import { Invitation } from '~/types/invitation'

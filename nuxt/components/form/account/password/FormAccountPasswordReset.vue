@@ -24,8 +24,7 @@ import Swal from 'sweetalert2'
 import {
   formPreSubmit,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import { useAccountPasswordResetMutation } from '~/gql/generated'
 
 export interface Props {

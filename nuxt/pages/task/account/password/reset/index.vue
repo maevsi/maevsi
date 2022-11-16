@@ -6,8 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import { REGEX_UUID } from '~/plugins/util/constants'
-
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {

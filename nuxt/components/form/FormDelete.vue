@@ -24,11 +24,10 @@ import { AnyVariables, OperationContext, OperationResult } from '@urql/vue'
 import consola from 'consola'
 import Swal from 'sweetalert2'
 
-import { capitalizeFirstLetter, getApiDataDefault } from '~/plugins/util/util'
 import {
   formPreSubmit,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
-} from '~/plugins/util/validation'
+} from '~/utils/validation'
 import { Exact, EventDeleteMutation } from '~/gql/generated'
 
 export interface Props {

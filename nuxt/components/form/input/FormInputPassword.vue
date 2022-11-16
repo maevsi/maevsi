@@ -48,8 +48,6 @@
 <script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
 
-import { VALIDATION_PASSWORD_LENGTH_MINIMUM } from '~/plugins/util/validation'
-
 export interface Props {
   id?: string
   formInput: BaseValidation

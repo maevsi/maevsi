@@ -59,9 +59,7 @@ import {
   VALIDATION_FORMAT_SLUG,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
   VALIDATION_USERNAME_LENGTH_MAXIMUM,
-} from '~/plugins/util/validation'
-import { useJwtStore } from '~/plugins/util/auth'
-import { getApiDataDefault } from '~/plugins/util/util'
+} from '~/utils/validation'
 import {
   useAccountRegistrationRefreshMutation,
   useAuthenticateMutation,

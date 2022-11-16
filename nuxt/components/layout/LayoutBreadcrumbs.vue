@@ -55,8 +55,6 @@
 </template>
 
 <script setup lang="ts">
-import { getQueryString } from '~/plugins/util/util'
-
 export interface Breadcrumb {
   name: string
   to: string

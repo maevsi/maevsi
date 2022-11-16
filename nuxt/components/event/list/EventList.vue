@@ -29,8 +29,6 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
-import { getApiMeta } from '~/plugins/util/util'
 import { useAllEventsQuery } from '~/gql/generated'
 
 export interface Props {

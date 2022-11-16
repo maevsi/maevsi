@@ -113,8 +113,6 @@
 <script setup lang="ts">
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
-import { LOCALES } from '~/plugins/util/constants'
-
 const colorMode = useColorMode()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()

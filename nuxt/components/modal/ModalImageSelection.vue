@@ -20,7 +20,6 @@
 import consola from 'consola'
 
 import { useProfilePictureSetMutation } from '~/gql/generated'
-import { getApiMeta } from '~/plugins/util/util'
 
 const emit = defineEmits<{
   (e: 'submitSuccess'): void

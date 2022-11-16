@@ -63,12 +63,6 @@ import { LocationQueryValue } from 'vue-router'
 import { callWithNuxt } from '#app'
 
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
-import { useJwtStore } from '~/plugins/util/auth'
-import {
-  formPreSubmit,
-  VALIDATION_FORMAT_UUID,
-} from '~/plugins/util/validation'
-import { isQueryIcFormatValid, getApiMeta } from '~/plugins/util/util'
 import { useEventUnlockMutation } from '~/gql/generated'
 
 definePageMeta({

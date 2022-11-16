@@ -29,7 +29,6 @@
 
 <script setup lang="ts">
 import consola from 'consola'
-import { getApiMeta } from '~/plugins/util/util'
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useMaevsiStore } from '~/store'

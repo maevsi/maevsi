@@ -13,7 +13,7 @@ import { jwtVerify, importSPKI } from 'jose'
 import pg from 'pg'
 import fetch from 'node-fetch'
 
-import { JWT_ALGORITHM } from '~/plugins/util/constants'
+import { JWT_ALGORITHM } from '~/utils/constants'
 
 const configPostgraphileJwtPublicKeyPath =
   process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE || ''

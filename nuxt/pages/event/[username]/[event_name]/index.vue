@@ -317,8 +317,6 @@ import QrcodeVue from 'qrcode.vue'
 import Swal from 'sweetalert2'
 
 import { Invitation } from '~/types/invitation'
-import { append, getApiMeta } from '~/plugins/util/util'
-import { getContactName } from '~/plugins/util/model'
 import {
   InvitationFeedback,
   useEventByAuthorUsernameAndSlugQuery,

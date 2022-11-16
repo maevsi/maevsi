@@ -127,8 +127,7 @@ import {
   VALIDATION_FORMAT_URL_HTTPS,
   VALIDATION_LAST_NAME_LENGTH_MAXIMUM,
   VALIDATION_USERNAME_LENGTH_MAXIMUM,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import {
   useCreateContactMutation,
   useUpdateContactByIdMutation,

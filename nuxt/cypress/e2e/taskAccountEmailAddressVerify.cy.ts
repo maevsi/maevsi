@@ -1,4 +1,4 @@
-import { CYPRESS_BASE_URL } from '~/plugins/util/constants'
+import { CYPRESS_BASE_URL } from '~/utils/constants'
 
 describe('task account email-address verify page', () => {
   context('page load', () => {

@@ -3,7 +3,7 @@ import { H3Event } from 'h3'
 import { jwtVerify, importSPKI } from 'jose'
 
 import { useJwtPublicKey } from './auth-key'
-import { JWT_NAME, JWT_ALGORITHM } from '~/plugins/util/constants'
+import { JWT_NAME, JWT_ALGORITHM } from '~/utils/constants'
 
 export default defineEventHandler(async function (event: H3Event) {
   const { req, res } = event

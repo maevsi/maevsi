@@ -42,7 +42,6 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { getApiMeta } from '~/plugins/util/util'
 import {
   useEventByAuthorUsernameAndSlugQuery,
   useEventDeleteMutation,

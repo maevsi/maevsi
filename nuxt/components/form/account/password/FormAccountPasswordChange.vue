@@ -32,8 +32,7 @@ import FormType from '~/components/form/Form.vue'
 import {
   formPreSubmit,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import { useAccountPasswordChangeMutation } from '~/gql/generated'
 
 const { t } = useI18n()

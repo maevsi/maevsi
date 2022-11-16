@@ -46,7 +46,6 @@
 </template>
 
 <script setup lang="ts">
-import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 import { useAccountDeleteMutation } from '~/gql/generated'
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'

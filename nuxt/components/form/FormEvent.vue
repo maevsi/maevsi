@@ -291,8 +291,7 @@ import {
   VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
   VALIDATION_FORMAT_SLUG,
   VALIDATION_FORMAT_URL_HTTPS,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import {
   EventVisibility,
   useCreateEventMutation,

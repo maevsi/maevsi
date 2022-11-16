@@ -21,7 +21,7 @@ import {
   authenticationAnonymous,
   getJwtFromCookie,
   jwtRefresh,
-} from '~/plugins/util/auth'
+} from '~/utils/auth'
 import { useMaevsiStore } from '~/store'
 
 const ssrKey = '__URQL_DATA__'

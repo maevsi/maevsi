@@ -121,8 +121,6 @@ import {
   useAllUploadsQuery,
   useUploadCreateMutation,
 } from '~/gql/generated'
-import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
-import { getApiMeta } from '~/plugins/util/util'
 import { useMaevsiStore } from '~/store'
 
 export interface Props {

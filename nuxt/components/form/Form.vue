@@ -44,7 +44,7 @@
 import type { BaseValidation } from '@vuelidate/core'
 
 import Button from '~/components/button/Button.vue'
-import { BackendError, useGetCombinedErrorMessages } from '~/plugins/util/util'
+import { BackendError } from '~/utils/util'
 
 export interface Props {
   errors?: BackendError[]

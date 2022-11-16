@@ -66,8 +66,6 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
-import { getApiMeta } from '~/plugins/util/util'
 import {
   useAllContactsQuery,
   useDeleteContactByIdMutation,

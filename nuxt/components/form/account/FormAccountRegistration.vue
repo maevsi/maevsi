@@ -62,8 +62,7 @@ import {
   VALIDATION_FORMAT_UPPERCASE_NONE,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
   VALIDATION_USERNAME_LENGTH_MAXIMUM,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import { useAccountRegistrationMutation } from '~/gql/generated'
 
 const emit = defineEmits<{

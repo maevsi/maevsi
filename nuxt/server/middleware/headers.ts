@@ -1,6 +1,6 @@
 import { appendHeader, defineEventHandler } from 'h3'
 
-import { getHost } from '~/plugins/util/util'
+import { getHost } from '~/utils/util'
 
 function getCsp(host: string): Record<string, Array<string>> {
   const hostName = host.replace(/:[0-9]+$/, '')

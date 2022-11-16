@@ -1,6 +1,6 @@
 import { IncomingMessage } from 'node:http'
 
-import { getHost } from './plugins/util/util'
+import { getHost } from './utils/util'
 
 export default {
   'user-agent': '*',

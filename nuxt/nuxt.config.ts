@@ -10,7 +10,7 @@ import {
   SITEMAP_EXCLUSIONS,
   SITEMAP_EXCLUSIONS_LOCALIZED,
   LOCALES,
-} from './plugins/util/constants'
+} from './utils/constants'
 
 for (const exclusion of SITEMAP_EXCLUSIONS) {
   for (const locale of LOCALES) {

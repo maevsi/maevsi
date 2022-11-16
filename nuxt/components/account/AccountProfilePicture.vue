@@ -13,7 +13,6 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { getApiMeta } from '~/plugins/util/util'
 import { useProfilePictureByUsernameQuery } from '~/gql/generated'
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
 

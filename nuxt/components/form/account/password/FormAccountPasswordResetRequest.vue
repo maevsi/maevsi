@@ -26,8 +26,7 @@ import {
   formPreSubmit,
   VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
   VALIDATION_FORMAT_UPPERCASE_NONE,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import { useAccountPasswordResetRequestMutation } from '~/gql/generated'
 
 export interface Props {

@@ -9,8 +9,6 @@
 import consola from 'consola'
 import Swal from 'sweetalert2'
 
-import { REGEX_UUID } from '~/plugins/util/constants'
-import { getApiMeta } from '~/plugins/util/util'
 import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 
 definePageMeta({
