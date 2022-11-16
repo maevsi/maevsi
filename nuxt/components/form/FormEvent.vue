@@ -15,7 +15,7 @@
         type="number"
         placeholder="id"
         :value="v$.form.id"
-        @input="v$.form.id.$model = $event"
+        @input="form.id = $event"
       />
       <FormInput
         id-label="input-name"
@@ -63,7 +63,7 @@
         :title="t('slug')"
         type="text"
         :value="v$.form.slug"
-        @input="v$.form.slug.$model = $event"
+        @input="form.slug = $event"
       >
         <template #stateError>
           <FormInputStateError
@@ -93,7 +93,7 @@
         :title="t('visibility')"
         type="radio"
         :value="v$.form.visibility"
-        @input="v$.form.visibility.$model = $event as EventVisibility"
+        @input="form.visibility = $event as EventVisibility"
       >
         <FormRadioButtonGroup
           id="input-visibility"
@@ -119,7 +119,7 @@
         :title="t('maximumInviteeCount')"
         type="number"
         :value="v$.form.inviteeCountMaximum"
-        @input="v$.form.inviteeCountMaximum.$model = $event"
+        @input="form.inviteeCountMaximum = $event"
       >
         <template #stateError>
           <FormInputStateError
@@ -173,14 +173,14 @@
         <FormCheckbox
           form-key="is-in-person"
           :value="v$.form.isInPerson.$model"
-          @change="v$.form.isInPerson.$model = $event"
+          @change="form.isInPerson = $event"
         >
           {{ t('isInPerson') }}
         </FormCheckbox>
         <FormCheckbox
           form-key="is-remote"
           :value="v$.form.isRemote.$model"
-          @change="v$.form.isRemote.$model = $event"
+          @change="form.isRemote = $event"
         >
           {{ t('isRemote') }}
         </FormCheckbox>
@@ -192,7 +192,7 @@
         :title="t('location')"
         type="text"
         :value="v$.form.location"
-        @input="v$.form.location.$model = $event"
+        @input="form.location = $event"
       >
         <template #stateError>
           <FormInputStateError
@@ -211,13 +211,13 @@
       <FormInputUrl
         v-if="v$.form.isRemote.$model"
         :form-input="v$.form.url"
-        @input="v$.form.url.$model = $event"
+        @input="form.url = $event"
       />
       <FormInput
         :title="t('description')"
         type="tiptap"
         :value="v$.form.description"
-        @input="v$.form.description.$model = $event"
+        @input="form.description = $event"
       >
         <client-only v-if="v$.form.description">
           <TipTap v-model.trim="v$.form.description.$model" />

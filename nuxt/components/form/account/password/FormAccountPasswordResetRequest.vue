@@ -11,7 +11,7 @@
       :form-input="v$.form.emailAddress"
       is-required
       :title="t('emailAddressYours')"
-      @input="v$.form.emailAddress.$model = $event"
+      @input="form.emailAddress = $event"
     />
   </Form>
 </template>

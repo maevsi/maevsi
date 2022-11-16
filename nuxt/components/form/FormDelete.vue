@@ -9,7 +9,7 @@
     <FormInputPassword
       :form-input="v$.form.password"
       :title="t('passwordAccount')"
-      @input="v$.form.password.$model = $event"
+      @input="form.password = $event"
     />
     <template #submit-icon>
       <IconTrash />

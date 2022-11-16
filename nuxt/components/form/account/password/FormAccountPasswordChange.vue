@@ -11,13 +11,13 @@
       id="passwordCurrent"
       :form-input="v$.form.passwordCurrent"
       :title="t('passwordCurrent')"
-      @input="v$.form.passwordCurrent.$model = $event"
+      @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
       :form-input="v$.form.passwordNew"
       :title="t('passwordNew')"
-      @input="v$.form.passwordNew.$model = $event"
+      @input="form.passwordNew = $event"
     />
   </Form>
 </template>

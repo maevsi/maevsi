@@ -20,11 +20,11 @@
     >
       <FormInputUsername
         :form-input="v$.form.username"
-        @input="v$.form.username.$model = $event"
+        @input="form.username = $event"
       />
       <FormInputPassword
         :form-input="v$.form.password"
-        @input="v$.form.password.$model = $event"
+        @input="form.password = $event"
       />
       <div class="flex justify-center">
         <AppLink :to="localePath('/task/account/password/reset/request')">

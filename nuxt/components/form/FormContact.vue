@@ -14,13 +14,13 @@
       title="id"
       type="number"
       :value="v$.form.id"
-      @input="v$.form.id.$model = $event"
+      @input="form.id = $event"
     />
     <FormInputUsername
       :form-input="v$.form.accountUsername"
       is-optional
       is-validatable
-      @input="v$.form.accountUsername.$model = $event"
+      @input="form.accountUsername = $event"
     >
       <template #icon>
         <IconSearch />
@@ -36,7 +36,7 @@
       :title="t('firstName')"
       type="text"
       :value="v$.form.firstName"
-      @input="v$.form.firstName.$model = $event"
+      @input="form.firstName = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -54,7 +54,7 @@
       :title="t('lastName')"
       type="text"
       :value="v$.form.lastName"
-      @input="v$.form.lastName.$model = $event"
+      @input="form.lastName = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -68,7 +68,7 @@
     <FormInputEmailAddress
       :form-input="v$.form.emailAddress"
       is-optional
-      @input="v$.form.emailAddress.$model = $event"
+      @input="form.emailAddress = $event"
     />
     <FormInput
       id-label="input-address"
@@ -76,7 +76,7 @@
       :title="t('address')"
       type="textarea"
       :value="v$.form.address"
-      @input="v$.form.address.$model = $event"
+      @input="form.address = $event"
     >
       <textarea
         v-if="v$.form.address"
@@ -98,12 +98,12 @@
     <FormInputPhoneNumber
       :form-input="v$.form.phoneNumber"
       is-optional
-      @input="v$.form.phoneNumber.$model = $event"
+      @input="form.phoneNumber = $event"
     />
     <FormInputUrl
       :form-input="v$.form.url"
       is-optional
-      @input="v$.form.url.$model = $event"
+      @input="form.url = $event"
     />
   </Form>
 </template>
