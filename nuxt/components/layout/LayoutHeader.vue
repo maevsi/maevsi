@@ -124,7 +124,6 @@ de:
   profileLink: Profilseite anzeigen
   search: Suche
   signIn: Anmelden
-  signOut: Abmelden
 en:
   dashboard: Dashboard
   events: Explore events
@@ -133,5 +132,4 @@ en:
   profileLink: Show profile page
   search: Search
   signIn: Sign in
-  signOut: Sign out
 </i18n>
