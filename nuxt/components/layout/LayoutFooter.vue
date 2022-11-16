@@ -5,6 +5,7 @@
         <Hr />
         <LoaderImage
           :alt="t('maevsiLogo')"
+          aspect="aspect-square"
           class="mx-12 h-12 w-12 opacity-50 brightness-0 dark:opacity-60 dark:invert"
           height="48"
           src="/assets/static/logos/maevsi.svg"

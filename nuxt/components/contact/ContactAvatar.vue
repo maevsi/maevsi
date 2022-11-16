@@ -1,6 +1,7 @@
 <template>
   <LoaderImage
     :alt="t('profilePictureAlt', { emailAddress })"
+    :aspect="aspect"
     :class="classComputed"
     :height="size"
     :src="imageSrc"
@@ -12,6 +13,7 @@
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
 
 export interface Props {
+  aspect?: string
   classes?: string
   emailAddress?: string | null
   emailAddressHash?: string | null
@@ -19,6 +21,7 @@ export interface Props {
   size: string
 }
 const props = withDefaults(defineProps<Props>(), {
+  aspect: 'aspect-square',
   classes: undefined,
   emailAddress: undefined,
   emailAddressHash: undefined,

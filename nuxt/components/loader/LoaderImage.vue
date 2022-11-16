@@ -2,10 +2,12 @@
   <img
     v-if="srcWhenLoaded"
     :alt="alt"
-    :class="{ 'rounded-full': rounded }"
+    :class="[aspect, { 'rounded-full': rounded }]"
+    :height="height"
     :src="srcWhenLoaded"
+    :width="width"
   />
-  <div v-else>
+  <div v-else :class="aspect">
     <!-- Wrapping div is required as target for class names defined on the linking element. -->
     <LoaderIndicatorPing />
   </div>
@@ -14,8 +16,11 @@
 <script setup lang="ts">
 export interface Props {
   alt: string
+  aspect: string
+  height: string
   rounded?: boolean
   src: string
+  width: string
 }
 const props = withDefaults(defineProps<Props>(), {
   rounded: undefined,

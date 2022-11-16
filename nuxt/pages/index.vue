@@ -35,7 +35,8 @@
       </div>
       <LoaderImage
         :alt="t('heroImage')"
-        class="hidden lg:block lg:w-1/2"
+        aspect="aspect-[750/861]"
+        class="hidden lg:block w-1/2"
         height="861"
         src="/assets/static/images/hero_background.png"
         width="750"
@@ -72,6 +73,7 @@
     <section class="flex flex-col lg:flex-row gap-8 items-center">
       <LoaderImage
         :alt="t('heroImage')"
+        aspect="aspect-square"
         class="lg:w-1/2"
         height="750"
         src="/assets/static/images/smartphone.png"

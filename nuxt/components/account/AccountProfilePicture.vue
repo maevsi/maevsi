@@ -2,6 +2,7 @@
   <Loader :api="api" indicator="ping" :classes="classes">
     <LoaderImage
       :alt="t('profilePictureAlt', { username })"
+      :aspect="aspect"
       :class="classComputed"
       :height="height"
       :src="profilePictureUrl || blankProfilePicture"
@@ -17,6 +18,7 @@ import { useProfilePictureByUsernameQuery } from '~/gql/generated'
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
 
 export interface Props {
+  aspect?: string
   classes?: string
   height: string
   rounded?: boolean
@@ -24,6 +26,7 @@ export interface Props {
   width: string
 }
 const props = withDefaults(defineProps<Props>(), {
+  aspect: 'aspect-square',
   classes: undefined,
   rounded: undefined,
 })

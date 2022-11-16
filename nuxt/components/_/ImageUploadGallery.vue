@@ -17,6 +17,7 @@
           >
             <LoaderImage
               :alt="upload.storageKey ? t('uploadAlt') : t('uploadAltFailed')"
+              aspect="aspect-square"
               class="h-32 w-32"
               height="128"
               :src="getUploadImageSrc(upload.storageKey || '')"
