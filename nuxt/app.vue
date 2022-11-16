@@ -26,6 +26,7 @@
       {{ t('browserUnsupported') }}
     </CardStateInfo>
     <NuxtLayout>
+      <NuxtLoadingIndicator color="#fff" />
       <NuxtPage />
     </NuxtLayout>
   </div>
