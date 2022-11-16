@@ -104,7 +104,7 @@ specifiers:
   vue: 3.2.45
   vue-advanced-cropper: 2.8.6
   vue-chartjs: 4.1.2
-  vue-qrcode-reader: 3.1.0
+  vue-qrcode-reader: 3.1.0-vue3-compatibility.5
   vue-tsc: 1.0.9
   webpack: 5.75.0
 
@@ -212,7 +212,7 @@ devDependencies:
   vue: 3.2.45
   vue-advanced-cropper: 2.8.6_vue@3.2.45
   vue-chartjs: 4.1.2_chart.js@4.0.1+vue@3.2.45
-  vue-qrcode-reader: 3.1.0
+  vue-qrcode-reader: 3.1.0-vue3-compatibility.5
   vue-tsc: 1.0.9_typescript@4.9.3
   webpack: 5.75.0
 
@@ -1075,8 +1075,8 @@ packages:
       '@graphql-tools/graphql-file-loader': 7.5.11_graphql@16.6.0
       '@graphql-tools/json-file-loader': 7.4.12_graphql@16.6.0
       '@graphql-tools/load': 7.8.0_graphql@16.6.0
-      '@graphql-tools/prisma-loader': 7.2.36_xfoe4adolgvm4tvnio5xigcr6e
-      '@graphql-tools/url-loader': 7.16.16_xfoe4adolgvm4tvnio5xigcr6e
+      '@graphql-tools/prisma-loader': 7.2.37_xfoe4adolgvm4tvnio5xigcr6e
+      '@graphql-tools/url-loader': 7.16.17_xfoe4adolgvm4tvnio5xigcr6e
       '@graphql-tools/utils': 8.13.1_graphql@16.6.0
       '@whatwg-node/fetch': 0.3.2
       ansi-escapes: 4.3.2
@@ -1519,12 +1519,12 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /@graphql-tools/prisma-loader/7.2.36_xfoe4adolgvm4tvnio5xigcr6e:
-    resolution: {integrity: sha512-ygmex7nN8Lx+qz/AQRvKbjdO3CnxfkOJFr8KJ1M/TPJoRN2MgLfWaU6HBFMvH38L03FJwepiObjeYotncJe2sw==}
+  /@graphql-tools/prisma-loader/7.2.37_xfoe4adolgvm4tvnio5xigcr6e:
+    resolution: {integrity: sha512-6O18hT/LRAUMhWh28MjHzvZB6Ad8SGWhmQlgKlQUJGo8MR2uhk14m/VelZBdsiDcN7F84+leZE9XvCERncqvSQ==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/url-loader': 7.16.16_xfoe4adolgvm4tvnio5xigcr6e
+      '@graphql-tools/url-loader': 7.16.17_xfoe4adolgvm4tvnio5xigcr6e
       '@graphql-tools/utils': 9.1.1_graphql@16.6.0
       '@types/js-yaml': 4.0.5
       '@types/json-stable-stringify': 1.0.34
@@ -1590,8 +1590,8 @@ packages:
       value-or-promise: 1.0.11
     dev: true
 
-  /@graphql-tools/url-loader/7.16.16_xfoe4adolgvm4tvnio5xigcr6e:
-    resolution: {integrity: sha512-9LgYo0yqqYhTWQbXFzmM+O2qkPDFBEAhWzaSX3NYNwZ6ER0pZUtRSTWwlK2K+qPgaTQ94jhTs8+dnYLenSDSlA==}
+  /@graphql-tools/url-loader/7.16.17_xfoe4adolgvm4tvnio5xigcr6e:
+    resolution: {integrity: sha512-foI9ZKG2ILN2Aj308Sx54+QMYCr1MkP5CNpBFzYzrizWq/MbG3rEycIy+Q+BrxF+cU/Ms4hGcT9+0Gy9oi6Fow==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
@@ -1601,7 +1601,7 @@ packages:
       '@graphql-tools/executor-http': 0.0.3_xfoe4adolgvm4tvnio5xigcr6e
       '@graphql-tools/executor-legacy-ws': 0.0.3_graphql@16.6.0
       '@graphql-tools/utils': 9.1.1_graphql@16.6.0
-      '@graphql-tools/wrap': 9.2.13_graphql@16.6.0
+      '@graphql-tools/wrap': 9.2.14_graphql@16.6.0
       '@types/ws': 8.5.3
       '@whatwg-node/fetch': 0.5.3
       graphql: 16.6.0
@@ -1643,8 +1643,8 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /@graphql-tools/wrap/9.2.13_graphql@16.6.0:
-    resolution: {integrity: sha512-vkf01QXq3lOx7LpnimUzkoHSxyBDuG5DMzx2u2XVBWg7Jk5H/JpSg6+a60K3cESPvvMgsvTKm2kAMq6aPxXuLg==}
+  /@graphql-tools/wrap/9.2.14_graphql@16.6.0:
+    resolution: {integrity: sha512-aAHZpCiYD87GckVK+WAxI6ZTru3D+zxv/EI9TU/wSg6FAgdAPvT/z/oGTDNOPOT0MrYDqVGCIrk0vU4QWiFRJA==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
@@ -2275,7 +2275,7 @@ packages:
       scule: 1.0.0
       semver: 7.3.8
       unctx: 2.1.0
-      unimport: 1.0.0_rollup@2.79.1
+      unimport: 1.0.1_rollup@2.79.1
       untyped: 1.0.0
     transitivePeerDependencies:
       - rollup
@@ -2296,15 +2296,15 @@ packages:
       scule: 1.0.0
       std-env: 3.3.1
       ufo: 1.0.0
-      unimport: 1.0.0_rollup@2.79.1
+      unimport: 1.0.1_rollup@2.79.1
       untyped: 1.0.0
     transitivePeerDependencies:
       - rollup
       - supports-color
     dev: true
 
-  /@nuxt/telemetry/2.1.7_rollup@2.79.1:
-    resolution: {integrity: sha512-zycxu7A3t2WR2OXOpnYVAyrj2tkv07JpJPDQQCut/PoY/3QLUtusvTr5MhvgctXwP9EW8gNQigcXxm2sD+JAMQ==}
+  /@nuxt/telemetry/2.1.8_rollup@2.79.1:
+    resolution: {integrity: sha512-WCHRrcPKRosuHQi8CD5WfjiXGAyjOWVJpK77xS6wlg8zwziBPCqmVIQdr4QpFTGFO1Nrh4z26l1VnivKy22KFQ==}
     hasBin: true
     dependencies:
       '@nuxt/kit': 3.0.0-rc.14_rollup@2.79.1
@@ -3412,10 +3412,23 @@ packages:
       '@unhead/schema': 0.6.9
     dev: true
 
+  /@unhead/dom/1.0.0:
+    resolution: {integrity: sha512-a22HaQ94S6BfJfqkKiiT8zwxuZp04/LHK0opCSKr9czKFRkMW7yb10zQbwEx5LdUjm/j8AYdpuTW+yHHoQvwNg==}
+    dependencies:
+      '@unhead/schema': 1.0.0
+    dev: true
+
   /@unhead/schema/0.6.9:
     resolution: {integrity: sha512-MWx+DP6Os6vYaHjt7BZ0lmIEBX8M/P0am/NoE9xIhGDYzQq+GLxTllE6DJB9QXaMIzpJ2G5ePKOPuxCeaI8TRA==}
     dependencies:
       '@zhead/schema': 1.0.0-beta.13
+      hookable: 5.4.2
+    dev: true
+
+  /@unhead/schema/1.0.0:
+    resolution: {integrity: sha512-RDjizmCwEBpY7zzLgwMPFCb1h6P/chopg9uvrZS233HEND1IkzGm/tX7IgbPos/wOmDlebjsnUUBwmYBGoq6pQ==}
+    dependencies:
+      '@zhead/schema': 1.0.1
       hookable: 5.4.2
     dev: true
 
@@ -3425,12 +3438,18 @@ packages:
       '@unhead/schema': 0.6.9
     dev: true
 
-  /@unhead/vue/0.6.9_vue@3.2.45:
-    resolution: {integrity: sha512-H2HpJUdbqEprllsJzFmxVISy9XJWR66clx+AypJxUu98Av/kQozrr+WekvzJxX/QHHbssea1FVQRszIjK3u8lA==}
+  /@unhead/ssr/1.0.0:
+    resolution: {integrity: sha512-mOX7b5M3fFC7uPqnl5JWATsGe6CLfLFpf/LySfpTE2UHEL1AzDwqkA9xNyz3BTBwJbccRW76Vn/bcHF/I85CuQ==}
+    dependencies:
+      '@unhead/schema': 1.0.0
+    dev: true
+
+  /@unhead/vue/1.0.0_vue@3.2.45:
+    resolution: {integrity: sha512-t1DBboJsYN+Mr8zjbJkgk9EEhKd+bcRTMSuTbK1nDJg4aM0uJ/sq1nEgReSq92MjVVLunljnpHqBbiiek0CXQg==}
     peerDependencies:
       vue: '>=2.7 || >=3'
     dependencies:
-      '@unhead/schema': 0.6.9
+      '@unhead/schema': 1.0.0
       hookable: 5.4.2
       vue: 3.2.45
     dev: true
@@ -3635,6 +3654,17 @@ packages:
       - supports-color
     dev: true
 
+  /@vue/compat/3.2.45_vue@3.2.45:
+    resolution: {integrity: sha512-TOGT42fEE1hA4Oz2PyCmURJkrXHbe6G+gI8gVOqsEy624oeexDHFrVsFTfzveaPxxqJHyE2+qjKaA1F4KX84aA==}
+    peerDependencies:
+      vue: 3.2.45
+    dependencies:
+      '@babel/parser': 7.20.3
+      estree-walker: 2.0.2
+      source-map: 0.6.1
+      vue: 3.2.45
+    dev: true
+
   /@vue/compiler-core/3.2.45:
     resolution: {integrity: sha512-rcMj7H+PYe5wBV3iYeUgbCglC+pbpN8hBLTJvRiK2eKQiWqu+fG9F+8sW99JdL4LQi7Re178UOxn09puSXvn4A==}
     dependencies:
@@ -3649,14 +3679,6 @@ packages:
     dependencies:
       '@vue/compiler-core': 3.2.45
       '@vue/shared': 3.2.45
-    dev: true
-
-  /@vue/compiler-sfc/2.7.14:
-    resolution: {integrity: sha512-aNmNHyLPsw+sVvlQFQ2/8sjNuLtK54TC6cuKnVzAY93ks4ZBrvwQSnkkIh7bsbNhum5hJBS00wSDipQ937f5DA==}
-    dependencies:
-      '@babel/parser': 7.20.3
-      postcss: 8.4.19
-      source-map: 0.6.1
     dev: true
 
   /@vue/compiler-sfc/3.2.45:
@@ -3765,15 +3787,15 @@ packages:
       vue-demi: 0.13.11_vue@3.2.45
     dev: true
 
-  /@vueuse/head/1.0.13_vue@3.2.45:
-    resolution: {integrity: sha512-QJ69f+V0blbroHPuOAYBQZek31kMmFttgUj+QmL+rnXgFUfRXj5rqIDC2chFBSsjHcWl6KfzwPbou5mjCVJAgw==}
+  /@vueuse/head/1.0.15_vue@3.2.45:
+    resolution: {integrity: sha512-2wFKdxtGs7Aip6OYEL2NE6gW3J7ux+nvWUgJvPONEnWEU+Fvq6Mm+horkYwMSvQJ2O0KvVkJ5rGoIV+A4lSD/g==}
     peerDependencies:
       vue: '>=2.7 || >=3'
     dependencies:
-      '@unhead/dom': 0.6.9
-      '@unhead/schema': 0.6.9
-      '@unhead/ssr': 0.6.9
-      '@unhead/vue': 0.6.9_vue@3.2.45
+      '@unhead/dom': 1.0.0
+      '@unhead/schema': 1.0.0
+      '@unhead/ssr': 1.0.0
+      '@unhead/vue': 1.0.0_vue@3.2.45
       vue: 3.2.45
     dev: true
 
@@ -3939,6 +3961,10 @@ packages:
 
   /@zhead/schema/1.0.0-beta.13:
     resolution: {integrity: sha512-P1A1vRGFBhITco8Iw4/hvnDYoE/SoVrd71dW1pBFdXJb3vP+pBtoOuhbEKy0ROJGOyzQuqvFibcwzyLlWMqNiQ==}
+    dev: true
+
+  /@zhead/schema/1.0.1:
+    resolution: {integrity: sha512-n6BDs+MjSOesuv6krG2QGyCPfdndxWX0M/G2wEGu1SPHc5jLHHi3EY1+vQvudFVXRVXquZHKsDPE7pSyeyGgHg==}
     dev: true
 
   /@zxing/library/0.18.6:
@@ -5362,10 +5388,6 @@ packages:
 
   /csstype/2.6.21:
     resolution: {integrity: sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==}
-    dev: true
-
-  /csstype/3.1.1:
-    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
 
   /cuint/0.2.2:
@@ -7287,8 +7309,8 @@ packages:
       once: 1.4.0
     dev: true
 
-  /global-dirs/3.0.0:
-    resolution: {integrity: sha512-v8ho2DS5RiCjftj1nD9NmnfaOzTdud7RRnVd9kFNOjqZbISlx5DQ+OrTkywgd0dIt7oFCvKetZSHoHcP3sDdiA==}
+  /global-dirs/3.0.1:
+    resolution: {integrity: sha512-NBcGGFbBA9s1VzD41QXDG+3++t9Mn5t1FpLdhESY6oKY4gYTFpX4wO3sqGUa0Srjtbfj3szX0RnemmrVRUdULA==}
     engines: {node: '>=10'}
     dependencies:
       ini: 2.0.0
@@ -7381,7 +7403,7 @@ packages:
       '@graphql-tools/json-file-loader': 7.4.12_graphql@16.6.0
       '@graphql-tools/load': 7.8.0_graphql@16.6.0
       '@graphql-tools/merge': 8.3.12_graphql@16.6.0
-      '@graphql-tools/url-loader': 7.16.16_xfoe4adolgvm4tvnio5xigcr6e
+      '@graphql-tools/url-loader': 7.16.17_xfoe4adolgvm4tvnio5xigcr6e
       '@graphql-tools/utils': 8.13.1_graphql@16.6.0
       cosmiconfig: 7.0.1
       cosmiconfig-toml-loader: 1.0.0
@@ -7995,7 +8017,7 @@ packages:
     resolution: {integrity: sha512-iwGqO3J21aaSkC7jWnHP/difazwS7SFeIqxv6wEtLU8Y5KlzFTjyqcSIT0d8s4+dDhKytsk9PJZ2BkS5eZwQRQ==}
     engines: {node: '>=10'}
     dependencies:
-      global-dirs: 3.0.0
+      global-dirs: 3.0.1
       is-path-inside: 3.0.3
     dev: true
 
@@ -9759,7 +9781,7 @@ packages:
       std-env: 3.3.1
       ufo: 1.0.0
       unenv: 1.0.0
-      unimport: 1.0.0_rollup@2.79.1
+      unimport: 1.0.1_rollup@2.79.1
       unstorage: 1.0.1
     transitivePeerDependencies:
       - bufferutil
@@ -9926,13 +9948,13 @@ packages:
       '@nuxt/devalue': 2.0.0
       '@nuxt/kit': 3.0.0-rc.14_rollup@2.79.1
       '@nuxt/schema': 3.0.0-rc.14_rollup@2.79.1
-      '@nuxt/telemetry': 2.1.7_rollup@2.79.1
+      '@nuxt/telemetry': 2.1.8_rollup@2.79.1
       '@nuxt/ui-templates': 0.4.0
       '@nuxt/vite-builder': 3.0.0-rc.14_apty7kr5kfs274ckxkpj5jzgs4
       '@unhead/ssr': 0.6.9
       '@vue/reactivity': 3.2.45
       '@vue/shared': 3.2.45
-      '@vueuse/head': 1.0.13_vue@3.2.45
+      '@vueuse/head': 1.0.15_vue@3.2.45
       chokidar: 3.5.3
       cookie-es: 0.5.0
       defu: 6.1.1
@@ -9960,7 +9982,7 @@ packages:
       unctx: 2.1.0
       unenv: 1.0.0
       unhead: 0.6.9
-      unimport: 1.0.0_rollup@2.79.1
+      unimport: 1.0.1_rollup@2.79.1
       unplugin: 1.0.0
       untyped: 1.0.0
       vue: 3.2.45
@@ -12797,8 +12819,8 @@ packages:
       hookable: 5.4.2
     dev: true
 
-  /unimport/1.0.0_rollup@2.79.1:
-    resolution: {integrity: sha512-7M2+6uC6Ik3/imN0VhEBJGnnH5SWLPxhPAPKdMMIt2Bh+YW7F42aZFC9APW3h82r4bvS5qQWaMJko2G9m7SDYA==}
+  /unimport/1.0.1_rollup@2.79.1:
+    resolution: {integrity: sha512-SEPKl3uyqUvi6c0MnyCmUF9H07CuC9j9p2p33F03LmegU0sxjpnjL0fLKAhh7BTfcKaJKj+1iOiAFtg7P3m5mQ==}
     dependencies:
       '@rollup/pluginutils': 5.0.2_rollup@2.79.1
       escape-string-regexp: 5.0.0
@@ -13277,13 +13299,14 @@ packages:
       vue: 3.2.45
     dev: true
 
-  /vue-qrcode-reader/3.1.0:
-    resolution: {integrity: sha512-k2uoUjibxzdHJPfmsL1T9KVNzKPG/xIzKWMgBTXExoJlvZ5VKrBIFpP3P+rXNylfL3yw5AftE3K1yf4CoTkfkQ==}
+  /vue-qrcode-reader/3.1.0-vue3-compatibility.5:
+    resolution: {integrity: sha512-Q/4PcQyOgUfuGUvFHpMD+mSZxJeDpREvX8aMi0h/fMo97bGDZ7f5W+OvguSGgPComIq+Pd96bKyB53gHDjvTQA==}
     dependencies:
+      '@vue/compat': 3.2.45_vue@3.2.45
       barcode-detector: 1.0.0
       callforth: 0.3.1
       core-js: 3.26.1
-      vue: 2.7.14
+      vue: 3.2.45
       webrtc-adapter: 7.7.0
     dev: true
 
@@ -13312,13 +13335,6 @@ packages:
       '@volar/vue-language-core': 1.0.9
       '@volar/vue-typescript': 1.0.9
       typescript: 4.9.3
-    dev: true
-
-  /vue/2.7.14:
-    resolution: {integrity: sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ==}
-    dependencies:
-      '@vue/compiler-sfc': 2.7.14
-      csstype: 3.1.1
     dev: true
 
   /vue/3.2.45:
