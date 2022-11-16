@@ -49,7 +49,6 @@
 </template>
 
 <script setup lang="ts">
-import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 
@@ -111,7 +110,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accounts: Konten
   eventsTheir: Veranstaltungen von {name}

@@ -7,7 +7,7 @@ BEGIN;
 CREATE TABLE maevsi_private.jwt (
   id       BIGSERIAL PRIMARY KEY,
   token    maevsi.jwt NOT NULL UNIQUE,
-  uuid     UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc()
+  uuid     UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v4()
 );
 
 COMMENT ON TABLE maevsi_private.jwt IS 'A list of tokens.';

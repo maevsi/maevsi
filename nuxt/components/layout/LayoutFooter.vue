@@ -74,6 +74,7 @@
           <AppLink
             v-for="availableLocale in availableLocales"
             :key="availableLocale"
+            :data-testid="`i18n-${availableLocale}`"
             :to="switchLocalePath(availableLocale)"
           >
             <div class="flex gap-2 items-center">
@@ -112,8 +113,6 @@
 <script setup lang="ts">
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
-import { LOCALES } from '~/plugins/util/constants'
-
 const colorMode = useColorMode()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
@@ -150,7 +149,7 @@ function getLocaleFlag(locale: string) {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   colorScheme: Farbschema
   colorSchemeDark: Dunkel

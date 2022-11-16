@@ -28,17 +28,19 @@ const scrollContainerRef = ref<HTMLElement>()
 const resizeSensor = ref<ResizeSensor>()
 
 // methods
-function emitLoadMore() {
+const emitLoadMore = debounce(() => {
   emit('loadMore')
-}
+}, 300)
 function onScroll(e: Event) {
   const scrollBar = e.target as Element
 
   if (
     scrollBar &&
-    scrollBar.scrollTop + scrollBar.clientHeight >= scrollBar.scrollHeight - 500
+    scrollBar.scrollTop + scrollBar.clientHeight >=
+      scrollBar.scrollHeight - 500 &&
+    props.hasNextPage
   ) {
-    debounce(emitLoadMore, 100)()
+    emitLoadMore()
   }
 }
 

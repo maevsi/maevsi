@@ -191,7 +191,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   benefitControl: Kontrolle
   benefitControlDescription: Du kannst genau planen, was deine Gäste brauchen
@@ -209,7 +209,6 @@ de:
   events: Veranstaltungen
   heroImage: Heldenbild.
   maevsi: maevsi
-  maevsiDescription: maevsi ist der Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden.
   maevsiDescription1: Persönliche Einladungen. Geordnetes Feedback.
   maevsiDescription2: Verpasse keine Veranstaltungen, zu denen deine Freunde gehen.
   smartphoneDescription: Mit meavsi musst du deine Veranstaltungen nicht mehr öde per Chat-Gruppe organisieren. Du kommunizierst sauber alle wichtigen Informationen, behältst die Kontrolle über individuelle Einladungen und hast den Kopf frei für den Inhalt deiner Veranstaltung – deine Gäste werden es dir danken
@@ -247,9 +246,8 @@ en:
   events: Events
   heroImage: Hero image.
   maevsi: maevsi
-  maevsiDescription: maevsi is the manager for events supported by invitees.
   maevsiDescription1: Personal invitations. Proper feedback.
-  maevsiDescription2: Don't miss out on events your friends are going to.
+  maevsiDescription2: Never miss events your friends are going to.
   smartphoneDescription: With meavsi, you no longer have to organize your events via chat groups anymore. You communicate all important information clearly, keep control over individual invitations and focus on the content of your event without distraction – your guests will thank you for it.
   smartphoneTitle: Do you still organize your event like that?
   stepCreateDescription: Peace of mind for you and your guests, instead of a bustling group chat

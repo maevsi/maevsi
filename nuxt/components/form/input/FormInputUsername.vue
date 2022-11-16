@@ -92,7 +92,7 @@ const emit = defineEmits<{
 const { t } = useI18n()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   iconCheck: Verifiziert
   username: Nutzername

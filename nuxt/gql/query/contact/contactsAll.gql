@@ -3,7 +3,7 @@ query allContacts($after: Cursor, $authorAccountUsername: String, $first: Int!) 
     after: $after
     condition: { authorAccountUsername: $authorAccountUsername }
     first: $first
-    orderBy: [ACCOUNT_USERNAME_ASC, FIRST_NAME_ASC, LAST_NAME_ASC]
+    orderBy: [FIRST_NAME_ASC, LAST_NAME_ASC]
   ) {
     nodes {
       ...contactFields

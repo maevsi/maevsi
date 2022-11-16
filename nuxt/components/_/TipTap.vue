@@ -229,7 +229,7 @@ Link.configure({
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   1: '1'
   2: '2'

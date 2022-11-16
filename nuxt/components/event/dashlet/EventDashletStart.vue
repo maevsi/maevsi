@@ -25,7 +25,7 @@ withDefaults(defineProps<Props>(), {})
 const { t } = useI18n()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   embraced: ({content})
   start: Beginn

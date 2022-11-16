@@ -55,8 +55,6 @@
 </template>
 
 <script setup lang="ts">
-import { getQueryString } from '~/plugins/util/util'
-
 export interface Breadcrumb {
   name: string
   to: string
@@ -79,7 +77,7 @@ const { t } = useI18n()
 const queryString = computed(() => getQueryString(route.query))
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   home: Nach Hause
   separator: /

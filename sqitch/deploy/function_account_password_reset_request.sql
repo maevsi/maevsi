@@ -22,7 +22,7 @@ BEGIN
 
   WITH updated AS (
     UPDATE maevsi_private.account
-      SET password_reset_verification = maevsi.uuid_generate_v1mc()
+      SET password_reset_verification = maevsi.uuid_generate_v4()
       WHERE account.email_address = $1
       RETURNING *
   ) SELECT

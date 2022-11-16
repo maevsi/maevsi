@@ -24,8 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import { append } from '~/plugins/util/util'
-
 export interface Props {
   ariaLabel?: string
   isColored?: boolean

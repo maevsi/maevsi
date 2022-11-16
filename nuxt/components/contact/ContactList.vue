@@ -4,7 +4,7 @@
       <ScrollContainer
         v-if="contacts"
         :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
-        @loadMore="loadMore"
+        @loadMore="after = api.data.allContacts?.pageInfo.endCursor"
       >
         <table>
           <thead>
@@ -66,8 +66,6 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
-import { getApiMeta } from '~/plugins/util/util'
 import {
   useAllContactsQuery,
   useDeleteContactByIdMutation,
@@ -140,9 +138,6 @@ function edit(contact: Contact) {
   selectedContact.value = contact
   store.modalAdd({ id: 'ModalContact' })
 }
-function loadMore() {
-  after.value = api.value.data.allContacts?.pageInfo.endCursor
-}
 function onClose() {
   if (!selectedContact.value) return
 
@@ -159,7 +154,7 @@ watch(contactsQuery.error, (currentValue, _oldValue) => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   address: Adresse
   author: Autor

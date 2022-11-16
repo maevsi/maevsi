@@ -48,8 +48,6 @@
 <script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
 
-import { VALIDATION_PASSWORD_LENGTH_MINIMUM } from '~/plugins/util/validation'
-
 export interface Props {
   id?: string
   formInput: BaseValidation
@@ -70,7 +68,7 @@ const { t } = useI18n()
 const isVisible = ref(false)
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   password: Passwort
   validationFormat: Muss {length} Zeichen lang sein

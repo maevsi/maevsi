@@ -15,7 +15,7 @@ CREATE FUNCTION maevsi.authenticate(
   "password" TEXT
 ) RETURNS maevsi.jwt AS $$
 DECLARE
-    _jwt_id UUID := maevsi.uuid_generate_v1mc();
+    _jwt_id UUID := maevsi.uuid_generate_v4();
     _jwt_exp BIGINT := EXTRACT(EPOCH FROM ((SELECT date_trunc('second', NOW()::TIMESTAMP)) + COALESCE(current_setting('maevsi.jwt_expiry_duration', true), '1 day')::INTERVAL));
     _jwt maevsi.jwt;
 BEGIN

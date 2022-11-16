@@ -317,8 +317,6 @@ import QrcodeVue from 'qrcode.vue'
 import Swal from 'sweetalert2'
 
 import { Invitation } from '~/types/invitation'
-import { append, getApiMeta } from '~/plugins/util/util'
-import { getContactName } from '~/plugins/util/model'
 import {
   InvitationFeedback,
   useEventByAuthorUsernameAndSlugQuery,
@@ -569,7 +567,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   attendances: Check-in
   close: Schließen

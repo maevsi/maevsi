@@ -40,7 +40,7 @@ const imageSrc = computed(() => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   profilePictureAlt: Der Avatar von {emailAddress}.
 en:

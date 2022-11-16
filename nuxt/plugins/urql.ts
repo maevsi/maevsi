@@ -21,7 +21,7 @@ import {
   authenticationAnonymous,
   getJwtFromCookie,
   jwtRefresh,
-} from '~/plugins/util/auth'
+} from '~/utils/auth'
 import { useMaevsiStore } from '~/store'
 
 const ssrKey = '__URQL_DATA__'
@@ -91,6 +91,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       Query: {
         allContacts: relayPagination(),
         allEvents: relayPagination(),
+        allInvitations: relayPagination(),
         allUploads: relayPagination(),
       },
     },

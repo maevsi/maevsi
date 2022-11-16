@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   403description: Du bist aktuell nicht berechtigt, auf diese Seite zuzugreifen.
   403hint: Hast du dich schon angemeldet oder von diesem Gerät aus einen Einladungscode eingegeben?

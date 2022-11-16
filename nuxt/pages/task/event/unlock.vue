@@ -63,12 +63,6 @@ import { LocationQueryValue } from 'vue-router'
 import { callWithNuxt } from '#app'
 
 import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
-import { useJwtStore } from '~/plugins/util/auth'
-import {
-  formPreSubmit,
-  VALIDATION_FORMAT_UUID,
-} from '~/plugins/util/validation'
-import { isQueryIcFormatValid, getApiMeta } from '~/plugins/util/util'
 import { useEventUnlockMutation } from '~/gql/generated'
 
 definePageMeta({
@@ -269,7 +263,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   greetingExplanation: Einladungscodes gewähren dir Zugriff auf nicht-öffentliche Veranstaltungsseiten, ohne dass du dir einen Account erstellen musst. Sie sind gültig, solange du zur Veranstaltung eingeladen bist, für die sie ausgestellt wurden.
   invitationCode: Einladungscode

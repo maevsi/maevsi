@@ -24,8 +24,7 @@ import Swal from 'sweetalert2'
 import {
   formPreSubmit,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import { useAccountPasswordResetMutation } from '~/gql/generated'
 
 export interface Props {
@@ -105,7 +104,7 @@ const rules = {
 const v$ = useVuelidate(rules, { form })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accountPasswordReset: Passwort zurücksetzen
   accountPasswordResetSuccess: Passwort erfolgreich zurückgesetzt.

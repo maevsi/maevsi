@@ -83,10 +83,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { minValue, required } from '@vuelidate/validators'
 import consola from 'consola'
 
-import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
-import { formPreSubmit } from '~/plugins/util/validation'
 import { Contact } from '~/types/contact'
-import { getApiMeta } from '~/plugins/util/util'
 import {
   useAllContactsQuery,
   useCreateInvitationMutation,
@@ -233,7 +230,7 @@ watch(allContactsQuery.error, (currentValue, _oldValue) => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   buttonContact: Ein Kontakt
   contact: Kontakt

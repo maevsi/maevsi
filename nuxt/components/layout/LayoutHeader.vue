@@ -114,7 +114,7 @@ const signedInUsername = computed(() => store.signedInUsername)
 // }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   dashboard: Dashboard
   events: Veranstaltungen entdecken

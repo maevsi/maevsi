@@ -20,7 +20,6 @@
 import consola from 'consola'
 
 import { useProfilePictureSetMutation } from '~/gql/generated'
-import { getApiMeta } from '~/plugins/util/util'
 
 const emit = defineEmits<{
   (e: 'submitSuccess'): void
@@ -62,7 +61,7 @@ async function setProfilePicture() {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   cancel: Abbrechen
   header: Wähle ein Profilbild

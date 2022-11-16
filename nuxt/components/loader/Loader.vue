@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { UnwrapRef } from 'vue'
 
-import { ApiData, useGetCombinedErrorMessages } from '~/plugins/util/util'
+import { ApiData } from '~/utils/util'
 
 export interface Props {
   api: UnwrapRef<ApiData>

@@ -42,7 +42,6 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { getApiMeta } from '~/plugins/util/util'
 import {
   useEventByAuthorUsernameAndSlugQuery,
   useEventDeleteMutation,
@@ -137,7 +136,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   event: Veranstaltung
   events: Veranstaltung

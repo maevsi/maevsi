@@ -127,8 +127,7 @@ import {
   VALIDATION_FORMAT_URL_HTTPS,
   VALIDATION_LAST_NAME_LENGTH_MAXIMUM,
   VALIDATION_USERNAME_LENGTH_MAXIMUM,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import {
   useCreateContactMutation,
   useUpdateContactByIdMutation,
@@ -230,7 +229,7 @@ async function submit() {
     emit('submitSuccess')
   }
 }
-function updateForm(data: Contact) {
+function updateForm(data?: Contact) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {
@@ -284,7 +283,7 @@ watch(
 const v$ = useVuelidate(rules, { form })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accountOverride: Du kannst sowohl ein vorhandenes Konto als Kontakt hinzufügen als auch manuell Kontaktdaten eingeben. Sind beide Daten angegeben, werden die manuell eingebenen Daten bevorzugt verwendet.
   address: Adresse

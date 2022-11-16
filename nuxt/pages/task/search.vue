@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   filterSoon: Es wird bald möglich sein, nach Veranstaltungen oder Nutzern zu suchen.
   title: Suchergebnisse

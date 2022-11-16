@@ -291,8 +291,7 @@ import {
   VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
   VALIDATION_FORMAT_SLUG,
   VALIDATION_FORMAT_URL_HTTPS,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import {
   EventVisibility,
   useCreateEventMutation,
@@ -453,7 +452,7 @@ async function submit() {
     )
   }
 }
-function updateForm(data: Event) {
+function updateForm(data?: Event) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {
@@ -533,7 +532,7 @@ updateForm(props.event)
 @import url('~/node_modules/v-calendar/dist/style.css');
 </style>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   attendanceType: Anwesenheitstyp
   created: Erstellt!

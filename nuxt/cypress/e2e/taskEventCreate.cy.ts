@@ -1,4 +1,4 @@
-import { CYPRESS_BASE_URL } from '~/plugins/util/constants'
+import { CYPRESS_BASE_URL } from '~/utils/constants'
 
 describe('task event create page', () => {
   context('page load', () => {
@@ -9,9 +9,7 @@ describe('task event create page', () => {
       }).then((resp) => {
         expect(resp.status).to.equal(302)
         expect(resp.redirectedToUrl).to.equal(
-          `${CYPRESS_BASE_URL(
-            Cypress.env('NODE_ENV')
-          )}/task/account/sign-in?referrer=/task/event/create`
+          `${CYPRESS_BASE_URL}/task/account/sign-in?referrer=/task/event/create`
         )
       })
     })

@@ -42,7 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 
 const { signOut } = useSignOut()
@@ -69,7 +68,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   codes: Einladungscodes
   codesEntered: 'Du hast die folgenden Codes eingegeben:'

@@ -76,7 +76,7 @@ const { t } = useI18n()
 const signedInUsername = computed(() => store.signedInUsername)
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   contactEdit: Kontakt bearbeiten
   contactDelete: Kontakt löschen

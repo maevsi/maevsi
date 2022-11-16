@@ -48,7 +48,7 @@ const title = t('title')
 useHeadDefault(title)
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   addressCity: 34117 Kassel
   addressName: Jonas Thelemann

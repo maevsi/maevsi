@@ -4,7 +4,7 @@
       <ScrollContainer
         v-if="event && invitations?.length"
         :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
-        @loadMore="loadMore"
+        @loadMore="after = api.data.allInvitations?.pageInfo.endCursor"
       >
         <table class="border border-neutral-300 dark:border-neutral-600">
           <thead
@@ -195,9 +195,7 @@ import consola from 'consola'
 import Swal from 'sweetalert2'
 import { Doughnut } from 'vue-chartjs/dist/index' // TODO: https://github.com/apertureless/vue-chartjs/pull/934
 
-import { copyText, getApiMeta } from '~/plugins/util/util'
 import { Invitation } from '~/types/invitation'
-import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import {
   useAllInvitationsQuery,
   useDeleteInvitationByIdMutation,
@@ -312,7 +310,6 @@ async function delete_(id: string) {
   // }
   // TODO: cache update (allInvitations)
 }
-function loadMore() {}
 function onSubmitSuccess() {
   store.modalRemove('ModalInvitation')
   // TODO: cache update (allInvitations)
@@ -406,7 +403,7 @@ Chart.register(
 )
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accepted: akzeptiert
   canceled: abgelehnt

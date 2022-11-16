@@ -13,7 +13,6 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { getApiMeta } from '~/plugins/util/util'
 import { useProfilePictureByUsernameQuery } from '~/gql/generated'
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
 
@@ -68,7 +67,7 @@ watch(profilePictureQuery.error, (currentValue, _oldValue) => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   profilePictureAlt: Profilbild von {username}.
 en:

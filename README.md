@@ -1,9 +1,9 @@
 [![build status](https://github.com/maevsi/maevsi/workflows/CI/badge.svg)](https://github.com/maevsi/maevsi/actions?query=workflow%3ACI "build status")
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/maevsi/maevsi.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/maevsi/maevsi/context:javascript)
+
 
 # maevsi
 
-The manager for events supported by invitees: [maev.si](https://maev.si/).
+Find events, guests and friends: [maev.si](https://maev.si/).
 
 This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance with the [DargStack template](https://github.com/dargmuesli/dargstack_template/) to make deployment a breeze.
 

@@ -6,8 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import { REGEX_UUID } from '~/plugins/util/constants'
-
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
@@ -40,7 +38,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   title: Passwort zurücksetzen
 en:

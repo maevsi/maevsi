@@ -1,4 +1,4 @@
-import { CYPRESS_BASE_URL } from '~/plugins/util/constants'
+import { CYPRESS_BASE_URL } from '~/utils/constants'
 
 describe('dashboard page', () => {
   context('page load', () => {
@@ -9,9 +9,7 @@ describe('dashboard page', () => {
         followRedirect: false,
       }).then((resp) => {
         expect(resp.status).to.equal(302)
-        expect(resp.redirectedToUrl).to.equal(
-          `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/`
-        )
+        expect(resp.redirectedToUrl).to.equal(`${CYPRESS_BASE_URL}/`)
       })
     })
   })

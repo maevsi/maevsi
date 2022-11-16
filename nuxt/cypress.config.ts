@@ -1,11 +1,11 @@
 import { defineConfig } from 'cypress'
 import getCompareSnapshotsPlugin from 'cypress-visual-regression/dist/plugin'
 
-import { CYPRESS_BASE_URL } from './plugins/util/constants'
+import { CYPRESS_BASE_URL } from './utils/constants'
 
 export default defineConfig({
   e2e: {
-    baseUrl: CYPRESS_BASE_URL(process.env.NODE_ENV || 'development'),
+    baseUrl: CYPRESS_BASE_URL,
     setupNodeEvents(on, config) {
       getCompareSnapshotsPlugin(on, config)
 
