@@ -2,7 +2,7 @@
 
 set -e
 
-files=$(find test/cypress/snapshots/actual -regex ".*-actual.png")
+files=$(find cypress/snapshots/actual -regex ".*-actual.png")
 
 for file in $files; do
   new="${file//-actual.png/-base.png}"
@@ -11,5 +11,5 @@ for file in $files; do
   newArr=(${new//\// })
   newArrLength="${#newArr[@]}"
 
-  mv "$file" "test/cypress/snapshots/base/${newArr[newArrLength-2]}/${newArr[newArrLength-1]}"
+  mv "$file" "cypress/snapshots/base/${newArr[newArrLength-2]}/${newArr[newArrLength-1]}"
 done

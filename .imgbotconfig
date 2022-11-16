@@ -1,5 +1,5 @@
 {
     "ignoredFiles": [
-        "nuxt/test/cypress/snapshots/base/*"
+        "nuxt/cypress/snapshots/base/*"
     ]
 }
