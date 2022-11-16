@@ -15,10 +15,10 @@ nuxt.d.ts
 .eslintcache
 
 # Cypress
-cypress/results
-cypress/reports
-cypress/screenshots
-cypress/snapshots/actual
-cypress/snapshots/diff
-cypress/snapshots/result
-cypress/videos
+test/cypress/results
+test/cypress/reports
+test/cypress/screenshots
+test/cypress/snapshots/actual
+test/cypress/snapshots/diff
+test/cypress/snapshots/result
+test/cypress/videos

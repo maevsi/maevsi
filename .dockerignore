@@ -21,10 +21,10 @@ nuxt/**/!.gitkeep
 .eslintcache
 
 # Cypress
-nuxt/cypress/results
-nuxt/cypress/reports
-nuxt/cypress/screenshots
-nuxt/cypress/snapshots/actual
-nuxt/cypress/snapshots/diff
-nuxt/cypress/snapshots/result
-nuxt/cypress/videos
+nuxt/test/cypress/results
+nuxt/test/cypress/reports
+nuxt/test/cypress/screenshots
+nuxt/test/cypress/snapshots/actual
+nuxt/test/cypress/snapshots/diff
+nuxt/test/cypress/snapshots/result
+nuxt/test/cypress/videos
