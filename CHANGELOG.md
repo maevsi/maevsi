@@ -1,3 +1,38 @@
+# [1.0.0-alpha.17](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.16...1.0.0-alpha.17) (2022-11-17)
+
+
+### Bug Fixes
+
+* **api:** reset errors ([eee44c8](https://github.com/maevsi/maevsi/commit/eee44c853b99387cf4a8fa3baec2286d11d0f24d))
+* **app:** correct nuxt 3 link ([7184776](https://github.com/maevsi/maevsi/commit/718477662e9d285becba5e46cb57a30b8f94c1a8))
+* **attendance:** enable qr-code-stream ([b8e9bc2](https://github.com/maevsi/maevsi/commit/b8e9bc23a2f5903c4ddf472a42eef5c457835237))
+* **form:** compute ([8c55a70](https://github.com/maevsi/maevsi/commit/8c55a70eed03224962f0cf734b736f11db42d212))
+* **form:** correct error border radius ([887b44d](https://github.com/maevsi/maevsi/commit/887b44d45f7ac21cb422dfafd20fa9193501b041))
+* **form:** set form instead of model ([80c9af4](https://github.com/maevsi/maevsi/commit/80c9af4a9b8dc2463639bfcb46adcd9661162f58))
+* **form:** use form validation instead of null checks ([7f00d8b](https://github.com/maevsi/maevsi/commit/7f00d8b0fc186f3b98f28fb011ce864af987351d))
+* **i18n:** use all rules ([b3e167d](https://github.com/maevsi/maevsi/commit/b3e167d48a9b91996a602765d4a86755deb52fd4))
+* **image-upload-gallery:** redirect to uploads temporarily ([2a29f83](https://github.com/maevsi/maevsi/commit/2a29f833d415fe9338f0234b7c33c72d40be8d2d)), closes [#760](https://github.com/maevsi/maevsi/issues/760)
+* **layout-header:** correct display ([9a79354](https://github.com/maevsi/maevsi/commit/9a7935490776b01e2d6ac9633297ffd00b7bd0e4))
+* **layout:** correct footer offset ([0dda770](https://github.com/maevsi/maevsi/commit/0dda770451f068bdc027a9386790fc4df323c7f9))
+* **list:** add missing padding ([4568537](https://github.com/maevsi/maevsi/commit/456853724dd910a0b578afe700dd5e778e5fac3c))
+* **loader-image:** set aspect ratio ([72d70d9](https://github.com/maevsi/maevsi/commit/72d70d93aefae41a9c00a481ff69d78ddbd92f19))
+* **loader-indicator:** correct display behavior ([89ad270](https://github.com/maevsi/maevsi/commit/89ad2705007406dfe487feacea118921926f2d99))
+* **modal-image-selection:** correct submit disabled state ([18b4bed](https://github.com/maevsi/maevsi/commit/18b4bed1f9ce654d7d2fe7424bcef120397d4820))
+* **modal:** use v-if to show and hide component ([5723e2d](https://github.com/maevsi/maevsi/commit/5723e2df18e2040d86e9e23495297cd05735ecf1)), closes [#758](https://github.com/maevsi/maevsi/issues/758)
+* **profile-picture:** correct loading ping ([db479df](https://github.com/maevsi/maevsi/commit/db479df24c8a5755025c02d26095245a07156f38))
+* **profile-picture:** update cache on change ([0ccabc1](https://github.com/maevsi/maevsi/commit/0ccabc1654caae3f9d86a6abecd577acbbaa2e05))
+* resolve todos ([aec20ea](https://github.com/maevsi/maevsi/commit/aec20ea2b7a80c4241ebec7d02f984a6543dd978))
+* **unlock:** correct error handling ([3a106e5](https://github.com/maevsi/maevsi/commit/3a106e5fa976e60b7590948302c9b50c8e5b20a9))
+
+
+### Features
+
+* **app:** add loading indicator ([b182bd8](https://github.com/maevsi/maevsi/commit/b182bd8b17f2db40308405e394c87d1b27fc16a4))
+* **button-list:** set horizontal position individually ([1b7ff47](https://github.com/maevsi/maevsi/commit/1b7ff479c82e8c105b448a49567fb6ff934252ff))
+* **contact-preview:** do not use placeholder ([9e71660](https://github.com/maevsi/maevsi/commit/9e716600d858f3da149c1a335fa8ce9a39bd0f46))
+* **form-invitation:** improve ux ([4cadfcb](https://github.com/maevsi/maevsi/commit/4cadfcb0ad86105f8e42b3860fb822df13a3b937))
+* **i18n:** update engine info text ([98e78b9](https://github.com/maevsi/maevsi/commit/98e78b91a18d658e9da14bba6784a31f51736419))
+
 # [1.0.0-alpha.16](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.15...1.0.0-alpha.16) (2022-11-16)
 
 
