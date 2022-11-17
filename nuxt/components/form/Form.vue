@@ -1,7 +1,6 @@
 <template>
   <form
     v-if="form"
-    ref="formRef"
     :class="[
       { 'animate-shake rounded-lg border border-red-500': errors?.length },
       formClass,
@@ -43,7 +42,6 @@
 <script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
 
-import Button from '~/components/button/Button.vue'
 import { BackendError } from '~/utils/util'
 
 export interface Props {
@@ -68,18 +66,6 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-
-// refs
-const buttonSubmitRef = ref<InstanceType<typeof Button>>()
-const formRef = ref<HTMLFormElement>()
-
-// // methods
-// function reset() {
-//   formRef.value?.reset()
-// }
-// function submit() {
-//   buttonSubmitRef.value?.click()
-// }
 
 // computations
 const errorMessages = computed(() =>

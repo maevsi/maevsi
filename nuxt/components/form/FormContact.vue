@@ -1,6 +1,6 @@
 <template>
   <Form
-    ref="form"
+    class="min-h-0 flex flex-col"
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
@@ -272,6 +272,7 @@ const rules = {
     },
   },
 }
+const v$ = useVuelidate(rules, { form })
 
 // lifecycle
 watch(
@@ -280,7 +281,6 @@ watch(
     updateForm(currentValue)
   }
 )
-const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yaml">

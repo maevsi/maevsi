@@ -1,7 +1,6 @@
 <template>
   <Form
     v-if="event"
-    ref="form"
     class="min-h-0 flex flex-col"
     :errors="api.errors"
     :form="v$.form"

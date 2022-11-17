@@ -3,7 +3,6 @@
     <div class="relative">
       <AccountProfilePicture
         v-if="contact.accountUsername"
-        ref="Image"
         classes="max-w-none"
         height="48"
         rounded
@@ -12,7 +11,6 @@
       />
       <ContactAvatar
         v-else
-        ref="Image"
         class="max-w-none"
         :email-address="contact.emailAddress"
         :email-address-hash="contact.emailAddressHash"

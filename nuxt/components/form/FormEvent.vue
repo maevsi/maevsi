@@ -1,7 +1,6 @@
 <template>
   <div>
     <Form
-      ref="form"
       :errors="api.errors"
       :form="v$.form"
       :is-form-sent="isFormSent"
