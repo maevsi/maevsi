@@ -50,7 +50,7 @@
           </template>
         </ButtonColored>
       </div>
-      <Modal id="ModalContact" @close="onClose">
+      <Modal id="ModalContact" is-footer-hidden @close="onClose">
         <FormContact
           :contact="selectedContact"
           @submit-success="store.modalRemove('ModalContact')"
@@ -58,7 +58,6 @@
         <template #header>
           {{ formContactHeading }}
         </template>
-        <template #footer />
       </Modal>
     </div>
   </Loader>

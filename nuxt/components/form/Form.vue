@@ -8,32 +8,33 @@
     novalidate
     @submit="(e) => emit('submit', e)"
   >
-    <Card class="flex flex-col min-h-0 gap-6">
-      <slot />
-      <div class="flex flex-col items-center justify-between">
-        <ButtonColored
-          ref="buttonSubmitRef"
-          :aria-label="submitName || t('submit')"
-          :class="{
-            'animate-shake': form.$error,
-          }"
-          type="submit"
-          @click="emit('click')"
-        >
-          {{ submitName || t('submit') }}
-          <template #prefix>
-            <slot name="submit-icon" />
-          </template>
-        </ButtonColored>
-        <FormInputStateError v-if="form.$error" class="mt-2">
-          {{ t('globalValidationFailed') }}
-        </FormInputStateError>
-      </div>
-      <CardStateAlert v-if="errorMessages?.length" class="my-4">
-        <SpanList :span="errorMessages" />
-      </CardStateAlert>
-      <div v-if="$slots.assistance" class="flex justify-center">
-        <slot name="assistance" />
+    <Card class="flex flex-col">
+      <div class="flex flex-col min-h-0 overflow-y-auto gap-6">
+        <slot />
+        <div class="flex flex-col items-center justify-between">
+          <ButtonColored
+            :aria-label="submitName || t('submit')"
+            :class="{
+              'animate-shake': form.$error,
+            }"
+            type="submit"
+            @click="emit('click')"
+          >
+            {{ submitName || t('submit') }}
+            <template #prefix>
+              <slot name="submit-icon" />
+            </template>
+          </ButtonColored>
+          <FormInputStateError v-if="form.$error" class="mt-2">
+            {{ t('globalValidationFailed') }}
+          </FormInputStateError>
+        </div>
+        <CardStateAlert v-if="errorMessages?.length" class="my-4">
+          <SpanList :span="errorMessages" />
+        </CardStateAlert>
+        <div v-if="$slots.assistance" class="flex justify-center">
+          <slot name="assistance" />
+        </div>
       </div>
     </Card>
   </form>
