@@ -5,7 +5,7 @@
       :errors="api.errors"
       :form="v$.form"
       :is-form-sent="isFormSent"
-      :submit-name="form.id ? t('eventUpdate') : t('eventCreate')"
+      :submit-name="v$.form.id.$model ? t('eventUpdate') : t('eventCreate')"
       @submit.prevent="submit"
     >
       <FormInput
@@ -39,7 +39,7 @@
             is-validation-live
             validation-property="existenceNone"
           >
-            {{ t('validationExistenceNone', { slug: form.slug }) }}
+            {{ t('validationExistenceNone', { slug: v$.form.slug?.$model }) }}
           </FormInputStateError>
           <FormInputStateError
             :form-input="v$.form.name"
@@ -87,15 +87,17 @@
         </template>
       </FormInput>
       <FormInput
+        v-if="v$.form.visibility"
         id-label="input-visibility"
         is-required
         :title="t('visibility')"
         type="radio"
         :value="v$.form.visibility"
+        @input="form.visibility = $event as EventVisibility"
       >
         <FormRadioButtonGroup
           id="input-visibility"
-          v-model="form.visibility"
+          v-model="v$.form.visibility.$model"
           name="visibility"
           :titles-values="[
             [t('visibilityPublic'), 'PUBLIC'],
@@ -112,7 +114,7 @@
         </template>
       </FormInput>
       <FormInput
-        v-if="form.visibility === 'PUBLIC'"
+        v-if="v$.form.visibility.$model === 'PUBLIC'"
         id-label="input-invitee-count-maximum"
         :title="t('maximumInviteeCount')"
         type="number"
@@ -161,30 +163,30 @@
         :value="v$.form.end"
         :value-formatter="dateTimeFormatter"
         @click="store.modalAdd({ id: 'ModalDateTimeEnd' })"
-        @icon="form.end = undefined"
+        @icon="v$.form.end.$model = undefined"
       >
-        <template v-if="form.end" #icon>
+        <template v-if="v$.form.end.$model" #icon>
           <IconX />
         </template>
       </FormInput>
       <FormInput :title="t('attendanceType')" type="checkbox">
         <FormCheckbox
           form-key="is-in-person"
-          :value="form.isInPerson"
+          :value="v$.form.isInPerson.$model"
           @change="form.isInPerson = $event"
         >
           {{ t('isInPerson') }}
         </FormCheckbox>
         <FormCheckbox
           form-key="is-remote"
-          :value="form.isRemote"
+          :value="v$.form.isRemote.$model"
           @change="form.isRemote = $event"
         >
           {{ t('isRemote') }}
         </FormCheckbox>
       </FormInput>
       <FormInput
-        v-if="form.isInPerson"
+        v-if="v$.form.isInPerson.$model"
         id-label="input-location"
         :placeholder="t('globalPlaceholderAddress').replace('\n', ' ')"
         :title="t('location')"
@@ -207,7 +209,7 @@
         </template>
       </FormInput>
       <FormInputUrl
-        v-if="form.isRemote"
+        v-if="v$.form.isRemote.$model"
         :form-input="v$.form.url"
         @input="form.url = $event"
       />
@@ -217,8 +219,8 @@
         :value="v$.form.description"
         @input="form.description = $event"
       >
-        <client-only v-if="form.description">
-          <TipTap v-model.trim="form.description" />
+        <client-only v-if="v$.form.description">
+          <TipTap v-model.trim="v$.form.description.$model" />
         </client-only>
         <template #stateError>
           <FormInputStateError
@@ -234,12 +236,12 @@
       <client-only>
         <div class="flex justify-center">
           <v-date-picker
-            v-model="form.start"
+            v-model="v$.form.start.$model"
             :is24hr="$i18n.locale !== 'en'"
             is-dark
             :locale="$i18n.locale"
             :masks="{ input: 'YYYY-MM-DD h:mm A' }"
-            :max-date="form.end"
+            :max-date="v$.form.end.$model"
             :minute-increment="5"
             mode="dateTime"
           />
@@ -250,12 +252,12 @@
       <client-only>
         <div class="flex justify-center">
           <v-date-picker
-            v-model="form.end"
+            v-model="v$.form.end.$model"
             :is24hr="$i18n.locale !== 'en'"
             is-dark
             :locale="$i18n.locale"
             :masks="{ input: 'YYYY-MM-DD h:mm A' }"
-            :min-date="form.start"
+            :min-date="v$.form.start.$model"
             :minute-increment="5"
             mode="dateTime"
           />
@@ -319,23 +321,21 @@ const api = computed(() =>
 )
 
 // data
-const form = computed(() =>
-  reactive({
-    id: ref<string>(),
-    authorUsername: ref<string>(),
-    description: ref<string>(),
-    end: ref<string>(),
-    inviteeCountMaximum: ref<string>(),
-    isInPerson: ref<boolean>(),
-    isRemote: ref<boolean>(),
-    location: ref<string>(),
-    name: ref<string>(),
-    slug: ref<string>(),
-    start: ref<string>(),
-    url: ref<string>(),
-    visibility: ref<EventVisibility>(),
-  })
-)
+const form = reactive({
+  id: ref<string>(),
+  authorUsername: ref<string>(),
+  description: ref<string>(),
+  end: ref<string>(),
+  inviteeCountMaximum: ref<string>(),
+  isInPerson: ref<boolean>(),
+  isRemote: ref<boolean>(),
+  location: ref<string>(),
+  name: ref<string>(),
+  slug: ref<string>(),
+  start: ref<string>(),
+  url: ref<string>(),
+  visibility: ref<EventVisibility>(),
+})
 
 const isFormSent = ref(false)
 const signedInUsername = ref(store.signedInUsername)
@@ -350,7 +350,7 @@ function dateTimeFormatter(x?: string) {
     : undefined
 }
 function onInputName($event: any) {
-  form.value.name = $event
+  v$.value.form.name.$model = $event
   updateSlug()
 }
 async function submit() {
@@ -361,25 +361,25 @@ async function submit() {
     return
   }
 
-  if (form.value.id) {
+  if (form.id) {
     // Edit
     const result = await updateEventMutation.executeMutation({
-      id: form.value.id,
+      id: form.id,
       eventPatch: {
         authorUsername: signedInUsername.value,
-        description: form.value.description || null,
-        end: form.value.end || null,
-        inviteeCountMaximum: form.value.inviteeCountMaximum
-          ? +form.value.inviteeCountMaximum
+        description: form.description || null,
+        end: form.end || null,
+        inviteeCountMaximum: form.inviteeCountMaximum
+          ? +form.inviteeCountMaximum
           : null,
-        isInPerson: form.value.isInPerson,
-        isRemote: form.value.isRemote,
-        location: form.value.location || null,
-        name: form.value.name || null,
-        slug: form.value.slug || null,
-        start: form.value.start || null,
-        url: form.value.url || null,
-        visibility: form.value.visibility || null,
+        isInPerson: form.isInPerson,
+        isRemote: form.isRemote,
+        location: form.location || null,
+        name: form.name || null,
+        slug: form.slug || null,
+        start: form.start || null,
+        url: form.url || null,
+        visibility: form.visibility || null,
       },
     })
 
@@ -405,19 +405,19 @@ async function submit() {
       createEventInput: {
         event: {
           authorUsername: signedInUsername.value || '',
-          description: form.value.description || null,
-          end: form.value.end || null,
-          inviteeCountMaximum: form.value.inviteeCountMaximum
-            ? +form.value.inviteeCountMaximum
+          description: form.description || null,
+          end: form.end || null,
+          inviteeCountMaximum: form.inviteeCountMaximum
+            ? +form.inviteeCountMaximum
             : null,
-          isInPerson: form.value.isInPerson,
-          isRemote: form.value.isRemote,
-          location: form.value.location || null,
-          name: form.value.name || '',
-          slug: form.value.slug || '',
-          start: form.value.start || null,
-          url: form.value.url || null,
-          visibility: form.value.visibility || EventVisibility.Private,
+          isInPerson: form.isInPerson,
+          isRemote: form.isRemote,
+          location: form.location || null,
+          name: form.name || '',
+          slug: form.slug || '',
+          start: form.start || null,
+          url: form.url || null,
+          visibility: form.visibility || EventVisibility.Private,
         },
       },
     })
@@ -440,7 +440,7 @@ async function submit() {
     }).then(
       async () =>
         await navigateTo(
-          localePath(`/event/${signedInUsername.value}/${form.value.slug}`)
+          localePath(`/event/${signedInUsername.value}/${form.slug}`)
         )
     )
   }
@@ -449,11 +449,11 @@ function updateForm(data?: Event) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {
-    ;(form as Record<string, any>).value[k] = v
+    ;(form as Record<string, any>)[k] = v
   }
 }
 function updateSlug() {
-  form.value.slug = slugify(form.value.name ?? '', {
+  form.slug = slugify(form.name ?? '', {
     lower: true,
     strict: true,
   })
@@ -461,7 +461,7 @@ function updateSlug() {
 
 // computations
 const isWarningStartPastShown = computed(
-  () => !!form.value.start && new Date(form.value.start) < new Date()
+  () => !!form.start && new Date(form.start) < new Date()
 )
 
 // vuelidate

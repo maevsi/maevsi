@@ -54,11 +54,9 @@ const api = computed(() =>
   })
 )
 // data
-const form = computed(() =>
-  reactive({
-    password: ref<string>(),
-  })
-)
+const form = reactive({
+  password: ref<string>(),
+})
 const isFormSent = ref(false)
 
 // methods
@@ -72,7 +70,7 @@ async function submit() {
 
   const result = await passwordResetMutation.executeMutation({
     code: route.query.code,
-    password: form.value.password || '',
+    password: form.password || '',
   })
 
   if (result.error) {

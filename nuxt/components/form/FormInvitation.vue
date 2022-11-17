@@ -135,22 +135,20 @@ const api = computed(() =>
 const contacts = computed(() => allContactsQuery.data.value?.allContacts?.nodes)
 
 // data
-const form = computed(() =>
-  reactive({
-    contactIds: ref<string[]>([]),
-    searchString: ref<string>(),
-  })
-)
+const form = reactive({
+  contactIds: ref<string[]>([]),
+  searchString: ref<string>(),
+})
 const isFormSent = ref(false)
 
 // methods
 function selectToggle(contact: Contact) {
-  const index = form.value.contactIds.indexOf(contact.id)
+  const index = form.contactIds.indexOf(contact.id)
 
   if (index === -1) {
-    form.value.contactIds.push(contact.id)
+    form.contactIds.push(contact.id)
   } else {
-    form.value.contactIds.splice(index, 1)
+    form.contactIds.splice(index, 1)
   }
 }
 async function submit() {
@@ -161,7 +159,7 @@ async function submit() {
     return
   }
 
-  for (const contactId of form.value.contactIds) {
+  for (const contactId of form.contactIds) {
     const result = await executeMutationCreateInvitation({
       invitationInput: {
         contactId: contactId || null,
@@ -173,7 +171,7 @@ async function submit() {
       api.value.errors.push(result.error)
       consola.error(result.error)
     } else {
-      form.value.contactIds.splice(form.value.contactIds.indexOf(contactId), 1)
+      form.contactIds.splice(form.contactIds.indexOf(contactId), 1)
     }
 
     if (!result.data) {
@@ -190,11 +188,11 @@ const contactsFiltered = computed(() => {
     return undefined
   }
 
-  if (!form.value.searchString || form.value.searchString === '') {
+  if (!form.searchString || form.searchString === '') {
     return contacts.value
   }
 
-  const searchStringParts = form.value.searchString.split(' ')
+  const searchStringParts = form.searchString.split(' ')
   const allContactsFiltered = contacts.value?.filter((contact: Contact) => {
     for (const contactProperty of [
       ...(contact.accountUsername
