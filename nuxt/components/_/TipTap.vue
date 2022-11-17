@@ -162,6 +162,7 @@ const emit = defineEmits<{
   (e: 'update:modelValue', input: string): void
 }>()
 
+const host = useHost()
 const { t } = useI18n()
 const editor = useEditor({
   content: props.modelValue,
@@ -178,6 +179,11 @@ const editor = useEditor({
 })
 
 // methods
+const getLocation = (href: string) => {
+  const l = document.createElement('a')
+  l.href = href
+  return l
+}
 function setLink() {
   if (!editor.value) return
 
@@ -196,37 +202,18 @@ function setLink() {
     return
   }
 
+  const location = getLocation(url)
+  const urlHost = `${location.hostname}:${location.port}`
+
   // update link
   editor.value
     .chain()
     .focus()
     .extendMarkRange('link')
-    .setLink({ href: url, target: '_blank' })
+    // @ts-ignore https://github.com/ueberdosis/tiptap/pull/3425
+    .setLink({ href: url, target: urlHost !== host ? '_blank' : null })
     .run()
 }
-
-// lifecycle
-watch(
-  () => props.modelValue,
-  (currentValue, _oldValue) => {
-    if (!editor.value) return
-
-    const isSame = editor.value.getHTML() === currentValue
-
-    if (isSame) {
-      return
-    }
-
-    editor.value.commands.setContent(currentValue, false)
-  }
-)
-
-// initialization
-Link.configure({
-  HTMLAttributes: {
-    rel: 'nofollow noopener noreferrer',
-  },
-})
 </script>
 
 <i18n lang="yaml">

@@ -498,7 +498,8 @@ const eventDescriptionTemplate = computed(() => {
       contact: contact.value,
       event,
       invitation: invitation.value,
-    })
+    }),
+    { ADD_ATTR: ['target'] }
   )
 })
 const invitation = computed(() => {
