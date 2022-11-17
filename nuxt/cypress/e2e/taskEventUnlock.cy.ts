@@ -9,6 +9,8 @@ describe('task event unlock page', () => {
   })
 
   context('visual regression', () => {
+    if (Cypress.env('NODE_ENV') !== 'production') return
+
     it('looks as before', () => {
       cy.visit('/task/event/unlock')
       cy.compareSnapshot('taskEventUnlock')
