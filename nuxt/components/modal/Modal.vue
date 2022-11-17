@@ -34,9 +34,9 @@
         </ButtonIcon>
       </div>
       <div
+        class="min-h-0 flex flex-col"
         :class="{
           'pointer-events-none relative disabled': isSubmitting,
-          'overflow-y-auto': isOverflowYAuto,
         }"
       >
         <div v-if="contentBodyComputed">
@@ -47,7 +47,7 @@
           <LoaderIndicatorSpinner class="m-auto h-8 w-8" />
         </div>
       </div>
-      <div class="flex gap-8 justify-center">
+      <div v-if="!isFooterHidden" class="flex gap-8 justify-center">
         <slot name="footer">
           <ButtonColored
             :aria-label="submitName || t('ok')"
@@ -79,15 +79,15 @@ import { useMaevsiStore } from '~/store'
 
 export interface Props {
   id?: string
+  isFooterHidden?: boolean
   isSubmitDisabled?: boolean
-  isOverflowYAuto?: boolean
   submitName?: string
   submitTaskProvider?: () => Promise<any>
 }
 const props = withDefaults(defineProps<Props>(), {
   id: 'ModalGlobal',
+  isFooterHidden: false,
   isSubmitDisabled: false,
-  isOverflowYAuto: true,
   submitName: undefined,
   submitTaskProvider: () => Promise.resolve(),
 })

@@ -97,7 +97,6 @@
     </Card>
     <Modal
       id="ModalImageUploadGallery"
-      :is-overflow-y-auto="false"
       :submit-name="t('upload')"
       :submit-task-provider="() => getUploadBlobPromise()"
     >

@@ -9,7 +9,7 @@
     novalidate
     @submit="(e) => emit('submit', e)"
   >
-    <Card>
+    <Card class="flex flex-col min-h-0">
       <slot />
       <div class="mb-4 mt-6 flex flex-col items-center justify-between">
         <ButtonColored

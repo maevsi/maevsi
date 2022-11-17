@@ -175,7 +175,7 @@
           />
         </div>
       </div>
-      <Modal id="ModalInvitation">
+      <Modal id="ModalInvitation" is-footer-hidden>
         <FormInvitation
           :event="event"
           :invitation-contact-ids-existing="
@@ -186,7 +186,6 @@
         <template #header>
           {{ t('contactSelect') }}
         </template>
-        <template #footer />
       </Modal>
     </div>
   </Loader>

@@ -2,6 +2,7 @@
   <Form
     v-if="event"
     ref="form"
+    class="min-h-0 flex flex-col"
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
@@ -66,12 +67,12 @@
           class="w-full rounded border-2 border-neutral-300 dark:border-neutral-600 flex items-center px-4 py-2 gap-4"
           :disabled="invitationContactIdsExisting?.includes(contact.id)"
           type="button"
-          @click="selectToggle(contact)"
+          @click="selectToggle(contact.id)"
         >
           <input
             type="checkbox"
             readonly
-            :checked="form.contactIds?.includes(contact.id)"
+            :checked="contactIdsComputed.includes(contact.id)"
           />
           <ContactPreview :contact="contact" :is-username-linked="false" />
         </Button>
@@ -142,11 +143,11 @@ const form = reactive({
 const isFormSent = ref(false)
 
 // methods
-function selectToggle(contact: Contact) {
-  const index = form.contactIds.indexOf(contact.id)
+function selectToggle(contactId: string) {
+  const index = form.contactIds.indexOf(contactId)
 
   if (index === -1) {
-    form.contactIds.push(contact.id)
+    form.contactIds.push(contactId)
   } else {
     form.contactIds.splice(index, 1)
   }
@@ -159,23 +160,33 @@ async function submit() {
     return
   }
 
-  for (const contactId of form.contactIds) {
-    const result = await executeMutationCreateInvitation({
-      invitationInput: {
-        contactId: contactId || null,
-        eventId: +props.event.id,
-      },
-    })
+  const successIds = []
 
-    if (result.error) {
-      api.value.errors.push(result.error)
-      consola.error(result.error)
-    } else {
-      form.contactIds.splice(form.contactIds.indexOf(contactId), 1)
+  try {
+    for (const contactId of form.contactIds) {
+      const result = await executeMutationCreateInvitation({
+        invitationInput: {
+          contactId: contactId || null,
+          eventId: +props.event.id,
+        },
+      })
+
+      if (result.error) {
+        api.value.errors.push(result.error)
+        consola.error(result.error)
+      } else {
+        successIds.push(contactId)
+      }
+
+      if (!result.data) {
+        throw new Error('No data!')
+      }
     }
-
-    if (!result.data) {
-      return
+  } catch (error: any) {
+    return
+  } finally {
+    for (const successId of successIds) {
+      form.contactIds.splice(form.contactIds.indexOf(successId), 1)
     }
   }
 
@@ -213,6 +224,7 @@ const contactsFiltered = computed(() => {
 
   return allContactsFiltered
 })
+const contactIdsComputed = computed(() => form.contactIds)
 
 // vuelidate
 const rules = {
