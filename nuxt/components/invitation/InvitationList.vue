@@ -71,7 +71,7 @@
                       <IconDotsVertical />
                     </ButtonIcon>
                     <template #content>
-                      <ButtonIcon
+                      <Button
                         :aria-label="
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
@@ -86,23 +86,27 @@
                         "
                         @click="send(invitation)"
                       >
-                        <IconPaperPlane />
                         {{
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
                             ? t('invitationSend')
                             : t('disabledReasonEmailAddressNone')
                         }}
-                      </ButtonIcon>
-                      <ButtonIcon
+                        <template #prefix>
+                          <IconPaperPlane />
+                        </template>
+                      </Button>
+                      <Button
                         :aria-label="t('invitationLink')"
                         class="block md:hidden"
                         @click="copyLink(invitation)"
                       >
-                        <IconLink />
                         {{ t('invitationLink') }}
-                      </ButtonIcon>
-                      <ButtonIcon
+                        <template #prefix>
+                          <IconLink />
+                        </template>
+                      </Button>
+                      <Button
                         :aria-label="t('invitationView')"
                         @click="
                           navigateTo({
@@ -113,17 +117,21 @@
                           })
                         "
                       >
-                        <IconEye />
                         {{ t('invitationView') }}
-                      </ButtonIcon>
-                      <ButtonIcon
+                        <template #prefix>
+                          <IconEye />
+                        </template>
+                      </Button>
+                      <Button
                         :aria-label="t('invitationDelete')"
                         :disabled="pending.deletions.includes(invitation.uuid)"
                         @click="delete_(invitation.id)"
                       >
-                        <IconTrash />
                         {{ t('invitationDelete') }}
-                      </ButtonIcon>
+                        <template #prefix>
+                          <IconTrash />
+                        </template>
+                      </Button>
                     </template>
                   </DropDown>
                 </div>

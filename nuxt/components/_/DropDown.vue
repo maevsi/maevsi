@@ -15,7 +15,7 @@
     <div
       v-if="isOpen"
       ref="dropdownRef"
-      class="fixed z-20 mt-2 flex -translate-x-full flex-col gap-2 rounded-md bg-background-brighten p-2 shadow-lg dark:bg-background-darken"
+      class="fixed z-20 mt-2 flex -translate-x-full flex-col items-stretch gap-4 rounded-md bg-background-brighten p-4 shadow-lg dark:bg-background-darken"
     >
       <slot name="content" />
     </div>
