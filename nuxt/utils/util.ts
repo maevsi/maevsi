@@ -101,18 +101,20 @@ export const getApiMeta = (
     : false,
 })
 
-export function getCombinedErrorMessages(t: any, errors: BackendError[]) {
+export function getCombinedErrorMessages(
+  errors: BackendError[],
+  pgIds?: Record<string, string>
+) {
   const errorMessages: string[] = []
 
   for (const error of errors) {
     if ('errcode' in error) {
-      const translationId = 'postgres' + error.errcode
-      const translation = t(translationId)
+      const translation = pgIds && pgIds[`postgres${error.errcode}`]
 
-      if (translation === translationId) {
-        errorMessages.push(error.message)
-      } else {
+      if (translation) {
         errorMessages.push(translation)
+      } else {
+        errorMessages.push(error.message)
       }
     } else {
       const combinedError = error
@@ -128,16 +130,6 @@ export function getCombinedErrorMessages(t: any, errors: BackendError[]) {
   }
 
   return errorMessages
-}
-
-export function useGetCombinedErrorMessages() {
-  const { t } = useI18n()
-
-  return {
-    getCombinedErrorMessages(errors: BackendError[]) {
-      return getCombinedErrorMessages(t, errors)
-    },
-  }
 }
 
 export function getQueryString(

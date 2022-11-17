@@ -24,12 +24,11 @@
     </div>
     <FormInput
       id-label="input-contact-id"
-      is-required
       :placeholder="t('placeholderContact')"
       :title="t('contact')"
       type="text"
       :value="v$.form.searchString"
-      @input="v$.form.searchString.$model = $event"
+      @input="form.searchString = $event"
     >
       <template #icon>
         <IconSearch />
@@ -55,32 +54,35 @@
         </FormInputStateError>
       </template>
     </FormInput>
-    <div v-if="contacts" class="flex flex-col gap-2">
+    <ScrollContainer
+      v-if="contacts"
+      class="flex flex-col gap-2 p-1"
+      :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
+      @load-more="after = api.data.allContacts?.pageInfo.endCursor"
+    >
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button
           :aria-label="t('buttonContact')"
-          class="w-full rounded border border-neutral-300 text-left dark:border-neutral-600"
-          :class="{
-            'border-2 border-blue-600 dark:border-blue-600':
-              form.contactId === contact.id,
-          }"
+          class="w-full rounded border-2 border-neutral-300 dark:border-neutral-600 flex items-center px-4 py-2 gap-4"
+          :disabled="invitationContactIdsExisting?.includes(contact.id)"
           type="button"
           @click="selectToggle(contact)"
         >
-          <ContactPreview
-            class="px-4 py-2"
-            :contact="contact"
-            :is-username-linked="false"
+          <input
+            type="checkbox"
+            readonly
+            :checked="form.contactIds.includes(contact.id)"
           />
+          <ContactPreview :contact="contact" :is-username-linked="false" />
         </Button>
       </div>
-    </div>
+    </ScrollContainer>
   </Form>
 </template>
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { minValue, required } from '@vuelidate/validators'
+import { minLength, minValue, required } from '@vuelidate/validators'
 import consola from 'consola'
 
 import { Contact } from '~/types/contact'
@@ -93,8 +95,11 @@ import { Event } from '~/types/event'
 
 export interface Props {
   event: Event
+  invitationContactIdsExisting?: number[]
 }
-const props = withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {
+  invitationContactIdsExisting: undefined,
+})
 
 const emit = defineEmits<{
   (e: 'submitSuccess'): void
@@ -130,24 +135,23 @@ const api = computed(() =>
 const contacts = computed(() => allContactsQuery.data.value?.allContacts?.nodes)
 
 // data
-const form = reactive({
-  contactId: ref<string>(),
-  searchString: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    contactIds: ref<string[]>([]),
+    searchString: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
 function selectToggle(contact: Contact) {
-  form.contactId = contact.id
+  const index = form.value.contactIds.indexOf(contact.id)
 
-  // For multiple contact selections:
-  //
-  // const index = data.form.contactIds.indexOf(contact.nodeId)
-  // if (index === -1) {
-  //   data.form.contactIds.push(contact.nodeId)
-  // } else {
-  //   data.form.contactIds.splice(index, 1)
-  // }
+  if (index === -1) {
+    form.value.contactIds.push(contact.id)
+  } else {
+    form.value.contactIds.splice(index, 1)
+  }
 }
 async function submit() {
   try {
@@ -157,20 +161,24 @@ async function submit() {
     return
   }
 
-  const result = await executeMutationCreateInvitation({
-    invitationInput: {
-      contactId: form.contactId || null,
-      eventId: +props.event.id,
-    },
-  })
+  for (const contactId of form.value.contactIds) {
+    const result = await executeMutationCreateInvitation({
+      invitationInput: {
+        contactId: contactId || null,
+        eventId: +props.event.id,
+      },
+    })
 
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
+    if (result.error) {
+      api.value.errors.push(result.error)
+      consola.error(result.error)
+    } else {
+      form.value.contactIds.splice(form.value.contactIds.indexOf(contactId), 1)
+    }
 
-  if (!result.data) {
-    return
+    if (!result.data) {
+      return
+    }
   }
 
   emit('submitSuccess')
@@ -182,11 +190,11 @@ const contactsFiltered = computed(() => {
     return undefined
   }
 
-  if (!form.searchString || form.searchString === '') {
+  if (!form.value.searchString || form.value.searchString === '') {
     return contacts.value
   }
 
-  const searchStringParts = form.searchString.split(' ')
+  const searchStringParts = form.value.searchString.split(' ')
   const allContactsFiltered = contacts.value?.filter((contact: Contact) => {
     for (const contactProperty of [
       ...(contact.accountUsername
@@ -211,13 +219,13 @@ const contactsFiltered = computed(() => {
 // vuelidate
 const rules = {
   form: {
-    contactId: {
-      // $each: {
-      minValue: minValue(1),
+    contactIds: {
+      $each: {
+        minValue: minValue(1),
+        required,
+      },
+      minLength: minLength(1),
       required,
-      // },
-      // minLength: minLength(1),
-      // required,
     },
     searchString: {},
   },

@@ -14,13 +14,13 @@
       title="id"
       type="number"
       :value="v$.form.id"
-      @input="v$.form.id.$model = $event"
+      @input="form.id = $event"
     />
     <FormInputUsername
       :form-input="v$.form.accountUsername"
       is-optional
       is-validatable
-      @input="v$.form.accountUsername.$model = $event"
+      @input="form.accountUsername = $event"
     >
       <template #icon>
         <IconSearch />
@@ -36,7 +36,7 @@
       :title="t('firstName')"
       type="text"
       :value="v$.form.firstName"
-      @input="v$.form.firstName.$model = $event"
+      @input="form.firstName = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -54,7 +54,7 @@
       :title="t('lastName')"
       type="text"
       :value="v$.form.lastName"
-      @input="v$.form.lastName.$model = $event"
+      @input="form.lastName = $event"
     >
       <template #stateError>
         <FormInputStateError
@@ -68,7 +68,7 @@
     <FormInputEmailAddress
       :form-input="v$.form.emailAddress"
       is-optional
-      @input="v$.form.emailAddress.$model = $event"
+      @input="form.emailAddress = $event"
     />
     <FormInput
       id-label="input-address"
@@ -76,12 +76,11 @@
       :title="t('address')"
       type="textarea"
       :value="v$.form.address"
-      @input="v$.form.address.$model = $event"
+      @input="form.address = $event"
     >
       <textarea
-        v-if="v$.form.address"
         id="input-address"
-        v-model.trim="v$.form.address.$model"
+        v-model.trim="form.address"
         class="form-input"
         :placeholder="t('globalPlaceholderAddress')"
         rows="2"
@@ -98,12 +97,12 @@
     <FormInputPhoneNumber
       :form-input="v$.form.phoneNumber"
       is-optional
-      @input="v$.form.phoneNumber.$model = $event"
+      @input="form.phoneNumber = $event"
     />
     <FormInputUrl
       :form-input="v$.form.url"
       is-optional
-      @input="v$.form.url.$model = $event"
+      @input="form.url = $event"
     />
   </Form>
 </template>
@@ -161,16 +160,18 @@ const api = computed(() =>
 )
 
 // data
-const form = reactive({
-  id: ref<string>(),
-  accountUsername: ref<string>(),
-  address: ref<string>(),
-  emailAddress: ref<string>(),
-  firstName: ref<string>(),
-  lastName: ref<string>(),
-  phoneNumber: ref<string>(),
-  url: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    id: ref<string>(),
+    accountUsername: ref<string>(),
+    address: ref<string>(),
+    emailAddress: ref<string>(),
+    firstName: ref<string>(),
+    lastName: ref<string>(),
+    phoneNumber: ref<string>(),
+    url: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
@@ -182,19 +183,19 @@ async function submit() {
     return
   }
 
-  if (form.id) {
+  if (form.value.id) {
     // Edit
     const result = await updateContactByIdMutation.executeMutation({
-      id: form.id,
+      id: form.value.id,
       contactPatch: {
-        accountUsername: form.accountUsername || null,
-        address: form.address || null,
+        accountUsername: form.value.accountUsername || null,
+        address: form.value.address || null,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.emailAddress || null,
-        firstName: form.firstName || null,
-        lastName: form.lastName || null,
-        phoneNumber: form.phoneNumber || null,
-        url: form.url || null,
+        emailAddress: form.value.emailAddress || null,
+        firstName: form.value.firstName || null,
+        lastName: form.value.lastName || null,
+        phoneNumber: form.value.phoneNumber || null,
+        url: form.value.url || null,
       },
     })
 
@@ -206,14 +207,14 @@ async function submit() {
     // Add
     const result = await createContactMutation.executeMutation({
       contactInput: {
-        accountUsername: form.accountUsername || null,
-        address: form.address || null,
+        accountUsername: form.value.accountUsername || null,
+        address: form.value.address || null,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.emailAddress || null,
-        firstName: form.firstName || null,
-        lastName: form.lastName || null,
-        phoneNumber: form.phoneNumber || null,
-        url: form.url || null,
+        emailAddress: form.value.emailAddress || null,
+        firstName: form.value.firstName || null,
+        lastName: form.value.lastName || null,
+        phoneNumber: form.value.phoneNumber || null,
+        url: form.value.url || null,
       },
     })
 
@@ -233,7 +234,7 @@ function updateForm(data?: Contact) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {
-    ;(form as Record<string, any>)[k] = v
+    ;(form as Record<string, any>).value[k] = v
   }
 }
 
@@ -289,13 +290,11 @@ de:
   address: Adresse
   firstName: Vorname
   lastName: Nachname
-  phoneNumber: Telefonnummer
   save: Speichern
 en:
   accountOverride: You can add an existing account as a contact or enter contact data manually. If both data are entered, the manually entered data will be used preferentially.
   address: Address
   firstName: First name
   lastName: Last name
-  phoneNumber: Phone number
   save: Save
 </i18n>

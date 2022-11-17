@@ -1,12 +1,14 @@
 <template>
   <div class="container mx-auto p-4 md:px-8">
-    <LayoutHeader @onMenuShow="menuShow" />
-    <main class="min-h-screen flex-1 overflow-hidden">
-      <slot />
-    </main>
+    <div class="min-h-screen pb-32">
+      <LayoutHeader @on-menu-show="menuShow" />
+      <main class="flex-1 overflow-hidden">
+        <slot />
+      </main>
+    </div>
     <LayoutFooter />
     <div
-      class="fixed bottom-0 left-0 right-0 top-0 z-10 transition duration-500"
+      class="fixed bottom-0 left-0 right-0 top-0 z-10 transition duration-500 lg:hidden"
       :class="[
         ...(isMenuVisible
           ? ['backdrop-brightness-50 backdrop-blur']
@@ -22,7 +24,7 @@
       <LayoutMenu
         v-if="isMenuVisiblePartly"
         is-closable
-        @onMenuHide="menuHide"
+        @on-menu-hide="menuHide"
       />
     </div>
     <!-- <CookieControl :locale="locale" /> -->

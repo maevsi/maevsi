@@ -4,7 +4,7 @@
       <ScrollContainer
         v-if="contacts"
         :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
-        @loadMore="after = api.data.allContacts?.pageInfo.endCursor"
+        @load-more="after = api.data.allContacts?.pageInfo.endCursor"
       >
         <table>
           <thead>
@@ -52,7 +52,7 @@
       <Modal id="ModalContact" @close="onClose">
         <FormContact
           :contact="selectedContact"
-          @submitSuccess="onSubmitSuccess"
+          @submit-success="store.modalRemove('ModalContact')"
         />
         <template #header>
           {{ formContactHeading }}
@@ -118,6 +118,7 @@ function add() {
 async function delete_(nodeId: string, id: string) {
   pending.deletions.push(nodeId)
   api.value.errors = []
+
   const result = await executeMutationContactDeleteById({ id })
 
   if (result.error) {
@@ -126,11 +127,6 @@ async function delete_(nodeId: string, id: string) {
   }
 
   pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
-
-  // if (!result.data) {
-  //   return
-  // }
-  // TODO: cache update (allContacts)
 }
 function edit(contact: Contact) {
   pending.edits.push(contact.nodeId)
@@ -143,10 +139,6 @@ function onClose() {
 
   pending.edits.splice(pending.edits.indexOf(selectedContact.value.nodeId), 1)
 }
-function onSubmitSuccess() {
-  store.modalRemove('ModalContact')
-  // TODO: cache update (allContacts)
-}
 
 // lifecycle
 watch(contactsQuery.error, (currentValue, _oldValue) => {
@@ -157,7 +149,6 @@ watch(contactsQuery.error, (currentValue, _oldValue) => {
 <i18n lang="yaml">
 de:
   address: Adresse
-  author: Autor
   contact: Kontakt
   contactAdd: Kontakt hinzufügen
   contactEdit: Kontakt bearbeiten
@@ -166,7 +157,6 @@ de:
   url: Webseite
 en:
   address: Address
-  author: author
   contact: Contact
   contactAdd: Add contact
   contactEdit: Kontakt bearbeiten

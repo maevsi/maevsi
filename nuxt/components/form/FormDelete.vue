@@ -1,6 +1,7 @@
 <template>
   <Form
     :errors="api.errors"
+    :errors-pg-ids="errorsPgIds"
     :form="v$.form"
     :is-form-sent="isFormSent"
     :submit-name="t('deletion', { item: itemName })"
@@ -9,7 +10,7 @@
     <FormInputPassword
       :form-input="v$.form.password"
       :title="t('passwordAccount')"
-      @input="v$.form.password.$model = $event"
+      @input="form.password = $event"
     />
     <template #submit-icon>
       <IconTrash />
@@ -31,6 +32,7 @@ import {
 import { Exact, EventDeleteMutation } from '~/gql/generated'
 
 export interface Props {
+  errorsPgIds?: Record<string, string>
   itemName: string
   mutation: (
     variables: Exact<any>,
@@ -39,6 +41,7 @@ export interface Props {
   variables?: Record<string, any>
 }
 const props = withDefaults(defineProps<Props>(), {
+  errorsPgIds: undefined,
   variables: undefined,
 })
 
@@ -52,15 +55,15 @@ const { t } = useI18n()
 const api = getApiDataDefault()
 
 // data
-const form = reactive({
-  password: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    password: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  if (!form.password) return
-
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
@@ -70,7 +73,7 @@ async function submit() {
 
   props
     .mutation({
-      password: form.password,
+      password: form.value.password,
       ...props.variables,
     })
     .then((result) => {

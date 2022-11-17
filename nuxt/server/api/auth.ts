@@ -13,7 +13,7 @@ export default defineEventHandler(async function (event: H3Event) {
   if (req.headers.authorization !== undefined) {
     jwt = req.headers.authorization.substring(7)
 
-    // TODO: decide whether to use the following if / to fetch the authentication key from staging
+    // TODO: decide whether to use the following if / to fetch the authentication key from staging (https://github.com/maevsi/maevsi/issues/916)
     if (process.env.NODE_ENV === 'production') {
       if (!jwtPublicKey) {
         return sendError(

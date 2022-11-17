@@ -9,6 +9,8 @@ describe('privacy-policy page', () => {
   })
 
   context('visual regression', () => {
+    if (Cypress.env('NODE_ENV') !== 'production') return
+
     it('looks as before', () => {
       cy.visit('/privacy-policy')
       cy.compareSnapshot('privacy-policy')

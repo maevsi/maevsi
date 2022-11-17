@@ -1,10 +1,15 @@
 <template>
-  <Loader :api="api">
+  <Loader
+    :api="api"
+    :error-pg-ids="{
+      postgresP0002: t('postgresP0002'),
+    }"
+  >
     <div class="flex flex-col gap-4">
       <ScrollContainer
         v-if="event && invitations?.length"
         :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
-        @loadMore="after = api.data.allInvitations?.pageInfo.endCursor"
+        @load-more="after = api.data.allInvitations?.pageInfo.endCursor"
       >
         <table class="border border-neutral-300 dark:border-neutral-600">
           <thead
@@ -170,7 +175,13 @@
         </div>
       </div>
       <Modal id="ModalInvitation">
-        <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
+        <FormInvitation
+          :event="event"
+          :invitation-contact-ids-existing="
+            invitations?.map((i) => i.contactId)
+          "
+          @submit-success="store.modalRemove('ModalInvitation')"
+        />
         <template #header>
           {{ t('contactSelect') }}
         </template>
@@ -193,7 +204,7 @@ import {
 } from 'chart.js'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { Doughnut } from 'vue-chartjs/dist/index' // TODO: https://github.com/apertureless/vue-chartjs/pull/934
+import { Doughnut } from 'vue-chartjs/dist/index' // TODO: wait for vue-chartjs support chartjs v4 (https://github.com/apertureless/vue-chartjs/pull/934)
 
 import { Invitation } from '~/types/invitation'
 import {
@@ -304,15 +315,6 @@ async function delete_(id: string) {
     api.value.errors.push(result.error)
     consola.error(result.error)
   }
-
-  // if (!result.data) {
-  //   return
-  // }
-  // TODO: cache update (allInvitations)
-}
-function onSubmitSuccess() {
-  store.modalRemove('ModalInvitation')
-  // TODO: cache update (allInvitations)
 }
 async function send(invitation: any) {
   pending.sends.push(invitation.uuid)
@@ -341,7 +343,6 @@ async function send(invitation: any) {
     timerProgressBar: true,
     title: t('sent'),
   })
-  // TODO: cache update (allInvitations)
 }
 
 // computations

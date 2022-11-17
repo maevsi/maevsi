@@ -1,5 +1,10 @@
 <template>
-  <Loader :api="api">
+  <Loader
+    :api="api"
+    :error-pg-ids="{
+      postgres53100: t('postgres53100'),
+    }"
+  >
     <Card>
       <ul class="flex flex-wrap justify-center">
         <template v-if="uploads?.length">
@@ -17,6 +22,7 @@
           >
             <LoaderImage
               :alt="upload.storageKey ? t('uploadAlt') : t('uploadAltFailed')"
+              aspect="aspect-square"
               class="h-32 w-32"
               height="128"
               :src="getUploadImageSrc(upload.storageKey || '')"
@@ -63,7 +69,7 @@
                 sizeTotal: bytesToString(accountUploadQuotaBytes),
               })
             "
-            @click="changeProfilePicture"
+            @click="selectProfilePicture"
           >
             <IconPlus classes="h-12 text-gray-500 w-12" />
           </Button>
@@ -143,7 +149,9 @@ interface Item {
 }
 
 const { t } = useI18n()
+const route = useRoute()
 const store = useMaevsiStore()
+const localePath = useLocalePath()
 const TUSD_FILES_URL = useTusdFilesUrl()
 const config = useRuntimeConfig()
 const { executeMutation: executeMutationUploadCreate } =
@@ -207,10 +215,16 @@ function bytesToString(bytes?: number | string | null) {
   }
   return prettyBytes(+bytes)
 }
-function changeProfilePicture() {
-  ;(
-    document.querySelector('#input-profile-picture') as HTMLInputElement
-  ).click()
+function selectProfilePicture() {
+  const pathUpload = localePath('/upload')
+
+  if (route.path === pathUpload) {
+    ;(
+      document.querySelector('#input-profile-picture') as HTMLInputElement
+    ).click()
+  } else {
+    navigateTo(pathUpload)
+  }
 }
 function deleteImageUpload(uploadId: string) {
   const element = document.getElementById(uploadId) as Element
@@ -314,6 +328,8 @@ function toggleSelect(upload: any) {
 function getUploadBlobPromise() {
   return new Promise<void>((resolve, reject) => {
     cropperRef.value?.getResult().canvas?.toBlob(async (blob: Blob) => {
+      api.value.errors = []
+
       const result = await executeMutationUploadCreate({
         uploadCreateInput: {
           sizeByte: blob.size,
@@ -401,7 +417,6 @@ watch(allUploadsQuery.error, (currentValue, _oldValue) => {
 
 <i18n lang="yaml">
 de:
-  cancel: Abbrechen
   iconAdd: 'Ein neues Bild hochladen. Genutzter Speicherplatz: {sizeUsed}/{sizeTotal}.'
   iconTrash: löschen
   iconTrashLabel: Dieses hochgeladene Bild löschen.
@@ -412,11 +427,9 @@ de:
   uploadDeleteFailed: Das Löschen des Elements ist fehlgeschlagen!
   uploadDeleteUnexpectedStatusCode: Beim Löschen des Elements trat ein unerwarteter Statuscode auf.
   uploadError: 'Fehler: Dateien wurden nicht erfolgreich hochgeladen!'
-  uploadImages: Bilder hochladen
   uploadNew: Lade ein neues Bild hoch
   uploadSize: 'Größe: {size}'
 en:
-  cancel: Cancel
   iconAdd: 'Upload a new image. Used storage space: {sizeUsed}/{sizeTotal}.'
   iconTrash: trash
   iconTrashLabel: Delete this image upload.
@@ -427,7 +440,6 @@ en:
   uploadDeleteFailed: Deleting upload failed!
   uploadDeleteUnexpectedStatusCode: Deleting upload returned an unexpected status code.
   uploadError: 'Error: Upload failed!'
-  uploadImages: Upload images
   uploadNew: Upload a new image
   uploadSize: 'Size: {size}'
 </i18n>

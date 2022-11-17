@@ -35,7 +35,8 @@
       </div>
       <LoaderImage
         :alt="t('heroImage')"
-        class="hidden lg:block lg:w-1/2"
+        aspect="aspect-[750/861]"
+        class="hidden lg:block w-1/2"
         height="861"
         src="/assets/static/images/hero_background.png"
         width="750"
@@ -72,6 +73,7 @@
     <section class="flex flex-col lg:flex-row gap-8 items-center">
       <LoaderImage
         :alt="t('heroImage')"
+        aspect="aspect-square"
         class="lg:w-1/2"
         height="750"
         src="/assets/static/images/smartphone.png"
@@ -140,7 +142,7 @@
     >
       <IconChevronDoubleDown
         classes="h-16 w-16 animate-bounce"
-        @click.native="scrollToSteps"
+        @click="scrollToSteps"
       />
     </div>
   </div>
@@ -206,7 +208,6 @@ de:
   benefitsTitle: Deine Vorteile mit {maevsi}
   benefitUserFriendly: Benutzerfreundlich
   benefitUserFriendlyDescription: Gäste können ganz einfach teilnehmen, komplett ohne Login
-  events: Veranstaltungen
   heroImage: Heldenbild.
   maevsi: maevsi
   maevsiDescription1: Persönliche Einladungen. Geordnetes Feedback.
@@ -243,7 +244,6 @@ en:
   benefitsTitle: Your benefits with {maevsi}
   benefitUserFriendly: User friendly
   benefitUserFriendlyDescription: Guests can participate easily, without any login
-  events: Events
   heroImage: Hero image.
   maevsi: maevsi
   maevsiDescription1: Personal invitations. Proper feedback.

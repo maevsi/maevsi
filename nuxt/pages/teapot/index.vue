@@ -9,8 +9,8 @@ definePageMeta({
     function (_to: any, _from: any) {
       const { ssrContext } = useNuxtApp()
 
-      if (ssrContext && ssrContext.event.res) {
-        ssrContext.event.res.statusCode = 418
+      if (ssrContext && ssrContext.event.node.res) {
+        ssrContext.event.node.res.statusCode = 418
       }
     },
   ],

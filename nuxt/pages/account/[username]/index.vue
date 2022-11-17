@@ -5,14 +5,17 @@
     >
       {{ routeParamUsername }}
     </LayoutBreadcrumbs>
-    <ButtonList v-if="signedInUsername === routeParamUsername">
+    <ButtonList
+      v-if="signedInUsername === routeParamUsername"
+      class="justify-end"
+    >
       <ButtonColored :aria-label="t('settings')" to="settings" is-to-relative>
         {{ t('settings') }}
         <template #prefix>
           <IconPencil />
         </template>
       </ButtonColored>
-      <ButtonColored :aria-label="t('signOut')" @click.native="signOut">
+      <ButtonColored :aria-label="t('signOut')" @click="signOut">
         {{ t('signOut') }}
         <template #prefix>
           <IconSignOut />
@@ -33,7 +36,7 @@
         {{ routeParamUsername }}
       </h2>
     </div>
-    <ButtonList>
+    <ButtonList class="justify-center">
       <ButtonColored
         :aria-label="t('eventsTheir', { name: routeParamUsername })"
         :is-primary="false"

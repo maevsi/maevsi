@@ -27,7 +27,7 @@
       <h1 class="max-w-full overflow-hidden text-ellipsis sm:w-auto">
         {{ routeParamUsername }}
       </h1>
-      <ModalImageSelection @submitSuccess="reloadProfilePicture" />
+      <ModalImageSelection />
     </div>
     <section>
       <h2>{{ t('titlePasswordChange') }}</h2>
@@ -37,6 +37,10 @@
       <h2>{{ t('titleAccountDelete') }}</h2>
       <FormDelete
         id="deleteAccount"
+        :error-pg-ids="{
+          postgres23503: t('postgres23503'),
+          postgres28P01: t('postgres28P01'),
+        }"
         :item-name="t('account')"
         :mutation="mutation"
         @success="signOut"
@@ -91,9 +95,6 @@ const routeParamUsername = route.params.username as string
 const title = route.params.username as string
 
 // methods
-function reloadProfilePicture() {
-  // TODO: cache update (profilePictureByUsername, props.username)
-}
 function showModalImageSelection() {
   store.modalAdd({ id: 'ModalImageSelection' })
 }

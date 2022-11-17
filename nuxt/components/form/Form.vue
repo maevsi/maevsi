@@ -3,7 +3,7 @@
     v-if="form"
     ref="formRef"
     :class="[
-      { 'animate-shake rounded border border-red-500': errors?.length },
+      { 'animate-shake rounded-lg border border-red-500': errors?.length },
       formClass,
     ]"
     novalidate
@@ -48,6 +48,7 @@ import { BackendError } from '~/utils/util'
 
 export interface Props {
   errors?: BackendError[]
+  errorsPgIds?: Record<string, string>
   form: BaseValidation
   formClass?: string
   isFormSent?: boolean
@@ -55,6 +56,7 @@ export interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   errors: undefined,
+  errorsPgIds: undefined,
   formClass: undefined,
   isFormSent: false,
   submitName: undefined,
@@ -65,7 +67,6 @@ const emit = defineEmits<{
   (e: 'submit', event: Event): void
 }>()
 
-const { getCombinedErrorMessages } = useGetCombinedErrorMessages()
 const { t } = useI18n()
 
 // refs
@@ -82,7 +83,9 @@ const formRef = ref<HTMLFormElement>()
 
 // computations
 const errorMessages = computed(() =>
-  props.errors ? getCombinedErrorMessages(props.errors) : undefined
+  props.errors
+    ? getCombinedErrorMessages(props.errors, props.errorsPgIds)
+    : undefined
 )
 </script>
 

@@ -25,17 +25,17 @@
         :feedback="feedback"
       />
     </div>
-    <div class="flex flex-col justify-center overflow-hidden">
+    <div class="flex flex-col justify-center items-start overflow-hidden">
       <div class="truncate font-medium">
-        {{ contact.firstName || t('placeholder') }}
-        {{ contact.lastName || t('placeholder') }}
+        {{ contact.firstName }}
+        {{ contact.lastName }}
       </div>
-      <div class="truncate text-gray-500 dark:text-gray-400">
-        <div v-if="!contact.accountUsername">
-          {{ t('placeholder') }}
-        </div>
+      <div
+        v-if="contact.accountUsername"
+        class="truncate text-gray-500 dark:text-gray-400"
+      >
         <AppLink
-          v-else-if="isUsernameLinked"
+          v-if="isUsernameLinked"
           :to="localePath(`/account/${contact.accountUsername}`)"
         >
           {{ `@${contact.accountUsername}` }}
@@ -62,12 +62,4 @@ withDefaults(defineProps<Props>(), {
 })
 
 const localePath = useLocalePath()
-const { t } = useI18n()
 </script>
-
-<i18n lang="yaml">
-de:
-  placeholder: –
-en:
-  placeholder: –
-</i18n>

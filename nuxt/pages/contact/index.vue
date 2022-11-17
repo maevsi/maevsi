@@ -16,7 +16,7 @@ definePageMeta({
       const store = useMaevsiStore()
 
       if (!store.signedInUsername) {
-        throw abortNavigation({ statusCode: 403 }) // TODO: createError?
+        return abortNavigation({ statusCode: 403 })
       }
     },
   ],

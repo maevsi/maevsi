@@ -12,6 +12,11 @@
     </ButtonColored>
     <Form
       :errors="api.errors"
+      :errors-pg-ids="{
+        postgres22023: t('postgres22023'),
+        postgres55000: t('postgres55000'),
+        postgresP0002: t('postgresP0002'),
+      }"
       :form="v$.form"
       form-class="w-full"
       :is-form-sent="isFormSent"
@@ -20,11 +25,11 @@
     >
       <FormInputUsername
         :form-input="v$.form.username"
-        @input="v$.form.username.$model = $event"
+        @input="form.username = $event"
       />
       <FormInputPassword
         :form-input="v$.form.password"
-        @input="v$.form.password.$model = $event"
+        @input="form.password = $event"
       />
       <div class="flex justify-center">
         <AppLink :to="localePath('/task/account/password/reset/request')">
@@ -77,19 +82,21 @@ const { executeMutation: executeMutationAuthentication } =
 const api = getApiDataDefault()
 
 // data
-const form = reactive({
-  password: ref<string>(),
-  username: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    password: ref<string>(),
+    username: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
 function accountRegistrationRefresh() {
-  if (!form.username) throw new Error('Username is not set!')
+  api.value.errors = []
 
   executeMutationAccountRegistrationRefresh({
     language: locale.value,
-    username: form.username,
+    username: form.value.username || '',
   }).then((result) => {
     if (result.error) {
       api.value.errors.push(result.error)
@@ -111,12 +118,9 @@ async function submit() {
     return
   }
 
-  if (!form.username) throw new Error('Username is not set!')
-  if (!form.password) throw new Error('Password is not set!')
-
   executeMutationAuthentication({
-    username: form.username,
-    password: form.password,
+    username: form.value.username || '',
+    password: form.value.password || '',
   }).then(async (result) => {
     if (result.error) {
       api.value.errors.push(result.error)
@@ -167,7 +171,6 @@ de:
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
   sent: Gesendet!
   signIn: Anmelden
-  username: Nutzername
   verificationMailResend: Verifizierungsmail erneut senden
 en:
   jwtStoreFail: Failed to store the authentication data!
@@ -179,6 +182,5 @@ en:
   registrationRefreshSuccess: A new welcome email is on its way to you.
   sent: Sent!
   signIn: Sign in
-  username: Username
   verificationMailResend: Resend verification email
 </i18n>

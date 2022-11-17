@@ -1,6 +1,10 @@
 <template>
   <Form
     :errors="api.errors"
+    :errors-pg-ids="{
+      postgres55000: t('postgres55000'),
+      postgresP0002: t('postgresP0002'),
+    }"
     :form="v$.form"
     :form-class="formClass"
     :is-form-sent="isFormSent"
@@ -11,7 +15,7 @@
       :form-input="v$.form.emailAddress"
       is-required
       :title="t('emailAddressYours')"
-      @input="v$.form.emailAddress.$model = $event"
+      @input="form.emailAddress = $event"
     />
   </Form>
 </template>
@@ -54,15 +58,15 @@ const api = computed(() =>
 )
 
 // data
-const form = reactive({
-  emailAddress: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    emailAddress: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  if (!form.emailAddress) throw new Error('Email address is not set!')
-
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
@@ -71,7 +75,7 @@ async function submit() {
   }
 
   const result = await passwordResetRequestMutation.executeMutation({
-    emailAddress: form.emailAddress,
+    emailAddress: form.value.emailAddress || '',
     language: locale.value,
   })
 

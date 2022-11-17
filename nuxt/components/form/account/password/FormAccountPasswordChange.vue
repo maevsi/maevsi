@@ -2,6 +2,10 @@
   <Form
     ref="formRef"
     :errors="api.errors"
+    :errors-pg-ids="{
+      postgres22023: t('postgres22023'),
+      postgres28P01: t('postgres28P01'),
+    }"
     :form="v$.form"
     :is-form-sent="isFormSent"
     :submit-name="t('passwordChange')"
@@ -11,13 +15,13 @@
       id="passwordCurrent"
       :form-input="v$.form.passwordCurrent"
       :title="t('passwordCurrent')"
-      @input="v$.form.passwordCurrent.$model = $event"
+      @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
       :form-input="v$.form.passwordNew"
       :title="t('passwordNew')"
-      @input="v$.form.passwordNew.$model = $event"
+      @input="form.passwordNew = $event"
     />
   </Form>
 </template>
@@ -52,10 +56,12 @@ const api = computed(() =>
 )
 
 // data
-const form = reactive({
-  passwordCurrent: ref<string>(),
-  passwordNew: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    passwordCurrent: ref<string>(),
+    passwordNew: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
@@ -63,9 +69,6 @@ function resetForm() {
   formRef.value?.reset()
 }
 async function submit() {
-  if (!form.passwordCurrent) throw new Error('Current password is not set!')
-  if (!form.passwordNew) throw new Error('New password is not set!')
-
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
@@ -74,8 +77,8 @@ async function submit() {
   }
 
   const result = await accountPasswordChangeMutation.executeMutation({
-    passwordCurrent: form.passwordCurrent,
-    passwordNew: form.passwordNew,
+    passwordCurrent: form.value.passwordCurrent || '',
+    passwordNew: form.value.passwordNew || '',
   })
 
   if (result.error) {

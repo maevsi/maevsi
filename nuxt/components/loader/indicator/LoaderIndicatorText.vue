@@ -1,9 +1,7 @@
 <template>
-  <div class="flex h-full items-center justify-center">
-    <div class="animate-pulse" :title="t('globalLoading')">
-      {{ t('globalLoading') }}
-    </div>
-  </div>
+  <LoaderIndicator class="animate-pulse">
+    {{ t('globalLoading') }}
+  </LoaderIndicator>
 </template>
 
 <script setup lang="ts">

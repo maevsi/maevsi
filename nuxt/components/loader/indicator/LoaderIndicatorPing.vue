@@ -1,10 +1,10 @@
 <template>
-  <div class="flex h-full items-center justify-center">
+  <LoaderIndicator>
     <div
-      class="h-1/2 w-1/2 animate-ping rounded-full bg-gray-500"
+      class="w-1/2 aspect-square animate-ping rounded-full bg-gray-500"
       :title="t('globalLoading')"
     />
-  </div>
+  </LoaderIndicator>
 </template>
 
 <script setup lang="ts">

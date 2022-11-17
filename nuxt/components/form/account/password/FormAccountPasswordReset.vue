@@ -1,6 +1,11 @@
 <template>
   <Form
     :errors="api.errors"
+    :errors-pg-ids="{
+      postgres22023: t('postgres22023'),
+      postgresP0002: t('postgresP0002'),
+      postgres55000: t('postgres55000'),
+    }"
     :form="v$.form"
     :form-class="formClass"
     :is-form-sent="isFormSent"
@@ -10,7 +15,7 @@
     <FormInputPassword
       :form-input="v$.form.password"
       :title="t('passwordNew')"
-      @input="v$.form.password.$model = $event"
+      @input="form.password = $event"
     />
   </Form>
 </template>
@@ -49,15 +54,15 @@ const api = computed(() =>
   })
 )
 // data
-const form = reactive({
-  password: ref<string>(),
-})
+const form = computed(() =>
+  reactive({
+    password: ref<string>(),
+  })
+)
 const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  if (!form.password) throw new Error('Password is not set!')
-
   try {
     await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
@@ -67,7 +72,7 @@ async function submit() {
 
   const result = await passwordResetMutation.executeMutation({
     code: route.query.code,
-    password: form.password,
+    password: form.value.password || '',
   })
 
   if (result.error) {

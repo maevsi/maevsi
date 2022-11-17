@@ -3,6 +3,9 @@
     <h1>{{ title }}</h1>
     <Form
       :errors="api.errors"
+      :errors-pg-ids="{
+        postgresP0002: t('postgresP0002'),
+      }"
       :form="v$.form"
       :is-form-sent="isFormSent"
       :submit-name="t('submit')"
@@ -18,7 +21,7 @@
         :title="t('invitationCode')"
         type="text"
         :value="v$.form.invitationCode"
-        @input="v$.form.invitationCode.$model = $event"
+        @input="form.invitationCode = $event"
       >
         <template #stateInfo>
           <FormInputStateInfo v-if="routeQueryIc">
@@ -66,7 +69,7 @@ import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 import { useEventUnlockMutation } from '~/gql/generated'
 
 definePageMeta({
-  // TODO: fix upstream https://github.com/nuxt/framework/issues/8678
+  // TODO: get rid of get/set (https://github.com/nuxt/framework/issues/8678)
   layout: computed({
     get: () => {
       const route = useRoute()
@@ -76,7 +79,7 @@ definePageMeta({
     set: () => {},
   }),
   middleware: [
-    // TODO: callWithNuxt necessary as described in https://github.com/nuxt/framework/issues/6292
+    // TODO: use alternative to callWithNuxt (https://github.com/nuxt/framework/issues/6292)
     async function (_to: any, _from: any) {
       const nuxtApp = useNuxtApp()
       const { $localePath, $urql } = useNuxtApp()
@@ -132,12 +135,6 @@ definePageMeta({
         await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
       } catch (error) {
         consola.error(error)
-        // TODO: t not available
-        // await Swal.fire({
-        //   icon: 'error',
-        //   text: t('jwtStoreFail') as string,
-        //   title: t('globalStatusError'),
-        // })
         return
       }
 
@@ -181,9 +178,11 @@ const api = computed(() =>
 )
 
 // data
-const form = reactive({
-  invitationCode: ref(route.query.ic),
-})
+const form = computed(() =>
+  reactive({
+    invitationCode: ref(route.query.ic),
+  })
+)
 const isFormSent = ref(false)
 const title = t('title')
 
@@ -197,13 +196,8 @@ async function submit() {
   }
 
   const result = await eventUnlockMutation.executeMutation({
-    invitationCode: form.invitationCode,
+    invitationCode: form.value.invitationCode,
   })
-
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
 
   if (!result.data?.eventUnlock?.eventUnlockResponse) {
     return
@@ -251,6 +245,9 @@ onMounted(() => {
       submit()
     }
   }
+})
+watch(eventUnlockMutation.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
 })
 
 // initialization

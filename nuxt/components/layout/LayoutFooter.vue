@@ -1,10 +1,11 @@
 <template>
-  <footer class="text-sm leading-6 mt-32">
+  <footer class="text-sm leading-6">
     <div class="flex flex-col gap-8">
       <div class="flex items-center">
         <Hr />
         <LoaderImage
           :alt="t('maevsiLogo')"
+          aspect="aspect-square"
           class="mx-12 h-12 w-12 opacity-50 brightness-0 dark:opacity-60 dark:invert"
           height="48"
           src="/assets/static/logos/maevsi.svg"
@@ -90,16 +91,20 @@
         </LayoutFooterCategory>
         <LayoutFooterCategory :heading="t('colorScheme')">
           <Button
-            v-for="colorScheme in ['System', 'Light', 'Dark']"
-            :key="colorScheme"
-            :aria-label="t(`colorScheme${colorScheme}`)"
+            v-for="colorScheme in [
+              { name: 'System', title: t('colorSchemeSystem') },
+              { name: 'Light', title: t('colorSchemeLight') },
+              { name: 'Dark', title: t('colorSchemeDark') },
+            ]"
+            :key="colorScheme.name"
+            :aria-label="colorScheme.title"
             is-link-colored
             :class="{
-              disabled: colorMode.preference === colorScheme.toLowerCase(),
+              disabled: colorMode.preference === colorScheme.name.toLowerCase(),
             }"
-            @click="colorMode.preference = colorScheme.toLowerCase()"
+            @click="colorMode.preference = colorScheme.name.toLowerCase()"
           >
-            {{ t(`colorScheme${colorScheme}`) }}
+            {{ colorScheme.title }}
           </Button>
         </LayoutFooterCategory>
       </div>
@@ -164,13 +169,13 @@ de:
   legalNotice: Impressum
   maevsiLogo: maevsis Logo
   overview: Überblick
-  pricing: Preise
+  # pricing: Preise
   privacyPolicy: Datenschutz
   product: Produkt
   quickLinks: Quick Links
   releases: Updates
   sourceCode: Quellcode
-  team: Team
+  # team: Team
 en:
   colorScheme: Color scheme
   colorSchemeDark: Dark
@@ -185,11 +190,11 @@ en:
   legalNotice: Legal notice
   maevsiLogo: "maevsi's logo"
   overview: Overview
-  pricing: Pricing
+  # pricing: Pricing
   privacyPolicy: Privacy
   product: Product
   quickLinks: Quick Links
   releases: Releases
   sourceCode: Source code
-  team: Team
+  # team: Team
 </i18n>

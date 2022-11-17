@@ -1,10 +1,10 @@
 <template>
   <Modal
     id="ModalImageSelection"
-    :is-submit-disabled="!!selectedProfilePictureStorageKey"
+    :is-submit-disabled="!selectedProfilePictureStorageKey"
     :submit-task-provider="setProfilePicture"
     @close="selectedProfilePictureStorageKey = undefined"
-    @submitSuccess="emit('submitSuccess')"
+    @submit-success="emit('submitSuccess')"
   >
     <ImageUploadGallery
       :allow-deletion="false"
@@ -50,6 +50,8 @@ function selectProfilePictureStorageKey(storageKey?: string) {
   selectedProfilePictureStorageKey.value = storageKey
 }
 async function setProfilePicture() {
+  api.value.errors = []
+
   const result = await profilePictureSetMutation.executeMutation({
     storageKey: selectedProfilePictureStorageKey.value || '',
   })
@@ -63,11 +65,7 @@ async function setProfilePicture() {
 
 <i18n lang="yaml">
 de:
-  cancel: Abbrechen
   header: Wähle ein Profilbild
-  select: Auswählen
 en:
-  cancel: Cancel
   header: Select a profile picture
-  select: Select
 </i18n>

@@ -9,6 +9,8 @@ describe('legal-notice page', () => {
   })
 
   context('visual regression', () => {
+    if (Cypress.env('NODE_ENV') !== 'production') return
+
     it('looks as before', () => {
       cy.visit('/legal-notice')
       cy.compareSnapshot('legal-notice')

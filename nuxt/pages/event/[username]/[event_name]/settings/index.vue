@@ -1,5 +1,11 @@
 <template>
-  <Loader :api="api">
+  <Loader
+    :api="api"
+    :error-pg-ids="{
+      postgres28P01: t('postgres28P01'),
+      postgresP0002: t('postgresP0002'),
+    }"
+  >
     <div v-if="event" class="flex flex-col gap-4">
       <LayoutBreadcrumbs
         :prefixes="[
@@ -31,7 +37,7 @@
           :variables="{
             id: event.id,
           }"
-          @success="onDeleteSuccess"
+          @success="navigateTo(localePath(`/dashboard`))"
         />
       </section>
     </div>
@@ -107,12 +113,6 @@ const event = computed(
 const mutation = executeMutationEventDelete
 const routeParamEventName = route.params.event_name as string
 const routeParamUsername = route.params.username as string
-
-// methods
-function onDeleteSuccess() {
-  navigateTo(localePath(`/dashboard`))
-  // TODO: cache update (allEvents)
-}
 
 // computations
 const title = computed(() => {

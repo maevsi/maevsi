@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col gap-4">
-    <!-- eslint-disable vue/no-v-html -->
     <i18n-t
       keypath="maevNo"
       class="flex items-center justify-center gap-1 text-xl font-black"
@@ -10,14 +9,13 @@
         <EmojiFacePleading />
       </template>
     </i18n-t>
-    <!--eslint-enable-->
     <h1>{{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}</h1>
     <p v-if="statusCode === 403" class="text-center">
-      {{ t('403description') }}
+      {{ t('error403Description') }}
       <br />
-      {{ t('403hint') }}
+      {{ t('error403Hint') }}
     </p>
-    <ButtonList>
+    <ButtonList class="justify-center">
       <ButtonSignIn v-if="statusCode === 403" />
       <ButtonHome />
     </ButtonList>
@@ -50,13 +48,13 @@ export default {
 
 <i18n lang="yaml">
 de:
-  403description: Du bist aktuell nicht berechtigt, auf diese Seite zuzugreifen.
-  403hint: Hast du dich schon angemeldet oder von diesem Gerät aus einen Einladungscode eingegeben?
   error: Fehler
+  error403Description: Du bist aktuell nicht berechtigt, auf diese Seite zuzugreifen.
+  error403Hint: Hast du dich schon angemeldet oder von diesem Gerät aus einen Einladungscode eingegeben?
   maevNo: maev.no? {emojiFacePleading}
 en:
-  403description: "You don't have permission to access this site."
-  403hint: Try signing in or enter an invitation code on this device.
   error: Error
+  error403Description: "You don't have permission to access this site."
+  error403Hint: Try signing in or enter an invitation code on this device.
   maevNo: maev.no? {emojiFacePleading}
 </i18n>
