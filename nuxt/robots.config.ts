@@ -6,7 +6,7 @@ export default {
   'user-agent': '*',
   allow: ['/'],
   // @ts-ignore Lighthouse mandates a user agent to precede allow and disallow rules.
-  'user-agent': '*',
+  'user-agent': '*', // eslint-disable-line no-dupe-keys
   disallow: [
     '/robots.txt', // https://webmasters.stackexchange.com/a/117537/70856
   ],

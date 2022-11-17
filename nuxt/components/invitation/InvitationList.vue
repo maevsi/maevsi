@@ -8,6 +8,7 @@
     <div class="flex flex-col gap-4">
       <ScrollContainer
         v-if="event && invitations?.length"
+        class="max-h-[70vh]"
         :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
         @load-more="after = api.data.allInvitations?.pageInfo.endCursor"
       >

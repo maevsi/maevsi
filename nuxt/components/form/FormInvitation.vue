@@ -71,7 +71,7 @@
           <input
             type="checkbox"
             readonly
-            :checked="form.contactIds.includes(contact.id)"
+            :checked="form.contactIds?.includes(contact.id)"
           />
           <ContactPreview :contact="contact" :is-username-linked="false" />
         </Button>
