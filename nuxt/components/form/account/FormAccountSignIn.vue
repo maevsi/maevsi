@@ -36,13 +36,15 @@
           {{ t('passwordReset') }}
         </AppLink>
       </div>
-      <template #assistance>
+      <template
+        v-if="
+          api.errors.filter((e) =>
+            'errcode' in e ? e.errcode === '55000' : false
+          ).length
+        "
+        #assistance
+      >
         <ButtonColored
-          v-if="
-            api.errors.filter((e) =>
-              'errcode' in e ? e.errcode === '55000' : false
-            ).length
-          "
           :aria-label="t('verificationMailResend')"
           @click="accountRegistrationRefresh"
         >
