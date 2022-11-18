@@ -122,6 +122,8 @@ ARG UNAME=cypress
 ARG UID=1000
 ARG GID=1000
 
+ENV DOCKER=true
+
 WORKDIR /srv/app/
 
 # Update and install dependencies.

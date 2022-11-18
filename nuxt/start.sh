@@ -30,8 +30,8 @@ else
     mkdir "$THIS/.nuxt"
   fi
 
-  if ! ls "$THIS"/.nuxt/*.key 1> /dev/null 2>&1 || ! ls "$THIS"/.nuxt/*.crt 1> /dev/null 2>&1; then
-    mkcert -install
+  if [ "$DOCKER" != "true" ] && ( ! ls "$THIS"/.nuxt/*.key 1> /dev/null 2>&1 || ! ls "$THIS"/.nuxt/*.crt 1> /dev/null 2>&1 ); then
+    mkcert -install || true
     create "localhost" "localhost" "127.0.0.1" "0.0.0.0"
   fi
 
