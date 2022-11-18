@@ -22,3 +22,6 @@ cypress/snapshots/actual
 cypress/snapshots/diff
 cypress/snapshots/result
 cypress/videos
+
+# Certificates
+.certificates
