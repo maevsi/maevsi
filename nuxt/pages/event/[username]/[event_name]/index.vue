@@ -239,8 +239,10 @@
           </template>
         </ButtonColored>
       </ButtonList>
-      <div class="flex flex-col md:flex-row justify-between gap-2">
-        <div class="flex max-w-full items-baseline gap-2">
+      <div class="flex flex-col md:flex-row justify-between gap-4">
+        <div
+          class="flex flex-col md:flex-row max-w-full items-baseline md:gap-2"
+        >
           <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
             {{ event.name }}
           </h1>
