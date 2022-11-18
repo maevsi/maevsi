@@ -2,7 +2,6 @@ import { createError, defineEventHandler, readBody, H3Event } from 'h3'
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
-import moment from 'moment'
 import mustache from 'mustache'
 
 import { getHost } from '~/utils/util'
@@ -77,7 +76,7 @@ export function getIcalString(
       {
         id: userEventPath,
         // sequence: ,
-        start: moment(event.start), // Appointment date of beginning, required.
+        start: event.start, // Appointment date of beginning, required.
         ...(event.end && { end: event.end }),
         // `timezone` shouldn't be needed as the database outputs UTC dates.
         // timestamp: moment(), // Appointment date of creation (= now).

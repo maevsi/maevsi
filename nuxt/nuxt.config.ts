@@ -122,7 +122,6 @@ export default defineNuxtConfig({
         // vueI18nLoader: true,
       },
     ],
-    // ['@nuxtjs/moment', { locales: ['de'] }],
     // [
     //   '@nuxtjs/google-adsense',
     //   {
