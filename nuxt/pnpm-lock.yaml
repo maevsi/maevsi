@@ -16,7 +16,7 @@ specifiers:
   '@nuxtjs/eslint-config-typescript': 12.0.0
   '@nuxtjs/html-validator': 1.1.1
   '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.1-27775490.1ee240a
-  '@nuxtjs/robots': 3.0.0-1
+  '@nuxtjs/robots': 3.0.0
   '@nuxtjs/sitemap': 2.4.0
   '@pinia/nuxt': 0.4.4
   '@popperjs/core': 2.11.6
@@ -124,7 +124,7 @@ devDependencies:
   '@nuxtjs/eslint-config-typescript': 12.0.0_e3uo4sehh4zr4i6m57mkkxxv7y
   '@nuxtjs/html-validator': 1.1.1_jest@29.3.1+rollup@2.79.1
   '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.1-27775490.1ee240a_afedgj2cquph6h6wwmlhnu74si
-  '@nuxtjs/robots': 3.0.0-1_rollup@2.79.1
+  '@nuxtjs/robots': 3.0.0_rollup@2.79.1
   '@nuxtjs/sitemap': 2.4.0
   '@pinia/nuxt': 0.4.4_x2lopl6dvitdigtxz72gjjdrx4
   '@popperjs/core': 2.11.6
@@ -2487,10 +2487,11 @@ packages:
       - webpack
     dev: true
 
-  /@nuxtjs/robots/3.0.0-1_rollup@2.79.1:
-    resolution: {integrity: sha512-t83EUQ99Ac4SSUQ2ruVzGYdj5IMusEZ1hTFw3/ApVr1H1FwB2TOOZJ8MYux+R3749f7aD6w+f08vnEGlIMF8EA==}
+  /@nuxtjs/robots/3.0.0_rollup@2.79.1:
+    resolution: {integrity: sha512-qsHGW1KXBvV5Kq7u3huPnFCUTbHS4Fk8Za2mNPgmUXcwLgp3exvhPtdZfIdjrCF/aZk3A8OZONNmGghs6CecBA==}
     dependencies:
       '@nuxt/kit': 3.0.0_rollup@2.79.1
+      h3: 1.0.1
     transitivePeerDependencies:
       - rollup
       - supports-color
