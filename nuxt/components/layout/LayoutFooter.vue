@@ -98,14 +98,16 @@
             ]"
             :key="colorScheme.name"
             :aria-label="colorScheme.title"
+            disabled
             is-link-colored
-            :class="{
-              disabled: colorMode.preference === colorScheme.name.toLowerCase(),
-            }"
-            @click="colorMode.preference = colorScheme.name.toLowerCase()"
           >
             {{ colorScheme.title }}
           </Button>
+          <!--
+            :class="{
+              disabled: colorMode.preference === colorScheme.name.toLowerCase(),
+            }"
+            @click="colorMode.preference = colorScheme.name.toLowerCase()" -->
         </LayoutFooterCategory>
       </div>
       <p class="text-center text-gray-500 dark:text-gray-400">
@@ -118,7 +120,7 @@
 <script setup lang="ts">
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
-const colorMode = useColorMode()
+// const colorMode = useColorMode()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const { locale, availableLocales, t } = useI18n()
