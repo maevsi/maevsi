@@ -1,4 +1,4 @@
-import { CYPRESS_BASE_URL } from '~/plugins/util/constants'
+import { CYPRESS_BASE_URL } from '~/utils/constants'
 
 describe('robots page', () => {
   context('page load', () => {
@@ -13,9 +13,7 @@ describe('robots page', () => {
   context('content', () => {
     it('links the sitemap', () => {
       cy.request('/robots.txt').then((resp) => {
-        expect(resp.body).to.include(
-          `Sitemap: ${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/sitemap.xml`
-        )
+        expect(resp.body).to.include(`Sitemap: ${CYPRESS_BASE_URL}/sitemap.xml`)
       })
     })
   })
