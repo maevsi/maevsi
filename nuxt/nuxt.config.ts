@@ -165,6 +165,7 @@ export default defineNuxtConfig({
     strict: true,
     tsConfig: {
       compilerOptions: {
+        esModuleInterop: true,
         types: ['jest'],
       },
       vueCompilerOptions: {
