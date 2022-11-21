@@ -2,4 +2,4 @@
 # shellcheck source=./_/husky.sh
 . "$(dirname "$(readlink -f "$0")")/_/husky.sh"
 
-NODE_ENV=production pnpm --dir nuxt run lint:staged
+pnpm --dir nuxt run lint:staged
