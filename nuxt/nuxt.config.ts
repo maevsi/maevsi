@@ -6,11 +6,9 @@ import graphqlPlugin from '@rollup/plugin-graphql'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import {
-  SITEMAP_EXCLUSIONS,
-  SITEMAP_EXCLUSIONS_LOCALIZED,
-  LOCALES,
-} from './utils/constants'
+import { SITEMAP_EXCLUSIONS, LOCALES } from './utils/constants'
+
+export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
 
 for (const exclusion of SITEMAP_EXCLUSIONS) {
   for (const locale of LOCALES) {
