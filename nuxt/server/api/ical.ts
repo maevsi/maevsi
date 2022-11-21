@@ -10,7 +10,7 @@ import { Event as MaevsiEvent } from '~/types/event'
 import { Invitation } from '~/types/invitation'
 
 export default defineEventHandler(async function (h3Event: H3Event) {
-  const { req, res } = h3Event
+  const { req, res } = h3Event.node
 
   if (req.method !== 'POST')
     throw createError({
@@ -19,7 +19,7 @@ export default defineEventHandler(async function (h3Event: H3Event) {
     })
 
   const body = await readBody(h3Event)
-  const host = getHost(h3Event.req)
+  const host = getHost(h3Event.node.req)
 
   const bodyChecks = [
     { property: undefined, name: 'Body' },

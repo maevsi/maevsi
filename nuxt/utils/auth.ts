@@ -144,7 +144,7 @@ export function useJwtStore() {
       await jwtStore({
         $urqlReset,
         store,
-        res: process.server ? event.res : undefined,
+        res: process.server ? event.node.res : undefined,
         jwt,
       })
     },
@@ -173,7 +173,7 @@ export function useSignOut() {
       await signOut({
         $urqlReset,
         store,
-        res: process.server ? event.res : undefined,
+        res: process.server ? event.node.res : undefined,
       })
     },
   }

@@ -4,7 +4,7 @@ import { H3Event } from 'h3'
 import fetch from 'node-fetch'
 
 export default defineEventHandler(async function (event: H3Event) {
-  const { res } = event
+  const { res } = event.node
   const jwtPublicKey = await useJwtPublicKey()
 
   if (!jwtPublicKey) {
