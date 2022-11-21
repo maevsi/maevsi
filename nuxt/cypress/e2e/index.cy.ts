@@ -43,11 +43,10 @@ describe('index page', () => {
   })
 
   context('visual regression', () => {
-    if (Cypress.env('NODE_ENV') !== 'production') return
-
     it('looks as before', () => {
       cy.visit('/')
       cy.get('[data-testid="scroll-hint"]').should('be.visible')
+      cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('index')
     })
   })

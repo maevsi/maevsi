@@ -49,9 +49,8 @@ describe('task account sign-in page', () => {
   // })
 
   context('visual regression', () => {
-    if (Cypress.env('NODE_ENV') !== 'production') return
-
     it('looks as before', () => {
+      cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('taskAccountSignIn')
     })
   })

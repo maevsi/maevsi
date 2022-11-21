@@ -12,10 +12,9 @@ describe('teapot page', () => {
   })
 
   context('visual regression', () => {
-    if (Cypress.env('NODE_ENV') !== 'production') return
-
     it('looks as before', () => {
       cy.visit({ url: '/teapot', failOnStatusCode: false })
+      cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('teapot')
     })
   })

@@ -26,6 +26,9 @@ const props = withDefaults(defineProps<Props>(), {
   rounded: undefined,
 })
 
+const loadingId = Math.random()
+const loadingIds = useState('loadingIds', () => [loadingId])
+
 // data
 const srcWhenLoaded = ref<string>()
 
@@ -43,6 +46,7 @@ function updateSource() {
 }
 
 // lifecycle
+onMounted(() => loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1))
 watch(
   () => props.src,
   (_currentValue, _oldValue) => {

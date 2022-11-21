@@ -10,9 +10,9 @@ describe('event page', () => {
 
   // TODO: mock data
   // context('visual regression', () => {
-  //   if (Cypress.env('NODE_ENV') !== 'production') return
   //   it('looks as before', () => {
   //     cy.visit('/event')
+  //     cy.get('[data-is-loading="false"]').should('be.visible')
   //     cy.compareSnapshot('event')
   //   })
   // })

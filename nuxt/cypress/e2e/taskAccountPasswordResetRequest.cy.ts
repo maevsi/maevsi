@@ -9,10 +9,9 @@ describe('task account password reset request page', () => {
   })
 
   context('visual regression', () => {
-    if (Cypress.env('NODE_ENV') !== 'production') return
-
     it('looks as before', () => {
       cy.visit('/task/account/password/reset/request')
+      cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('taskAccountPasswordResetRequest')
     })
   })
