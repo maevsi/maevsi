@@ -24,6 +24,11 @@ const BASE_URL =
     `${process.env.HOST || 'localhost'}:3000`)
 
 export default defineNuxtConfig({
+  app: {
+    pageTransition: {
+      name: 'layout',
+    },
+  },
   css: ['@/assets/css/main.css'],
   modules: [
     // [
