@@ -1,8 +1,4 @@
 module.exports = {
-  env: {
-    browser: true,
-    node: true,
-  },
   extends: [
     '@nuxtjs/eslint-config-typescript',
     'plugin:@intlify/vue-i18n/recommended',
@@ -10,14 +6,6 @@ module.exports = {
     'plugin:prettier/recommended',
     'plugin:nuxt/recommended',
     'plugin:yml/standard',
-  ],
-  overrides: [
-    {
-      files: ['*.stories.ts'],
-      rules: {
-        '@intlify/vue-i18n/no-raw-text': 'off',
-      },
-    },
   ],
   root: true,
   rules: {

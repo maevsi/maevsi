@@ -44,7 +44,6 @@ CMD ["pnpm", "run", "dev"]
 # Prepare Nuxt.
 
 # Should be the specific version of `node:slim`.
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS prepare
 
 WORKDIR /srv/app/
@@ -183,7 +182,7 @@ RUN pnpm test:integration:prod \
 #######################
 # Collect build, lint and test results.
 
-# Should be the specific version of node:slim.
+# Should be the specific version of `node:slim`.
 FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS collect
 
 WORKDIR /srv/app/
@@ -193,11 +192,12 @@ COPY --from=lint /srv/app/package.json /tmp/lint/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/test/package.json
 COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
 
+
 #######################
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-# Should be the specific version of node:slim.
+# Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
 FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS production
 

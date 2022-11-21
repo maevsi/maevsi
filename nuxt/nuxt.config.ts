@@ -25,9 +25,6 @@ const BASE_URL =
 
 export default defineNuxtConfig({
   css: ['@/assets/css/main.css'],
-  dir: {
-    static: 'public',
-  },
   modules: [
     // [
     //   '@dargmuesli/nuxt-cookie-control',
@@ -138,7 +135,6 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
   },
   postcss: {
-    // @ts-ignore https://github.com/nuxt/bridge/issues/29
     plugins: { tailwindcss: {}, autoprefixer: {} },
   },
   runtimeConfig: {
@@ -166,7 +162,6 @@ export default defineNuxtConfig({
     strict: true,
     tsConfig: {
       compilerOptions: {
-        esModuleInterop: true,
         types: ['jest'],
       },
       vueCompilerOptions: {

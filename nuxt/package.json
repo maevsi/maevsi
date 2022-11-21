@@ -8,6 +8,7 @@
   "engines": {
     "node": "19"
   },
+  "packageManager": "pnpm@7.16.1",
   "scripts": {
     "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 sh start.sh",
     "build": "nuxi build",
@@ -141,7 +142,6 @@
     "vue-tsc": "1.0.9",
     "webpack": "5.75.0"
   },
-  "packageManager": "pnpm@7.14.2",
   "lint-staged": {
     "*.{js,vue}": "eslint",
     "*.{css,vue}": "stylelint"
