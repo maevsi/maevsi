@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto p-4 md:px-8">
+  <div class="container mx-auto p-4 md:px-8" :data-is-loading="isLoading">
     <div class="min-h-screen pb-32">
       <LayoutHeader @on-menu-show="menuShow" />
       <main class="flex-1 overflow-hidden">
@@ -34,6 +34,8 @@
 <script setup lang="ts">
 const { $moment } = useNuxtApp()
 const { locale } = useI18n()
+const loadingId = Math.random()
+const loadingIds = useState('loadingIds', () => [loadingId])
 
 // data
 const isMenuVisible = ref(false)
@@ -50,6 +52,12 @@ function menuShow(): void {
   isMenuVisiblePartly.value = true
   isMenuVisible.value = true
 }
+
+// computations
+const isLoading = computed(() => !!loadingIds.value.length)
+
+// lifecycle
+onMounted(() => loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1))
 
 // initialization
 useHeadLayout()

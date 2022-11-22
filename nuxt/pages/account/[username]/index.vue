@@ -25,7 +25,6 @@
     <div class="flex min-w-0 flex-col items-center justify-center sm:flex-row">
       <div class="sm:mr-4">
         <AccountProfilePicture
-          ref="profilePicture"
           classes="h-24 rounded w-24"
           height="96"
           :username="routeParamUsername"

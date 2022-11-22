@@ -58,11 +58,9 @@ const api = computed(() =>
 )
 
 // data
-const form = computed(() =>
-  reactive({
-    emailAddress: ref<string>(),
-  })
-)
+const form = reactive({
+  emailAddress: ref<string>(),
+})
 const isFormSent = ref(false)
 
 // methods
@@ -75,7 +73,7 @@ async function submit() {
   }
 
   const result = await passwordResetRequestMutation.executeMutation({
-    emailAddress: form.value.emailAddress || '',
+    emailAddress: form.emailAddress || '',
     language: locale.value,
   })
 

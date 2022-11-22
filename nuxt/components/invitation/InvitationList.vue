@@ -8,6 +8,7 @@
     <div class="flex flex-col gap-4">
       <ScrollContainer
         v-if="event && invitations?.length"
+        class="max-h-[70vh]"
         :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
         @load-more="after = api.data.allInvitations?.pageInfo.endCursor"
       >
@@ -70,7 +71,7 @@
                       <IconDotsVertical />
                     </ButtonIcon>
                     <template #content>
-                      <ButtonIcon
+                      <Button
                         :aria-label="
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
@@ -85,23 +86,27 @@
                         "
                         @click="send(invitation)"
                       >
-                        <IconPaperPlane />
                         {{
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
                             ? t('invitationSend')
                             : t('disabledReasonEmailAddressNone')
                         }}
-                      </ButtonIcon>
-                      <ButtonIcon
+                        <template #prefix>
+                          <IconPaperPlane />
+                        </template>
+                      </Button>
+                      <Button
                         :aria-label="t('invitationLink')"
                         class="block md:hidden"
                         @click="copyLink(invitation)"
                       >
-                        <IconLink />
                         {{ t('invitationLink') }}
-                      </ButtonIcon>
-                      <ButtonIcon
+                        <template #prefix>
+                          <IconLink />
+                        </template>
+                      </Button>
+                      <Button
                         :aria-label="t('invitationView')"
                         @click="
                           navigateTo({
@@ -112,17 +117,21 @@
                           })
                         "
                       >
-                        <IconEye />
                         {{ t('invitationView') }}
-                      </ButtonIcon>
-                      <ButtonIcon
+                        <template #prefix>
+                          <IconEye />
+                        </template>
+                      </Button>
+                      <Button
                         :aria-label="t('invitationDelete')"
                         :disabled="pending.deletions.includes(invitation.uuid)"
                         @click="delete_(invitation.id)"
                       >
-                        <IconTrash />
                         {{ t('invitationDelete') }}
-                      </ButtonIcon>
+                        <template #prefix>
+                          <IconTrash />
+                        </template>
+                      </Button>
                     </template>
                   </DropDown>
                 </div>
@@ -174,7 +183,7 @@
           />
         </div>
       </div>
-      <Modal id="ModalInvitation">
+      <Modal id="ModalInvitation" is-footer-hidden>
         <FormInvitation
           :event="event"
           :invitation-contact-ids-existing="
@@ -185,7 +194,6 @@
         <template #header>
           {{ t('contactSelect') }}
         </template>
-        <template #footer />
       </Modal>
     </div>
   </Loader>

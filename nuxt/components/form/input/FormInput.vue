@@ -1,5 +1,5 @@
 <template>
-  <div class="my-6">
+  <div>
     <div
       :class="{
         'form-input-success': success,

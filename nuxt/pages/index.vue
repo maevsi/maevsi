@@ -74,9 +74,9 @@
       <LoaderImage
         :alt="t('heroImage')"
         aspect="aspect-square"
-        class="lg:w-1/2"
+        class="w-full lg:w-1/2"
         height="750"
-        src="/assets/static/images/smartphone.png"
+        src="/assets/static/images/smartphone.webp"
         width="750"
       />
       <div class="flex flex-col gap-8 items-start lg:w-1/2">

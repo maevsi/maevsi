@@ -9,10 +9,9 @@ describe('task search page', () => {
   })
 
   context('visual regression', () => {
-    if (Cypress.env('NODE_ENV') !== 'production') return
-
     it('looks as before', () => {
       cy.visit('/task/search')
+      cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('taskSearch')
     })
   })

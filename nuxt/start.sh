@@ -3,13 +3,14 @@
 set -e
 
 THIS=$(dirname "$(readlink -f "$0")")
+CERTIFICATES_DIRECTORY="$THIS/.certificates"
 
 create() {
     NAME="$1"
     shift
     CONTENT=$*
 
-    path="$THIS/.nuxt/$NAME"
+    path="$CERTIFICATES_DIRECTORY/$NAME"
     certfile="$path.crt"
     keyfile="$path.key"
 
@@ -26,17 +27,17 @@ if [ "$CERTIFICATE_PATH" != "" ]; then
   sslCert="$CERTIFICATE_PATH.crt"
   sslKey="$CERTIFICATE_PATH.key"
 else
-  if [ ! -d "$THIS/.nuxt" ]; then
-    mkdir "$THIS/.nuxt"
+  if [ ! -d "$CERTIFICATES_DIRECTORY" ]; then
+    mkdir "$CERTIFICATES_DIRECTORY"
   fi
 
-  if ! ls "$THIS"/.nuxt/*.key 1> /dev/null 2>&1 || ! ls "$THIS"/.nuxt/*.crt 1> /dev/null 2>&1; then
-    mkcert -install
+  if [ "$DOCKER" != "true" ] && ( ! ls "$CERTIFICATES_DIRECTORY"/*.key 1> /dev/null 2>&1 || ! ls "$CERTIFICATES_DIRECTORY"/*.crt 1> /dev/null 2>&1 ); then
+    mkcert -install || true
     create "localhost" "localhost" "127.0.0.1" "0.0.0.0"
   fi
 
-  sslCert="$THIS/.nuxt/localhost.crt"
-  sslKey="$THIS/.nuxt/localhost.key"
+  sslCert="$CERTIFICATES_DIRECTORY/localhost.crt"
+  sslKey="$CERTIFICATES_DIRECTORY/localhost.key"
 fi
 
 if [ "$NODE_ENV" = "production" ]; then

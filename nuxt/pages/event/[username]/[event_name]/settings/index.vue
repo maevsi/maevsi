@@ -139,7 +139,7 @@ export default {
 <i18n lang="yaml">
 de:
   event: Veranstaltung
-  events: Veranstaltung
+  events: Veranstaltungen
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   postgresP0002: Die Veranstaltung wurde nicht gefunden!
   settings: bearbeiten

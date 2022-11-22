@@ -2,7 +2,6 @@ import { createError, defineEventHandler, readBody, H3Event } from 'h3'
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
-import moment from 'moment'
 import mustache from 'mustache'
 
 import { getHost } from '~/utils/util'
@@ -11,7 +10,7 @@ import { Event as MaevsiEvent } from '~/types/event'
 import { Invitation } from '~/types/invitation'
 
 export default defineEventHandler(async function (h3Event: H3Event) {
-  const { req, res } = h3Event
+  const { req, res } = h3Event.node
 
   if (req.method !== 'POST')
     throw createError({
@@ -20,7 +19,7 @@ export default defineEventHandler(async function (h3Event: H3Event) {
     })
 
   const body = await readBody(h3Event)
-  const host = getHost(h3Event.req)
+  const host = getHost(h3Event.node.req)
 
   const bodyChecks = [
     { property: undefined, name: 'Body' },
@@ -77,7 +76,7 @@ export function getIcalString(
       {
         id: userEventPath,
         // sequence: ,
-        start: moment(event.start), // Appointment date of beginning, required.
+        start: event.start, // Appointment date of beginning, required.
         ...(event.end && { end: event.end }),
         // `timezone` shouldn't be needed as the database outputs UTC dates.
         // timestamp: moment(), // Appointment date of creation (= now).

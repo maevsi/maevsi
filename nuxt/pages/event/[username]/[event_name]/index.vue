@@ -239,8 +239,10 @@
           </template>
         </ButtonColored>
       </ButtonList>
-      <div class="flex flex-col md:flex-row justify-between gap-2">
-        <div class="flex max-w-full items-baseline gap-2">
+      <div class="flex flex-col md:flex-row justify-between gap-4">
+        <div
+          class="flex flex-col md:flex-row max-w-full items-baseline md:gap-2"
+        >
           <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
             {{ event.name }}
           </h1>
@@ -276,7 +278,7 @@
           <!-- eslint-enable vue/no-v-html -->
         </div>
       </Card>
-      <Modal id="ModalInvitationQrCode" ref="modalCheckInCodeRef">
+      <Modal id="ModalInvitationQrCode">
         <div v-if="invitation" class="flex flex-col items-center gap-2 pb-4">
           <QrcodeVue
             id="qrCode"
@@ -371,9 +373,6 @@ const eventQuery = useEventByAuthorUsernameAndSlugQuery({
     invitationUuid: route.query.ic,
   },
 })
-
-// refs
-const modalCheckInCodeRef = ref()
 
 // api data
 const api = computed(() =>
@@ -501,7 +500,8 @@ const eventDescriptionTemplate = computed(() => {
       contact: contact.value,
       event,
       invitation: invitation.value,
-    })
+    }),
+    { ADD_ATTR: ['target'] }
   )
 })
 const invitation = computed(() => {

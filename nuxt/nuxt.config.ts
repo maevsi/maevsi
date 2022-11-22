@@ -6,11 +6,9 @@ import graphqlPlugin from '@rollup/plugin-graphql'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import {
-  SITEMAP_EXCLUSIONS,
-  SITEMAP_EXCLUSIONS_LOCALIZED,
-  LOCALES,
-} from './utils/constants'
+import { SITEMAP_EXCLUSIONS, LOCALES } from './utils/constants'
+
+export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
 
 for (const exclusion of SITEMAP_EXCLUSIONS) {
   for (const locale of LOCALES) {
@@ -24,10 +22,12 @@ const BASE_URL =
     `${process.env.HOST || 'localhost'}:3000`)
 
 export default defineNuxtConfig({
-  css: ['@/assets/css/main.css'],
-  dir: {
-    static: 'public',
+  app: {
+    pageTransition: {
+      name: 'layout',
+    },
   },
+  css: ['@/assets/css/main.css'],
   modules: [
     // [
     //   '@dargmuesli/nuxt-cookie-control',
@@ -122,7 +122,6 @@ export default defineNuxtConfig({
         // vueI18nLoader: true,
       },
     ],
-    // ['@nuxtjs/moment', { locales: ['de'] }],
     // [
     //   '@nuxtjs/google-adsense',
     //   {
@@ -139,7 +138,6 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
   },
   postcss: {
-    // @ts-ignore https://github.com/nuxt/bridge/issues/29
     plugins: { tailwindcss: {}, autoprefixer: {} },
   },
   runtimeConfig: {

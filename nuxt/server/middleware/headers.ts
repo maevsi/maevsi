@@ -76,7 +76,7 @@ function getCspAsString(host: string): string {
 }
 
 export default defineEventHandler((event) => {
-  const host = getHost(event.req)
+  const host = getHost(event.node.req)
 
   appendHeader(event, 'Content-Security-Policy', getCspAsString(host))
   // appendHeader(event, 'Cross-Origin-Embedder-Policy', 'require-corp') // https://stackoverflow.com/questions/71904052/getting-notsameoriginafterdefaultedtosameoriginbycoep-error-with-helmet

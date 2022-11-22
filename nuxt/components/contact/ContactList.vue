@@ -3,6 +3,7 @@
     <div class="flex flex-col gap-4">
       <ScrollContainer
         v-if="contacts"
+        class="max-h-[70vh]"
         :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
         @load-more="after = api.data.allContacts?.pageInfo.endCursor"
       >
@@ -49,7 +50,7 @@
           </template>
         </ButtonColored>
       </div>
-      <Modal id="ModalContact" @close="onClose">
+      <Modal id="ModalContact" is-footer-hidden @close="onClose">
         <FormContact
           :contact="selectedContact"
           @submit-success="store.modalRemove('ModalContact')"
@@ -57,7 +58,6 @@
         <template #header>
           {{ formContactHeading }}
         </template>
-        <template #footer />
       </Modal>
     </div>
   </Loader>

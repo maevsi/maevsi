@@ -56,12 +56,10 @@ const api = computed(() =>
 )
 
 // data
-const form = computed(() =>
-  reactive({
-    passwordCurrent: ref<string>(),
-    passwordNew: ref<string>(),
-  })
-)
+const form = reactive({
+  passwordCurrent: ref<string>(),
+  passwordNew: ref<string>(),
+})
 const isFormSent = ref(false)
 
 // methods
@@ -77,8 +75,8 @@ async function submit() {
   }
 
   const result = await accountPasswordChangeMutation.executeMutation({
-    passwordCurrent: form.value.passwordCurrent || '',
-    passwordNew: form.value.passwordNew || '',
+    passwordCurrent: form.passwordCurrent || '',
+    passwordNew: form.passwordNew || '',
   })
 
   if (result.error) {

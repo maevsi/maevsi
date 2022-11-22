@@ -1,6 +1,6 @@
 <template>
   <Form
-    ref="form"
+    class="min-h-0 flex flex-col"
     :errors="api.errors"
     :form="v$.form"
     :is-form-sent="isFormSent"
@@ -79,8 +79,9 @@
       @input="form.address = $event"
     >
       <textarea
+        v-if="v$.form.address"
         id="input-address"
-        v-model.trim="form.address"
+        v-model.trim="v$.form.address.$model"
         class="form-input"
         :placeholder="t('globalPlaceholderAddress')"
         rows="2"
@@ -160,18 +161,16 @@ const api = computed(() =>
 )
 
 // data
-const form = computed(() =>
-  reactive({
-    id: ref<string>(),
-    accountUsername: ref<string>(),
-    address: ref<string>(),
-    emailAddress: ref<string>(),
-    firstName: ref<string>(),
-    lastName: ref<string>(),
-    phoneNumber: ref<string>(),
-    url: ref<string>(),
-  })
-)
+const form = reactive({
+  id: ref<string>(),
+  accountUsername: ref<string>(),
+  address: ref<string>(),
+  emailAddress: ref<string>(),
+  firstName: ref<string>(),
+  lastName: ref<string>(),
+  phoneNumber: ref<string>(),
+  url: ref<string>(),
+})
 const isFormSent = ref(false)
 
 // methods
@@ -183,19 +182,19 @@ async function submit() {
     return
   }
 
-  if (form.value.id) {
+  if (form.id) {
     // Edit
     const result = await updateContactByIdMutation.executeMutation({
-      id: form.value.id,
+      id: form.id,
       contactPatch: {
-        accountUsername: form.value.accountUsername || null,
-        address: form.value.address || null,
+        accountUsername: form.accountUsername || null,
+        address: form.address || null,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.value.emailAddress || null,
-        firstName: form.value.firstName || null,
-        lastName: form.value.lastName || null,
-        phoneNumber: form.value.phoneNumber || null,
-        url: form.value.url || null,
+        emailAddress: form.emailAddress || null,
+        firstName: form.firstName || null,
+        lastName: form.lastName || null,
+        phoneNumber: form.phoneNumber || null,
+        url: form.url || null,
       },
     })
 
@@ -207,14 +206,14 @@ async function submit() {
     // Add
     const result = await createContactMutation.executeMutation({
       contactInput: {
-        accountUsername: form.value.accountUsername || null,
-        address: form.value.address || null,
+        accountUsername: form.accountUsername || null,
+        address: form.address || null,
         authorAccountUsername: store.jwtDecoded?.username as string,
-        emailAddress: form.value.emailAddress || null,
-        firstName: form.value.firstName || null,
-        lastName: form.value.lastName || null,
-        phoneNumber: form.value.phoneNumber || null,
-        url: form.value.url || null,
+        emailAddress: form.emailAddress || null,
+        firstName: form.firstName || null,
+        lastName: form.lastName || null,
+        phoneNumber: form.phoneNumber || null,
+        url: form.url || null,
       },
     })
 
@@ -234,7 +233,7 @@ function updateForm(data?: Contact) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {
-    ;(form as Record<string, any>).value[k] = v
+    ;(form as Record<string, any>)[k] = v
   }
 }
 
@@ -273,6 +272,7 @@ const rules = {
     },
   },
 }
+const v$ = useVuelidate(rules, { form })
 
 // lifecycle
 watch(
@@ -281,7 +281,6 @@ watch(
     updateForm(currentValue)
   }
 )
-const v$ = useVuelidate(rules, { form })
 </script>
 
 <i18n lang="yaml">

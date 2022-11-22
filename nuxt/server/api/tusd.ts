@@ -82,7 +82,7 @@ async function deleteUpload(event: H3Event, uploadId: any, storageKey: any) {
 
   if (!queryResult) return
 
-  event.res.statusCode = 204
+  event.node.res.statusCode = 204
   await send(event)
 }
 
@@ -166,7 +166,7 @@ async function tusdDelete(event: H3Event) {
     if (httpResp.ok) {
       if (httpResp.status === 204) {
         await deleteUpload(event, uploadId, storageKey)
-        event.res.statusCode = 204
+        event.node.res.statusCode = 204
         await send(event)
       } else if (httpResp.status === 404) {
         await deleteUpload(event, uploadId, storageKey)

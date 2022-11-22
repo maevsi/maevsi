@@ -6,7 +6,7 @@ import { useJwtPublicKey } from './auth-key'
 import { JWT_NAME, JWT_ALGORITHM } from '~/utils/constants'
 
 export default defineEventHandler(async function (event: H3Event) {
-  const { req, res } = event
+  const { req, res } = event.node
   const jwtPublicKey = await useJwtPublicKey()
   let jwt = ''
 
