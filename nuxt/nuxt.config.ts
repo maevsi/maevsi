@@ -6,12 +6,13 @@ import graphqlPlugin from '@rollup/plugin-graphql'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import { SITEMAP_EXCLUSIONS, LOCALES } from './utils/constants'
+import { LOCALES } from './utils/constants'
 
+export const SITEMAP_EXCLUSIONS = ['/teapot'] // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
 export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
 
 for (const exclusion of SITEMAP_EXCLUSIONS) {
-  for (const locale of LOCALES) {
+  for (const locale of [{ code: '' }, ...LOCALES]) {
     SITEMAP_EXCLUSIONS_LOCALIZED.push(`/${locale.code}${exclusion}`)
   }
 }
@@ -132,7 +133,10 @@ export default defineNuxtConfig({
     // ],
     '@nuxtjs/robots',
     '@pinia/nuxt',
-    // ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array. // https://github.com/maevsi/maevsi/issues/741
+    [
+      '@funken-studio/sitemap-nuxt-3',
+      { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true },
+    ], // Should be declared at the end of the array.
   ],
   nitro: {
     compressPublicAssets: true,
