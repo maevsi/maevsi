@@ -1,3 +1,10 @@
+# [1.0.0-alpha.19](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.18...1.0.0-alpha.19) (2022-11-22)
+
+
+### Features
+
+* **sitemap:** use plugin ([243760c](https://github.com/maevsi/maevsi/commit/243760c7194b66ba55cad103b371a2729b5acba8)), closes [#741](https://github.com/maevsi/maevsi/issues/741)
+
 # [1.0.0-alpha.18](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.17...1.0.0-alpha.18) (2022-11-22)
 
 
