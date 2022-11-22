@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@dargmuesli/nuxt-cookie-control': 1.9.9
+  '@funken-studio/sitemap-nuxt-3': 4.0.4
   '@graphql-codegen/cli': 2.13.12
   '@graphql-codegen/typescript': 2.8.2
   '@graphql-codegen/typescript-operations': 2.5.7
@@ -110,6 +111,7 @@ specifiers:
 
 devDependencies:
   '@dargmuesli/nuxt-cookie-control': 1.9.9_webpack@5.75.0
+  '@funken-studio/sitemap-nuxt-3': 4.0.4_rollup@2.79.1
   '@graphql-codegen/cli': 2.13.12_kyz2oohkk3pblubgvvdpiwyc5a
   '@graphql-codegen/typescript': 2.8.2_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.7_graphql@16.6.0
@@ -204,7 +206,7 @@ devDependencies:
   stylelint-config-standard: 29.0.0_stylelint@14.15.0
   stylelint-no-unsupported-browser-features: 6.0.1_stylelint@14.15.0
   sweetalert2: 11.6.11
-  tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
+  tailwindcss: 3.2.4_ts-node@10.9.1
   ts-jest: 29.0.3_wcjxlcwfjvs73rqh2tjbxyoefa
   ts-node: 10.9.1_wup25etrarvlqkprac7h35hj7u
   typescript: 4.9.3
@@ -1054,6 +1056,26 @@ packages:
       minimatch: 3.1.2
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@funken-studio/sitemap-nuxt-3/4.0.4_rollup@2.79.1:
+    resolution: {integrity: sha512-bXGA0CVTLWL7QjG14INsnBljsVAvmlGZdvQSIGMSBIZj03ZRila8d0oHUM9IoWJFCUQ653Rwszgjkqh6an6Qjg==}
+    engines: {node: '>=16.11', npm: '>=5.0.0'}
+    dependencies:
+      '@babel/core': 7.20.2
+      '@nuxt/kit': 3.0.0_rollup@2.79.1
+      async-cache: 1.1.0
+      consola: 2.15.3
+      etag: 1.8.1
+      fresh: 0.5.2
+      fs-extra: 8.1.0
+      is-https: 2.0.2
+      lodash.unionby: 4.8.0
+      minimatch: 3.1.2
+      sitemap: 4.1.1
+    transitivePeerDependencies:
+      - rollup
       - supports-color
     dev: true
 
@@ -2780,7 +2802,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
+      tailwindcss: 3.2.4_ts-node@10.9.1
     dev: true
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.4:
@@ -2788,7 +2810,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
+      tailwindcss: 3.2.4_ts-node@10.9.1
     dev: true
 
   /@tailwindcss/typography/0.5.8_tailwindcss@3.2.4:
@@ -2800,7 +2822,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
+      tailwindcss: 3.2.4_ts-node@10.9.1
     dev: true
 
   /@tiptap/core/2.0.0-beta.202:
@@ -10465,24 +10487,6 @@ packages:
       vue-demi: 0.13.11_vue@3.2.45
     dev: true
 
-  /pinia/2.0.25_mgnvym7yiazkylwwogi5r767ue:
-    resolution: {integrity: sha512-3reAkjJ6bW2D5hZKRMS0c9rUbHVlsVyZd037xO0PJr2AuF/09RRSBnFLlJgmHF4Jx6dEoW/jZBOHTushY7IMlw==}
-    peerDependencies:
-      '@vue/composition-api': ^1.4.0
-      typescript: '>=4.4.4'
-      vue: ^2.6.14 || ^3.2.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@vue/devtools-api': 6.4.5
-      typescript: 4.9.3
-      vue: 3.2.45
-      vue-demi: 0.13.11_vue@3.2.45
-    dev: true
-
   /pirates/4.0.5:
     resolution: {integrity: sha512-8V9+HQPupnaXMA23c5hvl69zXvTwTzyAYasnkb0Tts4XvO4CliqONMOnvlq26rkhLC3nWDFBJf73LU1e1VZLaQ==}
     engines: {node: '>= 6'}
@@ -12330,12 +12334,10 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss/3.2.4_v776zzvn44o7tpgzieipaairwm:
+  /tailwindcss/3.2.4_ts-node@10.9.1:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
