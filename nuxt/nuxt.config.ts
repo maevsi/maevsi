@@ -12,7 +12,7 @@ export const SITEMAP_EXCLUSIONS = ['/teapot'] // TODO: %F0%9F%AB%96 (https://git
 export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
 
 for (const exclusion of SITEMAP_EXCLUSIONS) {
-  for (const locale of LOCALES) {
+  for (const locale of [{ code: '' }, ...LOCALES]) {
     SITEMAP_EXCLUSIONS_LOCALIZED.push(`/${locale.code}${exclusion}`)
   }
 }
