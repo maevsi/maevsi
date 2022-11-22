@@ -1,3 +1,39 @@
+# [1.0.0-alpha.18](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.17...1.0.0-alpha.18) (2022-11-22)
+
+
+### Bug Fixes
+
+* **color-mode:** temporarily disable selection ([27fc2be](https://github.com/maevsi/maevsi/commit/27fc2be6a25fdff5580aa8aedc9a10230c2b0a34))
+* **dropdown:** increase sizes ([b9af37c](https://github.com/maevsi/maevsi/commit/b9af37cf95d30fd2e5e7e9aa0a445e0833877b74))
+* **event-settings:** correct breadcrumb text ([4555ed5](https://github.com/maevsi/maevsi/commit/4555ed5743ba432b5c4fbb308f06288a2dbc7e8c))
+* **event:** improve heading responsiveness ([8dcc67e](https://github.com/maevsi/maevsi/commit/8dcc67e2055cdf19f3b95c37d21e8a7f40b01c8b))
+* **event:** replace world icon with eye icon ([28785d5](https://github.com/maevsi/maevsi/commit/28785d5d507e952f298718f26076924cfc2027fb)), closes [#905](https://github.com/maevsi/maevsi/issues/905)
+* **event:** restore link behavior ([bc8c9e9](https://github.com/maevsi/maevsi/commit/bc8c9e9cc43a1afe4b6a825f8699d5965669a745))
+* **form-account-sign-in:** correct conditional slot ([50ba444](https://github.com/maevsi/maevsi/commit/50ba444d476bbee06147c13414854358ba8d2fc8))
+* **form:** correct card height ([309a248](https://github.com/maevsi/maevsi/commit/309a2487e60822dd03ab96a968266fbb733fa6d3))
+* **index:** correct image width ([ef12206](https://github.com/maevsi/maevsi/commit/ef122063c7d9a6bc645860a809363737b3cdaa14))
+* **invitation-form:** improve ux ([84d607b](https://github.com/maevsi/maevsi/commit/84d607b2c8fb8fd04741ec52a62ccabccd55dc3f))
+* **loader-image:** correct state update placement ([28dffcc](https://github.com/maevsi/maevsi/commit/28dffccd7937e315ebfa1cdb6686f32a2af10aaa))
+* **modal:** correct display ([871803e](https://github.com/maevsi/maevsi/commit/871803e1dec94ccd9e8665f6fb3e0976a7cb3b58))
+* remove unused refs ([7643891](https://github.com/maevsi/maevsi/commit/7643891c94ec52115e49bda28b92ff8259814ad3))
+* **robots:** correct import ([9dba5b5](https://github.com/maevsi/maevsi/commit/9dba5b5957b12c6d4b0e4cea6676181c16784d04))
+* **robots:** upgrade to v3 ([260a53e](https://github.com/maevsi/maevsi/commit/260a53e26c43ee4988ce299fc4fd3a0010f44b72)), closes [#740](https://github.com/maevsi/maevsi/issues/740)
+* **scroll-container:** extract maximum height ([88e461f](https://github.com/maevsi/maevsi/commit/88e461f72760fb727ac9bc3136e3a4865db1c225))
+* **start:** do not create certificates inside docker ([b066377](https://github.com/maevsi/maevsi/commit/b0663777a532cf13751965257ffa1bdc4f15f89f))
+
+
+### Features
+
+* **form:** use flex ([12a62ba](https://github.com/maevsi/maevsi/commit/12a62bad7d630f23efcbc09fcfdc7cf725e920fd))
+* **nuxt:** add page transition ([ba55565](https://github.com/maevsi/maevsi/commit/ba55565cf4123165e0bf3d5d61f12af508ae0b45))
+* replace moment with dayjs ([f66270b](https://github.com/maevsi/maevsi/commit/f66270bebd055e44a371da3cef95039141e991ee))
+* **start:** move certificates to separate directory ([1c855b8](https://github.com/maevsi/maevsi/commit/1c855b8773f7b7395f795f8c64498ad93bbd47f9))
+
+
+### Reverts
+
+* Revert "fix(form): compute" ([8d5efd8](https://github.com/maevsi/maevsi/commit/8d5efd8781c0a6ac69d0e94f53574a9b7fd03e39))
+
 # [1.0.0-alpha.17](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.16...1.0.0-alpha.17) (2022-11-17)
 
 
