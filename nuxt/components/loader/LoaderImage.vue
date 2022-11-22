@@ -40,13 +40,13 @@ function updateSource() {
 
   img.onload = () => {
     srcWhenLoaded.value = img.src
+    loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1)
   }
 
   img.src = props.src
 }
 
 // lifecycle
-onMounted(() => loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1))
 watch(
   () => props.src,
   (_currentValue, _oldValue) => {
