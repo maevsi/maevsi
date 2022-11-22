@@ -74,7 +74,7 @@
       <LoaderImage
         :alt="t('heroImage')"
         aspect="aspect-square"
-        class="lg:w-1/2"
+        class="w-full lg:w-1/2"
         height="750"
         src="/assets/static/images/smartphone.webp"
         width="750"
