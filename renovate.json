@@ -1,4 +1,5 @@
 {
+  "baseBranches": ["alpha", "beta"],
   "extends": [
     "github>dargmuesli/renovate-config"
   ],
@@ -13,7 +14,7 @@
     },
     {
       "matchPackageNames": ["vue-qrcode-reader"],
-      "allowedVersions": "regex:^(?<major>\\d+)(\\.(?<minor>\\d+))(\\.(?<patch>\\d+))(-(?<compatibility>[\\w-]+))(.(?<build>\\d+))$"
+      "versioning": "regex:^(?<major>\\d+)(\\.(?<minor>\\d+))(\\.(?<patch>\\d+))(-(?<compatibility>[\\w-]+))(\\.(?<build>\\d+))$"
     }
   ]
 }
