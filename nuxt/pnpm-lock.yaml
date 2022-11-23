@@ -35,7 +35,7 @@ specifiers:
   '@types/html-to-text': 8.1.1
   '@types/jest': 29.2.3
   '@types/lodash-es': 4.17.6
-  '@types/mustache': 4.2.1
+  '@types/mustache': 4.2.2
   '@types/node': 18.11.9
   '@types/pg': 8.6.5
   '@uppy/core': 3.0.4
@@ -144,7 +144,7 @@ devDependencies:
   '@types/html-to-text': 8.1.1
   '@types/jest': 29.2.3
   '@types/lodash-es': 4.17.6
-  '@types/mustache': 4.2.1
+  '@types/mustache': 4.2.2
   '@types/node': 18.11.9
   '@types/pg': 8.6.5
   '@uppy/core': 3.0.4
@@ -3225,8 +3225,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/mustache/4.2.1:
-    resolution: {integrity: sha512-gFAlWL9Ik21nJioqjlGCnNYbf9zHi0sVbaZ/1hQEBcCEuxfLJDvz4bVJSV6v6CUaoLOz0XEIoP7mSrhJ6o237w==}
+  /@types/mustache/4.2.2:
+    resolution: {integrity: sha512-MUSpfpW0yZbTgjekDbH0shMYBUD+X/uJJJMm9LXN1d5yjl5lCY1vN/eWKD6D1tOtjA6206K0zcIPnUaFMurdNA==}
     dev: true
 
   /@types/node/12.20.55:
