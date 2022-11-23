@@ -105,7 +105,7 @@ specifiers:
   vue: 3.2.45
   vue-advanced-cropper: 2.8.6
   vue-chartjs: 4.1.2
-  vue-qrcode-reader: 3.1.0-vue3-compatibility.5
+  vue-qrcode-reader: 3.1.0
   vue-tsc: 1.0.9
   webpack: 5.75.0
 
@@ -214,7 +214,7 @@ devDependencies:
   vue: 3.2.45
   vue-advanced-cropper: 2.8.6_vue@3.2.45
   vue-chartjs: 4.1.2_chart.js@4.0.1+vue@3.2.45
-  vue-qrcode-reader: 3.1.0-vue3-compatibility.5
+  vue-qrcode-reader: 3.1.0
   vue-tsc: 1.0.9_typescript@4.9.3
   webpack: 5.75.0
 
@@ -3673,17 +3673,6 @@ packages:
       - supports-color
     dev: true
 
-  /@vue/compat/3.2.45_vue@3.2.45:
-    resolution: {integrity: sha512-TOGT42fEE1hA4Oz2PyCmURJkrXHbe6G+gI8gVOqsEy624oeexDHFrVsFTfzveaPxxqJHyE2+qjKaA1F4KX84aA==}
-    peerDependencies:
-      vue: 3.2.45
-    dependencies:
-      '@babel/parser': 7.20.3
-      estree-walker: 2.0.2
-      source-map: 0.6.1
-      vue: 3.2.45
-    dev: true
-
   /@vue/compiler-core/3.2.45:
     resolution: {integrity: sha512-rcMj7H+PYe5wBV3iYeUgbCglC+pbpN8hBLTJvRiK2eKQiWqu+fG9F+8sW99JdL4LQi7Re178UOxn09puSXvn4A==}
     dependencies:
@@ -3698,6 +3687,14 @@ packages:
     dependencies:
       '@vue/compiler-core': 3.2.45
       '@vue/shared': 3.2.45
+    dev: true
+
+  /@vue/compiler-sfc/2.7.14:
+    resolution: {integrity: sha512-aNmNHyLPsw+sVvlQFQ2/8sjNuLtK54TC6cuKnVzAY93ks4ZBrvwQSnkkIh7bsbNhum5hJBS00wSDipQ937f5DA==}
+    dependencies:
+      '@babel/parser': 7.20.3
+      postcss: 8.4.19
+      source-map: 0.6.1
     dev: true
 
   /@vue/compiler-sfc/3.2.45:
@@ -5403,6 +5400,10 @@ packages:
 
   /csstype/2.6.21:
     resolution: {integrity: sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==}
+    dev: true
+
+  /csstype/3.1.1:
+    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: true
 
   /cuint/0.2.2:
@@ -13316,14 +13317,13 @@ packages:
       vue: 3.2.45
     dev: true
 
-  /vue-qrcode-reader/3.1.0-vue3-compatibility.5:
-    resolution: {integrity: sha512-Q/4PcQyOgUfuGUvFHpMD+mSZxJeDpREvX8aMi0h/fMo97bGDZ7f5W+OvguSGgPComIq+Pd96bKyB53gHDjvTQA==}
+  /vue-qrcode-reader/3.1.0:
+    resolution: {integrity: sha512-k2uoUjibxzdHJPfmsL1T9KVNzKPG/xIzKWMgBTXExoJlvZ5VKrBIFpP3P+rXNylfL3yw5AftE3K1yf4CoTkfkQ==}
     dependencies:
-      '@vue/compat': 3.2.45_vue@3.2.45
       barcode-detector: 1.0.0
       callforth: 0.3.1
       core-js: 3.26.1
-      vue: 3.2.45
+      vue: 2.7.14
       webrtc-adapter: 7.7.0
     dev: true
 
@@ -13352,6 +13352,13 @@ packages:
       '@volar/vue-language-core': 1.0.9
       '@volar/vue-typescript': 1.0.9
       typescript: 4.9.3
+    dev: true
+
+  /vue/2.7.14:
+    resolution: {integrity: sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ==}
+    dependencies:
+      '@vue/compiler-sfc': 2.7.14
+      csstype: 3.1.1
     dev: true
 
   /vue/3.2.45:
