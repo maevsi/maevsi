@@ -48,7 +48,6 @@ function getCsp(host: string): Record<string, Array<string>> {
 
   const development = {
     'connect-src': [
-      `https://${host}`,
       `http://${hostName}:24678/_nuxt/`,
       `https://${hostName}:24678/_nuxt/`,
       'https://tusd.maev.si/', // TODO: move to staging (https://github.com/maevsi/maevsi/issues/771)
