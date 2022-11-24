@@ -133,24 +133,7 @@ VOLUME /srv/app
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:11.2.0@sha256:97068f93a4f41f7ecc8e30dc323cb3dbb52471801f244c7b48e87643a5a4551e AS test-integration_dev
-
-# Update and install dependencies.
-RUN npm install -g pnpm
-
-WORKDIR /srv/app/
-
-COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
-COPY --from=prepare /srv/app/ ./
-
-RUN pnpm test:integration:dev
-
-
-########################
-# Nuxt: test (integration)
-
-# Should be the specific version of `cypress/included`.
-FROM cypress/included:11.2.0@sha256:97068f93a4f41f7ecc8e30dc323cb3dbb52471801f244c7b48e87643a5a4551e AS test-integration_prod
+FROM cypress/included:11.2.0@sha256:97068f93a4f41f7ecc8e30dc323cb3dbb52471801f244c7b48e87643a5a4551e AS test-integration
 
 # Update and install dependencies.
 RUN npm install -g pnpm
@@ -160,7 +143,8 @@ WORKDIR /srv/app/
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=build /srv/app/ ./
 
-RUN pnpm test:integration:prod
+RUN pnpm test:integration:prod \
+    && pnpm test:integration:dev
 
 
 #######################
@@ -174,8 +158,7 @@ WORKDIR /srv/app/
 COPY --from=build /srv/app/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/lint/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/test/package.json
-COPY --from=test-integration_dev /srv/app/package.json /tmp/test/package.json
-COPY --from=test-integration_prod /srv/app/package.json /tmp/test/package.json
+COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
 
 
 #######################
