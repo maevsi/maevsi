@@ -67,6 +67,12 @@ export function copyText(text: string) {
 //   return promise
 // }
 
+export function getDomainTldPort(host: string) {
+  const hostParts = host.split('.')
+
+  return `${hostParts[hostParts.length - 2]}.${hostParts[hostParts.length - 1]}`
+}
+
 export function getHost(req: IncomingMessage) {
   if (!req.headers.host) throw new Error('Host header is not given!')
 

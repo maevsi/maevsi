@@ -141,7 +141,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       ? `https://postgraphile.${config.public.stagingHost}/graphql`
       : process.server
       ? 'http://postgraphile:5000/graphql'
-      : 'https://postgraphile.' + host + '/graphql',
+      : 'https://postgraphile.' + getDomainTldPort(host) + '/graphql',
     exchanges: [
       ...(config.public.isInProduction ? [] : [devtoolsExchange]),
       dedupExchange,
