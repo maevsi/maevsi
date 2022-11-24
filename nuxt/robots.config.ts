@@ -1,5 +1,7 @@
 import { IncomingMessage } from 'node:http'
 
+import isHTTPS from 'is-https'
+
 import { getHost } from './utils/util'
 
 export default {
@@ -9,6 +11,6 @@ export default {
     '/robots.txt', // https://webmasters.stackexchange.com/a/117537/70856
   ],
   sitemap: (req: IncomingMessage) => {
-    return `https://${getHost(req)}/sitemap.xml`
+    return `http${isHTTPS(req) ? 's' : ''}://${getHost(req)}/sitemap.xml`
   },
 }

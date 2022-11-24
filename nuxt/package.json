@@ -17,8 +17,8 @@
     "cypress:test": "cypress run --env type=actual",
     "test": "pnpm test:unit && pnpm test:integration:dev",
     "test:unit": "jest",
-    "test:integration:dev": "cross-env WAIT_ON_TIMEOUT=40000 start-server-and-test 'pnpm dev' 'https://localhost:3000' 'pnpm cypress:test'",
-    "test:integration:prod": "cross-env WAIT_ON_TIMEOUT=10000 NODE_ENV=production start-server-and-test 'pnpm start' 'https://localhost:3000' 'pnpm cypress:test'",
+    "test:integration:dev": "cross-env WAIT_ON_TIMEOUT=40000 start-server-and-test 'pnpm dev' 'http://localhost:3000' 'pnpm cypress:test'",
+    "test:integration:prod": "cross-env WAIT_ON_TIMEOUT=10000 NODE_ENV=production start-server-and-test 'pnpm start' 'http://localhost:3000' 'pnpm cypress:test'",
     "test:integration:docker:build": "docker build -t maevsi/maevsi:test-integration_base --build-arg UID=$(id -u) --build-arg GID=$(id -g) --target test-integration_base ../",
     "test:integration:docker:run": "docker run --rm --entrypoint docker-entrypoint.sh -v \"$PWD:/srv/app\" maevsi/maevsi:test-integration_base",
     "test:integration:docker:br": "pnpm test:integration:docker:build && pnpm test:integration:docker:run",
@@ -32,8 +32,7 @@
     "lint:quiet": "pnpm lint:js --quiet && pnpm lint:style --quiet",
     "lint:staged": "pnpm lint-staged",
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js",
-    "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml",
-    "postinstall": "nuxt prepare"
+    "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "1.9.9",
@@ -106,6 +105,7 @@
     "h3": "1.0.1",
     "html-to-text": "9.0.0-preview2",
     "ical-generator": "3.6.0",
+    "is-https": "4.0.0",
     "isomorphic-dompurify": "0.24.0",
     "jest": "29.3.1",
     "jose": "4.11.1",

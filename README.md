@@ -59,7 +59,7 @@ The setup for backend development is more complex as it consists of numerous ser
     ```sh
     pnpm dev
     ```
-1. you should now be able to access maevsi under https://localhost:3000/! 🎉
+1. you should now be able to access maevsi under http://localhost:3000/! 🎉
 
 </details>
 
