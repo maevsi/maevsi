@@ -31,7 +31,6 @@ The setup for backend development is more complex as it consists of numerous ser
 1. (optional) if you're on Windows, you might want to [setup WSL](https://docs.microsoft.com/en-us/windows/wsl/install) to be able to use all Linux functionality this project utilizes
 1. [install Git](https://git-scm.com/) to download this project's modules and participate in version management
 1. [install nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to be able to switch the currently active [Node.js](https://nodejs.org/en/) version on your machine (useful when working on multiple Node.js projects)
-1. [install mkcert](https://github.com/FiloSottile/mkcert#installation) for development certificate generation and installation, so that all services are available through https
 
 #### Setup
 

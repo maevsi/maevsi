@@ -28,6 +28,3 @@ nuxt/cypress/snapshots/actual
 nuxt/cypress/snapshots/diff
 nuxt/cypress/snapshots/result
 nuxt/cypress/videos
-
-# Certificates
-nuxt/.certificates

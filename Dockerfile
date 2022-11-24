@@ -9,24 +9,15 @@ COPY ./docker/entrypoint.sh /usr/local/bin/
 
 # Update and install dependencies.
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
-# - `ca-certificates git` is required by npm dependencies from GitHub (dargmuesli/nuxt-i18n-module)
-# - `curl`, `ca-certificates libnss3-tools` and `mkcert` provide the certificates for secure connections
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         libdbd-pg-perl postgresql-client sqitch \
-        curl \
-        ca-certificates git \
-        ca-certificates libnss3-tools \
-    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
-    && chmod +x mkcert-v*-linux-amd64 \
-    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g pnpm
 
 WORKDIR /srv/app/
 
-ENV CERTIFICATE_PATH=/srv/certificates/maevsi
 ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
 
 VOLUME /srv/.pnpm-store
@@ -127,22 +118,11 @@ WORKDIR /srv/app/
 
 # Update and install dependencies.
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        # `curl ca-certificates libnss3-tools` are required by `mkcert`
-        curl ca-certificates libnss3-tools \
     # pnpm
     && npm install -g pnpm \
     # user
     && groupadd -g $GID -o $UNAME \
     && useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME \
-    # mkcert
-    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
-    && chmod +x mkcert-v*-linux-amd64 \
-    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert \
-    && mkcert -install \
-    # && mkdir -p /home/$UNAME/.local/share/mkcert \
-    # && mv /root/.local/share/mkcert /home/$UNAME/.local/share/ \
-    # && chown $UNAME:$UNAME /home/$UNAME/.local/share/mkcert -R \
     # clean
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -160,15 +140,8 @@ FROM cypress/included:11.2.0@sha256:97068f93a4f41f7ecc8e30dc323cb3dbb52471801f24
 
 # Update and install dependencies.
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        # `curl ca-certificates libnss3-tools` are required by `mkcert`
-        curl ca-certificates libnss3-tools \
     # pnpm
-    && npm install -g pnpm \
-    # mkcert
-    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
-    && chmod +x mkcert-v*-linux-amd64 \
-    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
+    && npm install -g pnpm
 
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=build /srv/app/ /srv/app/
