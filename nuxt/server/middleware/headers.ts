@@ -1,20 +1,20 @@
 import defu from 'defu'
 import { appendHeader, defineEventHandler } from 'h3'
 
-import { getHost } from '~/utils/util'
+import { getDomainTldPort, getHost } from '~/utils/util'
 
 function getCsp(host: string): Record<string, Array<string>> {
   const hostName = host.replace(/:[0-9]+$/, '')
   const config = useRuntimeConfig()
 
-  host = config.public.stagingHost || host
+  const stagingHostOrHost = config.public.stagingHost || host
 
   const base = {
     'base-uri': ["'none'"], // Mozilla Observatory.
     'connect-src': [
       "'self'",
       'blob:', // vue-advanced-cropper
-      `https://postgraphile.${host}`,
+      `https://postgraphile.${getDomainTldPort(stagingHostOrHost)}`,
       'https://www.google-analytics.com',
     ],
     'default-src': ["'none'"],
@@ -24,7 +24,7 @@ function getCsp(host: string): Record<string, Array<string>> {
     'img-src': [
       'blob:',
       'data:',
-      `https://tusd.${host}`,
+      `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
       'https://www.google-analytics.com',
       'https://www.gravatar.com/avatar/',
       "'self'",
@@ -48,7 +48,6 @@ function getCsp(host: string): Record<string, Array<string>> {
 
   const development = {
     'connect-src': [
-      `https://${host}`,
       `http://${hostName}:24678/_nuxt/`,
       `https://${hostName}:24678/_nuxt/`,
       'https://tusd.maev.si/', // TODO: move to staging (https://github.com/maevsi/maevsi/issues/771)
@@ -58,7 +57,7 @@ function getCsp(host: string): Record<string, Array<string>> {
   }
 
   const production = {
-    'connect-src': [`https://${host}/cdn-cgi/rum`],
+    'connect-src': [`https://${stagingHostOrHost}/cdn-cgi/rum`],
   }
 
   return defu(base, config.public.isInProduction ? production : development)
