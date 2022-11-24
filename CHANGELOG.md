@@ -1,3 +1,16 @@
+# [1.0.0-beta.2](https://github.com/maevsi/maevsi/compare/1.0.0-beta.1...1.0.0-beta.2) (2022-11-24)
+
+
+### Bug Fixes
+
+* use http ([05ceea9](https://github.com/maevsi/maevsi/commit/05ceea99bf740546de23b1ff06041f392e0da88c))
+
+
+### Features
+
+* **app:** remove migration notice ([bf8236d](https://github.com/maevsi/maevsi/commit/bf8236ddccb669032dde154080f2627696b7d8d7))
+* remove certificates ([03323fa](https://github.com/maevsi/maevsi/commit/03323fa82abe637907e3af44d36b9c079f53a9cb))
+
 # [1.0.0-beta.1](https://github.com/maevsi/maevsi/compare/0.147.0...1.0.0-beta.1) (2022-11-23)
 
 
