@@ -18,8 +18,6 @@ RUN apt-get update \
 
 WORKDIR /srv/app/
 
-ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
-
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 VOLUME /srv/sqitch
@@ -46,8 +44,7 @@ RUN npm install -g pnpm && \
 
 COPY ./nuxt/ ./
 
-RUN pnpm install --offline \
-  && pnpm nuxi prepare
+RUN pnpm install --offline
 
 
 ########################
@@ -61,7 +58,6 @@ ARG CI=false
 ENV CI ${CI}
 ARG NUXT_PUBLIC_STACK_DOMAIN=maev.si
 ENV NUXT_PUBLIC_STACK_DOMAIN=${NUXT_PUBLIC_STACK_DOMAIN}
-ENV NODE_OPTIONS=--openssl-legacy-provider
 
 WORKDIR /srv/app/
 

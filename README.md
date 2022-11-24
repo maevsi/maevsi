@@ -54,7 +54,6 @@ The setup for backend development is more complex as it consists of numerous ser
     cd nuxt
     pnpm install
     ```
-    If there is an issue regarding OpenSSL, then you might want to set the environment variable `NODE_OPTIONS=--openssl-legacy-provider` and try again.
 1. finally, start the frontend:
 
     ```sh
@@ -103,7 +102,6 @@ The setup for backend development is more complex as it consists of numerous ser
     cd nuxt
     pnpm install
     ```
-    If there is an issue regarding OpenSSL, then you might want to set the environment variable `NODE_OPTIONS=--openssl-legacy-provider` and try again.
 1. configure maevsi's [DargStack](https://github.com/dargmuesli/dargstack) then:
     ```sh
     cd ../../maevsi_stack/src/development
