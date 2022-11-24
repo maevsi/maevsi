@@ -1,3 +1,18 @@
+# [1.0.0-beta.3](https://github.com/maevsi/maevsi/compare/1.0.0-beta.2...1.0.0-beta.3) (2022-11-24)
+
+
+### Bug Fixes
+
+* **docker:** reenable test ([4891376](https://github.com/maevsi/maevsi/commit/48913762ba2f0f18baee54e43f7ff1bc6f092f77))
+* **docker:** run integration tests consecutively ([983bad3](https://github.com/maevsi/maevsi/commit/983bad3f8714533c95a6106c225573562a65294a))
+* **util:** correct domain tld port getter ([690fb59](https://github.com/maevsi/maevsi/commit/690fb5967b0fa9c12a14d2082cb5bd04175daf2f))
+
+
+### Features
+
+* **headers:** remove explicit connect source 'self' ([779ee15](https://github.com/maevsi/maevsi/commit/779ee158f372ddc8996d91ed38b289dfac60dbeb))
+* **nuxt:** support domain from subdomain ([8d0908d](https://github.com/maevsi/maevsi/commit/8d0908da8b58ef338bf52c36092e2bf8c5887b2a))
+
 # [1.0.0-beta.2](https://github.com/maevsi/maevsi/compare/1.0.0-beta.1...1.0.0-beta.2) (2022-11-24)
 
 
