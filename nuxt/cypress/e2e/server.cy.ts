@@ -50,7 +50,7 @@ describe('headers middleware', () => {
       }).then((resp) => {
         expect(resp.headers['content-security-policy']).to.equal(
           Cypress.env('NODE_ENV') === 'production'
-            ? "connect-src 'self' blob: https://postgraphile.localhost:3001 https://www.google-analytics.com https://localhost:3001/cdn-cgi/rum;base-uri 'none';default-src 'none';font-src 'self';form-action 'self';frame-ancestors 'none';img-src blob: data: https://tusd.localhost:3001 https://www.google-analytics.com https://www.gravatar.com/avatar/ 'self';manifest-src 'self';prefetch-src 'self';report-uri https://dargmuesli.report-uri.com/r/d/csp/enforce;script-src blob: 'self' https://static.cloudflareinsights.com https://www.google-analytics.com/analytics.js 'unsafe-inline' 'unsafe-eval';style-src 'self' 'unsafe-inline';"
+            ? "connect-src 'self' blob: https://postgraphile.localhost:3000 https://www.google-analytics.com https://localhost:3000/cdn-cgi/rum;base-uri 'none';default-src 'none';font-src 'self';form-action 'self';frame-ancestors 'none';img-src blob: data: https://tusd.localhost:3000 https://www.google-analytics.com https://www.gravatar.com/avatar/ 'self';manifest-src 'self';prefetch-src 'self';report-uri https://dargmuesli.report-uri.com/r/d/csp/enforce;script-src blob: 'self' https://static.cloudflareinsights.com https://www.google-analytics.com/analytics.js 'unsafe-inline' 'unsafe-eval';style-src 'self' 'unsafe-inline';"
             : "connect-src 'self' blob: https://postgraphile.maev.si https://www.google-analytics.com http://localhost:24678/_nuxt/ https://localhost:24678/_nuxt/ https://tusd.maev.si/ ws://localhost:24678/_nuxt/ wss://localhost:24678/_nuxt/;base-uri 'none';default-src 'none';font-src 'self';form-action 'self';frame-ancestors 'none';img-src blob: data: https://tusd.maev.si https://www.google-analytics.com https://www.gravatar.com/avatar/ 'self';manifest-src 'self';prefetch-src 'self';report-uri https://dargmuesli.report-uri.com/r/d/csp/enforce;script-src blob: 'self' https://static.cloudflareinsights.com https://www.google-analytics.com/analytics.js 'unsafe-inline' 'unsafe-eval';style-src 'self' 'unsafe-inline';"
         )
       })
@@ -71,9 +71,7 @@ describe('robots page', () => {
   context('content', () => {
     it('links the sitemap', () => {
       cy.request('/robots.txt').then((resp) => {
-        expect(resp.body).to.include(
-          `Sitemap: ${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/sitemap.xml`
-        )
+        expect(resp.body).to.include(`Sitemap: ${CYPRESS_BASE_URL}/sitemap.xml`)
       })
     })
   })
@@ -93,13 +91,7 @@ describe('sitemap page', () => {
     it('includes the root page', () => {
       cy.request('/sitemap.xml').then((resp) => {
         expect(resp.body).to.include(
-          `<url><loc>${CYPRESS_BASE_URL(
-            Cypress.env('NODE_ENV')
-          )}/</loc><xhtml:link rel="alternate" hreflang="de" href="${CYPRESS_BASE_URL(
-            Cypress.env('NODE_ENV')
-          )}/de"/><xhtml:link rel="alternate" hreflang="en" href="${CYPRESS_BASE_URL(
-            Cypress.env('NODE_ENV')
-          )}/"/></url>`
+          `<url><loc>${CYPRESS_BASE_URL}/</loc><xhtml:link rel="alternate" hreflang="de" href="${CYPRESS_BASE_URL}/de"/><xhtml:link rel="alternate" hreflang="en" href="${CYPRESS_BASE_URL}/"/></url>`
         )
       })
     })
@@ -107,13 +99,7 @@ describe('sitemap page', () => {
     it('includes the root page localized', () => {
       cy.request('/sitemap.xml').then((resp) => {
         expect(resp.body).to.include(
-          `<url><loc>${CYPRESS_BASE_URL(
-            Cypress.env('NODE_ENV')
-          )}/de</loc><xhtml:link rel="alternate" hreflang="de" href="${CYPRESS_BASE_URL(
-            Cypress.env('NODE_ENV')
-          )}/de"/><xhtml:link rel="alternate" hreflang="en" href="${CYPRESS_BASE_URL(
-            Cypress.env('NODE_ENV')
-          )}/"/></url>`
+          `<url><loc>${CYPRESS_BASE_URL}/de</loc><xhtml:link rel="alternate" hreflang="de" href="${CYPRESS_BASE_URL}/de"/><xhtml:link rel="alternate" hreflang="en" href="${CYPRESS_BASE_URL}/"/></url>`
         )
       })
     })

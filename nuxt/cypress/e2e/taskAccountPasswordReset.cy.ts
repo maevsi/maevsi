@@ -19,9 +19,7 @@ describe('task account password reset page', () => {
         followRedirect: false,
       }).then((resp) => {
         expect(resp.status).to.equal(302)
-        expect(resp.redirectedToUrl).to.equal(
-          `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/`
-        )
+        expect(resp.redirectedToUrl).to.equal(`${CYPRESS_BASE_URL}/`)
       })
     })
   })
