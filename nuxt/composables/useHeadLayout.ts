@@ -144,7 +144,9 @@ export const useHeadLayout = () => {
       },
     ],
     titleTemplate: (titleChunk?: string) => {
-      return titleChunk ? `${titleChunk} · maevsi` : 'maevsi'
+      return titleChunk && titleChunk !== 'maevsi'
+        ? `${titleChunk} · maevsi`
+        : 'maevsi'
     },
   })
 }
