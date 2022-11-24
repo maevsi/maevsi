@@ -9,7 +9,7 @@ describe('account page', () => {
       }).then((resp) => {
         expect(resp.status).to.equal(302)
         expect(resp.redirectedToUrl).to.equal(
-          `${CYPRESS_BASE_URL}/task/account/sign-in`
+          `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/task/account/sign-in`
         )
       })
     })
