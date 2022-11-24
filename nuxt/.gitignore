@@ -227,8 +227,5 @@ cypress/snapshots/diff
 cypress/snapshots/result
 cypress/videos
 
-# Certificates
-.certificates
-
 # Nuxt
 .output

@@ -74,37 +74,23 @@ describe('sitemap page', () => {
   context('content', () => {
     it('includes the root page', () => {
       cy.request('/sitemap.xml').then((resp) => {
-        // TODO: correct https (https://github.com/unjs/is-https/issues/8)
-        expect(resp.body).to.satisfy(
-          (x: any) =>
-            x.includes(
-              '<url><loc>http://localhost:3000/</loc><xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de"/><xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/"/></url>'
-            ) ||
-            x.includes(
-              '<url><loc>https://localhost:3000/</loc><xhtml:link rel="alternate" hreflang="de" href="https://localhost:3000/de"/><xhtml:link rel="alternate" hreflang="en" href="https://localhost:3000/"/></url>'
-            )
+        expect(resp.body).to.include(
+          `<url><loc>${CYPRESS_BASE_URL}/</loc><xhtml:link rel="alternate" hreflang="de" href="${CYPRESS_BASE_URL}/de"/><xhtml:link rel="alternate" hreflang="en" href="${CYPRESS_BASE_URL}/"/></url>`
         )
       })
     })
 
     it('includes the root page localized', () => {
       cy.request('/sitemap.xml').then((resp) => {
-        // TODO: correct https (https://github.com/unjs/is-https/issues/8)
-        expect(resp.body).to.satisfy(
-          (x: any) =>
-            x.includes(
-              '<url><loc>http://localhost:3000/de</loc><xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de"/><xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/"/></url>'
-            ) ||
-            x.includes(
-              '<url><loc>https://localhost:3000/de</loc><xhtml:link rel="alternate" hreflang="de" href="https://localhost:3000/de"/><xhtml:link rel="alternate" hreflang="en" href="https://localhost:3000/"/></url>'
-            )
+        expect(resp.body).to.include(
+          `<url><loc>${CYPRESS_BASE_URL}/de</loc><xhtml:link rel="alternate" hreflang="de" href="${CYPRESS_BASE_URL}/de"/><xhtml:link rel="alternate" hreflang="en" href="${CYPRESS_BASE_URL}/"/></url>`
         )
       })
     })
 
     it('does not include excluded pages', () => {
       cy.request('/sitemap.xml').then((resp) => {
-        expect(resp.body).to.not.include('http://localhost:3000/teapot')
+        expect(resp.body).to.not.include('/teapot')
       })
     })
   })

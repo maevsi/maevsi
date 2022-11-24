@@ -1,16 +1,16 @@
 import { IncomingMessage } from 'node:http'
 
+import isHTTPS from 'is-https'
+
 import { getHost } from './utils/util'
 
 export default {
-  'user-agent': '*',
+  'user-agent': '*', // must come before allow and disallow rules for Lighthouse check to pass
   allow: ['/'],
-  // @ts-ignore Lighthouse mandates a user agent to precede allow and disallow rules.
-  'user-agent': '*',
   disallow: [
     '/robots.txt', // https://webmasters.stackexchange.com/a/117537/70856
   ],
   sitemap: (req: IncomingMessage) => {
-    return `https://${getHost(req)}/sitemap.xml`
+    return `http${isHTTPS(req) ? 's' : ''}://${getHost(req)}/sitemap.xml`
   },
 }
