@@ -160,7 +160,7 @@ WORKDIR /srv/app/
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=build /srv/app/ ./
 
-# RUN pnpm test:integration:prod
+RUN pnpm test:integration:prod
 
 
 #######################
