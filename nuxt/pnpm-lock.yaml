@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@dargmuesli/nuxt-cookie-control': 1.9.9
   '@funken-studio/sitemap-nuxt-3': 4.0.4
-  '@graphql-codegen/cli': 2.14.0
+  '@graphql-codegen/cli': 2.14.1
   '@graphql-codegen/typescript': 2.8.2
   '@graphql-codegen/typescript-operations': 2.5.7
   '@graphql-codegen/typescript-urql-graphcache': 2.4.3
@@ -113,7 +113,7 @@ specifiers:
 devDependencies:
   '@dargmuesli/nuxt-cookie-control': 1.9.9_webpack@5.75.0
   '@funken-studio/sitemap-nuxt-3': 4.0.4_rollup@2.79.1
-  '@graphql-codegen/cli': 2.14.0_kyz2oohkk3pblubgvvdpiwyc5a
+  '@graphql-codegen/cli': 2.14.1_kyz2oohkk3pblubgvvdpiwyc5a
   '@graphql-codegen/typescript': 2.8.2_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.7_graphql@16.6.0
   '@graphql-codegen/typescript-urql-graphcache': 2.4.3_b7rcx4rqjil5ogsklmfwiai3g4
@@ -1090,8 +1090,8 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/cli/2.14.0_kyz2oohkk3pblubgvvdpiwyc5a:
-    resolution: {integrity: sha512-tiG8iJd2jklazcAkPC1yZ4THQZOBazHi4L8qtH212PydFfpZ3G+PQyilf9sOMqT6Fq/b6yirHvVi6Jy2b1smEw==}
+  /@graphql-codegen/cli/2.14.1_kyz2oohkk3pblubgvvdpiwyc5a:
+    resolution: {integrity: sha512-Z9EiX8yJ5xtNdw/1ApV8uKx6UjCNl/D28zTHU8Fa7BcCdi3ilGOKSiWCNZaH1mpwKr5EfX18kme2bIqKmohv/w==}
     hasBin: true
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -1126,7 +1126,6 @@ packages:
       json-to-pretty-yaml: 1.2.2
       listr2: 4.0.5
       log-symbols: 4.1.0
-      mkdirp: 1.0.4
       shell-quote: 1.7.4
       string-env-interpolation: 1.0.1
       ts-log: 2.2.5
