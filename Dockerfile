@@ -5,7 +5,7 @@
 # `sqitch` requires at least `buster`.
 FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS development
 
-COPY ./docker/entrypoint.sh /usr/local/bin/
+COPY ./docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Update and install dependencies.
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
@@ -22,11 +22,11 @@ VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 VOLUME /srv/sqitch
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["pnpm", "run", "dev"]
 
 # Waiting for https://github.com/nuxt/framework/issues/6915
-# HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
+# HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
 
 
 ########################
@@ -186,8 +186,8 @@ WORKDIR /srv/app/
 COPY --from=collect /srv/app/ ./
 
 COPY ./sqitch/ /srv/sqitch/
-COPY ./docker/entrypoint.sh /usr/local/bin/
+COPY ./docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["node", ".output/server/index.mjs"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
