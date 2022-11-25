@@ -3,7 +3,7 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS development
+FROM node:19.1.0-slim AS development
 
 COPY ./docker/entrypoint.sh /usr/local/bin/
 
@@ -33,7 +33,7 @@ CMD ["pnpm", "run", "dev"]
 # Prepare Nuxt.
 
 # Should be the specific version of `node:slim`.
-FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS prepare
+FROM node:19.1.0-slim AS prepare
 
 WORKDIR /srv/app/
 
@@ -53,7 +53,7 @@ RUN pnpm install --offline \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS build
+FROM node:19.1.0-slim AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -74,7 +74,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS lint
+FROM node:19.1.0-slim AS lint
 
 WORKDIR /srv/app/
 
@@ -89,7 +89,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS test-unit
+FROM node:19.1.0-slim AS test-unit
 
 WORKDIR /srv/app/
 
@@ -103,12 +103,13 @@ RUN npm install -g pnpm && \
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:11.2.0@sha256:97068f93a4f41f7ecc8e30dc323cb3dbb52471801f244c7b48e87643a5a4551e AS test-integration_base
+FROM cypress/included:11.2.0 AS test-integration_base
 
 ARG UNAME=cypress
 ARG UID=1000
 ARG GID=1000
 
+ENV CYPRESS_RUN_BINARY=/home/cypress/Cypress/Cypress
 ENV DOCKER=true
 
 WORKDIR /srv/app/
@@ -122,9 +123,14 @@ RUN apt-get update \
     && useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME \
     # clean
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && export CYPRESS_VERSION=$(ls /root/.cache/Cypress/) \
+    && mkdir /home/cypress/.cache \
+    && mv /root/.cache/Cypress/$CYPRESS_VERSION/Cypress /home/cypress/Cypress
 
-USER $UNAME
+RUN chown $UID:$GID /home/cypress/Cypress -R
+
+USER $UID:$GID
 
 VOLUME /srv/app
 
@@ -133,7 +139,7 @@ VOLUME /srv/app
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:11.2.0@sha256:97068f93a4f41f7ecc8e30dc323cb3dbb52471801f244c7b48e87643a5a4551e AS test-integration
+FROM cypress/included:11.2.0 AS test-integration
 
 # Update and install dependencies.
 RUN npm install -g pnpm
@@ -151,7 +157,7 @@ RUN pnpm test:integration:prod \
 # Collect build, lint and test results.
 
 # Should be the specific version of `node:slim`.
-FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS collect
+FROM node:19.1.0-slim AS collect
 
 WORKDIR /srv/app/
 
@@ -167,7 +173,7 @@ COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.1.0-slim@sha256:ea46185af8498b01a0af84e32c8b17933944e2444e1bee7602ef74bf6c758c0a AS production
+FROM node:19.1.0-slim AS production
 
 ENV NODE_ENV=production
 
