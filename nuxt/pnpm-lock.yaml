@@ -85,7 +85,7 @@ specifiers:
   postcss: 8.4.19
   postcss-html: 1.5.0
   prettier: 2.8.0
-  prettier-plugin-tailwindcss: 0.1.13
+  prettier-plugin-tailwindcss: 0.2.0
   pretty-bytes: 6.0.0
   prntr: 2.0.18
   qrcode.vue: 3.3.3
@@ -195,7 +195,7 @@ devDependencies:
   postcss: 8.4.19
   postcss-html: 1.5.0
   prettier: 2.8.0
-  prettier-plugin-tailwindcss: 0.1.13_prettier@2.8.0
+  prettier-plugin-tailwindcss: 0.2.0_prettier@2.8.0
   pretty-bytes: 6.0.0
   prntr: 2.0.18
   qrcode.vue: 3.3.3_vue@3.2.45
@@ -11008,8 +11008,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier-plugin-tailwindcss/0.1.13_prettier@2.8.0:
-    resolution: {integrity: sha512-/EKQURUrxLu66CMUg4+1LwGdxnz8of7IDvrSLqEtDqhLH61SAlNNUSr90UTvZaemujgl3OH/VHg+fyGltrNixw==}
+  /prettier-plugin-tailwindcss/0.2.0_prettier@2.8.0:
+    resolution: {integrity: sha512-Ruqig/mdWCSpqdq9WK44nrmqM4BFWTzBPhPGwC5NK3coV9eZntEQPB84MGZbjAg0XQU02jVRHXNRPREBzxvM+A==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
       prettier: '>=2.2.0'
