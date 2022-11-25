@@ -157,11 +157,6 @@ const sectionStepsRef = ref<HTMLElement>()
 
 // data
 const isScrollHintShown = ref(false)
-const title = t('title', {
-  easy: t('titleEasy'),
-  fast: t('titleFast'),
-  professional: t('titleProfessional'),
-})
 
 // methods
 function hideScrollHint() {
@@ -184,7 +179,7 @@ onBeforeUnmount(() => {
 })
 
 // initialization
-useHeadDefault(title)
+useHeadDefault('maevsi')
 </script>
 
 <script lang="ts">
