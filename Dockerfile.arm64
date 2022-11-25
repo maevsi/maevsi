@@ -109,7 +109,7 @@ ARG UNAME=cypress
 ARG UID=1000
 ARG GID=1000
 
-ENV CYPRESS_RUN_BINARY=/home/cypress/.cache/Cypress/11.2.0/Cypress/Cypress
+ENV CYPRESS_RUN_BINARY=/home/cypress/Cypress/Cypress
 ENV DOCKER=true
 
 WORKDIR /srv/app/
@@ -124,10 +124,11 @@ RUN apt-get update \
     # clean
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
+    && export CYPRESS_VERSION=$(ls /root/.cache/Cypress/) \
     && mkdir /home/cypress/.cache \
-    && mv /root/.cache/Cypress /home/cypress/.cache/Cypress
+    && mv /root/.cache/Cypress/$CYPRESS_VERSION/Cypress /home/cypress/Cypress
 
-RUN chown $UID:$GID /home/cypress/.cache/Cypress -R
+RUN chown $UID:$GID /home/cypress/Cypress -R
 
 USER $UID:$GID
 
