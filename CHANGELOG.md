@@ -1,3 +1,11 @@
+# [1.0.0-beta.5](https://github.com/maevsi/maevsi/compare/1.0.0-beta.4...1.0.0-beta.5) (2022-11-25)
+
+
+### Bug Fixes
+
+* **form-contact:** close on saved edit ([8c0fe69](https://github.com/maevsi/maevsi/commit/8c0fe6935b5b0d0b0e6da33991c602715b3a1263)), closes [#939](https://github.com/maevsi/maevsi/issues/939)
+* **layout-footer:** reenable color mode selection ([3669673](https://github.com/maevsi/maevsi/commit/36696734041537ce152d213993965f34264f0fe2)), closes [#926](https://github.com/maevsi/maevsi/issues/926)
+
 # [1.0.0-beta.4](https://github.com/maevsi/maevsi/compare/1.0.0-beta.3...1.0.0-beta.4) (2022-11-25)
 
 
