@@ -202,6 +202,12 @@ async function submit() {
       api.value.errors.push(result.error)
       consola.error(result.error)
     }
+
+    if (!result.data) {
+      return
+    }
+
+    emit('submitSuccess')
   } else {
     // Add
     const result = await createContactMutation.executeMutation({
