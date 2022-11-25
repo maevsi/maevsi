@@ -35,9 +35,10 @@
     "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
+    "@babel/core": "7.20.2",
     "@dargmuesli/nuxt-cookie-control": "1.9.9",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
-    "@graphql-codegen/cli": "2.14.0",
+    "@graphql-codegen/cli": "2.14.1",
     "@graphql-codegen/typescript": "2.8.2",
     "@graphql-codegen/typescript-operations": "2.5.7",
     "@graphql-codegen/typescript-urql-graphcache": "2.4.3",
@@ -61,8 +62,8 @@
     "@tailwindcss/typography": "0.5.8",
     "@tiptap/core": "2.0.0-beta.204",
     "@tiptap/extension-link": "2.0.0-beta.204",
-    "@tiptap/starter-kit": "2.0.0-beta.203",
-    "@tiptap/vue-3": "2.0.0-beta.203",
+    "@tiptap/starter-kit": "2.0.0-beta.204",
+    "@tiptap/vue-3": "2.0.0-beta.204",
     "@types/cookie": "0.5.1",
     "@types/dompurify": "2.4.0",
     "@types/downloadjs": "1.4.3",
