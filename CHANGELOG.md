@@ -1,3 +1,15 @@
+# [1.0.0-beta.4](https://github.com/maevsi/maevsi/compare/1.0.0-beta.3...1.0.0-beta.4) (2022-11-25)
+
+
+### Bug Fixes
+
+* **tusd:** correct subdomain url ([4668e21](https://github.com/maevsi/maevsi/commit/4668e2159decacde9f122b6574d93d679b62c6be))
+
+
+### Features
+
+* **index:** correct title ([bdf05bf](https://github.com/maevsi/maevsi/commit/bdf05bf601c31394780fae6721d870e2faa209f5))
+
 # [1.0.0-beta.3](https://github.com/maevsi/maevsi/compare/1.0.0-beta.2...1.0.0-beta.3) (2022-11-24)
 
 
