@@ -3,6 +3,9 @@
   "extends": [
     "github>dargmuesli/renovate-config"
   ],
+  "docker": {
+    "pinDigests": false
+  },
   "packageRules": [
     {
       "matchPackageNames": ["@types/luxon", "luxon"],
