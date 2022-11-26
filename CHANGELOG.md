@@ -1,3 +1,16 @@
+# [1.0.0-beta.6](https://github.com/maevsi/maevsi/compare/1.0.0-beta.5...1.0.0-beta.6) (2022-11-26)
+
+
+### Bug Fixes
+
+* **docker:** correct e2e path ([677e01f](https://github.com/maevsi/maevsi/commit/677e01f9dad03746a19d3f6e7eaadf5c262531f2))
+* **docker:** correct e2e tests ([d4e74a5](https://github.com/maevsi/maevsi/commit/d4e74a51edf8948b222f8a7684de9a3e6d192df4))
+
+
+### Features
+
+* **docker:** create dockerfile for arm ([ba1f51d](https://github.com/maevsi/maevsi/commit/ba1f51df78066ddf2620893bbc59ea6fbc341081))
+
 # [1.0.0-beta.5](https://github.com/maevsi/maevsi/compare/1.0.0-beta.4...1.0.0-beta.5) (2022-11-25)
 
 
