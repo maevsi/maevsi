@@ -141,7 +141,7 @@
     "vue-advanced-cropper": "2.8.6",
     "vue-chartjs": "4.1.2",
     "vue-qrcode-reader": "3.1.0-vue3-compatibility.5",
-    "vue-tsc": "1.0.9",
+    "vue-tsc": "1.0.10",
     "webpack": "5.75.0"
   },
   "lint-staged": {
