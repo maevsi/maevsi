@@ -19,7 +19,7 @@
           :aria-label="t('invitationSelectionClear')"
           @click="
             navigateTo({
-              path: append($route.path, 'invitation'),
+              path: append(route.path, 'invitation'),
               query: { ...routeQuery, ic: undefined },
             })
           "
