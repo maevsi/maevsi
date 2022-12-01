@@ -225,14 +225,12 @@ const routeQueryIc = computed(() => route.query.ic)
 
 // vuelidate
 const rules = {
-  form: {
-    invitationCode: {
-      required,
-      formatUuid: VALIDATION_FORMAT_UUID,
-    },
+  invitationCode: {
+    required,
+    formatUuid: VALIDATION_FORMAT_UUID,
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 
 // lifecycle
 onMounted(() => {

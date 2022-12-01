@@ -248,37 +248,35 @@ updateForm(props.contact)
 
 // vuelidate
 const rules = {
-  form: {
-    id: {},
-    accountUsername: {
-      existence: helpers.withAsync(validateUsername()),
-      formatSlug: VALIDATION_FORMAT_SLUG,
-      maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-    },
-    address: {
-      maxLength: maxLength(VALIDATION_ADDRESS_LENGTH_MAXIMUM),
-    },
-    emailAddress: {
-      email,
-      formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
-      maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-    },
-    firstName: {
-      maxLength: maxLength(VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
-    },
-    lastName: {
-      maxLength: maxLength(VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
-    },
-    phoneNumber: {
-      formatPhoneNumber: VALIDATION_FORMAT_PHONE_NUMBER,
-    },
-    url: {
-      formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
-      maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
-    },
+  id: {},
+  accountUsername: {
+    existence: helpers.withAsync(validateUsername()),
+    formatSlug: VALIDATION_FORMAT_SLUG,
+    maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+  },
+  address: {
+    maxLength: maxLength(VALIDATION_ADDRESS_LENGTH_MAXIMUM),
+  },
+  emailAddress: {
+    email,
+    formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+    maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+  },
+  firstName: {
+    maxLength: maxLength(VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
+  },
+  lastName: {
+    maxLength: maxLength(VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
+  },
+  phoneNumber: {
+    formatPhoneNumber: VALIDATION_FORMAT_PHONE_NUMBER,
+  },
+  url: {
+    formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
+    maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 
 // lifecycle
 watch(

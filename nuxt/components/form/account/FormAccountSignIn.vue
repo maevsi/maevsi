@@ -145,19 +145,17 @@ async function submit() {
 
 // vuelidate
 const rules = {
-  form: {
-    username: {
-      formatSlug: VALIDATION_FORMAT_SLUG,
-      maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-      required,
-    },
-    password: {
-      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-      required,
-    },
+  username: {
+    formatSlug: VALIDATION_FORMAT_SLUG,
+    maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+    required,
+  },
+  password: {
+    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+    required,
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 </script>
 
 <i18n lang="yaml">

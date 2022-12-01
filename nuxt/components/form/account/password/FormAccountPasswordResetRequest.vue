@@ -96,16 +96,14 @@ async function submit() {
 
 // vuelidate
 const rules = {
-  form: {
-    emailAddress: {
-      email,
-      formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
-      maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-      required,
-    },
+  emailAddress: {
+    email,
+    formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+    maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+    required,
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 </script>
 
 <i18n lang="yaml">

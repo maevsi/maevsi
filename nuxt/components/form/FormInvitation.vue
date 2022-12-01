@@ -227,19 +227,17 @@ const contactIdsComputed = computed(() => form.contactIds)
 
 // vuelidate
 const rules = {
-  form: {
-    contactIds: {
-      $each: {
-        minValue: minValue(1),
-        required,
-      },
-      minLength: minLength(1),
+  contactIds: {
+    $each: {
+      minValue: minValue(1),
       required,
     },
-    searchString: {},
+    minLength: minLength(1),
+    required,
   },
+  searchString: {},
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 
 // lifecycle
 watch(allContactsQuery.error, (currentValue, _oldValue) => {

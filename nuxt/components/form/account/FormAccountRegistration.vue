@@ -129,26 +129,24 @@ async function submit() {
 
 // vuelidate
 const rules = {
-  form: {
-    username: {
-      existenceNone: helpers.withAsync(validateUsername(true)),
-      formatSlug: VALIDATION_FORMAT_SLUG,
-      maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-      required,
-    },
-    password: {
-      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-      required,
-    },
-    emailAddress: {
-      email,
-      formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
-      maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-      required,
-    },
+  username: {
+    existenceNone: helpers.withAsync(validateUsername(true)),
+    formatSlug: VALIDATION_FORMAT_SLUG,
+    maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+    required,
+  },
+  password: {
+    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+    required,
+  },
+  emailAddress: {
+    email,
+    formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+    maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+    required,
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 </script>
 
 <i18n lang="yaml">
