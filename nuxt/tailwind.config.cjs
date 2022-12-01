@@ -19,7 +19,7 @@ module.exports = {
     './layouts/**/*.vue',
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}',
+    // './nuxt.config.{js,ts}', // Does not work with i18n as of 2022-12-01
     './app.vue',
   ],
   darkMode: 'class',
