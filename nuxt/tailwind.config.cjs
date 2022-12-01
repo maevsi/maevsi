@@ -15,11 +15,12 @@ const gray = colors.gray // or slate, zinc, neutral, stone
 module.exports = {
   content: [
     './components/**/*.{js,vue,ts}',
+    './composables/**/*.{js,vue,ts}',
     './layouts/**/*.vue',
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
-    // './nuxt.config.js',
-    // './nuxt.config.ts',
+    './nuxt.config.{js,ts}',
+    './app.vue',
   ],
   darkMode: 'class',
   plugins: [
@@ -129,10 +130,6 @@ module.exports = {
         '.disabled': {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
-        },
-        '.e1': {
-          gridRow: '1',
-          gridColumn: '1',
         },
       })
     },
