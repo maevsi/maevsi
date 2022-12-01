@@ -35,7 +35,7 @@
     "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
-    "@dargmuesli/nuxt-cookie-control": "1.9.9",
+    "@babel/core": "7.20.5",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "2.15.0",
     "@graphql-codegen/typescript": "2.8.2",
@@ -141,8 +141,7 @@
     "vue-advanced-cropper": "2.8.6",
     "vue-chartjs": "4.1.2",
     "vue-qrcode-reader": "3.1.0-vue3-compatibility.5",
-    "vue-tsc": "1.0.10",
-    "webpack": "5.75.0"
+    "vue-tsc": "1.0.10"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",
