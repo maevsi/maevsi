@@ -15,7 +15,7 @@ specifiers:
   '@jest/types': 29.3.1
   '@nuxtjs/color-mode': 3.2.0
   '@nuxtjs/eslint-config-typescript': 12.0.0
-  '@nuxtjs/html-validator': 1.1.1
+  '@nuxtjs/html-validator': 1.2.0
   '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.1-27775490.1ee240a
   '@nuxtjs/robots': 3.0.0
   '@nuxtjs/sitemap': 2.4.0
@@ -125,7 +125,7 @@ devDependencies:
   '@jest/types': 29.3.1
   '@nuxtjs/color-mode': 3.2.0_rollup@2.79.1
   '@nuxtjs/eslint-config-typescript': 12.0.0_hsf322ms6xhhd4b5ne6lb74y4a
-  '@nuxtjs/html-validator': 1.1.1_jest@29.3.1+rollup@2.79.1
+  '@nuxtjs/html-validator': 1.2.0_jest@29.3.1+rollup@2.79.1
   '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.1-27775490.1ee240a_afedgj2cquph6h6wwmlhnu74si
   '@nuxtjs/robots': 3.0.0_rollup@2.79.1
   '@nuxtjs/sitemap': 2.4.0
@@ -2491,12 +2491,13 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/html-validator/1.1.1_jest@29.3.1+rollup@2.79.1:
-    resolution: {integrity: sha512-QdIsCE99J4lWkaQNjrfDPdoL0J2ocWFmjo4RJLsrMWJ/0hm0nMIRn15kCxeFVIYycBX0ZHo3hzyzkmy1sJsrag==}
+  /@nuxtjs/html-validator/1.2.0_jest@29.3.1+rollup@2.79.1:
+    resolution: {integrity: sha512-WJCuqlqmTJdDUDkg/gdgNSNYaCiRtYI8f0l9A74KwIMYUFFY0QSaIzTd3uUe+1JdQz2N6RMKDrBKFpK/1fSpNA==}
     dependencies:
       '@nuxt/kit': 3.0.0_rollup@2.79.1
       chalk: 5.1.2
-      html-validate: 7.7.1_jest@29.3.1
+      html-validate: 7.8.0_jest@29.3.1
+      pathe: 1.0.0
       prettier: 2.8.0
     transitivePeerDependencies:
       - jest
@@ -7617,8 +7618,8 @@ packages:
       selderee: 0.9.0
     dev: true
 
-  /html-validate/7.7.1_jest@29.3.1:
-    resolution: {integrity: sha512-pCPbFHygd8YCKcQcyQnEwIWKVtA37f0snQP65EsS9ap4JrnG0HdIevJl90p8ZAhGjLsex5P0nI+n6v4pSov97Q==}
+  /html-validate/7.8.0_jest@29.3.1:
+    resolution: {integrity: sha512-r9KxbC6ztQ5F266KEykWj2DtjlAEOYhCcZCwIP6Zme3odLJxeGAzoOQfrSW4x/RGJruzfbYzNUw+XH7+pPRBeQ==}
     engines: {node: '>= 14.0'}
     hasBin: true
     peerDependencies:
