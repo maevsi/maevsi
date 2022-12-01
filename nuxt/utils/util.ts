@@ -70,13 +70,13 @@ export function copyText(text: string) {
 export function getDomainTldPort(host: string) {
   const hostParts = host.split('.')
 
-  if (hostParts[hostParts.length - 2]) {
-    return `${hostParts[hostParts.length - 2]}.${
-      hostParts[hostParts.length - 1]
-    }`
-  } else {
-    return hostParts[hostParts.length - 1]
-  }
+  if (hostParts.length === 1 && !/^localhost(:[0-9]+)?$/.test(hostParts[0])) throw new Error(`Invalid input: ${host}`)
+
+  if (hostParts.length <= 2) return host
+
+  return `${hostParts[hostParts.length - 2]}.${
+    hostParts[hostParts.length - 1]
+  }`
 }
 
 export function getHost(req: IncomingMessage) {
