@@ -161,14 +161,14 @@ const after = ref<string>()
 const cropperRef = ref()
 
 // queries
-const allUploadsQuery = useAllUploadsQuery({
+const allUploadsQuery = await useAllUploadsQuery({
   variables: {
     after,
     username: props.username,
     first: ITEMS_PER_PAGE,
   },
 })
-const accountUploadQuotaBytesQuery = useAccountUploadQuotaBytesQuery()
+const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery()
 
 // api data
 const api = computed(() =>

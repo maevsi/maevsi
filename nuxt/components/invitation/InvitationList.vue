@@ -241,7 +241,7 @@ const after = ref<string>()
 const doughnutRef = ref()
 
 // queries
-const invitationsQuery = useAllInvitationsQuery({
+const invitationsQuery = await useAllInvitationsQuery({
   variables: {
     after,
     eventId: +props.event.id,

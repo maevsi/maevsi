@@ -35,7 +35,7 @@ const { t } = useI18n()
 const TUSD_FILES_URL = useTusdFilesUrl()
 
 // queries
-const profilePictureQuery = useProfilePictureByUsernameQuery({
+const profilePictureQuery = await useProfilePictureByUsernameQuery({
   variables: {
     username: props.username,
   },

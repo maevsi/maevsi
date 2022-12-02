@@ -366,7 +366,7 @@ const { executeMutation: executeMutationUpdateInvitationById } =
   useUpdateInvitationByIdMutation()
 
 // queries
-const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,
     slug: route.params.event_name as string,

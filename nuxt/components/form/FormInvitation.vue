@@ -115,7 +115,7 @@ const { t } = useI18n()
 const after = ref<string>()
 
 // queries
-const allContactsQuery = useAllContactsQuery({
+const allContactsQuery = await useAllContactsQuery({
   variables: {
     after,
     authorAccountUsername: store.signedInUsername,

@@ -42,7 +42,7 @@ const { t } = useI18n()
 const after = ref<string>()
 
 // queries
-const eventsQuery = useAllEventsQuery({
+const eventsQuery = await useAllEventsQuery({
   variables: {
     after,
     authorUsername: props.username,

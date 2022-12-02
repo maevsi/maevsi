@@ -82,7 +82,7 @@ const { executeMutation: executeMutationContactDeleteById } =
 const after = ref<string>()
 
 // queries
-const contactsQuery = useAllContactsQuery({
+const contactsQuery = await useAllContactsQuery({
   variables: {
     after,
     authorAccountUsername: store.signedInUsername,
