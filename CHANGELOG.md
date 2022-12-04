@@ -1,3 +1,20 @@
+# [1.0.0-beta.7](https://github.com/maevsi/maevsi/compare/1.0.0-beta.6...1.0.0-beta.7) (2022-12-04)
+
+
+### Bug Fixes
+
+* **event:** use correct route variable ([59ee3c5](https://github.com/maevsi/maevsi/commit/59ee3c5a3fa75e5c6b564bb3daff1ad38866d49c))
+* **form:** correct vuelidate properties ([cbbdfb8](https://github.com/maevsi/maevsi/commit/cbbdfb8c4c3d6db312448cffb66a7e67b54a8059))
+* **tailwind:** do not use nuxt configuration as content ([5000a2e](https://github.com/maevsi/maevsi/commit/5000a2ebad75d172b5f35fac344303642955186a))
+* **tailwind:** use correct content ([8a81ee4](https://github.com/maevsi/maevsi/commit/8a81ee40368dd06e14afc25ef3348e0c6cb972c8))
+* **urql:** correct ssr ([c16838d](https://github.com/maevsi/maevsi/commit/c16838dabdde31481c297bd31054363a1b19d1af)), closes [#952](https://github.com/maevsi/maevsi/issues/952)
+* **util:** correct domain tld port function ([91540d8](https://github.com/maevsi/maevsi/commit/91540d8176e17ea29210845d448b952cbfb24628))
+
+
+### Features
+
+* **loader-image:** display error ([f6c3fa9](https://github.com/maevsi/maevsi/commit/f6c3fa9d2d99e1862788e480917c611243e20463)), closes [#947](https://github.com/maevsi/maevsi/issues/947)
+
 # [1.0.0-beta.6](https://github.com/maevsi/maevsi/compare/1.0.0-beta.5...1.0.0-beta.6) (2022-11-26)
 
 
