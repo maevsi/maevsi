@@ -16,24 +16,24 @@
         postgres22023: t('postgres22023'),
         postgres23505: t('postgres23505'),
       }"
-      :form="v$.form"
+      :form="v$"
       form-class="w-full"
       :is-form-sent="isFormSent"
       :submit-name="t('register')"
       @submit.prevent="submit"
     >
       <FormInputUsername
-        :form-input="v$.form.username"
+        :form-input="v$.username"
         is-validatable
         is-validation-inverted
         @input="form.username = $event"
       />
       <FormInputPassword
-        :form-input="v$.form.password"
+        :form-input="v$.password"
         @input="form.password = $event"
       />
       <FormInputEmailAddress
-        :form-input="v$.form.emailAddress"
+        :form-input="v$.emailAddress"
         is-required
         @input="form.emailAddress = $event"
       />
@@ -129,26 +129,24 @@ async function submit() {
 
 // vuelidate
 const rules = {
-  form: {
-    username: {
-      existenceNone: helpers.withAsync(validateUsername(true)),
-      formatSlug: VALIDATION_FORMAT_SLUG,
-      maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-      required,
-    },
-    password: {
-      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-      required,
-    },
-    emailAddress: {
-      email,
-      formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
-      maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-      required,
-    },
+  username: {
+    existenceNone: helpers.withAsync(validateUsername(true)),
+    formatSlug: VALIDATION_FORMAT_SLUG,
+    maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+    required,
+  },
+  password: {
+    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+    required,
+  },
+  emailAddress: {
+    email,
+    formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+    maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+    required,
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 </script>
 
 <i18n lang="yaml">

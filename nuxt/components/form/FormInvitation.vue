@@ -3,7 +3,7 @@
     v-if="event"
     class="min-h-0 flex flex-col"
     :errors="api.errors"
-    :form="v$.form"
+    :form="v$"
     :is-form-sent="isFormSent"
     :submit-name="t('select')"
     @submit.prevent="submit"
@@ -27,7 +27,7 @@
       :placeholder="t('placeholderContact')"
       :title="t('contact')"
       type="text"
-      :value="v$.form.searchString"
+      :value="v$.searchString"
       @input="form.searchString = $event"
     >
       <template #icon>
@@ -35,19 +35,19 @@
       </template>
       <template #stateError>
         <FormInputStateError
-          :form-input="v$.form.contactId"
+          :form-input="v$.contactId"
           validation-property="required"
         >
           {{ t('globalValidationRequired') }}
         </FormInputStateError>
         <FormInputStateError
-          :form-input="v$.form.contactId"
+          :form-input="v$.contactId"
           validation-property="minLength"
         >
           {{ t('globalValidationMinLength') }}
         </FormInputStateError>
         <FormInputStateError
-          :form-input="v$.form.contactId"
+          :form-input="v$.contactId"
           validation-property="minValue"
         >
           {{ t('globalValidationMinValue') }}
@@ -85,16 +85,15 @@ import { useVuelidate } from '@vuelidate/core'
 import { minLength, minValue, required } from '@vuelidate/validators'
 import consola from 'consola'
 
-import { Contact } from '~/types/contact'
 import {
+  Event,
   useAllContactsQuery,
   useCreateInvitationMutation,
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
-import { Event } from '~/types/event'
 
 export interface Props {
-  event: Event
+  event: Pick<Event, 'id'>
   invitationContactIdsExisting?: number[]
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -115,7 +114,7 @@ const { t } = useI18n()
 const after = ref<string>()
 
 // queries
-const allContactsQuery = useAllContactsQuery({
+const allContactsQuery = await useAllContactsQuery({
   variables: {
     after,
     authorAccountUsername: store.signedInUsername,
@@ -203,7 +202,7 @@ const contactsFiltered = computed(() => {
   }
 
   const searchStringParts = form.searchString.split(' ')
-  const allContactsFiltered = contacts.value?.filter((contact: Contact) => {
+  const allContactsFiltered = contacts.value?.filter((contact) => {
     for (const contactProperty of [
       ...(contact.accountUsername
         ? [contact.accountUsername.toLowerCase()]
@@ -227,19 +226,17 @@ const contactIdsComputed = computed(() => form.contactIds)
 
 // vuelidate
 const rules = {
-  form: {
-    contactIds: {
-      $each: {
-        minValue: minValue(1),
-        required,
-      },
-      minLength: minLength(1),
+  contactIds: {
+    $each: {
+      minValue: minValue(1),
       required,
     },
-    searchString: {},
+    minLength: minLength(1),
+    required,
   },
+  searchString: {},
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 
 // lifecycle
 watch(allContactsQuery.error, (currentValue, _oldValue) => {

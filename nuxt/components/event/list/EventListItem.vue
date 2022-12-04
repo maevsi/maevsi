@@ -53,10 +53,19 @@ import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 
-import { Event } from '~/types/event'
+import { Event } from '~/gql/generated'
 
 export interface Props {
-  event: Event
+  event: Pick<
+    Event,
+    | 'name'
+    | 'authorUsername'
+    | 'start'
+    | 'visibility'
+    | 'slug'
+    | 'end'
+    | 'description'
+  >
 }
 const props = withDefaults(defineProps<Props>(), {})
 

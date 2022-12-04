@@ -6,14 +6,14 @@
       postgresP0002: t('postgresP0002'),
       postgres55000: t('postgres55000'),
     }"
-    :form="v$.form"
+    :form="v$"
     :form-class="formClass"
     :is-form-sent="isFormSent"
     :submit-name="t('accountPasswordReset')"
     @submit.prevent="submit"
   >
     <FormInputPassword
-      :form-input="v$.form.password"
+      :form-input="v$.password"
       :title="t('passwordNew')"
       @input="form.password = $event"
     />
@@ -97,14 +97,12 @@ async function submit() {
 
 // vuelidate
 const rules = {
-  form: {
-    password: {
-      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-      required,
-    },
+  password: {
+    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+    required,
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 </script>
 
 <i18n lang="yaml">

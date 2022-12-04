@@ -19,7 +19,7 @@
           :aria-label="t('invitationSelectionClear')"
           @click="
             navigateTo({
-              path: append($route.path, 'invitation'),
+              path: append(route.path, 'invitation'),
               query: { ...routeQuery, ic: undefined },
             })
           "
@@ -326,9 +326,10 @@ import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 import Swal from 'sweetalert2'
 
-import { Invitation } from '~/types/invitation'
 import {
+  Invitation,
   InvitationFeedback,
+  InvitationPatch,
   useEventByAuthorUsernameAndSlugQuery,
   useUpdateInvitationByIdMutation,
 } from '~/gql/generated'
@@ -366,7 +367,7 @@ const { executeMutation: executeMutationUpdateInvitationById } =
   useUpdateInvitationByIdMutation()
 
 // queries
-const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,
     slug: route.params.event_name as string,
@@ -453,7 +454,7 @@ function print() {
 function qrCodeShow() {
   store.modalAdd({ id: 'ModalInvitationQrCode' })
 }
-async function update(id: string, invitationPatch: Partial<Invitation>) {
+async function update(id: string, invitationPatch: InvitationPatch) {
   api.value.errors = []
 
   const result = await executeMutationUpdateInvitationById({
@@ -510,7 +511,8 @@ const invitation = computed(() => {
   const invitationsMatchingUuid =
     store.signedInUsername === route.params.username && invitations
       ? invitations.filter(
-          (invitation: Invitation) => invitation.uuid === route.query.ic
+          (invitation: Pick<Invitation, 'uuid'>) =>
+            invitation.uuid === route.query.ic
         )
       : invitations
 

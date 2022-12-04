@@ -2,13 +2,13 @@
   <Form
     :errors="api.errors"
     :errors-pg-ids="errorsPgIds"
-    :form="v$.form"
+    :form="v$"
     :is-form-sent="isFormSent"
     :submit-name="t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
     <FormInputPassword
-      :form-input="v$.form.password"
+      :form-input="v$.password"
       :title="t('passwordAccount')"
       @input="form.password = $event"
     />
@@ -96,14 +96,12 @@ async function submit() {
 
 // vuelidate
 const rules = {
-  form: {
-    password: {
-      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-      required,
-    },
+  password: {
+    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+    required,
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 </script>
 
 <i18n lang="yaml">

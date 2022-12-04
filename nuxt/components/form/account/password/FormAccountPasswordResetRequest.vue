@@ -5,14 +5,14 @@
       postgres55000: t('postgres55000'),
       postgresP0002: t('postgresP0002'),
     }"
-    :form="v$.form"
+    :form="v$"
     :form-class="formClass"
     :is-form-sent="isFormSent"
     :submit-name="t('accountPasswordResetRequest')"
     @submit.prevent="submit"
   >
     <FormInputEmailAddress
-      :form-input="v$.form.emailAddress"
+      :form-input="v$.emailAddress"
       is-required
       :title="t('emailAddressYours')"
       @input="form.emailAddress = $event"
@@ -96,16 +96,14 @@ async function submit() {
 
 // vuelidate
 const rules = {
-  form: {
-    emailAddress: {
-      email,
-      formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
-      maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-      required,
-    },
+  emailAddress: {
+    email,
+    formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
+    maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+    required,
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 </script>
 
 <i18n lang="yaml">

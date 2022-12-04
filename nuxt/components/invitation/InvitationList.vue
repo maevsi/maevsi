@@ -214,17 +214,17 @@ import consola from 'consola'
 import Swal from 'sweetalert2'
 import { Doughnut } from 'vue-chartjs/dist/index' // TODO: wait for vue-chartjs support chartjs v4 (https://github.com/apertureless/vue-chartjs/pull/934)
 
-import { Invitation } from '~/types/invitation'
 import {
+  Event,
+  Invitation,
   useAllInvitationsQuery,
   useDeleteInvitationByIdMutation,
   useInviteMutation,
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
-import { Event } from '~/types/event'
 
 export interface Props {
-  event: Event
+  event: Pick<Event, 'authorUsername' | 'slug' | 'inviteeCountMaximum' | 'id'>
 }
 const props = withDefaults(defineProps<Props>(), {})
 
@@ -241,7 +241,7 @@ const after = ref<string>()
 const doughnutRef = ref()
 
 // queries
-const invitationsQuery = useAllInvitationsQuery({
+const invitationsQuery = await useAllInvitationsQuery({
   variables: {
     after,
     eventId: +props.event.id,
@@ -292,7 +292,7 @@ const pending = reactive({
 function add() {
   store.modalAdd({ id: 'ModalInvitation' })
 }
-function copyLink(invitation: Invitation): void {
+function copyLink(invitation: Pick<Invitation, 'uuid'>): void {
   if (!process.client) return
 
   copyText(

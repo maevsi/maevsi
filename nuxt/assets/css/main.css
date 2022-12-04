@@ -69,7 +69,6 @@
   }
 }
 
-
 @layer utilities {
   .maevsi-prose {
     @apply m-auto prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl; /* 2xl:prose-2xl */

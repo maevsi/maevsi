@@ -4,10 +4,8 @@ import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
 import mustache from 'mustache'
 
+import { Contact, Event as MaevsiEvent, Invitation } from 'gql/generated'
 import { getHost } from '~/utils/util'
-import { Contact } from '~/types/contact'
-import { Event as MaevsiEvent } from '~/types/event'
-import { Invitation } from '~/types/invitation'
 
 export default defineEventHandler(async function (h3Event: H3Event) {
   const { req, res } = h3Event.node
@@ -34,9 +32,9 @@ export default defineEventHandler(async function (h3Event: H3Event) {
       })
   }
 
-  const contact: Contact = body.contact
-  const event: MaevsiEvent = body.event
-  const invitation: Invitation = body.invitation
+  const contact = body.contact
+  const event = body.event
+  const invitation = body.invitation
 
   res.setHeader('Content-Type', 'text/calendar')
   res.setHeader(
@@ -48,9 +46,18 @@ export default defineEventHandler(async function (h3Event: H3Event) {
 
 export function getIcalString(
   host: string,
-  event: MaevsiEvent,
-  contact?: Contact,
-  invitation?: Invitation
+  event: Pick<
+    MaevsiEvent,
+    | 'authorUsername'
+    | 'slug'
+    | 'description'
+    | 'start'
+    | 'end'
+    | 'name'
+    | 'location'
+  >,
+  contact?: Pick<Contact, any>,
+  invitation?: Pick<Invitation, any>
 ): string {
   const userEventPath = event.authorUsername + '/' + event.slug
   const eventUrl = 'https://' + host + '/event/' + userEventPath

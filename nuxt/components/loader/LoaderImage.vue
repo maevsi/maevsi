@@ -1,15 +1,17 @@
 <template>
-  <img
-    v-if="srcWhenLoaded"
-    :alt="alt"
-    :class="[aspect, { 'rounded-full': rounded }]"
-    :height="height"
-    :src="srcWhenLoaded"
-    :width="width"
-  />
-  <div v-else :class="aspect">
-    <!-- Wrapping div is required as target for class names defined on the linking element. -->
-    <LoaderIndicatorPing />
+  <div>
+    <LoaderIndicatorPing v-if="isLoading" :class="aspect" />
+    <CardStateAlert v-if="isError">
+      {{ t('error') }}
+    </CardStateAlert>
+    <img
+      v-if="srcWhenLoaded"
+      :alt="alt"
+      :class="[aspect, { 'rounded-full': rounded }]"
+      :height="height"
+      :src="srcWhenLoaded"
+      :width="width"
+    />
   </div>
 </template>
 
@@ -26,24 +28,34 @@ const props = withDefaults(defineProps<Props>(), {
   rounded: undefined,
 })
 
-const loadingId = Math.random()
-const loadingIds = useState('loadingIds', () => [loadingId])
+const { t } = useI18n()
 
 // data
+const img = ref<HTMLImageElement>()
+const isError = ref(false)
+const isLoading = ref(true)
+const loadingId = Math.random()
+const loadingIds = useState('loadingIds', () => [loadingId])
 const srcWhenLoaded = ref<string>()
 
 // methods
+function loadingStop() {
+  isLoading.value = false
+  loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1)
+}
 function updateSource() {
   if (process.server) return
 
-  const img = new Image()
-
-  img.onload = () => {
-    srcWhenLoaded.value = img.src
-    loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1)
+  img.value = new Image()
+  img.value.onload = () => {
+    loadingStop()
+    srcWhenLoaded.value = img.value?.src
   }
-
-  img.src = props.src
+  img.value.onerror = () => {
+    loadingStop()
+    isError.value = true
+  }
+  img.value.src = props.src
 }
 
 // lifecycle
@@ -57,3 +69,10 @@ watch(
 // initialization
 updateSource()
 </script>
+
+<i18n lang="yaml">
+de:
+  error: Bild konnte nicht geladen werden!
+en:
+  error: Image could not be loaded!
+</i18n>
