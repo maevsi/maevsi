@@ -11,5 +11,6 @@ for file in $files; do
   newArr=(${new//\// })
   newArrLength="${#newArr[@]}"
 
+  mkdir -p "cypress/snapshots/base/${newArr[newArrLength-2]}"
   mv "$file" "cypress/snapshots/base/${newArr[newArrLength-2]}/${newArr[newArrLength-1]}"
 done
