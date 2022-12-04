@@ -85,16 +85,15 @@ import { useVuelidate } from '@vuelidate/core'
 import { minLength, minValue, required } from '@vuelidate/validators'
 import consola from 'consola'
 
-import { Contact } from '~/types/contact'
 import {
+  Event,
   useAllContactsQuery,
   useCreateInvitationMutation,
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
-import { Event } from '~/types/event'
 
 export interface Props {
-  event: Event
+  event: Pick<Event, 'id'>
   invitationContactIdsExisting?: number[]
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -203,7 +202,7 @@ const contactsFiltered = computed(() => {
   }
 
   const searchStringParts = form.searchString.split(' ')
-  const allContactsFiltered = contacts.value?.filter((contact: Contact) => {
+  const allContactsFiltered = contacts.value?.filter((contact) => {
     for (const contactProperty of [
       ...(contact.accountUsername
         ? [contact.accountUsername.toLowerCase()]

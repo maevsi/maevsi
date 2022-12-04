@@ -52,10 +52,22 @@
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
-import { Contact } from '~/types/contact'
+import { Contact } from '~/gql/generated'
 
 export interface Props {
-  contact: Contact
+  contact: Pick<
+    Contact,
+    | 'nodeId'
+    | 'authorAccountUsername'
+    | 'accountUsername'
+    | 'emailAddress'
+    | 'emailAddressHash'
+    | 'firstName'
+    | 'lastName'
+    | 'address'
+    | 'phoneNumber'
+    | 'url'
+  >
   isDeleting?: boolean
   isEditing?: boolean
 }

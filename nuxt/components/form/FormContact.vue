@@ -113,7 +113,6 @@ import { useVuelidate } from '@vuelidate/core'
 import { email, helpers, maxLength } from '@vuelidate/validators'
 import consola from 'consola'
 
-import { Contact } from '~/types/contact'
 import {
   formPreSubmit,
   validateUsername,
@@ -129,13 +128,14 @@ import {
   VALIDATION_USERNAME_LENGTH_MAXIMUM,
 } from '~/utils/validation'
 import {
+  Contact,
   useCreateContactMutation,
   useUpdateContactByIdMutation,
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
 
 export interface Props {
-  contact?: Contact
+  contact?: Pick<Contact, any>
 }
 const props = withDefaults(defineProps<Props>(), {
   contact: undefined,
@@ -235,7 +235,7 @@ async function submit() {
     emit('submitSuccess')
   }
 }
-function updateForm(data?: Contact) {
+function updateForm(data?: Pick<Contact, any>) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {

@@ -1,6 +1,9 @@
-import { Contact } from '~/types/contact'
+import { Contact } from '~/gql/generated'
 
-export function getContactName(contact: Contact, isUsernamePreferred = false) {
+export function getContactName(
+  contact: Pick<Contact, 'accountUsername' | 'firstName' | 'lastName'>,
+  isUsernamePreferred = false
+) {
   let name
 
   if (contact.accountUsername) {

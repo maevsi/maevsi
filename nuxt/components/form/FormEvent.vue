@@ -279,7 +279,6 @@ import consola from 'consola'
 import slugify from 'slugify'
 import Swal from 'sweetalert2'
 
-import { Event } from '~/types/event'
 import {
   formPreSubmit,
   validateEventSlug,
@@ -292,6 +291,7 @@ import {
   VALIDATION_FORMAT_URL_HTTPS,
 } from '~/utils/validation'
 import {
+  Event,
   EventVisibility,
   useCreateEventMutation,
   useUpdateEventByIdMutation,
@@ -299,7 +299,7 @@ import {
 import { useMaevsiStore } from '~/store'
 
 export interface Props {
-  event?: Event
+  event?: Pick<Event, 'name' | 'slug'>
 }
 const props = withDefaults(defineProps<Props>(), {
   event: undefined,
@@ -444,7 +444,7 @@ async function submit() {
     )
   }
 }
-function updateForm(data?: Event) {
+function updateForm(data?: Pick<Event, 'name' | 'slug'>) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {

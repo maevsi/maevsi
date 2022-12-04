@@ -47,10 +47,17 @@
 </template>
 
 <script setup lang="ts">
-import { Contact } from '~/types/contact'
+import { Contact } from '~/gql/generated'
 
 export interface Props {
-  contact: Contact
+  contact: Pick<
+    Contact,
+    | 'accountUsername'
+    | 'emailAddress'
+    | 'emailAddressHash'
+    | 'firstName'
+    | 'lastName'
+  >
   feedback?: string | null
   isUsernameLinked?: boolean
 }

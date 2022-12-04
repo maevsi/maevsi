@@ -18,10 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import { Event } from '~/types/event'
+import { Event } from '~/gql/generated'
 
 export interface Props {
-  event: Event
+  event: Pick<Event, 'isArchived' | 'visibility'>
 }
 withDefaults(defineProps<Props>(), {})
 

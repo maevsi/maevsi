@@ -67,10 +67,10 @@
 import consola from 'consola'
 
 import {
+  Contact,
   useAllContactsQuery,
   useDeleteContactByIdMutation,
 } from '~/gql/generated'
-import { Contact } from '~/types/contact'
 import { useMaevsiStore } from '~/store'
 
 const { t } = useI18n()
@@ -107,7 +107,7 @@ const pending = reactive({
   deletions: ref<string[]>([]),
   edits: ref<string[]>([]),
 })
-const selectedContact = ref<Contact>()
+const selectedContact = ref<Pick<Contact, 'nodeId'>>()
 
 // methods
 function add() {
@@ -128,7 +128,7 @@ async function delete_(nodeId: string, id: string) {
 
   pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
 }
-function edit(contact: Contact) {
+function edit(contact: Pick<Contact, 'nodeId'>) {
   pending.edits.push(contact.nodeId)
   formContactHeading.value = t('contactEdit')
   selectedContact.value = contact
