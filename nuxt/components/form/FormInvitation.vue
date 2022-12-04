@@ -3,7 +3,7 @@
     v-if="event"
     class="min-h-0 flex flex-col"
     :errors="api.errors"
-    :form="v$.form"
+    :form="v$"
     :is-form-sent="isFormSent"
     :submit-name="t('select')"
     @submit.prevent="submit"
@@ -27,7 +27,7 @@
       :placeholder="t('placeholderContact')"
       :title="t('contact')"
       type="text"
-      :value="v$.form.searchString"
+      :value="v$.searchString"
       @input="form.searchString = $event"
     >
       <template #icon>
@@ -35,19 +35,19 @@
       </template>
       <template #stateError>
         <FormInputStateError
-          :form-input="v$.form.contactId"
+          :form-input="v$.contactId"
           validation-property="required"
         >
           {{ t('globalValidationRequired') }}
         </FormInputStateError>
         <FormInputStateError
-          :form-input="v$.form.contactId"
+          :form-input="v$.contactId"
           validation-property="minLength"
         >
           {{ t('globalValidationMinLength') }}
         </FormInputStateError>
         <FormInputStateError
-          :form-input="v$.form.contactId"
+          :form-input="v$.contactId"
           validation-property="minValue"
         >
           {{ t('globalValidationMinValue') }}

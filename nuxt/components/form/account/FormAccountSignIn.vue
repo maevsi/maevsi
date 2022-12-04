@@ -17,18 +17,18 @@
         postgres55000: t('postgres55000'),
         postgresP0002: t('postgresP0002'),
       }"
-      :form="v$.form"
+      :form="v$"
       form-class="w-full"
       :is-form-sent="isFormSent"
       :submit-name="t('signIn')"
       @submit.prevent="submit"
     >
       <FormInputUsername
-        :form-input="v$.form.username"
+        :form-input="v$.username"
         @input="form.username = $event"
       />
       <FormInputPassword
-        :form-input="v$.form.password"
+        :form-input="v$.password"
         @input="form.password = $event"
       />
       <div class="flex justify-center">

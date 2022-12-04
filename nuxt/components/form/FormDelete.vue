@@ -2,13 +2,13 @@
   <Form
     :errors="api.errors"
     :errors-pg-ids="errorsPgIds"
-    :form="v$.form"
+    :form="v$"
     :is-form-sent="isFormSent"
     :submit-name="t('deletion', { item: itemName })"
     @submit.prevent="submit"
   >
     <FormInputPassword
-      :form-input="v$.form.password"
+      :form-input="v$.password"
       :title="t('passwordAccount')"
       @input="form.password = $event"
     />

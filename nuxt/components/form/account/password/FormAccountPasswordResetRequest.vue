@@ -5,14 +5,14 @@
       postgres55000: t('postgres55000'),
       postgresP0002: t('postgresP0002'),
     }"
-    :form="v$.form"
+    :form="v$"
     :form-class="formClass"
     :is-form-sent="isFormSent"
     :submit-name="t('accountPasswordResetRequest')"
     @submit.prevent="submit"
   >
     <FormInputEmailAddress
-      :form-input="v$.form.emailAddress"
+      :form-input="v$.emailAddress"
       is-required
       :title="t('emailAddressYours')"
       @input="form.emailAddress = $event"

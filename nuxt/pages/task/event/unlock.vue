@@ -6,7 +6,7 @@
       :errors-pg-ids="{
         postgresP0002: t('postgresP0002'),
       }"
-      :form="v$.form"
+      :form="v$"
       :is-form-sent="isFormSent"
       :submit-name="t('submit')"
       @submit.prevent="submit"
@@ -20,7 +20,7 @@
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         :title="t('invitationCode')"
         type="text"
-        :value="v$.form.invitationCode"
+        :value="v$.invitationCode"
         @input="form.invitationCode = $event"
       >
         <template #stateInfo>
@@ -35,13 +35,13 @@
         </template>
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.form.invitationCode"
+            :form-input="v$.invitationCode"
             validation-property="formatUuid"
           >
             {{ t('globalValidationFormat') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="v$.form.invitationCode"
+            :form-input="v$.invitationCode"
             validation-property="required"
           >
             {{ t('globalValidationRequired') }}
@@ -235,7 +235,7 @@ const v$ = useVuelidate(rules, form)
 // lifecycle
 onMounted(() => {
   if (route.query.ic) {
-    v$.value.form.invitationCode?.$touch()
+    v$.value.invitationCode?.$touch()
 
     if ('error' in route.query) {
       submit()

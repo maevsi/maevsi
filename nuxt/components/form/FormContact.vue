@@ -2,7 +2,7 @@
   <Form
     class="min-h-0 flex flex-col"
     :errors="api.errors"
-    :form="v$.form"
+    :form="v$"
     :is-form-sent="isFormSent"
     :submit-name="t('save')"
     @submit.prevent="submit"
@@ -13,11 +13,11 @@
       placeholder="id"
       title="id"
       type="number"
-      :value="v$.form.id"
+      :value="v$.id"
       @input="form.id = $event"
     />
     <FormInputUsername
-      :form-input="v$.form.accountUsername"
+      :form-input="v$.accountUsername"
       is-optional
       is-validatable
       @input="form.accountUsername = $event"
@@ -35,12 +35,12 @@
       :placeholder="t('globalPlaceholderFirstName')"
       :title="t('firstName')"
       type="text"
-      :value="v$.form.firstName"
+      :value="v$.firstName"
       @input="form.firstName = $event"
     >
       <template #stateError>
         <FormInputStateError
-          :form-input="v$.form.firstName"
+          :form-input="v$.firstName"
           validation-property="maxLength"
         >
           {{ t('globalValidationLength') }}
@@ -53,12 +53,12 @@
       :placeholder="t('globalPlaceholderLastName')"
       :title="t('lastName')"
       type="text"
-      :value="v$.form.lastName"
+      :value="v$.lastName"
       @input="form.lastName = $event"
     >
       <template #stateError>
         <FormInputStateError
-          :form-input="v$.form.lastName"
+          :form-input="v$.lastName"
           validation-property="maxLength"
         >
           {{ t('globalValidationLength') }}
@@ -66,7 +66,7 @@
       </template>
     </FormInput>
     <FormInputEmailAddress
-      :form-input="v$.form.emailAddress"
+      :form-input="v$.emailAddress"
       is-optional
       @input="form.emailAddress = $event"
     />
@@ -75,20 +75,20 @@
       is-optional
       :title="t('address')"
       type="textarea"
-      :value="v$.form.address"
+      :value="v$.address"
       @input="form.address = $event"
     >
       <textarea
-        v-if="v$.form.address"
+        v-if="v$.address"
         id="input-address"
-        v-model.trim="v$.form.address.$model"
+        v-model.trim="v$.address.$model"
         class="form-input"
         :placeholder="t('globalPlaceholderAddress')"
         rows="2"
       />
       <template #stateError>
         <FormInputStateError
-          :form-input="v$.form.address"
+          :form-input="v$.address"
           validation-property="maxLength"
         >
           {{ t('globalValidationLength') }}
@@ -96,15 +96,11 @@
       </template>
     </FormInput>
     <FormInputPhoneNumber
-      :form-input="v$.form.phoneNumber"
+      :form-input="v$.phoneNumber"
       is-optional
       @input="form.phoneNumber = $event"
     />
-    <FormInputUrl
-      :form-input="v$.form.url"
-      is-optional
-      @input="form.url = $event"
-    />
+    <FormInputUrl :form-input="v$.url" is-optional @input="form.url = $event" />
   </Form>
 </template>
 

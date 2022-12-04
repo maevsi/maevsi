@@ -2,9 +2,9 @@
   <div>
     <Form
       :errors="api.errors"
-      :form="v$.form"
+      :form="v$"
       :is-form-sent="isFormSent"
-      :submit-name="v$.form.id.$model ? t('eventUpdate') : t('eventCreate')"
+      :submit-name="v$.id.$model ? t('eventUpdate') : t('eventCreate')"
       @submit.prevent="submit"
     >
       <FormInput
@@ -13,7 +13,7 @@
         title="id"
         type="number"
         placeholder="id"
-        :value="v$.form.id"
+        :value="v$.id"
         @input="form.id = $event"
       />
       <FormInput
@@ -23,8 +23,8 @@
         :placeholder="t('namePlaceholder')"
         :title="t('name')"
         type="text"
-        :validation-property="v$.form.slug"
-        :value="v$.form.name"
+        :validation-property="v$.slug"
+        :value="v$.name"
         @input="onInputName($event)"
       >
         <template #stateWarning>
@@ -34,20 +34,20 @@
         </template>
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.form.slug"
+            :form-input="v$.slug"
             is-validation-live
             validation-property="existenceNone"
           >
-            {{ t('validationExistenceNone', { slug: v$.form.slug?.$model }) }}
+            {{ t('validationExistenceNone', { slug: v$.slug?.$model }) }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="v$.form.name"
+            :form-input="v$.name"
             validation-property="maxLength"
           >
             {{ t('globalValidationLength') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="v$.form.name"
+            :form-input="v$.name"
             validation-property="required"
           >
             {{ t('globalValidationRequired') }}
@@ -61,24 +61,24 @@
         :placeholder="t('slugPlaceholder')"
         :title="t('slug')"
         type="text"
-        :value="v$.form.slug"
+        :value="v$.slug"
         @input="form.slug = $event"
       >
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.form.slug"
+            :form-input="v$.slug"
             validation-property="formatSlug"
           >
             {{ t('globalValidationFormat') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="v$.form.slug"
+            :form-input="v$.slug"
             validation-property="maxLength"
           >
             {{ t('globalValidationLength') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="v$.form.slug"
+            :form-input="v$.slug"
             validation-property="required"
           >
             {{ t('globalValidationRequired') }}
@@ -86,17 +86,17 @@
         </template>
       </FormInput>
       <FormInput
-        v-if="v$.form.visibility"
+        v-if="v$.visibility"
         id-label="input-visibility"
         is-required
         :title="t('visibility')"
         type="radio"
-        :value="v$.form.visibility"
+        :value="v$.visibility"
         @input="form.visibility = $event as EventVisibility"
       >
         <FormRadioButtonGroup
           id="input-visibility"
-          v-model="v$.form.visibility.$model"
+          v-model="v$.visibility.$model"
           name="visibility"
           :titles-values="[
             [t('visibilityPublic'), 'PUBLIC'],
@@ -105,7 +105,7 @@
         />
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.form.visibility"
+            :form-input="v$.visibility"
             validation-property="required"
           >
             {{ t('globalValidationRequired') }}
@@ -113,22 +113,22 @@
         </template>
       </FormInput>
       <FormInput
-        v-if="v$.form.visibility.$model === 'PUBLIC'"
+        v-if="v$.visibility.$model === 'PUBLIC'"
         id-label="input-invitee-count-maximum"
         :title="t('maximumInviteeCount')"
         type="number"
-        :value="v$.form.inviteeCountMaximum"
+        :value="v$.inviteeCountMaximum"
         @input="form.inviteeCountMaximum = $event"
       >
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.form.inviteeCountMaximum"
+            :form-input="v$.inviteeCountMaximum"
             validation-property="maxValue"
           >
             {{ t('globalValidationMaxValue') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="v$.form.inviteeCountMaximum"
+            :form-input="v$.inviteeCountMaximum"
             validation-property="minValue"
           >
             {{ t('globalValidationMinValue') }}
@@ -142,7 +142,7 @@
         :placeholder="dateTimeFormatter(new Date().toISOString())"
         :title="t('start')"
         type="text"
-        :value="v$.form.start"
+        :value="v$.start"
         :value-formatter="dateTimeFormatter"
         :warning="isWarningStartPastShown"
         @click="store.modalAdd({ id: 'ModalDateTimeStart' })"
@@ -159,43 +159,43 @@
         :placeholder="dateTimeFormatter(new Date().toISOString())"
         :title="t('end')"
         type="text"
-        :value="v$.form.end"
+        :value="v$.end"
         :value-formatter="dateTimeFormatter"
         @click="store.modalAdd({ id: 'ModalDateTimeEnd' })"
-        @icon="v$.form.end.$model = undefined"
+        @icon="v$.end.$model = undefined"
       >
-        <template v-if="v$.form.end.$model" #icon>
+        <template v-if="v$.end.$model" #icon>
           <IconX />
         </template>
       </FormInput>
       <FormInput :title="t('attendanceType')" type="checkbox">
         <FormCheckbox
           form-key="is-in-person"
-          :value="v$.form.isInPerson.$model"
+          :value="v$.isInPerson.$model"
           @change="form.isInPerson = $event"
         >
           {{ t('isInPerson') }}
         </FormCheckbox>
         <FormCheckbox
           form-key="is-remote"
-          :value="v$.form.isRemote.$model"
+          :value="v$.isRemote.$model"
           @change="form.isRemote = $event"
         >
           {{ t('isRemote') }}
         </FormCheckbox>
       </FormInput>
       <FormInput
-        v-if="v$.form.isInPerson.$model"
+        v-if="v$.isInPerson.$model"
         id-label="input-location"
         :placeholder="t('globalPlaceholderAddress').replace('\n', ' ')"
         :title="t('location')"
         type="text"
-        :value="v$.form.location"
+        :value="v$.location"
         @input="form.location = $event"
       >
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.form.location"
+            :form-input="v$.location"
             validation-property="maxLength"
           >
             {{ t('globalValidationLength') }}
@@ -208,22 +208,22 @@
         </template>
       </FormInput>
       <FormInputUrl
-        v-if="v$.form.isRemote.$model"
-        :form-input="v$.form.url"
+        v-if="v$.isRemote.$model"
+        :form-input="v$.url"
         @input="form.url = $event"
       />
       <FormInput
         :title="t('description')"
         type="tiptap"
-        :value="v$.form.description"
+        :value="v$.description"
         @input="form.description = $event"
       >
-        <client-only v-if="v$.form.description">
-          <TipTap v-model.trim="v$.form.description.$model" />
+        <client-only v-if="v$.description">
+          <TipTap v-model.trim="v$.description.$model" />
         </client-only>
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.form.description"
+            :form-input="v$.description"
             validation-property="maxLength"
           >
             {{ t('globalValidationLength') }}
@@ -235,12 +235,12 @@
       <client-only>
         <div class="flex justify-center">
           <v-date-picker
-            v-model="v$.form.start.$model"
+            v-model="v$.start.$model"
             :is24hr="$i18n.locale !== 'en'"
             is-dark
             :locale="$i18n.locale"
             :masks="{ input: 'YYYY-MM-DD h:mm A' }"
-            :max-date="v$.form.end.$model"
+            :max-date="v$.end.$model"
             :minute-increment="5"
             mode="dateTime"
           />
@@ -251,12 +251,12 @@
       <client-only>
         <div class="flex justify-center">
           <v-date-picker
-            v-model="v$.form.end.$model"
+            v-model="v$.end.$model"
             :is24hr="$i18n.locale !== 'en'"
             is-dark
             :locale="$i18n.locale"
             :masks="{ input: 'YYYY-MM-DD h:mm A' }"
-            :min-date="v$.form.start.$model"
+            :min-date="v$.start.$model"
             :minute-increment="5"
             mode="dateTime"
           />
@@ -349,7 +349,7 @@ function dateTimeFormatter(x?: string) {
     : undefined
 }
 function onInputName($event: any) {
-  v$.value.form.name.$model = $event
+  v$.value.name.$model = $event
   updateSlug()
 }
 async function submit() {

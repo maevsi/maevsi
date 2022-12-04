@@ -6,20 +6,20 @@
       postgres22023: t('postgres22023'),
       postgres28P01: t('postgres28P01'),
     }"
-    :form="v$.form"
+    :form="v$"
     :is-form-sent="isFormSent"
     :submit-name="t('passwordChange')"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="passwordCurrent"
-      :form-input="v$.form.passwordCurrent"
+      :form-input="v$.passwordCurrent"
       :title="t('passwordCurrent')"
       @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
-      :form-input="v$.form.passwordNew"
+      :form-input="v$.passwordNew"
       :title="t('passwordNew')"
       @input="form.passwordNew = $event"
     />
