@@ -103,7 +103,7 @@ specifiers:
   v-calendar: 3.0.0-alpha.8
   vue: 3.2.45
   vue-advanced-cropper: 2.8.6
-  vue-chartjs: 5.0.0
+  vue-chartjs: 5.0.1
   vue-qrcode-reader: 3.1.0-vue3-compatibility.5
   vue-tsc: 1.0.11
 
@@ -203,14 +203,14 @@ devDependencies:
   stylelint-config-standard: 29.0.0_stylelint@14.16.0
   stylelint-no-unsupported-browser-features: 6.0.1_stylelint@14.16.0
   sweetalert2: 11.6.15
-  tailwindcss: 3.2.4_ts-node@10.9.1
+  tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
   ts-jest: 29.0.3_mqui6n3vnz5mervhfdywillmx4
   ts-node: 10.9.1_zhirybrk4zoofuxp64necizyzy
   typescript: 4.9.3
   v-calendar: 3.0.0-alpha.8_vue@3.2.45
   vue: 3.2.45
   vue-advanced-cropper: 2.8.6_vue@3.2.45
-  vue-chartjs: 5.0.0_chart.js@4.0.1+vue@3.2.45
+  vue-chartjs: 5.0.1_chart.js@4.0.1+vue@3.2.45
   vue-qrcode-reader: 3.1.0-vue3-compatibility.5
   vue-tsc: 1.0.11_typescript@4.9.3
 
@@ -2356,7 +2356,7 @@ packages:
       postcss-import-resolver: 2.0.0
       scule: 1.0.0
       std-env: 3.3.1
-      ufo: 1.0.0
+      ufo: 1.0.1
       unimport: 1.0.1_rollup@2.79.1
       untyped: 1.0.0
     transitivePeerDependencies:
@@ -2430,7 +2430,7 @@ packages:
       postcss-url: 10.1.3_postcss@8.4.19
       rollup: 2.79.1
       rollup-plugin-visualizer: 5.8.3_rollup@2.79.1
-      ufo: 1.0.0
+      ufo: 1.0.1
       unplugin: 1.0.0
       vite: 3.2.4_@types+node@18.11.11
       vite-node: 0.25.2_@types+node@18.11.11
@@ -2814,7 +2814,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.4_ts-node@10.9.1
+      tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
     dev: true
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.4:
@@ -2822,7 +2822,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.2.4_ts-node@10.9.1
+      tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
     dev: true
 
   /@tailwindcss/typography/0.5.8_tailwindcss@3.2.4:
@@ -2834,7 +2834,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4_ts-node@10.9.1
+      tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
     dev: true
 
   /@tiptap/core/2.0.0-beta.204:
@@ -2846,21 +2846,6 @@ packages:
       prosemirror-schema-list: 1.2.2
       prosemirror-state: 1.4.2
       prosemirror-transform: 1.7.0
-      prosemirror-view: 1.29.1
-    dev: true
-
-  /@tiptap/core/2.0.0-beta.205_hkkro6tpifoyulhpkhwykmcf4a:
-    resolution: {integrity: sha512-uGV+U5UfKkhu3sidyG2LC2IzqeU1MfkuHxv3NF1PvvFDX6cSNbOy8ZBxXHfIqUMsloqzMv9mXrrqiPUB3jQisg==}
-    peerDependencies:
-      prosemirror-commands: ^1.3.1
-      prosemirror-keymap: ^1.2.0
-      prosemirror-model: ^1.18.1
-      prosemirror-schema-list: ^1.2.2
-      prosemirror-state: ^1.4.1
-      prosemirror-transform: ^1.7.0
-      prosemirror-view: ^1.28.2
-    dependencies:
-      prosemirror-state: 1.4.2
       prosemirror-view: 1.29.1
     dev: true
 
@@ -2880,20 +2865,16 @@ packages:
       '@tiptap/core': 2.0.0-beta.204
     dev: true
 
-  /@tiptap/extension-bubble-menu/2.0.0-beta.205:
+  /@tiptap/extension-bubble-menu/2.0.0-beta.205_bv566pzu4gfcw3675d5jwhi56i:
     resolution: {integrity: sha512-XqHo698TioWBBomk6l7gfWZ8bj7Oj+UHYSgmuvTAZLAEjOvDQcykjqS2ks9CN0M+f8Hd+IhnSXMvbLciKQIp4g==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.205_hkkro6tpifoyulhpkhwykmcf4a
+      '@tiptap/core': 2.0.0-beta.204
       lodash: 4.17.21
       prosemirror-state: 1.4.2
       prosemirror-view: 1.29.1
       tippy.js: 6.3.7
-    transitivePeerDependencies:
-      - prosemirror-commands
-      - prosemirror-keymap
-      - prosemirror-model
-      - prosemirror-schema-list
-      - prosemirror-transform
     dev: true
 
   /@tiptap/extension-bullet-list/2.0.0-beta.204_bv566pzu4gfcw3675d5jwhi56i:
@@ -3084,15 +3065,9 @@ packages:
       vue: ^3.0.0
     dependencies:
       '@tiptap/core': 2.0.0-beta.204
-      '@tiptap/extension-bubble-menu': 2.0.0-beta.205
+      '@tiptap/extension-bubble-menu': 2.0.0-beta.205_bv566pzu4gfcw3675d5jwhi56i
       '@tiptap/extension-floating-menu': 2.0.0-beta.205_bv566pzu4gfcw3675d5jwhi56i
       vue: 3.2.45
-    transitivePeerDependencies:
-      - prosemirror-commands
-      - prosemirror-keymap
-      - prosemirror-model
-      - prosemirror-schema-list
-      - prosemirror-transform
     dev: true
 
   /@tootallnate/once/2.0.0:
@@ -6710,7 +6685,7 @@ packages:
       enhanced-resolve: 5.10.0
       mlly: 1.0.0
       pathe: 1.0.0
-      ufo: 1.0.0
+      ufo: 1.0.1
     dev: true
 
   /extract-files/11.0.0:
@@ -8944,7 +8919,7 @@ packages:
       http-shutdown: 1.2.2
       ip-regex: 5.0.0
       node-forge: 1.3.1
-      ufo: 1.0.0
+      ufo: 1.0.1
     dev: true
 
   /listr2/3.14.0_enquirer@2.3.6:
@@ -9498,7 +9473,7 @@ packages:
       acorn: 8.8.1
       pathe: 1.0.0
       pkg-types: 1.0.1
-      ufo: 1.0.0
+      ufo: 1.0.1
     dev: true
 
   /mri/1.2.0:
@@ -9625,7 +9600,7 @@ packages:
       serve-static: 1.15.0
       source-map-support: 0.5.21
       std-env: 3.3.1
-      ufo: 1.0.0
+      ufo: 1.0.1
       unenv: 1.0.0
       unimport: 1.0.1_rollup@2.79.1
       unstorage: 1.0.1
@@ -9901,7 +9876,7 @@ packages:
     dependencies:
       destr: 1.2.1
       node-fetch-native: 1.0.1
-      ufo: 1.0.0
+      ufo: 1.0.1
     dev: true
 
   /ohash/1.0.0:
@@ -12106,10 +12081,12 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss/3.2.4_ts-node@10.9.1:
+  /tailwindcss/3.2.4_v776zzvn44o7tpgzieipaairwm:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -12681,7 +12658,7 @@ packages:
       mkdir: 0.0.2
       mri: 1.2.0
       ofetch: 1.0.0
-      ufo: 1.0.0
+      ufo: 1.0.1
       ws: 8.11.0
     transitivePeerDependencies:
       - bufferutil
@@ -12958,11 +12935,11 @@ packages:
   /vue-bundle-renderer/1.0.0:
     resolution: {integrity: sha512-43vCqTgaMXfHhtR8/VcxxWD1DgtzyvNc4wNyG5NKCIH19O1z5G9ZCRXTGEA2wifVec5PU82CkRLD2sTK9NkTdA==}
     dependencies:
-      ufo: 1.0.0
+      ufo: 1.0.1
     dev: true
 
-  /vue-chartjs/5.0.0_chart.js@4.0.1+vue@3.2.45:
-    resolution: {integrity: sha512-exA46UJOVMGz8Pvjs1iG+sz0sdAKhUqIGCfEQN82XJLYMg64gnk1OeknCrcIKMwP5c2Kw0Wurd5ch6bwDqb2/A==}
+  /vue-chartjs/5.0.1_chart.js@4.0.1+vue@3.2.45:
+    resolution: {integrity: sha512-+0IfwyZ1U+oKU0CJmqgEMieov5K+c5AuZ7boJeDnhCC/qmtKTLId1jL7BID5poCaC38DOUbJu77vsA091aYeRw==}
     peerDependencies:
       chart.js: ^4.0.0
       vue: ^3.0.0-0 || ^2.6.0
