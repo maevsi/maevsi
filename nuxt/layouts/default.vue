@@ -79,22 +79,12 @@
         </AppLink>
       </LayoutFooterCategory>
       <LayoutFooterCategory :heading="t('colorScheme')">
-        <Button
-          v-for="colorScheme in [
-            { name: 'System', title: t('colorSchemeSystem') },
-            { name: 'Light', title: t('colorSchemeLight') },
-            { name: 'Dark', title: t('colorSchemeDark') },
-          ]"
-          :key="colorScheme.name"
-          :aria-label="colorScheme.title"
-          :class="{
-            disabled: colorMode.preference === colorScheme.name.toLowerCase(),
-          }"
-          is-link-colored
-          @click="colorMode.preference = colorScheme.name.toLowerCase()"
-        >
-          {{ colorScheme.title }}
-        </Button>
+        <ClientOnly>
+          <ButtonColorScheme />
+          <template #fallback>
+            <ButtonColorScheme is-fallback />
+          </template>
+        </ClientOnly>
       </LayoutFooterCategory>
     </LayoutFooter>
     <div
@@ -125,7 +115,6 @@
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
 const { $moment } = useNuxtApp()
-const colorMode = useColorMode()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const { locale, availableLocales, t } = useI18n()
@@ -211,9 +200,6 @@ html.light #logo {
 <i18n lang="yaml">
 de:
   colorScheme: Farbschema
-  colorSchemeDark: Dunkel
-  colorSchemeLight: Hell
-  colorSchemeSystem: System
   contact: Kontakt & Feedback
   features: Funktionen
   githubLinkTitle: maevsi auf GitHub
@@ -230,9 +216,6 @@ de:
   # team: Team
 en:
   colorScheme: Color scheme
-  colorSchemeDark: Dark
-  colorSchemeLight: Light
-  colorSchemeSystem: System
   contact: Contact & feedback
   features: Features
   githubLinkTitle: maevsi on GitHub
