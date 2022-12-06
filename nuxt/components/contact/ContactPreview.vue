@@ -3,19 +3,18 @@
     <div class="relative">
       <AccountProfilePicture
         v-if="contact.accountUsername"
-        classes="max-w-none"
+        classes="rounded-full h-12 w-12"
         height="48"
-        rounded
         :username="contact.accountUsername"
         width="48"
       />
       <ContactAvatar
         v-else
-        class="max-w-none"
+        classes="rounded-full h-12 w-12"
         :email-address="contact.emailAddress"
         :email-address-hash="contact.emailAddressHash"
-        rounded
-        size="48"
+        height="48"
+        width="48"
       />
       <InvitationFeedbackIcon
         v-if="feedback"

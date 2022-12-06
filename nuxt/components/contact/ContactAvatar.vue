@@ -2,10 +2,10 @@
   <LoaderImage
     :alt="t('profilePictureAlt', { emailAddress })"
     :aspect="aspect"
-    :class="classComputed"
-    :height="size"
+    :classes="classes"
+    :height="height"
     :src="imageSrc"
-    :width="size"
+    :width="width"
   />
 </template>
 
@@ -17,23 +17,19 @@ export interface Props {
   classes?: string
   emailAddress?: string | null
   emailAddressHash?: string | null
-  rounded?: boolean
-  size: string
+  height: string
+  width: string
 }
 const props = withDefaults(defineProps<Props>(), {
   aspect: 'aspect-square',
   classes: undefined,
   emailAddress: undefined,
   emailAddressHash: undefined,
-  rounded: undefined,
 })
 
 const { t } = useI18n()
 
 // computations
-const classComputed = computed(() => {
-  return [props.classes, ...(props.rounded ? ['rounded-full'] : [])].join(' ')
-})
 const imageSrc = computed(() => {
   if (props.emailAddress && props.emailAddressHash) {
     return `https://www.gravatar.com/avatar/${props.emailAddressHash}?d=mp&s=${props.size}`

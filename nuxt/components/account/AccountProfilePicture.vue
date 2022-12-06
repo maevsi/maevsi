@@ -3,7 +3,7 @@
     <LoaderImage
       :alt="t('profilePictureAlt', { username })"
       :aspect="aspect"
-      :class="classComputed"
+      :classes="classes"
       :height="height"
       :src="profilePictureUrl || blankProfilePicture"
       :width="width"
@@ -21,14 +21,12 @@ export interface Props {
   aspect?: string
   classes?: string
   height: string
-  rounded?: boolean
   username: string
   width: string
 }
 const props = withDefaults(defineProps<Props>(), {
   aspect: 'aspect-square',
   classes: undefined,
-  rounded: undefined,
 })
 
 const { t } = useI18n()
@@ -52,9 +50,6 @@ const api = computed(() =>
 )
 
 // computations
-const classComputed = computed(() => {
-  return [props.classes, ...(props.rounded ? ['rounded-full'] : [])].join(' ')
-})
 const profilePicture = computed(
   () => profilePictureQuery.data.value?.profilePictureByUsername
 )

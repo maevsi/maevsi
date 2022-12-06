@@ -58,14 +58,12 @@
         <ButtonIcon
           v-if="signedInUsername"
           :aria-label="signedInUsername"
-          class="flex-none"
           :title="t('profileLink')"
           :to="localePath(`/account/${signedInUsername}`)"
         >
           <AccountProfilePicture
-            classes="h-10 w-10"
+            classes="h-10 rounded-full w-10"
             height="40"
-            rounded
             :username="signedInUsername"
             width="40"
           />

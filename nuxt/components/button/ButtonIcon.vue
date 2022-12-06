@@ -1,7 +1,7 @@
 <template>
   <Button
     :aria-label="ariaLabel"
-    class="flex justify-center"
+    class="justify-center"
     :disabled="disabled"
     :title="ariaLabel"
     :to="to"

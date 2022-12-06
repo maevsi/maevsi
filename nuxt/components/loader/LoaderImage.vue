@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <LoaderIndicatorPing v-if="isLoading" :class="aspect" />
+  <div :class="[aspect, classes]">
+    <LoaderIndicatorPing v-if="isLoading" />
     <CardStateAlert v-if="isError">
       {{ t('error') }}
     </CardStateAlert>
     <img
       v-if="srcWhenLoaded"
       :alt="alt"
-      :class="[aspect, { 'rounded-full': rounded }]"
+      :class="[aspect, classes]"
       :height="height"
       :src="srcWhenLoaded"
       :width="width"
@@ -19,13 +19,13 @@
 export interface Props {
   alt: string
   aspect: string
+  classes?: string
   height: string
-  rounded?: boolean
   src: string
   width: string
 }
 const props = withDefaults(defineProps<Props>(), {
-  rounded: undefined,
+  classes: undefined,
 })
 
 const { t } = useI18n()
