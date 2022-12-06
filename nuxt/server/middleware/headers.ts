@@ -15,6 +15,7 @@ function getCsp(host: string): Record<string, Array<string>> {
       "'self'",
       'blob:', // vue-advanced-cropper
       `https://postgraphile.${getDomainTldPort(stagingHostOrHost)}`,
+      `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
       'https://www.google-analytics.com',
     ],
     'default-src': ["'none'"],
@@ -50,7 +51,6 @@ function getCsp(host: string): Record<string, Array<string>> {
     'connect-src': [
       `http://${hostName}:24678/_nuxt/`,
       `https://${hostName}:24678/_nuxt/`,
-      'https://tusd.maev.si/', // TODO: move to staging (https://github.com/maevsi/maevsi/issues/771)
       `ws://${hostName}:24678/_nuxt/`,
       `wss://${hostName}:24678/_nuxt/`,
     ],
