@@ -6,7 +6,97 @@
         <slot />
       </main>
     </div>
-    <LayoutFooter />
+    <LayoutFooter>
+      <LayoutFooterCategory :heading="t('product')">
+        <AppLink :to="localePath('/#overview')">
+          {{ t('overview') }}
+        </AppLink>
+        <AppLink :to="localePath('/#features')">
+          {{ t('features') }}
+        </AppLink>
+        <!--<AppLink :to="localePath('/#pricing')">
+            {{ t('pricing') }}
+          </AppLink>-->
+        <!-- <AppLink :to="localePath('/about/team')">
+            {{ t('team') }}
+          </AppLink> -->
+        <!-- <AppLink :to="localePath('/about/awards')">
+            {{ t('awards') }}
+          </AppLink> -->
+      </LayoutFooterCategory>
+      <LayoutFooterCategory :heading="t('legal')">
+        <AppLink :to="localePath('/legal-notice')">
+          {{ t('legalNotice') }}
+        </AppLink>
+        <AppLink :to="localePath('/privacy-policy')">
+          {{ t('privacyPolicy') }}
+        </AppLink>
+        <!-- <AppLink :to="localePath('/code-of-conduct')">
+            {{ t('codeOfConduct') }}
+          </AppLink> -->
+      </LayoutFooterCategory>
+      <!-- <LayoutFooterCategory :heading="t('support')">
+          <AppLink :to="localePath('/support/tutorials')">
+            {{ t('tutorials') }}
+          </AppLink>
+          <AppLink :to="localePath('/support/contact')">
+            {{ t('contact') }}
+          </AppLink>
+          <AppLink :to="localePath('/support/docs')">
+            {{ t('documentation') }}
+          </AppLink>
+        </LayoutFooterCategory> -->
+      <LayoutFooterCategory :heading="t('quickLinks')">
+        <AppLink
+          :title="t('releases')"
+          to="https://github.com/maevsi/maevsi/releases"
+        >
+          {{ t('releases') }}
+        </AppLink>
+        <AppLink :title="t('githubLinkTitle')" to="https://github.com/maevsi/">
+          {{ t('sourceCode') }}
+        </AppLink>
+        <AppLink to="mailto:mail+support@maev.si">
+          {{ t('contact') }}
+        </AppLink>
+      </LayoutFooterCategory>
+      <LayoutFooterCategory :heading="t('languages')">
+        <AppLink
+          v-for="availableLocale in availableLocales"
+          :key="availableLocale"
+          :data-testid="`i18n-${availableLocale}`"
+          :to="switchLocalePath(availableLocale)"
+        >
+          <div class="flex gap-2 items-center">
+            <component
+              :is="getLocaleFlag(availableLocale)"
+              :class="{ disabled: availableLocale === locale }"
+            />
+            <span :class="{ disabled: availableLocale === locale }">
+              {{ getLocaleName(availableLocale) }}
+            </span>
+          </div>
+        </AppLink>
+      </LayoutFooterCategory>
+      <LayoutFooterCategory :heading="t('colorScheme')">
+        <Button
+          v-for="colorScheme in [
+            { name: 'System', title: t('colorSchemeSystem') },
+            { name: 'Light', title: t('colorSchemeLight') },
+            { name: 'Dark', title: t('colorSchemeDark') },
+          ]"
+          :key="colorScheme.name"
+          :aria-label="colorScheme.title"
+          :class="{
+            disabled: colorMode.preference === colorScheme.name.toLowerCase(),
+          }"
+          is-link-colored
+          @click="colorMode.preference = colorScheme.name.toLowerCase()"
+        >
+          {{ colorScheme.title }}
+        </Button>
+      </LayoutFooterCategory>
+    </LayoutFooter>
     <div
       class="fixed bottom-0 left-0 right-0 top-0 z-10 transition duration-500 lg:hidden"
       :class="[
@@ -32,8 +122,14 @@
 </template>
 
 <script setup lang="ts">
+import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
+
 const { $moment } = useNuxtApp()
-const { locale } = useI18n()
+const colorMode = useColorMode()
+const localePath = useLocalePath()
+const switchLocalePath = useSwitchLocalePath()
+const { locale, availableLocales, t } = useI18n()
+
 const loadingId = Math.random()
 const loadingIds = useState('loadingIds', () => [loadingId])
 
@@ -42,6 +138,33 @@ const isMenuVisible = ref(false)
 const isMenuVisiblePartly = ref(false)
 
 // methods
+function getLocaleName(locale: string) {
+  const locales: LocaleObject[] = LOCALES.filter(
+    (localeObject) => localeObject.code === locale
+  )
+
+  if (locales.length) {
+    return locales[0].name
+  } else {
+    return undefined
+  }
+}
+function getLocaleFlag(locale: string) {
+  const map: { [index: string]: any } = {
+    en: resolveComponent('IconFlagUnitedKingdom'),
+    de: resolveComponent('IconFlagGerman'),
+  }
+
+  const locales: LocaleObject[] = LOCALES.filter(
+    (localeObject) => localeObject.code === locale
+  )
+
+  if (locales.length) {
+    return map[locales[0].code]
+  } else {
+    return undefined
+  }
+}
 function menuHide(): void {
   isMenuVisible.value = false
   setTimeout(() => {
@@ -84,3 +207,44 @@ html.light #logo {
   background-image: url('/assets/static/logos/maevsi_with-text_black.svg');
 }
 </style>
+
+<i18n lang="yaml">
+de:
+  colorScheme: Farbschema
+  colorSchemeDark: Dunkel
+  colorSchemeLight: Hell
+  colorSchemeSystem: System
+  contact: Kontakt & Feedback
+  features: Funktionen
+  githubLinkTitle: maevsi auf GitHub
+  languages: Sprachen
+  legal: Rechtliches
+  legalNotice: Impressum
+  overview: Überblick
+  # pricing: Preise
+  privacyPolicy: Datenschutz
+  product: Produkt
+  quickLinks: Quick Links
+  releases: Updates
+  sourceCode: Quellcode
+  # team: Team
+en:
+  colorScheme: Color scheme
+  colorSchemeDark: Dark
+  colorSchemeLight: Light
+  colorSchemeSystem: System
+  contact: Contact & feedback
+  features: Features
+  githubLinkTitle: maevsi on GitHub
+  languages: Languages
+  legal: Legal
+  legalNotice: Legal notice
+  overview: Overview
+  # pricing: Pricing
+  privacyPolicy: Privacy
+  product: Product
+  quickLinks: Quick Links
+  releases: Releases
+  sourceCode: Source code
+  # team: Team
+</i18n>
