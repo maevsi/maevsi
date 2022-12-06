@@ -1,12 +1,12 @@
 <template>
   <Loader :api="api">
-    <ul v-if="events?.length" class="flex flex-col gap-4">
+    <div v-if="events?.length" class="flex flex-col gap-4">
       <div v-if="isButtonEventListShown" class="px-1">
         <ButtonEventList />
       </div>
-      <div class="flex flex-col gap-4 p-1">
+      <ul class="flex flex-col gap-4 p-1">
         <EventListItem v-for="event in events" :key="event.id" :event="event" />
-      </div>
+      </ul>
       <div
         v-if="api.data.allEvents?.pageInfo.hasNextPage"
         class="flex justify-center"
@@ -18,7 +18,7 @@
           {{ t('globalShowMore') }}
         </ButtonColored>
       </div>
-    </ul>
+    </div>
     <p v-else class="text-center">{{ t('noEvents') }}</p>
   </Loader>
 </template>
