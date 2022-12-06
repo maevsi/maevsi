@@ -11,6 +11,7 @@
       :submit-name="t('submit')"
       @submit.prevent="submit"
     >
+      <!-- TODO: move id-label suffix to FormInput (https://github.com/maevsi/maevsi/issues/955) -->
       <!-- The id's suffix `-maevsi` makes browser suggest inputs just for this service. -->
       <FormInput
         :id-label="`input-invitation-code-maevsi-${
