@@ -53,6 +53,17 @@ const api = computed(() =>
 // data
 const title = t('title')
 
+// lifecycle
+// TODO: watch all api errors like this (https://github.com/maevsi/maevsi/issues/961)
+watch(
+  () => api.value.errors,
+  (currentValue, oldValue) => {
+    currentValue
+      .filter((c) => !oldValue.includes(c))
+      .forEach((c) => consola.error(c))
+  }
+)
+
 // initialization
 useHeadDefault(title)
 accountEmailAddressVerificationMutation
@@ -60,10 +71,7 @@ accountEmailAddressVerificationMutation
     code: route.query.code,
   })
   .then((result) => {
-    if (result.error) {
-      api.value.errors.push(result.error)
-      consola.error(result.error)
-    } else {
+    if (!result.error) {
       Swal.fire({
         icon: 'success',
         text: t('verifiedBody') as string,
