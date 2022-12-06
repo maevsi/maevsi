@@ -3,9 +3,9 @@
     :alt="t('profilePictureAlt', { emailAddress })"
     :aspect="aspect"
     :classes="classes"
-    :height="height"
+    :height="size"
     :src="imageSrc"
-    :width="width"
+    :width="size"
   />
 </template>
 
@@ -17,8 +17,7 @@ export interface Props {
   classes?: string
   emailAddress?: string | null
   emailAddressHash?: string | null
-  height: string
-  width: string
+  size: string
 }
 const props = withDefaults(defineProps<Props>(), {
   aspect: 'aspect-square',

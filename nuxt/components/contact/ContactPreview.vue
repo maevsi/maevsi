@@ -13,8 +13,7 @@
         classes="rounded-full h-12 w-12"
         :email-address="contact.emailAddress"
         :email-address-hash="contact.emailAddressHash"
-        height="48"
-        width="48"
+        size="48"
       />
       <InvitationFeedbackIcon
         v-if="feedback"
