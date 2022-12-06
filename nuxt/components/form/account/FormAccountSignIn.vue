@@ -38,8 +38,11 @@
       </div>
       <template
         v-if="
-          api.errors.filter((e) =>
-            'errcode' in e ? e.errcode === '55000' : false
+          api.errors.filter(
+            (e) =>
+              e.graphQLErrors.filter(
+                (g) => g.originalError?.errcode === '55000'
+              ).length
           ).length
         "
         #assistance

@@ -2,12 +2,15 @@ import { IncomingMessage } from 'node:http'
 
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
+import { GraphQLError } from 'graphql'
 import { ComputedRef, Ref } from 'vue'
 import { LocationQueryValue } from 'vue-router'
 
 import { REGEX_UUID } from './constants'
 
-export type BackendError = CombinedError | { errcode: string; message: string }
+export type BackendError = {
+  graphQLErrors: (GraphQLError & { originalError?: { errcode?: string } })[]
+} & CombinedError
 
 export type ApiData = ComputedRef<{
   data?: Object
@@ -118,24 +121,26 @@ export function getCombinedErrorMessages(
 ) {
   const errorMessages: string[] = []
 
-  for (const error of errors) {
-    if ('errcode' in error) {
-      const translation = pgIds && pgIds[`postgres${error.errcode}`]
+  for (const combinedError of errors) {
+    // const combinedError = error
 
-      if (translation) {
-        errorMessages.push(translation)
-      } else {
-        errorMessages.push(error.message)
-      }
-    } else {
-      const combinedError = error
+    if (combinedError.networkError) {
+      errorMessages.push(combinedError.message)
+    }
 
-      if (combinedError.networkError) {
-        errorMessages.push(combinedError.message)
-      }
+    for (const graphqlError of combinedError.graphQLErrors) {
+      if (
+        graphqlError.originalError &&
+        'errcode' in graphqlError.originalError
+      ) {
+        const translation =
+          pgIds && pgIds[`postgres${graphqlError.originalError.errcode}`]
 
-      for (const graphqlError of combinedError.graphQLErrors) {
-        errorMessages.push(graphqlError.message)
+        if (translation) {
+          errorMessages.push(translation)
+        } else {
+          errorMessages.push(graphqlError.message)
+        }
       }
     }
   }
