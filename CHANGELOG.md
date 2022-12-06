@@ -1,3 +1,11 @@
+# [1.0.0-beta.8](https://github.com/maevsi/maevsi/compare/1.0.0-beta.7...1.0.0-beta.8) (2022-12-06)
+
+
+### Bug Fixes
+
+* **loader:** correct size ([7b70cf1](https://github.com/maevsi/maevsi/commit/7b70cf17819113345345a99b13e5e04c3a3ff83f))
+* **urql:** correct error typing ([b1cdc67](https://github.com/maevsi/maevsi/commit/b1cdc679b989e639db71d7e7c79037f673e89e2f))
+
 # [1.0.0-beta.7](https://github.com/maevsi/maevsi/compare/1.0.0-beta.6...1.0.0-beta.7) (2022-12-04)
 
 
