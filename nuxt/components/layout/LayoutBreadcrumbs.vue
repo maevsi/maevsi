@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-4 flex items-center gap-2 overflow-auto p-1">
+  <div class="mb-4 flex items-center gap-2 overflow-auto">
     <AppLink
       :aria-label="t('home')"
       data-testid="breadcrumb-prefix-/"

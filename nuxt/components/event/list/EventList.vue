@@ -4,7 +4,7 @@
       <div v-if="isButtonEventListShown" class="px-1">
         <ButtonEventList />
       </div>
-      <ul class="flex flex-col gap-4 p-1">
+      <ul class="flex flex-col gap-2">
         <EventListItem v-for="event in events" :key="event.id" :event="event" />
       </ul>
       <div

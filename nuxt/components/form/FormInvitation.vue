@@ -56,7 +56,7 @@
     </FormInput>
     <ScrollContainer
       v-if="contacts"
-      class="flex flex-col gap-2 p-1"
+      class="flex flex-col"
       :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
       @load-more="after = api.data.allContacts?.pageInfo.endCursor"
     >
