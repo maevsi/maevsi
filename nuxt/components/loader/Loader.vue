@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="api.isFetching" class="aspect-square" :class="classes">
+    <div v-if="api.isFetching" :class="classes">
       <LoaderIndicatorPing v-if="indicator === 'ping'" />
       <LoaderIndicatorSpinner v-else-if="indicator === 'spinner'" />
       <LoaderIndicatorText v-else-if="indicator === 'text'" />
