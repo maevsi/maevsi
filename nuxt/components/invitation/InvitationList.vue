@@ -178,8 +178,8 @@
           <Doughnut
             v-if="!isTesting"
             ref="doughnutRef"
-            :chart-data="dataComputed"
-            :chart-options="options"
+            :data="dataComputed"
+            :options="options"
           />
         </div>
       </div>
@@ -212,7 +212,7 @@ import {
 } from 'chart.js'
 import consola from 'consola'
 import Swal from 'sweetalert2'
-import { Doughnut } from 'vue-chartjs/dist/index' // TODO: wait for vue-chartjs support chartjs v4 (https://github.com/apertureless/vue-chartjs/pull/934)
+import { Doughnut } from 'vue-chartjs'
 
 import {
   Event,
