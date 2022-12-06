@@ -195,7 +195,14 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 })
 
 declare module '#app' {
-  interface NuxtAppCompat {
+  interface NuxtApp {
+    $urql: Ref<Client>
+    urqlReset: () => undefined
+  }
+}
+
+declare module 'nuxt/dist/app/nuxt' {
+  interface NuxtApp {
     $urql: Ref<Client>
     urqlReset: () => undefined
   }

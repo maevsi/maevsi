@@ -53,13 +53,14 @@
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
+import { AccountIsExistingQuery } from '~/gql/generated'
 
 definePageMeta({
   async validate(route) {
     const { $urql } = useNuxtApp()
 
     const accountIsExisting = await $urql.value
-      .query(ACCOUNT_IS_EXISTING_QUERY, {
+      .query<AccountIsExistingQuery>(ACCOUNT_IS_EXISTING_QUERY, {
         username: route.params.username as string,
       })
       .toPromise()
