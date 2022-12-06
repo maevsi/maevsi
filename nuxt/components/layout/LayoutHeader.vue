@@ -9,7 +9,7 @@
         <IconMenu classes="h-8 w-8" />
       </ButtonIcon>
       <Button :aria-label="t('home')" :to="localePath('/')">
-        <div id="logo" class="h-10 w-32" />
+        <IconLogoWithText class="h-10 w-32" />
       </Button>
       <div class="hidden lg:block flex-grow" />
       <div class="hidden lg:flex flex-nowrap">

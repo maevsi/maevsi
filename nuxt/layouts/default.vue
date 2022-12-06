@@ -182,21 +182,6 @@ export default {
 }
 </script>
 
-<style>
-#logo {
-  background-image: url('/assets/static/logos/maevsi.svg');
-  background-repeat: no-repeat;
-}
-
-html.dark #logo {
-  background-image: url('/assets/static/logos/maevsi_with-text_white.svg');
-}
-
-html.light #logo {
-  background-image: url('/assets/static/logos/maevsi_with-text_black.svg');
-}
-</style>
-
 <i18n lang="yaml">
 de:
   colorScheme: Farbschema
