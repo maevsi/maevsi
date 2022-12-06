@@ -4,7 +4,6 @@ import { Client } from '@urql/vue'
 import consola from 'consola'
 import { parse, serialize } from 'cookie'
 import { decodeJwt } from 'jose'
-import { Store } from 'pinia'
 
 import { JWT_NAME } from './constants'
 import { xhrPromise } from './util'
@@ -20,7 +19,7 @@ export async function authenticationAnonymous({
 }: {
   client: Client
   $urqlReset: () => void
-  store: Store
+  store: ReturnType<typeof useMaevsiStore>
   res: ServerResponse
 }) {
   consola.trace('Authenticating anonymously...')
@@ -80,7 +79,7 @@ export async function jwtRefresh({
 }: {
   client: Client
   $urqlReset: () => void
-  store: Store
+  store: ReturnType<typeof useMaevsiStore>
   res: ServerResponse
   id: string
 }) {
@@ -105,14 +104,14 @@ export async function jwtStore({
   jwt,
 }: {
   $urqlReset: () => void
-  store: Store
+  store: ReturnType<typeof useMaevsiStore>
   res?: ServerResponse
   jwt?: string
 }) {
   $urqlReset()
 
   consola.trace('Storing the following JWT: ' + jwt)
-  ;(store as unknown as { jwtSet: (jwtNew?: string) => void }).jwtSet(jwt)
+  store.jwtSet(jwt)
 
   if (process.server) {
     res?.setHeader(
@@ -157,7 +156,7 @@ export async function signOut({
   res,
 }: {
   $urqlReset: () => void
-  store: Store
+  store: ReturnType<typeof useMaevsiStore>
   res?: ServerResponse
 }) {
   await jwtStore({ $urqlReset, store, res })
