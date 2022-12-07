@@ -1,3 +1,22 @@
+# [1.0.0-beta.9](https://github.com/maevsi/maevsi/compare/1.0.0-beta.8...1.0.0-beta.9) (2022-12-07)
+
+
+### Bug Fixes
+
+* **contact-avatar:** revert size property change ([d502d17](https://github.com/maevsi/maevsi/commit/d502d17c3a8391d6b22d800120eca92142049e68))
+* **css:** add margin to links and buttons with rings ([0a77fe0](https://github.com/maevsi/maevsi/commit/0a77fe03ac3702edc180f645849d8f36cd984206))
+* **cypress:** correct server test ([2016eb9](https://github.com/maevsi/maevsi/commit/2016eb930166141f47daff5d0b13349b2159faa8))
+* **event-list:** correct markup ([46f8755](https://github.com/maevsi/maevsi/commit/46f8755ea8e52e795c0184b2719d0b4cddfc48d4))
+* **layout:** initialize color scheme selection on client only ([1a42286](https://github.com/maevsi/maevsi/commit/1a422865891b58c65e7083b4a80a7e37fe6e6d90))
+* **loader-image:** use classes ([63a27d9](https://github.com/maevsi/maevsi/commit/63a27d910088324aa90ce021b350f300a22da3a2))
+* **tusd:** correct image upload ([4fcb176](https://github.com/maevsi/maevsi/commit/4fcb176d223799cb4476f6bfb9b535e0461f7a7f))
+
+
+### Features
+
+* **footer:** replace logo with svg component ([410c600](https://github.com/maevsi/maevsi/commit/410c6004f33cf405482f456f62abac11519a261f))
+* **header:** use logo as svg component ([ba49dfe](https://github.com/maevsi/maevsi/commit/ba49dfe15bc38a83235731fd41420d9491553b22))
+
 # [1.0.0-beta.8](https://github.com/maevsi/maevsi/compare/1.0.0-beta.7...1.0.0-beta.8) (2022-12-06)
 
 
