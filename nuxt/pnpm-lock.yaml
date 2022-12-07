@@ -53,7 +53,7 @@ specifiers:
   cookie: 0.5.0
   cross-env: 7.0.3
   css-element-queries: 1.2.3
-  cypress: 12.0.0
+  cypress: 12.0.1
   cypress-visual-regression: 1.7.0
   dayjs: 2.0.0-alpha.4
   defu: 6.1.1
@@ -143,7 +143,7 @@ devDependencies:
   '@tiptap/core': 2.0.0-beta.205_rd5pjtxohzfgv2zee3iufpqkay
   '@tiptap/extension-link': 2.0.0-beta.205_ltvc2d5tgmjcmcewyu2ilerrzq
   '@tiptap/starter-kit': 2.0.0-beta.205_mr3bhnmfox2kjnahwbtgkxt4cy
-  '@tiptap/vue-3': 2.0.0-beta.205_73mxtd4vv2co5a3zsrsntqe7ua
+  '@tiptap/vue-3': 2.0.0-beta.205_h2lv7ymg7nduivqd3swnci7b6e
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.4.0
   '@types/downloadjs': 1.4.3
@@ -170,8 +170,8 @@ devDependencies:
   cookie: 0.5.0
   cross-env: 7.0.3
   css-element-queries: 1.2.3
-  cypress: 12.0.0
-  cypress-visual-regression: 1.7.0_cypress@12.0.0
+  cypress: 12.0.1
+  cypress-visual-regression: 1.7.0_cypress@12.0.1
   dayjs: 2.0.0-alpha.4
   defu: 6.1.1
   downloadjs: 1.4.7
@@ -223,7 +223,7 @@ devDependencies:
   stylelint-config-standard: 29.0.0_stylelint@14.16.0
   stylelint-no-unsupported-browser-features: 6.0.1_stylelint@14.16.0
   sweetalert2: 11.6.15
-  tailwindcss: 3.2.4_ts-node@10.9.1
+  tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
   ts-jest: 29.0.3_mqui6n3vnz5mervhfdywillmx4
   ts-node: 10.9.1_zhirybrk4zoofuxp64necizyzy
   typescript: 4.9.3
@@ -2791,7 +2791,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.4_ts-node@10.9.1
+      tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
     dev: true
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.4:
@@ -2799,7 +2799,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.2.4_ts-node@10.9.1
+      tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
     dev: true
 
   /@tailwindcss/typography/0.5.8_tailwindcss@3.2.4:
@@ -2811,7 +2811,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4_ts-node@10.9.1
+      tailwindcss: 3.2.4_v776zzvn44o7tpgzieipaairwm
     dev: true
 
   /@tiptap/core/2.0.0-beta.205_rd5pjtxohzfgv2zee3iufpqkay:
@@ -2850,20 +2850,18 @@ packages:
       '@tiptap/core': 2.0.0-beta.205_rd5pjtxohzfgv2zee3iufpqkay
     dev: true
 
-  /@tiptap/extension-bubble-menu/2.0.0-beta.205_aorzvepnbow73vkc4hi3akkkry:
+  /@tiptap/extension-bubble-menu/2.0.0-beta.205_gwhh6eo3rnxlhgxe2nfotf7c5q:
     resolution: {integrity: sha512-XqHo698TioWBBomk6l7gfWZ8bj7Oj+UHYSgmuvTAZLAEjOvDQcykjqS2ks9CN0M+f8Hd+IhnSXMvbLciKQIp4g==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.193
+      prosemirror-state: ^1.4.1
+      prosemirror-view: ^1.28.2
     dependencies:
       '@tiptap/core': 2.0.0-beta.205_rd5pjtxohzfgv2zee3iufpqkay
       lodash: 4.17.21
       prosemirror-state: 1.4.2
       prosemirror-view: 1.29.1
       tippy.js: 6.3.7
-    transitivePeerDependencies:
-      - prosemirror-commands
-      - prosemirror-keymap
-      - prosemirror-model
-      - prosemirror-schema-list
-      - prosemirror-transform
     dev: true
 
   /@tiptap/extension-bullet-list/2.0.0-beta.205_hb6j6qanbkcv3b4w5eczau643i:
@@ -3065,7 +3063,7 @@ packages:
       - prosemirror-view
     dev: true
 
-  /@tiptap/vue-3/2.0.0-beta.205_73mxtd4vv2co5a3zsrsntqe7ua:
+  /@tiptap/vue-3/2.0.0-beta.205_h2lv7ymg7nduivqd3swnci7b6e:
     resolution: {integrity: sha512-Vq/t0UBB/a56FOE0Wapag7Jkf7/FXh/aUWZRGvWh3T9PQ2SabHEJ3gupx1Yx4QVx5SdDySjldJ7vGxEYTq4hhQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
@@ -3074,17 +3072,11 @@ packages:
       vue: ^3.0.0
     dependencies:
       '@tiptap/core': 2.0.0-beta.205_rd5pjtxohzfgv2zee3iufpqkay
-      '@tiptap/extension-bubble-menu': 2.0.0-beta.205_aorzvepnbow73vkc4hi3akkkry
+      '@tiptap/extension-bubble-menu': 2.0.0-beta.205_gwhh6eo3rnxlhgxe2nfotf7c5q
       '@tiptap/extension-floating-menu': 2.0.0-beta.205_gwhh6eo3rnxlhgxe2nfotf7c5q
       prosemirror-state: 1.4.2
       prosemirror-view: 1.29.1
       vue: 3.2.45
-    transitivePeerDependencies:
-      - prosemirror-commands
-      - prosemirror-keymap
-      - prosemirror-model
-      - prosemirror-schema-list
-      - prosemirror-transform
     dev: true
 
   /@tootallnate/once/2.0.0:
@@ -5263,19 +5255,19 @@ packages:
     resolution: {integrity: sha512-p6JFxJc3M4OTD2li2qaHkDCw9SfMw82Ldr6OC9Je1aXiGfhx2W8p3GaoeaGrPJTUN9NirTM/KTxHWMUdR1rsUg==}
     dev: true
 
-  /cypress-visual-regression/1.7.0_cypress@12.0.0:
+  /cypress-visual-regression/1.7.0_cypress@12.0.1:
     resolution: {integrity: sha512-ORWiKAAlSPEyeObrRV0UoLYT7u0//bwgi4MGen/pWu0ByZbsvh+4xY2wOBj5d8kToek5qxKD+yT1+juHRRgK0w==}
     peerDependencies:
       cypress: '>=5.6.0'
     dependencies:
-      cypress: 12.0.0
+      cypress: 12.0.1
       pixelmatch: 5.3.0
       pngjs: 6.0.0
       sanitize-filename: 1.6.3
     dev: true
 
-  /cypress/12.0.0:
-    resolution: {integrity: sha512-hX/UeaKrL4uiRxJh+eX9t5YFXJconJyqG0hkFkK6CG+4xj2mMmzvJERF3e2h/9TzvLxPAkQ6cGz8eaHfJZeyGg==}
+  /cypress/12.0.1:
+    resolution: {integrity: sha512-I1Ag5RsPEINfUlQtV6xwkd6ktJuu5QGiKZ3pFa/IXjcyCY6I7CH3gOz0juLOhg/LXOPrQtZH35ulcWDQohyyEA==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
@@ -12049,10 +12041,12 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss/3.2.4_ts-node@10.9.1:
+  /tailwindcss/3.2.4_v776zzvn44o7tpgzieipaairwm:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
