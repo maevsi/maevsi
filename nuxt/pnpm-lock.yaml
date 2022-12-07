@@ -82,7 +82,7 @@ specifiers:
   pinia: 2.0.27
   postcss: 8.4.19
   postcss-html: 1.5.0
-  prettier: 2.8.0
+  prettier: 2.8.1
   prettier-plugin-tailwindcss: 0.2.0
   pretty-bytes: 6.0.0
   prntr: 2.0.18
@@ -179,7 +179,7 @@ devDependencies:
   eslint-config-prettier: 8.5.0_eslint@8.29.0
   eslint-plugin-compat: 4.0.2_eslint@8.29.0
   eslint-plugin-nuxt: 4.0.0_eslint@8.29.0
-  eslint-plugin-prettier: 4.2.1_nrhoyyjffvfyk4vtlt5destxgm
+  eslint-plugin-prettier: 4.2.1_5dgjrgoi64tgrv3zzn3walur3u
   eslint-plugin-yml: 1.3.0_eslint@8.29.0
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
@@ -199,8 +199,8 @@ devDependencies:
   pinia: 2.0.27_mgnvym7yiazkylwwogi5r767ue
   postcss: 8.4.19
   postcss-html: 1.5.0
-  prettier: 2.8.0
-  prettier-plugin-tailwindcss: 0.2.0_prettier@2.8.0
+  prettier: 2.8.1
+  prettier-plugin-tailwindcss: 0.2.0_prettier@2.8.1
   pretty-bytes: 6.0.0
   prntr: 2.0.18
   prosemirror-commands: 1.5.0
@@ -2484,7 +2484,7 @@ packages:
       chalk: 5.1.2
       html-validate: 7.10.1_jest@29.3.1
       pathe: 1.0.0
-      prettier: 2.8.0
+      prettier: 2.8.1
       std-env: 3.3.1
     transitivePeerDependencies:
       - jest
@@ -6302,7 +6302,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_nrhoyyjffvfyk4vtlt5destxgm:
+  /eslint-plugin-prettier/4.2.1_5dgjrgoi64tgrv3zzn3walur3u:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -6315,7 +6315,7 @@ packages:
     dependencies:
       eslint: 8.29.0
       eslint-config-prettier: 8.5.0_eslint@8.29.0
-      prettier: 2.8.0
+      prettier: 2.8.1
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -10745,17 +10745,17 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier-plugin-tailwindcss/0.2.0_prettier@2.8.0:
+  /prettier-plugin-tailwindcss/0.2.0_prettier@2.8.1:
     resolution: {integrity: sha512-Ruqig/mdWCSpqdq9WK44nrmqM4BFWTzBPhPGwC5NK3coV9eZntEQPB84MGZbjAg0XQU02jVRHXNRPREBzxvM+A==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
       prettier: '>=2.2.0'
     dependencies:
-      prettier: 2.8.0
+      prettier: 2.8.1
     dev: true
 
-  /prettier/2.8.0:
-    resolution: {integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==}
+  /prettier/2.8.1:
+    resolution: {integrity: sha512-lqGoSJBQNJidqCHE80vqZJHWHRFoNYsSpP9AjFhlhi9ODCJA541svILes/+/1GM3VaL/abZi7cpFzOpdR9UPKg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
