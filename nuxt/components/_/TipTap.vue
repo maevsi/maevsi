@@ -210,7 +210,6 @@ function setLink() {
     .chain()
     .focus()
     .extendMarkRange('link')
-    // @ts-ignore https://github.com/ueberdosis/tiptap/pull/3425
     .setLink({ href: url, target: urlHost !== host ? '_blank' : null })
     .run()
 }
