@@ -107,7 +107,7 @@
         @on-menu-hide="menuHide"
       />
     </div>
-    <!-- <CookieControl :locale="locale" /> -->
+    <CookieControl :locale="locale" />
   </div>
 </template>
 

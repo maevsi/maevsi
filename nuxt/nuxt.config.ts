@@ -30,50 +30,52 @@ export default defineNuxtConfig({
   },
   css: ['@/assets/css/main.css'],
   modules: [
-    // [
-    //   '@dargmuesli/nuxt-cookie-control',
-    //   {
-    //     locales: ['en', 'de'],
-    //     necessary: [
-    //       {
-    //         name: {
-    //           de: 'Authentifizierungsdaten',
-    //           en: 'Authentication Data',
-    //         },
-    //         // cookies: ['JWT_NAME'],
-    //       },
-    //       {
-    //         name: {
-    //           de: 'Cookie-Präferenzen',
-    //           en: 'Cookie Preferences',
-    //         },
-    //         // cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies'],
-    //       },
-    //       {
-    //         name: {
-    //           de: 'Spracheinstellungen',
-    //           en: 'Language Settings',
-    //         },
-    //         // cookies: ['i18n_redirected'],
-    //       },
-    //     ],
-    //     optional: [
-    //       {
-    //         name: 'Google Analytics',
-    //         identifier: 'ga',
-    //         // cookies: ['_ga', '_gat', '_gid'],
-    //         accepted: () => {
-    //           const { $ga } = useNuxtApp()
-    //           $ga.enable()
-    //         },
-    //         declined: () => {
-    //           const { $ga } = useNuxtApp()
-    //           $ga.disable()
-    //         },
-    //       },
-    //     ],
-    //   },
-    // ],
+    [
+      '@dargmuesli/nuxt-cookie-control',
+      {
+        cookies: {
+          necessary: [
+            {
+              name: {
+                de: 'Authentifizierungsdaten',
+                en: 'Authentication Data',
+              },
+              // targetCookieIds: ['JWT_NAME'],
+            },
+            {
+              name: {
+                de: 'Cookie-Präferenzen',
+                en: 'Cookie Preferences',
+              },
+              // targetCookieIds: ['cookie_control_consent', 'cookie_control_enabled_cookies'],
+            },
+            {
+              name: {
+                de: 'Spracheinstellungen',
+                en: 'Language Settings',
+              },
+              // targetCookieIds: ['i18n_redirected'],
+            },
+          ],
+          optional: [
+            {
+              name: 'Google Analytics',
+              id: 'ga',
+              // targetCookieIds: ['_ga', '_gat', '_gid'],
+              // accepted: () => {
+              //   const { $ga } = useNuxtApp()
+              //   $ga.enable()
+              // },
+              // declined: () => {
+              //   const { $ga } = useNuxtApp()
+              //   $ga.disable()
+              // },
+            },
+          ],
+        },
+        locales: ['en', 'de'],
+      },
+    ],
     [
       '@nuxtjs/color-mode',
       {
