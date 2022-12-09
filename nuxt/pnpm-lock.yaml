@@ -39,7 +39,7 @@ specifiers:
   '@types/pg': 8.6.5
   '@uppy/core': 3.0.4
   '@uppy/tus': 3.0.5
-  '@urql/core': 3.0.5
+  '@urql/core': 3.1.1
   '@urql/devtools': 2.0.3
   '@urql/exchange-graphcache': 5.0.5
   '@urql/vue': 1.0.2
@@ -157,8 +157,8 @@ devDependencies:
   '@types/pg': 8.6.5
   '@uppy/core': 3.0.4
   '@uppy/tus': 3.0.5_@uppy+core@3.0.4
-  '@urql/core': 3.0.5_graphql@16.6.0
-  '@urql/devtools': 2.0.3_mfybxqh6aadwsv45w6sdn3i53a
+  '@urql/core': 3.1.1_graphql@16.6.0
+  '@urql/devtools': 2.0.3_ioimjbecbkqzfeizgamzrgwc3y
   '@urql/exchange-graphcache': 5.0.5_graphql@16.6.0
   '@urql/vue': 1.0.2_graphql@16.6.0+vue@3.2.45
   '@vuelidate/core': 2.0.0_vue@3.2.45
@@ -3547,23 +3547,22 @@ packages:
       lodash.throttle: 4.1.1
     dev: true
 
-  /@urql/core/3.0.5_graphql@16.6.0:
-    resolution: {integrity: sha512-6/1HG+WEAcPs+hXSFnxWBTWkNUwa8dj2cHysWokMaFIbAioGtUaSdxp2q9FDMtWAIGdc640NFSt2B8itGLdoAA==}
+  /@urql/core/3.1.1_graphql@16.6.0:
+    resolution: {integrity: sha512-Mnxtq4I4QeFJsgs7Iytw+HyhiGxISR6qtyk66c9tipozLZ6QVxrCiUPF2HY4BxNIabaxcp+rivadvm8NAnXj4Q==}
     peerDependencies:
       graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@graphql-typed-document-node/core': 3.1.1_graphql@16.6.0
       graphql: 16.6.0
       wonka: 6.1.2
     dev: true
 
-  /@urql/devtools/2.0.3_mfybxqh6aadwsv45w6sdn3i53a:
+  /@urql/devtools/2.0.3_ioimjbecbkqzfeizgamzrgwc3y:
     resolution: {integrity: sha512-TktPLiBS9LcBPHD6qcnb8wqOVcg3Bx0iCtvQ80uPpfofwwBGJmqnQTjUdEFU6kwaLOFZULQ9+Uo4831G823mQw==}
     peerDependencies:
       '@urql/core': '>= 1.14.0'
       graphql: '>= 0.11.0'
     dependencies:
-      '@urql/core': 3.0.5_graphql@16.6.0
+      '@urql/core': 3.1.1_graphql@16.6.0
       graphql: 16.6.0
       wonka: 6.1.2
     dev: true
@@ -3573,7 +3572,7 @@ packages:
     peerDependencies:
       graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
-      '@urql/core': 3.0.5_graphql@16.6.0
+      '@urql/core': 3.1.1_graphql@16.6.0
       graphql: 16.6.0
       wonka: 6.1.2
     dev: true
@@ -3592,7 +3591,7 @@ packages:
       graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
       vue: ^2.7.0 || ^3.0.0
     dependencies:
-      '@urql/core': 3.0.5_graphql@16.6.0
+      '@urql/core': 3.1.1_graphql@16.6.0
       graphql: 16.6.0
       vue: 3.2.45
       wonka: 6.1.2
