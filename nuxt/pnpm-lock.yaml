@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': 7.20.5
-  '@dargmuesli/nuxt-cookie-control': 2.0.0-beta.6
+  '@dargmuesli/nuxt-cookie-control': 2.0.0-beta.7
   '@funken-studio/sitemap-nuxt-3': 4.0.4
   '@graphql-codegen/cli': 2.16.1
   '@graphql-codegen/typescript': 2.8.5
@@ -120,7 +120,7 @@ specifiers:
 
 devDependencies:
   '@babel/core': 7.20.5
-  '@dargmuesli/nuxt-cookie-control': 2.0.0-beta.6_rollup@2.79.1
+  '@dargmuesli/nuxt-cookie-control': 2.0.0-beta.7_rollup@2.79.1
   '@funken-studio/sitemap-nuxt-3': 4.0.4_rollup@2.79.1
   '@graphql-codegen/cli': 2.16.1_oqvmme4ss2koelrmmsf4b5guba
   '@graphql-codegen/typescript': 2.8.5_graphql@16.6.0
@@ -1036,16 +1036,8 @@ packages:
       - supports-color
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control/2.0.0-beta.6_rollup@2.79.1:
-    resolution: {integrity: sha512-FAr/5lYRyawsTL6PbfyJG5V9rdc/fvWMkd1G0J7gZwoYhqGbh9iOBTZUedXSv768HvDnrNovarCZdJeUxrpK9A==}
-    peerDependencies:
-      vite: ^3
-      webpack: ^5
-    peerDependenciesMeta:
-      vite:
-        optional: true
-      webpack:
-        optional: true
+  /@dargmuesli/nuxt-cookie-control/2.0.0-beta.7_rollup@2.79.1:
+    resolution: {integrity: sha512-UQBBDBvbI1q/ABB5ByV8rIJ7D01yxi2EVHfi+3Xx7BHyqVLV5YuPo4Il+XUNjJz+yvqT3dwWuB9HVFX3/k95Gg==}
     dependencies:
       '@nuxt/kit': 3.0.0_rollup@2.79.1
       css-vars-ponyfill: 2.4.8
@@ -1055,6 +1047,7 @@ packages:
     transitivePeerDependencies:
       - rollup
       - supports-color
+      - webpack
     dev: true
 
   /@esbuild/android-arm/0.15.18:
@@ -11819,6 +11812,9 @@ packages:
     resolution: {integrity: sha512-5AOMUZeX5HE/ylKDnEa/KKBqvlnFmRZudSOjVJHxhoJg9QYTwl1rECx7SLR8BBH7tfxb4Rp7EM2XVfQFxIhsbQ==}
     peerDependencies:
       webpack: ^5
+    peerDependenciesMeta:
+      webpack:
+        optional: true
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.1.1
