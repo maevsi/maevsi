@@ -37,7 +37,7 @@ FROM node:19.2.0-slim AS prepare
 
 WORKDIR /srv/app/
 
-COPY ./nuxt/pnpm-lock.yaml ./
+COPY ./pnpm-lock.yaml ./
 
 RUN npm install -g pnpm && \
     pnpm fetch
