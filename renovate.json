@@ -8,10 +8,6 @@
   },
   "packageRules": [
     {
-      "matchPackageNames": ["@rollup/plugin-graphql"],
-      "allowedVersions": "<2"
-    },
-    {
       "matchPackageNames": ["rollup"],
       "allowedVersions": "<3"
     },
