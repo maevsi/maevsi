@@ -10,6 +10,7 @@ describe('task search page', () => {
 
   context('visual regression', () => {
     it('looks as before', () => {
+      cy.setCookie('cookie_control_consent', 'true')
       cy.visit('/task/search')
       cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('taskSearch')
