@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': 7.20.5
-  '@dargmuesli/nuxt-cookie-control': 2.0.0-beta.7
+  '@dargmuesli/nuxt-cookie-control': 2.0.2
   '@funken-studio/sitemap-nuxt-3': 4.0.4
   '@graphql-codegen/cli': 2.16.1
   '@graphql-codegen/typescript': 2.8.5
@@ -120,7 +120,7 @@ specifiers:
 
 devDependencies:
   '@babel/core': 7.20.5
-  '@dargmuesli/nuxt-cookie-control': 2.0.0-beta.7_rollup@2.79.1
+  '@dargmuesli/nuxt-cookie-control': 2.0.2_rollup@2.79.1
   '@funken-studio/sitemap-nuxt-3': 4.0.4_rollup@2.79.1
   '@graphql-codegen/cli': 2.16.1_oqvmme4ss2koelrmmsf4b5guba
   '@graphql-codegen/typescript': 2.8.5_graphql@16.6.0
@@ -1036,13 +1036,13 @@ packages:
       - supports-color
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control/2.0.0-beta.7_rollup@2.79.1:
-    resolution: {integrity: sha512-UQBBDBvbI1q/ABB5ByV8rIJ7D01yxi2EVHfi+3Xx7BHyqVLV5YuPo4Il+XUNjJz+yvqT3dwWuB9HVFX3/k95Gg==}
+  /@dargmuesli/nuxt-cookie-control/2.0.2_rollup@2.79.1:
+    resolution: {integrity: sha512-xYq84LJ+FflTzddmfLx9TJsEUv2Kmooy2JTyzFZiHlIo6J5P+UY1/U0/thWCmabUk5RycKtM0V5DcOFmC0l1nw==}
     dependencies:
       '@nuxt/kit': 3.0.0_rollup@2.79.1
+      '@sindresorhus/slugify': 2.1.1
       css-vars-ponyfill: 2.4.8
       js-cookie: 3.0.1
-      slugify: 1.6.5
       string-replace-loader: 3.1.0
     transitivePeerDependencies:
       - rollup
@@ -2800,6 +2800,21 @@ packages:
 
   /@sinclair/typebox/0.24.51:
     resolution: {integrity: sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==}
+    dev: true
+
+  /@sindresorhus/slugify/2.1.1:
+    resolution: {integrity: sha512-XokPHZ+q6FtQGEi1hnfvARVJJVPEhwHQTPHPPuNHaN6zcHjzYNynhhHMopa1wNPqLAFOwpsbintunEqWecXJMg==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@sindresorhus/transliterate': 1.6.0
+      escape-string-regexp: 5.0.0
+    dev: true
+
+  /@sindresorhus/transliterate/1.6.0:
+    resolution: {integrity: sha512-doH1gimEu3A46VX6aVxpHTeHrytJAG6HgdxntYnCFiIFHEM/ZGpG8KiZGBChchjQmG0XFIBL552kBTjVcMZXwQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      escape-string-regexp: 5.0.0
     dev: true
 
   /@sinonjs/commons/1.8.6:

@@ -180,10 +180,6 @@ export default defineNuxtConfig({
     },
   },
   vite: {
-    optimizeDeps: {
-      exclude: ['@dargmuesli/nuxt-cookie-control'],
-      include: ['@dargmuesli/nuxt-cookie-control > slugify'],
-    },
     plugins: [
       VueI18nPlugin({
         include:
