@@ -1,8 +1,4 @@
 describe('task account sign-in page', () => {
-  // beforeEach(() => {
-  //   cy.visit('/task/account/sign-in')
-  // })
-
   context('page load', () => {
     it('loads the page successfully', () => {
       cy.request('/task/account/sign-in').then((resp) => {

@@ -1,4 +1,8 @@
 describe('index page', () => {
+  beforeEach(() => {
+    cy.setCookie('cookie_control_consent', 'true')
+  })
+
   context('page load', () => {
     it('loads the page successfully', () => {
       cy.request('/').then((resp) => {
@@ -44,14 +48,13 @@ describe('index page', () => {
 
   context('visual regression', () => {
     it('looks as before', () => {
-      cy.setCookie('cookie_control_consent', 'true')
       cy.visit('/')
       cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('index')
     })
 
     it('displays the cookie banner', () => {
-      // cy.setCookie('cookie_control_consent', 'false')
+      cy.setCookie('cookie_control_consent', 'false')
       cy.visit('/')
       cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('index')
