@@ -138,7 +138,6 @@
     <div
       class="duration-300 fixed flex flex-col items-center bottom-4 left-1/2 -translate-x-1/2 text-xl gap-2 transition"
       :class="isScrollHintShown ? 'opacity-20' : 'opacity-0'"
-      data-testid="scroll-hint"
     >
       <IconChevronDoubleDown
         classes="h-16 w-16 animate-bounce"
@@ -157,6 +156,8 @@ const sectionStepsRef = ref<HTMLElement>()
 
 // data
 const isScrollHintShown = ref(false)
+const loadingId = Math.random()
+const loadingIds = useState('loadingIds', () => [loadingId])
 
 // methods
 function hideScrollHint() {
@@ -173,6 +174,8 @@ onMounted(() => {
 
     window.addEventListener('scroll', hideScrollHint)
   }
+
+  loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1)
 })
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', hideScrollHint)

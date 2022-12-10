@@ -1,7 +1,7 @@
 describe('task account sign-in page', () => {
-  beforeEach(() => {
-    cy.visit('/task/account/sign-in')
-  })
+  // beforeEach(() => {
+  //   cy.visit('/task/account/sign-in')
+  // })
 
   context('page load', () => {
     it('loads the page successfully', () => {
@@ -12,6 +12,7 @@ describe('task account sign-in page', () => {
     })
     // TODO: add e2e tests for titles
     it('has the correct title when not logged in', () => {
+      cy.visit('/task/account/sign-in')
       cy.title().should('equal', 'Sign in · maevsi')
     })
   })
@@ -50,6 +51,8 @@ describe('task account sign-in page', () => {
 
   context('visual regression', () => {
     it('looks as before', () => {
+      cy.setCookie('cookie_control_consent', 'true')
+      cy.visit('/task/account/sign-in')
       cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('taskAccountSignIn')
     })

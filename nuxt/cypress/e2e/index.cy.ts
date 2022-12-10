@@ -44,8 +44,15 @@ describe('index page', () => {
 
   context('visual regression', () => {
     it('looks as before', () => {
+      cy.setCookie('cookie_control_consent', 'true')
       cy.visit('/')
-      cy.get('[data-testid="scroll-hint"]').should('be.visible')
+      cy.get('[data-is-loading="false"]').should('be.visible')
+      cy.compareSnapshot('index')
+    })
+
+    it('displays the cookie banner', () => {
+      // cy.setCookie('cookie_control_consent', 'false')
+      cy.visit('/')
       cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('index')
     })
