@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { ResizeSensor } from 'css-element-queries'
-import debounce from 'lodash-es/debounce'
+import { debounce } from 'lodash-es'
 
 export interface Props {
   hasNextPage: boolean
