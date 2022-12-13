@@ -1,3 +1,21 @@
+# [1.0.0-beta.10](https://github.com/maevsi/maevsi/compare/1.0.0-beta.9...1.0.0-beta.10) (2022-12-13)
+
+
+### Bug Fixes
+
+* **commitlint:** allow long body lines on CI ([bbb1f0b](https://github.com/maevsi/maevsi/commit/bbb1f0b887193ae0b3deca2cdc2bab7de01203d3))
+* **cypress:** properly account for cookie banner ([3deb1d8](https://github.com/maevsi/maevsi/commit/3deb1d8f2077b6a13fb56e6b9b2911aea43ea405))
+* **nuxt:** configure vite dependency optimization ([d8a3108](https://github.com/maevsi/maevsi/commit/d8a3108e3b2ac8a7b87f7b5103161b05a84ccfc1))
+* **package:** ignore missing webpack peer dependencies ([12a4b66](https://github.com/maevsi/maevsi/commit/12a4b66945857aa7e4ae501cd13b3b2502040414))
+* **package:** install dependencies recursively ([9d62ba1](https://github.com/maevsi/maevsi/commit/9d62ba1e78e0b2a4a9c8bce26b067d34e49b7821))
+* prepare nuxt ([48e00bb](https://github.com/maevsi/maevsi/commit/48e00bb80a3f9f84fd30a1e0b423c65d88b23d02))
+
+
+### Features
+
+* **loader-image:** improve perceived speed ([8777ba4](https://github.com/maevsi/maevsi/commit/8777ba41847a7a8073d0b71112b199c6e14a22c6))
+* readd nuxt cookie control ([9c6daa7](https://github.com/maevsi/maevsi/commit/9c6daa7048c499abdd0ddacb23d5856d045b24e2))
+
 # [1.0.0-beta.9](https://github.com/maevsi/maevsi/compare/1.0.0-beta.8...1.0.0-beta.9) (2022-12-07)
 
 
