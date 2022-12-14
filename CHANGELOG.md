@@ -1,3 +1,19 @@
+# [1.0.0-beta.11](https://github.com/maevsi/maevsi/compare/1.0.0-beta.10...1.0.0-beta.11) (2022-12-14)
+
+
+### Bug Fixes
+
+* **commitlint:** extend maximum line length rule to footer ([fb767c8](https://github.com/maevsi/maevsi/commit/fb767c880c3ca779bc04787bdf656b47035579f2))
+* **cypress:** wait for control button to be visible ([f598fb1](https://github.com/maevsi/maevsi/commit/f598fb12b37d51c05b63d35ae2e5c8ed3f68aebf))
+
+
+### Features
+
+* **cookie:** add cookie meta information ([5a7f1c7](https://github.com/maevsi/maevsi/commit/5a7f1c7f6b7daebf2e927dc0546be4e60490f675))
+* **docker:** remove node-jiti directory in prepare step ([f5b8eb4](https://github.com/maevsi/maevsi/commit/f5b8eb4626b0b7e27d933fe6027986cc1423dcbe))
+* **locales:** remove exclamation mark from status ([df5c17d](https://github.com/maevsi/maevsi/commit/df5c17d27b0ef539ccc3e712caf54416e798527a))
+* **swal:** show confirmation and error modal in a corner, non-blocking ([9ca7814](https://github.com/maevsi/maevsi/commit/9ca781499f873d132766b86b57fae38360bdf914)), closes [#921](https://github.com/maevsi/maevsi/issues/921)
+
 # [1.0.0-beta.10](https://github.com/maevsi/maevsi/compare/1.0.0-beta.9...1.0.0-beta.10) (2022-12-13)
 
 
