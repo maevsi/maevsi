@@ -2,7 +2,7 @@ import graphqlPlugin from '@rollup/plugin-graphql'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import { LOCALES } from './utils/constants'
+import { JWT_NAME, LOCALES } from './utils/constants'
 
 export const SITEMAP_EXCLUSIONS = ['/teapot'] // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
 export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []

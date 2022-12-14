@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.5",
-    "@dargmuesli/nuxt-cookie-control": "2.0.2",
+    "@dargmuesli/nuxt-cookie-control": "2.2.0",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "2.16.1",
     "@graphql-codegen/typescript": "2.8.5",
