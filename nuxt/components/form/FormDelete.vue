@@ -23,7 +23,6 @@ import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import { AnyVariables, OperationContext, OperationResult } from '@urql/vue'
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
 import {
   formPreSubmit,
@@ -74,21 +73,17 @@ async function submit() {
       password: form.password,
       ...props.variables,
     })
-    .then((result) => {
+    .then(async (result) => {
       if (result.error) {
         api.value.errors.push(result.error)
         consola.error(result.error)
       } else {
-        Swal.fire({
-          icon: 'success',
-          text: capitalizeFirstLetter(
+        await showToast({
+          title: capitalizeFirstLetter(
             t('success', {
               item: props.itemName,
-            }) as string
+            })
           ),
-          timer: 3000,
-          timerProgressBar: true,
-          title: t('deleted'),
         }).then(() => emit('success'))
       }
     })
@@ -106,12 +101,10 @@ const v$ = useVuelidate(rules, form)
 
 <i18n lang="yaml">
 de:
-  deleted: Gelöscht!
   deletion: '{item} löschen'
   passwordAccount: Konto-Passwort
   success: '{item} erfolgreich gelöscht.'
 en:
-  deleted: Deleted!
   deletion: 'Delete {item}'
   passwordAccount: Account password
   success: '{item} deleted successfully.'

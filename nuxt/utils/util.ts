@@ -3,6 +3,7 @@ import { IncomingMessage } from 'node:http'
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
 import { GraphQLError } from 'graphql'
+import Swal from 'sweetalert2'
 import { ComputedRef, Ref } from 'vue'
 import { LocationQueryValue } from 'vue-router'
 
@@ -190,5 +191,21 @@ export function xhrPromise(
       reject(new Error(`${this.status}\n${xhr.statusText}`))
     }
     xhr.send()
+  })
+}
+
+export function showToast({ title }: { title: string }) {
+  return Swal.fire({
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    },
+    icon: 'success',
+    position: 'bottom-right',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    title,
+    toast: true,
   })
 }

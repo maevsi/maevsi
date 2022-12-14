@@ -118,7 +118,6 @@ import { Uppy, UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
 import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
-import Swal from 'sweetalert2'
 import { Cropper } from 'vue-advanced-cropper'
 
 import {
@@ -150,9 +149,10 @@ interface Item {
 const { t } = useI18n()
 const route = useRoute()
 const store = useMaevsiStore()
-const localePath = useLocalePath()
-const TUSD_FILES_URL = useTusdFilesUrl()
 const config = useRuntimeConfig()
+const TUSD_FILES_URL = useTusdFilesUrl()
+const localePath = useLocalePath()
+const fireAlert = useFireAlert()
 const { executeMutation: executeMutationUploadCreate } =
   useUploadCreateMutation()
 
@@ -238,7 +238,7 @@ function deleteImageUpload(uploadId: string) {
   xhr.open('DELETE', `${host}/api/tusd?uploadId=${uploadId}`, true)
   xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
   xhr.setRequestHeader('Authorization', 'Bearer ' + jwt.value)
-  xhr.onreadystatechange = () => {
+  xhr.onreadystatechange = async () => {
     if (xhr.readyState === 4) {
       element.classList.remove('disabled')
 
@@ -247,17 +247,12 @@ function deleteImageUpload(uploadId: string) {
           allUploadsQuery.executeQuery()
           break
         case 500:
-          Swal.fire({
-            icon: 'error',
-            text: t('uploadDeleteFailed') as string,
-            title: t('globalStatusError'),
-          })
+          await fireAlert({ level: 'error', text: t('uploadDeleteFailed') })
           break
         default:
-          Swal.fire({
-            icon: 'warning',
-            text: t('uploadDeleteUnexpectedStatusCode') as string,
-            title: t('globalStatusWarning'),
+          await fireAlert({
+            level: 'warning',
+            text: t('uploadDeleteUnexpectedStatusCode'),
           })
       }
     }

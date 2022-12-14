@@ -70,7 +70,6 @@
 
 <script setup lang="ts">
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
@@ -108,6 +107,7 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const store = useMaevsiStore()
 const route = useRoute()
+const fireAlert = useFireAlert()
 
 // queries
 const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
@@ -170,11 +170,9 @@ async function onInit(promise: Promise<any>) {
       errorMessage = t('errorCameraStreamApiNotSupported') as string
     }
 
-    Swal.fire({
-      icon: 'error',
-      text: errorMessage,
-      title: t('globalStatusError'),
-    }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
+    await fireAlert({ level: 'error', text: errorMessage }).then(() =>
+      store.modalRemove('ModalAttendanceScanQrCode')
+    )
     consola.error(errorMessage)
   } finally {
     loading.value = false
@@ -183,16 +181,13 @@ async function onInit(promise: Promise<any>) {
 async function onClick() {
   await writeTag(invitationCode.value)
 }
-function onDecode(e: any): void {
+async function onDecode(e: any) {
   invitationCode.value = e
-  Swal.fire({
-    icon: 'success',
-    showConfirmButton: false,
-    timer: 1500,
-    timerProgressBar: true,
-  }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
+  await fireAlert({ level: 'success' }).then(() =>
+    store.modalRemove('ModalAttendanceScanQrCode')
+  )
 }
-async function checkWriteTag(): Promise<void> {
+async function checkWriteTag() {
   if (!('NDEFReader' in window)) {
     return Promise.reject(
       Error(
@@ -226,12 +221,7 @@ async function checkWriteTag(): Promise<void> {
 async function writeTag(e: any): Promise<void> {
   try {
     await new NDEFReader().write(e)
-    Swal.fire({
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-    })
+    await fireAlert({ level: 'success' })
   } catch (error) {
     if (error instanceof DOMException) {
       let errorMessage: string = error.message
@@ -254,11 +244,7 @@ async function writeTag(e: any): Promise<void> {
         }) as string
       }
 
-      Swal.fire({
-        icon: 'error',
-        text: errorMessage,
-        title: t('globalStatusError'),
-      })
+      await fireAlert({ level: 'error', text: errorMessage })
       consola.error(errorMessage)
     } else {
       alert(`Unexpected error: ${error}`)

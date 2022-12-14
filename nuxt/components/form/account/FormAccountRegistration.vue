@@ -56,7 +56,6 @@ import {
   required,
 } from '@vuelidate/validators'
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
 import {
   formPreSubmit,
@@ -69,12 +68,9 @@ import {
 } from '~/utils/validation'
 import { useAccountRegistrationMutation } from '~/gql/generated'
 
-const emit = defineEmits<{
-  (e: 'registered'): void
-}>()
-
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
+const fireAlert = useFireAlert()
 const { executeMutation: executeMutationAccountRegistration } =
   useAccountRegistrationMutation()
 
@@ -119,11 +115,10 @@ async function submit() {
     return
   }
 
-  emit('registered')
-  Swal.fire({
-    icon: 'success',
-    text: t('registrationSuccessBody') as string,
+  await fireAlert({
+    level: 'success',
     title: t('registrationSuccessTitle'),
+    text: t('registrationSuccessBody'),
   })
 }
 

@@ -13,7 +13,6 @@
 
 <script setup lang="ts">
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
 import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 
@@ -37,6 +36,7 @@ definePageMeta({
 const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute()
+const fireAlert = useFireAlert()
 const accountEmailAddressVerificationMutation =
   useAccountEmailAddressVerificationMutation()
 
@@ -70,11 +70,11 @@ accountEmailAddressVerificationMutation
   .executeMutation({
     code: route.query.code,
   })
-  .then((result) => {
+  .then(async (result) => {
     if (!result.error) {
-      Swal.fire({
-        icon: 'success',
-        text: t('verifiedBody') as string,
+      await fireAlert({
+        level: 'success',
+        text: t('verifiedBody'),
         title: t('verified'),
       })
       navigateTo({

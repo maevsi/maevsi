@@ -30,7 +30,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
 import FormType from '~/components/form/Form.vue'
 import {
@@ -88,13 +87,7 @@ async function submit() {
     return
   }
 
-  Swal.fire({
-    icon: 'success',
-    text: t('passwordChangeSuccess') as string,
-    timer: 3000,
-    timerProgressBar: true,
-    title: t('changed'),
-  })
+  await showToast({ title: t('passwordChangeSuccess') })
   resetForm()
 }
 
@@ -114,7 +107,6 @@ const v$ = useVuelidate(rules, form)
 
 <i18n lang="yaml">
 de:
-  changed: Geändert!
   passwordChange: Passwort ändern
   passwordChangeSuccess: Passwort erfolgreich geändert.
   passwordCurrent: Aktuelles Passwort
@@ -122,7 +114,6 @@ de:
   postgres22023: Das neue Passwort ist zu kurz! Überlege dir ein längeres.
   postgres28P01: Aktuelles Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
 en:
-  changed: Changed!
   passwordChange: Change password
   passwordChangeSuccess: Password changed successfully.
   passwordCurrent: Current password

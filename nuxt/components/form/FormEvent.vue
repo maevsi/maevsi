@@ -277,7 +277,6 @@ import {
 } from '@vuelidate/validators'
 import consola from 'consola'
 import slugify from 'slugify'
-import Swal from 'sweetalert2'
 
 import {
   formPreSubmit,
@@ -391,13 +390,7 @@ async function submit() {
       return
     }
 
-    Swal.fire({
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      title: t('updated'),
-    })
+    await showToast({ title: t('updated') })
   } else {
     // Add
     const result = await createEventMutation.executeMutation({
@@ -430,13 +423,7 @@ async function submit() {
       return
     }
 
-    Swal.fire({
-      icon: 'success',
-      text: t('eventCreateSuccess') as string,
-      timer: 3000,
-      timerProgressBar: true,
-      title: t('created'),
-    }).then(
+    await showToast({ title: t('eventCreateSuccess') }).then(
       async () =>
         await navigateTo(
           localePath(`/event/${signedInUsername.value}/${form.slug}`)
@@ -525,7 +512,6 @@ updateForm(props.event)
 <i18n lang="yaml">
 de:
   attendanceType: Anwesenheitstyp
-  created: Erstellt!
   description: Einladungstext
   end: Ende
   eventCreate: Veranstaltung erstellen
@@ -549,7 +535,6 @@ de:
   visibilityPublic: öffentlich
 en:
   attendanceType: Attendance type
-  created: Created!
   description: Invitation text
   end: End
   eventCreate: Create event

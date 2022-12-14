@@ -24,7 +24,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import { email, maxLength, required } from '@vuelidate/validators'
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
 import {
   formPreSubmit,
@@ -44,6 +43,7 @@ const emit = defineEmits<{
   (e: 'account-password-reset-request'): void
 }>()
 
+const fireAlert = useFireAlert()
 const { locale, t } = useI18n()
 const passwordResetRequestMutation = useAccountPasswordResetRequestMutation()
 
@@ -87,10 +87,9 @@ async function submit() {
   }
 
   emit('account-password-reset-request')
-  Swal.fire({
-    icon: 'success',
-    text: t('accountPasswordResetRequestSuccess') as string,
-    title: t('requestAccepted'),
+  await fireAlert({
+    level: 'success',
+    text: t('accountPasswordResetRequestSuccess'),
   })
 }
 
@@ -113,12 +112,10 @@ de:
   emailAddressYours: Deine E-Mail-Adresse
   postgres55000: Die E-Mail-Adresse ist noch nicht verifiziert!
   postgresP0002: Es gibt keinen Account mit dieser E-Mail-Adresse! Überprüfe deine Eingaben auf Schreibfehler.
-  requestAccepted: Anfrage angenommen!
 en:
   accountPasswordResetRequest: Send email
   accountPasswordResetRequestSuccess: Choose a new password using the verification link sent to you by email.
   emailAddressYours: Your email address
   postgres55000: This email address has not been verified yet!
   postgresP0002: There is no account with this email address! Check your input for spelling mistakes.
-  requestAccepted: Request accepted!
 </i18n>

@@ -24,7 +24,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
 import {
   formPreSubmit,
@@ -82,13 +81,7 @@ async function submit() {
     return
   }
 
-  Swal.fire({
-    icon: 'success',
-    text: t('accountPasswordResetSuccess') as string,
-    timer: 3000,
-    timerProgressBar: true,
-    title: t('reset'),
-  })
+  await showToast({ title: t('accountPasswordResetSuccess') })
   navigateTo({
     path: localePath(`/account`),
     query: { ...route.query, tab: 'signIn' },
@@ -113,7 +106,6 @@ de:
   postgres22023: Das Passwort ist zu kurz! Überlege dir ein längeres.
   postgresP0002: Unbekannter Zurücksetzungslink! Hast du dein Passwort vielleicht schon zurückgesetzt?
   postgres55000: Der Zurücksetzungslink ist abgelaufen!
-  reset: Zurückgesetzt!
 en:
   accountPasswordReset: Reset password
   accountPasswordResetSuccess: Password reset successfully.
@@ -121,5 +113,4 @@ en:
   postgres22023: This password is too short! Think of a longer one.
   postgresP0002: Invalid reset link! Have you perhaps already reset your password?
   postgres55000: Your reset link has expired!
-  reset: Reset!
 </i18n>

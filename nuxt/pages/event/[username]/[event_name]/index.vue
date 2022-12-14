@@ -324,7 +324,6 @@ import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
-import Swal from 'sweetalert2'
 
 import {
   Invitation,
@@ -360,6 +359,7 @@ definePageMeta({
 })
 
 const { t } = useI18n()
+const fireAlert = useFireAlert()
 const localePath = useLocalePath()
 const store = useMaevsiStore()
 const route = useRoute()
@@ -422,18 +422,17 @@ function downloadIcal() {
 
   xhr.open('POST', '/api/ical', true)
   xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
-  xhr.onreadystatechange = () => {
+  xhr.onreadystatechange = async () => {
     if (xhr.readyState === 4) {
       switch (xhr.status) {
         case 200:
           downloadJs(new Blob([xhr.responseText]), fileName, 'text/calendar')
           return
         default:
-          Swal.fire({
-            icon: 'error',
-            text: t('iCalUnexpectedStatusCode'), // TODO: add suggestion (https://github.com/maevsi/maevsi/issues/903)
-            title: t('globalStatusError'),
-          })
+          await fireAlert({
+            level: 'error',
+            text: t('iCalUnexpectedStatusCode'),
+          }) // TODO: add suggestion (https://github.com/maevsi/maevsi/issues/903) })
       }
     }
   }
@@ -471,14 +470,7 @@ async function update(id: string, invitationPatch: InvitationPatch) {
     return
   }
 
-  Swal.fire({
-    icon: 'success',
-    showConfirmButton: false,
-    timer: 1500,
-    text: t('success') as string,
-    timerProgressBar: true,
-    title: t('saved'),
-  })
+  await showToast({ title: t('success') })
 }
 
 // computations
@@ -518,10 +510,10 @@ const invitation = computed(() => {
 
   if (invitationsMatchingUuid?.length) {
     if (invitationsMatchingUuid.length > 1) {
-      Swal.fire({
-        icon: 'warning',
-        text: t('invitationCodeMultipleWarning') as string,
-        title: t('globalStatusWarning'),
+      // TODO: use await (https://github.com/maevsi/maevsi/issues/61)
+      fireAlert({
+        level: 'warning',
+        text: t('invitationCodeMultipleWarning'),
       })
     }
 
@@ -602,7 +594,6 @@ de:
   print: Drucken
   qrCodeShow: Check-in-Code anzeigen
   requestSelection: Bitte auswählen
-  saved: Gespeichert!
   settings: Bearbeiten
   step1Of2: 1/2
   step2Of2: 2/2
@@ -637,7 +628,6 @@ en:
   print: Print
   qrCodeShow: Show check in code
   requestSelection: Please select
-  saved: Saved!
   settings: Edit
   step1Of2: 1/2
   step2Of2: 2/2

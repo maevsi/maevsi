@@ -211,7 +211,6 @@ import {
   Tooltip,
 } from 'chart.js'
 import consola from 'consola'
-import Swal from 'sweetalert2'
 import { Doughnut } from 'vue-chartjs'
 
 import {
@@ -299,14 +298,8 @@ function copyLink(invitation: Pick<Invitation, 'uuid'>): void {
     `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
       invitation.uuid
     }`
-  ).then(() => {
-    Swal.fire({
-      icon: 'success',
-      text: t('copySuccess') as string,
-      timer: 3000,
-      timerProgressBar: true,
-      title: t('copied'),
-    })
+  ).then(async () => {
+    await showToast({ title: t('copySuccess') })
   })
 }
 async function delete_(id: string) {
@@ -344,13 +337,7 @@ async function send(invitation: any) {
     return
   }
 
-  Swal.fire({
-    icon: 'success',
-    text: t('sendSuccess') as string,
-    timer: 3000,
-    timerProgressBar: true,
-    title: t('sent'),
-  })
+  await showToast({ title: t('sendSuccess') })
 }
 
 // computations
@@ -418,7 +405,6 @@ de:
   canceled: abgelehnt
   contact: Kontakt
   contactSelect: Kontakt auswählen
-  copied: Kopiert
   copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   feedback: Rückmeldungen
@@ -433,13 +419,11 @@ de:
   noFeedback: keine Rückmeldung
   postgresP0002: Die Einladung konnte nicht versandt werden! Möglicherweise hast du aktuell keinen Zugriff auf die notwendigen Daten. Versuche die Seite neu zu laden.
   sendSuccess: Die Einladung wurde erfolgreich per E-Mail versandt.
-  sent: Gesendet!
 en:
   accepted: accepted
   canceled: declined
   contact: Contact
   contactSelect: Select Contact
-  copied: Copied
   copySuccess: The invitation link has been copied to the clipboard.
   disabledReasonEmailAddressNone: This contact does not have an associated email address.
   feedback: Invitation responses
@@ -454,5 +438,4 @@ en:
   noFeedback: no response
   postgresP0002: The invitation could not be sent! You may not have access to the necessary data right now. Try reloading the page.
   sendSuccess: The invitation was successfully sent by email.
-  sent: Sent!
 </i18n>

@@ -62,7 +62,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import { maxLength, minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
 import {
   formPreSubmit,
@@ -78,6 +77,7 @@ import {
 const { jwtStore } = useJwtStore()
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
+const fireAlert = useFireAlert()
 const { executeMutation: executeMutationAccountRegistrationRefresh } =
   useAccountRegistrationRefreshMutation()
 const { executeMutation: executeMutationAuthentication } =
@@ -100,15 +100,14 @@ function accountRegistrationRefresh() {
   executeMutationAccountRegistrationRefresh({
     language: locale.value,
     username: form.username || '',
-  }).then((result) => {
+  }).then(async (result) => {
     if (result.error) {
       api.value.errors.push(result.error)
       consola.error(result.error)
     } else {
-      Swal.fire({
-        icon: 'success',
-        text: t('registrationRefreshSuccess') as string,
-        title: t('sent'),
+      await fireAlert({
+        level: 'success',
+        text: t('registrationRefreshSuccess'),
       })
     }
   })
@@ -132,10 +131,10 @@ async function submit() {
       try {
         await jwtStore(result.data?.authenticate?.jwt)
       } catch (error) {
-        consola.error(error)
-        await Swal.fire({
-          icon: 'error',
-          text: t('jwtStoreFail') as string,
+        await fireAlert({
+          error,
+          level: 'error',
+          text: t('jwtStoreFail'),
           title: t('globalStatusError'),
         })
         return
@@ -170,7 +169,6 @@ de:
   postgresP0002: Anmeldung fehlgeschlagen! Hast du dich schon registriert? Überprüfe deine Eingaben auf Schreibfehler.
   register: Oder stattdessen registrieren
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
-  sent: Gesendet!
   signIn: Anmelden
   verificationMailResend: Verifizierungsmail erneut senden
 en:
@@ -181,7 +179,6 @@ en:
   postgresP0002: Login failed! Have you registered yet? Check your input for spelling mistakes.
   register: Or register instead
   registrationRefreshSuccess: A new welcome email is on its way to you.
-  sent: Sent!
   signIn: Sign in
   verificationMailResend: Resend verification email
 </i18n>

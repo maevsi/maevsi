@@ -61,7 +61,6 @@ import { OperationResult } from '@urql/core/dist/types/types'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
-import Swal from 'sweetalert2'
 import { LocationQueryValue } from 'vue-router'
 
 import { callWithNuxt } from '#app'
@@ -165,6 +164,7 @@ const { jwtStore } = useJwtStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute()
+const fireAlert = useFireAlert()
 const eventUnlockMutation = useEventUnlockMutation()
 const config = useRuntimeConfig()
 
@@ -205,10 +205,10 @@ async function submit() {
   try {
     await jwtStore(result.data?.eventUnlock?.eventUnlockResponse?.jwt)
   } catch (error) {
-    consola.error(error)
-    await Swal.fire({
-      icon: 'error',
-      text: t('jwtStoreFail') as string,
+    await fireAlert({
+      error,
+      level: 'error',
+      text: t('jwtStoreFail'),
       title: t('globalStatusError'),
     })
     return
