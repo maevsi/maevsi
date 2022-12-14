@@ -32,42 +32,57 @@ export default defineNuxtConfig({
         cookies: {
           necessary: [
             {
+              description: {
+                de: 'Speichert die Zugriffsberechtigungen auf Daten.',
+                en: 'Saves the access permissions to data.',
+              },
               name: {
                 de: 'Authentifizierungsdaten',
                 en: 'Authentication Data',
               },
-              // targetCookieIds: ['JWT_NAME'],
+              targetCookieIds: [JWT_NAME],
             },
             {
+              description: {
+                de: 'Speichert die Einstellungen, die in diesem Dialog getroffen werden.',
+                en: 'Saves the settings made in this dialog.',
+              },
               name: {
                 de: 'Cookie-Präferenzen',
                 en: 'Cookie Preferences',
               },
-              // targetCookieIds: ['cookie_control_consent', 'cookie_control_enabled_cookies'],
+              targetCookieIds: [
+                'cookie_control_consent',
+                'cookie_control_enabled_cookies',
+              ],
             },
             {
+              description: {
+                de: 'Speichert in welcher Sprache die Webseite angezeigt wird.',
+                en: 'Saves in which language the web page is displayed.',
+              },
               name: {
                 de: 'Spracheinstellungen',
                 en: 'Language Settings',
               },
-              // targetCookieIds: ['i18n_redirected'],
+              targetCookieIds: ['i18n_redirected'],
             },
           ],
-          optional: [
-            {
-              name: 'Google Analytics',
-              id: 'ga',
-              // targetCookieIds: ['_ga', '_gat', '_gid'],
-              // accepted: () => {
-              //   const { $ga } = useNuxtApp()
-              //   $ga.enable()
-              // },
-              // declined: () => {
-              //   const { $ga } = useNuxtApp()
-              //   $ga.disable()
-              // },
-            },
-          ],
+          // optional: [
+          //   {
+          //     name: 'Google Analytics',
+          //     id: 'ga',
+          //     // targetCookieIds: ['_ga', '_gat', '_gid'],
+          //     // accepted: () => {
+          //     //   const { $ga } = useNuxtApp()
+          //     //   $ga.enable()
+          //     // },
+          //     // declined: () => {
+          //     //   const { $ga } = useNuxtApp()
+          //     //   $ga.disable()
+          //     // },
+          //   },
+          // ],
         },
         locales: ['en', 'de'],
       },
@@ -118,7 +133,6 @@ export default defineNuxtConfig({
           },
           fallbackWarn: false, // TODO: don't show incorrect warnings (https://github.com/intlify/vue-i18n-next/issues/776)
         },
-        // vueI18nLoader: true,
       },
     ],
     // [
