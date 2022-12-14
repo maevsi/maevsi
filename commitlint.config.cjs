@@ -1,12 +1,14 @@
-const x = require('@commitlint/config-conventional')
+const commitlintConfigConventional = require("@commitlint/config-conventional");
 
-const ruleBodyMaxLineLength = x.rules['body-max-line-length']
+const ruleMaxLineLength =
+  commitlintConfigConventional.rules["body-max-line-length"];
 
-ruleBodyMaxLineLength[0] = process.env.CI === 'true' ? 1 : 2
+ruleMaxLineLength[0] = process.env.CI === "true" ? 1 : 2;
 
 module.exports = {
-  extends: ['@commitlint/config-conventional'],
+  extends: ["@commitlint/config-conventional"],
   rules: {
-    'body-max-line-length': ruleBodyMaxLineLength,
+    "body-max-line-length": ruleMaxLineLength,
+    "footer-max-line-length": ruleMaxLineLength,
   },
-}
+};
