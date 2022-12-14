@@ -12,13 +12,13 @@ import { useMaevsiStore } from '~/store'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const { $localePath } = useNuxtApp()
       const store = useMaevsiStore()
+      const localePath = useLocalePath()
 
       if (store.jwtDecoded?.role === 'maevsi_account') {
-        return navigateTo($localePath('/account/' + store.jwtDecoded.username))
+        return navigateTo(localePath('/account/' + store.jwtDecoded.username))
       } else {
-        return navigateTo($localePath('/task/account/sign-in'))
+        return navigateTo(localePath('/task/account/sign-in'))
       }
     },
   ],

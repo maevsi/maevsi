@@ -19,15 +19,15 @@ import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const { $localePath } = useNuxtApp()
       const route = useRoute()
+      const localePath = useLocalePath()
 
       if (
         Array.isArray(route.query.code) ||
         route.query.code === null ||
         !REGEX_UUID.test(route.query.code)
       ) {
-        return navigateTo($localePath('/'))
+        return navigateTo(localePath('/'))
       }
     },
   ],

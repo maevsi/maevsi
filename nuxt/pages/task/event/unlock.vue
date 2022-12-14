@@ -82,7 +82,8 @@ definePageMeta({
     // TODO: use alternative to callWithNuxt (https://github.com/nuxt/framework/issues/6292)
     async function (_to: any, _from: any) {
       const nuxtApp = useNuxtApp()
-      const { $localePath, $urql } = useNuxtApp()
+      const { $urql } = useNuxtApp()
+      const localePath = useLocalePath()
       const route = useRoute()
       const { jwtStore } = useJwtStore()
 
@@ -121,7 +122,7 @@ definePageMeta({
       if (!result.data?.eventUnlock?.eventUnlockResponse?.jwt) {
         return await callWithNuxt(nuxtApp, () =>
           navigateTo(
-            $localePath({
+            localePath({
               query: {
                 ...route.query,
                 error: null,
@@ -142,15 +143,15 @@ definePageMeta({
 
       if ('quick' in route.query) {
         return await callWithNuxt(nuxtApp, () =>
-          navigateTo($localePath(eventPath))
+          navigateTo(localePath(eventPath))
         )
       } else {
         return await callWithNuxt(nuxtApp, () =>
           navigateTo(
-            $localePath({
+            localePath({
               query: {
                 ...route.query,
-                redirect: $localePath(eventPath),
+                redirect: localePath(eventPath),
               },
             })
           )
