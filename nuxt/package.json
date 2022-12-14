@@ -103,7 +103,7 @@
     "graphql": "16.6.0",
     "graphql-tag": "2.12.6",
     "h3": "1.0.2",
-    "html-to-text": "9.0.2",
+    "html-to-text": "9.0.3",
     "ical-generator": "3.6.0",
     "is-https": "4.0.0",
     "isomorphic-dompurify": "0.24.0",

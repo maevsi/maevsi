@@ -68,7 +68,7 @@ specifiers:
   graphql: 16.6.0
   graphql-tag: 2.12.6
   h3: 1.0.2
-  html-to-text: 9.0.2
+  html-to-text: 9.0.3
   ical-generator: 3.6.0
   is-https: 4.0.0
   isomorphic-dompurify: 0.24.0
@@ -186,7 +186,7 @@ devDependencies:
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
   h3: 1.0.2
-  html-to-text: 9.0.2
+  html-to-text: 9.0.3
   ical-generator: 3.6.0_njqpt7mvi67jxgjpn23r2slcvi
   is-https: 4.0.0
   isomorphic-dompurify: 0.24.0
@@ -7459,12 +7459,13 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /html-to-text/9.0.2:
-    resolution: {integrity: sha512-0NEkqSZKldWhefawNp73Yyky3pIUFh+y15EUqBXrQorsg/Pw1EtxpeS7ZQLhhaPxXvs4K2LatlJf63rmKcTbDw==}
+  /html-to-text/9.0.3:
+    resolution: {integrity: sha512-hxDF1kVCF2uw4VUJ3vr2doc91pXf2D5ngKcNviSitNkhP9OMOaJkDrFIFL6RMvko7NisWTEiqGpQ9LAxcVok1w==}
     engines: {node: '>=14'}
     dependencies:
       '@selderee/plugin-htmlparser2': 0.10.0
       deepmerge: 4.2.2
+      dom-serializer: 2.0.0
       htmlparser2: 8.0.1
       selderee: 0.10.0
     dev: true
