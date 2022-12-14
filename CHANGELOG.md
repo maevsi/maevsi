@@ -1,3 +1,10 @@
+# [1.0.0-beta.12](https://github.com/maevsi/maevsi/compare/1.0.0-beta.11...1.0.0-beta.12) (2022-12-14)
+
+
+### Features
+
+* **nuxt:** add pwa module ([1bbfc68](https://github.com/maevsi/maevsi/commit/1bbfc6897112d895b41ad02d7ac2ff070f8134d7))
+
 # [1.0.0-beta.11](https://github.com/maevsi/maevsi/compare/1.0.0-beta.10...1.0.0-beta.11) (2022-12-14)
 
 
