@@ -88,6 +88,14 @@ export default defineNuxtConfig({
       },
     ],
     [
+      '@kevinmarrec/nuxt-pwa',
+      {
+        icon: {
+          source: 'public/assets/static/favicon/android-chrome-512x512.png',
+        },
+      },
+    ],
+    [
       '@nuxtjs/color-mode',
       {
         classSuffix: '',
