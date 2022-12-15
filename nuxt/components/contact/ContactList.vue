@@ -3,8 +3,9 @@
     <div class="flex flex-col gap-4">
       <ScrollContainer
         v-if="contacts"
+        class="max-h-[70vh]"
         :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
-        @loadMore="loadMore"
+        @load-more="after = api.data.allContacts?.pageInfo.endCursor"
       >
         <table>
           <thead>
@@ -35,7 +36,7 @@
               :contact="contact"
               :is-deleting="pending.deletions.includes(contact.nodeId)"
               :is-editing="pending.edits.includes(contact.nodeId)"
-              @delete="delete_(contact.nodeId)"
+              @delete="delete_(contact.nodeId, contact.id)"
               @edit="edit(contact)"
             />
           </tbody>
@@ -49,15 +50,14 @@
           </template>
         </ButtonColored>
       </div>
-      <Modal id="ModalContact" @close="onClose">
+      <Modal id="ModalContact" is-footer-hidden @close="onClose">
         <FormContact
           :contact="selectedContact"
-          @submitSuccess="onSubmitSuccess"
+          @submit-success="store.modalRemove('ModalContact')"
         />
         <template #header>
           {{ formContactHeading }}
         </template>
-        <template #footer />
       </Modal>
     </div>
   </Loader>
@@ -66,22 +66,23 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
-import { getApiMeta } from '~/plugins/util/util'
-import { useAllContactsQuery, useDeleteContactMutation } from '~/gql/generated'
-import { Contact } from '~/types/contact'
+import {
+  Contact,
+  useAllContactsQuery,
+  useDeleteContactByIdMutation,
+} from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
 
 const { t } = useI18n()
 const store = useMaevsiStore()
-const { executeMutation: executeMutationContactDelete } =
-  useDeleteContactMutation()
+const { executeMutation: executeMutationContactDeleteById } =
+  useDeleteContactByIdMutation()
 
 // refs
 const after = ref<string>()
 
 // queries
-const contactsQuery = useAllContactsQuery({
+const contactsQuery = await useAllContactsQuery({
   variables: {
     after,
     authorAccountUsername: store.signedInUsername,
@@ -90,14 +91,14 @@ const contactsQuery = useAllContactsQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...contactsQuery.data.value,
     },
     ...getApiMeta([contactsQuery]),
-  }
-})
+  })
+)
 const contacts = computed(() => contactsQuery.data.value?.allContacts?.nodes)
 
 // data
@@ -106,7 +107,7 @@ const pending = reactive({
   deletions: ref<string[]>([]),
   edits: ref<string[]>([]),
 })
-const selectedContact = ref<Contact>()
+const selectedContact = ref<Pick<Contact, 'nodeId'>>()
 
 // methods
 function add() {
@@ -114,42 +115,29 @@ function add() {
   selectedContact.value = undefined
   store.modalAdd({ id: 'ModalContact' })
 }
-async function delete_(nodeId: string) {
+async function delete_(nodeId: string, id: string) {
   pending.deletions.push(nodeId)
   api.value.errors = []
-  const result = await executeMutationContactDelete({
-    nodeId,
-  })
+
+  const result = await executeMutationContactDeleteById({ id })
 
   if (result.error) {
     api.value.errors.push(result.error)
     consola.error(result.error)
   }
 
-  pending.deletions.slice(pending.deletions.indexOf(nodeId), 1)
-
-  // if (!result.data) {
-  //   return
-  // }
-  // TODO: cache update (allContacts)
+  pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
 }
-function edit(contact: Contact) {
+function edit(contact: Pick<Contact, 'nodeId'>) {
   pending.edits.push(contact.nodeId)
   formContactHeading.value = t('contactEdit')
   selectedContact.value = contact
   store.modalAdd({ id: 'ModalContact' })
 }
-function loadMore() {
-  after.value = api.value.data.allContacts?.pageInfo.endCursor
-}
 function onClose() {
   if (!selectedContact.value) return
 
   pending.edits.splice(pending.edits.indexOf(selectedContact.value.nodeId), 1)
-}
-function onSubmitSuccess() {
-  store.modalRemove('ModalContact')
-  // TODO: cache update (allContacts)
 }
 
 // lifecycle
@@ -158,10 +146,9 @@ watch(contactsQuery.error, (currentValue, _oldValue) => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   address: Adresse
-  author: Autor
   contact: Kontakt
   contactAdd: Kontakt hinzufügen
   contactEdit: Kontakt bearbeiten
@@ -170,7 +157,6 @@ de:
   url: Webseite
 en:
   address: Address
-  author: author
   contact: Contact
   contactAdd: Add contact
   contactEdit: Kontakt bearbeiten

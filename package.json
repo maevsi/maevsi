@@ -1,15 +1,16 @@
 {
-  "devDependencies": {
-    "@commitlint/cli": "17.2.0",
-    "@commitlint/config-conventional": "17.2.0",
-    "@types/node": "18.11.9",
-    "husky": "8.0.2",
-    "shx": "0.3.4",
-    "ts-node": "10.9.1",
-    "typescript": "4.8.4"
-  },
   "private": true,
+  "engines": {
+    "node": "19"
+  },
+  "packageManager": "pnpm@7.18.2",
   "scripts": {
-    "prepare": "if [ -d '.git' ] && [ -d '.husky' ]; then husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks; fi"
+    "postinstall": "pnpm --dir nuxt install && if [ -d '.git' ] && [ -d '.husky' ]; then husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks; fi"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.3.0",
+    "@commitlint/config-conventional": "17.3.0",
+    "husky": "8.0.2",
+    "shx": "0.3.4"
   }
 }

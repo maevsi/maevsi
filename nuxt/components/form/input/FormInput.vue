@@ -1,5 +1,5 @@
 <template>
-  <div class="my-6">
+  <div>
     <div
       :class="{
         'form-input-success': success,
@@ -43,9 +43,11 @@
             }"
             :disabled="isDisabled"
             :placeholder="placeholder"
+            :readonly="isReadonly"
             :type="type"
-            :value="value?.$model"
-            @input="onInput"
+            :value="valueFormatter(value?.$model as string)"
+            @input="emit('input', ($event.target as HTMLInputElement)?.value)"
+            @click="emit('click')"
           />
           <div v-if="validationProperty && isValidatable">
             <FormInputIconWrapper v-if="validationProperty.$pending">
@@ -111,41 +113,43 @@ import consola from 'consola'
 export interface Props {
   isDisabled?: boolean
   isOptional?: boolean
+  isReadonly?: boolean
   isRequired?: boolean
   isValidatable?: boolean
-  idLabel: string | undefined
+  idLabel?: string
   placeholder?: string
   success?: boolean
   title?: string
-  type: string | undefined
+  type?: string
   validationProperty?: BaseValidation
   value?: BaseValidation
+  valueFormatter?: (x?: string) => typeof x | undefined
   warning?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   isOptional: false,
+  isReadonly: false,
   isRequired: false,
   isValidatable: false,
+  idLabel: undefined,
   placeholder: undefined,
   success: false,
   title: undefined,
+  type: undefined,
   validationProperty: undefined,
   value: undefined,
+  valueFormatter: (x?: string) => x,
   warning: false,
 })
 
 const emit = defineEmits<{
   (e: 'icon'): void
   (e: 'input', input: string): void
+  (e: 'click'): void
 }>()
 
 const { t } = useI18n()
-
-// methods
-function onInput(payload: Event) {
-  emit('input', (payload.target as HTMLInputElement)?.value)
-}
 
 // initialization
 if (
@@ -173,7 +177,7 @@ if (
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   optional: optional
   required: Pflichtfeld

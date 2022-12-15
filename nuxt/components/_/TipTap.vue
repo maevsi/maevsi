@@ -58,7 +58,7 @@
         >
           <div class="flex align-end">
             <IconHeading />
-            <span>{{ t('1') }}</span>
+            <span>{{ t('number1') }}</span>
           </div>
         </ButtonIcon>
         <ButtonIcon
@@ -68,7 +68,7 @@
         >
           <div class="flex align-end">
             <IconHeading />
-            <span>{{ t('2') }}</span>
+            <span>{{ t('number2') }}</span>
           </div>
         </ButtonIcon>
         <ButtonIcon
@@ -78,7 +78,7 @@
         >
           <div class="flex align-end">
             <IconHeading />
-            <span>{{ t('3') }}</span>
+            <span>{{ t('number3') }}</span>
           </div>
         </ButtonIcon>
       </div>
@@ -152,19 +152,20 @@ import { Link } from '@tiptap/extension-link'
 import { StarterKit } from '@tiptap/starter-kit'
 
 export interface Props {
-  value: string
+  modelValue?: string
 }
 const props = withDefaults(defineProps<Props>(), {
-  value: '',
+  modelValue: '',
 })
 
 const emit = defineEmits<{
-  (e: 'input', input: string): void
+  (e: 'update:modelValue', input: string): void
 }>()
 
+const host = useHost()
 const { t } = useI18n()
 const editor = useEditor({
-  content: props.value,
+  content: props.modelValue,
   editorProps: {
     attributes: {
       class: 'form-input min-h-[100px]',
@@ -173,11 +174,16 @@ const editor = useEditor({
   extensions: [StarterKit, Link],
   onUpdate: () => {
     if (!editor.value) return
-    emit('input', editor.value.getHTML())
+    emit('update:modelValue', editor.value.getHTML())
   },
 })
 
 // methods
+const getLocation = (href: string) => {
+  const l = document.createElement('a')
+  l.href = href
+  return l
+}
 function setLink() {
   if (!editor.value) return
 
@@ -196,44 +202,21 @@ function setLink() {
     return
   }
 
+  const location = getLocation(url)
+  const urlHost = `${location.hostname}:${location.port}`
+
   // update link
   editor.value
     .chain()
     .focus()
     .extendMarkRange('link')
-    .setLink({ href: url, target: '_blank' })
+    .setLink({ href: url, target: urlHost !== host ? '_blank' : null })
     .run()
 }
-
-// lifecycle
-watch(
-  () => props.value,
-  (currentValue, _oldValue) => {
-    if (!editor.value) return
-
-    const isSame = editor.value.getHTML() === currentValue
-
-    if (isSame) {
-      return
-    }
-
-    editor.value.commands.setContent(currentValue, false)
-  }
-)
-
-// initialization
-Link.configure({
-  HTMLAttributes: {
-    rel: 'nofollow noopener noreferrer',
-  },
-})
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
-  1: '1'
-  2: '2'
-  3: '3'
   blockquote: Zitat
   bold: Fett
   code: Code
@@ -246,14 +229,14 @@ de:
   linkRemove: Link entfernen
   listOl: Aufzählung
   listUl: Liste
-  paragraph: Absatz
+  number1: '1'
+  number2: '2'
+  number3: '3'
+  # paragraph: Absatz
   redo: Wiederholen
   strike: Durchgestrichen
   undo: Rückgängig machen
 en:
-  1: '1'
-  2: '2'
-  3: '3'
   blockquote: Blockquote
   bold: Bold
   code: Code
@@ -265,8 +248,11 @@ en:
   linkRemove: Remove link
   listOl: Enumeration
   listUl: List
+  number1: '1'
+  number2: '2'
+  number3: '3'
   italic: Italic
-  paragraph: Paragraph
+  # paragraph: Paragraph
   redo: Redo
   strike: Strikethrough
   undo: Undo

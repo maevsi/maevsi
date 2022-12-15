@@ -1,13 +1,13 @@
 <template>
   <AppLink
     v-if="to"
-    ref="buttonRef"
-    :append="append"
     :aria-label="ariaLabel"
     :class="classes"
     :disabled="disabled"
     :is-colored="false"
+    :is-to-relative="isToRelative"
     :to="to"
+    @click="emit('click')"
   >
     <slot name="prefix" />
     <slot />
@@ -15,12 +15,11 @@
   </AppLink>
   <button
     v-else
-    ref="buttonRef"
     :aria-label="ariaLabel"
     :class="classes"
     :disabled="disabled"
     :type="type"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     <slot name="prefix" />
     <slot />
@@ -30,30 +29,26 @@
 
 <script setup lang="ts">
 export interface Props {
-  append?: boolean
   ariaLabel: string
   disabled?: boolean
   isBlock?: boolean
   isLinkColored?: boolean
+  isToRelative?: boolean
   to?: string
   type?: 'button' | 'submit' | 'reset'
 }
 const props = withDefaults(defineProps<Props>(), {
-  append: false,
   disabled: false,
   isBlock: false,
   isLinkColored: false,
+  isToRelative: false,
   to: undefined,
   type: 'button',
 })
 
-// refs
-const buttonRef = ref<HTMLButtonElement>()
-
-// // methods
-// function click() {
-//   buttonRef.value?.click()
-// }
+const emit = defineEmits<{
+  (e: 'click'): void
+}>()
 
 // computations
 const classes = computed(() => {

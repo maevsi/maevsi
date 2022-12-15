@@ -1,26 +1,21 @@
+import defu from 'defu'
 import { appendHeader, defineEventHandler } from 'h3'
 
-import { getHost } from '~/plugins/util/util'
+import { getDomainTldPort, getHost } from '~/utils/util'
 
 function getCsp(host: string): Record<string, Array<string>> {
   const hostName = host.replace(/:[0-9]+$/, '')
   const config = useRuntimeConfig()
 
-  return {
+  const stagingHostOrHost = config.public.stagingHost || host
+
+  const base = {
     'base-uri': ["'none'"], // Mozilla Observatory.
     'connect-src': [
-      ...(config.public.isInDevelopment
-        ? [
-            `http://${hostName}:24678/_nuxt/`,
-            `https://${hostName}:24678/_nuxt/`,
-            `ws://${hostName}:24678/_nuxt/`,
-            `wss://${hostName}:24678/_nuxt/`,
-          ]
-        : [
-            `https://${host}/cdn-cgi/rum`, // Cloudflare real user management (browser insights)
-          ]),
       "'self'",
-      `https://postgraphile.${host}`,
+      'blob:', // vue-advanced-cropper
+      `https://postgraphile.${getDomainTldPort(stagingHostOrHost)}`,
+      `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
       'https://www.google-analytics.com',
     ],
     'default-src': ["'none'"],
@@ -30,7 +25,7 @@ function getCsp(host: string): Record<string, Array<string>> {
     'img-src': [
       'blob:',
       'data:',
-      `https://tusd.${host}`,
+      `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
       'https://www.google-analytics.com',
       'https://www.gravatar.com/avatar/',
       "'self'",
@@ -38,8 +33,8 @@ function getCsp(host: string): Record<string, Array<string>> {
     'manifest-src': ["'self'"],
     'prefetch-src': ["'self'"],
     'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
-    // TODO: https://stackoverflow.com/questions/62081028/this-document-requires-trustedscripturl-assignment
-    // 'require-trusted-types-for': ["'script'"], // csp-evaluator // https://github.com/maevsi/maevsi/issues/830
+    // TODO: evaluate header (https://github.com/maevsi/maevsi/issues/830) // https://stackoverflow.com/questions/62081028/this-document-requires-trustedscripturl-assignment
+    // 'require-trusted-types-for': ["'script'"], // csp-evaluator
     'script-src': [
       'blob:',
       "'self'",
@@ -51,6 +46,21 @@ function getCsp(host: string): Record<string, Array<string>> {
     ],
     'style-src': ["'self'", "'unsafe-inline'"], // Tailwind
   }
+
+  const development = {
+    'connect-src': [
+      `http://${hostName}:24678/_nuxt/`,
+      `https://${hostName}:24678/_nuxt/`,
+      `ws://${hostName}:24678/_nuxt/`,
+      `wss://${hostName}:24678/_nuxt/`,
+    ],
+  }
+
+  const production = {
+    'connect-src': [`https://${stagingHostOrHost}/cdn-cgi/rum`],
+  }
+
+  return defu(base, config.public.isInProduction ? production : development)
 }
 
 function getCspAsString(host: string): string {
@@ -65,7 +75,7 @@ function getCspAsString(host: string): string {
 }
 
 export default defineEventHandler((event) => {
-  const host = getHost(event.req)
+  const host = getHost(event.node.req)
 
   appendHeader(event, 'Content-Security-Policy', getCspAsString(host))
   // appendHeader(event, 'Cross-Origin-Embedder-Policy', 'require-corp') // https://stackoverflow.com/questions/71904052/getting-notsameoriginafterdefaultedtosameoriginbycoep-error-with-helmet

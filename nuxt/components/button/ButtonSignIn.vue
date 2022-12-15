@@ -2,7 +2,7 @@
   <ButtonColored
     :aria-label="t('signIn')"
     :to="localePath({ path: '/task/account/sign-in' })"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     {{ t('signIn') }}
     <template #prefix>
@@ -14,9 +14,13 @@
 <script setup lang="ts">
 const localePath = useLocalePath()
 const { t } = useI18n()
+
+const emit = defineEmits<{
+  (e: 'click'): void
+}>()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   signIn: Anmelden
 en:

@@ -1,3 +1,0 @@
-Disallow: /robots.txt
-Allow: /
-Sitemap: https://maev.si/sitemap.xml

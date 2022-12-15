@@ -1,19 +1,14 @@
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import graphqlPlugin from '@rollup/plugin-graphql'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import {
-  SITEMAP_EXCLUSIONS,
-  SITEMAP_EXCLUSIONS_LOCALIZED,
-  LOCALES,
-} from './plugins/util/constants'
+import { JWT_NAME, LOCALES } from './utils/constants'
+
+export const SITEMAP_EXCLUSIONS = ['/teapot'] // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
+export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
 
 for (const exclusion of SITEMAP_EXCLUSIONS) {
-  for (const locale of LOCALES) {
+  for (const locale of [{ code: '' }, ...LOCALES]) {
     SITEMAP_EXCLUSIONS_LOCALIZED.push(`/${locale.code}${exclusion}`)
   }
 }
@@ -21,64 +16,85 @@ for (const exclusion of SITEMAP_EXCLUSIONS) {
 const BASE_URL =
   'https://' +
   (process.env.NUXT_PUBLIC_STACK_DOMAIN ||
-    `${process.env.HOST || 'localhost'}:3000`) // TODO: deprecated
+    `${process.env.HOST || 'localhost'}:3000`)
 
 export default defineNuxtConfig({
-  cookies: {
-    necessary: [
-      {
-        name: {
-          de: 'Authentifizierungsdaten',
-          en: 'Authentication Data',
-        },
-        // cookies: ['JWT_NAME'],
-      },
-      {
-        name: {
-          de: 'Cookie-Präferenzen',
-          en: 'Cookie Preferences',
-        },
-        // cookies: ['cookie_control_consent', 'cookie_control_enabled_cookies'],
-      },
-      {
-        name: {
-          de: 'Spracheinstellungen',
-          en: 'Language Settings',
-        },
-        // cookies: ['i18n_redirected'],
-      },
-    ],
-    optional: [
-      {
-        name: 'Google Analytics',
-        identifier: 'ga',
-        // cookies: ['_ga', '_gat', '_gid'],
-        accepted: () => {
-          const { $ga } = useNuxtApp()
-          $ga.enable()
-        },
-        declined: () => {
-          const { $ga } = useNuxtApp()
-          $ga.disable()
-        },
-      },
-    ],
+  app: {
+    pageTransition: {
+      name: 'layout',
+    },
   },
-  css: ['@/assets/css/main.css', 'vue-datetime/dist/vue-datetime.min.css'],
-  dir: {
-    static: 'public',
-  },
-  loading: { color: '#fff' }, // Customize the progress-bar color
-  layoutTransition: {
-    name: 'layout',
-  },
+  css: ['@/assets/css/main.css'],
   modules: [
-    // [
-    //   '@dargmuesli/nuxt-cookie-control',
-    //   {
-    //     locales: ['en', 'de'],
-    //   },
-    // ],
+    [
+      '@dargmuesli/nuxt-cookie-control',
+      {
+        cookies: {
+          necessary: [
+            {
+              description: {
+                de: 'Speichert die Zugriffsberechtigungen auf Daten.',
+                en: 'Saves the access permissions to data.',
+              },
+              name: {
+                de: 'Authentifizierungsdaten',
+                en: 'Authentication Data',
+              },
+              targetCookieIds: [JWT_NAME],
+            },
+            {
+              description: {
+                de: 'Speichert die Einstellungen, die in diesem Dialog getroffen werden.',
+                en: 'Saves the settings made in this dialog.',
+              },
+              name: {
+                de: 'Cookie-Präferenzen',
+                en: 'Cookie Preferences',
+              },
+              targetCookieIds: [
+                'cookie_control_consent',
+                'cookie_control_enabled_cookies',
+              ],
+            },
+            {
+              description: {
+                de: 'Speichert in welcher Sprache die Webseite angezeigt wird.',
+                en: 'Saves in which language the web page is displayed.',
+              },
+              name: {
+                de: 'Spracheinstellungen',
+                en: 'Language Settings',
+              },
+              targetCookieIds: ['i18n_redirected'],
+            },
+          ],
+          // optional: [
+          //   {
+          //     name: 'Google Analytics',
+          //     id: 'ga',
+          //     // targetCookieIds: ['_ga', '_gat', '_gid'],
+          //     // accepted: () => {
+          //     //   const { $ga } = useNuxtApp()
+          //     //   $ga.enable()
+          //     // },
+          //     // declined: () => {
+          //     //   const { $ga } = useNuxtApp()
+          //     //   $ga.disable()
+          //     // },
+          //   },
+          // ],
+        },
+        locales: ['en', 'de'],
+      },
+    ],
+    [
+      '@kevinmarrec/nuxt-pwa',
+      {
+        icon: {
+          source: 'public/assets/static/favicon/android-chrome-512x512.png',
+        },
+      },
+    ],
     [
       '@nuxtjs/color-mode',
       {
@@ -105,6 +121,7 @@ export default defineNuxtConfig({
       '@nuxtjs/html-validator',
       {
         failOnError: true,
+        logLevel: 'warning',
       },
     ],
     [
@@ -122,12 +139,10 @@ export default defineNuxtConfig({
             de: localeDe,
             en: localeEn,
           },
-          silentFallbackWarn: true,
+          fallbackWarn: false, // TODO: don't show incorrect warnings (https://github.com/intlify/vue-i18n-next/issues/776)
         },
-        // vueI18nLoader: true,
       },
     ],
-    // ['@nuxtjs/moment', { locales: ['de'] }],
     // [
     //   '@nuxtjs/google-adsense',
     //   {
@@ -136,20 +151,27 @@ export default defineNuxtConfig({
     //     analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
     //   },
     // ],
-    // '@nuxtjs/robots', // https://github.com/maevsi/maevsi/issues/740
+    '@nuxtjs/robots',
     '@pinia/nuxt',
-    // ['@nuxtjs/sitemap', { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true }], // Should be declared at the end of the array. // https://github.com/maevsi/maevsi/issues/741
+    [
+      '@funken-studio/sitemap-nuxt-3',
+      { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true },
+    ], // Should be declared at the end of the array.
   ],
   nitro: {
     compressPublicAssets: true,
   },
   postcss: {
-    // @ts-ignore https://github.com/nuxt/bridge/issues/29
     plugins: { tailwindcss: {}, autoprefixer: {} },
   },
   runtimeConfig: {
     public: {
-      isInDevelopment: process.env.NODE_ENV !== 'production',
+      isInProduction: process.env.NODE_ENV === 'production',
+      stagingHost:
+        process.env.NODE_ENV !== 'production' &&
+        !process.env.NUXT_PUBLIC_STACK_DOMAIN
+          ? 'maev.si'
+          : undefined,
       // 'google-adsense': {
       //   id: process.env.GOOGLE_ADSENSE_ID,
       //   analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
@@ -176,14 +198,6 @@ export default defineNuxtConfig({
     },
   },
   vite: {
-    plugins: [
-      VueI18nPlugin({
-        include:
-          '!' +
-          resolve(dirname(fileURLToPath(import.meta.url)), './node_modules/**'), // https://github.com/intlify/bundle-tools/issues/168
-      }),
-      // @ts-ignore https://github.com/rollup/plugins/issues/1243
-      graphqlPlugin(),
-    ],
+    plugins: [graphqlPlugin()],
   },
 })

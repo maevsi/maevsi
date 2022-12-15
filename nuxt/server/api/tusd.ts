@@ -13,7 +13,7 @@ import { jwtVerify, importSPKI } from 'jose'
 import pg from 'pg'
 import fetch from 'node-fetch'
 
-import { JWT_ALGORITHM } from '~/plugins/util/constants'
+import { JWT_ALGORITHM } from '~/utils/constants'
 
 const configPostgraphileJwtPublicKeyPath =
   process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE || ''
@@ -38,10 +38,10 @@ const pool = new pg.Pool({
   password: fs.existsSync(secretPostgresRoleMaevsiTusdPasswordPath)
     ? fs.readFileSync(secretPostgresRoleMaevsiTusdPasswordPath, 'utf-8')
     : undefined,
-  user: 'maevsi_tusd', // lgtm [js/hardcoded-credentials]
+  user: 'maevsi_tusd',
 })
 
-export default async function (event: H3Event) {
+export default defineEventHandler(async function (event: H3Event) {
   const method = getMethod(event)
 
   switch (method) {
@@ -54,7 +54,7 @@ export default async function (event: H3Event) {
     default:
       consola.warn(`Unexpected request method: ` + method)
   }
-}
+})
 
 async function deleteUpload(event: H3Event, uploadId: any, storageKey: any) {
   let queryResult = await pool
@@ -82,7 +82,7 @@ async function deleteUpload(event: H3Event, uploadId: any, storageKey: any) {
 
   if (!queryResult) return
 
-  event.res.statusCode = 204
+  event.node.res.statusCode = 204
   await send(event)
 }
 
@@ -166,7 +166,7 @@ async function tusdDelete(event: H3Event) {
     if (httpResp.ok) {
       if (httpResp.status === 204) {
         await deleteUpload(event, uploadId, storageKey)
-        event.res.statusCode = 204
+        event.node.res.statusCode = 204
         await send(event)
       } else if (httpResp.status === 404) {
         await deleteUpload(event, uploadId, storageKey)

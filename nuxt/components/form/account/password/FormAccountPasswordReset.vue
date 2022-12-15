@@ -1,14 +1,19 @@
 <template>
   <Form
     :errors="api.errors"
-    :form="v$.form"
+    :errors-pg-ids="{
+      postgres22023: t('postgres22023'),
+      postgresP0002: t('postgresP0002'),
+      postgres55000: t('postgres55000'),
+    }"
+    :form="v$"
     :form-class="formClass"
     :is-form-sent="isFormSent"
     :submit-name="t('accountPasswordReset')"
     @submit.prevent="submit"
   >
     <FormInputPassword
-      :form-input="v$.form.password"
+      :form-input="v$.password"
       :title="t('passwordNew')"
       @input="form.password = $event"
     />
@@ -19,17 +24,15 @@
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
 import {
   formPreSubmit,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import { useAccountPasswordResetMutation } from '~/gql/generated'
 
 export interface Props {
-  formClass: string
+  formClass?: string
 }
 withDefaults(defineProps<Props>(), {
   formClass: undefined,
@@ -41,14 +44,14 @@ const localePath = useLocalePath()
 const passwordResetMutation = useAccountPasswordResetMutation()
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...passwordResetMutation.data.value,
     },
     ...getApiMeta([passwordResetMutation]),
-  }
-})
+  })
+)
 // data
 const form = reactive({
   password: ref<string>(),
@@ -57,18 +60,16 @@ const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  if (!form.password) throw new Error('Password is not set!')
-
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 
   const result = await passwordResetMutation.executeMutation({
     code: route.query.code,
-    password: form.password,
+    password: form.password || '',
   })
 
   if (result.error) {
@@ -80,13 +81,7 @@ async function submit() {
     return
   }
 
-  Swal.fire({
-    icon: 'success',
-    text: t('accountPasswordResetSuccess') as string,
-    timer: 3000,
-    timerProgressBar: true,
-    title: t('reset'),
-  })
+  await showToast({ title: t('accountPasswordResetSuccess') })
   navigateTo({
     path: localePath(`/account`),
     query: { ...route.query, tab: 'signIn' },
@@ -95,17 +90,15 @@ async function submit() {
 
 // vuelidate
 const rules = {
-  form: {
-    password: {
-      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-      required,
-    },
+  password: {
+    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+    required,
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accountPasswordReset: Passwort zurücksetzen
   accountPasswordResetSuccess: Passwort erfolgreich zurückgesetzt.
@@ -113,7 +106,6 @@ de:
   postgres22023: Das Passwort ist zu kurz! Überlege dir ein längeres.
   postgresP0002: Unbekannter Zurücksetzungslink! Hast du dein Passwort vielleicht schon zurückgesetzt?
   postgres55000: Der Zurücksetzungslink ist abgelaufen!
-  reset: Zurückgesetzt!
 en:
   accountPasswordReset: Reset password
   accountPasswordResetSuccess: Password reset successfully.
@@ -121,5 +113,4 @@ en:
   postgres22023: This password is too short! Think of a longer one.
   postgresP0002: Invalid reset link! Have you perhaps already reset your password?
   postgres55000: Your reset link has expired!
-  reset: Reset!
 </i18n>

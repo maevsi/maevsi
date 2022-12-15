@@ -7,7 +7,7 @@
     :title="title || t('emailAddress')"
     type="email"
     :value="formInput"
-    @input="$emit('input', $event)"
+    @input="emit('input', $event)"
   >
     <template #stateError>
       <FormInputStateError :form-input="formInput" validation-property="email">
@@ -53,10 +53,14 @@ withDefaults(defineProps<Props>(), {
   title: undefined,
 })
 
+const emit = defineEmits<{
+  (e: 'input', event: string): void
+}>()
+
 const { t } = useI18n()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   emailAddress: E-Mail-Adresse
 en:

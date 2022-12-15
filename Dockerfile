@@ -3,37 +3,26 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS development
+FROM node:19.2.0-slim AS development
 
-COPY ./docker-entrypoint.sh /usr/local/bin/
+COPY ./docker/entrypoint.sh /usr/local/bin/
 
 # Update and install dependencies.
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
-# - `ca-certificates git` is required by npm dependencies from GitHub (dargmuesli/nuxt-i18n-module)
-# - `curl`, `ca-certificates libnss3-tools` and `mkcert` provide the certificates for secure connections
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         libdbd-pg-perl postgresql-client sqitch \
-        curl \
-        ca-certificates git \
-        ca-certificates libnss3-tools \
-    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
-    && chmod +x mkcert-v*-linux-amd64 \
-    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g pnpm
 
 WORKDIR /srv/app/
 
-ENV CERTIFICATE_PATH=/srv/certificates/maevsi
-ENV NODE_OPTIONS="--max-old-space-size=4096 --openssl-legacy-provider"
-
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 VOLUME /srv/sqitch
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["pnpm", "run", "dev"]
 
 # Waiting for https://github.com/nuxt/framework/issues/6915
@@ -44,8 +33,7 @@ CMD ["pnpm", "run", "dev"]
 # Prepare Nuxt.
 
 # Should be the specific version of `node:slim`.
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS prepare
+FROM node:19.2.0-slim AS prepare
 
 WORKDIR /srv/app/
 
@@ -56,8 +44,9 @@ RUN npm install -g pnpm && \
 
 COPY ./nuxt/ ./
 
+# TODO: create ticket about node-jiti folder (https://github.com/dargmuesli/jonas-thelemann/issues/178)
 RUN pnpm install --offline \
-  && pnpm nuxi prepare
+    && rm -rf ./node-jiti
 
 
 ########################
@@ -65,13 +54,12 @@ RUN pnpm install --offline \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS build
+FROM node:19.2.0-slim AS build
 
 ARG CI=false
 ENV CI ${CI}
 ARG NUXT_PUBLIC_STACK_DOMAIN=maev.si
 ENV NUXT_PUBLIC_STACK_DOMAIN=${NUXT_PUBLIC_STACK_DOMAIN}
-ENV NODE_OPTIONS=--openssl-legacy-provider
 
 WORKDIR /srv/app/
 
@@ -87,7 +75,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS lint
+FROM node:19.2.0-slim AS lint
 
 WORKDIR /srv/app/
 
@@ -102,7 +90,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS test-unit
+FROM node:19.2.0-slim AS test-unit
 
 WORKDIR /srv/app/
 
@@ -116,30 +104,34 @@ RUN npm install -g pnpm && \
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:11.1.0@sha256:5c6862d80d175b663998dce1755b8a40b8bf632ddc84e345f5ed84bb83db7c9f AS test-integration_base
+FROM cypress/included:12.1.0 AS test-integration_base
 
-# ENV DEBUG="start-server-and-test"
+ARG UNAME=cypress
+ARG UID=1000
+ARG GID=1000
+
+ENV CYPRESS_RUN_BINARY=/home/cypress/Cypress/Cypress
+ENV DOCKER=true
 
 WORKDIR /srv/app/
 
 # Update and install dependencies.
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        # `curl ca-certificates libnss3-tools` are required by `mkcert`
-        curl ca-certificates libnss3-tools \
     # pnpm
     && npm install -g pnpm \
-    # mkcert
-    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
-    && chmod +x mkcert-v*-linux-amd64 \
-    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert \
-    && mkcert -install \
-    && mkdir -p /home/node/.local/share/mkcert \
-    && mv /root/.local/share/mkcert /home/node/.local/share/ \
-    && chown node:node /home/node/.local/share/mkcert -R \
+    # user
+    && groupadd -g $GID -o $UNAME \
+    && useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME \
     # clean
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && export CYPRESS_VERSION=$(ls /root/.cache/Cypress/) \
+    && mkdir /home/cypress/.cache \
+    && mv /root/.cache/Cypress/$CYPRESS_VERSION/Cypress /home/cypress/Cypress
+
+RUN chown $UID:$GID /home/cypress/Cypress -R
+
+USER $UID:$GID
 
 VOLUME /srv/app
 
@@ -148,34 +140,25 @@ VOLUME /srv/app
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:11.1.0@sha256:5c6862d80d175b663998dce1755b8a40b8bf632ddc84e345f5ed84bb83db7c9f AS test-integration
+FROM cypress/included:12.1.0 AS test-integration
 
 # Update and install dependencies.
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        # `curl ca-certificates libnss3-tools` are required by `mkcert`
-        curl ca-certificates libnss3-tools \
-    # pnpm
-    && npm install -g pnpm \
-    # mkcert
-    && curl -JLO "https://dl.filippo.io/mkcert/latest?for=linux/amd64" \
-    && chmod +x mkcert-v*-linux-amd64 \
-    && cp mkcert-v*-linux-amd64 /usr/local/bin/mkcert
+RUN npm install -g pnpm
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=build /srv/app/ ./
 
-RUN pnpm test:integration:prod && \
-    pnpm test:integration:dev
+RUN pnpm test:integration:prod \
+    && pnpm test:integration:dev
 
 
 #######################
 # Collect build, lint and test results.
 
-# Should be the specific version of node:slim.
-FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS collect
+# Should be the specific version of `node:slim`.
+FROM node:19.2.0-slim AS collect
 
 WORKDIR /srv/app/
 
@@ -183,15 +166,15 @@ COPY --from=build /srv/app/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/lint/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/test/package.json
 COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
-# COPY --from=test-visual /srv/app/package.json /tmp/test-visual/package.json
+
 
 #######################
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-# Should be the specific version of node:slim.
+# Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.0.1-slim@sha256:c50fa1ec635d2e2523490b968f15422982c50713c8d05c7cdb109a3f6fdd4d7c AS production
+FROM node:19.2.0-slim AS production
 
 ENV NODE_ENV=production
 
@@ -210,8 +193,8 @@ WORKDIR /srv/app/
 COPY --from=collect /srv/app/ ./
 
 COPY ./sqitch/ /srv/sqitch/
-COPY ./docker-entrypoint.sh /usr/local/bin/
+COPY ./docker/entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 CMD ["node", ".output/server/index.mjs"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1

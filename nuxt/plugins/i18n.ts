@@ -1,5 +1,3 @@
-import { defineNuxtPlugin } from '#app'
-
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.$i18n.onLanguageSwitched = (
     _oldLocale: string,

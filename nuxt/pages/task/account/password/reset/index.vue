@@ -6,20 +6,18 @@
 </template>
 
 <script setup lang="ts">
-import { REGEX_UUID } from '~/plugins/util/validation'
-
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const { $localePath } = useNuxtApp()
       const route = useRoute()
+      const localePath = useLocalePath()
 
       if (
         Array.isArray(route.query.code) ||
         route.query.code === null ||
         !REGEX_UUID.test(route.query.code)
       ) {
-        return navigateTo($localePath('/'))
+        return navigateTo(localePath('/'))
       }
     },
   ],
@@ -40,7 +38,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   title: Passwort zurücksetzen
 en:

@@ -22,22 +22,19 @@ afterAll(() => {
 test('gets ical string', () => {
   expect(
     getIcalString('maevsi.test', {
-      id: '1',
+      // id: '1',
       authorUsername: 'authorUsername',
       description: '<p>description</p>',
       end: new Date(),
-      invitationsByEventId: {
-        nodes: [],
-      },
-      inviteeCountMaximum: 0,
-      isArchived: false,
-      isInPerson: false,
-      isRemote: false,
+      // inviteeCountMaximum: 0,
+      // isArchived: false,
+      // isInPerson: false,
+      // isRemote: false,
       location: 'location',
       name: 'name',
       slug: 'slug',
       start: new Date(),
-      visibility: 'PUBLIC',
+      // visibility: EventVisibility.Public,
     })
   ).toBe(
     `BEGIN:VCALENDAR\r

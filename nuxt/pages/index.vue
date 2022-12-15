@@ -35,7 +35,8 @@
       </div>
       <LoaderImage
         :alt="t('heroImage')"
-        class="hidden lg:block lg:w-1/2"
+        aspect="aspect-[750/861]"
+        class="hidden lg:block w-1/2"
         height="861"
         src="/assets/static/images/hero_background.png"
         width="750"
@@ -72,9 +73,10 @@
     <section class="flex flex-col lg:flex-row gap-8 items-center">
       <LoaderImage
         :alt="t('heroImage')"
-        class="lg:w-1/2"
+        aspect="aspect-square"
+        class="w-full lg:w-1/2"
         height="750"
-        src="/assets/static/images/smartphone.png"
+        src="/assets/static/images/smartphone.webp"
         width="750"
       />
       <div class="flex flex-col gap-8 items-start lg:w-1/2">
@@ -136,11 +138,10 @@
     <div
       class="duration-300 fixed flex flex-col items-center bottom-4 left-1/2 -translate-x-1/2 text-xl gap-2 transition"
       :class="isScrollHintShown ? 'opacity-20' : 'opacity-0'"
-      data-testid="scroll-hint"
     >
       <IconChevronDoubleDown
         classes="h-16 w-16 animate-bounce"
-        @click.native="scrollToSteps"
+        @click="scrollToSteps"
       />
     </div>
   </div>
@@ -155,11 +156,8 @@ const sectionStepsRef = ref<HTMLElement>()
 
 // data
 const isScrollHintShown = ref(false)
-const title = t('title', {
-  easy: t('titleEasy'),
-  fast: t('titleFast'),
-  professional: t('titleProfessional'),
-})
+const loadingId = Math.random()
+const loadingIds = useState('loadingIds', () => [loadingId])
 
 // methods
 function hideScrollHint() {
@@ -176,13 +174,15 @@ onMounted(() => {
 
     window.addEventListener('scroll', hideScrollHint)
   }
+
+  loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1)
 })
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', hideScrollHint)
 })
 
 // initialization
-useHeadDefault(title)
+useHeadDefault('maevsi')
 </script>
 
 <script lang="ts">
@@ -191,7 +191,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   benefitControl: Kontrolle
   benefitControlDescription: Du kannst genau planen, was deine Gäste brauchen
@@ -206,10 +206,8 @@ de:
   benefitsTitle: Deine Vorteile mit {maevsi}
   benefitUserFriendly: Benutzerfreundlich
   benefitUserFriendlyDescription: Gäste können ganz einfach teilnehmen, komplett ohne Login
-  events: Veranstaltungen
   heroImage: Heldenbild.
   maevsi: maevsi
-  maevsiDescription: maevsi ist der Eventmanager für Veranstaltungen, die von Teilnehmenden unterstützt werden.
   maevsiDescription1: Persönliche Einladungen. Geordnetes Feedback.
   maevsiDescription2: Verpasse keine Veranstaltungen, zu denen deine Freunde gehen.
   smartphoneDescription: Mit meavsi musst du deine Veranstaltungen nicht mehr öde per Chat-Gruppe organisieren. Du kommunizierst sauber alle wichtigen Informationen, behältst die Kontrolle über individuelle Einladungen und hast den Kopf frei für den Inhalt deiner Veranstaltung – deine Gäste werden es dir danken
@@ -244,12 +242,10 @@ en:
   benefitsTitle: Your benefits with {maevsi}
   benefitUserFriendly: User friendly
   benefitUserFriendlyDescription: Guests can participate easily, without any login
-  events: Events
   heroImage: Hero image.
   maevsi: maevsi
-  maevsiDescription: maevsi is the manager for events supported by invitees.
   maevsiDescription1: Personal invitations. Proper feedback.
-  maevsiDescription2: Don't miss out on events your friends are going to.
+  maevsiDescription2: Never miss events your friends are going to.
   smartphoneDescription: With meavsi, you no longer have to organize your events via chat groups anymore. You communicate all important information clearly, keep control over individual invitations and focus on the content of your event without distraction – your guests will thank you for it.
   smartphoneTitle: Do you still organize your event like that?
   stepCreateDescription: Peace of mind for you and your guests, instead of a bustling group chat

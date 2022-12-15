@@ -155,7 +155,7 @@
 
       <i18n-t keypath="newsletterDataDescription4" tag="p">
         <template #strong>
-          <strong>{{ t('newsletterDataDescription4_1') }}</strong>
+          <strong>{{ t('newsletterDataDescription4s') }}</strong>
         </template>
       </i18n-t>
 
@@ -169,8 +169,8 @@
       <p>{{ t('pluginsToolsYouTubeDescription6') }}</p>
       <i18n-t keypath="pluginsToolsYouTubeDescription7" tag="p">
         <template #linkPrivacy>
-          <AppLink :to="t('pluginsToolsYouTubeDescription7_1')">
-            {{ t('pluginsToolsYouTubeDescription7_1') }}
+          <AppLink :to="t('pluginsToolsYouTubeDescription7s')">
+            {{ t('pluginsToolsYouTubeDescription7s') }}
           </AppLink>
         </template>
       </i18n-t>
@@ -179,13 +179,13 @@
       <p>{{ t('pluginsToolsGoogleWebFontsDescription1') }}</p>
       <i18n-t keypath="pluginsToolsGoogleWebFontsDescription2" tag="p">
         <template #linkFaq>
-          <AppLink :to="t('pluginsToolsGoogleWebFontsDescription2_1')">
-            {{ t('pluginsToolsGoogleWebFontsDescription2_1') }}
+          <AppLink :to="t('pluginsToolsGoogleWebFontsDescription2s1')">
+            {{ t('pluginsToolsGoogleWebFontsDescription2s1') }}
           </AppLink>
         </template>
         <template #linkPrivacy>
-          <AppLink :to="t('pluginsToolsGoogleWebFontsDescription2_2')">
-            {{ t('pluginsToolsGoogleWebFontsDescription2_2') }}
+          <AppLink :to="t('pluginsToolsGoogleWebFontsDescription2s2')">
+            {{ t('pluginsToolsGoogleWebFontsDescription2s2') }}
           </AppLink>
         </template>
       </i18n-t>
@@ -194,8 +194,8 @@
       <p>{{ t('pluginsToolsFontAwesomeDescription1') }}</p>
       <i18n-t keypath="pluginsToolsFontAwesomeDescription2" tag="p">
         <template #linkPrivacy>
-          <AppLink :to="t('pluginsToolsFontAwesomeDescription2_1')">
-            {{ t('pluginsToolsFontAwesomeDescription2_1') }}
+          <AppLink :to="t('pluginsToolsFontAwesomeDescription2s')">
+            {{ t('pluginsToolsFontAwesomeDescription2s') }}
           </AppLink>
         </template>
       </i18n-t>
@@ -209,21 +209,21 @@
           <AppLink
             to="https://privacy.google.com/businesses/gdprcontrollerterms/"
           >
-            {{ t('pluginsToolsGoogleMapsDescription4_1') }}
+            {{ t('pluginsToolsGoogleMapsDescription4s1') }}
           </AppLink>
         </template>
         <template #linkGdprScss>
           <AppLink
             to="https://privacy.google.com/businesses/gdprcontrollerterms/sccs/"
           >
-            {{ t('pluginsToolsGoogleMapsDescription4_2') }}
+            {{ t('pluginsToolsGoogleMapsDescription4s2') }}
           </AppLink>
         </template>
       </i18n-t>
       <i18n-t keypath="pluginsToolsGoogleMapsDescription5" tag="p">
         <template #linkPrivacy>
-          <AppLink :to="t('pluginsToolsGoogleMapsDescription5_1')">
-            {{ t('pluginsToolsGoogleMapsDescription5_1') }}
+          <AppLink :to="t('pluginsToolsGoogleMapsDescription5s')">
+            {{ t('pluginsToolsGoogleMapsDescription5s') }}
           </AppLink>
         </template>
       </i18n-t>
@@ -235,13 +235,13 @@
       <p>{{ t('pluginsToolsGoogleReCaptchaDescription4') }}</p>
       <i18n-t keypath="pluginsToolsGoogleReCaptchaDescription5" tag="p">
         <template #linkPrivacy>
-          <AppLink :to="t('pluginsToolsGoogleReCaptchaDescription5_1')">
-            {{ t('pluginsToolsGoogleReCaptchaDescription5_1') }}
+          <AppLink :to="t('pluginsToolsGoogleReCaptchaDescription5s1')">
+            {{ t('pluginsToolsGoogleReCaptchaDescription5s1') }}
           </AppLink>
         </template>
         <template #linkTerms>
-          <AppLink :to="t('pluginsToolsGoogleReCaptchaDescription5_2')">
-            {{ t('pluginsToolsGoogleReCaptchaDescription5_2') }}
+          <AppLink :to="t('pluginsToolsGoogleReCaptchaDescription5s2')">
+            {{ t('pluginsToolsGoogleReCaptchaDescription5s2') }}
           </AppLink>
         </template>
       </i18n-t>
@@ -262,7 +262,7 @@ const title = t('title')
 useHeadDefault(title)
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   dataAcquisition: 4. Datenerfassung auf dieser Website
   dataAcquisitionCommentsDescription: Für die Kommentarfunktion auf dieser Seite werden neben Ihrem Kommentar auch Angaben zum Zeitpunkt der Erstellung des Kommentars, Ihre E-Mail-Adresse und, wenn Sie nicht anonym posten, der von Ihnen gewählte Nutzername gespeichert.
@@ -370,34 +370,34 @@ de:
   newsletterDataDescription1: Wenn Sie den auf der Website angebotenen Newsletter beziehen möchten, benötigen wir von Ihnen eine E-Mail-Adresse sowie Informationen, welche uns die Überprüfung gestatten, dass Sie der Inhaber der angegebenen E-Mail-Adresse sind und mit dem Empfang des Newsletters einverstanden sind. Weitere Daten werden nicht bzw. nur auf freiwilliger Basis erhoben. Diese Daten verwenden wir ausschließlich für den Versand der angeforderten Informationen und geben diese nicht an Dritte weiter.
   newsletterDataDescription2: Die Verarbeitung der in das Newsletteranmeldeformular eingegebenen Daten erfolgt ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Die erteilte Einwilligung zur Speicherung der Daten, der E-Mail-Adresse sowie deren Nutzung zum Versand des Newsletters können Sie jederzeit widerrufen, etwa über den „Austragen“-Link im Newsletter. Die Rechtmäßigkeit der bereits erfolgten Datenverarbeitungsvorgänge bleibt vom Widerruf unberührt.
   newsletterDataDescription3: Die von Ihnen zum Zwecke des Newsletter-Bezugs bei uns hinterlegten Daten werden von uns bis zu Ihrer Austragung aus dem Newsletter bei uns bzw. dem Newsletterdiensteanbieter gespeichert und nach der Abbestellung des Newsletters aus der Newsletterverteilerliste gelöscht. Daten, die zu anderen Zwecken bei uns gespeichert wurden bleiben hiervon unberührt.
-  newsletterDataDescription4_1: Sie können der Speicherung widersprechen, sofern Ihre Interessen unser berechtigtes Interesse überwiegen.
+  newsletterDataDescription4s: Sie können der Speicherung widersprechen, sofern Ihre Interessen unser berechtigtes Interesse überwiegen.
   newsletterDataDescription4: Nach Ihrer Austragung aus der Newsletterverteilerliste wird Ihre E-Mail-Adresse bei uns bzw. dem Newsletterdiensteanbieter ggf. in einer Blacklist gespeichert, um künftige Mailings zu verhindern. Die Daten aus der Blacklist werden nur für diesen Zweck verwendet und nicht mit anderen Daten zusammengeführt. Dies dient sowohl Ihrem Interesse als auch unserem Interesse an der Einhaltung der gesetzlichen Vorgaben beim Versand von Newslettern (berechtigtes Interesse im Sinne des Art. 6 Abs. 1 lit. f DSGVO). Die Speicherung in der Blacklist ist zeitlich nicht befristet. {strong}
   newsletterDataTitle: Newsletterdaten
   pluginsTools: 6. Plugins und Tools
   pluginsToolsFontAwesomeDescription1: Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten Font Awesome. Font Awesome ist lokal installiert. Eine Verbindung zu Servern von Fonticons, Inc. findet dabei nicht statt.
-  pluginsToolsFontAwesomeDescription2_1: https://fontawesome.com/privacy
+  pluginsToolsFontAwesomeDescription2s: https://fontawesome.com/privacy
   pluginsToolsFontAwesomeDescription2: 'Weitere Informationen zu Font Awesome finden Sie und in der Datenschutzerklärung für Font Awesome unter: {linkPrivacy}.'
   pluginsToolsFontAwesomeTitle: Font Awesome (lokales Hosting)
   pluginsToolsGoogleMapsDescription1: Diese Seite nutzt den Kartendienst Google Maps. Anbieter ist die Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Irland.
   pluginsToolsGoogleMapsDescription2: Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung.
   pluginsToolsGoogleMapsDescription3: Die Nutzung von Google Maps erfolgt im Interesse einer ansprechenden Darstellung unserer Online-Angebote und an einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO; die Einwilligung ist jederzeit widerrufbar.
-  pluginsToolsGoogleMapsDescription4_1: https://privacy.google.com/businesses/gdprcontrollerterms/
-  pluginsToolsGoogleMapsDescription4_2: https://privacy.google.com/businesses/gdprcontrollerterms/sccs/
+  pluginsToolsGoogleMapsDescription4s1: https://privacy.google.com/businesses/gdprcontrollerterms/
+  pluginsToolsGoogleMapsDescription4s2: https://privacy.google.com/businesses/gdprcontrollerterms/sccs/
   pluginsToolsGoogleMapsDescription4: 'Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier: {linkGdpr} und {linkGdprScss}.'
-  pluginsToolsGoogleMapsDescription5_1: https://policies.google.com/privacy?hl=de
+  pluginsToolsGoogleMapsDescription5s: https://policies.google.com/privacy?hl=de
   pluginsToolsGoogleMapsDescription5: 'Mehr Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von Google: {linkPrivacy}.'
   pluginsToolsGoogleMapsTitle: Google Maps
   pluginsToolsGoogleReCaptchaDescription1: Wir nutzen „Google reCAPTCHA“ (im Folgenden „reCAPTCHA“) auf dieser Website. Anbieter ist die Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Irland.
   pluginsToolsGoogleReCaptchaDescription2: Mit reCAPTCHA soll überprüft werden, ob die Dateneingabe auf dieser Website (z. B. in einem Kontaktformular) durch einen Menschen oder durch ein automatisiertes Programm erfolgt. Hierzu analysiert reCAPTCHA das Verhalten des Websitebesuchers anhand verschiedener Merkmale. Diese Analyse beginnt automatisch, sobald der Websitebesucher die Website betritt. Zur Analyse wertet reCAPTCHA verschiedene Informationen aus (z. B. IP-Adresse, Verweildauer des Websitebesuchers auf der Website oder vom Nutzer getätigte Mausbewegungen). Die bei der Analyse erfassten Daten werden an Google weitergeleitet.
   pluginsToolsGoogleReCaptchaDescription3: Die reCAPTCHA-Analysen laufen vollständig im Hintergrund. Websitebesucher werden nicht darauf hingewiesen, dass eine Analyse stattfindet.
   pluginsToolsGoogleReCaptchaDescription4: Die Speicherung und Analyse der Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse daran, seine Webangebote vor missbräuchlicher automatisierter Ausspähung und vor SPAM zu schützen. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO; die Einwilligung ist jederzeit widerrufbar.
-  pluginsToolsGoogleReCaptchaDescription5_1: https://policies.google.com/privacy?hl=de
-  pluginsToolsGoogleReCaptchaDescription5_2: https://policies.google.com/terms?hl=de
+  pluginsToolsGoogleReCaptchaDescription5s1: https://policies.google.com/privacy?hl=de
+  pluginsToolsGoogleReCaptchaDescription5s2: https://policies.google.com/terms?hl=de
   pluginsToolsGoogleReCaptchaDescription5: 'Weitere Informationen zu Google reCAPTCHA entnehmen Sie den Google-Datenschutzbestimmungen und den Google Nutzungsbedingungen unter folgenden Links: {linkPrivacy} und {linkTerms}.'
   pluginsToolsGoogleReCaptchaTitle: Google reCAPTCHA
   pluginsToolsGoogleWebFontsDescription1: Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Web Fonts, die von Google bereitgestellt werden. Die Google Fonts sind lokal installiert. Eine Verbindung zu Servern von Google findet dabei nicht statt.
-  pluginsToolsGoogleWebFontsDescription2_1: https://developers.google.com/fonts/faq
-  pluginsToolsGoogleWebFontsDescription2_2: https://policies.google.com/privacy?hl=de
+  pluginsToolsGoogleWebFontsDescription2s1: https://developers.google.com/fonts/faq
+  pluginsToolsGoogleWebFontsDescription2s2: https://policies.google.com/privacy?hl=de
   pluginsToolsGoogleWebFontsDescription2: 'Weitere Informationen zu Google Web Fonts finden Sie unter {linkFaq} und in der Datenschutzerklärung von Google: {linkPrivacy}.'
   pluginsToolsGoogleWebFontsTitle: Google Web Fonts (lokales Hosting)
   pluginsToolsYouTubeDescription1: Diese Website bindet Videos der YouTube ein. Betreiber der Seiten ist die Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Irland.
@@ -406,7 +406,7 @@ de:
   pluginsToolsYouTubeDescription4: Des Weiteren kann YouTube nach Starten eines Videos verschiedene Cookies auf Ihrem Endgerät speichern oder vergleichbare Wiedererkennungstechnologien (z.B. Device-Fingerprinting) einsetzen. Auf diese Weise kann YouTube Informationen über Besucher dieser Website erhalten. Diese Informationen werden u. a. verwendet, um Videostatistiken zu erfassen, die Anwenderfreundlichkeit zu verbessern und Betrugsversuchen vorzubeugen.
   pluginsToolsYouTubeDescription5: Gegebenenfalls können nach dem Start eines YouTube-Videos weitere Datenverarbeitungsvorgänge ausgelöst werden, auf die wir keinen Einfluss haben.
   pluginsToolsYouTubeDescription6: Die Nutzung von YouTube erfolgt im Interesse einer ansprechenden Darstellung unserer Online-Angebote. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO; die Einwilligung ist jederzeit widerrufbar.
-  pluginsToolsYouTubeDescription7_1: https://policies.google.com/privacy?hl=de
+  pluginsToolsYouTubeDescription7s: https://policies.google.com/privacy?hl=de
   pluginsToolsYouTubeDescription7: 'Weitere Informationen über Datenschutz bei YouTube finden Sie in deren Datenschutzerklärung unter: {linkPrivacy}.'
   pluginsToolsYouTubeTitle: YouTube mit erweitertem Datenschutz
   source: Quelle
@@ -519,34 +519,34 @@ en:
   newsletterDataDescription1: If you would like to receive the newsletter offered on the website, we require an e-mail address from you as well as information that allows us to verify that you are the owner of the specified e-mail address and agree to receive the newsletter. Further data is not collected or only on a voluntary basis. We use this data exclusively for sending the requested information and do not pass it on to third parties.
   newsletterDataDescription2: The processing of the data entered in the newsletter registration form is based exclusively on your consent (Art. 6 para. 1 lit. a GDPR). You can revoke your consent to the storage of the data, the e-mail address and their use for sending the newsletter at any time, for example via the „unsubscribe“-link in the newsletter. The legality of the data processing operations already carried out remains unaffected by the revocation.
   newsletterDataDescription3: The data you provide for the purpose of receiving the newsletter will be stored by us or the newsletter service provider until you unsubscribe from the newsletter and will be deleted from the newsletter distribution list after you unsubscribe from the newsletter. Data that has been stored by us for other purposes remains unaffected by this.
-  newsletterDataDescription4_1: You can object to the storage if your interests outweigh our legitimate interest.
+  newsletterDataDescription4s: You can object to the storage if your interests outweigh our legitimate interest.
   newsletterDataDescription4: After you have unsubscribed from the newsletter distribution list, your e-mail address will be stored by us or the newsletter service provider in a blacklist, if necessary, in order to prevent future mailings. The data from the blacklist will only be used for this purpose and will not be merged with other data. This serves both your interest and our interest in complying with legal requirements when sending newsletters (legitimate interest within the meaning of Art. 6 (1) lit. f GDPR). The storage in the blacklist is not limited in time. {strong}
   newsletterDataTitle: Newsletter data
   pluginsTools: 6. Plugins and tools
   pluginsToolsFontAwesomeDescription1: This site uses Font Awesome for consistent font rendering. Font Awesome is installed locally. A connection to servers of Fonticons, Inc. does not take place.
-  pluginsToolsFontAwesomeDescription2_1: https://fontawesome.com/privacy
+  pluginsToolsFontAwesomeDescription2s: https://fontawesome.com/privacy
   pluginsToolsFontAwesomeDescription2: 'For more information about Font Awesome, please see and Font Awesome privacy policy at: {linkPrivacy}.'
   pluginsToolsFontAwesomeTitle: Font Awesome (local hosting)
   pluginsToolsGoogleMapsDescription1: This site uses the map service Google Maps. The provider is Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Ireland.
   pluginsToolsGoogleMapsDescription2: To use the functions of Google Maps, it is necessary to store your IP address. This information is usually transferred to a Google server in the USA and stored there. The provider of this site has no influence on this data transmission.
   pluginsToolsGoogleMapsDescription3: The use of Google Maps is in the interest of an appealing presentation of our online offers and an easy location of the places indicated by us on the website. This represents a legitimate interest within the meaning of Art. 6 para. 1 lit. f GDPR. If a corresponding consent has been requested, the processing is based exclusively on Art. 6 para. 1 lit. a GDPR; the consent can be revoked at any time.
-  pluginsToolsGoogleMapsDescription4_1: https://privacy.google.com/businesses/gdprcontrollerterms/
-  pluginsToolsGoogleMapsDescription4_2: https://privacy.google.com/businesses/gdprcontrollerterms/sccs/
+  pluginsToolsGoogleMapsDescription4s1: https://privacy.google.com/businesses/gdprcontrollerterms/
+  pluginsToolsGoogleMapsDescription4s2: https://privacy.google.com/businesses/gdprcontrollerterms/sccs/
   pluginsToolsGoogleMapsDescription4: 'Data transfer to the USA is based on the standard contractual clauses of the EU Commission. Details can be found here: {linkGdpr} and {linkGdprScss}.'
-  pluginsToolsGoogleMapsDescription5_1: https://policies.google.com/privacy?hl=en
+  pluginsToolsGoogleMapsDescription5s: https://policies.google.com/privacy?hl=en
   pluginsToolsGoogleMapsDescription5: "More information about the handling of user data can be found in Google's privacy policy: {linkPrivacy}."
   pluginsToolsGoogleMapsTitle: Google Maps
   pluginsToolsGoogleReCaptchaDescription1: We use „Google reCAPTCHA“ (hereinafter „reCAPTCHA“) on this website. The provider is Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Ireland.
   pluginsToolsGoogleReCaptchaDescription2: The purpose of reCAPTCHA is to check whether the data input on this website (e.g. in a contact form) is made by a human or by an automated program. For this purpose, reCAPTCHA analyzes the behavior of the website visitor based on various characteristics. This analysis begins automatically as soon as the website visitor enters the website. For the analysis, reCAPTCHA evaluates various information (e.g. IP address, time spent by the website visitor on the website or mouse movements made by the user). The data collected during the analysis is forwarded to Google.
   pluginsToolsGoogleReCaptchaDescription3: The reCAPTCHA analyses run completely in the background. Website visitors are not notified that an analysis is taking place.
   pluginsToolsGoogleReCaptchaDescription4: The storage and analysis of the data is based on Art. 6 para. 1 lit. f GDPR. The website operator has a legitimate interest in protecting its web offers from abusive automated spying and from SPAM. If a corresponding consent was requested, the processing is based exclusively on Art. 6 para. 1 lit. a GDPR; the consent can be revoked at any time.
-  pluginsToolsGoogleReCaptchaDescription5_1: https://policies.google.com/privacy?hl=en
-  pluginsToolsGoogleReCaptchaDescription5_2: https://policies.google.com/terms?hl=en
+  pluginsToolsGoogleReCaptchaDescription5s1: https://policies.google.com/privacy?hl=en
+  pluginsToolsGoogleReCaptchaDescription5s2: https://policies.google.com/terms?hl=en
   pluginsToolsGoogleReCaptchaDescription5: 'For more information about Google reCAPTCHA, see the Google Privacy Policy and the Google Terms of Service at the following links: {linkPrivacy} and {linkTerms}.'
   pluginsToolsGoogleReCaptchaTitle: Google reCAPTCHA
   pluginsToolsGoogleWebFontsDescription1: This site uses so-called web fonts provided by Google for the uniform display of fonts. The Google Fonts are installed locally. A connection to Google servers does not take place.
-  pluginsToolsGoogleWebFontsDescription2_1: https://developers.google.com/fonts/faq
-  pluginsToolsGoogleWebFontsDescription2_2: https://policies.google.com/privacy?hl=en
+  pluginsToolsGoogleWebFontsDescription2s1: https://developers.google.com/fonts/faq
+  pluginsToolsGoogleWebFontsDescription2s2: https://policies.google.com/privacy?hl=en
   pluginsToolsGoogleWebFontsDescription2: "For more information about Google Web Fonts, see {linkFaq} and Google's privacy policy: {linkPrivacy}."
   pluginsToolsGoogleWebFontsTitle: Google Web Fonts (local hosting)
   pluginsToolsYouTubeDescription1: This website embeds videos from YouTube. The operator of the pages is Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Ireland.
@@ -555,7 +555,7 @@ en:
   pluginsToolsYouTubeDescription4: Furthermore, after starting a video, YouTube may store various cookies on your end device or use comparable recognition technologies (e.g. device fingerprinting). In this way, YouTube can obtain information about visitors to this website. This information is used, among other things, to collect video statistics, improve the user experience, and prevent fraud attempts.
   pluginsToolsYouTubeDescription5: If necessary, further data processing operations may be triggered after the start of a YouTube video, over which we have no control.
   pluginsToolsYouTubeDescription6: YouTube is used in the interest of an appealing presentation of our online offers. This represents a legitimate interest within the meaning of Art. 6 Para. 1 lit. f GDPR. If a corresponding consent has been requested, the processing is based exclusively on Art. 6 para. 1 lit. a GDPR; the consent can be revoked at any time.
-  pluginsToolsYouTubeDescription7_1: https://policies.google.com/privacy?hl=en
+  pluginsToolsYouTubeDescription7s: https://policies.google.com/privacy?hl=en
   pluginsToolsYouTubeDescription7: 'For more information about privacy at YouTube, please see their privacy policy at: {linkPrivacy}.'
   pluginsToolsYouTubeTitle: YouTube with enhanced privacy
   source: Source

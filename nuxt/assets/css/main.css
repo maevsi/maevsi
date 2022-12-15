@@ -52,8 +52,16 @@
       U+2215, U+FEFF, U+FFFD;
   }
 
+  a {
+    @apply m-1;
+  }
+
   a:focus {
     @apply outline-none ring rounded;
+  }
+
+  button {
+    @apply m-1;
   }
 
   button:focus {
@@ -68,7 +76,6 @@
     @apply divide-y maevsi-divide-darken;
   }
 }
-
 
 @layer utilities {
   .maevsi-prose {

@@ -1,22 +1,25 @@
 <template>
   <Loader :api="api">
     <div v-if="event" class="flex flex-col gap-4">
-      <Breadcrumbs
+      <LayoutBreadcrumbs
         :prefixes="[
-          { name: t('events'), to: '../..', append: true },
-          { name: routeParamUsername, to: '..', append: true },
+          { name: t('events'), to: localePath('/event') },
+          {
+            name: routeParamUsername,
+            to: localePath(`/event/${route.params.username}`),
+          },
         ]"
       >
         {{ event.name }}
-      </Breadcrumbs>
+      </LayoutBreadcrumbs>
       <CardStateInfo v-if="routeQueryIc && contact" class="flex flex-col gap-2">
         {{ t('invitationViewFor', { name: contactName }) }}
         <ButtonColored
-          append
+          is-to-relative
           :aria-label="t('invitationSelectionClear')"
           @click="
             navigateTo({
-              path: append($route.path, 'invitation'),
+              path: append(route.path, 'invitation'),
               query: { ...routeQuery, ic: undefined },
             })
           "
@@ -53,7 +56,7 @@
         </div>
         <div v-if="invitation" class="fixed bottom-0 right-0 left-0 z-10">
           <div
-            class="border-t-2 bg-background-brighten dark:bg-background-darken"
+            class="grid grid-cols-6 border-t-2 bg-background-brighten dark:bg-background-darken"
             :class="
               invitation.feedback === 'ACCEPTED'
                 ? 'border-green-600 dark:border-green-500'
@@ -62,7 +65,18 @@
                 : 'border-text-dark dark:border-text-bright'
             "
           >
-            <div class="p-4 flex flex-col items-center gap-2">
+            <div
+              v-if="invitation.feedback === 'ACCEPTED'"
+              class="col-start-2 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
+            >
+              {{ t('step1Of2') }}
+            </div>
+            <div
+              class="p-4 flex flex-col items-center gap-2"
+              :class="
+                invitation.feedback === 'ACCEPTED' ? 'col-span-3' : 'col-span-6'
+              "
+            >
               <span v-if="event.authorUsername !== signedInUsername">
                 {{ t('feedbackRequest') }}
               </span>
@@ -145,18 +159,21 @@
                 </div>
               </div>
             </div>
-            <!--
             <div
-              v-if="invitation.feedback === 'ACCEPTED'"
-              class="col-span-1 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
+              v-if="
+                invitation.feedback !== null &&
+                invitation.feedback === 'ACCEPTED'
+              "
+              class="row-start-2 col-span-1 col-start-2 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
             >
-              {{ t('step1Of2') }}
+              {{ t('step2Of2') }}
             </div>
             <div
               v-if="
-                invitation.feedback !== null && invitation.feedback === 'ACCEPTED'
+                invitation.feedback !== null &&
+                invitation.feedback === 'ACCEPTED'
               "
-              class="col-span-5"
+              class="col-span-3"
             >
               <FormInput
                 id-label="input-paper-invitation-feedback"
@@ -184,14 +201,6 @@
                 </select>
               </FormInput>
             </div>
-            <div
-              v-if="
-                invitation.feedback !== null && invitation.feedback === 'ACCEPTED'
-              "
-              class="col-span-1 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
-            >
-              {{ t('step2Of2') }}
-            </div> -->
           </div>
         </div>
       </div>
@@ -201,28 +210,39 @@
           jwtDecoded &&
           event.authorUsername === jwtDecoded.username
         "
+        class="justify-center"
       >
-        <ButtonColored append :aria-label="t('invitations')" to="invitation">
+        <ButtonColored
+          is-to-relative
+          :aria-label="t('invitations')"
+          to="invitation"
+        >
           {{ t('invitations') }}
           <template #prefix>
             <IconEnvelope />
           </template>
         </ButtonColored>
-        <ButtonColored append :aria-label="t('attendances')" to="attendance">
+        <ButtonColored
+          is-to-relative
+          :aria-label="t('attendances')"
+          to="attendance"
+        >
           {{ t('attendances') }}
           <template #prefix>
             <IconUserCheck />
           </template>
         </ButtonColored>
-        <ButtonColored append :aria-label="t('settings')" to="settings">
+        <ButtonColored is-to-relative :aria-label="t('settings')" to="settings">
           {{ t('settings') }}
           <template #prefix>
             <IconPencil />
           </template>
         </ButtonColored>
       </ButtonList>
-      <div class="flex flex-col md:flex-row justify-between gap-2">
-        <div class="flex max-w-full items-baseline gap-2">
+      <div class="flex flex-col md:flex-row justify-between gap-4">
+        <div
+          class="flex flex-col md:flex-row max-w-full items-baseline md:gap-2"
+        >
           <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
             {{ event.name }}
           </h1>
@@ -258,7 +278,7 @@
           <!-- eslint-enable vue/no-v-html -->
         </div>
       </Card>
-      <Modal id="ModalInvitationQrCode" ref="modalCheckInCodeRef">
+      <Modal id="ModalInvitationQrCode">
         <div v-if="invitation" class="flex flex-col items-center gap-2 pb-4">
           <QrcodeVue
             id="qrCode"
@@ -283,7 +303,7 @@
           </ButtonColored>
           <ButtonColored
             :aria-label="t('close')"
-            @click="closeModalInvitationQrCode()"
+            @click="store.modalRemove('ModalInvitationQrCode')"
           >
             {{ t('close') }}
             <template #prefix>
@@ -293,6 +313,7 @@
         </template>
       </Modal>
     </div>
+    <Error v-else :status-code="403" />
   </Loader>
 </template>
 
@@ -303,49 +324,50 @@ import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
-import Swal from 'sweetalert2'
 
-import { Invitation } from '~/types/invitation'
-import { append, getApiMeta } from '~/plugins/util/util'
-import { getContactName } from '~/plugins/util/model'
 import {
+  Invitation,
   InvitationFeedback,
+  InvitationPatch,
   useEventByAuthorUsernameAndSlugQuery,
-  useEventIsExistingQuery,
   useUpdateInvitationByIdMutation,
 } from '~/gql/generated'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useMaevsiStore } from '~/store'
 
 definePageMeta({
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
+  async validate(route) {
+    const { $urql } = useNuxtApp()
 
-      const eventIsExisting = useEventIsExistingQuery({
-        variables: {
-          slug: route.params.event_name as string,
-          authorUsername: route.params.username as string,
-        },
-      }).executeQuery()
+    const eventIsExisting = await $urql.value
+      .query(EVENT_IS_EXISTING_QUERY, {
+        slug: route.params.event_name as string,
+        authorUsername: route.params.username as string,
+      })
+      .toPromise()
 
-      if (
-        eventIsExisting.error ||
-        eventIsExisting.data.value?.eventIsExisting
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 }
-      }
-    },
-  ],
+    if (eventIsExisting.error) {
+      throw createError(eventIsExisting.error)
+    }
+
+    if (!eventIsExisting.data?.eventIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    return true
+  },
 })
 
 const { t } = useI18n()
+const fireAlert = useFireAlert()
+const localePath = useLocalePath()
 const store = useMaevsiStore()
 const route = useRoute()
 const { executeMutation: executeMutationUpdateInvitationById } =
   useUpdateInvitationByIdMutation()
 
 // queries
-const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,
     slug: route.params.event_name as string,
@@ -353,28 +375,21 @@ const eventQuery = useEventByAuthorUsernameAndSlugQuery({
   },
 })
 
-// refs
-const modalCheckInCodeRef = ref()
-
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...eventQuery.data.value,
     },
     ...getApiMeta([eventQuery]),
-  }
-})
+  })
+)
 const event = computed(
   () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
 )
 
 // data
-const jwtDecoded = store.jwtDecoded
 const routeParamUsername = route.params.username as string
-const routeQuery = route.query
-const routeQueryIc = route.query.ic
-const signedInUsername = store.signedInUsername
 
 // methods
 function accept() {
@@ -393,18 +408,13 @@ function cancel() {
     feedback: InvitationFeedback.Canceled,
   })
 }
-function closeModalInvitationQrCode() {
-  modalCheckInCodeRef.value.close()
+function paperInvitationFeedback() {
+  if (!invitation.value) return
+
+  update(invitation.value.id, {
+    feedbackPaper: invitation.value.feedbackPaper,
+  })
 }
-// paperInvitationFeedback() {
-//   if (data.invitation === undefined) {
-//     return
-//   }
-//   const invitation = data.invitation as Invitation
-//   methods.update(invitation.id, {
-//     feedbackPaper: invitation.feedbackPaper,
-//   })
-// },
 function downloadIcal() {
   const xhr = new XMLHttpRequest()
   const fileName =
@@ -412,27 +422,24 @@ function downloadIcal() {
 
   xhr.open('POST', '/api/ical', true)
   xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
-  xhr.onreadystatechange = () => {
+  xhr.onreadystatechange = async () => {
     if (xhr.readyState === 4) {
       switch (xhr.status) {
         case 200:
           downloadJs(new Blob([xhr.responseText]), fileName, 'text/calendar')
           return
         default:
-          Swal.fire({
-            icon: 'error',
-            text: t('iCalUnexpectedStatusCode', {
-              statusCode: xhr.status,
-            }) as string,
-            title: t('globalStatusError'),
-          })
+          await fireAlert({
+            level: 'error',
+            text: t('iCalUnexpectedStatusCode'),
+          }) // TODO: add suggestion (https://github.com/maevsi/maevsi/issues/903) })
       }
     }
   }
   xhr.send(
     JSON.stringify({
       contact: contact.value,
-      event,
+      event: event.value,
       invitation: invitation.value,
     })
   )
@@ -446,7 +453,9 @@ function print() {
 function qrCodeShow() {
   store.modalAdd({ id: 'ModalInvitationQrCode' })
 }
-async function update(id: string, invitationPatch: Partial<Invitation>) {
+async function update(id: string, invitationPatch: InvitationPatch) {
+  api.value.errors = []
+
   const result = await executeMutationUpdateInvitationById({
     id,
     invitationPatch,
@@ -461,15 +470,7 @@ async function update(id: string, invitationPatch: Partial<Invitation>) {
     return
   }
 
-  Swal.fire({
-    icon: 'success',
-    showConfirmButton: false,
-    timer: 1500,
-    text: t('success') as string,
-    timerProgressBar: true,
-    title: t('saved'),
-  })
-  // TODO: cache update (event)
+  await showToast({ title: t('success') })
 }
 
 // computations
@@ -492,7 +493,8 @@ const eventDescriptionTemplate = computed(() => {
       contact: contact.value,
       event,
       invitation: invitation.value,
-    })
+    }),
+    { ADD_ATTR: ['target'] }
   )
 })
 const invitation = computed(() => {
@@ -501,16 +503,17 @@ const invitation = computed(() => {
   const invitationsMatchingUuid =
     store.signedInUsername === route.params.username && invitations
       ? invitations.filter(
-          (invitation: Invitation) => invitation.uuid === route.query.ic
+          (invitation: Pick<Invitation, 'uuid'>) =>
+            invitation.uuid === route.query.ic
         )
       : invitations
 
   if (invitationsMatchingUuid?.length) {
     if (invitationsMatchingUuid.length > 1) {
-      Swal.fire({
-        icon: 'warning',
-        text: t('invitationCodeMultipleWarning') as string,
-        title: t('globalStatusWarning'),
+      // TODO: use await (https://github.com/maevsi/maevsi/issues/61)
+      fireAlert({
+        level: 'warning',
+        text: t('invitationCodeMultipleWarning'),
       })
     }
 
@@ -519,9 +522,13 @@ const invitation = computed(() => {
 
   return undefined
 })
-const title = computed(() => {
-  return event?.value?.name || t('globalLoading')
-})
+const jwtDecoded = computed(() => store.jwtDecoded)
+const routeQuery = computed(() => route.query)
+const routeQueryIc = computed(() => route.query.ic)
+const signedInUsername = computed(() => store.signedInUsername)
+const title = computed(() =>
+  api.value.isFetching ? t('globalLoading') : event.value?.name || '403'
+)
 
 // lifecycle
 watch(eventQuery.error, (currentValue, _oldValue) => {
@@ -529,7 +536,7 @@ watch(eventQuery.error, (currentValue, _oldValue) => {
 })
 
 // initialization
-useHeadDefault(title.value, {
+useHeadDefault(title, {
   meta: [
     {
       hid: 'description',
@@ -556,7 +563,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   attendances: Check-in
   close: Schließen
@@ -567,7 +574,7 @@ de:
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
   iCalDownload: Als Kalendereintrag herunterladen
   iCalHint: Die heruntergeladene Datei kann dann mit deiner Kalender-Anwendung geöffnet werden.
-  iCalUnexpectedStatusCode: 'iCal-Daten konnten nicht geladen werden: Statuscode {statusCode}.'
+  iCalUnexpectedStatusCode: iCal-Daten konnten nicht geladen werden!
   invitationAccept: Einladung annehmen
   invitationAcceptAdmin: Einladung im Namen von {name} annehmen
   invitationAccepted: Einladung angenommen
@@ -587,7 +594,6 @@ de:
   print: Drucken
   qrCodeShow: Check-in-Code anzeigen
   requestSelection: Bitte auswählen
-  saved: Gespeichert!
   settings: Bearbeiten
   step1Of2: 1/2
   step2Of2: 2/2
@@ -602,7 +608,7 @@ en:
   hintQrCode: This picture is your access authorization for the event
   iCalDownload: Download for your calendar
   iCalHint: You can open the downloaded file in your calendar app.
-  iCalUnexpectedStatusCode: 'Could not get iCal data: Status code {statusCode}.'
+  iCalUnexpectedStatusCode: Could not get iCal data!
   invitationAccept: Accept invitation
   invitationAcceptAdmin: Accept invitation on behalf of {name}
   invitationAccepted: Invitation accepted
@@ -622,7 +628,6 @@ en:
   print: Print
   qrCodeShow: Show check in code
   requestSelection: Please select
-  saved: Saved!
   settings: Edit
   step1Of2: 1/2
   step2Of2: 2/2

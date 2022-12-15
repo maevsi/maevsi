@@ -1,15 +1,23 @@
 <template>
   <Loader :api="api">
     <div v-if="event" class="flex flex-col gap-4">
-      <Breadcrumbs
+      <LayoutBreadcrumbs
         :prefixes="[
-          { name: t('events'), to: '../../..', append: true },
-          { name: routeParamUsername, to: '../..', append: true },
-          { name: routeParamEventName, to: '..', append: true },
+          { name: t('events'), to: localePath('/event') },
+          {
+            name: routeParamUsername,
+            to: localePath(`/event/${route.params.username}`),
+          },
+          {
+            name: routeParamEventName,
+            to: localePath(
+              `/event/${route.params.username}/${route.params.event_name}`
+            ),
+          },
         ]"
       >
         {{ t('invitations') }}
-      </Breadcrumbs>
+      </LayoutBreadcrumbs>
       <h1>
         {{ t('title') }}
       </h1>
@@ -21,46 +29,44 @@
 
 <script setup lang="ts">
 import consola from 'consola'
-import { getApiMeta } from '~/plugins/util/util'
-import {
-  useEventByAuthorUsernameAndSlugQuery,
-  useEventIsExistingQuery,
-} from '~/gql/generated'
+import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useMaevsiStore } from '~/store'
 
 definePageMeta({
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
-      const store = useMaevsiStore()
+  async validate(route) {
+    const { $urql } = useNuxtApp()
+    const store = useMaevsiStore()
 
-      if (route.params.username !== store.signedInUsername) {
-        throw createError({ statusCode: 403 })
-      }
+    const eventIsExisting = await $urql.value
+      .query(EVENT_IS_EXISTING_QUERY, {
+        slug: route.params.event_name as string,
+        authorUsername: route.params.username as string,
+      })
+      .toPromise()
 
-      const eventIsExisting = useEventIsExistingQuery({
-        variables: {
-          slug: route.params.event_name as string,
-          authorUsername: route.params.username as string,
-        },
-      }).executeQuery()
+    if (eventIsExisting.error) {
+      throw createError(eventIsExisting.error)
+    }
 
-      if (
-        eventIsExisting.error ||
-        eventIsExisting.data.value?.eventIsExisting
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 }
-      }
-    },
-  ],
+    if (!eventIsExisting.data?.eventIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
+
+    return true
+  },
 })
 
 const route = useRoute()
 const { t } = useI18n()
-const store = useMaevsiStore()
+const localePath = useLocalePath()
 
 // queries
-const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,
     slug: route.params.event_name as string,
@@ -68,14 +74,14 @@ const eventQuery = useEventByAuthorUsernameAndSlugQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...eventQuery.data.value,
     },
     ...getApiMeta([eventQuery]),
-  }
-})
+  })
+)
 const event = computed(
   () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
 )
@@ -86,10 +92,9 @@ const routeParamUsername = route.params.username as string
 
 // computations
 const title = computed(() => {
-  if (route.params.username === store.signedInUsername && event.value) {
-    return `${t('title')} · ${event.value.name}`
-  }
-  return '403'
+  if (!event.value) return t('title')
+
+  return `${t('title')} · ${event.value.name}`
 })
 
 // lifecycle
@@ -98,7 +103,7 @@ watch(eventQuery.error, (currentValue, _oldValue) => {
 })
 
 // initialization
-useHeadDefault(title.value)
+useHeadDefault(title)
 </script>
 
 <script lang="ts">
@@ -107,14 +112,12 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
-  event: Veranstaltung
   events: Veranstaltungen
   invitations: Einladungen
   title: Einladungen
 en:
-  event: event
   events: events
   invitations: invitations
   title: Invitations

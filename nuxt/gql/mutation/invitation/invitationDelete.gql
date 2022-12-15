@@ -1,5 +1,5 @@
-mutation deleteInvitationByUuid($uuid: UUID!) {
-  deleteInvitationByUuid(input: {uuid: $uuid}) {
+mutation deleteInvitationById($id: BigInt!) {
+  deleteInvitationById(input: {id: $id}) {
     clientMutationId
   }
 }

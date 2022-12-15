@@ -1,22 +1,40 @@
-import { readBody, H3Event } from 'h3'
+import { createError, defineEventHandler, readBody, H3Event } from 'h3'
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
-import moment from 'moment'
 import mustache from 'mustache'
 
-import { Contact } from '~/types/contact'
-import { Event as MaevsiEvent } from '~/types/event'
-import { Invitation } from '~/types/invitation'
+import { Contact, Event as MaevsiEvent, Invitation } from 'gql/generated'
+import { getHost } from '~/utils/util'
 
-export default async function (h3Event: H3Event) {
-  const { res } = h3Event
+export default defineEventHandler(async function (h3Event: H3Event) {
+  const { req, res } = h3Event.node
+
+  if (req.method !== 'POST')
+    throw createError({
+      statusCode: 405,
+      statusMessage: 'Only POST requests are allowed!',
+    })
+
   const body = await readBody(h3Event)
-  const host = useHost()
+  const host = getHost(h3Event.node.req)
 
-  const contact: Contact = body.contact
-  const event: MaevsiEvent = body.event
-  const invitation: Invitation = body.invitation
+  const bodyChecks = [
+    { property: undefined, name: 'Body' },
+    { property: 'event', name: 'Event' },
+  ]
+
+  for (const bodyCheck of bodyChecks) {
+    if (bodyCheck.property ? !body[bodyCheck.property] : !body)
+      throw createError({
+        statusCode: 400,
+        statusMessage: `${bodyCheck.name} is not set!`,
+      })
+  }
+
+  const contact = body.contact
+  const event = body.event
+  const invitation = body.invitation
 
   res.setHeader('Content-Type', 'text/calendar')
   res.setHeader(
@@ -24,13 +42,22 @@ export default async function (h3Event: H3Event) {
     'attachment; filename="' + event.authorUsername + '_' + event.slug + '.ics"'
   )
   res.end(getIcalString(host, event, contact, invitation))
-}
+})
 
 export function getIcalString(
   host: string,
-  event: MaevsiEvent,
-  contact?: Contact,
-  invitation?: Invitation
+  event: Pick<
+    MaevsiEvent,
+    | 'authorUsername'
+    | 'slug'
+    | 'description'
+    | 'start'
+    | 'end'
+    | 'name'
+    | 'location'
+  >,
+  contact?: Pick<Contact, any>,
+  invitation?: Pick<Invitation, any>
 ): string {
   const userEventPath = event.authorUsername + '/' + event.slug
   const eventUrl = 'https://' + host + '/event/' + userEventPath
@@ -56,7 +83,7 @@ export function getIcalString(
       {
         id: userEventPath,
         // sequence: ,
-        start: moment(event.start), // Appointment date of beginning, required.
+        start: event.start, // Appointment date of beginning, required.
         ...(event.end && { end: event.end }),
         // `timezone` shouldn't be needed as the database outputs UTC dates.
         // timestamp: moment(), // Appointment date of creation (= now).

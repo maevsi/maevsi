@@ -42,7 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import { useSignOut } from '~/plugins/util/auth'
 import { useMaevsiStore } from '~/store'
 
 const { signOut } = useSignOut()
@@ -51,10 +50,10 @@ const { t } = useI18n()
 const store = useMaevsiStore()
 
 // data
-const jwtDecoded = store.jwtDecoded
 const title = t('title')
 
 // computations
+const jwtDecoded = computed(() => store.jwtDecoded)
 const sessionExpiryTime = computed(() => {
   return $moment(store.jwtDecoded?.exp, 'X').format('llll')
 })
@@ -69,7 +68,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   codes: Einladungscodes
   codesEntered: 'Du hast die folgenden Codes eingegeben:'

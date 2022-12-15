@@ -3,7 +3,7 @@
     :aria-label="t('eventAll')"
     :is-primary="false"
     :to="localePath('/event')"
-    @click="$emit('click')"
+    @click="emit('click')"
   >
     {{ t('eventAll') }}
     <template #prefix>
@@ -15,9 +15,13 @@
 <script setup lang="ts">
 const localePath = useLocalePath()
 const { t } = useI18n()
+
+const emit = defineEmits<{
+  (e: 'click'): void
+}>()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   eventAll: Alle Veranstaltungen anzeigen
 en:

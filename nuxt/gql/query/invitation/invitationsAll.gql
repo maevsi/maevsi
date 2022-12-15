@@ -12,6 +12,7 @@ query allInvitations($after: Cursor, $eventId: BigInt!, $first: Int!) {
     }
     pageInfo {
       hasNextPage
+      endCursor
     }
     totalCount
   }

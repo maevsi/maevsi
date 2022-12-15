@@ -1,14 +1,22 @@
 <template>
   <div class="flex flex-col gap-4">
-    <Breadcrumbs
+    <LayoutBreadcrumbs
       :prefixes="[
-        { name: t('events'), to: '../../..', append: true },
-        { name: routeParamUsername, to: '../..', append: true },
-        { name: routeParamEventName, to: '..', append: true },
+        { name: t('events'), to: localePath('/event') },
+        {
+          name: routeParamUsername,
+          to: localePath(`/event/${route.params.username}`),
+        },
+        {
+          name: routeParamEventName,
+          to: localePath(
+            `/event/${route.params.username}/${route.params.event_name}`
+          ),
+        },
       ]"
     >
       {{ t('checkIns') }}
-    </Breadcrumbs>
+    </LayoutBreadcrumbs>
     <h1>
       {{ t('title') }}
     </h1>
@@ -18,11 +26,7 @@
     />
     <Hr />
     <div class="flex flex-col items-center justify-center gap-4">
-      <ButtonColored
-        :aria-label="t('qrCodeScan')"
-        class="text-text-bright"
-        @click="qrCodeScan"
-      >
+      <ButtonColored :aria-label="t('qrCodeScan')" @click="qrCodeScan">
         {{ t('qrCodeScan') }}
         <template #prefix>
           <IconQrCode />
@@ -52,11 +56,11 @@
       </div>
     </div>
     <Modal id="ModalAttendanceScanQrCode" :submit-name="t('close')">
-      <!-- <QrCodeStream @decode="onDecode" @init="onInit">
+      <QrCodeStream @decode="onDecode" @init="onInit">
         <div v-if="loading" class="text-center">
           {{ t('globalLoading') }}
         </div>
-      </QrCodeStream> -->
+      </QrCodeStream>
       <template #submit-icon>
         <IconXCircle />
       </template>
@@ -66,48 +70,47 @@
 
 <script setup lang="ts">
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
-import {
-  useEventByAuthorUsernameAndSlugQuery,
-  useEventIsExistingQuery,
-} from '~/gql/generated'
+import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useMaevsiStore } from '~/store'
 
 definePageMeta({
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
-      const store = useMaevsiStore()
+  async validate(route) {
+    const { $urql } = useNuxtApp()
+    const store = useMaevsiStore()
 
-      if (route.params.username !== store.signedInUsername) {
-        throw createError({ statusCode: 403 })
-        // return error({ statusCode: 403 })
-      }
+    const eventIsExisting = await $urql.value
+      .query(EVENT_IS_EXISTING_QUERY, {
+        slug: route.params.event_name as string,
+        authorUsername: route.params.username as string,
+      })
+      .toPromise()
 
-      const eventIsExisting = useEventIsExistingQuery({
-        variables: {
-          slug: route.params.event_name as string,
-          authorUsername: route.params.username as string,
-        },
-      }).executeQuery()
+    if (eventIsExisting.error) {
+      throw createError(eventIsExisting.error)
+    }
 
-      if (
-        eventIsExisting.error ||
-        eventIsExisting.data.value?.eventIsExisting
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 }
-      }
-    },
-  ],
+    if (!eventIsExisting.data?.eventIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
+
+    return true
+  },
 })
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 const store = useMaevsiStore()
 const route = useRoute()
+const fireAlert = useFireAlert()
 
 // queries
-const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,
     slug: route.params.event_name as string,
@@ -122,7 +125,7 @@ const event = computed(
 // data
 const invitationCode = ref<string>()
 const isNfcWritableErrorMessage = ref<string>()
-// const loading = ref(false)
+const loading = ref(false)
 const routeParamEventName = route.params.event_name as string
 const routeParamUsername = route.params.username as string
 
@@ -134,63 +137,57 @@ const isNfcError = computed(() => {
   )
 })
 const title = computed(() => {
-  if (route.params.username === store.signedInUsername && event.value) {
-    return `${t('title')} · ${event.value.name}`
-  }
-  return '403'
+  if (!event.value) return t('title')
+
+  return `${t('title')} · ${event.value.name}`
 })
 
 // methods
 function qrCodeScan() {
   store.modalAdd({ id: 'ModalAttendanceScanQrCode' })
 }
-// async function onInit(promise: Promise<any>) {
-//   loading.value = true
+async function onInit(promise: Promise<any>) {
+  loading.value = true
 
-//   try {
-//     await promise
-//   } catch (error: any) {
-//     let errorMessage: string = error.message
+  try {
+    await promise
+  } catch (error: any) {
+    let errorMessage: string = error.message
 
-//     if (error.name === 'NotAllowedError') {
-//       errorMessage = t('errorCameraNotAllowed', {
-//         hintBrowserSettings: t('hintBrowserSettings'),
-//       }) as string
-//     } else if (error.name === 'NotFoundError') {
-//       errorMessage = t('errorCameraNotFound') as string
-//     } else if (error.name === 'NotSupportedError') {
-//       errorMessage = t('errorCameraNotSupported') as string
-//     } else if (error.name === 'NotReadableError') {
-//       errorMessage = t('errorCameraNotReadable') as string
-//     } else if (error.name === 'OverconstrainedError') {
-//       errorMessage = t('errorCameraOverconstrained') as string
-//     } else if (error.name === 'StreamApiNotSupportedError') {
-//       errorMessage = t('errorCameraStreamApiNotSupported') as string
-//     }
+    if (error.name === 'NotAllowedError') {
+      errorMessage = t('errorCameraNotAllowed', {
+        hintBrowserSettings: t('hintBrowserSettings'),
+      }) as string
+    } else if (error.name === 'NotFoundError') {
+      errorMessage = t('errorCameraNotFound') as string
+    } else if (error.name === 'NotSupportedError') {
+      errorMessage = t('errorCameraNotSupported') as string
+    } else if (error.name === 'NotReadableError') {
+      errorMessage = t('errorCameraNotReadable') as string
+    } else if (error.name === 'OverconstrainedError') {
+      errorMessage = t('errorCameraOverconstrained') as string
+    } else if (error.name === 'StreamApiNotSupportedError') {
+      errorMessage = t('errorCameraStreamApiNotSupported') as string
+    }
 
-//     Swal.fire({
-//       icon: 'error',
-//       text: errorMessage,
-//       title: t('globalStatusError'),
-//     }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
-//     consola.error(errorMessage)
-//   } finally {
-//     loading.value = false
-//   }
-// }
+    await fireAlert({ level: 'error', text: errorMessage }).then(() =>
+      store.modalRemove('ModalAttendanceScanQrCode')
+    )
+    consola.error(errorMessage)
+  } finally {
+    loading.value = false
+  }
+}
 async function onClick() {
   await writeTag(invitationCode.value)
 }
-// function onDecode(e: any): void {
-//   invitationCode.value = e
-//   Swal.fire({
-//     icon: 'success',
-//     showConfirmButton: false,
-//     timer: 1500,
-//     timerProgressBar: true,
-//   }).then(() => store.modalRemove('ModalAttendanceScanQrCode'))
-// }
-async function checkWriteTag(): Promise<void> {
+async function onDecode(e: any) {
+  invitationCode.value = e
+  await fireAlert({ level: 'success' }).then(() =>
+    store.modalRemove('ModalAttendanceScanQrCode')
+  )
+}
+async function checkWriteTag() {
   if (!('NDEFReader' in window)) {
     return Promise.reject(
       Error(
@@ -224,12 +221,7 @@ async function checkWriteTag(): Promise<void> {
 async function writeTag(e: any): Promise<void> {
   try {
     await new NDEFReader().write(e)
-    Swal.fire({
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-    })
+    await fireAlert({ level: 'success' })
   } catch (error) {
     if (error instanceof DOMException) {
       let errorMessage: string = error.message
@@ -252,11 +244,7 @@ async function writeTag(e: any): Promise<void> {
         }) as string
       }
 
-      Swal.fire({
-        icon: 'error',
-        text: errorMessage,
-        title: t('globalStatusError'),
-      })
+      await fireAlert({ level: 'error', text: errorMessage })
       consola.error(errorMessage)
     } else {
       alert(`Unexpected error: ${error}`)
@@ -275,22 +263,21 @@ watch(eventQuery.error, (currentValue, _oldValue) => {
 })
 
 // initialization
-useHeadDefault(title.value)
+useHeadDefault(title)
 </script>
 
 <script lang="ts">
 export default {
   name: 'IndexPage',
   components: {
-    // TODO: https://github.com/nuxt/framework/issues/6781
-    // QrCodeStream: defineAsyncComponent(
-    //   () => import('vue-qrcode-reader/src/components/QrcodeStream.vue')
-    // ),
+    QrCodeStream: defineAsyncComponent(
+      () => import('vue-qrcode-reader/src/components/QrcodeStream.vue')
+    ),
   },
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   checkIns: Check-in
   close: Schließen

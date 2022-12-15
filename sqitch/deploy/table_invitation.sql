@@ -14,7 +14,7 @@ CREATE TABLE maevsi.invitation (
   event_id          BIGINT REFERENCES maevsi.event(id) ON DELETE CASCADE NOT NULL,
   feedback          maevsi.invitation_feedback,
   feedback_paper    maevsi.invitation_feedback_paper,
-  uuid              UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v1mc(),
+  uuid              UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v4(),
   UNIQUE (event_id, contact_id)
 );
 

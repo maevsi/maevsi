@@ -6,7 +6,7 @@
     :title="title || t('password')"
     :type="isVisible ? 'text' : 'password'"
     :value="formInput"
-    @input="$emit('input', $event)"
+    @input="emit('input', $event)"
     @icon="isVisible = !isVisible"
   >
     <template #icon>
@@ -48,8 +48,6 @@
 <script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
 
-import { VALIDATION_PASSWORD_LENGTH_MINIMUM } from '~/plugins/util/validation'
-
 export interface Props {
   id?: string
   formInput: BaseValidation
@@ -60,13 +58,17 @@ withDefaults(defineProps<Props>(), {
   title: undefined,
 })
 
+const emit = defineEmits<{
+  (e: 'input', event: string): void
+}>()
+
 const { t } = useI18n()
 
 // data
 const isVisible = ref(false)
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   password: Passwort
   validationFormat: Muss {length} Zeichen lang sein

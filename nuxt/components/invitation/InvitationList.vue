@@ -1,10 +1,16 @@
 <template>
-  <Loader :api="api">
+  <Loader
+    :api="api"
+    :error-pg-ids="{
+      postgresP0002: t('postgresP0002'),
+    }"
+  >
     <div class="flex flex-col gap-4">
       <ScrollContainer
         v-if="event && invitations?.length"
+        class="max-h-[70vh]"
         :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
-        @loadMore="loadMore"
+        @load-more="after = api.data.allInvitations?.pageInfo.endCursor"
       >
         <table class="border border-neutral-300 dark:border-neutral-600">
           <thead
@@ -65,7 +71,7 @@
                       <IconDotsVertical />
                     </ButtonIcon>
                     <template #content>
-                      <ButtonIcon
+                      <Button
                         :aria-label="
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
@@ -80,23 +86,27 @@
                         "
                         @click="send(invitation)"
                       >
-                        <IconPaperPlane />
                         {{
                           invitation.contactByContactId?.accountUsername ||
                           invitation.contactByContactId?.emailAddress
                             ? t('invitationSend')
                             : t('disabledReasonEmailAddressNone')
                         }}
-                      </ButtonIcon>
-                      <ButtonIcon
+                        <template #prefix>
+                          <IconPaperPlane />
+                        </template>
+                      </Button>
+                      <Button
                         :aria-label="t('invitationLink')"
                         class="block md:hidden"
                         @click="copyLink(invitation)"
                       >
-                        <IconLink />
                         {{ t('invitationLink') }}
-                      </ButtonIcon>
-                      <ButtonIcon
+                        <template #prefix>
+                          <IconLink />
+                        </template>
+                      </Button>
+                      <Button
                         :aria-label="t('invitationView')"
                         @click="
                           navigateTo({
@@ -107,17 +117,21 @@
                           })
                         "
                       >
-                        <IconEye />
                         {{ t('invitationView') }}
-                      </ButtonIcon>
-                      <ButtonIcon
+                        <template #prefix>
+                          <IconEye />
+                        </template>
+                      </Button>
+                      <Button
                         :aria-label="t('invitationDelete')"
                         :disabled="pending.deletions.includes(invitation.uuid)"
-                        @click="delete_(invitation.uuid)"
+                        @click="delete_(invitation.id)"
                       >
-                        <IconTrash />
                         {{ t('invitationDelete') }}
-                      </ButtonIcon>
+                        <template #prefix>
+                          <IconTrash />
+                        </template>
+                      </Button>
                     </template>
                   </DropDown>
                 </div>
@@ -164,17 +178,22 @@
           <Doughnut
             v-if="!isTesting"
             ref="doughnutRef"
-            :chart-data="dataComputed"
-            :chart-options="options"
+            :data="dataComputed"
+            :options="options"
           />
         </div>
       </div>
-      <Modal id="ModalInvitation">
-        <FormInvitation :event="event" @submitSuccess="onSubmitSuccess" />
+      <Modal id="ModalInvitation" is-footer-hidden>
+        <FormInvitation
+          :event="event"
+          :invitation-contact-ids-existing="
+            invitations?.map((i) => i.contactId)
+          "
+          @submit-success="store.modalRemove('ModalInvitation')"
+        />
         <template #header>
           {{ t('contactSelect') }}
         </template>
-        <template #footer />
       </Modal>
     </div>
   </Loader>
@@ -192,22 +211,19 @@ import {
   Tooltip,
 } from 'chart.js'
 import consola from 'consola'
-import Swal from 'sweetalert2'
-import { Doughnut } from 'vue-chartjs/dist/index' // TODO: https://github.com/apertureless/vue-chartjs/pull/934
+import { Doughnut } from 'vue-chartjs'
 
-import { copyText, getApiMeta } from '~/plugins/util/util'
-import { Invitation } from '~/types/invitation'
-import { ITEMS_PER_PAGE_LARGE } from '~/plugins/util/constants'
 import {
+  Event,
+  Invitation,
   useAllInvitationsQuery,
-  useDeleteInvitationByUuidMutation,
+  useDeleteInvitationByIdMutation,
   useInviteMutation,
 } from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
-import { Event } from '~/types/event'
 
 export interface Props {
-  event: Event
+  event: Pick<Event, 'authorUsername' | 'slug' | 'inviteeCountMaximum' | 'id'>
 }
 const props = withDefaults(defineProps<Props>(), {})
 
@@ -215,7 +231,7 @@ const { $colorMode } = useNuxtApp()
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const store = useMaevsiStore()
-const deleteInvitationByUuidMutation = useDeleteInvitationByUuidMutation()
+const deleteInvitationByIdMutation = useDeleteInvitationByIdMutation()
 const inviteMutation = useInviteMutation()
 const config = useRuntimeConfig()
 
@@ -224,7 +240,7 @@ const after = ref<string>()
 const doughnutRef = ref()
 
 // queries
-const invitationsQuery = useAllInvitationsQuery({
+const invitationsQuery = await useAllInvitationsQuery({
   variables: {
     after,
     eventId: +props.event.id,
@@ -233,18 +249,18 @@ const invitationsQuery = useAllInvitationsQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...invitationsQuery.data.value,
     },
     ...getApiMeta([
-      deleteInvitationByUuidMutation,
+      deleteInvitationByIdMutation,
       inviteMutation,
       invitationsQuery,
     ]),
-  }
-})
+  })
+)
 const invitations = computed(
   () => invitationsQuery.data.value?.allInvitations?.nodes
 )
@@ -275,47 +291,31 @@ const pending = reactive({
 function add() {
   store.modalAdd({ id: 'ModalInvitation' })
 }
-function copyLink(invitation: Invitation): void {
-  if (!process.browser) return
+function copyLink(invitation: Pick<Invitation, 'uuid'>): void {
+  if (!process.client) return
 
   copyText(
     `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
       invitation.uuid
     }`
-  ).then(() => {
-    Swal.fire({
-      icon: 'success',
-      text: t('copySuccess') as string,
-      timer: 3000,
-      timerProgressBar: true,
-      title: t('copied'),
-    })
+  ).then(async () => {
+    await showToast({ title: t('copySuccess') })
   })
 }
-async function delete_(uuid: string) {
-  pending.deletions.push(uuid)
+async function delete_(id: string) {
+  pending.deletions.push(id)
   api.value.errors = []
 
-  const result = await deleteInvitationByUuidMutation.executeMutation({
-    uuid,
+  const result = await deleteInvitationByIdMutation.executeMutation({
+    id,
   })
 
-  pending.deletions.splice(pending.deletions.indexOf(uuid), 1)
+  pending.deletions.splice(pending.deletions.indexOf(id), 1)
 
   if (result.error) {
     api.value.errors.push(result.error)
     consola.error(result.error)
   }
-
-  // if (!result.data) {
-  //   return
-  // }
-  // TODO: cache update (allInvitations)
-}
-function loadMore() {}
-function onSubmitSuccess() {
-  store.modalRemove('ModalInvitation')
-  // TODO: cache update (allInvitations)
 }
 async function send(invitation: any) {
   pending.sends.push(invitation.uuid)
@@ -337,14 +337,7 @@ async function send(invitation: any) {
     return
   }
 
-  Swal.fire({
-    icon: 'success',
-    text: t('sendSuccess') as string,
-    timer: 3000,
-    timerProgressBar: true,
-    title: t('sent'),
-  })
-  // TODO: cache update (allInvitations)
+  await showToast({ title: t('sendSuccess') })
 }
 
 // computations
@@ -385,11 +378,10 @@ onMounted(() => {
   Chart.defaults.color = () => ($colorMode.value === 'dark' ? '#fff' : '#000')
 })
 watch(
-  $colorMode,
+  () => $colorMode.value,
   (_currentValue, _oldValue) => {
-    doughnutRef.value.getCurrentChart()?.update()
-  },
-  { deep: true }
+    doughnutRef.value.updateChart()
+  }
 )
 watch(invitationsQuery.error, (currentValue, _oldValue) => {
   if (currentValue) consola.error(currentValue)
@@ -407,13 +399,12 @@ Chart.register(
 )
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accepted: akzeptiert
   canceled: abgelehnt
   contact: Kontakt
   contactSelect: Kontakt auswählen
-  copied: Kopiert
   copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
   disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   feedback: Rückmeldungen
@@ -428,13 +419,11 @@ de:
   noFeedback: keine Rückmeldung
   postgresP0002: Die Einladung konnte nicht versandt werden! Möglicherweise hast du aktuell keinen Zugriff auf die notwendigen Daten. Versuche die Seite neu zu laden.
   sendSuccess: Die Einladung wurde erfolgreich per E-Mail versandt.
-  sent: Gesendet!
 en:
   accepted: accepted
   canceled: declined
   contact: Contact
   contactSelect: Select Contact
-  copied: Copied
   copySuccess: The invitation link has been copied to the clipboard.
   disabledReasonEmailAddressNone: This contact does not have an associated email address.
   feedback: Invitation responses
@@ -449,5 +438,4 @@ en:
   noFeedback: no response
   postgresP0002: The invitation could not be sent! You may not have access to the necessary data right now. Try reloading the page.
   sendSuccess: The invitation was successfully sent by email.
-  sent: Sent!
 </i18n>

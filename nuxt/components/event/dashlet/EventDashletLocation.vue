@@ -14,17 +14,17 @@
 </template>
 
 <script setup lang="ts">
-import { Event } from '~/types/event'
+import { Event } from '~/gql/generated'
 
 export interface Props {
-  event: Event
+  event: Pick<Event, 'isInPerson' | 'location'>
 }
 withDefaults(defineProps<Props>(), {})
 
 const { t } = useI18n()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   location: Ort
 en:

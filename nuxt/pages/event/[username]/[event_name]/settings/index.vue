@@ -1,15 +1,29 @@
 <template>
-  <Loader :api="api">
+  <Loader
+    :api="api"
+    :error-pg-ids="{
+      postgres28P01: t('postgres28P01'),
+      postgresP0002: t('postgresP0002'),
+    }"
+  >
     <div v-if="event" class="flex flex-col gap-4">
-      <Breadcrumbs
+      <LayoutBreadcrumbs
         :prefixes="[
-          { name: t('events'), to: '../../..', append: true },
-          { name: routeParamUsername, to: '../..', append: true },
-          { name: routeParamEventName, to: '..', append: true },
+          { name: t('events'), to: localePath('/event') },
+          {
+            name: routeParamUsername,
+            to: localePath(`/event/${route.params.username}`),
+          },
+          {
+            name: routeParamEventName,
+            to: localePath(
+              `/event/${route.params.username}/${route.params.event_name}`
+            ),
+          },
         ]"
       >
         {{ t('settings') }}
-      </Breadcrumbs>
+      </LayoutBreadcrumbs>
       <section>
         <h1>{{ t('title') }}</h1>
         <FormEvent :event="event" />
@@ -18,15 +32,12 @@
         <h2>{{ t('titleDelete') }}</h2>
         <FormDelete
           id="deleteEvent"
-          :errors="api.errors"
           :item-name="t('event')"
           :mutation="mutation"
           :variables="{
-            authorUsername: routeParamUsername,
-            slug: routeParamEventName,
+            id: event.id,
           }"
-          @error="onDeleteError"
-          @success="onDeleteSuccess"
+          @success="navigateTo(localePath(`/dashboard`))"
         />
       </section>
     </div>
@@ -35,52 +46,50 @@
 </template>
 
 <script setup lang="ts">
-import { CombinedError } from '@urql/vue'
 import consola from 'consola'
 
-import { getApiMeta } from '~/plugins/util/util'
 import {
   useEventByAuthorUsernameAndSlugQuery,
   useEventDeleteMutation,
-  useEventIsExistingQuery,
 } from '~/gql/generated'
+import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useMaevsiStore } from '~/store'
 
 definePageMeta({
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
-      const store = useMaevsiStore()
+  async validate(route) {
+    const { $urql } = useNuxtApp()
+    const store = useMaevsiStore()
 
-      if (route.params.username !== store.signedInUsername) {
-        throw createError({ statusCode: 403 })
-      }
+    const eventIsExisting = await $urql.value
+      .query(EVENT_IS_EXISTING_QUERY, {
+        slug: route.params.event_name as string,
+        authorUsername: route.params.username as string,
+      })
+      .toPromise()
 
-      const eventIsExisting = useEventIsExistingQuery({
-        variables: {
-          slug: route.params.event_name as string,
-          authorUsername: route.params.username as string,
-        },
-      }).executeQuery()
+    if (eventIsExisting.error) {
+      throw createError(eventIsExisting.error)
+    }
 
-      if (
-        eventIsExisting.error ||
-        eventIsExisting.data.value?.eventIsExisting
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 }
-      }
-    },
-  ],
+    if (!eventIsExisting.data?.eventIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
+
+    return true
+  },
 })
 
 const localePath = useLocalePath()
 const { t } = useI18n()
-const store = useMaevsiStore()
 const route = useRoute()
 const { executeMutation: executeMutationEventDelete } = useEventDeleteMutation()
 
 // queries
-const eventQuery = useEventByAuthorUsernameAndSlugQuery({
+const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,
     slug: route.params.event_name as string,
@@ -88,14 +97,14 @@ const eventQuery = useEventByAuthorUsernameAndSlugQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...eventQuery.data.value,
     },
     ...getApiMeta([eventQuery]),
-  }
-})
+  })
+)
 const event = computed(
   () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
 )
@@ -105,21 +114,11 @@ const mutation = executeMutationEventDelete
 const routeParamEventName = route.params.event_name as string
 const routeParamUsername = route.params.username as string
 
-// methods
-function onDeleteError(error: CombinedError) {
-  api.value.errors.push(error)
-}
-function onDeleteSuccess() {
-  navigateTo(localePath(`/dashboard`))
-  // TODO: cache update (allEvents)
-}
-
 // computations
 const title = computed(() => {
-  if (route.params.username === store.signedInUsername && event.value) {
-    return `${t('title')} · ${event.value.name}`
-  }
-  return '403'
+  if (!event.value) return t('title')
+
+  return `${t('title')} · ${event.value.name}`
 })
 
 // lifecycle
@@ -128,7 +127,7 @@ watch(eventQuery.error, (currentValue, _oldValue) => {
 })
 
 // initialization
-useHeadDefault(title.value)
+useHeadDefault(title)
 </script>
 
 <script lang="ts">
@@ -137,10 +136,10 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   event: Veranstaltung
-  events: Veranstaltung
+  events: Veranstaltungen
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   postgresP0002: Die Veranstaltung wurde nicht gefunden!
   settings: bearbeiten

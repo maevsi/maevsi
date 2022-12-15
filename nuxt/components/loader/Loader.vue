@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="api.isFetching">
+    <div v-if="api.isFetching" :class="classes">
       <LoaderIndicatorPing v-if="indicator === 'ping'" />
       <LoaderIndicatorSpinner v-else-if="indicator === 'spinner'" />
       <LoaderIndicatorText v-else-if="indicator === 'text'" />
@@ -9,36 +9,31 @@
     <CardStateAlert v-if="errorMessages.length">
       <SpanList :span="errorMessages" />
     </CardStateAlert>
-    <slot v-if="Object.keys(api.data).length" />
+    <slot v-if="api.data && Object.keys(api.data).length" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { CombinedError } from '@urql/core/dist/types/utils/error'
+import { UnwrapRef } from 'vue'
 
-import { useGetCombinedErrorMessages } from '~/plugins/util/util'
+import { ApiData } from '~/utils/util'
 
 export interface Props {
-  api: {
-    data: Object
-    errors: (CombinedError | { errcode: string; message: string })[]
-    isFetching: boolean
-  }
-  indicator: string
+  api: UnwrapRef<ApiData>
+  errorPgIds?: Record<string, string>
+  classes?: string
+  indicator?: string
 }
 const props = withDefaults(defineProps<Props>(), {
-  api: () => ({
-    data: {},
-    errors: [],
-    isFetching: false,
-  }),
+  errorPgIds: undefined,
+  classes: undefined,
   indicator: undefined,
 })
 
-const { getCombinedErrorMessages } = useGetCombinedErrorMessages()
-
 // computations
-const errorMessages = computed(() => getCombinedErrorMessages(props.api.errors))
+const errorMessages = computed(() =>
+  getCombinedErrorMessages(props.api.errors, props.errorPgIds)
+)
 </script>
 
 <script lang="ts">

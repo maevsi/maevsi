@@ -1,10 +1,11 @@
 <template>
-  <Loader :api="api" indicator="ping">
+  <Loader :api="api" indicator="ping" :classes="classes">
     <LoaderImage
       :alt="t('profilePictureAlt', { username })"
-      :class="classComputed"
+      :aspect="aspect"
+      :classes="classes"
       :height="height"
-      :src="imageSrc"
+      :src="profilePictureUrl || blankProfilePicture"
       :width="width"
     />
   </Loader>
@@ -13,63 +14,50 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { getApiMeta } from '~/plugins/util/util'
 import { useProfilePictureByUsernameQuery } from '~/gql/generated'
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
 
 export interface Props {
+  aspect?: string
   classes?: string
   height: string
-  rounded?: boolean
   username: string
   width: string
 }
 const props = withDefaults(defineProps<Props>(), {
+  aspect: 'aspect-square',
   classes: undefined,
-  rounded: undefined,
 })
 
 const { t } = useI18n()
 const TUSD_FILES_URL = useTusdFilesUrl()
 
 // queries
-const profilePictureQuery = useProfilePictureByUsernameQuery({
+const profilePictureQuery = await useProfilePictureByUsernameQuery({
   variables: {
     username: props.username,
   },
 })
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...profilePictureQuery.data.value,
     },
     ...getApiMeta([profilePictureQuery]),
-  }
-})
+  })
+)
+
+// computations
 const profilePicture = computed(
   () => profilePictureQuery.data.value?.profilePictureByUsername
 )
-
-// data
-const profilePictureUrl = ref(
+const profilePictureUrl = computed(() =>
   profilePicture?.value?.uploadStorageKey
     ? TUSD_FILES_URL + profilePicture.value.uploadStorageKey + '+'
     : undefined
 )
-
-// computations
-const classComputed = computed(() => {
-  return [props.classes, ...(props.rounded ? ['rounded-full'] : [])].join(' ')
-})
-const imageSrc = computed(() => {
-  if (profilePictureUrl.value !== undefined) {
-    return profilePictureUrl.value
-  } else {
-    return blankProfilePicture
-  }
-})
 
 // lifecycle
 watch(profilePictureQuery.error, (currentValue, _oldValue) => {
@@ -77,7 +65,7 @@ watch(profilePictureQuery.error, (currentValue, _oldValue) => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   profilePictureAlt: Profilbild von {username}.
 en:

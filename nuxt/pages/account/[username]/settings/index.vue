@@ -1,13 +1,16 @@
 <template>
   <div class="flex flex-col gap-4">
-    <Breadcrumbs
+    <LayoutBreadcrumbs
       :prefixes="[
-        { name: t('accounts'), to: '../..', append: true },
-        { name: routeParamUsername, to: '..', append: true },
+        { name: t('accounts'), to: localePath('/account') },
+        {
+          name: routeParamUsername,
+          to: localePath(`/account/${route.params.username}`),
+        },
       ]"
     >
       {{ t('settings') }}
-    </Breadcrumbs>
+    </LayoutBreadcrumbs>
     <div class="flex min-w-0 flex-col items-center justify-center sm:flex-row">
       <Button
         :aria-label="t('profilePictureChange')"
@@ -24,7 +27,7 @@
       <h1 class="max-w-full overflow-hidden text-ellipsis sm:w-auto">
         {{ routeParamUsername }}
       </h1>
-      <ModalImageSelection @submitSuccess="reloadProfilePicture" />
+      <ModalImageSelection />
     </div>
     <section>
       <h2>{{ t('titlePasswordChange') }}</h2>
@@ -34,10 +37,12 @@
       <h2>{{ t('titleAccountDelete') }}</h2>
       <FormDelete
         id="deleteAccount"
-        :errors="api.errors"
+        :error-pg-ids="{
+          postgres23503: t('postgres23503'),
+          postgres28P01: t('postgres28P01'),
+        }"
         :item-name="t('account')"
         :mutation="mutation"
-        @error="onDeleteError"
         @success="signOut"
       />
     </section>
@@ -45,76 +50,51 @@
 </template>
 
 <script setup lang="ts">
-import { CombinedError } from '@urql/core'
-
-import { useSignOut } from '~/plugins/util/auth'
-import { getApiMeta } from '~/plugins/util/util'
 import { useMaevsiStore } from '~/store'
-import {
-  useAccountDeleteMutation,
-  useAccountIsExistingQuery,
-} from '~~/gql/generated'
+import { useAccountDeleteMutation } from '~/gql/generated'
+import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 
 definePageMeta({
-  middleware: [
-    function (_to: any, _from: any) {
-      const { ssrContext } = useNuxtApp()
-      const route = useRoute()
-      const store = useMaevsiStore()
+  async validate(route) {
+    const { $urql } = useNuxtApp()
+    const store = useMaevsiStore()
 
-      if (
-        ssrContext &&
-        ssrContext.event.res &&
-        route.params.username !== store.signedInUsername
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 } or navigateTo('', { statusCode: 403 })
-      }
+    const accountIsExisting = await $urql.value
+      .query(ACCOUNT_IS_EXISTING_QUERY, {
+        username: route.params.username as string,
+      })
+      .toPromise()
 
-      const accountIsExisting = useAccountIsExistingQuery({
-        variables: {
-          username: route.params.username as string,
-        },
-      }).executeQuery()
+    if (accountIsExisting.error) {
+      throw createError(accountIsExisting.error)
+    }
 
-      if (
-        accountIsExisting.error ||
-        accountIsExisting.data.value?.accountIsExisting
-      ) {
-        return abortNavigation() // TODO: { statusCode: 403 }
-      }
-    },
-  ],
+    if (!accountIsExisting.data?.accountIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
+
+    return true
+  },
 })
 
 const store = useMaevsiStore()
 const { signOut } = useSignOut()
 const { t } = useI18n()
+const localePath = useLocalePath()
 const route = useRoute()
 const { executeMutation: executeMutationAccoutDelete } =
   useAccountDeleteMutation()
 
-// api data
-const api = computed(() => {
-  return {
-    ...getApiMeta([]),
-  }
-})
-
 // data
 const mutation = executeMutationAccoutDelete
 const routeParamUsername = route.params.username as string
-const title =
-  route.params.username === store.signedInUsername
-    ? route.params.username
-    : '403'
+const title = route.params.username as string
 
 // methods
-function onDeleteError(error: CombinedError) {
-  api.value.errors.push(error)
-}
-function reloadProfilePicture() {
-  // TODO: cache update (profilePictureByUsername, props.username)
-}
 function showModalImageSelection() {
   store.modalAdd({ id: 'ModalImageSelection' })
 }
@@ -129,7 +109,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   account: Konto
   accounts: Konten

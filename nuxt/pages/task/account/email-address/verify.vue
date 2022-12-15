@@ -1,30 +1,33 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <Loader :api="api" />
+    <Loader
+      :api="api"
+      :error-pg-ids="{
+        postgres55000: t('postgres55000'),
+        postgresP0002: t('postgresP0002'),
+      }"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
-import { REGEX_UUID } from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
 import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const { $localePath } = useNuxtApp()
       const route = useRoute()
+      const localePath = useLocalePath()
 
       if (
         Array.isArray(route.query.code) ||
         route.query.code === null ||
         !REGEX_UUID.test(route.query.code)
       ) {
-        return navigateTo($localePath('/'))
+        return navigateTo(localePath('/'))
       }
     },
   ],
@@ -33,21 +36,33 @@ definePageMeta({
 const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute()
+const fireAlert = useFireAlert()
 const accountEmailAddressVerificationMutation =
   useAccountEmailAddressVerificationMutation()
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...accountEmailAddressVerificationMutation.data.value,
     },
     ...getApiMeta([accountEmailAddressVerificationMutation]),
-  }
-})
+  })
+)
 
 // data
 const title = t('title')
+
+// lifecycle
+// TODO: watch all api errors like this (https://github.com/maevsi/maevsi/issues/961)
+watch(
+  () => api.value.errors,
+  (currentValue, oldValue) => {
+    currentValue
+      .filter((c) => !oldValue.includes(c))
+      .forEach((c) => consola.error(c))
+  }
+)
 
 // initialization
 useHeadDefault(title)
@@ -55,14 +70,11 @@ accountEmailAddressVerificationMutation
   .executeMutation({
     code: route.query.code,
   })
-  .then((result) => {
-    if (result.error) {
-      api.value.errors.push(result.error)
-      consola.error(result.error)
-    } else {
-      Swal.fire({
-        icon: 'success',
-        text: t('verifiedBody') as string,
+  .then(async (result) => {
+    if (!result.error) {
+      await fireAlert({
+        level: 'success',
+        text: t('verifiedBody'),
         title: t('verified'),
       })
       navigateTo({
@@ -78,16 +90,14 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
-  emailAddressVerificationSuccess: E-Mail-Adresse erfolgreich verifiziert.
   postgres55000: Der Verifizierungscode ist abgelaufen!
   postgresP0002: Unbekannter Verifizierungscode! Hast du deine E-Mail-Adresse vielleicht schon verifiziert?
   title: Verifizierung
   verified: E-Mail-Adresse verifiziert.
   verifiedBody: Du kannst dich nun anmelden.
 en:
-  emailAddressVerificationSuccess: Email address verified successfully.
   postgres55000: The verification code has expired!
   postgresP0002: Invalid verification code! Have you perhaps already verified your email address?
   title: Verification

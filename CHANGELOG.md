@@ -1,4 +1,639 @@
-# [0.147.0](https://github.com/maevsi/maevsi/compare/0.146.6...0.147.0) (2022-10-24)
+# [1.0.0-beta.13](https://github.com/maevsi/maevsi/compare/1.0.0-beta.12...1.0.0-beta.13) (2022-12-15)
+
+
+### Bug Fixes
+
+* **dayjs:** workaround ssr issue ([da03164](https://github.com/maevsi/maevsi/commit/da03164318f22acaa68d46a2a4fcd3e18e135092)), closes [#956](https://github.com/maevsi/maevsi/issues/956)
+
+# [1.0.0-beta.12](https://github.com/maevsi/maevsi/compare/1.0.0-beta.11...1.0.0-beta.12) (2022-12-14)
+
+
+### Features
+
+* **nuxt:** add pwa module ([1bbfc68](https://github.com/maevsi/maevsi/commit/1bbfc6897112d895b41ad02d7ac2ff070f8134d7))
+
+# [1.0.0-beta.11](https://github.com/maevsi/maevsi/compare/1.0.0-beta.10...1.0.0-beta.11) (2022-12-14)
+
+
+### Bug Fixes
+
+* **commitlint:** extend maximum line length rule to footer ([fb767c8](https://github.com/maevsi/maevsi/commit/fb767c880c3ca779bc04787bdf656b47035579f2))
+* **cypress:** wait for control button to be visible ([f598fb1](https://github.com/maevsi/maevsi/commit/f598fb12b37d51c05b63d35ae2e5c8ed3f68aebf))
+
+
+### Features
+
+* **cookie:** add cookie meta information ([5a7f1c7](https://github.com/maevsi/maevsi/commit/5a7f1c7f6b7daebf2e927dc0546be4e60490f675))
+* **docker:** remove node-jiti directory in prepare step ([f5b8eb4](https://github.com/maevsi/maevsi/commit/f5b8eb4626b0b7e27d933fe6027986cc1423dcbe))
+* **locales:** remove exclamation mark from status ([df5c17d](https://github.com/maevsi/maevsi/commit/df5c17d27b0ef539ccc3e712caf54416e798527a))
+* **swal:** show confirmation and error modal in a corner, non-blocking ([9ca7814](https://github.com/maevsi/maevsi/commit/9ca781499f873d132766b86b57fae38360bdf914)), closes [#921](https://github.com/maevsi/maevsi/issues/921)
+
+# [1.0.0-beta.10](https://github.com/maevsi/maevsi/compare/1.0.0-beta.9...1.0.0-beta.10) (2022-12-13)
+
+
+### Bug Fixes
+
+* **commitlint:** allow long body lines on CI ([bbb1f0b](https://github.com/maevsi/maevsi/commit/bbb1f0b887193ae0b3deca2cdc2bab7de01203d3))
+* **cypress:** properly account for cookie banner ([3deb1d8](https://github.com/maevsi/maevsi/commit/3deb1d8f2077b6a13fb56e6b9b2911aea43ea405))
+* **nuxt:** configure vite dependency optimization ([d8a3108](https://github.com/maevsi/maevsi/commit/d8a3108e3b2ac8a7b87f7b5103161b05a84ccfc1))
+* **package:** ignore missing webpack peer dependencies ([12a4b66](https://github.com/maevsi/maevsi/commit/12a4b66945857aa7e4ae501cd13b3b2502040414))
+* **package:** install dependencies recursively ([9d62ba1](https://github.com/maevsi/maevsi/commit/9d62ba1e78e0b2a4a9c8bce26b067d34e49b7821))
+* prepare nuxt ([48e00bb](https://github.com/maevsi/maevsi/commit/48e00bb80a3f9f84fd30a1e0b423c65d88b23d02))
+
+
+### Features
+
+* **loader-image:** improve perceived speed ([8777ba4](https://github.com/maevsi/maevsi/commit/8777ba41847a7a8073d0b71112b199c6e14a22c6))
+* readd nuxt cookie control ([9c6daa7](https://github.com/maevsi/maevsi/commit/9c6daa7048c499abdd0ddacb23d5856d045b24e2))
+
+# [1.0.0-beta.9](https://github.com/maevsi/maevsi/compare/1.0.0-beta.8...1.0.0-beta.9) (2022-12-07)
+
+
+### Bug Fixes
+
+* **contact-avatar:** revert size property change ([d502d17](https://github.com/maevsi/maevsi/commit/d502d17c3a8391d6b22d800120eca92142049e68))
+* **css:** add margin to links and buttons with rings ([0a77fe0](https://github.com/maevsi/maevsi/commit/0a77fe03ac3702edc180f645849d8f36cd984206))
+* **cypress:** correct server test ([2016eb9](https://github.com/maevsi/maevsi/commit/2016eb930166141f47daff5d0b13349b2159faa8))
+* **event-list:** correct markup ([46f8755](https://github.com/maevsi/maevsi/commit/46f8755ea8e52e795c0184b2719d0b4cddfc48d4))
+* **layout:** initialize color scheme selection on client only ([1a42286](https://github.com/maevsi/maevsi/commit/1a422865891b58c65e7083b4a80a7e37fe6e6d90))
+* **loader-image:** use classes ([63a27d9](https://github.com/maevsi/maevsi/commit/63a27d910088324aa90ce021b350f300a22da3a2))
+* **tusd:** correct image upload ([4fcb176](https://github.com/maevsi/maevsi/commit/4fcb176d223799cb4476f6bfb9b535e0461f7a7f))
+
+
+### Features
+
+* **footer:** replace logo with svg component ([410c600](https://github.com/maevsi/maevsi/commit/410c6004f33cf405482f456f62abac11519a261f))
+* **header:** use logo as svg component ([ba49dfe](https://github.com/maevsi/maevsi/commit/ba49dfe15bc38a83235731fd41420d9491553b22))
+
+# [1.0.0-beta.8](https://github.com/maevsi/maevsi/compare/1.0.0-beta.7...1.0.0-beta.8) (2022-12-06)
+
+
+### Bug Fixes
+
+* **loader:** correct size ([7b70cf1](https://github.com/maevsi/maevsi/commit/7b70cf17819113345345a99b13e5e04c3a3ff83f))
+* **urql:** correct error typing ([b1cdc67](https://github.com/maevsi/maevsi/commit/b1cdc679b989e639db71d7e7c79037f673e89e2f))
+
+# [1.0.0-beta.7](https://github.com/maevsi/maevsi/compare/1.0.0-beta.6...1.0.0-beta.7) (2022-12-04)
+
+
+### Bug Fixes
+
+* **event:** use correct route variable ([59ee3c5](https://github.com/maevsi/maevsi/commit/59ee3c5a3fa75e5c6b564bb3daff1ad38866d49c))
+* **form:** correct vuelidate properties ([cbbdfb8](https://github.com/maevsi/maevsi/commit/cbbdfb8c4c3d6db312448cffb66a7e67b54a8059))
+* **tailwind:** do not use nuxt configuration as content ([5000a2e](https://github.com/maevsi/maevsi/commit/5000a2ebad75d172b5f35fac344303642955186a))
+* **tailwind:** use correct content ([8a81ee4](https://github.com/maevsi/maevsi/commit/8a81ee40368dd06e14afc25ef3348e0c6cb972c8))
+* **urql:** correct ssr ([c16838d](https://github.com/maevsi/maevsi/commit/c16838dabdde31481c297bd31054363a1b19d1af)), closes [#952](https://github.com/maevsi/maevsi/issues/952)
+* **util:** correct domain tld port function ([91540d8](https://github.com/maevsi/maevsi/commit/91540d8176e17ea29210845d448b952cbfb24628))
+
+
+### Features
+
+* **loader-image:** display error ([f6c3fa9](https://github.com/maevsi/maevsi/commit/f6c3fa9d2d99e1862788e480917c611243e20463)), closes [#947](https://github.com/maevsi/maevsi/issues/947)
+
+# [1.0.0-beta.6](https://github.com/maevsi/maevsi/compare/1.0.0-beta.5...1.0.0-beta.6) (2022-11-26)
+
+
+### Bug Fixes
+
+* **docker:** correct e2e path ([677e01f](https://github.com/maevsi/maevsi/commit/677e01f9dad03746a19d3f6e7eaadf5c262531f2))
+* **docker:** correct e2e tests ([d4e74a5](https://github.com/maevsi/maevsi/commit/d4e74a51edf8948b222f8a7684de9a3e6d192df4))
+
+
+### Features
+
+* **docker:** create dockerfile for arm ([ba1f51d](https://github.com/maevsi/maevsi/commit/ba1f51df78066ddf2620893bbc59ea6fbc341081))
+
+# [1.0.0-beta.5](https://github.com/maevsi/maevsi/compare/1.0.0-beta.4...1.0.0-beta.5) (2022-11-25)
+
+
+### Bug Fixes
+
+* **form-contact:** close on saved edit ([8c0fe69](https://github.com/maevsi/maevsi/commit/8c0fe6935b5b0d0b0e6da33991c602715b3a1263)), closes [#939](https://github.com/maevsi/maevsi/issues/939)
+* **layout-footer:** reenable color mode selection ([3669673](https://github.com/maevsi/maevsi/commit/36696734041537ce152d213993965f34264f0fe2)), closes [#926](https://github.com/maevsi/maevsi/issues/926)
+
+# [1.0.0-beta.4](https://github.com/maevsi/maevsi/compare/1.0.0-beta.3...1.0.0-beta.4) (2022-11-25)
+
+
+### Bug Fixes
+
+* **tusd:** correct subdomain url ([4668e21](https://github.com/maevsi/maevsi/commit/4668e2159decacde9f122b6574d93d679b62c6be))
+
+
+### Features
+
+* **index:** correct title ([bdf05bf](https://github.com/maevsi/maevsi/commit/bdf05bf601c31394780fae6721d870e2faa209f5))
+
+# [1.0.0-beta.3](https://github.com/maevsi/maevsi/compare/1.0.0-beta.2...1.0.0-beta.3) (2022-11-24)
+
+
+### Bug Fixes
+
+* **docker:** reenable test ([4891376](https://github.com/maevsi/maevsi/commit/48913762ba2f0f18baee54e43f7ff1bc6f092f77))
+* **docker:** run integration tests consecutively ([983bad3](https://github.com/maevsi/maevsi/commit/983bad3f8714533c95a6106c225573562a65294a))
+* **util:** correct domain tld port getter ([690fb59](https://github.com/maevsi/maevsi/commit/690fb5967b0fa9c12a14d2082cb5bd04175daf2f))
+
+
+### Features
+
+* **headers:** remove explicit connect source 'self' ([779ee15](https://github.com/maevsi/maevsi/commit/779ee158f372ddc8996d91ed38b289dfac60dbeb))
+* **nuxt:** support domain from subdomain ([8d0908d](https://github.com/maevsi/maevsi/commit/8d0908da8b58ef338bf52c36092e2bf8c5887b2a))
+
+# [1.0.0-beta.2](https://github.com/maevsi/maevsi/compare/1.0.0-beta.1...1.0.0-beta.2) (2022-11-24)
+
+
+### Bug Fixes
+
+* use http ([05ceea9](https://github.com/maevsi/maevsi/commit/05ceea99bf740546de23b1ff06041f392e0da88c))
+
+
+### Features
+
+* **app:** remove migration notice ([bf8236d](https://github.com/maevsi/maevsi/commit/bf8236ddccb669032dde154080f2627696b7d8d7))
+* remove certificates ([03323fa](https://github.com/maevsi/maevsi/commit/03323fa82abe637907e3af44d36b9c079f53a9cb))
+
+# [1.0.0-beta.1](https://github.com/maevsi/maevsi/compare/0.147.0...1.0.0-beta.1) (2022-11-23)
+
+
+### Bug Fixes
+
+* **api:** add missing import ([f58cbd0](https://github.com/maevsi/maevsi/commit/f58cbd0ea6c8e5271dbfb65ec78e46f24f6ff207))
+* **api:** correct host getter ([5e06db7](https://github.com/maevsi/maevsi/commit/5e06db772d4bd51ed843cd2eba28790a9a8d73d3))
+* **api:** correct pagination ([3e5f0cf](https://github.com/maevsi/maevsi/commit/3e5f0cf5483442ed6ee10d271722826bf6a06070))
+* **api:** reset errors ([eee44c8](https://github.com/maevsi/maevsi/commit/eee44c853b99387cf4a8fa3baec2286d11d0f24d))
+* **app:** correct nuxt 3 link ([7184776](https://github.com/maevsi/maevsi/commit/718477662e9d285becba5e46cb57a30b8f94c1a8))
+* **attendance:** enable qr-code-stream ([b8e9bc2](https://github.com/maevsi/maevsi/commit/b8e9bc23a2f5903c4ddf472a42eef5c457835237))
+* **auth:** disable jwt validation for development against staging ([d030af4](https://github.com/maevsi/maevsi/commit/d030af4b274a88edb02a549da5b6f643c851c84f))
+* **breadcrumb:** fixed routing in breadcrumbs ([93ab582](https://github.com/maevsi/maevsi/commit/93ab5820419f319c5aa6633370df48802f9b472d))
+* **breadcrumbs:** migrate append property to function ([e4ea575](https://github.com/maevsi/maevsi/commit/e4ea57596d6468dfb17b5516e790bb61ab861bb9))
+* **card:** remove duplicate class name ([37769f6](https://github.com/maevsi/maevsi/commit/37769f69ab89ae2e27f65745e4f275582d6a4102))
+* **chart:** update to v4 ([70c258f](https://github.com/maevsi/maevsi/commit/70c258fd47c0a40214b0724e3dab5d2e273c4ec9))
+* **color-mode:** temporarily disable selection ([27fc2be](https://github.com/maevsi/maevsi/commit/27fc2be6a25fdff5580aa8aedc9a10230c2b0a34))
+* **components:** migrate v-model usage ([67f9451](https://github.com/maevsi/maevsi/commit/67f9451b20a2094c3443ebbaf042f276d6f8e93a))
+* **components:** resolve html validation errors ([0820d1b](https://github.com/maevsi/maevsi/commit/0820d1b294d7bc050cffe080426b2ccf55c00f16))
+* **composable:** support computed ref in head ([7d1f076](https://github.com/maevsi/maevsi/commit/7d1f076aad6b7ecabf7fbbbdf86b284e01b071a7)), closes [#898](https://github.com/maevsi/maevsi/issues/898)
+* compute data where required ([daf0e0e](https://github.com/maevsi/maevsi/commit/daf0e0e6fb0af5929371fc426e0e8048b7972b99))
+* **consola:** correct log level ([1f72020](https://github.com/maevsi/maevsi/commit/1f72020c3c6ec3ab1fa6cc807dfa418c6038a6ea))
+* **contact:** correctly finish deletions ([a6867ff](https://github.com/maevsi/maevsi/commit/a6867ff5f201f12bc9f52b4f13dfc14692606933))
+* **contact:** delete by id ([889380b](https://github.com/maevsi/maevsi/commit/889380b277c26b275f1c462d82015ef23c77097a))
+* **docker:** set user in build ([e4ff034](https://github.com/maevsi/maevsi/commit/e4ff0348c9128f2bdcb6e850c31c9fcc339ee8a5))
+* **dropdown:** increase sizes ([b9af37c](https://github.com/maevsi/maevsi/commit/b9af37cf95d30fd2e5e7e9aa0a445e0833877b74))
+* **error:** add missing layout ([b7eb034](https://github.com/maevsi/maevsi/commit/b7eb034d80dda52940348e9e99e648d0e846bbc2))
+* **event-settings:** correct breadcrumb text ([4555ed5](https://github.com/maevsi/maevsi/commit/4555ed5743ba432b5c4fbb308f06288a2dbc7e8c))
+* **event-unlock:** correct redirects ([dfc8778](https://github.com/maevsi/maevsi/commit/dfc8778e28a4a879f42c0f4abdabe027f5e2c0c3))
+* **event-unlock:** downgrade nuxt ([97a90c2](https://github.com/maevsi/maevsi/commit/97a90c21c56aa78486aeeed95a3cafdc00d2a9d5))
+* **event-unlock:** reactivate layout ([b155dd6](https://github.com/maevsi/maevsi/commit/b155dd641ff3d651d7ba24361062d84d2978b817))
+* **event-unlock:** temporarily disable canvas layout ([3fa36cb](https://github.com/maevsi/maevsi/commit/3fa36cbb18f8acdf35c27b154dd72f9f7264e944))
+* **event:** allow to clear maximum invitee count ([d045790](https://github.com/maevsi/maevsi/commit/d045790b97761b0e6ae718ec02f113fc64ace308))
+* **event:** correct deletion parameters ([aa4e2f4](https://github.com/maevsi/maevsi/commit/aa4e2f4f1c8324bd4e2f42fdfa4f9cc467152c82))
+* **event:** correct ical api request ([db3dcdb](https://github.com/maevsi/maevsi/commit/db3dcdbe11fa5ce8bc0bd1127b617facf9fead10))
+* **event:** correct page validation ([2f4e360](https://github.com/maevsi/maevsi/commit/2f4e360a1d209958f90f92851c006ff045423005))
+* **event:** improve heading responsiveness ([8dcc67e](https://github.com/maevsi/maevsi/commit/8dcc67e2055cdf19f3b95c37d21e8a7f40b01c8b))
+* **event:** increase maximum description length ([1af732f](https://github.com/maevsi/maevsi/commit/1af732fe14ef09c00b44a712e8185566f0ca4d3b))
+* **event:** readd missing required property ([1bcee49](https://github.com/maevsi/maevsi/commit/1bcee49075d707891a0fff6c4e4befb9771fa5e4))
+* **event:** replace world icon with eye icon ([28785d5](https://github.com/maevsi/maevsi/commit/28785d5d507e952f298718f26076924cfc2027fb)), closes [#905](https://github.com/maevsi/maevsi/issues/905)
+* **event:** restore link behavior ([bc8c9e9](https://github.com/maevsi/maevsi/commit/bc8c9e9cc43a1afe4b6a825f8699d5965669a745))
+* **event:** type events ([54305ae](https://github.com/maevsi/maevsi/commit/54305ae5633bfd02191ba5326c6011628b4c9937))
+* **footer:** add gap ([57a7798](https://github.com/maevsi/maevsi/commit/57a7798a1ddfabfa2d54b9e060f5c0acbc8c45c0))
+* **form-account-sign-in:** correct conditional slot ([50ba444](https://github.com/maevsi/maevsi/commit/50ba444d476bbee06147c13414854358ba8d2fc8))
+* **form:** correct api data reactivity ([91fec6e](https://github.com/maevsi/maevsi/commit/91fec6e1a91c4fbe9de19f192bf0d6a65068051b))
+* **form:** correct card height ([309a248](https://github.com/maevsi/maevsi/commit/309a2487e60822dd03ab96a968266fbb733fa6d3))
+* **form:** correct error border radius ([887b44d](https://github.com/maevsi/maevsi/commit/887b44d45f7ac21cb422dfafd20fa9193501b041))
+* **form:** correct typing ([2bc5db5](https://github.com/maevsi/maevsi/commit/2bc5db5b7bab107f75701176601008567d4f1e89))
+* **form:** set form instead of model ([80c9af4](https://github.com/maevsi/maevsi/commit/80c9af4a9b8dc2463639bfcb46adcd9661162f58))
+* **form:** simplify form extraction ([5bf809b](https://github.com/maevsi/maevsi/commit/5bf809b7d07bc372651319cc87a386bf8c7a06ce))
+* **form:** use form validation instead of null checks ([7f00d8b](https://github.com/maevsi/maevsi/commit/7f00d8b0fc186f3b98f28fb011ce864af987351d))
+* **form:** use vuelidate setter ([4d6894d](https://github.com/maevsi/maevsi/commit/4d6894dfa4cb05317713a31423b10bd856b2564c))
+* **form:** watch properties ([ff3762f](https://github.com/maevsi/maevsi/commit/ff3762f9de604a70e7c94eb50c7c0de5f2ef3117)), closes [#834](https://github.com/maevsi/maevsi/issues/834)
+* **gql:** add null typing ([769f8fc](https://github.com/maevsi/maevsi/commit/769f8fc8600b07a9efc1714e074b3f7f39ab43fa)), closes [#834](https://github.com/maevsi/maevsi/issues/834)
+* **gql:** disable unauthorized tls rejection ([2d421a5](https://github.com/maevsi/maevsi/commit/2d421a5f5aa4bd0fcdcd6ecf5f7aa2fb6627ec15))
+* **h3:** revert upgrade ([fb6e5d7](https://github.com/maevsi/maevsi/commit/fb6e5d7bf744e943f467f7f473ad7d525296d96d))
+* **header:** compute store property ([393a628](https://github.com/maevsi/maevsi/commit/393a628608e81911df12ee5802c29bffc5487aba))
+* **headers:** fix network error "blocked" when uploading a picture ([e10a4ad](https://github.com/maevsi/maevsi/commit/e10a4ad0b21466283b98e58a42066c60a676725b))
+* **head:** temporarily move body styling to css ([cb6c351](https://github.com/maevsi/maevsi/commit/cb6c35152d301126585ebd4e39374de33a330594))
+* **i18n:** add missing tags ([ba64bc8](https://github.com/maevsi/maevsi/commit/ba64bc893958b747eb0ece09477eb0c43f41928d))
+* **i18n:** migrate fallback warning ([47ab45a](https://github.com/maevsi/maevsi/commit/47ab45a6b4efefd8fe2ba76e3dd3af051684db83))
+* **i18n:** use all rules ([b3e167d](https://github.com/maevsi/maevsi/commit/b3e167d48a9b91996a602765d4a86755deb52fd4))
+* **ical:** remove unnecessary parameter validation ([07b0ca8](https://github.com/maevsi/maevsi/commit/07b0ca8bd8d96fed1982a55b723ee98eb733af81))
+* **icon-flag-united-kingdom:** correct translation ([dda0930](https://github.com/maevsi/maevsi/commit/dda0930061891d3a6f2e48b734789128290c1855))
+* **icon:** correct container name ([4765012](https://github.com/maevsi/maevsi/commit/4765012ca583348f7f9d279d9aae545d2cbe16cc))
+* **image-upload-gallery:** correct conditional display ([693ec6c](https://github.com/maevsi/maevsi/commit/693ec6cf39099bdf04d60102ae63631896ddf302))
+* **image-upload-gallery:** redirect to uploads temporarily ([2a29f83](https://github.com/maevsi/maevsi/commit/2a29f833d415fe9338f0234b7c33c72d40be8d2d)), closes [#760](https://github.com/maevsi/maevsi/issues/760)
+* **image-upload-gallery:** resolve jwt ref ([b46d0ff](https://github.com/maevsi/maevsi/commit/b46d0ffacfc0818f7257c3a38710ee57a6764998))
+* **image:** correct display ([cf4bef3](https://github.com/maevsi/maevsi/commit/cf4bef3154bff0493afc1a3a0e70508a6827c3fb))
+* **index:** correct image width ([ef12206](https://github.com/maevsi/maevsi/commit/ef122063c7d9a6bc645860a809363737b3cdaa14))
+* **invitation-form:** improve ux ([84d607b](https://github.com/maevsi/maevsi/commit/84d607b2c8fb8fd04741ec52a62ccabccd55dc3f))
+* **invitation-list:** correct chart update function ([47e8f21](https://github.com/maevsi/maevsi/commit/47e8f215c8a3b357e1fd335aac99e6aa974ad569))
+* **invitation-list:** correct client check ([b9f0173](https://github.com/maevsi/maevsi/commit/b9f0173b53ad8a2e1d3c306bf7836ce96e8bae23))
+* **invitations:** enable relay pagination ([76c20a6](https://github.com/maevsi/maevsi/commit/76c20a641834e082312f5d94e6e3532fb6649f4e))
+* **jest:** add module mapping ([0814fd9](https://github.com/maevsi/maevsi/commit/0814fd9816d3a08e8b246e5a52d0a4093e44647d))
+* **layout-header:** correct display ([9a79354](https://github.com/maevsi/maevsi/commit/9a7935490776b01e2d6ac9633297ffd00b7bd0e4))
+* **layout:** correct footer offset ([0dda770](https://github.com/maevsi/maevsi/commit/0dda770451f068bdc027a9386790fc4df323c7f9))
+* **list:** add missing padding ([4568537](https://github.com/maevsi/maevsi/commit/456853724dd910a0b578afe700dd5e778e5fac3c))
+* **loader-image:** correct state update placement ([28dffcc](https://github.com/maevsi/maevsi/commit/28dffccd7937e315ebfa1cdb6686f32a2af10aaa))
+* **loader-image:** set aspect ratio ([72d70d9](https://github.com/maevsi/maevsi/commit/72d70d93aefae41a9c00a481ff69d78ddbd92f19))
+* **loader-indicator:** correct display behavior ([89ad270](https://github.com/maevsi/maevsi/commit/89ad2705007406dfe487feacea118921926f2d99))
+* **loader:** correct property requirements ([bf02d66](https://github.com/maevsi/maevsi/commit/bf02d6689152e5125b494cd7551e4d1b551637eb))
+* **locales:** remove exclamation mark from title ([735cc22](https://github.com/maevsi/maevsi/commit/735cc22258bd70fda0fe36716bcdbe241044c68d))
+* make api reactive ([d913c9a](https://github.com/maevsi/maevsi/commit/d913c9ab583b5c2049a457976754e1e445fcf599))
+* **middleware:** use validation only ([ab7aee9](https://github.com/maevsi/maevsi/commit/ab7aee9efeb4917fe71b70e895d06c4bb63576c7))
+* **modal-image-selection:** correct submit disabled state ([18b4bed](https://github.com/maevsi/maevsi/commit/18b4bed1f9ce654d7d2fe7424bcef120397d4820))
+* **modal:** correct display ([871803e](https://github.com/maevsi/maevsi/commit/871803e1dec94ccd9e8665f6fb3e0976a7cb3b58))
+* **modal:** correct error setter ([b28215f](https://github.com/maevsi/maevsi/commit/b28215f6b64d700de1b6c50a5e3f629b5c54136d))
+* **modal:** use v-if to show and hide component ([5723e2d](https://github.com/maevsi/maevsi/commit/5723e2df18e2040d86e9e23495297cd05735ecf1)), closes [#758](https://github.com/maevsi/maevsi/issues/758)
+* **nuxt:** revert extraction of staging host variable ([36a84ca](https://github.com/maevsi/maevsi/commit/36a84cae19fdc4f04e6a962570be82274d433092))
+* **package:** allow insecure server ([e64ca83](https://github.com/maevsi/maevsi/commit/e64ca833585e49a1f6127117182856bbd5975f70))
+* **package:** do not install dependencies before build ([d52866c](https://github.com/maevsi/maevsi/commit/d52866c36aa94c9dd2c2f04441135cfe2886d156))
+* **package:** remove installation from development ([3f87ca8](https://github.com/maevsi/maevsi/commit/3f87ca83b43cbcf83cab14dd9f2cfded83076a40))
+* **package:** use ssl for production ([584e15d](https://github.com/maevsi/maevsi/commit/584e15dc1f58e592dc6c16e4516ed0d6108f01e9))
+* **pages:** correct locale-path import ([526d223](https://github.com/maevsi/maevsi/commit/526d223ca75ebac9925071989f2008265ef3a2bc))
+* **profile-picture:** correct loading ping ([db479df](https://github.com/maevsi/maevsi/commit/db479df24c8a5755025c02d26095245a07156f38))
+* **profile-picture:** update cache on change ([0ccabc1](https://github.com/maevsi/maevsi/commit/0ccabc1654caae3f9d86a6abecd577acbbaa2e05))
+* remove unused refs ([7643891](https://github.com/maevsi/maevsi/commit/7643891c94ec52115e49bda28b92ff8259814ad3))
+* replace undefined with question mark ([fdafd64](https://github.com/maevsi/maevsi/commit/fdafd64cc4e92895486eac5283663f98be71bc47))
+* resolve code scanning issues ([9b96d65](https://github.com/maevsi/maevsi/commit/9b96d651299ffecb1e7e1dc9c0299213d90dc369))
+* resolve linter issues ([c80a03b](https://github.com/maevsi/maevsi/commit/c80a03b1a794513bef4dea29ab795a536d1cfa6b))
+* resolve todos ([aec20ea](https://github.com/maevsi/maevsi/commit/aec20ea2b7a80c4241ebec7d02f984a6543dd978))
+* **robots:** correct import ([9dba5b5](https://github.com/maevsi/maevsi/commit/9dba5b5957b12c6d4b0e4cea6676181c16784d04))
+* **robots:** specify user agent ([82338c9](https://github.com/maevsi/maevsi/commit/82338c9406c4e64a647d44b568edff242afcedd1))
+* **robots:** upgrade to v3 ([260a53e](https://github.com/maevsi/maevsi/commit/260a53e26c43ee4988ce299fc4fd3a0010f44b72)), closes [#740](https://github.com/maevsi/maevsi/issues/740)
+* **scripts:** fix invalid shell in dev.sh ([71e0a8a](https://github.com/maevsi/maevsi/commit/71e0a8a68a7ab903b2cdcdc6fbbb40ada8dea259))
+* **scroll-container:** check if there is a next page ([410a59a](https://github.com/maevsi/maevsi/commit/410a59a48a16c041223792bf1233d826c2cd7f34))
+* **scroll-container:** correct debounce usage ([81e7e0a](https://github.com/maevsi/maevsi/commit/81e7e0af566c95f3c81f18d04fca9aeea38d84b6))
+* **scroll-container:** extract maximum height ([88e461f](https://github.com/maevsi/maevsi/commit/88e461f72760fb727ac9bc3136e3a4865db1c225))
+* **server:** add event handler wrapper ([39925c4](https://github.com/maevsi/maevsi/commit/39925c43b3ab2e1273bfafed50ad1312679e410f))
+* **sign-in:** compute route query property ([19e9fe9](https://github.com/maevsi/maevsi/commit/19e9fe991d6b760d096feec7309d872b1d741257))
+* **sqitch:** use uuid v4 ([7bb8e49](https://github.com/maevsi/maevsi/commit/7bb8e499dd677d76c5d88aba7765d4ff4b72de05)), closes [#47](https://github.com/maevsi/maevsi/issues/47)
+* **start:** do not create certificates inside docker ([b066377](https://github.com/maevsi/maevsi/commit/b0663777a532cf13751965257ffa1bdc4f15f89f))
+* **tests:** use cypress environment variables ([4b65bf4](https://github.com/maevsi/maevsi/commit/4b65bf4b6f9c086713a7c370246525eb0413f7bc))
+* **tusd:** use staging host ([e42ee93](https://github.com/maevsi/maevsi/commit/e42ee934cf50eb938713e148f249276f25fcf3b7))
+* **unlock:** correct error handling ([3a106e5](https://github.com/maevsi/maevsi/commit/3a106e5fa976e60b7590948302c9b50c8e5b20a9))
+* **urql:** implement cache updates ([0432e97](https://github.com/maevsi/maevsi/commit/0432e9705bdcdeddeeb7fa64c5ad3def3ee8a6dc)), closes [#720](https://github.com/maevsi/maevsi/issues/720)
+* **urql:** invalidate cache for contacts ([34525f7](https://github.com/maevsi/maevsi/commit/34525f755f2460c802a6e4877962107514eff2da))
+* **util:** move uuid to constants ([bde3636](https://github.com/maevsi/maevsi/commit/bde36361db83f96c92eb8972bc9c912afb682af0))
+
+
+### chore
+
+* add breaking change ([b9006ae](https://github.com/maevsi/maevsi/commit/b9006ae0066600d7194e4269976b9a0accb408ec))
+
+
+### Features
+
+* **api:** add basic input validation for ical ([0993aeb](https://github.com/maevsi/maevsi/commit/0993aeb905abdddacc5d746ac4b6dc3bd51a9bb8))
+* **app:** add loading indicator ([b182bd8](https://github.com/maevsi/maevsi/commit/b182bd8b17f2db40308405e394c87d1b27fc16a4))
+* **app:** add move information ([1f65e38](https://github.com/maevsi/maevsi/commit/1f65e383380e8fa36ceb0cb4876704bc2b9dd382))
+* **app:** remove wrapping divs ([fd5fa96](https://github.com/maevsi/maevsi/commit/fd5fa96702c98e9db55d940f7b4a95a287443eb1))
+* **auth:** use parameter objects ([4f2e33a](https://github.com/maevsi/maevsi/commit/4f2e33a31636771d6537ee0b0115e7e72736d969))
+* **button-list:** set horizontal position individually ([1b7ff47](https://github.com/maevsi/maevsi/commit/1b7ff479c82e8c105b448a49567fb6ff934252ff))
+* **calendar:** introduce vCalendar ([7ba11fd](https://github.com/maevsi/maevsi/commit/7ba11fdd9eae83959022fefab57eed5b98befdda))
+* **contact-preview:** do not use placeholder ([9e71660](https://github.com/maevsi/maevsi/commit/9e716600d858f3da149c1a335fa8ce9a39bd0f46))
+* **cypress:** add page tests ([2370a27](https://github.com/maevsi/maevsi/commit/2370a27efe18fdf03eaa18e09826736fd0fce76e))
+* **event:** implement v-calendar modals based on feat/vue/v-calendar ([6681702](https://github.com/maevsi/maevsi/commit/66817024f80c1513f19878063a8742f7d4747b10))
+* **event:** update event form based on feat/vue-3/v-calendar with luxon ([285b82a](https://github.com/maevsi/maevsi/commit/285b82a437b9bf169193b3deb752e78f67284b67))
+* **footer:** add icon flags vue files ([46f8b51](https://github.com/maevsi/maevsi/commit/46f8b519325a9831735260473c762ba519e9a5fd))
+* **footer:** add language flags ([28856c3](https://github.com/maevsi/maevsi/commit/28856c3f682a1715ae74818b9fca2b3a01ccf961))
+* **footer:** fix implementation of locale flags ([f9b5370](https://github.com/maevsi/maevsi/commit/f9b53708765ff779071d386c0f5039ccb1de10cf))
+* **form-event:** finish date-time picker implementation ([612bc5e](https://github.com/maevsi/maevsi/commit/612bc5ee1c463bbc83f82925b80feb49a4b7378b))
+* **form-invitation:** improve ux ([4cadfcb](https://github.com/maevsi/maevsi/commit/4cadfcb0ad86105f8e42b3860fb822df13a3b937))
+* **form:** use flex ([12a62ba](https://github.com/maevsi/maevsi/commit/12a62bad7d630f23efcbc09fcfdc7cf725e920fd))
+* **i18n:** update engine info text ([98e78b9](https://github.com/maevsi/maevsi/commit/98e78b91a18d658e9da14bba6784a31f51736419))
+* **i18n:** use new slogan ([f45cb88](https://github.com/maevsi/maevsi/commit/f45cb883e6814294e9cfc97a1a454969f33418c4))
+* **ical:** hide technical errors ([54d973b](https://github.com/maevsi/maevsi/commit/54d973bfe4c51170f78e5fe4f36365c79f99cbbd))
+* **image-upload-gallery:** add vue-advanced-cropper ([648c2a7](https://github.com/maevsi/maevsi/commit/648c2a7a8aefe96a396dddb0b815ddf9ebc87b83)), closes [#723](https://github.com/maevsi/maevsi/issues/723)
+* **node:** use ssl for production ([69725e7](https://github.com/maevsi/maevsi/commit/69725e71cb59676bea9e0efc91b57d495be20659))
+* **nuxt:** add page transition ([ba55565](https://github.com/maevsi/maevsi/commit/ba55565cf4123165e0bf3d5d61f12af508ae0b45))
+* **package:** update node to v19 ([3b99ef9](https://github.com/maevsi/maevsi/commit/3b99ef9647569fd8d56911b56b5f856571d1a012))
+* **pages:** correct meta redirects ([d1ce421](https://github.com/maevsi/maevsi/commit/d1ce421dedb3b1be9d0870d84b238d3928f3b197))
+* **pages:** remove title validation ([5e81b50](https://github.com/maevsi/maevsi/commit/5e81b5048cf2c7f1612116b5e8f58388d6e0b1cd))
+* **plugins:** remove croppa ([ae33e74](https://github.com/maevsi/maevsi/commit/ae33e740a820b7ca91970a48dcd0cf6950dbb508)), closes [#723](https://github.com/maevsi/maevsi/issues/723)
+* replace moment with dayjs ([f66270b](https://github.com/maevsi/maevsi/commit/f66270bebd055e44a371da3cef95039141e991ee))
+* separate stack development ([59bf267](https://github.com/maevsi/maevsi/commit/59bf2670dec079f4882b6ca9bf375e430ee383fc))
+* **sitemap:** use plugin ([243760c](https://github.com/maevsi/maevsi/commit/243760c7194b66ba55cad103b371a2729b5acba8)), closes [#741](https://github.com/maevsi/maevsi/issues/741)
+* **start:** move certificates to separate directory ([1c855b8](https://github.com/maevsi/maevsi/commit/1c855b8773f7b7395f795f8c64498ad93bbd47f9))
+* **tests:** add integration tests - check if page loads ([8010c8d](https://github.com/maevsi/maevsi/commit/8010c8dd93a077d2a013beefcf9717723f312f3e))
+
+
+### Performance Improvements
+
+* **dev:** do not create certificates without need ([86a0120](https://github.com/maevsi/maevsi/commit/86a012088e49e6288979fdf68adbf5a8f3761f26))
+
+
+### Reverts
+
+* Revert "chore(test): move cypress directory" ([6078107](https://github.com/maevsi/maevsi/commit/60781073e3316e4f5dce297c8ad56856f8a5a06a))
+* Revert "fix(package): remove host restriction" ([961d0aa](https://github.com/maevsi/maevsi/commit/961d0aa85054e1915a59d7798bad8913637eb319))
+
+
+### BREAKING CHANGES
+
+* prepare v1
+
+# [1.0.0-alpha.19](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.18...1.0.0-alpha.19) (2022-11-22)
+
+
+### Features
+
+* **sitemap:** use plugin ([243760c](https://github.com/maevsi/maevsi/commit/243760c7194b66ba55cad103b371a2729b5acba8)), closes [#741](https://github.com/maevsi/maevsi/issues/741)
+
+# [1.0.0-alpha.18](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.17...1.0.0-alpha.18) (2022-11-22)
+
+
+### Bug Fixes
+
+* **color-mode:** temporarily disable selection ([27fc2be](https://github.com/maevsi/maevsi/commit/27fc2be6a25fdff5580aa8aedc9a10230c2b0a34))
+* **dropdown:** increase sizes ([b9af37c](https://github.com/maevsi/maevsi/commit/b9af37cf95d30fd2e5e7e9aa0a445e0833877b74))
+* **event-settings:** correct breadcrumb text ([4555ed5](https://github.com/maevsi/maevsi/commit/4555ed5743ba432b5c4fbb308f06288a2dbc7e8c))
+* **event:** improve heading responsiveness ([8dcc67e](https://github.com/maevsi/maevsi/commit/8dcc67e2055cdf19f3b95c37d21e8a7f40b01c8b))
+* **event:** replace world icon with eye icon ([28785d5](https://github.com/maevsi/maevsi/commit/28785d5d507e952f298718f26076924cfc2027fb)), closes [#905](https://github.com/maevsi/maevsi/issues/905)
+* **event:** restore link behavior ([bc8c9e9](https://github.com/maevsi/maevsi/commit/bc8c9e9cc43a1afe4b6a825f8699d5965669a745))
+* **form-account-sign-in:** correct conditional slot ([50ba444](https://github.com/maevsi/maevsi/commit/50ba444d476bbee06147c13414854358ba8d2fc8))
+* **form:** correct card height ([309a248](https://github.com/maevsi/maevsi/commit/309a2487e60822dd03ab96a968266fbb733fa6d3))
+* **index:** correct image width ([ef12206](https://github.com/maevsi/maevsi/commit/ef122063c7d9a6bc645860a809363737b3cdaa14))
+* **invitation-form:** improve ux ([84d607b](https://github.com/maevsi/maevsi/commit/84d607b2c8fb8fd04741ec52a62ccabccd55dc3f))
+* **loader-image:** correct state update placement ([28dffcc](https://github.com/maevsi/maevsi/commit/28dffccd7937e315ebfa1cdb6686f32a2af10aaa))
+* **modal:** correct display ([871803e](https://github.com/maevsi/maevsi/commit/871803e1dec94ccd9e8665f6fb3e0976a7cb3b58))
+* remove unused refs ([7643891](https://github.com/maevsi/maevsi/commit/7643891c94ec52115e49bda28b92ff8259814ad3))
+* **robots:** correct import ([9dba5b5](https://github.com/maevsi/maevsi/commit/9dba5b5957b12c6d4b0e4cea6676181c16784d04))
+* **robots:** upgrade to v3 ([260a53e](https://github.com/maevsi/maevsi/commit/260a53e26c43ee4988ce299fc4fd3a0010f44b72)), closes [#740](https://github.com/maevsi/maevsi/issues/740)
+* **scroll-container:** extract maximum height ([88e461f](https://github.com/maevsi/maevsi/commit/88e461f72760fb727ac9bc3136e3a4865db1c225))
+* **start:** do not create certificates inside docker ([b066377](https://github.com/maevsi/maevsi/commit/b0663777a532cf13751965257ffa1bdc4f15f89f))
+
+
+### Features
+
+* **form:** use flex ([12a62ba](https://github.com/maevsi/maevsi/commit/12a62bad7d630f23efcbc09fcfdc7cf725e920fd))
+* **nuxt:** add page transition ([ba55565](https://github.com/maevsi/maevsi/commit/ba55565cf4123165e0bf3d5d61f12af508ae0b45))
+* replace moment with dayjs ([f66270b](https://github.com/maevsi/maevsi/commit/f66270bebd055e44a371da3cef95039141e991ee))
+* **start:** move certificates to separate directory ([1c855b8](https://github.com/maevsi/maevsi/commit/1c855b8773f7b7395f795f8c64498ad93bbd47f9))
+
+
+### Reverts
+
+* Revert "fix(form): compute" ([8d5efd8](https://github.com/maevsi/maevsi/commit/8d5efd8781c0a6ac69d0e94f53574a9b7fd03e39))
+
+# [1.0.0-alpha.17](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.16...1.0.0-alpha.17) (2022-11-17)
+
+
+### Bug Fixes
+
+* **api:** reset errors ([eee44c8](https://github.com/maevsi/maevsi/commit/eee44c853b99387cf4a8fa3baec2286d11d0f24d))
+* **app:** correct nuxt 3 link ([7184776](https://github.com/maevsi/maevsi/commit/718477662e9d285becba5e46cb57a30b8f94c1a8))
+* **attendance:** enable qr-code-stream ([b8e9bc2](https://github.com/maevsi/maevsi/commit/b8e9bc23a2f5903c4ddf472a42eef5c457835237))
+* **form:** compute ([8c55a70](https://github.com/maevsi/maevsi/commit/8c55a70eed03224962f0cf734b736f11db42d212))
+* **form:** correct error border radius ([887b44d](https://github.com/maevsi/maevsi/commit/887b44d45f7ac21cb422dfafd20fa9193501b041))
+* **form:** set form instead of model ([80c9af4](https://github.com/maevsi/maevsi/commit/80c9af4a9b8dc2463639bfcb46adcd9661162f58))
+* **form:** use form validation instead of null checks ([7f00d8b](https://github.com/maevsi/maevsi/commit/7f00d8b0fc186f3b98f28fb011ce864af987351d))
+* **i18n:** use all rules ([b3e167d](https://github.com/maevsi/maevsi/commit/b3e167d48a9b91996a602765d4a86755deb52fd4))
+* **image-upload-gallery:** redirect to uploads temporarily ([2a29f83](https://github.com/maevsi/maevsi/commit/2a29f833d415fe9338f0234b7c33c72d40be8d2d)), closes [#760](https://github.com/maevsi/maevsi/issues/760)
+* **layout-header:** correct display ([9a79354](https://github.com/maevsi/maevsi/commit/9a7935490776b01e2d6ac9633297ffd00b7bd0e4))
+* **layout:** correct footer offset ([0dda770](https://github.com/maevsi/maevsi/commit/0dda770451f068bdc027a9386790fc4df323c7f9))
+* **list:** add missing padding ([4568537](https://github.com/maevsi/maevsi/commit/456853724dd910a0b578afe700dd5e778e5fac3c))
+* **loader-image:** set aspect ratio ([72d70d9](https://github.com/maevsi/maevsi/commit/72d70d93aefae41a9c00a481ff69d78ddbd92f19))
+* **loader-indicator:** correct display behavior ([89ad270](https://github.com/maevsi/maevsi/commit/89ad2705007406dfe487feacea118921926f2d99))
+* **modal-image-selection:** correct submit disabled state ([18b4bed](https://github.com/maevsi/maevsi/commit/18b4bed1f9ce654d7d2fe7424bcef120397d4820))
+* **modal:** use v-if to show and hide component ([5723e2d](https://github.com/maevsi/maevsi/commit/5723e2df18e2040d86e9e23495297cd05735ecf1)), closes [#758](https://github.com/maevsi/maevsi/issues/758)
+* **profile-picture:** correct loading ping ([db479df](https://github.com/maevsi/maevsi/commit/db479df24c8a5755025c02d26095245a07156f38))
+* **profile-picture:** update cache on change ([0ccabc1](https://github.com/maevsi/maevsi/commit/0ccabc1654caae3f9d86a6abecd577acbbaa2e05))
+* resolve todos ([aec20ea](https://github.com/maevsi/maevsi/commit/aec20ea2b7a80c4241ebec7d02f984a6543dd978))
+* **unlock:** correct error handling ([3a106e5](https://github.com/maevsi/maevsi/commit/3a106e5fa976e60b7590948302c9b50c8e5b20a9))
+
+
+### Features
+
+* **app:** add loading indicator ([b182bd8](https://github.com/maevsi/maevsi/commit/b182bd8b17f2db40308405e394c87d1b27fc16a4))
+* **button-list:** set horizontal position individually ([1b7ff47](https://github.com/maevsi/maevsi/commit/1b7ff479c82e8c105b448a49567fb6ff934252ff))
+* **contact-preview:** do not use placeholder ([9e71660](https://github.com/maevsi/maevsi/commit/9e716600d858f3da149c1a335fa8ce9a39bd0f46))
+* **form-invitation:** improve ux ([4cadfcb](https://github.com/maevsi/maevsi/commit/4cadfcb0ad86105f8e42b3860fb822df13a3b937))
+* **i18n:** update engine info text ([98e78b9](https://github.com/maevsi/maevsi/commit/98e78b91a18d658e9da14bba6784a31f51736419))
+
+# [1.0.0-alpha.16](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.15...1.0.0-alpha.16) (2022-11-16)
+
+
+### Bug Fixes
+
+* **api:** correct pagination ([3e5f0cf](https://github.com/maevsi/maevsi/commit/3e5f0cf5483442ed6ee10d271722826bf6a06070))
+* **chart:** update to v4 ([70c258f](https://github.com/maevsi/maevsi/commit/70c258fd47c0a40214b0724e3dab5d2e273c4ec9))
+* **event:** increase maximum description length ([1af732f](https://github.com/maevsi/maevsi/commit/1af732fe14ef09c00b44a712e8185566f0ca4d3b))
+* **form:** correct typing ([2bc5db5](https://github.com/maevsi/maevsi/commit/2bc5db5b7bab107f75701176601008567d4f1e89))
+* **h3:** revert upgrade ([fb6e5d7](https://github.com/maevsi/maevsi/commit/fb6e5d7bf744e943f467f7f473ad7d525296d96d))
+* **invitations:** enable relay pagination ([76c20a6](https://github.com/maevsi/maevsi/commit/76c20a641834e082312f5d94e6e3532fb6649f4e))
+* **nuxt:** revert extraction of staging host variable ([36a84ca](https://github.com/maevsi/maevsi/commit/36a84cae19fdc4f04e6a962570be82274d433092))
+* **package:** allow insecure server ([e64ca83](https://github.com/maevsi/maevsi/commit/e64ca833585e49a1f6127117182856bbd5975f70))
+* **package:** remove installation from development ([3f87ca8](https://github.com/maevsi/maevsi/commit/3f87ca83b43cbcf83cab14dd9f2cfded83076a40))
+* **package:** use ssl for production ([584e15d](https://github.com/maevsi/maevsi/commit/584e15dc1f58e592dc6c16e4516ed0d6108f01e9))
+* **scroll-container:** check if there is a next page ([410a59a](https://github.com/maevsi/maevsi/commit/410a59a48a16c041223792bf1233d826c2cd7f34))
+* **scroll-container:** correct debounce usage ([81e7e0a](https://github.com/maevsi/maevsi/commit/81e7e0af566c95f3c81f18d04fca9aeea38d84b6))
+* **sqitch:** use uuid v4 ([7bb8e49](https://github.com/maevsi/maevsi/commit/7bb8e499dd677d76c5d88aba7765d4ff4b72de05)), closes [#47](https://github.com/maevsi/maevsi/issues/47)
+
+
+### Features
+
+* **i18n:** use new slogan ([f45cb88](https://github.com/maevsi/maevsi/commit/f45cb883e6814294e9cfc97a1a454969f33418c4))
+* **node:** use ssl for production ([69725e7](https://github.com/maevsi/maevsi/commit/69725e71cb59676bea9e0efc91b57d495be20659))
+
+# [1.0.0-alpha.15](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.14...1.0.0-alpha.15) (2022-11-14)
+
+
+### Bug Fixes
+
+* **headers:** fix network error "blocked" when uploading a picture ([e10a4ad](https://github.com/maevsi/maevsi/commit/e10a4ad0b21466283b98e58a42066c60a676725b))
+
+# [1.0.0-alpha.14](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.13...1.0.0-alpha.14) (2022-11-11)
+
+
+### Bug Fixes
+
+* **composable:** support computed ref in head ([7d1f076](https://github.com/maevsi/maevsi/commit/7d1f076aad6b7ecabf7fbbbdf86b284e01b071a7)), closes [#898](https://github.com/maevsi/maevsi/issues/898)
+* **contact:** correctly finish deletions ([a6867ff](https://github.com/maevsi/maevsi/commit/a6867ff5f201f12bc9f52b4f13dfc14692606933))
+* **contact:** delete by id ([889380b](https://github.com/maevsi/maevsi/commit/889380b277c26b275f1c462d82015ef23c77097a))
+* **docker:** set user in build ([e4ff034](https://github.com/maevsi/maevsi/commit/e4ff0348c9128f2bdcb6e850c31c9fcc339ee8a5))
+* **event:** allow to clear maximum invitee count ([d045790](https://github.com/maevsi/maevsi/commit/d045790b97761b0e6ae718ec02f113fc64ace308))
+* **event:** correct deletion parameters ([aa4e2f4](https://github.com/maevsi/maevsi/commit/aa4e2f4f1c8324bd4e2f42fdfa4f9cc467152c82))
+* **event:** readd missing required property ([1bcee49](https://github.com/maevsi/maevsi/commit/1bcee49075d707891a0fff6c4e4befb9771fa5e4))
+* **footer:** add gap ([57a7798](https://github.com/maevsi/maevsi/commit/57a7798a1ddfabfa2d54b9e060f5c0acbc8c45c0))
+* **form:** use vuelidate setter ([4d6894d](https://github.com/maevsi/maevsi/commit/4d6894dfa4cb05317713a31423b10bd856b2564c))
+* **gql:** add null typing ([769f8fc](https://github.com/maevsi/maevsi/commit/769f8fc8600b07a9efc1714e074b3f7f39ab43fa)), closes [#834](https://github.com/maevsi/maevsi/issues/834)
+* **gql:** disable unauthorized tls rejection ([2d421a5](https://github.com/maevsi/maevsi/commit/2d421a5f5aa4bd0fcdcd6ecf5f7aa2fb6627ec15))
+* **i18n:** migrate fallback warning ([47ab45a](https://github.com/maevsi/maevsi/commit/47ab45a6b4efefd8fe2ba76e3dd3af051684db83))
+* **ical:** remove unnecessary parameter validation ([07b0ca8](https://github.com/maevsi/maevsi/commit/07b0ca8bd8d96fed1982a55b723ee98eb733af81))
+* **icon-flag-united-kingdom:** correct translation ([dda0930](https://github.com/maevsi/maevsi/commit/dda0930061891d3a6f2e48b734789128290c1855))
+* **image-upload-gallery:** correct conditional display ([693ec6c](https://github.com/maevsi/maevsi/commit/693ec6cf39099bdf04d60102ae63631896ddf302))
+* **image:** correct display ([cf4bef3](https://github.com/maevsi/maevsi/commit/cf4bef3154bff0493afc1a3a0e70508a6827c3fb))
+* **locales:** remove exclamation mark from title ([735cc22](https://github.com/maevsi/maevsi/commit/735cc22258bd70fda0fe36716bcdbe241044c68d))
+* make api reactive ([d913c9a](https://github.com/maevsi/maevsi/commit/d913c9ab583b5c2049a457976754e1e445fcf599))
+* **modal:** correct error setter ([b28215f](https://github.com/maevsi/maevsi/commit/b28215f6b64d700de1b6c50a5e3f629b5c54136d))
+* **package:** do not install dependencies before build ([d52866c](https://github.com/maevsi/maevsi/commit/d52866c36aa94c9dd2c2f04441135cfe2886d156))
+* **robots:** specify user agent ([82338c9](https://github.com/maevsi/maevsi/commit/82338c9406c4e64a647d44b568edff242afcedd1))
+* **urql:** implement cache updates ([0432e97](https://github.com/maevsi/maevsi/commit/0432e9705bdcdeddeeb7fa64c5ad3def3ee8a6dc)), closes [#720](https://github.com/maevsi/maevsi/issues/720)
+* **urql:** invalidate cache for contacts ([34525f7](https://github.com/maevsi/maevsi/commit/34525f755f2460c802a6e4877962107514eff2da))
+
+
+### Features
+
+* **ical:** hide technical errors ([54d973b](https://github.com/maevsi/maevsi/commit/54d973bfe4c51170f78e5fe4f36365c79f99cbbd))
+* **image-upload-gallery:** add vue-advanced-cropper ([648c2a7](https://github.com/maevsi/maevsi/commit/648c2a7a8aefe96a396dddb0b815ddf9ebc87b83)), closes [#723](https://github.com/maevsi/maevsi/issues/723)
+* **package:** update node to v19 ([3b99ef9](https://github.com/maevsi/maevsi/commit/3b99ef9647569fd8d56911b56b5f856571d1a012))
+* **plugins:** remove croppa ([ae33e74](https://github.com/maevsi/maevsi/commit/ae33e740a820b7ca91970a48dcd0cf6950dbb508)), closes [#723](https://github.com/maevsi/maevsi/issues/723)
+
+# [1.0.0-alpha.13](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.12...1.0.0-alpha.13) (2022-11-06)
+
+
+### Bug Fixes
+
+* **api:** correct host getter ([5e06db7](https://github.com/maevsi/maevsi/commit/5e06db772d4bd51ed843cd2eba28790a9a8d73d3))
+* **consola:** correct log level ([1f72020](https://github.com/maevsi/maevsi/commit/1f72020c3c6ec3ab1fa6cc807dfa418c6038a6ea))
+* **event-unlock:** correct redirects ([dfc8778](https://github.com/maevsi/maevsi/commit/dfc8778e28a4a879f42c0f4abdabe027f5e2c0c3))
+* **event-unlock:** downgrade nuxt ([97a90c2](https://github.com/maevsi/maevsi/commit/97a90c21c56aa78486aeeed95a3cafdc00d2a9d5))
+* **event-unlock:** reactivate layout ([b155dd6](https://github.com/maevsi/maevsi/commit/b155dd641ff3d651d7ba24361062d84d2978b817))
+* **event-unlock:** temporarily disable canvas layout ([3fa36cb](https://github.com/maevsi/maevsi/commit/3fa36cbb18f8acdf35c27b154dd72f9f7264e944))
+* **event:** correct ical api request ([db3dcdb](https://github.com/maevsi/maevsi/commit/db3dcdbe11fa5ce8bc0bd1127b617facf9fead10))
+* **form:** correct api data reactivity ([91fec6e](https://github.com/maevsi/maevsi/commit/91fec6e1a91c4fbe9de19f192bf0d6a65068051b))
+* **head:** temporarily move body styling to css ([cb6c351](https://github.com/maevsi/maevsi/commit/cb6c35152d301126585ebd4e39374de33a330594))
+* **invitation-list:** correct chart update function ([47e8f21](https://github.com/maevsi/maevsi/commit/47e8f215c8a3b357e1fd335aac99e6aa974ad569))
+* **invitation-list:** correct client check ([b9f0173](https://github.com/maevsi/maevsi/commit/b9f0173b53ad8a2e1d3c306bf7836ce96e8bae23))
+* **jest:** add module mapping ([0814fd9](https://github.com/maevsi/maevsi/commit/0814fd9816d3a08e8b246e5a52d0a4093e44647d))
+* **util:** move uuid to constants ([bde3636](https://github.com/maevsi/maevsi/commit/bde36361db83f96c92eb8972bc9c912afb682af0))
+
+
+### Features
+
+* **api:** add basic input validation for ical ([0993aeb](https://github.com/maevsi/maevsi/commit/0993aeb905abdddacc5d746ac4b6dc3bd51a9bb8))
+* **app:** add move information ([1f65e38](https://github.com/maevsi/maevsi/commit/1f65e383380e8fa36ceb0cb4876704bc2b9dd382))
+
+# [1.0.0-alpha.12](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.11...1.0.0-alpha.12) (2022-11-02)
+
+
+### Bug Fixes
+
+* **components:** migrate v-model usage ([67f9451](https://github.com/maevsi/maevsi/commit/67f9451b20a2094c3443ebbaf042f276d6f8e93a))
+* resolve linter issues ([c80a03b](https://github.com/maevsi/maevsi/commit/c80a03b1a794513bef4dea29ab795a536d1cfa6b))
+
+
+### Features
+
+* **calendar:** introduce vCalendar ([7ba11fd](https://github.com/maevsi/maevsi/commit/7ba11fdd9eae83959022fefab57eed5b98befdda))
+* **event:** implement v-calendar modals based on feat/vue/v-calendar ([6681702](https://github.com/maevsi/maevsi/commit/66817024f80c1513f19878063a8742f7d4747b10))
+* **event:** update event form based on feat/vue-3/v-calendar with luxon ([285b82a](https://github.com/maevsi/maevsi/commit/285b82a437b9bf169193b3deb752e78f67284b67))
+* **form-event:** finish date-time picker implementation ([612bc5e](https://github.com/maevsi/maevsi/commit/612bc5ee1c463bbc83f82925b80feb49a4b7378b))
+
+# [1.0.0-alpha.11](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.10...1.0.0-alpha.11) (2022-11-02)
+
+
+### Bug Fixes
+
+* **components:** resolve html validation errors ([0820d1b](https://github.com/maevsi/maevsi/commit/0820d1b294d7bc050cffe080426b2ccf55c00f16))
+* **event:** type events ([54305ae](https://github.com/maevsi/maevsi/commit/54305ae5633bfd02191ba5326c6011628b4c9937))
+* **form:** simplify form extraction ([5bf809b](https://github.com/maevsi/maevsi/commit/5bf809b7d07bc372651319cc87a386bf8c7a06ce))
+* **form:** watch properties ([ff3762f](https://github.com/maevsi/maevsi/commit/ff3762f9de604a70e7c94eb50c7c0de5f2ef3117)), closes [#834](https://github.com/maevsi/maevsi/issues/834)
+* replace undefined with question mark ([fdafd64](https://github.com/maevsi/maevsi/commit/fdafd64cc4e92895486eac5283663f98be71bc47))
+
+# [1.0.0-alpha.10](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.9...1.0.0-alpha.10) (2022-11-01)
+
+
+### Features
+
+* **footer:** add icon flags vue files ([46f8b51](https://github.com/maevsi/maevsi/commit/46f8b519325a9831735260473c762ba519e9a5fd))
+* **footer:** add language flags ([28856c3](https://github.com/maevsi/maevsi/commit/28856c3f682a1715ae74818b9fca2b3a01ccf961))
+* **footer:** fix implementation of locale flags ([f9b5370](https://github.com/maevsi/maevsi/commit/f9b53708765ff779071d386c0f5039ccb1de10cf))
+
+# [1.0.0-alpha.9](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.8...1.0.0-alpha.9) (2022-11-01)
+
+
+### Bug Fixes
+
+* **auth:** disable jwt validation for development against staging ([d030af4](https://github.com/maevsi/maevsi/commit/d030af4b274a88edb02a549da5b6f643c851c84f))
+* **card:** remove duplicate class name ([37769f6](https://github.com/maevsi/maevsi/commit/37769f69ab89ae2e27f65745e4f275582d6a4102))
+* compute data where required ([daf0e0e](https://github.com/maevsi/maevsi/commit/daf0e0e6fb0af5929371fc426e0e8048b7972b99))
+* **header:** compute store property ([393a628](https://github.com/maevsi/maevsi/commit/393a628608e81911df12ee5802c29bffc5487aba))
+* **image-upload-gallery:** resolve jwt ref ([b46d0ff](https://github.com/maevsi/maevsi/commit/b46d0ffacfc0818f7257c3a38710ee57a6764998))
+* **pages:** correct locale-path import ([526d223](https://github.com/maevsi/maevsi/commit/526d223ca75ebac9925071989f2008265ef3a2bc))
+* resolve code scanning issues ([9b96d65](https://github.com/maevsi/maevsi/commit/9b96d651299ffecb1e7e1dc9c0299213d90dc369))
+* **sign-in:** compute route query property ([19e9fe9](https://github.com/maevsi/maevsi/commit/19e9fe991d6b760d096feec7309d872b1d741257))
+* **tusd:** use staging host ([e42ee93](https://github.com/maevsi/maevsi/commit/e42ee934cf50eb938713e148f249276f25fcf3b7))
+
+
+### Features
+
+* **pages:** remove title validation ([5e81b50](https://github.com/maevsi/maevsi/commit/5e81b5048cf2c7f1612116b5e8f58388d6e0b1cd))
+
+# [1.0.0-alpha.8](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.7...1.0.0-alpha.8) (2022-11-01)
+
+
+### Bug Fixes
+
+* **middleware:** use validation only ([ab7aee9](https://github.com/maevsi/maevsi/commit/ab7aee9efeb4917fe71b70e895d06c4bb63576c7))
+* **scripts:** fix invalid shell in dev.sh ([71e0a8a](https://github.com/maevsi/maevsi/commit/71e0a8a68a7ab903b2cdcdc6fbbb40ada8dea259))
+
+# [1.0.0-alpha.7](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.6...1.0.0-alpha.7) (2022-11-01)
+
+
+### Bug Fixes
+
+* **breadcrumb:** fixed routing in breadcrumbs ([93ab582](https://github.com/maevsi/maevsi/commit/93ab5820419f319c5aa6633370df48802f9b472d))
+
+# [1.0.0-alpha.6](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.5...1.0.0-alpha.6) (2022-10-31)
+
+
+### Performance Improvements
+
+* **dev:** do not create certificates without need ([86a0120](https://github.com/maevsi/maevsi/commit/86a012088e49e6288979fdf68adbf5a8f3761f26))
+
+# [1.0.0-alpha.5](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.4...1.0.0-alpha.5) (2022-10-28)
+
+
+### Bug Fixes
+
+* **api:** add missing import ([f58cbd0](https://github.com/maevsi/maevsi/commit/f58cbd0ea6c8e5271dbfb65ec78e46f24f6ff207))
+* **event:** correct page validation ([2f4e360](https://github.com/maevsi/maevsi/commit/2f4e360a1d209958f90f92851c006ff045423005))
+* **server:** add event handler wrapper ([39925c4](https://github.com/maevsi/maevsi/commit/39925c43b3ab2e1273bfafed50ad1312679e410f))
+
+
+### Features
+
+* **auth:** use parameter objects ([4f2e33a](https://github.com/maevsi/maevsi/commit/4f2e33a31636771d6537ee0b0115e7e72736d969))
+* separate stack development ([59bf267](https://github.com/maevsi/maevsi/commit/59bf2670dec079f4882b6ca9bf375e430ee383fc))
+
+# [1.0.0-alpha.4](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.3...1.0.0-alpha.4) (2022-10-27)
+
+
+### Bug Fixes
+
+* **breadcrumbs:** migrate append property to function ([e4ea575](https://github.com/maevsi/maevsi/commit/e4ea57596d6468dfb17b5516e790bb61ab861bb9))
+* **icon:** correct container name ([4765012](https://github.com/maevsi/maevsi/commit/4765012ca583348f7f9d279d9aae545d2cbe16cc))
+* **loader:** correct property requirements ([bf02d66](https://github.com/maevsi/maevsi/commit/bf02d6689152e5125b494cd7551e4d1b551637eb))
+
+
+### Features
+
+* **cypress:** add page tests ([2370a27](https://github.com/maevsi/maevsi/commit/2370a27efe18fdf03eaa18e09826736fd0fce76e))
+
+# [1.0.0-alpha.3](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.2...1.0.0-alpha.3) (2022-10-26)
+
+
+### Bug Fixes
+
+* **tests:** use cypress environment variables ([4b65bf4](https://github.com/maevsi/maevsi/commit/4b65bf4b6f9c086713a7c370246525eb0413f7bc))
+
+
+### Features
+
+* **pages:** correct meta redirects ([d1ce421](https://github.com/maevsi/maevsi/commit/d1ce421dedb3b1be9d0870d84b238d3928f3b197))
+* **tests:** add integration tests - check if page loads ([8010c8d](https://github.com/maevsi/maevsi/commit/8010c8dd93a077d2a013beefcf9717723f312f3e))
+
+# [1.0.0-alpha.2](https://github.com/maevsi/maevsi/compare/1.0.0-alpha.1...1.0.0-alpha.2) (2022-10-26)
+
+
+### Bug Fixes
+
+* **error:** add missing layout ([b7eb034](https://github.com/maevsi/maevsi/commit/b7eb034d80dda52940348e9e99e648d0e846bbc2))
+* **i18n:** add missing tags ([ba64bc8](https://github.com/maevsi/maevsi/commit/ba64bc893958b747eb0ece09477eb0c43f41928d))
+
+
+### Features
+
+* **app:** remove wrapping divs ([fd5fa96](https://github.com/maevsi/maevsi/commit/fd5fa96702c98e9db55d940f7b4a95a287443eb1))
+
+# [1.0.0-alpha.1](https://github.com/maevsi/maevsi/compare/0.146.6...1.0.0-alpha.1) (2022-10-18)
 
 
 ### Bug Fixes
@@ -92,155 +727,9 @@
 * **vuelidate:** correct validation ([c23c14c](https://github.com/maevsi/maevsi/commit/c23c14cc7d71fcfb1cf4b57cc17a7dbb9470087d))
 
 
-### Features
+### chore
 
-* :sparkles: add title prop to icons ([c4b9691](https://github.com/maevsi/maevsi/commit/c4b969190c7e7c6e3ff68be953721dd0b124256f))
-* add cypress ([f8d5cf6](https://github.com/maevsi/maevsi/commit/f8d5cf6a7649c91e46bd264b5a3d890058575647))
-* **apollo:** complete own plugin ([492a23f](https://github.com/maevsi/maevsi/commit/492a23f90ba71612558b565ef9cc0651ddd395ff))
-* **apollo:** remove ([135b835](https://github.com/maevsi/maevsi/commit/135b835eaa54adae43a608360e2067b9cf079dd1))
-* **apollo:** upgrade ([efca0e2](https://github.com/maevsi/maevsi/commit/efca0e26824adc94233f86f49aa7ad19e2b6c3c8))
-* **apollo:** use own module ([2ba7af5](https://github.com/maevsi/maevsi/commit/2ba7af5cddb6bfa3ebbf39e38b7dc0722e055e5d))
-* **apollo:** use ssr ([5935190](https://github.com/maevsi/maevsi/commit/5935190bd5f8402a9f8984a879b896dfe99b425a))
-* **button:** compute classes ([f326237](https://github.com/maevsi/maevsi/commit/f326237a89a0ceb9739dd7f982f6d762b28db5a2))
-* **components:** migrate this usage to setup function ([a19e276](https://github.com/maevsi/maevsi/commit/a19e276735172a42472087dd75fa82963852af67))
-* **components:** replace require with import ([a1eea20](https://github.com/maevsi/maevsi/commit/a1eea20c65d8c28462869b5b4306ea099628e5fb))
-* **components:** use default ids for common form inputs ([a569c7a](https://github.com/maevsi/maevsi/commit/a569c7aaa2c388107adf7832c6fc898b8785d81c))
-* **config:** rename development indicator ([8151fe0](https://github.com/maevsi/maevsi/commit/8151fe03dee5bea42a003138a7f49b2400cdfdd9))
-* **config:** rename storybook indicator ([c41ed29](https://github.com/maevsi/maevsi/commit/c41ed2922d95b4b0b08eb7024f5b05fb9ca27435))
-* **cookie:** temporarily disable cookie control ([2a44430](https://github.com/maevsi/maevsi/commit/2a444306e4e659ba82fe3f342eaa9df599cca5d9))
-* deprecate stack domain and base url ([a570a87](https://github.com/maevsi/maevsi/commit/a570a87d4c6703f183d0b399af66d8c2becb9f64))
-* **event-group:** remove temporarily ([626e031](https://github.com/maevsi/maevsi/commit/626e031451c19840605a88c3109591933d5475d0))
-* **event-list:** migrate to urql ([45e74ac](https://github.com/maevsi/maevsi/commit/45e74ac32dd61398c210ef7505e9bf8d1c06c608))
-* **form-delete:** migrate to urql ([ced1df6](https://github.com/maevsi/maevsi/commit/ced1df616c8bd634473fea8a1ef03e1df1d3cb72))
-* **form-delete:** unwrap app ([c4055a4](https://github.com/maevsi/maevsi/commit/c4055a4d8753d6f7292e1ef264ea5281ffdf5dc9))
-* **gql:** use after-pagination ([30e892e](https://github.com/maevsi/maevsi/commit/30e892e7d7d955a1120d0c714322203ed4e1e909))
-* **graphql:** add devtools ([6b208c7](https://github.com/maevsi/maevsi/commit/6b208c7f030d3052906e1faf594944901358497a))
-* **head:** add composables ([8d4d5e1](https://github.com/maevsi/maevsi/commit/8d4d5e1e4f7fd7cb0fe95350c80ffbfba6f68946))
-* **headers:** disable deprecated expect-ct ([1b1e692](https://github.com/maevsi/maevsi/commit/1b1e692708b28e0f9ef8e7147154181df9a37675))
-* **head:** migrate to new specification ([8f6eedd](https://github.com/maevsi/maevsi/commit/8f6eedd191ce08a950d92cac1f94c0cebd6d5cb6))
-* **i18n:** migrate to new component syntax ([fe65ebb](https://github.com/maevsi/maevsi/commit/fe65ebb36fa6b88f3dce97f585ba68497bf60605))
-* **i18n:** migrate to translation function ([a2c81d4](https://github.com/maevsi/maevsi/commit/a2c81d430e10ef74b321909561636dc332bd9259))
-* **image-upload-gallery:** migrate ([6eb62fc](https://github.com/maevsi/maevsi/commit/6eb62fc2fc35e7b6c317a0fb9c479d741722d91b))
-* implement feedback on english translations ([4e2061a](https://github.com/maevsi/maevsi/commit/4e2061a2e6b6188ff4861a316f811ed6bdd2c96a))
-* improve english translations ([0df0b26](https://github.com/maevsi/maevsi/commit/0df0b2643fcaf0e2315c0b5d0810bdead8efc1d3))
-* **index:** revert one i18n change ([21a73df](https://github.com/maevsi/maevsi/commit/21a73df751c6afe3513352d647b37917a4cfce0a))
-* **jwt:** migrate to jose ([0f1876f](https://github.com/maevsi/maevsi/commit/0f1876fba788797d574ecd2cda71b40ad11c5e2e))
-* migrate to new slot syntax ([9cf6204](https://github.com/maevsi/maevsi/commit/9cf6204b19c53b7b5d9ba49320cbd981f591203e))
-* **nitro:** enable compression for public assets ([5fd52fa](https://github.com/maevsi/maevsi/commit/5fd52fabbc34c534296c95846f07735133c81639))
-* **nuxt-i18n:** add vue-i18n-composable ([4ef2139](https://github.com/maevsi/maevsi/commit/4ef21393589da701f15e22d8289da923c1ea07c1))
-* **nuxt:** add html validator module ([d57874f](https://github.com/maevsi/maevsi/commit/d57874fb799723709ab1a2f0fd542cc587fa1baa))
-* **nuxt:** disable aliases ([70e153f](https://github.com/maevsi/maevsi/commit/70e153fce547aa901f5c2f8568291b3644649357))
-* **nuxt:** enable https ([4007a4a](https://github.com/maevsi/maevsi/commit/4007a4a2e7528415babe99eef8dfd23c391d71ed))
-* **package:** migrate to module ([39ed308](https://github.com/maevsi/maevsi/commit/39ed3087a2c317e9321e7649d212d55881195299))
-* **package:** set version to alpha.0 ([87b7306](https://github.com/maevsi/maevsi/commit/87b73066e72232f1300c89e47e10d0b2316f62f6))
-* **pages:** use generated queries ([67d4b80](https://github.com/maevsi/maevsi/commit/67d4b800664d2014f6d9eb796eca67017be14a0a))
-* remove storybook ([f34b4fb](https://github.com/maevsi/maevsi/commit/f34b4fbdf0da4230e649b46586bfe32acd54ee45))
-* remove unnecessary imports ([0a5886a](https://github.com/maevsi/maevsi/commit/0a5886a8917819e676272b4799c2c657904349bc))
-* replace apollo with urql usage, generate code ([790dc82](https://github.com/maevsi/maevsi/commit/790dc82658f43f8f3db1e140eeb1fdd8242e609a))
-* stash ([52b2fbe](https://github.com/maevsi/maevsi/commit/52b2fbed621f8aef337dcfbd50c60451083fe33a))
-* **store:** replace vuex with pinia ([a005459](https://github.com/maevsi/maevsi/commit/a005459ba991242f39c7b385b6f1b5ba16c406ec))
-* **tusd:** add composable ([32db139](https://github.com/maevsi/maevsi/commit/32db1393d2c118d8734b82c3b67044b9e74d7a17))
-* **urql:** enable ssr hooks ([0021733](https://github.com/maevsi/maevsi/commit/0021733666a9185a2770883bdf574045490cab55))
-* **urql:** use network only request policy ([bf7e3de](https://github.com/maevsi/maevsi/commit/bf7e3ded993a896607ab08ddfd68c48a71e50b59))
-* **vuelidate:** migrate to v2 ([123bf46](https://github.com/maevsi/maevsi/commit/123bf46833ef9e530e2ace73a27f1edde4bfef2f))
-
-
-### Reverts
-
-* Revert "Merge branch 'feat/apollo-upgrade' into feat/vue-3" ([6903451](https://github.com/maevsi/maevsi/commit/6903451f67e5f4a9ff5de47f427146f4a46cea4a))
-
-# [0.147.0](https://github.com/maevsi/maevsi/compare/0.146.6...0.147.0) (2022-10-18)
-
-
-### Bug Fixes
-
-* :bug: fix menu being empty in between tablet and phone breakpoint ([c6b4cb8](https://github.com/maevsi/maevsi/commit/c6b4cb8cfa273292bb3aa6db0e9534b256f27af8))
-* **🫖:** workaround file name issue ([16b7a87](https://github.com/maevsi/maevsi/commit/16b7a879bec81f77c020a87375ee8b57e70749e3))
-* **api-data:** correct refs ([9a3d1b3](https://github.com/maevsi/maevsi/commit/9a3d1b326d58b3d194e147e0280af9088751aed5))
-* **apollo:** add provider to app ([ac38f78](https://github.com/maevsi/maevsi/commit/ac38f7828e8d4cb2c198f6f270fafe251391305f))
-* **attendance:** temporarily disable async component ([c5cddc6](https://github.com/maevsi/maevsi/commit/c5cddc63df7e7bc057097c601a29b5d11cd8eaaf))
-* **auth:** correct ssr ([ea51469](https://github.com/maevsi/maevsi/commit/ea514691379724d2c231ea04550f88c9d6c34851))
-* **auth:** correct urql ref value ([91a4bd6](https://github.com/maevsi/maevsi/commit/91a4bd6c553ca4d0d5b16c9a0e4b7b39509a8979))
-* **auth:** remove leftover debugger statement ([1c4df85](https://github.com/maevsi/maevsi/commit/1c4df8501ace4c41a977df911ac3919cdaf64bb8))
-* **build:** pin htmlparser2 ([42e7300](https://github.com/maevsi/maevsi/commit/42e73009b2287f81f3499720d084697031ef8567))
-* **button-icon:** remove duplicate class ([3406345](https://github.com/maevsi/maevsi/commit/3406345c95631024b64fafa079760fe469ecee41))
-* **button:** correct type typing ([202176c](https://github.com/maevsi/maevsi/commit/202176cc32296ca672ccdbb814c2bb82f75de54a))
-* **chartjs:** workaround import issue ([d1fac59](https://github.com/maevsi/maevsi/commit/d1fac59774d785f1a00362a906d4151afb3dd30f))
-* **components:** correct imports ([50254e1](https://github.com/maevsi/maevsi/commit/50254e13f37a445f0dea3816e24bda7b95dfe0b0))
-* **components:** correct svg import path ([74f39af](https://github.com/maevsi/maevsi/commit/74f39af93c8401fdef9ccdd9e7fc891d40b6d9fd))
-* **components:** correct svg import path ([ed84e7c](https://github.com/maevsi/maevsi/commit/ed84e7cc9bd94326fbac839d58d77d815ffde4e4))
-* **components:** correct svg imports ([d61c4e8](https://github.com/maevsi/maevsi/commit/d61c4e8f274dc6d18b2171cec7ba70cdf5ea8ed4))
-* **composables:** extract host getter ([7c3b402](https://github.com/maevsi/maevsi/commit/7c3b4029a5c99ae372069231f1615043b620f82f))
-* **config:** correct storybook typing ([32a79be](https://github.com/maevsi/maevsi/commit/32a79be52f33a206f934161be95e49eeeefa862c))
-* **constants:** extract from config ([dc1c093](https://github.com/maevsi/maevsi/commit/dc1c0936723f1ee955cf65452609b2c0ec2839d9))
-* correct cjs imports ([44f5291](https://github.com/maevsi/maevsi/commit/44f5291a2dd997e4f17d4fec23fbc890d2ab84fb))
-* correct imports ([7ac3815](https://github.com/maevsi/maevsi/commit/7ac38159932880d0fc25033266b80c4640db420d))
-* correct types ([5a1b44b](https://github.com/maevsi/maevsi/commit/5a1b44ba8e9f120a80f2b662e08de655777dd0c7))
-* correct typing ([f199316](https://github.com/maevsi/maevsi/commit/f199316c2a7ccd7c5f6d41e7e2d7667f9759bf5d))
-* **croppa:** use vue 3 installation ([5d6e3d5](https://github.com/maevsi/maevsi/commit/5d6e3d5088bf38d3c26799af4a8ece13119be1e7))
-* **csp:** allow development websocket ([6d1fefd](https://github.com/maevsi/maevsi/commit/6d1fefdb3b0785d28369a29fb23077f59ea0b67e))
-* **deps:** downgrade vue-tsc ([f5dc77c](https://github.com/maevsi/maevsi/commit/f5dc77c172d39e0ba5aeff5814b4c9d7bae2fefe))
-* **deps:** migrate to h3 v0.8 ([fe97b32](https://github.com/maevsi/maevsi/commit/fe97b320a53f03fa0983193ad4b57908d3eddadf))
-* **deps:** upgrade @nuxtjs/robots to v3 ([44ffe30](https://github.com/maevsi/maevsi/commit/44ffe3089496a2f2301df918d3b1e277ca229dee))
-* **docker:** add mkcert to development stage ([640af9e](https://github.com/maevsi/maevsi/commit/640af9e4bc0ce213911997f6f80abad7b78d9bf2))
-* **docker:** copy cypress binary ([8096072](https://github.com/maevsi/maevsi/commit/8096072be13f7fc05ec3e7cfb39746f0b0d816b4))
-* **docker:** increase timeout ([1ec78d9](https://github.com/maevsi/maevsi/commit/1ec78d98cbfae93889dc65b0bd5e332ea05325d2))
-* **docker:** move development certificate generation to nuxt ([8d1b43f](https://github.com/maevsi/maevsi/commit/8d1b43f0eec7913b876b2d55353c9e4c39a0e9fe))
-* **docker:** set host ([6190749](https://github.com/maevsi/maevsi/commit/61907496be49d83d64fa5e01e447a696d403fa42))
-* **docker:** temporarily disable storybook ([2f7115f](https://github.com/maevsi/maevsi/commit/2f7115fc53ba3fc0c1cbf2cdf23bdfc1b88ba975))
-* **drop-down:** use Vue 3's `nextTick` ([88cded5](https://github.com/maevsi/maevsi/commit/88cded556945b0d3b9ab7c451262a66772e37cb5))
-* **event-list:** correct classes ([32813ec](https://github.com/maevsi/maevsi/commit/32813ec00863beb118c8cff9140e2c933134aa68))
-* **events:** use methods for event handling ([e06ca82](https://github.com/maevsi/maevsi/commit/e06ca828b639990835b6bbba544821b6f6fc468c))
-* **footer:** correct language selection ([47bf826](https://github.com/maevsi/maevsi/commit/47bf826908bac1809feed028653840b52afb3eaa))
-* **footer:** use button instead of link ([a3a559a](https://github.com/maevsi/maevsi/commit/a3a559a419164efd07fb3ba8cb4c620f91833d34))
-* **form-input:** correct validity check ([30ab99a](https://github.com/maevsi/maevsi/commit/30ab99a02c928f401d46f56c1f06a06b1131bc70))
-* **form:** correct validation typing ([aaedfc6](https://github.com/maevsi/maevsi/commit/aaedfc60cbb8804ceafd2f8e75f85e1266eb0c5b))
-* **form:** migrate sign-in to script setup ([bedd0f3](https://github.com/maevsi/maevsi/commit/bedd0f3e0d0140fa34c54103370a829bbebd5cdb))
-* **graphql:** correct postgres error code typing ([8004ad4](https://github.com/maevsi/maevsi/commit/8004ad42c8bfcf36a129b1a19c158b14b09ceec0))
-* **head:** correct imports ([181b0f9](https://github.com/maevsi/maevsi/commit/181b0f94f87fe70f7e3bd20c0b8ae3f088a08c11))
-* **header:** allow connect-src self ([1650e01](https://github.com/maevsi/maevsi/commit/1650e019f803bf310fe8e8961722c6498c849906))
-* **headers:** add connect-src csp for http ([f61f321](https://github.com/maevsi/maevsi/commit/f61f32141146da7b9776af470824b067872e269c))
-* **headers:** temporarily disable trusted types ([d62ac8c](https://github.com/maevsi/maevsi/commit/d62ac8ce0459466e5b6ff093f3f743411c686278))
-* **i18n:** add missing vite plugin ([59643e2](https://github.com/maevsi/maevsi/commit/59643e2f813b851f3506790e5f1033accd97e691))
-* **i18n:** correct moment usage ([8b05be2](https://github.com/maevsi/maevsi/commit/8b05be2971dabf5394c7eb7d3369d9dca188462c))
-* **i18n:** escape [@s](https://github.com/s) ([172e000](https://github.com/maevsi/maevsi/commit/172e000c5e8e2ed7f0f340c3a679668766234096))
-* **i18n:** exclude node_modules ([29cac6c](https://github.com/maevsi/maevsi/commit/29cac6c686f3bb13db384c82809e9a26852962e0))
-* **i18n:** migrate ([e499af5](https://github.com/maevsi/maevsi/commit/e499af5d42fbf74022cef8a20a08de92bcb9ef67))
-* **icon:** declare property variables in plain script block ([9d925ff](https://github.com/maevsi/maevsi/commit/9d925ff0c523127dde79c58a20fa6b9605d7cbe0))
-* **icon:** set default title in html ([3aa09a4](https://github.com/maevsi/maevsi/commit/3aa09a43589efc1bf0f4e0710618b3717ab3ac11))
-* **icons:** readd title prop ([414471c](https://github.com/maevsi/maevsi/commit/414471c5433aaa8e6ae15e54f3f467f0c6a11d47))
-* **image-upload-gallery:** use url for import ([87d4e60](https://github.com/maevsi/maevsi/commit/87d4e60c3a6a64648339ace1554c95290944802d))
-* **invitation:** remove unused $pinia usage ([63f0a10](https://github.com/maevsi/maevsi/commit/63f0a10c7f85d1c7251c2c67c160f613738355db))
-* **layout:** correct head ([8534e78](https://github.com/maevsi/maevsi/commit/8534e782747a21a5e26038d7f6686877474ee04a))
-* **layout:** use head as composable ([fcdfa5a](https://github.com/maevsi/maevsi/commit/fcdfa5aa38616f641873a167ff2c77fcbea0f1ad))
-* **loader-image:** migrate to script setup ([21935d0](https://github.com/maevsi/maevsi/commit/21935d0bb704d96e00110e8e77ab2ce9f37540a5))
-* **loader:** initialize with empty array ([ea75ea9](https://github.com/maevsi/maevsi/commit/ea75ea906e9c1cc0f99f6a60853bb9728cf513a6))
-* **moment:** workaround yet incompatible module ([fb1b7a7](https://github.com/maevsi/maevsi/commit/fb1b7a7135ea005d2ffe4126541dfb7a38e837f4))
-* **nuxt:** correct base url ([f2a4b12](https://github.com/maevsi/maevsi/commit/f2a4b12f03698bbeef3bbb30377a67197b87a84a))
-* **nuxt:** remove global event bus ([ac4c7a0](https://github.com/maevsi/maevsi/commit/ac4c7a038c7e2f314073a8f25ae5234177b4f9e1))
-* **nuxt:** switch to edge to be able to use dev ([b088775](https://github.com/maevsi/maevsi/commit/b0887754fd3495f148d545c2e544420c1c63885c))
-* **nuxt:** use host 0.0.0.0 ([9fc53b9](https://github.com/maevsi/maevsi/commit/9fc53b91e2f093d42a82919337839cc4f3b6e200))
-* **package:** add missing import ([647edba](https://github.com/maevsi/maevsi/commit/647edbae8d1cdfbf3e820512660ffdca2ccd719d))
-* **pages:** use auto imports ([4a15ea7](https://github.com/maevsi/maevsi/commit/4a15ea7989eee0bda6277e3cad4f513cf30a9bfd))
-* **pages:** workaround locale-path issue ([259873e](https://github.com/maevsi/maevsi/commit/259873e5966d86e61b0466f7245f7c5f68bab0b9))
-* **plugins:** remove nuxt 2 context ([1f6a133](https://github.com/maevsi/maevsi/commit/1f6a133482528df294b0c47d1fa1f3ba18bc75fd))
-* **pnpm:** hoist shamefully ([e04aaed](https://github.com/maevsi/maevsi/commit/e04aaedbab3f9253f8d875bdfd119cd440ad4d2a))
-* **pnpm:** temporarily allow lax peer dependencies ([6470d6e](https://github.com/maevsi/maevsi/commit/6470d6e6817706e7f0b371778f68d96ad7372d86))
-* **qrcode-stream:** use async component ([583da2f](https://github.com/maevsi/maevsi/commit/583da2f90db66ece5390e0f83333a0c7eca919a0))
-* **robots:** add hardcoded file as a workaround ([f31ca22](https://github.com/maevsi/maevsi/commit/f31ca228b7ba485b7bc55c9dcdda2da80205c42e))
-* **robots:** hide warning ([9798944](https://github.com/maevsi/maevsi/commit/9798944b75d0b396dc7a1655e12928b9a56a9b3a))
-* **script:** add missing languages ([d2abccc](https://github.com/maevsi/maevsi/commit/d2abcccf4ed8f2d552f7ab55a620433098487aa1))
-* **sitemap:** hardcode ([b6ed030](https://github.com/maevsi/maevsi/commit/b6ed030d793a8561af6f44f27991ebb7fb3e9af4))
-* **sqitch:** remove stashed test data ([4420f7a](https://github.com/maevsi/maevsi/commit/4420f7a33f7554a4bbdff3fadbc02c861a1e626e))
-* **storybook:** disable temporarily ([309f264](https://github.com/maevsi/maevsi/commit/309f264dbe994ffa2d9be7d4b2b807a3ae96674c))
-* **tailwind:** exclude nuxt config ([1bc6532](https://github.com/maevsi/maevsi/commit/1bc6532846c0fdbc62cf4fd63f70bd94e49f7c74))
-* **ts:** use named imports ([98ace81](https://github.com/maevsi/maevsi/commit/98ace81fafba744ba1181a9db8c596f5f8d4e69b))
-* **types:** add missing types ([9f63ec2](https://github.com/maevsi/maevsi/commit/9f63ec2c5558112618e726daad26349fa4426f27))
-* **urql:** temporarily disable ssr ([0fe17ae](https://github.com/maevsi/maevsi/commit/0fe17aed6c6abbeeee7e469d6a435250449f8f60))
-* **urql:** temporarily disable urql type checking ([6ef8c89](https://github.com/maevsi/maevsi/commit/6ef8c89bc0440a28d30a87e7ec93726fc975cecf))
-* **vite:** add gql rollup plugin ([df2d881](https://github.com/maevsi/maevsi/commit/df2d881eb6d934e40892248bc80d68600aee4c00))
-* **vue-qrcode-reader:** switch to fork ([47e097d](https://github.com/maevsi/maevsi/commit/47e097db55a0a9881deac2cf311912cecfb9b21c))
-* **vuelidate:** correct validation ([c23c14c](https://github.com/maevsi/maevsi/commit/c23c14cc7d71fcfb1cf4b57cc17a7dbb9470087d))
+* add breaking change ([b9006ae](https://github.com/maevsi/maevsi/commit/b9006ae0066600d7194e4269976b9a0accb408ec))
 
 
 ### Features
@@ -299,6 +788,11 @@
 ### Reverts
 
 * Revert "Merge branch 'feat/apollo-upgrade' into feat/vue-3" ([6903451](https://github.com/maevsi/maevsi/commit/6903451f67e5f4a9ff5de47f427146f4a46cea4a))
+
+
+### BREAKING CHANGES
+
+* prepare v1
 
 # [0.147.0](https://github.com/maevsi/maevsi/compare/0.146.6...0.147.0) (2022-10-17)
 

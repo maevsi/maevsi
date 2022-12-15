@@ -8,16 +8,8 @@
   },
   "packageRules": [
     {
-      "matchPackageNames": ["@types/luxon", "luxon"],
-      "allowedVersions": "<2"
-    },
-    {
       "matchPackageNames": ["rollup"],
       "allowedVersions": "<3"
-    },
-    {
-      "matchPackageNames": ["@rollup/plugin-graphql"],
-      "allowedVersions": "<2"
     },
     {
       "matchPackageNames": ["vue-qrcode-reader"],

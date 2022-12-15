@@ -1,8 +1,6 @@
 <template>
   <div>
-    <CardStateInfo
-      v-if="routeQueryReferrer && !routeQueryIsRedirectNoticeHidden"
-    >
+    <CardStateInfo v-if="routeQueryReferrer">
       {{ t('accountRequired') }}
     </CardStateInfo>
     <h1>{{ title }}</h1>
@@ -18,15 +16,15 @@ import { useMaevsiStore } from '~/store'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const { $localePath } = useNuxtApp()
       const route = useRoute()
       const store = useMaevsiStore()
+      const localePath = useLocalePath()
 
       if (
         store.jwtDecoded?.role === 'maevsi_account' &&
         !Array.isArray(route.query.referrer)
       ) {
-        return navigateTo(route.query.referrer || $localePath('/dashboard/'))
+        return navigateTo(route.query.referrer || localePath('/dashboard/'))
       }
     },
   ],
@@ -36,9 +34,10 @@ const route = useRoute()
 const { t } = useI18n()
 
 // data
-const routeQueryReferrer = route.query.referrer
-const routeQueryIsRedirectNoticeHidden = route.query.isRedirectNoticeHidden
 const title = t('title')
+
+// computations
+const routeQueryReferrer = computed(() => route.query.referrer)
 
 // initialization
 useHeadDefault(title)
@@ -50,7 +49,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   accountRequired: Melde dich an, um fortzufahren.
   title: Anmelden

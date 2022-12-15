@@ -3,21 +3,25 @@
     <h1>{{ title }}</h1>
     <Form
       :errors="api.errors"
-      :form="v$.form"
+      :errors-pg-ids="{
+        postgresP0002: t('postgresP0002'),
+      }"
+      :form="v$"
       :is-form-sent="isFormSent"
       :submit-name="t('submit')"
       @submit.prevent="submit"
     >
+      <!-- TODO: move id-label suffix to FormInput (https://github.com/maevsi/maevsi/issues/955) -->
       <!-- The id's suffix `-maevsi` makes browser suggest inputs just for this service. -->
       <FormInput
         :id-label="`input-invitation-code-maevsi-${
-          isDevelopmentActive ? 'dev' : 'prod'
+          config.public.isInProduction ? 'prod' : 'dev'
         }`"
         :is-disabled="!!routeQueryIc"
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         :title="t('invitationCode')"
         type="text"
-        :value="v$.form.invitationCode"
+        :value="v$.invitationCode"
         @input="form.invitationCode = $event"
       >
         <template #stateInfo>
@@ -32,13 +36,13 @@
         </template>
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.form.invitationCode"
+            :form-input="v$.invitationCode"
             validation-property="formatUuid"
           >
             {{ t('globalValidationFormat') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="v$.form.invitationCode"
+            :form-input="v$.invitationCode"
             validation-property="required"
           >
             {{ t('globalValidationRequired') }}
@@ -53,77 +57,105 @@
 </template>
 
 <script setup lang="ts">
+import { OperationResult } from '@urql/core/dist/types/types'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
+import { LocationQueryValue } from 'vue-router'
 
-import { useJwtStore } from '~/plugins/util/auth'
-import {
-  formPreSubmit,
-  REGEX_UUID,
-  VALIDATION_FORMAT_UUID,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+import { callWithNuxt } from '#app'
+
+import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
 import { useEventUnlockMutation } from '~/gql/generated'
-import { useMaevsiStore } from '~/store'
 
 definePageMeta({
-  layout:
-    // TODO:
-    REGEX_UUID.test('routeQueryIc') && !('error' in ['context.route.query'])
-      ? 'canvas'
-      : 'default',
-  middleware: [
-    async function (_to: any, _from: any) {
-      const { $urqlReset, ssrContext } = useNuxtApp()
-      const { $localePath } = useNuxtApp()
+  // TODO: get rid of get/set (https://github.com/nuxt/framework/issues/8678)
+  layout: computed({
+    get: () => {
       const route = useRoute()
-      const store = useMaevsiStore()
+
+      return 'redirect' in route.query ? 'canvas' : 'default'
+    },
+    set: () => {},
+  }),
+  middleware: [
+    // TODO: use alternative to callWithNuxt (https://github.com/nuxt/framework/issues/6292)
+    async function (_to: any, _from: any) {
+      const nuxtApp = useNuxtApp()
+      const { $urql } = useNuxtApp()
+      const localePath = useLocalePath()
+      const route = useRoute()
+      const { jwtStore } = useJwtStore()
 
       if (
-        !Array.isArray(route.query.ic) &&
-        route.query.ic &&
-        REGEX_UUID.test(route.query.ic)
-      ) {
-        const result = await useEventUnlockMutation().executeMutation({
-          invitationCode: route.query.ic,
-        })
+        !isQueryIcFormatValid(route.query.ic) ||
+        'error' in route.query ||
+        'redirect' in route.query
+      )
+        return
 
-        if (result.error) {
-          consola.error(result.error)
+      const result = (await callWithNuxt(nuxtApp, () =>
+        $urql.value
+          .mutation(EVENT_UNLOCK_MUTATION, {
+            invitationCode: route.query.ic,
+          })
+          .toPromise()
+      )) as OperationResult<
+        {
+          eventUnlock: {
+            eventUnlockResponse: {
+              jwt: string
+              authorUsername: string
+              eventSlug: string
+            }
+          }
+        },
+        {
+          invitationCode: LocationQueryValue | LocationQueryValue[]
         }
+      >
 
-        if (!result.data?.eventUnlock?.eventUnlockResponse) {
-          return navigateTo(
-            $localePath({
+      if (result.error) {
+        consola.error(result.error)
+      }
+
+      if (!result.data?.eventUnlock?.eventUnlockResponse?.jwt) {
+        return await callWithNuxt(nuxtApp, () =>
+          navigateTo(
+            localePath({
               query: {
                 ...route.query,
                 error: null,
               },
             })
           )
-        }
+        )
+      }
 
+      try {
         await jwtStore(result.data.eventUnlock.eventUnlockResponse.jwt)
+      } catch (error) {
+        consola.error(error)
+        return
+      }
 
-        if ('quick' in route.query) {
-          return navigateTo(
-            $localePath(
-              `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
-            )
-          )
-        } else {
-          return navigateTo(
-            $localePath({
+      const eventPath = `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+
+      if ('quick' in route.query) {
+        return await callWithNuxt(nuxtApp, () =>
+          navigateTo(localePath(eventPath))
+        )
+      } else {
+        return await callWithNuxt(nuxtApp, () =>
+          navigateTo(
+            localePath({
               query: {
                 ...route.query,
-                redirect: $localePath(
-                  `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
-                ),
+                redirect: localePath(eventPath),
               },
             })
           )
-        }
+        )
       }
     },
   ],
@@ -133,36 +165,33 @@ const { jwtStore } = useJwtStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute()
+const fireAlert = useFireAlert()
 const eventUnlockMutation = useEventUnlockMutation()
 const config = useRuntimeConfig()
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...eventUnlockMutation.data.value,
     },
     ...getApiMeta([eventUnlockMutation]),
-  }
-})
+  })
+)
 
 // data
 const form = reactive({
-  invitationCode: ref(
-    route.query.ic === undefined ? undefined : route.query.ic
-  ),
+  invitationCode: ref(route.query.ic),
 })
-const isDevelopmentActive = config.public.isInDevelopment
 const isFormSent = ref(false)
-const routeQueryIc = route.query.ic
 const title = t('title')
 
 // methods
 async function submit() {
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 
@@ -170,45 +199,54 @@ async function submit() {
     invitationCode: form.invitationCode,
   })
 
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
-
   if (!result.data?.eventUnlock?.eventUnlockResponse) {
     return
   }
 
-  await jwtStore(result.data?.eventUnlock?.eventUnlockResponse?.jwt, () => {
-    navigateTo(
-      localePath(
-        `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
-      )
+  try {
+    await jwtStore(result.data?.eventUnlock?.eventUnlockResponse?.jwt)
+  } catch (error) {
+    await fireAlert({
+      error,
+      level: 'error',
+      text: t('jwtStoreFail'),
+      title: t('globalStatusError'),
+    })
+    return
+  }
+
+  navigateTo(
+    localePath(
+      `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
     )
-  })
+  )
 }
+
+// computations
+const routeQueryIc = computed(() => route.query.ic)
+
+// vuelidate
+const rules = {
+  invitationCode: {
+    required,
+    formatUuid: VALIDATION_FORMAT_UUID,
+  },
+}
+const v$ = useVuelidate(rules, form)
 
 // lifecycle
 onMounted(() => {
   if (route.query.ic) {
-    v$.value.form.invitationCode?.$touch()
+    v$.value.invitationCode?.$touch()
 
     if ('error' in route.query) {
       submit()
     }
   }
 })
-
-// vuelidate
-const rules = {
-  form: {
-    invitationCode: {
-      required,
-      formatUuid: VALIDATION_FORMAT_UUID,
-    },
-  },
-}
-const v$ = useVuelidate(rules, { form })
+watch(eventUnlockMutation.error, (currentValue, _oldValue) => {
+  if (currentValue) consola.error(currentValue)
+})
 
 // initialization
 useHeadDefault(title)
@@ -220,12 +258,13 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   greetingExplanation: Einladungscodes gewähren dir Zugriff auf nicht-öffentliche Veranstaltungsseiten, ohne dass du dir einen Account erstellen musst. Sie sind gültig, solange du zur Veranstaltung eingeladen bist, für die sie ausgestellt wurden.
   invitationCode: Einladungscode
   invitationCodeAutomatic: Der Einladungscode wurde automatisch eingegeben.
   invitationCodeManual: Code selbst eingeben.
+  jwtStoreFail: Fehler beim Speichern der Authentifizierungsdaten!
   postgresP0002: Zu diesem Einladungscode wurde keine Veranstaltung gefunden! Überprüfe deine Eingaben auf Schreibfehler.
   submit: Zur Veranstaltungsseite
   title: Veranstaltung freischalten
@@ -234,6 +273,7 @@ en:
   invitationCode: Invitation code
   invitationCodeAutomatic: The invitation code was entered automatically.
   invitationCodeManual: Enter it yourself.
+  jwtStoreFail: Failed to store the authentication data!
   postgresP0002: No event was found for this invitation code! Check your input for spelling mistakes.
   submit: Show event page
   title: Unlock event

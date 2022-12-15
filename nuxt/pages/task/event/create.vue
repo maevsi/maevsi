@@ -11,13 +11,13 @@ import { useMaevsiStore } from '~/store'
 definePageMeta({
   middleware: [
     function (_to: any, _from: any) {
-      const { $localePath } = useNuxtApp()
       const route = useRoute()
       const store = useMaevsiStore()
+      const localePath = useLocalePath()
 
       if (store.jwtDecoded?.role !== 'maevsi_account') {
         return navigateTo(
-          $localePath({
+          localePath({
             path: '/task/account/sign-in',
             query: { referrer: route.fullPath },
           })
@@ -42,7 +42,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   title: Veranstaltung erstellen
 en:

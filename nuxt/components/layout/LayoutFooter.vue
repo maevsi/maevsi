@@ -1,0 +1,31 @@
+<template>
+  <footer class="text-sm leading-6">
+    <div class="flex flex-col gap-8">
+      <div class="flex items-center">
+        <Hr />
+        <IconLogo
+          class="mx-12 h-12 w-12 opacity-50 brightness-0 dark:opacity-60 dark:invert"
+        />
+        <Hr />
+      </div>
+      <!-- Justifying evenly, instead of "between", centers a single element. -->
+      <div class="flex flex-wrap justify-between">
+        <slot />
+      </div>
+      <p class="text-center text-gray-500 dark:text-gray-400">
+        {{ t('copyright', { year: new Date().getFullYear() }) }}
+      </p>
+    </div>
+  </footer>
+</template>
+
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
+<i18n lang="yaml">
+de:
+  copyright: © {year} maevsi-Team. Alle Rechte vorbehalten.
+en:
+  copyright: © {year} maevsi team. All rights reserved.
+</i18n>

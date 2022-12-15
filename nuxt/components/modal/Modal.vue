@@ -1,17 +1,15 @@
 <template>
-  <div :class="{ invisible: !isVisibleComputed }">
+  <div v-if="isVisibleComputed">
     <div
-      class="fixed bottom-0 left-0 right-0 top-0 z-10 transition"
+      class="bottom-0 left-0 right-0 top-0 z-10 transition"
       :class="[
         ...(isTesting ? [] : ['fixed']),
-        ...(isVisibleComputed
-          ? ['backdrop-blur backdrop-brightness-50']
-          : ['backdrop-blur-0 backdrop-brightness-100']),
+        'backdrop-blur backdrop-brightness-50',
       ]"
       @click="close"
     />
     <Card
-      class="fixed top-[10%] max-h-[80%] left-1/2 -translate-x-1/2 z-20 flex w-5/6 flex-col gap-2 overflow-auto bg-background-brighten dark:bg-background-darken sm:w-2/3 lg:w-1/2 xl:w-1/3"
+      class="top-[10%] max-h-[80%] left-1/2 -translate-x-1/2 z-20 flex w-5/6 flex-col gap-2 overflow-auto sm:w-2/3 lg:w-1/2 xl:w-1/3"
       :class="{ fixed: !isTesting }"
     >
       <div class="flex justify-end">
@@ -36,8 +34,10 @@
         </ButtonIcon>
       </div>
       <div
-        class="overflow-y-auto"
-        :class="{ 'pointer-events-none relative disabled': isSubmitting }"
+        class="min-h-0 flex flex-col"
+        :class="{
+          'pointer-events-none relative disabled': isSubmitting,
+        }"
       >
         <div v-if="contentBodyComputed">
           {{ contentBodyComputed }}
@@ -47,7 +47,7 @@
           <LoaderIndicatorSpinner class="m-auto h-8 w-8" />
         </div>
       </div>
-      <div class="flex gap-8 justify-center">
+      <div v-if="!isFooterHidden" class="flex gap-8 justify-center">
         <slot name="footer">
           <ButtonColored
             :aria-label="submitName || t('ok')"
@@ -79,12 +79,14 @@ import { useMaevsiStore } from '~/store'
 
 export interface Props {
   id?: string
+  isFooterHidden?: boolean
   isSubmitDisabled?: boolean
   submitName?: string
   submitTaskProvider?: () => Promise<any>
 }
 const props = withDefaults(defineProps<Props>(), {
   id: 'ModalGlobal',
+  isFooterHidden: false,
   isSubmitDisabled: false,
   submitName: undefined,
   submitTaskProvider: () => Promise.resolve(),
@@ -106,7 +108,7 @@ const isTesting = config.public.isTesting
 const isSubmitting = ref(false)
 const onSubmit = ref(() => {})
 
-// computations = {
+// computations
 const contentBodyComputed = computed(() => {
   return getModalsFiltered(store.modals, props.id)?.contentBody // The default slot above is used as alternative.
 })
@@ -169,7 +171,7 @@ async function submit() {
     onSubmitComputed.value()
     close()
   } catch (errorsLocal: any) {
-    errors.value = errorsLocal
+    errors.value = [errorsLocal]
     consola.error(errorsLocal)
   }
 
@@ -195,7 +197,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   cancel: Abbrechen
   ok: Ok

@@ -1,6 +1,6 @@
 <template>
   <IconArchive v-if="isArchived" :title="t('archived')" />
-  <IconGlobe v-else-if="visibility === 'PUBLIC'" :title="t('public')" />
+  <IconEye v-else-if="visibility === 'PUBLIC'" :title="t('public')" />
   <IconEyeOff v-else-if="visibility === 'PRIVATE'" :title="t('private')" />
   <IconBug v-else :title="t('bug')" />
 </template>
@@ -17,7 +17,7 @@ withDefaults(defineProps<Props>(), {
 const { t } = useI18n()
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   archived: archiviert
   bug: Bug

@@ -1,15 +1,12 @@
 <template>
   <Loader :api="api">
-    <ul v-if="events?.length" class="flex flex-col gap-4">
-      <div
-        v-if="isButtonEventListShown"
-        class="flex flex-col items-center justify-between gap-4 lg:flex-row"
-      >
-        <ButtonList>
-          <ButtonEventList v-if="isButtonEventListShown" />
-        </ButtonList>
+    <div v-if="events?.length" class="flex flex-col gap-4">
+      <div v-if="isButtonEventListShown" class="px-1">
+        <ButtonEventList />
       </div>
-      <EventListItem v-for="event in events" :key="event.id" :event="event" />
+      <ul class="flex flex-col gap-2">
+        <EventListItem v-for="event in events" :key="event.id" :event="event" />
+      </ul>
       <div
         v-if="api.data.allEvents?.pageInfo.hasNextPage"
         class="flex justify-center"
@@ -21,7 +18,7 @@
           {{ t('globalShowMore') }}
         </ButtonColored>
       </div>
-    </ul>
+    </div>
     <p v-else class="text-center">{{ t('noEvents') }}</p>
   </Loader>
 </template>
@@ -29,8 +26,6 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { ITEMS_PER_PAGE } from '~/plugins/util/constants'
-import { getApiMeta } from '~/plugins/util/util'
 import { useAllEventsQuery } from '~/gql/generated'
 
 export interface Props {
@@ -47,7 +42,7 @@ const { t } = useI18n()
 const after = ref<string>()
 
 // queries
-const eventsQuery = useAllEventsQuery({
+const eventsQuery = await useAllEventsQuery({
   variables: {
     after,
     authorUsername: props.username,
@@ -56,14 +51,14 @@ const eventsQuery = useAllEventsQuery({
 })
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...eventsQuery.data.value,
     },
     ...getApiMeta([eventsQuery]),
-  }
-})
+  })
+)
 const events = computed(() => eventsQuery.data.value?.allEvents?.nodes)
 
 // data
@@ -78,7 +73,7 @@ watch(eventsQuery.error, (currentValue, _oldValue) => {
 })
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   noEvents: Aktuell gibt es keine Veranstaltungen 😕
 en:

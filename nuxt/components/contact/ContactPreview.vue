@@ -3,20 +3,16 @@
     <div class="relative">
       <AccountProfilePicture
         v-if="contact.accountUsername"
-        ref="Image"
-        classes="max-w-none"
+        classes="rounded-full h-12 w-12"
         height="48"
-        rounded
         :username="contact.accountUsername"
         width="48"
       />
       <ContactAvatar
         v-else
-        ref="Image"
-        class="max-w-none"
+        classes="rounded-full h-12 w-12"
         :email-address="contact.emailAddress"
         :email-address-hash="contact.emailAddressHash"
-        rounded
         size="48"
       />
       <InvitationFeedbackIcon
@@ -25,17 +21,17 @@
         :feedback="feedback"
       />
     </div>
-    <div class="flex flex-col justify-center overflow-hidden">
+    <div class="flex flex-col justify-center items-start overflow-hidden">
       <div class="truncate font-medium">
-        {{ contact.firstName || t('placeholder') }}
-        {{ contact.lastName || t('placeholder') }}
+        {{ contact.firstName }}
+        {{ contact.lastName }}
       </div>
-      <div class="truncate text-gray-500 dark:text-gray-400">
-        <div v-if="!contact.accountUsername">
-          {{ t('placeholder') }}
-        </div>
+      <div
+        v-if="contact.accountUsername"
+        class="truncate text-gray-500 dark:text-gray-400"
+      >
         <AppLink
-          v-else-if="isUsernameLinked"
+          v-if="isUsernameLinked"
           :to="localePath(`/account/${contact.accountUsername}`)"
         >
           {{ `@${contact.accountUsername}` }}
@@ -49,12 +45,19 @@
 </template>
 
 <script setup lang="ts">
-import { Contact } from '~/types/contact'
+import { Contact } from '~/gql/generated'
 
 export interface Props {
-  contact: Contact
-  feedback: string
-  isUsernameLinked: boolean
+  contact: Pick<
+    Contact,
+    | 'accountUsername'
+    | 'emailAddress'
+    | 'emailAddressHash'
+    | 'firstName'
+    | 'lastName'
+  >
+  feedback?: string | null
+  isUsernameLinked?: boolean
 }
 withDefaults(defineProps<Props>(), {
   feedback: undefined,
@@ -62,12 +65,4 @@ withDefaults(defineProps<Props>(), {
 })
 
 const localePath = useLocalePath()
-const { t } = useI18n()
 </script>
-
-<i18n lang="yml">
-de:
-  placeholder: –
-en:
-  placeholder: –
-</i18n>

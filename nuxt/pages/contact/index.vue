@@ -16,7 +16,7 @@ definePageMeta({
       const store = useMaevsiStore()
 
       if (!store.signedInUsername) {
-        throw createError({ statusCode: 403 })
+        return abortNavigation({ statusCode: 403 })
       }
     },
   ],
@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   title: Kontaktbuch
 en:

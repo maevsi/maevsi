@@ -1,10 +1,10 @@
 <template>
   <Modal
     id="ModalImageSelection"
-    :is-submit-disabled="!!selectedProfilePictureStorageKey"
+    :is-submit-disabled="!selectedProfilePictureStorageKey"
     :submit-task-provider="setProfilePicture"
     @close="selectedProfilePictureStorageKey = undefined"
-    @submitSuccess="$emit('submitSuccess')"
+    @submit-success="emit('submitSuccess')"
   >
     <ImageUploadGallery
       :allow-deletion="false"
@@ -20,7 +20,10 @@
 import consola from 'consola'
 
 import { useProfilePictureSetMutation } from '~/gql/generated'
-import { getApiMeta } from '~/plugins/util/util'
+
+const emit = defineEmits<{
+  (e: 'submitSuccess'): void
+}>()
 
 const route = useRoute()
 const profilePictureSetMutation = useProfilePictureSetMutation()
@@ -28,14 +31,14 @@ const config = useRuntimeConfig()
 const { t } = useI18n()
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...profilePictureSetMutation.data.value,
     },
     ...getApiMeta([profilePictureSetMutation]),
-  }
-})
+  })
+)
 
 // data
 const isTesting = config.public.isTesting
@@ -43,10 +46,12 @@ const routeParamUsername = route.params.username as string
 const selectedProfilePictureStorageKey = ref<string>()
 
 // methods
-function selectProfilePictureStorageKey(storageKey: string | undefined) {
+function selectProfilePictureStorageKey(storageKey?: string) {
   selectedProfilePictureStorageKey.value = storageKey
 }
 async function setProfilePicture() {
+  api.value.errors = []
+
   const result = await profilePictureSetMutation.executeMutation({
     storageKey: selectedProfilePictureStorageKey.value || '',
   })
@@ -58,13 +63,9 @@ async function setProfilePicture() {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
-  cancel: Abbrechen
   header: Wähle ein Profilbild
-  select: Auswählen
 en:
-  cancel: Cancel
   header: Select a profile picture
-  select: Select
 </i18n>

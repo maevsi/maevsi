@@ -1,8 +1,10 @@
 <template>
   <div>
-    <Breadcrumbs :prefixes="[{ name: t('events'), to: '..', append: true }]">
+    <LayoutBreadcrumbs
+      :prefixes="[{ name: t('events'), to: localePath('/event') }]"
+    >
       {{ routeParamUsername }}
-    </Breadcrumbs>
+    </LayoutBreadcrumbs>
     <i18n-t keypath="title" tag="h1">
       <template #name>
         <AppLink :to="localePath(`/account/${routeParamUsername}`)">
@@ -15,18 +17,28 @@
 </template>
 
 <script setup lang="ts">
-import { REGEX_SLUG } from '~/plugins/util/validation'
+import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 
 definePageMeta({
-  middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
+  async validate(route) {
+    const { $urql } = useNuxtApp()
 
-      if (!REGEX_SLUG.test(route.params.username as string)) {
-        return abortNavigation()
-      }
-    },
-  ],
+    const accountIsExisting = await $urql.value
+      .query(ACCOUNT_IS_EXISTING_QUERY, {
+        username: route.params.username as string,
+      })
+      .toPromise()
+
+    if (accountIsExisting.error) {
+      throw createError(accountIsExisting.error)
+    }
+
+    if (!accountIsExisting.data?.accountIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    return true
+  },
 })
 
 const { t } = useI18n()
@@ -60,7 +72,7 @@ export default {
 }
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   events: Veranstaltungen
   title: Veranstaltungen von {name}

@@ -2,20 +2,24 @@
   <Form
     ref="formRef"
     :errors="api.errors"
-    :form="v$.form"
+    :errors-pg-ids="{
+      postgres22023: t('postgres22023'),
+      postgres28P01: t('postgres28P01'),
+    }"
+    :form="v$"
     :is-form-sent="isFormSent"
     :submit-name="t('passwordChange')"
     @submit.prevent="submit"
   >
     <FormInputPassword
       id="passwordCurrent"
-      :form-input="v$.form.passwordCurrent"
+      :form-input="v$.passwordCurrent"
       :title="t('passwordCurrent')"
       @input="form.passwordCurrent = $event"
     />
     <FormInputPassword
       id="passwordNew"
-      :form-input="v$.form.passwordNew"
+      :form-input="v$.passwordNew"
       :title="t('passwordNew')"
       @input="form.passwordNew = $event"
     />
@@ -26,14 +30,12 @@
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
-import Swal from 'sweetalert2'
 
 import FormType from '~/components/form/Form.vue'
 import {
   formPreSubmit,
   VALIDATION_PASSWORD_LENGTH_MINIMUM,
-} from '~/plugins/util/validation'
-import { getApiMeta } from '~/plugins/util/util'
+} from '~/utils/validation'
 import { useAccountPasswordChangeMutation } from '~/gql/generated'
 
 const { t } = useI18n()
@@ -43,14 +45,14 @@ const accountPasswordChangeMutation = useAccountPasswordChangeMutation()
 const formRef = ref<typeof FormType>()
 
 // api data
-const api = computed(() => {
-  return {
+const api = computed(() =>
+  reactive({
     data: {
       ...accountPasswordChangeMutation.data.value,
     },
     ...getApiMeta([accountPasswordChangeMutation]),
-  }
-})
+  })
+)
 
 // data
 const form = reactive({
@@ -64,19 +66,16 @@ function resetForm() {
   formRef.value?.reset()
 }
 async function submit() {
-  if (!form.passwordCurrent) throw new Error('Current password is not set!')
-  if (!form.passwordNew) throw new Error('New password is not set!')
-
   try {
-    await formPreSubmit({ api }, v$, isFormSent)
+    await formPreSubmit(api, v$, isFormSent)
   } catch (error) {
-    consola.debug(error)
+    consola.error(error)
     return
   }
 
   const result = await accountPasswordChangeMutation.executeMutation({
-    passwordCurrent: form.passwordCurrent,
-    passwordNew: form.passwordNew,
+    passwordCurrent: form.passwordCurrent || '',
+    passwordNew: form.passwordNew || '',
   })
 
   if (result.error) {
@@ -88,35 +87,26 @@ async function submit() {
     return
   }
 
-  Swal.fire({
-    icon: 'success',
-    text: t('passwordChangeSuccess') as string,
-    timer: 3000,
-    timerProgressBar: true,
-    title: t('changed'),
-  })
+  await showToast({ title: t('passwordChangeSuccess') })
   resetForm()
 }
 
 // vuelidate
 const rules = {
-  form: {
-    passwordCurrent: {
-      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-      required,
-    },
-    passwordNew: {
-      minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-      required,
-    },
+  passwordCurrent: {
+    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+    required,
+  },
+  passwordNew: {
+    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+    required,
   },
 }
-const v$ = useVuelidate(rules, { form })
+const v$ = useVuelidate(rules, form)
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
-  changed: Geändert!
   passwordChange: Passwort ändern
   passwordChangeSuccess: Passwort erfolgreich geändert.
   passwordCurrent: Aktuelles Passwort
@@ -124,7 +114,6 @@ de:
   postgres22023: Das neue Passwort ist zu kurz! Überlege dir ein längeres.
   postgres28P01: Aktuelles Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
 en:
-  changed: Changed!
   passwordChange: Change password
   passwordChangeSuccess: Password changed successfully.
   passwordCurrent: Current password

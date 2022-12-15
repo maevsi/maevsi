@@ -13,7 +13,7 @@
       {{ contact.emailAddress || '–' }}
     </td>
     <td class="hidden xl:table-cell">
-      {{ (contact.address || '').replace('\n', ', ') || '–' }}
+      {{ (contact.address || '').replace(/\n/g, ', ') || '–' }}
     </td>
     <td class="hidden xl:table-cell">
       {{ contact.phoneNumber || '–' }}
@@ -34,14 +34,14 @@
           :disabled="
             contact.authorAccountUsername !== signedInUsername || isEditing
           "
-          @click="$emit('edit')"
+          @click="emit('edit')"
         >
           <IconPencil />
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('contactDelete')"
           :disabled="isDeleting || contact.accountUsername === signedInUsername"
-          @click="$emit('delete')"
+          @click="emit('delete')"
         >
           <IconTrash />
         </ButtonIcon>
@@ -52,10 +52,22 @@
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
-import { Contact } from '~/types/contact'
+import { Contact } from '~/gql/generated'
 
 export interface Props {
-  contact: Contact
+  contact: Pick<
+    Contact,
+    | 'nodeId'
+    | 'authorAccountUsername'
+    | 'accountUsername'
+    | 'emailAddress'
+    | 'emailAddressHash'
+    | 'firstName'
+    | 'lastName'
+    | 'address'
+    | 'phoneNumber'
+    | 'url'
+  >
   isDeleting?: boolean
   isEditing?: boolean
 }
@@ -64,14 +76,19 @@ withDefaults(defineProps<Props>(), {
   isEditing: false,
 })
 
+const emit = defineEmits<{
+  (e: 'edit'): void
+  (e: 'delete'): void
+}>()
+
 const store = useMaevsiStore()
 const { t } = useI18n()
 
-// data
-const signedInUsername = store.signedInUsername
+// computations
+const signedInUsername = computed(() => store.signedInUsername)
 </script>
 
-<i18n lang="yml">
+<i18n lang="yaml">
 de:
   contactEdit: Kontakt bearbeiten
   contactDelete: Kontakt löschen
