@@ -1,11 +1,7 @@
 {
-  "baseBranches": ["alpha", "beta"],
   "extends": [
     "github>dargmuesli/renovate-config"
   ],
-  "docker": {
-    "pinDigests": false
-  },
   "packageRules": [
     {
       "matchPackageNames": ["rollup"],
