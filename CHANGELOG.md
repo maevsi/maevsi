@@ -1,3 +1,10 @@
+# [1.0.0-beta.13](https://github.com/maevsi/maevsi/compare/1.0.0-beta.12...1.0.0-beta.13) (2022-12-15)
+
+
+### Bug Fixes
+
+* **dayjs:** workaround ssr issue ([da03164](https://github.com/maevsi/maevsi/commit/da03164318f22acaa68d46a2a4fcd3e18e135092)), closes [#956](https://github.com/maevsi/maevsi/issues/956)
+
 # [1.0.0-beta.12](https://github.com/maevsi/maevsi/compare/1.0.0-beta.11...1.0.0-beta.12) (2022-12-14)
 
 
