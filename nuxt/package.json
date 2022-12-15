@@ -91,7 +91,7 @@
     "cross-env": "7.0.3",
     "css-element-queries": "1.2.3",
     "cypress": "12.1.0",
-    "cypress-visual-regression": "1.7.0",
+    "cypress-visual-regression": "2.0.0",
     "dayjs": "2.0.0-alpha.4",
     "defu": "6.1.1",
     "downloadjs": "1.4.7",
