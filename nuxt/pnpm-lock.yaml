@@ -115,7 +115,7 @@ specifiers:
   v-calendar: 3.0.0-alpha.8
   vue: 3.2.45
   vue-advanced-cropper: 2.8.6
-  vue-chartjs: 5.0.1
+  vue-chartjs: 5.1.0
   vue-qrcode-reader: 3.1.0-vue3-compatibility.5
   vue-tsc: 1.0.14
 
@@ -234,7 +234,7 @@ devDependencies:
   v-calendar: 3.0.0-alpha.8_vue@3.2.45
   vue: 3.2.45
   vue-advanced-cropper: 2.8.6_vue@3.2.45
-  vue-chartjs: 5.0.1_chart.js@4.1.1+vue@3.2.45
+  vue-chartjs: 5.1.0_chart.js@4.1.1+vue@3.2.45
   vue-qrcode-reader: 3.1.0-vue3-compatibility.5
   vue-tsc: 1.0.14_typescript@4.9.4
 
@@ -13125,10 +13125,10 @@ packages:
       ufo: 1.0.1
     dev: true
 
-  /vue-chartjs/5.0.1_chart.js@4.1.1+vue@3.2.45:
-    resolution: {integrity: sha512-+0IfwyZ1U+oKU0CJmqgEMieov5K+c5AuZ7boJeDnhCC/qmtKTLId1jL7BID5poCaC38DOUbJu77vsA091aYeRw==}
+  /vue-chartjs/5.1.0_chart.js@4.1.1+vue@3.2.45:
+    resolution: {integrity: sha512-O/VllsyZn1NzRJAYEbpgfbk/N+EB1nCHLsc/ullPNWuU2YRHxgF5SS8OwWc0K2IfVZNMw94Bp6HUqi2svDQzrQ==}
     peerDependencies:
-      chart.js: ^4.0.0
+      chart.js: ^4.1.1
       vue: ^3.0.0-0 || ^2.6.0
     dependencies:
       chart.js: 4.1.1
