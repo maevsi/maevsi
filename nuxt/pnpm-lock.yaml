@@ -18,7 +18,7 @@ specifiers:
   '@nuxtjs/color-mode': 3.2.0
   '@nuxtjs/eslint-config-typescript': 12.0.0
   '@nuxtjs/html-validator': 1.2.3
-  '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.7-27851181.caaea70
+  '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.7-27857350.027b43e
   '@nuxtjs/robots': 3.0.0
   '@pinia/nuxt': 0.4.6
   '@rollup/plugin-graphql': 2.0.2
@@ -137,7 +137,7 @@ devDependencies:
   '@nuxtjs/color-mode': 3.2.0_rollup@2.79.1
   '@nuxtjs/eslint-config-typescript': 12.0.0_lzzuuodtsqwxnvqeq4g4likcqa
   '@nuxtjs/html-validator': 1.2.3_jest@29.3.1+rollup@2.79.1
-  '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.7-27851181.caaea70_rollup@2.79.1+vue@3.2.45
+  '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.7-27857350.027b43e_rollup@2.79.1+vue@3.2.45
   '@nuxtjs/robots': 3.0.0_rollup@2.79.1
   '@pinia/nuxt': 0.4.6_rnb65zy77kx66qnsvrpa2qz65q
   '@rollup/plugin-graphql': 2.0.2_wvgxa4tpgmyetagc7e4kukhube
@@ -2548,8 +2548,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n-edge/8.0.0-beta.7-27851181.caaea70_rollup@2.79.1+vue@3.2.45:
-    resolution: {integrity: sha512-qGt/nlrS4RqbElVoZudQq7en/pyBiImm6O+Qm5kjIURaLDNoZADwcc+3Fcw4puNe1nI97WoBBdWwCQWLMJXNog==}
+  /@nuxtjs/i18n-edge/8.0.0-beta.7-27857350.027b43e_rollup@2.79.1+vue@3.2.45:
+    resolution: {integrity: sha512-Ehz4+Lq1j4ufcfZL30Sv0qgs6HhHePLLQXXZOnTezPriA1S3FGcmNomXGwZ3gtk6I5XQMqwnmVN8KomVFq6AgQ==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
     dependencies:
       '@intlify/bundle-utils': 3.4.0_vue-i18n@9.3.0-beta.10
