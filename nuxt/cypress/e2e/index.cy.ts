@@ -60,7 +60,7 @@ describe('index page', () => {
       cy.setCookie('cookie_control_consent', 'false')
       cy.visit('/')
       cy.get('[data-is-loading="false"]').should('be.visible')
-      cy.compareSnapshot('index')
+      cy.compareSnapshot('index_banner')
     })
   })
 })
