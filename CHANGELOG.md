@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/maevsi/maevsi/compare/1.0.0...1.0.1) (2022-12-21)
+
+
+### Bug Fixes
+
+* **cypress:** correct duplicate snapshot test ([9ff1cf1](https://github.com/maevsi/maevsi/commit/9ff1cf1da2b16a2ccf57f299a670dc88e0e8cfe2))
+
 # [1.0.0](https://github.com/maevsi/maevsi/compare/0.147.0...1.0.0) (2022-12-15)
 
 
