@@ -7,10 +7,10 @@ on:
 
 jobs:
   browserslist-regex:
-    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.20.8
+    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.21.0
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
-      CACHE: pnpm
       CACHE_PATH: nuxt/pnpm-lock.yaml
       DIRECTORY: nuxt/
+      PACKAGE_MANAGER: pnpm
