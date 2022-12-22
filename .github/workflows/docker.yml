@@ -19,6 +19,8 @@ jobs:
     uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.21.1
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    with:
+      CACHE_PATH: nuxt/pnpm-lock.yaml
   release-assets:
     needs: release-semantic
     name: Release (assets)
