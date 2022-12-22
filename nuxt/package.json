@@ -36,7 +36,7 @@
     "postinstall": "pnpm nuxt prepare"
   },
   "devDependencies": {
-    "@babel/core": "7.20.5",
+    "@babel/core": "7.20.7",
     "@dargmuesli/nuxt-cookie-control": "2.2.1",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "2.16.1",
