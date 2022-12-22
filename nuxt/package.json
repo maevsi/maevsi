@@ -83,7 +83,7 @@
     "@vuelidate/validators": "2.0.0",
     "autoprefixer": "10.4.13",
     "browserslist": "4.21.4",
-    "browserslist-useragent-regexp": "3.0.2",
+    "browserslist-useragent-regexp": "4.0.0",
     "chart.js": "4.1.1",
     "clipboard": "2.0.11",
     "consola": "2.15.3",
