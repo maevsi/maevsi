@@ -102,6 +102,14 @@ export default defineNuxtConfig({
       },
     ],
     // [
+    //   '@nuxtjs/google-adsense',
+    //   {
+    //     id: process.env.GOOGLE_ADSENSE_ID,
+    //     analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
+    //     analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
+    //   },
+    // ],
+    // [
     //   '@nuxtjs/google-analytics',
     //   {
     //     disabled: () => {
@@ -143,14 +151,6 @@ export default defineNuxtConfig({
         },
       },
     ],
-    // [
-    //   '@nuxtjs/google-adsense',
-    //   {
-    //     id: process.env.GOOGLE_ADSENSE_ID,
-    //     analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
-    //     analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
-    //   },
-    // ],
     '@nuxtjs/robots',
     '@pinia/nuxt',
     [
@@ -177,10 +177,10 @@ export default defineNuxtConfig({
       //   analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
       //   analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
       // },
-      googleAnalytics: {
-        id: process.env.GOOGLE_ANALYTICS_ID,
-        debug: process.env.NODE_ENV !== 'production',
-      },
+      // googleAnalytics: {
+      //   id: process.env.GOOGLE_ANALYTICS_ID,
+      //   debug: process.env.NODE_ENV !== 'production',
+      // },
       isTesting: !!process.env.CYPRESS,
     },
   },
