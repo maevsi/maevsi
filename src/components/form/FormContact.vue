@@ -267,14 +267,6 @@ const rules = {
 }
 const v$ = useVuelidate(rules, form)
 
-// lifecycle
-watch(
-  () => props.contact,
-  (currentValue, _oldValue) => {
-    updateForm(currentValue)
-  },
-)
-
 // initialization
 updateForm(props.contact)
 </script>

@@ -457,14 +457,6 @@ const rules = {
 
 const v$ = useVuelidate(rules, form)
 
-// lifecycle
-watch(
-  () => props.event,
-  (currentValue, _oldValue) => {
-    updateForm(currentValue)
-  },
-)
-
 // initialization
 updateForm(props.event)
 </script>
