@@ -65,7 +65,7 @@ specifiers:
   eslint-plugin-compat: 4.0.2
   eslint-plugin-nuxt: 4.0.0
   eslint-plugin-prettier: 4.2.1
-  eslint-plugin-yml: 1.3.0
+  eslint-plugin-yml: 1.4.0
   graphql: 16.6.0
   graphql-tag: 2.12.6
   h3: 1.0.2
@@ -184,7 +184,7 @@ devDependencies:
   eslint-plugin-compat: 4.0.2_eslint@8.30.0
   eslint-plugin-nuxt: 4.0.0_eslint@8.30.0
   eslint-plugin-prettier: 4.2.1_kl4pe43v5b43npmso5hoplpbyi
-  eslint-plugin-yml: 1.3.0_eslint@8.30.0
+  eslint-plugin-yml: 1.4.0_eslint@8.30.0
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
   h3: 1.0.2
@@ -6489,8 +6489,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-yml/1.3.0_eslint@8.30.0:
-    resolution: {integrity: sha512-TEkIaxutVPRZMRc0zOVptP/vmrf1td/9woUAiKII4kRLJLWWUCz1CYM98NsAfeOrVejFBFhHCSwOp+C1TqmtRg==}
+  /eslint-plugin-yml/1.4.0_eslint@8.30.0:
+    resolution: {integrity: sha512-vzggXNfPKa+arIaNUGoC3DPRZCxNty+xD/v9xOcE5D3Bj9SbgIrEobqVB35I8QxHd2YjL/dOS0xIIFmjAalwbw==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
