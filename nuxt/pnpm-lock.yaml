@@ -70,7 +70,7 @@ specifiers:
   graphql-tag: 2.12.6
   h3: 1.0.2
   html-to-text: 9.0.3
-  ical-generator: 3.6.0
+  ical-generator: 3.6.1
   is-https: 4.0.0
   isomorphic-dompurify: 0.24.0
   jest: 29.3.1
@@ -189,7 +189,7 @@ devDependencies:
   graphql-tag: 2.12.6_graphql@16.6.0
   h3: 1.0.2
   html-to-text: 9.0.3
-  ical-generator: 3.6.0_eta5iv7cl5atzrz326q25zdt5a
+  ical-generator: 3.6.1_eta5iv7cl5atzrz326q25zdt5a
   is-https: 4.0.0
   isomorphic-dompurify: 0.24.0
   jest: 29.3.1_zfha7dvnw4nti6zkbsmhmn6xo4
@@ -7663,8 +7663,8 @@ packages:
     engines: {node: '>=12.20.0'}
     dev: true
 
-  /ical-generator/3.6.0_eta5iv7cl5atzrz326q25zdt5a:
-    resolution: {integrity: sha512-QDVRLdiVHNzQYjsi6fSJVVSIUqQcHfgmHr/xBuTE+/YNyO6Duj64TCbtV8Gy/wwWEYhp9dB95hRSNOgtwxtBWg==}
+  /ical-generator/3.6.1_eta5iv7cl5atzrz326q25zdt5a:
+    resolution: {integrity: sha512-tEH0OTNn00Mp61DcTxIFR+5fhsAivKk1LWAJUAbkMCI+M4yu+cZzT5X8rZf3b5PzFkMogh0zj3PsFh9bHvGGIQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       '@touch4it/ical-timezones': '>=1.6.0'
