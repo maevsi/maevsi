@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/maevsi/maevsi/compare/1.0.1...1.0.2) (2023-01-02)
+
+
+### Bug Fixes
+
+* **cypress:** use testing timestamp ([a95df3e](https://github.com/maevsi/maevsi/commit/a95df3e0cc22cd980c8d526062c13ae1c4ed912d))
+* **release:** schedule release ([ef0177d](https://github.com/maevsi/maevsi/commit/ef0177d7d9fa357e140f8c6d8b20abad6de5b8be))
+
 ## [1.0.1](https://github.com/maevsi/maevsi/compare/1.0.0...1.0.1) (2022-12-21)
 
 
