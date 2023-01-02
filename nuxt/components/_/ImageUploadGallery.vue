@@ -100,13 +100,15 @@
       :submit-name="t('upload')"
       :submit-task-provider="() => getUploadBlobPromise()"
     >
-      <Cropper
-        ref="cropperRef"
-        :src="fileSelectedUrl"
-        :stencil-props="{
-          aspectRatio: 1 / 1,
-        }"
-      />
+      <div class="h-80 border-">
+        <Cropper
+          ref="cropperRef"
+          :src="fileSelectedUrl"
+          :stencil-props="{
+            aspectRatio: 1 / 1,
+          }"
+        />
+      </div>
       <template #header>{{ t('uploadNew') }}</template>
       <template #submit-icon><IconUpload /></template>
     </Modal>
@@ -395,6 +397,11 @@ function getUploadBlobPromise() {
 }
 
 // lifecycle
+onMounted(() => {
+  document.addEventListener('resize', () => {
+    cropperRef.value.refresh()
+  })
+})
 onBeforeUnmount(() => {
   if (uppy.value) {
     uppy.value.close()
