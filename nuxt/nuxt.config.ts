@@ -167,6 +167,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       isInProduction: process.env.NODE_ENV === 'production',
+      isTesting: false, // set via environment variables only
       stagingHost:
         process.env.NODE_ENV !== 'production' &&
         !process.env.NUXT_PUBLIC_STACK_DOMAIN
@@ -181,7 +182,6 @@ export default defineNuxtConfig({
       //   id: process.env.GOOGLE_ANALYTICS_ID,
       //   debug: process.env.NODE_ENV !== 'production',
       // },
-      isTesting: !!process.env.CYPRESS,
     },
   },
   typescript: {

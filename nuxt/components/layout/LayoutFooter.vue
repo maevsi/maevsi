@@ -13,7 +13,7 @@
         <slot />
       </div>
       <p class="text-center text-gray-500 dark:text-gray-400">
-        {{ t('copyright', { year: new Date().getFullYear() }) }}
+        {{ t('copyright', { year }) }}
       </p>
     </div>
   </footer>
@@ -21,6 +21,12 @@
 
 <script setup lang="ts">
 const { t } = useI18n()
+const config = useRuntimeConfig()
+
+// computations
+const year = computed(() =>
+  config.public.isTesting ? 1337 : new Date().getFullYear()
+)
 </script>
 
 <i18n lang="yaml">
