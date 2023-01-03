@@ -5,7 +5,7 @@
   },
   "packageManager": "pnpm@7.21.0",
   "scripts": {
-    "postinstall": "pnpm --dir nuxt install && if [ -d '.git' ] && [ -d '.husky' ]; then husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks; fi"
+    "prepare": "pnpm --dir nuxt install && if [ \"$NODE_ENV\" != \"production\" ]; then husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks; fi"
   },
   "devDependencies": {
     "@commitlint/cli": "17.3.0",
