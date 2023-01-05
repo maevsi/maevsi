@@ -32,8 +32,8 @@
     "lint:quiet": "pnpm lint:js --quiet && pnpm lint:style --quiet",
     "lint:staged": "pnpm lint-staged",
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js",
-    "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config codegen.yml",
-    "postinstall": "pnpm nuxt prepare"
+    "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config .codegenrc",
+    "prepare": "pnpm nuxt prepare"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
@@ -160,9 +160,5 @@
         "webpack"
       ]
     }
-  },
-  "lint-staged": {
-    "*.{js,vue}": "eslint",
-    "*.{css,vue}": "stylelint"
   }
 }
