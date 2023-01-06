@@ -68,21 +68,25 @@ export default defineNuxtConfig({
               targetCookieIds: ['i18n_redirected'],
             },
           ],
-          // optional: [
-          //   {
-          //     name: 'Google Analytics',
-          //     id: 'ga',
-          //     // targetCookieIds: ['_ga', '_gat', '_gid'],
-          //     // accepted: () => {
-          //     //   const { $ga } = useNuxtApp()
-          //     //   $ga.enable()
-          //     // },
-          //     // declined: () => {
-          //     //   const { $ga } = useNuxtApp()
-          //     //   $ga.disable()
-          //     // },
-          //   },
-          // ],
+          optional: [
+            {
+              description: {
+                de: 'Hilft uns dabei Nutzerverhalten zu verstehen und unsere Dienste zu verbessern.',
+                en: 'Helps us understand user behavior and optimize our services.',
+              },
+              name: {
+                de: 'Google Analytics',
+                en: 'Google Analytics',
+              },
+              // id: 'ga',
+              targetCookieIds: [
+                '_ga',
+                '_ga_WMQ1JY99XH',
+                '_gat_gtag_UA_186047809_1',
+                '_gid',
+              ],
+            },
+          ],
         },
         locales: ['en', 'de'],
       },
@@ -101,30 +105,6 @@ export default defineNuxtConfig({
         classSuffix: '',
       },
     ],
-    // [
-    //   '@nuxtjs/google-adsense',
-    //   {
-    //     id: process.env.GOOGLE_ADSENSE_ID,
-    //     analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
-    //     analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
-    //   },
-    // ],
-    // [
-    //   '@nuxtjs/google-analytics',
-    //   {
-    //     disabled: () => {
-    //       const enabledCookies =
-    //         document.cookie
-    //           .match(
-    //             '(^|;)\\s*' +
-    //               'cookie_control_enabled_cookies' +
-    //               '\\s*=\\s*([^;]+)'
-    //           )
-    //           ?.pop() || ''
-    //       return !enabledCookies.split(',').includes('ga')
-    //     },
-    //   },
-    // ],
     [
       '@nuxtjs/html-validator',
       {
@@ -166,6 +146,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
+      googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID,
       isInProduction: process.env.NODE_ENV === 'production',
       isTesting: false, // set via environment variables only
       stagingHost:
@@ -173,15 +154,6 @@ export default defineNuxtConfig({
         !process.env.NUXT_PUBLIC_STACK_DOMAIN
           ? 'maev.si'
           : undefined,
-      // 'google-adsense': {
-      //   id: process.env.GOOGLE_ADSENSE_ID,
-      //   analyticsDomainName: process.env.GOOGLE_ANALYTICS_DOMAIN,
-      //   analyticsUacct: process.env.GOOGLE_ANALYTICS_ID,
-      // },
-      // googleAnalytics: {
-      //   id: process.env.GOOGLE_ANALYTICS_ID,
-      //   debug: process.env.NODE_ENV !== 'production',
-      // },
     },
   },
   typescript: {
