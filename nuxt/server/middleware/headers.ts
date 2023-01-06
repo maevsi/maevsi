@@ -16,7 +16,8 @@ function getCsp(host: string): Record<string, Array<string>> {
       'blob:', // vue-advanced-cropper
       `https://postgraphile.${getDomainTldPort(stagingHostOrHost)}`,
       `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
-      'https://www.google-analytics.com',
+      'https://*.google-analytics.com',
+      'https://*.analytics.google.com',
     ],
     'default-src': ["'none'"],
     'font-src': ["'self'"],
@@ -26,7 +27,7 @@ function getCsp(host: string): Record<string, Array<string>> {
       'blob:',
       'data:',
       `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
-      'https://www.google-analytics.com',
+      'https://*.google-analytics.com',
       'https://www.gravatar.com/avatar/',
       "'self'",
     ],
@@ -39,8 +40,8 @@ function getCsp(host: string): Record<string, Array<string>> {
       'blob:',
       "'self'",
       'https://static.cloudflareinsights.com',
-      'https://www.google-analytics.com/analytics.js',
-
+      'https://*.google-analytics.com',
+      'https://www.googletagmanager.com/gtag/js',
       "'unsafe-inline'", // https://github.com/unjs/nitro/issues/81
       "'unsafe-eval'", // https://github.com/unjs/nitro/issues/81
     ],
