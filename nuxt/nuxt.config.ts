@@ -127,7 +127,6 @@ export default defineNuxtConfig({
         },
       },
     ],
-    '@nuxtjs/robots',
     '@pinia/nuxt',
     [
       '@funken-studio/sitemap-nuxt-3',

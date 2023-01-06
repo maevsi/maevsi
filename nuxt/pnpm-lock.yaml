@@ -19,7 +19,6 @@ specifiers:
   '@nuxtjs/eslint-config-typescript': 12.0.0
   '@nuxtjs/html-validator': 1.2.3
   '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.7-27867903.cc6cc78
-  '@nuxtjs/robots': 3.0.0
   '@pinia/nuxt': 0.4.6
   '@rollup/plugin-graphql': 2.0.2
   '@tailwindcss/forms': 0.5.3
@@ -139,7 +138,6 @@ devDependencies:
   '@nuxtjs/eslint-config-typescript': 12.0.0_iukboom6ndih5an6iafl45j2fe
   '@nuxtjs/html-validator': 1.2.3_jest@29.3.1+rollup@2.79.1
   '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.7-27867903.cc6cc78_rollup@2.79.1+vue@3.2.45
-  '@nuxtjs/robots': 3.0.0_rollup@2.79.1
   '@pinia/nuxt': 0.4.6_rnb65zy77kx66qnsvrpa2qz65q
   '@rollup/plugin-graphql': 2.0.2_wvgxa4tpgmyetagc7e4kukhube
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
@@ -2603,16 +2601,6 @@ packages:
       - vue
       - vue-i18n-bridge
       - vue-router
-    dev: true
-
-  /@nuxtjs/robots/3.0.0_rollup@2.79.1:
-    resolution: {integrity: sha512-qsHGW1KXBvV5Kq7u3huPnFCUTbHS4Fk8Za2mNPgmUXcwLgp3exvhPtdZfIdjrCF/aZk3A8OZONNmGghs6CecBA==}
-    dependencies:
-      '@nuxt/kit': 3.0.0_rollup@2.79.1
-      h3: 1.0.2
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
     dev: true
 
   /@peculiar/asn1-schema/2.3.3:
