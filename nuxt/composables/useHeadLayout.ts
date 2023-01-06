@@ -12,18 +12,18 @@ export const useHeadLayout = () => {
     },
     link: [
       {
-        href: '/assets/static/favicon/apple-touch-icon.png?v=bOXMwoKlJr',
+        href: '/assets/static/favicon/apple-touch-icon.png?v=2EvuFKRRxT',
         rel: 'apple-touch-icon',
         sizes: '180x180',
       },
       {
-        href: '/assets/static/favicon/favicon-16x16.png?v=bOXMwoKlJr',
+        href: '/assets/static/favicon/favicon-16x16.png?v=2EvuFKRRxT',
         rel: 'icon',
         sizes: '16x16',
         type: 'image/png',
       },
       {
-        href: '/assets/static/favicon/favicon-32x32.png?v=bOXMwoKlJr',
+        href: '/assets/static/favicon/favicon-32x32.png?v=2EvuFKRRxT',
         rel: 'icon',
         sizes: '32x32',
         type: 'image/png',
@@ -34,16 +34,16 @@ export const useHeadLayout = () => {
         type: 'image/x-icon',
       },
       {
-        href: '/assets/static/favicon/site.webmanifest?v=bOXMwoKlJr',
+        href: '/assets/static/favicon/site.webmanifest?v=2EvuFKRRxT',
         rel: 'manifest',
       },
       {
         color: '#202020',
-        href: '/assets/static/favicon/safari-pinned-tab.svg?v=bOXMwoKlJr',
+        href: '/assets/static/favicon/safari-pinned-tab.svg?v=2EvuFKRRxT',
         rel: 'mask-icon',
       },
       {
-        href: '/assets/static/favicon/favicon.ico?v=bOXMwoKlJr',
+        href: '/assets/static/favicon/favicon.ico?v=2EvuFKRRxT',
         rel: 'shortcut icon',
       },
     ],
@@ -60,7 +60,7 @@ export const useHeadLayout = () => {
         content: t('globalOgSeoDescription'),
       },
       {
-        content: '/assets/static/favicon/browserconfig.xml?v=bOXMwoKlJr',
+        content: '/assets/static/favicon/browserconfig.xml?v=2EvuFKRRxT',
         name: 'msapplication-config',
       },
       {
