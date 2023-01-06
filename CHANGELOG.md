@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/maevsi/maevsi/compare/1.0.2...1.1.0) (2023-01-06)
+
+
+### Features
+
+* add gtag ([0006e5d](https://github.com/maevsi/maevsi/commit/0006e5dfb2214045a8aa579816849d2b03d61a32)), closes [#950](https://github.com/maevsi/maevsi/issues/950)
+
 ## [1.0.2](https://github.com/maevsi/maevsi/compare/1.0.1...1.0.2) (2023-01-02)
 
 
