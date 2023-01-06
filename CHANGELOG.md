@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/maevsi/maevsi/compare/1.1.0...1.1.1) (2023-01-06)
+
+
+### Bug Fixes
+
+* **nuxt:** correct public runtime configuration ([7d21cc1](https://github.com/maevsi/maevsi/commit/7d21cc1d579dfaae849449215572ac224ae88e13))
+
 # [1.1.0](https://github.com/maevsi/maevsi/compare/1.0.2...1.1.0) (2023-01-06)
 
 
