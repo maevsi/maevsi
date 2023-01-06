@@ -74,11 +74,7 @@ export default defineNuxtConfig({
                 de: 'Hilft uns dabei Nutzerverhalten zu verstehen und unsere Dienste zu verbessern.',
                 en: 'Helps us understand user behavior and optimize our services.',
               },
-              name: {
-                de: 'Google Analytics',
-                en: 'Google Analytics',
-              },
-              // id: 'ga',
+              name: 'Google Analytics',
               targetCookieIds: [
                 '_ga',
                 '_ga_WMQ1JY99XH',
@@ -146,9 +142,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID,
+      googleAnalyticsId: '', // set via environment variable `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` only
       isInProduction: process.env.NODE_ENV === 'production',
-      isTesting: false, // set via environment variables only
+      isTesting: false, // set via environment variable `NUXT_PUBLIC_IS_TESTING` only
       stagingHost:
         process.env.NODE_ENV !== 'production' &&
         !process.env.NUXT_PUBLIC_STACK_DOMAIN
