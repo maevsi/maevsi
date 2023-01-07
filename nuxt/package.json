@@ -116,7 +116,7 @@
     "nuxt": "3.0.0",
     "pg": "8.8.0",
     "pinia": "2.0.28",
-    "postcss": "8.4.20",
+    "postcss": "8.4.21",
     "postcss-html": "1.5.0",
     "prettier": "2.8.1",
     "prettier-plugin-tailwindcss": "0.2.1",
