@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/maevsi/maevsi/compare/1.1.1...1.1.2) (2023-01-07)
+
+
+### Bug Fixes
+
+* **env:** correct template ([7c5f07a](https://github.com/maevsi/maevsi/commit/7c5f07addab1753d1ba64775e3fe8e75c0162a1e))
+* **favicon:** move to public root ([88a671e](https://github.com/maevsi/maevsi/commit/88a671ed8b127351337726d548aba5350ca7671e))
+* **manifest:** use only pwa generated one ([4a460d8](https://github.com/maevsi/maevsi/commit/4a460d89d1bf5674aaeb621da766b1d365d405c0))
+
 ## [1.1.1](https://github.com/maevsi/maevsi/compare/1.1.0...1.1.1) (2023-01-06)
 
 
