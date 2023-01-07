@@ -93,6 +93,10 @@ export default defineNuxtConfig({
         icon: {
           source: 'public/assets/static/favicon/android-chrome-512x512.png',
         },
+        manifest: {
+          theme_color: '#202020',
+          background_color: '#202020',
+        },
       },
     ],
     [
@@ -127,7 +131,6 @@ export default defineNuxtConfig({
         },
       },
     ],
-    '@nuxtjs/robots',
     '@pinia/nuxt',
     [
       '@funken-studio/sitemap-nuxt-3',
