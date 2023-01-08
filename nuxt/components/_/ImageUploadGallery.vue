@@ -33,9 +33,15 @@
               <div
                 class="absolute right-0 top-0 rounded-bl-lg bg-red-600 opacity-75"
               >
-                <div class="flex h-full items-center justify-center">
-                  <IconTrash class="m-2" :title="t('iconTrash')" />
-                </div>
+                <Button
+                  :aria-label="t('iconTrashLabel')"
+                  class="flex h-full items-center justify-center invisible"
+                >
+                  <IconTrash
+                    class="m-1 text-text-bright"
+                    :title="t('iconTrash')"
+                  />
+                </Button>
               </div>
               <div
                 class="absolute right-0 top-0"
@@ -46,7 +52,7 @@
                   class="flex h-full items-center justify-center"
                 >
                   <IconTrash
-                    class="m-2 text-text-bright"
+                    class="m-1 text-text-bright"
                     :title="t('iconTrash')"
                   />
                 </Button>
