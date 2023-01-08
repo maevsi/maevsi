@@ -106,7 +106,7 @@
     "html-to-text": "9.0.3",
     "ical-generator": "3.6.1",
     "is-https": "4.0.0",
-    "isomorphic-dompurify": "0.25.0",
+    "isomorphic-dompurify": "0.26.0",
     "jest": "29.3.1",
     "jose": "4.11.2",
     "lint-staged": "13.1.0",

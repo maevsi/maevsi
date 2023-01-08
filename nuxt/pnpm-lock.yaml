@@ -71,7 +71,7 @@ specifiers:
   html-to-text: 9.0.3
   ical-generator: 3.6.1
   is-https: 4.0.0
-  isomorphic-dompurify: 0.25.0
+  isomorphic-dompurify: 0.26.0
   jest: 29.3.1
   jose: 4.11.2
   lint-staged: 13.1.0
@@ -190,7 +190,7 @@ devDependencies:
   html-to-text: 9.0.3
   ical-generator: 3.6.1_eta5iv7cl5atzrz326q25zdt5a
   is-https: 4.0.0
-  isomorphic-dompurify: 0.25.0
+  isomorphic-dompurify: 0.26.0
   jest: 29.3.1_zfha7dvnw4nti6zkbsmhmn6xo4
   jose: 4.11.2
   lint-staged: 13.1.0
@@ -1795,8 +1795,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.3.0-beta.12
-      '@intlify/shared': 9.3.0-beta.12
+      '@intlify/message-compiler': 9.3.0-beta.13
+      '@intlify/shared': 9.3.0-beta.13
       jsonc-eslint-parser: 1.4.1
       source-map: 0.6.1
       vue-i18n: 9.3.0-beta.12-ef73cfd_vue@3.2.45
@@ -1871,19 +1871,19 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /@intlify/message-compiler/9.3.0-beta.12:
-    resolution: {integrity: sha512-A8/s7pb3v8nf6HG77qFPJntxgQKI9GXxGnkn7aO+b03/X/GkF/4WceDSAIk3i+yLeIgszeBn9GZ23tSg4sTEHA==}
-    engines: {node: '>= 14'}
-    dependencies:
-      '@intlify/shared': 9.3.0-beta.11
-      source-map: 0.6.1
-    dev: true
-
   /@intlify/message-compiler/9.3.0-beta.12-ef73cfd:
     resolution: {integrity: sha512-So4zfU84xTYszgO+1wU7+prhCaSqb8yZNbUoyQ2OgJ5a5wczxumAyWOBXSiSafHh2gHCxPQhOezshS5DUxBKlQ==}
     engines: {node: '>= 14'}
     dependencies:
       '@intlify/shared': 9.3.0-beta.12-ef73cfd
+      source-map: 0.6.1
+    dev: true
+
+  /@intlify/message-compiler/9.3.0-beta.13:
+    resolution: {integrity: sha512-6vVGAOqzSurfp8leQ+9ySBTxCTTJyucMBVVXxW1/ENWGxZg1SDdIIZG3FcZo+kZEfbm46AWVByCL8FdcHS2QGw==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@intlify/shared': 9.3.0-beta.13
       source-map: 0.6.1
     dev: true
 
@@ -1897,18 +1897,13 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  /@intlify/shared/9.3.0-beta.11:
-    resolution: {integrity: sha512-CtbotesxTRiC3bRyXyv1NG39fkqJ790f8z8xFaeIXSZpOdiyxoh5BIyypCzSFQZDGLwz0Q9gyWbW1XpxQJm68Q==}
-    engines: {node: '>= 14'}
-    dev: true
-
-  /@intlify/shared/9.3.0-beta.12:
-    resolution: {integrity: sha512-WsmaS54sA8xuwezPKpa/OMoaX1v2VF2fCgAmYS6prDr2ir0CkUFWPm9A8ilmxzv4nkS61/v8+vf4lGGkn5uBdA==}
-    engines: {node: '>= 14'}
-    dev: true
-
   /@intlify/shared/9.3.0-beta.12-ef73cfd:
     resolution: {integrity: sha512-BeP9/P3oYvr+mMUKTxWxUbOQPdzOB4yeqrTIFO5tpK5diHuj4lFiGoSi5POGvIq20P2O79Ba+idNjbAqZLZZew==}
+    engines: {node: '>= 14'}
+    dev: true
+
+  /@intlify/shared/9.3.0-beta.13:
+    resolution: {integrity: sha512-94pkO11UTh/7b1B9RGe6iEFG6e89I+qDN8MjA3rhc4dnMt7rGzg7/xhxMmavzGTieYQRfv86jv+EOUmP4cc5Wg==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -1928,7 +1923,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 3.4.0_clyn2nypnl6pny72nkhd2bvcva
-      '@intlify/shared': 9.3.0-beta.12
+      '@intlify/shared': 9.3.0-beta.13
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.2.45
       debug: 4.3.4
@@ -8233,12 +8228,12 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
-  /isomorphic-dompurify/0.25.0:
-    resolution: {integrity: sha512-72pABCLUasDebg+XOdgcRZbgpndsR/jB+2PPobO3aO3YitwcBM4x7avEENtzLO2Jvg/9mJCXcjVYW+etfEMBFA==}
+  /isomorphic-dompurify/0.26.0:
+    resolution: {integrity: sha512-70gPadd/NJPTBuTtM5PsWimmc7S4fcBENzOFMHfBtIPacaygUvI9n63qFkUTc91WDDC9yB68mtmluW9/NhhTJw==}
     dependencies:
       '@types/dompurify': 2.4.0
       dompurify: 2.4.3
-      jsdom: 20.0.3
+      jsdom: 21.0.0
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -8791,8 +8786,8 @@ packages:
     resolution: {integrity: sha512-UVU9dibq2JcFWxQPA6KCqj5O42VOmAY3zQUfEKxU0KpTGXwNoCjkX1e13eHNvw/xPynt6pU0rZ1htjWTNTSXsg==}
     dev: true
 
-  /jsdom/20.0.3:
-    resolution: {integrity: sha512-SYhBvTh89tTfCD/CRdSOm13mOBa42iTaTyfyEWBdKcGdPxPtLFBXuHR8XHb33YNYaP+lLbmSvBTsnoesCNJEsQ==}
+  /jsdom/21.0.0:
+    resolution: {integrity: sha512-AIw+3ZakSUtDYvhwPwWHiZsUi3zHugpMEKlNPaurviseYoBqo0zBd3zqoUi3LPCNtPFlEP8FiW9MqCZdjb2IYA==}
     engines: {node: '>=14'}
     peerDependencies:
       canvas: ^2.5.0
@@ -13253,7 +13248,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.12
+      '@intlify/shared': 9.3.0-beta.13
       '@intlify/vue-i18n-bridge': 0.8.0_clyn2nypnl6pny72nkhd2bvcva
       '@intlify/vue-router-bridge': 0.8.0_vue@3.2.45
       ufo: 1.0.1
