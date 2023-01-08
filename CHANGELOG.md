@@ -1,3 +1,34 @@
+## [1.1.2](https://github.com/maevsi/maevsi/compare/1.1.1...1.1.2) (2023-01-07)
+
+
+### Bug Fixes
+
+* **env:** correct template ([7c5f07a](https://github.com/maevsi/maevsi/commit/7c5f07addab1753d1ba64775e3fe8e75c0162a1e))
+* **favicon:** move to public root ([88a671e](https://github.com/maevsi/maevsi/commit/88a671ed8b127351337726d548aba5350ca7671e))
+* **manifest:** use only pwa generated one ([4a460d8](https://github.com/maevsi/maevsi/commit/4a460d89d1bf5674aaeb621da766b1d365d405c0))
+
+## [1.1.1](https://github.com/maevsi/maevsi/compare/1.1.0...1.1.1) (2023-01-06)
+
+
+### Bug Fixes
+
+* **nuxt:** correct public runtime configuration ([7d21cc1](https://github.com/maevsi/maevsi/commit/7d21cc1d579dfaae849449215572ac224ae88e13))
+
+# [1.1.0](https://github.com/maevsi/maevsi/compare/1.0.2...1.1.0) (2023-01-06)
+
+
+### Features
+
+* add gtag ([0006e5d](https://github.com/maevsi/maevsi/commit/0006e5dfb2214045a8aa579816849d2b03d61a32)), closes [#950](https://github.com/maevsi/maevsi/issues/950)
+
+## [1.0.2](https://github.com/maevsi/maevsi/compare/1.0.1...1.0.2) (2023-01-02)
+
+
+### Bug Fixes
+
+* **cypress:** use testing timestamp ([a95df3e](https://github.com/maevsi/maevsi/commit/a95df3e0cc22cd980c8d526062c13ae1c4ed912d))
+* **release:** schedule release ([ef0177d](https://github.com/maevsi/maevsi/commit/ef0177d7d9fa357e140f8c6d8b20abad6de5b8be))
+
 ## [1.0.1](https://github.com/maevsi/maevsi/compare/1.0.0...1.0.1) (2022-12-21)
 
 

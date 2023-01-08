@@ -16,21 +16,25 @@ function getCsp(host: string): Record<string, Array<string>> {
       'blob:', // vue-advanced-cropper
       `https://postgraphile.${getDomainTldPort(stagingHostOrHost)}`,
       `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
-      'https://www.google-analytics.com',
+      'https://*.google-analytics.com',
+      'https://*.analytics.google.com',
     ],
     'default-src': ["'none'"],
-    'font-src': ["'self'"],
+    'font-src': ["'self'"], // ~/public/assets/static/fonts
     'form-action': ["'self'"], // Mozilla Observatory: "none".
     'frame-ancestors': ["'none'"], // Mozilla Observatory.
+    'frame-src': ["'none'"],
     'img-src': [
+      "'self'",
       'blob:',
       'data:',
       `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
-      'https://www.google-analytics.com',
+      'https://*.google-analytics.com',
       'https://www.gravatar.com/avatar/',
-      "'self'",
     ],
     'manifest-src': ["'self'"],
+    'media-src': ["'none'"],
+    'object-src': ["'none'"],
     'prefetch-src': ["'self'"],
     'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
     // TODO: evaluate header (https://github.com/maevsi/maevsi/issues/830) // https://stackoverflow.com/questions/62081028/this-document-requires-trustedscripturl-assignment
@@ -39,8 +43,8 @@ function getCsp(host: string): Record<string, Array<string>> {
       'blob:',
       "'self'",
       'https://static.cloudflareinsights.com',
-      'https://www.google-analytics.com/analytics.js',
-
+      'https://*.google-analytics.com',
+      'https://www.googletagmanager.com/gtag/js',
       "'unsafe-inline'", // https://github.com/unjs/nitro/issues/81
       "'unsafe-eval'", // https://github.com/unjs/nitro/issues/81
     ],
