@@ -4,7 +4,8 @@ export const CYPRESS_BASE_URL = 'http://localhost:3000'
 export const ITEMS_PER_PAGE = 8
 export const ITEMS_PER_PAGE_LARGE = 100
 export const JWT_ALGORITHM = 'RS256'
-export const JWT_NAME = '__Secure-jwt'
+export const JWT_NAME = () =>
+  `${process.env.NODE_ENV === 'production' ? '__Secure-' : ''}jwt`
 export const LOCALES: LocaleObject[] = [
   {
     code: 'en',

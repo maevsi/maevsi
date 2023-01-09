@@ -46,7 +46,7 @@ export default defineEventHandler(async function (event: H3Event) {
 
   res.setHeader(
     'Set-Cookie',
-    serialize(JWT_NAME, jwt, {
+    serialize(JWT_NAME(), jwt, {
       expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
       httpOnly: true,
       path: '/',

@@ -40,7 +40,7 @@ export default defineNuxtConfig({
                 de: 'Authentifizierungsdaten',
                 en: 'Authentication Data',
               },
-              targetCookieIds: [JWT_NAME],
+              targetCookieIds: [JWT_NAME()],
             },
             {
               description: {
