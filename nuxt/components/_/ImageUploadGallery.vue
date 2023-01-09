@@ -303,7 +303,7 @@ function loadProfilePicture(event: Event) {
         e.target?.result as ArrayBuffer,
         file.type
       )
-      store.modalAdd({ id: 'ModalImageUploadGallery' })
+      store.modals.push({ id: 'ModalImageUploadGallery' })
     }
     fileReader.readAsDataURL(file)
   } catch (err: any) {

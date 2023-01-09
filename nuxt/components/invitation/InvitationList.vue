@@ -289,7 +289,7 @@ const pending = reactive({
 
 // methods
 function add() {
-  store.modalAdd({ id: 'ModalInvitation' })
+  store.modals.push({ id: 'ModalInvitation' })
 }
 function copyLink(invitation: Pick<Invitation, 'uuid'>): void {
   if (!process.client) return

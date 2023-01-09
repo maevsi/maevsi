@@ -145,7 +145,7 @@
         :value="v$.start"
         :value-formatter="dateTimeFormatter"
         :warning="isWarningStartPastShown"
-        @click="store.modalAdd({ id: 'ModalDateTimeStart' })"
+        @click="store.modals.push({ id: 'ModalDateTimeStart' })"
       >
         <template #stateWarning>
           <FormInputStateWarning v-if="isWarningStartPastShown">
@@ -161,7 +161,7 @@
         type="text"
         :value="v$.end"
         :value-formatter="dateTimeFormatter"
-        @click="store.modalAdd({ id: 'ModalDateTimeEnd' })"
+        @click="store.modals.push({ id: 'ModalDateTimeEnd' })"
         @icon="v$.end.$model = undefined"
       >
         <template v-if="v$.end.$model" #icon>
