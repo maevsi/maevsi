@@ -34,17 +34,20 @@
         </ButtonIcon>
       </div>
       <div
-        class="min-h-0 flex-1 flex-col"
+        class="min-h-0 flex flex-col"
         :class="{
           'pointer-events-none relative disabled': isSubmitting,
         }"
       >
-        <slot />
+        <div v-if="contentBodyComputed">
+          {{ contentBodyComputed }}
+        </div>
+        <slot v-else />
         <div v-if="isSubmitting" class="absolute bottom-0 left-0 right-0 top-0">
           <LoaderIndicatorSpinner class="m-auto h-8 w-8" />
         </div>
       </div>
-      <div v-if="!isFooterHidden" class="flex z-20 justify-center">
+      <div v-if="!isFooterHidden" class="flex gap-8 justify-center">
         <slot name="footer">
           <ButtonColored
             :aria-label="submitName || t('ok')"
@@ -106,6 +109,9 @@ const isSubmitting = ref(false)
 const onSubmit = ref(() => {})
 
 // computations
+const contentBodyComputed = computed(() => {
+  return getModalsFiltered(store.modals, props.id)?.contentBody // The default slot above is used as alternative.
+})
 const isVisibleComputed = computed(() => {
   return getModalsFiltered(store.modals, props.id)?.isVisible || isVisible.value
 })
