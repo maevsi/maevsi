@@ -201,7 +201,7 @@ export function showToast({ title }: { title: string }) {
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     },
     icon: 'success',
-    position: 'bottom-right',
+    position: 'bottom',
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
