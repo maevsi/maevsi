@@ -73,18 +73,19 @@ async function submit() {
       password: form.password,
       ...props.variables,
     })
-    .then(async (result) => {
+    .then((result) => {
       if (result.error) {
         api.value.errors.push(result.error)
         consola.error(result.error)
       } else {
-        await showToast({
+        showToast({
           title: capitalizeFirstLetter(
             t('success', {
               item: props.itemName,
             })
           ),
-        }).then(() => emit('success'))
+        })
+        emit('success')
       }
     })
 }

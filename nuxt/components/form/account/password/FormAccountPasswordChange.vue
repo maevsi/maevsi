@@ -87,7 +87,7 @@ async function submit() {
     return
   }
 
-  await showToast({ title: t('passwordChangeSuccess') })
+  showToast({ title: t('passwordChangeSuccess') })
   resetForm()
 }
 
