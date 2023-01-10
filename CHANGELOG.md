@@ -1,3 +1,15 @@
+## [1.1.3](https://github.com/maevsi/maevsi/compare/1.1.2...1.1.3) (2023-01-10)
+
+
+### Bug Fixes
+
+* **auth:** use secure cookie only in production ([af28b87](https://github.com/maevsi/maevsi/commit/af28b87958a8db8dee6a95a3c8941811984fe46c))
+* **browser-support:** disable header for testing ([278b809](https://github.com/maevsi/maevsi/commit/278b809f7f5f0bc7994765901baa474f233d9699))
+* **cropper-overflow:** adds max height for cropper component ([1c112cd](https://github.com/maevsi/maevsi/commit/1c112cd64f5a94951f456e59a0ec095dadb4cd0a))
+* **cropper:** correct stretcher algorithm ([8f09979](https://github.com/maevsi/maevsi/commit/8f09979c22834396ac91390ff7eaaa3f8fd17289))
+* **image-upload-gallery:** simplify class usage ([7a1dc01](https://github.com/maevsi/maevsi/commit/7a1dc011d656b85579e4312b453fde7dc382cb58))
+* **imge-upload-gallery:** correct button margin ([7246fde](https://github.com/maevsi/maevsi/commit/7246fdee62438fb22eb1ae00f8704e2db2330ce0)), closes [#985](https://github.com/maevsi/maevsi/issues/985)
+
 ## [1.1.2](https://github.com/maevsi/maevsi/compare/1.1.1...1.1.2) (2023-01-07)
 
 
