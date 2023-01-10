@@ -50,13 +50,14 @@ export async function authenticationAnonymous({
 export function getJwtFromCookie({ req }: { req: IncomingMessage }) {
   if (req.headers.cookie) {
     const cookies = parse(req.headers.cookie)
+    const jwtName = JWT_NAME()
 
-    if (cookies[JWT_NAME]) {
-      const cookie = decodeJwt(cookies[JWT_NAME])
+    if (cookies[jwtName]) {
+      const cookie = decodeJwt(cookies[jwtName])
 
       if (cookie.exp !== undefined && cookie.exp > Date.now() / 1000) {
         return {
-          jwt: cookies[JWT_NAME],
+          jwt: cookies[jwtName],
           jwtDecoded: cookie,
         }
       } else {
@@ -116,7 +117,7 @@ export async function jwtStore({
   if (process.server) {
     res?.setHeader(
       'Set-Cookie',
-      serialize(JWT_NAME, jwt || '', {
+      serialize(JWT_NAME(), jwt || '', {
         expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
         httpOnly: true,
         path: '/',
