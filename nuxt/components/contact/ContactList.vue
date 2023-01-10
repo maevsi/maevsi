@@ -113,7 +113,7 @@ const selectedContact = ref<Pick<Contact, 'nodeId'>>()
 function add() {
   formContactHeading.value = t('contactAdd')
   selectedContact.value = undefined
-  store.modalAdd({ id: 'ModalContact' })
+  store.modals.push({ id: 'ModalContact' })
 }
 async function delete_(nodeId: string, id: string) {
   pending.deletions.push(nodeId)
@@ -132,7 +132,7 @@ function edit(contact: Pick<Contact, 'nodeId'>) {
   pending.edits.push(contact.nodeId)
   formContactHeading.value = t('contactEdit')
   selectedContact.value = contact
-  store.modalAdd({ id: 'ModalContact' })
+  store.modals.push({ id: 'ModalContact' })
 }
 function onClose() {
   if (!selectedContact.value) return

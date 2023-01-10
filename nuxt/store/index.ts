@@ -28,17 +28,6 @@ export const useMaevsiStore = defineStore('maevsi', () => {
         : undefined
   }
 
-  function modalAdd(data: Partial<Modal>) {
-    const dataDefault: Modal = {
-      contentBody: undefined,
-      id: 'ModalGlobal',
-      isVisible: true,
-      onSubmit: undefined,
-    }
-
-    modals.value.push({ ...dataDefault, ...data })
-  }
-
   function modalRemove(modalId: string) {
     modals.value = modals.value.filter((modal) => {
       return modal.id !== modalId
@@ -52,7 +41,6 @@ export const useMaevsiStore = defineStore('maevsi', () => {
     signedInUsername,
     jwtRemove,
     jwtSet,
-    modalAdd,
     modalRemove,
   }
 })

@@ -144,7 +144,7 @@ const title = computed(() => {
 
 // methods
 function qrCodeScan() {
-  store.modalAdd({ id: 'ModalAttendanceScanQrCode' })
+  store.modals.push({ id: 'ModalAttendanceScanQrCode' })
 }
 async function onInit(promise: Promise<any>) {
   loading.value = true

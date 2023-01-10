@@ -451,7 +451,7 @@ function print() {
   })
 }
 function qrCodeShow() {
-  store.modalAdd({ id: 'ModalInvitationQrCode' })
+  store.modals.push({ id: 'ModalInvitationQrCode' })
 }
 async function update(id: string, invitationPatch: InvitationPatch) {
   api.value.errors = []

@@ -96,7 +96,7 @@ const title = route.params.username as string
 
 // methods
 function showModalImageSelection() {
-  store.modalAdd({ id: 'ModalImageSelection' })
+  store.modals.push({ id: 'ModalImageSelection' })
 }
 
 // initialization

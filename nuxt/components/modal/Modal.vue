@@ -1,16 +1,11 @@
 <template>
-  <div v-if="isVisibleComputed">
+  <div v-if="isVisible">
     <div
-      class="bottom-0 left-0 right-0 top-0 z-10 transition"
-      :class="[
-        ...(isTesting ? [] : ['fixed']),
-        'backdrop-blur backdrop-brightness-50',
-      ]"
+      class="bottom-0 left-0 right-0 top-0 z-10 transition backdrop-blur backdrop-brightness-50 fixed"
       @click="close"
     />
     <Card
-      class="top-[10%] max-h-[80%] left-1/2 -translate-x-1/2 z-20 flex w-5/6 flex-col gap-2 overflow-auto sm:w-2/3 lg:w-1/2 xl:w-1/3"
-      :class="{ fixed: !isTesting }"
+      class="top-[10%] max-h-[80%] left-1/2 -translate-x-1/2 z-20 flex w-5/6 flex-col gap-2 overflow-auto sm:w-2/3 lg:w-1/2 xl:w-1/3 fixed"
     >
       <div class="flex justify-end">
         <ButtonIcon
@@ -39,10 +34,7 @@
           'pointer-events-none relative disabled': isSubmitting,
         }"
       >
-        <div v-if="contentBodyComputed">
-          {{ contentBodyComputed }}
-        </div>
-        <slot v-else />
+        <slot />
         <div v-if="isSubmitting" class="absolute bottom-0 left-0 right-0 top-0">
           <LoaderIndicatorSpinner class="m-auto h-8 w-8" />
         </div>
@@ -74,18 +66,16 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { Modal } from '~/types/modal'
 import { useMaevsiStore } from '~/store'
 
 export interface Props {
-  id?: string
+  id: string
   isFooterHidden?: boolean
   isSubmitDisabled?: boolean
   submitName?: string
   submitTaskProvider?: () => Promise<any>
 }
 const props = withDefaults(defineProps<Props>(), {
-  id: 'ModalGlobal',
   isFooterHidden: false,
   isSubmitDisabled: false,
   submitName: undefined,
@@ -98,55 +88,25 @@ const emit = defineEmits<{
 }>()
 
 const store = useMaevsiStore()
-const config = useRuntimeConfig()
 const { t } = useI18n()
 
 // data
 const errors = ref()
-const isVisible = ref(false)
-const isTesting = config.public.isTesting
 const isSubmitting = ref(false)
-const onSubmit = ref(() => {})
 
 // computations
-const contentBodyComputed = computed(() => {
-  return getModalsFiltered(store.modals, props.id)?.contentBody // The default slot above is used as alternative.
-})
-const isVisibleComputed = computed(() => {
-  return getModalsFiltered(store.modals, props.id)?.isVisible || isVisible.value
-})
-const onSubmitComputed = computed(() => {
-  return getModalsFiltered(store.modals, props.id)?.onSubmit || onSubmit.value
-})
-const modalComputed = computed(() => {
-  return getModalsFiltered(store.modals, props.id)
-})
+const isVisible = computed(
+  () => store.modals.filter((modal) => modal.id === props.id).length > 0
+)
 
 // methods
 function close() {
   // NOT = "cancel"! Used by `submit` too.
 
-  if (modalComputed.value) {
-    store.modalRemove(props.id)
-  } else {
-    isVisible.value = false
-  }
-}
-function getModalsFiltered(modals: Modal[], id: string) {
-  if (!modals || modals.length === 0) {
-    return undefined
-  }
-
-  const modalsFiltered = modals.filter((modal) => modal.id === id)
-
-  if (!modalsFiltered || modalsFiltered.length === 0) {
-    return undefined
-  }
-
-  return modalsFiltered[0]
+  store.modalRemove(props.id)
 }
 function modalKeydowns(e: KeyboardEvent) {
-  if (!isVisibleComputed.value) {
+  if (!isVisible.value) {
     return
   }
 
@@ -168,7 +128,7 @@ async function submit() {
   try {
     const value = await props.submitTaskProvider()
     emit('submitSuccess', value)
-    onSubmitComputed.value()
+    await props.submitTaskProvider()
     close()
   } catch (errorsLocal: any) {
     errors.value = [errorsLocal]
@@ -179,7 +139,7 @@ async function submit() {
 }
 
 // lifecycle
-watch(isVisibleComputed, (newValue: boolean, _oldvalue) => {
+watch(isVisible, (newValue: boolean, _oldvalue) => {
   if (newValue) {
     window.addEventListener('keydown', modalKeydowns)
   } else {
