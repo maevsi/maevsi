@@ -6,7 +6,7 @@
     }"
   >
     <Card>
-      <ul class="flex flex-wrap justify-center">
+      <ul class="flex flex-wrap items-center justify-center">
         <template v-if="uploads?.length">
           <li
             v-for="upload in uploads"
@@ -31,22 +31,15 @@
             />
             <div v-if="allowDeletion">
               <div
-                class="absolute right-0 top-0 rounded-bl-lg bg-red-600 opacity-75"
-              >
-                <div class="flex h-full items-center justify-center">
-                  <IconTrash class="m-2" :title="t('iconTrash')" />
-                </div>
-              </div>
-              <div
-                class="absolute right-0 top-0"
+                class="absolute right-0 top-0 rounded-bl-lg bg-red-600 bg-opacity-75"
                 @click="deleteImageUpload(upload.id)"
               >
                 <Button
                   :aria-label="t('iconTrashLabel')"
-                  class="flex h-full items-center justify-center"
+                  class="flex h-full justify-center"
                 >
                   <IconTrash
-                    class="m-2 text-text-bright"
+                    class="m-1 text-text-bright"
                     :title="t('iconTrash')"
                   />
                 </Button>
@@ -62,7 +55,7 @@
                 sizeTotal: bytesToString(accountUploadQuotaBytes),
               })
             "
-            class="flex h-32 w-32 items-center justify-center bg-gray-300 dark:bg-gray-200"
+            class="flex h-32 w-32 justify-center bg-gray-300 dark:bg-gray-200"
             :title="
               t('iconAdd', {
                 sizeUsed: bytesToString(sizeByteTotal),
