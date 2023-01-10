@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/maevsi/maevsi/compare/1.1.3...1.2.0) (2023-01-10)
+
+
+### Bug Fixes
+
+* **toast:** do not await ([4331042](https://github.com/maevsi/maevsi/commit/433104270162f6f3e004c36ae8bf1a2c564fe397)), closes [#1012](https://github.com/maevsi/maevsi/issues/1012)
+
+
+### Features
+
+* **toast:** display centered ([fd5b7ac](https://github.com/maevsi/maevsi/commit/fd5b7ac964ccf54131ad50f536f57d19a83dd339))
+
 ## [1.1.3](https://github.com/maevsi/maevsi/compare/1.1.2...1.1.3) (2023-01-10)
 
 
