@@ -114,7 +114,7 @@ specifiers:
   v-calendar: 3.0.0-alpha.8
   vue: 3.2.45
   vue-advanced-cropper: 2.8.6
-  vue-chartjs: 5.1.0
+  vue-chartjs: 5.2.0
   vue-gtag: 2.0.1
   vue-qrcode-reader: 3.1.0-vue3-compatibility.5
   vue-tsc: 1.0.24
@@ -233,7 +233,7 @@ devDependencies:
   v-calendar: 3.0.0-alpha.8_vue@3.2.45
   vue: 3.2.45
   vue-advanced-cropper: 2.8.6_vue@3.2.45
-  vue-chartjs: 5.1.0_chart.js@4.1.2+vue@3.2.45
+  vue-chartjs: 5.2.0_chart.js@4.1.2+vue@3.2.45
   vue-gtag: 2.0.1_vue@3.2.45
   vue-qrcode-reader: 3.1.0-vue3-compatibility.5
   vue-tsc: 1.0.24_typescript@4.9.4
@@ -1795,8 +1795,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.3.0-beta.13
-      '@intlify/shared': 9.3.0-beta.13
+      '@intlify/message-compiler': 9.3.0-beta.14
+      '@intlify/shared': 9.3.0-beta.14
       jsonc-eslint-parser: 1.4.1
       source-map: 0.6.1
       vue-i18n: 9.3.0-beta.13-972e836_vue@3.2.45
@@ -1871,19 +1871,19 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /@intlify/message-compiler/9.3.0-beta.13:
-    resolution: {integrity: sha512-6vVGAOqzSurfp8leQ+9ySBTxCTTJyucMBVVXxW1/ENWGxZg1SDdIIZG3FcZo+kZEfbm46AWVByCL8FdcHS2QGw==}
-    engines: {node: '>= 14'}
-    dependencies:
-      '@intlify/shared': 9.3.0-beta.13
-      source-map: 0.6.1
-    dev: true
-
   /@intlify/message-compiler/9.3.0-beta.13-972e836:
     resolution: {integrity: sha512-vE6NppMXHsY1hJV5bDzkL+lzk+uiZCcapU2xBVPmXLTol/bDubFeO4o9LlzpYz/GGg3wC9uyEu/Y98bwkL8hUQ==}
     engines: {node: '>= 14'}
     dependencies:
       '@intlify/shared': 9.3.0-beta.13-972e836
+      source-map: 0.6.1
+    dev: true
+
+  /@intlify/message-compiler/9.3.0-beta.14:
+    resolution: {integrity: sha512-PlZ3pl+YYuql54Nq+26wv6ohIa8Ig6ALrvQI+f2zZKUtkupb49M4wyVN3bDQbFlgYVE7/u3n19BJSY8lEuX5Eg==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@intlify/shared': 9.3.0-beta.14
       source-map: 0.6.1
     dev: true
 
@@ -1897,13 +1897,13 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  /@intlify/shared/9.3.0-beta.13:
-    resolution: {integrity: sha512-94pkO11UTh/7b1B9RGe6iEFG6e89I+qDN8MjA3rhc4dnMt7rGzg7/xhxMmavzGTieYQRfv86jv+EOUmP4cc5Wg==}
+  /@intlify/shared/9.3.0-beta.13-972e836:
+    resolution: {integrity: sha512-BmquYVeubM/iBmYoMPUlpiJSuruevIqHmUzHz4V0v+4fMDo47DPbcFsEF9zdpeJ8YVW1MPA1sOQr6ZrfOA2g1w==}
     engines: {node: '>= 14'}
     dev: true
 
-  /@intlify/shared/9.3.0-beta.13-972e836:
-    resolution: {integrity: sha512-BmquYVeubM/iBmYoMPUlpiJSuruevIqHmUzHz4V0v+4fMDo47DPbcFsEF9zdpeJ8YVW1MPA1sOQr6ZrfOA2g1w==}
+  /@intlify/shared/9.3.0-beta.14:
+    resolution: {integrity: sha512-mJ/rFan+4uVsBAQSCAJnpQaPvSjQ49mJMNmGelTUbTDAmgf0oexYxwqtKOlFFyY3hmQ8lUDYaGQKuYrFgRuHnA==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -1923,7 +1923,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 3.4.0_qjugkpmxfnp3l7d6jb7y3o5rvi
-      '@intlify/shared': 9.3.0-beta.13
+      '@intlify/shared': 9.3.0-beta.14
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.2.45
       debug: 4.3.4
@@ -13172,11 +13172,11 @@ packages:
       ufo: 1.0.1
     dev: true
 
-  /vue-chartjs/5.1.0_chart.js@4.1.2+vue@3.2.45:
-    resolution: {integrity: sha512-O/VllsyZn1NzRJAYEbpgfbk/N+EB1nCHLsc/ullPNWuU2YRHxgF5SS8OwWc0K2IfVZNMw94Bp6HUqi2svDQzrQ==}
+  /vue-chartjs/5.2.0_chart.js@4.1.2+vue@3.2.45:
+    resolution: {integrity: sha512-d3zpKmGZr2OWHQ1xmxBcAn5ShTG917+/UCLaSpaCDDqT0U7DBsvFzTs69ZnHCgKoXT55GZDW8YEj9Av+dlONLA==}
     peerDependencies:
       chart.js: ^4.1.1
-      vue: ^3.0.0-0 || ^2.6.0
+      vue: ^3.0.0-0 || ^2.7.0
     dependencies:
       chart.js: 4.1.2
       vue: 3.2.45
@@ -13248,7 +13248,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.13
+      '@intlify/shared': 9.3.0-beta.14
       '@intlify/vue-i18n-bridge': 0.8.0_qjugkpmxfnp3l7d6jb7y3o5rvi
       '@intlify/vue-router-bridge': 0.8.0_vue@3.2.45
       ufo: 1.0.1
