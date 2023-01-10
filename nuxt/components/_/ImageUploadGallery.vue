@@ -102,9 +102,10 @@
     >
       <Cropper
         ref="cropperRef"
+        :init-stretcher="initStretcher"
         :src="fileSelectedUrl"
         :stencil-props="{
-          aspectRatio: 1 / 1,
+          aspectRatio: 1,
         }"
       />
       <template #header>{{ t('uploadNew') }}</template>
@@ -118,7 +119,7 @@ import { Uppy, UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
 import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
-import { Cropper } from 'vue-advanced-cropper'
+import { Cropper, Size } from 'vue-advanced-cropper'
 
 import {
   useAccountUploadQuotaBytesQuery,
@@ -213,6 +214,21 @@ function bytesToString(bytes?: number | string | null) {
     return undefined
   }
   return prettyBytes(+bytes)
+}
+const initStretcher = ({
+  cropper,
+  stretcher,
+  imageSize,
+}: {
+  cropper: HTMLElement
+  stretcher: HTMLElement
+  imageSize: Size
+}) => {
+  stretcher.style.width = `${imageSize.width}px`
+  stretcher.style.height = `${imageSize.height}px`
+
+  stretcher.style.height = `${cropper.parentElement?.clientHeight}px`
+  stretcher.style.width = `${cropper.parentElement?.clientWidth}px`
 }
 function selectProfilePicture() {
   const pathUpload = localePath('/upload')
