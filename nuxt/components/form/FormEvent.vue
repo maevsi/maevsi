@@ -390,7 +390,7 @@ async function submit() {
       return
     }
 
-    await showToast({ title: t('updated') })
+    showToast({ title: t('updated') })
   } else {
     // Add
     const result = await createEventMutation.executeMutation({
@@ -423,11 +423,9 @@ async function submit() {
       return
     }
 
-    await showToast({ title: t('eventCreateSuccess') }).then(
-      async () =>
-        await navigateTo(
-          localePath(`/event/${signedInUsername.value}/${form.slug}`)
-        )
+    showToast({ title: t('eventCreateSuccess') })
+    await navigateTo(
+      localePath(`/event/${signedInUsername.value}/${form.slug}`)
     )
   }
 }

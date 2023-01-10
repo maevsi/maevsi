@@ -470,7 +470,7 @@ async function update(id: string, invitationPatch: InvitationPatch) {
     return
   }
 
-  await showToast({ title: t('success') })
+  showToast({ title: t('success') })
 }
 
 // computations

@@ -298,8 +298,8 @@ function copyLink(invitation: Pick<Invitation, 'uuid'>): void {
     `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
       invitation.uuid
     }`
-  ).then(async () => {
-    await showToast({ title: t('copySuccess') })
+  ).then(() => {
+    showToast({ title: t('copySuccess') })
   })
 }
 async function delete_(id: string) {
@@ -337,7 +337,7 @@ async function send(invitation: any) {
     return
   }
 
-  await showToast({ title: t('sendSuccess') })
+  showToast({ title: t('sendSuccess') })
 }
 
 // computations
