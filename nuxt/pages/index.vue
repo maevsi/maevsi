@@ -210,7 +210,7 @@ de:
   maevsi: maevsi
   maevsiDescription1: Persönliche Einladungen. Geordnetes Feedback.
   maevsiDescription2: Verpasse keine Veranstaltungen, zu denen deine Freunde gehen.
-  smartphoneDescription: Mit meavsi musst du deine Veranstaltungen nicht mehr öde per Chat-Gruppe organisieren. Du kommunizierst sauber alle wichtigen Informationen, behältst die Kontrolle über individuelle Einladungen und hast den Kopf frei für den Inhalt deiner Veranstaltung – deine Gäste werden es dir danken
+  smartphoneDescription: Mit maevsi musst du deine Veranstaltungen nicht mehr öde per Chat-Gruppe organisieren. Du kommunizierst sauber alle wichtigen Informationen, behältst die Kontrolle über individuelle Einladungen und hast den Kopf frei für den Inhalt deiner Veranstaltung – deine Gäste werden es dir danken
   smartphoneTitle: Organisierst du noch so deine Veranstaltung?
   stepCreateDescription: Ruhe für dich und deine Gäste, statt wuseligem Gruppenchat
   stepCreateNumber: '1'
@@ -246,7 +246,7 @@ en:
   maevsi: maevsi
   maevsiDescription1: Personal invitations. Proper feedback.
   maevsiDescription2: Never miss events your friends are going to.
-  smartphoneDescription: With meavsi, you no longer have to organize your events via chat groups anymore. You communicate all important information clearly, keep control over individual invitations and focus on the content of your event without distraction – your guests will thank you for it.
+  smartphoneDescription: With maevsi, you no longer have to organize your events via chat groups anymore. You communicate all important information clearly, keep control over individual invitations and focus on the content of your event without distraction – your guests will thank you for it.
   smartphoneTitle: Do you still organize your event like that?
   stepCreateDescription: Peace of mind for you and your guests, instead of a bustling group chat
   stepCreateNumber: '1'
