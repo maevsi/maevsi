@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/maevsi/maevsi/compare/1.2.1...1.3.0) (2023-01-12)
+
+
+### Features
+
+* **invitation:** move feedback buttons, disable paper card feedback ([679db97](https://github.com/maevsi/maevsi/commit/679db9713a0d793c314273540fd395aaa201253f))
+
 ## [1.2.1](https://github.com/maevsi/maevsi/compare/1.2.0...1.2.1) (2023-01-12)
 
 
