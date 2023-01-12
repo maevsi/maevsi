@@ -54,8 +54,78 @@
             </template>
           </ButtonColored>
         </div>
-        <div v-if="invitation" class="fixed bottom-0 right-0 left-0 z-10">
-          <div
+      </div>
+      <ButtonList
+        v-if="
+          !routeQueryIc &&
+          jwtDecoded &&
+          event.authorUsername === jwtDecoded.username
+        "
+        class="justify-center"
+      >
+        <ButtonColored
+          is-to-relative
+          :aria-label="t('invitations')"
+          to="invitation"
+        >
+          {{ t('invitations') }}
+          <template #prefix>
+            <IconEnvelope />
+          </template>
+        </ButtonColored>
+        <ButtonColored
+          is-to-relative
+          :aria-label="t('attendances')"
+          to="attendance"
+        >
+          {{ t('attendances') }}
+          <template #prefix>
+            <IconUserCheck />
+          </template>
+        </ButtonColored>
+        <ButtonColored is-to-relative :aria-label="t('settings')" to="settings">
+          {{ t('settings') }}
+          <template #prefix>
+            <IconPencil />
+          </template>
+        </ButtonColored>
+      </ButtonList>
+      <div class="flex flex-col md:flex-row justify-between gap-4">
+        <div
+          class="flex flex-col md:flex-row max-w-full items-baseline md:gap-2"
+        >
+          <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
+            {{ event.name }}
+          </h1>
+          <Owner link :username="event.authorUsername" />
+        </div>
+        <div class="flex gap-2 items-center">
+          <ButtonColored
+            :aria-label="t('iCalDownload')"
+            :is-primary="false"
+            @click="downloadIcal"
+          >
+            {{ t('iCalDownload') }}
+            <template #prefix>
+              <IconDownload />
+            </template>
+          </ButtonColored>
+          <FormInputStateInfo :title="t('iCalHint')" />
+        </div>
+      </div>
+      <Card v-if="event" class="flex flex-col items-stretch gap-8">
+        <div class="flex flex-row flex-wrap justify-center self-stretch">
+          <EventDashletStart :event="event" />
+          <EventDashletDuration :event="event" />
+          <EventDashletVisibility :event="event" with-text />
+          <EventDashletAttendanceType :event="event" />
+          <EventDashletLocation :event="event" />
+          <EventDashletLink :event="event" />
+        </div>
+        <template v-if="invitation">
+          <Hr />
+          <div>
+            <!-- <div
             class="grid grid-cols-6 border-t-2 bg-background-brighten dark:bg-background-darken"
             :class="
               invitation.feedback === 'ACCEPTED'
@@ -64,22 +134,22 @@
                 ? 'border-red-600 dark:border-red-500'
                 : 'border-text-dark dark:border-text-bright'
             "
-          >
-            <div
+          > -->
+            <!-- <div
               v-if="invitation.feedback === 'ACCEPTED'"
               class="col-start-2 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
             >
               {{ t('step1Of2') }}
-            </div>
+            </div> -->
             <div
-              class="p-4 flex flex-col items-center gap-2"
+              class="flex flex-col items-center gap-2"
               :class="
                 invitation.feedback === 'ACCEPTED' ? 'col-span-3' : 'col-span-6'
               "
             >
-              <span v-if="event.authorUsername !== signedInUsername">
+              <!-- <span v-if="event.authorUsername !== signedInUsername">
                 {{ t('feedbackRequest') }}
-              </span>
+              </span> -->
               <div class="flex items-center justify-center gap-4">
                 <ButtonColored
                   v-if="
@@ -159,7 +229,7 @@
                 </div>
               </div>
             </div>
-            <div
+            <!-- <div
               v-if="
                 invitation.feedback !== null &&
                 invitation.feedback === 'ACCEPTED'
@@ -200,83 +270,15 @@
                   </option>
                 </select>
               </FormInput>
-            </div>
+            </div> -->
           </div>
-        </div>
-      </div>
-      <ButtonList
-        v-if="
-          !routeQueryIc &&
-          jwtDecoded &&
-          event.authorUsername === jwtDecoded.username
-        "
-        class="justify-center"
-      >
-        <ButtonColored
-          is-to-relative
-          :aria-label="t('invitations')"
-          to="invitation"
-        >
-          {{ t('invitations') }}
-          <template #prefix>
-            <IconEnvelope />
-          </template>
-        </ButtonColored>
-        <ButtonColored
-          is-to-relative
-          :aria-label="t('attendances')"
-          to="attendance"
-        >
-          {{ t('attendances') }}
-          <template #prefix>
-            <IconUserCheck />
-          </template>
-        </ButtonColored>
-        <ButtonColored is-to-relative :aria-label="t('settings')" to="settings">
-          {{ t('settings') }}
-          <template #prefix>
-            <IconPencil />
-          </template>
-        </ButtonColored>
-      </ButtonList>
-      <div class="flex flex-col md:flex-row justify-between gap-4">
-        <div
-          class="flex flex-col md:flex-row max-w-full items-baseline md:gap-2"
-        >
-          <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
-            {{ event.name }}
-          </h1>
-          <Owner link :username="event.authorUsername" />
-        </div>
-        <div class="flex gap-2 items-center">
-          <ButtonColored
-            :aria-label="t('iCalDownload')"
-            :is-primary="false"
-            @click="downloadIcal"
-          >
-            {{ t('iCalDownload') }}
-            <template #prefix>
-              <IconDownload />
-            </template>
-          </ButtonColored>
-          <FormInputStateInfo :title="t('iCalHint')" />
-        </div>
-      </div>
-      <Card v-if="event" class="flex flex-col items-center gap-8">
-        <div class="flex flex-row flex-wrap justify-center self-stretch">
-          <EventDashletStart :event="event" />
-          <EventDashletDuration :event="event" />
-          <EventDashletVisibility :event="event" with-text />
-          <EventDashletAttendanceType :event="event" />
-          <EventDashletLocation :event="event" />
-          <EventDashletLink :event="event" />
-        </div>
-        <div v-if="eventDescriptionTemplate" class="flex flex-col gap-4 w-full">
+        </template>
+        <template v-if="eventDescriptionTemplate">
           <Hr />
           <!-- eslint-disable vue/no-v-html -->
           <div class="maevsi-prose-scheme" v-html="eventDescriptionTemplate" />
           <!-- eslint-enable vue/no-v-html -->
-        </div>
+        </template>
       </Card>
       <Modal id="ModalInvitationQrCode">
         <div v-if="invitation" class="flex flex-col items-center gap-2 pb-4">
@@ -408,13 +410,13 @@ function cancel() {
     feedback: InvitationFeedback.Canceled,
   })
 }
-function paperInvitationFeedback() {
-  if (!invitation.value) return
+// function paperInvitationFeedback() {
+//   if (!invitation.value) return
 
-  update(invitation.value.id, {
-    feedbackPaper: invitation.value.feedbackPaper,
-  })
-}
+//   update(invitation.value.id, {
+//     feedbackPaper: invitation.value.feedbackPaper,
+//   })
+// }
 function downloadIcal() {
   const xhr = new XMLHttpRequest()
   const fileName =
@@ -568,7 +570,7 @@ de:
   attendances: Check-in
   close: Schließen
   events: Veranstaltungen
-  feedbackRequest: 'Bitte gib eine Rückmeldung, ob du teilnehmen wirst:'
+  # feedbackRequest: 'Bitte gib eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
@@ -583,26 +585,26 @@ de:
   invitationCancelAdmin: Einladung im Namen von {name} ablehnen
   invitationCanceled: Einladung abgelehnt
   invitationCanceledAdmin: Einladung im Namen von {name} abgelehnt
-  invitationCardKind: Art der Einladungskarte
-  invitationCardKindNone: Keine
-  invitationCardKindPaper: Papier
-  invitationCardKindDigital: Digital
+  # invitationCardKind: Art der Einladungskarte
+  # invitationCardKindNone: Keine
+  # invitationCardKindPaper: Papier
+  # invitationCardKindDigital: Digital
   invitationCodeMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
   invitationSelectionClear: Zurück zur Einladungsübersicht
   invitationViewFor: Du schaust dir die Einladung für {name} an. Nur du und {name} können diese Seite sehen.
   invitations: Einladungen
   print: Drucken
   qrCodeShow: Check-in-Code anzeigen
-  requestSelection: Bitte auswählen
+  # requestSelection: Bitte auswählen
   settings: Bearbeiten
-  step1Of2: 1/2
-  step2Of2: 2/2
+  # step1Of2: 1/2
+  # step2Of2: 2/2
   success: Deine Eingabe wurde erfolgreich gespeichert.
 en:
   attendances: Check in
   close: Close
   events: events
-  feedbackRequest: 'Please confirm if you will attend:'
+  # feedbackRequest: 'Please confirm if you will attend:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."
   hintQrCode: This picture is your access authorization for the event
@@ -617,19 +619,19 @@ en:
   invitationCancelAdmin: Decline invitation on behalf of {name}
   invitationCanceled: Invitation declined
   invitationCanceledAdmin: Invitation declined on behalf of {name}
-  invitationCardKind: Type of invitation card
-  invitationCardKindNone: None
-  invitationCardKindPaper: Paper
-  invitationCardKindDigital: Digital
+  # invitationCardKind: Type of invitation card
+  # invitationCardKindNone: None
+  # invitationCardKindPaper: Paper
+  # invitationCardKindDigital: Digital
   invitationCodeMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
   invitationSelectionClear: Back to the invitation overview
   invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
   invitations: Invitations
   print: Print
   qrCodeShow: Show check in code
-  requestSelection: Please select
+  # requestSelection: Please select
   settings: Edit
-  step1Of2: 1/2
-  step2Of2: 2/2
+  # step1Of2: 1/2
+  # step2Of2: 2/2
   success: Your input was saved succesfully.
 </i18n>
