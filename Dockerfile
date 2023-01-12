@@ -97,7 +97,7 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 RUN npm install -g pnpm && \
-    pnpm run test:unit
+    pnpm run test
 
 
 ########################
