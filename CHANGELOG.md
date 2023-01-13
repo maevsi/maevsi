@@ -1,3 +1,15 @@
+## [1.3.2](https://github.com/maevsi/maevsi/compare/1.3.1...1.3.2) (2023-01-13)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([82b2011](https://github.com/maevsi/maevsi/commit/82b20113b9c8668ba7e31c08473b38f9627b24e7))
+
+
+### Reverts
+
+* Revert "fix(nuxt): temporarily enable sourcemaps" ([bcbc0a0](https://github.com/maevsi/maevsi/commit/bcbc0a0eb4278c4f6db3b7eb7397a61b2bb6bbf7))
+
 ## [1.3.1](https://github.com/maevsi/maevsi/compare/1.3.0...1.3.1) (2023-01-13)
 
 
