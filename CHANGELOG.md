@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/maevsi/maevsi/compare/1.3.0...1.3.1) (2023-01-13)
+
+
+### Bug Fixes
+
+* **nuxt:** temporarily enable sourcemaps ([e77c979](https://github.com/maevsi/maevsi/commit/e77c9793675748be30f7d4e6068003293adcc6b9))
+
 # [1.3.0](https://github.com/maevsi/maevsi/compare/1.2.1...1.3.0) (2023-01-12)
 
 
