@@ -23,7 +23,7 @@ function getCsp(host: string): Record<string, Array<string>> {
     'font-src': ["'self'"], // ~/public/assets/static/fonts
     'form-action': ["'self'"], // Mozilla Observatory: "none".
     'frame-ancestors': ["'none'"], // Mozilla Observatory.
-    'frame-src': ["'none'"],
+    'frame-src': ['https://challenges.cloudflare.com'],
     'img-src': [
       "'self'",
       'blob:',
@@ -42,6 +42,7 @@ function getCsp(host: string): Record<string, Array<string>> {
     'script-src': [
       'blob:',
       "'self'",
+      'https://challenges.cloudflare.com/turnstile/v0/api.js',
       'https://static.cloudflareinsights.com',
       'https://*.google-analytics.com',
       'https://www.googletagmanager.com/gtag/js',

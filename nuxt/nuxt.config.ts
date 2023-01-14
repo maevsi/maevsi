@@ -131,6 +131,7 @@ export default defineNuxtConfig({
         },
       },
     ],
+    '@nuxtjs/turnstile',
     '@pinia/nuxt',
     [
       '@funken-studio/sitemap-nuxt-3',
@@ -154,6 +155,12 @@ export default defineNuxtConfig({
           ? 'maev.si'
           : undefined,
     },
+    turnstile: {
+      secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY || '',
+    },
+  },
+  turnstile: {
+    siteKey: '0x4AAAAAAAB-4n2PVIbNv24s',
   },
   typescript: {
     shim: false,

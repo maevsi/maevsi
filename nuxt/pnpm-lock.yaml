@@ -19,6 +19,7 @@ specifiers:
   '@nuxtjs/eslint-config-typescript': 12.0.0
   '@nuxtjs/html-validator': 1.2.3
   '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.7-27893843.b72135e
+  '@nuxtjs/turnstile': ^0.1.2
   '@pinia/nuxt': 0.4.6
   '@rollup/plugin-graphql': 2.0.2
   '@tailwindcss/forms': 0.5.3
@@ -138,6 +139,7 @@ devDependencies:
   '@nuxtjs/eslint-config-typescript': 12.0.0_iukboom6ndih5an6iafl45j2fe
   '@nuxtjs/html-validator': 1.2.3_jest@29.3.1+rollup@2.79.1
   '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.7-27893843.b72135e_rollup@2.79.1+vue@3.2.45
+  '@nuxtjs/turnstile': 0.1.2_rollup@2.79.1
   '@pinia/nuxt': 0.4.6_rnb65zy77kx66qnsvrpa2qz65q
   '@rollup/plugin-graphql': 2.0.2_wvgxa4tpgmyetagc7e4kukhube
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
@@ -146,7 +148,7 @@ devDependencies:
   '@tiptap/core': 2.0.0-beta.209_rd5pjtxohzfgv2zee3iufpqkay
   '@tiptap/extension-link': 2.0.0-beta.209_kdf7tbeyuz6zzmi7724b5ghupu
   '@tiptap/starter-kit': 2.0.0-beta.209_jpbjcwtxtditttqwduift4tnzi
-  '@tiptap/vue-3': 2.0.0-beta.209_z47upszvd4zehlqvwskdpw752y
+  '@tiptap/vue-3': 2.0.0-beta.209_m6uwylmnkf5btthteowo2v4i3y
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.4.0
   '@types/downloadjs': 1.4.3
@@ -226,7 +228,7 @@ devDependencies:
   stylelint-config-standard: 29.0.0_stylelint@14.16.1
   stylelint-no-unsupported-browser-features: 6.0.1_stylelint@14.16.1
   sweetalert2: 11.7.0
-  tailwindcss: 3.2.4_ts-node@10.9.1
+  tailwindcss: 3.2.4_aesdjsunmf4wiehhujt67my7tu
   ts-jest: 29.0.5_fbnxxcyiwhbarsilcfkcgo7ieu
   ts-node: 10.9.1_awa2wsr5thmg3i7jqycphctjfq
   typescript: 4.9.4
@@ -1790,8 +1792,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.3.0-beta.15
-      '@intlify/shared': 9.3.0-beta.15
+      '@intlify/message-compiler': 9.3.0-beta.16
+      '@intlify/shared': 9.3.0-beta.16
       jsonc-eslint-parser: 1.4.1
       source-map: 0.6.1
       vue-i18n: 9.3.0-beta.15_vue@3.2.45
@@ -1874,6 +1876,14 @@ packages:
       source-map: 0.6.1
     dev: true
 
+  /@intlify/message-compiler/9.3.0-beta.16:
+    resolution: {integrity: sha512-CGQI3xRcs1ET75eDQ0DUy3MRYOqTauRIIgaMoISKiF83gqRWg93FqN8lGMKcpBqaF4tI0JhsfosCaGiBL9+dnw==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@intlify/shared': 9.3.0-beta.16
+      source-map: 0.6.1
+    dev: true
+
   /@intlify/shared/9.2.2:
     resolution: {integrity: sha512-wRwTpsslgZS5HNyM7uDQYZtxnbI12aGiBZURX3BTR9RFIKKRWpllTsgzHWvj3HKm3Y2Sh5LPC1r0PDCKEhVn9Q==}
     engines: {node: '>= 14'}
@@ -1886,6 +1896,11 @@ packages:
 
   /@intlify/shared/9.3.0-beta.15:
     resolution: {integrity: sha512-thDJ+TGK8GGmOrgh/Vul24pPvRtRGvCyuGXcw/uh2t3lyJsCPfhzY5ZihJFkGvKEl4/J4M0F/SAeWKoZNm7hlw==}
+    engines: {node: '>= 14'}
+    dev: true
+
+  /@intlify/shared/9.3.0-beta.16:
+    resolution: {integrity: sha512-kXbm4svALe3lX+EjdJxfnabOphqS4yQ1Ge/iIlR8tvUiYRCoNz3hig1M4336iY++Dfx5ytEQJPNjIcknNIuvig==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -1905,7 +1920,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 3.4.0_vue-i18n@9.3.0-beta.15
-      '@intlify/shared': 9.3.0-beta.15
+      '@intlify/shared': 9.3.0-beta.16
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.2.45
       debug: 4.3.4
@@ -2569,6 +2584,17 @@ packages:
       - vue-router
     dev: true
 
+  /@nuxtjs/turnstile/0.1.2_rollup@2.79.1:
+    resolution: {integrity: sha512-/qNAdA6XS+ABO3Ib6SomHtKcmIOq2S7ERzvz/GKjFxUAYkfCMqY/1sElTU5/vVuHVl45OSIKKMOalReXf8fOhA==}
+    dependencies:
+      '@nuxt/kit': 3.0.0_rollup@2.79.1
+      defu: 6.1.1
+      pathe: 1.0.0
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
   /@peculiar/asn1-schema/2.3.3:
     resolution: {integrity: sha512-6GptMYDMyWBHTUKndHaDsRZUO/XMSgIns2krxcm2L7SEExRHwawFvSwNBhqNPR9HJwv3MruAiF1bhN0we6j6GQ==}
     dependencies:
@@ -2843,7 +2869,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.4_ts-node@10.9.1
+      tailwindcss: 3.2.4_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.4:
@@ -2851,7 +2877,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.2.4_ts-node@10.9.1
+      tailwindcss: 3.2.4_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tailwindcss/typography/0.5.9_tailwindcss@3.2.4:
@@ -2863,7 +2889,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4_ts-node@10.9.1
+      tailwindcss: 3.2.4_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tiptap/core/2.0.0-beta.209_rd5pjtxohzfgv2zee3iufpqkay:
@@ -2902,20 +2928,18 @@ packages:
       '@tiptap/core': 2.0.0-beta.209_rd5pjtxohzfgv2zee3iufpqkay
     dev: true
 
-  /@tiptap/extension-bubble-menu/2.0.0-beta.209_aorzvepnbow73vkc4hi3akkkry:
+  /@tiptap/extension-bubble-menu/2.0.0-beta.209_vde3gi7hrsabw5pj6bw7jls3ai:
     resolution: {integrity: sha512-tceZAuDpy3J96uGyCzpJFD3fHABJDTJTq5E0hm+TRQT+eVGVqZI0PE3/4yVFgkCshioTuJq8veMDFcqNsSkKsQ==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.193
+      prosemirror-state: ^1.4.1
+      prosemirror-view: ^1.28.2
     dependencies:
       '@tiptap/core': 2.0.0-beta.209_rd5pjtxohzfgv2zee3iufpqkay
       lodash: 4.17.21
       prosemirror-state: 1.4.2
       prosemirror-view: 1.29.1
       tippy.js: 6.3.7
-    transitivePeerDependencies:
-      - prosemirror-commands
-      - prosemirror-keymap
-      - prosemirror-model
-      - prosemirror-schema-list
-      - prosemirror-transform
     dev: true
 
   /@tiptap/extension-bullet-list/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
@@ -3117,7 +3141,7 @@ packages:
       - prosemirror-view
     dev: true
 
-  /@tiptap/vue-3/2.0.0-beta.209_z47upszvd4zehlqvwskdpw752y:
+  /@tiptap/vue-3/2.0.0-beta.209_m6uwylmnkf5btthteowo2v4i3y:
     resolution: {integrity: sha512-v0GUO6mcRgDfT6bNX3fHJds9QIpYqFBiGaanvTDVlOhErOSgrOx2+QuEieG0F9nUQ1az9h0kj5NZxvP9CeTlcQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
@@ -3126,17 +3150,11 @@ packages:
       vue: ^3.0.0
     dependencies:
       '@tiptap/core': 2.0.0-beta.209_rd5pjtxohzfgv2zee3iufpqkay
-      '@tiptap/extension-bubble-menu': 2.0.0-beta.209_aorzvepnbow73vkc4hi3akkkry
+      '@tiptap/extension-bubble-menu': 2.0.0-beta.209_vde3gi7hrsabw5pj6bw7jls3ai
       '@tiptap/extension-floating-menu': 2.0.0-beta.209_vde3gi7hrsabw5pj6bw7jls3ai
       prosemirror-state: 1.4.2
       prosemirror-view: 1.29.1
       vue: 3.2.45
-    transitivePeerDependencies:
-      - prosemirror-commands
-      - prosemirror-keymap
-      - prosemirror-model
-      - prosemirror-schema-list
-      - prosemirror-transform
     dev: true
 
   /@tootallnate/once/2.0.0:
@@ -12343,10 +12361,12 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss/3.2.4_ts-node@10.9.1:
+  /tailwindcss/3.2.4_aesdjsunmf4wiehhujt67my7tu:
     resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -13262,7 +13282,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.15
+      '@intlify/shared': 9.3.0-beta.16
       '@intlify/vue-i18n-bridge': 0.8.0_vue-i18n@9.3.0-beta.15
       '@intlify/vue-router-bridge': 0.8.0_vue@3.2.45
       ufo: 1.0.1

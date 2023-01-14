@@ -53,6 +53,7 @@
     "@nuxtjs/eslint-config-typescript": "12.0.0",
     "@nuxtjs/html-validator": "1.2.3",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-beta.7-27893843.b72135e",
+    "@nuxtjs/turnstile": "^0.1.2",
     "@pinia/nuxt": "0.4.6",
     "@rollup/plugin-graphql": "2.0.2",
     "@tailwindcss/forms": "0.5.3",

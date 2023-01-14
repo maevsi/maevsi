@@ -36,6 +36,10 @@
           {{ t('passwordReset') }}
         </AppLink>
       </div>
+      <div class="flex justify-center">
+        <Turnstile />
+      </div>
+
       <template
         v-if="
           api.errors.filter(
