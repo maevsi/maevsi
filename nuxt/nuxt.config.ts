@@ -52,8 +52,8 @@ export default defineNuxtConfig({
                 en: 'Cookie Preferences',
               },
               targetCookieIds: [
-                'cookie_control_consent',
-                'cookie_control_enabled_cookies',
+                'cookie_control_is_consent_given',
+                'cookie_control_cookies_enabled_ids',
               ],
             },
             {

@@ -10,7 +10,7 @@ describe('legal-notice page', () => {
 
   context('visual regression', () => {
     it('looks as before', () => {
-      cy.setCookie('cookie_control_consent', 'true')
+      cy.setCookie('cookie_control_is_consent_given', 'true')
       cy.visit('/legal-notice')
       cy.get('[data-is-loading="false"]').should('be.visible')
       cy.get('[data-testid="nuxt-cookie-control-control-button"]').should(

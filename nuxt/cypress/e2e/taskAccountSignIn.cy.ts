@@ -47,7 +47,7 @@ describe('task account sign-in page', () => {
 
   context('visual regression', () => {
     it('looks as before', () => {
-      cy.setCookie('cookie_control_consent', 'true')
+      cy.setCookie('cookie_control_is_consent_given', 'true')
       cy.visit('/task/account/sign-in')
       cy.get('[data-is-loading="false"]').should('be.visible')
       cy.get('[data-testid="nuxt-cookie-control-control-button"]').should(

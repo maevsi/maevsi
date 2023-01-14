@@ -9,7 +9,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     VueGtag,
     {
       bootstrap:
-        cookieControl.cookiesEnabledIds.value.includes('google-analytics'),
+        !!cookieControl.cookiesEnabledIds.value?.includes('google-analytics'),
       config: {
         id: config.public.googleAnalyticsId,
       },
