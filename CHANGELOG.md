@@ -1,3 +1,12 @@
+## [1.3.3](https://github.com/maevsi/maevsi/compare/1.3.2...1.3.3) (2023-01-14)
+
+
+### Bug Fixes
+
+* **cypress:** correct cookie handling ([dbf9a1a](https://github.com/maevsi/maevsi/commit/dbf9a1a354e4d15325a0ef4433fc1756e08b41b1))
+* **cypress:** correct cookie name ([eda243c](https://github.com/maevsi/maevsi/commit/eda243c7f299cfe810001849dafe0b10af158114))
+* **gtag:** convert undefined to boolean ([49c1413](https://github.com/maevsi/maevsi/commit/49c141369495fd89f731d90bd992317673df2a71))
+
 ## [1.3.2](https://github.com/maevsi/maevsi/compare/1.3.1...1.3.2) (2023-01-13)
 
 
