@@ -113,7 +113,7 @@ specifiers:
   typescript: 4.9.4
   v-calendar: 3.0.0-alpha.8
   vue: 3.2.45
-  vue-advanced-cropper: 2.8.6
+  vue-advanced-cropper: 2.8.8
   vue-chartjs: 5.2.0
   vue-gtag: 2.0.1
   vue-qrcode-reader: 3.1.0-vue3-compatibility.5
@@ -232,7 +232,7 @@ devDependencies:
   typescript: 4.9.4
   v-calendar: 3.0.0-alpha.8_vue@3.2.45
   vue: 3.2.45
-  vue-advanced-cropper: 2.8.6_vue@3.2.45
+  vue-advanced-cropper: 2.8.8_vue@3.2.45
   vue-chartjs: 5.2.0_chart.js@4.1.2+vue@3.2.45
   vue-gtag: 2.0.1_vue@3.2.45
   vue-qrcode-reader: 3.1.0-vue3-compatibility.5
@@ -13175,8 +13175,8 @@ packages:
     resolution: {integrity: sha512-eOpPHogvorZRobNqJGhapa0JdwaxpjVvyBp0QIUMRMSf8ZAlqOdEquKuRmw9Qwu0qXtJIWqFtMkmvJjUZmMjVA==}
     dev: true
 
-  /vue-advanced-cropper/2.8.6_vue@3.2.45:
-    resolution: {integrity: sha512-R1vkXG/Vam3OEd3vMJsVSJkXUc9ejM9l/NzPcPvkyzKGHwF69c2v1lh2Kqj2A5MCqrTmk76bmzmWFuYj+AcwmA==}
+  /vue-advanced-cropper/2.8.8_vue@3.2.45:
+    resolution: {integrity: sha512-yDM7Jb/gnxcs//JdbOogBUoHr1bhCQSto7/ohgETKAe4wvRpmqIkKSppMm1huVQr+GP1YoVlX/fkjKxvYzwwDQ==}
     engines: {node: '>=8', npm: '>=5'}
     peerDependencies:
       vue: ^3.0.0
