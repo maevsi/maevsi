@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/maevsi/maevsi/compare/1.3.3...1.3.4) (2023-01-16)
+
+
+### Bug Fixes
+
+* **cookie-control:** correct page placement ([0f4a13b](https://github.com/maevsi/maevsi/commit/0f4a13bd131e64da0bb0af28fa1a12233a472d2c))
+
 ## [1.3.3](https://github.com/maevsi/maevsi/compare/1.3.2...1.3.3) (2023-01-14)
 
 
