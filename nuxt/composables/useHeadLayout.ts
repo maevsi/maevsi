@@ -74,7 +74,7 @@ export const useHeadLayout = () => {
       {
         key: 'og:image',
         property: 'og:image',
-        content: `https://${host}/assets/static/logos/maevsi_with-text_open-graph.png`, // Does not support .svg as of 2021-06.
+        content: `https://${host}/assets/static/logos/open-graph.png`, // Does not support .svg as of 2021-06.
       },
       {
         key: 'og:image:alt',
@@ -124,7 +124,7 @@ export const useHeadLayout = () => {
       {
         key: 'twitter:image',
         property: 'twitter:image',
-        content: `https://${host}/assets/static/logos/maevsi_with-text_open-graph.png`, // Does not support .svg as of 2021-06.
+        content: `https://${host}/assets/static/logos/open-graph.png`, // Does not support .svg as of 2021-06.
       },
       {
         key: 'twitter:image:alt',
