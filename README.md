@@ -1,4 +1,4 @@
-[![build status](https://github.com/maevsi/maevsi/workflows/CI/badge.svg)](https://github.com/maevsi/maevsi/actions?query=workflow%3ACI "build status")
+[![CI](https://github.com/maevsi/maevsi/actions/workflows/docker.yml/badge.svg)](https://github.com/maevsi/maevsi/actions/workflows/docker.yml)
 
 
 # maevsi
