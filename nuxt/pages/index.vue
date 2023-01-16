@@ -150,7 +150,6 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
-const cookieControl = useCookieControl()
 
 // refs
 const sectionStepsRef = ref<HTMLElement>()
@@ -181,20 +180,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', hideScrollHint)
 })
-watch(
-  () => cookieControl.cookiesEnabledIds.value,
-  (current, previous) => {
-    if (
-      (!previous?.includes('google-analytics') &&
-        current?.includes('google-analytics')) ||
-      (previous?.includes('google-analytics') &&
-        !current?.includes('google-analytics'))
-    ) {
-      window.location.reload()
-    }
-  },
-  { deep: true }
-)
 
 // initialization
 useHeadDefault('maevsi')
