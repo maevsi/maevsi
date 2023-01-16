@@ -12,8 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import consola from 'consola'
-
 import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
 
 definePageMeta({
@@ -37,32 +35,14 @@ const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute()
 const fireAlert = useFireAlert()
-const accountEmailAddressVerificationMutation =
-  useAccountEmailAddressVerificationMutation()
 
 // api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...accountEmailAddressVerificationMutation.data.value,
-    },
-    ...getApiMeta([accountEmailAddressVerificationMutation]),
-  })
-)
+const accountEmailAddressVerificationMutation =
+  useAccountEmailAddressVerificationMutation()
+const api = getApiData([accountEmailAddressVerificationMutation])
 
 // data
 const title = t('title')
-
-// lifecycle
-// TODO: watch all api errors like this (https://github.com/maevsi/maevsi/issues/961)
-watch(
-  () => api.value.errors,
-  (currentValue, oldValue) => {
-    currentValue
-      .filter((c) => !oldValue.includes(c))
-      .forEach((c) => consola.error(c))
-  }
-)
 
 // initialization
 useHeadDefault(title)

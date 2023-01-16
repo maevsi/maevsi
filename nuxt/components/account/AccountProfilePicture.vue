@@ -12,8 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import consola from 'consola'
-
 import { useProfilePictureByUsernameQuery } from '~/gql/generated'
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
 
@@ -32,22 +30,13 @@ const props = withDefaults(defineProps<Props>(), {
 const { t } = useI18n()
 const TUSD_FILES_URL = useTusdFilesUrl()
 
-// queries
+// api data
 const profilePictureQuery = await useProfilePictureByUsernameQuery({
   variables: {
     username: props.username,
   },
 })
-
-// api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...profilePictureQuery.data.value,
-    },
-    ...getApiMeta([profilePictureQuery]),
-  })
-)
+const api = getApiData([profilePictureQuery])
 
 // computations
 const profilePicture = computed(
@@ -58,11 +47,6 @@ const profilePictureUrl = computed(() =>
     ? TUSD_FILES_URL + profilePicture.value.uploadStorageKey + '+'
     : undefined
 )
-
-// lifecycle
-watch(profilePictureQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
-})
 </script>
 
 <i18n lang="yaml">

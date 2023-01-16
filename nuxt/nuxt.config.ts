@@ -161,6 +161,7 @@ export default defineNuxtConfig({
     tsConfig: {
       compilerOptions: {
         esModuleInterop: true,
+        // noErrorTruncation: true,
         types: ['jest'],
       },
       vueCompilerOptions: {

@@ -17,8 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import consola from 'consola'
-
 import { useProfilePictureSetMutation } from '~/gql/generated'
 
 const emit = defineEmits<{
@@ -26,19 +24,12 @@ const emit = defineEmits<{
 }>()
 
 const route = useRoute()
-const profilePictureSetMutation = useProfilePictureSetMutation()
 const config = useRuntimeConfig()
 const { t } = useI18n()
 
 // api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...profilePictureSetMutation.data.value,
-    },
-    ...getApiMeta([profilePictureSetMutation]),
-  })
-)
+const profilePictureSetMutation = useProfilePictureSetMutation()
+getApiData([profilePictureSetMutation])
 
 // data
 const isTesting = config.public.isTesting
@@ -50,16 +41,9 @@ function selectProfilePictureStorageKey(storageKey?: string) {
   selectedProfilePictureStorageKey.value = storageKey
 }
 async function setProfilePicture() {
-  api.value.errors = []
-
-  const result = await profilePictureSetMutation.executeMutation({
+  await profilePictureSetMutation.executeMutation({
     storageKey: selectedProfilePictureStorageKey.value || '',
   })
-
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
 }
 </script>
 

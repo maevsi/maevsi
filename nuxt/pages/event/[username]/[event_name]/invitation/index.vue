@@ -28,7 +28,6 @@
 </template>
 
 <script setup lang="ts">
-import consola from 'consola'
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useMaevsiStore } from '~/store'
@@ -65,23 +64,14 @@ const route = useRoute()
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-// queries
+// api data
 const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,
     slug: route.params.event_name as string,
   },
 })
-
-// api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...eventQuery.data.value,
-    },
-    ...getApiMeta([eventQuery]),
-  })
-)
+const api = getApiData([eventQuery])
 const event = computed(
   () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
 )
@@ -95,11 +85,6 @@ const title = computed(() => {
   if (!event.value) return t('title')
 
   return `${t('title')} · ${event.value.name}`
-})
-
-// lifecycle
-watch(eventQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
 })
 
 // initialization

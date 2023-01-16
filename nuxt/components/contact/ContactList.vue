@@ -64,8 +64,6 @@
 </template>
 
 <script setup lang="ts">
-import consola from 'consola'
-
 import {
   Contact,
   useAllContactsQuery,
@@ -75,13 +73,11 @@ import { useMaevsiStore } from '~/store'
 
 const { t } = useI18n()
 const store = useMaevsiStore()
-const { executeMutation: executeMutationContactDeleteById } =
-  useDeleteContactByIdMutation()
 
 // refs
 const after = ref<string>()
 
-// queries
+// api data
 const contactsQuery = await useAllContactsQuery({
   variables: {
     after,
@@ -89,16 +85,8 @@ const contactsQuery = await useAllContactsQuery({
     first: ITEMS_PER_PAGE_LARGE,
   },
 })
-
-// api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...contactsQuery.data.value,
-    },
-    ...getApiMeta([contactsQuery]),
-  })
-)
+const deleteContactByIdMutation = useDeleteContactByIdMutation()
+const api = getApiData([contactsQuery, deleteContactByIdMutation])
 const contacts = computed(() => contactsQuery.data.value?.allContacts?.nodes)
 
 // data
@@ -117,15 +105,7 @@ function add() {
 }
 async function delete_(nodeId: string, id: string) {
   pending.deletions.push(nodeId)
-  api.value.errors = []
-
-  const result = await executeMutationContactDeleteById({ id })
-
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
-
+  await deleteContactByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
 }
 function edit(contact: Pick<Contact, 'nodeId'>) {
@@ -139,11 +119,6 @@ function onClose() {
 
   pending.edits.splice(pending.edits.indexOf(selectedContact.value.nodeId), 1)
 }
-
-// lifecycle
-watch(contactsQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
-})
 </script>
 
 <i18n lang="yaml">

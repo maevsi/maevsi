@@ -19,24 +19,14 @@
 </template>
 
 <script setup lang="ts">
+import { UseMutationResponse } from '@urql/vue'
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
-import { AnyVariables, OperationContext, OperationResult } from '@urql/vue'
-import consola from 'consola'
-
-import {
-  formPreSubmit,
-  VALIDATION_PASSWORD_LENGTH_MINIMUM,
-} from '~/utils/validation'
-import { Exact, EventDeleteMutation } from '~/gql/generated'
 
 export interface Props {
   errorsPgIds?: Record<string, string>
   itemName: string
-  mutation: (
-    variables: Exact<any>,
-    context?: Partial<OperationContext>
-  ) => Promise<OperationResult<EventDeleteMutation, AnyVariables>>
+  mutation: UseMutationResponse<any, any>
   variables?: Record<string, any>
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -51,7 +41,7 @@ const emit = defineEmits<{
 const { t } = useI18n()
 
 // api data
-const api = getApiDataDefault()
+const api = getApiData([props.mutation])
 
 // data
 const form = reactive({
@@ -61,33 +51,23 @@ const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  try {
-    await formPreSubmit(api, v$, isFormSent)
-  } catch (error) {
-    consola.error(error)
-    return
-  }
+  if (!(await isFormValid({ v$, isFormSent }))) return
 
-  props
-    .mutation({
-      password: form.password,
-      ...props.variables,
-    })
-    .then((result) => {
-      if (result.error) {
-        api.value.errors.push(result.error)
-        consola.error(result.error)
-      } else {
-        showToast({
-          title: capitalizeFirstLetter(
-            t('success', {
-              item: props.itemName,
-            })
-          ),
-        })
-        emit('success')
-      }
-    })
+  const result = await props.mutation.executeMutation({
+    password: form.password,
+    ...props.variables,
+  })
+
+  if (result.error) return
+
+  showToast({
+    title: capitalizeFirstLetter(
+      t('success', {
+        item: props.itemName,
+      })
+    ),
+  })
+  emit('success')
 }
 
 // vuelidate

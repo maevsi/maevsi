@@ -46,8 +46,6 @@
 </template>
 
 <script setup lang="ts">
-import consola from 'consola'
-
 import {
   useEventByAuthorUsernameAndSlugQuery,
   useEventDeleteMutation,
@@ -86,31 +84,22 @@ definePageMeta({
 const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute()
-const { executeMutation: executeMutationEventDelete } = useEventDeleteMutation()
 
-// queries
+// api data
 const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,
     slug: route.params.event_name as string,
   },
 })
-
-// api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...eventQuery.data.value,
-    },
-    ...getApiMeta([eventQuery]),
-  })
-)
+const eventDeleteMutation = useEventDeleteMutation()
+const api = getApiData([eventQuery, eventDeleteMutation])
 const event = computed(
   () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
 )
 
 // data
-const mutation = executeMutationEventDelete
+const mutation = eventDeleteMutation
 const routeParamEventName = route.params.event_name as string
 const routeParamUsername = route.params.username as string
 
@@ -119,11 +108,6 @@ const title = computed(() => {
   if (!event.value) return t('title')
 
   return `${t('title')} · ${event.value.name}`
-})
-
-// lifecycle
-watch(eventQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
 })
 
 // initialization
