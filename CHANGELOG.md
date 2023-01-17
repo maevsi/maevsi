@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/maevsi/maevsi/compare/1.3.4...1.3.5) (2023-01-17)
+
+
+### Bug Fixes
+
+* **image-upload-gallery:** correct upload quota calculation ([682b357](https://github.com/maevsi/maevsi/commit/682b3573c2fa54256d8d372e5d8974ff73e87c08)), closes [#1037](https://github.com/maevsi/maevsi/issues/1037)
+
 ## [1.3.4](https://github.com/maevsi/maevsi/compare/1.3.3...1.3.4) (2023-01-16)
 
 
