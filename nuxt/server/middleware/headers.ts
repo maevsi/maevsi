@@ -14,10 +14,11 @@ function getCsp(host: string): Record<string, Array<string>> {
     'connect-src': [
       "'self'",
       'blob:', // vue-advanced-cropper
-      `https://postgraphile.${getDomainTldPort(stagingHostOrHost)}`,
-      `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
-      'https://*.google-analytics.com',
-      'https://*.analytics.google.com',
+      `https://${getDomainTldPort(stagingHostOrHost)}`, // `/api` requests
+      `https://postgraphile.${getDomainTldPort(stagingHostOrHost)}`, // backend requests
+      `https://tusd.${getDomainTldPort(stagingHostOrHost)}`, // image upload requests
+      'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://*.analytics.google.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
     ],
     'default-src': ["'none'"],
     'font-src': ["'self'"], // ~/public/assets/static/fonts
@@ -29,8 +30,8 @@ function getCsp(host: string): Record<string, Array<string>> {
       'blob:',
       'data:',
       `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
-      'https://*.google-analytics.com',
-      'https://www.gravatar.com/avatar/',
+      'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://www.gravatar.com/avatar/', // profile picture fallback
     ],
     'manifest-src': ["'self'"],
     'media-src': ["'none'"],
@@ -42,9 +43,9 @@ function getCsp(host: string): Record<string, Array<string>> {
     'script-src': [
       'blob:',
       "'self'",
-      'https://static.cloudflareinsights.com',
-      'https://*.google-analytics.com',
-      'https://www.googletagmanager.com/gtag/js',
+      'https://static.cloudflareinsights.com', // Cloudflare analytics
+      'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://www.googletagmanager.com/gtag/js', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       "'unsafe-inline'", // https://github.com/unjs/nitro/issues/81
       "'unsafe-eval'", // https://github.com/unjs/nitro/issues/81
     ],

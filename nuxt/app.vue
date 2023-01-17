@@ -18,6 +18,7 @@ import supportedBrowsers from '~/supportedBrowsers'
 
 const { t } = useI18n()
 const config = useRuntimeConfig()
+const cookieControl = useCookieControl()
 
 // data
 const isBrowserSupported = ref(true)
@@ -26,6 +27,20 @@ const isBrowserSupported = ref(true)
 onBeforeMount(() => {
   isBrowserSupported.value = supportedBrowsers.test(navigator.userAgent)
 })
+watch(
+  () => cookieControl.cookiesEnabledIds.value,
+  (current, previous) => {
+    if (
+      (!previous?.includes('google-analytics') &&
+        current?.includes('google-analytics')) ||
+      (previous?.includes('google-analytics') &&
+        !current?.includes('google-analytics'))
+    ) {
+      window.location.reload()
+    }
+  },
+  { deep: true }
+)
 </script>
 
 <i18n lang="yaml">
