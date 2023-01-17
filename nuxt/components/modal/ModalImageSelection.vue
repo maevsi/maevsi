@@ -43,10 +43,10 @@ const api = computed(() =>
 // data
 const isTesting = config.public.isTesting
 const routeParamUsername = route.params.username as string
-const selectedProfilePictureStorageKey = ref<string>()
+const selectedProfilePictureStorageKey = ref<string | null>()
 
 // methods
-function selectProfilePictureStorageKey(storageKey?: string) {
+function selectProfilePictureStorageKey(storageKey?: string | null) {
   selectedProfilePictureStorageKey.value = storageKey
 }
 async function setProfilePicture() {
