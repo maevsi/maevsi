@@ -128,7 +128,6 @@ async function submit() {
   try {
     const value = await props.submitTaskProvider()
     emit('submitSuccess', value)
-    await props.submitTaskProvider()
     close()
   } catch (errorsLocal: any) {
     errors.value = [errorsLocal]
