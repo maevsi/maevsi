@@ -23,13 +23,7 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { email, maxLength, required } from '@vuelidate/validators'
-import consola from 'consola'
 
-import {
-  formPreSubmit,
-  VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
-  VALIDATION_FORMAT_UPPERCASE_NONE,
-} from '~/utils/validation'
 import { useAccountPasswordResetRequestMutation } from '~/gql/generated'
 
 export interface Props {
@@ -45,17 +39,10 @@ const emit = defineEmits<{
 
 const fireAlert = useFireAlert()
 const { locale, t } = useI18n()
-const passwordResetRequestMutation = useAccountPasswordResetRequestMutation()
 
 // api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...passwordResetRequestMutation.data.value,
-    },
-    ...getApiMeta([passwordResetRequestMutation]),
-  })
-)
+const passwordResetRequestMutation = useAccountPasswordResetRequestMutation()
+const api = getApiData([passwordResetRequestMutation])
 
 // data
 const form = reactive({
@@ -65,26 +52,14 @@ const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  try {
-    await formPreSubmit(api, v$, isFormSent)
-  } catch (error) {
-    consola.error(error)
-    return
-  }
+  if (!(await isFormValid({ v$, isFormSent }))) return
 
   const result = await passwordResetRequestMutation.executeMutation({
     emailAddress: form.emailAddress || '',
     language: locale.value,
   })
 
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
-
-  if (!result.data) {
-    return
-  }
+  if (result.error || !result.data) return
 
   emit('account-password-reset-request')
   await fireAlert({

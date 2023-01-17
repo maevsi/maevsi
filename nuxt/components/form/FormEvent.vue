@@ -275,20 +275,8 @@ import {
   minValue,
   required,
 } from '@vuelidate/validators'
-import consola from 'consola'
 import slugify from 'slugify'
 
-import {
-  formPreSubmit,
-  validateEventSlug,
-  VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM,
-  VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM,
-  VALIDATION_EVENT_NAME_LENGTH_MAXIMUM,
-  VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM,
-  VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
-  VALIDATION_FORMAT_SLUG,
-  VALIDATION_FORMAT_URL_HTTPS,
-} from '~/utils/validation'
 import {
   Event,
   EventVisibility,
@@ -307,16 +295,11 @@ const props = withDefaults(defineProps<Props>(), {
 const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const store = useMaevsiStore()
-const createEventMutation = useCreateEventMutation()
-const updateEventMutation = useUpdateEventByIdMutation()
 
 // api data
-const api = computed(() =>
-  reactive({
-    data: {},
-    ...getApiMeta([createEventMutation, updateEventMutation]),
-  })
-)
+const createEventMutation = useCreateEventMutation()
+const updateEventMutation = useUpdateEventByIdMutation()
+const api = getApiData([createEventMutation, updateEventMutation])
 
 // data
 const form = reactive({
@@ -352,12 +335,7 @@ function onInputName($event: any) {
   updateSlug()
 }
 async function submit() {
-  try {
-    await formPreSubmit(api, v$, isFormSent)
-  } catch (error) {
-    consola.error(error)
-    return
-  }
+  if (!(await isFormValid({ v$, isFormSent }))) return
 
   if (form.id) {
     // Edit
@@ -381,14 +359,7 @@ async function submit() {
       },
     })
 
-    if (result.error) {
-      api.value.errors.push(result.error)
-      consola.error(result.error)
-    }
-
-    if (!result.data) {
-      return
-    }
+    if (result.error || !result.data) return
 
     showToast({ title: t('updated') })
   } else {
@@ -414,14 +385,7 @@ async function submit() {
       },
     })
 
-    if (result.error) {
-      api.value.errors.push(result.error)
-      consola.error(result.error)
-    }
-
-    if (!result.data) {
-      return
-    }
+    if (result.error || !result.data) return
 
     showToast({ title: t('eventCreateSuccess') })
     await navigateTo(

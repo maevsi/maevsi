@@ -29,30 +29,18 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
-import consola from 'consola'
 
 import FormType from '~/components/form/Form.vue'
-import {
-  formPreSubmit,
-  VALIDATION_PASSWORD_LENGTH_MINIMUM,
-} from '~/utils/validation'
 import { useAccountPasswordChangeMutation } from '~/gql/generated'
 
 const { t } = useI18n()
-const accountPasswordChangeMutation = useAccountPasswordChangeMutation()
 
 // refs
 const formRef = ref<typeof FormType>()
 
 // api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...accountPasswordChangeMutation.data.value,
-    },
-    ...getApiMeta([accountPasswordChangeMutation]),
-  })
-)
+const accountPasswordChangeMutation = useAccountPasswordChangeMutation()
+const api = getApiData([accountPasswordChangeMutation])
 
 // data
 const form = reactive({
@@ -66,26 +54,14 @@ function resetForm() {
   formRef.value?.reset()
 }
 async function submit() {
-  try {
-    await formPreSubmit(api, v$, isFormSent)
-  } catch (error) {
-    consola.error(error)
-    return
-  }
+  if (!(await isFormValid({ v$, isFormSent }))) return
 
   const result = await accountPasswordChangeMutation.executeMutation({
     passwordCurrent: form.passwordCurrent || '',
     passwordNew: form.passwordNew || '',
   })
 
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
-
-  if (!result.data) {
-    return
-  }
+  if (result.error || !result.data) return
 
   showToast({ title: t('passwordChangeSuccess') })
   resetForm()

@@ -55,32 +55,16 @@ import {
   minLength,
   required,
 } from '@vuelidate/validators'
-import consola from 'consola'
 
-import {
-  formPreSubmit,
-  validateUsername,
-  VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
-  VALIDATION_FORMAT_SLUG,
-  VALIDATION_FORMAT_UPPERCASE_NONE,
-  VALIDATION_PASSWORD_LENGTH_MINIMUM,
-  VALIDATION_USERNAME_LENGTH_MAXIMUM,
-} from '~/utils/validation'
 import { useAccountRegistrationMutation } from '~/gql/generated'
 
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
-const { executeMutation: executeMutationAccountRegistration } =
-  useAccountRegistrationMutation()
 
 // api data
-const api = computed(() =>
-  reactive({
-    data: {},
-    ...getApiMeta([]),
-  })
-)
+const accountRegistrationMutation = useAccountRegistrationMutation()
+const api = getApiData([accountRegistrationMutation])
 
 // data
 const form = reactive({
@@ -92,28 +76,16 @@ const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  try {
-    await formPreSubmit(api, v$, isFormSent)
-  } catch (error) {
-    consola.error(error)
-    return
-  }
+  if (!(await isFormValid({ v$, isFormSent }))) return
 
-  const result = await executeMutationAccountRegistration({
+  const result = await accountRegistrationMutation.executeMutation({
     emailAddress: form.emailAddress || '',
     language: locale.value,
     password: form.password || '',
     username: form.username || '',
   })
 
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
-
-  if (!result.data) {
-    return
-  }
+  if (result.error || !result.data) return
 
   await fireAlert({
     level: 'success',

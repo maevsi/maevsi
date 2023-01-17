@@ -148,15 +148,14 @@ const config = useRuntimeConfig()
 const TUSD_FILES_URL = useTusdFilesUrl()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
-const { executeMutation: executeMutationUploadCreate } =
-  useUploadCreateMutation()
 
 // refs
 const after = ref<string>()
 const cropperRef = ref()
 const inputProfilePictureRef = ref()
 
-// queries
+// api data
+const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery()
 const allUploadsQuery = await useAllUploadsQuery({
   variables: {
     after,
@@ -164,18 +163,12 @@ const allUploadsQuery = await useAllUploadsQuery({
     first: ITEMS_PER_PAGE,
   },
 })
-const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery()
-
-// api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...allUploadsQuery.data.value,
-      ...accountUploadQuotaBytesQuery.data.value,
-    },
-    ...getApiMeta([allUploadsQuery, accountUploadQuotaBytesQuery]),
-  })
-)
+const uploadCreateMutation = useUploadCreateMutation()
+const api = getApiData([
+  accountUploadQuotaBytesQuery,
+  allUploadsQuery,
+  uploadCreateMutation,
+])
 const uploads = computed(() => allUploadsQuery.data.value?.allUploads?.nodes)
 const accountUploadQuotaBytes = computed(
   () => accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes
@@ -320,23 +313,14 @@ const getUploadBlobPromise = () =>
       async (blob) => {
         if (!blob) return
 
-        api.value.errors = []
-
-        const result = await executeMutationUploadCreate({
+        const result = await uploadCreateMutation.executeMutation({
           uploadCreateInput: {
             sizeByte: blob.size,
           },
         })
 
-        if (result.error) {
-          api.value.errors.push(result.error)
-          consola.error(result.error)
-          return reject(result.error)
-        }
-
-        if (!result.data) {
-          return
-        }
+        if (result.error) return reject(result.error)
+        if (!result.data) return
 
         uppy.value = new Uppy({
           id: 'profile-picture',
@@ -392,9 +376,6 @@ const getUploadBlobPromise = () =>
 
 // lifecycle
 onBeforeUnmount(() => uppy.value?.close())
-watch(allUploadsQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
-})
 </script>
 
 <style>

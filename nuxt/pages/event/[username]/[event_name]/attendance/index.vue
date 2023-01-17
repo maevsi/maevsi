@@ -109,15 +109,13 @@ const store = useMaevsiStore()
 const route = useRoute()
 const fireAlert = useFireAlert()
 
-// queries
+// api data
 const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,
     slug: route.params.event_name as string,
   },
 })
-
-// api data
 const event = computed(
   () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
 )
@@ -257,9 +255,6 @@ onMounted(() => {
   checkWriteTag().catch((err: Error) => {
     isNfcWritableErrorMessage.value = err.message
   })
-})
-watch(eventQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
 })
 
 // initialization

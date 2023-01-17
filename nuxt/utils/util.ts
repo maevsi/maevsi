@@ -2,22 +2,17 @@ import { IncomingMessage } from 'node:http'
 
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
-import { GraphQLError } from 'graphql'
+import consola from 'consola'
 import Swal from 'sweetalert2'
-import { ComputedRef, Ref } from 'vue'
+import { Ref } from 'vue'
 import { LocationQueryValue } from 'vue-router'
 
 import { REGEX_UUID } from './constants'
-
-export type BackendError = {
-  graphQLErrors: (GraphQLError & { originalError?: { errcode?: string } })[]
-} & CombinedError
-
-export type ApiData = ComputedRef<{
-  data?: Object
-  errors: BackendError[]
-  isFetching: boolean
-}>
+import type {
+  ArrayElement,
+  BackendError,
+  UnionToIntersection,
+} from '~/types/types'
 
 export function append(path: string, pathToAppend: string): string {
   return path + (path.endsWith('/') ? '' : '/') + pathToAppend
@@ -85,33 +80,41 @@ export function getHost(req: IncomingMessage) {
   return req.headers.host
 }
 
-export const getApiDataDefault = (): ApiData =>
-  computed(() =>
-    reactive({
-      data: undefined,
-      ...getApiMeta(),
-    })
-  )
-
-export const getApiMeta = (
-  queries?: {
+export const getApiData = <
+  S,
+  T extends {
+    data: Ref<S>
     error: Ref<CombinedError | undefined>
     fetching: Ref<boolean>
-  }[]
-) => ({
-  errors: queries
-    ? queries.reduce((p, c) => {
-        if (c.error.value) {
-          return [...p, c.error.value]
-        } else {
-          return p
-        }
-      }, [] as BackendError[])
-    : [],
-  isFetching: queries
-    ? queries.reduce((p, c) => p || c.fetching.value, false)
-    : false,
-})
+  }
+>(
+  queries?: T[]
+) => {
+  const apiData = computed(() => ({
+    data: (queries || []).reduce(
+      (p, c) => ({ ...p, ...c.data.value }),
+      {} as NonNullable<
+        UnionToIntersection<NonNullable<ArrayElement<T[]>['data']['value']>>
+      >
+    ),
+    errors: (queries || []).reduce(
+      (p, c) => (c.error.value ? [...p, c.error.value] : p),
+      [] as BackendError[]
+    ),
+    isFetching: (queries || []).reduce((p, c) => p || c.fetching.value, false),
+  }))
+
+  watch(
+    () => apiData.value.errors,
+    (current, previous) => {
+      current
+        .filter((error) => !previous.includes(error))
+        .forEach((error) => consola.error(error))
+    }
+  )
+
+  return apiData
+}
 
 export function getCombinedErrorMessages(
   errors: BackendError[],

@@ -83,7 +83,6 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, minValue, required } from '@vuelidate/validators'
-import consola from 'consola'
 
 import {
   Event,
@@ -105,15 +104,13 @@ const emit = defineEmits<{
 }>()
 
 const store = useMaevsiStore()
-const { executeMutation: executeMutationCreateInvitation } =
-  useCreateInvitationMutation()
 const localePath = useLocalePath()
 const { t } = useI18n()
 
 // refs
 const after = ref<string>()
 
-// queries
+// api data
 const allContactsQuery = await useAllContactsQuery({
   variables: {
     after,
@@ -121,16 +118,8 @@ const allContactsQuery = await useAllContactsQuery({
     first: ITEMS_PER_PAGE_LARGE,
   },
 })
-
-// api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...allContactsQuery.data.value,
-    },
-    ...getApiMeta([allContactsQuery]),
-  })
-)
+const createInvitationMutation = useCreateInvitationMutation()
+const api = getApiData([allContactsQuery, createInvitationMutation])
 const contacts = computed(() => allContactsQuery.data.value?.allContacts?.nodes)
 
 // data
@@ -151,33 +140,25 @@ function selectToggle(contactId: string) {
   }
 }
 async function submit() {
-  try {
-    await formPreSubmit(api, v$, isFormSent)
-  } catch (error) {
-    consola.error(error)
-    return
-  }
+  if (!(await isFormValid({ v$, isFormSent }))) return
 
   const successIds = []
 
   try {
     for (const contactId of form.contactIds) {
-      const result = await executeMutationCreateInvitation({
+      const result = await createInvitationMutation.executeMutation({
         invitationInput: {
           contactId: contactId || null,
           eventId: +props.event.id,
         },
       })
 
-      if (result.error) {
-        api.value.errors.push(result.error)
-        consola.error(result.error)
-      } else {
-        successIds.push(contactId)
-      }
-
       if (!result.data) {
         throw new Error('No data!')
+      }
+
+      if (!result.error) {
+        successIds.push(contactId)
       }
     }
   } catch (error: any) {
@@ -237,11 +218,6 @@ const rules = {
   searchString: {},
 }
 const v$ = useVuelidate(rules, form)
-
-// lifecycle
-watch(allContactsQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
-})
 </script>
 
 <i18n lang="yaml">

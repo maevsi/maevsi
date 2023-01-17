@@ -24,8 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import consola from 'consola'
-
 import { useAllEventsQuery } from '~/gql/generated'
 
 export interface Props {
@@ -41,7 +39,7 @@ const { t } = useI18n()
 // refs
 const after = ref<string>()
 
-// queries
+// api data
 const eventsQuery = await useAllEventsQuery({
   variables: {
     after,
@@ -49,16 +47,7 @@ const eventsQuery = await useAllEventsQuery({
     first: ITEMS_PER_PAGE,
   },
 })
-
-// api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...eventsQuery.data.value,
-    },
-    ...getApiMeta([eventsQuery]),
-  })
-)
+const api = getApiData([eventsQuery])
 const events = computed(() => eventsQuery.data.value?.allEvents?.nodes)
 
 // data
@@ -66,11 +55,6 @@ const isButtonEventListShown = ref(
   typeof route.name === 'string' &&
     route.name?.replace(/___.+$/, '') !== 'event'
 )
-
-// lifecycle
-watch(eventsQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
-})
 </script>
 
 <i18n lang="yaml">

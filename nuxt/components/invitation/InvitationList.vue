@@ -231,15 +231,13 @@ const { $colorMode } = useNuxtApp()
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const store = useMaevsiStore()
-const deleteInvitationByIdMutation = useDeleteInvitationByIdMutation()
-const inviteMutation = useInviteMutation()
 const config = useRuntimeConfig()
 
 // refs
 const after = ref<string>()
 const doughnutRef = ref()
 
-// queries
+// api data
 const invitationsQuery = await useAllInvitationsQuery({
   variables: {
     after,
@@ -247,20 +245,13 @@ const invitationsQuery = await useAllInvitationsQuery({
     first: ITEMS_PER_PAGE_LARGE,
   },
 })
-
-// api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...invitationsQuery.data.value,
-    },
-    ...getApiMeta([
-      deleteInvitationByIdMutation,
-      inviteMutation,
-      invitationsQuery,
-    ]),
-  })
-)
+const deleteInvitationByIdMutation = useDeleteInvitationByIdMutation()
+const inviteMutation = useInviteMutation()
+const api = getApiData([
+  invitationsQuery,
+  deleteInvitationByIdMutation,
+  inviteMutation,
+])
 const invitations = computed(
   () => invitationsQuery.data.value?.allInvitations?.nodes
 )
@@ -304,22 +295,11 @@ function copyLink(invitation: Pick<Invitation, 'uuid'>): void {
 }
 async function delete_(id: string) {
   pending.deletions.push(id)
-  api.value.errors = []
-
-  const result = await deleteInvitationByIdMutation.executeMutation({
-    id,
-  })
-
+  await deleteInvitationByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(id), 1)
-
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
 }
 async function send(invitation: any) {
   pending.sends.push(invitation.uuid)
-  api.value.errors = []
 
   const result = await inviteMutation.executeMutation({
     invitationId: invitation.id,
@@ -328,14 +308,7 @@ async function send(invitation: any) {
 
   pending.sends.splice(pending.sends.indexOf(invitation.uuid), 1)
 
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
-
-  if (!result.data) {
-    return
-  }
+  if (result.error || !result.data) return
 
   showToast({ title: t('sendSuccess') })
 }
@@ -383,9 +356,6 @@ watch(
     doughnutRef.value.updateChart()
   }
 )
-watch(invitationsQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
-})
 
 // initialization
 Chart.register(

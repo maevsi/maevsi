@@ -23,12 +23,7 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
-import consola from 'consola'
 
-import {
-  formPreSubmit,
-  VALIDATION_PASSWORD_LENGTH_MINIMUM,
-} from '~/utils/validation'
 import { useAccountPasswordResetMutation } from '~/gql/generated'
 
 export interface Props {
@@ -41,17 +36,11 @@ withDefaults(defineProps<Props>(), {
 const { t } = useI18n()
 const route = useRoute()
 const localePath = useLocalePath()
-const passwordResetMutation = useAccountPasswordResetMutation()
 
 // api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...passwordResetMutation.data.value,
-    },
-    ...getApiMeta([passwordResetMutation]),
-  })
-)
+const passwordResetMutation = useAccountPasswordResetMutation()
+const api = getApiData([passwordResetMutation])
+
 // data
 const form = reactive({
   password: ref<string>(),
@@ -60,26 +49,14 @@ const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  try {
-    await formPreSubmit(api, v$, isFormSent)
-  } catch (error) {
-    consola.error(error)
-    return
-  }
+  if (!(await isFormValid({ v$, isFormSent }))) return
 
   const result = await passwordResetMutation.executeMutation({
     code: route.query.code,
     password: form.password || '',
   })
 
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
-
-  if (!result.data) {
-    return
-  }
+  if (result.error || !result.data) return
 
   showToast({ title: t('accountPasswordResetSuccess') })
   await navigateTo({

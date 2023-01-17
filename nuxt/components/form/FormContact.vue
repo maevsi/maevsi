@@ -107,22 +107,7 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { email, helpers, maxLength } from '@vuelidate/validators'
-import consola from 'consola'
 
-import {
-  formPreSubmit,
-  validateUsername,
-  VALIDATION_ADDRESS_LENGTH_MAXIMUM,
-  VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM,
-  VALIDATION_EVENT_URL_LENGTH_MAXIMUM,
-  VALIDATION_FIRST_NAME_LENGTH_MAXIMUM,
-  VALIDATION_FORMAT_PHONE_NUMBER,
-  VALIDATION_FORMAT_SLUG,
-  VALIDATION_FORMAT_UPPERCASE_NONE,
-  VALIDATION_FORMAT_URL_HTTPS,
-  VALIDATION_LAST_NAME_LENGTH_MAXIMUM,
-  VALIDATION_USERNAME_LENGTH_MAXIMUM,
-} from '~/utils/validation'
 import {
   Contact,
   useCreateContactMutation,
@@ -142,19 +127,12 @@ const emit = defineEmits<{
 }>()
 
 const store = useMaevsiStore()
-const updateContactByIdMutation = useUpdateContactByIdMutation()
-const createContactMutation = useCreateContactMutation()
 const { t } = useI18n()
 
 // api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...updateContactByIdMutation.data.value,
-    },
-    ...getApiMeta([updateContactByIdMutation]),
-  })
-)
+const createContactMutation = useCreateContactMutation()
+const updateContactByIdMutation = useUpdateContactByIdMutation()
+const api = getApiData([createContactMutation, updateContactByIdMutation])
 
 // data
 const form = reactive({
@@ -171,12 +149,7 @@ const isFormSent = ref(false)
 
 // methods
 async function submit() {
-  try {
-    await formPreSubmit(api, v$, isFormSent)
-  } catch (error) {
-    consola.error(error)
-    return
-  }
+  if (!(await isFormValid({ v$, isFormSent }))) return
 
   if (form.id) {
     // Edit
@@ -194,14 +167,7 @@ async function submit() {
       },
     })
 
-    if (result.error) {
-      api.value.errors.push(result.error)
-      consola.error(result.error)
-    }
-
-    if (!result.data) {
-      return
-    }
+    if (result.error || !result.data) return
 
     emit('submitSuccess')
   } else {
@@ -219,14 +185,7 @@ async function submit() {
       },
     })
 
-    if (result.error) {
-      api.value.errors.push(result.error)
-      consola.error(result.error)
-    }
-
-    if (!result.data) {
-      return
-    }
+    if (result.error || !result.data) return
 
     emit('submitSuccess')
   }
@@ -238,9 +197,6 @@ function updateForm(data?: Pick<Contact, any>) {
     ;(form as Record<string, any>)[k] = v
   }
 }
-
-// initialization
-updateForm(props.contact)
 
 // vuelidate
 const rules = {
@@ -281,6 +237,9 @@ watch(
     updateForm(currentValue)
   }
 )
+
+// initialization
+updateForm(props.contact)
 </script>
 
 <i18n lang="yaml">

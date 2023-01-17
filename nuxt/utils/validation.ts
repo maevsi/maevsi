@@ -1,4 +1,5 @@
 import { helpers } from '@vuelidate/validators'
+import consola from 'consola'
 import { Ref } from 'vue'
 
 import {
@@ -8,7 +9,6 @@ import {
   REGEX_URL_HTTPS,
   REGEX_UUID,
 } from './constants'
-import { ApiData } from './util'
 
 import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
@@ -31,22 +31,23 @@ export const VALIDATION_LAST_NAME_LENGTH_MAXIMUM = 100
 export const VALIDATION_PASSWORD_LENGTH_MINIMUM = 8
 export const VALIDATION_USERNAME_LENGTH_MAXIMUM = 100
 
-export async function formPreSubmit(
-  api: ApiData,
-  v$: any,
+export async function isFormValid({
+  v$,
+  isFormSent,
+}: {
+  v$: any
   isFormSent: Ref<boolean>
-): Promise<boolean> {
-  api.value.errors = []
+}): Promise<boolean> {
   v$.value.$touch()
 
-  const isFormValid = await v$.value.$validate()
-  isFormSent.value = isFormValid
+  const isValid = await v$.value.$validate()
+  isFormSent.value = isValid
 
-  if (!isFormValid) {
-    throw new Error('Form is invalid!')
+  if (!isValid) {
+    consola.error('Form in invalid!')
   }
 
-  return isFormValid
+  return isValid
 }
 
 export function validateEventSlug(
