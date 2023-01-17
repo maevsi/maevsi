@@ -29,6 +29,9 @@ export default defineNuxtConfig({
     [
       '@dargmuesli/nuxt-cookie-control',
       {
+        colors: {
+          checkboxActiveBackground: '#00A34A', // text-green-600
+        },
         cookies: {
           necessary: [
             {
