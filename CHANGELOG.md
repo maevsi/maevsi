@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/maevsi/maevsi/compare/1.3.5...1.4.0) (2023-01-17)
+
+
+### Features
+
+* **cookie-control:** set checkbox active background color ([64ed54c](https://github.com/maevsi/maevsi/commit/64ed54cbc749cc19a9135ae5165da6eb03924493))
+
 ## [1.3.5](https://github.com/maevsi/maevsi/compare/1.3.4...1.3.5) (2023-01-17)
 
 
