@@ -2,7 +2,7 @@ import graphqlPlugin from '@rollup/plugin-graphql'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import { JWT_NAME, LOCALES } from './utils/constants'
+import { LOCALES } from './utils/constants'
 
 export const SITEMAP_EXCLUSIONS = ['/teapot'] // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
 export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
@@ -32,52 +32,65 @@ export default defineNuxtConfig({
         colors: {
           checkboxActiveBackground: '#00A34A', // text-green-600
         },
+        /**
+         * "The Cookie Law does not require that you list cookies one by one, only that you state their type, usage and purpose.
+         * The cookie policy must:
+         * - indicate the type of cookies installed (first-party cookies vs third-party cookies* );
+         * - indicate all third-parties that install, manage, or access cookies via your site/app, with a link to their respective policies, and any opt-out forms (where available);
+         * - describe – in detail – the purposes for which cookies are used;
+         * - be available in all languages in which the service is provided."
+         *
+         * https://www.iubenda.com/en/help/5525-cookies-gdpr-requirements
+         * https://www.iubenda.com/en/help/23672-gdpr-cookie-consent-cheatsheet
+         **/
         cookies: {
-          necessary: [
-            {
-              description: {
-                de: 'Speichert die Zugriffsberechtigungen auf Daten.',
-                en: 'Saves the access permissions to data.',
-              },
-              name: {
-                de: 'Authentifizierungsdaten',
-                en: 'Authentication Data',
-              },
-              targetCookieIds: [JWT_NAME()],
-            },
-            {
-              description: {
-                de: 'Speichert die Einstellungen, die in diesem Dialog getroffen werden.',
-                en: 'Saves the settings made in this dialog.',
-              },
-              name: {
-                de: 'Cookie-Präferenzen',
-                en: 'Cookie Preferences',
-              },
-              targetCookieIds: [
-                'cookie_control_is_consent_given',
-                'cookie_control_cookies_enabled_ids',
-              ],
-            },
-            {
-              description: {
-                de: 'Speichert in welcher Sprache die Webseite angezeigt wird.',
-                en: 'Saves in which language the web page is displayed.',
-              },
-              name: {
-                de: 'Spracheinstellungen',
-                en: 'Language Settings',
-              },
-              targetCookieIds: ['i18n_redirected'],
-            },
-          ],
+          // // The following cookies are considered necessary and are therefore currently only defined as a comment.
+          // necessary: [
+          //   {
+          //     description: {
+          //       de: 'Dieser Cookie von uns speichert die Zugriffsberechtigungen auf Daten.',
+          //       en: 'This cookie from us stores the access permissions to data.',
+          //     },
+          //     name: {
+          //       de: 'Authentifizierungsdaten',
+          //       en: 'Authentication Data',
+          //     },
+          //     targetCookieIds: [JWT_NAME()],
+          //   },
+          //   {
+          //     description: {
+          //       de: 'Dieser Cookie von uns speichert die Einstellungen, die in diesem Dialog getroffen werden.',
+          //       en: 'This cookie of ours stores the settings made in this dialog.',
+          //     },
+          //     name: {
+          //       de: 'Cookie-Präferenzen',
+          //       en: 'Cookie Preferences',
+          //     },
+          //     targetCookieIds: [
+          //       'cookie_control_is_consent_given',
+          //       'cookie_control_cookies_enabled_ids',
+          //     ],
+          //   },
+          //   {
+          //     description: {
+          //       de: 'Dieser Cookie von uns speichert in welcher Sprache die Webseite angezeigt wird.',
+          //       en: 'This cookie of ours stores in which language the website is displayed.',
+          //     },
+          //     name: {
+          //       de: 'Spracheinstellungen',
+          //       en: 'Language Settings',
+          //     },
+          //     targetCookieIds: ['i18n_redirected'],
+          //   },
+          // ],
           optional: [
             {
               description: {
-                de: 'Hilft uns dabei Nutzerverhalten zu verstehen und unsere Dienste zu verbessern.',
-                en: 'Helps us understand user behavior and optimize our services.',
+                de: 'Die Cookies vom Drittanbieter Google analysieren Nutzerverhalten, was uns dabei hilft zu verstehen, wie diese Webseite genutzt wird, und dabei unsere Dienste zu verbessern.',
+                en: 'The third-party cookies by Google analyze user behavior, which helps us understand how this website is used and to improve our services.',
               },
-              name: 'Google Analytics',
+              id: 'google-analytics',
+              name: 'Analytics',
               targetCookieIds: [
                 '_ga',
                 '_ga_WMQ1JY99XH',
