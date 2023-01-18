@@ -2,7 +2,7 @@ import graphqlPlugin from '@rollup/plugin-graphql'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import { JWT_NAME, LOCALES } from './utils/constants'
+import { JWT_NAME, LOCALES, TIMEZONE_COOKIE_NAME } from './utils/constants'
 
 export const SITEMAP_EXCLUSIONS = ['/teapot'] // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
 export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
@@ -44,6 +44,17 @@ export default defineNuxtConfig({
                 en: 'Authentication Data',
               },
               targetCookieIds: [JWT_NAME()],
+            },
+            {
+              description: {
+                de: 'Speichert die Zeitzone, in der sich das Gerät zu befinden scheint.',
+                en: 'Saves the timezone in which the device appears to be.',
+              },
+              name: {
+                de: 'Zeitzone',
+                en: 'Timezone',
+              },
+              targetCookieIds: [TIMEZONE_COOKIE_NAME],
             },
             {
               description: {

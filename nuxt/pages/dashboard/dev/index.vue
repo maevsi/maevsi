@@ -45,18 +45,18 @@
 import { useMaevsiStore } from '~/store'
 
 const { signOut } = useSignOut()
-const { $moment } = useNuxtApp()
 const { t } = useI18n()
 const store = useMaevsiStore()
+const dateTime = useDateTime()
 
 // data
 const title = t('title')
 
 // computations
 const jwtDecoded = computed(() => store.jwtDecoded)
-const sessionExpiryTime = computed(() => {
-  return $moment(store.jwtDecoded?.exp, 'X').format('llll')
-})
+const sessionExpiryTime = computed(() =>
+  dateTime(store.jwtDecoded?.exp).format('llll')
+)
 
 // initialization
 useHeadDefault(title)

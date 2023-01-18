@@ -25,3 +25,5 @@ export const REGEX_UPPERCASE_NONE = /^[^A-Z]+$/
 export const REGEX_URL_HTTPS = /^https:\/\//
 export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
+export const TIMEZONE_COOKIE_NAME = 'maevsi_timezone'
+export const TIMEZONE_HEADER_KEY = 'X-Timezone'

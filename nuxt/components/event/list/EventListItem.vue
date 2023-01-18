@@ -2,9 +2,9 @@
   <li
     v-if="event"
     :class="{
-      'opacity-75': event.end
-        ? $moment(event.end).isBefore($moment())
-        : $moment(event.start).isBefore($moment()),
+      'opacity-75': eventEnd
+        ? eventEnd.isBefore(now)
+        : eventStart.isBefore(now),
     }"
   >
     <Button
@@ -17,12 +17,11 @@
           <div
             class="truncate font-medium"
             :class="{
-              'text-green-700 dark:text-green-600': $moment(
-                event.start
-              ).isSameOrAfter($moment()),
+              'text-green-700 dark:text-green-600':
+                eventStart.isSameOrAfter(now),
             }"
           >
-            {{ $moment(event.start).format('lll') }}
+            {{ eventStart.format('lll') }}
           </div>
           <Tag
             v-if="event.visibility === 'PRIVATE'"
@@ -71,6 +70,10 @@ const props = withDefaults(defineProps<Props>(), {})
 
 const localePath = useLocalePath()
 const { t } = useI18n()
+const dateTime = useDateTime()
+
+// data
+const now = dateTime()
 
 // computations
 const eventDescriptionTemplate = computed(() => {
@@ -87,6 +90,8 @@ const eventDescriptionTemplate = computed(() => {
     }
   )
 })
+const eventEnd = computed(() => dateTime(props.event.end))
+const eventStart = computed(() => dateTime(props.event.start))
 </script>
 
 <i18n lang="yaml">

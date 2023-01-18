@@ -4,8 +4,8 @@
       <IconHourglass :title="t('duration')" />
     </span>
     {{
-      // @ts-ignore types should work https://github.com/iamkun/dayjs/issues/2106
-      $moment.duration($moment(event.end).diff($moment(event.start))).humanize()
+      // @ts-ignore `duration` should be part of `$dayjs` (https://github.com/iamkun/dayjs/issues/2106)
+      $dayjs.duration($dayjs(event.end).diff($dayjs(event.start))).humanize()
     }}
   </EventDashlet>
 </template>

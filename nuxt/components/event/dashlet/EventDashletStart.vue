@@ -5,10 +5,10 @@
     </span>
     <div class="flex flex-col">
       <span>
-        {{ $moment(event.start).format('lll') }}
+        {{ eventStart.format('lll') }}
       </span>
       <span class="hidden sm:inline">
-        {{ t('embraced', { content: $moment(event.start).fromNow() }) }}
+        {{ t('embraced', { content: eventStart.fromNow() }) }}
       </span>
     </div>
   </EventDashlet>
@@ -20,9 +20,13 @@ import { Event } from '~/gql/generated'
 export interface Props {
   event: Pick<Event, 'start'>
 }
-withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {})
 
 const { t } = useI18n()
+const dateTime = useDateTime()
+
+// computations
+const eventStart = computed(() => dateTime(props.event.start))
 </script>
 
 <i18n lang="yaml">

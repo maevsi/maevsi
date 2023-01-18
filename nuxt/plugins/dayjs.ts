@@ -1,4 +1,4 @@
-import moment from 'dayjs'
+import dayjs, { DayjsFn } from 'dayjs'
 
 // workaround for [1]
 import de from 'dayjs/locale/de'
@@ -8,23 +8,39 @@ import duration from 'dayjs/plugin/duration'
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
 
 export default defineNuxtPlugin((_nuxtApp) => {
-  moment.extend(duration)
-  moment.extend(isSameOrAfter)
-  moment.extend(localizedFormat)
-  moment.extend(relativeTime)
+  dayjs.extend(duration)
+  dayjs.extend(isSameOrAfter)
+  dayjs.extend(localizedFormat)
+  dayjs.extend(relativeTime)
+  dayjs.extend(timezone)
+  dayjs.extend(utc)
 
   // workaround for [1]
-  moment.locale(de)
+  dayjs.locale(de)
   // moment.locale(en) makes `format` error
 
   return {
     provide: {
-      moment,
+      dayjs,
     },
   }
 })
+
+declare module '#app' {
+  interface NuxtApp {
+    $dayjs: DayjsFn
+  }
+}
+
+declare module 'nuxt/dist/app/nuxt' {
+  interface NuxtApp {
+    $dayjs: DayjsFn
+  }
+}
 
 /*
   [1]
