@@ -245,7 +245,7 @@ export const getTimezone = async (event: H3Event) =>
   getCookie(event, TIMEZONE_COOKIE_NAME) ||
   (
     await ofetch(
-      `http://ip-api.com/json/${event.node.req.headers['x-forwarded-for']}`
+      `http://ip-api.com/json/${event.node.req.headers['x-real-ip']}`
     )
   ).timezone
 
