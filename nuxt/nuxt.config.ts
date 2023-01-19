@@ -48,7 +48,7 @@ export default defineNuxtConfig({
             {
               description: {
                 de: 'Speichert die Zeitzone, in der sich das Gerät zu befinden scheint.',
-                en: 'Saves the timezone in which the device appears to be.',
+                en: 'Saves the timezone in which the device appears to be located.',
               },
               name: {
                 de: 'Zeitzone',
