@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-const { $moment } = useNuxtApp()
+const { $dayjs } = useNuxtApp()
 const router = useRouter()
 const route = useRoute()
 const { locale } = useI18n()
@@ -72,7 +72,7 @@ onMounted(() => {
 
 // initialization
 useHeadLayout()
-$moment.locale(locale.value)
+$dayjs.locale(locale.value)
 </script>
 
 <script lang="ts">
