@@ -37,8 +37,9 @@
         </AppLink>
       </div>
       <div class="flex justify-center">
-        <Turnstile />
+        <Turnstile v-model="store.turnstileKey" />
       </div>
+      <p>{{ t('verificationKey') }}: {{ store.turnstileKey }}</p>
 
       <template
         v-if="
@@ -66,6 +67,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import { maxLength, minLength, required } from '@vuelidate/validators'
 import consola from 'consola'
+import { useMaevsiStore } from '~/store/index'
 
 import {
   formPreSubmit,
@@ -80,6 +82,7 @@ import {
 
 const { jwtStore } = useJwtStore()
 const { locale, t } = useI18n()
+const store = useMaevsiStore()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
 const { executeMutation: executeMutationAccountRegistrationRefresh } =
@@ -116,6 +119,7 @@ function accountRegistrationRefresh() {
     }
   })
 }
+
 async function submit() {
   try {
     await formPreSubmit(api, v$, isFormSent)
@@ -175,6 +179,7 @@ de:
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
   signIn: Anmelden
   verificationMailResend: Verifizierungsmail erneut senden
+  verificationKey: Verifizierungsschlüssel
 en:
   jwtStoreFail: Failed to store the authentication data!
   passwordReset: Reset password
@@ -185,4 +190,5 @@ en:
   registrationRefreshSuccess: A new welcome email is on its way to you.
   signIn: Sign in
   verificationMailResend: Resend verification email
+  verificationKey: Verification key
 </i18n>
