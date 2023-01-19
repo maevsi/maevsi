@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': 7.20.12
-  '@dargmuesli/nuxt-cookie-control': 3.0.0
+  '@dargmuesli/nuxt-cookie-control': 4.0.0-beta.2
   '@funken-studio/sitemap-nuxt-3': 4.0.4
   '@graphql-codegen/cli': 2.16.4
   '@graphql-codegen/typescript': 2.8.7
@@ -18,7 +18,7 @@ specifiers:
   '@nuxtjs/color-mode': 3.2.0
   '@nuxtjs/eslint-config-typescript': 12.0.0
   '@nuxtjs/html-validator': 1.2.3
-  '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.7-27893843.b72135e
+  '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.7-27902015.6860920
   '@pinia/nuxt': 0.4.6
   '@rollup/plugin-graphql': 2.0.2
   '@tailwindcss/forms': 0.5.3
@@ -32,7 +32,7 @@ specifiers:
   '@types/dompurify': 2.4.0
   '@types/downloadjs': 1.4.3
   '@types/html-to-text': 9.0.0
-  '@types/jest': 29.2.5
+  '@types/jest': 29.2.6
   '@types/lodash-es': 4.17.6
   '@types/mustache': 4.2.2
   '@types/node': 18.11.18
@@ -122,7 +122,7 @@ specifiers:
 
 devDependencies:
   '@babel/core': 7.20.12
-  '@dargmuesli/nuxt-cookie-control': 3.0.0_rollup@2.79.1
+  '@dargmuesli/nuxt-cookie-control': 4.0.0-beta.2_rollup@2.79.1
   '@funken-studio/sitemap-nuxt-3': 4.0.4_rollup@2.79.1
   '@graphql-codegen/cli': 2.16.4_wl4vyuczoxcwwozwumwpxheb2e
   '@graphql-codegen/typescript': 2.8.7_graphql@16.6.0
@@ -138,7 +138,7 @@ devDependencies:
   '@nuxtjs/color-mode': 3.2.0_rollup@2.79.1
   '@nuxtjs/eslint-config-typescript': 12.0.0_7uibuqfxkfaozanbtbziikiqje
   '@nuxtjs/html-validator': 1.2.3_jest@29.3.1+rollup@2.79.1
-  '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.7-27893843.b72135e_rollup@2.79.1+vue@3.2.45
+  '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.7-27902015.6860920_rollup@2.79.1+vue@3.2.45
   '@pinia/nuxt': 0.4.6_rnb65zy77kx66qnsvrpa2qz65q
   '@rollup/plugin-graphql': 2.0.2_wvgxa4tpgmyetagc7e4kukhube
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
@@ -152,7 +152,7 @@ devDependencies:
   '@types/dompurify': 2.4.0
   '@types/downloadjs': 1.4.3
   '@types/html-to-text': 9.0.0
-  '@types/jest': 29.2.5
+  '@types/jest': 29.2.6
   '@types/lodash-es': 4.17.6
   '@types/mustache': 4.2.2
   '@types/node': 18.11.18
@@ -1044,8 +1044,8 @@ packages:
       - supports-color
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control/3.0.0_rollup@2.79.1:
-    resolution: {integrity: sha512-ewlYK2SXhzbtZmMFQktWCBsYj17ql5zfFHHA7AfTPsQLJx8gf3GbUL5bKe1uoDWwj2E9cuzMmVSVCvuMoZfg/A==}
+  /@dargmuesli/nuxt-cookie-control/4.0.0-beta.2_rollup@2.79.1:
+    resolution: {integrity: sha512-SshEWR4jH7LRKeOSXjO7PA1zG7cAc6voVmmOUCtOuF45TvvOnLTD52T5C83cmnG+vgPydnq9mIYP8ZZzxYLf9A==}
     dependencies:
       '@nuxt/kit': 3.0.0_rollup@2.79.1
       '@sindresorhus/slugify': 2.1.1
@@ -2551,8 +2551,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n-edge/8.0.0-beta.7-27893843.b72135e_rollup@2.79.1+vue@3.2.45:
-    resolution: {integrity: sha512-8L+6/JKd76BNvn70H6P1vMHPSsomrto/qhkurkzQ+owWSSp2OibjdO9kKr95FHeyGmg7+OY3zBi+nPHu+zl5aA==}
+  /@nuxtjs/i18n-edge/8.0.0-beta.7-27902015.6860920_rollup@2.79.1+vue@3.2.45:
+    resolution: {integrity: sha512-zvz1KFf8nHWxT+q4iiqUnDoUSA7rT9Le4HLyQ1yQKlk7q6gaeM0sjPgaPVujxsXg3AhC1m8PKLFABNhqL7SDrA==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
     dependencies:
       '@intlify/bundle-utils': 3.4.0_vue-i18n@9.3.0-beta.15
@@ -3257,8 +3257,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/29.2.5:
-    resolution: {integrity: sha512-H2cSxkKgVmqNHXP7TC2L/WUorrZu8ZigyRywfVzv6EyBlxj39n4C00hjXYQWsbwqgElaj/CiAeSRmk5GoaKTgw==}
+  /@types/jest/29.2.6:
+    resolution: {integrity: sha512-XEUC/Tgw3uMh6Ho8GkUtQ2lPhY5Fmgyp3TdlkTJs1W9VgNxs+Ow/x3Elh8lHQKqCbZL0AubQuqWjHVT033Hhrw==}
     dependencies:
       expect: 29.3.1
       pretty-format: 29.3.1

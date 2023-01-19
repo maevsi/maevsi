@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/maevsi/maevsi/compare/1.4.0...1.5.0) (2023-01-19)
+
+
+### Features
+
+* **cookie-control:** upgrade to v4 ([5e048f2](https://github.com/maevsi/maevsi/commit/5e048f2a4d90135dd21ce286588b7b725e3c79e5)), closes [#1042](https://github.com/maevsi/maevsi/issues/1042)
+
 # [1.4.0](https://github.com/maevsi/maevsi/compare/1.3.5...1.4.0) (2023-01-17)
 
 
