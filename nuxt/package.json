@@ -131,7 +131,7 @@
     "prosemirror-schema-list": "1.2.2",
     "prosemirror-state": "1.4.2",
     "prosemirror-transform": "1.7.0",
-    "prosemirror-view": "1.29.2",
+    "prosemirror-view": "1.30.0",
     "qrcode.vue": "3.3.3",
     "rollup": "2.79.1",
     "slugify": "1.6.5",
