@@ -1,3 +1,17 @@
+# [1.6.0](https://github.com/maevsi/maevsi/compare/1.5.0...1.6.0) (2023-01-20)
+
+
+### Bug Fixes
+
+* **cookie-control:** correct locale string ([a815fd0](https://github.com/maevsi/maevsi/commit/a815fd04eb1e73eea94e99064eaf0a951dc5000d))
+* **nuxt:** correct dayjs destructuring ([080019b](https://github.com/maevsi/maevsi/commit/080019bd6a927d405c29686536b4ad9bdb37d925))
+* **util:** correct ip header ([ddc4cb6](https://github.com/maevsi/maevsi/commit/ddc4cb6ec1cd4e14ac233338e9897b088261babe))
+
+
+### Features
+
+* **ssr:** account for timezone ([57a9ebf](https://github.com/maevsi/maevsi/commit/57a9ebfc15e3c70f2725f4533215a406c3a057a7)), closes [#999](https://github.com/maevsi/maevsi/issues/999)
+
 # [1.5.0](https://github.com/maevsi/maevsi/compare/1.4.0...1.5.0) (2023-01-19)
 
 
