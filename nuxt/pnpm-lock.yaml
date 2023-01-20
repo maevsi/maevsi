@@ -79,6 +79,7 @@ specifiers:
   mustache: 4.2.0
   node-fetch: 3.3.0
   nuxt: 3.0.0
+  ofetch: 1.0.0
   pg: 8.8.0
   pinia: 2.0.29
   postcss: 8.4.21
@@ -198,6 +199,7 @@ devDependencies:
   mustache: 4.2.0
   node-fetch: 3.3.0
   nuxt: 3.0.0_j3pwchhpm5swqhdrjlsltbemhi
+  ofetch: 1.0.0
   pg: 8.8.0
   pinia: 2.0.29_prq2uz4lho2pwp6irk4cfkrxwu
   postcss: 8.4.21

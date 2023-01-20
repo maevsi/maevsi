@@ -82,6 +82,17 @@ export default defineNuxtConfig({
           //     },
           //     targetCookieIds: ['i18n_redirected'],
           //   },
+          //   {
+          //     description: {
+          //       de: 'Speichert die Zeitzone, in der sich das Gerät zu befinden scheint.',
+          //       en: 'Saves the timezone in which the device appears to be located.',
+          //     },
+          //     name: {
+          //       de: 'Zeitzone',
+          //       en: 'Timezone',
+          //     },
+          //     targetCookieIds: [TIMEZONE_COOKIE_NAME],
+          //   },
           // ],
           optional: [
             {
