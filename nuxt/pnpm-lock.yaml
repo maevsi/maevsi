@@ -20,7 +20,7 @@ specifiers:
   '@nuxtjs/html-validator': 1.2.3
   '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.7-27903868.2d47182
   '@pinia/nuxt': 0.4.6
-  '@rollup/plugin-graphql': 2.0.2
+  '@rollup/plugin-graphql': 2.0.3
   '@tailwindcss/forms': 0.5.3
   '@tailwindcss/line-clamp': 0.4.2
   '@tailwindcss/typography': 0.5.9
@@ -140,7 +140,7 @@ devDependencies:
   '@nuxtjs/html-validator': 1.2.3_jest@29.3.1+rollup@2.79.1
   '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.7-27903868.2d47182_rollup@2.79.1+vue@3.2.45
   '@pinia/nuxt': 0.4.6_rnb65zy77kx66qnsvrpa2qz65q
-  '@rollup/plugin-graphql': 2.0.2_wvgxa4tpgmyetagc7e4kukhube
+  '@rollup/plugin-graphql': 2.0.3_wvgxa4tpgmyetagc7e4kukhube
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
@@ -2678,8 +2678,8 @@ packages:
       rollup: 2.79.1
     dev: true
 
-  /@rollup/plugin-graphql/2.0.2_wvgxa4tpgmyetagc7e4kukhube:
-    resolution: {integrity: sha512-5kghuwAgcvdNrSARRLffKI6BDC3NskormIobhaO6nLdUhWFUJUB66zsgcXKqJu9kDXgiqLthjk7OaMxw552O9g==}
+  /@rollup/plugin-graphql/2.0.3_wvgxa4tpgmyetagc7e4kukhube:
+    resolution: {integrity: sha512-IuuELo+0t29adRuLVg8izBFiUXFSFw8BmezespscynRfvfXSOV0S7g8RzQt75VzP6KHHVmNmlAgz+8qlkLur3w==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       graphql: '>=0.9.0'
