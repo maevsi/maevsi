@@ -101,7 +101,7 @@ specifiers:
   qrcode.vue: 3.3.3
   rollup: 2.79.1
   slugify: 1.6.5
-  start-server-and-test: 1.15.2
+  start-server-and-test: 1.15.3
   stylelint: 14.16.1
   stylelint-config-prettier: 9.0.4
   stylelint-config-recommended-vue: 1.4.0
@@ -221,7 +221,7 @@ devDependencies:
   qrcode.vue: 3.3.3_vue@3.2.45
   rollup: 2.79.1
   slugify: 1.6.5
-  start-server-and-test: 1.15.2
+  start-server-and-test: 1.15.3
   stylelint: 14.16.1
   stylelint-config-prettier: 9.0.4_stylelint@14.16.1
   stylelint-config-recommended-vue: 1.4.0_kbto3rg3njmczth2rrsgfnlsqa
@@ -4286,10 +4286,11 @@ packages:
     resolution: {integrity: sha512-NmWvPnx0F1SfrQbYwOi7OeaNGokp9XhzNioJ/CSBs8Qa4vxug81mhJEAVZwxXuBmYB5KDRfMq/F3RR0BIU7sWg==}
     dev: true
 
-  /axios/0.25.0_debug@4.3.4:
-    resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
+  /axios/0.27.2_debug@4.3.4:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
     dependencies:
       follow-redirects: 1.15.2_debug@4.3.4
+      form-data: 4.0.0
     transitivePeerDependencies:
       - debug
     dev: true
@@ -11928,8 +11929,8 @@ packages:
     resolution: {integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==}
     dev: true
 
-  /start-server-and-test/1.15.2:
-    resolution: {integrity: sha512-t5xJX04Hg7hqxiKHMJBz/n4zIMsE6G7hpAcerFAH+4Vh9le/LeyFcJERJM7WLiPygWF9TOg33oroJF1XOzJtYQ==}
+  /start-server-and-test/1.15.3:
+    resolution: {integrity: sha512-4GqkqghvUR9cJ8buvtgkyT0AHgVwCJ5EN8eDEhe9grTChGwWUxGm2nqfSeE9+0PZkLRdFqcwTwxVHe1y3ViutQ==}
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
@@ -11940,7 +11941,7 @@ packages:
       execa: 5.1.1
       lazy-ass: 1.6.0
       ps-tree: 1.2.0
-      wait-on: 6.0.1_debug@4.3.4
+      wait-on: 7.0.1_debug@4.3.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -13314,12 +13315,12 @@ packages:
       xml-name-validator: 4.0.0
     dev: true
 
-  /wait-on/6.0.1_debug@4.3.4:
-    resolution: {integrity: sha512-zht+KASY3usTY5u2LgaNqn/Cd8MukxLGjdcZxT2ns5QzDmTFc4XoWBgC+C/na+sMRZTuVygQoMYwdcVjHnYIVw==}
-    engines: {node: '>=10.0.0'}
+  /wait-on/7.0.1_debug@4.3.4:
+    resolution: {integrity: sha512-9AnJE9qTjRQOlTZIldAaf/da2eW0eSRSgcqq85mXQja/DW3MriHxkpODDSUEg+Gri/rKEcXUZHe+cevvYItaog==}
+    engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
-      axios: 0.25.0_debug@4.3.4
+      axios: 0.27.2_debug@4.3.4
       joi: 17.7.0
       lodash: 4.17.21
       minimist: 1.2.7
