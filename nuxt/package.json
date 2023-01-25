@@ -91,7 +91,7 @@
     "cypress": "12.3.0",
     "cypress-visual-regression": "2.1.0",
     "dayjs": "2.0.0-alpha.4",
-    "defu": "6.1.1",
+    "defu": "6.1.2",
     "downloadjs": "1.4.7",
     "eslint": "8.32.0",
     "eslint-config-prettier": "8.6.0",
