@@ -119,7 +119,7 @@
     "postcss": "8.4.21",
     "postcss-html": "1.5.0",
     "prettier": "2.8.3",
-    "prettier-plugin-tailwindcss": "0.2.1",
+    "prettier-plugin-tailwindcss": "0.2.2",
     "pretty-bytes": "6.0.0",
     "prntr": "2.0.18",
     "prosemirror-commands": "1.5.0",
