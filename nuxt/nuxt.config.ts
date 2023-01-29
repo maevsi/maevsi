@@ -2,7 +2,7 @@ import graphqlPlugin from '@rollup/plugin-graphql'
 
 import localeDe from './locales/de.json'
 import localeEn from './locales/en.json'
-import { LOCALES } from './utils/constants'
+import { JWT_NAME, LOCALES, TIMEZONE_COOKIE_NAME } from './utils/constants'
 
 export const SITEMAP_EXCLUSIONS = ['/teapot'] // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
 export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
@@ -94,60 +94,59 @@ export default defineNuxtConfig({
      **/
     cookies: {
       necessary: [
-        // // The following cookies are considered necessary and are therefore currently only defined as a comment.
-        //   {
-        //     description: {
-        //       de: 'Dieser Cookie von uns speichert die Zugriffsberechtigungen auf Daten.',
-        //       en: 'This cookie from us stores the access permissions to data.',
-        //     },
-        //     name: {
-        //       de: 'Authentifizierungsdaten',
-        //       en: 'Authentication Data',
-        //     },
-        //     targetCookieIds: [JWT_NAME()],
-        //   },
-        //   {
-        //     description: {
-        //       de: 'Dieser Cookie von uns speichert die Einstellungen, die in diesem Dialog getroffen werden.',
-        //       en: 'This cookie of ours stores the settings made in this dialog.',
-        //     },
-        //     name: {
-        //       de: 'Cookie-Präferenzen',
-        //       en: 'Cookie Preferences',
-        //     },
-        //     targetCookieIds: [
-        //       'cookie_control_is_consent_given',
-        //       'cookie_control_cookies_enabled_ids',
-        //     ],
-        //   },
-        //   {
-        //     description: {
-        //       de: 'Dieser Cookie von uns speichert in welcher Sprache die Webseite angezeigt wird.',
-        //       en: 'This cookie of ours stores in which language the website is displayed.',
-        //     },
-        //     name: {
-        //       de: 'Spracheinstellungen',
-        //       en: 'Language Settings',
-        //     },
-        //     targetCookieIds: ['i18n_redirected'],
-        //   },
-        //   {
-        //     description: {
-        //       de: 'Speichert die Zeitzone, in der sich das Gerät zu befinden scheint.',
-        //       en: 'Saves the timezone in which the device appears to be located.',
-        //     },
-        //     name: {
-        //       de: 'Zeitzone',
-        //       en: 'Timezone',
-        //     },
-        //     targetCookieIds: [TIMEZONE_COOKIE_NAME],
-        //   },
+        {
+          description: {
+            de: 'Dieser Cookie von uns speichert Berechtigungen für den Datenbankzugriff dieser Webseite.',
+            en: "This cookie of ours stores permissions for this website's database access.",
+          },
+          name: {
+            de: 'Authentifizierungsdaten',
+            en: 'Authentication Data',
+          },
+          targetCookieIds: [JWT_NAME()],
+        },
+        {
+          description: {
+            de: 'Dieser Cookie von uns speichert die Einstellungen, die in diesem Dialog getroffen werden.',
+            en: 'This cookie of ours stores the settings made in this dialog.',
+          },
+          name: {
+            de: 'Cookie-Präferenzen',
+            en: 'Cookie Preferences',
+          },
+          targetCookieIds: [
+            'cookie_control_is_consent_given',
+            'cookie_control_cookies_enabled_ids',
+          ],
+        },
+        {
+          description: {
+            de: 'Dieser Cookie von uns speichert die Sprache, in der diese Webseite angezeigt wird.',
+            en: "This cookie of ours stores the language that's used to display this website.",
+          },
+          name: {
+            de: 'Sprache',
+            en: 'Language',
+          },
+          targetCookieIds: ['i18n_redirected'],
+        },
+        {
+          description: {
+            de: 'Dieser Cookie von uns speichert die Zeitzone, in der sich das Gerät zu befinden scheint.',
+            en: 'This cookie of ours saves the timezone in which the device appears to be located.',
+          },
+          name: {
+            de: 'Zeitzone',
+            en: 'Timezone',
+          },
+          targetCookieIds: [TIMEZONE_COOKIE_NAME],
+        },
       ],
       optional: [
         {
           description: {
-            de: 'Die Cookies vom Drittanbieter Google analysieren Nutzerverhalten, was uns dabei hilft zu verstehen, wie diese Webseite genutzt wird, und dabei unsere Dienste zu verbessern.',
-            en: 'The third-party cookies by Google analyze user behavior, which helps us understand how this website is used and to improve our services.',
+            de: 'Die Cookies vom Drittanbieter Google ermöglichen die Analyse von Nutzerverhalten. Diese Analyse hilft uns unsere Dienste zu verbessern, indem wir verstehen, wie diese Webseite genutzt wird.',
+            en: 'The third-party cookies by Google enable the analysis of user behavior. This analysis helps us to improve our services by understanding how this website is used.',
           },
           id: 'google-analytics',
           name: 'Analytics',
