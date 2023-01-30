@@ -46,7 +46,7 @@ specifiers:
   '@vuelidate/core': 2.0.0
   '@vuelidate/validators': 2.0.0
   autoprefixer: 10.4.13
-  browserslist: 4.21.4
+  browserslist: 4.21.5
   browserslist-useragent-regexp: 4.0.0
   chart.js: 4.2.0
   clipboard: 2.0.11
@@ -166,8 +166,8 @@ devDependencies:
   '@vuelidate/core': 2.0.0_vue@3.2.45
   '@vuelidate/validators': 2.0.0_vue@3.2.45
   autoprefixer: 10.4.13_postcss@8.4.21
-  browserslist: 4.21.4
-  browserslist-useragent-regexp: 4.0.0_browserslist@4.21.4
+  browserslist: 4.21.5
+  browserslist-useragent-regexp: 4.0.0_browserslist@4.21.5
   chart.js: 4.2.0
   clipboard: 2.0.11
   consola: 2.15.3
@@ -348,7 +348,7 @@ packages:
       '@babel/compat-data': 7.20.10
       '@babel/core': 7.20.12
       '@babel/helper-validator-option': 7.18.6
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       lru-cache: 5.1.1
       semver: 6.3.0
     dev: true
@@ -4658,7 +4658,7 @@ packages:
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       caniuse-lite: 1.0.30001448
       fraction.js: 4.2.0
       normalize-range: 0.1.2
@@ -4894,7 +4894,7 @@ packages:
       fill-range: 7.0.1
     dev: true
 
-  /browserslist-useragent-regexp/4.0.0_browserslist@4.21.4:
+  /browserslist-useragent-regexp/4.0.0_browserslist@4.21.5:
     resolution: {integrity: sha512-Jrewjf/0R1zIbVTfgwe2nHKzdDhaa8bD3JAVgh2rdNtqmXsEC9goU1dAPJ3vHBrxht05FLMOI0lt6tssw8xSfA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -4902,22 +4902,22 @@ packages:
       browserslist: '>=4.0.0'
     dependencies:
       argue-cli: 2.1.0
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       easy-table: 1.2.0
       picocolors: 1.0.0
       regexp-tree: 0.1.24
       ua-regexes-lite: 1.1.4
     dev: true
 
-  /browserslist/4.21.4:
-    resolution: {integrity: sha512-CBHJJdDmgjl3daYjN5Cp5kbTf1mUhZoS+beLklHIvkOWscs83YAhLlF3Wsh/lciQYAcbBJgTOD44VtG31ZM4Hw==}
+  /browserslist/4.21.5:
+    resolution: {integrity: sha512-tUkiguQGW7S3IhB7N+c2MV/HZPSCPAAiYBZXLsBhFB/PCy6ZKKsZrmBayHV9fdGV/ARIfJ14NkxKzRDjvp7L6w==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001448
+      caniuse-lite: 1.0.30001449
       electron-to-chromium: 1.4.284
       node-releases: 2.0.8
-      update-browserslist-db: 1.0.10_browserslist@4.21.4
+      update-browserslist-db: 1.0.10_browserslist@4.21.5
     dev: true
 
   /bs-logger/0.2.6:
@@ -5057,14 +5057,18 @@ packages:
   /caniuse-api/3.0.0:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
-      browserslist: 4.21.4
-      caniuse-lite: 1.0.30001448
+      browserslist: 4.21.5
+      caniuse-lite: 1.0.30001449
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: true
 
   /caniuse-lite/1.0.30001448:
     resolution: {integrity: sha512-tq2YI+MJnooG96XpbTRYkBxLxklZPOdLmNIOdIhvf7SNJan6u5vCKum8iT7ZfCt70m1GPkuC7P3TtX6UuhupuA==}
+    dev: true
+
+  /caniuse-lite/1.0.30001449:
+    resolution: {integrity: sha512-CPB+UL9XMT/Av+pJxCKGhdx+yg1hzplvFJQlJ2n68PyQGMz9L/E2zCyLdOL8uasbouTUgnPl+y0tccI/se+BEw==}
     dev: true
 
   /capital-case/1.0.4:
@@ -6081,7 +6085,7 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       caniuse-lite: 1.0.30001448
       css-rule-stream: 1.1.0
       duplexer2: 0.0.2
@@ -6560,7 +6564,7 @@ packages:
     dependencies:
       '@mdn/browser-compat-data': 4.2.1
       ast-metadata-inferer: 0.7.0
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       caniuse-lite: 1.0.30001448
       core-js: 3.27.2
       eslint: 8.33.0
@@ -10740,7 +10744,7 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       caniuse-api: 3.0.0
       colord: 2.9.3
       postcss: 8.4.21
@@ -10753,7 +10757,7 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       postcss: 8.4.21
       postcss-value-parser: 4.2.0
     dev: true
@@ -10883,7 +10887,7 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       caniuse-api: 3.0.0
       cssnano-utils: 3.1.0_postcss@8.4.21
       postcss: 8.4.21
@@ -10918,7 +10922,7 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       cssnano-utils: 3.1.0_postcss@8.4.21
       postcss: 8.4.21
       postcss-value-parser: 4.2.0
@@ -11009,7 +11013,7 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       postcss: 8.4.21
       postcss-value-parser: 4.2.0
     dev: true
@@ -11052,7 +11056,7 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       caniuse-api: 3.0.0
       postcss: 8.4.21
     dev: true
@@ -12394,7 +12398,7 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       postcss: 8.4.21
       postcss-selector-parser: 6.0.11
     dev: true
@@ -13159,13 +13163,13 @@ packages:
       - supports-color
     dev: true
 
-  /update-browserslist-db/1.0.10_browserslist@4.21.4:
+  /update-browserslist-db/1.0.10_browserslist@4.21.5:
     resolution: {integrity: sha512-OztqDenkfFkbSG+tRxBeAnCVPckDBcvibKd35yDONx6OU8N7sqgwc7rCbkJ/WcYtVRZ4ba68d6byhC21GFh7sQ==}
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
     dependencies:
-      browserslist: 4.21.4
+      browserslist: 4.21.5
       escalade: 3.1.1
       picocolors: 1.0.0
     dev: true
