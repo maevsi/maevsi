@@ -19,7 +19,7 @@
     "test:integration:dev": "cross-env NUXT_PUBLIC_IS_TESTING=1 WAIT_ON_TIMEOUT=100000 start-server-and-test 'pnpm dev' 'http://localhost:3000' 'pnpm cypress:test'",
     "test:integration:prod": "cross-env NUXT_PUBLIC_IS_TESTING=1 WAIT_ON_TIMEOUT=10000 NODE_ENV=production start-server-and-test 'pnpm start' 'http://localhost:3000' 'pnpm cypress:test'",
     "test:integration:docker:build": "docker build -t test-integration_base --build-arg UID=$(id -u) --build-arg GID=$(id -g) --target test-integration_base ../",
-    "test:integration:docker:run": "docker run --rm --entrypoint docker-entrypoint.sh -v \"$PWD:/srv/app\" test-integration_base",
+    "test:integration:docker:run": "docker run --rm --entrypoint '' -v \"$PWD:/srv/app\" test-integration_base",
     "test:integration:docker:br": "pnpm test:integration:docker:build && pnpm test:integration:docker:run",
     "test:integration:docker:dev": "pnpm test:integration:docker:br pnpm test:integration:dev",
     "test:integration:docker:prod": "pnpm test:integration:docker:br pnpm test:integration:prod",
