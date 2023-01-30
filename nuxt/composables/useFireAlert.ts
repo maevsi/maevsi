@@ -6,7 +6,6 @@ export const useFireAlert = () => {
   const { t } = useI18n()
 
   return ({
-    api,
     error,
     level,
     text,
@@ -19,7 +18,6 @@ export const useFireAlert = () => {
     title?: string
   }) => {
     if (error) {
-      api?.value.errors.push(error)
       consola.error(error)
     }
 

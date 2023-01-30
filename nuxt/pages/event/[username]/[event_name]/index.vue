@@ -320,7 +320,6 @@
 </template>
 
 <script setup lang="ts">
-import consola from 'consola'
 import downloadJs from 'downloadjs'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
@@ -365,10 +364,9 @@ const fireAlert = useFireAlert()
 const localePath = useLocalePath()
 const store = useMaevsiStore()
 const route = useRoute()
-const { executeMutation: executeMutationUpdateInvitationById } =
-  useUpdateInvitationByIdMutation()
+const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
 
-// queries
+// api data
 const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   variables: {
     authorUsername: route.params.username as string,
@@ -376,16 +374,7 @@ const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
     invitationUuid: route.query.ic,
   },
 })
-
-// api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...eventQuery.data.value,
-    },
-    ...getApiMeta([eventQuery]),
-  })
-)
+const api = getApiData([eventQuery])
 const event = computed(
   () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
 )
@@ -456,21 +445,12 @@ function qrCodeShow() {
   store.modals.push({ id: 'ModalInvitationQrCode' })
 }
 async function update(id: string, invitationPatch: InvitationPatch) {
-  api.value.errors = []
-
-  const result = await executeMutationUpdateInvitationById({
+  const result = await updateInvitationByIdMutation.executeMutation({
     id,
     invitationPatch,
   })
 
-  if (result.error) {
-    api.value.errors.push(result.error)
-    consola.error(result.error)
-  }
-
-  if (!result.data) {
-    return
-  }
+  if (result.error || !result.data) return
 
   showToast({ title: t('success') })
 }
@@ -531,11 +511,6 @@ const signedInUsername = computed(() => store.signedInUsername)
 const title = computed(() =>
   api.value.isFetching ? t('globalLoading') : event.value?.name || '403'
 )
-
-// lifecycle
-watch(eventQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
-})
 
 // initialization
 useHeadDefault(title, {

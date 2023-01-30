@@ -16,10 +16,8 @@
 <script setup lang="ts">
 import { UnwrapRef } from 'vue'
 
-import { ApiData } from '~/utils/util'
-
 export interface Props {
-  api: UnwrapRef<ApiData>
+  api: UnwrapRef<ReturnType<typeof getApiData>>
   errorPgIds?: Record<string, string>
   classes?: string
   indicator?: string

@@ -166,18 +166,11 @@ const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute()
 const fireAlert = useFireAlert()
-const eventUnlockMutation = useEventUnlockMutation()
 const config = useRuntimeConfig()
 
 // api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...eventUnlockMutation.data.value,
-    },
-    ...getApiMeta([eventUnlockMutation]),
-  })
-)
+const eventUnlockMutation = useEventUnlockMutation()
+const api = getApiData([eventUnlockMutation])
 
 // data
 const form = reactive({
@@ -188,12 +181,7 @@ const title = t('title')
 
 // methods
 async function submit() {
-  try {
-    await formPreSubmit(api, v$, isFormSent)
-  } catch (error) {
-    consola.error(error)
-    return
-  }
+  if (!isFormValid({ v$, isFormSent })) return
 
   const result = await eventUnlockMutation.executeMutation({
     invitationCode: form.invitationCode,
@@ -243,9 +231,6 @@ onMounted(() => {
       submit()
     }
   }
-})
-watch(eventUnlockMutation.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
 })
 
 // initialization

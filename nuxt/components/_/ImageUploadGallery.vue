@@ -12,12 +12,16 @@
             v-for="upload in uploads"
             :id="upload.id"
             :key="upload.id"
-            :class="
-              selectable && upload === selectedItem
-                ? 'border-red-600'
-                : 'border-transparent'
-            "
+            :class="[
+              ...(pending.deletions.includes(upload.id)
+                ? ['animate-pulse']
+                : []),
+              ...(selectable && upload === selectedItem
+                ? ['border-red-600']
+                : ['border-transparent']),
+            ]"
             class="relative box-border border-4"
+            :disabled="pending.deletions.includes(upload.id)"
             @click="toggleSelect(upload)"
           >
             <LoaderImage
@@ -67,7 +71,7 @@
             <IconPlus classes="h-12 text-gray-500 w-12" />
           </Button>
           <input
-            id="input-profile-picture"
+            ref="inputProfilePictureRef"
             accept="image/*"
             hidden
             name="input-profile-picture"
@@ -91,7 +95,7 @@
     <Modal
       id="ModalImageUploadGallery"
       :submit-name="t('upload')"
-      :submit-task-provider="() => getUploadBlobPromise()"
+      :submit-task-provider="getUploadBlobPromise"
     >
       <Cropper
         ref="cropperRef"
@@ -112,7 +116,8 @@ import { Uppy, UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
 import consola from 'consola'
 import prettyBytes from 'pretty-bytes'
-import { Cropper, Size } from 'vue-advanced-cropper'
+import { UnwrapRef } from 'vue'
+import { Cropper, CropperResult, Size } from 'vue-advanced-cropper'
 
 import {
   useAccountUploadQuotaBytesQuery,
@@ -133,12 +138,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'selection', storageKey?: string): void
+  (e: 'selection', storageKey?: string | null): void
 }>()
-
-interface Item {
-  storageKey: string
-}
 
 const { t } = useI18n()
 const route = useRoute()
@@ -147,14 +148,14 @@ const config = useRuntimeConfig()
 const TUSD_FILES_URL = useTusdFilesUrl()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
-const { executeMutation: executeMutationUploadCreate } =
-  useUploadCreateMutation()
 
 // refs
 const after = ref<string>()
 const cropperRef = ref()
+const inputProfilePictureRef = ref()
 
-// queries
+// api data
+const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery()
 const allUploadsQuery = await useAllUploadsQuery({
   variables: {
     after,
@@ -162,18 +163,12 @@ const allUploadsQuery = await useAllUploadsQuery({
     first: ITEMS_PER_PAGE,
   },
 })
-const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery()
-
-// api data
-const api = computed(() =>
-  reactive({
-    data: {
-      ...allUploadsQuery.data.value,
-      ...accountUploadQuotaBytesQuery.data.value,
-    },
-    ...getApiMeta([allUploadsQuery, accountUploadQuotaBytesQuery]),
-  })
-)
+const uploadCreateMutation = useUploadCreateMutation()
+const api = getApiData([
+  accountUploadQuotaBytesQuery,
+  allUploadsQuery,
+  uploadCreateMutation,
+])
 const uploads = computed(() => allUploadsQuery.data.value?.allUploads?.nodes)
 const accountUploadQuotaBytes = computed(
   () => accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes
@@ -182,32 +177,22 @@ const accountUploadQuotaBytes = computed(
 // data
 const fileSelectedUrl = ref<string>()
 const fileSelectedMimeType = ref<string>()
-const selectedItem = ref<Item>()
+const pending = reactive({
+  deletions: ref<string[]>([]),
+})
+const selectedItem = ref<{
+  storageKey?: string | null
+}>()
 const uppy = ref<Uppy>()
 
 // computations
-const jwt = computed(() => store.jwt)
-const sizeByteTotal = computed(() => {
-  if (!uploads.value) {
-    return undefined
-  }
-
-  let sizeByteTotal = 0
-
-  for (const upload of uploads.value) {
-    sizeByteTotal += upload.sizeByte
-  }
-
-  return sizeByteTotal
-})
+const sizeByteTotal = computed(
+  () => uploads.value?.reduce((p, c) => p + +c.sizeByte, 0) || 0
+)
 
 // methods
-function bytesToString(bytes?: number | string | null) {
-  if (bytes === undefined || bytes === null) {
-    return undefined
-  }
-  return prettyBytes(+bytes)
-}
+const bytesToString = (bytes?: number | string | null) =>
+  bytes ? prettyBytes(+bytes) : undefined
 const initStretcher = ({
   cropper,
   stretcher,
@@ -223,21 +208,17 @@ const initStretcher = ({
   stretcher.style.height = `${cropper.parentElement?.clientHeight}px`
   stretcher.style.width = `${cropper.parentElement?.clientWidth}px`
 }
-function selectProfilePicture() {
+const selectProfilePicture = async () => {
   const pathUpload = localePath('/upload')
 
   if (route.path === pathUpload) {
-    ;(
-      document.querySelector('#input-profile-picture') as HTMLInputElement
-    ).click()
+    inputProfilePictureRef.value.click()
   } else {
-    navigateTo(pathUpload)
+    await navigateTo(pathUpload)
   }
 }
-function deleteImageUpload(uploadId: string) {
-  const element = document.getElementById(uploadId) as Element
-
-  element.classList.add('disabled')
+const deleteImageUpload = (uploadId: string) => {
+  pending.deletions.push(uploadId)
 
   const xhr = new XMLHttpRequest()
   const host = config.public.stagingHost
@@ -246,10 +227,10 @@ function deleteImageUpload(uploadId: string) {
 
   xhr.open('DELETE', `${host}/api/tusd?uploadId=${uploadId}`, true)
   xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
-  xhr.setRequestHeader('Authorization', 'Bearer ' + jwt.value)
+  xhr.setRequestHeader('Authorization', 'Bearer ' + store.jwt)
   xhr.onreadystatechange = async () => {
     if (xhr.readyState === 4) {
-      element.classList.remove('disabled')
+      pending.deletions.splice(pending.deletions.indexOf(uploadId), 1)
 
       switch (xhr.status) {
         case 204:
@@ -268,12 +249,10 @@ function deleteImageUpload(uploadId: string) {
   }
   xhr.send()
 }
-function getMimeType(file: ArrayBuffer, fallback?: string) {
+const getMimeType = (file: ArrayBuffer, fallback?: string) => {
   const byteArray = new Uint8Array(file).subarray(0, 4)
-  let header = ''
-  for (let i = 0; i < byteArray.length; i++) {
-    header += byteArray[i].toString(16)
-  }
+  const header = byteArray.reduce((p, c) => p + c.toString(16), '')
+
   switch (header) {
     case '89504e47':
       return 'image/png'
@@ -289,10 +268,9 @@ function getMimeType(file: ArrayBuffer, fallback?: string) {
       return fallback
   }
 }
-function getUploadImageSrc(uploadStorageKey: string) {
-  return TUSD_FILES_URL + uploadStorageKey + '+'
-}
-function loadProfilePicture(event: Event) {
+const getUploadImageSrc = (uploadStorageKey: string) =>
+  TUSD_FILES_URL + uploadStorageKey + '+'
+const loadProfilePicture = (event: Event) => {
   const target = event.target as HTMLInputElement
   const files = Array.from(target.files ?? [])
 
@@ -306,6 +284,7 @@ function loadProfilePicture(event: Event) {
 
   try {
     const fileReader = new FileReader()
+
     fileReader.onload = (e) => {
       fileSelectedUrl.value = e.target?.result as string
       fileSelectedMimeType.value = getMimeType(
@@ -319,7 +298,7 @@ function loadProfilePicture(event: Event) {
     consola.error(err)
   }
 }
-function toggleSelect(upload: any) {
+const toggleSelect = (upload: UnwrapRef<typeof selectedItem>) => {
   if (selectedItem === upload) {
     selectedItem.value = undefined
     emit('selection', undefined)
@@ -328,90 +307,75 @@ function toggleSelect(upload: any) {
     emit('selection', selectedItem.value?.storageKey)
   }
 }
-function getUploadBlobPromise() {
-  return new Promise<void>((resolve, reject) => {
-    cropperRef.value?.getResult().canvas?.toBlob(async (blob: Blob) => {
-      api.value.errors = []
+const getUploadBlobPromise = () =>
+  new Promise<void>((resolve, reject) => {
+    ;(cropperRef.value?.getResult() as CropperResult).canvas?.toBlob(
+      async (blob) => {
+        if (!blob) return
 
-      const result = await executeMutationUploadCreate({
-        uploadCreateInput: {
-          sizeByte: blob.size,
-        },
-      })
+        const result = await uploadCreateMutation.executeMutation({
+          uploadCreateInput: {
+            sizeByte: blob.size,
+          },
+        })
 
-      if (result.error) {
-        api.value.errors.push(result.error)
-        consola.error(result.error)
-        return reject(result.error)
-      }
+        if (result.error) return reject(result.error)
+        if (!result.data) return
 
-      if (!result.data) {
-        return
-      }
+        uppy.value = new Uppy({
+          id: 'profile-picture',
+          debug: !config.public.isInProduction,
+          restrictions: {
+            maxFileSize: 1048576,
+            maxNumberOfFiles: 1,
+            minNumberOfFiles: 1,
+            allowedFileTypes: ['image/*'],
+          },
+          meta: {
+            maevsiUploadUuid: result.data.uploadCreate?.uuid,
+          },
+          onBeforeUpload: (files: { [key: string]: UppyFile }) =>
+            Object.keys(files).reduce(
+              (p, c) => ({
+                ...p,
+                [c]: {
+                  ...files[c],
+                  name: '/profile-pictures/' + files[c].name,
+                },
+              }),
+              {}
+            ),
+        })
 
-      uppy.value = new Uppy({
-        id: 'profile-picture',
-        debug: !config.public.isInProduction,
-        restrictions: {
-          maxFileSize: 1048576,
-          maxNumberOfFiles: 1,
-          minNumberOfFiles: 1,
-          allowedFileTypes: ['image/*'],
-        },
-        meta: {
-          maevsiUploadUuid: result.data.uploadCreate?.uuid,
-        },
-        onBeforeUpload: (files: { [key: string]: UppyFile }) => {
-          const updatedFiles: Record<string, any> = {}
+        uppy.value.use(Tus, {
+          endpoint: TUSD_FILES_URL,
+          limit: 1,
+          removeFingerprintOnSuccess: true,
+        })
 
-          Object.keys(files).forEach((fileID) => {
-            updatedFiles[fileID] = {
-              ...files[fileID],
-              name: '/profile-pictures/' + files[fileID].name,
-            }
-          })
+        uppy.value.addFile({
+          source: 'cropper',
+          name: inputProfilePictureRef.value.files![0]!.name,
+          type: blob.type,
+          data: blob,
+        })
 
-          return updatedFiles
-        },
-      })
+        uppy.value.upload().then((value: UploadResult) => {
+          allUploadsQuery.executeQuery()
 
-      uppy.value.use(Tus, {
-        endpoint: TUSD_FILES_URL,
-        limit: 1,
-        removeFingerprintOnSuccess: true,
-      })
-
-      uppy.value.addFile({
-        source: 'cropper',
-        name: (
-          document.querySelector('#input-profile-picture') as HTMLInputElement
-        ).files![0]!.name,
-        type: blob.type,
-        data: blob,
-      })
-
-      uppy.value.upload().then((value: UploadResult) => {
-        allUploadsQuery.executeQuery()
-
-        if (value.failed.length > 0) {
-          reject(t('uploadError'))
-        } else {
-          resolve()
-        }
-      })
-    }, 'image/jpeg')
+          if (value.failed.length > 0) {
+            reject(t('uploadError'))
+          } else {
+            resolve()
+          }
+        })
+      },
+      'image/jpeg'
+    )
   })
-}
 
 // lifecycle
-onBeforeUnmount(() => {
-  if (uppy.value) {
-    uppy.value.close()
-  }
-})
-watch(allUploadsQuery.error, (currentValue, _oldValue) => {
-  if (currentValue) consola.error(currentValue)
-})
+onBeforeUnmount(() => uppy.value?.close())
 </script>
 
 <style>

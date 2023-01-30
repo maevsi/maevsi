@@ -3,8 +3,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     _oldLocale: string,
     newLocale: string
   ) => {
-    const { $moment } = nuxtApp
+    const { $dayjs } = nuxtApp
 
-    $moment.locale(newLocale)
+    $dayjs.locale(newLocale)
   }
 })

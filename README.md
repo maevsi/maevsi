@@ -1,5 +1,5 @@
-[![build status](https://github.com/maevsi/maevsi/workflows/CI/badge.svg)](https://github.com/maevsi/maevsi/actions?query=workflow%3ACI "build status")
-
+[![CI](https://github.com/maevsi/maevsi/actions/workflows/docker.yml/badge.svg)](https://github.com/maevsi/maevsi/actions/workflows/docker.yml)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmaevsi%2Fmaevsi.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmaevsi%2Fmaevsi?ref=badge_shield)
 
 # maevsi
 

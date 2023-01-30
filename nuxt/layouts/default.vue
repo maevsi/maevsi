@@ -114,7 +114,7 @@
 <script setup lang="ts">
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
-const { $moment } = useNuxtApp()
+const { $dayjs } = useNuxtApp()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
 const { locale, availableLocales, t } = useI18n()
@@ -173,7 +173,7 @@ onMounted(() => loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1))
 
 // initialization
 useHeadLayout()
-$moment.locale(locale.value)
+$dayjs.locale(locale.value)
 </script>
 
 <script lang="ts">

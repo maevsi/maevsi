@@ -150,7 +150,6 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
-const cookieControl = useCookieControl()
 
 // refs
 const sectionStepsRef = ref<HTMLElement>()
@@ -181,20 +180,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', hideScrollHint)
 })
-watch(
-  () => cookieControl.cookiesEnabledIds.value,
-  (current, previous) => {
-    if (
-      (!previous?.includes('google-analytics') &&
-        current?.includes('google-analytics')) ||
-      (previous?.includes('google-analytics') &&
-        !current?.includes('google-analytics'))
-    ) {
-      window.location.reload()
-    }
-  },
-  { deep: true }
-)
 
 // initialization
 useHeadDefault('maevsi')
@@ -212,7 +197,7 @@ de:
   benefitControlDescription: Du kannst genau planen, was deine Gäste brauchen
   benefitInformation: Klare Infos
   benefitInformationDescription: Kein Durcheinander, wie in Gruppen-Chats
-  benefitOpenSource: Open Source
+  benefitOpenSource: Öffentlicher Code
   benefitOpenSourceDescription: 'Keine Geheimnisse: du kannst sehen wie maevsi funktioniert'
   benefitPersonal: Persönlich
   benefitPersonalDescription: Digitaler Komfort, kombiniert mit individuellen Einladungen
@@ -248,7 +233,7 @@ en:
   benefitControlDescription: You can plan exactly for your guest's needs
   benefitInformation: Clear info
   benefitInformationDescription: No clutter, like in group chats
-  benefitOpenSource: Open Source
+  benefitOpenSource: Source available
   benefitOpenSourceDescription: "No secrets: you're free to see how maevsi works"
   benefitPersonal: Personal
   benefitPersonalDescription: Digital convenience combined with individual invitations

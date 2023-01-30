@@ -1,88 +1,12 @@
-import defu from 'defu'
 import { appendHeader, defineEventHandler } from 'h3'
 
-import { getDomainTldPort, getHost } from '~/utils/util'
+import { TIMEZONE_HEADER_KEY } from '~/utils/constants'
+import { getCspAsString, getTimezone } from '~/utils/util'
 
-function getCsp(host: string): Record<string, Array<string>> {
-  const hostName = host.replace(/:[0-9]+$/, '')
-  const config = useRuntimeConfig()
+export default defineEventHandler(async (event) => {
+  event.node.req.headers[TIMEZONE_HEADER_KEY] = await getTimezone(event)
 
-  const stagingHostOrHost = config.public.stagingHost || host
-
-  const base = {
-    'base-uri': ["'none'"], // Mozilla Observatory.
-    'connect-src': [
-      "'self'",
-      'blob:', // vue-advanced-cropper
-      `https://postgraphile.${getDomainTldPort(stagingHostOrHost)}`,
-      `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
-      'https://*.google-analytics.com',
-      'https://*.analytics.google.com',
-    ],
-    'default-src': ["'none'"],
-    'font-src': ["'self'"], // ~/public/assets/static/fonts
-    'form-action': ["'self'"], // Mozilla Observatory: "none".
-    'frame-ancestors': ["'none'"], // Mozilla Observatory.
-    'frame-src': ['https://challenges.cloudflare.com'],
-    'img-src': [
-      "'self'",
-      'blob:',
-      'data:',
-      `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
-      'https://*.google-analytics.com',
-      'https://www.gravatar.com/avatar/',
-    ],
-    'manifest-src': ["'self'"],
-    'media-src': ["'none'"],
-    'object-src': ["'none'"],
-    'prefetch-src': ["'self'"],
-    'report-uri': ['https://dargmuesli.report-uri.com/r/d/csp/enforce'],
-    // TODO: evaluate header (https://github.com/maevsi/maevsi/issues/830) // https://stackoverflow.com/questions/62081028/this-document-requires-trustedscripturl-assignment
-    // 'require-trusted-types-for': ["'script'"], // csp-evaluator
-    'script-src': [
-      'blob:',
-      "'self'",
-      'https://challenges.cloudflare.com/turnstile/v0/api.js',
-      'https://static.cloudflareinsights.com',
-      'https://*.google-analytics.com',
-      'https://www.googletagmanager.com/gtag/js',
-      "'unsafe-inline'", // https://github.com/unjs/nitro/issues/81
-      "'unsafe-eval'", // https://github.com/unjs/nitro/issues/81
-    ],
-    'style-src': ["'self'", "'unsafe-inline'"], // Tailwind
-  }
-
-  const development = {
-    'connect-src': [
-      `http://${hostName}:24678/_nuxt/`,
-      `https://${hostName}:24678/_nuxt/`,
-      `ws://${hostName}:24678/_nuxt/`,
-      `wss://${hostName}:24678/_nuxt/`,
-    ],
-  }
-
-  const production = {
-    'connect-src': [`https://${stagingHostOrHost}/cdn-cgi/rum`],
-  }
-
-  return defu(base, config.public.isInProduction ? production : development)
-}
-
-function getCspAsString(host: string): string {
-  const csp = getCsp(host)
-  let result = ''
-
-  Object.keys(csp).forEach((key) => {
-    result += `${key} ${csp[key].join(' ')};`
-  })
-
-  return result
-}
-
-export default defineEventHandler((event) => {
-  const host = getHost(event.node.req)
-
-  appendHeader(event, 'Content-Security-Policy', getCspAsString(host))
+  appendHeader(event, 'Content-Security-Policy', getCspAsString(event))
   // appendHeader(event, 'Cross-Origin-Embedder-Policy', 'require-corp') // https://stackoverflow.com/questions/71904052/getting-notsameoriginafterdefaultedtosameoriginbycoep-error-with-helmet
   appendHeader(event, 'Cross-Origin-Opener-Policy', 'same-origin')
   appendHeader(event, 'Cross-Origin-Resource-Policy', 'same-origin')
@@ -100,15 +24,18 @@ export default defineEventHandler((event) => {
     'Report-To',
     '\'{"group":"default","max_age":31536000,"endpoints":[{"url":"https://dargmuesli.report-uri.com/a/d/g"}],"include_subdomains":true}\''
   )
-  appendHeader(
-    event,
-    'Strict-Transport-Security',
-    'max-age=31536000; includeSubDomains; preload'
-  )
   appendHeader(event, 'X-Content-Type-Options', 'nosniff')
   appendHeader(event, 'X-DNS-Prefetch-Control', 'off')
   appendHeader(event, 'X-Download-Options', 'noopen')
   appendHeader(event, 'X-Frame-Options', 'SAMEORIGIN')
   appendHeader(event, 'X-Permitted-Cross-Domain-Policies', 'none')
-  appendHeader(event, 'X-XSS-Protection', '0')
+  appendHeader(event, 'X-XSS-Protection', '1; mode=block') // TODO: set back to `0` once CSP does not use `unsafe-*` anymore (https://github.com/maevsi/maevsi/issues/1047)
+
+  if (process.env.NODE_ENV === 'production') {
+    appendHeader(
+      event,
+      'Strict-Transport-Security',
+      'max-age=31536000; includeSubDomains; preload'
+    )
+  }
 })

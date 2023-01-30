@@ -66,15 +66,8 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { maxLength, minLength, required } from '@vuelidate/validators'
-import consola from 'consola'
 import { useMaevsiStore } from '~/store/index'
 
-import {
-  formPreSubmit,
-  VALIDATION_FORMAT_SLUG,
-  VALIDATION_PASSWORD_LENGTH_MINIMUM,
-  VALIDATION_USERNAME_LENGTH_MAXIMUM,
-} from '~/utils/validation'
 import {
   useAccountRegistrationRefreshMutation,
   useAuthenticateMutation,
@@ -85,13 +78,15 @@ const { locale, t } = useI18n()
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
-const { executeMutation: executeMutationAccountRegistrationRefresh } =
-  useAccountRegistrationRefreshMutation()
-const { executeMutation: executeMutationAuthentication } =
-  useAuthenticateMutation()
 
 // api data
-const api = getApiDataDefault()
+const accountRegistrationRefreshMutation =
+  useAccountRegistrationRefreshMutation()
+const authenticateMutation = useAuthenticateMutation()
+const api = getApiData([
+  accountRegistrationRefreshMutation,
+  authenticateMutation,
+])
 
 // data
 const form = reactive({
@@ -101,41 +96,35 @@ const form = reactive({
 const isFormSent = ref(false)
 
 // methods
-function accountRegistrationRefresh() {
-  api.value.errors = []
+async function accountRegistrationRefresh() {
+  if (!(await isFormValid({ v$, isFormSent }))) return
 
-  executeMutationAccountRegistrationRefresh({
-    language: locale.value,
-    username: form.username || '',
-  }).then(async (result) => {
-    if (result.error) {
-      api.value.errors.push(result.error)
-      consola.error(result.error)
-    } else {
+  accountRegistrationRefreshMutation
+    .executeMutation({
+      language: locale.value,
+      username: form.username || '',
+    })
+    .then(async (result) => {
+      if (result.error) return
+
       await fireAlert({
         level: 'success',
         text: t('registrationRefreshSuccess'),
       })
-    }
-  })
+    })
 }
 
 async function submit() {
-  try {
-    await formPreSubmit(api, v$, isFormSent)
-  } catch (error) {
-    consola.error(error)
-    return
-  }
+  if (!(await isFormValid({ v$, isFormSent }))) return
 
-  executeMutationAuthentication({
-    username: form.username || '',
-    password: form.password || '',
-  }).then(async (result) => {
-    if (result.error) {
-      api.value.errors.push(result.error)
-      consola.error(result.error)
-    } else {
+  authenticateMutation
+    .executeMutation({
+      username: form.username || '',
+      password: form.password || '',
+    })
+    .then(async (result) => {
+      if (result.error) return
+
       try {
         await jwtStore(result.data?.authenticate?.jwt)
       } catch (error) {
@@ -149,8 +138,7 @@ async function submit() {
       }
 
       navigateTo(localePath(`/dashboard`))
-    }
-  })
+    })
 }
 
 // vuelidate

@@ -1,3 +1,54 @@
+# [1.6.0](https://github.com/maevsi/maevsi/compare/1.5.0...1.6.0) (2023-01-20)
+
+
+### Bug Fixes
+
+* **cookie-control:** correct locale string ([a815fd0](https://github.com/maevsi/maevsi/commit/a815fd04eb1e73eea94e99064eaf0a951dc5000d))
+* **nuxt:** correct dayjs destructuring ([080019b](https://github.com/maevsi/maevsi/commit/080019bd6a927d405c29686536b4ad9bdb37d925))
+* **util:** correct ip header ([ddc4cb6](https://github.com/maevsi/maevsi/commit/ddc4cb6ec1cd4e14ac233338e9897b088261babe))
+
+
+### Features
+
+* **ssr:** account for timezone ([57a9ebf](https://github.com/maevsi/maevsi/commit/57a9ebfc15e3c70f2725f4533215a406c3a057a7)), closes [#999](https://github.com/maevsi/maevsi/issues/999)
+
+# [1.5.0](https://github.com/maevsi/maevsi/compare/1.4.0...1.5.0) (2023-01-19)
+
+
+### Features
+
+* **cookie-control:** upgrade to v4 ([5e048f2](https://github.com/maevsi/maevsi/commit/5e048f2a4d90135dd21ce286588b7b725e3c79e5)), closes [#1042](https://github.com/maevsi/maevsi/issues/1042)
+
+# [1.4.0](https://github.com/maevsi/maevsi/compare/1.3.5...1.4.0) (2023-01-17)
+
+
+### Features
+
+* **cookie-control:** set checkbox active background color ([64ed54c](https://github.com/maevsi/maevsi/commit/64ed54cbc749cc19a9135ae5165da6eb03924493))
+
+## [1.3.5](https://github.com/maevsi/maevsi/compare/1.3.4...1.3.5) (2023-01-17)
+
+
+### Bug Fixes
+
+* **image-upload-gallery:** correct upload quota calculation ([682b357](https://github.com/maevsi/maevsi/commit/682b3573c2fa54256d8d372e5d8974ff73e87c08)), closes [#1037](https://github.com/maevsi/maevsi/issues/1037)
+
+## [1.3.4](https://github.com/maevsi/maevsi/compare/1.3.3...1.3.4) (2023-01-16)
+
+
+### Bug Fixes
+
+* **cookie-control:** correct page placement ([0f4a13b](https://github.com/maevsi/maevsi/commit/0f4a13bd131e64da0bb0af28fa1a12233a472d2c))
+
+## [1.3.3](https://github.com/maevsi/maevsi/compare/1.3.2...1.3.3) (2023-01-14)
+
+
+### Bug Fixes
+
+* **cypress:** correct cookie handling ([dbf9a1a](https://github.com/maevsi/maevsi/commit/dbf9a1a354e4d15325a0ef4433fc1756e08b41b1))
+* **cypress:** correct cookie name ([eda243c](https://github.com/maevsi/maevsi/commit/eda243c7f299cfe810001849dafe0b10af158114))
+* **gtag:** convert undefined to boolean ([49c1413](https://github.com/maevsi/maevsi/commit/49c141369495fd89f731d90bd992317673df2a71))
+
 ## [1.3.2](https://github.com/maevsi/maevsi/compare/1.3.1...1.3.2) (2023-01-13)
 
 

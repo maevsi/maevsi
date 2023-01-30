@@ -86,11 +86,10 @@ const { signOut } = useSignOut()
 const { t } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
-const { executeMutation: executeMutationAccoutDelete } =
-  useAccountDeleteMutation()
+const accountDeleteMutation = useAccountDeleteMutation()
 
 // data
-const mutation = executeMutationAccoutDelete
+const mutation = accountDeleteMutation
 const routeParamUsername = route.params.username as string
 const title = route.params.username as string
 
