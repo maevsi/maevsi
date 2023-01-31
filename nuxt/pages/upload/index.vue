@@ -2,7 +2,7 @@
   <div>
     <h1>{{ title }}</h1>
     <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
-    <ImageUploadGallery :username="signedInUsername" />
+    <!-- <ImageUploadGallery :username="signedInUsername" /> -->
   </div>
 </template>
 
@@ -22,13 +22,13 @@ definePageMeta({
 })
 
 const { t } = useI18n()
-const store = useMaevsiStore()
+// const store = useMaevsiStore()
 
 // data
 const title = t('title')
 
 // computations
-const signedInUsername = computed(() => store.signedInUsername)
+// const signedInUsername = computed(() => store.signedInUsername)
 
 // initialization
 useHeadDefault(title)
