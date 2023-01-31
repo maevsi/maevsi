@@ -37,7 +37,7 @@ specifiers:
   '@types/mustache': 4.2.2
   '@types/node': 18.11.18
   '@types/pg': 8.6.6
-  '@uppy/core': 3.0.4
+  '@uppy/core': 3.0.5
   '@uppy/tus': 3.0.5
   '@urql/core': 3.1.1
   '@urql/devtools': 2.0.3
@@ -157,8 +157,8 @@ devDependencies:
   '@types/mustache': 4.2.2
   '@types/node': 18.11.18
   '@types/pg': 8.6.6
-  '@uppy/core': 3.0.4
-  '@uppy/tus': 3.0.5_@uppy+core@3.0.4
+  '@uppy/core': 3.0.5
+  '@uppy/tus': 3.0.5_@uppy+core@3.0.5
   '@urql/core': 3.1.1_graphql@16.6.0
   '@urql/devtools': 2.0.3_ioimjbecbkqzfeizgamzrgwc3y
   '@urql/exchange-graphcache': 5.0.8_graphql@16.6.0
@@ -3965,8 +3965,8 @@ packages:
       namespace-emitter: 2.0.1
     dev: true
 
-  /@uppy/core/3.0.4:
-    resolution: {integrity: sha512-vFofKmmVVsQE9bnOXozAPy94kLQMUdMH/l8m4ncXmxyyGRc2e9VfvY9wiy2EEsoj11O7YVzHOP70FYdRReUpVw==}
+  /@uppy/core/3.0.5:
+    resolution: {integrity: sha512-DPrSfEdJtxh5/p2U4Cl3d6Ga66k2M0eki2fIoEOC5zj1Z4vTfE3sJ945nJzrM0B7vFhFshMh7sCiNafa8HYEAg==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.9
       '@uppy/store-default': 3.0.2
@@ -3982,13 +3982,13 @@ packages:
     resolution: {integrity: sha512-kIQMCjXui6tjF1E9xGo4YHkvt71McXkU0FStrcQuBrRXuOhb+NcuWh3sMh3KryivVNgT6w5Odrlw2FUFkl9cqA==}
     dev: true
 
-  /@uppy/tus/3.0.5_@uppy+core@3.0.4:
+  /@uppy/tus/3.0.5_@uppy+core@3.0.5:
     resolution: {integrity: sha512-X8RASLyiWMJ+VRVfxLg/THAj2BABZAoW+10+PCrX+U2FKUBbjdnDo2NVZs3vScL/fXsW5pTw4d18vJbZhWcryA==}
     peerDependencies:
       '@uppy/core': ^3.0.4
     dependencies:
       '@uppy/companion-client': 3.1.1
-      '@uppy/core': 3.0.4
+      '@uppy/core': 3.0.5
       '@uppy/utils': 5.1.2
       tus-js-client: 3.0.1
     dev: true
