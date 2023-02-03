@@ -3,7 +3,7 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.5.0-slim AS development
+FROM node:19.6.0-slim AS development
 
 COPY ./docker/entrypoint.sh /usr/local/bin/
 
@@ -33,7 +33,7 @@ CMD ["pnpm", "run", "dev"]
 # Prepare Nuxt.
 
 # Should be the specific version of `node:slim`.
-FROM node:19.5.0-slim AS prepare
+FROM node:19.6.0-slim AS prepare
 
 WORKDIR /srv/app/
 
@@ -54,7 +54,7 @@ RUN pnpm install --offline \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.5.0-slim AS build
+FROM node:19.6.0-slim AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -75,7 +75,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.5.0-slim AS lint
+FROM node:19.6.0-slim AS lint
 
 WORKDIR /srv/app/
 
@@ -90,7 +90,7 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.5.0-slim AS test-unit
+FROM node:19.6.0-slim AS test-unit
 
 WORKDIR /srv/app/
 
@@ -158,7 +158,7 @@ RUN pnpm test:integration:prod \
 # Collect build, lint and test results.
 
 # Should be the specific version of `node:slim`.
-FROM node:19.5.0-slim AS collect
+FROM node:19.6.0-slim AS collect
 
 WORKDIR /srv/app/
 
@@ -174,7 +174,7 @@ COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.5.0-slim AS production
+FROM node:19.6.0-slim AS production
 
 ENV NODE_ENV=production
 
