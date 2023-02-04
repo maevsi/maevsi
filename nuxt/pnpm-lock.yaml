@@ -14,7 +14,7 @@ specifiers:
   '@intlify/eslint-plugin-vue-i18n': 2.0.0
   '@jest/globals': 29.4.1
   '@jest/types': 29.4.1
-  '@kevinmarrec/nuxt-pwa': 0.15.0
+  '@kevinmarrec/nuxt-pwa': 0.16.0
   '@nuxtjs/color-mode': 3.2.0
   '@nuxtjs/eslint-config-typescript': 12.0.0
   '@nuxtjs/html-validator': 1.2.3
@@ -134,7 +134,7 @@ devDependencies:
   '@intlify/eslint-plugin-vue-i18n': 2.0.0_eslint@8.33.0
   '@jest/globals': 29.4.1
   '@jest/types': 29.4.1
-  '@kevinmarrec/nuxt-pwa': 0.15.0
+  '@kevinmarrec/nuxt-pwa': 0.16.0
   '@nuxtjs/color-mode': 3.2.0_rollup@3.11.0
   '@nuxtjs/eslint-config-typescript': 12.0.0_4vsywjlpuriuw3tl5oq6zy5a64
   '@nuxtjs/html-validator': 1.2.3_jest@29.4.1+rollup@3.11.0
@@ -2639,12 +2639,12 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@kevinmarrec/nuxt-pwa/0.15.0:
-    resolution: {integrity: sha512-7aEX3k123gq15859pHLnZZgSGSsTnH1BduK4sICktnkOJK6u62Uo0TT85ma9m5OOC27RJuCo/G8nBWEa39dD+g==}
+  /@kevinmarrec/nuxt-pwa/0.16.0:
+    resolution: {integrity: sha512-GTazJ7Ei2acmzUFPIjTOqlD14TG45QQnCvheOLi+2u8BastEOwPxt//XfIopnTms+B54z4cBJA5hIjUgeZ6irQ==}
     dependencies:
       hasha: 5.2.2
       sharp: 0.31.3
-      std-env: 3.3.1
+      std-env: 3.3.2
     dev: true
 
   /@kurkle/color/0.3.2:
@@ -2749,7 +2749,7 @@ packages:
       pkg-types: 1.0.1
       postcss-import-resolver: 2.0.0
       scule: 1.0.0
-      std-env: 3.3.1
+      std-env: 3.3.2
       ufo: 1.0.1
       unimport: 2.1.0_rollup@3.11.0
       untyped: 1.2.2
@@ -2781,7 +2781,7 @@ packages:
       ofetch: 1.0.0
       parse-git-config: 3.0.0
       rc9: 2.0.1
-      std-env: 3.3.1
+      std-env: 3.3.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -10044,7 +10044,7 @@ packages:
       serve-placeholder: 2.0.1
       serve-static: 1.15.0
       source-map-support: 0.5.21
-      std-env: 3.3.1
+      std-env: 3.3.2
       ufo: 1.0.1
       unenv: 1.0.3
       unimport: 2.1.0_rollup@3.12.0
@@ -12318,6 +12318,10 @@ packages:
 
   /std-env/3.3.1:
     resolution: {integrity: sha512-3H20QlwQsSm2OvAxWIYhs+j01MzzqwMwGiiO1NQaJYZgJZFPuAbf95/DiKRBSTYIJ2FeGUc+B/6mPGcWP9dO3Q==}
+    dev: true
+
+  /std-env/3.3.2:
+    resolution: {integrity: sha512-uUZI65yrV2Qva5gqE0+A7uVAvO40iPo6jGhs7s8keRfHCmtg+uB2X6EiLGCI9IgL1J17xGhvoOqSz79lzICPTA==}
     dev: true
 
   /stream-combiner/0.0.4:
