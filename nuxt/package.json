@@ -69,7 +69,7 @@
     "@types/jest": "29.4.0",
     "@types/lodash-es": "4.17.6",
     "@types/mustache": "4.2.2",
-    "@types/node": "18.11.18",
+    "@types/node": "18.11.19",
     "@types/pg": "8.6.6",
     "@uppy/core": "3.0.5",
     "@uppy/tus": "3.0.5",
