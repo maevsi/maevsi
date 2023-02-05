@@ -97,7 +97,7 @@ specifiers:
   prosemirror-schema-list: 1.2.2
   prosemirror-state: 1.4.2
   prosemirror-transform: 1.7.1
-  prosemirror-view: 1.30.0
+  prosemirror-view: 1.30.1
   qrcode.vue: 3.3.3
   rollup: 3.11.0
   slugify: 1.6.5
@@ -144,10 +144,10 @@ devDependencies:
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
-  '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+  '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
   '@tiptap/extension-link': 2.0.0-beta.209_tasdqzysbe2xhn7sbwmhtfw24q
-  '@tiptap/starter-kit': 2.0.0-beta.209_l5dccmvumlhl57rfupvi4gonju
-  '@tiptap/vue-3': 2.0.0-beta.209_gbv5gkdlfoffbrj46lz3kpvrp4
+  '@tiptap/starter-kit': 2.0.0-beta.209_uctfrqm3sov7y353xrrpqflv4i
+  '@tiptap/vue-3': 2.0.0-beta.209_fdzh742axucob3kd53lrd2qeei
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.4.0
   '@types/downloadjs': 1.4.3
@@ -217,7 +217,7 @@ devDependencies:
   prosemirror-schema-list: 1.2.2
   prosemirror-state: 1.4.2
   prosemirror-transform: 1.7.1
-  prosemirror-view: 1.30.0
+  prosemirror-view: 1.30.1
   qrcode.vue: 3.3.3_vue@3.2.47
   rollup: 3.11.0
   slugify: 1.6.5
@@ -3374,7 +3374,7 @@ packages:
       tailwindcss: 3.2.4_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
-  /@tiptap/core/2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe:
+  /@tiptap/core/2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu:
     resolution: {integrity: sha512-DOOzfo2XKD5Qt2oEGW33/6ugwSnvpl4WbxtlKdPadLoApk6Kja3K1Eps3pihBgIGmo4tkctkCzmj8wNWS7KeWg==}
     peerDependencies:
       prosemirror-commands: ^1.3.1
@@ -3391,7 +3391,7 @@ packages:
       prosemirror-schema-list: 1.2.2
       prosemirror-state: 1.4.2
       prosemirror-transform: 1.7.1
-      prosemirror-view: 1.30.0
+      prosemirror-view: 1.30.1
     dev: true
 
   /@tiptap/extension-blockquote/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
@@ -3399,7 +3399,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.1
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-bold/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
@@ -3407,20 +3407,20 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
-  /@tiptap/extension-bubble-menu/2.0.0-beta.209_6hygshthdpjql2h3ln2tmxwxxy:
+  /@tiptap/extension-bubble-menu/2.0.0-beta.209_avdeowdzswptjjc22265znsvke:
     resolution: {integrity: sha512-tceZAuDpy3J96uGyCzpJFD3fHABJDTJTq5E0hm+TRQT+eVGVqZI0PE3/4yVFgkCshioTuJq8veMDFcqNsSkKsQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
       prosemirror-state: ^1.4.1
       prosemirror-view: ^1.28.2
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
       lodash: 4.17.21
       prosemirror-state: 1.4.2
-      prosemirror-view: 1.30.0
+      prosemirror-view: 1.30.1
       tippy.js: 6.3.7
     dev: true
 
@@ -3429,7 +3429,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-code-block/2.0.0-beta.209_prfudu5zgovreazvyjp3brspre:
@@ -3438,7 +3438,7 @@ packages:
       '@tiptap/core': ^2.0.0-beta.193
       prosemirror-state: ^1.4.1
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
       prosemirror-state: 1.4.2
     dev: true
 
@@ -3447,7 +3447,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-document/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
@@ -3455,7 +3455,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-dropcursor/2.0.0-beta.209_qfdcmhnxwxslpsupsyi7ae3p2e:
@@ -3464,20 +3464,20 @@ packages:
       '@tiptap/core': ^2.0.0-beta.193
       prosemirror-dropcursor: 1.5.0
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
       prosemirror-dropcursor: 1.6.1
     dev: true
 
-  /@tiptap/extension-floating-menu/2.0.0-beta.209_6hygshthdpjql2h3ln2tmxwxxy:
+  /@tiptap/extension-floating-menu/2.0.0-beta.209_avdeowdzswptjjc22265znsvke:
     resolution: {integrity: sha512-m5ucAguqDxuOvNcsmvuSLcN8TMkbhFmiC6dTJOyaAGjGn6d8Ly6aZh+lEwU228TebM0TKHTp8Xob1cLjV4TGgg==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
       prosemirror-state: ^1.4.1
       prosemirror-view: ^1.28.2
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
       prosemirror-state: 1.4.2
-      prosemirror-view: 1.30.0
+      prosemirror-view: 1.30.1
       tippy.js: 6.3.7
     dev: true
 
@@ -3487,7 +3487,7 @@ packages:
       '@tiptap/core': ^2.0.0-beta.193
       prosemirror-gapcursor: ^1.3.1
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
       prosemirror-gapcursor: 1.3.1
     dev: true
 
@@ -3496,7 +3496,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-heading/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
@@ -3504,7 +3504,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-history/2.0.0-beta.209_4l4d2nbnhzh4n42foqovky5q2e:
@@ -3513,7 +3513,7 @@ packages:
       '@tiptap/core': ^2.0.0-beta.193
       prosemirror-history: ^1.3.0
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
       prosemirror-history: 1.3.0
     dev: true
 
@@ -3523,7 +3523,7 @@ packages:
       '@tiptap/core': ^2.0.0-beta.193
       prosemirror-state: ^1.4.1
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
       prosemirror-state: 1.4.2
     dev: true
 
@@ -3532,7 +3532,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-link/2.0.0-beta.209_tasdqzysbe2xhn7sbwmhtfw24q:
@@ -3542,7 +3542,7 @@ packages:
       prosemirror-model: ^1.18.1
       prosemirror-state: ^1.4.1
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
       linkifyjs: 3.0.5
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
@@ -3553,7 +3553,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-ordered-list/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
@@ -3561,7 +3561,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-paragraph/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
@@ -3569,7 +3569,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-strike/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
@@ -3577,7 +3577,7 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
   /@tiptap/extension-text/2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua:
@@ -3585,13 +3585,13 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
     dev: true
 
-  /@tiptap/starter-kit/2.0.0-beta.209_l5dccmvumlhl57rfupvi4gonju:
+  /@tiptap/starter-kit/2.0.0-beta.209_uctfrqm3sov7y353xrrpqflv4i:
     resolution: {integrity: sha512-uR68ZfDZ5PeygGey3xc9ZuFIP+K7VRElrABnZcM6t9/Crrs70UFwSTNlkS0ezx9woj8h+8N78a6r8W1YC04TOw==}
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
       '@tiptap/extension-blockquote': 2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua
       '@tiptap/extension-bold': 2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua
       '@tiptap/extension-bullet-list': 2.0.0-beta.209_f4ffqkgz5d3wev7su7t7l2rrua
@@ -3623,7 +3623,7 @@ packages:
       - prosemirror-view
     dev: true
 
-  /@tiptap/vue-3/2.0.0-beta.209_gbv5gkdlfoffbrj46lz3kpvrp4:
+  /@tiptap/vue-3/2.0.0-beta.209_fdzh742axucob3kd53lrd2qeei:
     resolution: {integrity: sha512-v0GUO6mcRgDfT6bNX3fHJds9QIpYqFBiGaanvTDVlOhErOSgrOx2+QuEieG0F9nUQ1az9h0kj5NZxvP9CeTlcQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.193
@@ -3631,11 +3631,11 @@ packages:
       prosemirror-view: ^1.28.2
       vue: ^3.0.0
     dependencies:
-      '@tiptap/core': 2.0.0-beta.209_4nuxvpohlb3jeygmbr7vfoeqbe
-      '@tiptap/extension-bubble-menu': 2.0.0-beta.209_6hygshthdpjql2h3ln2tmxwxxy
-      '@tiptap/extension-floating-menu': 2.0.0-beta.209_6hygshthdpjql2h3ln2tmxwxxy
+      '@tiptap/core': 2.0.0-beta.209_ewmgfknkk6dwvngj56uisqnwuu
+      '@tiptap/extension-bubble-menu': 2.0.0-beta.209_avdeowdzswptjjc22265znsvke
+      '@tiptap/extension-floating-menu': 2.0.0-beta.209_avdeowdzswptjjc22265znsvke
       prosemirror-state: 1.4.2
-      prosemirror-view: 1.30.0
+      prosemirror-view: 1.30.1
       vue: 3.2.47
     dev: true
 
@@ -11469,7 +11469,7 @@ packages:
     dependencies:
       prosemirror-state: 1.4.2
       prosemirror-transform: 1.7.1
-      prosemirror-view: 1.30.0
+      prosemirror-view: 1.30.1
     dev: true
 
   /prosemirror-gapcursor/1.3.1:
@@ -11478,7 +11478,7 @@ packages:
       prosemirror-keymap: 1.2.0
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
-      prosemirror-view: 1.30.0
+      prosemirror-view: 1.30.1
     dev: true
 
   /prosemirror-history/1.3.0:
@@ -11515,7 +11515,7 @@ packages:
     dependencies:
       prosemirror-model: 1.19.0
       prosemirror-transform: 1.7.1
-      prosemirror-view: 1.30.0
+      prosemirror-view: 1.30.1
     dev: true
 
   /prosemirror-transform/1.7.1:
@@ -11524,8 +11524,8 @@ packages:
       prosemirror-model: 1.19.0
     dev: true
 
-  /prosemirror-view/1.30.0:
-    resolution: {integrity: sha512-z6RXp2GFH8mk7+LWCGWvdpOIpf5o5UwIB6SiBiTFe6eA8H8qwFDW0EkiIfohlATHoSGXvlHtD+hfpAHdfO5fvQ==}
+  /prosemirror-view/1.30.1:
+    resolution: {integrity: sha512-pZUfr7lICJkEY7XwzldAKrkflZDeIvnbfuu2RIS01N5NwJmR/dfZzDzJRzhb3SM2QtT/bM8b4Nnib8X3MGpAhA==}
     dependencies:
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
