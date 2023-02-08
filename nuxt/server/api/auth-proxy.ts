@@ -7,6 +7,10 @@ export default defineEventHandler(async function (event: H3Event) {
   const { req, res } = event.node
   const turnstileKey = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
   consola.trace('Turnstile Key: ' + turnstileKey)
+  if (turnstileKey === undefined) {
+    res.end()
+    return
+  }
 
   if (!turnstileKey) {
     throw createError({
