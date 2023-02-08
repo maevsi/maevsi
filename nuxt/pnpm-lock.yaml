@@ -55,7 +55,7 @@ specifiers:
   cross-env: 7.0.3
   css-element-queries: 1.2.3
   cypress: 12.5.1
-  cypress-visual-regression: 2.1.0
+  cypress-visual-regression: 2.1.1
   dayjs: 2.0.0-alpha.4
   defu: 6.1.2
   downloadjs: 1.4.7
@@ -175,7 +175,7 @@ devDependencies:
   cross-env: 7.0.3
   css-element-queries: 1.2.3
   cypress: 12.5.1
-  cypress-visual-regression: 2.1.0_cypress@12.5.1
+  cypress-visual-regression: 2.1.1_cypress@12.5.1
   dayjs: 2.0.0-alpha.4
   defu: 6.1.2
   downloadjs: 1.4.7
@@ -5887,8 +5887,8 @@ packages:
     resolution: {integrity: sha512-p6JFxJc3M4OTD2li2qaHkDCw9SfMw82Ldr6OC9Je1aXiGfhx2W8p3GaoeaGrPJTUN9NirTM/KTxHWMUdR1rsUg==}
     dev: true
 
-  /cypress-visual-regression/2.1.0_cypress@12.5.1:
-    resolution: {integrity: sha512-fRBU529SMwlhl6TgJQuX8FmLMHKJ1yAcmVEpwCedxR+kxy9vudCMArL/uD2TILikOl8IWKMgHmhdX6Wgzjn+tQ==}
+  /cypress-visual-regression/2.1.1_cypress@12.5.1:
+    resolution: {integrity: sha512-oVDBL3hEMd6luj7eYLXzaNbqKPT8e1ZDGg/mptCRlIgw/uo09zv5TRHe6eqptPuZH8qFpfG3Eijk656zP2PcZg==}
     peerDependencies:
       cypress: '>=9.7.0'
     dependencies:
