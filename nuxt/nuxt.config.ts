@@ -187,7 +187,7 @@ export default defineNuxtConfig({
     },
   },
   turnstile: {
-    siteKey: '0x4AAAAAAAB-4n2PVIbNv24s',
+    siteKey: process.env.NUXT_TURNSTILE_SITE_KEY,
     addValidateEndpoint: true,
   },
   typescript: {
