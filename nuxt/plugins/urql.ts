@@ -128,8 +128,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       const jwt = store.jwt
       const turnstileKey = store.turnstileKey
 
-      var headers = {}
-
+      let headers = {} as Record<string, any>
       if (jwt) {
         consola.trace('GraphQL request authenticated with: ' + jwt)
         headers = { ...headers, authorization: `Bearer ${jwt}` }
@@ -137,12 +136,12 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         consola.trace('GraphQL request without authentication.')
       }
       if (turnstileKey) {
-        consola.trace('Turnstile session key: ' + turnstileKey)
-        headers = { ...headers,  'x-authenticate': turnstileKey }
+        consola.info('Turnstile session key: ' + turnstileKey)
+        headers[TURNSTILE_HEADER_KEY] = turnstileKey
       } else {
-        consola.trace('No Turnstile key is given')
+        consola.info('No Turnstile key is given')
       }
-      return headers
+      return { headers }
     },
 
     url: config.public.stagingHost

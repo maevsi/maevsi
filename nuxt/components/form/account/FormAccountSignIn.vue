@@ -39,7 +39,6 @@
       <div class="flex justify-center">
         <Turnstile v-model="store.turnstileKey" />
       </div>
-      <p>{{ t('verificationKey') }}: {{ store.turnstileKey }}</p>
 
       <template
         v-if="
@@ -124,6 +123,7 @@ async function submit() {
     })
     .then(async (result) => {
       if (result.error) return
+      store.turnstileKey = undefined
 
       try {
         await jwtStore(result.data?.authenticate?.jwt)
@@ -136,7 +136,6 @@ async function submit() {
         })
         return
       }
-
       navigateTo(localePath(`/dashboard`))
     })
 }

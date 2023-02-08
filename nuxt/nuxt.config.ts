@@ -188,6 +188,7 @@ export default defineNuxtConfig({
   },
   turnstile: {
     siteKey: '0x4AAAAAAAB-4n2PVIbNv24s',
+    addValidateEndpoint: true,
   },
   typescript: {
     shim: false,
