@@ -14,7 +14,7 @@ specifiers:
   '@intlify/eslint-plugin-vue-i18n': 2.0.0
   '@jest/globals': 29.4.2
   '@jest/types': 29.4.2
-  '@kevinmarrec/nuxt-pwa': 0.16.1
+  '@kevinmarrec/nuxt-pwa': 0.16.2
   '@nuxtjs/color-mode': 3.2.0
   '@nuxtjs/eslint-config-typescript': 12.0.0
   '@nuxtjs/html-validator': 1.2.3
@@ -134,7 +134,7 @@ devDependencies:
   '@intlify/eslint-plugin-vue-i18n': 2.0.0_eslint@8.33.0
   '@jest/globals': 29.4.2
   '@jest/types': 29.4.2
-  '@kevinmarrec/nuxt-pwa': 0.16.1
+  '@kevinmarrec/nuxt-pwa': 0.16.2
   '@nuxtjs/color-mode': 3.2.0_rollup@3.11.0
   '@nuxtjs/eslint-config-typescript': 12.0.0_4vsywjlpuriuw3tl5oq6zy5a64
   '@nuxtjs/html-validator': 1.2.3_jest@29.4.2+rollup@3.11.0
@@ -2646,8 +2646,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@kevinmarrec/nuxt-pwa/0.16.1:
-    resolution: {integrity: sha512-FKEKivxmWfXrQZ3Sq7EJLVi42d3JPyFIMpmkbUdwW892KUYmZtFq41587JEVWcZPLxZQQ5cuDnFn0rl76b5qZQ==}
+  /@kevinmarrec/nuxt-pwa/0.16.2:
+    resolution: {integrity: sha512-KRQtJ9hrIDogG7OrofmyOG+dM/vERF6KQGeI5IvINeZmmQxoO27IWO8D/ues10Ed/qYzjs6vj0vASsbJq0IY7A==}
     dependencies:
       hasha: 5.2.2
       sharp: 0.31.3
