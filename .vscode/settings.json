@@ -1,0 +1,7 @@
+{
+    "eslint.workingDirectories": [
+        {
+            "directory": "nuxt" // needed to correctly lint global locale strings like `t('globalShowMore')`
+        }
+    ]
+}
