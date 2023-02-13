@@ -61,7 +61,7 @@ specifiers:
   downloadjs: 1.4.7
   eslint: 8.33.0
   eslint-config-prettier: 8.6.0
-  eslint-plugin-compat: 4.0.2
+  eslint-plugin-compat: 4.1.1
   eslint-plugin-nuxt: 4.0.0
   eslint-plugin-prettier: 4.2.1
   eslint-plugin-yml: 1.4.0
@@ -181,7 +181,7 @@ devDependencies:
   downloadjs: 1.4.7
   eslint: 8.33.0
   eslint-config-prettier: 8.6.0_eslint@8.33.0
-  eslint-plugin-compat: 4.0.2_eslint@8.33.0
+  eslint-plugin-compat: 4.1.1_eslint@8.33.0
   eslint-plugin-nuxt: 4.0.0_eslint@8.33.0
   eslint-plugin-prettier: 4.2.1_qa2thblfovmfepmgrc7z2owbo4
   eslint-plugin-yml: 1.4.0_eslint@8.33.0
@@ -2727,8 +2727,8 @@ packages:
     resolution: {integrity: sha512-n2RC9d6XatVbWFdHLimzzUJxJ1KY8LdjqrW6YvGPiRmsHkhOUx74/Ct10x5Yo7bC/Jvqx7cDEW8IMPv/+vwEzA==}
     dev: true
 
-  /@mdn/browser-compat-data/4.2.1:
-    resolution: {integrity: sha512-EWUguj2kd7ldmrF9F+vI5hUOralPd+sdsUnYbRy33vZTuZkduC1shE9TtEMEjAQwyfyMb4ole5KtjF8MsnQOlA==}
+  /@mdn/browser-compat-data/5.2.35:
+    resolution: {integrity: sha512-WMGl70X/upKye9Ix0xQtaKzNsFJE6I4ZEexypk1gyiB5REQZv9BI3Stw8Tby25YSGJ7OuYG0+5oCnkv1A+3kRA==}
     dev: true
 
   /@netlify/functions/1.4.0:
@@ -5260,13 +5260,17 @@ packages:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
       browserslist: 4.21.5
-      caniuse-lite: 1.0.30001449
+      caniuse-lite: 1.0.30001451
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: true
 
   /caniuse-lite/1.0.30001449:
     resolution: {integrity: sha512-CPB+UL9XMT/Av+pJxCKGhdx+yg1hzplvFJQlJ2n68PyQGMz9L/E2zCyLdOL8uasbouTUgnPl+y0tccI/se+BEw==}
+    dev: true
+
+  /caniuse-lite/1.0.30001451:
+    resolution: {integrity: sha512-XY7UbUpGRatZzoRft//5xOa69/1iGJRBlrieH6QYrkKLIFn3m7OVEJ81dSrKoy2BnKsdbX5cLrOispZNYo9v2w==}
     dev: true
 
   /capital-case/1.0.4:
@@ -6759,21 +6763,21 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-compat/4.0.2_eslint@8.33.0:
-    resolution: {integrity: sha512-xqvoO54CLTVaEYGMzhu35Wzwk/As7rCvz/2dqwnFiWi0OJccEtGIn+5qq3zqIu9nboXlpdBN579fZcItC73Ycg==}
+  /eslint-plugin-compat/4.1.1_eslint@8.33.0:
+    resolution: {integrity: sha512-vUAaqKcDwXpVASyCAfKzkfaw3NxZ6FqeCNSGp7yqHpUMzkAiWRO0B6pR5zqh8RUhvybwXhPXvwVKDLr9GqGFUQ==}
     engines: {node: '>=9.x'}
     peerDependencies:
       eslint: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      '@mdn/browser-compat-data': 4.2.1
+      '@mdn/browser-compat-data': 5.2.35
       ast-metadata-inferer: 0.7.0
       browserslist: 4.21.5
-      caniuse-lite: 1.0.30001449
+      caniuse-lite: 1.0.30001451
       core-js: 3.27.2
       eslint: 8.33.0
       find-up: 5.0.0
       lodash.memoize: 4.1.2
-      semver: 7.3.5
+      semver: 7.3.8
     dev: true
 
   /eslint-plugin-es/3.0.1_eslint@8.33.0:
@@ -12167,14 +12171,6 @@ packages:
   /semver/6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
-    dev: true
-
-  /semver/7.3.5:
-    resolution: {integrity: sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      lru-cache: 6.0.0
     dev: true
 
   /semver/7.3.8:
