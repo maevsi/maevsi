@@ -112,6 +112,7 @@ ARG GID=1000
 
 ENV CYPRESS_RUN_BINARY=/home/cypress/Cypress/Cypress
 ENV DOCKER=true
+ENV ELECTRON_EXTRA_LAUNCH_ARGS=--disable-gpu
 
 WORKDIR /srv/app/
 
@@ -141,6 +142,8 @@ VOLUME /srv/app
 
 # Should be the specific version of `cypress/included`.
 FROM cypress/included:12.5.1 AS test-integration
+
+ENV ELECTRON_EXTRA_LAUNCH_ARGS=--disable-gpu
 
 # Update and install dependencies.
 RUN npm install -g pnpm
