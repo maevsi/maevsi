@@ -1,3 +1,27 @@
+# [1.7.0](https://github.com/maevsi/maevsi/compare/1.6.0...1.7.0) (2023-02-13)
+
+
+### Bug Fixes
+
+* **csp:** enable xss protection header ([84528fb](https://github.com/maevsi/maevsi/commit/84528fb20440bc252fd71379e3033436ecada1c8))
+* **cypress:** correct entrypoint for v12.4 ([03280db](https://github.com/maevsi/maevsi/commit/03280db1b7d0625e46c36064982169f9be2a5e63))
+* **headers:** set hsts only for production ([7c79cba](https://github.com/maevsi/maevsi/commit/7c79cba44442bb002d52f3178dd80ad7875e4000))
+* **i18n:** correct public source naming ([d27deb0](https://github.com/maevsi/maevsi/commit/d27deb0240e9164bd171bbabd76979048839f6a3))
+* **icon-container:** correct title validity ([d615b3c](https://github.com/maevsi/maevsi/commit/d615b3c13319a136322a202d78a4e1284bd95d02))
+* **nuxt:** remove shim disabling ([75ceb1a](https://github.com/maevsi/maevsi/commit/75ceb1a0cec30ec5b488861dc179dd587e698bbf))
+* **release:** schedule release ([a11d740](https://github.com/maevsi/maevsi/commit/a11d740d3e50b6ef9f8a8c7e7d7fa91d2100265d))
+* **release:** schedule release ([08a0922](https://github.com/maevsi/maevsi/commit/08a0922e346d43f8c4954f467680a5532e16f755))
+
+
+### Features
+
+* **cookie:** reenable own cookies' descriptions ([120e893](https://github.com/maevsi/maevsi/commit/120e893d229bf5311ddf688cb3c0bcf4c6d0820e))
+
+
+### Reverts
+
+* Revert "ci(upload): disable image upload gallery temporarily" ([9bb3179](https://github.com/maevsi/maevsi/commit/9bb3179838adcaf754741855bf346d35514936ca))
+
 # [1.6.0](https://github.com/maevsi/maevsi/compare/1.5.0...1.6.0) (2023-01-20)
 
 
