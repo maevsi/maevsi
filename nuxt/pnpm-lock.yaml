@@ -38,7 +38,7 @@ specifiers:
   '@types/mustache': 4.2.2
   '@types/node': 18.13.0
   '@types/pg': 8.6.6
-  '@uppy/core': 3.0.5
+  '@uppy/core': 3.0.6
   '@uppy/tus': 3.0.5
   '@urql/core': 3.1.1
   '@urql/devtools': 2.0.3
@@ -159,8 +159,8 @@ devDependencies:
   '@types/mustache': 4.2.2
   '@types/node': 18.13.0
   '@types/pg': 8.6.6
-  '@uppy/core': 3.0.5
-  '@uppy/tus': 3.0.5_@uppy+core@3.0.5
+  '@uppy/core': 3.0.6
+  '@uppy/tus': 3.0.5_@uppy+core@3.0.6
   '@urql/core': 3.1.1_graphql@16.6.0
   '@urql/devtools': 2.0.3_ioimjbecbkqzfeizgamzrgwc3y
   '@urql/exchange-graphcache': 5.0.8_graphql@16.6.0
@@ -230,7 +230,7 @@ devDependencies:
   stylelint-config-standard: 30.0.1_stylelint@15.1.0
   stylelint-no-unsupported-browser-features: 6.0.1_stylelint@15.1.0
   sweetalert2: 11.7.1
-  tailwindcss: 3.2.6_ts-node@10.9.1
+  tailwindcss: 3.2.6_aesdjsunmf4wiehhujt67my7tu
   ts-jest: 29.0.5_e57enqiqm67zwl77zp7juojw4m
   ts-node: 10.9.1_4bewfcp2iebiwuold25d6rgcsy
   typescript: 4.9.5
@@ -3326,7 +3326,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.6_ts-node@10.9.1
+      tailwindcss: 3.2.6_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.6:
@@ -3334,7 +3334,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.2.6_ts-node@10.9.1
+      tailwindcss: 3.2.6_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tailwindcss/typography/0.5.9_tailwindcss@3.2.6:
@@ -3346,7 +3346,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.6_ts-node@10.9.1
+      tailwindcss: 3.2.6_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tiptap/core/2.0.0-beta.217_@tiptap+pm@2.0.0-beta.217:
@@ -4029,8 +4029,8 @@ packages:
       namespace-emitter: 2.0.1
     dev: true
 
-  /@uppy/core/3.0.5:
-    resolution: {integrity: sha512-DPrSfEdJtxh5/p2U4Cl3d6Ga66k2M0eki2fIoEOC5zj1Z4vTfE3sJ945nJzrM0B7vFhFshMh7sCiNafa8HYEAg==}
+  /@uppy/core/3.0.6:
+    resolution: {integrity: sha512-438+xHMXWmnBl5NDvakh9C87IkWW9ZHVHY3+G5N17E/nzghxaJmFjCh390G5osNrgRvLAZZqt8g9I+hCnq7RgA==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.9
       '@uppy/store-default': 3.0.2
@@ -4046,13 +4046,13 @@ packages:
     resolution: {integrity: sha512-kIQMCjXui6tjF1E9xGo4YHkvt71McXkU0FStrcQuBrRXuOhb+NcuWh3sMh3KryivVNgT6w5Odrlw2FUFkl9cqA==}
     dev: true
 
-  /@uppy/tus/3.0.5_@uppy+core@3.0.5:
+  /@uppy/tus/3.0.5_@uppy+core@3.0.6:
     resolution: {integrity: sha512-X8RASLyiWMJ+VRVfxLg/THAj2BABZAoW+10+PCrX+U2FKUBbjdnDo2NVZs3vScL/fXsW5pTw4d18vJbZhWcryA==}
     peerDependencies:
       '@uppy/core': ^3.0.4
     dependencies:
       '@uppy/companion-client': 3.1.1
-      '@uppy/core': 3.0.5
+      '@uppy/core': 3.0.6
       '@uppy/utils': 5.1.2
       tus-js-client: 3.1.0
     dev: true
@@ -12877,10 +12877,12 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss/3.2.6_ts-node@10.9.1:
+  /tailwindcss/3.2.6_aesdjsunmf4wiehhujt67my7tu:
     resolution: {integrity: sha512-BfgQWZrtqowOQMC2bwaSNe7xcIjdDEgixWGYOd6AL0CbKHJlvhfdbINeAW76l1sO+1ov/MJ93ODJ9yluRituIw==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
