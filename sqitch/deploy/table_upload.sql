@@ -12,7 +12,7 @@ CREATE TABLE maevsi.upload (
   size_byte      BIGINT NOT NULL CHECK (size_byte > 0),
   storage_key    TEXT UNIQUE,
   username       TEXT REFERENCES maevsi_private.account(username) ON DELETE CASCADE NOT NULL,
-  uuid           UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v4()
+  uuid           UUID NOT NULL UNIQUE DEFAULT gen_random_uuid()
 );
 
 COMMENT ON TABLE maevsi.upload IS 'An upload.';
