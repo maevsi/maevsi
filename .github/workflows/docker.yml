@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build
-    uses: dargmuesli/github-actions/.github/workflows/docker3.yml@0.28.6
+    uses: dargmuesli/github-actions/.github/workflows/docker3.yml@0.28.7
     secrets:
       DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       DOCKER_HUB_USER_NAME: ${{ secrets.DOCKER_HUB_USER_NAME }}
@@ -18,7 +18,7 @@ jobs:
   release-semantic:
     needs: build
     name: Release (semantic)
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.28.6
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.28.7
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
