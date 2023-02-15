@@ -110,13 +110,9 @@ ARG UNAME=cypress
 ARG UID=1000
 ARG GID=1000
 
-ENV CYPRESS_RUN_BINARY=/home/cypress/Cypress/Cypress
-ENV DOCKER=true
-
 WORKDIR /srv/app/
 
-# Update and install dependencies.
-RUN apt-get update \
+RUN cp /usr/local/bin/cypress /root/.cache/Cypress \
     # pnpm
     && npm install -g pnpm \
     # user
@@ -125,33 +121,46 @@ RUN apt-get update \
     # clean
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && export CYPRESS_VERSION=$(ls /root/.cache/Cypress/) \
-    && mkdir /home/cypress/.cache \
-    && mv /root/.cache/Cypress/$CYPRESS_VERSION/Cypress /home/cypress/Cypress
+    && cypress verify
 
-RUN chown $UID:$GID /home/cypress/Cypress -R
-
-USER $UID:$GID
+USER $UNAME
 
 VOLUME /srv/app
 
 
 ########################
-# Nuxt: test (integration)
+# Nuxt: test (integration, development)
 
 # Should be the specific version of `cypress/included`.
 FROM cypress/included:12.6.0 AS test-integration
 
-# Update and install dependencies.
-RUN npm install -g pnpm
+RUN cp /usr/local/bin/cypress /root/.cache/Cypress \
+    # pnpm
+    && npm install -g pnpm
 
 WORKDIR /srv/app/
 
-COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
-COPY --from=build /srv/app/ ./
+COPY --from=prepare /srv/app/ ./
 
-RUN pnpm test:integration:prod \
-    && pnpm test:integration:dev
+RUN pnpm test:integration:dev
+
+
+########################
+# Nuxt: test (integration, production)
+
+# Should be the specific version of `cypress/included`.
+FROM cypress/included:12.5.1 AS test-integration-prod
+
+RUN cp /usr/local/bin/cypress /root/.cache/Cypress \
+    # pnpm
+    && npm install -g pnpm
+
+WORKDIR /srv/app/
+
+COPY --from=build /srv/app/ /srv/app/
+COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
+
+RUN pnpm test:integration:prod
 
 
 #######################
@@ -165,7 +174,8 @@ WORKDIR /srv/app/
 COPY --from=build /srv/app/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/lint/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/test/package.json
-COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
+COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
+COPY --from=test-integration-prod /srv/app/package.json /tmp/test/package.json
 
 
 #######################
