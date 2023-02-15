@@ -39,7 +39,7 @@
           </div>
           <Owner :username="event.authorUsername" />
         </div>
-        <p v-if="eventDescriptionTemplate" class="text-ellipsis line-clamp-2">
+        <p v-if="eventDescriptionTemplate" class="vio-line-clamp-2">
           {{ eventDescriptionTemplate }}
         </p>
       </Card>

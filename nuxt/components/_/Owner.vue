@@ -1,5 +1,5 @@
 <template>
-  <i18n-t class="max-w-full truncate" keypath="eventAuthor" tag="span">
+  <i18n-t class="max-w-full truncate-soft" keypath="eventAuthor" tag="span">
     <template #username>
       <AppLink v-if="link" :to="localePath('/account/' + username)">
         {{ username }}

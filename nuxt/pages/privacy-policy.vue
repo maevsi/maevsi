@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <div class="maevsi-prose-scheme">
+    <div class="vio-prose-scheme">
       <h2>{{ t('summary') }}</h2>
       <h3>{{ t('generalNotesTitle') }}</h3>
       <p>{{ t('generalNotesDescription') }}</p>

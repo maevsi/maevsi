@@ -52,50 +52,50 @@
       U+2215, U+FEFF, U+FFFD;
   }
 
-  a {
-    @apply m-1;
-  }
-
   a:focus {
-    @apply outline-none ring rounded;
-  }
-
-  button {
-    @apply m-1;
+    @apply outline-none ring;
   }
 
   button:focus {
-    @apply outline-none ring rounded;
+    @apply outline-none ring;
   }
 
   thead {
-    @apply sticky top-0 z-10 maevsi-bg-darken;
+    @apply sticky top-0 z-10 vio-bg-darken;
   }
 
   tbody {
-    @apply divide-y maevsi-divide-darken;
+    @apply divide-y vio-divide-darken;
   }
 }
 
 @layer utilities {
-  .maevsi-prose {
-    @apply m-auto prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl; /* 2xl:prose-2xl */
-  }
-
-  .maevsi-prose-scheme {
-    @apply maevsi-prose dark:prose-invert;
-  }
-
-  .maevsi-divide-darken {
-    @apply divide-background-brighten dark:divide-background-darken
-  }
-
-  .maevsi-bg-darken {
+  .vio-bg-darken {
     @apply bg-background-brighten dark:bg-background-darken
   }
 
-  .maevsi-border-darken {
+  .vio-border-darken {
     @apply border-background-brighten dark:border-background-darken
+  }
+
+  .vio-line-clamp-2 {
+    @apply max-w-full text-ellipsis break-words line-clamp-2;
+  }
+
+  .vio-prose {
+    @apply m-auto prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl; /* 2xl:prose-2xl */
+  }
+
+  .vio-prose-fullwidth {
+    @apply vio-prose max-w-full sm:max-w-full md:max-w-full xl:max-w-full 2xl:max-w-full;
+  }
+
+  .vio-prose-scheme {
+    @apply vio-prose dark:prose-invert;
+  }
+
+  .vio-divide-darken {
+    @apply divide-background-brighten dark:divide-background-darken
   }
 }
 
@@ -110,7 +110,7 @@
 }
 
 .ProseMirror { /* stylelint-disable-line selector-class-pattern */
-  @apply maevsi-prose;
+  @apply vio-prose;
 
   max-width: 100%;
   margin: 0;
