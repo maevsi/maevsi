@@ -74,7 +74,7 @@ specifiers:
   is-https: 4.0.0
   isomorphic-dompurify: 1.0.0
   jest: 29.4.3
-  jose: 4.11.4
+  jose: 4.12.0
   lint-staged: 13.1.2
   lodash-es: 4.17.21
   mustache: 4.2.0
@@ -195,7 +195,7 @@ devDependencies:
   is-https: 4.0.0
   isomorphic-dompurify: 1.0.0
   jest: 29.4.3_ucpl6toqp57nqodtp3vxxi6g5a
-  jose: 4.11.4
+  jose: 4.12.0
   lint-staged: 13.1.2
   lodash-es: 4.17.21
   mustache: 4.2.0
@@ -9211,8 +9211,8 @@ packages:
       '@sideway/pinpoint': 2.0.0
     dev: true
 
-  /jose/4.11.4:
-    resolution: {integrity: sha512-94FdcR8felat4vaTJyL/WVdtlWLlsnLMZP8v+A0Vru18K3bQ22vn7TtpVh3JlgBFNIlYOUlGqwp/MjRPOnIyCQ==}
+  /jose/4.12.0:
+    resolution: {integrity: sha512-wW1u3cK81b+SFcHjGC8zw87yuyUweEFe0UJirrXEw1NasW00eF7sZjeG3SLBGz001ozxQ46Y9sofDvhBmWFtXQ==}
     dev: true
 
   /js-base64/3.7.5:
