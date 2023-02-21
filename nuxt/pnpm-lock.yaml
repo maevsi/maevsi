@@ -25,7 +25,7 @@ specifiers:
   '@tailwindcss/line-clamp': 0.4.2
   '@tailwindcss/typography': 0.5.9
   '@tiptap/core': 2.0.0-beta.218
-  '@tiptap/extension-link': 2.0.0-beta.217
+  '@tiptap/extension-link': 2.0.0-beta.218
   '@tiptap/pm': 2.0.0-beta.217
   '@tiptap/starter-kit': 2.0.0-beta.217
   '@tiptap/vue-3': 2.0.0-beta.217
@@ -146,7 +146,7 @@ devDependencies:
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.7
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@tiptap/core': 2.0.0-beta.218_@tiptap+pm@2.0.0-beta.217
-  '@tiptap/extension-link': 2.0.0-beta.217_ff6sakdfclstupvvimipwh77ie
+  '@tiptap/extension-link': 2.0.0-beta.218_ff6sakdfclstupvvimipwh77ie
   '@tiptap/pm': 2.0.0-beta.217_xixjdlstfbsoyvyes7aewz3ng4
   '@tiptap/starter-kit': 2.0.0-beta.217_@tiptap+pm@2.0.0-beta.217
   '@tiptap/vue-3': 2.0.0-beta.217_a5fsiksbs6cn7huiqv5aurzmy4
@@ -3813,8 +3813,8 @@ packages:
       '@tiptap/core': 2.0.0-beta.218_@tiptap+pm@2.0.0-beta.217
     dev: true
 
-  /@tiptap/extension-link/2.0.0-beta.217_ff6sakdfclstupvvimipwh77ie:
-    resolution: {integrity: sha512-pC1UnK1OrbW+NDdBdHE8sfmZ+tOpIOsHVAeeX6pg1fkdP/FlbPFFvcvILgJc20dr7DiM6dRqYq16H473G9vyEg==}
+  /@tiptap/extension-link/2.0.0-beta.218_ff6sakdfclstupvvimipwh77ie:
+    resolution: {integrity: sha512-Vi+qZOzqS+tTpK2q23q5wLEDxIZMiRNHduzJtZh2wKryLPjbs7jEnxSVQybvQqRHAhUC6uGsh+9nhN0+fq6oAw==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
       '@tiptap/pm': ^2.0.0-beta.209
