@@ -28,7 +28,7 @@ specifiers:
   '@tiptap/extension-link': 2.0.0-beta.218
   '@tiptap/pm': 2.0.0-beta.218
   '@tiptap/starter-kit': 2.0.0-beta.218
-  '@tiptap/vue-3': 2.0.0-beta.217
+  '@tiptap/vue-3': 2.0.0-beta.218
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.4.0
   '@types/downloadjs': 1.4.3
@@ -149,7 +149,7 @@ devDependencies:
   '@tiptap/extension-link': 2.0.0-beta.218_p7b6nzxe7qctmzbzapdik3nr64
   '@tiptap/pm': 2.0.0-beta.218_xixjdlstfbsoyvyes7aewz3ng4
   '@tiptap/starter-kit': 2.0.0-beta.218_@tiptap+pm@2.0.0-beta.218
-  '@tiptap/vue-3': 2.0.0-beta.217_2p7kft6r7l2pbqpusj5d3uq2ja
+  '@tiptap/vue-3': 2.0.0-beta.218_2p7kft6r7l2pbqpusj5d3uq2ja
   '@types/cookie': 0.5.1
   '@types/dompurify': 2.4.0
   '@types/downloadjs': 1.4.3
@@ -3692,8 +3692,8 @@ packages:
       '@tiptap/core': 2.0.0-beta.218_@tiptap+pm@2.0.0-beta.218
     dev: true
 
-  /@tiptap/extension-bubble-menu/2.0.0-beta.217_p7b6nzxe7qctmzbzapdik3nr64:
-    resolution: {integrity: sha512-f52hjIzNbvAJy0P3pTf6sv/65XlMU1LCLXam4VCTkYJ2HHVvW+LZcu+dG1M8YmGkM9l+6dQPs5L2rriAQDXt+w==}
+  /@tiptap/extension-bubble-menu/2.0.0-beta.218_p7b6nzxe7qctmzbzapdik3nr64:
+    resolution: {integrity: sha512-NXVaRSoweM54AGCJCJWkY3D9CfYlARtC04+7T8EF0Dwz99RcVzDHCXaNJGk+rMH7vGxsJop4RxHEQO/D2pgADw==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
       '@tiptap/pm': ^2.0.0-beta.209
@@ -3748,8 +3748,8 @@ packages:
       '@tiptap/pm': 2.0.0-beta.218_xixjdlstfbsoyvyes7aewz3ng4
     dev: true
 
-  /@tiptap/extension-floating-menu/2.0.0-beta.217_p7b6nzxe7qctmzbzapdik3nr64:
-    resolution: {integrity: sha512-mP77UrimZo3sdC+Xam0DsPeYfXn29hl4ixEuZeiQQBMqz7g1K9T7vOEsRMQCBVFS7Hsc7MWBqLa1lL1GtyBB9Q==}
+  /@tiptap/extension-floating-menu/2.0.0-beta.218_p7b6nzxe7qctmzbzapdik3nr64:
+    resolution: {integrity: sha512-OzmucdEJOK7Geq6C3oBZg1m1lBrAAm6SyMPn+0fN83ijixYJAChi7c20A+mrR6aeTlmjASi2CXFkrrVmNV7ZDQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
       '@tiptap/pm': ^2.0.0-beta.209
@@ -3916,16 +3916,16 @@ packages:
       - '@tiptap/pm'
     dev: true
 
-  /@tiptap/vue-3/2.0.0-beta.217_2p7kft6r7l2pbqpusj5d3uq2ja:
-    resolution: {integrity: sha512-QHVc82A6lu4qF1Glz5Ne00Nwbj0A0U/6IEbG8u8/YQDy1XzQ7PZwR6FrwxPTrwLhJivy4/wVBiYTUygs9+vjbQ==}
+  /@tiptap/vue-3/2.0.0-beta.218_2p7kft6r7l2pbqpusj5d3uq2ja:
+    resolution: {integrity: sha512-ICQqe+OvVVvKdVbWKPwq4B6FO2q7rfsVDWKSBOk5ZsU/8VXjeKAZji+QoZVKA2BdT1aCXM6Kt40kSY5j9sEOLw==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
       '@tiptap/pm': ^2.0.0-beta.209
       vue: ^3.0.0
     dependencies:
       '@tiptap/core': 2.0.0-beta.218_@tiptap+pm@2.0.0-beta.218
-      '@tiptap/extension-bubble-menu': 2.0.0-beta.217_p7b6nzxe7qctmzbzapdik3nr64
-      '@tiptap/extension-floating-menu': 2.0.0-beta.217_p7b6nzxe7qctmzbzapdik3nr64
+      '@tiptap/extension-bubble-menu': 2.0.0-beta.218_p7b6nzxe7qctmzbzapdik3nr64
+      '@tiptap/extension-floating-menu': 2.0.0-beta.218_p7b6nzxe7qctmzbzapdik3nr64
       '@tiptap/pm': 2.0.0-beta.218_xixjdlstfbsoyvyes7aewz3ng4
       vue: 3.2.47
     dev: true
