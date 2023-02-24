@@ -118,7 +118,7 @@ specifiers:
   vue-advanced-cropper: 2.8.8
   vue-chartjs: 5.2.0
   vue-gtag: 2.0.1
-  vue-qrcode-reader: 3.1.0-vue3-compatibility.5
+  vue-qrcode-reader: 3.1.0-vue3-compatibility.6
   vue-tsc: 1.1.7
 
 devDependencies:
@@ -239,7 +239,7 @@ devDependencies:
   vue-advanced-cropper: 2.8.8_vue@3.2.47
   vue-chartjs: 5.2.0_chart.js@4.2.1+vue@3.2.47
   vue-gtag: 2.0.1_vue@3.2.47
-  vue-qrcode-reader: 3.1.0-vue3-compatibility.5
+  vue-qrcode-reader: 3.1.0-vue3-compatibility.6
   vue-tsc: 1.1.7_typescript@4.9.5
 
 packages:
@@ -14229,8 +14229,8 @@ packages:
       vue: 3.2.47
     dev: true
 
-  /vue-qrcode-reader/3.1.0-vue3-compatibility.5:
-    resolution: {integrity: sha512-Q/4PcQyOgUfuGUvFHpMD+mSZxJeDpREvX8aMi0h/fMo97bGDZ7f5W+OvguSGgPComIq+Pd96bKyB53gHDjvTQA==}
+  /vue-qrcode-reader/3.1.0-vue3-compatibility.6:
+    resolution: {integrity: sha512-3ecC49z1UYRBv4sOHp7I6/rHDepa4u/65HpXEqjo5YLQUzsHaUUgvnz0QPSv+kGDi4ZXqg/9U3UMZx4uG/eF3g==}
     dependencies:
       '@vue/compat': 3.2.47_vue@3.2.47
       barcode-detector: 1.0.0
