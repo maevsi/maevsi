@@ -1,7 +1,6 @@
 {
   "extends": [
     "stylelint-config-standard",
-    "stylelint-config-prettier",
     "stylelint-config-recommended-vue"
   ],
   "plugins": ["stylelint-no-unsupported-browser-features"],
