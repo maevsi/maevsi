@@ -11,9 +11,6 @@ nuxt/.output
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 
-# Docker
-Dockerfile
-
 # Git
 nuxt/**/!.gitkeep
 

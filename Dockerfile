@@ -14,7 +14,7 @@ RUN apt-get update \
         libdbd-pg-perl postgresql-client sqitch \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && npm install -g pnpm
+    && corepack enable
 
 WORKDIR /srv/app/
 
@@ -39,7 +39,7 @@ WORKDIR /srv/app/
 
 COPY ./nuxt/pnpm-lock.yaml ./
 
-RUN npm install -g pnpm && \
+RUN corepack enable && \
     pnpm fetch
 
 COPY ./nuxt/ ./
@@ -66,7 +66,7 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
-RUN npm install -g pnpm && \
+RUN corepack enable && \
     pnpm run build
 
 
@@ -81,7 +81,7 @@ WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
-RUN npm install -g pnpm && \
+RUN corepack enable && \
     pnpm run lint
 
 
@@ -112,16 +112,13 @@ ARG GID=1000
 
 WORKDIR /srv/app/
 
-RUN cp /usr/local/bin/cypress /root/.cache/Cypress \
-    # pnpm
-    && npm install -g pnpm \
+RUN corepack enable \
     # user
     && groupadd -g $GID -o $UNAME \
-    && useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME \
-    # clean
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && cypress verify
+    && useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
+
+# Use the Cypress version installed by pnpm, not as provided by the Docker image.
+COPY --from=prepare --chown=$UNAME /root/.cache/Cypress /root/.cache/Cypress
 
 USER $UNAME
 
@@ -132,14 +129,14 @@ VOLUME /srv/app
 # Nuxt: test (integration, development)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.6.0 AS test-integration
+FROM cypress/included:12.6.0 AS test-integration-dev
 
-RUN cp /usr/local/bin/cypress /root/.cache/Cypress \
-    # pnpm
-    && npm install -g pnpm
+RUN corepack enable
 
 WORKDIR /srv/app/
 
+# Use the Cypress version installed by pnpm, not as provided by the Docker image.
+COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=prepare /srv/app/ ./
 
 RUN pnpm test:integration:dev
@@ -149,14 +146,14 @@ RUN pnpm test:integration:dev
 # Nuxt: test (integration, production)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.5.1 AS test-integration-prod
+FROM cypress/included:12.6.0 AS test-integration-prod
 
-RUN cp /usr/local/bin/cypress /root/.cache/Cypress \
-    # pnpm
-    && npm install -g pnpm
+RUN corepack enable
 
 WORKDIR /srv/app/
 
+# Use the Cypress version installed by pnpm, not as provided by the Docker image.
+COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=build /srv/app/ /srv/app/
 COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
 
@@ -167,6 +164,7 @@ RUN pnpm test:integration:prod
 # Collect build, lint and test results.
 
 # Should be the specific version of `node:slim`.
+# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:19.7.0-slim AS collect
 
 WORKDIR /srv/app/
