@@ -55,7 +55,7 @@ specifiers:
   cookie: 0.5.0
   cross-env: 7.0.3
   css-element-queries: 1.2.3
-  cypress: 12.6.0
+  cypress: 12.7.0
   cypress-visual-regression: 2.1.1
   dayjs: 2.0.0-alpha.4
   defu: 6.1.2
@@ -176,8 +176,8 @@ devDependencies:
   cookie: 0.5.0
   cross-env: 7.0.3
   css-element-queries: 1.2.3
-  cypress: 12.6.0
-  cypress-visual-regression: 2.1.1_cypress@12.6.0
+  cypress: 12.7.0
+  cypress-visual-regression: 2.1.1_cypress@12.7.0
   dayjs: 2.0.0-alpha.4
   defu: 6.1.2
   downloadjs: 1.4.7
@@ -6140,19 +6140,19 @@ packages:
     resolution: {integrity: sha512-p6JFxJc3M4OTD2li2qaHkDCw9SfMw82Ldr6OC9Je1aXiGfhx2W8p3GaoeaGrPJTUN9NirTM/KTxHWMUdR1rsUg==}
     dev: true
 
-  /cypress-visual-regression/2.1.1_cypress@12.6.0:
+  /cypress-visual-regression/2.1.1_cypress@12.7.0:
     resolution: {integrity: sha512-oVDBL3hEMd6luj7eYLXzaNbqKPT8e1ZDGg/mptCRlIgw/uo09zv5TRHe6eqptPuZH8qFpfG3Eijk656zP2PcZg==}
     peerDependencies:
       cypress: '>=9.7.0'
     dependencies:
-      cypress: 12.6.0
+      cypress: 12.7.0
       pixelmatch: 5.3.0
       pngjs: 6.0.0
       sanitize-filename: 1.6.3
     dev: true
 
-  /cypress/12.6.0:
-    resolution: {integrity: sha512-WdHSVaS1lumSd5XpVTslZd8ui9GIGphrzvXq9+3DtVhqjRZC5M70gu5SW/Y/SLPq3D1wiXGZoHC6HJ7ESVE2lw==}
+  /cypress/12.7.0:
+    resolution: {integrity: sha512-7rq+nmhzz0u6yabCFyPtADU2OOrYt6pvUau9qV7xyifJ/hnsaw/vkr0tnLlcuuQKUAOC1v1M1e4Z0zG7S0IAvA==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
