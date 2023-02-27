@@ -1,5 +1,4 @@
 -- Deploy maevsi:function_account_password_reset to pg
--- requires: extension_uuid-ossp
 -- requires: privilege_execute_revoke
 -- requires: schema_public
 -- requires: schema_private

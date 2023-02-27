@@ -3,7 +3,6 @@
 -- requires: schema_public
 -- requires: schema_private
 -- requires: table_account
--- requires: extension_uuid-ossp
 -- requires: table_notification
 -- requires: role_anonymous
 
@@ -22,7 +21,7 @@ BEGIN
 
   WITH updated AS (
     UPDATE maevsi_private.account
-      SET password_reset_verification = maevsi.uuid_generate_v4()
+      SET password_reset_verification = gen_random_uuid()
       WHERE account.email_address = $1
       RETURNING *
   ) SELECT

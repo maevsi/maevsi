@@ -104,7 +104,7 @@ RUN npm install -g pnpm && \
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.6.0 AS test-integration_base
+FROM cypress/included:12.7.0 AS test-integration_base
 
 ARG UNAME=cypress
 ARG UID=1000
@@ -129,7 +129,7 @@ VOLUME /srv/app
 # Nuxt: test (integration, development)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.6.0 AS test-integration-dev
+FROM cypress/included:12.7.0 AS test-integration
 
 RUN corepack enable
 

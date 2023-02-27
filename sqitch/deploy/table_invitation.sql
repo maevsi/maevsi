@@ -1,6 +1,5 @@
 -- Deploy maevsi:table_invitation to pg
 -- requires: schema_public
--- requires: extension_uuid-ossp
 -- requires: table_event
 -- requires: table_contact
 -- requires: enum_invitation_feedback
@@ -14,7 +13,7 @@ CREATE TABLE maevsi.invitation (
   event_id          BIGINT REFERENCES maevsi.event(id) ON DELETE CASCADE NOT NULL,
   feedback          maevsi.invitation_feedback,
   feedback_paper    maevsi.invitation_feedback_paper,
-  uuid              UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v4(),
+  uuid              UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(),
   UNIQUE (event_id, contact_id)
 );
 
