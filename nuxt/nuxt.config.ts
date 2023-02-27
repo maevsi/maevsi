@@ -97,6 +97,7 @@ export default defineNuxtConfig({
             de: 'Dieser Cookie von uns speichert Berechtigungen für den Datenbankzugriff dieser Webseite.',
             en: "This cookie of ours stores permissions for this website's database access.",
           },
+          id: 'a',
           name: {
             de: 'Authentifizierungsdaten',
             en: 'Authentication Data',
@@ -108,20 +109,19 @@ export default defineNuxtConfig({
             de: 'Dieser Cookie von uns speichert die Einstellungen, die in diesem Dialog getroffen werden.',
             en: 'This cookie of ours stores the settings made in this dialog.',
           },
+          id: 'c',
           name: {
             de: 'Cookie-Präferenzen',
             en: 'Cookie Preferences',
           },
-          targetCookieIds: [
-            'cookie_control_is_consent_given',
-            'cookie_control_cookies_enabled_ids',
-          ],
+          targetCookieIds: ['ncc_c', 'ncc_e'],
         },
         {
           description: {
             de: 'Dieser Cookie von uns speichert die Sprache, in der diese Webseite angezeigt wird.',
             en: "This cookie of ours stores the language that's used to display this website.",
           },
+          id: 'l',
           name: {
             de: 'Sprache',
             en: 'Language',
@@ -133,6 +133,7 @@ export default defineNuxtConfig({
             de: 'Dieser Cookie von uns speichert die Zeitzone, in der sich das Gerät zu befinden scheint.',
             en: 'This cookie of ours saves the timezone in which the device appears to be located.',
           },
+          id: 't',
           name: {
             de: 'Zeitzone',
             en: 'Timezone',
@@ -146,7 +147,11 @@ export default defineNuxtConfig({
             de: 'Die Cookies vom Drittanbieter Google ermöglichen die Analyse von Nutzerverhalten. Diese Analyse hilft uns unsere Dienste zu verbessern, indem wir verstehen, wie diese Webseite genutzt wird.',
             en: 'The third-party cookies by Google enable the analysis of user behavior. This analysis helps us to improve our services by understanding how this website is used.',
           },
-          id: 'google-analytics',
+          id: 'ga',
+          links: {
+            'https://policies.google.com/privacy': 'Google Privacy Policy',
+            'https://policies.google.com/terms': 'Google Terms of Service',
+          },
           name: 'Analytics',
           targetCookieIds: [
             '_ga',

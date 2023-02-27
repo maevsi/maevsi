@@ -47,10 +47,8 @@ watch(
   () => cookieControl.cookiesEnabledIds.value,
   (current, previous) => {
     if (
-      (!previous?.includes('google-analytics') &&
-        current?.includes('google-analytics')) ||
-      (previous?.includes('google-analytics') &&
-        !current?.includes('google-analytics'))
+      (!previous?.includes('ga') && current?.includes('ga')) ||
+      (previous?.includes('ga') && !current?.includes('ga'))
     ) {
       window.location.reload()
     }
