@@ -115,10 +115,7 @@ export default defineNuxtConfig({
             de: 'Cookie-Präferenzen',
             en: 'Cookie Preferences',
           },
-          targetCookieIds: [
-            'cookie_control_is_consent_given',
-            'cookie_control_cookies_enabled_ids',
-          ],
+          targetCookieIds: ['ncc_c', 'ncc_e'],
         },
         {
           description: {
