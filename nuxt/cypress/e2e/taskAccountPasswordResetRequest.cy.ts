@@ -10,7 +10,7 @@ describe('task account password reset request page', () => {
 
   context('visual regression', () => {
     it('looks as before', () => {
-      cy.setCookie('cookie_control_is_consent_given', 'true')
+      cy.setCookie('ncc_c', 'acltga')
       cy.visit('/task/account/password/reset/request')
       cy.get('[data-is-loading="false"]').should('be.visible')
       cy.get('[data-testid="nuxt-cookie-control-control-button"]').should(
