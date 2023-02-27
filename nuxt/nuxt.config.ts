@@ -151,8 +151,7 @@ export default defineNuxtConfig({
           id: 'ga',
           links: {
             'https://policies.google.com/privacy': 'Google Privacy Policy',
-            'https://policies.google.com/terms?hl=en':
-              'Google Terms of Service',
+            'https://policies.google.com/terms': 'Google Terms of Service',
           },
           name: 'Analytics',
           targetCookieIds: [
