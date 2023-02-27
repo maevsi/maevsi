@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/maevsi/maevsi/compare/1.8.0...1.9.0) (2023-02-27)
+
+
+### Features
+
+* **cookie-control:** set links and shorten ids ([4b627b4](https://github.com/maevsi/maevsi/commit/4b627b49f37c0ccaed377c07ca0fbf6a7bdf9d2b))
+
 # [1.8.0](https://github.com/maevsi/maevsi/compare/1.7.1...1.8.0) (2023-02-27)
 
 
