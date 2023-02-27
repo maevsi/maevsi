@@ -39,6 +39,9 @@
       <div class="flex justify-center">
         <Turnstile v-model="store.turnstileKey" />
       </div>
+      <div>
+        {{ store.turnstileKey }}
+      </div>
 
       <template
         v-if="
