@@ -134,7 +134,6 @@
     "slugify": "1.6.5",
     "start-server-and-test": "1.15.5",
     "stylelint": "15.2.0",
-    "stylelint-config-prettier": "9.0.5",
     "stylelint-config-recommended-vue": "1.4.0",
     "stylelint-config-standard": "30.0.1",
     "stylelint-no-unsupported-browser-features": "6.1.0",

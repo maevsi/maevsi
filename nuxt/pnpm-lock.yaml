@@ -100,7 +100,6 @@ specifiers:
   slugify: 1.6.5
   start-server-and-test: 1.15.5
   stylelint: 15.2.0
-  stylelint-config-prettier: 9.0.5
   stylelint-config-recommended-vue: 1.4.0
   stylelint-config-standard: 30.0.1
   stylelint-no-unsupported-browser-features: 6.1.0
@@ -217,7 +216,6 @@ devDependencies:
   slugify: 1.6.5
   start-server-and-test: 1.15.5
   stylelint: 15.2.0
-  stylelint-config-prettier: 9.0.5_stylelint@15.2.0
   stylelint-config-recommended-vue: 1.4.0_x2qzl5lwlwnkkekx7bj2y4o6y4
   stylelint-config-standard: 30.0.1_stylelint@15.2.0
   stylelint-no-unsupported-browser-features: 6.1.0_stylelint@15.2.0
@@ -12025,16 +12023,6 @@ packages:
       stylelint: '>=14.0.0'
     dependencies:
       postcss-html: 1.5.0
-      stylelint: 15.2.0
-    dev: true
-
-  /stylelint-config-prettier/9.0.5_stylelint@15.2.0:
-    resolution: {integrity: sha512-U44lELgLZhbAD/xy/vncZ2Pq8sh2TnpiPvo38Ifg9+zeioR+LAkHu0i6YORIOxFafZoVg0xqQwex6e6F25S5XA==}
-    engines: {node: '>= 12'}
-    hasBin: true
-    peerDependencies:
-      stylelint: '>= 11.x < 15'
-    dependencies:
       stylelint: 15.2.0
     dev: true
 
