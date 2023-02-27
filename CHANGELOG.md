@@ -1,3 +1,20 @@
+# [1.8.0](https://github.com/maevsi/maevsi/compare/1.7.1...1.8.0) (2023-02-27)
+
+
+### Bug Fixes
+
+* **docker:** use cypress installed as dependency ([b4e0e0f](https://github.com/maevsi/maevsi/commit/b4e0e0f1847831ff39aac07f133b87b030dd806a))
+
+
+### Features
+
+* **sql:** use native uuid v4 generation ([c4bf7cc](https://github.com/maevsi/maevsi/commit/c4bf7cc1db7fcb686a31484b67ece7dba1122daa)), closes [#1089](https://github.com/maevsi/maevsi/issues/1089)
+
+
+### Performance Improvements
+
+* **docker:** run cypress in parallel ([3e98f32](https://github.com/maevsi/maevsi/commit/3e98f32d1b51609ddea9a3530d54d3a6514640f0))
+
 ## [1.7.1](https://github.com/maevsi/maevsi/compare/1.7.0...1.7.1) (2023-02-25)
 
 
