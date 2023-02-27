@@ -129,7 +129,7 @@ VOLUME /srv/app
 # Nuxt: test (integration, development)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.7.0 AS test-integration
+FROM cypress/included:12.7.0 AS test-integration-dev
 
 RUN corepack enable
 
@@ -170,10 +170,10 @@ FROM node:19.7.0-slim AS collect
 WORKDIR /srv/app/
 
 COPY --from=build /srv/app/.output ./.output
-COPY --from=lint /srv/app/package.json /tmp/lint/package.json
-COPY --from=test-unit /srv/app/package.json /tmp/test/package.json
-COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
-COPY --from=test-integration-prod /srv/app/package.json /tmp/test/package.json
+COPY --from=lint /srv/app/package.json /tmp/package.json
+COPY --from=test-unit /srv/app/package.json /tmp/package.json
+COPY --from=test-integration-dev /srv/app/package.json /tmp/package.json
+COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 
 
 #######################
