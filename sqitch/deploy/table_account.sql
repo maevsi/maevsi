@@ -1,7 +1,6 @@
 -- Deploy maevsi:table_account to pg
 -- requires: schema_private
 -- requires: schema_public
--- requires: extension_uuid-ossp
 
 BEGIN;
 
@@ -9,7 +8,7 @@ CREATE TABLE maevsi_private.account (
   id                                         BIGSERIAL PRIMARY KEY,
   created                                    TIMESTAMP NOT NULL DEFAULT NOW(),
   email_address                              TEXT NOT NULL CHECK (char_length(email_address) < 320 AND email_address ~ '^.+@.+\..+$' AND email_address ~ '^[^A-Z]+$') UNIQUE,
-  email_address_verification                 UUID DEFAULT maevsi.uuid_generate_v4(),
+  email_address_verification                 UUID DEFAULT gen_random_uuid(),
   email_address_verification_valid_until     TIMESTAMP,
   last_activity                              TIMESTAMP NOT NULL DEFAULT NOW(),
   password_hash                              TEXT NOT NULL,

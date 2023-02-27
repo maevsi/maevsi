@@ -1,6 +1,5 @@
 -- Deploy maevsi:function_upload_create to pg
 -- requires: privilege_execute_revoke
--- requires: extension_uuid-ossp
 -- requires: schema_public
 -- requires: schema_private
 -- requires: role_account

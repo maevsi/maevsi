@@ -1,13 +1,12 @@
 -- Deploy maevsi:table_jwt to pg
 -- requires: schema_private
--- requires: extension_uuid-ossp
 
 BEGIN;
 
 CREATE TABLE maevsi_private.jwt (
   id       BIGSERIAL PRIMARY KEY,
   token    maevsi.jwt NOT NULL UNIQUE,
-  uuid     UUID NOT NULL UNIQUE DEFAULT maevsi.uuid_generate_v4()
+  uuid     UUID NOT NULL UNIQUE DEFAULT gen_random_uuid()
 );
 
 COMMENT ON TABLE maevsi_private.jwt IS 'A list of tokens.';
