@@ -136,7 +136,7 @@
     "qrcode.vue": "3.3.3",
     "rollup": "3.17.3",
     "slugify": "1.6.5",
-    "start-server-and-test": "1.15.5",
+    "start-server-and-test": "2.0.0",
     "stylelint": "15.2.0",
     "stylelint-config-recommended-vue": "1.4.0",
     "stylelint-config-standard": "30.0.1",
