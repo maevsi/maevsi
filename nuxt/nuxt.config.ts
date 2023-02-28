@@ -61,7 +61,6 @@ export default defineNuxtConfig({
       compilerOptions: {
         esModuleInterop: true,
         // noErrorTruncation: true,
-        types: ['jest'],
       },
       vueCompilerOptions: {
         htmlAttributes: [], // https://github.com/johnsoncodehk/volar/issues/1970#issuecomment-1276994634
