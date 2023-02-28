@@ -1,7 +1,7 @@
 {
   "name": "maevsi",
   "private": true,
-  "version": "1.9.0",
+  "version": "1.9.1",
   "scheduleVersion": "1.7.1",
   "description": "Find events, guests and friends.",
   "type": "module",

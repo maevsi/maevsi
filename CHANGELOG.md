@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/maevsi/maevsi/compare/1.9.0...1.9.1) (2023-02-28)
+
+
+### Bug Fixes
+
+* **vitest:** do not watch in docker ([c889dde](https://github.com/maevsi/maevsi/commit/c889ddef4de302492cf90e8139345bcac48245a0))
+
 # [1.9.0](https://github.com/maevsi/maevsi/compare/1.8.0...1.9.0) (2023-02-27)
 
 
