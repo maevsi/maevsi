@@ -102,7 +102,7 @@ specifiers:
   qrcode.vue: 3.3.3
   rollup: 3.17.3
   slugify: 1.6.5
-  start-server-and-test: 1.15.5
+  start-server-and-test: 2.0.0
   stylelint: 15.2.0
   stylelint-config-recommended-vue: 1.4.0
   stylelint-config-standard: 30.0.1
@@ -222,7 +222,7 @@ devDependencies:
   qrcode.vue: 3.3.3_vue@3.2.47
   rollup: 3.17.3
   slugify: 1.6.5
-  start-server-and-test: 1.15.5
+  start-server-and-test: 2.0.0
   stylelint: 15.2.0
   stylelint-config-recommended-vue: 1.4.0_x2qzl5lwlwnkkekx7bj2y4o6y4
   stylelint-config-standard: 30.0.1_stylelint@15.2.0
@@ -12772,8 +12772,8 @@ packages:
     resolution: {integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==}
     dev: true
 
-  /start-server-and-test/1.15.5:
-    resolution: {integrity: sha512-o3EmkX0++GV+qsvIJ/OKWm3w91fD8uS/bPQVPrh/7loaxkpXSuAIHdnmN/P/regQK9eNAK76aBJcHt+OSTk+nA==}
+  /start-server-and-test/2.0.0:
+    resolution: {integrity: sha512-UqKLw0mJbfrsG1jcRLTUlvuRi9sjNuUiDOLI42r7R5fA9dsFoywAy9DoLXNYys9B886E4RCKb+qM1Gzu96h7DQ==}
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
