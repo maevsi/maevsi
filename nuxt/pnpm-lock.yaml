@@ -23,7 +23,7 @@ specifiers:
   '@tailwindcss/line-clamp': 0.4.2
   '@tailwindcss/typography': 0.5.9
   '@tiptap/core': 2.0.0-beta.219
-  '@tiptap/extension-link': 2.0.0-beta.219
+  '@tiptap/extension-link': 2.0.0-beta.220
   '@tiptap/pm': 2.0.0-beta.219
   '@tiptap/starter-kit': 2.0.0-beta.219
   '@tiptap/vue-3': 2.0.0-beta.218
@@ -139,7 +139,7 @@ devDependencies:
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.7
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@tiptap/core': 2.0.0-beta.219_@tiptap+pm@2.0.0-beta.219
-  '@tiptap/extension-link': 2.0.0-beta.219_t76h47crzm5abhz76zve4chrge
+  '@tiptap/extension-link': 2.0.0-beta.220_t76h47crzm5abhz76zve4chrge
   '@tiptap/pm': 2.0.0-beta.219_lrb27ditrsu22ffndzecamyqki
   '@tiptap/starter-kit': 2.0.0-beta.219_@tiptap+pm@2.0.0-beta.219
   '@tiptap/vue-3': 2.0.0-beta.218_tyakp7o7imn3zefqt27vacgn74
@@ -220,7 +220,7 @@ devDependencies:
   stylelint-config-standard: 30.0.1_stylelint@15.2.0
   stylelint-no-unsupported-browser-features: 6.1.0_stylelint@15.2.0
   sweetalert2: 11.7.2
-  tailwindcss: 3.2.7_ts-node@10.9.1
+  tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
   ts-node: 10.9.1_ellgaeuoqnti3hful2ny2iugba
   typescript: 4.9.5
   v-calendar: 3.0.0-alpha.8_vue@3.2.47
@@ -3210,7 +3210,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.7_ts-node@10.9.1
+      tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.7:
@@ -3218,7 +3218,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.2.7_ts-node@10.9.1
+      tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tailwindcss/typography/0.5.9_tailwindcss@3.2.7:
@@ -3230,7 +3230,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.7_ts-node@10.9.1
+      tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tiptap/core/2.0.0-beta.219_@tiptap+pm@2.0.0-beta.219:
@@ -3378,8 +3378,8 @@ packages:
       '@tiptap/core': 2.0.0-beta.219_@tiptap+pm@2.0.0-beta.219
     dev: true
 
-  /@tiptap/extension-link/2.0.0-beta.219_t76h47crzm5abhz76zve4chrge:
-    resolution: {integrity: sha512-uMkvIn+noP0MISDcKyeLbX8zKkQ+SjdIumeXO4M09qkfaL4S9MsQGz5CAxplZilZCS8zsYDl9qP1WM4oD6YOSA==}
+  /@tiptap/extension-link/2.0.0-beta.220_t76h47crzm5abhz76zve4chrge:
+    resolution: {integrity: sha512-vjEA8cE37ZZVVgPHSpttw3kbJoClb+ya/BVukDtJ1h6C7mIR1rqzNxTgpbnXJuA8xww0JOjpa5dpzEgcs294fA==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
       '@tiptap/pm': ^2.0.0-beta.209
@@ -7122,6 +7122,16 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
+  /follow-redirects/1.15.2:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: true
+
   /follow-redirects/1.15.2_debug@4.3.4:
     resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
     engines: {node: '>=4.0'}
@@ -7791,7 +7801,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -12119,10 +12129,12 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss/3.2.7_ts-node@10.9.1:
+  /tailwindcss/3.2.7_aesdjsunmf4wiehhujt67my7tu:
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
