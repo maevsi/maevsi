@@ -25,7 +25,7 @@ specifiers:
   '@tailwindcss/line-clamp': 0.4.2
   '@tailwindcss/typography': 0.5.9
   '@tiptap/core': 2.0.0-beta.219
-  '@tiptap/extension-link': 2.0.0-beta.218
+  '@tiptap/extension-link': 2.0.0-beta.219
   '@tiptap/pm': 2.0.0-beta.218
   '@tiptap/starter-kit': 2.0.0-beta.218
   '@tiptap/vue-3': 2.0.0-beta.218
@@ -145,7 +145,7 @@ devDependencies:
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.7
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@tiptap/core': 2.0.0-beta.219_@tiptap+pm@2.0.0-beta.218
-  '@tiptap/extension-link': 2.0.0-beta.218_k44awkkoii27nyout4t3p6n3oa
+  '@tiptap/extension-link': 2.0.0-beta.219_k44awkkoii27nyout4t3p6n3oa
   '@tiptap/pm': 2.0.0-beta.218_lrb27ditrsu22ffndzecamyqki
   '@tiptap/starter-kit': 2.0.0-beta.218_@tiptap+pm@2.0.0-beta.218
   '@tiptap/vue-3': 2.0.0-beta.218_frc4df5xslsqnqcsdfv6hbijle
@@ -3726,15 +3726,15 @@ packages:
       '@tiptap/core': 2.0.0-beta.219_@tiptap+pm@2.0.0-beta.218
     dev: true
 
-  /@tiptap/extension-link/2.0.0-beta.218_k44awkkoii27nyout4t3p6n3oa:
-    resolution: {integrity: sha512-Vi+qZOzqS+tTpK2q23q5wLEDxIZMiRNHduzJtZh2wKryLPjbs7jEnxSVQybvQqRHAhUC6uGsh+9nhN0+fq6oAw==}
+  /@tiptap/extension-link/2.0.0-beta.219_k44awkkoii27nyout4t3p6n3oa:
+    resolution: {integrity: sha512-uMkvIn+noP0MISDcKyeLbX8zKkQ+SjdIumeXO4M09qkfaL4S9MsQGz5CAxplZilZCS8zsYDl9qP1WM4oD6YOSA==}
     peerDependencies:
       '@tiptap/core': ^2.0.0-beta.209
       '@tiptap/pm': ^2.0.0-beta.209
     dependencies:
       '@tiptap/core': 2.0.0-beta.219_@tiptap+pm@2.0.0-beta.218
       '@tiptap/pm': 2.0.0-beta.218_lrb27ditrsu22ffndzecamyqki
-      linkifyjs: 3.0.5
+      linkifyjs: 4.1.0
     dev: true
 
   /@tiptap/extension-list-item/2.0.0-beta.218_lrb27ditrsu22ffndzecamyqki:
@@ -9725,8 +9725,8 @@ packages:
       uc.micro: 1.0.6
     dev: true
 
-  /linkifyjs/3.0.5:
-    resolution: {integrity: sha512-1Y9XQH65eQKA9p2xtk+zxvnTeQBG7rdAXSkUG97DmuI/Xhji9uaUzaWxRj6rf9YC0v8KKHkxav7tnLX82Sz5Fg==}
+  /linkifyjs/4.1.0:
+    resolution: {integrity: sha512-Ffv8VoY3+ixI1b3aZ3O+jM6x17cOsgwfB1Wq7pkytbo1WlyRp6ZO0YDMqiWT/gQPY/CmtiGuKfzDIVqxh1aCTA==}
     dev: true
 
   /lint-staged/13.1.2:
