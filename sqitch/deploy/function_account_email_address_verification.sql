@@ -1,5 +1,4 @@
 -- Deploy maevsi:function_account_email_address_verification to pg
--- requires: extension_uuid-ossp
 -- requires: privilege_execute_revoke
 -- requires: schema_private
 -- requires: schema_public

@@ -3,7 +3,7 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.5.0-slim AS development
+FROM node:19.7.0-slim AS development
 
 COPY ./docker/entrypoint.sh /usr/local/bin/
 
@@ -14,7 +14,7 @@ RUN apt-get update \
         libdbd-pg-perl postgresql-client sqitch \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && npm install -g pnpm
+    && corepack enable
 
 WORKDIR /srv/app/
 
@@ -33,13 +33,13 @@ CMD ["pnpm", "run", "dev"]
 # Prepare Nuxt.
 
 # Should be the specific version of `node:slim`.
-FROM node:19.5.0-slim AS prepare
+FROM node:19.7.0-slim AS prepare
 
 WORKDIR /srv/app/
 
 COPY ./nuxt/pnpm-lock.yaml ./
 
-RUN npm install -g pnpm && \
+RUN corepack enable && \
     pnpm fetch
 
 COPY ./nuxt/ ./
@@ -54,7 +54,7 @@ RUN pnpm install --offline \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.5.0-slim AS build
+FROM node:19.7.0-slim AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -66,7 +66,7 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
-RUN npm install -g pnpm && \
+RUN corepack enable && \
     pnpm run build
 
 
@@ -75,13 +75,13 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.5.0-slim AS lint
+FROM node:19.7.0-slim AS lint
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
-RUN npm install -g pnpm && \
+RUN corepack enable && \
     pnpm run lint
 
 
@@ -90,82 +90,90 @@ RUN npm install -g pnpm && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.5.0-slim AS test-unit
+FROM node:19.7.0-slim AS test-unit
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
 RUN npm install -g pnpm && \
-    pnpm run test
+    pnpm run test --run
 
 
 ########################
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.4.1 AS test-integration_base
+FROM cypress/included:12.7.0 AS test-integration_base
 
 ARG UNAME=cypress
 ARG UID=1000
 ARG GID=1000
 
-ENV CYPRESS_RUN_BINARY=/home/cypress/Cypress/Cypress
-ENV DOCKER=true
-
 WORKDIR /srv/app/
 
-# Update and install dependencies.
-RUN apt-get update \
-    # pnpm
-    && npm install -g pnpm \
+RUN corepack enable \
     # user
     && groupadd -g $GID -o $UNAME \
-    && useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME \
-    # clean
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && export CYPRESS_VERSION=$(ls /root/.cache/Cypress/) \
-    && mkdir /home/cypress/.cache \
-    && mv /root/.cache/Cypress/$CYPRESS_VERSION/Cypress /home/cypress/Cypress
+    && useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
 
-RUN chown $UID:$GID /home/cypress/Cypress -R
+# Use the Cypress version installed by pnpm, not as provided by the Docker image.
+COPY --from=prepare --chown=$UNAME /root/.cache/Cypress /root/.cache/Cypress
 
-USER $UID:$GID
+USER $UNAME
 
 VOLUME /srv/app
 
 
 ########################
-# Nuxt: test (integration)
+# Nuxt: test (integration, development)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.4.1 AS test-integration
+FROM cypress/included:12.7.0 AS test-integration-dev
 
-# Update and install dependencies.
-RUN npm install -g pnpm
+RUN corepack enable
 
 WORKDIR /srv/app/
 
+# Use the Cypress version installed by pnpm, not as provided by the Docker image.
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
-COPY --from=build /srv/app/ ./
+COPY --from=prepare /srv/app/ ./
 
-RUN pnpm test:integration:prod \
-    && pnpm test:integration:dev
+RUN pnpm test:integration:dev
+
+
+########################
+# Nuxt: test (integration, production)
+
+# Should be the specific version of `cypress/included`.
+FROM cypress/included:12.6.0 AS test-integration-prod
+
+RUN corepack enable
+
+WORKDIR /srv/app/
+
+# Use the Cypress version installed by pnpm, not as provided by the Docker image.
+COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
+COPY --from=build /srv/app/ /srv/app/
+COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
+
+RUN pnpm test:integration:prod
 
 
 #######################
 # Collect build, lint and test results.
 
 # Should be the specific version of `node:slim`.
-FROM node:19.5.0-slim AS collect
+# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
+FROM node:19.7.0-slim AS collect
 
 WORKDIR /srv/app/
 
 COPY --from=build /srv/app/.output ./.output
-COPY --from=lint /srv/app/package.json /tmp/lint/package.json
-COPY --from=test-unit /srv/app/package.json /tmp/test/package.json
-COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
+COPY --from=lint /srv/app/package.json /tmp/package.json
+COPY --from=test-unit /srv/app/package.json /tmp/package.json
+COPY --from=test-integration-dev /srv/app/package.json /tmp/package.json
+COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 
 
 #######################
@@ -174,7 +182,7 @@ COPY --from=test-integration /srv/app/package.json /tmp/test/package.json
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.5.0-slim AS production
+FROM node:19.7.0-slim AS production
 
 ENV NODE_ENV=production
 

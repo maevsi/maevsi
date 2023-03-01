@@ -1,7 +1,6 @@
 -- Deploy maevsi:function_authenticate to pg
 -- requires: privilege_execute_revoke
 -- requires: schema_public
--- requries: extension_uuid-ossp
 -- requires: role_account
 -- requires: role_anonymous
 -- requires: type_jwt
@@ -15,7 +14,7 @@ CREATE FUNCTION maevsi.authenticate(
   "password" TEXT
 ) RETURNS maevsi.jwt AS $$
 DECLARE
-    _jwt_id UUID := maevsi.uuid_generate_v4();
+    _jwt_id UUID := gen_random_uuid();
     _jwt_exp BIGINT := EXTRACT(EPOCH FROM ((SELECT date_trunc('second', NOW()::TIMESTAMP)) + COALESCE(current_setting('maevsi.jwt_expiry_duration', true), '1 day')::INTERVAL));
     _jwt maevsi.jwt;
 BEGIN

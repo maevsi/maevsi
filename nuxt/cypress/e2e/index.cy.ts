@@ -1,6 +1,6 @@
 describe('index page', () => {
   beforeEach(() => {
-    cy.setCookie('cookie_control_is_consent_given', 'true')
+    cy.setCookie('ncc_c', 'acltga')
   })
 
   context('page load', () => {
@@ -57,7 +57,7 @@ describe('index page', () => {
     })
 
     it('displays the cookie banner', () => {
-      cy.clearCookie('cookie_control_is_consent_given')
+      cy.clearCookie('ncc_c')
       cy.visit('/')
       cy.get('[data-is-loading="false"]').should('be.visible')
       cy.compareSnapshot('index_banner')

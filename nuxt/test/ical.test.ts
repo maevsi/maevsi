@@ -1,22 +1,14 @@
-import { expect } from '@jest/globals'
+import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 
 import { getIcalString } from '../server/api/ical'
 
-const OLD_ENV = process.env
-
-beforeAll(() => {
-  const date = new Date(0)
-
-  jest.useFakeTimers()
-  jest.setSystemTime(date)
-
-  jest.resetModules()
-  process.env = { ...OLD_ENV }
+beforeEach(() => {
+  vi.useFakeTimers()
+  vi.setSystemTime(new Date(0))
 })
 
-afterAll(() => {
-  jest.useRealTimers()
-  process.env = OLD_ENV
+afterEach(() => {
+  vi.useRealTimers()
 })
 
 test('gets ical string', () => {

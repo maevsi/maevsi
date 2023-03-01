@@ -1,4 +1,4 @@
-import { expect } from '@jest/globals'
+import { expect, test } from 'vitest'
 
 import { getDomainTldPort } from '../utils/util'
 
