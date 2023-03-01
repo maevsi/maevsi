@@ -1,4 +1,4 @@
-[![CI](https://github.com/maevsi/maevsi/actions/workflows/docker.yml/badge.svg)](https://github.com/maevsi/maevsi/actions/workflows/docker.yml)
+[![CI](https://github.com/maevsi/maevsi/actions/workflows/ci.yml/badge.svg)](https://github.com/maevsi/maevsi/actions/workflows/ci.yml)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmaevsi%2Fmaevsi.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmaevsi%2Fmaevsi?ref=badge_shield)
 
 # maevsi
