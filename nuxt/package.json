@@ -59,7 +59,7 @@
     "@tiptap/core": "2.0.0-beta.220",
     "@tiptap/extension-link": "2.0.0-beta.220",
     "@tiptap/pm": "2.0.0-beta.220",
-    "@tiptap/starter-kit": "2.0.0-beta.219",
+    "@tiptap/starter-kit": "2.0.0-beta.220",
     "@tiptap/vue-3": "2.0.0-beta.218",
     "@types/cookie": "0.5.1",
     "@types/dompurify": "2.4.0",
