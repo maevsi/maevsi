@@ -6,25 +6,25 @@ export default defineEventHandler(async function (event: H3Event) {
   const { req, res } = event.node
   consola.debug(getMethod(event))
   consola.debug('Request: ' + req)
-  consola.debug('Before ReadBody')
-  consola.debug('Headers:\n' + JSON.stringify(req.headers, null, 2))
   let body: any
   try {
     body = await readBody(event)
-    consola.debug(body)
   } catch (e) {
     consola.error(e)
   }
 
   if (body.operationName === 'authenticate') {
     const turnstileKey = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
-    consola.trace('Turnstile Key: ' + turnstileKey)
     if (turnstileKey === undefined) {
-      res.end()
-      return
+      consola.error('TurnstileKey undefined')
+      throw createError({
+        statusCode: 422,
+        statusMessage: 'TurnstileKey undefined',
+      })
     }
 
     if (!turnstileKey) {
+      consola.error('TurnstileKey not provided')
       throw createError({
         statusCode: 422,
         statusMessage: 'TurnstileKey not provided.',
@@ -33,10 +33,10 @@ export default defineEventHandler(async function (event: H3Event) {
     const result = await verifyTurnstileToken(turnstileKey)
     consola.debug(result)
     if (!result.success) {
-      consola.error('Turnstile verification unsuccessful!')
-      createError({
+      consola.error('Turnstile verification unsuccessful.')
+      throw createError({
         statusCode: 403,
-        statusMessage: result['error-codes'].join(', '),
+        statusMessage: 'Turnstile verification unsuccessful.',
       })
       res.statusCode = 403
       res.statusMessage = 'Verification failed'
