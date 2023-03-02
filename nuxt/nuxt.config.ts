@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
+    '@nuxtjs/turnstile',
     '@pinia/nuxt',
     [
       '@funken-studio/sitemap-nuxt-3',
