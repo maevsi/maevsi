@@ -17,8 +17,7 @@ export default defineEventHandler(async function (event: H3Event) {
     case 'authenticate':
     case 'accountRegistration':
       {
-        const turnstileKey =
-          req.headers[TURNSTILE_HEADER_KEY.toLowerCase()] + '1'
+        const turnstileKey = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
         if (turnstileKey === undefined) {
           consola.error('TurnstileKey undefined')
           throw createError({

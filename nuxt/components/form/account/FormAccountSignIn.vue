@@ -21,7 +21,6 @@
       form-class="w-full"
       :is-form-sent="isFormSent"
       :submit-name="t('signIn')"
-      :submit-disabled="!hasTurnstileKey"
       @submit.prevent="submit"
     >
       <FormInputUsername
@@ -36,9 +35,6 @@
         <AppLink :to="localePath('/task/account/password/reset/request')">
           {{ t('passwordReset') }}
         </AppLink>
-      </div>
-      <div class="flex justify-center">
-        <Turnstile v-model="store.turnstileKey" />
       </div>
 
       <template
@@ -66,7 +62,6 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { maxLength, minLength, required } from '@vuelidate/validators'
-import { useMaevsiStore } from '~/store/index'
 
 import {
   useAccountRegistrationRefreshMutation,
@@ -75,7 +70,6 @@ import {
 
 const { jwtStore } = useJwtStore()
 const { locale, t } = useI18n()
-const store = useMaevsiStore()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
 
@@ -94,16 +88,6 @@ const form = reactive({
   username: ref<string>(),
 })
 const isFormSent = ref(false)
-
-const hasTurnstileKey = ref(false)
-
-store.$subscribe((_, state) => {
-  if (state.turnstileKey === undefined || state.turnstileKey === '') {
-    hasTurnstileKey.value = false
-  } else {
-    hasTurnstileKey.value = true
-  }
-})
 
 // methods
 async function accountRegistrationRefresh() {
@@ -133,9 +117,6 @@ async function submit() {
       password: form.password || '',
     })
     .then(async (result) => {
-      if (result.error) return
-      store.turnstileKey = undefined
-
       try {
         await jwtStore(result.data?.authenticate?.jwt)
       } catch (error) {

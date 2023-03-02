@@ -12,14 +12,17 @@
       <div class="flex flex-col min-h-0 overflow-y-auto gap-6">
         <slot />
         <div class="flex flex-col items-center justify-between">
+          <div class="flex justify-center mb-4">
+            <Turnstile v-model="turnstileKey" />
+          </div>
           <ButtonColored
             :aria-label="submitName || t('submit')"
             :class="{
               'animate-shake': form.$error,
             }"
-            :disabled="submitDisabled || false"
+            :disabled="disabledSubmitButton || false"
             type="submit"
-            @click="emit('click')"
+            @click="{setTurnstileKeyToStore();emit('click')}"
           >
             {{ submitName || t('submit') }}
             <template #prefix>
@@ -44,7 +47,10 @@
 <script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
 
+import consola from 'consola'
 import { BackendError } from '~/types/types'
+
+import { useMaevsiStore } from '~/store/index'
 
 export interface Props {
   errors?: BackendError[]
@@ -52,7 +58,6 @@ export interface Props {
   form: BaseValidation
   formClass?: string
   isFormSent?: boolean
-  submitDisabled?: boolean
   submitName?: string
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -62,6 +67,21 @@ const props = withDefaults(defineProps<Props>(), {
   isFormSent: false,
   submitName: undefined,
 })
+
+const store = useMaevsiStore()
+const turnstileKey = ref('')
+const disabledSubmitButton = ref(true)
+
+watch(turnstileKey, (newKey) => {
+  if (newKey !== undefined || newKey !== '') {
+    disabledSubmitButton.value = false
+  }
+})
+
+function setTurnstileKeyToStore() {
+  consola.info('Got turnstile key: ' + turnstileKey.value)
+  store.turnstileKey = turnstileKey.value
+}
 
 const emit = defineEmits<{
   (e: 'click'): void

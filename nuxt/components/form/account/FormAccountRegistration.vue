@@ -37,9 +37,6 @@
         is-required
         @input="form.emailAddress = $event"
       />
-      <div class="flex justify-center">
-        <Turnstile v-model="store.turnstileKey" />
-      </div>
       <template #assistance>
         <FormInputStateInfo>
           {{ t('accountDeletionNotice') }}
@@ -60,12 +57,10 @@ import {
 } from '@vuelidate/validators'
 
 import { useAccountRegistrationMutation } from '~/gql/generated'
-import { useMaevsiStore } from '~~/store'
 
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
-const store = useMaevsiStore()
 
 // api data
 const accountRegistrationMutation = useAccountRegistrationMutation()
