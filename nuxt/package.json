@@ -104,7 +104,7 @@
     "ical-generator": "3.6.1",
     "is-https": "4.0.0",
     "isomorphic-dompurify": "1.0.0",
-    "jose": "4.13.0",
+    "jose": "4.13.1",
     "lint-staged": "13.1.2",
     "lodash-es": "4.17.21",
     "mustache": "4.2.0",

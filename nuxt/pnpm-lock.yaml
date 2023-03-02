@@ -70,7 +70,7 @@ specifiers:
   ical-generator: 3.6.1
   is-https: 4.0.0
   isomorphic-dompurify: 1.0.0
-  jose: 4.13.0
+  jose: 4.13.1
   lint-staged: 13.1.2
   lodash-es: 4.17.21
   mustache: 4.2.0
@@ -186,7 +186,7 @@ devDependencies:
   ical-generator: 3.6.1_k756dpqhb4qo5npf2hhcn4iahe
   is-https: 4.0.0
   isomorphic-dompurify: 1.0.0
-  jose: 4.13.0
+  jose: 4.13.1
   lint-staged: 13.1.2
   lodash-es: 4.17.21
   mustache: 4.2.0
@@ -4996,7 +4996,7 @@ packages:
     dependencies:
       buffer: 5.7.1
       inherits: 2.0.4
-      readable-stream: 3.6.0
+      readable-stream: 3.6.1
     dev: true
 
   /bl/5.1.0:
@@ -8695,8 +8695,8 @@ packages:
       '@sideway/pinpoint': 2.0.0
     dev: true
 
-  /jose/4.13.0:
-    resolution: {integrity: sha512-v6BN7fuPVfG9XIxcPT2jzyAg5EmA/mtNeJEXJ7d31Wz7fFOqOZeN8mPtNJYQmnuAIxJII7EcURcbZ7qXs9a4kA==}
+  /jose/4.13.1:
+    resolution: {integrity: sha512-MSJQC5vXco5Br38mzaQKiq9mwt7lwj2eXpgpRyQYNHYt2lq1PjkWa7DLXX0WVcQLE9HhMh3jPiufS7fhJf+CLQ==}
     dev: true
 
   /js-base64/3.7.5:
@@ -9426,7 +9426,7 @@ packages:
     engines: {node: '>=4.3.0 <5.0.0 || >=5.10'}
     dependencies:
       errno: 0.1.8
-      readable-stream: 2.3.7
+      readable-stream: 2.3.8
     dev: true
 
   /meow/9.0.0:
@@ -11428,18 +11428,6 @@ packages:
       string_decoder: 0.10.31
     dev: true
 
-  /readable-stream/2.3.7:
-    resolution: {integrity: sha512-Ebho8K4jIbHAxnuxi7o42OrZgF/ZTNcsZj6nRKyUmkhLFq8CHItp/fy6hQZuZmP/n3yZ9VBUbp4zz/mX8hmYPw==}
-    dependencies:
-      core-util-is: 1.0.3
-      inherits: 2.0.4
-      isarray: 1.0.0
-      process-nextick-args: 2.0.1
-      safe-buffer: 5.1.2
-      string_decoder: 1.1.1
-      util-deprecate: 1.0.2
-    dev: true
-
   /readable-stream/2.3.8:
     resolution: {integrity: sha512-8p0AUk4XODgIewSi0l8Epjs+EVnWiK7NoDIEGU0HhE7+ZyY8D1IMY7odu5lRrFXGg71L15KG8QrPmum45RTtdA==}
     dependencies:
@@ -12519,7 +12507,7 @@ packages:
       end-of-stream: 1.4.4
       fs-constants: 1.0.0
       inherits: 2.0.4
-      readable-stream: 3.6.0
+      readable-stream: 3.6.1
     dev: true
 
   /tar/6.1.13:
