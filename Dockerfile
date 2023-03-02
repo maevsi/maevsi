@@ -112,6 +112,8 @@ ARG GID=1000
 
 WORKDIR /srv/app/
 
+COPY ./docker/entrypoint-dev.sh /usr/local/bin/
+
 RUN corepack enable \
     # user
     && groupadd -g $GID -o $UNAME \
@@ -122,7 +124,10 @@ COPY --from=prepare --chown=$UNAME /root/.cache/Cypress /root/.cache/Cypress
 
 USER $UNAME
 
+VOLUME /srv/.pnpm-store
 VOLUME /srv/app
+
+ENTRYPOINT ["entrypoint-dev.sh"]
 
 
 ########################
