@@ -13,39 +13,43 @@ export default defineEventHandler(async function (event: H3Event) {
     consola.error(e)
   }
 
-  if (body.operationName === 'authenticate') {
-    const turnstileKey = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
-    if (turnstileKey === undefined) {
-      consola.error('TurnstileKey undefined')
-      throw createError({
-        statusCode: 422,
-        statusMessage: 'TurnstileKey undefined',
-      })
-    }
+  switch (body.operationName) {
+    case 'authenticate':
+    case 'accountRegistration':
+      {
+        const turnstileKey =
+          req.headers[TURNSTILE_HEADER_KEY.toLowerCase()] + '1'
+        if (turnstileKey === undefined) {
+          consola.error('TurnstileKey undefined')
+          throw createError({
+            statusCode: 422,
+            statusMessage: 'TurnstileKey undefined',
+          })
+        }
 
-    if (!turnstileKey) {
-      consola.error('TurnstileKey not provided')
-      throw createError({
-        statusCode: 422,
-        statusMessage: 'TurnstileKey not provided.',
-      })
-    }
-    const result = await verifyTurnstileToken(turnstileKey)
-    consola.debug(result)
-    if (!result.success) {
-      consola.error('Turnstile verification unsuccessful.')
-      throw createError({
-        statusCode: 403,
-        statusMessage: 'Turnstile verification unsuccessful.',
-      })
-      res.statusCode = 403
-      res.statusMessage = 'Verification failed'
+        if (!turnstileKey) {
+          consola.error('TurnstileKey not provided')
+          throw createError({
+            statusCode: 422,
+            statusMessage: 'TurnstileKey not provided.',
+          })
+        }
+        const result = await verifyTurnstileToken(turnstileKey)
+        consola.debug(result)
+        if (!result.success) {
+          consola.error('Turnstile verification unsuccessful.')
+          throw createError({
+            statusCode: 403,
+            statusMessage: 'Turnstile verification unsuccessful.',
+          })
+        }
+        consola.debug('Turnstile verification succeeded')
+        res.end()
+      }
+      break
+
+    default:
+      consola.debug('No authentication needed.')
       res.end()
-      return
-    }
-    consola.debug('Turnstile verification succeeded')
-    res.end()
   }
-  consola.debug('No authentication needed.')
-  res.end()
 })
