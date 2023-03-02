@@ -17,6 +17,7 @@
             :class="{
               'animate-shake': form.$error,
             }"
+            :disabled="submitDisabled || false"
             type="submit"
             @click="emit('click')"
           >
@@ -51,6 +52,7 @@ export interface Props {
   form: BaseValidation
   formClass?: string
   isFormSent?: boolean
+  submitDisabled?: boolean
   submitName?: string
 }
 const props = withDefaults(defineProps<Props>(), {

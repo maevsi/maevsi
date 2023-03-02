@@ -21,6 +21,7 @@
       form-class="w-full"
       :is-form-sent="isFormSent"
       :submit-name="t('signIn')"
+      :submit-disabled="!hasTurnstileKey"
       @submit.prevent="submit"
     >
       <FormInputUsername
@@ -38,9 +39,6 @@
       </div>
       <div class="flex justify-center">
         <Turnstile v-model="store.turnstileKey" />
-      </div>
-      <div>
-        {{ store.turnstileKey }}
       </div>
 
       <template
@@ -96,6 +94,16 @@ const form = reactive({
   username: ref<string>(),
 })
 const isFormSent = ref(false)
+
+const hasTurnstileKey = ref(false)
+
+store.$subscribe((_, state) => {
+  if (state.turnstileKey === undefined || state.turnstileKey === '') {
+    hasTurnstileKey.value = false
+  } else {
+    hasTurnstileKey.value = true
+  }
+})
 
 // methods
 async function accountRegistrationRefresh() {
@@ -169,7 +177,6 @@ de:
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
   signIn: Anmelden
   verificationMailResend: Verifizierungsmail erneut senden
-  verificationKey: Verifizierungsschlüssel
 en:
   jwtStoreFail: Failed to store the authentication data!
   passwordReset: Reset password
@@ -180,5 +187,4 @@ en:
   registrationRefreshSuccess: A new welcome email is on its way to you.
   signIn: Sign in
   verificationMailResend: Resend verification email
-  verificationKey: Verification key
 </i18n>
