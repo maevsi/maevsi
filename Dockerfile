@@ -3,7 +3,7 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.7.0-slim AS development
+FROM node:19.7.0 AS development
 
 COPY ./docker/entrypoint.sh /usr/local/bin/
 
