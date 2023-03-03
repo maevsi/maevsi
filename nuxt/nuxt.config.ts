@@ -54,14 +54,13 @@ export default defineNuxtConfig({
         !process.env.NUXT_PUBLIC_STACK_DOMAIN
           ? 'maev.si'
           : undefined,
+      turnstile: {
+        siteKey: '1x00000000000000000000AA', // set via environment variable `NUXT_PUBLIC_TURNSTILE_SITE_KEY` only
+      },
     },
     turnstile: {
       secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY || '',
     },
-  },
-  turnstile: {
-    siteKey: process.env.NUXT_TURNSTILE_SITE_KEY,
-    addValidateEndpoint: true,
   },
   typescript: {
     strict: true,
@@ -200,5 +199,8 @@ export default defineNuxtConfig({
       theme_color: '#202020',
       background_color: '#202020',
     },
+  },
+  turnstile: {
+    addValidateEndpoint: true,
   },
 })
