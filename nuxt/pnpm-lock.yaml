@@ -134,9 +134,9 @@ devDependencies:
   '@nuxtjs/eslint-config-typescript': 12.0.0_ycpbpc6yetojsgtrx3mwntkhsu
   '@nuxtjs/html-validator': 1.2.3_rollup@3.18.0
   '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.9-27948515.3db6367_rollup@3.18.0+vue@3.2.47
+  '@nuxtjs/turnstile': 0.1.3_rollup@3.18.0
   '@pinia/nuxt': 0.4.7_io2bxnvv65nmi4vhiittxexhhq
   '@rollup/plugin-graphql': 2.0.3_txoiex2web2776euq7kfq2qtam
-  '@nuxtjs/turnstile': 0.1.3_rollup@3.17.3
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.7
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.7
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
@@ -3133,10 +3133,10 @@ packages:
       - vue-router
     dev: true
 
-  /@nuxtjs/turnstile/0.1.3_rollup@3.17.3:
+  /@nuxtjs/turnstile/0.1.3_rollup@3.18.0:
     resolution: {integrity: sha512-Ne0mdtD4EXpRwEFXivtJ30zPaz4WgfgrTVcpYOC9c6Z6FsZ0g16wG0qggGWiWvCogeozF6f6DHjNvy64OIq2Jw==}
     dependencies:
-      '@nuxt/kit': 3.2.3_rollup@3.17.3
+      '@nuxt/kit': 3.2.3_rollup@3.18.0
       defu: 6.1.2
       pathe: 1.1.0
     transitivePeerDependencies:
@@ -4364,7 +4364,7 @@ packages:
     peerDependencies:
       vue: 3.2.47
     dependencies:
-      '@babel/parser': 7.21.1
+      '@babel/parser': 7.21.2
       estree-walker: 2.0.2
       source-map: 0.6.1
       vue: 3.2.47
@@ -4373,7 +4373,7 @@ packages:
   /@vue/compiler-core/3.2.47:
     resolution: {integrity: sha512-p4D7FDnQb7+YJmO2iPEv0SQNeNzcbHdGByJDsT4lynf63AFkOTFN07HsiRSvjGo0QrxR/o3d0hUyNCUnBU2Tig==}
     dependencies:
-      '@babel/parser': 7.21.1
+      '@babel/parser': 7.21.2
       '@vue/shared': 3.2.47
       estree-walker: 2.0.2
       source-map: 0.6.1
