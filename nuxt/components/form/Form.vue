@@ -22,7 +22,8 @@
             }"
             :disabled="disabledSubmitButton || false"
             type="submit"
-            @click="{setTurnstileKeyToStore();emit('click')}"
+            @click="
+              {setTurnstileKeyToStore();emit('click')}"
           >
             {{ submitName || t('submit') }}
             <template #prefix>
