@@ -22,8 +22,7 @@
             }"
             :disabled="disabledSubmitButton || false"
             type="submit"
-            @click="
-              {setTurnstileKeyToStore();emit('click')}"
+            @click="setTurnstileKeyAndEmit()"
           >
             {{ submitName || t('submit') }}
             <template #prefix>
@@ -78,6 +77,11 @@ watch(turnstileKey, (newKey) => {
     disabledSubmitButton.value = false
   }
 })
+
+function setTurnstileKeyAndEmit() {
+  setTurnstileKeyToStore()
+  emit('click')
+}
 
 function setTurnstileKeyToStore() {
   consola.info('Got turnstile key: ' + turnstileKey.value)
