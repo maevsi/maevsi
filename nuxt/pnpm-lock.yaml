@@ -12,7 +12,7 @@ specifiers:
   '@graphql-codegen/urql-introspection': 2.2.1
   '@http-util/status-i18n': 0.6.2
   '@intlify/eslint-plugin-vue-i18n': 2.0.0
-  '@kevinmarrec/nuxt-pwa': 0.16.2
+  '@kevinmarrec/nuxt-pwa': 0.17.0
   '@nuxtjs/color-mode': 3.2.0
   '@nuxtjs/eslint-config-typescript': 12.0.0
   '@nuxtjs/html-validator': 1.2.3
@@ -128,7 +128,7 @@ devDependencies:
   '@graphql-codegen/urql-introspection': 2.2.1_graphql@16.6.0
   '@http-util/status-i18n': 0.6.2
   '@intlify/eslint-plugin-vue-i18n': 2.0.0_eslint@8.35.0
-  '@kevinmarrec/nuxt-pwa': 0.16.2
+  '@kevinmarrec/nuxt-pwa': 0.17.0
   '@nuxtjs/color-mode': 3.2.0_rollup@3.18.0
   '@nuxtjs/eslint-config-typescript': 12.0.0_ycpbpc6yetojsgtrx3mwntkhsu
   '@nuxtjs/html-validator': 1.2.3_rollup@3.18.0
@@ -2718,8 +2718,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@kevinmarrec/nuxt-pwa/0.16.2:
-    resolution: {integrity: sha512-KRQtJ9hrIDogG7OrofmyOG+dM/vERF6KQGeI5IvINeZmmQxoO27IWO8D/ues10Ed/qYzjs6vj0vASsbJq0IY7A==}
+  /@kevinmarrec/nuxt-pwa/0.17.0:
+    resolution: {integrity: sha512-TI/0Fe30g6/VL2Y2jDLF/q5sov8UBE5K4/+CRPUnJbQPCXhCzTBM8EjllDUwslZ3bPtCk2TqwDFZOHaKtY/eoA==}
     dependencies:
       hasha: 5.2.2
       sharp: 0.31.3
