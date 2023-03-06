@@ -142,6 +142,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       } else {
         consola.info('No Turnstile key is given')
       }
+
       return { headers }
     },
 
