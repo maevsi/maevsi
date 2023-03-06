@@ -89,7 +89,7 @@ function getCsp(host: string): Record<string, Array<string>> {
     'script-src': [
       'blob:',
       "'self'",
-      'https://challenges.cloudflare.com/turnstile/v0/api.js', // Cloudfalse Turnstile
+      'https://challenges.cloudflare.com/turnstile/v0/api.js', // Cloudflare Turnstile
       'https://static.cloudflareinsights.com', // Cloudflare analytics
       'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://www.googletagmanager.com/gtag/js', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
