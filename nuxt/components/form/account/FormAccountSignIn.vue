@@ -36,7 +36,6 @@
           {{ t('passwordReset') }}
         </AppLink>
       </div>
-
       <template
         v-if="
           api.errors.filter(
@@ -107,7 +106,6 @@ async function accountRegistrationRefresh() {
       })
     })
 }
-
 async function submit() {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
@@ -117,6 +115,8 @@ async function submit() {
       password: form.password || '',
     })
     .then(async (result) => {
+      if (result.error) return
+
       try {
         await jwtStore(result.data?.authenticate?.jwt)
       } catch (error) {
@@ -128,6 +128,7 @@ async function submit() {
         })
         return
       }
+
       navigateTo(localePath(`/dashboard`))
     })
 }
