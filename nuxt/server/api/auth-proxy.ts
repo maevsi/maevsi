@@ -19,34 +19,19 @@ export default defineEventHandler(async function (event: H3Event) {
       {
         const turnstileKey = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
         if (Array.isArray(turnstileKey)) {
-          throw createError({
-            statusCode: 422,
-            statusMessage: 'TurnstileKey cannot be an array.',
-          })
+          throwError(422, 'TurnstileKey cannot be an array.')
         }
         if (turnstileKey === undefined) {
-          consola.error('TurnstileKey undefined')
-          throw createError({
-            statusCode: 422,
-            statusMessage: 'TurnstileKey undefined',
-          })
+          throwError(422, 'TurnstileKey undefined')
         }
 
         if (!turnstileKey) {
-          consola.error('TurnstileKey not provided')
-          throw createError({
-            statusCode: 422,
-            statusMessage: 'TurnstileKey not provided.',
-          })
+          throwError(422, 'TurnstileKey not provided.')
         }
         const result = await verifyTurnstileToken(turnstileKey)
         consola.debug(result)
         if (!result.success) {
-          consola.error('Turnstile verification unsuccessful.')
-          throw createError({
-            statusCode: 403,
-            statusMessage: 'Turnstile verification unsuccessful.',
-          })
+          throwError(403, 'Turnstile verification unsuccessful.')
         }
         consola.debug('Turnstile verification succeeded')
         res.end()
@@ -58,3 +43,11 @@ export default defineEventHandler(async function (event: H3Event) {
       res.end()
   }
 })
+
+function throwError(code: number, message: string) {
+  consola.error(message)
+  throw createError({
+    statusCode: code,
+    statusMessage: message,
+  })
+}
