@@ -45,7 +45,6 @@
 </template>
 
 <script setup lang="ts">
-import consola from 'consola'
 import type { BaseValidation } from '@vuelidate/core'
 
 import { BackendError } from '~/types/types'
@@ -84,7 +83,6 @@ const setTurnstileKeyAndEmit = () => {
 }
 
 function setTurnstileKeyToStore() {
-  consola.info('Got turnstile key: ' + turnstileKey.value)
   store.turnstileKey = turnstileKey.value
 }
 
