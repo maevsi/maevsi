@@ -45,11 +45,10 @@
 </template>
 
 <script setup lang="ts">
+import consola from 'consola'
 import type { BaseValidation } from '@vuelidate/core'
 
-import consola from 'consola'
 import { BackendError } from '~/types/types'
-
 import { useMaevsiStore } from '~/store/index'
 
 export interface Props {
