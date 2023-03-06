@@ -5,12 +5,7 @@ import { TURNSTILE_HEADER_KEY } from '~/utils/constants'
 
 export default defineEventHandler(async function (event: H3Event) {
   const { req, res } = event.node
-  let body: any
-  try {
-    body = await readBody(event)
-  } catch (e) {
-    consola.error(e)
-  }
+  const body = await readBody(event)
 
   switch (body.operationName) {
     case 'authenticate':
