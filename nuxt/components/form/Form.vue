@@ -77,7 +77,8 @@ watch(turnstileKey, (newKey) => {
   }
 })
 
-function setTurnstileKeyAndEmit() {
+// methods
+const setTurnstileKeyAndEmit = () => {
   setTurnstileKeyToStore()
   emit('click')
 }
