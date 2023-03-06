@@ -21,16 +21,20 @@ export default defineEventHandler(async function (event: H3Event) {
         if (Array.isArray(turnstileKey)) {
           throwError(422, 'TurnstileKey cannot be an array.')
         }
+
         if (!turnstileKey) {
           throwError(422, 'TurnstileKey not provided.')
         }
+
         const result = await verifyTurnstileToken(turnstileKey)
         if (!result.success) {
           throwError(403, 'Turnstile verification unsuccessful.')
         }
+
         consola.debug('Turnstile verification succeeded')
         res.end()
       }
+
       break
 
     default:
