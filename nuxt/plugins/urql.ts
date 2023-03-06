@@ -127,20 +127,22 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       const store = useMaevsiStore(nuxtApp.$pinia)
       const jwt = store.jwt
       const turnstileKey = store.turnstileKey
-
-      let headers = {} as Record<string, any>
+      const headers = {} as Record<string, any>
+      
       if (jwt) {
         consola.trace('GraphQL request authenticated with: ' + jwt)
         headers = { ...headers, authorization: `Bearer ${jwt}` }
       } else {
         consola.trace('GraphQL request without authentication.')
       }
+
       if (turnstileKey) {
         consola.debug('Turnstile session key: ' + turnstileKey)
         headers[TURNSTILE_HEADER_KEY] = turnstileKey
       } else {
         consola.info('No Turnstile key is given')
       }
+
       return { headers }
     },
 
