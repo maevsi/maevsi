@@ -4,8 +4,6 @@ import { TURNSTILE_HEADER_KEY } from '~/utils/constants'
 
 export default defineEventHandler(async function (event: H3Event) {
   const { req, res } = event.node
-  consola.debug(getMethod(event))
-  consola.debug('Request: ' + req)
   let body: any
   try {
     body = await readBody(event)
