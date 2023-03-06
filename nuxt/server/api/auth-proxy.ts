@@ -21,10 +21,6 @@ export default defineEventHandler(async function (event: H3Event) {
         if (Array.isArray(turnstileKey)) {
           throwError(422, 'TurnstileKey cannot be an array.')
         }
-        if (turnstileKey === undefined) {
-          throwError(422, 'TurnstileKey undefined')
-        }
-
         if (!turnstileKey) {
           throwError(422, 'TurnstileKey not provided.')
         }
