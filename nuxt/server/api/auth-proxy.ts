@@ -1,5 +1,6 @@
 import { H3Event, readBody } from 'h3'
 import consola from 'consola'
+
 import { TURNSTILE_HEADER_KEY } from '~/utils/constants'
 
 export default defineEventHandler(async function (event: H3Event) {
