@@ -82,7 +82,7 @@ const setTurnstileKeyAndEmit = () => {
   emit('click')
 }
 
-function setTurnstileKeyToStore() {
+const setTurnstileKeyToStore = () => {
   store.turnstileKey = turnstileKey.value
 }
 
