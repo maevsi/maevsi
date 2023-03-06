@@ -25,7 +25,6 @@ export default defineEventHandler(async function (event: H3Event) {
           throwError(422, 'TurnstileKey not provided.')
         }
         const result = await verifyTurnstileToken(turnstileKey)
-        consola.debug(result)
         if (!result.success) {
           throwError(403, 'Turnstile verification unsuccessful.')
         }
