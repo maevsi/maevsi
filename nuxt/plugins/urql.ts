@@ -135,6 +135,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       } else {
         consola.trace('GraphQL request without authentication.')
       }
+
       if (turnstileKey) {
         consola.info('Turnstile session key: ' + turnstileKey)
         headers[TURNSTILE_HEADER_KEY] = turnstileKey
