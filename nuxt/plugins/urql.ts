@@ -127,8 +127,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       const store = useMaevsiStore(nuxtApp.$pinia)
       const jwt = store.jwt
       const turnstileKey = store.turnstileKey
-      const headers = {} as Record<string, any>
-      
+      let headers = {} as Record<string, any>
+
       if (jwt) {
         consola.trace('GraphQL request authenticated with: ' + jwt)
         headers = { ...headers, authorization: `Bearer ${jwt}` }
