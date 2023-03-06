@@ -11,7 +11,7 @@ COPY ./docker/entrypoint.sh /usr/local/bin/
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-    libdbd-pg-perl postgresql-client sqitch \
+       libdbd-pg-perl postgresql-client sqitch \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && corepack enable
@@ -191,8 +191,8 @@ ENV NODE_ENV=production
 # - `wget` is required by the healthcheck
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-    libdbd-pg-perl postgresql-client sqitch \
-    wget \
+       libdbd-pg-perl postgresql-client sqitch \
+       wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
