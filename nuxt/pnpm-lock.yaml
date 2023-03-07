@@ -78,7 +78,7 @@ specifiers:
   nuxt: 3.2.3
   ofetch: 1.0.1
   pg: 8.9.0
-  pinia: 2.0.32
+  pinia: 2.0.33
   postcss: 8.4.21
   postcss-html: 1.5.0
   prettier: 2.8.4
@@ -194,7 +194,7 @@ devDependencies:
   nuxt: 3.2.3_yyvmudjtsewjfmyrphsrgvmxwa
   ofetch: 1.0.1
   pg: 8.9.0
-  pinia: 2.0.32_hmuptsblhheur2tugfgucj7gc4
+  pinia: 2.0.33_hmuptsblhheur2tugfgucj7gc4
   postcss: 8.4.21
   postcss-html: 1.5.0
   prettier: 2.8.4
@@ -3018,7 +3018,7 @@ packages:
     resolution: {integrity: sha512-ifgA9PO/jmPlK1e/HtkrZa7OMSL8EUOpo8Z1O5vNLRr/OZ42kKGEaY1NbIoCz6dIf/pbkATTNHJmcrlPCo3zSA==}
     dependencies:
       '@nuxt/kit': 3.2.3_rollup@3.18.0
-      pinia: 2.0.32_hmuptsblhheur2tugfgucj7gc4
+      pinia: 2.0.33_hmuptsblhheur2tugfgucj7gc4
     transitivePeerDependencies:
       - '@vue/composition-api'
       - rollup
@@ -10298,8 +10298,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /pinia/2.0.32_hmuptsblhheur2tugfgucj7gc4:
-    resolution: {integrity: sha512-8Tw4OrpCSJ028UUyp0gYPP/wyjigLoEceuO/x1G+FlHVf73337e5vLm4uDmrRIoBG1hvaed/eSHnrCFjOc4nkA==}
+  /pinia/2.0.33_hmuptsblhheur2tugfgucj7gc4:
+    resolution: {integrity: sha512-HOj1yVV2itw6rNIrR2f7+MirGNxhORjrULL8GWgRwXsGSvEqIQ+SE0MYt6cwtpegzCda3i+rVTZM+AM7CG+kRg==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'

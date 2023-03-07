@@ -112,7 +112,7 @@
     "nuxt": "3.2.3",
     "ofetch": "1.0.1",
     "pg": "8.9.0",
-    "pinia": "2.0.32",
+    "pinia": "2.0.33",
     "postcss": "8.4.21",
     "postcss-html": "1.5.0",
     "prettier": "2.8.4",
