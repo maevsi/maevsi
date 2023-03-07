@@ -35,7 +35,7 @@ specifiers:
   '@types/mustache': 4.2.2
   '@types/node': 18.14.6
   '@types/pg': 8.6.6
-  '@uppy/core': 3.0.6
+  '@uppy/core': 3.1.1
   '@uppy/tus': 3.0.5
   '@urql/core': 3.1.1
   '@urql/devtools': 2.0.3
@@ -151,8 +151,8 @@ devDependencies:
   '@types/mustache': 4.2.2
   '@types/node': 18.14.6
   '@types/pg': 8.6.6
-  '@uppy/core': 3.0.6
-  '@uppy/tus': 3.0.5_@uppy+core@3.0.6
+  '@uppy/core': 3.1.1
+  '@uppy/tus': 3.0.5_@uppy+core@3.1.1
   '@urql/core': 3.1.1_graphql@16.6.0
   '@urql/devtools': 2.0.3_ioimjbecbkqzfeizgamzrgwc3y
   '@urql/exchange-graphcache': 5.0.9_graphql@16.6.0
@@ -3952,12 +3952,12 @@ packages:
       namespace-emitter: 2.0.1
     dev: true
 
-  /@uppy/core/3.0.6:
-    resolution: {integrity: sha512-438+xHMXWmnBl5NDvakh9C87IkWW9ZHVHY3+G5N17E/nzghxaJmFjCh390G5osNrgRvLAZZqt8g9I+hCnq7RgA==}
+  /@uppy/core/3.1.1:
+    resolution: {integrity: sha512-cVH2R+snO4zexw5P1jujY+am4gndI/deWRxrvJ8RKGz6P5g/c89buIEX+5I2aYRT9yPjqstLe7Oob61yspVMpQ==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.9
       '@uppy/store-default': 3.0.2
-      '@uppy/utils': 5.1.2
+      '@uppy/utils': 5.1.3
       lodash.throttle: 4.1.1
       mime-match: 1.0.2
       namespace-emitter: 2.0.1
@@ -3969,19 +3969,25 @@ packages:
     resolution: {integrity: sha512-kIQMCjXui6tjF1E9xGo4YHkvt71McXkU0FStrcQuBrRXuOhb+NcuWh3sMh3KryivVNgT6w5Odrlw2FUFkl9cqA==}
     dev: true
 
-  /@uppy/tus/3.0.5_@uppy+core@3.0.6:
+  /@uppy/tus/3.0.5_@uppy+core@3.1.1:
     resolution: {integrity: sha512-X8RASLyiWMJ+VRVfxLg/THAj2BABZAoW+10+PCrX+U2FKUBbjdnDo2NVZs3vScL/fXsW5pTw4d18vJbZhWcryA==}
     peerDependencies:
       '@uppy/core': ^3.0.4
     dependencies:
       '@uppy/companion-client': 3.1.1
-      '@uppy/core': 3.0.6
+      '@uppy/core': 3.1.1
       '@uppy/utils': 5.1.2
       tus-js-client: 3.1.0
     dev: true
 
   /@uppy/utils/5.1.2:
     resolution: {integrity: sha512-a/QSxcYeK1SSOjyyohi0oSwLDMJ9SSWwDELDii1WOKiJwmtt5O6pGCKHTnvrr6RwbiedngG0dZi3koYOG+MdoA==}
+    dependencies:
+      lodash.throttle: 4.1.1
+    dev: true
+
+  /@uppy/utils/5.1.3:
+    resolution: {integrity: sha512-ws6eh5JClNe91AYVRMBy7RJzMlhdvQpVtLKJoyIAoJDEf0m4cvdqDJethB3KTq4WtBQkLpMD4I6mvR4eN3talA==}
     dependencies:
       lodash.throttle: 4.1.1
     dev: true
