@@ -8,7 +8,7 @@
   "engines": {
     "node": "19"
   },
-  "packageManager": "pnpm@7.29.0",
+  "packageManager": "pnpm@7.29.1",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -38,9 +38,9 @@
     "@babel/core": "7.21.0",
     "@dargmuesli/nuxt-cookie-control": "5.1.0",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
-    "@graphql-codegen/cli": "3.2.1",
-    "@graphql-codegen/typescript": "3.0.1",
-    "@graphql-codegen/typescript-operations": "3.0.1",
+    "@graphql-codegen/cli": "3.2.2",
+    "@graphql-codegen/typescript": "3.0.2",
+    "@graphql-codegen/typescript-operations": "3.0.2",
     "@graphql-codegen/typescript-urql-graphcache": "2.4.3",
     "@graphql-codegen/typescript-vue-urql": "2.3.6",
     "@graphql-codegen/urql-introspection": "2.2.1",
@@ -70,7 +70,7 @@
     "@types/mustache": "4.2.2",
     "@types/node": "18.14.6",
     "@types/pg": "8.6.6",
-    "@uppy/core": "3.0.6",
+    "@uppy/core": "3.1.1",
     "@uppy/tus": "3.0.5",
     "@urql/core": "3.1.1",
     "@urql/devtools": "2.0.3",
@@ -93,7 +93,7 @@
     "defu": "6.1.2",
     "downloadjs": "1.4.7",
     "eslint": "8.35.0",
-    "eslint-config-prettier": "8.6.0",
+    "eslint-config-prettier": "8.7.0",
     "eslint-plugin-compat": "4.1.2",
     "eslint-plugin-nuxt": "4.0.0",
     "eslint-plugin-prettier": "4.2.1",
@@ -104,7 +104,7 @@
     "html-to-text": "9.0.4",
     "ical-generator": "3.6.1",
     "is-https": "4.0.0",
-    "isomorphic-dompurify": "1.0.0",
+    "isomorphic-dompurify": "1.1.0",
     "jose": "4.13.1",
     "lint-staged": "13.1.2",
     "lodash-es": "4.17.21",
@@ -112,8 +112,8 @@
     "node-fetch": "3.3.0",
     "nuxt": "3.2.3",
     "ofetch": "1.0.1",
-    "pg": "8.9.0",
-    "pinia": "2.0.32",
+    "pg": "8.10.0",
+    "pinia": "2.0.33",
     "postcss": "8.4.21",
     "postcss-html": "1.5.0",
     "prettier": "2.8.4",
@@ -154,7 +154,6 @@
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
-        "cosmiconfig-toml-loader",
         "webpack"
       ]
     }

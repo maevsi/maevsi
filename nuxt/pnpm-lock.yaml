@@ -4,9 +4,9 @@ specifiers:
   '@babel/core': 7.21.0
   '@dargmuesli/nuxt-cookie-control': 5.1.0
   '@funken-studio/sitemap-nuxt-3': 4.0.4
-  '@graphql-codegen/cli': 3.2.1
-  '@graphql-codegen/typescript': 3.0.1
-  '@graphql-codegen/typescript-operations': 3.0.1
+  '@graphql-codegen/cli': 3.2.2
+  '@graphql-codegen/typescript': 3.0.2
+  '@graphql-codegen/typescript-operations': 3.0.2
   '@graphql-codegen/typescript-urql-graphcache': 2.4.3
   '@graphql-codegen/typescript-vue-urql': 2.3.6
   '@graphql-codegen/urql-introspection': 2.2.1
@@ -36,7 +36,7 @@ specifiers:
   '@types/mustache': 4.2.2
   '@types/node': 18.14.6
   '@types/pg': 8.6.6
-  '@uppy/core': 3.0.6
+  '@uppy/core': 3.1.1
   '@uppy/tus': 3.0.5
   '@urql/core': 3.1.1
   '@urql/devtools': 2.0.3
@@ -59,7 +59,7 @@ specifiers:
   defu: 6.1.2
   downloadjs: 1.4.7
   eslint: 8.35.0
-  eslint-config-prettier: 8.6.0
+  eslint-config-prettier: 8.7.0
   eslint-plugin-compat: 4.1.2
   eslint-plugin-nuxt: 4.0.0
   eslint-plugin-prettier: 4.2.1
@@ -70,7 +70,7 @@ specifiers:
   html-to-text: 9.0.4
   ical-generator: 3.6.1
   is-https: 4.0.0
-  isomorphic-dompurify: 1.0.0
+  isomorphic-dompurify: 1.1.0
   jose: 4.13.1
   lint-staged: 13.1.2
   lodash-es: 4.17.21
@@ -78,8 +78,8 @@ specifiers:
   node-fetch: 3.3.0
   nuxt: 3.2.3
   ofetch: 1.0.1
-  pg: 8.9.0
-  pinia: 2.0.32
+  pg: 8.10.0
+  pinia: 2.0.33
   postcss: 8.4.21
   postcss-html: 1.5.0
   prettier: 2.8.4
@@ -121,9 +121,9 @@ devDependencies:
   '@babel/core': 7.21.0
   '@dargmuesli/nuxt-cookie-control': 5.1.0_rollup@3.18.0
   '@funken-studio/sitemap-nuxt-3': 4.0.4_rollup@3.18.0
-  '@graphql-codegen/cli': 3.2.1_54pomazznmc6whnwgl4omkntlq
-  '@graphql-codegen/typescript': 3.0.1_graphql@16.6.0
-  '@graphql-codegen/typescript-operations': 3.0.1_graphql@16.6.0
+  '@graphql-codegen/cli': 3.2.2_hz4vfa46kigeg3rrvec257khhm
+  '@graphql-codegen/typescript': 3.0.2_graphql@16.6.0
+  '@graphql-codegen/typescript-operations': 3.0.2_graphql@16.6.0
   '@graphql-codegen/typescript-urql-graphcache': 2.4.3_augkor4gfvt5io7wvlisjx2v4u
   '@graphql-codegen/typescript-vue-urql': 2.3.6_sy4knu3obj4ys7pjcqbyfxmqle
   '@graphql-codegen/urql-introspection': 2.2.1_graphql@16.6.0
@@ -153,8 +153,8 @@ devDependencies:
   '@types/mustache': 4.2.2
   '@types/node': 18.14.6
   '@types/pg': 8.6.6
-  '@uppy/core': 3.0.6
-  '@uppy/tus': 3.0.5_@uppy+core@3.0.6
+  '@uppy/core': 3.1.1
+  '@uppy/tus': 3.0.5_@uppy+core@3.1.1
   '@urql/core': 3.1.1_graphql@16.6.0
   '@urql/devtools': 2.0.3_ioimjbecbkqzfeizgamzrgwc3y
   '@urql/exchange-graphcache': 5.0.9_graphql@16.6.0
@@ -176,10 +176,10 @@ devDependencies:
   defu: 6.1.2
   downloadjs: 1.4.7
   eslint: 8.35.0
-  eslint-config-prettier: 8.6.0_eslint@8.35.0
+  eslint-config-prettier: 8.7.0_eslint@8.35.0
   eslint-plugin-compat: 4.1.2_eslint@8.35.0
   eslint-plugin-nuxt: 4.0.0_eslint@8.35.0
-  eslint-plugin-prettier: 4.2.1_u2zha4kiojzs42thzpgwygphmy
+  eslint-plugin-prettier: 4.2.1_xprnzp4ul2bcpmfe73av4voica
   eslint-plugin-yml: 1.5.0_eslint@8.35.0
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
@@ -187,7 +187,7 @@ devDependencies:
   html-to-text: 9.0.4
   ical-generator: 3.6.1_7bilk72imnacpuocx373egzfqa
   is-https: 4.0.0
-  isomorphic-dompurify: 1.0.0
+  isomorphic-dompurify: 1.1.0
   jose: 4.13.1
   lint-staged: 13.1.2
   lodash-es: 4.17.21
@@ -195,8 +195,8 @@ devDependencies:
   node-fetch: 3.3.0
   nuxt: 3.2.3_yyvmudjtsewjfmyrphsrgvmxwa
   ofetch: 1.0.1
-  pg: 8.9.0
-  pinia: 2.0.32_hmuptsblhheur2tugfgucj7gc4
+  pg: 8.10.0
+  pinia: 2.0.33_hmuptsblhheur2tugfgucj7gc4
   postcss: 8.4.21
   postcss-html: 1.5.0
   prettier: 2.8.4
@@ -1770,8 +1770,8 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/cli/3.2.1_54pomazznmc6whnwgl4omkntlq:
-    resolution: {integrity: sha512-AeXzOvhSgAyMC0TzIoc6/HIc2Fy2rCZJcs5pt1LDypn1k4gpGRzqZ5JOjYx+XIna2hLfB9NbAkcO5dcdHwFdJA==}
+  /@graphql-codegen/cli/3.2.2_hz4vfa46kigeg3rrvec257khhm:
+    resolution: {integrity: sha512-u+dm/SW1heLnUL4Tyf5Uv0AxOFhTCmUPHKwRLq2yE8MPhv7+Ti4vxxUP/XGoaMNRuHlN37wLI7tpFLV1Hhm22Q==}
     hasBin: true
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -1795,13 +1795,13 @@ packages:
       '@whatwg-node/fetch': 0.8.2_@types+node@18.14.6
       chalk: 4.1.2
       cosmiconfig: 7.1.0
-      cosmiconfig-typescript-loader: 4.3.0_ie6k4cuipj4olvzz5p2owxibay
       debounce: 1.2.1
       detect-indent: 6.1.0
       graphql: 16.6.0
       graphql-config: 4.5.0_jukviheqyaybdjg76ifj2dsifa
       inquirer: 8.2.5
       is-glob: 4.0.3
+      jiti: 1.17.2
       json-to-pretty-yaml: 1.2.2
       listr2: 4.0.5
       log-symbols: 4.1.0
@@ -1809,21 +1809,17 @@ packages:
       shell-quote: 1.8.0
       string-env-interpolation: 1.0.1
       ts-log: 2.2.5
-      ts-node: 10.9.1_alpjt73dvgv6kni625hu7f2l4m
       tslib: 2.5.0
       yaml: 1.10.2
       yargs: 17.7.1
     transitivePeerDependencies:
       - '@babel/core'
-      - '@swc/core'
-      - '@swc/wasm'
       - '@types/node'
       - bufferutil
       - cosmiconfig-toml-loader
       - encoding
       - enquirer
       - supports-color
-      - typescript
       - utf-8-validate
     dev: true
 
@@ -1878,14 +1874,14 @@ packages:
       tslib: 2.5.0
     dev: true
 
-  /@graphql-codegen/typescript-operations/3.0.1_graphql@16.6.0:
-    resolution: {integrity: sha512-Td1d483cQr7XJj/zXrbqVUEi2QK56DT7EToFheZrBFArIQCUEGK+Xgw6GhEmZaTwWYODxavzy1jmTTJC2fEuTw==}
+  /@graphql-codegen/typescript-operations/3.0.2_graphql@16.6.0:
+    resolution: {integrity: sha512-FYi5QcOsBZZvBKlzBQ+jpBCUxMo9g3fTYa2v1+rqooG6SiW/lQyk2CNL5tsYAt6TLmH3rws8rzSUil0DWNsflQ==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
       '@graphql-codegen/plugin-helpers': 4.1.0_graphql@16.6.0
-      '@graphql-codegen/typescript': 3.0.1_graphql@16.6.0
-      '@graphql-codegen/visitor-plugin-common': 3.0.1_graphql@16.6.0
+      '@graphql-codegen/typescript': 3.0.2_graphql@16.6.0
+      '@graphql-codegen/visitor-plugin-common': 3.0.2_graphql@16.6.0
       auto-bind: 4.0.0
       graphql: 16.6.0
       tslib: 2.5.0
@@ -1932,14 +1928,14 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/typescript/3.0.1_graphql@16.6.0:
-    resolution: {integrity: sha512-HvozJg7eHqywmYvXa7+nmjw+v3+f8ilFv9VbRvmjhj/zBw3VKGT2n/85ZhVyuWjY2KrDLzl6BqeXttWsW5Wo4w==}
+  /@graphql-codegen/typescript/3.0.2_graphql@16.6.0:
+    resolution: {integrity: sha512-qD6QkTB+2eJmIaZ6Tihv6HRz7daWWLz9uw5vwCmPeZN6XL2RINZGLkR7D8BQzLDlNGMrpQ4SeSM9o3ZALSCIuQ==}
     peerDependencies:
       graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
       '@graphql-codegen/plugin-helpers': 4.1.0_graphql@16.6.0
       '@graphql-codegen/schema-ast': 3.0.1_graphql@16.6.0
-      '@graphql-codegen/visitor-plugin-common': 3.0.1_graphql@16.6.0
+      '@graphql-codegen/visitor-plugin-common': 3.0.2_graphql@16.6.0
       auto-bind: 4.0.0
       graphql: 16.6.0
       tslib: 2.5.0
@@ -1980,8 +1976,8 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/visitor-plugin-common/3.0.1_graphql@16.6.0:
-    resolution: {integrity: sha512-Qek+Ywy094Km7Vc1TzKBN9ICvtYwPdqZUliPO77urMSveP+2+G2O9Tjx546dW4A1O6rhEfexbenc2DqTAe7iLQ==}
+  /@graphql-codegen/visitor-plugin-common/3.0.2_graphql@16.6.0:
+    resolution: {integrity: sha512-dKblRFrB0Fdl3+nPlzlLBka+TN/EGwr/q09mwry0H58z3j6gXkMbsdPr+dc8MhgOV7w/8egRvSPIvd7m6eFCnw==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
@@ -3031,7 +3027,7 @@ packages:
     resolution: {integrity: sha512-ifgA9PO/jmPlK1e/HtkrZa7OMSL8EUOpo8Z1O5vNLRr/OZ42kKGEaY1NbIoCz6dIf/pbkATTNHJmcrlPCo3zSA==}
     dependencies:
       '@nuxt/kit': 3.2.3_rollup@3.18.0
-      pinia: 2.0.32_hmuptsblhheur2tugfgucj7gc4
+      pinia: 2.0.33_hmuptsblhheur2tugfgucj7gc4
     transitivePeerDependencies:
       - '@vue/composition-api'
       - rollup
@@ -3969,8 +3965,8 @@ packages:
       namespace-emitter: 2.0.1
     dev: true
 
-  /@uppy/core/3.0.6:
-    resolution: {integrity: sha512-438+xHMXWmnBl5NDvakh9C87IkWW9ZHVHY3+G5N17E/nzghxaJmFjCh390G5osNrgRvLAZZqt8g9I+hCnq7RgA==}
+  /@uppy/core/3.1.1:
+    resolution: {integrity: sha512-cVH2R+snO4zexw5P1jujY+am4gndI/deWRxrvJ8RKGz6P5g/c89buIEX+5I2aYRT9yPjqstLe7Oob61yspVMpQ==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.9
       '@uppy/store-default': 3.0.2
@@ -3986,13 +3982,13 @@ packages:
     resolution: {integrity: sha512-kIQMCjXui6tjF1E9xGo4YHkvt71McXkU0FStrcQuBrRXuOhb+NcuWh3sMh3KryivVNgT6w5Odrlw2FUFkl9cqA==}
     dev: true
 
-  /@uppy/tus/3.0.5_@uppy+core@3.0.6:
+  /@uppy/tus/3.0.5_@uppy+core@3.1.1:
     resolution: {integrity: sha512-X8RASLyiWMJ+VRVfxLg/THAj2BABZAoW+10+PCrX+U2FKUBbjdnDo2NVZs3vScL/fXsW5pTw4d18vJbZhWcryA==}
     peerDependencies:
       '@uppy/core': ^3.0.4
     dependencies:
       '@uppy/companion-client': 3.1.1
-      '@uppy/core': 3.0.6
+      '@uppy/core': 3.1.1
       '@uppy/utils': 5.1.3
       tus-js-client: 3.1.0
     dev: true
@@ -5479,21 +5475,6 @@ packages:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: true
 
-  /cosmiconfig-typescript-loader/4.3.0_ie6k4cuipj4olvzz5p2owxibay:
-    resolution: {integrity: sha512-NTxV1MFfZDLPiBMjxbHRwSh5LaLcPMwNdCutmnHJCKoVnlvldPWlllonKwrsRJ5pYZBIBGRWWU2tfvzxgeSW5Q==}
-    engines: {node: '>=12', npm: '>=6'}
-    peerDependencies:
-      '@types/node': '*'
-      cosmiconfig: '>=7'
-      ts-node: '>=10'
-      typescript: '>=3'
-    dependencies:
-      '@types/node': 18.14.6
-      cosmiconfig: 7.1.0
-      ts-node: 10.9.1_alpjt73dvgv6kni625hu7f2l4m
-      typescript: 4.9.5
-    dev: true
-
   /cosmiconfig/7.1.0:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
     engines: {node: '>=10'}
@@ -6479,8 +6460,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-prettier/8.6.0_eslint@8.35.0:
-    resolution: {integrity: sha512-bAF0eLpLVqP5oEVUFKpMA+NnRFICwn9X8B5jrR9FcqnYBuPbqWEjTEspPWMj5ye6czoSLDweCzSo3Ko7gGrZaA==}
+  /eslint-config-prettier/8.7.0_eslint@8.35.0:
+    resolution: {integrity: sha512-HHVXLSlVUhMSmyW4ZzEuvjpwqamgmlfkutD53cYXLikh4pt/modINRcCIApJ84czDxM4GZInwUrromsDdTImTA==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -6676,7 +6657,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_u2zha4kiojzs42thzpgwygphmy:
+  /eslint-plugin-prettier/4.2.1_xprnzp4ul2bcpmfe73av4voica:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -6688,7 +6669,7 @@ packages:
         optional: true
     dependencies:
       eslint: 8.35.0
-      eslint-config-prettier: 8.6.0_eslint@8.35.0
+      eslint-config-prettier: 8.7.0_eslint@8.35.0
       prettier: 2.8.4
       prettier-linter-helpers: 1.0.0
     dev: true
@@ -8483,8 +8464,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /isomorphic-dompurify/1.0.0:
-    resolution: {integrity: sha512-rxkJ2b2rwsgN/uvtaW+Z2JGfD9CYcixYMj0eTIa4V2hG47VDRMiehtUypi4lkpuwW41UrnOR65Dy0POiH3Lbjg==}
+  /isomorphic-dompurify/1.1.0:
+    resolution: {integrity: sha512-F753oJdEsnEHRPBLBqyuRkm0CpyrwBOtAh8I449gxfknQrKSvVYMY34aObe+tQ9HT7Hi47+Sn3MWjhSXQQpqWA==}
     dependencies:
       '@types/dompurify': 2.4.0
       dompurify: 3.0.1
@@ -10244,12 +10225,12 @@ packages:
     engines: {node: '>=4.0.0'}
     dev: true
 
-  /pg-pool/3.6.0_pg@8.9.0:
+  /pg-pool/3.6.0_pg@8.10.0:
     resolution: {integrity: sha512-clFRf2ksqd+F497kWFyM21tMjeikn60oGDmqMT8UBrynEwVEX/5R5xd2sdvdo1cZCFlguORNpVuqxIj+aK4cfQ==}
     peerDependencies:
       pg: '>=8.0'
     dependencies:
-      pg: 8.9.0
+      pg: 8.10.0
     dev: true
 
   /pg-protocol/1.6.0:
@@ -10267,8 +10248,8 @@ packages:
       postgres-interval: 1.2.0
     dev: true
 
-  /pg/8.9.0:
-    resolution: {integrity: sha512-ZJM+qkEbtOHRuXjmvBtOgNOXOtLSbxiMiUVMgE4rV6Zwocy03RicCVvDXgx8l4Biwo8/qORUnEqn2fdQzV7KCg==}
+  /pg/8.10.0:
+    resolution: {integrity: sha512-ke7o7qSTMb47iwzOSaZMfeR7xToFdkE71ifIipOAAaLIM0DYzfOAXlgFFmYUIE2BcJtvnVlGCID84ZzCegE8CQ==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
@@ -10279,7 +10260,7 @@ packages:
       buffer-writer: 2.0.0
       packet-reader: 1.0.0
       pg-connection-string: 2.5.0
-      pg-pool: 3.6.0_pg@8.9.0
+      pg-pool: 3.6.0_pg@8.10.0
       pg-protocol: 1.6.0
       pg-types: 2.2.0
       pgpass: 1.0.5
@@ -10311,8 +10292,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /pinia/2.0.32_hmuptsblhheur2tugfgucj7gc4:
-    resolution: {integrity: sha512-8Tw4OrpCSJ028UUyp0gYPP/wyjigLoEceuO/x1G+FlHVf73337e5vLm4uDmrRIoBG1hvaed/eSHnrCFjOc4nkA==}
+  /pinia/2.0.33_hmuptsblhheur2tugfgucj7gc4:
+    resolution: {integrity: sha512-HOj1yVV2itw6rNIrR2f7+MirGNxhORjrULL8GWgRwXsGSvEqIQ+SE0MYt6cwtpegzCda3i+rVTZM+AM7CG+kRg==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'
