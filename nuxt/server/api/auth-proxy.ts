@@ -13,11 +13,11 @@ export default defineEventHandler(async function (event: H3Event) {
       {
         const turnstileKey = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
         if (Array.isArray(turnstileKey)) {
-          throwError(422, 'TurnstileKey cannot be an array.')
+          return throwError(422, 'TurnstileKey cannot be an array.')
         }
 
         if (!turnstileKey) {
-          throwError(422, 'TurnstileKey not provided.')
+          return throwError(422, 'TurnstileKey not provided.')
         }
 
         const result = await verifyTurnstileToken(turnstileKey)
