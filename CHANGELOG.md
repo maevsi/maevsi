@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/maevsi/maevsi/compare/1.9.1...1.9.2) (2023-03-10)
+
+
+### Bug Fixes
+
+* **docker:** install dependencies in cypress stage ([47f2f45](https://github.com/maevsi/maevsi/commit/47f2f459dd17e7177c02743151d6be9de5f07b03))
+
 ## [1.9.1](https://github.com/maevsi/maevsi/compare/1.9.0...1.9.1) (2023-02-28)
 
 
