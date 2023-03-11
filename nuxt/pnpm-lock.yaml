@@ -74,7 +74,7 @@ specifiers:
   lint-staged: 13.2.0
   lodash-es: 4.17.21
   mustache: 4.2.0
-  node-fetch: 3.3.0
+  node-fetch: 3.3.1
   nuxt: 3.2.3
   ofetch: 1.0.1
   pg: 8.10.0
@@ -190,7 +190,7 @@ devDependencies:
   lint-staged: 13.2.0
   lodash-es: 4.17.21
   mustache: 4.2.0
-  node-fetch: 3.3.0
+  node-fetch: 3.3.1
   nuxt: 3.2.3_5gdxronrm4lrorderxubnfhqbe
   ofetch: 1.0.1
   pg: 8.10.0
@@ -2809,7 +2809,7 @@ packages:
       jiti: 1.17.2
       mri: 1.2.0
       nanoid: 4.0.1
-      node-fetch: 3.3.0
+      node-fetch: 3.3.1
       ofetch: 1.0.1
       parse-git-config: 3.0.0
       rc9: 2.0.1
@@ -9652,8 +9652,8 @@ packages:
       whatwg-url: 5.0.0
     dev: true
 
-  /node-fetch/3.3.0:
-    resolution: {integrity: sha512-BKwRP/O0UvoMKp7GNdwPlObhYGB5DQqwhEDQlNKuoqwVYSxkSZCSbHjnFFmUEtwSKRPU4kNK8PbDYYitwaE3QA==}
+  /node-fetch/3.3.1:
+    resolution: {integrity: sha512-cRVc/kyto/7E5shrWca1Wsea4y6tL9iYJE5FBCius3JQfb/4P4I295PfhgbJQBLTx6lATE4z+wK0rPM4VS2uow==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       data-uri-to-buffer: 4.0.1
