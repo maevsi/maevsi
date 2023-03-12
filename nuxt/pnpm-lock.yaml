@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': 7.21.0
-  '@dargmuesli/nuxt-cookie-control': 5.1.0
+  '@dargmuesli/nuxt-cookie-control': 5.2.0
   '@funken-studio/sitemap-nuxt-3': 4.0.4
   '@graphql-codegen/cli': 3.2.2
   '@graphql-codegen/typescript': 3.0.2
@@ -118,7 +118,7 @@ specifiers:
 
 devDependencies:
   '@babel/core': 7.21.0
-  '@dargmuesli/nuxt-cookie-control': 5.1.0_rollup@3.19.1
+  '@dargmuesli/nuxt-cookie-control': 5.2.0_rollup@3.19.1
   '@funken-studio/sitemap-nuxt-3': 4.0.4_rollup@3.19.1
   '@graphql-codegen/cli': 3.2.2_7snnvcuvbzbbhqx6yjmrqby35a
   '@graphql-codegen/typescript': 3.0.2_graphql@16.6.0
@@ -1299,8 +1299,8 @@ packages:
       - supports-color
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control/5.1.0_rollup@3.19.1:
-    resolution: {integrity: sha512-CsEc5DYt7kbJ9SdtVSY/79r1c7j1JuyTVdn9b9a/C+jGl2g42H2OM7Pfl8b7seJXR4PXthn55oXoSq2QeGPbPA==}
+  /@dargmuesli/nuxt-cookie-control/5.2.0_rollup@3.19.1:
+    resolution: {integrity: sha512-YPJuM/qSrHdpzT5sw4A42CDlEHzLXPjfKYJsW/06lAfOHb+n8attwXePv51/LAxuiHXvLRH6lajOmY16St7TyA==}
     dependencies:
       '@nuxt/kit': 3.2.3_rollup@3.19.1
       '@sindresorhus/slugify': 2.2.0
