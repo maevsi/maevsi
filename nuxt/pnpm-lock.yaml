@@ -28,7 +28,7 @@ specifiers:
   '@tiptap/starter-kit': 2.0.0-beta.220
   '@tiptap/vue-3': 2.0.0-beta.220
   '@types/cookie': 0.5.1
-  '@types/dompurify': 2.4.0
+  '@types/dompurify': 3.0.0
   '@types/downloadjs': 1.4.3
   '@types/html-to-text': 9.0.0
   '@types/lodash-es': 4.17.6
@@ -144,7 +144,7 @@ devDependencies:
   '@tiptap/starter-kit': 2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220
   '@tiptap/vue-3': 2.0.0-beta.220_a54wo5ees24qu72lw5umr67ute
   '@types/cookie': 0.5.1
-  '@types/dompurify': 2.4.0
+  '@types/dompurify': 3.0.0
   '@types/downloadjs': 1.4.3
   '@types/html-to-text': 9.0.0
   '@types/lodash-es': 4.17.6
@@ -3642,6 +3642,12 @@ packages:
 
   /@types/dompurify/2.4.0:
     resolution: {integrity: sha512-IDBwO5IZhrKvHFUl+clZxgf3hn2b/lU6H1KaBShPkQyGJUQ0xwebezIPSuiyGwfz1UzJWQl4M7BDxtHtCCPlTg==}
+    dependencies:
+      '@types/trusted-types': 2.0.3
+    dev: true
+
+  /@types/dompurify/3.0.0:
+    resolution: {integrity: sha512-EcSqmgm/xJwH8CcJPy9AHNypp/j58CYga3nWdl93/wLxX6OH+rSD3aAj75NQazcZd1YKHJ/pjNZ9qmgVajggwQ==}
     dependencies:
       '@types/trusted-types': 2.0.3
     dev: true
