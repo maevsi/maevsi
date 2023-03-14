@@ -94,7 +94,7 @@ specifiers:
   prosemirror-schema-list: 1.2.2
   prosemirror-state: 1.4.2
   prosemirror-transform: 1.7.1
-  prosemirror-view: 1.30.1
+  prosemirror-view: 1.30.2
   qrcode.vue: 3.3.4
   rollup: 3.19.1
   slugify: 1.6.5
@@ -210,7 +210,7 @@ devDependencies:
   prosemirror-schema-list: 1.2.2
   prosemirror-state: 1.4.2
   prosemirror-transform: 1.7.1
-  prosemirror-view: 1.30.1
+  prosemirror-view: 1.30.2
   qrcode.vue: 3.3.4_vue@3.2.47
   rollup: 3.19.1
   slugify: 1.6.5
@@ -3551,9 +3551,9 @@ packages:
       prosemirror-schema-list: 1.2.2
       prosemirror-state: 1.4.2
       prosemirror-tables: 1.3.2
-      prosemirror-trailing-node: 2.0.3_5fcjrdljkuxznpmydz7mdgrowq
+      prosemirror-trailing-node: 2.0.3_neynaodr6b5iulsm3pf65djexu
       prosemirror-transform: 1.7.1
-      prosemirror-view: 1.30.1
+      prosemirror-view: 1.30.2
     dev: true
 
   /@tiptap/starter-kit/2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220:
@@ -10969,7 +10969,7 @@ packages:
     dependencies:
       prosemirror-state: 1.4.2
       prosemirror-transform: 1.7.1
-      prosemirror-view: 1.30.1
+      prosemirror-view: 1.30.2
     dev: true
 
   /prosemirror-gapcursor/1.3.1:
@@ -10978,7 +10978,7 @@ packages:
       prosemirror-keymap: 1.2.1
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
-      prosemirror-view: 1.30.1
+      prosemirror-view: 1.30.2
     dev: true
 
   /prosemirror-history/1.3.0:
@@ -11044,7 +11044,7 @@ packages:
     dependencies:
       prosemirror-model: 1.19.0
       prosemirror-transform: 1.7.1
-      prosemirror-view: 1.30.1
+      prosemirror-view: 1.30.2
     dev: true
 
   /prosemirror-tables/1.3.2:
@@ -11054,10 +11054,10 @@ packages:
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
       prosemirror-transform: 1.7.1
-      prosemirror-view: 1.30.1
+      prosemirror-view: 1.30.2
     dev: true
 
-  /prosemirror-trailing-node/2.0.3_5fcjrdljkuxznpmydz7mdgrowq:
+  /prosemirror-trailing-node/2.0.3_neynaodr6b5iulsm3pf65djexu:
     resolution: {integrity: sha512-lGrjMrn97KWkjQSW/FjdvnhJmqFACmQIyr6lKYApvHitDnKsCoZz6XzrHB7RZYHni/0NxQmZ01p/2vyK2SkvaA==}
     peerDependencies:
       prosemirror-model: ^1
@@ -11070,7 +11070,7 @@ packages:
       escape-string-regexp: 4.0.0
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
-      prosemirror-view: 1.30.1
+      prosemirror-view: 1.30.2
     dev: true
 
   /prosemirror-transform/1.7.1:
@@ -11079,8 +11079,8 @@ packages:
       prosemirror-model: 1.19.0
     dev: true
 
-  /prosemirror-view/1.30.1:
-    resolution: {integrity: sha512-pZUfr7lICJkEY7XwzldAKrkflZDeIvnbfuu2RIS01N5NwJmR/dfZzDzJRzhb3SM2QtT/bM8b4Nnib8X3MGpAhA==}
+  /prosemirror-view/1.30.2:
+    resolution: {integrity: sha512-nTNzZvalQf9kHeEyO407LiV6DoOs/pXsid88UqW9Vvybo4ozJW2PJhkfZUxCUF1hR/9vJLdhxX84wuw9P9HsXA==}
     dependencies:
       prosemirror-model: 1.19.0
       prosemirror-state: 1.4.2
