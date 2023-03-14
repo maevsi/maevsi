@@ -103,7 +103,7 @@
     "html-to-text": "9.0.4",
     "ical-generator": "3.6.1",
     "is-https": "4.0.0",
-    "isomorphic-dompurify": "1.1.0",
+    "isomorphic-dompurify": "1.2.0",
     "jose": "4.13.1",
     "lint-staged": "13.2.0",
     "lodash-es": "4.17.21",
