@@ -86,7 +86,7 @@
     "cookie": "0.5.0",
     "cross-env": "7.0.3",
     "css-element-queries": "1.2.3",
-    "cypress": "12.7.0",
+    "cypress": "12.8.1",
     "cypress-visual-regression": "2.1.1",
     "dayjs": "2.0.0-alpha.4",
     "defu": "6.1.2",
