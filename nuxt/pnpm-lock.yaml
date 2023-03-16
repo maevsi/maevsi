@@ -65,7 +65,7 @@ specifiers:
   eslint-plugin-yml: 1.5.0
   graphql: 16.6.0
   graphql-tag: 2.12.6
-  h3: 1.6.1
+  h3: 1.6.2
   html-to-text: 9.0.4
   ical-generator: 3.6.1
   is-https: 4.0.0
@@ -181,7 +181,7 @@ devDependencies:
   eslint-plugin-yml: 1.5.0_eslint@8.36.0
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
-  h3: 1.6.1
+  h3: 1.6.2
   html-to-text: 9.0.4
   ical-generator: 3.6.1_dcrxabfure6yzpb6k56byjzxvm
   is-https: 4.0.0
@@ -2862,7 +2862,7 @@ packages:
       externality: 1.0.0
       fs-extra: 11.1.0
       get-port-please: 3.0.1
-      h3: 1.6.1
+      h3: 1.6.2
       knitwork: 1.0.0
       magic-string: 0.30.0
       mlly: 1.2.0
@@ -7706,8 +7706,8 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /h3/1.6.1:
-    resolution: {integrity: sha512-mvolshMiyV3Q62vtWe75RjqH//Fvq+9zdndSr61ShE4MCE6fzBMWe9nPUSvckxjnznGwEQri7Ghc7jtvMxeYFg==}
+  /h3/1.6.2:
+    resolution: {integrity: sha512-1v/clj/qCzWbuiG+DbpViuOVO789sEYNjlwRjekkmyLGsezIJk30gazbnjcWvF8L/ffUdRz2SwxE5HNgNx+Yjg==}
     dependencies:
       cookie-es: 0.5.0
       defu: 6.1.2
@@ -9577,7 +9577,7 @@ packages:
       fs-extra: 11.1.0
       globby: 13.1.3
       gzip-size: 7.0.0
-      h3: 1.6.1
+      h3: 1.6.2
       hookable: 5.5.1
       http-proxy: 1.18.1
       is-primitive: 3.0.1
@@ -9814,7 +9814,7 @@ packages:
       estree-walker: 3.0.3
       fs-extra: 11.1.0
       globby: 13.1.3
-      h3: 1.6.1
+      h3: 1.6.2
       hash-sum: 2.0.0
       hookable: 5.5.1
       jiti: 1.17.2
@@ -12813,7 +12813,7 @@ packages:
       anymatch: 3.1.3
       chokidar: 3.5.3
       destr: 1.2.2
-      h3: 1.6.1
+      h3: 1.6.2
       ioredis: 5.3.1
       listhen: 1.0.3
       lru-cache: 7.18.3
