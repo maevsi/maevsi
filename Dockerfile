@@ -102,7 +102,7 @@ RUN npm install -g pnpm && \
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.7.0 AS test-integration_base
+FROM cypress/included:12.8.1 AS test-integration_base
 
 ARG UNAME=cypress
 ARG UID=1000
@@ -132,7 +132,7 @@ ENTRYPOINT ["entrypoint-dev.sh"]
 # Nuxt: test (integration, development)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.7.0 AS test-integration-dev
+FROM cypress/included:12.8.1 AS test-integration-dev
 
 RUN corepack enable
 
@@ -149,7 +149,7 @@ RUN pnpm test:integration:dev
 # Nuxt: test (integration, production)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.6.0 AS test-integration-prod
+FROM cypress/included:12.8.1 AS test-integration-prod
 
 RUN corepack enable
 
