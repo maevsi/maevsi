@@ -1,3 +1,10 @@
+## [1.9.3](https://github.com/maevsi/maevsi/compare/1.9.2...1.9.3) (2023-03-18)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([afa421a](https://github.com/maevsi/maevsi/commit/afa421afb6b37442658da4097a4790d742115d58))
+
 ## [1.9.2](https://github.com/maevsi/maevsi/compare/1.9.1...1.9.2) (2023-03-10)
 
 
