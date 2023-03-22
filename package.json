@@ -8,7 +8,7 @@
     "prepare": "pnpm --dir nuxt install && if [ \"$NODE_ENV\" != \"production\" ]; then husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks; fi"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.4.4",
+    "@commitlint/cli": "17.5.0",
     "@commitlint/config-conventional": "17.4.4",
     "husky": "8.0.3",
     "shx": "0.3.4"
