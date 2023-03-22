@@ -1,3 +1,10 @@
+## [1.9.4](https://github.com/maevsi/maevsi/compare/1.9.3...1.9.4) (2023-03-22)
+
+
+### Bug Fixes
+
+* **cypress:** reenable upload test ([789ed22](https://github.com/maevsi/maevsi/commit/789ed227d3bda0c2e057469e775a26043264e0e4))
+
 ## [1.9.3](https://github.com/maevsi/maevsi/compare/1.9.2...1.9.3) (2023-03-18)
 
 
