@@ -130,7 +130,7 @@
     "prosemirror-transform": "1.7.1",
     "prosemirror-view": "1.30.2",
     "qrcode.vue": "3.3.4",
-    "rollup": "3.20.0",
+    "rollup": "3.20.1",
     "slugify": "1.6.5",
     "start-server-and-test": "2.0.0",
     "stylelint": "15.3.0",
