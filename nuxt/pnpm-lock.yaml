@@ -81,7 +81,7 @@ specifiers:
   pinia: 2.0.33
   postcss: 8.4.21
   postcss-html: 1.5.0
-  prettier: 2.8.6
+  prettier: 2.8.7
   prettier-plugin-tailwindcss: 0.2.5
   pretty-bytes: 6.1.0
   prntr: 2.0.18
@@ -177,7 +177,7 @@ devDependencies:
   eslint-config-prettier: 8.8.0_eslint@8.36.0
   eslint-plugin-compat: 4.1.2_eslint@8.36.0
   eslint-plugin-nuxt: 4.0.0_eslint@8.36.0
-  eslint-plugin-prettier: 4.2.1_ose2zoovovx4ulolhifz3tfzx4
+  eslint-plugin-prettier: 4.2.1_ywlv3zveqg2kxfq44lflihh5mm
   eslint-plugin-yml: 1.5.0_eslint@8.36.0
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
@@ -197,8 +197,8 @@ devDependencies:
   pinia: 2.0.33_p4srtwdgezcoeovfcc2yxzvaue
   postcss: 8.4.21
   postcss-html: 1.5.0
-  prettier: 2.8.6
-  prettier-plugin-tailwindcss: 0.2.5_prettier@2.8.6
+  prettier: 2.8.7
+  prettier-plugin-tailwindcss: 0.2.5_prettier@2.8.7
   pretty-bytes: 6.1.0
   prntr: 2.0.18
   prosemirror-commands: 1.5.1
@@ -2674,7 +2674,7 @@ packages:
       chalk: 5.2.0
       html-validate: 7.13.3
       pathe: 1.1.0
-      prettier: 2.8.6
+      prettier: 2.8.7
       std-env: 3.3.2
     transitivePeerDependencies:
       - jest
@@ -6348,7 +6348,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-prettier/4.2.1_ose2zoovovx4ulolhifz3tfzx4:
+  /eslint-plugin-prettier/4.2.1_ywlv3zveqg2kxfq44lflihh5mm:
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -6361,7 +6361,7 @@ packages:
     dependencies:
       eslint: 8.36.0
       eslint-config-prettier: 8.8.0_eslint@8.36.0
-      prettier: 2.8.6
+      prettier: 2.8.7
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -10469,7 +10469,7 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier-plugin-tailwindcss/0.2.5_prettier@2.8.6:
+  /prettier-plugin-tailwindcss/0.2.5_prettier@2.8.7:
     resolution: {integrity: sha512-vZ/iKieyCx0WTxHbkf5E1rBlv/ybFk8WTT4hL5W2jlVxum2Zbe0jMUpuQdDrpa4z2vnPiJ5KIWCqL/kd16fKYg==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
@@ -10521,11 +10521,11 @@ packages:
       prettier-plugin-twig-melody:
         optional: true
     dependencies:
-      prettier: 2.8.6
+      prettier: 2.8.7
     dev: true
 
-  /prettier/2.8.6:
-    resolution: {integrity: sha512-mtuzdiBbHwPEgl7NxWlqOkithPyp4VN93V7VeHVWBF+ad3I5avc0RVDT4oImXQy9H/AqxA2NSQH8pSxHW6FYbQ==}
+  /prettier/2.8.7:
+    resolution: {integrity: sha512-yPngTo3aXUUmyuTjeTUT75txrf+aMh9FiD7q9ZE/i6r0bPb22g4FsE6Y338PQX1bmfy08i9QQCB7/rcUAVntfw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
