@@ -42,7 +42,7 @@ specifiers:
   '@urql/devtools': 2.0.3
   '@urql/exchange-graphcache': 5.0.9
   '@urql/vue': 1.0.4
-  '@vuelidate/core': 2.0.0
+  '@vuelidate/core': 2.0.1
   '@vuelidate/validators': 2.0.0
   autoprefixer: 10.4.14
   browserslist: 4.21.5
@@ -159,7 +159,7 @@ devDependencies:
   '@urql/devtools': 2.0.3_ioimjbecbkqzfeizgamzrgwc3y
   '@urql/exchange-graphcache': 5.0.9_graphql@16.6.0
   '@urql/vue': 1.0.4_graphql@16.6.0+vue@3.2.47
-  '@vuelidate/core': 2.0.0_vue@3.2.47
+  '@vuelidate/core': 2.0.1_vue@3.2.47
   '@vuelidate/validators': 2.0.0_vue@3.2.47
   autoprefixer: 10.4.14_postcss@8.4.21
   browserslist: 4.21.5
@@ -3997,8 +3997,8 @@ packages:
     resolution: {integrity: sha512-BHGyyGN3Q97EZx0taMQ+OLNuZcW3d37ZEVmEAyeoA9ERdGvm9Irc/0Fua8SNyOtV1w6BS4q25wbMzJujO9HIfQ==}
     dev: true
 
-  /@vuelidate/core/2.0.0_vue@3.2.47:
-    resolution: {integrity: sha512-xIFgdQlScO0aaSZ0wTGPJh8YcTMNAj5veI8yPgiAyxOT+GV7vNQFiU1vpYWCL4cklkkhYvRRSC2OEX7YOZNmPQ==}
+  /@vuelidate/core/2.0.1_vue@3.2.47:
+    resolution: {integrity: sha512-seBfM7ZtQ+NzXEdJpwLPgX/GlY+R10VI3FSoXyEJH7p4kKcz06f5oloh2EDozCJVMxP0Um/FFcfjBCn8CtGNOQ==}
     peerDependencies:
       '@vue/composition-api': ^1.0.0-rc.1
       vue: ^2.0.0 || >=3.0.0
