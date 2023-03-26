@@ -66,15 +66,17 @@ const props = withDefaults(defineProps<Props>(), {
   submitName: undefined,
 })
 
+const emit = defineEmits<{
+  (e: 'click'): void
+  (e: 'submit', event: Event): void
+}>()
+
 const store = useMaevsiStore()
+const { t } = useI18n()
+
+// data
 const turnstileKey = ref('')
 const isSubmitButtonDisabled = ref(true)
-
-watch(turnstileKey, (newKey) => {
-  if (newKey !== undefined || newKey !== '') {
-    isSubmitButtonDisabled.value = false
-  }
-})
 
 // methods
 const storeTurnstileKey = () => {
@@ -82,19 +84,19 @@ const storeTurnstileKey = () => {
   emit('click')
 }
 
-const emit = defineEmits<{
-  (e: 'click'): void
-  (e: 'submit', event: Event): void
-}>()
-
-const { t } = useI18n()
-
 // computations
 const errorMessages = computed(() =>
   props.errors
     ? getCombinedErrorMessages(props.errors, props.errorsPgIds)
     : undefined
 )
+
+// lifecycle
+watch(turnstileKey, (newKey) => {
+  if (newKey !== undefined || newKey !== '') {
+    isSubmitButtonDisabled.value = false
+  }
+})
 </script>
 
 <script lang="ts">
