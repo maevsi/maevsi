@@ -142,7 +142,7 @@
     "tailwindcss": "3.2.7",
     "ts-node": "10.9.1",
     "typescript": "5.0.2",
-    "v-calendar": "3.0.1",
+    "v-calendar": "3.0.2",
     "vitest": "0.29.7",
     "vue": "3.2.47",
     "vue-advanced-cropper": "2.8.8",

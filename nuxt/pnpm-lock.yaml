@@ -108,7 +108,7 @@ specifiers:
   tailwindcss: 3.2.7
   ts-node: 10.9.1
   typescript: 5.0.2
-  v-calendar: 3.0.1
+  v-calendar: 3.0.2
   vitest: 0.29.7
   vue: 3.2.47
   vue-advanced-cropper: 2.8.8
@@ -225,7 +225,7 @@ devDependencies:
   tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
   ts-node: 10.9.1_zd7fjxbseldtiwc6h6ujrbvxuy
   typescript: 5.0.2
-  v-calendar: 3.0.1_byt4v3rt727t357jauu56svwei
+  v-calendar: 3.0.2_byt4v3rt727t357jauu56svwei
   vitest: 0.29.7
   vue: 3.2.47
   vue-advanced-cropper: 2.8.8_vue@3.2.47
@@ -12279,8 +12279,8 @@ packages:
     hasBin: true
     dev: true
 
-  /v-calendar/3.0.1_byt4v3rt727t357jauu56svwei:
-    resolution: {integrity: sha512-basXEXcmBsxHyxqjj/82vjgz5vbIMREiiUC2VOVh0pHCDXEF1birPUZD12lk8u3+5R+909WUnxu7bt0DFxCOLw==}
+  /v-calendar/3.0.2_byt4v3rt727t357jauu56svwei:
+    resolution: {integrity: sha512-1rlfT8dNqevP/Akl3/rbNB5e/6vjzANzMuFGz5INZ69rZFB1l0zsBrrzjk/j/fSvnfxBGYqj6QCK9zLfgQUY5Q==}
     peerDependencies:
       '@popperjs/core': ^2.0.0
       vue: ^3.2.0
