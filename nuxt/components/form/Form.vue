@@ -22,7 +22,7 @@
             }"
             :disabled="isSubmitButtonDisabled || false"
             type="submit"
-            @click="setTurnstileKeyAndEmit()"
+            @click="storeTurnstileKey()"
           >
             {{ submitName || t('submit') }}
             <template #prefix>
@@ -77,12 +77,10 @@ watch(turnstileKey, (newKey) => {
 })
 
 // methods
-const setTurnstileKeyAndEmit = () => {
-  setTurnstileKeyToStore()
+const storeTurnstileKey = () => {
+  store.turnstileKey = turnstileKey.value
   emit('click')
 }
-
-const setTurnstileKeyToStore = () => (store.turnstileKey = turnstileKey.value)
 
 const emit = defineEmits<{
   (e: 'click'): void
