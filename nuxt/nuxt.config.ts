@@ -48,14 +48,14 @@ export default defineNuxtConfig({
     public: {
       googleAnalyticsId: '', // set via environment variable `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` only
       isInProduction: process.env.NODE_ENV === 'production',
-      isTesting: false, // set via environment variable `NUXT_PUBLIC_IS_TESTING` only
+      isTesting: false,
       stagingHost:
         process.env.NODE_ENV !== 'production' &&
         !process.env.NUXT_PUBLIC_STACK_DOMAIN
           ? 'maev.si'
           : undefined,
       turnstile: {
-        siteKey: '1x00000000000000000000AA', // set via environment variable `NUXT_PUBLIC_TURNSTILE_SITE_KEY` only
+        siteKey: '1x00000000000000000000AA',
       },
     },
     turnstile: {
