@@ -125,9 +125,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     requestPolicy: 'cache-and-network',
     fetchOptions: () => {
       const { $pinia } = useNuxtApp()
-      const store = useMaevsiStore($pinia as Pinia) // TODO: remove `as` (https://github.com/vuejs/pinia/issues/2071)
-      const jwt = store.jwt
-      const turnstileKey = store.turnstileKey
+      const { jwt, turnstileKey } = useMaevsiStore($pinia as Pinia) // TODO: remove `as` (https://github.com/vuejs/pinia/issues/2071)
       const headers = {} as Record<string, any>
 
       if (jwt) {
