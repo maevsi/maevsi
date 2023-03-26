@@ -4,7 +4,6 @@ import {
   dedupExchange,
   fetchExchange,
   ClientOptions,
-  Client,
 } from '@urql/core'
 // import type { Data } from '@urql/exchange-graphcache'
 import { Cache, cacheExchange } from '@urql/exchange-graphcache'
@@ -12,7 +11,7 @@ import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 import { provideClient } from '@urql/vue'
 import consola from 'consola'
-import { Ref, ref } from 'vue'
+import { ref } from 'vue'
 
 import schema from '~/gql/introspection'
 import { GraphCacheConfig } from '~/gql/schema'
@@ -124,7 +123,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const options: ClientOptions = {
     requestPolicy: 'cache-and-network',
     fetchOptions: () => {
-      const store = useMaevsiStore(nuxtApp.$pinia)
+      const { $pinia } = useNuxtApp()
+      const store = useMaevsiStore($pinia)
       const jwt = store.jwt
 
       if (jwt) {
@@ -193,17 +193,3 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     },
   }
 })
-
-declare module '#app' {
-  interface NuxtApp {
-    $urql: Ref<Client>
-    urqlReset: () => undefined
-  }
-}
-
-declare module 'nuxt/dist/app/nuxt' {
-  interface NuxtApp {
-    $urql: Ref<Client>
-    urqlReset: () => undefined
-  }
-}
