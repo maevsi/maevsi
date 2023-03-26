@@ -1,6 +1,13 @@
+import { TIMEZONE_COOKIE_NAME } from '~/utils/constants'
+import {
+  COOKIE_CONTROL_DEFAULT,
+  TIMEZONE_DEFAULT,
+} from '~/cypress/utils/constants'
+
 describe('index page', () => {
   beforeEach(() => {
-    cy.setCookie('ncc_c', 'acltga')
+    cy.setCookie(TIMEZONE_COOKIE_NAME, TIMEZONE_DEFAULT)
+    cy.setCookie('ncc_c', COOKIE_CONTROL_DEFAULT)
   })
 
   context('page load', () => {
