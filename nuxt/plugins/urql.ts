@@ -128,11 +128,11 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       const store = useMaevsiStore($pinia as Pinia) // TODO: remove `as` (https://github.com/vuejs/pinia/issues/2071)
       const jwt = store.jwt
       const turnstileKey = store.turnstileKey
-      let headers = {} as Record<string, any>
+      const headers = {} as Record<string, any>
 
       if (jwt) {
         consola.trace('GraphQL request authenticated with: ' + jwt)
-        headers = { ...headers, authorization: `Bearer ${jwt}` }
+        headers.authorization = `Bearer ${jwt}`
       } else {
         consola.trace('GraphQL request without authentication.')
       }
