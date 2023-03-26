@@ -98,7 +98,7 @@ specifiers:
   prosemirror-view: 1.30.2
   qrcode.vue: 3.3.4
   rollup: 3.20.2
-  slugify: 1.6.5
+  slugify: 1.6.6
   start-server-and-test: 2.0.0
   stylelint: 15.3.0
   stylelint-config-recommended-vue: 1.4.0
@@ -215,7 +215,7 @@ devDependencies:
   prosemirror-view: 1.30.2
   qrcode.vue: 3.3.4_vue@3.2.47
   rollup: 3.20.2
-  slugify: 1.6.5
+  slugify: 1.6.6
   start-server-and-test: 2.0.0
   stylelint: 15.3.0
   stylelint-config-recommended-vue: 1.4.0_o7z2z2yv565o3a3uaodintvte4
@@ -11164,8 +11164,8 @@ packages:
       is-fullwidth-code-point: 4.0.0
     dev: true
 
-  /slugify/1.6.5:
-    resolution: {integrity: sha512-8mo9bslnBO3tr5PEVFzMPIWwWnipGS0xVbYf65zxDqfNwmzYn1LpiKNrR6DlClusuvo+hDHd1zKpmfAe83NQSQ==}
+  /slugify/1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
     engines: {node: '>=8.0.0'}
     dev: true
 
