@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import supportedBrowsers from '~/supportedBrowsers'
 
-const { $dayjs } = useNuxtApp()
+const { $dayjs, $i18n } = useNuxtApp()
 const { t } = useI18n()
 const config = useRuntimeConfig()
 const cookieControl = useCookieControl()
@@ -26,6 +26,9 @@ const isBrowserSupported = ref(true)
 
 // methods
 const init = () => {
+  $i18n.onLanguageSwitched = (_oldLocale: string, newLocale: string) =>
+    $dayjs.locale(newLocale)
+
   if (process.client) {
     const cookieTimezone = useCookie(TIMEZONE_COOKIE_NAME, {
       // default: () => undefined, // setting `default` on the client side only does not write the cookie
