@@ -18,7 +18,7 @@ specifiers:
   '@nuxtjs/html-validator': 1.2.4
   '@nuxtjs/i18n': npm:@nuxtjs/i18n-edge@8.0.0-beta.9-27948515.3db6367
   '@pinia/nuxt': 0.4.7
-  '@popperjs/core': 2.11.6
+  '@popperjs/core': 2.11.7
   '@rollup/plugin-graphql': 2.0.3
   '@tailwindcss/forms': 0.5.3
   '@tailwindcss/line-clamp': 0.4.2
@@ -135,7 +135,7 @@ devDependencies:
   '@nuxtjs/html-validator': 1.2.4_rollup@3.20.2
   '@nuxtjs/i18n': /@nuxtjs/i18n-edge/8.0.0-beta.9-27948515.3db6367_rollup@3.20.2+vue@3.2.47
   '@pinia/nuxt': 0.4.7_jnlc35hjajt53ewftqwdfja35q
-  '@popperjs/core': 2.11.6
+  '@popperjs/core': 2.11.7
   '@rollup/plugin-graphql': 2.0.3_zbuun22bondmolkhfyrzuqcwuy
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.7
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.7
@@ -222,10 +222,10 @@ devDependencies:
   stylelint-config-standard: 31.0.0_stylelint@15.3.0
   stylelint-no-unsupported-browser-features: 6.1.0_stylelint@15.3.0
   sweetalert2: 11.7.3
-  tailwindcss: 3.2.7_ts-node@10.9.1
+  tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
   ts-node: 10.9.1_zd7fjxbseldtiwc6h6ujrbvxuy
   typescript: 5.0.2
-  v-calendar: 3.0.1_hzeqnzhx3ebd2hjez3a2dwvkhi
+  v-calendar: 3.0.1_byt4v3rt727t357jauu56svwei
   vitest: 0.29.7
   vue: 3.2.47
   vue-advanced-cropper: 2.8.8_vue@3.2.47
@@ -2781,8 +2781,8 @@ packages:
       tslib: 2.5.0
     dev: true
 
-  /@popperjs/core/2.11.6:
-    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+  /@popperjs/core/2.11.7:
+    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
     dev: true
 
   /@remirror/core-constants/2.0.0:
@@ -3031,7 +3031,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.2.7_ts-node@10.9.1
+      tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.7:
@@ -3039,7 +3039,7 @@ packages:
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.2.7_ts-node@10.9.1
+      tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tailwindcss/typography/0.5.9_tailwindcss@3.2.7:
@@ -3051,7 +3051,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.7_ts-node@10.9.1
+      tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
     dev: true
 
   /@tiptap/core/2.0.0-beta.220_@tiptap+pm@2.0.0-beta.220:
@@ -6883,6 +6883,16 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
+  /follow-redirects/1.15.2:
+    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: true
+
   /follow-redirects/1.15.2_debug@4.3.4:
     resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
     engines: {node: '>=4.0'}
@@ -7558,7 +7568,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -11896,10 +11906,12 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwindcss/3.2.7_ts-node@10.9.1:
+  /tailwindcss/3.2.7_aesdjsunmf4wiehhujt67my7tu:
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -12043,7 +12055,7 @@ packages:
   /tippy.js/6.3.7:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
     dependencies:
-      '@popperjs/core': 2.11.6
+      '@popperjs/core': 2.11.7
     dev: true
 
   /title-case/3.0.3:
@@ -12529,13 +12541,13 @@ packages:
     hasBin: true
     dev: true
 
-  /v-calendar/3.0.1_hzeqnzhx3ebd2hjez3a2dwvkhi:
+  /v-calendar/3.0.1_byt4v3rt727t357jauu56svwei:
     resolution: {integrity: sha512-basXEXcmBsxHyxqjj/82vjgz5vbIMREiiUC2VOVh0pHCDXEF1birPUZD12lk8u3+5R+909WUnxu7bt0DFxCOLw==}
     peerDependencies:
       '@popperjs/core': ^2.0.0
       vue: ^3.2.0
     dependencies:
-      '@popperjs/core': 2.11.6
+      '@popperjs/core': 2.11.7
       '@types/lodash': 4.14.191
       '@types/resize-observer-browser': 0.1.7
       date-fns: 2.29.3
