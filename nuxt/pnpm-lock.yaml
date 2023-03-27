@@ -1718,7 +1718,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.6.0
-      tslib: 2.4.1
+      tslib: 2.5.0
     dev: true
 
   /@graphql-tools/prisma-loader/7.2.65_dhyaxv2o7jxxz2c4vc57or6nh4:
@@ -1761,7 +1761,7 @@ packages:
       '@ardatan/relay-compiler': 12.0.0_graphql@16.6.0
       '@graphql-tools/utils': 9.2.1_graphql@16.6.0
       graphql: 16.6.0
-      tslib: 2.4.1
+      tslib: 2.5.0
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -5963,7 +5963,7 @@ packages:
       enhanced-resolve: 5.12.0
       eslint: 8.36.0
       eslint-plugin-import: 2.27.5_as6wyplljmmarlclp2tx3tj6rq
-      get-tsconfig: 4.4.0
+      get-tsconfig: 4.5.0
       globby: 13.1.3
       is-core-module: 2.11.0
       is-glob: 4.0.3
@@ -6871,8 +6871,8 @@ packages:
       get-intrinsic: 1.2.0
     dev: true
 
-  /get-tsconfig/4.4.0:
-    resolution: {integrity: sha512-0Gdjo/9+FzsYhXCEFueo2aY1z1tpXrxWZzP7k8ul9qt1U5o8rYJwTJYmaeHdrVosYIVYkOy2iwCJ9FdpocJhPQ==}
+  /get-tsconfig/4.5.0:
+    resolution: {integrity: sha512-MjhiaIWCJ1sAU4pIQ5i5OfOuHHxVo1oYeNsWTON7jxYkod8pHocXeh+SSbmu5OZZZK73B6cbJ2XADzXehLyovQ==}
     dev: true
 
   /getos/3.2.1:
