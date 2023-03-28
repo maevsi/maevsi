@@ -99,7 +99,6 @@ const { t } = useI18n()
 // methods
 const storeTurnstileKey = () => {
   store.turnstileKey = state.turnstileKey
-  emit('click')
 }
 
 // computations
