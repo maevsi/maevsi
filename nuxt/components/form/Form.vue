@@ -20,7 +20,6 @@
             :class="{
               'animate-shake': form.$error,
             }"
-            :disabled="isDisabledSubmitButton || false"
             type="submit"
             @click="setTurnstileKeyAndEmit()"
           >
@@ -68,13 +67,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const store = useMaevsiStore()
 const turnstileKey = ref('')
-const isDisabledSubmitButton = ref(true)
-
-watch(turnstileKey, (newKey) => {
-  if (newKey !== undefined || newKey !== '') {
-    isDisabledSubmitButton.value = false
-  }
-})
 
 // methods
 const setTurnstileKeyAndEmit = () => {
