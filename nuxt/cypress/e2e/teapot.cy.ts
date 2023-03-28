@@ -1,4 +1,15 @@
+import { TIMEZONE_COOKIE_NAME } from '~/utils/constants'
+import {
+  COOKIE_CONTROL_DEFAULT,
+  TIMEZONE_DEFAULT,
+} from '~/cypress/utils/constants'
+
 describe('teapot page', () => {
+  beforeEach(() => {
+    cy.setCookie(TIMEZONE_COOKIE_NAME, TIMEZONE_DEFAULT)
+    cy.setCookie('ncc_c', COOKIE_CONTROL_DEFAULT)
+  })
+
   context('page load', () => {
     it('refuses to brew coffee', () => {
       cy.request({
@@ -13,7 +24,6 @@ describe('teapot page', () => {
 
   context('visual regression', () => {
     it('looks as before', () => {
-      cy.setCookie('ncc_c', 'acltga')
       cy.visit({ url: '/teapot', failOnStatusCode: false })
       cy.get('[data-is-loading="false"]').should('be.visible')
       cy.get('[data-testid="nuxt-cookie-control-control-button"]').should(

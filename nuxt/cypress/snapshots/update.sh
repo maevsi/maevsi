@@ -2,15 +2,13 @@
 
 set -e
 
-files=$(find cypress/snapshots/actual -regex ".*-actual.png")
+files=$(find cypress/snapshots/actual -type f -not -regex ".*(failed)\.png")
 
 for file in $files; do
-  new="${file//-actual.png/-base.png}"
-
   # shellcheck disable=SC2206
-  newArr=(${new//\// })
-  newArrLength="${#newArr[@]}"
+  fileArr=(${file//\// })
+  fileArrLength="${#fileArr[@]}"
 
-  mkdir -p "cypress/snapshots/base/${newArr[newArrLength-2]}"
-  mv "$file" "cypress/snapshots/base/${newArr[newArrLength-2]}/${newArr[newArrLength-1]}"
+  mkdir -p "cypress/snapshots/base/${fileArr[fileArrLength-2]}"
+  mv "$file" "cypress/snapshots/base/${fileArr[fileArrLength-2]}/${fileArr[fileArrLength-1]}"
 done

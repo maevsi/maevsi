@@ -1,10 +1,10 @@
+import { Pinia } from '@pinia/nuxt/dist/runtime/composables'
 import {
   createClient,
   ssrExchange,
   dedupExchange,
   fetchExchange,
   ClientOptions,
-  Client,
 } from '@urql/core'
 // import type { Data } from '@urql/exchange-graphcache'
 import { Cache, cacheExchange } from '@urql/exchange-graphcache'
@@ -12,7 +12,7 @@ import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 import { provideClient } from '@urql/vue'
 import consola from 'consola'
-import { Ref, ref } from 'vue'
+import { ref } from 'vue'
 
 import schema from '~/gql/introspection'
 import { GraphCacheConfig } from '~/gql/schema'
@@ -124,14 +124,13 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const options: ClientOptions = {
     requestPolicy: 'cache-and-network',
     fetchOptions: () => {
-      const store = useMaevsiStore(nuxtApp.$pinia)
-      const jwt = store.jwt
-      const turnstileKey = store.turnstileKey
-      let headers = {} as Record<string, any>
+      const { $pinia } = useNuxtApp()
+      const { jwt, turnstileKey } = useMaevsiStore($pinia as Pinia) // TODO: remove `as` (https://github.com/vuejs/pinia/issues/2071)
+      const headers = {} as Record<string, any>
 
       if (jwt) {
         consola.trace('GraphQL request authenticated with: ' + jwt)
-        headers = { ...headers, authorization: `Bearer ${jwt}` }
+        headers.authorization = `Bearer ${jwt}`
       } else {
         consola.trace('GraphQL request without authentication.')
       }
@@ -202,17 +201,3 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     },
   }
 })
-
-declare module '#app' {
-  interface NuxtApp {
-    $urql: Ref<Client>
-    urqlReset: () => undefined
-  }
-}
-
-declare module 'nuxt/dist/app/nuxt' {
-  interface NuxtApp {
-    $urql: Ref<Client>
-    urqlReset: () => undefined
-  }
-}

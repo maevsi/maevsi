@@ -1,3 +1,24 @@
+## [1.9.4](https://github.com/maevsi/maevsi/compare/1.9.3...1.9.4) (2023-03-22)
+
+
+### Bug Fixes
+
+* **cypress:** reenable upload test ([789ed22](https://github.com/maevsi/maevsi/commit/789ed227d3bda0c2e057469e775a26043264e0e4))
+
+## [1.9.3](https://github.com/maevsi/maevsi/compare/1.9.2...1.9.3) (2023-03-18)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([afa421a](https://github.com/maevsi/maevsi/commit/afa421afb6b37442658da4097a4790d742115d58))
+
+## [1.9.2](https://github.com/maevsi/maevsi/compare/1.9.1...1.9.2) (2023-03-10)
+
+
+### Bug Fixes
+
+* **docker:** install dependencies in cypress stage ([47f2f45](https://github.com/maevsi/maevsi/commit/47f2f459dd17e7177c02743151d6be9de5f07b03))
+
 ## [1.9.1](https://github.com/maevsi/maevsi/compare/1.9.0...1.9.1) (2023-02-28)
 
 

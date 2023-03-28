@@ -3,7 +3,7 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.7.0-slim AS development
+FROM node:18.15.0-slim AS development
 
 COPY ./docker/entrypoint.sh /usr/local/bin/
 
@@ -11,7 +11,7 @@ COPY ./docker/entrypoint.sh /usr/local/bin/
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-       libdbd-pg-perl postgresql-client sqitch \
+        libdbd-pg-perl postgresql-client sqitch \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && corepack enable
@@ -33,7 +33,7 @@ CMD ["pnpm", "run", "dev"]
 # Prepare Nuxt.
 
 # Should be the specific version of `node:slim`.
-FROM node:19.7.0-slim AS prepare
+FROM node:18.15.0-slim AS prepare
 
 WORKDIR /srv/app/
 
@@ -52,7 +52,7 @@ RUN pnpm install --offline
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.7.0-slim AS build
+FROM node:18.15.0-slim AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -73,7 +73,7 @@ RUN corepack enable && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.7.0-slim AS lint
+FROM node:18.15.0-slim AS lint
 
 WORKDIR /srv/app/
 
@@ -88,7 +88,7 @@ RUN corepack enable && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.7.0-slim AS test-unit
+FROM node:18.15.0-slim AS test-unit
 
 WORKDIR /srv/app/
 
@@ -102,7 +102,7 @@ RUN npm install -g pnpm && \
 # Nuxt: test (integration)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.7.0 AS test-integration_base
+FROM cypress/included:12.8.1 AS test-integration_base
 
 ARG UNAME=cypress
 ARG UID=1000
@@ -132,7 +132,7 @@ ENTRYPOINT ["entrypoint-dev.sh"]
 # Nuxt: test (integration, development)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.7.0 AS test-integration-dev
+FROM cypress/included:12.8.1 AS test-integration-dev
 
 RUN corepack enable
 
@@ -149,7 +149,7 @@ RUN pnpm test:integration:dev
 # Nuxt: test (integration, production)
 
 # Should be the specific version of `cypress/included`.
-FROM cypress/included:12.6.0 AS test-integration-prod
+FROM cypress/included:12.8.1 AS test-integration-prod
 
 RUN corepack enable
 
@@ -168,7 +168,7 @@ RUN pnpm test:integration:prod
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:19.7.0-slim AS collect
+FROM node:18.15.0-slim AS collect
 
 WORKDIR /srv/app/
 
@@ -185,7 +185,7 @@ COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:19.7.0-slim AS production
+FROM node:18.15.0-slim AS production
 
 ENV NODE_ENV=production
 
@@ -194,8 +194,8 @@ ENV NODE_ENV=production
 # - `wget` is required by the healthcheck
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-       libdbd-pg-perl postgresql-client sqitch \
-       wget \
+        libdbd-pg-perl postgresql-client sqitch \
+        wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

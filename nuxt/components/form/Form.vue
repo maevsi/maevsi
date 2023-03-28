@@ -27,7 +27,7 @@
               'animate-shake': form.$error,
             }"
             type="submit"
-            @click="setTurnstileKeyAndEmit()"
+            @click="storeTurnstileKey()"
           >
             {{ submitName || t('submit') }}
             <template #prefix>
@@ -73,8 +73,6 @@ const props = withDefaults(defineProps<Props>(), {
   submitName: undefined,
 })
 
-const store = useMaevsiStore()
-
 const state = reactive({
   turnstileKey: '',
 })
@@ -89,15 +87,28 @@ const rules = {
 const v$ = useVuelidate(rules, state)
 
 // methods
-const setTurnstileKeyAndEmit = () => {
-  setTurnstileKeyToStore()
+const emit = defineEmits<{
+  (e: 'click'): void
+  (e: 'submit', event: Event): void
+}>()
+
+const store = useMaevsiStore()
+const { t } = useI18n()
+
+// methods
+const storeTurnstileKey = () => {
+  store.turnstileKey = state.turnstileKey
   emit('click')
 }
 
-const setTurnstileKeyToStore = () => {
-  store.turnstileKey = state.turnstileKey
-}
+// computations
+const errorMessages = computed(() =>
+  props.errors
+    ? getCombinedErrorMessages(props.errors, props.errorsPgIds)
+    : undefined
+)
 
+// lifecycle
 const turnstileKeyError = ref(false)
 const turnstileKeyInfo = ref(false)
 watch(v$, (v$) => {
@@ -111,20 +122,6 @@ watch(v$, (v$) => {
     turnstileKeyError.value = false
   }
 })
-
-const emit = defineEmits<{
-  (e: 'click'): void
-  (e: 'submit', event: Event): void
-}>()
-
-const { t } = useI18n()
-
-// computations
-const errorMessages = computed(() =>
-  props.errors
-    ? getCombinedErrorMessages(props.errors, props.errorsPgIds)
-    : undefined
-)
 </script>
 
 <script lang="ts">

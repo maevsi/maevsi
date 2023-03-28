@@ -12,6 +12,7 @@ export default defineEventHandler(async function (event: H3Event) {
     case 'accountRegistration':
       {
         const turnstileKey = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
+
         if (Array.isArray(turnstileKey)) {
           return throwError(422, 'TurnstileKey cannot be an array.')
         }
@@ -21,6 +22,7 @@ export default defineEventHandler(async function (event: H3Event) {
         }
 
         const result = await verifyTurnstileToken(turnstileKey)
+
         if (!result.success) {
           throwError(403, 'Turnstile verification unsuccessful.')
         }
@@ -30,7 +32,6 @@ export default defineEventHandler(async function (event: H3Event) {
       }
 
       break
-
     default:
       consola.debug('No authentication needed.')
       res.end()

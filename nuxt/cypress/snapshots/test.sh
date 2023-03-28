@@ -1,13 +1,23 @@
 #!/bin/sh
 
-# set -e
+THIS=$(dirname "$(readlink -f "$0")")
 
-# pnpm run test:integration:dev
+if [ -d "$THIS/diff" ]; then
+  rm -rf "$THIS/diff"
+fi
 
-# if [ "$CI" != "" ]; then
-#   echo "$failedItems" | while read -r path; do
-#     curl -i -F files[]="@$THIS/images/actual/$path" "https://tmp.ninja/upload.php?output=text"
-#     printf "\n"
-#     break
-#   done
-# fi
+pnpm cypress run --env type=actual --browser chrome
+ERROR=$?
+
+files=$(find "$THIS/diff" -type f || 'true')
+
+if [ -n "$CI" ]; then
+  for file in $files; do
+    echo "@$file"
+    curl -i -F file="@$file" "https://tmpfiles.org/api/v1/upload"
+    printf "\n"
+    break
+  done
+fi
+
+exit "$ERROR"
