@@ -5,7 +5,7 @@
 
 Find events, guests and friends: [maev.si](https://maev.si/).
 
-This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance with the [DargStack template](https://github.com/dargmuesli/dargstack_template/) to make deployment a breeze.
+This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance with the [DargStack template](https://github.com/dargstack/dargstack_template/) to make deployment a breeze.
 
 ![Welcome](docs/assets/hero.png "maevsi")
 
@@ -72,7 +72,7 @@ The setup for backend development is more complex as it consists of numerous ser
 1. [install nvm](https://github.com/nvm-sh/nvm#installing-and-updating) to be able to switch the currently active [Node.js](https://nodejs.org/en/) version on your machine
 1. [install mkcert](https://github.com/FiloSottile/mkcert#installation) for development certificate generation and installation, so that all services are available through https
 1. [install Docker](https://docs.docker.com/engine/install/) so that all services run in their [containers](https://en.wikipedia.org/wiki/Containerization)
-1. [install dargstack](https://github.com/dargmuesli/dargstack#installation-example) to bootstrap a [Docker stack](https://docs.docker.com/engine/reference/commandline/stack/) setup
+1. [install dargstack](https://github.com/dargstack/dargstack#installation-example) to bootstrap a [Docker stack](https://docs.docker.com/engine/reference/commandline/stack/) setup
 
 
 #### Setup
@@ -100,7 +100,7 @@ The setup for backend development is more complex as it consists of numerous ser
     cd nuxt
     pnpm install
     ```
-1. configure maevsi's [DargStack](https://github.com/dargmuesli/dargstack) then:
+1. configure maevsi's [DargStack](https://github.com/dargstack/dargstack) then:
     ```sh
     cd ../../maevsi_stack/src/development
     cp stack.env.template stack.env
