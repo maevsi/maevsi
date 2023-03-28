@@ -41,7 +41,7 @@
     "@graphql-codegen/cli": "3.2.2",
     "@graphql-codegen/typescript": "3.0.2",
     "@graphql-codegen/typescript-operations": "3.0.2",
-    "@graphql-codegen/typescript-urql-graphcache": "2.4.3",
+    "@graphql-codegen/typescript-urql-graphcache": "2.4.4",
     "@graphql-codegen/typescript-vue-urql": "2.3.6",
     "@graphql-codegen/urql-introspection": "2.2.1",
     "@http-util/status-i18n": "0.6.2",
