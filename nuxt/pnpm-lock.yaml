@@ -125,8 +125,8 @@ devDependencies:
     specifier: 1.0.4
     version: 1.0.4(graphql@16.6.0)(vue@3.2.47)
   '@vuelidate/core':
-    specifier: 2.0.1
-    version: 2.0.1(vue@3.2.47)
+    specifier: 2.0.2
+    version: 2.0.2(vue@3.2.47)
   '@vuelidate/validators':
     specifier: 2.0.1
     version: 2.0.1(vue@3.2.47)
@@ -3927,8 +3927,8 @@ packages:
     resolution: {integrity: sha512-BHGyyGN3Q97EZx0taMQ+OLNuZcW3d37ZEVmEAyeoA9ERdGvm9Irc/0Fua8SNyOtV1w6BS4q25wbMzJujO9HIfQ==}
     dev: true
 
-  /@vuelidate/core@2.0.1(vue@3.2.47):
-    resolution: {integrity: sha512-seBfM7ZtQ+NzXEdJpwLPgX/GlY+R10VI3FSoXyEJH7p4kKcz06f5oloh2EDozCJVMxP0Um/FFcfjBCn8CtGNOQ==}
+  /@vuelidate/core@2.0.2(vue@3.2.47):
+    resolution: {integrity: sha512-aG1OZWv6xVws3ljyKy/pyxq1rdZZ2ryj+FEREcC9d4GP4qOvNHHZUl/NQxa0Bck3Ooc0RfXU8vwCA9piRoWy6w==}
     peerDependencies:
       '@vue/composition-api': ^1.0.0-rc.1
       vue: ^2.0.0 || >=3.0.0
