@@ -71,8 +71,8 @@ devDependencies:
     specifier: 2.0.0
     version: 2.0.0(@tiptap/pm@2.0.0-beta.220)
   '@tiptap/extension-link':
-    specifier: 2.0.0-beta.220
-    version: 2.0.0-beta.220(@tiptap/core@2.0.0)(@tiptap/pm@2.0.0-beta.220)
+    specifier: 2.0.0
+    version: 2.0.0(@tiptap/core@2.0.0)(@tiptap/pm@2.0.0-beta.220)
   '@tiptap/pm':
     specifier: 2.0.0-beta.220
     version: 2.0.0-beta.220(@tiptap/core@2.0.0)
@@ -3130,11 +3130,11 @@ packages:
       '@tiptap/core': 2.0.0(@tiptap/pm@2.0.0-beta.220)
     dev: true
 
-  /@tiptap/extension-link@2.0.0-beta.220(@tiptap/core@2.0.0)(@tiptap/pm@2.0.0-beta.220):
-    resolution: {integrity: sha512-vjEA8cE37ZZVVgPHSpttw3kbJoClb+ya/BVukDtJ1h6C7mIR1rqzNxTgpbnXJuA8xww0JOjpa5dpzEgcs294fA==}
+  /@tiptap/extension-link@2.0.0(@tiptap/core@2.0.0)(@tiptap/pm@2.0.0-beta.220):
+    resolution: {integrity: sha512-qKNrMHZU3BI3jGETHQeWhoEpU/eRnS1WQvQO4rk6iL2xjO5WG94CjIXJzpYdQwzHkot2e3TeQmfuVqbwAmTgYw==}
     peerDependencies:
-      '@tiptap/core': ^2.0.0-beta.209
-      '@tiptap/pm': ^2.0.0-beta.209
+      '@tiptap/core': ^2.0.0
+      '@tiptap/pm': ^2.0.0
     dependencies:
       '@tiptap/core': 2.0.0(@tiptap/pm@2.0.0-beta.220)
       '@tiptap/pm': 2.0.0-beta.220(@tiptap/core@2.0.0)
