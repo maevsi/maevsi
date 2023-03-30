@@ -60,7 +60,7 @@
     "@tiptap/extension-link": "2.0.1",
     "@tiptap/pm": "2.0.1",
     "@tiptap/starter-kit": "2.0.1",
-    "@tiptap/vue-3": "2.0.0-beta.220",
+    "@tiptap/vue-3": "2.0.1",
     "@types/cookie": "0.5.1",
     "@types/dompurify": "3.0.0",
     "@types/downloadjs": "1.4.3",
