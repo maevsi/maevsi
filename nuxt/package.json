@@ -58,7 +58,7 @@
     "@tailwindcss/typography": "0.5.9",
     "@tiptap/core": "2.0.1",
     "@tiptap/extension-link": "2.0.1",
-    "@tiptap/pm": "2.0.0-beta.220",
+    "@tiptap/pm": "2.0.1",
     "@tiptap/starter-kit": "2.0.0-beta.220",
     "@tiptap/vue-3": "2.0.0-beta.220",
     "@types/cookie": "0.5.1",
