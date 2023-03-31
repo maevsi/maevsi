@@ -203,8 +203,8 @@ devDependencies:
     specifier: 9.0.5
     version: 9.0.5
   ical-generator:
-    specifier: 3.6.1
-    version: 3.6.1(@types/node@18.15.11)(dayjs@2.0.0-alpha.4)
+    specifier: 4.0.0
+    version: 4.0.0(@types/node@18.15.11)(dayjs@2.0.0-alpha.4)
   is-https:
     specifier: 4.0.0
     version: 4.0.0
@@ -7463,9 +7463,9 @@ packages:
     engines: {node: '>=14.18.0'}
     dev: true
 
-  /ical-generator@3.6.1(@types/node@18.15.11)(dayjs@2.0.0-alpha.4):
-    resolution: {integrity: sha512-tEH0OTNn00Mp61DcTxIFR+5fhsAivKk1LWAJUAbkMCI+M4yu+cZzT5X8rZf3b5PzFkMogh0zj3PsFh9bHvGGIQ==}
-    engines: {node: '>=12.0.0'}
+  /ical-generator@4.0.0(@types/node@18.15.11)(dayjs@2.0.0-alpha.4):
+    resolution: {integrity: sha512-zDjku0O3z/nj/XwgWvhj8vcGwZj/09097VelHLIpUJzjfPdUBNnYkYjSsjrHiwc0HodpSA0U4hiJgz8XerHGXw==}
+    engines: {node: ^14.8.0 || >=16.0.0}
     peerDependencies:
       '@touch4it/ical-timezones': '>=1.6.0'
       '@types/luxon': '>= 1.26.0'
