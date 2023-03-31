@@ -323,8 +323,8 @@ devDependencies:
     specifier: 5.0.3
     version: 5.0.3
   v-calendar:
-    specifier: 3.0.2
-    version: 3.0.2(@popperjs/core@2.11.7)(vue@3.2.47)
+    specifier: 3.0.3
+    version: 3.0.3(@popperjs/core@2.11.7)(vue@3.2.47)
   vitest:
     specifier: 0.29.8
     version: 0.29.8
@@ -12376,8 +12376,8 @@ packages:
     hasBin: true
     dev: true
 
-  /v-calendar@3.0.2(@popperjs/core@2.11.7)(vue@3.2.47):
-    resolution: {integrity: sha512-1rlfT8dNqevP/Akl3/rbNB5e/6vjzANzMuFGz5INZ69rZFB1l0zsBrrzjk/j/fSvnfxBGYqj6QCK9zLfgQUY5Q==}
+  /v-calendar@3.0.3(@popperjs/core@2.11.7)(vue@3.2.47):
+    resolution: {integrity: sha512-Skpp/nMoFqFadm94aWj0oOfazoux5T5Ug3/pbRbdolkoDrnVcL7Ronw1/SGFRUPGOwnLdYwhKPhrhSE1segW6w==}
     peerDependencies:
       '@popperjs/core': ^2.0.0
       vue: ^3.2.0
