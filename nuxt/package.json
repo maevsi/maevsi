@@ -133,7 +133,7 @@
     "rollup": "3.20.2",
     "slugify": "1.6.6",
     "start-server-and-test": "2.0.0",
-    "stylelint": "15.3.0",
+    "stylelint": "15.4.0",
     "stylelint-config-recommended-vue": "1.4.0",
     "stylelint-config-standard": "31.0.0",
     "stylelint-no-unsupported-browser-features": "6.1.0",
