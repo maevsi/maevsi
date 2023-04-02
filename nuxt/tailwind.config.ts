@@ -1,19 +1,19 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
+import { type Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme'
+import colors from 'tailwindcss/colors'
+import { PluginAPI } from 'tailwindcss/types/config'
 
-function heading(theme) {
-  return {
+const heading = (theme: PluginAPI['theme']) =>
+  ({
     fontWeight: theme('fontWeight.bold'),
     marginBottom: theme('margin.1'),
     marginTop: theme('margin.4'),
     // set overflow truncate/ellipsis in the surrounding container, or larger fonts will be cut off due to their line-heights
-  }
-}
+  } as Record<string, string>)
 
 const gray = colors.gray // or slate, zinc, neutral, stone
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     './components/**/*.{js,vue,ts}',
     './composables/**/*.{js,vue,ts}',
@@ -26,9 +26,8 @@ module.exports = {
   darkMode: 'class',
   plugins: [
     require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
-    function ({ addBase, addComponents, addUtilities, theme }) {
+    ({ addBase, addComponents, addUtilities, theme }: PluginAPI) => {
       addBase({
         ':disabled': {
           cursor: theme('cursor.not-allowed'),
@@ -93,7 +92,7 @@ module.exports = {
         '::placeholder': {
           fontStyle: 'italic',
           '.form-input&,.form-textarea&': {
-            opacity: 0.5,
+            opacity: '0.5',
           },
         },
         '.form-input': {
@@ -189,4 +188,4 @@ module.exports = {
       },
     },
   },
-}
+} satisfies Config
