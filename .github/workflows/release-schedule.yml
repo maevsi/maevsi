@@ -13,4 +13,3 @@ jobs:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
       IS_DEBOUNCED: ${{ github.event_name != 'workflow_dispatch' }}
-      PACKAGE_JSON_PATH: nuxt/package.json
