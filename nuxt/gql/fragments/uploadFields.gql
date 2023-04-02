@@ -1,8 +1,0 @@
-fragment uploadFields on Upload {
-  id
-  nodeId
-  sizeByte
-  storageKey
-  username
-  uuid
-}

@@ -1,13 +1,8 @@
 <template>
-  <Loader
-    :api="api"
-    :error-pg-ids="{
-      postgresP0002: t('postgresP0002'),
-    }"
-  >
+  <Loader :api="api">
     <div class="flex flex-col gap-4">
       <ScrollContainer
-        v-if="event && invitations?.length"
+        v-if="event && invitations.length"
         class="max-h-[70vh]"
         :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
         @load-more="after = api.data.allInvitations?.pageInfo.endCursor"
@@ -24,119 +19,12 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
-            <tr
+            <InvitationListItem
               v-for="invitation in invitations"
               :key="invitation.uuid"
-              :class="{
-                'animate-pulse': pending.deletions.includes(invitation.uuid),
-              }"
-            >
-              <td class="max-w-0">
-                <ContactPreview
-                  v-if="invitation.contactByContactId"
-                  :contact="invitation.contactByContactId"
-                  :feedback="invitation.feedback"
-                />
-              </td>
-              <td class="max-w-0">
-                <div
-                  class="flex items-center justify-evenly gap-4 text-text-dark dark:text-text-bright"
-                >
-                  <ButtonIcon
-                    :aria-label="
-                      invitation.contactByContactId?.accountUsername ||
-                      invitation.contactByContactId?.emailAddress
-                        ? t('invitationSend')
-                        : t('disabledReasonEmailAddressNone')
-                    "
-                    class="hidden md:block"
-                    :disabled="
-                      (!invitation.contactByContactId?.accountUsername &&
-                        !invitation.contactByContactId?.emailAddress) ||
-                      pending.sends.includes(invitation.uuid)
-                    "
-                    @click="send(invitation)"
-                  >
-                    <IconPaperPlane />
-                  </ButtonIcon>
-                  <ButtonIcon
-                    :aria-label="t('invitationLink')"
-                    class="hidden md:block"
-                    @click="copyLink(invitation)"
-                  >
-                    <IconLink />
-                  </ButtonIcon>
-                  <DropDown>
-                    <ButtonIcon :aria-label="t('globalShowMore')">
-                      <IconDotsVertical />
-                    </ButtonIcon>
-                    <template #content>
-                      <Button
-                        :aria-label="
-                          invitation.contactByContactId?.accountUsername ||
-                          invitation.contactByContactId?.emailAddress
-                            ? t('invitationSend')
-                            : t('disabledReasonEmailAddressNone')
-                        "
-                        class="block md:hidden"
-                        :disabled="
-                          (!invitation.contactByContactId?.accountUsername &&
-                            !invitation.contactByContactId?.emailAddress) ||
-                          pending.sends.includes(invitation.uuid)
-                        "
-                        @click="send(invitation)"
-                      >
-                        {{
-                          invitation.contactByContactId?.accountUsername ||
-                          invitation.contactByContactId?.emailAddress
-                            ? t('invitationSend')
-                            : t('disabledReasonEmailAddressNone')
-                        }}
-                        <template #prefix>
-                          <IconPaperPlane />
-                        </template>
-                      </Button>
-                      <Button
-                        :aria-label="t('invitationLink')"
-                        class="block md:hidden"
-                        @click="copyLink(invitation)"
-                      >
-                        {{ t('invitationLink') }}
-                        <template #prefix>
-                          <IconLink />
-                        </template>
-                      </Button>
-                      <Button
-                        :aria-label="t('invitationView')"
-                        @click="
-                          navigateTo({
-                            path: localePath(
-                              `/event/${event.authorUsername}/${event.slug}`
-                            ),
-                            query: { ic: invitation.uuid },
-                          })
-                        "
-                      >
-                        {{ t('invitationView') }}
-                        <template #prefix>
-                          <IconEye />
-                        </template>
-                      </Button>
-                      <Button
-                        :aria-label="t('invitationDelete')"
-                        :disabled="pending.deletions.includes(invitation.uuid)"
-                        @click="delete_(invitation.id)"
-                      >
-                        {{ t('invitationDelete') }}
-                        <template #prefix>
-                          <IconTrash />
-                        </template>
-                      </Button>
-                    </template>
-                  </DropDown>
-                </div>
-              </td>
-            </tr>
+              :event="event"
+              :invitation="invitation"
+            />
           </tbody>
         </table>
       </ScrollContainer>
@@ -186,9 +74,7 @@
       <Modal id="ModalInvitation" is-footer-hidden>
         <FormInvitation
           :event="event"
-          :invitation-contact-ids-existing="
-            invitations?.map((i) => i.contactId)
-          "
+          :invitation-contact-ids-existing="invitations.map((i) => i.contactId)"
           @submit-success="store.modalRemove('ModalInvitation')"
         />
         <template #header>
@@ -213,23 +99,21 @@ import {
 import consola from 'consola'
 import { Doughnut } from 'vue-chartjs'
 
-import {
-  Event,
-  Invitation,
-  useAllInvitationsQuery,
-  useDeleteInvitationByIdMutation,
-  useInviteMutation,
-} from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
+import { useAllInvitationsQuery } from '~/gql/documents/queries/invitation/invitationsAll'
+import { EventItemFragment } from '~/gql/generated/graphql'
+import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'
 
 export interface Props {
-  event: Pick<Event, 'authorUsername' | 'slug' | 'inviteeCountMaximum' | 'id'>
+  event: Pick<
+    EventItemFragment,
+    'authorUsername' | 'slug' | 'inviteeCountMaximum' | 'id'
+  >
 }
 const props = withDefaults(defineProps<Props>(), {})
 
 const { $colorMode } = useNuxtApp()
-const { locale, t } = useI18n()
-const localePath = useLocalePath()
+const { t } = useI18n()
 const store = useMaevsiStore()
 const config = useRuntimeConfig()
 
@@ -239,22 +123,11 @@ const doughnutRef = ref()
 
 // api data
 const invitationsQuery = await useAllInvitationsQuery({
-  variables: {
-    after,
-    eventId: +props.event.id,
-    first: ITEMS_PER_PAGE_LARGE,
-  },
+  after,
+  eventId: props.event.id,
+  first: ITEMS_PER_PAGE_LARGE,
 })
-const deleteInvitationByIdMutation = useDeleteInvitationByIdMutation()
-const inviteMutation = useInviteMutation()
-const api = getApiData([
-  invitationsQuery,
-  deleteInvitationByIdMutation,
-  inviteMutation,
-])
-const invitations = computed(
-  () => invitationsQuery.data.value?.allInvitations?.nodes
-)
+const api = getApiData([invitationsQuery])
 
 // data
 const isTesting = config.public.isTesting
@@ -272,45 +145,10 @@ const options = {
     },
   },
 }
-const pending = reactive({
-  deletions: ref<string[]>([]),
-  edits: ref<string[]>([]),
-  sends: ref<string[]>([]),
-})
 
 // methods
 function add() {
   store.modals.push({ id: 'ModalInvitation' })
-}
-function copyLink(invitation: Pick<Invitation, 'uuid'>): void {
-  if (!process.client) return
-
-  copyText(
-    `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
-      invitation.uuid
-    }`
-  ).then(() => {
-    showToast({ title: t('copySuccess') })
-  })
-}
-async function delete_(id: string) {
-  pending.deletions.push(id)
-  await deleteInvitationByIdMutation.executeMutation({ id })
-  pending.deletions.splice(pending.deletions.indexOf(id), 1)
-}
-async function send(invitation: any) {
-  pending.sends.push(invitation.uuid)
-
-  const result = await inviteMutation.executeMutation({
-    invitationId: invitation.id,
-    language: locale.value,
-  })
-
-  pending.sends.splice(pending.sends.indexOf(invitation.uuid), 1)
-
-  if (result.error || !result.data) return
-
-  showToast({ title: t('sendSuccess') })
 }
 
 // computations
@@ -345,6 +183,12 @@ const dataComputed = computed(() => {
     ],
   }
 })
+const invitations = computed(
+  () =>
+    invitationsQuery.data.value?.allInvitations?.nodes
+      .map((x) => getInvitationItem(x))
+      .filter(isNeitherNullNorUndefined) || []
+)
 
 // lifecycle
 onMounted(() => {
@@ -375,37 +219,21 @@ de:
   canceled: abgelehnt
   contact: Kontakt
   contactSelect: Kontakt auswählen
-  copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
-  disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
   feedback: Rückmeldungen
   hintInviteSelf: 'Tipp: du kannst dich auch zuerst selbst einladen'
   invitationAdd: Gäste hinzufügen
-  invitationDelete: Einladung löschen
-  invitationLink: Einladungslink kopieren
   invitationNone: Es wurde noch kein Gast hinzugefügt 😕
-  invitationSend: Einladung versenden
-  invitationView: Einladung anzeigen
   invitationsUsed: 'Einladungen benutzt: {amountCurrent} / {amountMaximum}'
   noFeedback: keine Rückmeldung
-  postgresP0002: Die Einladung konnte nicht versandt werden! Möglicherweise hast du aktuell keinen Zugriff auf die notwendigen Daten. Versuche die Seite neu zu laden.
-  sendSuccess: Die Einladung wurde erfolgreich per E-Mail versandt.
 en:
   accepted: accepted
   canceled: declined
   contact: Contact
   contactSelect: Select Contact
-  copySuccess: The invitation link has been copied to the clipboard.
-  disabledReasonEmailAddressNone: This contact does not have an associated email address.
   feedback: Invitation responses
   hintInviteSelf: 'Hint: you can also invite yourself first'
   invitationAdd: Add guests
-  invitationDelete: Delete invitation
-  invitationLink: Copy invitation link
   invitationNone: No guest has been added yet 😕
-  invitationSend: Send invitation
-  invitationView: View invitation
   invitationsUsed: 'Invitations used: {amountCurrent} / {amountMaximum}'
   noFeedback: no response
-  postgresP0002: The invitation could not be sent! You may not have access to the necessary data right now. Try reloading the page.
-  sendSuccess: The invitation was successfully sent by email.
 </i18n>

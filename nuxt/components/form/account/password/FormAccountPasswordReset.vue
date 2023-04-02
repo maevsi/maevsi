@@ -23,8 +23,7 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
-
-import { useAccountPasswordResetMutation } from '~/gql/generated'
+import { useAccountPasswordResetMutation } from '~/gql/documents/mutations/account/accountPasswordReset'
 
 export interface Props {
   formClass?: string

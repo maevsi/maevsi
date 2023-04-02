@@ -1,9 +1,0 @@
-fragment invitationFields on Invitation {
-  id
-  nodeId
-  contactId
-  eventId
-  feedback
-  feedbackPaper
-  uuid
-}

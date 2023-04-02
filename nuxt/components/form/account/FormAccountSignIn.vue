@@ -61,11 +61,8 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { maxLength, minLength, required } from '@vuelidate/validators'
-
-import {
-  useAccountRegistrationRefreshMutation,
-  useAuthenticateMutation,
-} from '~/gql/generated'
+import { useAuthenticateMutation } from '~/gql/documents/mutations/account/accountAuthenticate'
+import { useAccountRegistrationRefreshMutation } from '~/gql/documents/mutations/account/accountRegistrationRefresh'
 
 const { jwtStore } = useJwtStore()
 const { locale, t } = useI18n()

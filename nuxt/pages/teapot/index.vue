@@ -6,13 +6,13 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: [
-    function (_to: any, _from: any) {
-      const { ssrContext } = useNuxtApp()
+    defineNuxtRouteMiddleware(() => {
+      const event = useRequestEvent()
 
-      if (ssrContext && ssrContext.event.node.res) {
-        ssrContext.event.node.res.statusCode = 418
+      if (event.node.res) {
+        event.node.res.statusCode = 418
       }
-    },
+    }),
   ],
 })
 

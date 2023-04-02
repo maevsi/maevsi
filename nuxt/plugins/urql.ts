@@ -1,8 +1,6 @@
-import { Pinia } from '@pinia/nuxt/dist/runtime/composables'
 import {
   createClient,
   ssrExchange,
-  dedupExchange,
   fetchExchange,
   ClientOptions,
 } from '@urql/core'
@@ -14,14 +12,9 @@ import { provideClient } from '@urql/vue'
 import consola from 'consola'
 import { ref } from 'vue'
 
-import schema from '~/gql/introspection'
-import { GraphCacheConfig } from '~/gql/schema'
+import schema from '~/gql/generated/introspection'
+import { GraphCacheConfig } from '~/gql/generated/graphcache'
 
-import {
-  authenticationAnonymous,
-  getJwtFromCookie,
-  jwtRefresh,
-} from '~/utils/auth'
 import { useMaevsiStore } from '~/store'
 
 const ssrKey = '__URQL_DATA__'
@@ -124,9 +117,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const options: ClientOptions = {
     requestPolicy: 'cache-and-network',
     fetchOptions: () => {
-      const { $pinia } = useNuxtApp()
-      const store = useMaevsiStore($pinia as Pinia) // TODO: remove `as` (https://github.com/vuejs/pinia/issues/2071)
-      const jwt = store.jwt
+      const { jwt } = useMaevsiStore()
 
       if (jwt) {
         consola.trace('GraphQL request authenticated with: ' + jwt)
@@ -145,7 +136,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       : 'https://postgraphile.' + getDomainTldPort(host) + '/graphql',
     exchanges: [
       ...(config.public.isInProduction ? [] : [devtoolsExchange]),
-      dedupExchange,
       cache,
       ssr, // `ssr` must be before `fetchExchange`
       fetchExchange,

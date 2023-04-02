@@ -12,22 +12,21 @@
 </template>
 
 <script setup lang="ts">
-import { useAccountEmailAddressVerificationMutation } from '~/gql/generated'
+import { useAccountEmailAddressVerificationMutation } from '~/gql/documents/mutations/account/accountEmailAddressVerification'
 
 definePageMeta({
   middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
+    defineNuxtRouteMiddleware((to) => {
       const localePath = useLocalePath()
 
       if (
-        Array.isArray(route.query.code) ||
-        route.query.code === null ||
-        !REGEX_UUID.test(route.query.code)
+        Array.isArray(to.query.code) ||
+        to.query.code === null ||
+        !REGEX_UUID.test(to.query.code)
       ) {
         return navigateTo(localePath('/'))
       }
-    },
+    }),
   ],
 })
 

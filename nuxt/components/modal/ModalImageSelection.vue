@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProfilePictureSetMutation } from '~/gql/generated'
+import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 
 const emit = defineEmits<{
   (e: 'submitSuccess'): void

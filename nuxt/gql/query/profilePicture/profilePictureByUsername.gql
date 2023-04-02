@@ -1,5 +1,0 @@
-query profilePictureByUsername($username: String!) {
-  profilePictureByUsername(username: $username) {
-    ...profilePictureFields
-  }
-}

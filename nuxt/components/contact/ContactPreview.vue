@@ -45,11 +45,11 @@
 </template>
 
 <script setup lang="ts">
-import { Contact } from '~/gql/generated'
+import { ContactItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
   contact: Pick<
-    Contact,
+    ContactItemFragment,
     | 'accountUsername'
     | 'emailAddress'
     | 'emailAddressHash'

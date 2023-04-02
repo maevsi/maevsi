@@ -1,7 +1,0 @@
-mutation updateContactById($id: BigInt!, $contactPatch: ContactPatch!) {
-  updateContactById(input: { id: $id, contactPatch: $contactPatch }) {
-    contact {
-      ...contactFields
-    }
-  }
-}

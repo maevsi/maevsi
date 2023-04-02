@@ -9,9 +9,8 @@ import {
   REGEX_URL_HTTPS,
   REGEX_UUID,
 } from './constants'
-
-import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
-import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
+import { useEventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
+import { useAccountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 320
@@ -56,8 +55,6 @@ export function validateEventSlug(
   exclude?: string
 ): (value: string) => Promise<boolean> {
   return async (value: string) => {
-    const { $urql } = useNuxtApp()
-
     if (!helpers.req(value)) {
       return true
     }
@@ -66,16 +63,16 @@ export function validateEventSlug(
       return true
     }
 
-    const result = await $urql.value
-      .query(EVENT_IS_EXISTING_QUERY, {
-        slug: signedInUserName,
-        authorUsername: value,
-      })
-      .toPromise()
+    const result = await useEventIsExistingQuery({
+      slug: signedInUserName,
+      authorUsername: value,
+    }).executeQuery()
 
-    if (result.error) return false
+    if (result.error.value) return false
 
-    return invert ? !result.data.eventIsExisting : result.data.eventIsExisting
+    return invert
+      ? !result.data.value?.eventIsExisting
+      : !!result.data.value?.eventIsExisting
   }
 }
 
@@ -83,22 +80,18 @@ export function validateUsername(
   invert?: boolean
 ): (value: string) => Promise<boolean> {
   return async (value: string) => {
-    const { $urql } = useNuxtApp()
-
     if (!helpers.req(value)) {
       return true
     }
 
-    const result = await $urql.value
-      .query(ACCOUNT_IS_EXISTING_QUERY, {
-        username: value,
-      })
-      .toPromise()
+    const result = await useAccountIsExistingQuery({
+      username: value,
+    }).executeQuery()
 
-    if (result.error) return false
+    if (result.error.value) return false
 
     return invert
-      ? !result.data.accountIsExisting
-      : result.data.accountIsExisting
+      ? !result.data.value?.accountIsExisting
+      : !!result.data.value?.accountIsExisting
   }
 }

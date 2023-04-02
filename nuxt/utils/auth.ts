@@ -6,10 +6,9 @@ import { parse, serialize } from 'cookie'
 import { decodeJwt } from 'jose'
 
 import { JWT_NAME } from './constants'
-import { xhrPromise } from './util'
-import AUTHENTICATE_MUTATION from '~/gql/mutation/account/accountAuthenticate.gql'
-import JWT_REFRESH_MUTATION from '~/gql/mutation/account/accountJwtRefresh.gql'
 import { useMaevsiStore } from '~/store'
+import { authenticateMutation } from '~/gql/documents/mutations/account/accountAuthenticate'
+import { jwtRefreshMutation } from '~/gql/documents/mutations/account/accountJwtRefresh'
 
 export async function authenticationAnonymous({
   client,
@@ -25,7 +24,7 @@ export async function authenticationAnonymous({
   consola.trace('Authenticating anonymously...')
 
   const result = await client
-    .mutation(AUTHENTICATE_MUTATION, {
+    .mutation(authenticateMutation, {
       username: '',
       password: '',
     })
@@ -34,7 +33,7 @@ export async function authenticationAnonymous({
   if (result.error) {
     consola.error(result.error)
   } else {
-    if (!result.data.authenticate) {
+    if (!result.data?.authenticate) {
       return
     }
 
@@ -86,12 +85,12 @@ export async function jwtRefresh({
 }) {
   consola.trace('Refreshing a JWT...')
 
-  const result = await client.mutation(JWT_REFRESH_MUTATION, { id }).toPromise()
+  const result = await client.mutation(jwtRefreshMutation, { id }).toPromise()
 
   if (result.error) {
     consola.error(result.error)
     await signOut({ $urqlReset, store, res })
-  } else if (!result.data.jwtRefresh.jwt) {
+  } else if (!result.data?.jwtRefresh?.jwt) {
     await authenticationAnonymous({ client, $urqlReset, store, res })
   } else {
     await jwtStore({ $urqlReset, store, res, jwt: result.data.jwtRefresh.jwt })
@@ -127,7 +126,10 @@ export async function jwtStore({
     )
   } else {
     try {
-      await xhrPromise('POST', '/api/auth', jwt || '')
+      await $fetch('/api/auth', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${jwt}` },
+      })
     } catch (error: any) {
       return Promise.reject(Error('Authentication api call failed.'))
     }

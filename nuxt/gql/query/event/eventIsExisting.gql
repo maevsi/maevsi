@@ -1,3 +1,0 @@
-query eventIsExisting($authorUsername: String!, $slug: String!) {
-  eventIsExisting(authorUsername: $authorUsername, slug: $slug)
-}
