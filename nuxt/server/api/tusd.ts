@@ -156,12 +156,15 @@ async function tusdDelete(event: H3Event) {
   const storageKey = queryRes.rows[0] ? queryRes.rows[0].storage_key : null
 
   if (storageKey !== null) {
-    const httpResp = await fetch('http://tusd:1080/files/' + storageKey + '+', {
-      headers: {
-        'Tus-Resumable': '1.0.0',
-      },
-      method: 'DELETE',
-    })
+    const httpResp = await fetch(
+      'http://tusd:1080/files/' + storageKey + '++',
+      {
+        headers: {
+          'Tus-Resumable': '1.0.0',
+        },
+        method: 'DELETE',
+      }
+    )
 
     if (httpResp.ok) {
       if (httpResp.status === 204) {
