@@ -47,26 +47,26 @@ export async function authenticationAnonymous({
 }
 
 export function getJwtFromCookie({ req }: { req: IncomingMessage }) {
-  if (req.headers.cookie) {
-    const cookies = parse(req.headers.cookie)
-    const jwtName = JWT_NAME()
+  if (!req.headers.cookie) {
+    return consola.debug('No cookie header.')
+  }
 
-    if (cookies[jwtName]) {
-      const cookie = decodeJwt(cookies[jwtName])
+  const cookies = parse(req.headers.cookie)
+  const jwtName = JWT_NAME()
 
-      if (cookie.exp !== undefined && cookie.exp > Date.now() / 1000) {
-        return {
-          jwt: cookies[jwtName],
-          jwtDecoded: cookie,
-        }
-      } else {
-        consola.info('Token expired.')
-      }
-    } else {
-      consola.debug('No token cookie.')
-    }
-  } else {
-    consola.debug('No cookie header.')
+  if (!cookies[jwtName]) {
+    return consola.debug('No token cookie.')
+  }
+
+  const cookie = decodeJwt(cookies[jwtName])
+
+  if (cookie.exp === undefined || cookie.exp <= Date.now() / 1000) {
+    return consola.info('Token expired.')
+  }
+
+  return {
+    jwt: cookies[jwtName],
+    jwtDecoded: cookie,
   }
 }
 
