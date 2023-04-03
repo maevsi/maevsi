@@ -61,9 +61,6 @@ devDependencies:
   '@tailwindcss/forms':
     specifier: 0.5.3
     version: 0.5.3(tailwindcss@3.3.1)
-  '@tailwindcss/line-clamp':
-    specifier: 0.4.4
-    version: 0.4.4(tailwindcss@3.3.1)
   '@tailwindcss/typography':
     specifier: 0.5.9
     version: 0.5.9(tailwindcss@3.3.1)
@@ -2890,7 +2887,7 @@ packages:
       '@intlify/bundle-utils': 4.0.0(vue-i18n@9.3.0-beta.16)
       '@intlify/shared': 9.3.0-beta.16
       '@intlify/unplugin-vue-i18n': 0.8.2(vue-i18n@9.3.0-beta.16)
-      '@nuxt/kit': 3.3.2(rollup@3.20.2)
+      '@nuxt/kit': 3.3.3(rollup@3.20.2)
       '@vue/compiler-sfc': 3.2.47
       cookie-es: 0.5.0
       debug: 4.3.4(supports-color@8.1.1)
@@ -3228,14 +3225,6 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.3.1(postcss@8.4.21)(ts-node@10.9.1)
-    dev: true
-
-  /@tailwindcss/line-clamp@0.4.4(tailwindcss@3.3.1):
-    resolution: {integrity: sha512-5U6SY5z8N42VtrCrKlsTAA35gy2VSyYtHWCsg1H87NU1SXnEfekTVlrga9fzUDrrHcGi2Lb5KenUWb4lRQT5/g==}
-    peerDependencies:
-      tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
-    dependencies:
       tailwindcss: 3.3.1(postcss@8.4.21)(ts-node@10.9.1)
     dev: true
 
