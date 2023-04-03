@@ -159,7 +159,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       req: nuxtApp.ssrContext.event.node.req,
     })
 
-    if (jwtFromCookie?.jwtDecoded.id) {
+    if (jwtFromCookie?.jwtDecoded?.id) {
       await jwtRefresh({
         client: client.value,
         $urqlReset: urqlReset,
