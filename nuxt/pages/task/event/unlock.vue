@@ -60,7 +60,7 @@
 import { OperationResult } from '@urql/core/dist/types/types'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
-import { consola } from 'consola'
+import consola from 'consola'
 import { LocationQueryValue } from 'vue-router'
 
 import { callWithNuxt } from '#app'

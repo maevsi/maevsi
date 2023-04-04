@@ -1,8 +1,5 @@
 lockfileVersion: '6.0'
 
-overrides:
-  consola: 3.0.0-3
-
 devDependencies:
   '@babel/core':
     specifier: 7.21.4
@@ -145,6 +142,9 @@ devDependencies:
   clipboard:
     specifier: 2.0.11
     version: 2.0.11
+  consola:
+    specifier: 2.15.3
+    version: 2.15.3
   cookie:
     specifier: 0.5.0
     version: 0.5.0
@@ -1568,7 +1568,7 @@ packages:
       '@babel/core': 7.21.4
       '@nuxt/kit': 3.3.2(rollup@3.20.2)
       async-cache: 1.1.0
-      consola: 3.0.0-3
+      consola: 2.15.3
       etag: 1.8.1
       fresh: 0.5.2
       fs-extra: 8.1.0
@@ -2578,7 +2578,7 @@ packages:
     dependencies:
       '@nuxt/schema': 3.3.1(rollup@3.20.2)
       c12: 1.2.0
-      consola: 3.0.0-3
+      consola: 2.15.3
       defu: 6.1.2
       globby: 13.1.3
       hash-sum: 2.0.0
@@ -2605,7 +2605,7 @@ packages:
     dependencies:
       '@nuxt/schema': 3.3.2(rollup@3.20.2)
       c12: 1.2.0
-      consola: 3.0.0-3
+      consola: 2.15.3
       defu: 6.1.2
       globby: 13.1.3
       hash-sum: 2.0.0
@@ -2632,7 +2632,7 @@ packages:
     dependencies:
       '@nuxt/schema': 3.3.3(rollup@3.20.2)
       c12: 1.2.0
-      consola: 3.0.0-3
+      consola: 2.15.3
       defu: 6.1.2
       globby: 13.1.3
       hash-sum: 2.0.0
@@ -2726,7 +2726,7 @@ packages:
       '@nuxt/kit': 3.3.3(rollup@3.20.2)
       chalk: 5.2.0
       ci-info: 3.8.0
-      consola: 3.0.0-3
+      consola: 2.15.3
       create-require: 1.1.1
       defu: 6.1.2
       destr: 1.2.2
@@ -5313,8 +5313,8 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /consola@3.0.0-3:
-    resolution: {integrity: sha512-3vhBx7Qw5LlF1/QnaeoQSSA5fOohGr9xtHkQ1RFbNlr6kOTwtVz0FvUPx6CdobrDDSP19cj0uWwPtf+/+VBKQA==}
+  /consola@2.15.3:
+    resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
     dev: true
 
   /console-control-strings@1.1.0:
@@ -9306,7 +9306,7 @@ packages:
       c12: 1.2.0
       chalk: 5.2.0
       chokidar: 3.5.3
-      consola: 3.0.0-3
+      consola: 2.15.3
       cookie-es: 0.5.0
       defu: 6.1.2
       destr: 1.2.2

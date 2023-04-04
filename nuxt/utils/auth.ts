@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'node:http'
 
 import { Client } from '@urql/vue'
-import { consola } from 'consola'
+import consola from 'consola'
 import { parse, serialize } from 'cookie'
 import { decodeJwt } from 'jose'
 

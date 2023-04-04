@@ -8,7 +8,7 @@ import {
   send,
   sendError,
 } from 'h3'
-import { consola } from 'consola'
+import consola from 'consola'
 import { jwtVerify, importSPKI } from 'jose'
 import pg from 'pg'
 import fetch from 'node-fetch'

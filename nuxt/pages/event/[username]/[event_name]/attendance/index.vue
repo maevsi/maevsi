@@ -69,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { consola } from 'consola'
+import consola from 'consola'
 
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
 import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'

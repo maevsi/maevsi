@@ -1,4 +1,4 @@
-import { consola } from 'consola'
+import consola from 'consola'
 import Swal, { SweetAlertIcon } from 'sweetalert2'
 import { Ref } from 'vue'
 
