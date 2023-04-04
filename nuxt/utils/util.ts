@@ -2,7 +2,7 @@ import { IncomingMessage } from 'node:http'
 
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
-import consola from 'consola'
+import { consola } from 'consola'
 import { defu } from 'defu'
 import { H3Event, getCookie } from 'h3'
 import { ofetch } from 'ofetch'
