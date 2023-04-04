@@ -58,9 +58,6 @@ export default defineNuxtConfig({
         siteKey: '1x00000000000000000000AA',
       },
     },
-    turnstile: {
-      secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY || '',
-    },
   },
   typescript: {
     strict: true,
@@ -202,5 +199,8 @@ export default defineNuxtConfig({
   },
   turnstile: {
     addValidateEndpoint: true,
+    secretKeyPath: process.env.NUXT_PUBLIC_STACK_DOMAIN
+      ? '/run/secrets/maevsi_turnstile-key'
+      : undefined,
   },
 })
