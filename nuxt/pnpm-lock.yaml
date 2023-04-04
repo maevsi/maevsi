@@ -47,8 +47,8 @@ devDependencies:
     specifier: 1.2.4
     version: 1.2.4(rollup@3.20.2)
   '@nuxtjs/i18n':
-    specifier: npm:@nuxtjs/i18n-edge@8.0.0-beta.9-27948515.3db6367
-    version: /@nuxtjs/i18n-edge@8.0.0-beta.9-27948515.3db6367(rollup@3.20.2)(vue@3.2.47)
+    specifier: 8.0.0-beta.10
+    version: 8.0.0-beta.10(rollup@3.20.2)(vue@3.2.47)
   '@pinia/nuxt':
     specifier: 0.4.7
     version: 0.4.7(rollup@3.20.2)(typescript@5.0.3)(vue@3.2.47)
@@ -2880,8 +2880,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n-edge@8.0.0-beta.9-27948515.3db6367(rollup@3.20.2)(vue@3.2.47):
-    resolution: {integrity: sha512-iFSJmbkHvKJXZz53V3ZMq0CNhwlOPXmpABaGqZpkQkxf2sAeh35b5U0F3XsHify4u0Rox6fPrOmwu8NNFrRWIA==}
+  /@nuxtjs/i18n@8.0.0-beta.10(rollup@3.20.2)(vue@3.2.47):
+    resolution: {integrity: sha512-a7xcWKSJvABxF6O7W7MKscyT3OJxaKpBQZ84PGuTop9YrlBFkTV+bUQX3cayQqd0EYVLjgdE9R0uri5JMIVQWQ==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
     dependencies:
       '@intlify/bundle-utils': 4.0.0(vue-i18n@9.3.0-beta.16)
