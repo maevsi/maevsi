@@ -51,7 +51,7 @@
     "@nuxtjs/eslint-config-typescript": "12.0.0",
     "@nuxtjs/html-validator": "1.2.4",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-beta.9-27948515.3db6367",
-    "@nuxtjs/turnstile": "0.1.3",
+    "@nuxtjs/turnstile": "0.2.0",
     "@pinia/nuxt": "0.4.7",
     "@popperjs/core": "2.11.7",
     "@rollup/plugin-graphql": "2.0.3",
