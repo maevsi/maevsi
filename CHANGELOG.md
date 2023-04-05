@@ -1,3 +1,11 @@
+## [1.9.5](https://github.com/maevsi/maevsi/compare/1.9.4...1.9.5) (2023-04-05)
+
+
+### Bug Fixes
+
+* **tusd:** save full upload id ([66bb4ea](https://github.com/maevsi/maevsi/commit/66bb4ea5851f9cef5300a8535ec8ecbeca94488e))
+* **tusd:** workaround image url suffix ([250a97a](https://github.com/maevsi/maevsi/commit/250a97a32b45bf80eb99ba2d04da320fcdaaf798)), closes [#1140](https://github.com/maevsi/maevsi/issues/1140)
+
 ## [1.9.4](https://github.com/maevsi/maevsi/compare/1.9.3...1.9.4) (2023-03-22)
 
 
