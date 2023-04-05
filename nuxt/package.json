@@ -69,7 +69,7 @@
     "@uppy/tus": "3.0.6",
     "@urql/core": "3.2.2",
     "@urql/devtools": "2.0.3",
-    "@urql/exchange-graphcache": "5.2.0",
+    "@urql/exchange-graphcache": "6.0.1",
     "@urql/vue": "1.0.4",
     "@vuelidate/core": "2.0.2",
     "@vuelidate/validators": "2.0.2",

@@ -18,7 +18,7 @@ devDependencies:
     version: 3.0.0(graphql@16.6.0)
   '@graphql-codegen/typescript-urql-graphcache':
     specifier: 2.4.4
-    version: 2.4.4(@urql/exchange-graphcache@5.2.0)(graphql-tag@2.12.6)(graphql@16.6.0)
+    version: 2.4.4(@urql/exchange-graphcache@6.0.1)(graphql-tag@2.12.6)(graphql@16.6.0)
   '@graphql-codegen/urql-introspection':
     specifier: 2.2.1
     version: 2.2.1(graphql@16.6.0)
@@ -107,8 +107,8 @@ devDependencies:
     specifier: 2.0.3
     version: 2.0.3(@urql/core@3.2.2)(graphql@16.6.0)
   '@urql/exchange-graphcache':
-    specifier: 5.2.0
-    version: 5.2.0(graphql@16.6.0)
+    specifier: 6.0.1
+    version: 6.0.1(graphql@16.6.0)
   '@urql/vue':
     specifier: 1.0.4
     version: 1.0.4(graphql@16.6.0)(vue@3.2.47)
@@ -330,6 +330,17 @@ devDependencies:
     version: 1.2.0(typescript@5.0.3)
 
 packages:
+
+  /@0no-co/graphql.web@1.0.0(graphql@16.6.0):
+    resolution: {integrity: sha512-JBq2pWyDchE1vVjj/+c4dzZ8stbpew4RrzpZ3vYdn1WJFGHfYg6YIX1fDdMKtSXJJM9FUlsoDOxemr9WMM2p+A==}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+    peerDependenciesMeta:
+      graphql:
+        optional: true
+    dependencies:
+      graphql: 16.6.0
+    dev: true
 
   /@ampproject/remapping@2.2.0:
     resolution: {integrity: sha512-qRmjj8nj9qmLTQXXmaR1cck3UXSRMPrbsLJAasZpF+t3riI71BXed5ebIOYwQntykeZuhjsdweEc9BxH5Jc26w==}
@@ -1549,7 +1560,7 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/typescript-urql-graphcache@2.4.4(@urql/exchange-graphcache@5.2.0)(graphql-tag@2.12.6)(graphql@16.6.0):
+  /@graphql-codegen/typescript-urql-graphcache@2.4.4(@urql/exchange-graphcache@6.0.1)(graphql-tag@2.12.6)(graphql@16.6.0):
     resolution: {integrity: sha512-bOkdt9bKJS1eRP5TJb+2aur1W/WvYnHfefdR94dZ7/9d4TfNPNx487RIstd9nJsBNM5HqmsaBZNQDER00gKkAw==}
     peerDependencies:
       '@urql/exchange-graphcache': ^4.1.1 || ^5.0.0
@@ -1558,7 +1569,7 @@ packages:
     dependencies:
       '@graphql-codegen/plugin-helpers': 3.1.2(graphql@16.6.0)
       '@graphql-codegen/visitor-plugin-common': 2.13.1(graphql@16.6.0)
-      '@urql/exchange-graphcache': 5.2.0(graphql@16.6.0)
+      '@urql/exchange-graphcache': 6.0.1(graphql@16.6.0)
       auto-bind: 4.0.0
       change-case-all: 1.0.15
       graphql: 16.6.0
@@ -3629,6 +3640,15 @@ packages:
       wonka: 6.3.1
     dev: true
 
+  /@urql/core@4.0.2(graphql@16.6.0):
+    resolution: {integrity: sha512-GrJhMDqFP0URS47h6tMSHN/hmeTB1BNWnlXkWTxZo+b2ZB1+E9rgsuG2VTfaErXtZySGLwyCsDHtT+kZLN2cMA==}
+    dependencies:
+      '@0no-co/graphql.web': 1.0.0(graphql@16.6.0)
+      wonka: 6.3.1
+    transitivePeerDependencies:
+      - graphql
+    dev: true
+
   /@urql/devtools@2.0.3(@urql/core@3.2.2)(graphql@16.6.0):
     resolution: {integrity: sha512-TktPLiBS9LcBPHD6qcnb8wqOVcg3Bx0iCtvQ80uPpfofwwBGJmqnQTjUdEFU6kwaLOFZULQ9+Uo4831G823mQw==}
     peerDependencies:
@@ -3640,14 +3660,14 @@ packages:
       wonka: 6.3.1
     dev: true
 
-  /@urql/exchange-graphcache@5.2.0(graphql@16.6.0):
-    resolution: {integrity: sha512-wHSTkp6TAhioauK/85DyiiQP5vz4EAJx7JQ+39OaHZ9TSdDqWkg4zs9VAhV3OzSopA9DNbihZVZ32w7q8BSUEA==}
-    peerDependencies:
-      graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  /@urql/exchange-graphcache@6.0.1(graphql@16.6.0):
+    resolution: {integrity: sha512-nJCQwem45p1nspbRrZz2oFjyHW6tufT6LQ1SvqE3CN1pLq3v72leZ6nfRMv4RCoh9IxFnv9hr0fn8DQSmQaB4w==}
     dependencies:
-      '@urql/core': 3.2.2(graphql@16.6.0)
-      graphql: 16.6.0
+      '@0no-co/graphql.web': 1.0.0(graphql@16.6.0)
+      '@urql/core': 4.0.2(graphql@16.6.0)
       wonka: 6.3.1
+    transitivePeerDependencies:
+      - graphql
     dev: true
 
   /@urql/introspection@0.3.3(graphql@16.6.0):
