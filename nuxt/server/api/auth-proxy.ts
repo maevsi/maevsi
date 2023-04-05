@@ -33,7 +33,6 @@ export default defineEventHandler(async function (event: H3Event) {
 
       break
     default:
-      consola.debug('No authentication needed.')
       res.end()
   }
 })
