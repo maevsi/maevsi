@@ -1,3 +1,18 @@
+# [1.10.0](https://github.com/maevsi/maevsi/compare/1.9.5...1.10.0) (2023-04-05)
+
+
+### Bug Fixes
+
+* **🫖:** use ssr context ([cbf41a8](https://github.com/maevsi/maevsi/commit/cbf41a874f7b486a58d8ac5dddad306cc672d3cf))
+* **deps:** downgrade urql ([8686657](https://github.com/maevsi/maevsi/commit/86866573d05b0a38cc66aa52d8db7f0b9b5fbce3))
+* **urql:** account for undefined decoding ([a36a039](https://github.com/maevsi/maevsi/commit/a36a0396b05fd3dbce6d6044c12163aeb986fe79))
+* **validation:** correct gql client ([6e3cf1f](https://github.com/maevsi/maevsi/commit/6e3cf1f6fd893a3fc4c20c150ff6d8cfacfb9bc7))
+
+
+### Features
+
+* **gql:** use client preset ([36fc8dc](https://github.com/maevsi/maevsi/commit/36fc8dc18e1a1d49ab0a15d13f3a64cde1b23361))
+
 ## [1.9.5](https://github.com/maevsi/maevsi/compare/1.9.4...1.9.5) (2023-04-05)
 
 
