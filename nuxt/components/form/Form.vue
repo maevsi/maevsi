@@ -113,11 +113,9 @@ const turnstileKeyError = ref(false)
 const turnstileKeyInfo = ref(false)
 watch(v$, (v$) => {
   if (v$.turnstileKey.$error) {
-    console.log('The turnstile error value is set to true')
     turnstileKeyError.value = true
   }
   if (!v$.turnstileKey.$error && turnstileKeyError.value) {
-    console.log('The Turnstile Info value is set to true')
     turnstileKeyInfo.value = true
     turnstileKeyError.value = false
   }

@@ -3,7 +3,7 @@
   "engines": {
     "node": "18"
   },
-  "packageManager": "pnpm@8.1.0",
+  "packageManager": "pnpm@8.1.1",
   "scripts": {
     "prepare": "pnpm --dir nuxt install && if [ \"$NODE_ENV\" != \"production\" ]; then husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks; fi"
   },
