@@ -23,8 +23,7 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { email, maxLength, required } from '@vuelidate/validators'
-
-import { useAccountPasswordResetRequestMutation } from '~/gql/generated'
+import { useAccountPasswordResetRequestMutation } from '~/gql/documents/mutations/account/accountPasswordResetRequest'
 
 export interface Props {
   formClass?: string

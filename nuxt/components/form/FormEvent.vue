@@ -277,16 +277,13 @@ import {
 } from '@vuelidate/validators'
 import slugify from 'slugify'
 
-import {
-  Event,
-  EventVisibility,
-  useCreateEventMutation,
-  useUpdateEventByIdMutation,
-} from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
+import { useCreateEventMutation } from '~/gql/documents/mutations/event/eventCreate'
+import { useUpdateEventByIdMutation } from '~/gql/documents/mutations/event/eventUpdateById'
+import { EventItemFragment, EventVisibility } from '~/gql/generated/graphql'
 
 export interface Props {
-  event?: Pick<Event, 'name' | 'slug'>
+  event?: Pick<EventItemFragment, 'name' | 'slug'>
 }
 const props = withDefaults(defineProps<Props>(), {
   event: undefined,
@@ -393,7 +390,7 @@ async function submit() {
     )
   }
 }
-function updateForm(data?: Pick<Event, 'name' | 'slug'>) {
+function updateForm(data?: Pick<EventItemFragment, 'name' | 'slug'>) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {

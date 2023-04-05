@@ -31,7 +31,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { minLength, required } from '@vuelidate/validators'
 
 import FormType from '~/components/form/Form.vue'
-import { useAccountPasswordChangeMutation } from '~/gql/generated'
+import { useAccountPasswordChangeMutation } from '~/gql/documents/mutations/account/accountPasswordChange'
 
 const { t } = useI18n()
 

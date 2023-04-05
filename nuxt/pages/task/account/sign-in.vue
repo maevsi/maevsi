@@ -15,8 +15,7 @@ import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
+    defineNuxtRouteMiddleware(() => {
       const store = useMaevsiStore()
       const localePath = useLocalePath()
 
@@ -26,7 +25,7 @@ definePageMeta({
       ) {
         return navigateTo(route.query.referrer || localePath('/dashboard/'))
       }
-    },
+    }),
   ],
 })
 

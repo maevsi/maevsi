@@ -10,8 +10,7 @@ import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   middleware: [
-    function (_to: any, _from: any) {
-      const route = useRoute()
+    defineNuxtRouteMiddleware((to) => {
       const store = useMaevsiStore()
       const localePath = useLocalePath()
 
@@ -19,11 +18,11 @@ definePageMeta({
         return navigateTo(
           localePath({
             path: '/task/account/sign-in',
-            query: { referrer: route.fullPath },
+            query: { referrer: to.fullPath },
           })
         )
       }
-    },
+    }),
   ],
 })
 

@@ -55,8 +55,7 @@ import {
   minLength,
   required,
 } from '@vuelidate/validators'
-
-import { useAccountRegistrationMutation } from '~/gql/generated'
+import { useAccountRegistrationMutation } from '~/gql/documents/mutations/account/accountRegistration'
 
 const { locale, t } = useI18n()
 const localePath = useLocalePath()

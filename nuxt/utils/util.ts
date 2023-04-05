@@ -250,36 +250,13 @@ export const getTimezone = async (event: H3Event) =>
     )
   ).timezone
 
+export const isNeitherNullNorUndefined = <T>(
+  value: T | null | undefined
+): value is T => value !== null && value !== undefined
+
 export const isQueryIcFormatValid = (
   ic: LocationQueryValue | LocationQueryValue[]
 ) => ic && !Array.isArray(ic) && REGEX_UUID.test(ic)
-
-export function xhrPromise(
-  method: string,
-  url: string,
-  jwt: string
-): Promise<any> {
-  return new Promise(function (resolve, reject) {
-    const xhr = new XMLHttpRequest()
-    xhr.open(method, url)
-
-    if (jwt) {
-      xhr.setRequestHeader('Authorization', 'Bearer ' + jwt)
-    }
-
-    xhr.onload = function () {
-      if (this.status >= 200 && this.status < 300) {
-        resolve(xhr.response)
-      } else {
-        reject(new Error(`${this.status}\n${xhr.statusText}`))
-      }
-    }
-    xhr.onerror = function () {
-      reject(new Error(`${this.status}\n${xhr.statusText}`))
-    }
-    xhr.send()
-  })
-}
 
 export function showToast({ title }: { title: string }) {
   return Swal.fire({

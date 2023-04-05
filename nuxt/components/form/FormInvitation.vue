@@ -84,15 +84,14 @@
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, minValue, required } from '@vuelidate/validators'
 
-import {
-  Event,
-  useAllContactsQuery,
-  useCreateInvitationMutation,
-} from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
+import { useCreateInvitationMutation } from '~/gql/documents/mutations/invitation/invitationCreate'
+import { useAllContactsQuery } from '~/gql/documents/queries/contact/contactsAll'
+import { EventItemFragment } from '~/gql/generated/graphql'
+import { getContactItem } from '~/gql/documents/fragments/contactItem'
 
 export interface Props {
-  event: Pick<Event, 'id'>
+  event: Pick<EventItemFragment, 'id'>
   invitationContactIdsExisting?: number[]
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -112,15 +111,18 @@ const after = ref<string>()
 
 // api data
 const allContactsQuery = await useAllContactsQuery({
-  variables: {
-    after,
-    authorAccountUsername: store.signedInUsername,
-    first: ITEMS_PER_PAGE_LARGE,
-  },
+  after,
+  authorAccountUsername: store.signedInUsername,
+  first: ITEMS_PER_PAGE_LARGE,
 })
 const createInvitationMutation = useCreateInvitationMutation()
 const api = getApiData([allContactsQuery, createInvitationMutation])
-const contacts = computed(() => allContactsQuery.data.value?.allContacts?.nodes)
+const contacts = computed(
+  () =>
+    allContactsQuery.data.value?.allContacts?.nodes
+      .map((x) => getContactItem(x))
+      .filter(isNeitherNullNorUndefined) || []
+)
 
 // data
 const form = reactive({

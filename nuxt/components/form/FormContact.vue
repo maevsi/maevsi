@@ -108,15 +108,13 @@
 import { useVuelidate } from '@vuelidate/core'
 import { email, helpers, maxLength } from '@vuelidate/validators'
 
-import {
-  Contact,
-  useCreateContactMutation,
-  useUpdateContactByIdMutation,
-} from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
+import { useCreateContactMutation } from '~/gql/documents/mutations/contact/contactCreate'
+import { useUpdateContactByIdMutation } from '~/gql/documents/mutations/contact/contactUpdateById'
+import { ContactItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
-  contact?: Pick<Contact, any>
+  contact?: Pick<ContactItemFragment, any>
 }
 const props = withDefaults(defineProps<Props>(), {
   contact: undefined,
@@ -190,7 +188,7 @@ async function submit() {
     emit('submitSuccess')
   }
 }
-function updateForm(data?: Pick<Contact, any>) {
+function updateForm(data?: Pick<ContactItemFragment, any>) {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {

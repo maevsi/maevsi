@@ -1,5 +1,0 @@
-mutation invite($invitationId: BigInt!, $language: String!) {
-  invite(input: { invitationId: $invitationId, language: $language }) {
-    clientMutationId
-  }
-}

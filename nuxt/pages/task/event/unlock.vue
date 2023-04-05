@@ -57,78 +57,52 @@
 </template>
 
 <script setup lang="ts">
-import { OperationResult } from '@urql/core/dist/types/types'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import consola from 'consola'
-import { LocationQueryValue } from 'vue-router'
 
-import { callWithNuxt } from '#app'
-
-import EVENT_UNLOCK_MUTATION from '~/gql/mutation/event/eventUnlock.gql'
-import { useEventUnlockMutation } from '~/gql/generated'
+import {
+  eventUnlockMutation as eventUnlockMutationImported,
+  useEventUnlockMutation,
+} from '~/gql/documents/mutations/event/eventUnlock'
 
 definePageMeta({
-  // TODO: get rid of get/set (https://github.com/nuxt/framework/issues/8678)
-  layout: computed({
-    get: () => {
-      const route = useRoute()
+  layout: computed(() => {
+    const route = useRoute()
 
-      return 'redirect' in route.query ? 'canvas' : 'default'
-    },
-    set: () => {},
+    return 'redirect' in route.query ? 'canvas' : 'default'
   }),
   middleware: [
-    // TODO: use alternative to callWithNuxt (https://github.com/nuxt/framework/issues/6292)
-    async function (_to: any, _from: any) {
-      const nuxtApp = useNuxtApp()
+    defineNuxtRouteMiddleware(async (to) => {
       const { $urql } = useNuxtApp()
       const localePath = useLocalePath()
-      const route = useRoute()
       const { jwtStore } = useJwtStore()
 
       if (
-        !isQueryIcFormatValid(route.query.ic) ||
-        'error' in route.query ||
-        'redirect' in route.query
+        !isQueryIcFormatValid(to.query.ic) ||
+        'error' in to.query ||
+        'redirect' in to.query
       )
         return
 
-      const result = (await callWithNuxt(nuxtApp, () =>
-        $urql.value
-          .mutation(EVENT_UNLOCK_MUTATION, {
-            invitationCode: route.query.ic,
-          })
-          .toPromise()
-      )) as OperationResult<
-        {
-          eventUnlock: {
-            eventUnlockResponse: {
-              jwt: string
-              authorUsername: string
-              eventSlug: string
-            }
-          }
-        },
-        {
-          invitationCode: LocationQueryValue | LocationQueryValue[]
-        }
-      >
+      const result = await $urql.value
+        .mutation(eventUnlockMutationImported, {
+          invitationCode: to.query.ic,
+        })
+        .toPromise()
 
       if (result.error) {
         consola.error(result.error)
       }
 
       if (!result.data?.eventUnlock?.eventUnlockResponse?.jwt) {
-        return await callWithNuxt(nuxtApp, () =>
-          navigateTo(
-            localePath({
-              query: {
-                ...route.query,
-                error: null,
-              },
-            })
-          )
+        return await navigateTo(
+          localePath({
+            query: {
+              ...to.query,
+              error: null,
+            },
+          })
         )
       }
 
@@ -141,23 +115,19 @@ definePageMeta({
 
       const eventPath = `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
 
-      if ('quick' in route.query) {
-        return await callWithNuxt(nuxtApp, () =>
-          navigateTo(localePath(eventPath))
-        )
+      if ('quick' in to.query) {
+        return await navigateTo(localePath(eventPath))
       } else {
-        return await callWithNuxt(nuxtApp, () =>
-          navigateTo(
-            localePath({
-              query: {
-                ...route.query,
-                redirect: localePath(eventPath),
-              },
-            })
-          )
+        return await navigateTo(
+          localePath({
+            query: {
+              ...to.query,
+              redirect: localePath(eventPath),
+            },
+          })
         )
       }
-    },
+    }),
   ],
 })
 

@@ -9,9 +9,8 @@ import {
   REGEX_URL_HTTPS,
   REGEX_UUID,
 } from './constants'
-
-import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
-import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
+import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
+import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 320
@@ -67,7 +66,7 @@ export function validateEventSlug(
     }
 
     const result = await $urql.value
-      .query(EVENT_IS_EXISTING_QUERY, {
+      .query(eventIsExistingQuery, {
         slug: signedInUserName,
         authorUsername: value,
       })
@@ -75,7 +74,9 @@ export function validateEventSlug(
 
     if (result.error) return false
 
-    return invert ? !result.data.eventIsExisting : result.data.eventIsExisting
+    return invert
+      ? !result.data?.eventIsExisting
+      : !!result.data?.eventIsExisting
   }
 }
 
@@ -90,7 +91,7 @@ export function validateUsername(
     }
 
     const result = await $urql.value
-      .query(ACCOUNT_IS_EXISTING_QUERY, {
+      .query(accountIsExistingQuery, {
         username: value,
       })
       .toPromise()
@@ -98,7 +99,7 @@ export function validateUsername(
     if (result.error) return false
 
     return invert
-      ? !result.data.accountIsExisting
-      : result.data.accountIsExisting
+      ? !result.data?.accountIsExisting
+      : !!result.data?.accountIsExisting
   }
 }

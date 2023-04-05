@@ -4,8 +4,12 @@ import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
 import mustache from 'mustache'
 
-import { Contact, Event as MaevsiEvent, Invitation } from 'gql/generated'
 import { getHost } from '~/utils/util'
+import {
+  ContactItemFragment,
+  EventItemFragment,
+  InvitationItemFragment,
+} from '~/gql/generated/graphql'
 
 export default defineEventHandler(async function (h3Event: H3Event) {
   const { req, res } = h3Event.node
@@ -47,7 +51,7 @@ export default defineEventHandler(async function (h3Event: H3Event) {
 export function getIcalString(
   host: string,
   event: Pick<
-    MaevsiEvent,
+    EventItemFragment,
     | 'authorUsername'
     | 'slug'
     | 'description'
@@ -56,8 +60,8 @@ export function getIcalString(
     | 'name'
     | 'location'
   >,
-  contact?: Pick<Contact, any>,
-  invitation?: Pick<Invitation, any>
+  contact?: ContactItemFragment,
+  invitation?: InvitationItemFragment
 ): string {
   const userEventPath = event.authorUsername + '/' + event.slug
   const eventUrl = 'https://' + host + '/event/' + userEventPath

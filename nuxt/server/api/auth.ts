@@ -10,7 +10,7 @@ export default defineEventHandler(async function (event: H3Event) {
   const jwtPublicKey = await useJwtPublicKey()
   let jwt = ''
 
-  if (req.headers.authorization !== undefined) {
+  if (req.headers.authorization) {
     jwt = req.headers.authorization.substring(7)
 
     // TODO: decide whether to use the following if / to fetch the authentication key from staging (https://github.com/maevsi/maevsi/issues/916)
