@@ -87,7 +87,9 @@ async function deleteUpload(event: H3Event, uploadId: any, storageKey: any) {
 }
 
 async function tusdDelete(event: H3Event) {
-  const { req } = event
+  const {
+    node: { req },
+  } = event
   const uploadId = getQuery(event).uploadId
 
   consola.log('tusdDelete: ' + uploadId)
@@ -156,7 +158,7 @@ async function tusdDelete(event: H3Event) {
   const storageKey = queryRes.rows[0] ? queryRes.rows[0].storage_key : null
 
   if (storageKey !== null) {
-    const httpResp = await fetch('http://tusd:1080/files/' + storageKey + '+', {
+    const httpResp = await fetch('http://tusd:1080/files/' + storageKey, {
       headers: {
         'Tus-Resumable': '1.0.0',
       },
@@ -195,7 +197,9 @@ async function tusdDelete(event: H3Event) {
 }
 
 async function tusdPost(event: H3Event) {
-  const { req } = event
+  const {
+    node: { req },
+  } = event
   const body = await readBody(event)
 
   switch (req.headers['hook-name']) {
@@ -229,12 +233,12 @@ async function tusdPost(event: H3Event) {
 
       break
     }
-    case 'post-finish': {
-      consola.log('tusd/post-finish: ' + body.Upload.Storage.Key)
+    case 'pre-finish': {
+      consola.log('tusd/pre-finish: ' + body.Upload.ID)
 
       const queryRes = await pool
         .query('UPDATE maevsi.upload SET storage_key = $1 WHERE uuid = $2;', [
-          body.Upload.Storage.Key,
+          body.Upload.ID,
           body.Upload.MetaData.maevsiUploadUuid,
         ])
         .catch((err) => {
@@ -254,11 +258,11 @@ async function tusdPost(event: H3Event) {
       break
     }
     case 'post-terminate':
-      consola.log('tusd/post-terminate: ' + body.Upload.Storage.Key)
+      consola.log('tusd/post-terminate: ' + body.Upload.ID)
       await deleteUpload(
         event,
         body.Upload.MetaData.maevsiUploadUuid,
-        body.Upload.Storage.Key
+        body.Upload.ID
       )
 
       break

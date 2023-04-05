@@ -44,7 +44,7 @@ const profilePicture = computed(
 )
 const profilePictureUrl = computed(() =>
   profilePicture?.value?.uploadStorageKey
-    ? TUSD_FILES_URL + profilePicture.value.uploadStorageKey + '+'
+    ? TUSD_FILES_URL + profilePicture.value.uploadStorageKey
     : undefined
 )
 </script>

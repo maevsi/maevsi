@@ -269,7 +269,7 @@ const getMimeType = (file: ArrayBuffer, fallback?: string) => {
   }
 }
 const getUploadImageSrc = (uploadStorageKey: string) =>
-  TUSD_FILES_URL + uploadStorageKey + '+'
+  TUSD_FILES_URL + uploadStorageKey
 const loadProfilePicture = (event: Event) => {
   const target = event.target as HTMLInputElement
   const files = Array.from(target.files ?? [])
