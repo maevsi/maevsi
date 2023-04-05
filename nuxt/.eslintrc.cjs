@@ -25,6 +25,7 @@ module.exports = {
     '@intlify/vue-i18n/prefer-sfc-lang-attr': 'error',
     '@intlify/vue-i18n/prefer-linked-key-with-paren': 'error',
     // '@intlify/vue-i18n/sfc-locale-attr': 'error',
+    'no-console': 'error',
     'yml/quotes': ['error', { prefer: 'single' }],
   },
   settings: {
