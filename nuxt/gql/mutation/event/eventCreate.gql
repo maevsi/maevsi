@@ -1,7 +1,0 @@
-mutation createEvent($createEventInput: CreateEventInput!) {
-  createEvent(input: $createEventInput) {
-    event {
-      ...eventFields
-    }
-  }
-}

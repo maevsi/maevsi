@@ -1,6 +1,0 @@
-mutation authenticate($password: String!, $username: String!) {
-  authenticate(input: { password: $password, username: $username }) {
-    clientMutationId
-    jwt
-  }
-}

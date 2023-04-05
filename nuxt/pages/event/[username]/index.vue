@@ -17,14 +17,14 @@
 </template>
 
 <script setup lang="ts">
-import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
+import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
 
 definePageMeta({
   async validate(route) {
     const { $urql } = useNuxtApp()
 
     const accountIsExisting = await $urql.value
-      .query(ACCOUNT_IS_EXISTING_QUERY, {
+      .query(accountIsExistingQuery, {
         username: route.params.username as string,
       })
       .toPromise()

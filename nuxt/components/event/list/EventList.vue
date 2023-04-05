@@ -24,7 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { useAllEventsQuery } from '~/gql/generated'
+import { useAllEventsQuery } from '~/gql/documents/queries/event/eventsAll'
+import { getEventItem } from '~/gql/documents/fragments/eventItem'
 
 export interface Props {
   username?: string
@@ -41,14 +42,17 @@ const after = ref<string>()
 
 // api data
 const eventsQuery = await useAllEventsQuery({
-  variables: {
-    after,
-    authorUsername: props.username,
-    first: ITEMS_PER_PAGE,
-  },
+  after,
+  authorUsername: props.username,
+  first: ITEMS_PER_PAGE,
 })
 const api = getApiData([eventsQuery])
-const events = computed(() => eventsQuery.data.value?.allEvents?.nodes)
+const events = computed(
+  () =>
+    eventsQuery.data.value?.allEvents?.nodes
+      .map((x) => getEventItem(x))
+      .filter(isNeitherNullNorUndefined) || []
+)
 
 // data
 const isButtonEventListShown = ref(

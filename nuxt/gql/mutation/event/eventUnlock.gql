@@ -1,9 +1,0 @@
-mutation eventUnlock($invitationCode: UUID!) {
-  eventUnlock(input: { invitationCode: $invitationCode }) {
-    eventUnlockResponse {
-      eventSlug
-      jwt
-      authorUsername
-    }
-  }
-}

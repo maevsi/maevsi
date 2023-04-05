@@ -51,12 +51,11 @@
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
-
-import { Event } from '~/gql/generated'
+import { EventItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
   event: Pick<
-    Event,
+    EventItemFragment,
     | 'name'
     | 'authorUsername'
     | 'start'

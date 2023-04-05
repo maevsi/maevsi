@@ -12,8 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import { useProfilePictureByUsernameQuery } from '~/gql/generated'
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
+import { useProfilePictureByUsernameQuery } from '~/gql/documents/queries/profilePicture/profilePictureByUsername'
+import { getProfilePictureItem } from '~/gql/documents/fragments/profilePictureItem'
 
 export interface Props {
   aspect?: string
@@ -32,15 +33,15 @@ const TUSD_FILES_URL = useTusdFilesUrl()
 
 // api data
 const profilePictureQuery = await useProfilePictureByUsernameQuery({
-  variables: {
-    username: props.username,
-  },
+  username: props.username,
 })
 const api = getApiData([profilePictureQuery])
 
 // computations
-const profilePicture = computed(
-  () => profilePictureQuery.data.value?.profilePictureByUsername
+const profilePicture = computed(() =>
+  getProfilePictureItem(
+    profilePictureQuery.data.value?.profilePictureByUsername
+  )
 )
 const profilePictureUrl = computed(() =>
   profilePicture?.value?.uploadStorageKey

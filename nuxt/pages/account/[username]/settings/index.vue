@@ -51,8 +51,8 @@
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
-import { useAccountDeleteMutation } from '~/gql/generated'
-import ACCOUNT_IS_EXISTING_QUERY from '~/gql/query/account/accountIsExisting.gql'
+import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
+import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
 
 definePageMeta({
   async validate(route) {
@@ -60,7 +60,7 @@ definePageMeta({
     const store = useMaevsiStore()
 
     const accountIsExisting = await $urql.value
-      .query(ACCOUNT_IS_EXISTING_QUERY, {
+      .query(accountIsExistingQuery, {
         username: route.params.username as string,
       })
       .toPromise()

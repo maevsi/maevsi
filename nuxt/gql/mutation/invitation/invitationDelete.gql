@@ -1,5 +1,0 @@
-mutation deleteInvitationById($id: BigInt!) {
-  deleteInvitationById(input: {id: $id}) {
-    clientMutationId
-  }
-}

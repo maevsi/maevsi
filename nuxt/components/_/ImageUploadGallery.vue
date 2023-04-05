@@ -119,12 +119,11 @@ import prettyBytes from 'pretty-bytes'
 import { UnwrapRef } from 'vue'
 import { Cropper, CropperResult, Size } from 'vue-advanced-cropper'
 
-import {
-  useAccountUploadQuotaBytesQuery,
-  useAllUploadsQuery,
-  useUploadCreateMutation,
-} from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
+import { useUploadCreateMutation } from '~/gql/documents/mutations/upload/uploadCreate'
+import { useAccountUploadQuotaBytesQuery } from '~/gql/documents/queries/account/accountUploadQuotaBytes'
+import { useAllUploadsQuery } from '~/gql/documents/queries/upload/uploadsAll'
+import { getUploadItem } from '~/gql/documents/fragments/uploadItem'
 
 export interface Props {
   allowDeletion?: boolean
@@ -157,11 +156,9 @@ const inputProfilePictureRef = ref()
 // api data
 const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery()
 const allUploadsQuery = await useAllUploadsQuery({
-  variables: {
-    after,
-    username: props.username,
-    first: ITEMS_PER_PAGE,
-  },
+  after,
+  username: props.username,
+  first: ITEMS_PER_PAGE,
 })
 const uploadCreateMutation = useUploadCreateMutation()
 const api = getApiData([
@@ -169,7 +166,12 @@ const api = getApiData([
   allUploadsQuery,
   uploadCreateMutation,
 ])
-const uploads = computed(() => allUploadsQuery.data.value?.allUploads?.nodes)
+const uploads = computed(
+  () =>
+    allUploadsQuery.data.value?.allUploads?.nodes
+      .map((x) => getUploadItem(x))
+      .filter(isNeitherNullNorUndefined) || []
+)
 const accountUploadQuotaBytes = computed(
   () => accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes
 )

@@ -71,9 +71,10 @@
 <script setup lang="ts">
 import consola from 'consola'
 
-import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/generated'
-import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useMaevsiStore } from '~/store'
+import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
+import { getEventItem } from '~/gql/documents/fragments/eventItem'
+import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 
 definePageMeta({
   async validate(route) {
@@ -81,7 +82,7 @@ definePageMeta({
     const store = useMaevsiStore()
 
     const eventIsExisting = await $urql.value
-      .query(EVENT_IS_EXISTING_QUERY, {
+      .query(eventIsExistingQuery, {
         slug: route.params.event_name as string,
         authorUsername: route.params.username as string,
       })
@@ -111,13 +112,11 @@ const fireAlert = useFireAlert()
 
 // api data
 const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
-  variables: {
-    authorUsername: route.params.username as string,
-    slug: route.params.event_name as string,
-  },
+  authorUsername: route.params.username as string,
+  slug: route.params.event_name as string,
 })
-const event = computed(
-  () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
+const event = computed(() =>
+  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug)
 )
 
 // data

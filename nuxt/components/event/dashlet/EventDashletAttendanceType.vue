@@ -14,10 +14,10 @@
 </template>
 
 <script setup lang="ts">
-import { Event } from '~/gql/generated'
+import { EventItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
-  event: Pick<Event, 'isInPerson' | 'isRemote'>
+  event: Pick<EventItemFragment, 'isInPerson' | 'isRemote'>
 }
 withDefaults(defineProps<Props>(), {})
 

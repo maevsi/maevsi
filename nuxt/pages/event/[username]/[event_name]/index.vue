@@ -326,22 +326,25 @@ import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 
-import {
-  Invitation,
-  InvitationFeedback,
-  InvitationPatch,
-  useEventByAuthorUsernameAndSlugQuery,
-  useUpdateInvitationByIdMutation,
-} from '~/gql/generated'
-import EVENT_IS_EXISTING_QUERY from '~/gql/query/event/eventIsExisting.gql'
 import { useMaevsiStore } from '~/store'
+import { useUpdateInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationUpdateById'
+import {
+  InvitationFeedback,
+  InvitationItemFragment,
+  InvitationPatch,
+} from '~/gql/generated/graphql'
+import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'
+import { getEventItem } from '~/gql/documents/fragments/eventItem'
+import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
+import { getContactItem } from '~/gql/documents/fragments/contactItem'
+import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 
 definePageMeta({
   async validate(route) {
     const { $urql } = useNuxtApp()
 
     const eventIsExisting = await $urql.value
-      .query(EVENT_IS_EXISTING_QUERY, {
+      .query(eventIsExistingQuery, {
         slug: route.params.event_name as string,
         authorUsername: route.params.username as string,
       })
@@ -368,15 +371,13 @@ const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
 
 // api data
 const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
-  variables: {
-    authorUsername: route.params.username as string,
-    slug: route.params.event_name as string,
-    invitationUuid: route.query.ic,
-  },
+  authorUsername: route.params.username as string,
+  slug: route.params.event_name as string,
+  invitationUuid: route.query.ic,
 })
 const api = getApiData([eventQuery])
-const event = computed(
-  () => eventQuery.data.value?.eventByAuthorUsernameAndSlug
+const event = computed(() =>
+  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug)
 )
 
 // data
@@ -456,12 +457,12 @@ async function update(id: string, invitationPatch: InvitationPatch) {
 }
 
 // computations
-const contact = computed(() => {
-  return invitation?.value?.contactByContactId
-})
+const contact = computed(() =>
+  getContactItem(invitation?.value?.contactByContactId)
+)
 const contactName = computed(() => {
-  return invitation?.value?.contactByContactId
-    ? getContactName(invitation?.value.contactByContactId)
+  return invitation?.value?.contactByContactId && contact.value
+    ? getContactName(contact.value)
     : undefined
 })
 const eventDescription = computed(() => {
@@ -480,12 +481,15 @@ const eventDescriptionTemplate = computed(() => {
   )
 })
 const invitation = computed(() => {
-  const invitations = event?.value?.invitationsByEventId.nodes
+  const invitations =
+    eventQuery.data.value?.eventByAuthorUsernameAndSlug?.invitationsByEventId.nodes
+      .map((x) => getInvitationItem(x))
+      .filter(isNeitherNullNorUndefined)
 
   const invitationsMatchingUuid =
     store.signedInUsername === route.params.username && invitations
       ? invitations.filter(
-          (invitation: Pick<Invitation, 'uuid'>) =>
+          (invitation: Pick<InvitationItemFragment, 'uuid'>) =>
             invitation.uuid === route.query.ic
         )
       : invitations

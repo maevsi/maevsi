@@ -52,11 +52,11 @@
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
-import { Contact } from '~/gql/generated'
+import { ContactItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
   contact: Pick<
-    Contact,
+    ContactItemFragment,
     | 'nodeId'
     | 'authorAccountUsername'
     | 'accountUsername'

@@ -64,12 +64,11 @@
 </template>
 
 <script setup lang="ts">
-import {
-  Contact,
-  useAllContactsQuery,
-  useDeleteContactByIdMutation,
-} from '~/gql/generated'
 import { useMaevsiStore } from '~/store'
+import { useDeleteContactByIdMutation } from '~/gql/documents/mutations/contact/contactDeleteById'
+import { useAllContactsQuery } from '~/gql/documents/queries/contact/contactsAll'
+import { ContactItemFragment } from '~/gql/generated/graphql'
+import { getContactItem } from '~/gql/documents/fragments/contactItem'
 
 const { t } = useI18n()
 const store = useMaevsiStore()
@@ -79,15 +78,18 @@ const after = ref<string>()
 
 // api data
 const contactsQuery = await useAllContactsQuery({
-  variables: {
-    after,
-    authorAccountUsername: store.signedInUsername,
-    first: ITEMS_PER_PAGE_LARGE,
-  },
+  after,
+  authorAccountUsername: store.signedInUsername,
+  first: ITEMS_PER_PAGE_LARGE,
 })
 const deleteContactByIdMutation = useDeleteContactByIdMutation()
 const api = getApiData([contactsQuery, deleteContactByIdMutation])
-const contacts = computed(() => contactsQuery.data.value?.allContacts?.nodes)
+const contacts = computed(
+  () =>
+    contactsQuery.data.value?.allContacts?.nodes
+      .map((x) => getContactItem(x))
+      .filter(isNeitherNullNorUndefined) || []
+)
 
 // data
 const formContactHeading = ref<string>()
@@ -95,7 +97,7 @@ const pending = reactive({
   deletions: ref<string[]>([]),
   edits: ref<string[]>([]),
 })
-const selectedContact = ref<Pick<Contact, 'nodeId'>>()
+const selectedContact = ref<Pick<ContactItemFragment, 'nodeId'>>()
 
 // methods
 function add() {
@@ -108,7 +110,7 @@ async function delete_(nodeId: string, id: string) {
   await deleteContactByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
 }
-function edit(contact: Pick<Contact, 'nodeId'>) {
+function edit(contact: Pick<ContactItemFragment, 'nodeId'>) {
   pending.edits.push(contact.nodeId)
   formContactHeading.value = t('contactEdit')
   selectedContact.value = contact
