@@ -5,8 +5,8 @@ devDependencies:
     specifier: 7.21.4
     version: 7.21.4
   '@dargmuesli/nuxt-cookie-control':
-    specifier: 5.2.3
-    version: 5.2.3(rollup@3.20.2)
+    specifier: 5.3.0
+    version: 5.3.0(rollup@3.20.2)
   '@funken-studio/sitemap-nuxt-3':
     specifier: 4.0.4
     version: 4.0.4(rollup@3.20.2)
@@ -1063,8 +1063,8 @@ packages:
       - supports-color
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control@5.2.3(rollup@3.20.2):
-    resolution: {integrity: sha512-/4pvjOGHKlf4ESDGXG15Kc54QqYBk2ebarCDj2VbFiQJ9Fw+G9qFmEySTPjRmEnC6Qy3UVGYwG13V35vKQr7SA==}
+  /@dargmuesli/nuxt-cookie-control@5.3.0(rollup@3.20.2):
+    resolution: {integrity: sha512-ajG+gkvHp8dg96oPB9+q3S5oADw+m+cKbH5pRmM7hPkOf0Vnbttp8iqevA3PR4EPzuVds5K/P5/jHN16eqo1sg==}
     dependencies:
       '@nuxt/kit': 3.3.3(rollup@3.20.2)
       '@sindresorhus/slugify': 2.2.0
