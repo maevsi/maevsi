@@ -167,8 +167,8 @@ devDependencies:
     specifier: 8.8.0
     version: 8.8.0(eslint@8.37.0)
   eslint-plugin-compat:
-    specifier: 4.1.2
-    version: 4.1.2(eslint@8.37.0)
+    specifier: 4.1.4
+    version: 4.1.4(eslint@8.37.0)
   eslint-plugin-nuxt:
     specifier: 4.0.0
     version: 4.0.0(eslint@8.37.0)
@@ -2361,10 +2361,6 @@ packages:
       - supports-color
     dev: true
 
-  /@mdn/browser-compat-data@3.3.14:
-    resolution: {integrity: sha512-n2RC9d6XatVbWFdHLimzzUJxJ1KY8LdjqrW6YvGPiRmsHkhOUx74/Ct10x5Yo7bC/Jvqx7cDEW8IMPv/+vwEzA==}
-    dev: true
-
   /@mdn/browser-compat-data@5.2.48:
     resolution: {integrity: sha512-D5cAp2r0Eq9yN4lBNkVpHzoULHYeCQjLFF7PbD/LBBCuWXPIB4X3rbi12REvaCnEar/0UiSSfjIMWxFAw0vIJg==}
     dev: true
@@ -4280,10 +4276,10 @@ packages:
     resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
     dev: true
 
-  /ast-metadata-inferer@0.7.0:
-    resolution: {integrity: sha512-OkMLzd8xelb3gmnp6ToFvvsHLtS6CbagTkFQvQ+ZYFe3/AIl9iKikNR9G7pY3GfOR/2Xc222hwBjzI7HLkE76Q==}
+  /ast-metadata-inferer@0.8.0:
+    resolution: {integrity: sha512-jOMKcHht9LxYIEQu+RVd22vtgrPaVCtDRQ/16IGmurdzxvYbDd5ynxjnyrzLnieG96eTcAyaoj/wN/4/1FyyeA==}
     dependencies:
-      '@mdn/browser-compat-data': 3.3.14
+      '@mdn/browser-compat-data': 5.2.48
     dev: true
 
   /astral-regex@2.0.0:
@@ -6047,14 +6043,15 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-compat@4.1.2(eslint@8.37.0):
-    resolution: {integrity: sha512-DNrQgDi5L4mAL4FdFboKBlSRg6MWfd75eA7K91lMjtP5ryN+O11qT2FDn7Z6zqy6sZ4sJawUR5V75qzB6l0CBg==}
-    engines: {node: '>=16.x'}
+  /eslint-plugin-compat@4.1.4(eslint@8.37.0):
+    resolution: {integrity: sha512-RxySWBmzfIROLFKgeJBJue2BU/6vM2KJWXWAUq+oW4QtrsZXRxbjgxmO1OfF3sHcRuuIenTS/wgo3GyUWZF24w==}
+    engines: {node: '>=14.x'}
     peerDependencies:
       eslint: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
       '@mdn/browser-compat-data': 5.2.48
-      ast-metadata-inferer: 0.7.0
+      '@tsconfig/node14': 1.0.3
+      ast-metadata-inferer: 0.8.0
       browserslist: 4.21.5
       caniuse-lite: 1.0.30001474
       eslint: 8.37.0
