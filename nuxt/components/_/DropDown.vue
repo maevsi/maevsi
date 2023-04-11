@@ -46,4 +46,7 @@ async function toggleIsOpen(e: MouseEvent) {
     document.body.classList.remove('overflow-hidden')
   }
 }
+
+// lifecycle
+onUnmounted(() => document.body.classList.remove('overflow-hidden'))
 </script>
