@@ -24,7 +24,7 @@
           width="96"
         />
       </Button>
-      <h1 class="max-w-full sm:w-auto">
+      <h1>
         {{ routeParamUsername }}
       </h1>
       <ModalImageSelection />
