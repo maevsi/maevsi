@@ -4,7 +4,7 @@ import colors from 'tailwindcss/colors'
 import { PluginAPI } from 'tailwindcss/types/config'
 
 const gray = colors.gray // or slate, zinc, neutral, stone
-const truncateSoft = {
+const truncateOverflow = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 }
@@ -27,7 +27,7 @@ const typographyLineHeight = {
 
 const heading = (theme: PluginAPI['theme']) =>
   ({
-    ...truncateSoft,
+    ...truncateOverflow,
     fontWeight: theme('fontWeight.bold'),
     maxWidth: theme('width.full'),
   } as Record<string, string>)
@@ -151,7 +151,7 @@ export default {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
         },
-        '.truncate-soft': truncateSoft,
+        '.truncate-overflow': truncateOverflow,
       })
     },
   ],

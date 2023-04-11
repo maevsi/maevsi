@@ -10,7 +10,7 @@
     @click="emit('click')"
   >
     <slot name="prefix" />
-    <div class="truncate-soft">
+    <div class="truncate-overflow">
       <slot />
     </div>
     <slot name="suffix" />
@@ -24,7 +24,7 @@
     @click="emit('click')"
   >
     <slot name="prefix" />
-    <span class="truncate-soft">
+    <span class="truncate-overflow">
       <slot />
     </span>
     <slot name="suffix" />
