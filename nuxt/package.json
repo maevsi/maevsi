@@ -41,6 +41,8 @@
     "@graphql-codegen/client-preset": "3.0.0",
     "@graphql-codegen/typescript-urql-graphcache": "2.4.4",
     "@graphql-codegen/urql-introspection": "2.2.1",
+    "@headlessui/vue": "1.7.13",
+    "@heroicons/vue": "2.0.17",
     "@http-util/status-i18n": "0.6.2",
     "@intlify/eslint-plugin-vue-i18n": "2.0.0",
     "@kevinmarrec/nuxt-pwa": "0.17.0",
