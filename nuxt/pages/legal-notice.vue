@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <div class="maevsi-prose-scheme">
+    <div class="vio-prose-scheme">
       <h2>{{ t('tmg') }}</h2>
       <p>
         {{ t('addressName') }}<br />

@@ -65,6 +65,7 @@ function getCsp(host: string): Record<string, Array<string>> {
       `https://tusd.${getDomainTldPort(stagingHostOrHost)}`, // image upload requests
       'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://*.analytics.google.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
     ],
     'default-src': ["'none'"],
     'font-src': ["'self'"], // ~/public/assets/static/fonts
@@ -77,6 +78,7 @@ function getCsp(host: string): Record<string, Array<string>> {
       'data:',
       `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
       'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://www.gravatar.com/avatar/', // profile picture fallback
     ],
     'manifest-src': ["'self'"],
@@ -90,8 +92,7 @@ function getCsp(host: string): Record<string, Array<string>> {
       'blob:',
       "'self'",
       'https://static.cloudflareinsights.com', // Cloudflare analytics
-      'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
-      'https://www.googletagmanager.com/gtag/js', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       "'unsafe-inline'", // https://github.com/unjs/nitro/issues/81
       "'unsafe-eval'", // https://github.com/unjs/nitro/issues/81
     ],

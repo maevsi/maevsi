@@ -45,7 +45,6 @@
           <ButtonColored
             v-if="invitation?.feedback === 'ACCEPTED'"
             :aria-label="t('qrCodeShow')"
-            class="text-text-bright"
             @click="qrCodeShow"
           >
             {{ t('qrCodeShow') }}
@@ -91,10 +90,8 @@
         </ButtonColored>
       </ButtonList>
       <div class="flex flex-col md:flex-row justify-between gap-4">
-        <div
-          class="flex flex-col md:flex-row max-w-full items-baseline md:gap-2"
-        >
-          <h1 class="mb-0 max-w-full overflow-hidden text-ellipsis">
+        <div class="flex flex-col md:flex-row items-baseline md:gap-2 min-w-0">
+          <h1 class="m-0">
             {{ event.name }}
           </h1>
           <Owner link :username="event.authorUsername" />
@@ -276,7 +273,7 @@
         <template v-if="eventDescriptionTemplate">
           <Hr />
           <!-- eslint-disable vue/no-v-html -->
-          <div class="maevsi-prose-scheme" v-html="eventDescriptionTemplate" />
+          <div class="vio-prose-scheme" v-html="eventDescriptionTemplate" />
           <!-- eslint-enable vue/no-v-html -->
         </template>
       </Card>
