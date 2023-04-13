@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/maevsi/maevsi/compare/1.10.0...1.10.1) (2023-04-13)
+
+
+### Bug Fixes
+
+* **validation:** correct event existence variables ([21163cf](https://github.com/maevsi/maevsi/commit/21163cfd883cf8cfbe5230f5075df3673fb7476e)), closes [#1014](https://github.com/maevsi/maevsi/issues/1014)
+
 # [1.10.0](https://github.com/maevsi/maevsi/compare/1.9.5...1.10.0) (2023-04-05)
 
 
