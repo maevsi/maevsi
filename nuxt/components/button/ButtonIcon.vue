@@ -2,13 +2,16 @@
   <Button
     :aria-label="ariaLabel"
     class="justify-center"
-    :disabled="disabled"
+    :disabled="disabled || isLoading"
     :title="ariaLabel"
     :to="to"
     :type="type"
     @click="emit('click')"
   >
-    <slot />
+    <div class="relative">
+      <slot />
+      <LoaderIndicatorSpinner v-if="isLoading" class="absolute inset-0" />
+    </div>
   </Button>
 </template>
 
@@ -16,11 +19,13 @@
 export interface Props {
   ariaLabel: string
   disabled?: boolean
+  isLoading?: boolean
   to?: string
   type?: 'button' | 'submit' | 'reset'
 }
 withDefaults(defineProps<Props>(), {
   disabled: false,
+  isLoading: false,
   to: undefined,
   type: 'button',
 })

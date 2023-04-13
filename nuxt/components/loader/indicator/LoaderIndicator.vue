@@ -1,11 +1,6 @@
 <template>
-  <div
-    class="flex h-full items-center justify-center"
-    :title="t('globalLoading')"
-  >
-    <div class="flex items-center justify-center w-1/2">
-      <slot />
-    </div>
+  <div class="flex justify-center" :title="t('globalLoading')">
+    <slot />
   </div>
 </template>
 
