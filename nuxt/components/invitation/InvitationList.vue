@@ -96,7 +96,7 @@ import {
   Title,
   Tooltip,
 } from 'chart.js'
-import consola from 'consola'
+import { consola } from 'consola'
 import { Doughnut } from 'vue-chartjs'
 
 import { useMaevsiStore } from '~/store'

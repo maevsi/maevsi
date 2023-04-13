@@ -1,5 +1,5 @@
 import { helpers } from '@vuelidate/validators'
-import consola from 'consola'
+import { consola } from 'consola'
 import { Ref } from 'vue'
 
 import {
