@@ -1,3 +1,20 @@
+# [1.11.0](https://github.com/maevsi/maevsi/compare/1.10.1...1.11.0) (2023-04-13)
+
+
+### Bug Fixes
+
+* **analytics:** correct csp ([47dbea9](https://github.com/maevsi/maevsi/commit/47dbea91d42e8d459501831c00ab7ed4ad6e4354))
+* correct truncation ([5a1c53b](https://github.com/maevsi/maevsi/commit/5a1c53b7816e36aa079ff4b19fef1a78d72463db))
+* **dropdown:** allow scroll on unmount ([6cf1159](https://github.com/maevsi/maevsi/commit/6cf1159b3ee2f037c43a2b5c0add4b6a416c3b81)), closes [#1173](https://github.com/maevsi/maevsi/issues/1173)
+* **form-input-state-info:** add missing title property ([925c8c1](https://github.com/maevsi/maevsi/commit/925c8c13965f4733264921b610ee53140efe6864))
+* **invitation-list:** correct chart label colors ([e738323](https://github.com/maevsi/maevsi/commit/e738323d3b2c1bb0ac60e9c916ed23f3bbd9abe7))
+
+
+### Features
+
+* **css:** rework overflow ([f6c1c0d](https://github.com/maevsi/maevsi/commit/f6c1c0ddb177e7e41370e8284b7864311bed826e))
+* **font:** use single manrope file ([c02fc06](https://github.com/maevsi/maevsi/commit/c02fc06af303c2f000976cb627eaccbd4fd06262))
+
 ## [1.10.1](https://github.com/maevsi/maevsi/compare/1.10.0...1.10.1) (2023-04-13)
 
 
