@@ -114,7 +114,7 @@
 <script setup lang="ts">
 import { Uppy, UploadResult, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
-import consola from 'consola'
+import { consola } from 'consola'
 import prettyBytes from 'pretty-bytes'
 import { UnwrapRef } from 'vue'
 import { Cropper, CropperResult, Size } from 'vue-advanced-cropper'

@@ -1,5 +1,5 @@
 import { helpers } from '@vuelidate/validators'
-import consola from 'consola'
+import { consola } from 'consola'
 import { Ref } from 'vue'
 
 import {
@@ -67,8 +67,8 @@ export function validateEventSlug(
 
     const result = await $urql.value
       .query(eventIsExistingQuery, {
-        slug: signedInUserName,
-        authorUsername: value,
+        slug: value,
+        authorUsername: signedInUserName,
       })
       .toPromise()
 

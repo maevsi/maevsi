@@ -108,7 +108,7 @@
 
 <script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
-import consola from 'consola'
+import { consola } from 'consola'
 
 export interface Props {
   isDisabled?: boolean
