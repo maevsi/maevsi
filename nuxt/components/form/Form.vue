@@ -29,11 +29,13 @@
             {{ t('globalValidationFailed') }}
           </FormInputStateError>
         </div>
-        <CardStateAlert v-if="errorMessages?.length" class="my-4">
-          <SpanList :span="errorMessages" />
-        </CardStateAlert>
-        <div v-if="$slots.assistance" class="flex justify-center">
-          <slot name="assistance" />
+        <div class="flex flex-col gap-4">
+          <CardStateAlert v-if="errorMessages?.length">
+            <SpanList :span="errorMessages" />
+          </CardStateAlert>
+          <div v-if="$slots.assistance" class="flex justify-center">
+            <slot name="assistance" />
+          </div>
         </div>
       </div>
     </Card>
