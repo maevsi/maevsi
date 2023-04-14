@@ -194,8 +194,8 @@ devDependencies:
     specifier: 1.2.0
     version: 1.2.0
   jose:
-    specifier: 4.13.2
-    version: 4.13.2
+    specifier: 4.14.0
+    version: 4.14.0
   lint-staged:
     specifier: 13.2.1
     version: 13.2.1
@@ -1919,7 +1919,7 @@ packages:
       graphql-request: 5.2.0(graphql@16.6.0)
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
-      jose: 4.13.2
+      jose: 4.14.0
       js-yaml: 4.1.0
       json-stable-stringify: 1.0.2
       lodash: 4.17.21
@@ -8090,8 +8090,8 @@ packages:
       '@sideway/pinpoint': 2.0.0
     dev: true
 
-  /jose@4.13.2:
-    resolution: {integrity: sha512-GMUKtV+l05F6NY/06nM7rucHM6Ktvw6sxnyRqINBNWS/hCM/bBk7kanOEckRP8xtC/jzuGfTRVZvkjjuy+g4dA==}
+  /jose@4.14.0:
+    resolution: {integrity: sha512-LSA/XenLPwqk6e2L+PSUNuuY9G4NGsvjRWz6sJcUBmzTLEPJqQh46FHSUxnAQ64AWOkRO6bSXpy3yXuEKZkbIA==}
     dev: true
 
   /js-base64@3.7.5:
