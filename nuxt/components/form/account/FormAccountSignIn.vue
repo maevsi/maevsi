@@ -150,7 +150,7 @@ de:
   jwtStoreFail: Fehler beim Speichern der Authentifizierungsdaten!
   passwordReset: Passwort zurücksetzen
   postgres22023: Ein Konto mit diesem Benutzernamen existiert nicht! Überprüfe deine Eingaben auf Schreibfehler.
-  postgres55000: Die E-Mail-Adresse ist noch nicht verifiziert!
+  postgres55000: Deine E-Mail-Adresse ist noch nicht verifiziert!
   postgresP0002: Anmeldung fehlgeschlagen! Hast du dich schon registriert? Überprüfe deine Eingaben auf Schreibfehler.
   register: Oder stattdessen registrieren
   registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
@@ -160,7 +160,7 @@ en:
   jwtStoreFail: Failed to store the authentication data!
   passwordReset: Reset password
   postgres22023: This username does not belong to any account! Check your input for spelling mistakes.
-  postgres55000: This email address has not been verified yet!
+  postgres55000: Your email address has not been verified yet!
   postgresP0002: Login failed! Have you registered yet? Check your input for spelling mistakes.
   register: Or register instead
   registrationRefreshSuccess: A new welcome email is on its way to you.
