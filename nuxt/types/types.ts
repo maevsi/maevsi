@@ -4,8 +4,9 @@ import { GraphQLError } from 'graphql'
 export type ArrayElement<ArrayType extends readonly unknown[]> =
   ArrayType extends readonly (infer ElementType)[] ? ElementType : never
 
+// if an `originalError` property shows up, see the PR's changes for https://github.com/maevsi/maevsi/issues/993
 export type BackendError = {
-  graphQLErrors: (GraphQLError & { originalError?: { errcode?: string } })[]
+  graphQLErrors: (GraphQLError & { errcode?: string })[]
 } & CombinedError
 
 export type UnionToIntersection<T> = (
