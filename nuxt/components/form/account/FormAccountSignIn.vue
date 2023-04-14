@@ -39,10 +39,7 @@
       <template
         v-if="
           api.errors.filter(
-            (e) =>
-              e.graphQLErrors.filter(
-                (g) => g.originalError?.errcode === '55000'
-              ).length
+            (e) => e.graphQLErrors.filter((g) => g.errcode === '55000').length
           ).length
         "
         #assistance
