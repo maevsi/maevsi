@@ -38,8 +38,8 @@ devDependencies:
     specifier: 12.0.0
     version: 12.0.0(eslint@8.38.0)(typescript@5.0.4)
   '@nuxtjs/html-validator':
-    specifier: 1.2.4
-    version: 1.2.4(rollup@3.20.2)
+    specifier: 1.2.5
+    version: 1.2.5(rollup@3.20.2)
   '@nuxtjs/i18n':
     specifier: 8.0.0-beta.10
     version: 8.0.0-beta.10(rollup@3.20.2)(vue@3.2.47)
@@ -2644,12 +2644,12 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/html-validator@1.2.4(rollup@3.20.2):
-    resolution: {integrity: sha512-IKy/+lR516ls7gXbXsCzLKdIhzyjxo5b7//6yZ8hNIvaLljb3yyCTiEM139B7RchIvIyBpf0GJ5GKWn2rPmRhw==}
+  /@nuxtjs/html-validator@1.2.5(rollup@3.20.2):
+    resolution: {integrity: sha512-SbzsfYEZvq+tMv2gcdk1OlwubOdU5SV4a0DdBPjqjW7Kuivd4A02z4eOzXhgpg3xIoLUVenf777l5m44/0qI/A==}
     dependencies:
-      '@nuxt/kit': 3.4.0(rollup@3.20.2)
+      '@nuxt/kit': 3.4.1(rollup@3.20.2)
       chalk: 5.2.0
-      html-validate: 7.13.3
+      html-validate: 7.15.1
       pathe: 1.1.0
       prettier: 2.8.7
       std-env: 3.3.2
@@ -7096,6 +7096,16 @@ packages:
       once: 1.4.0
     dev: true
 
+  /glob@9.3.5:
+    resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      fs.realpath: 1.0.0
+      minimatch: 8.0.4
+      minipass: 4.2.8
+      path-scurry: 1.7.0
+    dev: true
+
   /global-dirs@3.0.1:
     resolution: {integrity: sha512-NBcGGFbBA9s1VzD41QXDG+3++t9Mn5t1FpLdhESY6oKY4gYTFpX4wO3sqGUa0Srjtbfj3szX0RnemmrVRUdULA==}
     engines: {node: '>=10'}
@@ -7394,8 +7404,8 @@ packages:
       selderee: 0.11.0
     dev: true
 
-  /html-validate@7.13.3:
-    resolution: {integrity: sha512-W2aOSlSChFXGvZAZZQkAgLEwGKMeGwsRnchGt5SUAD6CcvWuzVuVMcb1IK4tF1M4qmDr6Ie8y+VVGZevxA4Gyg==}
+  /html-validate@7.15.1:
+    resolution: {integrity: sha512-i13SFXM4AdkKkWkpRzd4HNpoBijdkI/8MBlSEl1yzcIxYnAOfc7sqsaCblJ0R7si/eTQddPPsidKWwFj/FAUSw==}
     engines: {node: '>= 14.0'}
     hasBin: true
     peerDependencies:
@@ -7417,7 +7427,7 @@ packages:
       ajv: 8.12.0
       deepmerge: 4.3.1
       espree: 9.5.1
-      glob: 8.1.0
+      glob: 9.3.5
       ignore: 5.2.4
       kleur: 4.1.5
       minimist: 1.2.8
@@ -8701,6 +8711,11 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
+  /lru-cache@9.0.3:
+    resolution: {integrity: sha512-cyjNRew29d4kbgnz1sjDqxg7qg8NW4s+HQzCGjeon7DV5T2yDije16W9HaUFV1dhVEMh+SjrOcK0TomBmf3Egg==}
+    engines: {node: 14 || >=16.14}
+    dev: true
+
   /magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
@@ -8934,6 +8949,13 @@ packages:
       brace-expansion: 2.0.1
     dev: true
 
+  /minimatch@8.0.4:
+    resolution: {integrity: sha512-W0Wvr9HyFXZRGIDgCicunpQ299OKXs9RgZfaukz4qAW/pJhcpUfupc9c+OObPOFueNy8VSrZgEmDtk6Kh4WzDA==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      brace-expansion: 2.0.1
+    dev: true
+
   /minimist-options@4.1.0:
     resolution: {integrity: sha512-Q4r8ghd80yhO/0j1O3B2BjweX3fiHg9cdOwjJd2J76Q135c+NDxGCqdYKQ1SKBuFfgWbAUzBfvYjPUEeNgqN1A==}
     engines: {node: '>= 6'}
@@ -8956,6 +8978,11 @@ packages:
 
   /minipass@4.2.8:
     resolution: {integrity: sha512-fNzuVyifolSLFL4NzpF+wEF4qrgqaaKX0haXPQEdQ7NKAN+WecoKMHV09YcuL/DHxrUsYQOK3MiuDf7Ip2OXfQ==}
+    engines: {node: '>=8'}
+    dev: true
+
+  /minipass@5.0.0:
+    resolution: {integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ==}
     engines: {node: '>=8'}
     dev: true
 
@@ -9741,6 +9768,14 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       path-root-regex: 0.1.2
+    dev: true
+
+  /path-scurry@1.7.0:
+    resolution: {integrity: sha512-UkZUeDjczjYRE495+9thsgcVgsaCPkaw80slmfVFgllxY+IO8ubTsOpFVjDPROBqJdHfVPUFRHPBV/WciOVfWg==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      lru-cache: 9.0.3
+      minipass: 5.0.0
     dev: true
 
   /path-type@4.0.0:
