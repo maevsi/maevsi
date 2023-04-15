@@ -269,8 +269,8 @@ devDependencies:
     specifier: 1.30.2
     version: 1.30.2
   qrcode.vue:
-    specifier: 3.3.4
-    version: 3.3.4(vue@3.2.47)
+    specifier: 3.4.0
+    version: 3.4.0(vue@3.2.47)
   rollup:
     specifier: 3.20.2
     version: 3.20.2
@@ -10727,8 +10727,8 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: true
 
-  /qrcode.vue@3.3.4(vue@3.2.47):
-    resolution: {integrity: sha512-ZVPmKZUUqM/wZ19mIhecFJs7mO6KXFiZZmBZyU6wiB2aXZfYc/VpolXakQcKw/9aGFEmSHHVKfgNwyxtw/Q2Sw==}
+  /qrcode.vue@3.4.0(vue@3.2.47):
+    resolution: {integrity: sha512-4XeImbv10Fin16Fl2DArCMhGyAdvIg2jb7vDT+hZiIAMg/6H6mz9nUZr/dR8jBcun5VzNzkiwKhiqOGbloinwA==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
