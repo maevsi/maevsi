@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/maevsi/maevsi/compare/1.11.0...1.11.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* **loader-image:** watch source ([1ee166a](https://github.com/maevsi/maevsi/commit/1ee166ab7ef977ac196ffec6f5450e4de1879180)), closes [#1168](https://github.com/maevsi/maevsi/issues/1168)
+
 # [1.11.0](https://github.com/maevsi/maevsi/compare/1.10.1...1.11.0) (2023-04-13)
 
 
