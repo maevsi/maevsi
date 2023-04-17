@@ -70,6 +70,10 @@ const loadingStop = () => {
 
 // lifecycle
 onMounted(loadOnClient)
+watch(
+  () => props.src,
+  () => loadOnClient()
+)
 </script>
 
 <i18n lang="yaml">
