@@ -1,3 +1,10 @@
+## [1.11.2](https://github.com/maevsi/maevsi/compare/1.11.1...1.11.2) (2023-04-18)
+
+
+### Bug Fixes
+
+* **i18n:** disable missing warning ([e22b682](https://github.com/maevsi/maevsi/commit/e22b68213d75083c24dd6ac6e889e8d513406850))
+
 ## [1.11.1](https://github.com/maevsi/maevsi/compare/1.11.0...1.11.1) (2023-04-17)
 
 
