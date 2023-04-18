@@ -1,3 +1,10 @@
+## [1.11.4](https://github.com/maevsi/maevsi/compare/1.11.3...1.11.4) (2023-04-18)
+
+
+### Bug Fixes
+
+* **form-input-username:** correct existence check ([ffb3996](https://github.com/maevsi/maevsi/commit/ffb3996194954f7d5a1ed6b1c0e33ca68f7ac490)), closes [#938](https://github.com/maevsi/maevsi/issues/938)
+
 ## [1.11.3](https://github.com/maevsi/maevsi/compare/1.11.2...1.11.3) (2023-04-18)
 
 
