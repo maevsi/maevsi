@@ -29,8 +29,8 @@
             {{ t('globalValidationFailed') }}
           </FormInputStateError>
         </div>
-        <div class="flex flex-col gap-4">
-          <CardStateAlert v-if="errorMessages?.length">
+        <div v-if="errorMessages?.length" class="flex flex-col gap-4">
+          <CardStateAlert>
             <SpanList :span="errorMessages" />
           </CardStateAlert>
           <div v-if="$slots.assistance" class="flex justify-center">
