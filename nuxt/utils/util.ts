@@ -134,9 +134,8 @@ export function getCspAsString(event: H3Event): string {
 //   promise.reject = rej
 
 //   if (then) {
-//     promise.then((value: any) => {
-//       then(value)
-//     })
+//     const value = await promise
+//     then(value)
 //   }
 
 //   return promise

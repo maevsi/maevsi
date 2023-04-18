@@ -167,9 +167,8 @@ async function onInit(promise: Promise<any>) {
       errorMessage = t('errorCameraStreamApiNotSupported') as string
     }
 
-    await fireAlert({ level: 'error', text: errorMessage }).then(() =>
-      store.modalRemove('ModalAttendanceScanQrCode')
-    )
+    await fireAlert({ level: 'error', text: errorMessage })
+    store.modalRemove('ModalAttendanceScanQrCode')
     consola.error(errorMessage)
   } finally {
     loading.value = false
@@ -180,9 +179,8 @@ async function onClick() {
 }
 async function onDecode(e: any) {
   invitationCode.value = e
-  await fireAlert({ level: 'success' }).then(() =>
-    store.modalRemove('ModalAttendanceScanQrCode')
-  )
+  await fireAlert({ level: 'success' })
+  store.modalRemove('ModalAttendanceScanQrCode')
 }
 async function checkWriteTag() {
   if (!('NDEFReader' in window)) {
