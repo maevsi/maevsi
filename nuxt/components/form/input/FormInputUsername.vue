@@ -5,7 +5,7 @@
     :is-validatable="isValidatable"
     :id-label="`input-username`"
     :placeholder="t('globalPlaceholderUsername')"
-    :success="isValidatable && !formInput.$invalid"
+    :success="!!formInput.$model && isValidatable && !formInput.$invalid"
     :title="t('username')"
     type="text"
     :validation-property="formInput"
@@ -52,7 +52,7 @@
         {{ t('validationExistenceHint') }}
       </FormInputStateInfo>
     </template>
-    <template v-if="isValidatable" #stateSuccess>
+    <template v-if="!!formInput.$model && isValidatable" #stateSuccess>
       <FormInputStateSuccess
         :form-input="formInput"
         validation-property="existence"
