@@ -113,9 +113,12 @@ WORKDIR /srv/app/
 COPY ./docker/entrypoint-dev.sh /usr/local/bin/
 
 RUN corepack enable \
+    && apt-get update \
+    && apt-get install --no-install-recommends -y \
+        curl \
     # user
     && groupadd -g $GID -o $UNAME \
-    && useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
+    && useradd -m -l -u $UID -g $GID -o -s /bin/bash $UNAME
 
 # Use the Cypress version installed by pnpm, not as provided by the Docker image.
 COPY --from=prepare --chown=$UNAME /root/.cache/Cypress /root/.cache/Cypress
@@ -134,7 +137,10 @@ ENTRYPOINT ["entrypoint-dev.sh"]
 # Should be the specific version of `cypress/included`.
 FROM cypress/included:12.10.0 AS test-integration-dev
 
-RUN corepack enable
+RUN corepack enable \
+    && apt-get update \
+    && apt-get install --no-install-recommends -y \
+        curl
 
 WORKDIR /srv/app/
 
@@ -151,7 +157,10 @@ RUN pnpm test:integration:dev
 # Should be the specific version of `cypress/included`.
 FROM cypress/included:12.10.0 AS test-integration-prod
 
-RUN corepack enable
+RUN corepack enable \
+    && apt-get update \
+    && apt-get install --no-install-recommends -y \
+        curl
 
 WORKDIR /srv/app/
 

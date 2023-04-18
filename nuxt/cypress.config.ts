@@ -19,6 +19,7 @@ export default defineConfig({
     video: false,
   },
   env: {
+    ALWAYS_GENERATE_DIFF: false,
     failSilently: false,
   },
   screenshotsFolder: './cypress/snapshots/actual',
