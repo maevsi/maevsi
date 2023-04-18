@@ -1,3 +1,13 @@
+## [1.11.5](https://github.com/maevsi/maevsi/compare/1.11.4...1.11.5) (2023-04-18)
+
+
+### Bug Fixes
+
+* **account:** correct graphql error message getter ([70141a6](https://github.com/maevsi/maevsi/commit/70141a6d546d7b0396f1c72ee240aec489b06a51))
+* **account:** run email verification on client only ([8288e62](https://github.com/maevsi/maevsi/commit/8288e622b46a3a02371da2f4b7dc0104bd58faf0))
+* **cypress:** save diff images only when necessary ([805a105](https://github.com/maevsi/maevsi/commit/805a105497f3204e721bac5299f96efc9e8d29b0))
+* **docker:** install curl for cypress ([51d2367](https://github.com/maevsi/maevsi/commit/51d236783d73bdc4fdb2645f1687bcef947fc8ec))
+
 ## [1.11.4](https://github.com/maevsi/maevsi/compare/1.11.3...1.11.4) (2023-04-18)
 
 
