@@ -1,3 +1,17 @@
+# [1.12.0](https://github.com/maevsi/maevsi/compare/1.11.5...1.12.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* **form:** correct conditional error display ([83ab4a8](https://github.com/maevsi/maevsi/commit/83ab4a8d4b5b016cde7d2befcc36e31d54a9755f))
+* **i18n:** rephrase email verification error ([f6984eb](https://github.com/maevsi/maevsi/commit/f6984ebf62f0cc85a503ef63e70ee511a5cec5ff))
+
+
+### Features
+
+* **account:** disable verification refreshing ([8a9622c](https://github.com/maevsi/maevsi/commit/8a9622c4abcbaf84138c09e4f3ad982e5a07006c))
+* **account:** remove password reset errors ([0f5d7b9](https://github.com/maevsi/maevsi/commit/0f5d7b9f3a9f2c81a7c2f61ca02bb19272775825))
+
 ## [1.11.5](https://github.com/maevsi/maevsi/compare/1.11.4...1.11.5) (2023-04-18)
 
 
