@@ -199,25 +199,17 @@ export function getCombinedErrorMessages(
   const errorMessages: string[] = []
 
   for (const combinedError of errors) {
-    // const combinedError = error
-
     if (combinedError.networkError) {
       errorMessages.push(combinedError.message)
     }
 
     for (const graphqlError of combinedError.graphQLErrors) {
-      if (
-        graphqlError.originalError &&
-        'errcode' in graphqlError.originalError
-      ) {
-        const translation =
-          pgIds && pgIds[`postgres${graphqlError.originalError.errcode}`]
+      const translation = pgIds && pgIds[`postgres${graphqlError.errcode}`]
 
-        if (translation) {
-          errorMessages.push(translation)
-        } else {
-          errorMessages.push(graphqlError.message)
-        }
+      if (translation) {
+        errorMessages.push(translation)
+      } else {
+        errorMessages.push(graphqlError.message)
       }
     }
   }
