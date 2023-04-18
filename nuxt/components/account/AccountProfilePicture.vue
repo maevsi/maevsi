@@ -38,16 +38,15 @@ const profilePictureQuery = await useProfilePictureByUsernameQuery({
 const api = getApiData([profilePictureQuery])
 
 // computations
-const profilePicture = computed(() =>
-  getProfilePictureItem(
+const profilePictureUrl = computed(() => {
+  const profilePicture = getProfilePictureItem(
     profilePictureQuery.data.value?.profilePictureByUsername
   )
-)
-const profilePictureUrl = computed(() =>
-  profilePicture?.value?.uploadStorageKey
-    ? TUSD_FILES_URL + profilePicture.value.uploadStorageKey
+
+  return profilePicture?.uploadStorageKey
+    ? TUSD_FILES_URL + profilePicture.uploadStorageKey
     : undefined
-)
+})
 </script>
 
 <i18n lang="yaml">

@@ -58,14 +58,14 @@
             </FormInputIconWrapper>
             <FormInputIconWrapper
               v-else-if="
-                validationProperty.$model && !validationProperty.$invalid
+                !!validationProperty.$model && !validationProperty.$invalid
               "
             >
               <IconCheckCircle class="text-green-600" :title="t('valid')" />
             </FormInputIconWrapper>
             <FormInputIconWrapper
               v-else-if="
-                validationProperty.$model && validationProperty.$invalid
+                !!validationProperty.$model && validationProperty.$invalid
               "
             >
               <IconExclamationCircle
