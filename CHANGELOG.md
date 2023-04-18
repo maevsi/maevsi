@@ -1,3 +1,10 @@
+## [1.11.3](https://github.com/maevsi/maevsi/compare/1.11.2...1.11.3) (2023-04-18)
+
+
+### Bug Fixes
+
+* **form-event:** add missing form input state error for start ([0c92437](https://github.com/maevsi/maevsi/commit/0c92437e530e0aec72738824d30500905ce85030)), closes [#1169](https://github.com/maevsi/maevsi/issues/1169)
+
 ## [1.11.2](https://github.com/maevsi/maevsi/compare/1.11.1...1.11.2) (2023-04-18)
 
 
