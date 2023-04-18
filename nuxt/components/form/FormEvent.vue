@@ -147,6 +147,14 @@
         :warning="isWarningStartPastShown"
         @click="store.modals.push({ id: 'ModalDateTimeStart' })"
       >
+        <template #stateError>
+          <FormInputStateError
+            :form-input="v$.start"
+            validation-property="required"
+          >
+            {{ t('globalValidationRequired') }}
+          </FormInputStateError>
+        </template>
         <template #stateWarning>
           <FormInputStateWarning v-if="isWarningStartPastShown">
             {{ t('globalValidationNowOrFuture') }}
