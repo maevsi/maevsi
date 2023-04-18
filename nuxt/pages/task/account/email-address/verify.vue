@@ -45,7 +45,8 @@ const title = t('title')
 
 // lifecycle
 onMounted(() => {
-  // run on client side only to not verify on server side and error on client side as "code already used"
+  // run on client side only
+  // verifying on server side first leads to an error on client side: "code already used"
   accountEmailAddressVerificationMutation
     .executeMutation({
       code: route.query.code,
