@@ -1,9 +1,9 @@
 <template>
   <IconContainerNew>
-    <PaperAirplaneIcon />
+    <ArrowUturnLeftIcon />
   </IconContainerNew>
 </template>
 
 <script setup lang="ts">
-import { PaperAirplaneIcon } from '@heroicons/vue/24/outline'
+import { ArrowUturnLeftIcon } from '@heroicons/vue/24/outline'
 </script>

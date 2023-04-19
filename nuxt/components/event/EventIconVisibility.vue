@@ -1,5 +1,5 @@
 <template>
-  <IconArchive v-if="isArchived" :title="t('archived')" />
+  <IconArchiveBox v-if="isArchived" :title="t('archived')" />
   <IconEye v-else-if="visibility === 'PUBLIC'" :title="t('public')" />
   <IconEyeOff v-else-if="visibility === 'PRIVATE'" :title="t('private')" />
   <IconBug v-else :title="t('bug')" />
