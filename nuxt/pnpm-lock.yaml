@@ -134,8 +134,8 @@ devDependencies:
     specifier: 2.0.11
     version: 2.0.11
   consola:
-    specifier: 3.0.2
-    version: 3.0.2
+    specifier: 3.1.0
+    version: 3.1.0
   cookie:
     specifier: 0.5.0
     version: 0.5.0
@@ -2407,7 +2407,7 @@ packages:
     dependencies:
       '@nuxt/schema': 3.4.0(rollup@3.20.6)
       c12: 1.2.0
-      consola: 3.0.2
+      consola: 3.1.0
       defu: 6.1.2
       globby: 13.1.4
       hash-sum: 2.0.0
@@ -2434,7 +2434,7 @@ packages:
     dependencies:
       '@nuxt/schema': 3.4.1(rollup@3.20.6)
       c12: 1.2.0
-      consola: 3.0.2
+      consola: 3.1.0
       defu: 6.1.2
       globby: 13.1.4
       hash-sum: 2.0.0
@@ -2506,7 +2506,7 @@ packages:
       '@nuxt/kit': 3.4.1(rollup@3.20.6)
       chalk: 5.2.0
       ci-info: 3.8.0
-      consola: 3.0.2
+      consola: 3.1.0
       create-require: 1.1.1
       defu: 6.1.2
       destr: 1.2.2
@@ -5125,8 +5125,8 @@ packages:
     resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
     dev: true
 
-  /consola@3.0.2:
-    resolution: {integrity: sha512-o/Wau2FmZKiQgyp3c3IULgN6J5yc0lwYMnoyiZdEpdGxKGBtt2ACbkulBZ6BUsHy1HlSJqoP4YOyPIJLgRJyKQ==}
+  /consola@3.1.0:
+    resolution: {integrity: sha512-rrrJE6rP0qzl/Srg+C9x/AE5Kxfux7reVm1Wh0wCjuXvih6DqZgqDZe8auTD28fzJ9TF0mHlSDrPpWlujQRo1Q==}
     dev: true
 
   /console-control-strings@1.1.0:
@@ -9116,7 +9116,7 @@ packages:
       c12: 1.2.0
       chalk: 5.2.0
       chokidar: 3.5.3
-      consola: 3.0.2
+      consola: 3.1.0
       cookie-es: 0.5.0
       defu: 6.1.2
       destr: 1.2.2
