@@ -327,19 +327,18 @@ const isFormSent = ref(false)
 const signedInUsername = ref(store.signedInUsername)
 
 // methods
-function dateTimeFormatter(x?: string) {
-  return x
+const dateTimeFormatter = (x?: string) =>
+  x
     ? new Date(x).toLocaleString(locale.value, {
         dateStyle: 'medium',
         timeStyle: 'short',
       })
     : undefined
-}
-function onInputName($event: any) {
+const onInputName = ($event: any) => {
   v$.value.name.$model = $event
   updateSlug()
 }
-async function submit() {
+const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
   if (form.id) {
@@ -398,14 +397,16 @@ async function submit() {
     )
   }
 }
-function updateForm(data?: Pick<EventItemFragment, 'name' | 'slug'>) {
+
+const updateForm = (data?: Pick<EventItemFragment, 'name' | 'slug'>) => {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {
     ;(form as Record<string, any>)[k] = v
   }
 }
-function updateSlug() {
+
+const updateSlug = () => {
   form.slug = slugify(form.name ?? '', {
     lower: true,
     strict: true,

@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import { H3Event } from 'h3'
 import fetch from 'node-fetch'
 
-export default defineEventHandler(async function (event: H3Event) {
+export default defineEventHandler(async (event: H3Event) => {
   const { res } = event.node
   const jwtPublicKey = await useJwtPublicKey()
 
@@ -21,7 +21,7 @@ export default defineEventHandler(async function (event: H3Event) {
   res.end(jwtPublicKey)
 })
 
-export async function useJwtPublicKey() {
+export const useJwtPublicKey = async () => {
   const config = useRuntimeConfig()
   const jwtPublicKeyPath = process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE
 

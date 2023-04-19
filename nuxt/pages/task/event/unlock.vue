@@ -150,7 +150,7 @@ const isFormSent = ref(false)
 const title = t('title')
 
 // methods
-async function submit() {
+const submit = async () => {
   if (!isFormValid({ v$, isFormSent })) return
 
   const result = await eventUnlockMutation.executeMutation({

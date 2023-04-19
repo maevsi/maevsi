@@ -94,7 +94,7 @@ const routeParamUsername = route.params.username as string
 const title = route.params.username as string
 
 // methods
-function showModalImageSelection() {
+const showModalImageSelection = () => {
   store.modals.push({ id: 'ModalImageSelection' })
 }
 

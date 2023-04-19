@@ -145,7 +145,7 @@ const pending = reactive({
 })
 
 // methods
-function copyLink(invitation: Pick<InvitationItemFragment, 'uuid'>): void {
+const copyLink = (invitation: Pick<InvitationItemFragment, 'uuid'>) => {
   if (!process.client) return
 
   copyText(
@@ -156,12 +156,12 @@ function copyLink(invitation: Pick<InvitationItemFragment, 'uuid'>): void {
     showToast({ title: t('copySuccess') })
   })
 }
-async function delete_(id: string) {
+const delete_ = async (id: string) => {
   pending.deletions.push(id)
   await deleteInvitationByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(id), 1)
 }
-async function send(invitation: any) {
+const send = async (invitation: any) => {
   pending.sends.push(invitation.uuid)
 
   const result = await inviteMutation.executeMutation({
