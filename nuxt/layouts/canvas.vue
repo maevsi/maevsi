@@ -17,7 +17,7 @@ const image = ref<HTMLImageElement>()
 const imageSize = 200
 
 // methods
-function canvasResize() {
+const canvasResize = () => {
   if (!ctx.value) return
 
   ctx.value.canvas.height = window.innerHeight
@@ -25,7 +25,7 @@ function canvasResize() {
 
   ctx.value.translate(ctx.value.canvas.width / 2, ctx.value.canvas.height / 2)
 }
-function draw() {
+const draw = () => {
   if (!ctx.value || !image.value) return
 
   clear()
@@ -38,7 +38,7 @@ function draw() {
   )
   ctx.value.rotate(Math.PI / 256)
 }
-function clear() {
+const clear = () => {
   if (!ctx.value) return
 
   ctx.value.save()

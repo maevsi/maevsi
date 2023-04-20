@@ -112,9 +112,9 @@
 </template>
 
 <script setup lang="ts">
-import { Uppy, UploadResult, UppyFile } from '@uppy/core'
+import { Uppy, UppyFile } from '@uppy/core'
 import Tus from '@uppy/tus'
-import consola from 'consola'
+import { consola } from 'consola'
 import prettyBytes from 'pretty-bytes'
 import { UnwrapRef } from 'vue'
 import { Cropper, CropperResult, Size } from 'vue-advanced-cropper'
@@ -362,15 +362,15 @@ const getUploadBlobPromise = () =>
           data: blob,
         })
 
-        uppy.value.upload().then((value: UploadResult) => {
-          allUploadsQuery.executeQuery()
+        const uploadResult = await uppy.value.upload()
 
-          if (value.failed.length > 0) {
-            reject(t('uploadError'))
-          } else {
-            resolve()
-          }
-        })
+        allUploadsQuery.executeQuery()
+
+        if (uploadResult.failed.length > 0) {
+          return reject(t('uploadError'))
+        } else {
+          return resolve()
+        }
       },
       'image/jpeg'
     )

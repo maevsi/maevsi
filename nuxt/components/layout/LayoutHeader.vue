@@ -104,7 +104,7 @@ const { t } = useI18n()
 const signedInUsername = computed(() => store.signedInUsername)
 
 // // methods
-function navigateToSearch() {
+const navigateToSearch = () => {
   navigateTo({
     path: localePath(`/task/search`),
     query: { q: 'search phrase' },

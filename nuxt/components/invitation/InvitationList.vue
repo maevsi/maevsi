@@ -99,7 +99,7 @@ import {
   Title,
   Tooltip,
 } from 'chart.js'
-import consola from 'consola'
+import { consola } from 'consola'
 import { Doughnut } from 'vue-chartjs'
 
 import { useMaevsiStore } from '~/store'
@@ -122,7 +122,7 @@ const config = useRuntimeConfig()
 
 // refs
 const after = ref<string>()
-const doughnutRef = ref()
+const doughnutRef = ref<DoughnutController>()
 
 // api data
 const invitationsQuery = await useAllInvitationsQuery({
@@ -150,8 +150,13 @@ const options = {
 }
 
 // methods
-function add() {
-  store.modals.push({ id: 'ModalInvitation' })
+const add = () => store.modals.push({ id: 'ModalInvitation' })
+const updateChart = () => {
+  Chart.defaults.color = $colorMode.value === 'dark' ? '#fff' : '#000'
+
+  if (doughnutRef.value?.chart) {
+    doughnutRef.value?.chart.update()
+  }
 }
 
 // computations
@@ -194,14 +199,13 @@ const invitations = computed(
 )
 
 // lifecycle
-onMounted(() => {
-  Chart.defaults.color = () => ($colorMode.value === 'dark' ? '#fff' : '#000')
-})
 watch(
   () => $colorMode.value,
-  (_currentValue, _oldValue) => {
-    doughnutRef.value.updateChart()
-  }
+  (_currentValue, _oldValue) => updateChart()
+)
+watch(
+  () => doughnutRef.value?.chart,
+  (_currentValue, _oldValue) => updateChart()
 )
 
 // initialization

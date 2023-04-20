@@ -37,10 +37,10 @@ const routeParamUsername = route.params.username as string
 const selectedProfilePictureStorageKey = ref<string | null>()
 
 // methods
-function selectProfilePictureStorageKey(storageKey?: string | null) {
+const selectProfilePictureStorageKey = (storageKey?: string | null) => {
   selectedProfilePictureStorageKey.value = storageKey
 }
-async function setProfilePicture() {
+const setProfilePicture = async () => {
   await profilePictureSetMutation.executeMutation({
     storageKey: selectedProfilePictureStorageKey.value || '',
   })

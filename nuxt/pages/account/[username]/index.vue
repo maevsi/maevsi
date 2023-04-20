@@ -31,7 +31,7 @@
           width="96"
         />
       </div>
-      <h2 class="max-w-full overflow-hidden text-ellipsis sm:w-auto">
+      <h2>
         {{ routeParamUsername }}
       </h2>
     </div>

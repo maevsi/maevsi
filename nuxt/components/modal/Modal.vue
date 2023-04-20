@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import consola from 'consola'
+import { consola } from 'consola'
 
 import { useMaevsiStore } from '~/store'
 
@@ -100,12 +100,12 @@ const isVisible = computed(
 )
 
 // methods
-function close() {
+const close = () => {
   // NOT = "cancel"! Used by `submit` too.
 
   store.modalRemove(props.id)
 }
-function modalKeydowns(e: KeyboardEvent) {
+const modalKeydowns = (e: KeyboardEvent) => {
   if (!isVisible.value) {
     return
   }
@@ -122,7 +122,7 @@ function modalKeydowns(e: KeyboardEvent) {
       break
   }
 }
-async function submit() {
+const submit = async () => {
   isSubmitting.value = true
 
   try {

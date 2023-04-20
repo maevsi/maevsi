@@ -9,7 +9,7 @@
     font-family: Manrope;
     font-style: normal;
     font-weight: 400;
-    src: url('/assets/static/fonts/manrope/manrope-400.woff2') format('woff2');
+    src: url('/assets/static/fonts/manrope.woff2') format('woff2');
     /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
@@ -21,7 +21,7 @@
     font-family: Manrope;
     font-style: normal;
     font-weight: 500;
-    src: url('/assets/static/fonts/manrope/manrope-500.woff2') format('woff2');
+    src: url('/assets/static/fonts/manrope.woff2') format('woff2');
     /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
@@ -33,7 +33,7 @@
     font-family: Manrope;
     font-style: normal;
     font-weight: 700;
-    src: url('/assets/static/fonts/manrope/manrope-700.woff2') format('woff2');
+    src: url('/assets/static/fonts/manrope.woff2') format('woff2');
     /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
@@ -45,57 +45,57 @@
     font-family: Manrope;
     font-style: normal;
     font-weight: 800;
-    src: url('/assets/static/fonts/manrope/manrope-800.woff2') format('woff2');
+    src: url('/assets/static/fonts/manrope.woff2') format('woff2');
     /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
       U+2215, U+FEFF, U+FFFD;
   }
 
-  a {
-    @apply m-1;
-  }
-
   a:focus {
-    @apply outline-none ring rounded;
-  }
-
-  button {
-    @apply m-1;
+    @apply outline-none ring;
   }
 
   button:focus {
-    @apply outline-none ring rounded;
+    @apply outline-none ring;
   }
 
   thead {
-    @apply sticky top-0 z-10 maevsi-bg-darken;
+    @apply sticky top-0 z-10 vio-bg-darken;
   }
 
   tbody {
-    @apply divide-y maevsi-divide-darken;
+    @apply divide-y vio-divide-darken;
   }
 }
 
 @layer utilities {
-  .maevsi-prose {
-    @apply m-auto prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl; /* 2xl:prose-2xl */
-  }
-
-  .maevsi-prose-scheme {
-    @apply maevsi-prose dark:prose-invert;
-  }
-
-  .maevsi-divide-darken {
-    @apply divide-background-brighten dark:divide-background-darken
-  }
-
-  .maevsi-bg-darken {
+  .vio-bg-darken {
     @apply bg-background-brighten dark:bg-background-darken
   }
 
-  .maevsi-border-darken {
+  .vio-border-darken {
     @apply border-background-brighten dark:border-background-darken
+  }
+
+  .vio-line-clamp-2 {
+    @apply max-w-full text-ellipsis break-words line-clamp-2;
+  }
+
+  .vio-prose {
+    @apply m-auto prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl; /* 2xl:prose-2xl */
+  }
+
+  .vio-prose-fullwidth {
+    @apply vio-prose max-w-full sm:max-w-full md:max-w-full xl:max-w-full 2xl:max-w-full;
+  }
+
+  .vio-prose-scheme {
+    @apply vio-prose dark:prose-invert;
+  }
+
+  .vio-divide-darken {
+    @apply divide-background-brighten dark:divide-background-darken
   }
 }
 
@@ -110,7 +110,7 @@
 }
 
 .ProseMirror { /* stylelint-disable-line selector-class-pattern */
-  @apply maevsi-prose;
+  @apply vio-prose;
 
   max-width: 100%;
   margin: 0;

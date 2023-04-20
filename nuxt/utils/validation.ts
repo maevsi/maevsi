@@ -1,5 +1,5 @@
 import { helpers } from '@vuelidate/validators'
-import consola from 'consola'
+import { consola } from 'consola'
 import { Ref } from 'vue'
 
 import {
@@ -30,13 +30,13 @@ export const VALIDATION_LAST_NAME_LENGTH_MAXIMUM = 100
 export const VALIDATION_PASSWORD_LENGTH_MINIMUM = 8
 export const VALIDATION_USERNAME_LENGTH_MAXIMUM = 100
 
-export async function isFormValid({
+export const isFormValid = async ({
   v$,
   isFormSent,
 }: {
   v$: any
   isFormSent: Ref<boolean>
-}): Promise<boolean> {
+}): Promise<boolean> => {
   v$.value.$touch()
 
   const isValid = await v$.value.$validate()
@@ -49,12 +49,13 @@ export async function isFormValid({
   return isValid
 }
 
-export function validateEventSlug(
-  signedInUserName: string,
-  invert: boolean,
-  exclude?: string
-): (value: string) => Promise<boolean> {
-  return async (value: string) => {
+export const validateEventSlug =
+  (
+    signedInUserName: string,
+    invert: boolean,
+    exclude?: string
+  ): ((value: string) => Promise<boolean>) =>
+  async (value: string) => {
     const { $urql } = useNuxtApp()
 
     if (!helpers.req(value)) {
@@ -67,8 +68,8 @@ export function validateEventSlug(
 
     const result = await $urql.value
       .query(eventIsExistingQuery, {
-        slug: signedInUserName,
-        authorUsername: value,
+        slug: value,
+        authorUsername: signedInUserName,
       })
       .toPromise()
 
@@ -78,12 +79,10 @@ export function validateEventSlug(
       ? !result.data?.eventIsExisting
       : !!result.data?.eventIsExisting
   }
-}
 
-export function validateUsername(
-  invert?: boolean
-): (value: string) => Promise<boolean> {
-  return async (value: string) => {
+export const validateUsername =
+  (invert?: boolean): ((value: string) => Promise<boolean>) =>
+  async (value: string) => {
     const { $urql } = useNuxtApp()
 
     if (!helpers.req(value)) {
@@ -102,4 +101,3 @@ export function validateUsername(
       ? !result.data?.accountIsExisting
       : !!result.data?.accountIsExisting
   }
-}

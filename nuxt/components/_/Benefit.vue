@@ -10,10 +10,7 @@
       :src="iconPath"
       width="32"
     />
-    <div class="w-full">
-      <!-- Heading wrapper required for text overflow ellipsis. -->
-      <h3 class="text-center">{{ title }}</h3>
-    </div>
+    <h3 class="text-center">{{ title }}</h3>
     <p class="text-center">{{ description }}</p>
   </section>
 </template>
