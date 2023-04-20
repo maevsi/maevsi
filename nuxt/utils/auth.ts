@@ -19,7 +19,7 @@ export const authenticationAnonymous = async ({
   client: Client
   $urqlReset: () => void
   store: ReturnType<typeof useMaevsiStore>
-  res: ServerResponse
+  res?: ServerResponse
 }) => {
   consola.trace('Authenticating anonymously...')
 
@@ -89,7 +89,7 @@ export const jwtRefresh = async ({
 
   if (result.error) {
     consola.error(result.error)
-    await signOut({ $urqlReset, store, res })
+    await signOut({ client, $urqlReset, store, res })
   } else if (!result.data?.jwtRefresh?.jwt) {
     await authenticationAnonymous({ client, $urqlReset, store, res })
   } else {
@@ -154,25 +154,29 @@ export const useJwtStore = () => {
 }
 
 export const signOut = async ({
+  client,
   $urqlReset,
   store,
   res,
 }: {
+  client: Client
   $urqlReset: () => void
   store: ReturnType<typeof useMaevsiStore>
   res?: ServerResponse
 }) => {
   await jwtStore({ $urqlReset, store, res })
+  await authenticationAnonymous({ client, $urqlReset, store, res })
 }
 
 export const useSignOut = () => {
-  const { $urqlReset } = useNuxtApp()
+  const { $urql, $urqlReset } = useNuxtApp()
   const store = useMaevsiStore()
   const event = useRequestEvent()
 
   return {
     async signOut() {
       await signOut({
+        client: $urql.value,
         $urqlReset,
         store,
         res: process.server ? event.node.res : undefined,
