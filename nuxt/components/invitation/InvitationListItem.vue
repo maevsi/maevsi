@@ -145,16 +145,16 @@ const pending = reactive({
 })
 
 // methods
-const copyLink = (invitation: Pick<InvitationItemFragment, 'uuid'>) => {
+const copyLink = async (invitation: Pick<InvitationItemFragment, 'uuid'>) => {
   if (!process.client) return
 
-  copyText(
+  await copyText(
     `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
       invitation.uuid
     }`
-  ).then(() => {
-    showToast({ title: t('copySuccess') })
-  })
+  )
+
+  showToast({ title: t('copySuccess') })
 }
 const delete_ = async (id: string) => {
   pending.deletions.push(id)
