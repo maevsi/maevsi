@@ -128,7 +128,7 @@ export const jwtStore = async ({
     try {
       await $fetch('/api/auth', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${jwt}` },
+        ...(jwt ? { headers: { Authorization: `Bearer ${jwt}` } } : {}),
       })
     } catch (error: any) {
       return Promise.reject(Error('Authentication api call failed.'))
