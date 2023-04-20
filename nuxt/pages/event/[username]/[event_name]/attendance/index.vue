@@ -140,10 +140,10 @@ const title = computed(() => {
 })
 
 // methods
-function qrCodeScan() {
+const qrCodeScan = () => {
   store.modals.push({ id: 'ModalAttendanceScanQrCode' })
 }
-async function onInit(promise: Promise<any>) {
+const onInit = async (promise: Promise<any>) => {
   loading.value = true
 
   try {
@@ -174,15 +174,15 @@ async function onInit(promise: Promise<any>) {
     loading.value = false
   }
 }
-async function onClick() {
+const onClick = async () => {
   await writeTag(invitationCode.value)
 }
-async function onDecode(e: any) {
+const onDecode = async (e: any) => {
   invitationCode.value = e
   await fireAlert({ level: 'success' })
   store.modalRemove('ModalAttendanceScanQrCode')
 }
-async function checkWriteTag() {
+const checkWriteTag = async () => {
   if (!('NDEFReader' in window)) {
     return Promise.reject(
       Error(
@@ -213,7 +213,7 @@ async function checkWriteTag() {
     }
   }
 }
-async function writeTag(e: any): Promise<void> {
+const writeTag = async (e: any) => {
   try {
     await new NDEFReader().write(e)
     await fireAlert({ level: 'success' })

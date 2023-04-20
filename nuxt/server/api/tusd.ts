@@ -41,7 +41,7 @@ const pool = new pg.Pool({
   user: 'maevsi_tusd',
 })
 
-export default defineEventHandler(async function (event: H3Event) {
+export default defineEventHandler(async (event: H3Event) => {
   const method = getMethod(event)
 
   switch (method) {
@@ -56,7 +56,7 @@ export default defineEventHandler(async function (event: H3Event) {
   }
 })
 
-async function deleteUpload(event: H3Event, uploadId: any, storageKey: any) {
+const deleteUpload = async (event: H3Event, uploadId: any, storageKey: any) => {
   let queryResult = await pool
     .query(
       'DELETE FROM maevsi.profile_picture WHERE upload_storage_key = $1;',
@@ -86,7 +86,7 @@ async function deleteUpload(event: H3Event, uploadId: any, storageKey: any) {
   await send(event)
 }
 
-async function tusdDelete(event: H3Event) {
+const tusdDelete = async (event: H3Event) => {
   const {
     node: { req },
   } = event
@@ -196,7 +196,7 @@ async function tusdDelete(event: H3Event) {
   }
 }
 
-async function tusdPost(event: H3Event) {
+const tusdPost = async (event: H3Event) => {
   const {
     node: { req },
   } = event

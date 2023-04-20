@@ -156,12 +156,12 @@ const copyLink = async (invitation: Pick<InvitationItemFragment, 'uuid'>) => {
 
   showToast({ title: t('copySuccess') })
 }
-async function delete_(id: string) {
+const delete_ = async (id: string) => {
   pending.deletions.push(id)
   await deleteInvitationByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(id), 1)
 }
-async function send(invitation: any) {
+const send = async (invitation: any) => {
   pending.sends.push(invitation.uuid)
 
   const result = await inviteMutation.executeMutation({

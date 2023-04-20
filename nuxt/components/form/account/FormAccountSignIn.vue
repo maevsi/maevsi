@@ -85,7 +85,7 @@ const form = reactive({
 const isFormSent = ref(false)
 
 // methods
-async function submit() {
+const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
   const result = await authenticateMutation.executeMutation({

@@ -30,7 +30,7 @@ const dropdownRef = ref<HTMLElement>()
 const isOpen = ref(false)
 
 // methods
-async function toggleIsOpen(e: MouseEvent) {
+const toggleIsOpen = async (e: MouseEvent) => {
   isOpen.value = !isOpen.value
 
   if (isOpen.value) {

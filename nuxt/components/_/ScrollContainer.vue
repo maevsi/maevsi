@@ -31,7 +31,7 @@ const resizeSensor = ref<ResizeSensor>()
 const emitLoadMore = debounce(() => {
   emit('loadMore')
 }, 300)
-function onScroll(e: Event) {
+const onScroll = (e: Event) => {
   const scrollBar = e.target as Element
 
   if (
