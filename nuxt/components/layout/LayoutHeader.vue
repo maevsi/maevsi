@@ -68,7 +68,7 @@
             width="40"
           />
         </ButtonIcon>
-        <div v-else>
+        <template v-else>
           <ButtonIcon
             :aria-label="t('signIn')"
             class="lg:hidden h-8 w-8"
@@ -83,7 +83,7 @@
           >
             {{ t('signIn') }}
           </ButtonText>
-        </div>
+        </template>
       </div>
     </div>
   </header>
