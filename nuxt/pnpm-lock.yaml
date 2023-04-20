@@ -7,6 +7,9 @@ devDependencies:
   '@dargmuesli/nuxt-cookie-control':
     specifier: 5.6.0
     version: 5.6.0(rollup@3.20.6)
+  '@fontsource/manrope':
+    specifier: 4.5.13
+    version: 4.5.13
   '@funken-studio/sitemap-nuxt-3':
     specifier: 4.0.4
     version: 4.0.4(rollup@3.20.6)
@@ -1338,6 +1341,10 @@ packages:
   /@eslint/js@8.38.0:
     resolution: {integrity: sha512-IoD2MfUnOV58ghIHCiil01PcohxjbYR/qCxsoC+xNgUwh1EY8jOOrYmu3d3a71+tJJ23uscEV4X2HJWMsPJu4g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@fontsource/manrope@4.5.13:
+    resolution: {integrity: sha512-UFN5DMGBp8nFpwhPQXfpSbsEm4OVISqUKQy+rA+pb1zYGoH+OGN1woKEND8VLx+pC7rY3nrPRCJvSuuOaNdW7Q==}
     dev: true
 
   /@funken-studio/sitemap-nuxt-3@4.0.4(rollup@3.20.6):
