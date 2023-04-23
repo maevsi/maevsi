@@ -95,11 +95,11 @@ devDependencies:
     specifier: 8.6.6
     version: 8.6.6
   '@uppy/core':
-    specifier: 3.1.2
-    version: 3.1.2
+    specifier: 3.2.0
+    version: 3.2.0
   '@uppy/tus':
-    specifier: 3.0.6
-    version: 3.0.6(@uppy/core@3.1.2)
+    specifier: 3.1.0
+    version: 3.1.0(@uppy/core@3.2.0)
   '@urql/core':
     specifier: 4.0.6
     version: 4.0.6(graphql@16.6.0)
@@ -3861,19 +3861,19 @@ packages:
       vue: 3.2.47
     dev: true
 
-  /@uppy/companion-client@3.1.2:
-    resolution: {integrity: sha512-XQm1xARUSmUKQylWNHlOmE/lY0Wgvv0Vf4DlDn2/CiYZBIr/fyemJPe0chCW2jYP5RjYEwqscZRdRrywUygrzw==}
+  /@uppy/companion-client@3.1.3:
+    resolution: {integrity: sha512-l70qOd4P9PSqxPDOFD1LMusDGGi36LCCiQko/e+Uw5hBtzN9vhAG5rQm242FlNoFdxK5T6jmfoZJSVel0UTvzg==}
     dependencies:
-      '@uppy/utils': 5.2.0
+      '@uppy/utils': 5.3.0
       namespace-emitter: 2.0.1
     dev: true
 
-  /@uppy/core@3.1.2:
-    resolution: {integrity: sha512-A7BpG1dbNWM6u9j/QxNem4iScgz0HMPbvf9INa2cZMVw7NKrSlr4B8qKZm+g0imMF02JaN40/8EUXK/AddqZyg==}
+  /@uppy/core@3.2.0:
+    resolution: {integrity: sha512-w/jdNCIdmxt4uPt4UBPfzmQ7HanIE73GiKKeHtZo6Gp+HWOsUhY7DBimGUk3IsX/vMJTSB2+RhZAUOBGRaP5fA==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.9
-      '@uppy/store-default': 3.0.2
-      '@uppy/utils': 5.2.0
+      '@uppy/store-default': 3.0.3
+      '@uppy/utils': 5.3.0
       lodash.throttle: 4.1.1
       mime-match: 1.0.2
       namespace-emitter: 2.0.1
@@ -3881,23 +3881,23 @@ packages:
       preact: 10.13.2
     dev: true
 
-  /@uppy/store-default@3.0.2:
-    resolution: {integrity: sha512-kIQMCjXui6tjF1E9xGo4YHkvt71McXkU0FStrcQuBrRXuOhb+NcuWh3sMh3KryivVNgT6w5Odrlw2FUFkl9cqA==}
+  /@uppy/store-default@3.0.3:
+    resolution: {integrity: sha512-/zlvQNj4HjkthI+7dNdj/8mOlTg1Zb1gJ/ZsOxof0g3xXD+OAwm7asRnOwpfj2dos+lExdW/zMn8XsRGsuvb6Q==}
     dev: true
 
-  /@uppy/tus@3.0.6(@uppy/core@3.1.2):
-    resolution: {integrity: sha512-B6mE30ijuiA2li0QsP9GwWgKZtq3K6EFb2yF944ieAbSC9Lp5DxrLOyadK+8WgT0u4wdnQ1Lb8Na7aNHzklTdA==}
+  /@uppy/tus@3.1.0(@uppy/core@3.2.0):
+    resolution: {integrity: sha512-oFSa6WtDv2yXO/U02wZ8pQEIxEdtBs5N80fi1anipiJASvNJ+pCrl812QDQLdd/roXJkg0jIEP4/8Eod2d6yGg==}
     peerDependencies:
-      '@uppy/core': ^3.1.2
+      '@uppy/core': ^3.2.0
     dependencies:
-      '@uppy/companion-client': 3.1.2
-      '@uppy/core': 3.1.2
-      '@uppy/utils': 5.2.0
+      '@uppy/companion-client': 3.1.3
+      '@uppy/core': 3.2.0
+      '@uppy/utils': 5.3.0
       tus-js-client: 3.1.0
     dev: true
 
-  /@uppy/utils@5.2.0:
-    resolution: {integrity: sha512-5NSX0rDTBZSDSaP0T5IUmrPp7eRYGwcALQz+UBVSZaJTaMKPcfQwNJYNk0YwRfOAOhyvyrUfIxWMbjapDCp4RA==}
+  /@uppy/utils@5.3.0:
+    resolution: {integrity: sha512-tPW+HtRkjanFQAa/XD2e6kjJ7ZeMHtVxEVeBeRtKTnltsCA9kNF2gDwxtUVPEWyLrKzW+CvRm60NDiOKaWUuww==}
     dependencies:
       lodash.throttle: 4.1.1
     dev: true
