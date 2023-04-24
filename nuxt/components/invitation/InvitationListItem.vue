@@ -19,16 +19,9 @@
         class="flex items-center justify-evenly gap-4 text-text-dark dark:text-text-bright"
       >
         <ButtonIcon
-          :aria-label="
-            contact.accountUsername || contact.emailAddress
-              ? t('invitationSend')
-              : t('disabledReasonEmailAddressNone')
-          "
+          :aria-label="t('invitationSend')"
           class="hidden md:block"
-          :disabled="
-            (!contact.accountUsername && !contact.emailAddress) ||
-            pending.sends.includes(invitation.uuid)
-          "
+          :is-loading="!pending.sends.includes(invitation.uuid)"
           @click="send(invitation)"
         >
           <IconPaperPlane />
@@ -40,71 +33,43 @@
         >
           <IconLink />
         </ButtonIcon>
-        <DropDown>
-          <ButtonIcon :aria-label="t('globalShowMore')">
-            <IconDotsVertical />
-          </ButtonIcon>
-          <template #content>
-            <Button
-              :aria-label="
-                contact.accountUsername || contact.emailAddress
-                  ? t('invitationSend')
-                  : t('disabledReasonEmailAddressNone')
-              "
-              class="block md:hidden"
-              :disabled="
-                (!contact.accountUsername && !contact.emailAddress) ||
-                pending.sends.includes(invitation.uuid)
-              "
-              @click="send(invitation)"
-            >
-              {{
-                contact.accountUsername || contact.emailAddress
-                  ? t('invitationSend')
-                  : t('disabledReasonEmailAddressNone')
-              }}
-              <template #prefix>
-                <IconPaperPlane />
-              </template>
-            </Button>
-            <Button
-              :aria-label="t('invitationLink')"
-              class="block md:hidden"
-              @click="copyLink(invitation)"
-            >
-              {{ t('invitationLink') }}
-              <template #prefix>
-                <IconLink />
-              </template>
-            </Button>
-            <Button
-              :aria-label="t('invitationView')"
-              @click="
-                navigateTo({
-                  path: localePath(
-                    `/event/${event.authorUsername}/${event.slug}`
-                  ),
-                  query: { ic: invitation.uuid },
-                })
-              "
-            >
-              {{ t('invitationView') }}
-              <template #prefix>
-                <IconEye />
-              </template>
-            </Button>
-            <Button
-              :aria-label="t('invitationDelete')"
-              :disabled="pending.deletions.includes(invitation.uuid)"
-              @click="delete_(invitation.id)"
-            >
-              {{ t('invitationDelete') }}
-              <template #prefix>
-                <IconTrash />
-              </template>
-            </Button>
-          </template>
-        </DropDown>
+        <Dropdown>
+          <DropdownItem
+            :aria-label="t('invitationSend')"
+            :is-loading="!pending.sends.includes(invitation.uuid)"
+            class="block md:hidden"
+            @click="send(invitation)"
+          >
+            <IconPaperPlane />
+          </DropdownItem>
+          <DropdownItem
+            :aria-label="t('invitationLink')"
+            class="block md:hidden"
+            @click="copyLink(invitation)"
+          >
+            <IconLink />
+          </DropdownItem>
+          <DropdownItem
+            :aria-label="t('invitationView')"
+            @click="
+              navigateTo({
+                path: localePath(
+                  `/event/${event.authorUsername}/${event.slug}`
+                ),
+                query: { ic: invitation.uuid },
+              })
+            "
+          >
+            <IconEye />
+          </DropdownItem>
+          <DropdownItem
+            :aria-label="t('invitationDelete')"
+            :disabled="pending.deletions.includes(invitation.uuid)"
+            @click="delete_(invitation.id)"
+          >
+            <IconTrash />
+          </DropdownItem>
+        </Dropdown>
       </div>
     </td>
   </tr>
@@ -162,6 +127,15 @@ const delete_ = async (id: string) => {
   pending.deletions.splice(pending.deletions.indexOf(id), 1)
 }
 const send = async (invitation: any) => {
+  if (!contact.value) return
+
+  if (!contact.value.accountUsername && !contact.value.emailAddress) {
+    return showToast({
+      icon: 'error',
+      title: t('disabledReasonEmailAddressNone'),
+    })
+  }
+
   pending.sends.push(invitation.uuid)
 
   const result = await inviteMutation.executeMutation({
@@ -185,7 +159,7 @@ const contact = computed(() =>
 <i18n lang="yaml">
 de:
   copySuccess: Der Einladungslink wurde in die Zwischenablage kopiert.
-  disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse.
+  disabledReasonEmailAddressNone: Diesem Kontakt fehlt eine E-Mail-Adresse
   invitationDelete: Einladung löschen
   invitationLink: Einladungslink kopieren
   invitationSend: Einladung versenden
@@ -194,7 +168,7 @@ de:
   # postgresP0002: Die Einladung konnte nicht versandt werden! Möglicherweise hast du aktuell keinen Zugriff auf die notwendigen Daten. Versuche die Seite neu zu laden.
 en:
   copySuccess: The invitation link has been copied to the clipboard.
-  disabledReasonEmailAddressNone: This contact does not have an associated email address.
+  disabledReasonEmailAddressNone: This contact does not have an associated email address
   invitationDelete: Delete invitation
   invitationLink: Copy invitation link
   invitationSend: Send invitation

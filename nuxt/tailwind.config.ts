@@ -48,6 +48,10 @@ export default {
     require('@tailwindcss/typography'),
     ({ addBase, addComponents, addUtilities, theme }: PluginAPI) => {
       addBase({
+        '[aria-disabled="true"]': {
+          cursor: theme('cursor.not-allowed'),
+          opacity: theme('opacity.50'),
+        },
         ':disabled': {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),

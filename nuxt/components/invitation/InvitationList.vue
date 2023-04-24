@@ -1,33 +1,36 @@
 <template>
   <Loader :api="api">
     <div class="flex flex-col gap-4">
-      <ScrollContainer
+      <!-- <ScrollContainer
         v-if="event && invitations.length"
         class="max-h-[70vh]"
         :has-next-page="!!api.data.allInvitations?.pageInfo.hasNextPage"
         @load-more="after = api.data.allInvitations?.pageInfo.endCursor"
+      > -->
+      <table
+        v-if="event && invitations.length"
+        class="border border-neutral-300 dark:border-neutral-600"
       >
-        <table class="border border-neutral-300 dark:border-neutral-600">
-          <thead
-            class="sticky top-0 z-10 bg-background-bright dark:bg-background-dark"
-          >
-            <tr>
-              <th scope="col">
-                {{ t('contact') }}
-              </th>
-              <th />
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
-            <InvitationListItem
-              v-for="invitation in invitations"
-              :key="invitation.uuid"
-              :event="event"
-              :invitation="invitation"
-            />
-          </tbody>
-        </table>
-      </ScrollContainer>
+        <thead
+          class="sticky top-0 z-10 bg-background-bright dark:bg-background-dark"
+        >
+          <tr>
+            <th scope="col">
+              {{ t('contact') }}
+            </th>
+            <th />
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
+          <InvitationListItem
+            v-for="invitation in invitations"
+            :key="invitation.uuid"
+            :event="event"
+            :invitation="invitation"
+          />
+        </tbody>
+      </table>
+      <!-- </ScrollContainer> -->
       <div v-else class="flex flex-col items-center gap-2">
         {{ t('invitationNone') }}
         <FormInputStateInfo>

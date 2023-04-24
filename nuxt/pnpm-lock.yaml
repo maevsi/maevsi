@@ -22,6 +22,12 @@ devDependencies:
   '@graphql-codegen/urql-introspection':
     specifier: 2.2.1
     version: 2.2.1(graphql@16.6.0)
+  '@headlessui/vue':
+    specifier: 1.7.13
+    version: 1.7.13(vue@3.2.47)
+  '@heroicons/vue':
+    specifier: 2.0.17
+    version: 2.0.17(vue@3.2.47)
   '@http-util/status-i18n':
     specifier: 0.6.2
     version: 0.6.2
@@ -2232,6 +2238,23 @@ packages:
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
     dependencies:
       '@hapi/hoek': 9.3.0
+    dev: true
+
+  /@headlessui/vue@1.7.13(vue@3.2.47):
+    resolution: {integrity: sha512-obG5TdPdBDfs+jiA1mY29LPFqyJl93Q90EL86ontfRe1B6XvbjPkx+x1aAC5DA18bXbb0Juni1ayDbXo0w1u0A==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.2.47
+    dev: true
+
+  /@heroicons/vue@2.0.17(vue@3.2.47):
+    resolution: {integrity: sha512-M5P6Y9tmctbtv/IC1dO5vTw9xqppYxm/5BKuL4hGlxxLvaxbnTmMAoxTIzezSdYAaLh63emgOCBMa+mxphRxUQ==}
+    peerDependencies:
+      vue: '>= 3'
+    dependencies:
+      vue: 3.2.47
     dev: true
 
   /@html-validate/stylish@3.0.1:
