@@ -1,3 +1,11 @@
+## [1.12.1](https://github.com/maevsi/maevsi/compare/1.12.0...1.12.1) (2023-04-24)
+
+
+### Bug Fixes
+
+* **auth:** authenticate anonymously after sign out ([2f8c5d5](https://github.com/maevsi/maevsi/commit/2f8c5d5cfdf31d9af147c2acada13ef3d90dbcb0))
+* **auth:** correct authorization for undefined jwt ([47c6c93](https://github.com/maevsi/maevsi/commit/47c6c93775898dcd61a021c296483726bc803ace)), closes [#1188](https://github.com/maevsi/maevsi/issues/1188)
+
 # [1.12.0](https://github.com/maevsi/maevsi/compare/1.11.5...1.12.0) (2023-04-18)
 
 
