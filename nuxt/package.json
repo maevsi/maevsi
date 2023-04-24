@@ -5,9 +5,8 @@
   "description": "Find events, guests and friends.",
   "type": "module",
   "engines": {
-    "node": "18"
+    "node": "20"
   },
-  "packageManager": "pnpm@8.3.0",
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
