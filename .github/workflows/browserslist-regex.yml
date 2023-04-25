@@ -7,7 +7,7 @@ on:
 
 jobs:
   browserslist-regex:
-    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.36.0
+    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.37.2
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
