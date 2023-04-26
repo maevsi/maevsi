@@ -20,10 +20,9 @@ WORKDIR /srv/app/
 
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
-VOLUME /srv/sqitch
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["pnpm", "run", "dev"]
+CMD ["pnpm", "run", "--dir", "nuxt", "dev"]
 
 # Waiting for https://github.com/nuxt/framework/issues/6915
 # HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
@@ -212,7 +211,7 @@ WORKDIR /srv/app/
 
 COPY --from=collect /srv/app/ ./
 
-COPY ./sqitch/ /srv/sqitch/
+COPY ./sqitch/ /srv/app/sqitch/
 COPY ./docker/entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["entrypoint.sh"]
