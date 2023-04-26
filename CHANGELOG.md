@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/maevsi/maevsi/compare/1.12.1...1.12.2) (2023-04-26)
+
+
+### Bug Fixes
+
+* **legal:** update address ([cf95732](https://github.com/maevsi/maevsi/commit/cf957325897c09e11c6bfbc8531043ef0cca6c8f))
+
 ## [1.12.1](https://github.com/maevsi/maevsi/compare/1.12.0...1.12.1) (2023-04-24)
 
 
