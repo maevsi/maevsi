@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/maevsi/maevsi/compare/1.13.0...1.13.1) (2023-04-26)
+
+
+### Bug Fixes
+
+* **docker:** account for workspace paths ([9afe6b6](https://github.com/maevsi/maevsi/commit/9afe6b6b8828c3217149a7a6a86a57b178f4e84a))
+
 # [1.13.0](https://github.com/maevsi/maevsi/compare/1.12.2...1.13.0) (2023-04-26)
 
 
