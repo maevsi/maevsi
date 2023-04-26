@@ -1,9 +1,9 @@
 <template>
   <IconContainerNew>
-    <PaperAirplaneIcon />
+    <ArchiveBoxIcon />
   </IconContainerNew>
 </template>
 
 <script setup lang="ts">
-import { PaperAirplaneIcon } from '@heroicons/vue/24/outline'
+import { ArchiveBoxIcon } from '@heroicons/vue/24/outline'
 </script>

@@ -1,29 +1,9 @@
 <template>
-  <IconContainer
-    :title="title || t('title')"
-    viewBox="0 0 20 20"
-    fill="currentColor"
-  >
-    <path
-      fill-rule="evenodd"
-      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-      clip-rule="evenodd"
-    />
-  </IconContainer>
+  <IconContainerNew>
+    <InformationCircleIcon />
+  </IconContainerNew>
 </template>
 
 <script setup lang="ts">
-export interface Props {
-  title?: string // eslint-disable-line vue/require-default-prop
-}
-withDefaults(defineProps<Props>(), {})
-
-const { t } = useI18n()
+import { InformationCircleIcon } from '@heroicons/vue/24/solid'
 </script>
-
-<i18n lang="yaml">
-de:
-  title: Ungültig
-en:
-  title: Invalid
-</i18n>
