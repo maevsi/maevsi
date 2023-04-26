@@ -132,7 +132,7 @@ const form = reactive({
 const isFormSent = ref(false)
 
 // methods
-function selectToggle(contactId: string) {
+const selectToggle = (contactId: string) => {
   const index = form.contactIds.indexOf(contactId)
 
   if (index === -1) {
@@ -141,7 +141,7 @@ function selectToggle(contactId: string) {
     form.contactIds.splice(index, 1)
   }
 }
-async function submit() {
+const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
   const successIds = []

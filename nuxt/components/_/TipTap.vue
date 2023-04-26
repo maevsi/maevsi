@@ -184,7 +184,7 @@ const getLocation = (href: string) => {
   l.href = href
   return l
 }
-function setLink() {
+const setLink = () => {
   if (!editor.value) return
 
   const previousUrl = editor.value.getAttributes('link').href

@@ -44,25 +44,23 @@ const api = getApiData([accountEmailAddressVerificationMutation])
 const title = t('title')
 
 // lifecycle
-onMounted(() => {
+onMounted(async () => {
   // run on client side only
   // verifying on server side first leads to an error on client side: "code already used"
-  accountEmailAddressVerificationMutation
-    .executeMutation({
-      code: route.query.code,
+  const result = await accountEmailAddressVerificationMutation.executeMutation({
+    code: route.query.code,
+  })
+
+  if (!result.error) {
+    await fireAlert({
+      level: 'success',
+      text: t('verifiedBody'),
+      title: t('verified'),
     })
-    .then(async (result) => {
-      if (!result.error) {
-        await fireAlert({
-          level: 'success',
-          text: t('verifiedBody'),
-          title: t('verified'),
-        })
-        navigateTo({
-          path: localePath(`/task/account/sign-in`),
-        })
-      }
+    navigateTo({
+      path: localePath(`/task/account/sign-in`),
     })
+  }
 })
 
 // initialization

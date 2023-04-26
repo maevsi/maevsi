@@ -85,31 +85,29 @@ const form = reactive({
 const isFormSent = ref(false)
 
 // methods
-async function submit() {
+const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
-  authenticateMutation
-    .executeMutation({
-      username: form.username || '',
-      password: form.password || '',
-    })
-    .then(async (result) => {
-      if (result.error) return
+  const result = await authenticateMutation.executeMutation({
+    username: form.username || '',
+    password: form.password || '',
+  })
 
-      try {
-        await jwtStore(result.data?.authenticate?.jwt)
-      } catch (error) {
-        await fireAlert({
-          error,
-          level: 'error',
-          text: t('jwtStoreFail'),
-          title: t('globalStatusError'),
-        })
-        return
-      }
+  if (result.error) return
 
-      navigateTo(localePath(`/dashboard`))
+  try {
+    await jwtStore(result.data?.authenticate?.jwt)
+  } catch (error) {
+    await fireAlert({
+      error,
+      level: 'error',
+      text: t('jwtStoreFail'),
+      title: t('globalStatusError'),
     })
+    return
+  }
+
+  navigateTo(localePath(`/dashboard`))
 }
 
 // vuelidate

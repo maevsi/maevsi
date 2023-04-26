@@ -11,11 +11,11 @@ export const useMaevsiStore = defineStore('maevsi', () => {
   const modals = ref<Modal[]>([])
   const signedInUsername = ref<string>()
 
-  function jwtRemove() {
+  const jwtRemove = () => {
     jwtSet(undefined)
   }
 
-  function jwtSet(jwtNew?: string) {
+  const jwtSet = (jwtNew?: string) => {
     const jwtDecodedNew = jwtNew !== undefined ? decodeJwt(jwtNew) : undefined
 
     jwt.value = jwtNew
@@ -28,7 +28,7 @@ export const useMaevsiStore = defineStore('maevsi', () => {
         : undefined
   }
 
-  function modalRemove(modalId: string) {
+  const modalRemove = (modalId: string) => {
     modals.value = modals.value.filter((modal) => {
       return modal.id !== modalId
     })

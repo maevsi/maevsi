@@ -1,11 +1,11 @@
 {
   "private": true,
   "engines": {
-    "node": "18"
+    "node": "20"
   },
-  "packageManager": "pnpm@8.3.0",
+  "packageManager": "pnpm@8.3.1",
   "scripts": {
-    "prepare": "husky install && pnpm --dir nuxt install"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "17.6.1",

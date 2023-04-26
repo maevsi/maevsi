@@ -160,10 +160,10 @@ const loadingId = Math.random()
 const loadingIds = useState('loadingIds', () => [loadingId])
 
 // methods
-function hideScrollHint() {
+const hideScrollHint = () => {
   isScrollHintShown.value = false
 }
-function scrollToSteps() {
+const scrollToSteps = () => {
   sectionStepsRef.value?.scrollIntoView({ behavior: 'smooth' })
 }
 

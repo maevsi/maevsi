@@ -11,7 +11,7 @@ import {
   InvitationItemFragment,
 } from '~/gql/generated/graphql'
 
-export default defineEventHandler(async function (h3Event: H3Event) {
+export default defineEventHandler(async (h3Event: H3Event) => {
   const { req, res } = h3Event.node
 
   if (req.method !== 'POST')
@@ -48,7 +48,7 @@ export default defineEventHandler(async function (h3Event: H3Event) {
   res.end(getIcalString(host, event, contact, invitation))
 })
 
-export function getIcalString(
+export const getIcalString = (
   host: string,
   event: Pick<
     EventItemFragment,
@@ -62,7 +62,7 @@ export function getIcalString(
   >,
   contact?: ContactItemFragment,
   invitation?: InvitationItemFragment
-): string {
+) => {
   const userEventPath = event.authorUsername + '/' + event.slug
   const eventUrl = 'https://' + host + '/event/' + userEventPath
   const eventDescriptionHtml = mustache.render(

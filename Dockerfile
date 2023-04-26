@@ -3,9 +3,9 @@
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:18.16.0-slim AS development
+FROM node:20.0.0-slim AS development
 
-COPY ./docker/entrypoint.sh /usr/local/bin/
+COPY ./docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Update and install dependencies.
 # - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
@@ -22,7 +22,7 @@ VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 VOLUME /srv/sqitch
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["pnpm", "run", "dev"]
 
 # Waiting for https://github.com/nuxt/framework/issues/6915
@@ -33,16 +33,16 @@ CMD ["pnpm", "run", "dev"]
 # Prepare Nuxt.
 
 # Should be the specific version of `node:slim`.
-FROM node:18.16.0-slim AS prepare
+FROM node:20.0.0-slim AS prepare
 
 WORKDIR /srv/app/
 
-COPY ./nuxt/pnpm-lock.yaml ./
+COPY ./pnpm-lock.yaml ./
 
 RUN corepack enable && \
     pnpm fetch
 
-COPY ./nuxt/ ./
+COPY ./ ./
 
 RUN pnpm install --offline
 
@@ -52,7 +52,7 @@ RUN pnpm install --offline
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.16.0-slim AS build
+FROM node:20.0.0-slim AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -65,7 +65,7 @@ COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
 RUN corepack enable && \
-    pnpm run build
+    pnpm --dir nuxt run build
 
 
 ########################
@@ -73,14 +73,14 @@ RUN corepack enable && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.16.0-slim AS lint
+FROM node:20.0.0-slim AS lint
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
 RUN corepack enable && \
-    pnpm run lint
+    pnpm --dir nuxt run lint
 
 
 ########################
@@ -88,14 +88,14 @@ RUN corepack enable && \
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.16.0-slim AS test-unit
+FROM node:20.0.0-slim AS test-unit
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
-RUN npm install -g pnpm && \
-    pnpm run test --run
+RUN corepack enable && \
+    pnpm --dir nuxt run test --run
 
 
 ########################
@@ -148,7 +148,7 @@ WORKDIR /srv/app/
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=prepare /srv/app/ ./
 
-RUN pnpm test:integration:dev
+RUN pnpm --dir nuxt run test:integration:dev
 
 
 ########################
@@ -169,7 +169,7 @@ COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=build /srv/app/ /srv/app/
 COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
 
-RUN pnpm test:integration:prod
+RUN pnpm --dir nuxt run test:integration:prod
 
 
 #######################
@@ -177,11 +177,11 @@ RUN pnpm test:integration:prod
 
 # Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:18.16.0-slim AS collect
+FROM node:20.0.0-slim AS collect
 
 WORKDIR /srv/app/
 
-COPY --from=build /srv/app/.output ./.output
+COPY --from=build /srv/app/nuxt/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/package.json
 COPY --from=test-integration-dev /srv/app/package.json /tmp/package.json
@@ -194,7 +194,7 @@ COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 
 # Should be the specific version of `node:slim`.
 # `sqitch` requires at least `buster`.
-FROM node:18.16.0-slim AS production
+FROM node:20.0.0-slim AS production
 
 ENV NODE_ENV=production
 

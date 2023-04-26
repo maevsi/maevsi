@@ -100,23 +100,23 @@ const pending = reactive({
 const selectedContact = ref<Pick<ContactItemFragment, 'nodeId'>>()
 
 // methods
-function add() {
+const add = () => {
   formContactHeading.value = t('contactAdd')
   selectedContact.value = undefined
   store.modals.push({ id: 'ModalContact' })
 }
-async function delete_(nodeId: string, id: string) {
+const delete_ = async (nodeId: string, id: string) => {
   pending.deletions.push(nodeId)
   await deleteContactByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
 }
-function edit(contact: Pick<ContactItemFragment, 'nodeId'>) {
+const edit = (contact: Pick<ContactItemFragment, 'nodeId'>) => {
   pending.edits.push(contact.nodeId)
   formContactHeading.value = t('contactEdit')
   selectedContact.value = contact
   store.modals.push({ id: 'ModalContact' })
 }
-function onClose() {
+const onClose = () => {
   if (!selectedContact.value) return
 
   pending.edits.splice(pending.edits.indexOf(selectedContact.value.nodeId), 1)

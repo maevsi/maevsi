@@ -381,7 +381,7 @@ const event = computed(() =>
 const routeParamUsername = route.params.username as string
 
 // methods
-function accept() {
+const accept = () => {
   if (invitation.value === undefined) {
     return
   }
@@ -389,7 +389,7 @@ function accept() {
     feedback: InvitationFeedback.Accepted,
   })
 }
-function cancel() {
+const cancel = () => {
   if (invitation.value === undefined) {
     return
   }
@@ -397,14 +397,14 @@ function cancel() {
     feedback: InvitationFeedback.Canceled,
   })
 }
-// function paperInvitationFeedback() {
+// const paperInvitationFeedback = () => {
 //   if (!invitation.value) return
 
 //   update(invitation.value.id, {
 //     feedbackPaper: invitation.value.feedbackPaper,
 //   })
 // }
-function downloadIcal() {
+const downloadIcal = () => {
   const xhr = new XMLHttpRequest()
   const fileName =
     route.params.username + '_' + route.params.event_name + '.ics'
@@ -433,16 +433,16 @@ function downloadIcal() {
     })
   )
 }
-function print() {
+const print = () => {
   prntr({
     printable: 'qrCode',
     type: 'html',
   })
 }
-function qrCodeShow() {
+const qrCodeShow = () => {
   store.modals.push({ id: 'ModalInvitationQrCode' })
 }
-async function update(id: string, invitationPatch: InvitationPatch) {
+const update = async (id: string, invitationPatch: InvitationPatch) => {
   const result = await updateInvitationByIdMutation.executeMutation({
     id,
     invitationPatch,

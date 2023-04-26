@@ -17,39 +17,36 @@ import type {
   UnionToIntersection,
 } from '~/types/types'
 
-export function append(path: string, pathToAppend: string): string {
-  return path + (path.endsWith('/') ? '' : '/') + pathToAppend
-}
+export const append = (path: string, pathToAppend: string) =>
+  path + (path.endsWith('/') ? '' : '/') + pathToAppend
 
-export function capitalizeFirstLetter(string: string): string {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
+export const capitalizeFirstLetter = (string: string) =>
+  string.charAt(0).toUpperCase() + string.slice(1)
 
-export function copyText(text: string) {
-  return new Promise(function (resolve, reject) {
+export const copyText = (text: string) =>
+  new Promise((resolve, reject) => {
     const fakeElement = document.createElement('button')
     const clipboard = new Clipboard(fakeElement, {
-      text: function () {
+      text: () => {
         return text
       },
-      action: function () {
+      action: () => {
         return 'copy'
       },
       container: document.body,
     })
-    clipboard.on('success', function (e) {
+    clipboard.on('success', (e) => {
       clipboard.destroy()
       resolve(e)
     })
-    clipboard.on('error', function (e) {
+    clipboard.on('error', (e) => {
       clipboard.destroy()
       reject(e)
     })
     fakeElement.click()
   })
-}
 
-function getCsp(host: string): Record<string, Array<string>> {
+const getCsp = (host: string): Record<string, Array<string>> => {
   const hostName = host.replace(/:[0-9]+$/, '')
   const config = useRuntimeConfig()
 
@@ -115,14 +112,14 @@ function getCsp(host: string): Record<string, Array<string>> {
   return defu(base, config.public.isInProduction ? production : development)
 }
 
-export function getCspAsString(event: H3Event): string {
+export const getCspAsString = (event: H3Event): string => {
   const host = getHost(event.node.req)
   const csp = getCsp(host)
 
   return Object.keys(csp).reduce((p, c) => `${p}${c} ${csp[c].join(' ')};`, '')
 }
 
-// export function getDeferredPromise<T>(then?: (value: any) => T): Promise<T> {
+// export const getDeferredPromise = <T>(then?: (value: any) => T): Promise<T> => {
 //   let res, rej
 
 //   const promise: any = new Promise((resolve, reject) => {
@@ -134,15 +131,14 @@ export function getCspAsString(event: H3Event): string {
 //   promise.reject = rej
 
 //   if (then) {
-//     promise.then((value: any) => {
-//       then(value)
-//     })
+//     const value = await promise
+//     then(value)
 //   }
 
 //   return promise
 // }
 
-export function getDomainTldPort(host: string) {
+export const getDomainTldPort = (host: string) => {
   const hostParts = host.split('.')
 
   if (hostParts.length <= 2) return host
@@ -150,7 +146,7 @@ export function getDomainTldPort(host: string) {
   return `${hostParts[hostParts.length - 2]}.${hostParts[hostParts.length - 1]}`
 }
 
-export function getHost(req: IncomingMessage) {
+export const getHost = (req: IncomingMessage) => {
   if (!req.headers.host) throw new Error('Host header is not given!')
 
   return req.headers.host
@@ -192,10 +188,10 @@ export const getApiData = <
   return apiData
 }
 
-export function getCombinedErrorMessages(
+export const getCombinedErrorMessages = (
   errors: BackendError[],
   pgIds?: Record<string, string>
-) {
+) => {
   const errorMessages: string[] = []
 
   for (const combinedError of errors) {
@@ -217,22 +213,17 @@ export function getCombinedErrorMessages(
   return errorMessages
 }
 
-export function getQueryString(
-  queryParametersObject: Record<string, any>
-): string {
-  return (
-    '?' +
-    Object.keys(queryParametersObject)
-      .map((key) => {
-        return (
-          encodeURIComponent(key) +
-          '=' +
-          encodeURIComponent(queryParametersObject[key] as string)
-        )
-      })
-      .join('&')
-  )
-}
+export const getQueryString = (queryParametersObject: Record<string, any>) =>
+  '?' +
+  Object.keys(queryParametersObject)
+    .map((key) => {
+      return (
+        encodeURIComponent(key) +
+        '=' +
+        encodeURIComponent(queryParametersObject[key] as string)
+      )
+    })
+    .join('&')
 
 export const getTimezone = async (event: H3Event) =>
   getCookie(event, TIMEZONE_COOKIE_NAME) ||
@@ -250,8 +241,8 @@ export const isQueryIcFormatValid = (
   ic: LocationQueryValue | LocationQueryValue[]
 ) => ic && !Array.isArray(ic) && REGEX_UUID.test(ic)
 
-export function showToast({ title }: { title: string }) {
-  return Swal.fire({
+export const showToast = ({ title }: { title: string }) =>
+  Swal.fire({
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
@@ -264,4 +255,3 @@ export function showToast({ title }: { title: string }) {
     title,
     toast: true,
   })
-}

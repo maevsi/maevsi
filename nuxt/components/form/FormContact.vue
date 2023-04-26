@@ -146,7 +146,7 @@ const form = reactive({
 const isFormSent = ref(false)
 
 // methods
-async function submit() {
+const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
   if (form.id) {
@@ -188,7 +188,7 @@ async function submit() {
     emit('submitSuccess')
   }
 }
-function updateForm(data?: Pick<ContactItemFragment, any>) {
+const updateForm = (data?: Pick<ContactItemFragment, any>) => {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {
