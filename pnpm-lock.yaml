@@ -212,8 +212,8 @@ importers:
         specifier: 1.3.0
         version: 1.3.0
       jose:
-        specifier: 4.14.1
-        version: 4.14.1
+        specifier: 4.14.3
+        version: 4.14.3
       lint-staged:
         specifier: 13.2.2
         version: 13.2.2
@@ -2110,7 +2110,7 @@ packages:
       graphql-request: 6.0.0(graphql@16.6.0)
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
-      jose: 4.14.1
+      jose: 4.14.3
       js-yaml: 4.1.0
       json-stable-stringify: 1.0.2
       lodash: 4.17.21
@@ -8491,8 +8491,8 @@ packages:
       '@sideway/pinpoint': 2.0.0
     dev: true
 
-  /jose@4.14.1:
-    resolution: {integrity: sha512-SgjXLpP7jhQkUNKL6RpowoR/IF4QKE+WjLDMpNnh2vmhiFs67NftrNpvFtgbwpvRdtueFliahYYWz9E+XZZQlg==}
+  /jose@4.14.3:
+    resolution: {integrity: sha512-YPM9Q+dmsna4CGWNn5+oHFsuXJdxvKAOVoNjpe2nje3odSoX5Xz4s71rP50vM8uUKJyQtMnEGPmbVCVR+G4W5g==}
     dev: true
 
   /js-base64@3.7.5:
