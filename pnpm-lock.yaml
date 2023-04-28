@@ -33,7 +33,7 @@ importers:
         version: 3.0.1(graphql@16.6.0)
       '@graphql-codegen/typescript-urql-graphcache':
         specifier: 2.4.4
-        version: 2.4.4(@urql/exchange-graphcache@6.0.3)(graphql-tag@2.12.6)(graphql@16.6.0)
+        version: 2.4.4(@urql/exchange-graphcache@6.0.4)(graphql-tag@2.12.6)(graphql@16.6.0)
       '@graphql-codegen/urql-introspection':
         specifier: 2.2.1
         version: 2.2.1(graphql@16.6.0)
@@ -125,8 +125,8 @@ importers:
         specifier: 2.0.3
         version: 2.0.3(@urql/core@4.0.7)(graphql@16.6.0)
       '@urql/exchange-graphcache':
-        specifier: 6.0.3
-        version: 6.0.3(graphql@16.6.0)
+        specifier: 6.0.4
+        version: 6.0.4(graphql@16.6.0)
       '@urql/vue':
         specifier: 1.1.1
         version: 1.1.1(graphql@16.6.0)(vue@3.2.47)
@@ -1751,7 +1751,7 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/typescript-urql-graphcache@2.4.4(@urql/exchange-graphcache@6.0.3)(graphql-tag@2.12.6)(graphql@16.6.0):
+  /@graphql-codegen/typescript-urql-graphcache@2.4.4(@urql/exchange-graphcache@6.0.4)(graphql-tag@2.12.6)(graphql@16.6.0):
     resolution: {integrity: sha512-bOkdt9bKJS1eRP5TJb+2aur1W/WvYnHfefdR94dZ7/9d4TfNPNx487RIstd9nJsBNM5HqmsaBZNQDER00gKkAw==}
     peerDependencies:
       '@urql/exchange-graphcache': ^4.1.1 || ^5.0.0
@@ -1760,7 +1760,7 @@ packages:
     dependencies:
       '@graphql-codegen/plugin-helpers': 3.1.2(graphql@16.6.0)
       '@graphql-codegen/visitor-plugin-common': 2.13.1(graphql@16.6.0)
-      '@urql/exchange-graphcache': 6.0.3(graphql@16.6.0)
+      '@urql/exchange-graphcache': 6.0.4(graphql@16.6.0)
       auto-bind: 4.0.0
       change-case-all: 1.0.15
       graphql: 16.6.0
@@ -3839,8 +3839,8 @@ packages:
       wonka: 6.3.2
     dev: true
 
-  /@urql/exchange-graphcache@6.0.3(graphql@16.6.0):
-    resolution: {integrity: sha512-1/MBAcl6D3/dwBCt5gvzNJwDIyNWntgcQnRjLsB6Yi6iCK9+ziVtbY6qS16DG1/Lg/WSVUTaM8LexaMfbShzHg==}
+  /@urql/exchange-graphcache@6.0.4(graphql@16.6.0):
+    resolution: {integrity: sha512-fzfCUrHzhLycPRa6kYrQYryk0pwmUfeHY9Xqh11A6wtp4/diV7FASlffB5k2j3AWRBxBnqThXDssRXI/G8cACQ==}
     dependencies:
       '@0no-co/graphql.web': 1.0.1(graphql@16.6.0)
       '@urql/core': 4.0.7(graphql@16.6.0)
