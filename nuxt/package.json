@@ -33,7 +33,7 @@
     "prepare": "nuxt prepare"
   },
   "devDependencies": {
-    "@babel/core": "7.21.4",
+    "@babel/core": "7.21.5",
     "@dargmuesli/nuxt-cookie-control": "5.7.0",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "3.3.1",
