@@ -7,14 +7,14 @@
           :title="t('undo')"
           @click="editor?.chain().focus().undo().run()"
         >
-          <IconArrowRotateLeft />
+          <IconArrowUturnLeft />
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('redo')"
           :title="t('redo')"
           @click="editor?.chain().focus().redo().run()"
         >
-          <IconArrowRotateRight />
+          <IconArrowUturnRight />
         </ButtonIcon>
       </div>
       <div class="flex gap-1">
@@ -184,7 +184,7 @@ const getLocation = (href: string) => {
   l.href = href
   return l
 }
-function setLink() {
+const setLink = () => {
   if (!editor.value) return
 
   const previousUrl = editor.value.getAttributes('link').href

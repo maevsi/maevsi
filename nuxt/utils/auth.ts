@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'node:http'
 
 import { Client } from '@urql/vue'
-import consola from 'consola'
+import { consola } from 'consola'
 import { parse, serialize } from 'cookie'
 import { decodeJwt } from 'jose'
 
@@ -10,7 +10,7 @@ import { useMaevsiStore } from '~/store'
 import { authenticateMutation } from '~/gql/documents/mutations/account/accountAuthenticate'
 import { jwtRefreshMutation } from '~/gql/documents/mutations/account/accountJwtRefresh'
 
-export async function authenticationAnonymous({
+export const authenticationAnonymous = async ({
   client,
   $urqlReset,
   store,
@@ -19,8 +19,8 @@ export async function authenticationAnonymous({
   client: Client
   $urqlReset: () => void
   store: ReturnType<typeof useMaevsiStore>
-  res: ServerResponse
-}) {
+  res?: ServerResponse
+}) => {
   consola.trace('Authenticating anonymously...')
 
   const result = await client
@@ -46,7 +46,7 @@ export async function authenticationAnonymous({
   }
 }
 
-export function getJwtFromCookie({ req }: { req: IncomingMessage }) {
+export const getJwtFromCookie = ({ req }: { req: IncomingMessage }) => {
   if (!req.headers.cookie) {
     return consola.debug('No cookie header.')
   }
@@ -70,7 +70,7 @@ export function getJwtFromCookie({ req }: { req: IncomingMessage }) {
   }
 }
 
-export async function jwtRefresh({
+export const jwtRefresh = async ({
   client,
   $urqlReset,
   store,
@@ -82,14 +82,14 @@ export async function jwtRefresh({
   store: ReturnType<typeof useMaevsiStore>
   res: ServerResponse
   id: string
-}) {
+}) => {
   consola.trace('Refreshing a JWT...')
 
   const result = await client.mutation(jwtRefreshMutation, { id }).toPromise()
 
   if (result.error) {
     consola.error(result.error)
-    await signOut({ $urqlReset, store, res })
+    await signOut({ client, $urqlReset, store, res })
   } else if (!result.data?.jwtRefresh?.jwt) {
     await authenticationAnonymous({ client, $urqlReset, store, res })
   } else {
@@ -97,7 +97,7 @@ export async function jwtRefresh({
   }
 }
 
-export async function jwtStore({
+export const jwtStore = async ({
   $urqlReset,
   store,
   res,
@@ -107,7 +107,7 @@ export async function jwtStore({
   store: ReturnType<typeof useMaevsiStore>
   res?: ServerResponse
   jwt?: string
-}) {
+}) => {
   $urqlReset()
 
   consola.trace('Storing the following JWT: ' + jwt)
@@ -128,7 +128,7 @@ export async function jwtStore({
     try {
       await $fetch('/api/auth', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${jwt}` },
+        ...(jwt ? { headers: { Authorization: `Bearer ${jwt}` } } : {}),
       })
     } catch (error: any) {
       return Promise.reject(Error('Authentication api call failed.'))
@@ -136,7 +136,7 @@ export async function jwtStore({
   }
 }
 
-export function useJwtStore() {
+export const useJwtStore = () => {
   const { $urqlReset } = useNuxtApp()
   const store = useMaevsiStore()
   const event = useRequestEvent()
@@ -153,26 +153,30 @@ export function useJwtStore() {
   }
 }
 
-export async function signOut({
+export const signOut = async ({
+  client,
   $urqlReset,
   store,
   res,
 }: {
+  client: Client
   $urqlReset: () => void
   store: ReturnType<typeof useMaevsiStore>
   res?: ServerResponse
-}) {
+}) => {
   await jwtStore({ $urqlReset, store, res })
+  await authenticationAnonymous({ client, $urqlReset, store, res })
 }
 
-export function useSignOut() {
-  const { $urqlReset } = useNuxtApp()
+export const useSignOut = () => {
+  const { $urql, $urqlReset } = useNuxtApp()
   const store = useMaevsiStore()
   const event = useRequestEvent()
 
   return {
     async signOut() {
       await signOut({
+        client: $urql.value,
         $urqlReset,
         store,
         res: process.server ? event.node.res : undefined,

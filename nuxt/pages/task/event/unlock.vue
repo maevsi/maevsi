@@ -59,7 +59,7 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
-import consola from 'consola'
+import { consola } from 'consola'
 
 import {
   eventUnlockMutation as eventUnlockMutationImported,
@@ -150,7 +150,7 @@ const isFormSent = ref(false)
 const title = t('title')
 
 // methods
-async function submit() {
+const submit = async () => {
   if (!isFormValid({ v$, isFormSent })) return
 
   const result = await eventUnlockMutation.executeMutation({

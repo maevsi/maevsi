@@ -96,13 +96,10 @@ The setup for backend development is more complex as it consists of numerous ser
     ```sh
     corepack enable
     pnpm install
-
-    cd nuxt
-    pnpm install
     ```
 1. configure maevsi's [DargStack](https://github.com/dargstack/dargstack) then:
     ```sh
-    cd ../../maevsi_stack/src/development
+    cd ../maevsi_stack/src/development
     cp stack.env.template stack.env
     pnpm store path
     $EDITOR stack.env # fill PNPM_STORE_DIR with what's printed by the previous command

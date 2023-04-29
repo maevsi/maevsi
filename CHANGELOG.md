@@ -1,3 +1,114 @@
+## [1.13.1](https://github.com/maevsi/maevsi/compare/1.13.0...1.13.1) (2023-04-26)
+
+
+### Bug Fixes
+
+* **docker:** account for workspace paths ([9afe6b6](https://github.com/maevsi/maevsi/commit/9afe6b6b8828c3217149a7a6a86a57b178f4e84a))
+
+# [1.13.0](https://github.com/maevsi/maevsi/compare/1.12.2...1.13.0) (2023-04-26)
+
+
+### Bug Fixes
+
+* **event-dashlet-start:** remove icon used for testing ([2d17ccd](https://github.com/maevsi/maevsi/commit/2d17ccd8f088ce6b4737dce4b8c1d2d88b3c85e6))
+* **header:** correct sign in button alignment ([422ec30](https://github.com/maevsi/maevsi/commit/422ec30a2df83e5389cc77b2509d5bb91ba6ed8d))
+
+
+### Features
+
+* **icons:** use tailwind library ([917494d](https://github.com/maevsi/maevsi/commit/917494dba34a17ed196fa996f9b75ac48c73943d)), closes [#1178](https://github.com/maevsi/maevsi/issues/1178)
+
+## [1.12.2](https://github.com/maevsi/maevsi/compare/1.12.1...1.12.2) (2023-04-26)
+
+
+### Bug Fixes
+
+* **legal:** update address ([cf95732](https://github.com/maevsi/maevsi/commit/cf957325897c09e11c6bfbc8531043ef0cca6c8f))
+
+## [1.12.1](https://github.com/maevsi/maevsi/compare/1.12.0...1.12.1) (2023-04-24)
+
+
+### Bug Fixes
+
+* **auth:** authenticate anonymously after sign out ([2f8c5d5](https://github.com/maevsi/maevsi/commit/2f8c5d5cfdf31d9af147c2acada13ef3d90dbcb0))
+* **auth:** correct authorization for undefined jwt ([47c6c93](https://github.com/maevsi/maevsi/commit/47c6c93775898dcd61a021c296483726bc803ace)), closes [#1188](https://github.com/maevsi/maevsi/issues/1188)
+
+# [1.12.0](https://github.com/maevsi/maevsi/compare/1.11.5...1.12.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* **form:** correct conditional error display ([83ab4a8](https://github.com/maevsi/maevsi/commit/83ab4a8d4b5b016cde7d2befcc36e31d54a9755f))
+* **i18n:** rephrase email verification error ([f6984eb](https://github.com/maevsi/maevsi/commit/f6984ebf62f0cc85a503ef63e70ee511a5cec5ff))
+
+
+### Features
+
+* **account:** disable verification refreshing ([8a9622c](https://github.com/maevsi/maevsi/commit/8a9622c4abcbaf84138c09e4f3ad982e5a07006c))
+* **account:** remove password reset errors ([0f5d7b9](https://github.com/maevsi/maevsi/commit/0f5d7b9f3a9f2c81a7c2f61ca02bb19272775825))
+
+## [1.11.5](https://github.com/maevsi/maevsi/compare/1.11.4...1.11.5) (2023-04-18)
+
+
+### Bug Fixes
+
+* **account:** correct graphql error message getter ([70141a6](https://github.com/maevsi/maevsi/commit/70141a6d546d7b0396f1c72ee240aec489b06a51))
+* **account:** run email verification on client only ([8288e62](https://github.com/maevsi/maevsi/commit/8288e622b46a3a02371da2f4b7dc0104bd58faf0))
+* **cypress:** save diff images only when necessary ([805a105](https://github.com/maevsi/maevsi/commit/805a105497f3204e721bac5299f96efc9e8d29b0))
+* **docker:** install curl for cypress ([51d2367](https://github.com/maevsi/maevsi/commit/51d236783d73bdc4fdb2645f1687bcef947fc8ec))
+
+## [1.11.4](https://github.com/maevsi/maevsi/compare/1.11.3...1.11.4) (2023-04-18)
+
+
+### Bug Fixes
+
+* **form-input-username:** correct existence check ([ffb3996](https://github.com/maevsi/maevsi/commit/ffb3996194954f7d5a1ed6b1c0e33ca68f7ac490)), closes [#938](https://github.com/maevsi/maevsi/issues/938)
+
+## [1.11.3](https://github.com/maevsi/maevsi/compare/1.11.2...1.11.3) (2023-04-18)
+
+
+### Bug Fixes
+
+* **form-event:** add missing form input state error for start ([0c92437](https://github.com/maevsi/maevsi/commit/0c92437e530e0aec72738824d30500905ce85030)), closes [#1169](https://github.com/maevsi/maevsi/issues/1169)
+
+## [1.11.2](https://github.com/maevsi/maevsi/compare/1.11.1...1.11.2) (2023-04-18)
+
+
+### Bug Fixes
+
+* **i18n:** disable missing warning ([e22b682](https://github.com/maevsi/maevsi/commit/e22b68213d75083c24dd6ac6e889e8d513406850))
+
+## [1.11.1](https://github.com/maevsi/maevsi/compare/1.11.0...1.11.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* **loader-image:** watch source ([1ee166a](https://github.com/maevsi/maevsi/commit/1ee166ab7ef977ac196ffec6f5450e4de1879180)), closes [#1168](https://github.com/maevsi/maevsi/issues/1168)
+
+# [1.11.0](https://github.com/maevsi/maevsi/compare/1.10.1...1.11.0) (2023-04-13)
+
+
+### Bug Fixes
+
+* **analytics:** correct csp ([47dbea9](https://github.com/maevsi/maevsi/commit/47dbea91d42e8d459501831c00ab7ed4ad6e4354))
+* correct truncation ([5a1c53b](https://github.com/maevsi/maevsi/commit/5a1c53b7816e36aa079ff4b19fef1a78d72463db))
+* **dropdown:** allow scroll on unmount ([6cf1159](https://github.com/maevsi/maevsi/commit/6cf1159b3ee2f037c43a2b5c0add4b6a416c3b81)), closes [#1173](https://github.com/maevsi/maevsi/issues/1173)
+* **form-input-state-info:** add missing title property ([925c8c1](https://github.com/maevsi/maevsi/commit/925c8c13965f4733264921b610ee53140efe6864))
+* **invitation-list:** correct chart label colors ([e738323](https://github.com/maevsi/maevsi/commit/e738323d3b2c1bb0ac60e9c916ed23f3bbd9abe7))
+
+
+### Features
+
+* **css:** rework overflow ([f6c1c0d](https://github.com/maevsi/maevsi/commit/f6c1c0ddb177e7e41370e8284b7864311bed826e))
+* **font:** use single manrope file ([c02fc06](https://github.com/maevsi/maevsi/commit/c02fc06af303c2f000976cb627eaccbd4fd06262))
+
+## [1.10.1](https://github.com/maevsi/maevsi/compare/1.10.0...1.10.1) (2023-04-13)
+
+
+### Bug Fixes
+
+* **validation:** correct event existence variables ([21163cf](https://github.com/maevsi/maevsi/commit/21163cfd883cf8cfbe5230f5075df3673fb7476e)), closes [#1014](https://github.com/maevsi/maevsi/issues/1014)
+
 # [1.10.0](https://github.com/maevsi/maevsi/compare/1.9.5...1.10.0) (2023-04-05)
 
 

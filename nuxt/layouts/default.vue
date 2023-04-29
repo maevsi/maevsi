@@ -2,7 +2,7 @@
   <div class="container mx-auto p-4 md:px-8" :data-is-loading="isLoading">
     <div class="min-h-screen pb-32">
       <LayoutHeader @on-menu-show="menuShow" />
-      <main class="flex-1 overflow-hidden">
+      <main class="flex-1 overflow-hidden p-1">
         <slot />
       </main>
     </div>
@@ -127,7 +127,7 @@ const isMenuVisible = ref(false)
 const isMenuVisiblePartly = ref(false)
 
 // methods
-function getLocaleName(locale: string) {
+const getLocaleName = (locale: string) => {
   const locales: LocaleObject[] = LOCALES.filter(
     (localeObject) => localeObject.code === locale
   )
@@ -138,7 +138,7 @@ function getLocaleName(locale: string) {
     return undefined
   }
 }
-function getLocaleFlag(locale: string) {
+const getLocaleFlag = (locale: string) => {
   const map: { [index: string]: any } = {
     en: resolveComponent('IconFlagUnitedKingdom'),
     de: resolveComponent('IconFlagGerman'),
@@ -154,13 +154,13 @@ function getLocaleFlag(locale: string) {
     return undefined
   }
 }
-function menuHide(): void {
+const menuHide = () => {
   isMenuVisible.value = false
   setTimeout(() => {
     isMenuVisiblePartly.value = false
   }, 500)
 }
-function menuShow(): void {
+const menuShow = () => {
   isMenuVisiblePartly.value = true
   isMenuVisible.value = true
 }

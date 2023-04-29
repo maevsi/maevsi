@@ -2,7 +2,7 @@ import { IncomingMessage } from 'node:http'
 
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
-import consola from 'consola'
+import { consola } from 'consola'
 import { defu } from 'defu'
 import { H3Event, getCookie } from 'h3'
 import { ofetch } from 'ofetch'
@@ -17,39 +17,36 @@ import type {
   UnionToIntersection,
 } from '~/types/types'
 
-export function append(path: string, pathToAppend: string): string {
-  return path + (path.endsWith('/') ? '' : '/') + pathToAppend
-}
+export const append = (path: string, pathToAppend: string) =>
+  path + (path.endsWith('/') ? '' : '/') + pathToAppend
 
-export function capitalizeFirstLetter(string: string): string {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
+export const capitalizeFirstLetter = (string: string) =>
+  string.charAt(0).toUpperCase() + string.slice(1)
 
-export function copyText(text: string) {
-  return new Promise(function (resolve, reject) {
+export const copyText = (text: string) =>
+  new Promise((resolve, reject) => {
     const fakeElement = document.createElement('button')
     const clipboard = new Clipboard(fakeElement, {
-      text: function () {
+      text: () => {
         return text
       },
-      action: function () {
+      action: () => {
         return 'copy'
       },
       container: document.body,
     })
-    clipboard.on('success', function (e) {
+    clipboard.on('success', (e) => {
       clipboard.destroy()
       resolve(e)
     })
-    clipboard.on('error', function (e) {
+    clipboard.on('error', (e) => {
       clipboard.destroy()
       reject(e)
     })
     fakeElement.click()
   })
-}
 
-function getCsp(host: string): Record<string, Array<string>> {
+const getCsp = (host: string): Record<string, Array<string>> => {
   const hostName = host.replace(/:[0-9]+$/, '')
   const config = useRuntimeConfig()
 
@@ -65,6 +62,7 @@ function getCsp(host: string): Record<string, Array<string>> {
       `https://tusd.${getDomainTldPort(stagingHostOrHost)}`, // image upload requests
       'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://*.analytics.google.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
     ],
     'default-src': ["'none'"],
     'font-src': ["'self'"], // ~/public/assets/static/fonts
@@ -77,6 +75,7 @@ function getCsp(host: string): Record<string, Array<string>> {
       'data:',
       `https://tusd.${getDomainTldPort(stagingHostOrHost)}`,
       'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://www.gravatar.com/avatar/', // profile picture fallback
     ],
     'manifest-src': ["'self'"],
@@ -91,8 +90,7 @@ function getCsp(host: string): Record<string, Array<string>> {
       "'self'",
       'https://challenges.cloudflare.com/turnstile/v0/api.js', // Cloudflare Turnstile
       'https://static.cloudflareinsights.com', // Cloudflare analytics
-      'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
-      'https://www.googletagmanager.com/gtag/js', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       "'unsafe-inline'", // https://github.com/unjs/nitro/issues/81
       "'unsafe-eval'", // https://github.com/unjs/nitro/issues/81
     ],
@@ -115,14 +113,14 @@ function getCsp(host: string): Record<string, Array<string>> {
   return defu(base, config.public.isInProduction ? production : development)
 }
 
-export function getCspAsString(event: H3Event): string {
+export const getCspAsString = (event: H3Event): string => {
   const host = getHost(event.node.req)
   const csp = getCsp(host)
 
   return Object.keys(csp).reduce((p, c) => `${p}${c} ${csp[c].join(' ')};`, '')
 }
 
-// export function getDeferredPromise<T>(then?: (value: any) => T): Promise<T> {
+// export const getDeferredPromise = <T>(then?: (value: any) => T): Promise<T> => {
 //   let res, rej
 
 //   const promise: any = new Promise((resolve, reject) => {
@@ -134,15 +132,14 @@ export function getCspAsString(event: H3Event): string {
 //   promise.reject = rej
 
 //   if (then) {
-//     promise.then((value: any) => {
-//       then(value)
-//     })
+//     const value = await promise
+//     then(value)
 //   }
 
 //   return promise
 // }
 
-export function getDomainTldPort(host: string) {
+export const getDomainTldPort = (host: string) => {
   const hostParts = host.split('.')
 
   if (hostParts.length <= 2) return host
@@ -150,7 +147,7 @@ export function getDomainTldPort(host: string) {
   return `${hostParts[hostParts.length - 2]}.${hostParts[hostParts.length - 1]}`
 }
 
-export function getHost(req: IncomingMessage) {
+export const getHost = (req: IncomingMessage) => {
   if (!req.headers.host) throw new Error('Host header is not given!')
 
   return req.headers.host
@@ -192,32 +189,24 @@ export const getApiData = <
   return apiData
 }
 
-export function getCombinedErrorMessages(
+export const getCombinedErrorMessages = (
   errors: BackendError[],
   pgIds?: Record<string, string>
-) {
+) => {
   const errorMessages: string[] = []
 
   for (const combinedError of errors) {
-    // const combinedError = error
-
     if (combinedError.networkError) {
       errorMessages.push(combinedError.message)
     }
 
     for (const graphqlError of combinedError.graphQLErrors) {
-      if (
-        graphqlError.originalError &&
-        'errcode' in graphqlError.originalError
-      ) {
-        const translation =
-          pgIds && pgIds[`postgres${graphqlError.originalError.errcode}`]
+      const translation = pgIds && pgIds[`postgres${graphqlError.errcode}`]
 
-        if (translation) {
-          errorMessages.push(translation)
-        } else {
-          errorMessages.push(graphqlError.message)
-        }
+      if (translation) {
+        errorMessages.push(translation)
+      } else {
+        errorMessages.push(graphqlError.message)
       }
     }
   }
@@ -225,22 +214,17 @@ export function getCombinedErrorMessages(
   return errorMessages
 }
 
-export function getQueryString(
-  queryParametersObject: Record<string, any>
-): string {
-  return (
-    '?' +
-    Object.keys(queryParametersObject)
-      .map((key) => {
-        return (
-          encodeURIComponent(key) +
-          '=' +
-          encodeURIComponent(queryParametersObject[key] as string)
-        )
-      })
-      .join('&')
-  )
-}
+export const getQueryString = (queryParametersObject: Record<string, any>) =>
+  '?' +
+  Object.keys(queryParametersObject)
+    .map((key) => {
+      return (
+        encodeURIComponent(key) +
+        '=' +
+        encodeURIComponent(queryParametersObject[key] as string)
+      )
+    })
+    .join('&')
 
 export const getTimezone = async (event: H3Event) =>
   getCookie(event, TIMEZONE_COOKIE_NAME) ||
@@ -258,8 +242,8 @@ export const isQueryIcFormatValid = (
   ic: LocationQueryValue | LocationQueryValue[]
 ) => ic && !Array.isArray(ic) && REGEX_UUID.test(ic)
 
-export function showToast({ title }: { title: string }) {
-  return Swal.fire({
+export const showToast = ({ title }: { title: string }) =>
+  Swal.fire({
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
@@ -272,4 +256,3 @@ export function showToast({ title }: { title: string }) {
     title,
     toast: true,
   })
-}

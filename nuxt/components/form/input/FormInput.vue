@@ -58,14 +58,14 @@
             </FormInputIconWrapper>
             <FormInputIconWrapper
               v-else-if="
-                validationProperty.$model && !validationProperty.$invalid
+                !!validationProperty.$model && !validationProperty.$invalid
               "
             >
               <IconCheckCircle class="text-green-600" :title="t('valid')" />
             </FormInputIconWrapper>
             <FormInputIconWrapper
               v-else-if="
-                validationProperty.$model && validationProperty.$invalid
+                !!validationProperty.$model && validationProperty.$invalid
               "
             >
               <IconExclamationCircle
@@ -108,7 +108,7 @@
 
 <script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
-import consola from 'consola'
+import { consola } from 'consola'
 
 export interface Props {
   isDisabled?: boolean

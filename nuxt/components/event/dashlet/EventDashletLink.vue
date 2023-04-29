@@ -3,11 +3,7 @@
     <span>
       <IconLink :title="t('url')" />
     </span>
-    <AppLink
-      class="w-full overflow-hidden text-ellipsis break-words line-clamp-2"
-      nofollow
-      :to="event.url"
-    >
+    <AppLink class="vio-line-clamp-2" nofollow :to="event.url">
       {{ event.url }}
     </AppLink>
   </EventDashlet>

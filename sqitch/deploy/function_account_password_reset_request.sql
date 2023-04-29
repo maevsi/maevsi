@@ -15,10 +15,6 @@ CREATE FUNCTION maevsi.account_password_reset_request(
 DECLARE
   _notify_data RECORD;
 BEGIN
-  IF ((SELECT account.email_address_verification FROM maevsi_private.account WHERE account.email_address = $1) IS NOT NULL) THEN
-    RAISE 'Account not verified!' USING ERRCODE = 'object_not_in_prerequisite_state';
-  END IF;
-
   WITH updated AS (
     UPDATE maevsi_private.account
       SET password_reset_verification = gen_random_uuid()
@@ -33,7 +29,7 @@ BEGIN
     INTO _notify_data;
 
   IF (_notify_data IS NULL) THEN
-    RAISE 'Account not found!' USING ERRCODE = 'no_data_found';
+    -- noop
   ELSE
     INSERT INTO maevsi_private.notification (channel, payload) VALUES (
       'account_password_reset_request',

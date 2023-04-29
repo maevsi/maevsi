@@ -9,7 +9,7 @@ import { Cache, cacheExchange } from '@urql/exchange-graphcache'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 import { provideClient } from '@urql/vue'
-import consola from 'consola'
+import { consola } from 'consola'
 import { ref } from 'vue'
 
 import schema from '~/gql/generated/introspection'
@@ -56,7 +56,7 @@ const invalidateCache = (
 //       cache.link('Query', field.fieldKey, allInvitations)
 //     })
 
-// function isNonEmptyArrayOfStrings(value: unknown): value is (string | Data)[] {
+// const isNonEmptyArrayOfStrings = (value: unknown): value is (string | Data)[] => {
 //   return Array.isArray(value) && value.every((item) => typeof item === 'string')
 // }
 
@@ -149,7 +149,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   }
   const client = ref(createClient(options))
 
-  function urqlReset() {
+  const urqlReset = () => {
     client.value = createClient(options)
   }
 
