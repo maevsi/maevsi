@@ -1,3 +1,10 @@
+## [1.13.2](https://github.com/maevsi/maevsi/compare/1.13.1...1.13.2) (2023-05-01)
+
+
+### Performance Improvements
+
+* **fonts:** use fontsource ([ed8871e](https://github.com/maevsi/maevsi/commit/ed8871ea8020b4565db620be43c2c5d88c4e6e69)), closes [#1175](https://github.com/maevsi/maevsi/issues/1175)
+
 ## [1.13.1](https://github.com/maevsi/maevsi/compare/1.13.0...1.13.1) (2023-04-26)
 
 
