@@ -1,9 +1,9 @@
 <template>
   <IconContainerNew>
-    <PaperAirplaneIcon />
+    <MapPinIcon />
   </IconContainerNew>
 </template>
 
 <script setup lang="ts">
-import { PaperAirplaneIcon } from '@heroicons/vue/24/outline'
+import { MapPinIcon } from '@heroicons/vue/24/solid'
 </script>

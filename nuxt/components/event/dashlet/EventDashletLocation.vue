@@ -1,7 +1,7 @@
 <template>
   <EventDashlet v-if="event.isInPerson && event.location">
     <span>
-      <IconMapMarker :title="t('location')" />
+      <IconMapPin :title="t('location')" />
     </span>
     <AppLink
       class="vio-line-clamp-2"

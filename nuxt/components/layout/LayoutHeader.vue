@@ -6,7 +6,7 @@
         class="lg:hidden"
         @click="emit('onMenuShow')"
       >
-        <IconMenu classes="h-8 w-8" />
+        <IconBars3 classes="h-8 w-8" />
       </ButtonIcon>
       <Button :aria-label="t('home')" :to="localePath('/')">
         <IconLogoWithText class="h-10 w-32" />
@@ -26,7 +26,7 @@
           class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 dark:bg-gray-700 dark:border-gray-500 text-sm text-gray-500 dark:text-gray-300"
           @click="navigateToSearch"
         >
-          <IconSearch />
+          <IconMagnifyingGlass />
         </span>
       </div>
       <div class="hidden lg:block flex-grow" />
@@ -68,7 +68,7 @@
             width="40"
           />
         </ButtonIcon>
-        <div v-else>
+        <template v-else>
           <ButtonIcon
             :aria-label="t('signIn')"
             class="lg:hidden h-8 w-8"
@@ -83,7 +83,7 @@
           >
             {{ t('signIn') }}
           </ButtonText>
-        </div>
+        </template>
       </div>
     </div>
   </header>

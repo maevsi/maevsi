@@ -31,7 +31,7 @@
       @input="form.searchString = $event"
     >
       <template #icon>
-        <IconSearch />
+        <IconMagnifyingGlass />
       </template>
       <template #stateError>
         <FormInputStateError

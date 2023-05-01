@@ -23,7 +23,7 @@
       @input="form.accountUsername = $event"
     >
       <template #icon>
-        <IconSearch />
+        <IconMagnifyingGlass />
       </template>
     </FormInputUsername>
     <FormInputStateInfo>

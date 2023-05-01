@@ -50,6 +50,7 @@
       <p>{{ t('mandatoryInfoResponsibleDescription1') }}</p>
       <address>
         {{ t('mandatoryInfoResponsibleAddressName') }}<br />
+        {{ t('mandatoryInfoResponsibleAddressOrganization') }}<br />
         {{ t('mandatoryInfoResponsibleAddressStreet') }}<br />
         {{ t('mandatoryInfoResponsibleAddressCity') }}<br />
         <br />
@@ -354,10 +355,11 @@ de:
   mandatoryInfoProcessingRestrictionList3: Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch zur Ausübung, Verteidigung oder Geltendmachung von Rechtsansprüchen benötigen, haben Sie das Recht, statt der Löschung die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
   mandatoryInfoProcessingRestrictionList4: Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
   mandatoryInfoProcessingRestrictionTitle: Recht auf Einschränkung der Verarbeitung
-  mandatoryInfoResponsibleAddressCity: 34117 Kassel
+  mandatoryInfoResponsibleAddressCity: 34127 Kassel
   mandatoryInfoResponsibleAddressEmail: "E-Mail: mail+privacy-policy{'@'}maev.si"
   mandatoryInfoResponsibleAddressName: Jonas Thelemann
-  mandatoryInfoResponsibleAddressStreet: Fünffensterstraße 18
+  mandatoryInfoResponsibleAddressOrganization: SciencePark, CoCreation-Lab
+  mandatoryInfoResponsibleAddressStreet: Universitätsplatz 12
   mandatoryInfoResponsibleDescription1: 'Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:'
   mandatoryInfoResponsibleDescription2: Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.
   mandatoryInfoResponsibleTitle: Hinweis zur verantwortlichen Stelle
@@ -503,10 +505,11 @@ en:
   mandatoryInfoProcessingRestrictionList3: If we no longer need your personal data, but you need it to exercise, defend or enforce legal claims, you have the right to request restriction of the processing of your personal data instead of deletion.
   mandatoryInfoProcessingRestrictionList4: If you have lodged an objection pursuant to Art. 21 (1) GDPR, a balancing of your and our interests must be carried out. As long as it has not yet been determined whose interests prevail, you have the right to request the restriction of the processing of your personal data.
   mandatoryInfoProcessingRestrictionTitle: Right to restriction of processing
-  mandatoryInfoResponsibleAddressCity: 34117 Kassel
+  mandatoryInfoResponsibleAddressCity: 34127 Kassel
   mandatoryInfoResponsibleAddressEmail: "E-mail: mail+privacy-policy{'@'}maev.si"
   mandatoryInfoResponsibleAddressName: Jonas Thelemann
-  mandatoryInfoResponsibleAddressStreet: Fünffensterstraße 18
+  mandatoryInfoResponsibleAddressOrganization: SciencePark, CoCreation-Lab
+  mandatoryInfoResponsibleAddressStreet: Universitätsplatz 12
   mandatoryInfoResponsibleDescription1: 'The responsible party for data processing on this website is:'
   mandatoryInfoResponsibleDescription2: The controller is the natural or legal person who alone or jointly with others determines the purposes and means of the processing of personal data (e.g. names, e-mail addresses, etc.).
   mandatoryInfoResponsibleTitle: Note on the responsible body
