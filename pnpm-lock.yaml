@@ -22,6 +22,9 @@ importers:
       '@dargmuesli/nuxt-cookie-control':
         specifier: 5.7.0
         version: 5.7.0(rollup@3.21.2)(webpack@5.80.0)
+      '@fontsource/manrope':
+        specifier: 4.5.13
+        version: 4.5.13
       '@funken-studio/sitemap-nuxt-3':
         specifier: 4.0.4
         version: 4.0.4(rollup@3.21.2)
@@ -1548,6 +1551,10 @@ packages:
   /@eslint/js@8.39.0:
     resolution: {integrity: sha512-kf9RB0Fg7NZfap83B3QOqOGg9QmD9yBudqQXzzOtn3i4y7ZUXe5ONeW34Gwi+TxhH4mvj72R1Zc300KUMa9Bng==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@fontsource/manrope@4.5.13:
+    resolution: {integrity: sha512-UFN5DMGBp8nFpwhPQXfpSbsEm4OVISqUKQy+rA+pb1zYGoH+OGN1woKEND8VLx+pC7rY3nrPRCJvSuuOaNdW7Q==}
     dev: true
 
   /@funken-studio/sitemap-nuxt-3@4.0.4(rollup@3.21.2):
