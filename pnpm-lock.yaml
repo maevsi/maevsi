@@ -20,8 +20,8 @@ importers:
         specifier: 7.21.8
         version: 7.21.8
       '@dargmuesli/nuxt-cookie-control':
-        specifier: 5.7.0
-        version: 5.7.0(rollup@3.21.3)(webpack@5.80.0)
+        specifier: 5.7.1
+        version: 5.7.1(rollup@3.21.3)(webpack@5.80.0)
       '@fontsource/manrope':
         specifier: 4.5.13
         version: 4.5.13
@@ -1287,13 +1287,13 @@ packages:
       - supports-color
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control@5.7.0(rollup@3.21.3)(webpack@5.80.0):
-    resolution: {integrity: sha512-SnNT72XNynnwYI2zIT2mhM3i0/pfJHPcRAq0GE+gK60bOHHemzlh4bO8bHowR7w2fTs573P5qejHKTduo/UnkA==}
+  /@dargmuesli/nuxt-cookie-control@5.7.1(rollup@3.21.3)(webpack@5.80.0):
+    resolution: {integrity: sha512-Gk3y3lRE4KGd2mAEVSNBcnBkoJBnF5aS3XSXstmgZ/zj1ncBKEwRofSQO/AXbS7KQkwPo/LoVQxdRH0fgJzI4g==}
     dependencies:
-      '@nuxt/kit': 3.4.2(rollup@3.21.3)
+      '@nuxt/kit': 3.4.3(rollup@3.21.3)
       '@sindresorhus/slugify': 2.2.0
       css-vars-ponyfill: 2.4.8
-      js-cookie: 3.0.1
+      js-cookie: 3.0.5
       string-replace-loader: 3.1.0(webpack@5.80.0)
     transitivePeerDependencies:
       - rollup
@@ -8574,11 +8574,6 @@ packages:
 
   /js-base64@3.7.5:
     resolution: {integrity: sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA==}
-    dev: true
-
-  /js-cookie@3.0.1:
-    resolution: {integrity: sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==}
-    engines: {node: '>=12'}
     dev: true
 
   /js-cookie@3.0.5:
