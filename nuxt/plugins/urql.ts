@@ -128,7 +128,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       }
 
       if (turnstileKey) {
-        consola.debug('Turnstile session key: ' + turnstileKey)
+        consola.debug(`Turnstile session key: ${turnstileKey}`)
         headers[TURNSTILE_HEADER_KEY] = turnstileKey
       }
 
