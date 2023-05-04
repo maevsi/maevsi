@@ -52,10 +52,9 @@
 </template>
 
 <script setup lang="ts">
-import type { BaseValidation } from '@vuelidate/core'
-
-import { useVuelidate } from '@vuelidate/core'
+import { type BaseValidation, useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
+
 import { BackendError } from '~/types/types'
 import { useMaevsiStore } from '~/store/index'
 
