@@ -134,7 +134,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
       return { headers }
     },
-
     url: config.public.stagingHost
       ? `https://postgraphile.${config.public.stagingHost}/graphql`
       : process.server
