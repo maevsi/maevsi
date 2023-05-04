@@ -194,7 +194,7 @@ export default defineNuxtConfig({
     },
   },
   turnstile: {
-    addValidateEndpoint: true,
+    // addValidateEndpoint: false,
     secretKeyPath: process.env.NUXT_PUBLIC_STACK_DOMAIN
       ? '/run/secrets/maevsi_turnstile-key'
       : undefined,
