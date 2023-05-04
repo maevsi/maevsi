@@ -75,7 +75,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 // data
-const state = reactive({
+const form = reactive({
   turnstileKey: '',
 })
 
@@ -85,8 +85,7 @@ const rules = {
     required,
   },
 }
-
-const v$ = useVuelidate(rules, state)
+const v$ = useVuelidate(rules, form)
 
 // methods
 const emit = defineEmits<{
