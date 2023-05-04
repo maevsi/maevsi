@@ -53,7 +53,7 @@ export default defineNuxtConfig({
           ? 'maev.si'
           : undefined,
       turnstile: {
-        siteKey: '1x00000000000000000000AA',
+        siteKey: '1x00000000000000000000BB',
       },
     },
   },
