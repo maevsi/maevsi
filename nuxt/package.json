@@ -1,7 +1,7 @@
 {
   "name": "maevsi",
   "private": true,
-  "version": "1.13.1",
+  "version": "1.13.2",
   "description": "Find events, guests and friends.",
   "type": "module",
   "engines": {
@@ -33,8 +33,9 @@
     "prepare": "nuxt prepare"
   },
   "devDependencies": {
-    "@babel/core": "7.21.5",
-    "@dargmuesli/nuxt-cookie-control": "5.7.0",
+    "@babel/core": "7.21.8",
+    "@dargmuesli/nuxt-cookie-control": "5.7.1",
+    "@fontsource/manrope": "4.5.13",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "3.3.1",
     "@graphql-codegen/client-preset": "3.0.1",
@@ -99,7 +100,7 @@
     "ical-generator": "4.0.0",
     "is-https": "4.0.0",
     "isomorphic-dompurify": "1.3.0",
-    "jose": "4.14.3",
+    "jose": "4.14.4",
     "lint-staged": "13.2.2",
     "lodash-es": "4.17.21",
     "mustache": "4.2.0",
@@ -123,9 +124,9 @@
     "prosemirror-schema-list": "1.2.2",
     "prosemirror-state": "1.4.2",
     "prosemirror-transform": "1.7.1",
-    "prosemirror-view": "1.30.2",
+    "prosemirror-view": "1.31.1",
     "qrcode.vue": "3.4.0",
-    "rollup": "3.21.1",
+    "rollup": "3.21.3",
     "slugify": "1.6.6",
     "start-server-and-test": "2.0.0",
     "stylelint": "15.6.0",
