@@ -88,7 +88,7 @@ const getCsp = (host: string): Record<string, Array<string>> => {
     'script-src': [
       'blob:',
       "'self'",
-      'https://challenges.cloudflare.com/turnstile/v0/api.js', // Cloudflare Turnstile
+      'https://challenges.cloudflare.com', // Cloudflare Turnstile
       'https://static.cloudflareinsights.com', // Cloudflare analytics
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       "'unsafe-inline'", // https://github.com/unjs/nitro/issues/81
