@@ -13,7 +13,7 @@
         <slot />
         <div class="flex flex-col items-center justify-between">
           <div class="flex justify-center">
-            <NuxtTurnstile v-model="state.turnstileKey" />
+            <NuxtTurnstile v-model="form.turnstileKey" />
           </div>
           <FormInputStateError v-if="turnstileKeyError" class="mt-2">
             {{ t('turnstileError') }}
