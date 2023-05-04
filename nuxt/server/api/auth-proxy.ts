@@ -1,5 +1,5 @@
+import { consola } from 'consola'
 import { H3Event, readBody } from 'h3'
-import consola from 'consola'
 
 import { TURNSTILE_HEADER_KEY } from '~/utils/constants'
 
