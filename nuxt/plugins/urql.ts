@@ -128,13 +128,12 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       }
 
       if (turnstileKey) {
-        consola.debug('Turnstile session key: ' + turnstileKey)
+        consola.debug(`Turnstile session key: ${turnstileKey}`)
         headers[TURNSTILE_HEADER_KEY] = turnstileKey
       }
 
       return { headers }
     },
-
     url: config.public.stagingHost
       ? `https://postgraphile.${config.public.stagingHost}/graphql`
       : process.server
