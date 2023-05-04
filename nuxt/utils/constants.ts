@@ -27,4 +27,4 @@ export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
 export const TIMEZONE_COOKIE_NAME = 'maevsi_timezone'
 export const TIMEZONE_HEADER_KEY = 'X-Timezone'
-export const TURNSTILE_HEADER_KEY = 'X-Authenticate'
+export const TURNSTILE_HEADER_KEY = 'X-Turnstile-Key'
