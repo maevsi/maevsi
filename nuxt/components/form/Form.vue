@@ -132,10 +132,10 @@ export default {
 <i18n lang="yaml">
 de:
   submit: Absenden
-  turnstileError: Das Captcha wurde nicht bestätigt. Warte kurz oder lade die Seite neu
+  turnstileError: Das Captcha wurde nicht bestätigt. Warte kurz oder lade die Seite neu.
   turnstileInfo: Das Captcha wurde bestätigt. Du kannst jetzt fortfahren.
 en:
   submit: Submit
-  turnstileError: The Captcha was not confirmed. Wait a bit or reload the page
-  turnstileInfo: The captcha was confirmed. You can proceed now
+  turnstileError: The Captcha was not confirmed. Wait a bit or reload the page.
+  turnstileInfo: The captcha was confirmed. You can proceed now.
 </i18n>
