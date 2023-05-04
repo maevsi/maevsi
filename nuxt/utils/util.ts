@@ -68,7 +68,7 @@ const getCsp = (host: string): Record<string, Array<string>> => {
     'font-src': ["'self'"], // ~/public/assets/static/fonts
     'form-action': ["'self'"], // Mozilla Observatory: "none".
     'frame-ancestors': ["'none'"], // Mozilla Observatory.
-    'frame-src': ['https://challenges.cloudflare.com'],
+    'frame-src': ['https://challenges.cloudflare.com'], // Cloudflare Turnstile
     'img-src': [
       "'self'",
       'blob:',
