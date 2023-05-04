@@ -98,7 +98,7 @@ const { t } = useI18n()
 
 // methods
 const storeTurnstileKey = () => {
-  store.turnstileKey = state.turnstileKey
+  store.turnstileKey = form.turnstileKey
 }
 
 // computations
