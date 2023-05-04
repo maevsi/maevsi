@@ -206,8 +206,8 @@ importers:
         specifier: 9.0.5
         version: 9.0.5
       ical-generator:
-        specifier: 4.0.0
-        version: 4.0.0(@types/node@18.16.3)(dayjs@2.0.0-alpha.4)
+        specifier: 4.1.0
+        version: 4.1.0(@types/node@18.16.3)(dayjs@2.0.0-alpha.4)
       is-https:
         specifier: 4.0.0
         version: 4.0.0
@@ -8115,8 +8115,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ical-generator@4.0.0(@types/node@18.16.3)(dayjs@2.0.0-alpha.4):
-    resolution: {integrity: sha512-zDjku0O3z/nj/XwgWvhj8vcGwZj/09097VelHLIpUJzjfPdUBNnYkYjSsjrHiwc0HodpSA0U4hiJgz8XerHGXw==}
+  /ical-generator@4.1.0(@types/node@18.16.3)(dayjs@2.0.0-alpha.4):
+    resolution: {integrity: sha512-5GrFDJ8SAOj8cB9P1uEZIfKrNxSZ1R2eOQfZePL+CtdWh4RwNXWe8b0goajz+Hu37vcipG3RVldoa2j57Y20IA==}
     engines: {node: ^14.8.0 || >=16.0.0}
     peerDependencies:
       '@touch4it/ical-timezones': '>=1.6.0'
