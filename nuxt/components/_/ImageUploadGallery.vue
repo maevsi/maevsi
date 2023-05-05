@@ -348,6 +348,10 @@ const getUploadBlobPromise = () =>
             ),
         })
 
+        uppy.value.on('restriction-failed', (_file, error) => {
+          return reject(error.message)
+        })
+
         uppy.value.use(Tus, {
           endpoint: TUSD_FILES_URL,
           limit: 1,
