@@ -9,7 +9,7 @@
     @submit="emit('submit', $event)"
   >
     <Card class="flex flex-col" is-high>
-      <div class="flex flex-col min-h-0 overflow-y-auto gap-6 p-1">
+      <div class="flex flex-col min-h-0 gap-6">
         <slot />
         <div class="flex flex-col items-center justify-between">
           <ButtonColored
