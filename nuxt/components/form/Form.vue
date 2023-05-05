@@ -74,6 +74,14 @@ const props = withDefaults(defineProps<Props>(), {
   submitName: undefined,
 })
 
+const emit = defineEmits<{
+  (e: 'click'): void
+  (e: 'submit', event: Event): void
+}>()
+
+const store = useMaevsiStore()
+const { t } = useI18n()
+
 // data
 const form = reactive({
   turnstileKey: '',
@@ -86,15 +94,6 @@ const rules = {
   },
 }
 const v$ = useVuelidate(rules, form)
-
-// methods
-const emit = defineEmits<{
-  (e: 'click'): void
-  (e: 'submit', event: Event): void
-}>()
-
-const store = useMaevsiStore()
-const { t } = useI18n()
 
 // methods
 const onSubmit = (e: Event) => {
