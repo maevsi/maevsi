@@ -1,3 +1,37 @@
+## [1.13.2](https://github.com/maevsi/maevsi/compare/1.13.1...1.13.2) (2023-05-01)
+
+
+### Performance Improvements
+
+* **fonts:** use fontsource ([ed8871e](https://github.com/maevsi/maevsi/commit/ed8871ea8020b4565db620be43c2c5d88c4e6e69)), closes [#1175](https://github.com/maevsi/maevsi/issues/1175)
+
+## [1.13.1](https://github.com/maevsi/maevsi/compare/1.13.0...1.13.1) (2023-04-26)
+
+
+### Bug Fixes
+
+* **docker:** account for workspace paths ([9afe6b6](https://github.com/maevsi/maevsi/commit/9afe6b6b8828c3217149a7a6a86a57b178f4e84a))
+
+# [1.13.0](https://github.com/maevsi/maevsi/compare/1.12.2...1.13.0) (2023-04-26)
+
+
+### Bug Fixes
+
+* **event-dashlet-start:** remove icon used for testing ([2d17ccd](https://github.com/maevsi/maevsi/commit/2d17ccd8f088ce6b4737dce4b8c1d2d88b3c85e6))
+* **header:** correct sign in button alignment ([422ec30](https://github.com/maevsi/maevsi/commit/422ec30a2df83e5389cc77b2509d5bb91ba6ed8d))
+
+
+### Features
+
+* **icons:** use tailwind library ([917494d](https://github.com/maevsi/maevsi/commit/917494dba34a17ed196fa996f9b75ac48c73943d)), closes [#1178](https://github.com/maevsi/maevsi/issues/1178)
+
+## [1.12.2](https://github.com/maevsi/maevsi/compare/1.12.1...1.12.2) (2023-04-26)
+
+
+### Bug Fixes
+
+* **legal:** update address ([cf95732](https://github.com/maevsi/maevsi/commit/cf957325897c09e11c6bfbc8531043ef0cca6c8f))
+
 ## [1.12.1](https://github.com/maevsi/maevsi/compare/1.12.0...1.12.1) (2023-04-24)
 
 

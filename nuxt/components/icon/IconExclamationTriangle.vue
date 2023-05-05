@@ -1,9 +1,9 @@
 <template>
   <IconContainerNew>
-    <PaperAirplaneIcon />
+    <ExclamationTriangleIcon />
   </IconContainerNew>
 </template>
 
 <script setup lang="ts">
-import { PaperAirplaneIcon } from '@heroicons/vue/24/outline'
+import { ExclamationTriangleIcon } from '@heroicons/vue/24/solid'
 </script>

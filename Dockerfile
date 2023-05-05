@@ -1,8 +1,6 @@
 #############
 # Serve Nuxt in development mode.
 
-# Should be the specific version of `node:slim`.
-# `sqitch` requires at least `buster`.
 FROM node:20.0.0-slim AS development
 
 COPY ./docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
@@ -20,10 +18,9 @@ WORKDIR /srv/app/
 
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
-VOLUME /srv/sqitch
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["pnpm", "run", "dev"]
+CMD ["pnpm", "run", "--dir", "nuxt", "dev"]
 
 # Waiting for https://github.com/nuxt/framework/issues/6915
 # HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
@@ -32,8 +29,10 @@ CMD ["pnpm", "run", "dev"]
 ########################
 # Prepare Nuxt.
 
-# Should be the specific version of `node:slim`.
 FROM node:20.0.0-slim AS prepare
+
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 
 WORKDIR /srv/app/
 
@@ -50,7 +49,6 @@ RUN pnpm install --offline
 ########################
 # Build Nuxt.
 
-# Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:20.0.0-slim AS build
 
@@ -71,7 +69,6 @@ RUN corepack enable && \
 ########################
 # Nuxt: lint
 
-# Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:20.0.0-slim AS lint
 
@@ -86,7 +83,6 @@ RUN corepack enable && \
 ########################
 # Nuxt: test (unit)
 
-# Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:20.0.0-slim AS test-unit
 
@@ -101,8 +97,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: test (integration)
 
-# Should be the specific version of `cypress/included`.
-FROM cypress/included:12.10.0 AS test-integration_base
+FROM cypress/included:12.11.0 AS test-integration_base
 
 ARG UNAME=cypress
 ARG UID=1000
@@ -134,8 +129,7 @@ ENTRYPOINT ["entrypoint-dev.sh"]
 ########################
 # Nuxt: test (integration, development)
 
-# Should be the specific version of `cypress/included`.
-FROM cypress/included:12.10.0 AS test-integration-dev
+FROM cypress/included:12.11.0 AS test-integration-dev
 
 RUN corepack enable \
     && apt-get update \
@@ -154,8 +148,7 @@ RUN pnpm --dir nuxt run test:integration:dev
 ########################
 # Nuxt: test (integration, production)
 
-# Should be the specific version of `cypress/included`.
-FROM cypress/included:12.10.0 AS test-integration-prod
+FROM cypress/included:12.11.0 AS test-integration-prod
 
 RUN corepack enable \
     && apt-get update \
@@ -175,7 +168,6 @@ RUN pnpm --dir nuxt run test:integration:prod
 #######################
 # Collect build, lint and test results.
 
-# Should be the specific version of `node:slim`.
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
 FROM node:20.0.0-slim AS collect
 
@@ -192,8 +184,6 @@ COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-# Should be the specific version of `node:slim`.
-# `sqitch` requires at least `buster`.
 FROM node:20.0.0-slim AS production
 
 ENV NODE_ENV=production
@@ -212,7 +202,7 @@ WORKDIR /srv/app/
 
 COPY --from=collect /srv/app/ ./
 
-COPY ./sqitch/ /srv/sqitch/
+COPY ./sqitch/ /srv/app/sqitch/
 COPY ./docker/entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["entrypoint.sh"]

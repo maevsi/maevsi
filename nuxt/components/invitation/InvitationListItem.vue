@@ -42,7 +42,7 @@
         </ButtonIcon>
         <DropDown>
           <ButtonIcon :aria-label="t('globalShowMore')">
-            <IconDotsVertical />
+            <IconEllipsisVertical />
           </ButtonIcon>
           <template #content>
             <Button
