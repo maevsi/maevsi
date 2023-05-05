@@ -68,8 +68,8 @@ importers:
         specifier: 0.3.0
         version: 0.3.0(rollup@3.21.4)
       '@pinia/nuxt':
-        specifier: 0.4.7
-        version: 0.4.7(rollup@3.21.4)(typescript@5.0.4)(vue@3.2.47)
+        specifier: 0.4.9
+        version: 0.4.9(rollup@3.21.4)(typescript@5.0.4)(vue@3.2.47)
       '@popperjs/core':
         specifier: 2.11.7
         version: 2.11.7
@@ -2961,8 +2961,8 @@ packages:
       webcrypto-core: 1.7.7
     dev: true
 
-  /@pinia/nuxt@0.4.7(rollup@3.21.4)(typescript@5.0.4)(vue@3.2.47):
-    resolution: {integrity: sha512-ifgA9PO/jmPlK1e/HtkrZa7OMSL8EUOpo8Z1O5vNLRr/OZ42kKGEaY1NbIoCz6dIf/pbkATTNHJmcrlPCo3zSA==}
+  /@pinia/nuxt@0.4.9(rollup@3.21.4)(typescript@5.0.4)(vue@3.2.47):
+    resolution: {integrity: sha512-ojzUMHKrQ7ZFjhWqMYKYetcqHSfgtIhjc6Hxw4alfQaGTlFdj38Vpz8Ol36YvmNdSjLFTNWYAgxEWCvg6HcSSg==}
     dependencies:
       '@nuxt/kit': 3.4.3(rollup@3.21.4)
       pinia: 2.0.35(typescript@5.0.4)(vue@3.2.47)
