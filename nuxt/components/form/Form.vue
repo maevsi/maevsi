@@ -6,7 +6,7 @@
       formClass,
     ]"
     novalidate
-    @submit="(e) => onSubmit(e)"
+    @submit="onSubmit"
   >
     <Card class="flex flex-col" is-high>
       <div class="flex flex-col min-h-0 overflow-y-auto gap-6">
