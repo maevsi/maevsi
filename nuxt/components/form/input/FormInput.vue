@@ -85,6 +85,10 @@
       </div>
       <div class="md:w-1/3" />
       <div class="md:w-2/3">
+        <slot name="inputSuffix" />
+      </div>
+      <div class="md:w-1/3" />
+      <div class="md:w-2/3">
         <slot name="stateSuccess" />
       </div>
       <div class="md:w-1/3" />
@@ -101,6 +105,10 @@
       <div class="md:w-1/3" />
       <div class="md:w-2/3">
         <slot name="stateError" />
+      </div>
+      <div class="md:w-1/3" />
+      <div class="md:w-2/3">
+        <slot name="assistance" />
       </div>
     </div>
   </div>
@@ -119,7 +127,7 @@ export interface Props {
   idLabel?: string
   placeholder?: string
   success?: boolean
-  title?: string
+  title: string
   type?: string
   validationProperty?: BaseValidation
   value?: BaseValidation
@@ -135,7 +143,6 @@ const props = withDefaults(defineProps<Props>(), {
   idLabel: undefined,
   placeholder: undefined,
   success: false,
-  title: undefined,
   type: undefined,
   validationProperty: undefined,
   value: undefined,

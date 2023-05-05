@@ -9,6 +9,9 @@
     @input="emit('input', $event)"
     @icon="isVisible = !isVisible"
   >
+    <template #inputSuffix>
+      <slot />
+    </template>
     <template #icon>
       <IconEye v-if="!isVisible" />
       <IconEyeOff v-else />

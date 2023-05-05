@@ -29,12 +29,15 @@
       <FormInputPassword
         :form-input="v$.password"
         @input="form.password = $event"
-      />
-      <div class="flex justify-center">
+      >
         <AppLink :to="localePath('/task/account/password/reset/request')">
           {{ t('passwordReset') }}
         </AppLink>
-      </div>
+      </FormInputPassword>
+      <FormInputCaptcha
+        :form-input="v$.captcha"
+        @input="form.captcha = $event"
+      />
       <template
         v-if="
           api.errors.filter(
@@ -79,6 +82,7 @@ const api = getApiData([
 
 // data
 const form = reactive({
+  captcha: ref<string>(),
   password: ref<string>(),
   username: ref<string>(),
 })
@@ -112,6 +116,9 @@ const submit = async () => {
 
 // vuelidate
 const rules = {
+  captcha: {
+    required,
+  },
   username: {
     formatSlug: VALIDATION_FORMAT_SLUG,
     maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
