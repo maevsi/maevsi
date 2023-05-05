@@ -6,7 +6,7 @@
       formClass,
     ]"
     novalidate
-    @submit="(e) => emit('submit', e)"
+    @submit="(e) => onSubmit(e)"
   >
     <Card class="flex flex-col" is-high>
       <div class="flex flex-col min-h-0 overflow-y-auto gap-6">
@@ -27,7 +27,7 @@
               'animate-shake': form.$error,
             }"
             type="submit"
-            @click="storeTurnstileKey()"
+            @click="emit('click')"
           >
             {{ submitName || t('submit') }}
             <template #prefix>
@@ -97,6 +97,11 @@ const store = useMaevsiStore()
 const { t } = useI18n()
 
 // methods
+const onSubmit = (e: Event) => {
+  storeTurnstileKey()
+  emit('submit', e)
+}
+
 const storeTurnstileKey = () => {
   store.turnstileKey = form.turnstileKey
 }
