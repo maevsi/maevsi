@@ -33,21 +33,20 @@
               :title="t('uploadSize', { size: bytesToString(upload.sizeByte) })"
               width="128"
             />
-            <div v-if="allowDeletion">
-              <div
-                class="absolute right-0 top-0 rounded-bl-lg bg-red-600 bg-opacity-75"
-                @click="deleteImageUpload(upload.id)"
+            <div
+              v-if="allowDeletion"
+              class="absolute flex right-0 top-0 rounded-bl-lg bg-red-600 bg-opacity-75"
+              @click="deleteImageUpload(upload.id)"
+            >
+              <Button
+                :aria-label="t('iconTrashLabel')"
+                class="flex h-full justify-center"
               >
-                <Button
-                  :aria-label="t('iconTrashLabel')"
-                  class="flex h-full justify-center"
-                >
-                  <IconTrash
-                    class="m-1 text-text-bright"
-                    :title="t('iconTrash')"
-                  />
-                </Button>
-              </div>
+                <IconTrash
+                  class="m-1 text-text-bright"
+                  :title="t('iconTrash')"
+                />
+              </Button>
             </div>
           </li>
         </template>
@@ -347,6 +346,10 @@ const getUploadBlobPromise = () =>
               }),
               {}
             ),
+        })
+
+        uppy.value.on('restriction-failed', (_file, error) => {
+          return reject(error.message)
         })
 
         uppy.value.use(Tus, {
