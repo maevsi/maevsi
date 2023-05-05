@@ -64,7 +64,7 @@
     "@types/html-to-text": "9.0.0",
     "@types/lodash-es": "4.17.7",
     "@types/mustache": "4.2.2",
-    "@types/node": "18.16.3",
+    "@types/node": "18.16.4",
     "@types/pg": "8.6.6",
     "@uppy/core": "3.2.0",
     "@uppy/tus": "3.1.0",
