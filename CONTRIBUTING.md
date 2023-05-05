@@ -8,8 +8,8 @@ To allow you and other developers to quickly navigate through Vue Single-File Co
 
 1. import-like and meta elements have to be added first without preceding comments
     1. `import`: like `import { x } from 'y'`
-    1. `use`: like `const { x } = useNuxtApp()`
     1. `definePageMeta`
+    1. `use`: like `const { x } = useNuxtApp()`
 
 1. below, elements that define the data structure of a component **require separation by comments**
     1. `// refs`: like `const x = ref<HTMLElement>()`
