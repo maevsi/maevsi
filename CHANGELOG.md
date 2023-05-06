@@ -14,6 +14,21 @@
 
 * **uppy:** display restriction error ([9eecd0b](https://github.com/maevsi/maevsi/commit/9eecd0b50ec4709b1aa795efd3533c8eb5fc5b8a)), closes [#1165](https://github.com/maevsi/maevsi/issues/1165)
 
+# [1.14.0-beta.1](https://github.com/maevsi/maevsi/compare/1.13.2...1.14.0-beta.1) (2023-05-05)
+
+
+### Bug Fixes
+
+* **docker:** correct ignore file ([e271235](https://github.com/maevsi/maevsi/commit/e27123578f58afb508fd4b262a8946683929cabf))
+* **icon-container-new:** add block display by default ([0ea69f0](https://github.com/maevsi/maevsi/commit/0ea69f0d4cc54c3a892a1b70a9d2470f819f6778))
+* **icon-container:** use span for icons ([9da8d77](https://github.com/maevsi/maevsi/commit/9da8d7738727a563fca22ccb83faed35dbab19c0))
+* **image-upload-gallery:** correct button trash margin ([58cb3be](https://github.com/maevsi/maevsi/commit/58cb3be75c3aaf08d53d01c7d88203724d58802c))
+
+
+### Features
+
+* **uppy:** display restriction error ([9eecd0b](https://github.com/maevsi/maevsi/commit/9eecd0b50ec4709b1aa795efd3533c8eb5fc5b8a)), closes [#1165](https://github.com/maevsi/maevsi/issues/1165)
+
 ## [1.13.2](https://github.com/maevsi/maevsi/compare/1.13.1...1.13.2) (2023-05-01)
 
 
