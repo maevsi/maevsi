@@ -120,7 +120,7 @@ const switchLocalePath = useSwitchLocalePath()
 const { locale, availableLocales, t } = useI18n()
 
 const loadingId = Math.random()
-const loadingIds = useState('loadingIds', () => [loadingId])
+const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
 
 // data
 const isMenuVisible = ref(false)

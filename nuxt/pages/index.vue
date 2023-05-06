@@ -157,7 +157,7 @@ const sectionStepsRef = ref<HTMLElement>()
 // data
 const isScrollHintShown = ref(false)
 const loadingId = Math.random()
-const loadingIds = useState('loadingIds', () => [loadingId])
+const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
 
 // methods
 const hideScrollHint = () => {
