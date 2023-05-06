@@ -9,7 +9,7 @@ BEGIN;
 
 CREATE TABLE maevsi.event_group (
   id                    BIGSERIAL PRIMARY KEY,
-  author_username    TEXT REFERENCES maevsi_private.account(username) NOT NULL,
+  author_username       TEXT NOT NULL REFERENCES maevsi_private.account(username),
   "description"         TEXT CHECK (char_length("description") < 1000000),
   is_archived           BOOLEAN NOT NULL DEFAULT FALSE,
   "name"                TEXT NOT NULL CHECK (char_length("name") > 0 AND char_length("name") < 100),

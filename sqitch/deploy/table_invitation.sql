@@ -9,8 +9,8 @@ BEGIN;
 
 CREATE TABLE maevsi.invitation (
   id                BIGSERIAL PRIMARY KEY,
-  contact_id        BIGINT REFERENCES maevsi.contact(id) NOT NULL,
-  event_id          BIGINT REFERENCES maevsi.event(id) NOT NULL,
+  contact_id        BIGINT NOT NULL REFERENCES maevsi.contact(id),
+  event_id          BIGINT NOT NULL REFERENCES maevsi.event(id),
   feedback          maevsi.invitation_feedback,
   feedback_paper    maevsi.invitation_feedback_paper,
   uuid              UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(),
