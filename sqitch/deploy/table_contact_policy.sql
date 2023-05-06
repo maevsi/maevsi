@@ -36,6 +36,8 @@ CREATE POLICY contact_update ON maevsi.contact FOR UPDATE USING (
 -- Only allow deletes for contacts authored by the invoker's account.
 CREATE POLICY contact_delete ON maevsi.contact FOR DELETE USING (
   author_account_username = current_setting('jwt.claims.username', true)::TEXT
+  AND
+  account_username != current_setting('jwt.claims.username', true)::TEXT
 );
 
 COMMIT;
