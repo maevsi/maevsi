@@ -10,8 +10,8 @@ import {
 } from 'h3'
 import { consola } from 'consola'
 import { jwtVerify, importSPKI } from 'jose'
+import { ofetch } from 'ofetch'
 import pg from 'pg'
-import fetch from 'node-fetch'
 
 import { JWT_ALGORITHM } from '~/utils/constants'
 
@@ -158,7 +158,7 @@ const tusdDelete = async (event: H3Event) => {
   const storageKey = queryRes.rows[0] ? queryRes.rows[0].storage_key : null
 
   if (storageKey !== null) {
-    const httpResp = await fetch('http://tusd:1080/files/' + storageKey, {
+    const httpResp = await ofetch.raw('http://tusd:1080/files/' + storageKey, {
       headers: {
         'Tus-Resumable': '1.0.0',
       },

@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 
 import { H3Event } from 'h3'
-import fetch from 'node-fetch'
+import { ofetch } from 'ofetch'
 
 export default defineEventHandler(async (event: H3Event) => {
   const { res } = event.node
@@ -26,7 +26,7 @@ export const useJwtPublicKey = async () => {
   const jwtPublicKeyPath = process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE
 
   if (config.public.stagingHost) {
-    const httpResp = await fetch(
+    const httpResp = await ofetch.raw(
       `https://${config.public.stagingHost}/api/auth-key`
     )
 
