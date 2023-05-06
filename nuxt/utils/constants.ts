@@ -1,7 +1,7 @@
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
 export const CYPRESS_BASE_URL = 'http://localhost:3000'
-export const ITEMS_PER_PAGE = 8
+export const ITEMS_PER_PAGE = 10
 export const ITEMS_PER_PAGE_LARGE = 100
 export const JWT_ALGORITHM = 'RS256'
 export const JWT_NAME = () =>
