@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build
-    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.36.0
+    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.37.4
     permissions:
       packages: write
   release-semantic:
