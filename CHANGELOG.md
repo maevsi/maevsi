@@ -1,3 +1,20 @@
+# [1.15.0](https://github.com/maevsi/maevsi/compare/1.14.0...1.15.0) (2023-05-08)
+
+
+### Bug Fixes
+
+* **menu:** remove calendar icon ([0be3c63](https://github.com/maevsi/maevsi/commit/0be3c63d7327add485944c3146a0f4761e8f8403))
+
+
+### Features
+
+* **constants:** set items per page to 10 ([cb56975](https://github.com/maevsi/maevsi/commit/cb56975376e857491a2593ba1aa7fae27b316574))
+
+
+### Performance Improvements
+
+* **cookie:** shorten timezone name ([332aae4](https://github.com/maevsi/maevsi/commit/332aae4178433372d66d1fb9dd56fb57e7f4c14c))
+
 # [1.14.0](https://github.com/maevsi/maevsi/compare/1.13.2...1.14.0) (2023-05-05)
 
 
