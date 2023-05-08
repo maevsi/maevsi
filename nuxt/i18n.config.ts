@@ -6,5 +6,6 @@ export default defineI18nConfig((_nuxt) => ({
     de: localeDe,
     en: localeEn,
   },
-  fallbackWarn: false, // TODO: don't show incorrect warnings (https://github.com/intlify/vue-i18n-next/issues/776)
+  fallbackWarn: false, // covered by linting
+  missingWarn: false, // covered by linting
 }))
