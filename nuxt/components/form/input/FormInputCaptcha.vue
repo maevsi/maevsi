@@ -59,6 +59,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const runtimeConfig = useRuntimeConfig()
 
 // refs
 const turnstileRef = ref()
@@ -68,7 +69,7 @@ const isLoading = ref(true)
 
 // computations
 const isVisible = computed(
-  () => true
+  () => !runtimeConfig.public.isTesting
   // TODO: implement invisible widget type with fallback in case of required user interaction (https://github.com/maevsi/maevsi/issues/1239)
   // !['1x00000000000000000000BB', '2x00000000000000000000BB'].includes(
   //   config.public.turnstile.siteKey
