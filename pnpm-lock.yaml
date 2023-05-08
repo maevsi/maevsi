@@ -65,8 +65,8 @@ importers:
         specifier: 8.0.0-beta.10
         version: 8.0.0-beta.10(rollup@3.21.5)(vue@3.2.47)
       '@pinia/nuxt':
-        specifier: 0.4.9
-        version: 0.4.9(rollup@3.21.5)(typescript@5.0.4)(vue@3.2.47)
+        specifier: 0.4.10
+        version: 0.4.10(rollup@3.21.5)(typescript@5.0.4)(vue@3.2.47)
       '@popperjs/core':
         specifier: 2.11.7
         version: 2.11.7
@@ -2948,10 +2948,10 @@ packages:
       webcrypto-core: 1.7.7
     dev: true
 
-  /@pinia/nuxt@0.4.9(rollup@3.21.5)(typescript@5.0.4)(vue@3.2.47):
-    resolution: {integrity: sha512-ojzUMHKrQ7ZFjhWqMYKYetcqHSfgtIhjc6Hxw4alfQaGTlFdj38Vpz8Ol36YvmNdSjLFTNWYAgxEWCvg6HcSSg==}
+  /@pinia/nuxt@0.4.10(rollup@3.21.5)(typescript@5.0.4)(vue@3.2.47):
+    resolution: {integrity: sha512-/16Eac9B9BT+LnhGL2np3bO3DXYcIEjUIGmU9MzUu7y2exDYq1eOce4Yt+ZtLpb0hN0BBGNyP0ZWoHJ6KJIVfA==}
     dependencies:
-      '@nuxt/kit': 3.4.2(rollup@3.21.5)
+      '@nuxt/kit': 3.4.3(rollup@3.21.5)
       pinia: 2.0.36(typescript@5.0.4)(vue@3.2.47)
     transitivePeerDependencies:
       - '@vue/composition-api'
