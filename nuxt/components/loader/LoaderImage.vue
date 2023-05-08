@@ -38,7 +38,7 @@ const img = ref<HTMLImageElement>()
 const isError = ref(false)
 const isLoading = ref(false)
 const loadingId = Math.random()
-const loadingIds = useState('loadingIds', () => [] as number[])
+const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [] as number[])
 const srcWhenLoaded = ref<string | undefined>(props.src)
 
 // methods
