@@ -19,7 +19,6 @@
             :to="localePath('/dashboard')"
             @click="emit('onMenuHide')"
           >
-            <IconCalendar />
             {{ t('dashboard') }}
           </ButtonColored>
         </div>
