@@ -13,7 +13,6 @@
     <Form
       :errors="api.errors"
       :errors-pg-ids="{
-        postgres22023: t('postgres22023'),
         postgres55000: t('postgres55000'),
         postgresP0002: t('postgresP0002'),
       }"
@@ -41,17 +40,17 @@
           api.errors.filter(
             (e) =>
               e.graphQLErrors.filter(
-                (g) => g.originalError?.errcode === '55000'
+                (g) => g.errcode === '55000' || g.errcode === 'P0002'
               ).length
           ).length
         "
         #assistance
       >
         <ButtonColored
-          :aria-label="t('verificationMailResend')"
-          @click="accountRegistrationRefresh"
+          :aria-label="t('contactSupport')"
+          to="mailto:mail+support@maev.si"
         >
-          {{ t('verificationMailResend') }}
+          {{ t('contactSupport') }}
         </ButtonColored>
       </template>
     </Form>
@@ -65,7 +64,7 @@ import { useAuthenticateMutation } from '~/gql/documents/mutations/account/accou
 import { useAccountRegistrationRefreshMutation } from '~/gql/documents/mutations/account/accountRegistrationRefresh'
 
 const { jwtStore } = useJwtStore()
-const { locale, t } = useI18n()
+const { t } = useI18n()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
 
@@ -86,48 +85,29 @@ const form = reactive({
 const isFormSent = ref(false)
 
 // methods
-async function accountRegistrationRefresh() {
+const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
-  accountRegistrationRefreshMutation
-    .executeMutation({
-      language: locale.value,
-      username: form.username || '',
-    })
-    .then(async (result) => {
-      if (result.error) return
+  const result = await authenticateMutation.executeMutation({
+    username: form.username || '',
+    password: form.password || '',
+  })
 
-      await fireAlert({
-        level: 'success',
-        text: t('registrationRefreshSuccess'),
-      })
-    })
-}
-async function submit() {
-  if (!(await isFormValid({ v$, isFormSent }))) return
+  if (result.error) return
 
-  authenticateMutation
-    .executeMutation({
-      username: form.username || '',
-      password: form.password || '',
+  try {
+    await jwtStore(result.data?.authenticate?.jwt)
+  } catch (error) {
+    await fireAlert({
+      error,
+      level: 'error',
+      text: t('jwtStoreFail'),
+      title: t('globalStatusError'),
     })
-    .then(async (result) => {
-      if (result.error) return
+    return
+  }
 
-      try {
-        await jwtStore(result.data?.authenticate?.jwt)
-      } catch (error) {
-        await fireAlert({
-          error,
-          level: 'error',
-          text: t('jwtStoreFail'),
-          title: t('globalStatusError'),
-        })
-        return
-      }
-
-      navigateTo(localePath(`/dashboard`))
-    })
+  navigateTo(localePath(`/dashboard`))
 }
 
 // vuelidate
@@ -147,23 +127,19 @@ const v$ = useVuelidate(rules, form)
 
 <i18n lang="yaml">
 de:
+  contactSupport: Support kontaktieren
   jwtStoreFail: Fehler beim Speichern der Authentifizierungsdaten!
   passwordReset: Passwort zurücksetzen
-  postgres22023: Ein Konto mit diesem Benutzernamen existiert nicht! Überprüfe deine Eingaben auf Schreibfehler.
-  postgres55000: Die E-Mail-Adresse ist noch nicht verifiziert!
-  postgresP0002: Anmeldung fehlgeschlagen! Hast du dich schon registriert? Überprüfe deine Eingaben auf Schreibfehler.
+  postgres55000: Deine E-Mail-Adresse ist noch nicht verifiziert! Schau in dein E-Mail-Postfach, ggf. auch in den Spam-Ordner, oder kontaktiere den Support.
+  postgresP0002: Anmeldung fehlgeschlagen! Hast du dich schon registriert? Überprüfe deine Eingaben auf Schreibfehler oder kontaktiere den Support.
   register: Oder stattdessen registrieren
-  registrationRefreshSuccess: Eine neue Willkommensmail ist auf dem Weg zu dir.
   signIn: Anmelden
-  verificationMailResend: Verifizierungsmail erneut senden
 en:
+  contactSupport: Contact support
   jwtStoreFail: Failed to store the authentication data!
   passwordReset: Reset password
-  postgres22023: This username does not belong to any account! Check your input for spelling mistakes.
-  postgres55000: This email address has not been verified yet!
-  postgresP0002: Login failed! Have you registered yet? Check your input for spelling mistakes.
+  postgres55000: Your email address has not been verified yet! Check your email inbox, including the spam folder if necessary, or contact support.
+  postgresP0002: Login failed! Have you registered yet? Check your input for spelling mistakes or contact support.
   register: Or register instead
-  registrationRefreshSuccess: A new welcome email is on its way to you.
   signIn: Sign in
-  verificationMailResend: Resend verification email
 </i18n>

@@ -10,7 +10,9 @@
     @click="emit('click')"
   >
     <slot name="prefix" />
-    <slot />
+    <div class="truncate-overflow">
+      <slot />
+    </div>
     <slot name="suffix" />
   </AppLink>
   <button
@@ -22,7 +24,9 @@
     @click="emit('click')"
   >
     <slot name="prefix" />
-    <slot />
+    <span class="truncate-overflow">
+      <slot />
+    </span>
     <slot name="suffix" />
   </button>
 </template>
@@ -53,6 +57,7 @@ const emit = defineEmits<{
 // computations
 const classes = computed(() => {
   return [
+    'overflow-hidden',
     ...(props.isBlock ? ['block'] : ['inline-flex items-center gap-2']),
     ...(props.isLinkColored ? ['text-link-dark dark:text-link-bright'] : []),
   ].join(' ')

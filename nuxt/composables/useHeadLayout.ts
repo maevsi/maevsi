@@ -8,7 +8,7 @@ export const useHeadLayout = () => {
   useHead({
     bodyAttrs: {
       class:
-        'bg-background-bright dark:bg-background-dark font-sans text-text-dark dark:text-text-bright',
+        'bg-background-bright dark:bg-background-dark text-text-dark dark:text-text-bright',
     },
     link: [
       {

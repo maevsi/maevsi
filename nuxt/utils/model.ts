@@ -1,12 +1,12 @@
 import { ContactItemFragment } from '~/gql/generated/graphql'
 
-export function getContactName(
+export const getContactName = (
   contact: Pick<
     ContactItemFragment,
     'accountUsername' | 'firstName' | 'lastName'
   >,
   isUsernamePreferred = false
-) {
+) => {
   let name
 
   if (contact.accountUsername) {

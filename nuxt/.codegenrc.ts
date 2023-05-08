@@ -13,7 +13,11 @@ export default {
       },
     },
     'gql/generated/graphcache.ts': {
-      plugins: ['typescript', 'typescript-urql-graphcache'],
+      plugins: [
+        { add: { content: '/* eslint-disable no-use-before-define */' } },
+        'typescript',
+        'typescript-urql-graphcache',
+      ],
     },
     'gql/generated/introspection.ts': {
       plugins: ['urql-introspection'],

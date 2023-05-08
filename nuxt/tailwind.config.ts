@@ -3,15 +3,34 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 import { PluginAPI } from 'tailwindcss/types/config'
 
+const gray = colors.gray // or slate, zinc, neutral, stone
+const truncateOverflow = {
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+}
+const typographyLineHeight = {
+  css: {
+    h1: {
+      lineHeight: '3.75rem',
+    },
+    h2: {
+      lineHeight: '3rem',
+    },
+    h3: {
+      lineHeight: '2.5rem',
+    },
+    h4: {
+      lineHeight: '1.75rem',
+    },
+  },
+}
+
 const heading = (theme: PluginAPI['theme']) =>
   ({
+    ...truncateOverflow,
     fontWeight: theme('fontWeight.bold'),
-    marginBottom: theme('margin.1'),
-    marginTop: theme('margin.4'),
-    // set overflow truncate/ellipsis in the surrounding container, or larger fonts will be cut off due to their line-heights
+    maxWidth: theme('width.full'),
   } as Record<string, string>)
-
-const gray = colors.gray // or slate, zinc, neutral, stone
 
 export default {
   content: [
@@ -50,6 +69,7 @@ export default {
           ...heading(theme),
           fontSize: theme('fontSize.4xl'),
           marginBottom: theme('margin.4'),
+          marginTop: theme('margin.4'),
           textAlign: 'center',
         },
         h2: {
@@ -131,6 +151,7 @@ export default {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
         },
+        '.truncate-overflow': truncateOverflow,
       })
     },
   ],
@@ -156,7 +177,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Manrope', ...defaultTheme.fontFamily.sans],
+        sans: ['ManropeVariable', ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
         shake: {
@@ -186,6 +207,30 @@ export default {
           },
         },
       },
+      typography: {
+        DEFAULT: typographyLineHeight,
+        sm: typographyLineHeight,
+        base: typographyLineHeight,
+        lg: typographyLineHeight,
+        xl: typographyLineHeight,
+        '2xl': typographyLineHeight,
+      },
+    },
+    fontSize: {
+      // line height corrections for overflow
+      xs: ['0.75rem', { lineHeight: '1rem' }],
+      sm: ['0.875rem', { lineHeight: '1.25rem' }],
+      base: ['1rem', { lineHeight: '1.5rem' }],
+      lg: ['1.125rem', { lineHeight: '1.75rem' }],
+      xl: ['1.25rem', { lineHeight: '1.75rem' }],
+      '2xl': ['1.5rem', { lineHeight: '2rem' }],
+      '3xl': ['1.875rem', { lineHeight: '2.5rem' }],
+      '4xl': ['2.25rem', { lineHeight: '3rem' }],
+      '5xl': ['3rem', { lineHeight: '4rem' }],
+      '6xl': ['3.75rem', { lineHeight: '4.75rem' }],
+      '7xl': ['4.5rem', { lineHeight: '5.75rem' }],
+      '8xl': ['6rem', { lineHeight: '7.5rem' }],
+      '9xl': ['8rem', { lineHeight: '10rem' }],
     },
   },
 } satisfies Config

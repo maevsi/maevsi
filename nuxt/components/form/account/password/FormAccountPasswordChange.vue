@@ -50,10 +50,10 @@ const form = reactive({
 const isFormSent = ref(false)
 
 // methods
-function resetForm() {
+const resetForm = () => {
   formRef.value?.reset()
 }
-async function submit() {
+const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
   const result = await accountPasswordChangeMutation.executeMutation({

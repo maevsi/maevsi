@@ -1,10 +1,6 @@
 <template>
   <Form
     :errors="api.errors"
-    :errors-pg-ids="{
-      postgres55000: t('postgres55000'),
-      postgresP0002: t('postgresP0002'),
-    }"
     :form="v$"
     :form-class="formClass"
     :is-form-sent="isFormSent"
@@ -50,7 +46,7 @@ const form = reactive({
 const isFormSent = ref(false)
 
 // methods
-async function submit() {
+const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
   const result = await passwordResetRequestMutation.executeMutation({
@@ -82,14 +78,10 @@ const v$ = useVuelidate(rules, form)
 <i18n lang="yaml">
 de:
   accountPasswordResetRequest: E-Mail senden
-  accountPasswordResetRequestSuccess: Vergib ein neues Password über den Link, den du in der E-Mail findest, die du in Kürze erhalten wirst.
+  accountPasswordResetRequestSuccess: Wenn es ein Konto zu der eingegebenen E-Mail-Adresse gibt, erhältst du in Kürze eine E-Mail. Über den Link in dieser E-Mail kannst du ein neues Password vergeben.
   emailAddressYours: Deine E-Mail-Adresse
-  postgres55000: Die E-Mail-Adresse ist noch nicht verifiziert!
-  postgresP0002: Es gibt keinen Account mit dieser E-Mail-Adresse! Überprüfe deine Eingaben auf Schreibfehler.
 en:
   accountPasswordResetRequest: Send email
-  accountPasswordResetRequestSuccess: Choose a new password using the verification link sent to you by email.
+  accountPasswordResetRequestSuccess: If there is an account for the given email address, you will receive an email shortly. You can use the link in that email to set a new password.
   emailAddressYours: Your email address
-  postgres55000: This email address has not been verified yet!
-  postgresP0002: There is no account with this email address! Check your input for spelling mistakes.
 </i18n>

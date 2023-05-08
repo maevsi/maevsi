@@ -1,10 +1,11 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <div class="maevsi-prose-scheme">
+    <div class="vio-prose-scheme">
       <h2>{{ t('tmg') }}</h2>
       <p>
         {{ t('addressName') }}<br />
+        {{ t('addressOrganization') }}<br />
         {{ t('addressStreet') }}<br />
         {{ t('addressCity') }}
       </p>
@@ -15,6 +16,7 @@
       <h2>{{ t('responsibility') }}</h2>
       <p>
         {{ t('addressName') }}<br />
+        {{ t('addressOrganization') }}<br />
         {{ t('addressStreet') }}<br />
         {{ t('addressCity') }}
       </p>
@@ -50,9 +52,10 @@ useHeadDefault(title)
 
 <i18n lang="yaml">
 de:
-  addressCity: 34117 Kassel
+  addressCity: 34127 Kassel
   addressName: Jonas Thelemann
-  addressStreet: Fünffensterstraße 18
+  addressOrganization: SciencePark, CoCreation-Lab
+  addressStreet: Universitätsplatz 12
   contact: Kontakt
   copyrightDescription1: Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.
   copyrightDescription2: Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
@@ -69,9 +72,10 @@ de:
   title: Impressum
   tmg: Angaben gemäß § 5 TMG
 en:
-  addressCity: 34117 Kassel
+  addressCity: 34127 Kassel
   addressName: Jonas Thelemann
-  addressStreet: Fünffensterstraße 18
+  addressOrganization: SciencePark, CoCreation-Lab
+  addressStreet: Universitätsplatz 12
   contact: Contact
   copyrightDescription1: The content and works created by the site operators on these pages are subject to German copyright law. The reproduction, editing, distribution and any kind of exploitation outside the limits of copyright require the written consent of the respective author or creator. Downloads and copies of this site are only permitted for private, non-commercial use.
   copyrightDescription2: Insofar as the content on this page was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is identified as such. Should you nevertheless become aware of a copyright infringement, we request that you notify us accordingly. If we become aware of any infringements, we will remove such content immediately.

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-32 md:gap-32 mt-8">
+  <div class="flex flex-col gap-32 md:gap-32 pt-8">
     <section id="overview" class="flex gap-8 items-center">
       <div class="flex w-full flex-col gap-8 md:gap-16 items-start lg:w-1/2">
         <i18n-t
@@ -157,13 +157,13 @@ const sectionStepsRef = ref<HTMLElement>()
 // data
 const isScrollHintShown = ref(false)
 const loadingId = Math.random()
-const loadingIds = useState('loadingIds', () => [loadingId])
+const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
 
 // methods
-function hideScrollHint() {
+const hideScrollHint = () => {
   isScrollHintShown.value = false
 }
-function scrollToSteps() {
+const scrollToSteps = () => {
   sectionStepsRef.value?.scrollIntoView({ behavior: 'smooth' })
 }
 

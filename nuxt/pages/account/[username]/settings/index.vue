@@ -24,7 +24,7 @@
           width="96"
         />
       </Button>
-      <h1 class="max-w-full overflow-hidden text-ellipsis sm:w-auto">
+      <h1>
         {{ routeParamUsername }}
       </h1>
       <ModalImageSelection />
@@ -94,7 +94,7 @@ const routeParamUsername = route.params.username as string
 const title = route.params.username as string
 
 // methods
-function showModalImageSelection() {
+const showModalImageSelection = () => {
   store.modals.push({ id: 'ModalImageSelection' })
 }
 

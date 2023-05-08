@@ -14,6 +14,8 @@
 </template>
 
 <script setup lang="ts">
+import '@fontsource/manrope/variable.css'
+
 import supportedBrowsers from '~/supportedBrowsers'
 
 const { $dayjs } = useNuxtApp()

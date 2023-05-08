@@ -8,7 +8,7 @@ BEGIN;
 
 CREATE TABLE maevsi.contact (
   id                         BIGSERIAL PRIMARY KEY,
-  account_username           TEXT REFERENCES maevsi_private.account(username) ON DELETE CASCADE,
+  account_username           TEXT REFERENCES maevsi_private.account(username),
   "address"                  TEXT CHECK (char_length("address") > 0 AND char_length("address") < 300),
   author_account_username    TEXT REFERENCES maevsi_private.account(username) ON DELETE CASCADE NOT NULL,
   email_address              TEXT CHECK (char_length(email_address) < 320 AND email_address ~ '^.+@.+\..+$' AND email_address ~ '^[^A-Z]+$'),

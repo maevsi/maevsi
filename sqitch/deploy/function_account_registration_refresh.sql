@@ -15,6 +15,8 @@ CREATE FUNCTION maevsi.account_registration_refresh(
 DECLARE
   _new_account_notify RECORD;
 BEGIN
+  RAISE 'Refreshing registrations is currently not available due to missing rate limiting!' USING ERRCODE = 'deprecated_feature';
+
   IF (NOT EXISTS (SELECT 1 FROM maevsi_private.account WHERE account.username = $1)) THEN
     RAISE 'An account with this username does not exists!' USING ERRCODE = 'invalid_parameter_value';
   END IF;
