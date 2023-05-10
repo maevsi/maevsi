@@ -7,8 +7,8 @@ on:
     types: [published]
 
 jobs:
-  validate_pr:
-    name: 'Validate: PR'
+  prepare_jobs:
+    name: 'Prepare: job optimization'
     runs-on: ubuntu-latest
     outputs:
       pr: ${{ steps.pr.outputs.pr }}
@@ -18,11 +18,13 @@ jobs:
       - name: Get current PR
         id: pr
         uses: 8BitJonny/gh-get-current-pr@2.2.0
+        with:
+          sha: ${{ github.event.pull_request.head.sha }}
   build_nuxt:
     name: 'Build: frontend'
     uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.1
-    needs: validate_pr
-    if: needs.validate_pr.outputs.pr == '' || github.event_name != 'push'
+    needs: prepare_jobs
+    if: needs.prepare_jobs.outputs.pr == '' || github.event_name != 'push'
     permissions:
       packages: write
     with:
@@ -31,8 +33,8 @@ jobs:
   build_sqitch:
     name: 'Build: database-migration'
     uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.1
-    needs: validate_pr
-    if: needs.validate_pr.outputs.pr == '' || github.event_name != 'push'
+    needs: prepare_jobs
+    if: needs.prepare_jobs.outputs.pr == '' || github.event_name != 'push'
     permissions:
       packages: write
     with:
