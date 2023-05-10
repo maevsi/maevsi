@@ -123,9 +123,6 @@ RUN corepack enable \
     && groupadd -g $GID -o $UNAME \
     && useradd -m -l -u $UID -g $GID -o -s /bin/bash $UNAME
 
-# Use the Cypress version installed by pnpm, not as provided by the Docker image.
-COPY --from=prepare --chown=$UNAME /root/.cache/Cypress /root/.cache/Cypress
-
 USER $UNAME
 
 VOLUME /srv/.pnpm-store
@@ -168,7 +165,7 @@ RUN apt-get update \
     && corepack enable
 
 # Use the Cypress version installed by pnpm, not as provided by the Docker image.
-COPY --from=test-integration-prepare /root/.cache/Cypress /root/.cache/Cypress
+COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=test-integration-prepare /srv/app/ ./
 
 RUN pnpm run test:integration:dev
@@ -191,15 +188,14 @@ RUN apt-get update \
     && corepack enable
 
 # Use the Cypress version installed by pnpm, not as provided by the Docker image.
-COPY --from=test-integration-prepare /root/.cache/Cypress /root/.cache/Cypress
+COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=test-integration-prepare /srv/app/ ./
 COPY --from=build /srv/app/.output /srv/app/.output
 
 # Do not run in parallel with `test-integration-dev`
 COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
 
-RUN pnpm rebuild \
-    && pnpm run test:integration:prod
+RUN pnpm run test:integration:prod
 
 
 #######################
