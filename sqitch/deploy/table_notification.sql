@@ -7,7 +7,7 @@ CREATE TABLE maevsi_private.notification (
   id                 BIGSERIAL PRIMARY KEY,
   channel            TEXT NOT NULL,
   is_acknowledged    BOOLEAN,
-  payload            TEXT CHECK (octet_length(payload) <= 8000) NOT NULL,
+  payload            TEXT NOT NULL CHECK (octet_length(payload) <= 8000),
   "timestamp"        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 

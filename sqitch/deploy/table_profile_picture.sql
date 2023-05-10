@@ -11,8 +11,8 @@ BEGIN;
 
 CREATE TABLE maevsi.profile_picture (
   id                    BIGSERIAL PRIMARY KEY,
-  upload_storage_key    TEXT REFERENCES maevsi.upload(storage_key) NOT NULL ON DELETE CASCADE,
-  username              TEXT REFERENCES maevsi_private.account(username) NOT NULL UNIQUE ON DELETE CASCADE
+  upload_storage_key    TEXT NOT NULL REFERENCES maevsi.upload(storage_key) ON DELETE CASCADE,
+  username              TEXT NOT NULL REFERENCES maevsi_private.account(username) ON DELETE CASCADE UNIQUE
 );
 
 COMMENT ON TABLE maevsi.profile_picture IS 'Mapping of usernames to upload storage keys.';
