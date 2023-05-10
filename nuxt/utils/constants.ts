@@ -28,3 +28,4 @@ export const REGEX_UUID =
 export const STATE_LOADING_IDS_NAME = 'loadingIds'
 export const TIMEZONE_COOKIE_NAME = 'm_tz'
 export const TIMEZONE_HEADER_KEY = 'X-Timezone'
+export const TURNSTILE_HEADER_KEY = 'X-Turnstile-Key'

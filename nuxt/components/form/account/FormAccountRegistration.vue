@@ -37,6 +37,10 @@
         is-required
         @input="form.emailAddress = $event"
       />
+      <FormInputCaptcha
+        :form-input="v$.captcha"
+        @input="form.captcha = $event"
+      />
       <template #assistance>
         <FormInputStateInfo>
           {{ t('accountDeletionNotice') }}
@@ -67,6 +71,7 @@ const api = getApiData([accountRegistrationMutation])
 
 // data
 const form = reactive({
+  captcha: ref<string>(),
   emailAddress: ref<string>(),
   password: ref<string>(),
   username: ref<string>(),
@@ -95,6 +100,9 @@ const submit = async () => {
 
 // vuelidate
 const rules = {
+  captcha: {
+    required,
+  },
   username: {
     existenceNone: helpers.withAsync(validateUsername(true)),
     formatSlug: VALIDATION_FORMAT_SLUG,

@@ -6,10 +6,10 @@
       formClass,
     ]"
     novalidate
-    @submit="(e) => emit('submit', e)"
+    @submit="emit('submit', $event)"
   >
     <Card class="flex flex-col" is-high>
-      <div class="flex flex-col min-h-0 overflow-y-auto gap-6">
+      <div class="flex flex-col min-h-0 gap-6">
         <slot />
         <div class="flex flex-col items-center justify-between">
           <ButtonColored
@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import type { BaseValidation } from '@vuelidate/core'
+import { type BaseValidation } from '@vuelidate/core'
 
 import { BackendError } from '~/types/types'
 

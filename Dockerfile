@@ -3,6 +3,9 @@
 
 FROM node:20.1.0-slim AS development
 
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+
 COPY ./docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Update and install dependencies.

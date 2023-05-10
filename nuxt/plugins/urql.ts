@@ -117,17 +117,22 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const options: ClientOptions = {
     requestPolicy: 'cache-and-network',
     fetchOptions: () => {
-      const { jwt } = useMaevsiStore()
+      const { jwt, turnstileKey } = useMaevsiStore()
+      const headers = {} as Record<string, any>
 
       if (jwt) {
         consola.trace('GraphQL request authenticated with: ' + jwt)
-        return {
-          headers: { authorization: `Bearer ${jwt}` },
-        }
+        headers.authorization = `Bearer ${jwt}`
       } else {
         consola.trace('GraphQL request without authentication.')
-        return {}
       }
+
+      if (turnstileKey) {
+        consola.debug(`Turnstile session key: ${turnstileKey}`)
+        headers[TURNSTILE_HEADER_KEY] = turnstileKey
+      }
+
+      return { headers }
     },
     url: config.public.stagingHost
       ? `https://postgraphile.${config.public.stagingHost}/graphql`
