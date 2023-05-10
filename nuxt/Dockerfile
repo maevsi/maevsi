@@ -1,18 +1,11 @@
 #############
 # Serve Nuxt in development mode.
 
-FROM node:20.1.0-slim AS development
+FROM node:20.1.0-alpine AS development
 
-COPY ./docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY ./docker-entrypoint.sh /usr/local/bin/
 
-# Update and install dependencies.
-# - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        libdbd-pg-perl postgresql-client sqitch \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && corepack enable
+RUN corepack enable
 
 WORKDIR /srv/app/
 
@@ -20,16 +13,16 @@ VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["pnpm", "run", "--dir", "nuxt", "dev"]
+CMD ["pnpm", "run", "dev"]
 
-# Waiting for https://github.com/nuxt/framework/issues/6915
+# TODO: support healthcheck while starting (https://github.com/nuxt/framework/issues/6915)
 # HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
 
 
 ########################
 # Prepare Nuxt.
 
-FROM node:20.1.0-slim AS prepare
+FROM node:20.1.0-alpine AS prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -49,8 +42,7 @@ RUN pnpm install --offline
 ########################
 # Build Nuxt.
 
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.1.0-slim AS build
+FROM node:20.1.0-alpine AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -63,35 +55,33 @@ COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
 RUN corepack enable && \
-    pnpm --dir nuxt run build
+    pnpm run build
 
 
 ########################
 # Nuxt: lint
 
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.1.0-slim AS lint
+FROM node:20.1.0-alpine AS lint
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
 RUN corepack enable && \
-    pnpm --dir nuxt run lint
+    pnpm run lint
 
 
 ########################
 # Nuxt: test (unit)
 
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.1.0-slim AS test-unit
+FROM node:20.1.0-alpine AS test-unit
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
 RUN corepack enable && \
-    pnpm --dir nuxt run test --run
+    pnpm run test --run
 
 
 ########################
@@ -105,7 +95,7 @@ ARG GID=1000
 
 WORKDIR /srv/app/
 
-COPY ./docker/entrypoint-dev.sh /usr/local/bin/
+COPY ./docker-entrypoint.sh /usr/local/bin/
 
 RUN corepack enable \
     && apt-get update \
@@ -123,7 +113,7 @@ USER $UNAME
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 
-ENTRYPOINT ["entrypoint-dev.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 
 ########################
@@ -142,7 +132,7 @@ WORKDIR /srv/app/
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=prepare /srv/app/ ./
 
-RUN pnpm --dir nuxt run test:integration:dev
+RUN pnpm run test:integration:dev
 
 
 ########################
@@ -162,14 +152,13 @@ COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=build /srv/app/ /srv/app/
 COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
 
-RUN pnpm --dir nuxt run test:integration:prod
+RUN pnpm run test:integration:prod
 
 
 #######################
 # Collect build, lint and test results.
 
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.1.0-slim AS collect
+FROM node:20.1.0-alpine AS collect
 
 WORKDIR /srv/app/
 
@@ -184,16 +173,14 @@ COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM node:20.1.0-slim AS production
+FROM node:20.1.0-alpine AS production
 
 ENV NODE_ENV=production
 
 # Update and install dependencies.
-# - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
 # - `wget` is required by the healthcheck
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-        libdbd-pg-perl postgresql-client sqitch \
         wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -202,9 +189,8 @@ WORKDIR /srv/app/
 
 COPY --from=collect /srv/app/ ./
 
-COPY ./sqitch/ /srv/app/sqitch/
-COPY ./docker/entrypoint.sh /usr/local/bin/
+COPY ./docker-entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["node", ".output/server/index.mjs"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
