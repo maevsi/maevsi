@@ -3,14 +3,15 @@
 
 FROM node:20.1.0-alpine AS development
 
-COPY ./docker-entrypoint.sh /usr/local/bin/
-
-RUN corepack enable
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 
 WORKDIR /srv/app/
 
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
+
+COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["pnpm", "run", "dev"]
@@ -34,9 +35,11 @@ COPY ./pnpm-lock.yaml ./
 RUN corepack enable && \
     pnpm fetch
 
-COPY ./ ./
+COPY ./package.json ./.npmrc ./
 
 RUN pnpm install --offline
+
+COPY ./ ./
 
 
 ########################
@@ -44,10 +47,11 @@ RUN pnpm install --offline
 
 FROM node:20.1.0-alpine AS build
 
-ARG CI=false
-ENV CI ${CI}
 ARG NUXT_PUBLIC_STACK_DOMAIN=maev.si
 ENV NUXT_PUBLIC_STACK_DOMAIN=${NUXT_PUBLIC_STACK_DOMAIN}
+
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 
 WORKDIR /srv/app/
 
@@ -63,6 +67,9 @@ RUN corepack enable && \
 
 FROM node:20.1.0-alpine AS lint
 
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
@@ -75,6 +82,9 @@ RUN corepack enable && \
 # Nuxt: test (unit)
 
 FROM node:20.1.0-alpine AS test-unit
+
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 
 WORKDIR /srv/app/
 
@@ -93,6 +103,9 @@ ARG UNAME=cypress
 ARG UID=1000
 ARG GID=1000
 
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+
 WORKDIR /srv/app/
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
@@ -100,6 +113,7 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 RUN corepack enable \
     && apt-get update \
     && apt-get install --no-install-recommends -y \
+        # `curl` is required by `cypress/snapshots/test.sh`
         curl \
     # user
     && groupadd -g $GID -o $UNAME \
@@ -121,12 +135,16 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 FROM cypress/included:12.11.0 AS test-integration-dev
 
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+
+WORKDIR /srv/app/
+
 RUN corepack enable \
     && apt-get update \
     && apt-get install --no-install-recommends -y \
+        # `curl` is required by `cypress/snapshots/test.sh`
         curl
-
-WORKDIR /srv/app/
 
 # Use the Cypress version installed by pnpm, not as provided by the Docker image.
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
@@ -140,12 +158,16 @@ RUN pnpm run test:integration:dev
 
 FROM cypress/included:12.11.0 AS test-integration-prod
 
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+
+WORKDIR /srv/app/
+
 RUN corepack enable \
     && apt-get update \
     && apt-get install --no-install-recommends -y \
+        # `curl` is required by `cypress/snapshots/test.sh`
         curl
-
-WORKDIR /srv/app/
 
 # Use the Cypress version installed by pnpm, not as provided by the Docker image.
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
@@ -160,9 +182,12 @@ RUN pnpm run test:integration:prod
 
 FROM node:20.1.0-alpine AS collect
 
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+
 WORKDIR /srv/app/
 
-COPY --from=build /srv/app/nuxt/.output ./.output
+COPY --from=build /srv/app/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/package.json
 COPY --from=test-integration-dev /srv/app/package.json /tmp/package.json
@@ -175,20 +200,16 @@ COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 
 FROM node:20.1.0-alpine AS production
 
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 ENV NODE_ENV=production
-
-# Update and install dependencies.
-# - `wget` is required by the healthcheck
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        wget \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /srv/app/
 
-COPY --from=collect /srv/app/ ./
+# Update dependencies.
+RUN apk update && apk upgrade --no-cache
 
+COPY --from=collect /srv/app/ ./
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
