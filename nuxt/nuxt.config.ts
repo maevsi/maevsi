@@ -25,11 +25,11 @@ export default defineNuxtConfig({
   css: ['@/assets/css/main.css'],
   modules: [
     '@dargmuesli/nuxt-cookie-control',
-    '@kevinmarrec/nuxt-pwa',
     '@nuxtjs/color-mode',
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
     '@pinia/nuxt',
+    '@vite-pwa/nuxt',
     [
       '@funken-studio/sitemap-nuxt-3',
       { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true },
@@ -178,15 +178,6 @@ export default defineNuxtConfig({
       },
       fallbackWarn: false, // covered by linting
       missingWarn: false, // covered by linting
-    },
-  },
-  pwa: {
-    icon: {
-      source: 'public/assets/static/favicon/android-chrome-512x512.png',
-    },
-    manifest: {
-      theme_color: '#202020',
-      background_color: '#202020',
     },
   },
 })
