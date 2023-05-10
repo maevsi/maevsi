@@ -18,16 +18,11 @@ jobs:
       - name: Get current PR
         id: pr
         uses: 8BitJonny/gh-get-current-pr@2.2.0
-  collect_validation:
-    name: 'Collection: validation'
-    runs-on: ubuntu-latest
-    needs: validate_pr
-    if: needs.pr.outputs.pr == '' || github.event_name != 'push'
   build_nuxt:
     name: 'Build: frontend'
     uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.1
-    needs: collect_validation
-    if: collect_validation
+    needs: validate_pr
+    if: needs.validate_pr.outputs.pr == '' || github.event_name != 'push'
     permissions:
       packages: write
     with:
@@ -36,8 +31,8 @@ jobs:
   build_sqitch:
     name: 'Build: database-migration'
     uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.1
-    needs: collect_validation
-    if: collect_validation
+    needs: validate_pr
+    if: needs.validate_pr.outputs.pr == '' || github.event_name != 'push'
     permissions:
       packages: write
     with:
