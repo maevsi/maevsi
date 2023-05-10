@@ -1,3 +1,16 @@
+##############################
+FROM sqitch/sqitch AS development
+
+WORKDIR /srv/app
+
+COPY ./docker-entrypoint.sh /usr/local/bin/
+
+VOLUME /srv/app
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["sqitch", "deploy"]
+
+
 ###########################
 FROM postgres:15.2 AS build
 
