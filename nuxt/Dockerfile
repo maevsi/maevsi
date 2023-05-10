@@ -41,6 +41,8 @@ RUN pnpm install --offline
 
 COPY ./ ./
 
+RUN pnpm run prepare
+
 
 ########################
 # Build Nuxt.
@@ -131,6 +133,23 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 
 ########################
+# Nuxt: test (preparation)
+
+FROM cypress/included:12.11.0 AS test-integration-prepare
+
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+
+WORKDIR /srv/app/
+
+RUN corepack enable
+
+COPY --from=prepare /srv/app/ ./
+
+RUN pnpm rebuild
+
+
+########################
 # Nuxt: test (integration, development)
 
 FROM cypress/included:12.11.0 AS test-integration-dev
@@ -140,15 +159,15 @@ ENV CI=true
 
 WORKDIR /srv/app/
 
-RUN corepack enable \
-    && apt-get update \
+RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         # `curl` is required by `cypress/snapshots/test.sh`
-        curl
+        curl \
+    && corepack enable
 
 # Use the Cypress version installed by pnpm, not as provided by the Docker image.
-COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
-COPY --from=prepare /srv/app/ ./
+COPY --from=test-integration-prepare /root/.cache/Cypress /root/.cache/Cypress
+COPY --from=test-integration-prepare /srv/app/ ./
 
 RUN pnpm run test:integration:dev
 
@@ -163,18 +182,22 @@ ENV CI=true
 
 WORKDIR /srv/app/
 
-RUN corepack enable \
-    && apt-get update \
+RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         # `curl` is required by `cypress/snapshots/test.sh`
-        curl
+        curl \
+    && corepack enable
 
 # Use the Cypress version installed by pnpm, not as provided by the Docker image.
-COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
-COPY --from=build /srv/app/ /srv/app/
+COPY --from=test-integration-prepare /root/.cache/Cypress /root/.cache/Cypress
+COPY --from=test-integration-prepare /srv/app/ ./
+COPY --from=build /srv/app/.output /srv/app/.output
+
+# Do not run in parallel with `test-integration-dev`
 COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
 
-RUN pnpm run test:integration:prod
+RUN pnpm rebuild \
+    && pnpm run test:integration:prod
 
 
 #######################
@@ -210,8 +233,6 @@ WORKDIR /srv/app/
 RUN apk update && apk upgrade --no-cache
 
 COPY --from=collect /srv/app/ ./
-COPY ./docker-entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["node", ".output/server/index.mjs"]
+CMD [".output/server/index.mjs"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
