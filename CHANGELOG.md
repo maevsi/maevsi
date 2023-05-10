@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/maevsi/maevsi/compare/1.15.0...1.15.1) (2023-05-10)
+
+
+### Bug Fixes
+
+* **sqitch:** place not null constraint after type ([63f49df](https://github.com/maevsi/maevsi/commit/63f49dfd2e519227fff5309a804bb94f437bbd73))
+
 # [1.15.0](https://github.com/maevsi/maevsi/compare/1.14.0...1.15.0) (2023-05-08)
 
 
