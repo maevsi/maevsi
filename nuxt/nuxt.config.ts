@@ -184,6 +184,9 @@ export default defineNuxtConfig({
     devOptions: {
       enabled: true,
     },
+    client: {
+      installPrompt: true,
+    },
     manifest: {
       description: 'Find events, guests and friends.',
       background_color: '#1f2937',
