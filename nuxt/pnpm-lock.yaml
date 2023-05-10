@@ -49,6 +49,9 @@ devDependencies:
   '@nuxtjs/i18n':
     specifier: 8.0.0-beta.10
     version: 8.0.0-beta.10(rollup@3.21.5)(vue@3.2.47)
+  '@nuxtjs/turnstile':
+    specifier: 0.3.0
+    version: 0.3.0(rollup@3.21.5)
   '@pinia/nuxt':
     specifier: 0.4.10
     version: 0.4.10(rollup@3.21.5)(typescript@5.0.4)(vue@3.2.47)
@@ -2748,6 +2751,17 @@ packages:
       - vue
       - vue-i18n-bridge
       - vue-router
+    dev: true
+
+  /@nuxtjs/turnstile@0.3.0(rollup@3.21.5):
+    resolution: {integrity: sha512-dk86cFKKVAf7tag+5z2Xznit6iiSmAMxViSrAknSuCJqP69fjy+whZPXUxLeYcLVN0+LhwsgPEhQ0nR5YruBnQ==}
+    dependencies:
+      '@nuxt/kit': 3.4.3(rollup@3.21.5)
+      defu: 6.1.2
+      pathe: 1.1.0
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
     dev: true
 
   /@parcel/watcher@2.1.0:

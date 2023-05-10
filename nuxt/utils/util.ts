@@ -68,7 +68,7 @@ const getCsp = (host: string): Record<string, Array<string>> => {
     'font-src': ["'self'"], // ~/public/assets/static/fonts
     'form-action': ["'self'"], // Mozilla Observatory: "none".
     'frame-ancestors': ["'none'"], // Mozilla Observatory.
-    'frame-src': ["'none'"],
+    'frame-src': ['https://challenges.cloudflare.com'], // Cloudflare Turnstile
     'img-src': [
       "'self'",
       'blob:',
@@ -88,6 +88,7 @@ const getCsp = (host: string): Record<string, Array<string>> => {
     'script-src': [
       'blob:',
       "'self'",
+      'https://challenges.cloudflare.com', // Cloudflare Turnstile
       'https://static.cloudflareinsights.com', // Cloudflare analytics
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       "'unsafe-inline'", // https://github.com/unjs/nitro/issues/81
