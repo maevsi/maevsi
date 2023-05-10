@@ -193,9 +193,6 @@ COPY --from=test-integration-prepare /root/.cache/Cypress /root/.cache/Cypress
 COPY --from=test-integration-prepare /srv/app/ ./
 COPY --from=build /srv/app/.output /srv/app/.output
 
-# Do not run in parallel with `test-integration-dev`
-COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
-
 RUN pnpm rebuild \
     && pnpm run test:integration:prod
 
