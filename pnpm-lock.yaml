@@ -41,8 +41,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1(graphql@16.6.0)
       '@heroicons/vue':
-        specifier: 2.0.17
-        version: 2.0.17(vue@3.2.47)
+        specifier: 2.0.18
+        version: 2.0.18(vue@3.2.47)
       '@http-util/status-i18n':
         specifier: 0.6.2
         version: 0.6.2
@@ -2254,8 +2254,8 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: true
 
-  /@heroicons/vue@2.0.17(vue@3.2.47):
-    resolution: {integrity: sha512-M5P6Y9tmctbtv/IC1dO5vTw9xqppYxm/5BKuL4hGlxxLvaxbnTmMAoxTIzezSdYAaLh63emgOCBMa+mxphRxUQ==}
+  /@heroicons/vue@2.0.18(vue@3.2.47):
+    resolution: {integrity: sha512-BcTC9nq2TkwNSfQuqo96J7ehx4etezypc2YeTq7KsXWxrcrerhkgjLrxGRBnStN0wrXo0Gv4BInybqz5uBG6Cw==}
     peerDependencies:
       vue: '>= 3'
     dependencies:
