@@ -9,8 +9,8 @@ BEGIN;
 
 CREATE TABLE maevsi.event_grouping (
   id                BIGSERIAL PRIMARY KEY,
-  event_group_id    BIGINT REFERENCES maevsi.event_group(id) NOT NULL,
-  event_id          BIGINT REFERENCES maevsi.event(id) NOT NULL,
+  event_group_id    BIGINT NOT NULL REFERENCES maevsi.event_group(id),
+  event_id          BIGINT NOT NULL REFERENCES maevsi.event(id),
   UNIQUE (event_id, event_group_id)
 );
 
