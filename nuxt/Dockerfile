@@ -8,10 +8,12 @@ ENV CI=true
 
 WORKDIR /srv/app/
 
+COPY ./docker-entrypoint.sh /usr/local/bin/
+
+RUN corepack enable
+
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
-
-COPY ./docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["pnpm", "run", "dev"]
