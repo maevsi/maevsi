@@ -7,16 +7,16 @@ on:
     types: [published]
 
 jobs:
-  build:
-    name: Build
+  build_nuxt:
+    name: 'Build: frontend'
     uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.0
     permissions:
       packages: write
     with:
       CONTEXT: nuxt
       IMAGE_ID_SUFFIX: frontend
-  build:
-    name: Build
+  build_sqitch:
+    name: 'Build: database-migration'
     uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.0
     permissions:
       packages: write
@@ -24,7 +24,7 @@ jobs:
       CONTEXT: sqitch
       IMAGE_ID_SUFFIX: database-migration
   release-semantic:
-    needs: build
+    needs: [build_nuxt, build_sqitch]
     name: Release (semantic)
     uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.38.0
     secrets:
