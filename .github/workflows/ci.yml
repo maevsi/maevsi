@@ -9,13 +9,24 @@ on:
 jobs:
   build:
     name: Build
-    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.37.4
+    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.0
     permissions:
       packages: write
+    with:
+      CONTEXT: nuxt
+      IMAGE_ID_SUFFIX: frontend
+  build:
+    name: Build
+    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.0
+    permissions:
+      packages: write
+    with:
+      CONTEXT: sqitch
+      IMAGE_ID_SUFFIX: database-migration
   release-semantic:
     needs: build
     name: Release (semantic)
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.37.4
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.38.0
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
