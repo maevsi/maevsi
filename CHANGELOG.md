@@ -1,3 +1,43 @@
+## [1.15.1-beta.1](https://github.com/maevsi/maevsi/compare/1.15.0...1.15.1-beta.1) (2023-05-10)
+
+
+### Bug Fixes
+
+* **sqitch:** place not null constraint after type ([63f49df](https://github.com/maevsi/maevsi/commit/63f49dfd2e519227fff5309a804bb94f437bbd73))
+
+# [1.15.0](https://github.com/maevsi/maevsi/compare/1.14.0...1.15.0) (2023-05-08)
+
+
+### Bug Fixes
+
+* **menu:** remove calendar icon ([0be3c63](https://github.com/maevsi/maevsi/commit/0be3c63d7327add485944c3146a0f4761e8f8403))
+
+
+### Features
+
+* **constants:** set items per page to 10 ([cb56975](https://github.com/maevsi/maevsi/commit/cb56975376e857491a2593ba1aa7fae27b316574))
+
+
+### Performance Improvements
+
+* **cookie:** shorten timezone name ([332aae4](https://github.com/maevsi/maevsi/commit/332aae4178433372d66d1fb9dd56fb57e7f4c14c))
+
+# [1.14.0](https://github.com/maevsi/maevsi/compare/1.13.2...1.14.0) (2023-05-05)
+
+
+### Bug Fixes
+
+* **docker:** correct ignore file ([e271235](https://github.com/maevsi/maevsi/commit/e27123578f58afb508fd4b262a8946683929cabf))
+* **icon-container-new:** add block display by default ([0ea69f0](https://github.com/maevsi/maevsi/commit/0ea69f0d4cc54c3a892a1b70a9d2470f819f6778))
+* **icon-container:** use span for icons ([9da8d77](https://github.com/maevsi/maevsi/commit/9da8d7738727a563fca22ccb83faed35dbab19c0))
+* **image-upload-gallery:** correct button trash margin ([58cb3be](https://github.com/maevsi/maevsi/commit/58cb3be75c3aaf08d53d01c7d88203724d58802c))
+* **sqitch:** rework reference constraints ([c4e7a89](https://github.com/maevsi/maevsi/commit/c4e7a8978f3de470d616ee88eb821d2c71137528))
+
+
+### Features
+
+* **uppy:** display restriction error ([9eecd0b](https://github.com/maevsi/maevsi/commit/9eecd0b50ec4709b1aa795efd3533c8eb5fc5b8a)), closes [#1165](https://github.com/maevsi/maevsi/issues/1165)
+
 # [1.14.0-beta.1](https://github.com/maevsi/maevsi/compare/1.13.2...1.14.0-beta.1) (2023-05-05)
 
 
