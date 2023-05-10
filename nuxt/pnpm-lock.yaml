@@ -182,8 +182,8 @@ devDependencies:
     specifier: 4.2.1
     version: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.40.0)(prettier@2.8.8)
   eslint-plugin-yml:
-    specifier: 1.6.0
-    version: 1.6.0(eslint@8.40.0)
+    specifier: 1.7.0
+    version: 1.7.0(eslint@8.40.0)
   h3:
     specifier: 1.6.5
     version: 1.6.5
@@ -6453,8 +6453,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-yml@1.6.0(eslint@8.40.0):
-    resolution: {integrity: sha512-KK3tu8notai2l6BgMvK1yay6RW7FwVRqL48PlKI1AGEpQNwvq/OfNwPMmNWb4/Eu2X22FHUjCnCfCP+bc0pzLw==}
+  /eslint-plugin-yml@1.7.0(eslint@8.40.0):
+    resolution: {integrity: sha512-qq61FQJk+qIgWl0R06bec7UQQEIBrUH22jS+MroTbFUKu+3/iVlGRpZd8mjpOAm/+H/WEDFwy4x/+kKgVGbsWw==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
