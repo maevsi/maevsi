@@ -8,7 +8,7 @@ COPY ./docker-entrypoint.sh /usr/local/bin/
 VOLUME /srv/app
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["sqitch", "deploy"]
+CMD ["sqitch", "deploy", "&&", "sleep", "infinity"]
 
 
 ###########################
@@ -46,6 +46,8 @@ FROM sqitch/sqitch AS production
 
 WORKDIR /srv/app
 
+COPY ./docker-entrypoint.sh /usr/local/bin/
 COPY --from=validate /srv/app ./
 
-CMD deploy "$(cat /run/secrets/maevsi_sqitch-target)"
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["sqitch", "deploy", "&&", "sleep", "infinity"]
