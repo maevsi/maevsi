@@ -10,6 +10,7 @@
       <NuxtLoadingIndicator color="#fff" />
       <NuxtPage />
     </NuxtLayout>
+    <VitePwaManifest />
   </div>
 </template>
 

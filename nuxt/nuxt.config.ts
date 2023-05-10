@@ -180,4 +180,102 @@ export default defineNuxtConfig({
       missingWarn: false, // covered by linting
     },
   },
+  pwa: {
+    devOptions: {
+      enabled: true,
+    },
+    manifest: {
+      description: 'Find events, guests and friends.',
+      // lang: 'en',
+      // start_url: '/?standalone=true',
+      background_color: '#1f2937',
+      theme_color: '#1f2937',
+      icons: [
+        //   {
+        //     src: '/_nuxt/icons/64x64.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '64x64',
+        //     purpose: 'any',
+        //   },
+        // //   {
+        //     src: '/_nuxt/icons/64x64.maskable.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '64x64',
+        //     purpose: 'maskable',
+        //   },
+        //   {
+        //     src: '/_nuxt/icons/120x120.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '120x120',
+        //     purpose: 'any',
+        //   },
+        //   {
+        //     src: '/_nuxt/icons/120x120.maskable.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '120x120',
+        //     purpose: 'maskable',
+        //   },
+        //   {
+        //     src: '/_nuxt/icons/144x144.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '144x144',
+        //     purpose: 'any',
+        //   },
+        //   {
+        //     src: '/_nuxt/icons/144x144.maskable.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '144x144',
+        //     purpose: 'maskable',
+        //   },
+        //   {
+        //     src: '/_nuxt/icons/152x152.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '152x152',
+        //     purpose: 'any',
+        //   },
+        //   {
+        //     src: '/_nuxt/icons/152x152.maskable.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '152x152',
+        //     purpose: 'maskable',
+        //   },
+        //   {
+        //     src: '/_nuxt/icons/192x192.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '192x192',
+        //     purpose: 'any',
+        //   },
+        //   {
+        //     src: '/_nuxt/icons/192x192.maskable.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '192x192',
+        //     purpose: 'maskable',
+        //   },
+        //   {
+        //     src: '/_nuxt/icons/384x384.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '384x384',
+        //     purpose: 'any',
+        //   },
+        //   {
+        //     src: '/_nuxt/icons/384x384.maskable.a81b0fbf.png',
+        //     type: 'image/png',
+        //     sizes: '384x384',
+        //     purpose: 'maskable',
+        //   },
+        {
+          src: '/assets/static/favicon/android-chrome-512x512.png',
+          type: 'image/png',
+          sizes: '512x512',
+          purpose: 'any',
+        },
+        // {
+        //   src: '/assets/static/favicon/android-chrome-512x512.png',
+        //   type: 'image/png',
+        //   sizes: '512x512',
+        //   purpose: 'maskable',
+        // },
+      ],
+    },
+  },
 })
