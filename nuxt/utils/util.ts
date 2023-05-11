@@ -5,7 +5,6 @@ import Clipboard from 'clipboard'
 import { consola } from 'consola'
 import { defu } from 'defu'
 import { H3Event, getCookie } from 'h3'
-import { ofetch } from 'ofetch'
 import Swal from 'sweetalert2'
 import { Ref } from 'vue'
 import { LocationQueryValue } from 'vue-router'
@@ -229,7 +228,7 @@ export const getQueryString = (queryParametersObject: Record<string, any>) =>
 export const getTimezone = async (event: H3Event) =>
   getCookie(event, TIMEZONE_COOKIE_NAME) ||
   (
-    await ofetch(
+    await $fetch<{ timezone: string }>(
       `http://ip-api.com/json/${event.node.req.headers['x-real-ip']}`
     )
   ).timezone
