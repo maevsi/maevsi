@@ -1,3 +1,10 @@
+# [1.17.0-beta.2](https://github.com/maevsi/maevsi/compare/1.17.0-beta.1...1.17.0-beta.2) (2023-05-11)
+
+
+### Features
+
+* **server:** use h3 instead of node:http ([ad1a595](https://github.com/maevsi/maevsi/commit/ad1a595de1495b7d8b79062133a0f8d099e4f3b6))
+
 # [1.17.0-beta.1](https://github.com/maevsi/maevsi/compare/1.16.0...1.17.0-beta.1) (2023-05-11)
 
 
