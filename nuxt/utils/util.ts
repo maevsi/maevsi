@@ -6,7 +6,7 @@ import { consola } from 'consola'
 import { defu } from 'defu'
 import { H3Event, getCookie } from 'h3'
 import { ofetch } from 'ofetch'
-import Swal, { SweetAlertIcon } from 'sweetalert2'
+import Swal from 'sweetalert2'
 import { Ref } from 'vue'
 import { LocationQueryValue } from 'vue-router'
 
@@ -241,36 +241,16 @@ export const isQueryIcFormatValid = (
   ic: LocationQueryValue | LocationQueryValue[]
 ) => ic && !Array.isArray(ic) && REGEX_UUID.test(ic)
 
-export const showToast = ({
-  confirmButtonText,
-  icon = 'success',
-  showCancelButton = false,
-  showConfirmButton = false,
-  timer = 3000,
-  text,
-  title,
-}: {
-  confirmButtonText?: string
-  icon?: SweetAlertIcon
-  showCancelButton?: boolean
-  showConfirmButton?: boolean
-  timer?: number
-  text?: string
-  title: string
-}) =>
+export const showToast = ({ title }: { title: string }) =>
   Swal.fire({
-    confirmButtonText,
-    confirmButtonColor: '#1f2937',
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     },
-    icon,
+    icon: 'success',
     position: 'bottom',
-    showConfirmButton,
-    showCancelButton,
-    text,
-    timer,
+    showConfirmButton: false,
+    timer: 3000,
     timerProgressBar: true,
     title,
     toast: true,
