@@ -64,11 +64,11 @@ watch(
 watch($pwa, async (current, _previous) => {
   if (current.showInstallPrompt && !config.public.isTesting) {
     const result = await showToast({
-      confirmButtonText: 'Get the app',
+      confirmButtonText: t('pwaConfirmButtonText'),
       showConfirmButton: true,
-      text: 'Installing uses almost no storage and provides a quick way to return to this app.',
+      text: t('pwaText'),
       timer: 10000,
-      title: 'Install maevsi',
+      title: t('pwaTitle'),
     })
 
     if (result.isConfirmed) {
@@ -86,6 +86,12 @@ init()
 <i18n lang="yaml">
 de:
   browserUnsupported: Dein Browser scheint veraltet zu sein. Manche Dinge könnten deshalb nicht funktionieren oder komisch aussehen.
+  pwaConfirmButtonText: App nutzen
+  pwaText: Die Installation verbraucht fast keinen Speicherplatz und bietet eine schnelle Möglichkeit, zu dieser App zurückzukehren.
+  pwaTitle: maevsi installieren
 en:
   browserUnsupported: Your browser version seems outdated. Some things might not work as expected or look funny.
+  pwaConfirmButtonText: Get the app
+  pwaText: Installing uses almost no storage and provides a quick way to return to this app.
+  pwaTitle: Install maevsi
 </i18n>
