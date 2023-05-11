@@ -10,7 +10,6 @@
       <NuxtLoadingIndicator color="#fff" />
       <NuxtPage />
     </NuxtLayout>
-    <VitePwaManifest />
   </div>
 </template>
 
@@ -19,7 +18,7 @@ import '@fontsource/manrope/variable.css'
 
 import supportedBrowsers from '~/supportedBrowsers'
 
-const { $dayjs, $i18n, $pwa } = useNuxtApp()
+const { $dayjs, $i18n } = useNuxtApp()
 const { t } = useI18n()
 const config = useRuntimeConfig()
 const cookieControl = useCookieControl()
@@ -61,23 +60,6 @@ watch(
   },
   { deep: true }
 )
-watch($pwa, async (current, _previous) => {
-  if (current.showInstallPrompt && !config.public.isTesting) {
-    const result = await showToast({
-      confirmButtonText: 'Get the app',
-      showConfirmButton: true,
-      text: 'Installing uses almost no storage and provides a quick way to return to this app.',
-      timer: 10000,
-      title: 'Install maevsi',
-    })
-
-    if (result.isConfirmed) {
-      $pwa.install()
-    } else {
-      $pwa.cancelInstall()
-    }
-  }
-})
 
 // initialization
 init()
