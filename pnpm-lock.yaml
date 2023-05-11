@@ -212,8 +212,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0
       isomorphic-dompurify:
-        specifier: 1.4.0
-        version: 1.4.0
+        specifier: 1.5.0
+        version: 1.5.0
       jose:
         specifier: 4.14.4
         version: 4.14.4
@@ -6240,8 +6240,8 @@ packages:
       domelementtype: 2.3.0
     dev: true
 
-  /dompurify@3.0.2:
-    resolution: {integrity: sha512-B8c6JdiEpxAKnd8Dm++QQxJL4lfuc757scZtcapj6qjTjrQzyq5iAyznLKVvK+77eYNiFblHBlt7MM0fOeqoKw==}
+  /dompurify@3.0.3:
+    resolution: {integrity: sha512-axQ9zieHLnAnHh0sfAamKYiqXMJAVwu+LM/alQ7WDagoWessyWvMSFyW65CqF3owufNu8HBcE4cM2Vflu7YWcQ==}
     dev: true
 
   /domutils@3.0.1:
@@ -8560,11 +8560,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /isomorphic-dompurify@1.4.0:
-    resolution: {integrity: sha512-00ZbtXXRnmXfA6VoJwvYtOPgDbPw+Sgmiu12VpesAIoD+V6rjTyf2KEbig/yRfXztBBfcrk3S/X8xu1XNy5kzw==}
+  /isomorphic-dompurify@1.5.0:
+    resolution: {integrity: sha512-1fK9Uoo/OWdl7qOAW+/+msUgja8pQy82wW8bmywO39+suOPU3tZL6kCgJRezITCHirPvICqBVG8AmlJ1lw96Qw==}
     dependencies:
       '@types/dompurify': 3.0.2
-      dompurify: 3.0.2
+      dompurify: 3.0.3
       jsdom: 22.0.0
     transitivePeerDependencies:
       - bufferutil
