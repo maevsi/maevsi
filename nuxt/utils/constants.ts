@@ -1,7 +1,7 @@
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
 export const CYPRESS_BASE_URL = 'http://localhost:3000'
-export const ITEMS_PER_PAGE = 8
+export const ITEMS_PER_PAGE = 10
 export const ITEMS_PER_PAGE_LARGE = 100
 export const JWT_ALGORITHM = 'RS256'
 export const JWT_NAME = () =>
@@ -25,5 +25,7 @@ export const REGEX_UPPERCASE_NONE = /^[^A-Z]+$/
 export const REGEX_URL_HTTPS = /^https:\/\//
 export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
-export const TIMEZONE_COOKIE_NAME = 'maevsi_timezone'
+export const STATE_LOADING_IDS_NAME = 'loadingIds'
+export const TIMEZONE_COOKIE_NAME = 'm_tz'
 export const TIMEZONE_HEADER_KEY = 'X-Timezone'
+export const TURNSTILE_HEADER_KEY = 'X-Turnstile-Key'
