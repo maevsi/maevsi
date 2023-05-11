@@ -1,7 +1,7 @@
 {
   "name": "maevsi",
   "private": true,
-  "version": "1.16.0",
+  "version": "1.17.0-beta.1",
   "description": "Find events, guests and friends.",
   "type": "module",
   "engines": {
@@ -135,7 +135,7 @@
     "typescript": "5.0.4",
     "v-calendar": "3.0.3",
     "vitest": "0.31.0",
-    "vue": "3.2.47",
+    "vue": "3.3.1",
     "vue-advanced-cropper": "2.8.8",
     "vue-chartjs": "5.2.0",
     "vue-gtag": "2.0.1",
