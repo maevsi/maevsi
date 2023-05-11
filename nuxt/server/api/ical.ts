@@ -21,7 +21,7 @@ export default defineEventHandler(async (h3Event: H3Event) => {
     })
 
   const body = await readBody(h3Event)
-  const host = getHost(h3Event.node.req)
+  const host = getHost(h3Event)
 
   const bodyChecks = [
     { property: undefined, name: 'Body' },

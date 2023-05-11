@@ -2,7 +2,7 @@ export const useHost = () => {
   if (process.server) {
     const event = useRequestEvent()
 
-    return getHost(event.node.req)
+    return getHost(event)
   } else {
     return location.host
   }

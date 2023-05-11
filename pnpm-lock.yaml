@@ -94,9 +94,6 @@ importers:
       '@tiptap/vue-3':
         specifier: 2.0.3
         version: 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)(vue@3.3.1)
-      '@types/cookie':
-        specifier: 0.5.1
-        version: 0.5.1
       '@types/dompurify':
         specifier: 3.0.2
         version: 3.0.2
@@ -160,9 +157,6 @@ importers:
       consola:
         specifier: 3.1.0
         version: 3.1.0
-      cookie:
-        specifier: 0.5.0
-        version: 0.5.0
       cross-env:
         specifier: 7.0.3
         version: 7.0.3
@@ -3534,10 +3528,6 @@ packages:
     resolution: {integrity: sha512-KnRanxnpfpjUTqTCXslZSEdLfXExwgNxYPdiO2WGUj8+HDjFi8R3k5RVKPeSCzLjCcshCAtVO2QBbVuAV4kTnw==}
     dev: true
 
-  /@types/cookie@0.5.1:
-    resolution: {integrity: sha512-COUnqfB2+ckwXXSFInsFdOAWQzCCx+a5hq2ruyj+Vjund94RJQd4LG2u9hnvJrTgunKAaax7ancBYlDrNYxA0g==}
-    dev: true
-
   /@types/dompurify@3.0.2:
     resolution: {integrity: sha512-YBL4ziFebbbfQfH5mlC+QTJsvh0oJUrWbmxKMyEdL7emlHJqGR2Qb34TEFKj+VCayBvjKy3xczMFNhugThUsfQ==}
     dependencies:
@@ -5616,11 +5606,6 @@ packages:
 
   /cookie-es@1.0.0:
     resolution: {integrity: sha512-mWYvfOLrfEc996hlKcdABeIiPHUPC6DM2QYZdGGOvhOTbA3tjm2eBwqlJpoFdjC89NI4Qt6h0Pu06Mp+1Pj5OQ==}
-    dev: true
-
-  /cookie@0.5.0:
-    resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
-    engines: {node: '>= 0.6'}
     dev: true
 
   /core-js@3.30.1:

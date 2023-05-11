@@ -1,5 +1,3 @@
-import { IncomingMessage } from 'node:http'
-
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
 import { consola } from 'consola'
@@ -113,7 +111,7 @@ const getCsp = (host: string): Record<string, Array<string>> => {
 }
 
 export const getCspAsString = (event: H3Event): string => {
-  const host = getHost(event.node.req)
+  const host = getHost(event)
   const csp = getCsp(host)
 
   return Object.keys(csp).reduce((p, c) => `${p}${c} ${csp[c].join(' ')};`, '')
@@ -146,10 +144,12 @@ export const getDomainTldPort = (host: string) => {
   return `${hostParts[hostParts.length - 2]}.${hostParts[hostParts.length - 1]}`
 }
 
-export const getHost = (req: IncomingMessage) => {
-  if (!req.headers.host) throw new Error('Host header is not given!')
+export const getHost = (event: H3Event) => {
+  const host = event.node.req.headers.host
 
-  return req.headers.host
+  if (!host) throw new Error('Host header is not given!')
+
+  return host
 }
 
 export const getApiData = <

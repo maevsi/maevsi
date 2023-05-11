@@ -1,8 +1,6 @@
-import { IncomingMessage, ServerResponse } from 'node:http'
-
 import { Client } from '@urql/vue'
 import { consola } from 'consola'
-import { parse, serialize } from 'cookie'
+import { H3Event, setCookie } from 'h3'
 import { decodeJwt } from 'jose'
 
 import { JWT_NAME } from './constants'
@@ -11,15 +9,15 @@ import { authenticateMutation } from '~/gql/documents/mutations/account/accountA
 import { jwtRefreshMutation } from '~/gql/documents/mutations/account/accountJwtRefresh'
 
 export const authenticationAnonymous = async ({
-  client,
   $urqlReset,
+  client,
+  event,
   store,
-  res,
 }: {
-  client: Client
   $urqlReset: () => void
+  client: Client
+  event?: H3Event
   store: ReturnType<typeof useMaevsiStore>
-  res?: ServerResponse
 }) => {
   consola.trace('Authenticating anonymously...')
 
@@ -40,48 +38,43 @@ export const authenticationAnonymous = async ({
     await jwtStore({
       $urqlReset,
       store,
-      res,
+      event,
       jwt: result.data.authenticate.jwt,
     })
   }
 }
 
-export const getJwtFromCookie = ({ req }: { req: IncomingMessage }) => {
-  if (!req.headers.cookie) {
-    return consola.debug('No cookie header.')
-  }
+export const getJwtFromCookie = () => {
+  const cookie = useCookie(JWT_NAME())
 
-  const cookies = parse(req.headers.cookie)
-  const jwtName = JWT_NAME()
-
-  if (!cookies[jwtName]) {
+  if (!cookie.value) {
     return consola.debug('No token cookie.')
   }
 
-  const cookie = decodeJwt(cookies[jwtName])
+  const jwt = decodeJwt(cookie.value)
 
-  if (cookie.exp === undefined || cookie.exp <= Date.now() / 1000) {
+  if (jwt.exp === undefined || jwt.exp <= Date.now() / 1000) {
     return consola.info('Token expired.')
   }
 
   return {
-    jwt: cookies[jwtName],
-    jwtDecoded: cookie,
+    jwt: cookie.value,
+    jwtDecoded: jwt,
   }
 }
 
 export const jwtRefresh = async ({
-  client,
   $urqlReset,
-  store,
-  res,
+  client,
+  event,
   id,
+  store,
 }: {
-  client: Client
   $urqlReset: () => void
-  store: ReturnType<typeof useMaevsiStore>
-  res: ServerResponse
+  client: Client
+  event: H3Event
   id: string
+  store: ReturnType<typeof useMaevsiStore>
 }) => {
   consola.trace('Refreshing a JWT...')
 
@@ -89,23 +82,28 @@ export const jwtRefresh = async ({
 
   if (result.error) {
     consola.error(result.error)
-    await signOut({ client, $urqlReset, store, res })
+    await signOut({ $urqlReset, client, event, store })
   } else if (!result.data?.jwtRefresh?.jwt) {
-    await authenticationAnonymous({ client, $urqlReset, store, res })
+    await authenticationAnonymous({ $urqlReset, client, event, store })
   } else {
-    await jwtStore({ $urqlReset, store, res, jwt: result.data.jwtRefresh.jwt })
+    await jwtStore({
+      $urqlReset,
+      event,
+      jwt: result.data.jwtRefresh.jwt,
+      store,
+    })
   }
 }
 
 export const jwtStore = async ({
   $urqlReset,
   store,
-  res,
+  event,
   jwt,
 }: {
   $urqlReset: () => void
   store: ReturnType<typeof useMaevsiStore>
-  res?: ServerResponse
+  event?: H3Event
   jwt?: string
 }) => {
   $urqlReset()
@@ -113,17 +111,14 @@ export const jwtStore = async ({
   consola.trace('Storing the following JWT: ' + jwt)
   store.jwtSet(jwt)
 
-  if (process.server) {
-    res?.setHeader(
-      'Set-Cookie',
-      serialize(JWT_NAME(), jwt || '', {
-        expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
-        httpOnly: true,
-        path: '/',
-        sameSite: 'lax', // Cannot be 'strict' to allow authentications after clicking on links within webmailers.
-        secure: true,
-      })
-    )
+  if (event) {
+    setCookie(event, JWT_NAME(), jwt || '', {
+      expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
+      httpOnly: true,
+      path: '/',
+      sameSite: 'lax', // Cannot be 'strict' to allow authentications after clicking on links within webmailers.
+      secure: true,
+    })
   } else {
     try {
       await $fetch('/api/auth', {
@@ -145,27 +140,27 @@ export const useJwtStore = () => {
     async jwtStore(jwt?: string) {
       await jwtStore({
         $urqlReset,
-        store,
-        res: process.server ? event.node.res : undefined,
+        event,
         jwt,
+        store,
       })
     },
   }
 }
 
 export const signOut = async ({
-  client,
   $urqlReset,
+  client,
+  event,
   store,
-  res,
 }: {
-  client: Client
   $urqlReset: () => void
+  client: Client
+  event?: H3Event
   store: ReturnType<typeof useMaevsiStore>
-  res?: ServerResponse
 }) => {
-  await jwtStore({ $urqlReset, store, res })
-  await authenticationAnonymous({ client, $urqlReset, store, res })
+  await jwtStore({ $urqlReset, store, event })
+  await authenticationAnonymous({ client, $urqlReset, store, event })
 }
 
 export const useSignOut = () => {
@@ -179,7 +174,7 @@ export const useSignOut = () => {
         client: $urql.value,
         $urqlReset,
         store,
-        res: process.server ? event.node.res : undefined,
+        event,
       })
     },
   }

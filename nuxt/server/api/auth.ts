@@ -1,5 +1,4 @@
-import { serialize } from 'cookie'
-import { H3Event } from 'h3'
+import { H3Event, setCookie } from 'h3'
 import { jwtVerify, importSPKI } from 'jose'
 
 import { useJwtPublicKey } from './auth-key'
@@ -44,15 +43,12 @@ export default defineEventHandler(async (event: H3Event) => {
     }
   }
 
-  res.setHeader(
-    'Set-Cookie',
-    serialize(JWT_NAME(), jwt, {
-      expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
-      httpOnly: true,
-      path: '/',
-      sameSite: 'lax', // Cannot be 'strict' to allow authentications after clicking on links within webmailers.
-      secure: true,
-    })
-  )
+  setCookie(event, JWT_NAME(), jwt, {
+    expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
+    httpOnly: true,
+    // path: '/',
+    sameSite: 'lax', // Cannot be 'strict' to allow authentications after clicking on links within webmailers.
+    secure: true,
+  })
   res.end()
 })
