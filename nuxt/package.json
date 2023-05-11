@@ -11,7 +11,6 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "start": "node .output/server/index.mjs",
-    "cypress:open": "cypress open",
     "cypress:test": "./cypress/snapshots/test.sh",
     "test": "vitest",
     "test:integration:dev": "cross-env NUXT_PUBLIC_IS_TESTING=1 WAIT_ON_TIMEOUT=100000 start-server-and-test 'pnpm dev' 'http://localhost:3000' 'pnpm cypress:test'",
