@@ -20,8 +20,8 @@ importers:
         specifier: 7.21.8
         version: 7.21.8
       '@dargmuesli/nuxt-cookie-control':
-        specifier: 5.9.0
-        version: 5.9.0(rollup@3.21.6)(webpack@5.80.0)
+        specifier: 5.9.1
+        version: 5.9.1(rollup@3.21.6)(webpack@5.80.0)
       '@fontsource/manrope':
         specifier: 4.5.13
         version: 4.5.13
@@ -1287,8 +1287,8 @@ packages:
       - supports-color
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control@5.9.0(rollup@3.21.6)(webpack@5.80.0):
-    resolution: {integrity: sha512-BuddHgZWrt5TjZQlv8VfytTt4z22qb4gXW5zA9udDv8b4cq46+c5rBCqWVbv8xzeCdI3dFDpxAOSRRdct31+mg==}
+  /@dargmuesli/nuxt-cookie-control@5.9.1(rollup@3.21.6)(webpack@5.80.0):
+    resolution: {integrity: sha512-53Mx+Eal1DajTbUviviFUzrBIwrMEhQVilGbl5+l/QlfgE2NEXTLt0GXAqLaVATADlpVLe5Pb7dizKssSwcRSg==}
     engines: {node: '>=16'}
     dependencies:
       '@nuxt/kit': 3.4.3(rollup@3.21.6)
@@ -10701,7 +10701,7 @@ packages:
       postcss: ^8.2.14
     dependencies:
       postcss: 8.4.23
-      postcss-selector-parser: 6.0.11
+      postcss-selector-parser: 6.0.12
     dev: true
 
   /postcss-normalize-charset@6.0.0(postcss@8.4.23):
@@ -13488,7 +13488,7 @@ packages:
       '@intlify/shared': 9.3.0-beta.17
       '@intlify/vue-i18n-bridge': 0.8.0(vue-i18n@9.3.0-beta.16)
       '@intlify/vue-router-bridge': 0.8.0(vue@3.2.47)
-      ufo: 1.1.1
+      ufo: 1.1.2
       vue: 3.2.47
       vue-demi: 0.13.11(vue@3.2.47)
       vue-i18n: 9.3.0-beta.16(vue@3.2.47)

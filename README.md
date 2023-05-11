@@ -149,6 +149,6 @@ In case you want to be able to simple call `sqitch deploy` without `./` instead,
 
 ## Technology
 
-<img src="https://nuxtjs.org/design-kit/colored-text.svg" alt="Nuxt.js" width="1000"/>
-<img src="https://www.graphile.org/static/postgres_postgraphile_graphql-4b238552d875fe06196ba3bda74c6d2b.png" alt="PostGraphile" width="1000"/>
-<img src="https://sqitch.org/img/sqitch-logo.svg" alt="Sqitch" width="1000"/>
+[<img src="https://nuxt.com/assets/design-kit/logo/full-logo-green-light.svg" alt="Nuxt" width="1000"/>](https://nuxt.com)
+[<img src="https://www.graphile.org/static/postgres_postgraphile_graphql-4b238552d875fe06196ba3bda74c6d2b.png" alt="PostGraphile" width="1000"/>](https://www.graphile.org/postgraphile/)
+[<img src="https://sqitch.org/img/sqitch-logo.svg" alt="Sqitch" width="1000"/>](https://sqitch.org/)

@@ -1,7 +1,7 @@
 {
   "name": "maevsi",
   "private": true,
-  "version": "1.16.0-beta.1",
+  "version": "1.16.0",
   "description": "Find events, guests and friends.",
   "type": "module",
   "engines": {
@@ -11,7 +11,6 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "start": "node .output/server/index.mjs",
-    "cypress:open": "cypress open",
     "cypress:test": "./cypress/snapshots/test.sh",
     "test": "vitest",
     "test:integration:dev": "cross-env NUXT_PUBLIC_IS_TESTING=1 WAIT_ON_TIMEOUT=100000 start-server-and-test 'pnpm dev' 'http://localhost:3000' 'pnpm cypress:test'",
@@ -34,7 +33,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.21.8",
-    "@dargmuesli/nuxt-cookie-control": "5.9.0",
+    "@dargmuesli/nuxt-cookie-control": "5.9.1",
     "@fontsource/manrope": "4.5.13",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "3.3.1",
