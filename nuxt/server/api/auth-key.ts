@@ -26,16 +26,12 @@ export const useJwtPublicKey = async () => {
   const jwtPublicKeyPath = process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE
 
   if (config.public.stagingHost) {
-    const httpResp = await ofetch.raw(
+    return await ofetch<string>(
       `https://${config.public.stagingHost}/api/auth-key`
     )
-
-    if (!httpResp.ok) return undefined
-
-    return httpResp._data
   } else {
-    if (!jwtPublicKeyPath || !fs.existsSync(jwtPublicKeyPath)) return undefined
-
-    return fs.readFileSync(jwtPublicKeyPath, 'utf-8')
+    return jwtPublicKeyPath && fs.existsSync(jwtPublicKeyPath)
+      ? fs.readFileSync(jwtPublicKeyPath, 'utf-8')
+      : undefined
   }
 }
