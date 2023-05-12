@@ -15,15 +15,15 @@ import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   middleware: [
-    defineNuxtRouteMiddleware(() => {
+    defineNuxtRouteMiddleware((to) => {
       const store = useMaevsiStore()
       const localePath = useLocalePath()
 
       if (
         store.jwtDecoded?.role === 'maevsi_account' &&
-        !Array.isArray(route.query.referrer)
+        !Array.isArray(to.query.referrer)
       ) {
-        return navigateTo(route.query.referrer || localePath('/dashboard/'))
+        return navigateTo(to.query.referrer || localePath('/dashboard/'))
       }
     }),
   ],
