@@ -32,7 +32,7 @@ export const useJwtPublicKey = async () => {
 
     if (!httpResp.ok) return undefined
 
-    return await httpResp.text()
+    return httpResp._data
   } else {
     if (!jwtPublicKeyPath || !fs.existsSync(jwtPublicKeyPath)) return undefined
 
