@@ -1,11 +1,8 @@
-import { IncomingMessage } from 'node:http'
-
 import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
 import { consola } from 'consola'
 import { defu } from 'defu'
 import { H3Event, getCookie } from 'h3'
-import { ofetch } from 'ofetch'
 import Swal from 'sweetalert2'
 import { Ref } from 'vue'
 import { LocationQueryValue } from 'vue-router'
@@ -114,7 +111,7 @@ const getCsp = (host: string): Record<string, Array<string>> => {
 }
 
 export const getCspAsString = (event: H3Event): string => {
-  const host = getHost(event.node.req)
+  const host = getHost(event)
   const csp = getCsp(host)
 
   return Object.keys(csp).reduce((p, c) => `${p}${c} ${csp[c].join(' ')};`, '')
@@ -147,10 +144,12 @@ export const getDomainTldPort = (host: string) => {
   return `${hostParts[hostParts.length - 2]}.${hostParts[hostParts.length - 1]}`
 }
 
-export const getHost = (req: IncomingMessage) => {
-  if (!req.headers.host) throw new Error('Host header is not given!')
+export const getHost = (event: H3Event) => {
+  const host = event.node.req.headers.host
 
-  return req.headers.host
+  if (!host) throw new Error('Host header is not given!')
+
+  return host
 }
 
 export const getApiData = <
@@ -229,7 +228,7 @@ export const getQueryString = (queryParametersObject: Record<string, any>) =>
 export const getTimezone = async (event: H3Event) =>
   getCookie(event, TIMEZONE_COOKIE_NAME) ||
   (
-    await ofetch(
+    await $fetch<{ timezone: string }>(
       `http://ip-api.com/json/${event.node.req.headers['x-real-ip']}`
     )
   ).timezone

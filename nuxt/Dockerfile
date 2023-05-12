@@ -101,7 +101,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: test (integration)
 
-FROM cypress/included:12.11.0 AS test-integration_base
+FROM cypress/included:12.12.0 AS test-integration_base
 
 ARG UNAME=cypress
 ARG UID=1000
@@ -151,7 +151,7 @@ RUN pnpm rebuild
 ########################
 # Nuxt: test (integration, development)
 
-FROM cypress/included:12.11.0 AS test-integration-dev
+FROM cypress/included:12.12.0 AS test-integration-dev
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -174,7 +174,7 @@ RUN pnpm run test:integration:dev
 ########################
 # Nuxt: test (integration, production)
 
-FROM cypress/included:12.11.0 AS test-integration-prod
+FROM cypress/included:12.12.0 AS test-integration-prod
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
