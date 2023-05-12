@@ -73,7 +73,9 @@ definePageMeta({
     return 'redirect' in route.query ? 'canvas' : 'default'
   }),
   middleware: [
-    async (to) => {
+    // middlewares with multiple awaits that rely on the nuxt context
+    // must be wrapped with `defineNuxtRouteMiddleware` (https://github.com/nuxt/nuxt/issues/14473)
+    defineNuxtRouteMiddleware(async (to) => {
       const { $urql } = useNuxtApp()
       const localePath = useLocalePath()
       const { jwtStore } = useJwtStore()
@@ -127,7 +129,7 @@ definePageMeta({
           })
         )
       }
-    },
+    }),
   ],
 })
 
