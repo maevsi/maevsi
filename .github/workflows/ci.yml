@@ -24,7 +24,7 @@ jobs:
     name: Build
     uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.2
     needs: prepare_jobs
-    if: needs.prepare_jobs.outputs.pr_found != 'true' || github.event_name != 'push'
+    if: needs.prepare_jobs.outputs.pr.pr_found != 'true' || github.event_name != 'push'
     permissions:
       packages: write
     with:
