@@ -132,15 +132,14 @@ export const jwtStore = async ({
 }
 
 export const useJwtStore = () => {
-  const { $urqlReset } = useNuxtApp()
+  const { $urqlReset, ssrContext } = useNuxtApp()
   const store = useMaevsiStore()
-  const event = useRequestEvent()
 
   return {
     async jwtStore(jwt?: string) {
       await jwtStore({
         $urqlReset,
-        event,
+        event: ssrContext?.event,
         jwt,
         store,
       })
@@ -164,9 +163,8 @@ export const signOut = async ({
 }
 
 export const useSignOut = () => {
-  const { $urql, $urqlReset } = useNuxtApp()
+  const { $urql, $urqlReset, ssrContext } = useNuxtApp()
   const store = useMaevsiStore()
-  const event = useRequestEvent()
 
   return {
     async signOut() {
@@ -174,7 +172,7 @@ export const useSignOut = () => {
         client: $urql.value,
         $urqlReset,
         store,
-        event,
+        event: ssrContext?.event,
       })
     },
   }
