@@ -1,38 +1,31 @@
 #############
 # Serve Nuxt in development mode.
 
-FROM node:20.1.0-slim AS development
+FROM node:20.1.0-alpine AS development
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
 
-COPY ./docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-
-# Update and install dependencies.
-# - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        libdbd-pg-perl postgresql-client sqitch \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && corepack enable
-
 WORKDIR /srv/app/
+
+COPY ./docker-entrypoint.sh /usr/local/bin/
+
+RUN corepack enable
 
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["pnpm", "run", "--dir", "nuxt", "dev"]
+CMD ["pnpm", "run", "dev"]
 
-# Waiting for https://github.com/nuxt/framework/issues/6915
+# TODO: support healthcheck while starting (https://github.com/nuxt/framework/issues/6915)
 # HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
 
 
 ########################
 # Prepare Nuxt.
 
-FROM node:20.1.0-slim AS prepare
+FROM node:20.1.0-alpine AS prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -44,21 +37,25 @@ COPY ./pnpm-lock.yaml ./
 RUN corepack enable && \
     pnpm fetch
 
-COPY ./ ./
+COPY ./package.json ./.npmrc ./
 
 RUN pnpm install --offline
+
+COPY ./ ./
+
+RUN pnpm run prepare
 
 
 ########################
 # Build Nuxt.
 
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.1.0-slim AS build
+FROM node:20.1.0-alpine AS build
 
-ARG CI=false
-ENV CI ${CI}
 ARG NUXT_PUBLIC_STACK_DOMAIN=maev.si
 ENV NUXT_PUBLIC_STACK_DOMAIN=${NUXT_PUBLIC_STACK_DOMAIN}
+
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 
 WORKDIR /srv/app/
 
@@ -66,35 +63,39 @@ COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
 RUN corepack enable && \
-    pnpm --dir nuxt run build
+    pnpm run build
 
 
 ########################
 # Nuxt: lint
 
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.1.0-slim AS lint
+FROM node:20.1.0-alpine AS lint
+
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
 RUN corepack enable && \
-    pnpm --dir nuxt run lint
+    pnpm run lint
 
 
 ########################
 # Nuxt: test (unit)
 
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.1.0-slim AS test-unit
+FROM node:20.1.0-alpine AS test-unit
+
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 
 WORKDIR /srv/app/
 
 COPY --from=prepare /srv/app/ ./
 
 RUN corepack enable && \
-    pnpm --dir nuxt run test --run
+    pnpm run test --run
 
 
 ########################
@@ -106,27 +107,45 @@ ARG UNAME=cypress
 ARG UID=1000
 ARG GID=1000
 
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+
 WORKDIR /srv/app/
 
-COPY ./docker/entrypoint-dev.sh /usr/local/bin/
+COPY ./docker-entrypoint.sh /usr/local/bin/
 
 RUN corepack enable \
     && apt-get update \
     && apt-get install --no-install-recommends -y \
+        # `curl` is required by `cypress/snapshots/test.sh`
         curl \
     # user
     && groupadd -g $GID -o $UNAME \
     && useradd -m -l -u $UID -g $GID -o -s /bin/bash $UNAME
-
-# Use the Cypress version installed by pnpm, not as provided by the Docker image.
-COPY --from=prepare --chown=$UNAME /root/.cache/Cypress /root/.cache/Cypress
 
 USER $UNAME
 
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 
-ENTRYPOINT ["entrypoint-dev.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+
+########################
+# Nuxt: test (preparation)
+
+FROM cypress/included:12.11.0 AS test-integration-prepare
+
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+
+WORKDIR /srv/app/
+
+RUN corepack enable
+
+COPY --from=prepare /srv/app/ ./
+
+RUN pnpm rebuild
 
 
 ########################
@@ -134,18 +153,22 @@ ENTRYPOINT ["entrypoint-dev.sh"]
 
 FROM cypress/included:12.12.0 AS test-integration-dev
 
-RUN corepack enable \
-    && apt-get update \
-    && apt-get install --no-install-recommends -y \
-        curl
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 
 WORKDIR /srv/app/
 
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        # `curl` is required by `cypress/snapshots/test.sh`
+        curl \
+    && corepack enable
+
 # Use the Cypress version installed by pnpm, not as provided by the Docker image.
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
-COPY --from=prepare /srv/app/ ./
+COPY --from=test-integration-prepare /srv/app/ ./
 
-RUN pnpm --dir nuxt run test:integration:dev
+RUN pnpm run test:integration:dev
 
 
 ########################
@@ -153,30 +176,39 @@ RUN pnpm --dir nuxt run test:integration:dev
 
 FROM cypress/included:12.12.0 AS test-integration-prod
 
-RUN corepack enable \
-    && apt-get update \
-    && apt-get install --no-install-recommends -y \
-        curl
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 
 WORKDIR /srv/app/
 
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        # `curl` is required by `cypress/snapshots/test.sh`
+        curl \
+    && corepack enable
+
 # Use the Cypress version installed by pnpm, not as provided by the Docker image.
 COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
-COPY --from=build /srv/app/ /srv/app/
+COPY --from=test-integration-prepare /srv/app/ ./
+COPY --from=build /srv/app/.output /srv/app/.output
+
+# Do not run in parallel with `test-integration-dev`
 COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
 
-RUN pnpm --dir nuxt run test:integration:prod
+RUN pnpm run test:integration:prod
 
 
 #######################
 # Collect build, lint and test results.
 
-# Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.1.0-slim AS collect
+FROM node:20.1.0-alpine AS collect
+
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 
 WORKDIR /srv/app/
 
-COPY --from=build /srv/app/nuxt/.output ./.output
+COPY --from=build /srv/app/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/package.json
 COPY --from=test-integration-dev /srv/app/package.json /tmp/package.json
@@ -187,27 +219,18 @@ COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM node:20.1.0-slim AS production
+FROM node:20.1.0-alpine AS production
 
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
 ENV NODE_ENV=production
-
-# Update and install dependencies.
-# - `libdbd-pg-perl postgresql-client sqitch` is required by the entrypoint
-# - `wget` is required by the healthcheck
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        libdbd-pg-perl postgresql-client sqitch \
-        wget \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /srv/app/
 
+# Update dependencies.
+RUN apk update && apk upgrade --no-cache
+
 COPY --from=collect /srv/app/ ./
 
-COPY ./sqitch/ /srv/app/sqitch/
-COPY ./docker/entrypoint.sh /usr/local/bin/
-
-ENTRYPOINT ["entrypoint.sh"]
-CMD ["node", ".output/server/index.mjs"]
+CMD [".output/server/index.mjs"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
