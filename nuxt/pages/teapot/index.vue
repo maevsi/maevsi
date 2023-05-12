@@ -7,7 +7,7 @@
 definePageMeta({
   middleware: [
     defineNuxtRouteMiddleware(() => {
-      const { ssrContext } = useNuxtApp() // cannot use `useRequestEvent` instead
+      const { ssrContext } = useNuxtApp()
 
       if (ssrContext) {
         ssrContext.event.node.res.statusCode = 418
