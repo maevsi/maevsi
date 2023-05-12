@@ -62,14 +62,14 @@ import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   middleware: [
-    defineNuxtRouteMiddleware(() => {
+    () => {
       const store = useMaevsiStore()
       const localePath = useLocalePath()
 
       if (store.jwtDecoded?.role !== 'maevsi_account') {
         return navigateTo(localePath('/'))
       }
-    }),
+    },
   ],
 })
 

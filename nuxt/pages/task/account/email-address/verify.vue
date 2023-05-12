@@ -16,7 +16,7 @@ import { useAccountEmailAddressVerificationMutation } from '~/gql/documents/muta
 
 definePageMeta({
   middleware: [
-    defineNuxtRouteMiddleware((to) => {
+    (to) => {
       const localePath = useLocalePath()
 
       if (
@@ -26,7 +26,7 @@ definePageMeta({
       ) {
         return navigateTo(localePath('/'))
       }
-    }),
+    },
   ],
 })
 

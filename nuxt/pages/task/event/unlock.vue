@@ -73,7 +73,7 @@ definePageMeta({
     return 'redirect' in route.query ? 'canvas' : 'default'
   }),
   middleware: [
-    defineNuxtRouteMiddleware(async (to) => {
+    async (to) => {
       const { $urql } = useNuxtApp()
       const localePath = useLocalePath()
       const { jwtStore } = useJwtStore()
@@ -127,7 +127,7 @@ definePageMeta({
           })
         )
       }
-    }),
+    },
   ],
 })
 

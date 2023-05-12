@@ -8,7 +8,7 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: [
-    defineNuxtRouteMiddleware((to) => {
+    (to) => {
       const localePath = useLocalePath()
 
       if (
@@ -18,7 +18,7 @@ definePageMeta({
       ) {
         return navigateTo(localePath('/'))
       }
-    }),
+    },
   ],
 })
 

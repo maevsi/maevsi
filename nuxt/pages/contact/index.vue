@@ -12,13 +12,13 @@ import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   middleware: [
-    defineNuxtRouteMiddleware(() => {
+    () => {
       const store = useMaevsiStore()
 
       if (!store.signedInUsername) {
         return abortNavigation({ statusCode: 403 })
       }
-    }),
+    },
   ],
 })
 

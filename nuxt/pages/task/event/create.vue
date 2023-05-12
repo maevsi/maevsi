@@ -10,7 +10,7 @@ import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   middleware: [
-    defineNuxtRouteMiddleware((to) => {
+    (to) => {
       const store = useMaevsiStore()
       const localePath = useLocalePath()
 
@@ -22,7 +22,7 @@ definePageMeta({
           })
         )
       }
-    }),
+    },
   ],
 })
 
