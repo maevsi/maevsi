@@ -2,33 +2,19 @@
   <div>
     <h1>{{ title }}</h1>
     <Loader
+      v-if="isCodeValid"
       :api="api"
       :error-pg-ids="{
         postgres55000: t('postgres55000'),
         postgresP0002: t('postgresP0002'),
       }"
     />
+    <Error v-else :status-code="422" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useAccountEmailAddressVerificationMutation } from '~/gql/documents/mutations/account/accountEmailAddressVerification'
-
-definePageMeta({
-  middleware: [
-    (to) => {
-      const localePath = useLocalePath()
-
-      if (
-        Array.isArray(to.query.code) ||
-        to.query.code === null ||
-        !REGEX_UUID.test(to.query.code)
-      ) {
-        return navigateTo(localePath('/'))
-      }
-    },
-  ],
-})
 
 const localePath = useLocalePath()
 const { t } = useI18n()
@@ -42,6 +28,14 @@ const api = getApiData([accountEmailAddressVerificationMutation])
 
 // data
 const title = t('title')
+
+// computations
+const isCodeValid = computed(
+  () =>
+    route.query.code &&
+    !Array.isArray(route.query.code) &&
+    REGEX_UUID.test(route.query.code)
+)
 
 // lifecycle
 onMounted(async () => {

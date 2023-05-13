@@ -3,7 +3,10 @@
     <h1>
       {{ title }}
     </h1>
-    <div class="flex flex-col gap-4">
+    <div
+      v-if="store.jwtDecoded?.role === 'maevsi_account'"
+      class="flex flex-col gap-4"
+    >
       <div class="flex gap-4">
         <section class="lg:w-1/2">
           <h2>{{ t('eventsMine') }}</h2>
@@ -54,24 +57,16 @@
         </CardStateInfo>
       </section>
     </div>
+    <LayoutCallToAction
+      v-else
+      :call-to-action="t('anonymousCta')"
+      :call-to-action-description="t('anonymousCtaDescription')"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
-
-definePageMeta({
-  middleware: [
-    () => {
-      const store = useMaevsiStore()
-      const localePath = useLocalePath()
-
-      if (store.jwtDecoded?.role !== 'maevsi_account') {
-        return navigateTo(localePath('/'))
-      }
-    },
-  ],
-})
 
 const { t } = useI18n()
 const store = useMaevsiStore()
@@ -95,6 +90,8 @@ export default {
 
 <i18n lang="yaml">
 de:
+  anonymousCta: Finde ihn auf maevsi
+  anonymousCtaDescription: Dir fehlt der Überblick über Veranstaltungen?
   contactBook: Kontaktbuch
   contactsMine: Meine Kontake
   eventsMine: Meine Veranstaltungen
@@ -106,6 +103,8 @@ de:
   title: Dashboard
   uploadsMine: Meine Uploads
 en:
+  anonymousCta: Find it on maevsi
+  anonymousCtaDescription: Are you missing an overview of events?
   contactBook: Contact book
   contactsMine: My contacts
   eventsMine: My events

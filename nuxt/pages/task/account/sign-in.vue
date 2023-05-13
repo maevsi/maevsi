@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CardStateInfo v-if="routeQueryReferrer">
+    <CardStateInfo v-if="isReferring">
       {{ t('accountRequired') }}
     </CardStateInfo>
     <h1>{{ title }}</h1>
@@ -15,15 +15,19 @@ import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   middleware: [
-    () => {
+    (to) => {
       const store = useMaevsiStore()
       const localePath = useLocalePath()
 
       if (
         store.jwtDecoded?.role === 'maevsi_account' &&
-        !Array.isArray(route.query.referrer)
+        !Array.isArray(to.query.to)
       ) {
-        return navigateTo(route.query.referrer || localePath('/dashboard/'))
+        return navigateTo(
+          to.redirectedFrom?.fullPath ||
+            to.query.to ||
+            localePath('/dashboard/')
+        )
       }
     },
   ],
@@ -34,9 +38,7 @@ const { t } = useI18n()
 
 // data
 const title = t('title')
-
-// computations
-const routeQueryReferrer = computed(() => route.query.referrer)
+const isReferring = route.redirectedFrom || route.query.to
 
 // initialization
 useHeadDefault(title)

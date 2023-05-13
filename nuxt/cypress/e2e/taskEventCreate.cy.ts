@@ -9,7 +9,7 @@ describe('task event create page', () => {
       }).then((resp) => {
         expect(resp.status).to.equal(302)
         expect(resp.redirectedToUrl).to.equal(
-          `${CYPRESS_BASE_URL}/task/account/sign-in?referrer=/task/event/create`
+          `${CYPRESS_BASE_URL}/task/account/sign-in?to=/task/event/create`
         )
       })
     })

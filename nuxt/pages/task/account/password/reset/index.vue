@@ -1,31 +1,25 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <FormAccountPasswordReset />
+    <FormAccountPasswordReset v-if="isCodeValid" />
+    <Error v-else :status-code="422" />
   </div>
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  middleware: [
-    (to) => {
-      const localePath = useLocalePath()
-
-      if (
-        Array.isArray(to.query.code) ||
-        to.query.code === null ||
-        !REGEX_UUID.test(to.query.code)
-      ) {
-        return navigateTo(localePath('/'))
-      }
-    },
-  ],
-})
-
 const { t } = useI18n()
+const route = useRoute()
 
 // data
 const title = t('title')
+
+// computations
+const isCodeValid = computed(
+  () =>
+    route.query.code &&
+    !Array.isArray(route.query.code) &&
+    REGEX_UUID.test(route.query.code)
+)
 
 // initialization
 useHeadDefault(title)
