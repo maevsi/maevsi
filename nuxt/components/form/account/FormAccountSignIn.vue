@@ -66,6 +66,10 @@ import { maxLength, minLength, required } from '@vuelidate/validators'
 import { useAuthenticateMutation } from '~/gql/documents/mutations/account/accountAuthenticate'
 import { useAccountRegistrationRefreshMutation } from '~/gql/documents/mutations/account/accountRegistrationRefresh'
 
+const emit = defineEmits<{
+  (e: 'signed-in'): void
+}>()
+
 const { jwtStore } = useJwtStore()
 const { t } = useI18n()
 const localePath = useLocalePath()
@@ -111,7 +115,7 @@ const submit = async () => {
     return
   }
 
-  navigateTo(localePath(`/dashboard`))
+  emit('signed-in')
 }
 
 // vuelidate

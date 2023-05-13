@@ -1,11 +1,11 @@
 <template>
   <div>
-    <CardStateInfo v-if="isReferring">
+    <CardStateInfo v-if="to">
       {{ t('accountRequired') }}
     </CardStateInfo>
     <h1>{{ title }}</h1>
     <div class="flex justify-center">
-      <FormAccountSignIn class="max-w-lg grow" />
+      <FormAccountSignIn class="max-w-lg grow" @signed-in="onSignIn" />
     </div>
   </div>
 </template>
@@ -33,12 +33,26 @@ definePageMeta({
   ],
 })
 
-const route = useRoute()
 const { t } = useI18n()
+const localePath = useLocalePath()
+const route = useRoute()
 
 // data
 const title = t('title')
-const isReferring = route.redirectedFrom || route.query.to
+const to =
+  route.redirectedFrom?.fullPath ||
+  (route.query.to && !Array.isArray(route.query.to)
+    ? route.query.to
+    : undefined)
+
+// methods
+const onSignIn = async () => {
+  if (to) {
+    return await navigateTo(to)
+  } else {
+    return await navigateTo(localePath(`/dashboard`))
+  }
+}
 
 // initialization
 useHeadDefault(title)
