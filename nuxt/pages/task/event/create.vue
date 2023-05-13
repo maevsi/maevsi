@@ -10,12 +10,17 @@ import { useMaevsiStore } from '~/store'
 
 definePageMeta({
   middleware: [
-    () => {
+    (to) => {
       const store = useMaevsiStore()
       const localePath = useLocalePath()
 
       if (store.jwtDecoded?.role !== 'maevsi_account') {
-        return navigateTo(localePath('/task/account/sign-in'))
+        return navigateTo(
+          localePath({
+            path: '/task/account/sign-in',
+            query: { to: to.fullPath },
+          })
+        )
       }
     },
   ],

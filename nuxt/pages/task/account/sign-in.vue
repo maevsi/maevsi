@@ -4,51 +4,36 @@
       {{ t('accountRequired') }}
     </CardStateInfo>
     <h1>{{ title }}</h1>
-    <div class="flex justify-center">
+    <div
+      v-if="store.jwtDecoded?.role === 'maevsi_anonymous'"
+      class="flex justify-center"
+    >
       <FormAccountSignIn class="max-w-lg grow" @signed-in="onSignIn" />
     </div>
+    <Error v-else :status-code="422" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 
-definePageMeta({
-  middleware: [
-    (to) => {
-      const store = useMaevsiStore()
-      const localePath = useLocalePath()
-
-      if (
-        store.jwtDecoded?.role === 'maevsi_account' &&
-        !Array.isArray(to.query.to)
-      ) {
-        return navigateTo(
-          to.redirectedFrom?.fullPath ||
-            to.query.to ||
-            localePath('/dashboard/')
-        )
-      }
-    },
-  ],
-})
-
 const { t } = useI18n()
 const localePath = useLocalePath()
+const store = useMaevsiStore()
 const route = useRoute()
 
 // data
 const title = t('title')
-const to =
-  route.redirectedFrom?.fullPath ||
-  (route.query.to && !Array.isArray(route.query.to)
-    ? route.query.to
-    : undefined)
+
+// computations
+const to = computed(() =>
+  route.query.to && !Array.isArray(route.query.to) ? route.query.to : undefined
+)
 
 // methods
 const onSignIn = async () => {
-  if (to) {
-    return await navigateTo(to)
+  if (to.value) {
+    return await navigateTo(to.value)
   } else {
     return await navigateTo(localePath(`/dashboard`))
   }
