@@ -1,32 +1,20 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <FormEvent />
+    <FormEvent v-if="store.jwtDecoded?.role === 'maevsi_account'" />
+    <LayoutCallToAction
+      v-else
+      :call-to-action="t('anonymousCta')"
+      :call-to-action-description="t('anonymousCtaDescription')"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 
-definePageMeta({
-  middleware: [
-    (to) => {
-      const store = useMaevsiStore()
-      const localePath = useLocalePath()
-
-      if (store.jwtDecoded?.role !== 'maevsi_account') {
-        return navigateTo(
-          localePath({
-            path: '/task/account/sign-in',
-            query: { to: to.fullPath },
-          })
-        )
-      }
-    },
-  ],
-})
-
 const { t } = useI18n()
+const store = useMaevsiStore()
 
 // data
 const title = t('title')
@@ -43,7 +31,11 @@ export default {
 
 <i18n lang="yaml">
 de:
+  anonymousCta: Finde ihn auf maevsi
+  anonymousCtaDescription: Du suchst einen liebevollen Ort für deine Veranstaltung?
   title: Veranstaltung erstellen
 en:
+  anonymousCta: Find it on maevsi
+  anonymousCtaDescription: Are you looking for a loving place for your event?
   title: Create event
 </i18n>
