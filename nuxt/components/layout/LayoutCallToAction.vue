@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center gap-2">
     <span>{{ callToActionDescription }}</span>
     <ButtonColored
       :aria-label="callToAction"
