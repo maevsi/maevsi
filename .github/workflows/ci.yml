@@ -11,7 +11,7 @@ jobs:
     name: 'Prepare: job optimization'
     runs-on: ubuntu-latest
     outputs:
-      pr: ${{ steps.pr.outputs.pr }}
+      pr_found: ${{ steps.pr.outputs.pr_found }}
     steps:
       - name: Checkout git repository
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
@@ -20,30 +20,19 @@ jobs:
         uses: 8BitJonny/gh-get-current-pr@2.2.0
         with:
           sha: ${{ github.event.pull_request.head.sha }}
-  build_nuxt:
-    name: 'Build: frontend'
-    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.1
+  build:
+    name: Build
+    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.2
     needs: prepare_jobs
     if: needs.prepare_jobs.outputs.pr_found != 'true' || github.event_name != 'push'
     permissions:
       packages: write
     with:
       CONTEXT: nuxt
-      IMAGE_ID_SUFFIX: frontend
-  build_sqitch:
-    name: 'Build: database-migration'
-    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.1
-    needs: prepare_jobs
-    if: needs.prepare_jobs.outputs.pr_found != 'true' || github.event_name != 'push'
-    permissions:
-      packages: write
-    with:
-      CONTEXT: sqitch
-      IMAGE_ID_SUFFIX: database-migration
   release-semantic:
-    needs: [build_nuxt, build_sqitch]
+    needs: build
     name: Release (semantic)
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.38.1
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.38.2
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
