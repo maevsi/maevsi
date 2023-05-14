@@ -1,3 +1,20 @@
+# [1.17.0](https://github.com/maevsi/maevsi/compare/1.16.0...1.17.0) (2023-05-14)
+
+
+### Bug Fixes
+
+* **account:** correct initial heading ([6d8cb6d](https://github.com/maevsi/maevsi/commit/6d8cb6d8458a8a77447211db89d27e6254cdb3a0))
+* **app:** add pwa i18n ([3982004](https://github.com/maevsi/maevsi/commit/3982004e88d9cd439311a92f8759bd74025d724b))
+* **app:** use functional watch source ([b44e100](https://github.com/maevsi/maevsi/commit/b44e10032880f1e88491f669d8f1abc07e3b98eb))
+* **form-input-icon-wrapper:** simplify ([9bc0a3e](https://github.com/maevsi/maevsi/commit/9bc0a3e5eebe896ce7d263609945a68bc1a325e1))
+* revert "fix(app): use functional watch source" ([077fb44](https://github.com/maevsi/maevsi/commit/077fb4491f44784f4c9f150707c8c353fe7a42fb))
+
+
+### Features
+
+* **contact:** translate message for duplicate key violation ([6abdfa8](https://github.com/maevsi/maevsi/commit/6abdfa81073237cbf3d6c9b754868c741b3c6b30))
+* **pwa:** switch to vite plugin ([855ea9b](https://github.com/maevsi/maevsi/commit/855ea9b7c6b948c65f08ff2ee45dc98a49fb2c5c))
+
 # [1.16.0](https://github.com/maevsi/maevsi/compare/1.15.1...1.16.0) (2023-05-11)
 
 
