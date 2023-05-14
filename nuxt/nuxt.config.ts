@@ -181,9 +181,10 @@ export default defineNuxtConfig({
     },
   },
   pwa: {
-    devOptions: {
-      enabled: true,
-    },
+    // Leads to issues with Cypress e2e tests.
+    // devOptions: {
+    //   enabled: true,
+    // },
     client: {
       installPrompt: true,
     },
