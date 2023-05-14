@@ -61,26 +61,23 @@ watch(
   },
   { deep: true }
 )
-watch(
-  () => $pwa,
-  async (current, _previous) => {
-    if (current.showInstallPrompt && !config.public.isTesting) {
-      const result = await showToast({
-        confirmButtonText: t('pwaConfirmButtonText'),
-        showConfirmButton: true,
-        text: t('pwaText'),
-        timer: 10000,
-        title: t('pwaTitle'),
-      })
+watch($pwa, async (current, _previous) => {
+  if (current.showInstallPrompt && !config.public.isTesting) {
+    const result = await showToast({
+      confirmButtonText: t('pwaConfirmButtonText'),
+      showConfirmButton: true,
+      text: t('pwaText'),
+      timer: 10000,
+      title: t('pwaTitle'),
+    })
 
-      if (result.isConfirmed) {
-        $pwa.install()
-      } else {
-        $pwa.cancelInstall()
-      }
+    if (result.isConfirmed) {
+      $pwa.install()
+    } else {
+      $pwa.cancelInstall()
     }
   }
-)
+})
 
 // initialization
 init()
