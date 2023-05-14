@@ -131,8 +131,8 @@ importers:
         specifier: 1.1.1
         version: 1.1.1(graphql@16.6.0)(vue@3.2.47)
       '@vite-pwa/nuxt':
-        specifier: 0.0.7
-        version: 0.0.7(@nuxt/kit@3.4.3)(vite-plugin-pwa@0.14.7)
+        specifier: 0.0.8
+        version: 0.0.8(@nuxt/kit@3.4.3)(vite-plugin-pwa@0.14.7)
       '@vuelidate/core':
         specifier: 2.0.2
         version: 2.0.2(vue@3.2.47)
@@ -4724,10 +4724,10 @@ packages:
       - supports-color
     dev: true
 
-  /@vite-pwa/nuxt@0.0.7(@nuxt/kit@3.4.3)(vite-plugin-pwa@0.14.7):
-    resolution: {integrity: sha512-7bUTHbameF4GMLQjuyICB761YTC2/Zp6s+rd3hz63Q8lUHP/WUkvOhkoqAoA7CrRPrM85QDeOJKBEvailDb5+w==}
+  /@vite-pwa/nuxt@0.0.8(@nuxt/kit@3.4.3)(vite-plugin-pwa@0.14.7):
+    resolution: {integrity: sha512-Hq2wVBLJfUnFI1onMs1BBWEWB4O2e4+C+8y9PLCSyYDkOabDKweEQsgwdX5Pr+TUFaLtypm/eMuIpvDk4cypZQ==}
     peerDependencies:
-      '@nuxt/kit': ^3.0.0 || ^3.1.0
+      '@nuxt/kit': ^3.0.0
       vite-plugin-pwa: ^0.14.0
     dependencies:
       '@nuxt/kit': 3.4.3(rollup@3.21.5)
