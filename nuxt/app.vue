@@ -10,6 +10,7 @@
       <NuxtLoadingIndicator color="#fff" />
       <NuxtPage />
     </NuxtLayout>
+    <VitePwaManifest />
   </div>
 </template>
 
@@ -18,7 +19,7 @@ import '@fontsource/manrope/variable.css'
 
 import supportedBrowsers from '~/supportedBrowsers'
 
-const { $dayjs, $i18n } = useNuxtApp()
+const { $dayjs, $i18n, $pwa } = useNuxtApp()
 const { t } = useI18n()
 const config = useRuntimeConfig()
 const cookieControl = useCookieControl()
@@ -60,6 +61,23 @@ watch(
   },
   { deep: true }
 )
+watch($pwa, async (current, _previous) => {
+  if (current.showInstallPrompt && !config.public.isTesting) {
+    const result = await showToast({
+      confirmButtonText: t('pwaConfirmButtonText'),
+      showConfirmButton: true,
+      text: t('pwaText'),
+      timer: 10000,
+      title: t('pwaTitle'),
+    })
+
+    if (result.isConfirmed) {
+      $pwa.install()
+    } else {
+      $pwa.cancelInstall()
+    }
+  }
+})
 
 // initialization
 init()
@@ -68,6 +86,12 @@ init()
 <i18n lang="yaml">
 de:
   browserUnsupported: Dein Browser scheint veraltet zu sein. Manche Dinge könnten deshalb nicht funktionieren oder komisch aussehen.
+  pwaConfirmButtonText: App nutzen
+  pwaText: Die Installation verbraucht fast keinen Speicherplatz und bietet eine schnelle Möglichkeit, zu dieser App zurückzukehren.
+  pwaTitle: maevsi installieren
 en:
   browserUnsupported: Your browser version seems outdated. Some things might not work as expected or look funny.
+  pwaConfirmButtonText: Get the app
+  pwaText: Installing uses almost no storage and provides a quick way to return to this app.
+  pwaTitle: Install maevsi
 </i18n>
