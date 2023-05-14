@@ -1,3 +1,22 @@
+# [1.16.0](https://github.com/maevsi/maevsi/compare/1.15.1...1.16.0) (2023-05-11)
+
+
+### Bug Fixes
+
+* revert "Merge pull request [#1245](https://github.com/maevsi/maevsi/issues/1245) from maevsi/feat/vite-pwa" ([c85ee7d](https://github.com/maevsi/maevsi/commit/c85ee7d10cbd7592b19cb3865d80861743795bdd))
+
+
+### Features
+
+* **deps:** replace @kevinmarrec/nuxt-pwa with @vite-pwa/nuxt ([436fe63](https://github.com/maevsi/maevsi/commit/436fe638bcb5dbcc1a1fc0689eb61a625d89b45f))
+* **pwa:** add install toast ([7a1484c](https://github.com/maevsi/maevsi/commit/7a1484c359dc5a1e979032569333bc44f328796c))
+* **pwa:** add manifest ([649a9cc](https://github.com/maevsi/maevsi/commit/649a9cc29b2bde123190663901bf9b46a3d4df4e))
+
+
+### Performance Improvements
+
+* **pwa:** add all favicons ([1541124](https://github.com/maevsi/maevsi/commit/154112451705261fcb323ef2b8a25f02c48186a4))
+
 ## [1.15.1](https://github.com/maevsi/maevsi/compare/1.15.0...1.15.1) (2023-05-10)
 
 
