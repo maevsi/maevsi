@@ -22,7 +22,7 @@ jobs:
           sha: ${{ github.event.pull_request.head.sha }}
   build:
     name: Build
-    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.38.2
+    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.40.3
     needs: prepare_jobs
     if: needs.prepare_jobs.outputs.pr_found != 'true' || github.event_name != 'push'
     permissions:
@@ -32,7 +32,7 @@ jobs:
   release-semantic:
     needs: build
     name: Release (semantic)
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.38.2
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.40.3
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
