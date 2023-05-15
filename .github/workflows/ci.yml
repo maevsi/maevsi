@@ -32,8 +32,8 @@ jobs:
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     with:
-      DRY_RUN: true
       CACHE_PATH: pnpm-lock.yaml
+      DRY_RUN: true
   build:
     name: Build
     uses: dargmuesli/github-actions/.github/workflows/docker.yml@0.40.4
@@ -41,6 +41,7 @@ jobs:
     permissions:
       packages: write
     with:
+      CONTEXT: nuxt
       # PUSH: false
       TAG: ${{ needs.release_semantic_dry.outputs.new_release_version }}
   release_semantic:
