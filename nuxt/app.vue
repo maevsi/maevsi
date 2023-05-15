@@ -1,9 +1,6 @@
 <template>
   <div>
-    <CardStateInfo
-      v-if="!isBrowserSupported && !config.public.isTesting"
-      is-edgy
-    >
+    <CardStateInfo v-if="!isBrowserSupported && !isTesting()" is-edgy>
       {{ t('browserUnsupported') }}
     </CardStateInfo>
     <NuxtLayout>
@@ -21,7 +18,6 @@ import supportedBrowsers from '~/supportedBrowsers'
 
 const { $dayjs, $i18n, $pwa } = useNuxtApp()
 const { t } = useI18n()
-const config = useRuntimeConfig()
 const cookieControl = useCookieControl()
 
 // data
