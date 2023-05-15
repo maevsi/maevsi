@@ -14,9 +14,7 @@
       <!-- TODO: move id-label suffix to FormInput (https://github.com/maevsi/maevsi/issues/955) -->
       <!-- The id's suffix `-maevsi` makes browser suggest inputs just for this service. -->
       <FormInput
-        :id-label="`input-invitation-code-maevsi-${
-          config.public.isInProduction ? 'prod' : 'dev'
-        }`"
+        id-label="input-invitation-code-maevsi"
         :is-disabled="!!routeQueryIc"
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         :title="t('invitationCode')"
@@ -136,7 +134,6 @@ const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute()
 const fireAlert = useFireAlert()
-const config = useRuntimeConfig()
 
 // api data
 const eventUnlockMutation = useEventUnlockMutation()

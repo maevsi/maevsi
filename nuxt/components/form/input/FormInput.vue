@@ -16,7 +16,7 @@
             'form-input-warning': warning,
             'form-input-error': value?.$error,
           }"
-          :for="idLabel"
+          :for="idLabelFull"
         >
           <span>{{ title }}</span>
           <span
@@ -36,7 +36,7 @@
           <slot v-if="$slots.default" />
           <input
             v-else
-            :id="idLabel"
+            :id="idLabelFull"
             class="form-input"
             :class="{
               'rounded-r-none': $slots.icon,
@@ -150,6 +150,12 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const runtimeConfig = useRuntimeConfig()
+
+// data
+const idLabelFull = `maevsi-${
+  runtimeConfig.public.isInProduction ? 'prod' : 'dev'
+}-${props.idLabel}`
 
 // initialization
 if (
