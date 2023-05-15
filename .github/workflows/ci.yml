@@ -28,7 +28,7 @@ jobs:
     permissions:
       packages: write
     with:
-      CONTEXT: nuxt
+      CONTEXT: src
   release-semantic:
     needs: build
     name: Release (semantic)

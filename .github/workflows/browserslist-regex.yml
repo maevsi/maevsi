@@ -12,5 +12,5 @@ jobs:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     with:
       CACHE_PATH: pnpm-lock.yaml
-      DIRECTORY: nuxt/
+      DIRECTORY: src/
       PACKAGE_MANAGER: pnpm
