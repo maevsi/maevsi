@@ -10,7 +10,7 @@ export const useMaevsiStore = defineStore('maevsi', () => {
   const jwtDecoded = ref<JWTPayload>()
   const modals = ref<Modal[]>([])
   const signedInUsername = ref<string>()
-  const turnstileKey = ref<string>()
+  const turnstileToken = ref<string>()
 
   const jwtRemove = () => {
     jwtSet(undefined)
@@ -40,7 +40,7 @@ export const useMaevsiStore = defineStore('maevsi', () => {
     jwtDecoded,
     modals,
     signedInUsername,
-    turnstileKey,
+    turnstileToken,
     jwtRemove,
     jwtSet,
     modalRemove,
