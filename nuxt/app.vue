@@ -58,7 +58,7 @@ watch(
   { deep: true }
 )
 watch($pwa, async (current, _previous) => {
-  if (current.showInstallPrompt && !config.public.isTesting) {
+  if (current.showInstallPrompt && !isTesting()) {
     const result = await showToast({
       confirmButtonText: t('pwaConfirmButtonText'),
       showConfirmButton: true,
