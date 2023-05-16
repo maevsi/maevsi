@@ -1,3 +1,10 @@
+## [1.17.1](https://github.com/maevsi/maevsi/compare/1.17.0...1.17.1) (2023-05-16)
+
+
+### Bug Fixes
+
+* **app:** correct testing check ([dfcd0db](https://github.com/maevsi/maevsi/commit/dfcd0dbec5acce8fc982950c61070195532937ff))
+
 # [1.17.0](https://github.com/maevsi/maevsi/compare/1.16.0...1.17.0) (2023-05-14)
 
 
