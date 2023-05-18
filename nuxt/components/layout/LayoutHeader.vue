@@ -93,7 +93,7 @@
 import { useMaevsiStore } from '~/store'
 
 const emit = defineEmits<{
-  (e: 'onMenuShow'): void
+  onMenuShow: []
 }>()
 
 const store = useMaevsiStore()

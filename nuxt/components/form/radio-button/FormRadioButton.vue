@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'change', change: string): void
+  change: [change: string]
 }>()
 
 // computations
