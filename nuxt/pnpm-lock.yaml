@@ -20,8 +20,8 @@ devDependencies:
     specifier: 3.0.1
     version: 3.0.1(graphql@16.6.0)
   '@graphql-codegen/typescript-urql-graphcache':
-    specifier: 2.4.4
-    version: 2.4.4(@urql/exchange-graphcache@6.0.4)(graphql-tag@2.12.6)(graphql@16.6.0)
+    specifier: 2.4.5
+    version: 2.4.5(@urql/exchange-graphcache@6.0.4)(graphql-tag@2.12.6)(graphql@16.6.0)
   '@graphql-codegen/urql-introspection':
     specifier: 2.2.1
     version: 2.2.1(graphql@16.6.0)
@@ -1798,8 +1798,8 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/typescript-urql-graphcache@2.4.4(@urql/exchange-graphcache@6.0.4)(graphql-tag@2.12.6)(graphql@16.6.0):
-    resolution: {integrity: sha512-bOkdt9bKJS1eRP5TJb+2aur1W/WvYnHfefdR94dZ7/9d4TfNPNx487RIstd9nJsBNM5HqmsaBZNQDER00gKkAw==}
+  /@graphql-codegen/typescript-urql-graphcache@2.4.5(@urql/exchange-graphcache@6.0.4)(graphql-tag@2.12.6)(graphql@16.6.0):
+    resolution: {integrity: sha512-h+Px+Cj/9MMI5I8iQbSoJUWuq7I/hSCG5yM1tur8hzqzaQMbR5FGTwxlPnHFfUljvHj/bVdwYHwvO9p+PaNvww==}
     peerDependencies:
       '@urql/exchange-graphcache': ^4.1.1 || ^5.0.0
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -7837,7 +7837,7 @@ packages:
       kleur: 4.1.5
       minimist: 1.2.8
       prompts: 2.4.2
-      semver: 7.5.0
+      semver: 7.5.1
     dev: true
 
   /htmlparser2@8.0.2:
