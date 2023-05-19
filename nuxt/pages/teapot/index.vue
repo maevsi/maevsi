@@ -2,7 +2,7 @@
   <Error :status-code="418" />
 </template>
 
-<!-- https://github.com/nuxt/framework/issues/8041 -->
+<!-- TODO: rename directory to "🫖" (https://github.com/nuxt/framework/issues/8041) -->
 <script setup lang="ts">
 const { t } = useI18n()
 const { ssrContext } = useNuxtApp() // cannot use `useRequestEvent` instead
