@@ -263,8 +263,8 @@ devDependencies:
     specifier: 1.4.3
     version: 1.4.3
   prosemirror-transform:
-    specifier: 1.7.1
-    version: 1.7.1
+    specifier: 1.7.2
+    version: 1.7.2
   prosemirror-view:
     specifier: 1.31.2
     version: 1.31.2
@@ -3535,7 +3535,7 @@ packages:
       prosemirror-state: 1.4.3
       prosemirror-tables: 1.3.2
       prosemirror-trailing-node: 2.0.4(prosemirror-model@1.19.1)(prosemirror-state@1.4.3)(prosemirror-view@1.31.2)
-      prosemirror-transform: 1.7.1
+      prosemirror-transform: 1.7.2
       prosemirror-view: 1.31.2
     transitivePeerDependencies:
       - supports-color
@@ -10951,7 +10951,7 @@ packages:
   /prosemirror-changeset@2.2.0:
     resolution: {integrity: sha512-QM7ohGtkpVpwVGmFb8wqVhaz9+6IUXcIQBGZ81YNAKYuHiFJ1ShvSzab4pKqTinJhwciZbrtBEk/2WsqSt2PYg==}
     dependencies:
-      prosemirror-transform: 1.7.1
+      prosemirror-transform: 1.7.2
     dev: true
 
   /prosemirror-collab@1.3.0:
@@ -10965,14 +10965,14 @@ packages:
     dependencies:
       prosemirror-model: 1.19.1
       prosemirror-state: 1.4.3
-      prosemirror-transform: 1.7.1
+      prosemirror-transform: 1.7.2
     dev: true
 
   /prosemirror-dropcursor@1.8.1:
     resolution: {integrity: sha512-M30WJdJZLyXHi3N8vxN6Zh5O8ZBbQCz0gURTfPmTIBNQ5pxrdU7A58QkNqfa98YEjSAL1HUyyU34f6Pm5xBSGw==}
     dependencies:
       prosemirror-state: 1.4.3
-      prosemirror-transform: 1.7.1
+      prosemirror-transform: 1.7.2
       prosemirror-view: 1.31.2
     dev: true
 
@@ -10989,7 +10989,7 @@ packages:
     resolution: {integrity: sha512-/zm0XoU/N/+u7i5zepjmZAEnpvjDtzoPWW6VmKptcAnPadN/SStsBjMImdCEbb3seiNTpveziPTIrXQbHLtU1g==}
     dependencies:
       prosemirror-state: 1.4.3
-      prosemirror-transform: 1.7.1
+      prosemirror-transform: 1.7.2
       prosemirror-view: 1.31.2
       rope-sequence: 1.3.3
     dev: true
@@ -10998,7 +10998,7 @@ packages:
     resolution: {integrity: sha512-eAW/M/NTSSzpCOxfR8Abw6OagdG0MiDAiWHQMQveIsZtoKVYzm0AflSPq/ymqJd56/Su1YPbwy9lM13wgHOFmQ==}
     dependencies:
       prosemirror-state: 1.4.3
-      prosemirror-transform: 1.7.1
+      prosemirror-transform: 1.7.2
     dev: true
 
   /prosemirror-keymap@1.2.2:
@@ -11041,14 +11041,14 @@ packages:
     dependencies:
       prosemirror-model: 1.19.1
       prosemirror-state: 1.4.3
-      prosemirror-transform: 1.7.1
+      prosemirror-transform: 1.7.2
     dev: true
 
   /prosemirror-state@1.4.3:
     resolution: {integrity: sha512-goFKORVbvPuAQaXhpbemJFRKJ2aixr+AZMGiquiqKxaucC6hlpHNZHWgz5R7dS4roHiwq9vDctE//CZ++o0W1Q==}
     dependencies:
       prosemirror-model: 1.19.1
-      prosemirror-transform: 1.7.1
+      prosemirror-transform: 1.7.2
       prosemirror-view: 1.31.2
     dev: true
 
@@ -11058,7 +11058,7 @@ packages:
       prosemirror-keymap: 1.2.2
       prosemirror-model: 1.19.1
       prosemirror-state: 1.4.3
-      prosemirror-transform: 1.7.1
+      prosemirror-transform: 1.7.2
       prosemirror-view: 1.31.2
     dev: true
 
@@ -11080,8 +11080,8 @@ packages:
       - supports-color
     dev: true
 
-  /prosemirror-transform@1.7.1:
-    resolution: {integrity: sha512-VteoifAfpt46z0yEt6Fc73A5OID9t/y2QIeR5MgxEwTuitadEunD/V0c9jQW8ziT8pbFM54uTzRLJ/nLuQjMxg==}
+  /prosemirror-transform@1.7.2:
+    resolution: {integrity: sha512-b94lVUdA9NyaYRb2WuGSgb5YANiITa05dtew9eSK+KkYu64BCnU27WhJPE95gAWAnhV57CM3FabWXM23gri8Kg==}
     dependencies:
       prosemirror-model: 1.19.1
     dev: true
@@ -11091,7 +11091,7 @@ packages:
     dependencies:
       prosemirror-model: 1.19.1
       prosemirror-state: 1.4.3
-      prosemirror-transform: 1.7.1
+      prosemirror-transform: 1.7.2
     dev: true
 
   /protocols@2.0.1:
