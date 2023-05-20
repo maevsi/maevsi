@@ -1,3 +1,15 @@
+# [1.17.0-beta.4](https://github.com/maevsi/maevsi/compare/1.17.0-beta.3...1.17.0-beta.4) (2023-05-20)
+
+
+### Bug Fixes
+
+* **ofetch:** access raw data ([8968f1b](https://github.com/maevsi/maevsi/commit/8968f1bd4bcf6bc9fb96e480ab9ed78275dc8f3e))
+
+
+### Features
+
+* **auth-key:** do not fetch raw ([c4be6b9](https://github.com/maevsi/maevsi/commit/c4be6b90e939116ea99013b11d958e2b03908721))
+
 # [1.17.0-beta.3](https://github.com/maevsi/maevsi/compare/1.17.0-beta.2...1.17.0-beta.3) (2023-05-15)
 
 
