@@ -34,7 +34,7 @@
   "devDependencies": {
     "@babel/core": "7.21.8",
     "@dargmuesli/nuxt-cookie-control": "5.9.1",
-    "@fontsource/manrope": "5.0.0",
+    "@fontsource-variable/manrope": "5.0.0",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "3.3.1",
     "@graphql-codegen/client-preset": "3.0.1",

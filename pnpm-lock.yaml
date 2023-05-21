@@ -22,7 +22,7 @@ importers:
       '@dargmuesli/nuxt-cookie-control':
         specifier: 5.9.1
         version: 5.9.1(rollup@3.21.8)(webpack@5.80.0)
-      '@fontsource/manrope':
+      '@fontsource-variable/manrope':
         specifier: 5.0.0
         version: 5.0.0
       '@funken-studio/sitemap-nuxt-3':
@@ -2206,8 +2206,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fontsource/manrope@5.0.0:
-    resolution: {integrity: sha512-+vqgGHW8cQd7v4MM2em9Djrj5Q4qt2ECQaTKvQT1CxbR7l7JcArInjh3L1pUsKjpOQWHLJg2LzP9R//PA5x03w==}
+  /@fontsource-variable/manrope@5.0.0:
+    resolution: {integrity: sha512-CEXggedJ8Wxrc+wptmUZcArmdoVQ42qMKJbBQPQsEtw81EPHgEnHjRESzeWoSFSkUWlj3g6zxiWsvqECc4Z5jA==}
     dev: true
 
   /@funken-studio/sitemap-nuxt-3@4.0.4(rollup@3.21.8):
