@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import '@fontsource/manrope/variable.css'
+import '@fontsource-variable/manrope'
 
 import supportedBrowsers from '~/supportedBrowsers'
 
