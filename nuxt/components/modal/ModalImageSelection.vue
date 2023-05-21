@@ -20,7 +20,7 @@
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 
 const emit = defineEmits<{
-  (e: 'submitSuccess'): void
+  submitSuccess: []
 }>()
 
 const route = useRoute()

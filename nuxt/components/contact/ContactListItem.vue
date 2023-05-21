@@ -77,8 +77,8 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'edit'): void
-  (e: 'delete'): void
+  edit: []
+  delete: []
 }>()
 
 const store = useMaevsiStore()

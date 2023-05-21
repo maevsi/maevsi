@@ -83,8 +83,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'close'): void
-  (e: 'submitSuccess', submitSuccess: any): void
+  close: []
+  submitSuccess: [submitSuccess: any]
 }>()
 
 const store = useMaevsiStore()

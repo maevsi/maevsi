@@ -144,9 +144,9 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'icon'): void
-  (e: 'input', input: string): void
-  (e: 'click'): void
+  icon: []
+  input: [input: string]
+  click: []
 }>()
 
 const { t } = useI18n()

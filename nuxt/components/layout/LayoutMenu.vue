@@ -53,8 +53,8 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'onMenuShow'): void
-  (e: 'onMenuHide'): void
+  onMenuHide: []
+  onMenuShow: []
 }>()
 
 const localePath = useLocalePath()

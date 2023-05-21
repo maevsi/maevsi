@@ -22,6 +22,6 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'change', change: boolean): void
+  change: [change: boolean]
 }>()
 </script>
