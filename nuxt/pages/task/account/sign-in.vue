@@ -5,7 +5,9 @@
     </CardStateInfo>
     <h1>{{ title }}</h1>
     <div
-      v-if="store.jwtDecoded?.role === 'maevsi_anonymous'"
+      v-if="
+        !store.jwtDecoded?.role || store.jwtDecoded.role === 'maevsi_anonymous'
+      "
       class="flex justify-center"
     >
       <FormAccountSignIn class="max-w-lg grow" @signed-in="onSignIn" />
