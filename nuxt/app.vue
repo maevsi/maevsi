@@ -16,7 +16,7 @@ import '@fontsource-variable/manrope'
 
 import supportedBrowsers from '~/supportedBrowsers'
 
-const { $dayjs, $i18n, $pwa } = useNuxtApp()
+const { $dayjs, $pwa } = useNuxtApp()
 const { t } = useI18n()
 const cookieControl = useCookieControl()
 
@@ -25,9 +25,6 @@ const isBrowserSupported = ref(true)
 
 // methods
 const init = () => {
-  $i18n.onLanguageSwitched = (_oldLocale: string, newLocale: string) =>
-    $dayjs.locale(newLocale)
-
   if (process.client) {
     const cookieTimezone = useCookie(TIMEZONE_COOKIE_NAME, {
       // default: () => undefined, // setting `default` on the client side only does not write the cookie
