@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/maevsi/maevsi/compare/1.17.1...1.18.0) (2023-05-22)
+
+
+### Features
+
+* **form-input:** compute full id for all elements ([a4c6063](https://github.com/maevsi/maevsi/commit/a4c60638254cf655d21fa164d62119a9bf7d6abb))
+
 ## [1.17.1](https://github.com/maevsi/maevsi/compare/1.17.0...1.17.1) (2023-05-16)
 
 
