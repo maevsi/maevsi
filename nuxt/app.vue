@@ -16,12 +16,15 @@
 <script setup lang="ts">
 import '@fontsource/manrope/variable.css'
 
+import { useMaevsiStore } from './store'
 import supportedBrowsers from '~/supportedBrowsers'
 
-const { $dayjs, $i18n } = useNuxtApp()
-const { t } = useI18n()
-const config = useRuntimeConfig()
 const cookieControl = useCookieControl()
+const { t } = useI18n()
+const store = useMaevsiStore()
+const { $dayjs, $i18n } = useNuxtApp()
+const config = useRuntimeConfig()
+const router = useRouter()
 
 // data
 const isBrowserSupported = ref(true)
@@ -42,6 +45,16 @@ const init = () => {
     // @ts-ignore `tz` should be part of `$dayjs` (https://github.com/iamkun/dayjs/issues/2106)
     cookieTimezone.value = $dayjs.tz.guess()
   }
+
+  router.afterEach(async () => {
+    while (store.routerAfterEachs.length > 0) {
+      const routerAfterEach = store.routerAfterEachs.pop()
+
+      if (!routerAfterEach) return
+
+      await routerAfterEach()
+    }
+  })
 }
 
 // lifecycle

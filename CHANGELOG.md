@@ -1,3 +1,41 @@
+# [1.17.0-beta.4](https://github.com/maevsi/maevsi/compare/1.17.0-beta.3...1.17.0-beta.4) (2023-05-20)
+
+
+### Bug Fixes
+
+* **ofetch:** access raw data ([8968f1b](https://github.com/maevsi/maevsi/commit/8968f1bd4bcf6bc9fb96e480ab9ed78275dc8f3e))
+
+
+### Features
+
+* **auth-key:** do not fetch raw ([c4be6b9](https://github.com/maevsi/maevsi/commit/c4be6b90e939116ea99013b11d958e2b03908721))
+
+# [1.17.0-beta.3](https://github.com/maevsi/maevsi/compare/1.17.0-beta.2...1.17.0-beta.3) (2023-05-15)
+
+
+### Bug Fixes
+
+* **npm:** correct configuration placement ([9b9c8ef](https://github.com/maevsi/maevsi/commit/9b9c8ef0afc31e7e69413757d59729d5b8c13bec))
+* **nuxt:** add npm configuration ([4d3500d](https://github.com/maevsi/maevsi/commit/4d3500d8e0d35e2ebeaedbeeb1ed5bf9f0a2c5c7))
+* **nuxt:** correct docker development stage ([48d0901](https://github.com/maevsi/maevsi/commit/48d090130395836cbd0da476f3336426e632c880))
+* **nuxt:** optimize entrypoints by using pnpm rebuild ([a0fa05c](https://github.com/maevsi/maevsi/commit/a0fa05cf80eae3d5130b5bec527064b4852a0a11))
+* revert "perf(docker): let integration tests run in parallel" ([35d7c1c](https://github.com/maevsi/maevsi/commit/35d7c1ccb20a2e41996d8301435567f20afbfee8))
+* **sqitch:** add docker entrypoint ([5f33e09](https://github.com/maevsi/maevsi/commit/5f33e0997c5d972b3b295ea306ce7a2a133c06c3))
+* **sqitch:** correct schema update script ([0fad3e0](https://github.com/maevsi/maevsi/commit/0fad3e07dc0274103619342bd29298777b455663))
+* **sqitch:** let docker sleep indefinetly ([fa28851](https://github.com/maevsi/maevsi/commit/fa28851f5f4a16c6d7580c5431b0e10e38e5abd8))
+
+
+### Features
+
+* **nuxt:** strip sqitch from Dockerfile ([7dd1b15](https://github.com/maevsi/maevsi/commit/7dd1b1576e707dc38f2433586fe5b3898cc65012))
+* **sqitch:** remove ([b21c45e](https://github.com/maevsi/maevsi/commit/b21c45eb8a9a272c811a4bda0b8ab0b368e57fc7))
+
+
+### Performance Improvements
+
+* **docker:** let integration tests run in parallel ([b0e6040](https://github.com/maevsi/maevsi/commit/b0e6040f2426ad77a63107baf7efd12eb881dfbd))
+* **nuxt:** optimize dockerfile order ([99b2da8](https://github.com/maevsi/maevsi/commit/99b2da864a8b448a64e879ea8d4e854d819d2944))
+
 # [1.17.0-beta.2](https://github.com/maevsi/maevsi/compare/1.17.0-beta.1...1.17.0-beta.2) (2023-05-11)
 
 

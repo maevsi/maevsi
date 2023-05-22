@@ -1,7 +1,12 @@
 <template>
   <ButtonColored
     :aria-label="t('signIn')"
-    :to="localePath({ path: '/task/account/sign-in' })"
+    :to="
+      localePath({
+        path: '/task/account/sign-in',
+        query: { to: route.fullPath },
+      })
+    "
     @click="emit('click')"
   >
     {{ t('signIn') }}
@@ -12,8 +17,9 @@
 </template>
 
 <script setup lang="ts">
-const localePath = useLocalePath()
 const { t } = useI18n()
+const localePath = useLocalePath()
+const route = useRoute()
 
 const emit = defineEmits<{
   (e: 'click'): void

@@ -1,15 +1,17 @@
 <template>
-  <div class="flex flex-col gap-4">
-    <i18n-t
-      keypath="maevNo"
-      class="flex items-center justify-center gap-1 text-xl font-black"
-      tag="span"
-    >
-      <template #emojiFacePleading>
-        <EmojiFacePleading />
-      </template>
-    </i18n-t>
-    <h1>{{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}</h1>
+  <div class="flex flex-col items-center gap-4">
+    <CardStateAlert class="flex flex-col items-center text-3xl">
+      <i18n-t
+        keypath="maevNo"
+        class="flex items-center gap-1 text-xl font-black"
+        tag="span"
+      >
+        <template #emojiFacePleading>
+          <EmojiFacePleading />
+        </template>
+      </i18n-t>
+      {{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}
+    </CardStateAlert>
     <p v-if="statusCode === 403" class="text-center">
       {{ t('error403Description') }}
       <br />
@@ -33,11 +35,22 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const { locale, t } = useI18n()
+const { ssrContext } = useNuxtApp()
 
 // computations
 const statusReason = computed(() => {
   return status(props.statusCode, locale.value) || (t('error') as string)
 })
+
+// methods
+const init = () => {
+  if (ssrContext && props.statusCode) {
+    ssrContext.event.node.res.statusCode = props.statusCode
+  }
+}
+
+// initialization
+init()
 </script>
 
 <script lang="ts">

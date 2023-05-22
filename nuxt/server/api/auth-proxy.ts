@@ -11,17 +11,17 @@ export default defineEventHandler(async function (event: H3Event) {
     case 'authenticate':
     case 'accountRegistration':
       {
-        const turnstileKey = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
+        const turnstileToken = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
 
-        if (Array.isArray(turnstileKey)) {
-          return throwError(422, 'TurnstileKey cannot be an array.')
+        if (Array.isArray(turnstileToken)) {
+          return throwError(422, 'Turnstile token cannot be an array.')
         }
 
-        if (!turnstileKey) {
-          return throwError(422, 'TurnstileKey not provided.')
+        if (!turnstileToken) {
+          return throwError(422, 'Turnstile token not provided.')
         }
 
-        const result = await verifyTurnstileToken(turnstileKey)
+        const result = await verifyTurnstileToken(turnstileToken)
 
         if (!result.success) {
           return throwError(403, 'Turnstile verification unsuccessful.')

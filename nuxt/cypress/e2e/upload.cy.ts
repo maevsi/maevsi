@@ -1,13 +1,23 @@
+import { TIMEZONE_COOKIE_NAME } from '~/utils/constants'
+import {
+  COOKIE_CONTROL_DEFAULT,
+  TIMEZONE_DEFAULT,
+} from '~/cypress/utils/constants'
+
 describe('upload page', () => {
-  context('page load', () => {
-    it('forbids access when not signed in', () => {
-      cy.request({
-        url: '/upload',
-        failOnStatusCode: false,
-      }).then((resp) => {
-        expect(resp.status).to.equal(403)
-        expect(resp.redirectedToUrl).to.equal(undefined)
-      })
+  beforeEach(() => {
+    cy.setCookie(TIMEZONE_COOKIE_NAME, TIMEZONE_DEFAULT)
+    cy.setCookie('ncc_c', COOKIE_CONTROL_DEFAULT)
+  })
+
+  context('visual regression', () => {
+    it('looks as before', () => {
+      cy.visit('/upload')
+      cy.get('[data-is-loading="false"]').should('be.visible')
+      cy.get('[data-testid="nuxt-cookie-control-control-button"]').should(
+        'be.visible'
+      )
+      cy.compareSnapshot('index')
     })
   })
 })
