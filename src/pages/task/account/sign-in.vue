@@ -1,42 +1,45 @@
 <template>
   <div>
-    <CardStateInfo v-if="routeQueryReferrer">
+    <CardStateInfo v-if="to">
       {{ t('accountRequired') }}
     </CardStateInfo>
     <h1>{{ title }}</h1>
-    <div class="flex justify-center">
-      <FormAccountSignIn class="max-w-lg grow" />
+    <div
+      v-if="
+        !store.jwtDecoded?.role || store.jwtDecoded.role === 'maevsi_anonymous'
+      "
+      class="flex justify-center"
+    >
+      <FormAccountSignIn class="max-w-lg grow" @signed-in="onSignIn" />
     </div>
+    <Error v-else :status-code="422" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 
-definePageMeta({
-  middleware: [
-    defineNuxtRouteMiddleware(() => {
-      const store = useMaevsiStore()
-      const localePath = useLocalePath()
-
-      if (
-        store.jwtDecoded?.role === 'maevsi_account' &&
-        !Array.isArray(route.query.referrer)
-      ) {
-        return navigateTo(route.query.referrer || localePath('/dashboard/'))
-      }
-    }),
-  ],
-})
-
-const route = useRoute()
 const { t } = useI18n()
+const localePath = useLocalePath()
+const store = useMaevsiStore()
+const route = useRoute()
 
 // data
 const title = t('title')
 
 // computations
-const routeQueryReferrer = computed(() => route.query.referrer)
+const to = computed(() =>
+  route.query.to && !Array.isArray(route.query.to) ? route.query.to : undefined
+)
+
+// methods
+const onSignIn = async () => {
+  if (to.value) {
+    return await navigateTo(to.value)
+  } else {
+    return await navigateTo(localePath(`/dashboard`))
+  }
+}
 
 // initialization
 useHeadDefault(title)

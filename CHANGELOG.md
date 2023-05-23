@@ -1,3 +1,34 @@
+# [1.17.0-beta.5](https://github.com/maevsi/maevsi/compare/1.17.0-beta.4...1.17.0-beta.5) (2023-05-23)
+
+
+### Bug Fixes
+
+* **layout-call-to-action:** add gap ([68f52f3](https://github.com/maevsi/maevsi/commit/68f52f3080c7ac718fe62795402f47ff7377a1fc))
+* **sign-in:** allow for unset jwt ([450d764](https://github.com/maevsi/maevsi/commit/450d764b79c170824091f9e3971246be2d2998cf))
+* **turnstile:** set store value ([73f1af5](https://github.com/maevsi/maevsi/commit/73f1af5d79649611d216522780b9a83c622d331d))
+* **unlock:** add middleware wrapper and explanation ([9432307](https://github.com/maevsi/maevsi/commit/9432307ff12d95c76c4a8c3b70f7cf41612afa3f))
+
+
+### Features
+
+* **account:** remove middleware ([4b0330e](https://github.com/maevsi/maevsi/commit/4b0330ecebedbf639157083c177f66a17517df90))
+* **event:** replace middleware with call to action ([5120e79](https://github.com/maevsi/maevsi/commit/5120e79290c5fc4af5a12483c52b87f3be1bef32))
+* **form-account-sign-in:** navigate to referring page on sign in ([d44bc94](https://github.com/maevsi/maevsi/commit/d44bc945fb27ae487b4056a5afda0d005200984f))
+* **middleware:** add forbidden ([15f0e8b](https://github.com/maevsi/maevsi/commit/15f0e8b8700afb41e0f32f5d6a4f34bc805523d3))
+* **pages:** replace middleware with soft 404 call to actions ([7627338](https://github.com/maevsi/maevsi/commit/7627338515c53704ee692dd9b77fa44fb06f33a7))
+
+# [1.17.0-beta.4](https://github.com/maevsi/maevsi/compare/1.17.0-beta.3...1.17.0-beta.4) (2023-05-20)
+
+
+### Bug Fixes
+
+* **ofetch:** access raw data ([8968f1b](https://github.com/maevsi/maevsi/commit/8968f1bd4bcf6bc9fb96e480ab9ed78275dc8f3e))
+
+
+### Features
+
+* **auth-key:** do not fetch raw ([c4be6b9](https://github.com/maevsi/maevsi/commit/c4be6b90e939116ea99013b11d958e2b03908721))
+
 # [1.17.0-beta.3](https://github.com/maevsi/maevsi/compare/1.17.0-beta.2...1.17.0-beta.3) (2023-05-15)
 
 

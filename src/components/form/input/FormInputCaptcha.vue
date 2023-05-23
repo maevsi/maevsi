@@ -49,6 +49,8 @@
 <script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
 
+import { useMaevsiStore } from '~/store'
+
 export interface Props {
   formInput: BaseValidation
 }
@@ -59,6 +61,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const store = useMaevsiStore()
 const runtimeConfig = useRuntimeConfig()
 
 // refs
@@ -83,6 +86,7 @@ const reset = () => {
 }
 const update = (e: string) => {
   isLoading.value = false
+  store.turnstileToken = e
   emit('input', e)
 }
 </script>

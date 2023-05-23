@@ -73,6 +73,10 @@ definePageMeta({
     return 'redirect' in route.query ? 'canvas' : 'default'
   }),
   middleware: [
+    // TODO: implement invitation pages, removing this middleware (https://github.com/maevsi/maevsi/issues/1266)
+
+    // middlewares with multiple awaits that rely on the nuxt context
+    // must be wrapped with `defineNuxtRouteMiddleware` (https://github.com/nuxt/nuxt/issues/14473)
     defineNuxtRouteMiddleware(async (to) => {
       const { $urql } = useNuxtApp()
       const localePath = useLocalePath()

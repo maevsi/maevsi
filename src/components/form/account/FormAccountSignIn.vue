@@ -65,11 +65,17 @@ import { useVuelidate } from '@vuelidate/core'
 import { maxLength, minLength, required } from '@vuelidate/validators'
 import { useAuthenticateMutation } from '~/gql/documents/mutations/account/accountAuthenticate'
 import { useAccountRegistrationRefreshMutation } from '~/gql/documents/mutations/account/accountRegistrationRefresh'
+import { useMaevsiStore } from '~/store'
 
-const { jwtStore } = useJwtStore()
-const { t } = useI18n()
-const localePath = useLocalePath()
+const emit = defineEmits<{
+  (e: 'signed-in'): void
+}>()
+
 const fireAlert = useFireAlert()
+const { t } = useI18n()
+const { jwtStore } = useJwtStore()
+const localePath = useLocalePath()
+const store = useMaevsiStore()
 
 // api data
 const accountRegistrationRefreshMutation =
@@ -100,7 +106,9 @@ const submit = async () => {
   if (result.error) return
 
   try {
-    await jwtStore(result.data?.authenticate?.jwt)
+    store.routerAfterEachs.push(async () => {
+      await jwtStore(result.data?.authenticate?.jwt)
+    })
   } catch (error) {
     await fireAlert({
       error,
@@ -111,7 +119,7 @@ const submit = async () => {
     return
   }
 
-  navigateTo(localePath(`/dashboard`))
+  emit('signed-in')
 }
 
 // vuelidate
