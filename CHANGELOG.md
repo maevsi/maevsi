@@ -1,3 +1,10 @@
+# [1.17.0-beta.6](https://github.com/maevsi/maevsi/compare/1.17.0-beta.5...1.17.0-beta.6) (2023-05-23)
+
+
+### Bug Fixes
+
+* **nuxt:** move new files ([a751484](https://github.com/maevsi/maevsi/commit/a7514840edf5d18a0785ff0625972a67665b81f3))
+
 # [1.17.0-beta.5](https://github.com/maevsi/maevsi/compare/1.17.0-beta.4...1.17.0-beta.5) (2023-05-23)
 
 
