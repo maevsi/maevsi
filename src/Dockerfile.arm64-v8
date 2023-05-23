@@ -16,15 +16,6 @@ RUN apk add --update --no-cache \
     python3 -m ensurepip && \
     pip3 install --no-cache --upgrade pip setuptools
 
-# Install make
-RUN apk add --no-cache make
-
-# Install gcc
-RUN apk add build-base
-
-# Install git
-RUN apk add git
-
 WORKDIR /srv/app/
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
