@@ -6,6 +6,21 @@ FROM node:20.2.0-alpine AS development
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
 
+# Install python/pip
+ENV PYTHONUNBUFFERED=1
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+RUN python3 -m ensurepip
+RUN pip3 install --no-cache --upgrade pip setuptools
+
+# Install make
+RUN apk add --no-cache make
+
+# Install gcc
+RUN apk add build-base
+
+# Install git
+RUN apk add git
+
 WORKDIR /srv/app/
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
