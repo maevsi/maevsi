@@ -1,7 +1,7 @@
 #############
 # Serve Nuxt in development mode.
 
-FROM node:20.2.0-alpine AS development
+FROM node:20.2.0-alpine@sha256:f25b0e9d3d116e267d4ff69a3a99c0f4cf6ae94eadd87f1bf7bd68ea3ff0bef7 AS development
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -25,7 +25,7 @@ CMD ["pnpm", "run", "dev"]
 ########################
 # Prepare Nuxt.
 
-FROM node:20.2.0-alpine AS prepare
+FROM node:20.2.0-alpine@sha256:f25b0e9d3d116e267d4ff69a3a99c0f4cf6ae94eadd87f1bf7bd68ea3ff0bef7 AS prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -49,7 +49,7 @@ RUN pnpm run prepare
 ########################
 # Build Nuxt.
 
-FROM node:20.2.0-alpine AS build
+FROM node:20.2.0-alpine@sha256:f25b0e9d3d116e267d4ff69a3a99c0f4cf6ae94eadd87f1bf7bd68ea3ff0bef7 AS build
 
 ARG NUXT_PUBLIC_STACK_DOMAIN=maev.si
 ENV NUXT_PUBLIC_STACK_DOMAIN=${NUXT_PUBLIC_STACK_DOMAIN}
@@ -69,7 +69,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: lint
 
-FROM node:20.2.0-alpine AS lint
+FROM node:20.2.0-alpine@sha256:f25b0e9d3d116e267d4ff69a3a99c0f4cf6ae94eadd87f1bf7bd68ea3ff0bef7 AS lint
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -85,7 +85,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: test (unit)
 
-FROM node:20.2.0-alpine AS test-unit
+FROM node:20.2.0-alpine@sha256:f25b0e9d3d116e267d4ff69a3a99c0f4cf6ae94eadd87f1bf7bd68ea3ff0bef7 AS test-unit
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -101,7 +101,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: test (integration)
 
-FROM cypress/included:12.12.0 AS test-integration_base
+FROM cypress/included:12.12.0@sha256:ed3195f01d2d0eecd71d508eed05ee600db5609187da7d531954a082438db54b AS test-integration_base
 
 ARG UNAME=cypress
 ARG UID=1000
@@ -134,7 +134,7 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 ########################
 # Nuxt: test (preparation)
 
-FROM cypress/included:12.11.0 AS test-integration-prepare
+FROM cypress/included:12.11.0@sha256:ed3195f01d2d0eecd71d508eed05ee600db5609187da7d531954a082438db54b AS test-integration-prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -151,7 +151,7 @@ RUN pnpm rebuild
 ########################
 # Nuxt: test (integration, development)
 
-FROM cypress/included:12.12.0 AS test-integration-dev
+FROM cypress/included:12.12.0@sha256:ed3195f01d2d0eecd71d508eed05ee600db5609187da7d531954a082438db54b AS test-integration-dev
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -174,7 +174,7 @@ RUN pnpm run test:integration:dev
 ########################
 # Nuxt: test (integration, production)
 
-FROM cypress/included:12.12.0 AS test-integration-prod
+FROM cypress/included:12.12.0@sha256:ed3195f01d2d0eecd71d508eed05ee600db5609187da7d531954a082438db54b AS test-integration-prod
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -201,7 +201,7 @@ RUN pnpm run test:integration:prod
 #######################
 # Collect build, lint and test results.
 
-FROM node:20.2.0-alpine AS collect
+FROM node:20.2.0-alpine@sha256:f25b0e9d3d116e267d4ff69a3a99c0f4cf6ae94eadd87f1bf7bd68ea3ff0bef7 AS collect
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -219,7 +219,7 @@ COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM node:20.2.0-alpine AS production
+FROM node:20.2.0-alpine@sha256:f25b0e9d3d116e267d4ff69a3a99c0f4cf6ae94eadd87f1bf7bd68ea3ff0bef7 AS production
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
