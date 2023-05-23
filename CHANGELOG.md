@@ -1,3 +1,10 @@
+## [1.18.1](https://github.com/maevsi/maevsi/compare/1.18.0...1.18.1) (2023-05-23)
+
+
+### Bug Fixes
+
+* **form:** correct error computation ([637c1fa](https://github.com/maevsi/maevsi/commit/637c1fa0f9b947040ce5052d3063d68cef5be54b))
+
 # [1.18.0](https://github.com/maevsi/maevsi/compare/1.17.1...1.18.0) (2023-05-22)
 
 
