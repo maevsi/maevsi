@@ -46,7 +46,7 @@ The setup for backend development is more complex as it consists of numerous ser
     nvm install
     nvm use
     ```
-1. then install all dependencies using [pnpm](https://pnpm.io/), which should include the **nuxt** directory automatically:
+1. then install all dependencies using [pnpm](https://pnpm.io/), which should include the **src** directory automatically:
     ```sh
     corepack enable
     pnpm install
@@ -54,7 +54,7 @@ The setup for backend development is more complex as it consists of numerous ser
 1. finally, start the frontend:
 
     ```sh
-    cd nuxt
+    cd src
     pnpm dev
     ```
 1. you should now be able to access maevsi under http://localhost:3000/! 🎉
@@ -92,7 +92,7 @@ The setup for backend development is more complex as it consists of numerous ser
     nvm install
     nvm use
     ```
-1. then install all dependencies using [pnpm](https://pnpm.io/), including the **nuxt** directory:
+1. then install all dependencies using [pnpm](https://pnpm.io/), including the **src** directory:
     ```sh
     corepack enable
     pnpm install
