@@ -63,7 +63,7 @@
     "@types/lodash-es": "4.17.7",
     "@types/mustache": "4.2.2",
     "@types/node": "20.2.1",
-    "@types/pg": "8.6.6",
+    "@types/pg": "8.10.1",
     "@uppy/core": "3.2.0",
     "@uppy/tus": "3.1.0",
     "@urql/core": "4.0.7",
