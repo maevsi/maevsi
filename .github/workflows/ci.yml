@@ -41,7 +41,7 @@ jobs:
     permissions:
       packages: write
     with:
-      CONTEXT: nuxt
+      CONTEXT: src
       # PUSH: false
       TAG: ${{ needs.release_semantic_dry.outputs.new_release_version }}
   release_semantic:
