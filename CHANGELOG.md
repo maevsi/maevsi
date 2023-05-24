@@ -1,3 +1,12 @@
+# [1.17.0-beta.7](https://github.com/maevsi/maevsi/compare/1.17.0-beta.6...1.17.0-beta.7) (2023-05-24)
+
+
+### Bug Fixes
+
+* **docker:** adds packages to compile projects ([1eeedaa](https://github.com/maevsi/maevsi/commit/1eeedaa3cde4b9e30d401a0263069931500ef428))
+* **dockerfile:** add a second Dockerfile to use when deploying on arm ([0e7f67b](https://github.com/maevsi/maevsi/commit/0e7f67bc12c48fb14795a2cf94fbf15d48e9165a))
+* **dockerfile:** remove pythonunbuffered and use only one run command ([684a861](https://github.com/maevsi/maevsi/commit/684a861dc5ee268e5723130e8faaca2738a221ca))
+
 # [1.17.0-beta.6](https://github.com/maevsi/maevsi/compare/1.17.0-beta.5...1.17.0-beta.6) (2023-05-23)
 
 
