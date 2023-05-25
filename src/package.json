@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
-    "start": "node .output/server/index.mjs",
+    "start": "PORT=3001 node .output/server/index.mjs",
     "test": "vitest",
     "test:e2e": "./tests/e2e/screenshots/test.sh",
     "test:e2e:dev": "cross-env NUXT_PUBLIC_IS_TESTING=1 WAIT_ON_TIMEOUT=100000 pnpm test:e2e",

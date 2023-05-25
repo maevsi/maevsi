@@ -14,7 +14,9 @@ for (const exclusion of SITEMAP_EXCLUSIONS) {
 const BASE_URL =
   'https://' +
   (process.env.NUXT_PUBLIC_STACK_DOMAIN ||
-    `${process.env.HOST || 'localhost'}:3000`)
+    `${process.env.HOST || 'localhost'}:${
+      process.env.NODE_ENV === 'development' ? '3000' : '3001'
+    }`)
 
 export default defineNuxtConfig({
   app: {
