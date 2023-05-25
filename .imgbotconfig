@@ -1,5 +1,5 @@
 {
     "ignoredFiles": [
-        "src/cypress/snapshots/base/*"
+        "src/tests/e2e/screenshots/base/*"
     ]
 }

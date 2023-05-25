@@ -6,7 +6,7 @@ if [ -d "$THIS/diff" ]; then
   rm -rf "$THIS/diff"
 fi
 
-pnpm cypress run --env type=actual --browser chrome
+pnpm playwright test
 ERROR=$?
 
 files=$(find "$THIS/diff" -type f || 'true')
