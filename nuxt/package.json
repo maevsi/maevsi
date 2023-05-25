@@ -59,7 +59,7 @@
     "@types/cookie": "0.5.1",
     "@types/dompurify": "3.0.2",
     "@types/downloadjs": "1.4.3",
-    "@types/html-to-text": "9.0.0",
+    "@types/html-to-text": "9.0.1",
     "@types/lodash-es": "4.17.7",
     "@types/mustache": "4.2.2",
     "@types/node": "20.2.1",
