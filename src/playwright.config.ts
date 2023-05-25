@@ -85,8 +85,11 @@ export default defineConfig({
     command:
       process.env.NODE_ENV === 'development'
         ? 'pnpm run dev'
-        : 'pnpm run start',
-    url: 'http://127.0.0.1:3000',
+        : 'PORT=3001 pnpm run start',
+    url:
+      process.env.NODE_ENV === 'development'
+        ? 'http://127.0.0.1:3000'
+        : 'http://127.0.0.1:3001',
     reuseExistingServer: !process.env.CI,
   },
 
