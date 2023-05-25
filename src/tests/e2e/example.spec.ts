@@ -42,27 +42,27 @@ test.describe('internationalization', () => {
 
   test('displays English translations', async ({ page }) => {
     await page.goto('/')
-    await expect(page.getByText(textEnglish)).toBeDefined()
+    expect(page.getByText(textEnglish)).toBeDefined()
   })
 
   test('displays German translations', async ({ page }) => {
     await page.goto('/de')
-    await expect(page.getByText(textGerman)).toBeDefined()
+    expect(page.getByText(textGerman)).toBeDefined()
   })
 
   test('switches between English and German translations', async ({ page }) => {
     await page.goto('/')
-    await expect(page.getByText(textEnglish)).toBeDefined()
+    expect(page.getByText(textEnglish)).toBeDefined()
 
     await page.getByRole('link', { name: 'German flag Deutsch' }).click()
     await page.waitForURL('/de')
-    await expect(page.getByText(textGerman)).toBeDefined()
+    expect(page.getByText(textGerman)).toBeDefined()
 
     await page
       .getByRole('link', { name: 'Flagge des Vereinigten Königreichs English' })
       .click()
     await page.waitForURL('/')
-    await expect(page.getByText(textEnglish)).toBeDefined()
+    expect(page.getByText(textEnglish)).toBeDefined()
   })
 })
 
@@ -89,7 +89,7 @@ test.describe('visual regression', () => {
 
   test('displays the cookie banner', async ({ context, page }) => {
     // TODO: only remove the cookie control cookie (https://github.com/microsoft/playwright/issues/10143)
-    context.clearCookies()
+    await context.clearCookies()
 
     await page.goto('/')
     await expect(page.getByTestId('is-loading')).toHaveAttribute(
