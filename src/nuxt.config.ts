@@ -15,7 +15,9 @@ const BASE_URL =
   'https://' +
   (process.env.NUXT_PUBLIC_STACK_DOMAIN ||
     `${process.env.HOST || 'localhost'}:${
-      process.env.NODE_ENV === 'development' ? '3000' : '3001'
+      !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+        ? '3000'
+        : '3001'
     }`)
 
 export default defineNuxtConfig({
