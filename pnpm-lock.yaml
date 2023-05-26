@@ -65,8 +65,8 @@ importers:
         specifier: 0.4.11
         version: 0.4.11(rollup@3.23.0)(typescript@5.0.4)(vue@3.3.4)
       '@popperjs/core':
-        specifier: 2.11.7
-        version: 2.11.7
+        specifier: 2.11.8
+        version: 2.11.8
       '@tailwindcss/forms':
         specifier: 0.5.3
         version: 0.5.3(tailwindcss@3.3.2)
@@ -327,7 +327,7 @@ importers:
         version: 5.0.4
       v-calendar:
         specifier: 3.0.3
-        version: 3.0.3(@popperjs/core@2.11.7)(vue@3.3.4)
+        version: 3.0.3(@popperjs/core@2.11.8)(vue@3.3.4)
       vitest:
         specifier: 0.31.1
         version: 0.31.1
@@ -3697,8 +3697,8 @@ packages:
       tslib: 2.5.2
     dev: true
 
-  /@popperjs/core@2.11.7:
-    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: true
 
   /@remirror/core-constants@2.0.1:
@@ -13606,7 +13606,7 @@ packages:
   /tippy.js@6.3.7:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
     dependencies:
-      '@popperjs/core': 2.11.7
+      '@popperjs/core': 2.11.8
     dev: true
 
   /title-case@3.0.3:
@@ -14163,13 +14163,13 @@ packages:
     hasBin: true
     dev: true
 
-  /v-calendar@3.0.3(@popperjs/core@2.11.7)(vue@3.3.4):
+  /v-calendar@3.0.3(@popperjs/core@2.11.8)(vue@3.3.4):
     resolution: {integrity: sha512-Skpp/nMoFqFadm94aWj0oOfazoux5T5Ug3/pbRbdolkoDrnVcL7Ronw1/SGFRUPGOwnLdYwhKPhrhSE1segW6w==}
     peerDependencies:
       '@popperjs/core': ^2.0.0
       vue: ^3.2.0
     dependencies:
-      '@popperjs/core': 2.11.7
+      '@popperjs/core': 2.11.8
       '@types/lodash': 4.14.194
       '@types/resize-observer-browser': 0.1.7
       date-fns: 2.30.0
