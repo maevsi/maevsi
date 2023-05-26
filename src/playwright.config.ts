@@ -74,7 +74,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 1 : 0,
 
-  testDir: './tests/e2e',
+  testDir: './tests/e2e/specs',
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
