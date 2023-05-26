@@ -13,7 +13,7 @@
     "build": "nuxt build",
     "start": "PORT=3001 node .output/server/index.mjs",
     "test": "vitest",
-    "test:e2e": "./tests/e2e/screenshots/test.sh",
+    "test:e2e": "playwright test",
     "test:e2e:dev": "cross-env NUXT_PUBLIC_IS_TESTING=1 WAIT_ON_TIMEOUT=100000 pnpm test:e2e",
     "test:e2e:prod": "cross-env NUXT_PUBLIC_IS_TESTING=1 WAIT_ON_TIMEOUT=10000 NODE_ENV=production pnpm test:e2e",
     "test:e2e:docker:build": "docker build -t test-e2e_base --build-arg UID=$(id -u) --build-arg GID=$(id -g) --target test-e2e_base .",

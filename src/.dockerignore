@@ -230,5 +230,3 @@ $RECYCLE.BIN/
 
 tests/e2e/report
 tests/e2e/results
-tests/e2e/screenshots/actual
-tests/e2e/screenshots/diff

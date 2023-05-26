@@ -117,10 +117,6 @@ WORKDIR /srv/app/
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 RUN corepack enable \
-    && apt-get update \
-    && apt-get install --no-install-recommends -y \
-        # `curl` is required by `tests/e2e/screenshots/test.sh`
-        curl \
     # user
     && groupadd -g $GID -o $UNAME \
     && useradd -m -l -u $UID -g $GID -o -s /bin/bash $UNAME
@@ -162,11 +158,7 @@ ENV NODE_ENV=development
 
 WORKDIR /srv/app/
 
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        # `curl` is required by `tests/e2e/screenshots/test.sh`
-        curl \
-    && corepack enable
+RUN corepack enable
 
 COPY --from=test-e2e-prepare /srv/app/ ./
 
@@ -183,11 +175,7 @@ ENV CI=true
 
 WORKDIR /srv/app/
 
-RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-        # `curl` is required by `tests/e2e/screenshots/test.sh`
-        curl \
-    && corepack enable
+RUN corepack enable
 
 COPY --from=test-e2e-prepare /srv/app/ ./
 COPY --from=build /srv/app/.output /srv/app/.output
