@@ -74,7 +74,7 @@
     "@vuelidate/core": "2.0.2",
     "@vuelidate/validators": "2.0.2",
     "autoprefixer": "10.4.14",
-    "browserslist": "4.21.6",
+    "browserslist": "4.21.7",
     "browserslist-useragent-regexp": "4.0.0",
     "chart.js": "4.3.0",
     "clipboard": "2.0.11",
