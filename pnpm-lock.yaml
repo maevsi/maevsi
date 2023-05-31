@@ -132,8 +132,8 @@ importers:
         specifier: 6.0.4
         version: 6.0.4(graphql@16.6.0)
       '@urql/vue':
-        specifier: 1.1.1
-        version: 1.1.1(graphql@16.6.0)(vue@3.3.4)
+        specifier: 1.1.2
+        version: 1.1.2(graphql@16.6.0)(vue@3.3.4)
       '@vite-pwa/nuxt':
         specifier: 0.0.9
         version: 0.0.9(@nuxt/kit@3.5.2)(vite-plugin-pwa@0.14.7)
@@ -4854,8 +4854,8 @@ packages:
       graphql: 16.6.0
     dev: true
 
-  /@urql/vue@1.1.1(graphql@16.6.0)(vue@3.3.4):
-    resolution: {integrity: sha512-dFHyJdqcTbr5P5nLfagh7CYDuuy91S7T0oaWZRJJDpq+53uTAjaRk7XQ8UNQH2oaZTO5djhQRruaPOY2JbjJsg==}
+  /@urql/vue@1.1.2(graphql@16.6.0)(vue@3.3.4):
+    resolution: {integrity: sha512-ixfV0PTXcOl4KrZK24X+9B4rX9KSxqq1xhHZ0SOkAxgxMkomjJhtUl+9PuRL+LEzGWVr91OCEo68VPQ8uc5rBA==}
     peerDependencies:
       vue: ^2.7.0 || ^3.0.0
     dependencies:
