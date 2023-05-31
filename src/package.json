@@ -34,6 +34,7 @@
     "prepare": "nuxt prepare"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.7.2-alpha.390",
     "@babel/core": "7.21.8",
     "@dargmuesli/nuxt-cookie-control": "5.9.1",
     "@fontsource/manrope": "4.5.13",

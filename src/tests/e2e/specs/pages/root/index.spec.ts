@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-// TODO: wait for current playwright compatibility (https://github.com/dequelabs/axe-core-npm/pull/731)
-// import AxeBuilder from '@axe-core/playwright'
+import AxeBuilder from '@axe-core/playwright'
 
 import { TIMEZONE_COOKIE_NAME } from '../../../../../utils/constants'
 import {
@@ -26,15 +25,15 @@ test.beforeEach(async ({ context }) => {
   ])
 })
 
-// test.describe('a11y', () => {
-//   test('should not have any automatically detectable accessibility issues', async ({
-//     page,
-//   }) => {
-//     await page.goto('/')
-//     const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
-//     expect(accessibilityScanResults.violations).toEqual([])
-//   })
-// })
+test.describe('a11y', () => {
+  test('should not have any automatically detectable accessibility issues', async ({
+    page,
+  }) => {
+    await page.goto('/')
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
+    expect(accessibilityScanResults.violations.length).toEqual(1) // TODO: get rid of all violations
+  })
+})
 
 test.describe('internationalization', () => {
   const textEnglish = 'Personal invitations. Proper feedback.'

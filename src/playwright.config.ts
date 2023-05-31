@@ -25,7 +25,6 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
 
   /* Run tests in files in parallel */
-
   fullyParallel: true,
 
   outputDir: 'tests/e2e/results',
