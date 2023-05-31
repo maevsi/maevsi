@@ -1,3 +1,10 @@
+## [1.18.2](https://github.com/maevsi/maevsi/compare/1.18.1...1.18.2) (2023-05-31)
+
+
+### Bug Fixes
+
+* **app:** correct pwa watcher ([571e92a](https://github.com/maevsi/maevsi/commit/571e92a039a5dbbea0d4682f3927dd8391a4ded7))
+
 ## [1.18.1](https://github.com/maevsi/maevsi/compare/1.18.0...1.18.1) (2023-05-23)
 
 
