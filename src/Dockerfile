@@ -99,24 +99,26 @@ RUN corepack enable && \
 
 
 ########################
-# Nuxt: test (e2e)
+# Nuxt: test (integration)
 
-FROM mcr.microsoft.com/playwright:v1.34.2@sha256:d6cc296a938177cfaae55c8428c68ab81d143b2c54d2d1872136411228dbec20 AS test-e2e_base
+FROM cypress/included:12.12.0@sha256:ed3195f01d2d0eecd71d508eed05ee600db5609187da7d531954a082438db54b AS test-integration_base
 
-ARG UNAME=e2e
+ARG UNAME=cypress
 ARG UID=1000
 ARG GID=1000
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
-ENV NODE_ENV=development
-ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 WORKDIR /srv/app/
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 RUN corepack enable \
+    && apt-get update \
+    && apt-get install --no-install-recommends -y \
+        # `curl` is required by `cypress/snapshots/test.sh`
+        curl \
     # user
     && groupadd -g $GID -o $UNAME \
     && useradd -m -l -u $UID -g $GID -o -s /bin/bash $UNAME
@@ -132,11 +134,10 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 ########################
 # Nuxt: test (preparation)
 
-FROM mcr.microsoft.com/playwright:v1.34.2@sha256:d6cc296a938177cfaae55c8428c68ab81d143b2c54d2d1872136411228dbec20 AS test-e2e-prepare
+FROM cypress/included:12.11.0@sha256:ed3195f01d2d0eecd71d508eed05ee600db5609187da7d531954a082438db54b AS test-integration-prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
-ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 WORKDIR /srv/app/
 
@@ -148,42 +149,53 @@ RUN pnpm rebuild
 
 
 ########################
-# Nuxt: test (e2e, development)
+# Nuxt: test (integration, development)
 
-FROM mcr.microsoft.com/playwright:v1.34.2@sha256:d6cc296a938177cfaae55c8428c68ab81d143b2c54d2d1872136411228dbec20 AS test-e2e-dev
+FROM cypress/included:12.12.0@sha256:ed3195f01d2d0eecd71d508eed05ee600db5609187da7d531954a082438db54b AS test-integration-dev
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
-ENV NODE_ENV=development
 
 WORKDIR /srv/app/
 
-RUN corepack enable
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        # `curl` is required by `cypress/snapshots/test.sh`
+        curl \
+    && corepack enable
 
-COPY --from=test-e2e-prepare /srv/app/ ./
+# Use the Cypress version installed by pnpm, not as provided by the Docker image.
+COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
+COPY --from=test-integration-prepare /srv/app/ ./
 
-RUN pnpm run test:e2e:dev
+RUN pnpm run test:integration:dev
 
 
 ########################
-# Nuxt: test (e2e, production)
+# Nuxt: test (integration, production)
 
-FROM mcr.microsoft.com/playwright:v1.34.2@sha256:d6cc296a938177cfaae55c8428c68ab81d143b2c54d2d1872136411228dbec20 AS test-e2e-prod
+FROM cypress/included:12.12.0@sha256:ed3195f01d2d0eecd71d508eed05ee600db5609187da7d531954a082438db54b AS test-integration-prod
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
 
 WORKDIR /srv/app/
 
-RUN corepack enable
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y \
+        # `curl` is required by `cypress/snapshots/test.sh`
+        curl \
+    && corepack enable
 
-COPY --from=test-e2e-prepare /srv/app/ ./
+# Use the Cypress version installed by pnpm, not as provided by the Docker image.
+COPY --from=prepare /root/.cache/Cypress /root/.cache/Cypress
+COPY --from=test-integration-prepare /srv/app/ ./
 COPY --from=build /srv/app/.output /srv/app/.output
 
-# # Do not run in parallel with `test-e2e-dev`
-# COPY --from=test-e2e-dev /srv/app/package.json /tmp/test/package.json
+# Do not run in parallel with `test-integration-dev`
+COPY --from=test-integration-dev /srv/app/package.json /tmp/test/package.json
 
-RUN pnpm run test:e2e:prod
+RUN pnpm run test:integration:prod
 
 
 #######################
@@ -199,8 +211,8 @@ WORKDIR /srv/app/
 COPY --from=build /srv/app/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/package.json
-COPY --from=test-e2e-dev /srv/app/package.json /tmp/package.json
-COPY --from=test-e2e-prod /srv/app/package.json /tmp/package.json
+COPY --from=test-integration-dev /srv/app/package.json /tmp/package.json
+COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 
 
 #######################
@@ -221,4 +233,4 @@ RUN apk update && apk upgrade --no-cache
 COPY --from=collect /srv/app/ ./
 
 CMD [".output/server/index.mjs"]
-HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3001/api/healthcheck || exit 1
+HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
