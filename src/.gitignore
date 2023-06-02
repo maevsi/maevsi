@@ -1,14 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/cypressio,linux,macos,node,nuxtjs,windows
-# Edit at https://www.toptal.com/developers/gitignore?templates=cypressio,linux,macos,node,nuxtjs,windows
-
-### CypressIO ###
-# gitignore template for the CypressIO, browser test framework
-# website: https://www.cypress.io/
-
-cypress/results/*
-cypress/reports/*
-cypress/screenshots/*
-cypress/videos/*
+# Created by https://www.toptal.com/developers/gitignore/api/node,linux,macos,nuxtjs,windows
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,linux,macos,nuxtjs,windows
 
 ### Linux ###
 *~
@@ -235,7 +226,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/cypressio,linux,macos,node,nuxtjs,windows
+# End of https://www.toptal.com/developers/gitignore/api/node,linux,macos,nuxtjs,windows
 
-cypress/snapshots/actual
-cypress/snapshots/diff
+tests/e2e/report
+tests/e2e/results
