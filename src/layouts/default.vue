@@ -1,5 +1,9 @@
 <template>
-  <div class="container mx-auto p-4 md:px-8" :data-is-loading="isLoading">
+  <div
+    class="container mx-auto p-4 md:px-8"
+    :data-is-loading="isLoading"
+    data-testid="is-loading"
+  >
     <div class="min-h-screen pb-32">
       <LayoutHeader @on-menu-show="menuShow" />
       <main class="flex-1 overflow-hidden p-1">
