@@ -1,3 +1,10 @@
+# [1.17.0-beta.9](https://github.com/maevsi/maevsi/compare/1.17.0-beta.8...1.17.0-beta.9) (2023-06-05)
+
+
+### Bug Fixes
+
+* Rerevert merge ([6eec552](https://github.com/maevsi/maevsi/commit/6eec552dcacf155e6464492ecbef1a6dca65efaf))
+
 # [1.17.0-beta.8](https://github.com/maevsi/maevsi/compare/1.17.0-beta.7...1.17.0-beta.8) (2023-06-02)
 
 
