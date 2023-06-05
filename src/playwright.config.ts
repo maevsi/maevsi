@@ -90,6 +90,10 @@ export default defineConfig({
       !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
         ? 'pnpm run dev'
         : 'pnpm run start',
+    timeout:
+      !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+        ? 100000
+        : 10000,
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
   },
