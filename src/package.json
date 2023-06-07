@@ -35,7 +35,7 @@
   "devDependencies": {
     "@babel/core": "7.21.8",
     "@dargmuesli/nuxt-cookie-control": "5.9.1",
-    "@dargmuesli/vue-qrcode-reader": "3.1.0-vue3-compatibility.3",
+    "@dargmuesli/vue-qrcode-reader": "3.1.0-vue3-compatibility.8",
     "@fontsource/manrope": "4.5.13",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "3.3.1",

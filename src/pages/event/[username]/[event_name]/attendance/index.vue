@@ -263,9 +263,7 @@ export default {
   name: 'IndexPage',
   components: {
     QrCodeStream: defineAsyncComponent(
-      async () =>
-        (await import('@dargmuesli/vue-qrcode-reader/dist/vue-qrcode-reader'))
-          .QrcodeStream
+      async () => (await import('@dargmuesli/vue-qrcode-reader')).QrcodeStream
     ),
   },
 }

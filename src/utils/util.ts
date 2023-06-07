@@ -60,7 +60,6 @@ const getCsp = (host: string): Record<string, Array<string>> => {
       'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://*.analytics.google.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
-      'https://cdn.jsdelivr.net/npm/@undecaf/zbar-wasm@0.9.12/dist/zbar.wasm', // vue-qrcode-reader
     ],
     'default-src': ["'none'"],
     'font-src': ["'self'"], // ~/public/assets/static/fonts
@@ -88,7 +87,6 @@ const getCsp = (host: string): Record<string, Array<string>> => {
       "'self'",
       'https://challenges.cloudflare.com', // Cloudflare Turnstile
       'https://static.cloudflareinsights.com', // Cloudflare analytics
-      'https://cdn.jsdelivr.net/npm/@undecaf/zbar-wasm@0.9.12/dist/main.js', // vue-qrcode-reader
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       "'unsafe-inline'", // https://github.com/unjs/nitro/issues/81
       "'unsafe-eval'", // https://github.com/unjs/nitro/issues/81

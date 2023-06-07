@@ -8,8 +8,8 @@ devDependencies:
     specifier: 5.9.1
     version: 5.9.1(rollup@3.22.0)
   '@dargmuesli/vue-qrcode-reader':
-    specifier: 3.1.0-vue3-compatibility.3
-    version: 3.1.0-vue3-compatibility.3
+    specifier: 3.1.0-vue3-compatibility.8
+    version: 3.1.0-vue3-compatibility.8
   '@fontsource/manrope':
     specifier: 4.5.13
     version: 4.5.13
@@ -1124,11 +1124,11 @@ packages:
       - webpack
     dev: true
 
-  /@dargmuesli/vue-qrcode-reader@3.1.0-vue3-compatibility.3:
-    resolution: {integrity: sha512-MSM/udeWu++e0FK9266OyMo65u88IWuoHaK7QA04uplfY4cPoq5awbtqkfpnaTxO585hBXdrdycjbOJ8In3D6A==}
+  /@dargmuesli/vue-qrcode-reader@3.1.0-vue3-compatibility.8:
+    resolution: {integrity: sha512-vP9CtkF5yicc5PE1IA+CV7HcXAK7P/MQMGD2YMou1a1RudN/u078qOGcokc3evuJDJTSodcNOUNr1bQLMURnAA==}
     engines: {node: '20'}
     dependencies:
-      '@undecaf/barcode-detector-polyfill': 0.9.16
+      barcode-detector: 1.0.0
       webrtc-adapter: 8.2.2
     dev: true
 
@@ -3707,16 +3707,6 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
-  /@undecaf/barcode-detector-polyfill@0.9.16:
-    resolution: {integrity: sha512-wijWm5sHavKBpd0TWuQ++5XEFf9E+8zmrD5ezGJipNj+SbziKm2MQqNRAOpGN+LHGYHF00MwEJafYxNz3LWzkA==}
-    dependencies:
-      '@undecaf/zbar-wasm': 0.9.13
-    dev: true
-
-  /@undecaf/zbar-wasm@0.9.13:
-    resolution: {integrity: sha512-Xl4eyfU8nwtTHF4Wi0Qyklq8BC6BmW++GYlN0gCeIgrqeIDmV7xp3nNpIN4fQpIbdvq3lvgnvVcBKAiYn9FvzA==}
-    dev: true
-
   /@unhead/dom@1.1.27:
     resolution: {integrity: sha512-sUrzpKIVvFp8TFx1mgp5t0k5ts1+KmgjMgRRuvRTZMBMVeGQRLSuL3uo34iwuFmKxeI6BXT5lVBk5H02c1XdGg==}
     dependencies:
@@ -4155,6 +4145,21 @@ packages:
       fast-url-parser: 1.1.3
       tslib: 2.5.2
     dev: true
+
+  /@zxing/library@0.18.6:
+    resolution: {integrity: sha512-bulZ9JHoLFd9W36pi+7e7DnEYNJhljYjZ1UTsKPOoLMU3qtC+REHITeCRNx40zTRJZx18W5TBRXt5pq2Uopjsw==}
+    engines: {node: '>= 10.4.0'}
+    dependencies:
+      ts-custom-error: 3.3.1
+    optionalDependencies:
+      '@zxing/text-encoding': 0.9.0
+    dev: true
+
+  /@zxing/text-encoding@0.9.0:
+    resolution: {integrity: sha512-U/4aVJ2mxI0aDNI8Uq0wEhMgY+u4CNtEb0om3+y3+niDAsoTCOB33UF0sxpzqzdqXLqmvc+vZyAt4O8pPdfkwA==}
+    requiresBuild: true
+    dev: true
+    optional: true
 
   /abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
@@ -4598,6 +4603,13 @@ packages:
 
   /balanced-match@2.0.0:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
+    dev: true
+
+  /barcode-detector@1.0.0:
+    resolution: {integrity: sha512-LZSyqjumoq2WmMOeQZ2BiYYAqwnTlkXgqKOTcJlathpFS6IejsdSb6aIGmoSyOCjBgFNATzLgMJ9shNfklnz6A==}
+    dependencies:
+      '@zxing/library': 0.18.6
+      jsqr: 1.4.0
     dev: true
 
   /base64-js@1.5.1:
@@ -8437,6 +8449,10 @@ packages:
       verror: 1.10.0
     dev: true
 
+  /jsqr@1.4.0:
+    resolution: {integrity: sha512-dxLob7q65Xg2DvstYkRpkYtmKm2sPJ9oFhrhmudT1dZvNFFTlroai3AWSpLey/w5vMcLBXRgOJsbXpdN9HzU/A==}
+    dev: true
+
   /kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
@@ -12209,6 +12225,11 @@ packages:
     resolution: {integrity: sha512-95Pu1QXQvruGEhv62XCMO3Mm90GscOCClvrIUwCM0PYOXK3kaF3l3sIHxx71ThJfcbM2O5Au6SO3AWCSEfW4mQ==}
     dependencies:
       utf8-byte-length: 1.0.4
+    dev: true
+
+  /ts-custom-error@3.3.1:
+    resolution: {integrity: sha512-5OX1tzOjxWEgsr/YEUWSuPrQ00deKLh6D7OTWcvNHm12/7QPyRh8SYpyWvA4IZv8H/+GQWQEh/kwo95Q9OVW1A==}
+    engines: {node: '>=14.0.0'}
     dev: true
 
   /ts-interface-checker@0.1.13:
