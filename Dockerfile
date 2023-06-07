@@ -97,7 +97,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: test (integration)
 
-FROM cypress/included:12.13.0@sha256:bb18d50ddaad4c846c432ee5e6b83bbf239cfe8454d52b546dc2ceb57d4b60af AS test-integration_base
+FROM cypress/included:12.14.0@sha256:583f7423be297b5695846098292d21d015db163fc62c947ebecc186073683237 AS test-integration_base
 
 ARG UNAME=cypress
 ARG UID=1000
@@ -129,7 +129,7 @@ ENTRYPOINT ["entrypoint-dev.sh"]
 ########################
 # Nuxt: test (integration, development)
 
-FROM cypress/included:12.13.0@sha256:bb18d50ddaad4c846c432ee5e6b83bbf239cfe8454d52b546dc2ceb57d4b60af AS test-integration-dev
+FROM cypress/included:12.14.0@sha256:583f7423be297b5695846098292d21d015db163fc62c947ebecc186073683237 AS test-integration-dev
 
 RUN corepack enable \
     && apt-get update \
@@ -148,7 +148,7 @@ RUN pnpm --dir nuxt run test:integration:dev
 ########################
 # Nuxt: test (integration, production)
 
-FROM cypress/included:12.13.0@sha256:bb18d50ddaad4c846c432ee5e6b83bbf239cfe8454d52b546dc2ceb57d4b60af AS test-integration-prod
+FROM cypress/included:12.14.0@sha256:583f7423be297b5695846098292d21d015db163fc62c947ebecc186073683237 AS test-integration-prod
 
 RUN corepack enable \
     && apt-get update \
