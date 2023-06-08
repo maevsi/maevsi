@@ -32,7 +32,7 @@
     "prepare": "nuxt prepare"
   },
   "devDependencies": {
-    "@babel/core": "7.22.1",
+    "@babel/core": "7.22.5",
     "@dargmuesli/nuxt-cookie-control": "5.9.3",
     "@fontsource-variable/manrope": "5.0.2",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
