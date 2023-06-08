@@ -1,3 +1,10 @@
+## [1.18.4](https://github.com/maevsi/maevsi/compare/1.18.3...1.18.4) (2023-06-08)
+
+
+### Bug Fixes
+
+* **upload:** delete by bucket key only ([b657071](https://github.com/maevsi/maevsi/commit/b6570710ea8b8cf8cd4498d0ddd9b03693e8aa28))
+
 ## [1.18.3](https://github.com/maevsi/maevsi/compare/1.18.2...1.18.3) (2023-06-08)
 
 
