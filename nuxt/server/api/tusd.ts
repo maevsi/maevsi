@@ -165,29 +165,18 @@ const tusdDelete = async (event: H3Event) => {
       method: 'DELETE',
     })
 
-    if (httpResp.ok) {
-      if (httpResp.status === 204) {
-        await deleteUpload(event, uploadId, storageKey)
-        event.node.res.statusCode = 204
-        await send(event)
-      } else if (httpResp.status === 404) {
-        await deleteUpload(event, uploadId, storageKey)
-      } else {
-        return sendError(
-          event,
-          createError({
-            statusCode: 500,
-            statusMessage: 'Tusd status was "' + httpResp.status + '".',
-          })
-        )
-      }
+    if (httpResp.status === 204) {
+      await deleteUpload(event, uploadId, storageKey)
+      event.node.res.statusCode = 204
+      await send(event)
+    } else if (httpResp.status === 404) {
+      await deleteUpload(event, uploadId, storageKey)
     } else {
-      sendError(
+      return sendError(
         event,
         createError({
           statusCode: 500,
-          statusMessage:
-            'Internal delete failed: "' + httpResp.statusText + '"!',
+          statusMessage: 'Tusd status was "' + httpResp.status + '".',
         })
       )
     }
