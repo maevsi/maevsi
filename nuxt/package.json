@@ -70,7 +70,7 @@
     "@urql/devtools": "2.0.3",
     "@urql/exchange-graphcache": "6.1.1",
     "@urql/vue": "1.1.2",
-    "@vite-pwa/nuxt": "0.0.10",
+    "@vite-pwa/nuxt": "0.1.0",
     "@vuelidate/core": "2.0.2",
     "@vuelidate/validators": "2.0.2",
     "autoprefixer": "10.4.14",
