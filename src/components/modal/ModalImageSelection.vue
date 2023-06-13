@@ -9,7 +9,7 @@
     <ImageUploadGallery
       :allow-deletion="false"
       selectable
-      :username="isTesting ? 'username' : routeParamUsername"
+      :username="isTesting() ? 'username' : routeParamUsername"
       @selection="selectProfilePictureStorageKey"
     />
     <template #header>{{ t('header') }}</template>
@@ -20,11 +20,10 @@
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 
 const emit = defineEmits<{
-  (e: 'submitSuccess'): void
+  submitSuccess: []
 }>()
 
 const route = useRoute()
-const config = useRuntimeConfig()
 const { t } = useI18n()
 
 // api data
@@ -32,7 +31,6 @@ const profilePictureSetMutation = useProfilePictureSetMutation()
 getApiData([profilePictureSetMutation])
 
 // data
-const isTesting = config.public.isTesting
 const routeParamUsername = route.params.username as string
 const selectedProfilePictureStorageKey = ref<string | null>()
 

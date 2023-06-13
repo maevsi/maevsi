@@ -78,14 +78,18 @@ The setup for backend development is more complex as it consists of numerous ser
 #### Setup
 
 1. create a directory named `maevsi` in a directory of your liking
-1. download the project modules [maevsi](https://github.com/maevsi/maevsi), [maevsi_stack](https://github.com/maevsi/maevsi_stack) and [stomper](https://github.com/maevsi/stomper) into that newly created directory:
+1. download the project modules [maevsi](https://github.com/maevsi/maevsi), [maevsi_stack](https://github.com/maevsi/maevsi_stack), [sqitch](https://github.com/maevsi/sqitch) and [stomper](https://github.com/maevsi/stomper) into that newly created directory:
     ```sh
     cd maevsi
     git clone https://github.com/maevsi/maevsi.git
     git clone https://github.com/maevsi/maevsi_stack.git
+    git clone https://github.com/maevsi/sqitch.git
     git clone https://github.com/maevsi/stomper.git
     ```
-    **maevsi** contains the frontend and database migrations, **maevsi_stack** is the service configuration and **stomper** is the service that sends out emails.
+    - **maevsi** contains the frontend and database migrations
+    - **maevsi_stack** is the service configuration
+    - **sqitch** is the database migration service
+    - **stomper** is the service that sends emails
 1. switch into the `maevsi` subdirectory and setup Node:
     ```sh
     cd maevsi
@@ -117,6 +121,7 @@ The setup for backend development is more complex as it consists of numerous ser
 1. finally, create the Docker development images for `maevsi` and `stomper` so that their services start successfully:
     ```sh
     dargstack build maevsi
+    dargstack build sqitch
     dargstack build stomper
     ```
 1. you should now be able to access maevsi under https://localhost! 🎉
@@ -134,21 +139,9 @@ Access Portainer on `http://localhost:9000` then.
 Create a user, add an environment, start the Docker wizard, choose "Socket", name it e.g. "local" and close the wizard.
 Under "home", select the newly created environment then.
 You'll have access to all containers, images, volumes and more via the left sidebar then.
-
-
-#### Sqitch
-
-In case you want to apply or revert the database migrations, you need to use [Sqitch](https://sqitch.org/).
-
-The `sqitch` directory in this repository contains a `sqitch` executable that you can use to interact with the migrations residing in the directory's subdirectories.
-For example, run `./sqitch deploy` to fill the database with structure like tables, types and policies.
-
-In case you want to be able to simple call `sqitch deploy` without `./` instead, add an `alias sqitch="./sqitch"` to your shell configuration (`~/.bashrc`, `~/.zshrc`, ...).
 </details>
 
 
 ## Technology
 
 [<img src="https://nuxt.com/assets/design-kit/logo/full-logo-green-light.svg" alt="Nuxt" width="1000"/>](https://nuxt.com)
-[<img src="https://www.graphile.org/static/postgres_postgraphile_graphql-4b238552d875fe06196ba3bda74c6d2b.png" alt="PostGraphile" width="1000"/>](https://www.graphile.org/postgraphile/)
-[<img src="https://sqitch.org/img/sqitch-logo.svg" alt="Sqitch" width="1000"/>](https://sqitch.org/)

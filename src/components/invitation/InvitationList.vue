@@ -64,7 +64,7 @@
         </h2>
         <div class="m-auto w-3/4 sm:w-1/2 xl:w-1/3 2xl:w-1/4">
           <Doughnut
-            v-if="!isTesting"
+            v-if="!isTesting()"
             ref="doughnutRef"
             :data="dataComputed"
             :options="options"
@@ -115,7 +115,6 @@ const props = withDefaults(defineProps<Props>(), {})
 const { $colorMode } = useNuxtApp()
 const { t } = useI18n()
 const store = useMaevsiStore()
-const config = useRuntimeConfig()
 
 // refs
 const after = ref<string>()
@@ -130,14 +129,13 @@ const invitationsQuery = await useAllInvitationsQuery({
 const api = getApiData([invitationsQuery])
 
 // data
-const isTesting = config.public.isTesting
 const options = {
   plugins: {
     legend: {
       labels: {
         font: {
           fontFamily:
-            'ManropeVariable, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+            'Manrope Variable, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
           size: 16,
         },
       },

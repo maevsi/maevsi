@@ -136,7 +136,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'selection', storageKey?: string | null): void
+  selection: [storageKey?: string | null]
 }>()
 
 const { t } = useI18n()

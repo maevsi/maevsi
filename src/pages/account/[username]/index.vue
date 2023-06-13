@@ -31,9 +31,9 @@
           width="96"
         />
       </div>
-      <h2>
+      <h1>
         {{ routeParamUsername }}
-      </h2>
+      </h1>
     </div>
     <ButtonList class="justify-center">
       <ButtonColored

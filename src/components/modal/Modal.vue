@@ -1,7 +1,7 @@
 <template>
   <div v-if="isVisible">
     <div
-      class="bottom-0 left-0 right-0 top-0 z-10 transition backdrop-blur backdrop-brightness-50 fixed"
+      class="inset-0 z-10 transition backdrop-blur backdrop-brightness-50 fixed"
       @click="close"
     />
     <Card
@@ -35,7 +35,7 @@
         }"
       >
         <slot />
-        <div v-if="isSubmitting" class="absolute bottom-0 left-0 right-0 top-0">
+        <div v-if="isSubmitting" class="absolute inset-0">
           <LoaderIndicatorSpinner class="m-auto h-8 w-8" />
         </div>
       </div>
@@ -83,8 +83,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'close'): void
-  (e: 'submitSuccess', submitSuccess: any): void
+  close: []
+  submitSuccess: [submitSuccess: any]
 }>()
 
 const store = useMaevsiStore()

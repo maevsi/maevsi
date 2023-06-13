@@ -29,12 +29,12 @@ export default defineNuxtConfig({
   css: ['@/assets/css/main.css'],
   modules: [
     '@dargmuesli/nuxt-cookie-control',
-    '@kevinmarrec/nuxt-pwa',
     '@nuxtjs/color-mode',
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
     '@nuxtjs/turnstile',
     '@pinia/nuxt',
+    '@vite-pwa/nuxt',
     [
       '@funken-studio/sitemap-nuxt-3',
       { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true },
@@ -50,7 +50,6 @@ export default defineNuxtConfig({
     public: {
       googleAnalyticsId: '', // set via environment variable `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` only
       isInProduction: process.env.NODE_ENV === 'production',
-      isTesting: false,
       stagingHost:
         process.env.NODE_ENV !== 'production' &&
         !process.env.NUXT_PUBLIC_STACK_DOMAIN
@@ -189,12 +188,103 @@ export default defineNuxtConfig({
     },
   },
   pwa: {
-    icon: {
-      source: 'public/assets/static/favicon/android-chrome-512x512.png',
+    // Leads to issues with Cypress e2e tests.
+    // devOptions: {
+    //   enabled: true,
+    // },
+    client: {
+      installPrompt: true,
     },
     manifest: {
-      theme_color: '#202020',
-      background_color: '#202020',
+      description: 'Find events, guests and friends.',
+      background_color: '#1f2937',
+      theme_color: '#1f2937',
+      icons: [
+        {
+          src: '/assets/static/favicon/android-chrome-64x64.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '64x64',
+          purpose: 'any',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-64x64.maskable.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '64x64',
+          purpose: 'maskable',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-120x120.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '120x120',
+          purpose: 'any',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-120x120.maskable.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '120x120',
+          purpose: 'maskable',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-144x144.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '144x144',
+          purpose: 'any',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-144x144.maskable.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '144x144',
+          purpose: 'maskable',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-152x152.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '152x152',
+          purpose: 'any',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-152x152.maskable.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '152x152',
+          purpose: 'maskable',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-192x192.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '192x192',
+          purpose: 'any',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-192x192.maskable.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '192x192',
+          purpose: 'maskable',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-384x384.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '384x384',
+          purpose: 'any',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-384x384.maskable.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '384x384',
+          purpose: 'maskable',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-512x512.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '512x512',
+          purpose: 'any',
+        },
+        {
+          src: '/assets/static/favicon/android-chrome-512x512.maskable.png?v=2EvuFKRRxT',
+          type: 'image/png',
+          sizes: '512x512',
+          purpose: 'maskable',
+        },
+      ],
     },
   },
   turnstile: {

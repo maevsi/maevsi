@@ -11,6 +11,9 @@ export default defineNuxtPlugin((nuxtApp) => {
       bootstrap: !!cookieControl.cookiesEnabledIds.value?.includes('ga'),
       config: {
         id: config.public.googleAnalyticsId,
+        params: {
+          cookie_flags: 'secure;samesite=strict',
+        },
       },
     },
     router

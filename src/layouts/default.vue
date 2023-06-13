@@ -68,7 +68,6 @@
         <AppLink
           v-for="availableLocale in availableLocales"
           :key="availableLocale"
-          :data-testid="`i18n-${availableLocale}`"
           :to="switchLocalePath(availableLocale)"
         >
           <div class="flex gap-2 items-center">
@@ -92,7 +91,7 @@
       </LayoutFooterCategory>
     </LayoutFooter>
     <div
-      class="fixed bottom-0 left-0 right-0 top-0 z-10 transition duration-500 lg:hidden"
+      class="fixed inset-0 z-10 transition duration-500 lg:hidden"
       :class="[
         ...(isMenuVisible
           ? ['backdrop-brightness-50 backdrop-blur']
@@ -102,7 +101,7 @@
       @click="menuHide"
     />
     <div
-      class="fixed bottom-0 left-0 top-0 z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 lg:hidden"
+      class="fixed inset-0 right-auto z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 lg:hidden"
       :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
     >
       <LayoutMenu

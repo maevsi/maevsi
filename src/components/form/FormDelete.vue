@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'success'): void
+  success: []
 }>()
 
 const { t } = useI18n()

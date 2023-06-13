@@ -177,7 +177,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['ManropeVariable', ...defaultTheme.fontFamily.sans],
+        sans: ['Manrope Variable', ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
         shake: {

@@ -22,7 +22,7 @@ const localePath = useLocalePath()
 const route = useRoute()
 
 const emit = defineEmits<{
-  (e: 'click'): void
+  click: []
 }>()
 </script>
 
