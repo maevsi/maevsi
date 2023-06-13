@@ -68,7 +68,6 @@
         <AppLink
           v-for="availableLocale in availableLocales"
           :key="availableLocale"
-          :data-testid="`i18n-${availableLocale}`"
           :to="switchLocalePath(availableLocale)"
         >
           <div class="flex gap-2 items-center">
