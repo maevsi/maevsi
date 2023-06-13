@@ -57,9 +57,10 @@ const getCsp = (host: string): Record<string, Array<string>> => {
       `https://${getDomainTldPort(stagingHostOrHost)}`, // `/api` requests
       `https://postgraphile.${getDomainTldPort(stagingHostOrHost)}`, // backend requests
       `https://tusd.${getDomainTldPort(stagingHostOrHost)}`, // image upload requests
-      'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://*.analytics.google.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
+      'https://cdn.jsdelivr.net/npm/@sec-ant/', // vue-qrcode-reader
     ],
     'default-src': ["'none'"],
     'font-src': ["'self'"], // ~/public/assets/static/fonts
