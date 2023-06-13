@@ -92,7 +92,7 @@
     "eslint-plugin-compat": "4.1.4",
     "eslint-plugin-nuxt": "4.0.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-yml": "1.7.0",
+    "eslint-plugin-yml": "1.8.0",
     "h3": "1.6.6",
     "html-to-text": "9.0.5",
     "ical-generator": "4.1.0",
