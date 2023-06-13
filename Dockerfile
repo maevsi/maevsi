@@ -1,7 +1,7 @@
 #############
 # Serve Nuxt in development mode.
 
-FROM node:20.2.0-slim@sha256:dc1906714d1993d291e1e7b5f236291236b0a0b6dfacdb164e4a9ea44d09c52e AS development
+FROM node:20.3.0-slim@sha256:c0a80bc11d7cd2427092476664c2255462a4a5e331d7877104b7c7e240efc577 AS development
 
 COPY ./docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
@@ -29,7 +29,7 @@ CMD ["pnpm", "run", "--dir", "nuxt", "dev"]
 ########################
 # Prepare Nuxt.
 
-FROM node:20.2.0-slim@sha256:dc1906714d1993d291e1e7b5f236291236b0a0b6dfacdb164e4a9ea44d09c52e AS prepare
+FROM node:20.3.0-slim@sha256:c0a80bc11d7cd2427092476664c2255462a4a5e331d7877104b7c7e240efc577 AS prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -50,7 +50,7 @@ RUN pnpm install --offline
 # Build Nuxt.
 
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.2.0-slim@sha256:dc1906714d1993d291e1e7b5f236291236b0a0b6dfacdb164e4a9ea44d09c52e AS build
+FROM node:20.3.0-slim@sha256:c0a80bc11d7cd2427092476664c2255462a4a5e331d7877104b7c7e240efc577 AS build
 
 ARG CI=false
 ENV CI ${CI}
@@ -70,7 +70,7 @@ RUN corepack enable && \
 # Nuxt: lint
 
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.2.0-slim@sha256:dc1906714d1993d291e1e7b5f236291236b0a0b6dfacdb164e4a9ea44d09c52e AS lint
+FROM node:20.3.0-slim@sha256:c0a80bc11d7cd2427092476664c2255462a4a5e331d7877104b7c7e240efc577 AS lint
 
 WORKDIR /srv/app/
 
@@ -84,7 +84,7 @@ RUN corepack enable && \
 # Nuxt: test (unit)
 
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.2.0-slim@sha256:dc1906714d1993d291e1e7b5f236291236b0a0b6dfacdb164e4a9ea44d09c52e AS test-unit
+FROM node:20.3.0-slim@sha256:c0a80bc11d7cd2427092476664c2255462a4a5e331d7877104b7c7e240efc577 AS test-unit
 
 WORKDIR /srv/app/
 
@@ -169,7 +169,7 @@ RUN pnpm --dir nuxt run test:integration:prod
 # Collect build, lint and test results.
 
 # Could be the specific version of `node:alpine`, but the `prepare` stage uses slim too.
-FROM node:20.2.0-slim@sha256:dc1906714d1993d291e1e7b5f236291236b0a0b6dfacdb164e4a9ea44d09c52e AS collect
+FROM node:20.3.0-slim@sha256:c0a80bc11d7cd2427092476664c2255462a4a5e331d7877104b7c7e240efc577 AS collect
 
 WORKDIR /srv/app/
 
@@ -184,7 +184,7 @@ COPY --from=test-integration-prod /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM node:20.2.0-slim@sha256:dc1906714d1993d291e1e7b5f236291236b0a0b6dfacdb164e4a9ea44d09c52e AS production
+FROM node:20.3.0-slim@sha256:c0a80bc11d7cd2427092476664c2255462a4a5e331d7877104b7c7e240efc577 AS production
 
 ENV NODE_ENV=production
 
