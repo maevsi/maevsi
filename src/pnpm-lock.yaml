@@ -11,8 +11,8 @@ devDependencies:
     specifier: 5.9.1
     version: 5.9.1(rollup@3.22.0)
   '@dargmuesli/vue-qrcode-reader':
-    specifier: 3.1.0-vue3-compatibility.9
-    version: 3.1.0-vue3-compatibility.9
+    specifier: 3.1.0-vue3-compatibility.11
+    version: 3.1.0-vue3-compatibility.11(react@18.2.0)
   '@fontsource/manrope':
     specifier: 4.5.13
     version: 4.5.13
@@ -1090,12 +1090,15 @@ packages:
       - webpack
     dev: true
 
-  /@dargmuesli/vue-qrcode-reader@3.1.0-vue3-compatibility.9:
-    resolution: {integrity: sha512-b4jFy59ePI2PnTRMFXP4iH0jofRvMzQvgAG1o/aLiJbgWiZsragCB8V8uB2LRVuDq5RauEfu77tcBO45ddfMmQ==}
+  /@dargmuesli/vue-qrcode-reader@3.1.0-vue3-compatibility.11(react@18.2.0):
+    resolution: {integrity: sha512-ZpmyOJBz6qtwR7jCh8RasYt27XDpWDfnObaW4zKDJhVRNnlv13kjunWS9glMi1jPpQxHgOc0a2ng2V9dwlIfJw==}
     engines: {node: '20'}
     dependencies:
-      barcode-detector: 1.0.1
+      '@sec-ant/barcode-detector': 0.1.5(react@18.2.0)
       webrtc-adapter: 8.2.2
+    transitivePeerDependencies:
+      - immer
+      - react
     dev: true
 
   /@esbuild/android-arm64@0.17.19:
@@ -3071,6 +3074,25 @@ packages:
       rollup: 3.22.0
     dev: true
 
+  /@sec-ant/barcode-detector@0.1.5(react@18.2.0):
+    resolution: {integrity: sha512-l6ULVNfp4T1U2JjFTwW26ZZoWRTxCNsXfE1Bk74/1JB1eK6hHPBxVugs3pBUqV75A0inou5S9S+ay4sRBrjieQ==}
+    dependencies:
+      '@sec-ant/zxing-wasm': 1.2.4(react@18.2.0)
+    transitivePeerDependencies:
+      - immer
+      - react
+    dev: true
+
+  /@sec-ant/zxing-wasm@1.2.4(react@18.2.0):
+    resolution: {integrity: sha512-8avz7BHc8aa+k0Jym/1dJEOlqsYEZkoqiFtSVXbmxMwWXG7+OJCJBEWRR8VJPOlVmQj4pSVWtJr/dMuIf1TM/A==}
+    dependencies:
+      '@types/emscripten': 1.39.6
+      zustand: 4.3.8(react@18.2.0)
+    transitivePeerDependencies:
+      - immer
+      - react
+    dev: true
+
   /@selderee/plugin-htmlparser2@0.11.0:
     resolution: {integrity: sha512-P33hHGdldxGabLFjPPpaTxVolMrzrcegejx+0GxjrIb9Zv48D8yAIA/QTDR2dFl7Uz7urX8aX6+5bCZslr+gWQ==}
     dependencies:
@@ -3436,6 +3458,10 @@ packages:
 
   /@types/downloadjs@1.4.3:
     resolution: {integrity: sha512-MjJepFle/tLtT2/jmDNth6ZnwWzEhm40L+olE5HKR70ISUCfgT55eqreeHldAzFLY2HDUGsn8zgyto8KygN0CA==}
+    dev: true
+
+  /@types/emscripten@1.39.6:
+    resolution: {integrity: sha512-H90aoynNhhkQP6DRweEjJp5vfUVdIj7tdPLsu7pq89vODD/lcugKfZOsfgwpvM6XUewEp2N5dCg1Uf3Qe55Dcg==}
     dev: true
 
   /@types/estree@1.0.1:
@@ -4123,21 +4149,6 @@ packages:
       tslib: 2.5.3
     dev: true
 
-  /@zxing/library@0.18.6:
-    resolution: {integrity: sha512-bulZ9JHoLFd9W36pi+7e7DnEYNJhljYjZ1UTsKPOoLMU3qtC+REHITeCRNx40zTRJZx18W5TBRXt5pq2Uopjsw==}
-    engines: {node: '>= 10.4.0'}
-    dependencies:
-      ts-custom-error: 3.3.1
-    optionalDependencies:
-      '@zxing/text-encoding': 0.9.0
-    dev: true
-
-  /@zxing/text-encoding@0.9.0:
-    resolution: {integrity: sha512-U/4aVJ2mxI0aDNI8Uq0wEhMgY+u4CNtEb0om3+y3+niDAsoTCOB33UF0sxpzqzdqXLqmvc+vZyAt4O8pPdfkwA==}
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
     dev: true
@@ -4552,13 +4563,6 @@ packages:
 
   /balanced-match@2.0.0:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
-    dev: true
-
-  /barcode-detector@1.0.1:
-    resolution: {integrity: sha512-puUxUrYxpV0MMMhyyGXV5ZI1nrqL6NXb0mgo+ycbgByOU/BUsVP1vx9MpIC0eD0xwMgGLOYp9x5kX6rrPyLQsg==}
-    dependencies:
-      '@zxing/library': 0.18.6
-      jsqr: 1.4.0
     dev: true
 
   /base64-js@1.5.1:
@@ -8071,10 +8075,6 @@ packages:
     resolution: {integrity: sha512-2/Ki0GcmuqSrgFyelQq9M05y7PS0mEwuIzrf3f1fPqkVDVRvZrPZtVSMHxdgo8Aq0sxAOb/cr2aqqA3LeWHVPg==}
     dev: true
 
-  /jsqr@1.4.0:
-    resolution: {integrity: sha512-dxLob7q65Xg2DvstYkRpkYtmKm2sPJ9oFhrhmudT1dZvNFFTlroai3AWSpLey/w5vMcLBXRgOJsbXpdN9HzU/A==}
-    dev: true
-
   /kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
     engines: {node: '>=0.10.0'}
@@ -10477,6 +10477,13 @@ packages:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
     dev: true
 
+  /react@18.2.0:
+    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: true
+
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
     dependencies:
@@ -11701,11 +11708,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-custom-error@3.3.1:
-    resolution: {integrity: sha512-5OX1tzOjxWEgsr/YEUWSuPrQ00deKLh6D7OTWcvNHm12/7QPyRh8SYpyWvA4IZv8H/+GQWQEh/kwo95Q9OVW1A==}
-    engines: {node: '>=14.0.0'}
-    dev: true
-
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
@@ -12105,6 +12107,14 @@ packages:
 
   /urlpattern-polyfill@8.0.2:
     resolution: {integrity: sha512-Qp95D4TPJl1kC9SKigDcqgyM2VDVO4RiJc2d4qe5GrYm+zbIQCWWKAFaJNQ4BhdFeDGwBmAxqJBwWSJDb9T3BQ==}
+    dev: true
+
+  /use-sync-external-store@1.2.0(react@18.2.0):
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: true
 
   /util-deprecate@1.0.2:
@@ -12937,4 +12947,20 @@ packages:
       archiver-utils: 2.1.0
       compress-commons: 4.1.1
       readable-stream: 3.6.2
+    dev: true
+
+  /zustand@4.3.8(react@18.2.0):
+    resolution: {integrity: sha512-4h28KCkHg5ii/wcFFJ5Fp+k1J3gJoasaIbppdgZFO4BPJnsNxL0mQXBSFgOgAdCdBj35aDTPvdAJReTMntFPGg==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0(react@18.2.0)
     dev: true

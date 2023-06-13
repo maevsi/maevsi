@@ -37,7 +37,7 @@
     "@axe-core/playwright": "4.7.2-alpha.390",
     "@babel/core": "7.21.8",
     "@dargmuesli/nuxt-cookie-control": "5.9.1",
-    "@dargmuesli/vue-qrcode-reader": "3.1.0-vue3-compatibility.9",
+    "@dargmuesli/vue-qrcode-reader": "3.1.0-vue3-compatibility.11",
     "@fontsource/manrope": "4.5.13",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "3.3.1",
