@@ -1,3 +1,63 @@
+## [1.18.4](https://github.com/maevsi/maevsi/compare/1.18.3...1.18.4) (2023-06-08)
+
+
+### Bug Fixes
+
+* **upload:** delete by bucket key only ([b657071](https://github.com/maevsi/maevsi/commit/b6570710ea8b8cf8cd4498d0ddd9b03693e8aa28))
+
+## [1.18.3](https://github.com/maevsi/maevsi/compare/1.18.2...1.18.3) (2023-06-08)
+
+
+### Bug Fixes
+
+* **upload:** allow removal on invalid storage key ([20b7dae](https://github.com/maevsi/maevsi/commit/20b7dae8d29be0ca92dda173f4ee81ce26344f15))
+* **upload:** allow removal on invalid storage key ([#1289](https://github.com/maevsi/maevsi/issues/1289)) ([bd917b7](https://github.com/maevsi/maevsi/commit/bd917b7b420bd24ac5ac5fe862f6c89d7d22baae))
+
+## [1.18.2](https://github.com/maevsi/maevsi/compare/1.18.1...1.18.2) (2023-05-31)
+
+
+### Bug Fixes
+
+* **app:** correct pwa watcher ([571e92a](https://github.com/maevsi/maevsi/commit/571e92a039a5dbbea0d4682f3927dd8391a4ded7))
+
+## [1.18.1](https://github.com/maevsi/maevsi/compare/1.18.0...1.18.1) (2023-05-23)
+
+
+### Bug Fixes
+
+* **form:** correct error computation ([637c1fa](https://github.com/maevsi/maevsi/commit/637c1fa0f9b947040ce5052d3063d68cef5be54b))
+
+# [1.18.0](https://github.com/maevsi/maevsi/compare/1.17.1...1.18.0) (2023-05-22)
+
+
+### Features
+
+* **form-input:** compute full id for all elements ([a4c6063](https://github.com/maevsi/maevsi/commit/a4c60638254cf655d21fa164d62119a9bf7d6abb))
+
+## [1.17.1](https://github.com/maevsi/maevsi/compare/1.17.0...1.17.1) (2023-05-16)
+
+
+### Bug Fixes
+
+* **app:** correct testing check ([dfcd0db](https://github.com/maevsi/maevsi/commit/dfcd0dbec5acce8fc982950c61070195532937ff))
+
+# [1.17.0](https://github.com/maevsi/maevsi/compare/1.16.0...1.17.0) (2023-05-14)
+
+
+### Bug Fixes
+
+* **account:** correct initial heading ([6d8cb6d](https://github.com/maevsi/maevsi/commit/6d8cb6d8458a8a77447211db89d27e6254cdb3a0))
+* **app:** add pwa i18n ([3982004](https://github.com/maevsi/maevsi/commit/3982004e88d9cd439311a92f8759bd74025d724b))
+* **app:** use functional watch source ([b44e100](https://github.com/maevsi/maevsi/commit/b44e10032880f1e88491f669d8f1abc07e3b98eb))
+* **form-input-icon-wrapper:** simplify ([9bc0a3e](https://github.com/maevsi/maevsi/commit/9bc0a3e5eebe896ce7d263609945a68bc1a325e1))
+* revert "fix(app): use functional watch source" ([077fb44](https://github.com/maevsi/maevsi/commit/077fb4491f44784f4c9f150707c8c353fe7a42fb))
+
+
+### Features
+
+* **contact:** translate message for duplicate key violation ([6abdfa8](https://github.com/maevsi/maevsi/commit/6abdfa81073237cbf3d6c9b754868c741b3c6b30))
+* **pwa:** switch to vite plugin ([855ea9b](https://github.com/maevsi/maevsi/commit/855ea9b7c6b948c65f08ff2ee45dc98a49fb2c5c))
+
 # [1.17.0-beta.9](https://github.com/maevsi/maevsi/compare/1.17.0-beta.8...1.17.0-beta.9) (2023-06-05)
 
 

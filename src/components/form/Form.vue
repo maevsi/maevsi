@@ -15,7 +15,7 @@
           <ButtonColored
             :aria-label="submitName || t('submit')"
             :class="{
-              'animate-shake': form.$error,
+              'animate-shake': $error,
             }"
             type="submit"
             @click="emit('click')"
@@ -25,7 +25,7 @@
               <slot name="submit-icon" />
             </template>
           </ButtonColored>
-          <FormInputStateError v-if="form.$error" class="mt-2">
+          <FormInputStateError v-if="$error" class="mt-2">
             {{ t('globalValidationFailed') }}
           </FormInputStateError>
         </div>
@@ -64,13 +64,17 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'click'): void
-  (e: 'submit', event: Event): void
+  click: []
+  submit: [event: Event]
 }>()
 
 const { t } = useI18n()
 
 // computations
+const $error = computed(
+  // this is not equivalent to Vuelidate's `$error` as docs claim (https://github.com/vuelidate/vuelidate/pull/1188)
+  () => props.form.$dirty && props.form.$invalid && !props.form.$pending
+)
 const errorMessages = computed(() =>
   props.errors
     ? getCombinedErrorMessages(props.errors, props.errorsPgIds)

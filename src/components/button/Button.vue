@@ -51,7 +51,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'click'): void
+  click: []
 }>()
 
 // computations

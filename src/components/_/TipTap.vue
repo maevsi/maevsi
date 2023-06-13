@@ -159,7 +159,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', input: string): void
+  'update:modelValue': [input: string]
 }>()
 
 const host = useHost()

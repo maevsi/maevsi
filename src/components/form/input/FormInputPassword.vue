@@ -62,7 +62,7 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'input', event: string): void
+  input: [event: string]
 }>()
 
 const { t } = useI18n()

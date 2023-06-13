@@ -22,7 +22,7 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'onMenuHide'): void
+  onMenuHide: []
 }>()
 
 const route = useRoute()

@@ -29,7 +29,7 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'account-password-reset-request'): void
+  'account-password-reset-request': []
 }>()
 
 const fireAlert = useFireAlert()

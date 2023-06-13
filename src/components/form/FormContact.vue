@@ -2,6 +2,9 @@
   <Form
     class="min-h-0 flex flex-col"
     :errors="api.errors"
+    :errors-pg-ids="{
+      postgres23505: t('postgres23505'),
+    }"
     :form="v$"
     :is-form-sent="isFormSent"
     :submit-name="t('save')"
@@ -121,7 +124,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'submitSuccess'): void
+  submitSuccess: []
 }>()
 
 const store = useMaevsiStore()
@@ -246,11 +249,13 @@ de:
   address: Adresse
   firstName: Vorname
   lastName: Nachname
+  postgres23505: Ein Kontakt mit dieser Nutzernamen existiert bereits!
   save: Speichern
 en:
   accountOverride: You can add an existing account as a contact or enter contact data manually. If both data are entered, the manually entered data will be used preferentially.
   address: Address
   firstName: First name
   lastName: Last name
+  postgres23505: A contact with this username already exists!
   save: Save
 </i18n>

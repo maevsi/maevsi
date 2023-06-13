@@ -18,7 +18,7 @@ export interface Props {
 const props = withDefaults(defineProps<Props>(), {})
 
 const emit = defineEmits<{
-  (e: 'loadMore'): void
+  loadMore: []
 }>()
 
 // refs
