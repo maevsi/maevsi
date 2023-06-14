@@ -1,3 +1,11 @@
+## [1.18.5](https://github.com/maevsi/maevsi/compare/1.18.4...1.18.5) (2023-06-14)
+
+
+### Bug Fixes
+
+* **csp:** allow data source ([e49a047](https://github.com/maevsi/maevsi/commit/e49a0477db116f42d8ae0f2fab9979cfbd4fca1b))
+* **csp:** allow data source ([#1290](https://github.com/maevsi/maevsi/issues/1290)) ([1a705ee](https://github.com/maevsi/maevsi/commit/1a705ee3c8e446dc54fb211efed8ce2a614abcc4))
+
 ## [1.18.4](https://github.com/maevsi/maevsi/compare/1.18.3...1.18.4) (2023-06-08)
 
 
