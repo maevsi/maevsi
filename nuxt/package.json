@@ -95,7 +95,7 @@
     "eslint-plugin-yml": "1.8.0",
     "h3": "1.6.6",
     "html-to-text": "9.0.5",
-    "ical-generator": "4.1.0",
+    "ical-generator": "5.0.0",
     "is-https": "4.0.0",
     "isomorphic-dompurify": "1.6.0",
     "jose": "4.14.4",
