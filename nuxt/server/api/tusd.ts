@@ -155,39 +155,33 @@ const tusdDelete = async (event: H3Event) => {
     )
   }
 
-  const storageKey = queryRes.rows[0] ? queryRes.rows[0].storage_key : null
+  const storageKey = (
+    queryRes.rows[0] ? queryRes.rows[0].storage_key : undefined
+  ) as string | undefined
 
-  if (storageKey !== null) {
-    const httpResp = await fetch('http://tusd:1080/files/' + storageKey, {
-      headers: {
-        'Tus-Resumable': '1.0.0',
-      },
-      method: 'DELETE',
-    })
-
-    if (httpResp.ok) {
-      if (httpResp.status === 204) {
-        await deleteUpload(event, uploadId, storageKey)
-        event.node.res.statusCode = 204
-        await send(event)
-      } else if (httpResp.status === 404) {
-        await deleteUpload(event, uploadId, storageKey)
-      } else {
-        return sendError(
-          event,
-          createError({
-            statusCode: 500,
-            statusMessage: 'Tusd status was "' + httpResp.status + '".',
-          })
-        )
+  if (storageKey) {
+    const httpResp = await fetch(
+      'http://tusd:1080/files/' + storageKey.split('+')[0], // split is necessary for Scaleway's object storage (deletion by bucket key only without suffix)
+      {
+        headers: {
+          'Tus-Resumable': '1.0.0',
+        },
+        method: 'DELETE',
       }
+    )
+
+    if (httpResp.status === 204) {
+      await deleteUpload(event, uploadId, storageKey)
+      event.node.res.statusCode = 204
+      await send(event)
+    } else if (httpResp.status === 404) {
+      await deleteUpload(event, uploadId, storageKey)
     } else {
-      sendError(
+      return sendError(
         event,
         createError({
           statusCode: 500,
-          statusMessage:
-            'Internal delete failed: "' + httpResp.statusText + '"!',
+          statusMessage: 'Tusd status was "' + httpResp.status + '".',
         })
       )
     }

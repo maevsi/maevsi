@@ -1,3 +1,47 @@
+## [1.18.5](https://github.com/maevsi/maevsi/compare/1.18.4...1.18.5) (2023-06-14)
+
+
+### Bug Fixes
+
+* **csp:** allow data source ([e49a047](https://github.com/maevsi/maevsi/commit/e49a0477db116f42d8ae0f2fab9979cfbd4fca1b))
+* **csp:** allow data source ([#1290](https://github.com/maevsi/maevsi/issues/1290)) ([1a705ee](https://github.com/maevsi/maevsi/commit/1a705ee3c8e446dc54fb211efed8ce2a614abcc4))
+
+## [1.18.4](https://github.com/maevsi/maevsi/compare/1.18.3...1.18.4) (2023-06-08)
+
+
+### Bug Fixes
+
+* **upload:** delete by bucket key only ([b657071](https://github.com/maevsi/maevsi/commit/b6570710ea8b8cf8cd4498d0ddd9b03693e8aa28))
+
+## [1.18.3](https://github.com/maevsi/maevsi/compare/1.18.2...1.18.3) (2023-06-08)
+
+
+### Bug Fixes
+
+* **upload:** allow removal on invalid storage key ([20b7dae](https://github.com/maevsi/maevsi/commit/20b7dae8d29be0ca92dda173f4ee81ce26344f15))
+* **upload:** allow removal on invalid storage key ([#1289](https://github.com/maevsi/maevsi/issues/1289)) ([bd917b7](https://github.com/maevsi/maevsi/commit/bd917b7b420bd24ac5ac5fe862f6c89d7d22baae))
+
+## [1.18.2](https://github.com/maevsi/maevsi/compare/1.18.1...1.18.2) (2023-05-31)
+
+
+### Bug Fixes
+
+* **app:** correct pwa watcher ([571e92a](https://github.com/maevsi/maevsi/commit/571e92a039a5dbbea0d4682f3927dd8391a4ded7))
+
+## [1.18.1](https://github.com/maevsi/maevsi/compare/1.18.0...1.18.1) (2023-05-23)
+
+
+### Bug Fixes
+
+* **form:** correct error computation ([637c1fa](https://github.com/maevsi/maevsi/commit/637c1fa0f9b947040ce5052d3063d68cef5be54b))
+
+# [1.18.0](https://github.com/maevsi/maevsi/compare/1.17.1...1.18.0) (2023-05-22)
+
+
+### Features
+
+* **form-input:** compute full id for all elements ([a4c6063](https://github.com/maevsi/maevsi/commit/a4c60638254cf655d21fa164d62119a9bf7d6abb))
+
 ## [1.17.1](https://github.com/maevsi/maevsi/compare/1.17.0...1.17.1) (2023-05-16)
 
 
