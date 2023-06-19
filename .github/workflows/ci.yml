@@ -36,7 +36,7 @@ jobs:
       DRY_RUN: true
   build:
     name: Build
-    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.40.9
+    uses: dargmuesli/github-actions/.github/workflows/docker.yml@0.40.9
     needs: release_semantic_dry
     permissions:
       packages: write
@@ -46,7 +46,7 @@ jobs:
   release_semantic:
     needs: build
     name: Release (semantic)
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.40.9
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic-next.yml@0.40.9
     permissions:
       contents: write
     secrets:
