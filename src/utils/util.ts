@@ -62,7 +62,7 @@ const getCsp = (host: string): Record<string, Array<string>> => {
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
     ],
     'default-src': ["'none'"],
-    'font-src': ["'self'"], // ~/public/assets/static/fonts
+    'font-src': ["'self'", 'data:'], // @fontsource/manrope
     'form-action': ["'self'"], // Mozilla Observatory: "none".
     'frame-ancestors': ["'none'"], // Mozilla Observatory.
     'frame-src': ['https://challenges.cloudflare.com'], // Cloudflare Turnstile
