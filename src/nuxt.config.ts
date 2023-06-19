@@ -1,5 +1,3 @@
-import localeDe from './locales/de.json'
-import localeEn from './locales/en.json'
 import { JWT_NAME, LOCALES, TIMEZONE_COOKIE_NAME } from './utils/constants'
 
 export const SITEMAP_EXCLUSIONS = ['/teapot'] // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
@@ -49,6 +47,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       googleAnalyticsId: '', // set via environment variable `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` only
+      i18n: {
+        baseUrl: BASE_URL,
+      },
       isInProduction: process.env.NODE_ENV === 'production',
       stagingHost:
         process.env.NODE_ENV !== 'production' &&
@@ -171,21 +172,15 @@ export default defineNuxtConfig({
     logLevel: 'warning',
   },
   i18n: {
-    baseUrl: BASE_URL,
-    defaultLocale: 'en', // must be set for the default prefix_except_default prefix strategy
+    defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
     detectBrowserLanguage: {
       cookieSecure: true,
       redirectOn: 'root',
     },
+    langDir: 'locales',
+    lazy: true,
     locales: LOCALES,
-    vueI18n: {
-      messages: {
-        de: localeDe,
-        en: localeEn,
-      },
-      fallbackWarn: false, // covered by linting
-      missingWarn: false, // covered by linting
-    },
+    vueI18n: './i18n.config.ts',
   },
   pwa: {
     // Leads to issues with Cypress e2e tests.
