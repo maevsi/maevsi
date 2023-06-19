@@ -143,12 +143,5 @@
     "vue-gtag": "2.0.1",
     "vue-qrcode-reader": "3.1.0-vue3-compatibility.7",
     "vue-tsc": "1.8.0"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "webpack"
-      ]
-    }
   }
 }
