@@ -1,3 +1,17 @@
+# [1.19.0-beta.2](https://github.com/maevsi/maevsi/compare/1.19.0-beta.1...1.19.0-beta.2) (2023-06-19)
+
+
+### Bug Fixes
+
+* **csp:** allow data source ([e49a047](https://github.com/maevsi/maevsi/commit/e49a0477db116f42d8ae0f2fab9979cfbd4fca1b))
+* **csp:** allow data source ([#1290](https://github.com/maevsi/maevsi/issues/1290)) ([1a705ee](https://github.com/maevsi/maevsi/commit/1a705ee3c8e446dc54fb211efed8ce2a614abcc4))
+* **i18n:** remove configuration parameter ([44378c9](https://github.com/maevsi/maevsi/commit/44378c9e084c96d1279a014f96ce145103775d78))
+
+
+### Performance Improvements
+
+* **i18n:** use lazy loading ([f6c14e8](https://github.com/maevsi/maevsi/commit/f6c14e83c034d6b07e8760b3a93b340796eb4002))
+
 # [1.19.0-beta.1](https://github.com/maevsi/maevsi/compare/1.18.4...1.19.0-beta.1) (2023-06-13)
 
 
