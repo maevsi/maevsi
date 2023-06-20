@@ -201,7 +201,7 @@ const tusdPost = async (event: H3Event) => {
       consola.log('tusd/pre-create')
 
       const queryRes = await pool
-        .query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE uuid = $1);', [
+        .query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = $1);', [
           body.Upload.MetaData.maevsiUploadUuid,
         ])
         .catch((err) => {
@@ -231,7 +231,7 @@ const tusdPost = async (event: H3Event) => {
       consola.log('tusd/pre-finish: ' + body.Upload.ID)
 
       const queryRes = await pool
-        .query('UPDATE maevsi.upload SET storage_key = $1 WHERE uuid = $2;', [
+        .query('UPDATE maevsi.upload SET storage_key = $1 WHERE id = $2;', [
           body.Upload.ID,
           body.Upload.MetaData.maevsiUploadUuid,
         ])

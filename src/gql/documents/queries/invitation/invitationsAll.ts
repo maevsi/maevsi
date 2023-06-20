@@ -7,7 +7,7 @@ export const useAllInvitationsQuery = (
 ) =>
   useQuery({
     query: graphql(`
-      query allInvitations($after: Cursor, $eventId: BigInt!, $first: Int!) {
+      query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {
         allInvitations(
           after: $after
           condition: { eventId: $eventId }

@@ -5,11 +5,11 @@ export const useAccountRegistrationRefreshMutation = () =>
   useMutation(
     graphql(`
       mutation accountRegistrationRefresh(
-        $username: String!
+        $accountId: UUID!
         $language: String!
       ) {
         accountRegistrationRefresh(
-          input: { language: $language, username: $username }
+          input: { language: $language, accountId: $accountId }
         ) {
           clientMutationId
         }

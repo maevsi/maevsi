@@ -9,7 +9,7 @@ export const eventUnlockMutation = graphql(`
       eventUnlockResponse {
         eventSlug
         jwt
-        authorUsername
+        authorAccountId
       }
     }
   }

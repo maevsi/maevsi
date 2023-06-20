@@ -1,23 +1,23 @@
 import { useQuery } from '@urql/vue'
 import { graphql } from '~/gql/generated'
-import { EventByAuthorUsernameAndSlugQueryVariables } from '~/gql/generated/graphql'
+import { EventByAuthorAccountIdAndSlugQueryVariables } from '~/gql/generated/graphql'
 
-export const useEventByAuthorUsernameAndSlugQuery = (
-  variables: EventByAuthorUsernameAndSlugQueryVariables
+export const useEventByAuthorAccountIdAndSlugQuery = (
+  variables: EventByAuthorAccountIdAndSlugQueryVariables
 ) =>
   useQuery({
     query: graphql(`
-      query eventByAuthorUsernameAndSlug(
-        $authorUsername: String!
+      query eventByAuthorAccountIdAndSlug(
+        $authorAccountId: UUID!
         $slug: String!
-        $invitationUuid: UUID
+        $invitationId: UUID
       ) {
-        eventByAuthorUsernameAndSlug(
-          authorUsername: $authorUsername
+        eventByAuthorAccountIdAndSlug(
+          authorAccountId: $authorAccountId
           slug: $slug
         ) {
           ...EventItem
-          invitationsByEventId(condition: { uuid: $invitationUuid }) {
+          invitationsByEventId(condition: { id: $invitationId }) {
             nodes {
               ...InvitationItem
               contactByContactId {

@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
-import { useProfilePictureByUsernameQuery } from '~/gql/documents/queries/profilePicture/profilePictureByUsername'
+import { useProfilePictureByAccountIdQuery } from '~/gql/documents/queries/profilePicture/profilePictureByAccountId'
 import { getProfilePictureItem } from '~/gql/documents/fragments/profilePictureItem'
 
 export interface Props {
@@ -32,7 +32,7 @@ const { t } = useI18n()
 const TUSD_FILES_URL = useTusdFilesUrl()
 
 // api data
-const profilePictureQuery = await useProfilePictureByUsernameQuery({
+const profilePictureQuery = await useProfilePictureByAccountIdQuery({
   username: props.username,
 })
 const api = getApiData([profilePictureQuery])
@@ -40,7 +40,7 @@ const api = getApiData([profilePictureQuery])
 // computations
 const profilePictureUrl = computed(() => {
   const profilePicture = getProfilePictureItem(
-    profilePictureQuery.data.value?.profilePictureByUsername
+    profilePictureQuery.data.value?.profilePictureByAccountId
   )
 
   return profilePicture?.uploadStorageKey

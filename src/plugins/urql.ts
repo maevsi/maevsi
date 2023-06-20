@@ -101,7 +101,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
         // update
         profilePictureSet: (_parent, _args, cache, _info) =>
-          invalidateCache(cache, 'profilePictureByUsername'),
+          invalidateCache(cache, 'profilePictureByAccountId'),
 
         // delete
         deleteContactById: (_parent, args, cache, _info) =>

@@ -4,8 +4,8 @@ export const ProfilePictureItem = graphql(`
   fragment ProfilePictureItem on ProfilePicture {
     id
     nodeId
-    uploadStorageKey
-    username
+    accountId
+    uploadId
   }
 `)
 

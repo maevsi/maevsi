@@ -11,33 +11,42 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]: Maybe<T[SubKey]>
 }
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T
+> = { [_ in K]?: never }
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never
+    }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string
-  String: string
-  Boolean: boolean
-  Int: number
-  Float: number
+  ID: { input: string | number; output: string }
+  String: { input: string; output: string }
+  Boolean: { input: boolean; output: boolean }
+  Int: { input: number; output: number }
+  Float: { input: number; output: number }
   /**
    * A signed eight-byte integer. The upper big integer values are greater than the
    * max value for a JavaScript number. Therefore all big integers will be output as
    * strings and not numbers.
    */
-  BigInt: any
+  BigInt: { input: any; output: any }
   /** A location in a connection that can be used for resuming pagination. */
-  Cursor: any
+  Cursor: { input: any; output: any }
   /**
    * A point in time as described by the [ISO
    * 8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
    */
-  Datetime: any
+  Datetime: { input: any; output: any }
   /**
    * A JSON Web Token defined by [RFC 7519](https://tools.ietf.org/html/rfc7519)
    * which securely represents claims between two parties.
    */
-  Jwt: any
+  Jwt: { input: any; output: any }
   /** A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122). */
-  UUID: any
+  UUID: { input: any; output: any }
 }
 
 /** All input for the `accountDelete` mutation. */
@@ -46,8 +55,8 @@ export type AccountDeleteInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  password: Scalars['String']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  password: Scalars['String']['input']
 }
 
 /** The output of our `accountDelete` mutation. */
@@ -57,7 +66,7 @@ export type AccountDeletePayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -68,8 +77,8 @@ export type AccountEmailAddressVerificationInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  code: Scalars['UUID']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  code: Scalars['UUID']['input']
 }
 
 /** The output of our `accountEmailAddressVerification` mutation. */
@@ -79,7 +88,7 @@ export type AccountEmailAddressVerificationPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -90,9 +99,9 @@ export type AccountPasswordChangeInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  passwordCurrent: Scalars['String']
-  passwordNew: Scalars['String']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  passwordCurrent: Scalars['String']['input']
+  passwordNew: Scalars['String']['input']
 }
 
 /** The output of our `accountPasswordChange` mutation. */
@@ -102,7 +111,7 @@ export type AccountPasswordChangePayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -113,9 +122,9 @@ export type AccountPasswordResetInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  code: Scalars['UUID']
-  password: Scalars['String']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  code: Scalars['UUID']['input']
+  password: Scalars['String']['input']
 }
 
 /** The output of our `accountPasswordReset` mutation. */
@@ -125,7 +134,7 @@ export type AccountPasswordResetPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -136,9 +145,9 @@ export type AccountPasswordResetRequestInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  emailAddress: Scalars['String']
-  language: Scalars['String']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  emailAddress: Scalars['String']['input']
+  language: Scalars['String']['input']
 }
 
 /** The output of our `accountPasswordResetRequest` mutation. */
@@ -148,7 +157,7 @@ export type AccountPasswordResetRequestPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -159,11 +168,11 @@ export type AccountRegistrationInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  emailAddress: Scalars['String']
-  language: Scalars['String']
-  password: Scalars['String']
-  username: Scalars['String']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  emailAddress: Scalars['String']['input']
+  language: Scalars['String']['input']
+  password: Scalars['String']['input']
+  username: Scalars['String']['input']
 }
 
 /** The output of our `accountRegistration` mutation. */
@@ -173,20 +182,20 @@ export type AccountRegistrationPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
 
 /** All input for the `accountRegistrationRefresh` mutation. */
 export type AccountRegistrationRefreshInput = {
+  accountId: Scalars['UUID']['input']
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  language: Scalars['String']
-  username: Scalars['String']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  language: Scalars['String']['input']
 }
 
 /** The output of our `accountRegistrationRefresh` mutation. */
@@ -196,7 +205,7 @@ export type AccountRegistrationRefreshPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -207,9 +216,9 @@ export type AuthenticateInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  password: Scalars['String']
-  username: Scalars['String']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  password: Scalars['String']['input']
+  username: Scalars['String']['input']
 }
 
 /** The output of our `authenticate` mutation. */
@@ -219,8 +228,8 @@ export type AuthenticatePayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
-  jwt?: Maybe<Scalars['Jwt']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  jwt?: Maybe<Scalars['Jwt']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -228,105 +237,105 @@ export type AuthenticatePayload = {
 /** Contact data. */
 export type Contact = Node & {
   __typename?: 'Contact'
-  /** The contact account's username. */
-  accountUsername?: Maybe<Scalars['String']>
+  /** The contact account's id. */
+  accountId?: Maybe<Scalars['UUID']['output']>
   /** The contact's physical address. */
-  address?: Maybe<Scalars['String']>
-  /** The contact author's username. */
-  authorAccountUsername: Scalars['String']
+  address?: Maybe<Scalars['String']['output']>
+  /** The contact author's id. */
+  authorAccountId: Scalars['UUID']['output']
   /** The contact's email address. */
-  emailAddress?: Maybe<Scalars['String']>
+  emailAddress?: Maybe<Scalars['String']['output']>
   /** The contact's email address's md5 hash. */
-  emailAddressHash?: Maybe<Scalars['String']>
+  emailAddressHash?: Maybe<Scalars['String']['output']>
   /** The contact's first name. */
-  firstName?: Maybe<Scalars['String']>
+  firstName?: Maybe<Scalars['String']['output']>
   /** The contact's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['output']
   /** Reads and enables pagination through a set of `Invitation`. */
   invitationsByContactId: InvitationsConnection
   /** The contact's last name. */
-  lastName?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']['output']>
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['output']
   /** The contact's international phone number. */
-  phoneNumber?: Maybe<Scalars['String']>
+  phoneNumber?: Maybe<Scalars['String']['output']>
   /** The contact's website url. */
-  url?: Maybe<Scalars['String']>
+  url?: Maybe<Scalars['String']['output']>
 }
 
 /** Contact data. */
 export type ContactInvitationsByContactIdArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<InvitationCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<InvitationsOrderBy>>
 }
 
 /** A condition to be used against `Contact` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type ContactCondition = {
-  /** Checks for equality with the object’s `accountUsername` field. */
-  accountUsername?: InputMaybe<Scalars['String']>
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `address` field. */
-  address?: InputMaybe<Scalars['String']>
-  /** Checks for equality with the object’s `authorAccountUsername` field. */
-  authorAccountUsername?: InputMaybe<Scalars['String']>
+  address?: InputMaybe<Scalars['String']['input']>
+  /** Checks for equality with the object’s `authorAccountId` field. */
+  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `emailAddress` field. */
-  emailAddress?: InputMaybe<Scalars['String']>
+  emailAddress?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `emailAddressHash` field. */
-  emailAddressHash?: InputMaybe<Scalars['String']>
+  emailAddressHash?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `firstName` field. */
-  firstName?: InputMaybe<Scalars['String']>
+  firstName?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `id` field. */
-  id?: InputMaybe<Scalars['BigInt']>
+  id?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `lastName` field. */
-  lastName?: InputMaybe<Scalars['String']>
+  lastName?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `phoneNumber` field. */
-  phoneNumber?: InputMaybe<Scalars['String']>
+  phoneNumber?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `url` field. */
-  url?: InputMaybe<Scalars['String']>
+  url?: InputMaybe<Scalars['String']['input']>
 }
 
 /** An input for mutations affecting `Contact` */
 export type ContactInput = {
-  /** The contact account's username. */
-  accountUsername?: InputMaybe<Scalars['String']>
+  /** The contact account's id. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
   /** The contact's physical address. */
-  address?: InputMaybe<Scalars['String']>
-  /** The contact author's username. */
-  authorAccountUsername: Scalars['String']
+  address?: InputMaybe<Scalars['String']['input']>
+  /** The contact author's id. */
+  authorAccountId: Scalars['UUID']['input']
   /** The contact's email address. */
-  emailAddress?: InputMaybe<Scalars['String']>
+  emailAddress?: InputMaybe<Scalars['String']['input']>
   /** The contact's first name. */
-  firstName?: InputMaybe<Scalars['String']>
+  firstName?: InputMaybe<Scalars['String']['input']>
   /** The contact's last name. */
-  lastName?: InputMaybe<Scalars['String']>
+  lastName?: InputMaybe<Scalars['String']['input']>
   /** The contact's international phone number. */
-  phoneNumber?: InputMaybe<Scalars['String']>
+  phoneNumber?: InputMaybe<Scalars['String']['input']>
   /** The contact's website url. */
-  url?: InputMaybe<Scalars['String']>
+  url?: InputMaybe<Scalars['String']['input']>
 }
 
 /** Represents an update to a `Contact`. Fields that are set will be updated. */
 export type ContactPatch = {
-  /** The contact account's username. */
-  accountUsername?: InputMaybe<Scalars['String']>
+  /** The contact account's id. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
   /** The contact's physical address. */
-  address?: InputMaybe<Scalars['String']>
-  /** The contact author's username. */
-  authorAccountUsername?: InputMaybe<Scalars['String']>
+  address?: InputMaybe<Scalars['String']['input']>
+  /** The contact author's id. */
+  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
   /** The contact's email address. */
-  emailAddress?: InputMaybe<Scalars['String']>
+  emailAddress?: InputMaybe<Scalars['String']['input']>
   /** The contact's first name. */
-  firstName?: InputMaybe<Scalars['String']>
+  firstName?: InputMaybe<Scalars['String']['input']>
   /** The contact's last name. */
-  lastName?: InputMaybe<Scalars['String']>
+  lastName?: InputMaybe<Scalars['String']['input']>
   /** The contact's international phone number. */
-  phoneNumber?: InputMaybe<Scalars['String']>
+  phoneNumber?: InputMaybe<Scalars['String']['input']>
   /** The contact's website url. */
-  url?: InputMaybe<Scalars['String']>
+  url?: InputMaybe<Scalars['String']['input']>
 }
 
 /** A connection to a list of `Contact` values. */
@@ -339,26 +348,26 @@ export type ContactsConnection = {
   /** Information to aid in pagination. */
   pageInfo: PageInfo
   /** The count of *all* `Contact` you could get from the connection. */
-  totalCount: Scalars['Int']
+  totalCount: Scalars['Int']['output']
 }
 
 /** A `Contact` edge in the connection. */
 export type ContactsEdge = {
   __typename?: 'ContactsEdge'
   /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>
+  cursor?: Maybe<Scalars['Cursor']['output']>
   /** The `Contact` at the end of the edge. */
   node: Contact
 }
 
 /** Methods to use when ordering `Contact`. */
 export enum ContactsOrderBy {
-  AccountUsernameAsc = 'ACCOUNT_USERNAME_ASC',
-  AccountUsernameDesc = 'ACCOUNT_USERNAME_DESC',
+  AccountIdAsc = 'ACCOUNT_ID_ASC',
+  AccountIdDesc = 'ACCOUNT_ID_DESC',
   AddressAsc = 'ADDRESS_ASC',
   AddressDesc = 'ADDRESS_DESC',
-  AuthorAccountUsernameAsc = 'AUTHOR_ACCOUNT_USERNAME_ASC',
-  AuthorAccountUsernameDesc = 'AUTHOR_ACCOUNT_USERNAME_DESC',
+  AuthorAccountIdAsc = 'AUTHOR_ACCOUNT_ID_ASC',
+  AuthorAccountIdDesc = 'AUTHOR_ACCOUNT_ID_DESC',
   EmailAddressAsc = 'EMAIL_ADDRESS_ASC',
   EmailAddressDesc = 'EMAIL_ADDRESS_DESC',
   EmailAddressHashAsc = 'EMAIL_ADDRESS_HASH_ASC',
@@ -384,7 +393,7 @@ export type CreateContactInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The `Contact` to be created by this mutation. */
   contact: ContactInput
 }
@@ -396,7 +405,7 @@ export type CreateContactPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** The `Contact` that was created by this mutation. */
   contact?: Maybe<Contact>
   /** An edge for our `Contact`. May be used by Relay 1. */
@@ -416,7 +425,7 @@ export type CreateEventGroupInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The `EventGroup` to be created by this mutation. */
   eventGroup: EventGroupInput
 }
@@ -428,7 +437,7 @@ export type CreateEventGroupPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** The `EventGroup` that was created by this mutation. */
   eventGroup?: Maybe<EventGroup>
   /** An edge for our `EventGroup`. May be used by Relay 1. */
@@ -448,7 +457,7 @@ export type CreateEventGroupingInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The `EventGrouping` to be created by this mutation. */
   eventGrouping: EventGroupingInput
 }
@@ -460,7 +469,7 @@ export type CreateEventGroupingPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Reads a single `Event` that is related to this `EventGrouping`. */
   eventByEventId?: Maybe<Event>
   /** Reads a single `EventGroup` that is related to this `EventGrouping`. */
@@ -484,7 +493,7 @@ export type CreateEventInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The `Event` to be created by this mutation. */
   event: EventInput
 }
@@ -496,7 +505,7 @@ export type CreateEventPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** The `Event` that was created by this mutation. */
   event?: Maybe<Event>
   /** An edge for our `Event`. May be used by Relay 1. */
@@ -516,7 +525,7 @@ export type CreateInvitationInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The `Invitation` to be created by this mutation. */
   invitation: InvitationInput
 }
@@ -528,7 +537,7 @@ export type CreateInvitationPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Reads a single `Contact` that is related to this `Invitation`. */
   contactByContactId?: Maybe<Contact>
   /** Reads a single `Event` that is related to this `Invitation`. */
@@ -552,7 +561,7 @@ export type CreateProfilePictureInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The `ProfilePicture` to be created by this mutation. */
   profilePicture: ProfilePictureInput
 }
@@ -564,7 +573,7 @@ export type CreateProfilePicturePayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** The `ProfilePicture` that was created by this mutation. */
   profilePicture?: Maybe<ProfilePicture>
   /** An edge for our `ProfilePicture`. May be used by Relay 1. */
@@ -572,7 +581,7 @@ export type CreateProfilePicturePayload = {
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
   /** Reads a single `Upload` that is related to this `ProfilePicture`. */
-  uploadByUploadStorageKey?: Maybe<Upload>
+  uploadByUploadId?: Maybe<Upload>
 }
 
 /** The output of our create `ProfilePicture` mutation. */
@@ -586,7 +595,7 @@ export type CreateUploadInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The `Upload` to be created by this mutation. */
   upload: UploadInput
 }
@@ -598,7 +607,7 @@ export type CreateUploadPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
   /** The `Upload` that was created by this mutation. */
@@ -612,17 +621,17 @@ export type CreateUploadPayloadUploadEdgeArgs = {
   orderBy?: InputMaybe<Array<UploadsOrderBy>>
 }
 
-/** All input for the `deleteContactByAuthorAccountUsernameAndAccountUsername` mutation. */
-export type DeleteContactByAuthorAccountUsernameAndAccountUsernameInput = {
-  /** The contact account's username. */
-  accountUsername: Scalars['String']
-  /** The contact author's username. */
-  authorAccountUsername: Scalars['String']
+/** All input for the `deleteContactByAuthorAccountIdAndAccountId` mutation. */
+export type DeleteContactByAuthorAccountIdAndAccountIdInput = {
+  /** The contact account's id. */
+  accountId: Scalars['UUID']['input']
+  /** The contact author's id. */
+  authorAccountId: Scalars['UUID']['input']
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
 }
 
 /** All input for the `deleteContactById` mutation. */
@@ -631,9 +640,9 @@ export type DeleteContactByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The contact's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** All input for the `deleteContact` mutation. */
@@ -642,9 +651,9 @@ export type DeleteContactInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The globally unique `ID` which will identify a single `Contact` to be deleted. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our delete `Contact` mutation. */
@@ -654,12 +663,12 @@ export type DeleteContactPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** The `Contact` that was deleted by this mutation. */
   contact?: Maybe<Contact>
   /** An edge for our `Contact`. May be used by Relay 1. */
   contactEdge?: Maybe<ContactsEdge>
-  deletedContactId?: Maybe<Scalars['ID']>
+  deletedContactId?: Maybe<Scalars['ID']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -669,17 +678,17 @@ export type DeleteContactPayloadContactEdgeArgs = {
   orderBy?: InputMaybe<Array<ContactsOrderBy>>
 }
 
-/** All input for the `deleteEventByAuthorUsernameAndSlug` mutation. */
-export type DeleteEventByAuthorUsernameAndSlugInput = {
-  /** The event author's username. */
-  authorUsername: Scalars['String']
+/** All input for the `deleteEventByAuthorAccountIdAndSlug` mutation. */
+export type DeleteEventByAuthorAccountIdAndSlugInput = {
+  /** The event author's id. */
+  authorAccountId: Scalars['UUID']['input']
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The event's name, slugified. */
-  slug: Scalars['String']
+  slug: Scalars['String']['input']
 }
 
 /** All input for the `deleteEventById` mutation. */
@@ -688,22 +697,22 @@ export type DeleteEventByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The event's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
-/** All input for the `deleteEventGroupByAuthorUsernameAndSlug` mutation. */
-export type DeleteEventGroupByAuthorUsernameAndSlugInput = {
-  /** The event group author's username. */
-  authorUsername: Scalars['String']
+/** All input for the `deleteEventGroupByAuthorAccountIdAndSlug` mutation. */
+export type DeleteEventGroupByAuthorAccountIdAndSlugInput = {
+  /** The event group author's id. */
+  authorAccountId: Scalars['UUID']['input']
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The event group's name, slugified. */
-  slug: Scalars['String']
+  slug: Scalars['String']['input']
 }
 
 /** All input for the `deleteEventGroupById` mutation. */
@@ -712,9 +721,9 @@ export type DeleteEventGroupByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The event group's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** All input for the `deleteEventGroup` mutation. */
@@ -723,9 +732,9 @@ export type DeleteEventGroupInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The globally unique `ID` which will identify a single `EventGroup` to be deleted. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our delete `EventGroup` mutation. */
@@ -735,8 +744,8 @@ export type DeleteEventGroupPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
-  deletedEventGroupId?: Maybe<Scalars['ID']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedEventGroupId?: Maybe<Scalars['ID']['output']>
   /** The `EventGroup` that was deleted by this mutation. */
   eventGroup?: Maybe<EventGroup>
   /** An edge for our `EventGroup`. May be used by Relay 1. */
@@ -756,11 +765,11 @@ export type DeleteEventGroupingByEventIdAndEventGroupIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The event grouping's internal event group id. */
-  eventGroupId: Scalars['BigInt']
+  eventGroupId: Scalars['UUID']['input']
   /** The event grouping's internal event id. */
-  eventId: Scalars['BigInt']
+  eventId: Scalars['UUID']['input']
 }
 
 /** All input for the `deleteEventGroupingById` mutation. */
@@ -769,9 +778,9 @@ export type DeleteEventGroupingByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The event grouping's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** All input for the `deleteEventGrouping` mutation. */
@@ -780,9 +789,9 @@ export type DeleteEventGroupingInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The globally unique `ID` which will identify a single `EventGrouping` to be deleted. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our delete `EventGrouping` mutation. */
@@ -792,8 +801,8 @@ export type DeleteEventGroupingPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
-  deletedEventGroupingId?: Maybe<Scalars['ID']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedEventGroupingId?: Maybe<Scalars['ID']['output']>
   /** Reads a single `Event` that is related to this `EventGrouping`. */
   eventByEventId?: Maybe<Event>
   /** Reads a single `EventGroup` that is related to this `EventGrouping`. */
@@ -817,9 +826,9 @@ export type DeleteEventInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The globally unique `ID` which will identify a single `Event` to be deleted. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our delete `Event` mutation. */
@@ -829,8 +838,8 @@ export type DeleteEventPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
-  deletedEventId?: Maybe<Scalars['ID']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedEventId?: Maybe<Scalars['ID']['output']>
   /** The `Event` that was deleted by this mutation. */
   event?: Maybe<Event>
   /** An edge for our `Event`. May be used by Relay 1. */
@@ -850,11 +859,11 @@ export type DeleteInvitationByEventIdAndContactIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The contact's internal id for which the invitation is valid. */
-  contactId: Scalars['BigInt']
+  contactId: Scalars['UUID']['input']
   /** The event's internal id for which the invitation is valid. */
-  eventId: Scalars['BigInt']
+  eventId: Scalars['UUID']['input']
 }
 
 /** All input for the `deleteInvitationById` mutation. */
@@ -863,20 +872,9 @@ export type DeleteInvitationByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The invitations's internal id. */
-  id: Scalars['BigInt']
-}
-
-/** All input for the `deleteInvitationByUuid` mutation. */
-export type DeleteInvitationByUuidInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  /** The invitations's invitation code. */
-  uuid: Scalars['UUID']
+  id: Scalars['UUID']['input']
 }
 
 /** All input for the `deleteInvitation` mutation. */
@@ -885,9 +883,9 @@ export type DeleteInvitationInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The globally unique `ID` which will identify a single `Invitation` to be deleted. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our delete `Invitation` mutation. */
@@ -897,10 +895,10 @@ export type DeleteInvitationPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Reads a single `Contact` that is related to this `Invitation`. */
   contactByContactId?: Maybe<Contact>
-  deletedInvitationId?: Maybe<Scalars['ID']>
+  deletedInvitationId?: Maybe<Scalars['ID']['output']>
   /** Reads a single `Event` that is related to this `Invitation`. */
   eventByEventId?: Maybe<Event>
   /** The `Invitation` that was deleted by this mutation. */
@@ -916,26 +914,26 @@ export type DeleteInvitationPayloadInvitationEdgeArgs = {
   orderBy?: InputMaybe<Array<InvitationsOrderBy>>
 }
 
+/** All input for the `deleteProfilePictureByAccountId` mutation. */
+export type DeleteProfilePictureByAccountIdInput = {
+  /** The account's id. */
+  accountId: Scalars['UUID']['input']
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
 /** All input for the `deleteProfilePictureById` mutation. */
 export type DeleteProfilePictureByIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The profile picture's internal id. */
-  id: Scalars['BigInt']
-}
-
-/** All input for the `deleteProfilePictureByUsername` mutation. */
-export type DeleteProfilePictureByUsernameInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  /** The account's username. */
-  username: Scalars['String']
+  id: Scalars['UUID']['input']
 }
 
 /** All input for the `deleteProfilePicture` mutation. */
@@ -944,9 +942,9 @@ export type DeleteProfilePictureInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The globally unique `ID` which will identify a single `ProfilePicture` to be deleted. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our delete `ProfilePicture` mutation. */
@@ -956,8 +954,8 @@ export type DeleteProfilePicturePayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
-  deletedProfilePictureId?: Maybe<Scalars['ID']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedProfilePictureId?: Maybe<Scalars['ID']['output']>
   /** The `ProfilePicture` that was deleted by this mutation. */
   profilePicture?: Maybe<ProfilePicture>
   /** An edge for our `ProfilePicture`. May be used by Relay 1. */
@@ -965,7 +963,7 @@ export type DeleteProfilePicturePayload = {
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
   /** Reads a single `Upload` that is related to this `ProfilePicture`. */
-  uploadByUploadStorageKey?: Maybe<Upload>
+  uploadByUploadId?: Maybe<Upload>
 }
 
 /** The output of our delete `ProfilePicture` mutation. */
@@ -979,9 +977,9 @@ export type DeleteUploadByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The upload's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** All input for the `deleteUploadByStorageKey` mutation. */
@@ -990,20 +988,9 @@ export type DeleteUploadByStorageKeyInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The upload's storage key. */
-  storageKey: Scalars['String']
-}
-
-/** All input for the `deleteUploadByUuid` mutation. */
-export type DeleteUploadByUuidInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  /** The upload's UUID. */
-  uuid: Scalars['UUID']
+  storageKey: Scalars['String']['input']
 }
 
 /** All input for the `deleteUpload` mutation. */
@@ -1012,9 +999,9 @@ export type DeleteUploadInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The globally unique `ID` which will identify a single `Upload` to be deleted. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our delete `Upload` mutation. */
@@ -1024,8 +1011,8 @@ export type DeleteUploadPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
-  deletedUploadId?: Maybe<Scalars['ID']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedUploadId?: Maybe<Scalars['ID']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
   /** The `Upload` that was deleted by this mutation. */
@@ -1042,92 +1029,92 @@ export type DeleteUploadPayloadUploadEdgeArgs = {
 /** An event. */
 export type Event = Node & {
   __typename?: 'Event'
-  /** The event author's username. */
-  authorUsername: Scalars['String']
+  /** The event author's id. */
+  authorAccountId: Scalars['UUID']['output']
   /** The event's description. */
-  description?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']['output']>
   /** The event's end date and time, with timezone. */
-  end?: Maybe<Scalars['Datetime']>
+  end?: Maybe<Scalars['Datetime']['output']>
   /** Reads and enables pagination through a set of `EventGrouping`. */
   eventGroupingsByEventId: EventGroupingsConnection
   /** The event's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['output']
   /** Reads and enables pagination through a set of `Invitation`. */
   invitationsByEventId: InvitationsConnection
   /** The event's maximum invitee count. */
-  inviteeCountMaximum?: Maybe<Scalars['Int']>
+  inviteeCountMaximum?: Maybe<Scalars['Int']['output']>
   /** Indicates whether the event is archived. */
-  isArchived: Scalars['Boolean']
+  isArchived: Scalars['Boolean']['output']
   /** Indicates whether the event takes place in person. */
-  isInPerson?: Maybe<Scalars['Boolean']>
+  isInPerson?: Maybe<Scalars['Boolean']['output']>
   /** Indicates whether the event takes place remotely. */
-  isRemote?: Maybe<Scalars['Boolean']>
+  isRemote?: Maybe<Scalars['Boolean']['output']>
   /** The event's location as it can be shown on a map. */
-  location?: Maybe<Scalars['String']>
+  location?: Maybe<Scalars['String']['output']>
   /** The event's name. */
-  name: Scalars['String']
+  name: Scalars['String']['output']
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['output']
   /** The event's name, slugified. */
-  slug: Scalars['String']
+  slug: Scalars['String']['output']
   /** The event's start date and time, with timezone. */
-  start: Scalars['Datetime']
+  start: Scalars['Datetime']['output']
   /** The event's unified resource locator. */
-  url?: Maybe<Scalars['String']>
+  url?: Maybe<Scalars['String']['output']>
   /** The event's visibility. */
   visibility: EventVisibility
 }
 
 /** An event. */
 export type EventEventGroupingsByEventIdArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<EventGroupingCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<EventGroupingsOrderBy>>
 }
 
 /** An event. */
 export type EventInvitationsByEventIdArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<InvitationCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<InvitationsOrderBy>>
 }
 
 /** A condition to be used against `Event` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type EventCondition = {
-  /** Checks for equality with the object’s `authorUsername` field. */
-  authorUsername?: InputMaybe<Scalars['String']>
+  /** Checks for equality with the object’s `authorAccountId` field. */
+  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `description` field. */
-  description?: InputMaybe<Scalars['String']>
+  description?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `end` field. */
-  end?: InputMaybe<Scalars['Datetime']>
+  end?: InputMaybe<Scalars['Datetime']['input']>
   /** Checks for equality with the object’s `id` field. */
-  id?: InputMaybe<Scalars['BigInt']>
+  id?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `inviteeCountMaximum` field. */
-  inviteeCountMaximum?: InputMaybe<Scalars['Int']>
+  inviteeCountMaximum?: InputMaybe<Scalars['Int']['input']>
   /** Checks for equality with the object’s `isArchived` field. */
-  isArchived?: InputMaybe<Scalars['Boolean']>
+  isArchived?: InputMaybe<Scalars['Boolean']['input']>
   /** Checks for equality with the object’s `isInPerson` field. */
-  isInPerson?: InputMaybe<Scalars['Boolean']>
+  isInPerson?: InputMaybe<Scalars['Boolean']['input']>
   /** Checks for equality with the object’s `isRemote` field. */
-  isRemote?: InputMaybe<Scalars['Boolean']>
+  isRemote?: InputMaybe<Scalars['Boolean']['input']>
   /** Checks for equality with the object’s `location` field. */
-  location?: InputMaybe<Scalars['String']>
+  location?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `name` field. */
-  name?: InputMaybe<Scalars['String']>
+  name?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `slug` field. */
-  slug?: InputMaybe<Scalars['String']>
+  slug?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `start` field. */
-  start?: InputMaybe<Scalars['Datetime']>
+  start?: InputMaybe<Scalars['Datetime']['input']>
   /** Checks for equality with the object’s `url` field. */
-  url?: InputMaybe<Scalars['String']>
+  url?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `visibility` field. */
   visibility?: InputMaybe<EventVisibility>
 }
@@ -1138,9 +1125,9 @@ export type EventDeleteInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  id: Scalars['BigInt']
-  password: Scalars['String']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  id: Scalars['UUID']['input']
+  password: Scalars['String']['input']
 }
 
 /** The output of our `eventDelete` mutation. */
@@ -1150,7 +1137,7 @@ export type EventDeletePayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   event?: Maybe<Event>
   /** An edge for our `Event`. May be used by Relay 1. */
   eventEdge?: Maybe<EventsEdge>
@@ -1166,32 +1153,32 @@ export type EventDeletePayloadEventEdgeArgs = {
 /** A group of events. */
 export type EventGroup = Node & {
   __typename?: 'EventGroup'
-  /** The event group author's username. */
-  authorUsername: Scalars['String']
+  /** The event group author's id. */
+  authorAccountId: Scalars['UUID']['output']
   /** The event group's description. */
-  description?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']['output']>
   /** Reads and enables pagination through a set of `EventGrouping`. */
   eventGroupingsByEventGroupId: EventGroupingsConnection
   /** The event group's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['output']
   /** Indicates whether the event group is archived. */
-  isArchived: Scalars['Boolean']
+  isArchived: Scalars['Boolean']['output']
   /** The event group's name. */
-  name: Scalars['String']
+  name: Scalars['String']['output']
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['output']
   /** The event group's name, slugified. */
-  slug: Scalars['String']
+  slug: Scalars['String']['output']
 }
 
 /** A group of events. */
 export type EventGroupEventGroupingsByEventGroupIdArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<EventGroupingCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<EventGroupingsOrderBy>>
 }
 
@@ -1200,42 +1187,42 @@ export type EventGroupEventGroupingsByEventGroupIdArgs = {
  * for equality and combined with a logical ‘and.’
  */
 export type EventGroupCondition = {
-  /** Checks for equality with the object’s `authorUsername` field. */
-  authorUsername?: InputMaybe<Scalars['String']>
+  /** Checks for equality with the object’s `authorAccountId` field. */
+  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `description` field. */
-  description?: InputMaybe<Scalars['String']>
+  description?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `id` field. */
-  id?: InputMaybe<Scalars['BigInt']>
+  id?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `isArchived` field. */
-  isArchived?: InputMaybe<Scalars['Boolean']>
+  isArchived?: InputMaybe<Scalars['Boolean']['input']>
   /** Checks for equality with the object’s `name` field. */
-  name?: InputMaybe<Scalars['String']>
+  name?: InputMaybe<Scalars['String']['input']>
   /** Checks for equality with the object’s `slug` field. */
-  slug?: InputMaybe<Scalars['String']>
+  slug?: InputMaybe<Scalars['String']['input']>
 }
 
 /** An input for mutations affecting `EventGroup` */
 export type EventGroupInput = {
-  /** The event group author's username. */
-  authorUsername: Scalars['String']
+  /** The event group author's id. */
+  authorAccountId: Scalars['UUID']['input']
   /** The event group's description. */
-  description?: InputMaybe<Scalars['String']>
+  description?: InputMaybe<Scalars['String']['input']>
   /** Indicates whether the event group is archived. */
-  isArchived?: InputMaybe<Scalars['Boolean']>
+  isArchived?: InputMaybe<Scalars['Boolean']['input']>
   /** The event group's name. */
-  name: Scalars['String']
+  name: Scalars['String']['input']
 }
 
 /** Represents an update to a `EventGroup`. Fields that are set will be updated. */
 export type EventGroupPatch = {
-  /** The event group author's username. */
-  authorUsername?: InputMaybe<Scalars['String']>
+  /** The event group author's id. */
+  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
   /** The event group's description. */
-  description?: InputMaybe<Scalars['String']>
+  description?: InputMaybe<Scalars['String']['input']>
   /** Indicates whether the event group is archived. */
-  isArchived?: InputMaybe<Scalars['Boolean']>
+  isArchived?: InputMaybe<Scalars['Boolean']['input']>
   /** The event group's name. */
-  name?: InputMaybe<Scalars['String']>
+  name?: InputMaybe<Scalars['String']['input']>
 }
 
 /** A bidirectional mapping between an event and an event group. */
@@ -1246,13 +1233,13 @@ export type EventGrouping = Node & {
   /** Reads a single `EventGroup` that is related to this `EventGrouping`. */
   eventGroupByEventGroupId?: Maybe<EventGroup>
   /** The event grouping's internal event group id. */
-  eventGroupId: Scalars['BigInt']
+  eventGroupId: Scalars['UUID']['output']
   /** The event grouping's internal event id. */
-  eventId: Scalars['BigInt']
+  eventId: Scalars['UUID']['output']
   /** The event grouping's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['output']
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['output']
 }
 
 /**
@@ -1261,27 +1248,27 @@ export type EventGrouping = Node & {
  */
 export type EventGroupingCondition = {
   /** Checks for equality with the object’s `eventGroupId` field. */
-  eventGroupId?: InputMaybe<Scalars['BigInt']>
+  eventGroupId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `eventId` field. */
-  eventId?: InputMaybe<Scalars['BigInt']>
+  eventId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `id` field. */
-  id?: InputMaybe<Scalars['BigInt']>
+  id?: InputMaybe<Scalars['UUID']['input']>
 }
 
 /** An input for mutations affecting `EventGrouping` */
 export type EventGroupingInput = {
   /** The event grouping's internal event group id. */
-  eventGroupId: Scalars['BigInt']
+  eventGroupId: Scalars['UUID']['input']
   /** The event grouping's internal event id. */
-  eventId: Scalars['BigInt']
+  eventId: Scalars['UUID']['input']
 }
 
 /** Represents an update to a `EventGrouping`. Fields that are set will be updated. */
 export type EventGroupingPatch = {
   /** The event grouping's internal event group id. */
-  eventGroupId?: InputMaybe<Scalars['BigInt']>
+  eventGroupId?: InputMaybe<Scalars['UUID']['input']>
   /** The event grouping's internal event id. */
-  eventId?: InputMaybe<Scalars['BigInt']>
+  eventId?: InputMaybe<Scalars['UUID']['input']>
 }
 
 /** A connection to a list of `EventGrouping` values. */
@@ -1294,14 +1281,14 @@ export type EventGroupingsConnection = {
   /** Information to aid in pagination. */
   pageInfo: PageInfo
   /** The count of *all* `EventGrouping` you could get from the connection. */
-  totalCount: Scalars['Int']
+  totalCount: Scalars['Int']['output']
 }
 
 /** A `EventGrouping` edge in the connection. */
 export type EventGroupingsEdge = {
   __typename?: 'EventGroupingsEdge'
   /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>
+  cursor?: Maybe<Scalars['Cursor']['output']>
   /** The `EventGrouping` at the end of the edge. */
   node: EventGrouping
 }
@@ -1329,22 +1316,22 @@ export type EventGroupsConnection = {
   /** Information to aid in pagination. */
   pageInfo: PageInfo
   /** The count of *all* `EventGroup` you could get from the connection. */
-  totalCount: Scalars['Int']
+  totalCount: Scalars['Int']['output']
 }
 
 /** A `EventGroup` edge in the connection. */
 export type EventGroupsEdge = {
   __typename?: 'EventGroupsEdge'
   /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>
+  cursor?: Maybe<Scalars['Cursor']['output']>
   /** The `EventGroup` at the end of the edge. */
   node: EventGroup
 }
 
 /** Methods to use when ordering `EventGroup`. */
 export enum EventGroupsOrderBy {
-  AuthorUsernameAsc = 'AUTHOR_USERNAME_ASC',
-  AuthorUsernameDesc = 'AUTHOR_USERNAME_DESC',
+  AuthorAccountIdAsc = 'AUTHOR_ACCOUNT_ID_ASC',
+  AuthorAccountIdDesc = 'AUTHOR_ACCOUNT_ID_DESC',
   DescriptionAsc = 'DESCRIPTION_ASC',
   DescriptionDesc = 'DESCRIPTION_DESC',
   IdAsc = 'ID_ASC',
@@ -1362,60 +1349,60 @@ export enum EventGroupsOrderBy {
 
 /** An input for mutations affecting `Event` */
 export type EventInput = {
-  /** The event author's username. */
-  authorUsername: Scalars['String']
+  /** The event author's id. */
+  authorAccountId: Scalars['UUID']['input']
   /** The event's description. */
-  description?: InputMaybe<Scalars['String']>
+  description?: InputMaybe<Scalars['String']['input']>
   /** The event's end date and time, with timezone. */
-  end?: InputMaybe<Scalars['Datetime']>
+  end?: InputMaybe<Scalars['Datetime']['input']>
   /** The event's maximum invitee count. */
-  inviteeCountMaximum?: InputMaybe<Scalars['Int']>
+  inviteeCountMaximum?: InputMaybe<Scalars['Int']['input']>
   /** Indicates whether the event is archived. */
-  isArchived?: InputMaybe<Scalars['Boolean']>
+  isArchived?: InputMaybe<Scalars['Boolean']['input']>
   /** Indicates whether the event takes place in person. */
-  isInPerson?: InputMaybe<Scalars['Boolean']>
+  isInPerson?: InputMaybe<Scalars['Boolean']['input']>
   /** Indicates whether the event takes place remotely. */
-  isRemote?: InputMaybe<Scalars['Boolean']>
+  isRemote?: InputMaybe<Scalars['Boolean']['input']>
   /** The event's location as it can be shown on a map. */
-  location?: InputMaybe<Scalars['String']>
+  location?: InputMaybe<Scalars['String']['input']>
   /** The event's name. */
-  name: Scalars['String']
+  name: Scalars['String']['input']
   /** The event's name, slugified. */
-  slug: Scalars['String']
+  slug: Scalars['String']['input']
   /** The event's start date and time, with timezone. */
-  start: Scalars['Datetime']
+  start: Scalars['Datetime']['input']
   /** The event's unified resource locator. */
-  url?: InputMaybe<Scalars['String']>
+  url?: InputMaybe<Scalars['String']['input']>
   /** The event's visibility. */
   visibility: EventVisibility
 }
 
 /** Represents an update to a `Event`. Fields that are set will be updated. */
 export type EventPatch = {
-  /** The event author's username. */
-  authorUsername?: InputMaybe<Scalars['String']>
+  /** The event author's id. */
+  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
   /** The event's description. */
-  description?: InputMaybe<Scalars['String']>
+  description?: InputMaybe<Scalars['String']['input']>
   /** The event's end date and time, with timezone. */
-  end?: InputMaybe<Scalars['Datetime']>
+  end?: InputMaybe<Scalars['Datetime']['input']>
   /** The event's maximum invitee count. */
-  inviteeCountMaximum?: InputMaybe<Scalars['Int']>
+  inviteeCountMaximum?: InputMaybe<Scalars['Int']['input']>
   /** Indicates whether the event is archived. */
-  isArchived?: InputMaybe<Scalars['Boolean']>
+  isArchived?: InputMaybe<Scalars['Boolean']['input']>
   /** Indicates whether the event takes place in person. */
-  isInPerson?: InputMaybe<Scalars['Boolean']>
+  isInPerson?: InputMaybe<Scalars['Boolean']['input']>
   /** Indicates whether the event takes place remotely. */
-  isRemote?: InputMaybe<Scalars['Boolean']>
+  isRemote?: InputMaybe<Scalars['Boolean']['input']>
   /** The event's location as it can be shown on a map. */
-  location?: InputMaybe<Scalars['String']>
+  location?: InputMaybe<Scalars['String']['input']>
   /** The event's name. */
-  name?: InputMaybe<Scalars['String']>
+  name?: InputMaybe<Scalars['String']['input']>
   /** The event's name, slugified. */
-  slug?: InputMaybe<Scalars['String']>
+  slug?: InputMaybe<Scalars['String']['input']>
   /** The event's start date and time, with timezone. */
-  start?: InputMaybe<Scalars['Datetime']>
+  start?: InputMaybe<Scalars['Datetime']['input']>
   /** The event's unified resource locator. */
-  url?: InputMaybe<Scalars['String']>
+  url?: InputMaybe<Scalars['String']['input']>
   /** The event's visibility. */
   visibility?: InputMaybe<EventVisibility>
 }
@@ -1426,8 +1413,8 @@ export type EventUnlockInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  invitationCode: Scalars['UUID']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  invitationCode: Scalars['UUID']['input']
 }
 
 /** The output of our `eventUnlock` mutation. */
@@ -1437,7 +1424,7 @@ export type EventUnlockPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   eventUnlockResponse?: Maybe<EventUnlockResponse>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
@@ -1445,9 +1432,9 @@ export type EventUnlockPayload = {
 
 export type EventUnlockResponse = {
   __typename?: 'EventUnlockResponse'
-  authorUsername?: Maybe<Scalars['String']>
-  eventSlug?: Maybe<Scalars['String']>
-  jwt?: Maybe<Scalars['Jwt']>
+  authorAccountId?: Maybe<Scalars['String']['output']>
+  eventSlug?: Maybe<Scalars['String']['output']>
+  jwt?: Maybe<Scalars['Jwt']['output']>
 }
 
 /** Possible visibilities of events and event groups: public, private. */
@@ -1466,22 +1453,22 @@ export type EventsConnection = {
   /** Information to aid in pagination. */
   pageInfo: PageInfo
   /** The count of *all* `Event` you could get from the connection. */
-  totalCount: Scalars['Int']
+  totalCount: Scalars['Int']['output']
 }
 
 /** A `Event` edge in the connection. */
 export type EventsEdge = {
   __typename?: 'EventsEdge'
   /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>
+  cursor?: Maybe<Scalars['Cursor']['output']>
   /** The `Event` at the end of the edge. */
   node: Event
 }
 
 /** Methods to use when ordering `Event`. */
 export enum EventsOrderBy {
-  AuthorUsernameAsc = 'AUTHOR_USERNAME_ASC',
-  AuthorUsernameDesc = 'AUTHOR_USERNAME_DESC',
+  AuthorAccountIdAsc = 'AUTHOR_ACCOUNT_ID_ASC',
+  AuthorAccountIdDesc = 'AUTHOR_ACCOUNT_ID_DESC',
   DescriptionAsc = 'DESCRIPTION_ASC',
   DescriptionDesc = 'DESCRIPTION_DESC',
   EndAsc = 'END_ASC',
@@ -1513,24 +1500,24 @@ export enum EventsOrderBy {
   VisibilityDesc = 'VISIBILITY_DESC',
 }
 
-/** A connection to a list of `BigInt` values. */
+/** A connection to a list of `UUID` values. */
 export type EventsOrganizedConnection = {
   __typename?: 'EventsOrganizedConnection'
-  /** A list of edges which contains the `BigInt` and cursor to aid in pagination. */
+  /** A list of edges which contains the `UUID` and cursor to aid in pagination. */
   edges: Array<EventsOrganizedEdge>
-  /** A list of `BigInt` objects. */
-  nodes: Array<Maybe<Scalars['BigInt']>>
-  /** The count of *all* `BigInt` you could get from the connection. */
-  totalCount: Scalars['Int']
+  /** A list of `UUID` objects. */
+  nodes: Array<Maybe<Scalars['UUID']['output']>>
+  /** The count of *all* `UUID` you could get from the connection. */
+  totalCount: Scalars['Int']['output']
 }
 
-/** A `BigInt` edge in the connection. */
+/** A `UUID` edge in the connection. */
 export type EventsOrganizedEdge = {
   __typename?: 'EventsOrganizedEdge'
   /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>
-  /** The `BigInt` at the end of the edge. */
-  node?: Maybe<Scalars['BigInt']>
+  cursor?: Maybe<Scalars['Cursor']['output']>
+  /** The `UUID` at the end of the edge. */
+  node?: Maybe<Scalars['UUID']['output']>
 }
 
 /** An invitation for a contact. A bidirectional mapping between an event and a contact. */
@@ -1539,21 +1526,19 @@ export type Invitation = Node & {
   /** Reads a single `Contact` that is related to this `Invitation`. */
   contactByContactId?: Maybe<Contact>
   /** The contact's internal id for which the invitation is valid. */
-  contactId: Scalars['BigInt']
+  contactId: Scalars['UUID']['output']
   /** Reads a single `Event` that is related to this `Invitation`. */
   eventByEventId?: Maybe<Event>
   /** The event's internal id for which the invitation is valid. */
-  eventId: Scalars['BigInt']
+  eventId: Scalars['UUID']['output']
   /** The invitation's general feedback status. */
   feedback?: Maybe<InvitationFeedback>
   /** The invitation's paper feedback status. */
   feedbackPaper?: Maybe<InvitationFeedbackPaper>
   /** The invitations's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['output']
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID']
-  /** The invitations's invitation code. */
-  uuid: Scalars['UUID']
+  nodeId: Scalars['ID']['output']
 }
 
 /**
@@ -1562,37 +1547,35 @@ export type Invitation = Node & {
  */
 export type InvitationCondition = {
   /** Checks for equality with the object’s `contactId` field. */
-  contactId?: InputMaybe<Scalars['BigInt']>
+  contactId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `eventId` field. */
-  eventId?: InputMaybe<Scalars['BigInt']>
+  eventId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `feedback` field. */
   feedback?: InputMaybe<InvitationFeedback>
   /** Checks for equality with the object’s `feedbackPaper` field. */
   feedbackPaper?: InputMaybe<InvitationFeedbackPaper>
   /** Checks for equality with the object’s `id` field. */
-  id?: InputMaybe<Scalars['BigInt']>
-  /** Checks for equality with the object’s `uuid` field. */
-  uuid?: InputMaybe<Scalars['UUID']>
+  id?: InputMaybe<Scalars['UUID']['input']>
 }
 
-/** A `BigInt` edge in the connection. */
+/** A `UUID` edge in the connection. */
 export type InvitationContactIdEdge = {
   __typename?: 'InvitationContactIdEdge'
   /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>
-  /** The `BigInt` at the end of the edge. */
-  node?: Maybe<Scalars['BigInt']>
+  cursor?: Maybe<Scalars['Cursor']['output']>
+  /** The `UUID` at the end of the edge. */
+  node?: Maybe<Scalars['UUID']['output']>
 }
 
-/** A connection to a list of `BigInt` values. */
+/** A connection to a list of `UUID` values. */
 export type InvitationContactIdsConnection = {
   __typename?: 'InvitationContactIdsConnection'
-  /** A list of edges which contains the `BigInt` and cursor to aid in pagination. */
+  /** A list of edges which contains the `UUID` and cursor to aid in pagination. */
   edges: Array<InvitationContactIdEdge>
-  /** A list of `BigInt` objects. */
-  nodes: Array<Maybe<Scalars['BigInt']>>
-  /** The count of *all* `BigInt` you could get from the connection. */
-  totalCount: Scalars['Int']
+  /** A list of `UUID` objects. */
+  nodes: Array<Maybe<Scalars['UUID']['output']>>
+  /** The count of *all* `UUID` you could get from the connection. */
+  totalCount: Scalars['Int']['output']
 }
 
 /** Possible answers to an invitation: accepted, canceled. */
@@ -1611,9 +1594,9 @@ export enum InvitationFeedbackPaper {
 /** An input for mutations affecting `Invitation` */
 export type InvitationInput = {
   /** The contact's internal id for which the invitation is valid. */
-  contactId: Scalars['BigInt']
+  contactId: Scalars['UUID']['input']
   /** The event's internal id for which the invitation is valid. */
-  eventId: Scalars['BigInt']
+  eventId: Scalars['UUID']['input']
   /** The invitation's general feedback status. */
   feedback?: InputMaybe<InvitationFeedback>
   /** The invitation's paper feedback status. */
@@ -1623,9 +1606,9 @@ export type InvitationInput = {
 /** Represents an update to a `Invitation`. Fields that are set will be updated. */
 export type InvitationPatch = {
   /** The contact's internal id for which the invitation is valid. */
-  contactId?: InputMaybe<Scalars['BigInt']>
+  contactId?: InputMaybe<Scalars['UUID']['input']>
   /** The event's internal id for which the invitation is valid. */
-  eventId?: InputMaybe<Scalars['BigInt']>
+  eventId?: InputMaybe<Scalars['UUID']['input']>
   /** The invitation's general feedback status. */
   feedback?: InputMaybe<InvitationFeedback>
   /** The invitation's paper feedback status. */
@@ -1642,14 +1625,14 @@ export type InvitationsConnection = {
   /** Information to aid in pagination. */
   pageInfo: PageInfo
   /** The count of *all* `Invitation` you could get from the connection. */
-  totalCount: Scalars['Int']
+  totalCount: Scalars['Int']['output']
 }
 
 /** A `Invitation` edge in the connection. */
 export type InvitationsEdge = {
   __typename?: 'InvitationsEdge'
   /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>
+  cursor?: Maybe<Scalars['Cursor']['output']>
   /** The `Invitation` at the end of the edge. */
   node: Invitation
 }
@@ -1669,8 +1652,6 @@ export enum InvitationsOrderBy {
   Natural = 'NATURAL',
   PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
-  UuidAsc = 'UUID_ASC',
-  UuidDesc = 'UUID_DESC',
 }
 
 /** All input for the `invite` mutation. */
@@ -1679,9 +1660,9 @@ export type InviteInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  invitationId: Scalars['BigInt']
-  language: Scalars['String']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  invitationId: Scalars['UUID']['input']
+  language: Scalars['String']['input']
 }
 
 /** The output of our `invite` mutation. */
@@ -1691,7 +1672,7 @@ export type InvitePayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -1702,8 +1683,8 @@ export type JwtRefreshInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  jwtId: Scalars['UUID']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  jwtId: Scalars['UUID']['input']
 }
 
 /** The output of our `jwtRefresh` mutation. */
@@ -1713,8 +1694,8 @@ export type JwtRefreshPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
-  jwt?: Maybe<Scalars['Jwt']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  jwt?: Maybe<Scalars['Jwt']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -1755,19 +1736,19 @@ export type Mutation = {
   /** Deletes a single `Contact` using its globally unique id. */
   deleteContact?: Maybe<DeleteContactPayload>
   /** Deletes a single `Contact` using a unique key. */
-  deleteContactByAuthorAccountUsernameAndAccountUsername?: Maybe<DeleteContactPayload>
+  deleteContactByAuthorAccountIdAndAccountId?: Maybe<DeleteContactPayload>
   /** Deletes a single `Contact` using a unique key. */
   deleteContactById?: Maybe<DeleteContactPayload>
   /** Deletes a single `Event` using its globally unique id. */
   deleteEvent?: Maybe<DeleteEventPayload>
   /** Deletes a single `Event` using a unique key. */
-  deleteEventByAuthorUsernameAndSlug?: Maybe<DeleteEventPayload>
+  deleteEventByAuthorAccountIdAndSlug?: Maybe<DeleteEventPayload>
   /** Deletes a single `Event` using a unique key. */
   deleteEventById?: Maybe<DeleteEventPayload>
   /** Deletes a single `EventGroup` using its globally unique id. */
   deleteEventGroup?: Maybe<DeleteEventGroupPayload>
   /** Deletes a single `EventGroup` using a unique key. */
-  deleteEventGroupByAuthorUsernameAndSlug?: Maybe<DeleteEventGroupPayload>
+  deleteEventGroupByAuthorAccountIdAndSlug?: Maybe<DeleteEventGroupPayload>
   /** Deletes a single `EventGroup` using a unique key. */
   deleteEventGroupById?: Maybe<DeleteEventGroupPayload>
   /** Deletes a single `EventGrouping` using its globally unique id. */
@@ -1782,22 +1763,18 @@ export type Mutation = {
   deleteInvitationByEventIdAndContactId?: Maybe<DeleteInvitationPayload>
   /** Deletes a single `Invitation` using a unique key. */
   deleteInvitationById?: Maybe<DeleteInvitationPayload>
-  /** Deletes a single `Invitation` using a unique key. */
-  deleteInvitationByUuid?: Maybe<DeleteInvitationPayload>
   /** Deletes a single `ProfilePicture` using its globally unique id. */
   deleteProfilePicture?: Maybe<DeleteProfilePicturePayload>
   /** Deletes a single `ProfilePicture` using a unique key. */
-  deleteProfilePictureById?: Maybe<DeleteProfilePicturePayload>
+  deleteProfilePictureByAccountId?: Maybe<DeleteProfilePicturePayload>
   /** Deletes a single `ProfilePicture` using a unique key. */
-  deleteProfilePictureByUsername?: Maybe<DeleteProfilePicturePayload>
+  deleteProfilePictureById?: Maybe<DeleteProfilePicturePayload>
   /** Deletes a single `Upload` using its globally unique id. */
   deleteUpload?: Maybe<DeleteUploadPayload>
   /** Deletes a single `Upload` using a unique key. */
   deleteUploadById?: Maybe<DeleteUploadPayload>
   /** Deletes a single `Upload` using a unique key. */
   deleteUploadByStorageKey?: Maybe<DeleteUploadPayload>
-  /** Deletes a single `Upload` using a unique key. */
-  deleteUploadByUuid?: Maybe<DeleteUploadPayload>
   /** Allows to delete an event. */
   eventDelete?: Maybe<EventDeletePayload>
   /** Allows to enter invitation codes. */
@@ -1808,24 +1785,24 @@ export type Mutation = {
   jwtRefresh?: Maybe<JwtRefreshPayload>
   /** Allows to set the acknowledgement state of a notification. */
   notificationAcknowledge?: Maybe<NotificationAcknowledgePayload>
-  /** Sets the picture with the given storage key as the invoker's profile picture. */
+  /** Sets the picture with the given upload id as the invoker's profile picture. */
   profilePictureSet?: Maybe<ProfilePictureSetPayload>
   /** Updates a single `Contact` using its globally unique id and a patch. */
   updateContact?: Maybe<UpdateContactPayload>
   /** Updates a single `Contact` using a unique key and a patch. */
-  updateContactByAuthorAccountUsernameAndAccountUsername?: Maybe<UpdateContactPayload>
+  updateContactByAuthorAccountIdAndAccountId?: Maybe<UpdateContactPayload>
   /** Updates a single `Contact` using a unique key and a patch. */
   updateContactById?: Maybe<UpdateContactPayload>
   /** Updates a single `Event` using its globally unique id and a patch. */
   updateEvent?: Maybe<UpdateEventPayload>
   /** Updates a single `Event` using a unique key and a patch. */
-  updateEventByAuthorUsernameAndSlug?: Maybe<UpdateEventPayload>
+  updateEventByAuthorAccountIdAndSlug?: Maybe<UpdateEventPayload>
   /** Updates a single `Event` using a unique key and a patch. */
   updateEventById?: Maybe<UpdateEventPayload>
   /** Updates a single `EventGroup` using its globally unique id and a patch. */
   updateEventGroup?: Maybe<UpdateEventGroupPayload>
   /** Updates a single `EventGroup` using a unique key and a patch. */
-  updateEventGroupByAuthorUsernameAndSlug?: Maybe<UpdateEventGroupPayload>
+  updateEventGroupByAuthorAccountIdAndSlug?: Maybe<UpdateEventGroupPayload>
   /** Updates a single `EventGroup` using a unique key and a patch. */
   updateEventGroupById?: Maybe<UpdateEventGroupPayload>
   /** Updates a single `EventGrouping` using its globally unique id and a patch. */
@@ -1840,22 +1817,18 @@ export type Mutation = {
   updateInvitationByEventIdAndContactId?: Maybe<UpdateInvitationPayload>
   /** Updates a single `Invitation` using a unique key and a patch. */
   updateInvitationById?: Maybe<UpdateInvitationPayload>
-  /** Updates a single `Invitation` using a unique key and a patch. */
-  updateInvitationByUuid?: Maybe<UpdateInvitationPayload>
   /** Updates a single `ProfilePicture` using its globally unique id and a patch. */
   updateProfilePicture?: Maybe<UpdateProfilePicturePayload>
   /** Updates a single `ProfilePicture` using a unique key and a patch. */
-  updateProfilePictureById?: Maybe<UpdateProfilePicturePayload>
+  updateProfilePictureByAccountId?: Maybe<UpdateProfilePicturePayload>
   /** Updates a single `ProfilePicture` using a unique key and a patch. */
-  updateProfilePictureByUsername?: Maybe<UpdateProfilePicturePayload>
+  updateProfilePictureById?: Maybe<UpdateProfilePicturePayload>
   /** Updates a single `Upload` using its globally unique id and a patch. */
   updateUpload?: Maybe<UpdateUploadPayload>
   /** Updates a single `Upload` using a unique key and a patch. */
   updateUploadById?: Maybe<UpdateUploadPayload>
   /** Updates a single `Upload` using a unique key and a patch. */
   updateUploadByStorageKey?: Maybe<UpdateUploadPayload>
-  /** Updates a single `Upload` using a unique key and a patch. */
-  updateUploadByUuid?: Maybe<UpdateUploadPayload>
   /** Creates an upload with the given size if quota is available. */
   uploadCreate?: Maybe<UploadCreatePayload>
 }
@@ -1941,10 +1914,9 @@ export type MutationDeleteContactArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteContactByAuthorAccountUsernameAndAccountUsernameArgs =
-  {
-    input: DeleteContactByAuthorAccountUsernameAndAccountUsernameInput
-  }
+export type MutationDeleteContactByAuthorAccountIdAndAccountIdArgs = {
+  input: DeleteContactByAuthorAccountIdAndAccountIdInput
+}
 
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteContactByIdArgs = {
@@ -1957,8 +1929,8 @@ export type MutationDeleteEventArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteEventByAuthorUsernameAndSlugArgs = {
-  input: DeleteEventByAuthorUsernameAndSlugInput
+export type MutationDeleteEventByAuthorAccountIdAndSlugArgs = {
+  input: DeleteEventByAuthorAccountIdAndSlugInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1972,8 +1944,8 @@ export type MutationDeleteEventGroupArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteEventGroupByAuthorUsernameAndSlugArgs = {
-  input: DeleteEventGroupByAuthorUsernameAndSlugInput
+export type MutationDeleteEventGroupByAuthorAccountIdAndSlugArgs = {
+  input: DeleteEventGroupByAuthorAccountIdAndSlugInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2012,23 +1984,18 @@ export type MutationDeleteInvitationByIdArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteInvitationByUuidArgs = {
-  input: DeleteInvitationByUuidInput
-}
-
-/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteProfilePictureArgs = {
   input: DeleteProfilePictureInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteProfilePictureByIdArgs = {
-  input: DeleteProfilePictureByIdInput
+export type MutationDeleteProfilePictureByAccountIdArgs = {
+  input: DeleteProfilePictureByAccountIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteProfilePictureByUsernameArgs = {
-  input: DeleteProfilePictureByUsernameInput
+export type MutationDeleteProfilePictureByIdArgs = {
+  input: DeleteProfilePictureByIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2044,11 +2011,6 @@ export type MutationDeleteUploadByIdArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteUploadByStorageKeyArgs = {
   input: DeleteUploadByStorageKeyInput
-}
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteUploadByUuidArgs = {
-  input: DeleteUploadByUuidInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2087,10 +2049,9 @@ export type MutationUpdateContactArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateContactByAuthorAccountUsernameAndAccountUsernameArgs =
-  {
-    input: UpdateContactByAuthorAccountUsernameAndAccountUsernameInput
-  }
+export type MutationUpdateContactByAuthorAccountIdAndAccountIdArgs = {
+  input: UpdateContactByAuthorAccountIdAndAccountIdInput
+}
 
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateContactByIdArgs = {
@@ -2103,8 +2064,8 @@ export type MutationUpdateEventArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateEventByAuthorUsernameAndSlugArgs = {
-  input: UpdateEventByAuthorUsernameAndSlugInput
+export type MutationUpdateEventByAuthorAccountIdAndSlugArgs = {
+  input: UpdateEventByAuthorAccountIdAndSlugInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2118,8 +2079,8 @@ export type MutationUpdateEventGroupArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateEventGroupByAuthorUsernameAndSlugArgs = {
-  input: UpdateEventGroupByAuthorUsernameAndSlugInput
+export type MutationUpdateEventGroupByAuthorAccountIdAndSlugArgs = {
+  input: UpdateEventGroupByAuthorAccountIdAndSlugInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2158,23 +2119,18 @@ export type MutationUpdateInvitationByIdArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateInvitationByUuidArgs = {
-  input: UpdateInvitationByUuidInput
-}
-
-/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateProfilePictureArgs = {
   input: UpdateProfilePictureInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateProfilePictureByIdArgs = {
-  input: UpdateProfilePictureByIdInput
+export type MutationUpdateProfilePictureByAccountIdArgs = {
+  input: UpdateProfilePictureByAccountIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateProfilePictureByUsernameArgs = {
-  input: UpdateProfilePictureByUsernameInput
+export type MutationUpdateProfilePictureByIdArgs = {
+  input: UpdateProfilePictureByIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2193,11 +2149,6 @@ export type MutationUpdateUploadByStorageKeyArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateUploadByUuidArgs = {
-  input: UpdateUploadByUuidInput
-}
-
-/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUploadCreateArgs = {
   input: UploadCreateInput
 }
@@ -2205,7 +2156,7 @@ export type MutationUploadCreateArgs = {
 /** An object with a globally unique `ID`. */
 export type Node = {
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['output']
 }
 
 /** All input for the `notificationAcknowledge` mutation. */
@@ -2214,9 +2165,9 @@ export type NotificationAcknowledgeInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  id: Scalars['BigInt']
-  isAcknowledged: Scalars['Boolean']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  id: Scalars['UUID']['input']
+  isAcknowledged: Scalars['Boolean']['input']
 }
 
 /** The output of our `notificationAcknowledge` mutation. */
@@ -2226,7 +2177,7 @@ export type NotificationAcknowledgePayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -2235,28 +2186,28 @@ export type NotificationAcknowledgePayload = {
 export type PageInfo = {
   __typename?: 'PageInfo'
   /** When paginating forwards, the cursor to continue. */
-  endCursor?: Maybe<Scalars['Cursor']>
+  endCursor?: Maybe<Scalars['Cursor']['output']>
   /** When paginating forwards, are there more items? */
-  hasNextPage: Scalars['Boolean']
+  hasNextPage: Scalars['Boolean']['output']
   /** When paginating backwards, are there more items? */
-  hasPreviousPage: Scalars['Boolean']
+  hasPreviousPage: Scalars['Boolean']['output']
   /** When paginating backwards, the cursor to continue. */
-  startCursor?: Maybe<Scalars['Cursor']>
+  startCursor?: Maybe<Scalars['Cursor']['output']>
 }
 
-/** Mapping of usernames to upload storage keys. */
+/** Mapping of account ids to upload ids. */
 export type ProfilePicture = Node & {
   __typename?: 'ProfilePicture'
+  /** The account's id. */
+  accountId: Scalars['UUID']['output']
   /** The profile picture's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['output']
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['output']
   /** Reads a single `Upload` that is related to this `ProfilePicture`. */
-  uploadByUploadStorageKey?: Maybe<Upload>
-  /** The upload's storage key. */
-  uploadStorageKey: Scalars['String']
-  /** The account's username. */
-  username: Scalars['String']
+  uploadByUploadId?: Maybe<Upload>
+  /** The upload's id. */
+  uploadId: Scalars['UUID']['output']
 }
 
 /**
@@ -2264,28 +2215,28 @@ export type ProfilePicture = Node & {
  * tested for equality and combined with a logical ‘and.’
  */
 export type ProfilePictureCondition = {
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `id` field. */
-  id?: InputMaybe<Scalars['BigInt']>
-  /** Checks for equality with the object’s `uploadStorageKey` field. */
-  uploadStorageKey?: InputMaybe<Scalars['String']>
-  /** Checks for equality with the object’s `username` field. */
-  username?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `uploadId` field. */
+  uploadId?: InputMaybe<Scalars['UUID']['input']>
 }
 
 /** An input for mutations affecting `ProfilePicture` */
 export type ProfilePictureInput = {
-  /** The upload's storage key. */
-  uploadStorageKey: Scalars['String']
-  /** The account's username. */
-  username: Scalars['String']
+  /** The account's id. */
+  accountId: Scalars['UUID']['input']
+  /** The upload's id. */
+  uploadId: Scalars['UUID']['input']
 }
 
 /** Represents an update to a `ProfilePicture`. Fields that are set will be updated. */
 export type ProfilePicturePatch = {
-  /** The upload's storage key. */
-  uploadStorageKey?: InputMaybe<Scalars['String']>
-  /** The account's username. */
-  username?: InputMaybe<Scalars['String']>
+  /** The account's id. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
+  /** The upload's id. */
+  uploadId?: InputMaybe<Scalars['UUID']['input']>
 }
 
 /** All input for the `profilePictureSet` mutation. */
@@ -2294,8 +2245,8 @@ export type ProfilePictureSetInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  storageKey: Scalars['String']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  uploadId?: InputMaybe<Scalars['UUID']['input']>
 }
 
 /** The output of our `profilePictureSet` mutation. */
@@ -2305,7 +2256,7 @@ export type ProfilePictureSetPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
 }
@@ -2320,38 +2271,38 @@ export type ProfilePicturesConnection = {
   /** Information to aid in pagination. */
   pageInfo: PageInfo
   /** The count of *all* `ProfilePicture` you could get from the connection. */
-  totalCount: Scalars['Int']
+  totalCount: Scalars['Int']['output']
 }
 
 /** A `ProfilePicture` edge in the connection. */
 export type ProfilePicturesEdge = {
   __typename?: 'ProfilePicturesEdge'
   /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>
+  cursor?: Maybe<Scalars['Cursor']['output']>
   /** The `ProfilePicture` at the end of the edge. */
   node: ProfilePicture
 }
 
 /** Methods to use when ordering `ProfilePicture`. */
 export enum ProfilePicturesOrderBy {
+  AccountIdAsc = 'ACCOUNT_ID_ASC',
+  AccountIdDesc = 'ACCOUNT_ID_DESC',
   IdAsc = 'ID_ASC',
   IdDesc = 'ID_DESC',
   Natural = 'NATURAL',
   PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
   PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
-  UploadStorageKeyAsc = 'UPLOAD_STORAGE_KEY_ASC',
-  UploadStorageKeyDesc = 'UPLOAD_STORAGE_KEY_DESC',
-  UsernameAsc = 'USERNAME_ASC',
-  UsernameDesc = 'USERNAME_DESC',
+  UploadIdAsc = 'UPLOAD_ID_ASC',
+  UploadIdDesc = 'UPLOAD_ID_DESC',
 }
 
 /** The root query type which gives access points into the data universe. */
 export type Query = Node & {
   __typename?: 'Query'
   /** Shows if an account exists. */
-  accountIsExisting?: Maybe<Scalars['Boolean']>
+  accountIsExisting?: Maybe<Scalars['Boolean']['output']>
   /** Gets the total upload quota in bytes for the invoking account. */
-  accountUploadQuotaBytes?: Maybe<Scalars['BigInt']>
+  accountUploadQuotaBytes?: Maybe<Scalars['BigInt']['output']>
   /** Reads and enables pagination through a set of `Contact`. */
   allContacts?: Maybe<ContactsConnection>
   /** Reads and enables pagination through a set of `EventGrouping`. */
@@ -2368,45 +2319,44 @@ export type Query = Node & {
   allUploads?: Maybe<UploadsConnection>
   /** Reads a single `Contact` using its globally unique `ID`. */
   contact?: Maybe<Contact>
-  contactByAuthorAccountUsernameAndAccountUsername?: Maybe<Contact>
+  contactByAuthorAccountIdAndAccountId?: Maybe<Contact>
   contactById?: Maybe<Contact>
   /** Reads a single `Event` using its globally unique `ID`. */
   event?: Maybe<Event>
-  eventByAuthorUsernameAndSlug?: Maybe<Event>
+  eventByAuthorAccountIdAndSlug?: Maybe<Event>
   eventById?: Maybe<Event>
   /** Reads a single `EventGroup` using its globally unique `ID`. */
   eventGroup?: Maybe<EventGroup>
-  eventGroupByAuthorUsernameAndSlug?: Maybe<EventGroup>
+  eventGroupByAuthorAccountIdAndSlug?: Maybe<EventGroup>
   eventGroupById?: Maybe<EventGroup>
   /** Reads a single `EventGrouping` using its globally unique `ID`. */
   eventGrouping?: Maybe<EventGrouping>
   eventGroupingByEventIdAndEventGroupId?: Maybe<EventGrouping>
   eventGroupingById?: Maybe<EventGrouping>
   /** Add a function that returns the maximum invitee count of an accessible event. */
-  eventInviteeCountMaximum?: Maybe<Scalars['Int']>
+  eventInviteeCountMaximum?: Maybe<Scalars['Int']['output']>
   /** Shows if an event exists. */
-  eventIsExisting?: Maybe<Scalars['Boolean']>
+  eventIsExisting?: Maybe<Scalars['Boolean']['output']>
   /** Add a function that returns all event ids for which the invoker is the author. */
   eventsOrganized?: Maybe<EventsOrganizedConnection>
   /** Reads a single `Invitation` using its globally unique `ID`. */
   invitation?: Maybe<Invitation>
   invitationByEventIdAndContactId?: Maybe<Invitation>
   invitationById?: Maybe<Invitation>
-  invitationByUuid?: Maybe<Invitation>
   /** Returns the current invitation claims as UUID array. */
-  invitationClaimArray?: Maybe<Array<Maybe<Scalars['UUID']>>>
+  invitationClaimArray?: Maybe<Array<Maybe<Scalars['UUID']['output']>>>
   /** Returns contact ids that are accessible through invitations. */
   invitationContactIds?: Maybe<InvitationContactIdsConnection>
   /** Returns the invitee count for an event. */
-  inviteeCount?: Maybe<Scalars['Int']>
+  inviteeCount?: Maybe<Scalars['Int']['output']>
   /** Fetches an object given its globally unique `ID`. */
   node?: Maybe<Node>
   /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['output']
   /** Reads a single `ProfilePicture` using its globally unique `ID`. */
   profilePicture?: Maybe<ProfilePicture>
+  profilePictureByAccountId?: Maybe<ProfilePicture>
   profilePictureById?: Maybe<ProfilePicture>
-  profilePictureByUsername?: Maybe<ProfilePicture>
   /**
    * Exposes the root query type nested one level down. This is helpful for Relay 1
    * which can only query top level fields if they are in a particular form.
@@ -2416,261 +2366,250 @@ export type Query = Node & {
   upload?: Maybe<Upload>
   uploadById?: Maybe<Upload>
   uploadByStorageKey?: Maybe<Upload>
-  uploadByUuid?: Maybe<Upload>
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryAccountIsExistingArgs = {
-  username: Scalars['String']
+  username: Scalars['String']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryAllContactsArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<ContactCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<ContactsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryAllEventGroupingsArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<EventGroupingCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<EventGroupingsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryAllEventGroupsArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<EventGroupCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<EventGroupsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryAllEventsArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<EventCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<EventsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryAllInvitationsArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<InvitationCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<InvitationsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryAllProfilePicturesArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<ProfilePictureCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<ProfilePicturesOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryAllUploadsArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<UploadCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<UploadsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryContactArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryContactByAuthorAccountUsernameAndAccountUsernameArgs = {
-  accountUsername: Scalars['String']
-  authorAccountUsername: Scalars['String']
+export type QueryContactByAuthorAccountIdAndAccountIdArgs = {
+  accountId: Scalars['UUID']['input']
+  authorAccountId: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryContactByIdArgs = {
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryEventByAuthorUsernameAndSlugArgs = {
-  authorUsername: Scalars['String']
-  slug: Scalars['String']
+export type QueryEventByAuthorAccountIdAndSlugArgs = {
+  authorAccountId: Scalars['UUID']['input']
+  slug: Scalars['String']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventByIdArgs = {
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventGroupArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryEventGroupByAuthorUsernameAndSlugArgs = {
-  authorUsername: Scalars['String']
-  slug: Scalars['String']
+export type QueryEventGroupByAuthorAccountIdAndSlugArgs = {
+  authorAccountId: Scalars['UUID']['input']
+  slug: Scalars['String']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventGroupByIdArgs = {
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventGroupingArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventGroupingByEventIdAndEventGroupIdArgs = {
-  eventGroupId: Scalars['BigInt']
-  eventId: Scalars['BigInt']
+  eventGroupId: Scalars['UUID']['input']
+  eventId: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventGroupingByIdArgs = {
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventInviteeCountMaximumArgs = {
-  eventId: Scalars['BigInt']
+  eventId: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventIsExistingArgs = {
-  authorUsername: Scalars['String']
-  slug: Scalars['String']
+  authorAccountId: Scalars['UUID']['input']
+  slug: Scalars['String']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryEventsOrganizedArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryInvitationArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryInvitationByEventIdAndContactIdArgs = {
-  contactId: Scalars['BigInt']
-  eventId: Scalars['BigInt']
+  contactId: Scalars['UUID']['input']
+  eventId: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryInvitationByIdArgs = {
-  id: Scalars['BigInt']
-}
-
-/** The root query type which gives access points into the data universe. */
-export type QueryInvitationByUuidArgs = {
-  uuid: Scalars['UUID']
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryInvitationContactIdsArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryInviteeCountArgs = {
-  eventId: Scalars['BigInt']
+  eventId: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryNodeArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryProfilePictureArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryProfilePictureByAccountIdArgs = {
+  accountId: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryProfilePictureByIdArgs = {
-  id: Scalars['BigInt']
-}
-
-/** The root query type which gives access points into the data universe. */
-export type QueryProfilePictureByUsernameArgs = {
-  username: Scalars['String']
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryUploadArgs = {
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryUploadByIdArgs = {
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
 export type QueryUploadByStorageKeyArgs = {
-  storageKey: Scalars['String']
+  storageKey: Scalars['String']['input']
 }
 
-/** The root query type which gives access points into the data universe. */
-export type QueryUploadByUuidArgs = {
-  uuid: Scalars['UUID']
-}
-
-/** All input for the `updateContactByAuthorAccountUsernameAndAccountUsername` mutation. */
-export type UpdateContactByAuthorAccountUsernameAndAccountUsernameInput = {
-  /** The contact account's username. */
-  accountUsername: Scalars['String']
-  /** The contact author's username. */
-  authorAccountUsername: Scalars['String']
+/** All input for the `updateContactByAuthorAccountIdAndAccountId` mutation. */
+export type UpdateContactByAuthorAccountIdAndAccountIdInput = {
+  /** The contact account's id. */
+  accountId: Scalars['UUID']['input']
+  /** The contact author's id. */
+  authorAccountId: Scalars['UUID']['input']
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `Contact` being updated. */
   contactPatch: ContactPatch
 }
@@ -2681,11 +2620,11 @@ export type UpdateContactByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `Contact` being updated. */
   contactPatch: ContactPatch
   /** The contact's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** All input for the `updateContact` mutation. */
@@ -2694,11 +2633,11 @@ export type UpdateContactInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `Contact` being updated. */
   contactPatch: ContactPatch
   /** The globally unique `ID` which will identify a single `Contact` to be updated. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our update `Contact` mutation. */
@@ -2708,7 +2647,7 @@ export type UpdateContactPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** The `Contact` that was updated by this mutation. */
   contact?: Maybe<Contact>
   /** An edge for our `Contact`. May be used by Relay 1. */
@@ -2722,19 +2661,19 @@ export type UpdateContactPayloadContactEdgeArgs = {
   orderBy?: InputMaybe<Array<ContactsOrderBy>>
 }
 
-/** All input for the `updateEventByAuthorUsernameAndSlug` mutation. */
-export type UpdateEventByAuthorUsernameAndSlugInput = {
-  /** The event author's username. */
-  authorUsername: Scalars['String']
+/** All input for the `updateEventByAuthorAccountIdAndSlug` mutation. */
+export type UpdateEventByAuthorAccountIdAndSlugInput = {
+  /** The event author's id. */
+  authorAccountId: Scalars['UUID']['input']
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `Event` being updated. */
   eventPatch: EventPatch
   /** The event's name, slugified. */
-  slug: Scalars['String']
+  slug: Scalars['String']['input']
 }
 
 /** All input for the `updateEventById` mutation. */
@@ -2743,26 +2682,26 @@ export type UpdateEventByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `Event` being updated. */
   eventPatch: EventPatch
   /** The event's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
-/** All input for the `updateEventGroupByAuthorUsernameAndSlug` mutation. */
-export type UpdateEventGroupByAuthorUsernameAndSlugInput = {
-  /** The event group author's username. */
-  authorUsername: Scalars['String']
+/** All input for the `updateEventGroupByAuthorAccountIdAndSlug` mutation. */
+export type UpdateEventGroupByAuthorAccountIdAndSlugInput = {
+  /** The event group author's id. */
+  authorAccountId: Scalars['UUID']['input']
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `EventGroup` being updated. */
   eventGroupPatch: EventGroupPatch
   /** The event group's name, slugified. */
-  slug: Scalars['String']
+  slug: Scalars['String']['input']
 }
 
 /** All input for the `updateEventGroupById` mutation. */
@@ -2771,11 +2710,11 @@ export type UpdateEventGroupByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `EventGroup` being updated. */
   eventGroupPatch: EventGroupPatch
   /** The event group's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** All input for the `updateEventGroup` mutation. */
@@ -2784,11 +2723,11 @@ export type UpdateEventGroupInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `EventGroup` being updated. */
   eventGroupPatch: EventGroupPatch
   /** The globally unique `ID` which will identify a single `EventGroup` to be updated. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our update `EventGroup` mutation. */
@@ -2798,7 +2737,7 @@ export type UpdateEventGroupPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** The `EventGroup` that was updated by this mutation. */
   eventGroup?: Maybe<EventGroup>
   /** An edge for our `EventGroup`. May be used by Relay 1. */
@@ -2818,13 +2757,13 @@ export type UpdateEventGroupingByEventIdAndEventGroupIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The event grouping's internal event group id. */
-  eventGroupId: Scalars['BigInt']
+  eventGroupId: Scalars['UUID']['input']
   /** An object where the defined keys will be set on the `EventGrouping` being updated. */
   eventGroupingPatch: EventGroupingPatch
   /** The event grouping's internal event id. */
-  eventId: Scalars['BigInt']
+  eventId: Scalars['UUID']['input']
 }
 
 /** All input for the `updateEventGroupingById` mutation. */
@@ -2833,11 +2772,11 @@ export type UpdateEventGroupingByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `EventGrouping` being updated. */
   eventGroupingPatch: EventGroupingPatch
   /** The event grouping's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }
 
 /** All input for the `updateEventGrouping` mutation. */
@@ -2846,11 +2785,11 @@ export type UpdateEventGroupingInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `EventGrouping` being updated. */
   eventGroupingPatch: EventGroupingPatch
   /** The globally unique `ID` which will identify a single `EventGrouping` to be updated. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our update `EventGrouping` mutation. */
@@ -2860,7 +2799,7 @@ export type UpdateEventGroupingPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Reads a single `Event` that is related to this `EventGrouping`. */
   eventByEventId?: Maybe<Event>
   /** Reads a single `EventGroup` that is related to this `EventGrouping`. */
@@ -2884,11 +2823,11 @@ export type UpdateEventInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `Event` being updated. */
   eventPatch: EventPatch
   /** The globally unique `ID` which will identify a single `Event` to be updated. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our update `Event` mutation. */
@@ -2898,7 +2837,7 @@ export type UpdateEventPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** The `Event` that was updated by this mutation. */
   event?: Maybe<Event>
   /** An edge for our `Event`. May be used by Relay 1. */
@@ -2918,11 +2857,11 @@ export type UpdateInvitationByEventIdAndContactIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The contact's internal id for which the invitation is valid. */
-  contactId: Scalars['BigInt']
+  contactId: Scalars['UUID']['input']
   /** The event's internal id for which the invitation is valid. */
-  eventId: Scalars['BigInt']
+  eventId: Scalars['UUID']['input']
   /** An object where the defined keys will be set on the `Invitation` being updated. */
   invitationPatch: InvitationPatch
 }
@@ -2933,24 +2872,11 @@ export type UpdateInvitationByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The invitations's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
   /** An object where the defined keys will be set on the `Invitation` being updated. */
   invitationPatch: InvitationPatch
-}
-
-/** All input for the `updateInvitationByUuid` mutation. */
-export type UpdateInvitationByUuidInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  /** An object where the defined keys will be set on the `Invitation` being updated. */
-  invitationPatch: InvitationPatch
-  /** The invitations's invitation code. */
-  uuid: Scalars['UUID']
 }
 
 /** All input for the `updateInvitation` mutation. */
@@ -2959,11 +2885,11 @@ export type UpdateInvitationInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** An object where the defined keys will be set on the `Invitation` being updated. */
   invitationPatch: InvitationPatch
   /** The globally unique `ID` which will identify a single `Invitation` to be updated. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
 }
 
 /** The output of our update `Invitation` mutation. */
@@ -2973,7 +2899,7 @@ export type UpdateInvitationPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Reads a single `Contact` that is related to this `Invitation`. */
   contactByContactId?: Maybe<Contact>
   /** Reads a single `Event` that is related to this `Invitation`. */
@@ -2991,30 +2917,30 @@ export type UpdateInvitationPayloadInvitationEdgeArgs = {
   orderBy?: InputMaybe<Array<InvitationsOrderBy>>
 }
 
+/** All input for the `updateProfilePictureByAccountId` mutation. */
+export type UpdateProfilePictureByAccountIdInput = {
+  /** The account's id. */
+  accountId: Scalars['UUID']['input']
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** An object where the defined keys will be set on the `ProfilePicture` being updated. */
+  profilePicturePatch: ProfilePicturePatch
+}
+
 /** All input for the `updateProfilePictureById` mutation. */
 export type UpdateProfilePictureByIdInput = {
   /**
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The profile picture's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
   /** An object where the defined keys will be set on the `ProfilePicture` being updated. */
   profilePicturePatch: ProfilePicturePatch
-}
-
-/** All input for the `updateProfilePictureByUsername` mutation. */
-export type UpdateProfilePictureByUsernameInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  /** An object where the defined keys will be set on the `ProfilePicture` being updated. */
-  profilePicturePatch: ProfilePicturePatch
-  /** The account's username. */
-  username: Scalars['String']
 }
 
 /** All input for the `updateProfilePicture` mutation. */
@@ -3023,9 +2949,9 @@ export type UpdateProfilePictureInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The globally unique `ID` which will identify a single `ProfilePicture` to be updated. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
   /** An object where the defined keys will be set on the `ProfilePicture` being updated. */
   profilePicturePatch: ProfilePicturePatch
 }
@@ -3037,7 +2963,7 @@ export type UpdateProfilePicturePayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** The `ProfilePicture` that was updated by this mutation. */
   profilePicture?: Maybe<ProfilePicture>
   /** An edge for our `ProfilePicture`. May be used by Relay 1. */
@@ -3045,7 +2971,7 @@ export type UpdateProfilePicturePayload = {
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
   /** Reads a single `Upload` that is related to this `ProfilePicture`. */
-  uploadByUploadStorageKey?: Maybe<Upload>
+  uploadByUploadId?: Maybe<Upload>
 }
 
 /** The output of our update `ProfilePicture` mutation. */
@@ -3059,9 +2985,9 @@ export type UpdateUploadByIdInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The upload's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
   /** An object where the defined keys will be set on the `Upload` being updated. */
   uploadPatch: UploadPatch
 }
@@ -3072,24 +2998,11 @@ export type UpdateUploadByStorageKeyInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The upload's storage key. */
-  storageKey: Scalars['String']
+  storageKey: Scalars['String']['input']
   /** An object where the defined keys will be set on the `Upload` being updated. */
   uploadPatch: UploadPatch
-}
-
-/** All input for the `updateUploadByUuid` mutation. */
-export type UpdateUploadByUuidInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  /** An object where the defined keys will be set on the `Upload` being updated. */
-  uploadPatch: UploadPatch
-  /** The upload's UUID. */
-  uuid: Scalars['UUID']
 }
 
 /** All input for the `updateUpload` mutation. */
@@ -3098,9 +3011,9 @@ export type UpdateUploadInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
   /** The globally unique `ID` which will identify a single `Upload` to be updated. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['input']
   /** An object where the defined keys will be set on the `Upload` being updated. */
   uploadPatch: UploadPatch
 }
@@ -3112,7 +3025,7 @@ export type UpdateUploadPayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
   /** The `Upload` that was updated by this mutation. */
@@ -3129,45 +3042,41 @@ export type UpdateUploadPayloadUploadEdgeArgs = {
 /** An upload. */
 export type Upload = Node & {
   __typename?: 'Upload'
+  /** The uploader's account id. */
+  accountId: Scalars['UUID']['output']
   /** The upload's internal id. */
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['output']
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars['ID']
+  nodeId: Scalars['ID']['output']
   /** Reads and enables pagination through a set of `ProfilePicture`. */
-  profilePicturesByUploadStorageKey: ProfilePicturesConnection
+  profilePicturesByUploadId: ProfilePicturesConnection
   /** The upload's size in bytes. */
-  sizeByte: Scalars['BigInt']
+  sizeByte: Scalars['BigInt']['output']
   /** The upload's storage key. */
-  storageKey?: Maybe<Scalars['String']>
-  /** The uploader's username. */
-  username: Scalars['String']
-  /** The upload's UUID. */
-  uuid: Scalars['UUID']
+  storageKey?: Maybe<Scalars['String']['output']>
 }
 
 /** An upload. */
-export type UploadProfilePicturesByUploadStorageKeyArgs = {
-  after?: InputMaybe<Scalars['Cursor']>
-  before?: InputMaybe<Scalars['Cursor']>
+export type UploadProfilePicturesByUploadIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
   condition?: InputMaybe<ProfilePictureCondition>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<ProfilePicturesOrderBy>>
 }
 
 /** A condition to be used against `Upload` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type UploadCondition = {
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `id` field. */
-  id?: InputMaybe<Scalars['BigInt']>
+  id?: InputMaybe<Scalars['UUID']['input']>
   /** Checks for equality with the object’s `sizeByte` field. */
-  sizeByte?: InputMaybe<Scalars['BigInt']>
+  sizeByte?: InputMaybe<Scalars['BigInt']['input']>
   /** Checks for equality with the object’s `storageKey` field. */
-  storageKey?: InputMaybe<Scalars['String']>
-  /** Checks for equality with the object’s `username` field. */
-  username?: InputMaybe<Scalars['String']>
-  /** Checks for equality with the object’s `uuid` field. */
-  uuid?: InputMaybe<Scalars['UUID']>
+  storageKey?: InputMaybe<Scalars['String']['input']>
 }
 
 /** All input for the `uploadCreate` mutation. */
@@ -3176,8 +3085,8 @@ export type UploadCreateInput = {
    * An arbitrary string value with no semantic meaning. Will be included in the
    * payload verbatim. May be used to track mutations by the client.
    */
-  clientMutationId?: InputMaybe<Scalars['String']>
-  sizeByte: Scalars['BigInt']
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  sizeByte: Scalars['BigInt']['input']
 }
 
 /** The output of our `uploadCreate` mutation. */
@@ -3187,34 +3096,37 @@ export type UploadCreatePayload = {
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
    */
-  clientMutationId?: Maybe<Scalars['String']>
+  clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
-  uuid?: Maybe<Scalars['UUID']>
+  upload?: Maybe<Upload>
+  /** An edge for our `Upload`. May be used by Relay 1. */
+  uploadEdge?: Maybe<UploadsEdge>
+}
+
+/** The output of our `uploadCreate` mutation. */
+export type UploadCreatePayloadUploadEdgeArgs = {
+  orderBy?: InputMaybe<Array<UploadsOrderBy>>
 }
 
 /** An input for mutations affecting `Upload` */
 export type UploadInput = {
+  /** The uploader's account id. */
+  accountId: Scalars['UUID']['input']
   /** The upload's size in bytes. */
-  sizeByte: Scalars['BigInt']
+  sizeByte: Scalars['BigInt']['input']
   /** The upload's storage key. */
-  storageKey?: InputMaybe<Scalars['String']>
-  /** The uploader's username. */
-  username: Scalars['String']
-  /** The upload's UUID. */
-  uuid?: InputMaybe<Scalars['UUID']>
+  storageKey?: InputMaybe<Scalars['String']['input']>
 }
 
 /** Represents an update to a `Upload`. Fields that are set will be updated. */
 export type UploadPatch = {
+  /** The uploader's account id. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
   /** The upload's size in bytes. */
-  sizeByte?: InputMaybe<Scalars['BigInt']>
+  sizeByte?: InputMaybe<Scalars['BigInt']['input']>
   /** The upload's storage key. */
-  storageKey?: InputMaybe<Scalars['String']>
-  /** The uploader's username. */
-  username?: InputMaybe<Scalars['String']>
-  /** The upload's UUID. */
-  uuid?: InputMaybe<Scalars['UUID']>
+  storageKey?: InputMaybe<Scalars['String']['input']>
 }
 
 /** A connection to a list of `Upload` values. */
@@ -3227,20 +3139,22 @@ export type UploadsConnection = {
   /** Information to aid in pagination. */
   pageInfo: PageInfo
   /** The count of *all* `Upload` you could get from the connection. */
-  totalCount: Scalars['Int']
+  totalCount: Scalars['Int']['output']
 }
 
 /** A `Upload` edge in the connection. */
 export type UploadsEdge = {
   __typename?: 'UploadsEdge'
   /** A cursor for use in pagination. */
-  cursor?: Maybe<Scalars['Cursor']>
+  cursor?: Maybe<Scalars['Cursor']['output']>
   /** The `Upload` at the end of the edge. */
   node: Upload
 }
 
 /** Methods to use when ordering `Upload`. */
 export enum UploadsOrderBy {
+  AccountIdAsc = 'ACCOUNT_ID_ASC',
+  AccountIdDesc = 'ACCOUNT_ID_DESC',
   IdAsc = 'ID_ASC',
   IdDesc = 'ID_DESC',
   Natural = 'NATURAL',
@@ -3250,19 +3164,15 @@ export enum UploadsOrderBy {
   SizeByteDesc = 'SIZE_BYTE_DESC',
   StorageKeyAsc = 'STORAGE_KEY_ASC',
   StorageKeyDesc = 'STORAGE_KEY_DESC',
-  UsernameAsc = 'USERNAME_ASC',
-  UsernameDesc = 'USERNAME_DESC',
-  UuidAsc = 'UUID_ASC',
-  UuidDesc = 'UUID_DESC',
 }
 
 export type ContactItemFragment = {
   __typename?: 'Contact'
   nodeId: string
   id: any
-  accountUsername?: string | null
+  accountId?: any | null
   address?: string | null
-  authorAccountUsername: string
+  authorAccountId: any
   emailAddress?: string | null
   emailAddressHash?: string | null
   firstName?: string | null
@@ -3275,7 +3185,7 @@ export type EventItemFragment = {
   __typename?: 'Event'
   id: any
   nodeId: string
-  authorUsername: string
+  authorAccountId: any
   description?: string | null
   end?: any | null
   inviteeCountMaximum?: number | null
@@ -3298,7 +3208,6 @@ export type InvitationItemFragment = {
   eventId: any
   feedback?: InvitationFeedback | null
   feedbackPaper?: InvitationFeedbackPaper | null
-  uuid: any
   contactByContactId?:
     | ({ __typename?: 'Contact' } & {
         ' $fragmentRefs'?: { ContactItemFragment: ContactItemFragment }
@@ -3310,23 +3219,22 @@ export type ProfilePictureItemFragment = {
   __typename?: 'ProfilePicture'
   id: any
   nodeId: string
-  uploadStorageKey: string
-  username: string
+  accountId: any
+  uploadId: any
 } & { ' $fragmentName'?: 'ProfilePictureItemFragment' }
 
 export type UploadItemFragment = {
   __typename?: 'Upload'
   id: any
   nodeId: string
+  accountId: any
   sizeByte: any
   storageKey?: string | null
-  username: string
-  uuid: any
 } & { ' $fragmentName'?: 'UploadItemFragment' }
 
 export type AuthenticateMutationVariables = Exact<{
-  password: Scalars['String']
-  username: Scalars['String']
+  password: Scalars['String']['input']
+  username: Scalars['String']['input']
 }>
 
 export type AuthenticateMutation = {
@@ -3339,7 +3247,7 @@ export type AuthenticateMutation = {
 }
 
 export type AccountDeleteMutationVariables = Exact<{
-  password: Scalars['String']
+  password: Scalars['String']['input']
 }>
 
 export type AccountDeleteMutation = {
@@ -3351,7 +3259,7 @@ export type AccountDeleteMutation = {
 }
 
 export type AccountEmailAddressVerificationMutationVariables = Exact<{
-  code: Scalars['UUID']
+  code: Scalars['UUID']['input']
 }>
 
 export type AccountEmailAddressVerificationMutation = {
@@ -3363,7 +3271,7 @@ export type AccountEmailAddressVerificationMutation = {
 }
 
 export type JwtRefreshMutationVariables = Exact<{
-  id: Scalars['UUID']
+  id: Scalars['UUID']['input']
 }>
 
 export type JwtRefreshMutation = {
@@ -3376,8 +3284,8 @@ export type JwtRefreshMutation = {
 }
 
 export type AccountPasswordChangeMutationVariables = Exact<{
-  passwordCurrent: Scalars['String']
-  passwordNew: Scalars['String']
+  passwordCurrent: Scalars['String']['input']
+  passwordNew: Scalars['String']['input']
 }>
 
 export type AccountPasswordChangeMutation = {
@@ -3389,8 +3297,8 @@ export type AccountPasswordChangeMutation = {
 }
 
 export type AccountPasswordResetMutationVariables = Exact<{
-  code: Scalars['UUID']
-  password: Scalars['String']
+  code: Scalars['UUID']['input']
+  password: Scalars['String']['input']
 }>
 
 export type AccountPasswordResetMutation = {
@@ -3402,8 +3310,8 @@ export type AccountPasswordResetMutation = {
 }
 
 export type AccountPasswordResetRequestMutationVariables = Exact<{
-  emailAddress: Scalars['String']
-  language: Scalars['String']
+  emailAddress: Scalars['String']['input']
+  language: Scalars['String']['input']
 }>
 
 export type AccountPasswordResetRequestMutation = {
@@ -3415,10 +3323,10 @@ export type AccountPasswordResetRequestMutation = {
 }
 
 export type AccountRegistrationMutationVariables = Exact<{
-  emailAddress: Scalars['String']
-  password: Scalars['String']
-  username: Scalars['String']
-  language: Scalars['String']
+  emailAddress: Scalars['String']['input']
+  password: Scalars['String']['input']
+  username: Scalars['String']['input']
+  language: Scalars['String']['input']
 }>
 
 export type AccountRegistrationMutation = {
@@ -3430,8 +3338,8 @@ export type AccountRegistrationMutation = {
 }
 
 export type AccountRegistrationRefreshMutationVariables = Exact<{
-  username: Scalars['String']
-  language: Scalars['String']
+  accountId: Scalars['UUID']['input']
+  language: Scalars['String']['input']
 }>
 
 export type AccountRegistrationRefreshMutation = {
@@ -3459,7 +3367,7 @@ export type CreateContactMutation = {
 }
 
 export type DeleteContactByIdMutationVariables = Exact<{
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }>
 
 export type DeleteContactByIdMutation = {
@@ -3476,7 +3384,7 @@ export type DeleteContactByIdMutation = {
 }
 
 export type UpdateContactByIdMutationVariables = Exact<{
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
   contactPatch: ContactPatch
 }>
 
@@ -3509,8 +3417,8 @@ export type CreateEventMutation = {
 }
 
 export type EventDeleteMutationVariables = Exact<{
-  id: Scalars['BigInt']
-  password: Scalars['String']
+  id: Scalars['UUID']['input']
+  password: Scalars['String']['input']
 }>
 
 export type EventDeleteMutation = {
@@ -3527,7 +3435,7 @@ export type EventDeleteMutation = {
 }
 
 export type EventUnlockMutationVariables = Exact<{
-  invitationCode: Scalars['UUID']
+  invitationCode: Scalars['UUID']['input']
 }>
 
 export type EventUnlockMutation = {
@@ -3538,13 +3446,13 @@ export type EventUnlockMutation = {
       __typename?: 'EventUnlockResponse'
       eventSlug?: string | null
       jwt?: any | null
-      authorUsername?: string | null
+      authorAccountId?: string | null
     } | null
   } | null
 }
 
 export type UpdateEventByIdMutationVariables = Exact<{
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
   eventPatch: EventPatch
 }>
 
@@ -3570,7 +3478,7 @@ export type CreateInvitationMutation = {
     __typename?: 'CreateInvitationPayload'
     invitation?: {
       __typename?: 'Invitation'
-      uuid: any
+      id: any
       contactByContactId?:
         | ({ __typename?: 'Contact' } & {
             ' $fragmentRefs'?: { ContactItemFragment: ContactItemFragment }
@@ -3581,7 +3489,7 @@ export type CreateInvitationMutation = {
 }
 
 export type DeleteInvitationByIdMutationVariables = Exact<{
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
 }>
 
 export type DeleteInvitationByIdMutation = {
@@ -3593,7 +3501,7 @@ export type DeleteInvitationByIdMutation = {
 }
 
 export type UpdateInvitationByIdMutationVariables = Exact<{
-  id: Scalars['BigInt']
+  id: Scalars['UUID']['input']
   invitationPatch: InvitationPatch
 }>
 
@@ -3617,8 +3525,8 @@ export type UpdateInvitationByIdMutation = {
 }
 
 export type InviteMutationVariables = Exact<{
-  invitationId: Scalars['BigInt']
-  language: Scalars['String']
+  invitationId: Scalars['UUID']['input']
+  language: Scalars['String']['input']
 }>
 
 export type InviteMutation = {
@@ -3630,7 +3538,7 @@ export type InviteMutation = {
 }
 
 export type ProfilePictureSetMutationVariables = Exact<{
-  storageKey: Scalars['String']
+  uploadId: Scalars['UUID']['input']
 }>
 
 export type ProfilePictureSetMutation = {
@@ -3650,12 +3558,12 @@ export type UploadCreateMutation = {
   uploadCreate?: {
     __typename?: 'UploadCreatePayload'
     clientMutationId?: string | null
-    uuid?: any | null
+    upload?: { __typename?: 'Upload'; id: any } | null
   } | null
 }
 
 export type AccountIsExistingQueryVariables = Exact<{
-  username: Scalars['String']
+  username: Scalars['String']['input']
 }>
 
 export type AccountIsExistingQuery = {
@@ -3673,9 +3581,9 @@ export type AccountUploadQuotaBytesQuery = {
 }
 
 export type AllContactsQueryVariables = Exact<{
-  after?: InputMaybe<Scalars['Cursor']>
-  authorAccountUsername?: InputMaybe<Scalars['String']>
-  first: Scalars['Int']
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  first: Scalars['Int']['input']
 }>
 
 export type AllContactsQuery = {
@@ -3696,15 +3604,15 @@ export type AllContactsQuery = {
   } | null
 }
 
-export type EventByAuthorUsernameAndSlugQueryVariables = Exact<{
-  authorUsername: Scalars['String']
-  slug: Scalars['String']
-  invitationUuid?: InputMaybe<Scalars['UUID']>
+export type EventByAuthorAccountIdAndSlugQueryVariables = Exact<{
+  authorAccountId: Scalars['UUID']['input']
+  slug: Scalars['String']['input']
+  invitationId?: InputMaybe<Scalars['UUID']['input']>
 }>
 
-export type EventByAuthorUsernameAndSlugQuery = {
+export type EventByAuthorAccountIdAndSlugQuery = {
   __typename?: 'Query'
-  eventByAuthorUsernameAndSlug?:
+  eventByAuthorAccountIdAndSlug?:
     | ({
         __typename?: 'Event'
         invitationsByEventId: {
@@ -3731,8 +3639,8 @@ export type EventByAuthorUsernameAndSlugQuery = {
 }
 
 export type EventIsExistingQueryVariables = Exact<{
-  authorUsername: Scalars['String']
-  slug: Scalars['String']
+  authorAccountId: Scalars['UUID']['input']
+  slug: Scalars['String']['input']
 }>
 
 export type EventIsExistingQuery = {
@@ -3741,9 +3649,9 @@ export type EventIsExistingQuery = {
 }
 
 export type AllEventsQueryVariables = Exact<{
-  after?: InputMaybe<Scalars['Cursor']>
-  authorUsername?: InputMaybe<Scalars['String']>
-  first: Scalars['Int']
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  authorAccountId?: InputMaybe<Scalars['UUID']['input']>
+  first: Scalars['Int']['input']
 }>
 
 export type AllEventsQuery = {
@@ -3765,9 +3673,9 @@ export type AllEventsQuery = {
 }
 
 export type AllInvitationsQueryVariables = Exact<{
-  after?: InputMaybe<Scalars['Cursor']>
-  eventId: Scalars['BigInt']
-  first: Scalars['Int']
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  eventId: Scalars['UUID']['input']
+  first: Scalars['Int']['input']
 }>
 
 export type AllInvitationsQuery = {
@@ -3788,13 +3696,13 @@ export type AllInvitationsQuery = {
   } | null
 }
 
-export type ProfilePictureByUsernameQueryVariables = Exact<{
-  username: Scalars['String']
+export type ProfilePictureByAccountIdQueryVariables = Exact<{
+  accountId: Scalars['UUID']['input']
 }>
 
-export type ProfilePictureByUsernameQuery = {
+export type ProfilePictureByAccountIdQuery = {
   __typename?: 'Query'
-  profilePictureByUsername?:
+  profilePictureByAccountId?:
     | ({ __typename?: 'ProfilePicture' } & {
         ' $fragmentRefs'?: {
           ProfilePictureItemFragment: ProfilePictureItemFragment
@@ -3804,9 +3712,9 @@ export type ProfilePictureByUsernameQuery = {
 }
 
 export type AllUploadsQueryVariables = Exact<{
-  after?: InputMaybe<Scalars['Cursor']>
-  first: Scalars['Int']
-  username?: InputMaybe<Scalars['String']>
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  first: Scalars['Int']['input']
+  accountId?: InputMaybe<Scalars['UUID']['input']>
 }>
 
 export type AllUploadsQuery = {
@@ -3842,7 +3750,7 @@ export const EventItemFragmentDoc = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -3878,12 +3786,9 @@ export const ContactItemFragmentDoc = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'address' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -3914,7 +3819,6 @@ export const InvitationItemFragmentDoc = {
           { kind: 'Field', name: { kind: 'Name', value: 'eventId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'feedback' } },
           { kind: 'Field', name: { kind: 'Name', value: 'feedbackPaper' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'uuid' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'contactByContactId' },
@@ -3943,12 +3847,9 @@ export const InvitationItemFragmentDoc = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'address' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -3975,8 +3876,8 @@ export const ProfilePictureItemFragmentDoc = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'uploadStorageKey' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'uploadId' } },
         ],
       },
     },
@@ -3997,10 +3898,9 @@ export const UploadItemFragmentDoc = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'sizeByte' } },
           { kind: 'Field', name: { kind: 'Name', value: 'storageKey' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'username' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'uuid' } },
         ],
       },
     },
@@ -4681,14 +4581,11 @@ export const AccountRegistrationRefreshDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'username' },
+            name: { kind: 'Name', value: 'accountId' },
           },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
         {
@@ -4729,10 +4626,10 @@ export const AccountRegistrationRefreshDocument = {
                     },
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'username' },
+                      name: { kind: 'Name', value: 'accountId' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'username' },
+                        name: { kind: 'Name', value: 'accountId' },
                       },
                     },
                   ],
@@ -4839,12 +4736,9 @@ export const CreateContactDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'address' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -4872,10 +4766,7 @@ export const DeleteContactByIdDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'BigInt' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
       ],
@@ -4942,12 +4833,9 @@ export const DeleteContactByIdDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'address' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -4975,10 +4863,7 @@ export const UpdateContactByIdDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'BigInt' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
         {
@@ -5063,12 +4948,9 @@ export const UpdateContactByIdDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'address' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -5156,7 +5038,7 @@ export const CreateEventDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -5190,10 +5072,7 @@ export const EventDeleteDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'BigInt' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
         {
@@ -5282,7 +5161,7 @@ export const EventDeleteDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -5364,7 +5243,7 @@ export const EventUnlockDocument = {
                       { kind: 'Field', name: { kind: 'Name', value: 'jwt' } },
                       {
                         kind: 'Field',
-                        name: { kind: 'Name', value: 'authorUsername' },
+                        name: { kind: 'Name', value: 'authorAccountId' },
                       },
                     ],
                   },
@@ -5390,10 +5269,7 @@ export const UpdateEventByIdDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'BigInt' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
         {
@@ -5478,7 +5354,7 @@ export const UpdateEventByIdDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -5572,7 +5448,7 @@ export const CreateInvitationDocument = {
                           ],
                         },
                       },
-                      { kind: 'Field', name: { kind: 'Name', value: 'uuid' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                     ],
                   },
                 },
@@ -5594,12 +5470,9 @@ export const CreateInvitationDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'address' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -5627,10 +5500,7 @@ export const DeleteInvitationByIdDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'BigInt' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
       ],
@@ -5690,10 +5560,7 @@ export const UpdateInvitationByIdDocument = {
           variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'BigInt' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
         {
@@ -5791,12 +5658,9 @@ export const UpdateInvitationByIdDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'address' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -5822,7 +5686,6 @@ export const UpdateInvitationByIdDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'eventId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'feedback' } },
           { kind: 'Field', name: { kind: 'Name', value: 'feedbackPaper' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'uuid' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'contactByContactId' },
@@ -5860,10 +5723,7 @@ export const InviteDocument = {
           },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'BigInt' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
         {
@@ -5941,14 +5801,11 @@ export const ProfilePictureSetDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'storageKey' },
+            name: { kind: 'Name', value: 'uploadId' },
           },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
       ],
@@ -5967,10 +5824,10 @@ export const ProfilePictureSetDocument = {
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'storageKey' },
+                      name: { kind: 'Name', value: 'uploadId' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'storageKey' },
+                        name: { kind: 'Name', value: 'uploadId' },
                       },
                     },
                   ],
@@ -6041,7 +5898,16 @@ export const UploadCreateDocument = {
                   kind: 'Field',
                   name: { kind: 'Name', value: 'clientMutationId' },
                 },
-                { kind: 'Field', name: { kind: 'Name', value: 'uuid' } },
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'upload' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -6143,9 +6009,9 @@ export const AllContactsDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
+            name: { kind: 'Name', value: 'authorAccountId' },
           },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
         },
         {
           kind: 'VariableDefinition',
@@ -6182,10 +6048,10 @@ export const AllContactsDocument = {
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'authorAccountUsername' },
+                      name: { kind: 'Name', value: 'authorAccountId' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'authorAccountUsername' },
+                        name: { kind: 'Name', value: 'authorAccountId' },
                       },
                     },
                   ],
@@ -6263,12 +6129,9 @@ export const AllContactsDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'address' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -6280,26 +6143,23 @@ export const AllContactsDocument = {
     },
   ],
 } as unknown as DocumentNode<AllContactsQuery, AllContactsQueryVariables>
-export const EventByAuthorUsernameAndSlugDocument = {
+export const EventByAuthorAccountIdAndSlugDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'eventByAuthorUsernameAndSlug' },
+      name: { kind: 'Name', value: 'eventByAuthorAccountIdAndSlug' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'authorUsername' },
+            name: { kind: 'Name', value: 'authorAccountId' },
           },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
         {
@@ -6317,7 +6177,7 @@ export const EventByAuthorUsernameAndSlugDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'invitationUuid' },
+            name: { kind: 'Name', value: 'invitationId' },
           },
           type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
         },
@@ -6327,14 +6187,14 @@ export const EventByAuthorUsernameAndSlugDocument = {
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'eventByAuthorUsernameAndSlug' },
+            name: { kind: 'Name', value: 'eventByAuthorAccountIdAndSlug' },
             arguments: [
               {
                 kind: 'Argument',
-                name: { kind: 'Name', value: 'authorUsername' },
+                name: { kind: 'Name', value: 'authorAccountId' },
                 value: {
                   kind: 'Variable',
-                  name: { kind: 'Name', value: 'authorUsername' },
+                  name: { kind: 'Name', value: 'authorAccountId' },
                 },
               },
               {
@@ -6365,10 +6225,10 @@ export const EventByAuthorUsernameAndSlugDocument = {
                         fields: [
                           {
                             kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'uuid' },
+                            name: { kind: 'Name', value: 'id' },
                             value: {
                               kind: 'Variable',
-                              name: { kind: 'Name', value: 'invitationUuid' },
+                              name: { kind: 'Name', value: 'invitationId' },
                             },
                           },
                         ],
@@ -6431,12 +6291,9 @@ export const EventByAuthorUsernameAndSlugDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'address' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -6458,7 +6315,7 @@ export const EventByAuthorUsernameAndSlugDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -6493,7 +6350,6 @@ export const EventByAuthorUsernameAndSlugDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'eventId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'feedback' } },
           { kind: 'Field', name: { kind: 'Name', value: 'feedbackPaper' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'uuid' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'contactByContactId' },
@@ -6512,8 +6368,8 @@ export const EventByAuthorUsernameAndSlugDocument = {
     },
   ],
 } as unknown as DocumentNode<
-  EventByAuthorUsernameAndSlugQuery,
-  EventByAuthorUsernameAndSlugQueryVariables
+  EventByAuthorAccountIdAndSlugQuery,
+  EventByAuthorAccountIdAndSlugQueryVariables
 >
 export const EventIsExistingDocument = {
   kind: 'Document',
@@ -6527,14 +6383,11 @@ export const EventIsExistingDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'authorUsername' },
+            name: { kind: 'Name', value: 'authorAccountId' },
           },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
         {
@@ -6558,10 +6411,10 @@ export const EventIsExistingDocument = {
             arguments: [
               {
                 kind: 'Argument',
-                name: { kind: 'Name', value: 'authorUsername' },
+                name: { kind: 'Name', value: 'authorAccountId' },
                 value: {
                   kind: 'Variable',
-                  name: { kind: 'Name', value: 'authorUsername' },
+                  name: { kind: 'Name', value: 'authorAccountId' },
                 },
               },
               {
@@ -6602,9 +6455,9 @@ export const AllEventsDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'authorUsername' },
+            name: { kind: 'Name', value: 'authorAccountId' },
           },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
         },
         {
           kind: 'VariableDefinition',
@@ -6641,10 +6494,10 @@ export const AllEventsDocument = {
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'authorUsername' },
+                      name: { kind: 'Name', value: 'authorAccountId' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'authorUsername' },
+                        name: { kind: 'Name', value: 'authorAccountId' },
                       },
                     },
                   ],
@@ -6716,7 +6569,7 @@ export const AllEventsDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'authorUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -6761,10 +6614,7 @@ export const AllInvitationsDocument = {
           },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'BigInt' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
         {
@@ -6872,12 +6722,9 @@ export const AllInvitationsDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountUsername' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'address' } },
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'authorAccountUsername' },
-          },
+          { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -6903,7 +6750,6 @@ export const AllInvitationsDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'eventId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'feedback' } },
           { kind: 'Field', name: { kind: 'Name', value: 'feedbackPaper' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'uuid' } },
           {
             kind: 'Field',
             name: { kind: 'Name', value: 'contactByContactId' },
@@ -6922,26 +6768,23 @@ export const AllInvitationsDocument = {
     },
   ],
 } as unknown as DocumentNode<AllInvitationsQuery, AllInvitationsQueryVariables>
-export const ProfilePictureByUsernameDocument = {
+export const ProfilePictureByAccountIdDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'profilePictureByUsername' },
+      name: { kind: 'Name', value: 'profilePictureByAccountId' },
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'username' },
+            name: { kind: 'Name', value: 'accountId' },
           },
           type: {
             kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
           },
         },
       ],
@@ -6950,14 +6793,14 @@ export const ProfilePictureByUsernameDocument = {
         selections: [
           {
             kind: 'Field',
-            name: { kind: 'Name', value: 'profilePictureByUsername' },
+            name: { kind: 'Name', value: 'profilePictureByAccountId' },
             arguments: [
               {
                 kind: 'Argument',
-                name: { kind: 'Name', value: 'username' },
+                name: { kind: 'Name', value: 'accountId' },
                 value: {
                   kind: 'Variable',
-                  name: { kind: 'Name', value: 'username' },
+                  name: { kind: 'Name', value: 'accountId' },
                 },
               },
             ],
@@ -6986,15 +6829,15 @@ export const ProfilePictureByUsernameDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'uploadStorageKey' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'uploadId' } },
         ],
       },
     },
   ],
 } as unknown as DocumentNode<
-  ProfilePictureByUsernameQuery,
-  ProfilePictureByUsernameQueryVariables
+  ProfilePictureByAccountIdQuery,
+  ProfilePictureByAccountIdQueryVariables
 >
 export const AllUploadsDocument = {
   kind: 'Document',
@@ -7027,9 +6870,9 @@ export const AllUploadsDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'username' },
+            name: { kind: 'Name', value: 'accountId' },
           },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
         },
       ],
       selectionSet: {
@@ -7055,10 +6898,10 @@ export const AllUploadsDocument = {
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'username' },
+                      name: { kind: 'Name', value: 'accountId' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'username' },
+                        name: { kind: 'Name', value: 'accountId' },
                       },
                     },
                   ],
@@ -7125,10 +6968,9 @@ export const AllUploadsDocument = {
         selections: [
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'sizeByte' } },
           { kind: 'Field', name: { kind: 'Name', value: 'storageKey' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'username' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'uuid' } },
         ],
       },
     },

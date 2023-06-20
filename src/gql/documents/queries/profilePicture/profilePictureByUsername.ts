@@ -1,14 +1,14 @@
 import { useQuery } from '@urql/vue'
 import { graphql } from '~/gql/generated'
-import { ProfilePictureByUsernameQueryVariables } from '~/gql/generated/graphql'
+import { ProfilePictureByAccountIdQueryVariables } from '~/gql/generated/graphql'
 
-export const useProfilePictureByUsernameQuery = (
-  variables: ProfilePictureByUsernameQueryVariables
+export const useProfilePictureByAccountIdQuery = (
+  variables: ProfilePictureByAccountIdQueryVariables
 ) =>
   useQuery({
     query: graphql(`
-      query profilePictureByUsername($username: String!) {
-        profilePictureByUsername(username: $username) {
+      query profilePictureByAccountId($accountId: UUID!) {
+        profilePictureByAccountId(accountId: $accountId) {
           ...ProfilePictureItem
         }
       }
