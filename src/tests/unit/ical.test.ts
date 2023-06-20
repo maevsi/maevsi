@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 
-import { getIcalString } from '~/server/api/ical'
+import { getIcalString } from '~/server/api/ical.post'
 
 beforeEach(() => {
   vi.useFakeTimers()
