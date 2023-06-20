@@ -260,7 +260,6 @@ useHeadDefault(title)
 
 <script lang="ts">
 export default {
-  name: 'IndexPage',
   components: {
     QrCodeStream: defineAsyncComponent(
       () => import('vue-qrcode-reader/src/components/QrcodeStream.vue')

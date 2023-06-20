@@ -20,12 +20,6 @@ const title = t('title')
 useHeadDefault(title)
 </script>
 
-<script lang="ts">
-export default {
-  name: 'IndexPage',
-}
-</script>
-
 <i18n lang="yaml">
 de:
   accountDescription: Hier wirst du bald interessante Veranstalter entdecken können.

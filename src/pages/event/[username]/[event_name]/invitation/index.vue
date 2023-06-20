@@ -90,12 +90,6 @@ const title = computed(() => {
 useHeadDefault(title)
 </script>
 
-<script lang="ts">
-export default {
-  name: 'IndexPage',
-}
-</script>
-
 <i18n lang="yaml">
 de:
   events: Veranstaltungen
