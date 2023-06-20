@@ -2,7 +2,7 @@ export const useHeadLayout = () => {
   const router = useRouter()
   const host = useHost()
   const { t } = useI18n()
-  const head = useLocaleHead({ addSeoAttributes: true })
+  const head = useLocaleHead({ addDirAttribute: true, addSeoAttributes: true })
 
   useHead(head.value)
   useHead({
