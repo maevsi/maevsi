@@ -32,13 +32,13 @@
           <IconQrCode />
         </template>
       </ButtonColored>
-      <FormInputStateInfo v-if="!invitationCode">
+      <FormInputStateInfo v-if="!invitationId">
         {{ t('qrHint') }}
       </FormInputStateInfo>
-      <CardStateInfo v-if="invitationCode">
-        {{ t('scanned', { scanResult: invitationCode }) }}
+      <CardStateInfo v-if="invitationId">
+        {{ t('scanned', { scanResult: invitationId }) }}
       </CardStateInfo>
-      <div v-if="invitationCode" class="flex flex-col items-center gap-2">
+      <div v-if="invitationId" class="flex flex-col items-center gap-2">
         <ButtonColored
           :aria-label="t('nfcWrite')"
           :disabled="isNfcError"
@@ -72,7 +72,7 @@
 import { consola } from 'consola'
 
 import { useMaevsiStore } from '~/store'
-import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
+import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 
@@ -111,7 +111,7 @@ const route = useRoute()
 const fireAlert = useFireAlert()
 
 // api data
-const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
+const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
   authorUsername: route.params.username as string,
   slug: route.params.event_name as string,
 })
@@ -120,7 +120,7 @@ const event = computed(() =>
 )
 
 // data
-const invitationCode = ref<string>()
+const invitationId = ref<string>()
 const isNfcWritableErrorMessage = ref<string>()
 const loading = ref(false)
 const routeParamEventName = route.params.event_name as string
@@ -175,10 +175,10 @@ const onInit = async (promise: Promise<any>) => {
   }
 }
 const onClick = async () => {
-  await writeTag(invitationCode.value)
+  await writeTag(invitationId.value)
 }
 const onDecode = async (e: any) => {
-  invitationCode.value = e
+  invitationId.value = e
   await fireAlert({ level: 'success' })
   store.modalRemove('ModalAttendanceScanQrCode')
 }

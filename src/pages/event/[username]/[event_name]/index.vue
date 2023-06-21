@@ -55,11 +55,7 @@
         </div>
       </div>
       <ButtonList
-        v-if="
-          !routeQueryIc &&
-          jwtDecoded &&
-          event.authorUsername === jwtDecoded.username
-        "
+        v-if="!routeQueryIc && event.authorAccountId === signedInAccountId"
         class="justify-center"
       >
         <ButtonColored
@@ -332,7 +328,7 @@ import {
 } from '~/gql/generated/graphql'
 import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
+import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 
@@ -367,14 +363,14 @@ const route = useRoute()
 const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
 
 // api data
-const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
+const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
   authorUsername: route.params.username as string,
   slug: route.params.event_name as string,
   invitationUuid: route.query.ic,
 })
 const api = getApiData([eventQuery])
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug)
+  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug)
 )
 
 // data
@@ -479,15 +475,15 @@ const eventDescriptionTemplate = computed(() => {
 })
 const invitation = computed(() => {
   const invitations =
-    eventQuery.data.value?.eventByAuthorUsernameAndSlug?.invitationsByEventId.nodes
+    eventQuery.data.value?.eventByAuthorAccountIdAndSlug?.invitationsByEventId.nodes
       .map((x) => getInvitationItem(x))
       .filter(isNeitherNullNorUndefined)
 
   const invitationsMatchingUuid =
     store.signedInUsername === route.params.username && invitations
       ? invitations.filter(
-          (invitation: Pick<InvitationItemFragment, 'uuid'>) =>
-            invitation.uuid === route.query.ic
+          (invitation: Pick<InvitationItemFragment, 'id'>) =>
+            invitation.id === route.query.ic
         )
       : invitations
 
@@ -496,7 +492,7 @@ const invitation = computed(() => {
       // TODO: use await (https://github.com/maevsi/maevsi/issues/61)
       fireAlert({
         level: 'warning',
-        text: t('invitationCodeMultipleWarning'),
+        text: t('invitationIdMultipleWarning'),
       })
     }
 
@@ -505,9 +501,9 @@ const invitation = computed(() => {
 
   return undefined
 })
-const jwtDecoded = computed(() => store.jwtDecoded)
 const routeQuery = computed(() => route.query)
 const routeQueryIc = computed(() => route.query.ic)
+const signedInAccountId = computed(() => store.signedInAccountId)
 const signedInUsername = computed(() => store.signedInUsername)
 const title = computed(() =>
   api.value.isFetching ? t('globalLoading') : event.value?.name || '403'
@@ -565,7 +561,7 @@ de:
   # invitationCardKindNone: Keine
   # invitationCardKindPaper: Papier
   # invitationCardKindDigital: Digital
-  invitationCodeMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
+  invitationIdMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
   invitationSelectionClear: Zurück zur Einladungsübersicht
   invitationViewFor: Du schaust dir die Einladung für {name} an. Nur du und {name} können diese Seite sehen.
   invitations: Einladungen
@@ -599,7 +595,7 @@ en:
   # invitationCardKindNone: None
   # invitationCardKindPaper: Paper
   # invitationCardKindDigital: Digital
-  invitationCodeMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
+  invitationIdMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
   invitationSelectionClear: Back to the invitation overview
   invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
   invitations: Invitations

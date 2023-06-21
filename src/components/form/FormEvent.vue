@@ -301,11 +301,6 @@ const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const store = useMaevsiStore()
 
-// api data
-const createEventMutation = useCreateEventMutation()
-const updateEventMutation = useUpdateEventByIdMutation()
-const api = getApiData([createEventMutation, updateEventMutation])
-
 // data
 const form = reactive({
   id: ref<string>(),
@@ -322,9 +317,13 @@ const form = reactive({
   url: ref<string>(),
   visibility: ref<EventVisibility>(),
 })
-
 const isFormSent = ref(false)
-const signedInUsername = ref(store.signedInUsername)
+const signedInAccountId = ref(store.signedInAccountId)
+
+// api data
+const createEventMutation = useCreateEventMutation()
+const updateEventMutation = useUpdateEventByIdMutation()
+const api = getApiData([createEventMutation, updateEventMutation])
 
 // methods
 const dateTimeFormatter = (x?: string) =>
@@ -346,7 +345,7 @@ const submit = async () => {
     const result = await updateEventMutation.executeMutation({
       id: form.id,
       eventPatch: {
-        authorUsername: signedInUsername.value,
+        authorAccountId: signedInAccountId.value,
         description: form.description || null,
         end: form.end || null,
         inviteeCountMaximum: form.inviteeCountMaximum
@@ -371,7 +370,7 @@ const submit = async () => {
     const result = await createEventMutation.executeMutation({
       createEventInput: {
         event: {
-          authorUsername: signedInUsername.value || '',
+          authorAccountId: signedInAccountId.value || '',
           description: form.description || null,
           end: form.end || null,
           inviteeCountMaximum: form.inviteeCountMaximum
@@ -392,8 +391,14 @@ const submit = async () => {
     if (result.error || !result.data) return
 
     showToast({ title: t('eventCreateSuccess') })
+
+    if (!store.signedInUsername || !form.slug)
+      throw new Error(
+        'Aborting navigation: required data for path templating is missing!'
+      )
+
     await navigateTo(
-      localePath(`/event/${signedInUsername.value}/${form.slug}`)
+      localePath(`/event/${store.signedInUsername}/${form.slug}`)
     )
   }
 }
@@ -441,7 +446,11 @@ const rules = {
   },
   slug: {
     existenceNone: helpers.withAsync(
-      validateEventSlug(store.signedInUsername || '', true, props.event?.slug)
+      validateEventSlug({
+        signedInAccountId: store.signedInAccountId || '',
+        invert: true,
+        exclude: props.event?.slug,
+      })
     ),
     maxLength: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
     required,

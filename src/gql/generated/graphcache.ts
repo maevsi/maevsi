@@ -1405,7 +1405,7 @@ export type EventUnlockInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  invitationCode: Scalars['UUID']['input']
+  invitationId: Scalars['UUID']['input']
 }
 
 /** The output of our `eventUnlock` mutation. */
@@ -1423,7 +1423,7 @@ export type EventUnlockPayload = {
 
 export type EventUnlockResponse = {
   __typename?: 'EventUnlockResponse'
-  authorAccountId?: Maybe<Scalars['String']['output']>
+  authorAccountUsername?: Maybe<Scalars['String']['output']>
   eventSlug?: Maybe<Scalars['String']['output']>
   jwt?: Maybe<Scalars['Jwt']['output']>
 }
@@ -1768,7 +1768,7 @@ export type Mutation = {
   deleteUploadByStorageKey?: Maybe<DeleteUploadPayload>
   /** Allows to delete an event. */
   eventDelete?: Maybe<EventDeletePayload>
-  /** Allows to enter invitation codes. */
+  /** Assigns an invitation to the current session. */
   eventUnlock?: Maybe<EventUnlockPayload>
   /** Adds a notification for the invitation channel. */
   invite?: Maybe<InvitePayload>
@@ -2290,10 +2290,14 @@ export enum ProfilePicturesOrderBy {
 /** The root query type which gives access points into the data universe. */
 export type Query = Node & {
   __typename?: 'Query'
+  /** Gets the id of an account with the given username. */
+  accountIdByUsername?: Maybe<Scalars['UUID']['output']>
   /** Shows if an account exists. */
   accountIsExisting?: Maybe<Scalars['Boolean']['output']>
   /** Gets the total upload quota in bytes for the invoking account. */
   accountUploadQuotaBytes?: Maybe<Scalars['BigInt']['output']>
+  /** Gets the username of an account with the given id. */
+  accountUsernameById?: Maybe<Scalars['String']['output']>
   /** Reads and enables pagination through a set of `Contact`. */
   allContacts?: Maybe<ContactsConnection>
   /** Reads and enables pagination through a set of `EventGrouping`. */
@@ -2360,8 +2364,18 @@ export type Query = Node & {
 }
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAccountIdByUsernameArgs = {
+  username: Scalars['String']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAccountIsExistingArgs = {
   username: Scalars['String']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAccountUsernameByIdArgs = {
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
@@ -3307,6 +3321,11 @@ export type GraphCacheKeysConfig = {
 
 export type GraphCacheResolvers = {
   Query?: {
+    accountIdByUsername?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryAccountIdByUsernameArgs,
+      Scalars['UUID'] | string
+    >
     accountIsExisting?: GraphCacheResolver<
       WithTypename<Query>,
       QueryAccountIsExistingArgs,
@@ -3316,6 +3335,11 @@ export type GraphCacheResolvers = {
       WithTypename<Query>,
       Record<string, never>,
       Scalars['BigInt'] | string
+    >
+    accountUsernameById?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryAccountUsernameByIdArgs,
+      Scalars['String'] | string
     >
     allContacts?: GraphCacheResolver<
       WithTypename<Query>,
@@ -4370,7 +4394,7 @@ export type GraphCacheResolvers = {
     >
   }
   EventUnlockResponse?: {
-    authorAccountId?: GraphCacheResolver<
+    authorAccountUsername?: GraphCacheResolver<
       WithTypename<EventUnlockResponse>,
       Record<string, never>,
       Scalars['String'] | string

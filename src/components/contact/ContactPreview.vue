@@ -50,11 +50,7 @@ import { ContactItemFragment } from '~/gql/generated/graphql'
 export interface Props {
   contact: Pick<
     ContactItemFragment,
-    | 'accountUsername'
-    | 'emailAddress'
-    | 'emailAddressHash'
-    | 'firstName'
-    | 'lastName'
+    'accountId' | 'emailAddress' | 'emailAddressHash' | 'firstName' | 'lastName'
   >
   feedback?: string | null
   isUsernameLinked?: boolean

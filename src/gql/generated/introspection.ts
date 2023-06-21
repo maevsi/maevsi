@@ -2209,7 +2209,7 @@ export default {
         name: 'EventUnlockResponse',
         fields: [
           {
-            name: 'authorAccountId',
+            name: 'authorAccountUsername',
             type: {
               kind: 'SCALAR',
               name: 'Any',
@@ -4308,6 +4308,25 @@ export default {
         name: 'Query',
         fields: [
           {
+            name: 'accountIdByUsername',
+            type: {
+              kind: 'SCALAR',
+              name: 'Any',
+            },
+            args: [
+              {
+                name: 'username',
+                type: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'SCALAR',
+                    name: 'Any',
+                  },
+                },
+              },
+            ],
+          },
+          {
             name: 'accountIsExisting',
             type: {
               kind: 'SCALAR',
@@ -4333,6 +4352,25 @@ export default {
               name: 'Any',
             },
             args: [],
+          },
+          {
+            name: 'accountUsernameById',
+            type: {
+              kind: 'SCALAR',
+              name: 'Any',
+            },
+            args: [
+              {
+                name: 'id',
+                type: {
+                  kind: 'NON_NULL',
+                  ofType: {
+                    kind: 'SCALAR',
+                    name: 'Any',
+                  },
+                },
+              },
+            ],
           },
           {
             name: 'allContacts',

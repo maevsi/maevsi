@@ -1414,7 +1414,7 @@ export type EventUnlockInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  invitationCode: Scalars['UUID']['input']
+  invitationId: Scalars['UUID']['input']
 }
 
 /** The output of our `eventUnlock` mutation. */
@@ -1432,7 +1432,7 @@ export type EventUnlockPayload = {
 
 export type EventUnlockResponse = {
   __typename?: 'EventUnlockResponse'
-  authorAccountId?: Maybe<Scalars['String']['output']>
+  authorAccountUsername?: Maybe<Scalars['String']['output']>
   eventSlug?: Maybe<Scalars['String']['output']>
   jwt?: Maybe<Scalars['Jwt']['output']>
 }
@@ -1777,7 +1777,7 @@ export type Mutation = {
   deleteUploadByStorageKey?: Maybe<DeleteUploadPayload>
   /** Allows to delete an event. */
   eventDelete?: Maybe<EventDeletePayload>
-  /** Allows to enter invitation codes. */
+  /** Assigns an invitation to the current session. */
   eventUnlock?: Maybe<EventUnlockPayload>
   /** Adds a notification for the invitation channel. */
   invite?: Maybe<InvitePayload>
@@ -2299,10 +2299,14 @@ export enum ProfilePicturesOrderBy {
 /** The root query type which gives access points into the data universe. */
 export type Query = Node & {
   __typename?: 'Query'
+  /** Gets the id of an account with the given username. */
+  accountIdByUsername?: Maybe<Scalars['UUID']['output']>
   /** Shows if an account exists. */
   accountIsExisting?: Maybe<Scalars['Boolean']['output']>
   /** Gets the total upload quota in bytes for the invoking account. */
   accountUploadQuotaBytes?: Maybe<Scalars['BigInt']['output']>
+  /** Gets the username of an account with the given id. */
+  accountUsernameById?: Maybe<Scalars['String']['output']>
   /** Reads and enables pagination through a set of `Contact`. */
   allContacts?: Maybe<ContactsConnection>
   /** Reads and enables pagination through a set of `EventGrouping`. */
@@ -2369,8 +2373,18 @@ export type Query = Node & {
 }
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAccountIdByUsernameArgs = {
+  username: Scalars['String']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAccountIsExistingArgs = {
   username: Scalars['String']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAccountUsernameByIdArgs = {
+  id: Scalars['UUID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
@@ -3220,7 +3234,11 @@ export type ProfilePictureItemFragment = {
   id: any
   nodeId: string
   accountId: any
-  uploadId: any
+  uploadByUploadId?:
+    | ({ __typename?: 'Upload' } & {
+        ' $fragmentRefs'?: { UploadItemFragment: UploadItemFragment }
+      })
+    | null
 } & { ' $fragmentName'?: 'ProfilePictureItemFragment' }
 
 export type UploadItemFragment = {
@@ -3435,7 +3453,7 @@ export type EventDeleteMutation = {
 }
 
 export type EventUnlockMutationVariables = Exact<{
-  invitationCode: Scalars['UUID']['input']
+  invitationId: Scalars['UUID']['input']
 }>
 
 export type EventUnlockMutation = {
@@ -3444,9 +3462,9 @@ export type EventUnlockMutation = {
     __typename?: 'EventUnlockPayload'
     eventUnlockResponse?: {
       __typename?: 'EventUnlockResponse'
+      authorAccountUsername?: string | null
       eventSlug?: string | null
       jwt?: any | null
-      authorAccountId?: string | null
     } | null
   } | null
 }
@@ -3562,6 +3580,15 @@ export type UploadCreateMutation = {
   } | null
 }
 
+export type AccountIdByUsernameQueryVariables = Exact<{
+  username: Scalars['String']['input']
+}>
+
+export type AccountIdByUsernameQuery = {
+  __typename?: 'Query'
+  accountIdByUsername?: any | null
+}
+
 export type AccountIsExistingQueryVariables = Exact<{
   username: Scalars['String']['input']
 }>
@@ -3578,6 +3605,15 @@ export type AccountUploadQuotaBytesQueryVariables = Exact<{
 export type AccountUploadQuotaBytesQuery = {
   __typename?: 'Query'
   accountUploadQuotaBytes?: any | null
+}
+
+export type AccountUsernameByIdQueryVariables = Exact<{
+  id: Scalars['UUID']['input']
+}>
+
+export type AccountUsernameByIdQuery = {
+  __typename?: 'Query'
+  accountUsernameById?: string | null
 }
 
 export type AllContactsQueryVariables = Exact<{
@@ -3861,28 +3897,6 @@ export const InvitationItemFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<InvitationItemFragment, unknown>
-export const ProfilePictureItemFragmentDoc = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'ProfilePictureItem' },
-      typeCondition: {
-        kind: 'NamedType',
-        name: { kind: 'Name', value: 'ProfilePicture' },
-      },
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'uploadId' } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ProfilePictureItemFragment, unknown>
 export const UploadItemFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -3906,6 +3920,58 @@ export const UploadItemFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<UploadItemFragment, unknown>
+export const ProfilePictureItemFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'ProfilePictureItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'ProfilePicture' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'uploadByUploadId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadItem' },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Upload' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'sizeByte' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'storageKey' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProfilePictureItemFragment, unknown>
 export const AuthenticateDocument = {
   kind: 'Document',
   definitions: [
@@ -5194,7 +5260,7 @@ export const EventUnlockDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'invitationCode' },
+            name: { kind: 'Name', value: 'invitationId' },
           },
           type: {
             kind: 'NonNullType',
@@ -5217,10 +5283,10 @@ export const EventUnlockDocument = {
                   fields: [
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'invitationCode' },
+                      name: { kind: 'Name', value: 'invitationId' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'invitationCode' },
+                        name: { kind: 'Name', value: 'invitationId' },
                       },
                     },
                   ],
@@ -5238,13 +5304,13 @@ export const EventUnlockDocument = {
                     selections: [
                       {
                         kind: 'Field',
+                        name: { kind: 'Name', value: 'authorAccountUsername' },
+                      },
+                      {
+                        kind: 'Field',
                         name: { kind: 'Name', value: 'eventSlug' },
                       },
                       { kind: 'Field', name: { kind: 'Name', value: 'jwt' } },
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'authorAccountId' },
-                      },
                     ],
                   },
                 },
@@ -5919,6 +5985,54 @@ export const UploadCreateDocument = {
   UploadCreateMutation,
   UploadCreateMutationVariables
 >
+export const AccountIdByUsernameDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'accountIdByUsername' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'username' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountIdByUsername' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'username' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'username' },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  AccountIdByUsernameQuery,
+  AccountIdByUsernameQueryVariables
+>
 export const AccountIsExistingDocument = {
   kind: 'Document',
   definitions: [
@@ -5988,6 +6102,48 @@ export const AccountUploadQuotaBytesDocument = {
 } as unknown as DocumentNode<
   AccountUploadQuotaBytesQuery,
   AccountUploadQuotaBytesQueryVariables
+>
+export const AccountUsernameByIdDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'accountUsernameById' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountUsernameById' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'id' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'id' },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  AccountUsernameByIdQuery,
+  AccountUsernameByIdQueryVariables
 >
 export const AllContactsDocument = {
   kind: 'Document',
@@ -6819,6 +6975,24 @@ export const ProfilePictureByAccountIdDocument = {
     },
     {
       kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'UploadItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Upload' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'sizeByte' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'storageKey' } },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
       name: { kind: 'Name', value: 'ProfilePictureItem' },
       typeCondition: {
         kind: 'NamedType',
@@ -6830,7 +7004,19 @@ export const ProfilePictureByAccountIdDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'uploadId' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'uploadByUploadId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'FragmentSpread',
+                  name: { kind: 'Name', value: 'UploadItem' },
+                },
+              ],
+            },
+          },
         ],
       },
     },

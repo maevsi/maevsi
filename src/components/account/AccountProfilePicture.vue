@@ -1,7 +1,7 @@
 <template>
   <Loader :api="api" indicator="ping" :classes="classes">
     <LoaderImage
-      :alt="t('profilePictureAlt', { username })"
+      :alt="t('profilePictureAlt', { username: api.data.accountUsernameById })"
       :aspect="aspect"
       :classes="classes"
       :height="height"
@@ -13,14 +13,16 @@
 
 <script setup lang="ts">
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
-import { useProfilePictureByAccountIdQuery } from '~/gql/documents/queries/profilePicture/profilePictureByAccountId'
 import { getProfilePictureItem } from '~/gql/documents/fragments/profilePictureItem'
+import { getUploadItem } from '~/gql/documents/fragments/uploadItem'
+import { useAccountUsernameByIdQuery } from '~/gql/documents/queries/account/accountUsernameById'
+import { useProfilePictureByAccountIdQuery } from '~/gql/documents/queries/profilePicture/profilePictureByAccountId'
 
 export interface Props {
+  accountId: string
   aspect?: string
   classes?: string
   height: string
-  username: string
   width: string
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -32,20 +34,22 @@ const { t } = useI18n()
 const TUSD_FILES_URL = useTusdFilesUrl()
 
 // api data
-const profilePictureQuery = await useProfilePictureByAccountIdQuery({
-  username: props.username,
+const accountUsernameByIdQuery = await useAccountUsernameByIdQuery({
+  accountId: props.accountId,
 })
-const api = getApiData([profilePictureQuery])
+const profilePictureQuery = await useProfilePictureByAccountIdQuery({
+  accountId: props.accountId,
+})
+const api = getApiData([accountUsernameByIdQuery, profilePictureQuery])
 
 // computations
 const profilePictureUrl = computed(() => {
   const profilePicture = getProfilePictureItem(
     profilePictureQuery.data.value?.profilePictureByAccountId
   )
+  const upload = getUploadItem(profilePicture?.uploadByUploadId)
 
-  return profilePicture?.uploadStorageKey
-    ? TUSD_FILES_URL + profilePicture.uploadStorageKey
-    : undefined
+  return upload?.storageKey ? TUSD_FILES_URL + upload.storageKey : undefined
 })
 </script>
 

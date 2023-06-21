@@ -5,7 +5,9 @@ export const ProfilePictureItem = graphql(`
     id
     nodeId
     accountId
-    uploadId
+    uploadByUploadId {
+      ...UploadItem
+    }
   }
 `)
 

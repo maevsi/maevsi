@@ -57,7 +57,7 @@ export interface Props {
   event: Pick<
     EventItemFragment,
     | 'name'
-    | 'authorUsername'
+    | 'authorAccountId'
     | 'start'
     | 'visibility'
     | 'slug'

@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 import { useEventDeleteMutation } from '~/gql/documents/mutations/event/eventDelete'
-import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
+import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 
@@ -85,14 +85,14 @@ const { t } = useI18n()
 const route = useRoute()
 
 // api data
-const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
+const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
   authorUsername: route.params.username as string,
   slug: route.params.event_name as string,
 })
 const eventDeleteMutation = useEventDeleteMutation()
 const api = getApiData([eventQuery, eventDeleteMutation])
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug)
+  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug)
 )
 
 // data

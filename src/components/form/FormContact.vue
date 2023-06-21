@@ -159,7 +159,7 @@ const submit = async () => {
       contactPatch: {
         accountUsername: form.accountUsername || null,
         address: form.address || null,
-        authorAccountUsername: store.jwtDecoded?.username as string,
+        authorAccountId: store.signedInAccountId,
         emailAddress: form.emailAddress || null,
         firstName: form.firstName || null,
         lastName: form.lastName || null,
@@ -177,7 +177,7 @@ const submit = async () => {
       contactInput: {
         accountUsername: form.accountUsername || null,
         address: form.address || null,
-        authorAccountUsername: store.jwtDecoded?.username as string,
+        authorAccountId: store.signedInAccountId,
         emailAddress: form.emailAddress || null,
         firstName: form.firstName || null,
         lastName: form.lastName || null,

@@ -10,6 +10,7 @@ export const useMaevsiStore = defineStore('maevsi', () => {
   const jwtDecoded = ref<JWTPayload>()
   const modals = ref<Modal[]>([])
   const routerAfterEachs = ref<(() => void | Promise<void>)[]>([])
+  const signedInAccountId = ref<string>()
   const signedInUsername = ref<string>()
   const turnstileToken = ref<string>()
 
@@ -22,6 +23,12 @@ export const useMaevsiStore = defineStore('maevsi', () => {
 
     jwt.value = jwtNew
     jwtDecoded.value = jwtDecodedNew
+    signedInAccountId.value =
+      jwtDecodedNew?.role === 'maevsi_account' &&
+      jwtDecodedNew.exp !== undefined &&
+      jwtDecodedNew.exp > Math.floor(Date.now() / 1000)
+        ? (jwtDecodedNew.accountId as string | undefined)
+        : undefined
     signedInUsername.value =
       jwtDecodedNew?.role === 'maevsi_account' &&
       jwtDecodedNew.exp !== undefined &&
@@ -41,6 +48,7 @@ export const useMaevsiStore = defineStore('maevsi', () => {
     jwtDecoded,
     routerAfterEachs,
     modals,
+    signedInAccountId,
     signedInUsername,
     turnstileToken,
     jwtRemove,

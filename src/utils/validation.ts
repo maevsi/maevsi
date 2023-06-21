@@ -50,11 +50,15 @@ export const isFormValid = async ({
 }
 
 export const validateEventSlug =
-  (
-    signedInUserName: string,
-    invert: boolean,
+  ({
+    signedInAccountId,
+    invert,
+    exclude,
+  }: {
+    signedInAccountId: string
+    invert: boolean
     exclude?: string
-  ): ((value: string) => Promise<boolean>) =>
+  }): ((value: string) => Promise<boolean>) =>
   async (value: string) => {
     const { $urql } = useNuxtApp()
 
@@ -69,7 +73,7 @@ export const validateEventSlug =
     const result = await $urql.value
       .query(eventIsExistingQuery, {
         slug: value,
-        authorUsername: signedInUserName,
+        authorAccountId: signedInAccountId,
       })
       .toPromise()
 

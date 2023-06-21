@@ -125,14 +125,14 @@ import { useAllUploadsQuery } from '~/gql/documents/queries/upload/uploadsAll'
 import { getUploadItem } from '~/gql/documents/fragments/uploadItem'
 
 export interface Props {
+  accountId?: string
   allowDeletion?: boolean
   selectable?: boolean
-  username?: string
 }
 const props = withDefaults(defineProps<Props>(), {
+  accountId: undefined,
   allowDeletion: true,
   selectable: false,
-  username: undefined,
 })
 
 const emit = defineEmits<{
@@ -156,7 +156,7 @@ const inputProfilePictureRef = ref()
 const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery()
 const allUploadsQuery = await useAllUploadsQuery({
   after,
-  username: props.username,
+  accountId: props.accountId,
   first: ITEMS_PER_PAGE,
 })
 const uploadCreateMutation = useUploadCreateMutation()
@@ -333,7 +333,7 @@ const getUploadBlobPromise = () =>
             allowedFileTypes: ['image/*'],
           },
           meta: {
-            maevsiUploadUuid: result.data.uploadCreate?.uuid,
+            maevsiUploadUuid: result.data.uploadCreate?.upload?.id,
           },
           onBeforeUpload: (files: { [key: string]: UppyFile }) =>
             Object.keys(files).reduce(

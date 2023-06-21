@@ -19,7 +19,7 @@ const documents = {
     types.EventItemFragmentDoc,
   '\n  fragment InvitationItem on Invitation {\n    id\n    nodeId\n    contactId\n    eventId\n    feedback\n    feedbackPaper\n    contactByContactId {\n      ...ContactItem\n    }\n  }\n':
     types.InvitationItemFragmentDoc,
-  '\n  fragment ProfilePictureItem on ProfilePicture {\n    id\n    nodeId\n    accountId\n    uploadId\n  }\n':
+  '\n  fragment ProfilePictureItem on ProfilePicture {\n    id\n    nodeId\n    accountId\n    uploadByUploadId {\n      ...UploadItem\n    }\n  }\n':
     types.ProfilePictureItemFragmentDoc,
   '\n  fragment UploadItem on Upload {\n    id\n    nodeId\n    accountId\n    sizeByte\n    storageKey\n  }\n':
     types.UploadItemFragmentDoc,
@@ -51,7 +51,7 @@ const documents = {
     types.CreateEventDocument,
   '\n      mutation eventDelete($id: UUID!, $password: String!) {\n        eventDelete(input: { id: $id, password: $password }) {\n          clientMutationId\n          event {\n            ...EventItem\n          }\n        }\n      }\n    ':
     types.EventDeleteDocument,
-  '\n  mutation eventUnlock($invitationCode: UUID!) {\n    eventUnlock(input: { invitationCode: $invitationCode }) {\n      eventUnlockResponse {\n        eventSlug\n        jwt\n        authorAccountId\n      }\n    }\n  }\n':
+  '\n  mutation eventUnlock($invitationId: UUID!) {\n    eventUnlock(input: { invitationId: $invitationId }) {\n      eventUnlockResponse {\n        authorAccountUsername\n        eventSlug\n        jwt\n      }\n    }\n  }\n':
     types.EventUnlockDocument,
   '\n      mutation updateEventById($id: UUID!, $eventPatch: EventPatch!) {\n        updateEventById(input: { id: $id, eventPatch: $eventPatch }) {\n          event {\n            ...EventItem\n          }\n        }\n      }\n    ':
     types.UpdateEventByIdDocument,
@@ -67,10 +67,14 @@ const documents = {
     types.ProfilePictureSetDocument,
   '\n      mutation uploadCreate($uploadCreateInput: UploadCreateInput!) {\n        uploadCreate(input: $uploadCreateInput) {\n          clientMutationId\n          upload {\n            id\n          }\n        }\n      }\n    ':
     types.UploadCreateDocument,
+  '\n  query accountIdByUsername($username: String!) {\n    accountIdByUsername(username: $username)\n  }\n':
+    types.AccountIdByUsernameDocument,
   '\n  query accountIsExisting($username: String!) {\n    accountIsExisting(username: $username)\n  }\n':
     types.AccountIsExistingDocument,
   '\n      query accountUploadQuotaBytes {\n        accountUploadQuotaBytes\n      }\n    ':
     types.AccountUploadQuotaBytesDocument,
+  '\n  query accountUsernameById($id: UUID!) {\n    accountUsernameById(id: $id)\n  }\n':
+    types.AccountUsernameByIdDocument,
   '\n      query allContacts($after: Cursor, $authorAccountId: UUID, $first: Int!) {\n        allContacts(\n          after: $after\n          condition: { authorAccountId: $authorAccountId }\n          first: $first\n          orderBy: [FIRST_NAME_ASC, LAST_NAME_ASC]\n        ) {\n          nodes {\n            ...ContactItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ':
     types.AllContactsDocument,
   '\n      query eventByAuthorAccountIdAndSlug(\n        $authorAccountId: UUID!\n        $slug: String!\n        $invitationId: UUID\n      ) {\n        eventByAuthorAccountIdAndSlug(\n          authorAccountId: $authorAccountId\n          slug: $slug\n        ) {\n          ...EventItem\n          invitationsByEventId(condition: { id: $invitationId }) {\n            nodes {\n              ...InvitationItem\n              contactByContactId {\n                ...ContactItem\n              }\n            }\n          }\n        }\n      }\n    ':
@@ -123,8 +127,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment ProfilePictureItem on ProfilePicture {\n    id\n    nodeId\n    accountId\n    uploadId\n  }\n'
-): (typeof documents)['\n  fragment ProfilePictureItem on ProfilePicture {\n    id\n    nodeId\n    accountId\n    uploadId\n  }\n']
+  source: '\n  fragment ProfilePictureItem on ProfilePicture {\n    id\n    nodeId\n    accountId\n    uploadByUploadId {\n      ...UploadItem\n    }\n  }\n'
+): (typeof documents)['\n  fragment ProfilePictureItem on ProfilePicture {\n    id\n    nodeId\n    accountId\n    uploadByUploadId {\n      ...UploadItem\n    }\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -219,8 +223,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  mutation eventUnlock($invitationCode: UUID!) {\n    eventUnlock(input: { invitationCode: $invitationCode }) {\n      eventUnlockResponse {\n        eventSlug\n        jwt\n        authorAccountId\n      }\n    }\n  }\n'
-): (typeof documents)['\n  mutation eventUnlock($invitationCode: UUID!) {\n    eventUnlock(input: { invitationCode: $invitationCode }) {\n      eventUnlockResponse {\n        eventSlug\n        jwt\n        authorAccountId\n      }\n    }\n  }\n']
+  source: '\n  mutation eventUnlock($invitationId: UUID!) {\n    eventUnlock(input: { invitationId: $invitationId }) {\n      eventUnlockResponse {\n        authorAccountUsername\n        eventSlug\n        jwt\n      }\n    }\n  }\n'
+): (typeof documents)['\n  mutation eventUnlock($invitationId: UUID!) {\n    eventUnlock(input: { invitationId: $invitationId }) {\n      eventUnlockResponse {\n        authorAccountUsername\n        eventSlug\n        jwt\n      }\n    }\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -267,6 +271,12 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: '\n  query accountIdByUsername($username: String!) {\n    accountIdByUsername(username: $username)\n  }\n'
+): (typeof documents)['\n  query accountIdByUsername($username: String!) {\n    accountIdByUsername(username: $username)\n  }\n']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: '\n  query accountIsExisting($username: String!) {\n    accountIsExisting(username: $username)\n  }\n'
 ): (typeof documents)['\n  query accountIsExisting($username: String!) {\n    accountIsExisting(username: $username)\n  }\n']
 /**
@@ -275,6 +285,12 @@ export function graphql(
 export function graphql(
   source: '\n      query accountUploadQuotaBytes {\n        accountUploadQuotaBytes\n      }\n    '
 ): (typeof documents)['\n      query accountUploadQuotaBytes {\n        accountUploadQuotaBytes\n      }\n    ']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  query accountUsernameById($id: UUID!) {\n    accountUsernameById(id: $id)\n  }\n'
+): (typeof documents)['\n  query accountUsernameById($id: UUID!) {\n    accountUsernameById(id: $id)\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
