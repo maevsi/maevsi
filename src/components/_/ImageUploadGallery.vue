@@ -136,7 +136,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  selection: [storageKey?: string | null]
+  selection: [uploadId?: string | null]
 }>()
 
 const { t } = useI18n()
@@ -182,7 +182,7 @@ const pending = reactive({
   deletions: ref<string[]>([]),
 })
 const selectedItem = ref<{
-  storageKey?: string | null
+  id?: string | null
 }>()
 const uppy = ref<Uppy>()
 
@@ -305,7 +305,7 @@ const toggleSelect = (upload: UnwrapRef<typeof selectedItem>) => {
     emit('selection', undefined)
   } else {
     selectedItem.value = upload
-    emit('selection', selectedItem.value?.storageKey)
+    emit('selection', selectedItem.value?.id)
   }
 }
 const getUploadBlobPromise = () =>

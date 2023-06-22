@@ -28,36 +28,14 @@
 </template>
 
 <script setup lang="ts">
-import { useMaevsiStore } from '~/store'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
+import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
 definePageMeta({
   async validate(route) {
-    const { $urql } = useNuxtApp()
-    const store = useMaevsiStore()
-
-    const eventIsExisting = await $urql.value
-      .query(eventIsExistingQuery, {
-        slug: route.params.event_name as string,
-        authorUsername: route.params.username as string,
-      })
-      .toPromise()
-
-    if (eventIsExisting.error) {
-      throw createError(eventIsExisting.error)
-    }
-
-    if (!eventIsExisting.data?.eventIsExisting) {
-      return abortNavigation({ statusCode: 404 })
-    }
-
-    if (route.params.username !== store.signedInUsername) {
-      return abortNavigation({ statusCode: 403 })
-    }
-
-    return true
+    return await validateEventExistence(route)
   },
 })
 
@@ -66,14 +44,21 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 
 // api data
+const accountByUsernameQueryx = await useAccountByUsernameQuery({
+  username: route.params.username as string,
+})
+const accountId = computed(
+  () =>
+    getAccountItem(accountByUsernameQueryx.data.value?.accountByUsername)?.id
+)
 const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
-  authorUsername: route.params.username as string,
+  authorAccountId: accountId,
   slug: route.params.event_name as string,
 })
-const api = getApiData([eventQuery])
 const event = computed(() =>
   getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug)
 )
+const api = getApiData([accountByUsernameQueryx, eventQuery])
 
 // data
 const routeParamEventName = route.params.event_name as string

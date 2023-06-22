@@ -40,6 +40,108 @@ export type Scalars = {
   UUID: { input: any; output: any }
 }
 
+/** Public account data. */
+export type Account = Node & {
+  __typename?: 'Account'
+  /** Reads and enables pagination through a set of `Contact`. */
+  contactsByAccountId: ContactsConnection
+  /** Reads and enables pagination through a set of `Contact`. */
+  contactsByAuthorAccountId: ContactsConnection
+  /** Reads and enables pagination through a set of `EventGroup`. */
+  eventGroupsByAuthorAccountId: EventGroupsConnection
+  /** Reads and enables pagination through a set of `Event`. */
+  eventsByAuthorAccountId: EventsConnection
+  /** The account's internal id. */
+  id: Scalars['UUID']['output']
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output']
+  /** Reads a single `ProfilePicture` that is related to this `Account`. */
+  profilePictureByAccountId?: Maybe<ProfilePicture>
+  /**
+   * Reads and enables pagination through a set of `ProfilePicture`.
+   * @deprecated Please use profilePictureByAccountId instead
+   */
+  profilePicturesByAccountId: ProfilePicturesConnection
+  /** Reads and enables pagination through a set of `Upload`. */
+  uploadsByAccountId: UploadsConnection
+  /** The account's username. */
+  username: Scalars['String']['output']
+}
+
+/** Public account data. */
+export type AccountContactsByAccountIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<ContactCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<ContactsOrderBy>>
+}
+
+/** Public account data. */
+export type AccountContactsByAuthorAccountIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<ContactCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<ContactsOrderBy>>
+}
+
+/** Public account data. */
+export type AccountEventGroupsByAuthorAccountIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<EventGroupCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<EventGroupsOrderBy>>
+}
+
+/** Public account data. */
+export type AccountEventsByAuthorAccountIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<EventCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<EventsOrderBy>>
+}
+
+/** Public account data. */
+export type AccountProfilePicturesByAccountIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<ProfilePictureCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<ProfilePicturesOrderBy>>
+}
+
+/** Public account data. */
+export type AccountUploadsByAccountIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<UploadCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<UploadsOrderBy>>
+}
+
+/** A condition to be used against `Account` object types. All fields are tested for equality and combined with a logical ‘and.’ */
+export type AccountCondition = {
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `username` field. */
+  username?: InputMaybe<Scalars['String']['input']>
+}
+
 /** All input for the `accountDelete` mutation. */
 export type AccountDeleteInput = {
   /**
@@ -82,6 +184,14 @@ export type AccountEmailAddressVerificationPayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
+}
+
+/** An input for mutations affecting `Account` */
+export type AccountInput = {
+  /** The account's internal id. */
+  id: Scalars['UUID']['input']
+  /** The account's username. */
+  username: Scalars['String']['input']
 }
 
 /** All input for the `accountPasswordChange` mutation. */
@@ -153,6 +263,14 @@ export type AccountPasswordResetRequestPayload = {
   query?: Maybe<Query>
 }
 
+/** Represents an update to a `Account`. Fields that are set will be updated. */
+export type AccountPatch = {
+  /** The account's internal id. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** The account's username. */
+  username?: InputMaybe<Scalars['String']['input']>
+}
+
 /** All input for the `accountRegistration` mutation. */
 export type AccountRegistrationInput = {
   /**
@@ -201,6 +319,39 @@ export type AccountRegistrationRefreshPayload = {
   query?: Maybe<Query>
 }
 
+/** A connection to a list of `Account` values. */
+export type AccountsConnection = {
+  __typename?: 'AccountsConnection'
+  /** A list of edges which contains the `Account` and cursor to aid in pagination. */
+  edges: Array<AccountsEdge>
+  /** A list of `Account` objects. */
+  nodes: Array<Account>
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** The count of *all* `Account` you could get from the connection. */
+  totalCount: Scalars['Int']['output']
+}
+
+/** A `Account` edge in the connection. */
+export type AccountsEdge = {
+  __typename?: 'AccountsEdge'
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>
+  /** The `Account` at the end of the edge. */
+  node: Account
+}
+
+/** Methods to use when ordering `Account`. */
+export enum AccountsOrderBy {
+  IdAsc = 'ID_ASC',
+  IdDesc = 'ID_DESC',
+  Natural = 'NATURAL',
+  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
+  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
+  UsernameAsc = 'USERNAME_ASC',
+  UsernameDesc = 'USERNAME_DESC',
+}
+
 /** All input for the `authenticate` mutation. */
 export type AuthenticateInput = {
   /**
@@ -228,6 +379,10 @@ export type AuthenticatePayload = {
 /** Contact data. */
 export type Contact = Node & {
   __typename?: 'Contact'
+  /** Reads a single `Account` that is related to this `Contact`. */
+  accountByAccountId?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Contact`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /** The contact account's id. */
   accountId?: Maybe<Scalars['UUID']['output']>
   /** The contact's physical address. */
@@ -378,6 +533,38 @@ export enum ContactsOrderBy {
   UrlDesc = 'URL_DESC',
 }
 
+/** All input for the create `Account` mutation. */
+export type CreateAccountInput = {
+  /** The `Account` to be created by this mutation. */
+  account: AccountInput
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
+/** The output of our create `Account` mutation. */
+export type CreateAccountPayload = {
+  __typename?: 'CreateAccountPayload'
+  /** The `Account` that was created by this mutation. */
+  account?: Maybe<Account>
+  /** An edge for our `Account`. May be used by Relay 1. */
+  accountEdge?: Maybe<AccountsEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our create `Account` mutation. */
+export type CreateAccountPayloadAccountEdgeArgs = {
+  orderBy?: InputMaybe<Array<AccountsOrderBy>>
+}
+
 /** All input for the create `Contact` mutation. */
 export type CreateContactInput = {
   /**
@@ -392,6 +579,10 @@ export type CreateContactInput = {
 /** The output of our create `Contact` mutation. */
 export type CreateContactPayload = {
   __typename?: 'CreateContactPayload'
+  /** Reads a single `Account` that is related to this `Contact`. */
+  accountByAccountId?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Contact`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -424,6 +615,8 @@ export type CreateEventGroupInput = {
 /** The output of our create `EventGroup` mutation. */
 export type CreateEventGroupPayload = {
   __typename?: 'CreateEventGroupPayload'
+  /** Reads a single `Account` that is related to this `EventGroup`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -492,6 +685,8 @@ export type CreateEventInput = {
 /** The output of our create `Event` mutation. */
 export type CreateEventPayload = {
   __typename?: 'CreateEventPayload'
+  /** Reads a single `Account` that is related to this `Event`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -560,6 +755,8 @@ export type CreateProfilePictureInput = {
 /** The output of our create `ProfilePicture` mutation. */
 export type CreateProfilePicturePayload = {
   __typename?: 'CreateProfilePicturePayload'
+  /** Reads a single `Account` that is related to this `ProfilePicture`. */
+  accountByAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -594,6 +791,8 @@ export type CreateUploadInput = {
 /** The output of our create `Upload` mutation. */
 export type CreateUploadPayload = {
   __typename?: 'CreateUploadPayload'
+  /** Reads a single `Account` that is related to this `Upload`. */
+  accountByAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -610,6 +809,61 @@ export type CreateUploadPayload = {
 /** The output of our create `Upload` mutation. */
 export type CreateUploadPayloadUploadEdgeArgs = {
   orderBy?: InputMaybe<Array<UploadsOrderBy>>
+}
+
+/** All input for the `deleteAccountById` mutation. */
+export type DeleteAccountByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The account's internal id. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteAccountByUsername` mutation. */
+export type DeleteAccountByUsernameInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The account's username. */
+  username: Scalars['String']['input']
+}
+
+/** All input for the `deleteAccount` mutation. */
+export type DeleteAccountInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Account` to be deleted. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our delete `Account` mutation. */
+export type DeleteAccountPayload = {
+  __typename?: 'DeleteAccountPayload'
+  /** The `Account` that was deleted by this mutation. */
+  account?: Maybe<Account>
+  /** An edge for our `Account`. May be used by Relay 1. */
+  accountEdge?: Maybe<AccountsEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedAccountId?: Maybe<Scalars['ID']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our delete `Account` mutation. */
+export type DeleteAccountPayloadAccountEdgeArgs = {
+  orderBy?: InputMaybe<Array<AccountsOrderBy>>
 }
 
 /** All input for the `deleteContactByAuthorAccountIdAndAccountId` mutation. */
@@ -650,6 +904,10 @@ export type DeleteContactInput = {
 /** The output of our delete `Contact` mutation. */
 export type DeleteContactPayload = {
   __typename?: 'DeleteContactPayload'
+  /** Reads a single `Account` that is related to this `Contact`. */
+  accountByAccountId?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Contact`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -731,6 +989,8 @@ export type DeleteEventGroupInput = {
 /** The output of our delete `EventGroup` mutation. */
 export type DeleteEventGroupPayload = {
   __typename?: 'DeleteEventGroupPayload'
+  /** Reads a single `Account` that is related to this `EventGroup`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -825,6 +1085,8 @@ export type DeleteEventInput = {
 /** The output of our delete `Event` mutation. */
 export type DeleteEventPayload = {
   __typename?: 'DeleteEventPayload'
+  /** Reads a single `Account` that is related to this `Event`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -941,6 +1203,8 @@ export type DeleteProfilePictureInput = {
 /** The output of our delete `ProfilePicture` mutation. */
 export type DeleteProfilePicturePayload = {
   __typename?: 'DeleteProfilePicturePayload'
+  /** Reads a single `Account` that is related to this `ProfilePicture`. */
+  accountByAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -998,6 +1262,8 @@ export type DeleteUploadInput = {
 /** The output of our delete `Upload` mutation. */
 export type DeleteUploadPayload = {
   __typename?: 'DeleteUploadPayload'
+  /** Reads a single `Account` that is related to this `Upload`. */
+  accountByAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -1020,6 +1286,8 @@ export type DeleteUploadPayloadUploadEdgeArgs = {
 /** An event. */
 export type Event = Node & {
   __typename?: 'Event'
+  /** Reads a single `Account` that is related to this `Event`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /** The event author's id. */
   authorAccountId: Scalars['UUID']['output']
   /** The event's description. */
@@ -1124,6 +1392,8 @@ export type EventDeleteInput = {
 /** The output of our `eventDelete` mutation. */
 export type EventDeletePayload = {
   __typename?: 'EventDeletePayload'
+  /** Reads a single `Account` that is related to this `Event`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -1144,6 +1414,8 @@ export type EventDeletePayloadEventEdgeArgs = {
 /** A group of events. */
 export type EventGroup = Node & {
   __typename?: 'EventGroup'
+  /** Reads a single `Account` that is related to this `EventGroup`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /** The event group author's id. */
   authorAccountId: Scalars['UUID']['output']
   /** The event group's description. */
@@ -1710,6 +1982,8 @@ export type Mutation = {
   accountRegistrationRefresh?: Maybe<AccountRegistrationRefreshPayload>
   /** Creates a JWT token that will securely identify an account and give it certain permissions. */
   authenticate?: Maybe<AuthenticatePayload>
+  /** Creates a single `Account`. */
+  createAccount?: Maybe<CreateAccountPayload>
   /** Creates a single `Contact`. */
   createContact?: Maybe<CreateContactPayload>
   /** Creates a single `Event`. */
@@ -1724,6 +1998,12 @@ export type Mutation = {
   createProfilePicture?: Maybe<CreateProfilePicturePayload>
   /** Creates a single `Upload`. */
   createUpload?: Maybe<CreateUploadPayload>
+  /** Deletes a single `Account` using its globally unique id. */
+  deleteAccount?: Maybe<DeleteAccountPayload>
+  /** Deletes a single `Account` using a unique key. */
+  deleteAccountById?: Maybe<DeleteAccountPayload>
+  /** Deletes a single `Account` using a unique key. */
+  deleteAccountByUsername?: Maybe<DeleteAccountPayload>
   /** Deletes a single `Contact` using its globally unique id. */
   deleteContact?: Maybe<DeleteContactPayload>
   /** Deletes a single `Contact` using a unique key. */
@@ -1778,6 +2058,12 @@ export type Mutation = {
   notificationAcknowledge?: Maybe<NotificationAcknowledgePayload>
   /** Sets the picture with the given upload id as the invoker's profile picture. */
   profilePictureSet?: Maybe<ProfilePictureSetPayload>
+  /** Updates a single `Account` using its globally unique id and a patch. */
+  updateAccount?: Maybe<UpdateAccountPayload>
+  /** Updates a single `Account` using a unique key and a patch. */
+  updateAccountById?: Maybe<UpdateAccountPayload>
+  /** Updates a single `Account` using a unique key and a patch. */
+  updateAccountByUsername?: Maybe<UpdateAccountPayload>
   /** Updates a single `Contact` using its globally unique id and a patch. */
   updateContact?: Maybe<UpdateContactPayload>
   /** Updates a single `Contact` using a unique key and a patch. */
@@ -1865,6 +2151,11 @@ export type MutationAuthenticateArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateAccountArgs = {
+  input: CreateAccountInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateContactArgs = {
   input: CreateContactInput
 }
@@ -1897,6 +2188,21 @@ export type MutationCreateProfilePictureArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateUploadArgs = {
   input: CreateUploadInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAccountArgs = {
+  input: DeleteAccountInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAccountByIdArgs = {
+  input: DeleteAccountByIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAccountByUsernameArgs = {
+  input: DeleteAccountByUsernameInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2032,6 +2338,21 @@ export type MutationNotificationAcknowledgeArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationProfilePictureSetArgs = {
   input: ProfilePictureSetInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAccountArgs = {
+  input: UpdateAccountInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAccountByIdArgs = {
+  input: UpdateAccountByIdInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAccountByUsernameArgs = {
+  input: UpdateAccountByUsernameInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2189,6 +2510,8 @@ export type PageInfo = {
 /** Mapping of account ids to upload ids. */
 export type ProfilePicture = Node & {
   __typename?: 'ProfilePicture'
+  /** Reads a single `Account` that is related to this `ProfilePicture`. */
+  accountByAccountId?: Maybe<Account>
   /** The account's id. */
   accountId: Scalars['UUID']['output']
   /** The profile picture's internal id. */
@@ -2290,14 +2613,14 @@ export enum ProfilePicturesOrderBy {
 /** The root query type which gives access points into the data universe. */
 export type Query = Node & {
   __typename?: 'Query'
-  /** Gets the id of an account with the given username. */
-  accountIdByUsername?: Maybe<Scalars['UUID']['output']>
-  /** Shows if an account exists. */
-  accountIsExisting?: Maybe<Scalars['Boolean']['output']>
+  /** Reads a single `Account` using its globally unique `ID`. */
+  account?: Maybe<Account>
+  accountById?: Maybe<Account>
+  accountByUsername?: Maybe<Account>
   /** Gets the total upload quota in bytes for the invoking account. */
   accountUploadQuotaBytes?: Maybe<Scalars['BigInt']['output']>
-  /** Gets the username of an account with the given id. */
-  accountUsernameById?: Maybe<Scalars['String']['output']>
+  /** Reads and enables pagination through a set of `Account`. */
+  allAccounts?: Maybe<AccountsConnection>
   /** Reads and enables pagination through a set of `Contact`. */
   allContacts?: Maybe<ContactsConnection>
   /** Reads and enables pagination through a set of `EventGrouping`. */
@@ -2364,18 +2687,29 @@ export type Query = Node & {
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAccountIdByUsernameArgs = {
-  username: Scalars['String']['input']
+export type QueryAccountArgs = {
+  nodeId: Scalars['ID']['input']
 }
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAccountIsExistingArgs = {
-  username: Scalars['String']['input']
-}
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAccountUsernameByIdArgs = {
+export type QueryAccountByIdArgs = {
   id: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAccountByUsernameArgs = {
+  username: Scalars['String']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllAccountsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AccountCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AccountsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
@@ -2604,6 +2938,66 @@ export type QueryUploadByStorageKeyArgs = {
   storageKey: Scalars['String']['input']
 }
 
+/** All input for the `updateAccountById` mutation. */
+export type UpdateAccountByIdInput = {
+  /** An object where the defined keys will be set on the `Account` being updated. */
+  accountPatch: AccountPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The account's internal id. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `updateAccountByUsername` mutation. */
+export type UpdateAccountByUsernameInput = {
+  /** An object where the defined keys will be set on the `Account` being updated. */
+  accountPatch: AccountPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The account's username. */
+  username: Scalars['String']['input']
+}
+
+/** All input for the `updateAccount` mutation. */
+export type UpdateAccountInput = {
+  /** An object where the defined keys will be set on the `Account` being updated. */
+  accountPatch: AccountPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Account` to be updated. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our update `Account` mutation. */
+export type UpdateAccountPayload = {
+  __typename?: 'UpdateAccountPayload'
+  /** The `Account` that was updated by this mutation. */
+  account?: Maybe<Account>
+  /** An edge for our `Account`. May be used by Relay 1. */
+  accountEdge?: Maybe<AccountsEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our update `Account` mutation. */
+export type UpdateAccountPayloadAccountEdgeArgs = {
+  orderBy?: InputMaybe<Array<AccountsOrderBy>>
+}
+
 /** All input for the `updateContactByAuthorAccountIdAndAccountId` mutation. */
 export type UpdateContactByAuthorAccountIdAndAccountIdInput = {
   /** The contact account's id. */
@@ -2648,6 +3042,10 @@ export type UpdateContactInput = {
 /** The output of our update `Contact` mutation. */
 export type UpdateContactPayload = {
   __typename?: 'UpdateContactPayload'
+  /** Reads a single `Account` that is related to this `Contact`. */
+  accountByAccountId?: Maybe<Account>
+  /** Reads a single `Account` that is related to this `Contact`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -2738,6 +3136,8 @@ export type UpdateEventGroupInput = {
 /** The output of our update `EventGroup` mutation. */
 export type UpdateEventGroupPayload = {
   __typename?: 'UpdateEventGroupPayload'
+  /** Reads a single `Account` that is related to this `EventGroup`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -2838,6 +3238,8 @@ export type UpdateEventInput = {
 /** The output of our update `Event` mutation. */
 export type UpdateEventPayload = {
   __typename?: 'UpdateEventPayload'
+  /** Reads a single `Account` that is related to this `Event`. */
+  accountByAuthorAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -2964,6 +3366,8 @@ export type UpdateProfilePictureInput = {
 /** The output of our update `ProfilePicture` mutation. */
 export type UpdateProfilePicturePayload = {
   __typename?: 'UpdateProfilePicturePayload'
+  /** Reads a single `Account` that is related to this `ProfilePicture`. */
+  accountByAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -3026,6 +3430,8 @@ export type UpdateUploadInput = {
 /** The output of our update `Upload` mutation. */
 export type UpdateUploadPayload = {
   __typename?: 'UpdateUploadPayload'
+  /** Reads a single `Account` that is related to this `Upload`. */
+  accountByAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -3047,6 +3453,8 @@ export type UpdateUploadPayloadUploadEdgeArgs = {
 /** An upload. */
 export type Upload = Node & {
   __typename?: 'Upload'
+  /** Reads a single `Account` that is related to this `Upload`. */
+  accountByAccountId?: Maybe<Account>
   /** The uploader's account id. */
   accountId: Scalars['UUID']['output']
   /** The upload's internal id. */
@@ -3097,6 +3505,8 @@ export type UploadCreateInput = {
 /** The output of our `uploadCreate` mutation. */
 export type UploadCreatePayload = {
   __typename?: 'UploadCreatePayload'
+  /** Reads a single `Account` that is related to this `Upload`. */
+  accountByAccountId?: Maybe<Account>
   /**
    * The exact same `clientMutationId` that was provided in the mutation input,
    * unchanged and unused. May be used by a client to track mutations.
@@ -3176,6 +3586,7 @@ export type WithTypename<T extends { __typename?: any }> = Partial<T> & {
 }
 
 export type GraphCacheKeysConfig = {
+  Account?: (data: WithTypename<Account>) => null | string
   AccountDeletePayload?: (
     data: WithTypename<AccountDeletePayload>
   ) => null | string
@@ -3197,12 +3608,17 @@ export type GraphCacheKeysConfig = {
   AccountRegistrationRefreshPayload?: (
     data: WithTypename<AccountRegistrationRefreshPayload>
   ) => null | string
+  AccountsConnection?: (data: WithTypename<AccountsConnection>) => null | string
+  AccountsEdge?: (data: WithTypename<AccountsEdge>) => null | string
   AuthenticatePayload?: (
     data: WithTypename<AuthenticatePayload>
   ) => null | string
   Contact?: (data: WithTypename<Contact>) => null | string
   ContactsConnection?: (data: WithTypename<ContactsConnection>) => null | string
   ContactsEdge?: (data: WithTypename<ContactsEdge>) => null | string
+  CreateAccountPayload?: (
+    data: WithTypename<CreateAccountPayload>
+  ) => null | string
   CreateContactPayload?: (
     data: WithTypename<CreateContactPayload>
   ) => null | string
@@ -3221,6 +3637,9 @@ export type GraphCacheKeysConfig = {
   ) => null | string
   CreateUploadPayload?: (
     data: WithTypename<CreateUploadPayload>
+  ) => null | string
+  DeleteAccountPayload?: (
+    data: WithTypename<DeleteAccountPayload>
   ) => null | string
   DeleteContactPayload?: (
     data: WithTypename<DeleteContactPayload>
@@ -3292,6 +3711,9 @@ export type GraphCacheKeysConfig = {
   ProfilePicturesEdge?: (
     data: WithTypename<ProfilePicturesEdge>
   ) => null | string
+  UpdateAccountPayload?: (
+    data: WithTypename<UpdateAccountPayload>
+  ) => null | string
   UpdateContactPayload?: (
     data: WithTypename<UpdateContactPayload>
   ) => null | string
@@ -3321,25 +3743,30 @@ export type GraphCacheKeysConfig = {
 
 export type GraphCacheResolvers = {
   Query?: {
-    accountIdByUsername?: GraphCacheResolver<
+    account?: GraphCacheResolver<
       WithTypename<Query>,
-      QueryAccountIdByUsernameArgs,
-      Scalars['UUID'] | string
+      QueryAccountArgs,
+      WithTypename<Account> | string
     >
-    accountIsExisting?: GraphCacheResolver<
+    accountById?: GraphCacheResolver<
       WithTypename<Query>,
-      QueryAccountIsExistingArgs,
-      Scalars['Boolean'] | string
+      QueryAccountByIdArgs,
+      WithTypename<Account> | string
+    >
+    accountByUsername?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryAccountByUsernameArgs,
+      WithTypename<Account> | string
     >
     accountUploadQuotaBytes?: GraphCacheResolver<
       WithTypename<Query>,
       Record<string, never>,
       Scalars['BigInt'] | string
     >
-    accountUsernameById?: GraphCacheResolver<
+    allAccounts?: GraphCacheResolver<
       WithTypename<Query>,
-      QueryAccountUsernameByIdArgs,
-      Scalars['String'] | string
+      QueryAllAccountsArgs,
+      WithTypename<AccountsConnection> | string
     >
     allContacts?: GraphCacheResolver<
       WithTypename<Query>,
@@ -3484,6 +3911,7 @@ export type GraphCacheResolvers = {
     node?: GraphCacheResolver<
       WithTypename<Query>,
       QueryNodeArgs,
+      | WithTypename<Account>
       | WithTypename<Contact>
       | WithTypename<Event>
       | WithTypename<EventGroup>
@@ -3533,6 +3961,58 @@ export type GraphCacheResolvers = {
       WithTypename<Query>,
       QueryUploadByStorageKeyArgs,
       WithTypename<Upload> | string
+    >
+  }
+  Account?: {
+    contactsByAccountId?: GraphCacheResolver<
+      WithTypename<Account>,
+      AccountContactsByAccountIdArgs,
+      WithTypename<ContactsConnection> | string
+    >
+    contactsByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<Account>,
+      AccountContactsByAuthorAccountIdArgs,
+      WithTypename<ContactsConnection> | string
+    >
+    eventGroupsByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<Account>,
+      AccountEventGroupsByAuthorAccountIdArgs,
+      WithTypename<EventGroupsConnection> | string
+    >
+    eventsByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<Account>,
+      AccountEventsByAuthorAccountIdArgs,
+      WithTypename<EventsConnection> | string
+    >
+    id?: GraphCacheResolver<
+      WithTypename<Account>,
+      Record<string, never>,
+      Scalars['UUID'] | string
+    >
+    nodeId?: GraphCacheResolver<
+      WithTypename<Account>,
+      Record<string, never>,
+      Scalars['ID'] | string
+    >
+    profilePictureByAccountId?: GraphCacheResolver<
+      WithTypename<Account>,
+      Record<string, never>,
+      WithTypename<ProfilePicture> | string
+    >
+    profilePicturesByAccountId?: GraphCacheResolver<
+      WithTypename<Account>,
+      AccountProfilePicturesByAccountIdArgs,
+      WithTypename<ProfilePicturesConnection> | string
+    >
+    uploadsByAccountId?: GraphCacheResolver<
+      WithTypename<Account>,
+      AccountUploadsByAccountIdArgs,
+      WithTypename<UploadsConnection> | string
+    >
+    username?: GraphCacheResolver<
+      WithTypename<Account>,
+      Record<string, never>,
+      Scalars['String'] | string
     >
   }
   AccountDeletePayload?: {
@@ -3619,6 +4099,40 @@ export type GraphCacheResolvers = {
       WithTypename<Query> | string
     >
   }
+  AccountsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<AccountsConnection>,
+      Record<string, never>,
+      Array<WithTypename<AccountsEdge> | string>
+    >
+    nodes?: GraphCacheResolver<
+      WithTypename<AccountsConnection>,
+      Record<string, never>,
+      Array<WithTypename<Account> | string>
+    >
+    pageInfo?: GraphCacheResolver<
+      WithTypename<AccountsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >
+    totalCount?: GraphCacheResolver<
+      WithTypename<AccountsConnection>,
+      Record<string, never>,
+      Scalars['Int'] | string
+    >
+  }
+  AccountsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<AccountsEdge>,
+      Record<string, never>,
+      Scalars['Cursor'] | string
+    >
+    node?: GraphCacheResolver<
+      WithTypename<AccountsEdge>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+  }
   AuthenticatePayload?: {
     clientMutationId?: GraphCacheResolver<
       WithTypename<AuthenticatePayload>,
@@ -3637,6 +4151,16 @@ export type GraphCacheResolvers = {
     >
   }
   Contact?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<Contact>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<Contact>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     accountId?: GraphCacheResolver<
       WithTypename<Contact>,
       Record<string, never>,
@@ -3732,7 +4256,39 @@ export type GraphCacheResolvers = {
       WithTypename<Contact> | string
     >
   }
+  CreateAccountPayload?: {
+    account?: GraphCacheResolver<
+      WithTypename<CreateAccountPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    accountEdge?: GraphCacheResolver<
+      WithTypename<CreateAccountPayload>,
+      CreateAccountPayloadAccountEdgeArgs,
+      WithTypename<AccountsEdge> | string
+    >
+    clientMutationId?: GraphCacheResolver<
+      WithTypename<CreateAccountPayload>,
+      Record<string, never>,
+      Scalars['String'] | string
+    >
+    query?: GraphCacheResolver<
+      WithTypename<CreateAccountPayload>,
+      Record<string, never>,
+      WithTypename<Query> | string
+    >
+  }
   CreateContactPayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<CreateContactPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<CreateContactPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<CreateContactPayload>,
       Record<string, never>,
@@ -3755,6 +4311,11 @@ export type GraphCacheResolvers = {
     >
   }
   CreateEventGroupPayload?: {
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<CreateEventGroupPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<CreateEventGroupPayload>,
       Record<string, never>,
@@ -3809,6 +4370,11 @@ export type GraphCacheResolvers = {
     >
   }
   CreateEventPayload?: {
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<CreateEventPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<CreateEventPayload>,
       Record<string, never>,
@@ -3863,6 +4429,11 @@ export type GraphCacheResolvers = {
     >
   }
   CreateProfilePicturePayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<CreateProfilePicturePayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<CreateProfilePicturePayload>,
       Record<string, never>,
@@ -3890,6 +4461,11 @@ export type GraphCacheResolvers = {
     >
   }
   CreateUploadPayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<CreateUploadPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<CreateUploadPayload>,
       Record<string, never>,
@@ -3911,7 +4487,44 @@ export type GraphCacheResolvers = {
       WithTypename<UploadsEdge> | string
     >
   }
+  DeleteAccountPayload?: {
+    account?: GraphCacheResolver<
+      WithTypename<DeleteAccountPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    accountEdge?: GraphCacheResolver<
+      WithTypename<DeleteAccountPayload>,
+      DeleteAccountPayloadAccountEdgeArgs,
+      WithTypename<AccountsEdge> | string
+    >
+    clientMutationId?: GraphCacheResolver<
+      WithTypename<DeleteAccountPayload>,
+      Record<string, never>,
+      Scalars['String'] | string
+    >
+    deletedAccountId?: GraphCacheResolver<
+      WithTypename<DeleteAccountPayload>,
+      Record<string, never>,
+      Scalars['ID'] | string
+    >
+    query?: GraphCacheResolver<
+      WithTypename<DeleteAccountPayload>,
+      Record<string, never>,
+      WithTypename<Query> | string
+    >
+  }
   DeleteContactPayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<DeleteContactPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<DeleteContactPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<DeleteContactPayload>,
       Record<string, never>,
@@ -3939,6 +4552,11 @@ export type GraphCacheResolvers = {
     >
   }
   DeleteEventGroupPayload?: {
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<DeleteEventGroupPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<DeleteEventGroupPayload>,
       Record<string, never>,
@@ -4003,6 +4621,11 @@ export type GraphCacheResolvers = {
     >
   }
   DeleteEventPayload?: {
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<DeleteEventPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<DeleteEventPayload>,
       Record<string, never>,
@@ -4067,6 +4690,11 @@ export type GraphCacheResolvers = {
     >
   }
   DeleteProfilePicturePayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<DeleteProfilePicturePayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<DeleteProfilePicturePayload>,
       Record<string, never>,
@@ -4099,6 +4727,11 @@ export type GraphCacheResolvers = {
     >
   }
   DeleteUploadPayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<DeleteUploadPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<DeleteUploadPayload>,
       Record<string, never>,
@@ -4126,6 +4759,11 @@ export type GraphCacheResolvers = {
     >
   }
   Event?: {
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<Event>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     authorAccountId?: GraphCacheResolver<
       WithTypename<Event>,
       Record<string, never>,
@@ -4213,6 +4851,11 @@ export type GraphCacheResolvers = {
     >
   }
   EventDeletePayload?: {
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<EventDeletePayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<EventDeletePayload>,
       Record<string, never>,
@@ -4235,6 +4878,11 @@ export type GraphCacheResolvers = {
     >
   }
   EventGroup?: {
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<EventGroup>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     authorAccountId?: GraphCacheResolver<
       WithTypename<EventGroup>,
       Record<string, never>,
@@ -4642,6 +5290,11 @@ export type GraphCacheResolvers = {
     >
   }
   ProfilePicture?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<ProfilePicture>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     accountId?: GraphCacheResolver<
       WithTypename<ProfilePicture>,
       Record<string, never>,
@@ -4714,7 +5367,39 @@ export type GraphCacheResolvers = {
       WithTypename<ProfilePicture> | string
     >
   }
+  UpdateAccountPayload?: {
+    account?: GraphCacheResolver<
+      WithTypename<UpdateAccountPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    accountEdge?: GraphCacheResolver<
+      WithTypename<UpdateAccountPayload>,
+      UpdateAccountPayloadAccountEdgeArgs,
+      WithTypename<AccountsEdge> | string
+    >
+    clientMutationId?: GraphCacheResolver<
+      WithTypename<UpdateAccountPayload>,
+      Record<string, never>,
+      Scalars['String'] | string
+    >
+    query?: GraphCacheResolver<
+      WithTypename<UpdateAccountPayload>,
+      Record<string, never>,
+      WithTypename<Query> | string
+    >
+  }
   UpdateContactPayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<UpdateContactPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<UpdateContactPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<UpdateContactPayload>,
       Record<string, never>,
@@ -4737,6 +5422,11 @@ export type GraphCacheResolvers = {
     >
   }
   UpdateEventGroupPayload?: {
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<UpdateEventGroupPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<UpdateEventGroupPayload>,
       Record<string, never>,
@@ -4791,6 +5481,11 @@ export type GraphCacheResolvers = {
     >
   }
   UpdateEventPayload?: {
+    accountByAuthorAccountId?: GraphCacheResolver<
+      WithTypename<UpdateEventPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<UpdateEventPayload>,
       Record<string, never>,
@@ -4845,6 +5540,11 @@ export type GraphCacheResolvers = {
     >
   }
   UpdateProfilePicturePayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<UpdateProfilePicturePayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<UpdateProfilePicturePayload>,
       Record<string, never>,
@@ -4872,6 +5572,11 @@ export type GraphCacheResolvers = {
     >
   }
   UpdateUploadPayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<UpdateUploadPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<UpdateUploadPayload>,
       Record<string, never>,
@@ -4894,6 +5599,11 @@ export type GraphCacheResolvers = {
     >
   }
   Upload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<Upload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     accountId?: GraphCacheResolver<
       WithTypename<Upload>,
       Record<string, never>,
@@ -4926,6 +5636,11 @@ export type GraphCacheResolvers = {
     >
   }
   UploadCreatePayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<UploadCreatePayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
     clientMutationId?: GraphCacheResolver<
       WithTypename<UploadCreatePayload>,
       Record<string, never>,
@@ -5016,6 +5731,10 @@ export type GraphCacheOptimisticUpdaters = {
     MutationAuthenticateArgs,
     Maybe<WithTypename<AuthenticatePayload>>
   >
+  createAccount?: GraphCacheOptimisticMutationResolver<
+    MutationCreateAccountArgs,
+    Maybe<WithTypename<CreateAccountPayload>>
+  >
   createContact?: GraphCacheOptimisticMutationResolver<
     MutationCreateContactArgs,
     Maybe<WithTypename<CreateContactPayload>>
@@ -5043,6 +5762,18 @@ export type GraphCacheOptimisticUpdaters = {
   createUpload?: GraphCacheOptimisticMutationResolver<
     MutationCreateUploadArgs,
     Maybe<WithTypename<CreateUploadPayload>>
+  >
+  deleteAccount?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteAccountArgs,
+    Maybe<WithTypename<DeleteAccountPayload>>
+  >
+  deleteAccountById?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteAccountByIdArgs,
+    Maybe<WithTypename<DeleteAccountPayload>>
+  >
+  deleteAccountByUsername?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteAccountByUsernameArgs,
+    Maybe<WithTypename<DeleteAccountPayload>>
   >
   deleteContact?: GraphCacheOptimisticMutationResolver<
     MutationDeleteContactArgs,
@@ -5151,6 +5882,18 @@ export type GraphCacheOptimisticUpdaters = {
   profilePictureSet?: GraphCacheOptimisticMutationResolver<
     MutationProfilePictureSetArgs,
     Maybe<WithTypename<ProfilePictureSetPayload>>
+  >
+  updateAccount?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateAccountArgs,
+    Maybe<WithTypename<UpdateAccountPayload>>
+  >
+  updateAccountById?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateAccountByIdArgs,
+    Maybe<WithTypename<UpdateAccountPayload>>
+  >
+  updateAccountByUsername?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateAccountByUsernameArgs,
+    Maybe<WithTypename<UpdateAccountPayload>>
   >
   updateContact?: GraphCacheOptimisticMutationResolver<
     MutationUpdateContactArgs,
@@ -5292,6 +6035,10 @@ export type GraphCacheUpdaters = {
       { authenticate: Maybe<WithTypename<AuthenticatePayload>> },
       MutationAuthenticateArgs
     >
+    createAccount?: GraphCacheUpdateResolver<
+      { createAccount: Maybe<WithTypename<CreateAccountPayload>> },
+      MutationCreateAccountArgs
+    >
     createContact?: GraphCacheUpdateResolver<
       { createContact: Maybe<WithTypename<CreateContactPayload>> },
       MutationCreateContactArgs
@@ -5321,6 +6068,18 @@ export type GraphCacheUpdaters = {
     createUpload?: GraphCacheUpdateResolver<
       { createUpload: Maybe<WithTypename<CreateUploadPayload>> },
       MutationCreateUploadArgs
+    >
+    deleteAccount?: GraphCacheUpdateResolver<
+      { deleteAccount: Maybe<WithTypename<DeleteAccountPayload>> },
+      MutationDeleteAccountArgs
+    >
+    deleteAccountById?: GraphCacheUpdateResolver<
+      { deleteAccountById: Maybe<WithTypename<DeleteAccountPayload>> },
+      MutationDeleteAccountByIdArgs
+    >
+    deleteAccountByUsername?: GraphCacheUpdateResolver<
+      { deleteAccountByUsername: Maybe<WithTypename<DeleteAccountPayload>> },
+      MutationDeleteAccountByUsernameArgs
     >
     deleteContact?: GraphCacheUpdateResolver<
       { deleteContact: Maybe<WithTypename<DeleteContactPayload>> },
@@ -5465,6 +6224,18 @@ export type GraphCacheUpdaters = {
     profilePictureSet?: GraphCacheUpdateResolver<
       { profilePictureSet: Maybe<WithTypename<ProfilePictureSetPayload>> },
       MutationProfilePictureSetArgs
+    >
+    updateAccount?: GraphCacheUpdateResolver<
+      { updateAccount: Maybe<WithTypename<UpdateAccountPayload>> },
+      MutationUpdateAccountArgs
+    >
+    updateAccountById?: GraphCacheUpdateResolver<
+      { updateAccountById: Maybe<WithTypename<UpdateAccountPayload>> },
+      MutationUpdateAccountByIdArgs
+    >
+    updateAccountByUsername?: GraphCacheUpdateResolver<
+      { updateAccountByUsername: Maybe<WithTypename<UpdateAccountPayload>> },
+      MutationUpdateAccountByUsernameArgs
     >
     updateContact?: GraphCacheUpdateResolver<
       { updateContact: Maybe<WithTypename<UpdateContactPayload>> },

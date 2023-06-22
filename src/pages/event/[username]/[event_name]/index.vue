@@ -1,6 +1,6 @@
 <template>
   <Loader :api="api">
-    <div v-if="event" class="flex flex-col gap-4">
+    <div v-if="event && eventAuthorAccount" class="flex flex-col gap-4">
       <LayoutBreadcrumbs
         :prefixes="[
           { name: t('events'), to: localePath('/event') },
@@ -90,7 +90,7 @@
           <h1 class="m-0">
             {{ event.name }}
           </h1>
-          <Owner link :username="event.authorUsername" />
+          <Owner link :username="eventAuthorAccount.username" />
         </div>
         <div class="flex gap-2 items-center">
           <ButtonColored
@@ -150,7 +150,7 @@
                     invitation.feedback === 'CANCELED'
                   "
                   :aria-label="
-                    event.authorUsername !== signedInUsername
+                    eventAuthorAccount.username !== signedInUsername
                       ? t('invitationAccept')
                       : t('invitationAcceptAdmin', {
                           name: contactName,
@@ -159,7 +159,7 @@
                   @click="accept"
                 >
                   {{
-                    event.authorUsername !== signedInUsername
+                    eventAuthorAccount.username !== signedInUsername
                       ? t('invitationAccept')
                       : t('invitationAcceptAdmin', {
                           name: contactName,
@@ -175,7 +175,7 @@
                 >
                   <IconCheckCircle class="mr-2" title="accepted" />
                   {{
-                    event.authorUsername !== signedInUsername
+                    eventAuthorAccount.username !== signedInUsername
                       ? t('invitationAccepted')
                       : t('invitationAcceptedAdmin', {
                           name: contactName,
@@ -188,7 +188,7 @@
                     invitation.feedback === 'ACCEPTED'
                   "
                   :aria-label="
-                    event.authorUsername !== signedInUsername
+                    eventAuthorAccount.username !== signedInUsername
                       ? t('invitationCancel')
                       : t('invitationCancelAdmin', {
                           name: contactName,
@@ -197,7 +197,7 @@
                   @click="cancel"
                 >
                   {{
-                    event.authorUsername !== signedInUsername
+                    eventAuthorAccount.username !== signedInUsername
                       ? t('invitationCancel')
                       : t('invitationCancelAdmin', {
                           name: contactName,
@@ -213,7 +213,7 @@
                 >
                   <IconXCircle class="mr-2" title="canceled" />
                   {{
-                    event.authorUsername !== signedInUsername
+                    eventAuthorAccount.username !== signedInUsername
                       ? t('invitationCanceled')
                       : t('invitationCanceledAdmin', {
                           name: contactName,
@@ -278,7 +278,7 @@
           <QrcodeVue
             id="qrCode"
             class="bg-white p-4"
-            :value="invitation.uuid"
+            :value="invitation.id"
             :size="200"
           />
           <FormInputStateInfo>
@@ -330,28 +330,13 @@ import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
-import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
+import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import { useAccountByIdQuery } from '~/gql/documents/queries/account/accountById'
 
 definePageMeta({
   async validate(route) {
-    const { $urql } = useNuxtApp()
-
-    const eventIsExisting = await $urql.value
-      .query(eventIsExistingQuery, {
-        slug: route.params.event_name as string,
-        authorUsername: route.params.username as string,
-      })
-      .toPromise()
-
-    if (eventIsExisting.error) {
-      throw createError(eventIsExisting.error)
-    }
-
-    if (!eventIsExisting.data?.eventIsExisting) {
-      return abortNavigation({ statusCode: 404 })
-    }
-
-    return true
+    return await validateEventExistence(route)
   },
 })
 
@@ -363,15 +348,29 @@ const route = useRoute()
 const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
 
 // api data
-const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
-  authorUsername: route.params.username as string,
-  slug: route.params.event_name as string,
-  invitationUuid: route.query.ic,
+const accountByUsernameQuery = await useAccountByUsernameQuery({
+  username: route.params.username as string,
 })
-const api = getApiData([eventQuery])
+const account = computed(() =>
+  getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)
+)
+const accountId = computed(() => account.value?.id)
+const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
+  authorAccountId: accountId,
+  slug: route.params.event_name as string,
+  invitationId: route.query.ic,
+})
 const event = computed(() =>
   getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug)
 )
+const eventAuthorAccountId = computed(() => event.value?.authorAccountId)
+const accountByIdQuery = await useAccountByIdQuery({
+  id: eventAuthorAccountId,
+})
+const eventAuthorAccount = computed(() =>
+  getAccountItem(accountByIdQuery.data.value?.accountById)
+)
+const api = getApiData([accountByIdQuery, accountByUsernameQuery, eventQuery])
 
 // data
 const routeParamUsername = route.params.username as string

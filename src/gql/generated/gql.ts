@@ -13,6 +13,8 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  '\n  fragment AccountItem on Account {\n    nodeId\n    id\n    username\n  }\n':
+    types.AccountItemFragmentDoc,
   '\n  fragment ContactItem on Contact {\n    nodeId\n    id\n    accountId\n    address\n    authorAccountId\n    emailAddress\n    emailAddressHash\n    firstName\n    lastName\n    phoneNumber\n    url\n  }\n':
     types.ContactItemFragmentDoc,
   '\n  fragment EventItem on Event {\n    id\n    nodeId\n    authorAccountId\n    description\n    end\n    inviteeCountMaximum\n    isArchived\n    isInPerson\n    isRemote\n    location\n    name\n    slug\n    start\n    url\n    visibility\n  }\n':
@@ -67,14 +69,12 @@ const documents = {
     types.ProfilePictureSetDocument,
   '\n      mutation uploadCreate($uploadCreateInput: UploadCreateInput!) {\n        uploadCreate(input: $uploadCreateInput) {\n          clientMutationId\n          upload {\n            id\n          }\n        }\n      }\n    ':
     types.UploadCreateDocument,
-  '\n  query accountIdByUsername($username: String!) {\n    accountIdByUsername(username: $username)\n  }\n':
-    types.AccountIdByUsernameDocument,
-  '\n  query accountIsExisting($username: String!) {\n    accountIsExisting(username: $username)\n  }\n':
-    types.AccountIsExistingDocument,
+  '\n  query accountById($id: UUID!) {\n    accountById(id: $id) {\n      ...AccountItem\n    }\n  }\n':
+    types.AccountByIdDocument,
+  '\n  query accountByUsername($username: String!) {\n    accountByUsername(username: $username) {\n      ...AccountItem\n    }\n  }\n':
+    types.AccountByUsernameDocument,
   '\n      query accountUploadQuotaBytes {\n        accountUploadQuotaBytes\n      }\n    ':
     types.AccountUploadQuotaBytesDocument,
-  '\n  query accountUsernameById($id: UUID!) {\n    accountUsernameById(id: $id)\n  }\n':
-    types.AccountUsernameByIdDocument,
   '\n      query allContacts($after: Cursor, $authorAccountId: UUID, $first: Int!) {\n        allContacts(\n          after: $after\n          condition: { authorAccountId: $authorAccountId }\n          first: $first\n          orderBy: [FIRST_NAME_ASC, LAST_NAME_ASC]\n        ) {\n          nodes {\n            ...ContactItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ':
     types.AllContactsDocument,
   '\n      query eventByAuthorAccountIdAndSlug(\n        $authorAccountId: UUID!\n        $slug: String!\n        $invitationId: UUID\n      ) {\n        eventByAuthorAccountIdAndSlug(\n          authorAccountId: $authorAccountId\n          slug: $slug\n        ) {\n          ...EventItem\n          invitationsByEventId(condition: { id: $invitationId }) {\n            nodes {\n              ...InvitationItem\n              contactByContactId {\n                ...ContactItem\n              }\n            }\n          }\n        }\n      }\n    ':
@@ -105,6 +105,12 @@ const documents = {
  */
 export function graphql(source: string): unknown
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment AccountItem on Account {\n    nodeId\n    id\n    username\n  }\n'
+): (typeof documents)['\n  fragment AccountItem on Account {\n    nodeId\n    id\n    username\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -271,26 +277,20 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query accountIdByUsername($username: String!) {\n    accountIdByUsername(username: $username)\n  }\n'
-): (typeof documents)['\n  query accountIdByUsername($username: String!) {\n    accountIdByUsername(username: $username)\n  }\n']
+  source: '\n  query accountById($id: UUID!) {\n    accountById(id: $id) {\n      ...AccountItem\n    }\n  }\n'
+): (typeof documents)['\n  query accountById($id: UUID!) {\n    accountById(id: $id) {\n      ...AccountItem\n    }\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  query accountIsExisting($username: String!) {\n    accountIsExisting(username: $username)\n  }\n'
-): (typeof documents)['\n  query accountIsExisting($username: String!) {\n    accountIsExisting(username: $username)\n  }\n']
+  source: '\n  query accountByUsername($username: String!) {\n    accountByUsername(username: $username) {\n      ...AccountItem\n    }\n  }\n'
+): (typeof documents)['\n  query accountByUsername($username: String!) {\n    accountByUsername(username: $username) {\n      ...AccountItem\n    }\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
   source: '\n      query accountUploadQuotaBytes {\n        accountUploadQuotaBytes\n      }\n    '
 ): (typeof documents)['\n      query accountUploadQuotaBytes {\n        accountUploadQuotaBytes\n      }\n    ']
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: '\n  query accountUsernameById($id: UUID!) {\n    accountUsernameById(id: $id)\n  }\n'
-): (typeof documents)['\n  query accountUsernameById($id: UUID!) {\n    accountUsernameById(id: $id)\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

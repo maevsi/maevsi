@@ -1,114 +1,109 @@
 <template>
-  <!-- <Loader
-    :api="api"
-    :error-pg-ids="{
-      postgresP0002: t('postgresP0002'),
-    }"
-  > -->
-  <tr
-    v-if="contact"
-    :class="{
-      'animate-pulse': pending.deletions.includes(invitation.id),
-    }"
-  >
-    <td class="max-w-0">
-      <ContactPreview :contact="contact" :feedback="invitation.feedback" />
-    </td>
-    <td class="max-w-0">
-      <div
-        class="flex items-center justify-evenly gap-4 text-text-dark dark:text-text-bright"
-      >
-        <ButtonIcon
-          :aria-label="
-            contact.accountId || contact.emailAddress
-              ? t('invitationSend')
-              : t('disabledReasonEmailAddressNone')
-          "
-          class="hidden md:block"
-          :disabled="
-            (!contact.accountId && !contact.emailAddress) ||
-            pending.sends.includes(invitation.id)
-          "
-          @click="send(invitation)"
+  <Loader :api="api" indicator="ping">
+    <tr
+      v-if="contact"
+      :class="{
+        'animate-pulse': pending.deletions.includes(invitation.id),
+      }"
+    >
+      <td class="max-w-0">
+        <ContactPreview :contact="contact" :feedback="invitation.feedback" />
+      </td>
+      <td class="max-w-0">
+        <div
+          class="flex items-center justify-evenly gap-4 text-text-dark dark:text-text-bright"
         >
-          <IconPaperPlane />
-        </ButtonIcon>
-        <ButtonIcon
-          :aria-label="t('invitationLink')"
-          class="hidden md:block"
-          @click="copyLink(invitation)"
-        >
-          <IconLink />
-        </ButtonIcon>
-        <DropDown>
-          <ButtonIcon :aria-label="t('globalShowMore')">
-            <IconEllipsisVertical />
+          <ButtonIcon
+            :aria-label="
+              contact.accountId || contact.emailAddress
+                ? t('invitationSend')
+                : t('disabledReasonEmailAddressNone')
+            "
+            class="hidden md:block"
+            :disabled="
+              (!contact.accountId && !contact.emailAddress) ||
+              pending.sends.includes(invitation.id)
+            "
+            @click="send(invitation)"
+          >
+            <IconPaperPlane />
           </ButtonIcon>
-          <template #content>
-            <Button
-              :aria-label="
-                contact.accountId || contact.emailAddress
-                  ? t('invitationSend')
-                  : t('disabledReasonEmailAddressNone')
-              "
-              class="block md:hidden"
-              :disabled="
-                (!contact.accountId && !contact.emailAddress) ||
-                pending.sends.includes(invitation.id)
-              "
-              @click="send(invitation)"
-            >
-              {{
-                contact.accountId || contact.emailAddress
-                  ? t('invitationSend')
-                  : t('disabledReasonEmailAddressNone')
-              }}
-              <template #prefix>
-                <IconPaperPlane />
-              </template>
-            </Button>
-            <Button
-              :aria-label="t('invitationLink')"
-              class="block md:hidden"
-              @click="copyLink(invitation)"
-            >
-              {{ t('invitationLink') }}
-              <template #prefix>
-                <IconLink />
-              </template>
-            </Button>
-            <Button
-              :aria-label="t('invitationView')"
-              @click="
-                navigateTo({
-                  path: localePath(
-                    `/event/${event.authorUsername}/${event.slug}`
-                  ),
-                  query: { ic: invitation.id },
-                })
-              "
-            >
-              {{ t('invitationView') }}
-              <template #prefix>
-                <IconEye />
-              </template>
-            </Button>
-            <Button
-              :aria-label="t('invitationDelete')"
-              :disabled="pending.deletions.includes(invitation.id)"
-              @click="delete_(invitation.id)"
-            >
-              {{ t('invitationDelete') }}
-              <template #prefix>
-                <IconTrash />
-              </template>
-            </Button>
-          </template>
-        </DropDown>
-      </div>
-    </td>
-  </tr>
-  <!-- </Loader> -->
+          <ButtonIcon
+            :aria-label="t('invitationLink')"
+            class="hidden md:block"
+            @click="copyLink(invitation)"
+          >
+            <IconLink />
+          </ButtonIcon>
+          <DropDown>
+            <ButtonIcon :aria-label="t('globalShowMore')">
+              <IconEllipsisVertical />
+            </ButtonIcon>
+            <template #content>
+              <Button
+                :aria-label="
+                  contact.accountId || contact.emailAddress
+                    ? t('invitationSend')
+                    : t('disabledReasonEmailAddressNone')
+                "
+                class="block md:hidden"
+                :disabled="
+                  (!contact.accountId && !contact.emailAddress) ||
+                  pending.sends.includes(invitation.id)
+                "
+                @click="send(invitation)"
+              >
+                {{
+                  contact.accountId || contact.emailAddress
+                    ? t('invitationSend')
+                    : t('disabledReasonEmailAddressNone')
+                }}
+                <template #prefix>
+                  <IconPaperPlane />
+                </template>
+              </Button>
+              <Button
+                :aria-label="t('invitationLink')"
+                class="block md:hidden"
+                @click="copyLink(invitation)"
+              >
+                {{ t('invitationLink') }}
+                <template #prefix>
+                  <IconLink />
+                </template>
+              </Button>
+              <Button
+                :aria-label="t('invitationView')"
+                @click="
+                  navigateTo({
+                    path: localePath(
+                      `/event/${eventAuthorAccountUsername}/${event.slug}`
+                    ),
+                    query: { ic: invitation.id },
+                  })
+                "
+              >
+                {{ t('invitationView') }}
+                <template #prefix>
+                  <IconEye />
+                </template>
+              </Button>
+              <Button
+                :aria-label="t('invitationDelete')"
+                :disabled="pending.deletions.includes(invitation.id)"
+                @click="delete_(invitation.id)"
+              >
+                {{ t('invitationDelete') }}
+                <template #prefix>
+                  <IconTrash />
+                </template>
+              </Button>
+            </template>
+          </DropDown>
+        </div>
+      </td>
+    </tr>
+  </Loader>
 </template>
 
 <script setup lang="ts">
@@ -119,6 +114,8 @@ import {
   EventItemFragment,
   InvitationItemFragment,
 } from '~/gql/generated/graphql'
+import { useAccountByIdQuery } from '~/gql/documents/queries/account/accountById'
+import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
 export interface Props {
   event: Pick<EventItemFragment, 'authorAccountId' | 'slug'>
@@ -133,9 +130,19 @@ const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // api data
+const accountByIdQuery = useAccountByIdQuery({
+  id: props.event.authorAccountId,
+})
+const eventAuthorAccountUsername = computed(
+  () => getAccountItem(accountByIdQuery.data.value?.accountById)?.username
+)
 const deleteInvitationByIdMutation = useDeleteInvitationByIdMutation()
 const inviteMutation = useInviteMutation()
-// const api = getApiData([deleteInvitationByIdMutation, inviteMutation])
+const api = getApiData([
+  accountByIdQuery,
+  deleteInvitationByIdMutation,
+  inviteMutation,
+])
 
 // data
 const pending = reactive({

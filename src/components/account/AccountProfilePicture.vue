@@ -1,7 +1,7 @@
 <template>
   <Loader :api="api" indicator="ping" :classes="classes">
     <LoaderImage
-      :alt="t('profilePictureAlt', { username: api.data.accountUsernameById })"
+      :alt="t('profilePictureAlt', { username: account?.username })"
       :aspect="aspect"
       :classes="classes"
       :height="height"
@@ -13,9 +13,10 @@
 
 <script setup lang="ts">
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
+import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getProfilePictureItem } from '~/gql/documents/fragments/profilePictureItem'
 import { getUploadItem } from '~/gql/documents/fragments/uploadItem'
-import { useAccountUsernameByIdQuery } from '~/gql/documents/queries/account/accountUsernameById'
+import { useAccountByIdQuery } from '~/gql/documents/queries/account/accountById'
 import { useProfilePictureByAccountIdQuery } from '~/gql/documents/queries/profilePicture/profilePictureByAccountId'
 
 export interface Props {
@@ -34,13 +35,16 @@ const { t } = useI18n()
 const TUSD_FILES_URL = useTusdFilesUrl()
 
 // api data
-const accountUsernameByIdQuery = await useAccountUsernameByIdQuery({
-  accountId: props.accountId,
+const accountByIdQuery = await useAccountByIdQuery({
+  id: props.accountId,
 })
 const profilePictureQuery = await useProfilePictureByAccountIdQuery({
   accountId: props.accountId,
 })
-const api = getApiData([accountUsernameByIdQuery, profilePictureQuery])
+const api = getApiData([accountByIdQuery, profilePictureQuery])
+const account = computed(() =>
+  getAccountItem(accountByIdQuery.data.value?.accountById)
+)
 
 // computations
 const profilePictureUrl = computed(() => {

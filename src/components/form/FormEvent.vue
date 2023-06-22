@@ -304,7 +304,7 @@ const store = useMaevsiStore()
 // data
 const form = reactive({
   id: ref<string>(),
-  authorUsername: ref<string>(),
+  authorAccountId: ref<string>(),
   description: ref<string>(),
   end: ref<string>(),
   inviteeCountMaximum: ref<string>(),
@@ -426,7 +426,7 @@ const isWarningStartPastShown = computed(
 // vuelidate
 const rules = {
   id: {},
-  authorUsername: {},
+  authorAccountId: {},
   description: {
     maxLength: maxLength(VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM),
   },
