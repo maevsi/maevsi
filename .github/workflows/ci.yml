@@ -3,20 +3,53 @@ name: CI
 on:
   pull_request:
   push:
-  release:
-    types: [published]
+    branches:
+      - alpha
+      - beta
+      - master
+      - renovate/**
 
 jobs:
+  prepare_jobs:
+    name: 'Prepare: job optimization'
+    runs-on: ubuntu-latest
+    outputs:
+      pr_found: ${{ steps.pr.outputs.pr_found }}
+    steps:
+      - name: Get current PR
+        id: pr
+        uses: 8BitJonny/gh-get-current-pr@2.2.0
+        with:
+          filterOutClosed: true
+          sha: ${{ github.event.pull_request.head.sha }}
+  release_semantic_dry:
+    needs: prepare_jobs
+    name: Release (semantic, dry)
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic-next.yml@0.40.4
+    if: needs.prepare_jobs.outputs.pr_found == 'false' || github.event_name == 'pull_request'
+    permissions:
+      contents: write
+    secrets:
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    with:
+      CACHE_PATH: pnpm-lock.yaml
+      DRY_RUN: true
   build:
     name: Build
-    uses: dargmuesli/github-actions/.github/workflows/docker-ghcr.yml@0.40.10
+    uses: dargmuesli/github-actions/.github/workflows/docker.yml@0.40.9
+    needs: release_semantic_dry
     permissions:
       packages: write
-  release-semantic:
+    with:
+      CONTEXT: src
+      TAG: ${{ needs.release_semantic_dry.outputs.new_release_version }}
+  release_semantic:
     needs: build
     name: Release (semantic)
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.40.10
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic-next.yml@0.40.9
+    permissions:
+      contents: write
     secrets:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     with:
       CACHE_PATH: pnpm-lock.yaml

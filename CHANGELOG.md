@@ -1,3 +1,123 @@
+# [1.19.0-beta.2](https://github.com/maevsi/maevsi/compare/1.19.0-beta.1...1.19.0-beta.2) (2023-06-19)
+
+
+### Bug Fixes
+
+* **csp:** allow data source ([e49a047](https://github.com/maevsi/maevsi/commit/e49a0477db116f42d8ae0f2fab9979cfbd4fca1b))
+* **csp:** allow data source ([#1290](https://github.com/maevsi/maevsi/issues/1290)) ([1a705ee](https://github.com/maevsi/maevsi/commit/1a705ee3c8e446dc54fb211efed8ce2a614abcc4))
+* **i18n:** remove configuration parameter ([44378c9](https://github.com/maevsi/maevsi/commit/44378c9e084c96d1279a014f96ce145103775d78))
+
+
+### Performance Improvements
+
+* **i18n:** use lazy loading ([f6c14e8](https://github.com/maevsi/maevsi/commit/f6c14e83c034d6b07e8760b3a93b340796eb4002))
+
+# [1.19.0-beta.1](https://github.com/maevsi/maevsi/compare/1.18.4...1.19.0-beta.1) (2023-06-13)
+
+
+### Bug Fixes
+
+* **chore:** fix pnpm-lock ([ea0f269](https://github.com/maevsi/maevsi/commit/ea0f26939288c06b142a8f7d35e6a61739161463))
+* **chore:** rearrange imports properly ([05eb798](https://github.com/maevsi/maevsi/commit/05eb798927b8738e971c523ce688d48217319f91))
+* **chore:** remove downgrading pinia ([4384806](https://github.com/maevsi/maevsi/commit/4384806fd3a873513e6827774f21db60ed6ec286))
+* **chore:** update package json and pnpm lock ([b958d80](https://github.com/maevsi/maevsi/commit/b958d80eae7431d237e3d1a697ae907fb1d1b28e))
+* **constants:** use X-Turnstile-Key as header for the turnstile key ([18c43b0](https://github.com/maevsi/maevsi/commit/18c43b05865fcccfcc7bbc740ded5ea84564c7ba))
+* **csp:** use correct csp for turnstile ([262dde1](https://github.com/maevsi/maevsi/commit/262dde19daee825648343535f32aabeb6003010a))
+* **cypress:** correct csp test ([a209a16](https://github.com/maevsi/maevsi/commit/a209a163c5a47ca68bc4a71972cdcf408b72529d))
+* **docker:** adds packages to compile projects ([1eeedaa](https://github.com/maevsi/maevsi/commit/1eeedaa3cde4b9e30d401a0263069931500ef428))
+* **dockerfile:** add a second Dockerfile to use when deploying on arm ([0e7f67b](https://github.com/maevsi/maevsi/commit/0e7f67bc12c48fb14795a2cf94fbf15d48e9165a))
+* **dockerfile:** remove pythonunbuffered and use only one run command ([684a861](https://github.com/maevsi/maevsi/commit/684a861dc5ee268e5723130e8faaca2738a221ca))
+* **form-input-captcha:** hide when testing ([1796d3a](https://github.com/maevsi/maevsi/commit/1796d3a228a2df77c1578f2eb75e4ff99ceb4094))
+* **form-input-captcha:** let visibility default to true ([fc164e2](https://github.com/maevsi/maevsi/commit/fc164e2f9d36bb1a07d9b3744da5f59584438812))
+* **form:** do not use overflow ([3499a4c](https://github.com/maevsi/maevsi/commit/3499a4c6bdef1feb552b14bb952a61294f83150f))
+* **layout-call-to-action:** add gap ([68f52f3](https://github.com/maevsi/maevsi/commit/68f52f3080c7ac718fe62795402f47ff7377a1fc))
+* **npm:** correct configuration placement ([9b9c8ef](https://github.com/maevsi/maevsi/commit/9b9c8ef0afc31e7e69413757d59729d5b8c13bec))
+* **nuxt:** add npm configuration ([4d3500d](https://github.com/maevsi/maevsi/commit/4d3500d8e0d35e2ebeaedbeeb1ed5bf9f0a2c5c7))
+* **nuxt:** correct docker development stage ([48d0901](https://github.com/maevsi/maevsi/commit/48d090130395836cbd0da476f3336426e632c880))
+* **nuxt:** move new files ([a751484](https://github.com/maevsi/maevsi/commit/a7514840edf5d18a0785ff0625972a67665b81f3))
+* **nuxt:** optimize entrypoints by using pnpm rebuild ([a0fa05c](https://github.com/maevsi/maevsi/commit/a0fa05cf80eae3d5130b5bec527064b4852a0a11))
+* **nuxt:** set secret key path ([06ee468](https://github.com/maevsi/maevsi/commit/06ee468c43491758fea37480bfe39e227241763c))
+* **ofetch:** access raw data ([8968f1b](https://github.com/maevsi/maevsi/commit/8968f1bd4bcf6bc9fb96e480ab9ed78275dc8f3e))
+* **package.json:** swap order of pinia and nuxt/turnstile dependencies ([bf41168](https://github.com/maevsi/maevsi/commit/bf41168620716fca6c14f624c97e421e87d71dea))
+* Rerevert merge ([6eec552](https://github.com/maevsi/maevsi/commit/6eec552dcacf155e6464492ecbef1a6dca65efaf))
+* revert "perf(docker): let integration tests run in parallel" ([35d7c1c](https://github.com/maevsi/maevsi/commit/35d7c1ccb20a2e41996d8301435567f20afbfee8))
+* **sign-in:** allow for unset jwt ([450d764](https://github.com/maevsi/maevsi/commit/450d764b79c170824091f9e3971246be2d2998cf))
+* **sqitch:** add docker entrypoint ([5f33e09](https://github.com/maevsi/maevsi/commit/5f33e0997c5d972b3b295ea306ce7a2a133c06c3))
+* **sqitch:** correct schema update script ([0fad3e0](https://github.com/maevsi/maevsi/commit/0fad3e07dc0274103619342bd29298777b455663))
+* **sqitch:** let docker sleep indefinetly ([fa28851](https://github.com/maevsi/maevsi/commit/fa28851f5f4a16c6d7580c5431b0e10e38e5abd8))
+* **style:** add comments to csp definitions ([17c1e10](https://github.com/maevsi/maevsi/commit/17c1e10324fdade809c24bc930086126417a6830))
+* **style:** remove empty line addition ([8229a5e](https://github.com/maevsi/maevsi/commit/8229a5efc7a353a9d9673ac3edfd3cebcd0c2c44))
+* **style:** remove margin for turnstile info and err and add gap instead ([4ba5507](https://github.com/maevsi/maevsi/commit/4ba5507bef50c2c9d0c023bb56fc81cc6bcbc6bc))
+* **style:** use template syntax for logging of the turnstile key ([97da625](https://github.com/maevsi/maevsi/commit/97da6259c5ee20ee63ebaecd51d3fbad6b361d6d))
+* **template:** removes nuxt turnstile secret key from template ([8dbca94](https://github.com/maevsi/maevsi/commit/8dbca94f8a178c7b0618f8d8a42efe21b3a56084))
+* **tests:** adds cloudflare turnstile to server test ([1865c55](https://github.com/maevsi/maevsi/commit/1865c55adc4163e7e27eeab25ccece404a977afc))
+* **turnstile:** removes unnecessary generation of validation endpoint ([fe542d9](https://github.com/maevsi/maevsi/commit/fe542d9e4ca65ea9c345d7fdfaa1a456dbabb5c7))
+* **turnstile:** set store value ([73f1af5](https://github.com/maevsi/maevsi/commit/73f1af5d79649611d216522780b9a83c622d331d))
+* **turnstile:** store turnstile key on [@submit](https://github.com/submit) instead of [@click](https://github.com/click) ([81bd5c8](https://github.com/maevsi/maevsi/commit/81bd5c8f32cab970b96da83249be478bdcfef974))
+* **turnstile:** store turnstileKey in variable "form" and not "state" anymore ([9c6f766](https://github.com/maevsi/maevsi/commit/9c6f766554843d707b332c8851f909c7b7c3cd6c))
+* **turnstile:** use default site key with invisible widget ([ee9aa79](https://github.com/maevsi/maevsi/commit/ee9aa79cf920d297e6f199d295cbe8ee862a5002))
+* **turnstile:** use public runtime configuration for site key ([c46dfd2](https://github.com/maevsi/maevsi/commit/c46dfd2a8c4576168bdab7653d1ed4a2bd2922f3))
+* **ui:** removes unnecessary gap ([376854d](https://github.com/maevsi/maevsi/commit/376854debc8f56f4aa48167f3eb29af04c22165a))
+* **unlock:** add middleware wrapper and explanation ([9432307](https://github.com/maevsi/maevsi/commit/9432307ff12d95c76c4a8c3b70f7cf41612afa3f))
+
+
+### Features
+
+* **account:** remove middleware ([4b0330e](https://github.com/maevsi/maevsi/commit/4b0330ecebedbf639157083c177f66a17517df90))
+* **auth-key:** do not fetch raw ([c4be6b9](https://github.com/maevsi/maevsi/commit/c4be6b90e939116ea99013b11d958e2b03908721))
+* **auth:** bring .husky back ([da6ffe1](https://github.com/maevsi/maevsi/commit/da6ffe1d98b9302dd331f11540c727353af386c2))
+* **auth:** code formatting ([782af37](https://github.com/maevsi/maevsi/commit/782af371dde0fc504f37a2bb852932ee4a8092de))
+* **auth:** code reformatting ([9ee4e64](https://github.com/maevsi/maevsi/commit/9ee4e642ff7eb5acb49cecb565bacd2f29ec7f6b))
+* **authentication:** add comment according to contribution order ([3bc3827](https://github.com/maevsi/maevsi/commit/3bc38272c45d58674b7b1b3f168f932163ad3c77))
+* **authentication:** add missing return statement to error throw ([19925aa](https://github.com/maevsi/maevsi/commit/19925aacf4316da51bc3611cf5d7c5a0ac3e35c7))
+* **authentication:** adds google analytics id back to .env ([bafbb1c](https://github.com/maevsi/maevsi/commit/bafbb1c1d063485041780d7cea2f705f22d517ac))
+* **authentication:** auto stash before merge ([f5407be](https://github.com/maevsi/maevsi/commit/f5407be5d6dcf0d60692f8c4dd8a15d3a201ead3))
+* **authentication:** change headers variable from const  back to let ([609cfe4](https://github.com/maevsi/maevsi/commit/609cfe4d21c617a8404cb15ca17074adea8ade81))
+* **authentication:** change node to slim version ([e0f54f4](https://github.com/maevsi/maevsi/commit/e0f54f4e704debfb77709fc3c00e7595235e3ddc))
+* **authentication:** change variable name for consistency ([fba917f](https://github.com/maevsi/maevsi/commit/fba917f01506edba19dfa807ef4797aa30409d2c))
+* **authentication:** check if not removing the jiti folder fixes build ([85a91bd](https://github.com/maevsi/maevsi/commit/85a91bd516c55b067f05c4b6f01f72d94ddf32d2))
+* **authentication:** extracts error commands into an own function ([3641fa3](https://github.com/maevsi/maevsi/commit/3641fa38dde20b431936c0d043caa4a68f37f1ba))
+* **authentication:** fixes error throwing in auth proxy ([98a5f2e](https://github.com/maevsi/maevsi/commit/98a5f2e39d5a2c2352818474f506358e905c052b))
+* **authentication:** reduce log level of turnstile key logging ([f87737f](https://github.com/maevsi/maevsi/commit/f87737f5e15ccb3cb523de3b69228d736d0ea72d))
+* **authentication:** removes disabling of button ([d449646](https://github.com/maevsi/maevsi/commit/d4496465acd5be4765c1f8a087608e73758b7dc3))
+* **authentication:** removes double check for undefined turnstile key ([8c84718](https://github.com/maevsi/maevsi/commit/8c847189ecedd6377f73dd9737c2abdb346a03a2))
+* **authentication:** removes unnecessary console log ([991ff8f](https://github.com/maevsi/maevsi/commit/991ff8fc680b83a1eef54634914bd81329be2acb))
+* **authentication:** removes unnecessary console logs ([6af4a51](https://github.com/maevsi/maevsi/commit/6af4a51913e71cf09158f9f0f0bdac111d028bf5))
+* **authentication:** removes unnecessary console output ([f6909cb](https://github.com/maevsi/maevsi/commit/f6909cb474f5e91d7eda9f4450ff3d0a7be7bb3b))
+* **authentication:** removes unnecessary emit ([9780aea](https://github.com/maevsi/maevsi/commit/9780aea8ba8287af8f753d60038b611dd93b0a4d))
+* **authentication:** removes unnecessary logging output ([a26f062](https://github.com/maevsi/maevsi/commit/a26f0626998513def3f405c19f6f7e77e8547d0a))
+* **authentication:** removes unused console log ([66392ce](https://github.com/maevsi/maevsi/commit/66392ceb2448cdda0bc05fe520a3dd2fcaab834f))
+* **authentication:** removes unused console log ([1343eb2](https://github.com/maevsi/maevsi/commit/1343eb2a9c2108fc56454677a9849981dfdb9472))
+* **authentication:** reverts changes to FormAccountSignIn.vue ([19fad2d](https://github.com/maevsi/maevsi/commit/19fad2d21213e2aaf973c219e7cc3c2bad303b6b))
+* **authentication:** separates blocks with blank lines ([92af989](https://github.com/maevsi/maevsi/commit/92af989b166994dc13635d5bfa832f6d9816c71e))
+* **authentication:** update nuxt html validator ([6b2ecf6](https://github.com/maevsi/maevsi/commit/6b2ecf68fd840d8a46221c1c9aeb61fb73031b58))
+* **authentication:** use gap instead of margin ([c36a074](https://github.com/maevsi/maevsi/commit/c36a0742b02d4365794d386410650a3f76cf38a8))
+* **authentication:** uses short variable notation for function ([c033a4d](https://github.com/maevsi/maevsi/commit/c033a4d5252afb45b7f82ada53b76737ed2315b5))
+* **authentication:** validate turnstile before submitting form ([b1ffad7](https://github.com/maevsi/maevsi/commit/b1ffad7162b606d8d80bdaae6d2f57173f1d078e))
+* **auth:** fix lint problems ([ac4b41a](https://github.com/maevsi/maevsi/commit/ac4b41a4b7f7701ccebd8d3629b493a51dd899f0))
+* **auth:** fix turnstile header array ([81a72c7](https://github.com/maevsi/maevsi/commit/81a72c7e3930e9610c45b152e46cbef2568e6d11))
+* **captcha:** implement as form input ([b15ed8c](https://github.com/maevsi/maevsi/commit/b15ed8cd5de5dd5b25a919b024e9bc4b17b12e73))
+* **event:** replace middleware with call to action ([5120e79](https://github.com/maevsi/maevsi/commit/5120e79290c5fc4af5a12483c52b87f3be1bef32))
+* **form-account-sign-in:** navigate to referring page on sign in ([d44bc94](https://github.com/maevsi/maevsi/commit/d44bc945fb27ae487b4056a5afda0d005200984f))
+* **form:** add turnstile component ([97ac766](https://github.com/maevsi/maevsi/commit/97ac7664cde64654fb297fee770dd2fb738bebbb))
+* **middleware:** add forbidden ([15f0e8b](https://github.com/maevsi/maevsi/commit/15f0e8b8700afb41e0f32f5d6a4f34bc805523d3))
+* **nuxt:** strip sqitch from Dockerfile ([7dd1b15](https://github.com/maevsi/maevsi/commit/7dd1b1576e707dc38f2433586fe5b3898cc65012))
+* **pages:** replace middleware with soft 404 call to actions ([7627338](https://github.com/maevsi/maevsi/commit/7627338515c53704ee692dd9b77fa44fb06f33a7))
+* **production:** use port 3001 ([c61e8a6](https://github.com/maevsi/maevsi/commit/c61e8a66e7c6adbda81cf943f53ced59db1aaec2))
+* **server:** use h3 instead of node:http ([ad1a595](https://github.com/maevsi/maevsi/commit/ad1a595de1495b7d8b79062133a0f8d099e4f3b6))
+* **sqitch:** remove ([b21c45e](https://github.com/maevsi/maevsi/commit/b21c45eb8a9a272c811a4bda0b8ab0b368e57fc7))
+* stash ([56a1af0](https://github.com/maevsi/maevsi/commit/56a1af0691797d028a3a8ab78cb1fe0bcb6d8d1f))
+* **turnstile:** add site key to .env file ([f43e137](https://github.com/maevsi/maevsi/commit/f43e137d24a512b4414cecc1fe74637575df3ae3))
+* **turnstile:** adds turnstile to login and verifies key on server ([adc76e2](https://github.com/maevsi/maevsi/commit/adc76e254a5db8c1d634c5e7d13d98f936027a04))
+* **turnstile:** edits .env template with new fields ([c348d78](https://github.com/maevsi/maevsi/commit/c348d78f11971f36f4e56f7c19cc4a873b5ce249))
+* **turnstile:** let undefined turnstile key pass ([538563d](https://github.com/maevsi/maevsi/commit/538563d923dd9c6f8b2834b063f227039690c285))
+
+
+### Performance Improvements
+
+* **docker:** let integration tests run in parallel ([b0e6040](https://github.com/maevsi/maevsi/commit/b0e6040f2426ad77a63107baf7efd12eb881dfbd))
+* **nuxt:** optimize dockerfile order ([99b2da8](https://github.com/maevsi/maevsi/commit/99b2da864a8b448a64e879ea8d4e854d819d2944))
+
 ## [1.18.5](https://github.com/maevsi/maevsi/compare/1.18.4...1.18.5) (2023-06-14)
 
 
@@ -66,6 +186,172 @@
 * **contact:** translate message for duplicate key violation ([6abdfa8](https://github.com/maevsi/maevsi/commit/6abdfa81073237cbf3d6c9b754868c741b3c6b30))
 * **pwa:** switch to vite plugin ([855ea9b](https://github.com/maevsi/maevsi/commit/855ea9b7c6b948c65f08ff2ee45dc98a49fb2c5c))
 
+# [1.17.0-beta.9](https://github.com/maevsi/maevsi/compare/1.17.0-beta.8...1.17.0-beta.9) (2023-06-05)
+
+
+### Bug Fixes
+
+* Rerevert merge ([6eec552](https://github.com/maevsi/maevsi/commit/6eec552dcacf155e6464492ecbef1a6dca65efaf))
+
+# [1.17.0-beta.8](https://github.com/maevsi/maevsi/compare/1.17.0-beta.7...1.17.0-beta.8) (2023-06-02)
+
+
+### Features
+
+* **production:** use port 3001 ([c61e8a6](https://github.com/maevsi/maevsi/commit/c61e8a66e7c6adbda81cf943f53ced59db1aaec2))
+
+# [1.17.0-beta.7](https://github.com/maevsi/maevsi/compare/1.17.0-beta.6...1.17.0-beta.7) (2023-05-24)
+
+
+### Bug Fixes
+
+* **docker:** adds packages to compile projects ([1eeedaa](https://github.com/maevsi/maevsi/commit/1eeedaa3cde4b9e30d401a0263069931500ef428))
+* **dockerfile:** add a second Dockerfile to use when deploying on arm ([0e7f67b](https://github.com/maevsi/maevsi/commit/0e7f67bc12c48fb14795a2cf94fbf15d48e9165a))
+* **dockerfile:** remove pythonunbuffered and use only one run command ([684a861](https://github.com/maevsi/maevsi/commit/684a861dc5ee268e5723130e8faaca2738a221ca))
+
+# [1.17.0-beta.6](https://github.com/maevsi/maevsi/compare/1.17.0-beta.5...1.17.0-beta.6) (2023-05-23)
+
+
+### Bug Fixes
+
+* **nuxt:** move new files ([a751484](https://github.com/maevsi/maevsi/commit/a7514840edf5d18a0785ff0625972a67665b81f3))
+
+# [1.17.0-beta.5](https://github.com/maevsi/maevsi/compare/1.17.0-beta.4...1.17.0-beta.5) (2023-05-23)
+
+
+### Bug Fixes
+
+* **layout-call-to-action:** add gap ([68f52f3](https://github.com/maevsi/maevsi/commit/68f52f3080c7ac718fe62795402f47ff7377a1fc))
+* **sign-in:** allow for unset jwt ([450d764](https://github.com/maevsi/maevsi/commit/450d764b79c170824091f9e3971246be2d2998cf))
+* **turnstile:** set store value ([73f1af5](https://github.com/maevsi/maevsi/commit/73f1af5d79649611d216522780b9a83c622d331d))
+* **unlock:** add middleware wrapper and explanation ([9432307](https://github.com/maevsi/maevsi/commit/9432307ff12d95c76c4a8c3b70f7cf41612afa3f))
+
+
+### Features
+
+* **account:** remove middleware ([4b0330e](https://github.com/maevsi/maevsi/commit/4b0330ecebedbf639157083c177f66a17517df90))
+* **event:** replace middleware with call to action ([5120e79](https://github.com/maevsi/maevsi/commit/5120e79290c5fc4af5a12483c52b87f3be1bef32))
+* **form-account-sign-in:** navigate to referring page on sign in ([d44bc94](https://github.com/maevsi/maevsi/commit/d44bc945fb27ae487b4056a5afda0d005200984f))
+* **middleware:** add forbidden ([15f0e8b](https://github.com/maevsi/maevsi/commit/15f0e8b8700afb41e0f32f5d6a4f34bc805523d3))
+* **pages:** replace middleware with soft 404 call to actions ([7627338](https://github.com/maevsi/maevsi/commit/7627338515c53704ee692dd9b77fa44fb06f33a7))
+
+# [1.17.0-beta.4](https://github.com/maevsi/maevsi/compare/1.17.0-beta.3...1.17.0-beta.4) (2023-05-20)
+
+
+### Bug Fixes
+
+* **ofetch:** access raw data ([8968f1b](https://github.com/maevsi/maevsi/commit/8968f1bd4bcf6bc9fb96e480ab9ed78275dc8f3e))
+
+
+### Features
+
+* **auth-key:** do not fetch raw ([c4be6b9](https://github.com/maevsi/maevsi/commit/c4be6b90e939116ea99013b11d958e2b03908721))
+
+# [1.17.0-beta.3](https://github.com/maevsi/maevsi/compare/1.17.0-beta.2...1.17.0-beta.3) (2023-05-15)
+
+
+### Bug Fixes
+
+* **npm:** correct configuration placement ([9b9c8ef](https://github.com/maevsi/maevsi/commit/9b9c8ef0afc31e7e69413757d59729d5b8c13bec))
+* **nuxt:** add npm configuration ([4d3500d](https://github.com/maevsi/maevsi/commit/4d3500d8e0d35e2ebeaedbeeb1ed5bf9f0a2c5c7))
+* **nuxt:** correct docker development stage ([48d0901](https://github.com/maevsi/maevsi/commit/48d090130395836cbd0da476f3336426e632c880))
+* **nuxt:** optimize entrypoints by using pnpm rebuild ([a0fa05c](https://github.com/maevsi/maevsi/commit/a0fa05cf80eae3d5130b5bec527064b4852a0a11))
+* revert "perf(docker): let integration tests run in parallel" ([35d7c1c](https://github.com/maevsi/maevsi/commit/35d7c1ccb20a2e41996d8301435567f20afbfee8))
+* **sqitch:** add docker entrypoint ([5f33e09](https://github.com/maevsi/maevsi/commit/5f33e0997c5d972b3b295ea306ce7a2a133c06c3))
+* **sqitch:** correct schema update script ([0fad3e0](https://github.com/maevsi/maevsi/commit/0fad3e07dc0274103619342bd29298777b455663))
+* **sqitch:** let docker sleep indefinetly ([fa28851](https://github.com/maevsi/maevsi/commit/fa28851f5f4a16c6d7580c5431b0e10e38e5abd8))
+
+
+### Features
+
+* **nuxt:** strip sqitch from Dockerfile ([7dd1b15](https://github.com/maevsi/maevsi/commit/7dd1b1576e707dc38f2433586fe5b3898cc65012))
+* **sqitch:** remove ([b21c45e](https://github.com/maevsi/maevsi/commit/b21c45eb8a9a272c811a4bda0b8ab0b368e57fc7))
+
+
+### Performance Improvements
+
+* **docker:** let integration tests run in parallel ([b0e6040](https://github.com/maevsi/maevsi/commit/b0e6040f2426ad77a63107baf7efd12eb881dfbd))
+* **nuxt:** optimize dockerfile order ([99b2da8](https://github.com/maevsi/maevsi/commit/99b2da864a8b448a64e879ea8d4e854d819d2944))
+
+# [1.17.0-beta.2](https://github.com/maevsi/maevsi/compare/1.17.0-beta.1...1.17.0-beta.2) (2023-05-11)
+
+
+### Features
+
+* **server:** use h3 instead of node:http ([ad1a595](https://github.com/maevsi/maevsi/commit/ad1a595de1495b7d8b79062133a0f8d099e4f3b6))
+
+# [1.17.0-beta.1](https://github.com/maevsi/maevsi/compare/1.16.0...1.17.0-beta.1) (2023-05-11)
+
+
+### Bug Fixes
+
+* **chore:** fix pnpm-lock ([ea0f269](https://github.com/maevsi/maevsi/commit/ea0f26939288c06b142a8f7d35e6a61739161463))
+* **chore:** rearrange imports properly ([05eb798](https://github.com/maevsi/maevsi/commit/05eb798927b8738e971c523ce688d48217319f91))
+* **chore:** remove downgrading pinia ([4384806](https://github.com/maevsi/maevsi/commit/4384806fd3a873513e6827774f21db60ed6ec286))
+* **chore:** update package json and pnpm lock ([b958d80](https://github.com/maevsi/maevsi/commit/b958d80eae7431d237e3d1a697ae907fb1d1b28e))
+* **constants:** use X-Turnstile-Key as header for the turnstile key ([18c43b0](https://github.com/maevsi/maevsi/commit/18c43b05865fcccfcc7bbc740ded5ea84564c7ba))
+* **csp:** use correct csp for turnstile ([262dde1](https://github.com/maevsi/maevsi/commit/262dde19daee825648343535f32aabeb6003010a))
+* **cypress:** correct csp test ([a209a16](https://github.com/maevsi/maevsi/commit/a209a163c5a47ca68bc4a71972cdcf408b72529d))
+* **form-input-captcha:** hide when testing ([1796d3a](https://github.com/maevsi/maevsi/commit/1796d3a228a2df77c1578f2eb75e4ff99ceb4094))
+* **form-input-captcha:** let visibility default to true ([fc164e2](https://github.com/maevsi/maevsi/commit/fc164e2f9d36bb1a07d9b3744da5f59584438812))
+* **form:** do not use overflow ([3499a4c](https://github.com/maevsi/maevsi/commit/3499a4c6bdef1feb552b14bb952a61294f83150f))
+* **nuxt:** set secret key path ([06ee468](https://github.com/maevsi/maevsi/commit/06ee468c43491758fea37480bfe39e227241763c))
+* **package.json:** swap order of pinia and nuxt/turnstile dependencies ([bf41168](https://github.com/maevsi/maevsi/commit/bf41168620716fca6c14f624c97e421e87d71dea))
+* **style:** add comments to csp definitions ([17c1e10](https://github.com/maevsi/maevsi/commit/17c1e10324fdade809c24bc930086126417a6830))
+* **style:** remove empty line addition ([8229a5e](https://github.com/maevsi/maevsi/commit/8229a5efc7a353a9d9673ac3edfd3cebcd0c2c44))
+* **style:** remove margin for turnstile info and err and add gap instead ([4ba5507](https://github.com/maevsi/maevsi/commit/4ba5507bef50c2c9d0c023bb56fc81cc6bcbc6bc))
+* **style:** use template syntax for logging of the turnstile key ([97da625](https://github.com/maevsi/maevsi/commit/97da6259c5ee20ee63ebaecd51d3fbad6b361d6d))
+* **template:** removes nuxt turnstile secret key from template ([8dbca94](https://github.com/maevsi/maevsi/commit/8dbca94f8a178c7b0618f8d8a42efe21b3a56084))
+* **tests:** adds cloudflare turnstile to server test ([1865c55](https://github.com/maevsi/maevsi/commit/1865c55adc4163e7e27eeab25ccece404a977afc))
+* **turnstile:** removes unnecessary generation of validation endpoint ([fe542d9](https://github.com/maevsi/maevsi/commit/fe542d9e4ca65ea9c345d7fdfaa1a456dbabb5c7))
+* **turnstile:** store turnstile key on [@submit](https://github.com/submit) instead of [@click](https://github.com/click) ([81bd5c8](https://github.com/maevsi/maevsi/commit/81bd5c8f32cab970b96da83249be478bdcfef974))
+* **turnstile:** store turnstileKey in variable "form" and not "state" anymore ([9c6f766](https://github.com/maevsi/maevsi/commit/9c6f766554843d707b332c8851f909c7b7c3cd6c))
+* **turnstile:** use default site key with invisible widget ([ee9aa79](https://github.com/maevsi/maevsi/commit/ee9aa79cf920d297e6f199d295cbe8ee862a5002))
+* **turnstile:** use public runtime configuration for site key ([c46dfd2](https://github.com/maevsi/maevsi/commit/c46dfd2a8c4576168bdab7653d1ed4a2bd2922f3))
+* **ui:** removes unnecessary gap ([376854d](https://github.com/maevsi/maevsi/commit/376854debc8f56f4aa48167f3eb29af04c22165a))
+
+
+### Features
+
+* **auth:** bring .husky back ([da6ffe1](https://github.com/maevsi/maevsi/commit/da6ffe1d98b9302dd331f11540c727353af386c2))
+* **auth:** code formatting ([782af37](https://github.com/maevsi/maevsi/commit/782af371dde0fc504f37a2bb852932ee4a8092de))
+* **auth:** code reformatting ([9ee4e64](https://github.com/maevsi/maevsi/commit/9ee4e642ff7eb5acb49cecb565bacd2f29ec7f6b))
+* **authentication:** add comment according to contribution order ([3bc3827](https://github.com/maevsi/maevsi/commit/3bc38272c45d58674b7b1b3f168f932163ad3c77))
+* **authentication:** add missing return statement to error throw ([19925aa](https://github.com/maevsi/maevsi/commit/19925aacf4316da51bc3611cf5d7c5a0ac3e35c7))
+* **authentication:** adds google analytics id back to .env ([bafbb1c](https://github.com/maevsi/maevsi/commit/bafbb1c1d063485041780d7cea2f705f22d517ac))
+* **authentication:** auto stash before merge ([f5407be](https://github.com/maevsi/maevsi/commit/f5407be5d6dcf0d60692f8c4dd8a15d3a201ead3))
+* **authentication:** change headers variable from const  back to let ([609cfe4](https://github.com/maevsi/maevsi/commit/609cfe4d21c617a8404cb15ca17074adea8ade81))
+* **authentication:** change node to slim version ([e0f54f4](https://github.com/maevsi/maevsi/commit/e0f54f4e704debfb77709fc3c00e7595235e3ddc))
+* **authentication:** change variable name for consistency ([fba917f](https://github.com/maevsi/maevsi/commit/fba917f01506edba19dfa807ef4797aa30409d2c))
+* **authentication:** check if not removing the jiti folder fixes build ([85a91bd](https://github.com/maevsi/maevsi/commit/85a91bd516c55b067f05c4b6f01f72d94ddf32d2))
+* **authentication:** extracts error commands into an own function ([3641fa3](https://github.com/maevsi/maevsi/commit/3641fa38dde20b431936c0d043caa4a68f37f1ba))
+* **authentication:** fixes error throwing in auth proxy ([98a5f2e](https://github.com/maevsi/maevsi/commit/98a5f2e39d5a2c2352818474f506358e905c052b))
+* **authentication:** reduce log level of turnstile key logging ([f87737f](https://github.com/maevsi/maevsi/commit/f87737f5e15ccb3cb523de3b69228d736d0ea72d))
+* **authentication:** removes disabling of button ([d449646](https://github.com/maevsi/maevsi/commit/d4496465acd5be4765c1f8a087608e73758b7dc3))
+* **authentication:** removes double check for undefined turnstile key ([8c84718](https://github.com/maevsi/maevsi/commit/8c847189ecedd6377f73dd9737c2abdb346a03a2))
+* **authentication:** removes unnecessary console log ([991ff8f](https://github.com/maevsi/maevsi/commit/991ff8fc680b83a1eef54634914bd81329be2acb))
+* **authentication:** removes unnecessary console logs ([6af4a51](https://github.com/maevsi/maevsi/commit/6af4a51913e71cf09158f9f0f0bdac111d028bf5))
+* **authentication:** removes unnecessary console output ([f6909cb](https://github.com/maevsi/maevsi/commit/f6909cb474f5e91d7eda9f4450ff3d0a7be7bb3b))
+* **authentication:** removes unnecessary emit ([9780aea](https://github.com/maevsi/maevsi/commit/9780aea8ba8287af8f753d60038b611dd93b0a4d))
+* **authentication:** removes unnecessary logging output ([a26f062](https://github.com/maevsi/maevsi/commit/a26f0626998513def3f405c19f6f7e77e8547d0a))
+* **authentication:** removes unused console log ([66392ce](https://github.com/maevsi/maevsi/commit/66392ceb2448cdda0bc05fe520a3dd2fcaab834f))
+* **authentication:** removes unused console log ([1343eb2](https://github.com/maevsi/maevsi/commit/1343eb2a9c2108fc56454677a9849981dfdb9472))
+* **authentication:** reverts changes to FormAccountSignIn.vue ([19fad2d](https://github.com/maevsi/maevsi/commit/19fad2d21213e2aaf973c219e7cc3c2bad303b6b))
+* **authentication:** separates blocks with blank lines ([92af989](https://github.com/maevsi/maevsi/commit/92af989b166994dc13635d5bfa832f6d9816c71e))
+* **authentication:** update nuxt html validator ([6b2ecf6](https://github.com/maevsi/maevsi/commit/6b2ecf68fd840d8a46221c1c9aeb61fb73031b58))
+* **authentication:** use gap instead of margin ([c36a074](https://github.com/maevsi/maevsi/commit/c36a0742b02d4365794d386410650a3f76cf38a8))
+* **authentication:** uses short variable notation for function ([c033a4d](https://github.com/maevsi/maevsi/commit/c033a4d5252afb45b7f82ada53b76737ed2315b5))
+* **authentication:** validate turnstile before submitting form ([b1ffad7](https://github.com/maevsi/maevsi/commit/b1ffad7162b606d8d80bdaae6d2f57173f1d078e))
+* **auth:** fix lint problems ([ac4b41a](https://github.com/maevsi/maevsi/commit/ac4b41a4b7f7701ccebd8d3629b493a51dd899f0))
+* **auth:** fix turnstile header array ([81a72c7](https://github.com/maevsi/maevsi/commit/81a72c7e3930e9610c45b152e46cbef2568e6d11))
+* **captcha:** implement as form input ([b15ed8c](https://github.com/maevsi/maevsi/commit/b15ed8cd5de5dd5b25a919b024e9bc4b17b12e73))
+* **form:** add turnstile component ([97ac766](https://github.com/maevsi/maevsi/commit/97ac7664cde64654fb297fee770dd2fb738bebbb))
+* stash ([56a1af0](https://github.com/maevsi/maevsi/commit/56a1af0691797d028a3a8ab78cb1fe0bcb6d8d1f))
+* **turnstile:** add site key to .env file ([f43e137](https://github.com/maevsi/maevsi/commit/f43e137d24a512b4414cecc1fe74637575df3ae3))
+* **turnstile:** adds turnstile to login and verifies key on server ([adc76e2](https://github.com/maevsi/maevsi/commit/adc76e254a5db8c1d634c5e7d13d98f936027a04))
+* **turnstile:** edits .env template with new fields ([c348d78](https://github.com/maevsi/maevsi/commit/c348d78f11971f36f4e56f7c19cc4a873b5ce249))
+* **turnstile:** let undefined turnstile key pass ([538563d](https://github.com/maevsi/maevsi/commit/538563d923dd9c6f8b2834b063f227039690c285))
+
 # [1.16.0](https://github.com/maevsi/maevsi/compare/1.15.1...1.16.0) (2023-05-11)
 
 
@@ -86,6 +372,85 @@
 * **pwa:** add all favicons ([1541124](https://github.com/maevsi/maevsi/commit/154112451705261fcb323ef2b8a25f02c48186a4))
 
 ## [1.15.1](https://github.com/maevsi/maevsi/compare/1.15.0...1.15.1) (2023-05-10)
+
+
+### Bug Fixes
+
+* **sqitch:** place not null constraint after type ([63f49df](https://github.com/maevsi/maevsi/commit/63f49dfd2e519227fff5309a804bb94f437bbd73))
+
+# [1.16.0-beta.1](https://github.com/maevsi/maevsi/compare/1.15.1-beta.1...1.16.0-beta.1) (2023-05-10)
+
+
+### Bug Fixes
+
+* **chore:** fix pnpm-lock ([ea0f269](https://github.com/maevsi/maevsi/commit/ea0f26939288c06b142a8f7d35e6a61739161463))
+* **chore:** rearrange imports properly ([05eb798](https://github.com/maevsi/maevsi/commit/05eb798927b8738e971c523ce688d48217319f91))
+* **chore:** remove downgrading pinia ([4384806](https://github.com/maevsi/maevsi/commit/4384806fd3a873513e6827774f21db60ed6ec286))
+* **chore:** update package json and pnpm lock ([b958d80](https://github.com/maevsi/maevsi/commit/b958d80eae7431d237e3d1a697ae907fb1d1b28e))
+* **constants:** use X-Turnstile-Key as header for the turnstile key ([18c43b0](https://github.com/maevsi/maevsi/commit/18c43b05865fcccfcc7bbc740ded5ea84564c7ba))
+* **csp:** use correct csp for turnstile ([262dde1](https://github.com/maevsi/maevsi/commit/262dde19daee825648343535f32aabeb6003010a))
+* **cypress:** correct csp test ([a209a16](https://github.com/maevsi/maevsi/commit/a209a163c5a47ca68bc4a71972cdcf408b72529d))
+* **form-input-captcha:** hide when testing ([1796d3a](https://github.com/maevsi/maevsi/commit/1796d3a228a2df77c1578f2eb75e4ff99ceb4094))
+* **form-input-captcha:** let visibility default to true ([fc164e2](https://github.com/maevsi/maevsi/commit/fc164e2f9d36bb1a07d9b3744da5f59584438812))
+* **form:** do not use overflow ([3499a4c](https://github.com/maevsi/maevsi/commit/3499a4c6bdef1feb552b14bb952a61294f83150f))
+* **nuxt:** set secret key path ([06ee468](https://github.com/maevsi/maevsi/commit/06ee468c43491758fea37480bfe39e227241763c))
+* **package.json:** swap order of pinia and nuxt/turnstile dependencies ([bf41168](https://github.com/maevsi/maevsi/commit/bf41168620716fca6c14f624c97e421e87d71dea))
+* **style:** add comments to csp definitions ([17c1e10](https://github.com/maevsi/maevsi/commit/17c1e10324fdade809c24bc930086126417a6830))
+* **style:** remove empty line addition ([8229a5e](https://github.com/maevsi/maevsi/commit/8229a5efc7a353a9d9673ac3edfd3cebcd0c2c44))
+* **style:** remove margin for turnstile info and err and add gap instead ([4ba5507](https://github.com/maevsi/maevsi/commit/4ba5507bef50c2c9d0c023bb56fc81cc6bcbc6bc))
+* **style:** use template syntax for logging of the turnstile key ([97da625](https://github.com/maevsi/maevsi/commit/97da6259c5ee20ee63ebaecd51d3fbad6b361d6d))
+* **template:** removes nuxt turnstile secret key from template ([8dbca94](https://github.com/maevsi/maevsi/commit/8dbca94f8a178c7b0618f8d8a42efe21b3a56084))
+* **tests:** adds cloudflare turnstile to server test ([1865c55](https://github.com/maevsi/maevsi/commit/1865c55adc4163e7e27eeab25ccece404a977afc))
+* **turnstile:** removes unnecessary generation of validation endpoint ([fe542d9](https://github.com/maevsi/maevsi/commit/fe542d9e4ca65ea9c345d7fdfaa1a456dbabb5c7))
+* **turnstile:** store turnstile key on [@submit](https://github.com/submit) instead of [@click](https://github.com/click) ([81bd5c8](https://github.com/maevsi/maevsi/commit/81bd5c8f32cab970b96da83249be478bdcfef974))
+* **turnstile:** store turnstileKey in variable "form" and not "state" anymore ([9c6f766](https://github.com/maevsi/maevsi/commit/9c6f766554843d707b332c8851f909c7b7c3cd6c))
+* **turnstile:** use default site key with invisible widget ([ee9aa79](https://github.com/maevsi/maevsi/commit/ee9aa79cf920d297e6f199d295cbe8ee862a5002))
+* **turnstile:** use public runtime configuration for site key ([c46dfd2](https://github.com/maevsi/maevsi/commit/c46dfd2a8c4576168bdab7653d1ed4a2bd2922f3))
+* **ui:** removes unnecessary gap ([376854d](https://github.com/maevsi/maevsi/commit/376854debc8f56f4aa48167f3eb29af04c22165a))
+
+
+### Features
+
+* **auth:** bring .husky back ([da6ffe1](https://github.com/maevsi/maevsi/commit/da6ffe1d98b9302dd331f11540c727353af386c2))
+* **auth:** code formatting ([782af37](https://github.com/maevsi/maevsi/commit/782af371dde0fc504f37a2bb852932ee4a8092de))
+* **auth:** code reformatting ([9ee4e64](https://github.com/maevsi/maevsi/commit/9ee4e642ff7eb5acb49cecb565bacd2f29ec7f6b))
+* **authentication:** add comment according to contribution order ([3bc3827](https://github.com/maevsi/maevsi/commit/3bc38272c45d58674b7b1b3f168f932163ad3c77))
+* **authentication:** add missing return statement to error throw ([19925aa](https://github.com/maevsi/maevsi/commit/19925aacf4316da51bc3611cf5d7c5a0ac3e35c7))
+* **authentication:** adds google analytics id back to .env ([bafbb1c](https://github.com/maevsi/maevsi/commit/bafbb1c1d063485041780d7cea2f705f22d517ac))
+* **authentication:** auto stash before merge ([f5407be](https://github.com/maevsi/maevsi/commit/f5407be5d6dcf0d60692f8c4dd8a15d3a201ead3))
+* **authentication:** change headers variable from const  back to let ([609cfe4](https://github.com/maevsi/maevsi/commit/609cfe4d21c617a8404cb15ca17074adea8ade81))
+* **authentication:** change node to slim version ([e0f54f4](https://github.com/maevsi/maevsi/commit/e0f54f4e704debfb77709fc3c00e7595235e3ddc))
+* **authentication:** change variable name for consistency ([fba917f](https://github.com/maevsi/maevsi/commit/fba917f01506edba19dfa807ef4797aa30409d2c))
+* **authentication:** check if not removing the jiti folder fixes build ([85a91bd](https://github.com/maevsi/maevsi/commit/85a91bd516c55b067f05c4b6f01f72d94ddf32d2))
+* **authentication:** extracts error commands into an own function ([3641fa3](https://github.com/maevsi/maevsi/commit/3641fa38dde20b431936c0d043caa4a68f37f1ba))
+* **authentication:** fixes error throwing in auth proxy ([98a5f2e](https://github.com/maevsi/maevsi/commit/98a5f2e39d5a2c2352818474f506358e905c052b))
+* **authentication:** reduce log level of turnstile key logging ([f87737f](https://github.com/maevsi/maevsi/commit/f87737f5e15ccb3cb523de3b69228d736d0ea72d))
+* **authentication:** removes disabling of button ([d449646](https://github.com/maevsi/maevsi/commit/d4496465acd5be4765c1f8a087608e73758b7dc3))
+* **authentication:** removes double check for undefined turnstile key ([8c84718](https://github.com/maevsi/maevsi/commit/8c847189ecedd6377f73dd9737c2abdb346a03a2))
+* **authentication:** removes unnecessary console log ([991ff8f](https://github.com/maevsi/maevsi/commit/991ff8fc680b83a1eef54634914bd81329be2acb))
+* **authentication:** removes unnecessary console logs ([6af4a51](https://github.com/maevsi/maevsi/commit/6af4a51913e71cf09158f9f0f0bdac111d028bf5))
+* **authentication:** removes unnecessary console output ([f6909cb](https://github.com/maevsi/maevsi/commit/f6909cb474f5e91d7eda9f4450ff3d0a7be7bb3b))
+* **authentication:** removes unnecessary emit ([9780aea](https://github.com/maevsi/maevsi/commit/9780aea8ba8287af8f753d60038b611dd93b0a4d))
+* **authentication:** removes unnecessary logging output ([a26f062](https://github.com/maevsi/maevsi/commit/a26f0626998513def3f405c19f6f7e77e8547d0a))
+* **authentication:** removes unused console log ([66392ce](https://github.com/maevsi/maevsi/commit/66392ceb2448cdda0bc05fe520a3dd2fcaab834f))
+* **authentication:** removes unused console log ([1343eb2](https://github.com/maevsi/maevsi/commit/1343eb2a9c2108fc56454677a9849981dfdb9472))
+* **authentication:** reverts changes to FormAccountSignIn.vue ([19fad2d](https://github.com/maevsi/maevsi/commit/19fad2d21213e2aaf973c219e7cc3c2bad303b6b))
+* **authentication:** separates blocks with blank lines ([92af989](https://github.com/maevsi/maevsi/commit/92af989b166994dc13635d5bfa832f6d9816c71e))
+* **authentication:** update nuxt html validator ([6b2ecf6](https://github.com/maevsi/maevsi/commit/6b2ecf68fd840d8a46221c1c9aeb61fb73031b58))
+* **authentication:** use gap instead of margin ([c36a074](https://github.com/maevsi/maevsi/commit/c36a0742b02d4365794d386410650a3f76cf38a8))
+* **authentication:** uses short variable notation for function ([c033a4d](https://github.com/maevsi/maevsi/commit/c033a4d5252afb45b7f82ada53b76737ed2315b5))
+* **authentication:** validate turnstile before submitting form ([b1ffad7](https://github.com/maevsi/maevsi/commit/b1ffad7162b606d8d80bdaae6d2f57173f1d078e))
+* **auth:** fix lint problems ([ac4b41a](https://github.com/maevsi/maevsi/commit/ac4b41a4b7f7701ccebd8d3629b493a51dd899f0))
+* **auth:** fix turnstile header array ([81a72c7](https://github.com/maevsi/maevsi/commit/81a72c7e3930e9610c45b152e46cbef2568e6d11))
+* **captcha:** implement as form input ([b15ed8c](https://github.com/maevsi/maevsi/commit/b15ed8cd5de5dd5b25a919b024e9bc4b17b12e73))
+* **form:** add turnstile component ([97ac766](https://github.com/maevsi/maevsi/commit/97ac7664cde64654fb297fee770dd2fb738bebbb))
+* stash ([56a1af0](https://github.com/maevsi/maevsi/commit/56a1af0691797d028a3a8ab78cb1fe0bcb6d8d1f))
+* **turnstile:** add site key to .env file ([f43e137](https://github.com/maevsi/maevsi/commit/f43e137d24a512b4414cecc1fe74637575df3ae3))
+* **turnstile:** adds turnstile to login and verifies key on server ([adc76e2](https://github.com/maevsi/maevsi/commit/adc76e254a5db8c1d634c5e7d13d98f936027a04))
+* **turnstile:** edits .env template with new fields ([c348d78](https://github.com/maevsi/maevsi/commit/c348d78f11971f36f4e56f7c19cc4a873b5ce249))
+* **turnstile:** let undefined turnstile key pass ([538563d](https://github.com/maevsi/maevsi/commit/538563d923dd9c6f8b2834b063f227039690c285))
+
+## [1.15.1-beta.1](https://github.com/maevsi/maevsi/compare/1.15.0...1.15.1-beta.1) (2023-05-10)
 
 
 ### Bug Fixes
@@ -119,6 +484,21 @@
 * **icon-container:** use span for icons ([9da8d77](https://github.com/maevsi/maevsi/commit/9da8d7738727a563fca22ccb83faed35dbab19c0))
 * **image-upload-gallery:** correct button trash margin ([58cb3be](https://github.com/maevsi/maevsi/commit/58cb3be75c3aaf08d53d01c7d88203724d58802c))
 * **sqitch:** rework reference constraints ([c4e7a89](https://github.com/maevsi/maevsi/commit/c4e7a8978f3de470d616ee88eb821d2c71137528))
+
+
+### Features
+
+* **uppy:** display restriction error ([9eecd0b](https://github.com/maevsi/maevsi/commit/9eecd0b50ec4709b1aa795efd3533c8eb5fc5b8a)), closes [#1165](https://github.com/maevsi/maevsi/issues/1165)
+
+# [1.14.0-beta.1](https://github.com/maevsi/maevsi/compare/1.13.2...1.14.0-beta.1) (2023-05-05)
+
+
+### Bug Fixes
+
+* **docker:** correct ignore file ([e271235](https://github.com/maevsi/maevsi/commit/e27123578f58afb508fd4b262a8946683929cabf))
+* **icon-container-new:** add block display by default ([0ea69f0](https://github.com/maevsi/maevsi/commit/0ea69f0d4cc54c3a892a1b70a9d2470f819f6778))
+* **icon-container:** use span for icons ([9da8d77](https://github.com/maevsi/maevsi/commit/9da8d7738727a563fca22ccb83faed35dbab19c0))
+* **image-upload-gallery:** correct button trash margin ([58cb3be](https://github.com/maevsi/maevsi/commit/58cb3be75c3aaf08d53d01c7d88203724d58802c))
 
 
 ### Features

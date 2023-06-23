@@ -1,0 +1,179 @@
+import { Client } from '@urql/vue'
+import { consola } from 'consola'
+import { H3Event, setCookie } from 'h3'
+import { decodeJwt } from 'jose'
+
+import { JWT_NAME } from './constants'
+import { useMaevsiStore } from '~/store'
+import { authenticateMutation } from '~/gql/documents/mutations/account/accountAuthenticate'
+import { jwtRefreshMutation } from '~/gql/documents/mutations/account/accountJwtRefresh'
+
+export const authenticationAnonymous = async ({
+  $urqlReset,
+  client,
+  event,
+  store,
+}: {
+  $urqlReset: () => void
+  client: Client
+  event?: H3Event
+  store: ReturnType<typeof useMaevsiStore>
+}) => {
+  consola.trace('Authenticating anonymously...')
+
+  const result = await client
+    .mutation(authenticateMutation, {
+      username: '',
+      password: '',
+    })
+    .toPromise()
+
+  if (result.error) {
+    consola.error(result.error)
+  } else {
+    if (!result.data?.authenticate) {
+      return
+    }
+
+    await jwtStore({
+      $urqlReset,
+      store,
+      event,
+      jwt: result.data.authenticate.jwt,
+    })
+  }
+}
+
+export const getJwtFromCookie = () => {
+  const cookie = useCookie(JWT_NAME())
+
+  if (!cookie.value) {
+    return consola.debug('No token cookie.')
+  }
+
+  const jwt = decodeJwt(cookie.value)
+
+  if (jwt.exp === undefined || jwt.exp <= Date.now() / 1000) {
+    return consola.info('Token expired.')
+  }
+
+  return {
+    jwt: cookie.value,
+    jwtDecoded: jwt,
+  }
+}
+
+export const jwtRefresh = async ({
+  $urqlReset,
+  client,
+  event,
+  id,
+  store,
+}: {
+  $urqlReset: () => void
+  client: Client
+  event: H3Event
+  id: string
+  store: ReturnType<typeof useMaevsiStore>
+}) => {
+  consola.trace('Refreshing a JWT...')
+
+  const result = await client.mutation(jwtRefreshMutation, { id }).toPromise()
+
+  if (result.error) {
+    consola.error(result.error)
+    await signOut({ $urqlReset, client, event, store })
+  } else if (!result.data?.jwtRefresh?.jwt) {
+    await authenticationAnonymous({ $urqlReset, client, event, store })
+  } else {
+    await jwtStore({
+      $urqlReset,
+      event,
+      jwt: result.data.jwtRefresh.jwt,
+      store,
+    })
+  }
+}
+
+export const jwtStore = async ({
+  $urqlReset,
+  store,
+  event,
+  jwt,
+}: {
+  $urqlReset: () => void
+  store: ReturnType<typeof useMaevsiStore>
+  event?: H3Event
+  jwt?: string
+}) => {
+  $urqlReset()
+
+  consola.trace('Storing the following JWT: ' + jwt)
+  store.jwtSet(jwt)
+
+  if (event) {
+    setCookie(event, JWT_NAME(), jwt || '', {
+      expires: jwt ? new Date(Date.now() + 86400 * 1000 * 31) : new Date(0),
+      httpOnly: true,
+      path: '/',
+      sameSite: 'lax', // Cannot be 'strict' to allow authentications after clicking on links within webmailers.
+      secure: true,
+    })
+  } else {
+    try {
+      await $fetch('/api/auth', {
+        method: 'POST',
+        ...(jwt ? { headers: { Authorization: `Bearer ${jwt}` } } : {}),
+      })
+    } catch (error: any) {
+      return Promise.reject(Error('Authentication api call failed.'))
+    }
+  }
+}
+
+export const useJwtStore = () => {
+  const { $urqlReset, ssrContext } = useNuxtApp()
+  const store = useMaevsiStore()
+
+  return {
+    async jwtStore(jwt?: string) {
+      await jwtStore({
+        $urqlReset,
+        event: ssrContext?.event,
+        jwt,
+        store,
+      })
+    },
+  }
+}
+
+export const signOut = async ({
+  $urqlReset,
+  client,
+  event,
+  store,
+}: {
+  $urqlReset: () => void
+  client: Client
+  event?: H3Event
+  store: ReturnType<typeof useMaevsiStore>
+}) => {
+  await jwtStore({ $urqlReset, store, event })
+  await authenticationAnonymous({ client, $urqlReset, store, event })
+}
+
+export const useSignOut = () => {
+  const { $urql, $urqlReset, ssrContext } = useNuxtApp()
+  const store = useMaevsiStore()
+
+  return {
+    async signOut() {
+      await signOut({
+        client: $urql.value,
+        $urqlReset,
+        store,
+        event: ssrContext?.event,
+      })
+    },
+  }
+}

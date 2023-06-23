@@ -4,11 +4,11 @@
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
     ["@semantic-release/npm", {
-      "pkgRoot": "./nuxt"
+      "pkgRoot": "./src"
     }],
     "@semantic-release/github",
     ["@semantic-release/git", {
-      "assets": ["CHANGELOG.md", "./nuxt/package.json"]
+      "assets": ["CHANGELOG.md", "./src/package.json"]
     }]
   ],
   "tagFormat": "${version}"

@@ -11,5 +11,12 @@
     "@commitlint/cli": "17.6.5",
     "@commitlint/config-conventional": "17.6.5",
     "husky": "8.0.3"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "webpack"
+      ]
+    }
   }
 }
