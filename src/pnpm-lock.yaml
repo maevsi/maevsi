@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@axe-core/playwright':
-    specifier: 4.7.2-alpha.390
-    version: 4.7.2-alpha.390(playwright-core@1.34.3)
+    specifier: 4.7.3
+    version: 4.7.3(playwright-core@1.34.3)
   '@babel/core':
     specifier: 7.22.5
     version: 7.22.5
@@ -406,8 +406,8 @@ packages:
       - encoding
     dev: true
 
-  /@axe-core/playwright@4.7.2-alpha.390(playwright-core@1.34.3):
-    resolution: {integrity: sha512-wvummoptfyJPFukv/Ugq9S43Oef/Deeb35v432Fbp3scDLIGWZ+ji/TsKRUmGgpcou7rwnnrq2MWIk1IyFF9MA==}
+  /@axe-core/playwright@4.7.3(playwright-core@1.34.3):
+    resolution: {integrity: sha512-v2PRgAyGvop7bamrTpNJtc5b1R7giAPnMzZXrS/VDZBCY5+uwVYtCNgDvBsqp5P1QMZxUMoBN+CERJUTMjFN0A==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
     dependencies:
