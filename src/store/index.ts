@@ -27,13 +27,13 @@ export const useMaevsiStore = defineStore('maevsi', () => {
       jwtDecodedNew?.role === 'maevsi_account' &&
       jwtDecodedNew.exp !== undefined &&
       jwtDecodedNew.exp > Math.floor(Date.now() / 1000)
-        ? (jwtDecodedNew.accountId as string | undefined)
+        ? (jwtDecodedNew.account_id as string | undefined)
         : undefined
     signedInUsername.value =
       jwtDecodedNew?.role === 'maevsi_account' &&
       jwtDecodedNew.exp !== undefined &&
       jwtDecodedNew.exp > Math.floor(Date.now() / 1000)
-        ? (jwtDecodedNew.username as string | undefined)
+        ? (jwtDecodedNew.account_username as string | undefined)
         : undefined
   }
 

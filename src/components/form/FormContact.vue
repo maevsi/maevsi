@@ -158,16 +158,12 @@ const submit = async () => {
     username: form.accountUsername,
   })
 
-  if (!account) {
-    throw new Error('Account not found!')
-  }
-
   if (form.id) {
     // Edit
     const result = await updateContactByIdMutation.executeMutation({
       id: form.id,
       contactPatch: {
-        accountId: account.id || null,
+        accountId: account?.id || null,
         address: form.address || null,
         authorAccountId: store.signedInAccountId,
         emailAddress: form.emailAddress || null,
@@ -185,7 +181,7 @@ const submit = async () => {
     // Add
     const result = await createContactMutation.executeMutation({
       contactInput: {
-        accountId: account.id || null,
+        accountId: account?.id || null,
         address: form.address || null,
         authorAccountId: store.signedInAccountId,
         emailAddress: form.emailAddress || null,
