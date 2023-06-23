@@ -1,3 +1,18 @@
+# [1.19.0-beta.3](https://github.com/maevsi/maevsi/compare/1.19.0-beta.2...1.19.0-beta.3) (2023-06-23)
+
+
+### Bug Fixes
+
+* **card:** allow vertical overflow ([27cc795](https://github.com/maevsi/maevsi/commit/27cc7958736d2f7cc0e8b411377d6a149a0e5494))
+* **card:** allow vertical overflow ([#1308](https://github.com/maevsi/maevsi/issues/1308)) ([c2a954a](https://github.com/maevsi/maevsi/commit/c2a954affc4ad85e2eb2609a4025b8974d0cc563))
+
+
+### Features
+
+* beta ([#1300](https://github.com/maevsi/maevsi/issues/1300)) ([62c9526](https://github.com/maevsi/maevsi/commit/62c95264366b1b02e1396e0b08b66b75326ef888))
+* **head:** add `dir` attribute ([cb5a57b](https://github.com/maevsi/maevsi/commit/cb5a57b0401b07695e7543390a5a0697373735c4))
+* **head:** add `dir` attribute ([#1301](https://github.com/maevsi/maevsi/issues/1301)) ([2c78c32](https://github.com/maevsi/maevsi/commit/2c78c3272185975df0b0adbbe3daeb3484fab490))
+
 # [1.19.0-beta.2](https://github.com/maevsi/maevsi/compare/1.19.0-beta.1...1.19.0-beta.2) (2023-06-19)
 
 
