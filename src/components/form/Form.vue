@@ -1,6 +1,7 @@
 <template>
   <form
     v-if="form"
+    ref="formRef"
     :class="[
       { 'animate-shake rounded-lg border border-red-500': errors?.length },
       formClass,
@@ -70,6 +71,14 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
+// refs
+const formRef = ref<HTMLFormElement>()
+
+// methods
+const resetForm = () => {
+  formRef.value?.reset()
+}
+
 // computations
 const $error = computed(
   // this is not equivalent to Vuelidate's `$error` as docs claim (https://github.com/vuelidate/vuelidate/pull/1188)
@@ -80,6 +89,10 @@ const errorMessages = computed(() =>
     ? getCombinedErrorMessages(props.errors, props.errorsPgIds)
     : undefined
 )
+
+defineExpose({
+  resetForm,
+})
 </script>
 
 <script lang="ts">
