@@ -208,12 +208,6 @@ onMounted(() => {
 useHeadDefault(title)
 </script>
 
-<script lang="ts">
-export default {
-  name: 'IndexPage',
-}
-</script>
-
 <i18n lang="yaml">
 de:
   greetingExplanation: Einladungscodes gewähren dir Zugriff auf nicht-öffentliche Veranstaltungsseiten, ohne dass du dir einen Account erstellen musst. Sie sind gültig, solange du zur Veranstaltung eingeladen bist, für die sie ausgestellt wurden.

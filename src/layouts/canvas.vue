@@ -74,9 +74,3 @@ onMounted(() => {
 useHeadLayout()
 $dayjs.locale(locale.value)
 </script>
-
-<script lang="ts">
-export default {
-  name: 'MaevsiCanvas',
-}
-</script>

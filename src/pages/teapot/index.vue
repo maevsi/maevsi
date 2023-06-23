@@ -22,12 +22,6 @@ useHeadDefault(title)
 init()
 </script>
 
-<script lang="ts">
-export default {
-  name: 'IndexPage',
-}
-</script>
-
 <i18n lang="yaml">
 de:
   title: Ich werd' keinen Kaffe machen
