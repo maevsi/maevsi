@@ -6,6 +6,7 @@ export const EventItem = graphql(`
     nodeId
     authorAccountId
     accountByAuthorAccountId {
+      id
       username
     }
     description

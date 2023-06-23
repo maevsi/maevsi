@@ -6,9 +6,11 @@ export const ContactItem = graphql(`
     id
     accountId
     accountByAccountId {
+      id
       username
     }
     accountByAuthorAccountId {
+      id
       username
     }
     authorAccountId

@@ -22,7 +22,7 @@ export type Incremental<T> =
     }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string | number; output: string }
+  ID: { input: string; output: string }
   String: { input: string; output: string }
   Boolean: { input: boolean; output: boolean }
   Int: { input: number; output: number }
@@ -3610,8 +3610,16 @@ export type ContactItemFragment = {
   lastName?: string | null
   phoneNumber?: string | null
   url?: string | null
-  accountByAccountId?: { __typename?: 'Account'; username: string } | null
-  accountByAuthorAccountId?: { __typename?: 'Account'; username: string } | null
+  accountByAccountId?: {
+    __typename?: 'Account'
+    id: any
+    username: string
+  } | null
+  accountByAuthorAccountId?: {
+    __typename?: 'Account'
+    id: any
+    username: string
+  } | null
 } & { ' $fragmentName'?: 'ContactItemFragment' }
 
 export type EventItemFragment = {
@@ -3631,7 +3639,11 @@ export type EventItemFragment = {
   start: any
   url?: string | null
   visibility: EventVisibility
-  accountByAuthorAccountId?: { __typename?: 'Account'; username: string } | null
+  accountByAuthorAccountId?: {
+    __typename?: 'Account'
+    id: any
+    username: string
+  } | null
 } & { ' $fragmentName'?: 'EventItemFragment' }
 
 export type InvitationItemFragment = {
@@ -4233,6 +4245,7 @@ export const EventItemFragmentDoc = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -4279,6 +4292,7 @@ export const ContactItemFragmentDoc = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -4289,6 +4303,7 @@ export const ContactItemFragmentDoc = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -4360,6 +4375,7 @@ export const InvitationItemFragmentDoc = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -4370,6 +4386,7 @@ export const InvitationItemFragmentDoc = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -5299,6 +5316,7 @@ export const CreateContactDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -5309,6 +5327,7 @@ export const CreateContactDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -5416,6 +5435,7 @@ export const DeleteContactByIdDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -5426,6 +5446,7 @@ export const DeleteContactByIdDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -5551,6 +5572,7 @@ export const UpdateContactByIdDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -5561,6 +5583,7 @@ export const UpdateContactByIdDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -5661,6 +5684,7 @@ export const CreateEventDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -5794,6 +5818,7 @@ export const EventDeleteDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -5997,6 +6022,7 @@ export const UpdateEventByIdDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -6123,6 +6149,7 @@ export const CreateInvitationDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -6133,6 +6160,7 @@ export const CreateInvitationDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -6331,6 +6359,7 @@ export const UpdateInvitationByIdDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -6341,6 +6370,7 @@ export const UpdateInvitationByIdDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -6911,6 +6941,7 @@ export const AllContactsDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -6921,6 +6952,7 @@ export const AllContactsDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -7093,6 +7125,7 @@ export const EventByAuthorAccountIdAndSlugDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -7103,6 +7136,7 @@ export const EventByAuthorAccountIdAndSlugDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -7137,6 +7171,7 @@ export const EventByAuthorAccountIdAndSlugDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -7401,6 +7436,7 @@ export const AllEventsDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -7564,6 +7600,7 @@ export const AllInvitationsDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
@@ -7574,6 +7611,7 @@ export const AllInvitationsDocument = {
             selectionSet: {
               kind: 'SelectionSet',
               selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'username' } },
               ],
             },
