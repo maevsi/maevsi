@@ -5,6 +5,9 @@ export const EventItem = graphql(`
     id
     nodeId
     authorAccountId
+    accountByAuthorAccountId {
+      username
+    }
     description
     end
     inviteeCountMaximum

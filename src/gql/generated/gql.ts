@@ -15,9 +15,9 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
 const documents = {
   '\n  fragment AccountItem on Account {\n    nodeId\n    id\n    username\n  }\n':
     types.AccountItemFragmentDoc,
-  '\n  fragment ContactItem on Contact {\n    nodeId\n    id\n    accountId\n    address\n    authorAccountId\n    emailAddress\n    emailAddressHash\n    firstName\n    lastName\n    phoneNumber\n    url\n  }\n':
+  '\n  fragment ContactItem on Contact {\n    nodeId\n    id\n    accountId\n    accountByAccountId {\n      username\n    }\n    accountByAuthorAccountId {\n      username\n    }\n    authorAccountId\n    address\n    emailAddress\n    emailAddressHash\n    firstName\n    lastName\n    phoneNumber\n    url\n  }\n':
     types.ContactItemFragmentDoc,
-  '\n  fragment EventItem on Event {\n    id\n    nodeId\n    authorAccountId\n    description\n    end\n    inviteeCountMaximum\n    isArchived\n    isInPerson\n    isRemote\n    location\n    name\n    slug\n    start\n    url\n    visibility\n  }\n':
+  '\n  fragment EventItem on Event {\n    id\n    nodeId\n    authorAccountId\n    accountByAuthorAccountId {\n      username\n    }\n    description\n    end\n    inviteeCountMaximum\n    isArchived\n    isInPerson\n    isRemote\n    location\n    name\n    slug\n    start\n    url\n    visibility\n  }\n':
     types.EventItemFragmentDoc,
   '\n  fragment InvitationItem on Invitation {\n    id\n    nodeId\n    contactId\n    eventId\n    feedback\n    feedbackPaper\n    contactByContactId {\n      ...ContactItem\n    }\n  }\n':
     types.InvitationItemFragmentDoc,
@@ -115,14 +115,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment ContactItem on Contact {\n    nodeId\n    id\n    accountId\n    address\n    authorAccountId\n    emailAddress\n    emailAddressHash\n    firstName\n    lastName\n    phoneNumber\n    url\n  }\n'
-): (typeof documents)['\n  fragment ContactItem on Contact {\n    nodeId\n    id\n    accountId\n    address\n    authorAccountId\n    emailAddress\n    emailAddressHash\n    firstName\n    lastName\n    phoneNumber\n    url\n  }\n']
+  source: '\n  fragment ContactItem on Contact {\n    nodeId\n    id\n    accountId\n    accountByAccountId {\n      username\n    }\n    accountByAuthorAccountId {\n      username\n    }\n    authorAccountId\n    address\n    emailAddress\n    emailAddressHash\n    firstName\n    lastName\n    phoneNumber\n    url\n  }\n'
+): (typeof documents)['\n  fragment ContactItem on Contact {\n    nodeId\n    id\n    accountId\n    accountByAccountId {\n      username\n    }\n    accountByAuthorAccountId {\n      username\n    }\n    authorAccountId\n    address\n    emailAddress\n    emailAddressHash\n    firstName\n    lastName\n    phoneNumber\n    url\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n  fragment EventItem on Event {\n    id\n    nodeId\n    authorAccountId\n    description\n    end\n    inviteeCountMaximum\n    isArchived\n    isInPerson\n    isRemote\n    location\n    name\n    slug\n    start\n    url\n    visibility\n  }\n'
-): (typeof documents)['\n  fragment EventItem on Event {\n    id\n    nodeId\n    authorAccountId\n    description\n    end\n    inviteeCountMaximum\n    isArchived\n    isInPerson\n    isRemote\n    location\n    name\n    slug\n    start\n    url\n    visibility\n  }\n']
+  source: '\n  fragment EventItem on Event {\n    id\n    nodeId\n    authorAccountId\n    accountByAuthorAccountId {\n      username\n    }\n    description\n    end\n    inviteeCountMaximum\n    isArchived\n    isInPerson\n    isRemote\n    location\n    name\n    slug\n    start\n    url\n    visibility\n  }\n'
+): (typeof documents)['\n  fragment EventItem on Event {\n    id\n    nodeId\n    authorAccountId\n    accountByAuthorAccountId {\n      username\n    }\n    description\n    end\n    inviteeCountMaximum\n    isArchived\n    isInPerson\n    isRemote\n    location\n    name\n    slug\n    start\n    url\n    visibility\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

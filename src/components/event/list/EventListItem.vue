@@ -1,69 +1,67 @@
 <template>
-  <Loader :api="api" indicator="ping">
-    <li
-      v-if="event && eventAuthorAccountUsername"
-      :class="{
-        'opacity-75': eventEnd
-          ? eventEnd.isBefore(now)
-          : eventStart.isBefore(now),
-      }"
+  <li
+    v-if="event && event.accountByAuthorAccountId?.username"
+    :class="{
+      'opacity-75': eventEnd
+        ? eventEnd.isBefore(now)
+        : eventStart.isBefore(now),
+    }"
+  >
+    <Button
+      :aria-label="event.name"
+      is-block
+      :to="
+        localePath(
+          '/event/' + event.accountByAuthorAccountId.username + '/' + event.slug
+        )
+      "
     >
-      <Button
-        :aria-label="event.name"
-        is-block
-        :to="
-          localePath('/event/' + eventAuthorAccountUsername + '/' + event.slug)
-        "
-      >
-        <Card class="flex flex-col gap-2">
-          <div class="flex items-center justify-between gap-2">
-            <div
-              class="truncate font-medium"
-              :class="{
-                'text-green-700 dark:text-green-600':
-                  eventStart.isSameOrAfter(now),
-              }"
-            >
-              {{ eventStart.format('lll') }}
-            </div>
-            <Tag
-              v-if="event.visibility === 'PRIVATE'"
-              class="self-start font-medium text-sm"
-            >
-              <div class="flex items-center gap-1">
-                <IconEyeOff classes="h-5 w-5" :title="t('private')" />
-                {{ t('private') }}
-              </div>
-            </Tag>
+      <Card class="flex flex-col gap-2">
+        <div class="flex items-center justify-between gap-2">
+          <div
+            class="truncate font-medium"
+            :class="{
+              'text-green-700 dark:text-green-600':
+                eventStart.isSameOrAfter(now),
+            }"
+          >
+            {{ eventStart.format('lll') }}
           </div>
-          <div class="flex items-baseline truncate gap-2">
-            <div class="truncate text-xl font-bold">
-              {{ event.name }}
+          <Tag
+            v-if="event.visibility === 'PRIVATE'"
+            class="self-start font-medium text-sm"
+          >
+            <div class="flex items-center gap-1">
+              <IconEyeOff classes="h-5 w-5" :title="t('private')" />
+              {{ t('private') }}
             </div>
-            <Owner :username="eventAuthorAccountUsername" />
+          </Tag>
+        </div>
+        <div class="flex items-baseline truncate gap-2">
+          <div class="truncate text-xl font-bold">
+            {{ event.name }}
           </div>
-          <p v-if="eventDescriptionTemplate" class="vio-line-clamp-2">
-            {{ eventDescriptionTemplate }}
-          </p>
-        </Card>
-      </Button>
-    </li>
-  </Loader>
+          <Owner :username="event.accountByAuthorAccountId.username" />
+        </div>
+        <p v-if="eventDescriptionTemplate" class="vio-line-clamp-2">
+          {{ eventDescriptionTemplate }}
+        </p>
+      </Card>
+    </Button>
+  </li>
 </template>
 
 <script setup lang="ts">
 import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import { useAccountByIdQuery } from '~/gql/documents/queries/account/accountById'
 import { EventItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
   event: Pick<
     EventItemFragment,
     | 'name'
-    | 'authorAccountId'
+    | 'accountByAuthorAccountId'
     | 'start'
     | 'visibility'
     | 'slug'
@@ -76,17 +74,6 @@ const props = withDefaults(defineProps<Props>(), {})
 const localePath = useLocalePath()
 const { t } = useI18n()
 const dateTime = useDateTime()
-
-// api data
-const eventAuthorAccountByIdQuery = useAccountByIdQuery({
-  id: props.event.authorAccountId,
-})
-const eventAuthorAccountUsername = computed(
-  () =>
-    getAccountItem(eventAuthorAccountByIdQuery.data.value?.accountById)
-      ?.username
-)
-const api = getApiData([eventAuthorAccountByIdQuery])
 
 // data
 const now = dateTime()

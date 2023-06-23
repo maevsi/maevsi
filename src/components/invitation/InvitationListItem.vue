@@ -73,11 +73,12 @@
                 </template>
               </Button>
               <Button
+                v-if="event.accountByAuthorAccountId?.username"
                 :aria-label="t('invitationView')"
                 @click="
                   navigateTo({
                     path: localePath(
-                      `/event/${eventAuthorAccountUsername}/${event.slug}`
+                      `/event/${event.accountByAuthorAccountId.username}/${event.slug}`
                     ),
                     query: { ic: invitation.id },
                   })
@@ -114,11 +115,9 @@ import {
   EventItemFragment,
   InvitationItemFragment,
 } from '~/gql/generated/graphql'
-import { useAccountByIdQuery } from '~/gql/documents/queries/account/accountById'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
 export interface Props {
-  event: Pick<EventItemFragment, 'authorAccountId' | 'slug'>
+  event: Pick<EventItemFragment, 'accountByAuthorAccountId' | 'slug'>
   invitation: Pick<
     InvitationItemFragment,
     'contactByContactId' | 'feedback' | 'id'
@@ -130,19 +129,9 @@ const { locale, t } = useI18n()
 const localePath = useLocalePath()
 
 // api data
-const accountByIdQuery = useAccountByIdQuery({
-  id: props.event.authorAccountId,
-})
-const eventAuthorAccountUsername = computed(
-  () => getAccountItem(accountByIdQuery.data.value?.accountById)?.username
-)
 const deleteInvitationByIdMutation = useDeleteInvitationByIdMutation()
 const inviteMutation = useInviteMutation()
-const api = getApiData([
-  accountByIdQuery,
-  deleteInvitationByIdMutation,
-  inviteMutation,
-])
+const api = getApiData([deleteInvitationByIdMutation, inviteMutation])
 
 // data
 const pending = reactive({

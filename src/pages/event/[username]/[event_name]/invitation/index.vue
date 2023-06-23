@@ -44,12 +44,11 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 
 // api data
-const accountByUsernameQueryx = await useAccountByUsernameQuery({
+const accountByUsernameQuery = await useAccountByUsernameQuery({
   username: route.params.username as string,
 })
 const accountId = computed(
-  () =>
-    getAccountItem(accountByUsernameQueryx.data.value?.accountByUsername)?.id
+  () => getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id
 )
 const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
   authorAccountId: accountId,
@@ -58,7 +57,7 @@ const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
 const event = computed(() =>
   getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug)
 )
-const api = getApiData([accountByUsernameQueryx, eventQuery])
+const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
 const routeParamEventName = route.params.event_name as string

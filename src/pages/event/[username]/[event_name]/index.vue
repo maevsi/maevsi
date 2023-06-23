@@ -1,6 +1,9 @@
 <template>
   <Loader :api="api">
-    <div v-if="event && eventAuthorAccount" class="flex flex-col gap-4">
+    <div
+      v-if="event && event.accountByAuthorAccountId?.username"
+      class="flex flex-col gap-4"
+    >
       <LayoutBreadcrumbs
         :prefixes="[
           { name: t('events'), to: localePath('/event') },
@@ -90,7 +93,7 @@
           <h1 class="m-0">
             {{ event.name }}
           </h1>
-          <Owner link :username="eventAuthorAccount.username" />
+          <Owner link :username="event.accountByAuthorAccountId.username" />
         </div>
         <div class="flex gap-2 items-center">
           <ButtonColored
@@ -150,7 +153,7 @@
                     invitation.feedback === 'CANCELED'
                   "
                   :aria-label="
-                    eventAuthorAccount.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !== signedInUsername
                       ? t('invitationAccept')
                       : t('invitationAcceptAdmin', {
                           name: contactName,
@@ -159,7 +162,7 @@
                   @click="accept"
                 >
                   {{
-                    eventAuthorAccount.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !== signedInUsername
                       ? t('invitationAccept')
                       : t('invitationAcceptAdmin', {
                           name: contactName,
@@ -175,7 +178,7 @@
                 >
                   <IconCheckCircle class="mr-2" title="accepted" />
                   {{
-                    eventAuthorAccount.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !== signedInUsername
                       ? t('invitationAccepted')
                       : t('invitationAcceptedAdmin', {
                           name: contactName,
@@ -188,7 +191,7 @@
                     invitation.feedback === 'ACCEPTED'
                   "
                   :aria-label="
-                    eventAuthorAccount.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !== signedInUsername
                       ? t('invitationCancel')
                       : t('invitationCancelAdmin', {
                           name: contactName,
@@ -197,7 +200,7 @@
                   @click="cancel"
                 >
                   {{
-                    eventAuthorAccount.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !== signedInUsername
                       ? t('invitationCancel')
                       : t('invitationCancelAdmin', {
                           name: contactName,
@@ -213,7 +216,7 @@
                 >
                   <IconXCircle class="mr-2" title="canceled" />
                   {{
-                    eventAuthorAccount.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !== signedInUsername
                       ? t('invitationCanceled')
                       : t('invitationCanceledAdmin', {
                           name: contactName,
@@ -332,7 +335,6 @@ import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/e
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import { useAccountByIdQuery } from '~/gql/documents/queries/account/accountById'
 
 definePageMeta({
   async validate(route) {
@@ -351,10 +353,9 @@ const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
 const accountByUsernameQuery = await useAccountByUsernameQuery({
   username: route.params.username as string,
 })
-const account = computed(() =>
-  getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)
+const accountId = computed(
+  () => getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id
 )
-const accountId = computed(() => account.value?.id)
 const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
   authorAccountId: accountId,
   slug: route.params.event_name as string,
@@ -363,14 +364,7 @@ const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
 const event = computed(() =>
   getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug)
 )
-const eventAuthorAccountId = computed(() => event.value?.authorAccountId)
-const accountByIdQuery = await useAccountByIdQuery({
-  id: eventAuthorAccountId,
-})
-const eventAuthorAccount = computed(() =>
-  getAccountItem(accountByIdQuery.data.value?.accountById)
-)
-const api = getApiData([accountByIdQuery, accountByUsernameQuery, eventQuery])
+const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
 const routeParamUsername = route.params.username as string

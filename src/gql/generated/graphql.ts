@@ -3602,14 +3602,16 @@ export type ContactItemFragment = {
   nodeId: string
   id: any
   accountId?: any | null
-  address?: string | null
   authorAccountId: any
+  address?: string | null
   emailAddress?: string | null
   emailAddressHash?: string | null
   firstName?: string | null
   lastName?: string | null
   phoneNumber?: string | null
   url?: string | null
+  accountByAccountId?: { __typename?: 'Account'; username: string } | null
+  accountByAuthorAccountId?: { __typename?: 'Account'; username: string } | null
 } & { ' $fragmentName'?: 'ContactItemFragment' }
 
 export type EventItemFragment = {
@@ -3629,6 +3631,7 @@ export type EventItemFragment = {
   start: any
   url?: string | null
   visibility: EventVisibility
+  accountByAuthorAccountId?: { __typename?: 'Account'; username: string } | null
 } & { ' $fragmentName'?: 'EventItemFragment' }
 
 export type InvitationItemFragment = {
@@ -4224,6 +4227,16 @@ export const EventItemFragmentDoc = {
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -4260,8 +4273,28 @@ export const ContactItemFragmentDoc = {
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -4321,8 +4354,28 @@ export const InvitationItemFragmentDoc = {
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -5240,8 +5293,28 @@ export const CreateContactDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -5337,8 +5410,28 @@ export const DeleteContactByIdDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -5452,8 +5545,28 @@ export const UpdateContactByIdDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -5542,6 +5655,16 @@ export const CreateEventDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -5665,6 +5788,16 @@ export const EventDeleteDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -5858,6 +5991,16 @@ export const UpdateEventByIdDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -5974,8 +6117,28 @@ export const CreateInvitationDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -6162,8 +6325,28 @@ export const UpdateInvitationByIdDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -6722,8 +6905,28 @@ export const AllContactsDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -6884,8 +7087,28 @@ export const EventByAuthorAccountIdAndSlugDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },
@@ -6908,6 +7131,16 @@ export const EventByAuthorAccountIdAndSlugDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -7162,6 +7395,16 @@ export const AllEventsDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'description' } },
           { kind: 'Field', name: { kind: 'Name', value: 'end' } },
           {
@@ -7315,8 +7558,28 @@ export const AllInvitationsDocument = {
           { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
           { kind: 'Field', name: { kind: 'Name', value: 'id' } },
           { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'accountByAuthorAccountId' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'username' } },
+              ],
+            },
+          },
           { kind: 'Field', name: { kind: 'Name', value: 'authorAccountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'address' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddress' } },
           { kind: 'Field', name: { kind: 'Name', value: 'emailAddressHash' } },
           { kind: 'Field', name: { kind: 'Name', value: 'firstName' } },

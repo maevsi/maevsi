@@ -5,8 +5,14 @@ export const ContactItem = graphql(`
     nodeId
     id
     accountId
-    address
+    accountByAccountId {
+      username
+    }
+    accountByAuthorAccountId {
+      username
+    }
     authorAccountId
+    address
     emailAddress
     emailAddressHash
     firstName
