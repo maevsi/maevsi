@@ -1,83 +1,70 @@
 <template>
-  <div class="flex flex-col gap-4">
-    <LayoutBreadcrumbs
-      :prefixes="[
-        { name: t('accounts'), to: localePath('/account') },
-        {
-          name: routeParamUsername,
-          to: localePath(`/account/${route.params.username}`),
-        },
-      ]"
-    >
-      {{ t('settings') }}
-    </LayoutBreadcrumbs>
-    <div class="flex min-w-0 flex-col items-center justify-center sm:flex-row">
-      <Button
-        :aria-label="t('profilePictureChange')"
-        class="sm:mr-4"
-        @click="showModalImageSelection"
+  <Loader :api="api" indicator="ping">
+    <div class="flex flex-col gap-4">
+      <LayoutBreadcrumbs
+        :prefixes="[
+          { name: t('accounts'), to: localePath('/account') },
+          {
+            name: routeParamUsername,
+            to: localePath(`/account/${route.params.username}`),
+          },
+        ]"
       >
-        <AccountProfilePicture
-          classes="h-24 rounded w-24"
-          height="96"
-          :username="routeParamUsername"
-          width="96"
+        {{ t('settings') }}
+      </LayoutBreadcrumbs>
+      <div
+        class="flex min-w-0 flex-col items-center justify-center sm:flex-row"
+      >
+        <Button
+          :aria-label="t('profilePictureChange')"
+          class="sm:mr-4"
+          @click="showModalImageSelection"
+        >
+          <AccountProfilePicture
+            :account-id="account?.id"
+            classes="h-24 rounded w-24"
+            height="96"
+            width="96"
+          />
+        </Button>
+        <h1>
+          {{ routeParamUsername }}
+        </h1>
+        <ModalImageSelection />
+      </div>
+      <section>
+        <h2>{{ t('titlePasswordChange') }}</h2>
+        <FormAccountPasswordChange />
+      </section>
+      <section>
+        <h2>{{ t('titleAccountDelete') }}</h2>
+        <FormDelete
+          id="deleteAccount"
+          :error-pg-ids="{
+            postgres23503: t('postgres23503'),
+            postgres28P01: t('postgres28P01'),
+          }"
+          :item-name="t('account')"
+          :mutation="mutation"
+          @success="signOut"
         />
-      </Button>
-      <h1>
-        {{ routeParamUsername }}
-      </h1>
-      <ModalImageSelection />
+      </section>
     </div>
-    <section>
-      <h2>{{ t('titlePasswordChange') }}</h2>
-      <FormAccountPasswordChange />
-    </section>
-    <section>
-      <h2>{{ t('titleAccountDelete') }}</h2>
-      <FormDelete
-        id="deleteAccount"
-        :error-pg-ids="{
-          postgres23503: t('postgres23503'),
-          postgres28P01: t('postgres28P01'),
-        }"
-        :item-name="t('account')"
-        :mutation="mutation"
-        @success="signOut"
-      />
-    </section>
-  </div>
+  </Loader>
 </template>
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
-import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
+import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
 definePageMeta({
   async validate(route) {
-    const { $urql } = useNuxtApp()
-    const store = useMaevsiStore()
-
-    const accountIsExisting = await $urql.value
-      .query(accountIsExistingQuery, {
-        username: route.params.username as string,
-      })
-      .toPromise()
-
-    if (accountIsExisting.error) {
-      throw createError(accountIsExisting.error)
-    }
-
-    if (!accountIsExisting.data?.accountIsExisting) {
-      return abortNavigation({ statusCode: 404 })
-    }
-
-    if (route.params.username !== store.signedInUsername) {
-      return abortNavigation({ statusCode: 403 })
-    }
-
-    return true
+    return await validateAccountExistence({
+      isAuthorizationRequired: true,
+      route,
+    })
   },
 })
 
@@ -87,6 +74,15 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
 const accountDeleteMutation = useAccountDeleteMutation()
+
+// api data
+const accountByUsernameQuery = await useAccountByUsernameQuery({
+  username: route.params.username as string,
+})
+const account = getAccountItem(
+  accountByUsernameQuery.data.value?.accountByUsername
+)
+const api = getApiData([accountByUsernameQuery])
 
 // data
 const mutation = accountDeleteMutation

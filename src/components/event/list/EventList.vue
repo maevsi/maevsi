@@ -28,10 +28,10 @@ import { useAllEventsQuery } from '~/gql/documents/queries/event/eventsAll'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 
 export interface Props {
-  username?: string
+  accountId?: string
 }
 const props = withDefaults(defineProps<Props>(), {
-  username: undefined,
+  accountId: undefined,
 })
 
 const route = useRoute()
@@ -43,7 +43,7 @@ const after = ref<string>()
 // api data
 const eventsQuery = await useAllEventsQuery({
   after,
-  authorUsername: props.username,
+  authorAccountId: props.accountId,
   first: ITEMS_PER_PAGE,
 })
 const api = getApiData([eventsQuery])

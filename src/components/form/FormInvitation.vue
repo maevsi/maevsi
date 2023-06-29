@@ -89,6 +89,8 @@ import { useCreateInvitationMutation } from '~/gql/documents/mutations/invitatio
 import { useAllContactsQuery } from '~/gql/documents/queries/contact/contactsAll'
 import { EventItemFragment } from '~/gql/generated/graphql'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
+import { accountByIdQuery } from '~/gql/documents/queries/account/accountById'
+import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
 export interface Props {
   event: Pick<EventItemFragment, 'id'>
@@ -102,6 +104,7 @@ const emit = defineEmits<{
   submitSuccess: []
 }>()
 
+const { $urql } = useNuxtApp()
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
@@ -112,7 +115,7 @@ const after = ref<string>()
 // api data
 const allContactsQuery = await useAllContactsQuery({
   after,
-  authorAccountUsername: store.signedInUsername,
+  authorAccountId: store.signedInAccountId,
   first: ITEMS_PER_PAGE_LARGE,
 })
 const createInvitationMutation = useCreateInvitationMutation()
@@ -185,14 +188,32 @@ const contactsFiltered = computed(() => {
   }
 
   const searchStringParts = form.searchString.split(' ')
-  const allContactsFiltered = contacts.value?.filter((contact) => {
-    for (const contactProperty of [
-      ...(contact.accountUsername
-        ? [contact.accountUsername.toLowerCase()]
-        : []),
+  const allContactsFiltered = contacts.value?.filter(async (contact) => {
+    const contactAccountQuery = await $urql.value
+      .query(accountByIdQuery, {
+        id: contact.accountId,
+      })
+      .toPromise()
+
+    if (contactAccountQuery.error) {
+      throw new Error(
+        getCombinedErrorMessages([contactAccountQuery.error]).join()
+      )
+    }
+
+    const contactAccount = getAccountItem(contactAccountQuery.data?.accountById)
+
+    if (!contactAccount) {
+      throw new Error('Contact account not found!')
+    }
+
+    const contactProperties = [
+      ...(contactAccount ? [contactAccount.username.toLowerCase()] : []),
       ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
       ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
-    ]) {
+    ]
+
+    for (const contactProperty of contactProperties) {
       for (const searchStringPart of searchStringParts) {
         if (contactProperty.includes(searchStringPart.toLowerCase())) {
           return true

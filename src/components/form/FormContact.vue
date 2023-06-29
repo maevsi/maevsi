@@ -127,6 +127,7 @@ const emit = defineEmits<{
   submitSuccess: []
 }>()
 
+const { $urql } = useNuxtApp()
 const store = useMaevsiStore()
 const { t } = useI18n()
 
@@ -152,14 +153,19 @@ const isFormSent = ref(false)
 const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
+  const account = await getAccountByUsername({
+    $urql,
+    username: form.accountUsername,
+  })
+
   if (form.id) {
     // Edit
     const result = await updateContactByIdMutation.executeMutation({
       id: form.id,
       contactPatch: {
-        accountUsername: form.accountUsername || null,
+        accountId: account?.id || null,
         address: form.address || null,
-        authorAccountUsername: store.jwtDecoded?.username as string,
+        authorAccountId: store.signedInAccountId,
         emailAddress: form.emailAddress || null,
         firstName: form.firstName || null,
         lastName: form.lastName || null,
@@ -175,9 +181,9 @@ const submit = async () => {
     // Add
     const result = await createContactMutation.executeMutation({
       contactInput: {
-        accountUsername: form.accountUsername || null,
+        accountId: account?.id || null,
         address: form.address || null,
-        authorAccountUsername: store.jwtDecoded?.username as string,
+        authorAccountId: store.signedInAccountId,
         emailAddress: form.emailAddress || null,
         firstName: form.firstName || null,
         lastName: form.lastName || null,

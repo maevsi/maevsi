@@ -5,14 +5,10 @@ import { AllContactsQueryVariables } from '~/gql/generated/graphql'
 export const useAllContactsQuery = (variables: AllContactsQueryVariables) =>
   useQuery({
     query: graphql(`
-      query allContacts(
-        $after: Cursor
-        $authorAccountUsername: String
-        $first: Int!
-      ) {
+      query allContacts($after: Cursor, $authorAccountId: UUID, $first: Int!) {
         allContacts(
           after: $after
-          condition: { authorAccountUsername: $authorAccountUsername }
+          condition: { authorAccountId: $authorAccountId }
           first: $first
           orderBy: [FIRST_NAME_ASC, LAST_NAME_ASC]
         ) {

@@ -7,7 +7,9 @@ export const useUploadCreateMutation = () =>
       mutation uploadCreate($uploadCreateInput: UploadCreateInput!) {
         uploadCreate(input: $uploadCreateInput) {
           clientMutationId
-          uuid
+          upload {
+            id
+          }
         }
       }
     `)

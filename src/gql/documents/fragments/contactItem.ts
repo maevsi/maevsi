@@ -4,9 +4,17 @@ export const ContactItem = graphql(`
   fragment ContactItem on Contact {
     nodeId
     id
-    accountUsername
+    accountId
+    accountByAccountId {
+      id
+      username
+    }
+    accountByAuthorAccountId {
+      id
+      username
+    }
+    authorAccountId
     address
-    authorAccountUsername
     emailAddress
     emailAddressHash
     firstName

@@ -5,10 +5,10 @@ import { AllUploadsQueryVariables } from '~/gql/generated/graphql'
 export const useAllUploadsQuery = (variables: AllUploadsQueryVariables) =>
   useQuery({
     query: graphql(`
-      query allUploads($after: Cursor, $first: Int!, $username: String) {
+      query allUploads($after: Cursor, $first: Int!, $accountId: UUID) {
         allUploads(
           after: $after
-          condition: { username: $username }
+          condition: { accountId: $accountId }
           first: $first
         ) {
           nodes {

@@ -20,7 +20,7 @@ withDefaults(defineProps<Props>(), {
   link: false,
 })
 
-// TODO: use i18n-t without useI18n (https://github.com/nuxt-modules/i18n/issues/1731)
+// TODO: use i18n-t without useI18n (https://github.com/intlify/vue-i18n-next/issues/1274)
 const x = useI18n() // eslint-disable-line @typescript-eslint/no-unused-vars
 const localePath = useLocalePath()
 </script>

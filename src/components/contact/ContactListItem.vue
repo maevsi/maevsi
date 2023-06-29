@@ -25,22 +25,21 @@
       <div class="flex items-center justify-evenly gap-2">
         <ButtonIcon
           :aria-label="
-            contact.authorAccountUsername !== signedInUsername
+            contact.authorAccountId !== signedInAccountId
               ? t('disabledReasonCreatorNot', {
-                  authorAccountUsername: contact.authorAccountUsername,
+                  authorAccountUsername:
+                    props.contact.accountByAuthorAccountId?.username,
                 })
               : t('contactEdit')
           "
-          :disabled="
-            contact.authorAccountUsername !== signedInUsername || isEditing
-          "
+          :disabled="contact.authorAccountId !== signedInAccountId || isEditing"
           @click="emit('edit')"
         >
           <IconPencil />
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('contactDelete')"
-          :disabled="isDeleting || contact.accountUsername === signedInUsername"
+          :disabled="isDeleting || contact.accountId === signedInAccountId"
           @click="emit('delete')"
         >
           <IconTrash />
@@ -58,8 +57,10 @@ export interface Props {
   contact: Pick<
     ContactItemFragment,
     | 'nodeId'
-    | 'authorAccountUsername'
-    | 'accountUsername'
+    | 'accountId'
+    | 'accountByAccountId'
+    | 'accountByAuthorAccountId'
+    | 'authorAccountId'
     | 'emailAddress'
     | 'emailAddressHash'
     | 'firstName'
@@ -71,7 +72,7 @@ export interface Props {
   isDeleting?: boolean
   isEditing?: boolean
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   isDeleting: false,
   isEditing: false,
 })
@@ -85,7 +86,7 @@ const store = useMaevsiStore()
 const { t } = useI18n()
 
 // computations
-const signedInUsername = computed(() => store.signedInUsername)
+const signedInAccountId = computed(() => store.signedInAccountId)
 </script>
 
 <i18n lang="yaml">
