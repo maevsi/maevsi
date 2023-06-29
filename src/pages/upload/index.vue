@@ -2,7 +2,6 @@
   <div>
     <h1>{{ title }}</h1>
     <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
-    <!-- TODO: remove username parameter? -->
     <ImageUploadGallery
       v-if="store.jwtDecoded?.role === 'maevsi_account'"
       :username="signedInUsername"
@@ -25,7 +24,6 @@ const store = useMaevsiStore()
 const title = t('title')
 
 // computations
-// TODO: computed, ref or raw store access?
 const signedInUsername = computed(() => store.signedInUsername)
 
 // initialization

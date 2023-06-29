@@ -4,7 +4,7 @@ import { graphql } from '~/gql/generated'
 export const useInviteMutation = () =>
   useMutation(
     graphql(`
-      mutation invite($invitationId: UUID!, $language: String!) {
+      mutation invite($invitationId: BigInt!, $language: String!) {
         invite(input: { invitationId: $invitationId, language: $language }) {
           clientMutationId
         }

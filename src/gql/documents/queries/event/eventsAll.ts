@@ -5,10 +5,10 @@ import { AllEventsQueryVariables } from '~/gql/generated/graphql'
 export const useAllEventsQuery = (variables: AllEventsQueryVariables) =>
   useQuery({
     query: graphql(`
-      query allEvents($after: Cursor, $authorAccountId: UUID, $first: Int!) {
+      query allEvents($after: Cursor, $authorUsername: String, $first: Int!) {
         allEvents(
           after: $after
-          condition: { authorAccountId: $authorAccountId }
+          condition: { authorUsername: $authorUsername }
           first: $first
           orderBy: START_DESC
         ) {

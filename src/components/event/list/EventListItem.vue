@@ -1,6 +1,6 @@
 <template>
   <li
-    v-if="event && event.accountByAuthorAccountId?.username"
+    v-if="event"
     :class="{
       'opacity-75': eventEnd
         ? eventEnd.isBefore(now)
@@ -10,11 +10,7 @@
     <Button
       :aria-label="event.name"
       is-block
-      :to="
-        localePath(
-          '/event/' + event.accountByAuthorAccountId.username + '/' + event.slug
-        )
-      "
+      :to="localePath('/event/' + event.authorUsername + '/' + event.slug)"
     >
       <Card class="flex flex-col gap-2">
         <div class="flex items-center justify-between gap-2">
@@ -41,7 +37,7 @@
           <div class="truncate text-xl font-bold">
             {{ event.name }}
           </div>
-          <Owner :username="event.accountByAuthorAccountId.username" />
+          <Owner :username="event.authorUsername" />
         </div>
         <p v-if="eventDescriptionTemplate" class="vio-line-clamp-2">
           {{ eventDescriptionTemplate }}
@@ -61,7 +57,7 @@ export interface Props {
   event: Pick<
     EventItemFragment,
     | 'name'
-    | 'accountByAuthorAccountId'
+    | 'authorUsername'
     | 'start'
     | 'visibility'
     | 'slug'

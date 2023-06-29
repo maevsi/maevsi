@@ -1,16 +1,16 @@
 <template>
   <Modal
     id="ModalImageSelection"
-    :is-submit-disabled="!selectedProfilePictureUploadId"
+    :is-submit-disabled="!selectedProfilePictureStorageKey"
     :submit-task-provider="setProfilePicture"
-    @close="selectedProfilePictureUploadId = undefined"
+    @close="selectedProfilePictureStorageKey = undefined"
     @submit-success="emit('submitSuccess')"
   >
     <ImageUploadGallery
       :allow-deletion="false"
       selectable
       :username="isTesting() ? 'username' : routeParamUsername"
-      @selection="selectProfilePictureUploadId"
+      @selection="selectProfilePictureStorageKey"
     />
     <template #header>{{ t('header') }}</template>
   </Modal>
@@ -32,15 +32,15 @@ getApiData([profilePictureSetMutation])
 
 // data
 const routeParamUsername = route.params.username as string
-const selectedProfilePictureUploadId = ref<string | null>()
+const selectedProfilePictureStorageKey = ref<string | null>()
 
 // methods
-const selectProfilePictureUploadId = (storageKey?: string | null) => {
-  selectedProfilePictureUploadId.value = storageKey
+const selectProfilePictureStorageKey = (storageKey?: string | null) => {
+  selectedProfilePictureStorageKey.value = storageKey
 }
 const setProfilePicture = async () => {
   await profilePictureSetMutation.executeMutation({
-    uploadId: selectedProfilePictureUploadId.value,
+    storageKey: selectedProfilePictureStorageKey.value || '',
   })
 }
 </script>

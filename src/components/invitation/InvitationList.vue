@@ -21,7 +21,7 @@
           <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
             <InvitationListItem
               v-for="invitation in invitations"
-              :key="invitation.id"
+              :key="invitation.uuid"
               :event="event"
               :invitation="invitation"
             />
@@ -107,7 +107,7 @@ import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'
 export interface Props {
   event: Pick<
     EventItemFragment,
-    'authorAccountId' | 'slug' | 'inviteeCountMaximum' | 'id'
+    'authorUsername' | 'slug' | 'inviteeCountMaximum' | 'id'
   >
 }
 const props = withDefaults(defineProps<Props>(), {})

@@ -8,6 +8,7 @@ export const InvitationItem = graphql(`
     eventId
     feedback
     feedbackPaper
+    uuid
     contactByContactId {
       ...ContactItem
     }

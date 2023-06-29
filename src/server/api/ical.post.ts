@@ -19,7 +19,6 @@ export default defineEventHandler(async (h3Event: H3Event) => {
   const bodyChecks = [
     { property: undefined, name: 'Body' },
     { property: 'event', name: 'Event' },
-    { property: 'eventAuthorUsername', name: "Event author's username" },
   ]
 
   for (const bodyCheck of bodyChecks) {
@@ -32,7 +31,6 @@ export default defineEventHandler(async (h3Event: H3Event) => {
 
   const contact = body.contact
   const event = body.event
-  const eventAuthorUsername = body.eventAuthorUsername
   const invitation = body.invitation
 
   res.setHeader('Content-Type', 'text/calendar')
@@ -40,28 +38,25 @@ export default defineEventHandler(async (h3Event: H3Event) => {
     'Content-Disposition',
     'attachment; filename="' + event.authorUsername + '_' + event.slug + '.ics"'
   )
-  res.end(
-    getIcalString({ host, event, eventAuthorUsername, contact, invitation })
-  )
+  res.end(getIcalString(host, event, contact, invitation))
 })
 
-export const getIcalString = ({
-  host,
-  event,
-  eventAuthorUsername,
-  contact,
-  invitation,
-}: {
-  host: string
+export const getIcalString = (
+  host: string,
   event: Pick<
     EventItemFragment,
-    'slug' | 'description' | 'start' | 'end' | 'name' | 'location'
-  >
-  eventAuthorUsername: string
-  contact?: ContactItemFragment
+    | 'authorUsername'
+    | 'slug'
+    | 'description'
+    | 'start'
+    | 'end'
+    | 'name'
+    | 'location'
+  >,
+  contact?: ContactItemFragment,
   invitation?: InvitationItemFragment
-}) => {
-  const userEventPath = eventAuthorUsername + '/' + event.slug
+) => {
+  const userEventPath = event.authorUsername + '/' + event.slug
   const eventUrl = 'https://' + host + '/event/' + userEventPath
   const eventDescriptionHtml = mustache.render(
     event.description ? `${eventUrl}\n${event.description}` : '',
@@ -114,8 +109,8 @@ export const getIcalString = ({
         }),
         ...(event.location && { location: event.location }),
         organizer: {
-          name: eventAuthorUsername,
-          email: eventAuthorUsername + '@' + host,
+          name: event.authorUsername,
+          email: event.authorUsername + '@' + host,
           // mailto: 'explicit@mailto.com'
         },
         // attendees: [{

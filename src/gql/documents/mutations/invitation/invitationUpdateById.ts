@@ -5,7 +5,7 @@ export const useUpdateInvitationByIdMutation = () =>
   useMutation(
     graphql(`
       mutation updateInvitationById(
-        $id: UUID!
+        $id: BigInt!
         $invitationPatch: InvitationPatch!
       ) {
         updateInvitationById(

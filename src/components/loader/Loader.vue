@@ -9,7 +9,7 @@
     <CardStateAlert v-if="errorMessages.length">
       <SpanList :span="errorMessages" />
     </CardStateAlert>
-    <slot v-if="api.data" /><!--  && Object.keys(api.data).length -->
+    <slot v-if="api.data && Object.keys(api.data).length" />
   </div>
 </template>
 

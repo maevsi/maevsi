@@ -79,7 +79,7 @@ const after = ref<string>()
 // api data
 const contactsQuery = await useAllContactsQuery({
   after,
-  authorAccountId: store.signedInAccountId,
+  authorAccountUsername: store.signedInUsername,
   first: ITEMS_PER_PAGE_LARGE,
 })
 const deleteContactByIdMutation = useDeleteContactByIdMutation()

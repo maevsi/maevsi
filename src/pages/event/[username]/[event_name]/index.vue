@@ -1,9 +1,6 @@
 <template>
   <Loader :api="api">
-    <div
-      v-if="event && event.accountByAuthorAccountId?.username"
-      class="flex flex-col gap-4"
-    >
+    <div v-if="event" class="flex flex-col gap-4">
       <LayoutBreadcrumbs
         :prefixes="[
           { name: t('events'), to: localePath('/event') },
@@ -58,7 +55,11 @@
         </div>
       </div>
       <ButtonList
-        v-if="!routeQueryIc && event.authorAccountId === signedInAccountId"
+        v-if="
+          !routeQueryIc &&
+          jwtDecoded &&
+          event.authorUsername === jwtDecoded.username
+        "
         class="justify-center"
       >
         <ButtonColored
@@ -93,7 +94,7 @@
           <h1 class="m-0">
             {{ event.name }}
           </h1>
-          <Owner link :username="event.accountByAuthorAccountId.username" />
+          <Owner link :username="event.authorUsername" />
         </div>
         <div class="flex gap-2 items-center">
           <ButtonColored
@@ -153,7 +154,7 @@
                     invitation.feedback === 'CANCELED'
                   "
                   :aria-label="
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.authorUsername !== signedInUsername
                       ? t('invitationAccept')
                       : t('invitationAcceptAdmin', {
                           name: contactName,
@@ -162,7 +163,7 @@
                   @click="accept"
                 >
                   {{
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.authorUsername !== signedInUsername
                       ? t('invitationAccept')
                       : t('invitationAcceptAdmin', {
                           name: contactName,
@@ -178,7 +179,7 @@
                 >
                   <IconCheckCircle class="mr-2" title="accepted" />
                   {{
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.authorUsername !== signedInUsername
                       ? t('invitationAccepted')
                       : t('invitationAcceptedAdmin', {
                           name: contactName,
@@ -191,7 +192,7 @@
                     invitation.feedback === 'ACCEPTED'
                   "
                   :aria-label="
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.authorUsername !== signedInUsername
                       ? t('invitationCancel')
                       : t('invitationCancelAdmin', {
                           name: contactName,
@@ -200,7 +201,7 @@
                   @click="cancel"
                 >
                   {{
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.authorUsername !== signedInUsername
                       ? t('invitationCancel')
                       : t('invitationCancelAdmin', {
                           name: contactName,
@@ -216,7 +217,7 @@
                 >
                   <IconXCircle class="mr-2" title="canceled" />
                   {{
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.authorUsername !== signedInUsername
                       ? t('invitationCanceled')
                       : t('invitationCanceledAdmin', {
                           name: contactName,
@@ -281,7 +282,7 @@
           <QrcodeVue
             id="qrCode"
             class="bg-white p-4"
-            :value="invitation.id"
+            :value="invitation.uuid"
             :size="200"
           />
           <FormInputStateInfo>
@@ -331,14 +332,30 @@ import {
 } from '~/gql/generated/graphql'
 import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 
 definePageMeta({
   async validate(route) {
-    return await validateEventExistence(route)
+    const { $urql } = useNuxtApp()
+
+    const eventIsExisting = await $urql.value
+      .query(eventIsExistingQuery, {
+        slug: route.params.event_name as string,
+        authorUsername: route.params.username as string,
+      })
+      .toPromise()
+
+    if (eventIsExisting.error) {
+      throw createError(eventIsExisting.error)
+    }
+
+    if (!eventIsExisting.data?.eventIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    return true
   },
 })
 
@@ -350,21 +367,15 @@ const route = useRoute()
 const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
 
 // api data
-const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username as string,
-})
-const accountId = computed(
-  () => getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id
-)
-const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
-  authorAccountId: accountId,
+const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
+  authorUsername: route.params.username as string,
   slug: route.params.event_name as string,
-  invitationId: route.query.ic,
+  invitationUuid: route.query.ic,
 })
+const api = getApiData([eventQuery])
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug)
+  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug)
 )
-const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
 const routeParamUsername = route.params.username as string
@@ -468,15 +479,15 @@ const eventDescriptionTemplate = computed(() => {
 })
 const invitation = computed(() => {
   const invitations =
-    eventQuery.data.value?.eventByAuthorAccountIdAndSlug?.invitationsByEventId.nodes
+    eventQuery.data.value?.eventByAuthorUsernameAndSlug?.invitationsByEventId.nodes
       .map((x) => getInvitationItem(x))
       .filter(isNeitherNullNorUndefined)
 
   const invitationsMatchingUuid =
     store.signedInUsername === route.params.username && invitations
       ? invitations.filter(
-          (invitation: Pick<InvitationItemFragment, 'id'>) =>
-            invitation.id === route.query.ic
+          (invitation: Pick<InvitationItemFragment, 'uuid'>) =>
+            invitation.uuid === route.query.ic
         )
       : invitations
 
@@ -485,7 +496,7 @@ const invitation = computed(() => {
       // TODO: use await (https://github.com/maevsi/maevsi/issues/61)
       fireAlert({
         level: 'warning',
-        text: t('invitationIdMultipleWarning'),
+        text: t('invitationCodeMultipleWarning'),
       })
     }
 
@@ -494,9 +505,9 @@ const invitation = computed(() => {
 
   return undefined
 })
+const jwtDecoded = computed(() => store.jwtDecoded)
 const routeQuery = computed(() => route.query)
 const routeQueryIc = computed(() => route.query.ic)
-const signedInAccountId = computed(() => store.signedInAccountId)
 const signedInUsername = computed(() => store.signedInUsername)
 const title = computed(() =>
   api.value.isFetching ? t('globalLoading') : event.value?.name || '403'
@@ -548,7 +559,7 @@ de:
   # invitationCardKindNone: Keine
   # invitationCardKindPaper: Papier
   # invitationCardKindDigital: Digital
-  invitationIdMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
+  invitationCodeMultipleWarning: Es wurden mehrere Einladungscodes für dieselbe Veranstaltung eingelöst! Diese Seite zeigt die Daten des zuerst gefundenen an.
   invitationSelectionClear: Zurück zur Einladungsübersicht
   invitationViewFor: Du schaust dir die Einladung für {name} an. Nur du und {name} können diese Seite sehen.
   invitations: Einladungen
@@ -582,7 +593,7 @@ en:
   # invitationCardKindNone: None
   # invitationCardKindPaper: Paper
   # invitationCardKindDigital: Digital
-  invitationIdMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
+  invitationCodeMultipleWarning: Multiple invitation codes have already been redeemed for the same event! This page shows data for the first code found.
   invitationSelectionClear: Back to the invitation overview
   invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
   invitations: Invitations

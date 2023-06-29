@@ -46,15 +46,37 @@
 </template>
 
 <script setup lang="ts">
+import { useMaevsiStore } from '~/store'
 import { useEventDeleteMutation } from '~/gql/documents/mutations/event/eventDelete'
-import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 
 definePageMeta({
   async validate(route) {
-    return await validateEventExistence(route)
+    const { $urql } = useNuxtApp()
+    const store = useMaevsiStore()
+
+    const eventIsExisting = await $urql.value
+      .query(eventIsExistingQuery, {
+        slug: route.params.event_name as string,
+        authorUsername: route.params.username as string,
+      })
+      .toPromise()
+
+    if (eventIsExisting.error) {
+      throw createError(eventIsExisting.error)
+    }
+
+    if (!eventIsExisting.data?.eventIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
+
+    return true
   },
 })
 
@@ -63,25 +85,15 @@ const { t } = useI18n()
 const route = useRoute()
 
 // api data
-const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username as string,
-})
-const accountId = computed(
-  () => getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id
-)
-const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
-  authorAccountId: accountId,
+const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
+  authorUsername: route.params.username as string,
   slug: route.params.event_name as string,
 })
-const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug)
-)
 const eventDeleteMutation = useEventDeleteMutation()
-const api = getApiData([
-  accountByUsernameQuery,
-  eventQuery,
-  eventDeleteMutation,
-])
+const api = getApiData([eventQuery, eventDeleteMutation])
+const event = computed(() =>
+  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug)
+)
 
 // data
 const mutation = eventDeleteMutation

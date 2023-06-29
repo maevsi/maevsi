@@ -301,10 +301,15 @@ const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const store = useMaevsiStore()
 
+// api data
+const createEventMutation = useCreateEventMutation()
+const updateEventMutation = useUpdateEventByIdMutation()
+const api = getApiData([createEventMutation, updateEventMutation])
+
 // data
 const form = reactive({
   id: ref<string>(),
-  authorAccountId: ref<string>(),
+  authorUsername: ref<string>(),
   description: ref<string>(),
   end: ref<string>(),
   inviteeCountMaximum: ref<string>(),
@@ -317,13 +322,9 @@ const form = reactive({
   url: ref<string>(),
   visibility: ref<EventVisibility>(),
 })
-const isFormSent = ref(false)
-const signedInAccountId = ref(store.signedInAccountId)
 
-// api data
-const createEventMutation = useCreateEventMutation()
-const updateEventMutation = useUpdateEventByIdMutation()
-const api = getApiData([createEventMutation, updateEventMutation])
+const isFormSent = ref(false)
+const signedInUsername = ref(store.signedInUsername)
 
 // methods
 const dateTimeFormatter = (x?: string) =>
@@ -345,7 +346,7 @@ const submit = async () => {
     const result = await updateEventMutation.executeMutation({
       id: form.id,
       eventPatch: {
-        authorAccountId: signedInAccountId.value,
+        authorUsername: signedInUsername.value,
         description: form.description || null,
         end: form.end || null,
         inviteeCountMaximum: form.inviteeCountMaximum
@@ -370,7 +371,7 @@ const submit = async () => {
     const result = await createEventMutation.executeMutation({
       createEventInput: {
         event: {
-          authorAccountId: signedInAccountId.value || '',
+          authorUsername: signedInUsername.value || '',
           description: form.description || null,
           end: form.end || null,
           inviteeCountMaximum: form.inviteeCountMaximum
@@ -391,14 +392,8 @@ const submit = async () => {
     if (result.error || !result.data) return
 
     showToast({ title: t('eventCreateSuccess') })
-
-    if (!store.signedInUsername || !form.slug)
-      throw new Error(
-        'Aborting navigation: required data for path templating is missing!'
-      )
-
     await navigateTo(
-      localePath(`/event/${store.signedInUsername}/${form.slug}`)
+      localePath(`/event/${signedInUsername.value}/${form.slug}`)
     )
   }
 }
@@ -426,7 +421,7 @@ const isWarningStartPastShown = computed(
 // vuelidate
 const rules = {
   id: {},
-  authorAccountId: {},
+  authorUsername: {},
   description: {
     maxLength: maxLength(VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM),
   },
@@ -446,11 +441,7 @@ const rules = {
   },
   slug: {
     existenceNone: helpers.withAsync(
-      validateEventSlug({
-        signedInAccountId: store.signedInAccountId || '',
-        invert: true,
-        exclude: props.event?.slug,
-      })
+      validateEventSlug(store.signedInUsername || '', true, props.event?.slug)
     ),
     maxLength: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
     required,

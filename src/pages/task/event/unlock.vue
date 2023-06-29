@@ -14,33 +14,33 @@
       <!-- TODO: move id-label suffix to FormInput (https://github.com/maevsi/maevsi/issues/955) -->
       <!-- The id's suffix `-maevsi` makes browser suggest inputs just for this service. -->
       <FormInput
-        id-label="input-invitation-id-maevsi"
+        id-label="input-invitation-code-maevsi"
         :is-disabled="!!routeQueryIc"
         placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        :title="t('invitationId')"
+        :title="t('invitationCode')"
         type="text"
-        :value="v$.invitationId"
-        @input="form.invitationId = $event"
+        :value="v$.invitationCode"
+        @input="form.invitationCode = $event"
       >
         <template #stateInfo>
           <FormInputStateInfo v-if="routeQueryIc">
             <div>
-              {{ t('invitationIdAutomatic') }}
+              {{ t('invitationCodeAutomatic') }}
               <AppLink :to="localePath('/task/event/unlock')">
-                {{ t('invitationIdManual') }}
+                {{ t('invitationCodeManual') }}
               </AppLink>
             </div>
           </FormInputStateInfo>
         </template>
         <template #stateError>
           <FormInputStateError
-            :form-input="v$.invitationId"
+            :form-input="v$.invitationCode"
             validation-property="formatUuid"
           >
             {{ t('globalValidationFormat') }}
           </FormInputStateError>
           <FormInputStateError
-            :form-input="v$.invitationId"
+            :form-input="v$.invitationCode"
             validation-property="required"
           >
             {{ t('globalValidationRequired') }}
@@ -89,7 +89,7 @@ definePageMeta({
 
       const result = await $urql.value
         .mutation(eventUnlockMutationImported, {
-          invitationId: to.query.ic,
+          invitationCode: to.query.ic,
         })
         .toPromise()
 
@@ -115,7 +115,7 @@ definePageMeta({
         return
       }
 
-      const eventPath = `/event/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+      const eventPath = `/event/${result.data.eventUnlock.eventUnlockResponse.authorUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
 
       if ('quick' in to.query) {
         return await navigateTo(localePath(eventPath))
@@ -145,7 +145,7 @@ const api = getApiData([eventUnlockMutation])
 
 // data
 const form = reactive({
-  invitationId: ref(route.query.ic),
+  invitationCode: ref(route.query.ic),
 })
 const isFormSent = ref(false)
 const title = t('title')
@@ -155,7 +155,7 @@ const submit = async () => {
   if (!isFormValid({ v$, isFormSent })) return
 
   const result = await eventUnlockMutation.executeMutation({
-    invitationId: form.invitationId,
+    invitationCode: form.invitationCode,
   })
 
   if (!result.data?.eventUnlock?.eventUnlockResponse) {
@@ -176,7 +176,7 @@ const submit = async () => {
 
   navigateTo(
     localePath(
-      `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorAccountUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
+      `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
     )
   )
 }
@@ -186,7 +186,7 @@ const routeQueryIc = computed(() => route.query.ic)
 
 // vuelidate
 const rules = {
-  invitationId: {
+  invitationCode: {
     required,
     formatUuid: VALIDATION_FORMAT_UUID,
   },
@@ -196,7 +196,7 @@ const v$ = useVuelidate(rules, form)
 // lifecycle
 onMounted(() => {
   if (route.query.ic) {
-    v$.value.invitationId?.$touch()
+    v$.value.invitationCode?.$touch()
 
     if ('error' in route.query) {
       submit()
@@ -211,18 +211,18 @@ useHeadDefault(title)
 <i18n lang="yaml">
 de:
   greetingExplanation: Einladungscodes gewähren dir Zugriff auf nicht-öffentliche Veranstaltungsseiten, ohne dass du dir einen Account erstellen musst. Sie sind gültig, solange du zur Veranstaltung eingeladen bist, für die sie ausgestellt wurden.
-  invitationId: Einladungscode
-  invitationIdAutomatic: Der Einladungscode wurde automatisch eingegeben.
-  invitationIdManual: Code selbst eingeben.
+  invitationCode: Einladungscode
+  invitationCodeAutomatic: Der Einladungscode wurde automatisch eingegeben.
+  invitationCodeManual: Code selbst eingeben.
   jwtStoreFail: Fehler beim Speichern der Authentifizierungsdaten!
   postgresP0002: Zu diesem Einladungscode wurde keine Veranstaltung gefunden! Überprüfe deine Eingaben auf Schreibfehler.
   submit: Zur Veranstaltungsseite
   title: Veranstaltung freischalten
 en:
   greetingExplanation: Invitation codes grant access to non-public event pages without the need to create an account. They are valid as long as you are invited to the event they were issued for.
-  invitationId: Invitation code
-  invitationIdAutomatic: The invitation code was entered automatically.
-  invitationIdManual: Enter it yourself.
+  invitationCode: Invitation code
+  invitationCodeAutomatic: The invitation code was entered automatically.
+  invitationCodeManual: Enter it yourself.
   jwtStoreFail: Failed to store the authentication data!
   postgresP0002: No event was found for this invitation code! Check your input for spelling mistakes.
   submit: Show event page

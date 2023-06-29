@@ -4,7 +4,7 @@ import { graphql } from '~/gql/generated'
 export const useDeleteInvitationByIdMutation = () =>
   useMutation(
     graphql(`
-      mutation deleteInvitationById($id: UUID!) {
+      mutation deleteInvitationById($id: BigInt!) {
         deleteInvitationById(input: { id: $id }) {
           clientMutationId
         }

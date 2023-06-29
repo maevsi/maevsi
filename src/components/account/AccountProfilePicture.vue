@@ -1,7 +1,7 @@
 <template>
   <Loader :api="api" indicator="ping" :classes="classes">
     <LoaderImage
-      :alt="t('profilePictureAlt', { username: account?.username })"
+      :alt="t('profilePictureAlt', { username })"
       :aspect="aspect"
       :classes="classes"
       :height="height"
@@ -13,17 +13,14 @@
 
 <script setup lang="ts">
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import { useProfilePictureByUsernameQuery } from '~/gql/documents/queries/profilePicture/profilePictureByUsername'
 import { getProfilePictureItem } from '~/gql/documents/fragments/profilePictureItem'
-import { getUploadItem } from '~/gql/documents/fragments/uploadItem'
-import { useAccountByIdQuery } from '~/gql/documents/queries/account/accountById'
-import { useProfilePictureByAccountIdQuery } from '~/gql/documents/queries/profilePicture/profilePictureByAccountId'
 
 export interface Props {
-  accountId: string
   aspect?: string
   classes?: string
   height: string
+  username: string
   width: string
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -35,25 +32,20 @@ const { t } = useI18n()
 const TUSD_FILES_URL = useTusdFilesUrl()
 
 // api data
-const accountByIdQuery = await useAccountByIdQuery({
-  id: props.accountId,
+const profilePictureQuery = await useProfilePictureByUsernameQuery({
+  username: props.username,
 })
-const profilePictureQuery = await useProfilePictureByAccountIdQuery({
-  accountId: props.accountId,
-})
-const api = getApiData([accountByIdQuery, profilePictureQuery])
-const account = computed(() =>
-  getAccountItem(accountByIdQuery.data.value?.accountById)
-)
+const api = getApiData([profilePictureQuery])
 
 // computations
 const profilePictureUrl = computed(() => {
   const profilePicture = getProfilePictureItem(
-    profilePictureQuery.data.value?.profilePictureByAccountId
+    profilePictureQuery.data.value?.profilePictureByUsername
   )
-  const upload = getUploadItem(profilePicture?.uploadByUploadId)
 
-  return upload?.storageKey ? TUSD_FILES_URL + upload.storageKey : undefined
+  return profilePicture?.uploadStorageKey
+    ? TUSD_FILES_URL + profilePicture.uploadStorageKey
+    : undefined
 })
 </script>
 

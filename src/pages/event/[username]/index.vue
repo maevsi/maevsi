@@ -17,9 +17,27 @@
 </template>
 
 <script setup lang="ts">
+import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
+
 definePageMeta({
   async validate(route) {
-    return await validateAccountExistence({ route })
+    const { $urql } = useNuxtApp()
+
+    const accountIsExisting = await $urql.value
+      .query(accountIsExistingQuery, {
+        username: route.params.username as string,
+      })
+      .toPromise()
+
+    if (accountIsExisting.error) {
+      throw createError(accountIsExisting.error)
+    }
+
+    if (!accountIsExisting.data?.accountIsExisting) {
+      return abortNavigation({ statusCode: 404 })
+    }
+
+    return true
   },
 })
 

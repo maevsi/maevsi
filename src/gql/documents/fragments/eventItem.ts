@@ -4,11 +4,7 @@ export const EventItem = graphql(`
   fragment EventItem on Event {
     id
     nodeId
-    authorAccountId
-    accountByAuthorAccountId {
-      id
-      username
-    }
+    authorUsername
     description
     end
     inviteeCountMaximum

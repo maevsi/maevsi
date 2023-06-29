@@ -2,10 +2,10 @@
   <div v-if="contact" class="flex gap-4">
     <div class="relative">
       <AccountProfilePicture
-        v-if="contact.accountId"
-        :account-id="contact.accountId"
+        v-if="contact.accountUsername"
         classes="rounded-full h-12 w-12"
         height="48"
+        :username="contact.accountUsername"
         width="48"
       />
       <ContactAvatar
@@ -27,17 +27,17 @@
         {{ contact.lastName }}
       </div>
       <div
-        v-if="contact.accountByAccountId?.username"
+        v-if="contact.accountUsername"
         class="truncate text-gray-500 dark:text-gray-400"
       >
         <AppLink
           v-if="isUsernameLinked"
-          :to="localePath(`/account/${contact.accountByAccountId.username}`)"
+          :to="localePath(`/account/${contact.accountUsername}`)"
         >
-          {{ `@${contact.accountByAccountId.username}` }}
+          {{ `@${contact.accountUsername}` }}
         </AppLink>
         <div v-else>
-          {{ `@${contact.accountByAccountId.username}` }}
+          {{ `@${contact.accountUsername}` }}
         </div>
       </div>
     </div>
@@ -50,9 +50,7 @@ import { ContactItemFragment } from '~/gql/generated/graphql'
 export interface Props {
   contact: Pick<
     ContactItemFragment,
-    | 'accountId'
-    | 'accountByAccountId'
-    | 'accountByAuthorAccountId'
+    | 'accountUsername'
     | 'emailAddress'
     | 'emailAddressHash'
     | 'firstName'
