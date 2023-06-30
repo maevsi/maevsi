@@ -129,8 +129,8 @@ devDependencies:
     specifier: 0.1.0
     version: 0.1.0(@nuxt/kit@3.6.1)(vite-plugin-pwa@0.16.4)
   '@vuelidate/core':
-    specifier: 2.0.2
-    version: 2.0.2(vue@3.3.4)
+    specifier: 2.0.3
+    version: 2.0.3(vue@3.3.4)
   '@vuelidate/validators':
     specifier: 2.0.2
     version: 2.0.2(vue@3.3.4)
@@ -4902,8 +4902,8 @@ packages:
       - typescript
     dev: true
 
-  /@vuelidate/core@2.0.2(vue@3.3.4):
-    resolution: {integrity: sha512-aG1OZWv6xVws3ljyKy/pyxq1rdZZ2ryj+FEREcC9d4GP4qOvNHHZUl/NQxa0Bck3Ooc0RfXU8vwCA9piRoWy6w==}
+  /@vuelidate/core@2.0.3(vue@3.3.4):
+    resolution: {integrity: sha512-AN6l7KF7+mEfyWG0doT96z+47ljwPpZfi9/JrNMkOGLFv27XVZvKzRLXlmDPQjPl/wOB1GNnHuc54jlCLRNqGA==}
     peerDependencies:
       '@vue/composition-api': ^1.0.0-rc.1
       vue: ^2.0.0 || >=3.0.0
@@ -5725,7 +5725,7 @@ packages:
   /builtins@5.0.1:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
-      semver: 7.5.1
+      semver: 7.5.3
     dev: true
 
   /bundle-name@3.0.0:
@@ -7248,7 +7248,7 @@ packages:
       is-core-module: 2.12.1
       minimatch: 3.1.2
       resolve: 1.22.2
-      semver: 7.5.1
+      semver: 7.5.3
     dev: true
 
   /eslint-plugin-node@11.1.0(eslint@8.43.0):
@@ -7322,7 +7322,7 @@ packages:
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.27
       safe-regex: 2.1.1
-      semver: 7.5.1
+      semver: 7.5.3
       strip-indent: 3.0.0
     dev: true
 
