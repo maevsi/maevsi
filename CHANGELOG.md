@@ -1,3 +1,11 @@
+## [1.19.1](https://github.com/maevsi/maevsi/compare/1.19.0...1.19.1) (2023-07-01)
+
+
+### Bug Fixes
+
+* **form:** allow reset ([a52fd65](https://github.com/maevsi/maevsi/commit/a52fd652766ac4980d107a15e5c958d001644796))
+* **form:** allow reset ([#1310](https://github.com/maevsi/maevsi/issues/1310)) ([cdb4477](https://github.com/maevsi/maevsi/commit/cdb4477d1392cd456cb0c7ca9ce65b7af37accfa))
+
 # [1.19.0](https://github.com/maevsi/maevsi/compare/1.18.5...1.19.0) (2023-06-23)
 
 
