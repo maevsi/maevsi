@@ -13,20 +13,24 @@ afterEach(() => {
 
 test('gets ical string', () => {
   expect(
-    getIcalString('maevsi.test', {
-      // id: '1',
-      authorUsername: 'authorUsername',
-      description: '<p>description</p>',
-      end: new Date(),
-      // inviteeCountMaximum: 0,
-      // isArchived: false,
-      // isInPerson: false,
-      // isRemote: false,
-      location: 'location',
-      name: 'name',
-      slug: 'slug',
-      start: new Date(),
-      // visibility: EventVisibility.Public,
+    getIcalString({
+      host: 'maevsi.test',
+      event: {
+        // id: '1',
+        // authorAccountId: 'authorUsername',
+        description: '<p>description</p>',
+        end: new Date(),
+        // inviteeCountMaximum: 0,
+        // isArchived: false,
+        // isInPerson: false,
+        // isRemote: false,
+        location: 'location',
+        name: 'name',
+        slug: 'slug',
+        start: new Date(),
+        // visibility: EventVisibility.Public,
+      },
+      eventAuthorUsername: 'authorUsername',
     }),
   ).toBe(
     `BEGIN:VCALENDAR\r

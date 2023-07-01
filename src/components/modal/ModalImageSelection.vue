@@ -1,9 +1,9 @@
 <template>
   <Modal
     id="ModalImageSelection"
-    :is-submit-disabled="!selectedProfilePictureStorageKey"
+    :is-submit-disabled="!selectedProfilePictureUploadId"
     :submit-task-provider="setProfilePicture"
-    @close="selectedProfilePictureStorageKey = undefined"
+    @close="selectedProfilePictureUploadId = undefined"
     @submit-success="emit('submitSuccess')"
   >
     <ImageUploadGallery
@@ -12,7 +12,7 @@
       :username="
         runtimeConfig.public.vio.isTesting ? 'username' : routeParamUsername
       "
-      @selection="selectProfilePictureStorageKey"
+      @selection="selectProfilePictureUploadId"
     />
     <template #header>{{ t('header') }}</template>
   </Modal>
@@ -35,15 +35,15 @@ getApiData([profilePictureSetMutation])
 
 // data
 const routeParamUsername = route.params.username as string
-const selectedProfilePictureStorageKey = ref<string | null>()
+const selectedProfilePictureUploadId = ref<string | null>()
 
 // methods
-const selectProfilePictureStorageKey = (storageKey?: string | null) => {
-  selectedProfilePictureStorageKey.value = storageKey
+const selectProfilePictureUploadId = (storageKey?: string | null) => {
+  selectedProfilePictureUploadId.value = storageKey
 }
 const setProfilePicture = async () => {
   await profilePictureSetMutation.executeMutation({
-    storageKey: selectedProfilePictureStorageKey.value || '',
+    uploadId: selectedProfilePictureUploadId.value,
   })
 }
 </script>

@@ -1,109 +1,92 @@
 <template>
-  <div class="flex flex-col gap-4">
-    <LayoutBreadcrumbs
-      :prefixes="[
-        { name: t('events'), to: localePath('/event') },
-        {
-          name: routeParamUsername,
-          to: localePath(`/event/${route.params.username}`),
-        },
-        {
-          name: routeParamEventName,
-          to: localePath(
-            `/event/${route.params.username}/${route.params.event_name}`,
-          ),
-        },
-      ]"
-    >
-      {{ t('checkIns') }}
-    </LayoutBreadcrumbs>
-    <h1>
-      {{ t('title') }}
-    </h1>
-    <Steps
-      :active="t('qrCodeScan')"
-      :steps="[t('qrCodeScan'), t('nfcWrite')]"
-    />
-    <Hr />
-    <div class="flex flex-col items-center justify-center gap-4">
-      <ButtonColored :aria-label="t('qrCodeScan')" @click="qrCodeScan">
-        {{ t('qrCodeScan') }}
-        <template #prefix>
-          <IconQrCode />
-        </template>
-      </ButtonColored>
-      <FormInputStateInfo v-if="!invitationCode">
-        {{ t('qrHint') }}
-      </FormInputStateInfo>
-      <CardStateInfo v-if="invitationCode">
-        {{ t('scanned', { scanResult: invitationCode }) }}
-      </CardStateInfo>
-      <div v-if="invitationCode" class="flex flex-col items-center gap-2">
-        <ButtonColored
-          :aria-label="t('nfcWrite')"
-          :disabled="isNfcError"
-          class="text-text-bright"
-          @click="onClick"
-        >
-          {{ t('nfcWrite') }}
+  <Loader :api="api" indicator="ping">
+    <div class="flex flex-col gap-4">
+      <LayoutBreadcrumbs
+        :prefixes="[
+          { name: t('events'), to: localePath('/event') },
+          {
+            name: routeParamUsername,
+            to: localePath(`/event/${route.params.username}`),
+          },
+          {
+            name: routeParamEventName,
+            to: localePath(
+              `/event/${route.params.username}/${route.params.event_name}`,
+            ),
+          },
+        ]"
+      >
+        {{ t('checkIns') }}
+      </LayoutBreadcrumbs>
+      <h1>
+        {{ t('title') }}
+      </h1>
+      <Steps
+        :active="t('qrCodeScan')"
+        :steps="[t('qrCodeScan'), t('nfcWrite')]"
+      />
+      <Hr />
+      <div class="flex flex-col items-center justify-center gap-4">
+        <ButtonColored :aria-label="t('qrCodeScan')" @click="qrCodeScan">
+          {{ t('qrCodeScan') }}
           <template #prefix>
-            <IconUserTag />
+            <IconQrCode />
           </template>
         </ButtonColored>
-        <CardStateAlert v-if="isNfcError">
-          {{ isNfcWritableErrorMessage }}
-        </CardStateAlert>
-      </div>
-    </div>
-    <Modal id="ModalAttendanceScanQrCode" :submit-name="t('close')">
-      <QrCodeStream @detect="onDetect" @error="onError" @camera-on="onCameraOn">
-        <div v-if="loading" class="text-center">
-          {{ t('globalLoading') }}
+        <FormInputStateInfo v-if="!invitationId">
+          {{ t('qrHint') }}
+        </FormInputStateInfo>
+        <CardStateInfo v-if="invitationId">
+          {{ t('scanned', { scanResult: invitationId }) }}
+        </CardStateInfo>
+        <div v-if="invitationId" class="flex flex-col items-center gap-2">
+          <ButtonColored
+            :aria-label="t('nfcWrite')"
+            :disabled="isNfcError"
+            class="text-text-bright"
+            @click="onClick"
+          >
+            {{ t('nfcWrite') }}
+            <template #prefix>
+              <IconUserTag />
+            </template>
+          </ButtonColored>
+          <CardStateAlert v-if="isNfcError">
+            {{ isNfcWritableErrorMessage }}
+          </CardStateAlert>
         </div>
-      </QrCodeStream>
-      <template #submit-icon>
-        <IconXCircle />
-      </template>
-    </Modal>
-  </div>
+      </div>
+      <Modal id="ModalAttendanceScanQrCode" :submit-name="t('close')">
+        <QrCodeStream
+          @detect="onDetect"
+          @error="onError"
+          @camera-on="onCameraOn"
+        >
+          <div v-if="loading" class="text-center">
+            {{ t('globalLoading') }}
+          </div>
+        </QrCodeStream>
+        <template #submit-icon>
+          <IconXCircle />
+        </template>
+      </Modal>
+    </div>
+  </Loader>
 </template>
 
 <script setup lang="ts">
 import { consola } from 'consola'
 import { type DetectedBarcode } from 'barcode-detector'
 
-import { useNuxtApp } from '#app/nuxt'
-
 import { useMaevsiStore } from '~/store'
-import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
+import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
+import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
 definePageMeta({
   async validate(route) {
-    const { $urql } = useNuxtApp()
-    const store = useMaevsiStore()
-
-    const eventIsExisting = await $urql.value
-      .query(eventIsExistingQuery, {
-        slug: route.params.event_name as string,
-        authorUsername: route.params.username as string,
-      })
-      .toPromise()
-
-    if (eventIsExisting.error) {
-      throw createError(eventIsExisting.error)
-    }
-
-    if (!eventIsExisting.data?.eventIsExisting) {
-      return abortNavigation({ statusCode: 404 })
-    }
-
-    if (route.params.username !== store.signedInUsername) {
-      return abortNavigation({ statusCode: 403 })
-    }
-
-    return true
+    return await validateEventExistence(route)
   },
 })
 
@@ -114,16 +97,24 @@ const route = useRoute()
 const fireAlert = useFireAlert()
 
 // api data
-const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
-  authorUsername: route.params.username as string,
+const accountByUsernameQuery = await useAccountByUsernameQuery({
+  username: route.params.username as string,
+})
+const accountId = computed(
+  () =>
+    getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id,
+)
+const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
+  authorAccountId: accountId,
   slug: route.params.event_name as string,
 })
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug),
+  getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
 )
+const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
-const invitationCode = ref<string>()
+const invitationId = ref<string>()
 const isNfcWritableErrorMessage = ref<string>()
 const loading = ref(true)
 const routeParamEventName = route.params.event_name as string
@@ -173,10 +164,10 @@ const onError = async (error: any) => {
   consola.error(errorMessage)
 }
 const onClick = async () => {
-  await writeTag(invitationCode.value)
+  await writeTag(invitationId.value)
 }
 const onDetect = async (e: DetectedBarcode[]) => {
-  invitationCode.value = e[0].rawValue
+  invitationId.value = e[0].rawValue
   await fireAlert({ level: 'success' })
   store.modalRemove('ModalAttendanceScanQrCode')
 }

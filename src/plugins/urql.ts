@@ -7,6 +7,7 @@ import {
 } from '@urql/core'
 // import type { Data } from '@urql/exchange-graphcache'
 import { Cache, cacheExchange } from '@urql/exchange-graphcache'
+// import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 import { provideClient } from '@urql/vue'
@@ -80,6 +81,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     })
   }
 
+  // @ts-ignore
   const cacheConfig: GraphCacheConfig = {
     schema,
     resolvers: {
@@ -90,6 +92,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         allUploads: relayPagination(),
       },
     },
+    // storage: makeDefaultStorage(),
     updates: {
       Mutation: {
         // create
@@ -102,7 +105,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
         // update
         profilePictureSet: (_parent, _args, cache, _info) =>
-          invalidateCache(cache, 'profilePictureByUsername'),
+          invalidateCache(cache, 'profilePictureByAccountId'),
 
         // delete
         deleteContactById: (_parent, args, cache, _info) =>
@@ -142,8 +145,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       : 'https://postgraphile.' + getDomainTldPort(host) + '/graphql',
     exchanges: [
       ...(runtimeConfig.public.vio.isInProduction ? [] : [devtoolsExchange]),
-      cache,
       ssr, // `ssr` must be before `fetchExchange`
+      cache,
       fetchExchange,
     ],
   }

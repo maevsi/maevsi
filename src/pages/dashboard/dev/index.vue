@@ -26,10 +26,10 @@
         </p>
         <ul class="list-disc">
           <li
-            v-for="invitationCode in jwtDecoded?.invitations"
-            :key="invitationCode"
+            v-for="invitationId in jwtDecoded?.invitations"
+            :key="invitationId"
           >
-            {{ invitationCode }}
+            {{ invitationId }}
           </li>
         </ul>
       </div>

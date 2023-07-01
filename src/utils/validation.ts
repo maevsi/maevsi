@@ -7,6 +7,7 @@ import {
   minValue,
   required,
 } from '@vuelidate/validators'
+import { Client } from '@urql/core'
 import { consola } from 'consola'
 import { Ref } from 'vue'
 
@@ -16,9 +17,13 @@ import {
   REGEX_URL_HTTPS,
   REGEX_UUID,
 } from './constants'
+import { useMaevsiStore } from '~/store'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
-import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
+import { accountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { EventVisibility } from '~/gql/generated/graphql'
+
+import { RouteLocationNormalized } from '#vue-router'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 254 // source: https://www.dominicsayers.com/isemail/
@@ -135,12 +140,116 @@ export const isFormValid = async ({
   return isValid
 }
 
+export const validateAccountExistence = async ({
+  isAuthorizationRequired = false,
+  route,
+}: {
+  isAuthorizationRequired?: boolean
+  route: RouteLocationNormalized
+}) => {
+  const { $urql } = useNuxtApp()
+  const store = useMaevsiStore()
+
+  const accountIsExisting = await $urql.value
+    .query(accountByUsernameQuery, {
+      username: route.params.username as string,
+    })
+    .toPromise()
+
+  if (accountIsExisting.error) {
+    throw createError(accountIsExisting.error)
+  }
+
+  if (!accountIsExisting.data?.accountByUsername) {
+    return abortNavigation({ statusCode: 404 })
+  }
+
+  if (
+    isAuthorizationRequired &&
+    route.params.username !== store.signedInUsername
+  ) {
+    return abortNavigation({ statusCode: 403 })
+  }
+
+  return true
+}
+
+export const getAccountByUsername = async ({
+  $urql,
+  username,
+}: {
+  $urql: Ref<Client>
+  username?: string
+}) => {
+  if (!username) return
+
+  const accountByUsername = await $urql.value
+    .query(accountByUsernameQuery, {
+      username,
+    })
+    .toPromise()
+
+  if (accountByUsername.error) {
+    throw new Error(getCombinedErrorMessages([accountByUsername.error]).join())
+  }
+
+  return getAccountItem(accountByUsername.data?.accountByUsername)
+}
+
+export const validateEventExistence = async (
+  route: RouteLocationNormalized,
+) => {
+  const { $urql } = useNuxtApp()
+  const store = useMaevsiStore()
+
+  const account = await getAccountByUsername({
+    $urql,
+    username: route.params.username as string,
+  })
+
+  if (!account) {
+    return abortNavigation({ statusCode: 404 })
+  }
+
+  if (
+    typeof route.params.event_name !== 'string' ||
+    typeof account.id !== 'string'
+  ) {
+    return abortNavigation({ statusCode: 500 })
+  }
+
+  const eventIsExisting = await $urql.value
+    .query(eventIsExistingQuery, {
+      slug: route.params.event_name,
+      authorAccountId: account.id,
+    })
+    .toPromise()
+
+  if (eventIsExisting.error) {
+    throw createError(eventIsExisting.error)
+  }
+
+  if (!eventIsExisting.data?.eventIsExisting) {
+    return abortNavigation({ statusCode: 404 })
+  }
+
+  if (route.params.username !== store.signedInUsername) {
+    return abortNavigation({ statusCode: 403 })
+  }
+
+  return true
+}
+
 export const validateEventSlug =
-  (
-    signedInUserName: string,
-    invert: boolean,
-    exclude?: string,
-  ): ((value: string) => Promise<boolean>) =>
+  ({
+    signedInAccountId,
+    invert,
+    exclude,
+  }: {
+    signedInAccountId: string
+    invert: boolean
+    exclude?: string
+  }): ((value: string) => Promise<boolean>) =>
   async (value: string) => {
     const { $urql } = useNuxtApp()
 
@@ -155,7 +264,7 @@ export const validateEventSlug =
     const result = await $urql.value
       .query(eventIsExistingQuery, {
         slug: value,
-        authorUsername: signedInUserName,
+        authorAccountId: signedInAccountId,
       })
       .toPromise()
 
@@ -176,7 +285,7 @@ export const validateUsername =
     }
 
     const result = await $urql.value
-      .query(accountIsExistingQuery, {
+      .query(accountByUsernameQuery, {
         username: value,
       })
       .toPromise()
@@ -184,6 +293,6 @@ export const validateUsername =
     if (result.error) return false
 
     return invert
-      ? !result.data?.accountIsExisting
-      : !!result.data?.accountIsExisting
+      ? !result.data?.accountByUsername
+      : !!result.data?.accountByUsername
   }
