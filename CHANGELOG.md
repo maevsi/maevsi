@@ -1,3 +1,10 @@
+# [1.19.0-beta.5](https://github.com/maevsi/maevsi/compare/1.19.0-beta.4...1.19.0-beta.5) (2023-07-01)
+
+
+### Reverts
+
+* "feat(sql): use uuids instead of ids ([#1208](https://github.com/maevsi/maevsi/issues/1208))" ([138ecb2](https://github.com/maevsi/maevsi/commit/138ecb2dc32fa399bb3ee44796fea53114e3f6e0))
+
 # [1.19.0-beta.4](https://github.com/maevsi/maevsi/compare/1.19.0-beta.3...1.19.0-beta.4) (2023-06-29)
 
 
