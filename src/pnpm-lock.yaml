@@ -51,8 +51,8 @@ devDependencies:
     specifier: 1.5.0
     version: 1.5.0(rollup@3.26.0)
   '@nuxtjs/i18n':
-    specifier: npm:@nuxtjs/i18n-edge@8.0.0-beta.12-28139269.7c20648
-    version: /@nuxtjs/i18n-edge@8.0.0-beta.12-28139269.7c20648(rollup@3.26.0)(vue@3.3.4)
+    specifier: npm:@nuxtjs/i18n-edge@8.0.0-beta.12-28140575.2040351
+    version: /@nuxtjs/i18n-edge@8.0.0-beta.12-28140575.2040351(rollup@3.26.0)(vue@3.3.4)
   '@nuxtjs/turnstile':
     specifier: 0.5.0
     version: 0.5.0(rollup@3.26.0)
@@ -3682,8 +3682,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n-edge@8.0.0-beta.12-28139269.7c20648(rollup@3.26.0)(vue@3.3.4):
-    resolution: {integrity: sha512-CACqHoRx8M1lyBqY/cVStKS0GWQaxGKWRcbg/cTCJ4U+qoCp2GZ6b6rJJt3BiBAhFM1L7mMhNzmxvT3Moj547w==}
+  /@nuxtjs/i18n-edge@8.0.0-beta.12-28140575.2040351(rollup@3.26.0)(vue@3.3.4):
+    resolution: {integrity: sha512-2WqF6yFaGr1Nk9eTr0OUxGiR47R51kwohw0h5G6NSsk1XuA++KG0jxoFB3quaP48v1rbo9HP4Cg5JDOE7pedlQ==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/bundle-utils': 5.5.0(vue-i18n@9.3.0-beta.19)
