@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.7.3",
-    "@babel/core": "7.22.5",
+    "@babel/core": "7.22.6",
     "@dargmuesli/nuxt-cookie-control": "5.10.3",
     "@fontsource-variable/manrope": "5.0.4",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
