@@ -3,6 +3,7 @@ import {
   ssrExchange,
   fetchExchange,
   ClientOptions,
+  SSRData,
 } from '@urql/core'
 // import type { Data } from '@urql/exchange-graphcache'
 import { Cache, cacheExchange } from '@urql/exchange-graphcache'
@@ -69,7 +70,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   if (process.client) {
     nuxtApp.hook('app:created', () => {
-      ssr.restoreData(nuxtApp.payload[ssrKey])
+      ssr.restoreData(nuxtApp.payload[ssrKey] as SSRData)
     })
   }
 
