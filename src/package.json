@@ -91,7 +91,7 @@
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-compat": "4.1.4",
     "eslint-plugin-nuxt": "4.0.0",
-    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-prettier": "5.0.0-alpha.2",
     "eslint-plugin-yml": "1.8.0",
     "h3": "1.7.1",
     "html-to-text": "9.0.5",
