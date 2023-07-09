@@ -293,8 +293,8 @@ devDependencies:
     specifier: 1.4.0
     version: 1.4.0(postcss-html@1.5.0)(stylelint@15.10.1)
   stylelint-config-standard:
-    specifier: 33.0.0
-    version: 33.0.0(stylelint@15.10.1)
+    specifier: 34.0.0
+    version: 34.0.0(stylelint@15.10.1)
   stylelint-no-unsupported-browser-features:
     specifier: 7.0.0
     version: 7.0.0(stylelint@15.10.1)
@@ -386,7 +386,7 @@ packages:
     dependencies:
       '@babel/core': 7.22.8
       '@babel/generator': 7.22.5
-      '@babel/parser': 7.22.5
+      '@babel/parser': 7.22.7
       '@babel/runtime': 7.22.5
       '@babel/traverse': 7.22.5
       '@babel/types': 7.22.5
@@ -1827,7 +1827,7 @@ packages:
       '@babel/helper-function-name': 7.22.5
       '@babel/helper-hoist-variables': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.5
-      '@babel/parser': 7.22.5
+      '@babel/parser': 7.22.7
       '@babel/types': 7.22.5
       debug: 4.3.4
       globals: 11.12.0
@@ -2869,7 +2869,7 @@ packages:
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@babel/parser': 7.22.5
+      '@babel/parser': 7.22.7
       '@babel/plugin-syntax-import-assertions': 7.22.5(@babel/core@7.22.8)
       '@babel/traverse': 7.22.5
       '@babel/types': 7.22.5
@@ -8444,7 +8444,7 @@ packages:
       '@graphql-tools/utils': 10.0.1(graphql@16.7.1)
       cosmiconfig: 8.2.0
       graphql: 16.7.1
-      jiti: 1.18.2
+      jiti: 1.19.1
       minimatch: 4.2.3
       string-env-interpolation: 1.0.1
       tslib: 2.6.0
@@ -9457,10 +9457,10 @@ packages:
     resolution: {integrity: sha512-9xZPKVYp9DxnM3sd1yAsh/d59iIaswDkai8oTxbursfKYbg/ibjX0IzFt35+VZ8iEW453TVTXztnRvYUQlAfUQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.9.0
+      acorn: 8.10.0
       eslint-visitor-keys: 3.4.1
       espree: 9.6.0
-      semver: 7.5.3
+      semver: 7.5.4
     dev: true
 
   /jsonc-parser@3.2.0:
@@ -12815,13 +12815,23 @@ packages:
       stylelint: 15.10.1
     dev: true
 
-  /stylelint-config-standard@33.0.0(stylelint@15.10.1):
-    resolution: {integrity: sha512-eyxnLWoXImUn77+ODIuW9qXBDNM+ALN68L3wT1lN2oNspZ7D9NVGlNHb2QCUn4xDug6VZLsh0tF8NyoYzkgTzg==}
+  /stylelint-config-recommended@13.0.0(stylelint@15.10.1):
+    resolution: {integrity: sha512-EH+yRj6h3GAe/fRiyaoO2F9l9Tgg50AOFhaszyfov9v6ayXJ1IkSHwTxd7lB48FmOeSGDPLjatjO11fJpmarkQ==}
+    engines: {node: ^14.13.1 || >=16.0.0}
     peerDependencies:
-      stylelint: ^15.5.0
+      stylelint: ^15.10.0
     dependencies:
       stylelint: 15.10.1
-      stylelint-config-recommended: 12.0.0(stylelint@15.10.1)
+    dev: true
+
+  /stylelint-config-standard@34.0.0(stylelint@15.10.1):
+    resolution: {integrity: sha512-u0VSZnVyW9VSryBG2LSO+OQTjN7zF9XJaAJRX/4EwkmU0R2jYwmBSN10acqZisDitS0CLiEiGjX7+Hrq8TAhfQ==}
+    engines: {node: ^14.13.1 || >=16.0.0}
+    peerDependencies:
+      stylelint: ^15.10.0
+    dependencies:
+      stylelint: 15.10.1
+      stylelint-config-recommended: 13.0.0(stylelint@15.10.1)
     dev: true
 
   /stylelint-no-unsupported-browser-features@7.0.0(stylelint@15.10.1):
@@ -14100,7 +14110,7 @@ packages:
       espree: 9.6.0
       esquery: 1.5.0
       lodash: 4.17.21
-      semver: 7.5.3
+      semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
