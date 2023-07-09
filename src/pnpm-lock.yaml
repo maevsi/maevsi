@@ -53,8 +53,8 @@ devDependencies:
     specifier: 12.0.0
     version: 12.0.0(eslint@8.44.0)(typescript@5.1.6)
   '@nuxtjs/html-validator':
-    specifier: 1.5.0
-    version: 1.5.0(rollup@3.26.2)
+    specifier: 1.5.1
+    version: 1.5.1(rollup@3.26.2)
   '@nuxtjs/i18n':
     specifier: npm:@nuxtjs/i18n-edge@8.0.0-beta.12-28140575.2040351
     version: /@nuxtjs/i18n-edge@8.0.0-beta.12-28140575.2040351(rollup@3.26.2)(vue@3.3.4)
@@ -1813,7 +1813,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.22.5
-      '@babel/parser': 7.22.5
+      '@babel/parser': 7.22.7
       '@babel/types': 7.22.5
     dev: true
 
@@ -3561,18 +3561,18 @@ packages:
       c12: 1.4.2
       consola: 3.2.3
       defu: 6.1.2
-      globby: 13.2.0
+      globby: 13.2.2
       hash-sum: 2.0.0
       ignore: 5.2.4
-      jiti: 1.18.2
+      jiti: 1.19.1
       knitwork: 1.0.0
       mlly: 1.4.0
       pathe: 1.1.1
       pkg-types: 1.0.3
       scule: 1.0.0
-      semver: 7.5.3
+      semver: 7.5.4
       unctx: 2.3.1
-      unimport: 3.0.11(rollup@3.26.2)
+      unimport: 3.0.14(rollup@3.26.2)
       untyped: 1.3.2
     transitivePeerDependencies:
       - rollup
@@ -3785,10 +3785,10 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/html-validator@1.5.0(rollup@3.26.2):
-    resolution: {integrity: sha512-z5V4b/Ff84Hgqhjzqec5BFWp0XIGd0AxRJDx/le6Kidt1VR9SDzY+z7aYQvYZiERpzrziVlguqXAUSybsqQCqg==}
+  /@nuxtjs/html-validator@1.5.1(rollup@3.26.2):
+    resolution: {integrity: sha512-4CmDk9DCIRrDTqAkpGmmJJxJZ6Ns+rZAFsEAOQfUB4vWKlzCOx1m1XQH+hyhGBylZvPYwZ7W1H0UN2biUbEV3w==}
     dependencies:
-      '@nuxt/kit': 3.6.1(rollup@3.26.2)
+      '@nuxt/kit': 3.6.2(rollup@3.26.2)
       chalk: 5.3.0
       html-validate: 8.0.5
       pathe: 1.1.1
@@ -8380,17 +8380,6 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /globby@13.2.0:
-    resolution: {integrity: sha512-jWsQfayf13NvqKUIL3Ta+CIqMnvlaIDFveWE/dpOZ9+3AMEJozsxDvKA02zync9UuvOM8rOXzsD5GqKP4OnWPQ==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    dependencies:
-      dir-glob: 3.0.1
-      fast-glob: 3.3.0
-      ignore: 5.2.4
-      merge2: 1.4.1
-      slash: 4.0.0
-    dev: true
-
   /globby@13.2.2:
     resolution: {integrity: sha512-Y1zNGV+pzQdh7H39l9zgB4PJqjRNqydvdYCDG4HFXM4XuvSaQQlEc91IU1yALL8gUTDomgBAfz3XJdmUS+oo0w==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -8647,7 +8636,7 @@ packages:
       kleur: 4.1.5
       minimist: 1.2.8
       prompts: 2.4.2
-      semver: 7.5.3
+      semver: 7.5.4
     dev: true
 
   /htmlparser2@8.0.2:
@@ -13498,24 +13487,6 @@ packages:
   /unicode-property-aliases-ecmascript@2.1.0:
     resolution: {integrity: sha512-6t3foTQI9qne+OZoVQB/8x8rk2k1eVy1gRXhV3oFQ5T6R1dqQ1xtin3XqSlx3+ATBkliTaR/hHyJBm+LVPNM8w==}
     engines: {node: '>=4'}
-    dev: true
-
-  /unimport@3.0.11(rollup@3.26.2):
-    resolution: {integrity: sha512-UaaLu7TiqiEwjm5a9FGsL8RL87U65wyr1jBeIAAvLChgJZRMTTkknU9bkWjBsVGutXLT2Yq8/dPyWXSC3/ELRg==}
-    dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.26.2)
-      escape-string-regexp: 5.0.0
-      fast-glob: 3.3.0
-      local-pkg: 0.4.3
-      magic-string: 0.30.1
-      mlly: 1.4.0
-      pathe: 1.1.1
-      pkg-types: 1.0.3
-      scule: 1.0.0
-      strip-literal: 1.0.1
-      unplugin: 1.3.2
-    transitivePeerDependencies:
-      - rollup
     dev: true
 
   /unimport@3.0.14(rollup@3.26.2):
