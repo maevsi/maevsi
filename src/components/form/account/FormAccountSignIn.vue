@@ -43,8 +43,8 @@
           api.errors.filter(
             (e) =>
               e.graphQLErrors.filter(
-                (g) => g.errcode === '55000' || g.errcode === 'P0002'
-              ).length
+                (g) => g.errcode === '55000' || g.errcode === 'P0002',
+              ).length,
           ).length
         "
         #assistance

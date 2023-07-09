@@ -4,7 +4,7 @@ import { getHost } from '../../utils/util'
 
 export default defineEventHandler((event) => {
   const baseUrl = `http${isHTTPS(event.node.req) ? 's' : ''}://${getHost(
-    event
+    event,
   )}`
 
   event.node.res.setHeader('Content-Type', 'text/plain')

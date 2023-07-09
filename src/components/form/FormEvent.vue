@@ -393,7 +393,7 @@ const submit = async () => {
 
     showToast({ title: t('eventCreateSuccess') })
     await navigateTo(
-      localePath(`/event/${signedInUsername.value}/${form.slug}`)
+      localePath(`/event/${signedInUsername.value}/${form.slug}`),
     )
   }
 }
@@ -415,7 +415,7 @@ const updateSlug = () => {
 
 // computations
 const isWarningStartPastShown = computed(
-  () => !!form.start && new Date(form.start) < new Date()
+  () => !!form.start && new Date(form.start) < new Date(),
 )
 
 // vuelidate
@@ -441,7 +441,7 @@ const rules = {
   },
   slug: {
     existenceNone: helpers.withAsync(
-      validateEventSlug(store.signedInUsername || '', true, props.event?.slug)
+      validateEventSlug(store.signedInUsername || '', true, props.event?.slug),
     ),
     maxLength: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
     required,
@@ -466,7 +466,7 @@ watch(
   () => props.event,
   (currentValue, _oldValue) => {
     updateForm(currentValue)
-  }
+  },
 )
 
 // initialization

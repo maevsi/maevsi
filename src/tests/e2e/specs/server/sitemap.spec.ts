@@ -13,14 +13,14 @@ test.describe('content', () => {
   test('includes the root page', async ({ request }) => {
     const resp = await request.get('/sitemap.xml')
     expect(await resp.text()).toContain(
-      `<url><loc>${BASE_URL}/</loc><xhtml:link rel="alternate" hreflang="de" href="${BASE_URL}/de"/><xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}/"/></url>`
+      `<url><loc>${BASE_URL}/</loc><xhtml:link rel="alternate" hreflang="de" href="${BASE_URL}/de"/><xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}/"/></url>`,
     )
   })
 
   test('includes the root page localized', async ({ request }) => {
     const resp = await request.get('/sitemap.xml')
     expect(await resp.text()).toContain(
-      `<url><loc>${BASE_URL}/de</loc><xhtml:link rel="alternate" hreflang="de" href="${BASE_URL}/de"/><xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}/"/></url>`
+      `<url><loc>${BASE_URL}/de</loc><xhtml:link rel="alternate" hreflang="de" href="${BASE_URL}/de"/><xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}/"/></url>`,
     )
   })
 

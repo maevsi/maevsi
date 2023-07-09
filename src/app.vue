@@ -68,7 +68,7 @@ watch(
       window.location.reload()
     }
   },
-  { deep: true }
+  { deep: true },
 )
 watch(
   () => $pwa,
@@ -88,7 +88,7 @@ watch(
         $pwa.cancelInstall()
       }
     }
-  }
+  },
 )
 
 // initialization

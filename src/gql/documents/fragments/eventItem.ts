@@ -21,5 +21,5 @@ export const EventItem = graphql(`
 `)
 
 export const getEventItem = (
-  fragment?: FragmentType<typeof EventItem> | null
+  fragment?: FragmentType<typeof EventItem> | null,
 ) => useFragment(EventItem, fragment)

@@ -3,6 +3,6 @@ export const useTusdFilesUrl = () => {
   const host = useHost()
 
   return `https://tusd.${getDomainTldPort(
-    config.public.stagingHost || host
+    config.public.stagingHost || host,
   )}/files/`
 }

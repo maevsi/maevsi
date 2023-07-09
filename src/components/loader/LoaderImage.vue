@@ -72,7 +72,7 @@ const loadingStop = () => {
 onMounted(loadOnClient)
 watch(
   () => props.src,
-  () => loadOnClient()
+  () => loadOnClient(),
 )
 </script>
 

@@ -12,5 +12,5 @@ export const UploadItem = graphql(`
 `)
 
 export const getUploadItem = (
-  fragment?: FragmentType<typeof UploadItem> | null
+  fragment?: FragmentType<typeof UploadItem> | null,
 ) => useFragment(UploadItem, fragment)

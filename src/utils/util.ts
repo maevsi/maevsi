@@ -158,20 +158,20 @@ export const getApiData = <
     data: Ref<S>
     error: Ref<CombinedError | undefined>
     fetching: Ref<boolean>
-  }
+  },
 >(
-  queries?: T[]
+  queries?: T[],
 ) => {
   const apiData = computed(() => ({
     data: (queries || []).reduce(
       (p, c) => ({ ...p, ...c.data.value }),
       {} as NonNullable<
         UnionToIntersection<NonNullable<ArrayElement<T[]>['data']['value']>>
-      >
+      >,
     ),
     errors: (queries || []).reduce(
       (p, c) => (c.error.value ? [...p, c.error.value] : p),
-      [] as BackendError[]
+      [] as BackendError[],
     ),
     isFetching: (queries || []).reduce((p, c) => p || c.fetching.value, false),
   }))
@@ -182,7 +182,7 @@ export const getApiData = <
       current
         .filter((error) => !previous.includes(error))
         .forEach((error) => consola.error(error))
-    }
+    },
   )
 
   return apiData
@@ -190,7 +190,7 @@ export const getApiData = <
 
 export const getCombinedErrorMessages = (
   errors: BackendError[],
-  pgIds?: Record<string, string>
+  pgIds?: Record<string, string>,
 ) => {
   const errorMessages: string[] = []
 
@@ -229,16 +229,16 @@ export const getTimezone = async (event: H3Event) =>
   getCookie(event, TIMEZONE_COOKIE_NAME) ||
   (
     await $fetch<{ timezone: string }>(
-      `http://ip-api.com/json/${event.node.req.headers['x-real-ip']}`
+      `http://ip-api.com/json/${event.node.req.headers['x-real-ip']}`,
     )
   ).timezone
 
 export const isNeitherNullNorUndefined = <T>(
-  value: T | null | undefined
+  value: T | null | undefined,
 ): value is T => value !== null && value !== undefined
 
 export const isQueryIcFormatValid = (
-  ic: LocationQueryValue | LocationQueryValue[]
+  ic: LocationQueryValue | LocationQueryValue[],
 ) => ic && !Array.isArray(ic) && REGEX_UUID.test(ic)
 
 export const showToast = ({

@@ -4,7 +4,7 @@ import { ComputedRef } from 'vue'
 
 export const useHeadDefault = (
   title: string | ComputedRef<string>,
-  extension?: MetaObject
+  extension?: MetaObject,
 ) => {
   const host = useHost()
   const router = useRouter()

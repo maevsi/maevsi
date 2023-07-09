@@ -72,7 +72,7 @@ const isLoading = ref(true)
 
 // computations
 const isVisible = computed(
-  () => !runtimeConfig.public.isTesting
+  () => !runtimeConfig.public.isTesting,
   // TODO: implement invisible widget type with fallback in case of required user interaction (https://github.com/maevsi/maevsi/issues/1239)
   // !['1x00000000000000000000BB', '2x00000000000000000000BB'].includes(
   //   config.public.turnstile.siteKey

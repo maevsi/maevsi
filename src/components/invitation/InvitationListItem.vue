@@ -82,7 +82,7 @@
               @click="
                 navigateTo({
                   path: localePath(
-                    `/event/${event.authorUsername}/${event.slug}`
+                    `/event/${event.authorUsername}/${event.slug}`,
                   ),
                   query: { ic: invitation.uuid },
                 })
@@ -151,7 +151,7 @@ const copyLink = async (invitation: Pick<InvitationItemFragment, 'uuid'>) => {
   await copyText(
     `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
       invitation.uuid
-    }`
+    }`,
   )
 
   showToast({ title: t('copySuccess') })
@@ -178,7 +178,7 @@ const send = async (invitation: any) => {
 
 // computations
 const contact = computed(() =>
-  getContactItem(props.invitation.contactByContactId)
+  getContactItem(props.invitation.contactByContactId),
 )
 </script>
 

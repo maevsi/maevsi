@@ -82,11 +82,11 @@ const eventDescriptionTemplate = computed(() => {
     DOMPurify.sanitize(
       mustache.render(props.event.description, {
         event: props.event,
-      })
+      }),
     ),
     {
       selectors: [{ selector: 'a', options: { ignoreHref: true } }],
-    }
+    },
   )
 })
 const eventEnd = computed(() => dateTime(props.event.end))

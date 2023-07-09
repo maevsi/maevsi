@@ -14,5 +14,5 @@ export const useAccountRegistrationRefreshMutation = () =>
           clientMutationId
         }
       }
-    `)
+    `),
   )

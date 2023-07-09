@@ -16,5 +16,5 @@ export const InvitationItem = graphql(`
 `)
 
 export const getInvitationItem = (
-  fragment?: FragmentType<typeof InvitationItem> | null
+  fragment?: FragmentType<typeof InvitationItem> | null,
 ) => useFragment(InvitationItem, fragment)

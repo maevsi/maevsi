@@ -96,7 +96,7 @@ const isSubmitting = ref(false)
 
 // computations
 const isVisible = computed(
-  () => store.modals.filter((modal) => modal.id === props.id).length > 0
+  () => store.modals.filter((modal) => modal.id === props.id).length > 0,
 )
 
 // methods

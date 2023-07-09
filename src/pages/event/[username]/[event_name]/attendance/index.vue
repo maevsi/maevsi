@@ -10,7 +10,7 @@
         {
           name: routeParamEventName,
           to: localePath(
-            `/event/${route.params.username}/${route.params.event_name}`
+            `/event/${route.params.username}/${route.params.event_name}`,
           ),
         },
       ]"
@@ -116,7 +116,7 @@ const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
   slug: route.params.event_name as string,
 })
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug)
+  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug),
 )
 
 // data
@@ -188,8 +188,8 @@ const checkWriteTag = async () => {
       Error(
         t('errorNfcNotSupported', {
           hintUpdateOrChrome: t('hintUpdateOrChrome'),
-        }) as string
-      )
+        }) as string,
+      ),
     )
   }
 
@@ -198,8 +198,8 @@ const checkWriteTag = async () => {
       Error(
         t('errorNavigatorPermissionsNotSupported', {
           hintUpdateOrChrome: t('hintUpdateOrChrome'),
-        }) as string
-      )
+        }) as string,
+      ),
     )
   } else {
     const nfcPermissionStatus = await navigator.permissions.query({
@@ -262,7 +262,7 @@ useHeadDefault(title)
 export default {
   components: {
     QrCodeStream: defineAsyncComponent(
-      () => import('vue-qrcode-reader/src/components/QrcodeStream.vue')
+      () => import('vue-qrcode-reader/src/components/QrcodeStream.vue'),
     ),
   },
 }
