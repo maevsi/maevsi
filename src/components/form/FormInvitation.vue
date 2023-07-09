@@ -121,7 +121,7 @@ const contacts = computed(
   () =>
     allContactsQuery.data.value?.allContacts?.nodes
       .map((x) => getContactItem(x))
-      .filter(isNeitherNullNorUndefined) || []
+      .filter(isNeitherNullNorUndefined) || [],
 )
 
 // data

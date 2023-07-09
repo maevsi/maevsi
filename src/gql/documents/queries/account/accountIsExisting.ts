@@ -3,7 +3,7 @@ import { graphql } from '~/gql/generated'
 import { AccountIsExistingQueryVariables } from '~/gql/generated/graphql'
 
 export const useAccountIsExistingQuery = (
-  variables: AccountIsExistingQueryVariables
+  variables: AccountIsExistingQueryVariables,
 ) =>
   useQuery({
     query: accountIsExistingQuery,

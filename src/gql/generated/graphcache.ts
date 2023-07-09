@@ -3254,143 +3254,143 @@ export type WithTypename<T extends { __typename?: any }> = Partial<T> & {
 
 export type GraphCacheKeysConfig = {
   AccountDeletePayload?: (
-    data: WithTypename<AccountDeletePayload>
+    data: WithTypename<AccountDeletePayload>,
   ) => null | string
   AccountEmailAddressVerificationPayload?: (
-    data: WithTypename<AccountEmailAddressVerificationPayload>
+    data: WithTypename<AccountEmailAddressVerificationPayload>,
   ) => null | string
   AccountPasswordChangePayload?: (
-    data: WithTypename<AccountPasswordChangePayload>
+    data: WithTypename<AccountPasswordChangePayload>,
   ) => null | string
   AccountPasswordResetPayload?: (
-    data: WithTypename<AccountPasswordResetPayload>
+    data: WithTypename<AccountPasswordResetPayload>,
   ) => null | string
   AccountPasswordResetRequestPayload?: (
-    data: WithTypename<AccountPasswordResetRequestPayload>
+    data: WithTypename<AccountPasswordResetRequestPayload>,
   ) => null | string
   AccountRegistrationPayload?: (
-    data: WithTypename<AccountRegistrationPayload>
+    data: WithTypename<AccountRegistrationPayload>,
   ) => null | string
   AccountRegistrationRefreshPayload?: (
-    data: WithTypename<AccountRegistrationRefreshPayload>
+    data: WithTypename<AccountRegistrationRefreshPayload>,
   ) => null | string
   AuthenticatePayload?: (
-    data: WithTypename<AuthenticatePayload>
+    data: WithTypename<AuthenticatePayload>,
   ) => null | string
   Contact?: (data: WithTypename<Contact>) => null | string
   ContactsConnection?: (data: WithTypename<ContactsConnection>) => null | string
   ContactsEdge?: (data: WithTypename<ContactsEdge>) => null | string
   CreateContactPayload?: (
-    data: WithTypename<CreateContactPayload>
+    data: WithTypename<CreateContactPayload>,
   ) => null | string
   CreateEventGroupPayload?: (
-    data: WithTypename<CreateEventGroupPayload>
+    data: WithTypename<CreateEventGroupPayload>,
   ) => null | string
   CreateEventGroupingPayload?: (
-    data: WithTypename<CreateEventGroupingPayload>
+    data: WithTypename<CreateEventGroupingPayload>,
   ) => null | string
   CreateEventPayload?: (data: WithTypename<CreateEventPayload>) => null | string
   CreateInvitationPayload?: (
-    data: WithTypename<CreateInvitationPayload>
+    data: WithTypename<CreateInvitationPayload>,
   ) => null | string
   CreateProfilePicturePayload?: (
-    data: WithTypename<CreateProfilePicturePayload>
+    data: WithTypename<CreateProfilePicturePayload>,
   ) => null | string
   CreateUploadPayload?: (
-    data: WithTypename<CreateUploadPayload>
+    data: WithTypename<CreateUploadPayload>,
   ) => null | string
   DeleteContactPayload?: (
-    data: WithTypename<DeleteContactPayload>
+    data: WithTypename<DeleteContactPayload>,
   ) => null | string
   DeleteEventGroupPayload?: (
-    data: WithTypename<DeleteEventGroupPayload>
+    data: WithTypename<DeleteEventGroupPayload>,
   ) => null | string
   DeleteEventGroupingPayload?: (
-    data: WithTypename<DeleteEventGroupingPayload>
+    data: WithTypename<DeleteEventGroupingPayload>,
   ) => null | string
   DeleteEventPayload?: (data: WithTypename<DeleteEventPayload>) => null | string
   DeleteInvitationPayload?: (
-    data: WithTypename<DeleteInvitationPayload>
+    data: WithTypename<DeleteInvitationPayload>,
   ) => null | string
   DeleteProfilePicturePayload?: (
-    data: WithTypename<DeleteProfilePicturePayload>
+    data: WithTypename<DeleteProfilePicturePayload>,
   ) => null | string
   DeleteUploadPayload?: (
-    data: WithTypename<DeleteUploadPayload>
+    data: WithTypename<DeleteUploadPayload>,
   ) => null | string
   Event?: (data: WithTypename<Event>) => null | string
   EventDeletePayload?: (data: WithTypename<EventDeletePayload>) => null | string
   EventGroup?: (data: WithTypename<EventGroup>) => null | string
   EventGrouping?: (data: WithTypename<EventGrouping>) => null | string
   EventGroupingsConnection?: (
-    data: WithTypename<EventGroupingsConnection>
+    data: WithTypename<EventGroupingsConnection>,
   ) => null | string
   EventGroupingsEdge?: (data: WithTypename<EventGroupingsEdge>) => null | string
   EventGroupsConnection?: (
-    data: WithTypename<EventGroupsConnection>
+    data: WithTypename<EventGroupsConnection>,
   ) => null | string
   EventGroupsEdge?: (data: WithTypename<EventGroupsEdge>) => null | string
   EventUnlockPayload?: (data: WithTypename<EventUnlockPayload>) => null | string
   EventUnlockResponse?: (
-    data: WithTypename<EventUnlockResponse>
+    data: WithTypename<EventUnlockResponse>,
   ) => null | string
   EventsConnection?: (data: WithTypename<EventsConnection>) => null | string
   EventsEdge?: (data: WithTypename<EventsEdge>) => null | string
   EventsOrganizedConnection?: (
-    data: WithTypename<EventsOrganizedConnection>
+    data: WithTypename<EventsOrganizedConnection>,
   ) => null | string
   EventsOrganizedEdge?: (
-    data: WithTypename<EventsOrganizedEdge>
+    data: WithTypename<EventsOrganizedEdge>,
   ) => null | string
   Invitation?: (data: WithTypename<Invitation>) => null | string
   InvitationContactIdEdge?: (
-    data: WithTypename<InvitationContactIdEdge>
+    data: WithTypename<InvitationContactIdEdge>,
   ) => null | string
   InvitationContactIdsConnection?: (
-    data: WithTypename<InvitationContactIdsConnection>
+    data: WithTypename<InvitationContactIdsConnection>,
   ) => null | string
   InvitationsConnection?: (
-    data: WithTypename<InvitationsConnection>
+    data: WithTypename<InvitationsConnection>,
   ) => null | string
   InvitationsEdge?: (data: WithTypename<InvitationsEdge>) => null | string
   InvitePayload?: (data: WithTypename<InvitePayload>) => null | string
   JwtRefreshPayload?: (data: WithTypename<JwtRefreshPayload>) => null | string
   NotificationAcknowledgePayload?: (
-    data: WithTypename<NotificationAcknowledgePayload>
+    data: WithTypename<NotificationAcknowledgePayload>,
   ) => null | string
   PageInfo?: (data: WithTypename<PageInfo>) => null | string
   ProfilePicture?: (data: WithTypename<ProfilePicture>) => null | string
   ProfilePictureSetPayload?: (
-    data: WithTypename<ProfilePictureSetPayload>
+    data: WithTypename<ProfilePictureSetPayload>,
   ) => null | string
   ProfilePicturesConnection?: (
-    data: WithTypename<ProfilePicturesConnection>
+    data: WithTypename<ProfilePicturesConnection>,
   ) => null | string
   ProfilePicturesEdge?: (
-    data: WithTypename<ProfilePicturesEdge>
+    data: WithTypename<ProfilePicturesEdge>,
   ) => null | string
   UpdateContactPayload?: (
-    data: WithTypename<UpdateContactPayload>
+    data: WithTypename<UpdateContactPayload>,
   ) => null | string
   UpdateEventGroupPayload?: (
-    data: WithTypename<UpdateEventGroupPayload>
+    data: WithTypename<UpdateEventGroupPayload>,
   ) => null | string
   UpdateEventGroupingPayload?: (
-    data: WithTypename<UpdateEventGroupingPayload>
+    data: WithTypename<UpdateEventGroupingPayload>,
   ) => null | string
   UpdateEventPayload?: (data: WithTypename<UpdateEventPayload>) => null | string
   UpdateInvitationPayload?: (
-    data: WithTypename<UpdateInvitationPayload>
+    data: WithTypename<UpdateInvitationPayload>,
   ) => null | string
   UpdateProfilePicturePayload?: (
-    data: WithTypename<UpdateProfilePicturePayload>
+    data: WithTypename<UpdateProfilePicturePayload>,
   ) => null | string
   UpdateUploadPayload?: (
-    data: WithTypename<UpdateUploadPayload>
+    data: WithTypename<UpdateUploadPayload>,
   ) => null | string
   Upload?: (data: WithTypename<Upload>) => null | string
   UploadCreatePayload?: (
-    data: WithTypename<UploadCreatePayload>
+    data: WithTypename<UploadCreatePayload>,
   ) => null | string
   UploadsConnection?: (data: WithTypename<UploadsConnection>) => null | string
   UploadsEdge?: (data: WithTypename<UploadsEdge>) => null | string

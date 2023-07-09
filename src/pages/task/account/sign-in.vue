@@ -29,7 +29,7 @@ const title = t('title')
 
 // computations
 const to = computed(() =>
-  route.query.to && !Array.isArray(route.query.to) ? route.query.to : undefined
+  route.query.to && !Array.isArray(route.query.to) ? route.query.to : undefined,
 )
 
 // methods

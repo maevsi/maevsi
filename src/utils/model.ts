@@ -5,7 +5,7 @@ export const getContactName = (
     ContactItemFragment,
     'accountUsername' | 'firstName' | 'lastName'
   >,
-  isUsernamePreferred = false
+  isUsernamePreferred = false,
 ) => {
   let name
 

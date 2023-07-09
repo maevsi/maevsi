@@ -11,7 +11,7 @@
           {
             name: routeParamEventName,
             to: localePath(
-              `/event/${route.params.username}/${route.params.event_name}`
+              `/event/${route.params.username}/${route.params.event_name}`,
             ),
           },
         ]"
@@ -72,7 +72,7 @@ const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
 })
 const api = getApiData([eventQuery])
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug)
+  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug),
 )
 
 // data

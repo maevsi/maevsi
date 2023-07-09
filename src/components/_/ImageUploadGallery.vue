@@ -169,10 +169,10 @@ const uploads = computed(
   () =>
     allUploadsQuery.data.value?.allUploads?.nodes
       .map((x) => getUploadItem(x))
-      .filter(isNeitherNullNorUndefined) || []
+      .filter(isNeitherNullNorUndefined) || [],
 )
 const accountUploadQuotaBytes = computed(
-  () => accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes
+  () => accountUploadQuotaBytesQuery.data.value?.accountUploadQuotaBytes,
 )
 
 // data
@@ -188,7 +188,7 @@ const uppy = ref<Uppy>()
 
 // computations
 const sizeByteTotal = computed(
-  () => uploads.value?.reduce((p, c) => p + +c.sizeByte, 0) || 0
+  () => uploads.value?.reduce((p, c) => p + +c.sizeByte, 0) || 0,
 )
 
 // methods
@@ -290,7 +290,7 @@ const loadProfilePicture = (event: Event) => {
       fileSelectedUrl.value = e.target?.result as string
       fileSelectedMimeType.value = getMimeType(
         e.target?.result as ArrayBuffer,
-        file.type
+        file.type,
       )
       store.modals.push({ id: 'ModalImageUploadGallery' })
     }
@@ -344,7 +344,7 @@ const getUploadBlobPromise = () =>
                   name: '/profile-pictures/' + files[c].name,
                 },
               }),
-              {}
+              {},
             ),
         })
 
@@ -375,7 +375,7 @@ const getUploadBlobPromise = () =>
           return resolve()
         }
       },
-      'image/jpeg'
+      'image/jpeg',
     )
   })
 

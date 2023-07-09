@@ -28,7 +28,7 @@ test.describe('visual regression', () => {
     await page.goto('/dashboard')
     await expect(page.getByTestId('is-loading')).toHaveAttribute(
       'data-is-loading',
-      'false'
+      'false',
     )
     await page.getByRole('button', { name: 'Cookie control' }).isVisible()
     await expect(page).toHaveScreenshot({ fullPage: true })

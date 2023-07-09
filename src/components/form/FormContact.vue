@@ -236,7 +236,7 @@ watch(
   () => props.contact,
   (currentValue, _oldValue) => {
     updateForm(currentValue)
-  }
+  },
 )
 
 // initialization

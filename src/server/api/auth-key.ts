@@ -13,7 +13,7 @@ export default defineEventHandler(async (event: H3Event) => {
       createError({
         statusCode: 500,
         statusMessage: 'The authentication key is not available!',
-      })
+      }),
     )
   }
 
@@ -27,7 +27,7 @@ export const useJwtPublicKey = async () => {
 
   if (config.public.stagingHost) {
     return await ofetch<string>(
-      `https://${config.public.stagingHost}/api/auth-key`
+      `https://${config.public.stagingHost}/api/auth-key`,
     )
   } else {
     return jwtPublicKeyPath && fs.existsSync(jwtPublicKeyPath)

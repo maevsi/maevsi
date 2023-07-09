@@ -10,5 +10,5 @@ export const useUploadCreateMutation = () =>
           uuid
         }
       }
-    `)
+    `),
   )

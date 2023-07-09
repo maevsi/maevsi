@@ -51,13 +51,13 @@ const events = computed(
   () =>
     eventsQuery.data.value?.allEvents?.nodes
       .map((x) => getEventItem(x))
-      .filter(isNeitherNullNorUndefined) || []
+      .filter(isNeitherNullNorUndefined) || [],
 )
 
 // data
 const isButtonEventListShown = ref(
   typeof route.name === 'string' &&
-    route.name?.replace(/___.+$/, '') !== 'event'
+    route.name?.replace(/___.+$/, '') !== 'event',
 )
 </script>
 

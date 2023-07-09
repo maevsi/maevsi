@@ -18,7 +18,7 @@ const isCodeValid = computed(
   () =>
     route.query.code &&
     !Array.isArray(route.query.code) &&
-    REGEX_UUID.test(route.query.code)
+    REGEX_UUID.test(route.query.code),
 )
 
 // initialization

@@ -22,7 +22,7 @@ const ssrKey = '__URQL_DATA__'
 const invalidateCache = (
   cache: Cache,
   name: string,
-  args?: { input: { id: any } }
+  args?: { input: { id: any } },
 ) =>
   args
     ? cache.invalidate({ __typename: name, id: args.input.id })

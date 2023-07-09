@@ -17,5 +17,5 @@ export const ContactItem = graphql(`
 `)
 
 export const getContactItem = (
-  fragment?: FragmentType<typeof ContactItem> | null
+  fragment?: FragmentType<typeof ContactItem> | null,
 ) => useFragment(ContactItem, fragment)

@@ -10,5 +10,5 @@ export const ProfilePictureItem = graphql(`
 `)
 
 export const getProfilePictureItem = (
-  fragment?: FragmentType<typeof ProfilePictureItem> | null
+  fragment?: FragmentType<typeof ProfilePictureItem> | null,
 ) => useFragment(ProfilePictureItem, fragment)

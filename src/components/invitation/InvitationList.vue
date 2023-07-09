@@ -190,17 +190,17 @@ const invitations = computed(
   () =>
     invitationsQuery.data.value?.allInvitations?.nodes
       .map((x) => getInvitationItem(x))
-      .filter(isNeitherNullNorUndefined) || []
+      .filter(isNeitherNullNorUndefined) || [],
 )
 
 // lifecycle
 watch(
   () => $colorMode.value,
-  (_currentValue, _oldValue) => updateChart()
+  (_currentValue, _oldValue) => updateChart(),
 )
 watch(
   () => doughnutRef.value?.chart,
-  (_currentValue, _oldValue) => updateChart()
+  (_currentValue, _oldValue) => updateChart(),
 )
 
 // initialization
@@ -211,7 +211,7 @@ Chart.register(
   DoughnutController,
   Title,
   Tooltip,
-  Legend
+  Legend,
 )
 </script>
 

@@ -3,7 +3,7 @@ import { graphql } from '~/gql/generated'
 import { AllInvitationsQueryVariables } from '~/gql/generated/graphql'
 
 export const useAllInvitationsQuery = (
-  variables: AllInvitationsQueryVariables
+  variables: AllInvitationsQueryVariables,
 ) =>
   useQuery({
     query: graphql(`

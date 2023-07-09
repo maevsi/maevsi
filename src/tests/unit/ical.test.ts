@@ -27,7 +27,7 @@ test('gets ical string', () => {
       slug: 'slug',
       start: new Date(),
       // visibility: EventVisibility.Public,
-    })
+    }),
   ).toBe(
     `BEGIN:VCALENDAR\r
 VERSION:2.0\r
@@ -51,6 +51,6 @@ ORGANIZER;CN="authorUsername":mailto:authorUsername@maevsi.test\r
 URL;VALUE=URI:https://maevsi.test/event/authorUsername/slug\r
 STATUS:CONFIRMED\r
 END:VEVENT\r
-END:VCALENDAR`
+END:VCALENDAR`,
   )
 })
