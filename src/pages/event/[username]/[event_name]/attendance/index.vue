@@ -262,7 +262,7 @@ useHeadDefault(title)
 export default {
   components: {
     QrCodeStream: defineAsyncComponent(
-      async () => (await import('@dargmuesli/vue-qrcode-reader')).QrcodeStream
+      async () => (await import('vue-qrcode-reader')).QrcodeStream
     ),
   },
 }
