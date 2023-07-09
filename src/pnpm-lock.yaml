@@ -15,8 +15,8 @@ devDependencies:
     specifier: 5.10.3
     version: 5.10.3(rollup@3.26.2)(webpack@5.88.1)
   '@fontsource-variable/manrope':
-    specifier: 5.0.4
-    version: 5.0.4
+    specifier: 5.0.5
+    version: 5.0.5
   '@funken-studio/sitemap-nuxt-3':
     specifier: 4.0.4
     version: 4.0.4(rollup@3.26.2)
@@ -2271,8 +2271,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fontsource-variable/manrope@5.0.4:
-    resolution: {integrity: sha512-ex53+61ckRkngcuM/vn0d+qDQHd6pU82naY3l65xNO8k3912GPYChEsue4/+7LXA8QvRp6vW+8Z0vYurcZc4cA==}
+  /@fontsource-variable/manrope@5.0.5:
+    resolution: {integrity: sha512-yT4+athYl7/d2IIH6pCByyBFj/Zhd3Q+P2EcGorXuScG/Pjd0CYTqk4KPkdiZB01ns0DNZIVquDr9D+Pb5wwUA==}
     dev: true
 
   /@funken-studio/sitemap-nuxt-3@4.0.4(rollup@3.26.2):
@@ -3181,8 +3181,8 @@ packages:
     engines: {node: '>= 16'}
     dev: true
 
-  /@intlify/shared@9.3.0-beta.23:
-    resolution: {integrity: sha512-ozhS+OrHXY8WErxJIarlW7fwLvbMPr53JcXjlRiZr1IJUjDvAo5t40nUnBdyR3h/A8gHboLb45RvFJYU4qfuRA==}
+  /@intlify/shared@9.3.0-beta.24:
+    resolution: {integrity: sha512-AKxJ8s7eKIQWkNaf4wyyoLRwf4puCuQgjSChlDJm5JBEt6T8HGgnYTJLRXu6LD/JACn3Qwu6hM/XRX1c9yvjmQ==}
     engines: {node: '>= 16'}
     dev: true
 
@@ -14149,7 +14149,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.23
+      '@intlify/shared': 9.3.0-beta.24
       '@intlify/vue-i18n-bridge': 0.8.0(vue-i18n@9.3.0-beta.19)
       '@intlify/vue-router-bridge': 0.8.0(vue@3.3.4)
       ufo: 1.1.2
