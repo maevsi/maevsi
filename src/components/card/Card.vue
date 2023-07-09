@@ -1,6 +1,7 @@
 <template>
+  <!-- TODO: hide or show overflow completely -->
   <div
-    class="overflow-hidden rounded-lg"
+    class="overflow-x-hidden rounded-lg"
     :class="[backgroundColor, ...(isHigh ? ['px-4 py-6'] : ['p-4'])]"
   >
     <slot />

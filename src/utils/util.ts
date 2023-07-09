@@ -63,7 +63,7 @@ const getCsp = (host: string): Record<string, Array<string>> => {
       'https://cdn.jsdelivr.net/npm/@sec-ant/', // vue-qrcode-reader
     ],
     'default-src': ["'none'"],
-    'font-src': ["'self'"], // ~/public/assets/static/fonts
+    'font-src': ["'self'", 'data:'], // @fontsource/manrope
     'form-action': ["'self'"], // Mozilla Observatory: "none".
     'frame-ancestors': ["'none'"], // Mozilla Observatory.
     'frame-src': ['https://challenges.cloudflare.com'], // Cloudflare Turnstile

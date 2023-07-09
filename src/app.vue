@@ -4,8 +4,11 @@
       {{ t('browserUnsupported') }}
     </CardStateInfo>
     <NuxtLayout>
-      <NuxtLoadingIndicator color="#fff" />
-      <NuxtPage />
+      <!-- `NuxtLayout` can't have mulitple child nodes (https://github.com/nuxt/nuxt/issues/21759) -->
+      <div>
+        <NuxtLoadingIndicator color="#fff" />
+        <NuxtPage />
+      </div>
     </NuxtLayout>
     <VitePwaManifest />
   </div>
@@ -20,7 +23,7 @@ import supportedBrowsers from '~/supportedBrowsers'
 const cookieControl = useCookieControl()
 const { t } = useI18n()
 const store = useMaevsiStore()
-const { $dayjs, $i18n, $pwa } = useNuxtApp()
+const { $dayjs, $pwa } = useNuxtApp()
 const router = useRouter()
 
 // data
@@ -28,9 +31,6 @@ const isBrowserSupported = ref(true)
 
 // methods
 const init = () => {
-  $i18n.onLanguageSwitched = (_oldLocale: string, newLocale: string) =>
-    $dayjs.locale(newLocale)
-
   if (process.client) {
     const cookieTimezone = useCookie(TIMEZONE_COOKIE_NAME, {
       // default: () => undefined, // setting `default` on the client side only does not write the cookie

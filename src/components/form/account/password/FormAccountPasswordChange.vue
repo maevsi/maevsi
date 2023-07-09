@@ -51,7 +51,7 @@ const isFormSent = ref(false)
 
 // methods
 const resetForm = () => {
-  formRef.value?.reset()
+  formRef.value?.resetForm()
 }
 const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
