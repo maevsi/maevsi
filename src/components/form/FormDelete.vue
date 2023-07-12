@@ -64,7 +64,7 @@ const submit = async () => {
     title: capitalizeFirstLetter(
       t('success', {
         item: props.itemName,
-      })
+      }),
     ),
   })
   emit('success')

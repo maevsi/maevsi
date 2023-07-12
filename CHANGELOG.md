@@ -1,3 +1,10 @@
+## [1.19.2](https://github.com/maevsi/maevsi/compare/1.19.1...1.19.2) (2023-07-09)
+
+
+### Bug Fixes
+
+* **app:** use single child for `NuxtLayout` ([d315b04](https://github.com/maevsi/maevsi/commit/d315b0450856f625fbb1541d42c183085a7814ce))
+
 ## [1.19.1](https://github.com/maevsi/maevsi/compare/1.19.0...1.19.1) (2023-07-01)
 
 

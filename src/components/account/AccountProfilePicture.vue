@@ -40,7 +40,7 @@ const api = getApiData([profilePictureQuery])
 // computations
 const profilePictureUrl = computed(() => {
   const profilePicture = getProfilePictureItem(
-    profilePictureQuery.data.value?.profilePictureByUsername
+    profilePictureQuery.data.value?.profilePictureByUsername,
   )
 
   return profilePicture?.uploadStorageKey

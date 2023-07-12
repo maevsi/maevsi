@@ -132,7 +132,7 @@ const isMenuVisiblePartly = ref(false)
 // methods
 const getLocaleName = (locale: string) => {
   const locales: LocaleObject[] = LOCALES.filter(
-    (localeObject) => localeObject.code === locale
+    (localeObject) => localeObject.code === locale,
   )
 
   if (locales.length) {
@@ -148,7 +148,7 @@ const getLocaleFlag = (locale: string) => {
   }
 
   const locales: LocaleObject[] = LOCALES.filter(
-    (localeObject) => localeObject.code === locale
+    (localeObject) => localeObject.code === locale,
   )
 
   if (locales.length) {

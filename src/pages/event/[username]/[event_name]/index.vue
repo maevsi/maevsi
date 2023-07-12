@@ -374,7 +374,7 @@ const eventQuery = await useEventByAuthorUsernameAndSlugQuery({
 })
 const api = getApiData([eventQuery])
 const event = computed(() =>
-  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug)
+  getEventItem(eventQuery.data.value?.eventByAuthorUsernameAndSlug),
 )
 
 // data
@@ -430,7 +430,7 @@ const downloadIcal = () => {
       contact: contact.value,
       event: event.value,
       invitation: invitation.value,
-    })
+    }),
   )
 }
 const print = () => {
@@ -455,7 +455,7 @@ const update = async (id: string, invitationPatch: InvitationPatch) => {
 
 // computations
 const contact = computed(() =>
-  getContactItem(invitation?.value?.contactByContactId)
+  getContactItem(invitation?.value?.contactByContactId),
 )
 const contactName = computed(() => {
   return invitation?.value?.contactByContactId && contact.value
@@ -474,7 +474,7 @@ const eventDescriptionTemplate = computed(() => {
       event,
       invitation: invitation.value,
     }),
-    { ADD_ATTR: ['target'] }
+    { ADD_ATTR: ['target'] },
   )
 })
 const invitation = computed(() => {
@@ -487,7 +487,7 @@ const invitation = computed(() => {
     store.signedInUsername === route.params.username && invitations
       ? invitations.filter(
           (invitation: Pick<InvitationItemFragment, 'uuid'>) =>
-            invitation.uuid === route.query.ic
+            invitation.uuid === route.query.ic,
         )
       : invitations
 
@@ -510,7 +510,7 @@ const routeQuery = computed(() => route.query)
 const routeQueryIc = computed(() => route.query.ic)
 const signedInUsername = computed(() => store.signedInUsername)
 const title = computed(() =>
-  api.value.isFetching ? t('globalLoading') : event.value?.name || '403'
+  api.value.isFetching ? t('globalLoading') : event.value?.name || '403',
 )
 
 // initialization

@@ -53,7 +53,7 @@ export const validateEventSlug =
   (
     signedInUserName: string,
     invert: boolean,
-    exclude?: string
+    exclude?: string,
   ): ((value: string) => Promise<boolean>) =>
   async (value: string) => {
     const { $urql } = useNuxtApp()

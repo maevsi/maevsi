@@ -3,7 +3,7 @@ import { graphql } from '~/gql/generated'
 import { ProfilePictureByUsernameQueryVariables } from '~/gql/generated/graphql'
 
 export const useProfilePictureByUsernameQuery = (
-  variables: ProfilePictureByUsernameQueryVariables
+  variables: ProfilePictureByUsernameQueryVariables,
 ) =>
   useQuery({
     query: graphql(`

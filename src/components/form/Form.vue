@@ -82,12 +82,12 @@ const resetForm = () => {
 // computations
 const $error = computed(
   // this is not equivalent to Vuelidate's `$error` as docs claim (https://github.com/vuelidate/vuelidate/pull/1188)
-  () => props.form.$dirty && props.form.$invalid && !props.form.$pending
+  () => props.form.$dirty && props.form.$invalid && !props.form.$pending,
 )
 const errorMessages = computed(() =>
   props.errors
     ? getCombinedErrorMessages(props.errors, props.errorsPgIds)
-    : undefined
+    : undefined,
 )
 
 defineExpose({

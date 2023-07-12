@@ -22,7 +22,7 @@ const secretPostgresRoleMaevsiTusdPasswordPath =
   process.env.POSTGRES_ROLE_MAEVSI_TUSD_PASSWORD_FILE || ''
 
 const configPostgraphileJwtPublicKey = fs.existsSync(
-  configPostgraphileJwtPublicKeyPath
+  configPostgraphileJwtPublicKeyPath,
 )
   ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
   : undefined
@@ -60,12 +60,12 @@ const deleteUpload = async (event: H3Event, uploadId: any, storageKey: any) => {
   let queryResult = await pool
     .query(
       'DELETE FROM maevsi.profile_picture WHERE upload_storage_key = $1;',
-      [storageKey]
+      [storageKey],
     )
     .catch((err: Error) => {
       sendError(
         event,
-        createError({ statusCode: 500, statusMessage: err.message })
+        createError({ statusCode: 500, statusMessage: err.message }),
       )
     })
 
@@ -76,7 +76,7 @@ const deleteUpload = async (event: H3Event, uploadId: any, storageKey: any) => {
     .catch((err) => {
       sendError(
         event,
-        createError({ statusCode: 500, statusMessage: err.message })
+        createError({ statusCode: 500, statusMessage: err.message }),
       )
     })
 
@@ -100,7 +100,7 @@ const tusdDelete = async (event: H3Event) => {
       createError({
         statusCode: 401,
         statusMessage: 'The request header "Authorization" is undefined!',
-      })
+      }),
     )
   }
 
@@ -110,7 +110,7 @@ const tusdDelete = async (event: H3Event) => {
       createError({
         statusCode: 500,
         statusMessage: 'Secret missing!',
-      })
+      }),
     )
   }
 
@@ -122,7 +122,7 @@ const tusdDelete = async (event: H3Event) => {
         algorithms: [JWT_ALGORITHM],
         audience: 'postgraphile',
         issuer: 'postgraphile',
-      }
+      },
     )
   } catch (err: any) {
     return sendError(
@@ -130,7 +130,7 @@ const tusdDelete = async (event: H3Event) => {
       createError({
         statusCode: 401,
         statusMessage: `Json web token verification failed: "${err.message}"!`,
-      })
+      }),
     )
   }
 
@@ -139,7 +139,7 @@ const tusdDelete = async (event: H3Event) => {
     .catch((err) => {
       sendError(
         event,
-        createError({ statusCode: 500, statusMessage: err.message })
+        createError({ statusCode: 500, statusMessage: err.message }),
       )
     })
 
@@ -151,7 +151,7 @@ const tusdDelete = async (event: H3Event) => {
       createError({
         statusCode: 500,
         statusMessage: 'No result found for id "' + uploadId + '"!',
-      })
+      }),
     )
   }
 
@@ -167,7 +167,7 @@ const tusdDelete = async (event: H3Event) => {
           'Tus-Resumable': '1.0.0',
         },
         method: 'DELETE',
-      }
+      },
     )
 
     if (httpResp.status === 204) {
@@ -182,7 +182,7 @@ const tusdDelete = async (event: H3Event) => {
         createError({
           statusCode: 500,
           statusMessage: 'Tusd status was "' + httpResp.status + '".',
-        })
+        }),
       )
     }
   } else {
@@ -207,7 +207,7 @@ const tusdPost = async (event: H3Event) => {
         .catch((err) => {
           sendError(
             event,
-            createError({ statusCode: 500, statusMessage: err.message })
+            createError({ statusCode: 500, statusMessage: err.message }),
           )
         })
 
@@ -219,7 +219,7 @@ const tusdPost = async (event: H3Event) => {
           createError({
             statusCode: 500,
             statusMessage: 'Upload id does not exist!',
-          })
+          }),
         )
       }
 
@@ -241,7 +241,7 @@ const tusdPost = async (event: H3Event) => {
             createError({
               statusCode: 500,
               statusMessage: err.message,
-            })
+            }),
           )
         })
 
@@ -256,7 +256,7 @@ const tusdPost = async (event: H3Event) => {
       await deleteUpload(
         event,
         body.Upload.MetaData.maevsiUploadUuid,
-        body.Upload.ID
+        body.Upload.ID,
       )
 
       break

@@ -34,7 +34,7 @@ const draw = () => {
     -(imageSize / 2),
     -(imageSize / 2),
     imageSize,
-    imageSize
+    imageSize,
   )
   ctx.value.rotate(Math.PI / 256)
 }

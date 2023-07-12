@@ -30,7 +30,7 @@ const heading = (theme: PluginAPI['theme']) =>
     ...truncateOverflow,
     fontWeight: theme('fontWeight.bold'),
     maxWidth: theme('width.full'),
-  } as Record<string, string>)
+  }) as Record<string, string>
 
 export default {
   content: [

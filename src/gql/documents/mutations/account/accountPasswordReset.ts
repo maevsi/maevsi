@@ -9,5 +9,5 @@ export const useAccountPasswordResetMutation = () =>
           clientMutationId
         }
       }
-    `)
+    `),
   )

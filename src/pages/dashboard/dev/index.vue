@@ -55,7 +55,7 @@ const title = t('title')
 // computations
 const jwtDecoded = computed(() => store.jwtDecoded)
 const sessionExpiryTime = computed(() =>
-  dateTime(store.jwtDecoded?.exp).format('llll')
+  dateTime(store.jwtDecoded?.exp).format('llll'),
 )
 
 // initialization

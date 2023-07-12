@@ -20,7 +20,7 @@ export default defineEventHandler(async (event: H3Event) => {
           createError({
             statusCode: 500,
             statusMessage: 'Secret missing!',
-          })
+          }),
         )
       }
 
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event: H3Event) => {
             statusCode: 401,
             statusMessage:
               'Json web token verification failed: "' + err.message + '"!',
-          })
+          }),
         )
       }
     }

@@ -36,7 +36,11 @@ export default defineEventHandler(async (h3Event: H3Event) => {
   res.setHeader('Content-Type', 'text/calendar')
   res.setHeader(
     'Content-Disposition',
-    'attachment; filename="' + event.authorUsername + '_' + event.slug + '.ics"'
+    'attachment; filename="' +
+      event.authorUsername +
+      '_' +
+      event.slug +
+      '.ics"',
   )
   res.end(getIcalString(host, event, contact, invitation))
 })
@@ -54,7 +58,7 @@ export const getIcalString = (
     | 'location'
   >,
   contact?: ContactItemFragment,
-  invitation?: InvitationItemFragment
+  invitation?: InvitationItemFragment,
 ) => {
   const userEventPath = event.authorUsername + '/' + event.slug
   const eventUrl = 'https://' + host + '/event/' + userEventPath
@@ -64,7 +68,7 @@ export const getIcalString = (
       contact,
       event,
       invitation,
-    }
+    },
   )
 
   return ical({

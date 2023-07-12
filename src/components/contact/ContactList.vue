@@ -88,7 +88,7 @@ const contacts = computed(
   () =>
     contactsQuery.data.value?.allContacts?.nodes
       .map((x) => getContactItem(x))
-      .filter(isNeitherNullNorUndefined) || []
+      .filter(isNeitherNullNorUndefined) || [],
 )
 
 // data

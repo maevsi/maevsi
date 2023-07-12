@@ -104,7 +104,7 @@ definePageMeta({
               ...to.query,
               error: null,
             },
-          })
+          }),
         )
       }
 
@@ -126,7 +126,7 @@ definePageMeta({
               ...to.query,
               redirect: localePath(eventPath),
             },
-          })
+          }),
         )
       }
     }),
@@ -176,8 +176,8 @@ const submit = async () => {
 
   navigateTo(
     localePath(
-      `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`
-    )
+      `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`,
+    ),
   )
 }
 

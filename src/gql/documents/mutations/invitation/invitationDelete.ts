@@ -9,5 +9,5 @@ export const useDeleteInvitationByIdMutation = () =>
           clientMutationId
         }
       }
-    `)
+    `),
   )

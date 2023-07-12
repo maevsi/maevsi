@@ -3,7 +3,7 @@ import { graphql } from '~/gql/generated'
 import { EventByAuthorUsernameAndSlugQueryVariables } from '~/gql/generated/graphql'
 
 export const useEventByAuthorUsernameAndSlugQuery = (
-  variables: EventByAuthorUsernameAndSlugQueryVariables
+  variables: EventByAuthorUsernameAndSlugQueryVariables,
 ) =>
   useQuery({
     query: graphql(`
