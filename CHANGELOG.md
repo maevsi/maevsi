@@ -1,3 +1,22 @@
+# [1.20.0](https://github.com/maevsi/maevsi/compare/1.19.2...1.20.0) (2023-07-12)
+
+
+### Bug Fixes
+
+* **attendance:** correct qr code reader import ([0d20348](https://github.com/maevsi/maevsi/commit/0d20348ade5febe56373a812f8f1be43de39befe))
+* **csp:** allow zxing wasm connection ([34c13e6](https://github.com/maevsi/maevsi/commit/34c13e6205d43b2a5fc364be4880daa4f85c30e1))
+
+
+### Features
+
+* stash ([7e7233b](https://github.com/maevsi/maevsi/commit/7e7233b68d7a7403e47da9915338b011c526aed9))
+* stash ([1f1fc99](https://github.com/maevsi/maevsi/commit/1f1fc999cf8ba5dbd2b4d095f1547779cd439065))
+* stash ([4ffa4e6](https://github.com/maevsi/maevsi/commit/4ffa4e64358a38c7ef25936414d37b457249fd96))
+* stash ([f4d7cfb](https://github.com/maevsi/maevsi/commit/f4d7cfbc06583bfbe9e96fb54546882a50ac10bf))
+* stash ([aff2796](https://github.com/maevsi/maevsi/commit/aff27962cfed95a9d25d43d33735300ae79d88e0))
+* stash ([5932813](https://github.com/maevsi/maevsi/commit/59328136101724e3dbb9e14269de4cb4ab5a648f))
+* stash ([9460edc](https://github.com/maevsi/maevsi/commit/9460edc9dd218e035732cd019985943d93da9ed9))
+
 ## [1.19.2](https://github.com/maevsi/maevsi/compare/1.19.1...1.19.2) (2023-07-09)
 
 
