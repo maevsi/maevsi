@@ -56,7 +56,7 @@
       </div>
     </div>
     <Modal id="ModalAttendanceScanQrCode" :submit-name="t('close')">
-      <QrCodeStream @decode="onDecode" @init="onInit">
+      <QrCodeStream @detect="onDetect" @error="onError" @camera-on="onCameraOn">
         <div v-if="loading" class="text-center">
           {{ t('globalLoading') }}
         </div>
@@ -70,6 +70,7 @@
 
 <script setup lang="ts">
 import { consola } from 'consola'
+import { type DetectedBarcode } from '@sec-ant/barcode-detector'
 
 import { useMaevsiStore } from '~/store'
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
@@ -122,7 +123,7 @@ const event = computed(() =>
 // data
 const invitationCode = ref<string>()
 const isNfcWritableErrorMessage = ref<string>()
-const loading = ref(false)
+const loading = ref(true)
 const routeParamEventName = route.params.event_name as string
 const routeParamUsername = route.params.username as string
 
@@ -143,42 +144,37 @@ const title = computed(() => {
 const qrCodeScan = () => {
   store.modals.push({ id: 'ModalAttendanceScanQrCode' })
 }
-const onInit = async (promise: Promise<any>) => {
-  loading.value = true
+const onCameraOn = () => {
+  loading.value = false
+}
+const onError = async (error: any) => {
+  let errorMessage: string = error.message
 
-  try {
-    await promise
-  } catch (error: any) {
-    let errorMessage: string = error.message
-
-    if (error.name === 'NotAllowedError') {
-      errorMessage = t('errorCameraNotAllowed', {
-        hintBrowserSettings: t('hintBrowserSettings'),
-      }) as string
-    } else if (error.name === 'NotFoundError') {
-      errorMessage = t('errorCameraNotFound') as string
-    } else if (error.name === 'NotSupportedError') {
-      errorMessage = t('errorCameraNotSupported') as string
-    } else if (error.name === 'NotReadableError') {
-      errorMessage = t('errorCameraNotReadable') as string
-    } else if (error.name === 'OverconstrainedError') {
-      errorMessage = t('errorCameraOverconstrained') as string
-    } else if (error.name === 'StreamApiNotSupportedError') {
-      errorMessage = t('errorCameraStreamApiNotSupported') as string
-    }
-
-    await fireAlert({ level: 'error', text: errorMessage })
-    store.modalRemove('ModalAttendanceScanQrCode')
-    consola.error(errorMessage)
-  } finally {
-    loading.value = false
+  if (error.name === 'NotAllowedError') {
+    errorMessage = t('errorCameraNotAllowed', {
+      hintBrowserSettings: t('hintBrowserSettings'),
+    }) as string
+  } else if (error.name === 'NotFoundError') {
+    errorMessage = t('errorCameraNotFound') as string
+  } else if (error.name === 'NotSupportedError') {
+    errorMessage = t('errorCameraNotSupported') as string
+  } else if (error.name === 'NotReadableError') {
+    errorMessage = t('errorCameraNotReadable') as string
+  } else if (error.name === 'OverconstrainedError') {
+    errorMessage = t('errorCameraOverconstrained') as string
+  } else if (error.name === 'StreamApiNotSupportedError') {
+    errorMessage = t('errorCameraStreamApiNotSupported') as string
   }
+
+  await fireAlert({ level: 'error', text: errorMessage })
+  store.modalRemove('ModalAttendanceScanQrCode')
+  consola.error(errorMessage)
 }
 const onClick = async () => {
   await writeTag(invitationCode.value)
 }
-const onDecode = async (e: any) => {
-  invitationCode.value = e
+const onDetect = async (e: DetectedBarcode[]) => {
+  invitationCode.value = e[0].rawValue
   await fireAlert({ level: 'success' })
   store.modalRemove('ModalAttendanceScanQrCode')
 }
