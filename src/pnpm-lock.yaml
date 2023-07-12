@@ -329,8 +329,8 @@ devDependencies:
     specifier: 2.0.1
     version: 2.0.1(vue@3.3.4)
   vue-qrcode-reader:
-    specifier: 4.0.0
-    version: 4.0.0(react@18.2.0)
+    specifier: 5.0.0
+    version: 5.0.0(react@18.2.0)
   vue-tsc:
     specifier: 1.8.4
     version: 1.8.4(typescript@5.1.6)
@@ -14156,8 +14156,8 @@ packages:
       vue: 3.3.4
     dev: true
 
-  /vue-qrcode-reader@4.0.0(react@18.2.0):
-    resolution: {integrity: sha512-qDefnkgqJ7eQ3KPNgL8Vz/0XTfQ9ZQyb+ygVvSW7KVET/TqKgA47R1itU8EvpwAr7uwJXI0GI1Jzu5WwQlZUUQ==}
+  /vue-qrcode-reader@5.0.0(react@18.2.0):
+    resolution: {integrity: sha512-D7ltYqZgf3AJ8lpMzo6ryFJOCG6GJ+yyFQtUdEx0gqZbfqrDvtQA/I1qec2nr8QVJjqElUzhyd4j/kc2bHidEg==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@sec-ant/barcode-detector': 0.1.5(react@18.2.0)
