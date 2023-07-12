@@ -69,7 +69,7 @@
     "@types/pg": "8.10.2",
     "@uppy/core": "3.3.0",
     "@uppy/tus": "3.1.2",
-    "@urql/core": "4.0.10",
+    "@urql/core": "4.0.11",
     "@urql/devtools": "2.0.3",
     "@urql/exchange-graphcache": "6.1.4",
     "@urql/vue": "1.1.2",
