@@ -262,7 +262,7 @@ useHeadDefault(title)
 export default {
   components: {
     QrCodeStream: defineAsyncComponent(
-      () => import('vue-qrcode-reader/src/components/QrcodeStream.vue'),
+      async () => (await import('vue-qrcode-reader')).QrcodeStream,
     ),
   },
 }
