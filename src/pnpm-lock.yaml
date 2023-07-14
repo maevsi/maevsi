@@ -275,8 +275,8 @@ devDependencies:
     specifier: 1.7.3
     version: 1.7.3
   prosemirror-view:
-    specifier: 1.31.5
-    version: 1.31.5
+    specifier: 1.31.6
+    version: 1.31.6
   qrcode.vue:
     specifier: 3.4.0
     version: 3.4.0(vue@3.3.4)
@@ -4462,9 +4462,9 @@ packages:
       prosemirror-schema-list: 1.3.0
       prosemirror-state: 1.4.3
       prosemirror-tables: 1.3.4
-      prosemirror-trailing-node: 2.0.4(prosemirror-model@1.19.3)(prosemirror-state@1.4.3)(prosemirror-view@1.31.5)
+      prosemirror-trailing-node: 2.0.4(prosemirror-model@1.19.3)(prosemirror-state@1.4.3)(prosemirror-view@1.31.6)
       prosemirror-transform: 1.7.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.31.6
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -11648,7 +11648,7 @@ packages:
     dependencies:
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.7.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.31.6
     dev: true
 
   /prosemirror-gapcursor@1.3.2:
@@ -11657,7 +11657,7 @@ packages:
       prosemirror-keymap: 1.2.2
       prosemirror-model: 1.19.3
       prosemirror-state: 1.4.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.31.6
     dev: true
 
   /prosemirror-history@1.3.2:
@@ -11665,7 +11665,7 @@ packages:
     dependencies:
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.7.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.31.6
       rope-sequence: 1.3.4
     dev: true
 
@@ -11724,7 +11724,7 @@ packages:
     dependencies:
       prosemirror-model: 1.19.3
       prosemirror-transform: 1.7.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.31.6
     dev: true
 
   /prosemirror-tables@1.3.4:
@@ -11734,10 +11734,10 @@ packages:
       prosemirror-model: 1.19.3
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.7.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.31.6
     dev: true
 
-  /prosemirror-trailing-node@2.0.4(prosemirror-model@1.19.3)(prosemirror-state@1.4.3)(prosemirror-view@1.31.5):
+  /prosemirror-trailing-node@2.0.4(prosemirror-model@1.19.3)(prosemirror-state@1.4.3)(prosemirror-view@1.31.6):
     resolution: {integrity: sha512-0Yl9w7IdHkaCdqR+NE3FOucePME4OmiGcybnF1iasarEILP5U8+4xTnl53yafULjmwcg1SrSG65Hg7Zk2H2v3g==}
     peerDependencies:
       prosemirror-model: ^1.19.0
@@ -11750,7 +11750,7 @@ packages:
       escape-string-regexp: 4.0.0
       prosemirror-model: 1.19.3
       prosemirror-state: 1.4.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.31.6
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -11761,8 +11761,8 @@ packages:
       prosemirror-model: 1.19.3
     dev: true
 
-  /prosemirror-view@1.31.5:
-    resolution: {integrity: sha512-tobRCDeCp61elR1d97XE/JTL9FDIfswZpWeNs7GKJjAJvWyMGHWYFCq29850p6bbG2bckP+i9n1vT56RifosbA==}
+  /prosemirror-view@1.31.6:
+    resolution: {integrity: sha512-wwgErp+EWnuW4kGAYKrt90hhOetaoWpYNdOpnuQMXo1m4x/+uhauFeQoCCm8J30ZqAa4LgIER4yzKSO545gRfA==}
     dependencies:
       prosemirror-model: 1.19.3
       prosemirror-state: 1.4.3
