@@ -242,8 +242,8 @@ devDependencies:
     specifier: 0.4.1
     version: 0.4.1(prettier@3.0.0)
   pretty-bytes:
-    specifier: 6.1.0
-    version: 6.1.0
+    specifier: 6.1.1
+    version: 6.1.1
   prntr:
     specifier: 2.0.18
     version: 2.0.18
@@ -10252,7 +10252,7 @@ packages:
       pathe: 1.1.1
       perfect-debounce: 1.0.0
       pkg-types: 1.0.3
-      pretty-bytes: 6.1.0
+      pretty-bytes: 6.1.1
       radix3: 1.0.1
       rollup: 3.26.2
       rollup-plugin-visualizer: 5.9.2(rollup@3.26.2)
@@ -11575,8 +11575,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /pretty-bytes@6.1.0:
-    resolution: {integrity: sha512-Rk753HI8f4uivXi4ZCIYdhmG1V+WKzvRMg/X+M42a6t7D07RcmopXJMDNk6N++7Bl75URRGsb40ruvg7Hcp2wQ==}
+  /pretty-bytes@6.1.1:
+    resolution: {integrity: sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
     dev: true
 
@@ -13832,7 +13832,7 @@ packages:
     dependencies:
       debug: 4.3.4
       fast-glob: 3.3.0
-      pretty-bytes: 6.1.0
+      pretty-bytes: 6.1.1
       vite: 4.4.2(@types/node@20.4.2)
       workbox-build: 7.0.0
       workbox-window: 7.0.0
