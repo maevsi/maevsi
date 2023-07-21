@@ -119,11 +119,11 @@ devDependencies:
     specifier: 3.1.2
     version: 3.1.2(@uppy/core@3.3.1)
   '@urql/core':
-    specifier: 4.0.11
-    version: 4.0.11(graphql@16.7.1)
+    specifier: 4.1.0
+    version: 4.1.0(graphql@16.7.1)
   '@urql/devtools':
     specifier: 2.0.3
-    version: 2.0.3(@urql/core@4.0.11)(graphql@16.7.1)
+    version: 2.0.3(@urql/core@4.1.0)(graphql@16.7.1)
   '@urql/exchange-graphcache':
     specifier: 6.1.4
     version: 6.1.4(graphql@16.7.1)
@@ -132,7 +132,7 @@ devDependencies:
     version: 1.1.2(graphql@16.7.1)(vue@3.3.4)
   '@vite-pwa/nuxt':
     specifier: 0.1.0
-    version: 0.1.0(@nuxt/kit@3.6.3)(vite-plugin-pwa@0.16.4)
+    version: 0.1.0(@nuxt/kit@3.6.5)(vite-plugin-pwa@0.16.4)
   '@vuelidate/core':
     specifier: 2.0.3
     version: 2.0.3(vue@3.3.4)
@@ -3540,7 +3540,7 @@ packages:
     resolution: {integrity: sha512-7kr2VDirYIXqyTHqaiWCrfQLgUjAa4qAHzykJOspMCFJWalHU9SVfnv+cTOKGqoXQ4TWOCd09tEd7sLlMFTEqw==}
     hasBin: true
     dependencies:
-      '@nuxt/kit': 3.6.3(rollup@3.26.3)
+      '@nuxt/kit': 3.6.5(rollup@3.26.3)
       chalk: 5.3.0
       ci-info: 3.8.0
       consola: 3.2.3
@@ -3705,7 +3705,7 @@ packages:
       '@intlify/shared': 9.3.0-beta.17
       '@intlify/unplugin-vue-i18n': 0.10.1(rollup@3.26.3)(vue-i18n@9.3.0-beta.19)
       '@mizchi/sucrase': 4.1.0
-      '@nuxt/kit': 3.6.3(rollup@3.26.3)
+      '@nuxt/kit': 3.6.5(rollup@3.26.3)
       '@vue/compiler-sfc': 3.3.4
       cookie-es: 0.5.0
       debug: 4.3.4
@@ -4919,8 +4919,8 @@ packages:
       lodash: 4.17.21
     dev: true
 
-  /@urql/core@4.0.11(graphql@16.7.1):
-    resolution: {integrity: sha512-FFdY97vF5xnUrElcGw9erOLvtu+KGMLfwrLNDfv4IPgdp2IBsiGe+Kb7Aypfd3kH//BETewVSLm3+y2sSzjX6A==}
+  /@urql/core@4.1.0(graphql@16.7.1):
+    resolution: {integrity: sha512-mQLO6RAOhITvq6oktFzsEuAngdVwJbTuS+XaZi6evUQu797MXhI0smldEkWg9osvn/I2dyO57oR3LpxpMr9nTg==}
     dependencies:
       '@0no-co/graphql.web': 1.0.4(graphql@16.7.1)
       wonka: 6.3.2
@@ -4928,13 +4928,13 @@ packages:
       - graphql
     dev: true
 
-  /@urql/devtools@2.0.3(@urql/core@4.0.11)(graphql@16.7.1):
+  /@urql/devtools@2.0.3(@urql/core@4.1.0)(graphql@16.7.1):
     resolution: {integrity: sha512-TktPLiBS9LcBPHD6qcnb8wqOVcg3Bx0iCtvQ80uPpfofwwBGJmqnQTjUdEFU6kwaLOFZULQ9+Uo4831G823mQw==}
     peerDependencies:
       '@urql/core': '>= 1.14.0'
       graphql: '>= 0.11.0'
     dependencies:
-      '@urql/core': 4.0.11(graphql@16.7.1)
+      '@urql/core': 4.1.0(graphql@16.7.1)
       graphql: 16.7.1
       wonka: 6.3.2
     dev: true
@@ -4943,7 +4943,7 @@ packages:
     resolution: {integrity: sha512-GQ1scnYjMVoUHrPoYOlw3ZfU2nXuLTEhWhKzPquhZz87GliVpZPuFMf+o64cI1dKy9xDlbU7aQnKiSaGeT248w==}
     dependencies:
       '@0no-co/graphql.web': 1.0.4(graphql@16.7.1)
-      '@urql/core': 4.0.11(graphql@16.7.1)
+      '@urql/core': 4.1.0(graphql@16.7.1)
       wonka: 6.3.2
     transitivePeerDependencies:
       - graphql
@@ -4962,7 +4962,7 @@ packages:
     peerDependencies:
       vue: ^2.7.0 || ^3.0.0
     dependencies:
-      '@urql/core': 4.0.11(graphql@16.7.1)
+      '@urql/core': 4.1.0(graphql@16.7.1)
       vue: 3.3.4
       wonka: 6.3.2
     transitivePeerDependencies:
@@ -4990,13 +4990,13 @@ packages:
       - supports-color
     dev: true
 
-  /@vite-pwa/nuxt@0.1.0(@nuxt/kit@3.6.3)(vite-plugin-pwa@0.16.4):
+  /@vite-pwa/nuxt@0.1.0(@nuxt/kit@3.6.5)(vite-plugin-pwa@0.16.4):
     resolution: {integrity: sha512-w6wm/0Y9yIqo6UTj9LeQUMR+xuRTf2sRdUTffu03SbRyWBzF7SnQcTqTRkXQy+NK+XafZuIDDLC12VkhValg4g==}
     peerDependencies:
       '@nuxt/kit': ^3.5.3
       vite-plugin-pwa: '>=0.16.3 <1'
     dependencies:
-      '@nuxt/kit': 3.6.3(rollup@3.26.3)
+      '@nuxt/kit': 3.6.5(rollup@3.26.3)
       vite-plugin-pwa: 0.16.4(vite@4.4.4)(workbox-build@7.0.0)(workbox-window@7.0.0)
     dev: true
 
