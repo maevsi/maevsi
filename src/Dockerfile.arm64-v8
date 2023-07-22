@@ -1,7 +1,7 @@
 #############
 # Serve Nuxt in development mode.
 
-FROM node:20.4.0-alpine@sha256:7fd964b35c6bf2088c137d9bf2bf59a028d04db73fa082ec4018442e22959fae AS development
+FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS development
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -35,7 +35,7 @@ CMD ["pnpm", "run", "dev"]
 ########################
 # Prepare Nuxt.
 
-FROM node:20.4.0-alpine@sha256:7fd964b35c6bf2088c137d9bf2bf59a028d04db73fa082ec4018442e22959fae AS prepare
+FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -59,7 +59,7 @@ RUN pnpm run prepare
 ########################
 # Build Nuxt.
 
-FROM node:20.4.0-alpine@sha256:7fd964b35c6bf2088c137d9bf2bf59a028d04db73fa082ec4018442e22959fae AS build
+FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS build
 
 ARG NUXT_PUBLIC_STACK_DOMAIN=maev.si
 ENV NUXT_PUBLIC_STACK_DOMAIN=${NUXT_PUBLIC_STACK_DOMAIN}
@@ -79,7 +79,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: lint
 
-FROM node:20.4.0-alpine@sha256:7fd964b35c6bf2088c137d9bf2bf59a028d04db73fa082ec4018442e22959fae AS lint
+FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS lint
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -95,7 +95,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: test (unit)
 
-FROM node:20.4.0-alpine@sha256:7fd964b35c6bf2088c137d9bf2bf59a028d04db73fa082ec4018442e22959fae AS test-unit
+FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS test-unit
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -198,7 +198,7 @@ RUN pnpm run test:e2e:prod
 #######################
 # Collect build, lint and test results.
 
-FROM node:20.4.0-alpine@sha256:7fd964b35c6bf2088c137d9bf2bf59a028d04db73fa082ec4018442e22959fae AS collect
+FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS collect
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -216,7 +216,7 @@ COPY --from=test-e2e-prod /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM node:20.4.0-alpine@sha256:7fd964b35c6bf2088c137d9bf2bf59a028d04db73fa082ec4018442e22959fae AS production
+FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS production
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
