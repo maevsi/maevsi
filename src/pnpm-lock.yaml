@@ -53,8 +53,8 @@ devDependencies:
     specifier: 12.0.0
     version: 12.0.0(eslint@8.45.0)(typescript@5.1.6)
   '@nuxtjs/html-validator':
-    specifier: 1.5.1
-    version: 1.5.1(rollup@3.26.3)
+    specifier: 1.5.2
+    version: 1.5.2(rollup@3.26.3)
   '@nuxtjs/i18n':
     specifier: npm:@nuxtjs/i18n-edge@8.0.0-beta.12-28140575.2040351
     version: /@nuxtjs/i18n-edge@8.0.0-beta.12-28140575.2040351(rollup@3.26.3)(vue@3.3.4)
@@ -3680,14 +3680,14 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/html-validator@1.5.1(rollup@3.26.3):
-    resolution: {integrity: sha512-4CmDk9DCIRrDTqAkpGmmJJxJZ6Ns+rZAFsEAOQfUB4vWKlzCOx1m1XQH+hyhGBylZvPYwZ7W1H0UN2biUbEV3w==}
+  /@nuxtjs/html-validator@1.5.2(rollup@3.26.3):
+    resolution: {integrity: sha512-Cr63pxKYujG+RTIRp560JKUTM31c4oCYChVbtAYSNvDTwdmmSIDLSg4p0uS+UlHy8LNd+W9bv+qoWY5j+5/TfA==}
     dependencies:
-      '@nuxt/kit': 3.6.3(rollup@3.26.3)
+      '@nuxt/kit': 3.6.5(rollup@3.26.3)
       chalk: 5.3.0
       html-validate: 8.0.5
       pathe: 1.1.1
-      prettier: 2.8.8
+      prettier: 3.0.0
       std-env: 3.3.3
     transitivePeerDependencies:
       - jest
@@ -11555,12 +11555,6 @@ packages:
         optional: true
     dependencies:
       prettier: 3.0.0
-    dev: true
-
-  /prettier@2.8.8:
-    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
     dev: true
 
   /prettier@3.0.0:
