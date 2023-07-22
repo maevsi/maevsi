@@ -299,8 +299,8 @@ devDependencies:
     specifier: 7.0.0
     version: 7.0.0(stylelint@15.10.2)
   sweetalert2:
-    specifier: 11.7.18
-    version: 11.7.18
+    specifier: 11.7.19
+    version: 11.7.19
   tailwindcss:
     specifier: 3.3.3
     version: 3.3.3(ts-node@10.9.1)
@@ -12940,8 +12940,8 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /sweetalert2@11.7.18:
-    resolution: {integrity: sha512-Njl5JTDasSP8yRX9cpLdy2fdxHZYPYNmiIGNZykF2Zt1UHIvurwt/W2LmlGe5RbyMDHYDXuHqlD1Q8Vr5/mqlA==}
+  /sweetalert2@11.7.19:
+    resolution: {integrity: sha512-l11Y1EqCM84hcZmmfBE4lzgHUYQnjqLzPxncBPwSkrscZ6MMmnxR6UZEHeak5C5LDUDGnCgbp/YYP2eEfJPwgg==}
     dev: true
 
   /symbol-tree@3.2.4:
