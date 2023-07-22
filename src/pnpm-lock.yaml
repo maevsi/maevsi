@@ -44,8 +44,8 @@ devDependencies:
     specifier: 0.7.0
     version: 0.7.0
   '@intlify/eslint-plugin-vue-i18n':
-    specifier: 3.0.0-beta.1
-    version: 3.0.0-beta.1(eslint@8.45.0)
+    specifier: 3.0.0-next.2
+    version: 3.0.0-next.2(eslint@8.45.0)
   '@nuxtjs/color-mode':
     specifier: 3.3.0
     version: 3.3.0(rollup@3.26.3)
@@ -3051,8 +3051,8 @@ packages:
       '@intlify/shared': 9.3.0-beta.19
     dev: true
 
-  /@intlify/eslint-plugin-vue-i18n@3.0.0-beta.1(eslint@8.45.0):
-    resolution: {integrity: sha512-pjTRiZhMGkfm0SHEfHYn+lSz6EcKIlRGquuPO8pCH7FNti0w8zpJjGb7KGuFpvGxGP51Utec5CjJ8HJXMU9Zgw==}
+  /@intlify/eslint-plugin-vue-i18n@3.0.0-next.2(eslint@8.45.0):
+    resolution: {integrity: sha512-ZHGB1rA03a37iXvodbF8GI98ha8xhuDbFF6bIwEln2+aM4dL8G+7RUGW5dMEKfPjE+patCv+IkbtFcJ34iwyuQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
