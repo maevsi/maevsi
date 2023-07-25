@@ -39,7 +39,7 @@
     "@fontsource-variable/manrope": "5.0.5",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "4.0.1",
-    "@graphql-codegen/client-preset": "4.0.1",
+    "@graphql-codegen/client-preset": "4.1.0",
     "@graphql-codegen/typescript-urql-graphcache": "2.4.5",
     "@graphql-codegen/urql-introspection": "2.2.1",
     "@heroicons/vue": "2.0.18",
