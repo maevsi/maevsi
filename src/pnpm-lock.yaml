@@ -6,13 +6,13 @@ settings:
 
 dependencies:
   playwright-core:
-    specifier: 1.36.1
-    version: 1.36.1
+    specifier: 1.36.2
+    version: 1.36.2
 
 devDependencies:
   '@axe-core/playwright':
     specifier: 4.7.3
-    version: 4.7.3(playwright-core@1.36.1)
+    version: 4.7.3(playwright-core@1.36.2)
   '@babel/core':
     specifier: 7.22.9
     version: 7.22.9
@@ -65,8 +65,8 @@ devDependencies:
     specifier: 0.4.11
     version: 0.4.11(rollup@3.26.3)(typescript@5.1.6)(vue@3.3.4)
   '@playwright/test':
-    specifier: 1.36.1
-    version: 1.36.1
+    specifier: 1.36.2
+    version: 1.36.2
   '@popperjs/core':
     specifier: 2.11.8
     version: 2.11.8
@@ -416,13 +416,13 @@ packages:
       - encoding
     dev: true
 
-  /@axe-core/playwright@4.7.3(playwright-core@1.36.1):
+  /@axe-core/playwright@4.7.3(playwright-core@1.36.2):
     resolution: {integrity: sha512-v2PRgAyGvop7bamrTpNJtc5b1R7giAPnMzZXrS/VDZBCY5+uwVYtCNgDvBsqp5P1QMZxUMoBN+CERJUTMjFN0A==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
     dependencies:
       axe-core: 4.7.2
-      playwright-core: 1.36.1
+      playwright-core: 1.36.2
     dev: true
 
   /@babel/code-frame@7.22.5:
@@ -3922,13 +3922,13 @@ packages:
       tslib: 2.6.0
     dev: true
 
-  /@playwright/test@1.36.1:
-    resolution: {integrity: sha512-YK7yGWK0N3C2QInPU6iaf/L3N95dlGdbsezLya4n0ZCh3IL7VgPGxC6Gnznh9ApWdOmkJeleT2kMTcWPRZvzqg==}
+  /@playwright/test@1.36.2:
+    resolution: {integrity: sha512-2rVZeyPRjxfPH6J0oGJqE8YxiM1IBRyM8hyrXYK7eSiAqmbNhxwcLa7dZ7fy9Kj26V7FYia5fh9XJRq4Dqme+g==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
       '@types/node': 20.4.4
-      playwright-core: 1.36.1
+      playwright-core: 1.36.2
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -11027,8 +11027,8 @@ packages:
       pathe: 1.1.1
     dev: true
 
-  /playwright-core@1.36.1:
-    resolution: {integrity: sha512-7+tmPuMcEW4xeCL9cp9KxmYpQYHKkyjwoXRnoeTowaeNat8PoBMk/HwCYhqkH2fRkshfKEOiVus/IhID2Pg8kg==}
+  /playwright-core@1.36.2:
+    resolution: {integrity: sha512-sQYZt31dwkqxOrP7xy2ggDfEzUxM1lodjhsQ3NMMv5uGTRDsLxU0e4xf4wwMkF2gplIxf17QMBCodSFgm6bFVQ==}
     engines: {node: '>=16'}
     hasBin: true
 
