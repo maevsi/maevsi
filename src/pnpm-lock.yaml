@@ -17,8 +17,8 @@ devDependencies:
     specifier: 7.22.9
     version: 7.22.9
   '@dargmuesli/nuxt-cookie-control':
-    specifier: 6.1.3
-    version: 6.1.3(rollup@3.26.3)(webpack@5.88.1)
+    specifier: 6.1.5
+    version: 6.1.5(rollup@3.26.3)(webpack@5.88.1)
   '@fontsource-variable/manrope':
     specifier: 5.0.5
     version: 5.0.5
@@ -1760,8 +1760,8 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control@6.1.3(rollup@3.26.3)(webpack@5.88.1):
-    resolution: {integrity: sha512-QqDroB0skovMYQPiKbx6CPp5nXW4FgJ34uCYXk4NzHbTR7ZiGcO04sCH1gQhSWAw/9/NsELKf+pNQUvDCMbOew==}
+  /@dargmuesli/nuxt-cookie-control@6.1.5(rollup@3.26.3)(webpack@5.88.1):
+    resolution: {integrity: sha512-141SN/DDLyupC8ZXLzzyNqIp/b4OwN4lDtY+z48Ol1X/cw2KToFaoOjHLjD/8XoArsBwqYc9Z5o+6i/5MJRWNg==}
     engines: {node: '>=16'}
     dependencies:
       '@nuxt/kit': 3.6.5(rollup@3.26.3)
