@@ -110,11 +110,12 @@
         @on-menu-hide="menuHide"
       />
     </div>
-    <CookieControl :locale="locale" />
+    <CookieControl :locale="locale as Locale" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { Locale } from '@dargmuesli/nuxt-cookie-control/dist/runtime/types'
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
 const { $dayjs } = useNuxtApp()
