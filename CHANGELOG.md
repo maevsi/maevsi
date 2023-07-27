@@ -1,3 +1,10 @@
+## [1.20.2](https://github.com/maevsi/maevsi/compare/1.20.1...1.20.2) (2023-07-27)
+
+
+### Bug Fixes
+
+* **layout:** cast locale type ([f6fdf7e](https://github.com/maevsi/maevsi/commit/f6fdf7ea2b41385661640bf6ee6b698500fc4f58))
+
 ## [1.20.1](https://github.com/maevsi/maevsi/compare/1.20.0...1.20.1) (2023-07-22)
 
 
