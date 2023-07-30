@@ -119,11 +119,11 @@ devDependencies:
     specifier: 3.1.2
     version: 3.1.2(@uppy/core@3.3.1)
   '@urql/core':
-    specifier: 4.1.0
-    version: 4.1.0(graphql@16.7.1)
+    specifier: 4.1.1
+    version: 4.1.1(graphql@16.7.1)
   '@urql/devtools':
     specifier: 2.0.3
-    version: 2.0.3(@urql/core@4.1.0)(graphql@16.7.1)
+    version: 2.0.3(@urql/core@4.1.1)(graphql@16.7.1)
   '@urql/exchange-graphcache':
     specifier: 6.3.1
     version: 6.3.1(graphql@16.7.1)
@@ -4593,7 +4593,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       '@typescript-eslint/types': 5.62.0
-      eslint-visitor-keys: 3.4.1
+      eslint-visitor-keys: 3.4.2
     dev: true
 
   /@unhead/dom@1.1.32:
@@ -4677,8 +4677,8 @@ packages:
       preact: 10.16.0
     dev: true
 
-  /@urql/core@4.1.0(graphql@16.7.1):
-    resolution: {integrity: sha512-mQLO6RAOhITvq6oktFzsEuAngdVwJbTuS+XaZi6evUQu797MXhI0smldEkWg9osvn/I2dyO57oR3LpxpMr9nTg==}
+  /@urql/core@4.1.1(graphql@16.7.1):
+    resolution: {integrity: sha512-iIoAy6BY+BUZZ7KIpnMT7C9q+ULf5ZCVxGe3/i7WZSJBrQa2h1QkIMhL+8fAKmOn9gt83jSIv5drWWnhZ9izEA==}
     dependencies:
       '@0no-co/graphql.web': 1.0.4(graphql@16.7.1)
       wonka: 6.3.3
@@ -4686,13 +4686,13 @@ packages:
       - graphql
     dev: true
 
-  /@urql/devtools@2.0.3(@urql/core@4.1.0)(graphql@16.7.1):
+  /@urql/devtools@2.0.3(@urql/core@4.1.1)(graphql@16.7.1):
     resolution: {integrity: sha512-TktPLiBS9LcBPHD6qcnb8wqOVcg3Bx0iCtvQ80uPpfofwwBGJmqnQTjUdEFU6kwaLOFZULQ9+Uo4831G823mQw==}
     peerDependencies:
       '@urql/core': '>= 1.14.0'
       graphql: '>= 0.11.0'
     dependencies:
-      '@urql/core': 4.1.0(graphql@16.7.1)
+      '@urql/core': 4.1.1(graphql@16.7.1)
       graphql: 16.7.1
       wonka: 6.3.3
     dev: true
@@ -4701,7 +4701,7 @@ packages:
     resolution: {integrity: sha512-oQ/qWgyhduazEWSiTEFljjefUsuHYVEzoczIj8QrrKih9AUNo4FEWiA7OTzTF9Z1NmCQ9dO8BDto715PvZ3J+g==}
     dependencies:
       '@0no-co/graphql.web': 1.0.4(graphql@16.7.1)
-      '@urql/core': 4.1.0(graphql@16.7.1)
+      '@urql/core': 4.1.1(graphql@16.7.1)
       wonka: 6.3.3
     transitivePeerDependencies:
       - graphql
@@ -4720,7 +4720,7 @@ packages:
     peerDependencies:
       vue: ^2.7.0 || ^3.0.0
     dependencies:
-      '@urql/core': 4.1.0(graphql@16.7.1)
+      '@urql/core': 4.1.1(graphql@16.7.1)
       vue: 3.3.4
       wonka: 6.3.3
     transitivePeerDependencies:
