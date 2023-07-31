@@ -13,10 +13,8 @@
     "husky": "8.0.3"
   },
   "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "webpack"
-      ]
+    "overrides": {
+      "eslint-plugin-vue": "9.15.1"
     }
   }
 }
