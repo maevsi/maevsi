@@ -41,7 +41,6 @@ jobs:
     permissions:
       packages: write
     with:
-      CONTEXT: src
       TAG: ${{ needs.release_semantic_dry.outputs.new_release_version }}
   release_semantic:
     needs: build
