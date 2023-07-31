@@ -1,32 +1,21 @@
 #############
 # Serve Nuxt in development mode.
 
-FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS development
+FROM node:20.5.0-alpine AS development
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
-
-# Workaround: install build tools for arm.
-RUN apk add --update --no-cache \
-        python3 \
-        make \
-        build-base \
-        git && \
-    ln -sf python3 /usr/bin/python && \
-    python3 -m ensurepip && \
-    pip3 install --no-cache --upgrade pip setuptools
 
 WORKDIR /srv/app/
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
-RUN corepack enable
-
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["pnpm", "run", "dev"]
+CMD ["pnpm", "run", "--dir", "src", "dev"]
+EXPOSE 3000
 
 # TODO: support healthcheck while starting (https://github.com/nuxt/framework/issues/6915)
 # HEALTHCHECK --interval=10s --start-period=60s CMD wget -O /dev/null http://localhost:3000/api/healthcheck || exit 1
@@ -35,7 +24,7 @@ CMD ["pnpm", "run", "dev"]
 ########################
 # Prepare Nuxt.
 
-FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS prepare
+FROM node:20.5.0-alpine AS prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -47,19 +36,15 @@ COPY ./pnpm-lock.yaml ./
 RUN corepack enable && \
     pnpm fetch
 
-COPY ./package.json ./.npmrc ./
-
-RUN pnpm install --offline
-
 COPY ./ ./
 
-RUN pnpm run prepare
+RUN pnpm install --offline
 
 
 ########################
 # Build Nuxt.
 
-FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS build
+FROM node:20.5.0-alpine AS build
 
 ARG NUXT_PUBLIC_STACK_DOMAIN=maev.si
 ENV NUXT_PUBLIC_STACK_DOMAIN=${NUXT_PUBLIC_STACK_DOMAIN}
@@ -73,13 +58,13 @@ COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
 RUN corepack enable && \
-    pnpm run build
+    pnpm --dir src run build
 
 
 ########################
 # Nuxt: lint
 
-FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS lint
+FROM node:20.5.0-alpine AS lint
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -89,13 +74,13 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 RUN corepack enable && \
-    pnpm run lint
+    pnpm --dir src run lint
 
 
 ########################
 # Nuxt: test (unit)
 
-FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS test-unit
+FROM node:20.5.0-alpine AS test-unit
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -105,13 +90,13 @@ WORKDIR /srv/app/
 COPY --from=prepare /srv/app/ ./
 
 RUN corepack enable && \
-    pnpm run test --run
+    pnpm --dir src run test --run
 
 
 ########################
 # Nuxt: test (e2e)
 
-FROM mcr.microsoft.com/playwright:v1.36.2@sha256:c5d582b83adecc722bf90b7fa9afc2f120162361e27d02a7dfc2fdca4dc16ec5 AS test-e2e_base
+FROM mcr.microsoft.com/playwright:v1.36.2 AS test-e2e_base
 
 ARG UNAME=e2e
 ARG UID=1000
@@ -119,6 +104,7 @@ ARG GID=1000
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
+ENV NODE_ENV=development
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 
 WORKDIR /srv/app/
@@ -139,9 +125,9 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 
 ########################
-# Nuxt: test (preparation)
+# Nuxt: test (e2e, preparation)
 
-FROM mcr.microsoft.com/playwright:v1.36.2@sha256:c5d582b83adecc722bf90b7fa9afc2f120162361e27d02a7dfc2fdca4dc16ec5 AS test-e2e-prepare
+FROM mcr.microsoft.com/playwright:v1.36.2 AS test-e2e-prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -159,7 +145,7 @@ RUN pnpm rebuild
 ########################
 # Nuxt: test (e2e, development)
 
-FROM mcr.microsoft.com/playwright:v1.36.2@sha256:c5d582b83adecc722bf90b7fa9afc2f120162361e27d02a7dfc2fdca4dc16ec5 AS test-e2e-dev
+FROM mcr.microsoft.com/playwright:v1.36.2 AS test-e2e-dev
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -171,13 +157,13 @@ RUN corepack enable
 
 COPY --from=test-e2e-prepare /srv/app/ ./
 
-RUN pnpm run test:e2e:dev
+RUN pnpm --dir src run test:e2e:dev
 
 
 ########################
 # Nuxt: test (e2e, production)
 
-FROM mcr.microsoft.com/playwright:v1.36.2@sha256:c5d582b83adecc722bf90b7fa9afc2f120162361e27d02a7dfc2fdca4dc16ec5 AS test-e2e-prod
+FROM mcr.microsoft.com/playwright:v1.36.2 AS test-e2e-prod
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -187,25 +173,25 @@ WORKDIR /srv/app/
 RUN corepack enable
 
 COPY --from=test-e2e-prepare /srv/app/ ./
-COPY --from=build /srv/app/.output /srv/app/.output
+COPY --from=build /srv/app/src/.output /srv/app/src/.output
 
 # # Do not run in parallel with `test-e2e-dev`
 # COPY --from=test-e2e-dev /srv/app/package.json /tmp/test/package.json
 
-RUN pnpm run test:e2e:prod
+RUN pnpm --dir src run test:e2e:prod
 
 
 #######################
 # Collect build, lint and test results.
 
-FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS collect
+FROM node:20.5.0-alpine AS collect
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
 
 WORKDIR /srv/app/
 
-COPY --from=build /srv/app/.output ./.output
+COPY --from=build /srv/app/src/.output ./.output
 COPY --from=lint /srv/app/package.json /tmp/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/package.json
 COPY --from=test-e2e-dev /srv/app/package.json /tmp/package.json
@@ -216,7 +202,7 @@ COPY --from=test-e2e-prod /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM node:20.5.0-alpine@sha256:2369bb8c150b0d08117196312e635fd4126a143e5660869f76ba96e3aa227980 AS production
+FROM node:20.5.0-alpine AS production
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -231,3 +217,4 @@ COPY --from=collect /srv/app/ ./
 
 CMD [".output/server/index.mjs"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3001/api/healthcheck || exit 1
+EXPOSE 3001
