@@ -73,8 +73,8 @@ importers:
         specifier: 1.5.2
         version: 1.5.2(rollup@3.27.0)
       '@nuxtjs/i18n':
-        specifier: 8.0.0-rc.1
-        version: 8.0.0-rc.1(rollup@3.27.0)(vue@3.3.4)
+        specifier: 8.0.0-rc.2
+        version: 8.0.0-rc.2(rollup@3.27.0)(vue@3.3.4)
       '@nuxtjs/turnstile':
         specifier: 0.5.0
         version: 0.5.0(rollup@3.27.0)
@@ -3674,8 +3674,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n@8.0.0-rc.1(rollup@3.27.0)(vue@3.3.4):
-    resolution: {integrity: sha512-cOw5BvTiytB+PfMFhrq6Xs/tjTQ7f2OxcbUIu2AewnsmW+V6XzIIAOf/6fHTP04NzrjXPevhQDAYfmWcivHqCQ==}
+  /@nuxtjs/i18n@8.0.0-rc.2(rollup@3.27.0)(vue@3.3.4):
+    resolution: {integrity: sha512-UTPPljKGbIuS9+S6quvEzCSmEGqrS4V0ZxmBIIqNnYi96Qhj3i4tsiaHntbJEn9aTUcHBsF9ZrcfkPLTQcy+DA==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/shared': 9.3.0-beta.24
