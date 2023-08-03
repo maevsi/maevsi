@@ -9,7 +9,7 @@ jobs:
   browserslist-regex:
     uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.40.16
     secrets:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     with:
       CACHE_PATH: pnpm-lock.yaml
       DIRECTORY: src/
