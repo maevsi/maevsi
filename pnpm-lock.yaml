@@ -37,8 +37,8 @@ importers:
         specifier: 6.1.5
         version: 6.1.5(rollup@3.27.0)(webpack@5.88.2)
       '@fontsource-variable/manrope':
-        specifier: 5.0.6
-        version: 5.0.6
+        specifier: 5.0.7
+        version: 5.0.7
       '@funken-studio/sitemap-nuxt-3':
         specifier: 4.0.4
         version: 4.0.4(rollup@3.27.0)
@@ -2381,8 +2381,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fontsource-variable/manrope@5.0.6:
-    resolution: {integrity: sha512-oth1Vp7bCSLRWSsA4zfefz3k3Dw1TZoLVO1CYyqqIvPgizweAsgL4u7rmlsjABE8PsQ02IJ9V+Ck8sT6p16B5w==}
+  /@fontsource-variable/manrope@5.0.7:
+    resolution: {integrity: sha512-oINx3CaHesmOXHTcrKyAKhXCPZC5Lk7ozNJ27iS74uKfgbBXUWhrEYLDPnNB1UrzLg8kui+TqI8VbfeSltzObQ==}
     dev: true
 
   /@funken-studio/sitemap-nuxt-3@4.0.4(rollup@3.27.0):
