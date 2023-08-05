@@ -1,3 +1,10 @@
+## [1.20.3](https://github.com/maevsi/maevsi/compare/1.20.2...1.20.3) (2023-08-05)
+
+
+### Bug Fixes
+
+* schedule release ([e075c1d](https://github.com/maevsi/maevsi/commit/e075c1d65db9056a80a934a5467b2b2b804846eb))
+
 ## [1.20.2](https://github.com/maevsi/maevsi/compare/1.20.1...1.20.2) (2023-07-27)
 
 
