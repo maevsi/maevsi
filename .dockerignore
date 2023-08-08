@@ -5,6 +5,7 @@ src/node_modules/
 src/.nuxt
 src/.eslintcache
 !.npmrc
+!docker-entrypoint.sh
 !package.json
 !pnpm-lock.yaml
 !pnpm-workspace.yaml

@@ -8,6 +8,8 @@ ENV CI=true
 
 WORKDIR /srv/app/
 
+RUN corepack enable
+
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
 VOLUME /srv/.pnpm-store
