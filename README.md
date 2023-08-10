@@ -1,5 +1,10 @@
-[![CI](https://github.com/maevsi/maevsi/actions/workflows/ci.yml/badge.svg)](https://github.com/maevsi/maevsi/actions/workflows/ci.yml)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmaevsi%2Fmaevsi.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmaevsi%2Fmaevsi?ref=badge_shield)
+[![ci status][ci-image]][ci-url]
+[![license status][license-image]][license-url]
+
+[ci-image]: https://img.shields.io/github/actions/workflow/status/maevsi/maevsi/ci.yml
+[ci-url]: https://github.com/maevsi/maevsi/actions/workflows/ci.yml
+[license-image]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmaevsi%2Fmaevsi.svg?type=shield
+[license-url]: https://app.fossa.com/projects/git%2Bgithub.com%2Fmaevsi%2Fmaevsi?ref=badge_shield
 
 # maevsi
 
