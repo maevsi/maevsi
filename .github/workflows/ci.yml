@@ -25,18 +25,17 @@ jobs:
   release_semantic_dry:
     needs: prepare_jobs
     name: Release (semantic, dry)
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic-next.yml@0.40.17
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.41.0
     if: needs.prepare_jobs.outputs.pr_found == 'false' || github.event_name == 'pull_request'
     permissions:
       contents: write
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     with:
-      CACHE_PATH: pnpm-lock.yaml
       DRY_RUN: true
   build:
     name: Build
-    uses: dargmuesli/github-actions/.github/workflows/docker.yml@0.40.17
+    uses: dargmuesli/github-actions/.github/workflows/docker.yml@0.41.0
     needs: release_semantic_dry
     permissions:
       packages: write
@@ -45,10 +44,8 @@ jobs:
   release_semantic:
     needs: build
     name: Release (semantic)
-    uses: dargmuesli/github-actions/.github/workflows/release-semantic-next.yml@0.40.17
+    uses: dargmuesli/github-actions/.github/workflows/release-semantic.yml@0.41.0
     permissions:
       contents: write
     secrets:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-    with:
-      CACHE_PATH: pnpm-lock.yaml

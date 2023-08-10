@@ -7,10 +7,9 @@ on:
 
 jobs:
   browserslist-regex:
-    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.40.17
+    uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.41.0
     secrets:
       GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     with:
-      CACHE_PATH: pnpm-lock.yaml
       DIRECTORY: src/
       PACKAGE_MANAGER: pnpm
