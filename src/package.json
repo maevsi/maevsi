@@ -76,7 +76,7 @@
     "@vite-pwa/nuxt": "0.1.0",
     "@vuelidate/core": "2.0.3",
     "@vuelidate/validators": "2.0.3",
-    "autoprefixer": "10.4.14",
+    "autoprefixer": "10.4.15",
     "browserslist": "4.21.10",
     "browserslist-useragent-regexp": "4.1.0",
     "chart.js": "4.3.3",
