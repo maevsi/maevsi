@@ -9,7 +9,6 @@ jobs:
   browserslist-regex:
     uses: dargmuesli/github-actions/.github/workflows/browserslist-regex.yml@0.41.3
     secrets:
-      GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     with:
       DIRECTORY: src/
-      PACKAGE_MANAGER: pnpm
