@@ -130,11 +130,11 @@ importers:
         specifier: 8.10.2
         version: 8.10.2
       '@uppy/core':
-        specifier: 3.3.1
-        version: 3.3.1
+        specifier: 3.4.0
+        version: 3.4.0
       '@uppy/tus':
-        specifier: 3.1.2
-        version: 3.1.2(@uppy/core@3.3.1)
+        specifier: 3.1.3
+        version: 3.1.3(@uppy/core@3.4.0)
       '@urql/core':
         specifier: 4.1.1
         version: 4.1.1(graphql@16.7.1)
@@ -4848,15 +4848,15 @@ packages:
       vue: 3.3.4
     dev: true
 
-  /@uppy/companion-client@3.2.2:
-    resolution: {integrity: sha512-TS2OlppwYmRZnKZBJzjynVvQZtmNiy/GYJ5+TsE9fTBYlOpOAzoteXa8bE2xbdFepclz4qlTlBzhHfpdgQjZCQ==}
+  /@uppy/companion-client@3.3.0:
+    resolution: {integrity: sha512-ogU0QieutbM0A6/yxK91w1Ge4KTC+eAGQMk6JKZu58b435dLScRTCsWGFSSIvt1U8RDY7YDCyl51zawh+A+5CQ==}
     dependencies:
       '@uppy/utils': 5.4.3
       namespace-emitter: 2.0.1
     dev: true
 
-  /@uppy/core@3.3.1:
-    resolution: {integrity: sha512-V0KCaJG3WKOH2ofU1+ja/ZctXk0mP1vFWgYEP3c7UobeUaxnPhSHXKeIEO5xh5zzJGn4HY+Zsy4Q4aSAWHC4Eg==}
+  /@uppy/core@3.4.0:
+    resolution: {integrity: sha512-95NNyXZfuNfB6sgna41fNNPRuTqjrHdlVzkXaJlZzghAckIxNz2CoeMYA1rtgn9o8ykKa2Zdz4kk2MEq8Qy4fw==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.9
       '@uppy/store-default': 3.0.3
@@ -4872,13 +4872,13 @@ packages:
     resolution: {integrity: sha512-/zlvQNj4HjkthI+7dNdj/8mOlTg1Zb1gJ/ZsOxof0g3xXD+OAwm7asRnOwpfj2dos+lExdW/zMn8XsRGsuvb6Q==}
     dev: true
 
-  /@uppy/tus@3.1.2(@uppy/core@3.3.1):
-    resolution: {integrity: sha512-LTn1S90gMczlDzVh+bG+FQmbTUAn+ZgbsBbmZ3GRnuSWzKhtoc9TDfr71TG7bCD8wlCPujJ8Mr72DMySbT5+NA==}
+  /@uppy/tus@3.1.3(@uppy/core@3.4.0):
+    resolution: {integrity: sha512-AY4tXHfeM+btnG9uKWc2ZiPhnB29xEFTudVbVmC/vEN6oBeKuJVF9NF7z9s34cRxptvvrZsv8pnRkvPJkTdfyQ==}
     peerDependencies:
-      '@uppy/core': ^3.3.0
+      '@uppy/core': ^3.4.0
     dependencies:
-      '@uppy/companion-client': 3.2.2
-      '@uppy/core': 3.3.1
+      '@uppy/companion-client': 3.3.0
+      '@uppy/core': 3.4.0
       '@uppy/utils': 5.4.3
       tus-js-client: 3.1.1
     dev: true
