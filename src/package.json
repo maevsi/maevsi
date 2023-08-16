@@ -48,7 +48,7 @@
     "@nuxtjs/color-mode": "3.3.0",
     "@nuxtjs/eslint-config-typescript": "12.0.0",
     "@nuxtjs/html-validator": "1.5.2",
-    "@nuxtjs/i18n": "8.0.0-rc.2",
+    "@nuxtjs/i18n": "8.0.0-rc.3",
     "@nuxtjs/turnstile": "0.5.1",
     "@pinia/nuxt": "0.4.11",
     "@playwright/test": "1.37.0",
