@@ -24,12 +24,12 @@ importers:
   src:
     dependencies:
       playwright-core:
-        specifier: 1.37.0
-        version: 1.37.0
+        specifier: 1.37.1
+        version: 1.37.1
     devDependencies:
       '@axe-core/playwright':
         specifier: 4.7.3
-        version: 4.7.3(playwright-core@1.37.0)
+        version: 4.7.3(playwright-core@1.37.1)
       '@babel/core':
         specifier: 7.22.10
         version: 7.22.10
@@ -82,8 +82,8 @@ importers:
         specifier: 0.4.11
         version: 0.4.11(rollup@3.28.0)(typescript@5.1.6)(vue@3.3.4)
       '@playwright/test':
-        specifier: 1.37.0
-        version: 1.37.0
+        specifier: 1.37.1
+        version: 1.37.1
       '@popperjs/core':
         specifier: 2.11.8
         version: 2.11.8
@@ -433,13 +433,13 @@ packages:
       - encoding
     dev: true
 
-  /@axe-core/playwright@4.7.3(playwright-core@1.37.0):
+  /@axe-core/playwright@4.7.3(playwright-core@1.37.1):
     resolution: {integrity: sha512-v2PRgAyGvop7bamrTpNJtc5b1R7giAPnMzZXrS/VDZBCY5+uwVYtCNgDvBsqp5P1QMZxUMoBN+CERJUTMjFN0A==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
     dependencies:
       axe-core: 4.7.2
-      playwright-core: 1.37.0
+      playwright-core: 1.37.1
     dev: true
 
   /@babel/code-frame@7.22.10:
@@ -3898,13 +3898,13 @@ packages:
       tslib: 2.6.1
     dev: true
 
-  /@playwright/test@1.37.0:
-    resolution: {integrity: sha512-181WBLk4SRUyH1Q96VZl7BP6HcK0b7lbdeKisn3N/vnjitk+9HbdlFz/L5fey05vxaAhldIDnzo8KUoy8S3mmQ==}
+  /@playwright/test@1.37.1:
+    resolution: {integrity: sha512-bq9zTli3vWJo8S3LwB91U0qDNQDpEXnw7knhxLM0nwDvexQAwx9tO8iKDZSqqneVq+URd/WIoz+BALMqUTgdSg==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
       '@types/node': 20.5.0
-      playwright-core: 1.37.0
+      playwright-core: 1.37.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -11207,8 +11207,8 @@ packages:
       pathe: 1.1.1
     dev: true
 
-  /playwright-core@1.37.0:
-    resolution: {integrity: sha512-1c46jhTH/myQw6sesrcuHVtLoSNfJv8Pfy9t3rs6subY7kARv0HRw5PpyfPYPpPtQvBOmgbE6K+qgYUpj81LAA==}
+  /playwright-core@1.37.1:
+    resolution: {integrity: sha512-17EuQxlSIYCmEMwzMqusJ2ztDgJePjrbttaefgdsiqeLWidjYz9BxXaTaZWxH1J95SHGk6tjE+dwgWILJoUZfA==}
     engines: {node: '>=16'}
     hasBin: true
 
