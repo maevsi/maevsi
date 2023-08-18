@@ -110,18 +110,21 @@
         @on-menu-hide="menuHide"
       />
     </div>
-    <CookieControl :locale="locale as Locale" />
+    <CookieControl :locale="locale" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { Locale } from '@dargmuesli/nuxt-cookie-control/dist/runtime/types'
-import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
+import type { Locale } from '@dargmuesli/nuxt-cookie-control/dist/runtime/types'
+import type { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
+import type { WritableComputedRef } from 'vue'
 
 const { $dayjs } = useNuxtApp()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
-const { locale, availableLocales, t } = useI18n()
+const i18n = useI18n()
+const { availableLocales, t } = i18n
+const locale = i18n.locale as WritableComputedRef<Locale>
 
 const loadingId = Math.random()
 const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
