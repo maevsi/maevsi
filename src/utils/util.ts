@@ -3,6 +3,7 @@ import Clipboard from 'clipboard'
 import { consola } from 'consola'
 import { defu } from 'defu'
 import { H3Event, getCookie } from 'h3'
+import { ofetch } from 'ofetch'
 import Swal, { SweetAlertIcon } from 'sweetalert2'
 import { Ref } from 'vue'
 import { LocationQueryValue } from 'vue-router'
@@ -227,13 +228,25 @@ export const getQueryString = (queryParametersObject: Record<string, any>) =>
     })
     .join('&')
 
-export const getTimezone = async (event: H3Event) =>
-  getCookie(event, TIMEZONE_COOKIE_NAME) ||
-  (
-    await $fetch<{ timezone: string }>(
+export const getTimezone = async (event: H3Event) => {
+  const timezoneCookie = getCookie(event, TIMEZONE_COOKIE_NAME)
+
+  if (timezoneCookie) {
+    return timezoneCookie
+  }
+
+  if (event.node.req.headers['x-real-ip']) {
+    const ipApiResult = await ofetch<{ timezone: string }>(
       `http://ip-api.com/json/${event.node.req.headers['x-real-ip']}`,
-    )
-  ).timezone
+    ).catch(() => {})
+
+    if (ipApiResult) {
+      return ipApiResult.timezone
+    }
+  }
+
+  return undefined
+}
 
 export const isNeitherNullNorUndefined = <T>(
   value: T | null | undefined,
