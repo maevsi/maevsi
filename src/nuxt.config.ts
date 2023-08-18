@@ -18,6 +18,9 @@ const BASE_URL =
         : '3001'
     }`)
 
+// TODO: let this error in "eslint (compat/compat)"" (https://github.com/DefinitelyTyped/DefinitelyTyped/issues/55519)
+// setImmediate(() => {})
+
 export default defineNuxtConfig({
   app: {
     pageTransition: {
