@@ -1,3 +1,11 @@
+## [1.21.1](https://github.com/maevsi/maevsi/compare/1.21.0...1.21.1) (2023-08-18)
+
+
+### Bug Fixes
+
+* **networking:** make timezone function more resilient ([46ac31b](https://github.com/maevsi/maevsi/commit/46ac31bac526a5a0afa624c3cdd28fe398fdfa5a))
+* **networking:** make timezone function more resilient ([#1349](https://github.com/maevsi/maevsi/issues/1349)) ([2e91a5a](https://github.com/maevsi/maevsi/commit/2e91a5a48dd5c0a9df71f9ec0272f283485a7ec4))
+
 # [1.21.0](https://github.com/maevsi/maevsi/compare/1.20.3...1.21.0) (2023-08-18)
 
 
