@@ -1,13 +1,5 @@
 import fs from 'fs'
-import {
-  createError,
-  readBody,
-  getQuery,
-  getMethod,
-  H3Event,
-  send,
-  sendError,
-} from 'h3'
+import { createError, readBody, getQuery, H3Event, send, sendError } from 'h3'
 import { consola } from 'consola'
 import { jwtVerify, importSPKI } from 'jose'
 import { ofetch } from 'ofetch'
@@ -42,9 +34,7 @@ const pool = new pg.Pool({
 })
 
 export default defineEventHandler(async (event: H3Event) => {
-  const method = getMethod(event)
-
-  switch (method) {
+  switch (event.method) {
     case 'DELETE':
       await tusdDelete(event)
       break
@@ -52,7 +42,7 @@ export default defineEventHandler(async (event: H3Event) => {
       await tusdPost(event)
       break
     default:
-      consola.warn(`Unexpected request method: ` + method)
+      consola.warn(`Unexpected request method: ` + event.method)
   }
 })
 
