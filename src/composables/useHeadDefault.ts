@@ -1,10 +1,10 @@
+import { type UseHeadInput } from '@unhead/vue'
 import { defu } from 'defu'
-import { MetaObject } from 'nuxt/dist/app'
 import { ComputedRef } from 'vue'
 
 export const useHeadDefault = (
   title: string | ComputedRef<string>,
-  extension?: MetaObject,
+  extension?: UseHeadInput,
 ) => {
   const host = useHost()
   const router = useRouter()
