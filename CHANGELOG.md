@@ -1,3 +1,11 @@
+# [1.21.0](https://github.com/maevsi/maevsi/compare/1.20.3...1.21.0) (2023-08-18)
+
+
+### Features
+
+* load polyfill ([#1348](https://github.com/maevsi/maevsi/issues/1348)) ([7df5503](https://github.com/maevsi/maevsi/commit/7df5503466967f0c80c3b63d2c675baaa6971156))
+* load polyfills ([671d2cf](https://github.com/maevsi/maevsi/commit/671d2cff103af9ef69818fc0417c73afb5a84025))
+
 ## [1.20.3](https://github.com/maevsi/maevsi/compare/1.20.2...1.20.3) (2023-08-05)
 
 
