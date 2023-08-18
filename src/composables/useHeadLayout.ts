@@ -4,6 +4,9 @@ export const useHeadLayout = () => {
   const { t } = useI18n()
   const head = useLocaleHead({ addDirAttribute: true, addSeoAttributes: true })
 
+  const polyfills =
+    'https://polyfill.io/v3/polyfill.min.js?features=Promise&flags=gated'
+
   useHead(head.value)
   useHead({
     bodyAttrs: {
@@ -11,6 +14,13 @@ export const useHeadLayout = () => {
         'bg-background-bright dark:bg-background-dark text-text-dark dark:text-text-bright',
     },
     link: [
+      {
+        rel: 'preload',
+        href: polyfills,
+        crossorigin: 'anonymous',
+        as: 'script',
+        'data-testid': 'polyfill-preload',
+      },
       {
         href: '/assets/static/favicon/apple-touch-icon.png?v=2EvuFKRRxT',
         rel: 'apple-touch-icon',
@@ -141,6 +151,13 @@ export const useHeadLayout = () => {
         key: 'twitter:title',
         property: 'twitter:title',
         content: 'maevsi',
+      },
+    ],
+    script: [
+      {
+        src: polyfills,
+        crossorigin: 'anonymous',
+        'data-testid': 'polyfill-script',
       },
     ],
     titleTemplate: (titleChunk?: string) => {
