@@ -5,6 +5,7 @@
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
     "graphql.vscode-graphql",
+    "stylelint.vscode-stylelint",
     "timonwong.shellcheck",
     "vue.volar",
   ],
