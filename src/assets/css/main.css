@@ -1,52 +1,69 @@
+/* stylelint-disable at-rule-no-unknown */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
 
+/* doiuse-disable css-cascade-layers */
 @layer base {
+  /* doiuse-enable css-cascade-layers */
   a:focus {
-    @apply outline-none ring;
+    /* doiuse-disable css-nesting */
+    @apply outline-none ring; /* doiuse-enable css-nesting */
   }
 
   button:focus {
-    @apply outline-none ring;
+    /* doiuse-disable css-nesting */
+    @apply outline-none ring; /* doiuse-enable css-nesting */
   }
 
   thead {
-    @apply sticky top-0 z-10 vio-bg-darken;
+    /* doiuse-disable css-nesting */
+    @apply vio-bg-darken sticky top-0 z-10; /* doiuse-enable css-nesting */
   }
 
   tbody {
-    @apply divide-y vio-divide-darken;
+    /* doiuse-disable css-nesting */
+    @apply vio-divide-darken divide-y; /* doiuse-enable css-nesting */
   }
 }
 
+/* doiuse-disable css-cascade-layers */
 @layer utilities {
+  /* doiuse-enable css-cascade-layers */
   .vio-bg-darken {
-    @apply bg-background-brighten dark:bg-background-darken
+    /* doiuse-disable css-nesting */
+    @apply bg-background-brighten dark:bg-background-darken; /* doiuse-enable css-nesting */
   }
 
   .vio-border-darken {
-    @apply border-background-brighten dark:border-background-darken
+    /* doiuse-disable css-nesting */
+    @apply border-background-brighten dark:border-background-darken; /* doiuse-enable css-nesting */
   }
 
   .vio-line-clamp-2 {
-    @apply max-w-full text-ellipsis break-words line-clamp-2;
+    /* doiuse-disable css-nesting */
+    @apply line-clamp-2 max-w-full text-ellipsis break-words; /* doiuse-enable css-nesting */
   }
 
   .vio-prose {
-    @apply m-auto prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl; /* 2xl:prose-2xl */
+    /* doiuse-disable css-nesting */
+    @apply prose prose-sm m-auto sm:prose-base lg:prose-lg xl:prose-xl; /* 2xl:prose-2xl */ /* doiuse-enable css-nesting */
   }
 
   .vio-prose-fullwidth {
-    @apply vio-prose max-w-full sm:max-w-full md:max-w-full xl:max-w-full 2xl:max-w-full;
+    /* doiuse-disable css-nesting */
+    @apply vio-prose max-w-full sm:max-w-full md:max-w-full xl:max-w-full 2xl:max-w-full; /* doiuse-enable css-nesting */
   }
 
   .vio-prose-scheme {
-    @apply vio-prose dark:prose-invert;
+    /* doiuse-disable css-nesting */
+    @apply vio-prose dark:prose-invert; /* doiuse-enable css-nesting */
   }
 
   .vio-divide-darken {
-    @apply divide-background-brighten dark:divide-background-darken
+    /* doiuse-disable css-nesting */
+    @apply divide-background-brighten dark:divide-background-darken; /* doiuse-enable css-nesting */
   }
 }
 
@@ -60,17 +77,21 @@
   opacity: 0;
 }
 
-.ProseMirror { /* stylelint-disable-line selector-class-pattern */
-  @apply vio-prose;
+/* stylelint-disable-next-line selector-class-pattern */
+.ProseMirror {
+  /* doiuse-disable css-nesting */
+  @apply vio-prose; /* doiuse-enable css-nesting */
 
   max-width: 100%;
   margin: 0;
 }
 
-.ProseMirror > p:first-child { /* stylelint-disable-line selector-class-pattern */
+/* stylelint-disable-next-line selector-class-pattern */
+.ProseMirror > p:first-child {
   margin-top: 0;
 }
 
-.ProseMirror > p:last-child { /* stylelint-disable-line selector-class-pattern */
+/* stylelint-disable-next-line selector-class-pattern */
+.ProseMirror > p:last-child {
   margin-bottom: 0;
 }
