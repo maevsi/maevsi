@@ -7,6 +7,14 @@ module.exports = {
     'plugin:nuxt/recommended',
     'plugin:yml/standard',
   ],
+  overrides: [
+    {
+      files: ['server/**/*'],
+      rules: {
+        'compat/compat': 'off',
+      },
+    },
+  ],
   root: true,
   rules: {
     '@intlify/vue-i18n/no-missing-keys': 'error',
