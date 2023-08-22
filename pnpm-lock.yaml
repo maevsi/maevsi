@@ -88,8 +88,8 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@tailwindcss/forms':
-        specifier: 0.5.4
-        version: 0.5.4(tailwindcss@3.3.3)
+        specifier: 0.5.5
+        version: 0.5.5(tailwindcss@3.3.3)
       '@tailwindcss/typography':
         specifier: 0.5.9
         version: 0.5.9(tailwindcss@3.3.3)
@@ -4206,8 +4206,8 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: true
 
-  /@tailwindcss/forms@0.5.4(tailwindcss@3.3.3):
-    resolution: {integrity: sha512-YAm12D3R7/9Mh4jFbYSMnsd6jG++8KxogWgqs7hbdo/86aWjjlIEvL7+QYdVELmAI0InXTpZqFIg5e7aDVWI2Q==}
+  /@tailwindcss/forms@0.5.5(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-03sXK1DcPt44GZ0Yg6AcAfQln89IKdbE79g2OwoKqBm1ukaadLO2AH3EiB3mXHeQnxa3tzm7eE0x7INXSjbuug==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
