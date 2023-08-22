@@ -56,7 +56,7 @@
           :title="t('heading1')"
           @click="editor?.chain().focus().toggleHeading({ level: 1 }).run()"
         >
-          <div class="flex align-end">
+          <div class="align-end flex">
             <IconHeading />
             <span>{{ t('number1') }}</span>
           </div>
@@ -66,7 +66,7 @@
           :title="t('heading2')"
           @click="editor?.chain().focus().toggleHeading({ level: 2 }).run()"
         >
-          <div class="flex align-end">
+          <div class="align-end flex">
             <IconHeading />
             <span>{{ t('number2') }}</span>
           </div>
@@ -76,7 +76,7 @@
           :title="t('heading3')"
           @click="editor?.chain().focus().toggleHeading({ level: 3 }).run()"
         >
-          <div class="flex align-end">
+          <div class="align-end flex">
             <IconHeading />
             <span>{{ t('number3') }}</span>
           </div>

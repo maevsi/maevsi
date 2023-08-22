@@ -2,7 +2,7 @@
   <Button
     :is-to-relative="isToRelative"
     :aria-label="ariaLabel"
-    class="font-medium px-4 py-2"
+    class="px-4 py-2 font-medium"
     :disabled="disabled"
     :to="to"
     :type="type"

@@ -21,7 +21,7 @@
         :feedback="feedback"
       />
     </div>
-    <div class="flex flex-col justify-center items-start overflow-hidden">
+    <div class="flex flex-col items-start justify-center overflow-hidden">
       <div class="truncate font-medium">
         {{ contact.firstName }}
         {{ contact.lastName }}

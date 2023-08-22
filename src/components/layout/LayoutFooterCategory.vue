@@ -1,8 +1,8 @@
 <template>
   <div
-    class="flex flex-1 flex-col items-start p-4 basis-1/2 gap-2 max-w-full md:flex-none md:basis-auto"
+    class="flex max-w-full flex-1 basis-1/2 flex-col items-start gap-2 p-4 md:flex-none md:basis-auto"
   >
-    <span class="truncate-overflow max-w-full text-lg font-medium leading-7">
+    <span class="max-w-full text-lg font-medium leading-7 truncate-overflow">
       {{ heading }}
     </span>
     <slot />

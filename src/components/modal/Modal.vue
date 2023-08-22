@@ -1,11 +1,11 @@
 <template>
   <div v-if="isVisible">
     <div
-      class="inset-0 z-10 transition backdrop-blur backdrop-brightness-50 fixed"
+      class="fixed inset-0 z-10 backdrop-blur backdrop-brightness-50 transition"
       @click="close"
     />
     <Card
-      class="top-[10%] max-h-[80%] left-1/2 -translate-x-1/2 z-20 flex w-5/6 flex-col gap-2 overflow-auto sm:w-2/3 lg:w-1/2 xl:w-1/3 fixed"
+      class="fixed left-1/2 top-[10%] z-20 flex max-h-[80%] w-5/6 -translate-x-1/2 flex-col gap-2 overflow-auto sm:w-2/3 lg:w-1/2 xl:w-1/3"
     >
       <div class="flex justify-end">
         <ButtonIcon
@@ -29,7 +29,7 @@
         </ButtonIcon>
       </div>
       <div
-        class="min-h-0 flex flex-col"
+        class="flex min-h-0 flex-col"
         :class="{
           'pointer-events-none relative disabled': isSubmitting,
         }"
@@ -39,7 +39,7 @@
           <LoaderIndicatorSpinner class="m-auto h-8 w-8" />
         </div>
       </div>
-      <div v-if="!isFooterHidden" class="flex gap-8 justify-center">
+      <div v-if="!isFooterHidden" class="flex justify-center gap-8">
         <slot name="footer">
           <ButtonColored
             :aria-label="submitName || t('ok')"

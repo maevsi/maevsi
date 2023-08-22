@@ -2,7 +2,7 @@
   <Button
     :is-to-relative="isToRelative"
     :aria-label="ariaLabel"
-    class="rounded-md border justify-center px-4 py-2 font-medium"
+    class="justify-center rounded-md border px-4 py-2 font-medium"
     :class="
       [
         ...(isPrimary

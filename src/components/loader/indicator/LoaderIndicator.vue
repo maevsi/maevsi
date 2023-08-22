@@ -3,7 +3,7 @@
     class="flex h-full items-center justify-center"
     :title="t('globalLoading')"
   >
-    <div class="flex items-center justify-center w-1/2">
+    <div class="flex w-1/2 items-center justify-center">
       <slot />
     </div>
   </div>

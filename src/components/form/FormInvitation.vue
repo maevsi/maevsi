@@ -1,7 +1,7 @@
 <template>
   <Form
     v-if="event"
-    class="min-h-0 flex flex-col"
+    class="flex min-h-0 flex-col"
     :errors="api.errors"
     :form="v$"
     :is-form-sent="isFormSent"
@@ -63,7 +63,7 @@
       <div v-for="contact in contactsFiltered" :key="contact.id">
         <Button
           :aria-label="t('buttonContact')"
-          class="w-full rounded border-2 border-neutral-300 dark:border-neutral-600 flex items-center px-4 py-2 gap-4"
+          class="flex w-full items-center gap-4 rounded border-2 border-neutral-300 px-4 py-2 dark:border-neutral-600"
           :disabled="invitationContactIdsExisting?.includes(contact.id)"
           type="button"
           @click="selectToggle(contact.id)"

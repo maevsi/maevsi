@@ -70,7 +70,7 @@
           :key="availableLocale"
           :to="switchLocalePath(availableLocale)"
         >
-          <div class="flex gap-2 items-center">
+          <div class="flex items-center gap-2">
             <component
               :is="getLocaleFlag(availableLocale)"
               :class="{ disabled: availableLocale === locale }"
@@ -94,8 +94,8 @@
       class="fixed inset-0 z-10 transition duration-500 lg:hidden"
       :class="[
         ...(isMenuVisible
-          ? ['backdrop-brightness-50 backdrop-blur']
-          : ['backdrop-brightness-100 backdrop-blur-0']),
+          ? ['backdrop-blur backdrop-brightness-50']
+          : ['backdrop-blur-0 backdrop-brightness-100']),
         ...(isMenuVisiblePartly ? [] : ['invisible']),
       ]"
       @click="menuHide"
