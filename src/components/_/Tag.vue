@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-block rounded-full px-2 py-1 bg-red-300 text-red-700">
+  <div class="inline-block rounded-full bg-red-300 px-2 py-1 text-red-700">
     <slot />
   </div>
 </template>

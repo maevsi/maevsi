@@ -1,7 +1,7 @@
 <template>
   <div
     ref="scrollContainerRef"
-    class="overflow-y-auto border vio-border-darken rounded-lg"
+    class="vio-border-darken overflow-y-auto rounded-lg border"
     @scroll.passive="onScroll"
   >
     <slot />

@@ -1,6 +1,6 @@
 <template>
   <Form
-    class="min-h-0 flex flex-col"
+    class="flex min-h-0 flex-col"
     :errors="api.errors"
     :errors-pg-ids="{
       postgres23505: t('postgres23505'),

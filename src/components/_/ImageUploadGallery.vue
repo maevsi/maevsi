@@ -35,7 +35,7 @@
             />
             <div
               v-if="allowDeletion"
-              class="absolute flex right-0 top-0 rounded-bl-lg bg-red-600 bg-opacity-75"
+              class="absolute right-0 top-0 flex rounded-bl-lg bg-red-600 bg-opacity-75"
               @click="deleteImageUpload(upload.id)"
             >
               <Button

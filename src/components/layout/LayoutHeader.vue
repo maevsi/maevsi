@@ -11,26 +11,26 @@
       <Button :aria-label="t('home')" :to="localePath('/')">
         <IconLogoWithText class="h-10 w-32" />
       </Button>
-      <div class="hidden lg:block flex-grow" />
-      <div class="hidden lg:flex flex-nowrap">
+      <div class="hidden flex-grow lg:block" />
+      <div class="hidden flex-nowrap lg:flex">
         <label class="hidden" for="search">{{ t('search') }}</label>
         <input
           id="search"
-          class="form-input dark:bg-gray-700 dark:border-gray-500 cursor-pointer rounded-r-none dark:placeholder:text-gray-300"
+          class="form-input cursor-pointer rounded-r-none dark:border-gray-500 dark:bg-gray-700 dark:placeholder:text-gray-300"
           :placeholder="t('search')"
           readonly
           type="text"
           @click="navigateToSearch"
         />
         <span
-          class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 dark:bg-gray-700 dark:border-gray-500 text-sm text-gray-500 dark:text-gray-300"
+          class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300"
           @click="navigateToSearch"
         >
           <IconMagnifyingGlass />
         </span>
       </div>
-      <div class="hidden lg:block flex-grow" />
-      <div class="flex items-center gap-2 lg:gap-4 whitespace-nowrap">
+      <div class="hidden flex-grow lg:block" />
+      <div class="flex items-center gap-2 whitespace-nowrap lg:gap-4">
         <ButtonText
           :aria-label="t('events')"
           class="hidden lg:flex"
@@ -44,12 +44,12 @@
         </ButtonText>
         <ButtonEventNew class="hidden lg:flex" />
         <div
-          class="flex-none bg-gray-300 dark:bg-gray-600 self-stretch w-px hidden lg:flex my-1"
+          class="my-1 hidden w-px flex-none self-stretch bg-gray-300 dark:bg-gray-600 lg:flex"
         />
         <ButtonColored
           v-if="signedInUsername"
           :aria-label="t('dashboard')"
-          class="hidden lg:block mx-2"
+          class="mx-2 hidden lg:block"
           :is-primary="false"
           :to="localePath('/dashboard')"
         >
@@ -71,7 +71,7 @@
         <template v-else>
           <ButtonIcon
             :aria-label="t('signIn')"
-            class="lg:hidden h-8 w-8"
+            class="h-8 w-8 lg:hidden"
             :to="localePath('/task/account/sign-in')"
           >
             <IconSignIn classes="h-6 w-6" />

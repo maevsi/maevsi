@@ -1,7 +1,7 @@
 <template>
   <LoaderIndicator>
     <div
-      class="w-1/2 aspect-square animate-ping rounded-full bg-gray-500"
+      class="aspect-square w-1/2 animate-ping rounded-full bg-gray-500"
       :title="t('globalLoading')"
     />
   </LoaderIndicator>

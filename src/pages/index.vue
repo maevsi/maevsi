@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col gap-32 md:gap-32 pt-8">
-    <section id="overview" class="flex gap-8 items-center">
-      <div class="flex w-full flex-col gap-8 md:gap-16 items-start lg:w-1/2">
+  <div class="flex flex-col gap-32 pt-8 md:gap-32">
+    <section id="overview" class="flex items-center gap-8">
+      <div class="flex w-full flex-col items-start gap-8 md:gap-16 lg:w-1/2">
         <i18n-t
-          class="text-left text-4xl font-extrabold m-0 sm:text-5xl md:text-5xl xl:text-7xl"
+          class="m-0 text-left text-4xl font-extrabold sm:text-5xl md:text-5xl xl:text-7xl"
           keypath="title"
           tag="h1"
         >
@@ -36,7 +36,7 @@
       <LoaderImage
         :alt="t('heroImage')"
         aspect="aspect-[750/861]"
-        class="hidden lg:block w-1/2"
+        class="hidden w-1/2 lg:block"
         height="861"
         src="/assets/static/images/hero_background.png"
         width="750"
@@ -70,7 +70,7 @@
         </Step>
       </div>
     </section>
-    <section class="flex flex-col lg:flex-row gap-8 items-center">
+    <section class="flex flex-col items-center gap-8 lg:flex-row">
       <LoaderImage
         :alt="t('heroImage')"
         aspect="aspect-square"
@@ -79,7 +79,7 @@
         src="/assets/static/images/smartphone.webp"
         width="750"
       />
-      <div class="flex flex-col gap-8 items-start lg:w-1/2">
+      <div class="flex flex-col items-start gap-8 lg:w-1/2">
         <h2 class="text-4xl font-extrabold">
           {{ t('smartphoneTitle') }}
         </h2>
@@ -136,7 +136,7 @@
       </div>
     </section>
     <div
-      class="duration-300 fixed flex flex-col items-center bottom-4 left-1/2 -translate-x-1/2 text-xl gap-2 transition"
+      class="fixed bottom-4 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xl transition duration-300"
       :class="isScrollHintShown ? 'opacity-20' : 'opacity-0'"
     >
       <IconChevronDoubleDown

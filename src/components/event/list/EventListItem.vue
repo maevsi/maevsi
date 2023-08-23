@@ -25,7 +25,7 @@
           </div>
           <Tag
             v-if="event.visibility === 'PRIVATE'"
-            class="self-start font-medium text-sm"
+            class="self-start text-sm font-medium"
           >
             <div class="flex items-center gap-1">
               <IconEyeOff classes="h-5 w-5" :title="t('private')" />
@@ -33,7 +33,7 @@
             </div>
           </Tag>
         </div>
-        <div class="flex items-baseline truncate gap-2">
+        <div class="flex items-baseline gap-2 truncate">
           <div class="truncate text-xl font-bold">
             {{ event.name }}
           </div>

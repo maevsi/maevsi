@@ -31,7 +31,7 @@
         </ButtonColored>
       </CardStateInfo>
       <div v-if="contact" class="flex flex-col gap-2">
-        <div class="flex items-center gap-2 justify-between">
+        <div class="flex items-center justify-between gap-2">
           <div>
             <p class="mb-2 text-2xl font-bold">
               {{
@@ -89,14 +89,14 @@
           </template>
         </ButtonColored>
       </ButtonList>
-      <div class="flex flex-col md:flex-row justify-between gap-4">
-        <div class="flex flex-col md:flex-row items-baseline md:gap-2 min-w-0">
+      <div class="flex flex-col justify-between gap-4 md:flex-row">
+        <div class="flex min-w-0 flex-col items-baseline md:flex-row md:gap-2">
           <h1 class="m-0">
             {{ event.name }}
           </h1>
           <Owner link :username="event.authorUsername" />
         </div>
-        <div class="flex gap-2 items-center">
+        <div class="flex items-center gap-2">
           <ButtonColored
             :aria-label="t('iCalDownload')"
             :is-primary="false"
