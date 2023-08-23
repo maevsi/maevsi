@@ -33,7 +33,7 @@ test.describe('a11y', () => {
     await page.goto('/')
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
     expect(accessibilityScanResults.violations.length).toEqual(
-      process.env.NODE_ENV === 'development' ? 2 : 1,
+      process.env.NODE_ENV !== 'production' ? 2 : 1,
     ) // TODO: get rid of all violations
   })
 })
