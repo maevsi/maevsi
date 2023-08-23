@@ -35,7 +35,7 @@
   "devDependencies": {
     "@axe-core/playwright": "4.7.3",
     "@babel/core": "7.22.10",
-    "@dargmuesli/nuxt-cookie-control": "6.4.0",
+    "@dargmuesli/nuxt-cookie-control": "6.4.1",
     "@fontsource-variable/manrope": "5.0.8",
     "@funken-studio/sitemap-nuxt-3": "4.0.4",
     "@graphql-codegen/cli": "5.0.0",
@@ -104,7 +104,7 @@
     "lodash-es": "4.17.21",
     "mustache": "4.2.0",
     "nuxt": "3.6.5",
-    "ofetch": "1.1.1",
+    "ofetch": "1.2.1",
     "pg": "8.11.3",
     "pinia": "2.1.6",
     "postcss": "8.4.28",
