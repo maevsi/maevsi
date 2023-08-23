@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test'
 import { TIMEZONE_COOKIE_NAME } from '../../../../../utils/constants'
 import {
   COOKIE_CONTROL_DEFAULT,
+  PAGE_READY,
   TIMEZONE_DEFAULT,
 } from '../../../utils/constants'
 
@@ -33,11 +34,7 @@ test.describe('page load', () => {
 test.describe('visual regression', () => {
   test('looks as before', async ({ page }) => {
     await page.goto('/teapot')
-    await expect(page.getByTestId('is-loading')).toHaveAttribute(
-      'data-is-loading',
-      'false',
-    )
-    await page.getByRole('button', { name: 'Cookie control' }).isVisible()
+    await PAGE_READY({ page })
     await expect(page).toHaveScreenshot({ fullPage: true })
   })
 })
