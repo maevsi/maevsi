@@ -194,6 +194,7 @@ ENV CI=true
 WORKDIR /srv/app/
 
 COPY --from=build /srv/app/src/.output ./.output
+COPY --from=build /srv/app/src/package.json ./package.json
 COPY --from=lint /srv/app/package.json /tmp/package.json
 COPY --from=test-unit /srv/app/package.json /tmp/package.json
 COPY --from=test-e2e-dev /srv/app/package.json /tmp/package.json
@@ -213,10 +214,12 @@ ENV NODE_ENV=production
 WORKDIR /srv/app/
 
 # Update dependencies.
-RUN apk update && apk upgrade --no-cache
+RUN apk update && apk upgrade --no-cache \
+    && corepack enable
 
 COPY --from=collect /srv/app/ ./
 
-CMD [".output/server/index.mjs"]
+ENTRYPOINT ["pnpm"]
+CMD ["run", "start"]
 HEALTHCHECK --interval=10s CMD wget -O /dev/null http://localhost:3001/api/healthcheck || exit 1
 EXPOSE 3001
