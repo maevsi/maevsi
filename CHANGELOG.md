@@ -1,3 +1,11 @@
+## [1.21.3](https://github.com/maevsi/maevsi/compare/1.21.2...1.21.3) (2023-08-26)
+
+
+### Bug Fixes
+
+* **docker:** correct production start command ([73d5337](https://github.com/maevsi/maevsi/commit/73d53377efe567039c9153822fb48a397447fc84))
+* **docker:** correct production start command ([#1351](https://github.com/maevsi/maevsi/issues/1351)) ([b62a166](https://github.com/maevsi/maevsi/commit/b62a166bb5f8a5c309ad32116d3c52057909d88a))
+
 ## [1.21.2](https://github.com/maevsi/maevsi/compare/1.21.1...1.21.2) (2023-08-26)
 
 
