@@ -79,8 +79,8 @@ importers:
         specifier: 8.0.0-rc.3
         version: 8.0.0-rc.3(rollup@3.28.1)(vue@3.3.4)
       '@nuxtjs/turnstile':
-        specifier: 0.6.0
-        version: 0.6.0(rollup@3.28.1)
+        specifier: 0.6.3
+        version: 0.6.3(rollup@3.28.1)
       '@pinia/nuxt':
         specifier: 0.4.11
         version: 0.4.11(rollup@3.28.1)(typescript@5.2.2)(vue@3.3.4)
@@ -4172,8 +4172,8 @@ packages:
       - vue-router
     dev: true
 
-  /@nuxtjs/turnstile@0.6.0(rollup@3.28.1):
-    resolution: {integrity: sha512-dc6YDZMDE8gEWBd3PwQ7gL4mVeDt5wJuybzdrahHnPPg6znb3Pvl0gaCdG3tnodipRtvBW2zIGPSovG3RLlvxg==}
+  /@nuxtjs/turnstile@0.6.3(rollup@3.28.1):
+    resolution: {integrity: sha512-POo7J6mlN4apRKQQziyvbBN7IsOtDiDuH0euAWrFv5LUBuBlPcARJMsBhziYWp7hTSGpqS/DHj8/5mrVltQdzg==}
     dependencies:
       '@nuxt/kit': 3.7.0(rollup@3.28.1)
       defu: 6.1.2
