@@ -1,3 +1,11 @@
+## [1.21.4](https://github.com/maevsi/maevsi/compare/1.21.3...1.21.4) (2023-08-29)
+
+
+### Bug Fixes
+
+* **head:** remove manifest ([d3d28b5](https://github.com/maevsi/maevsi/commit/d3d28b5b22c5f694c7b576b956e6b1a3a537d542))
+* **head:** remove manifest ([#1352](https://github.com/maevsi/maevsi/issues/1352)) ([844a677](https://github.com/maevsi/maevsi/commit/844a677331f2e2caecb6caea0c0f79fa025e6b2b))
+
 ## [1.21.3](https://github.com/maevsi/maevsi/compare/1.21.2...1.21.3) (2023-08-26)
 
 
