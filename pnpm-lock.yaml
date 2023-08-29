@@ -199,8 +199,8 @@ importers:
         specifier: 9.0.0
         version: 9.0.0(eslint@8.48.0)
       eslint-plugin-compat:
-        specifier: 4.1.4
-        version: 4.1.4(eslint@8.48.0)
+        specifier: 4.2.0
+        version: 4.2.0(eslint@8.48.0)
       eslint-plugin-nuxt:
         specifier: 4.0.0
         version: 4.0.0(eslint@8.48.0)
@@ -8324,21 +8324,20 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-compat@4.1.4(eslint@8.48.0):
-    resolution: {integrity: sha512-RxySWBmzfIROLFKgeJBJue2BU/6vM2KJWXWAUq+oW4QtrsZXRxbjgxmO1OfF3sHcRuuIenTS/wgo3GyUWZF24w==}
+  /eslint-plugin-compat@4.2.0(eslint@8.48.0):
+    resolution: {integrity: sha512-RDKSYD0maWy5r7zb5cWQS+uSPc26mgOzdORJ8hxILmWM7S/Ncwky7BcAtXVY5iRbKjBdHsWU8Yg7hfoZjtkv7w==}
     engines: {node: '>=14.x'}
     peerDependencies:
       eslint: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
       '@mdn/browser-compat-data': 5.3.13
-      '@tsconfig/node14': 1.0.3
       ast-metadata-inferer: 0.8.0
       browserslist: 4.21.10
       caniuse-lite: 1.0.30001524
       eslint: 8.48.0
       find-up: 5.0.0
       lodash.memoize: 4.1.2
-      semver: 7.3.8
+      semver: 7.5.4
     dev: true
 
   /eslint-plugin-es@3.0.1(eslint@8.48.0):
@@ -13849,14 +13848,6 @@ packages:
   /semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
-    dev: true
-
-  /semver@7.3.8:
-    resolution: {integrity: sha512-NB1ctGL5rlHrPJtFDVIVzTyQylMLu9N9VICA6HSFJo8MCGVTMW6gfpicwKmmK/dAjTOrqu5l63JJOpDSrAis3A==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      lru-cache: 6.0.0
     dev: true
 
   /semver@7.5.4:
