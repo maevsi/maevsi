@@ -44,10 +44,6 @@ export const useHeadLayout = () => {
         type: 'image/x-icon',
       },
       {
-        href: '/assets/static/favicon/site.webmanifest?v=2EvuFKRRxT',
-        rel: 'manifest',
-      },
-      {
         color: '#202020',
         href: '/assets/static/favicon/safari-pinned-tab.svg?v=2EvuFKRRxT',
         rel: 'mask-icon',
