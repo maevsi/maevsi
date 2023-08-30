@@ -1,11 +1,14 @@
+import { POLYFILLS } from '~/utils/constants'
+
 export const useHeadLayout = () => {
   const router = useRouter()
   const host = useHost()
   const { t } = useI18n()
   const head = useLocaleHead({ addDirAttribute: true, addSeoAttributes: true })
 
-  const polyfills =
-    'https://polyfill.io/v3/polyfill.min.js?features=Promise&flags=gated'
+  const polyfills = `https://polyfill.io/v3/polyfill.min.js?features=${POLYFILLS.join(
+    '%2C',
+  )}&flags=gated`
 
   useHead(head.value)
   useHead({

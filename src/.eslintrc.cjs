@@ -1,3 +1,10 @@
+// TODO: convert file to ESM when ESLint is upgraded to v9
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const jiti = require('jiti')(__filename)
+
+const POLYFILLS = jiti('./utils/constants.ts').POLYFILLS // TODO: replace with ESM import when ESLint is upgraded to v9
+
 module.exports = {
   extends: [
     '@nuxtjs/eslint-config-typescript',
@@ -37,7 +44,7 @@ module.exports = {
     'yml/quotes': ['error', { prefer: 'single' }],
   },
   settings: {
-    polyfills: ['Promise'],
+    polyfills: POLYFILLS,
     'vue-i18n': {
       localeDir: './locales/*.json',
       messageSyntaxVersion: '^9.0.0',
