@@ -1,3 +1,10 @@
+## [1.21.5](https://github.com/maevsi/maevsi/compare/1.21.4...1.21.5) (2023-08-30)
+
+
+### Bug Fixes
+
+* polyfill `requestAnimationFrame` ([9d99b47](https://github.com/maevsi/maevsi/commit/9d99b47f3196cf562fbd134f26ae2063ded34f9f))
+
 ## [1.21.4](https://github.com/maevsi/maevsi/compare/1.21.3...1.21.4) (2023-08-29)
 
 
