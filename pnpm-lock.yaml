@@ -226,8 +226,8 @@ importers:
         specifier: 1.8.0
         version: 1.8.0
       jose:
-        specifier: 4.14.4
-        version: 4.14.4
+        specifier: 4.14.5
+        version: 4.14.5
       lint-staged:
         specifier: 14.0.1
         version: 14.0.1
@@ -772,7 +772,6 @@ packages:
   /@babel/plugin-proposal-private-property-in-object@7.21.0-placeholder-for-preset-env.2(@babel/core@7.22.11):
     resolution: {integrity: sha512-SOSkfJDddaM7mak6cPEpswyTRnuRltl429hMraQEglW+OkovnCzsiszTmsrlY//qLFjCpQDFRvjdm2wA5pPm9w==}
     engines: {node: '>=6.9.0'}
-    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -3200,7 +3199,7 @@ packages:
       graphql-request: 6.1.0(graphql@16.8.0)
       http-proxy-agent: 7.0.0
       https-proxy-agent: 7.0.1
-      jose: 4.14.4
+      jose: 4.14.5
       js-yaml: 4.1.0
       json-stable-stringify: 1.0.2
       lodash: 4.17.21
@@ -10343,8 +10342,8 @@ packages:
       '@sideway/pinpoint': 2.0.0
     dev: true
 
-  /jose@4.14.4:
-    resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
+  /jose@4.14.5:
+    resolution: {integrity: sha512-56ns1XlSI8d5V0t7hilPu8dMbE4YIwrTJU6e7bV1Abyu6oel4tSc4YmD742MoWV3U+vn7O0WlKpinzu2DP0HWw==}
     dev: true
 
   /js-base64@3.7.5:
