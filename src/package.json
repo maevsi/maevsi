@@ -55,7 +55,7 @@
     "@playwright/test": "1.37.1",
     "@popperjs/core": "2.11.8",
     "@tailwindcss/forms": "0.5.6",
-    "@tailwindcss/typography": "0.5.9",
+    "@tailwindcss/typography": "0.5.10",
     "@tiptap/core": "2.1.8",
     "@tiptap/extension-link": "2.1.8",
     "@tiptap/pm": "2.1.8",

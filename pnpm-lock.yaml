@@ -94,8 +94,8 @@ importers:
         specifier: 0.5.6
         version: 0.5.6(tailwindcss@3.3.3)
       '@tailwindcss/typography':
-        specifier: 0.5.9
-        version: 0.5.9(tailwindcss@3.3.3)
+        specifier: 0.5.10
+        version: 0.5.10(tailwindcss@3.3.3)
       '@tiptap/core':
         specifier: 2.1.8
         version: 2.1.8(@tiptap/pm@2.1.8)
@@ -152,7 +152,7 @@ importers:
         version: 1.1.2(graphql@16.8.0)(vue@3.3.4)
       '@vite-pwa/nuxt':
         specifier: 0.1.0
-        version: 0.1.0(@nuxt/kit@3.7.0)(vite-plugin-pwa@0.16.4)
+        version: 0.1.0(@nuxt/kit@3.7.1)(vite-plugin-pwa@0.16.4)
       '@vuelidate/core':
         specifier: 2.0.3
         version: 2.0.3(vue@3.3.4)
@@ -4696,8 +4696,8 @@ packages:
       tailwindcss: 3.3.3(ts-node@10.9.1)
     dev: true
 
-  /@tailwindcss/typography@0.5.9(tailwindcss@3.3.3):
-    resolution: {integrity: sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==}
+  /@tailwindcss/typography@0.5.10(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-Pe8BuPJQJd3FfRnm6H0ulKIGoMEQS+Vq01R6M5aCrFB/ccR/shT+0kXLjouGC1gFLm9hopTFN+DMP0pfwRWzPw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
@@ -5460,13 +5460,13 @@ packages:
       - supports-color
     dev: true
 
-  /@vite-pwa/nuxt@0.1.0(@nuxt/kit@3.7.0)(vite-plugin-pwa@0.16.4):
+  /@vite-pwa/nuxt@0.1.0(@nuxt/kit@3.7.1)(vite-plugin-pwa@0.16.4):
     resolution: {integrity: sha512-w6wm/0Y9yIqo6UTj9LeQUMR+xuRTf2sRdUTffu03SbRyWBzF7SnQcTqTRkXQy+NK+XafZuIDDLC12VkhValg4g==}
     peerDependencies:
       '@nuxt/kit': ^3.5.3
       vite-plugin-pwa: '>=0.16.3 <1'
     dependencies:
-      '@nuxt/kit': 3.7.0(rollup@3.28.1)
+      '@nuxt/kit': 3.7.1(rollup@3.28.1)
       vite-plugin-pwa: 0.16.4(vite@4.4.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
     dev: true
 
