@@ -133,11 +133,11 @@ importers:
         specifier: 8.10.2
         version: 8.10.2
       '@uppy/core':
-        specifier: 3.4.0
-        version: 3.4.0
+        specifier: 3.5.0
+        version: 3.5.0
       '@uppy/tus':
-        specifier: 3.1.3
-        version: 3.1.3(@uppy/core@3.4.0)
+        specifier: 3.2.0
+        version: 3.2.0(@uppy/core@3.5.0)
       '@urql/core':
         specifier: 4.1.2
         version: 4.1.2(graphql@16.8.0)
@@ -3363,6 +3363,11 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /@intlify/shared@9.3.0:
+    resolution: {integrity: sha512-MMGRz6zWxtz7rHtxIIdnyb8SYOIaaseN1IvUhAEs9tOW4u77RD4DFp4qgPXesp2Gxo/5QitH9kwSs0jnxGUNEw==}
+    engines: {node: '>= 16'}
+    dev: true
+
   /@intlify/shared@9.3.0-beta.27:
     resolution: {integrity: sha512-hPMsmVCs+ZUVHHU5VORG6LopzXZT7zmyVNqc9OQG80YpA/N4lT/pkJ4B6DTNIsv2C7mwfGM7RdK+0qPki43YgA==}
     engines: {node: '>= 16'}
@@ -5296,19 +5301,19 @@ packages:
       vue: 3.3.4
     dev: true
 
-  /@uppy/companion-client@3.3.0:
-    resolution: {integrity: sha512-ogU0QieutbM0A6/yxK91w1Ge4KTC+eAGQMk6JKZu58b435dLScRTCsWGFSSIvt1U8RDY7YDCyl51zawh+A+5CQ==}
+  /@uppy/companion-client@3.4.0:
+    resolution: {integrity: sha512-mGm3I/VdlaXvvYnbkidQDk3ttPY7VjvRwoHdXaAOHsIwPZBFUlCRggw84TQN9NejiasqTK/U7xvARDunjVhGBA==}
     dependencies:
-      '@uppy/utils': 5.4.3
+      '@uppy/utils': 5.5.0
       namespace-emitter: 2.0.1
     dev: true
 
-  /@uppy/core@3.4.0:
-    resolution: {integrity: sha512-95NNyXZfuNfB6sgna41fNNPRuTqjrHdlVzkXaJlZzghAckIxNz2CoeMYA1rtgn9o8ykKa2Zdz4kk2MEq8Qy4fw==}
+  /@uppy/core@3.5.0:
+    resolution: {integrity: sha512-Ujm3VrFkqCNnsqvjZL1RQhIdccbjUxfLJW6EhirYcOLr1kCUjhgKSE/iOJnC2eadohHwOWFTx+X8e9bhH6HT7g==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.9
       '@uppy/store-default': 3.0.3
-      '@uppy/utils': 5.4.3
+      '@uppy/utils': 5.5.0
       lodash: 4.17.21
       mime-match: 1.0.2
       namespace-emitter: 2.0.1
@@ -5320,19 +5325,19 @@ packages:
     resolution: {integrity: sha512-/zlvQNj4HjkthI+7dNdj/8mOlTg1Zb1gJ/ZsOxof0g3xXD+OAwm7asRnOwpfj2dos+lExdW/zMn8XsRGsuvb6Q==}
     dev: true
 
-  /@uppy/tus@3.1.3(@uppy/core@3.4.0):
-    resolution: {integrity: sha512-AY4tXHfeM+btnG9uKWc2ZiPhnB29xEFTudVbVmC/vEN6oBeKuJVF9NF7z9s34cRxptvvrZsv8pnRkvPJkTdfyQ==}
+  /@uppy/tus@3.2.0(@uppy/core@3.5.0):
+    resolution: {integrity: sha512-bKZhcxTV9S7GMKqluV2TCI79zWoDxxFNkU4UzQH9T0jXZboqxcvFt09DXA6+/2J9nYQK5REldCg3Ll7MUHJOQQ==}
     peerDependencies:
-      '@uppy/core': ^3.4.0
+      '@uppy/core': ^3.5.0
     dependencies:
-      '@uppy/companion-client': 3.3.0
-      '@uppy/core': 3.4.0
-      '@uppy/utils': 5.4.3
+      '@uppy/companion-client': 3.4.0
+      '@uppy/core': 3.5.0
+      '@uppy/utils': 5.5.0
       tus-js-client: 3.1.1
     dev: true
 
-  /@uppy/utils@5.4.3:
-    resolution: {integrity: sha512-ewQTWQ5Wu1/ocz/lLCkhoXQwHLRktFK4CxrOsZmeCLK9LxjD1GOwSFjOuL199WDQKXiCle6SVlAJGQ3SDlXVkg==}
+  /@uppy/utils@5.5.0:
+    resolution: {integrity: sha512-hNeYEbihSq/dKK7CZ3euvv3pN2NAO0z1x2FFoZsTajSxY4f7PPOZJoltvOQEKx1vFljhLvOY33s3KNlvXjogqg==}
     dependencies:
       lodash: 4.17.21
       preact: 10.17.1
@@ -15762,7 +15767,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.27
+      '@intlify/shared': 9.3.0
       '@intlify/vue-i18n-bridge': 0.8.0(vue-i18n@9.3.0-beta.27)
       '@intlify/vue-router-bridge': 0.8.0(vue@3.3.4)
       ufo: 1.3.0
