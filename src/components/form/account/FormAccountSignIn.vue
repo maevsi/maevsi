@@ -51,7 +51,7 @@
       >
         <ButtonColored
           :aria-label="t('contactSupport')"
-          to="mailto:mail+support@maev.si"
+          to="mailto:support+sign-in@maev.si"
         >
           {{ t('contactSupport') }}
         </ButtonColored>

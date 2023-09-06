@@ -60,7 +60,7 @@
         <AppLink :title="t('githubLinkTitle')" to="https://github.com/maevsi/">
           {{ t('sourceCode') }}
         </AppLink>
-        <AppLink to="mailto:mail+support@maev.si">
+        <AppLink to="mailto:support+maev-si@maev.si">
           {{ t('contact') }}
         </AppLink>
       </LayoutFooterCategory>

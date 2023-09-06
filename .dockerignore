@@ -2,7 +2,6 @@
 !src/
 src/.nuxt/
 src/node_modules/
-src/.nuxt
 src/.eslintcache
 !.npmrc
 !docker-entrypoint.sh
