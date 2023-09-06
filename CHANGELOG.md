@@ -1,3 +1,11 @@
+# [1.22.0](https://github.com/maevsi/maevsi/compare/1.21.5...1.22.0) (2023-09-06)
+
+
+### Features
+
+* use support email address ([2946f66](https://github.com/maevsi/maevsi/commit/2946f66e50d91b54e6246d5a111ea3269bf695b8))
+* use support email address ([#1357](https://github.com/maevsi/maevsi/issues/1357)) ([2a1a57d](https://github.com/maevsi/maevsi/commit/2a1a57d9f8739a50dd60c14e5a4d2d4c6bf85249))
+
 ## [1.21.5](https://github.com/maevsi/maevsi/compare/1.21.4...1.21.5) (2023-08-30)
 
 
