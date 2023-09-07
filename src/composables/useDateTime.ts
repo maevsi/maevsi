@@ -1,11 +1,11 @@
 import { Dayjs } from 'dayjs'
 
 export const useDateTime = () => {
-  const { ssrContext } = useNuxtApp()
+  const event = useRequestEvent()
   const { $dayjs } = useNuxtApp()
   const timezoneCookie = useCookie(TIMEZONE_COOKIE_NAME)
 
-  const timezoneHeader = ssrContext?.event.node.req.headers[TIMEZONE_HEADER_KEY]
+  const timezoneHeader = event?.node.req.headers[TIMEZONE_HEADER_KEY]
   const timezone =
     timezoneHeader && !Array.isArray(timezoneHeader)
       ? timezoneHeader

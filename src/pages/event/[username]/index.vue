@@ -50,15 +50,17 @@ const routeParamUsername = route.params.username as string
 const title = t('title', { name: route.params.username })
 
 // initialization
-useHeadDefault(title, {
+useHeadDefault({
+  title,
+  extension: {
+    ogType: 'profile',
+  },
+})
+
+useServerHeadSafe({
   meta: [
     {
-      hid: 'og:type',
-      property: 'og:type',
-      content: 'profile',
-    },
-    {
-      hid: 'profile:username',
+      id: 'profile:username',
       property: 'profile:username',
       content: route.params.username as string,
     },

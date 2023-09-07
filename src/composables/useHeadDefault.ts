@@ -1,34 +1,21 @@
-import { type UseHeadInput } from '@unhead/vue'
 import { defu } from 'defu'
-import { ComputedRef } from 'vue'
+import type { ComputedRef } from 'vue'
 
-export const useHeadDefault = (
-  title: string | ComputedRef<string>,
-  extension?: UseHeadInput,
-) => {
-  const host = useHost()
-  const router = useRouter()
+export const useHeadDefault = ({
+  extension,
+  title,
+}: {
+  extension?: Parameters<typeof useServerSeoMeta>[0]
+  title: string | ComputedRef<string>
+}) => {
+  const attrs = useAttrs()
 
-  const defaults = {
-    meta: [
-      {
-        hid: 'og:title',
-        property: 'og:title',
-        content: title,
-      },
-      {
-        hid: 'og:url',
-        property: 'og:url',
-        content: `https://${host}${router.currentRoute.value.fullPath}`,
-      },
-      {
-        hid: 'twitter:title',
-        property: 'twitter:title',
-        content: title,
-      },
-    ],
+  const defaults: Parameters<typeof useServerSeoMeta>[0] = {
+    msapplicationConfig: `/assets/static/favicon/browserconfig.xml?v=${CACHE_VERSION}`,
     title,
+    twitterDescription: attrs['site-description'] as string,
+    twitterTitle: title,
   }
 
-  return useHead(defu(extension, defaults))
+  useServerSeoMeta(defu(extension, defaults))
 }

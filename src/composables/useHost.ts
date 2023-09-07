@@ -1,8 +1,8 @@
 export const useHost = () => {
-  const { ssrContext } = useNuxtApp()
+  if (process.server) {
+    const event = useRequestEvent()
 
-  if (ssrContext) {
-    return getHost(ssrContext.event)
+    return getHost(event)
   } else {
     return location.host
   }

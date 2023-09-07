@@ -18,7 +18,7 @@ const init = () => {
 }
 
 // initialization
-useHeadDefault(title)
+useHeadDefault({ title })
 init()
 </script>
 

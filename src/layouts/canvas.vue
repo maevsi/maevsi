@@ -71,6 +71,5 @@ onMounted(() => {
 })
 
 // initialization
-useHeadLayout()
 $dayjs.locale(locale.value)
 </script>

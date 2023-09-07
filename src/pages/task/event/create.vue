@@ -20,7 +20,7 @@ const store = useMaevsiStore()
 const title = t('title')
 
 // initialization
-useHeadDefault(title)
+useHeadDefault({ title })
 </script>
 
 <i18n lang="yaml">

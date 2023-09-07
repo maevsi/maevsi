@@ -179,7 +179,6 @@ const isLoading = computed(() => !!loadingIds.value.length)
 onMounted(() => loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1))
 
 // initialization
-useHeadLayout()
 $dayjs.locale(locale.value)
 </script>
 

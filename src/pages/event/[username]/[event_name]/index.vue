@@ -514,24 +514,11 @@ const title = computed(() =>
 )
 
 // initialization
-useHeadDefault(title, {
-  meta: [
-    {
-      hid: 'description',
-      property: 'description',
-      content: eventDescription.value,
-    },
-    {
-      hid: 'og:description',
-      property: 'og:description',
-      content: eventDescription.value,
-    },
-    {
-      hid: 'twitter:description',
-      property: 'twitter:description',
-      content: eventDescription.value,
-    },
-  ],
+useHeadDefault({
+  title,
+  extension: {
+    description: eventDescription.value,
+  },
 })
 </script>
 

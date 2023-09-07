@@ -251,7 +251,7 @@ onMounted(() => {
 })
 
 // initialization
-useHeadDefault(title)
+useHeadDefault({ title })
 </script>
 
 <script lang="ts">

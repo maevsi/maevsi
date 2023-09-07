@@ -23,7 +23,7 @@ export default defineNuxtConfig({
         lang: 'en', // fallback data to prevent invalid html at generation
       },
       title: SITE_NAME,
-      titleTemplate: '%s', // fully set in `composables/useHeadLayout.ts`
+      titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
     },
     pageTransition: {
       name: 'layout',
