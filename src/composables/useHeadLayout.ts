@@ -25,34 +25,34 @@ export const useHeadLayout = () => {
         'data-testid': 'polyfill-preload',
       },
       {
-        href: '/assets/static/favicon/apple-touch-icon.png?v=2EvuFKRRxT',
+        href: `/assets/static/favicon/apple-touch-icon.png?v=${CACHE_VERSION}`,
         rel: 'apple-touch-icon',
         sizes: '180x180',
       },
       {
-        href: '/assets/static/favicon/favicon-16x16.png?v=2EvuFKRRxT',
+        href: `/assets/static/favicon/favicon-16x16.png?v=${CACHE_VERSION}`,
         rel: 'icon',
         sizes: '16x16',
         type: 'image/png',
       },
       {
-        href: '/assets/static/favicon/favicon-32x32.png?v=2EvuFKRRxT',
+        href: `/assets/static/favicon/favicon-32x32.png?v=${CACHE_VERSION}`,
         rel: 'icon',
         sizes: '32x32',
         type: 'image/png',
       },
       {
-        href: '/favicon.ico?v=2EvuFKRRxT',
+        href: `/favicon.ico?v=${CACHE_VERSION}`,
         rel: 'icon',
         type: 'image/x-icon',
       },
       {
         color: '#202020',
-        href: '/assets/static/favicon/safari-pinned-tab.svg?v=2EvuFKRRxT',
+        href: `/assets/static/favicon/safari-pinned-tab.svg?v=${CACHE_VERSION}`,
         rel: 'mask-icon',
       },
       {
-        href: '/favicon.ico?v=2EvuFKRRxT',
+        href: `/favicon.ico?v=${CACHE_VERSION}`,
         rel: 'shortcut icon',
       },
     ],
@@ -69,7 +69,7 @@ export const useHeadLayout = () => {
         content: t('globalOgSeoDescription'),
       },
       {
-        content: '/assets/static/favicon/browserconfig.xml?v=2EvuFKRRxT',
+        content: `/assets/static/favicon/browserconfig.xml?v=${CACHE_VERSION}`,
         name: 'msapplication-config',
       },
       {

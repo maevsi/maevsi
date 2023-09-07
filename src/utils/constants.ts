@@ -1,5 +1,6 @@
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
+export const CACHE_VERSION = '2EvuFKRRxT'
 export const ITEMS_PER_PAGE = 10
 export const ITEMS_PER_PAGE_LARGE = 100
 export const JWT_ALGORITHM = 'RS256'
