@@ -19,6 +19,8 @@
 <script setup lang="ts">
 import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
 
+import { useNuxtApp } from '#app/nuxt'
+
 definePageMeta({
   async validate(route) {
     const { $urql } = useNuxtApp()

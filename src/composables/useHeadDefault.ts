@@ -17,5 +17,5 @@ export const useHeadDefault = ({
     twitterTitle: title,
   }
 
-  useServerSeoMeta(defu(extension, defaults))
+  useSeoMeta(defu(extension, defaults)) // TODO: use `useServerSeoMeta`
 }

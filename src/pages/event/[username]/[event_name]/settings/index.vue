@@ -52,6 +52,8 @@ import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/ev
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 
+import { useNuxtApp } from '#app/nuxt'
+
 definePageMeta({
   async validate(route) {
     const { $urql } = useNuxtApp()

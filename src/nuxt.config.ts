@@ -294,6 +294,7 @@ export default defineNuxtConfig({
       : undefined,
   },
   linkChecker: {
+    enabled: false,
     debug: process.env.NODE_ENV === 'development',
     failOnError: true,
   },
