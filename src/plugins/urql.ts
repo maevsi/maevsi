@@ -62,7 +62,7 @@ const invalidateCache = (
 // }
 
 export default defineNuxtPlugin(async (nuxtApp) => {
-  const config = useRuntimeConfig()
+  const runtimeConfig = useRuntimeConfig()
   const host = useHost()
   const ssr = ssrExchange({
     isClient: process.client,
@@ -135,13 +135,13 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
       return { headers }
     },
-    url: config.public.stagingHost
-      ? `https://postgraphile.${config.public.stagingHost}/graphql`
+    url: runtimeConfig.public.vio.stagingHost
+      ? `https://postgraphile.${runtimeConfig.public.vio.stagingHost}/graphql`
       : process.server
       ? 'http://postgraphile:5000/graphql'
       : 'https://postgraphile.' + getDomainTldPort(host) + '/graphql',
     exchanges: [
-      ...(config.public.isInProduction ? [] : [devtoolsExchange]),
+      ...(runtimeConfig.public.vio.isInProduction ? [] : [devtoolsExchange]),
       cache,
       ssr, // `ssr` must be before `fetchExchange`
       fetchExchange,

@@ -46,9 +46,9 @@ export const copyText = (text: string) =>
 
 const getCsp = (host: string): Record<string, Array<string>> => {
   const hostName = host.replace(/:[0-9]+$/, '')
-  const config = useRuntimeConfig()
+  const runtimeConfig = useRuntimeConfig()
 
-  const stagingHostOrHost = config.public.stagingHost || host
+  const stagingHostOrHost = runtimeConfig.public.vio.stagingHost || host
 
   const base = {
     'base-uri': ["'none'"], // Mozilla Observatory.
@@ -113,7 +113,10 @@ const getCsp = (host: string): Record<string, Array<string>> => {
     'connect-src': [`https://${stagingHostOrHost}/cdn-cgi/rum`],
   }
 
-  return defu(base, config.public.isInProduction ? production : development)
+  return defu(
+    base,
+    runtimeConfig.public.vio.isInProduction ? production : development,
+  )
 }
 
 export const getCspAsString = (event: H3Event): string => {

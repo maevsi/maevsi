@@ -52,22 +52,26 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      googleAnalyticsId: '', // set via environment variable `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` only
       i18n: {
         baseUrl: BASE_URL,
       },
-      isInProduction: process.env.NODE_ENV === 'production',
-      stagingHost:
-        process.env.NODE_ENV !== 'production' &&
-        !process.env.NUXT_PUBLIC_STACK_DOMAIN
-          ? 'maev.si'
-          : undefined,
       turnstile: {
         siteKey: '1x00000000000000000000AA',
+      },
+      vio: {
+        googleAnalyticsId: '', // set via environment variable `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` only
+        isInProduction: process.env.NODE_ENV === 'production',
+        isTesting: false,
+        stagingHost:
+          process.env.NODE_ENV !== 'production' &&
+          !process.env.NUXT_PUBLIC_STACK_DOMAIN
+            ? 'maev.si'
+            : undefined,
       },
     },
   },
   typescript: {
+    shim: false,
     strict: true,
     tsConfig: {
       compilerOptions: {

@@ -1,8 +1,8 @@
 export const useTusdFilesUrl = () => {
-  const config = useRuntimeConfig()
+  const runtimeConfig = useRuntimeConfig()
   const host = useHost()
 
   return `https://tusd.${getDomainTldPort(
-    config.public.stagingHost || host,
+    runtimeConfig.public.vio.stagingHost || host,
   )}/files/`
 }

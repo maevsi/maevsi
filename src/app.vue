@@ -1,6 +1,9 @@
 <template>
   <div>
-    <CardStateInfo v-if="!isBrowserSupported && !isTesting()" is-edgy>
+    <CardStateInfo
+      v-if="!isBrowserSupported && !runtimeConfig.public.vio.isTesting"
+      is-edgy
+    >
       {{ t('browserUnsupported') }}
     </CardStateInfo>
     <NuxtLayout>
@@ -25,6 +28,7 @@ const { t } = useI18n()
 const store = useMaevsiStore()
 const { $dayjs, $pwa } = useNuxtApp()
 const router = useRouter()
+const runtimeConfig = useRuntimeConfig()
 
 // data
 const isBrowserSupported = ref(true)
@@ -73,7 +77,7 @@ watch(
 watch(
   () => $pwa,
   async (current, _previous) => {
-    if (current.showInstallPrompt && !isTesting()) {
+    if (current.showInstallPrompt && !runtimeConfig.public.vio.isTesting) {
       const result = await showToast({
         confirmButtonText: t('pwaConfirmButtonText'),
         showConfirmButton: true,

@@ -22,12 +22,12 @@ export default defineEventHandler(async (event: H3Event) => {
 })
 
 export const useJwtPublicKey = async () => {
-  const config = useRuntimeConfig()
+  const runtimeConfig = useRuntimeConfig()
   const jwtPublicKeyPath = process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE
 
-  if (config.public.stagingHost) {
+  if (runtimeConfig.public.vio.stagingHost) {
     return await ofetch<string>(
-      `https://${config.public.stagingHost}/api/auth-key`,
+      `https://${runtimeConfig.public.vio.stagingHost}/api/auth-key`,
     )
   } else {
     return jwtPublicKeyPath && fs.existsSync(jwtPublicKeyPath)

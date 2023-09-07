@@ -21,9 +21,12 @@
 
 <script setup lang="ts">
 const { t } = useI18n()
+const runtimeConfig = useRuntimeConfig()
 
 // computations
-const year = computed(() => (isTesting() ? 1337 : new Date().getFullYear()))
+const year = computed(() =>
+  runtimeConfig.public.vio.isTesting ? 1337 : new Date().getFullYear(),
+)
 </script>
 
 <i18n lang="yaml">
