@@ -170,7 +170,7 @@ const scrollToSteps = () => {
 
 // lifecycle
 onMounted(() => {
-  if (window.pageYOffset === 0) {
+  if (window.scrollY === 0) {
     isScrollHintShown.value = true
 
     window.addEventListener('scroll', hideScrollHint)
