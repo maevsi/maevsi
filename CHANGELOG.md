@@ -1,3 +1,18 @@
+# [1.23.0](https://github.com/maevsi/maevsi/compare/1.22.0...1.23.0) (2023-09-07)
+
+
+### Bug Fixes
+
+* **head:** drop server composables ([ce60c3c](https://github.com/maevsi/maevsi/commit/ce60c3ca488ca11d317f025b827faf0dfc44cf99))
+* **page-meta:** workaround missing imports ([45a4203](https://github.com/maevsi/maevsi/commit/45a420343a914d6aaaf86debf5a67b8a0fe89052))
+
+
+### Features
+
+* implement seo composables ([c3d079f](https://github.com/maevsi/maevsi/commit/c3d079fe1f14623ac7d6747cbdc3b79dc2cc9fcd))
+* implement seo module ([8f06e32](https://github.com/maevsi/maevsi/commit/8f06e32ad5cdfca3550050b6e31fea31b5332ca8))
+* seo ([#1362](https://github.com/maevsi/maevsi/issues/1362)) ([f93ad9b](https://github.com/maevsi/maevsi/commit/f93ad9bf4c4e0eb5ed67e299555cbea39323d471))
+
 # [1.22.0](https://github.com/maevsi/maevsi/compare/1.21.5...1.22.0) (2023-09-06)
 
 
