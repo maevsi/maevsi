@@ -9,7 +9,9 @@
     <ImageUploadGallery
       :allow-deletion="false"
       selectable
-      :username="isTesting() ? 'username' : routeParamUsername"
+      :username="
+        runtimeConfig.public.vio.isTesting ? 'username' : routeParamUsername
+      "
       @selection="selectProfilePictureStorageKey"
     />
     <template #header>{{ t('header') }}</template>
@@ -25,6 +27,7 @@ const emit = defineEmits<{
 
 const route = useRoute()
 const { t } = useI18n()
+const runtimeConfig = useRuntimeConfig()
 
 // api data
 const profilePictureSetMutation = useProfilePictureSetMutation()

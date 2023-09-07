@@ -54,6 +54,8 @@ import { useMaevsiStore } from '~/store'
 import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
 import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
 
+import { useNuxtApp } from '#app/nuxt'
+
 definePageMeta({
   async validate(route) {
     const { $urql } = useNuxtApp()
@@ -99,7 +101,7 @@ const showModalImageSelection = () => {
 }
 
 // initialization
-useHeadDefault(title)
+useHeadDefault({ title })
 </script>
 
 <i18n lang="yaml">

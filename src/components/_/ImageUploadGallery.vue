@@ -142,7 +142,7 @@ const emit = defineEmits<{
 const { t } = useI18n()
 const route = useRoute()
 const store = useMaevsiStore()
-const config = useRuntimeConfig()
+const runtimeConfig = useRuntimeConfig()
 const TUSD_FILES_URL = useTusdFilesUrl()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
@@ -222,8 +222,8 @@ const deleteImageUpload = (uploadId: string) => {
   pending.deletions.push(uploadId)
 
   const xhr = new XMLHttpRequest()
-  const host = config.public.stagingHost
-    ? `https://${config.public.stagingHost}`
+  const host = runtimeConfig.public.vio.stagingHost
+    ? `https://${runtimeConfig.public.vio.stagingHost}`
     : ''
 
   xhr.open('DELETE', `${host}/api/tusd?uploadId=${uploadId}`, true)
@@ -325,7 +325,7 @@ const getUploadBlobPromise = () =>
 
         uppy.value = new Uppy({
           id: 'profile-picture',
-          debug: !config.public.isInProduction,
+          debug: !runtimeConfig.public.vio.isInProduction,
           restrictions: {
             maxFileSize: 1048576,
             maxNumberOfFiles: 1,

@@ -12,7 +12,7 @@ Find events, guests and friends: [maev.si](https://maev.si/).
 
 This project is deployed within the [maevsi_stack](https://github.com/maevsi/maevsi_stack/) in accordance with the [DargStack template](https://github.com/dargstack/dargstack_template/) to make deployment a breeze.
 
-![Welcome](docs/assets/hero.png "maevsi")
+![Welcome](https://maev.si/__og_image__/og.png "maevsi")
 
 ## Table of Contents
 1. **[Development](#development)**

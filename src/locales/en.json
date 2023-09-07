@@ -1,8 +1,6 @@
 {
   "globalAvailabilityNotYet": "Not yet available.",
   "globalLoading": "Loading...",
-  "globalOgImageAlt": "maevsi's logo.",
-  "globalOgSeoDescription": "Find events, guests and friends.",
   "globalPlaceholderAddress": "Eventstreet 1,\n12345 Guestcity",
   "globalPlaceholderEmailAddress": "email{'@'}addre.ss",
   "globalPlaceholderFirstName": "Firstname",
@@ -10,6 +8,8 @@
   "globalPlaceholderPhoneNumber": "+1234567890",
   "globalPlaceholderUrl": "https://websi.te",
   "globalPlaceholderUsername": "user-name",
+  "globalSeoOgImageAlt": "maevsi's logo.",
+  "globalSeoSiteDescription": "Find events, guests and friends.",
   "globalShowMore": "Show more",
   "globalStatusError": "Error",
   "globalStatusWarning": "Warning",

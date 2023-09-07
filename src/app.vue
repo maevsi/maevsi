@@ -1,6 +1,9 @@
 <template>
   <div>
-    <CardStateInfo v-if="!isBrowserSupported && !isTesting()" is-edgy>
+    <CardStateInfo
+      v-if="!isBrowserSupported && !runtimeConfig.public.vio.isTesting"
+      is-edgy
+    >
       {{ t('browserUnsupported') }}
     </CardStateInfo>
     <NuxtLayout>
@@ -21,10 +24,12 @@ import { useMaevsiStore } from './store'
 import supportedBrowsers from '~/supportedBrowsers'
 
 const cookieControl = useCookieControl()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const store = useMaevsiStore()
 const { $dayjs, $pwa } = useNuxtApp()
 const router = useRouter()
+const runtimeConfig = useRuntimeConfig()
+const siteConfig = useSiteConfig()
 
 // data
 const isBrowserSupported = ref(true)
@@ -73,7 +78,7 @@ watch(
 watch(
   () => $pwa,
   async (current, _previous) => {
-    if (current.showInstallPrompt && !isTesting()) {
+    if (current.showInstallPrompt && !runtimeConfig.public.vio.isTesting) {
       const result = await showToast({
         confirmButtonText: t('pwaConfirmButtonText'),
         showConfirmButton: true,
@@ -92,6 +97,25 @@ watch(
 )
 
 // initialization
+updateSiteConfig({
+  description: t('globalSeoSiteDescription'),
+})
+defineOgImage({
+  alt: t('globalSeoOgImageAlt'),
+  // component: ogImageComponentProp.value,
+  description: t('globalSeoSiteDescription'),
+})
+useAppLayout()
+useFavicons()
+usePolyfills()
+useSchemaOrg([
+  defineWebSite({
+    description: t('globalSeoSiteDescription'),
+    inLanguage: locale,
+    name: siteConfig.name,
+  }),
+  defineWebPage(),
+])
 init()
 </script>
 

@@ -64,6 +64,10 @@ import {
   useEventUnlockMutation,
 } from '~/gql/documents/mutations/event/eventUnlock'
 
+import { useNuxtApp } from '#app/nuxt'
+import { useLocalePath } from '#i18n'
+import { useRoute } from '#vue-router'
+
 definePageMeta({
   layout: computed(() => {
     const route = useRoute()
@@ -77,7 +81,7 @@ definePageMeta({
     // must be wrapped with `defineNuxtRouteMiddleware` (https://github.com/nuxt/nuxt/issues/14473)
     defineNuxtRouteMiddleware(async (to) => {
       const { $urql } = useNuxtApp()
-      const localePath = useLocalePath()
+      const localePath = useLocalePath({ route: to })
       const { jwtStore } = useJwtStore()
 
       if (
@@ -205,7 +209,7 @@ onMounted(() => {
 })
 
 // initialization
-useHeadDefault(title)
+useHeadDefault({ title })
 </script>
 
 <i18n lang="yaml">

@@ -150,6 +150,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
+const siteConfig = useSiteConfig()
 
 // refs
 const sectionStepsRef = ref<HTMLElement>()
@@ -169,7 +170,7 @@ const scrollToSteps = () => {
 
 // lifecycle
 onMounted(() => {
-  if (window.pageYOffset === 0) {
+  if (window.scrollY === 0) {
     isScrollHintShown.value = true
 
     window.addEventListener('scroll', hideScrollHint)
@@ -182,7 +183,7 @@ onBeforeUnmount(() => {
 })
 
 // initialization
-useHeadDefault('maevsi')
+useHeadDefault({ title: siteConfig.name })
 </script>
 
 <i18n lang="yaml">

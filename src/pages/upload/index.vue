@@ -27,7 +27,7 @@ const title = t('title')
 const signedInUsername = computed(() => store.signedInUsername)
 
 // initialization
-useHeadDefault(title)
+useHeadDefault({ title })
 </script>
 
 <i18n lang="yaml">

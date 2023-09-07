@@ -161,7 +161,7 @@ const runtimeConfig = useRuntimeConfig()
 
 // data
 const idLabelFull = `maevsi-${
-  runtimeConfig.public.isInProduction ? 'prod' : 'dev'
+  runtimeConfig.public.vio.isInProduction ? 'prod' : 'dev'
 }-${props.idLabel}`
 
 // initialization

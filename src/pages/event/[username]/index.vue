@@ -19,6 +19,8 @@
 <script setup lang="ts">
 import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
 
+import { useNuxtApp } from '#app/nuxt'
+
 definePageMeta({
   async validate(route) {
     const { $urql } = useNuxtApp()
@@ -50,15 +52,18 @@ const routeParamUsername = route.params.username as string
 const title = t('title', { name: route.params.username })
 
 // initialization
-useHeadDefault(title, {
+useHeadDefault({
+  title,
+  extension: {
+    ogType: 'profile',
+  },
+})
+
+// TODO: replace with `useServerHeadSafe`
+useHeadSafe({
   meta: [
     {
-      hid: 'og:type',
-      property: 'og:type',
-      content: 'profile',
-    },
-    {
-      hid: 'profile:username',
+      id: 'profile:username',
       property: 'profile:username',
       content: route.params.username as string,
     },

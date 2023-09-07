@@ -64,7 +64,7 @@
         </h2>
         <div class="m-auto w-3/4 sm:w-1/2 xl:w-1/3 2xl:w-1/4">
           <Doughnut
-            v-if="!isTesting()"
+            v-if="!runtimeConfig.public.vio.isTesting"
             ref="doughnutRef"
             :data="dataComputed"
             :options="options"
@@ -115,6 +115,7 @@ const props = withDefaults(defineProps<Props>(), {})
 const { $colorMode } = useNuxtApp()
 const { t } = useI18n()
 const store = useMaevsiStore()
+const runtimeConfig = useRuntimeConfig()
 
 // refs
 const after = ref<string>()

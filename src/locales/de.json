@@ -1,8 +1,6 @@
 {
   "globalAvailabilityNotYet": "Noch nicht verfügbar.",
   "globalLoading": "Lade...",
-  "globalOgImageAlt": "maevsis Logo.",
-  "globalOgSeoDescription": "Finde Veranstaltungen, Gäste und Freunde.",
   "globalPlaceholderAddress": "Veranstaltungsstraße 1,\n12345 Gaststadt",
   "globalPlaceholderEmailAddress": "e-mail{'@'}adres.se",
   "globalPlaceholderFirstName": "Vorname",
@@ -10,6 +8,8 @@
   "globalPlaceholderPhoneNumber": "+1234567890",
   "globalPlaceholderUrl": "https://websei.te",
   "globalPlaceholderUsername": "nutzer-name",
+  "globalSeoOgImageAlt": "maevsis Logo.",
+  "globalSeoSiteDescription": "Finde Veranstaltungen, Gäste und Freunde.",
   "globalShowMore": "Mehr anzeigen",
   "globalStatusError": "Fehler",
   "globalStatusWarning": "Warnung",

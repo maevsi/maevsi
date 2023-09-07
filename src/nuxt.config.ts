@@ -1,48 +1,53 @@
-import { JWT_NAME, LOCALES, TIMEZONE_COOKIE_NAME } from './utils/constants'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-export const SITEMAP_EXCLUSIONS = ['/teapot'] // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
-export const SITEMAP_EXCLUSIONS_LOCALIZED: string[] = []
+import {
+  BASE_URL,
+  CACHE_VERSION,
+  I18N_COOKIE_NAME,
+  JWT_NAME,
+  LOCALES,
+  SITE_NAME,
+  TIMEZONE_COOKIE_NAME,
+} from './utils/constants'
 
-for (const exclusion of SITEMAP_EXCLUSIONS) {
-  for (const locale of [{ code: '' }, ...LOCALES]) {
-    SITEMAP_EXCLUSIONS_LOCALIZED.push(`/${locale.code}${exclusion}`)
-  }
-}
-
-const BASE_URL =
-  'https://' +
-  (process.env.NUXT_PUBLIC_STACK_DOMAIN ||
-    `${process.env.HOST || 'localhost'}:${
-      !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-        ? '3000'
-        : '3001'
-    }`)
+const currentDir = dirname(fileURLToPath(import.meta.url))
 
 // TODO: let this error in "eslint (compat/compat)"" (https://github.com/DefinitelyTyped/DefinitelyTyped/issues/55519)
 // setImmediate(() => {})
 
 export default defineNuxtConfig({
   app: {
+    head: {
+      htmlAttrs: {
+        lang: 'en', // fallback data to prevent invalid html at generation
+      },
+      title: SITE_NAME,
+      titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
+    },
     pageTransition: {
       name: 'layout',
     },
   },
-  css: ['@/assets/css/main.css'],
   devtools: {
-    enabled: process.env.NODE_ENV === 'development',
+    enabled:
+      process.env.NODE_ENV !== 'production' &&
+      !process.env.NUXT_PUBLIC_IS_TESTING,
+    timeline: {
+      enabled: true,
+    },
   },
   modules: [
     '@dargmuesli/nuxt-cookie-control',
+    '@nuxt/image',
     '@nuxtjs/color-mode',
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
+    '@nuxtjs/tailwindcss',
     '@nuxtjs/turnstile',
+    '@nuxtseo/module',
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
-    [
-      '@funken-studio/sitemap-nuxt-3',
-      { exclude: SITEMAP_EXCLUSIONS_LOCALIZED, i18n: true },
-    ], // Should be declared at the end of the array.
   ],
   nitro: {
     compressPublicAssets: true,
@@ -52,22 +57,26 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      googleAnalyticsId: '', // set via environment variable `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` only
       i18n: {
         baseUrl: BASE_URL,
       },
-      isInProduction: process.env.NODE_ENV === 'production',
-      stagingHost:
-        process.env.NODE_ENV !== 'production' &&
-        !process.env.NUXT_PUBLIC_STACK_DOMAIN
-          ? 'maev.si'
-          : undefined,
       turnstile: {
         siteKey: '1x00000000000000000000AA',
+      },
+      vio: {
+        googleAnalyticsId: '', // set via environment variable `NUXT_PUBLIC_GOOGLE_ANALYTICS_ID` only
+        isInProduction: process.env.NODE_ENV === 'production',
+        isTesting: false,
+        stagingHost:
+          process.env.NODE_ENV !== 'production' &&
+          !process.env.NUXT_PUBLIC_STACK_DOMAIN
+            ? 'maev.si'
+            : undefined,
       },
     },
   },
   typescript: {
+    shim: false,
     strict: true,
     tsConfig: {
       compilerOptions: {
@@ -132,7 +141,7 @@ export default defineNuxtConfig({
             de: 'Sprache',
             en: 'Language',
           },
-          targetCookieIds: ['i18n_redirected'],
+          targetCookieIds: [I18N_COOKIE_NAME],
         },
         {
           description: {
@@ -159,12 +168,7 @@ export default defineNuxtConfig({
             'https://policies.google.com/terms': 'Google Terms of Service',
           },
           name: 'Analytics',
-          targetCookieIds: [
-            '_ga',
-            '_ga_WMQ1JY99XH',
-            '_gat_gtag_UA_186047809_1',
-            '_gid',
-          ],
+          targetCookieIds: ['_ga', '_ga_WMQ1JY99XH'],
         },
       ],
     },
@@ -177,13 +181,12 @@ export default defineNuxtConfig({
   i18n: {
     defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
     detectBrowserLanguage: {
+      cookieKey: I18N_COOKIE_NAME,
       cookieSecure: true,
-      redirectOn: 'root',
     },
     langDir: 'locales',
     lazy: true,
     locales: LOCALES,
-    vueI18n: './i18n.config.ts',
   },
   pwa: {
     // Leads to issues with Cypress e2e tests.
@@ -199,85 +202,85 @@ export default defineNuxtConfig({
       theme_color: '#1f2937',
       icons: [
         {
-          src: '/assets/static/favicon/android-chrome-64x64.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-64x64.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '64x64',
           purpose: 'any',
         },
         {
-          src: '/assets/static/favicon/android-chrome-64x64.maskable.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-64x64.maskable.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '64x64',
           purpose: 'maskable',
         },
         {
-          src: '/assets/static/favicon/android-chrome-120x120.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-120x120.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '120x120',
           purpose: 'any',
         },
         {
-          src: '/assets/static/favicon/android-chrome-120x120.maskable.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-120x120.maskable.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '120x120',
           purpose: 'maskable',
         },
         {
-          src: '/assets/static/favicon/android-chrome-144x144.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-144x144.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '144x144',
           purpose: 'any',
         },
         {
-          src: '/assets/static/favicon/android-chrome-144x144.maskable.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-144x144.maskable.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '144x144',
           purpose: 'maskable',
         },
         {
-          src: '/assets/static/favicon/android-chrome-152x152.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-152x152.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '152x152',
           purpose: 'any',
         },
         {
-          src: '/assets/static/favicon/android-chrome-152x152.maskable.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-152x152.maskable.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '152x152',
           purpose: 'maskable',
         },
         {
-          src: '/assets/static/favicon/android-chrome-192x192.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-192x192.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '192x192',
           purpose: 'any',
         },
         {
-          src: '/assets/static/favicon/android-chrome-192x192.maskable.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-192x192.maskable.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '192x192',
           purpose: 'maskable',
         },
         {
-          src: '/assets/static/favicon/android-chrome-384x384.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-384x384.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '384x384',
           purpose: 'any',
         },
         {
-          src: '/assets/static/favicon/android-chrome-384x384.maskable.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-384x384.maskable.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '384x384',
           purpose: 'maskable',
         },
         {
-          src: '/assets/static/favicon/android-chrome-512x512.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-512x512.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '512x512',
           purpose: 'any',
         },
         {
-          src: '/assets/static/favicon/android-chrome-512x512.maskable.png?v=2EvuFKRRxT',
+          src: `/assets/static/favicon/android-chrome-512x512.maskable.png?v=${CACHE_VERSION}`,
           type: 'image/png',
           sizes: '512x512',
           purpose: 'maskable',
@@ -289,5 +292,28 @@ export default defineNuxtConfig({
     secretKeyPath: process.env.NUXT_PUBLIC_STACK_DOMAIN
       ? '/run/secrets/maevsi_turnstile-key'
       : undefined,
+  },
+  linkChecker: {
+    enabled: false,
+    debug: process.env.NODE_ENV === 'development',
+    failOnError: true,
+  },
+  seo: {
+    splash: false,
+  },
+  site: {
+    baseUrl: BASE_URL,
+    debug: process.env.NODE_ENV === 'development',
+    name: SITE_NAME,
+    titleSeparator: '·',
+  },
+  sitemap: {
+    credits: false,
+    exclude: LOCALES.map(
+      (locale) => `/${locale.code !== 'en' ? `${locale.code}/` : ''}teapot`, // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
+    ),
+  },
+  tailwindcss: {
+    cssPath: join(currentDir, './assets/css/tailwind.css'),
   },
 })

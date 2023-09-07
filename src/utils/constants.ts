@@ -1,5 +1,18 @@
 import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
+export const SITE_NAME = 'maevsi'
+
+export const BASE_URL =
+  (process.env.NUXT_PUBLIC_STACK_DOMAIN ? 'https' : 'http') +
+  '://' +
+  (process.env.NUXT_PUBLIC_STACK_DOMAIN ||
+    `${process.env.HOST || 'localhost'}:${
+      !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+        ? '3000'
+        : '3001'
+    }`)
+export const CACHE_VERSION = '2EvuFKRRxT'
+export const I18N_COOKIE_NAME = 'i18n_r'
 export const ITEMS_PER_PAGE = 10
 export const ITEMS_PER_PAGE_LARGE = 100
 export const JWT_ALGORITHM = 'RS256'
