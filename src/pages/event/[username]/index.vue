@@ -59,7 +59,8 @@ useHeadDefault({
   },
 })
 
-useServerHeadSafe({
+// TODO: replace with `useServerHeadSafe`
+useHeadSafe({
   meta: [
     {
       id: 'profile:username',

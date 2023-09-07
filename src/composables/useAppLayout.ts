@@ -2,7 +2,8 @@ export const useAppLayout = () => {
   const appConfig = useAppConfig()
   const siteConfig = useSiteConfig()
 
-  useServerHeadSafe({
+  // TODO: replace with `useServerHeadSafe`
+  useHeadSafe({
     ...useLocaleHead({ addDirAttribute: true, addSeoAttributes: true }).value,
     bodyAttrs: {
       class:
@@ -11,7 +12,7 @@ export const useAppLayout = () => {
   })
 
   // TODO: convert to `useServerHeadSafe` (https://github.com/harlan-zw/nuxt-seo-kit/issues/98)
-  useServerSeoMeta({
+  useSeoMeta({
     titleTemplate: (title) =>
       title && title !== siteConfig.name
         ? `${title} ${siteConfig.titleSeparator} ${siteConfig.name}`
@@ -19,11 +20,13 @@ export const useAppLayout = () => {
   })
 
   if (appConfig.vio.seoMeta) {
-    useServerSeoMeta(appConfig.vio.seoMeta)
+    // TODO: replace with `useServerSeoMeta`
+    useSeoMeta(appConfig.vio.seoMeta)
   }
 
   if (appConfig.vio.themeColor) {
-    useServerSeoMeta({
+    // TODO: replace with `useServerSeoMeta`
+    useSeoMeta({
       msapplicationTileColor: appConfig.vio.themeColor,
       themeColor: appConfig.vio.themeColor,
     })

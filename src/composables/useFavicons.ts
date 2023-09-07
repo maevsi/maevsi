@@ -1,7 +1,8 @@
 export const useFavicons = () => {
   const appConfig = useAppConfig()
 
-  useServerHeadSafe({
+  // TODO: replace with `useServerHeadSafe`
+  useHeadSafe({
     link: [
       {
         color: appConfig.vio.themeColor,
