@@ -1,0 +1,7 @@
+# START nuxt-simple-robots (indexing disabled)
+User-agent: *
+Disallow: /
+
+# Dev mode  - View the indexable output by setting ?indexable
+
+# END nuxt-simple-robots

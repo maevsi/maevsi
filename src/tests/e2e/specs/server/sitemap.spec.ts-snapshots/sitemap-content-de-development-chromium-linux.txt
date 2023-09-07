@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/__sitemap__/style.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://localhost:3000/de</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/account</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/account" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/account" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/account" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/contact</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/contact" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/contact" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/contact" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/dashboard</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/dashboard" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/dashboard" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/dashboard" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/event</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/event" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/event" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/event" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/legal-notice</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/legal-notice" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/legal-notice" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/legal-notice" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/privacy-policy</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/privacy-policy" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/privacy-policy" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/privacy-policy" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/upload</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/upload" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/upload" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/upload" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/dashboard/dev</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/dashboard/dev" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/dashboard/dev" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/dashboard/dev" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/task/search</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/task/search" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/task/search" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/task/search" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/task/account/register</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/task/account/register" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/task/account/register" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/task/account/register" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/task/account/sign-in</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/task/account/sign-in" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/task/account/sign-in" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/task/account/sign-in" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/task/event/create</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/task/event/create" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/task/event/create" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/task/event/create" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/task/event/unlock</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/task/event/unlock" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/task/event/unlock" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/task/event/unlock" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/task/account/email-address/verify</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/task/account/email-address/verify" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/task/account/email-address/verify" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/task/account/email-address/verify" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/task/account/password/reset</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/task/account/password/reset" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/task/account/password/reset" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/task/account/password/reset" />
+    </url>
+    <url>
+        <loc>http://localhost:3000/de/task/account/password/reset/request</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/task/account/password/reset/request" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3000/de/task/account/password/reset/request" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3000/task/account/password/reset/request" />
+    </url>
+</urlset>

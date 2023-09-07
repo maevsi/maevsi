@@ -308,10 +308,10 @@ export default defineNuxtConfig({
     titleSeparator: '·',
   },
   sitemap: {
-    exclude: [
-      '/api/pages/**',
-      '/teapot', // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
-    ],
+    credits: false,
+    exclude: LOCALES.map(
+      (locale) => `/${locale.code !== 'en' ? `${locale.code}/` : ''}teapot`, // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
+    ),
   },
   tailwindcss: {
     cssPath: join(currentDir, './assets/css/tailwind.css'),
