@@ -1,4 +1,4 @@
-import { type Config } from 'tailwindcss'
+import type { ModuleOptions } from '@nuxtjs/tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 import { PluginAPI } from 'tailwindcss/types/config'
@@ -233,4 +233,4 @@ export default {
       '9xl': ['8rem', { lineHeight: '10rem' }],
     },
   },
-} satisfies Config
+} as ModuleOptions['config']
