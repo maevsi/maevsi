@@ -1,7 +1,7 @@
 import VueGtag from 'vue-gtag'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const config = useRuntimeConfig()
+  const runtimeConfig = useRuntimeConfig()
   const router = useRouter()
   const cookieControl = useCookieControl()
 
@@ -10,9 +10,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     {
       bootstrap: !!cookieControl.cookiesEnabledIds.value?.includes('ga'),
       config: {
-        id: config.public.vio.googleAnalyticsId,
+        id: runtimeConfig.public.vio.googleAnalyticsId,
         params: {
-          cookie_flags: 'secure;samesite=strict',
+          cookie_flags: `samesite=strict${
+            runtimeConfig.public.vio.isInProduction ? ';secure' : ''
+          }`,
         },
       },
     },

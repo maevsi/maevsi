@@ -12,11 +12,13 @@ export const authenticationAnonymous = async ({
   $urqlReset,
   client,
   event,
+  isInProduction,
   store,
 }: {
   $urqlReset: () => void
   client: Client
   event?: H3Event
+  isInProduction: boolean
   store: ReturnType<typeof useMaevsiStore>
 }) => {
   consola.trace('Authenticating anonymously...')
@@ -37,9 +39,10 @@ export const authenticationAnonymous = async ({
 
     await jwtStore({
       $urqlReset,
-      store,
       event,
+      isInProduction,
       jwt: result.data.authenticate.jwt,
+      store,
     })
   }
 }
@@ -68,12 +71,14 @@ export const jwtRefresh = async ({
   client,
   event,
   id,
+  isInProduction,
   store,
 }: {
   $urqlReset: () => void
   client: Client
   event: H3Event
   id: string
+  isInProduction: boolean
   store: ReturnType<typeof useMaevsiStore>
 }) => {
   consola.trace('Refreshing a JWT...')
@@ -82,13 +87,20 @@ export const jwtRefresh = async ({
 
   if (result.error) {
     consola.error(result.error)
-    await signOut({ $urqlReset, client, event, store })
+    await signOut({ $urqlReset, client, event, isInProduction, store })
   } else if (!result.data?.jwtRefresh?.jwt) {
-    await authenticationAnonymous({ $urqlReset, client, event, store })
+    await authenticationAnonymous({
+      $urqlReset,
+      client,
+      event,
+      isInProduction,
+      store,
+    })
   } else {
     await jwtStore({
       $urqlReset,
       event,
+      isInProduction,
       jwt: result.data.jwtRefresh.jwt,
       store,
     })
@@ -97,14 +109,16 @@ export const jwtRefresh = async ({
 
 export const jwtStore = async ({
   $urqlReset,
-  store,
   event,
+  isInProduction,
   jwt,
+  store,
 }: {
   $urqlReset: () => void
-  store: ReturnType<typeof useMaevsiStore>
   event?: H3Event
+  isInProduction: boolean
   jwt?: string
+  store: ReturnType<typeof useMaevsiStore>
 }) => {
   $urqlReset()
 
@@ -117,7 +131,7 @@ export const jwtStore = async ({
       httpOnly: true,
       path: '/',
       sameSite: 'lax', // Cannot be 'strict' to allow authentications after clicking on links within webmailers.
-      secure: true,
+      secure: isInProduction,
     })
   } else {
     try {
@@ -134,12 +148,14 @@ export const jwtStore = async ({
 export const useJwtStore = () => {
   const { $urqlReset, ssrContext } = useNuxtApp()
   const store = useMaevsiStore()
+  const runtimeConfig = useRuntimeConfig()
 
   return {
     async jwtStore(jwt?: string) {
       await jwtStore({
         $urqlReset,
         event: ssrContext?.event,
+        isInProduction: runtimeConfig.public.vio.isInProduction,
         jwt,
         store,
       })
@@ -151,28 +167,38 @@ export const signOut = async ({
   $urqlReset,
   client,
   event,
+  isInProduction,
   store,
 }: {
   $urqlReset: () => void
   client: Client
   event?: H3Event
+  isInProduction: boolean
   store: ReturnType<typeof useMaevsiStore>
 }) => {
-  await jwtStore({ $urqlReset, store, event })
-  await authenticationAnonymous({ client, $urqlReset, store, event })
+  await jwtStore({ $urqlReset, event, isInProduction, store })
+  await authenticationAnonymous({
+    $urqlReset,
+    client,
+    event,
+    isInProduction,
+    store,
+  })
 }
 
 export const useSignOut = () => {
   const { $urql, $urqlReset, ssrContext } = useNuxtApp()
   const store = useMaevsiStore()
+  const runtimeConfig = useRuntimeConfig()
 
   return {
     async signOut() {
       await signOut({
-        client: $urql.value,
         $urqlReset,
-        store,
+        client: $urql.value,
         event: ssrContext?.event,
+        isInProduction: runtimeConfig.public.vio.isInProduction,
+        store,
       })
     },
   }

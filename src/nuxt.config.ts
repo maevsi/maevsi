@@ -171,6 +171,10 @@ export default defineNuxtConfig({
         },
       ],
     },
+    cookieOptions: {
+      sameSite: 'strict',
+      secure: process.env.NODE_ENV === 'production',
+    },
     locales: ['en', 'de'],
   },
   htmlValidator: {
@@ -181,7 +185,7 @@ export default defineNuxtConfig({
     defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
     detectBrowserLanguage: {
       cookieKey: I18N_COOKIE_NAME,
-      cookieSecure: true,
+      cookieSecure: process.env.NODE_ENV === 'production',
     },
     langDir: 'locales',
     lazy: true,

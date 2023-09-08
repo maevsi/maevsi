@@ -5,6 +5,8 @@ import { useJwtPublicKey } from './auth-key'
 import { JWT_NAME, JWT_ALGORITHM } from '~/utils/constants'
 
 export default defineEventHandler(async (event: H3Event) => {
+  const runtimeConfig = useRuntimeConfig()
+
   const { req, res } = event.node
   const jwtPublicKey = await useJwtPublicKey()
   let jwt = ''
@@ -48,7 +50,7 @@ export default defineEventHandler(async (event: H3Event) => {
     httpOnly: true,
     // path: '/',
     sameSite: 'lax', // Cannot be 'strict' to allow authentications after clicking on links within webmailers.
-    secure: true,
+    secure: runtimeConfig.public.vio.isInProduction,
   })
   res.end()
 })
