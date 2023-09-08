@@ -194,17 +194,42 @@ export default defineNuxtConfig({
     locales: LOCALES,
   },
   pwa: {
-    // Leads to issues with Cypress e2e tests.
+    // // Potentially leads to issues with e2e tests.
     // devOptions: {
     //   enabled: true,
     // },
     client: {
+      periodicSyncForUpdates: 3600,
       installPrompt: true,
     },
     manifest: {
-      description: 'Find events, guests and friends.',
       background_color: colors.gray['800'],
-      theme_color: colors.gray['800'],
+      categories: ['events'],
+      description: 'Find events, guests and friends.',
+      dir: 'ltr',
+      display: 'standalone',
+      display_override: ['window-controls-overlay', 'standalone', 'browser'],
+      edge_side_panel: {
+        preferred_width: 400,
+      },
+      file_handlers: [
+        // {
+        //   action: '/open-ics',
+        //   accept: {
+        //     'text/calendar': ['.ics'],
+        //   },
+        //   icons: [
+        //     {
+        //       src: 'ics-icon.png',
+        //       sizes: '256x256',
+        //       type: 'image/png',
+        //     },
+        //   ],
+        //   launch_type: 'single-client',
+        // },
+      ],
+      handle_links: 'preferred',
+      // iarc_rating_id: '',
       icons: [
         {
           src: `/assets/static/favicon/android-chrome-64x64.png?v=${CACHE_VERSION}`,
@@ -291,6 +316,89 @@ export default defineNuxtConfig({
           purpose: 'maskable',
         },
       ],
+      id: 'maevsi',
+      lang: 'en',
+      launch_handler: {
+        client_mode: ['auto'],
+      },
+      name: 'maevsi',
+      short_name: 'maevsi',
+      orientation: 'any',
+      scope: '/',
+      screenshots: [
+        // {
+        //   src: 'screenshot.jpg',
+        //   sizes: '1280x720',
+        //   type: 'image/jpg',
+        //   form_factor: 'wide',
+        //   label: '',
+        // },
+      ],
+      start_url: '/',
+      prefer_related_applications: false,
+      protocol_handlers: [
+        // {
+        //   protocol: 'web+maevsi',
+        //   url: '/event/%s',
+        // },
+      ],
+      related_applications: [
+        // {
+        //   platform: 'play',
+        //   url: 'https://play.google.com/store/apps/details?id=si.maev.twa',
+        //   id: 'si.maev.twa',
+        // },
+      ],
+      scope_extensions: [{ origin: 'maev.si' }, { origin: 'maevsi.com' }],
+      // share_target: {
+      //   action: '/collect-files',
+      //   method: 'POST',
+      //   enctype: 'multipart/form-data',
+      //   params: {
+      //     title: 'title',
+      //     text: 'text',
+      //     url: 'url',
+      //     files: [
+      //       {
+      //         name: 'lists',
+      //         accept: ['text/csv', '.csv'],
+      //       },
+      //     ],
+      //   },
+      // },
+      shortcuts: [
+        {
+          name: 'Events',
+          url: '/event',
+        },
+      ],
+      theme_color: colors.gray['800'],
+      // widgets: [
+      //   {
+      //     name: 'PWAmp mini player',
+      //     description: 'widget to control the PWAmp music player',
+      //     tag: 'pwamp',
+      //     template: 'pwamp-template',
+      //     ms_ac_template: 'widgets/mini-player-template.json',
+      //     data: 'widgets/mini-player-data.json',
+      //     type: 'application/json',
+      //     screenshots: [
+      //       {
+      //         src: './screenshot-widget.png',
+      //         sizes: '600x400',
+      //         label: 'The PWAmp mini-player widget',
+      //       },
+      //     ],
+      //     icons: [
+      //       {
+      //         src: './favicon-16.png',
+      //         sizes: '16x16',
+      //       },
+      //     ],
+      //     auth: false,
+      //     update: 86400,
+      //   },
+      // ],
     },
   },
   turnstile: {

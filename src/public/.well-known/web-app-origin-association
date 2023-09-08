@@ -1,0 +1,10 @@
+{
+  "web_apps": [
+    {
+      "web_app_identity": "https://maev.si/"
+    },
+    {
+      "web_app_identity": "https://maevsi.com/"
+    }
+  ]
+}
