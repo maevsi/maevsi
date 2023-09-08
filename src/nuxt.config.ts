@@ -1,6 +1,8 @@
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import colors from 'tailwindcss/colors'
+
 import {
   BASE_URL,
   CACHE_VERSION,
@@ -201,8 +203,8 @@ export default defineNuxtConfig({
     },
     manifest: {
       description: 'Find events, guests and friends.',
-      background_color: '#1f2937',
-      theme_color: '#1f2937',
+      background_color: colors.gray['800'],
+      theme_color: colors.gray['800'],
       icons: [
         {
           src: `/assets/static/favicon/android-chrome-64x64.png?v=${CACHE_VERSION}`,

@@ -5,6 +5,7 @@ import { defu } from 'defu'
 import { H3Event, getCookie } from 'h3'
 import { ofetch } from 'ofetch'
 import Swal, { SweetAlertIcon } from 'sweetalert2'
+import colors from 'tailwindcss/colors'
 import { Ref } from 'vue'
 import { LocationQueryValue } from 'vue-router'
 
@@ -287,7 +288,7 @@ export const showToast = ({
 }) =>
   Swal.fire({
     confirmButtonText,
-    confirmButtonColor: '#1f2937',
+    confirmButtonColor: colors.gray['800'],
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
