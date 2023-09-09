@@ -51,7 +51,7 @@
     "@nuxtjs/i18n": "8.0.0-rc.4",
     "@nuxtjs/tailwindcss": "6.8.0",
     "@nuxtjs/turnstile": "0.6.3",
-    "@nuxtseo/module": "2.0.0-beta.26",
+    "@nuxtseo/module": "2.0.0-beta.27",
     "@pinia/nuxt": "0.4.11",
     "@playwright/test": "1.37.1",
     "@tailwindcss/forms": "0.5.6",
