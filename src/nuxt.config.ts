@@ -194,10 +194,10 @@ export default defineNuxtConfig({
     locales: LOCALES,
   },
   pwa: {
-    // // Potentially leads to issues with e2e tests.
-    // devOptions: {
-    //   enabled: true,
-    // },
+    devOptions: {
+      enabled: true,
+      type: 'module', // must be developed in Chrome
+    },
     client: {
       periodicSyncForUpdates: 3600,
       installPrompt: true,
