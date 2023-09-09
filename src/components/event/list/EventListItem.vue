@@ -2,7 +2,7 @@
   <li
     v-if="event"
     :class="{
-      'opacity-75': eventEnd
+      'opacity-75': eventEnd.isValid()
         ? eventEnd.isBefore(now)
         : eventStart.isBefore(now),
     }"
