@@ -317,7 +317,7 @@ export default defineNuxtConfig({
           purpose: 'maskable',
         },
       ],
-      id: 'maevsi',
+      id: '/?source=pwa',
       lang: 'en',
       launch_handler: {
         client_mode: ['auto'],
@@ -356,7 +356,7 @@ export default defineNuxtConfig({
           label: 'events',
         },
       ],
-      start_url: '/',
+      start_url: '/?source=pwa',
       prefer_related_applications: false,
       protocol_handlers: [
         // {
@@ -390,7 +390,9 @@ export default defineNuxtConfig({
       // },
       shortcuts: [
         {
-          name: 'Events',
+          description: 'See a list of events.',
+          short_name: 'Events',
+          name: 'Explore events',
           url: '/event',
         },
       ],
