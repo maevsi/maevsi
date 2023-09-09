@@ -202,6 +202,7 @@ export default defineNuxtConfig({
       periodicSyncForUpdates: 3600,
       installPrompt: true,
     },
+    filename: 'sw.ts',
     manifest: {
       background_color: colors.gray['800'],
       categories: ['events'],
@@ -421,6 +422,8 @@ export default defineNuxtConfig({
       //   },
       // ],
     },
+    srcDir: 'service-worker',
+    strategies: 'injectManifest',
   },
   turnstile: {
     secretKeyPath: process.env.STACK_DOMAIN
