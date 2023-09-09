@@ -1,3 +1,20 @@
+# [1.24.0](https://github.com/maevsi/maevsi/compare/1.23.0...1.24.0) (2023-09-09)
+
+
+### Bug Fixes
+
+* correct environment variables ([af81d1f](https://github.com/maevsi/maevsi/commit/af81d1fab2f008c8dc0d914fe3212c3cf3b1dbd9))
+* **event-list-item:** validate end ([f7381ae](https://github.com/maevsi/maevsi/commit/f7381aee60799a042c7d84b04032e2ccfe465fe6))
+
+
+### Features
+
+* manifest ([#1363](https://github.com/maevsi/maevsi/issues/1363)) ([e03eada](https://github.com/maevsi/maevsi/commit/e03eada45901e2bee3c17d92040b35e137f8b7d1))
+* **manifest:** add screenshots ([09d13ac](https://github.com/maevsi/maevsi/commit/09d13acdae9fe96b02a2518177d7a2a9d352f0d1))
+* **manifest:** tweak values ([9d88c9b](https://github.com/maevsi/maevsi/commit/9d88c9b175a376e0e143906c1c778d386a9839a4))
+* **pwa:** extend manifest ([575af3e](https://github.com/maevsi/maevsi/commit/575af3e5d78f19a6a14b4592ebebc2c0d4da9ff8))
+* **pwa:** use custom service worker ([223386b](https://github.com/maevsi/maevsi/commit/223386b1d3a649588f618b089d64cc81b6521a05))
+
 # [1.23.0](https://github.com/maevsi/maevsi/compare/1.22.0...1.23.0) (2023-09-07)
 
 
