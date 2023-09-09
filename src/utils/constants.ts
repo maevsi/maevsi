@@ -3,9 +3,9 @@ import { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 export const SITE_NAME = 'maevsi'
 
 export const BASE_URL =
-  (process.env.NUXT_PUBLIC_STACK_DOMAIN ? 'https' : 'http') +
+  (process.env.STACK_DOMAIN ? 'https' : 'http') +
   '://' +
-  (process.env.NUXT_PUBLIC_STACK_DOMAIN ||
+  (process.env.STACK_DOMAIN ||
     `${process.env.HOST || 'localhost'}:${
       !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
         ? '3000'

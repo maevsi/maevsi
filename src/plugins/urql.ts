@@ -169,6 +169,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         client: client.value,
         event: nuxtApp.ssrContext.event,
         id: jwtFromCookie.jwtDecoded.id as string,
+        isInProduction: runtimeConfig.public.vio.isInProduction,
         store,
       })
     } else {
@@ -176,6 +177,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         $urqlReset: urqlReset,
         client: client.value,
         event: nuxtApp.ssrContext.event,
+        isInProduction: runtimeConfig.public.vio.isInProduction,
         store,
       })
     }

@@ -20,7 +20,7 @@
     "prepare": "nuxt prepare",
     "start": "PORT=3001 node .output/server/index.mjs",
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js",
-    "test:e2e:dev": "cross-env NUXT_PUBLIC_IS_TESTING=1 pnpm test:e2e",
+    "test:e2e:dev": "cross-env NUXT_PUBLIC_VIO_IS_TESTING=1 pnpm test:e2e",
     "test:e2e:docker:br": "pnpm test:e2e:docker:build && pnpm test:e2e:docker:run",
     "test:e2e:docker:build": "docker build -t test-e2e_base --build-arg UID=$(id -u) --build-arg GID=$(id -g) --target test-e2e_base ..",
     "test:e2e:docker:dev:update": "pnpm test:e2e:docker:dev --update-snapshots",
@@ -28,7 +28,7 @@
     "test:e2e:docker:prod:update": "pnpm test:e2e:docker:prod --update-snapshots",
     "test:e2e:docker:prod": "pnpm test:e2e:docker:br pnpm --dir src run test:e2e:prod",
     "test:e2e:docker:run": "docker run --rm -v \"$PWD/..:/srv/app\" -v \"$(pnpm store path):/srv/.pnpm-store\" test-e2e_base",
-    "test:e2e:prod": "cross-env NUXT_PUBLIC_IS_TESTING=1 NODE_ENV=production pnpm test:e2e",
+    "test:e2e:prod": "cross-env NUXT_PUBLIC_VIO_IS_TESTING=1 NODE_ENV=production pnpm test:e2e",
     "test:e2e": "playwright test",
     "test": "vitest"
   },
@@ -66,7 +66,7 @@
     "@types/html-to-text": "9.0.1",
     "@types/lodash-es": "4.17.9",
     "@types/mustache": "4.2.2",
-    "@types/node": "20.5.9",
+    "@types/node": "20.6.0",
     "@types/pg": "8.10.2",
     "@uppy/core": "3.5.0",
     "@uppy/tus": "3.2.0",
@@ -133,7 +133,8 @@
     "vue-chartjs": "5.2.0",
     "vue-gtag": "2.0.1",
     "vue-qrcode-reader": "5.3.4",
-    "vue-tsc": "1.8.10"
+    "vue-tsc": "1.8.10",
+    "workbox-precaching": "7.0.0"
   },
   "peerDependencies": {
     "playwright-core": "1.37.1"

@@ -37,7 +37,7 @@ test.describe('page load', () => {
 //   it('errors on invalid sign-in', () => {
 //     cy.intercept(
 //       'POST',
-//       `https://postgraphile.${STAGING_HOST || 'localhost:3000'}/graphql`,
+//       `https://postgraphile.${VIO_STAGING_HOST || 'localhost:3000'}/graphql`,
 //       (req) => {
 //         if (hasOperationName(req, 'authenticate')) {
 //           req.alias = 'authenticate'

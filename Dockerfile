@@ -46,8 +46,8 @@ RUN pnpm install --offline
 
 FROM node:20.5.1-alpine AS build
 
-ARG NUXT_PUBLIC_STACK_DOMAIN=maev.si
-ENV NUXT_PUBLIC_STACK_DOMAIN=${NUXT_PUBLIC_STACK_DOMAIN}
+ARG STACK_DOMAIN=maev.si
+ENV STACK_DOMAIN=${STACK_DOMAIN}
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true

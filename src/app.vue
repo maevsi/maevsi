@@ -8,11 +8,9 @@
     </CardStateInfo>
     <NuxtLayout>
       <!-- `NuxtLayout` can't have mulitple child nodes (https://github.com/nuxt/nuxt/issues/21759) -->
-      <div>
-        <NuxtLoadingIndicator color="#fff" />
-        <NuxtPage />
-      </div>
+      <NuxtPage />
     </NuxtLayout>
+    <NuxtLoadingIndicator color="#fff" />
     <VitePwaManifest />
   </div>
 </template>
@@ -41,7 +39,7 @@ const init = () => {
       // default: () => undefined, // setting `default` on the client side only does not write the cookie
       httpOnly: false,
       sameSite: 'strict',
-      secure: true,
+      secure: runtimeConfig.public.vio.isInProduction,
     })
 
     // @ts-ignore `tz` should be part of `$dayjs` (https://github.com/iamkun/dayjs/issues/2106)
