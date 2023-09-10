@@ -1,3 +1,10 @@
+## [1.24.1](https://github.com/maevsi/maevsi/compare/1.24.0...1.24.1) (2023-09-10)
+
+
+### Performance Improvements
+
+* optimize images ([#1364](https://github.com/maevsi/maevsi/issues/1364)) ([e6fc9e7](https://github.com/maevsi/maevsi/commit/e6fc9e7c9312684f7441c05663d78e9236bde391))
+
 # [1.24.0](https://github.com/maevsi/maevsi/compare/1.23.0...1.24.0) (2023-09-09)
 
 
