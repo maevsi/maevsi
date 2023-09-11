@@ -1,7 +1,7 @@
 #############
 # Serve Nuxt in development mode.
 
-FROM node:20.6.0-alpine AS development
+FROM node:20.6.1-alpine AS development
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -24,7 +24,7 @@ EXPOSE 3000
 ########################
 # Prepare Nuxt.
 
-FROM node:20.6.0-alpine AS prepare
+FROM node:20.6.1-alpine AS prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -44,7 +44,7 @@ RUN pnpm install --offline
 ########################
 # Build Nuxt.
 
-FROM node:20.6.0-alpine AS build
+FROM node:20.6.1-alpine AS build
 
 ARG STACK_DOMAIN=maev.si
 ENV STACK_DOMAIN=${STACK_DOMAIN}
@@ -64,7 +64,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: lint
 
-FROM node:20.6.0-alpine AS lint
+FROM node:20.6.1-alpine AS lint
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -80,7 +80,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: test (unit)
 
-FROM node:20.6.0-alpine AS test-unit
+FROM node:20.6.1-alpine AS test-unit
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -184,7 +184,7 @@ RUN pnpm --dir src run test:e2e:prod
 #######################
 # Collect build, lint and test results.
 
-FROM node:20.6.0-alpine AS collect
+FROM node:20.6.1-alpine AS collect
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -203,7 +203,7 @@ COPY --from=test-e2e-prod /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM node:20.6.0-alpine AS production
+FROM node:20.6.1-alpine AS production
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
