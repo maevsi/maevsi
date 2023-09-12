@@ -43,4 +43,11 @@ export const REGEX_UUID =
 export const STATE_LOADING_IDS_NAME = 'loadingIds'
 export const TIMEZONE_COOKIE_NAME = 'm_tz'
 export const TIMEZONE_HEADER_KEY = 'X-Timezone'
+export const TITLE_TEMPLATE = ({
+  siteName,
+  title,
+}: {
+  siteName: string
+  title?: string
+}) => (title && title !== siteName ? `${title} · ${siteName}` : siteName)
 export const TURNSTILE_HEADER_KEY = 'X-Turnstile-Key'

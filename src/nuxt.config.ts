@@ -434,17 +434,15 @@ export default defineNuxtConfig({
   },
   linkChecker: {
     enabled: false,
-    debug: process.env.NODE_ENV === 'development',
     failOnError: true,
   },
   seo: {
     splash: false,
   },
   site: {
-    baseUrl: BASE_URL,
     debug: process.env.NODE_ENV === 'development',
     name: SITE_NAME,
-    titleSeparator: '·',
+    url: BASE_URL,
   },
   sitemap: {
     credits: false,
