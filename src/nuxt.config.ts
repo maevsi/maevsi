@@ -4,12 +4,12 @@ import { fileURLToPath } from 'node:url'
 import colors from 'tailwindcss/colors'
 
 import {
-  BASE_URL,
   CACHE_VERSION,
   I18N_COOKIE_NAME,
   JWT_NAME,
   LOCALES,
   SITE_NAME,
+  SITE_URL,
   TIMEZONE_COOKIE_NAME,
 } from './utils/constants'
 
@@ -60,7 +60,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       i18n: {
-        baseUrl: BASE_URL,
+        baseUrl: SITE_URL,
       },
       turnstile: {
         siteKey: '1x00000000000000000000AA',
@@ -442,7 +442,7 @@ export default defineNuxtConfig({
   site: {
     debug: process.env.NODE_ENV === 'development',
     name: SITE_NAME,
-    url: BASE_URL,
+    url: SITE_URL,
   },
   sitemap: {
     credits: false,

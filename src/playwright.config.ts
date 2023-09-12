@@ -1,15 +1,11 @@
 import { defineConfig, devices } from '@playwright/test'
+import { SITE_URL } from './utils/constants'
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
 // require('dotenv').config();
-
-export const BASE_URL =
-  !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : 'http://localhost:3001'
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -78,7 +74,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: BASE_URL,
+    baseURL: SITE_URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -86,18 +82,14 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command:
-      !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-        ? 'pnpm run dev'
-        : 'pnpm run start',
-    timeout:
-      !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-        ? 100000
-        : 10000,
-    url: BASE_URL,
+    command: `pnpm run start:${process.env.VIO_SERVER || 'dev'}`,
+    env: {
+      NUXT_PUBLIC_VIO_IS_TESTING: 'true',
+    },
+    timeout: process.env.NODE_ENV === 'production' ? 10000 : 100000,
+    url: process.env.SITE_URL || SITE_URL,
     reuseExistingServer: !process.env.CI,
   },
 
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: undefined,
 })

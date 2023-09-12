@@ -1,10 +1,10 @@
-*
-!src/
+.git/
+node_modules/
 src/.nuxt/
+src/.output/
+src/dist/
 src/node_modules/
+src/tests/e2e/report/
+src/tests/e2e/results/
+src/.env
 src/.eslintcache
-!.npmrc
-!docker-entrypoint.sh
-!package.json
-!pnpm-lock.yaml
-!pnpm-workspace.yaml
