@@ -11,10 +11,5 @@
     "@commitlint/cli": "17.7.1",
     "@commitlint/config-conventional": "17.7.0",
     "husky": "8.0.3"
-  },
-  "pnpm": {
-    "overrides": {
-      "eslint-plugin-vue": "9.15.1"
-    }
   }
 }
