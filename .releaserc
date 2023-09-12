@@ -1,15 +1,36 @@
 {
   "plugins": [
-    "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "conventionalcommits",
+        "presetConfig": {}
+      }
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "conventionalcommits",
+        "presetConfig": {}
+      }
+    ],
     "@semantic-release/changelog",
-    ["@semantic-release/npm", {
-      "pkgRoot": "./src"
-    }],
+    [
+      "@semantic-release/npm",
+      {
+        "pkgRoot": "./src"
+      }
+    ],
     "@semantic-release/github",
-    ["@semantic-release/git", {
-      "assets": ["CHANGELOG.md", "./src/package.json"]
-    }]
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "CHANGELOG.md",
+          "./src/package.json"
+        ]
+      }
+    ]
   ],
   "tagFormat": "${version}"
 }
