@@ -56,18 +56,8 @@ useHeadDefault({
   title,
   extension: {
     ogType: 'profile',
+    profileUsername: route.params.username as string,
   },
-})
-
-// TODO: replace with `useServerHeadSafe`
-useHeadSafe({
-  meta: [
-    {
-      id: 'profile:username',
-      property: 'profile:username',
-      content: route.params.username as string,
-    },
-  ],
 })
 </script>
 
