@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "si.maev.twa",
+      "sha256_cert_fingerprints": [
+        "38:38:41:E4:3B:5B:B7:F5:E8:53:7C:99:EB:8D:78:37:01:A2:05:4D:BE:73:4B:1A:53:8D:1C:A9:5C:22:FA:9D"
+      ]
+    }
+  }
+]
