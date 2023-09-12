@@ -1,3 +1,11 @@
+## [1.26.0](https://github.com/maevsi/maevsi/compare/1.25.0...1.26.0) (2023-09-12)
+
+
+### Features
+
+* **security:** add security policy ([84af0e3](https://github.com/maevsi/maevsi/commit/84af0e35bb712df0fc9960b3245d70616715710e))
+* **security:** add security policy ([#1367](https://github.com/maevsi/maevsi/issues/1367)) ([873bef6](https://github.com/maevsi/maevsi/commit/873bef62883912dae206d510651cdc87bc3e2b20)), closes [#1045](https://github.com/maevsi/maevsi/issues/1045)
+
 # [1.25.0](https://github.com/maevsi/maevsi/compare/1.24.1...1.25.0) (2023-09-12)
 
 
