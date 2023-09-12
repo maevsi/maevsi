@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/maevsi/maevsi/compare/1.24.1...1.25.0) (2023-09-12)
+
+
+### Features
+
+* **app:** add assetlinks ([#1366](https://github.com/maevsi/maevsi/issues/1366)) ([6abe34d](https://github.com/maevsi/maevsi/commit/6abe34d2bcb41386b33e6b162f5de319e6214dee))
+
 ## [1.24.1](https://github.com/maevsi/maevsi/compare/1.24.0...1.24.1) (2023-09-10)
 
 
