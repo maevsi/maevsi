@@ -15,13 +15,7 @@
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
-        validation-property="formatUppercaseNone"
-      >
-        {{ t('globalValidationFormatUppercaseNone') }}
-      </FormInputStateError>
-      <FormInputStateError
-        :form-input="formInput"
-        validation-property="maxLength"
+        validation-property="lengthMax"
       >
         {{ t('globalValidationLength') }}
       </FormInputStateError>

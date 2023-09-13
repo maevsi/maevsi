@@ -19,7 +19,7 @@
     <template #stateError>
       <FormInputStateError
         :form-input="formInput"
-        validation-property="minLength"
+        validation-property="lengthMin"
       >
         {{ t('globalValidationShortness') }}
       </FormInputStateError>
@@ -37,7 +37,7 @@
     <template #stateInfo>
       <FormInputStateInfo
         :form-input="formInput"
-        validation-property="minLength"
+        validation-property="lengthMin"
       >
         {{
           t('validationFormat', { length: VALIDATION_PASSWORD_LENGTH_MINIMUM })

@@ -13,11 +13,13 @@
   "globalShowMore": "Show more",
   "globalStatusError": "Error",
   "globalStatusWarning": "Warning",
-  "globalValidationExistence": "Does not exist",
-  "globalValidationExistenceNone": "Already exists",
+  "globalValidationAvailability": "Available",
+  "globalValidationAvailabilityNone": "Unavailable",
+  "globalValidationExistence": "Exists",
+  "globalValidationExistenceNone": "Does not exist",
   "globalValidationFailed": "Please check your input 🙈",
   "globalValidationFormat": "Incorrect format",
-  "globalValidationFormatUppercaseNone": "Contains uppercase letters",
+  "globalValidationFormatEnum": "Not one of the possible values",
   "globalValidationFormatUrlHttps": "Must start with \"https://\"",
   "globalValidationLength": "Too long",
   "globalValidationMaxValue": "Above maximum value",
@@ -26,7 +28,5 @@
   "globalValidationNowOrFuture": "Point in time lies in the past",
   "globalValidationRequired": "Required",
   "globalValidationSameAs": "Is not identical",
-  "globalValidationShortness": "Too short",
-  "globalVerificationExistence": "Does exist",
-  "globalVerificationExistenceNone": "Does not exist yet"
+  "globalValidationShortness": "Too short"
 }

@@ -56,7 +56,6 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { required } from '@vuelidate/validators'
 import { consola } from 'consola'
 
 import {
@@ -190,10 +189,7 @@ const routeQueryIc = computed(() => route.query.ic)
 
 // vuelidate
 const rules = {
-  invitationCode: {
-    required,
-    formatUuid: VALIDATION_FORMAT_UUID,
-  },
+  invitationCode: VALIDATION_UUID(),
 }
 const v$ = useVuelidate(rules, form)
 

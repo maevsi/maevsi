@@ -44,7 +44,7 @@
       <template #stateError>
         <FormInputStateError
           :form-input="v$.firstName"
-          validation-property="maxLength"
+          validation-property="lengthMax"
         >
           {{ t('globalValidationLength') }}
         </FormInputStateError>
@@ -62,7 +62,7 @@
       <template #stateError>
         <FormInputStateError
           :form-input="v$.lastName"
-          validation-property="maxLength"
+          validation-property="lengthMax"
         >
           {{ t('globalValidationLength') }}
         </FormInputStateError>
@@ -92,7 +92,7 @@
       <template #stateError>
         <FormInputStateError
           :form-input="v$.address"
-          validation-property="maxLength"
+          validation-property="lengthMax"
         >
           {{ t('globalValidationLength') }}
         </FormInputStateError>
@@ -109,7 +109,6 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { email, helpers, maxLength } from '@vuelidate/validators'
 
 import { useMaevsiStore } from '~/store'
 import { useCreateContactMutation } from '~/gql/documents/mutations/contact/contactCreate'
@@ -202,32 +201,22 @@ const updateForm = (data?: Pick<ContactItemFragment, any>) => {
 // vuelidate
 const rules = {
   id: {},
-  accountUsername: {
-    existence: helpers.withAsync(validateUsername()),
-    formatSlug: VALIDATION_FORMAT_SLUG,
-    maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-  },
-  address: {
-    maxLength: maxLength(VALIDATION_ADDRESS_LENGTH_MAXIMUM),
-  },
-  emailAddress: {
-    email,
-    formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
-    maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-  },
-  firstName: {
-    maxLength: maxLength(VALIDATION_FIRST_NAME_LENGTH_MAXIMUM),
-  },
-  lastName: {
-    maxLength: maxLength(VALIDATION_LAST_NAME_LENGTH_MAXIMUM),
-  },
-  phoneNumber: {
-    formatPhoneNumber: VALIDATION_FORMAT_PHONE_NUMBER,
-  },
-  url: {
-    formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
-    maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
-  },
+  accountUsername: VALIDATION_USERNAME({
+    isRequired: false,
+    validateExistence: true,
+  }),
+  address: VALIDATION_PRIMITIVE({
+    lengthMax: VALIDATION_ADDRESS_LENGTH_MAXIMUM,
+  }),
+  emailAddress: VALIDATION_EMAIL_ADDRESS({}),
+  firstName: VALIDATION_PRIMITIVE({
+    lengthMax: VALIDATION_NAME_FIRST_LENGTH_MAXIMUM,
+  }),
+  lastName: VALIDATION_PRIMITIVE({
+    lengthMax: VALIDATION_NAME_LAST_LENGTH_MAXIMUM,
+  }),
+  phoneNumber: VALIDATION_PHONE_NUMBER(),
+  url: VALIDATION_URL(),
 }
 const v$ = useVuelidate(rules, form)
 

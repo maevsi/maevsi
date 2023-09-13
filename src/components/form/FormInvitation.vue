@@ -42,13 +42,13 @@
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.contactId"
-          validation-property="minLength"
+          validation-property="lengthMin"
         >
           {{ t('globalValidationMinLength') }}
         </FormInputStateError>
         <FormInputStateError
           :form-input="v$.contactId"
-          validation-property="minValue"
+          validation-property="valueMin"
         >
           {{ t('globalValidationMinValue') }}
         </FormInputStateError>
@@ -211,10 +211,10 @@ const contactIdsComputed = computed(() => form.contactIds)
 const rules = {
   contactIds: {
     $each: {
-      minValue: minValue(1),
       required,
+      valueMin: minValue(1),
     },
-    minLength: minLength(1),
+    lengthMin: minLength(1),
     required,
   },
   searchString: {},

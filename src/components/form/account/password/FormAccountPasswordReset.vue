@@ -22,7 +22,6 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { minLength, required } from '@vuelidate/validators'
 import { useAccountPasswordResetMutation } from '~/gql/documents/mutations/account/accountPasswordReset'
 
 export interface Props {
@@ -66,10 +65,7 @@ const submit = async () => {
 
 // vuelidate
 const rules = {
-  password: {
-    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-    required,
-  },
+  password: VALIDATION_PASSWORD(),
 }
 const v$ = useVuelidate(rules, form)
 </script>
