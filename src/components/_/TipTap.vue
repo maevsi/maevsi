@@ -88,21 +88,21 @@
           :title="t('formatAlignLeft')"
           @click="editor?.chain().focus().setTextAlign('left').run()"
         >
-          <IconLeftAlignment />
+          <IconBars3BottomLeft />
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('formatAlignCenter')"
           :title="t('formatAlignCenter')"
           @click="editor?.chain().focus().setTextAlign('center').run()"
         >
-          <IconCenterAlignment />
+          <IconBars3 />
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('formatAlignRight')"
           :title="t('formatAlignRight')"
           @click="editor?.chain().focus().setTextAlign('right').run()"
         >
-          <IconRightAlignment />
+          <IconBars3BottomRight />
         </ButtonIcon>
       </div>
       <div class="flex gap-1">
