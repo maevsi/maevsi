@@ -12,7 +12,7 @@
     <template #stateError>
       <FormInputStateError
         :form-input="formInput"
-        validation-property="maxLength"
+        validation-property="lengthMax"
       >
         {{ t('globalValidationLength') }}
       </FormInputStateError>

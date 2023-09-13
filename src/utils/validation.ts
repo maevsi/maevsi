@@ -68,7 +68,7 @@ export const VALIDATION_EMAIL_ADDRESS = ({
   isRequired?: boolean
 }) => ({
   email,
-  maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
+  lengthMax: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
   ...(isRequired ? { required: isRequired } : {}),
 })
 export const VALIDATION_EVENT_VISIBILITY = () => ({
@@ -81,7 +81,7 @@ export const VALIDATION_UUID = () => ({
   formatUuid: VALIDATION_FORMAT_UUID,
 })
 export const VALIDATION_PASSWORD = () => ({
-  minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
+  lengthMin: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
   required,
 })
 export const VALIDATION_PHONE_NUMBER = () => ({
@@ -93,13 +93,13 @@ export const VALIDATION_SLUG = ({
   existenceNone: (value: string) => Promise<boolean>
 }) => ({
   existenceNone: helpers.withAsync(existenceNone),
-  maxLength: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
-  required,
   formatSlug: VALIDATION_FORMAT_SLUG,
+  lengthMax: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
+  required,
 })
 export const VALIDATION_URL = () => ({
   formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
-  maxLength: maxLength(VALIDATION_URL_LENGTH_MAXIMUM),
+  lengthMax: maxLength(VALIDATION_URL_LENGTH_MAXIMUM),
 })
 export const VALIDATION_USERNAME = ({
   isRequired,
@@ -117,7 +117,7 @@ export const VALIDATION_USERNAME = ({
     ? { existenceNone: helpers.withAsync(validateUsername(true)) }
     : {}),
   formatSlug: VALIDATION_FORMAT_SLUG,
-  maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
+  lengthMax: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
   ...(isRequired ? { required: isRequired } : {}),
 })
 

@@ -42,7 +42,7 @@
           </FormInputStateError>
           <FormInputStateError
             :form-input="v$.name"
-            validation-property="maxLength"
+            validation-property="lengthMax"
           >
             {{ t('globalValidationLength') }}
           </FormInputStateError>
@@ -73,7 +73,7 @@
           </FormInputStateError>
           <FormInputStateError
             :form-input="v$.slug"
-            validation-property="maxLength"
+            validation-property="lengthMax"
           >
             {{ t('globalValidationLength') }}
           </FormInputStateError>
@@ -131,13 +131,13 @@
         <template #stateError>
           <FormInputStateError
             :form-input="v$.inviteeCountMaximum"
-            validation-property="maxValue"
+            validation-property="valueMax"
           >
             {{ t('globalValidationMaxValue') }}
           </FormInputStateError>
           <FormInputStateError
             :form-input="v$.inviteeCountMaximum"
-            validation-property="minValue"
+            validation-property="valueMin"
           >
             {{ t('globalValidationMinValue') }}
           </FormInputStateError>
@@ -212,7 +212,7 @@
         <template #stateError>
           <FormInputStateError
             :form-input="v$.location"
-            validation-property="maxLength"
+            validation-property="lengthMax"
           >
             {{ t('globalValidationLength') }}
           </FormInputStateError>
@@ -240,7 +240,7 @@
         <template #stateError>
           <FormInputStateError
             :form-input="v$.description"
-            validation-property="maxLength"
+            validation-property="lengthMax"
           >
             {{ t('globalValidationLength') }}
           </FormInputStateError>

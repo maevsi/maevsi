@@ -44,7 +44,7 @@
       <template #stateError>
         <FormInputStateError
           :form-input="v$.firstName"
-          validation-property="maxLength"
+          validation-property="lengthMax"
         >
           {{ t('globalValidationLength') }}
         </FormInputStateError>
@@ -62,7 +62,7 @@
       <template #stateError>
         <FormInputStateError
           :form-input="v$.lastName"
-          validation-property="maxLength"
+          validation-property="lengthMax"
         >
           {{ t('globalValidationLength') }}
         </FormInputStateError>
@@ -92,7 +92,7 @@
       <template #stateError>
         <FormInputStateError
           :form-input="v$.address"
-          validation-property="maxLength"
+          validation-property="lengthMax"
         >
           {{ t('globalValidationLength') }}
         </FormInputStateError>
