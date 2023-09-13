@@ -1,3 +1,21 @@
+## [1.28.0](https://github.com/maevsi/maevsi/compare/1.27.0...1.28.0) (2023-09-13)
+
+
+### Features
+
+* **cookie-control:** remove i18n cookie ([4fbb252](https://github.com/maevsi/maevsi/commit/4fbb25215fee8d949a0bfe21a34360eb534ffcec))
+
+
+### Bug Fixes
+
+* correct environment variable ([55c2f9f](https://github.com/maevsi/maevsi/commit/55c2f9f17c134b264df16e52e41de8d7b793ea57))
+
+
+### Performance Improvements
+
+* **seo:** disable automatic language redirection ([426b7ca](https://github.com/maevsi/maevsi/commit/426b7ca6f5352551f3457de86204d3a9358a33a3))
+* **seo:** disable automatic language redirection ([#1370](https://github.com/maevsi/maevsi/issues/1370)) ([16cb54e](https://github.com/maevsi/maevsi/commit/16cb54ee97befe9610d2533d8bcf8227afd2e38f))
+
 ## [1.27.0](https://github.com/maevsi/maevsi/compare/1.26.0...1.27.0) (2023-09-13)
 
 
