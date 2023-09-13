@@ -1,6 +1,6 @@
 <template>
-  <div v-if="editor" class="flex flex-col gap-1">
-    <div class="flex gap-4 overflow-auto">
+  <div v-if="editor" class="flex flex-col gap-2">
+    <div class="flex flex-wrap gap-x-4 gap-y-2 xl:gap-6">
       <div class="flex gap-1">
         <ButtonIcon
           :aria-label="t('undo')"
@@ -15,32 +15,6 @@
           @click="editor?.chain().focus().redo().run()"
         >
           <IconArrowUturnRight />
-        </ButtonIcon>
-      </div>
-      <div class="flex gap-1">
-        <ButtonIcon
-          :aria-label="t('bold')"
-          :class="{ 'is-active': editor.isActive('bold') }"
-          :title="t('bold')"
-          @click="editor?.chain().focus().toggleBold().run()"
-        >
-          <IconBold />
-        </ButtonIcon>
-        <ButtonIcon
-          :aria-label="t('italic')"
-          :class="{ 'is-active': editor.isActive('italic') }"
-          :title="t('italic')"
-          @click="editor?.chain().focus().toggleItalic().run()"
-        >
-          <IconItalic />
-        </ButtonIcon>
-        <ButtonIcon
-          :aria-label="t('strike')"
-          :class="{ 'is-active': editor.isActive('strike') }"
-          :title="t('strike')"
-          @click="editor?.chain().focus().toggleStrike().run()"
-        >
-          <IconStrikeThrough />
         </ButtonIcon>
       </div>
       <div class="flex gap-1">
@@ -80,6 +54,55 @@
             <IconHeading />
             <span>{{ t('number3') }}</span>
           </div>
+        </ButtonIcon>
+      </div>
+      <div class="flex gap-1">
+        <ButtonIcon
+          :aria-label="t('bold')"
+          :class="{ 'is-active': editor.isActive('bold') }"
+          :title="t('bold')"
+          @click="editor?.chain().focus().toggleBold().run()"
+        >
+          <IconBold />
+        </ButtonIcon>
+        <ButtonIcon
+          :aria-label="t('italic')"
+          :class="{ 'is-active': editor.isActive('italic') }"
+          :title="t('italic')"
+          @click="editor?.chain().focus().toggleItalic().run()"
+        >
+          <IconItalic />
+        </ButtonIcon>
+        <ButtonIcon
+          :aria-label="t('strike')"
+          :class="{ 'is-active': editor.isActive('strike') }"
+          :title="t('strike')"
+          @click="editor?.chain().focus().toggleStrike().run()"
+        >
+          <IconStrikeThrough />
+        </ButtonIcon>
+      </div>
+      <div class="flex gap-1">
+        <ButtonIcon
+          :aria-label="t('formatAlignLeft')"
+          :title="t('formatAlignLeft')"
+          @click="editor?.chain().focus().setTextAlign('left').run()"
+        >
+          <IconLeftAlignment />
+        </ButtonIcon>
+        <ButtonIcon
+          :aria-label="t('formatAlignCenter')"
+          :title="t('formatAlignCenter')"
+          @click="editor?.chain().focus().setTextAlign('center').run()"
+        >
+          <IconCenterAlignment />
+        </ButtonIcon>
+        <ButtonIcon
+          :aria-label="t('formatAlignRight')"
+          :title="t('formatAlignRight')"
+          @click="editor?.chain().focus().setTextAlign('right').run()"
+        >
+          <IconRightAlignment />
         </ButtonIcon>
       </div>
       <div class="flex gap-1">
@@ -132,33 +155,6 @@
           @click="editor?.chain().focus().setHorizontalRule().run()"
         >
           <IconMinus />
-        </ButtonIcon>
-      </div>
-      <div class="flex gap-1">
-        <ButtonIcon
-          :aria-label="t('formatAlignLeft')"
-          :title="t('formatAlignLeft')"
-          @click="editor?.chain().focus().setTextAlign('left').run()"
-        >
-          <IconLeftAlignment />
-        </ButtonIcon>
-      </div>
-      <div class="flex gap-1">
-        <ButtonIcon
-          :aria-label="t('formatAlignCenter')"
-          :title="t('formatAlignCenter')"
-          @click="editor?.chain().focus().setTextAlign('center').run()"
-        >
-          <IconCenterAlignment />
-        </ButtonIcon>
-      </div>
-      <div class="flex gap-1">
-        <ButtonIcon
-          :aria-label="t('formatAlignRight')"
-          :title="t('formatAlignRight')"
-          @click="editor?.chain().focus().setTextAlign('right').run()"
-        >
-          <IconRightAlignment />
         </ButtonIcon>
       </div>
       <!--
