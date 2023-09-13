@@ -1,3 +1,11 @@
+## [1.29.2](https://github.com/maevsi/maevsi/compare/1.29.1...1.29.2) (2023-09-13)
+
+
+### Bug Fixes
+
+* **tiptap:** correct icon names ([f4245cb](https://github.com/maevsi/maevsi/commit/f4245cb3a5faff5002156f27f6dca1ecb6b0ad43))
+* **tiptap:** correct icon names ([#1374](https://github.com/maevsi/maevsi/issues/1374)) ([44bbcd7](https://github.com/maevsi/maevsi/commit/44bbcd7801345c802bad43c62ec07f8865ab162d))
+
 ## [1.29.1](https://github.com/maevsi/maevsi/compare/1.29.0...1.29.1) (2023-09-13)
 
 
