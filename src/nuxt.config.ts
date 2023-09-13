@@ -5,7 +5,6 @@ import colors from 'tailwindcss/colors'
 
 import {
   CACHE_VERSION,
-  I18N_COOKIE_NAME,
   JWT_NAME,
   LOCALES,
   SITE_NAME,
@@ -132,18 +131,6 @@ export default defineNuxtConfig({
             en: 'Cookie Preferences',
           },
           targetCookieIds: ['ncc_c', 'ncc_e'],
-        },
-        {
-          description: {
-            de: 'Dieser Cookie von uns speichert die Sprache, in der diese Webseite angezeigt wird.',
-            en: "This cookie of ours stores the language that's used to display this website.",
-          },
-          id: 'l',
-          name: {
-            de: 'Sprache',
-            en: 'Language',
-          },
-          targetCookieIds: [I18N_COOKIE_NAME],
         },
         {
           description: {
