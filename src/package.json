@@ -66,6 +66,7 @@
     "@tailwindcss/typography": "0.5.10",
     "@tiptap/core": "2.1.8",
     "@tiptap/extension-link": "2.1.8",
+    "@tiptap/extension-text-align": "^2.1.8",
     "@tiptap/pm": "2.1.8",
     "@tiptap/starter-kit": "2.1.8",
     "@tiptap/vue-3": "2.1.8",

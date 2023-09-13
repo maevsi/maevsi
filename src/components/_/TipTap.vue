@@ -1,6 +1,6 @@
 <template>
-  <div v-if="editor" class="flex flex-col gap-1">
-    <div class="flex gap-4 overflow-auto">
+  <div v-if="editor" class="flex flex-col gap-2">
+    <div class="flex flex-wrap gap-x-4 gap-y-2 xl:gap-6">
       <div class="flex gap-1">
         <ButtonIcon
           :aria-label="t('undo')"
@@ -15,32 +15,6 @@
           @click="editor?.chain().focus().redo().run()"
         >
           <IconArrowUturnRight />
-        </ButtonIcon>
-      </div>
-      <div class="flex gap-1">
-        <ButtonIcon
-          :aria-label="t('bold')"
-          :class="{ 'is-active': editor.isActive('bold') }"
-          :title="t('bold')"
-          @click="editor?.chain().focus().toggleBold().run()"
-        >
-          <IconBold />
-        </ButtonIcon>
-        <ButtonIcon
-          :aria-label="t('italic')"
-          :class="{ 'is-active': editor.isActive('italic') }"
-          :title="t('italic')"
-          @click="editor?.chain().focus().toggleItalic().run()"
-        >
-          <IconItalic />
-        </ButtonIcon>
-        <ButtonIcon
-          :aria-label="t('strike')"
-          :class="{ 'is-active': editor.isActive('strike') }"
-          :title="t('strike')"
-          @click="editor?.chain().focus().toggleStrike().run()"
-        >
-          <IconStrikeThrough />
         </ButtonIcon>
       </div>
       <div class="flex gap-1">
@@ -80,6 +54,55 @@
             <IconHeading />
             <span>{{ t('number3') }}</span>
           </div>
+        </ButtonIcon>
+      </div>
+      <div class="flex gap-1">
+        <ButtonIcon
+          :aria-label="t('bold')"
+          :class="{ 'is-active': editor.isActive('bold') }"
+          :title="t('bold')"
+          @click="editor?.chain().focus().toggleBold().run()"
+        >
+          <IconBold />
+        </ButtonIcon>
+        <ButtonIcon
+          :aria-label="t('italic')"
+          :class="{ 'is-active': editor.isActive('italic') }"
+          :title="t('italic')"
+          @click="editor?.chain().focus().toggleItalic().run()"
+        >
+          <IconItalic />
+        </ButtonIcon>
+        <ButtonIcon
+          :aria-label="t('strike')"
+          :class="{ 'is-active': editor.isActive('strike') }"
+          :title="t('strike')"
+          @click="editor?.chain().focus().toggleStrike().run()"
+        >
+          <IconStrikeThrough />
+        </ButtonIcon>
+      </div>
+      <div class="flex gap-1">
+        <ButtonIcon
+          :aria-label="t('formatAlignLeft')"
+          :title="t('formatAlignLeft')"
+          @click="editor?.chain().focus().setTextAlign('left').run()"
+        >
+          <IconLeftAlignment />
+        </ButtonIcon>
+        <ButtonIcon
+          :aria-label="t('formatAlignCenter')"
+          :title="t('formatAlignCenter')"
+          @click="editor?.chain().focus().setTextAlign('center').run()"
+        >
+          <IconCenterAlignment />
+        </ButtonIcon>
+        <ButtonIcon
+          :aria-label="t('formatAlignRight')"
+          :title="t('formatAlignRight')"
+          @click="editor?.chain().focus().setTextAlign('right').run()"
+        >
+          <IconRightAlignment />
         </ButtonIcon>
       </div>
       <div class="flex gap-1">
@@ -149,6 +172,7 @@
 <script setup lang="ts">
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import { Link } from '@tiptap/extension-link'
+import TextAlign from '@tiptap/extension-text-align'
 import { StarterKit } from '@tiptap/starter-kit'
 
 export interface Props {
@@ -171,7 +195,11 @@ const editor = useEditor({
       class: 'form-input min-h-[100px]',
     },
   },
-  extensions: [StarterKit, Link],
+  extensions: [
+    StarterKit,
+    Link,
+    TextAlign.configure({ types: ['heading', 'paragraph'] }),
+  ],
   onUpdate: () => {
     if (!editor.value) return
     emit('update:modelValue', editor.value.getHTML())
@@ -220,6 +248,9 @@ de:
   blockquote: Zitat
   bold: Fett
   code: Code
+  formatAlignCenter: Mittig ausrichten
+  formatAlignLeft: Links ausrichten
+  formatAlignRight: Rechts ausrichten
   heading1: Überschrift (groß)
   heading2: Überschrift (mittelgroß)
   heading3: Überschrift (klein)
@@ -240,10 +271,14 @@ en:
   blockquote: Blockquote
   bold: Bold
   code: Code
+  formatAlignCenter: Align center
+  formatAlignLeft: Align left
+  formatAlignRight: Align right
   heading1: Heading (large)
   heading2: Heading (medium)
   heading3: Heading (small)
   horizontalRule: Horizontal rule
+  italic: Italic
   link: Link
   linkRemove: Remove link
   listOl: Enumeration
@@ -251,7 +286,6 @@ en:
   number1: '1'
   number2: '2'
   number3: '3'
-  italic: Italic
   # paragraph: Paragraph
   redo: Redo
   strike: Strikethrough

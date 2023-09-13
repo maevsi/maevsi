@@ -273,7 +273,10 @@
         <template v-if="eventDescriptionTemplate">
           <Hr />
           <!-- eslint-disable vue/no-v-html -->
-          <div class="vio-prose-scheme" v-html="eventDescriptionTemplate" />
+          <div
+            class="vio-prose-scheme w-full"
+            v-html="eventDescriptionTemplate"
+          />
           <!-- eslint-enable vue/no-v-html -->
         </template>
       </Card>

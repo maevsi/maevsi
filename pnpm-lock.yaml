@@ -99,6 +99,9 @@ importers:
       '@tiptap/extension-link':
         specifier: 2.1.8
         version: 2.1.8(@tiptap/core@2.1.8)(@tiptap/pm@2.1.8)
+      '@tiptap/extension-text-align':
+        specifier: ^2.1.8
+        version: 2.1.8(@tiptap/core@2.1.8)
       '@tiptap/pm':
         specifier: 2.1.8
         version: 2.1.8
@@ -5115,6 +5118,14 @@ packages:
 
   /@tiptap/extension-strike@2.1.8(@tiptap/core@2.1.8):
     resolution: {integrity: sha512-JGPiGudEZAKTiOirua9gtDG+HILHEx4CGODW5PDBMA1xYDfyo7ZJk5xgfJWZ1SOo7YviF26HSY4KKV9ThINq2Q==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0
+    dependencies:
+      '@tiptap/core': 2.1.8(@tiptap/pm@2.1.8)
+    dev: true
+
+  /@tiptap/extension-text-align@2.1.8(@tiptap/core@2.1.8):
+    resolution: {integrity: sha512-AUoZglsh9YXpBbft2KWJaAm/Gz6Mtj9CiBkSQhxrBaMm+sAHeE+EmWdYVzU+Q+FpUPoGMf89hknyo3M9RVsglQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
     dependencies:
