@@ -8,13 +8,14 @@ export const useHeadDefault = ({
   extension?: Parameters<typeof useServerSeoMeta>[0]
   title: string | ComputedRef<string>
 }) => {
-  const attrs = useAttrs()
   const siteConfig = useSiteConfig()
+  const { t } = useI18n()
 
   const defaults: Parameters<typeof useServerSeoMeta>[0] = {
+    description: t('globalSeoSiteDescription'), // TODO: remove (https://github.com/harlan-zw/nuxt-site-config/pull/7)
     msapplicationConfig: `/assets/static/favicon/browserconfig.xml?v=${CACHE_VERSION}`,
     title,
-    twitterDescription: attrs['site-description'] as string,
+    twitterDescription: t('globalSeoSiteDescription'),
     twitterTitle: ref(
       TITLE_TEMPLATE({
         siteName: siteConfig.name,
