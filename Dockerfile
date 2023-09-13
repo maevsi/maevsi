@@ -8,7 +8,7 @@ ENV CI=true
 
 WORKDIR /srv/app/
 
-COPY ./docker/entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
