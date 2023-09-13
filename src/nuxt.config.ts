@@ -186,10 +186,7 @@ export default defineNuxtConfig({
   },
   i18n: {
     defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
-    detectBrowserLanguage: {
-      cookieKey: I18N_COOKIE_NAME,
-      cookieSecure: process.env.NODE_ENV === 'production',
-    },
+    detectBrowserLanguage: false,
     langDir: 'locales',
     lazy: true,
     locales: LOCALES,
