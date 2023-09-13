@@ -1,3 +1,11 @@
+## [1.29.1](https://github.com/maevsi/maevsi/compare/1.29.0...1.29.1) (2023-09-13)
+
+
+### Bug Fixes
+
+* **well-known:** fix security.txt link ([616ea4f](https://github.com/maevsi/maevsi/commit/616ea4f7e0bf72c9e1f722824c492b98cc13a4f9))
+* **well-known:** fix security.txt link ([#1373](https://github.com/maevsi/maevsi/issues/1373)) ([d3915a5](https://github.com/maevsi/maevsi/commit/d3915a5bd602e142ee94e4b3bd1bbc80a37ba173))
+
 ## [1.29.0](https://github.com/maevsi/maevsi/compare/1.28.0...1.29.0) (2023-09-13)
 
 
