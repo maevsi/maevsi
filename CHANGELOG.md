@@ -1,3 +1,12 @@
+## [1.30.0](https://github.com/maevsi/maevsi/compare/1.29.2...1.30.0) (2023-09-13)
+
+
+### Features
+
+* **form:** extract validation definition ([aab73de](https://github.com/maevsi/maevsi/commit/aab73de572ab718927e20e255ab6600377bcd405))
+* **form:** remove lowercase validation for emails ([d1d11f7](https://github.com/maevsi/maevsi/commit/d1d11f745c5481315e35e9e598f2204ba419239f))
+* **form:** remove lowercase validation for emails ([#1375](https://github.com/maevsi/maevsi/issues/1375)) ([4011170](https://github.com/maevsi/maevsi/commit/4011170d101ca8dc3eb09cbaccda296f7aaef9af))
+
 ## [1.29.2](https://github.com/maevsi/maevsi/compare/1.29.1...1.29.2) (2023-09-13)
 
 
