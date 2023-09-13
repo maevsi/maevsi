@@ -528,6 +528,11 @@ useHeadDefault({
     description: descriptionSeo,
   },
 })
+defineOgImage({
+  alt: t('ogImageAlt'),
+  component: 'Event',
+  description: descriptionSeo.value,
+})
 </script>
 
 <i18n lang="yaml">
@@ -558,6 +563,7 @@ de:
   invitationSelectionClear: Zurück zur Einladungsübersicht
   invitationViewFor: Du schaust dir die Einladung für {name} an. Nur du und {name} können diese Seite sehen.
   invitations: Einladungen
+  ogImageAlt: Das Vorschaubild für die Veranstaltung.
   print: Drucken
   qrCodeShow: Check-in-Code anzeigen
   # requestSelection: Bitte auswählen
@@ -592,6 +598,7 @@ en:
   invitationSelectionClear: Back to the invitation overview
   invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
   invitations: Invitations
+  ogImageAlt: The event's preview image.
   print: Print
   qrCodeShow: Show check in code
   # requestSelection: Please select
