@@ -1,10 +1,9 @@
 import { createError, defineEventHandler, readBody, H3Event } from 'h3'
-import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
 import mustache from 'mustache'
 
-import { getHost } from '~/utils/util'
+import { getHost, getTextFromHtml } from '~/utils/util'
 import {
   ContactItemFragment,
   EventItemFragment,
@@ -106,10 +105,10 @@ export const getIcalString = (
         summary: event.name, // The event's title.
         ...(event.description && {
           description: {
-            plain: htmlToText(DOMPurify.sanitize(eventDescriptionHtml)),
+            plain: getTextFromHtml(DOMPurify.sanitize(eventDescriptionHtml)),
             html: eventDescriptionHtml,
           },
-          // description: htmlToText(DOMPurify.sanitize(eventDescriptionHtml)),
+          // description: getTextFromHtml(DOMPurify.sanitize(eventDescriptionHtml)),
         }),
         ...(event.location && { location: event.location }),
         organizer: {

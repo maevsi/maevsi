@@ -3,6 +3,7 @@ import Clipboard from 'clipboard'
 import { consola } from 'consola'
 import { defu } from 'defu'
 import { H3Event, getCookie } from 'h3'
+import { htmlToText } from 'html-to-text'
 import { ofetch } from 'ofetch'
 import Swal, { SweetAlertIcon } from 'sweetalert2'
 import colors from 'tailwindcss/colors'
@@ -259,6 +260,32 @@ export const getTimezone = async (event: H3Event) => {
   }
 
   return undefined
+}
+
+export const getTextFromHtml = (html: string) =>
+  htmlToText(html, {
+    selectors: [
+      { selector: 'a', options: { ignoreHref: true } },
+      { selector: 'img', format: 'skip' },
+    ],
+  })
+
+export const getStringTruncated = ({
+  string,
+  limit,
+  isLastWordIncluded = false,
+}: {
+  string: string
+  limit: number
+  isLastWordIncluded?: boolean
+}) => {
+  if (string.length <= limit) return string
+  const subString = string.slice(0, limit - 1)
+  return (
+    (isLastWordIncluded
+      ? subString.slice(0, subString.lastIndexOf(' '))
+      : subString) + ' …'
+  )
 }
 
 export const isNeitherNullNorUndefined = <T>(

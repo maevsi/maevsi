@@ -95,7 +95,9 @@
         @input="form.visibility = $event as EventVisibility"
       >
         <FormRadioButtonGroup
-          id="input-visibility"
+          :id="`maevsi-${
+            runtimeConfig.public.vio.isInProduction ? 'prod' : 'dev'
+          }-input-visibility`"
           v-model="v$.visibility.$model"
           name="visibility"
           :titles-values="[
@@ -300,6 +302,7 @@ const props = withDefaults(defineProps<Props>(), {
 const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const store = useMaevsiStore()
+const runtimeConfig = useRuntimeConfig()
 
 // api data
 const createEventMutation = useCreateEventMutation()
