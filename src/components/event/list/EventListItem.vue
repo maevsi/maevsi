@@ -48,7 +48,6 @@
 </template>
 
 <script setup lang="ts">
-import { htmlToText } from 'html-to-text'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import { EventItemFragment } from '~/gql/generated/graphql'
@@ -78,15 +77,12 @@ const now = dateTime()
 const eventDescriptionTemplate = computed(() => {
   if (!props.event?.description) return
 
-  return htmlToText(
+  return getTextFromHtml(
     DOMPurify.sanitize(
       mustache.render(props.event.description, {
         event: props.event,
       }),
     ),
-    {
-      selectors: [{ selector: 'a', options: { ignoreHref: true } }],
-    },
   )
 })
 const eventEnd = computed(() => dateTime(props.event.end))

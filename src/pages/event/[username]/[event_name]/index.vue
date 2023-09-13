@@ -464,9 +464,6 @@ const contactName = computed(() => {
     ? getContactName(contact.value)
     : undefined
 })
-const eventDescription = computed(() => {
-  return event.value?.description || t('globalLoading')
-})
 const eventDescriptionTemplate = computed(() => {
   if (!event.value?.description) return
 
@@ -510,6 +507,15 @@ const invitation = computed(() => {
 const jwtDecoded = computed(() => store.jwtDecoded)
 const routeQuery = computed(() => route.query)
 const routeQueryIc = computed(() => route.query.ic)
+const descriptionSeo = computed(() =>
+  eventDescriptionTemplate.value
+    ? getStringTruncated({
+        string: getTextFromHtml(eventDescriptionTemplate.value),
+        limit: 200,
+        isLastWordIncluded: true,
+      })
+    : undefined,
+)
 const signedInUsername = computed(() => store.signedInUsername)
 const title = computed(() =>
   api.value.isFetching ? t('globalLoading') : event.value?.name || '403',
@@ -519,7 +525,7 @@ const title = computed(() =>
 useHeadDefault({
   title,
   extension: {
-    description: eventDescription.value,
+    description: descriptionSeo,
   },
 })
 </script>
