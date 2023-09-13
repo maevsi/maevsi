@@ -10,7 +10,7 @@
   "scripts": {
     "build": "pnpm run build:node",
     "build:node": "nuxt build",
-    "build:static": "SITE_URL=http://localhost:3002 nuxt generate",
+    "build:static": "nuxt generate",
     "dev": "pnpm run start:dev",
     "generate": "pnpm run build:static",
     "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config .codegenrc.ts",

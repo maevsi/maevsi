@@ -63,7 +63,7 @@ RUN corepack enable && \
 
 # FROM node:20.6.1-alpine@sha256:d75175d449921d06250afd87d51f39a74fc174789fa3c50eba0d3b18369cc749 AS build-static
 
-# ARG SITE_URL=http://example.com
+# ARG SITE_URL=http://localhost:3002
 # ENV SITE_URL=${SITE_URL}
 
 # # The `CI` environment variable must be set for pnpm to run in headless mode
