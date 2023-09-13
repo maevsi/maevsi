@@ -8,13 +8,15 @@ ENV CI=true
 
 WORKDIR /srv/app/
 
+RUN corepack enable
+
 COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 VOLUME /srv/.pnpm-store
 VOLUME /srv/app
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["pnpm", "run", "--dir", "src", "dev"]
+CMD ["pnpm", "run", "--dir", "src", "dev", "--host"]
 EXPOSE 3000
 
 # TODO: support healthcheck while starting (https://github.com/nuxt/framework/issues/6915)
