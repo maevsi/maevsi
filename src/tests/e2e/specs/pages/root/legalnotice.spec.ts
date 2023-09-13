@@ -37,4 +37,12 @@ test.describe('visual regression', () => {
     await PAGE_READY({ page })
     await expect(page).toHaveScreenshot({ fullPage: true })
   })
+
+  test('generates the open graph image', async ({ page }) => {
+    await page.goto('/legal-notice/__og_image__/og.png')
+    await expect(page).toHaveScreenshot({ fullPage: true })
+
+    await page.goto('/de/legal-notice/__og_image__/og.png')
+    await expect(page).toHaveScreenshot({ fullPage: true })
+  })
 })

@@ -37,4 +37,13 @@ test.describe('visual regression', () => {
     await PAGE_READY({ page })
     await expect(page).toHaveScreenshot({ fullPage: true })
   })
+
+  // // TODO: enable (https://github.com/harlan-zw/nuxt-og-image/issues/81)
+  // test('generates the open graph image', async ({ page }) => {
+  //   await page.goto('/teapot/__og_image__/og.png')
+  //   await expect(page).toHaveScreenshot({ fullPage: true })
+
+  //   await page.goto('/de/teapot/__og_image__/og.png')
+  //   await expect(page).toHaveScreenshot({ fullPage: true })
+  // })
 })
