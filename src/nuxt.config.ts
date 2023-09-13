@@ -70,7 +70,8 @@ export default defineNuxtConfig({
         isInProduction: process.env.NODE_ENV === 'production',
         isTesting: false,
         stagingHost:
-          process.env.NODE_ENV !== 'production' && !process.env.STACK_DOMAIN
+          process.env.NODE_ENV !== 'production' &&
+          !process.env.NUXT_PUBLIC_SITE_URL
             ? 'maev.si'
             : undefined,
       },
@@ -428,7 +429,7 @@ export default defineNuxtConfig({
     strategies: 'injectManifest',
   },
   turnstile: {
-    secretKeyPath: process.env.STACK_DOMAIN
+    secretKeyPath: process.env.NUXT_PUBLIC_SITE_URL
       ? '/run/secrets/maevsi_turnstile-key'
       : undefined,
   },
