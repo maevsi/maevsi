@@ -21,7 +21,6 @@
 <script setup lang="ts">
 import { UseMutationResponse } from '@urql/vue'
 import { useVuelidate } from '@vuelidate/core'
-import { minLength, required } from '@vuelidate/validators'
 
 export interface Props {
   errorsPgIds?: Record<string, string>
@@ -72,10 +71,7 @@ const submit = async () => {
 
 // vuelidate
 const rules = {
-  password: {
-    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-    required,
-  },
+  password: VALIDATION_PASSWORD(),
 }
 const v$ = useVuelidate(rules, form)
 </script>

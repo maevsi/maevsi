@@ -62,7 +62,6 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { maxLength, minLength, required } from '@vuelidate/validators'
 import { useAuthenticateMutation } from '~/gql/documents/mutations/account/accountAuthenticate'
 import { useAccountRegistrationRefreshMutation } from '~/gql/documents/mutations/account/accountRegistrationRefresh'
 import { useMaevsiStore } from '~/store'
@@ -124,18 +123,9 @@ const submit = async () => {
 
 // vuelidate
 const rules = {
-  captcha: {
-    required,
-  },
-  username: {
-    formatSlug: VALIDATION_FORMAT_SLUG,
-    maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-    required,
-  },
-  password: {
-    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-    required,
-  },
+  captcha: VALIDATION_CAPTCHA(),
+  username: VALIDATION_USERNAME({}),
+  password: VALIDATION_PASSWORD(),
 }
 const v$ = useVuelidate(rules, form)
 </script>

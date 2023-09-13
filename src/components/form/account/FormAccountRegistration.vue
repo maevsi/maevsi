@@ -52,13 +52,6 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import {
-  email,
-  helpers,
-  maxLength,
-  minLength,
-  required,
-} from '@vuelidate/validators'
 import { useAccountRegistrationMutation } from '~/gql/documents/mutations/account/accountRegistration'
 
 const { locale, t } = useI18n()
@@ -100,24 +93,10 @@ const submit = async () => {
 
 // vuelidate
 const rules = {
-  captcha: {
-    required,
-  },
-  username: {
-    existenceNone: helpers.withAsync(validateUsername(true)),
-    formatSlug: VALIDATION_FORMAT_SLUG,
-    maxLength: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-    required,
-  },
-  password: {
-    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-    required,
-  },
-  emailAddress: {
-    email,
-    maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-    required,
-  },
+  captcha: VALIDATION_CAPTCHA(),
+  username: VALIDATION_USERNAME({ validateExistenceNone: true }),
+  password: VALIDATION_PASSWORD(),
+  emailAddress: VALIDATION_EMAIL_ADDRESS({ isRequired: true }),
 }
 const v$ = useVuelidate(rules, form)
 </script>

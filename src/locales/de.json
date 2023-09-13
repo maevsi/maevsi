@@ -13,10 +13,13 @@
   "globalShowMore": "Mehr anzeigen",
   "globalStatusError": "Fehler",
   "globalStatusWarning": "Warnung",
-  "globalValidationExistence": "Existiert nicht",
-  "globalValidationExistenceNone": "Existiert bereits",
+  "globalValidationAvailability": "Verfügbar",
+  "globalValidationAvailabilityNone": "Nicht verfügbar",
+  "globalValidationExistence": "Existiert",
+  "globalValidationExistenceNone": "Existiert nicht",
   "globalValidationFailed": "Bitte überprüfe deine Eingaben 🙈",
   "globalValidationFormat": "Falsches Format",
+  "globalValidationFormatEnum": "Nicht einer der möglichen Werte",
   "globalValidationFormatUrlHttps": "Muss mit \"https://\" beginnen",
   "globalValidationLength": "Zu lang",
   "globalValidationMaxValue": "Wert zu groß",
@@ -25,7 +28,5 @@
   "globalValidationNowOrFuture": "Zeitpunkt liegt in der Vergangenheit",
   "globalValidationRequired": "Pflichtfeld",
   "globalValidationSameAs": "Ist nicht identisch",
-  "globalValidationShortness": "Zu kurz",
-  "globalVerificationExistence": "Existiert",
-  "globalVerificationExistenceNone": "Existiert noch nicht"
+  "globalValidationShortness": "Zu kurz"
 }

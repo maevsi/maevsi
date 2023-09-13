@@ -21,14 +21,14 @@
         :is-validation-live="!isValidationInverted"
         validation-property="existence"
       >
-        {{ t('globalValidationExistence') }}
+        {{ t('globalValidationExistenceNone') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         :is-validation-live="isValidationInverted"
         validation-property="existenceNone"
       >
-        {{ t('globalValidationExistenceNone') }}
+        {{ t('globalValidationAvailabilityNone') }}
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
@@ -59,8 +59,8 @@
       >
         {{
           isValidationInverted
-            ? t('globalVerificationExistenceNone')
-            : t('globalVerificationExistence')
+            ? t('globalValidationAvailability')
+            : t('globalValidationExistence')
         }}
       </FormInputStateSuccess>
     </template>

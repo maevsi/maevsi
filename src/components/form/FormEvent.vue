@@ -101,11 +101,17 @@
           v-model="v$.visibility.$model"
           name="visibility"
           :titles-values="[
-            [t('visibilityPublic'), 'PUBLIC'],
-            [t('visibilityPrivate'), 'PRIVATE'],
+            [t('visibilityPublic'), EventVisibility.Public],
+            [t('visibilityPrivate'), EventVisibility.Private],
           ]"
         />
         <template #stateError>
+          <FormInputStateError
+            :form-input="v$.visibility"
+            validation-property="formatEnum"
+          >
+            {{ t('globalValidationFormatEnum') }}
+          </FormInputStateError>
           <FormInputStateError
             :form-input="v$.visibility"
             validation-property="required"
@@ -278,13 +284,6 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import {
-  helpers,
-  maxLength,
-  maxValue,
-  minValue,
-  required,
-} from '@vuelidate/validators'
 import slugify from 'slugify'
 
 import { useMaevsiStore } from '~/store'
@@ -425,41 +424,33 @@ const isWarningStartPastShown = computed(
 const rules = {
   id: {},
   authorUsername: {},
-  description: {
-    maxLength: maxLength(VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM),
-  },
+  description: VALIDATION_PRIMITIVE({
+    lengthMax: VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM,
+  }),
   end: {},
-  inviteeCountMaximum: {
-    maxValue: maxValue(Math.pow(2, 31) - 1), // PostgrSQL's positive end of range for integers.
-    minValue: minValue(1),
-  },
+  inviteeCountMaximum: VALIDATION_PRIMITIVE({
+    valueMax: POSTGRES_INTEGER_MAXIMUM,
+    valueMin: 1,
+  }),
   isInPerson: {},
   isRemote: {},
-  location: {
-    maxLength: maxLength(VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM),
-  },
-  name: {
-    maxLength: maxLength(VALIDATION_EVENT_NAME_LENGTH_MAXIMUM),
-    required,
-  },
-  slug: {
-    existenceNone: helpers.withAsync(
-      validateEventSlug(store.signedInUsername || '', true, props.event?.slug),
+  location: VALIDATION_PRIMITIVE({
+    lengthMax: VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM,
+  }),
+  name: VALIDATION_PRIMITIVE({
+    isRequired: true,
+    lengthMax: VALIDATION_EVENT_NAME_LENGTH_MAXIMUM,
+  }),
+  slug: VALIDATION_SLUG({
+    existenceNone: validateEventSlug(
+      store.signedInUsername || '',
+      true,
+      props.event?.slug,
     ),
-    maxLength: maxLength(VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM),
-    required,
-    formatSlug: VALIDATION_FORMAT_SLUG,
-  },
-  start: {
-    required,
-  },
-  url: {
-    formatUrlHttps: VALIDATION_FORMAT_URL_HTTPS,
-    maxLength: maxLength(VALIDATION_EVENT_URL_LENGTH_MAXIMUM),
-  },
-  visibility: {
-    required,
-  },
+  }),
+  start: VALIDATION_PRIMITIVE({ isRequired: true }),
+  url: VALIDATION_URL(),
+  visibility: VALIDATION_EVENT_VISIBILITY(),
 }
 
 const v$ = useVuelidate(rules, form)

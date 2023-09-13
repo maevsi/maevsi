@@ -28,7 +28,6 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { minLength, required } from '@vuelidate/validators'
 
 import FormType from '~/components/form/Form.vue'
 import { useAccountPasswordChangeMutation } from '~/gql/documents/mutations/account/accountPasswordChange'
@@ -69,14 +68,8 @@ const submit = async () => {
 
 // vuelidate
 const rules = {
-  passwordCurrent: {
-    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-    required,
-  },
-  passwordNew: {
-    minLength: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
-    required,
-  },
+  passwordCurrent: VALIDATION_PASSWORD(),
+  passwordNew: VALIDATION_PASSWORD(),
 }
 const v$ = useVuelidate(rules, form)
 </script>

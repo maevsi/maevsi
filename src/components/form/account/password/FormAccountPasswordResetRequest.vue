@@ -18,7 +18,6 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { email, maxLength, required } from '@vuelidate/validators'
 import { useAccountPasswordResetRequestMutation } from '~/gql/documents/mutations/account/accountPasswordResetRequest'
 
 export interface Props {
@@ -65,11 +64,7 @@ const submit = async () => {
 
 // vuelidate
 const rules = {
-  emailAddress: {
-    email,
-    maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-    required,
-  },
+  emailAddress: VALIDATION_EMAIL_ADDRESS({ isRequired: true }),
 }
 const v$ = useVuelidate(rules, form)
 </script>
