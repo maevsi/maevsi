@@ -1,3 +1,17 @@
+## [1.29.0](https://github.com/maevsi/maevsi/compare/1.28.0...1.29.0) (2023-09-13)
+
+
+### Features
+
+* **tiptap:** add text alignment ([2d8fb04](https://github.com/maevsi/maevsi/commit/2d8fb042354b96fa782ac990af9906ff04e23027))
+* **tiptap:** add text alignment ([#1372](https://github.com/maevsi/maevsi/issues/1372)) ([a0f89c3](https://github.com/maevsi/maevsi/commit/a0f89c3bea105a8b64fb7f1ce4299fe1889c54fd)), closes [#1024](https://github.com/maevsi/maevsi/issues/1024) [#1024](https://github.com/maevsi/maevsi/issues/1024)
+* **tiptap:** improve ui/ux ([502891a](https://github.com/maevsi/maevsi/commit/502891a0dd188c95b5a2e2a1e9d51f9e2f594b4b))
+
+
+### Bug Fixes
+
+* **event:** widen description ([9e4aaec](https://github.com/maevsi/maevsi/commit/9e4aaec92aa5bd4c2de14944a1eac51b3867295f))
+
 ## [1.28.0](https://github.com/maevsi/maevsi/compare/1.27.0...1.28.0) (2023-09-13)
 
 
