@@ -67,7 +67,6 @@ const submit = async () => {
 const rules = {
   emailAddress: {
     email,
-    formatUppercaseNone: VALIDATION_FORMAT_UPPERCASE_NONE,
     maxLength: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
     required,
   },

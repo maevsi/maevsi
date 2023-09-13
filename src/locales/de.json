@@ -17,7 +17,6 @@
   "globalValidationExistenceNone": "Existiert bereits",
   "globalValidationFailed": "Bitte überprüfe deine Eingaben 🙈",
   "globalValidationFormat": "Falsches Format",
-  "globalValidationFormatUppercaseNone": "Enthält Großbuchstaben",
   "globalValidationFormatUrlHttps": "Muss mit \"https://\" beginnen",
   "globalValidationLength": "Zu lang",
   "globalValidationMaxValue": "Wert zu groß",
