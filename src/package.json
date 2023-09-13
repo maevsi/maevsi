@@ -1,7 +1,7 @@
 {
   "name": "maevsi",
   "private": true,
-  "version": "1.26.0",
+  "version": "1.28.0",
   "description": "Find events, guests and friends.",
   "type": "module",
   "engines": {
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "pnpm run build:node",
     "build:node": "nuxt build",
-    "build:static": "SITE_URL=http://localhost:3002 nuxt generate",
+    "build:static": "nuxt generate",
     "dev": "pnpm run start:dev",
     "generate": "pnpm run build:static",
     "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config .codegenrc.ts",
@@ -59,7 +59,7 @@
     "@nuxtjs/i18n": "8.0.0-rc.4",
     "@nuxtjs/tailwindcss": "6.8.0",
     "@nuxtjs/turnstile": "0.6.3",
-    "@nuxtseo/module": "2.0.0-beta.27",
+    "@nuxtseo/module": "2.0.0-beta.29",
     "@pinia/nuxt": "0.4.11",
     "@playwright/test": "1.37.1",
     "@tailwindcss/forms": "0.5.6",
@@ -143,7 +143,7 @@
     "vue-chartjs": "5.2.0",
     "vue-gtag": "2.0.1",
     "vue-qrcode-reader": "5.3.4",
-    "vue-tsc": "1.8.10",
+    "vue-tsc": "1.8.11",
     "workbox-precaching": "7.0.0"
   },
   "peerDependencies": {

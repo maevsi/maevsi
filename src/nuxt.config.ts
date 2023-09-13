@@ -5,7 +5,6 @@ import colors from 'tailwindcss/colors'
 
 import {
   CACHE_VERSION,
-  I18N_COOKIE_NAME,
   JWT_NAME,
   LOCALES,
   SITE_NAME,
@@ -70,7 +69,8 @@ export default defineNuxtConfig({
         isInProduction: process.env.NODE_ENV === 'production',
         isTesting: false,
         stagingHost:
-          process.env.NODE_ENV !== 'production' && !process.env.STACK_DOMAIN
+          process.env.NODE_ENV !== 'production' &&
+          !process.env.NUXT_PUBLIC_SITE_URL
             ? 'maev.si'
             : undefined,
       },
@@ -134,18 +134,6 @@ export default defineNuxtConfig({
         },
         {
           description: {
-            de: 'Dieser Cookie von uns speichert die Sprache, in der diese Webseite angezeigt wird.',
-            en: "This cookie of ours stores the language that's used to display this website.",
-          },
-          id: 'l',
-          name: {
-            de: 'Sprache',
-            en: 'Language',
-          },
-          targetCookieIds: [I18N_COOKIE_NAME],
-        },
-        {
-          description: {
             de: 'Dieser Cookie von uns speichert die Zeitzone, in der sich das Gerät zu befinden scheint.',
             en: 'This cookie of ours saves the timezone in which the device appears to be located.',
           },
@@ -185,10 +173,7 @@ export default defineNuxtConfig({
   },
   i18n: {
     defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
-    detectBrowserLanguage: {
-      cookieKey: I18N_COOKIE_NAME,
-      cookieSecure: process.env.NODE_ENV === 'production',
-    },
+    detectBrowserLanguage: false,
     langDir: 'locales',
     lazy: true,
     locales: LOCALES,
@@ -428,7 +413,7 @@ export default defineNuxtConfig({
     strategies: 'injectManifest',
   },
   turnstile: {
-    secretKeyPath: process.env.STACK_DOMAIN
+    secretKeyPath: process.env.NUXT_PUBLIC_SITE_URL
       ? '/run/secrets/maevsi_turnstile-key'
       : undefined,
   },

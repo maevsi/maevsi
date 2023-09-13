@@ -95,4 +95,12 @@ test.describe('visual regression', () => {
     await PAGE_READY({ page, options: { cookieControl: false } })
     await expect(page).toHaveScreenshot({ fullPage: true })
   })
+
+  test('generates the open graph image', async ({ page }) => {
+    await page.goto('/__og_image__/og.png')
+    await expect(page).toHaveScreenshot({ fullPage: true })
+
+    await page.goto('/de/__og_image__/og.png')
+    await expect(page).toHaveScreenshot({ fullPage: true })
+  })
 })

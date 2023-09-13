@@ -123,7 +123,7 @@ The setup for backend development is more complex as it consists of numerous ser
     cd ../../
     dargstack deploy
     ```
-1. finally, create the Docker development images for `maevsi` and `stomper` so that their services start successfully:
+1. finally, create the Docker development images for `maevsi`, `sqitch` and `stomper` so that their services start successfully:
     ```sh
     dargstack build maevsi
     dargstack build sqitch

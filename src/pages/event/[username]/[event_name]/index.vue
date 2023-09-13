@@ -464,9 +464,6 @@ const contactName = computed(() => {
     ? getContactName(contact.value)
     : undefined
 })
-const eventDescription = computed(() => {
-  return event.value?.description || t('globalLoading')
-})
 const eventDescriptionTemplate = computed(() => {
   if (!event.value?.description) return
 
@@ -510,6 +507,15 @@ const invitation = computed(() => {
 const jwtDecoded = computed(() => store.jwtDecoded)
 const routeQuery = computed(() => route.query)
 const routeQueryIc = computed(() => route.query.ic)
+const descriptionSeo = computed(() =>
+  eventDescriptionTemplate.value
+    ? getStringTruncated({
+        string: getTextFromHtml(eventDescriptionTemplate.value),
+        limit: 200,
+        isLastWordIncluded: true,
+      })
+    : undefined,
+)
 const signedInUsername = computed(() => store.signedInUsername)
 const title = computed(() =>
   api.value.isFetching ? t('globalLoading') : event.value?.name || '403',
@@ -519,8 +525,13 @@ const title = computed(() =>
 useHeadDefault({
   title,
   extension: {
-    description: eventDescription.value,
+    description: descriptionSeo,
   },
+})
+defineOgImage({
+  alt: t('ogImageAlt'),
+  component: 'Event',
+  description: descriptionSeo.value,
 })
 </script>
 
@@ -552,6 +563,7 @@ de:
   invitationSelectionClear: Zurück zur Einladungsübersicht
   invitationViewFor: Du schaust dir die Einladung für {name} an. Nur du und {name} können diese Seite sehen.
   invitations: Einladungen
+  ogImageAlt: Das Vorschaubild für die Veranstaltung.
   print: Drucken
   qrCodeShow: Check-in-Code anzeigen
   # requestSelection: Bitte auswählen
@@ -586,6 +598,7 @@ en:
   invitationSelectionClear: Back to the invitation overview
   invitationViewFor: You're viewing the invitation for {name}. Only you and {name} can see this page.
   invitations: Invitations
+  ogImageAlt: The event's preview image.
   print: Print
   qrCodeShow: Show check in code
   # requestSelection: Please select

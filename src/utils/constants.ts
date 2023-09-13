@@ -10,7 +10,6 @@ export const SITE_URL =
     (process.env.HOST ||
       `${process.env.HOST || 'localhost'}:${process.env.PORT || '3000'}`)
 export const CACHE_VERSION = '2EvuFKRRxT'
-export const I18N_COOKIE_NAME = 'i18n_r'
 export const ITEMS_PER_PAGE = 10
 export const ITEMS_PER_PAGE_LARGE = 100
 export const JWT_ALGORITHM = 'RS256'

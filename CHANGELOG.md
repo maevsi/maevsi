@@ -1,3 +1,39 @@
+## [1.28.0](https://github.com/maevsi/maevsi/compare/1.27.0...1.28.0) (2023-09-13)
+
+
+### Features
+
+* **cookie-control:** remove i18n cookie ([4fbb252](https://github.com/maevsi/maevsi/commit/4fbb25215fee8d949a0bfe21a34360eb534ffcec))
+
+
+### Bug Fixes
+
+* correct environment variable ([55c2f9f](https://github.com/maevsi/maevsi/commit/55c2f9f17c134b264df16e52e41de8d7b793ea57))
+
+
+### Performance Improvements
+
+* **seo:** disable automatic language redirection ([426b7ca](https://github.com/maevsi/maevsi/commit/426b7ca6f5352551f3457de86204d3a9358a33a3))
+* **seo:** disable automatic language redirection ([#1370](https://github.com/maevsi/maevsi/issues/1370)) ([16cb54e](https://github.com/maevsi/maevsi/commit/16cb54ee97befe9610d2533d8bcf8227afd2e38f))
+
+## [1.27.0](https://github.com/maevsi/maevsi/compare/1.26.0...1.27.0) (2023-09-13)
+
+
+### Features
+
+* add custom og images ([#1369](https://github.com/maevsi/maevsi/issues/1369)) ([ef58121](https://github.com/maevsi/maevsi/commit/ef581219dfb17b2a849ba49586a74114a90d453d)), closes [#99](https://github.com/maevsi/maevsi/issues/99)
+* add custom open graph image ([bd26043](https://github.com/maevsi/maevsi/commit/bd26043abd9da2fd80edb0c850680559f36a4fe5))
+* **event:** add custom open graph image ([fd95108](https://github.com/maevsi/maevsi/commit/fd9510850f2730fd7df26b6c8e207c4cb1af0e23))
+* **footer:** link to status instead of releases ([af55b3a](https://github.com/maevsi/maevsi/commit/af55b3ab7fc3e6c2929dbb2a9658513521988a8c))
+* **head:** truncate event description ([e04f9c0](https://github.com/maevsi/maevsi/commit/e04f9c016a525cf5ddee670787e5f2565a68f1a8))
+
+
+### Bug Fixes
+
+* **docker:** correct entrypoint ([94919bd](https://github.com/maevsi/maevsi/commit/94919bd875d42d853d7b5e03f6da792dd86316d2))
+* **form:** correct input label ids ([15c67bf](https://github.com/maevsi/maevsi/commit/15c67bfc53750b519816b4cde60e86bad45487d6))
+* **head:** correct description ([ee8ce8c](https://github.com/maevsi/maevsi/commit/ee8ce8c05ec301a147d55140c594942bf26eb72d))
+
 ## [1.26.0](https://github.com/maevsi/maevsi/compare/1.25.0...1.26.0) (2023-09-12)
 
 

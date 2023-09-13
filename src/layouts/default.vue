@@ -51,11 +51,8 @@
           </AppLink>
         </LayoutFooterCategory> -->
       <LayoutFooterCategory :heading="t('quickLinks')">
-        <AppLink
-          :title="t('releases')"
-          to="https://github.com/maevsi/maevsi/releases"
-        >
-          {{ t('releases') }}
+        <AppLink :title="t('status')" to="https://status.maev.si/">
+          {{ t('status') }}
         </AppLink>
         <AppLink :title="t('githubLinkTitle')" to="https://github.com/maevsi/">
           {{ t('sourceCode') }}
@@ -196,8 +193,8 @@ de:
   privacyPolicy: Datenschutz
   product: Produkt
   quickLinks: Quick Links
-  releases: Updates
   sourceCode: Quellcode
+  status: Status
   # team: Team
 en:
   colorScheme: Color scheme
@@ -212,7 +209,7 @@ en:
   privacyPolicy: Privacy
   product: Product
   quickLinks: Quick Links
-  releases: Releases
   sourceCode: Source code
+  status: Status
   # team: Team
 </i18n>

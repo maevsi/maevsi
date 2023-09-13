@@ -160,9 +160,11 @@ const { t } = useI18n()
 const runtimeConfig = useRuntimeConfig()
 
 // data
-const idLabelFull = `maevsi-${
-  runtimeConfig.public.vio.isInProduction ? 'prod' : 'dev'
-}-${props.idLabel}`
+const idLabelFull = props.idLabel
+  ? `maevsi-${runtimeConfig.public.vio.isInProduction ? 'prod' : 'dev'}-${
+      props.idLabel
+    }`
+  : undefined
 
 // initialization
 if (
