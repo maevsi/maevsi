@@ -66,6 +66,7 @@
     "@tailwindcss/typography": "0.5.10",
     "@tiptap/core": "2.1.8",
     "@tiptap/extension-link": "2.1.8",
+    "@tiptap/extension-text-align": "^2.1.8",
     "@tiptap/pm": "2.1.8",
     "@tiptap/starter-kit": "2.1.8",
     "@tiptap/vue-3": "2.1.8",
@@ -143,8 +144,7 @@
     "vue-gtag": "2.0.1",
     "vue-qrcode-reader": "5.3.4",
     "vue-tsc": "1.8.10",
-    "workbox-precaching": "7.0.0",
-    "@tiptap/extension-text-align": "^2.1.8"
+    "workbox-precaching": "7.0.0"
   },
   "peerDependencies": {
     "playwright-core": "1.37.1"

@@ -143,7 +143,6 @@
           <IconLeftAlignment />
         </ButtonIcon>
       </div>
-
       <div class="flex gap-1">
         <ButtonIcon
           :aria-label="t('formatAlignCenter')"
@@ -253,6 +252,9 @@ de:
   blockquote: Zitat
   bold: Fett
   code: Code
+  formatAlignCenter: Mittig ausrichten
+  formatAlignLeft: Links ausrichten
+  formatAlignRight: Rechts ausrichten
   heading1: Überschrift (groß)
   heading2: Überschrift (mittelgroß)
   heading3: Überschrift (klein)
@@ -269,17 +271,18 @@ de:
   redo: Wiederholen
   strike: Durchgestrichen
   undo: Rückgängig machen
-  formatAlignLeft: Linksbündig
-  formatAlignRight: Rechtsbündig
-  formatAlignCenter: Mittig
 en:
   blockquote: Blockquote
   bold: Bold
   code: Code
+  formatAlignCenter: Align center
+  formatAlignLeft: Align left
+  formatAlignRight: Align right
   heading1: Heading (large)
   heading2: Heading (medium)
   heading3: Heading (small)
   horizontalRule: Horizontal rule
+  italic: Italic
   link: Link
   linkRemove: Remove link
   listOl: Enumeration
@@ -287,12 +290,8 @@ en:
   number1: '1'
   number2: '2'
   number3: '3'
-  italic: Italic
   # paragraph: Paragraph
   redo: Redo
   strike: Strikethrough
   undo: Undo
-  formatAlignLeft: Align Left
-  formatAlignRight: Align Right
-  formatAlignCenter: Align Center
 </i18n>
