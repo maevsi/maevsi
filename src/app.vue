@@ -100,7 +100,7 @@ updateSiteConfig({
 })
 defineOgImage({
   alt: t('globalSeoOgImageAlt'),
-  // component: ogImageComponentProp.value,
+  component: 'Default',
 })
 useAppLayout()
 useFavicons()
