@@ -134,6 +134,34 @@
           <IconMinus />
         </ButtonIcon>
       </div>
+      <div class="flex gap-1">
+        <ButtonIcon
+          :aria-label="t('formatAlignLeft')"
+          :title="t('formatAlignLeft')"
+          @click="editor?.chain().focus().setTextAlign('left').run()"
+        >
+          <IconLeftAlignment />
+        </ButtonIcon>
+      </div>
+
+      <div class="flex gap-1">
+        <ButtonIcon
+          :aria-label="t('formatAlignCenter')"
+          :title="t('formatAlignCenter')"
+          @click="editor?.chain().focus().setTextAlign('center').run()"
+        >
+          <IconCenterAlignment />
+        </ButtonIcon>
+      </div>
+      <div class="flex gap-1">
+        <ButtonIcon
+          :aria-label="t('formatAlignRight')"
+          :title="t('formatAlignRight')"
+          @click="editor?.chain().focus().setTextAlign('right').run()"
+        >
+          <IconRightAlignment />
+        </ButtonIcon>
+      </div>
       <!--
       <Button
         :class="{ 'is-active': editor.isActive('codeBlock') }"
@@ -149,6 +177,7 @@
 <script setup lang="ts">
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import { Link } from '@tiptap/extension-link'
+import TextAlign from '@tiptap/extension-text-align'
 import { StarterKit } from '@tiptap/starter-kit'
 
 export interface Props {
@@ -171,7 +200,11 @@ const editor = useEditor({
       class: 'form-input min-h-[100px]',
     },
   },
-  extensions: [StarterKit, Link],
+  extensions: [
+    StarterKit,
+    Link,
+    TextAlign.configure({ types: ['heading', 'paragraph'] }),
+  ],
   onUpdate: () => {
     if (!editor.value) return
     emit('update:modelValue', editor.value.getHTML())
@@ -236,6 +269,9 @@ de:
   redo: Wiederholen
   strike: Durchgestrichen
   undo: Rückgängig machen
+  formatAlignLeft: Linksbündig
+  formatAlignRight: Rechtsbündig
+  formatAlignCenter: Mittig
 en:
   blockquote: Blockquote
   bold: Bold
@@ -256,4 +292,7 @@ en:
   redo: Redo
   strike: Strikethrough
   undo: Undo
+  formatAlignLeft: Align Left
+  formatAlignRight: Align Right
+  formatAlignCenter: Align Center
 </i18n>
