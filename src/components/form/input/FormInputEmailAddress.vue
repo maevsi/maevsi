@@ -2,6 +2,7 @@
   <FormInput
     v-if="formInput"
     :is-optional="isOptional"
+    :is-required="isRequired"
     :id-label="`input-${id}`"
     :placeholder="t('globalPlaceholderEmailAddress')"
     :title="title || t('emailAddress')"
