@@ -108,8 +108,8 @@ export const getIcalString = ({
         summary: event.name, // The event's title.
         ...(event.description && {
           description: {
-            plain: getTextFromHtml(DOMPurify.sanitize(eventDescriptionHtml)),
-            html: eventDescriptionHtml,
+            plain: getTextFromHtml(eventDescriptionHtml),
+            html: DOMPurify.sanitize(eventDescriptionHtml),
           },
           // description: getTextFromHtml(DOMPurify.sanitize(eventDescriptionHtml)),
         }),
