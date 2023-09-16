@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.7.3",
-    "@babel/core": "7.22.19",
+    "@babel/core": "7.22.20",
     "@dargmuesli/nuxt-cookie-control": "6.4.2",
     "@fontsource-variable/manrope": "5.0.12",
     "@graphql-codegen/cli": "5.0.0",
