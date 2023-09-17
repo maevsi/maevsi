@@ -70,7 +70,7 @@
 
 <script setup lang="ts">
 import { consola } from 'consola'
-import { type DetectedBarcode } from '@sec-ant/barcode-detector'
+import { type DetectedBarcode } from 'barcode-detector'
 
 import { useMaevsiStore } from '~/store'
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
