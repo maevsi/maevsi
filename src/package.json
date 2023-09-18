@@ -142,7 +142,7 @@
     "vue-advanced-cropper": "2.8.8",
     "vue-chartjs": "5.2.0",
     "vue-gtag": "2.0.1",
-    "vue-qrcode-reader": "5.3.5",
+    "vue-qrcode-reader": "5.3.6",
     "vue-tsc": "1.8.11",
     "workbox-precaching": "7.0.0"
   },
