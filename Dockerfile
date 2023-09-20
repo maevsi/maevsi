@@ -46,7 +46,7 @@ RUN pnpm install --offline
 ########################
 # Build for Node deployment.
 
-FROM node:20.7.0-slim@sha256:9ecbb57255e5eef13d4f8385dc0ed9156e12201da3d17ce8dce1118b3d1968b5 AS build-node
+FROM node:20.7.0-slim@sha256:24a8b77508a4edaa99ef31f020e915da31c87068b4164d6746bf0c1684c71f98 AS build-node
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
