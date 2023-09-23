@@ -70,7 +70,7 @@
     "@tiptap/pm": "2.1.11",
     "@tiptap/starter-kit": "2.1.11",
     "@tiptap/vue-3": "2.1.11",
-    "@types/dompurify": "3.0.2",
+    "@types/dompurify": "3.0.3",
     "@types/downloadjs": "1.4.3",
     "@types/html-to-text": "9.0.2",
     "@types/lodash-es": "4.17.9",
