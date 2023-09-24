@@ -1,3 +1,10 @@
+## [1.30.2](https://github.com/maevsi/maevsi/compare/1.30.1...1.30.2) (2023-09-24)
+
+
+### Bug Fixes
+
+* **assetlinks:** update fingerprints ([6b59da5](https://github.com/maevsi/maevsi/commit/6b59da5c07e9f3c8ba0f406c71e1ec9bd36a821e))
+
 ## [1.30.1](https://github.com/maevsi/maevsi/compare/1.30.0...1.30.1) (2023-09-23)
 
 
