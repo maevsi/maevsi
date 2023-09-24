@@ -310,8 +310,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       v-calendar:
-        specifier: 3.0.3
-        version: 3.0.3(@popperjs/core@2.11.8)(vue@3.3.4)
+        specifier: 3.1.0
+        version: 3.1.0(@popperjs/core@2.11.8)(vue@3.3.4)
       vitest:
         specifier: 0.34.5
         version: 0.34.5
@@ -17080,8 +17080,8 @@ packages:
     resolution: {integrity: sha512-UOzej0Le/UgkbWEO8flm+0y+G+ljUon1QWTEZOq1rnMAsxo2+SckbiZdKzAHHlVh6gJqI1TjC/xwgR50MuCrBQ==}
     dev: true
 
-  /v-calendar@3.0.3(@popperjs/core@2.11.8)(vue@3.3.4):
-    resolution: {integrity: sha512-Skpp/nMoFqFadm94aWj0oOfazoux5T5Ug3/pbRbdolkoDrnVcL7Ronw1/SGFRUPGOwnLdYwhKPhrhSE1segW6w==}
+  /v-calendar@3.1.0(@popperjs/core@2.11.8)(vue@3.3.4):
+    resolution: {integrity: sha512-AoVTpz5QkaK+qRSTOEHOW2IxH+KfuQGnEk/N64y4cj2K37kGeC3M7nWVqXjXqBHPHpo5WmtNZ5lidUT+nn4ZAA==}
     peerDependencies:
       '@popperjs/core': ^2.0.0
       vue: ^3.2.0
