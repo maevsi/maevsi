@@ -1,11 +1,13 @@
 <template>
   <div>
-    <CardStateInfo
-      v-if="!isBrowserSupported && !runtimeConfig.public.vio.isTesting"
-      is-edgy
-    >
-      {{ t('browserUnsupported') }}
-    </CardStateInfo>
+    <LazyClientOnly>
+      <CardStateInfo
+        v-if="!isBrowserSupported && !runtimeConfig.public.vio.isTesting"
+        is-edgy
+      >
+        {{ t('browserUnsupported') }}
+      </CardStateInfo>
+    </LazyClientOnly>
     <NuxtLayout>
       <!-- `NuxtLayout` can't have mulitple child nodes (https://github.com/nuxt/nuxt/issues/21759) -->
       <NuxtPage />
