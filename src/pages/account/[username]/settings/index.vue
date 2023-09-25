@@ -50,11 +50,11 @@
 </template>
 
 <script setup lang="ts">
+import { useNuxtApp } from '#app/nuxt'
+
 import { useMaevsiStore } from '~/store'
 import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
 import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
-
-import { useNuxtApp } from '#app/nuxt'
 
 definePageMeta({
   async validate(route) {

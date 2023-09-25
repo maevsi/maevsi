@@ -326,6 +326,8 @@ import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 
+import { useNuxtApp } from '#app/nuxt'
+
 import { useMaevsiStore } from '~/store'
 import { useUpdateInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationUpdateById'
 import {
@@ -338,8 +340,6 @@ import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
-
-import { useNuxtApp } from '#app/nuxt'
 
 definePageMeta({
   async validate(route) {

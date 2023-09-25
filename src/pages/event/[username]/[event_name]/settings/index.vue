@@ -46,13 +46,13 @@
 </template>
 
 <script setup lang="ts">
+import { useNuxtApp } from '#app/nuxt'
+
 import { useMaevsiStore } from '~/store'
 import { useEventDeleteMutation } from '~/gql/documents/mutations/event/eventDelete'
 import { useEventByAuthorUsernameAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorUsernameAndSlug'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
-
-import { useNuxtApp } from '#app/nuxt'
 
 definePageMeta({
   async validate(route) {
