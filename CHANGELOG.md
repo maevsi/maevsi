@@ -1,3 +1,12 @@
+## [1.30.3](https://github.com/maevsi/maevsi/compare/1.30.2...1.30.3) (2023-09-25)
+
+
+### Bug Fixes
+
+* **app:** correct hydration on unsupported browsers ([f0cb116](https://github.com/maevsi/maevsi/commit/f0cb116320eda81a0b23755255977dc1e010b7ee))
+* **headers:** apply depending on https ([57515a6](https://github.com/maevsi/maevsi/commit/57515a6d4103cb9acf545d90d6b89399e45d79e2))
+* hydration ([#1381](https://github.com/maevsi/maevsi/issues/1381)) ([25f3140](https://github.com/maevsi/maevsi/commit/25f314040b75add361732e2f85f1090e425ce18a))
+
 ## [1.30.2](https://github.com/maevsi/maevsi/compare/1.30.1...1.30.2) (2023-09-24)
 
 
