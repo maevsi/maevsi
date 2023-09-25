@@ -219,6 +219,9 @@ importers:
       ical-generator:
         specifier: 5.0.1
         version: 5.0.1(@types/node@20.6.5)(dayjs@2.0.0-alpha.4)
+      is-https:
+        specifier: 4.0.0
+        version: 4.0.0
       isomorphic-dompurify:
         specifier: 1.8.0
         version: 1.8.0
