@@ -58,14 +58,14 @@
 import { useVuelidate } from '@vuelidate/core'
 import { consola } from 'consola'
 
+import { useNuxtApp } from '#app/nuxt'
+import { useLocalePath } from '#i18n'
+import { useRoute } from '#vue-router'
+
 import {
   eventUnlockMutation as eventUnlockMutationImported,
   useEventUnlockMutation,
 } from '~/gql/documents/mutations/event/eventUnlock'
-
-import { useNuxtApp } from '#app/nuxt'
-import { useLocalePath } from '#i18n'
-import { useRoute } from '#vue-router'
 
 definePageMeta({
   layout: computed(() => {

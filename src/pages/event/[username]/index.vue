@@ -17,9 +17,9 @@
 </template>
 
 <script setup lang="ts">
-import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
-
 import { useNuxtApp } from '#app/nuxt'
+
+import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountIsExisting'
 
 definePageMeta({
   async validate(route) {
