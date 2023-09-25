@@ -1,4 +1,5 @@
 import { appendHeader, defineEventHandler, type H3Event } from 'h3'
+import isHttps from 'is-https'
 
 import { TIMEZONE_HEADER_KEY } from '~/utils/constants'
 import { getCspAsString, getTimezone } from '~/utils/util'
@@ -8,7 +9,10 @@ export default defineEventHandler(async (event) => {
 
   appendHeader(event, 'Content-Security-Policy', getCspAsString(event))
   // appendHeader(event, 'Cross-Origin-Embedder-Policy', 'require-corp') // https://stackoverflow.com/questions/71904052/getting-notsameoriginafterdefaultedtosameoriginbycoep-error-with-helmet
-  appendHeader(event, 'Cross-Origin-Opener-Policy', 'same-origin')
+
+  if (isHttps(event.node.req)) {
+    appendHeader(event, 'Cross-Origin-Opener-Policy', 'same-origin')
+  }
   appendHeader(event, 'Cross-Origin-Resource-Policy', 'same-origin')
   // appendHeader(event, 'Expect-CT', 'max-age=0') // deprecated (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expect-CT)
   appendHeader(
@@ -16,7 +20,11 @@ export default defineEventHandler(async (event) => {
     'NEL',
     '\'{"report_to":"default","max_age":31536000,"include_subdomains":true}\'',
   )
-  appendHeader(event, 'Origin-Agent-Cluster', '?1')
+
+  if (isHttps(event.node.req)) {
+    appendHeader(event, 'Origin-Agent-Cluster', '?1')
+  }
+
   appendHeader(event, 'Permissions-Policy', '')
   appendHeader(event, 'Referrer-Policy', 'no-referrer')
   appendHeader(
