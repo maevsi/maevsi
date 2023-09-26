@@ -46,12 +46,11 @@ export default defineEventHandler(async (event: H3Event) => {
   }
 })
 
-const deleteUpload = async (event: H3Event, uploadId: any, storageKey: any) => {
+const deleteUpload = async (event: H3Event, uploadId: any) => {
   let queryResult = await pool
-    .query(
-      'DELETE FROM maevsi.profile_picture WHERE upload_storage_key = $1;',
-      [storageKey],
-    )
+    .query('DELETE FROM maevsi.profile_picture WHERE upload_id = $1;', [
+      uploadId,
+    ])
     .catch((err: Error) => {
       sendError(
         event,
@@ -156,16 +155,17 @@ const tusdDelete = async (event: H3Event) => {
         headers: {
           'Tus-Resumable': '1.0.0',
         },
+        ignoreResponseError: true,
         method: 'DELETE',
       },
     )
 
     if (httpResp.status === 204) {
-      await deleteUpload(event, uploadId, storageKey)
+      await deleteUpload(event, uploadId)
       event.node.res.statusCode = 204
       await send(event)
     } else if (httpResp.status === 404) {
-      await deleteUpload(event, uploadId, storageKey)
+      await deleteUpload(event, uploadId)
     } else {
       return sendError(
         event,
@@ -176,7 +176,7 @@ const tusdDelete = async (event: H3Event) => {
       )
     }
   } else {
-    await deleteUpload(event, uploadId, storageKey)
+    await deleteUpload(event, uploadId)
   }
 }
 
@@ -191,7 +191,7 @@ const tusdPost = async (event: H3Event) => {
       consola.log('tusd/pre-create')
 
       const queryRes = await pool
-        .query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE uuid = $1);', [
+        .query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = $1);', [
           body.Upload.MetaData.maevsiUploadUuid,
         ])
         .catch((err) => {
@@ -221,7 +221,7 @@ const tusdPost = async (event: H3Event) => {
       consola.log('tusd/pre-finish: ' + body.Upload.ID)
 
       const queryRes = await pool
-        .query('UPDATE maevsi.upload SET storage_key = $1 WHERE uuid = $2;', [
+        .query('UPDATE maevsi.upload SET storage_key = $1 WHERE id = $2;', [
           body.Upload.ID,
           body.Upload.MetaData.maevsiUploadUuid,
         ])
@@ -243,11 +243,7 @@ const tusdPost = async (event: H3Event) => {
     }
     case 'post-terminate':
       consola.log('tusd/post-terminate: ' + body.Upload.ID)
-      await deleteUpload(
-        event,
-        body.Upload.MetaData.maevsiUploadUuid,
-        body.Upload.ID,
-      )
+      await deleteUpload(event, body.Upload.MetaData.maevsiUploadUuid)
 
       break
   }

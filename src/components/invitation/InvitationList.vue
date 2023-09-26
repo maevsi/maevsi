@@ -15,13 +15,13 @@
               <th scope="col">
                 {{ t('contact') }}
               </th>
-              <th />
+              <th scope="col" />
             </tr>
           </thead>
           <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
             <InvitationListItem
               v-for="invitation in invitations"
-              :key="invitation.uuid"
+              :key="invitation.id"
               :event="event"
               :invitation="invitation"
             />
@@ -107,7 +107,7 @@ import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'
 export interface Props {
   event: Pick<
     EventItemFragment,
-    'authorUsername' | 'slug' | 'inviteeCountMaximum' | 'id'
+    'authorAccountId' | 'slug' | 'inviteeCountMaximum' | 'id'
   >
 }
 const props = withDefaults(defineProps<Props>(), {})

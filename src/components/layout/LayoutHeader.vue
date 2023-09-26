@@ -1,4 +1,5 @@
 <template>
+  <!-- <Loader :api="api" indicator="ping"> -->
   <header class="mb-8">
     <div class="flex items-center justify-between gap-4">
       <ButtonIcon
@@ -47,7 +48,7 @@
           class="my-1 hidden w-px flex-none self-stretch bg-gray-300 dark:bg-gray-600 lg:flex"
         />
         <ButtonColored
-          v-if="signedInUsername"
+          v-if="store.signedInAccountId"
           :aria-label="t('dashboard')"
           class="mx-2 hidden lg:block"
           :is-primary="false"
@@ -56,15 +57,15 @@
           {{ t('dashboard') }}
         </ButtonColored>
         <ButtonIcon
-          v-if="signedInUsername"
-          :aria-label="signedInUsername"
+          v-if="store.signedInUsername && store.signedInAccountId"
+          :aria-label="store.signedInUsername"
           :title="t('profileLink')"
-          :to="localePath(`/account/${signedInUsername}`)"
+          :to="localePath(`/account/${store.signedInUsername}`)"
         >
           <AccountProfilePicture
+            :account-id="store.signedInAccountId"
             classes="h-10 rounded-full w-10"
             height="40"
-            :username="signedInUsername"
             width="40"
           />
         </ButtonIcon>
@@ -87,9 +88,12 @@
       </div>
     </div>
   </header>
+  <!-- </Loader> -->
 </template>
 
 <script setup lang="ts">
+// import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+// import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { useMaevsiStore } from '~/store'
 
 const emit = defineEmits<{
@@ -100,10 +104,18 @@ const store = useMaevsiStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
 
-// computations
-const signedInUsername = computed(() => store.signedInUsername)
+// // api data
+// const accountByUsernameQuery = store.signedInUsername
+//   ? await useAccountByUsernameQuery({
+//       username: store.signedInUsername,
+//     })
+//   : undefined
+// const account = getAccountItem(
+//   accountByUsernameQuery?.data.value?.accountByUsername,
+// )
+// const api = getApiData([accountByUsernameQuery])
 
-// // methods
+// methods
 const navigateToSearch = () => {
   navigateTo({
     path: localePath(`/task/search`),
