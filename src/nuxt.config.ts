@@ -432,7 +432,8 @@ export default defineNuxtConfig({
   sitemap: {
     credits: false,
     exclude: LOCALES.map(
-      (locale) => `/${locale.code !== 'en' ? `${locale.code}/` : ''}teapot`, // TODO: %F0%9F%AB%96 (https://github.com/nuxt/framework/issues/8041)
+      (locale) =>
+        `/${locale.code !== 'en' ? `${locale.code}/` : ''}%F0%9F%AB%96`,
     ),
   },
   tailwindcss: {
