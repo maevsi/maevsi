@@ -214,7 +214,7 @@ const rules = {
   lastName: VALIDATION_PRIMITIVE({
     lengthMax: VALIDATION_NAME_LAST_LENGTH_MAXIMUM,
   }),
-  phoneNumber: VALIDATION_PHONE_NUMBER(),
+  phoneNumber: {},
   url: VALIDATION_URL(),
 }
 const v$ = useVuelidate(rules, form)

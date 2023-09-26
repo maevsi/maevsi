@@ -11,7 +11,6 @@ import { consola } from 'consola'
 import { Ref } from 'vue'
 
 import {
-  REGEX_PHONE_NUMBER,
   REGEX_SLUG,
   REGEX_UPPERCASE_NONE,
   REGEX_URL_HTTPS,
@@ -27,7 +26,6 @@ export const VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM = 1000000
 export const VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM = 300
 export const VALIDATION_EVENT_NAME_LENGTH_MAXIMUM = 100
 export const VALIDATION_EVENT_SLUG_LENGTH_MAXIMUM = 100
-export const VALIDATION_FORMAT_PHONE_NUMBER = helpers.regex(REGEX_PHONE_NUMBER)
 export const VALIDATION_FORMAT_SLUG = helpers.regex(REGEX_SLUG)
 export const VALIDATION_FORMAT_UPPERCASE_NONE =
   helpers.regex(REGEX_UPPERCASE_NONE)
@@ -83,9 +81,6 @@ export const VALIDATION_UUID = () => ({
 export const VALIDATION_PASSWORD = () => ({
   lengthMin: minLength(VALIDATION_PASSWORD_LENGTH_MINIMUM),
   required,
-})
-export const VALIDATION_PHONE_NUMBER = () => ({
-  formatPhoneNumber: VALIDATION_FORMAT_PHONE_NUMBER,
 })
 export const VALIDATION_SLUG = ({
   existenceNone,
