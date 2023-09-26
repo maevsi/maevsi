@@ -34,6 +34,7 @@
       <div class="flex md:mt-1 md:w-2/3">
         <div class="relative min-w-0 grow">
           <slot v-if="$slots.default" />
+          <!-- TODO: support textarea, checkboxes and radio buttons natively -->
           <input
             v-else
             :id="idLabelFull"
@@ -46,8 +47,9 @@
             :readonly="isReadonly"
             :type="type"
             :value="valueFormatter(value?.$model as string)"
-            @input="emit('input', ($event.target as HTMLInputElement)?.value)"
             @click="emit('click')"
+            @focusout="value?.$touch()"
+            @input="emit('input', ($event.target as HTMLInputElement)?.value)"
           />
           <div v-if="validationProperty && isValidatable">
             <FormInputIconWrapper v-if="validationProperty.$pending">

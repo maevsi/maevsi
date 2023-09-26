@@ -10,9 +10,6 @@
     @input="emit('input', $event)"
   >
     <template #stateError>
-      <FormInputStateError :form-input="formInput" validation-property="email">
-        {{ t('globalValidationFormat') }}
-      </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
         validation-property="lengthMax"
@@ -27,11 +24,22 @@
         {{ t('globalValidationRequired') }}
       </FormInputStateError>
     </template>
+    <template #stateWarning>
+      <FormInputStateWarning
+        v-if="
+          formInput.$dirty &&
+          !email.$validator(formInput.$model, undefined, undefined)
+        "
+      >
+        {{ t('globalValidationCheck') }}
+      </FormInputStateWarning>
+    </template>
   </FormInput>
 </template>
 
 <script setup lang="ts">
 import type { BaseValidation } from '@vuelidate/core'
+import { email } from '@vuelidate/validators'
 
 export interface Props {
   formInput: BaseValidation

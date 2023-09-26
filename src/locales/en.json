@@ -15,6 +15,7 @@
   "globalStatusWarning": "Warning",
   "globalValidationAvailability": "Available",
   "globalValidationAvailabilityNone": "Unavailable",
+  "globalValidationCheck": "Make sure this is correct",
   "globalValidationExistence": "Exists",
   "globalValidationExistenceNone": "Does not exist",
   "globalValidationFailed": "Please check your input 🙈",

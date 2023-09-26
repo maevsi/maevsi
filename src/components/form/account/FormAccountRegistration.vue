@@ -94,7 +94,10 @@ const submit = async () => {
 // vuelidate
 const rules = {
   captcha: VALIDATION_CAPTCHA(),
-  username: VALIDATION_USERNAME({ validateExistenceNone: true }),
+  username: VALIDATION_USERNAME({
+    isRequired: true,
+    validateExistenceNone: true,
+  }),
   password: VALIDATION_PASSWORD(),
   emailAddress: VALIDATION_EMAIL_ADDRESS({ isRequired: true }),
 }

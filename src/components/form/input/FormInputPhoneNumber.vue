@@ -10,20 +10,15 @@
     @input="emit('input', $event)"
   >
     <template #stateInfo>
+      <!-- TODO: use `libphonenumber-js` (https://github.com/maevsi/maevsi/issues/1384) -->
       <FormInputStateInfo
-        :form-input="formInput"
-        validation-property="formatPhoneNumber"
+        v-if="
+          formInput.$dirty &&
+          !REGEX_PHONE_NUMBER.test(formInput.$model as string)
+        "
       >
         {{ t('validationFormat') }}
       </FormInputStateInfo>
-    </template>
-    <template #stateError>
-      <FormInputStateError
-        :form-input="formInput"
-        validation-property="formatPhoneNumber"
-      >
-        {{ t('globalValidationFormat') }}
-      </FormInputStateError>
     </template>
   </FormInput>
 </template>
@@ -51,8 +46,8 @@ const { t } = useI18n()
 <i18n lang="yaml">
 de:
   phoneNumber: Telefonnummer
-  validationFormat: Muss mit einem Plus beginnen und darf sonst nur Ziffern enthalten (z.B. +1234567890)
+  validationFormat: Sollte mit einem Plus beginnen, wonach nur Ziffern folgen (z.B. +1234567890)
 en:
   phoneNumber: Phone number
-  validationFormat: Must start with a plus and may otherwise only contain digits (e.g. +1234567890)
+  validationFormat: Should start with a plus followed only by digits (e.g. +1234567890)
 </i18n>

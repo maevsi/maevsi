@@ -31,8 +31,7 @@ export const LOCALES: LocaleObject[] = [
 ]
 export const POLYFILLS = ['Promise', 'requestAnimationFrame']
 export const POSTGRES_INTEGER_MAXIMUM = Math.pow(2, 31) - 1
-export const REGEX_PHONE_NUMBER =
-  /^\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/
+export const REGEX_PHONE_NUMBER = /^\+(?:[0-9] ?){6,14}[0-9]$/
 export const REGEX_SLUG = /^[-A-Za-z0-9]+$/
 export const REGEX_UPPERCASE_NONE = /^[^A-Z]+$/
 export const REGEX_URL_HTTPS = /^https:\/\//

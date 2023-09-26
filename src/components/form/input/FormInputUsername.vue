@@ -38,6 +38,12 @@
       </FormInputStateError>
       <FormInputStateError
         :form-input="formInput"
+        validation-property="lengthMax"
+      >
+        {{ t('globalValidationLength') }}
+      </FormInputStateError>
+      <FormInputStateError
+        :form-input="formInput"
         validation-property="required"
       >
         {{ t('globalValidationRequired') }}
