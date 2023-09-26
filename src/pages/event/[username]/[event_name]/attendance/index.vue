@@ -86,7 +86,16 @@ import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
 definePageMeta({
   async validate(route) {
-    return await validateEventExistence(route)
+    const store = useMaevsiStore()
+
+    await validateEventExistence(route)
+
+    // TODO: extract to permission service
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
+
+    return true
   },
 })
 

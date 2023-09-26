@@ -200,7 +200,6 @@ export const validateEventExistence = async (
   route: RouteLocationNormalized,
 ) => {
   const { $urql } = useNuxtApp()
-  const store = useMaevsiStore()
 
   const account = await getAccountByUsername({
     $urql,
@@ -231,10 +230,6 @@ export const validateEventExistence = async (
 
   if (!eventIsExisting.data?.eventIsExisting) {
     return abortNavigation({ statusCode: 404 })
-  }
-
-  if (route.params.username !== store.signedInUsername) {
-    return abortNavigation({ statusCode: 403 })
   }
 
   return true

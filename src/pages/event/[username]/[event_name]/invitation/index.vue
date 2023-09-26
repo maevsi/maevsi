@@ -28,6 +28,7 @@
 </template>
 
 <script setup lang="ts">
+import { useMaevsiStore } from '~/store'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
@@ -35,7 +36,16 @@ import { getEventItem } from '~/gql/documents/fragments/eventItem'
 
 definePageMeta({
   async validate(route) {
-    return await validateEventExistence(route)
+    const store = useMaevsiStore()
+
+    await validateEventExistence(route)
+
+    // TODO: extract to permission service
+    if (route.params.username !== store.signedInUsername) {
+      return abortNavigation({ statusCode: 403 })
+    }
+
+    return true
   },
 })
 
