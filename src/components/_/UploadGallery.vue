@@ -16,7 +16,7 @@
               ...(pending.deletions.includes(upload.id)
                 ? ['animate-pulse']
                 : []),
-              ...(selectable && upload === selectedItem
+              ...(isSelectable && upload === selectedItem
                 ? ['border-red-600']
                 : ['border-transparent']),
             ]"
@@ -34,9 +34,9 @@
               width="128"
             />
             <div
-              v-if="allowDeletion"
+              v-if="!isReadonly"
               class="absolute right-0 top-0 flex rounded-bl-lg bg-red-600 bg-opacity-75"
-              @click="deleteImageUpload(upload.id)"
+              @click="deleteUpload(upload.id)"
             >
               <Button
                 :aria-label="t('iconTrashLabel')"
@@ -92,7 +92,7 @@
       </div>
     </Card>
     <Modal
-      id="ModalImageUploadGallery"
+      id="ModalUploadGallery"
       :submit-name="t('upload')"
       :submit-task-provider="getUploadBlobPromise"
     >
@@ -125,14 +125,12 @@ import { useAllUploadsQuery } from '~/gql/documents/queries/upload/uploadsAll'
 import { getUploadItem } from '~/gql/documents/fragments/uploadItem'
 
 export interface Props {
-  accountId?: string
-  allowDeletion?: boolean
-  selectable?: boolean
+  isReadonly?: boolean
+  isSelectable?: boolean
 }
-const props = withDefaults(defineProps<Props>(), {
-  accountId: undefined,
-  allowDeletion: true,
-  selectable: false,
+withDefaults(defineProps<Props>(), {
+  isReadonly: false,
+  isSelectable: false,
 })
 
 const emit = defineEmits<{
@@ -156,7 +154,6 @@ const inputProfilePictureRef = ref()
 const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery()
 const allUploadsQuery = await useAllUploadsQuery({
   after,
-  accountId: props.accountId,
   first: ITEMS_PER_PAGE,
 })
 const uploadCreateMutation = useUploadCreateMutation()
@@ -218,7 +215,7 @@ const selectProfilePicture = async () => {
     await navigateTo(pathUpload)
   }
 }
-const deleteImageUpload = (uploadId: string) => {
+const deleteUpload = (uploadId: string) => {
   pending.deletions.push(uploadId)
 
   const xhr = new XMLHttpRequest()
@@ -292,7 +289,7 @@ const loadProfilePicture = (event: Event) => {
         e.target?.result as ArrayBuffer,
         file.type,
       )
-      store.modals.push({ id: 'ModalImageUploadGallery' })
+      store.modals.push({ id: 'ModalUploadGallery' })
     }
     fileReader.readAsDataURL(file)
   } catch (err: any) {

@@ -18,7 +18,7 @@
         <Button
           :aria-label="t('profilePictureChange')"
           class="sm:mr-4"
-          @click="showModalImageSelection"
+          @click="showModalUploadSelection"
         >
           <AccountProfilePicture
             :account-id="account?.id"
@@ -30,7 +30,7 @@
         <h1>
           {{ routeParamUsername }}
         </h1>
-        <ModalImageSelection />
+        <ModalUploadSelection @select="onUploadSelect" />
       </div>
       <section>
         <h2>{{ t('titlePasswordChange') }}</h2>
@@ -56,6 +56,7 @@
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
 import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
+import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
@@ -82,7 +83,8 @@ const accountByUsernameQuery = await useAccountByUsernameQuery({
 const account = getAccountItem(
   accountByUsernameQuery.data.value?.accountByUsername,
 )
-const api = getApiData([accountByUsernameQuery])
+const profilePictureSetMutation = useProfilePictureSetMutation()
+const api = getApiData([accountByUsernameQuery, profilePictureSetMutation])
 
 // data
 const mutation = accountDeleteMutation
@@ -90,8 +92,12 @@ const routeParamUsername = route.params.username as string
 const title = route.params.username as string
 
 // methods
-const showModalImageSelection = () => {
-  store.modals.push({ id: 'ModalImageSelection' })
+const onUploadSelect = async (uploadId?: string | null | undefined) =>
+  await profilePictureSetMutation.executeMutation({
+    uploadId,
+  })
+const showModalUploadSelection = () => {
+  store.modals.push({ id: 'ModalUploadSelection' })
 }
 
 // initialization
