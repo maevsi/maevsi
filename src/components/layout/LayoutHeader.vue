@@ -48,7 +48,7 @@
             class="my-1 hidden w-px flex-none self-stretch bg-gray-300 dark:bg-gray-600 lg:flex"
           />
           <ButtonColored
-            v-if="signedInUsername"
+            v-if="store.signedInAccountId"
             :aria-label="t('dashboard')"
             class="mx-2 hidden lg:block"
             :is-primary="false"
@@ -57,13 +57,13 @@
             {{ t('dashboard') }}
           </ButtonColored>
           <ButtonIcon
-            v-if="signedInUsername && account"
-            :aria-label="signedInUsername"
+            v-if="store.signedInUsername && store.signedInAccountId"
+            :aria-label="store.signedInUsername"
             :title="t('profileLink')"
-            :to="localePath(`/account/${signedInUsername}`)"
+            :to="localePath(`/account/${store.signedInUsername}`)"
           >
             <AccountProfilePicture
-              :account-id="account.id"
+              :account-id="store.signedInAccountId"
               classes="h-10 rounded-full w-10"
               height="40"
               width="40"
@@ -114,9 +114,6 @@ const account = getAccountItem(
   accountByUsernameQuery?.data.value?.accountByUsername,
 )
 const api = getApiData([accountByUsernameQuery])
-
-// computations
-const signedInUsername = computed(() => store.signedInUsername)
 
 // methods
 const navigateToSearch = () => {

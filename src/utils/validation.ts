@@ -77,7 +77,7 @@ export const VALIDATION_EMAIL_ADDRESS = ({
 export const VALIDATION_EVENT_VISIBILITY = () => ({
   formatEnum: (value: string) =>
     Object.values(EventVisibility).includes(value as EventVisibility),
-  required,
+  // `required` is implicitly covered by `formatEnum`
 })
 export const VALIDATION_UUID = () => ({
   required,

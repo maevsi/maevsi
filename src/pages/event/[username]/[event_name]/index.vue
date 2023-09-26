@@ -58,7 +58,9 @@
         </div>
       </div>
       <ButtonList
-        v-if="!routeQueryIc && event.authorAccountId === signedInAccountId"
+        v-if="
+          !routeQueryIc && event.authorAccountId === store.signedInAccountId
+        "
         class="justify-center"
       >
         <ButtonColored
@@ -153,7 +155,8 @@
                     invitation.feedback === 'CANCELED'
                   "
                   :aria-label="
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !==
+                    store.signedInUsername
                       ? t('invitationAccept')
                       : t('invitationAcceptAdmin', {
                           name: contactName,
@@ -162,7 +165,8 @@
                   @click="accept"
                 >
                   {{
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !==
+                    store.signedInUsername
                       ? t('invitationAccept')
                       : t('invitationAcceptAdmin', {
                           name: contactName,
@@ -178,7 +182,8 @@
                 >
                   <IconCheckCircle class="mr-2" title="accepted" />
                   {{
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !==
+                    store.signedInUsername
                       ? t('invitationAccepted')
                       : t('invitationAcceptedAdmin', {
                           name: contactName,
@@ -191,7 +196,8 @@
                     invitation.feedback === 'ACCEPTED'
                   "
                   :aria-label="
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !==
+                    store.signedInUsername
                       ? t('invitationCancel')
                       : t('invitationCancelAdmin', {
                           name: contactName,
@@ -200,7 +206,8 @@
                   @click="cancel"
                 >
                   {{
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !==
+                    store.signedInUsername
                       ? t('invitationCancel')
                       : t('invitationCancelAdmin', {
                           name: contactName,
@@ -216,7 +223,8 @@
                 >
                   <IconXCircle class="mr-2" title="canceled" />
                   {{
-                    event.accountByAuthorAccountId.username !== signedInUsername
+                    event.accountByAuthorAccountId.username !==
+                    store.signedInUsername
                       ? t('invitationCanceled')
                       : t('invitationCanceledAdmin', {
                           name: contactName,
@@ -506,8 +514,6 @@ const descriptionSeo = computed(() =>
       })
     : undefined,
 )
-const signedInAccountId = computed(() => store.signedInAccountId)
-const signedInUsername = computed(() => store.signedInUsername)
 const title = computed(() =>
   api.value.isFetching ? t('globalLoading') : event.value?.name || '403',
 )

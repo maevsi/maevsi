@@ -14,7 +14,7 @@
       <div class="flex flex-col gap-8 p-6 lg:p-8">
         <div class="flex flex-col gap-2">
           <ButtonColored
-            v-if="signedInUsername"
+            v-if="store.signedInUsername"
             :aria-label="t('dashboard')"
             :to="localePath('/dashboard')"
             @click="emit('onMenuHide')"
@@ -22,7 +22,7 @@
             {{ t('dashboard') }}
           </ButtonColored>
         </div>
-        <Hr v-if="signedInUsername" />
+        <Hr v-if="store.signedInUsername" />
         <div class="flex flex-col gap-4">
           <ButtonText
             :aria-label="t('eventsExplore')"
@@ -60,9 +60,6 @@ const emit = defineEmits<{
 const localePath = useLocalePath()
 const { t } = useI18n()
 const store = useMaevsiStore()
-
-// computations
-const signedInUsername = computed(() => store.signedInUsername)
 </script>
 
 <i18n lang="yaml">

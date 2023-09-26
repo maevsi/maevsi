@@ -112,7 +112,6 @@
           >
             {{ t('globalValidationFormatEnum') }}
           </FormInputStateError>
-          <!-- "required" check implicitly covered by "formatEnum" check -->
         </template>
       </FormInput>
       <FormInput
@@ -315,7 +314,6 @@ const form = reactive({
   visibility: ref<EventVisibility>(),
 })
 const isFormSent = ref(false)
-const signedInAccountId = ref(store.signedInAccountId)
 
 // api data
 const createEventMutation = useCreateEventMutation()
@@ -337,12 +335,14 @@ const onInputName = ($event: any) => {
 const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
+  if (!store.signedInAccountId) throw new Error('Account id is missing!')
+
   if (form.id) {
     // Edit
     const result = await updateEventMutation.executeMutation({
       id: form.id,
       eventPatch: {
-        authorAccountId: signedInAccountId.value,
+        authorAccountId: store.signedInAccountId,
         description: form.description || null,
         end: form.end || null,
         inviteeCountMaximum: form.inviteeCountMaximum
@@ -367,7 +367,7 @@ const submit = async () => {
     const result = await createEventMutation.executeMutation({
       createEventInput: {
         event: {
-          authorAccountId: signedInAccountId.value || '',
+          authorAccountId: store.signedInAccountId || '',
           description: form.description || null,
           end: form.end || null,
           inviteeCountMaximum: form.inviteeCountMaximum

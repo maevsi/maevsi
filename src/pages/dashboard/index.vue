@@ -12,7 +12,7 @@
           <h2>{{ t('eventsMine') }}</h2>
           <ButtonColored
             :aria-label="t('eventsMine')"
-            :to="localePath(`/event/${signedInUsername}`)"
+            :to="localePath(`/event/${store.signedInUsername}`)"
           >
             {{ t('eventsMine') }}
             <template #prefix>
@@ -74,9 +74,6 @@ const localePath = useLocalePath()
 
 // data
 const title = t('title')
-
-// computations
-const signedInUsername = computed(() => store.signedInUsername)
 
 // initialization
 useHeadDefault({ title })

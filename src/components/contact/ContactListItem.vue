@@ -25,21 +25,25 @@
       <div class="flex items-center justify-evenly gap-2">
         <ButtonIcon
           :aria-label="
-            contact.authorAccountId !== signedInAccountId
+            contact.authorAccountId !== store.signedInAccountId
               ? t('disabledReasonCreatorNot', {
                   authorAccountUsername:
                     props.contact.accountByAuthorAccountId?.username,
                 })
               : t('contactEdit')
           "
-          :disabled="contact.authorAccountId !== signedInAccountId || isEditing"
+          :disabled="
+            contact.authorAccountId !== store.signedInAccountId || isEditing
+          "
           @click="emit('edit')"
         >
           <IconPencil />
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('contactDelete')"
-          :disabled="isDeleting || contact.accountId === signedInAccountId"
+          :disabled="
+            isDeleting || contact.accountId === store.signedInAccountId
+          "
           @click="emit('delete')"
         >
           <IconTrash />
@@ -84,9 +88,6 @@ const emit = defineEmits<{
 
 const store = useMaevsiStore()
 const { t } = useI18n()
-
-// computations
-const signedInAccountId = computed(() => store.signedInAccountId)
 </script>
 
 <i18n lang="yaml">

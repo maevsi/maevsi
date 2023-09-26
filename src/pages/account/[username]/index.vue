@@ -7,7 +7,7 @@
         {{ routeParamUsername }}
       </LayoutBreadcrumbs>
       <ButtonList
-        v-if="signedInUsername === routeParamUsername"
+        v-if="store.signedInUsername === routeParamUsername"
         class="justify-end"
       >
         <ButtonColored :aria-label="t('settings')" to="settings" is-to-relative>
@@ -83,9 +83,6 @@ const api = getApiData([accountByUsernameQuery])
 // data
 const routeParamUsername = route.params.username as string
 const title = route.params.username as string
-
-// computations
-const signedInUsername = computed(() => store.signedInUsername)
 
 // initialization
 useHeadDefault({
