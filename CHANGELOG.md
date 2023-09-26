@@ -1,3 +1,10 @@
+## [1.31.0](https://github.com/maevsi/maevsi/compare/1.30.3...1.31.0) (2023-09-26)
+
+
+### Features
+
+* **pages:** replace teapot name with emoji ([2bc804b](https://github.com/maevsi/maevsi/commit/2bc804b99fd841f5996940a364e48c08b2366854))
+
 ## [1.30.3](https://github.com/maevsi/maevsi/compare/1.30.2...1.30.3) (2023-09-25)
 
 
