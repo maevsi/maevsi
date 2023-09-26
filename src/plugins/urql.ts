@@ -1,12 +1,15 @@
 import {
   createClient,
-  ssrExchange,
+  ssrExchange as getSsrExchange,
   fetchExchange,
   ClientOptions,
   SSRData,
 } from '@urql/core'
 // import type { Data } from '@urql/exchange-graphcache'
-import { Cache, cacheExchange } from '@urql/exchange-graphcache'
+import {
+  Cache,
+  cacheExchange as getCacheExchange,
+} from '@urql/exchange-graphcache'
 // import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
@@ -19,7 +22,7 @@ import { GraphCacheConfig } from '~/gql/generated/graphcache'
 
 import { useMaevsiStore } from '~/store'
 
-const ssrKey = '__URQL_DATA__'
+const SSR_KEY = '__URQL_DATA__'
 const invalidateCache = (
   cache: Cache,
   name: string,
@@ -65,24 +68,24 @@ const invalidateCache = (
 export default defineNuxtPlugin(async (nuxtApp) => {
   const runtimeConfig = useRuntimeConfig()
   const host = useHost()
-  const ssr = ssrExchange({
+  const ssrExchange = getSsrExchange({
     isClient: process.client,
   })
 
   if (process.client) {
     nuxtApp.hook('app:created', () => {
-      ssr.restoreData(nuxtApp.payload[ssrKey] as SSRData)
+      ssrExchange.restoreData(nuxtApp.payload[SSR_KEY] as SSRData)
     })
   }
 
   if (process.server) {
     nuxtApp.hook('app:rendered', () => {
-      nuxtApp.payload[ssrKey] = ssr.extractData()
+      nuxtApp.payload[SSR_KEY] = ssrExchange.extractData()
     })
   }
 
   // @ts-ignore
-  const cacheConfig: GraphCacheConfig = {
+  const graphCacheConfig: GraphCacheConfig = {
     schema,
     resolvers: {
       Query: {
@@ -116,9 +119,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     },
   }
 
-  const cache = cacheExchange(cacheConfig)
+  const cacheExchange = getCacheExchange(graphCacheConfig)
 
-  const options: ClientOptions = {
+  const clientOptions: ClientOptions = {
     requestPolicy: 'cache-and-network',
     fetchOptions: () => {
       const { jwt, turnstileToken } = useMaevsiStore()
@@ -145,15 +148,15 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       : 'https://postgraphile.' + getDomainTldPort(host) + '/graphql',
     exchanges: [
       ...(runtimeConfig.public.vio.isInProduction ? [] : [devtoolsExchange]),
-      ssr, // `ssr` must be before `fetchExchange`
-      cache,
+      ssrExchange, // `ssrExchange` must be before `fetchExchange`
+      cacheExchange,
       fetchExchange,
     ],
   }
-  const client = ref(createClient(options))
+  const client = ref(createClient(clientOptions))
 
   const urqlReset = () => {
-    client.value = createClient(options)
+    client.value = createClient(clientOptions)
   }
 
   nuxtApp.hook('vue:setup', () => {
@@ -162,7 +165,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   })
 
   // Either authenticate anonymously or refresh token on page load.
-  if (nuxtApp.ssrContext?.event) {
+  if (nuxtApp.ssrContext) {
     const store = useMaevsiStore(nuxtApp.ssrContext.$pinia)
     const jwtFromCookie = getJwtFromCookie()
 
