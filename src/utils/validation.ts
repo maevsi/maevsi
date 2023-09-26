@@ -52,11 +52,11 @@ export const VALIDATION_PRIMITIVE = ({
   valueMax?: number
   valueMin?: number
 }) => ({
-  ...(isRequired ? { required: isRequired } : {}),
-  ...(lengthMax ? { maxLength: maxLength(lengthMax) } : {}),
-  ...(lengthMin ? { minLength: minLength(lengthMin) } : {}),
-  ...(valueMax ? { maxValue: maxValue(valueMax) } : {}),
-  ...(valueMin ? { minValue: minValue(valueMin) } : {}),
+  ...(isRequired ? { required } : {}),
+  ...(lengthMax ? { lengthMax: maxLength(lengthMax) } : {}),
+  ...(lengthMin ? { lengthMin: minLength(lengthMin) } : {}),
+  ...(valueMax ? { valueMax: maxValue(valueMax) } : {}),
+  ...(valueMin ? { valueMin: minValue(valueMin) } : {}),
 })
 
 export const VALIDATION_CAPTCHA = () => ({
@@ -69,7 +69,7 @@ export const VALIDATION_EMAIL_ADDRESS = ({
 }) => ({
   email,
   lengthMax: maxLength(VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM),
-  ...(isRequired ? { required: isRequired } : {}),
+  ...(isRequired ? { required } : {}),
 })
 export const VALIDATION_EVENT_VISIBILITY = () => ({
   formatEnum: (value: string) =>
@@ -118,7 +118,7 @@ export const VALIDATION_USERNAME = ({
     : {}),
   formatSlug: VALIDATION_FORMAT_SLUG,
   lengthMax: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),
-  ...(isRequired ? { required: isRequired } : {}),
+  ...(isRequired ? { required } : {}),
 })
 
 export const isFormValid = async ({

@@ -124,7 +124,9 @@ const submit = async () => {
 // vuelidate
 const rules = {
   captcha: VALIDATION_CAPTCHA(),
-  username: VALIDATION_USERNAME({}),
+  username: VALIDATION_USERNAME({
+    isRequired: true,
+  }),
   password: VALIDATION_PASSWORD(),
 }
 const v$ = useVuelidate(rules, form)

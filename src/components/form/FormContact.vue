@@ -202,7 +202,6 @@ const updateForm = (data?: Pick<ContactItemFragment, any>) => {
 const rules = {
   id: {},
   accountUsername: VALIDATION_USERNAME({
-    isRequired: false,
     validateExistence: true,
   }),
   address: VALIDATION_PRIMITIVE({
