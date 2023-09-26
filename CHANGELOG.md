@@ -1,3 +1,22 @@
+## [1.32.0](https://github.com/maevsi/maevsi/compare/1.31.0...1.32.0) (2023-09-26)
+
+
+### Features
+
+* **form-event:** simplify radio button validation ([e2c22f4](https://github.com/maevsi/maevsi/commit/e2c22f4d4342f13fedf11d2ce007257a3383fd19))
+* **form-input-email-address:** loosen format validation ([4d7731d](https://github.com/maevsi/maevsi/commit/4d7731d7e36f586192d4866871831df2a0e6e268))
+* **form-input:** touch on focus out ([aafda94](https://github.com/maevsi/maevsi/commit/aafda94df3be6ab4e3dd452eb92f42220dfa7a4e))
+* **form:** loosen phone number validation ([914755b](https://github.com/maevsi/maevsi/commit/914755b7b744ee79902941e4fab6523a93b3f369))
+
+
+### Bug Fixes
+
+* **assetlinks:** update fingerprints ([b8b62bd](https://github.com/maevsi/maevsi/commit/b8b62bda7b1eb5358da9ff605af389ca09ebc6a5))
+* form ([#1385](https://github.com/maevsi/maevsi/issues/1385)) ([1e88b31](https://github.com/maevsi/maevsi/commit/1e88b319df6e47aae7c11a1a686821931f0012df))
+* **form-input-username:** display `lengthMax` error ([5756a48](https://github.com/maevsi/maevsi/commit/5756a4851996e82783f4ad638604eabc2fa8e456))
+* **validation:** correct maximum email address length ([611e287](https://github.com/maevsi/maevsi/commit/611e287c65e52fc46ce0051a745788b42dcfed5a))
+* **validation:** correct validators ([eeb379d](https://github.com/maevsi/maevsi/commit/eeb379db8ab2235fd7bb726431effb126b816802))
+
 ## [1.31.0](https://github.com/maevsi/maevsi/compare/1.30.3...1.31.0) (2023-09-26)
 
 
