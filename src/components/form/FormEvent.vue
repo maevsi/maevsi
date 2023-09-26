@@ -112,12 +112,7 @@
           >
             {{ t('globalValidationFormatEnum') }}
           </FormInputStateError>
-          <FormInputStateError
-            :form-input="v$.visibility"
-            validation-property="required"
-          >
-            {{ t('globalValidationRequired') }}
-          </FormInputStateError>
+          <!-- "required" check implicitly covered by "formatEnum" check -->
         </template>
       </FormInput>
       <FormInput
