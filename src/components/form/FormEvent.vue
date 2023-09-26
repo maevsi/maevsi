@@ -112,7 +112,6 @@
           >
             {{ t('globalValidationFormatEnum') }}
           </FormInputStateError>
-          <!-- "required" check implicitly covered by "formatEnum" check -->
         </template>
       </FormInput>
       <FormInput
@@ -298,15 +297,10 @@ const { locale, t } = useI18n()
 const store = useMaevsiStore()
 const runtimeConfig = useRuntimeConfig()
 
-// api data
-const createEventMutation = useCreateEventMutation()
-const updateEventMutation = useUpdateEventByIdMutation()
-const api = getApiData([createEventMutation, updateEventMutation])
-
 // data
 const form = reactive({
   id: ref<string>(),
-  authorUsername: ref<string>(),
+  authorAccountId: ref<string>(),
   description: ref<string>(),
   end: ref<string>(),
   inviteeCountMaximum: ref<string>(),
@@ -319,9 +313,12 @@ const form = reactive({
   url: ref<string>(),
   visibility: ref<EventVisibility>(),
 })
-
 const isFormSent = ref(false)
-const signedInUsername = ref(store.signedInUsername)
+
+// api data
+const createEventMutation = useCreateEventMutation()
+const updateEventMutation = useUpdateEventByIdMutation()
+const api = getApiData([createEventMutation, updateEventMutation])
 
 // methods
 const dateTimeFormatter = (x?: string) =>
@@ -338,12 +335,14 @@ const onInputName = ($event: any) => {
 const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
 
+  if (!store.signedInAccountId) throw new Error('Account id is missing!')
+
   if (form.id) {
     // Edit
     const result = await updateEventMutation.executeMutation({
       id: form.id,
       eventPatch: {
-        authorUsername: signedInUsername.value,
+        authorAccountId: store.signedInAccountId,
         description: form.description || null,
         end: form.end || null,
         inviteeCountMaximum: form.inviteeCountMaximum
@@ -368,7 +367,7 @@ const submit = async () => {
     const result = await createEventMutation.executeMutation({
       createEventInput: {
         event: {
-          authorUsername: signedInUsername.value || '',
+          authorAccountId: store.signedInAccountId || '',
           description: form.description || null,
           end: form.end || null,
           inviteeCountMaximum: form.inviteeCountMaximum
@@ -389,8 +388,14 @@ const submit = async () => {
     if (result.error || !result.data) return
 
     showToast({ title: t('eventCreateSuccess') })
+
+    if (!store.signedInUsername || !form.slug)
+      throw new Error(
+        'Aborting navigation: required data for path templating is missing!',
+      )
+
     await navigateTo(
-      localePath(`/event/${signedInUsername.value}/${form.slug}`),
+      localePath(`/event/${store.signedInUsername}/${form.slug}`),
     )
   }
 }
@@ -418,7 +423,7 @@ const isWarningStartPastShown = computed(
 // vuelidate
 const rules = {
   id: {},
-  authorUsername: {},
+  authorAccountId: {},
   description: VALIDATION_PRIMITIVE({
     lengthMax: VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM,
   }),
@@ -437,11 +442,11 @@ const rules = {
     lengthMax: VALIDATION_EVENT_NAME_LENGTH_MAXIMUM,
   }),
   slug: VALIDATION_SLUG({
-    existenceNone: validateEventSlug(
-      store.signedInUsername || '',
-      true,
-      props.event?.slug,
-    ),
+    existenceNone: validateEventSlug({
+      signedInAccountId: store.signedInAccountId || '',
+      invert: true,
+      exclude: props.event?.slug,
+    }),
   }),
   start: VALIDATION_PRIMITIVE({ isRequired: true }),
   url: VALIDATION_URL(),

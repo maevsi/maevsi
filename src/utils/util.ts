@@ -177,20 +177,23 @@ export const getApiData = <
     fetching: Ref<boolean>
   },
 >(
-  queries?: T[],
+  queries?: Array<T | undefined>,
 ) => {
   const apiData = computed(() => ({
     data: (queries || []).reduce(
-      (p, c) => ({ ...p, ...c.data.value }),
+      (p, c) => ({ ...p, ...c?.data.value }),
       {} as NonNullable<
         UnionToIntersection<NonNullable<ArrayElement<T[]>['data']['value']>>
       >,
     ),
     errors: (queries || []).reduce(
-      (p, c) => (c.error.value ? [...p, c.error.value] : p),
+      (p, c) => (c?.error.value ? [...p, c.error.value] : p),
       [] as BackendError[],
     ),
-    isFetching: (queries || []).reduce((p, c) => p || c.fetching.value, false),
+    isFetching: (queries || []).reduce(
+      (p, c) => p || c?.fetching.value || false,
+      false,
+    ),
   }))
 
   watch(

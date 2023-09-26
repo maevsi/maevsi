@@ -1,11 +1,8 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <!-- "ImageUploadGallery" must come after "ModalImageSelection" for them to overlay properly! -->
-    <ImageUploadGallery
-      v-if="store.jwtDecoded?.role === 'maevsi_account'"
-      :username="signedInUsername"
-    />
+    <!-- "UploadGallery" must come after "ModalUploadSelection" for them to overlay properly! -->
+    <UploadGallery v-if="store.jwtDecoded?.role === 'maevsi_account'" />
     <LayoutCallToAction
       v-else
       :call-to-action="t('anonymousCta')"
@@ -22,9 +19,6 @@ const store = useMaevsiStore()
 
 // data
 const title = t('title')
-
-// computations
-const signedInUsername = computed(() => store.signedInUsername)
 
 // initialization
 useHeadDefault({ title })

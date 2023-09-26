@@ -1,14 +1,9 @@
 <template>
-  <!-- <Loader
-    :api="api"
-    :error-pg-ids="{
-      postgresP0002: t('postgresP0002'),
-    }"
-  > -->
+  <!-- <Loader :api="api" indicator="ping"> -->
   <tr
     v-if="contact"
     :class="{
-      'animate-pulse': pending.deletions.includes(invitation.uuid),
+      'animate-pulse': pending.deletions.includes(invitation.id),
     }"
   >
     <td class="max-w-0">
@@ -20,14 +15,14 @@
       >
         <ButtonIcon
           :aria-label="
-            contact.accountUsername || contact.emailAddress
+            contact.accountId || contact.emailAddress
               ? t('invitationSend')
               : t('disabledReasonEmailAddressNone')
           "
           class="hidden md:block"
           :disabled="
-            (!contact.accountUsername && !contact.emailAddress) ||
-            pending.sends.includes(invitation.uuid)
+            (!contact.accountId && !contact.emailAddress) ||
+            pending.sends.includes(invitation.id)
           "
           @click="send(invitation)"
         >
@@ -47,19 +42,19 @@
           <template #content>
             <Button
               :aria-label="
-                contact.accountUsername || contact.emailAddress
+                contact.accountId || contact.emailAddress
                   ? t('invitationSend')
                   : t('disabledReasonEmailAddressNone')
               "
               class="block md:hidden"
               :disabled="
-                (!contact.accountUsername && !contact.emailAddress) ||
-                pending.sends.includes(invitation.uuid)
+                (!contact.accountId && !contact.emailAddress) ||
+                pending.sends.includes(invitation.id)
               "
               @click="send(invitation)"
             >
               {{
-                contact.accountUsername || contact.emailAddress
+                contact.accountId || contact.emailAddress
                   ? t('invitationSend')
                   : t('disabledReasonEmailAddressNone')
               }}
@@ -78,13 +73,14 @@
               </template>
             </Button>
             <Button
+              v-if="event.accountByAuthorAccountId?.username"
               :aria-label="t('invitationView')"
               @click="
                 navigateTo({
                   path: localePath(
-                    `/event/${event.authorUsername}/${event.slug}`,
+                    `/event/${event.accountByAuthorAccountId.username}/${event.slug}`,
                   ),
-                  query: { ic: invitation.uuid },
+                  query: { ic: invitation.id },
                 })
               "
             >
@@ -95,7 +91,7 @@
             </Button>
             <Button
               :aria-label="t('invitationDelete')"
-              :disabled="pending.deletions.includes(invitation.uuid)"
+              :disabled="pending.deletions.includes(invitation.id)"
               @click="delete_(invitation.id)"
             >
               {{ t('invitationDelete') }}
@@ -121,10 +117,10 @@ import {
 } from '~/gql/generated/graphql'
 
 export interface Props {
-  event: Pick<EventItemFragment, 'authorUsername' | 'slug'>
+  event: Pick<EventItemFragment, 'accountByAuthorAccountId' | 'slug'>
   invitation: Pick<
     InvitationItemFragment,
-    'contactByContactId' | 'feedback' | 'id' | 'uuid'
+    'contactByContactId' | 'feedback' | 'id'
   >
 }
 const props = withDefaults(defineProps<Props>(), {})
@@ -145,12 +141,12 @@ const pending = reactive({
 })
 
 // methods
-const copyLink = async (invitation: Pick<InvitationItemFragment, 'uuid'>) => {
+const copyLink = async (invitation: Pick<InvitationItemFragment, 'id'>) => {
   if (!process.client) return
 
   await copyText(
     `${window.location.origin}${localePath(`/task/event/unlock`)}?ic=${
-      invitation.uuid
+      invitation.id
     }`,
   )
 
@@ -161,15 +157,15 @@ const delete_ = async (id: string) => {
   await deleteInvitationByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(id), 1)
 }
-const send = async (invitation: any) => {
-  pending.sends.push(invitation.uuid)
+const send = async (invitation: Pick<InvitationItemFragment, 'id'>) => {
+  pending.sends.push(invitation.id)
 
   const result = await inviteMutation.executeMutation({
     invitationId: invitation.id,
     language: locale.value,
   })
 
-  pending.sends.splice(pending.sends.indexOf(invitation.uuid), 1)
+  pending.sends.splice(pending.sends.indexOf(invitation.id), 1)
 
   if (result.error || !result.data) return
 

@@ -20,16 +20,16 @@
     </section>
     <section class="flex flex-col gap-4">
       <h2>{{ t('codes') }}</h2>
-      <div v-if="jwtDecoded?.invitations">
+      <div v-if="store.jwtDecoded?.invitations">
         <p>
           {{ t('codesEntered') }}
         </p>
         <ul class="list-disc">
           <li
-            v-for="invitationCode in jwtDecoded?.invitations"
-            :key="invitationCode"
+            v-for="invitationId in store.jwtDecoded?.invitations"
+            :key="invitationId"
           >
-            {{ invitationCode }}
+            {{ invitationId }}
           </li>
         </ul>
       </div>
@@ -53,7 +53,6 @@ const dateTime = useDateTime()
 const title = t('title')
 
 // computations
-const jwtDecoded = computed(() => store.jwtDecoded)
 const sessionExpiryTime = computed(() =>
   dateTime(store.jwtDecoded?.exp).format('llll'),
 )
