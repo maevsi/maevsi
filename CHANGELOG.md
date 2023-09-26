@@ -1,3 +1,27 @@
+## [2.0.0-beta.1](https://github.com/maevsi/maevsi/compare/1.32.0...2.0.0-beta.1) (2023-09-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **sql:** use uuids instead of ids
+
+### Features
+
+* **sql:** use uuids instead of ids ([5c3b1ed](https://github.com/maevsi/maevsi/commit/5c3b1ed69c150ccfca126a14ccb704d3187ea6b1))
+* **sql:** use uuids instead of ids ([#1315](https://github.com/maevsi/maevsi/issues/1315)) ([40e5531](https://github.com/maevsi/maevsi/commit/40e5531ffcd2936406d06b376934071c84cc540d)), closes [#1208](https://github.com/maevsi/maevsi/issues/1208) [maevsi/sqitch#14](https://github.com/maevsi/sqitch/issues/14)
+
+
+### Bug Fixes
+
+* **components:** disable faulty loaders ([bbff959](https://github.com/maevsi/maevsi/commit/bbff9599a1c02bb1114dc21f338508ac0ecbfc3d))
+* **event:** correct access permission validation ([9340393](https://github.com/maevsi/maevsi/commit/9340393f7154a5b996e7abb063a01df8ce85da04))
+* **invitation-list:** add table header scope ([be6c123](https://github.com/maevsi/maevsi/commit/be6c1231c126c3a4b4751bcdd6e946bebfd39872))
+
+
+### Performance Improvements
+
+* **store:** drop computed reads ([ffbb8a8](https://github.com/maevsi/maevsi/commit/ffbb8a82ee0a66a1baf68828168b2e54d1293194))
+
 ## [1.32.0](https://github.com/maevsi/maevsi/compare/1.31.0...1.32.0) (2023-09-26)
 
 
