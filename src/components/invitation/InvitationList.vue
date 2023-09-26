@@ -15,7 +15,7 @@
               <th scope="col">
                 {{ t('contact') }}
               </th>
-              <th />
+              <th scope="col" />
             </tr>
           </thead>
           <tbody class="divide-y divide-neutral-300 dark:divide-neutral-600">
