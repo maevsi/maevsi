@@ -22,7 +22,7 @@ import { accountIsExistingQuery } from '~/gql/documents/queries/account/accountI
 import { EventVisibility } from '~/gql/generated/graphql'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
-export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 320
+export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 254 // source: https://www.dominicsayers.com/isemail/
 export const VALIDATION_EVENT_DESCRIPTION_LENGTH_MAXIMUM = 1000000
 export const VALIDATION_EVENT_LOCATION_LENGTH_MAXIMUM = 300
 export const VALIDATION_EVENT_NAME_LENGTH_MAXIMUM = 100
