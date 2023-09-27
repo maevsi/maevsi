@@ -82,8 +82,8 @@ importers:
         specifier: 0.6.3
         version: 0.6.3(rollup@2.79.1)
       '@nuxtseo/module':
-        specifier: 2.0.0-beta.32
-        version: 2.0.0-beta.32(@nuxt/devtools@0.8.5)(@unhead/shared@1.7.4)(nuxt@3.7.4)(postcss@8.4.30)(rollup@2.79.1)(unhead@1.7.4)(vite@4.4.9)(vue@3.3.4)(webpack@5.88.2)
+        specifier: 2.0.0-beta.33
+        version: 2.0.0-beta.33(@nuxt/devtools@0.8.5)(@unhead/shared@1.7.4)(nuxt@3.7.4)(postcss@8.4.30)(rollup@2.79.1)(unhead@1.7.4)(vite@4.4.9)(vue@3.3.4)(webpack@5.88.2)
       '@pinia/nuxt':
         specifier: 0.4.11
         version: 0.4.11(rollup@2.79.1)(typescript@5.2.2)(vue@3.3.4)
@@ -4122,8 +4122,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtseo/module@2.0.0-beta.32(@nuxt/devtools@0.8.5)(@unhead/shared@1.7.4)(nuxt@3.7.4)(postcss@8.4.30)(rollup@2.79.1)(unhead@1.7.4)(vite@4.4.9)(vue@3.3.4)(webpack@5.88.2):
-    resolution: {integrity: sha512-cmdqEiBQSuKMJinbV6Alg7wEjapO9QbFW8JGraQkbaVoDdn2eV5l3XiPO77DKCa3A/6+m8XuPnM4Cr0CGnjjdQ==}
+  /@nuxtseo/module@2.0.0-beta.33(@nuxt/devtools@0.8.5)(@unhead/shared@1.7.4)(nuxt@3.7.4)(postcss@8.4.30)(rollup@2.79.1)(unhead@1.7.4)(vite@4.4.9)(vue@3.3.4)(webpack@5.88.2):
+    resolution: {integrity: sha512-VpGaucw3NKL3M73J3cEARJiUXRhLCNGnkELh1EqfrowAjDZNj15XdItVGV8sREwD6hSH0QMRLEScAIt6G+mW0A==}
     dependencies:
       '@nuxt/kit': 3.7.4(rollup@2.79.1)
       chalk: 5.3.0
