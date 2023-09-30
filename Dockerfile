@@ -1,7 +1,7 @@
 #############
 # Serve Nuxt in development mode.
 
-FROM node:20.7.0-alpine AS development
+FROM node:20.8.0-alpine AS development
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -26,7 +26,7 @@ EXPOSE 3000
 ########################
 # Prepare Nuxt.
 
-FROM node:20.7.0-alpine AS prepare
+FROM node:20.8.0-alpine AS prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -46,7 +46,7 @@ RUN pnpm install --offline
 ########################
 # Build for Node deployment.
 
-FROM node:20.7.0-slim@sha256:24a8b77508a4edaa99ef31f020e915da31c87068b4164d6746bf0c1684c71f98 AS build-node
+FROM node:20.8.0-slim@sha256:8d26608b65edb3b0a0e1958a0a5a45209524c4df54bbe21a4ca53548bc97a3a5 AS build-node
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -83,7 +83,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: lint
 
-FROM node:20.7.0-alpine AS lint
+FROM node:20.8.0-alpine AS lint
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -99,7 +99,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: test (unit)
 
-FROM node:20.7.0-alpine AS test-unit
+FROM node:20.8.0-alpine AS test-unit
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -218,7 +218,7 @@ RUN pnpm --dir src run test:e2e:server:node
 #######################
 # Collect build, lint and test results.
 
-FROM node:20.7.0-alpine AS collect
+FROM node:20.8.0-alpine AS collect
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -257,7 +257,7 @@ COPY --from=test-e2e-node /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM node:20.7.0-alpine AS production
+FROM node:20.8.0-alpine AS production
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
