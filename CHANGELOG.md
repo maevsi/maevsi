@@ -1,3 +1,17 @@
+## [3.0.0](https://github.com/maevsi/maevsi/compare/2.0.0...3.0.0) (2023-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tusd:** migrate to v2 (#1391)
+* **tusd:** migrate to v2
+
+### Features
+
+* **tusd:** migrate to v2 ([a7c4a85](https://github.com/maevsi/maevsi/commit/a7c4a8522c0cf68fc521ae3a99a678cc2def176c))
+* **tusd:** migrate to v2 ([#1391](https://github.com/maevsi/maevsi/issues/1391)) ([3ffc7a9](https://github.com/maevsi/maevsi/commit/3ffc7a932f4edb4131a9ee933821815b6c2e71c8))
+* **tusd:** read username from secret ([f58e706](https://github.com/maevsi/maevsi/commit/f58e706c96bbeb6c4cd027f1939da26cd1901833))
+
 ## [2.0.0](https://github.com/maevsi/maevsi/compare/1.32.0...2.0.0) (2023-09-26)
 
 
