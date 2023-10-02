@@ -405,34 +405,26 @@ const cancel = () => {
 //     feedbackPaper: invitation.value.feedbackPaper,
 //   })
 // }
-const downloadIcal = () => {
-  const xhr = new XMLHttpRequest()
-  const fileName =
-    route.params.username + '_' + route.params.event_name + '.ics'
-
-  xhr.open('POST', '/api/ical', true)
-  xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8')
-  xhr.onreadystatechange = async () => {
-    if (xhr.readyState === 4) {
-      switch (xhr.status) {
-        case 200:
-          downloadJs(new Blob([xhr.responseText]), fileName, 'text/calendar')
-          return
-        default:
-          await fireAlert({
-            level: 'error',
-            text: t('iCalUnexpectedStatusCode'),
-          }) // TODO: add suggestion (https://github.com/maevsi/maevsi/issues/903) })
-      }
-    }
-  }
-  xhr.send(
-    JSON.stringify({
+const downloadIcal = async () => {
+  const response = await $fetch.raw<Blob>('/api/ical', {
+    body: {
       contact: contact.value,
       event: event.value,
       invitation: invitation.value,
-    }),
-  )
+    },
+    method: 'POST',
+  })
+  const fileName =
+    route.params.username + '_' + route.params.event_name + '.ics'
+
+  if (!response._data) {
+    return await fireAlert({
+      level: 'error',
+      text: t('iCalFetchError'),
+    }) // TODO: add suggestion (https://github.com/maevsi/maevsi/issues/903) })
+  }
+
+  downloadJs(response._data, fileName, 'text/calendar')
 }
 const print = () => {
   prntr({
@@ -543,7 +535,7 @@ de:
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
   iCalDownload: Als Kalendereintrag herunterladen
   iCalHint: Die heruntergeladene Datei kann dann mit deiner Kalender-Anwendung geöffnet werden.
-  iCalUnexpectedStatusCode: iCal-Daten konnten nicht geladen werden!
+  iCalFetchError: iCal-Daten konnten nicht geladen werden!
   invitationAccept: Einladung annehmen
   invitationAcceptAdmin: Einladung im Namen von {name} annehmen
   invitationAccepted: Einladung angenommen
@@ -578,7 +570,7 @@ en:
   hintQrCode: This picture is your access authorization for the event
   iCalDownload: Download for your calendar
   iCalHint: You can open the downloaded file in your calendar app.
-  iCalUnexpectedStatusCode: Could not get iCal data!
+  iCalFetchError: Could not get iCal data!
   invitationAccept: Accept invitation
   invitationAcceptAdmin: Accept invitation on behalf of {name}
   invitationAccepted: Invitation accepted
