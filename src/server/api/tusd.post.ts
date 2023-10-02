@@ -8,7 +8,7 @@ export default defineEventHandler(async (event: H3Event) => {
     case 'pre-create': {
       consola.log('tusd/pre-create')
 
-      const queryRes = await pool
+      const queryResult = await pool
         .query('SELECT EXISTS(SELECT * FROM maevsi.upload WHERE id = $1);', [
           body.Event.Upload.MetaData.maevsiUploadUuid,
         ])
@@ -19,9 +19,9 @@ export default defineEventHandler(async (event: H3Event) => {
           )
         })
 
-      if (!queryRes) return
+      if (!queryResult) return
 
-      if (!queryRes.rows[0].exists) {
+      if (!queryResult.rows[0].exists) {
         return sendError(
           event,
           createError({

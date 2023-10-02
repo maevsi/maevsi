@@ -1,4 +1,4 @@
-import { H3Event, setCookie } from 'h3'
+import { type H3Event, setCookie } from 'h3'
 import { jwtVerify, importSPKI } from 'jose'
 
 import { useJwtPublicKey } from './auth-key'

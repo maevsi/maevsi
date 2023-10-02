@@ -1,4 +1,4 @@
-import { createError, defineEventHandler, readBody, H3Event } from 'h3'
+import { createError, defineEventHandler, readBody, type H3Event } from 'h3'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
 import mustache from 'mustache'
@@ -18,7 +18,6 @@ export default defineEventHandler(async (h3Event: H3Event) => {
   const bodyChecks = [
     { property: undefined, name: 'Body' },
     { property: 'event', name: 'Event' },
-    { property: 'eventAuthorUsername', name: "Event author's username" },
   ]
 
   for (const bodyCheck of bodyChecks) {
@@ -31,39 +30,38 @@ export default defineEventHandler(async (h3Event: H3Event) => {
 
   const contact = body.contact
   const event = body.event
-  const eventAuthorUsername = body.eventAuthorUsername
+  const eventAuthorUsername = body.event.accountByAuthorAccountId.username
   const invitation = body.invitation
 
   res.setHeader('Content-Type', 'text/calendar')
   res.setHeader(
     'Content-Disposition',
-    'attachment; filename="' +
-      event.authorUsername +
-      '_' +
-      event.slug +
-      '.ics"',
+    'attachment; filename="' + eventAuthorUsername + '_' + event.slug + '.ics"',
   )
-  res.end(
-    getIcalString({ host, event, eventAuthorUsername, contact, invitation }),
-  )
+  res.end(getIcalString({ host, event, contact, invitation }))
 })
 
 export const getIcalString = ({
   host,
   event,
-  eventAuthorUsername,
   contact,
   invitation,
 }: {
   host: string
   event: Pick<
     EventItemFragment,
-    'slug' | 'description' | 'start' | 'end' | 'name' | 'location'
+    | 'accountByAuthorAccountId'
+    | 'description'
+    | 'end'
+    | 'location'
+    | 'name'
+    | 'slug'
+    | 'start'
   >
-  eventAuthorUsername: string
   contact?: ContactItemFragment
   invitation?: InvitationItemFragment
 }) => {
+  const eventAuthorUsername = event.accountByAuthorAccountId?.username
   const userEventPath = eventAuthorUsername + '/' + event.slug
   const eventUrl = 'https://' + host + '/event/' + userEventPath
   const eventDescriptionHtml = mustache.render(

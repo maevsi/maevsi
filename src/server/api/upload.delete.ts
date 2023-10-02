@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 
-import { createError, getQuery, H3Event, send, sendError } from 'h3'
+import { createError, getQuery, type H3Event, send, sendError } from 'h3'
 import { consola } from 'consola'
 import { jwtVerify, importSPKI } from 'jose'
 import { ofetch } from 'ofetch'
@@ -23,22 +23,22 @@ export default defineEventHandler(async (event: H3Event) => {
 
   consola.log('tusdDelete: ' + uploadId)
 
-  if (req.headers.authorization === undefined) {
+  if (!req.headers.authorization) {
     return sendError(
       event,
       createError({
         statusCode: 401,
-        statusMessage: 'The request header "Authorization" is undefined!',
+        statusMessage: 'The request header "Authorization" is missing!',
       }),
     )
   }
 
-  if (configPostgraphileJwtPublicKey === undefined) {
+  if (!configPostgraphileJwtPublicKey) {
     return sendError(
       event,
       createError({
         statusCode: 500,
-        statusMessage: 'Secret missing!',
+        statusMessage: 'The JSON web token public key is missing!',
       }),
     )
   }
@@ -58,12 +58,12 @@ export default defineEventHandler(async (event: H3Event) => {
       event,
       createError({
         statusCode: 401,
-        statusMessage: `Json web token verification failed: "${err.message}"!`,
+        statusMessage: `JSON web token verification failed: "${err.message}"!`,
       }),
     )
   }
 
-  const queryRes = await pool
+  const queryResult = await pool
     .query('SELECT * FROM maevsi.upload WHERE id = $1;', [uploadId])
     .catch((err) => {
       sendError(
@@ -72,9 +72,9 @@ export default defineEventHandler(async (event: H3Event) => {
       )
     })
 
-  if (!queryRes) return
+  if (!queryResult) return
 
-  if (queryRes.rows.length === 0) {
+  if (!queryResult.rows.length) {
     return sendError(
       event,
       createError({
@@ -85,36 +85,37 @@ export default defineEventHandler(async (event: H3Event) => {
   }
 
   const storageKey = (
-    queryRes.rows[0] ? queryRes.rows[0].storage_key : undefined
+    queryResult.rows[0] ? queryResult.rows[0].storage_key : undefined
   ) as string | undefined
 
-  consola.log('storageKey:' + storageKey)
+  if (!storageKey) {
+    return await deleteUpload(event, uploadId)
+  }
 
-  if (storageKey) {
-    const httpResp = await ofetch.raw('http://tusd:8080/files/' + storageKey, {
-      headers: {
-        'Tus-Resumable': '1.0.0',
-      },
-      // ignoreResponseError: true,
-      method: 'DELETE',
-    })
+  const response = await ofetch.raw('http://tusd:8080/files/' + storageKey, {
+    headers: {
+      'Tus-Resumable': '1.0.0',
+    },
+    ignoreResponseError: true, // handle response status below
+    method: 'DELETE',
+  })
 
-    if (httpResp.status === 204) {
+  switch (response.status) {
+    case 204:
       await deleteUpload(event, uploadId)
       event.node.res.statusCode = 204
       await send(event)
-    } else if (httpResp.status === 404) {
+      break
+    case 404:
       await deleteUpload(event, uploadId)
-    } else {
+      break
+    default:
       return sendError(
         event,
         createError({
           statusCode: 500,
-          statusMessage: 'Tusd status was "' + httpResp.status + '".',
+          statusMessage: `Unexpected tusd status code: ${response.status}`,
         }),
       )
-    }
-  } else {
-    await deleteUpload(event, uploadId)
   }
 })

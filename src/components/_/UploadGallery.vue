@@ -215,37 +215,36 @@ const selectProfilePicture = async () => {
     await navigateTo(pathUpload)
   }
 }
-const deleteUpload = (uploadId: string) => {
+const deleteUpload = async (uploadId: string) => {
   pending.deletions.push(uploadId)
 
-  const xhr = new XMLHttpRequest()
   const host = runtimeConfig.public.vio.stagingHost
     ? `https://${runtimeConfig.public.vio.stagingHost}`
     : ''
 
-  xhr.open('DELETE', `${host}/api/tusd?uploadId=${uploadId}`, true)
-  xhr.setRequestHeader('Hook-Name', 'maevsi/pre-terminate')
-  xhr.setRequestHeader('Authorization', 'Bearer ' + store.jwt)
-  xhr.onreadystatechange = async () => {
-    if (xhr.readyState === 4) {
-      pending.deletions.splice(pending.deletions.indexOf(uploadId), 1)
+  const response = await $fetch.raw(`${host}/api/upload?uploadId=${uploadId}`, {
+    headers: {
+      Authorization: `Bearer ${store.jwt}`,
+    },
+    ignoreResponseError: true, // handle response status below
+    method: 'DELETE',
+  })
 
-      switch (xhr.status) {
-        case 204:
-          allUploadsQuery.executeQuery()
-          break
-        case 500:
-          await fireAlert({ level: 'error', text: t('uploadDeleteFailed') })
-          break
-        default:
-          await fireAlert({
-            level: 'warning',
-            text: t('uploadDeleteUnexpectedStatusCode'),
-          })
-      }
-    }
+  pending.deletions.splice(pending.deletions.indexOf(uploadId), 1)
+
+  switch (response.status) {
+    case 204:
+      allUploadsQuery.executeQuery()
+      break
+    case 500:
+      await fireAlert({ level: 'error', text: t('uploadDeleteFailed') })
+      break
+    default:
+      await fireAlert({
+        level: 'warning',
+        text: t('uploadDeleteUnexpectedStatusCode'),
+      })
   }
-  xhr.send()
 }
 const getMimeType = (file: ArrayBuffer, fallback?: string) => {
   const byteArray = new Uint8Array(file).subarray(0, 4)
@@ -330,7 +329,7 @@ const getUploadBlobPromise = () =>
             allowedFileTypes: ['image/*'],
           },
           meta: {
-            maevsiUploadUuid: result.data.uploadCreate?.upload?.id,
+            maevsiUploadUuid: result.data.uploadCreate?.upload?.id, // TODO: rename
           },
           onBeforeUpload: (files: { [key: string]: UppyFile }) =>
             Object.keys(files).reduce(

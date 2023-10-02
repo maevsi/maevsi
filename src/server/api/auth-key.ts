@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 
-import { H3Event } from 'h3'
+import { type H3Event } from 'h3'
 import { ofetch } from 'ofetch'
 
 export default defineEventHandler(async (event: H3Event) => {
