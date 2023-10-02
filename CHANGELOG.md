@@ -1,3 +1,16 @@
+## [3.1.0](https://github.com/maevsi/maevsi/compare/3.0.0...3.1.0) (2023-10-02)
+
+
+### Features
+
+* **api:** use fetch ([#1393](https://github.com/maevsi/maevsi/issues/1393)) ([38c1974](https://github.com/maevsi/maevsi/commit/38c19746596b28188bca62bc066ca7a123c1789d))
+* **upload-gallery:** use fetch ([6a27690](https://github.com/maevsi/maevsi/commit/6a2769021a79a82c1e6515a6c43c5290ff9eeef0))
+
+
+### Bug Fixes
+
+* **ical:** use fetch ([cc5edd0](https://github.com/maevsi/maevsi/commit/cc5edd0e4713df99603c986fa1de9433c587cf2e))
+
 ## [3.0.0](https://github.com/maevsi/maevsi/compare/2.0.0...3.0.0) (2023-10-01)
 
 
