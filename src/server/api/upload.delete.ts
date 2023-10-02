@@ -23,22 +23,22 @@ export default defineEventHandler(async (event: H3Event) => {
 
   consola.log('tusdDelete: ' + uploadId)
 
-  if (req.headers.authorization === undefined) {
+  if (!req.headers.authorization) {
     return sendError(
       event,
       createError({
         statusCode: 401,
-        statusMessage: 'The request header "Authorization" is undefined!',
+        statusMessage: 'The request header "Authorization" is missing!',
       }),
     )
   }
 
-  if (configPostgraphileJwtPublicKey === undefined) {
+  if (!configPostgraphileJwtPublicKey) {
     return sendError(
       event,
       createError({
         statusCode: 500,
-        statusMessage: 'Secret missing!',
+        statusMessage: 'The JSON web token public key is missing!',
       }),
     )
   }
@@ -58,7 +58,7 @@ export default defineEventHandler(async (event: H3Event) => {
       event,
       createError({
         statusCode: 401,
-        statusMessage: `Json web token verification failed: "${err.message}"!`,
+        statusMessage: `JSON web token verification failed: "${err.message}"!`,
       }),
     )
   }
@@ -74,7 +74,7 @@ export default defineEventHandler(async (event: H3Event) => {
 
   if (!queryRes) return
 
-  if (queryRes.rows.length === 0) {
+  if (!queryRes.rows.length) {
     return sendError(
       event,
       createError({
@@ -88,14 +88,12 @@ export default defineEventHandler(async (event: H3Event) => {
     queryRes.rows[0] ? queryRes.rows[0].storage_key : undefined
   ) as string | undefined
 
-  consola.log('storageKey:' + storageKey)
-
   if (storageKey) {
     const httpResp = await ofetch.raw('http://tusd:8080/files/' + storageKey, {
       headers: {
         'Tus-Resumable': '1.0.0',
       },
-      // ignoreResponseError: true,
+      ignoreResponseError: true, // handle response status below
       method: 'DELETE',
     })
 
