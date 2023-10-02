@@ -1,4 +1,4 @@
-import { createError, defineEventHandler, readBody, H3Event } from 'h3'
+import { createError, defineEventHandler, readBody, type H3Event } from 'h3'
 import DOMPurify from 'isomorphic-dompurify'
 import ical, * as icalGenerator from 'ical-generator'
 import mustache from 'mustache'

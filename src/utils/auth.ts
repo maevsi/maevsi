@@ -1,6 +1,6 @@
 import { Client } from '@urql/vue'
 import { consola } from 'consola'
-import { H3Event, setCookie } from 'h3'
+import { type H3Event, setCookie } from 'h3'
 import { decodeJwt } from 'jose'
 
 import { JWT_NAME } from './constants'
