@@ -17,7 +17,10 @@ test('gets ical string', () => {
       host: 'maevsi.test',
       event: {
         // id: '1',
-        // authorAccountId: 'authorUsername',
+        accountByAuthorAccountId: {
+          id: 1,
+          username: 'authorUsername',
+        },
         description: '<p>description</p>',
         end: new Date(),
         // inviteeCountMaximum: 0,
@@ -30,7 +33,6 @@ test('gets ical string', () => {
         start: new Date(),
         // visibility: EventVisibility.Public,
       },
-      eventAuthorUsername: 'authorUsername',
     }),
   ).toBe(
     `BEGIN:VCALENDAR\r
