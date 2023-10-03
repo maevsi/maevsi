@@ -37,8 +37,8 @@ importers:
         specifier: 6.4.4
         version: 6.4.4(rollup@2.79.1)(webpack@5.88.2)
       '@fontsource-variable/manrope':
-        specifier: 5.0.13
-        version: 5.0.13
+        specifier: 5.0.14
+        version: 5.0.14
       '@graphql-codegen/cli':
         specifier: 5.0.0
         version: 5.0.0(@types/node@20.8.2)(graphql@16.8.1)(typescript@5.2.2)
@@ -2421,8 +2421,8 @@ packages:
     dev: true
     optional: true
 
-  /@fontsource-variable/manrope@5.0.13:
-    resolution: {integrity: sha512-J5tZwRWweDhqSp2gbGoZuio/R+mMISjlCc3c1TkP7OKu7gmIaLSylVpcvco9avlMfmJbGRpyGUwipee9pTrPGg==}
+  /@fontsource-variable/manrope@5.0.14:
+    resolution: {integrity: sha512-9Ocqy5lRhrfPSQZaSyhQWfNnPOO/0kiLsSu3Q/2+d3z7HhjTASdMeZb69SI2P+zI702/FS5vcPYfFHYuZT9yFA==}
     dev: true
 
   /@graphql-codegen/add@5.0.0(graphql@16.8.1):
@@ -3251,7 +3251,7 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.4.1
+      '@intlify/message-compiler': 9.5.0
       '@intlify/shared': 9.5.0
       acorn: 8.10.0
       escodegen: 2.1.0
@@ -3324,14 +3324,6 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /@intlify/message-compiler@9.4.1:
-    resolution: {integrity: sha512-aN2N+dUx320108QhH51Ycd2LEpZ+NKbzyQ2kjjhqMcxhHdxtOnkgdx+MDBhOy/CObwBmhC3Nygzc6hNlfKvPNw==}
-    engines: {node: '>= 16'}
-    dependencies:
-      '@intlify/shared': 9.4.1
-      source-map-js: 1.0.2
-    dev: true
-
   /@intlify/message-compiler@9.5.0:
     resolution: {integrity: sha512-CAhVNfEZcOVFg0/5MNyt+OFjvs4J/ARjCj2b+54/FvFP0EDJI5lIqMTSDBE7k0atMROSP0SvWCkwu/AZ5xkK1g==}
     engines: {node: '>= 16'}
@@ -3342,11 +3334,6 @@ packages:
 
   /@intlify/shared@9.3.0-beta.27:
     resolution: {integrity: sha512-hPMsmVCs+ZUVHHU5VORG6LopzXZT7zmyVNqc9OQG80YpA/N4lT/pkJ4B6DTNIsv2C7mwfGM7RdK+0qPki43YgA==}
-    engines: {node: '>= 16'}
-    dev: true
-
-  /@intlify/shared@9.4.1:
-    resolution: {integrity: sha512-A51elBmZWf1FS80inf/32diO9DeXoqg9GR9aUDHFcfHoNDuT46Q+fpPOdj8jiJnSHSBh8E1E+6qWRhAZXdK3Ng==}
     engines: {node: '>= 16'}
     dev: true
 
@@ -17340,7 +17327,7 @@ packages:
       '@vue/compiler-dom': 3.3.4
       esno: 0.16.3
       kolorist: 1.8.0
-      magic-string: 0.30.3
+      magic-string: 0.30.4
       shell-quote: 1.8.1
       vite: 4.4.9(@types/node@20.8.2)
     transitivePeerDependencies:
