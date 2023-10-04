@@ -226,8 +226,8 @@ importers:
         specifier: 1.9.0
         version: 1.9.0
       jose:
-        specifier: 4.15.1
-        version: 4.15.1
+        specifier: 4.15.2
+        version: 4.15.2
       lint-staged:
         specifier: 14.0.1
         version: 14.0.1
@@ -3011,7 +3011,7 @@ packages:
       graphql-request: 6.1.0(graphql@16.8.1)
       http-proxy-agent: 7.0.0
       https-proxy-agent: 7.0.2
-      jose: 4.15.1
+      jose: 4.15.2
       js-yaml: 4.1.0
       json-stable-stringify: 1.0.2
       lodash: 4.17.21
@@ -11079,8 +11079,8 @@ packages:
     hasBin: true
     dev: true
 
-  /jose@4.15.1:
-    resolution: {integrity: sha512-CinpaEMmwb/59YG0N6SC3DY1imdTU5iNl08HPWR7NdyxACPeFuQbqjaocEjCDGq04KbnxSqQu702vL3ZTvKe5w==}
+  /jose@4.15.2:
+    resolution: {integrity: sha512-IY73F228OXRl9ar3jJagh7Vnuhj/GzBunPiZP13K0lOl7Am9SoWW3kEzq3MCllJMTtZqHTiDXQvoRd4U95aU6A==}
     dev: true
 
   /js-base64@3.7.5:
