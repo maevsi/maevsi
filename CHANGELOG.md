@@ -1,3 +1,11 @@
+## [3.1.1](https://github.com/maevsi/maevsi/compare/3.1.0...3.1.1) (2023-10-06)
+
+
+### Bug Fixes
+
+* **app:** correct theme color ([8ea081a](https://github.com/maevsi/maevsi/commit/8ea081a15cf23e07df24116931dfd1cc813606e4))
+* **favicon:** correct theme color ([b090d4c](https://github.com/maevsi/maevsi/commit/b090d4c801657dc09f0ee21df8f696f1b1fec325))
+
 ## [3.1.0](https://github.com/maevsi/maevsi/compare/3.0.0...3.1.0) (2023-10-02)
 
 
