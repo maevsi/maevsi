@@ -1,3 +1,10 @@
+## [3.2.0](https://github.com/maevsi/maevsi/compare/3.1.1...3.2.0) (2023-10-07)
+
+
+### Features
+
+* **manifest:** add iarc rating id ([8194f8a](https://github.com/maevsi/maevsi/commit/8194f8aa9a90dca01e13c069f1df1c922fc0cf4a))
+
 ## [3.1.1](https://github.com/maevsi/maevsi/compare/3.1.0...3.1.1) (2023-10-06)
 
 

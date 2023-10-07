@@ -215,7 +215,7 @@ export default defineNuxtConfig({
         // },
       ],
       handle_links: 'preferred',
-      // iarc_rating_id: '',
+      iarc_rating_id: '4bc30419-7452-4496-b02b-5feac10842dc',
       icons: [
         {
           src: `/assets/static/favicon/android-chrome-64x64.png?v=${CACHE_VERSION}`,
