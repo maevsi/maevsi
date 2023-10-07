@@ -75,7 +75,7 @@
     "@types/html-to-text": "9.0.2",
     "@types/lodash-es": "4.17.9",
     "@types/mustache": "4.2.3",
-    "@types/node": "20.8.2",
+    "@types/node": "20.8.3",
     "@types/pg": "8.10.3",
     "@uppy/core": "3.5.1",
     "@uppy/tus": "3.3.1",
@@ -96,7 +96,7 @@
     "dayjs": "2.0.0-alpha.4",
     "defu": "6.1.2",
     "downloadjs": "1.4.7",
-    "eslint": "8.50.0",
+    "eslint": "8.51.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-compat": "4.2.0",
     "eslint-plugin-nuxt": "4.0.0",
@@ -144,7 +144,7 @@
     "vue-chartjs": "5.2.0",
     "vue-gtag": "2.0.1",
     "vue-qrcode-reader": "5.3.7",
-    "vue-tsc": "1.8.15",
+    "vue-tsc": "1.8.16",
     "workbox-precaching": "7.0.0"
   },
   "peerDependencies": {
