@@ -131,17 +131,17 @@ export default {
           },
         },
         '.form-input-error': {
-          input: {
+          '.form-input': {
             borderColor: theme('colors.red.500'),
           },
         },
         '.form-input-success': {
-          input: {
+          '.form-input': {
             borderColor: theme('colors.green.600'),
           },
         },
         '.form-input-warning': {
-          input: {
+          '.form-input': {
             borderColor: theme('colors.yellow.600'),
           },
         },
