@@ -247,7 +247,7 @@ import { BaseValidation } from '@vuelidate/core'
 import { debounce } from 'lodash-es'
 
 export interface Props {
-  value: BaseValidation<string>
+  value: BaseValidation<string | undefined>
 }
 const props = withDefaults(defineProps<Props>(), {})
 
