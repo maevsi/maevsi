@@ -1,3 +1,18 @@
+## [3.3.0](https://github.com/maevsi/maevsi/compare/3.2.0...3.3.0) (2023-10-07)
+
+
+### Features
+
+* development ([#1395](https://github.com/maevsi/maevsi/issues/1395)) ([ec07a10](https://github.com/maevsi/maevsi/commit/ec07a10a4caa5c4dfad416bc05b7cd034d8594ef))
+* **tailwind:** set border color for all form inputs ([9493d77](https://github.com/maevsi/maevsi/commit/9493d7727919ab369906760e5ce5fa85e97c5155))
+* **tiptap:** show which menu items are enabled ([6f42787](https://github.com/maevsi/maevsi/commit/6f42787f8b0fd312d83112c242d9bd4d9c68b6ca))
+
+
+### Bug Fixes
+
+* **form-input-email-address:** add missing "required" attribute ([fd595b7](https://github.com/maevsi/maevsi/commit/fd595b74feb0e26a9e6a102d59366c7cccaa9668))
+* **ical:** correct sanitization ([3259b21](https://github.com/maevsi/maevsi/commit/3259b215444abc299908e1617f3bef7834b099b0))
+
 ## [3.2.0](https://github.com/maevsi/maevsi/compare/3.1.1...3.2.0) (2023-10-07)
 
 
