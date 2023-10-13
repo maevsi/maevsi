@@ -41,7 +41,7 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.8.0",
+    "@axe-core/playwright": "4.8.1",
     "@babel/core": "7.23.2",
     "@dargmuesli/nuxt-cookie-control": "6.4.5",
     "@fontsource-variable/manrope": "5.0.15",
