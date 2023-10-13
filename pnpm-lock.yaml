@@ -316,8 +316,8 @@ importers:
         specifier: 3.3.3
         version: 3.3.3(ts-node@10.9.1)
       v-calendar:
-        specifier: 3.1.1
-        version: 3.1.1(@popperjs/core@2.11.8)(vue@3.3.4)
+        specifier: 3.1.2
+        version: 3.1.2(@popperjs/core@2.11.8)(vue@3.3.4)
       vitest:
         specifier: 0.34.6
         version: 0.34.6
@@ -8200,8 +8200,8 @@ packages:
     resolution: {integrity: sha512-8YnDaaf7N3k/q5HnTJVuzSyLETjoZjVmHc4AeKAzOvKHEFQKcn64OKBfzHYtE9zGjctNM7V9I0MfnUVLpi7M5g==}
     dev: true
 
-  /date-fns-tz@1.3.8(date-fns@2.30.0):
-    resolution: {integrity: sha512-qwNXUFtMHTTU6CFSFjoJ80W8Fzzp24LntbjFFBgL/faqds4e5mo9mftoRLgr3Vi1trISsg4awSpYVsOQCRnapQ==}
+  /date-fns-tz@2.0.0(date-fns@2.30.0):
+    resolution: {integrity: sha512-OAtcLdB9vxSXTWHdT8b398ARImVwQMyjfYGkKD2zaGpHseG2UPHbHjXELReErZFxWdSLph3c2zOaaTyHfOhERQ==}
     peerDependencies:
       date-fns: '>=2.0.0'
     dependencies:
@@ -17007,8 +17007,8 @@ packages:
     resolution: {integrity: sha512-UOzej0Le/UgkbWEO8flm+0y+G+ljUon1QWTEZOq1rnMAsxo2+SckbiZdKzAHHlVh6gJqI1TjC/xwgR50MuCrBQ==}
     dev: true
 
-  /v-calendar@3.1.1(@popperjs/core@2.11.8)(vue@3.3.4):
-    resolution: {integrity: sha512-9ZgHOcbg97TGyokcFE8yVNwjzu8pUxSMnUMHh/1flSTM8Uof2GLqiu5f00+nl30hooK149ScdIb74VZebUfmvA==}
+  /v-calendar@3.1.2(@popperjs/core@2.11.8)(vue@3.3.4):
+    resolution: {integrity: sha512-QDWrnp4PWCpzUblctgo4T558PrHgHzDtQnTeUNzKxfNf29FkCeFpwGd9bKjAqktaa2aJLcyRl45T5ln1ku34kg==}
     peerDependencies:
       '@popperjs/core': ^2.0.0
       vue: ^3.2.0
@@ -17017,7 +17017,7 @@ packages:
       '@types/lodash': 4.14.199
       '@types/resize-observer-browser': 0.1.8
       date-fns: 2.30.0
-      date-fns-tz: 1.3.8(date-fns@2.30.0)
+      date-fns-tz: 2.0.0(date-fns@2.30.0)
       lodash: 4.17.21
       vue: 3.3.4
       vue-screen-utils: 1.0.0-beta.13(vue@3.3.4)
