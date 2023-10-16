@@ -85,8 +85,8 @@ importers:
         specifier: 2.0.0-beta.37
         version: 2.0.0-beta.37(@nuxt/devtools@1.0.0-beta.2)(@unhead/shared@1.7.4)(nuxt@3.7.4)(postcss@8.4.31)(rollup@2.79.1)(unhead@1.7.4)(vite@4.4.11)(vue@3.3.4)(webpack@5.89.0)
       '@pinia/nuxt':
-        specifier: 0.5.0
-        version: 0.5.0(rollup@2.79.1)(typescript@5.2.2)(vue@3.3.4)
+        specifier: 0.5.1
+        version: 0.5.1(rollup@2.79.1)(typescript@5.2.2)(vue@3.3.4)
       '@playwright/test':
         specifier: 1.39.0
         version: 1.39.0
@@ -4380,8 +4380,8 @@ packages:
       webcrypto-core: 1.7.7
     dev: true
 
-  /@pinia/nuxt@0.5.0(rollup@2.79.1)(typescript@5.2.2)(vue@3.3.4):
-    resolution: {integrity: sha512-p9Ojw+H2dp5l6A1TFLwl03kQZuuO7cjEtppnwjEjkQA6y8SitpiarmogouFTks1hOSXPjMfXPDTW0vRV+wSxVg==}
+  /@pinia/nuxt@0.5.1(rollup@2.79.1)(typescript@5.2.2)(vue@3.3.4):
+    resolution: {integrity: sha512-6wT6TqY81n+7/x3Yhf0yfaJVKkZU42AGqOR0T3+UvChcaOJhSma7OWPN64v+ptYlznat+fS1VTwNAcbi2lzHnw==}
     dependencies:
       '@nuxt/kit': 3.7.4(rollup@2.79.1)
       pinia: 2.1.7(typescript@5.2.2)(vue@3.3.4)
