@@ -71,7 +71,7 @@
     "@tiptap/starter-kit": "2.1.12",
     "@tiptap/vue-3": "2.1.12",
     "@types/dompurify": "3.0.4",
-    "@types/downloadjs": "1.4.4",
+    "@types/downloadjs": "1.4.5",
     "@types/html-to-text": "9.0.2",
     "@types/lodash-es": "4.17.9",
     "@types/mustache": "4.2.3",

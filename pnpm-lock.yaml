@@ -118,8 +118,8 @@ importers:
         specifier: 3.0.4
         version: 3.0.4
       '@types/downloadjs':
-        specifier: 1.4.4
-        version: 1.4.4
+        specifier: 1.4.5
+        version: 1.4.5
       '@types/html-to-text':
         specifier: 9.0.2
         version: 9.0.2
@@ -5265,8 +5265,8 @@ packages:
       '@types/trusted-types': 2.0.4
     dev: true
 
-  /@types/downloadjs@1.4.4:
-    resolution: {integrity: sha512-MkVGL6VdDJZvRx0rgeHVwYMQXIH3PAqTicGUq5iJ3+sB/xYbK2iHBEFDF1Q5u9jZQv9E4ZSWfCBn708u41XjVw==}
+  /@types/downloadjs@1.4.5:
+    resolution: {integrity: sha512-pr3zSKY0QwP+1tQumJGNfziGNi1xLVHtGsrclGsgjVpfWSPoW/9He42w6X+GTp4PO5I2wuHDU2wJdxI7dqjW+w==}
     dev: true
 
   /@types/emscripten@1.39.8:
