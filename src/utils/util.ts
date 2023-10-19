@@ -5,10 +5,10 @@ import { defu } from 'defu'
 import { type H3Event, getCookie } from 'h3'
 import { htmlToText } from 'html-to-text'
 import { ofetch } from 'ofetch'
-import Swal, { SweetAlertIcon } from 'sweetalert2'
+import Swal, { type SweetAlertIcon } from 'sweetalert2'
 import colors from 'tailwindcss/colors'
-import { Ref } from 'vue'
-import { LocationQueryValue } from 'vue-router'
+import type { Ref } from 'vue'
+import type { LocationQueryValue } from 'vue-router'
 
 import { TIMEZONE_COOKIE_NAME, REGEX_UUID } from './constants'
 import type {

@@ -1,7 +1,7 @@
 import type { ModuleOptions } from '@nuxtjs/tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
-import { PluginAPI } from 'tailwindcss/types/config'
+import type { PluginAPI } from 'tailwindcss/types/config'
 
 const gray = colors.gray // or slate, zinc, neutral, stone
 const truncateOverflow = {

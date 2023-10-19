@@ -67,7 +67,7 @@
 import { useMaevsiStore } from '~/store'
 import { useDeleteContactByIdMutation } from '~/gql/documents/mutations/contact/contactDeleteById'
 import { useAllContactsQuery } from '~/gql/documents/queries/contact/contactsAll'
-import { ContactItemFragment } from '~/gql/generated/graphql'
+import type { ContactItemFragment } from '~/gql/generated/graphql'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
 
 const { t } = useI18n()

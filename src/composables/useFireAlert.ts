@@ -1,6 +1,6 @@
 import { consola } from 'consola'
-import Swal, { SweetAlertIcon } from 'sweetalert2'
-import { Ref } from 'vue'
+import Swal, { type SweetAlertIcon } from 'sweetalert2'
+import type { Ref } from 'vue'
 
 export const useFireAlert = () => {
   const { t } = useI18n()

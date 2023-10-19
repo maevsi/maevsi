@@ -113,7 +113,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { useMaevsiStore } from '~/store'
 import { useCreateContactMutation } from '~/gql/documents/mutations/contact/contactCreate'
 import { useUpdateContactByIdMutation } from '~/gql/documents/mutations/contact/contactUpdateById'
-import { ContactItemFragment } from '~/gql/generated/graphql'
+import type { ContactItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
   contact?: Pick<ContactItemFragment, any>

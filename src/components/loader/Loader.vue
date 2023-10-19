@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { UnwrapRef } from 'vue'
+import type { UnwrapRef } from 'vue'
 
 export interface Props {
   api: UnwrapRef<ReturnType<typeof getApiData>>

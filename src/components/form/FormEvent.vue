@@ -283,7 +283,10 @@ import slugify from 'slugify'
 import { useMaevsiStore } from '~/store'
 import { useCreateEventMutation } from '~/gql/documents/mutations/event/eventCreate'
 import { useUpdateEventByIdMutation } from '~/gql/documents/mutations/event/eventUpdateById'
-import { EventItemFragment, EventVisibility } from '~/gql/generated/graphql'
+import {
+  type EventItemFragment,
+  EventVisibility,
+} from '~/gql/generated/graphql'
 
 export interface Props {
   event?: Pick<EventItemFragment, 'name' | 'slug'>
