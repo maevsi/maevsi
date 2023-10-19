@@ -74,7 +74,7 @@
     "@types/downloadjs": "1.4.5",
     "@types/html-to-text": "9.0.3",
     "@types/lodash-es": "4.17.10",
-    "@types/mustache": "4.2.3",
+    "@types/mustache": "4.2.4",
     "@types/node": "20.8.6",
     "@types/pg": "8.10.5",
     "@uppy/core": "3.5.1",
