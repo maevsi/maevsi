@@ -108,7 +108,7 @@
     "is-https": "4.0.0",
     "isomorphic-dompurify": "1.9.0",
     "jose": "4.15.4",
-    "lint-staged": "15.0.1",
+    "lint-staged": "15.0.2",
     "lodash-es": "4.17.21",
     "mustache": "4.2.0",
     "nuxt": "3.7.4",
