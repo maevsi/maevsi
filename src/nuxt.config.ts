@@ -1,6 +1,8 @@
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { tryResolveModule } from '@nuxt/kit'
+import type { Nuxt } from '@nuxt/schema'
 import colors from 'tailwindcss/colors'
 
 import {
@@ -16,6 +18,14 @@ const currentDir = dirname(fileURLToPath(import.meta.url))
 
 // TODO: let this error in "eslint (compat/compat)"" (https://github.com/DefinitelyTyped/DefinitelyTyped/issues/55519)
 // setImmediate(() => {})
+
+const resolve = async (modulePath: string, nuxt: Nuxt) => {
+  const module = await tryResolveModule(modulePath, nuxt.options.modulesDir)
+
+  if (!module) throw new Error(`Could not resolve module "${modulePath}"`)
+
+  return module
+}
 
 export default defineNuxtConfig({
   app: {
@@ -49,6 +59,11 @@ export default defineNuxtConfig({
     '@nuxtseo/module',
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
+    async (_options: any, nuxt: Nuxt) => {
+      for (const module of ['@unhead/vue', 'js-cookie', 'cookie-es', 'ufo']) {
+        nuxt.options.alias[module] = await resolve(module, nuxt)
+      }
+    }, // TODO: remove after next update following 2023-10-20 (https://github.com/nuxt-modules/i18n/releases, https://github.com/nuxt/nuxt/releases)
   ],
   nitro: {
     compressPublicAssets: true,
