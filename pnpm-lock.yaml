@@ -133,8 +133,8 @@ importers:
         specifier: 20.8.7
         version: 20.8.7
       '@types/pg':
-        specifier: 8.10.5
-        version: 8.10.5
+        specifier: 8.10.7
+        version: 8.10.7
       '@uppy/core':
         specifier: 3.5.1
         version: 3.5.1
@@ -5382,8 +5382,8 @@ packages:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
     dev: true
 
-  /@types/pg@8.10.5:
-    resolution: {integrity: sha512-GS3ebGcSJQqKSnq4/WnSH1XQvx0vTDLEmqLENk7onKvTnry9BWPsZiZeUMJlEPw+5bCQDzfxZFhxlUztpNCKgQ==}
+  /@types/pg@8.10.7:
+    resolution: {integrity: sha512-ksJqHipwYaSEHz9e1fr6H6erjoEdNNaOxwyJgPx9bNeaqOW3iWBQgVHfpwiSAoqGzchfc+ZyRLwEfeCcyYD3uQ==}
     dependencies:
       '@types/node': 20.8.7
       pg-protocol: 1.6.0
