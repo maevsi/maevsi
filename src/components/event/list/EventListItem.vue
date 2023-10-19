@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
-import { EventItemFragment } from '~/gql/generated/graphql'
+import type { EventItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
   event: Pick<

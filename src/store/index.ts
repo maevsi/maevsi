@@ -1,9 +1,9 @@
 // This file must exist for the i18n module too, as this file's existence enables the store.
-import { decodeJwt, JWTPayload } from 'jose'
+import { decodeJwt, type JWTPayload } from 'jose'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-import { Modal } from '~/types/modal'
+import type { Modal } from '~/types/modal'
 
 export const useMaevsiStore = defineStore('maevsi', () => {
   const jwt = ref<string>()

@@ -1,9 +1,9 @@
 /* eslint-disable no-use-before-define */
-import { offlineExchange } from '@urql/exchange-graphcache'
 import {
-  Resolver as GraphCacheResolver,
-  UpdateResolver as GraphCacheUpdateResolver,
-  OptimisticMutationResolver as GraphCacheOptimisticMutationResolver,
+  offlineExchange,
+  type Resolver as GraphCacheResolver,
+  type UpdateResolver as GraphCacheUpdateResolver,
+  type OptimisticMutationResolver as GraphCacheOptimisticMutationResolver,
 } from '@urql/exchange-graphcache'
 
 export type Maybe<T> = T | null

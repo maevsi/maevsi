@@ -4,7 +4,7 @@ import ical, * as icalGenerator from 'ical-generator'
 import mustache from 'mustache'
 
 import { getHost, getTextFromHtml } from '~/utils/util'
-import {
+import type {
   ContactItemFragment,
   EventItemFragment,
   InvitationItemFragment,

@@ -337,8 +337,8 @@ import { useMaevsiStore } from '~/store'
 import { useUpdateInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationUpdateById'
 import {
   InvitationFeedback,
-  InvitationItemFragment,
-  InvitationPatch,
+  type InvitationItemFragment,
+  type InvitationPatch,
 } from '~/gql/generated/graphql'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'

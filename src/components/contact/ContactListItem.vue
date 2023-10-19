@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import { useMaevsiStore } from '~/store'
-import { ContactItemFragment } from '~/gql/generated/graphql'
+import type { ContactItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
   contact: Pick<

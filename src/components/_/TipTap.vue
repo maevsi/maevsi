@@ -243,7 +243,7 @@ import { useEditor, EditorContent } from '@tiptap/vue-3'
 import { Link } from '@tiptap/extension-link'
 import { TextAlign } from '@tiptap/extension-text-align'
 import { StarterKit } from '@tiptap/starter-kit'
-import { BaseValidation } from '@vuelidate/core'
+import type { BaseValidation } from '@vuelidate/core'
 import { debounce } from 'lodash-es'
 
 export interface Props {
