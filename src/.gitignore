@@ -230,3 +230,6 @@ $RECYCLE.BIN/
 
 tests/e2e/report
 tests/e2e/results
+
+# Sentry Config File
+.env.sentry-build-plugin
