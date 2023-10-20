@@ -1,40 +1,21 @@
 import { test, expect } from '@playwright/test'
-
 import AxeBuilder from '@axe-core/playwright'
+import { pwTest } from '../../../fixtures/pwTest'
+import { visualRegressionTest } from '../../../utils/visualRegressionTest'
 
-import { TIMEZONE_COOKIE_NAME } from '../../../../../utils/constants'
-import {
-  COOKIE_CONTROL_DEFAULT,
-  PAGE_READY,
-  TIMEZONE_DEFAULT,
-} from '../../../utils/constants'
+pwTest.describe('a11y', () => {
+  pwTest(
+    'should not have any automatically detectable accessibility issues',
+    async ({ defaultPage }) => {
+      await defaultPage.goto('/')
 
-test.beforeEach(async ({ context }) => {
-  await context.addCookies([
-    {
-      name: TIMEZONE_COOKIE_NAME,
-      value: TIMEZONE_DEFAULT,
-      domain: 'localhost',
-      path: '/',
+      const accessibilityScanResults = await new AxeBuilder({
+        page: defaultPage.page,
+      }).analyze()
+
+      expect(accessibilityScanResults.violations.length).toEqual(1) // TODO: get rid of all violations
     },
-    {
-      name: 'ncc_c',
-      value: COOKIE_CONTROL_DEFAULT,
-      domain: 'localhost',
-      path: '/',
-    },
-  ])
-})
-
-test.describe('a11y', () => {
-  test('should not have any automatically detectable accessibility issues', async ({
-    page,
-  }) => {
-    await page.goto('/')
-    await PAGE_READY({ page })
-    const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
-    expect(accessibilityScanResults.violations.length).toEqual(1) // TODO: get rid of all violations
-  })
+  )
 })
 
 test.describe('internationalization', () => {
@@ -81,19 +62,14 @@ test.describe('page load', () => {
 })
 
 test.describe('visual regression', () => {
-  test('looks as before', async ({ page }) => {
-    await page.goto('/')
-    await PAGE_READY({ page })
-    await expect(page).toHaveScreenshot({ fullPage: true })
-  })
+  visualRegressionTest('/')
 
-  test('displays the cookie banner', async ({ context, page }) => {
+  pwTest('displays the cookie banner', async ({ context, defaultPage }) => {
     // TODO: only remove the cookie control cookie (https://github.com/microsoft/playwright/issues/10143)
     await context.clearCookies()
 
-    await page.goto('/')
-    await PAGE_READY({ page, options: { cookieControl: false } })
-    await expect(page).toHaveScreenshot({ fullPage: true })
+    await defaultPage.goto('/', { cookieControl: false })
+    await expect(defaultPage.page).toHaveScreenshot({ fullPage: true })
   })
 
   test('generates the open graph image', async ({ page }) => {

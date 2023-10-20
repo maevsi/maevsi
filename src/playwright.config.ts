@@ -25,6 +25,9 @@ export default defineConfig({
 
   outputDir: 'tests/e2e/results',
 
+  snapshotPathTemplate:
+    '{testDir}/{testFilePath}-snapshots/{arg}-{projectName}{ext}',
+
   /* Configure projects for major browsers */
   projects: [
     {
