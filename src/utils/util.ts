@@ -64,6 +64,7 @@ const getCsp = (host: string): Record<string, Array<string>> => {
       'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://cdn.jsdelivr.net/npm/@sec-ant/', // vue-qrcode-reader
+      `https://${runtimeConfig.public.sentry.dsnHost}`, // Sentry
     ],
     'default-src': ["'none'"],
     'font-src': ["'self'", 'data:'], // @fontsource/manrope

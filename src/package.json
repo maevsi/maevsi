@@ -149,5 +149,8 @@
   },
   "peerDependencies": {
     "playwright-core": "1.39.0"
+  },
+  "dependencies": {
+    "@sentry/vue": "^7.74.1"
   }
 }
