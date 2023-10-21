@@ -82,8 +82,8 @@ importers:
         specifier: 1.5.2
         version: 1.5.2(rollup@2.79.1)
       '@nuxtjs/i18n':
-        specifier: 8.0.0-rc.5
-        version: 8.0.0-rc.5(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.4)
+        specifier: npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28296269.d5d5540
+        version: /@nuxtjs/i18n-edge@8.0.0-rc.5-28296269.d5d5540(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.4)
       '@nuxtjs/tailwindcss':
         specifier: 6.8.0
         version: 6.8.0(rollup@2.79.1)(ts-node@10.9.1)(webpack@5.89.0)
@@ -4092,8 +4092,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n@8.0.0-rc.5(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.4):
-    resolution: {integrity: sha512-iNOh9erVx8/sKtQcz/YZIPTGT/xcf/fmAHbGLb20qecRGOWFMsRb62n9T9taS4WtJwUn1AFc0S7395xqpRkJHw==}
+  /@nuxtjs/i18n-edge@8.0.0-rc.5-28296269.d5d5540(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.4):
+    resolution: {integrity: sha512-H9sDeKvhxp1yCxleXvs+kY0xgHp/8z72lAg7WIyYxt4GgRYNPRTkpv043wSRAwK2gc72W66v3PZJO8gO4dM+/g==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/shared': 9.5.0
@@ -4101,17 +4101,14 @@ packages:
       '@mizchi/sucrase': 4.1.0
       '@nuxt/kit': 3.7.4(rollup@2.79.1)
       '@vue/compiler-sfc': 3.3.4
-      cookie-es: 1.0.0
       debug: 4.3.4
       defu: 6.1.2
       estree-walker: 3.0.3
       is-https: 4.0.0
-      js-cookie: 3.0.5
       knitwork: 1.0.0
       magic-string: 0.30.5
       mlly: 1.4.2
       pathe: 1.1.1
-      pkg-types: 1.0.3
       ufo: 1.3.1
       unplugin: 1.5.0
       unstorage: 1.9.0
@@ -11099,11 +11096,6 @@ packages:
 
   /js-base64@3.7.5:
     resolution: {integrity: sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA==}
-    dev: true
-
-  /js-cookie@3.0.5:
-    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
-    engines: {node: '>=14'}
     dev: true
 
   /js-tokens@4.0.0:

@@ -60,7 +60,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
     async (_options: any, nuxt: Nuxt) => {
-      for (const module of ['@unhead/vue', 'js-cookie', 'cookie-es', 'ufo']) {
+      for (const module of ['@unhead/vue', 'ufo']) {
         nuxt.options.alias[module] = await resolve(module, nuxt)
       }
     }, // TODO: remove after next update following 2023-10-20 (https://github.com/nuxt-modules/i18n/releases, https://github.com/nuxt/nuxt/releases)
