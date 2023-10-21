@@ -9,7 +9,7 @@ import {
 } from '@vuelidate/validators'
 import { Client } from '@urql/core'
 import { consola } from 'consola'
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 
 import {
   REGEX_SLUG,
@@ -23,7 +23,7 @@ import { accountByUsernameQuery } from '~/gql/documents/queries/account/accountB
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { EventVisibility } from '~/gql/generated/graphql'
 
-import { RouteLocationNormalized } from '#vue-router'
+import type { RouteLocationNormalized } from '#vue-router'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 254 // source: https://www.dominicsayers.com/isemail/

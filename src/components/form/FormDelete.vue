@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { UseMutationResponse } from '@urql/vue'
+import type { UseMutationResponse } from '@urql/vue'
 import { useVuelidate } from '@vuelidate/core'
 
 export interface Props {

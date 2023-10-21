@@ -1,6 +1,6 @@
 import { useQuery } from '@urql/vue'
 import { graphql } from '~/gql/generated'
-import { EventIsExistingQueryVariables } from '~/gql/generated/graphql'
+import type { EventIsExistingQueryVariables } from '~/gql/generated/graphql'
 
 export const useEventIsExistingQuery = (
   variables: EventIsExistingQueryVariables,

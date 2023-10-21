@@ -111,7 +111,7 @@
 import { useDeleteInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationDelete'
 import { useInviteMutation } from '~/gql/documents/mutations/invitation/invite'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
-import {
+import type {
   EventItemFragment,
   InvitationItemFragment,
 } from '~/gql/generated/graphql'

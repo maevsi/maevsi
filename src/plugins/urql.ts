@@ -2,12 +2,12 @@ import {
   createClient,
   ssrExchange as getSsrExchange,
   fetchExchange,
-  ClientOptions,
-  SSRData,
+  type ClientOptions,
+  type SSRData,
 } from '@urql/core'
 // import type { Data } from '@urql/exchange-graphcache'
 import {
-  Cache,
+  type Cache,
   cacheExchange as getCacheExchange,
 } from '@urql/exchange-graphcache'
 // import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
@@ -18,7 +18,7 @@ import { consola } from 'consola'
 import { ref } from 'vue'
 
 import schema from '~/gql/generated/introspection'
-import { GraphCacheConfig } from '~/gql/generated/graphcache'
+import type { GraphCacheConfig } from '~/gql/generated/graphcache'
 
 import { useMaevsiStore } from '~/store'
 
