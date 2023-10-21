@@ -1,8 +1,8 @@
-name: 'Browserslist: Regex'
+name: "Browserslist: Regex"
 
 on:
   schedule:
-    - cron: '0 0 * * 2' # Every Tuesday at 00:00 AM UTC on the default branch
+    - cron: "0 0 * * 2" # Every Tuesday at 00:00 AM UTC on the default branch
   workflow_dispatch:
 
 jobs:
