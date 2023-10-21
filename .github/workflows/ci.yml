@@ -11,7 +11,7 @@ on:
 
 jobs:
   prepare_jobs:
-    name: 'Prepare: job optimization'
+    name: "Prepare: job optimization"
     runs-on: ubuntu-latest
     outputs:
       pr_found: ${{ steps.pr.outputs.pr_found }}
@@ -40,7 +40,6 @@ jobs:
     permissions:
       packages: write
     with:
-      BUILD_TARGET_RELEASE: build-node
       TAG: ${{ needs.release_semantic_dry.outputs.new_release_version }}
   release_semantic:
     needs: build
