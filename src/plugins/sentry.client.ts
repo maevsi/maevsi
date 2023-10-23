@@ -1,34 +1,30 @@
 import * as Sentry from '@sentry/vue'
 
+import { name, version } from '~/package.json'
+
 export default defineNuxtPlugin((nuxtApp) => {
   const router = useRouter()
-  const {
-    public: { sentry },
-  } = useRuntimeConfig()
+  const runtimeConfig = useRuntimeConfig()
+  const dsn = `https://${runtimeConfig.public.sentry.project.client.publicKey}@${runtimeConfig.public.sentry.host}/${runtimeConfig.public.sentry.project.client.id}`
 
-  if (!sentry.dsn) {
+  if (!dsn) {
     return
   }
 
   Sentry.init({
     app: nuxtApp.vueApp,
-    dsn: sentry.dsn,
-    environment: sentry.environment,
+    dsn,
+    environment: runtimeConfig.public.sentry.environment,
     integrations: [
       new Sentry.BrowserTracing({
         routingInstrumentation: Sentry.vueRouterInstrumentation(router),
       }),
       new Sentry.Replay(),
     ],
-
-    // Configure this whole part as you need it!
-
-    tracesSampleRate: 1.0, // Lower as soon as you have too many events
-
-    // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
-    tracePropagationTargets: ['localhost', 'https://your-server.com'],
-
-    replaysSessionSampleRate: 1.0, // Lower as soon as you have too many events
-    replaysOnErrorSampleRate: 1.0, // Change in prod if necessary
+    release: `${name}@${version}`,
+    replaysOnErrorSampleRate: 1.0, // lower as soon as there are too many events
+    replaysSessionSampleRate: 1.0, // lower as soon as there are too many events
+    tracePropagationTargets: ['localhost', 'https://your-server.com'], // control for which URLs distributed tracing should be enabled
+    tracesSampleRate: 1.0, // enable performance monitoring
   })
 })

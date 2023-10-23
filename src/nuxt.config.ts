@@ -62,9 +62,18 @@ export default defineNuxtConfig({
         baseUrl: SITE_URL,
       },
       sentry: {
-        dsn: '',
-        dsnHost: '', // The domain part of the sentry DSN, used for CSP
-        environment: 'development',
+        environment: process.env.NODE_ENV || 'development',
+        host: '',
+        project: {
+          client: {
+            id: '',
+            publicKey: '',
+          },
+          nitro: {
+            id: '',
+            publicKey: '',
+          },
+        },
       },
       turnstile: {
         siteKey: '1x00000000000000000000AA',
