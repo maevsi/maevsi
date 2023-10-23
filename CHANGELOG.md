@@ -1,3 +1,13 @@
+## [3.4.0](https://github.com/maevsi/maevsi/compare/3.3.1...3.4.0) (2023-10-23)
+
+
+### Features
+
+* basic sentry configuration ([1b1ccad](https://github.com/maevsi/maevsi/commit/1b1ccade9cbea155e72fc36a6d6b98ec25ee34e1))
+* basic sentry configuration ([#1405](https://github.com/maevsi/maevsi/issues/1405)) ([1ef19bc](https://github.com/maevsi/maevsi/commit/1ef19bc314ff132cabbfa9fef718d5690b7f887e))
+* **nuxt:** add default runtime configuration ([37ff786](https://github.com/maevsi/maevsi/commit/37ff786e886298ff96271da12c1fe3c04d5c20b7))
+* **sentry:** add server side ([773f947](https://github.com/maevsi/maevsi/commit/773f9476de27146ce0a94f51cd819f5d8feabaaf))
+
 ## [3.3.1](https://github.com/maevsi/maevsi/compare/3.3.0...3.3.1) (2023-10-21)
 
 
