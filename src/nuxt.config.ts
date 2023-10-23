@@ -76,11 +76,25 @@ export default defineNuxtConfig({
       i18n: {
         baseUrl: SITE_URL,
       },
+      sentry: {
+        environment: process.env.NODE_ENV || 'development',
+        host: 'o4506083883352064.ingest.sentry.io',
+        project: {
+          client: {
+            id: '4506097591779328',
+            publicKey: 'fce593fa1eeb9d866c35931d17c5715e',
+          },
+          nitro: {
+            id: '4506083885121536',
+            publicKey: '1d72e53a165ff93d01ca0c85503e38a5',
+          },
+        },
+      },
       turnstile: {
-        siteKey: '1x00000000000000000000AA',
+        siteKey: '0x4AAAAAAABtEW1Hc8mcgWcZ',
       },
       vio: {
-        googleAnalyticsId: '',
+        googleAnalyticsId: 'G-WMQ1JY99XH',
         isInProduction: process.env.NODE_ENV === 'production',
         isTesting: false,
         stagingHost:
