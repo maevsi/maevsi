@@ -367,8 +367,8 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(vue@3.3.6)
       vue-qrcode-reader:
-        specifier: 5.3.9
-        version: 5.3.9(react@18.2.0)
+        specifier: 5.4.0
+        version: 5.4.0
       vue-router:
         specifier: 4.2.5
         version: 4.2.5(vue@3.3.6)
@@ -4859,17 +4859,6 @@ packages:
       rollup: 3.29.4
     dev: true
 
-  /@sec-ant/zxing-wasm@2.1.5(react@18.2.0):
-    resolution: {integrity: sha512-U8/bq15/qytQ2GOfFeyoL9ItnBLLWlILpG3c0F03iZ3SlEZNJtUWd/DONjDAlbQ90TRzzOFFVw9AQhh75XlANQ==}
-    dependencies:
-      '@types/emscripten': 1.39.9
-      zustand: 4.4.4(react@18.2.0)
-    transitivePeerDependencies:
-      - '@types/react'
-      - immer
-      - react
-    dev: true
-
   /@selderee/plugin-htmlparser2@0.11.0:
     resolution: {integrity: sha512-P33hHGdldxGabLFjPPpaTxVolMrzrcegejx+0GxjrIb9Zv48D8yAIA/QTDR2dFl7Uz7urX8aX6+5bCZslr+gWQ==}
     dependencies:
@@ -7217,17 +7206,6 @@ packages:
 
   /balanced-match@2.0.0:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
-    dev: true
-
-  /barcode-detector@2.0.3(react@18.2.0):
-    resolution: {integrity: sha512-4d6KAcnsL5SuXhxtz0Z+7qjKqPi6bqrgE2QdocKKWTA33MMR+s2Dx1+YfGEhQ++/sM/MrXT/hTBzgG8XL4dAgg==}
-    dependencies:
-      '@sec-ant/zxing-wasm': 2.1.5(react@18.2.0)
-      '@types/dom-webcodecs': 0.1.9
-    transitivePeerDependencies:
-      - '@types/react'
-      - immer
-      - react
     dev: true
 
   /barcode-detector@2.1.0:
@@ -14809,13 +14787,6 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react@18.2.0:
-    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
-    dev: true
-
   /read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
     dependencies:
@@ -15909,6 +15880,7 @@ packages:
 
   /string_decoder@1.3.0:
     resolution: {integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==}
+    requiresBuild: true
     dependencies:
       safe-buffer: 5.2.1
     dev: true
@@ -17205,14 +17177,6 @@ packages:
     resolution: {integrity: sha512-WHN8KDQblxd32odxeIgo83rdVDE2bvdkb86it7bMhYZwWKJz0+O0RK/eZiHYnM+zgt/U7hAHOlCQGfjjvSkw2g==}
     dev: true
 
-  /use-sync-external-store@1.2.0(react@18.2.0):
-    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: true
-
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
@@ -17704,16 +17668,12 @@ packages:
       vue: 3.3.6(typescript@5.2.2)
     dev: true
 
-  /vue-qrcode-reader@5.3.9(react@18.2.0):
-    resolution: {integrity: sha512-rnfgFCxTsJ7nr8uD1zFGnhUCcFkK0VC4L+N1RV1TZENhewGU5CFvr6NMIkdqOd9cZT2TvPWYpviI2K7z7GK+IA==}
+  /vue-qrcode-reader@5.4.0:
+    resolution: {integrity: sha512-7ePS41r7Q8BtiPxutFW/N7SeQd5YQe3jdZ1CG/kBGPWYB/RNN0R5MvDV3i4x3aboM8wdvjGFnrN76CXw5HvNew==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      barcode-detector: 2.0.3(react@18.2.0)
+      barcode-detector: 2.1.0
       webrtc-adapter: 8.2.3
-    transitivePeerDependencies:
-      - '@types/react'
-      - immer
-      - react
     dev: true
 
   /vue-router@4.2.5(vue@3.3.6):
@@ -18343,25 +18303,6 @@ packages:
       archiver-utils: 4.0.1
       compress-commons: 5.0.1
       readable-stream: 3.6.2
-    dev: true
-
-  /zustand@4.4.4(react@18.2.0):
-    resolution: {integrity: sha512-5UTUIAiHMNf5+mFp7/AnzJXS7+XxktULFN0+D1sCiZWyX7ZG+AQpqs2qpYrynRij4QvoDdCD+U+bmg/cG3Ucxw==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      '@types/react': '>=16.8'
-      immer: '>=9.0'
-      react: '>=16.8'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
     dev: true
 
   /zxing-wasm@1.0.0-rc.3:
