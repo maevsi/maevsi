@@ -1,5 +1,7 @@
+import { exec } from 'node:child_process'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { promisify } from 'node:util'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 
 import { tryResolveModule } from '@nuxt/kit'
@@ -16,6 +18,9 @@ import {
 } from './utils/constants'
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
+const execPromise = promisify(exec)
+const RELEASE_NAME = async () =>
+  (await execPromise('git describe --tags')).stdout.trim()
 
 // TODO: let this error in "eslint (compat/compat)"" (https://github.com/DefinitelyTyped/DefinitelyTyped/issues/55519)
 // setImmediate(() => {})
@@ -49,6 +54,23 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+  hooks: {
+    'vite:extendConfig': async (config, { isClient }) => {
+      config.plugins ||= []
+      config.plugins.push(
+        sentryVitePlugin({
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          disable: !process.env.SENTRY_AUTH_TOKEN,
+          release: {
+            name: await RELEASE_NAME(),
+          },
+          org: 'maevsi',
+          project: isClient ? 'client' : 'nitro',
+          telemetry: false,
+        }),
+      )
+    },
+  },
   modules: [
     '@dargmuesli/nuxt-cookie-control',
     '@nuxt/image',
@@ -60,6 +82,9 @@ export default defineNuxtConfig({
     '@nuxtseo/module',
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
+    async (_options: any, nuxt: Nuxt) => {
+      nuxt.options.runtimeConfig.public.vio.releaseName = await RELEASE_NAME()
+    },
     async (_options: any, nuxt: Nuxt) => {
       for (const module of ['@unhead/vue', 'ufo']) {
         nuxt.options.alias[module] = await resolve(module, nuxt)
@@ -106,6 +131,7 @@ export default defineNuxtConfig({
       },
     },
   },
+  sourcemap: true,
   typescript: {
     shim: false,
     strict: true,
@@ -468,16 +494,5 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     cssPath: join(currentDir, './assets/css/tailwind.css'),
-  },
-  vite: {
-    build: {
-      sourcemap: true,
-    },
-    plugins: [
-      sentryVitePlugin({
-        org: 'maevsi',
-        project: 'maevsi',
-      }),
-    ],
   },
 })

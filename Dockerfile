@@ -48,6 +48,9 @@ RUN pnpm install --offline
 
 FROM node:20.8.1-slim@sha256:4fa1430cd19507875e65896fdf3176fc1674bc5bbf51b5f750fa30484885c18d AS build-node
 
+ARG SENTRY_AUTH_TOKEN
+ENV SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
+
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
 

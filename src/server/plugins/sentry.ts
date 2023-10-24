@@ -1,9 +1,6 @@
 import * as Sentry from '@sentry/node'
 import { ProfilingIntegration } from '@sentry/profiling-node'
 import { consola } from 'consola'
-// import { H3Error } from 'h3'
-
-import { name, version } from '~/package.json'
 
 export default defineNitroPlugin((nitroApp) => {
   const runtimeConfig = useRuntimeConfig()
@@ -19,7 +16,7 @@ export default defineNitroPlugin((nitroApp) => {
     environment: runtimeConfig.public.sentry.environment,
     integrations: [new ProfilingIntegration()],
     profilesSampleRate: 1.0, // profiling sample rate is relative to traces sample rate
-    release: `${name}@${version}`,
+    release: runtimeConfig.public.vio.releaseName,
     tracesSampleRate: 1.0, // enable performance monitoring
   })
 
