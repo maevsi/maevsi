@@ -41,7 +41,6 @@ export default defineNuxtConfig({
       name: 'layout',
     },
   },
-
   devtools: {
     enabled:
       process.env.NODE_ENV !== 'production' &&
@@ -50,7 +49,6 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
-
   modules: [
     '@dargmuesli/nuxt-cookie-control',
     '@nuxt/image',
@@ -68,15 +66,12 @@ export default defineNuxtConfig({
       }
     }, // TODO: remove after next update following 2023-10-20 (https://github.com/nuxt-modules/i18n/releases, https://github.com/nuxt/nuxt/releases)
   ],
-
   nitro: {
     compressPublicAssets: true,
   },
-
   postcss: {
     plugins: { tailwindcss: {}, autoprefixer: {} },
   },
-
   runtimeConfig: {
     public: {
       i18n: {
@@ -111,7 +106,6 @@ export default defineNuxtConfig({
       },
     },
   },
-
   typescript: {
     shim: false,
     strict: true,
@@ -127,7 +121,6 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
-
   cookieControl: {
     colors: {
       checkboxActiveBackground: '#00A34A', // text-green-600
@@ -204,12 +197,10 @@ export default defineNuxtConfig({
     },
     locales: ['en', 'de'],
   },
-
   htmlValidator: {
     failOnError: true,
     logLevel: 'warning',
   },
-
   i18n: {
     defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
     detectBrowserLanguage: false,
@@ -217,7 +208,6 @@ export default defineNuxtConfig({
     lazy: true,
     locales: LOCALES,
   },
-
   pwa: {
     devOptions: {
       enabled: true,
@@ -452,28 +442,23 @@ export default defineNuxtConfig({
     srcDir: 'service-worker',
     strategies: 'injectManifest',
   },
-
   turnstile: {
     secretKeyPath: process.env.NUXT_PUBLIC_SITE_URL
       ? '/run/secrets/maevsi_turnstile-key'
       : undefined,
   },
-
   linkChecker: {
     enabled: false,
     failOnError: true,
   },
-
   seo: {
     splash: false,
   },
-
   site: {
     debug: process.env.NODE_ENV === 'development',
     name: SITE_NAME,
     url: SITE_URL,
   },
-
   sitemap: {
     credits: false,
     exclude: LOCALES.map(
@@ -481,16 +466,13 @@ export default defineNuxtConfig({
         `/${locale.code !== 'en' ? `${locale.code}/` : ''}%F0%9F%AB%96`,
     ),
   },
-
   tailwindcss: {
     cssPath: join(currentDir, './assets/css/tailwind.css'),
   },
-
   vite: {
     build: {
       sourcemap: true,
     },
-
     plugins: [
       sentryVitePlugin({
         org: 'maevsi',
