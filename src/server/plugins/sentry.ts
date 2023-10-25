@@ -13,6 +13,7 @@ export default defineNitroPlugin((nitroApp) => {
 
   Sentry.init({
     dsn,
+    enabled: !runtimeConfig.public.vio.isTesting,
     environment: runtimeConfig.public.sentry.environment,
     integrations: [new ProfilingIntegration()],
     profilesSampleRate: 1.0, // profiling sample rate is relative to traces sample rate
