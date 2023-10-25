@@ -1,7 +1,16 @@
 #############
+# Create base image.
+
+FROM node:20.8.1-alpine AS base-image
+
+RUN apk update \
+    && apk add --no-cache git
+
+
+#############
 # Serve Nuxt in development mode.
 
-FROM node:20.8.1-alpine AS development
+FROM base-image AS development
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -26,7 +35,7 @@ EXPOSE 3000
 ########################
 # Prepare Nuxt.
 
-FROM node:20.8.1-alpine AS prepare
+FROM base-image AS prepare
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -46,7 +55,7 @@ RUN pnpm install --offline
 ########################
 # Build for Node deployment.
 
-FROM node:20.8.1-slim@sha256:4fa1430cd19507875e65896fdf3176fc1674bc5bbf51b5f750fa30484885c18d AS build-node
+FROM base-image AS build-node
 
 ARG SENTRY_AUTH_TOKEN
 ENV SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
@@ -66,7 +75,7 @@ RUN corepack enable && \
 # ########################
 # # Build for static deployment.
 
-# FROM node:20.6.1-alpine@sha256:d75175d449921d06250afd87d51f39a74fc174789fa3c50eba0d3b18369cc749 AS build-static
+# FROM base-image AS build-static
 
 # ARG SITE_URL=http://localhost:3002
 # ENV SITE_URL=${SITE_URL}
@@ -86,7 +95,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: lint
 
-FROM node:20.8.1-alpine AS lint
+FROM base-image AS lint
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -102,7 +111,7 @@ RUN corepack enable && \
 ########################
 # Nuxt: test (unit)
 
-FROM node:20.8.1-alpine AS test-unit
+FROM base-image AS test-unit
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -221,7 +230,7 @@ RUN pnpm --dir src run test:e2e:server:node
 #######################
 # Collect build, lint and test results.
 
-FROM node:20.8.1-alpine AS collect
+FROM base-image AS collect
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
@@ -260,7 +269,7 @@ COPY --from=test-e2e-node /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM node:20.8.1-alpine AS production
+FROM base-image AS production
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
