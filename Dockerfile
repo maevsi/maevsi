@@ -3,21 +3,20 @@
 
 FROM node:20.8.1-alpine AS base-image
 
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+
+WORKDIR /srv/app/
+
 RUN apk update \
-    && apk add --no-cache git
+    && apk add --no-cache git=2.40.1-r0 \
+    && corepack enable
 
 
 #############
 # Serve Nuxt in development mode.
 
 FROM base-image AS development
-
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
-
-RUN corepack enable
 
 COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
@@ -37,15 +36,9 @@ EXPOSE 3000
 
 FROM base-image AS prepare
 
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
-
 COPY ./pnpm-lock.yaml ./
 
-RUN corepack enable && \
-    pnpm fetch
+RUN pnpm fetch
 
 COPY ./ ./
 
@@ -60,16 +53,10 @@ FROM base-image AS build-node
 ARG SENTRY_AUTH_TOKEN
 ENV SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
 
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
-
 COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
-RUN corepack enable && \
-    pnpm --dir src run build:node
+RUN pnpm --dir src run build:node
 
 
 # ########################
@@ -80,16 +67,10 @@ RUN corepack enable && \
 # ARG SITE_URL=http://localhost:3002
 # ENV SITE_URL=${SITE_URL}
 
-# # The `CI` environment variable must be set for pnpm to run in headless mode
-# ENV CI=true
-
-# WORKDIR /srv/app/
-
 # COPY --from=prepare /srv/app/ ./
 
 # ENV NODE_ENV=production
-# RUN corepack enable && \
-#     pnpm --dir src run build:static
+# RUN pnpm --dir src run build:static
 
 
 ########################
@@ -97,15 +78,9 @@ RUN corepack enable && \
 
 FROM base-image AS lint
 
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
-
 COPY --from=prepare /srv/app/ ./
 
-RUN corepack enable && \
-    pnpm --dir src run lint
+RUN pnpm --dir src run lint
 
 
 ########################
@@ -113,15 +88,9 @@ RUN corepack enable && \
 
 FROM base-image AS test-unit
 
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
-
 COPY --from=prepare /srv/app/ ./
 
-RUN corepack enable && \
-    pnpm --dir src run test
+RUN pnpm --dir src run test
 
 
 ########################
@@ -232,11 +201,6 @@ RUN pnpm --dir src run test:e2e:server:node
 
 FROM base-image AS collect
 
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
-
 COPY --from=build-node /srv/app/src/.output ./.output
 COPY --from=build-node /srv/app/src/package.json ./package.json
 # COPY --from=build-static /srv/app/package.json /tmp/package.json
@@ -271,15 +235,11 @@ COPY --from=test-e2e-node /srv/app/package.json /tmp/package.json
 
 FROM base-image AS production
 
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
 ENV NODE_ENV=production
 
-WORKDIR /srv/app/
-
 # Update dependencies.
-RUN apk update && apk upgrade --no-cache \
-    && corepack enable
+RUN apk update \
+    && apk upgrade --no-cache
 
 COPY --from=collect /srv/app/ ./
 
