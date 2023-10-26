@@ -1,3 +1,18 @@
+## [3.5.0](https://github.com/maevsi/maevsi/compare/3.4.0...3.5.0) (2023-10-26)
+
+
+### Features
+
+* sentry source map generation ([12423e6](https://github.com/maevsi/maevsi/commit/12423e6ccdc969cdb8760402af8e5f563e984cec))
+* upload source maps to sentry ([cea80e2](https://github.com/maevsi/maevsi/commit/cea80e20a3af5e2a0b04d4ad5adbd22b54c0382d))
+* upload sourcemaps to sentry ([#1406](https://github.com/maevsi/maevsi/issues/1406)) ([1abf63f](https://github.com/maevsi/maevsi/commit/1abf63f5a0b817ae79c3222be8241f67092f930f))
+
+
+### Bug Fixes
+
+* **sentry:** correct project name ([bb49642](https://github.com/maevsi/maevsi/commit/bb496424dcbc43b7bd2bb87320f5e4161d3dd37b))
+* **sentry:** disable on testing ([28aeff2](https://github.com/maevsi/maevsi/commit/28aeff2a072d81dfb8cd656302dcf29101122994))
+
 ## [3.4.0](https://github.com/maevsi/maevsi/compare/3.3.1...3.4.0) (2023-10-23)
 
 
