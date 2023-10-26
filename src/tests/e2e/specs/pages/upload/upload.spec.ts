@@ -1,3 +1,3 @@
-import { visualRegressionTest } from '../../../utils/visualRegressionTest'
+import { testVisualRegression } from '../../../utils/tests'
 
-visualRegressionTest('/upload')
+testVisualRegression('/upload')

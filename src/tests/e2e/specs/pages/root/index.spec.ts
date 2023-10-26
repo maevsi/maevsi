@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
+
 import { maevsiTest } from '../../../fixtures/maevsiTest'
-import { visualRegressionTest } from '../../../utils/visualRegressionTest'
+import { testVisualRegression } from '../../../utils/tests'
 
 maevsiTest.describe('a11y', () => {
   maevsiTest(
@@ -62,7 +63,7 @@ test.describe('page load', () => {
 })
 
 test.describe('visual regression', () => {
-  visualRegressionTest('/')
+  testVisualRegression('/')
 
   maevsiTest('displays the cookie banner', async ({ context, defaultPage }) => {
     // TODO: only remove the cookie control cookie (https://github.com/microsoft/playwright/issues/10143)
