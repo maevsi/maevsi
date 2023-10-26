@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
-import { pwTest } from '../../../fixtures/pwTest'
+import { maevsiTest } from '../../../fixtures/maevsiTest'
 import { visualRegressionTest } from '../../../utils/visualRegressionTest'
 
-pwTest.describe('a11y', () => {
-  pwTest(
+maevsiTest.describe('a11y', () => {
+  maevsiTest(
     'should not have any automatically detectable accessibility issues',
     async ({ defaultPage }) => {
       await defaultPage.goto('/')
@@ -64,7 +64,7 @@ test.describe('page load', () => {
 test.describe('visual regression', () => {
   visualRegressionTest('/')
 
-  pwTest('displays the cookie banner', async ({ context, defaultPage }) => {
+  maevsiTest('displays the cookie banner', async ({ context, defaultPage }) => {
     // TODO: only remove the cookie control cookie (https://github.com/microsoft/playwright/issues/10143)
     await context.clearCookies()
 

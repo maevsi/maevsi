@@ -1,4 +1,5 @@
-import { Page, test as base, expect } from '@playwright/test'
+import { Page, test, expect } from '@playwright/test'
+
 import { TIMEZONE_COOKIE_NAME } from '../../../utils/constants'
 import { TIMEZONE_DEFAULT, COOKIE_CONTROL_DEFAULT } from '../utils/constants'
 
@@ -9,7 +10,6 @@ const createDefaultPage = (page: Page) => {
       url: string,
       options?: {
         cookieControl?: boolean
-        devTools?: boolean
         isLoading?: boolean
       },
     ) => {
@@ -31,7 +31,7 @@ const createDefaultPage = (page: Page) => {
   }
 }
 
-export const pwTest = base.extend<{
+export const maevsiTest = test.extend<{
   defaultPage: ReturnType<typeof createDefaultPage>
   _autoSnapshotSuffix: void
 }>({
@@ -50,6 +50,7 @@ export const pwTest = base.extend<{
         path: '/',
       },
     ])
+
     const defaultPage = createDefaultPage(page)
 
     await use(defaultPage)
