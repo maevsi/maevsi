@@ -1,74 +1,64 @@
-import { test, expect } from '@playwright/test'
-
+import { expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
-import { TIMEZONE_COOKIE_NAME } from '../../../../../utils/constants'
-import {
-  COOKIE_CONTROL_DEFAULT,
-  PAGE_READY,
-  TIMEZONE_DEFAULT,
-} from '../../../utils/constants'
+import { maevsiTest } from '../../../fixtures/maevsiTest'
+import { PAGE_READY } from '../../../utils/constants'
+import { testVisualRegression } from '../../../utils/tests'
 
-test.beforeEach(async ({ context }) => {
-  await context.addCookies([
-    {
-      name: TIMEZONE_COOKIE_NAME,
-      value: TIMEZONE_DEFAULT,
-      domain: 'localhost',
-      path: '/',
+maevsiTest.describe('a11y', () => {
+  maevsiTest(
+    'should not have any automatically detectable accessibility issues',
+    async ({ defaultPage }) => {
+      await defaultPage.goto('/')
+
+      const accessibilityScanResults = await new AxeBuilder({
+        page: defaultPage.page,
+      }).analyze()
+
+      expect(accessibilityScanResults.violations.length).toEqual(1) // TODO: get rid of all violations
     },
-    {
-      name: 'ncc_c',
-      value: COOKIE_CONTROL_DEFAULT,
-      domain: 'localhost',
-      path: '/',
-    },
-  ])
+  )
 })
 
-test.describe('a11y', () => {
-  test('should not have any automatically detectable accessibility issues', async ({
-    page,
-  }) => {
-    await page.goto('/')
-    await PAGE_READY({ page })
-    const accessibilityScanResults = await new AxeBuilder({ page }).analyze()
-    expect(accessibilityScanResults.violations.length).toEqual(1) // TODO: get rid of all violations
-  })
-})
-
-test.describe('internationalization', () => {
+maevsiTest.describe('internationalization', () => {
   const textEnglish = 'Personal invitations. Proper feedback.'
   const textGerman = 'Persönliche Einladungen. Geordnetes Feedback.'
 
-  test('displays English translations', async ({ page }) => {
-    await page.goto('/')
-    expect(page.getByText(textEnglish)).toBeDefined()
+  maevsiTest('displays English translations', async ({ defaultPage }) => {
+    await defaultPage.goto('/')
+    expect(defaultPage.page.getByText(textEnglish)).toBeDefined()
   })
 
-  test('displays German translations', async ({ page }) => {
-    await page.goto('/de')
-    expect(page.getByText(textGerman)).toBeDefined()
+  maevsiTest('displays German translations', async ({ defaultPage }) => {
+    await defaultPage.goto('/de')
+    expect(defaultPage.page.getByText(textGerman)).toBeDefined()
   })
 
-  test('switches between English and German translations', async ({ page }) => {
-    await page.goto('/')
-    expect(page.getByText(textEnglish)).toBeDefined()
+  maevsiTest(
+    'switches between English and German translations',
+    async ({ defaultPage }) => {
+      await defaultPage.goto('/')
+      expect(defaultPage.page.getByText(textEnglish)).toBeDefined()
 
-    await page.getByRole('link', { name: 'German flag Deutsch' }).click()
-    await page.waitForURL('/de')
-    expect(page.getByText(textGerman)).toBeDefined()
+      await defaultPage.page
+        .getByRole('link', { name: 'German flag Deutsch' })
+        .click()
+      await defaultPage.page.waitForURL('/de')
+      expect(defaultPage.page.getByText(textGerman)).toBeDefined()
 
-    await page
-      .getByRole('link', { name: 'Flagge des Vereinigten Königreichs English' })
-      .click()
-    await page.waitForURL('/')
-    expect(page.getByText(textEnglish)).toBeDefined()
-  })
+      await defaultPage.page
+        .getByRole('link', {
+          name: 'Flagge des Vereinigten Königreichs English',
+        })
+        .click()
+      await defaultPage.page.waitForURL('/')
+      expect(defaultPage.page.getByText(textEnglish)).toBeDefined()
+    },
+  )
 })
 
-test.describe('page load', () => {
-  test('loads the page successfully', async ({ request }) => {
+maevsiTest.describe('page load', () => {
+  maevsiTest('loads the page successfully', async ({ request }) => {
     const resp = await request.get('/')
     expect(resp.status()).toBe(200)
   })
@@ -80,23 +70,16 @@ test.describe('page load', () => {
   // })
 })
 
-test.describe('visual regression', () => {
-  test('looks as before', async ({ page }) => {
-    await page.goto('/')
-    await PAGE_READY({ page })
-    await expect(page).toHaveScreenshot({ fullPage: true })
-  })
+testVisualRegression('/')
 
-  test('displays the cookie banner', async ({ context, page }) => {
-    // TODO: only remove the cookie control cookie (https://github.com/microsoft/playwright/issues/10143)
-    await context.clearCookies()
-
+maevsiTest.describe('visual regression', () => {
+  maevsiTest('displays the cookie banner', async ({ page }) => {
     await page.goto('/')
     await PAGE_READY({ page, options: { cookieControl: false } })
     await expect(page).toHaveScreenshot({ fullPage: true })
   })
 
-  test('generates the open graph image', async ({ page }) => {
+  maevsiTest('generates the open graph image', async ({ page }) => {
     await page.goto('/__og_image__/og.png')
     await expect(page).toHaveScreenshot({ fullPage: true })
 
