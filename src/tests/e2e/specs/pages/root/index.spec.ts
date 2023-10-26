@@ -62,9 +62,9 @@ test.describe('page load', () => {
   // })
 })
 
-test.describe('visual regression', () => {
-  testVisualRegression('/')
+testVisualRegression('/')
 
+test.describe('visual regression', () => {
   maevsiTest('displays the cookie banner', async ({ context, defaultPage }) => {
     // TODO: only remove the cookie control cookie (https://github.com/microsoft/playwright/issues/10143)
     await context.clearCookies()
