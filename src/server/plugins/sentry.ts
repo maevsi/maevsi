@@ -4,7 +4,7 @@ import { consola } from 'consola'
 
 export default defineNitroPlugin((nitroApp) => {
   const runtimeConfig = useRuntimeConfig()
-  const dsn = `https://${runtimeConfig.public.sentry.project.nitro.publicKey}@${runtimeConfig.public.sentry.host}/${runtimeConfig.public.sentry.project.nitro.id}`
+  const dsn = `https://${runtimeConfig.public.sentry.project.server.publicKey}@${runtimeConfig.public.sentry.host}/${runtimeConfig.public.sentry.project.server.id}`
 
   if (!dsn) {
     consola.warn('Sentry DSN not set, skipping Sentry initialization')

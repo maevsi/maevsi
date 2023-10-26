@@ -107,12 +107,12 @@ export default defineNuxtConfig({
         host: 'o4506083883352064.ingest.sentry.io',
         project: {
           client: {
-            id: '4506097591779328',
-            publicKey: 'fce593fa1eeb9d866c35931d17c5715e',
+            id: '4506114193817600',
+            publicKey: '6263f9ee33de7bc8d128c160df268869',
           },
-          nitro: {
-            id: '4506083885121536',
-            publicKey: '1d72e53a165ff93d01ca0c85503e38a5',
+          server: {
+            id: '4506114183528448',
+            publicKey: 'be543bc70951bae8ed5bc5874b99b112',
           },
         },
       },
