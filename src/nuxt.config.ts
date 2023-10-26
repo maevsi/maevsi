@@ -1,5 +1,8 @@
+import { exec } from 'node:child_process'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { promisify } from 'node:util'
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 
 import { tryResolveModule } from '@nuxt/kit'
 import type { Nuxt } from '@nuxt/schema'
@@ -15,6 +18,9 @@ import {
 } from './utils/constants'
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
+const execPromise = promisify(exec)
+const RELEASE_NAME = async () =>
+  (await execPromise('git describe --tags')).stdout.trim()
 
 // TODO: let this error in "eslint (compat/compat)"" (https://github.com/DefinitelyTyped/DefinitelyTyped/issues/55519)
 // setImmediate(() => {})
@@ -48,6 +54,23 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+  hooks: {
+    'vite:extendConfig': async (config, { isClient }) => {
+      config.plugins ||= []
+      config.plugins.push(
+        sentryVitePlugin({
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          disable: !process.env.SENTRY_AUTH_TOKEN,
+          release: {
+            name: await RELEASE_NAME(),
+          },
+          org: 'maevsi',
+          project: isClient ? 'client' : 'nitro',
+          telemetry: false,
+        }),
+      )
+    },
+  },
   modules: [
     '@dargmuesli/nuxt-cookie-control',
     '@nuxt/image',
@@ -59,6 +82,9 @@ export default defineNuxtConfig({
     '@nuxtseo/module',
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
+    async (_options: any, nuxt: Nuxt) => {
+      nuxt.options.runtimeConfig.public.vio.releaseName = await RELEASE_NAME()
+    },
     async (_options: any, nuxt: Nuxt) => {
       for (const module of ['@unhead/vue', 'ufo']) {
         nuxt.options.alias[module] = await resolve(module, nuxt)
@@ -81,12 +107,12 @@ export default defineNuxtConfig({
         host: 'o4506083883352064.ingest.sentry.io',
         project: {
           client: {
-            id: '4506097591779328',
-            publicKey: 'fce593fa1eeb9d866c35931d17c5715e',
+            id: '4506114193817600',
+            publicKey: '6263f9ee33de7bc8d128c160df268869',
           },
-          nitro: {
-            id: '4506083885121536',
-            publicKey: '1d72e53a165ff93d01ca0c85503e38a5',
+          server: {
+            id: '4506114183528448',
+            publicKey: 'be543bc70951bae8ed5bc5874b99b112',
           },
         },
       },
@@ -105,6 +131,7 @@ export default defineNuxtConfig({
       },
     },
   },
+  sourcemap: true,
   typescript: {
     shim: false,
     strict: true,

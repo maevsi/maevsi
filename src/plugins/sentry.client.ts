@@ -1,8 +1,6 @@
 import * as Sentry from '@sentry/vue'
 import { consola } from 'consola'
 
-import { name, version } from '~/package.json'
-
 export default defineNuxtPlugin((nuxtApp) => {
   const router = useRouter()
   const runtimeConfig = useRuntimeConfig()
@@ -16,6 +14,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   Sentry.init({
     app: nuxtApp.vueApp,
     dsn,
+    enabled: !runtimeConfig.public.vio.isTesting,
     environment: runtimeConfig.public.sentry.environment,
     integrations: [
       new Sentry.BrowserTracing({
@@ -23,7 +22,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       }),
       new Sentry.Replay(),
     ],
-    release: `${name}@${version}`,
+    release: runtimeConfig.public.vio.releaseName,
     replaysOnErrorSampleRate: 1.0, // lower as soon as there are too many events
     replaysSessionSampleRate: 1.0, // lower as soon as there are too many events
     tracePropagationTargets: [

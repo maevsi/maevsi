@@ -1,14 +1,22 @@
 #############
-# Serve Nuxt in development mode.
+# Create base image.
 
-FROM node:20.8.1-alpine AS development
+FROM node:20.8.1-alpine AS base-image
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
 
 WORKDIR /srv/app/
 
-RUN corepack enable
+RUN apk update \
+    && apk add --no-cache git=2.40.1-r0 \
+    && corepack enable
+
+
+#############
+# Serve Nuxt in development mode.
+
+FROM base-image AS development
 
 COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
@@ -26,17 +34,11 @@ EXPOSE 3000
 ########################
 # Prepare Nuxt.
 
-FROM node:20.8.1-alpine AS prepare
-
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
+FROM base-image AS prepare
 
 COPY ./pnpm-lock.yaml ./
 
-RUN corepack enable && \
-    pnpm fetch
+RUN pnpm fetch
 
 COPY ./ ./
 
@@ -46,70 +48,49 @@ RUN pnpm install --offline
 ########################
 # Build for Node deployment.
 
-FROM node:20.8.1-slim@sha256:4fa1430cd19507875e65896fdf3176fc1674bc5bbf51b5f750fa30484885c18d AS build-node
+FROM base-image AS build-node
 
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
+ARG SENTRY_AUTH_TOKEN
+ENV SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
 
 COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
-RUN corepack enable && \
-    pnpm --dir src run build:node
+RUN pnpm --dir src run build:node
 
 
 # ########################
 # # Build for static deployment.
 
-# FROM node:20.6.1-alpine@sha256:d75175d449921d06250afd87d51f39a74fc174789fa3c50eba0d3b18369cc749 AS build-static
+# FROM base-image AS build-static
 
 # ARG SITE_URL=http://localhost:3002
 # ENV SITE_URL=${SITE_URL}
 
-# # The `CI` environment variable must be set for pnpm to run in headless mode
-# ENV CI=true
-
-# WORKDIR /srv/app/
-
 # COPY --from=prepare /srv/app/ ./
 
 # ENV NODE_ENV=production
-# RUN corepack enable && \
-#     pnpm --dir src run build:static
+# RUN pnpm --dir src run build:static
 
 
 ########################
 # Nuxt: lint
 
-FROM node:20.8.1-alpine AS lint
-
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
+FROM base-image AS lint
 
 COPY --from=prepare /srv/app/ ./
 
-RUN corepack enable && \
-    pnpm --dir src run lint
+RUN pnpm --dir src run lint
 
 
 ########################
 # Nuxt: test (unit)
 
-FROM node:20.8.1-alpine AS test-unit
-
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
+FROM base-image AS test-unit
 
 COPY --from=prepare /srv/app/ ./
 
-RUN corepack enable && \
-    pnpm --dir src run test
+RUN pnpm --dir src run test
 
 
 ########################
@@ -218,12 +199,7 @@ RUN pnpm --dir src run test:e2e:server:node
 #######################
 # Collect build, lint and test results.
 
-FROM node:20.8.1-alpine AS collect
-
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
+FROM base-image AS collect
 
 COPY --from=build-node /srv/app/src/.output ./.output
 COPY --from=build-node /srv/app/src/package.json ./package.json
@@ -257,17 +233,13 @@ COPY --from=test-e2e-node /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM node:20.8.1-alpine AS production
+FROM base-image AS production
 
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
 ENV NODE_ENV=production
 
-WORKDIR /srv/app/
-
 # Update dependencies.
-RUN apk update && apk upgrade --no-cache \
-    && corepack enable
+RUN apk update \
+    && apk upgrade --no-cache
 
 COPY --from=collect /srv/app/ ./
 
