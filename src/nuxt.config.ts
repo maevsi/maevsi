@@ -65,7 +65,7 @@ export default defineNuxtConfig({
             name: await RELEASE_NAME(),
           },
           org: 'maevsi',
-          project: isClient ? 'client' : 'nitro',
+          project: isClient ? 'client' : 'server',
           telemetry: false,
         }),
       )
