@@ -1,4 +1,4 @@
-import { Page, test, expect } from '@playwright/test'
+import { type Page, test, expect } from '@playwright/test'
 
 import { TIMEZONE_COOKIE_NAME } from '../../../utils/constants'
 import { TIMEZONE_DEFAULT, COOKIE_CONTROL_DEFAULT } from '../utils/constants'
