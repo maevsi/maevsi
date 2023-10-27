@@ -2,7 +2,8 @@ import { H3Event } from 'h3'
 
 import { TIMEZONE_COOKIE_NAME } from '~/utils/constants'
 
-export const getTimezone = async (event: H3Event) =>
+// TODO: rename to `getTimezone` (https://github.com/nuxt/cli/issues/266)
+export const getTimezoneServer = async (event: H3Event) =>
   event.context.$timezone ||
   getCookie(event, TIMEZONE_COOKIE_NAME) ||
   (event.node.req.headers['x-real-ip'] &&
