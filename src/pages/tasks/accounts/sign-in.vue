@@ -34,11 +34,9 @@ const to = computed(() =>
 
 // methods
 const onSignIn = async () => {
-  if (to.value) {
-    return await navigateTo(to.value)
-  } else {
-    return await navigateTo(localePath(`/dashboard`))
-  }
+  if (to.value) return await navigateTo(to.value)
+
+  return await navigateTo(localePath(`/dashboard`))
 }
 
 // initialization
