@@ -3,10 +3,10 @@
     <div class="flex flex-col gap-4">
       <LayoutBreadcrumbs
         :prefixes="[
-          { name: t('accounts'), to: localePath('/account') },
+          { name: t('accounts'), to: localePath('/accounts') },
           {
             name: routeParamUsername,
-            to: localePath(`/account/${route.params.username}`),
+            to: localePath(`/accounts/${route.params.username}`),
           },
         ]"
       >

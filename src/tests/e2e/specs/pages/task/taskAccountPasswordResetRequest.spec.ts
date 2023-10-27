@@ -26,14 +26,14 @@ test.beforeEach(async ({ context }) => {
 
 test.describe('page load', () => {
   test('loads the page successfully', async ({ request }) => {
-    const resp = await request.get('/task/account/password/reset/request')
+    const resp = await request.get('/tasks/accounts/password/reset/request')
     expect(resp.status()).toBe(200)
   })
 })
 
 test.describe('visual regression', () => {
   test('looks as before', async ({ page }) => {
-    await page.goto('/task/account/password/reset/request')
+    await page.goto('/tasks/accounts/password/reset/request')
     await PAGE_READY({ page })
     await expect(page).toHaveScreenshot({ fullPage: true })
   })

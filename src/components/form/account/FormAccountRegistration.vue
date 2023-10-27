@@ -3,7 +3,7 @@
     <ButtonColored
       :is-primary="false"
       :aria-label="t('register')"
-      :to="localePath('/task/account/sign-in')"
+      :to="localePath('/tasks/accounts/sign-in')"
     >
       {{ t('signIn') }}
       <template #prefix>

@@ -38,7 +38,7 @@ test('gets ical string', () => {
     `BEGIN:VCALENDAR\r
 VERSION:2.0\r
 PRODID:-//sebbo.net//ical-generator//EN\r
-URL:https://maevsi.test/event/authorUsername/slug\r
+URL:https://maevsi.test/events/authorUsername/slug\r
 METHOD:REQUEST\r
 NAME:authorUsername_slug\r
 X-WR-CALNAME:authorUsername_slug\r
@@ -50,11 +50,11 @@ DTSTART:19700101T000000Z\r
 DTEND:19700101T000000Z\r
 SUMMARY:name\r
 LOCATION:location\r
-DESCRIPTION:https://maevsi.test/event/authorUsername/slug\\n\\ndescription\r
-X-ALT-DESC;FMTTYPE=text/html:https://maevsi.test/event/authorUsername/slug\r
+DESCRIPTION:https://maevsi.test/events/authorUsername/slug\\n\\ndescription\r
+X-ALT-DESC;FMTTYPE=text/html:https://maevsi.test/events/authorUsername/slug\r
  \\n<p>description</p>\r
 ORGANIZER;CN="authorUsername":mailto:authorUsername@maevsi.test\r
-URL;VALUE=URI:https://maevsi.test/event/authorUsername/slug\r
+URL;VALUE=URI:https://maevsi.test/events/authorUsername/slug\r
 STATUS:CONFIRMED\r
 END:VEVENT\r
 END:VCALENDAR`,

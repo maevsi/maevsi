@@ -26,14 +26,14 @@ test.beforeEach(async ({ context }) => {
 
 test.describe('page load', () => {
   test('loads the page successfully', async ({ request }) => {
-    const resp = await request.get('/task/event/unlock')
+    const resp = await request.get('/tasks/events/unlock')
     expect(resp.status()).toBe(200)
   })
 })
 
 test.describe('visual regression', () => {
   test('looks as before', async ({ page }) => {
-    await page.goto('/task/event/unlock')
+    await page.goto('/tasks/events/unlock')
     await PAGE_READY({ page })
     await expect(page).toHaveScreenshot({ fullPage: true })
   })

@@ -402,7 +402,7 @@ export default defineNuxtConfig({
       protocol_handlers: [
         // {
         //   protocol: 'web+maevsi',
-        //   url: '/event/%s',
+        //   url: '/events/%s',
         // },
       ],
       related_applications: [
@@ -434,7 +434,7 @@ export default defineNuxtConfig({
           description: 'See a list of events.',
           short_name: 'Events',
           name: 'Explore events',
-          url: '/event',
+          url: '/events',
         },
       ],
       theme_color: colors.gray['800'],

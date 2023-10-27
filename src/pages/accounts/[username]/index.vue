@@ -2,7 +2,7 @@
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
       <LayoutBreadcrumbs
-        :prefixes="[{ name: t('accounts'), to: localePath('/account') }]"
+        :prefixes="[{ name: t('accounts'), to: localePath('/accounts') }]"
       >
         {{ routeParamUsername }}
       </LayoutBreadcrumbs>
@@ -42,7 +42,7 @@
         <ButtonColored
           :aria-label="t('eventsTheir', { name: routeParamUsername })"
           :is-primary="false"
-          :to="localePath(`/event/${routeParamUsername}`)"
+          :to="localePath(`/events/${routeParamUsername}`)"
         >
           {{ t('eventsTheir', { name: routeParamUsername }) }}
           <template #prefix>

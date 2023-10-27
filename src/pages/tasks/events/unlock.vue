@@ -26,7 +26,7 @@
           <FormInputStateInfo v-if="routeQueryIc">
             <div>
               {{ t('invitationIdAutomatic') }}
-              <AppLink :to="localePath('/task/event/unlock')">
+              <AppLink :to="localePath('/tasks/events/unlock')">
                 {{ t('invitationIdManual') }}
               </AppLink>
             </div>
@@ -118,7 +118,7 @@ definePageMeta({
         return
       }
 
-      const eventPath = `/event/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+      const eventPath = `/events/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
 
       if ('quick' in to.query) {
         return await navigateTo(localePath(eventPath))
@@ -179,7 +179,7 @@ const submit = async () => {
 
   navigateTo(
     localePath(
-      `/event/${result.data?.eventUnlock?.eventUnlockResponse?.authorAccountUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`,
+      `/events/${result.data?.eventUnlock?.eventUnlockResponse?.authorAccountUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`,
     ),
   )
 }

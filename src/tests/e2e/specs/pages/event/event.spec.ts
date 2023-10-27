@@ -25,7 +25,7 @@ test.beforeEach(async ({ context }) => {
 
 test.describe('page load', () => {
   test('loads the page successfully', async ({ request }) => {
-    const resp = await request.get('/event')
+    const resp = await request.get('/events')
     expect(resp.status()).toBe(200)
   })
 })
@@ -33,7 +33,7 @@ test.describe('page load', () => {
 // TODO: mock data
 // context('visual regression', () => {
 //   it('looks as before', () => {
-//     cy.visit('/event')
+//     cy.visit('/events')
 //     cy.get('[data-is-loading="false"]').should('be.visible')
 //     cy.get('[data-testid="nuxt-cookie-control-control-button"]').should(
 //       'be.visible'

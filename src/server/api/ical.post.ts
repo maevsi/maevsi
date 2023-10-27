@@ -63,7 +63,7 @@ export const getIcalString = ({
 }) => {
   const eventAuthorUsername = event.accountByAuthorAccountId?.username
   const userEventPath = eventAuthorUsername + '/' + event.slug
-  const eventUrl = 'https://' + host + '/event/' + userEventPath
+  const eventUrl = 'https://' + host + '/events/' + userEventPath
   const eventDescriptionHtml = mustache.render(
     event.description ? `${eventUrl}\n${event.description}` : '',
     {

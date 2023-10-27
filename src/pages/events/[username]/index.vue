@@ -1,13 +1,13 @@
 <template>
   <div>
     <LayoutBreadcrumbs
-      :prefixes="[{ name: t('events'), to: localePath('/event') }]"
+      :prefixes="[{ name: t('events'), to: localePath('/events') }]"
     >
       {{ routeParamUsername }}
     </LayoutBreadcrumbs>
     <i18n-t keypath="title" tag="h1">
       <template #name>
-        <AppLink :to="localePath(`/account/${routeParamUsername}`)">
+        <AppLink :to="localePath(`/accounts/${routeParamUsername}`)">
           {{ routeParamUsername }}
         </AppLink>
       </template>

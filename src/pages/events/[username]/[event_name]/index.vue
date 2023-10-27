@@ -6,10 +6,10 @@
     >
       <LayoutBreadcrumbs
         :prefixes="[
-          { name: t('events'), to: localePath('/event') },
+          { name: t('events'), to: localePath('/events') },
           {
             name: routeParamUsername,
-            to: localePath(`/event/${route.params.username}`),
+            to: localePath(`/events/${route.params.username}`),
           },
         ]"
       >

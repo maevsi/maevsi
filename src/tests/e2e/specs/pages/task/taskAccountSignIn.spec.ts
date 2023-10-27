@@ -26,7 +26,7 @@ test.beforeEach(async ({ context }) => {
 
 test.describe('page load', () => {
   test('loads the page successfully', async ({ request }) => {
-    const resp = await request.get('/task/account/sign-in')
+    const resp = await request.get('/tasks/account/sign-in')
     expect(resp.status()).toBe(200)
   })
   // TODO: add e2e tests for titles
@@ -66,7 +66,7 @@ test.describe('page load', () => {
 
 test.describe('visual regression', () => {
   test('looks as before', async ({ page }) => {
-    await page.goto('/task/account/sign-in')
+    await page.goto('/tasks/account/sign-in')
     await PAGE_READY({ page })
     await expect(page).toHaveScreenshot({ fullPage: true })
   })

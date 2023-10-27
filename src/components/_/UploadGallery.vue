@@ -207,7 +207,7 @@ const initStretcher = ({
   stretcher.style.width = `${cropper.parentElement?.clientWidth}px`
 }
 const selectProfilePicture = async () => {
-  const pathUpload = localePath('/upload')
+  const pathUpload = localePath('/uploads')
 
   if (route.path === pathUpload) {
     inputProfilePictureRef.value.click()

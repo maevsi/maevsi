@@ -398,7 +398,7 @@ const submit = async () => {
       )
 
     await navigateTo(
-      localePath(`/event/${store.signedInUsername}/${form.slug}`),
+      localePath(`/events/${store.signedInUsername}/${form.slug}`),
     )
   }
 }

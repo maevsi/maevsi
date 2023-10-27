@@ -35,7 +35,7 @@
         <ButtonText
           :aria-label="t('events')"
           class="hidden lg:flex"
-          :to="localePath('/event')"
+          :to="localePath('/events')"
           :is-primary="false"
         >
           {{ t('events') }}
@@ -60,7 +60,7 @@
           v-if="store.signedInUsername && store.signedInAccountId"
           :aria-label="store.signedInUsername"
           :title="t('profileLink')"
-          :to="localePath(`/account/${store.signedInUsername}`)"
+          :to="localePath(`/accounts/${store.signedInUsername}`)"
         >
           <AccountProfilePicture
             :account-id="store.signedInAccountId"
@@ -73,14 +73,14 @@
           <ButtonIcon
             :aria-label="t('signIn')"
             class="h-8 w-8 lg:hidden"
-            :to="localePath('/task/account/sign-in')"
+            :to="localePath('/tasks/accounts/sign-in')"
           >
             <IconSignIn classes="h-6 w-6" />
           </ButtonIcon>
           <ButtonText
             :aria-label="t('signIn')"
             class="hidden lg:inline-block"
-            :to="localePath('/task/account/sign-in')"
+            :to="localePath('/tasks/accounts/sign-in')"
           >
             {{ t('signIn') }}
           </ButtonText>
@@ -118,7 +118,7 @@ const { t } = useI18n()
 // methods
 const navigateToSearch = () => {
   navigateTo({
-    path: localePath(`/task/search`),
+    path: localePath(`/tasks/search`),
     query: { q: 'search phrase' },
   })
 }

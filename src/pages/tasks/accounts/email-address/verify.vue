@@ -52,7 +52,7 @@ onMounted(async () => {
       title: t('verified'),
     })
     navigateTo({
-      path: localePath(`/task/account/sign-in`),
+      path: localePath(`/tasks/accounts/sign-in`),
     })
   }
 })

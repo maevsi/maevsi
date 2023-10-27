@@ -5,7 +5,7 @@ test.describe('event username eventname invitation page', () => {
   //   // TODO: mock data
   //   it('forbids access when not signed in', () => {
   //     cy.request({
-  //       url: '/event/username-that-exists/public-event/invitation',
+  //       url: '/events/username-that-exists/public-event/invitation',
   //       failOnStatusCode: false,
   //     }).then((resp) => {
   //       expect(resp.status).to.equal(403)
@@ -15,7 +15,7 @@ test.describe('event username eventname invitation page', () => {
   //
   //   it('does not find page if user does not exists', () => {
   //     cy.request({
-  //       url: '/event/username-that-does-not-exist/event-that-exists',
+  //       url: '/events/username-that-does-not-exist/event-that-exists',
   //       failOnStatusCode: false,
   //     }).then((resp) => {
   //       expect(resp.status).to.equal(404)
@@ -25,7 +25,7 @@ test.describe('event username eventname invitation page', () => {
   //
   //   it('does not find page if event does not exists', () => {
   //     cy.request({
-  //       url: '/event/username-that-exists/event-that-does-not-exist',
+  //       url: '/events/username-that-exists/event-that-does-not-exist',
   //       failOnStatusCode: false,
   //     }).then((resp) => {
   //       expect(resp.status).to.equal(404)

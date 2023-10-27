@@ -28,7 +28,7 @@ test.beforeEach(async ({ context }) => {
 // context('page load', () => {
 // it('loads the page successfully if verify code is valid', () => {
 //   cy.request({
-//     url: '/task/account/email-address/verify?code=valid',
+//     url: '/tasks/accounts/email-address/verify?code=valid',
 //     followRedirect: false,
 //   }).then((resp) => {
 //     expect(resp.status).to.equal(200)
@@ -39,7 +39,7 @@ test.beforeEach(async ({ context }) => {
 
 test.describe('visual regression', () => {
   test('looks as before', async ({ page }) => {
-    await page.goto('/task/account/email-address/verify')
+    await page.goto('/tasks/accounts/email-address/verify')
     await PAGE_READY({ page })
     await expect(page).toHaveScreenshot({ fullPage: true })
   })

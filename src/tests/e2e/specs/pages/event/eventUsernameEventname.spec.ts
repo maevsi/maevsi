@@ -4,7 +4,7 @@ test.describe('event username eventname page', () => {
   // context('page load', () => {
   //   TODO: mock data
   //   it('loads a public event page successfully', () => {
-  //     cy.request('/event/username-that-exists/public-event').then((resp) => {
+  //     cy.request('/events/username-that-exists/public-event').then((resp) => {
   //       expect(resp.status).to.equal(200)
   //       expect(resp.redirectedToUrl).to.equal(undefined)
   //     })
@@ -12,7 +12,7 @@ test.describe('event username eventname page', () => {
   //
   //   it('forbids access to a private event when not signed in', () => {
   //     cy.request({
-  //       url: '/event/username-that-exists/private-event',
+  //       url: '/events/username-that-exists/private-event',
   //       failOnStatusCode: false,
   //     }).then((resp) => {
   //       expect(resp.status).to.equal(403)
@@ -22,7 +22,7 @@ test.describe('event username eventname page', () => {
   //
   //   it('does not find page if user does not exists', () => {
   //     cy.request({
-  //       url: '/event/username-that-does-not-exist/event-that-exists',
+  //       url: '/events/username-that-does-not-exist/event-that-exists',
   //       failOnStatusCode: false,
   //     }).then((resp) => {
   //       expect(resp.status).to.equal(404)
@@ -32,7 +32,7 @@ test.describe('event username eventname page', () => {
   //
   //   it('does not find page if event does not exists', () => {
   //     cy.request({
-  //       url: '/event/username-that-exists/event-that-does-not-exist',
+  //       url: '/events/username-that-exists/event-that-does-not-exist',
   //       failOnStatusCode: false,
   //     }).then((resp) => {
   //       expect(resp.status).to.equal(404)

@@ -25,7 +25,7 @@ test.beforeEach(async ({ context }) => {
 
 test.describe('page load', () => {
   test('loads the page successfully', async ({ request }) => {
-    const resp = await request.get('/task/account/register')
+    const resp = await request.get('/tasks/accounts/register')
     expect(resp.status()).toBe(200)
   })
 })
@@ -33,7 +33,7 @@ test.describe('page load', () => {
 // TODO: find out why vuelidate thinks its pending while page load (maybe: https://github.com/maevsi/maevsi/issues/900)
 // context('visual regression', () => {
 //   it('looks as before', () => {
-//     cy.visit('/task/account/register')
+//     cy.visit('/tasks/accounts/register')
 //     cy.get('[data-is-loading="false"]').should('be.visible')
 //     cy.get('[data-testid="nuxt-cookie-control-control-button"]').should(
 //       'be.visible'

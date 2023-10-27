@@ -3,15 +3,15 @@
     <div v-if="event" class="flex flex-col gap-4">
       <LayoutBreadcrumbs
         :prefixes="[
-          { name: t('events'), to: localePath('/event') },
+          { name: t('events'), to: localePath('/events') },
           {
             name: routeParamUsername,
-            to: localePath(`/event/${route.params.username}`),
+            to: localePath(`/events/${route.params.username}`),
           },
           {
             name: routeParamEventName,
             to: localePath(
-              `/event/${route.params.username}/${route.params.event_name}`,
+              `/events/${route.params.username}/${route.params.event_name}`,
             ),
           },
         ]"
