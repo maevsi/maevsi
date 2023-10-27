@@ -39,7 +39,6 @@ export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
 export const STATE_LOADING_IDS_NAME = 'loadingIds'
 export const TIMEZONE_COOKIE_NAME = 'm_tz'
-export const TIMEZONE_HEADER_KEY = 'X-Timezone'
 export const TITLE_TEMPLATE = ({
   siteName,
   title,

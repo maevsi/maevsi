@@ -2,15 +2,14 @@ import { CombinedError } from '@urql/core'
 import Clipboard from 'clipboard'
 import { consola } from 'consola'
 import { defu } from 'defu'
-import { type H3Event, getCookie } from 'h3'
+import { type H3Event } from 'h3'
 import { htmlToText } from 'html-to-text'
-import { ofetch } from 'ofetch'
 import Swal, { type SweetAlertIcon } from 'sweetalert2'
 import colors from 'tailwindcss/colors'
 import type { Ref } from 'vue'
 import type { LocationQueryValue } from 'vue-router'
 
-import { TIMEZONE_COOKIE_NAME, REGEX_UUID } from './constants'
+import { REGEX_UUID } from './constants'
 import type {
   ArrayElement,
   BackendError,
@@ -246,25 +245,12 @@ export const getQueryString = (queryParametersObject: Record<string, any>) =>
     })
     .join('&')
 
-export const getTimezone = async (event: H3Event) => {
-  const timezoneCookie = getCookie(event, TIMEZONE_COOKIE_NAME)
-
-  if (timezoneCookie) {
-    return timezoneCookie
-  }
-
-  if (event.node.req.headers['x-real-ip']) {
-    const ipApiResult = await ofetch<{ timezone: string }>(
-      `http://ip-api.com/json/${event.node.req.headers['x-real-ip']}`,
-    ).catch(() => {})
-
-    if (ipApiResult) {
-      return ipApiResult.timezone
-    }
-  }
-
-  return undefined
-}
+export const getTimezone = () =>
+  useNuxtApp().ssrContext?.event.context.$timezone ||
+  useCookie(TIMEZONE_COOKIE_NAME).value ||
+  process.client
+    ? Intl.DateTimeFormat().resolvedOptions().timeZone
+    : undefined
 
 export const getTextFromHtml = (html: string) =>
   htmlToText(html, {
