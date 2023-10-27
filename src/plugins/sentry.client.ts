@@ -15,7 +15,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     app: nuxtApp.vueApp,
     dsn,
     enabled: runtimeConfig.public.vio.isInProduction,
-    environment: runtimeConfig.public.sentry.environment,
+    environment: runtimeConfig.public.vio.environment,
     integrations: [
       new Sentry.BrowserTracing({
         routingInstrumentation: Sentry.vueRouterInstrumentation(router),

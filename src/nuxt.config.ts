@@ -47,9 +47,6 @@ export default defineNuxtConfig({
     },
   },
   devtools: {
-    enabled:
-      process.env.NODE_ENV !== 'production' &&
-      !process.env.NUXT_PUBLIC_VIO_IS_TESTING,
     timeline: {
       enabled: true,
     },
@@ -103,7 +100,6 @@ export default defineNuxtConfig({
         baseUrl: SITE_URL,
       },
       sentry: {
-        environment: process.env.NODE_ENV || 'development',
         host: 'o4506083883352064.ingest.sentry.io',
         project: {
           client: {
@@ -120,8 +116,8 @@ export default defineNuxtConfig({
         siteKey: '0x4AAAAAAABtEW1Hc8mcgWcZ',
       },
       vio: {
+        environment: process.env.NODE_ENV || 'development',
         googleAnalyticsId: 'G-WMQ1JY99XH',
-        isInProduction: process.env.NODE_ENV === 'production',
         isTesting: false,
         stagingHost:
           process.env.NODE_ENV !== 'production' &&
@@ -219,7 +215,6 @@ export default defineNuxtConfig({
     },
     cookieOptions: {
       sameSite: 'strict',
-      secure: process.env.NODE_ENV === 'production',
     },
     locales: ['en', 'de'],
   },
@@ -481,7 +476,6 @@ export default defineNuxtConfig({
     splash: false,
   },
   site: {
-    debug: process.env.NODE_ENV === 'development',
     name: SITE_NAME,
     url: SITE_URL,
   },
@@ -494,5 +488,48 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
     cssPath: join(currentDir, './assets/css/tailwind.css'),
+  },
+
+  // environments
+  $development: {
+    devtools: {
+      enabled: !process.env.NUXT_PUBLIC_VIO_IS_TESTING,
+    },
+
+    // modules
+    security: {
+      headers: {
+        strictTransportSecurity: false,
+      },
+      rateLimiter: false, // TODO: enable when nuxt-link-checker bundles requests (https://github.com/harlan-zw/nuxt-link-checker/issues/21)
+    },
+    site: {
+      debug: true,
+    },
+  },
+  $production: {
+    runtimeConfig: {
+      public: {
+        vio: {
+          isInProduction: true,
+        },
+      },
+    },
+
+    // modules
+    cookieControl: {
+      cookieOptions: {
+        secure: true,
+      },
+    },
+    security: {
+      headers: {
+        strictTransportSecurity: {
+          maxAge: 31536000,
+          includeSubdomains: true,
+          preload: true,
+        },
+      },
+    },
   },
 })
