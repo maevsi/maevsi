@@ -340,8 +340,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(stylelint@15.11.0)
       sweetalert2:
-        specifier: 11.7.32
-        version: 11.7.32
+        specifier: 11.8.0
+        version: 11.8.0
       tailwindcss:
         specifier: 3.3.5
         version: 3.3.5
@@ -16200,8 +16200,8 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /sweetalert2@11.7.32:
-    resolution: {integrity: sha512-44tNNe2oLe7T94mT6dus4hc9G7qg6jZU/K5qZzpNS6e5HGPrSF6Kie6oZ7B5puIJydB34V2h/8f5EhIFivYo4A==}
+  /sweetalert2@11.8.0:
+    resolution: {integrity: sha512-fXoPPZGe+V6XPbSh0gCnRlJoOFOit/SqZDzr2DY975BZCmIuFbP1duKe8yZaiNvkae9pctpfq8zfHIMzj9gvJA==}
     dev: true
 
   /symbol-tree@3.2.4:
