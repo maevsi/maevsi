@@ -205,6 +205,7 @@ COPY --from=build-node /srv/app/src/.output ./.output
 COPY --from=build-node /srv/app/src/package.json ./package.json
 # COPY --from=build-static /srv/app/package.json /tmp/package.json
 COPY --from=lint /srv/app/package.json /tmp/package.json
+COPY --from=test-unit /srv/app/package.json /tmp/package.json
 # COPY --from=test-e2e-dev /srv/app/package.json /tmp/package.json
 COPY --from=test-e2e-node /srv/app/package.json /tmp/package.json
 # COPY --from=test-e2e-static /srv/app/package.json /tmp/package.json
