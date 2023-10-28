@@ -8,7 +8,7 @@ export default defineEventHandler((event) => {
         /^\/(account|contact|event|task|upload)(.*)/,
         (_a, b, c) => `/${b}s${c}`,
       ),
-      301,
+      302,
     )
   }
 
