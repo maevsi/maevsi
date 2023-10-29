@@ -672,6 +672,13 @@ export default defineNuxtConfig({
     devtools: {
       enabled: !process.env.NUXT_PUBLIC_VIO_IS_TESTING,
     },
+    runtimeConfig: {
+      public: {
+        vio: {
+          isInProduction: false,
+        },
+      },
+    },
 
     // modules
     security: {
