@@ -714,6 +714,9 @@ export default defineNuxtConfig({
           preload: true,
         },
       },
+      ...(process.env.NUXT_PUBLIC_VIO_IS_TESTING === 'true'
+        ? { rateLimiter: false }
+        : {}),
     },
   },
 })
