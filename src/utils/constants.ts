@@ -30,20 +30,20 @@ export const ITEMS_PER_PAGE_LARGE = 100
 export const JWT_ALGORITHM = 'RS256'
 export const JWT_NAME = () =>
   `${process.env.NODE_ENV === 'production' ? '__Secure-' : ''}jwt`
-export type LOCALE_CODES = 'de' | 'en'
+export type LOCALE_CODES = 'en' | 'de'
 export const LOCALES: LocaleObject[] &
   UnionToTupleRecord<'code', LOCALE_CODES, LocaleObject> = [
-  {
-    code: 'de',
-    file: 'de.json',
-    name: 'Deutsch',
-    iso: 'de',
-  },
   {
     code: 'en',
     file: 'en.json',
     name: 'English',
     iso: 'en', // Will be used as catchall locale by default.
+  },
+  {
+    code: 'de',
+    file: 'de.json',
+    name: 'Deutsch',
+    iso: 'de',
   },
 ]
 export const POLYFILLS = ['Promise', 'requestAnimationFrame']
