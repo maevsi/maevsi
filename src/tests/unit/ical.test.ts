@@ -51,8 +51,8 @@ DTEND:19700101T000000Z\r
 SUMMARY:name\r
 LOCATION:location\r
 DESCRIPTION:https://maevsi.test/events/authorUsername/slug\\n\\ndescription\r
-X-ALT-DESC;FMTTYPE=text/html:https://maevsi.test/events/authorUsername/slug\r
- \\n<p>description</p>\r
+X-ALT-DESC;FMTTYPE=text/html:https://maevsi.test/events/authorUsername/slu\r
+ g\\n<p>description</p>\r
 ORGANIZER;CN="authorUsername":mailto:authorUsername@maevsi.test\r
 URL;VALUE=URI:https://maevsi.test/events/authorUsername/slug\r
 STATUS:CONFIRMED\r
