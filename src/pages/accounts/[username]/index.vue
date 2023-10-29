@@ -1,11 +1,7 @@
 <template>
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
-      <LayoutBreadcrumbs
-        :prefixes="[{ name: t('accounts'), to: localePath('/accounts') }]"
-      >
-        {{ routeParamUsername }}
-      </LayoutBreadcrumbs>
+      <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
       <ButtonList
         v-if="store.signedInUsername === routeParamUsername"
         class="justify-end"
@@ -54,11 +50,26 @@
   </Loader>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { BREADCRUMB as BREADCRUMB_ACCOUNTS } from '../index.vue'
+import { BREADCRUMB as BREADCRUMB_HOME } from '../../index.vue'
 import { useMaevsiStore } from '~/store'
+import type { BreadcrumbItemPropsLocalized } from '~/types/types'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 
+export const BREADCRUMB: BreadcrumbItemPropsLocalized = () => {
+  const route = useRoute()
+
+  return {
+    icon: 'heroicons:user',
+    label: route.params.username as string,
+    to: `/accounts/${route.params.username as string}`,
+  }
+}
+</script>
+
+<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     return await validateAccountExistence({ route })
@@ -66,10 +77,11 @@ definePageMeta({
 })
 
 const { signOut } = useSignOut()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const store = useMaevsiStore()
 const route = useRoute()
 const localePath = useLocalePath()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
@@ -81,6 +93,19 @@ const account = getAccountItem(
 const api = getApiData([accountByUsernameQuery])
 
 // data
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      BREADCRUMB_HOME,
+      BREADCRUMB_ACCOUNTS,
+      {
+        current: true,
+        ...BREADCRUMB(),
+      },
+    ],
+    locale,
+  ),
+)
 const routeParamUsername = route.params.username as string
 const title = route.params.username as string
 
@@ -96,12 +121,10 @@ useHeadDefault({
 
 <i18n lang="yaml">
 de:
-  accounts: Konten
   eventsTheir: Veranstaltungen von {name}
   settings: Bearbeiten
   signOut: Abmelden
 en:
-  accounts: accounts
   eventsTheir: Events by {name}
   settings: Edit
   signOut: Sign out

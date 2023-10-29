@@ -1,7 +1,8 @@
 import type { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 
-export const SITE_NAME = 'maevsi'
+import type { UnionToTupleRecord } from '~/types/types'
 
+export const SITE_NAME = 'maevsi'
 export const SITE_URL =
   process.env.SITE_URL ||
   process.env.NUXT_PUBLIC_SITE_URL ||
@@ -9,24 +10,40 @@ export const SITE_URL =
     '://' +
     (process.env.HOST ||
       `${process.env.HOST || 'localhost'}:${process.env.PORT || '3000'}`)
+
+const itemUi =
+  'flex items-center focus:underline hover:underline group-hover:opacity-80 transition-all aria-[current]:font-bold'
+export const BREADCRUMBS_UI = {
+  ol: 'flex gap-2 text-gray-600 dark:text-gray-400',
+  li: 'flex items-center whitespace-nowrap leading-loose group',
+  item: {
+    icon: 'h-5 w-5',
+    iconWithLabel: 'mr-1',
+    default: itemUi,
+    current: itemUi,
+    separator: 'ml-2 text-gray-400 dark:text-gray-600',
+  },
+}
 export const CACHE_VERSION = '2EvuFKRRxT'
 export const ITEMS_PER_PAGE = 10
 export const ITEMS_PER_PAGE_LARGE = 100
 export const JWT_ALGORITHM = 'RS256'
 export const JWT_NAME = () =>
   `${process.env.NODE_ENV === 'production' ? '__Secure-' : ''}jwt`
-export const LOCALES: LocaleObject[] = [
-  {
-    code: 'en',
-    file: 'en.json',
-    name: 'English',
-    iso: 'en', // Will be used as catchall locale by default.
-  },
+export type LOCALE_CODES = 'de' | 'en'
+export const LOCALES: LocaleObject[] &
+  UnionToTupleRecord<'code', LOCALE_CODES, LocaleObject> = [
   {
     code: 'de',
     file: 'de.json',
     name: 'Deutsch',
     iso: 'de',
+  },
+  {
+    code: 'en',
+    file: 'en.json',
+    name: 'English',
+    iso: 'en', // Will be used as catchall locale by default.
   },
 ]
 export const POLYFILLS = ['Promise', 'requestAnimationFrame']

@@ -1,17 +1,7 @@
 <template>
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
-      <LayoutBreadcrumbs
-        :prefixes="[
-          { name: t('accounts'), to: localePath('/accounts') },
-          {
-            name: routeParamUsername,
-            to: localePath(`/accounts/${route.params.username}`),
-          },
-        ]"
-      >
-        {{ t('settings') }}
-      </LayoutBreadcrumbs>
+      <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
       <div
         class="flex min-w-0 flex-col items-center justify-center sm:flex-row"
       >
@@ -53,13 +43,32 @@
   </Loader>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { BREADCRUMB as BREADCRUMB_ACCOUNT } from '../index.vue'
+import { BREADCRUMB as BREADCRUMB_ACCOUNTS } from '../../index.vue'
+import { BREADCRUMB as BREADCRUMB_HOME } from '../../../index.vue'
 import { useMaevsiStore } from '~/store'
 import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import type { BreadcrumbItemPropsLocalized } from '~/types/types'
 
+export const BREADCRUMB: BreadcrumbItemPropsLocalized = () => {
+  const route = useRoute()
+
+  return {
+    icon: 'heroicons:cog-6-tooth',
+    label: {
+      de: 'Bearbeiten',
+      en: 'edit',
+    },
+    to: `/accounts/${route.params.username as string}/settings`,
+  }
+}
+</script>
+
+<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     return await validateAccountExistence({
@@ -71,10 +80,10 @@ definePageMeta({
 
 const store = useMaevsiStore()
 const { signOut } = useSignOut()
-const { t } = useI18n()
-const localePath = useLocalePath()
+const { t, locale } = useI18n()
 const route = useRoute()
 const accountDeleteMutation = useAccountDeleteMutation()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
@@ -87,9 +96,23 @@ const profilePictureSetMutation = useProfilePictureSetMutation()
 const api = getApiData([accountByUsernameQuery, profilePictureSetMutation])
 
 // data
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      BREADCRUMB_HOME,
+      BREADCRUMB_ACCOUNTS,
+      BREADCRUMB_ACCOUNT,
+      {
+        current: true,
+        ...BREADCRUMB(),
+      },
+    ],
+    locale,
+  ),
+)
 const mutation = accountDeleteMutation
 const routeParamUsername = route.params.username as string
-const title = route.params.username as string
+const title = t('settings')
 
 // methods
 const onUploadSelect = async (uploadId?: string | null | undefined) =>
@@ -107,16 +130,14 @@ useHeadDefault({ title })
 <i18n lang="yaml">
 de:
   account: Konto
-  accounts: Konten
   postgres23503: Dir gehören noch Daten! Lösche erst all deine Veranstaltungen, Kontakte und Bilder.
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   profilePictureChange: Profilbild ändern
-  settings: bearbeiten
+  settings: Bearbeiten
   titleAccountDelete: Konto löschen
   titlePasswordChange: Password des Kontos ändern
 en:
   account: account
-  accounts: accounts
   postgres23503: There's still some data connected to your account! Delete all your events, contacts and images first.
   postgres28P01: Password incorrect! Check for spelling mistakes.
   profilePictureChange: Change profile picture

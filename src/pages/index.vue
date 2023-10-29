@@ -147,6 +147,18 @@
   </div>
 </template>
 
+<script lang="ts">
+import type { BreadcrumbItemPropsLocalized } from '~/types/types'
+export const BREADCRUMB: BreadcrumbItemPropsLocalized = {
+  ariaLabel: {
+    de: 'Start',
+    en: 'Home',
+  },
+  icon: 'heroicons-outline:home',
+  to: '/',
+}
+</script>
+
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()

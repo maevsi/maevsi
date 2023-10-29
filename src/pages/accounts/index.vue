@@ -1,19 +1,44 @@
 <template>
-  <!-- TODO: fill page with content instead (https://github.com/maevsi/maevsi/issues/1264) -->
-  <div>
-    <LayoutBreadcrumbs>
-      {{ title }}
-    </LayoutBreadcrumbs>
+  <div class="flex flex-col gap-4">
+    <!-- TODO: fill page with content instead (https://github.com/maevsi/maevsi/issues/1264) -->
+    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
     <CardStateInfo>
       {{ t('accountDescription') }}
     </CardStateInfo>
   </div>
 </template>
 
+<script lang="ts">
+import { BREADCRUMB as BREADCRUMB_HOME } from '../index.vue'
+import type { BreadcrumbItemPropsLocalized } from '~/types/types'
+
+export const BREADCRUMB: BreadcrumbItemPropsLocalized = {
+  icon: 'heroicons:user-group',
+  label: {
+    de: 'Konten',
+    en: 'accounts',
+  },
+  to: '/accounts',
+}
+</script>
+
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      BREADCRUMB_HOME,
+      {
+        current: true,
+        ...BREADCRUMB,
+      },
+    ],
+    locale,
+  ),
+)
 const title = t('title')
 
 // initialization
