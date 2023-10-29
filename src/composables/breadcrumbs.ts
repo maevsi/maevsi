@@ -1,6 +1,6 @@
 import type { BreadcrumbItemProps } from 'nuxt-seo-ui'
 import type { WritableComputedRef } from 'vue'
-import type { BreadcrumbItemPropsLocalized } from '~/types/types'
+import type { BreadcrumbItemPropsLocalized } from '~/types/breadcrumbs'
 
 export const useGetBreadcrumbItemProps = () => {
   const localePath = useLocalePath()

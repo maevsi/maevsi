@@ -54,7 +54,7 @@
 import { BREADCRUMB as BREADCRUMB_ACCOUNTS } from '../index.vue'
 import { BREADCRUMB as BREADCRUMB_HOME } from '../../index.vue'
 import { useMaevsiStore } from '~/store'
-import type { BreadcrumbItemPropsLocalized } from '~/types/types'
+import type { BreadcrumbItemPropsLocalized } from '~/types/breadcrumbs'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 

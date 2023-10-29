@@ -10,11 +10,8 @@ import type { Ref } from 'vue'
 import type { LocationQueryValue } from 'vue-router'
 
 import { REGEX_UUID } from './constants'
-import type {
-  ArrayElement,
-  BackendError,
-  UnionToIntersection,
-} from '~/types/types'
+import type { BackendError } from '~/types/api'
+import type { ArrayElement, UnionToIntersection } from '~/types/types'
 
 export const append = (path: string, pathToAppend: string) =>
   path + (path.endsWith('/') ? '' : '/') + pathToAppend

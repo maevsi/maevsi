@@ -148,7 +148,7 @@
 </template>
 
 <script lang="ts">
-import type { BreadcrumbItemPropsLocalized } from '~/types/types'
+import type { BreadcrumbItemPropsLocalized } from '~/types/breadcrumbs'
 export const BREADCRUMB: BreadcrumbItemPropsLocalized = {
   ariaLabel: {
     de: 'Start',

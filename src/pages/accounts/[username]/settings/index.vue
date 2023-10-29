@@ -52,7 +52,7 @@ import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/acco
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import type { BreadcrumbItemPropsLocalized } from '~/types/types'
+import type { BreadcrumbItemPropsLocalized } from '~/types/breadcrumbs'
 
 export const BREADCRUMB: BreadcrumbItemPropsLocalized = () => {
   const route = useRoute()
