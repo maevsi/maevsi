@@ -340,8 +340,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(stylelint@15.11.0)
       sweetalert2:
-        specifier: 11.8.0
-        version: 11.8.0
+        specifier: 11.9.0
+        version: 11.9.0
       tailwindcss:
         specifier: 3.3.5
         version: 3.3.5
@@ -4335,6 +4335,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -12502,6 +12503,11 @@ packages:
     dev: true
     optional: true
 
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
+    requiresBuild: true
+    dev: true
+
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
@@ -16248,8 +16254,8 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /sweetalert2@11.8.0:
-    resolution: {integrity: sha512-fXoPPZGe+V6XPbSh0gCnRlJoOFOit/SqZDzr2DY975BZCmIuFbP1duKe8yZaiNvkae9pctpfq8zfHIMzj9gvJA==}
+  /sweetalert2@11.9.0:
+    resolution: {integrity: sha512-PA3qinKZMNGAhA+AUu2wU7yQOpeZCgOaYWRcg26f4cZN6f7M9iPBuobsxOhR9EHs7ihUIxT6vhAMiB4kcmk1SA==}
     dev: true
 
   /symbol-tree@3.2.4:
