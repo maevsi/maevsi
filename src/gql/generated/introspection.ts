@@ -612,6 +612,14 @@ export default {
             },
             args: [],
           },
+          {
+            name: 'uuid',
+            type: {
+              kind: 'SCALAR',
+              name: 'Any',
+            },
+            args: [],
+          },
         ],
         interfaces: [],
       },

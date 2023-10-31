@@ -13,7 +13,7 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
 }
 export type MakeEmpty<
   T extends { [key: string]: unknown },
-  K extends keyof T
+  K extends keyof T,
 > = { [_ in K]?: never }
 export type Incremental<T> =
   | T
@@ -303,6 +303,7 @@ export type AccountRegistrationPayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
+  uuid?: Maybe<Scalars['UUID']['output']>
 }
 
 /** All input for the `accountRegistrationRefresh` mutation. */
@@ -1856,7 +1857,7 @@ export enum InvitationFeedback {
   Canceled = 'CANCELED',
 }
 
-/** Possible choices on how to receive a paper invitation: paper, digital. */
+/** Possible choices on how to receive a paper invitation: none, paper, digital. */
 export enum InvitationFeedbackPaper {
   Digital = 'DIGITAL',
   None = 'NONE',
@@ -2569,7 +2570,7 @@ export type ProfilePictureSetInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  uploadId?: InputMaybe<Scalars['UUID']['input']>
+  uploadId: Scalars['UUID']['input']
 }
 
 /** The output of our `profilePictureSet` mutation. */

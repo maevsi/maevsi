@@ -6,27 +6,29 @@ export const useEventByAuthorAccountIdAndSlugQuery = (
   variables: EventByAuthorAccountIdAndSlugQueryVariables,
 ) =>
   useQuery({
-    query: graphql(`
-      query eventByAuthorAccountIdAndSlug(
-        $authorAccountId: UUID!
-        $slug: String!
-        $invitationId: UUID
-      ) {
-        eventByAuthorAccountIdAndSlug(
-          authorAccountId: $authorAccountId
-          slug: $slug
-        ) {
-          ...EventItem
-          invitationsByEventId(condition: { id: $invitationId }) {
-            nodes {
-              ...InvitationItem
-              contactByContactId {
-                ...ContactItem
-              }
-            }
+    query: eventByAuthorAccountIdAndSlug,
+    variables,
+  })
+
+export const eventByAuthorAccountIdAndSlug = graphql(`
+  query eventByAuthorAccountIdAndSlug(
+    $authorAccountId: UUID!
+    $slug: String!
+    $invitationId: UUID
+  ) {
+    eventByAuthorAccountIdAndSlug(
+      authorAccountId: $authorAccountId
+      slug: $slug
+    ) {
+      ...EventItem
+      invitationsByEventId(condition: { id: $invitationId }) {
+        nodes {
+          ...InvitationItem
+          contactByContactId {
+            ...ContactItem
           }
         }
       }
-    `),
-    variables,
-  })
+    }
+  }
+`)

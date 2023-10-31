@@ -294,6 +294,7 @@ export type AccountRegistrationPayload = {
   clientMutationId?: Maybe<Scalars['String']['output']>
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>
+  uuid?: Maybe<Scalars['UUID']['output']>
 }
 
 /** All input for the `accountRegistrationRefresh` mutation. */
@@ -1847,7 +1848,7 @@ export enum InvitationFeedback {
   Canceled = 'CANCELED',
 }
 
-/** Possible choices on how to receive a paper invitation: paper, digital. */
+/** Possible choices on how to receive a paper invitation: none, paper, digital. */
 export enum InvitationFeedbackPaper {
   Digital = 'DIGITAL',
   None = 'NONE',
@@ -2560,7 +2561,7 @@ export type ProfilePictureSetInput = {
    * payload verbatim. May be used to track mutations by the client.
    */
   clientMutationId?: InputMaybe<Scalars['String']['input']>
-  uploadId?: InputMaybe<Scalars['UUID']['input']>
+  uploadId: Scalars['UUID']['input']
 }
 
 /** The output of our `profilePictureSet` mutation. */
@@ -4085,6 +4086,11 @@ export type GraphCacheResolvers = {
       WithTypename<AccountRegistrationPayload>,
       Record<string, never>,
       WithTypename<Query> | string
+    >
+    uuid?: GraphCacheResolver<
+      WithTypename<AccountRegistrationPayload>,
+      Record<string, never>,
+      Scalars['UUID'] | string
     >
   }
   AccountRegistrationRefreshPayload?: {
@@ -5986,6 +5992,196 @@ export type GraphCacheOptimisticUpdaters = {
 }
 
 export type GraphCacheUpdaters = {
+  Query?: {
+    account?: GraphCacheUpdateResolver<
+      { account: Maybe<WithTypename<Account>> },
+      QueryAccountArgs
+    >
+    accountById?: GraphCacheUpdateResolver<
+      { accountById: Maybe<WithTypename<Account>> },
+      QueryAccountByIdArgs
+    >
+    accountByUsername?: GraphCacheUpdateResolver<
+      { accountByUsername: Maybe<WithTypename<Account>> },
+      QueryAccountByUsernameArgs
+    >
+    accountUploadQuotaBytes?: GraphCacheUpdateResolver<
+      { accountUploadQuotaBytes: Maybe<Scalars['BigInt']> },
+      Record<string, never>
+    >
+    allAccounts?: GraphCacheUpdateResolver<
+      { allAccounts: Maybe<WithTypename<AccountsConnection>> },
+      QueryAllAccountsArgs
+    >
+    allContacts?: GraphCacheUpdateResolver<
+      { allContacts: Maybe<WithTypename<ContactsConnection>> },
+      QueryAllContactsArgs
+    >
+    allEventGroupings?: GraphCacheUpdateResolver<
+      { allEventGroupings: Maybe<WithTypename<EventGroupingsConnection>> },
+      QueryAllEventGroupingsArgs
+    >
+    allEventGroups?: GraphCacheUpdateResolver<
+      { allEventGroups: Maybe<WithTypename<EventGroupsConnection>> },
+      QueryAllEventGroupsArgs
+    >
+    allEvents?: GraphCacheUpdateResolver<
+      { allEvents: Maybe<WithTypename<EventsConnection>> },
+      QueryAllEventsArgs
+    >
+    allInvitations?: GraphCacheUpdateResolver<
+      { allInvitations: Maybe<WithTypename<InvitationsConnection>> },
+      QueryAllInvitationsArgs
+    >
+    allProfilePictures?: GraphCacheUpdateResolver<
+      { allProfilePictures: Maybe<WithTypename<ProfilePicturesConnection>> },
+      QueryAllProfilePicturesArgs
+    >
+    allUploads?: GraphCacheUpdateResolver<
+      { allUploads: Maybe<WithTypename<UploadsConnection>> },
+      QueryAllUploadsArgs
+    >
+    contact?: GraphCacheUpdateResolver<
+      { contact: Maybe<WithTypename<Contact>> },
+      QueryContactArgs
+    >
+    contactByAuthorAccountIdAndAccountId?: GraphCacheUpdateResolver<
+      { contactByAuthorAccountIdAndAccountId: Maybe<WithTypename<Contact>> },
+      QueryContactByAuthorAccountIdAndAccountIdArgs
+    >
+    contactById?: GraphCacheUpdateResolver<
+      { contactById: Maybe<WithTypename<Contact>> },
+      QueryContactByIdArgs
+    >
+    event?: GraphCacheUpdateResolver<
+      { event: Maybe<WithTypename<Event>> },
+      QueryEventArgs
+    >
+    eventByAuthorAccountIdAndSlug?: GraphCacheUpdateResolver<
+      { eventByAuthorAccountIdAndSlug: Maybe<WithTypename<Event>> },
+      QueryEventByAuthorAccountIdAndSlugArgs
+    >
+    eventById?: GraphCacheUpdateResolver<
+      { eventById: Maybe<WithTypename<Event>> },
+      QueryEventByIdArgs
+    >
+    eventGroup?: GraphCacheUpdateResolver<
+      { eventGroup: Maybe<WithTypename<EventGroup>> },
+      QueryEventGroupArgs
+    >
+    eventGroupByAuthorAccountIdAndSlug?: GraphCacheUpdateResolver<
+      { eventGroupByAuthorAccountIdAndSlug: Maybe<WithTypename<EventGroup>> },
+      QueryEventGroupByAuthorAccountIdAndSlugArgs
+    >
+    eventGroupById?: GraphCacheUpdateResolver<
+      { eventGroupById: Maybe<WithTypename<EventGroup>> },
+      QueryEventGroupByIdArgs
+    >
+    eventGrouping?: GraphCacheUpdateResolver<
+      { eventGrouping: Maybe<WithTypename<EventGrouping>> },
+      QueryEventGroupingArgs
+    >
+    eventGroupingByEventIdAndEventGroupId?: GraphCacheUpdateResolver<
+      {
+        eventGroupingByEventIdAndEventGroupId: Maybe<
+          WithTypename<EventGrouping>
+        >
+      },
+      QueryEventGroupingByEventIdAndEventGroupIdArgs
+    >
+    eventGroupingById?: GraphCacheUpdateResolver<
+      { eventGroupingById: Maybe<WithTypename<EventGrouping>> },
+      QueryEventGroupingByIdArgs
+    >
+    eventInviteeCountMaximum?: GraphCacheUpdateResolver<
+      { eventInviteeCountMaximum: Maybe<Scalars['Int']> },
+      QueryEventInviteeCountMaximumArgs
+    >
+    eventIsExisting?: GraphCacheUpdateResolver<
+      { eventIsExisting: Maybe<Scalars['Boolean']> },
+      QueryEventIsExistingArgs
+    >
+    eventsOrganized?: GraphCacheUpdateResolver<
+      { eventsOrganized: Maybe<WithTypename<EventsOrganizedConnection>> },
+      QueryEventsOrganizedArgs
+    >
+    invitation?: GraphCacheUpdateResolver<
+      { invitation: Maybe<WithTypename<Invitation>> },
+      QueryInvitationArgs
+    >
+    invitationByEventIdAndContactId?: GraphCacheUpdateResolver<
+      { invitationByEventIdAndContactId: Maybe<WithTypename<Invitation>> },
+      QueryInvitationByEventIdAndContactIdArgs
+    >
+    invitationById?: GraphCacheUpdateResolver<
+      { invitationById: Maybe<WithTypename<Invitation>> },
+      QueryInvitationByIdArgs
+    >
+    invitationClaimArray?: GraphCacheUpdateResolver<
+      { invitationClaimArray: Maybe<Array<Scalars['UUID']>> },
+      Record<string, never>
+    >
+    invitationContactIds?: GraphCacheUpdateResolver<
+      {
+        invitationContactIds: Maybe<
+          WithTypename<InvitationContactIdsConnection>
+        >
+      },
+      QueryInvitationContactIdsArgs
+    >
+    inviteeCount?: GraphCacheUpdateResolver<
+      { inviteeCount: Maybe<Scalars['Int']> },
+      QueryInviteeCountArgs
+    >
+    node?: GraphCacheUpdateResolver<
+      {
+        node: Maybe<
+          | WithTypename<Account>
+          | WithTypename<Contact>
+          | WithTypename<Event>
+          | WithTypename<EventGroup>
+          | WithTypename<EventGrouping>
+          | WithTypename<Invitation>
+          | WithTypename<ProfilePicture>
+          | WithTypename<Query>
+          | WithTypename<Upload>
+        >
+      },
+      QueryNodeArgs
+    >
+    nodeId?: GraphCacheUpdateResolver<
+      { nodeId: Scalars['ID'] },
+      Record<string, never>
+    >
+    profilePicture?: GraphCacheUpdateResolver<
+      { profilePicture: Maybe<WithTypename<ProfilePicture>> },
+      QueryProfilePictureArgs
+    >
+    profilePictureByAccountId?: GraphCacheUpdateResolver<
+      { profilePictureByAccountId: Maybe<WithTypename<ProfilePicture>> },
+      QueryProfilePictureByAccountIdArgs
+    >
+    profilePictureById?: GraphCacheUpdateResolver<
+      { profilePictureById: Maybe<WithTypename<ProfilePicture>> },
+      QueryProfilePictureByIdArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      { query: WithTypename<Query> },
+      Record<string, never>
+    >
+    upload?: GraphCacheUpdateResolver<
+      { upload: Maybe<WithTypename<Upload>> },
+      QueryUploadArgs
+    >
+    uploadById?: GraphCacheUpdateResolver<
+      { uploadById: Maybe<WithTypename<Upload>> },
+      QueryUploadByIdArgs
+    >
+    uploadByStorageKey?: GraphCacheUpdateResolver<
+      { uploadByStorageKey: Maybe<WithTypename<Upload>> },
+      QueryUploadByStorageKeyArgs
+    >
+  }
   Mutation?: {
     accountDelete?: GraphCacheUpdateResolver<
       { accountDelete: Maybe<WithTypename<AccountDeletePayload>> },
@@ -6359,6 +6555,1424 @@ export type GraphCacheUpdaters = {
     >
   }
   Subscription?: {}
+  Account?: {
+    contactsByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      AccountContactsByAccountIdArgs
+    >
+    contactsByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      AccountContactsByAuthorAccountIdArgs
+    >
+    eventGroupsByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      AccountEventGroupsByAuthorAccountIdArgs
+    >
+    eventsByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      AccountEventsByAuthorAccountIdArgs
+    >
+    id?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      Record<string, never>
+    >
+    nodeId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      Record<string, never>
+    >
+    profilePictureByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      Record<string, never>
+    >
+    profilePicturesByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      AccountProfilePicturesByAccountIdArgs
+    >
+    uploadsByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      AccountUploadsByAccountIdArgs
+    >
+    username?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      Record<string, never>
+    >
+  }
+  AccountDeletePayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountDeletePayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountDeletePayload>>,
+      Record<string, never>
+    >
+  }
+  AccountEmailAddressVerificationPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountEmailAddressVerificationPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountEmailAddressVerificationPayload>>,
+      Record<string, never>
+    >
+  }
+  AccountPasswordChangePayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountPasswordChangePayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountPasswordChangePayload>>,
+      Record<string, never>
+    >
+  }
+  AccountPasswordResetPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountPasswordResetPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountPasswordResetPayload>>,
+      Record<string, never>
+    >
+  }
+  AccountPasswordResetRequestPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountPasswordResetRequestPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountPasswordResetRequestPayload>>,
+      Record<string, never>
+    >
+  }
+  AccountRegistrationPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountRegistrationPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountRegistrationPayload>>,
+      Record<string, never>
+    >
+    uuid?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountRegistrationPayload>>,
+      Record<string, never>
+    >
+  }
+  AccountRegistrationRefreshPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountRegistrationRefreshPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountRegistrationRefreshPayload>>,
+      Record<string, never>
+    >
+  }
+  AccountsConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountsConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountsConnection>>,
+      Record<string, never>
+    >
+    pageInfo?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountsConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountsConnection>>,
+      Record<string, never>
+    >
+  }
+  AccountsEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountsEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AccountsEdge>>,
+      Record<string, never>
+    >
+  }
+  AuthenticatePayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AuthenticatePayload>>,
+      Record<string, never>
+    >
+    jwt?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AuthenticatePayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AuthenticatePayload>>,
+      Record<string, never>
+    >
+  }
+  Contact?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    accountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    address?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    authorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    emailAddress?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    emailAddressHash?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    firstName?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    id?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    invitationsByContactId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      ContactInvitationsByContactIdArgs
+    >
+    lastName?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    nodeId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    phoneNumber?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+    url?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Contact>>,
+      Record<string, never>
+    >
+  }
+  ContactsConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ContactsConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ContactsConnection>>,
+      Record<string, never>
+    >
+    pageInfo?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ContactsConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ContactsConnection>>,
+      Record<string, never>
+    >
+  }
+  ContactsEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ContactsEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ContactsEdge>>,
+      Record<string, never>
+    >
+  }
+  CreateAccountPayload?: {
+    account?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateAccountPayload>>,
+      Record<string, never>
+    >
+    accountEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateAccountPayload>>,
+      CreateAccountPayloadAccountEdgeArgs
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateAccountPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateAccountPayload>>,
+      Record<string, never>
+    >
+  }
+  CreateContactPayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateContactPayload>>,
+      Record<string, never>
+    >
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateContactPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateContactPayload>>,
+      Record<string, never>
+    >
+    contact?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateContactPayload>>,
+      Record<string, never>
+    >
+    contactEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateContactPayload>>,
+      CreateContactPayloadContactEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateContactPayload>>,
+      Record<string, never>
+    >
+  }
+  CreateEventGroupPayload?: {
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupPayload>>,
+      Record<string, never>
+    >
+    eventGroup?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupPayload>>,
+      Record<string, never>
+    >
+    eventGroupEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupPayload>>,
+      CreateEventGroupPayloadEventGroupEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupPayload>>,
+      Record<string, never>
+    >
+  }
+  CreateEventGroupingPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventByEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventGroupByEventGroupId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventGrouping?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventGroupingEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupingPayload>>,
+      CreateEventGroupingPayloadEventGroupingEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventGroupingPayload>>,
+      Record<string, never>
+    >
+  }
+  CreateEventPayload?: {
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventPayload>>,
+      Record<string, never>
+    >
+    event?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventPayload>>,
+      Record<string, never>
+    >
+    eventEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventPayload>>,
+      CreateEventPayloadEventEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateEventPayload>>,
+      Record<string, never>
+    >
+  }
+  CreateInvitationPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateInvitationPayload>>,
+      Record<string, never>
+    >
+    contactByContactId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateInvitationPayload>>,
+      Record<string, never>
+    >
+    eventByEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateInvitationPayload>>,
+      Record<string, never>
+    >
+    invitation?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateInvitationPayload>>,
+      Record<string, never>
+    >
+    invitationEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateInvitationPayload>>,
+      CreateInvitationPayloadInvitationEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateInvitationPayload>>,
+      Record<string, never>
+    >
+  }
+  CreateProfilePicturePayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateProfilePicturePayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateProfilePicturePayload>>,
+      Record<string, never>
+    >
+    profilePicture?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateProfilePicturePayload>>,
+      Record<string, never>
+    >
+    profilePictureEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateProfilePicturePayload>>,
+      CreateProfilePicturePayloadProfilePictureEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateProfilePicturePayload>>,
+      Record<string, never>
+    >
+    uploadByUploadId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateProfilePicturePayload>>,
+      Record<string, never>
+    >
+  }
+  CreateUploadPayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateUploadPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateUploadPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateUploadPayload>>,
+      Record<string, never>
+    >
+    upload?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateUploadPayload>>,
+      Record<string, never>
+    >
+    uploadEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateUploadPayload>>,
+      CreateUploadPayloadUploadEdgeArgs
+    >
+  }
+  DeleteAccountPayload?: {
+    account?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAccountPayload>>,
+      Record<string, never>
+    >
+    accountEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAccountPayload>>,
+      DeleteAccountPayloadAccountEdgeArgs
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAccountPayload>>,
+      Record<string, never>
+    >
+    deletedAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAccountPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAccountPayload>>,
+      Record<string, never>
+    >
+  }
+  DeleteContactPayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteContactPayload>>,
+      Record<string, never>
+    >
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteContactPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteContactPayload>>,
+      Record<string, never>
+    >
+    contact?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteContactPayload>>,
+      Record<string, never>
+    >
+    contactEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteContactPayload>>,
+      DeleteContactPayloadContactEdgeArgs
+    >
+    deletedContactId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteContactPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteContactPayload>>,
+      Record<string, never>
+    >
+  }
+  DeleteEventGroupPayload?: {
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupPayload>>,
+      Record<string, never>
+    >
+    deletedEventGroupId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupPayload>>,
+      Record<string, never>
+    >
+    eventGroup?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupPayload>>,
+      Record<string, never>
+    >
+    eventGroupEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupPayload>>,
+      DeleteEventGroupPayloadEventGroupEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupPayload>>,
+      Record<string, never>
+    >
+  }
+  DeleteEventGroupingPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupingPayload>>,
+      Record<string, never>
+    >
+    deletedEventGroupingId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventByEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventGroupByEventGroupId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventGrouping?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventGroupingEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupingPayload>>,
+      DeleteEventGroupingPayloadEventGroupingEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventGroupingPayload>>,
+      Record<string, never>
+    >
+  }
+  DeleteEventPayload?: {
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventPayload>>,
+      Record<string, never>
+    >
+    deletedEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventPayload>>,
+      Record<string, never>
+    >
+    event?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventPayload>>,
+      Record<string, never>
+    >
+    eventEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventPayload>>,
+      DeleteEventPayloadEventEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteEventPayload>>,
+      Record<string, never>
+    >
+  }
+  DeleteInvitationPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteInvitationPayload>>,
+      Record<string, never>
+    >
+    contactByContactId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteInvitationPayload>>,
+      Record<string, never>
+    >
+    deletedInvitationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteInvitationPayload>>,
+      Record<string, never>
+    >
+    eventByEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteInvitationPayload>>,
+      Record<string, never>
+    >
+    invitation?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteInvitationPayload>>,
+      Record<string, never>
+    >
+    invitationEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteInvitationPayload>>,
+      DeleteInvitationPayloadInvitationEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteInvitationPayload>>,
+      Record<string, never>
+    >
+  }
+  DeleteProfilePicturePayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteProfilePicturePayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteProfilePicturePayload>>,
+      Record<string, never>
+    >
+    deletedProfilePictureId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteProfilePicturePayload>>,
+      Record<string, never>
+    >
+    profilePicture?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteProfilePicturePayload>>,
+      Record<string, never>
+    >
+    profilePictureEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteProfilePicturePayload>>,
+      DeleteProfilePicturePayloadProfilePictureEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteProfilePicturePayload>>,
+      Record<string, never>
+    >
+    uploadByUploadId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteProfilePicturePayload>>,
+      Record<string, never>
+    >
+  }
+  DeleteUploadPayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteUploadPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteUploadPayload>>,
+      Record<string, never>
+    >
+    deletedUploadId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteUploadPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteUploadPayload>>,
+      Record<string, never>
+    >
+    upload?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteUploadPayload>>,
+      Record<string, never>
+    >
+    uploadEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteUploadPayload>>,
+      DeleteUploadPayloadUploadEdgeArgs
+    >
+  }
+  Event?: {
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    authorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    description?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    end?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    eventGroupingsByEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      EventEventGroupingsByEventIdArgs
+    >
+    id?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    invitationsByEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      EventInvitationsByEventIdArgs
+    >
+    inviteeCountMaximum?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    isArchived?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    isInPerson?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    isRemote?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    location?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    name?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    nodeId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    slug?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    start?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    url?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+    visibility?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Event>>,
+      Record<string, never>
+    >
+  }
+  EventDeletePayload?: {
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventDeletePayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventDeletePayload>>,
+      Record<string, never>
+    >
+    event?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventDeletePayload>>,
+      Record<string, never>
+    >
+    eventEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventDeletePayload>>,
+      EventDeletePayloadEventEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventDeletePayload>>,
+      Record<string, never>
+    >
+  }
+  EventGroup?: {
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroup>>,
+      Record<string, never>
+    >
+    authorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroup>>,
+      Record<string, never>
+    >
+    description?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroup>>,
+      Record<string, never>
+    >
+    eventGroupingsByEventGroupId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroup>>,
+      EventGroupEventGroupingsByEventGroupIdArgs
+    >
+    id?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroup>>,
+      Record<string, never>
+    >
+    isArchived?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroup>>,
+      Record<string, never>
+    >
+    name?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroup>>,
+      Record<string, never>
+    >
+    nodeId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroup>>,
+      Record<string, never>
+    >
+    slug?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroup>>,
+      Record<string, never>
+    >
+  }
+  EventGrouping?: {
+    eventByEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGrouping>>,
+      Record<string, never>
+    >
+    eventGroupByEventGroupId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGrouping>>,
+      Record<string, never>
+    >
+    eventGroupId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGrouping>>,
+      Record<string, never>
+    >
+    eventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGrouping>>,
+      Record<string, never>
+    >
+    id?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGrouping>>,
+      Record<string, never>
+    >
+    nodeId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGrouping>>,
+      Record<string, never>
+    >
+  }
+  EventGroupingsConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupingsConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupingsConnection>>,
+      Record<string, never>
+    >
+    pageInfo?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupingsConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupingsConnection>>,
+      Record<string, never>
+    >
+  }
+  EventGroupingsEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupingsEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupingsEdge>>,
+      Record<string, never>
+    >
+  }
+  EventGroupsConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupsConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupsConnection>>,
+      Record<string, never>
+    >
+    pageInfo?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupsConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupsConnection>>,
+      Record<string, never>
+    >
+  }
+  EventGroupsEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupsEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventGroupsEdge>>,
+      Record<string, never>
+    >
+  }
+  EventUnlockPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventUnlockPayload>>,
+      Record<string, never>
+    >
+    eventUnlockResponse?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventUnlockPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventUnlockPayload>>,
+      Record<string, never>
+    >
+  }
+  EventUnlockResponse?: {
+    authorAccountUsername?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventUnlockResponse>>,
+      Record<string, never>
+    >
+    eventSlug?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventUnlockResponse>>,
+      Record<string, never>
+    >
+    jwt?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventUnlockResponse>>,
+      Record<string, never>
+    >
+  }
+  EventsConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsConnection>>,
+      Record<string, never>
+    >
+    pageInfo?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsConnection>>,
+      Record<string, never>
+    >
+  }
+  EventsEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsEdge>>,
+      Record<string, never>
+    >
+  }
+  EventsOrganizedConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsOrganizedConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsOrganizedConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsOrganizedConnection>>,
+      Record<string, never>
+    >
+  }
+  EventsOrganizedEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsOrganizedEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<EventsOrganizedEdge>>,
+      Record<string, never>
+    >
+  }
+  Invitation?: {
+    contactByContactId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Invitation>>,
+      Record<string, never>
+    >
+    contactId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Invitation>>,
+      Record<string, never>
+    >
+    eventByEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Invitation>>,
+      Record<string, never>
+    >
+    eventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Invitation>>,
+      Record<string, never>
+    >
+    feedback?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Invitation>>,
+      Record<string, never>
+    >
+    feedbackPaper?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Invitation>>,
+      Record<string, never>
+    >
+    id?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Invitation>>,
+      Record<string, never>
+    >
+    nodeId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Invitation>>,
+      Record<string, never>
+    >
+  }
+  InvitationContactIdEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationContactIdEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationContactIdEdge>>,
+      Record<string, never>
+    >
+  }
+  InvitationContactIdsConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationContactIdsConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationContactIdsConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationContactIdsConnection>>,
+      Record<string, never>
+    >
+  }
+  InvitationsConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationsConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationsConnection>>,
+      Record<string, never>
+    >
+    pageInfo?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationsConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationsConnection>>,
+      Record<string, never>
+    >
+  }
+  InvitationsEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationsEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitationsEdge>>,
+      Record<string, never>
+    >
+  }
+  InvitePayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitePayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<InvitePayload>>,
+      Record<string, never>
+    >
+  }
+  JwtRefreshPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<JwtRefreshPayload>>,
+      Record<string, never>
+    >
+    jwt?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<JwtRefreshPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<JwtRefreshPayload>>,
+      Record<string, never>
+    >
+  }
+  NotificationAcknowledgePayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<NotificationAcknowledgePayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<NotificationAcknowledgePayload>>,
+      Record<string, never>
+    >
+  }
+  PageInfo?: {
+    endCursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<PageInfo>>,
+      Record<string, never>
+    >
+    hasNextPage?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<PageInfo>>,
+      Record<string, never>
+    >
+    hasPreviousPage?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<PageInfo>>,
+      Record<string, never>
+    >
+    startCursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<PageInfo>>,
+      Record<string, never>
+    >
+  }
+  ProfilePicture?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicture>>,
+      Record<string, never>
+    >
+    accountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicture>>,
+      Record<string, never>
+    >
+    id?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicture>>,
+      Record<string, never>
+    >
+    nodeId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicture>>,
+      Record<string, never>
+    >
+    uploadByUploadId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicture>>,
+      Record<string, never>
+    >
+    uploadId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicture>>,
+      Record<string, never>
+    >
+  }
+  ProfilePictureSetPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePictureSetPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePictureSetPayload>>,
+      Record<string, never>
+    >
+  }
+  ProfilePicturesConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicturesConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicturesConnection>>,
+      Record<string, never>
+    >
+    pageInfo?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicturesConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicturesConnection>>,
+      Record<string, never>
+    >
+  }
+  ProfilePicturesEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicturesEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<ProfilePicturesEdge>>,
+      Record<string, never>
+    >
+  }
+  UpdateAccountPayload?: {
+    account?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateAccountPayload>>,
+      Record<string, never>
+    >
+    accountEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateAccountPayload>>,
+      UpdateAccountPayloadAccountEdgeArgs
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateAccountPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateAccountPayload>>,
+      Record<string, never>
+    >
+  }
+  UpdateContactPayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateContactPayload>>,
+      Record<string, never>
+    >
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateContactPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateContactPayload>>,
+      Record<string, never>
+    >
+    contact?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateContactPayload>>,
+      Record<string, never>
+    >
+    contactEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateContactPayload>>,
+      UpdateContactPayloadContactEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateContactPayload>>,
+      Record<string, never>
+    >
+  }
+  UpdateEventGroupPayload?: {
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupPayload>>,
+      Record<string, never>
+    >
+    eventGroup?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupPayload>>,
+      Record<string, never>
+    >
+    eventGroupEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupPayload>>,
+      UpdateEventGroupPayloadEventGroupEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupPayload>>,
+      Record<string, never>
+    >
+  }
+  UpdateEventGroupingPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventByEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventGroupByEventGroupId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventGrouping?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupingPayload>>,
+      Record<string, never>
+    >
+    eventGroupingEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupingPayload>>,
+      UpdateEventGroupingPayloadEventGroupingEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventGroupingPayload>>,
+      Record<string, never>
+    >
+  }
+  UpdateEventPayload?: {
+    accountByAuthorAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventPayload>>,
+      Record<string, never>
+    >
+    event?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventPayload>>,
+      Record<string, never>
+    >
+    eventEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventPayload>>,
+      UpdateEventPayloadEventEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateEventPayload>>,
+      Record<string, never>
+    >
+  }
+  UpdateInvitationPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateInvitationPayload>>,
+      Record<string, never>
+    >
+    contactByContactId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateInvitationPayload>>,
+      Record<string, never>
+    >
+    eventByEventId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateInvitationPayload>>,
+      Record<string, never>
+    >
+    invitation?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateInvitationPayload>>,
+      Record<string, never>
+    >
+    invitationEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateInvitationPayload>>,
+      UpdateInvitationPayloadInvitationEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateInvitationPayload>>,
+      Record<string, never>
+    >
+  }
+  UpdateProfilePicturePayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateProfilePicturePayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateProfilePicturePayload>>,
+      Record<string, never>
+    >
+    profilePicture?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateProfilePicturePayload>>,
+      Record<string, never>
+    >
+    profilePictureEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateProfilePicturePayload>>,
+      UpdateProfilePicturePayloadProfilePictureEdgeArgs
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateProfilePicturePayload>>,
+      Record<string, never>
+    >
+    uploadByUploadId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateProfilePicturePayload>>,
+      Record<string, never>
+    >
+  }
+  UpdateUploadPayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateUploadPayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateUploadPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateUploadPayload>>,
+      Record<string, never>
+    >
+    upload?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateUploadPayload>>,
+      Record<string, never>
+    >
+    uploadEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateUploadPayload>>,
+      UpdateUploadPayloadUploadEdgeArgs
+    >
+  }
+  Upload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Upload>>,
+      Record<string, never>
+    >
+    accountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Upload>>,
+      Record<string, never>
+    >
+    id?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Upload>>,
+      Record<string, never>
+    >
+    nodeId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Upload>>,
+      Record<string, never>
+    >
+    profilePicturesByUploadId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Upload>>,
+      UploadProfilePicturesByUploadIdArgs
+    >
+    sizeByte?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Upload>>,
+      Record<string, never>
+    >
+    storageKey?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Upload>>,
+      Record<string, never>
+    >
+  }
+  UploadCreatePayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadCreatePayload>>,
+      Record<string, never>
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadCreatePayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadCreatePayload>>,
+      Record<string, never>
+    >
+    upload?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadCreatePayload>>,
+      Record<string, never>
+    >
+    uploadEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadCreatePayload>>,
+      UploadCreatePayloadUploadEdgeArgs
+    >
+  }
+  UploadsConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadsConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadsConnection>>,
+      Record<string, never>
+    >
+    pageInfo?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadsConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadsConnection>>,
+      Record<string, never>
+    >
+  }
+  UploadsEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadsEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UploadsEdge>>,
+      Record<string, never>
+    >
+  }
 }
 
 export type GraphCacheConfig = Parameters<typeof offlineExchange>[0] & {
