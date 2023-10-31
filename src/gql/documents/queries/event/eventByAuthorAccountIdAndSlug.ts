@@ -6,11 +6,11 @@ export const useEventByAuthorAccountIdAndSlugQuery = (
   variables: EventByAuthorAccountIdAndSlugQueryVariables,
 ) =>
   useQuery({
-    query: eventByAuthorAccountIdAndSlug,
+    query: eventByAuthorAccountIdAndSlugQuery,
     variables,
   })
 
-export const eventByAuthorAccountIdAndSlug = graphql(`
+export const eventByAuthorAccountIdAndSlugQuery = graphql(`
   query eventByAuthorAccountIdAndSlug(
     $authorAccountId: UUID!
     $slug: String!

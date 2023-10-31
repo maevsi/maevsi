@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
     <h1>{{ title }}</h1>
     <div class="vio-prose-scheme">
       <h2>{{ t('tmg') }}</h2>
@@ -40,10 +41,35 @@
   </div>
 </template>
 
+<script lang="ts">
+import { usePageBreadcrumb as usePageBreadcrumbHome } from './index.vue'
+
+export const usePageBreadcrumb = () => ({
+  label: {
+    de: 'Impressum',
+    en: 'Legal notice',
+  },
+  to: '/legal-notice',
+})
+</script>
+
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      usePageBreadcrumbHome(),
+      {
+        current: true,
+        ...usePageBreadcrumb(),
+      },
+    ],
+    locale,
+  ),
+)
 const title = t('title')
 
 // initialization

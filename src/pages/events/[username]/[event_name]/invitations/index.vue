@@ -1,23 +1,7 @@
 <template>
   <Loader :api="api">
     <div v-if="event" class="flex flex-col gap-4">
-      <LayoutBreadcrumbs
-        :prefixes="[
-          { name: t('events'), to: localePath('/events') },
-          {
-            name: routeParamUsername,
-            to: localePath(`/events/${route.params.username}`),
-          },
-          {
-            name: routeParamEventName,
-            to: localePath(
-              `/events/${route.params.username}/${route.params.event_name}`,
-            ),
-          },
-        ]"
-      >
-        {{ t('invitations') }}
-      </LayoutBreadcrumbs>
+      <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
       <h1>
         {{ t('title') }}
       </h1>
@@ -27,13 +11,32 @@
   </Loader>
 </template>
 
-<script setup lang="ts">
-import { useMaevsiStore } from '~/store'
+<script lang="ts">
+import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from '../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
+import { useMaevsiStore } from '~/store'
 
+export const usePageBreadcrumb = () => {
+  const route = useRoute()
+
+  return {
+    label: {
+      de: 'Einladungen',
+      en: 'Invitations',
+    },
+    to: `/events/${route.params.username as string}/${
+      route.params.event_name as string
+    }/invitations`,
+  }
+}
+</script>
+
+<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     const store = useMaevsiStore()
@@ -49,9 +52,10 @@ definePageMeta({
   },
 })
 
+const { $urql } = useNuxtApp()
 const route = useRoute()
-const { t } = useI18n()
-const localePath = useLocalePath()
+const { t, locale } = useI18n()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
@@ -71,8 +75,20 @@ const event = computed(() =>
 const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
-const routeParamEventName = route.params.event_name as string
-const routeParamUsername = route.params.username as string
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      usePageBreadcrumbEvents(),
+      usePageBreadcrumbEventsUser(),
+      await usePageBreadcrumbEventsUserId({ $urql, route }),
+      {
+        current: true,
+        ...usePageBreadcrumb(),
+      },
+    ],
+    locale,
+  ),
+)
 
 // computations
 const title = computed(() => {
@@ -87,11 +103,7 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  events: Veranstaltungen
-  invitations: Einladungen
   title: Einladungen
 en:
-  events: events
-  invitations: invitations
   title: Invitations
 </i18n>

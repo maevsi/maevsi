@@ -1,6 +1,6 @@
 import type { BreadcrumbItemProps } from 'nuxt-seo-ui'
 
-type BreadcrumbItemPropsLocalizedObject = Omit<
+export type BreadcrumbItemPropsLocalizedObject = Omit<
   BreadcrumbItemProps,
   'ariaLabel' | 'label' | 'to'
 > & {
@@ -9,6 +9,6 @@ type BreadcrumbItemPropsLocalizedObject = Omit<
   to: string
 }
 
-export type BreadcrumbItemPropsLocalized =
+export type UseBreadcrumbItemPropsLocalized = () =>
   | BreadcrumbItemPropsLocalizedObject
-  | (() => BreadcrumbItemPropsLocalizedObject)
+  | Promise<BreadcrumbItemPropsLocalizedObject>

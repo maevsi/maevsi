@@ -4,17 +4,7 @@
       v-if="event && event.accountByAuthorAccountId?.username"
       class="flex flex-col gap-4"
     >
-      <LayoutBreadcrumbs
-        :prefixes="[
-          { name: t('events'), to: localePath('/events') },
-          {
-            name: routeParamUsername,
-            to: localePath(`/events/${route.params.username}`),
-          },
-        ]"
-      >
-        {{ event.name }}
-      </LayoutBreadcrumbs>
+      <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
       <CardStateInfo v-if="routeQueryIc && contact" class="flex flex-col gap-2">
         {{ t('invitationViewFor', { name: contactName }) }}
         <ButtonColored
@@ -22,7 +12,7 @@
           :aria-label="t('invitationSelectionClear')"
           @click="
             navigateTo({
-              path: append(route.path, 'invitation'),
+              path: append(route.path, 'invitations'),
               query: { ...routeQuery, ic: undefined },
             })
           "
@@ -66,7 +56,7 @@
         <ButtonColored
           is-to-relative
           :aria-label="t('invitations')"
-          to="invitation"
+          to="invitations"
         >
           {{ t('invitations') }}
           <template #prefix>
@@ -76,7 +66,7 @@
         <ButtonColored
           is-to-relative
           :aria-label="t('attendances')"
-          to="attendance"
+          to="attendances"
         >
           {{ t('attendances') }}
           <template #prefix>
@@ -326,13 +316,17 @@
   </Loader>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { Client } from '@urql/core'
 import downloadJs from 'downloadjs'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
 
+import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
 import { useMaevsiStore } from '~/store'
 import { useUpdateInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationUpdateById'
 import {
@@ -340,25 +334,54 @@ import {
   type InvitationItemFragment,
   type InvitationPatch,
 } from '~/gql/generated/graphql'
-import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
+import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import type { RouteLocationNormalizedLoaded } from '#vue-router'
 
+export const pageBreadcrumb = async ({
+  $urql,
+  route,
+}: {
+  $urql: Ref<Client>
+  route: RouteLocationNormalizedLoaded
+}) => {
+  const account = await getAccountByUsername({
+    $urql,
+    username: route.params.username as string,
+  })
+  const event = await getEventByAuthorAccountIdAndSlug({
+    $urql,
+    authorAccountId: account?.id,
+    slug: route.params.event_name as string,
+  })
+
+  return {
+    label: event?.name,
+    to: `/events/${route.params.username as string}/${
+      route.params.event_name as string
+    }`,
+  }
+}
+</script>
+
+<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     return await validateEventExistence(route)
   },
 })
 
-const { t } = useI18n()
+const { $urql } = useNuxtApp()
+const { t, locale } = useI18n()
 const fireAlert = useFireAlert()
-const localePath = useLocalePath()
 const store = useMaevsiStore()
 const route = useRoute()
 const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
@@ -379,7 +402,20 @@ const event = computed(() =>
 const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
-const routeParamUsername = route.params.username as string
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      usePageBreadcrumbHome(),
+      usePageBreadcrumbEvents(),
+      usePageBreadcrumbEventsUser(),
+      {
+        current: true,
+        ...(await pageBreadcrumb({ $urql, route })),
+      },
+    ],
+    locale,
+  ),
+)
 
 // methods
 const accept = () => {
@@ -528,7 +564,6 @@ defineOgImage({
 de:
   attendances: Check-in
   close: Schließen
-  events: Veranstaltungen
   # feedbackRequest: 'Bitte gib eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
@@ -563,7 +598,6 @@ de:
 en:
   attendances: Check in
   close: Close
-  events: events
   # feedbackRequest: 'Please confirm if you will attend:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."

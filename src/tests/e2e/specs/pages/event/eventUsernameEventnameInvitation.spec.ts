@@ -5,7 +5,7 @@ test.describe('event username eventname invitation page', () => {
   //   // TODO: mock data
   //   it('forbids access when not signed in', () => {
   //     cy.request({
-  //       url: '/events/username-that-exists/public-event/invitation',
+  //       url: '/events/username-that-exists/public-event/invitations',
   //       failOnStatusCode: false,
   //     }).then((resp) => {
   //       expect(resp.status).to.equal(403)

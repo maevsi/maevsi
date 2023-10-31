@@ -51,14 +51,13 @@
 </template>
 
 <script lang="ts">
-import { BREADCRUMB as BREADCRUMB_ACCOUNTS } from '../index.vue'
-import { BREADCRUMB as BREADCRUMB_HOME } from '../../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 import { useMaevsiStore } from '~/store'
-import type { BreadcrumbItemPropsLocalized } from '~/types/breadcrumbs'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 
-export const BREADCRUMB: BreadcrumbItemPropsLocalized = () => {
+export const usePageBreadcrumb = () => {
   const route = useRoute()
 
   return {
@@ -95,11 +94,11 @@ const api = getApiData([accountByUsernameQuery])
 const breadcrumbItems = defineBreadcrumbItems(
   getBreadcrumbItemProps(
     [
-      BREADCRUMB_HOME,
-      BREADCRUMB_ACCOUNTS,
+      usePageBreadcrumbHome(),
+      usePageBreadcrumbAccounts(),
       {
         current: true,
-        ...BREADCRUMB(),
+        ...usePageBreadcrumb(),
       },
     ],
     locale,

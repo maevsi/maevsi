@@ -1,11 +1,12 @@
 import type { WritableComputedRef } from 'vue'
-import type { BreadcrumbItemPropsLocalized } from '~/types/breadcrumbs'
+import type { LocalePathFunction } from 'vue-i18n-routing'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
 export const useGetBreadcrumbItemProps = () => {
   const localePath = useLocalePath()
 
   return (
-    breadcrumbWithLocales: BreadcrumbItemPropsLocalized[],
+    breadcrumbWithLocales: BreadcrumbItemPropsLocalizedObject[],
     locale: WritableComputedRef<string>,
   ) =>
     breadcrumbWithLocales.map((x) =>
@@ -14,27 +15,20 @@ export const useGetBreadcrumbItemProps = () => {
 }
 
 const getBreadcrumbItemProps = (
-  breadcrumbWithLocales: BreadcrumbItemPropsLocalized,
+  breadcrumbWithLocales: BreadcrumbItemPropsLocalizedObject,
   locale: WritableComputedRef<string>,
-  localePath: (x: string) => string,
-) => {
-  const breadcrumbWithLocalesResolved =
-    typeof breadcrumbWithLocales === 'function'
-      ? breadcrumbWithLocales()
-      : breadcrumbWithLocales
-
-  return {
-    ...breadcrumbWithLocalesResolved,
-    ariaLabel: breadcrumbWithLocalesResolved.ariaLabel
-      ? typeof breadcrumbWithLocalesResolved.ariaLabel === 'string'
-        ? breadcrumbWithLocalesResolved.ariaLabel
-        : breadcrumbWithLocalesResolved.ariaLabel[locale.value as LOCALE_CODES]
-      : undefined,
-    label: breadcrumbWithLocalesResolved.label
-      ? typeof breadcrumbWithLocalesResolved.label === 'string'
-        ? breadcrumbWithLocalesResolved.label
-        : breadcrumbWithLocalesResolved.label[locale.value as LOCALE_CODES]
-      : undefined,
-    to: localePath(breadcrumbWithLocalesResolved.to),
-  }
-}
+  localePath: LocalePathFunction,
+) => ({
+  ...breadcrumbWithLocales,
+  ariaLabel: breadcrumbWithLocales.ariaLabel
+    ? typeof breadcrumbWithLocales.ariaLabel === 'string'
+      ? breadcrumbWithLocales.ariaLabel
+      : breadcrumbWithLocales.ariaLabel[locale.value as LOCALE_CODES]
+    : undefined,
+  label: breadcrumbWithLocales.label
+    ? typeof breadcrumbWithLocales.label === 'string'
+      ? breadcrumbWithLocales.label
+      : breadcrumbWithLocales.label[locale.value as LOCALE_CODES]
+    : undefined,
+  to: localePath(breadcrumbWithLocales.to),
+})

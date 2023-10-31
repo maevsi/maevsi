@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
     <h1>{{ title }}</h1>
     <!-- "UploadGallery" must come after "ModalUploadSelection" for them to overlay properly! -->
     <UploadGallery v-if="store.jwtDecoded?.role === 'maevsi_account'" />
@@ -11,13 +12,37 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
 import { useMaevsiStore } from '~/store'
 
-const { t } = useI18n()
+export const usePageBreadcrumb = () => ({
+  label: {
+    de: 'Dateien',
+    en: 'Files',
+  },
+  to: '/uploads',
+})
+</script>
+
+<script setup lang="ts">
+const { t, locale } = useI18n()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 
 // data
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      usePageBreadcrumbHome(),
+      {
+        current: true,
+        ...usePageBreadcrumb(),
+      },
+    ],
+    locale,
+  ),
+)
 const title = t('title')
 
 // initialization

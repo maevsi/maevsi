@@ -9,16 +9,15 @@
 </template>
 
 <script lang="ts">
-import { BREADCRUMB as BREADCRUMB_HOME } from '../index.vue'
-import type { BreadcrumbItemPropsLocalized } from '~/types/breadcrumbs'
+import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
 
-export const BREADCRUMB: BreadcrumbItemPropsLocalized = {
+export const usePageBreadcrumb = () => ({
   label: {
     de: 'Konten',
-    en: 'accounts',
+    en: 'Accounts',
   },
   to: '/accounts',
-}
+})
 </script>
 
 <script setup lang="ts">
@@ -29,10 +28,10 @@ const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const breadcrumbItems = defineBreadcrumbItems(
   getBreadcrumbItemProps(
     [
-      BREADCRUMB_HOME,
+      usePageBreadcrumbHome(),
       {
         current: true,
-        ...BREADCRUMB,
+        ...usePageBreadcrumb(),
       },
     ],
     locale,

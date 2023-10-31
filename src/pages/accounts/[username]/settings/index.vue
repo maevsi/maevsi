@@ -44,23 +44,22 @@
 </template>
 
 <script lang="ts">
-import { BREADCRUMB as BREADCRUMB_ACCOUNT } from '../index.vue'
-import { BREADCRUMB as BREADCRUMB_ACCOUNTS } from '../../index.vue'
-import { BREADCRUMB as BREADCRUMB_HOME } from '../../../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbAccountsId } from '../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
 import { useMaevsiStore } from '~/store'
 import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import type { BreadcrumbItemPropsLocalized } from '~/types/breadcrumbs'
 
-export const BREADCRUMB: BreadcrumbItemPropsLocalized = () => {
+export const usePageBreadcrumb = () => {
   const route = useRoute()
 
   return {
     label: {
       de: 'Bearbeiten',
-      en: 'edit',
+      en: 'Edit',
     },
     to: `/accounts/${route.params.username as string}/settings`,
   }
@@ -98,12 +97,12 @@ const api = getApiData([accountByUsernameQuery, profilePictureSetMutation])
 const breadcrumbItems = defineBreadcrumbItems(
   getBreadcrumbItemProps(
     [
-      BREADCRUMB_HOME,
-      BREADCRUMB_ACCOUNTS,
-      BREADCRUMB_ACCOUNT,
+      usePageBreadcrumbHome(),
+      usePageBreadcrumbAccounts(),
+      usePageBreadcrumbAccountsId(),
       {
         current: true,
-        ...BREADCRUMB(),
+        ...usePageBreadcrumb(),
       },
     ],
     locale,

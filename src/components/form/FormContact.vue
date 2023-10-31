@@ -150,6 +150,8 @@ const isFormSent = ref(false)
 
 // methods
 const submit = async () => {
+  if (!form.accountUsername) throw new Error('Account username is missing!')
+
   if (!(await isFormValid({ v$, isFormSent }))) return
 
   const account = await getAccountByUsername({

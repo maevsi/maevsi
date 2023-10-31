@@ -21,10 +21,12 @@ import {
 import { useMaevsiStore } from '~/store'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 import { accountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import { eventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { EventVisibility } from '~/gql/generated/graphql'
 
 import type { RouteLocationNormalized } from '#vue-router'
+import { getEventItem } from '~/gql/documents/fragments/eventItem'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 254 // source: https://www.dominicsayers.com/isemail/
@@ -180,10 +182,8 @@ export const getAccountByUsername = async ({
   username,
 }: {
   $urql: Ref<Client>
-  username?: string
+  username: string
 }) => {
-  if (!username) return
-
   const accountByUsername = await $urql.value
     .query(accountByUsernameQuery, {
       username,
@@ -195,6 +195,33 @@ export const getAccountByUsername = async ({
   }
 
   return getAccountItem(accountByUsername.data?.accountByUsername)
+}
+
+export const getEventByAuthorAccountIdAndSlug = async ({
+  $urql,
+  authorAccountId,
+  slug,
+}: {
+  $urql: Ref<Client>
+  authorAccountId: string
+  slug: string
+}) => {
+  const eventByAuthorAccountIdAndSlug = await $urql.value
+    .query(eventByAuthorAccountIdAndSlugQuery, {
+      authorAccountId,
+      slug,
+    })
+    .toPromise()
+
+  if (eventByAuthorAccountIdAndSlug.error) {
+    throw new Error(
+      getCombinedErrorMessages([eventByAuthorAccountIdAndSlug.error]).join(),
+    )
+  }
+
+  return getEventItem(
+    eventByAuthorAccountIdAndSlug.data?.eventByAuthorAccountIdAndSlug,
+  )
 }
 
 export const validateEventExistence = async (

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
     <h1>
       {{ title }}
     </h1>
@@ -41,15 +42,42 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbDashboard } from '../index.vue'
+
 import { useMaevsiStore } from '~/store'
 
+export const usePageBreadcrumb = () => ({
+  label: {
+    de: 'Einstellungen',
+    en: 'Settings',
+  },
+  to: '/dashboard/dev',
+})
+</script>
+
+<script setup lang="ts">
 const { signOut } = useSignOut()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const store = useMaevsiStore()
 const dateTime = useDateTime()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      usePageBreadcrumbHome(),
+      usePageBreadcrumbDashboard(),
+      {
+        current: true,
+        ...usePageBreadcrumb(),
+      },
+    ],
+    locale,
+  ),
+)
 const title = t('title')
 
 // computations

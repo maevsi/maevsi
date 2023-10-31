@@ -1,23 +1,7 @@
 <template>
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
-      <LayoutBreadcrumbs
-        :prefixes="[
-          { name: t('events'), to: localePath('/events') },
-          {
-            name: routeParamUsername,
-            to: localePath(`/events/${route.params.username}`),
-          },
-          {
-            name: routeParamEventName,
-            to: localePath(
-              `/events/${route.params.username}/${route.params.event_name}`,
-            ),
-          },
-        ]"
-      >
-        {{ t('checkIns') }}
-      </LayoutBreadcrumbs>
+      <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
       <h1>
         {{ t('title') }}
       </h1>
@@ -74,16 +58,40 @@
   </Loader>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { consola } from 'consola'
 import { type DetectedBarcode } from 'barcode-detector'
 
+import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from '../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../../index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
 import { useMaevsiStore } from '~/store'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
+export const usePageBreadcrumb = () => {
+  const route = useRoute()
+
+  return {
+    label: 'Check-in',
+    to: `/events/${route.params.username as string}/${
+      route.params.event_name as string
+    }/attendances`,
+  }
+}
+
+export default {
+  components: {
+    QrCodeStream: defineAsyncComponent(
+      async () => (await import('vue-qrcode-reader')).QrcodeStream,
+    ),
+  },
+}
+</script>
+
+<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     const store = useMaevsiStore()
@@ -99,11 +107,12 @@ definePageMeta({
   },
 })
 
-const { t } = useI18n()
-const localePath = useLocalePath()
+const { $urql } = useNuxtApp()
+const { t, locale } = useI18n()
 const store = useMaevsiStore()
 const route = useRoute()
 const fireAlert = useFireAlert()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
@@ -123,11 +132,23 @@ const event = computed(() =>
 const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      usePageBreadcrumbEvents(),
+      usePageBreadcrumbEventsUser(),
+      await usePageBreadcrumbEventsUserId({ $urql, route }),
+      {
+        current: true,
+        ...usePageBreadcrumb(),
+      },
+    ],
+    locale,
+  ),
+)
 const invitationId = ref<string>()
 const isNfcWritableErrorMessage = ref<string>()
 const loading = ref(true)
-const routeParamEventName = route.params.event_name as string
-const routeParamUsername = route.params.username as string
 
 // computations
 const isNfcError = computed(() => {
@@ -256,19 +277,8 @@ onMounted(() => {
 useHeadDefault({ title })
 </script>
 
-<script lang="ts">
-export default {
-  components: {
-    QrCodeStream: defineAsyncComponent(
-      async () => (await import('vue-qrcode-reader')).QrcodeStream,
-    ),
-  },
-}
-</script>
-
 <i18n lang="yaml">
 de:
-  checkIns: Check-in
   close: Schließen
   errorCameraNotAllowed: Berechtigung zum Kamerazugriff fehlt. {hintBrowserSettings}
   errorCameraNotFound: Konnte keine geeignete Kamera finden.
@@ -282,7 +292,6 @@ de:
   errorNfcNotAllowed: Berechtigung zum NFC-Zugriff fehlt! {hintBrowserSettings}
   errorNfcNotReadable: Zugriff auf den NFC-Adapter nicht möglich. Wird er von einem anderen Programm verwendet?
   errorNfcNotSupported: Es wurde kein kompatibler NFC-Adapter gefunden. {hintUpdateOrChrome}
-  events: Veranstaltungen
   hintBrowserSettings: Sieh in deinen Browser-Einstellungen nach.
   hintUpdateOrChrome: Versuche deinen Browser zu aktualisieren oder Google Chrome zu verwenden.
   hintTryAgain: Versuch es noch einmal.
@@ -292,7 +301,6 @@ de:
   scanned: 'Gescannt: {scanResult}'
   title: Check-in
 en:
-  checkIns: check in
   close: Close
   errorCameraNotAllowed: Need camera access permissons.
   errorCameraNotFound: Could not find a suitable camera.
@@ -306,7 +314,6 @@ en:
   errorNfcNotAllowed: Need NFC access permission! {hintBrowserSettings}
   errorNfcNotReadable: Could not access NFC adapter. Is it in use by another program right now?
   errorNfcNotSupported: No compatible NFC adapter was found. {hintUpdateOrChrome}
-  events: events
   hintBrowserSettings: Check your browser settings.
   hintUpdateOrChrome: Try updating your browser or use Google Chrome.
   hintTryAgain: Try again.
