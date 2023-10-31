@@ -3286,7 +3286,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/message-compiler': 9.6.2
-      '@intlify/shared': 9.5.0
+      '@intlify/shared': 9.6.2
       acorn: 8.11.2
       escodegen: 2.1.0
       estree-walker: 2.0.2
@@ -3405,7 +3405,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 7.4.0(vue-i18n@9.5.0)
-      '@intlify/shared': 9.5.0
+      '@intlify/shared': 9.6.2
       '@rollup/pluginutils': 5.0.5(rollup@2.79.1)
       '@vue/compiler-sfc': 3.3.7
       debug: 4.3.4
@@ -5757,7 +5757,7 @@ packages:
     resolution: {integrity: sha512-cBGCXSeJVizG95dTudB069N0DMzWCHznbjYAJUv6sh0fwPUXUfKSHgf3h+Av3rkKeWEYguULN+bpnPOIfs7fJQ==}
     dependencies:
       '@unhead/schema': 1.8.1
-      '@unhead/shared': 1.7.4
+      '@unhead/shared': 1.8.1
     dev: true
 
   /@unhead/schema-org@1.8.1(@unhead/shared@1.8.1)(unhead@1.8.1):
@@ -5771,24 +5771,11 @@ packages:
       unhead: 1.8.1
     dev: true
 
-  /@unhead/schema@1.7.4:
-    resolution: {integrity: sha512-wUL4CK0NSEm3KH4kYsiqVYQw5xBk1hpBi5tiNj0BTZgpQVrRufICdK5EHA9Fh7OIAR6tOTWwTvsf5+nK0BgQDA==}
-    dependencies:
-      hookable: 5.5.3
-      zhead: 2.2.4
-    dev: true
-
   /@unhead/schema@1.8.1:
     resolution: {integrity: sha512-mR9i4BANtAug7gZEuyPkGYtVv2CF0wv8bqbPrt3OVSmpW0ts6bin1+ILM7HVKDpAOC7O1l4iyRrHOPocNPeVKQ==}
     dependencies:
       hookable: 5.5.3
       zhead: 2.2.4
-    dev: true
-
-  /@unhead/shared@1.7.4:
-    resolution: {integrity: sha512-YUNA2UxAuDPnDps41BQ8aEIY5hdyvruSB1Vs3AALhRo07MxMivSq5DjNKfYr/JvRN6593RtfI1NHnP9x5M57xA==}
-    dependencies:
-      '@unhead/schema': 1.7.4
     dev: true
 
   /@unhead/shared@1.8.1:
@@ -17861,7 +17848,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.5.0
+      '@intlify/shared': 9.6.2
       '@intlify/vue-i18n-bridge': 1.0.1(vue-i18n@9.5.0)
       '@intlify/vue-router-bridge': 1.0.1(vue-router@4.2.5)(vue@3.3.7)
       ufo: 1.3.1
