@@ -155,6 +155,7 @@ const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery()
 const allUploadsQuery = await useAllUploadsQuery({
   after,
   first: ITEMS_PER_PAGE,
+  accountId: store.signedInAccountId,
 })
 const uploadCreateMutation = useUploadCreateMutation()
 const api = getApiData([
