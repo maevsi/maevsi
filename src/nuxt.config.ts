@@ -714,9 +714,10 @@ export default defineNuxtConfig({
           preload: true,
         },
       },
-      ...(process.env.NUXT_PUBLIC_VIO_IS_TESTING === 'true'
-        ? { rateLimiter: false }
-        : {}),
+      rateLimiter: false // TODO: enable the below when runtime configuration is supported (https://github.com/Baroshem/nuxt-security/pull/233/files)
+      // ...(process.env.NUXT_PUBLIC_VIO_IS_TESTING === 'true'
+      //   ? { rateLimiter: false }
+      //   : {}),
     },
   },
 })
