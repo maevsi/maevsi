@@ -58,7 +58,6 @@ export const BREADCRUMB: BreadcrumbItemPropsLocalized = () => {
   const route = useRoute()
 
   return {
-    icon: 'heroicons:cog-6-tooth',
     label: {
       de: 'Bearbeiten',
       en: 'edit',

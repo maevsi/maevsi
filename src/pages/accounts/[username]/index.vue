@@ -62,7 +62,6 @@ export const BREADCRUMB: BreadcrumbItemPropsLocalized = () => {
   const route = useRoute()
 
   return {
-    icon: 'heroicons:user',
     label: route.params.username as string,
     to: `/accounts/${route.params.username as string}`,
   }

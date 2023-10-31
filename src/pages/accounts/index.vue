@@ -13,7 +13,6 @@ import { BREADCRUMB as BREADCRUMB_HOME } from '../index.vue'
 import type { BreadcrumbItemPropsLocalized } from '~/types/breadcrumbs'
 
 export const BREADCRUMB: BreadcrumbItemPropsLocalized = {
-  icon: 'heroicons:user-group',
   label: {
     de: 'Konten',
     en: 'accounts',
