@@ -2,6 +2,6 @@
 User-agent: *
 Disallow: /
 
-# Dev mode  - View the indexable output by setting ?indexable
+# DEVELOPMENT HINTS: Indexing is blocked by site config set by system.
 
 # END nuxt-simple-robots
