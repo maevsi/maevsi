@@ -1,3 +1,4 @@
+import type { Validation } from '@vuelidate/core'
 import {
   email,
   helpers,
@@ -125,9 +126,9 @@ export const isFormValid = async ({
   v$,
   isFormSent,
 }: {
-  v$: any
+  v$: Ref<Validation>
   isFormSent: Ref<boolean>
-}): Promise<boolean> => {
+}) => {
   v$.value.$touch()
 
   const isValid = await v$.value.$validate()
@@ -244,7 +245,7 @@ export const validateEventSlug =
     signedInAccountId: string
     invert: boolean
     exclude?: string
-  }): ((value: string) => Promise<boolean>) =>
+  }) =>
   async (value: string) => {
     const { $urql } = useNuxtApp()
 
@@ -270,24 +271,22 @@ export const validateEventSlug =
       : !!result.data?.eventIsExisting
   }
 
-export const validateUsername =
-  (invert?: boolean): ((value: string) => Promise<boolean>) =>
-  async (value: string) => {
-    const { $urql } = useNuxtApp()
+export const validateUsername = (invert?: boolean) => async (value: string) => {
+  const { $urql } = useNuxtApp()
 
-    if (!helpers.req(value)) {
-      return true
-    }
-
-    const result = await $urql.value
-      .query(accountByUsernameQuery, {
-        username: value,
-      })
-      .toPromise()
-
-    if (result.error) return false
-
-    return invert
-      ? !result.data?.accountByUsername
-      : !!result.data?.accountByUsername
+  if (!helpers.req(value)) {
+    return true
   }
+
+  const result = await $urql.value
+    .query(accountByUsernameQuery, {
+      username: value,
+    })
+    .toPromise()
+
+  if (result.error) return false
+
+  return invert
+    ? !result.data?.accountByUsername
+    : !!result.data?.accountByUsername
+}

@@ -67,7 +67,7 @@ import { useAccountRegistrationRefreshMutation } from '~/gql/documents/mutations
 import { useMaevsiStore } from '~/store'
 
 const emit = defineEmits<{
-  (e: 'signed-in'): void
+  'signed-in': []
 }>()
 
 const fireAlert = useFireAlert()

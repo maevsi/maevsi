@@ -42,7 +42,7 @@ export const copyText = (text: string) =>
     fakeElement.click()
   })
 
-const getCsp = (host: string): Record<string, Array<string>> => {
+const getCsp = (host: string) => {
   const hostName = host.replace(/:[0-9]+$/, '')
   const runtimeConfig = useRuntimeConfig()
 
@@ -121,10 +121,10 @@ const getCsp = (host: string): Record<string, Array<string>> => {
   return defu(
     base,
     runtimeConfig.public.vio.isInProduction ? production : development,
-  )
+  ) as Record<string, Array<string>>
 }
 
-export const getCspAsString = (event: H3Event): string => {
+export const getCspAsString = (event: H3Event) => {
   const host = getHost(event)
   const csp = getCsp(host)
 
