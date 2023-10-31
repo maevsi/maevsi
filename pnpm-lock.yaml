@@ -106,8 +106,8 @@ importers:
         specifier: 7.77.0
         version: 7.77.0
       '@sentry/profiling-node':
-        specifier: 1.2.4
-        version: 1.2.4
+        specifier: 1.2.5
+        version: 1.2.5
       '@sentry/vite-plugin':
         specifier: ^2.9.0
         version: 2.9.0
@@ -4951,8 +4951,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sentry/profiling-node@1.2.4:
-    resolution: {integrity: sha512-3/hqhcwJmsFZ72lkGrL6QgtM0lq7KtMShf3CKocymFXLe7cDlZ4rja4Xz2FHHFSIZ2+xziRwHqxF7+0hFpGAXQ==}
+  /@sentry/profiling-node@1.2.5:
+    resolution: {integrity: sha512-ZDK4zwB5WD0oNB/Tpj4b2mhFnn/ft9IC43i8PvwAWwXo2rxEvbicCEG+4DtXKkJezxTSAFn1j3LiNWYWBMr3AQ==}
     engines: {node: '>=8.0.0'}
     hasBin: true
     requiresBuild: true
