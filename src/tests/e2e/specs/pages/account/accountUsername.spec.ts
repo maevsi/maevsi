@@ -16,7 +16,7 @@ test.describe('account username page', () => {
   // TODO: mock data
   // context('page load', () => {
   // it('loads the page successfully if user exists', () => {
-  //   cy.request('/account/username-that-exists').then((resp) => {
+  //   cy.request('/accounts/username-that-exists').then((resp) => {
   //     expect(resp.status).to.equal(200)
   //     expect(resp.redirectedToUrl).to.equal(undefined)
   //   })
@@ -24,7 +24,7 @@ test.describe('account username page', () => {
   //
   // it('does not find page if user does not exists', () => {
   //   cy.request({
-  //     url: '/account/username-that-does-not-exist',
+  //     url: '/accounts/username-that-does-not-exist',
   //     failOnStatusCode: false,
   //   }).then((resp) => {
   //     expect(resp.status).to.equal(404)
@@ -38,25 +38,25 @@ test.describe('account username page', () => {
   // context('navigation', () => {
   //   it('has working breadcrumbs', () => {
   //     cy.visit({
-  //       url: '/account/dargmuesli',
+  //       url: '/accounts/dargmuesli',
   //     })
   //     cy.get('[data-testid="breadcrumb-prefix-/"]').click()
   //     cy.url().should('equal', `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/`)
   //     cy.visit({
-  //       url: '/account/dargmuesli',
+  //       url: '/accounts/dargmuesli',
   //     })
-  //     cy.get('[data-testid="breadcrumb-prefix-/account"]').click()
+  //     cy.get('[data-testid="breadcrumb-prefix-/accounts"]').click()
   //     cy.url().should(
   //       'equal',
-  //       `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/task/account/sign-in`
+  //       `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/tasks/accounts/sign-in`
   //     )
   //     cy.visit({
-  //       url: '/account/dargmuesli',
+  //       url: '/accounts/dargmuesli',
   //     })
   //     cy.get('[data-testid="breadcrumb-?"]').click()
   //     cy.url().should(
   //       'equal',
-  //       `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/account/dargmuesli`
+  //       `${CYPRESS_BASE_URL(Cypress.env('NODE_ENV'))}/accounts/dargmuesli`
   //     )
   //   })
   // })
@@ -64,7 +64,7 @@ test.describe('account username page', () => {
   // TODO: mock data
   // context('visual regression', () => {
   //   it('looks as before', () => {
-  //     cy.visit('/account/username')
+  //     cy.visit('/accounts/username')
   //     cy.get('[data-is-loading="false"]').should('be.visible')
   //     cy.get('[data-testid="nuxt-cookie-control-control-button"]').should(
   //       'be.visible'

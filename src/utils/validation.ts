@@ -1,3 +1,4 @@
+import type { Validation } from '@vuelidate/core'
 import {
   email,
   helpers,
@@ -20,10 +21,12 @@ import {
 import { useMaevsiStore } from '~/store'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 import { accountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import { eventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { EventVisibility } from '~/gql/generated/graphql'
 
 import type { RouteLocationNormalized } from '#vue-router'
+import { getEventItem } from '~/gql/documents/fragments/eventItem'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 254 // source: https://www.dominicsayers.com/isemail/
@@ -125,9 +128,9 @@ export const isFormValid = async ({
   v$,
   isFormSent,
 }: {
-  v$: any
+  v$: Ref<Validation>
   isFormSent: Ref<boolean>
-}): Promise<boolean> => {
+}) => {
   v$.value.$touch()
 
   const isValid = await v$.value.$validate()
@@ -179,10 +182,8 @@ export const getAccountByUsername = async ({
   username,
 }: {
   $urql: Ref<Client>
-  username?: string
+  username: string
 }) => {
-  if (!username) return
-
   const accountByUsername = await $urql.value
     .query(accountByUsernameQuery, {
       username,
@@ -194,6 +195,33 @@ export const getAccountByUsername = async ({
   }
 
   return getAccountItem(accountByUsername.data?.accountByUsername)
+}
+
+export const getEventByAuthorAccountIdAndSlug = async ({
+  $urql,
+  authorAccountId,
+  slug,
+}: {
+  $urql: Ref<Client>
+  authorAccountId: string
+  slug: string
+}) => {
+  const eventByAuthorAccountIdAndSlug = await $urql.value
+    .query(eventByAuthorAccountIdAndSlugQuery, {
+      authorAccountId,
+      slug,
+    })
+    .toPromise()
+
+  if (eventByAuthorAccountIdAndSlug.error) {
+    throw new Error(
+      getCombinedErrorMessages([eventByAuthorAccountIdAndSlug.error]).join(),
+    )
+  }
+
+  return getEventItem(
+    eventByAuthorAccountIdAndSlug.data?.eventByAuthorAccountIdAndSlug,
+  )
 }
 
 export const validateEventExistence = async (
@@ -244,7 +272,7 @@ export const validateEventSlug =
     signedInAccountId: string
     invert: boolean
     exclude?: string
-  }): ((value: string) => Promise<boolean>) =>
+  }) =>
   async (value: string) => {
     const { $urql } = useNuxtApp()
 
@@ -270,24 +298,22 @@ export const validateEventSlug =
       : !!result.data?.eventIsExisting
   }
 
-export const validateUsername =
-  (invert?: boolean): ((value: string) => Promise<boolean>) =>
-  async (value: string) => {
-    const { $urql } = useNuxtApp()
+export const validateUsername = (invert?: boolean) => async (value: string) => {
+  const { $urql } = useNuxtApp()
 
-    if (!helpers.req(value)) {
-      return true
-    }
-
-    const result = await $urql.value
-      .query(accountByUsernameQuery, {
-        username: value,
-      })
-      .toPromise()
-
-    if (result.error) return false
-
-    return invert
-      ? !result.data?.accountByUsername
-      : !!result.data?.accountByUsername
+  if (!helpers.req(value)) {
+    return true
   }
+
+  const result = await $urql.value
+    .query(accountByUsernameQuery, {
+      username: value,
+    })
+    .toPromise()
+
+  if (result.error) return false
+
+  return invert
+    ? !result.data?.accountByUsername
+    : !!result.data?.accountByUsername
+}

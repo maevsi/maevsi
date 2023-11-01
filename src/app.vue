@@ -26,7 +26,7 @@ import supportedBrowsers from '~/supportedBrowsers'
 const cookieControl = useCookieControl()
 const { t, locale } = useI18n()
 const store = useMaevsiStore()
-const { $dayjs, $pwa } = useNuxtApp()
+const { $pwa } = useNuxtApp()
 const router = useRouter()
 const runtimeConfig = useRuntimeConfig()
 const siteConfig = useSiteConfig()
@@ -35,19 +35,14 @@ const siteConfig = useSiteConfig()
 const isBrowserSupported = ref(true)
 
 // methods
-const init = () => {
+const initialize = () => {
+  initializeAfterNavigationTaskRunner()
+
   if (process.client) {
-    const cookieTimezone = useCookie(TIMEZONE_COOKIE_NAME, {
-      // default: () => undefined, // setting `default` on the client side only does not write the cookie
-      httpOnly: false,
-      sameSite: 'strict',
-      secure: runtimeConfig.public.vio.isInProduction,
-    })
-
-    // @ts-ignore `tz` should be part of `$dayjs` (https://github.com/iamkun/dayjs/issues/2106)
-    cookieTimezone.value = $dayjs.tz.guess()
+    saveTimezoneAsCookie()
   }
-
+}
+const initializeAfterNavigationTaskRunner = () =>
   router.afterEach(async () => {
     while (store.routerAfterEachs.length > 0) {
       const routerAfterEach = store.routerAfterEachs.pop()
@@ -57,7 +52,13 @@ const init = () => {
       await routerAfterEach()
     }
   })
-}
+const saveTimezoneAsCookie = () =>
+  (useCookie(TIMEZONE_COOKIE_NAME, {
+    // default: () => undefined, // setting `default` on the client side only does not write the cookie
+    httpOnly: false,
+    sameSite: 'strict',
+    secure: runtimeConfig.public.vio.isInProduction,
+  }).value = getTimezone())
 
 // lifecycle
 onBeforeMount(() => {
@@ -115,7 +116,7 @@ useSchemaOrg([
   }),
   defineWebPage(),
 ])
-init()
+initialize()
 </script>
 
 <i18n lang="yaml">

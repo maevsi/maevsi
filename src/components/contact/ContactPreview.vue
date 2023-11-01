@@ -32,7 +32,7 @@
       >
         <AppLink
           v-if="isUsernameLinked"
-          :to="localePath(`/account/${contact.accountByAccountId.username}`)"
+          :to="localePath(`/accounts/${contact.accountByAccountId.username}`)"
         >
           {{ `@${contact.accountByAccountId.username}` }}
         </AppLink>

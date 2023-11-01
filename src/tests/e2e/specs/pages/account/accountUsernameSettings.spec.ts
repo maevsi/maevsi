@@ -16,7 +16,7 @@ test.describe('account username settings page', () => {
   // context('page load', () => {
   // it('forbids access when not signed in', () => {
   //   cy.request({
-  //     url: '/account/username-that-exists/settings',
+  //     url: '/accounts/username-that-exists/settings',
   //     failOnStatusCode: false,
   //   }).then((resp) => {
   //     expect(resp.status).to.equal(403)
@@ -26,7 +26,7 @@ test.describe('account username settings page', () => {
   //
   // it('does not find page if user does not exists', () => {
   //   cy.request({
-  //     url: '/account/username-that-does-not-exist/settings',
+  //     url: '/accounts/username-that-does-not-exist/settings',
   //     failOnStatusCode: false,
   //   }).then((resp) => {
   //     expect(resp.status).to.equal(404)
@@ -37,7 +37,7 @@ test.describe('account username settings page', () => {
   //
   // context('visual regression', () => {
   //   it('looks as before', () => {
-  //     cy.visit({ url: '/account/username/settings', failOnStatusCode: false })
+  //     cy.visit({ url: '/accounts/username/settings', failOnStatusCode: false })
   //     cy.get('[data-is-loading="false"]').should('be.visible')
   //     cy.get('[data-testid="nuxt-cookie-control-control-button"]').should(
   //       'be.visible'

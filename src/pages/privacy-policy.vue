@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
     <h1>{{ title }}</h1>
     <div class="vio-prose-scheme">
       <h2>{{ t('summary') }}</h2>
@@ -253,10 +254,35 @@
   </div>
 </template>
 
+<script lang="ts">
+import { usePageBreadcrumb as usePageBreadcrumbHome } from './index.vue'
+
+export const usePageBreadcrumb = () => ({
+  label: {
+    de: 'Datenschutzerklärung',
+    en: 'Privacy policy',
+  },
+  to: '/legal-notice',
+})
+</script>
+
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      usePageBreadcrumbHome(),
+      {
+        current: true,
+        ...usePageBreadcrumb(),
+      },
+    ],
+    locale,
+  ),
+)
 const title = t('title')
 
 // initialization
@@ -563,5 +589,5 @@ en:
   pluginsToolsYouTubeTitle: YouTube with enhanced privacy
   source: Source
   summary: 1. Data protection at a glance
-  title: Privacy Policy
+  title: Privacy policy
 </i18n>

@@ -12,7 +12,7 @@
       is-block
       :to="
         localePath(
-          '/event/' +
+          '/events/' +
             event.accountByAuthorAccountId.username +
             '/' +
             event.slug,

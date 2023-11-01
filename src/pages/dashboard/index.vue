@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
     <h1>
       {{ title }}
     </h1>
@@ -12,7 +13,7 @@
           <h2>{{ t('eventsMine') }}</h2>
           <ButtonColored
             :aria-label="t('eventsMine')"
-            :to="localePath(`/event/${store.signedInUsername}`)"
+            :to="localePath(`/events/${store.signedInUsername}`)"
           >
             {{ t('eventsMine') }}
             <template #prefix>
@@ -32,7 +33,7 @@
           <h2>{{ t('contactsMine') }}</h2>
           <ButtonColored
             :aria-label="t('contactBook')"
-            :to="localePath('/contact')"
+            :to="localePath('/contacts')"
           >
             {{ t('contactBook') }}
             <template #prefix>
@@ -42,7 +43,10 @@
         </section>
         <section class="lg:w-1/2">
           <h2>{{ t('uploadsMine') }}</h2>
-          <ButtonColored :aria-label="t('gallery')" :to="localePath('/upload')">
+          <ButtonColored
+            :aria-label="t('gallery')"
+            :to="localePath('/uploads')"
+          >
             {{ t('gallery') }}
             <template #prefix>
               <IconImages />
@@ -65,14 +69,36 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
+
 import { useMaevsiStore } from '~/store'
 
-const { t } = useI18n()
+export const usePageBreadcrumb = () => ({
+  label: 'Dashboard',
+  to: '/dashboard',
+})
+</script>
+
+<script setup lang="ts">
+const { t, locale } = useI18n()
 const store = useMaevsiStore()
 const localePath = useLocalePath()
+const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
+const breadcrumbItems = defineBreadcrumbItems(
+  getBreadcrumbItemProps(
+    [
+      usePageBreadcrumbHome(),
+      {
+        current: true,
+        ...usePageBreadcrumb(),
+      },
+    ],
+    locale,
+  ),
+)
 const title = t('title')
 
 // initialization

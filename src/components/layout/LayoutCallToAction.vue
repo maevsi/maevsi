@@ -5,7 +5,7 @@
       :aria-label="callToAction"
       :to="
         localePath({
-          path: '/task/account/sign-in',
+          path: '/tasks/accounts/sign-in',
           query: {
             to: route.fullPath,
           },

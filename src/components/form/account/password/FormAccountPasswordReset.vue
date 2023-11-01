@@ -58,7 +58,7 @@ const submit = async () => {
 
   showToast({ title: t('accountPasswordResetSuccess') })
   await navigateTo({
-    path: localePath(`/account`),
+    path: localePath(`/accounts`),
     query: { ...route.query, tab: 'signIn' },
   })
 }

@@ -28,7 +28,7 @@
         <ButtonColored
           :aria-label="t('testNowFree')"
           class="text-lg md:text-xl"
-          :to="localePath('/event')"
+          :to="localePath('/events')"
         >
           {{ t('testNowFree') }}
         </ButtonColored>
@@ -88,7 +88,7 @@
         </p>
         <ButtonColored
           :aria-label="t('testNow')"
-          :to="localePath('/task/event/create')"
+          :to="localePath('/tasks/events/create')"
         >
           {{ t('testNow') }}
         </ButtonColored>
@@ -146,6 +146,17 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+export const usePageBreadcrumb = () => ({
+  ariaLabel: {
+    de: 'Start',
+    en: 'Home',
+  },
+  icon: 'heroicons-outline:home',
+  to: '/',
+})
+</script>
 
 <script setup lang="ts">
 const { t } = useI18n()

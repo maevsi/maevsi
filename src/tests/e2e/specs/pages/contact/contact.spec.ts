@@ -26,7 +26,7 @@ test.beforeEach(async ({ context }) => {
 
 test.describe('visual regression', () => {
   test('looks as before', async ({ page }) => {
-    await page.goto('/contact')
+    await page.goto('/contacts')
     await PAGE_READY({ page })
     await expect(page).toHaveScreenshot({ fullPage: true })
   })
