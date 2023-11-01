@@ -1,3 +1,26 @@
+## [3.6.0](https://github.com/maevsi/maevsi/compare/3.5.0...3.6.0) (2023-11-01)
+
+
+### Features
+
+* **breadcrumbs:** rework account routes ([6f21e70](https://github.com/maevsi/maevsi/commit/6f21e70982ca55d72c9a70a2c80c9963c5e9012d))
+* continue breadcrumb implementation ([ef3f588](https://github.com/maevsi/maevsi/commit/ef3f588e50e3e2ec9be3e6d1faf5a1a837145455))
+* rework breadcrumbs ([#1417](https://github.com/maevsi/maevsi/issues/1417)) ([4007e00](https://github.com/maevsi/maevsi/commit/4007e00626266f49c2a31f79ff5b68d02dfc3f61))
+* **routes:** use plurals ([8690b21](https://github.com/maevsi/maevsi/commit/8690b216ff0cc0e0ef4f1bd68f087801e0314742))
+* **timezone:** rework without header ([63f2b00](https://github.com/maevsi/maevsi/commit/63f2b00ad131bdb86efb86c3de0e818200ab289c))
+
+
+### Bug Fixes
+
+* **breadcrumbs:** remove superfluous icons ([a7003bd](https://github.com/maevsi/maevsi/commit/a7003bdd4fc7b4bb0cb5c7f14298a22b597bac0c))
+* **middleware:** correct plural regex ([ca436cb](https://github.com/maevsi/maevsi/commit/ca436cb4b3d0797d014c89301a4eb9379e9497e8))
+* **middleware:** correct redirect code ([ede4a3e](https://github.com/maevsi/maevsi/commit/ede4a3e4554319787eed2db5858457b8405a6aa0))
+* **nuxt-security:** disable rate limiter temporarily ([1b49aa0](https://github.com/maevsi/maevsi/commit/1b49aa0ac4ef6127f195d025d86ab12703ac7c64))
+* **nuxt:** declare `isInProduction` for development ([6fb7683](https://github.com/maevsi/maevsi/commit/6fb7683aa0e189189d5bf7b029f6620adb9fd2a4))
+* **sentry:** enable only on production ([1a3a17f](https://github.com/maevsi/maevsi/commit/1a3a17f04cf90398cc31146f644f144535fd8f41))
+* **upload:** only display own images ([b7e5dd8](https://github.com/maevsi/maevsi/commit/b7e5dd8b005fb5a14b7aae757963dceb1bf9b442))
+* workaround linting issue ([a14bc35](https://github.com/maevsi/maevsi/commit/a14bc357c92a602779f9aeaba9ed134cbf7ec34a))
+
 ## [3.5.0](https://github.com/maevsi/maevsi/compare/3.4.0...3.5.0) (2023-10-26)
 
 
