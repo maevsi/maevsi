@@ -6,8 +6,8 @@ export const useSentryConfig = () => {
     environment: runtimeConfig.public.vio.environment,
     host: runtimeConfig.public.sentry.host,
     isInProduction: runtimeConfig.public.vio.isInProduction,
-    projectId: runtimeConfig.public.sentry.project.server.id,
-    projectPublicKey: runtimeConfig.public.sentry.project.server.publicKey,
+    projectId: runtimeConfig.public.sentry.project.client.id,
+    projectPublicKey: runtimeConfig.public.sentry.project.client.publicKey,
     release: runtimeConfig.public.vio.releaseName,
     isTesting,
   })
