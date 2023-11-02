@@ -4,21 +4,27 @@ import { consola } from 'consola'
 
 export default defineNitroPlugin((nitroApp) => {
   const runtimeConfig = useRuntimeConfig()
-  const dsn = `https://${runtimeConfig.public.sentry.project.server.publicKey}@${runtimeConfig.public.sentry.host}/${runtimeConfig.public.sentry.project.server.id}`
+  const sentryConfig = getSentryConfig({
+    environment: runtimeConfig.public.vio.environment,
+    host: runtimeConfig.public.sentry.host,
+    isInProduction: runtimeConfig.public.vio.isInProduction,
+    projectId: runtimeConfig.public.sentry.project.server.id,
+    projectPublicKey: runtimeConfig.public.sentry.project.server.publicKey,
+    release: runtimeConfig.public.vio.releaseName,
+    isTesting: isTestingServer(),
+  })
 
-  if (!dsn) {
-    consola.warn('Sentry DSN not set, skipping Sentry initialization')
+  if (!sentryConfig.dsn) {
+    consola.warn(
+      'Sentry configuration is incomplete, skipping Sentry initialization.',
+    )
     return
   }
 
   Sentry.init({
-    dsn,
-    enabled: runtimeConfig.public.vio.isInProduction,
-    environment: runtimeConfig.public.vio.environment,
+    ...sentryConfig,
     integrations: [new ProfilingIntegration()],
     profilesSampleRate: 1.0, // profiling sample rate is relative to traces sample rate
-    release: runtimeConfig.public.vio.releaseName,
-    tracesSampleRate: 1.0, // enable performance monitoring
   })
 
   nitroApp.hooks.hook('error', (error) => {
