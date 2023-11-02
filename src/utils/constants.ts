@@ -1,3 +1,4 @@
+import { DEFAULTS } from '@dargmuesli/nuxt-cookie-control/runtime/types'
 import type { LocaleObject } from 'vue-i18n-routing'
 import type { UnionToTupleRecord } from '~/types/types'
 
@@ -24,6 +25,8 @@ export const BREADCRUMBS_UI = {
   },
 }
 export const CACHE_VERSION = '2EvuFKRRxT'
+export const COOKIE_CONTROL_CONSENT_COOKIE_NAME =
+  DEFAULTS.cookieNameIsConsentGiven
 export const ITEMS_PER_PAGE = 10
 export const ITEMS_PER_PAGE_LARGE = 100
 export const JWT_ALGORITHM = 'RS256'

@@ -1,7 +1,13 @@
 import { type Page, test, expect } from '@playwright/test'
 
-import { TIMEZONE_COOKIE_NAME } from '../../../utils/constants'
-import { TIMEZONE_DEFAULT, COOKIE_CONTROL_DEFAULT } from '../utils/constants'
+import {
+  COOKIE_CONTROL_CONSENT_COOKIE_NAME,
+  TIMEZONE_COOKIE_NAME,
+} from '../../../utils/constants'
+import {
+  COOKIE_CONTROL_CONSENT_COOKIE_DEFAUL_VALUE,
+  TIMEZONE_DEFAULT,
+} from '../utils/constants'
 
 const createDefaultPage = (page: Page) => {
   return {
@@ -38,16 +44,16 @@ export const maevsiTest = test.extend<{
   defaultPage: async ({ page, context }, use) => {
     await context.addCookies([
       {
-        name: TIMEZONE_COOKIE_NAME,
-        value: TIMEZONE_DEFAULT,
         domain: 'localhost',
+        name: TIMEZONE_COOKIE_NAME,
         path: '/',
+        value: TIMEZONE_DEFAULT,
       },
       {
-        name: 'ncc_c',
-        value: COOKIE_CONTROL_DEFAULT,
         domain: 'localhost',
+        name: COOKIE_CONTROL_CONSENT_COOKIE_NAME,
         path: '/',
+        value: COOKIE_CONTROL_CONSENT_COOKIE_DEFAUL_VALUE,
       },
     ])
 

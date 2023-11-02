@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 import { TIMEZONE_COOKIE_NAME } from '../../../../../utils/constants'
 import {
-  COOKIE_CONTROL_DEFAULT,
+  COOKIE_CONTROL_CONSENT_COOKIE_DEFAUL_VALUE,
   PAGE_READY,
   TIMEZONE_DEFAULT,
 } from '../../../utils/constants'
@@ -19,7 +19,7 @@ test.beforeEach(async ({ context }) => {
     },
     {
       name: 'ncc_c',
-      value: COOKIE_CONTROL_DEFAULT,
+      value: COOKIE_CONTROL_CONSENT_COOKIE_DEFAUL_VALUE,
       domain: 'localhost',
       path: '/',
     },
