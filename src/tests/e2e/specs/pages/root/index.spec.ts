@@ -1,11 +1,11 @@
-import { expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
 import { maevsiTest } from '../../../fixtures/maevsiTest'
 import { PAGE_READY } from '../../../utils/constants'
 import { testVisualRegression } from '../../../utils/tests'
 
-maevsiTest.describe('a11y', () => {
+test.describe('a11y', () => {
   maevsiTest(
     'should not have any automatically detectable accessibility issues',
     async ({ defaultPage }) => {
@@ -20,7 +20,7 @@ maevsiTest.describe('a11y', () => {
   )
 })
 
-maevsiTest.describe('internationalization', () => {
+test.describe('internationalization', () => {
   const textEnglish = 'Personal invitations. Proper feedback.'
   const textGerman = 'Persönliche Einladungen. Geordnetes Feedback.'
 
@@ -57,7 +57,7 @@ maevsiTest.describe('internationalization', () => {
   )
 })
 
-maevsiTest.describe('page load', () => {
+test.describe('page load', () => {
   maevsiTest('loads the page successfully', async ({ request }) => {
     const resp = await request.get('/')
     expect(resp.status()).toBe(200)
@@ -72,7 +72,7 @@ maevsiTest.describe('page load', () => {
 
 testVisualRegression('/')
 
-maevsiTest.describe('visual regression', () => {
+test.describe('visual regression', () => {
   maevsiTest('displays the cookie banner', async ({ page }) => {
     await page.goto('/')
     await PAGE_READY({ page, options: { cookieControl: false } })
