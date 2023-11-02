@@ -154,7 +154,7 @@ const submit = async () => {
       const result = await createInvitationMutation.executeMutation({
         invitationInput: {
           contactId: contactId || null,
-          eventId: +props.event.id,
+          eventId: props.event.id,
         },
       })
 
