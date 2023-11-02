@@ -1,3 +1,12 @@
+## [3.6.2](https://github.com/maevsi/maevsi/compare/3.6.1...3.6.2) (2023-11-02)
+
+
+### Bug Fixes
+
+* **csp:** add nuxt icons for development ([5515259](https://github.com/maevsi/maevsi/commit/5515259c72e0f34a0e4c5a9d89fdbcf41b16a036))
+* **form-invitation:** correct event id type ([9b0f6fd](https://github.com/maevsi/maevsi/commit/9b0f6fd558cfee8882f0c5cea845ed07181b92e8))
+* **form-invitation:** correct event id type ([#1424](https://github.com/maevsi/maevsi/issues/1424)) ([254d698](https://github.com/maevsi/maevsi/commit/254d69804db15816eb5d20ebf519d2b566022958))
+
 ## [3.6.1](https://github.com/maevsi/maevsi/compare/3.6.0...3.6.1) (2023-11-02)
 
 
