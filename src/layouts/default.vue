@@ -112,8 +112,8 @@
 </template>
 
 <script setup lang="ts">
-import type { Locale } from '@dargmuesli/nuxt-cookie-control/dist/runtime/types'
-import type { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
+import type { Locale } from '@dargmuesli/nuxt-cookie-control/runtime/types'
+import type { LocaleObject } from 'vue-i18n-routing'
 import type { WritableComputedRef } from 'vue'
 
 const { $dayjs } = useNuxtApp()

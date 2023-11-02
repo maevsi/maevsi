@@ -1,26 +1,22 @@
-import { expect } from '@playwright/test'
-import AxeBuilder from '@axe-core/playwright'
+import { expect, test } from '@playwright/test'
 
 import { maevsiTest } from '../../../fixtures/maevsiTest'
 import { PAGE_READY } from '../../../utils/constants'
-import { testVisualRegression } from '../../../utils/tests'
+import {
+  testA11y,
+  testOgImage,
+  testPageLoad,
+  testVisualRegression,
+} from '../../../utils/tests'
 
-maevsiTest.describe('a11y', () => {
-  maevsiTest(
-    'should not have any automatically detectable accessibility issues',
-    async ({ defaultPage }) => {
-      await defaultPage.goto('/')
+const PAGE_PATH = '/'
 
-      const accessibilityScanResults = await new AxeBuilder({
-        page: defaultPage.page,
-      }).analyze()
+testA11y(PAGE_PATH)
+testOgImage(PAGE_PATH)
+testPageLoad(PAGE_PATH)
+testVisualRegression(PAGE_PATH)
 
-      expect(accessibilityScanResults.violations.length).toEqual(1) // TODO: get rid of all violations
-    },
-  )
-})
-
-maevsiTest.describe('internationalization', () => {
+test.describe('internationalization', () => {
   const textEnglish = 'Personal invitations. Proper feedback.'
   const textGerman = 'Persönliche Einladungen. Geordnetes Feedback.'
 
@@ -57,33 +53,18 @@ maevsiTest.describe('internationalization', () => {
   )
 })
 
-maevsiTest.describe('page load', () => {
-  maevsiTest('loads the page successfully', async ({ request }) => {
-    const resp = await request.get('/')
-    expect(resp.status()).toBe(200)
-  })
+// test.describe('page load', () => {
+// TODO: mock graphql server
+// it('sets the session cookie', () => {
+//   cy.visit('/')
+//   cy.getCookie('__Secure-jwt').should('exist')
+// })
+// })
 
-  // TODO: mock graphql server
-  // it('sets the session cookie', () => {
-  //   cy.visit('/')
-  //   cy.getCookie('__Secure-jwt').should('exist')
-  // })
-})
-
-testVisualRegression('/')
-
-maevsiTest.describe('visual regression', () => {
+test.describe('visual regression', () => {
   maevsiTest('displays the cookie banner', async ({ page }) => {
     await page.goto('/')
     await PAGE_READY({ page, options: { cookieControl: false } })
-    await expect(page).toHaveScreenshot({ fullPage: true })
-  })
-
-  maevsiTest('generates the open graph image', async ({ page }) => {
-    await page.goto('/__og_image__/og.png')
-    await expect(page).toHaveScreenshot({ fullPage: true })
-
-    await page.goto('/de/__og_image__/og.png')
     await expect(page).toHaveScreenshot({ fullPage: true })
   })
 })

@@ -1,11 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { testPageLoad } from '../../utils/tests'
 
-test.describe('page load', () => {
-  test('loads the page successfully', async ({ request }) => {
-    const resp = await request.get('/sitemap.xml')
-    expect(resp.status()).toBe(200)
-  })
-})
+const PAGE_PATH = '/sitemap.xml'
+
+testPageLoad(PAGE_PATH)
 
 test.describe('sitemap', () => {
   test('index', async ({ request }) => {

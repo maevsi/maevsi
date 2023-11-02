@@ -14,7 +14,8 @@
   },
   "pnpm": {
     "overrides": {
-      "nuxt-site-config": "1.2.2"
+      "nuxt-site-config": "1.2.2",
+      "nuxt-schema-org": "3.0.1"
     }
   }
 }
