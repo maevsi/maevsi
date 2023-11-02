@@ -2,6 +2,7 @@ import { type Page, test, expect } from '@playwright/test'
 
 import {
   COOKIE_CONTROL_CONSENT_COOKIE_NAME,
+  TESTING_COOKIE_NAME,
   TIMEZONE_COOKIE_NAME,
 } from '../../../utils/constants'
 import {
@@ -43,6 +44,12 @@ export const maevsiTest = test.extend<{
 }>({
   defaultPage: async ({ page, context }, use) => {
     await context.addCookies([
+      {
+        domain: 'localhost',
+        name: TESTING_COOKIE_NAME,
+        path: '/',
+        value: 'true',
+      },
       {
         domain: 'localhost',
         name: TIMEZONE_COOKIE_NAME,

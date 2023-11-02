@@ -57,6 +57,7 @@ export const REGEX_URL_HTTPS = /^https:\/\//
 export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
 export const STATE_LOADING_IDS_NAME = 'loadingIds'
+export const TESTING_COOKIE_NAME = 'maevsi_is-testing'
 export const TIMEZONE_COOKIE_NAME = 'm_tz'
 export const TITLE_TEMPLATE = ({
   siteName,
