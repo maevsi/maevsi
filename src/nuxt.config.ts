@@ -645,9 +645,7 @@ export default defineNuxtConfig({
       crossOriginEmbedderPolicy: false, // https://stackoverflow.com/questions/71904052/getting-notsameoriginafterdefaultedtosameoriginbycoep-error-with-helmet
       xXSSProtection: '1; mode=block', // TODO: set back to `0` once CSP does not use `unsafe-*` anymore (https://github.com/maevsi/maevsi/issues/1047)
     },
-    nonce: {
-      enabled: true,
-    },
+    nonce: true,
   },
   seo: {
     splash: false,
