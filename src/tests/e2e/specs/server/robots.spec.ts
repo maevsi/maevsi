@@ -1,15 +1,13 @@
 import { test, expect } from '@playwright/test'
+import { testPageLoad } from '../../utils/tests'
 
-test.describe('page load', () => {
-  test('loads the page successfully', async ({ request }) => {
-    const resp = await request.get('/robots.txt')
-    expect(resp.status()).toBe(200)
-  })
-})
+const PAGE_PATH = '/robots.txt'
+
+testPageLoad(PAGE_PATH)
 
 test.describe('robots.txt', () => {
   test('content', async ({ request }) => {
-    const resp = await request.get('/robots.txt')
+    const resp = await request.get(PAGE_PATH)
     expect(await resp.text()).toMatchSnapshot(
       `robots-txt-content-${
         process.env.NODE_ENV === 'production' ? 'production' : 'development'
