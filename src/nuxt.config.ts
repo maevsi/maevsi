@@ -52,6 +52,9 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+  experimental: {
+    typescriptBundlerResolution: true,
+  },
   hooks: {
     'vite:extendConfig': async (config, { isClient }) => {
       config.plugins ||= []
