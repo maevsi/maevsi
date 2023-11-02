@@ -52,6 +52,6 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
     ),
   },
   tailwindcss: {
-    cssPath: join(currentDir, './assets/css/tailwind.css'),
+    cssPath: join(currentDir, '../../assets/css/tailwind.css'),
   },
 }
