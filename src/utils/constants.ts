@@ -1,5 +1,4 @@
-import type { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
-
+import type { LocaleObject } from 'vue-i18n-routing'
 import type { UnionToTupleRecord } from '~/types/types'
 
 export const SITE_NAME = 'maevsi'
