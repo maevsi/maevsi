@@ -1,3 +1,11 @@
+## [3.6.1](https://github.com/maevsi/maevsi/compare/3.6.0...3.6.1) (2023-11-02)
+
+
+### Bug Fixes
+
+* **config:** correct css path ([d5fa0bf](https://github.com/maevsi/maevsi/commit/d5fa0bf2e59dac508fec66a0ee3e0385d03fbaf0))
+* **sentry:** correct project ([285605e](https://github.com/maevsi/maevsi/commit/285605e500978664566dc051c0cc2177714aacf8))
+
 ## [3.6.0](https://github.com/maevsi/maevsi/compare/3.5.0...3.6.0) (2023-11-01)
 
 
