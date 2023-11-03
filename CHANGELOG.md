@@ -1,3 +1,11 @@
+## [3.6.3](https://github.com/maevsi/maevsi/compare/3.6.2...3.6.3) (2023-11-03)
+
+
+### Bug Fixes
+
+* **csp:** elevate iconify to production ([45fd347](https://github.com/maevsi/maevsi/commit/45fd3470c1d82fa14b36fb91d319c32688bfd875))
+* **csp:** elevate iconify to production ([#1425](https://github.com/maevsi/maevsi/issues/1425)) ([7c67755](https://github.com/maevsi/maevsi/commit/7c67755cf82b4a7ac477eee4e699021f425de8bb))
+
 ## [3.6.2](https://github.com/maevsi/maevsi/compare/3.6.1...3.6.2) (2023-11-02)
 
 
