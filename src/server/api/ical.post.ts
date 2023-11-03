@@ -11,7 +11,6 @@ import type {
 } from '~/gql/generated/graphql'
 
 export default defineEventHandler(async (h3Event: H3Event) => {
-  const { res } = h3Event.node
   const body = await readBody(h3Event)
   const host = getHost(h3Event)
 
