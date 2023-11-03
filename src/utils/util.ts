@@ -61,6 +61,7 @@ const getCsp = (host: string) => {
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://cdn.jsdelivr.net/npm/@sec-ant/', // vue-qrcode-reader
       `https://${runtimeConfig.public.sentry.host}/api/${runtimeConfig.public.sentry.project.client.id}/envelope/`, // Sentry
+      'https://api.iconify.design/', // nuxt-icons // TODO: remove, bundle instead
     ],
     'default-src': ["'none'"],
     'font-src': ["'self'", 'data:'], // @fontsource/manrope
@@ -102,7 +103,6 @@ const getCsp = (host: string) => {
       `https://${hostName}:24678/_nuxt/`,
       `ws://${hostName}:24678/_nuxt/`,
       `wss://${hostName}:24678/_nuxt/`,
-      'https://api.iconify.design/', // nuxt-icons
     ],
     'font-src': ['https://fonts.gstatic.com/s/inter/v12/'], // nuxt-og-image
     'frame-ancestors': ["'self'"], // nuxt-og-image
