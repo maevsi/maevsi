@@ -58,7 +58,7 @@
 import { useVuelidate } from '@vuelidate/core'
 import { consola } from 'consola'
 
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp, navigateTo } from '#app'
 import { useLocalePath } from '#i18n'
 import { useRoute } from '#vue-router'
 
