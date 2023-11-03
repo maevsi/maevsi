@@ -6,7 +6,7 @@ test.describe('headers middleware', () => {
 
     expect(resp.headers()['content-security-policy']).toEqual(
       process.env.NODE_ENV === 'production'
-        ? "connect-src 'self' blob: https://localhost:3001 https://postgraphile.localhost:3001 https://tusd.localhost:3001 https://*.analytics.google.com https://*.google-analytics.com https://*.googletagmanager.com https://cdn.jsdelivr.net/npm/@sec-ant/ https://o4506083883352064.ingest.sentry.io/api/4506114193817600/envelope/ https://localhost:3001/cdn-cgi/rum" +
+        ? "connect-src 'self' blob: https://localhost:3001 https://postgraphile.localhost:3001 https://tusd.localhost:3001 https://*.analytics.google.com https://*.google-analytics.com https://*.googletagmanager.com https://cdn.jsdelivr.net/npm/@sec-ant/ https://o4506083883352064.ingest.sentry.io/api/4506114193817600/envelope/ https://api.iconify.design/ https://localhost:3001/cdn-cgi/rum" +
             ";base-uri 'none'" +
             ";default-src 'none'" +
             ";font-src 'self' data:" +
@@ -22,7 +22,7 @@ test.describe('headers middleware', () => {
             ";script-src blob: 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com https://*.googletagmanager.com https://polyfill.io/v3/polyfill.min.js 'unsafe-inline' 'unsafe-eval'" +
             ";style-src 'self' 'unsafe-inline'" +
             ';'
-        : "connect-src 'self' blob: https://maev.si https://postgraphile.maev.si https://tusd.maev.si https://*.analytics.google.com https://*.google-analytics.com https://*.googletagmanager.com https://cdn.jsdelivr.net/npm/@sec-ant/ https://o4506083883352064.ingest.sentry.io/api/4506114193817600/envelope/ http://localhost:24678/_nuxt/ https://localhost:24678/_nuxt/ ws://localhost:24678/_nuxt/ wss://localhost:24678/_nuxt/ https://api.iconify.design/" +
+        : "connect-src 'self' blob: https://maev.si https://postgraphile.maev.si https://tusd.maev.si https://*.analytics.google.com https://*.google-analytics.com https://*.googletagmanager.com https://cdn.jsdelivr.net/npm/@sec-ant/ https://o4506083883352064.ingest.sentry.io/api/4506114193817600/envelope/ https://api.iconify.design/ http://localhost:24678/_nuxt/ https://localhost:24678/_nuxt/ ws://localhost:24678/_nuxt/ wss://localhost:24678/_nuxt/" +
             ";font-src 'self' data: https://fonts.gstatic.com/s/inter/v12/" +
             ";frame-ancestors 'none' 'self'" +
             ";frame-src https://challenges.cloudflare.com 'self'" +
