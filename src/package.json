@@ -61,7 +61,7 @@
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@nuxtjs/html-validator": "1.5.2",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28316280.727dba2",
-    "@nuxtjs/tailwindcss": "6.9.3",
+    "@nuxtjs/tailwindcss": "6.9.4",
     "@nuxtjs/turnstile": "0.6.3",
     "@nuxtseo/module": "2.0.0-beta.40",
     "@pinia/nuxt": "0.5.1",
