@@ -1,3 +1,13 @@
+## [3.6.4](https://github.com/maevsi/maevsi/compare/3.6.3...3.6.4) (2023-11-03)
+
+
+### Bug Fixes
+
+* **date-time:** correct ssr usage ([0230088](https://github.com/maevsi/maevsi/commit/0230088aa68f64737f00b1ccf3044bb6c59899e0))
+* **form-contact:** allow for empty username ([46f0f5c](https://github.com/maevsi/maevsi/commit/46f0f5ce7104c48fad0c6a1a63eb57f467b3e885))
+* several bugs ([#1426](https://github.com/maevsi/maevsi/issues/1426)) ([cf1a009](https://github.com/maevsi/maevsi/commit/cf1a00966b01fed3e58bc38d2437957616e1c29e))
+* **unlock:** import `navigateTo` ([b58debe](https://github.com/maevsi/maevsi/commit/b58debe9a7c51b203253fa817d6d03381125b8dd))
+
 ## [3.6.3](https://github.com/maevsi/maevsi/compare/3.6.2...3.6.3) (2023-11-03)
 
 
