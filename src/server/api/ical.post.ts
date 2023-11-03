@@ -1,6 +1,6 @@
 import { createError, defineEventHandler, readBody, type H3Event } from 'h3'
 import DOMPurify from 'isomorphic-dompurify'
-import ical, * as icalGenerator from 'ical-generator'
+import ical, { ICalCalendarMethod, ICalEventStatus } from 'ical-generator'
 import mustache from 'mustache'
 
 import { getHost, getTextFromHtml } from '~/utils/util'
@@ -11,7 +11,6 @@ import type {
 } from '~/gql/generated/graphql'
 
 export default defineEventHandler(async (h3Event: H3Event) => {
-  const { res } = h3Event.node
   const body = await readBody(h3Event)
   const host = getHost(h3Event)
 
@@ -33,12 +32,16 @@ export default defineEventHandler(async (h3Event: H3Event) => {
   const eventAuthorUsername = body.event.accountByAuthorAccountId.username
   const invitation = body.invitation
 
-  res.setHeader('Content-Type', 'text/calendar')
-  res.setHeader(
-    'Content-Disposition',
-    'attachment; filename="' + eventAuthorUsername + '_' + event.slug + '.ics"',
-  )
-  res.end(getIcalString({ host, event, contact, invitation }))
+  setResponseHeaders(h3Event, {
+    'Content-Type': 'text/calendar',
+    'Content-Disposition':
+      'attachment; filename="' +
+      eventAuthorUsername +
+      '_' +
+      event.slug +
+      '.ics"',
+  })
+  return getIcalString({ host, event, contact, invitation })
 })
 
 export const getIcalString = ({
@@ -79,7 +82,7 @@ export const getIcalString = ({
     url: eventUrl,
     // `scale` is specified as `GREGORIAN` if not set explicitly.
     // `timezone` shouldn't be needed as the database outputs UTC dates.
-    method: icalGenerator.ICalCalendarMethod.REQUEST, // https://tools.ietf.org/html/rfc5546#section-3.2
+    method: ICalCalendarMethod.REQUEST, // https://tools.ietf.org/html/rfc5546#section-3.2
     // method: 'REQUEST', // https://tools.ietf.org/html/rfc5546#section-3.2
     // `ttl` ... I don't think that's needed?
     events: [
@@ -142,7 +145,7 @@ export const getIcalString = ({
         //   name: 'appointment'
         // }],
         url: eventUrl,
-        status: icalGenerator.ICalEventStatus.CONFIRMED,
+        status: ICalEventStatus.CONFIRMED,
         // status: 'CONFIRMED',
         // busystatus: 'busy',
         // created: moment(), // Event creation date.

@@ -34,9 +34,10 @@ export default defineNuxtConfig({
       title: SITE_NAME,
       titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
     },
-    pageTransition: {
-      name: 'layout',
-    },
+    // // TODO: reenable transitions
+    // pageTransition: {
+    //   name: 'layout',
+    // },
   },
   devtools: {
     timeline: {
