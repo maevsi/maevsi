@@ -5,7 +5,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const router = useRouter()
   const sentryConfig = useSentryConfig()
 
-  if (sentryConfig.dsn) {
+  if (!sentryConfig.dsn) {
     consola.warn(
       'Sentry configuration is incomplete, skipping Sentry initialization.',
     )
