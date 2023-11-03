@@ -442,7 +442,7 @@ const cancel = () => {
 //   })
 // }
 const downloadIcal = async () => {
-  const response = await $fetch.raw<Blob>('/api/ical', {
+  const response = await useFetch<string>('/api/ical', {
     body: {
       contact: contact.value,
       event: event.value,
@@ -453,14 +453,18 @@ const downloadIcal = async () => {
   const fileName =
     route.params.username + '_' + route.params.event_name + '.ics'
 
-  if (!response._data) {
+  if (!response.data.value) {
     return await fireAlert({
       level: 'error',
       text: t('iCalFetchError'),
     }) // TODO: add suggestion (https://github.com/maevsi/maevsi/issues/903) })
   }
 
-  downloadJs(response._data, fileName, 'text/calendar')
+  downloadJs(
+    new Blob([response.data.value]), // Blob necessary for charset utf-8
+    fileName,
+    'text/calendar',
+  )
 }
 const print = () => {
   prntr({
