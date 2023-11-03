@@ -150,14 +150,14 @@ const isFormSent = ref(false)
 
 // methods
 const submit = async () => {
-  if (!form.accountUsername) throw new Error('Account username is missing!')
-
   if (!(await isFormValid({ v$, isFormSent }))) return
 
-  const account = await getAccountByUsername({
-    $urql,
-    username: form.accountUsername,
-  })
+  const account = form.accountUsername
+    ? await getAccountByUsername({
+        $urql,
+        username: form.accountUsername,
+      })
+    : undefined
 
   if (form.id) {
     // Edit
