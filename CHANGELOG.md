@@ -1,3 +1,13 @@
+## [3.6.5](https://github.com/maevsi/maevsi/compare/3.6.4...3.6.5) (2023-11-04)
+
+
+### Bug Fixes
+
+* **event:** correct ical encoding ([52e38d8](https://github.com/maevsi/maevsi/commit/52e38d875d25e4a89d8e6b4488d9254904ee4651))
+* ical ([#1427](https://github.com/maevsi/maevsi/issues/1427)) ([6338bac](https://github.com/maevsi/maevsi/commit/6338baca9081eb76c27d8fc0b90443faedfd2bf9))
+* **nuxt:** temporarily disable transitions ([211f8ac](https://github.com/maevsi/maevsi/commit/211f8ac852e15845918f36ffb4e494ec86253634))
+* **sentry:** correct warning ([a1ca714](https://github.com/maevsi/maevsi/commit/a1ca7141c34d915c1ca218dcdb6dc806bf8f5154))
+
 ## [3.6.4](https://github.com/maevsi/maevsi/compare/3.6.3...3.6.4) (2023-11-03)
 
 
