@@ -11,7 +11,7 @@
         class="hidden"
         id-label="input-id"
         title="id"
-        type="number"
+        type="text"
         placeholder="id"
         :value="v$.id"
         @input="form.id = $event"
