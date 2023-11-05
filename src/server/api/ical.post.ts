@@ -82,8 +82,7 @@ export const getIcalString = ({
     url: eventUrl,
     // `scale` is specified as `GREGORIAN` if not set explicitly.
     // `timezone` shouldn't be needed as the database outputs UTC dates.
-    method: ICalCalendarMethod.REQUEST, // https://tools.ietf.org/html/rfc5546#section-3.2
-    // method: 'REQUEST', // https://tools.ietf.org/html/rfc5546#section-3.2
+    method: ICalCalendarMethod.PUBLISH, // https://tools.ietf.org/html/rfc5546#section-3.2
     // `ttl` ... I don't think that's needed?
     events: [
       {
