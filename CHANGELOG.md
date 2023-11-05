@@ -1,3 +1,16 @@
+## [3.7.0](https://github.com/maevsi/maevsi/compare/3.6.5...3.7.0) (2023-11-05)
+
+
+### Features
+
+* **ical:** use method `publish` ([6a5587d](https://github.com/maevsi/maevsi/commit/6a5587d759ff087d91d06fa8f90d214c1f1b1824))
+
+
+### Bug Fixes
+
+* **ical:** correct hostname ([0d9617c](https://github.com/maevsi/maevsi/commit/0d9617c9d24d32ae7d89c85953771504ff7e7525))
+* **ical:** correct hostname ([#1428](https://github.com/maevsi/maevsi/issues/1428)) ([e44748b](https://github.com/maevsi/maevsi/commit/e44748bd14ce22f847ede625c0da115879cd63fb))
+
 ## [3.6.5](https://github.com/maevsi/maevsi/compare/3.6.4...3.6.5) (2023-11-04)
 
 
