@@ -242,36 +242,34 @@
       </FormInput>
     </Form>
     <Modal id="ModalDateTimeStart">
-      <client-only>
-        <div class="flex justify-center">
-          <v-date-picker
-            v-model="v$.start.$model"
-            :is24hr="$i18n.locale !== 'en'"
-            is-dark
-            :locale="$i18n.locale"
-            :masks="{ input: 'YYYY-MM-DD h:mm A' }"
-            :max-date="v$.end.$model"
-            :minute-increment="5"
-            mode="dateTime"
-          />
-        </div>
-      </client-only>
+      <div class="flex justify-center">
+        <DatePicker
+          v-model="v$.start.$model"
+          :first-day-of-week="2"
+          :is24hr="$i18n.locale !== 'en'"
+          :is-dark="colorMode.value === 'dark'"
+          :locale="$i18n.locale"
+          :masks="{ input: 'YYYY-MM-DD h:mm A' }"
+          :max-date="v$.end.$model"
+          :minute-increment="5"
+          mode="dateTime"
+        />
+      </div>
     </Modal>
     <Modal id="ModalDateTimeEnd">
-      <client-only>
-        <div class="flex justify-center">
-          <v-date-picker
-            v-model="v$.end.$model"
-            :is24hr="$i18n.locale !== 'en'"
-            is-dark
-            :locale="$i18n.locale"
-            :masks="{ input: 'YYYY-MM-DD h:mm A' }"
-            :min-date="v$.start.$model"
-            :minute-increment="5"
-            mode="dateTime"
-          />
-        </div>
-      </client-only>
+      <div class="flex justify-center">
+        <DatePicker
+          v-model="v$.end.$model"
+          :first-day-of-week="2"
+          :is24hr="$i18n.locale !== 'en'"
+          :is-dark="colorMode.value === 'dark'"
+          :locale="$i18n.locale"
+          :masks="{ input: 'YYYY-MM-DD h:mm A' }"
+          :min-date="v$.start.$model"
+          :minute-increment="5"
+          mode="dateTime"
+        />
+      </div>
     </Modal>
   </div>
 </template>
@@ -279,6 +277,7 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 import slugify from 'slugify'
+import { DatePicker } from 'v-calendar'
 
 import { useMaevsiStore } from '~/store'
 import { useCreateEventMutation } from '~/gql/documents/mutations/event/eventCreate'
@@ -299,6 +298,7 @@ const localePath = useLocalePath()
 const { locale, t } = useI18n()
 const store = useMaevsiStore()
 const runtimeConfig = useRuntimeConfig()
+const colorMode = useColorMode()
 
 // data
 const form = reactive({
