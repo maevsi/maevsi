@@ -11,6 +11,7 @@ import {
 import { Client } from '@urql/core'
 import { consola } from 'consola'
 import type { Ref } from 'vue'
+import type { RouteLocationNormalized } from 'vue-router'
 
 import {
   REGEX_SLUG,
@@ -24,8 +25,6 @@ import { accountByUsernameQuery } from '~/gql/documents/queries/account/accountB
 import { eventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { EventVisibility } from '~/gql/generated/graphql'
-
-import type { RouteLocationNormalized } from '#vue-router'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
