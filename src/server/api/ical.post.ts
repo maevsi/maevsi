@@ -3,16 +3,16 @@ import DOMPurify from 'isomorphic-dompurify'
 import ical, { ICalCalendarMethod, ICalEventStatus } from 'ical-generator'
 import mustache from 'mustache'
 
-import { getHost, getTextFromHtml } from '~/utils/util'
+import { getTextFromHtml } from '~/utils/util'
 import type {
   ContactItemFragment,
   EventItemFragment,
   InvitationItemFragment,
 } from '~/gql/generated/graphql'
+import { SITE_URL } from '~/utils/constants'
 
 export default defineEventHandler(async (h3Event: H3Event) => {
   const body = await readBody(h3Event)
-  const host = getHost(h3Event)
 
   const bodyChecks = [
     { property: undefined, name: 'Body' },
@@ -41,32 +41,33 @@ export default defineEventHandler(async (h3Event: H3Event) => {
       event.slug +
       '.ics"',
   })
-  return getIcalString({ host, event, contact, invitation })
+  return getIcalString({ contact, event, invitation, siteUrl: SITE_URL })
 })
 
 export const getIcalString = ({
-  host,
-  event,
   contact,
+  event,
   invitation,
+  siteUrl,
 }: {
-  host: string
+  contact?: ContactItemFragment
   event: Pick<
     EventItemFragment,
     | 'accountByAuthorAccountId'
     | 'description'
     | 'end'
+    | 'id'
     | 'location'
     | 'name'
     | 'slug'
     | 'start'
   >
-  contact?: ContactItemFragment
   invitation?: InvitationItemFragment
+  siteUrl: string
 }) => {
   const eventAuthorUsername = event.accountByAuthorAccountId?.username
-  const userEventPath = eventAuthorUsername + '/' + event.slug
-  const eventUrl = 'https://' + host + '/events/' + userEventPath
+  const userEventPath = `${eventAuthorUsername}/${event.slug}`
+  const eventUrl = `${siteUrl}/events/${userEventPath}`
   const eventDescriptionHtml = mustache.render(
     event.description ? `${eventUrl}\n${event.description}` : '',
     {
@@ -75,19 +76,19 @@ export const getIcalString = ({
       invitation,
     },
   )
+  const hostname = new URL(siteUrl).hostname
 
   return ical({
     // `prodId` is generated automatically.
-    name: userEventPath.replace('/', '_'),
-    url: eventUrl,
+    // name: userEventPath.replace('/', '_'),
+    // url: eventUrl,
     // `scale` is specified as `GREGORIAN` if not set explicitly.
     // `timezone` shouldn't be needed as the database outputs UTC dates.
-    method: ICalCalendarMethod.REQUEST, // https://tools.ietf.org/html/rfc5546#section-3.2
-    // method: 'REQUEST', // https://tools.ietf.org/html/rfc5546#section-3.2
+    method: ICalCalendarMethod.PUBLISH, // https://tools.ietf.org/html/rfc5546#section-3.2
     // `ttl` ... I don't think that's needed?
     events: [
       {
-        id: userEventPath,
+        id: event.id,
         // sequence: ,
         start: event.start, // Appointment date of beginning, required.
         ...(event.end && { end: event.end }),
@@ -119,7 +120,7 @@ export const getIcalString = ({
         ...(event.location && { location: event.location }),
         organizer: {
           name: eventAuthorUsername,
-          email: eventAuthorUsername + '@' + host,
+          email: eventAuthorUsername + '@' + hostname,
           // mailto: 'explicit@mailto.com'
         },
         // attendees: [{

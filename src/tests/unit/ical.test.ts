@@ -14,9 +14,8 @@ afterEach(() => {
 test('gets ical string', () => {
   expect(
     getIcalString({
-      host: 'maevsi.test',
       event: {
-        // id: '1',
+        id: '1',
         accountByAuthorAccountId: {
           id: 1,
           username: 'authorUsername',
@@ -33,17 +32,15 @@ test('gets ical string', () => {
         start: new Date(),
         // visibility: EventVisibility.Public,
       },
+      siteUrl: 'https://maevsi.test',
     }),
   ).toBe(
     `BEGIN:VCALENDAR\r
 VERSION:2.0\r
 PRODID:-//sebbo.net//ical-generator//EN\r
-URL:https://maevsi.test/events/authorUsername/slug\r
-METHOD:REQUEST\r
-NAME:authorUsername_slug\r
-X-WR-CALNAME:authorUsername_slug\r
+METHOD:PUBLISH\r
 BEGIN:VEVENT\r
-UID:authorUsername/slug\r
+UID:1\r
 SEQUENCE:0\r
 DTSTAMP:19700101T000000Z\r
 DTSTART:19700101T000000Z\r
