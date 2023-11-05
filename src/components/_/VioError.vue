@@ -1,14 +1,16 @@
 <template>
-  <h1>{{ `${statusCode} - ${statusReason}` }}</h1>
   <div>
-    {{ description }}
+    <h1>{{ `${statusCode} - ${statusReason}` }}</h1>
+    <div>
+      {{ description }}
+    </div>
+    <!-- eslint-disable vue/no-v-html -->
+    <div
+      v-if="stack && !runtimeConfig.public.vio.isInProduction"
+      v-html="stack"
+    />
+    <!-- eslint-enable vue/no-v-html -->
   </div>
-  <!-- eslint-disable vue/no-v-html -->
-  <pre
-    v-if="stack && !runtimeConfig.public.vio.isInProduction"
-    v-html="stack"
-  />
-  <!-- eslint-enable vue/no-v-html -->
 </template>
 
 <script setup lang="ts">
