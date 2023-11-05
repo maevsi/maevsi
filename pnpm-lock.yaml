@@ -380,8 +380,8 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(vue@3.3.7)
       vue-qrcode-reader:
-        specifier: 5.4.0
-        version: 5.4.0
+        specifier: 5.4.1
+        version: 5.4.1
       vue-router:
         specifier: 4.2.5
         version: 4.2.5(vue@3.3.7)
@@ -7244,13 +7244,6 @@ packages:
 
   /balanced-match@2.0.0:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
-    dev: true
-
-  /barcode-detector@2.1.0:
-    resolution: {integrity: sha512-i9L6Kvz8M7jK+3NHFSxtzUTcHeB6RTztm/dPlfMuz5giRvfp8XKje7yoPU0dIg98WQ8aD7gsbXHg6JzHsrzcaw==}
-    dependencies:
-      '@types/dom-webcodecs': 0.1.9
-      zxing-wasm: 1.0.0-rc.3
     dev: true
 
   /barcode-detector@2.1.1:
@@ -17885,11 +17878,11 @@ packages:
       vue: 3.3.7(typescript@5.2.2)
     dev: true
 
-  /vue-qrcode-reader@5.4.0:
-    resolution: {integrity: sha512-7ePS41r7Q8BtiPxutFW/N7SeQd5YQe3jdZ1CG/kBGPWYB/RNN0R5MvDV3i4x3aboM8wdvjGFnrN76CXw5HvNew==}
+  /vue-qrcode-reader@5.4.1:
+    resolution: {integrity: sha512-jwETIaRdumSCnXOpp0BkpZW8sySNFUfIPNOFa8oHAEmoSSdKK/ub5C1+3vMwokjU8iNERR2v/YhfBdcWDe0s5A==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      barcode-detector: 2.1.0
+      barcode-detector: 2.1.1
       webrtc-adapter: 8.2.3
     dev: true
 
@@ -18522,12 +18515,6 @@ packages:
       archiver-utils: 4.0.1
       compress-commons: 5.0.1
       readable-stream: 3.6.2
-    dev: true
-
-  /zxing-wasm@1.0.0-rc.3:
-    resolution: {integrity: sha512-rNpPqQ6w/Dym7yK3hMJMMS5DK36J8wCDXYW5FVfW3k83NYT88MTi26AtJE3zIvqOpFr5C0khTjbWfEvJTw4MDA==}
-    dependencies:
-      '@types/emscripten': 1.39.9
     dev: true
 
   /zxing-wasm@1.0.0-rc.4:
