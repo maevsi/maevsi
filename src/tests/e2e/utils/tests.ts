@@ -43,6 +43,9 @@ export const testVisualRegression = (url: string) =>
     maevsiTest('looks as before', async ({ defaultPage }) => {
       await defaultPage.goto(url)
 
-      await expect(defaultPage.page).toHaveScreenshot({ fullPage: true })
+      await expect(defaultPage.page).toHaveScreenshot({
+        fullPage: true,
+        timeout: 10000,
+      })
     })
   })

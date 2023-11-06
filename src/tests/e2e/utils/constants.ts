@@ -20,15 +20,6 @@ export const PAGE_READY = async ({
     ).toBeVisible()
   }
 
-  // if (
-  //   process.env.NODE_ENV === 'development' &&
-  //   (!options || options.devTools !== false)
-  // ) {
-  //   await expect(
-  //     page.getByRole('button', { name: 'Toggle Nuxt DevTools' }),
-  //   ).toBeVisible()
-  // }
-
   if (!options || options.isLoading !== false) {
     await expect(page.getByTestId('is-loading')).toHaveAttribute(
       'data-is-loading',
