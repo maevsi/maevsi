@@ -1,3 +1,18 @@
+## [3.8.0](https://github.com/maevsi/maevsi/compare/3.7.0...3.8.0) (2023-11-06)
+
+
+### Features
+
+* **calendar:** set color mode ([8c833d2](https://github.com/maevsi/maevsi/commit/8c833d222acaaacd09e06cfe0e4dca741ed0141e))
+
+
+### Bug Fixes
+
+* **devtools:** correct imports ([3beb31c](https://github.com/maevsi/maevsi/commit/3beb31c0b3de50e3a7f56727aa0cdf786190af08))
+* **devtools:** correct imports ([#1432](https://github.com/maevsi/maevsi/issues/1432)) ([2a44395](https://github.com/maevsi/maevsi/commit/2a443951ad3644465a763ff51559064fe28b3dfa))
+* **form:** correct id input type ([54b5a77](https://github.com/maevsi/maevsi/commit/54b5a7729f5cc7d398ff19d77ee6bcfefa2cbc8c))
+* **vio-error:** add single root wrapper ([d5fdb37](https://github.com/maevsi/maevsi/commit/d5fdb37ba09a61ad916c694fa58a8ab11ede75c7))
+
 ## [3.7.0](https://github.com/maevsi/maevsi/compare/3.6.5...3.7.0) (2023-11-05)
 
 
