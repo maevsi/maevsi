@@ -48,12 +48,10 @@ RUN pnpm install --offline
 ########################
 # Build for Node deployment.
 
-FROM base-image AS build-node
+FROM prepare AS build-node
 
 ARG SENTRY_AUTH_TOKEN
 ENV SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
-
-COPY --from=prepare /srv/app/ ./
 
 ENV NODE_ENV=production
 RUN pnpm --dir src run build:node
@@ -62,12 +60,10 @@ RUN pnpm --dir src run build:node
 # ########################
 # # Build for static deployment.
 
-# FROM base-image AS build-static
+# FROM prepare AS build-static
 
 # ARG SITE_URL=http://localhost:3002
 # ENV SITE_URL=${SITE_URL}
-
-# COPY --from=prepare /srv/app/ ./
 
 # ENV NODE_ENV=production
 # RUN pnpm --dir src run build:static
@@ -76,9 +72,7 @@ RUN pnpm --dir src run build:node
 ########################
 # Nuxt: lint
 
-FROM base-image AS lint
-
-COPY --from=prepare /srv/app/ ./
+FROM prepare AS lint
 
 RUN pnpm --dir src run lint
 
@@ -86,34 +80,39 @@ RUN pnpm --dir src run lint
 ########################
 # Nuxt: test (unit)
 
-FROM base-image AS test-unit
-
-COPY --from=prepare /srv/app/ ./
+FROM prepare AS test-unit
 
 RUN pnpm --dir src run test
 
 
 ########################
+# Nuxt: test (e2e, base-image)
+
+FROM mcr.microsoft.com/playwright:v1.39.0@sha256:dccb9c6518090a100aaa820ff0b1d0c7ec12154f80696e7799b5cd9232daa0b0 AS test-e2e-base-image
+
+# The `CI` environment variable must be set for pnpm to run in headless mode
+ENV CI=true
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+
+WORKDIR /srv/app/
+
+RUN corepack enable
+
+
+########################
 # Nuxt: test (e2e)
 
-FROM mcr.microsoft.com/playwright:v1.39.0@sha256:dccb9c6518090a100aaa820ff0b1d0c7ec12154f80696e7799b5cd9232daa0b0 AS test-e2e_base
+FROM test-e2e-base-image AS test-e2e_development
 
 ARG UNAME=e2e
 ARG UID=1000
 ARG GID=1000
 
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
 ENV NODE_ENV=development
-ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-
-WORKDIR /srv/app/
 
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
-RUN corepack enable \
-    # user
-    && groupadd -g $GID -o $UNAME \
+RUN groupadd -g $GID -o $UNAME \
     && useradd -m -l -u $UID -g $GID -o -s /bin/bash $UNAME
 
 USER $UNAME
@@ -127,15 +126,7 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 ########################
 # Nuxt: test (e2e, preparation)
 
-FROM mcr.microsoft.com/playwright:v1.39.0@sha256:dccb9c6518090a100aaa820ff0b1d0c7ec12154f80696e7799b5cd9232daa0b0 AS test-e2e-prepare
-
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-
-WORKDIR /srv/app/
-
-RUN corepack enable
+FROM test-e2e-base-image AS test-e2e-prepare
 
 COPY --from=prepare /srv/app/ ./
 
@@ -145,17 +136,9 @@ RUN pnpm rebuild -r
 # ########################
 # # Nuxt: test (e2e, development)
 
-# FROM mcr.microsoft.com/playwright:v1.38.0@sha256:9f1ebfec94143da0084f4b8113980fafa07be4fe89181f618671b12f193334f3 AS test-e2e-dev
+# FROM test-e2e-prepare AS test-e2e-dev
 
-# # The `CI` environment variable must be set for pnpm to run in headless mode
-# ENV CI=true
 # ENV NODE_ENV=development
-
-# WORKDIR /srv/app/
-
-# RUN corepack enable
-
-# COPY --from=test-e2e-prepare /srv/app/ ./
 
 # RUN pnpm --dir src run test:e2e:server:dev
 
@@ -163,16 +146,8 @@ RUN pnpm rebuild -r
 ########################
 # Nuxt: test (e2e, node)
 
-FROM mcr.microsoft.com/playwright:v1.39.0@sha256:dccb9c6518090a100aaa820ff0b1d0c7ec12154f80696e7799b5cd9232daa0b0 AS test-e2e-node
+FROM test-e2e-prepare AS test-e2e-node
 
-# The `CI` environment variable must be set for pnpm to run in headless mode
-ENV CI=true
-
-WORKDIR /srv/app/
-
-RUN corepack enable
-
-COPY --from=test-e2e-prepare /srv/app/ ./
 COPY --from=build-node /srv/app/src/.output ./src/.output
 
 RUN pnpm --dir src run test:e2e:server:node
@@ -181,16 +156,8 @@ RUN pnpm --dir src run test:e2e:server:node
 # ########################
 # # Nuxt: test (e2e, static)
 
-# FROM mcr.microsoft.com/playwright:v1.38.0@sha256:9f1ebfec94143da0084f4b8113980fafa07be4fe89181f618671b12f193334f3 AS test-e2e-static
+# FROM test-e2e-prepare AS test-e2e-static
 
-# # The `CI` environment variable must be set for pnpm to run in headless mode
-# ENV CI=true
-
-# WORKDIR /srv/app/
-
-# RUN corepack enable
-
-# COPY --from=test-e2e-prepare /srv/app/ ./
 # COPY --from=build-static /srv/app/src/.output/public ./src/.output/public
 
 # RUN pnpm --dir src run test:e2e:server:static
@@ -234,15 +201,13 @@ COPY --from=test-e2e-node /srv/app/package.json /tmp/package.json
 # Provide a web server.
 # Requires node (cannot be static) as the server acts as backend too.
 
-FROM base-image AS production
+FROM collect AS production
 
 ENV NODE_ENV=production
 
 # Update dependencies.
 RUN apk update \
     && apk upgrade --no-cache
-
-COPY --from=collect /srv/app/ ./
 
 ENTRYPOINT ["pnpm"]
 CMD ["run", "start:node"]
