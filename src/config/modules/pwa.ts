@@ -17,7 +17,7 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
     manifest: {
       background_color: colors.gray['800'],
       categories: ['events'],
-      description: 'Find events, guests and friends.',
+      description: 'Find events, guests and friends 💙❤️💚',
       dir: 'ltr',
       display: 'standalone',
       display_override: ['window-controls-overlay', 'standalone', 'browser'],
