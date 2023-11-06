@@ -1,3 +1,11 @@
+## [3.9.1](https://github.com/maevsi/maevsi/compare/3.9.0...3.9.1) (2023-11-06)
+
+
+### Performance Improvements
+
+* **ci:** decrease build time ([64acdc2](https://github.com/maevsi/maevsi/commit/64acdc21bf96c4f860c3ba3703442ad0e8277561))
+* **ci:** decrease build time ([#1438](https://github.com/maevsi/maevsi/issues/1438)) ([cc71d62](https://github.com/maevsi/maevsi/commit/cc71d62972cf6b591fa5194a3f9d5e7c08fb1592))
+
 ## [3.9.0](https://github.com/maevsi/maevsi/compare/3.8.0...3.9.0) (2023-11-06)
 
 
