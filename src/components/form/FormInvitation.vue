@@ -189,19 +189,24 @@ const contactsFiltered = computed(() => {
 
   const searchStringParts = form.searchString.split(' ')
   const allContactsFiltered = contacts.value?.filter(async (contact) => {
-    const contactAccountQuery = await $urql.value
-      .query(accountByIdQuery, {
-        id: contact.accountId,
-      })
-      .toPromise()
+    // TODO: make more performant
+    const contactAccountQuery = contact.accountId
+      ? await $urql.value
+          .query(accountByIdQuery, {
+            id: contact.accountId,
+          })
+          .toPromise()
+      : undefined
 
-    if (contactAccountQuery.error) {
+    if (contactAccountQuery?.error) {
       throw new Error(
         getCombinedErrorMessages([contactAccountQuery.error]).join(),
       )
     }
 
-    const contactAccount = getAccountItem(contactAccountQuery.data?.accountById)
+    const contactAccount = getAccountItem(
+      contactAccountQuery?.data?.accountById,
+    )
 
     if (!contactAccount) {
       throw new Error('Contact account not found!')
