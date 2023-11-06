@@ -1,3 +1,16 @@
+## [3.9.0](https://github.com/maevsi/maevsi/compare/3.8.0...3.9.0) (2023-11-06)
+
+
+### Features
+
+* **meta:** add hearts to description ([25722e5](https://github.com/maevsi/maevsi/commit/25722e5a7d722501faedc707e1e643ffdaccfc77))
+* **meta:** add hearts to description ([#1435](https://github.com/maevsi/maevsi/issues/1435)) ([d94bb38](https://github.com/maevsi/maevsi/commit/d94bb38889a89402391017bb9cd7be83db629496))
+
+
+### Bug Fixes
+
+* **form-invitation:** correct account search ([04f2aae](https://github.com/maevsi/maevsi/commit/04f2aae56669f2a5875d47cc1acaa88f4e8aacac))
+
 ## [3.8.0](https://github.com/maevsi/maevsi/compare/3.7.0...3.8.0) (2023-11-06)
 
 
