@@ -1,7 +1,0 @@
-# START nuxt-simple-robots (indexing disabled)
-User-agent: *
-Disallow: /
-
-# DEVELOPMENT HINTS: Indexing is blocked by site config set by system.
-
-# END nuxt-simple-robots

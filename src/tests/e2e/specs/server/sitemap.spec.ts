@@ -11,11 +11,7 @@ test.describe('sitemap', () => {
     const text = await resp.text()
 
     for (const lang of ['en', 'de']) {
-      expect(text).toContain(
-        `http://localhost:${
-          process.env.NODE_ENV === 'production' ? '3001' : '3000'
-        }/${lang}-sitemap.xml`,
-      )
+      expect(text).toContain(`http://localhost:3001/${lang}-sitemap.xml`)
     }
   })
 
@@ -24,9 +20,7 @@ test.describe('sitemap', () => {
       const resp = await request.get(`/${lang}-sitemap.xml`)
       const text = await resp.text()
       expect(text.replace(/\n.+<\/lastmod>/g, '')).toMatchSnapshot(
-        `sitemap-content-${lang}-${
-          process.env.NODE_ENV === 'production' ? 'production' : 'development'
-        }.txt`,
+        `sitemap-content-${lang}.xml`,
       )
     }
   })
