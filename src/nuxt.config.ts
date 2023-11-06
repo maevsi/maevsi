@@ -40,9 +40,10 @@ export default defineNuxtConfig({
     // },
   },
   devtools: {
-    timeline: {
-      enabled: true,
-    },
+    // // TODO: enable once upstream bug is fixed (https://github.com/nuxt/devtools/issues/507)
+    // timeline: {
+    //   enabled: true,
+    // },
   },
   experimental: {
     typescriptBundlerResolution: true,
