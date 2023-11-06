@@ -58,8 +58,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import { consola } from 'consola'
 
-import { useLocalePath } from '#i18n'
-
 import {
   eventUnlockMutation as eventUnlockMutationImported,
   useEventUnlockMutation,
