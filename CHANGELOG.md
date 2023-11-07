@@ -1,3 +1,16 @@
+## [3.10.0](https://github.com/maevsi/maevsi/compare/3.9.1...3.10.0) (2023-11-07)
+
+
+### Features
+
+* **urql:** add offline support ([699a324](https://github.com/maevsi/maevsi/commit/699a324e64d70ae60b457dd67cab6195e2bcda33))
+
+
+### Bug Fixes
+
+* **event:** unify validation ([ca20a27](https://github.com/maevsi/maevsi/commit/ca20a272ab1d0c5de3dc957e7aaa1500a810f0fb))
+* **event:** unify validation ([#1439](https://github.com/maevsi/maevsi/issues/1439)) ([ac12f2a](https://github.com/maevsi/maevsi/commit/ac12f2a01f66c3bdad9939e85a37950b552c2686))
+
 ## [3.9.1](https://github.com/maevsi/maevsi/compare/3.9.0...3.9.1) (2023-11-06)
 
 
