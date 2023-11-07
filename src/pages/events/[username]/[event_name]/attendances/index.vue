@@ -1,6 +1,6 @@
 <template>
   <Loader :api="api" indicator="ping">
-    <div class="flex flex-col gap-4">
+    <div v-if="event" class="flex flex-col gap-4">
       <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
       <h1>
         {{ t('title') }}
@@ -55,6 +55,7 @@
         </template>
       </Modal>
     </div>
+    <Error v-else :status-code="403" />
   </Loader>
 </template>
 
@@ -94,16 +95,7 @@ export default {
 <script setup lang="ts">
 definePageMeta({
   async validate(route) {
-    const store = useMaevsiStore()
-
-    await validateEventExistence(route)
-
-    // TODO: extract to permission service
-    if (route.params.username !== store.signedInUsername) {
-      return abortNavigation({ statusCode: 403 })
-    }
-
-    return true
+    return await validateEventExistence(route)
   },
 })
 
@@ -158,7 +150,9 @@ const isNfcError = computed(() => {
   )
 })
 const title = computed(() => {
-  if (!event.value) return t('title')
+  if (api.value.isFetching) return t('globalLoading')
+
+  if (!event.value) return '403'
 
   return `${t('title')} · ${event.value.name}`
 })
