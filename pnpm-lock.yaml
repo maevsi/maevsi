@@ -86,8 +86,8 @@ importers:
         specifier: 1.5.2
         version: 1.5.2(rollup@2.79.1)
       '@nuxtjs/i18n':
-        specifier: npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28321928.898d3c8
-        version: /@nuxtjs/i18n-edge@8.0.0-rc.5-28321928.898d3c8(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.8)
+        specifier: npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28322235.b889e39
+        version: /@nuxtjs/i18n-edge@8.0.0-rc.5-28322235.b889e39(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.8)
       '@nuxtjs/tailwindcss':
         specifier: 6.9.4
         version: 6.9.4(rollup@2.79.1)(webpack@5.89.0)
@@ -146,11 +146,11 @@ importers:
         specifier: 1.4.6
         version: 1.4.6
       '@types/html-to-text':
-        specifier: 9.0.3
-        version: 9.0.3
+        specifier: 9.0.4
+        version: 9.0.4
       '@types/lodash-es':
-        specifier: 4.17.10
-        version: 4.17.10
+        specifier: 4.17.11
+        version: 4.17.11
       '@types/mustache':
         specifier: 4.2.4
         version: 4.2.4
@@ -4126,8 +4126,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n-edge@8.0.0-rc.5-28321928.898d3c8(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.8):
-    resolution: {integrity: sha512-GahOHee234BecSFDayFqaJNx97o3xNw/oTc9ytj7HO6GxQxRN2TPDxALg7ABtkI/vtCpUMpmpf0itA3xZJ2rGQ==}
+  /@nuxtjs/i18n-edge@8.0.0-rc.5-28322235.b889e39(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.8):
+    resolution: {integrity: sha512-aJfiTEPFtDZJvwwN0R8sfHJsQt3k+9+U5jPICuKT8X9oztZoxA4VCL4x0R9SLj3dqdWiMZeQ+zT4gWMlNOWa/w==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/shared': 9.5.0
@@ -5478,8 +5478,8 @@ packages:
       '@types/node': 20.8.10
     dev: true
 
-  /@types/html-to-text@9.0.3:
-    resolution: {integrity: sha512-ImzcLdHN3+zghCoZcA+vWd/t0GhM10S7lnvSq9YA6lbo4HGK10WIJ7n+NI7mbeVZeUtgrmK5fXM66kZcws1oHA==}
+  /@types/html-to-text@9.0.4:
+    resolution: {integrity: sha512-pUY3cKH/Nm2yYrEmDlPR1mR7yszjGx4DrwPjQ702C4/D5CwHuZTgZdIdwPkRbcuhs7BAh2L5rg3CL5cbRiGTCQ==}
     dev: true
 
   /@types/http-proxy@1.17.13:
@@ -5510,8 +5510,8 @@ packages:
       '@types/node': 20.8.10
     dev: true
 
-  /@types/lodash-es@4.17.10:
-    resolution: {integrity: sha512-YJP+w/2khSBwbUSFdGsSqmDvmnN3cCKoPOL7Zjle6s30ZtemkkqhjVfFqGwPN7ASil5VyjE2GtyU/yqYY6mC0A==}
+  /@types/lodash-es@4.17.11:
+    resolution: {integrity: sha512-eCw8FYAWHt2DDl77s+AMLLzPn310LKohruumpucZI4oOFJkIgnlaJcy23OKMJxx4r9PeTF13Gv6w+jqjWQaYUg==}
     dependencies:
       '@types/lodash': 4.14.200
     dev: true
