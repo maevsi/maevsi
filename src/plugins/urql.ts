@@ -8,7 +8,7 @@ import {
 // import type { Data } from '@urql/exchange-graphcache'
 import {
   type Cache,
-  cacheExchange as getCacheExchange,
+  offlineExchange as getOfflineExchange,
 } from '@urql/exchange-graphcache'
 // import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
@@ -120,7 +120,15 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     },
   }
 
-  const cacheExchange = getCacheExchange(graphCacheConfig)
+  const cacheExchange = process.client
+    ? getOfflineExchange({
+        ...graphCacheConfig,
+        schema,
+        storage: (
+          await import('@urql/exchange-graphcache/default-storage')
+        ).makeDefaultStorage(),
+      })
+    : undefined
 
   const clientOptions: ClientOptions = {
     requestPolicy: 'cache-and-network',
@@ -145,7 +153,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     url: getServiceHref({ name: 'postgraphile', port: 5000 }) + '/graphql',
     exchanges: [
       ...(runtimeConfig.public.vio.isInProduction ? [] : [devtoolsExchange]),
-      cacheExchange,
+      ...(cacheExchange ? [cacheExchange] : []),
       ssrExchange, // `ssrExchange` must be before `fetchExchange`
       fetchExchange,
     ],
