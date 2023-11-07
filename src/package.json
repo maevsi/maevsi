@@ -81,7 +81,7 @@
     "@types/dompurify": "3.0.5",
     "@types/downloadjs": "1.4.6",
     "@types/html-to-text": "9.0.4",
-    "@types/lodash-es": "4.17.10",
+    "@types/lodash-es": "4.17.11",
     "@types/mustache": "4.2.4",
     "@types/node": "20.8.10",
     "@types/pg": "8.10.8",
