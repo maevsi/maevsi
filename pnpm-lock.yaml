@@ -140,8 +140,8 @@ importers:
         specifier: 2.1.12
         version: 2.1.12(@tiptap/core@2.1.12)(@tiptap/pm@2.1.12)(vue@3.3.8)
       '@types/dompurify':
-        specifier: 3.0.4
-        version: 3.0.4
+        specifier: 3.0.5
+        version: 3.0.5
       '@types/downloadjs':
         specifier: 1.4.5
         version: 1.4.5
@@ -5429,8 +5429,8 @@ packages:
     resolution: {integrity: sha512-lOqlovxh4zB7p59rJwej8XG3uo0kv+hR+59Ky2MftcNS70ULWnWc6I2ZIM0xKcPFyvwU/DpRsTeFm8llayr5bA==}
     dev: true
 
-  /@types/dompurify@3.0.4:
-    resolution: {integrity: sha512-1Jk8S/IRzNSbwQRbuGuLFHviwxQ8pX81ZEW3INY9432Cwb4VedkBYan8gSIXVLOLHBtimOmUTEYphjRVmo+30g==}
+  /@types/dompurify@3.0.5:
+    resolution: {integrity: sha512-1Wg0g3BtQF7sSb27fJQAKck1HECM6zV1EB66j8JH9i3LCjYabJa0FSdiSgsD5K/RbrsR0SiraKacLB+T8ZVYAg==}
     dependencies:
       '@types/trusted-types': 2.0.5
     dev: true
@@ -11235,7 +11235,7 @@ packages:
   /isomorphic-dompurify@1.9.0:
     resolution: {integrity: sha512-DehfjDqzqDIX6ltkpcpXXzOOUm5Qi+3OioI0ZMzZh1C7xTsUpPMVT/UCaPmYXnOf4PjbTDA1tAyxnt8rBkYudA==}
     dependencies:
-      '@types/dompurify': 3.0.4
+      '@types/dompurify': 3.0.5
       dompurify: 3.0.6
       jsdom: 22.1.0
     transitivePeerDependencies:
