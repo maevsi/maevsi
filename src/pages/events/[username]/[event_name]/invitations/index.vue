@@ -7,7 +7,7 @@
       </h1>
       <InvitationList :event="event" />
     </div>
-    <Error v-else />
+    <Error v-else :status-code="403" />
   </Loader>
 </template>
 
@@ -19,7 +19,6 @@ import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accou
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import { useMaevsiStore } from '~/store'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute()
@@ -39,16 +38,7 @@ export const usePageBreadcrumb = () => {
 <script setup lang="ts">
 definePageMeta({
   async validate(route) {
-    const store = useMaevsiStore()
-
-    await validateEventExistence(route)
-
-    // TODO: extract to permission service
-    if (route.params.username !== store.signedInUsername) {
-      return abortNavigation({ statusCode: 403 })
-    }
-
-    return true
+    return await validateEventExistence(route)
   },
 })
 
@@ -92,7 +82,9 @@ const breadcrumbItems = defineBreadcrumbItems(
 
 // computations
 const title = computed(() => {
-  if (!event.value) return t('title')
+  if (api.value.isFetching) return t('globalLoading')
+
+  if (!event.value) return '403'
 
   return `${t('title')} · ${event.value.name}`
 })

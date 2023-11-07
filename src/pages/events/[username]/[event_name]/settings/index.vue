@@ -25,7 +25,7 @@
         />
       </section>
     </div>
-    <Error v-else />
+    <Error v-else :status-code="403" />
   </Loader>
 </template>
 
@@ -33,7 +33,6 @@
 import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
-import { useMaevsiStore } from '~/store'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useEventDeleteMutation } from '~/gql/documents/mutations/event/eventDelete'
@@ -58,16 +57,7 @@ export const usePageBreadcrumb = () => {
 <script setup lang="ts">
 definePageMeta({
   async validate(route) {
-    const store = useMaevsiStore()
-
-    await validateEventExistence(route)
-
-    // TODO: extract to permission service
-    if (route.params.username !== store.signedInUsername) {
-      return abortNavigation({ statusCode: 403 })
-    }
-
-    return true
+    return await validateEventExistence(route)
   },
 })
 
@@ -118,7 +108,9 @@ const mutation = eventDeleteMutation
 
 // computations
 const title = computed(() => {
-  if (!event.value) return t('title')
+  if (api.value.isFetching) return t('globalLoading')
+
+  if (!event.value) return '403'
 
   return `${t('title')} · ${event.value.name}`
 })

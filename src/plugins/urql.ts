@@ -8,7 +8,7 @@ import {
 // import type { Data } from '@urql/exchange-graphcache'
 import {
   type Cache,
-  cacheExchange as getCacheExchange,
+  offlineExchange as getOfflineExchange,
 } from '@urql/exchange-graphcache'
 // import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
@@ -67,7 +67,8 @@ const invalidateCache = (
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const runtimeConfig = useRuntimeConfig()
-  const host = useHost()
+  const getServiceHref = useGetServiceHref()
+
   const ssrExchange = getSsrExchange({
     isClient: process.client,
   })
@@ -119,7 +120,15 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     },
   }
 
-  const cacheExchange = getCacheExchange(graphCacheConfig)
+  const cacheExchange = process.client
+    ? getOfflineExchange({
+        ...graphCacheConfig,
+        schema,
+        storage: (
+          await import('@urql/exchange-graphcache/default-storage')
+        ).makeDefaultStorage(),
+      })
+    : undefined
 
   const clientOptions: ClientOptions = {
     requestPolicy: 'cache-and-network',
@@ -141,23 +150,17 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
       return { headers }
     },
-    url: runtimeConfig.public.vio.stagingHost
-      ? `https://postgraphile.${runtimeConfig.public.vio.stagingHost}/graphql`
-      : process.server
-      ? 'http://postgraphile:5000/graphql'
-      : 'https://postgraphile.' + getDomainTldPort(host) + '/graphql',
+    url: getServiceHref({ name: 'postgraphile', port: 5000 }) + '/graphql',
     exchanges: [
       ...(runtimeConfig.public.vio.isInProduction ? [] : [devtoolsExchange]),
+      ...(cacheExchange ? [cacheExchange] : []),
       ssrExchange, // `ssrExchange` must be before `fetchExchange`
-      cacheExchange,
       fetchExchange,
     ],
   }
   const client = ref(createClient(clientOptions))
 
-  const urqlReset = () => {
-    client.value = createClient(clientOptions)
-  }
+  const urqlReset = () => (client.value = createClient(clientOptions))
 
   nuxtApp.hook('vue:setup', () => {
     const { $urql } = useNuxtApp()
