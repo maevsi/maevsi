@@ -146,8 +146,8 @@ importers:
         specifier: 1.4.6
         version: 1.4.6
       '@types/html-to-text':
-        specifier: 9.0.3
-        version: 9.0.3
+        specifier: 9.0.4
+        version: 9.0.4
       '@types/lodash-es':
         specifier: 4.17.10
         version: 4.17.10
@@ -5472,8 +5472,8 @@ packages:
       '@types/node': 20.8.10
     dev: true
 
-  /@types/html-to-text@9.0.3:
-    resolution: {integrity: sha512-ImzcLdHN3+zghCoZcA+vWd/t0GhM10S7lnvSq9YA6lbo4HGK10WIJ7n+NI7mbeVZeUtgrmK5fXM66kZcws1oHA==}
+  /@types/html-to-text@9.0.4:
+    resolution: {integrity: sha512-pUY3cKH/Nm2yYrEmDlPR1mR7yszjGx4DrwPjQ702C4/D5CwHuZTgZdIdwPkRbcuhs7BAh2L5rg3CL5cbRiGTCQ==}
     dev: true
 
   /@types/http-proxy@1.17.13:
