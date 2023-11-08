@@ -43,8 +43,6 @@
 </template>
 
 <script setup lang="ts">
-import { useMaevsiStore } from '~/store'
-
 export interface Props {
   isClosable?: boolean
 }

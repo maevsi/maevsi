@@ -14,7 +14,6 @@
 
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
-import { useMaevsiStore } from '~/store'
 
 export const usePageBreadcrumb = () => ({
   label: {

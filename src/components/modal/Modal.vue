@@ -66,8 +66,6 @@
 <script setup lang="ts">
 import { consola } from 'consola'
 
-import { useMaevsiStore } from '~/store'
-
 export interface Props {
   id: string
   isFooterHidden?: boolean

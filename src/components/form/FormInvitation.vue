@@ -84,7 +84,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, minValue, required } from '@vuelidate/validators'
 
-import { useMaevsiStore } from '~/store'
 import { useCreateInvitationMutation } from '~/gql/documents/mutations/invitation/invitationCreate'
 import { useAllContactsQuery } from '~/gql/documents/queries/contact/contactsAll'
 import type { EventItemFragment } from '~/gql/generated/graphql'

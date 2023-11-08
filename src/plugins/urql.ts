@@ -20,8 +20,6 @@ import { ref } from 'vue'
 import schema from '~/gql/generated/introspection'
 import type { GraphCacheConfig } from '~/gql/generated/graphcache'
 
-import { useMaevsiStore } from '~/store'
-
 const SSR_KEY = '__URQL_DATA__'
 const invalidateCache = (
   cache: Cache,

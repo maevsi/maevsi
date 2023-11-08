@@ -328,7 +328,6 @@ import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
-import { useMaevsiStore } from '~/store'
 import { useUpdateInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationUpdateById'
 import {
   InvitationFeedback,

@@ -19,7 +19,6 @@ import {
   REGEX_URL_HTTPS,
   REGEX_UUID,
 } from './constants'
-import { useMaevsiStore } from '~/store'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 import { accountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { eventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'

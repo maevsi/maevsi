@@ -99,7 +99,6 @@ import {
 import { consola } from 'consola'
 import { Doughnut } from 'vue-chartjs'
 
-import { useMaevsiStore } from '~/store'
 import { useAllInvitationsQuery } from '~/gql/documents/queries/invitation/invitationsAll'
 import type { EventItemFragment } from '~/gql/generated/graphql'
 import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'

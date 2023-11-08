@@ -279,7 +279,6 @@ import { useVuelidate } from '@vuelidate/core'
 import slugify from 'slugify'
 import { DatePicker } from 'v-calendar'
 
-import { useMaevsiStore } from '~/store'
 import { useCreateEventMutation } from '~/gql/documents/mutations/event/eventCreate'
 import { useUpdateEventByIdMutation } from '~/gql/documents/mutations/event/eventUpdateById'
 import {
