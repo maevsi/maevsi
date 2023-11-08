@@ -6,7 +6,10 @@
       postgresP0002: t('postgresP0002'),
     }"
   >
-    <div v-if="event" class="flex flex-col gap-4">
+    <div
+      v-if="event && route.params.username === store.signedInUsername"
+      class="flex flex-col gap-4"
+    >
       <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
       <section>
         <h1>{{ t('title') }}</h1>
@@ -65,6 +68,7 @@ const { $urql } = useNuxtApp()
 const localePath = useLocalePath()
 const { t, locale } = useI18n()
 const route = useRoute()
+const store = useMaevsiStore()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
@@ -110,7 +114,8 @@ const mutation = eventDeleteMutation
 const title = computed(() => {
   if (api.value.isFetching) return t('globalLoading')
 
-  if (!event.value) return '403'
+  if (!event.value || route.params.username !== store.signedInUsername)
+    return '403'
 
   return `${t('title')} · ${event.value.name}`
 })

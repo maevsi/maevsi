@@ -1,6 +1,9 @@
 <template>
   <Loader :api="api">
-    <div v-if="event" class="flex flex-col gap-4">
+    <div
+      v-if="event && route.params.username === store.signedInUsername"
+      class="flex flex-col gap-4"
+    >
       <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
       <h1>
         {{ t('title') }}
@@ -45,6 +48,7 @@ definePageMeta({
 const { $urql } = useNuxtApp()
 const route = useRoute()
 const { t, locale } = useI18n()
+const store = useMaevsiStore()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
@@ -84,7 +88,8 @@ const breadcrumbItems = defineBreadcrumbItems(
 const title = computed(() => {
   if (api.value.isFetching) return t('globalLoading')
 
-  if (!event.value) return '403'
+  if (!event.value || route.params.username !== store.signedInUsername)
+    return '403'
 
   return `${t('title')} · ${event.value.name}`
 })
