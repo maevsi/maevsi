@@ -127,6 +127,9 @@ export default defineNuxtConfig({
       },
       sentry: {
         host: 'o4506083883352064.ingest.sentry.io',
+        profiles: {
+          sampleRate: 1.0,
+        },
         project: {
           client: {
             id: '4506114193817600',
@@ -135,6 +138,14 @@ export default defineNuxtConfig({
           server: {
             id: '4506114183528448',
             publicKey: 'be543bc70951bae8ed5bc5874b99b112',
+          },
+        },
+        replays: {
+          onError: {
+            sampleRate: 1.0,
+          },
+          session: {
+            sampleRate: 0.0,
           },
         },
       },

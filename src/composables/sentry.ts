@@ -1,8 +1,8 @@
-export const useSentryConfig = () => {
+export const useSharedSentryConfig = () => {
   const isTesting = useIsTesting()
   const runtimeConfig = useRuntimeConfig()
 
-  return getSentryConfig({
+  return getSharedSentryConfig({
     environment: runtimeConfig.public.vio.environment,
     host: runtimeConfig.public.sentry.host,
     isInProduction: runtimeConfig.public.vio.isInProduction,
@@ -13,7 +13,7 @@ export const useSentryConfig = () => {
   })
 }
 
-export const getSentryConfig = ({
+export const getSharedSentryConfig = ({
   environment,
   host,
   isInProduction,
