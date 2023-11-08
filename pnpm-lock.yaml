@@ -110,7 +110,7 @@ importers:
         specifier: 1.2.6
         version: 1.2.6
       '@sentry/vite-plugin':
-        specifier: ^2.9.0
+        specifier: 2.9.0
         version: 2.9.0
       '@sentry/vue':
         specifier: 7.77.0
