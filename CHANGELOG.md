@@ -1,3 +1,11 @@
+## [3.10.1](https://github.com/maevsi/maevsi/compare/3.10.0...3.10.1) (2023-11-09)
+
+
+### Bug Fixes
+
+* **event:** correct page permissions ([94a35b5](https://github.com/maevsi/maevsi/commit/94a35b528fad5052c056c5e12d932951d394dbe0))
+* **event:** correct page permissions ([#1442](https://github.com/maevsi/maevsi/issues/1442)) ([a9bf199](https://github.com/maevsi/maevsi/commit/a9bf1998253bb89304a447a7c1a74cea1ce28ef3))
+
 ## [3.10.0](https://github.com/maevsi/maevsi/compare/3.9.1...3.10.0) (2023-11-07)
 
 
