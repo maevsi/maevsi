@@ -110,8 +110,8 @@ importers:
         specifier: 1.2.6
         version: 1.2.6
       '@sentry/vite-plugin':
-        specifier: 2.9.0
-        version: 2.9.0
+        specifier: 2.10.0
+        version: 2.10.0
       '@sentry/vue':
         specifier: 7.79.0
         version: 7.79.0(vue@3.3.8)
@@ -560,7 +560,7 @@ packages:
     resolution: {integrity: sha512-QkBXwGgaoC2GtGZRoma6kv7Szfv06khvhFav67ZExau2RaXzy8MpHSMO2PNoP2XtmQphJQRHFfg77Bq731Yizw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.0
+      '@babel/types': 7.23.3
     dev: true
 
   /@babel/helper-compilation-targets@7.22.15:
@@ -759,7 +759,7 @@ packages:
     dependencies:
       '@babel/helper-function-name': 7.23.0
       '@babel/template': 7.22.15
-      '@babel/types': 7.23.0
+      '@babel/types': 7.23.3
     dev: true
 
   /@babel/helpers@7.23.2:
@@ -1332,7 +1332,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.3
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.3)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.3)
       '@babel/helper-plugin-utils': 7.22.5
     dev: true
 
@@ -1356,7 +1356,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.3
       '@babel/helper-hoist-variables': 7.22.5
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.3)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.3)
       '@babel/helper-plugin-utils': 7.22.5
       '@babel/helper-validator-identifier': 7.22.20
     dev: true
@@ -1368,7 +1368,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.23.3
-      '@babel/helper-module-transforms': 7.23.0(@babel/core@7.23.3)
+      '@babel/helper-module-transforms': 7.23.3(@babel/core@7.23.3)
       '@babel/helper-plugin-utils': 7.22.5
     dev: true
 
@@ -1740,7 +1740,7 @@ packages:
       '@babel/plugin-transform-unicode-regex': 7.22.5(@babel/core@7.23.3)
       '@babel/plugin-transform-unicode-sets-regex': 7.22.5(@babel/core@7.23.3)
       '@babel/preset-modules': 0.1.6-no-external-plugins(@babel/core@7.23.3)
-      '@babel/types': 7.23.0
+      '@babel/types': 7.23.3
       babel-plugin-polyfill-corejs2: 0.4.6(@babel/core@7.23.3)
       babel-plugin-polyfill-corejs3: 0.8.6(@babel/core@7.23.3)
       babel-plugin-polyfill-regenerator: 0.5.3(@babel/core@7.23.3)
@@ -1757,7 +1757,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.3
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/types': 7.23.0
+      '@babel/types': 7.23.3
       esutils: 2.0.3
     dev: true
 
@@ -4947,13 +4947,13 @@ packages:
       '@sentry/utils': 7.79.0
     dev: true
 
-  /@sentry/bundler-plugin-core@2.9.0:
-    resolution: {integrity: sha512-6x8o+fjSqciFC5m8ociBTb1bKNblKdmFPXI/aef6Uzr0vvxmWR14M+cqf+fOpB8nl/OEu3jqVV6rKILEel0X2w==}
+  /@sentry/bundler-plugin-core@2.10.0:
+    resolution: {integrity: sha512-bjcYvMrCQgqTiRRkWGNpeZ7EJOu0JQFYj+rrcQpwaVO+ll1eWNGW1nNveU+8vpnXrlaIAvieBxCrcCj5V9y1+Q==}
     engines: {node: '>= 14'}
     dependencies:
       '@sentry/cli': 2.21.2
       '@sentry/node': 7.79.0
-      '@sentry/utils': 7.77.0
+      '@sentry/utils': 7.79.0
       dotenv: 16.3.1
       find-up: 5.0.0
       glob: 9.3.2
@@ -5071,11 +5071,11 @@ packages:
       '@sentry/types': 7.79.0
     dev: true
 
-  /@sentry/vite-plugin@2.9.0:
-    resolution: {integrity: sha512-Hf4LcWlJy8VsH3Sw8SIB+lM+bBUJLmRUiZQPmnWZzyU33aOhREVoMdbYvTjs1aRqgD2eWXLQmtr01u0E3uYebg==}
+  /@sentry/vite-plugin@2.10.0:
+    resolution: {integrity: sha512-jOJQnu3ox+HcD1HCul5LBy6YEhS0oVFjrFshoFD2PtHI5sMldbwNWrkkTXcknNy/0o4d5cAtdsEuVzEnbdd+Gg==}
     engines: {node: '>= 14'}
     dependencies:
-      '@sentry/bundler-plugin-core': 2.9.0
+      '@sentry/bundler-plugin-core': 2.10.0
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
