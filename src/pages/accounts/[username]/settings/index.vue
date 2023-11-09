@@ -47,7 +47,6 @@
 import { usePageBreadcrumb as usePageBreadcrumbAccountsId } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
-import { useMaevsiStore } from '~/store'
 import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'

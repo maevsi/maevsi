@@ -94,7 +94,6 @@
 <script setup lang="ts">
 // import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 // import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import { useMaevsiStore } from '~/store'
 
 const emit = defineEmits<{
   onMenuShow: []

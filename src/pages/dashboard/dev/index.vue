@@ -46,8 +46,6 @@
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbDashboard } from '../index.vue'
 
-import { useMaevsiStore } from '~/store'
-
 export const usePageBreadcrumb = () => ({
   label: {
     de: 'Einstellungen',

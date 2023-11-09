@@ -110,7 +110,6 @@
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
 
-import { useMaevsiStore } from '~/store'
 import { useCreateContactMutation } from '~/gql/documents/mutations/contact/contactCreate'
 import { useUpdateContactByIdMutation } from '~/gql/documents/mutations/contact/contactUpdateById'
 import type { ContactItemFragment } from '~/gql/generated/graphql'

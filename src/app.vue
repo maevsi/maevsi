@@ -20,7 +20,6 @@
 <script setup lang="ts">
 import '@fontsource-variable/manrope'
 
-import { useMaevsiStore } from './store'
 import supportedBrowsers from '~/supportedBrowsers'
 
 const cookieControl = useCookieControl()

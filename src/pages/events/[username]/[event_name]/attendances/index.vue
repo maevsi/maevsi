@@ -1,6 +1,9 @@
 <template>
   <Loader :api="api" indicator="ping">
-    <div v-if="event" class="flex flex-col gap-4">
+    <div
+      v-if="event && route.params.username === store.signedInUsername"
+      class="flex flex-col gap-4"
+    >
       <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
       <h1>
         {{ t('title') }}
@@ -66,7 +69,6 @@ import { type DetectedBarcode } from 'barcode-detector'
 import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
-import { useMaevsiStore } from '~/store'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
@@ -152,7 +154,8 @@ const isNfcError = computed(() => {
 const title = computed(() => {
   if (api.value.isFetching) return t('globalLoading')
 
-  if (!event.value) return '403'
+  if (!event.value || route.params.username !== store.signedInUsername)
+    return '403'
 
   return `${t('title')} · ${event.value.name}`
 })

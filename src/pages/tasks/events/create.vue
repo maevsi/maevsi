@@ -11,8 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import { useMaevsiStore } from '~/store'
-
 const { t } = useI18n()
 const store = useMaevsiStore()
 

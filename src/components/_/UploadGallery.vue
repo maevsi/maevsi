@@ -118,7 +118,6 @@ import prettyBytes from 'pretty-bytes'
 import type { UnwrapRef } from 'vue'
 import { Cropper, type CropperResult, type Size } from 'vue-advanced-cropper'
 
-import { useMaevsiStore } from '~/store'
 import { useUploadCreateMutation } from '~/gql/documents/mutations/upload/uploadCreate'
 import { useAccountUploadQuotaBytesQuery } from '~/gql/documents/queries/account/accountUploadQuotaBytes'
 import { useAllUploadsQuery } from '~/gql/documents/queries/upload/uploadsAll'

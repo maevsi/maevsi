@@ -64,7 +64,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import { useAuthenticateMutation } from '~/gql/documents/mutations/account/accountAuthenticate'
 import { useAccountRegistrationRefreshMutation } from '~/gql/documents/mutations/account/accountRegistrationRefresh'
-import { useMaevsiStore } from '~/store'
 
 const emit = defineEmits<{
   'signed-in': []
