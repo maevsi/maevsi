@@ -161,11 +161,11 @@ importers:
         specifier: 8.10.9
         version: 8.10.9
       '@uppy/core':
-        specifier: 3.7.0
-        version: 3.7.0
+        specifier: 3.7.1
+        version: 3.7.1
       '@uppy/tus':
         specifier: 3.4.0
-        version: 3.4.0(@uppy/core@3.7.0)
+        version: 3.4.0(@uppy/core@3.7.1)
       '@urql/core':
         specifier: 4.1.4
         version: 4.1.4(graphql@16.8.1)
@@ -6177,8 +6177,8 @@ packages:
       p-retry: 6.1.0
     dev: true
 
-  /@uppy/core@3.7.0:
-    resolution: {integrity: sha512-Yol7DUC8HZ0usXyawgAwZe9PZ2T9Cii0nqqsRr1JVAMoLPt0NIr5MA2/VhPv1dXoDvOBRTyRzCC/+j9BCrgGjw==}
+  /@uppy/core@3.7.1:
+    resolution: {integrity: sha512-P8JoDbDYyJ5ZX35+IfrDj2WupKvfEpYwoMgyjutaLhaT/+hmHoTivZpJV256eaZahJMTYrQlZmGfXy1LRByV3A==}
     dependencies:
       '@transloadit/prettier-bytes': 0.0.9
       '@uppy/store-default': 3.0.5
@@ -6194,13 +6194,13 @@ packages:
     resolution: {integrity: sha512-NEow8ZYicAvxEDqcmi9MSW2gy4uElVnRuHoHBx9zwB5g81F9i2Q/i1u08sKzUY704o84zI6bctDe2cCYdBCuZw==}
     dev: true
 
-  /@uppy/tus@3.4.0(@uppy/core@3.7.0):
+  /@uppy/tus@3.4.0(@uppy/core@3.7.1):
     resolution: {integrity: sha512-LjqtTz/bZuCRnILaOHwYurukvS0O2gcsFbHp5H1k5rM4NP75taAUymZQvHVduedYeqYp4XiTMeEfLHIYrqWYwg==}
     peerDependencies:
       '@uppy/core': ^3.7.0
     dependencies:
       '@uppy/companion-client': 3.6.0
-      '@uppy/core': 3.7.0
+      '@uppy/core': 3.7.1
       '@uppy/utils': 5.6.0
       tus-js-client: 3.1.1
     dev: true

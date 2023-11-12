@@ -85,7 +85,7 @@
     "@types/mustache": "4.2.5",
     "@types/node": "20.9.0",
     "@types/pg": "8.10.9",
-    "@uppy/core": "3.7.0",
+    "@uppy/core": "3.7.1",
     "@uppy/tus": "3.4.0",
     "@urql/core": "4.1.4",
     "@urql/devtools": "2.0.3",
