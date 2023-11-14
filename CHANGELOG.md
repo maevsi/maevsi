@@ -1,3 +1,10 @@
+## [3.10.2](https://github.com/maevsi/maevsi/compare/3.10.1...3.10.2) (2023-11-14)
+
+
+### Bug Fixes
+
+* **pwa:** correct watcher ([e7b83c1](https://github.com/maevsi/maevsi/commit/e7b83c11801ff97870255198499186ac8bdea974))
+
 ## [3.10.1](https://github.com/maevsi/maevsi/compare/3.10.0...3.10.1) (2023-11-09)
 
 
