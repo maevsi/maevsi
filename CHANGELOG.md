@@ -1,3 +1,10 @@
+## [3.11.0](https://github.com/maevsi/maevsi/compare/3.10.2...3.11.0) (2023-11-14)
+
+
+### Features
+
+* **sentry:** disable profiling ([0e1b06a](https://github.com/maevsi/maevsi/commit/0e1b06a5e55083d27bf8518176ee3dc83d066ebf))
+
 ## [3.10.2](https://github.com/maevsi/maevsi/compare/3.10.1...3.10.2) (2023-11-14)
 
 
