@@ -1,3 +1,16 @@
+## [3.12.0](https://github.com/maevsi/maevsi/compare/3.11.0...3.12.0) (2023-11-14)
+
+
+### Features
+
+* **sentry:** disable session replays without errors ([4f41e3c](https://github.com/maevsi/maevsi/commit/4f41e3c64b762b92ddbaf4e23c8cd84def0627a7))
+
+
+### Bug Fixes
+
+* **sentry:** reduce session replay sample rate ([80a7c2b](https://github.com/maevsi/maevsi/commit/80a7c2b3bbafc8acb4ae4f29159d00b38764f3cf)), closes [#1447](https://github.com/maevsi/maevsi/issues/1447)
+* **sentry:** reduce session replay sample rate ([#1448](https://github.com/maevsi/maevsi/issues/1448)) ([8eec29e](https://github.com/maevsi/maevsi/commit/8eec29e82e3bc7a4c8fd112866c12f55b7cd211f))
+
 ## [3.11.0](https://github.com/maevsi/maevsi/compare/3.10.2...3.11.0) (2023-11-14)
 
 
