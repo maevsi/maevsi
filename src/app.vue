@@ -78,7 +78,7 @@ watch(
 watch(
   () => $pwa,
   async (current, _previous) => {
-    if (current.showInstallPrompt && !runtimeConfig.public.vio.isTesting) {
+    if (current?.showInstallPrompt && !runtimeConfig.public.vio.isTesting) {
       const result = await showToast({
         confirmButtonText: t('pwaConfirmButtonText'),
         showConfirmButton: true,
@@ -88,9 +88,9 @@ watch(
       })
 
       if (result.isConfirmed) {
-        $pwa.install()
+        current.install()
       } else {
-        $pwa.cancelInstall()
+        current.cancelInstall()
       }
     }
   },
