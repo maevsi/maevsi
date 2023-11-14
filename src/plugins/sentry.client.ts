@@ -22,7 +22,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       new Sentry.Replay(),
     ],
     replaysOnErrorSampleRate: 1.0, // lower as soon as there are too many events
-    replaysSessionSampleRate: 1.0, // lower as soon as there are too many events
+    replaysSessionSampleRate: 0.0, // lower as soon as there are too many events
     tracePropagationTargets: [
       'localhost',
       'https://maev.si',
