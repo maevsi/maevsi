@@ -63,7 +63,7 @@
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28323328.694810b",
     "@nuxtjs/tailwindcss": "6.9.4",
     "@nuxtjs/turnstile": "0.6.3",
-    "@nuxtseo/module": "2.0.0-beta.40",
+    "@nuxtseo/module": "2.0.0-beta.42",
     "@pinia/nuxt": "0.5.1",
     "@playwright/test": "1.39.0",
     "@sentry/node": "7.80.1",
