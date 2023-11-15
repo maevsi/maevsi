@@ -86,8 +86,8 @@ importers:
         specifier: 1.5.2
         version: 1.5.2(rollup@2.79.1)
       '@nuxtjs/i18n':
-        specifier: npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28323328.694810b
-        version: /@nuxtjs/i18n-edge@8.0.0-rc.5-28323328.694810b(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.8)
+        specifier: npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28331496.3c75cf9
+        version: /@nuxtjs/i18n-edge@8.0.0-rc.5-28331496.3c75cf9(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.8)
       '@nuxtjs/tailwindcss':
         specifier: 6.9.4
         version: 6.9.4(rollup@2.79.1)(webpack@5.89.0)
@@ -3478,6 +3478,7 @@ packages:
 
   /@ioredis/commands@1.2.0:
     resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}
+    requiresBuild: true
     dev: true
 
   /@isaacs/cliui@8.0.2:
@@ -4111,8 +4112,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n-edge@8.0.0-rc.5-28323328.694810b(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.8):
-    resolution: {integrity: sha512-yUrm6i60bmv9LXsZiEDo93DLm/WtDJeg/SsNWg0jCTJ17VjQ8lBR9eShRzD4ih5Mh3BgugkiJXPD16sCeKnZhA==}
+  /@nuxtjs/i18n-edge@8.0.0-rc.5-28331496.3c75cf9(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.8):
+    resolution: {integrity: sha512-5SIyUkXJOrkG1bilgoHzeJymn5dA/8TP8eI2NuItb9KoI+2Suz7vROv2bNq7yGT0GDaAf1/P6KIVy0FoyF6FjA==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/shared': 9.5.0
@@ -7798,6 +7799,7 @@ packages:
   /cluster-key-slot@1.1.2:
     resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: true
 
   /co@4.6.0:
@@ -8537,6 +8539,7 @@ packages:
   /denque@2.1.0:
     resolution: {integrity: sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==}
     engines: {node: '>=0.10'}
+    requiresBuild: true
     dev: true
 
   /depd@1.1.2:
@@ -10703,6 +10706,7 @@ packages:
   /ioredis@5.3.2:
     resolution: {integrity: sha512-1DKMMzlIHM02eBBVOFQ1+AolGjs6+xEcM4PDL7NqOS6szq7H9jSaEkIUH6/a5Hl241LzW6JLSiAbNvTQjUupUA==}
     engines: {node: '>=12.22.0'}
+    requiresBuild: true
     dependencies:
       '@ioredis/commands': 1.2.0
       cluster-key-slot: 1.1.2
@@ -11736,10 +11740,12 @@ packages:
 
   /lodash.defaults@4.2.0:
     resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
+    requiresBuild: true
     dev: true
 
   /lodash.isarguments@3.1.0:
     resolution: {integrity: sha512-chi4NHZlZqZD18a0imDHnZPrDeBbTtVN7GXMwuGdRH9qotxAjYs3aVLKc7zNOG9eddR5Ksd8rvFEBc9SsggPpg==}
+    requiresBuild: true
     dev: true
 
   /lodash.isfunction@3.0.9:
@@ -14906,11 +14912,13 @@ packages:
   /redis-errors@1.2.0:
     resolution: {integrity: sha512-1qny3OExCf0UvUV/5wpYKf2YwPcOqXzkwKKSmKHiE6ZMQs5heeE/c8eXK+PNllPvmjgAbfnsbpkGZWy8cBpn9w==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dev: true
 
   /redis-parser@3.0.0:
     resolution: {integrity: sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A==}
     engines: {node: '>=4'}
+    requiresBuild: true
     dependencies:
       redis-errors: 1.2.0
     dev: true
@@ -15720,6 +15728,7 @@ packages:
 
   /standard-as-callback@2.1.0:
     resolution: {integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==}
+    requiresBuild: true
     dev: true
 
   /statuses@1.5.0:
