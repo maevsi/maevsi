@@ -350,8 +350,8 @@ importers:
         specifier: 3.3.5
         version: 3.3.5
       ufo:
-        specifier: 1.3.1
-        version: 1.3.1
+        specifier: 1.3.2
+        version: 1.3.2
       unhead:
         specifier: 1.8.3
         version: 1.8.3
@@ -3300,7 +3300,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/message-compiler': 9.6.5
-      '@intlify/shared': 9.5.0
+      '@intlify/shared': 9.6.5
       acorn: 8.11.2
       escodegen: 2.1.0
       estree-walker: 2.0.2
@@ -3411,7 +3411,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 7.4.0(vue-i18n@9.6.5)
-      '@intlify/shared': 9.5.0
+      '@intlify/shared': 9.6.5
       '@rollup/pluginutils': 5.0.5(rollup@2.79.1)
       '@vue/compiler-sfc': 3.3.8
       debug: 4.3.4
@@ -3875,7 +3875,7 @@ packages:
       ohash: 1.1.3
       pathe: 1.1.1
       std-env: 3.5.0
-      ufo: 1.3.1
+      ufo: 1.3.2
     optionalDependencies:
       ipx: 2.0.2
     transitivePeerDependencies:
@@ -3913,7 +3913,7 @@ packages:
       pkg-types: 1.0.3
       scule: 1.1.0
       semver: 7.5.4
-      ufo: 1.3.1
+      ufo: 1.3.2
       unctx: 2.3.1
       unimport: 3.5.0(rollup@2.79.1)
       untyped: 1.4.0
@@ -3948,7 +3948,7 @@ packages:
       pathe: 1.1.1
       pkg-types: 1.0.3
       std-env: 3.5.0
-      ufo: 1.3.1
+      ufo: 1.3.2
       unimport: 3.5.0(rollup@2.79.1)
       untyped: 1.4.0
     transitivePeerDependencies:
@@ -4019,7 +4019,7 @@ packages:
       rollup-plugin-visualizer: 5.9.2(rollup@2.79.1)
       std-env: 3.5.0
       strip-literal: 1.3.0
-      ufo: 1.3.1
+      ufo: 1.3.2
       unplugin: 1.5.0
       vite: 4.5.0(@types/node@20.9.0)
       vite-node: 0.33.0(@types/node@20.9.0)
@@ -4131,7 +4131,7 @@ packages:
       magic-string: 0.30.5
       mlly: 1.4.2
       pathe: 1.1.1
-      ufo: 1.3.1
+      ufo: 1.3.2
       unplugin: 1.5.0
       unstorage: 1.10.1
       vue-i18n: 9.6.5(vue@3.3.8)
@@ -4180,7 +4180,7 @@ packages:
       radix3: 1.1.0
       tailwind-config-viewer: 1.7.3(tailwindcss@3.3.5)
       tailwindcss: 3.3.5
-      ufo: 1.3.1
+      ufo: 1.3.2
       uncrypto: 0.1.3
     transitivePeerDependencies:
       - rollup
@@ -4215,7 +4215,7 @@ packages:
       nuxt-simple-sitemap: 4.1.2(@nuxt/devtools@1.0.2)(@vue/compiler-core@3.3.8)(nuxt@3.8.1)(postcss@8.4.31)(rollup@2.79.1)(vite@4.5.0)(vue@3.3.8)(webpack@5.89.0)
       nuxt-site-config: 1.2.2(rollup@2.79.1)
       nuxt-site-config-kit: 1.5.5(rollup@2.79.1)(vue@3.3.8)
-      ufo: 1.3.1
+      ufo: 1.3.2
     transitivePeerDependencies:
       - '@nuxt/devtools'
       - '@unhead/shared'
@@ -5713,7 +5713,7 @@ packages:
       '@unhead/shared': 1.8.3
       magic-string: 0.30.5
       mlly: 1.4.2
-      ufo: 1.3.1
+      ufo: 1.3.2
       unplugin: 1.5.0
       unplugin-ast: 0.8.2(rollup@2.79.1)
     transitivePeerDependencies:
@@ -5734,7 +5734,7 @@ packages:
       unhead: '>=1.7.4'
     dependencies:
       '@unhead/shared': 1.8.3
-      ufo: 1.3.1
+      ufo: 1.3.2
       unhead: 1.8.3
     dev: true
 
@@ -6145,7 +6145,7 @@ packages:
     dependencies:
       '@nuxt/kit': 3.8.1(rollup@2.79.1)
       pathe: 1.1.1
-      ufo: 1.3.1
+      ufo: 1.3.2
       vite-plugin-pwa: 0.16.7(vite@4.5.0)(workbox-build@7.0.0)(workbox-window@7.0.0)
     dev: true
 
@@ -9542,7 +9542,7 @@ packages:
       enhanced-resolve: 5.15.0
       mlly: 1.4.2
       pathe: 1.1.1
-      ufo: 1.3.1
+      ufo: 1.3.2
     dev: true
 
   /extract-files@11.0.0:
@@ -10224,7 +10224,7 @@ packages:
       destr: 2.0.2
       iron-webcrypto: 0.10.1
       radix3: 1.1.0
-      ufo: 1.3.1
+      ufo: 1.3.2
       uncrypto: 0.1.3
       unenv: 1.7.4
     dev: true
@@ -10734,7 +10734,7 @@ packages:
       pathe: 1.1.1
       sharp: 0.32.6
       svgo: 3.0.3
-      ufo: 1.3.1
+      ufo: 1.3.2
       unstorage: 1.10.1
       xss: 1.0.14
     transitivePeerDependencies:
@@ -11602,7 +11602,7 @@ packages:
       node-forge: 1.3.1
       pathe: 1.1.1
       std-env: 3.5.0
-      ufo: 1.3.1
+      ufo: 1.3.2
       untun: 0.1.2
       uqr: 0.1.2
     dev: true
@@ -12320,7 +12320,7 @@ packages:
       acorn: 8.11.2
       pathe: 1.1.1
       pkg-types: 1.0.3
-      ufo: 1.3.1
+      ufo: 1.3.2
     dev: true
 
   /mri@1.2.0:
@@ -12484,7 +12484,7 @@ packages:
       serve-placeholder: 2.0.1
       serve-static: 1.15.0
       std-env: 3.5.0
-      ufo: 1.3.1
+      ufo: 1.3.2
       uncrypto: 0.1.3
       unctx: 2.3.1
       unenv: 1.7.4
@@ -12797,7 +12797,7 @@ packages:
       shiki-es: 0.14.0
       sirv: 2.0.3
       site-config-stack: 1.5.5(vue@3.3.8)
-      ufo: 1.3.1
+      ufo: 1.3.2
     transitivePeerDependencies:
       - '@nuxt/devtools'
       - '@unocss/webpack'
@@ -12858,7 +12858,7 @@ packages:
       terminate: 2.6.1
       tinyws: 0.1.0(ws@8.14.2)
       twemoji: 14.0.2
-      ufo: 1.3.1
+      ufo: 1.3.2
       ws: 8.14.2
       yoga-wasm-web: 0.3.3
     transitivePeerDependencies:
@@ -12913,7 +12913,7 @@ packages:
       nuxt-site-config: 1.2.2(rollup@2.79.1)
       nuxt-site-config-kit: 1.5.5(rollup@2.79.1)(vue@3.3.8)
       pathe: 1.1.1
-      ufo: 1.3.1
+      ufo: 1.3.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -12929,7 +12929,7 @@ packages:
       nuxt-site-config-kit: 1.5.5(rollup@2.79.1)(vue@3.3.8)
       pathe: 1.1.1
       radix3: 1.1.0
-      ufo: 1.3.1
+      ufo: 1.3.2
     transitivePeerDependencies:
       - nuxt
       - rollup
@@ -12946,7 +12946,7 @@ packages:
       nuxt-site-config: 1.2.2(rollup@2.79.1)
       nuxt-site-config-kit: 1.5.5(rollup@2.79.1)(vue@3.3.8)
       pathe: 1.1.1
-      ufo: 1.3.1
+      ufo: 1.3.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -12969,7 +12969,7 @@ packages:
       semver: 7.5.4
       sirv: 2.0.3
       site-config-stack: 1.5.5(vue@3.3.8)
-      ufo: 1.3.1
+      ufo: 1.3.2
     transitivePeerDependencies:
       - '@nuxt/devtools'
       - '@unocss/webpack'
@@ -13003,7 +13003,7 @@ packages:
       pkg-types: 1.0.3
       site-config-stack: 1.2.2
       std-env: 3.5.0
-      ufo: 1.3.1
+      ufo: 1.3.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -13017,7 +13017,7 @@ packages:
       pkg-types: 1.0.3
       site-config-stack: 1.5.5(vue@3.3.8)
       std-env: 3.5.0
-      ufo: 1.3.1
+      ufo: 1.3.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -13032,7 +13032,7 @@ packages:
       nuxt-site-config-kit: 1.2.2(rollup@2.79.1)
       pathe: 1.1.1
       site-config-stack: 1.2.2
-      ufo: 1.3.1
+      ufo: 1.3.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -13094,7 +13094,7 @@ packages:
       scule: 1.1.0
       std-env: 3.5.0
       strip-literal: 1.3.0
-      ufo: 1.3.1
+      ufo: 1.3.2
       ultrahtml: 1.5.2
       uncrypto: 0.1.3
       unctx: 2.3.1
@@ -13156,7 +13156,7 @@ packages:
       citty: 0.1.4
       execa: 8.0.1
       pathe: 1.1.1
-      ufo: 1.3.1
+      ufo: 1.3.2
     dev: true
 
   /object-assign@4.1.1:
@@ -13238,7 +13238,7 @@ packages:
     dependencies:
       destr: 2.0.2
       node-fetch-native: 1.4.1
-      ufo: 1.3.1
+      ufo: 1.3.2
     dev: true
 
   /ohash@1.1.3:
@@ -15532,7 +15532,7 @@ packages:
   /site-config-stack@1.2.2:
     resolution: {integrity: sha512-9FqdLwsq2hGukUsZTLPxSO3g3v5cZyGw7F1IOh55QRL0Gxi8gTM8l7FOVjRzMVSCYbMZHPX75QyPdUpXHd5oXQ==}
     dependencies:
-      ufo: 1.3.1
+      ufo: 1.3.2
     dev: true
 
   /site-config-stack@1.5.5(vue@3.3.8):
@@ -15540,7 +15540,7 @@ packages:
     peerDependencies:
       vue: ^3
     dependencies:
-      ufo: 1.3.1
+      ufo: 1.3.2
       vue: 3.3.8(typescript@5.2.2)
     dev: true
 
@@ -16704,8 +16704,8 @@ packages:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}
     dev: true
 
-  /ufo@1.3.1:
-    resolution: {integrity: sha512-uY/99gMLIOlJPwATcMVYfqDSxUR9//AUcgZMzwfSTJPDKzA1S8mX4VLqa+fiAtveraQUBCz4FFcwVZBGbwBXIw==}
+  /ufo@1.3.2:
+    resolution: {integrity: sha512-o+ORpgGwaYQXgqGDwd+hkS4PuZ3QnmqMMxRuajK/a38L6fTpcE5GPIfrf+L/KemFzfUpeUQc1rRS1iDBozvnFA==}
     dev: true
 
   /ultrahtml@1.5.2:
@@ -17050,7 +17050,7 @@ packages:
       mri: 1.2.0
       node-fetch-native: 1.4.1
       ofetch: 1.3.3
-      ufo: 1.3.1
+      ufo: 1.3.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -17512,7 +17512,7 @@ packages:
   /vue-bundle-renderer@2.0.0:
     resolution: {integrity: sha512-oYATTQyh8XVkUWe2kaKxhxKVuuzK2Qcehe+yr3bGiaQAhK3ry2kYE4FWOfL+KO3hVFwCdLmzDQTzYhTi9C+R2A==}
     dependencies:
-      ufo: 1.3.1
+      ufo: 1.3.2
     dev: true
 
   /vue-chartjs@5.2.0(chart.js@4.4.0)(vue@3.3.8):
@@ -17606,10 +17606,10 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.5.0
+      '@intlify/shared': 9.6.5
       '@intlify/vue-i18n-bridge': 1.0.1(vue-i18n@9.6.5)
       '@intlify/vue-router-bridge': 1.0.1(vue-router@4.2.5)(vue@3.3.8)
-      ufo: 1.3.1
+      ufo: 1.3.2
       vue: 3.3.8(typescript@5.2.2)
       vue-demi: 0.14.6(vue@3.3.8)
       vue-i18n: 9.6.5(vue@3.3.8)
