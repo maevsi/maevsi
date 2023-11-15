@@ -77,8 +77,8 @@ importers:
         specifier: 3.8.1
         version: 3.8.1(rollup@2.79.1)
       '@nuxtjs/color-mode':
-        specifier: 3.3.0
-        version: 3.3.0(rollup@2.79.1)
+        specifier: 3.3.2
+        version: 3.3.2(rollup@2.79.1)
       '@nuxtjs/eslint-config-typescript':
         specifier: 12.1.0
         version: 12.1.0(eslint@8.53.0)(typescript@5.2.2)
@@ -3739,7 +3739,7 @@ packages:
       '@nuxt/devtools': 1.0.2(nuxt@3.8.1)(rollup@2.79.1)(vite@4.5.0)
       '@nuxt/devtools-kit': 1.0.2(nuxt@3.8.1)(rollup@2.79.1)(vite@4.5.0)
       '@nuxt/kit': 3.8.1(rollup@2.79.1)
-      '@nuxtjs/color-mode': 3.3.0(rollup@2.79.1)
+      '@nuxtjs/color-mode': 3.3.2(rollup@2.79.1)
       '@unocss/core': 0.57.4
       '@unocss/nuxt': 0.57.4(postcss@8.4.31)(rollup@2.79.1)(vite@4.5.0)(webpack@5.89.0)
       '@unocss/preset-attributify': 0.57.4
@@ -4046,8 +4046,8 @@ packages:
       - vue-tsc
     dev: true
 
-  /@nuxtjs/color-mode@3.3.0(rollup@2.79.1):
-    resolution: {integrity: sha512-YVFNmTISke1eL7uk5p9I1suOsM222FxrqKoF13HS4x94OKCWwPLLeTCEzHZ8orzKnaFUbCXpuL4pRv8gvW+0Kw==}
+  /@nuxtjs/color-mode@3.3.2(rollup@2.79.1):
+    resolution: {integrity: sha512-BLpBfrYZngV2QWFQ4HNEFwAXa3Pno43Ge+2XHcZJTTa1Z4KzRLvOwku8yiyV3ovIaaXKGwduBdv3Z5Ocdp0/+g==}
     dependencies:
       '@nuxt/kit': 3.8.1(rollup@2.79.1)
       lodash.template: 4.5.0

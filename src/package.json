@@ -57,7 +57,7 @@
     "@nuxt/image": "1.0.0",
     "@nuxt/kit": "3.8.1",
     "@nuxt/schema": "3.8.1",
-    "@nuxtjs/color-mode": "3.3.0",
+    "@nuxtjs/color-mode": "3.3.2",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@nuxtjs/html-validator": "1.5.2",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28331496.3c75cf9",
