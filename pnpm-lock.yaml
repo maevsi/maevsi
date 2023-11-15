@@ -185,8 +185,8 @@ importers:
         specifier: 2.0.4
         version: 2.0.4(vue@3.3.8)
       barcode-detector:
-        specifier: 2.1.1
-        version: 2.1.1
+        specifier: 2.1.2
+        version: 2.1.2
       browserslist-useragent-regexp:
         specifier: 4.1.0
         version: 4.1.0(browserslist@4.22.1)
@@ -7204,6 +7204,13 @@ packages:
     dependencies:
       '@types/dom-webcodecs': 0.1.10
       zxing-wasm: 1.0.0-rc.4
+    dev: true
+
+  /barcode-detector@2.1.2:
+    resolution: {integrity: sha512-lH2KqkR/oDFYu5B56ZmcaSj4AjZTQToA2PJEBkbwll23xDZh5kwS+l9sngRniDWNDFk4q88k3fxPHV44t3gvdw==}
+    dependencies:
+      '@types/dom-webcodecs': 0.1.10
+      zxing-wasm: 1.0.0-rc.6
     dev: true
 
   /base64-js@0.0.8:
@@ -18247,6 +18254,12 @@ packages:
 
   /zxing-wasm@1.0.0-rc.4:
     resolution: {integrity: sha512-SvVErHUZhzFqpqA2vpwmXeAPa6sgGdUCOkMCd5cMch6L1urZbZCZR8jb2+NI9bCfJRNkQi2ZjME9/NaiUFiSGg==}
+    dependencies:
+      '@types/emscripten': 1.39.10
+    dev: true
+
+  /zxing-wasm@1.0.0-rc.6:
+    resolution: {integrity: sha512-afWirMID/oVJ2csGYgD5sG9M6xX2wLDoLHSbCKNgaUVIxiQQb9j/69j3Tbl5iEV34c4jvsjrXpu7d7tDuaVixg==}
     dependencies:
       '@types/emscripten': 1.39.10
     dev: true
