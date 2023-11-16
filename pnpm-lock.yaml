@@ -107,8 +107,8 @@ importers:
         specifier: 7.80.1
         version: 7.80.1
       '@sentry/vite-plugin':
-        specifier: 2.10.0
-        version: 2.10.0
+        specifier: 2.10.1
+        version: 2.10.1
       '@sentry/vue':
         specifier: 7.80.1
         version: 7.80.1(vue@3.3.8)
@@ -4878,8 +4878,8 @@ packages:
       '@sentry/utils': 7.80.1
     dev: true
 
-  /@sentry/bundler-plugin-core@2.10.0:
-    resolution: {integrity: sha512-bjcYvMrCQgqTiRRkWGNpeZ7EJOu0JQFYj+rrcQpwaVO+ll1eWNGW1nNveU+8vpnXrlaIAvieBxCrcCj5V9y1+Q==}
+  /@sentry/bundler-plugin-core@2.10.1:
+    resolution: {integrity: sha512-cT8cs90NnoTC3gJ6syaUOdogn7jjI27HyIiE5G750956sw5bUKy4Yw5S2S6RFBW7460yPQ1oR6f/WVhyDYrTYA==}
     engines: {node: '>= 14'}
     dependencies:
       '@sentry/cli': 2.21.5
@@ -4954,11 +4954,11 @@ packages:
       '@sentry/types': 7.80.1
     dev: true
 
-  /@sentry/vite-plugin@2.10.0:
-    resolution: {integrity: sha512-jOJQnu3ox+HcD1HCul5LBy6YEhS0oVFjrFshoFD2PtHI5sMldbwNWrkkTXcknNy/0o4d5cAtdsEuVzEnbdd+Gg==}
+  /@sentry/vite-plugin@2.10.1:
+    resolution: {integrity: sha512-xVQEv27xE/kt/5LYWIJ+dFLeKytNCGBriUMRyoVGYhWAAS6T2Rs0iA4ri6FqMznz/Yhm6k3HzCivzKF8Z4ac5Q==}
     engines: {node: '>= 14'}
     dependencies:
-      '@sentry/bundler-plugin-core': 2.10.0
+      '@sentry/bundler-plugin-core': 2.10.1
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
