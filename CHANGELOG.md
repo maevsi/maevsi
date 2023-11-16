@@ -1,3 +1,11 @@
+## [3.13.2](https://github.com/maevsi/maevsi/compare/3.13.1...3.13.2) (2023-11-16)
+
+
+### Bug Fixes
+
+* **nuxt:** correct release name environment variable ([2a60342](https://github.com/maevsi/maevsi/commit/2a60342519543320017656a0e154e2e1b59b2ce4))
+* **nuxt:** correct release name environment variable ([#1453](https://github.com/maevsi/maevsi/issues/1453)) ([51883b6](https://github.com/maevsi/maevsi/commit/51883b65cc544c5d371c8049ad09d87485af91d9))
+
 ## [3.13.1](https://github.com/maevsi/maevsi/compare/3.13.0...3.13.1) (2023-11-16)
 
 
