@@ -89,8 +89,8 @@ importers:
         specifier: npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28335414.dd86b7b
         version: /@nuxtjs/i18n-edge@8.0.0-rc.5-28335414.dd86b7b(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.8)
       '@nuxtjs/tailwindcss':
-        specifier: 6.9.4
-        version: 6.9.4(rollup@2.79.1)(webpack@5.89.0)
+        specifier: 6.9.5
+        version: 6.9.5(rollup@2.79.1)(webpack@5.89.0)
       '@nuxtjs/turnstile':
         specifier: 0.6.3
         version: 0.6.3(rollup@2.79.1)
@@ -4158,8 +4158,8 @@ packages:
       - vue-router
     dev: true
 
-  /@nuxtjs/tailwindcss@6.9.4(rollup@2.79.1)(webpack@5.89.0):
-    resolution: {integrity: sha512-T3B3P7RgJ/WTW3plHziLWqWbMzCWctUHpjqhW1WCXB/U3FOQxGH5dG4uEOmQkA6Gj4cbTNStIU/cRxpZhbBMhg==}
+  /@nuxtjs/tailwindcss@6.9.5(rollup@2.79.1)(webpack@5.89.0):
+    resolution: {integrity: sha512-Q1jMY06KdK7f6IAL25HFWK0ZhTNaxyl/J0fhX3k0kjKojeflU6AbJTTKeVn9Dhqqt71y1thZqemuZNeJha+RBA==}
     dependencies:
       '@nuxt/kit': 3.8.1(rollup@2.79.1)
       '@nuxt/postcss8': 1.1.3(webpack@5.89.0)
