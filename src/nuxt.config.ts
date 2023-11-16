@@ -12,6 +12,7 @@ import { SITE_NAME, SITE_URL } from './utils/constants'
 
 const execPromise = promisify(exec)
 const RELEASE_NAME = async () =>
+  process.env.RELEASE_NAME ||
   (await execPromise('git describe --tags')).stdout.trim()
 
 // TODO: let this error in "eslint (compat/compat)"" (https://github.com/DefinitelyTyped/DefinitelyTyped/issues/55519)
