@@ -1,1 +1,1 @@
-export { getSentryConfig } from '~/composables/sentry'
+export { getSharedSentryConfig } from '~/composables/sentry'

@@ -4,7 +4,7 @@ import { consola } from 'consola'
 
 export default defineNitroPlugin((nitroApp) => {
   const runtimeConfig = useRuntimeConfig()
-  const sentryConfig = getSentryConfig({
+  const sentryConfig = getSharedSentryConfig({
     environment: runtimeConfig.public.vio.environment,
     host: runtimeConfig.public.sentry.host,
     isInProduction: runtimeConfig.public.vio.isInProduction,
@@ -25,7 +25,7 @@ export default defineNitroPlugin((nitroApp) => {
     ...sentryConfig,
     // TODO: enable profiling (https://github.com/getsentry/profiling-node/issues/195)
     // integrations: [new ProfilingIntegration()],
-    // profilesSampleRate: 1.0, // profiling sample rate is relative to traces sample rate
+    // profilesSampleRate: runtimeConfig.public.sentry.profiles.sampleRate, // profiling sample rate is relative to traces sample rate
   })
 
   nitroApp.hooks.hook('error', (error) => {

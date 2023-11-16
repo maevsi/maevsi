@@ -2,10 +2,11 @@ import * as Sentry from '@sentry/vue'
 import { consola } from 'consola'
 
 export default defineNuxtPlugin((nuxtApp) => {
+  const runtimeConfig = useRuntimeConfig()
   const router = useRouter()
-  const sentryConfig = useSentryConfig()
+  const sharedSentryConfig = useSharedSentryConfig()
 
-  if (!sentryConfig.dsn) {
+  if (!sharedSentryConfig.dsn) {
     consola.warn(
       'Sentry configuration is incomplete, skipping Sentry initialization.',
     )
@@ -13,7 +14,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   }
 
   Sentry.init({
-    ...sentryConfig,
+    ...sharedSentryConfig,
     app: nuxtApp.vueApp,
     integrations: [
       new Sentry.BrowserTracing({
@@ -21,12 +22,14 @@ export default defineNuxtPlugin((nuxtApp) => {
       }),
       new Sentry.Replay(),
     ],
-    replaysOnErrorSampleRate: 1.0, // lower as soon as there are too many events
-    replaysSessionSampleRate: 0.0, // lower as soon as there are too many events
+    replaysOnErrorSampleRate:
+      runtimeConfig.public.sentry.replays.onError.sampleRate,
+    replaysSessionSampleRate:
+      runtimeConfig.public.sentry.replays.session.sampleRate,
     tracePropagationTargets: [
       'localhost',
       'https://maev.si',
       'https://maevsi.com',
-    ], // control for which URLs distributed tracing should be enabled
+    ],
   })
 })
