@@ -1,3 +1,11 @@
+## [3.13.0](https://github.com/maevsi/maevsi/compare/3.12.0...3.13.0) (2023-11-16)
+
+
+### Features
+
+* **sentry:** expose sample rates to runtime configuration ([2984fca](https://github.com/maevsi/maevsi/commit/2984fcab7e4ff0c5d657b70a107cae442fd70f1b))
+* **sentry:** expose sample rates to runtime configuration ([#1451](https://github.com/maevsi/maevsi/issues/1451)) ([0062be6](https://github.com/maevsi/maevsi/commit/0062be60057e121d3c5fdde35fe294ea3b42bc3c))
+
 ## [3.12.0](https://github.com/maevsi/maevsi/compare/3.11.0...3.12.0) (2023-11-14)
 
 
