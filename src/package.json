@@ -60,7 +60,7 @@
     "@nuxtjs/color-mode": "3.3.2",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@nuxtjs/html-validator": "1.5.2",
-    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28331496.3c75cf9",
+    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28335414.dd86b7b",
     "@nuxtjs/tailwindcss": "6.9.4",
     "@nuxtjs/turnstile": "0.6.3",
     "@nuxtseo/module": "2.0.0-beta.42",
