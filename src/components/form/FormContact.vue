@@ -21,20 +21,37 @@
     />
     <FormInputUsername
       :form-input="v$.accountUsername"
-      is-optional
+      :is-disabled="
+        props.contact?.accountByAccountId?.id === store.signedInAccountId
+      "
       is-validatable
       @input="form.accountUsername = $event"
     >
-      <template #icon>
-        <IconMagnifyingGlass />
+      <template #stateInfo>
+        <FormInputStateInfo
+          v-if="
+            props.contact?.accountByAccountId?.id === store.signedInAccountId
+          "
+        >
+          <i18n-t keypath="stateInfoUsernameDisabled" tag="span">
+            <template #accountSettings>
+              <AppLink
+                :aria-label="t('stateInfoUsernameDisabledLink')"
+                :to="localePath(`/accounts/${store.signedInUsername}/settings`)"
+              >
+                {{ t('stateInfoUsernameDisabledLink') }}
+              </AppLink>
+            </template>
+          </i18n-t>
+        </FormInputStateInfo>
       </template>
     </FormInputUsername>
-    <FormInputStateInfo>
+    <!-- TODO: replace with override checkbox -->
+    <FormInputStateInfo v-if="v$.accountUsername.$model">
       {{ t('accountOverride') }}
     </FormInputStateInfo>
     <FormInput
       id-label="input-first-name"
-      is-optional
       :placeholder="t('globalPlaceholderFirstName')"
       :title="t('firstName')"
       type="text"
@@ -52,7 +69,6 @@
     </FormInput>
     <FormInput
       id-label="input-last-name"
-      is-optional
       :placeholder="t('globalPlaceholderLastName')"
       :title="t('lastName')"
       type="text"
@@ -70,12 +86,10 @@
     </FormInput>
     <FormInputEmailAddress
       :form-input="v$.emailAddress"
-      is-optional
       @input="form.emailAddress = $event"
     />
     <FormInput
       id-label="input-address"
-      is-optional
       :title="t('address')"
       type="textarea"
       :value="v$.address"
@@ -100,10 +114,9 @@
     </FormInput>
     <FormInputPhoneNumber
       :form-input="v$.phoneNumber"
-      is-optional
       @input="form.phoneNumber = $event"
     />
-    <FormInputUrl :form-input="v$.url" is-optional @input="form.url = $event" />
+    <FormInputUrl :form-input="v$.url" @input="form.url = $event" />
   </Form>
 </template>
 
@@ -115,7 +128,17 @@ import { useUpdateContactByIdMutation } from '~/gql/documents/mutations/contact/
 import type { ContactItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
-  contact?: Pick<ContactItemFragment, any>
+  contact?: Pick<
+    ContactItemFragment,
+    | 'accountByAccountId'
+    | 'address'
+    | 'emailAddress'
+    | 'firstName'
+    | 'id'
+    | 'lastName'
+    | 'phoneNumber'
+    | 'url'
+  >
 }
 const props = withDefaults(defineProps<Props>(), {
   contact: undefined,
@@ -127,6 +150,7 @@ const emit = defineEmits<{
 
 const { $urql } = useNuxtApp()
 const store = useMaevsiStore()
+const localePath = useLocalePath()
 const { t } = useI18n()
 
 // api data
@@ -197,12 +221,29 @@ const submit = async () => {
     emit('submitSuccess')
   }
 }
-const updateForm = (data?: Pick<ContactItemFragment, any>) => {
+const updateForm = (
+  data?: Pick<
+    ContactItemFragment,
+    | 'accountByAccountId'
+    | 'address'
+    | 'emailAddress'
+    | 'firstName'
+    | 'id'
+    | 'lastName'
+    | 'phoneNumber'
+    | 'url'
+  >,
+) => {
   if (!data) return
 
-  for (const [k, v] of Object.entries(data)) {
-    ;(form as Record<string, any>)[k] = v
-  }
+  form.accountUsername = data.accountByAccountId?.username
+  form.address = data.address || undefined
+  form.emailAddress = data.emailAddress || undefined
+  form.firstName = data.firstName || undefined
+  form.id = data.id
+  form.lastName = data.lastName || undefined
+  form.phoneNumber = data.phoneNumber || undefined
+  form.url = data.url || undefined
 }
 
 // vuelidate
@@ -240,17 +281,21 @@ updateForm(props.contact)
 
 <i18n lang="yaml">
 de:
-  accountOverride: Du kannst sowohl ein vorhandenes Konto als Kontakt hinzufügen als auch manuell Kontaktdaten eingeben. Sind beide Daten angegeben, werden die manuell eingebenen Daten bevorzugt verwendet.
+  accountOverride: Falls angegeben, nutzt maevsi die folgenden Daten anstelle der Daten des oben genannten Kontos.
   address: Adresse
   firstName: Vorname
   lastName: Nachname
   postgres23505: Ein Kontakt mit dieser Nutzernamen existiert bereits!
   save: Speichern
+  stateInfoUsernameDisabled: Du kannst deinen Nutzernamen in den {accountSettings} ändern.
+  stateInfoUsernameDisabledLink: Einstellungen deines Kontos
 en:
-  accountOverride: You can add an existing account as a contact or enter contact data manually. If both data are entered, the manually entered data will be used preferentially.
+  accountOverride: If given, maevsi will prefer to use the following data instead of the data given by the account above.
   address: Address
   firstName: First name
   lastName: Last name
   postgres23505: A contact with this username already exists!
   save: Save
+  stateInfoUsernameDisabled: You can edit your username in {accountSettings}.
+  stateInfoUsernameDisabledLink: your account's settings
 </i18n>

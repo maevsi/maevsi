@@ -1,6 +1,7 @@
 <template>
   <FormInput
     v-if="formInput"
+    :is-disabled="isDisabled"
     :is-optional="isOptional"
     :is-validatable="isValidatable"
     :id-label="`input-username`"
@@ -57,6 +58,7 @@
       >
         {{ t('validationExistenceHint') }}
       </FormInputStateInfo>
+      <slot name="stateInfo" />
     </template>
     <template v-if="!!formInput.$model && isValidatable" #stateSuccess>
       <FormInputStateSuccess
@@ -78,12 +80,14 @@ import type { BaseValidation } from '@vuelidate/core'
 
 export interface Props {
   formInput?: BaseValidation
+  isDisabled?: boolean
   isOptional?: boolean
   isValidatable?: boolean
   isValidationInverted?: boolean
 }
 withDefaults(defineProps<Props>(), {
   formInput: undefined,
+  isDisabled: false,
   isOptional: false,
   isValidatable: false,
   isValidationInverted: false,

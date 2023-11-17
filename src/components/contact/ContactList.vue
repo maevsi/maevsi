@@ -96,7 +96,21 @@ const pending = reactive({
   deletions: ref<string[]>([]),
   edits: ref<string[]>([]),
 })
-const selectedContact = ref<Pick<ContactItemFragment, 'nodeId'>>()
+const selectedContact =
+  ref<
+    Pick<
+      ContactItemFragment,
+      | 'accountByAccountId'
+      | 'address'
+      | 'emailAddress'
+      | 'firstName'
+      | 'id'
+      | 'lastName'
+      | 'nodeId'
+      | 'phoneNumber'
+      | 'url'
+    >
+  >()
 
 // methods
 const add = () => {
@@ -109,7 +123,20 @@ const delete_ = async (nodeId: string, id: string) => {
   await deleteContactByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
 }
-const edit = (contact: Pick<ContactItemFragment, 'nodeId'>) => {
+const edit = (
+  contact: Pick<
+    ContactItemFragment,
+    | 'accountByAccountId'
+    | 'address'
+    | 'emailAddress'
+    | 'firstName'
+    | 'id'
+    | 'lastName'
+    | 'nodeId'
+    | 'phoneNumber'
+    | 'url'
+  >,
+) => {
   pending.edits.push(contact.nodeId)
   formContactHeading.value = t('contactEdit')
   selectedContact.value = contact
