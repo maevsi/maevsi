@@ -34,7 +34,8 @@
             postgres23503: t('postgres23503'),
             postgres28P01: t('postgres28P01'),
           }"
-          :item-name="t('account')"
+          :item-name-deletion="t('formDeleteItemNameDeletion')"
+          :item-name-success="t('formDeleteItemNameSuccess')"
           :mutation="mutation"
           @success="signOut"
         />
@@ -126,7 +127,8 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  account: Konto
+  formDeleteItemNameDeletion: Konto
+  formDeleteItemNameSuccess: Konto
   postgres23503: Dir gehören noch Daten! Lösche erst all deine Veranstaltungen, Kontakte und Bilder.
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   profilePictureChange: Profilbild ändern
@@ -134,7 +136,8 @@ de:
   titleAccountDelete: Konto löschen
   titlePasswordChange: Password des Kontos ändern
 en:
-  account: account
+  formDeleteItemNameDeletion: account
+  formDeleteItemNameSuccess: Account
   postgres23503: There's still some data connected to your account! Delete all your events, contacts and images first.
   postgres28P01: Password incorrect! Check for spelling mistakes.
   profilePictureChange: Change profile picture

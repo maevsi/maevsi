@@ -16,9 +16,6 @@ import type { ArrayElement, UnionToIntersection } from '~/types/types'
 export const append = (path: string, pathToAppend: string) =>
   path + (path.endsWith('/') ? '' : '/') + pathToAppend
 
-export const capitalizeFirstLetter = (string: string) =>
-  string.charAt(0).toUpperCase() + string.slice(1)
-
 export const copyText = (text: string) =>
   new Promise((resolve, reject) => {
     const fakeElement = document.createElement('button')
