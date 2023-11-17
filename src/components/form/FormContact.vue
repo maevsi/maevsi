@@ -115,7 +115,17 @@ import { useUpdateContactByIdMutation } from '~/gql/documents/mutations/contact/
 import type { ContactItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {
-  contact?: Pick<ContactItemFragment, any>
+  contact?: Pick<
+    ContactItemFragment,
+    | 'accountByAccountId'
+    | 'address'
+    | 'emailAddress'
+    | 'firstName'
+    | 'id'
+    | 'lastName'
+    | 'phoneNumber'
+    | 'url'
+  >
 }
 const props = withDefaults(defineProps<Props>(), {
   contact: undefined,
@@ -197,12 +207,29 @@ const submit = async () => {
     emit('submitSuccess')
   }
 }
-const updateForm = (data?: Pick<ContactItemFragment, any>) => {
+const updateForm = (
+  data?: Pick<
+    ContactItemFragment,
+    | 'accountByAccountId'
+    | 'address'
+    | 'emailAddress'
+    | 'firstName'
+    | 'id'
+    | 'lastName'
+    | 'phoneNumber'
+    | 'url'
+  >,
+) => {
   if (!data) return
 
-  for (const [k, v] of Object.entries(data)) {
-    ;(form as Record<string, any>)[k] = v
-  }
+  form.accountUsername = data.accountByAccountId?.username
+  form.address = data.address || undefined
+  form.emailAddress = data.emailAddress || undefined
+  form.firstName = data.firstName || undefined
+  form.id = data.id
+  form.lastName = data.lastName || undefined
+  form.phoneNumber = data.phoneNumber || undefined
+  form.url = data.url || undefined
 }
 
 // vuelidate
