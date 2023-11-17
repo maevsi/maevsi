@@ -90,7 +90,7 @@ RUN pnpm --dir src run test
 ########################
 # Nuxt: test (e2e, base-image)
 
-FROM mcr.microsoft.com/playwright:v1.39.0@sha256:dccb9c6518090a100aaa820ff0b1d0c7ec12154f80696e7799b5cd9232daa0b0 AS test-e2e-base-image
+FROM mcr.microsoft.com/playwright:v1.40.0@sha256:9dcc823ba14151eecb81eedb3a0abcb4fac942ae7fa9c9f96fdfcc7f5db9d239 AS test-e2e-base-image
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true

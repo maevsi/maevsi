@@ -65,7 +65,7 @@
     "@nuxtjs/turnstile": "0.6.3",
     "@nuxtseo/module": "2.0.0-beta.44",
     "@pinia/nuxt": "0.5.1",
-    "@playwright/test": "1.39.0",
+    "@playwright/test": "1.40.0",
     "@sentry/node": "7.80.1",
     "@sentry/vite-plugin": "2.10.1",
     "@sentry/vue": "7.80.1",
@@ -163,6 +163,6 @@
     "workbox-precaching": "7.0.0"
   },
   "peerDependencies": {
-    "playwright-core": "1.39.0"
+    "playwright-core": "1.40.0"
   }
 }
