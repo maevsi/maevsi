@@ -19,7 +19,8 @@
         <h2>{{ t('titleDelete') }}</h2>
         <FormDelete
           id="deleteEvent"
-          :item-name="t('event')"
+          :item-name-deletion="t('formDeleteItemNameDeletion')"
+          :item-name-success="t('formDeleteItemNameSuccess')"
           :mutation="mutation"
           :variables="{
             id: event.id,
@@ -126,13 +127,15 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  event: Veranstaltung
+  formDeleteItemNameDeletion: Veranstaltung
+  formDeleteItemNameSuccess: Veranstaltung
   postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
   postgresP0002: Die Veranstaltung wurde nicht gefunden!
   title: Veranstaltung bearbeiten
   titleDelete: Veranstaltung löschen
 en:
-  event: event
+  formDeleteItemNameDeletion: event
+  formDeleteItemNameSuccess: Event
   postgres28P01: Password incorrect! Check for spelling mistakes.
   postgresP0002: Event could not be found!
   title: Edit event

@@ -4,7 +4,7 @@
     :errors-pg-ids="errorsPgIds"
     :form="v$"
     :is-form-sent="isFormSent"
-    :submit-name="t('deletion', { item: itemName })"
+    :submit-name="t('deletion', { item: itemNameDeletion })"
     @submit.prevent="submit"
   >
     <FormInputPassword
@@ -24,7 +24,8 @@ import { useVuelidate } from '@vuelidate/core'
 
 export interface Props {
   errorsPgIds?: Record<string, string>
-  itemName: string
+  itemNameDeletion: string
+  itemNameSuccess: string
   mutation: UseMutationResponse<any, any>
   variables?: Record<string, any>
 }
@@ -60,11 +61,9 @@ const submit = async () => {
   if (result.error) return
 
   showToast({
-    title: capitalizeFirstLetter(
-      t('success', {
-        item: props.itemName,
-      }),
-    ),
+    title: t('success', {
+      item: props.itemNameSuccess,
+    }),
   })
   emit('success')
 }
