@@ -1,3 +1,12 @@
+## [3.13.3](https://github.com/maevsi/maevsi/compare/3.13.2...3.13.3) (2023-11-17)
+
+
+### Bug Fixes
+
+* **contact:** prevent changes to own username ([7c8b4b5](https://github.com/maevsi/maevsi/commit/7c8b4b5427ac453e6c7477fb19f25d6e8797dfe8))
+* **form-contact:** resolve username ([38acdf9](https://github.com/maevsi/maevsi/commit/38acdf92086a591b693377bc7db6be4066459829))
+* **form-contact:** resolve username ([#1457](https://github.com/maevsi/maevsi/issues/1457)) ([1b9dbf5](https://github.com/maevsi/maevsi/commit/1b9dbf5130214fe6fe3d4ae0420e4460f333be73))
+
 ## [3.13.2](https://github.com/maevsi/maevsi/compare/3.13.1...3.13.2) (2023-11-16)
 
 
