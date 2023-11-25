@@ -176,8 +176,8 @@ importers:
         specifier: 1.1.2
         version: 1.1.2(graphql@16.8.1)(vue@3.3.9)
       '@vite-pwa/nuxt':
-        specifier: 0.3.0
-        version: 0.3.0(rollup@2.79.1)(vite@5.0.2)(workbox-build@7.0.0)(workbox-window@7.0.0)
+        specifier: 0.3.1
+        version: 0.3.1(rollup@2.79.1)(vite@5.0.2)(workbox-build@7.0.0)(workbox-window@7.0.0)
       '@vuelidate/core':
         specifier: 2.0.3
         version: 2.0.3(vue@3.3.9)
@@ -6415,8 +6415,8 @@ packages:
       - supports-color
     dev: true
 
-  /@vite-pwa/nuxt@0.3.0(rollup@2.79.1)(vite@5.0.2)(workbox-build@7.0.0)(workbox-window@7.0.0):
-    resolution: {integrity: sha512-2e0PgU5kzR/ogKLpHZaYPjeLsOEUHV0IBVyIeFBcAHdgGNSGhRzXSN6hypEO8nmIsgCKcGpuSBS/rK+Fpr9lwg==}
+  /@vite-pwa/nuxt@0.3.1(rollup@2.79.1)(vite@5.0.2)(workbox-build@7.0.0)(workbox-window@7.0.0):
+    resolution: {integrity: sha512-OomQ7jbvC0LoCBEvyQJj5taEVO3PXBYe813NEJLgRvdBuEs70yMJpeKMYE1aYgAo3Z2GDdFZIqDE6fqGiEG4zA==}
     dependencies:
       '@nuxt/kit': 3.8.2(rollup@2.79.1)
       pathe: 1.1.1
