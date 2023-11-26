@@ -185,8 +185,8 @@ importers:
         specifier: 2.0.4
         version: 2.0.4(vue@3.3.9)
       barcode-detector:
-        specifier: 2.1.3
-        version: 2.1.3
+        specifier: 2.1.4
+        version: 2.1.4
       browserslist-useragent-regexp:
         specifier: 4.1.0
         version: 4.1.0(browserslist@4.22.1)
@@ -5633,10 +5633,6 @@ packages:
     resolution: {integrity: sha512-of+ICnbqjmFCiixUnqRulbylyXQrPqIGf/B3Jax1wIF3DvSheysQxAWvqHhZiW3IQrycvokcLcFQlveGp+vyNg==}
     dev: true
 
-  /@types/dom-webcodecs@0.1.10:
-    resolution: {integrity: sha512-qQfLMw4yhtagKQApMQKaf21KZeJu3Psysbm/wLQ3mkpyBWY3x3dHCKFcYs43WEH+s8zgTSF0DvJUPWTtyZP0Dw==}
-    dev: true
-
   /@types/dom-webcodecs@0.1.11:
     resolution: {integrity: sha512-yPEZ3z7EohrmOxbk/QTAa0yonMFkNkjnVXqbGb7D4rMr+F1dGQ8ZUFxXkyLLJuiICPejZ0AZE9Rrk9wUCczx4A==}
     dev: true
@@ -7495,15 +7491,15 @@ packages:
   /barcode-detector@2.1.1:
     resolution: {integrity: sha512-yA6gR5u5j22uw2eHSlFGzhYgnnQqx6hc4amDb/r0bKWl2gcDOqVE6SzUE6O87UzJ3ZhjJjM9uG/L9+D705HsKg==}
     dependencies:
-      '@types/dom-webcodecs': 0.1.10
+      '@types/dom-webcodecs': 0.1.11
       zxing-wasm: 1.0.0-rc.4
     dev: true
 
-  /barcode-detector@2.1.3:
-    resolution: {integrity: sha512-HzrHWCW69WzLGKCyiKXwM/GmHnvJX9xRNp2/Srii/MjBfyoPf5OoIf+KMWtuVd4mBCqGD7SLpaazFaPlij36+A==}
+  /barcode-detector@2.1.4:
+    resolution: {integrity: sha512-Ak+wgj8MHNms5JxIiEULD4ZZthNDGlHaeHZNShntZ/R1Hp1D5c4UVP+uTTr1lA4ya655LMe25oT8KUUuDBRbew==}
     dependencies:
       '@types/dom-webcodecs': 0.1.11
-      zxing-wasm: 1.0.0-rc.7
+      zxing-wasm: 1.0.0-rc.10
     dev: true
 
   /base64-js@0.0.8:
@@ -18661,14 +18657,14 @@ packages:
       readable-stream: 3.6.2
     dev: true
 
-  /zxing-wasm@1.0.0-rc.4:
-    resolution: {integrity: sha512-SvVErHUZhzFqpqA2vpwmXeAPa6sgGdUCOkMCd5cMch6L1urZbZCZR8jb2+NI9bCfJRNkQi2ZjME9/NaiUFiSGg==}
+  /zxing-wasm@1.0.0-rc.10:
+    resolution: {integrity: sha512-C7gjPeTTe11EZJax03CJcpWBt4s9AN3TzldBwrXRb2xrzs3eoTfc9wBOXQeFTOZeKLDeEOsEVxXMVhSkUkiBhA==}
     dependencies:
       '@types/emscripten': 1.39.10
     dev: true
 
-  /zxing-wasm@1.0.0-rc.7:
-    resolution: {integrity: sha512-MM/vJ2Q+31hBV82CWef5paOu22iGPhbFgZOVWoWiC24KnAoH09lpu6W+yag3AXEINf/mU6opTwjDN04XFXAEYQ==}
+  /zxing-wasm@1.0.0-rc.4:
+    resolution: {integrity: sha512-SvVErHUZhzFqpqA2vpwmXeAPa6sgGdUCOkMCd5cMch6L1urZbZCZR8jb2+NI9bCfJRNkQi2ZjME9/NaiUFiSGg==}
     dependencies:
       '@types/emscripten': 1.39.10
     dev: true
