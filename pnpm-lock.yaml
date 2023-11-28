@@ -254,8 +254,8 @@ importers:
         specifier: 1.9.0
         version: 1.9.0
       jose:
-        specifier: 5.1.1
-        version: 5.1.1
+        specifier: 5.1.2
+        version: 5.1.2
       lint-staged:
         specifier: 15.1.0
         version: 15.1.0
@@ -3067,7 +3067,7 @@ packages:
       graphql-request: 6.1.0(graphql@16.8.1)
       http-proxy-agent: 7.0.0
       https-proxy-agent: 7.0.2
-      jose: 5.1.1
+      jose: 5.1.2
       js-yaml: 4.1.0
       json-stable-stringify: 1.1.0
       lodash: 4.17.21
@@ -7374,6 +7374,7 @@ packages:
 
   /base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+    requiresBuild: true
     dev: true
 
   /basic-auth@2.0.1:
@@ -7497,6 +7498,7 @@ packages:
 
   /buffer@5.7.1:
     resolution: {integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==}
+    requiresBuild: true
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
@@ -10700,6 +10702,7 @@ packages:
 
   /ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
+    requiresBuild: true
     dev: true
 
   /ignore-walk@6.0.3:
@@ -11327,8 +11330,8 @@ packages:
     hasBin: true
     dev: true
 
-  /jose@5.1.1:
-    resolution: {integrity: sha512-bfB+lNxowY49LfrBO0ITUn93JbUhxUN8I11K6oI5hJu/G6PO6fEUddVLjqdD0cQ9SXIHWXuWh7eJYwZF7Z0N/g==}
+  /jose@5.1.2:
+    resolution: {integrity: sha512-X7TOC/d8KPvx4wPUuLHVgTSdoWw0UW5TQOUwhvCvj+ZPfsf9vUPhhksYPjNBWVGPQ/6yd/JrL1gQxBnIDwYdFg==}
     dev: true
 
   /js-base64@3.7.5:
