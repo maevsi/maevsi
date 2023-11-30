@@ -39,6 +39,12 @@
       </p>
       <ButtonEventUnlock />
     </section>
+    <section class="flex flex-col gap-4">
+      <h2>{{ t('userAgentString') }}</h2>
+      <div>
+        {{ userAgentString }}
+      </div>
+    </section>
   </div>
 </template>
 
@@ -61,6 +67,7 @@ const { t, locale } = useI18n()
 const store = useMaevsiStore()
 const dateTime = useDateTime()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
+const requestEvent = useRequestEvent()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
@@ -82,6 +89,9 @@ const title = t('title')
 const sessionExpiryTime = computed(() =>
   dateTime(store.jwtDecoded?.exp).format('llll'),
 )
+const userAgentString = computed(() =>
+  requestEvent ? requestEvent.headers.get('user-agent') : navigator.userAgent,
+)
 
 // initialization
 useHeadDefault({ title })
@@ -97,6 +107,7 @@ de:
   sessionExpired: Deine Sitzung ist abgelaufen.
   sessionExpiry: Deine Sitzung läuft am {exp} ab.
   title: Einstellungen
+  userAgentString: User agent string
 en:
   codes: Invitation codes
   codesEntered: 'You entered the following codes:'
@@ -106,4 +117,5 @@ en:
   sessionExpired: Your session expired.
   sessionExpiry: Your session expires on {exp}.
   title: Settings
+  userAgentString: User agent string
 </i18n>

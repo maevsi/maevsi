@@ -60,6 +60,9 @@
         <AppLink to="mailto:support+maev-si@maev.si">
           {{ t('contact') }}
         </AppLink>
+        <AppLink :to="localePath('/dashboard/dev')">
+          {{ t('developmentTools') }}
+        </AppLink>
       </LayoutFooterCategory>
       <LayoutFooterCategory :heading="t('languages')">
         <AppLink
@@ -183,6 +186,7 @@ $dayjs.locale(locale.value)
 de:
   colorScheme: Farbschema
   contact: Kontakt & Feedback
+  developmentTools: Entwicklungswerkzeuge
   features: Funktionen
   githubLinkTitle: maevsi auf GitHub
   languages: Sprachen
@@ -199,6 +203,7 @@ de:
 en:
   colorScheme: Color scheme
   contact: Contact & feedback
+  developmentTools: Developer tools
   features: Features
   githubLinkTitle: maevsi on GitHub
   languages: Languages
