@@ -157,6 +157,9 @@ importers:
       '@types/pg':
         specifier: 8.10.9
         version: 8.10.9
+      '@unhead/vue':
+        specifier: 1.8.8
+        version: 1.8.8(vue@3.3.9)
       '@uppy/core':
         specifier: 3.7.1
         version: 3.7.1

@@ -2,7 +2,6 @@ import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 
-import { tryResolveModule } from '@nuxt/kit'
 import type { Nuxt } from '@nuxt/schema'
 // import { defu } from 'defu'
 
@@ -17,14 +16,6 @@ const RELEASE_NAME = async () =>
 
 // TODO: let this error in "eslint (compat/compat)"" (https://github.com/DefinitelyTyped/DefinitelyTyped/issues/55519)
 // setImmediate(() => {})
-
-const resolve = async (modulePath: string, nuxt: Nuxt) => {
-  const module = await tryResolveModule(modulePath, nuxt.options.modulesDir)
-
-  if (!module) throw new Error(`Could not resolve module "${modulePath}"`)
-
-  return module
-}
 
 export default defineNuxtConfig({
   app: {
@@ -80,11 +71,6 @@ export default defineNuxtConfig({
     async (_options: any, nuxt: Nuxt) => {
       nuxt.options.runtimeConfig.public.vio.releaseName = await RELEASE_NAME()
     },
-    async (_options: any, nuxt: Nuxt) => {
-      for (const module of ['@unhead/vue', 'ufo']) {
-        nuxt.options.alias[module] = await resolve(module, nuxt)
-      }
-    }, // TODO: remove after next update following 2023-10-20 (https://github.com/nuxt-modules/i18n/releases, https://github.com/nuxt/nuxt/releases)
     // nuxt-security: remove invalid `'none'`s and duplicates
     (_options, nuxt) => {
       const nuxtConfigSecurity = nuxt.options.security
