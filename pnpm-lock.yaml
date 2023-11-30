@@ -86,8 +86,8 @@ importers:
         specifier: 1.5.2
         version: 1.5.2(rollup@2.79.1)
       '@nuxtjs/i18n':
-        specifier: npm:@nuxtjs/i18n-edge@8.0.0-rc.5-28348745.ca4d7cf
-        version: /@nuxtjs/i18n-edge@8.0.0-rc.5-28348745.ca4d7cf(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.9)
+        specifier: 8.0.0-rc.6
+        version: 8.0.0-rc.6(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.9)
       '@nuxtjs/tailwindcss':
         specifier: 6.10.1
         version: 6.10.1(rollup@2.79.1)
@@ -4171,8 +4171,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/i18n-edge@8.0.0-rc.5-28348745.ca4d7cf(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.9):
-    resolution: {integrity: sha512-z+imvDzUAYoMbr7ZcBWeleucvgrVKEt17/Db8BM2kfDvsLKwxBnxvWnNdU8uFYIqkNc5NHM8zH6b1LvG6Iy0eA==}
+  /@nuxtjs/i18n@8.0.0-rc.6(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.9):
+    resolution: {integrity: sha512-Pn5RNasGqpxnIqDNe8IUKAIqCphIq4IaKyJKLwOl8wZX9T4bPBa8Jm95Gxjd53gciUkv6m259mhMRE7bVh+aTA==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/shared': 9.7.1
@@ -6517,7 +6517,7 @@ packages:
   /@vue/compiler-sfc@3.3.9:
     resolution: {integrity: sha512-wy0CNc8z4ihoDzjASCOCsQuzW0A/HP27+0MDSSICMjVIFzk/rFViezkR3dzH+miS2NDEz8ywMdbjO5ylhOLI2A==}
     dependencies:
-      '@babel/parser': 7.23.4
+      '@babel/parser': 7.23.5
       '@vue/compiler-core': 3.3.9
       '@vue/compiler-dom': 3.3.9
       '@vue/compiler-ssr': 3.3.9
@@ -6563,7 +6563,7 @@ packages:
   /@vue/reactivity-transform@3.3.9:
     resolution: {integrity: sha512-HnUFm7Ry6dFa4Lp63DAxTixUp8opMtQr6RxQCpDI1vlh12rkGIeYqMvJtK+IKyEfEOa2I9oCkD1mmsPdaGpdVg==}
     dependencies:
-      '@babel/parser': 7.23.4
+      '@babel/parser': 7.23.5
       '@vue/compiler-core': 3.3.9
       '@vue/shared': 3.3.9
       estree-walker: 2.0.2
