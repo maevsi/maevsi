@@ -1,3 +1,16 @@
+## [3.14.0](https://github.com/maevsi/maevsi/compare/3.13.4...3.14.0) (2023-11-30)
+
+
+### Features
+
+* **dev:** display user agent string ([522425f](https://github.com/maevsi/maevsi/commit/522425f1e820e2233055d546cc46ce72bc5acf84))
+* **layout:** link development tools ([ac70630](https://github.com/maevsi/maevsi/commit/ac70630be79b2b601953796bdb89d1e1c7543102))
+
+
+### Bug Fixes
+
+* **form:** remove unnecessary watcher ([510f8d5](https://github.com/maevsi/maevsi/commit/510f8d5e17eeaa9006af18f7383159d381af7243))
+
 ## [3.13.4](https://github.com/maevsi/maevsi/compare/3.13.3...3.13.4) (2023-11-25)
 
 
