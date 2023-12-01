@@ -1,12 +1,12 @@
 import type { WritableComputedRef } from 'vue'
-import type { LocalePathFunction } from 'vue-i18n-routing'
+import type { TypedToLocalePath } from '@typed-router/__i18n-router'
 import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
 export const useGetBreadcrumbItemProps = () => {
   const localePath = useLocalePath()
 
   return (
-    breadcrumbsWithLocales: BreadcrumbItemPropsLocalizedObject[],
+    breadcrumbsWithLocales: BreadcrumbItemPropsLocalizedObject<any, any>[],
     locale: WritableComputedRef<string>,
   ) =>
     breadcrumbsWithLocales.map((breadcrumbWithLocales) =>
@@ -15,9 +15,9 @@ export const useGetBreadcrumbItemProps = () => {
 }
 
 const getBreadcrumbItemProps = (
-  breadcrumbWithLocales: BreadcrumbItemPropsLocalizedObject,
+  breadcrumbWithLocales: BreadcrumbItemPropsLocalizedObject<any, any>,
   locale: WritableComputedRef<string>,
-  localePath: LocalePathFunction,
+  localePath: TypedToLocalePath,
 ) => ({
   ...breadcrumbWithLocales,
   ariaLabel: breadcrumbWithLocales.ariaLabel
@@ -30,5 +30,5 @@ const getBreadcrumbItemProps = (
       ? breadcrumbWithLocales.label
       : breadcrumbWithLocales.label[locale.value as LOCALE_CODES]
     : undefined,
-  to: localePath(breadcrumbWithLocales.to),
+  to: localePath(breadcrumbWithLocales.to).toString(),
 })

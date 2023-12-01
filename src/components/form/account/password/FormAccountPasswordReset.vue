@@ -57,10 +57,12 @@ const submit = async () => {
   if (result.error || !result.data) return
 
   showToast({ title: t('accountPasswordResetSuccess') })
-  await navigateTo({
-    path: localePath(`/accounts`),
-    query: { ...route.query, tab: 'signIn' },
-  })
+  await navigateTo(
+    localePath({
+      path: `/accounts`,
+      query: { ...route.query, tab: 'signIn' },
+    }),
+  )
 }
 
 // vuelidate

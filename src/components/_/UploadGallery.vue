@@ -209,7 +209,7 @@ const initStretcher = ({
 const selectProfilePicture = async () => {
   const pathUpload = localePath('/uploads')
 
-  if (route.path === pathUpload) {
+  if (route.path === pathUpload.toString()) {
     inputProfilePictureRef.value.click()
   } else {
     await navigateTo(pathUpload)

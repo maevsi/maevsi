@@ -11,7 +11,6 @@ import {
 import { Client } from '@urql/core'
 import { consola } from 'consola'
 import type { Ref } from 'vue'
-import type { RouteLocationNormalized } from 'vue-router'
 
 import {
   REGEX_SLUG,
@@ -25,6 +24,7 @@ import { eventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/even
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { EventVisibility } from '~/gql/generated/graphql'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
+import type { TypedRouteFromName } from '@typed-router/__router'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 254 // source: https://www.dominicsayers.com/isemail/
@@ -146,14 +146,22 @@ export const validateAccountExistence = async ({
   route,
 }: {
   isAuthorizationRequired?: boolean
-  route: RouteLocationNormalized
+  route: TypedRouteFromName<
+    | 'accounts-username'
+    | 'accounts-username-settings'
+    | 'events-username'
+    | 'events-username-event_name___en'
+    | 'events-username-event_name-attendances___en'
+    | 'events-username-event_name-invitations___en'
+    | 'events-username-event_name-settings___en'
+  >
 }) => {
   const { $urql } = useNuxtApp()
   const store = useMaevsiStore()
 
   const accountIsExisting = await $urql.value
     .query(accountByUsernameQuery, {
-      username: route.params.username as string,
+      username: route.params.username,
     })
     .toPromise()
 
@@ -223,13 +231,18 @@ export const getEventByAuthorAccountIdAndSlug = async ({
 }
 
 export const validateEventExistence = async (
-  route: RouteLocationNormalized,
+  route: TypedRouteFromName<
+    | 'events-username-event_name___en'
+    | 'events-username-event_name-attendances___en'
+    | 'events-username-event_name-invitations___en'
+    | 'events-username-event_name-settings___en'
+  >,
 ) => {
   const { $urql } = useNuxtApp()
 
   const account = await getAccountByUsername({
     $urql,
-    username: route.params.username as string,
+    username: route.params.username,
   })
 
   if (!account) {

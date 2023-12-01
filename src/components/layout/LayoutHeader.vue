@@ -116,10 +116,9 @@ const { t } = useI18n()
 
 // methods
 const navigateToSearch = () => {
-  navigateTo({
-    path: localePath(`/tasks/search`),
-    query: { q: 'search phrase' },
-  })
+  navigateTo(
+    localePath({ path: `/tasks/search`, query: { q: 'search phrase' } }),
+  )
 }
 </script>
 

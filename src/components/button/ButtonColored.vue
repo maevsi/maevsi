@@ -1,6 +1,5 @@
 <template>
   <Button
-    :is-to-relative="isToRelative"
     :aria-label="ariaLabel"
     class="justify-center rounded-md border px-4 py-2 font-medium"
     :class="
@@ -15,7 +14,7 @@
       ].join(' ')
     "
     :disabled="disabled"
-    :to="to"
+    :to="props.to"
     :type="type"
     @click="emit('click')"
   >
@@ -29,19 +28,34 @@
   </Button>
 </template>
 
-<script setup lang="ts">
-export interface Props {
+<script
+  setup
+  lang="ts"
+  generic="
+    T extends RoutesNamesList,
+    P extends string,
+    E extends boolean = false
+  "
+>
+import type { NuxtRoute } from '@typed-router/__router'
+import type { RoutesNamesList } from '@typed-router/__routes'
+
+export interface Props<
+  T extends RoutesNamesList,
+  P extends string,
+  E extends boolean = false,
+> {
   ariaLabel: string
   disabled?: boolean
+  isExternal?: E
   isPrimary?: boolean
-  isToRelative?: boolean
-  to?: string
+  to?: NuxtRoute<T, P, E>
   type?: 'button' | 'reset' | 'submit'
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props<T, P, E>>(), {
   disabled: false,
+  isExternal: undefined,
   isPrimary: true,
-  isToRelative: false,
   to: undefined,
   type: 'button',
 })

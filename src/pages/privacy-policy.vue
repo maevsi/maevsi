@@ -209,6 +209,7 @@
       <i18n-t keypath="pluginsToolsGoogleMapsDescription4" tag="p">
         <template #linkGdpr>
           <AppLink
+            is-external
             to="https://privacy.google.com/businesses/gdprcontrollerterms/"
           >
             {{ t('pluginsToolsGoogleMapsDescription4s1') }}
@@ -216,6 +217,7 @@
         </template>
         <template #linkGdprScss>
           <AppLink
+            is-external
             to="https://privacy.google.com/businesses/gdprcontrollerterms/sccs/"
           >
             {{ t('pluginsToolsGoogleMapsDescription4s2') }}
@@ -248,7 +250,9 @@
         </template>
       </i18n-t>
       <p>
-        <AppLink to="https://www.e-recht24.de">{{ t('source') }}</AppLink>
+        <AppLink is-external to="https://www.e-recht24.de">
+          {{ t('source') }}
+        </AppLink>
       </p>
     </div>
   </div>

@@ -51,6 +51,7 @@
       >
         <ButtonColored
           :aria-label="t('contactSupport')"
+          is-external
           to="mailto:support+sign-in@maev.si"
         >
           {{ t('contactSupport') }}

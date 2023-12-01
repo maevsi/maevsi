@@ -23,17 +23,19 @@ import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/e
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 
+import type { TypedRouteFromName } from '@typed-router/__router'
+
+const ROUTE_NAME = 'events-username-event_name-invitations___en'
+
 export const usePageBreadcrumb = () => {
-  const route = useRoute()
+  const route = useRoute(ROUTE_NAME)
 
   return {
     label: {
       de: 'Einladungen',
       en: 'Invitations',
     },
-    to: `/events/${route.params.username as string}/${
-      route.params.event_name as string
-    }/invitations`,
+    to: `/events/${route.params.username}/${route.params.event_name}/invitations`,
   }
 }
 </script>
@@ -41,19 +43,21 @@ export const usePageBreadcrumb = () => {
 <script setup lang="ts">
 definePageMeta({
   async validate(route) {
-    return await validateEventExistence(route)
+    return await validateEventExistence(
+      route as TypedRouteFromName<typeof ROUTE_NAME>,
+    )
   },
 })
 
 const { $urql } = useNuxtApp()
-const route = useRoute()
+const route = useRoute(ROUTE_NAME)
 const { t, locale } = useI18n()
 const store = useMaevsiStore()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username as string,
+  username: route.params.username,
 })
 const accountId = computed(
   () =>
@@ -61,7 +65,7 @@ const accountId = computed(
 )
 const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
   authorAccountId: accountId,
-  slug: route.params.event_name as string,
+  slug: route.params.event_name,
 })
 const event = computed(() =>
   getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),

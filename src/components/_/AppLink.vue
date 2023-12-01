@@ -1,50 +1,51 @@
 <template>
-  <a
-    v-if="to.match(/^((ftp|http(s)?):\/\/|(mailto):)/)"
-    :aria-label="ariaLabel"
-    :class="classes"
-    :href="to"
-    :rel="
-      [...(nofollow ? ['nofollow'] : []), 'noopener', 'noreferrer'].join(' ')
-    "
-    target="_blank"
-    @click="emit('click')"
-  >
-    <slot />
-  </a>
   <NuxtLink
-    v-else
     :aria-label="ariaLabel"
     :class="classes"
-    :to="isToRelative ? append(route.path, to) : to"
+    :target="targetComputed"
+    :to="props.to"
     @click="emit('click')"
   >
     <slot />
   </NuxtLink>
 </template>
 
-<script setup lang="ts">
-export interface Props {
+<script
+  setup
+  lang="ts"
+  generic="
+    T extends RoutesNamesList,
+    P extends string,
+    E extends boolean = false
+  "
+>
+import type { NuxtLinkProps } from '#app'
+import type { NuxtRoute } from '@typed-router/__router'
+import type { RoutesNamesList } from '@typed-router/__routes'
+
+export interface Props<
+  T extends RoutesNamesList,
+  P extends string,
+  E extends boolean = false,
+> {
   ariaLabel?: string
   isColored?: boolean
-  isToRelative?: boolean
+  isExternal?: E
   isUnderlined?: boolean
-  nofollow?: boolean
-  to: string
+  target?: NuxtLinkProps['target']
+  to: NuxtRoute<T, P, E>
 }
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props<T, P, E>>(), {
   ariaLabel: undefined,
   isColored: true,
-  isToRelative: false,
+  isExternal: undefined,
   isUnderlined: false,
-  nofollow: false,
+  target: undefined,
 })
 
 const emit = defineEmits<{
   click: []
 }>()
-
-const route = useRoute()
 
 // computations
 const classes = computed(() => {
@@ -54,4 +55,11 @@ const classes = computed(() => {
     ...(props.isUnderlined ? ['underline'] : []),
   ].join(' ')
 })
+const targetComputed = computed(
+  () =>
+    props.target ||
+    (props.to.toString().match(/^((ftp|http(s)?):\/\/|(mailto):)/)
+      ? '_blank'
+      : undefined),
+)
 </script>

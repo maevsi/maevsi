@@ -100,6 +100,7 @@ export default defineNuxtConfig({
       }
     },
     'nuxt-security',
+    'nuxt-typed-router',
   ],
   nitro: {
     compressPublicAssets: true,

@@ -42,18 +42,17 @@ import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useEventDeleteMutation } from '~/gql/documents/mutations/event/eventDelete'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import type { TypedRouteFromName } from '@typed-router/__router'
 
 export const usePageBreadcrumb = () => {
-  const route = useRoute()
+  const route = useRoute('events-username-event_name-settings___en')
 
   return {
     label: {
       de: 'Bearbeiten',
       en: 'Edit',
     },
-    to: `/events/${route.params.username as string}/${
-      route.params.event_name as string
-    }/settings`,
+    to: `/events/${route.params.username}/${route.params.event_name}/settings`,
   }
 }
 </script>
@@ -61,20 +60,22 @@ export const usePageBreadcrumb = () => {
 <script setup lang="ts">
 definePageMeta({
   async validate(route) {
-    return await validateEventExistence(route)
+    return await validateEventExistence(
+      route as TypedRouteFromName<'events-username-event_name-settings___en'>,
+    )
   },
 })
 
 const { $urql } = useNuxtApp()
 const localePath = useLocalePath()
 const { t, locale } = useI18n()
-const route = useRoute()
+const route = useRoute('events-username-event_name-settings___en')
 const store = useMaevsiStore()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username as string,
+  username: route.params.username,
 })
 const accountId = computed(
   () =>
@@ -82,7 +83,7 @@ const accountId = computed(
 )
 const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
   authorAccountId: accountId,
-  slug: route.params.event_name as string,
+  slug: route.params.event_name,
 })
 const event = computed(() =>
   getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),

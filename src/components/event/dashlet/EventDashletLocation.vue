@@ -5,7 +5,7 @@
     </span>
     <AppLink
       class="vio-line-clamp-2"
-      nofollow
+      is-external
       :to="`https://maps.google.de/?q=${encodeURIComponent(event.location)}`"
     >
       {{ event.location }}

@@ -76,6 +76,7 @@ definePageMeta({
     // must be wrapped with `defineNuxtRouteMiddleware` (https://github.com/nuxt/nuxt/issues/14473)
     defineNuxtRouteMiddleware(async (to) => {
       const { $urql } = useNuxtApp()
+      // @ts-ignore https://github.com/victorgarciaesgi/nuxt-typed-router/issues/130
       const localePath = useLocalePath({ route: to })
       const { jwtStore } = useJwtStore()
 
@@ -123,7 +124,7 @@ definePageMeta({
           localePath({
             query: {
               ...to.query,
-              redirect: localePath(eventPath),
+              redirect: localePath(eventPath).toString(),
             },
           }),
         )
