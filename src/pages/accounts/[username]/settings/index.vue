@@ -52,16 +52,19 @@ import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/acco
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import type { TypedRouteFromName } from '@typed-router/__router'
+
+const ROUTE_NAME = 'accounts-username-settings'
 
 export const usePageBreadcrumb = () => {
-  const route = useRoute()
+  const route = useRoute(ROUTE_NAME)
 
   return {
     label: {
       de: 'Bearbeiten',
       en: 'Edit',
     },
-    to: `/accounts/${route.params.username as string}/settings`,
+    to: `/accounts/${route.params.username}/settings`,
   }
 }
 </script>
@@ -71,7 +74,7 @@ definePageMeta({
   async validate(route) {
     return await validateAccountExistence({
       isAuthorizationRequired: true,
-      route,
+      route: route as TypedRouteFromName<typeof ROUTE_NAME>,
     })
   },
 })
@@ -79,13 +82,13 @@ definePageMeta({
 const store = useMaevsiStore()
 const { signOut } = useSignOut()
 const { t, locale } = useI18n()
-const route = useRoute()
+const route = useRoute(ROUTE_NAME)
 const accountDeleteMutation = useAccountDeleteMutation()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username as string,
+  username: route.params.username,
 })
 const account = getAccountItem(
   accountByUsernameQuery.data.value?.accountByUsername,
@@ -109,7 +112,7 @@ const breadcrumbItems = defineBreadcrumbItems(
   ),
 )
 const mutation = accountDeleteMutation
-const routeParamUsername = route.params.username as string
+const routeParamUsername = route.params.username
 const title = t('settings')
 
 // methods

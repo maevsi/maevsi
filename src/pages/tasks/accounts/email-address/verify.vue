@@ -51,9 +51,7 @@ onMounted(async () => {
       text: t('verifiedBody'),
       title: t('verified'),
     })
-    navigateTo({
-      path: localePath(`/tasks/accounts/sign-in`),
-    })
+    navigateTo(localePath('/tasks/accounts/sign-in'))
   }
 })
 

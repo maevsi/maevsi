@@ -335,7 +335,6 @@ import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
-import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
@@ -352,29 +351,35 @@ import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import type { TypedRouteFromName } from '@typed-router'
+
+const ROUTE_NAME = 'events-username-event_name___en'
 
 export const pageBreadcrumb = async ({
   $urql,
   route,
 }: {
   $urql: Ref<Client>
-  route: RouteLocationNormalizedLoaded
+  route: TypedRouteFromName<
+    | 'events-username-event_name___en'
+    | 'events-username-event_name-attendances___en'
+    | 'events-username-event_name-invitations___en'
+    | 'events-username-event_name-settings___en'
+  >
 }) => {
   const account = await getAccountByUsername({
     $urql,
-    username: route.params.username as string,
+    username: route.params.username,
   })
   const event = await getEventByAuthorAccountIdAndSlug({
     $urql,
     authorAccountId: account?.id,
-    slug: route.params.event_name as string,
+    slug: route.params.event_name,
   })
 
   return {
     label: event?.name,
-    to: `/events/${route.params.username as string}/${
-      route.params.event_name as string
-    }`,
+    to: `/events/${route.params.username}/${route.params.event_name}`,
   }
 }
 </script>
@@ -382,7 +387,9 @@ export const pageBreadcrumb = async ({
 <script setup lang="ts">
 definePageMeta({
   async validate(route) {
-    return await validateEventExistence(route)
+    return await validateEventExistence(
+      route as TypedRouteFromName<typeof ROUTE_NAME>,
+    )
   },
 })
 
@@ -390,14 +397,14 @@ const { $urql } = useNuxtApp()
 const { t, locale } = useI18n()
 const fireAlert = useFireAlert()
 const store = useMaevsiStore()
-const route = useRoute()
+const route = useRoute('events-username-event_name___en')
 const localePath = useLocalePath()
 const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username as string,
+  username: route.params.username,
 })
 const accountId = computed(
   () =>
@@ -405,7 +412,7 @@ const accountId = computed(
 )
 const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
   authorAccountId: accountId,
-  slug: route.params.event_name as string,
+  slug: route.params.event_name,
   invitationId: route.query.ic,
 })
 const event = computed(() =>

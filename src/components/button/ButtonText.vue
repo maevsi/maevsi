@@ -3,7 +3,7 @@
     :aria-label="ariaLabel"
     class="px-4 py-2 font-medium"
     :disabled="disabled"
-    :to="to"
+    :to="props.to"
     :type="type"
     @click="emit('click')"
   >
@@ -17,14 +17,17 @@
   </Button>
 </template>
 
-<script setup lang="ts">
-export interface Props {
+<script setup lang="ts" generic="T extends RoutesNamesList, P extends string">
+import type { NuxtRoute } from '@typed-router/__router'
+import type { RoutesNamesList } from '@typed-router/__routes'
+
+export interface Props<T extends RoutesNamesList, P extends string> {
   ariaLabel: string
   disabled?: boolean
-  to?: string
+  to?: NuxtRoute<T, P>
   type?: 'button' | 'reset' | 'submit'
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props<T, P>>(), {
   disabled: false,
   to: undefined,
   type: 'button',

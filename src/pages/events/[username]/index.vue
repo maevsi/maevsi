@@ -15,13 +15,16 @@
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
+import type { TypedRouteFromName } from '@typed-router/__router'
+
+const ROUTE_NAME = 'events-username'
 
 export const usePageBreadcrumb = () => {
-  const route = useRoute()
+  const route = useRoute(ROUTE_NAME)
 
   return {
-    label: route.params.username as string,
-    to: `/events/${route.params.username as string}`,
+    label: route.params.username,
+    to: `/events/${route.params.username}`,
   }
 }
 </script>
@@ -29,12 +32,14 @@ export const usePageBreadcrumb = () => {
 <script setup lang="ts">
 definePageMeta({
   async validate(route) {
-    return await validateAccountExistence({ route })
+    return await validateAccountExistence({
+      route: route as TypedRouteFromName<typeof ROUTE_NAME>,
+    })
   },
 })
 
 const { t, locale } = useI18n()
-const route = useRoute()
+const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
@@ -52,7 +57,7 @@ const breadcrumbItems = defineBreadcrumbItems(
     locale,
   ),
 )
-const routeParamUsername = route.params.username as string
+const routeParamUsername = route.params.username
 const title = t('title', { name: route.params.username })
 
 // initialization
@@ -60,7 +65,7 @@ useHeadDefault({
   title,
   extension: {
     ogType: 'profile',
-    profileUsername: route.params.username as string,
+    profileUsername: route.params.username,
   },
 })
 </script>

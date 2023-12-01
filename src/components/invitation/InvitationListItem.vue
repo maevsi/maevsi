@@ -76,12 +76,12 @@
               v-if="event.accountByAuthorAccountId?.username"
               :aria-label="t('invitationView')"
               @click="
-                navigateTo({
-                  path: localePath(
-                    `/events/${event.accountByAuthorAccountId.username}/${event.slug}`,
-                  ),
-                  query: { ic: invitation.id },
-                })
+                navigateTo(
+                  localePath({
+                    path: `/events/${event.accountByAuthorAccountId.username}/${event.slug}`,
+                    query: { ic: invitation.id },
+                  }),
+                )
               "
             >
               {{ t('invitationView') }}

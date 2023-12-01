@@ -56,36 +56,42 @@
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
+import type { TypedRouteFromName } from '@typed-router/__router'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import type { RoutesNamesList } from '@typed-router/__routes'
+
+const ROUTE_NAME = 'accounts-username'
 
 export const usePageBreadcrumb = () => {
-  const route = useRoute()
+  const route = useRoute(ROUTE_NAME)
 
   return {
-    label: route.params.username as string,
-    to: `/accounts/${route.params.username as string}`,
+    label: route.params.username,
+    to: `/accounts/${route.params.username}`,
   }
 }
 </script>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends RoutesNamesList, P extends string">
 definePageMeta({
   async validate(route) {
-    return await validateAccountExistence({ route })
+    return await validateAccountExistence({
+      route: route as TypedRouteFromName<typeof ROUTE_NAME>,
+    })
   },
 })
 
 const { signOut } = useSignOut()
 const { t, locale } = useI18n()
 const store = useMaevsiStore()
-const route = useRoute()
+const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username as string,
+  username: route.params.username,
 })
 const account = getAccountItem(
   accountByUsernameQuery.data.value?.accountByUsername,
@@ -106,15 +112,15 @@ const breadcrumbItems = defineBreadcrumbItems(
     locale,
   ),
 )
-const routeParamUsername = route.params.username as string
-const title = route.params.username as string
+const routeParamUsername = route.params.username
+const title = route.params.username
 
 // initialization
 useHeadDefault({
   title,
   extension: {
     ogType: 'profile',
-    profileUsername: route.params.username as string,
+    profileUsername: route.params.username,
   },
 })
 </script>

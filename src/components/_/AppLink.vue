@@ -3,26 +3,42 @@
     :aria-label="ariaLabel"
     :class="classes"
     :target="targetComputed"
-    :to="to"
+    :to="props.to"
     @click="emit('click')"
   >
     <slot />
   </NuxtLink>
 </template>
 
-<script setup lang="ts">
+<script
+  setup
+  lang="ts"
+  generic="
+    T extends RoutesNamesList,
+    P extends string,
+    E extends boolean = false
+  "
+>
 import type { NuxtLinkProps } from '#app'
+import type { NuxtRoute } from '@typed-router/__router'
+import type { RoutesNamesList } from '@typed-router/__routes'
 
-export interface Props {
+export interface Props<
+  T extends RoutesNamesList,
+  P extends string,
+  E extends boolean = false,
+> {
   ariaLabel?: string
   isColored?: boolean
+  isExternal?: E
   isUnderlined?: boolean
   target?: NuxtLinkProps['target']
-  to: NonNullable<NuxtLinkProps['to']>
+  to: NuxtRoute<T, P, E>
 }
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props<T, P, E>>(), {
   ariaLabel: undefined,
   isColored: true,
+  isExternal: undefined,
   isUnderlined: false,
   target: undefined,
 })

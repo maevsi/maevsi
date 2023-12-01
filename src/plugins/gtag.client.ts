@@ -1,5 +1,7 @@
 import VueGtag from 'vue-gtag'
 
+import type { Router } from '#vue-router'
+
 export default defineNuxtPlugin((nuxtApp) => {
   const runtimeConfig = useRuntimeConfig()
   const router = useRouter()
@@ -18,6 +20,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         },
       },
     },
-    router,
+    router as Router,
   )
 })

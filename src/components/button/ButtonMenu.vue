@@ -5,19 +5,22 @@
     :class="{
       'bg-white dark:bg-gray-800': route.fullPath === to,
     }"
-    :to="to"
+    :to="props.to"
     @click="emit('onMenuHide')"
   >
     <slot />
   </Button>
 </template>
 
-<script setup lang="ts">
-export interface Props {
+<script setup lang="ts" generic="T extends RoutesNamesList, P extends string">
+import type { NuxtRoute } from '@typed-router/__router'
+import type { RoutesNamesList } from '@typed-router/__routes'
+
+export interface Props<T extends RoutesNamesList, P extends string> {
   ariaLabel: string
-  to?: string
+  to?: NuxtRoute<T, P>
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props<T, P>>(), {
   to: undefined,
 })
 

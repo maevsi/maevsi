@@ -12,10 +12,10 @@
     </div>
     <LayoutFooter>
       <LayoutFooterCategory :heading="t('product')">
-        <AppLink :to="localePath('/#overview')">
+        <AppLink :to="localePath({ name: 'index', hash: '#overview' })">
           {{ t('overview') }}
         </AppLink>
-        <AppLink :to="localePath('/#features')">
+        <AppLink :to="localePath({ name: 'index', hash: '#features' })">
           {{ t('features') }}
         </AppLink>
         <!--<AppLink :to="localePath('/#pricing')">
@@ -29,10 +29,10 @@
           </AppLink> -->
       </LayoutFooterCategory>
       <LayoutFooterCategory :heading="t('legal')">
-        <AppLink :to="localePath('/legal-notice')">
+        <AppLink :to="localePath({ name: 'legal-notice' })">
           {{ t('legalNotice') }}
         </AppLink>
-        <AppLink :to="localePath('/privacy-policy')">
+        <AppLink :to="localePath({ name: 'privacy-policy' })">
           {{ t('privacyPolicy') }}
         </AppLink>
         <!-- <AppLink :to="localePath('/code-of-conduct')">
@@ -51,13 +51,17 @@
           </AppLink>
         </LayoutFooterCategory> -->
       <LayoutFooterCategory :heading="t('quickLinks')">
-        <AppLink :title="t('status')" to="https://status.maev.si/">
+        <AppLink is-external :title="t('status')" to="https://status.maev.si/">
           {{ t('status') }}
         </AppLink>
-        <AppLink :title="t('githubLinkTitle')" to="https://github.com/maevsi/">
+        <AppLink
+          is-external
+          :title="t('githubLinkTitle')"
+          to="https://github.com/maevsi/"
+        >
           {{ t('sourceCode') }}
         </AppLink>
-        <AppLink to="mailto:support+maev-si@maev.si">
+        <AppLink is-external to="mailto:support+maev-si@maev.si">
           {{ t('contact') }}
         </AppLink>
         <AppLink :to="localePath('/dashboard/dev')">

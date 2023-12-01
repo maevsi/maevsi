@@ -1,11 +1,11 @@
 <template>
   <AppLink
-    v-if="to"
+    v-if="props.to"
     :aria-label="ariaLabel"
     :class="classes"
     :disabled="disabled"
     :is-colored="false"
-    :to="to"
+    :to="props.to"
     @click="emit('click')"
   >
     <slot name="prefix" />
@@ -30,16 +30,19 @@
   </button>
 </template>
 
-<script setup lang="ts">
-export interface Props {
+<script setup lang="ts" generic="T extends RoutesNamesList, P extends string">
+import type { NuxtRoute } from '@typed-router/__router'
+import type { RoutesNamesList } from '@typed-router/__routes'
+
+export interface Props<T extends RoutesNamesList, P extends string> {
   ariaLabel: string
   disabled?: boolean
   isBlock?: boolean
   isLinkColored?: boolean
-  to?: string
+  to?: NuxtRoute<T, P>
   type?: 'button' | 'submit' | 'reset'
 }
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props<T, P>>(), {
   disabled: false,
   isBlock: false,
   isLinkColored: false,

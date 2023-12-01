@@ -35,7 +35,9 @@
       <p>{{ t('copyrightDescription2') }}</p>
 
       <p>
-        <AppLink to="https://www.e-recht24.de">{{ t('source') }}</AppLink>
+        <AppLink is-external to="https://www.e-recht24.de">
+          {{ t('source') }}
+        </AppLink>
       </p>
     </div>
   </div>
