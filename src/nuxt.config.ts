@@ -67,6 +67,7 @@ export default defineNuxtConfig({
     '@nuxtjs/turnstile',
     '@nuxtseo/module',
     '@pinia/nuxt',
+    '@unocss/nuxt',
     '@vite-pwa/nuxt',
     async (_options: any, nuxt: Nuxt) => {
       nuxt.options.runtimeConfig.public.vio.releaseName = await RELEASE_NAME()
