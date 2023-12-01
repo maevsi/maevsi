@@ -36,15 +36,13 @@ test.describe('internationalization', () => {
       await defaultPage.goto('/')
       expect(defaultPage.page.getByText(textEnglish)).toBeDefined()
 
-      await defaultPage.page
-        .getByRole('link', { name: 'German flag Deutsch' })
-        .click()
+      await defaultPage.page.getByRole('link', { name: 'Deutsch' }).click()
       await defaultPage.page.waitForURL('/de')
       expect(defaultPage.page.getByText(textGerman)).toBeDefined()
 
       await defaultPage.page
         .getByRole('link', {
-          name: 'Flagge des Vereinigten Königreichs English',
+          name: 'English',
         })
         .click()
       await defaultPage.page.waitForURL('/')
