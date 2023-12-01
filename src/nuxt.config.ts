@@ -102,6 +102,7 @@ export default defineNuxtConfig({
     },
     'nuxt-security',
     'nuxt-typed-router',
+    'unplugin-icons/nuxt',
   ],
   nitro: {
     compressPublicAssets: true,

@@ -75,10 +75,6 @@
           :to="switchLocalePath(availableLocale)"
         >
           <div class="flex items-center gap-2">
-            <component
-              :is="getLocaleFlag(availableLocale)"
-              :class="{ disabled: availableLocale === locale }"
-            />
             <span :class="{ disabled: availableLocale === locale }">
               {{ getLocaleName(availableLocale) }}
             </span>
@@ -145,22 +141,6 @@ const getLocaleName = (locale: string) => {
 
   if (locales.length) {
     return locales[0].name
-  } else {
-    return undefined
-  }
-}
-const getLocaleFlag = (locale: string) => {
-  const map: { [index: string]: any } = {
-    en: resolveComponent('IconFlagUnitedKingdom'),
-    de: resolveComponent('IconFlagGerman'),
-  }
-
-  const locales: LocaleObject[] = LOCALES.filter(
-    (localeObject) => localeObject.code === locale,
-  )
-
-  if (locales.length) {
-    return map[locales[0].code]
   } else {
     return undefined
   }

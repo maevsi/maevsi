@@ -45,7 +45,7 @@
         >
           {{ t('eventsTheir', { name: routeParamUsername }) }}
           <template #prefix>
-            <IconCalendar />
+            <HeroiconsCalendar />
           </template>
         </ButtonColored>
       </ButtonList>
@@ -60,6 +60,8 @@ import type { TypedRouteFromName } from '@typed-router/__router'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import type { RoutesNamesList } from '@typed-router/__routes'
+
+import HeroiconsCalendar from '~icons/heroicons/calendar'
 
 const ROUTE_NAME = 'accounts-username'
 
