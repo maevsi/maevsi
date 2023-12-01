@@ -5,7 +5,6 @@
     :class="classes"
     :disabled="disabled"
     :is-colored="false"
-    :is-to-relative="isToRelative"
     :to="to"
     @click="emit('click')"
   >
@@ -37,7 +36,6 @@ export interface Props {
   disabled?: boolean
   isBlock?: boolean
   isLinkColored?: boolean
-  isToRelative?: boolean
   to?: string
   type?: 'button' | 'submit' | 'reset'
 }
@@ -45,7 +43,6 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   isBlock: false,
   isLinkColored: false,
-  isToRelative: false,
   to: undefined,
   type: 'button',
 })

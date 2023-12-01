@@ -1,6 +1,5 @@
 <template>
   <Button
-    :is-to-relative="isToRelative"
     :aria-label="ariaLabel"
     class="justify-center rounded-md border px-4 py-2 font-medium"
     :class="
@@ -34,14 +33,12 @@ export interface Props {
   ariaLabel: string
   disabled?: boolean
   isPrimary?: boolean
-  isToRelative?: boolean
   to?: string
   type?: 'button' | 'reset' | 'submit'
 }
 withDefaults(defineProps<Props>(), {
   disabled: false,
   isPrimary: true,
-  isToRelative: false,
   to: undefined,
   type: 'button',
 })

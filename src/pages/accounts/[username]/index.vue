@@ -6,7 +6,10 @@
         v-if="store.signedInUsername === routeParamUsername"
         class="justify-end"
       >
-        <ButtonColored :aria-label="t('settings')" to="settings" is-to-relative>
+        <ButtonColored
+          :aria-label="t('settings')"
+          :to="localePath(`/accounts/${route.params.username}/settings`)"
+        >
           {{ t('settings') }}
           <template #prefix>
             <IconPencil />

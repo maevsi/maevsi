@@ -1,22 +1,9 @@
 <template>
-  <a
-    v-if="to.match(/^((ftp|http(s)?):\/\/|(mailto):)/)"
-    :aria-label="ariaLabel"
-    :class="classes"
-    :href="to"
-    :rel="
-      [...(nofollow ? ['nofollow'] : []), 'noopener', 'noreferrer'].join(' ')
-    "
-    target="_blank"
-    @click="emit('click')"
-  >
-    <slot />
-  </a>
   <NuxtLink
-    v-else
     :aria-label="ariaLabel"
     :class="classes"
-    :to="isToRelative ? append(route.path, to) : to"
+    :target="targetComputed"
+    :to="to"
     @click="emit('click')"
   >
     <slot />
@@ -24,27 +11,25 @@
 </template>
 
 <script setup lang="ts">
+import type { NuxtLinkProps } from '#app'
+
 export interface Props {
   ariaLabel?: string
   isColored?: boolean
-  isToRelative?: boolean
   isUnderlined?: boolean
-  nofollow?: boolean
-  to: string
+  target?: NuxtLinkProps['target']
+  to: NonNullable<NuxtLinkProps['to']>
 }
 const props = withDefaults(defineProps<Props>(), {
   ariaLabel: undefined,
   isColored: true,
-  isToRelative: false,
   isUnderlined: false,
-  nofollow: false,
+  target: undefined,
 })
 
 const emit = defineEmits<{
   click: []
 }>()
-
-const route = useRoute()
 
 // computations
 const classes = computed(() => {
@@ -54,4 +39,11 @@ const classes = computed(() => {
     ...(props.isUnderlined ? ['underline'] : []),
   ].join(' ')
 })
+const targetComputed = computed(
+  () =>
+    props.target ||
+    (props.to.toString().match(/^((ftp|http(s)?):\/\/|(mailto):)/)
+      ? '_blank'
+      : undefined),
+)
 </script>

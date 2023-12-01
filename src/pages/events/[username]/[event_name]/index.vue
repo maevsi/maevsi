@@ -8,11 +8,10 @@
       <CardStateInfo v-if="routeQueryIc && contact" class="flex flex-col gap-2">
         {{ t('invitationViewFor', { name: contactName }) }}
         <ButtonColored
-          is-to-relative
           :aria-label="t('invitationSelectionClear')"
-          @click="
-            navigateTo({
-              path: append(route.path, 'invitations'),
+          :to="
+            localePath({
+              path: `/events/${route.params.username}/${route.params.event_name}/settings`,
               query: { ...routeQuery, ic: undefined },
             })
           "
@@ -54,9 +53,12 @@
         class="justify-center"
       >
         <ButtonColored
-          is-to-relative
           :aria-label="t('invitations')"
-          to="invitations"
+          :to="
+            localePath(
+              `/events/${route.params.username}/${route.params.event_name}/invitations`,
+            )
+          "
         >
           {{ t('invitations') }}
           <template #prefix>
@@ -64,16 +66,26 @@
           </template>
         </ButtonColored>
         <ButtonColored
-          is-to-relative
           :aria-label="t('attendances')"
-          to="attendances"
+          :to="
+            localePath(
+              `/events/${route.params.username}/${route.params.event_name}/attendances`,
+            )
+          "
         >
           {{ t('attendances') }}
           <template #prefix>
             <IconUserCheck />
           </template>
         </ButtonColored>
-        <ButtonColored is-to-relative :aria-label="t('settings')" to="settings">
+        <ButtonColored
+          :aria-label="t('settings')"
+          :to="
+            localePath(
+              `/events/${route.params.username}/${route.params.event_name}/settings`,
+            )
+          "
+        >
           {{ t('settings') }}
           <template #prefix>
             <IconPencil />
@@ -379,6 +391,7 @@ const { t, locale } = useI18n()
 const fireAlert = useFireAlert()
 const store = useMaevsiStore()
 const route = useRoute()
+const localePath = useLocalePath()
 const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
