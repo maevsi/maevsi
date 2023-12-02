@@ -1,3 +1,11 @@
+## [3.14.1](https://github.com/maevsi/maevsi/compare/3.14.0...3.14.1) (2023-12-02)
+
+
+### Bug Fixes
+
+* **browserslist:** allow gnome web ([d13346a](https://github.com/maevsi/maevsi/commit/d13346ad16579c9f4d2813a202c04600de331ce3))
+* **browserslist:** allow gnome web ([#1467](https://github.com/maevsi/maevsi/issues/1467)) ([f83aee2](https://github.com/maevsi/maevsi/commit/f83aee2a1224d1050f91aa4892f957beaf89a1c9))
+
 ## [3.14.0](https://github.com/maevsi/maevsi/compare/3.13.4...3.14.0) (2023-11-30)
 
 
