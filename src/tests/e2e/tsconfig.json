@@ -1,7 +1,1 @@
-{
-  "compilerOptions": {
-    "paths": {
-      "@typed-router": ["../../.nuxt/typed-router"]
-    }
-  }
-}
+{}
