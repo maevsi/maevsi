@@ -1,6 +1,8 @@
 import { testPageLoad, testVisualRegression } from '../../../utils/tests'
 
-const PAGE_PATH = '/tasks/account/sign-in'
+import { helpers } from '../../../../../.nuxt/typed-router/__helpers'
+
+const PAGE_PATH = helpers.path('/session/create').toString()
 
 testPageLoad(PAGE_PATH)
 testVisualRegression(PAGE_PATH)

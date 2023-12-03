@@ -78,7 +78,7 @@
               @click="
                 navigateTo(
                   localePath({
-                    path: `/events/${event.accountByAuthorAccountId.username}/${event.slug}`,
+                    path: `/event/view/${event.accountByAuthorAccountId.username}/${event.slug}`,
                     query: { ic: invitation.id },
                   }),
                 )
@@ -145,7 +145,7 @@ const copyLink = async (invitation: Pick<InvitationItemFragment, 'id'>) => {
   if (!process.client) return
 
   await copyText(
-    `${window.location.origin}${localePath(`/tasks/events/unlock`)}?ic=${
+    `${window.location.origin}${localePath(`/invitation/unlock`)}?ic=${
       invitation.id
     }`,
   )

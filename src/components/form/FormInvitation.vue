@@ -14,7 +14,7 @@
       </span>
       <ButtonColored
         :aria-label="t('contactsAdd')"
-        :to="localePath('/contacts')"
+        :to="localePath('/contact')"
       >
         {{ t('contactsAdd') }}
         <template #suffix>

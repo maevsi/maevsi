@@ -13,8 +13,7 @@
 </template>
 
 <script setup lang="ts" generic="T extends RoutesNamesList, P extends string">
-import type { NuxtRoute } from '@typed-router/__router'
-import type { RoutesNamesList } from '@typed-router/__routes'
+import type { NuxtRoute, RoutesNamesList } from '@typed-router'
 
 export interface Props<T extends RoutesNamesList, P extends string> {
   ariaLabel: string

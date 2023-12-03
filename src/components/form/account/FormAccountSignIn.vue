@@ -3,7 +3,7 @@
     <ButtonColored
       :is-primary="false"
       :aria-label="t('register')"
-      :to="localePath('/tasks/accounts/register')"
+      :to="localePath('/account/create')"
     >
       {{ t('register') }}
       <template #prefix>
@@ -30,7 +30,7 @@
         :form-input="v$.password"
         @input="form.password = $event"
       >
-        <AppLink :to="localePath('/tasks/accounts/password/reset/request')">
+        <AppLink :to="localePath('/account/password/reset/request')">
           {{ t('passwordReset') }}
         </AppLink>
       </FormInputPassword>

@@ -261,13 +261,18 @@
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from './index.vue'
 
-export const usePageBreadcrumb = () => ({
-  label: {
-    de: 'Datenschutzerklärung',
-    en: 'Privacy policy',
-  },
-  to: '/legal-notice',
-})
+import { helpers } from '@typed-router'
+
+export const usePageBreadcrumb = () => {
+  const localePath = useLocalePath()
+  return {
+    label: {
+      de: 'Datenschutzerklärung',
+      en: 'Privacy policy',
+    },
+    to: helpers.route(localePath('/privacy-policy')),
+  }
+}
 </script>
 
 <script setup lang="ts">

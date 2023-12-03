@@ -1,5 +1,7 @@
 import { testVisualRegression } from '../../../utils/tests'
 
-const PAGE_PATH = '/tasks/events/create'
+import { helpers } from '../../../../../.nuxt/typed-router/__helpers'
+
+const PAGE_PATH = helpers.path('/event/create').toString()
 
 testVisualRegression(PAGE_PATH)

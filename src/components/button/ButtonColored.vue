@@ -37,8 +37,7 @@
     E extends boolean = false
   "
 >
-import type { NuxtRoute } from '@typed-router/__router'
-import type { RoutesNamesList } from '@typed-router/__routes'
+import type { NuxtRoute, RoutesNamesList } from '@typed-router'
 
 export interface Props<
   T extends RoutesNamesList,
