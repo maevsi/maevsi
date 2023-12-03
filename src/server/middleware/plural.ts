@@ -40,4 +40,15 @@ export default defineEventHandler((event) => {
       302,
     )
   }
+
+  if (requestPath.match(/^\/(de\/)?task\/events\/unlock/)) {
+    return sendRedirect(
+      event,
+      requestPath.replace(
+        /^\/(de\/)?task\/events\/unlock/,
+        (_a, b) => `/${b || ''}invitation/unlock`,
+      ),
+      302,
+    )
+  }
 })
