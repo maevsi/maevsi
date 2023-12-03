@@ -58,6 +58,8 @@
 import { useVuelidate } from '@vuelidate/core'
 import { consola } from 'consola'
 
+import { helpers } from '@typed-router'
+
 import {
   eventUnlockMutation as eventUnlockMutationImported,
   useEventUnlockMutation,
@@ -115,7 +117,9 @@ definePageMeta({
         return
       }
 
-      const eventPath = `/events/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`
+      const eventPath = helpers.path(
+        `/event/view/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`,
+      )
 
       if ('quick' in to.query) {
         return await navigateTo(localePath(eventPath))
