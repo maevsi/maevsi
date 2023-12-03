@@ -48,7 +48,7 @@ importers:
         version: 4.1.0(graphql@16.8.1)
       '@graphql-codegen/typescript-urql-graphcache':
         specifier: 3.0.0
-        version: 3.0.0(@urql/exchange-graphcache@6.3.3)(graphql-tag@2.12.6)(graphql@16.8.1)
+        version: 3.0.0(@urql/exchange-graphcache@6.4.0)(graphql-tag@2.12.6)(graphql@16.8.1)
       '@graphql-codegen/urql-introspection':
         specifier: 3.0.0
         version: 3.0.0(graphql@16.8.1)
@@ -191,8 +191,8 @@ importers:
         specifier: 2.0.3
         version: 2.0.3(@urql/core@4.2.0)(graphql@16.8.1)
       '@urql/exchange-graphcache':
-        specifier: 6.3.3
-        version: 6.3.3(graphql@16.8.1)
+        specifier: 6.4.0
+        version: 6.4.0(graphql@16.8.1)
       '@urql/vue':
         specifier: 1.1.2
         version: 1.1.2(graphql@16.8.1)(vue@3.3.9)
@@ -2741,7 +2741,7 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/typescript-urql-graphcache@3.0.0(@urql/exchange-graphcache@6.3.3)(graphql-tag@2.12.6)(graphql@16.8.1):
+  /@graphql-codegen/typescript-urql-graphcache@3.0.0(@urql/exchange-graphcache@6.4.0)(graphql-tag@2.12.6)(graphql@16.8.1):
     resolution: {integrity: sha512-nHc5Q8YB38qDi+AMOvFD2YzzvV0glDr5CpXEAO9s3wLOvbufZekfxE9Zj/uhb9oB2yOfWPUYyDaU9krY4l32Cw==}
     engines: {node: '>= 16.0.0'}
     peerDependencies:
@@ -2751,7 +2751,7 @@ packages:
     dependencies:
       '@graphql-codegen/plugin-helpers': 3.1.2(graphql@16.8.1)
       '@graphql-codegen/visitor-plugin-common': 2.13.1(graphql@16.8.1)
-      '@urql/exchange-graphcache': 6.3.3(graphql@16.8.1)
+      '@urql/exchange-graphcache': 6.4.0(graphql@16.8.1)
       auto-bind: 4.0.0
       change-case-all: 1.0.15
       graphql: 16.8.1
@@ -6311,8 +6311,8 @@ packages:
       wonka: 6.3.4
     dev: true
 
-  /@urql/exchange-graphcache@6.3.3(graphql@16.8.1):
-    resolution: {integrity: sha512-uD8zzNIrxQHYCSgfIwYxzEmU1Ml4nJ6NTKwrDlpKmTLJa3aYuG3AoiO138HZBK1XGJ2QzV5yQPfcZsmbVFH8Yg==}
+  /@urql/exchange-graphcache@6.4.0(graphql@16.8.1):
+    resolution: {integrity: sha512-VgcPdDNR3hSJDuf+mj0OZWzOzQccA8vT8xphxtO1MoJlgv1A4VhjLd75pjVvGz29ZHN90jEbdyBKJz6GShT7qA==}
     dependencies:
       '@0no-co/graphql.web': 1.0.4(graphql@16.8.1)
       '@urql/core': 4.2.0(graphql@16.8.1)
