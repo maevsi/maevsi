@@ -83,7 +83,7 @@
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from './index.vue'
 
-import { helpers } from '@typed-router/__helpers'
+import { helpers } from '@typed-router'
 
 const ROUTE_NAME = '/legal-notice'
 

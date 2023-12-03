@@ -49,8 +49,7 @@ import { usePageBreadcrumb as usePageBreadcrumbAccountsId } from '../view/[usern
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import type { TypedRouteFromName } from '@typed-router/__router'
-import { helpers } from '@typed-router/__helpers'
+import { type TypedRouteFromName, helpers } from '@typed-router'
 
 import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'

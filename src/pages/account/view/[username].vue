@@ -57,9 +57,11 @@
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import type { RoutesNamesList } from '@typed-router/__routes'
-import { helpers } from '@typed-router/__helpers'
-import type { TypedRouteFromName } from '@typed-router/__router'
+import {
+  type TypedRouteFromName,
+  type RoutesNamesList,
+  helpers,
+} from '@typed-router'
 
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'

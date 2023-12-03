@@ -16,8 +16,7 @@
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
 
-import type { TypedRouteFromName } from '@typed-router/__router'
-import { helpers } from '@typed-router/__helpers'
+import { type TypedRouteFromName, helpers } from '@typed-router'
 
 const ROUTE_NAME = 'event-view-username-event_name___en'
 

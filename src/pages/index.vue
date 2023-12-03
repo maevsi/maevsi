@@ -150,7 +150,7 @@
 </template>
 
 <script lang="ts">
-import { helpers } from '@typed-router/__helpers'
+import { helpers } from '@typed-router'
 
 export const usePageBreadcrumb = () => {
   const localePath = useLocalePath()
