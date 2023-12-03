@@ -64,7 +64,10 @@
         <AppLink is-external to="mailto:contact+maev-si@maev.si">
           {{ t('contact') }}
         </AppLink>
-        <AppLink :to="localePath('/dashboard/dev')">
+        <AppLink
+          v-if="store.jwtDecoded"
+          :to="localePath(`/session/edit/${store.jwtDecoded.id}`)"
+        >
           {{ t('developmentTools') }}
         </AppLink>
       </LayoutFooterCategory>
@@ -125,6 +128,7 @@ const switchLocalePath = useSwitchLocalePath()
 const i18n = useI18n()
 const { availableLocales, t } = i18n
 const locale = i18n.locale as WritableComputedRef<Locale>
+const store = useMaevsiStore()
 
 const loadingId = Math.random()
 const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])

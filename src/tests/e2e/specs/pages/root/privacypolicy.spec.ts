@@ -4,7 +4,9 @@ import {
   testVisualRegression,
 } from '../../../utils/tests'
 
-const PAGE_PATH = '/privacy-policy'
+import { helpers } from '@typed-router'
+
+const PAGE_PATH = helpers.route({ path: '/privacy-policy' })
 
 testPageLoad(PAGE_PATH)
 testOgImage(PAGE_PATH)

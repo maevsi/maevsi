@@ -3,7 +3,7 @@
     :aria-label="t('signIn')"
     :to="
       localePath({
-        path: '/tasks/accounts/sign-in',
+        path: '/session/create',
         query: { to: route.fullPath },
       })
     "

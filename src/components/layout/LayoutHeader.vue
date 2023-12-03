@@ -35,7 +35,7 @@
         <ButtonText
           :aria-label="t('events')"
           class="hidden lg:flex"
-          :to="localePath('/events')"
+          :to="localePath('/event')"
           :is-primary="false"
         >
           {{ t('events') }}
@@ -60,7 +60,7 @@
           v-if="store.signedInUsername && store.signedInAccountId"
           :aria-label="store.signedInUsername"
           :title="t('profileLink')"
-          :to="localePath(`/accounts/${store.signedInUsername}`)"
+          :to="localePath(`/account/view/${store.signedInUsername}`)"
         >
           <AccountProfilePicture
             :account-id="store.signedInAccountId"
@@ -73,14 +73,14 @@
           <ButtonIcon
             :aria-label="t('signIn')"
             class="h-8 w-8 lg:hidden"
-            :to="localePath('/tasks/accounts/sign-in')"
+            :to="localePath('/session/create')"
           >
             <IHeroiconsOutlineLogin />
           </ButtonIcon>
           <ButtonText
             :aria-label="t('signIn')"
             class="hidden lg:inline-block"
-            :to="localePath('/tasks/accounts/sign-in')"
+            :to="localePath('/session/create')"
           >
             {{ t('signIn') }}
           </ButtonText>
@@ -116,9 +116,7 @@ const { t } = useI18n()
 
 // methods
 const navigateToSearch = () => {
-  navigateTo(
-    localePath({ path: `/tasks/search`, query: { q: 'search phrase' } }),
-  )
+  navigateTo(localePath({ path: `/search`, query: { q: 'search phrase' } }))
 }
 </script>
 

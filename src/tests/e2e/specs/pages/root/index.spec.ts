@@ -9,7 +9,9 @@ import {
   testVisualRegression,
 } from '../../../utils/tests'
 
-const PAGE_PATH = '/'
+import { helpers } from '@typed-router'
+
+const PAGE_PATH = helpers.route({ path: '/' })
 
 testA11y(PAGE_PATH)
 testOgImage(PAGE_PATH)

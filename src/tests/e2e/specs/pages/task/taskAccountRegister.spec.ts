@@ -1,6 +1,8 @@
 import { testPageLoad } from '../../../utils/tests'
 
-const PAGE_PATH = '/tasks/accounts/register'
+import { helpers } from '@typed-router'
+
+const PAGE_PATH = helpers.route({ path: '/account/create' })
 
 testPageLoad(PAGE_PATH)
 

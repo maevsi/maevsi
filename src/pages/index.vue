@@ -28,7 +28,7 @@
         <ButtonColored
           :aria-label="t('testNowFree')"
           class="text-lg md:text-xl"
-          :to="localePath('/events')"
+          :to="localePath('/event')"
         >
           {{ t('testNowFree') }}
         </ButtonColored>
@@ -88,7 +88,7 @@
         </p>
         <ButtonColored
           :aria-label="t('testNow')"
-          :to="localePath('/tasks/events/create')"
+          :to="localePath('/event/create')"
         >
           {{ t('testNow') }}
         </ButtonColored>
@@ -150,14 +150,20 @@
 </template>
 
 <script lang="ts">
-export const usePageBreadcrumb = () => ({
-  ariaLabel: {
-    de: 'Start',
-    en: 'Home',
-  },
-  icon: 'todo', // TODO: let slot suffice
-  to: '/',
-})
+import { helpers } from '@typed-router/__helpers'
+
+export const usePageBreadcrumb = () => {
+  const localePath = useLocalePath()
+
+  return {
+    ariaLabel: {
+      de: 'Start',
+      en: 'Home',
+    },
+    icon: 'todo', // TODO: let slot suffice
+    to: helpers.route(localePath('/')),
+  }
+}
 </script>
 
 <script setup lang="ts">

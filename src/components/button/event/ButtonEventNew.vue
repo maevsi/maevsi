@@ -1,7 +1,7 @@
 <template>
   <ButtonText
     :aria-label="t('new')"
-    :to="localePath('/tasks/events/create')"
+    :to="localePath('/event/create')"
     @click="emit('click')"
   >
     {{ t('new') }}

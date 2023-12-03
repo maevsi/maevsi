@@ -1,7 +1,7 @@
 <template>
   <ButtonColored
     :aria-label="t('eventUnlock')"
-    :to="localePath('/tasks/events/unlock')"
+    :to="localePath('/invitation/unlock')"
     @click="emit('click')"
   >
     {{ t('eventUnlock') }}

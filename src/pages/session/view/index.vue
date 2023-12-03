@@ -1,0 +1,15 @@
+<script lang="ts">
+import { helpers } from '@typed-router/__helpers'
+
+export const usePageBreadcrumb = () => {
+  const localePath = useLocalePath()
+
+  return {
+    label: {
+      de: 'Sitzung',
+      en: 'Session',
+    },
+    to: helpers.route(localePath('/session/view')),
+  }
+}
+</script>

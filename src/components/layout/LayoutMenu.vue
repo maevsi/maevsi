@@ -27,7 +27,7 @@
           <ButtonText
             :aria-label="t('eventsExplore')"
             :is-primary="false"
-            :to="localePath('/events')"
+            :to="localePath('/event')"
             @click="emit('onMenuHide')"
           >
             {{ t('eventsExplore') }}

@@ -147,13 +147,13 @@ export const validateAccountExistence = async ({
 }: {
   isAuthorizationRequired?: boolean
   route: TypedRouteFromName<
-    | 'accounts-username'
-    | 'accounts-username-settings'
-    | 'events-username'
-    | 'events-username-event_name___en'
-    | 'events-username-event_name-attendances___en'
-    | 'events-username-event_name-invitations___en'
-    | 'events-username-event_name-settings___en'
+    | 'account-edit-username'
+    | 'account-view-username'
+    | 'event-edit-username-event_name___en'
+    | 'event-view-username'
+    | 'event-view-username-event_name___en'
+    | 'event-view-username-event_name-attendance___en'
+    | 'event-view-username-event_name-invitation___en'
   >
 }) => {
   const { $urql } = useNuxtApp()
@@ -232,10 +232,10 @@ export const getEventByAuthorAccountIdAndSlug = async ({
 
 export const validateEventExistence = async (
   route: TypedRouteFromName<
-    | 'events-username-event_name___en'
-    | 'events-username-event_name-attendances___en'
-    | 'events-username-event_name-invitations___en'
-    | 'events-username-event_name-settings___en'
+    | 'event-edit-username-event_name___en'
+    | 'event-view-username-event_name___en'
+    | 'event-view-username-event_name-attendance___en'
+    | 'event-view-username-event_name-invitation___en'
   >,
 ) => {
   const { $urql } = useNuxtApp()

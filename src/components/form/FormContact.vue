@@ -37,7 +37,7 @@
             <template #accountSettings>
               <AppLink
                 :aria-label="t('stateInfoUsernameDisabledLink')"
-                :to="localePath(`/accounts/${store.signedInUsername}/settings`)"
+                :to="localePath(`/account/edit/${store.signedInUsername}`)"
               >
                 {{ t('stateInfoUsernameDisabledLink') }}
               </AppLink>

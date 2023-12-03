@@ -1,7 +1,7 @@
 <template>
   <i18n-t class="max-w-full truncate-overflow" keypath="eventAuthor" tag="span">
     <template #username>
-      <AppLink v-if="link" :to="localePath(`/accounts/${username}`)">
+      <AppLink v-if="link" :to="localePath(`/account/view/${username}`)">
         {{ username }}
       </AppLink>
       <span v-else>

@@ -1,6 +1,8 @@
 import { testPageLoad, testVisualRegression } from '../../../utils/tests'
 
-const PAGE_PATH = '/🫖'
+import { helpers } from '@typed-router'
+
+const PAGE_PATH = helpers.route({ path: '/%F0%9F%AB%96' })
 
 testPageLoad(PAGE_PATH, 418)
 testVisualRegression(PAGE_PATH)

@@ -1,6 +1,8 @@
 import { testPageLoad } from '../../../utils/tests'
 
-const PAGE_PATH = '/events'
+import { helpers } from '@typed-router'
+
+const PAGE_PATH = helpers.route({ path: '/event' })
 
 testPageLoad(PAGE_PATH)
 

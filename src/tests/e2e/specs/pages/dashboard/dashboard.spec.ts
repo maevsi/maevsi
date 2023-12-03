@@ -1,5 +1,7 @@
 import { testVisualRegression } from '../../../utils/tests'
 
-const PAGE_PATH = '/dashboard'
+import { helpers } from '@typed-router'
+
+const PAGE_PATH = helpers.route({ path: '/dashboard' })
 
 testVisualRegression(PAGE_PATH)

@@ -1,6 +1,8 @@
 import { testPageLoad, testVisualRegression } from '../../../utils/tests'
 
-const PAGE_PATH = '/tasks/account/sign-in'
+import { helpers } from '@typed-router'
+
+const PAGE_PATH = helpers.route({ path: '/session/create' })
 
 testPageLoad(PAGE_PATH)
 testVisualRegression(PAGE_PATH)
