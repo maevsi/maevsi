@@ -46,7 +46,7 @@
         <ButtonColored :aria-label="t('contactAdd')" @click="add()">
           {{ t('contactAdd') }}
           <template #prefix>
-            <IconPlus />
+            <IHeroiconsPlus />
           </template>
         </ButtonColored>
       </div>

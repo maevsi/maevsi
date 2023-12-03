@@ -1,8 +1,11 @@
 <template>
-  <IconArchiveBox v-if="isArchived" :title="t('archived')" />
-  <IconEye v-else-if="visibility === 'PUBLIC'" :title="t('public')" />
-  <IconEyeOff v-else-if="visibility === 'PRIVATE'" :title="t('private')" />
-  <IconBug v-else :title="t('bug')" />
+  <IHeroiconsArchiveBox v-if="isArchived" :title="t('archived')" />
+  <IHeroiconsEye v-else-if="visibility === 'PUBLIC'" :title="t('public')" />
+  <IHeroiconsEyeSlash
+    v-else-if="visibility === 'PRIVATE'"
+    :title="t('private')"
+  />
+  <IHeroiconsBugAnt v-else :title="t('bug')" />
 </template>
 
 <script setup lang="ts">

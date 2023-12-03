@@ -1,15 +1,9 @@
 <template>
   <div class="flex flex-col items-center gap-4">
     <CardStateAlert class="flex flex-col items-center text-3xl">
-      <i18n-t
-        keypath="maevNo"
-        class="flex items-center gap-1 text-xl font-black"
-        tag="span"
-      >
-        <template #emojiFacePleading>
-          <EmojiFacePleading />
-        </template>
-      </i18n-t>
+      <span class="flex items-center gap-1 text-xl font-black">
+        {{ t('maevNo') }}
+      </span>
       {{ statusCode ? `${statusCode} - ` : '' }}{{ statusReason }}
     </CardStateAlert>
     <p v-if="statusCode === 403" class="text-center">
@@ -64,10 +58,10 @@ de:
   error: Fehler
   error403Description: Du bist aktuell nicht berechtigt, auf diese Seite zuzugreifen.
   error403Hint: Hast du dich schon angemeldet oder von diesem Gerät aus einen Einladungscode eingegeben?
-  maevNo: maev.no? {emojiFacePleading}
+  maevNo: maev.no? 🥺
 en:
   error: Error
   error403Description: "You don't have permission to access this site."
   error403Hint: Try signing in or enter an invitation code on this device.
-  maevNo: maev.no? {emojiFacePleading}
+  maevNo: maev.no? 🥺
 </i18n>

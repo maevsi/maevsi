@@ -9,7 +9,7 @@
         class="self-end"
         @click="emit('onMenuHide')"
       >
-        <IconX />
+        <IHeroiconsXMark />
       </ButtonIcon>
       <div class="flex flex-col gap-8 p-6 lg:p-8">
         <div class="flex flex-col gap-2">
@@ -32,7 +32,7 @@
           >
             {{ t('eventsExplore') }}
             <template #prefix>
-              <IconTelescope />
+              <ISolarTelescopeBold />
             </template>
           </ButtonText>
           <ButtonEventNew @click="emit('onMenuHide')" />

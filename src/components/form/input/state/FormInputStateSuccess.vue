@@ -3,7 +3,7 @@
     v-if="formInput && !formInput.$invalid"
     class="text-green-600"
   >
-    <IconCheckCircle />
+    <IHeroiconsCheckCircleSolid />
     <slot />
   </FormInputState>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <i18n-t keypath="title" tag="h1">
       <template #name>
         <AppLink :to="localePath(`/accounts/${routeParamUsername}`)">

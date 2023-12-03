@@ -11,7 +11,7 @@
     "
     class="text-red-600"
   >
-    <IconExclamationCircle v-if="formInput && validationProperty" />
+    <IHeroiconsExclamationCircleSolid v-if="formInput && validationProperty" />
     <slot />
   </FormInputState>
 </template>

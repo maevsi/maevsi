@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <h1>{{ title }}</h1>
     <!-- "UploadGallery" must come after "ModalUploadSelection" for them to overlay properly! -->
     <UploadGallery v-if="store.jwtDecoded?.role === 'maevsi_account'" />

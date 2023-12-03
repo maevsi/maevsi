@@ -13,8 +13,8 @@
       <slot />
     </template>
     <template #icon>
-      <IconEye v-if="!isVisible" />
-      <IconEyeOff v-else />
+      <IHeroiconsEye v-if="!isVisible" />
+      <IHeroiconsEyeSlash v-else />
     </template>
     <template #stateError>
       <FormInputStateError

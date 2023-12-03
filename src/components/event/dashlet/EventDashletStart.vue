@@ -1,6 +1,6 @@
 <template>
   <EventDashlet v-if="event.start">
-    <IconCalendar :title="t('start')" />
+    <IHeroiconsCalendar :title="t('start')" />
     <div class="flex flex-col">
       <span>
         {{ eventStart.format('lll') }}

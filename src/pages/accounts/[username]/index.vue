@@ -1,7 +1,7 @@
 <template>
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
-      <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <ButtonList
         v-if="store.signedInUsername === routeParamUsername"
         class="justify-end"
@@ -12,13 +12,13 @@
         >
           {{ t('settings') }}
           <template #prefix>
-            <IconPencil />
+            <IHeroiconsPencil />
           </template>
         </ButtonColored>
         <ButtonColored :aria-label="t('signOut')" @click="signOut">
           {{ t('signOut') }}
           <template #prefix>
-            <IconSignOut />
+            <IHeroiconsOutlineLogout />
           </template>
         </ButtonColored>
       </ButtonList>
@@ -45,7 +45,7 @@
         >
           {{ t('eventsTheir', { name: routeParamUsername }) }}
           <template #prefix>
-            <IconCalendar />
+            <IHeroiconsCalendar />
           </template>
         </ButtonColored>
       </ButtonList>

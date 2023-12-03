@@ -4,7 +4,7 @@
       v-if="event && event.accountByAuthorAccountId?.username"
       class="flex flex-col gap-4"
     >
-      <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <CardStateInfo v-if="routeQueryIc && contact" class="flex flex-col gap-2">
         {{ t('invitationViewFor', { name: contactName }) }}
         <ButtonColored
@@ -18,7 +18,7 @@
         >
           {{ t('invitationSelectionClear') }}
           <template #prefix>
-            <IconArrowLeft />
+            <IHeroiconsArrowLeft />
           </template>
         </ButtonColored>
       </CardStateInfo>
@@ -41,7 +41,7 @@
           >
             {{ t('qrCodeShow') }}
             <template #prefix>
-              <IconQrCode />
+              <IHeroiconsQrCode />
             </template>
           </ButtonColored>
         </div>
@@ -62,7 +62,7 @@
         >
           {{ t('invitations') }}
           <template #prefix>
-            <IconEnvelope />
+            <IHeroiconsEnvelope />
           </template>
         </ButtonColored>
         <ButtonColored
@@ -75,7 +75,7 @@
         >
           {{ t('attendances') }}
           <template #prefix>
-            <IconUserCheck />
+            <IFa6SolidUserCheck />
           </template>
         </ButtonColored>
         <ButtonColored
@@ -88,7 +88,7 @@
         >
           {{ t('settings') }}
           <template #prefix>
-            <IconPencil />
+            <IHeroiconsPencil />
           </template>
         </ButtonColored>
       </ButtonList>
@@ -107,7 +107,7 @@
           >
             {{ t('iCalDownload') }}
             <template #prefix>
-              <IconDownload />
+              <IHeroiconsArrowDownTray />
             </template>
           </ButtonColored>
           <FormInputStateInfo :title="t('iCalHint')" />
@@ -175,14 +175,14 @@
                         })
                   }}
                   <template #prefix>
-                    <IconCheckCircle />
+                    <IHeroiconsCheckCircleSolid />
                   </template>
                 </ButtonColored>
                 <div
                   v-if="invitation.feedback === 'ACCEPTED'"
                   class="flex items-center font-semibold text-green-600 dark:text-green-500"
                 >
-                  <IconCheckCircle class="mr-2" title="accepted" />
+                  <IHeroiconsCheckCircleSolid class="mr-2" title="accepted" />
                   {{
                     event.accountByAuthorAccountId.username !==
                     store.signedInUsername
@@ -216,14 +216,14 @@
                         })
                   }}
                   <template #prefix>
-                    <IconXCircle />
+                    <IHeroiconsXCircleSolid />
                   </template>
                 </ButtonColored>
                 <div
                   v-if="invitation.feedback === 'CANCELED'"
                   class="flex items-center font-semibold text-red-600 dark:text-red-500"
                 >
-                  <IconXCircle class="mr-2" title="canceled" />
+                  <IHeroiconsXCircleSolid class="mr-2" title="canceled" />
                   {{
                     event.accountByAuthorAccountId.username !==
                     store.signedInUsername
@@ -309,7 +309,7 @@
           >
             {{ t('print') }}
             <template #prefix>
-              <IconPrinter />
+              <IHeroiconsPrinter />
             </template>
           </ButtonColored>
           <ButtonColored
@@ -318,7 +318,7 @@
           >
             {{ t('close') }}
             <template #prefix>
-              <IconX />
+              <IHeroiconsXMark />
             </template>
           </ButtonColored>
         </template>
@@ -339,6 +339,9 @@ import QrcodeVue from 'qrcode.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
+
+import type { TypedRouteFromName } from '@typed-router'
+
 import { useUpdateInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationUpdateById'
 import {
   InvitationFeedback,
@@ -351,7 +354,6 @@ import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
-import type { TypedRouteFromName } from '@typed-router'
 
 const ROUTE_NAME = 'events-username-event_name___en'
 

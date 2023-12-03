@@ -53,7 +53,7 @@
           />
           <div v-if="validationProperty && isValidatable">
             <FormInputIconWrapper v-if="validationProperty.$pending">
-              <IconHourglass
+              <IFa6SolidHourglass
                 class="text-blue-600"
                 :title="t('globalLoading')"
               />
@@ -63,14 +63,17 @@
                 !!validationProperty.$model && !validationProperty.$invalid
               "
             >
-              <IconCheckCircle class="text-green-600" :title="t('valid')" />
+              <IHeroiconsCheckCircleSolid
+                class="text-green-600"
+                :title="t('valid')"
+              />
             </FormInputIconWrapper>
             <FormInputIconWrapper
               v-else-if="
                 !!validationProperty.$model && validationProperty.$invalid
               "
             >
-              <IconExclamationCircle
+              <IHeroiconsExclamationCircleSolid
                 class="text-red-600"
                 :title="t('validNot')"
               />

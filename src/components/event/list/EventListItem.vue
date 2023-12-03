@@ -35,7 +35,7 @@
             class="self-start text-sm font-medium"
           >
             <div class="flex items-center gap-1">
-              <IconEyeOff classes="h-5 w-5" :title="t('private')" />
+              <IHeroiconsEyeSlash :title="t('private')" />
               {{ t('private') }}
             </div>
           </Tag>
@@ -57,6 +57,7 @@
 <script setup lang="ts">
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
+
 import type { EventItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {

@@ -37,7 +37,7 @@
           "
           @click="emit('edit')"
         >
-          <IconPencil />
+          <IHeroiconsPencil />
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('contactDelete')"
@@ -46,7 +46,7 @@
           "
           @click="emit('delete')"
         >
-          <IconTrash />
+          <IHeroiconsTrash />
         </ButtonIcon>
       </div>
     </td>

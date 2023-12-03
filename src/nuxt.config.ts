@@ -1,9 +1,12 @@
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
-import { sentryVitePlugin } from '@sentry/vite-plugin'
 
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 import type { Nuxt } from '@nuxt/schema'
 // import { defu } from 'defu'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
+import Components from 'unplugin-vue-components/vite'
 
 import { modulesConfig } from './config/modules'
 import { environmentsConfig } from './config/environments'
@@ -67,6 +70,7 @@ export default defineNuxtConfig({
     '@nuxtjs/turnstile',
     '@nuxtseo/module',
     '@pinia/nuxt',
+    '@unocss/nuxt',
     '@vite-pwa/nuxt',
     async (_options: any, nuxt: Nuxt) => {
       nuxt.options.runtimeConfig.public.vio.releaseName = await RELEASE_NAME()
@@ -193,6 +197,15 @@ export default defineNuxtConfig({
         'workbox-precaching',
       ],
     },
+    plugins: [
+      Components({
+        dts: '.nuxt/components-icons.d.ts',
+        resolvers: [IconsResolver()],
+      }),
+      Icons({
+        scale: 1.5,
+      }),
+    ],
   },
   ...modulesConfig,
   ...environmentsConfig,

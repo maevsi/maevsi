@@ -26,18 +26,18 @@
           "
           @click="send(invitation)"
         >
-          <IconPaperPlane />
+          <IHeroiconsPaperAirplane />
         </ButtonIcon>
         <ButtonIcon
           :aria-label="t('invitationLink')"
           class="hidden md:block"
           @click="copyLink(invitation)"
         >
-          <IconLink />
+          <IFa6SolidLink />
         </ButtonIcon>
         <DropDown>
           <ButtonIcon :aria-label="t('globalShowMore')">
-            <IconEllipsisVertical />
+            <IHeroiconsEllipsisVertical />
           </ButtonIcon>
           <template #content>
             <Button
@@ -59,7 +59,7 @@
                   : t('disabledReasonEmailAddressNone')
               }}
               <template #prefix>
-                <IconPaperPlane />
+                <IHeroiconsPaperAirplane />
               </template>
             </Button>
             <Button
@@ -69,7 +69,7 @@
             >
               {{ t('invitationLink') }}
               <template #prefix>
-                <IconLink />
+                <IFa6SolidLink />
               </template>
             </Button>
             <Button
@@ -86,7 +86,7 @@
             >
               {{ t('invitationView') }}
               <template #prefix>
-                <IconEye />
+                <IHeroiconsEye />
               </template>
             </Button>
             <Button
@@ -96,7 +96,7 @@
             >
               {{ t('invitationDelete') }}
               <template #prefix>
-                <IconTrash />
+                <IHeroiconsTrash />
               </template>
             </Button>
           </template>

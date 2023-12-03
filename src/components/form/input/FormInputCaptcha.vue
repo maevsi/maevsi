@@ -39,7 +39,7 @@
       <ButtonColored :aria-label="t('reset')" @click="reset">
         {{ t('reset') }}
         <template #prefix>
-          <IconArrowPath />
+          <IHeroiconsArrowPath />
         </template>
       </ButtonColored>
     </template>

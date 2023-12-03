@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <h1>
       {{ title }}
     </h1>
@@ -17,7 +17,7 @@
           >
             {{ t('eventsMine') }}
             <template #prefix>
-              <IconCalendar />
+              <IHeroiconsCalendar />
             </template>
           </ButtonColored>
         </section>
@@ -32,24 +32,24 @@
         <section class="lg:w-1/2">
           <h2>{{ t('contactsMine') }}</h2>
           <ButtonColored
-            :aria-label="t('contactBook')"
+            :aria-label="t('contactsMine')"
             :to="localePath('/contacts')"
           >
-            {{ t('contactBook') }}
+            {{ t('contactsMine') }}
             <template #prefix>
-              <IconAddressBook />
+              <IHeroiconsUsers />
             </template>
           </ButtonColored>
         </section>
         <section class="lg:w-1/2">
           <h2>{{ t('uploadsMine') }}</h2>
           <ButtonColored
-            :aria-label="t('gallery')"
+            :aria-label="t('uploadsMine')"
             :to="localePath('/uploads')"
           >
-            {{ t('gallery') }}
+            {{ t('uploadsMine') }}
             <template #prefix>
-              <IconImages />
+              <IHeroiconsFolder />
             </template>
           </ButtonColored>
         </section>
@@ -107,10 +107,8 @@ useHeadDefault({ title })
 de:
   anonymousCta: Finde ihn auf maevsi
   anonymousCtaDescription: Dir fehlt der Überblick über Veranstaltungen?
-  contactBook: Kontaktbuch
   contactsMine: Meine Kontake
   eventsMine: Meine Veranstaltungen
-  gallery: Bildergalerie
   invitationsMine: Meine Einladungen
   invitationsMineDescription: Hier wirst du bald die Veranstaltungen sehen, zu denen du eingeladen bist.
   news: Ereignisverlauf
@@ -120,10 +118,8 @@ de:
 en:
   anonymousCta: Find it on maevsi
   anonymousCtaDescription: Are you missing an overview of events?
-  contactBook: Contact book
   contactsMine: My contacts
   eventsMine: My events
-  gallery: Image gallery
   invitationsMine: My invitations
   invitationsMineDescription: Here you will soon see the events to which you are invited.
   news: Recent changes

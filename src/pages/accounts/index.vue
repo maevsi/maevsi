@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-4">
     <!-- TODO: fill page with content instead (https://github.com/maevsi/maevsi/issues/1264) -->
-    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <CardStateInfo>
       {{ t('accountDescription') }}
     </CardStateInfo>

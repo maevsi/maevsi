@@ -175,7 +175,7 @@
         @icon="v$.end.$model = undefined"
       >
         <template v-if="v$.end.$model" #icon>
-          <IconX />
+          <IHeroiconsXMark />
         </template>
       </FormInput>
       <FormInput :title="t('attendanceType')" type="checkbox">

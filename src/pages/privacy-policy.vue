@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <h1>{{ title }}</h1>
     <div class="vio-prose-scheme">
       <h2>{{ t('summary') }}</h2>
@@ -386,7 +386,7 @@ de:
   mandatoryInfoProcessingRestrictionList4: Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.
   mandatoryInfoProcessingRestrictionTitle: Recht auf Einschränkung der Verarbeitung
   mandatoryInfoResponsibleAddressCity: 34127 Kassel
-  mandatoryInfoResponsibleAddressEmail: "E-Mail: support+privacy-policy{'@'}maev.si"
+  mandatoryInfoResponsibleAddressEmail: "E-Mail: contact+privacy-policy{'@'}maev.si"
   mandatoryInfoResponsibleAddressName: Jonas Thelemann
   mandatoryInfoResponsibleAddressOrganization: SciencePark, CoCreation-Lab
   mandatoryInfoResponsibleAddressStreet: Universitätsplatz 12
@@ -536,7 +536,7 @@ en:
   mandatoryInfoProcessingRestrictionList4: If you have lodged an objection pursuant to Art. 21 (1) GDPR, a balancing of your and our interests must be carried out. As long as it has not yet been determined whose interests prevail, you have the right to request the restriction of the processing of your personal data.
   mandatoryInfoProcessingRestrictionTitle: Right to restriction of processing
   mandatoryInfoResponsibleAddressCity: 34127 Kassel
-  mandatoryInfoResponsibleAddressEmail: "E-mail: support+privacy-policy{'@'}maev.si"
+  mandatoryInfoResponsibleAddressEmail: "E-mail: contact+privacy-policy{'@'}maev.si"
   mandatoryInfoResponsibleAddressName: Jonas Thelemann
   mandatoryInfoResponsibleAddressOrganization: SciencePark, CoCreation-Lab
   mandatoryInfoResponsibleAddressStreet: Universitätsplatz 12

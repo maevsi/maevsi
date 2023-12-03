@@ -13,7 +13,7 @@
       @input="form.password = $event"
     />
     <template #submit-icon>
-      <IconTrash />
+      <IHeroiconsTrash />
     </template>
   </Form>
 </template>
