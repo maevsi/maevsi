@@ -1,3 +1,10 @@
+## [3.15.1](https://github.com/maevsi/maevsi/compare/3.15.0...3.15.1) (2023-12-03)
+
+
+### Bug Fixes
+
+* **hint:** correct title ([71620a8](https://github.com/maevsi/maevsi/commit/71620a8330aaa76104f87401c28a8f1a2537fb0f))
+
 ## [3.15.0](https://github.com/maevsi/maevsi/compare/3.14.1...3.15.0) (2023-12-03)
 
 
