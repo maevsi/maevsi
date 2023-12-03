@@ -1,3 +1,15 @@
+## [3.15.0](https://github.com/maevsi/maevsi/compare/3.14.1...3.15.0) (2023-12-03)
+
+
+### Features
+
+* **contact:** correct email address ([9439c85](https://github.com/maevsi/maevsi/commit/9439c8558c0501024698652fe29402ba986cbaff))
+* **emoji:** use system ([b683ac5](https://github.com/maevsi/maevsi/commit/b683ac5d5f38f447a587ad44f351e7ca0cd62bef))
+* **icons:** migrate to unplugin ([9c1e603](https://github.com/maevsi/maevsi/commit/9c1e6037f3d6c752dbb205a5fe5968b9887ad636))
+* **icons:** migrate to unplugin auto import ([4222d16](https://github.com/maevsi/maevsi/commit/4222d16823f044e9c4e3c9284249b7a37e32a3a0))
+* **icons:** use unplugin ([#1466](https://github.com/maevsi/maevsi/issues/1466)) ([56c9fc2](https://github.com/maevsi/maevsi/commit/56c9fc2fe408ff3cf4752043bf5de52317412ee0))
+* **legal-notice:** add attributions ([d28ec61](https://github.com/maevsi/maevsi/commit/d28ec61d7e9af26511fb1ea23f7e4a6d34a74fbc))
+
 ## [3.14.1](https://github.com/maevsi/maevsi/compare/3.14.0...3.14.1) (2023-12-02)
 
 
