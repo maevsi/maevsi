@@ -1,8 +1,8 @@
 import { testPageLoad } from '../../../utils/tests'
 
-import { helpers } from '@typed-router'
+import { helpers } from '../../../../../.nuxt/typed-router/__helpers'
 
-const PAGE_PATH = helpers.route({ path: '/event' })
+const PAGE_PATH = helpers.path('/event').toString()
 
 testPageLoad(PAGE_PATH)
 
