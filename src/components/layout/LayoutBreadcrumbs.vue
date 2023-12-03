@@ -9,12 +9,18 @@
         iconWithLabel: 'mr-1',
         default: ITEM_UI,
         current: ITEM_UI,
-        separator: 'ml-2 text-gray-400 dark:text-gray-600',
       },
     }"
   >
     <template #icon>
       <IHeroiconsHome />
+    </template>
+    <template #separator>
+      <IHeroiconsChevronRight
+        class="ml-2 text-gray-600 dark:text-gray-400"
+        height="1em"
+        width="1em"
+      />
     </template>
   </SBreadcrumb>
 </template>
