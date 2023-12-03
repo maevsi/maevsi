@@ -1,3 +1,18 @@
+## [3.16.0](https://github.com/maevsi/maevsi/compare/3.15.2...3.16.0) (2023-12-03)
+
+
+### Features
+
+* **router:** rework paths ([8678665](https://github.com/maevsi/maevsi/commit/8678665227e5a30a7d4061935f11c6602521dde8))
+* **router:** rework paths ([#1471](https://github.com/maevsi/maevsi/issues/1471)) ([163acaa](https://github.com/maevsi/maevsi/commit/163acaad019c4533b440ecc5a94f2039b0bbbc59))
+
+
+### Bug Fixes
+
+* **session:** add placeholder default export ([0fe90de](https://github.com/maevsi/maevsi/commit/0fe90de7055ad84490c7be824187c90de8bf05c6))
+* **unlock:** add redirect ([4cee5b4](https://github.com/maevsi/maevsi/commit/4cee5b469d1920210221834ed73bf8c5ab9e6471))
+* **unlock:** correct event path ([e4be7dc](https://github.com/maevsi/maevsi/commit/e4be7dcab68b45498934e098a80afbdd3f24b16e))
+
 ## [3.15.2](https://github.com/maevsi/maevsi/compare/3.15.1...3.15.2) (2023-12-03)
 
 
