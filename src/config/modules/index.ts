@@ -46,10 +46,7 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
   },
   sitemap: {
     credits: false,
-    exclude: LOCALES.map(
-      (locale) =>
-        `/${locale.code !== 'en' ? `${locale.code}/` : ''}%F0%9F%AB%96`,
-    ),
+    exclude: ['/%F0%9F%AB%96'],
   },
   tailwindcss: {
     cssPath: join(currentDir, '../../assets/css/tailwind.css'),
