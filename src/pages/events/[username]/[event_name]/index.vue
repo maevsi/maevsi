@@ -110,7 +110,9 @@
               <IHeroiconsArrowDownTray />
             </template>
           </ButtonColored>
-          <FormInputStateInfo :title="t('iCalHint')" />
+          <span :title="t('iCalHint')">
+            <FormInputStateInfo />
+          </span>
         </div>
       </div>
       <Card v-if="event" class="flex flex-col items-stretch gap-8">
