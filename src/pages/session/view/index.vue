@@ -12,4 +12,6 @@ export const usePageBreadcrumb = () => {
     to: helpers.route(localePath('/session/view')),
   }
 }
+
+export default {} // TODO: remove when there is content
 </script>
