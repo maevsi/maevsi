@@ -7,7 +7,7 @@
     >
       {{ t('register') }}
       <template #prefix>
-        <IconArrowRight />
+        <IHeroiconsArrowRight />
       </template>
     </ButtonColored>
     <Form

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <h1>
       {{ title }}
     </h1>
@@ -15,7 +15,7 @@
       <ButtonColored :aria-label="t('sessionExit')" @click="signOut">
         {{ t('sessionExit') }}
         <template #prefix>
-          <IconSignOut />
+          <IHeroiconsOutlineLogout />
         </template>
       </ButtonColored>
     </section>

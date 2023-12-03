@@ -46,7 +46,7 @@
         >
           {{ t('invitationAdd') }}
           <template #prefix>
-            <IconPlus />
+            <IHeroiconsPlus />
           </template>
         </ButtonColored>
         <p class="text-center text-gray-500 dark:text-gray-400">

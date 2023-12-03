@@ -7,7 +7,7 @@
     >
       {{ t('signIn') }}
       <template #prefix>
-        <IconArrowLeft />
+        <IHeroiconsArrowLeft />
       </template>
     </ButtonColored>
     <Form

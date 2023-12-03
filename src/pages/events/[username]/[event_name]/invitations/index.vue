@@ -4,7 +4,7 @@
       v-if="event && route.params.username === store.signedInUsername"
       class="flex flex-col gap-4"
     >
-      <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <h1>
         {{ t('title') }}
       </h1>

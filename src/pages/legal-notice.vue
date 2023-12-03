@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <h1>{{ title }}</h1>
     <div class="vio-prose-scheme">
       <h2>{{ t('tmg') }}</h2>

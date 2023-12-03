@@ -6,7 +6,7 @@
   >
     {{ t('new') }}
     <template #prefix>
-      <IconPlus />
+      <IHeroiconsPlus />
     </template>
   </ButtonText>
 </template>

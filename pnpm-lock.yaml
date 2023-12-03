@@ -61,9 +61,21 @@ importers:
       '@http-util/status-i18n':
         specifier: 0.8.1
         version: 0.8.1
+      '@iconify-json/fa6-regular':
+        specifier: 1.1.17
+        version: 1.1.17
+      '@iconify-json/fa6-solid':
+        specifier: 1.1.19
+        version: 1.1.19
       '@iconify-json/heroicons':
         specifier: 1.1.15
         version: 1.1.15
+      '@iconify-json/heroicons-outline':
+        specifier: 1.1.9
+        version: 1.1.9
+      '@iconify-json/solar':
+        specifier: 1.1.8
+        version: 1.1.8
       '@intlify/eslint-plugin-vue-i18n':
         specifier: 3.0.0-next.4
         version: 3.0.0-next.4(eslint@8.54.0)
@@ -373,6 +385,9 @@ importers:
       unplugin-icons:
         specifier: 0.18.0
         version: 0.18.0
+      unplugin-vue-components:
+        specifier: 0.25.2
+        version: 0.25.2(@nuxt/kit@3.8.2)(rollup@2.79.1)(vue@3.3.9)
       v-calendar:
         specifier: 3.1.2
         version: 3.1.2(@popperjs/core@2.11.8)(vue@3.3.9)
@@ -3276,6 +3291,24 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
+  /@iconify-json/fa6-regular@1.1.17:
+    resolution: {integrity: sha512-P/gU1z6SZwb8HfGq28ULpB+2x4NIlWuunfwPSPetyMx/fKJe+iXwuPCfKWxbFNy+b6kCqGF+zwD5Hx1FJ473jQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/fa6-solid@1.1.19:
+    resolution: {integrity: sha512-/R9viOcP2NIHcjjRIVnNAj40mci21ZD5uGpkKNQ+8lG/0x+mzR35a+yf7aCE6D7ovt/SJ6pMY6oO9tBZbHlcSw==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/heroicons-outline@1.1.9:
+    resolution: {integrity: sha512-xs0fn54DxRaPszWNew4s/4eQOugSAuDRYdyqej9bDB0y80KoAHWmdA0OAN+oCfubx0l+vRJInUQrVD7f4K+AnA==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
   /@iconify-json/heroicons@1.1.15:
     resolution: {integrity: sha512-UUBdRuU23MZ5PL5t8EZwHeId4Usdc+FrsukzdAW9xe/0wYLr25+MuqZcIGJZbSxJVukvy3Jgc0sPzBOG1EC7YQ==}
     dependencies:
@@ -3290,6 +3323,12 @@ packages:
 
   /@iconify-json/ri@1.1.15:
     resolution: {integrity: sha512-A1g6jPANPRC1aKthtBpWGn53NI/bf7HsjNr/Zi2n3fIlWLHp4SI8MGXw7POUKAefzipb7HSqlBNpQxGLJ5qe2g==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/solar@1.1.8:
+    resolution: {integrity: sha512-w9khWcUWSydMci7V4wTsHof8tz/S2hJeXj+PbnI/Ic/47BpQKGrLYV7W5+oMKIONUmj5VrBBtctpy8o1rL9JHw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -17135,6 +17174,36 @@ packages:
       '@rollup/pluginutils': 4.2.1
       magic-string: 0.26.7
       unplugin: 1.5.1
+    dev: true
+
+  /unplugin-vue-components@0.25.2(@nuxt/kit@3.8.2)(rollup@2.79.1)(vue@3.3.9):
+    resolution: {integrity: sha512-OVmLFqILH6w+eM8fyt/d/eoJT9A6WO51NZLf1vC5c1FZ4rmq2bbGxTy8WP2Jm7xwFdukaIdv819+UI7RClPyCA==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@babel/parser': ^7.15.8
+      '@nuxt/kit': ^3.2.2
+      vue: 2 || 3
+    peerDependenciesMeta:
+      '@babel/parser':
+        optional: true
+      '@nuxt/kit':
+        optional: true
+    dependencies:
+      '@antfu/utils': 0.7.6
+      '@nuxt/kit': 3.8.2(rollup@2.79.1)
+      '@rollup/pluginutils': 5.1.0(rollup@2.79.1)
+      chokidar: 3.5.3
+      debug: 4.3.4
+      fast-glob: 3.3.2
+      local-pkg: 0.4.3
+      magic-string: 0.30.5
+      minimatch: 9.0.3
+      resolve: 1.22.8
+      unplugin: 1.5.1
+      vue: 3.3.9(typescript@5.3.2)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
     dev: true
 
   /unplugin-vue-router@0.7.0(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.9):

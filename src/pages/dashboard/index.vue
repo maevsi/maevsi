@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+    <LayoutBreadcrumbs :items="breadcrumbItems" />
     <h1>
       {{ title }}
     </h1>
@@ -17,7 +17,7 @@
           >
             {{ t('eventsMine') }}
             <template #prefix>
-              <HeroiconsCalendar />
+              <IHeroiconsCalendar />
             </template>
           </ButtonColored>
         </section>
@@ -37,7 +37,7 @@
           >
             {{ t('contactsMine') }}
             <template #prefix>
-              <HeroiconsUsers />
+              <IHeroiconsUsers />
             </template>
           </ButtonColored>
         </section>
@@ -49,7 +49,7 @@
           >
             {{ t('uploadsMine') }}
             <template #prefix>
-              <HeroiconsFolder />
+              <IHeroiconsFolder />
             </template>
           </ButtonColored>
         </section>
@@ -71,10 +71,6 @@
 
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
-
-import HeroiconsCalendar from '~icons/heroicons/calendar'
-import HeroiconsFolder from '~icons/heroicons/folder'
-import HeroiconsUsers from '~icons/heroicons/users'
 
 export const usePageBreadcrumb = () => ({
   label: 'Dashboard',

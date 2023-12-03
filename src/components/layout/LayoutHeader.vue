@@ -7,7 +7,7 @@
         class="lg:hidden"
         @click="emit('onMenuShow')"
       >
-        <IconBars3 classes="h-8 w-8" />
+        <IHeroiconsBars3 height="2em" width="2em" />
       </ButtonIcon>
       <Button :aria-label="t('home')" :to="localePath('/')">
         <IconLogoWithText class="h-10 w-32" />
@@ -27,7 +27,7 @@
           class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300"
           @click="navigateToSearch"
         >
-          <IconMagnifyingGlass />
+          <IHeroiconsMagnifyingGlass />
         </span>
       </div>
       <div class="hidden flex-grow lg:block" />
@@ -40,7 +40,7 @@
         >
           {{ t('events') }}
           <template #prefix>
-            <IconTelescope />
+            <ISolarTelescopeBold />
           </template>
         </ButtonText>
         <ButtonEventNew class="hidden lg:flex" />
@@ -75,7 +75,7 @@
             class="h-8 w-8 lg:hidden"
             :to="localePath('/tasks/accounts/sign-in')"
           >
-            <IconSignIn classes="h-6 w-6" />
+            <IHeroiconsOutlineLogin />
           </ButtonIcon>
           <ButtonText
             :aria-label="t('signIn')"

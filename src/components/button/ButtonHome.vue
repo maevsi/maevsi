@@ -6,7 +6,7 @@
   >
     {{ t('home') }}
     <template #prefix>
-      <IconHome />
+      <IHeroiconsHome />
     </template>
   </ButtonColored>
 </template>

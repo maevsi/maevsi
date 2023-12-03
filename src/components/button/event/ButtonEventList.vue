@@ -7,7 +7,7 @@
   >
     {{ t('eventAll') }}
     <template #prefix>
-      <IconListUl />
+      <IFa6SolidListUl />
     </template>
   </ButtonColored>
 </template>

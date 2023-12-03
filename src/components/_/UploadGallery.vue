@@ -42,7 +42,7 @@
                 :aria-label="t('iconTrashLabel')"
                 class="flex h-full justify-center"
               >
-                <IconTrash
+                <IHeroiconsTrash
                   class="m-1 text-text-bright"
                   :title="t('iconTrash')"
                 />
@@ -67,7 +67,11 @@
             "
             @click="selectProfilePicture"
           >
-            <IconPlus classes="h-12 text-gray-500 w-12" />
+            <IHeroiconsPlusSolid
+              class="text-gray-500"
+              width="3em"
+              height="3em"
+            />
           </Button>
           <input
             ref="inputProfilePictureRef"
@@ -105,7 +109,7 @@
         }"
       />
       <template #header>{{ t('uploadNew') }}</template>
-      <template #submit-icon><IconUpload /></template>
+      <template #submit-icon><IHeroiconsArrowUpTray /></template>
     </Modal>
   </Loader>
 </template>

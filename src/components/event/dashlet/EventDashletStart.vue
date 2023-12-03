@@ -1,6 +1,6 @@
 <template>
   <EventDashlet v-if="event.start">
-    <HeroiconsCalendar :title="t('start')" />
+    <IHeroiconsCalendar :title="t('start')" />
     <div class="flex flex-col">
       <span>
         {{ eventStart.format('lll') }}
@@ -13,8 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import HeroiconsCalendar from '~icons/heroicons/calendar'
-
 import type { EventItemFragment } from '~/gql/generated/graphql'
 
 export interface Props {

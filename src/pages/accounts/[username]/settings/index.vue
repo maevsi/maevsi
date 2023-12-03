@@ -1,7 +1,7 @@
 <template>
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
-      <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <div
         class="flex min-w-0 flex-col items-center justify-center sm:flex-row"
       >

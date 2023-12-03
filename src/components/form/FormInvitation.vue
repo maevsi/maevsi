@@ -18,7 +18,7 @@
       >
         {{ t('contactsAdd') }}
         <template #suffix>
-          <IconArrowRight />
+          <IHeroiconsArrowRight />
         </template>
       </ButtonColored>
     </div>
@@ -31,7 +31,7 @@
       @input="form.searchString = $event"
     >
       <template #icon>
-        <IconMagnifyingGlass />
+        <IHeroiconsMagnifyingGlass />
       </template>
       <template #stateError>
         <FormInputStateError

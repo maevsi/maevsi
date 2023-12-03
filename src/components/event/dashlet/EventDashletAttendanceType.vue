@@ -1,8 +1,8 @@
 <template>
   <EventDashlet v-if="event.isInPerson || event.isRemote">
     <span class="flex gap-2">
-      <IconHandshake v-if="event.isInPerson" :title="t('inPerson')" />
-      <IconWifi v-if="event.isRemote" :title="t('remote')" />
+      <IFa6RegularHandshake v-if="event.isInPerson" :title="t('inPerson')" />
+      <IHeroiconsWifi v-if="event.isRemote" :title="t('remote')" />
     </span>
     {{
       [

@@ -1,7 +1,7 @@
 <template>
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
-      <SBreadcrumb :items="breadcrumbItems" :ui="BREADCRUMBS_UI" />
+      <LayoutBreadcrumbs :items="breadcrumbItems" />
       <ButtonList
         v-if="store.signedInUsername === routeParamUsername"
         class="justify-end"
@@ -12,13 +12,13 @@
         >
           {{ t('settings') }}
           <template #prefix>
-            <IconPencil />
+            <IHeroiconsPencil />
           </template>
         </ButtonColored>
         <ButtonColored :aria-label="t('signOut')" @click="signOut">
           {{ t('signOut') }}
           <template #prefix>
-            <IconSignOut />
+            <IHeroiconsOutlineLogout />
           </template>
         </ButtonColored>
       </ButtonList>
@@ -45,7 +45,7 @@
         >
           {{ t('eventsTheir', { name: routeParamUsername }) }}
           <template #prefix>
-            <HeroiconsCalendar />
+            <IHeroiconsCalendar />
           </template>
         </ButtonColored>
       </ButtonList>
@@ -60,8 +60,6 @@ import type { TypedRouteFromName } from '@typed-router/__router'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import type { RoutesNamesList } from '@typed-router/__routes'
-
-import HeroiconsCalendar from '~icons/heroicons/calendar'
 
 const ROUTE_NAME = 'accounts-username'
 

@@ -58,7 +58,6 @@ const getCsp = (host: string) => {
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://cdn.jsdelivr.net/npm/@sec-ant/', // vue-qrcode-reader
       `https://${runtimeConfig.public.sentry.host}/api/${runtimeConfig.public.sentry.project.client.id}/envelope/`, // Sentry
-      'https://api.iconify.design/', // nuxt-icons // TODO: remove, bundle instead
     ],
     'default-src': ["'none'"],
     'font-src': ["'self'", 'data:'], // @fontsource/manrope
