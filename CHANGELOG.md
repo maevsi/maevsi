@@ -1,3 +1,11 @@
+## [3.15.2](https://github.com/maevsi/maevsi/compare/3.15.1...3.15.2) (2023-12-03)
+
+
+### Bug Fixes
+
+* **breadcrumbs:** correct separator icon ([057af02](https://github.com/maevsi/maevsi/commit/057af02b5da2e3b6d4deaf56c0f707ae6539f5a8))
+* **breadcrumbs:** correct separator icon ([#1470](https://github.com/maevsi/maevsi/issues/1470)) ([096284f](https://github.com/maevsi/maevsi/commit/096284f7c233bce1d6ef9aa07148d377f5c0a3eb))
+
 ## [3.15.1](https://github.com/maevsi/maevsi/compare/3.15.0...3.15.1) (2023-12-03)
 
 
