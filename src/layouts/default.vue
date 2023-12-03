@@ -61,7 +61,7 @@
         >
           {{ t('sourceCode') }}
         </AppLink>
-        <AppLink is-external to="mailto:support+maev-si@maev.si">
+        <AppLink is-external to="mailto:contact+maev-si@maev.si">
           {{ t('contact') }}
         </AppLink>
         <AppLink :to="localePath('/dashboard/dev')">

@@ -52,7 +52,7 @@
         <ButtonColored
           :aria-label="t('contactSupport')"
           is-external
-          to="mailto:support+sign-in@maev.si"
+          to="mailto:contact+sign-in@maev.si"
         >
           {{ t('contactSupport') }}
         </ButtonColored>
