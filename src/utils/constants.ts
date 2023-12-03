@@ -11,19 +11,6 @@ export const SITE_URL =
     (process.env.HOST ||
       `${process.env.HOST || 'localhost'}:${process.env.PORT || '3000'}`)
 
-const itemUi =
-  'flex items-center focus:underline hover:underline group-hover:opacity-80 transition-all aria-[current]:font-bold'
-export const BREADCRUMBS_UI = {
-  ol: 'flex gap-2 text-gray-600 dark:text-gray-400',
-  li: 'flex items-center whitespace-nowrap leading-loose group',
-  item: {
-    icon: 'h-5 w-5',
-    iconWithLabel: 'mr-1',
-    default: itemUi,
-    current: itemUi,
-    separator: 'ml-2 text-gray-400 dark:text-gray-600',
-  },
-}
 export const CACHE_VERSION = '2EvuFKRRxT'
 export const COOKIE_CONTROL_CONSENT_COOKIE_NAME =
   DEFAULTS.cookieNameIsConsentGiven
