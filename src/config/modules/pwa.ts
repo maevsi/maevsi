@@ -14,6 +14,24 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
       installPrompt: true,
     },
     filename: 'sw.ts',
+    injectManifest: {
+      globPatterns: [
+        '**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}',
+      ],
+      globIgnores: ['manifest**.webmanifest'],
+      manifestTransforms: [
+        (entries) => {
+          const manifest = entries.map((entry) => {
+            if (entry.url.length > 1 && entry.url[0] !== '/')
+              entry.url = `/${entry.url}`
+
+            return entry
+          })
+
+          return { manifest, warnings: [] }
+        },
+      ],
+    },
     manifest: {
       background_color: colors.gray['800'],
       categories: ['events'],
@@ -139,28 +157,28 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
       scope: '/',
       screenshots: [
         {
-          src: '/assets/static/screenshots/narrow/root.png',
+          src: `/assets/static/screenshots/narrow/root.png?v=${CACHE_VERSION}`,
           sizes: '432x768',
           type: 'image/png',
           form_factor: 'narrow',
           label: 'root',
         },
         {
-          src: '/assets/static/screenshots/narrow/events.png',
+          src: `/assets/static/screenshots/narrow/events.png?v=${CACHE_VERSION}`,
           sizes: '432x768',
           type: 'image/png',
           form_factor: 'narrow',
           label: 'events',
         },
         {
-          src: '/assets/static/screenshots/wide/root.png',
+          src: `/assets/static/screenshots/wide/root.png?v=${CACHE_VERSION}`,
           sizes: '1920x1080',
           type: 'image/png',
           form_factor: 'wide',
           label: 'root',
         },
         {
-          src: '/assets/static/screenshots/wide/events.png',
+          src: `/assets/static/screenshots/wide/events.png?v=${CACHE_VERSION}`,
           sizes: '1920x1080',
           type: 'image/png',
           form_factor: 'wide',
@@ -202,8 +220,14 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
       shortcuts: [
         {
           description: 'See a list of events.',
-          short_name: 'Events',
+          icons: [
+            {
+              src: `assets/static/favicon/android-chrome-192x192.png?v=${CACHE_VERSION}`,
+              sizes: '192x192',
+            },
+          ],
           name: 'Explore events',
+          short_name: 'Events',
           url: '/events',
         },
       ],
