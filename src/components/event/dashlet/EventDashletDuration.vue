@@ -1,7 +1,7 @@
 <template>
   <EventDashlet v-if="event.end && event.start">
     <span>
-      <IFa6SolidHourglass :title="t('duration')" />
+      <ISolarHourglassOutline :title="t('duration')" />
     </span>
     {{
       // @ts-ignore `duration` should be part of `$dayjs` (https://github.com/iamkun/dayjs/issues/2106)

@@ -1,7 +1,7 @@
 <template>
   <EventDashlet v-if="event.isRemote && event.url">
     <span>
-      <IFa6SolidLink :title="t('url')" />
+      <IHeroiconsLink :title="t('url')" />
     </span>
     <AppLink class="vio-line-clamp-2" is-external :to="event.url">
       {{ event.url }}

@@ -75,7 +75,7 @@
         >
           {{ t('attendances') }}
           <template #prefix>
-            <IFa6SolidUserCheck />
+            <ISolarUserCheckBroken />
           </template>
         </ButtonColored>
         <ButtonColored

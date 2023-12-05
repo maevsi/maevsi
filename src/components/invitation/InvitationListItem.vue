@@ -33,7 +33,7 @@
           class="hidden md:block"
           @click="copyLink(invitation)"
         >
-          <IFa6SolidLink />
+          <IHeroiconsLink />
         </ButtonIcon>
         <DropDown>
           <ButtonIcon :aria-label="t('globalShowMore')">
@@ -69,7 +69,7 @@
             >
               {{ t('invitationLink') }}
               <template #prefix>
-                <IFa6SolidLink />
+                <IHeroiconsLink />
               </template>
             </Button>
             <Button

@@ -53,7 +53,7 @@
           />
           <div v-if="validationProperty && isValidatable">
             <FormInputIconWrapper v-if="validationProperty.$pending">
-              <IFa6SolidHourglass
+              <ISolarHourglassBold
                 class="text-blue-600"
                 :title="t('globalLoading')"
               />
