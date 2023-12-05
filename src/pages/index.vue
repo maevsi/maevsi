@@ -153,15 +153,13 @@
 import { helpers } from '@typed-router'
 
 export const usePageBreadcrumb = () => {
-  const localePath = useLocalePath()
-
   return {
     ariaLabel: {
       de: 'Start',
       en: 'Home',
     },
     icon: 'todo', // TODO: let slot suffice
-    to: helpers.route(localePath('/')),
+    to: helpers.path('/'),
   }
 }
 </script>

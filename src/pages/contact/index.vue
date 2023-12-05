@@ -19,35 +19,30 @@ import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
 import { helpers } from '@typed-router'
 
 export const usePageBreadcrumb = () => {
-  const localePath = useLocalePath()
-
   return {
     label: {
       de: 'Kontakte',
       en: 'Contacts',
     },
-    to: helpers.route(localePath('/contact')),
+    to: helpers.path('/contact'),
   }
 }
 </script>
 
 <script setup lang="ts">
 const store = useMaevsiStore()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const title = t('title')
 

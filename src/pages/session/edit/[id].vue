@@ -14,22 +14,17 @@
           </template>
         </ButtonColored>
       </section>
-      <!-- TODO: move the following to /invitations -->
-      <section class="flex flex-col gap-4">
-        <h2>{{ t('codes') }}</h2>
-        <ButtonEventUnlock />
-      </section>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbSession } from '../view/index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbSession } from '../view/[id].vue'
 
-import { helpers } from '@typed-router'
+import { helpers, type RoutesNamesList } from '@typed-router'
 
-const ROUTE_NAME = 'session-edit-id'
+const ROUTE_NAME: RoutesNamesList = 'session-edit-id'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
@@ -46,22 +41,19 @@ export const usePageBreadcrumb = () => {
 
 <script setup lang="ts">
 const { signOut } = useSignOut()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      usePageBreadcrumbSession(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    usePageBreadcrumbSession(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const title = t('title')
 
@@ -71,12 +63,10 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  codes: Einladungscodes
   exit: Beenden
   sessionExit: Diese Sitzung beenden
   title: Sitzung bearbeiten
 en:
-  codes: Invitation codes
   exit: Exit
   sessionExit: Exit this session
   title: Edit session

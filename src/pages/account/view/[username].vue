@@ -66,15 +66,14 @@ import {
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 
-const ROUTE_NAME = 'account-view-username'
+const ROUTE_NAME: RoutesNamesList = 'account-view-username'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
-  const localePath = useLocalePath()
 
   return {
     label: route.params.username,
-    to: helpers.route(localePath(`/account/view/${route.params.username}`)),
+    to: helpers.path(`/account/view/${route.params.username}`),
   }
 }
 </script>
@@ -89,7 +88,7 @@ definePageMeta({
 })
 
 const { signOut } = useSignOut()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const store = useMaevsiStore()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
@@ -106,17 +105,14 @@ const api = getApiData([accountByUsernameQuery])
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      usePageBreadcrumbAccounts(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    usePageBreadcrumbAccounts(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const routeParamUsername = route.params.username
 const title = route.params.username

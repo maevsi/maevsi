@@ -344,8 +344,8 @@ import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../../index.vu
 
 import {
   helpers,
+  type RoutesNamesList,
   type TypedRouteFromName,
-  type TypedToLocalePath,
 } from '@typed-router'
 
 import { useUpdateInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationUpdateById'
@@ -361,15 +361,13 @@ import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 
-const ROUTE_NAME = 'event-view-username-event_name___en'
+const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
 
 export const pageBreadcrumb = async ({
   $urql,
-  localePath,
   route,
 }: {
   $urql: Ref<Client>
-  localePath: TypedToLocalePath
   route: TypedRouteFromName<
     | 'event-edit-username-event_name___en'
     | 'event-view-username-event_name___en'
@@ -389,10 +387,8 @@ export const pageBreadcrumb = async ({
 
   return {
     label: event?.name,
-    to: helpers.route(
-      localePath(
-        `/event/view/${route.params.username}/${route.params.event_name}`,
-      ),
+    to: helpers.path(
+      `/event/view/${route.params.username}/${route.params.event_name}`,
     ),
   }
 }
@@ -408,7 +404,7 @@ definePageMeta({
 })
 
 const { $urql } = useNuxtApp()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const fireAlert = useFireAlert()
 const store = useMaevsiStore()
 const route = useRoute(ROUTE_NAME)
@@ -436,18 +432,15 @@ const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      usePageBreadcrumbEvents(),
-      usePageBreadcrumbEventsUser(),
-      {
-        current: true,
-        ...(await pageBreadcrumb({ $urql, localePath, route })),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    usePageBreadcrumbEvents(),
+    usePageBreadcrumbEventsUser(),
+    {
+      current: true,
+      ...(await pageBreadcrumb({ $urql, route })),
+    },
+  ]),
 )
 
 // methods

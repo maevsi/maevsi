@@ -49,25 +49,28 @@ import { usePageBreadcrumb as usePageBreadcrumbAccountsId } from '../view/[usern
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import { type TypedRouteFromName, helpers } from '@typed-router'
+import {
+  type TypedRouteFromName,
+  helpers,
+  type RoutesNamesList,
+} from '@typed-router'
 
 import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
-const ROUTE_NAME = 'account-edit-username'
+const ROUTE_NAME: RoutesNamesList = 'account-edit-username'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
-  const localePath = useLocalePath()
 
   return {
     label: {
       de: 'Bearbeiten',
       en: 'Edit',
     },
-    to: helpers.route(localePath(`/account/edit/${route.params.username}`)),
+    to: helpers.path(`/account/edit/${route.params.username}`),
   }
 }
 </script>
@@ -84,7 +87,7 @@ definePageMeta({
 
 const store = useMaevsiStore()
 const { signOut } = useSignOut()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
 const accountDeleteMutation = useAccountDeleteMutation()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
@@ -101,18 +104,15 @@ const api = getApiData([accountByUsernameQuery, profilePictureSetMutation])
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      usePageBreadcrumbAccounts(),
-      usePageBreadcrumbAccountsId(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    usePageBreadcrumbAccounts(),
+    usePageBreadcrumbAccountsId(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const mutation = accountDeleteMutation
 const routeParamUsername = route.params.username

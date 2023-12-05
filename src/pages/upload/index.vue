@@ -18,35 +18,30 @@ import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
 import { helpers } from '@typed-router'
 
 export const usePageBreadcrumb = () => {
-  const localePath = useLocalePath()
-
   return {
     label: {
       de: 'Dateien',
       en: 'Files',
     },
-    to: helpers.route(localePath('/upload')),
+    to: helpers.path('/upload'),
   }
 }
 </script>
 
 <script setup lang="ts">
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const title = t('title')
 

@@ -10,35 +10,28 @@ import { usePageBreadcrumb as usePageBreadcrumbHome } from './index.vue'
 
 import { helpers } from '@typed-router'
 
-const ROUTE_NAME = '/%F0%9F%AB%96'
-
 export const usePageBreadcrumb = () => {
-  const localePath = useLocalePath()
-
   return {
     label: '🫖',
-    to: helpers.route(localePath(ROUTE_NAME)),
+    to: helpers.path('/%F0%9F%AB%96'),
   }
 }
 </script>
 
 <script setup lang="ts">
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const { ssrContext } = useNuxtApp() // cannot use `useRequestEvent` instead
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const title = t('title')
 

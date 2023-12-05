@@ -264,33 +264,29 @@ import { usePageBreadcrumb as usePageBreadcrumbHome } from './index.vue'
 import { helpers } from '@typed-router'
 
 export const usePageBreadcrumb = () => {
-  const localePath = useLocalePath()
   return {
     label: {
       de: 'Datenschutzerklärung',
       en: 'Privacy policy',
     },
-    to: helpers.route(localePath('/privacy-policy')),
+    to: helpers.path('/privacy-policy'),
   }
 }
 </script>
 
 <script setup lang="ts">
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const title = t('title')
 

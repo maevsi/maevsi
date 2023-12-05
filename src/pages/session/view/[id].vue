@@ -48,6 +48,7 @@
         <p v-else>
           {{ t('codesEnteredNone') }}
         </p>
+        <ButtonEventUnlock />
       </section>
     </div>
   </div>
@@ -56,19 +57,25 @@
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import { helpers } from '@typed-router'
+import { helpers, type RoutesNamesList } from '@typed-router'
 
-export const usePageBreadcrumb = () => ({
-  label: {
-    de: 'Sitzung',
-    en: 'Session',
-  },
-  to: helpers.path('/session/view'),
-})
+const ROUTE_NAME: RoutesNamesList = 'session-view-id'
+
+export const usePageBreadcrumb = () => {
+  const route = useRoute(ROUTE_NAME)
+
+  return {
+    label: {
+      de: 'Sitzung',
+      en: 'Session',
+    },
+    to: helpers.path(`/session/view/${route.params.id}`),
+  }
+}
 </script>
 
 <script setup lang="ts">
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const requestEvent = useRequestEvent()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
@@ -77,16 +84,13 @@ const localePath = useLocalePath()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const title = t('title')
 
