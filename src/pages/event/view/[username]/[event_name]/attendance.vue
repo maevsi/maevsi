@@ -70,27 +70,24 @@ import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from './index.vue'
 
-import { helpers, type TypedRouteFromName } from '@typed-router'
+import { type RoutesNamesList, type TypedRouteFromName } from '@typed-router'
 
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-const ROUTE_NAME = 'event-view-username-event_name-attendance___en'
+const ROUTE_NAME: RoutesNamesList =
+  'event-view-username-event_name-attendance___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
-  const localePath = useLocalePath()
 
   return {
     label: 'Check-in',
-    to: helpers.route(
-      localePath(
-        `/event/view/${route.params.username}/${route.params.event_name}/attendance`,
-      ),
-    ),
-  }
+    to: `/event/view/${route.params.username}/${route.params.event_name}/attendance`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 
 export default {
@@ -112,12 +109,11 @@ definePageMeta({
 })
 
 const { $urql } = useNuxtApp()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const store = useMaevsiStore()
 const route = useRoute(ROUTE_NAME)
 const fireAlert = useFireAlert()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
-const localePath = useLocalePath()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
@@ -138,18 +134,15 @@ const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbEvents(),
-      usePageBreadcrumbEventsUser(),
-      await usePageBreadcrumbEventsUserId({ $urql, localePath, route }),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbEvents(),
+    usePageBreadcrumbEventsUser(),
+    await usePageBreadcrumbEventsUserId({ $urql, route }),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const invitationId = ref<string>()
 const isNfcWritableErrorMessage = ref<string>()

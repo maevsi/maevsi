@@ -1,8 +1,6 @@
 import { testPageLoad, testVisualRegression } from '../../../utils/tests'
 
-import { helpers } from '../../../../../.nuxt/typed-router/__helpers'
-
-const PAGE_PATH = helpers.path('/search').toString()
+const PAGE_PATH = '/search'
 
 testPageLoad(PAGE_PATH)
 testVisualRegression(PAGE_PATH)

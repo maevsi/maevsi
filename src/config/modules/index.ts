@@ -3,10 +3,11 @@ import { fileURLToPath } from 'node:url'
 import type { DefineNuxtConfig } from 'nuxt/config'
 
 import { LOCALES, SITE_NAME, SITE_URL } from '../../utils/constants'
-
 import { cookieControlConfig } from './cookieControl'
 import { pwaConfig } from './pwa'
 import { securityConfig } from './security'
+
+import type { LocaleRoutePathSchema } from '@typed-router/__paths'
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
@@ -46,7 +47,11 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
   },
   sitemap: {
     credits: false,
-    exclude: ['/%F0%9F%AB%96'],
+    exclude: [
+      '/%F0%9F%AB%96',
+      '/account/verify',
+      '/account/password/reset',
+    ] as LocaleRoutePathSchema[],
   },
   tailwindcss: {
     cssPath: join(currentDir, '../../assets/css/tailwind.css'),

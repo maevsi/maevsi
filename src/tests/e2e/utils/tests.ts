@@ -1,9 +1,13 @@
 import { expect, test } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { joinURL } from 'ufo'
-import { maevsiTest } from '../fixtures/maevsiTest'
 
-export const testA11y = (url: string) =>
+import { maevsiTest } from '../fixtures/maevsiTest'
+import type { TypedLocalePathParameter } from '../../../.nuxt/typed-router/__paths'
+
+export const testA11y = <T extends string = never>(
+  url: TypedLocalePathParameter<T>,
+) =>
   test.describe('a11y', () => {
     maevsiTest(
       'should not have any automatically detectable accessibility issues',
@@ -19,7 +23,9 @@ export const testA11y = (url: string) =>
     )
   })
 
-export const testOgImage = (url: string) =>
+export const testOgImage = <T extends string = never>(
+  url: TypedLocalePathParameter<T>,
+) =>
   test.describe('visual regression', () => {
     maevsiTest('generates the open graph image', async ({ page }) => {
       await page.goto(joinURL('/', url, '/__og_image__/og.png'))
@@ -30,7 +36,10 @@ export const testOgImage = (url: string) =>
     })
   })
 
-export const testPageLoad = (url: string, statusCode: number = 200) =>
+export const testPageLoad = <T extends string = never>(
+  url: TypedLocalePathParameter<T>,
+  statusCode: number = 200,
+) =>
   test.describe('page load', () => {
     maevsiTest('loads the page successfully', async ({ request }) => {
       const resp = await request.get(url)
@@ -38,7 +47,9 @@ export const testPageLoad = (url: string, statusCode: number = 200) =>
     })
   })
 
-export const testVisualRegression = (url: string) =>
+export const testVisualRegression = <T extends string = never>(
+  url: TypedLocalePathParameter<T>,
+) =>
   test.describe('visual regression', () => {
     maevsiTest('looks as before', async ({ defaultPage }) => {
       await defaultPage.goto(url)

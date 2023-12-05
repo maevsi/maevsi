@@ -19,30 +19,27 @@ import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from './index.vue'
 
-import { type TypedRouteFromName, helpers } from '@typed-router'
+import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
 
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-const ROUTE_NAME = 'event-view-username-event_name-invitation___en'
+const ROUTE_NAME: RoutesNamesList =
+  'event-view-username-event_name-invitation___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
-  const localePath = useLocalePath()
 
   return {
     label: {
       de: 'Einladungen',
       en: 'Invitations',
     },
-    to: helpers.route(
-      localePath(
-        `/event/view/${route.params.username}/${route.params.event_name}/invitation`,
-      ),
-    ),
-  }
+    to: `/event/view/${route.params.username}/${route.params.event_name}/invitation`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 
@@ -57,10 +54,9 @@ definePageMeta({
 
 const { $urql } = useNuxtApp()
 const route = useRoute(ROUTE_NAME)
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const store = useMaevsiStore()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
-const localePath = useLocalePath()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
@@ -81,18 +77,15 @@ const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbEvents(),
-      usePageBreadcrumbEventsUser(),
-      await usePageBreadcrumbEventsUserId({ $urql, localePath, route }),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbEvents(),
+    usePageBreadcrumbEventsUser(),
+    await usePageBreadcrumbEventsUserId({ $urql, route }),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 
 // computations

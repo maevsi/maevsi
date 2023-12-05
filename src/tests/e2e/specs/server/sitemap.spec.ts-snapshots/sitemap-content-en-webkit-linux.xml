@@ -73,12 +73,6 @@
         <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/account/create" />
     </url>
     <url>
-        <loc>http://localhost:3001/account/verify</loc>
-        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/account/verify" />
-        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/account/verify" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/account/verify" />
-    </url>
-    <url>
         <loc>http://localhost:3001/event/create</loc>
         <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/event/create" />
         <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/event/create" />
@@ -95,18 +89,6 @@
         <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/session/create" />
         <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/session/create" />
         <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/session/create" />
-    </url>
-    <url>
-        <loc>http://localhost:3001/session/view</loc>
-        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/session/view" />
-        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/session/view" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/session/view" />
-    </url>
-    <url>
-        <loc>http://localhost:3001/account/password/reset</loc>
-        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/account/password/reset" />
-        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/account/password/reset" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/account/password/reset" />
     </url>
     <url>
         <loc>http://localhost:3001/account/password/reset/request</loc>

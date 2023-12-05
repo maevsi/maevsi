@@ -4,58 +4,28 @@
     <h1>
       {{ title }}
     </h1>
-    <section class="flex flex-col gap-4">
-      <h2>{{ t('session') }}</h2>
-      <p v-if="sessionExpiryTime !== 'Invalid date'">
-        {{ t('sessionExpiry', { exp: sessionExpiryTime }) }}
-      </p>
-      <p v-else>
-        {{ t('sessionExpired') }}
-      </p>
-      <ButtonColored :aria-label="t('sessionExit')" @click="signOut">
-        {{ t('sessionExit') }}
-        <template #prefix>
-          <IHeroiconsOutlineLogout />
-        </template>
-      </ButtonColored>
-    </section>
-    <!-- TODO: move the following to /invitations -->
-    <section class="flex flex-col gap-4">
-      <h2>{{ t('codes') }}</h2>
-      <div v-if="store.jwtDecoded?.invitations">
-        <p>
-          {{ t('codesEntered') }}
-        </p>
-        <ul class="list-disc">
-          <li
-            v-for="invitationId in store.jwtDecoded?.invitations"
-            :key="invitationId"
-          >
-            {{ invitationId }}
-          </li>
-        </ul>
-      </div>
-      <p v-else>
-        {{ t('codesEnteredNone') }}
-      </p>
-      <ButtonEventUnlock />
-    </section>
-    <section class="flex flex-col gap-4">
-      <h2>{{ t('userAgentString') }}</h2>
-      <div>
-        {{ userAgentString }}
-      </div>
-    </section>
+    <div class="flex flex-col gap-8">
+      <section class="flex flex-col gap-4">
+        <h2>{{ t('exit') }}</h2>
+        <ButtonColored :aria-label="t('sessionExit')" @click="signOut">
+          {{ t('sessionExit') }}
+          <template #prefix>
+            <IHeroiconsOutlineLogout />
+          </template>
+        </ButtonColored>
+      </section>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
-import { usePageBreadcrumb as usePageBreadcrumbSession } from '../view/index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbSession } from '../view/[id].vue'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-import { helpers } from '@typed-router'
+import { type RoutesNamesList } from '@typed-router'
 
-const ROUTE_NAME = 'session-edit-id'
+const ROUTE_NAME: RoutesNamesList = 'session-edit-id'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
@@ -65,42 +35,28 @@ export const usePageBreadcrumb = () => {
       de: 'Bearbeiten',
       en: 'Edit',
     },
-    to: helpers.path(`/session/edit/${route.params.id}`),
-  }
+    to: `/session/edit/${route.params.id}`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 
 <script setup lang="ts">
 const { signOut } = useSignOut()
-const { t, locale } = useI18n()
-const store = useMaevsiStore()
-const dateTime = useDateTime()
+const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
-const requestEvent = useRequestEvent()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      usePageBreadcrumbSession(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    usePageBreadcrumbSession(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const title = t('title')
-
-// computations
-const sessionExpiryTime = computed(() =>
-  dateTime(store.jwtDecoded?.exp).format('llll'),
-)
-const userAgentString = computed(() =>
-  requestEvent ? requestEvent.headers.get('user-agent') : navigator.userAgent,
-)
 
 // initialization
 useHeadDefault({ title })
@@ -108,23 +64,11 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  codes: Einladungscodes
-  codesEntered: 'Du hast die folgenden Codes eingegeben:'
-  codesEnteredNone: Du hast bisher keine Codes eingegeben 😕
-  session: Sitzung
+  exit: Beenden
   sessionExit: Diese Sitzung beenden
-  sessionExpired: Deine Sitzung ist abgelaufen.
-  sessionExpiry: Deine Sitzung läuft am {exp} ab.
-  title: Einstellungen
-  userAgentString: User agent string
+  title: Sitzung bearbeiten
 en:
-  codes: Invitation codes
-  codesEntered: 'You entered the following codes:'
-  codesEnteredNone: You have not entered any codes yet 😕
-  session: session
+  exit: Exit
   sessionExit: Exit this session
-  sessionExpired: Your session expired.
-  sessionExpiry: Your session expires on {exp}.
-  title: Settings
-  userAgentString: User agent string
+  title: Edit session
 </i18n>

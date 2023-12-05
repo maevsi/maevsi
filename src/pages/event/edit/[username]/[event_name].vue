@@ -38,31 +38,27 @@ import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from '../../view/[use
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../../view/[username]/index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 
-import { type TypedRouteFromName, helpers } from '@typed-router'
+import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
 
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useEventDeleteMutation } from '~/gql/documents/mutations/event/eventDelete'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-const ROUTE_NAME = 'event-edit-username-event_name___en'
+const ROUTE_NAME: RoutesNamesList = 'event-edit-username-event_name___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
-  const localePath = useLocalePath()
 
   return {
     label: {
       de: 'Bearbeiten',
       en: 'Edit',
     },
-    to: helpers.route(
-      localePath(
-        `/event/edit/${route.params.username}/${route.params.event_name}`,
-      ),
-    ),
-  }
+    to: `/event/edit/${route.params.username}/${route.params.event_name}`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 
@@ -77,7 +73,7 @@ definePageMeta({
 
 const { $urql } = useNuxtApp()
 const localePath = useLocalePath()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
 const store = useMaevsiStore()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
@@ -106,18 +102,15 @@ const api = getApiData([
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbEvents(),
-      usePageBreadcrumbEventsUser(),
-      await usePageBreadcrumbEventsUserId({ $urql, localePath, route }),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbEvents(),
+    usePageBreadcrumbEventsUser(),
+    await usePageBreadcrumbEventsUserId({ $urql, route }),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const mutation = eventDeleteMutation
 

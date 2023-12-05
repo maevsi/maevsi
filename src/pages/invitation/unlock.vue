@@ -58,8 +58,6 @@
 import { useVuelidate } from '@vuelidate/core'
 import { consola } from 'consola'
 
-import { helpers } from '@typed-router'
-
 import {
   eventUnlockMutation as eventUnlockMutationImported,
   useEventUnlockMutation,
@@ -117,18 +115,27 @@ definePageMeta({
         return
       }
 
-      const eventPath = helpers.path(
-        `/event/view/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`,
-      )
+      if (
+        !result.data.eventUnlock.eventUnlockResponse.authorAccountUsername ||
+        !result.data.eventUnlock.eventUnlockResponse.eventSlug
+      ) {
+        throw new Error('Author account username or event slug missing!')
+      }
 
       if ('quick' in to.query) {
-        return await navigateTo(localePath(eventPath))
+        return await navigateTo(
+          localePath(
+            `/event/view/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`,
+          ),
+        )
       } else {
         return await navigateTo(
           localePath({
             query: {
               ...to.query,
-              redirect: localePath(eventPath).toString(),
+              redirect: localePath(
+                `/event/view/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`,
+              ).toString(),
             },
           }),
         )

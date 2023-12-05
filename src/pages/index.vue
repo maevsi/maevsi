@@ -150,20 +150,17 @@
 </template>
 
 <script lang="ts">
-import { helpers } from '@typed-router'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-export const usePageBreadcrumb = () => {
-  const localePath = useLocalePath()
-
-  return {
+export const usePageBreadcrumb = () =>
+  ({
     ariaLabel: {
       de: 'Start',
       en: 'Home',
     },
     icon: 'todo', // TODO: let slot suffice
-    to: helpers.route(localePath('/')),
-  }
-}
+    to: '/',
+  }) as BreadcrumbItemPropsLocalizedObject
 </script>
 
 <script setup lang="ts">

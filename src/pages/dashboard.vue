@@ -71,37 +71,30 @@
 
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from './index.vue'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-import { helpers } from '@typed-router'
-
-export const usePageBreadcrumb = () => {
-  const localePath = useLocalePath()
-
-  return {
+export const usePageBreadcrumb = () =>
+  ({
     label: 'Dashboard',
-    to: helpers.route(localePath('/dashboard')),
-  }
-}
+    to: '/dashboard',
+  }) as BreadcrumbItemPropsLocalizedObject
 </script>
 
 <script setup lang="ts">
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const title = t('title')
 

@@ -64,11 +64,12 @@
         <AppLink is-external to="mailto:contact+maev-si@maev.si">
           {{ t('contact') }}
         </AppLink>
+        <!-- TODO: rename id to jti -->
         <AppLink
-          v-if="store.jwtDecoded"
-          :to="localePath(`/session/edit/${store.jwtDecoded.id}`)"
+          v-if="store.jwtDecoded?.id"
+          :to="localePath(`/session/view/${store.jwtDecoded.id}`)"
         >
-          {{ t('developmentTools') }}
+          {{ t('session') }}
         </AppLink>
       </LayoutFooterCategory>
       <LayoutFooterCategory :heading="t('languages')">
@@ -174,7 +175,6 @@ $dayjs.locale(locale.value)
 de:
   colorScheme: Farbschema
   contact: Kontakt & Feedback
-  developmentTools: Entwicklungswerkzeuge
   features: Funktionen
   githubLinkTitle: maevsi auf GitHub
   languages: Sprachen
@@ -185,13 +185,13 @@ de:
   privacyPolicy: Datenschutz
   product: Produkt
   quickLinks: Quick Links
+  session: Sitzung
   sourceCode: Quellcode
   status: Status
   # team: Team
 en:
   colorScheme: Color scheme
   contact: Contact & feedback
-  developmentTools: Developer tools
   features: Features
   githubLinkTitle: maevsi on GitHub
   languages: Languages
@@ -202,6 +202,7 @@ en:
   privacyPolicy: Privacy
   product: Product
   quickLinks: Quick Links
+  session: Session
   sourceCode: Source code
   status: Status
   # team: Team

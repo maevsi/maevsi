@@ -16,18 +16,18 @@
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
 
-import { type TypedRouteFromName, helpers } from '@typed-router'
+import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-const ROUTE_NAME = 'event-view-username-event_name___en'
+const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
-  const localePath = useLocalePath()
 
   return {
     label: route.params.username,
-    to: helpers.route(localePath(`/event/view/${route.params.username}`)),
-  }
+    to: `/event/view/${route.params.username}`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 
@@ -40,24 +40,21 @@ definePageMeta({
   },
 })
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      usePageBreadcrumbEvents(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    usePageBreadcrumbEvents(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const routeParamUsername = route.params.username
 const title = t('title', { name: route.params.username })

@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test'
-import { testPageLoad } from '../../utils/tests'
 
-const PAGE_PATH = '/sitemap.xml'
+import { testPageLoad } from '../../utils/tests'
+import type { TypedLocalePathParameter } from '../../../../.nuxt/typed-router/__paths'
+
+const PAGE_PATH = '/sitemap.xml' as TypedLocalePathParameter<never> // TODO: have server routes included (https://github.com/victorgarciaesgi/nuxt-typed-router/issues/110)
 
 testPageLoad(PAGE_PATH)
 

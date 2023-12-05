@@ -75,7 +75,7 @@
         >
           {{ t('attendances') }}
           <template #prefix>
-            <IFa6SolidUserCheck />
+            <ISolarUserCheckBroken />
           </template>
         </ButtonColored>
         <ButtonColored
@@ -342,11 +342,7 @@ import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../../index.vue'
 
-import {
-  helpers,
-  type TypedRouteFromName,
-  type TypedToLocalePath,
-} from '@typed-router'
+import { type RoutesNamesList, type TypedRouteFromName } from '@typed-router'
 
 import { useUpdateInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationUpdateById'
 import {
@@ -360,16 +356,15 @@ import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-const ROUTE_NAME = 'event-view-username-event_name___en'
+const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
 
 export const pageBreadcrumb = async ({
   $urql,
-  localePath,
   route,
 }: {
   $urql: Ref<Client>
-  localePath: TypedToLocalePath
   route: TypedRouteFromName<
     | 'event-edit-username-event_name___en'
     | 'event-view-username-event_name___en'
@@ -389,12 +384,8 @@ export const pageBreadcrumb = async ({
 
   return {
     label: event?.name,
-    to: helpers.route(
-      localePath(
-        `/event/view/${route.params.username}/${route.params.event_name}`,
-      ),
-    ),
-  }
+    to: `/event/view/${route.params.username}/${route.params.event_name}`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 
@@ -408,7 +399,7 @@ definePageMeta({
 })
 
 const { $urql } = useNuxtApp()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const fireAlert = useFireAlert()
 const store = useMaevsiStore()
 const route = useRoute(ROUTE_NAME)
@@ -436,18 +427,15 @@ const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      usePageBreadcrumbEvents(),
-      usePageBreadcrumbEventsUser(),
-      {
-        current: true,
-        ...(await pageBreadcrumb({ $urql, localePath, route })),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    usePageBreadcrumbEvents(),
+    usePageBreadcrumbEventsUser(),
+    {
+      current: true,
+      ...(await pageBreadcrumb({ $urql, route })),
+    },
+  ]),
 )
 
 // methods

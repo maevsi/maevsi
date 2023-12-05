@@ -57,25 +57,21 @@
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import {
-  type TypedRouteFromName,
-  type RoutesNamesList,
-  helpers,
-} from '@typed-router'
+import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
 
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-const ROUTE_NAME = 'account-view-username'
+const ROUTE_NAME: RoutesNamesList = 'account-view-username'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
-  const localePath = useLocalePath()
 
   return {
     label: route.params.username,
-    to: helpers.route(localePath(`/account/view/${route.params.username}`)),
-  }
+    to: `/account/view/${route.params.username}`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 
@@ -89,7 +85,7 @@ definePageMeta({
 })
 
 const { signOut } = useSignOut()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const store = useMaevsiStore()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
@@ -106,17 +102,14 @@ const api = getApiData([accountByUsernameQuery])
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps(
-    [
-      usePageBreadcrumbHome(),
-      usePageBreadcrumbAccounts(),
-      {
-        current: true,
-        ...usePageBreadcrumb(),
-      },
-    ],
-    locale,
-  ),
+  getBreadcrumbItemProps([
+    usePageBreadcrumbHome(),
+    usePageBreadcrumbAccounts(),
+    {
+      current: true,
+      ...usePageBreadcrumb(),
+    },
+  ]),
 )
 const routeParamUsername = route.params.username
 const title = route.params.username
