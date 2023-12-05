@@ -64,11 +64,8 @@
         <AppLink is-external to="mailto:contact+maev-si@maev.si">
           {{ t('contact') }}
         </AppLink>
-        <AppLink
-          v-if="store.jwtDecoded"
-          :to="localePath(`/session/edit/${store.jwtDecoded.id}`)"
-        >
-          {{ t('developmentTools') }}
+        <AppLink :to="localePath('/session/view')">
+          {{ t('session') }}
         </AppLink>
       </LayoutFooterCategory>
       <LayoutFooterCategory :heading="t('languages')">
@@ -128,7 +125,6 @@ const switchLocalePath = useSwitchLocalePath()
 const i18n = useI18n()
 const { availableLocales, t } = i18n
 const locale = i18n.locale as WritableComputedRef<Locale>
-const store = useMaevsiStore()
 
 const loadingId = Math.random()
 const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
@@ -174,7 +170,6 @@ $dayjs.locale(locale.value)
 de:
   colorScheme: Farbschema
   contact: Kontakt & Feedback
-  developmentTools: Entwicklungswerkzeuge
   features: Funktionen
   githubLinkTitle: maevsi auf GitHub
   languages: Sprachen
@@ -185,13 +180,13 @@ de:
   privacyPolicy: Datenschutz
   product: Produkt
   quickLinks: Quick Links
+  session: Sitzung
   sourceCode: Quellcode
   status: Status
   # team: Team
 en:
   colorScheme: Color scheme
   contact: Contact & feedback
-  developmentTools: Developer tools
   features: Features
   githubLinkTitle: maevsi on GitHub
   languages: Languages
@@ -202,6 +197,7 @@ en:
   privacyPolicy: Privacy
   product: Product
   quickLinks: Quick Links
+  session: Session
   sourceCode: Source code
   status: Status
   # team: Team
