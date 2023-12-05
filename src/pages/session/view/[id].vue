@@ -103,6 +103,9 @@ const sessionExpiryTime = computed(() =>
 const userAgentString = computed(() =>
   requestEvent ? requestEvent.headers.get('user-agent') : navigator.userAgent,
 )
+
+// initialization
+useHeadDefault({ title })
 </script>
 
 <i18n lang="yaml">
