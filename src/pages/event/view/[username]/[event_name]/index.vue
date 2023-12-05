@@ -342,11 +342,7 @@ import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../../index.vue'
 
-import {
-  helpers,
-  type RoutesNamesList,
-  type TypedRouteFromName,
-} from '@typed-router'
+import { type RoutesNamesList, type TypedRouteFromName } from '@typed-router'
 
 import { useUpdateInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationUpdateById'
 import {
@@ -360,6 +356,7 @@ import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
 
@@ -387,10 +384,8 @@ export const pageBreadcrumb = async ({
 
   return {
     label: event?.name,
-    to: helpers.path(
-      `/event/view/${route.params.username}/${route.params.event_name}`,
-    ),
-  }
+    to: `/event/view/${route.params.username}/${route.params.event_name}`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 

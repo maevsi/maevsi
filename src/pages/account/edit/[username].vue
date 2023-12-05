@@ -49,16 +49,13 @@ import { usePageBreadcrumb as usePageBreadcrumbAccountsId } from '../view/[usern
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import {
-  type TypedRouteFromName,
-  helpers,
-  type RoutesNamesList,
-} from '@typed-router'
+import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
 
 import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: RoutesNamesList = 'account-edit-username'
 
@@ -70,8 +67,8 @@ export const usePageBreadcrumb = () => {
       de: 'Bearbeiten',
       en: 'Edit',
     },
-    to: helpers.path(`/account/edit/${route.params.username}`),
-  }
+    to: `/account/edit/${route.params.username}`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 

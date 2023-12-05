@@ -9,9 +9,7 @@ import {
   testVisualRegression,
 } from '../../../utils/tests'
 
-import { helpers } from '../../../../../.nuxt/typed-router/__helpers'
-
-const PAGE_PATH = helpers.path('/').toString()
+const PAGE_PATH = '/'
 
 testA11y(PAGE_PATH)
 testOgImage(PAGE_PATH)

@@ -6,9 +6,7 @@ export const useGetBreadcrumbItemProps = () => {
   const { locale } = useI18n()
   const localePath = useLocalePath()
 
-  return (
-    breadcrumbsWithLocales: BreadcrumbItemPropsLocalizedObject<any, any>[],
-  ) =>
+  return (breadcrumbsWithLocales: BreadcrumbItemPropsLocalizedObject[]) =>
     breadcrumbsWithLocales.map((breadcrumbWithLocales) =>
       getBreadcrumbItemProps(
         breadcrumbWithLocales,
@@ -19,7 +17,7 @@ export const useGetBreadcrumbItemProps = () => {
 }
 
 const getBreadcrumbItemProps = (
-  breadcrumbWithLocales: BreadcrumbItemPropsLocalizedObject<any, any>,
+  breadcrumbWithLocales: BreadcrumbItemPropsLocalizedObject,
   locale: LOCALE_CODES,
   localePath: TypedToLocalePath,
 ) => ({

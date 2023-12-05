@@ -57,14 +57,11 @@
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import {
-  type TypedRouteFromName,
-  type RoutesNamesList,
-  helpers,
-} from '@typed-router'
+import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
 
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: RoutesNamesList = 'account-view-username'
 
@@ -73,8 +70,8 @@ export const usePageBreadcrumb = () => {
 
   return {
     label: route.params.username,
-    to: helpers.path(`/account/view/${route.params.username}`),
-  }
+    to: `/account/view/${route.params.username}`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 

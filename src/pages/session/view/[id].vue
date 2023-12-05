@@ -56,8 +56,9 @@
 
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-import { helpers, type RoutesNamesList } from '@typed-router'
+import { type RoutesNamesList } from '@typed-router'
 
 const ROUTE_NAME: RoutesNamesList = 'session-view-id'
 
@@ -69,8 +70,8 @@ export const usePageBreadcrumb = () => {
       de: 'Sitzung',
       en: 'Session',
     },
-    to: helpers.path(`/session/view/${route.params.id}`),
-  }
+    to: `/session/view/${route.params.id}`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 

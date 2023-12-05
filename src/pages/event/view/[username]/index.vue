@@ -16,11 +16,8 @@
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
 
-import {
-  type TypedRouteFromName,
-  helpers,
-  type RoutesNamesList,
-} from '@typed-router'
+import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
 
@@ -29,8 +26,8 @@ export const usePageBreadcrumb = () => {
 
   return {
     label: route.params.username,
-    to: helpers.path(`/event/view/${route.params.username}`),
-  }
+    to: `/event/view/${route.params.username}`,
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 

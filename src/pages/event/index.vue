@@ -10,18 +10,16 @@
 
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
-import { helpers } from '@typed-router'
-
-export const usePageBreadcrumb = () => {
-  return {
+export const usePageBreadcrumb = () =>
+  ({
     label: {
       de: 'Veranstaltungen',
       en: 'Events',
     },
-    to: helpers.path('/event'),
-  }
-}
+    to: '/event',
+  }) as BreadcrumbItemPropsLocalizedObject
 </script>
 
 <script setup lang="ts">

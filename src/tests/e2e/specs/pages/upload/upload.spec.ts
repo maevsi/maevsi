@@ -1,3 +1,5 @@
 import { testVisualRegression } from '../../../utils/tests'
 
-testVisualRegression('/uploads')
+const PAGE_PATH = '/upload'
+
+testVisualRegression(PAGE_PATH)

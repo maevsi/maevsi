@@ -4,9 +4,7 @@ import {
   testVisualRegression,
 } from '../../../utils/tests'
 
-import { helpers } from '../../../../../.nuxt/typed-router/__helpers'
-
-const PAGE_PATH = helpers.path('/legal-notice').toString()
+const PAGE_PATH = '/legal-notice'
 
 testPageLoad(PAGE_PATH)
 testOgImage(PAGE_PATH)

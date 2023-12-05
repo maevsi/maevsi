@@ -1,8 +1,6 @@
 import { testPageLoad } from '../../../utils/tests'
 
-import { helpers } from '../../../../../.nuxt/typed-router/__helpers'
-
-const PAGE_PATH = helpers.path('/account/create').toString()
+const PAGE_PATH = '/account/create'
 
 testPageLoad(PAGE_PATH)
 

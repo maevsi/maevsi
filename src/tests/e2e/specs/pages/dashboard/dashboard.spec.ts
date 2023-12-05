@@ -1,7 +1,5 @@
 import { testVisualRegression } from '../../../utils/tests'
 
-import { helpers } from '../../../../../.nuxt/typed-router/__helpers'
-
-const PAGE_PATH = helpers.path('/dashboard').toString()
+const PAGE_PATH = '/dashboard'
 
 testVisualRegression(PAGE_PATH)

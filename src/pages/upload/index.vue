@@ -14,8 +14,7 @@
 
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
-
-import { helpers } from '@typed-router'
+import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
 export const usePageBreadcrumb = () => {
   return {
@@ -23,8 +22,8 @@ export const usePageBreadcrumb = () => {
       de: 'Dateien',
       en: 'Files',
     },
-    to: helpers.path('/upload'),
-  }
+    to: '/upload',
+  } as BreadcrumbItemPropsLocalizedObject
 }
 </script>
 
