@@ -64,9 +64,10 @@
         <AppLink is-external to="mailto:contact+maev-si@maev.si">
           {{ t('contact') }}
         </AppLink>
+        <!-- TODO: rename id to jti -->
         <AppLink
-          v-if="store.jwtDecoded?.jti"
-          :to="localePath(`/session/view/${store.jwtDecoded.jti}`)"
+          v-if="store.jwtDecoded?.id"
+          :to="localePath(`/session/view/${store.jwtDecoded.id}`)"
         >
           {{ t('session') }}
         </AppLink>
