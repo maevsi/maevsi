@@ -109,9 +109,6 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
   },
-  postcss: {
-    plugins: { tailwindcss: {}, autoprefixer: {} },
-  },
   runtimeConfig: {
     public: {
       i18n: {
