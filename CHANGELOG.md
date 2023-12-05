@@ -1,3 +1,18 @@
+## [3.17.0](https://github.com/maevsi/maevsi/compare/3.16.0...3.17.0) (2023-12-05)
+
+
+### Features
+
+* **icon:** improve style ([1a83478](https://github.com/maevsi/maevsi/commit/1a834787a5ed354855adc8200e8154c29a8b4120))
+* session ([#1476](https://github.com/maevsi/maevsi/issues/1476)) ([48677b5](https://github.com/maevsi/maevsi/commit/48677b5cdfe8cf8533bc654d9ea72d25d00348bb))
+* **session:** fill new page structure ([b91c7f6](https://github.com/maevsi/maevsi/commit/b91c7f65a95d8708bddfb4e96414e33cebbddb82))
+
+
+### Bug Fixes
+
+* **footer:** correct jwt id ([07a375e](https://github.com/maevsi/maevsi/commit/07a375e35cc47848f4bc0c54b585e8de9f27a040))
+* **session:** use default head ([afe6c59](https://github.com/maevsi/maevsi/commit/afe6c595ab97f6bac1bce055706363d32723d918))
+
 ## [3.16.0](https://github.com/maevsi/maevsi/compare/3.15.2...3.16.0) (2023-12-03)
 
 
