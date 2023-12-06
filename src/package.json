@@ -28,7 +28,7 @@
   "devDependencies": {
     "@babel/core": "7.23.5",
     "@dargmuesli/nuxt-cookie-control": "7.1.5",
-    "@fontsource-variable/manrope": "5.0.17",
+    "@fontsource-variable/manrope": "5.0.18",
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/client-preset": "4.1.0",
     "@graphql-codegen/typescript-urql-graphcache": "3.0.0",

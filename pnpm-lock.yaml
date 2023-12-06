@@ -37,8 +37,8 @@ importers:
         specifier: 7.1.5
         version: 7.1.5(rollup@2.79.1)(webpack@5.89.0)
       '@fontsource-variable/manrope':
-        specifier: 5.0.17
-        version: 5.0.17
+        specifier: 5.0.18
+        version: 5.0.18
       '@graphql-codegen/cli':
         specifier: 5.0.0
         version: 5.0.0(@types/node@20.10.3)(graphql@16.8.1)(typescript@5.3.2)
@@ -2549,8 +2549,8 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@fontsource-variable/manrope@5.0.17:
-    resolution: {integrity: sha512-oE1dCsaV6uZ2XnibphEAQF0/gnYEls79KH4Y+UI7qItv/M0bRq67AgFz/YvU7QTVQpyH07Vfs2NproMzjmNNaw==}
+  /@fontsource-variable/manrope@5.0.18:
+    resolution: {integrity: sha512-BmTWanceVCX3/xAY0VhBLM9fwEwe+Z/jR3/EPDLxas6+b3gnBChI+MYh+vMxDPEavfpEhcQptCCNJ3kQxn07iw==}
     dev: true
 
   /@graphql-codegen/add@5.0.0(graphql@16.8.1):
