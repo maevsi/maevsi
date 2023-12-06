@@ -239,7 +239,7 @@ const sendNotification = async () => {
   serviceWorkerRegistration.showNotification('Hey cutie 👋', {
     body: "It's great to see you!",
     icon: '/assets/static/logos/maevsi_icon.svg',
-    vibrate: [200, 100, 200, 100, 200, 100, 200],
+    tag: 'test',
   })
 }
 const requestNotificationPermissions = () => Notification.requestPermission()
