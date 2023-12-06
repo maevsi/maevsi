@@ -21,6 +21,9 @@ importers:
       husky:
         specifier: 8.0.3
         version: 8.0.3
+      jiti:
+        specifier: 1.21.0
+        version: 1.21.0
 
   src:
     dependencies:
