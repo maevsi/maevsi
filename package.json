@@ -10,7 +10,8 @@
   "devDependencies": {
     "@commitlint/cli": "18.4.3",
     "@commitlint/config-conventional": "18.4.3",
-    "husky": "8.0.3"
+    "husky": "8.0.3",
+    "jiti": "1.21.0"
   },
   "pnpm": {
     "overrides": {
