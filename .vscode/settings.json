@@ -2,7 +2,10 @@
   "css.validate": false,
   "eslint.workingDirectories": [
     {
-      "directory": "src" // needed to correctly lint global locale strings like `t('globalStatusLoading')`
+      "directory": "./src/"
+    },
+    {
+      "directory": "./tests/"
     }
   ],
   "shellcheck.customArgs": ["-x"],
