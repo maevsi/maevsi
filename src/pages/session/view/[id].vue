@@ -1,7 +1,7 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <ButtonList class="justify-center">
+    <!-- <ButtonList class="justify-center">
       <ButtonColored
         v-if="store.jwtDecoded?.id"
         :aria-label="t('edit')"
@@ -12,38 +12,54 @@
           <IHeroiconsPencil />
         </template>
       </ButtonColored>
-    </ButtonList>
+    </ButtonList> -->
     <h1>
       {{ title }}
     </h1>
     <div class="flex flex-col gap-8">
       <section class="flex flex-col gap-4">
-        <h2>{{ t('metadata') }}</h2>
-        <p>
-          {{ t('sessionExpiry', { exp: sessionExpiryTime }) }}
-        </p>
+        <h2>{{ t('end') }}</h2>
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div class="flex-1">
+            <Card>
+              {{ t('sessionExpiry', { exp: sessionExpiryTime }) }}
+            </Card>
+          </div>
+          <div class="flex-1">
+            <div class="flex flex-col gap-2">
+              <ButtonColored :aria-label="t('endNow')" @click="signOut">
+                {{ t('endNow') }}
+                <template #prefix>
+                  <IHeroiconsOutlineLogout />
+                </template>
+              </ButtonColored>
+            </div>
+          </div>
+        </div>
       </section>
       <section class="flex flex-col gap-4">
         <h2>{{ t('codes') }}</h2>
-        <div class="flex flex-col gap-4 lg:flex-row">
-          <Card class="flex-1">
-            <div v-if="store.jwtDecoded?.invitations">
-              <p>
-                {{ t('codesEntered') }}
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div class="flex-1">
+            <Card>
+              <div v-if="store.jwtDecoded?.invitations">
+                <p>
+                  {{ t('codesEntered') }}
+                </p>
+                <ul class="list-disc">
+                  <li
+                    v-for="invitationId in store.jwtDecoded?.invitations"
+                    :key="invitationId"
+                  >
+                    {{ invitationId }}
+                  </li>
+                </ul>
+              </div>
+              <p v-else>
+                {{ t('codesEnteredNone') }}
               </p>
-              <ul class="list-disc">
-                <li
-                  v-for="invitationId in store.jwtDecoded?.invitations"
-                  :key="invitationId"
-                >
-                  {{ invitationId }}
-                </li>
-              </ul>
-            </div>
-            <p v-else>
-              {{ t('codesEnteredNone') }}
-            </p>
-          </Card>
+            </Card>
+          </div>
           <div class="flex-1">
             <div class="flex flex-col">
               <ButtonEventUnlock />
@@ -53,8 +69,12 @@
       </section>
       <section class="flex flex-col gap-4">
         <h2>{{ t('userAgentString') }}</h2>
-        <div>
-          {{ userAgentString }}
+        <div class="grid gap-4 lg:grid-cols-2">
+          <div class="flex-1">
+            <Card>
+              {{ userAgentString }}
+            </Card>
+          </div>
         </div>
       </section>
       <section class="flex flex-col gap-4">
@@ -193,7 +213,8 @@ const requestEvent = useRequestEvent()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 const dateTime = useDateTime()
-const localePath = useLocalePath()
+// const localePath = useLocalePath()
+const { signOut } = useSignOut()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
@@ -272,11 +293,12 @@ de:
   codes: Einladungscodes
   codesEntered: 'Du hast die folgenden Codes eingegeben:'
   codesEnteredNone: Dieser Sitzung sind keine Einladungscodes zugeordnet 😕
-  edit: Bearbeiten
+  # edit: Bearbeiten
+  end: Ende
+  endNow: Diese Sitzung beenden
   hasNavigatorPermissions: Navigator hat Berechtigungen
   hasNavigatorServiceWorkers: Navigator hat Service Worker
   hasWindowNotification: Fenster hat Benachrichtigung
-  metadata: Metadaten
   notification: Benachrichtigungen
   notificationPermit: Benachrichtigungen erlauben
   notificationPermitted: Benachrichtigungen sind erlaubt
@@ -288,11 +310,12 @@ en:
   codes: Invitation codes
   codesEntered: 'You entered the following codes:'
   codesEnteredNone: There are no invitation codes assigned to this session 😕
-  edit: Edit
+  # edit: Edit
+  end: End
+  endNow: End this session
   hasNavigatorPermissions: Navigator has permissions
   hasNavigatorServiceWorkers: Navigator has service workers
   hasWindowNotification: Window has notification
-  metadata: Metadata
   notification: Notifications
   notificationPermit: Permit notifications
   notificationPermitted: Notifications are permitted

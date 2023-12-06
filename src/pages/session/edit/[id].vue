@@ -4,17 +4,6 @@
     <h1>
       {{ title }}
     </h1>
-    <div class="flex flex-col gap-8">
-      <section class="flex flex-col gap-4">
-        <h2>{{ t('exit') }}</h2>
-        <ButtonColored :aria-label="t('sessionExit')" @click="signOut">
-          {{ t('sessionExit') }}
-          <template #prefix>
-            <IHeroiconsOutlineLogout />
-          </template>
-        </ButtonColored>
-      </section>
-    </div>
   </div>
 </template>
 
@@ -41,7 +30,6 @@ export const usePageBreadcrumb = () => {
 </script>
 
 <script setup lang="ts">
-const { signOut } = useSignOut()
 const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
@@ -64,11 +52,7 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  exit: Beenden
-  sessionExit: Diese Sitzung beenden
   title: Sitzung bearbeiten
 en:
-  exit: Exit
-  sessionExit: Exit this session
   title: Edit session
 </i18n>
