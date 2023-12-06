@@ -233,11 +233,15 @@ const permissionState = ref<PermissionState>()
 const title = t('title')
 
 // methods
-const sendNotification = () =>
-  new Notification('Hey cutie 👋', {
+const sendNotification = async () => {
+  const serviceWorkerRegistration = await navigator.serviceWorker.ready
+
+  serviceWorkerRegistration.showNotification('Hey cutie 👋', {
     body: "It's great to see you!",
     icon: '/assets/static/logos/maevsi_icon.svg',
+    vibrate: [200, 100, 200, 100, 200, 100, 200],
   })
+}
 const requestNotificationPermissions = () => Notification.requestPermission()
 // const requestNotificationPermissions = async () => {
 //   const notificationPermission = await Notification.requestPermission()
