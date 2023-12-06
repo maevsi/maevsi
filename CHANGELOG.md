@@ -1,3 +1,10 @@
+## [3.18.1](https://github.com/maevsi/maevsi/compare/3.18.0...3.18.1) (2023-12-06)
+
+
+### Bug Fixes
+
+* **session:** use service worker for notification ([4b2d44f](https://github.com/maevsi/maevsi/commit/4b2d44f07a2bf01ffd0925c7260317baff90170d))
+
 ## [3.18.0](https://github.com/maevsi/maevsi/compare/3.17.0...3.18.0) (2023-12-06)
 
 
