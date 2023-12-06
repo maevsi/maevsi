@@ -1,7 +1,6 @@
 import fs from 'node:fs'
 
 import { type H3Event } from 'h3'
-import { ofetch } from 'ofetch'
 
 export default defineEventHandler(async (event: H3Event) => {
   const { res } = event.node
@@ -26,7 +25,7 @@ export const useJwtPublicKey = async () => {
   const jwtPublicKeyPath = process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE
 
   if (runtimeConfig.public.vio.stagingHost) {
-    return await ofetch<string>(
+    return await $fetch<string>(
       `https://${runtimeConfig.public.vio.stagingHost}/api/auth-key`,
     )
   } else {

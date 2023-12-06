@@ -10,6 +10,7 @@
   "devDependencies": {
     "@commitlint/cli": "18.4.3",
     "@commitlint/config-conventional": "18.4.3",
+    "conventional-changelog-conventionalcommits": "7.0.2",
     "husky": "8.0.3",
     "jiti": "1.21.0",
     "lint-staged": "15.2.0"

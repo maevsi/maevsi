@@ -167,8 +167,6 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: [
-        '@heroicons/vue/24/outline',
-        '@heroicons/vue/24/solid',
         '@tiptap/extension-link',
         '@tiptap/extension-text-align',
         '@tiptap/starter-kit',
@@ -178,8 +176,10 @@ export default defineNuxtConfig({
         '@vuelidate/core',
         'barcode-detector',
         'chart.js',
+        'clipboardy',
         'css-element-queries',
         'downloadjs',
+        'html-to-text',
         'isomorphic-dompurify',
         'lodash-es',
         'mustache',
