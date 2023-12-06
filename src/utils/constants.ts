@@ -23,13 +23,13 @@ export type LOCALE_CODES = 'en' | 'de'
 export const LOCALES: LocaleObject[] &
   UnionToTupleRecord<'code', LOCALE_CODES, LocaleObject> = [
   {
-    code: 'en',
+    code: 'en' as const,
     file: 'en.json',
     name: 'English',
     iso: 'en', // Will be used as catchall locale by default.
   },
   {
-    code: 'de',
+    code: 'de' as const,
     file: 'de.json',
     name: 'Deutsch',
     iso: 'de',

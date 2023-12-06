@@ -227,6 +227,3 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/node,linux,macos,nuxtjs,windows
-
-tests/e2e/report
-tests/e2e/results

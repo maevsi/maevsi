@@ -1,4 +1,4 @@
-import { getCspAsString } from '~/utils/util'
+import { getCspAsString } from '~/server/utils/security'
 
 export default defineEventHandler((event) => {
   const runtimeConfig = useRuntimeConfig()

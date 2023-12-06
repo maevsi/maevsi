@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "lib": ["ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "paths": {
+      "~/*": ["../src/*"],
+      "#src/*": ["../src/*"],
+      "#tests/*": ["./*"]
+    },
+    "skipLibCheck": true
+  }
+}

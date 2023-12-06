@@ -76,7 +76,7 @@ RUN pnpm --dir src run build:node
 
 FROM prepare AS lint
 
-RUN pnpm --dir src run lint
+RUN pnpm -r run lint
 
 
 ########################
@@ -84,7 +84,7 @@ RUN pnpm --dir src run lint
 
 FROM prepare AS test-unit
 
-RUN pnpm --dir src run test
+RUN pnpm -r run test
 
 
 ########################
@@ -132,7 +132,7 @@ FROM test-e2e-base-image AS test-e2e-prepare
 
 COPY --from=prepare /srv/app/ ./
 
-RUN pnpm rebuild -r
+RUN pnpm -r rebuild
 
 
 # ########################
@@ -142,7 +142,7 @@ RUN pnpm rebuild -r
 
 # ENV NODE_ENV=development
 
-# RUN pnpm --dir src run test:e2e:server:dev
+# RUN pnpm --dir tests run test:e2e:server:dev
 
 
 ########################
@@ -152,7 +152,7 @@ FROM test-e2e-prepare AS test-e2e-node
 
 COPY --from=build-node /srv/app/src/.output ./src/.output
 
-RUN pnpm --dir src run test:e2e:server:node
+RUN pnpm --dir tests run test:e2e:server:node
 
 
 # ########################
@@ -162,7 +162,7 @@ RUN pnpm --dir src run test:e2e:server:node
 
 # COPY --from=build-static /srv/app/src/.output/public ./src/.output/public
 
-# RUN pnpm --dir src run test:e2e:server:static
+# RUN pnpm --dir tests run test:e2e:server:static
 
 
 #######################

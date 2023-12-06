@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 
-import { createError, getQuery, type H3Event, send, sendError } from 'h3'
+import { type H3Event } from 'h3'
 import { consola } from 'consola'
 import { jwtVerify, importSPKI } from 'jose'
 import { ofetch } from 'ofetch'
