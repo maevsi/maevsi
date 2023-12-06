@@ -1,3 +1,13 @@
+## [3.18.0](https://github.com/maevsi/maevsi/compare/3.17.0...3.18.0) (2023-12-06)
+
+
+### Features
+
+* browser notifications ([#1478](https://github.com/maevsi/maevsi/issues/1478)) ([5b02a17](https://github.com/maevsi/maevsi/commit/5b02a175997b47962fcef4a88f7ccd66476dbbf9))
+* **browserslist:** only allow browsers supporting notifications ([ea03376](https://github.com/maevsi/maevsi/commit/ea0337647d728f3ba294d4b5ffa1c77726aac7b0))
+* **session:** add notification test ([dec9c0b](https://github.com/maevsi/maevsi/commit/dec9c0b01b71e07aec5cfaa2eb0b1c255a0aa9c8))
+* **session:** end on view ([0609273](https://github.com/maevsi/maevsi/commit/06092738825cb27456c2b4c9521e447838861458))
+
 ## [3.17.0](https://github.com/maevsi/maevsi/compare/3.16.0...3.17.0) (2023-12-05)
 
 
