@@ -1,3 +1,17 @@
+## [3.19.0](https://github.com/maevsi/maevsi/compare/3.18.1...3.19.0) (2023-12-06)
+
+
+### Features
+
+* **notification:** remove vibrate, add tag ([e02c754](https://github.com/maevsi/maevsi/commit/e02c754eb284737e9aadbacb0c657485d2e6417e))
+* **notifications:** correct checks ([#1480](https://github.com/maevsi/maevsi/issues/1480)) ([b5bcaa8](https://github.com/maevsi/maevsi/commit/b5bcaa8c5016edc18780528fcf5f64d4f0767b4f))
+
+
+### Bug Fixes
+
+* **icon-logo:** remove size ([a8832d0](https://github.com/maevsi/maevsi/commit/a8832d029f524e7e97961568572086a4a64a7384))
+* **session:** correct permission checks ([8a30350](https://github.com/maevsi/maevsi/commit/8a303501817b64b49d896b204da16c9e0a0c60b7))
+
 ## [3.18.1](https://github.com/maevsi/maevsi/compare/3.18.0...3.18.1) (2023-12-06)
 
 
