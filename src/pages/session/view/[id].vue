@@ -270,22 +270,24 @@ onMounted(async () => {
   isNavigatorHavingServiceWorker.value = 'serviceWorker' in navigator
   isWindowHavingNotification.value = 'Notification' in window
 
-  if (isNavigatorHavingPermissions) {
+  if (isNavigatorHavingPermissions.value) {
     const permissionStatus = await navigator.permissions.query({
       name: 'notifications',
     })
 
-    permissionStatus.onchange = () => {
+    permissionStatus.addEventListener('change', () => {
       consola.log(
         'User decided to change his seettings. New permission: ' +
           permissionStatus.state,
       )
       permissionState.value = permissionStatus.state
-    }
+    })
   }
 
-  permissionState.value =
-    Notification.permission === 'default' ? 'prompt' : Notification.permission
+  if (isWindowHavingNotification.value) {
+    permissionState.value =
+      Notification.permission === 'default' ? 'prompt' : Notification.permission
+  }
 })
 
 // initialization
