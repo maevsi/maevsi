@@ -3,7 +3,6 @@ import fs from 'node:fs'
 import { type H3Event } from 'h3'
 import { consola } from 'consola'
 import { jwtVerify, importSPKI } from 'jose'
-import { ofetch } from 'ofetch'
 
 import { JWT_ALGORITHM } from '~/utils/constants'
 
@@ -92,7 +91,7 @@ export default defineEventHandler(async (event: H3Event) => {
     return await deleteUpload(event, uploadId)
   }
 
-  const response = await ofetch.raw('http://tusd:8080/files/' + storageKey, {
+  const response = await $fetch.raw('http://tusd:8080/files/' + storageKey, {
     headers: {
       'Tus-Resumable': '1.0.0',
     },
