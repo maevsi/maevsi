@@ -86,7 +86,7 @@
     "barcode-detector": "2.1.4",
     "browserslist-useragent-regexp": "4.1.0",
     "chart.js": "4.4.1",
-    "clipboard": "2.0.11",
+    "clipboardy": "4.0.0",
     "consola": "3.2.3",
     "conventional-changelog-conventionalcommits": "7.0.2",
     "css-element-queries": "1.2.3",

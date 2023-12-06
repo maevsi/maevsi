@@ -11,6 +11,7 @@ import {
 import { Client } from '@urql/core'
 import { consola } from 'consola'
 import type { Ref } from 'vue'
+import type { LocationQueryValue } from 'vue-router'
 
 import {
   REGEX_SLUG,
@@ -18,13 +19,14 @@ import {
   REGEX_URL_HTTPS,
   REGEX_UUID,
 } from './constants'
+
+import type { TypedRouteFromName } from '@typed-router/__router'
 import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
 import { accountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { eventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { EventVisibility } from '~/gql/generated/graphql'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import type { TypedRouteFromName } from '@typed-router/__router'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 254 // source: https://www.dominicsayers.com/isemail/
@@ -140,6 +142,10 @@ export const isFormValid = async ({
 
   return isValid
 }
+
+export const isQueryIcFormatValid = (
+  ic: LocationQueryValue | LocationQueryValue[],
+) => ic && !Array.isArray(ic) && REGEX_UUID.test(ic)
 
 export const validateAccountExistence = async ({
   isAuthorizationRequired = false,
