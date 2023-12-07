@@ -242,14 +242,14 @@ const sendNotification = async () => {
     tag: 'test',
   })
 }
-const requestNotificationPermissions = () => Notification.requestPermission()
-// const requestNotificationPermissions = async () => {
-//   const notificationPermission = await Notification.requestPermission()
-
-//   if (notificationPermission === 'granted') {
-//     sendNotification()
-//   }
-// }
+const requestNotificationPermissions = () =>
+  Notification.requestPermission(
+    (notificationPermission) =>
+      (permissionState.value =
+        notificationPermission === 'default'
+          ? 'prompt'
+          : notificationPermission),
+  )
 
 // computations
 const isNotificationPermissionRequestPossible = computed(
@@ -282,9 +282,11 @@ onMounted(async () => {
       )
       permissionState.value = permissionStatus.state
     })
+
+    permissionState.value = permissionStatus.state
   }
 
-  if (isWindowHavingNotification.value) {
+  if (!permissionState.value && isWindowHavingNotification.value) {
     permissionState.value =
       Notification.permission === 'default' ? 'prompt' : Notification.permission
   }
