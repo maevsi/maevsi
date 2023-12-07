@@ -1,3 +1,10 @@
+## [3.19.2](https://github.com/maevsi/maevsi/compare/3.19.1...3.19.2) (2023-12-07)
+
+
+### Bug Fixes
+
+* **notification:** correct notification request check ([86271e2](https://github.com/maevsi/maevsi/commit/86271e2471ea473b1f63de480709ee52546862b4))
+
 ## [3.19.1](https://github.com/maevsi/maevsi/compare/3.19.0...3.19.1) (2023-12-07)
 
 
