@@ -24,7 +24,7 @@ export default defineConfig({
   /* Run tests in files in parallel */
   fullyParallel: true,
 
-  outputDir: 'tests/e2e/results',
+  outputDir: 'e2e/results',
 
   /* Configure projects for major browsers */
   projects: [
@@ -65,7 +65,7 @@ export default defineConfig({
   ],
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [['html', { outputFolder: 'tests/e2e/report' }]],
+  reporter: [['html', { outputFolder: 'e2e/report' }]],
 
   /* Retry on CI only */
   retries: process.env.CI ? 1 : 0,
