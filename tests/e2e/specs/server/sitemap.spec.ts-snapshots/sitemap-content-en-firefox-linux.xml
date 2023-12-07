@@ -49,6 +49,12 @@
         <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/legal-notice" />
     </url>
     <url>
+        <loc>http://localhost:3001/notification</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/notification" />
+        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/notification" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/notification" />
+    </url>
+    <url>
         <loc>http://localhost:3001/privacy-policy</loc>
         <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/privacy-policy" />
         <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/privacy-policy" />
