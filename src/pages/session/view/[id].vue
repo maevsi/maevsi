@@ -253,7 +253,10 @@ const requestNotificationPermissions = () =>
 
 // computations
 const isNotificationPermissionRequestPossible = computed(
-  () => process.client && permissionState.value === 'prompt',
+  () =>
+    process.client &&
+    isWindowHavingNotification.value &&
+    permissionState.value === 'prompt',
 )
 const sessionExpiryTime = computed(() =>
   store.jwtDecoded?.exp
