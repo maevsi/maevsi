@@ -1,3 +1,10 @@
+## [3.19.1](https://github.com/maevsi/maevsi/compare/3.19.0...3.19.1) (2023-12-07)
+
+
+### Bug Fixes
+
+* **notification:** improve for apple ([6ec8533](https://github.com/maevsi/maevsi/commit/6ec8533563d135bee8966e8f35507b538c1e1c3d))
+
 ## [3.19.0](https://github.com/maevsi/maevsi/compare/3.18.1...3.19.0) (2023-12-06)
 
 
