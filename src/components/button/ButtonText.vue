@@ -1,7 +1,7 @@
 <template>
   <Button
     :aria-label="ariaLabel"
-    class="px-4 py-2 font-medium"
+    class="whitespace-nowrap px-4 py-2 font-medium"
     :disabled="disabled"
     :to="props.to"
     :type="type"

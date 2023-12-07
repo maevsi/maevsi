@@ -13,6 +13,7 @@ export const useMaevsiStore = defineStore('maevsi', () => {
   const signedInAccountId = ref<string>()
   const signedInUsername = ref<string>()
   const turnstileToken = ref<string>()
+  const isSidebarVisible = ref(true)
 
   const jwtRemove = () => {
     jwtSet(undefined)
@@ -44,10 +45,11 @@ export const useMaevsiStore = defineStore('maevsi', () => {
   }
 
   return {
+    isSidebarVisible,
     jwt,
     jwtDecoded,
-    routerAfterEachs,
     modals,
+    routerAfterEachs,
     signedInAccountId,
     signedInUsername,
     turnstileToken,

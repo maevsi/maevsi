@@ -1,45 +1,47 @@
 <template>
-  <div
-    class="container mx-auto p-4 md:px-8"
-    :data-is-loading="isLoading"
-    data-testid="is-loading"
-  >
-    <div class="min-h-screen pb-32">
-      <LayoutHeader @on-menu-show="menuShow" />
-      <main class="flex-1 overflow-hidden p-1">
-        <slot />
-      </main>
-    </div>
-    <LayoutFooter>
-      <LayoutFooterCategory :heading="t('product')">
-        <AppLink :to="localePath({ name: 'index', hash: '#overview' })">
-          {{ t('overview') }}
-        </AppLink>
-        <AppLink :to="localePath({ name: 'index', hash: '#features' })">
-          {{ t('features') }}
-        </AppLink>
-        <!--<AppLink :to="localePath('/#pricing')">
+  <div class="flex h-screen">
+    <LayoutSidebar class="hidden lg:block 2xl:hidden" />
+    <div
+      class="container mx-auto flex-1 shrink p-4 md:px-8 lg:overflow-y-auto 2xl:overflow-y-visible"
+      :data-is-loading="isLoading"
+      data-testid="is-loading"
+    >
+      <div class="min-h-screen pb-32">
+        <LayoutHeader class="hidden 2xl:block" />
+        <main class="flex-1 overflow-hidden p-1">
+          <slot />
+        </main>
+      </div>
+      <LayoutFooter class="hidden 2xl:block">
+        <LayoutFooterCategory :heading="t('product')">
+          <AppLink :to="localePath({ name: 'index', hash: '#overview' })">
+            {{ t('overview') }}
+          </AppLink>
+          <AppLink :to="localePath({ name: 'index', hash: '#features' })">
+            {{ t('features') }}
+          </AppLink>
+          <!--<AppLink :to="localePath('/#pricing')">
             {{ t('pricing') }}
           </AppLink>-->
-        <!-- <AppLink :to="localePath('/about/team')">
+          <!-- <AppLink :to="localePath('/about/team')">
             {{ t('team') }}
           </AppLink> -->
-        <!-- <AppLink :to="localePath('/about/awards')">
+          <!-- <AppLink :to="localePath('/about/awards')">
             {{ t('awards') }}
           </AppLink> -->
-      </LayoutFooterCategory>
-      <LayoutFooterCategory :heading="t('legal')">
-        <AppLink :to="localePath({ name: 'legal-notice' })">
-          {{ t('legalNotice') }}
-        </AppLink>
-        <AppLink :to="localePath({ name: 'privacy-policy' })">
-          {{ t('privacyPolicy') }}
-        </AppLink>
-        <!-- <AppLink :to="localePath('/code-of-conduct')">
+        </LayoutFooterCategory>
+        <LayoutFooterCategory :heading="t('legal')">
+          <AppLink :to="localePath({ name: 'legal-notice' })">
+            {{ t('legalNotice') }}
+          </AppLink>
+          <AppLink :to="localePath({ name: 'privacy-policy' })">
+            {{ t('privacyPolicy') }}
+          </AppLink>
+          <!-- <AppLink :to="localePath('/code-of-conduct')">
             {{ t('codeOfConduct') }}
           </AppLink> -->
-      </LayoutFooterCategory>
-      <!-- <LayoutFooterCategory :heading="t('support')">
+        </LayoutFooterCategory>
+        <!-- <LayoutFooterCategory :heading="t('support')">
           <AppLink :to="localePath('/support/tutorials')">
             {{ t('tutorials') }}
           </AppLink>
@@ -50,93 +52,70 @@
             {{ t('documentation') }}
           </AppLink>
         </LayoutFooterCategory> -->
-      <LayoutFooterCategory :heading="t('quickLinks')">
-        <AppLink is-external :title="t('status')" to="https://status.maev.si/">
-          {{ t('status') }}
-        </AppLink>
-        <AppLink
-          is-external
-          :title="t('githubLinkTitle')"
-          to="https://github.com/maevsi/"
-        >
-          {{ t('sourceCode') }}
-        </AppLink>
-        <AppLink is-external to="mailto:contact+maev-si@maev.si">
-          {{ t('contact') }}
-        </AppLink>
-        <!-- TODO: rename id to jti -->
-        <AppLink
-          v-if="store.jwtDecoded?.id"
-          :to="localePath(`/session/view/${store.jwtDecoded.id}`)"
-        >
-          {{ t('session') }}
-        </AppLink>
-      </LayoutFooterCategory>
-      <LayoutFooterCategory :heading="t('languages')">
-        <AppLink
-          v-for="availableLocale in availableLocales"
-          :key="availableLocale"
-          :to="switchLocalePath(availableLocale)"
-        >
-          <div class="flex items-center gap-2">
-            <span :class="{ disabled: availableLocale === locale }">
-              {{ getLocaleName(availableLocale) }}
-            </span>
-          </div>
-        </AppLink>
-      </LayoutFooterCategory>
-      <LayoutFooterCategory :heading="t('colorScheme')">
-        <ClientOnly>
-          <ButtonColorScheme />
-          <template #fallback>
-            <ButtonColorScheme is-fallback />
-          </template>
-        </ClientOnly>
-      </LayoutFooterCategory>
-    </LayoutFooter>
-    <div
-      class="fixed inset-0 z-10 transition duration-500 lg:hidden"
-      :class="[
-        ...(isMenuVisible
-          ? ['backdrop-blur backdrop-brightness-50']
-          : ['backdrop-blur-0 backdrop-brightness-100']),
-        ...(isMenuVisiblePartly ? [] : ['invisible']),
-      ]"
-      @click="menuHide"
-    />
-    <div
-      class="fixed inset-0 right-auto z-10 flex transform-gpu flex-col overflow-auto transition-transform duration-500 lg:hidden"
-      :class="isMenuVisible ? 'translate-x-0' : '-translate-x-full'"
-    >
-      <LayoutMenu
-        v-if="isMenuVisiblePartly"
-        is-closable
-        @on-menu-hide="menuHide"
-      />
+        <LayoutFooterCategory :heading="t('quickLinks')">
+          <AppLink
+            is-external
+            :title="t('status')"
+            to="https://status.maev.si/"
+          >
+            {{ t('status') }}
+          </AppLink>
+          <AppLink
+            is-external
+            :title="t('githubLinkTitle')"
+            to="https://github.com/maevsi/"
+          >
+            {{ t('sourceCode') }}
+          </AppLink>
+          <AppLink is-external to="mailto:contact+maev-si@maev.si">
+            {{ t('contact') }}
+          </AppLink>
+          <!-- TODO: rename id to jti -->
+          <AppLink
+            v-if="store.jwtDecoded?.id"
+            :to="localePath(`/session/view/${store.jwtDecoded.id}`)"
+          >
+            {{ t('session') }}
+          </AppLink>
+        </LayoutFooterCategory>
+        <LayoutFooterCategory :heading="t('languages')">
+          <AppLink
+            v-for="availableLocale in availableLocales"
+            :key="availableLocale"
+            :to="switchLocalePath(availableLocale)"
+          >
+            <div class="flex items-center gap-2">
+              <span :class="{ disabled: availableLocale === locale }">
+                {{ getLocaleName(availableLocale) }}
+              </span>
+            </div>
+          </AppLink>
+        </LayoutFooterCategory>
+        <LayoutFooterCategory :heading="t('colorScheme')">
+          <ClientOnly>
+            <ButtonColorScheme />
+            <template #fallback>
+              <ButtonColorScheme is-fallback />
+            </template>
+          </ClientOnly>
+        </LayoutFooterCategory>
+      </LayoutFooter>
+      <LayoutBottomNavigation />
     </div>
-    <CookieControl :locale="locale" />
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Locale } from '@dargmuesli/nuxt-cookie-control/runtime/types'
 import type { LocaleObject } from 'vue-i18n-routing'
-import type { WritableComputedRef } from 'vue'
 
 const { $dayjs } = useNuxtApp()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
-const i18n = useI18n()
-const { availableLocales, t } = i18n
-const locale = i18n.locale as WritableComputedRef<Locale>
+const { availableLocales, t, locale } = useI18n()
 const store = useMaevsiStore()
 
 const loadingId = Math.random()
 const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
-
-// data
-const isMenuVisible = ref(false)
-const isMenuVisiblePartly = ref(false)
 
 // methods
 const getLocaleName = (locale: string) => {
@@ -149,16 +128,6 @@ const getLocaleName = (locale: string) => {
   } else {
     return undefined
   }
-}
-const menuHide = () => {
-  isMenuVisible.value = false
-  setTimeout(() => {
-    isMenuVisiblePartly.value = false
-  }, 500)
-}
-const menuShow = () => {
-  isMenuVisiblePartly.value = true
-  isMenuVisible.value = true
 }
 
 // computations

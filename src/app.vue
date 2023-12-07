@@ -14,21 +14,26 @@
     </NuxtLayout>
     <NuxtLoadingIndicator color="#fff" />
     <VitePwaManifest />
+    <CookieControl :locale="locale" />
   </div>
 </template>
 
 <script setup lang="ts">
+import type { Locale } from '@dargmuesli/nuxt-cookie-control/runtime/types'
 import '@fontsource-variable/manrope'
+import type { WritableComputedRef } from 'vue'
 
 import supportedBrowsers from '~/supportedBrowsers'
 
 const cookieControl = useCookieControl()
-const { t, locale } = useI18n()
+const i18n = useI18n()
 const store = useMaevsiStore()
 const { $pwa } = useNuxtApp()
 const router = useRouter()
 const runtimeConfig = useRuntimeConfig()
 const siteConfig = useSiteConfig()
+const locale = i18n.locale as WritableComputedRef<Locale>
+const { t } = i18n
 
 // data
 const isBrowserSupported = ref(true)
