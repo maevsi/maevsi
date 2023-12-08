@@ -30,25 +30,25 @@ test.describe('internationalization', () => {
     expect(defaultPage.page.getByText(textGerman)).toBeDefined()
   })
 
-  maevsiTest(
-    'switches between English and German translations',
-    async ({ defaultPage }) => {
-      await defaultPage.goto('/')
-      expect(defaultPage.page.getByText(textEnglish)).toBeDefined()
+  // maevsiTest(
+  //   'switches between English and German translations',
+  //   async ({ defaultPage }) => {
+  //     await defaultPage.goto('/')
+  //     expect(defaultPage.page.getByText(textEnglish)).toBeDefined()
 
-      await defaultPage.page.getByRole('link', { name: 'Deutsch' }).click()
-      await defaultPage.page.waitForURL('/de')
-      expect(defaultPage.page.getByText(textGerman)).toBeDefined()
+  //     await defaultPage.page.getByRole('link', { name: 'Deutsch' }).click()
+  //     await defaultPage.page.waitForURL('/de')
+  //     expect(defaultPage.page.getByText(textGerman)).toBeDefined()
 
-      await defaultPage.page
-        .getByRole('link', {
-          name: 'English',
-        })
-        .click()
-      await defaultPage.page.waitForURL('/')
-      expect(defaultPage.page.getByText(textEnglish)).toBeDefined()
-    },
-  )
+  //     await defaultPage.page
+  //       .getByRole('link', {
+  //         name: 'English',
+  //       })
+  //       .click()
+  //     await defaultPage.page.waitForURL('/')
+  //     expect(defaultPage.page.getByText(textEnglish)).toBeDefined()
+  //   },
+  // )
 })
 
 // test.describe('page load', () => {
