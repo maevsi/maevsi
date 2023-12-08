@@ -1,3 +1,17 @@
+## [3.20.0-beta.1](https://github.com/maevsi/maevsi/compare/3.19.2...3.20.0-beta.1) (2023-12-08)
+
+
+### Features
+
+* **index:** update title ([49e5c9e](https://github.com/maevsi/maevsi/commit/49e5c9ecc792657ef0d0a16db46aa8012f12d155))
+* redesign ([#1481](https://github.com/maevsi/maevsi/issues/1481)) ([747ee7f](https://github.com/maevsi/maevsi/commit/747ee7f6eaff59725e4e0a5f61453e4dc34925fe))
+* **ui:** rework navigation ([1ef9777](https://github.com/maevsi/maevsi/commit/1ef977766f19fef630754ee92978ddec6ca763d4))
+
+
+### Bug Fixes
+
+* **invitation:** return to list when exiting preview ([b7e9a99](https://github.com/maevsi/maevsi/commit/b7e9a99ece74da93140dec6d3f3ecddcefa6c30c))
+
 ## [3.19.2](https://github.com/maevsi/maevsi/compare/3.19.1...3.19.2) (2023-12-07)
 
 
