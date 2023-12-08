@@ -3,9 +3,9 @@
   <header class="mb-8">
     <div class="flex items-center justify-between gap-4">
       <ButtonIcon
-        :aria-label="t('menuShow')"
-        class="lg:hidden"
-        @click="emit('onMenuShow')"
+        :aria-label="store.isSidebarVisible ? t('menuHide') : t('menuShow')"
+        class="hidden lg:block 2xl:hidden"
+        @click="store.isSidebarVisible = !store.isSidebarVisible"
       >
         <IHeroiconsBars3 height="2em" width="2em" />
       </ButtonIcon>
@@ -95,10 +95,6 @@
 // import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 // import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 
-const emit = defineEmits<{
-  onMenuShow: []
-}>()
-
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
@@ -125,6 +121,7 @@ de:
   dashboard: Dashboard
   events: Veranstaltungen entdecken
   home: Nach Hause
+  menuHide: Menü verstecken
   menuShow: Menü anzeigen
   profileLink: Profilseite anzeigen
   search: Suche
@@ -133,6 +130,7 @@ en:
   dashboard: Dashboard
   events: Explore events
   home: Head home
+  menuHide: Hide menu
   menuShow: Show menu
   profileLink: Show profile page
   search: Search

@@ -70,7 +70,7 @@ export default {
           fontSize: theme('fontSize.4xl'),
           marginBottom: theme('margin.4'),
           marginTop: theme('margin.4'),
-          textAlign: 'center',
+          // textAlign: 'center',
         },
         h2: {
           ...heading(theme),

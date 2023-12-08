@@ -7,14 +7,14 @@
           keypath="title"
           tag="h1"
         >
-          <template #easy>
-            <span class="text-blue-600">{{ t('titleEasy') }}</span>
+          <template #events>
+            <span class="text-blue-600">{{ t('titleBlue') }}</span>
           </template>
-          <template #fast>
-            <span class="text-green-600">{{ t('titleFast') }}</span>
+          <template #guests>
+            <span class="text-green-600">{{ t('titleGreen') }}</span>
           </template>
-          <template #professional>
-            <span class="text-red-600">{{ t('titleProfessional') }}</span>
+          <template #friends>
+            <span class="text-red-600">{{ t('titleRed') }}</span>
           </template>
         </i18n-t>
         <div class="flex flex-col gap-2 text-lg md:text-xl">
@@ -235,10 +235,10 @@ de:
   stepsTitle: So einfach geht’s
   testNow: Jetzt testen
   testNowFree: Jetzt kostenlos testen
-  title: Veranstaltungen {easy}, {fast}, {professional}.
-  titleEasy: einfach
-  titleFast: schnell
-  titleProfessional: professionell
+  title: Deine {events}, {guests} und {friends}
+  titleBlue: Veranstaltungen
+  titleGreen: Gäste
+  titleRed: Freunde
 en:
   benefitControl: Control
   benefitControlDescription: You can plan exactly for your guest's needs
@@ -271,8 +271,8 @@ en:
   stepsTitle: "It's as easy as that"
   testNow: Test now
   testNowFree: Test now for free
-  title: Events {easy}, {fast}, {professional}.
-  titleEasy: easy
-  titleFast: fast
-  titleProfessional: professional
+  title: Your {events}, {guests} and {friends}
+  titleBlue: events
+  titleGreen: guests
+  titleRed: friends
 </i18n>
