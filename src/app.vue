@@ -120,12 +120,12 @@ initialize()
 
 <i18n lang="yaml">
 de:
-  browserUnsupported: Dein Browser scheint veraltet zu sein. Manche Dinge könnten deshalb nicht funktionieren oder komisch aussehen.
+  browserUnsupported: Du benutzt einen Browser, in dem nicht alle Funktionen von maevsi unterstützt werden.
   pwaConfirmButtonText: App nutzen
   pwaText: Die Installation verbraucht fast keinen Speicherplatz und bietet eine schnelle Möglichkeit, zu dieser App zurückzukehren.
   pwaTitle: maevsi installieren
 en:
-  browserUnsupported: Your browser version seems outdated. Some things might not work as expected or look funny.
+  browserUnsupported: You're using a browser which does not support all features maevsi offers.
   pwaConfirmButtonText: Get the app
   pwaText: Installing uses almost no storage and provides a quick way to return to this app.
   pwaTitle: Install maevsi
