@@ -94,8 +94,8 @@ importers:
         specifier: 1.6.0
         version: 1.6.0(rollup@2.79.1)
       '@nuxtjs/i18n':
-        specifier: 8.0.0-rc.8
-        version: 8.0.0-rc.8(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.11)
+        specifier: 8.0.0-rc.9
+        version: 8.0.0-rc.9(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.11)
       '@nuxtjs/tailwindcss':
         specifier: 6.10.1
         version: 6.10.1(rollup@2.79.1)
@@ -4200,8 +4200,8 @@ packages:
       - vitest
     dev: true
 
-  /@nuxtjs/i18n@8.0.0-rc.8(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.11):
-    resolution: {integrity: sha512-EDLpOjWfwIYW23JlZ00Q5XjuGRxPQOAR8dfA2lx41U+kw7a2ZjQWZymv75nYm+WDwuyTmx2pzdEuTYOkBsUdzg==}
+  /@nuxtjs/i18n@8.0.0-rc.9(rollup@2.79.1)(vue-router@4.2.5)(vue@3.3.11):
+    resolution: {integrity: sha512-6WMjG7MqktYu2ZYjEDKj9MeEbecy7kf+QDLT73gyEo5GBiVLrMGf/mizqFhS6/WSFNRsoSckN9mzXIXMoLs2VQ==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/h3': 0.5.0
