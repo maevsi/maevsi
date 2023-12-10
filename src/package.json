@@ -109,7 +109,7 @@
     "nuxt-typed-router": "3.5.0",
     "pg": "8.11.3",
     "pinia": "2.1.7",
-    "prettier": "3.1.0",
+    "prettier": "3.1.1",
     "prettier-plugin-tailwindcss": "0.5.9",
     "pretty-bytes": "6.1.1",
     "prntr": "2.0.18",
