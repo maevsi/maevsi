@@ -73,7 +73,7 @@
     "@unocss/nuxt": "0.58.0",
     "@uppy/core": "3.7.1",
     "@uppy/tus": "3.4.0",
-    "@urql/core": "4.2.0",
+    "@urql/core": "4.2.1",
     "@urql/devtools": "2.0.3",
     "@urql/exchange-graphcache": "6.4.0",
     "@urql/vue": "1.1.2",
