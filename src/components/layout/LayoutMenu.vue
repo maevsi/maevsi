@@ -1,5 +1,8 @@
 <template>
-  <LayoutMenuItem title="Home" to="/">
+  <LayoutMenuItem
+    title="Home"
+    :to="store.signedInUsername ? '/dashboard' : '/'"
+  >
     <IHeroiconsHome />
   </LayoutMenuItem>
   <!-- <ISolarTelescopeBold /> -->
