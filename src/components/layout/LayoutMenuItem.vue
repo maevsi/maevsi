@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    active-class="bg-blue-600 text-text-bright"
+    active-class="bg-blue-500 dark:bg-blue-400 text-text-bright dark:text-text-dark"
     class="min-w-0 basis-full rounded-xl"
     :to="props.to"
   >
