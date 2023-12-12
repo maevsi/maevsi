@@ -77,6 +77,7 @@ export const cookieControlConfig: ReturnType<DefineNuxtConfig> = {
     cookieOptions: {
       sameSite: 'strict',
     },
+    isControlButtonEnabled: false,
     locales: ['en', 'de'],
   },
 }

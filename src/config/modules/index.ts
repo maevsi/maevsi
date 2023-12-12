@@ -4,6 +4,7 @@ import type { DefineNuxtConfig } from 'nuxt/config'
 
 import { LOCALES, SITE_NAME, SITE_URL } from '../../utils/constants'
 import { cookieControlConfig } from './cookieControl'
+import { i18nConfig } from './i18n'
 import { pwaConfig } from './pwa'
 import { securityConfig } from './security'
 
@@ -20,6 +21,7 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
     failOnError: true,
     logLevel: 'warning',
   },
+  ...i18nConfig,
   i18n: {
     defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
     detectBrowserLanguage: false,
