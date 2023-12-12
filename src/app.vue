@@ -102,7 +102,9 @@ updateSiteConfig({
 })
 defineOgImageComponent(
   'Default',
-  {},
+  {
+    description: t('globalSeoSiteDescription'),
+  },
   {
     alt: t('globalSeoOgImageAlt'),
   },
