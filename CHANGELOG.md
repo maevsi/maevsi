@@ -12,6 +12,21 @@
 
 * **invitation:** return to list when exiting preview ([b7e9a99](https://github.com/maevsi/maevsi/commit/b7e9a99ece74da93140dec6d3f3ecddcefa6c30c))
 
+## [3.19.4](https://github.com/maevsi/maevsi/compare/3.19.3...3.19.4) (2023-12-12)
+
+
+### Bug Fixes
+
+* **og-image:** add description ([562ed0e](https://github.com/maevsi/maevsi/commit/562ed0e13352d88f34a0a9863028e4d2a39e355a))
+
+## [3.19.3](https://github.com/maevsi/maevsi/compare/3.19.2...3.19.3) (2023-12-08)
+
+
+### Bug Fixes
+
+* **i18n:** correct browser support message ([d3e37c7](https://github.com/maevsi/maevsi/commit/d3e37c7579c999fa9fc51607ee027b659447dd83))
+* **i18n:** correct browser support message ([#1483](https://github.com/maevsi/maevsi/issues/1483)) ([0fe0c1b](https://github.com/maevsi/maevsi/commit/0fe0c1bb9324acea5b46c7ac69ad34e7ea3c55af))
+
 ## [3.19.2](https://github.com/maevsi/maevsi/compare/3.19.1...3.19.2) (2023-12-07)
 
 
