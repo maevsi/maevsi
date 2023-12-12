@@ -1,12 +1,12 @@
 <template>
-  <div class="flex h-screen">
+  <div class="flex min-h-screen lg:h-screen 2xl:h-auto">
     <LayoutSidebar class="hidden lg:block 2xl:hidden" />
     <div
-      class="container mx-auto flex-1 shrink p-4 md:px-8 lg:overflow-y-auto 2xl:overflow-y-visible"
+      class="container mx-auto flex flex-1 shrink flex-col p-4 md:px-8 lg:block lg:overflow-y-auto"
       :data-is-loading="isLoading"
       data-testid="is-loading"
     >
-      <div class="min-h-screen pb-32">
+      <div class="flex-1 2xl:pb-32">
         <LayoutHeader class="lg:hidden 2xl:block" />
         <main class="flex-1 overflow-hidden p-1">
           <slot />
