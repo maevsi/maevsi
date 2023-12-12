@@ -8,10 +8,10 @@ testVisualRegression(PAGE_PATH)
 // test.describe('visual regression', () => {
 // // TODO: enable (https://github.com/harlan-zw/nuxt-og-image/issues/81)
 // test('generates the open graph image', async ({ page }) => {
-//   await page.goto('/__og-image__/image/teapot/og.jpg')
+//   await page.goto('/__og-image__/image/teapot/og.png')
 //   await expect(page).toHaveScreenshot({ fullPage: true })
 
-//   await page.goto('/__og-image__/image/de/teapot/og.jpg')
+//   await page.goto('/__og-image__/image/de/teapot/og.png')
 //   await expect(page).toHaveScreenshot({ fullPage: true })
 // })
 // })
