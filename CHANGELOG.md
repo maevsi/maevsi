@@ -1,3 +1,10 @@
+## [3.19.4](https://github.com/maevsi/maevsi/compare/3.19.3...3.19.4) (2023-12-12)
+
+
+### Bug Fixes
+
+* **og-image:** add description ([562ed0e](https://github.com/maevsi/maevsi/commit/562ed0e13352d88f34a0a9863028e4d2a39e355a))
+
 ## [3.19.3](https://github.com/maevsi/maevsi/compare/3.19.2...3.19.3) (2023-12-08)
 
 
