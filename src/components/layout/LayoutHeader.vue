@@ -40,9 +40,6 @@
           v-if="store.jwtDecoded"
           :aria-label="t('settings')"
           class="absolute right-4 top-8 lg:hidden"
-          :class="[
-            ...(route.name.startsWith('session-edit-id') ? ['hidden'] : []),
-          ]"
           :to="`/session/edit/${store.jwtDecoded.id}`"
         >
           <IHeroiconsBars3 height="2em" width="2em" />
@@ -117,7 +114,6 @@
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
-const route = useRoute()
 
 // // api data
 // const accountByUsernameQuery = store.signedInUsername
