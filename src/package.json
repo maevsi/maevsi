@@ -35,7 +35,7 @@
     "@graphql-typed-document-node/core": "3.2.0",
     "@http-util/status-i18n": "0.8.1",
     "@iconify-json/fa6-regular": "1.1.17",
-    "@iconify-json/fa6-solid": "1.1.19",
+    "@iconify-json/fa6-solid": "1.1.20",
     "@iconify-json/heroicons": "1.1.15",
     "@iconify-json/heroicons-outline": "1.1.9",
     "@iconify-json/solar": "1.1.8",
