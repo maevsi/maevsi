@@ -28,10 +28,10 @@ export const testOgImage = <T extends string = never>(
 ) =>
   test.describe('visual regression', () => {
     maevsiTest('generates the open graph image', async ({ page }) => {
-      await page.goto(joinURL('/', url, '/__og_image__/og.png'))
+      await page.goto(joinURL('/__og-image__/image', url, '/og.png'))
       await expect(page).toHaveScreenshot({ fullPage: true })
 
-      await page.goto(joinURL('/de', url, '/__og_image__/og.png'))
+      await page.goto(joinURL('/__og-image__/image/de', url, '/og.png'))
       await expect(page).toHaveScreenshot({ fullPage: true })
     })
   })

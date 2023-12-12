@@ -100,10 +100,15 @@ watch(
 updateSiteConfig({
   description: t('globalSeoSiteDescription'),
 })
-defineOgImage({
-  alt: t('globalSeoOgImageAlt'),
-  component: 'Default',
-})
+defineOgImageComponent(
+  'Default',
+  {
+    description: t('globalSeoSiteDescription'),
+  },
+  {
+    alt: t('globalSeoOgImageAlt'),
+  },
+)
 useAppLayout()
 useFavicons()
 usePolyfills()
