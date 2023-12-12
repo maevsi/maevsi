@@ -6,7 +6,7 @@
       [
         ...(isPrimary
           ? [
-              'border-transparent bg-gray-800 text-text-bright hover:bg-black dark:bg-gray-100 dark:text-text-dark dark:hover:bg-gray-200',
+              'border-transparent bg-blue-600 text-text-bright hover:bg-blue-500 dark:bg-blue-400 dark:text-text-dark dark:hover:bg-blue-500',
             ]
           : [
               'border-gray-300 text-text-dark hover:bg-black/5 dark:border-gray-600 dark:text-text-bright dark:hover:bg-black/30',
