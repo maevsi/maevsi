@@ -61,8 +61,8 @@ importers:
         specifier: 1.1.17
         version: 1.1.17
       '@iconify-json/fa6-solid':
-        specifier: 1.1.19
-        version: 1.1.19
+        specifier: 1.1.20
+        version: 1.1.20
       '@iconify-json/heroicons':
         specifier: 1.1.15
         version: 1.1.15
@@ -3303,8 +3303,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/fa6-solid@1.1.19:
-    resolution: {integrity: sha512-/R9viOcP2NIHcjjRIVnNAj40mci21ZD5uGpkKNQ+8lG/0x+mzR35a+yf7aCE6D7ovt/SJ6pMY6oO9tBZbHlcSw==}
+  /@iconify-json/fa6-solid@1.1.20:
+    resolution: {integrity: sha512-99P9zOacNS56MNNT7Mzih2Loe3jzwNFKFBOiVh+kF+4D+AHW5zyksyvMizIgGu2cizFz6npaATlCtl3E5Zfjbw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
