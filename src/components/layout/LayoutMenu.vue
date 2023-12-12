@@ -12,7 +12,11 @@
   </LayoutMenuItem>
   <LayoutMenuItem
     title="Account"
-    :to="`/account/view/${store.signedInUsername}`"
+    :to="
+      store.signedInUsername
+        ? `/account/view/${store.signedInUsername}`
+        : `/session/create`
+    "
   >
     <IHeroiconsUser />
   </LayoutMenuItem>
