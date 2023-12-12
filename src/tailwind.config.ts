@@ -52,7 +52,7 @@ export default {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
         },
-        'a[target="_blank"]:after': {
+        'a[target="_blank"]:not([is-external-icon-disabled]):after': {
           backgroundColor: 'currentColor',
           content: '""',
           display: 'inline-table', // inline-table centers the element vertically in the tiptap text area, instead of inline-block
