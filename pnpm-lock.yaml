@@ -58,17 +58,17 @@ importers:
         specifier: 0.8.1
         version: 0.8.1
       '@iconify-json/fa6-regular':
-        specifier: 1.1.17
-        version: 1.1.17
+        specifier: 1.1.18
+        version: 1.1.18
       '@iconify-json/fa6-solid':
-        specifier: 1.1.19
-        version: 1.1.19
+        specifier: 1.1.20
+        version: 1.1.20
       '@iconify-json/heroicons':
-        specifier: 1.1.15
-        version: 1.1.15
+        specifier: 1.1.16
+        version: 1.1.16
       '@iconify-json/heroicons-outline':
-        specifier: 1.1.9
-        version: 1.1.9
+        specifier: 1.1.10
+        version: 1.1.10
       '@iconify-json/solar':
         specifier: 1.1.8
         version: 1.1.8
@@ -266,7 +266,7 @@ importers:
         version: 4.2.0
       nuxt:
         specifier: 3.8.2
-        version: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.1)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25)
+        version: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.2)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25)
       nuxt-security:
         specifier: 1.0.0-rc.4
         version: 1.0.0-rc.4(rollup@2.79.1)
@@ -310,8 +310,8 @@ importers:
         specifier: 1.2.2
         version: 1.2.2
       prosemirror-model:
-        specifier: 1.19.3
-        version: 1.19.3
+        specifier: 1.19.4
+        version: 1.19.4
       prosemirror-schema-list:
         specifier: 1.3.0
         version: 1.3.0
@@ -331,17 +331,17 @@ importers:
         specifier: 1.6.6
         version: 1.6.6
       stylelint:
-        specifier: 16.0.1
-        version: 16.0.1(typescript@5.3.3)
+        specifier: 16.0.2
+        version: 16.0.2(typescript@5.3.3)
       stylelint-config-recommended-vue:
         specifier: 1.5.0
-        version: 1.5.0(postcss-html@1.5.0)(stylelint@16.0.1)
+        version: 1.5.0(postcss-html@1.5.0)(stylelint@16.0.2)
       stylelint-config-standard:
         specifier: 35.0.0
-        version: 35.0.0(stylelint@16.0.1)
+        version: 35.0.0(stylelint@16.0.2)
       stylelint-no-unsupported-browser-features:
         specifier: 7.0.0
-        version: 7.0.0(stylelint@16.0.1)
+        version: 7.0.0(stylelint@16.0.2)
       sweetalert2:
         specifier: 11.10.1
         version: 11.10.1
@@ -3315,26 +3315,26 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/fa6-regular@1.1.17:
-    resolution: {integrity: sha512-P/gU1z6SZwb8HfGq28ULpB+2x4NIlWuunfwPSPetyMx/fKJe+iXwuPCfKWxbFNy+b6kCqGF+zwD5Hx1FJ473jQ==}
+  /@iconify-json/fa6-regular@1.1.18:
+    resolution: {integrity: sha512-+lLtiTHf02rxeC/9R6vzJi9eGcuubzeHfTt/HWvDnovz2Kt5NEntW8foUSLeLo7kPU7RNvea68lt7QM9HYFloQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/fa6-solid@1.1.19:
-    resolution: {integrity: sha512-/R9viOcP2NIHcjjRIVnNAj40mci21ZD5uGpkKNQ+8lG/0x+mzR35a+yf7aCE6D7ovt/SJ6pMY6oO9tBZbHlcSw==}
+  /@iconify-json/fa6-solid@1.1.20:
+    resolution: {integrity: sha512-99P9zOacNS56MNNT7Mzih2Loe3jzwNFKFBOiVh+kF+4D+AHW5zyksyvMizIgGu2cizFz6npaATlCtl3E5Zfjbw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/heroicons-outline@1.1.9:
-    resolution: {integrity: sha512-xs0fn54DxRaPszWNew4s/4eQOugSAuDRYdyqej9bDB0y80KoAHWmdA0OAN+oCfubx0l+vRJInUQrVD7f4K+AnA==}
+  /@iconify-json/heroicons-outline@1.1.10:
+    resolution: {integrity: sha512-3sPszsoIlLLLxxXxJkla6GuNNpJrie/84iE8cbDi+NMkaeHMsfVTOHh3LxLsPRaTBFTSlGflJ2ZWAb1e3Ae7Gw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/heroicons@1.1.15:
-    resolution: {integrity: sha512-UUBdRuU23MZ5PL5t8EZwHeId4Usdc+FrsukzdAW9xe/0wYLr25+MuqZcIGJZbSxJVukvy3Jgc0sPzBOG1EC7YQ==}
+  /@iconify-json/heroicons@1.1.16:
+    resolution: {integrity: sha512-T6rn8sLyIjoUHxdNGXY3GDWLDQ+egOtAJ/ds+P3T0JdVs2A/BDIkZhEDI+gOPz2A27uO0UdiFr9+LcnmRu+DIw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -3847,7 +3847,7 @@ packages:
       '@nuxt/kit': 3.8.2(rollup@2.79.1)
       '@nuxt/schema': 3.8.2(rollup@2.79.1)
       execa: 7.2.0
-      nuxt: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.1)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25)
+      nuxt: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.2)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25)
       vite: 5.0.7(@types/node@20.10.4)
     transitivePeerDependencies:
       - rollup
@@ -3948,7 +3948,7 @@ packages:
       local-pkg: 0.5.0
       magicast: 0.3.2
       nitropack: 2.8.1
-      nuxt: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.1)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25)
+      nuxt: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.2)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25)
       nypm: 0.3.3
       ofetch: 1.3.3
       ohash: 1.1.3
@@ -4099,7 +4099,7 @@ packages:
     resolution: {integrity: sha512-5gc02Pu1HycOVUWJ8aYsWeeXcSTPe8iX8+KIrhyEtEoOSkY0eMBuo0ssljB8wALuEmepv31DlYe5gpiRwkjESA==}
     dev: true
 
-  /@nuxt/vite-builder@3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.1)(typescript@5.3.3)(vue-tsc@1.8.25)(vue@3.3.11):
+  /@nuxt/vite-builder@3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.2)(typescript@5.3.3)(vue-tsc@1.8.25)(vue@3.3.11):
     resolution: {integrity: sha512-l/lzDDTbd3M89BpmWqjhVLgLVRqfkKp0tyYgV5seJQjj3SX+IeqI7k6k8+dMEifdeO34jUajVWptNpITXQryyg==}
     engines: {node: ^14.18.0 || >=16.10.0}
     peerDependencies:
@@ -4136,7 +4136,7 @@ packages:
       unplugin: 1.5.1
       vite: 4.5.1(@types/node@20.10.4)
       vite-node: 0.33.0(@types/node@20.10.4)
-      vite-plugin-checker: 0.6.2(eslint@8.55.0)(stylelint@16.0.1)(typescript@5.3.3)(vite@4.5.1)(vue-tsc@1.8.25)
+      vite-plugin-checker: 0.6.2(eslint@8.55.0)(stylelint@16.0.2)(typescript@5.3.3)(vite@4.5.1)(vue-tsc@1.8.25)
       vue: 3.3.11(typescript@5.3.3)
       vue-bundle-renderer: 2.0.0
     transitivePeerDependencies:
@@ -5583,12 +5583,12 @@ packages:
       prosemirror-keymap: 1.2.2
       prosemirror-markdown: 1.12.0
       prosemirror-menu: 1.2.4
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
       prosemirror-schema-basic: 1.2.2
       prosemirror-schema-list: 1.3.0
       prosemirror-state: 1.4.3
       prosemirror-tables: 1.3.5
-      prosemirror-trailing-node: 2.0.7(prosemirror-model@1.19.3)(prosemirror-state@1.4.3)(prosemirror-view@1.32.6)
+      prosemirror-trailing-node: 2.0.7(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.32.6)
       prosemirror-transform: 1.8.0
       prosemirror-view: 1.32.6
     dev: true
@@ -6870,7 +6870,7 @@ packages:
       '@vueuse/core': 10.7.0(vue@3.3.11)
       '@vueuse/metadata': 10.7.0
       local-pkg: 0.5.0
-      nuxt: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.1)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25)
+      nuxt: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.2)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25)
       vue-demi: 0.14.6(vue@3.3.11)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -13366,7 +13366,7 @@ packages:
       - supports-color
     dev: true
 
-  /nuxt@3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.1)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25):
+  /nuxt@3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.2)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25):
     resolution: {integrity: sha512-HUAyifmqTs2zcQBGvcby3KNs2pBAk+l7ZbLjD1oCNqQQ+wBuZ1qgLC4Ebu++y4g3o3Y8WAWSvpafbKRLQZziPw==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -13385,7 +13385,7 @@ packages:
       '@nuxt/schema': 3.8.2(rollup@2.79.1)
       '@nuxt/telemetry': 2.5.3(rollup@2.79.1)
       '@nuxt/ui-templates': 1.3.1
-      '@nuxt/vite-builder': 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.1)(typescript@5.3.3)(vue-tsc@1.8.25)(vue@3.3.11)
+      '@nuxt/vite-builder': 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.2)(typescript@5.3.3)(vue-tsc@1.8.25)(vue@3.3.11)
       '@types/node': 20.10.4
       '@unhead/dom': 1.8.9
       '@unhead/ssr': 1.8.9
@@ -14777,7 +14777,7 @@ packages:
   /prosemirror-commands@1.5.2:
     resolution: {integrity: sha512-hgLcPaakxH8tu6YvVAaILV2tXYsW3rAdDR8WNkeKGcgeMVQg3/TMhPdVoh7iAmfgVjZGtcOSjKiQaoeKjzd2mQ==}
     dependencies:
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.8.0
     dev: true
@@ -14794,7 +14794,7 @@ packages:
     resolution: {integrity: sha512-wtjswVBd2vaQRrnYZaBCbyDqr232Ed4p2QPtRIUK5FuqHYKGWkEwl08oQM4Tw7DOR0FsasARV5uJFvMZWxdNxQ==}
     dependencies:
       prosemirror-keymap: 1.2.2
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
       prosemirror-view: 1.32.6
     dev: true
@@ -14826,7 +14826,7 @@ packages:
     resolution: {integrity: sha512-6F5HS8Z0HDYiS2VQDZzfZP6A0s/I0gbkJy8NCzzDMtcsz3qrfqyroMMeoSjAmOhDITyon11NbXSzztfKi+frSQ==}
     dependencies:
       markdown-it: 14.0.0
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
     dev: true
 
   /prosemirror-menu@1.2.4:
@@ -14838,8 +14838,8 @@ packages:
       prosemirror-state: 1.4.3
     dev: true
 
-  /prosemirror-model@1.19.3:
-    resolution: {integrity: sha512-tgSnwN7BS7/UM0sSARcW+IQryx2vODKX4MI7xpqY2X+iaepJdKBPc7I4aACIsDV/LTaTjt12Z56MhDr9LsyuZQ==}
+  /prosemirror-model@1.19.4:
+    resolution: {integrity: sha512-RPmVXxUfOhyFdayHawjuZCxiROsm9L4FCUA6pWI+l7n2yCBsWy9VpdE1hpDHUS8Vad661YLY9AzqfjLhAKQ4iQ==}
     dependencies:
       orderedmap: 2.1.1
     dev: true
@@ -14847,13 +14847,13 @@ packages:
   /prosemirror-schema-basic@1.2.2:
     resolution: {integrity: sha512-/dT4JFEGyO7QnNTe9UaKUhjDXbTNkiWTq/N4VpKaF79bBjSExVV2NXmJpcM7z/gD7mbqNjxbmWW5nf1iNSSGnw==}
     dependencies:
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
     dev: true
 
   /prosemirror-schema-list@1.3.0:
     resolution: {integrity: sha512-Hz/7gM4skaaYfRPNgr421CU4GSwotmEwBVvJh5ltGiffUJwm7C8GfN/Bc6DR1EKEp5pDKhODmdXXyi9uIsZl5A==}
     dependencies:
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.8.0
     dev: true
@@ -14861,7 +14861,7 @@ packages:
   /prosemirror-state@1.4.3:
     resolution: {integrity: sha512-goFKORVbvPuAQaXhpbemJFRKJ2aixr+AZMGiquiqKxaucC6hlpHNZHWgz5R7dS4roHiwq9vDctE//CZ++o0W1Q==}
     dependencies:
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
       prosemirror-transform: 1.8.0
       prosemirror-view: 1.32.6
     dev: true
@@ -14870,13 +14870,13 @@ packages:
     resolution: {integrity: sha512-JSZ2cCNlApu/ObAhdPyotrjBe2cimniniTpz60YXzbL0kZ+47nEYk2LWbfKU2lKpBkUNquta2PjteoNi4YCluQ==}
     dependencies:
       prosemirror-keymap: 1.2.2
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.8.0
       prosemirror-view: 1.32.6
     dev: true
 
-  /prosemirror-trailing-node@2.0.7(prosemirror-model@1.19.3)(prosemirror-state@1.4.3)(prosemirror-view@1.32.6):
+  /prosemirror-trailing-node@2.0.7(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.32.6):
     resolution: {integrity: sha512-8zcZORYj/8WEwsGo6yVCRXFMOfBo0Ub3hCUvmoWIZYfMP26WqENU0mpEP27w7mt8buZWuGrydBewr0tOArPb1Q==}
     peerDependencies:
       prosemirror-model: ^1.19.0
@@ -14886,7 +14886,7 @@ packages:
       '@remirror/core-constants': 2.0.2
       '@remirror/core-helpers': 3.0.0
       escape-string-regexp: 4.0.0
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
       prosemirror-view: 1.32.6
     dev: true
@@ -14894,13 +14894,13 @@ packages:
   /prosemirror-transform@1.8.0:
     resolution: {integrity: sha512-BaSBsIMv52F1BVVMvOmp1yzD3u65uC3HTzCBQV1WDPqJRQ2LuHKcyfn0jwqodo8sR9vVzMzZyI+Dal5W9E6a9A==}
     dependencies:
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
     dev: true
 
   /prosemirror-view@1.32.6:
     resolution: {integrity: sha512-26r5LvyDlPgUNVf7ZdNdGrMJnylwjJtUJTfDuYOANIVx9lqWD1WCBlGg283weYQGKUC64DXR25LeAmliB9CrFQ==}
     dependencies:
-      prosemirror-model: 1.19.3
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.8.0
     dev: true
@@ -16123,6 +16123,7 @@ packages:
 
   /string_decoder@1.3.0:
     resolution: {integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==}
+    requiresBuild: true
     dependencies:
       safe-buffer: 5.2.1
     dev: true
@@ -16206,7 +16207,7 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /stylelint-config-html@1.1.0(postcss-html@1.5.0)(stylelint@16.0.1):
+  /stylelint-config-html@1.1.0(postcss-html@1.5.0)(stylelint@16.0.2):
     resolution: {integrity: sha512-IZv4IVESjKLumUGi+HWeb7skgO6/g4VMuAYrJdlqQFndgbj6WJAXPhaysvBiXefX79upBdQVumgYcdd17gCpjQ==}
     engines: {node: ^12 || >=14}
     peerDependencies:
@@ -16214,10 +16215,10 @@ packages:
       stylelint: '>=14.0.0'
     dependencies:
       postcss-html: 1.5.0
-      stylelint: 16.0.1(typescript@5.3.3)
+      stylelint: 16.0.2(typescript@5.3.3)
     dev: true
 
-  /stylelint-config-recommended-vue@1.5.0(postcss-html@1.5.0)(stylelint@16.0.1):
+  /stylelint-config-recommended-vue@1.5.0(postcss-html@1.5.0)(stylelint@16.0.2):
     resolution: {integrity: sha512-65TAK/clUqkNtkZLcuytoxU0URQYlml+30Nhop7sRkCZ/mtWdXt7T+spPSB3KMKlb+82aEVJ4OrcstyDBdbosg==}
     engines: {node: ^12 || >=14}
     peerDependencies:
@@ -16226,31 +16227,31 @@ packages:
     dependencies:
       postcss-html: 1.5.0
       semver: 7.5.4
-      stylelint: 16.0.1(typescript@5.3.3)
-      stylelint-config-html: 1.1.0(postcss-html@1.5.0)(stylelint@16.0.1)
-      stylelint-config-recommended: 14.0.0(stylelint@16.0.1)
+      stylelint: 16.0.2(typescript@5.3.3)
+      stylelint-config-html: 1.1.0(postcss-html@1.5.0)(stylelint@16.0.2)
+      stylelint-config-recommended: 14.0.0(stylelint@16.0.2)
     dev: true
 
-  /stylelint-config-recommended@14.0.0(stylelint@16.0.1):
+  /stylelint-config-recommended@14.0.0(stylelint@16.0.2):
     resolution: {integrity: sha512-jSkx290CglS8StmrLp2TxAppIajzIBZKYm3IxT89Kg6fGlxbPiTiyH9PS5YUuVAFwaJLl1ikiXX0QWjI0jmgZQ==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.0.0
     dependencies:
-      stylelint: 16.0.1(typescript@5.3.3)
+      stylelint: 16.0.2(typescript@5.3.3)
     dev: true
 
-  /stylelint-config-standard@35.0.0(stylelint@16.0.1):
+  /stylelint-config-standard@35.0.0(stylelint@16.0.2):
     resolution: {integrity: sha512-JyQrNZk2BZwVKFauGGxW2U6RuhIfQ4XoHHo+rBzMHcAkLnwI/knpszwXjzxiMgSfcxbZBckM7Vq4LHoANTR85g==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.0.0
     dependencies:
-      stylelint: 16.0.1(typescript@5.3.3)
-      stylelint-config-recommended: 14.0.0(stylelint@16.0.1)
+      stylelint: 16.0.2(typescript@5.3.3)
+      stylelint-config-recommended: 14.0.0(stylelint@16.0.2)
     dev: true
 
-  /stylelint-no-unsupported-browser-features@7.0.0(stylelint@16.0.1):
+  /stylelint-no-unsupported-browser-features@7.0.0(stylelint@16.0.2):
     resolution: {integrity: sha512-O5VYlBhr+lpJ6jeTJSy+SMbHJhW5h5EJxsoicYcTi/07m45V/CF1mQidwRQLjv8y9BFQMpioWz60O89IkmbaNw==}
     engines: {node: '>=16'}
     peerDependencies:
@@ -16259,11 +16260,11 @@ packages:
       doiuse: 6.0.2
       lodash: 4.17.21
       postcss: 8.4.32
-      stylelint: 16.0.1(typescript@5.3.3)
+      stylelint: 16.0.2(typescript@5.3.3)
     dev: true
 
-  /stylelint@16.0.1(typescript@5.3.3):
-    resolution: {integrity: sha512-nPO7f7JBxX0gPwdQs1fBQL+b0PabHykxSQ9HtpobbtV7pe2lb/nmlqxKepPUwHJTi9P9iu+Hkwt1mdmOnkkTVw==}
+  /stylelint@16.0.2(typescript@5.3.3):
+    resolution: {integrity: sha512-SxA/rg3VWxdoHZlW0nmVueWO1E7TAKW4W6mmA3iTxxEF9bIeQdFZu2oiBlQYyNe1pGnOamOqo2XYnI7cs5Bgow==}
     engines: {node: '>=18.12.0'}
     hasBin: true
     dependencies:
@@ -17519,7 +17520,7 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-checker@0.6.2(eslint@8.55.0)(stylelint@16.0.1)(typescript@5.3.3)(vite@4.5.1)(vue-tsc@1.8.25):
+  /vite-plugin-checker@0.6.2(eslint@8.55.0)(stylelint@16.0.2)(typescript@5.3.3)(vite@4.5.1)(vue-tsc@1.8.25):
     resolution: {integrity: sha512-YvvvQ+IjY09BX7Ab+1pjxkELQsBd4rPhWNw8WLBeFVxu/E7O+n6VYAqNsKdK/a2luFlX/sMpoWdGFfg4HvwdJQ==}
     engines: {node: '>=14.16'}
     peerDependencies:
@@ -17563,7 +17564,7 @@ packages:
       npm-run-path: 4.0.1
       semver: 7.5.4
       strip-ansi: 6.0.1
-      stylelint: 16.0.1(typescript@5.3.3)
+      stylelint: 16.0.2(typescript@5.3.3)
       tiny-invariant: 1.3.1
       typescript: 5.3.3
       vite: 4.5.1(@types/node@20.10.4)

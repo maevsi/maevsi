@@ -9,7 +9,7 @@ ENV CI=true
 WORKDIR /srv/app/
 
 RUN apk update \
-    && apk add --no-cache git=2.40.1-r0 \
+    && apk add --no-cache git \
     && corepack enable
 
 
