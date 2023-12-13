@@ -1,22 +1,34 @@
 <template>
   <Card>
-    <div class="flex flex-nowrap items-center gap-4">
-      <slot />
+    <div class="flex items-center gap-4">
+      <div class="px-2">
+        <slot />
+      </div>
       <div class="flex flex-1 flex-col">
         <span class="font-bold">{{ title }}</span>
-        <span class="opacity-60">
+        <span v-if="description" class="opacity-60">
           {{ description }}
         </span>
       </div>
-      <IHeroiconsChevronRight class="opacity-60" />
+      <div class="opacity-60">
+        <slot v-if="$slots.iconSecondary" name="iconSecondary" />
+        <div v-else>
+          <IHeroiconsArrowTopRightOnSquare v-if="isExternal" />
+          <IHeroiconsChevronRight v-else />
+        </div>
+      </div>
     </div>
   </Card>
 </template>
 
 <script setup lang="ts">
 export interface Props {
+  description?: string
+  isExternal?: boolean
   title: string
-  description: string
 }
-withDefaults(defineProps<Props>(), {})
+withDefaults(defineProps<Props>(), {
+  description: undefined,
+  isExternal: undefined,
+})
 </script>
