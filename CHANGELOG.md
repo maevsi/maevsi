@@ -1,3 +1,11 @@
+## [3.20.0](https://github.com/maevsi/maevsi/compare/3.19.4...3.20.0) (2023-12-13)
+
+
+### Features
+
+* add more attributions ([#1494](https://github.com/maevsi/maevsi/issues/1494)) ([d8c2422](https://github.com/maevsi/maevsi/commit/d8c2422586a905a38d6a229774252f853d42049c))
+* **legal-notice:** add more attributions ([9e38d7a](https://github.com/maevsi/maevsi/commit/9e38d7abcba91441ae6e463147a9d1e010f014fc))
+
 ## [3.19.4](https://github.com/maevsi/maevsi/compare/3.19.3...3.19.4) (2023-12-12)
 
 
