@@ -17,7 +17,7 @@
         <IconLogoWithText class="h-10 w-32" />
       </Button>
       <div class="hidden flex-grow lg:block" />
-      <div class="hidden flex-nowrap lg:flex">
+      <div class="hidden lg:flex">
         <label class="hidden" for="search">{{ t('search') }}</label>
         <input
           id="search"
@@ -35,15 +35,7 @@
         </span>
       </div>
       <div class="flex-grow" />
-      <div class="">
-        <ButtonIcon
-          v-if="store.jwtDecoded"
-          :aria-label="t('settings')"
-          class="absolute right-4 top-8 lg:hidden"
-          :to="`/session/edit/${store.jwtDecoded.id}`"
-        >
-          <IHeroiconsBars3 height="2em" width="2em" />
-        </ButtonIcon>
+      <div>
         <div
           class="hidden items-center gap-2 whitespace-nowrap lg:gap-4 2xl:flex"
         >
@@ -141,7 +133,6 @@ de:
   menuShow: Menü anzeigen
   profileLink: Profilseite anzeigen
   search: Suche
-  settings: Einstellungen
   signIn: Anmelden
 en:
   dashboard: Dashboard
@@ -151,6 +142,5 @@ en:
   menuShow: Show menu
   profileLink: Show profile page
   search: Search
-  settings: Settings
   signIn: Sign in
 </i18n>

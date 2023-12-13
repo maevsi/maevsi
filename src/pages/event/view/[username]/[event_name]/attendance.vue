@@ -5,9 +5,10 @@
       class="flex flex-col gap-4"
     >
       <LayoutBreadcrumbs :items="breadcrumbItems" />
-      <h1>
-        {{ t('title') }}
-      </h1>
+      <LayoutPageTitle
+        :title="t('title')"
+        :to="`/event/view/${route.params.username}/${route.params.event_name}`"
+      />
       <Steps
         :active="t('qrCodeScan')"
         :steps="[t('qrCodeScan'), t('nfcWrite')]"

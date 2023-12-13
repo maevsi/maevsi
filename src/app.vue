@@ -10,7 +10,7 @@
     </LazyClientOnly>
     <NuxtLayout>
       <!-- `NuxtLayout` can't have mulitple child nodes (https://github.com/nuxt/nuxt/issues/21759) -->
-      <NuxtPage class="-mt-4 lg:mt-0" />
+      <NuxtPage />
     </NuxtLayout>
     <NuxtLoadingIndicator color="#fff" />
     <VitePwaManifest />

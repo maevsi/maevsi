@@ -2,26 +2,7 @@
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
       <LayoutBreadcrumbs :items="breadcrumbItems" />
-      <ButtonList
-        v-if="store.signedInUsername === routeParamUsername"
-        class="justify-end"
-      >
-        <ButtonColored
-          :aria-label="t('settings')"
-          :to="localePath(`/account/edit/${route.params.username}`)"
-        >
-          {{ t('settings') }}
-          <template #prefix>
-            <IHeroiconsPencil />
-          </template>
-        </ButtonColored>
-        <ButtonColored :aria-label="t('signOut')" @click="signOut">
-          {{ t('signOut') }}
-          <template #prefix>
-            <IHeroiconsOutlineLogout />
-          </template>
-        </ButtonColored>
-      </ButtonList>
+      <LayoutPageTitle :title="routeParamUsername" />
       <div
         class="flex min-w-0 flex-col items-center justify-center sm:flex-row"
       >
@@ -33,9 +14,6 @@
             width="96"
           />
         </div>
-        <h1>
-          {{ routeParamUsername }}
-        </h1>
       </div>
       <ButtonList class="justify-center">
         <ButtonColored
@@ -84,9 +62,7 @@ definePageMeta({
   },
 })
 
-const { signOut } = useSignOut()
 const { t } = useI18n()
-const store = useMaevsiStore()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
@@ -127,10 +103,6 @@ useHeadDefault({
 <i18n lang="yaml">
 de:
   eventsTheir: Veranstaltungen von {name}
-  settings: Bearbeiten
-  signOut: Abmelden
 en:
   eventsTheir: Events by {name}
-  settings: Edit
-  signOut: Sign out
 </i18n>
