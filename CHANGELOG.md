@@ -1,3 +1,10 @@
+## [3.21.0-beta.3](https://github.com/maevsi/maevsi/compare/3.21.0-beta.2...3.21.0-beta.3) (2023-12-13)
+
+
+### Bug Fixes
+
+* **session:** correct support links ([37ed867](https://github.com/maevsi/maevsi/commit/37ed867ef933c83cb5a91714e9badb42ccf80a50))
+
 ## [3.21.0-beta.2](https://github.com/maevsi/maevsi/compare/3.21.0-beta.1...3.21.0-beta.2) (2023-12-13)
 
 
