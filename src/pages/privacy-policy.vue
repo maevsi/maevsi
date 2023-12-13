@@ -1,7 +1,11 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <h1>{{ title }}</h1>
+    <LayoutPageTitle
+      v-if="store.jwtDecoded"
+      :title="title"
+      :to="`/session/edit/${store.jwtDecoded.id}`"
+    />
     <div class="vio-prose-scheme">
       <h2>{{ t('summary') }}</h2>
       <h3>{{ t('generalNotesTitle') }}</h3>
@@ -275,6 +279,7 @@ export const usePageBreadcrumb = () =>
 <script setup lang="ts">
 const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
+const store = useMaevsiStore()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
