@@ -45,7 +45,11 @@ export const getApiData = <
 
 export const getTimezone = () =>
   useNuxtApp().ssrContext?.event.context.$timezone ||
-  useCookie(TIMEZONE_COOKIE_NAME).value ||
+  useCookie(TIMEZONE_COOKIE_NAME, {
+    httpOnly: false,
+    sameSite: 'strict',
+    secure: useRuntimeConfig().public.vio.isInProduction,
+  }).value ||
   process.client
     ? Intl.DateTimeFormat().resolvedOptions().timeZone
     : undefined
