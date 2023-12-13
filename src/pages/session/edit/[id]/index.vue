@@ -116,7 +116,7 @@
             is-block
             is-external
             is-external-icon-disabled
-            to="https://forms.monday.com/forms/f3ef56d13c8383e6ececb2875d7fb4b2?r=euc1"
+            to="https://forms.monday.com/forms/f3ef56d13c8383e6ececb2875d7fb4b2"
           >
             <SessionCard
               :description="t('featureSuggestionDescription')"
@@ -132,7 +132,7 @@
             is-block
             is-external
             is-external-icon-disabled
-            to="https://forms.monday.com/forms/55b8fc2281c2be1647a69e6a4ffe156e?r=euc1"
+            to="https://forms.monday.com/forms/55b8fc2281c2be1647a69e6a4ffe156e"
           >
             <SessionCard
               :description="t('bugReportDescription')"
@@ -148,7 +148,7 @@
             is-block
             is-external
             is-external-icon-disabled
-            to="https://forms.monday.com/forms/0e81ca83a94c11d245471737cd06207e?r=euc1"
+            to="https://forms.monday.com/forms/74204ae8168ecb1dd44c15b502854a5a"
           >
             <SessionCard
               :description="t('contactDescription')"
