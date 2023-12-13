@@ -1,5 +1,8 @@
 <template>
-  <LayoutMenuItem title="Home" to="/">
+  <LayoutMenuItem
+    title="Home"
+    :to="store.signedInUsername ? '/dashboard' : '/'"
+  >
     <IHeroiconsHome />
   </LayoutMenuItem>
   <!-- <ISolarTelescopeBold /> -->
@@ -12,7 +15,11 @@
   </LayoutMenuItem>
   <LayoutMenuItem
     title="Account"
-    :to="`/account/view/${store.signedInUsername}`"
+    :to="
+      store.signedInUsername
+        ? `/account/view/${store.signedInUsername}`
+        : `/session/create`
+    "
   >
     <IHeroiconsUser />
   </LayoutMenuItem>

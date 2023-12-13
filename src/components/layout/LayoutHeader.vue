@@ -1,6 +1,6 @@
 <template>
   <!-- <Loader :api="api" indicator="ping"> -->
-  <header class="mb-8">
+  <header class="lg:mb-8">
     <div class="flex items-center justify-between gap-4">
       <ButtonIcon
         :aria-label="store.isSidebarVisible ? t('menuHide') : t('menuShow')"
@@ -9,11 +9,15 @@
       >
         <IHeroiconsBars3 height="2em" width="2em" />
       </ButtonIcon>
-      <Button :aria-label="t('home')" :to="localePath('/')">
+      <Button
+        :aria-label="t('home')"
+        class="hidden 2xl:block"
+        :to="localePath('/')"
+      >
         <IconLogoWithText class="h-10 w-32" />
       </Button>
       <div class="hidden flex-grow lg:block" />
-      <div class="hidden flex-nowrap lg:flex">
+      <div class="hidden lg:flex">
         <label class="hidden" for="search">{{ t('search') }}</label>
         <input
           id="search"
@@ -30,61 +34,65 @@
           <IHeroiconsMagnifyingGlass />
         </span>
       </div>
-      <div class="hidden flex-grow lg:block" />
-      <div class="flex items-center gap-2 whitespace-nowrap lg:gap-4">
-        <ButtonText
-          :aria-label="t('events')"
-          class="hidden lg:flex"
-          :to="localePath('/event')"
-          :is-primary="false"
-        >
-          {{ t('events') }}
-          <template #prefix>
-            <ISolarTelescopeBold />
-          </template>
-        </ButtonText>
-        <ButtonEventNew class="hidden lg:flex" />
+      <div class="flex-grow" />
+      <div>
         <div
-          class="my-1 hidden w-px flex-none self-stretch bg-gray-300 dark:bg-gray-600 lg:flex"
-        />
-        <ButtonColored
-          v-if="store.signedInAccountId"
-          :aria-label="t('dashboard')"
-          class="mx-2 hidden lg:block"
-          :is-primary="false"
-          :to="localePath('/dashboard')"
+          class="hidden items-center gap-2 whitespace-nowrap lg:gap-4 2xl:flex"
         >
-          {{ t('dashboard') }}
-        </ButtonColored>
-        <ButtonIcon
-          v-if="store.signedInUsername && store.signedInAccountId"
-          :aria-label="store.signedInUsername"
-          :title="t('profileLink')"
-          :to="localePath(`/account/view/${store.signedInUsername}`)"
-        >
-          <AccountProfilePicture
-            :account-id="store.signedInAccountId"
-            classes="h-10 rounded-full w-10"
-            height="40"
-            width="40"
-          />
-        </ButtonIcon>
-        <template v-else>
-          <ButtonIcon
-            :aria-label="t('signIn')"
-            class="h-8 w-8 lg:hidden"
-            :to="localePath('/session/create')"
-          >
-            <IHeroiconsOutlineLogin />
-          </ButtonIcon>
           <ButtonText
-            :aria-label="t('signIn')"
-            class="hidden lg:inline-block"
-            :to="localePath('/session/create')"
+            :aria-label="t('events')"
+            class="hidden lg:flex"
+            :to="localePath('/event')"
+            :is-primary="false"
           >
-            {{ t('signIn') }}
+            {{ t('events') }}
+            <template #prefix>
+              <ISolarTelescopeBold />
+            </template>
           </ButtonText>
-        </template>
+          <ButtonEventNew class="hidden lg:flex" />
+          <div
+            class="my-1 hidden w-px flex-none self-stretch bg-gray-300 dark:bg-gray-600 lg:flex"
+          />
+          <ButtonColored
+            v-if="store.signedInAccountId"
+            :aria-label="t('dashboard')"
+            class="mx-2 hidden lg:block"
+            :is-primary="false"
+            :to="localePath('/dashboard')"
+          >
+            {{ t('dashboard') }}
+          </ButtonColored>
+          <ButtonIcon
+            v-if="store.signedInUsername && store.signedInAccountId"
+            :aria-label="store.signedInUsername"
+            :title="t('profileLink')"
+            :to="localePath(`/account/view/${store.signedInUsername}`)"
+          >
+            <AccountProfilePicture
+              :account-id="store.signedInAccountId"
+              classes="h-10 rounded-full w-10"
+              height="40"
+              width="40"
+            />
+          </ButtonIcon>
+          <template v-else>
+            <ButtonIcon
+              :aria-label="t('signIn')"
+              class="h-8 w-8 lg:hidden"
+              :to="localePath('/session/create')"
+            >
+              <IHeroiconsOutlineLogin />
+            </ButtonIcon>
+            <ButtonText
+              :aria-label="t('signIn')"
+              class="hidden lg:inline-block"
+              :to="localePath('/session/create')"
+            >
+              {{ t('signIn') }}
+            </ButtonText>
+          </template>
+        </div>
       </div>
     </div>
   </header>

@@ -2,9 +2,8 @@
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
     <h1>{{ title }}</h1>
-    <CardStateInfo>
-      {{ t('filterSoon') }}
-    </CardStateInfo>
+    <!-- TODO: offer proper search -->
+    <EventList />
   </div>
 </template>
 
@@ -44,9 +43,7 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  filterSoon: Es wird bald möglich sein, nach Veranstaltungen oder Nutzern zu suchen.
   title: Suche
 en:
-  filterSoon: It will soon be possible to search for events or users.
   title: Search
 </i18n>

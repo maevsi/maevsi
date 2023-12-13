@@ -578,11 +578,15 @@ useHeadDefault({
     description: descriptionSeo,
   },
 })
-defineOgImage({
-  alt: t('ogImageAlt'),
-  component: 'Event',
-  description: descriptionSeo.value,
-})
+defineOgImageComponent(
+  'Event',
+  {
+    description: descriptionSeo.value,
+  },
+  {
+    alt: t('ogImageAlt'),
+  },
+)
 </script>
 
 <i18n lang="yaml">

@@ -3,7 +3,7 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 import type { PluginAPI } from 'tailwindcss/types/config'
 
-const gray = colors.gray // or slate, zinc, neutral, stone
+const gray = colors.zinc // or gray, neutral, slate, stone
 const truncateOverflow = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
@@ -52,7 +52,7 @@ export default {
           cursor: theme('cursor.not-allowed'),
           opacity: theme('opacity.50'),
         },
-        'a[target="_blank"]:after': {
+        'a[target="_blank"]:not([is-external-icon-disabled]):after': {
           backgroundColor: 'currentColor',
           content: '""',
           display: 'inline-table', // inline-table centers the element vertically in the tiptap text area, instead of inline-block

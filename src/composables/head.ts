@@ -66,7 +66,7 @@ export const useHeadDefault = ({
   const { t } = useI18n()
 
   const defaults: Parameters<typeof useServerSeoMeta>[0] = {
-    description: t('globalSeoSiteDescription'), // TODO: remove (https://github.com/harlan-zw/nuxt-site-config/pull/7)
+    description: t('globalSeoSiteDescription'), // TODO: remove (https://github.com/harlan-zw/nuxt-site-config/issues/11)
     msapplicationConfig: `/assets/static/favicon/browserconfig.xml?v=${CACHE_VERSION}`,
     title,
     twitterDescription: t('globalSeoSiteDescription'),

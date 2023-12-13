@@ -2,26 +2,28 @@
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
       <LayoutBreadcrumbs :items="breadcrumbItems" />
-      <div
-        class="flex min-w-0 flex-col items-center justify-center sm:flex-row"
-      >
+      <LayoutPageTitle
+        v-if="store.jwtDecoded"
+        :title="routeParamUsername"
+        :to="`/session/edit/${store.jwtDecoded.id}`"
+      />
+      <section class="flex justify-center">
         <Button
           :aria-label="t('profilePictureChange')"
-          class="sm:mr-4"
           @click="showModalUploadSelection"
         >
-          <AccountProfilePicture
-            :account-id="account?.id"
-            classes="h-24 rounded w-24"
-            height="96"
-            width="96"
-          />
+          <div class="flex items-center gap-4">
+            <AccountProfilePicture
+              :account-id="account?.id"
+              classes="h-24 rounded w-24"
+              height="96"
+              width="96"
+            />
+            <IHeroiconsPencil />
+          </div>
         </Button>
-        <h1>
-          {{ routeParamUsername }}
-        </h1>
         <ModalUploadSelection @select="onUploadSelect" />
-      </div>
+      </section>
       <section>
         <h2>{{ t('titlePasswordChange') }}</h2>
         <FormAccountPasswordChange />
