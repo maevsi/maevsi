@@ -81,6 +81,7 @@
           </Button>
           <Button
             :aria-label="t('legalNotice')"
+            class="rounded-lg text-left"
             is-block
             :to="localePath('/legal-notice')"
           >
@@ -93,6 +94,7 @@
           </Button>
           <Button
             :aria-label="t('privacyPolicy')"
+            class="rounded-lg text-left"
             is-block
             :to="localePath('/privacy-policy')"
           >
@@ -110,6 +112,7 @@
         <div class="flex flex-col gap-2">
           <Button
             :aria-label="t('privacyPolicy')"
+            class="rounded-lg text-left"
             is-block
             is-external
             is-external-icon-disabled
@@ -125,6 +128,7 @@
           </Button>
           <Button
             :aria-label="t('privacyPolicy')"
+            class="rounded-lg text-left"
             is-block
             is-external
             is-external-icon-disabled
@@ -140,6 +144,7 @@
           </Button>
           <Button
             :aria-label="t('privacyPolicy')"
+            class="rounded-lg text-left"
             is-block
             is-external
             is-external-icon-disabled
@@ -160,6 +165,7 @@
         <div class="flex flex-col gap-2">
           <Button
             :aria-label="t('status')"
+            class="rounded-lg text-left"
             is-external
             is-external-icon-disabled
             is-block
@@ -175,6 +181,7 @@
           </Button>
           <Button
             :aria-label="t('sourceCode')"
+            class="rounded-lg text-left"
             is-external
             is-external-icon-disabled
             is-block
@@ -190,6 +197,7 @@
           </Button>
           <Button
             :aria-label="t('developerInformation')"
+            class="rounded-lg text-left"
             is-block
             :to="`/session/view/${route.params.id}`"
           >
