@@ -68,6 +68,40 @@
         <br />
         <i18n-t keypath="attributionDescription">
           <template #author>
+            {{ t('heroiconsAuthor') }}
+          </template>
+          <template #license>
+            <AppLink
+              is-external
+              to="https://github.com/tailwindlabs/heroicons/blob/master/LICENSE"
+            >
+              {{ t('licenseMIT') }}
+            </AppLink>
+          </template>
+          <template #title>
+            {{ t('heroicons') }}
+          </template>
+        </i18n-t>
+        <br />
+        <i18n-t keypath="attributionDescription">
+          <template #author>
+            {{ t('materialSymbolsAuthor') }}
+          </template>
+          <template #license>
+            <AppLink
+              is-external
+              to="https://github.com/google/material-design-icons/blob/master/LICENSE"
+            >
+              {{ t('licenseApache20') }}
+            </AppLink>
+          </template>
+          <template #title>
+            {{ t('materialSymbols') }}
+          </template>
+        </i18n-t>
+        <br />
+        <i18n-t keypath="attributionDescription">
+          <template #author>
             {{ t('solarAuthor') }}
           </template>
           <template #license>
@@ -137,13 +171,19 @@ de:
   email: "E-Mail: contact+legal-notice{'@'}maev.si"
   fontAwesome: Font Awesome
   fontAwesomeAuthor: Dave Gandy
+  heroicons: HeroIcons
+  heroiconsAuthor: Refactoring UI Inc
   liabilityContentDescription1: Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
   liabilityContentDescription2: Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
   liabilityContentTitle: Haftung für Inhalte
   liabilityLinksDescription1: Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.
   liabilityLinksDescription2: Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
   liabilityLinksTitle: Haftung für Links
+  licenseApache20: Apache 2.0
   licenseCCBY40: CC BY 4.0
+  licenseMIT: MIT
+  materialSymbols: Material Symbols
+  materialSymbolsAuthor: Google
   responsibility: Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
   solar: Solar
   solarAuthor: 480 Design
@@ -164,13 +204,19 @@ en:
   email: "Email: contact+legal-notice{'@'}maev.si"
   fontAwesome: Font Awesome
   fontAwesomeAuthor: Dave Gandy
+  heroicons: HeroIcons
+  heroiconsAuthor: Refactoring UI Inc
   liabilityContentDescription1: As a service provider, we are responsible for our own content on these pages in accordance with general legislation pursuant to Section 7 (1) of the German Telemedia Act (TMG). According to §§ 8 to 10 TMG, however, we are not obligated as a service provider to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.
   liabilityContentDescription2: Obligations to remove or block the use of information according to general laws remain unaffected. However, liability in this regard is only possible from the time of knowledge of a concrete infringement. If we become aware of such infringements, we will remove this content immediately.
   liabilityContentTitle: Liability for content
   liabilityLinksDescription1: Our offer contains links to external websites of third parties, on whose contents we have no influence. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the pages is always responsible for the content of the linked pages. The linked pages were checked for possible legal violations at the time of linking. Illegal contents were not recognizable at the time of linking.
   liabilityLinksDescription2: However, a permanent control of the contents of the linked pages is not reasonable without concrete evidence of a violation of the law. If we become aware of any infringements, we will remove such links immediately.
   liabilityLinksTitle: Liability for links
+  licenseApache20: Apache 2.0
   licenseCCBY40: CC BY 4.0
+  licenseMIT: MIT
+  materialSymbols: Material Symbols
+  materialSymbolsAuthor: Google
   responsibility: Responsible for the content according to § 55 para. 2 RStV
   solar: Solar
   solarAuthor: 480 Design
