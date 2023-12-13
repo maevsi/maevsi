@@ -104,7 +104,7 @@
     "lodash-es": "4.17.21",
     "mustache": "4.2.0",
     "nuxt": "3.8.2",
-    "nuxt-security": "1.0.0-rc.4",
+    "nuxt-security": "1.0.0",
     "nuxt-seo-ui": "0.4.4",
     "nuxt-typed-router": "3.5.0",
     "pg": "8.11.3",

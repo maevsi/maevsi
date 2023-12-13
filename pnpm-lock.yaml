@@ -268,8 +268,8 @@ importers:
         specifier: 3.8.2
         version: 3.8.2(@types/node@20.10.4)(eslint@8.55.0)(rollup@2.79.1)(stylelint@16.0.2)(typescript@5.3.3)(vite@5.0.7)(vue-tsc@1.8.25)
       nuxt-security:
-        specifier: 1.0.0-rc.4
-        version: 1.0.0-rc.4(rollup@2.79.1)
+        specifier: 1.0.0
+        version: 1.0.0(rollup@2.79.1)
       nuxt-seo-ui:
         specifier: 0.4.4
         version: 0.4.4(nuxt@3.8.2)(rollup@2.79.1)(vite@5.0.7)(vue@3.3.11)
@@ -13063,8 +13063,8 @@ packages:
       - vue
     dev: true
 
-  /nuxt-security@1.0.0-rc.4(rollup@2.79.1):
-    resolution: {integrity: sha512-xYj0+kXpgePq59UPTZ73eGN74LT2ByFMbobV5eZkePVLWwa8MNl1j0XhM2IjdBhowFnCMasApU2P/dnP27J96g==}
+  /nuxt-security@1.0.0(rollup@2.79.1):
+    resolution: {integrity: sha512-3e5oL3uPZvTBbEyN40YNbXNz1RiaFrBqSuGAI80YHBo5SdWjoLXXvAO5TOKiYUYwnRyf7hDuODOeyoe8+qiR/w==}
     dependencies:
       '@nuxt/kit': 3.8.2(rollup@2.79.1)
       basic-auth: 2.0.1
