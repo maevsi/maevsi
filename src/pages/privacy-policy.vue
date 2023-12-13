@@ -2,9 +2,12 @@
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle
-      v-if="store.jwtDecoded"
       :title="title"
-      :to="`/session/edit/${store.jwtDecoded.id}`"
+      :to="
+        store.jwtDecoded?.id
+          ? `/session/edit/${store.jwtDecoded.id}`
+          : undefined
+      "
     />
     <div class="vio-prose-scheme">
       <h2>{{ t('summary') }}</h2>
