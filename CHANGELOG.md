@@ -1,3 +1,10 @@
+## [3.20.0-beta.3](https://github.com/maevsi/maevsi/compare/3.20.0-beta.2...3.20.0-beta.3) (2023-12-13)
+
+
+### Bug Fixes
+
+* **session:** use page title layout ([94f3839](https://github.com/maevsi/maevsi/commit/94f3839a4a0751ed63a2b3148fcefd1943bca2ed))
+
 ## [3.20.0-beta.2](https://github.com/maevsi/maevsi/compare/3.20.0-beta.1...3.20.0-beta.2) (2023-12-13)
 
 
