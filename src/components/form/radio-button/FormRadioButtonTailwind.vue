@@ -20,7 +20,7 @@
               ? 'rounded-bl-md rounded-br-md'
               : '',
             checked
-              ? 'z-10 border-indigo-200 bg-indigo-50 dark:border-zinc-950 dark:bg-zinc-900'
+              ? 'z-10 border-indigo-200 bg-indigo-50 dark:border-indigo-900 dark:bg-zinc-600'
               : 'border-gray-200 dark:border-gray-800',
             'relative flex cursor-pointer flex-col border p-4 focus:outline-none md:grid md:grid-cols-3 md:pl-4 md:pr-6',
           ]"
@@ -29,14 +29,18 @@
             <span
               :class="[
                 checked
-                  ? 'border-transparent bg-indigo-600'
-                  : 'border-gray-300 bg-white',
-                active ? 'ring-2 ring-indigo-600 ring-offset-2' : '',
+                  ? 'border-transparent bg-indigo-600 dark:bg-indigo-400'
+                  : 'border-gray-300 bg-white dark:border-zinc-500 dark:bg-zinc-600',
+                active
+                  ? 'ring-2 ring-indigo-600 ring-offset-2 dark:ring-indigo-400 dark:ring-offset-zinc-600'
+                  : '',
                 'flex h-4 w-4 items-center justify-center rounded-full border',
               ]"
               aria-hidden="true"
             >
-              <span class="h-1.5 w-1.5 rounded-full bg-white" />
+              <span
+                class="h-1.5 w-1.5 rounded-full bg-white dark:bg-zinc-600"
+              />
             </span>
             <RadioGroupLabel
               as="span"
