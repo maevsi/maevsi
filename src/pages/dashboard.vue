@@ -6,59 +6,68 @@
     </h1>
     <div
       v-if="store.jwtDecoded?.role === 'maevsi_account'"
-      class="flex flex-col gap-4"
+      class="flex flex-col gap-8"
     >
-      <div class="flex gap-4">
-        <section class="lg:w-1/2">
-          <h2>{{ t('eventsMine') }}</h2>
-          <ButtonColored
-            :aria-label="t('eventsMine')"
-            :to="localePath(`/event/view/${store.signedInUsername}`)"
+      <section class="flex flex-col gap-4">
+        <Button
+          :aria-label="t('events')"
+          class="rounded-lg text-left"
+          is-block
+          :to="localePath(`/event/view/${store.signedInUsername}`)"
+        >
+          <SessionCard
+            :description="t('eventsDescription')"
+            :title="t('events')"
           >
-            {{ t('eventsMine') }}
-            <template #prefix>
-              <IHeroiconsCalendar />
-            </template>
-          </ButtonColored>
-        </section>
-        <section class="lg:w-1/2">
-          <h2>{{ t('invitationsMine') }}</h2>
-          <CardStateInfo>
-            {{ t('invitationsMineDescription') }}
-          </CardStateInfo>
-        </section>
-      </div>
-      <div class="flex gap-4">
-        <section class="lg:w-1/2">
-          <h2>{{ t('contactsMine') }}</h2>
-          <ButtonColored
-            :aria-label="t('contactsMine')"
-            :to="localePath('/contact')"
+            <IHeroiconsCalendar />
+          </SessionCard>
+        </Button>
+        <Button
+          :aria-label="t('invitations')"
+          class="rounded-lg text-left"
+          disabled
+          is-block
+          :to="localePath(`/invitation`)"
+        >
+          <SessionCard
+            :description="t('invitationsDescription')"
+            :title="t('invitations')"
           >
-            {{ t('contactsMine') }}
-            <template #prefix>
-              <IHeroiconsUsers />
-            </template>
-          </ButtonColored>
-        </section>
-        <section class="lg:w-1/2">
-          <h2>{{ t('uploadsMine') }}</h2>
-          <ButtonColored
-            :aria-label="t('uploadsMine')"
-            :to="localePath('/upload')"
+            <ISolarLetterLinear />
+          </SessionCard>
+        </Button>
+        <Button
+          :aria-label="t('contacts')"
+          class="rounded-lg text-left"
+          disabled
+          is-block
+          :to="localePath(`/contact`)"
+        >
+          <SessionCard
+            :description="t('contactsDescription')"
+            :title="t('contacts')"
           >
-            {{ t('uploadsMine') }}
-            <template #prefix>
-              <IHeroiconsFolder />
-            </template>
-          </ButtonColored>
-        </section>
-      </div>
-      <section>
+            <IHeroiconsUsers />
+          </SessionCard>
+        </Button>
+        <Button
+          :aria-label="t('uploads')"
+          class="rounded-lg text-left"
+          disabled
+          is-block
+          :to="localePath(`/upload`)"
+        >
+          <SessionCard
+            :description="t('uploadsDescription')"
+            :title="t('uploads')"
+          >
+            <IHeroiconsFolder />
+          </SessionCard>
+        </Button>
+      </section>
+      <section class="flex flex-col gap-4">
         <h2>{{ t('news') }}</h2>
-        <CardStateInfo>
-          {{ t('newsDescription') }}
-        </CardStateInfo>
+        <LayoutFeed />
       </section>
     </div>
     <LayoutCallToAction
@@ -106,23 +115,27 @@ useHeadDefault({ title })
 de:
   anonymousCta: Finde ihn auf maevsi
   anonymousCtaDescription: Dir fehlt der Überblick über Veranstaltungen?
-  contactsMine: Meine Kontake
-  eventsMine: Meine Veranstaltungen
-  invitationsMine: Meine Einladungen
-  invitationsMineDescription: Hier wirst du bald die Veranstaltungen sehen, zu denen du eingeladen bist.
+  contacts: Kontake
+  contactsDescription: Informationen zu all deinen Gästen
+  events: Veranstaltungen
+  eventsDescription: Organisiere deine eigenen Veranstaltungen
+  invitations: Einladungen
+  invitationsDescription: Sieh nach, wo du eingeladen bist
   news: Ereignisverlauf
-  newsDescription: Hier wirst du bald alle für dich relevanten Neuigkeiten sehen.
   title: Dashboard
-  uploadsMine: Meine Uploads
+  uploads: Uploads
+  uploadsDescription: Teile deine Dateien
 en:
   anonymousCta: Find it on maevsi
   anonymousCtaDescription: Are you missing an overview of events?
-  contactsMine: My contacts
-  eventsMine: My events
-  invitationsMine: My invitations
-  invitationsMineDescription: Here you will soon see the events to which you are invited.
+  contacts: Contacts
+  contactsDescription: Information on all your guests
+  events: Events
+  eventsDescription: Organize your own events
+  invitations: Invitations
+  invitationsDescription: See where you're invited
   news: Recent changes
-  newsDescription: Here you will soon see all the news relevant to you.
   title: Dashboard
-  uploadsMine: My uploads
+  uploads: Uploads
+  uploadsDescription: Share your files
 </i18n>
