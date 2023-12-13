@@ -1,10 +1,39 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <h1>{{ title }}</h1>
-    <CardStateInfo>
-      {{ t('soon') }}
-    </CardStateInfo>
+    <h1>
+      {{ title }}
+    </h1>
+    <div class="flex flex-col gap-8">
+      <section
+        v-if="store.signedInAccountId && store.signedInUsername"
+        class="flex flex-col gap-4"
+      >
+        <h2>{{ t('friendRequests') }}</h2>
+        <div>
+          <NotificationFriendRequest
+            :account-id="store.signedInAccountId"
+            :username="store.signedInUsername"
+          />
+          <!-- <NotificationFriendRequest
+            :account-id="store.signedInAccountId"
+            :username="store.signedInUsername"
+          />
+          <NotificationFriendRequest
+            :account-id="store.signedInAccountId"
+            :username="store.signedInUsername"
+          /> -->
+        </div>
+      </section>
+      <section class="flex flex-col gap-4">
+        <h2>{{ t('general') }}</h2>
+        <div>
+          <NotificationGeneral />
+          <!-- <NotificationGeneral />
+          <NotificationGeneral /> -->
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -25,6 +54,7 @@ export const usePageBreadcrumb = () =>
 <script setup lang="ts">
 const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
+const store = useMaevsiStore()
 
 // data
 const breadcrumbItems = defineBreadcrumbItems(
@@ -44,9 +74,11 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
+  friendRequests: Freundschaftsanfragen
+  general: Allgemein
   notifications: Benachrichtigungen
-  soon: Hier wirst du bald alles im Blick behalten können, was du nicht verpassen möchtest.
 en:
+  friendRequests: Friend requests
+  general: General
   notifications: Notifications
-  soon: Here, you will soon be able to see what you don't want to miss out on.
 </i18n>
