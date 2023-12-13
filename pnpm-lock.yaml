@@ -54,6 +54,9 @@ importers:
       '@graphql-typed-document-node/core':
         specifier: 3.2.0
         version: 3.2.0(graphql@16.8.1)
+      '@headlessui/vue':
+        specifier: 1.7.16
+        version: 1.7.16(vue@3.3.11)
       '@http-util/status-i18n':
         specifier: 0.8.1
         version: 0.8.1
@@ -69,6 +72,9 @@ importers:
       '@iconify-json/heroicons-outline':
         specifier: 1.1.10
         version: 1.1.10
+      '@iconify-json/material-symbols':
+        specifier: 1.1.67
+        version: 1.1.67
       '@iconify-json/solar':
         specifier: 1.1.9
         version: 1.1.9
@@ -3277,6 +3283,15 @@ packages:
       graphql: 16.8.1
     dev: true
 
+  /@headlessui/vue@1.7.16(vue@3.3.11):
+    resolution: {integrity: sha512-nKT+nf/q6x198SsyK54mSszaQl/z+QxtASmgMEJtpxSX2Q0OPJX0upS/9daDyiECpeAsvjkoOrm2O/6PyBQ+Qg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.3.11(typescript@5.3.3)
+    dev: true
+
   /@html-validate/stylish@4.2.0:
     resolution: {integrity: sha512-Nl8HCv0hGRSLQ+n1OD4Hk3a+Urwk9HH0vQkAzzCarT4KlA7bRl+6xEiS5PZVwOmjtC7XiH/oNe3as9Fxcr2A1w==}
     engines: {node: '>= 16'}
@@ -3341,6 +3356,12 @@ packages:
 
   /@iconify-json/logos@1.1.41:
     resolution: {integrity: sha512-nq69aemSNSxsPh6hDx6QHQBZca6vQzTg6fUXdo996IQe41TNueyJrQXjdhaZr0jaqGEforuSPGLB16SMSZ+T2A==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/material-symbols@1.1.67:
+    resolution: {integrity: sha512-wGvPLGMfunJL0sGzRVjZ7TUng86d5JMKBlRnOhHU+lBYaeeJmbKWQOQ6aJPK0oxl0PJBnNctHDitXTDTobe4Ng==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
