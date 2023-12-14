@@ -1,24 +1,26 @@
 <template>
   <LayoutMenuItem
     title="Home"
-    :to="store.signedInUsername ? '/dashboard' : '/'"
+    :to="localePath(store.signedInUsername ? '/dashboard' : '/')"
   >
     <IHeroiconsHome />
   </LayoutMenuItem>
   <!-- <ISolarTelescopeBold /> -->
-  <LayoutMenuItem title="Search" to="/search">
+  <LayoutMenuItem title="Search" :to="localePath('/search')">
     <IHeroiconsMagnifyingGlass />
   </LayoutMenuItem>
   <!-- <IHeroiconsBell /> -->
-  <LayoutMenuItem title="Notifications" to="/notification">
+  <LayoutMenuItem title="Notifications" :to="localePath('/notification')">
     <IHeroiconsHeart />
   </LayoutMenuItem>
   <LayoutMenuItem
     title="Account"
     :to="
-      store.signedInUsername
-        ? `/account/view/${store.signedInUsername}`
-        : `/session/create`
+      localePath(
+        store.signedInUsername
+          ? `/account/view/${store.signedInUsername}`
+          : '/session/create',
+      )
     "
   >
     <IHeroiconsUser />
@@ -27,4 +29,5 @@
 
 <script setup lang="ts">
 const store = useMaevsiStore()
+const localePath = useLocalePath()
 </script>
