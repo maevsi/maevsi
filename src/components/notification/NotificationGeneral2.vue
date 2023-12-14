@@ -1,8 +1,9 @@
 <template>
   <Card>
+    <!-- TODO: merge with v1 -->
     <div class="flex items-center gap-4">
       <div class="px-2">
-        <IHeroiconsMapPinSolid />
+        <IHeroiconsHeart />
       </div>
       <div class="flex flex-1 flex-col">
         <i18n-t keypath="message" tag="span">
@@ -13,7 +14,6 @@
           </template>
         </i18n-t>
       </div>
-      <div class="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400" />
     </div>
   </Card>
 </template>
@@ -24,9 +24,9 @@ const { t } = useI18n()
 
 <i18n lang="yaml">
 de:
-  category: 'Neu:'
-  message: '{category} Ortswechsel bei einer Veranstaltung'
+  category: 'Du bist eingeladen:'
+  message: '{category} TrapParty 23 von Jonas'
 en:
-  category: 'News:'
-  message: '{category} place changed for an event'
+  category: 'You are invited:'
+  message: '{category} TrapParty 23 by Jonas'
 </i18n>

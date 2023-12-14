@@ -7,7 +7,7 @@
         v-if="store.signedInAccountId && store.signedInUsername"
         class="flex flex-col gap-4"
       >
-        <h2>{{ t('friendRequests') }}</h2>
+        <!-- <h2>{{ t('friendRequests') }}</h2> -->
         <div>
           <NotificationFriendRequest
             :account-id="store.signedInAccountId"
@@ -24,11 +24,11 @@
         </div>
       </section>
       <section class="flex flex-col gap-4">
-        <h2>{{ t('general') }}</h2>
-        <div>
+        <!-- <h2>{{ t('general') }}</h2> -->
+        <div class="flex flex-col gap-2">
           <NotificationGeneral />
-          <!-- <NotificationGeneral />
-          <NotificationGeneral /> -->
+          <NotificationGeneral2 />
+          <!-- <NotificationGeneral /> -->
         </div>
       </section>
     </div>
