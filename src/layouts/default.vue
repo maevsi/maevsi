@@ -1,6 +1,6 @@
 <template>
   <div class="flex min-h-screen lg:h-screen 2xl:h-auto">
-    <LayoutSidebar class="hidden lg:block 2xl:hidden" />
+    <LayoutMenuSidebar class="hidden lg:block 2xl:hidden" />
     <div
       class="container mx-auto flex flex-1 shrink flex-col p-4 md:px-8 lg:block lg:overflow-y-auto"
       :data-is-loading="isLoading"
@@ -100,7 +100,7 @@
           </ClientOnly>
         </LayoutFooterCategory>
       </LayoutFooter>
-      <LayoutBottomNavigation />
+      <LayoutMenuBottomNavigation />
     </div>
   </div>
 </template>
