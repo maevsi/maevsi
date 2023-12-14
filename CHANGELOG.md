@@ -1,3 +1,17 @@
+## [3.21.0-beta.4](https://github.com/maevsi/maevsi/compare/3.21.0-beta.3...3.21.0-beta.4) (2023-12-14)
+
+
+### Features
+
+* **form-radio-buttom:** try blue on dark ([3c1c984](https://github.com/maevsi/maevsi/commit/3c1c984e0c9ccca9720b23a27139c6dc766a9d2b))
+* **invitation:** add placeholder content ([c2a2b2c](https://github.com/maevsi/maevsi/commit/c2a2b2ce6aeec3536e0b20884a75af7edde31da9))
+* **page:** extend page title layout usage ([3270c83](https://github.com/maevsi/maevsi/commit/3270c834e16b91b88d3606e85c0af7641ababa88))
+
+
+### Bug Fixes
+
+* **layout-menu:** use locale paths ([d80c2dc](https://github.com/maevsi/maevsi/commit/d80c2dc41cdef7026c5e0b75e9a43caa0d3faa7a))
+
 ## [3.21.0-beta.3](https://github.com/maevsi/maevsi/compare/3.21.0-beta.2...3.21.0-beta.3) (2023-12-13)
 
 
