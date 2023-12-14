@@ -1,9 +1,7 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <h1>
-      {{ title }}
-    </h1>
+    <LayoutPageTitle :title="title" />
     <div
       v-if="store.jwtDecoded?.role === 'maevsi_account'"
       class="flex flex-col gap-8"

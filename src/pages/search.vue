@@ -1,7 +1,7 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <h1>{{ title }}</h1>
+    <LayoutPageTitle :title="title" />
     <!-- TODO: offer proper search -->
     <EventList />
   </div>

@@ -1,9 +1,7 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <h1>
-      {{ title }}
-    </h1>
+    <LayoutPageTitle :title="title" />
     <div class="flex flex-col gap-8">
       <section
         v-if="store.signedInAccountId && store.signedInUsername"
