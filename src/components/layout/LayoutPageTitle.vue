@@ -3,7 +3,7 @@
     <ButtonIcon v-if="props.to" :aria-label="t('back')" :to="props.to">
       <IHeroiconsChevronLeft />
     </ButtonIcon>
-    <div class="flex-1">
+    <div class="flex-1 overflow-hidden">
       <slot v-if="$slots.default" />
       <h1 v-else>
         {{ title }}
@@ -12,7 +12,7 @@
     <ButtonIcon
       v-if="isButtonEventCreateShown"
       :aria-label="t('eventCreate')"
-      class="2xl:hidden"
+      class="shrink-0 2xl:hidden"
       :to="localePath(`/event/create`)"
     >
       <ISolarCalendarAddOutline height="2em" width="2em" />
@@ -20,7 +20,7 @@
     <ButtonIcon
       v-if="store.jwtDecoded"
       :aria-label="t('settings')"
-      class="2xl:hidden"
+      class="shrink-0 2xl:hidden"
       :to="localePath(`/session/edit/${store.jwtDecoded.id}`)"
     >
       <IHeroiconsBars3 height="2em" width="2em" />
