@@ -1,16 +1,10 @@
 <template>
   <Loader :api="api">
-    <div v-if="events?.length" class="flex flex-col gap-4">
-      <div v-if="isButtonEventListShown" class="px-1">
-        <ButtonEventList />
-      </div>
-      <ul class="flex flex-col gap-4">
+    <div v-if="events?.length" class="flex flex-col items-center gap-4">
+      <ul class="flex w-full flex-col gap-4">
         <EventListItem v-for="event in events" :key="event.id" :event="event" />
       </ul>
-      <div
-        v-if="api.data.allEvents?.pageInfo.hasNextPage"
-        class="flex justify-center"
-      >
+      <div v-if="api.data.allEvents?.pageInfo.hasNextPage">
         <ButtonColored
           :aria-label="t('globalShowMore')"
           @click="after = api.data.allEvents?.pageInfo.endCursor"
@@ -34,7 +28,6 @@ const props = withDefaults(defineProps<Props>(), {
   accountId: undefined,
 })
 
-const route = useRoute()
 const { t } = useI18n()
 
 // refs
@@ -52,12 +45,6 @@ const events = computed(
     eventsQuery.data.value?.allEvents?.nodes
       .map((x) => getEventItem(x))
       .filter(isNeitherNullNorUndefined) || [],
-)
-
-// data
-const isButtonEventListShown = ref(
-  typeof route.name === 'string' &&
-    route.name?.replace(/___.+$/, '') !== 'event',
 )
 </script>
 

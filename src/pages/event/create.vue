@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
+    <LayoutPageTitle :is-button-event-create-shown="false" :title="title" />
     <FormEvent v-if="store.jwtDecoded?.role === 'maevsi_account'" />
     <LayoutCallToAction
       v-else

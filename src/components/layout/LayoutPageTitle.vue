@@ -1,11 +1,22 @@
 <template>
-  <div class="flex items-center gap-4">
+  <div class="flex items-baseline gap-4">
     <ButtonIcon v-if="props.to" :aria-label="t('back')" :to="props.to">
       <IHeroiconsChevronLeft />
     </ButtonIcon>
-    <h1 class="flex-1">
-      {{ title }}
-    </h1>
+    <div class="flex-1">
+      <slot v-if="$slots.default" />
+      <h1 v-else>
+        {{ title }}
+      </h1>
+    </div>
+    <ButtonIcon
+      v-if="isButtonEventCreateShown"
+      :aria-label="t('eventCreate')"
+      class="2xl:hidden"
+      :to="localePath(`/event/create`)"
+    >
+      <ISolarCalendarAddOutline height="2em" width="2em" />
+    </ButtonIcon>
     <ButtonIcon
       v-if="store.jwtDecoded"
       :aria-label="t('settings')"
@@ -21,10 +32,12 @@
 import type { NuxtRoute, RoutesNamesList } from '@typed-router'
 
 export interface Props<T extends RoutesNamesList, P extends string> {
+  isButtonEventCreateShown?: boolean
   title: string
   to?: NuxtRoute<T, P>
 }
 const props = withDefaults(defineProps<Props<T, P>>(), {
+  isButtonEventCreateShown: true,
   to: undefined,
 })
 
@@ -36,8 +49,10 @@ const localePath = useLocalePath()
 <i18n lang="yaml">
 de:
   back: zurück
+  eventCreate: Veranstaltung erstellen
   settings: Einstellungen
 en:
   back: back
+  eventCreate: Create event
   settings: Settings
 </i18n>
