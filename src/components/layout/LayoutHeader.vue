@@ -50,7 +50,7 @@
               <ISolarTelescopeBold />
             </template>
           </ButtonText>
-          <ButtonEventNew class="hidden lg:flex" />
+          <ButtonEventNew class="hidden lg:flex" variant="text" />
           <div
             class="my-1 hidden w-px flex-none self-stretch bg-gray-300 dark:bg-gray-600 lg:flex"
           />
