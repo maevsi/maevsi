@@ -14,11 +14,5 @@
     "husky": "8.0.3",
     "jiti": "1.21.0",
     "lint-staged": "15.2.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "nuxt-site-config": "1.2.2",
-      "nuxt-schema-org": "3.0.1"
-    }
   }
 }
