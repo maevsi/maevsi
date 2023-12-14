@@ -1,3 +1,11 @@
+## [3.21.0-beta.6](https://github.com/maevsi/maevsi/compare/3.21.0-beta.5...3.21.0-beta.6) (2023-12-14)
+
+
+### Bug Fixes
+
+* **deps:** update ([ff7b4c3](https://github.com/maevsi/maevsi/commit/ff7b4c3192823542bd2c94c8a970bd2bdb5218c9))
+* schedule release ([383c277](https://github.com/maevsi/maevsi/commit/383c277063d11e6cba679ff16434c855eaef06ea))
+
 ## [3.21.0-beta.5](https://github.com/maevsi/maevsi/compare/3.21.0-beta.4...3.21.0-beta.5) (2023-12-14)
 
 
