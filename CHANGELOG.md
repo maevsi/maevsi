@@ -125,6 +125,20 @@
 
 * **invitation:** return to list when exiting preview ([b7e9a99](https://github.com/maevsi/maevsi/commit/b7e9a99ece74da93140dec6d3f3ecddcefa6c30c))
 
+## [3.20.2](https://github.com/maevsi/maevsi/compare/3.20.1...3.20.2) (2023-12-14)
+
+
+### Bug Fixes
+
+* **deps:** update ([ff7b4c3](https://github.com/maevsi/maevsi/commit/ff7b4c3192823542bd2c94c8a970bd2bdb5218c9))
+
+## [3.20.1](https://github.com/maevsi/maevsi/compare/3.20.0...3.20.1) (2023-12-13)
+
+
+### Bug Fixes
+
+* schedule release ([383c277](https://github.com/maevsi/maevsi/commit/383c277063d11e6cba679ff16434c855eaef06ea))
+
 ## [3.20.0](https://github.com/maevsi/maevsi/compare/3.19.4...3.20.0) (2023-12-13)
 
 
