@@ -1,3 +1,10 @@
+## [3.21.0-beta.5](https://github.com/maevsi/maevsi/compare/3.21.0-beta.4...3.21.0-beta.5) (2023-12-14)
+
+
+### Features
+
+* **layout-page-title:** add create event button ([9165b30](https://github.com/maevsi/maevsi/commit/9165b304fbf03a819e846c96604ed529b5c2e270))
+
 ## [3.21.0-beta.4](https://github.com/maevsi/maevsi/compare/3.21.0-beta.3...3.21.0-beta.4) (2023-12-14)
 
 
