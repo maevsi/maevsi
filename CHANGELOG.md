@@ -1,3 +1,21 @@
+## [3.21.0-beta.7](https://github.com/maevsi/maevsi/compare/3.21.0-beta.6...3.21.0-beta.7) (2023-12-15)
+
+
+### Features
+
+* **app:** automate hypens ([bfd84c1](https://github.com/maevsi/maevsi/commit/bfd84c1642e456bf031eed11745f63fdce27a03b))
+* **event:** add navigation back ([ec09519](https://github.com/maevsi/maevsi/commit/ec095196473bcfe33771b726d4b794503937bbe9))
+* **layout-menu-bottom-navigation:** add ring ([fecbf02](https://github.com/maevsi/maevsi/commit/fecbf025f0e71b352ace31bbf0908b5bd6fc957a))
+* **notification:** add indicator ([3ef765c](https://github.com/maevsi/maevsi/commit/3ef765c1320d6d1e15585bc870abe2a685f43ee6))
+* **notification:** change contents ([a169ef8](https://github.com/maevsi/maevsi/commit/a169ef83c0a9602393fc59f54b9c1717fa100ac7))
+* **search:** add bar ([04d3f2b](https://github.com/maevsi/maevsi/commit/04d3f2ba9cc9058ed25e86b14efadabe9c4613ef))
+* **ux:** indicate elements being under construction ([617fc07](https://github.com/maevsi/maevsi/commit/617fc0758bc2ece6704180cb985905599fcffaef))
+
+
+### Bug Fixes
+
+* **layout-page-title:** beautify overflow ([68819f2](https://github.com/maevsi/maevsi/commit/68819f2483b7a939b446e691ae35075d828a2130))
+
 ## [3.21.0-beta.6](https://github.com/maevsi/maevsi/compare/3.21.0-beta.5...3.21.0-beta.6) (2023-12-14)
 
 
