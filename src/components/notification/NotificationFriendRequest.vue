@@ -18,7 +18,7 @@
           </template>
         </i18n-t>
       </div>
-      <div class="flex gap-1">
+      <div class="relative flex gap-1">
         <IHeroiconsXCircle
           class="text-gray-500 dark:text-gray-400"
           height="2.5em"
@@ -29,6 +29,7 @@
           height="2.5em"
           width="2.5em"
         />
+        <UnderConstruction class="rounded-full" />
       </div>
     </div>
   </Card>

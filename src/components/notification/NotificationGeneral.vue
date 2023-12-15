@@ -4,7 +4,8 @@
       <div class="px-2">
         <IHeroiconsMapPinSolid />
       </div>
-      <div class="flex flex-1 flex-col">
+      <div class="flex flex-1 items-center gap-2">
+        <NotificationIndicator />
         <i18n-t keypath="message" tag="span">
           <template #category>
             <span class="font-bold">
@@ -13,7 +14,6 @@
           </template>
         </i18n-t>
       </div>
-      <div class="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400" />
     </div>
   </Card>
 </template>

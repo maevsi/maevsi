@@ -11,7 +11,12 @@
   </LayoutMenuItem>
   <!-- <IHeroiconsBell /> -->
   <LayoutMenuItem title="Notifications" :to="localePath('/notification')">
-    <IHeroiconsHeart />
+    <div class="relative">
+      <IHeroiconsHeart />
+      <div class="absolute right-0 top-0">
+        <NotificationIndicator />
+      </div>
+    </div>
   </LayoutMenuItem>
   <LayoutMenuItem
     title="Account"
