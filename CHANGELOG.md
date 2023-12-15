@@ -1,3 +1,11 @@
+## [3.20.3](https://github.com/maevsi/maevsi/compare/3.20.2...3.20.3) (2023-12-15)
+
+
+### Bug Fixes
+
+* **attendance:** use wasm ([19a8c51](https://github.com/maevsi/maevsi/commit/19a8c515d98f5451b82d025517c0b1dde07ad62f))
+* **attendance:** use wasm ([#1498](https://github.com/maevsi/maevsi/issues/1498)) ([3ffe932](https://github.com/maevsi/maevsi/commit/3ffe93261ad48a3cc2b2fb31ce864b11ea09a25e))
+
 ## [3.20.2](https://github.com/maevsi/maevsi/compare/3.20.1...3.20.2) (2023-12-14)
 
 
