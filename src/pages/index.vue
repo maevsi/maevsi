@@ -2,21 +2,23 @@
   <div class="flex flex-col gap-32 pt-8 md:gap-32">
     <section id="overview" class="flex items-center gap-8">
       <div class="flex w-full flex-col items-start gap-8 md:gap-16 lg:w-1/2">
-        <i18n-t
-          class="m-0 text-left text-4xl font-extrabold sm:text-5xl md:text-5xl xl:text-7xl"
-          keypath="title"
-          tag="h1"
-        >
-          <template #events>
-            <span class="text-blue-600">{{ t('titleBlue') }}</span>
-          </template>
-          <template #guests>
-            <span class="text-green-600">{{ t('titleGreen') }}</span>
-          </template>
-          <template #friends>
-            <span class="text-red-600">{{ t('titleRed') }}</span>
-          </template>
-        </i18n-t>
+        <LayoutPageTitle title="slot">
+          <i18n-t
+            class="m-0 text-left text-4xl font-extrabold sm:text-5xl md:text-5xl xl:text-7xl"
+            keypath="title"
+            tag="h1"
+          >
+            <template #events>
+              <span class="text-blue-600">{{ t('titleBlue') }}</span>
+            </template>
+            <template #guests>
+              <span class="text-green-600">{{ t('titleGreen') }}</span>
+            </template>
+            <template #friends>
+              <span class="text-red-600">{{ t('titleRed') }}</span>
+            </template>
+          </i18n-t>
+        </LayoutPageTitle>
         <div class="flex flex-col gap-2 text-lg md:text-xl">
           <p>
             {{ t('maevsiDescription1') }}
