@@ -63,8 +63,11 @@
 </template>
 
 <script lang="ts">
+// @ts-ignore
+import wasmFile from 'zxing-wasm/reader/zxing_reader.wasm?url'
 import { consola } from 'consola'
 import { type DetectedBarcode } from 'barcode-detector'
+import { setZXingModuleOverrides } from 'vue-qrcode-reader'
 
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
@@ -89,6 +92,15 @@ export const usePageBreadcrumb = () => {
     to: `/event/view/${route.params.username}/${route.params.event_name}/attendance`,
   } as BreadcrumbItemPropsLocalizedObject
 }
+
+setZXingModuleOverrides({
+  locateFile: (path, prefix) => {
+    if (path.endsWith('.wasm')) {
+      return wasmFile
+    }
+    return prefix + path
+  },
+})
 
 export default {
   components: {
