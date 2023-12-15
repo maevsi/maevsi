@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="hyphens-auto">
     <LazyClientOnly>
       <CardStateInfo
         v-if="!isBrowserSupported && !runtimeConfig.public.vio.isTesting"
