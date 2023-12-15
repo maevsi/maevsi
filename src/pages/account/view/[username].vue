@@ -15,18 +15,12 @@
           />
         </div>
       </div>
-      <ButtonList class="justify-center">
-        <ButtonColored
-          :aria-label="t('eventsTheir', { name: routeParamUsername })"
-          :is-primary="false"
-          :to="localePath(`/event/view/${routeParamUsername}`)"
-        >
-          {{ t('eventsTheir', { name: routeParamUsername }) }}
-          <template #prefix>
-            <IHeroiconsCalendar />
-          </template>
-        </ButtonColored>
-      </ButtonList>
+      <CardButton
+        :title="t('eventsTheir', { name: routeParamUsername })"
+        :to="localePath(`/event/view/${routeParamUsername}`)"
+      >
+        <IHeroiconsCalendar />
+      </CardButton>
     </div>
   </Loader>
 </template>

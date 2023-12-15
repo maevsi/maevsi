@@ -6,208 +6,119 @@
       <section v-if="store.signedInUsername" class="flex flex-col gap-4">
         <span class="text-xl font-bold">{{ t('account') }}</span>
         <div class="flex flex-col gap-2">
-          <Button
-            :aria-label="t('personalData')"
-            class="rounded-lg text-left"
-            is-block
+          <CardButton
+            :description="t('personalDataDescription')"
+            :title="t('personalData')"
             :to="localePath(`/account/edit/${store.signedInUsername}`)"
           >
-            <SessionCard
-              :description="t('personalDataDescription')"
-              :title="t('personalData')"
-            >
-              <IHeroiconsIdentification />
-            </SessionCard>
-          </Button>
-          <Button
-            :aria-label="t('signOut')"
-            class="rounded-lg text-left"
-            is-block
-            @click="signOut"
-          >
-            <SessionCard :title="t('signOut')">
-              <IHeroiconsOutlineLogout />
-              <template #iconSecondary />
-            </SessionCard>
-          </Button>
+            <IHeroiconsIdentification />
+          </CardButton>
+          <CardButton :title="t('signOut')" @click="signOut">
+            <IHeroiconsOutlineLogout />
+            <template #iconSecondary />
+          </CardButton>
         </div>
       </section>
       <section class="flex flex-col gap-4">
         <span class="text-xl font-bold">{{ t('display') }}</span>
         <div class="flex flex-col gap-2">
-          <Button
-            :aria-label="t('colorScheme')"
-            class="rounded-lg text-left"
-            is-block
+          <CardButton
+            :description="t('colorSchemeDescription')"
+            :title="t('colorScheme')"
             :to="localePath(`/session/edit/${route.params.id}/color-scheme`)"
           >
-            <SessionCard
-              :description="t('colorSchemeDescription')"
-              :title="t('colorScheme')"
-            >
-              <IHeroiconsSun />
-            </SessionCard>
-          </Button>
-          <Button
-            :aria-label="t('language')"
-            class="rounded-lg text-left"
-            is-block
+            <IHeroiconsSun />
+          </CardButton>
+          <CardButton
+            :description="t('languageDescription')"
+            :title="t('language')"
             :to="localePath(`/session/edit/${route.params.id}/language`)"
           >
-            <SessionCard
-              :description="t('languageDescription')"
-              :title="t('language')"
-            >
-              <IHeroiconsLanguage />
-            </SessionCard>
-          </Button>
+            <IHeroiconsLanguage />
+          </CardButton>
         </div>
       </section>
       <section class="flex flex-col gap-4">
         <span class="text-xl font-bold">{{ t('legal') }}</span>
         <div class="flex flex-col gap-2">
-          <Button
-            :aria-label="t('cookies')"
-            class="rounded-lg text-left"
-            is-block
+          <CardButton
+            :description="t('cookiesDescription')"
+            :title="t('cookies')"
             @click="cookieControl.isModalActive.value = true"
           >
-            <SessionCard
-              :description="t('cookiesDescription')"
-              :title="t('cookies')"
-            >
-              <IMaterialSymbolsCookieOutline />
-            </SessionCard>
-          </Button>
-          <Button
-            :aria-label="t('legalNotice')"
-            class="rounded-lg text-left"
-            is-block
+            <IMaterialSymbolsCookieOutline />
+          </CardButton>
+          <CardButton
+            :description="t('legalNoticeDescription')"
+            :title="t('legalNotice')"
             :to="localePath('/legal-notice')"
           >
-            <SessionCard
-              :description="t('legalNoticeDescription')"
-              :title="t('legalNotice')"
-            >
-              <IHeroiconsScale />
-            </SessionCard>
-          </Button>
-          <Button
-            :aria-label="t('privacyPolicy')"
-            class="rounded-lg text-left"
-            is-block
+            <IHeroiconsScale />
+          </CardButton>
+          <CardButton
+            :description="t('privacyPolicyDescription')"
+            :title="t('privacyPolicy')"
             :to="localePath('/privacy-policy')"
           >
-            <SessionCard
-              :description="t('privacyPolicyDescription')"
-              :title="t('privacyPolicy')"
-            >
-              <IHeroiconsShieldCheck />
-            </SessionCard>
-          </Button>
+            <IHeroiconsShieldCheck />
+          </CardButton>
         </div>
       </section>
       <section class="flex flex-col gap-4">
         <span class="text-xl font-bold">{{ t('support') }}</span>
         <div class="flex flex-col gap-2">
-          <Button
-            :aria-label="t('privacyPolicy')"
-            class="rounded-lg text-left"
-            is-block
-            is-external
-            is-external-icon-disabled
+          <CardButton
+            :description="t('featureSuggestionDescription')"
+            :is-external="true"
+            :title="t('featureSuggestion')"
             to="https://forms.monday.com/forms/f3ef56d13c8383e6ececb2875d7fb4b2?r=euc1"
           >
-            <SessionCard
-              :description="t('featureSuggestionDescription')"
-              is-external
-              :title="t('featureSuggestion')"
-            >
-              <IHeroiconsLightBulb />
-            </SessionCard>
-          </Button>
-          <Button
-            :aria-label="t('privacyPolicy')"
-            class="rounded-lg text-left"
-            is-block
-            is-external
-            is-external-icon-disabled
+            <IHeroiconsLightBulb />
+          </CardButton>
+          <CardButton
+            :description="t('bugReportDescription')"
+            :is-external="true"
+            :title="t('bugReport')"
             to="https://forms.monday.com/forms/55b8fc2281c2be1647a69e6a4ffe156e?r=euc1"
           >
-            <SessionCard
-              :description="t('bugReportDescription')"
-              is-external
-              :title="t('bugReport')"
-            >
-              <IHeroiconsExclamationTriangle />
-            </SessionCard>
-          </Button>
-          <Button
-            :aria-label="t('privacyPolicy')"
-            class="rounded-lg text-left"
-            is-block
-            is-external
-            is-external-icon-disabled
+            <IHeroiconsExclamationTriangle />
+          </CardButton>
+          <CardButton
+            :description="t('contactDescription')"
+            :is-external="true"
+            :title="t('contact')"
             to="https://forms.monday.com/forms/74204ae8168ecb1dd44c15b502854a5a?r=euc1"
           >
-            <SessionCard
-              :description="t('contactDescription')"
-              is-external
-              :title="t('contact')"
-            >
-              <ISolarLetterLinear />
-            </SessionCard>
-          </Button>
+            <ISolarLetterLinear />
+          </CardButton>
         </div>
       </section>
       <section class="flex flex-col gap-4">
         <span class="text-xl font-bold">{{ t('metadata') }}</span>
         <div class="flex flex-col gap-2">
-          <Button
-            :aria-label="t('status')"
-            class="rounded-lg text-left"
-            is-external
-            is-external-icon-disabled
-            is-block
+          <CardButton
+            :description="t('statusDescription')"
+            :is-external="true"
+            :title="t('status')"
             to="https://status.maev.si/"
           >
-            <SessionCard
-              :description="t('statusDescription')"
-              is-external
-              :title="t('status')"
-            >
-              <IHeroiconsServerStack />
-            </SessionCard>
-          </Button>
-          <Button
-            :aria-label="t('sourceCode')"
-            class="rounded-lg text-left"
-            is-external
-            is-external-icon-disabled
-            is-block
+            <IHeroiconsServerStack />
+          </CardButton>
+          <CardButton
+            :description="t('sourceCodeDescription')"
+            :is-external="true"
+            :title="t('sourceCode')"
             to="https://github.com/maevsi/"
           >
-            <SessionCard
-              :description="t('sourceCodeDescription')"
-              is-external
-              :title="t('sourceCode')"
-            >
-              <IHeroiconsCodeBracket />
-            </SessionCard>
-          </Button>
-          <Button
-            :aria-label="t('developerInformation')"
-            class="rounded-lg text-left"
-            is-block
+            <IHeroiconsCodeBracket />
+          </CardButton>
+          <CardButton
+            :description="t('developerInformationDescription')"
+            :title="t('developerInformation')"
             :to="`/session/view/${route.params.id}`"
           >
-            <SessionCard
-              :description="t('developerInformationDescription')"
-              :title="t('developerInformation')"
-            >
-              <IHeroiconsWrench />
-            </SessionCard>
-          </Button>
+            <IHeroiconsWrench />
+          </CardButton>
         </div>
       </section>
     </div>

@@ -7,61 +7,34 @@
       class="flex flex-col gap-8"
     >
       <section class="flex flex-col gap-4">
-        <Button
-          :aria-label="t('events')"
-          class="rounded-lg text-left"
-          is-block
+        <CardButton
+          :description="t('eventsDescription')"
+          :title="t('events')"
           :to="localePath(`/event/view/${store.signedInUsername}`)"
         >
-          <SessionCard
-            :description="t('eventsDescription')"
-            :title="t('events')"
-          >
-            <IHeroiconsCalendar />
-          </SessionCard>
-        </Button>
-        <Button
-          :aria-label="t('invitations')"
-          class="rounded-lg text-left"
-          disabled
-          is-block
+          <IHeroiconsCalendar />
+        </CardButton>
+        <CardButton
+          :description="t('invitationsDescription')"
+          :title="t('invitations')"
           :to="localePath(`/invitation`)"
         >
-          <SessionCard
-            :description="t('invitationsDescription')"
-            :title="t('invitations')"
-          >
-            <ISolarLetterLinear />
-          </SessionCard>
-        </Button>
-        <Button
-          :aria-label="t('contacts')"
-          class="rounded-lg text-left"
-          disabled
-          is-block
+          <ISolarLetterLinear />
+        </CardButton>
+        <CardButton
+          :description="t('contactsDescription')"
+          :title="t('contacts')"
           :to="localePath(`/contact`)"
         >
-          <SessionCard
-            :description="t('contactsDescription')"
-            :title="t('contacts')"
-          >
-            <IHeroiconsUsers />
-          </SessionCard>
-        </Button>
-        <Button
-          :aria-label="t('uploads')"
-          class="rounded-lg text-left"
-          disabled
-          is-block
+          <IHeroiconsUsers />
+        </CardButton>
+        <CardButton
+          :description="t('uploadsDescription')"
+          :title="t('uploads')"
           :to="localePath(`/upload`)"
         >
-          <SessionCard
-            :description="t('uploadsDescription')"
-            :title="t('uploads')"
-          >
-            <IHeroiconsFolder />
-          </SessionCard>
-        </Button>
+          <IHeroiconsFolder />
+        </CardButton>
       </section>
       <section class="flex flex-col gap-4">
         <h2>{{ t('news') }}</h2>
