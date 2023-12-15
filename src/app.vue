@@ -20,7 +20,7 @@
       aria-hidden="true"
     >
       <div
-        class="clip-path aspect-[1318/752] w-[82.375rem] flex-none bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-10 dark:opacity-10"
+        class="clip-path aspect-[1318/752] w-[82.375rem] flex-none bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-[15%] dark:opacity-10"
       />
     </div>
   </div>
