@@ -49,8 +49,9 @@ export default {
     ({ addBase, addComponents, addUtilities, theme }: PluginAPI) => {
       addBase({
         ':disabled': {
-          cursor: theme('cursor.not-allowed'),
-          opacity: theme('opacity.50'),
+          // cursor: theme('cursor.not-allowed'),
+          opacity: theme('opacity.75'),
+          pointerEvents: 'none',
         },
         'a[target="_blank"]:not([is-external-icon-disabled]):after': {
           backgroundColor: 'currentColor',
@@ -148,8 +149,9 @@ export default {
       })
       addUtilities({
         '.disabled': {
-          cursor: theme('cursor.not-allowed'),
-          opacity: theme('opacity.50'),
+          // cursor: theme('cursor.not-allowed'),
+          opacity: theme('opacity.75'),
+          pointerEvents: 'none',
         },
         '.truncate-overflow': truncateOverflow,
         '.under-construction': {

@@ -39,7 +39,7 @@
           {{ t('friends') }}
         </span>
         <!-- @vue-ignore -->
-        <CardButton class="relative" :to="`/friend/view/$username`">
+        <CardButton class="relative" is-disabled :to="`/friend/view/$username`">
           <div class="isolate flex -space-x-2 overflow-hidden p-1">
             <AccountProfilePicture
               account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
@@ -68,7 +68,7 @@
           {{ t('achievements') }}
         </span>
         <!-- @vue-ignore -->
-        <CardButton class="relative" :to="`/trophy/view/$username`">
+        <CardButton class="relative" is-disabled :to="`/trophy/view/$username`">
           <div class="flex gap-2 text-center">
             <div class="flex flex-1 flex-col items-center gap-2 p-2">
               <IHeroiconsTrophy height="2em" width="2em" />

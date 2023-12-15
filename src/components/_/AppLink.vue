@@ -2,6 +2,7 @@
   <NuxtLink
     :aria-label="ariaLabel"
     :class="classes"
+    :disabled="isDisabled"
     :target="targetComputed"
     :to="props.to"
     @click="emit('click')"
@@ -28,6 +29,7 @@ export interface Props<
   E extends boolean = false,
 > {
   ariaLabel?: string
+  isDisabled?: boolean
   isColored?: boolean
   isExternal?: E
   isUnderlined?: boolean
@@ -36,6 +38,7 @@ export interface Props<
 }
 const props = withDefaults(defineProps<Props<T, P, E>>(), {
   ariaLabel: undefined,
+  isDisabled: undefined,
   isColored: true,
   isExternal: undefined,
   isUnderlined: false,
@@ -51,6 +54,7 @@ const classes = computed(() => {
   return [
     'rounded',
     ...(props.isColored ? ['text-link-dark dark:text-link-bright'] : []),
+    ...(props.isDisabled ? ['disabled'] : []),
     ...(props.isUnderlined ? ['underline'] : []),
   ].join(' ')
 })

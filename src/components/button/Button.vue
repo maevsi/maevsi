@@ -3,7 +3,7 @@
     v-if="props.to"
     :aria-label="ariaLabel"
     :class="classes"
-    :disabled="disabled"
+    :is-disabled="disabled"
     :is-colored="false"
     :to="props.to"
     @click="emit('click')"

@@ -3,6 +3,7 @@
     :aria-label="title"
     class="rounded-lg text-left"
     is-block
+    :disabled="isDisabled"
     :is-external="props.isExternal"
     is-external-icon-disabled
     :to="props.to"
@@ -47,12 +48,14 @@ export interface Props<
   E extends boolean = false,
 > {
   description?: string
+  isDisabled?: boolean
   isExternal?: E
   title: string
   to?: NuxtRoute<T, P, E>
 }
 const props = withDefaults(defineProps<Props<T, P, E>>(), {
   description: undefined,
+  isDisabled: undefined,
   isExternal: undefined,
   to: undefined,
 })
