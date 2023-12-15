@@ -34,6 +34,7 @@
           <!-- <NotificationGeneral /> -->
         </div>
       </section>
+      <ButtonApp />
     </div>
   </div>
 </template>

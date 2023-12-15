@@ -36,16 +36,7 @@
           <IHeroiconsFolder />
         </CardButton>
       </section>
-      <Button
-        :aria-label="t('appInstall')"
-        :is-primary="false"
-        :to="localePath('/docs/app')"
-      >
-        {{ t('appInstall') }}
-        <template #suffix>
-          <IHeroiconsArrowRight />
-        </template>
-      </Button>
+      <ButtonApp />
       <section class="flex flex-col gap-4">
         <h2>{{ t('news') }}</h2>
         <FormInputStateInfo>
@@ -99,7 +90,6 @@ useHeadDefault({ title })
 de:
   anonymousCta: Finde ihn auf maevsi
   anonymousCtaDescription: Dir fehlt der Überblick über Veranstaltungen?
-  appInstall: maevsi-App installieren, um nichts zu verpassen
   contacts: Kontake
   contactsDescription: Informationen zu all deinen Gästen
   events: Veranstaltungen
@@ -114,7 +104,6 @@ de:
 en:
   anonymousCta: Find it on maevsi
   anonymousCtaDescription: Are you missing an overview of events?
-  appInstall: Install the maevsi app, don't miss any news
   contacts: Contacts
   contactsDescription: Information on all your guests
   events: Events
