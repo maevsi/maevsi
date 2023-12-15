@@ -15,8 +15,8 @@
           />
         </div>
       </div>
-      <!-- TODO: show on dashboard only for own account -->
       <CardButton
+        v-if="store.signedInUsername !== routeParamUsername"
         :title="t('eventsTheir', { name: routeParamUsername })"
         :to="localePath(`/event/view/${routeParamUsername}`)"
       >

@@ -1,10 +1,7 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <LayoutPageTitle
-      title="slot"
-      :to="localePath(`/account/view/${routeParamUsername}`)"
-    >
+    <LayoutPageTitle title="slot" :to="localePath('/dashboard')">
       <i18n-t keypath="title" tag="h1">
         <template #name>
           <AppLink :to="localePath(`/account/view/${routeParamUsername}`)">
