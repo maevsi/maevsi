@@ -92,42 +92,54 @@
           </template>
         </ButtonColored>
       </ButtonList>
-      <div class="flex flex-col justify-between gap-4 md:flex-row">
-        <div class="flex min-w-0 flex-col items-baseline md:flex-row md:gap-2">
-          <h1 class="m-0">
-            {{ event.name }}
-          </h1>
-          <Owner link :username="event.accountByAuthorAccountId.username" />
-        </div>
-        <div class="flex items-center gap-2">
-          <ButtonColored
-            :aria-label="t('iCalDownload')"
-            :is-primary="false"
-            @click="downloadIcal"
+      <div class="flex flex-col gap-4">
+        <div>
+          <div class="relative">
+            <LoaderImage
+              :alt="t('heroImage')"
+              aspect="aspect-[5143/3429]"
+              classes="rounded-t-lg brightness-50"
+              height="3429"
+              :src="`/assets/static/images/event/${getHeroImageName(
+                event.name,
+              )}.jpg`"
+              width="5143"
+            />
+            <div
+              class="absolute bottom-4 left-4 flex flex-col justify-between gap-4 md:flex-row"
+            >
+              <div
+                class="flex min-w-0 flex-col items-baseline md:flex-row md:gap-2"
+              >
+                <h1 class="m-0">
+                  {{ event.name }}
+                </h1>
+                <Owner
+                  link
+                  :username="event.accountByAuthorAccountId.username"
+                />
+              </div>
+            </div>
+          </div>
+          <Card
+            v-if="event"
+            class="flex flex-col items-stretch gap-8 rounded-t-none"
           >
-            {{ t('iCalDownload') }}
-            <template #prefix>
-              <IHeroiconsArrowDownTray />
-            </template>
-          </ButtonColored>
-          <span :title="t('iCalHint')">
-            <FormInputStateInfo />
-          </span>
-        </div>
-      </div>
-      <Card v-if="event" class="flex flex-col items-stretch gap-8">
-        <div class="flex flex-row flex-wrap justify-center self-stretch">
-          <EventDashletStart :event="event" />
-          <EventDashletDuration :event="event" />
-          <EventDashletVisibility :event="event" with-text />
-          <EventDashletAttendanceType :event="event" />
-          <EventDashletLocation :event="event" />
-          <EventDashletLink :event="event" />
-        </div>
-        <template v-if="invitation">
-          <Hr />
-          <div>
-            <!-- <div
+            <div class="flex flex-row flex-wrap justify-center self-stretch">
+              <EventDashletStart
+                :contact="contact"
+                :event="event"
+                :invitation="invitation"
+              />
+              <EventDashletDuration :event="event" />
+              <EventDashletVisibility :event="event" with-text />
+              <EventDashletAttendanceType :event="event" />
+              <EventDashletLocation :event="event" />
+              <EventDashletLink :event="event" />
+            </div>
+            <template v-if="invitation">
+              <Hr />
+              <!-- <div
             class="grid grid-cols-6 border-t-2 bg-background-brighten dark:bg-background-darken"
             :class="
               invitation.feedback === 'ACCEPTED'
@@ -596,6 +608,7 @@ de:
   # feedbackRequest: 'Bitte gib eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
+  heroImage: Titelbild der Veranstaltung
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
   iCalDownload: Als Kalendereintrag herunterladen
   iCalHint: Die heruntergeladene Datei kann dann mit deiner Kalender-Anwendung geöffnet werden.
@@ -630,6 +643,7 @@ en:
   # feedbackRequest: 'Please confirm if you will attend:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."
+  heroImage: Title picture of the event
   hintQrCode: This picture is your access authorization for the event
   iCalDownload: Download for your calendar
   iCalHint: You can open the downloaded file in your calendar app.
