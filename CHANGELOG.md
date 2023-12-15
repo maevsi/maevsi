@@ -1,3 +1,30 @@
+## [3.21.0-beta.8](https://github.com/maevsi/maevsi/compare/3.21.0-beta.7...3.21.0-beta.8) (2023-12-15)
+
+
+### Features
+
+* **account:** add wip friend request button ([68eda23](https://github.com/maevsi/maevsi/commit/68eda237517a83138a84ace2f7f9444d797c80da))
+* **account:** add wip friends and trophies ([2d8ab1b](https://github.com/maevsi/maevsi/commit/2d8ab1bd874087252607297e241c41b0fdf684ae))
+* **account:** enlargen profile picture ([64c734b](https://github.com/maevsi/maevsi/commit/64c734b3c7c7702fe9f7fb38eee2ab67344cfd27))
+* **app:** add backdrop ([51992e5](https://github.com/maevsi/maevsi/commit/51992e57bd7eeca8f95425732da4d1fde063f53a))
+* **app:** increase backdrop opacity on light color scheme ([dd47d41](https://github.com/maevsi/maevsi/commit/dd47d41e541adfb15b08df7518fa93485ef73131))
+* **buttom-colored:** add gradient ([de1bd4f](https://github.com/maevsi/maevsi/commit/de1bd4f60b2d66deecf60434b9e78625ab3eb76f))
+* **docs:** add app ([c133b54](https://github.com/maevsi/maevsi/commit/c133b54fece020f613e3bab798e51b25eed13536))
+* **event:** add seeded image ([2b1edf2](https://github.com/maevsi/maevsi/commit/2b1edf23285b4e29fd3ac27b5ded5eb834bf31fe))
+* **event:** rework ical download ([4727226](https://github.com/maevsi/maevsi/commit/4727226f8b473e727e1b46ee7aa58783d0b21b6c))
+* **notification:** add app button ([25df6fc](https://github.com/maevsi/maevsi/commit/25df6fc271904ad9ffce7b4b639a8b41d3691a9b))
+* **root:** use page title layout ([6aef689](https://github.com/maevsi/maevsi/commit/6aef68993566e6f4d9588567c67cc5b4edceb4cb))
+* **session:** add about link ([3cdc8a3](https://github.com/maevsi/maevsi/commit/3cdc8a39a8727a0b326e88badbedfc670731ff99))
+
+
+### Bug Fixes
+
+* **account:** hide event list for own account ([e1692c3](https://github.com/maevsi/maevsi/commit/e1692c3711e6c62fd3aba7ab85a9478525303bfe))
+* **attendance:** use wasm ([19a8c51](https://github.com/maevsi/maevsi/commit/19a8c515d98f5451b82d025517c0b1dde07ad62f))
+* **attendance:** use wasm ([#1498](https://github.com/maevsi/maevsi/issues/1498)) ([3ffe932](https://github.com/maevsi/maevsi/commit/3ffe93261ad48a3cc2b2fb31ce864b11ea09a25e))
+* **layout-menu-bottom-navigation:** correct color mode styling ([95d05dd](https://github.com/maevsi/maevsi/commit/95d05dd60603d3bd04a8018f32c0c35cf99d37e6))
+* **root:** correct page title layout placement ([8814762](https://github.com/maevsi/maevsi/commit/88147620432699fe81ceca162a2d323aa548e407))
+
 ## [3.21.0-beta.7](https://github.com/maevsi/maevsi/compare/3.21.0-beta.6...3.21.0-beta.7) (2023-12-15)
 
 
