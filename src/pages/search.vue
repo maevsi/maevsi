@@ -3,7 +3,10 @@
     <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle :title="title" />
     <!-- TODO: offer proper search -->
-    <EventList />
+    <div class="flex flex-col gap-4">
+      <SearchBar />
+      <EventList />
+    </div>
   </div>
 </template>
 
