@@ -1,3 +1,12 @@
+## [3.21.0-beta.10](https://github.com/maevsi/maevsi/compare/3.21.0-beta.9...3.21.0-beta.10) (2023-12-15)
+
+
+### Bug Fixes
+
+* **account:** correct color scheme ([02fdb87](https://github.com/maevsi/maevsi/commit/02fdb8705af793ad1f77d4a58dd2dbce52c393d1))
+* **event-list-item:** correct title color scheme ([5c5d45c](https://github.com/maevsi/maevsi/commit/5c5d45c107cedc00361372f7dde5a30d81691600))
+* **notification-indicator:** do not shrink ([f57d6bc](https://github.com/maevsi/maevsi/commit/f57d6bcb20b3ee4df41bebcf32e3a575de2b2919))
+
 ## [3.21.0-beta.9](https://github.com/maevsi/maevsi/compare/3.21.0-beta.8...3.21.0-beta.9) (2023-12-15)
 
 
