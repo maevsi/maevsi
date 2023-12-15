@@ -1,5 +1,5 @@
 <template>
-  <div class="hyphens-auto">
+  <div class="relative isolate hyphens-auto">
     <LazyClientOnly>
       <CardStateInfo
         v-if="!isBrowserSupported && !runtimeConfig.public.vio.isTesting"
@@ -15,6 +15,14 @@
     <NuxtLoadingIndicator color="#fff" />
     <VitePwaManifest />
     <CookieControl :locale="locale" />
+    <div
+      class="absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
+      aria-hidden="true"
+    >
+      <div
+        class="clip-path aspect-[1318/752] w-[82.375rem] flex-none bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-10 dark:opacity-10"
+      />
+    </div>
   </div>
 </template>
 
@@ -127,6 +135,30 @@ useSchemaOrg([
 ])
 initialize()
 </script>
+
+<style scoped>
+.clip-path {
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+  clip-path: polygon(
+    73.6% 51.7%,
+    91.7% 11.8%,
+    100% 46.4%,
+    97.4% 82.2%,
+    92.5% 84.9%,
+    75.7% 64%,
+    55.3% 47.5%,
+    46.5% 49.4%,
+    45% 62.9%,
+    50.3% 87.2%,
+    21.3% 64.1%,
+    0.1% 100%,
+    5.4% 51.1%,
+    21.4% 63.9%,
+    58.9% 0.2%,
+    73.6% 51.7%
+  );
+}
+</style>
 
 <i18n lang="yaml">
 de:
