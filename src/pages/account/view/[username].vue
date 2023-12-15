@@ -43,19 +43,19 @@
           <div class="isolate flex -space-x-2 overflow-hidden p-1">
             <AccountProfilePicture
               account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
-              classes="rounded-full ring ring-background-darken"
+              classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
               height="64"
               width="64"
             />
             <AccountProfilePicture
               account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
-              classes="rounded-full ring ring-background-darken"
+              classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
               height="64"
               width="64"
             />
             <AccountProfilePicture
               account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
-              classes="rounded-full ring ring-background-darken"
+              classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
               height="64"
               width="64"
             />
@@ -72,19 +72,19 @@
           <div class="flex gap-2 text-center">
             <div class="flex flex-1 flex-col items-center gap-2 p-2">
               <IHeroiconsTrophy height="2em" width="2em" />
-              <span class="text-gray-300">
+              <span class="text-gray-700 dark:text-gray-300">
                 {{ t('achievementTopG') }}
               </span>
             </div>
             <div class="flex flex-1 flex-col items-center gap-2 p-2">
               <IHeroiconsStar height="2em" width="2em" />
-              <span class="text-gray-300">
+              <span class="text-gray-700 dark:text-gray-300">
                 {{ t('achievementStarChef') }}
               </span>
             </div>
             <div class="flex flex-1 flex-col items-center gap-2 p-2">
               <IHeroiconsArrowPath height="2em" width="2em" />
-              <span class="text-gray-300">
+              <span class="text-gray-700 dark:text-gray-300">
                 {{ t('achievementReturnee') }}
               </span>
             </div>
