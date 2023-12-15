@@ -9,9 +9,9 @@
         <div class="sm:mr-4">
           <AccountProfilePicture
             :account-id="account?.id"
-            classes="h-24 rounded w-24"
-            height="96"
-            width="96"
+            classes="h-48 rounded w-48"
+            height="192"
+            width="192"
           />
         </div>
       </div>
