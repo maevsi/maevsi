@@ -149,107 +149,123 @@
                 : 'border-text-dark dark:border-text-bright'
             "
           > -->
-            <!-- <div
+              <!-- <div
               v-if="invitation.feedback === 'ACCEPTED'"
               class="col-start-2 m-auto rounded-full bg-gray-500 px-2 text-text-bright"
             >
               {{ t('step1Of2') }}
             </div> -->
-            <div
-              class="flex flex-col items-center gap-2"
-              :class="
-                invitation.feedback === 'ACCEPTED' ? 'col-span-3' : 'col-span-6'
-              "
-            >
-              <!-- <span v-if="event.authorUsername !== signedInUsername">
+              <div
+                class="flex flex-col items-center gap-2"
+                :class="
+                  invitation.feedback === 'ACCEPTED'
+                    ? 'col-span-3'
+                    : 'col-span-6'
+                "
+              >
+                <!-- <span v-if="event.authorUsername !== signedInUsername">
                 {{ t('feedbackRequest') }}
               </span> -->
-              <div class="flex items-center justify-center gap-4">
-                <ButtonColored
-                  v-if="
-                    invitation.feedback === null ||
-                    invitation.feedback === 'CANCELED'
-                  "
-                  :aria-label="
-                    event.accountByAuthorAccountId.username !==
-                    store.signedInUsername
-                      ? t('invitationAccept')
-                      : t('invitationAcceptAdmin', {
-                          name: contactName,
-                        })
-                  "
-                  @click="accept"
-                >
-                  {{
-                    event.accountByAuthorAccountId.username !==
-                    store.signedInUsername
-                      ? t('invitationAccept')
-                      : t('invitationAcceptAdmin', {
-                          name: contactName,
-                        })
-                  }}
-                  <template #prefix>
-                    <IHeroiconsCheckCircleSolid />
-                  </template>
-                </ButtonColored>
-                <div
-                  v-if="invitation.feedback === 'ACCEPTED'"
-                  class="flex items-center font-semibold text-green-600 dark:text-green-500"
-                >
-                  <IHeroiconsCheckCircleSolid class="mr-2" title="accepted" />
-                  {{
-                    event.accountByAuthorAccountId.username !==
-                    store.signedInUsername
-                      ? t('invitationAccepted')
-                      : t('invitationAcceptedAdmin', {
-                          name: contactName,
-                        })
-                  }}
-                </div>
-                <ButtonColored
-                  v-if="
-                    invitation.feedback === null ||
-                    invitation.feedback === 'ACCEPTED'
-                  "
-                  :aria-label="
-                    event.accountByAuthorAccountId.username !==
-                    store.signedInUsername
-                      ? t('invitationCancel')
-                      : t('invitationCancelAdmin', {
-                          name: contactName,
-                        })
-                  "
-                  @click="cancel"
-                >
-                  {{
-                    event.accountByAuthorAccountId.username !==
-                    store.signedInUsername
-                      ? t('invitationCancel')
-                      : t('invitationCancelAdmin', {
-                          name: contactName,
-                        })
-                  }}
-                  <template #prefix>
-                    <IHeroiconsXCircleSolid />
-                  </template>
-                </ButtonColored>
-                <div
-                  v-if="invitation.feedback === 'CANCELED'"
-                  class="flex items-center font-semibold text-red-600 dark:text-red-500"
-                >
-                  <IHeroiconsXCircleSolid class="mr-2" title="canceled" />
-                  {{
-                    event.accountByAuthorAccountId.username !==
-                    store.signedInUsername
-                      ? t('invitationCanceled')
-                      : t('invitationCanceledAdmin', {
-                          name: contactName,
-                        })
-                  }}
+                <div class="flex items-center justify-center gap-4">
+                  <ButtonColored
+                    v-if="
+                      invitation.feedback === null ||
+                      invitation.feedback === 'CANCELED'
+                    "
+                    :aria-label="
+                      event.accountByAuthorAccountId.username !==
+                      store.signedInUsername
+                        ? t('invitationAccept')
+                        : t('invitationAcceptAdmin', {
+                            name: contactName,
+                          })
+                    "
+                    @click="accept"
+                  >
+                    <span>
+                      {{
+                        event.accountByAuthorAccountId.username !==
+                        store.signedInUsername
+                          ? t('invitationAccept')
+                          : t('invitationAcceptAdmin', {
+                              name: contactName,
+                            })
+                      }}
+                    </span>
+                    <template #prefix>
+                      <IHeroiconsCheckCircleSolid class="shrink-0" />
+                    </template>
+                  </ButtonColored>
+                  <div
+                    v-if="invitation.feedback === 'ACCEPTED'"
+                    class="flex items-center font-semibold text-green-600 dark:text-green-500"
+                  >
+                    <IHeroiconsCheckCircleSolid
+                      class="mr-2 shrink-0"
+                      title="accepted"
+                    />
+                    <span>
+                      {{
+                        event.accountByAuthorAccountId.username !==
+                        store.signedInUsername
+                          ? t('invitationAccepted')
+                          : t('invitationAcceptedAdmin', {
+                              name: contactName,
+                            })
+                      }}
+                    </span>
+                  </div>
+                  <ButtonColored
+                    v-if="
+                      invitation.feedback === null ||
+                      invitation.feedback === 'ACCEPTED'
+                    "
+                    :aria-label="
+                      event.accountByAuthorAccountId.username !==
+                      store.signedInUsername
+                        ? t('invitationCancel')
+                        : t('invitationCancelAdmin', {
+                            name: contactName,
+                          })
+                    "
+                    @click="cancel"
+                  >
+                    <span>
+                      {{
+                        event.accountByAuthorAccountId.username !==
+                        store.signedInUsername
+                          ? t('invitationCancel')
+                          : t('invitationCancelAdmin', {
+                              name: contactName,
+                            })
+                      }}
+                    </span>
+                    <template #prefix>
+                      <IHeroiconsXCircleSolid class="shrink-0" />
+                    </template>
+                  </ButtonColored>
+                  <div
+                    v-if="invitation.feedback === 'CANCELED'"
+                    class="flex items-center font-semibold text-red-600 dark:text-red-500"
+                  >
+                    <IHeroiconsXCircleSolid
+                      class="mr-2 shrink-0"
+                      title="canceled"
+                    />
+                    <span>
+                      {{
+                        event.accountByAuthorAccountId.username !==
+                        store.signedInUsername
+                          ? t('invitationCanceled')
+                          : t('invitationCanceledAdmin', {
+                              name: contactName,
+                            })
+                      }}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- <div
+              <!-- <div
               v-if="
                 invitation.feedback !== null &&
                 invitation.feedback === 'ACCEPTED'
@@ -291,18 +307,18 @@
                 </select>
               </FormInput>
             </div> -->
-          </div>
-        </template>
-        <template v-if="eventDescriptionTemplate">
-          <Hr />
+            </template>
+          </Card>
+        </div>
+        <Card v-if="eventDescriptionTemplate">
           <!-- eslint-disable vue/no-v-html -->
           <div
             class="vio-prose-scheme w-full"
             v-html="eventDescriptionTemplate"
           />
           <!-- eslint-enable vue/no-v-html -->
-        </template>
-      </Card>
+        </Card>
+      </div>
       <Modal id="ModalInvitationQrCode">
         <div v-if="invitation" class="flex flex-col items-center gap-2 pb-4">
           <QrcodeVue
@@ -344,7 +360,6 @@
 
 <script lang="ts">
 import { Client } from '@urql/core'
-import downloadJs from 'downloadjs'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import prntr from 'prntr'
@@ -474,31 +489,6 @@ const cancel = () => {
 //     feedbackPaper: invitation.value.feedbackPaper,
 //   })
 // }
-const downloadIcal = async () => {
-  const response = await useFetch<string>('/api/ical', {
-    body: {
-      contact: contact.value,
-      event: event.value,
-      invitation: invitation.value,
-    },
-    method: 'POST',
-  })
-  const fileName =
-    route.params.username + '_' + route.params.event_name + '.ics'
-
-  if (!response.data.value) {
-    return await fireAlert({
-      level: 'error',
-      text: t('iCalFetchError'),
-    }) // TODO: add suggestion (https://github.com/maevsi/maevsi/issues/903) })
-  }
-
-  downloadJs(
-    new Blob([response.data.value]), // Blob necessary for charset utf-8
-    fileName,
-    'text/calendar',
-  )
-}
 const print = () => {
   prntr({
     printable: 'qrCode',
@@ -520,8 +510,8 @@ const update = async (id: string, invitationPatch: InvitationPatch) => {
 }
 
 // computations
-const contact = computed(() =>
-  getContactItem(invitation?.value?.contactByContactId),
+const contact = computed(
+  () => getContactItem(invitation?.value?.contactByContactId) || undefined,
 )
 const contactName = computed(() => {
   return invitation?.value?.contactByContactId && contact.value
@@ -610,9 +600,6 @@ de:
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
   heroImage: Titelbild der Veranstaltung
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
-  iCalDownload: Als Kalendereintrag herunterladen
-  iCalHint: Die heruntergeladene Datei kann dann mit deiner Kalender-Anwendung geöffnet werden.
-  iCalFetchError: iCal-Daten konnten nicht geladen werden!
   invitationAccept: Einladung annehmen
   invitationAcceptAdmin: Einladung im Namen von {name} annehmen
   invitationAccepted: Einladung angenommen
@@ -645,9 +632,6 @@ en:
   greetingDescription: "You've been invited to the following event."
   heroImage: Title picture of the event
   hintQrCode: This picture is your access authorization for the event
-  iCalDownload: Download for your calendar
-  iCalHint: You can open the downloaded file in your calendar app.
-  iCalFetchError: Could not get iCal data!
   invitationAccept: Accept invitation
   invitationAcceptAdmin: Accept invitation on behalf of {name}
   invitationAccepted: Invitation accepted

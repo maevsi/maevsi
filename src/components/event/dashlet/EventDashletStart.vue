@@ -2,26 +2,74 @@
   <EventDashlet v-if="event.start">
     <IHeroiconsCalendar :title="t('start')" />
     <div class="flex flex-col">
-      <span>
+      <Button
+        :aria-label="t('iCalDownload')"
+        is-link-colored
+        @click="downloadIcal"
+      >
         {{ eventStart.format('lll') }}
-      </span>
-      <span class="hidden sm:inline">
-        {{ t('embraced', { content: eventStart.fromNow() }) }}
+      </Button>
+      <span>
+        {{ t('fromNow', { content: eventStart.fromNow() }) }}
       </span>
     </div>
   </EventDashlet>
 </template>
 
 <script setup lang="ts">
-import type { EventItemFragment } from '~/gql/generated/graphql'
+import downloadJs from 'downloadjs'
+
+import type { RoutesNamesList } from '@typed-router'
+
+import type {
+  ContactItemFragment,
+  EventItemFragment,
+  InvitationItemFragment,
+} from '~/gql/generated/graphql'
 
 export interface Props {
-  event: Pick<EventItemFragment, 'start'>
+  contact?: ContactItemFragment
+  event: EventItemFragment
+  invitation?: InvitationItemFragment
 }
-const props = withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<Props>(), {
+  contact: undefined,
+  invitation: undefined,
+})
+
+const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
 
 const { t } = useI18n()
 const dateTime = useDateTime()
+const route = useRoute(ROUTE_NAME)
+const fireAlert = useFireAlert()
+
+// methods
+const downloadIcal = async () => {
+  const response = await useFetch<string>('/api/ical', {
+    body: {
+      contact: props.contact,
+      event: props.event,
+      invitation: props.invitation,
+    },
+    method: 'POST',
+  })
+  const fileName =
+    route.params.username + '_' + route.params.event_name + '.ics'
+
+  if (!response.data.value) {
+    return await fireAlert({
+      level: 'error',
+      text: t('iCalFetchError'),
+    }) // TODO: add suggestion (https://github.com/maevsi/maevsi/issues/903) })
+  }
+
+  downloadJs(
+    new Blob([response.data.value]), // Blob necessary for charset utf-8
+    fileName,
+    'text/calendar',
+  )
+}
 
 // computations
 const eventStart = computed(() => dateTime(props.event.start))
@@ -29,9 +77,15 @@ const eventStart = computed(() => dateTime(props.event.start))
 
 <i18n lang="yaml">
 de:
-  embraced: ({content})
+  fromNow: ({content})
+  iCalDownload: Als Kalendereintrag herunterladen
+  # iCalHint: Die heruntergeladene Datei kann dann mit deiner Kalender-Anwendung geöffnet werden.
+  iCalFetchError: iCal-Daten konnten nicht geladen werden!
   start: Beginn
 en:
-  embraced: ({content})
+  fromNow: ({content})
+  iCalDownload: Download for your calendar
+  # iCalHint: You can open the downloaded file in your calendar app.
+  iCalFetchError: Could not get iCal data!
   start: start
 </i18n>
