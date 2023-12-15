@@ -97,6 +97,20 @@
         <span class="text-xl font-bold">{{ t('metadata') }}</span>
         <div class="flex flex-col gap-2">
           <CardButton
+            :description="t('aboutDescription')"
+            :title="t('about')"
+            :to="localePath('/')"
+          >
+            <IHeroiconsNewspaper />
+          </CardButton>
+          <!-- <CardButton
+            :description="t('teamDescription')"
+            :title="t('team')"
+            :to="localePath('/team')"
+          >
+            <IHeroiconsUserGroup />
+          </CardButton> -->
+          <CardButton
             :description="t('statusDescription')"
             :is-external="true"
             :title="t('status')"
@@ -175,6 +189,8 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
+  about: Funktionen
+  aboutDescription: Sieh, was maevsi dir bietet
   account: Konto
   bugReport: Fehler
   bugReportDescription: Melde ein Problem
@@ -204,9 +220,11 @@ de:
   sourceCodeDescription: Interagiere mit maevsi auf einer tieferen Ebene
   signOut: Abmelden
   status: Status
-  statusDescription: Server-Verfügbarkeit anzeigen
+  statusDescription: Zeige die Verfügbarkeitszeiten aller Dienste an
   support: Hilfe
 en:
+  about: Features
+  aboutDescription: See what maevsi has to offer
   account: Account
   bugReport: Issue
   bugReportDescription: Report a problem
@@ -236,6 +254,6 @@ en:
   sourceCode: Source code
   sourceCodeDescription: Interact with maevsi on the low level
   status: Status
-  statusDescription: View server uptime information
+  statusDescription: View service uptime information
   support: Support
 </i18n>
