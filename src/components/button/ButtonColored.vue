@@ -1,15 +1,15 @@
 <template>
   <Button
     :aria-label="ariaLabel"
-    class="justify-center rounded-md border px-4 py-2 font-medium"
+    class="justify-center rounded-md px-4 py-2 font-medium"
     :class="
       [
         ...(isPrimary
           ? [
-              'border-transparent bg-blue-600 text-text-bright hover:bg-blue-500 dark:bg-blue-400 dark:text-text-dark dark:hover:bg-blue-500',
+              'bg-gradient-to-tr from-blue-500 to-blue-600 text-text-bright dark:from-blue-300 dark:to-blue-400 dark:text-text-dark',
             ]
           : [
-              'border-gray-300 text-text-dark hover:bg-black/5 dark:border-gray-600 dark:text-text-bright dark:hover:bg-black/30',
+              'border border-gray-300 text-text-dark hover:bg-black/5 dark:border-gray-600 dark:text-text-bright dark:hover:bg-black/30',
             ]),
       ].join(' ')
     "
