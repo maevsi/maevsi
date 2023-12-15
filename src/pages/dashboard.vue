@@ -38,6 +38,9 @@
       </section>
       <section class="flex flex-col gap-4">
         <h2>{{ t('news') }}</h2>
+        <FormInputStateInfo>
+          {{ t('example') }}
+        </FormInputStateInfo>
         <LayoutFeed />
       </section>
     </div>
@@ -90,6 +93,7 @@ de:
   contactsDescription: Informationen zu all deinen Gästen
   events: Veranstaltungen
   eventsDescription: Organisiere deine eigenen Veranstaltungen
+  example: Beispielhafte Darstellung
   invitations: Einladungen
   invitationsDescription: Sieh nach, wo du eingeladen bist
   news: Ereignisverlauf
@@ -103,6 +107,7 @@ en:
   contactsDescription: Information on all your guests
   events: Events
   eventsDescription: Organize your own events
+  example: Exemplary representation
   invitations: Invitations
   invitationsDescription: See where you're invited
   news: Recent changes

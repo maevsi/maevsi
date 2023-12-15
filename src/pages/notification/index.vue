@@ -7,6 +7,9 @@
         v-if="store.signedInAccountId && store.signedInUsername"
         class="flex flex-col gap-4"
       >
+        <FormInputStateInfo>
+          {{ t('example') }}
+        </FormInputStateInfo>
         <!-- <h2>{{ t('friendRequests') }}</h2> -->
         <div>
           <NotificationFriendRequest
@@ -72,11 +75,13 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  friendRequests: Freundschaftsanfragen
-  general: Allgemein
+  # friendRequests: Freundschaftsanfragen
+  # general: Allgemein
+  example: Beispielhafte Darstellung
   notifications: Benachrichtigungen
 en:
-  friendRequests: Friend requests
-  general: General
+  # friendRequests: Friend requests
+  # general: General
+  example: Exemplary representation
   notifications: Notifications
 </i18n>

@@ -152,6 +152,10 @@ export default {
           opacity: theme('opacity.50'),
         },
         '.truncate-overflow': truncateOverflow,
+        '.under-construction': {
+          background:
+            'repeating-linear-gradient(-45deg,#fb0,#fb0 10px,#0000 10px,#0000 30px)',
+        },
       })
     },
   ],
