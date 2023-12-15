@@ -1,3 +1,16 @@
+## [3.21.0-beta.9](https://github.com/maevsi/maevsi/compare/3.21.0-beta.8...3.21.0-beta.9) (2023-12-15)
+
+
+### Features
+
+* **event-list-item:** increase brightness ([fe175da](https://github.com/maevsi/maevsi/commit/fe175da46ae1134c6107393b3b6425d8b7616cc9))
+* **under-construction:** decrease opacity ([ef226ea](https://github.com/maevsi/maevsi/commit/ef226ea43ef5ce90c656c83fb2e2fc12d3698486))
+
+
+### Bug Fixes
+
+* **account:** disable wip elements ([ee3d476](https://github.com/maevsi/maevsi/commit/ee3d47674106f40d478e3aa16bd1c08d316208b8))
+
 ## [3.21.0-beta.8](https://github.com/maevsi/maevsi/compare/3.21.0-beta.7...3.21.0-beta.8) (2023-12-15)
 
 
