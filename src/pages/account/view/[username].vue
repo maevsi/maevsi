@@ -15,13 +15,6 @@
           />
         </div>
       </div>
-      <CardButton
-        v-if="store.signedInUsername !== routeParamUsername"
-        :title="t('eventsTheir', { name: routeParamUsername })"
-        :to="localePath(`/event/view/${routeParamUsername}`)"
-      >
-        <IHeroiconsCalendar />
-      </CardButton>
       <div class="flex justify-center">
         <div class="relative">
           <ButtonColored
@@ -33,6 +26,71 @@
           </ButtonColored>
           <UnderConstruction />
         </div>
+      </div>
+      <CardButton
+        v-if="store.signedInUsername !== routeParamUsername"
+        :title="t('eventsTheir', { name: routeParamUsername })"
+        :to="localePath(`/event/view/${routeParamUsername}`)"
+      >
+        <IHeroiconsCalendar />
+      </CardButton>
+      <div class="flex flex-col gap-2">
+        <span class="text-xl font-bold">
+          {{ t('friends') }}
+        </span>
+        <!-- @vue-ignore -->
+        <CardButton class="relative" :to="`/friend/view/$username`">
+          <div class="isolate flex -space-x-2 overflow-hidden p-1">
+            <AccountProfilePicture
+              account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
+              classes="rounded-full ring ring-background-darken"
+              height="64"
+              width="64"
+            />
+            <AccountProfilePicture
+              account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
+              classes="rounded-full ring ring-background-darken"
+              height="64"
+              width="64"
+            />
+            <AccountProfilePicture
+              account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
+              classes="rounded-full ring ring-background-darken"
+              height="64"
+              width="64"
+            />
+          </div>
+          <UnderConstruction />
+        </CardButton>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-xl font-bold">
+          {{ t('achievements') }}
+        </span>
+        <!-- @vue-ignore -->
+        <CardButton class="relative" :to="`/trophy/view/$username`">
+          <div class="flex gap-2 text-center">
+            <div class="flex flex-1 flex-col items-center gap-2 p-2">
+              <IHeroiconsTrophy height="2em" width="2em" />
+              <span class="text-gray-300">
+                {{ t('achievementTopG') }}
+              </span>
+            </div>
+            <div class="flex flex-1 flex-col items-center gap-2 p-2">
+              <IHeroiconsStar height="2em" width="2em" />
+              <span class="text-gray-300">
+                {{ t('achievementStarChef') }}
+              </span>
+            </div>
+            <div class="flex flex-1 flex-col items-center gap-2 p-2">
+              <IHeroiconsArrowPath height="2em" width="2em" />
+              <span class="text-gray-300">
+                {{ t('achievementReturnee') }}
+              </span>
+            </div>
+          </div>
+          <UnderConstruction />
+        </CardButton>
       </div>
     </div>
   </Loader>
@@ -110,9 +168,19 @@ useHeadDefault({
 
 <i18n lang="yaml">
 de:
+  achievements: Trophäen
+  achievementReturnee: Wiederkehrer
+  achievementStarChef: Sterne-Koch
+  achievementTopG: Bester Mann
   eventsTheir: Veranstaltungen von {name}
   friendAdd: Freundschaftsanfrage senden
+  friends: Freunde
 en:
+  achievements: Achievements
+  achievementReturnee: Returnee
+  achievementStarChef: Star chef
+  achievementTopG: Top G
   eventsTheir: Events by {name}
+  friends: Friends
   friendAdd: Send friend request
 </i18n>
