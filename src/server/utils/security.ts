@@ -20,7 +20,6 @@ const getCsp = (host: string) => {
       'https://*.analytics.google.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://*.google-analytics.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
-      'https://cdn.jsdelivr.net/npm/@sec-ant/', // vue-qrcode-reader
       `https://${runtimeConfig.public.sentry.host}/api/${runtimeConfig.public.sentry.project.client.id}/envelope/`, // Sentry
     ],
     'default-src': ["'none'"],

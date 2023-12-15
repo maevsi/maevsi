@@ -386,6 +386,9 @@ importers:
       workbox-precaching:
         specifier: 7.0.0
         version: 7.0.0
+      zxing-wasm:
+        specifier: 1.1.0
+        version: 1.1.0
 
   tests:
     dependencies:
@@ -18585,6 +18588,12 @@ packages:
 
   /zxing-wasm@1.0.0-rc.4:
     resolution: {integrity: sha512-SvVErHUZhzFqpqA2vpwmXeAPa6sgGdUCOkMCd5cMch6L1urZbZCZR8jb2+NI9bCfJRNkQi2ZjME9/NaiUFiSGg==}
+    dependencies:
+      '@types/emscripten': 1.39.10
+    dev: true
+
+  /zxing-wasm@1.1.0:
+    resolution: {integrity: sha512-MaAQmQDDt6NrWRptU7wi0GkC9Zu0sX3vcZbtvh+No0R5v0I4JXuMli0X9rVJWzgReHfWH05eEGhATSDfZ/YTfQ==}
     dependencies:
       '@types/emscripten': 1.39.10
     dev: true
