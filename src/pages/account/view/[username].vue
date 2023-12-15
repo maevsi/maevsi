@@ -15,6 +15,7 @@
           />
         </div>
       </div>
+      <!-- TODO: show on dashboard only for own account -->
       <CardButton
         :title="t('eventsTheir', { name: routeParamUsername })"
         :to="localePath(`/event/view/${routeParamUsername}`)"
