@@ -22,6 +22,18 @@
       >
         <IHeroiconsCalendar />
       </CardButton>
+      <div class="flex justify-center">
+        <div class="relative">
+          <ButtonColored
+            v-if="store.signedInUsername !== routeParamUsername"
+            :aria-label="t('friendAdd')"
+            disabled
+          >
+            {{ t('friendAdd') }}
+          </ButtonColored>
+          <UnderConstruction />
+        </div>
+      </div>
     </div>
   </Loader>
 </template>
@@ -61,6 +73,7 @@ const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
+const store = useMaevsiStore()
 
 // api data
 const accountByUsernameQuery = await useAccountByUsernameQuery({
@@ -98,6 +111,8 @@ useHeadDefault({
 <i18n lang="yaml">
 de:
   eventsTheir: Veranstaltungen von {name}
+  friendAdd: Freundschaftsanfrage senden
 en:
   eventsTheir: Events by {name}
+  friendAdd: Send friend request
 </i18n>
