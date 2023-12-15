@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col gap-32 pt-8 md:gap-32">
-    <section id="overview" class="flex items-center gap-8">
-      <div class="flex w-full flex-col items-start gap-8 md:gap-16 lg:w-1/2">
-        <LayoutPageTitle title="slot">
+    <LayoutPageTitle title="slot">
+      <section id="overview" class="flex items-center gap-8">
+        <div class="flex w-full flex-col items-start gap-8 md:gap-16 lg:w-1/2">
           <i18n-t
             class="m-0 text-left text-4xl font-extrabold sm:text-5xl md:text-5xl xl:text-7xl"
             keypath="title"
@@ -18,44 +18,44 @@
               <span class="text-red-600">{{ t('titleRed') }}</span>
             </template>
           </i18n-t>
-        </LayoutPageTitle>
-        <div class="flex flex-col gap-2 text-lg md:text-xl">
-          <p>
-            {{ t('maevsiDescription1') }}
-          </p>
-          <p>
-            {{ t('maevsiDescription2') }}
-          </p>
+          <div class="flex flex-col gap-2 text-lg md:text-xl">
+            <p>
+              {{ t('maevsiDescription1') }}
+            </p>
+            <p>
+              {{ t('maevsiDescription2') }}
+            </p>
+          </div>
+          <div class="flex gap-8">
+            <ButtonColored
+              :aria-label="t('testNowFree')"
+              class="text-lg md:text-xl"
+              :to="localePath('/event')"
+            >
+              {{ t('testNowFree') }}
+            </ButtonColored>
+            <Button
+              :aria-label="t('appInstall')"
+              :is-primary="false"
+              :to="localePath('/docs/app')"
+            >
+              {{ t('appInstall') }}
+              <template #suffix>
+                <IHeroiconsArrowRight />
+              </template>
+            </Button>
+          </div>
         </div>
-        <div class="flex gap-8">
-          <ButtonColored
-            :aria-label="t('testNowFree')"
-            class="text-lg md:text-xl"
-            :to="localePath('/event')"
-          >
-            {{ t('testNowFree') }}
-          </ButtonColored>
-          <Button
-            :aria-label="t('appInstall')"
-            :is-primary="false"
-            :to="localePath('/docs/app')"
-          >
-            {{ t('appInstall') }}
-            <template #suffix>
-              <IHeroiconsArrowRight />
-            </template>
-          </Button>
-        </div>
-      </div>
-      <LoaderImage
-        :alt="t('heroImage')"
-        aspect="aspect-[750/861]"
-        class="hidden w-1/2 lg:block"
-        height="861"
-        src="/assets/static/images/hero_background.png"
-        width="750"
-      />
-    </section>
+        <LoaderImage
+          :alt="t('heroImage')"
+          aspect="aspect-[750/861]"
+          class="hidden w-1/2 lg:block"
+          height="861"
+          src="/assets/static/images/hero_background.png"
+          width="750"
+        />
+      </section>
+    </LayoutPageTitle>
     <section id="steps" ref="sectionStepsRef">
       <h2 class="text-center text-5xl font-extrabold">
         {{ t('stepsTitle') }}
