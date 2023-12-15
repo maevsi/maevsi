@@ -27,13 +27,25 @@
             {{ t('maevsiDescription2') }}
           </p>
         </div>
-        <ButtonColored
-          :aria-label="t('testNowFree')"
-          class="text-lg md:text-xl"
-          :to="localePath('/event')"
-        >
-          {{ t('testNowFree') }}
-        </ButtonColored>
+        <div class="flex gap-8">
+          <ButtonColored
+            :aria-label="t('testNowFree')"
+            class="text-lg md:text-xl"
+            :to="localePath('/event')"
+          >
+            {{ t('testNowFree') }}
+          </ButtonColored>
+          <Button
+            :aria-label="t('appInstall')"
+            :is-primary="false"
+            :to="localePath('/docs/app')"
+          >
+            {{ t('appInstall') }}
+            <template #suffix>
+              <IHeroiconsArrowRight />
+            </template>
+          </Button>
+        </div>
       </div>
       <LoaderImage
         :alt="t('heroImage')"
@@ -206,6 +218,7 @@ useHeadDefault({ title: siteConfig.name })
 
 <i18n lang="yaml">
 de:
+  appInstall: oder die App installieren
   benefitControl: Kontrolle
   benefitControlDescription: Du kannst genau planen, was deine Gäste brauchen
   benefitInformation: Klare Infos
@@ -242,6 +255,7 @@ de:
   titleGreen: Gäste
   titleRed: Freunde
 en:
+  appInstall: or install the app
   benefitControl: Control
   benefitControlDescription: You can plan exactly for your guest's needs
   benefitInformation: Clear info
