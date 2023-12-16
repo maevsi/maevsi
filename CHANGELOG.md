@@ -1,3 +1,10 @@
+## [3.21.1](https://github.com/maevsi/maevsi/compare/3.21.0...3.21.1) (2023-12-16)
+
+
+### Bug Fixes
+
+* **router:** correct redirect ([3406756](https://github.com/maevsi/maevsi/commit/34067568cc2240a0e23f4e0223823d0669d2b0ce))
+
 ## [3.21.0](https://github.com/maevsi/maevsi/compare/3.20.3...3.21.0) (2023-12-16)
 
 
