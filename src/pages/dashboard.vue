@@ -1,64 +1,48 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <h1>
-      {{ title }}
-    </h1>
+    <LayoutPageTitle :title="title" />
     <div
       v-if="store.jwtDecoded?.role === 'maevsi_account'"
-      class="flex flex-col gap-4"
+      class="flex flex-col gap-8"
     >
-      <div class="flex gap-4">
-        <section class="lg:w-1/2">
-          <h2>{{ t('eventsMine') }}</h2>
-          <ButtonColored
-            :aria-label="t('eventsMine')"
-            :to="localePath(`/event/view/${store.signedInUsername}`)"
-          >
-            {{ t('eventsMine') }}
-            <template #prefix>
-              <IHeroiconsCalendar />
-            </template>
-          </ButtonColored>
-        </section>
-        <section class="lg:w-1/2">
-          <h2>{{ t('invitationsMine') }}</h2>
-          <CardStateInfo>
-            {{ t('invitationsMineDescription') }}
-          </CardStateInfo>
-        </section>
-      </div>
-      <div class="flex gap-4">
-        <section class="lg:w-1/2">
-          <h2>{{ t('contactsMine') }}</h2>
-          <ButtonColored
-            :aria-label="t('contactsMine')"
-            :to="localePath('/contact')"
-          >
-            {{ t('contactsMine') }}
-            <template #prefix>
-              <IHeroiconsUsers />
-            </template>
-          </ButtonColored>
-        </section>
-        <section class="lg:w-1/2">
-          <h2>{{ t('uploadsMine') }}</h2>
-          <ButtonColored
-            :aria-label="t('uploadsMine')"
-            :to="localePath('/upload')"
-          >
-            {{ t('uploadsMine') }}
-            <template #prefix>
-              <IHeroiconsFolder />
-            </template>
-          </ButtonColored>
-        </section>
-      </div>
-      <section>
+      <section class="flex flex-col gap-4">
+        <CardButton
+          :description="t('eventsDescription')"
+          :title="t('events')"
+          :to="localePath(`/event/view/${store.signedInUsername}`)"
+        >
+          <IHeroiconsCalendar />
+        </CardButton>
+        <CardButton
+          :description="t('invitationsDescription')"
+          :title="t('invitations')"
+          :to="localePath(`/invitation`)"
+        >
+          <ISolarLetterLinear />
+        </CardButton>
+        <CardButton
+          :description="t('contactsDescription')"
+          :title="t('contacts')"
+          :to="localePath(`/contact`)"
+        >
+          <IHeroiconsUsers />
+        </CardButton>
+        <CardButton
+          :description="t('uploadsDescription')"
+          :title="t('uploads')"
+          :to="localePath(`/upload`)"
+        >
+          <IHeroiconsFolder />
+        </CardButton>
+      </section>
+      <ButtonApp />
+      <section class="flex flex-col gap-4">
         <h2>{{ t('news') }}</h2>
-        <CardStateInfo>
-          {{ t('newsDescription') }}
-        </CardStateInfo>
+        <FormInputStateInfo>
+          {{ t('example') }}
+        </FormInputStateInfo>
+        <LayoutFeed />
       </section>
     </div>
     <LayoutCallToAction
@@ -106,23 +90,29 @@ useHeadDefault({ title })
 de:
   anonymousCta: Finde ihn auf maevsi
   anonymousCtaDescription: Dir fehlt der Überblick über Veranstaltungen?
-  contactsMine: Meine Kontake
-  eventsMine: Meine Veranstaltungen
-  invitationsMine: Meine Einladungen
-  invitationsMineDescription: Hier wirst du bald die Veranstaltungen sehen, zu denen du eingeladen bist.
+  contacts: Kontake
+  contactsDescription: Informationen zu all deinen Gästen
+  events: Veranstaltungen
+  eventsDescription: Organisiere deine eigenen Veranstaltungen
+  example: Beispielhafte Darstellung
+  invitations: Einladungen
+  invitationsDescription: Sieh nach, wo du eingeladen bist
   news: Ereignisverlauf
-  newsDescription: Hier wirst du bald alle für dich relevanten Neuigkeiten sehen.
   title: Dashboard
-  uploadsMine: Meine Uploads
+  uploads: Uploads
+  uploadsDescription: Teile deine Dateien
 en:
   anonymousCta: Find it on maevsi
   anonymousCtaDescription: Are you missing an overview of events?
-  contactsMine: My contacts
-  eventsMine: My events
-  invitationsMine: My invitations
-  invitationsMineDescription: Here you will soon see the events to which you are invited.
+  contacts: Contacts
+  contactsDescription: Information on all your guests
+  events: Events
+  eventsDescription: Organize your own events
+  example: Exemplary representation
+  invitations: Invitations
+  invitationsDescription: See where you're invited
   news: Recent changes
-  newsDescription: Here you will soon see all the news relevant to you.
   title: Dashboard
-  uploadsMine: My uploads
+  uploads: Uploads
+  uploadsDescription: Share your files
 </i18n>

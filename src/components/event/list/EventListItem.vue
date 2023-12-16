@@ -16,6 +16,30 @@
         )
       "
     >
+      <div class="relative">
+        <LoaderImage
+          :alt="t('heroImage')"
+          aspect="aspect-[3/2]"
+          classes="rounded-t-lg brightness-[62.5%] h-48 object-cover w-full"
+          height="2"
+          :src="`/assets/static/images/event/${getHeroImageName(
+            event.name,
+          )}.jpg`"
+          width="3"
+        />
+        <div
+          class="absolute bottom-4 left-4 flex flex-col justify-between gap-4 md:flex-row"
+        >
+          <div
+            class="flex min-w-0 flex-col items-baseline text-text-bright md:flex-row md:gap-2"
+          >
+            <h1 class="m-0 line-clamp-2">
+              {{ event.name }}
+            </h1>
+            <Owner :username="event.accountByAuthorAccountId.username" />
+          </div>
+        </div>
+      </div>
       <Card class="flex flex-col gap-2">
         <div class="flex items-center justify-between gap-2">
           <div
@@ -37,12 +61,12 @@
             </div>
           </Tag>
         </div>
-        <div class="flex items-baseline gap-2 truncate">
+        <!-- <div class="flex items-baseline gap-2 truncate">
           <div class="truncate text-xl font-bold">
             {{ event.name }}
           </div>
           <Owner :username="event.accountByAuthorAccountId.username" />
-        </div>
+        </div> -->
         <p v-if="eventDescriptionTemplate" class="vio-line-clamp-2">
           {{ eventDescriptionTemplate }}
         </p>
@@ -96,7 +120,9 @@ const eventStart = computed(() => dateTime(props.event.start))
 
 <i18n lang="yaml">
 de:
+  heroImage: Titelbild der Veranstaltung
   private: privat
 en:
+  heroImage: Title picture of the event
   private: private
 </i18n>

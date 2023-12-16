@@ -18,7 +18,11 @@ export const testA11y = <T extends string = never>(
           page: defaultPage.page,
         }).analyze()
 
-        expect(accessibilityScanResults.violations.length).toEqual(1) // TODO: get rid of all violations
+        // console.log(
+        //   accessibilityScanResults.violations,
+        //   accessibilityScanResults.violations[0].nodes,
+        // )
+        expect(accessibilityScanResults.violations.length).toEqual(0)
       },
     )
   })

@@ -2,14 +2,15 @@
   <SBreadcrumb
     :items="items"
     :ui="{
-      ol: 'flex gap-2 text-gray-600 dark:text-gray-400',
-      li: 'flex items-center whitespace-nowrap leading-loose group',
+      nav: 'hidden lg:block',
       item: {
         icon: 'h-5 w-5',
         iconWithLabel: 'mr-1',
         default: ITEM_UI,
         current: ITEM_UI,
       },
+      li: 'flex items-center whitespace-nowrap leading-loose group',
+      ol: 'flex gap-2 text-gray-600 dark:text-gray-400',
     }"
   >
     <template #icon>

@@ -3,7 +3,7 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 import type { PluginAPI } from 'tailwindcss/types/config'
 
-const gray = colors.gray // or slate, zinc, neutral, stone
+const gray = colors.zinc // or gray, neutral, slate, stone
 const truncateOverflow = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
@@ -49,10 +49,11 @@ export default {
     ({ addBase, addComponents, addUtilities, theme }: PluginAPI) => {
       addBase({
         ':disabled': {
-          cursor: theme('cursor.not-allowed'),
-          opacity: theme('opacity.50'),
+          // cursor: theme('cursor.not-allowed'),
+          opacity: theme('opacity.75'),
+          pointerEvents: 'none',
         },
-        'a[target="_blank"]:after': {
+        'a[target="_blank"]:not([is-external-icon-disabled]):after': {
           backgroundColor: 'currentColor',
           content: '""',
           display: 'inline-table', // inline-table centers the element vertically in the tiptap text area, instead of inline-block
@@ -70,7 +71,7 @@ export default {
           fontSize: theme('fontSize.4xl'),
           marginBottom: theme('margin.4'),
           marginTop: theme('margin.4'),
-          textAlign: 'center',
+          // textAlign: 'center',
         },
         h2: {
           ...heading(theme),
@@ -148,10 +149,15 @@ export default {
       })
       addUtilities({
         '.disabled': {
-          cursor: theme('cursor.not-allowed'),
-          opacity: theme('opacity.50'),
+          // cursor: theme('cursor.not-allowed'),
+          opacity: theme('opacity.75'),
+          pointerEvents: 'none',
         },
         '.truncate-overflow': truncateOverflow,
+        '.under-construction': {
+          background:
+            'repeating-linear-gradient(-45deg,#fb0,#fb0 10px,#0000 10px,#0000 30px)',
+        },
       })
     },
   ],

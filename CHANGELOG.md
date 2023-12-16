@@ -1,3 +1,205 @@
+## [3.21.0-beta.10](https://github.com/maevsi/maevsi/compare/3.21.0-beta.9...3.21.0-beta.10) (2023-12-15)
+
+
+### Bug Fixes
+
+* **account:** correct color scheme ([02fdb87](https://github.com/maevsi/maevsi/commit/02fdb8705af793ad1f77d4a58dd2dbce52c393d1))
+* **event-list-item:** correct title color scheme ([5c5d45c](https://github.com/maevsi/maevsi/commit/5c5d45c107cedc00361372f7dde5a30d81691600))
+* **notification-indicator:** do not shrink ([f57d6bc](https://github.com/maevsi/maevsi/commit/f57d6bcb20b3ee4df41bebcf32e3a575de2b2919))
+
+## [3.21.0-beta.9](https://github.com/maevsi/maevsi/compare/3.21.0-beta.8...3.21.0-beta.9) (2023-12-15)
+
+
+### Features
+
+* **event-list-item:** increase brightness ([fe175da](https://github.com/maevsi/maevsi/commit/fe175da46ae1134c6107393b3b6425d8b7616cc9))
+* **under-construction:** decrease opacity ([ef226ea](https://github.com/maevsi/maevsi/commit/ef226ea43ef5ce90c656c83fb2e2fc12d3698486))
+
+
+### Bug Fixes
+
+* **account:** disable wip elements ([ee3d476](https://github.com/maevsi/maevsi/commit/ee3d47674106f40d478e3aa16bd1c08d316208b8))
+
+## [3.21.0-beta.8](https://github.com/maevsi/maevsi/compare/3.21.0-beta.7...3.21.0-beta.8) (2023-12-15)
+
+
+### Features
+
+* **account:** add wip friend request button ([68eda23](https://github.com/maevsi/maevsi/commit/68eda237517a83138a84ace2f7f9444d797c80da))
+* **account:** add wip friends and trophies ([2d8ab1b](https://github.com/maevsi/maevsi/commit/2d8ab1bd874087252607297e241c41b0fdf684ae))
+* **account:** enlargen profile picture ([64c734b](https://github.com/maevsi/maevsi/commit/64c734b3c7c7702fe9f7fb38eee2ab67344cfd27))
+* **app:** add backdrop ([51992e5](https://github.com/maevsi/maevsi/commit/51992e57bd7eeca8f95425732da4d1fde063f53a))
+* **app:** increase backdrop opacity on light color scheme ([dd47d41](https://github.com/maevsi/maevsi/commit/dd47d41e541adfb15b08df7518fa93485ef73131))
+* **buttom-colored:** add gradient ([de1bd4f](https://github.com/maevsi/maevsi/commit/de1bd4f60b2d66deecf60434b9e78625ab3eb76f))
+* **docs:** add app ([c133b54](https://github.com/maevsi/maevsi/commit/c133b54fece020f613e3bab798e51b25eed13536))
+* **event:** add seeded image ([2b1edf2](https://github.com/maevsi/maevsi/commit/2b1edf23285b4e29fd3ac27b5ded5eb834bf31fe))
+* **event:** rework ical download ([4727226](https://github.com/maevsi/maevsi/commit/4727226f8b473e727e1b46ee7aa58783d0b21b6c))
+* **notification:** add app button ([25df6fc](https://github.com/maevsi/maevsi/commit/25df6fc271904ad9ffce7b4b639a8b41d3691a9b))
+* **root:** use page title layout ([6aef689](https://github.com/maevsi/maevsi/commit/6aef68993566e6f4d9588567c67cc5b4edceb4cb))
+* **session:** add about link ([3cdc8a3](https://github.com/maevsi/maevsi/commit/3cdc8a39a8727a0b326e88badbedfc670731ff99))
+
+
+### Bug Fixes
+
+* **account:** hide event list for own account ([e1692c3](https://github.com/maevsi/maevsi/commit/e1692c3711e6c62fd3aba7ab85a9478525303bfe))
+* **attendance:** use wasm ([19a8c51](https://github.com/maevsi/maevsi/commit/19a8c515d98f5451b82d025517c0b1dde07ad62f))
+* **attendance:** use wasm ([#1498](https://github.com/maevsi/maevsi/issues/1498)) ([3ffe932](https://github.com/maevsi/maevsi/commit/3ffe93261ad48a3cc2b2fb31ce864b11ea09a25e))
+* **layout-menu-bottom-navigation:** correct color mode styling ([95d05dd](https://github.com/maevsi/maevsi/commit/95d05dd60603d3bd04a8018f32c0c35cf99d37e6))
+* **root:** correct page title layout placement ([8814762](https://github.com/maevsi/maevsi/commit/88147620432699fe81ceca162a2d323aa548e407))
+
+## [3.21.0-beta.7](https://github.com/maevsi/maevsi/compare/3.21.0-beta.6...3.21.0-beta.7) (2023-12-15)
+
+
+### Features
+
+* **app:** automate hypens ([bfd84c1](https://github.com/maevsi/maevsi/commit/bfd84c1642e456bf031eed11745f63fdce27a03b))
+* **event:** add navigation back ([ec09519](https://github.com/maevsi/maevsi/commit/ec095196473bcfe33771b726d4b794503937bbe9))
+* **layout-menu-bottom-navigation:** add ring ([fecbf02](https://github.com/maevsi/maevsi/commit/fecbf025f0e71b352ace31bbf0908b5bd6fc957a))
+* **notification:** add indicator ([3ef765c](https://github.com/maevsi/maevsi/commit/3ef765c1320d6d1e15585bc870abe2a685f43ee6))
+* **notification:** change contents ([a169ef8](https://github.com/maevsi/maevsi/commit/a169ef83c0a9602393fc59f54b9c1717fa100ac7))
+* **search:** add bar ([04d3f2b](https://github.com/maevsi/maevsi/commit/04d3f2ba9cc9058ed25e86b14efadabe9c4613ef))
+* **ux:** indicate elements being under construction ([617fc07](https://github.com/maevsi/maevsi/commit/617fc0758bc2ece6704180cb985905599fcffaef))
+
+
+### Bug Fixes
+
+* **layout-page-title:** beautify overflow ([68819f2](https://github.com/maevsi/maevsi/commit/68819f2483b7a939b446e691ae35075d828a2130))
+
+## [3.21.0-beta.6](https://github.com/maevsi/maevsi/compare/3.21.0-beta.5...3.21.0-beta.6) (2023-12-14)
+
+
+### Bug Fixes
+
+* **deps:** update ([ff7b4c3](https://github.com/maevsi/maevsi/commit/ff7b4c3192823542bd2c94c8a970bd2bdb5218c9))
+* schedule release ([383c277](https://github.com/maevsi/maevsi/commit/383c277063d11e6cba679ff16434c855eaef06ea))
+
+## [3.21.0-beta.5](https://github.com/maevsi/maevsi/compare/3.21.0-beta.4...3.21.0-beta.5) (2023-12-14)
+
+
+### Features
+
+* **layout-page-title:** add create event button ([9165b30](https://github.com/maevsi/maevsi/commit/9165b304fbf03a819e846c96604ed529b5c2e270))
+
+## [3.21.0-beta.4](https://github.com/maevsi/maevsi/compare/3.21.0-beta.3...3.21.0-beta.4) (2023-12-14)
+
+
+### Features
+
+* **form-radio-buttom:** try blue on dark ([3c1c984](https://github.com/maevsi/maevsi/commit/3c1c984e0c9ccca9720b23a27139c6dc766a9d2b))
+* **invitation:** add placeholder content ([c2a2b2c](https://github.com/maevsi/maevsi/commit/c2a2b2ce6aeec3536e0b20884a75af7edde31da9))
+* **page:** extend page title layout usage ([3270c83](https://github.com/maevsi/maevsi/commit/3270c834e16b91b88d3606e85c0af7641ababa88))
+
+
+### Bug Fixes
+
+* **layout-menu:** use locale paths ([d80c2dc](https://github.com/maevsi/maevsi/commit/d80c2dc41cdef7026c5e0b75e9a43caa0d3faa7a))
+
+## [3.21.0-beta.3](https://github.com/maevsi/maevsi/compare/3.21.0-beta.2...3.21.0-beta.3) (2023-12-13)
+
+
+### Bug Fixes
+
+* **session:** correct support links ([37ed867](https://github.com/maevsi/maevsi/commit/37ed867ef933c83cb5a91714e9badb42ccf80a50))
+
+## [3.21.0-beta.2](https://github.com/maevsi/maevsi/compare/3.21.0-beta.1...3.21.0-beta.2) (2023-12-13)
+
+
+### Bug Fixes
+
+* **session:** update support links ([73e8fba](https://github.com/maevsi/maevsi/commit/73e8fba3b18166cea032432d929607905c8efd9a))
+
+## [3.21.0-beta.1](https://github.com/maevsi/maevsi/compare/3.20.0...3.21.0-beta.1) (2023-12-13)
+
+
+### Features
+
+* **buttom-colored:** use blue ([4d4e995](https://github.com/maevsi/maevsi/commit/4d4e995369d8304cd49f74cf4eb3916b65ff80f5))
+* **dashbord:** rework ([4850411](https://github.com/maevsi/maevsi/commit/485041184547d1b0ab9635dd5c109b171019fbfa))
+* **header:** add settings button ([f9df244](https://github.com/maevsi/maevsi/commit/f9df24465f7a72b86845e4c589058b3c417ab60e))
+* **header:** rework page title ([95cfa26](https://github.com/maevsi/maevsi/commit/95cfa267f2dd6ee654b1be3b6c9be8e789ad6c33))
+* **index:** update title ([49e5c9e](https://github.com/maevsi/maevsi/commit/49e5c9ecc792657ef0d0a16db46aa8012f12d155))
+* **layout-menu:** direct to dashboard for signed in users ([6644689](https://github.com/maevsi/maevsi/commit/664468917c18e95f2b0dca7d7b6829cbc04c9604))
+* **notifications:** rework ([1902dfa](https://github.com/maevsi/maevsi/commit/1902dfa53dcd206f18ee9f391c333ab1fe556225))
+* redesign ([#1481](https://github.com/maevsi/maevsi/issues/1481)) ([747ee7f](https://github.com/maevsi/maevsi/commit/747ee7f6eaff59725e4e0a5f61453e4dc34925fe))
+* redesign ([#1493](https://github.com/maevsi/maevsi/issues/1493)) ([1a23e73](https://github.com/maevsi/maevsi/commit/1a23e734d271b6adbd474156952d568916804155))
+* **search:** show event list temporarily ([cf92c02](https://github.com/maevsi/maevsi/commit/cf92c0279b11115bcf281ffa1f87784ea694d294))
+* **session:** add settings ([ded0cfa](https://github.com/maevsi/maevsi/commit/ded0cfae11a2b00082958c726a5b2bf5112563b2))
+* **session:** extend settings ([e850c26](https://github.com/maevsi/maevsi/commit/e850c269f3c12a5e1168f45e1121acc17b0e837b))
+* **session:** implement cards ([8e70cc4](https://github.com/maevsi/maevsi/commit/8e70cc48d2bf5b33a7fae93d397a38c46093b3f4))
+* **tailwind:** use zinc gray ([7b4a82d](https://github.com/maevsi/maevsi/commit/7b4a82d2afbd292875ef51385e131e205811de0c))
+* **ui:** rework navigation ([1ef9777](https://github.com/maevsi/maevsi/commit/1ef977766f19fef630754ee92978ddec6ca763d4))
+
+
+### Bug Fixes
+
+* design ([#1495](https://github.com/maevsi/maevsi/issues/1495)) ([8895139](https://github.com/maevsi/maevsi/commit/8895139f3096f38fd6ebc4f506fdf24b3db2b2b2))
+* **form-radio-button-tailwind:** improve dark mode ([1e5f7aa](https://github.com/maevsi/maevsi/commit/1e5f7aaf621638b5ca34720d5d2219306d08400b))
+* **invitation:** return to list when exiting preview ([b7e9a99](https://github.com/maevsi/maevsi/commit/b7e9a99ece74da93140dec6d3f3ecddcefa6c30c))
+* **layout-bottom-navigation:** add missing shadow ([6406085](https://github.com/maevsi/maevsi/commit/6406085cb3c71e81d526f2cac27e0f538c2970fc))
+* **layout-bottom-navigation:** correct pointer events ([0a170ef](https://github.com/maevsi/maevsi/commit/0a170ef57868680c26023503823bd81c1c5ca41a))
+* **layout-menu-item:** correct background color ([2551a39](https://github.com/maevsi/maevsi/commit/2551a39be546dfc21a4518448a8fe1251480d004))
+* **layout-menu-item:** correct color ([ac35932](https://github.com/maevsi/maevsi/commit/ac359321f288020f878607d6e7be0422231db887))
+* **layout-menu:** account for signed out users ([02fce31](https://github.com/maevsi/maevsi/commit/02fce31054f901932b84303d00f9258d2ca39679))
+* **layout:** correct screen sizes ([fc6f27a](https://github.com/maevsi/maevsi/commit/fc6f27a2da2356d8414b3726148121d9d28033e6))
+* **legal:** correct page title layout ([97a9e7b](https://github.com/maevsi/maevsi/commit/97a9e7b4616f81cbdf26a6f4e9825c6fec723cb4))
+* **legal:** use page title layout ([772e23d](https://github.com/maevsi/maevsi/commit/772e23d63cb6133176f8b5b77df67289a8593790))
+* **session:** add missing border radius ([8a634ff](https://github.com/maevsi/maevsi/commit/8a634ff50d7df245b7bf6c0774b06fb150526e1b))
+* **session:** downgrade buttons ([db02e48](https://github.com/maevsi/maevsi/commit/db02e481dd952c811b06e8dac3a57e4ec7e34d3a))
+* **session:** use page title layout ([94f3839](https://github.com/maevsi/maevsi/commit/94f3839a4a0751ed63a2b3148fcefd1943bca2ed))
+* **timezone):** correct cookie options ([6a2fee9](https://github.com/maevsi/maevsi/commit/6a2fee9d57d9f9f1b99af8b027d2b472db719a52))
+
+## [3.20.0-beta.3](https://github.com/maevsi/maevsi/compare/3.20.0-beta.2...3.20.0-beta.3) (2023-12-13)
+
+
+### Bug Fixes
+
+* **session:** use page title layout ([94f3839](https://github.com/maevsi/maevsi/commit/94f3839a4a0751ed63a2b3148fcefd1943bca2ed))
+
+## [3.20.0-beta.2](https://github.com/maevsi/maevsi/compare/3.20.0-beta.1...3.20.0-beta.2) (2023-12-13)
+
+
+### Features
+
+* **buttom-colored:** use blue ([4d4e995](https://github.com/maevsi/maevsi/commit/4d4e995369d8304cd49f74cf4eb3916b65ff80f5))
+* **dashbord:** rework ([4850411](https://github.com/maevsi/maevsi/commit/485041184547d1b0ab9635dd5c109b171019fbfa))
+* **header:** add settings button ([f9df244](https://github.com/maevsi/maevsi/commit/f9df24465f7a72b86845e4c589058b3c417ab60e))
+* **header:** rework page title ([95cfa26](https://github.com/maevsi/maevsi/commit/95cfa267f2dd6ee654b1be3b6c9be8e789ad6c33))
+* **layout-menu:** direct to dashboard for signed in users ([6644689](https://github.com/maevsi/maevsi/commit/664468917c18e95f2b0dca7d7b6829cbc04c9604))
+* **notifications:** rework ([1902dfa](https://github.com/maevsi/maevsi/commit/1902dfa53dcd206f18ee9f391c333ab1fe556225))
+* redesign ([#1493](https://github.com/maevsi/maevsi/issues/1493)) ([1a23e73](https://github.com/maevsi/maevsi/commit/1a23e734d271b6adbd474156952d568916804155))
+* **search:** show event list temporarily ([cf92c02](https://github.com/maevsi/maevsi/commit/cf92c0279b11115bcf281ffa1f87784ea694d294))
+* **session:** add settings ([ded0cfa](https://github.com/maevsi/maevsi/commit/ded0cfae11a2b00082958c726a5b2bf5112563b2))
+* **session:** extend settings ([e850c26](https://github.com/maevsi/maevsi/commit/e850c269f3c12a5e1168f45e1121acc17b0e837b))
+* **session:** implement cards ([8e70cc4](https://github.com/maevsi/maevsi/commit/8e70cc48d2bf5b33a7fae93d397a38c46093b3f4))
+* **tailwind:** use zinc gray ([7b4a82d](https://github.com/maevsi/maevsi/commit/7b4a82d2afbd292875ef51385e131e205811de0c))
+
+
+### Bug Fixes
+
+* **i18n:** correct browser support message ([d3e37c7](https://github.com/maevsi/maevsi/commit/d3e37c7579c999fa9fc51607ee027b659447dd83))
+* **i18n:** correct browser support message ([#1483](https://github.com/maevsi/maevsi/issues/1483)) ([0fe0c1b](https://github.com/maevsi/maevsi/commit/0fe0c1bb9324acea5b46c7ac69ad34e7ea3c55af))
+* **layout-bottom-navigation:** add missing shadow ([6406085](https://github.com/maevsi/maevsi/commit/6406085cb3c71e81d526f2cac27e0f538c2970fc))
+* **layout-menu-item:** correct background color ([2551a39](https://github.com/maevsi/maevsi/commit/2551a39be546dfc21a4518448a8fe1251480d004))
+* **layout-menu-item:** correct color ([ac35932](https://github.com/maevsi/maevsi/commit/ac359321f288020f878607d6e7be0422231db887))
+* **layout-menu:** account for signed out users ([02fce31](https://github.com/maevsi/maevsi/commit/02fce31054f901932b84303d00f9258d2ca39679))
+* **layout:** correct screen sizes ([fc6f27a](https://github.com/maevsi/maevsi/commit/fc6f27a2da2356d8414b3726148121d9d28033e6))
+* **og-image:** add description ([562ed0e](https://github.com/maevsi/maevsi/commit/562ed0e13352d88f34a0a9863028e4d2a39e355a))
+* **timezone):** correct cookie options ([6a2fee9](https://github.com/maevsi/maevsi/commit/6a2fee9d57d9f9f1b99af8b027d2b472db719a52))
+
+## [3.20.0-beta.1](https://github.com/maevsi/maevsi/compare/3.19.2...3.20.0-beta.1) (2023-12-08)
+
+
+### Features
+
+* **index:** update title ([49e5c9e](https://github.com/maevsi/maevsi/commit/49e5c9ecc792657ef0d0a16db46aa8012f12d155))
+* redesign ([#1481](https://github.com/maevsi/maevsi/issues/1481)) ([747ee7f](https://github.com/maevsi/maevsi/commit/747ee7f6eaff59725e4e0a5f61453e4dc34925fe))
+* **ui:** rework navigation ([1ef9777](https://github.com/maevsi/maevsi/commit/1ef977766f19fef630754ee92978ddec6ca763d4))
+
+
+### Bug Fixes
+
+* **invitation:** return to list when exiting preview ([b7e9a99](https://github.com/maevsi/maevsi/commit/b7e9a99ece74da93140dec6d3f3ecddcefa6c30c))
+
 ## [3.20.3](https://github.com/maevsi/maevsi/compare/3.20.2...3.20.3) (2023-12-15)
 
 

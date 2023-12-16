@@ -167,6 +167,7 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: [
+        '@headlessui/vue',
         '@tiptap/extension-link',
         '@tiptap/extension-text-align',
         '@tiptap/starter-kit',

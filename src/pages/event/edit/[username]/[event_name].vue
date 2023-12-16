@@ -12,7 +12,10 @@
     >
       <LayoutBreadcrumbs :items="breadcrumbItems" />
       <section>
-        <h1>{{ t('title') }}</h1>
+        <LayoutPageTitle
+          :title="t('title')"
+          :to="`/event/view/${route.params.username}/${route.params.event_name}`"
+        />
         <FormEvent :event="event" />
       </section>
       <section>

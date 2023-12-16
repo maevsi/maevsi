@@ -13,9 +13,10 @@
         </template>
       </ButtonColored>
     </ButtonList> -->
-    <h1>
-      {{ title }}
-    </h1>
+    <LayoutPageTitle
+      :title="title"
+      :to="localePath(`/session/edit/${route.params.id}`)"
+    />
     <div class="flex flex-col gap-8">
       <section class="flex flex-col gap-4">
         <h2>{{ t('end') }}</h2>
@@ -27,7 +28,11 @@
           </div>
           <div class="flex-1">
             <div class="flex flex-col gap-2">
-              <ButtonColored :aria-label="t('endNow')" @click="signOut">
+              <ButtonColored
+                :aria-label="t('endNow')"
+                :is-primary="false"
+                @click="signOut"
+              >
                 {{ t('endNow') }}
                 <template #prefix>
                   <IHeroiconsOutlineLogout />
@@ -158,6 +163,7 @@
               <ButtonColored
                 :aria-label="t('notificationPermit')"
                 :disabled="!isNotificationPermissionRequestPossible"
+                :is-primary="false"
                 @click="requestNotificationPermissions"
               >
                 {{ t('notificationPermit') }}
@@ -168,6 +174,7 @@
               <ButtonColored
                 :aria-label="t('notificationSend')"
                 :disabled="permissionState !== 'granted'"
+                :is-primary="false"
                 @click="sendNotification"
               >
                 {{ t('notificationSend') }}
@@ -213,7 +220,8 @@ const requestEvent = useRequestEvent()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 const dateTime = useDateTime()
-// const localePath = useLocalePath()
+const route = useRoute(ROUTE_NAME)
+const localePath = useLocalePath()
 const { signOut } = useSignOut()
 
 // data

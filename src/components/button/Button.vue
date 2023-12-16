@@ -3,7 +3,7 @@
     v-if="props.to"
     :aria-label="ariaLabel"
     :class="classes"
-    :disabled="disabled"
+    :is-disabled="disabled"
     :is-colored="false"
     :to="props.to"
     @click="emit('click')"
@@ -30,20 +30,34 @@
   </button>
 </template>
 
-<script setup lang="ts" generic="T extends RoutesNamesList, P extends string">
+<script
+  setup
+  lang="ts"
+  generic="
+    T extends RoutesNamesList,
+    P extends string,
+    E extends boolean = false
+  "
+>
 import type { NuxtRoute, RoutesNamesList } from '@typed-router'
 
-export interface Props<T extends RoutesNamesList, P extends string> {
+export interface Props<
+  T extends RoutesNamesList,
+  P extends string,
+  E extends boolean = false,
+> {
   ariaLabel: string
   disabled?: boolean
   isBlock?: boolean
+  isExternal?: E
   isLinkColored?: boolean
-  to?: NuxtRoute<T, P>
+  to?: NuxtRoute<T, P, E>
   type?: 'button' | 'submit' | 'reset'
 }
-const props = withDefaults(defineProps<Props<T, P>>(), {
+const props = withDefaults(defineProps<Props<T, P, E>>(), {
   disabled: false,
   isBlock: false,
+  isExternal: undefined,
   isLinkColored: false,
   to: undefined,
   type: 'button',
