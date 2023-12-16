@@ -51,4 +51,15 @@ export default defineEventHandler((event) => {
       302,
     )
   }
+
+  if (requestPath.match(/^\/(de\/)?task\/accounts\/email-address\/verify/)) {
+    return sendRedirect(
+      event,
+      requestPath.replace(
+        /^\/(de\/)?task\/accounts\/email-address\/verify/,
+        (_a, b) => `/${b || ''}account/verify`,
+      ),
+      302,
+    )
+  }
 })
