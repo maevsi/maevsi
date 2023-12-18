@@ -124,10 +124,10 @@ importers:
         version: 7.88.0(vue@3.3.12)
       '@tailwindcss/forms':
         specifier: 0.5.7
-        version: 0.5.7(tailwindcss@3.3.6)
+        version: 0.5.7(tailwindcss@3.3.7)
       '@tailwindcss/typography':
         specifier: 0.5.10
-        version: 0.5.10(tailwindcss@3.3.6)
+        version: 0.5.10(tailwindcss@3.3.7)
       '@tiptap/core':
         specifier: 2.1.13
         version: 2.1.13(@tiptap/pm@2.1.13)
@@ -357,8 +357,8 @@ importers:
         specifier: 11.10.1
         version: 11.10.1
       tailwindcss:
-        specifier: 3.3.6
-        version: 3.3.6
+        specifier: 3.3.7
+        version: 3.3.7
       unhead:
         specifier: 1.8.9
         version: 1.8.9
@@ -4342,8 +4342,8 @@ packages:
       postcss-custom-properties: 13.3.3(postcss@8.4.32)
       postcss-nesting: 12.0.2(postcss@8.4.32)
       radix3: 1.1.0
-      tailwind-config-viewer: 1.7.3(tailwindcss@3.3.6)
-      tailwindcss: 3.3.6
+      tailwind-config-viewer: 1.7.3(tailwindcss@3.3.7)
+      tailwindcss: 3.3.7
       ufo: 1.3.2
       uncrypto: 0.1.3
     transitivePeerDependencies:
@@ -5423,16 +5423,16 @@ packages:
       string.prototype.matchall: 4.0.10
     dev: true
 
-  /@tailwindcss/forms@0.5.7(tailwindcss@3.3.6):
+  /@tailwindcss/forms@0.5.7(tailwindcss@3.3.7):
     resolution: {integrity: sha512-QE7X69iQI+ZXwldE+rzasvbJiyV/ju1FGHH0Qn2W3FKbuYtqp8LKcy6iSw79fVUT5/Vvf+0XgLCeYVG+UV6hOw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.3.6
+      tailwindcss: 3.3.7
     dev: true
 
-  /@tailwindcss/typography@0.5.10(tailwindcss@3.3.6):
+  /@tailwindcss/typography@0.5.10(tailwindcss@3.3.7):
     resolution: {integrity: sha512-Pe8BuPJQJd3FfRnm6H0ulKIGoMEQS+Vq01R6M5aCrFB/ccR/shT+0kXLjouGC1gFLm9hopTFN+DMP0pfwRWzPw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
@@ -5441,7 +5441,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.3.6
+      tailwindcss: 3.3.7
     dev: true
 
   /@tiptap/core@2.1.13(@tiptap/pm@2.1.13):
@@ -16672,7 +16672,7 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tailwind-config-viewer@1.7.3(tailwindcss@3.3.6):
+  /tailwind-config-viewer@1.7.3(tailwindcss@3.3.7):
     resolution: {integrity: sha512-rgeFXe9vL4njtaSI1y2uUAD1aRx05RYHbReN72ARAVEVSlNmS0Zf46pj3/ORc3xQwLK/AzbaIs6UFcK7hJSIlA==}
     engines: {node: '>=8'}
     hasBin: true
@@ -16687,13 +16687,13 @@ packages:
       open: 7.4.2
       portfinder: 1.0.32
       replace-in-file: 6.3.5
-      tailwindcss: 3.3.6
+      tailwindcss: 3.3.7
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /tailwindcss@3.3.6:
-    resolution: {integrity: sha512-AKjF7qbbLvLaPieoKeTjG1+FyNZT6KaJMJPFeQyLfIp7l82ggH1fbHJSsYIvnbTFQOlkh+gBYpyby5GT1LIdLw==}
+  /tailwindcss@3.3.7:
+    resolution: {integrity: sha512-pjgQxDZPvyS/nG3ZYkyCvsbONJl7GdOejfm24iMt2ElYQQw8Jc4p0m8RdMp7mznPD0kUhfzwV3zAwa80qI0zmQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
