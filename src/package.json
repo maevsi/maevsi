@@ -84,7 +84,7 @@
     "@vite-pwa/nuxt": "0.3.5",
     "@vuelidate/core": "2.0.3",
     "@vuelidate/validators": "2.0.4",
-    "barcode-detector": "2.1.5",
+    "barcode-detector": "2.2.0",
     "browserslist-useragent-regexp": "4.1.0",
     "chart.js": "4.4.1",
     "clipboardy": "4.0.0",
