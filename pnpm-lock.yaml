@@ -66,8 +66,8 @@ importers:
         specifier: 1.1.20
         version: 1.1.20
       '@iconify-json/heroicons':
-        specifier: 1.1.17
-        version: 1.1.17
+        specifier: 1.1.19
+        version: 1.1.19
       '@iconify-json/heroicons-outline':
         specifier: 1.1.10
         version: 1.1.10
@@ -3377,8 +3377,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/heroicons@1.1.17:
-    resolution: {integrity: sha512-zI04VPwR8p9FNQsKbUpskz/3LWXrQGXOuRGZXbTMfklG20bGjA1te87E0kbm7mfQteuBMp9RHYNX9ck71NmtDg==}
+  /@iconify-json/heroicons@1.1.19:
+    resolution: {integrity: sha512-uW2F9vdGll59W21ocBl+wR4Ve+/1CsmzBqPTuOaR3CbKzqnJKwzGASvC4Op0uTieFVWfBaevnzcRxwNo73J29g==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
