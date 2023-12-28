@@ -40,7 +40,7 @@ export default defineNuxtConfig({
     //   enabled: true,
     // },
   },
-  experimental: {
+  future: {
     typescriptBundlerResolution: true,
   },
   hooks: {
