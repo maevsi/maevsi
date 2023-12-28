@@ -33,12 +33,13 @@ import type { NuxtRoute, RoutesNamesList } from '@typed-router'
 
 export interface Props<T extends RoutesNamesList, P extends string> {
   isButtonEventCreateShown?: boolean
-  title: string
+  title?: string
   to?: NuxtRoute<T, P>
 }
 const props = withDefaults(defineProps<Props<T, P>>(), {
   isButtonEventCreateShown: true,
   to: undefined,
+  title: undefined,
 })
 
 const store = useMaevsiStore()

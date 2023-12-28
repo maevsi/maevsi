@@ -34,7 +34,6 @@
       />
       <FormInputEmailAddress
         :form-input="v$.emailAddress"
-        is-required
         @input="form.emailAddress = $event"
       />
       <FormInputCaptcha
@@ -112,7 +111,7 @@ de:
   register: Registrieren
   registrationSuccessBody: Verifiziere deinen Account über den Link in der E-Mail, die du in Kürze erhalten wirst.
   registrationSuccessTitle: Verifizierungs-E-Mail gesendet.
-  signIn: Oder stattdessen anmelden
+  signIn: Stattdessen anmelden
 en:
   accountDeletionNotice: "You'll be able to delete your account at any time."
   postgres22023: Your password is too short! Think of a longer one.
@@ -120,5 +119,5 @@ en:
   register: Register
   registrationSuccessBody: Verify your account using the verification link sent to you by email.
   registrationSuccessTitle: Verification email sent.
-  signIn: Or sign in instead
+  signIn: Sign in instead
 </i18n>

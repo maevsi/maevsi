@@ -9,7 +9,8 @@
     novalidate
     @submit="emit('submit', $event)"
   >
-    <Card class="flex flex-col" is-high>
+    <!-- <Card class="flex flex-col" is-high> -->
+    <div class="flex flex-col">
       <div class="flex min-h-0 flex-col gap-6">
         <slot />
         <div class="flex flex-col items-center justify-between">
@@ -39,7 +40,7 @@
           </div>
         </div>
       </div>
-    </Card>
+    </div>
   </form>
 </template>
 

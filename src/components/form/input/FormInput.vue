@@ -6,11 +6,11 @@
         'form-input-warning': warning,
         'form-input-error': value?.$error,
       }"
-      class="flex-wrap md:flex md:items-center"
+      class="flex-wrap"
     >
-      <div class="mb-1 md:mb-0 md:w-1/3 md:pr-4 md:text-right">
+      <div class="mb-1">
         <label
-          class="inline-flex items-baseline gap-2 font-semibold md:flex-col md:items-end md:gap-0"
+          class="inline-flex items-baseline gap-2 font-semibold"
           :class="{
             'form-input-success': success,
             'form-input-warning': warning,
@@ -31,7 +31,7 @@
           </span>
         </label>
       </div>
-      <div class="flex md:mt-1 md:w-2/3">
+      <div class="flex">
         <div class="relative min-w-0 grow">
           <slot v-if="$slots.default" />
           <!-- TODO: support textarea, checkboxes and radio buttons natively -->

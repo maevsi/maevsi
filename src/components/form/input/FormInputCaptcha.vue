@@ -12,6 +12,7 @@
       :options="{
         'error-callback': () => (isLoading = false),
         'expired-callback': () => emit('input', undefined),
+        theme: themeColor,
       }"
       @update:model-value="update"
     />
@@ -60,6 +61,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 const store = useMaevsiStore()
+const colorMode = useColorMode()
 const runtimeConfig = useRuntimeConfig()
 
 // refs
@@ -67,6 +69,12 @@ const turnstileRef = ref()
 
 // data
 const isLoading = ref(true)
+
+const themeColor = colorMode.preference.replace('system', 'auto') as
+  | 'auto'
+  | 'light'
+  | 'dark'
+  | undefined
 
 // computations
 const isVisible = computed(

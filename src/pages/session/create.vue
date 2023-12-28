@@ -3,13 +3,16 @@
     <CardStateInfo v-if="to">
       {{ t('accountRequired') }}
     </CardStateInfo>
-    <LayoutPageTitle :title="title" />
+    <LayoutPageTitle />
     <div
       v-if="
         !store.jwtDecoded?.role || store.jwtDecoded.role === 'maevsi_anonymous'
       "
-      class="flex justify-center"
+      class="mt-10 flex flex-col items-center"
     >
+      <h1 class="text-center">
+        {{ t('title') }}
+      </h1>
       <FormAccountSignIn class="max-w-lg grow" @signed-in="onSignIn" />
     </div>
     <Error v-else :status-code="422" />

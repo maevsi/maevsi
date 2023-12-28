@@ -1,8 +1,13 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
-    <div class="flex justify-center">
-      <FormAccountRegistration class="max-w-lg grow" />
+    <LayoutPageTitle />
+    <div class="mt-10 flex flex-col items-center">
+      <h1 class="text-center">
+        {{ t('title') }}
+      </h1>
+      <div class="flex justify-center">
+        <FormAccountRegistration class="max-w-lg grow" />
+      </div>
     </div>
   </div>
 </template>
