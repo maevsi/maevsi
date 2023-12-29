@@ -4,11 +4,13 @@
       <ButtonIcon v-if="props.to" :aria-label="t('back')" :to="props.to">
         <IHeroiconsChevronLeft />
       </ButtonIcon>
-      <div v-if="!centered" class="flex-1 overflow-hidden">
+      <div class="flex-1 overflow-hidden">
         <slot v-if="$slots.default" />
-        <h1 v-else>
-          {{ title }}
-        </h1>
+        <div v-else>
+          <h1 v-if="!centered">
+            {{ title }}
+          </h1>
+        </div>
       </div>
       <ButtonIcon
         v-if="isButtonEventCreateShown"
