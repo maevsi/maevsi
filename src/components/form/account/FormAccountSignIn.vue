@@ -17,7 +17,7 @@
         postgresP0002: t('postgresP0002'),
       }"
       :form="v$"
-      form-class="w-100"
+      form-class="w-full"
       :is-form-sent="isFormSent"
       :submit-name="t('signIn')"
       @submit.prevent="submit"

@@ -1,13 +1,8 @@
 <template>
   <div>
-    <LayoutPageTitle />
-    <div class="mt-10 flex flex-col items-center">
-      <h1 class="text-center">
-        {{ t('title') }}
-      </h1>
-      <div class="flex justify-center">
-        <FormAccountPasswordResetRequest />
-      </div>
+    <LayoutPageTitle :title="title" :centered="true" />
+    <div class="mt-5 flex justify-center">
+      <FormAccountPasswordResetRequest />
     </div>
   </div>
 </template>
