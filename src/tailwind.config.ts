@@ -3,8 +3,9 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 import type { PluginAPI } from 'tailwindcss/types/config'
 
-export const DEFAULT_GRAY = 'zinc'
-const gray = colors[DEFAULT_GRAY] // or gray, neutral, slate, stone
+import { STYLE_DEFAULT_GRAY } from './utils/constants'
+
+const gray = colors[STYLE_DEFAULT_GRAY] // or gray, neutral, slate, stone
 const truncateOverflow = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',

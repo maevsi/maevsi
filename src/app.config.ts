@@ -1,11 +1,11 @@
 import { useServerSeoMeta } from '@unhead/vue'
 
-import { DEFAULT_GRAY } from './tailwind.config'
+import { STYLE_DEFAULT_GRAY } from './utils/constants'
 
 export default defineAppConfig({
   ui: {
     // primary: 'blue',
-    gray: DEFAULT_GRAY,
+    gray: STYLE_DEFAULT_GRAY,
   },
   vio: {
     pages: undefined,
