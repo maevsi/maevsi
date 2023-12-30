@@ -4,7 +4,7 @@ import colors from 'tailwindcss/colors'
 
 export const getHeroImageName = (seed: string) => {
   const images = ['conference', 'crowd', 'party', 'workshop']
-  return images[Math.round(seedrandom(seed)() * images.length)]
+  return images[Math.floor(seedrandom(seed)() * images.length)]
 }
 
 export const showToast = ({
