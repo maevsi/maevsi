@@ -111,7 +111,7 @@ export interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {})
 
-const { $colorMode } = useNuxtApp()
+const colorMode = useColorMode()
 const { t } = useI18n()
 const store = useMaevsiStore()
 const runtimeConfig = useRuntimeConfig()
@@ -147,7 +147,7 @@ const options = {
 // methods
 const add = () => store.modals.push({ id: 'ModalInvitation' })
 const updateChart = () => {
-  Chart.defaults.color = $colorMode.value === 'dark' ? '#fff' : '#000'
+  Chart.defaults.color = colorMode.value === 'dark' ? '#fff' : '#000'
 
   if (doughnutRef.value?.chart) {
     doughnutRef.value?.chart.update()
@@ -195,7 +195,7 @@ const invitations = computed(
 
 // lifecycle
 watch(
-  () => $colorMode.value,
+  () => colorMode.value,
   (_currentValue, _oldValue) => updateChart(),
 )
 watch(
