@@ -8,6 +8,7 @@
   >
     <NuxtTurnstile
       ref="turnstileRef"
+      :key="themeColor"
       :class="{ 'h-[65px]': isVisible }"
       :options="{
         'error-callback': () => (isLoading = false),
@@ -69,12 +70,7 @@ const turnstileRef = ref()
 
 // data
 const isLoading = ref(true)
-
-const themeColor = colorMode.preference.replace('system', 'auto') as
-  | 'auto'
-  | 'light'
-  | 'dark'
-  | undefined
+const themeColor = ref<'auto' | 'light' | 'dark'>()
 
 // computations
 const isVisible = computed(
@@ -86,6 +82,23 @@ const isVisible = computed(
 )
 
 // methods
+const getThemeColor = (colorModePreferenceOverride?: string) => {
+  const colorModePreference =
+    colorModePreferenceOverride || colorMode.preference
+
+  switch (colorModePreference) {
+    case 'system':
+      return 'auto'
+    case 'light':
+    case 'dark':
+      return colorModePreference
+    default:
+      throw new Error(`Unexpected color mode "${colorModePreference}"`)
+  }
+}
+const initialize = () => {
+  themeColor.value = getThemeColor()
+}
 const reset = () => {
   isLoading.value = true
   turnstileRef.value.reset()
@@ -95,6 +108,15 @@ const update = (e: string) => {
   store.turnstileToken = e
   emit('input', e)
 }
+
+// lifecycle
+watch(
+  () => colorMode.value,
+  (currentValue, _oldValue) => (themeColor.value = getThemeColor(currentValue)),
+)
+
+// initialization
+initialize()
 </script>
 
 <i18n lang="yaml">
