@@ -9,7 +9,6 @@
   >
     <FormInputEmailAddress
       :form-input="v$.emailAddress"
-      is-required
       :title="t('emailAddressYours')"
       @input="form.emailAddress = $event"
     />
