@@ -1,3 +1,18 @@
+## [3.22.0](https://github.com/maevsi/maevsi/compare/3.21.2...3.22.0) (2023-12-30)
+
+
+### Features
+
+* **breadcrumbs:** migrate to nuxt ui ([4070b96](https://github.com/maevsi/maevsi/commit/4070b96684750f339b5b67d462340c96c359ad5c))
+
+
+### Bug Fixes
+
+* **breadcrumbs:** correct aria label ([dc34a07](https://github.com/maevsi/maevsi/commit/dc34a07376aeca64db7d807fa54d9e84bc80343d))
+* **breadcrumbs:** correct types ([1eb0f93](https://github.com/maevsi/maevsi/commit/1eb0f93a584aa6328d858c63629bcb42e3a7d5de))
+* **site-config:** update server side only ([9cdcc94](https://github.com/maevsi/maevsi/commit/9cdcc9485665e66f5ea801455cdbb9d22b141c58))
+* **style:** centralize constant ([4597551](https://github.com/maevsi/maevsi/commit/45975510553f00088e5538eccdeba144b5d82fd8))
+
 ## [3.21.2](https://github.com/maevsi/maevsi/compare/3.21.1...3.21.2) (2023-12-30)
 
 
