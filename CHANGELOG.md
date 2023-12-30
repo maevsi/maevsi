@@ -1,3 +1,11 @@
+## [3.22.1](https://github.com/maevsi/maevsi/compare/3.22.0...3.22.1) (2023-12-30)
+
+
+### Bug Fixes
+
+* **ui:** correct hero image index ([74b1a87](https://github.com/maevsi/maevsi/commit/74b1a875144eb360d50f54917a15ddb96a1a8b87))
+* **ui:** correct hero image index ([#1509](https://github.com/maevsi/maevsi/issues/1509)) ([ad535ce](https://github.com/maevsi/maevsi/commit/ad535ceab17dfd2ab9a58ca978a89ee2dac9384a))
+
 ## [3.22.0](https://github.com/maevsi/maevsi/compare/3.21.2...3.22.0) (2023-12-30)
 
 
