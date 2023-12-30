@@ -4,22 +4,15 @@
       {{ t('accountRequired') }}
     </CardStateInfo>
     <LayoutPageTitle :title="title" />
-    <div
-      v-if="
-        !store.jwtDecoded?.role || store.jwtDecoded.role === 'maevsi_anonymous'
-      "
-      class="flex justify-center"
-    >
+    <div class="flex justify-center">
       <FormAccountSignIn class="max-w-lg grow" @signed-in="onSignIn" />
     </div>
-    <Error v-else :status-code="422" />
   </div>
 </template>
 
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
-const store = useMaevsiStore()
 const route = useRoute()
 
 // data
