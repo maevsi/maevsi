@@ -102,17 +102,15 @@ const profilePictureSetMutation = useProfilePictureSetMutation()
 const api = getApiData([accountByUsernameQuery, profilePictureSetMutation])
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    usePageBreadcrumbAccounts(),
-    usePageBreadcrumbAccountsId(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  usePageBreadcrumbAccounts(),
+  usePageBreadcrumbAccountsId(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const mutation = accountDeleteMutation
 const routeParamUsername = route.params.username
 const title = t('settings')

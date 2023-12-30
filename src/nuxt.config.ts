@@ -63,10 +63,11 @@ export default defineNuxtConfig({
   modules: [
     '@dargmuesli/nuxt-cookie-control',
     '@nuxt/image',
-    '@nuxtjs/color-mode',
+    '@nuxt/ui',
+    // '@nuxtjs/color-mode', // installed by @nuxt/ui
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
-    '@nuxtjs/tailwindcss',
+    // '@nuxtjs/tailwindcss', // installed by @nuxt/ui
     '@nuxtjs/turnstile',
     '@nuxtseo/module',
     '@pinia/nuxt',
