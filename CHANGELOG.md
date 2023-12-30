@@ -1,3 +1,11 @@
+## [3.23.0](https://github.com/maevsi/maevsi/compare/3.22.1...3.23.0) (2023-12-30)
+
+
+### Features
+
+* **session:** allow to create when already signed in ([d1becf6](https://github.com/maevsi/maevsi/commit/d1becf6c6d7d37950ad959e4df431474ac6f03be))
+* **session:** allow to create when already signed in ([#1511](https://github.com/maevsi/maevsi/issues/1511)) ([a63cf1b](https://github.com/maevsi/maevsi/commit/a63cf1b1608d05b7903ef7ea852293e5435aaae2))
+
 ## [3.22.1](https://github.com/maevsi/maevsi/compare/3.22.0...3.22.1) (2023-12-30)
 
 
