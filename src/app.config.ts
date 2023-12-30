@@ -1,6 +1,12 @@
 import { useServerSeoMeta } from '@unhead/vue'
 
+import { STYLE_DEFAULT_GRAY } from './utils/constants'
+
 export default defineAppConfig({
+  ui: {
+    // primary: 'blue',
+    gray: STYLE_DEFAULT_GRAY,
+  },
   vio: {
     pages: undefined,
     seoMeta: {

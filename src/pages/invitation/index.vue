@@ -28,15 +28,13 @@ const localePath = useLocalePath()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const title = t('title')
 </script>
 

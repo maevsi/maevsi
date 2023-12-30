@@ -225,15 +225,13 @@ const localePath = useLocalePath()
 const { signOut } = useSignOut()
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const isNavigatorHavingPermissions = ref<boolean>()
 const isNavigatorHavingServiceWorker = ref<boolean>()
 const isWindowHavingNotification = ref<boolean>()

@@ -453,17 +453,15 @@ const event = computed(() =>
 const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    usePageBreadcrumbEvents(),
-    usePageBreadcrumbEventsUser(),
-    {
-      current: true,
-      ...(await pageBreadcrumb({ $urql, route })),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  usePageBreadcrumbEvents(),
+  usePageBreadcrumbEventsUser(),
+  {
+    current: true,
+    ...(await pageBreadcrumb({ $urql, route })),
+  },
+])
 
 // methods
 const accept = () => {

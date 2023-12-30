@@ -48,16 +48,14 @@ const localePath = useLocalePath()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    usePageBreadcrumbEvents(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  usePageBreadcrumbEvents(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const routeParamUsername = route.params.username
 const title = t('title', { name: route.params.username })
 

@@ -146,17 +146,15 @@ const event = computed(() =>
 const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbEvents(),
-    usePageBreadcrumbEventsUser(),
-    await usePageBreadcrumbEventsUserId({ $urql, route }),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbEvents(),
+  usePageBreadcrumbEventsUser(),
+  await usePageBreadcrumbEventsUserId({ $urql, route }),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const invitationId = ref<string>()
 const isNfcWritableErrorMessage = ref<string>()
 const loading = ref(true)

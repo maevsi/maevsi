@@ -104,17 +104,15 @@ const api = getApiData([
 ])
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbEvents(),
-    usePageBreadcrumbEventsUser(),
-    await usePageBreadcrumbEventsUserId({ $urql, route }),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbEvents(),
+  usePageBreadcrumbEventsUser(),
+  await usePageBreadcrumbEventsUserId({ $urql, route }),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const mutation = eventDeleteMutation
 
 // computations

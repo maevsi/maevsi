@@ -34,15 +34,13 @@ const store = useMaevsiStore()
 const localePath = useLocalePath()
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const title = t('title')
 
 // initialization

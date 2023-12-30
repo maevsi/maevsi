@@ -29,15 +29,13 @@ const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const title = t('title')
 
 // initialization

@@ -143,16 +143,14 @@ const account = getAccountItem(
 const api = getApiData([accountByUsernameQuery])
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    usePageBreadcrumbAccounts(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  usePageBreadcrumbAccounts(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const routeParamUsername = route.params.username
 const title = route.params.username
 

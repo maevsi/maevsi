@@ -22,7 +22,7 @@ const getBreadcrumbItemProps = (
   localePath: TypedToLocalePath,
 ) => ({
   ...breadcrumbWithLocales,
-  ariaLabel: breadcrumbWithLocales.ariaLabel
+  'aria-label': breadcrumbWithLocales.ariaLabel
     ? typeof breadcrumbWithLocales.ariaLabel === 'string'
       ? breadcrumbWithLocales.ariaLabel
       : breadcrumbWithLocales.ariaLabel[locale]
