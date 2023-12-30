@@ -3,9 +3,9 @@ import type { TypedLocalePathParameter } from '@typed-router/__paths'
 
 export type BreadcrumbItemPropsLocalizedObject = Omit<
   BreadcrumbItemProps,
-  'ariaLabel' | 'label' | 'to'
+  'aria-label' | 'label' | 'to'
 > & {
-  ariaLabel?: { [Key in LOCALE_CODES]: string } | string
+  'aria-label'?: { [Key in LOCALE_CODES]: string } | string
   label?: { [Key in LOCALE_CODES]: string } | string
   to: TypedLocalePathParameter<never>
 }
