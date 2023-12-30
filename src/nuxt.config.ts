@@ -2,7 +2,7 @@ import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 
 import { sentryVitePlugin } from '@sentry/vite-plugin'
-import type { Nuxt } from '@nuxt/schema'
+import type { Nuxt, ModuleOptions } from 'nuxt/schema'
 // import { defu } from 'defu'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
@@ -73,11 +73,11 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@unocss/nuxt',
     '@vite-pwa/nuxt',
-    async (_options: any, nuxt: Nuxt) => {
+    async (_options: ModuleOptions, nuxt: Nuxt) => {
       nuxt.options.runtimeConfig.public.vio.releaseName = await RELEASE_NAME()
     },
     // nuxt-security: remove invalid `'none'`s and duplicates
-    (_options, nuxt) => {
+    (_options: ModuleOptions, nuxt: Nuxt) => {
       const nuxtConfigSecurity = nuxt.options.security
 
       if (
