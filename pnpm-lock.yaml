@@ -101,6 +101,9 @@ importers:
       '@nuxtjs/i18n':
         specifier: 8.0.0
         version: 8.0.0(rollup@3.29.4)(vue-router@4.2.5)(vue@3.4.0)
+      '@nuxtjs/tailwindcss':
+        specifier: 6.10.3
+        version: 6.10.3(rollup@3.29.4)
       '@nuxtjs/turnstile':
         specifier: 0.6.3
         version: 0.6.3(rollup@3.29.4)
