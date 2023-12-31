@@ -40,28 +40,32 @@
           <div
             class="my-1 hidden w-px flex-none self-stretch bg-gray-300 lg:flex dark:bg-gray-600"
           />
-          <ButtonColored
-            v-if="store.signedInAccountId"
-            :aria-label="t('dashboard')"
-            class="mx-2 hidden lg:block"
-            :is-primary="false"
-            :to="localePath('/dashboard')"
-          >
-            {{ t('dashboard') }}
-          </ButtonColored>
-          <ButtonIcon
-            v-if="store.signedInUsername && store.signedInAccountId"
-            :aria-label="store.signedInUsername"
-            :title="t('profileLink')"
-            :to="localePath(`/account/view/${store.signedInUsername}`)"
-          >
-            <AccountProfilePicture
-              :account-id="store.signedInAccountId"
-              classes="h-10 rounded-full w-10"
-              height="40"
-              width="40"
-            />
-          </ButtonIcon>
+          <template v-if="user">
+            <ButtonColored
+              v-if="store.signedInAccountId"
+              :aria-label="t('dashboard')"
+              class="mx-2 hidden lg:block"
+              :is-primary="false"
+              :to="localePath('/dashboard')"
+            >
+              {{ t('dashboard') }}
+            </ButtonColored>
+            <ButtonIcon
+              :aria-label="user.name!"
+              :title="t('profileLink')"
+              :to="localePath(`/account/view/${user.name!}`)"
+            >
+              <AccountProfilePicture
+                :account-id="
+                  store.signedInAccountId ??
+                  'aaaf58f2-4bd7-4873-a5a5-dfb667964ad5'
+                "
+                classes="h-10 rounded-full w-10"
+                height="40"
+                width="40"
+              />
+            </ButtonIcon>
+          </template>
           <template v-else>
             <ButtonIcon
               :aria-label="t('signIn')"
@@ -89,6 +93,9 @@
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
+
+const { session } = useAuth()
+const user = computed(() => session.value?.user)
 </script>
 
 <i18n lang="yaml">
