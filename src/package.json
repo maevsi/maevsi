@@ -149,5 +149,8 @@
     "vue-tsc": "1.8.27",
     "workbox-precaching": "7.0.0",
     "zxing-wasm": "1.2.0"
+  },
+  "dependencies": {
+    "postgraphile": "^4.13.0"
   }
 }
