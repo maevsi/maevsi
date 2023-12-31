@@ -62,6 +62,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@dargmuesli/nuxt-cookie-control',
+    '@hebilicious/authjs-nuxt',
     '@nuxt/image',
     '@nuxt/ui',
     // '@nuxtjs/color-mode', // installed by @nuxt/ui
@@ -110,6 +111,16 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
   },
   runtimeConfig: {
+    authJs: {
+      secret: 'diesistkeingeheimnis',
+    },
+    disableLocalAuth: '',
+    oauth: {
+      github: {
+        clientId: '',
+        clientSecret: ' ',
+      },
+    },
     public: {
       i18n: {
         baseUrl: SITE_URL,

@@ -24,7 +24,7 @@ const getCsp = (host: string) => {
     ],
     'default-src': ["'none'"],
     'font-src': ["'self'", 'data:'], // @fontsource/manrope
-    'form-action': ["'self'"], // Mozilla Observatory: "none".
+    'form-action': ["'self'", '*', 'github.com'], // Mozilla Observatory: "none".
     'frame-ancestors': ["'none'"], // Mozilla Observatory.
     'frame-src': ['https://challenges.cloudflare.com'], // Cloudflare Turnstile
     'img-src': [
