@@ -42,7 +42,7 @@
           />
           <template v-if="user">
             <ButtonColored
-              v-if="store.signedInAccountId"
+              v-if="user.maevsiUserId"
               :aria-label="t('dashboard')"
               class="mx-2 hidden lg:block"
               :is-primary="false"
@@ -56,10 +56,7 @@
               :to="localePath(`/account/view/${user.name!}`)"
             >
               <AccountProfilePicture
-                :account-id="
-                  store.signedInAccountId ??
-                  'aaaf58f2-4bd7-4873-a5a5-dfb667964ad5'
-                "
+                :account-id="user.maevsiUserId"
                 classes="h-10 rounded-full w-10"
                 height="40"
                 width="40"
@@ -90,12 +87,13 @@
 </template>
 
 <script setup lang="ts">
+import { useSignedInUser } from '~/composables/auth'
+
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
 
-const { session } = useAuth()
-const user = computed(() => session.value?.user)
+const user = useSignedInUser()
 </script>
 
 <i18n lang="yaml">
