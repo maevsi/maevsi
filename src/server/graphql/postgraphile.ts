@@ -3,7 +3,12 @@ import { PostGraphileAmberPreset } from 'postgraphile/presets/amber'
 import { makeV4Preset } from 'postgraphile/presets/v4'
 import { makePgService } from 'postgraphile/adaptors/pg'
 import { grafserv, type H3Grafserv } from 'grafserv/h3/v1'
+import { getServerSession, getServerToken } from '#auth'
+import { authOptions } from '@/server/api/auth/[...]'
+import consola from 'consola'
 // import type { H3Event } from 'h3'
+
+const runtimeConfig = useRuntimeConfig()
 
 const preset = {
   extends: [
@@ -23,12 +28,17 @@ const preset = {
   ],
   grafserv: {},
   grafast: {
-    context: (_requestContext, args) => {
-      // const event = _requestContext.h3v1?.event
+    context: async (_requestContext, args) => {
+      const event = _requestContext.h3v1!.event
+      consola.log('auth runtime config', runtimeConfig?.authJs)
+      const session = await getServerSession(event, authOptions)
+      const token = await getServerToken(event, authOptions, runtimeConfig)
+      const user = session?.user
+      consola.log('user', user, token)
       return {
         ...args.contextValue?.pgSettings,
         pgSettings: {
-          'user.id': '5df32eea-74f9-4d53-88e9-90aa1752940d',
+          'user.id': (user as any)?.maevsiUserId,
         },
       }
     },

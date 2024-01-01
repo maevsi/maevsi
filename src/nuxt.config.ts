@@ -122,6 +122,9 @@ export default defineNuxtConfig({
       },
     },
     public: {
+      authJs: {
+        baseUrl: 'https://localhost',
+      },
       i18n: {
         baseUrl: SITE_URL,
       },
