@@ -26,7 +26,7 @@ import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accou
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
+import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: RoutesNamesList =
   'event-view-username-event_name-invitation___en'
@@ -40,7 +40,7 @@ export const usePageBreadcrumb = () => {
       en: 'Invitations',
     },
     to: `/event/view/${route.params.username}/${route.params.event_name}/invitation`,
-  } as BreadcrumbItemPropsLocalizedObject
+  } satisfies BreadcrumbLinkLocalized
 }
 </script>
 
