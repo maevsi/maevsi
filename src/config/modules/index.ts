@@ -10,6 +10,13 @@ import { securityConfig } from './security'
 
 import type { LocaleRoutePathSchema } from '@typed-router/__paths'
 
+const ROBOTS_DISALLOW = [
+  '/%F0%9F%AB%96',
+  '/account/password/reset',
+  '/account/verify',
+  '/session/edit',
+  '/session/view',
+] as LocaleRoutePathSchema[]
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
 export const modulesConfig: ReturnType<DefineNuxtConfig> = {
@@ -38,6 +45,9 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
   linkChecker: {
     failOnError: true,
   },
+  robots: {
+    disallow: ROBOTS_DISALLOW,
+  },
   ...securityConfig,
   seo: {
     splash: false,
@@ -48,11 +58,7 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
   },
   sitemap: {
     credits: false,
-    exclude: [
-      '/%F0%9F%AB%96',
-      '/account/verify',
-      '/account/password/reset',
-    ] as LocaleRoutePathSchema[],
+    exclude: ROBOTS_DISALLOW,
   },
   tailwindcss: {
     cssPath: join(currentDir, '../../assets/css/tailwind.css'),
