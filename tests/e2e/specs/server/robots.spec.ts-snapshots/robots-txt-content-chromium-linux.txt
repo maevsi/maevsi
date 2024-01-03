@@ -1,6 +1,15 @@
 # START nuxt-simple-robots (indexable)
 User-agent: *
-Disallow: 
+Disallow: /%F0%9F%AB%96
+Disallow: /de/%F0%9F%AB%96
+Disallow: /account/password/reset
+Disallow: /de/account/password/reset
+Disallow: /account/verify
+Disallow: /de/account/verify
+Disallow: /session/edit
+Disallow: /de/session/edit
+Disallow: /session/view
+Disallow: /de/session/view
 
 Sitemap: http://localhost:3001/sitemap_index.xml
 # END nuxt-simple-robots
