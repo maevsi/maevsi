@@ -109,7 +109,7 @@
     "nuxt": "3.9.0",
     "nuxt-security": "1.0.0",
     "nuxt-seo-ui": "0.4.4",
-    "nuxt-typed-router": "3.5.0",
+    "nuxt-typed-router": "3.5.1",
     "pg": "8.11.3",
     "pinia": "2.1.7",
     "prettier": "3.1.1",

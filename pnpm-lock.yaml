@@ -279,8 +279,8 @@ importers:
         specifier: 0.4.4
         version: 0.4.4(@nuxt/devtools@1.0.6)(@vue/compiler-core@3.4.4)(nuxt@3.9.0)(postcss@8.4.32)(rollup@3.29.4)(vite@5.0.10)(vue@3.4.4)(webpack@5.89.0)
       nuxt-typed-router:
-        specifier: 3.5.0
-        version: 3.5.0(prettier@3.1.1)(rollup@3.29.4)
+        specifier: 3.5.1
+        version: 3.5.1(prettier@3.1.1)(rollup@3.29.4)
       pg:
         specifier: 8.11.3
         version: 8.11.3
@@ -13633,8 +13633,8 @@ packages:
       - webpack
     dev: true
 
-  /nuxt-typed-router@3.5.0(prettier@3.1.1)(rollup@3.29.4):
-    resolution: {integrity: sha512-/0RePxU9bKATfzgIwhH7z/wuy042R4U+oG4Q1DIc1hAfgjQ66n4jE21WgZuJoKEp1Tfnve6DaJWGnABRELXkFg==}
+  /nuxt-typed-router@3.5.1(prettier@3.1.1)(rollup@3.29.4):
+    resolution: {integrity: sha512-o3SYbArryJynn8uT2NDqpV3b43rsTdM6suG2G0SwONZhBtX2flFsfsrAJw1tiSXvNigqwd/nX4GgI4O591aNWQ==}
     peerDependencies:
       prettier: ^2.5.x || 3.x
     dependencies:
