@@ -30,8 +30,8 @@ importers:
   src:
     devDependencies:
       '@dargmuesli/nuxt-cookie-control':
-        specifier: 7.2.2
-        version: 7.2.2(rollup@3.29.4)(webpack@5.89.0)
+        specifier: 7.2.3
+        version: 7.2.3(rollup@3.29.4)(webpack@5.89.0)
       '@fontsource-variable/manrope':
         specifier: 5.0.18
         version: 5.0.18
@@ -2079,8 +2079,8 @@ packages:
       postcss-selector-parser: 6.0.15
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control@7.2.2(rollup@3.29.4)(webpack@5.89.0):
-    resolution: {integrity: sha512-LUeZdcHDVZZeVRwelfa1K0g/MElWsjdq4einPzi46gHzTBkalz8X56pqcKLWJ9qGZEEMgdWT3WjNe95Ip94rxA==}
+  /@dargmuesli/nuxt-cookie-control@7.2.3(rollup@3.29.4)(webpack@5.89.0):
+    resolution: {integrity: sha512-GfdZ4KFbZFfM+celBTmuFx9aJUMhqW5GugzFhS8QQbdeM7ZHXeqoroKy5FqQ6fnGBKkxhZyvFiwDDskwISCTEg==}
     engines: {node: '>=16'}
     dependencies:
       '@nuxt/kit': 3.9.0(rollup@3.29.4)
@@ -16545,7 +16545,7 @@ packages:
   /strip-literal@1.3.0:
     resolution: {integrity: sha512-PugKzOsyXpArk0yWmUwqOZecSO0GH0bPoctLcqNDH9J04pVW3lflYE0ujElBGTloevcxF5MofAOZ7C5l2b+wLg==}
     dependencies:
-      acorn: 8.11.2
+      acorn: 8.11.3
     dev: true
 
   /stylehacks@6.0.1(postcss@8.4.32):
@@ -17329,7 +17329,7 @@ packages:
   /unctx@2.3.1:
     resolution: {integrity: sha512-PhKke8ZYauiqh3FEMVNm7ljvzQiph0Mt3GBRve03IJm7ukfaON2OBK795tLwhbyfzknuRRkW0+Ze+CQUmzOZ+A==}
     dependencies:
-      acorn: 8.11.2
+      acorn: 8.11.3
       estree-walker: 3.0.3
       magic-string: 0.30.5
       unplugin: 1.6.0
