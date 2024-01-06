@@ -20,7 +20,7 @@
         >
           <span>{{ title }}</span>
           <span
-            class="text-xs font-medium text-gray-500 md:text-right dark:text-gray-400"
+            class="text-xs font-medium text-gray-500 dark:text-gray-400 md:text-right"
           >
             <span v-if="isRequired">
               {{ t('required') }}
