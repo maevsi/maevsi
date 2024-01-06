@@ -258,8 +258,8 @@ importers:
         specifier: 6.0.0
         version: 6.0.0(@types/node@20.10.6)(dayjs@2.0.0-alpha.4)
       isomorphic-dompurify:
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       jose:
         specifier: 5.2.0
         version: 5.2.0
@@ -7698,6 +7698,7 @@ packages:
 
   /base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+    requiresBuild: true
     dev: true
 
   /basic-auth@2.0.1:
@@ -7821,6 +7822,7 @@ packages:
 
   /buffer@5.7.1:
     resolution: {integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==}
+    requiresBuild: true
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
@@ -8757,9 +8759,9 @@ packages:
       css-tree: 2.2.1
     dev: true
 
-  /cssstyle@3.0.0:
-    resolution: {integrity: sha512-N4u2ABATi3Qplzf0hWbVCdjenim8F3ojEXpBDF5hBpjzW182MjNGLqfmQ0SkSPeQ+V86ZXgeH8aXj6kayd4jgg==}
-    engines: {node: '>=14'}
+  /cssstyle@4.0.1:
+    resolution: {integrity: sha512-8ZYiJ3A/3OkDd093CBT/0UKDWry7ak4BdPTFP2+QEP7cmhouyq/Up709ASSj2cK02BbZiMgk7kYjZNS4QP5qrQ==}
+    engines: {node: '>=18'}
     dependencies:
       rrweb-cssom: 0.6.0
     dev: true
@@ -9102,8 +9104,8 @@ packages:
       domelementtype: 2.3.0
     dev: true
 
-  /dompurify@3.0.7:
-    resolution: {integrity: sha512-BViYTZoqP3ak/ULKOc101y+CtHDUvBsVgSxIF1ku0HmK6BRf+C03MC+tArMvOPtVtZp83DDh5puywKDu4sbVjQ==}
+  /dompurify@3.0.8:
+    resolution: {integrity: sha512-b7uwreMYL2eZhrSCRC4ahLTeZcPZxSmYfmcQGXGkXiZSNW1X85v+SDM5KsWcpivIiUBH47Ji7NtyUdpLeF5JZQ==}
     dev: true
 
   /domutils@3.1.0:
@@ -11071,6 +11073,7 @@ packages:
 
   /ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
+    requiresBuild: true
     dev: true
 
   /ignore-walk@6.0.4:
@@ -11650,13 +11653,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /isomorphic-dompurify@2.1.0:
-    resolution: {integrity: sha512-CE1plE8vnf2uVW0tCd4//2rajszFFoze3qdWo/FAHxGAs3q3XDdQhmy+MV8VeJORV7zX8WMMBe98HI/2EbEl9A==}
+  /isomorphic-dompurify@2.2.0:
+    resolution: {integrity: sha512-r+pTGOcmnWm1qGdB6OzAk6zM4kfb7jVHXFliJOTlnRw5G3+LOR2mSWllE2Um1V23njAluToqOeRqp1jMsMFT0A==}
     engines: {node: '>=18'}
     dependencies:
       '@types/dompurify': 3.0.5
-      dompurify: 3.0.7
-      jsdom: 23.0.1
+      dompurify: 3.0.8
+      jsdom: 23.1.0
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -11738,8 +11741,8 @@ packages:
       argparse: 2.0.1
     dev: true
 
-  /jsdom@23.0.1:
-    resolution: {integrity: sha512-2i27vgvlUsGEBO9+/kJQRbtqtm+191b5zAZrU/UezVmnC2dlDAFLgDYJvAEi94T4kjsRKkezEtLQTgsNEsW2lQ==}
+  /jsdom@23.1.0:
+    resolution: {integrity: sha512-wRscu8dBFxi7O65Cvi0jFRDv0Qa7XEHPix8Qg/vlXHLAMQsRWV1EDeQHBermzXf4Dt7JtFgBLbva3iTcBZDXEQ==}
     engines: {node: '>=18'}
     peerDependencies:
       canvas: ^2.11.2
@@ -11747,7 +11750,7 @@ packages:
       canvas:
         optional: true
     dependencies:
-      cssstyle: 3.0.0
+      cssstyle: 4.0.1
       data-urls: 5.0.0
       decimal.js: 10.4.3
       form-data: 4.0.0
