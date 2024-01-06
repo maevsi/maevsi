@@ -26,7 +26,7 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "devDependencies": {
-    "@dargmuesli/nuxt-cookie-control": "7.2.2",
+    "@dargmuesli/nuxt-cookie-control": "7.2.3",
     "@fontsource-variable/manrope": "5.0.18",
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/client-preset": "4.1.0",
@@ -99,7 +99,7 @@
     "eslint-plugin-prettier": "5.1.2",
     "eslint-plugin-yml": "1.11.0",
     "graphql": "16.8.1",
-    "h3": "1.9.0",
+    "h3": "1.10.0",
     "html-to-text": "9.0.5",
     "ical-generator": "6.0.0",
     "isomorphic-dompurify": "2.1.0",
@@ -134,7 +134,7 @@
     "stylelint-config-standard": "36.0.0",
     "stylelint-no-unsupported-browser-features": "8.0.0",
     "sweetalert2": "11.10.2",
-    "tailwindcss": "3.4.0",
+    "tailwindcss": "3.4.1",
     "unhead": "1.8.9",
     "unplugin-icons": "0.18.1",
     "unplugin-vue-components": "0.26.0",
