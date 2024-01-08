@@ -36,7 +36,6 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
       : undefined,
   },
   linkChecker: {
-    enabled: false,
     failOnError: true,
   },
   ...securityConfig,

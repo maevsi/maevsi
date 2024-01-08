@@ -68,8 +68,8 @@ export default defineNuxtConfig({
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
     // '@nuxtjs/tailwindcss', // installed by @nuxt/ui
+    '@nuxtjs/seo',
     '@nuxtjs/turnstile',
-    '@nuxtseo/module',
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
     async (_options: ModuleOptions, nuxt: Nuxt) => {
