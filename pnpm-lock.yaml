@@ -54,8 +54,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0(graphql@16.8.1)
       '@headlessui/vue':
-        specifier: 1.7.16
-        version: 1.7.16(vue@3.4.5)
+        specifier: 1.7.17
+        version: 1.7.17(vue@3.4.5)
       '@http-util/status-i18n':
         specifier: 0.8.1
         version: 0.8.1
@@ -3215,12 +3215,13 @@ packages:
       tailwindcss: 3.4.1
     dev: true
 
-  /@headlessui/vue@1.7.16(vue@3.4.5):
-    resolution: {integrity: sha512-nKT+nf/q6x198SsyK54mSszaQl/z+QxtASmgMEJtpxSX2Q0OPJX0upS/9daDyiECpeAsvjkoOrm2O/6PyBQ+Qg==}
+  /@headlessui/vue@1.7.17(vue@3.4.5):
+    resolution: {integrity: sha512-hmJChv8HzKorxd9F70RGnECAwZfkvmmwOqreuKLWY/19d5qbWnSdw+DNbuA/Uo6X5rb4U5B3NrT+qBKPmjhRqw==}
     engines: {node: '>=10'}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
+      '@tanstack/vue-virtual': 3.0.1(vue@3.4.5)
       vue: 3.4.5(typescript@5.3.3)
     dev: true
 
@@ -4121,7 +4122,7 @@ packages:
     dependencies:
       '@egoist/tailwindcss-icons': 1.7.1(tailwindcss@3.4.1)
       '@headlessui/tailwindcss': 0.2.0(tailwindcss@3.4.1)
-      '@headlessui/vue': 1.7.16(vue@3.4.5)
+      '@headlessui/vue': 1.7.17(vue@3.4.5)
       '@iconify-json/heroicons': 1.1.19
       '@nuxt/kit': 3.9.1(rollup@4.9.4)
       '@nuxtjs/color-mode': 3.3.2(rollup@4.9.4)
@@ -5470,6 +5471,19 @@ packages:
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
       tailwindcss: 3.4.1
+    dev: true
+
+  /@tanstack/virtual-core@3.0.0:
+    resolution: {integrity: sha512-SYXOBTjJb05rXa2vl55TTwO40A6wKu0R5i1qQwhJYNDIqaIGF7D0HsLw+pJAyi2OvntlEIVusx3xtbbgSUi6zg==}
+    dev: true
+
+  /@tanstack/vue-virtual@3.0.1(vue@3.4.5):
+    resolution: {integrity: sha512-85Cyi8m7h1xzGB2FyXMurPVFOZvatycVU7OfhQ8QFk27E4tQ7ISNfYEMrakTTaE0ZyNsKRFlAzHuwL1Bv1vuMw==}
+    peerDependencies:
+      vue: ^2.7.0 || ^3.0.0
+    dependencies:
+      '@tanstack/virtual-core': 3.0.0
+      vue: 3.4.5(typescript@5.3.3)
     dev: true
 
   /@tiptap/core@2.1.14(@tiptap/pm@2.1.14):
