@@ -38,7 +38,7 @@
           </ButtonText>
           <ButtonEventNew class="hidden lg:flex" variant="text" />
           <div
-            class="my-1 hidden w-px flex-none self-stretch bg-gray-300 lg:flex dark:bg-gray-600"
+            class="my-1 hidden w-px flex-none self-stretch bg-gray-300 dark:bg-gray-600 lg:flex"
           />
           <ButtonColored
             v-if="store.signedInAccountId"

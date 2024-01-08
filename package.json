@@ -14,5 +14,8 @@
     "husky": "8.0.3",
     "jiti": "1.21.0",
     "lint-staged": "15.2.0"
+  },
+  "resolutions": {
+    "h3": "1.9.0"
   }
 }
