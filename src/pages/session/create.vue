@@ -3,7 +3,7 @@
     <CardStateInfo v-if="to">
       {{ t('accountRequired') }}
     </CardStateInfo>
-    <LayoutPageTitle :title="title" :centered="true" />
+    <LayoutPageTitle is-centered :title="title" />
     <div
       v-if="
         !store.jwtDecoded?.role || store.jwtDecoded.role === 'maevsi_anonymous'

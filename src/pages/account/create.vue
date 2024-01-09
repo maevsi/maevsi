@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LayoutPageTitle :title="title" :centered="true" />
+    <LayoutPageTitle is-centered :title="title" />
     <div class="mt-5 flex justify-center">
       <FormAccountRegistration />
     </div>

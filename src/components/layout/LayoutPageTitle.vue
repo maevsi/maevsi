@@ -7,7 +7,7 @@
       <div class="flex-1 overflow-hidden">
         <slot v-if="$slots.default" />
         <div v-else>
-          <h1 v-if="!centered">
+          <h1 v-if="!isCentered">
             {{ title }}
           </h1>
         </div>
@@ -29,7 +29,7 @@
         <IHeroiconsBars3 height="2em" width="2em" />
       </ButtonIcon>
     </div>
-    <h1 v-if="centered" class="text-center">
+    <h1 v-if="isCentered" class="text-center">
       {{ title }}
     </h1>
   </div>
@@ -40,14 +40,14 @@ import type { NuxtRoute, RoutesNamesList } from '@typed-router'
 
 export interface Props<T extends RoutesNamesList, P extends string> {
   isButtonEventCreateShown?: boolean
+  isCentered?: boolean
   title: string
   to?: NuxtRoute<T, P>
-  centered?: boolean
 }
 const props = withDefaults(defineProps<Props<T, P>>(), {
   isButtonEventCreateShown: true,
+  isCentered: false,
   to: undefined,
-  centered: false,
 })
 
 const store = useMaevsiStore()

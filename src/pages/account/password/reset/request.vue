@@ -1,8 +1,8 @@
 <template>
   <div>
     <LayoutPageTitle
+      is-centered
       :title="title"
-      :centered="true"
       :to="localePath('/session/create')"
     />
     <div class="mt-5 flex justify-center">

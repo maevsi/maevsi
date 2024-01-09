@@ -2,7 +2,7 @@
   <!-- TODO: hide or show overflow completely -->
   <div
     class="overflow-x-hidden rounded-lg"
-    :class="[backgroundColor, ...(isHigh ? ['px-4 py-6'] : ['p-4'])]"
+    :class="[backgroundColor, ...['p-4']]"
   >
     <slot />
   </div>
@@ -11,11 +11,9 @@
 <script setup lang="ts">
 export interface Props {
   backgroundColor?: string
-  isHigh?: boolean
 }
 withDefaults(defineProps<Props>(), {
   backgroundColor: 'bg-background-brighten dark:bg-background-darken',
-  isHigh: false,
 })
 </script>
 
