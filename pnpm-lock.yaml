@@ -87,8 +87,8 @@ importers:
         specifier: 1.0.8
         version: 1.0.8(nuxt@3.9.1)(rollup@4.9.4)(vite@5.0.11)
       '@nuxt/image':
-        specifier: 1.1.0
-        version: 1.1.0(rollup@4.9.4)
+        specifier: 1.2.0
+        version: 1.2.0(rollup@4.9.4)
       '@nuxt/schema':
         specifier: 3.9.1
         version: 3.9.1(rollup@4.9.4)
@@ -3503,7 +3503,7 @@ packages:
       fast-glob: 3.3.2
       js-yaml: 4.1.0
       json5: 2.2.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       picocolors: 1.0.0
       source-map-js: 1.0.2
       unplugin: 1.6.0
@@ -3958,8 +3958,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@nuxt/image@1.1.0(rollup@4.9.4):
-    resolution: {integrity: sha512-+zZqsjVfR83UOrChGeaYuWZeLYMkFD0gNY0T6L4W1y4YaRbKNN5iynZJ71Bmg7lcOPRbf5OmSPBTSU0ieYJq4w==}
+  /@nuxt/image@1.2.0(rollup@4.9.4):
+    resolution: {integrity: sha512-DxR1RVHZgVHVRHyZTFhAB5149Vbe3eyTLk32h8GLj/5Nt4WN1Du6VZs89fjbTP4sfjQTSYKBKgIJDdetf61heQ==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@nuxt/kit': 3.9.1(rollup@4.9.4)
@@ -3969,7 +3969,7 @@ packages:
       image-meta: 0.2.0
       node-fetch-native: 1.6.1
       ohash: 1.1.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       std-env: 3.7.0
       ufo: 1.3.2
     optionalDependencies:
@@ -4005,7 +4005,7 @@ packages:
       jiti: 1.21.0
       knitwork: 1.0.0
       mlly: 1.4.2
-      pathe: 1.1.1
+      pathe: 1.1.2
       pkg-types: 1.0.3
       scule: 1.1.1
       semver: 7.5.4
@@ -4032,7 +4032,7 @@ packages:
       jiti: 1.21.0
       knitwork: 1.0.0
       mlly: 1.4.2
-      pathe: 1.1.1
+      pathe: 1.1.2
       pkg-types: 1.0.3
       scule: 1.1.1
       semver: 7.5.4
@@ -4053,7 +4053,7 @@ packages:
       consola: 3.2.3
       defu: 6.1.4
       hookable: 5.5.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       pkg-types: 1.0.3
       scule: 1.1.1
       std-env: 3.7.0
@@ -4103,7 +4103,7 @@ packages:
       nanoid: 4.0.2
       ofetch: 1.3.3
       parse-git-config: 3.0.0
-      pathe: 1.1.1
+      pathe: 1.1.2
       rc9: 2.1.1
       std-env: 3.7.0
     transitivePeerDependencies:
@@ -4183,13 +4183,13 @@ packages:
       estree-walker: 3.0.3
       externality: 1.0.2
       fs-extra: 11.2.0
-      get-port-please: 3.1.1
+      get-port-please: 3.1.2
       h3: 1.9.0
       knitwork: 1.0.0
       magic-string: 0.30.5
       mlly: 1.4.2
       ohash: 1.1.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       perfect-debounce: 1.0.0
       pkg-types: 1.0.3
       postcss: 8.4.33
@@ -4228,7 +4228,7 @@ packages:
     dependencies:
       '@nuxt/kit': 3.9.1(rollup@4.9.4)
       lodash.template: 4.5.0
-      pathe: 1.1.1
+      pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -4385,7 +4385,7 @@ packages:
       nuxt-site-config: 2.2.5(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.10)(nuxt@3.9.1)(postcss@8.4.33)(rollup@4.9.4)(vite@5.0.11)(vue@3.4.10)(webpack@5.89.0)
       nuxt-site-config-kit: 2.2.5(rollup@4.9.4)(vue@3.4.10)
       ofetch: 1.3.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       pkg-types: 1.0.3
       radix3: 1.1.0
       semver: 7.5.4
@@ -6183,7 +6183,7 @@ packages:
       consola: 3.2.3
       fast-glob: 3.3.2
       magic-string: 0.30.5
-      pathe: 1.1.1
+      pathe: 1.1.2
       perfect-debounce: 1.0.0
     transitivePeerDependencies:
       - rollup
@@ -6578,14 +6578,14 @@ packages:
     dependencies:
       '@vitest/utils': 1.1.3
       p-limit: 5.0.0
-      pathe: 1.1.1
+      pathe: 1.1.2
     dev: true
 
   /@vitest/snapshot@1.1.3:
     resolution: {integrity: sha512-U0r8pRXsLAdxSVAyGNcqOU2H3Z4Y2dAAGGelL50O0QRMdi1WWeYHdrH/QWpN1e8juWfVKsb8B+pyJwTC+4Gy9w==}
     dependencies:
       magic-string: 0.30.5
-      pathe: 1.1.1
+      pathe: 1.1.2
       pretty-format: 29.7.0
     dev: true
 
@@ -7522,7 +7522,7 @@ packages:
     dependencies:
       '@babel/parser': 7.23.6
       '@rollup/pluginutils': 5.1.0(rollup@4.9.4)
-      pathe: 1.1.1
+      pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -7533,7 +7533,7 @@ packages:
     dependencies:
       '@babel/parser': 7.23.6
       '@rollup/pluginutils': 5.1.0(rollup@4.9.4)
-      pathe: 1.1.1
+      pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -7544,7 +7544,7 @@ packages:
     dependencies:
       '@babel/parser': 7.23.6
       '@rollup/pluginutils': 5.1.0(rollup@4.9.4)
-      pathe: 1.1.1
+      pathe: 1.1.2
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -7897,7 +7897,7 @@ packages:
       jiti: 1.21.0
       mlly: 1.4.2
       ohash: 1.1.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       perfect-debounce: 1.0.0
       pkg-types: 1.0.3
       rc9: 2.1.1
@@ -10003,7 +10003,7 @@ packages:
     dependencies:
       enhanced-resolve: 5.15.0
       mlly: 1.4.2
-      pathe: 1.1.1
+      pathe: 1.1.2
       ufo: 1.3.2
     dev: true
 
@@ -10375,10 +10375,6 @@ packages:
     resolution: {integrity: sha512-I0UBV/XOz1XkIJHEUDMZAbzCThU/H8DxmSfmdGcKPnVhu2VfFqr34jr9777IyaTYvxjedWhqVIilEDsCdP5G6g==}
     dev: true
 
-  /get-port-please@3.1.1:
-    resolution: {integrity: sha512-3UBAyM3u4ZBVYDsxOQfJDxEa6XTbpBDrOjp4mf7ExFRt5BKs/QywQQiJsh2B+hxcZLSapWqCRvElUe8DnKcFHA==}
-    dev: true
-
   /get-port-please@3.1.2:
     resolution: {integrity: sha512-Gxc29eLs1fbn6LQ4jSU4vXjlwyZhF5HsGuMAa7gqBP4Rw4yxxltyDUuF5MBclFzDTXO+ACchGQoeela4DSfzdQ==}
     dev: true
@@ -10417,7 +10413,7 @@ packages:
       node-fetch-native: 1.6.1
       nypm: 0.3.4
       ohash: 1.1.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       tar: 6.2.0
     dev: true
 
@@ -11186,7 +11182,7 @@ packages:
       image-meta: 0.2.0
       listhen: 1.5.5
       ofetch: 1.3.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       sharp: 0.32.6
       svgo: 3.2.0
       ufo: 1.3.2
@@ -12061,13 +12057,13 @@ packages:
       clipboardy: 3.0.0
       consola: 3.2.3
       defu: 6.1.4
-      get-port-please: 3.1.1
+      get-port-please: 3.1.2
       h3: 1.9.0
       http-shutdown: 1.2.2
       jiti: 1.21.0
       mlly: 1.4.2
       node-forge: 1.3.1
-      pathe: 1.1.1
+      pathe: 1.1.2
       std-env: 3.7.0
       ufo: 1.3.2
       untun: 0.1.3
@@ -12773,7 +12769,7 @@ packages:
     resolution: {integrity: sha512-i/Ykufi2t1EZ6NaPLdfnZk2AX8cs0d+mTzVKuPfqPKPatxLApaBoxJQ9x1/uckXtrS/U5oisPMDkNs0yQTaBRg==}
     dependencies:
       acorn: 8.11.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       pkg-types: 1.0.3
       ufo: 1.3.2
     dev: true
@@ -12929,7 +12925,7 @@ packages:
       ofetch: 1.3.3
       ohash: 1.1.3
       openapi-typescript: 6.7.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       perfect-debounce: 1.0.0
       pkg-types: 1.0.3
       pretty-bytes: 6.1.1
@@ -13250,7 +13246,7 @@ packages:
       magic-string: 0.30.5
       nuxt-site-config: 2.2.0(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.10)(fuse.js@7.0.0)(nuxt@3.9.1)(postcss@8.4.33)(rollup@4.9.4)(vite@5.0.11)(vue@3.4.10)(webpack@5.89.0)
       nuxt-site-config-kit: 2.2.0(rollup@4.9.4)(vue@3.4.10)
-      pathe: 1.1.1
+      pathe: 1.1.2
       radix3: 1.1.0
       shiki-es: 0.14.0
       sirv: 2.0.4
@@ -13303,7 +13299,7 @@ packages:
       nypm: 0.3.4
       ofetch: 1.3.3
       ohash: 1.1.3
-      pathe: 1.1.1
+      pathe: 1.1.2
       pkg-types: 1.0.3
       playwright-core: 1.40.1
       radix3: 1.1.0
@@ -13349,7 +13345,7 @@ packages:
       floating-vue: 2.0.0-beta.24(@nuxt/kit@3.9.1)(vue@3.4.10)
       nuxt-site-config: 2.2.5(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.10)(nuxt@3.9.1)(postcss@8.4.33)(rollup@4.9.4)(vite@5.0.11)(vue@3.4.10)(webpack@5.89.0)
       nuxt-site-config-kit: 2.2.5(rollup@4.9.4)(vue@3.4.10)
-      pathe: 1.1.1
+      pathe: 1.1.2
       shiki-es: 0.14.0
       sirv: 2.0.4
     transitivePeerDependencies:
@@ -13406,7 +13402,7 @@ packages:
       image-size: 1.1.1
       nuxt-site-config: 2.2.5(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.10)(nuxt@3.9.1)(postcss@8.4.33)(rollup@4.9.4)(vite@5.0.11)(vue@3.4.10)(webpack@5.89.0)
       nuxt-site-config-kit: 2.2.5(rollup@4.9.4)(vue@3.4.10)
-      pathe: 1.1.1
+      pathe: 1.1.2
       ufo: 1.3.2
     transitivePeerDependencies:
       - '@nuxt/devtools'
@@ -13476,7 +13472,7 @@ packages:
       defu: 6.1.4
       nuxt-site-config: 2.2.5(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.10)(nuxt@3.9.1)(postcss@8.4.33)(rollup@4.9.4)(vite@5.0.11)(vue@3.4.10)(webpack@5.89.0)
       nuxt-site-config-kit: 2.2.5(rollup@4.9.4)(vue@3.4.10)
-      pathe: 1.1.1
+      pathe: 1.1.2
       sirv: 2.0.4
       ufo: 1.3.2
     transitivePeerDependencies:
@@ -13557,7 +13553,7 @@ packages:
       '@nuxt/kit': 3.9.1(rollup@4.9.4)
       '@nuxt/schema': 3.9.1(rollup@4.9.4)
       nuxt-site-config-kit: 1.6.7(rollup@4.9.4)(vue@3.4.10)
-      pathe: 1.1.1
+      pathe: 1.1.2
       shiki-es: 0.14.0
       sirv: 2.0.4
       site-config-stack: 1.6.7(vue@3.4.10)
@@ -13595,7 +13591,7 @@ packages:
       '@nuxt/kit': 3.9.1(rollup@4.9.4)
       '@nuxt/schema': 3.9.1(rollup@4.9.4)
       nuxt-site-config-kit: 2.2.0(rollup@4.9.4)(vue@3.4.10)
-      pathe: 1.1.1
+      pathe: 1.1.2
       shiki-es: 0.14.0
       sirv: 2.0.4
       site-config-stack: 2.2.0(vue@3.4.10)
@@ -13634,7 +13630,7 @@ packages:
       '@nuxt/schema': 3.9.1(rollup@4.9.4)
       floating-vue: 2.0.0-beta.24(@nuxt/kit@3.9.1)(vue@3.4.10)
       nuxt-site-config-kit: 2.2.5(rollup@4.9.4)(vue@3.4.10)
-      pathe: 1.1.1
+      pathe: 1.1.2
       pkg-types: 1.0.3
       shiki-es: 0.14.0
       sirv: 2.0.4
@@ -13797,7 +13793,7 @@ packages:
     dependencies:
       citty: 0.1.5
       execa: 8.0.1
-      pathe: 1.1.1
+      pathe: 1.1.2
       ufo: 1.3.2
     dev: true
 
@@ -14409,7 +14405,7 @@ packages:
     dependencies:
       jsonc-parser: 3.2.0
       mlly: 1.4.2
-      pathe: 1.1.1
+      pathe: 1.1.2
     dev: true
 
   /playwright-core@1.40.1:
@@ -17341,7 +17337,7 @@ packages:
       defu: 6.1.4
       mime: 3.0.0
       node-fetch-native: 1.6.1
-      pathe: 1.1.1
+      pathe: 1.1.2
     dev: true
 
   /unhead@1.8.9:
@@ -17399,7 +17395,7 @@ packages:
       local-pkg: 0.5.0
       magic-string: 0.30.5
       mlly: 1.4.2
-      pathe: 1.1.1
+      pathe: 1.1.2
       pkg-types: 1.0.3
       scule: 1.1.1
       strip-literal: 1.3.0
@@ -17586,7 +17582,7 @@ packages:
       json5: 2.2.3
       local-pkg: 0.4.3
       mlly: 1.4.2
-      pathe: 1.1.1
+      pathe: 1.1.2
       scule: 1.1.1
       unplugin: 1.6.0
       vue-router: 4.2.5(vue@3.4.10)
@@ -17682,7 +17678,7 @@ packages:
     dependencies:
       citty: 0.1.5
       consola: 3.2.3
-      pathe: 1.1.1
+      pathe: 1.1.2
     dev: true
 
   /untyped@1.4.0:
@@ -17817,7 +17813,7 @@ packages:
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
-      pathe: 1.1.1
+      pathe: 1.1.2
       picocolors: 1.0.0
       vite: 5.0.11(@types/node@20.10.6)
     transitivePeerDependencies:
@@ -17838,7 +17834,7 @@ packages:
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
-      pathe: 1.1.1
+      pathe: 1.1.2
       picocolors: 1.0.0
       vite: 5.0.11(@types/node@20.11.0)
     transitivePeerDependencies:
