@@ -50,7 +50,7 @@
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@nuxtjs/html-validator": "1.6.0",
     "@nuxtjs/i18n": "8.0.0",
-    "@nuxtjs/seo": "2.0.0-rc.4",
+    "@nuxtjs/seo": "2.0.0-rc.5",
     "@nuxtjs/tailwindcss": "6.10.4",
     "@nuxtjs/turnstile": "0.6.3",
     "@pinia/nuxt": "0.5.1",
