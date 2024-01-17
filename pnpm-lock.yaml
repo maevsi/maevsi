@@ -81,8 +81,8 @@ importers:
         specifier: 1.1.9
         version: 1.1.9
       '@intlify/eslint-plugin-vue-i18n':
-        specifier: 3.0.0-next.4
-        version: 3.0.0-next.4(eslint@8.56.0)
+        specifier: 3.0.0-next.5
+        version: 3.0.0-next.5(eslint@8.56.0)
       '@nuxt/devtools':
         specifier: 1.0.8
         version: 1.0.8(nuxt@3.9.1)(rollup@4.9.5)(vite@5.0.11)
@@ -2444,6 +2444,23 @@ packages:
       - supports-color
     dev: true
 
+  /@eslint/eslintrc@3.0.0:
+    resolution: {integrity: sha512-R8p3jN1kdWvFRiRfgpUxZ4PMgfJJFt6NuLGDnnqLb7RKmsd5Xa0KqRMjmaqRO7e38ZbG/9zKPgDjeJeqsDofSA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    dependencies:
+      ajv: 6.12.6
+      debug: 4.3.4
+      espree: 9.6.1
+      globals: 13.24.0
+      ignore: 5.3.0
+      import-fresh: 3.3.0
+      js-yaml: 4.1.0
+      minimatch: 3.1.2
+      strip-json-comments: 3.1.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@eslint/js@8.56.0:
     resolution: {integrity: sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -3418,17 +3435,18 @@ packages:
       '@intlify/shared': 9.3.0-beta.27
     dev: true
 
-  /@intlify/eslint-plugin-vue-i18n@3.0.0-next.4(eslint@8.56.0):
-    resolution: {integrity: sha512-uEzjx1EQUCCvMgwxTKhBWqtfzAyj6WGuRLKEAV4M/igYvVppzhkeEsGrhzEWVUizQ2pn3rONnhW+brM91JRC7A==}
+  /@intlify/eslint-plugin-vue-i18n@3.0.0-next.5(eslint@8.56.0):
+    resolution: {integrity: sha512-w761GEOrXqbmeGtaGsnYOHIdAEAEOkJfzddLRawJps9WsM5JjlH9JcONwBzAw8IApsKv7BNt0pLkmJGrP/4jQQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
+      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0-0
     dependencies:
-      '@eslint/eslintrc': 2.1.4
+      '@eslint/eslintrc': 3.0.0
       '@intlify/core-base': 9.3.0-beta.27
       '@intlify/message-compiler': 9.3.0-beta.27
       debug: 4.3.4
       eslint: 8.56.0
+      eslint-compat-utils: 0.4.1(eslint@8.56.0)
       glob: 10.3.10
       ignore: 5.3.0
       import-fresh: 3.3.0
