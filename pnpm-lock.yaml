@@ -93,8 +93,8 @@ importers:
         specifier: 3.9.3
         version: 3.9.3(rollup@4.9.5)
       '@nuxt/ui':
-        specifier: 2.12.0
-        version: 2.12.0(nuxt@3.9.3)(rollup@4.9.5)(vite@5.0.11)(vue@3.4.14)
+        specifier: 2.12.3
+        version: 2.12.3(nuxt@3.9.3)(rollup@4.9.5)(vite@5.0.11)(vue@3.4.14)
       '@nuxtjs/eslint-config-typescript':
         specifier: 12.1.0
         version: 12.1.0(eslint@8.56.0)(typescript@5.3.3)
@@ -3239,6 +3239,15 @@ packages:
       tailwindcss: 3.4.1
     dev: true
 
+  /@headlessui/vue@1.7.16(vue@3.4.14):
+    resolution: {integrity: sha512-nKT+nf/q6x198SsyK54mSszaQl/z+QxtASmgMEJtpxSX2Q0OPJX0upS/9daDyiECpeAsvjkoOrm2O/6PyBQ+Qg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.4.14(typescript@5.3.3)
+    dev: true
+
   /@headlessui/vue@1.7.17(vue@3.4.14):
     resolution: {integrity: sha512-hmJChv8HzKorxd9F70RGnECAwZfkvmmwOqreuKLWY/19d5qbWnSdw+DNbuA/Uo6X5rb4U5B3NrT+qBKPmjhRqw==}
     engines: {node: '>=10'}
@@ -4359,15 +4368,15 @@ packages:
     resolution: {integrity: sha512-5gc02Pu1HycOVUWJ8aYsWeeXcSTPe8iX8+KIrhyEtEoOSkY0eMBuo0ssljB8wALuEmepv31DlYe5gpiRwkjESA==}
     dev: true
 
-  /@nuxt/ui@2.12.0(nuxt@3.9.3)(rollup@4.9.5)(vite@5.0.11)(vue@3.4.14):
-    resolution: {integrity: sha512-iLC8tvk5aJqD8ASo07JS8Fyyy2hnqliCQA7Fd7fuJlkVMxiZ8QQyW3bhadPg4OR4hCVmc+zNMRQ+mdVNMtINJw==}
+  /@nuxt/ui@2.12.3(nuxt@3.9.3)(rollup@4.9.5)(vite@5.0.11)(vue@3.4.14):
+    resolution: {integrity: sha512-F/eoqU8pTBVCdJ1QHvWKZjXHVNNV6Q1SCgPRWJyNnfbnIi97a50/aiHVJZfvr0zp3FQKa/ogWTITF5Vxss5TtA==}
     engines: {node: '>=v16.20.2'}
     dependencies:
       '@egoist/tailwindcss-icons': 1.7.2(tailwindcss@3.4.1)
       '@headlessui/tailwindcss': 0.2.0(tailwindcss@3.4.1)
-      '@headlessui/vue': 1.7.17(vue@3.4.14)
+      '@headlessui/vue': 1.7.16(vue@3.4.14)
       '@iconify-json/heroicons': 1.1.19
-      '@nuxt/kit': 3.9.1(rollup@4.9.5)
+      '@nuxt/kit': 3.9.3(rollup@4.9.5)
       '@nuxtjs/color-mode': 3.3.2(rollup@4.9.5)
       '@nuxtjs/tailwindcss': 6.10.4(rollup@4.9.5)
       '@popperjs/core': 2.11.8
