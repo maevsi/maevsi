@@ -409,8 +409,8 @@ importers:
         version: 1.41.1
     devDependencies:
       '@axe-core/playwright':
-        specifier: 4.8.2
-        version: 4.8.2(playwright-core@1.41.1)
+        specifier: 4.8.3
+        version: 4.8.3(playwright-core@1.41.1)
       '@playwright/test':
         specifier: 1.41.1
         version: 1.41.1
@@ -554,8 +554,8 @@ packages:
       is-potential-custom-element-name: 1.0.1
     dev: true
 
-  /@axe-core/playwright@4.8.2(playwright-core@1.41.1):
-    resolution: {integrity: sha512-9KOhX2tNuvqn9DzpBNyqoqNKRZBrexeSiN9irQ0sEdq8zH13JnatepCJxobuXn4UopNy6iIpP4342beMiH+MSQ==}
+  /@axe-core/playwright@4.8.3(playwright-core@1.41.1):
+    resolution: {integrity: sha512-YtbkAWeOp5oQeI8vS6KYqJDa5yTl5O1wJP8KOZAAVjhxeiK/Y1ssxnZuGRobARyVh3eS6O3jdxTv/iCK1RfgaA==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
     dependencies:
