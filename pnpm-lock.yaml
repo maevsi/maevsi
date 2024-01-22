@@ -120,8 +120,8 @@ importers:
         specifier: 7.94.1
         version: 7.94.1
       '@sentry/vite-plugin':
-        specifier: 2.10.2
-        version: 2.10.2
+        specifier: 2.10.3
+        version: 2.10.3
       '@sentry/vue':
         specifier: 7.94.1
         version: 7.94.1(vue@3.4.15)
@@ -5442,13 +5442,13 @@ packages:
       '@sentry/utils': 7.94.1
     dev: true
 
-  /@sentry/bundler-plugin-core@2.10.2:
-    resolution: {integrity: sha512-7IoekLtROlJZqTxtHQ3IhocBuf9dsEq+JjqlHMyZXoq+QKuvJFvMd/4T+r6KjZ15kMZOIkR+spK3V7duH201hw==}
+  /@sentry/bundler-plugin-core@2.10.3:
+    resolution: {integrity: sha512-glokZ9O6m3l5OlVk/2C9EPI3Fy7rAxwWQZixItLmrVJnJAf0lDX7bTNJUvZKKDrMRoCypL6WpM/QeSe1i3i8ig==}
     engines: {node: '>= 14'}
     dependencies:
       '@sentry/cli': 2.25.0
       '@sentry/node': 7.94.1
-      '@sentry/utils': 7.93.0
+      '@sentry/utils': 7.94.1
       dotenv: 16.3.1
       find-up: 5.0.0
       glob: 9.3.2
@@ -5573,21 +5573,9 @@ packages:
       '@sentry/utils': 7.94.1
     dev: true
 
-  /@sentry/types@7.93.0:
-    resolution: {integrity: sha512-UnzUccNakhFRA/esWBWP+0v7cjNg+RilFBQC03Mv9OEMaZaS29zSbcOGtRzuFOXXLBdbr44BWADqpz3VW0XaNw==}
-    engines: {node: '>=8'}
-    dev: true
-
   /@sentry/types@7.94.1:
     resolution: {integrity: sha512-A7CdEXFSgGyWv2BT2p9cAvJfb+dypvOtsY8ZvZvdPLUa7kqCV7ndhURUqKjvMBzsL2GParHn3ehDTl2eVc7pvA==}
     engines: {node: '>=8'}
-    dev: true
-
-  /@sentry/utils@7.93.0:
-    resolution: {integrity: sha512-Iovj7tUnbgSkh/WrAaMrd5UuYjW7AzyzZlFDIUrwidsyIdUficjCG2OIxYzh76H6nYIx9SxewW0R54Q6XoB4uA==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@sentry/types': 7.93.0
     dev: true
 
   /@sentry/utils@7.94.1:
@@ -5597,11 +5585,11 @@ packages:
       '@sentry/types': 7.94.1
     dev: true
 
-  /@sentry/vite-plugin@2.10.2:
-    resolution: {integrity: sha512-30uu0L8ZCpAKOxAXmtyqwL06sG8UEBXGY5mxUDITyQYDf8pKuiOEf5018KlEDjhYVypfMQH3jq5xXUUka+/ipg==}
+  /@sentry/vite-plugin@2.10.3:
+    resolution: {integrity: sha512-IOt49G3KM189a2M3ISrctY0b8PlSnUZFnfNKYyaa6ojTjhkVekPopUg3vCp93cxCWRlw6D1UzX9j2i4fXi9k/g==}
     engines: {node: '>= 14'}
     dependencies:
-      '@sentry/bundler-plugin-core': 2.10.2
+      '@sentry/bundler-plugin-core': 2.10.3
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
