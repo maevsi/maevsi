@@ -1,3 +1,16 @@
+## [3.23.2](https://github.com/maevsi/maevsi/compare/3.23.1...3.23.2) (2024-01-24)
+
+
+### Bug Fixes
+
+* **robots:** disallow session routes ([9a743f1](https://github.com/maevsi/maevsi/commit/9a743f17491f0e2e07ddf37efece1e20613b3f95))
+* **robots:** disallow session routes ([#1524](https://github.com/maevsi/maevsi/issues/1524)) ([18ed3e8](https://github.com/maevsi/maevsi/commit/18ed3e857c3865c383eb699b156f2130064cf872))
+
+
+### Performance Improvements
+
+* **urql:** remove inline import ([8ec3edc](https://github.com/maevsi/maevsi/commit/8ec3edc764fe3e7a951040196a1aae094d1c5fcc))
+
 ## [3.23.1](https://github.com/maevsi/maevsi/compare/3.23.0...3.23.1) (2024-01-13)
 
 
