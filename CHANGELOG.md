@@ -1,3 +1,11 @@
+## [3.23.3](https://github.com/maevsi/maevsi/compare/3.23.2...3.23.3) (2024-01-24)
+
+
+### Performance Improvements
+
+* add zalgo ([5b1e1ad](https://github.com/maevsi/maevsi/commit/5b1e1ad454b47facfb19c80c99bcd1e7280cc8a1))
+* add zalgo ([#1525](https://github.com/maevsi/maevsi/issues/1525)) ([ec52a0c](https://github.com/maevsi/maevsi/commit/ec52a0cb280f5631ad701fc85c7a08806bf58841))
+
 ## [3.23.2](https://github.com/maevsi/maevsi/compare/3.23.1...3.23.2) (2024-01-24)
 
 
