@@ -129,17 +129,21 @@ const fireAlert = useFireAlert()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
-const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username,
-})
+const accountByUsernameQuery = await zalgo(
+  useAccountByUsernameQuery({
+    username: route.params.username,
+  }),
+)
 const accountId = computed(
   () =>
     getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id,
 )
-const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
-  authorAccountId: accountId,
-  slug: route.params.event_name,
-})
+const eventQuery = await zalgo(
+  useEventByAuthorAccountIdAndSlugQuery({
+    authorAccountId: accountId,
+    slug: route.params.event_name,
+  }),
+)
 const event = computed(() =>
   getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
 )

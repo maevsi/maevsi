@@ -53,3 +53,6 @@ export const getTimezone = () =>
   process.client
     ? Intl.DateTimeFormat().resolvedOptions().timeZone
     : undefined
+
+export const zalgo = async <T>(maybePromise: T) =>
+  process.server ? await maybePromise : maybePromise
