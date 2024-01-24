@@ -92,9 +92,11 @@ const accountDeleteMutation = useAccountDeleteMutation()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
-const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username,
-})
+const accountByUsernameQuery = await zalgo(
+  useAccountByUsernameQuery({
+    username: route.params.username,
+  }),
+)
 const account = getAccountItem(
   accountByUsernameQuery.data.value?.accountByUsername,
 )

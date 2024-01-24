@@ -34,11 +34,13 @@ const { t } = useI18n()
 const after = ref<string>()
 
 // api data
-const eventsQuery = await useAllEventsQuery({
-  after,
-  authorAccountId: props.accountId,
-  first: ITEMS_PER_PAGE,
-})
+const eventsQuery = await zalgo(
+  useAllEventsQuery({
+    after,
+    authorAccountId: props.accountId,
+    first: ITEMS_PER_PAGE,
+  }),
+)
 const api = getApiData([eventsQuery])
 const events = computed(
   () =>
