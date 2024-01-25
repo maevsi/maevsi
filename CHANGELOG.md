@@ -1,3 +1,10 @@
+## [3.24.1](https://github.com/maevsi/maevsi/compare/3.24.0...3.24.1) (2024-01-25)
+
+
+### Bug Fixes
+
+* **tailwind:** correct style priorities ([bde41a3](https://github.com/maevsi/maevsi/commit/bde41a34f7021a16406707b20ab15caa08966dbb))
+
 ## [3.24.0](https://github.com/maevsi/maevsi/compare/3.23.3...3.24.0) (2024-01-25)
 
 
