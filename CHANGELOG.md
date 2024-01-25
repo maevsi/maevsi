@@ -1,3 +1,10 @@
+## [3.24.0](https://github.com/maevsi/maevsi/compare/3.23.3...3.24.0) (2024-01-25)
+
+
+### Features
+
+* **auth-proxy:** log error codes ([2136ff5](https://github.com/maevsi/maevsi/commit/2136ff5603898a9df0c2eec10710ae61445bd9be))
+
 ## [3.23.3](https://github.com/maevsi/maevsi/compare/3.23.2...3.23.3) (2024-01-24)
 
 
