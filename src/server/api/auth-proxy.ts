@@ -24,7 +24,10 @@ export default defineEventHandler(async function (event: H3Event) {
         const result = await verifyTurnstileToken(turnstileToken)
 
         if (!result.success) {
-          return throwError(403, 'Turnstile verification unsuccessful.')
+          return throwError(
+            403,
+            `Turnstile verification unsuccessful: ${result['error-codes'].join(', ')}`,
+          )
         }
 
         consola.debug('Turnstile verification succeeded')
