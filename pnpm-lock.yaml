@@ -351,8 +351,8 @@ importers:
         specifier: 36.0.0
         version: 36.0.0(stylelint@16.2.0)
       stylelint-no-unsupported-browser-features:
-        specifier: 8.0.0
-        version: 8.0.0(stylelint@16.2.0)
+        specifier: 8.0.1
+        version: 8.0.1(stylelint@16.2.0)
       sweetalert2:
         specifier: 11.10.4
         version: 11.10.4
@@ -16863,14 +16863,13 @@ packages:
       stylelint-config-recommended: 14.0.0(stylelint@16.2.0)
     dev: true
 
-  /stylelint-no-unsupported-browser-features@8.0.0(stylelint@16.2.0):
-    resolution: {integrity: sha512-XrXaizW90HdswC+2V1XJXsvNrMUt/bk8OJ7ZDn3nKZzE5NAd4rmAIo/igKuGzHA2a6vx5FplhD5VOqSLYDPnYg==}
+  /stylelint-no-unsupported-browser-features@8.0.1(stylelint@16.2.0):
+    resolution: {integrity: sha512-tc8Xn5DaqJhxTmbA4H8gZbYdAz027NfuSZv5+cVieQb7BtBrF/1/iKYdpcGwXPl3GtqkQrisiXuGqKkKnzWcLw==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.0.2
     dependencies:
       doiuse: 6.0.2
-      lodash.pick: 4.4.0
       postcss: 8.4.33
       stylelint: 16.2.0(typescript@5.3.3)
     dev: true
