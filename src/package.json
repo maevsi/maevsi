@@ -70,7 +70,7 @@
     "@types/html-to-text": "9.0.4",
     "@types/lodash-es": "4.17.12",
     "@types/mustache": "4.2.5",
-    "@types/node": "20.11.7",
+    "@types/node": "20.11.8",
     "@types/pg": "8.11.0",
     "@types/seedrandom": "3.0.8",
     "@unhead/vue": "1.8.10",
