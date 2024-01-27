@@ -38,6 +38,7 @@
       />
       <FormInputCaptcha
         :form-input="v$.captcha"
+        is-centered
         @input="form.captcha = $event"
       />
       <template #assistance>

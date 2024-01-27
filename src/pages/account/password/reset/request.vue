@@ -5,8 +5,8 @@
       :title="title"
       :to="localePath('/session/create')"
     />
-    <div class="mt-5 flex justify-center">
-      <FormAccountPasswordResetRequest />
+    <div class="flex justify-center">
+      <FormAccountPasswordResetRequest class="max-w-sm grow" />
     </div>
   </div>
 </template>

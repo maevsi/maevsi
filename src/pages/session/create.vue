@@ -1,18 +1,21 @@
 <template>
-  <div>
+  <div class="flex flex-col gap-2">
     <CardStateInfo v-if="to">
       {{ t('accountRequired') }}
     </CardStateInfo>
-    <LayoutPageTitle is-centered :title="title" />
-    <div
-      v-if="
-        !store.jwtDecoded?.role || store.jwtDecoded.role === 'maevsi_anonymous'
-      "
-      class="mt-5 flex flex-col items-center"
-    >
-      <FormAccountSignIn class="max-w-lg grow" @signed-in="onSignIn" />
+    <div>
+      <LayoutPageTitle is-centered :title="title" />
+      <div
+        v-if="
+          !store.jwtDecoded?.role ||
+          store.jwtDecoded.role === 'maevsi_anonymous'
+        "
+        class="flex justify-center"
+      >
+        <FormAccountSignIn class="max-w-sm grow" @signed-in="onSignIn" />
+      </div>
+      <Error v-else :status-code="422" />
     </div>
-    <Error v-else :status-code="422" />
   </div>
 </template>
 

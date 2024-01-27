@@ -1,14 +1,13 @@
 <template>
-  <div>
-    <div
-      :class="{
-        'form-input-success': success,
-        'form-input-warning': warning,
-        'form-input-error': value?.$error,
-      }"
-      class="flex-wrap"
-    >
-      <div class="mb-1">
+  <div
+    :class="{
+      'form-input-success': success,
+      'form-input-warning': warning,
+      'form-input-error': value?.$error,
+    }"
+  >
+    <div class="flex flex-col gap-1">
+      <div>
         <label
           class="inline-flex items-baseline gap-2 font-semibold"
           :class="{
@@ -31,12 +30,11 @@
           </span>
         </label>
       </div>
-      <div class="flex">
-        <div class="relative min-w-0 grow">
-          <slot v-if="$slots.default" />
-          <!-- TODO: support textarea, checkboxes and radio buttons natively -->
+      <div>
+        <slot v-if="$slots.default" />
+        <!-- TODO: support textarea, checkboxes and radio buttons natively -->
+        <div v-else class="flex grow">
           <input
-            v-else
             :id="idLabelFull"
             class="form-input"
             :class="{
@@ -79,42 +77,42 @@
               />
             </FormInputIconWrapper>
           </div>
+          <span
+            v-if="$slots.icon"
+            class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-600"
+            @click="emit('icon')"
+          >
+            <slot name="icon" />
+          </span>
         </div>
-        <span
-          v-if="$slots.icon"
-          class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-600"
-          @click="emit('icon')"
-        >
-          <slot name="icon" />
-        </span>
       </div>
-      <div class="md:w-1/3" />
-      <div class="md:w-2/3">
-        <slot name="inputSuffix" />
-      </div>
-      <div class="md:w-1/3" />
-      <div class="md:w-2/3">
-        <slot name="stateSuccess" />
-      </div>
-      <div class="md:w-1/3" />
-      <div class="md:w-2/3">
-        <slot name="stateInfo" />
-        <FormInputStateInfo v-if="value?.$pending">
-          {{ t('globalLoading') }}
-        </FormInputStateInfo>
-      </div>
-      <div class="md:w-1/3" />
-      <div class="md:w-2/3">
-        <slot name="stateWarning" />
-      </div>
-      <div class="md:w-1/3" />
-      <div class="md:w-2/3">
-        <slot name="stateError" />
-      </div>
-      <div class="md:w-1/3" />
-      <div class="md:w-2/3">
-        <slot name="assistance" />
-      </div>
+    </div>
+    <div class="md:w-1/3" />
+    <div class="md:w-2/3">
+      <slot name="inputSuffix" />
+    </div>
+    <div class="md:w-1/3" />
+    <div class="md:w-2/3">
+      <slot name="stateSuccess" />
+    </div>
+    <div class="md:w-1/3" />
+    <div class="md:w-2/3">
+      <slot name="stateInfo" />
+      <FormInputStateInfo v-if="value?.$pending">
+        {{ t('globalLoading') }}
+      </FormInputStateInfo>
+    </div>
+    <div class="md:w-1/3" />
+    <div class="md:w-2/3">
+      <slot name="stateWarning" />
+    </div>
+    <div class="md:w-1/3" />
+    <div class="md:w-2/3">
+      <slot name="stateError" />
+    </div>
+    <div class="md:w-1/3" />
+    <div class="md:w-2/3">
+      <slot name="assistance" />
     </div>
   </div>
 </template>

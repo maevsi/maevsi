@@ -9,7 +9,7 @@
     <NuxtTurnstile
       ref="turnstileRef"
       :key="themeColor"
-      :class="{ 'h-[65px]': isVisible }"
+      :class="{ 'flex justify-center': isCentered, 'h-[65px]': isVisible }"
       :options="{
         'error-callback': () => (isLoading = false),
         'expired-callback': () => emit('input', undefined),
@@ -53,8 +53,11 @@ import type { BaseValidation } from '@vuelidate/core'
 
 export interface Props {
   formInput: BaseValidation
+  isCentered?: boolean
 }
-withDefaults(defineProps<Props>(), {})
+withDefaults(defineProps<Props>(), {
+  isCentered: false,
+})
 
 const emit = defineEmits<{
   input: [event?: string]
