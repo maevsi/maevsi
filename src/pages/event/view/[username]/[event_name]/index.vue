@@ -435,35 +435,37 @@ const updateInvitationByIdMutation = useUpdateInvitationByIdMutation()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
-const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username,
-})
+const accountByUsernameQuery = await zalgo(
+  useAccountByUsernameQuery({
+    username: route.params.username,
+  }),
+)
 const accountId = computed(
   () =>
     getAccountItem(accountByUsernameQuery.data.value?.accountByUsername)?.id,
 )
-const eventQuery = await useEventByAuthorAccountIdAndSlugQuery({
-  authorAccountId: accountId,
-  slug: route.params.event_name,
-  invitationId: route.query.ic,
-})
+const eventQuery = await zalgo(
+  useEventByAuthorAccountIdAndSlugQuery({
+    authorAccountId: accountId,
+    slug: route.params.event_name,
+    invitationId: route.query.ic,
+  }),
+)
 const event = computed(() =>
   getEventItem(eventQuery.data.value?.eventByAuthorAccountIdAndSlug),
 )
 const api = getApiData([accountByUsernameQuery, eventQuery])
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    usePageBreadcrumbEvents(),
-    usePageBreadcrumbEventsUser(),
-    {
-      current: true,
-      ...(await pageBreadcrumb({ $urql, route })),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  usePageBreadcrumbEvents(),
+  usePageBreadcrumbEventsUser(),
+  {
+    current: true,
+    ...(await pageBreadcrumb({ $urql, route })),
+  },
+])
 
 // methods
 const accept = () => {

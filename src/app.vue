@@ -110,9 +110,11 @@ watch(
 )
 
 // initialization
-updateSiteConfig({
-  description: t('globalSeoSiteDescription'),
-})
+if (process.server) {
+  updateSiteConfig({
+    description: t('globalSeoSiteDescription'),
+  })
+}
 defineOgImageComponent(
   'Default',
   {

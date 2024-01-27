@@ -1,8 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "docker": {
-    "pinDigests": false
-  },
   "extends": [
     "github>dargmuesli/renovate-config"
   ]

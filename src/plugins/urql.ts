@@ -10,7 +10,7 @@ import {
   type Cache,
   offlineExchange as getOfflineExchange,
 } from '@urql/exchange-graphcache'
-// import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
+import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 import { provideClient } from '@urql/vue'
@@ -122,9 +122,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     ? getOfflineExchange({
         ...graphCacheConfig,
         schema,
-        storage: (
-          await import('@urql/exchange-graphcache/default-storage')
-        ).makeDefaultStorage(),
+        storage: makeDefaultStorage(),
       })
     : undefined
 

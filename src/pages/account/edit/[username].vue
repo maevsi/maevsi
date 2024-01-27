@@ -92,9 +92,11 @@ const accountDeleteMutation = useAccountDeleteMutation()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
-const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username,
-})
+const accountByUsernameQuery = await zalgo(
+  useAccountByUsernameQuery({
+    username: route.params.username,
+  }),
+)
 const account = getAccountItem(
   accountByUsernameQuery.data.value?.accountByUsername,
 )
@@ -102,17 +104,15 @@ const profilePictureSetMutation = useProfilePictureSetMutation()
 const api = getApiData([accountByUsernameQuery, profilePictureSetMutation])
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    usePageBreadcrumbAccounts(),
-    usePageBreadcrumbAccountsId(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  usePageBreadcrumbAccounts(),
+  usePageBreadcrumbAccountsId(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const mutation = accountDeleteMutation
 const routeParamUsername = route.params.username
 const title = t('settings')

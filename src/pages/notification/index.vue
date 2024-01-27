@@ -59,15 +59,13 @@ const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const title = t('notifications')
 
 // initialization

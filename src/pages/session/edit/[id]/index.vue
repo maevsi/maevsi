@@ -171,16 +171,14 @@ const store = useMaevsiStore()
 const { signOut } = useSignOut()
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    usePageBreadcrumbSession(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  usePageBreadcrumbSession(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const title = t('preferences')
 
 // initialization

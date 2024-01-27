@@ -134,25 +134,25 @@ const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 
 // api data
-const accountByUsernameQuery = await useAccountByUsernameQuery({
-  username: route.params.username,
-})
+const accountByUsernameQuery = await zalgo(
+  useAccountByUsernameQuery({
+    username: route.params.username,
+  }),
+)
 const account = getAccountItem(
   accountByUsernameQuery.data.value?.accountByUsername,
 )
 const api = getApiData([accountByUsernameQuery])
 
 // data
-const breadcrumbItems = defineBreadcrumbItems(
-  getBreadcrumbItemProps([
-    usePageBreadcrumbHome(),
-    usePageBreadcrumbAccounts(),
-    {
-      current: true,
-      ...usePageBreadcrumb(),
-    },
-  ]),
-)
+const breadcrumbItems = getBreadcrumbItemProps([
+  usePageBreadcrumbHome(),
+  usePageBreadcrumbAccounts(),
+  {
+    current: true,
+    ...usePageBreadcrumb(),
+  },
+])
 const routeParamUsername = route.params.username
 const title = route.params.username
 

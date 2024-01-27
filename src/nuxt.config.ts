@@ -2,7 +2,7 @@ import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 
 import { sentryVitePlugin } from '@sentry/vite-plugin'
-import type { Nuxt } from '@nuxt/schema'
+import type { Nuxt, ModuleOptions } from 'nuxt/schema'
 // import { defu } from 'defu'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
@@ -59,24 +59,25 @@ export default defineNuxtConfig({
         }),
       )
     },
+    'tailwindcss:config': (tailwindConfig) => tailwindConfig.plugins?.reverse(), // let `tailwind.config.ts`'s custom plugin override the form plugin's `form-input` class component
   },
   modules: [
     '@dargmuesli/nuxt-cookie-control',
     '@nuxt/image',
-    '@nuxtjs/color-mode',
+    '@nuxt/ui',
+    // '@nuxtjs/color-mode', // installed by @nuxt/ui
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
-    '@nuxtjs/tailwindcss',
+    // '@nuxtjs/tailwindcss', // installed by @nuxt/ui
+    '@nuxtjs/seo',
     '@nuxtjs/turnstile',
-    '@nuxtseo/module',
     '@pinia/nuxt',
-    '@unocss/nuxt',
     '@vite-pwa/nuxt',
-    async (_options: any, nuxt: Nuxt) => {
+    async (_options: ModuleOptions, nuxt: Nuxt) => {
       nuxt.options.runtimeConfig.public.vio.releaseName = await RELEASE_NAME()
     },
     // nuxt-security: remove invalid `'none'`s and duplicates
-    (_options, nuxt) => {
+    (_options: ModuleOptions, nuxt: Nuxt) => {
       const nuxtConfigSecurity = nuxt.options.security
 
       if (
@@ -112,7 +113,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       i18n: {
-        baseUrl: SITE_URL,
+        ...(process.env.NODE_ENV === 'development'
+          ? {}
+          : { baseUrl: SITE_URL }),
       },
       sentry: {
         host: 'o4506083883352064.ingest.sentry.io',

@@ -1,9 +1,11 @@
-import type { ModuleOptions } from '@nuxtjs/tailwindcss'
+import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 import type { PluginAPI } from 'tailwindcss/types/config'
 
-const gray = colors.zinc // or gray, neutral, slate, stone
+import { STYLE_DEFAULT_GRAY } from './utils/constants'
+
+const gray = colors[STYLE_DEFAULT_GRAY] // or gray, neutral, slate, stone
 const truncateOverflow = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
@@ -32,7 +34,7 @@ const heading = (theme: PluginAPI['theme']) =>
     maxWidth: theme('width.full'),
   }) as Record<string, string>
 
-export default {
+export default <Partial<Config>>{
   content: [
     './components/**/*.{js,vue,ts}',
     './composables/**/*.{js,vue,ts}',
@@ -44,8 +46,6 @@ export default {
   ],
   darkMode: 'class',
   plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
     ({ addBase, addComponents, addUtilities, theme }: PluginAPI) => {
       addBase({
         ':disabled': {
@@ -118,8 +118,8 @@ export default {
         },
         '.form-input': {
           appearance: 'none',
-          backgroundColor: theme('colors.gray.50'),
-          borderColor: theme('colors.gray.300'),
+          backgroundColor: theme('colors.cool.50'), // `@nuxt/ui` replaces `gray` with `cool`
+          borderColor: theme('colors.cool.300'), // `@nuxt/ui` replaces `gray` with `cool`
           borderRadius: theme('borderRadius.DEFAULT'),
           borderWidth: theme('borderWidth.DEFAULT'),
           boxShadow: theme('boxShadow.sm'),
@@ -239,4 +239,4 @@ export default {
       '9xl': ['8rem', { lineHeight: '10rem' }],
     },
   },
-} as ModuleOptions['config']
+}

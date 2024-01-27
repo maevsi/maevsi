@@ -1,3 +1,83 @@
+## [3.24.1](https://github.com/maevsi/maevsi/compare/3.24.0...3.24.1) (2024-01-25)
+
+
+### Bug Fixes
+
+* **tailwind:** correct style priorities ([bde41a3](https://github.com/maevsi/maevsi/commit/bde41a34f7021a16406707b20ab15caa08966dbb))
+
+## [3.24.0](https://github.com/maevsi/maevsi/compare/3.23.3...3.24.0) (2024-01-25)
+
+
+### Features
+
+* **auth-proxy:** log error codes ([2136ff5](https://github.com/maevsi/maevsi/commit/2136ff5603898a9df0c2eec10710ae61445bd9be))
+
+## [3.23.3](https://github.com/maevsi/maevsi/compare/3.23.2...3.23.3) (2024-01-24)
+
+
+### Performance Improvements
+
+* add zalgo ([5b1e1ad](https://github.com/maevsi/maevsi/commit/5b1e1ad454b47facfb19c80c99bcd1e7280cc8a1))
+* add zalgo ([#1525](https://github.com/maevsi/maevsi/issues/1525)) ([ec52a0c](https://github.com/maevsi/maevsi/commit/ec52a0cb280f5631ad701fc85c7a08806bf58841))
+
+## [3.23.2](https://github.com/maevsi/maevsi/compare/3.23.1...3.23.2) (2024-01-24)
+
+
+### Bug Fixes
+
+* **robots:** disallow session routes ([9a743f1](https://github.com/maevsi/maevsi/commit/9a743f17491f0e2e07ddf37efece1e20613b3f95))
+* **robots:** disallow session routes ([#1524](https://github.com/maevsi/maevsi/issues/1524)) ([18ed3e8](https://github.com/maevsi/maevsi/commit/18ed3e857c3865c383eb699b156f2130064cf872))
+
+
+### Performance Improvements
+
+* **urql:** remove inline import ([8ec3edc](https://github.com/maevsi/maevsi/commit/8ec3edc764fe3e7a951040196a1aae094d1c5fcc))
+
+## [3.23.1](https://github.com/maevsi/maevsi/compare/3.23.0...3.23.1) (2024-01-13)
+
+
+### Bug Fixes
+
+* schedule release ([71e4cc1](https://github.com/maevsi/maevsi/commit/71e4cc1da6eca77a61907a28a6b94eb42d79c5d4))
+
+## [3.23.0](https://github.com/maevsi/maevsi/compare/3.22.1...3.23.0) (2023-12-30)
+
+
+### Features
+
+* **session:** allow to create when already signed in ([d1becf6](https://github.com/maevsi/maevsi/commit/d1becf6c6d7d37950ad959e4df431474ac6f03be))
+* **session:** allow to create when already signed in ([#1511](https://github.com/maevsi/maevsi/issues/1511)) ([a63cf1b](https://github.com/maevsi/maevsi/commit/a63cf1b1608d05b7903ef7ea852293e5435aaae2))
+
+## [3.22.1](https://github.com/maevsi/maevsi/compare/3.22.0...3.22.1) (2023-12-30)
+
+
+### Bug Fixes
+
+* **ui:** correct hero image index ([74b1a87](https://github.com/maevsi/maevsi/commit/74b1a875144eb360d50f54917a15ddb96a1a8b87))
+* **ui:** correct hero image index ([#1509](https://github.com/maevsi/maevsi/issues/1509)) ([ad535ce](https://github.com/maevsi/maevsi/commit/ad535ceab17dfd2ab9a58ca978a89ee2dac9384a))
+
+## [3.22.0](https://github.com/maevsi/maevsi/compare/3.21.2...3.22.0) (2023-12-30)
+
+
+### Features
+
+* **breadcrumbs:** migrate to nuxt ui ([4070b96](https://github.com/maevsi/maevsi/commit/4070b96684750f339b5b67d462340c96c359ad5c))
+
+
+### Bug Fixes
+
+* **breadcrumbs:** correct aria label ([dc34a07](https://github.com/maevsi/maevsi/commit/dc34a07376aeca64db7d807fa54d9e84bc80343d))
+* **breadcrumbs:** correct types ([1eb0f93](https://github.com/maevsi/maevsi/commit/1eb0f93a584aa6328d858c63629bcb42e3a7d5de))
+* **site-config:** update server side only ([9cdcc94](https://github.com/maevsi/maevsi/commit/9cdcc9485665e66f5ea801455cdbb9d22b141c58))
+* **style:** centralize constant ([4597551](https://github.com/maevsi/maevsi/commit/45975510553f00088e5538eccdeba144b5d82fd8))
+
+## [3.21.2](https://github.com/maevsi/maevsi/compare/3.21.1...3.21.2) (2023-12-30)
+
+
+### Bug Fixes
+
+* schedule release ([4a7dbd9](https://github.com/maevsi/maevsi/commit/4a7dbd9c300376203d864356e89aec70ee76d3b3))
+
 ## [3.21.1](https://github.com/maevsi/maevsi/compare/3.21.0...3.21.1) (2023-12-16)
 
 
