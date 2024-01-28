@@ -1,3 +1,19 @@
+## [3.25.0](https://github.com/maevsi/maevsi/compare/3.24.1...3.25.0) (2024-01-28)
+
+
+### Features
+
+* **account:** add back link to password reset request page ([d87a2b0](https://github.com/maevsi/maevsi/commit/d87a2b0d7223af9aee013e2c404212b53fc75d03))
+* **form-input-captcha:** make theme color reactive ([e591253](https://github.com/maevsi/maevsi/commit/e5912539f3670dcd2977318b411ba12ffde8926b))
+* **form:** redo width layout ([b753910](https://github.com/maevsi/maevsi/commit/b7539101d24411b835c9590c128a3188b27fff8b))
+* **signin/register:** update design of signin and register view ([cd30e42](https://github.com/maevsi/maevsi/commit/cd30e42014ab83214be0981efd8ed0820ad88392))
+
+
+### Bug Fixes
+
+* **form-account-password-reset-request:** remove `required` indicator ([c3e18f7](https://github.com/maevsi/maevsi/commit/c3e18f74735e3f4de499ed3082af56aa681eb288))
+* **LayoutPageTitle:** align mobile icons right ([7e0277f](https://github.com/maevsi/maevsi/commit/7e0277ffa369d57e11bea5d18d72d6a10a249183))
+
 ## [3.24.1](https://github.com/maevsi/maevsi/compare/3.24.0...3.24.1) (2024-01-25)
 
 
