@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
+    <LayoutPageTitle is-centered :title="title" />
     <div class="flex justify-center">
-      <FormAccountRegistration class="max-w-lg grow" />
+      <FormAccountRegistration class="max-w-sm grow" />
     </div>
   </div>
 </template>

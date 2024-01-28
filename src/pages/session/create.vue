@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="flex flex-col gap-2">
     <CardStateInfo v-if="to">
       {{ t('accountRequired') }}
     </CardStateInfo>
-    <LayoutPageTitle :title="title" />
-    <div class="flex justify-center">
-      <FormAccountSignIn class="max-w-lg grow" @signed-in="onSignIn" />
+    <div>
+      <LayoutPageTitle is-centered :title="title" />
+      <div class="flex justify-center">
+        <FormAccountSignIn class="max-w-sm grow" @signed-in="onSignIn" />
+      </div>
     </div>
   </div>
 </template>

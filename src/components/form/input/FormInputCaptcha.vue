@@ -8,10 +8,12 @@
   >
     <NuxtTurnstile
       ref="turnstileRef"
-      :class="{ 'h-[65px]': isVisible }"
+      :key="themeColor"
+      :class="{ 'flex justify-center': isCentered, 'h-[65px]': isVisible }"
       :options="{
         'error-callback': () => (isLoading = false),
         'expired-callback': () => emit('input', undefined),
+        theme: themeColor,
       }"
       @update:model-value="update"
     />
@@ -51,8 +53,11 @@ import type { BaseValidation } from '@vuelidate/core'
 
 export interface Props {
   formInput: BaseValidation
+  isCentered?: boolean
 }
-withDefaults(defineProps<Props>(), {})
+withDefaults(defineProps<Props>(), {
+  isCentered: false,
+})
 
 const emit = defineEmits<{
   input: [event?: string]
@@ -60,6 +65,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 const store = useMaevsiStore()
+const colorMode = useColorMode()
 const runtimeConfig = useRuntimeConfig()
 
 // refs
@@ -67,6 +73,7 @@ const turnstileRef = ref()
 
 // data
 const isLoading = ref(true)
+const themeColor = ref<'auto' | 'light' | 'dark'>()
 
 // computations
 const isVisible = computed(
@@ -78,6 +85,23 @@ const isVisible = computed(
 )
 
 // methods
+const getThemeColor = (colorModePreferenceOverride?: string) => {
+  const colorModePreference =
+    colorModePreferenceOverride || colorMode.preference
+
+  switch (colorModePreference) {
+    case 'system':
+      return 'auto'
+    case 'light':
+    case 'dark':
+      return colorModePreference
+    default:
+      throw new Error(`Unexpected color mode "${colorModePreference}"`)
+  }
+}
+const initialize = () => {
+  themeColor.value = getThemeColor()
+}
 const reset = () => {
   isLoading.value = true
   turnstileRef.value.reset()
@@ -87,6 +111,15 @@ const update = (e: string) => {
   store.turnstileToken = e
   emit('input', e)
 }
+
+// lifecycle
+watch(
+  () => colorMode.value,
+  (currentValue, _oldValue) => (themeColor.value = getThemeColor(currentValue)),
+)
+
+// initialization
+initialize()
 </script>
 
 <i18n lang="yaml">

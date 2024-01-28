@@ -5,7 +5,21 @@
   },
   "packageManager": "pnpm@8.15.0",
   "scripts": {
-    "prepare": "husky"
+    "build": "pnpm --dir src run build:node",
+    "build:node": "nuxt --dir src run build",
+    "build:static": "nuxt --dir src run generate",
+    "dev": "pnpm --dir src run start:dev",
+    "generate": "pnpm --dir src run build:static",
+    "prepare": "husky",
+    "start:dev": "pnpm --dir src exec nuxt dev",
+    "start:node": "node src/.output/server/index.mjs",
+    "start:static": "pnpm --dir src exec serve .output/public",
+    "test:e2e:docker:server:dev:update": "pnpm --dir tests run test:e2e:docker:server:dev:update",
+    "test:e2e:docker:server:dev": "pnpm --dir tests run test:e2e:docker:server:dev",
+    "test:e2e:docker:server:node:update": "pnpm --dir tests run test:e2e:docker:server:node:update",
+    "test:e2e:docker:server:node": "pnpm --dir tests run test:e2e:docker:server:node",
+    "test:e2e:docker:server:static:update": "pnpm --dir tests run test:e2e:docker:server:static:update",
+    "test:e2e:docker:server:static": "pnpm --dir tests run test:e2e:docker:server:static"
   },
   "devDependencies": {
     "@commitlint/cli": "18.6.0",

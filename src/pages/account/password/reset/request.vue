@@ -1,12 +1,19 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
-    <FormAccountPasswordResetRequest />
+    <LayoutPageTitle
+      is-centered
+      :title="title"
+      :to="localePath('/session/create')"
+    />
+    <div class="flex justify-center">
+      <FormAccountPasswordResetRequest class="max-w-sm grow" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 const { t } = useI18n()
+const localePath = useLocalePath()
 
 // data
 const title = t('title')
