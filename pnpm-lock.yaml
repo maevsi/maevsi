@@ -204,8 +204,8 @@ importers:
         specifier: 2.0.4
         version: 2.0.4(vue@3.4.15)
       barcode-detector:
-        specifier: 2.2.2
-        version: 2.2.2
+        specifier: 2.2.3
+        version: 2.2.3
       browserslist-useragent-regexp:
         specifier: 4.1.1
         version: 4.1.1(browserslist@4.22.3)
@@ -8407,6 +8407,13 @@ packages:
     dependencies:
       '@types/dom-webcodecs': 0.1.11
       zxing-wasm: 1.1.3
+    dev: true
+
+  /barcode-detector@2.2.3:
+    resolution: {integrity: sha512-jV70NEjXBhq3S0OmFtq9Fhls0I7Y4dII94B0ThhlDp2xwbDaAzzWSnrxsSyGPvPLsNUncaNpdh5upM3GDcJ5rg==}
+    dependencies:
+      '@types/dom-webcodecs': 0.1.11
+      zxing-wasm: 1.2.3
     dev: true
 
   /base64-js@0.0.8:
