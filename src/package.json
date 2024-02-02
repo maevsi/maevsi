@@ -33,7 +33,7 @@
     "@graphql-codegen/typescript-urql-graphcache": "3.1.0",
     "@graphql-codegen/urql-introspection": "3.0.0",
     "@graphql-typed-document-node/core": "3.2.0",
-    "@headlessui/vue": "1.7.17",
+    "@headlessui/vue": "1.7.18",
     "@http-util/status-i18n": "0.8.1",
     "@iconify-json/fa6-brands": "1.1.18",
     "@iconify-json/fa6-regular": "1.1.18",
