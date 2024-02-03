@@ -120,8 +120,8 @@ importers:
         specifier: 7.99.0
         version: 7.99.0
       '@sentry/vite-plugin':
-        specifier: 2.11.0
-        version: 2.11.0
+        specifier: 2.13.0
+        version: 2.13.0
       '@sentry/vue':
         specifier: 7.99.0
         version: 7.99.0(vue@3.4.15)
@@ -5812,6 +5812,11 @@ packages:
       '@sentry/utils': 7.99.0
     dev: true
 
+  /@sentry/babel-plugin-component-annotate@2.13.0:
+    resolution: {integrity: sha512-NOKin57L0ZePOHsnbRJpaWxdDnPS+SQUBJDyBYfcIrS74EPXFoFhFADYwGGI5hEKYL7/L0H3a4sIB5iJci3+fQ==}
+    engines: {node: '>= 14'}
+    dev: true
+
   /@sentry/browser@7.99.0:
     resolution: {integrity: sha512-bgfoUv3wkwwLgN5YUOe0ibB3y268ZCnamZh6nLFqnY/UBKC1+FXWFdvzVON/XKUm62LF8wlpCybOf08ebNj2yg==}
     engines: {node: '>=8'}
@@ -5825,13 +5830,13 @@ packages:
       '@sentry/utils': 7.99.0
     dev: true
 
-  /@sentry/bundler-plugin-core@2.11.0:
-    resolution: {integrity: sha512-IceEPd3RNVyyaxoI92JFnTMsOk/vYCuClV7c/bVBCZZD6dZLercs+abpO6gxbzu758LOjbAmwwIIKtsTKhD0kg==}
+  /@sentry/bundler-plugin-core@2.13.0:
+    resolution: {integrity: sha512-KCq5JL/bW/bvY+0LIB4kgtDcg/5cyHzJjuDKOorcMV4OmKD2BG5xCG518gIARfPlELxWpURO4LYz9ZKkkPs/hw==}
     engines: {node: '>= 14'}
     dependencies:
       '@babel/core': 7.18.5
+      '@sentry/babel-plugin-component-annotate': 2.13.0
       '@sentry/cli': 2.26.0
-      '@sentry/component-annotate-plugin': 2.11.0
       '@sentry/node': 7.99.0
       '@sentry/utils': 7.99.0
       dotenv: 16.4.1
@@ -5930,11 +5935,6 @@ packages:
       - supports-color
     dev: true
 
-  /@sentry/component-annotate-plugin@2.11.0:
-    resolution: {integrity: sha512-2Nf9e05HcvGT9b/8OFaBC90I1d3P6hOu1265T6u3WASxJNvKf3kF44kpt0nZAEVNFcgbyPiPyJ/gmOR/ZIG91A==}
-    engines: {node: '>= 14'}
-    dev: true
-
   /@sentry/core@7.99.0:
     resolution: {integrity: sha512-vOAtzcAXEUtS/oW7wi3wMkZ3hsb5Ch96gKyrrj/mXdOp2zrcwdNV6N9/pawq2E9P/7Pw8AXw4CeDZztZrjQLuA==}
     engines: {node: '>=8'}
@@ -5975,11 +5975,11 @@ packages:
       '@sentry/types': 7.99.0
     dev: true
 
-  /@sentry/vite-plugin@2.11.0:
-    resolution: {integrity: sha512-FsRMIYMyuffDP9eAEupcd9g/W02eLVEB/oldRvf1ekJzY1GsaaATnF6wgzGBkbhmp6TImMtHJgVJHm1twLrhWw==}
+  /@sentry/vite-plugin@2.13.0:
+    resolution: {integrity: sha512-T6vxrBeqrtGgyOuuHufKTe3FBa1lFNW5i0JsESKapsIbGNIdAbHfQVQaYp7eDaLa9OaOwYB7jGhSDykfYpCvJQ==}
     engines: {node: '>= 14'}
     dependencies:
-      '@sentry/bundler-plugin-core': 2.11.0
+      '@sentry/bundler-plugin-core': 2.13.0
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
