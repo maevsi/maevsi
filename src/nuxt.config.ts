@@ -29,16 +29,6 @@ export default defineNuxtConfig({
       title: SITE_NAME,
       titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
     },
-    // // TODO: reenable transitions
-    // pageTransition: {
-    //   name: 'layout',
-    // },
-  },
-  devtools: {
-    // // TODO: enable once upstream bug is fixed (https://github.com/nuxt/devtools/issues/507)
-    // timeline: {
-    //   enabled: true,
-    // },
   },
   future: {
     typescriptBundlerResolution: true,
