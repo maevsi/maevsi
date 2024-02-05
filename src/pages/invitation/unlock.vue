@@ -76,7 +76,7 @@ definePageMeta({
     // must be wrapped with `defineNuxtRouteMiddleware` (https://github.com/nuxt/nuxt/issues/14473)
     defineNuxtRouteMiddleware(async (to) => {
       const { $urql } = useNuxtApp()
-      const localePath = useLocalePath({ route: to })
+      const localePath = useLocalePath()
       const { jwtStore } = useJwtStore()
 
       if (

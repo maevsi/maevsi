@@ -106,8 +106,6 @@
 </template>
 
 <script setup lang="ts">
-import type { LocaleObject } from 'vue-i18n-routing'
-
 const { $dayjs } = useNuxtApp()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
@@ -119,9 +117,7 @@ const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
 
 // methods
 const getLocaleName = (locale: string) => {
-  const locales: LocaleObject[] = LOCALES.filter(
-    (localeObject) => localeObject.code === locale,
-  )
+  const locales = LOCALES.filter((localeObject) => localeObject.code === locale)
 
   if (locales.length) {
     return locales[0].name
