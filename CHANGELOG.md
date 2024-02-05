@@ -1,3 +1,10 @@
+## [3.25.2](https://github.com/maevsi/maevsi/compare/3.25.1...3.25.2) (2024-02-05)
+
+
+### Bug Fixes
+
+* **auth-proxy:** drop non-post requests ([7a1a2f5](https://github.com/maevsi/maevsi/commit/7a1a2f5422ed544547a7e0c3c98247aa079efadd))
+
 ## [3.25.1](https://github.com/maevsi/maevsi/compare/3.25.0...3.25.1) (2024-02-02)
 
 
