@@ -120,8 +120,8 @@ importers:
         specifier: 7.99.0
         version: 7.99.0
       '@sentry/vite-plugin':
-        specifier: 2.13.0
-        version: 2.13.0
+        specifier: 2.14.0
+        version: 2.14.0
       '@sentry/vue':
         specifier: 7.99.0
         version: 7.99.0(vue@3.4.15)
@@ -5809,8 +5809,8 @@ packages:
       '@sentry/utils': 7.99.0
     dev: true
 
-  /@sentry/babel-plugin-component-annotate@2.13.0:
-    resolution: {integrity: sha512-NOKin57L0ZePOHsnbRJpaWxdDnPS+SQUBJDyBYfcIrS74EPXFoFhFADYwGGI5hEKYL7/L0H3a4sIB5iJci3+fQ==}
+  /@sentry/babel-plugin-component-annotate@2.14.0:
+    resolution: {integrity: sha512-FWU4+Lx6fgxjAkwmc3S9j1Q/6pqKZyZzfi52B+8WMNw7a5QjGXgxc5ucBazZYgrcsJKCFBp4QG3PPxNAieFimQ==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -5827,12 +5827,12 @@ packages:
       '@sentry/utils': 7.99.0
     dev: true
 
-  /@sentry/bundler-plugin-core@2.13.0:
-    resolution: {integrity: sha512-KCq5JL/bW/bvY+0LIB4kgtDcg/5cyHzJjuDKOorcMV4OmKD2BG5xCG518gIARfPlELxWpURO4LYz9ZKkkPs/hw==}
+  /@sentry/bundler-plugin-core@2.14.0:
+    resolution: {integrity: sha512-jVM47EPs8Na2z5HOWgthLFhpHLU9hwL2wY4TzHEnS1Bj+ODgXFa8QcIxQR2SO+W+L8YhSbY7z+BpPsYTpeZWUg==}
     engines: {node: '>= 14'}
     dependencies:
       '@babel/core': 7.18.5
-      '@sentry/babel-plugin-component-annotate': 2.13.0
+      '@sentry/babel-plugin-component-annotate': 2.14.0
       '@sentry/cli': 2.27.0
       '@sentry/node': 7.99.0
       '@sentry/utils': 7.99.0
@@ -5972,11 +5972,11 @@ packages:
       '@sentry/types': 7.99.0
     dev: true
 
-  /@sentry/vite-plugin@2.13.0:
-    resolution: {integrity: sha512-T6vxrBeqrtGgyOuuHufKTe3FBa1lFNW5i0JsESKapsIbGNIdAbHfQVQaYp7eDaLa9OaOwYB7jGhSDykfYpCvJQ==}
+  /@sentry/vite-plugin@2.14.0:
+    resolution: {integrity: sha512-Y25rBys8hDkbcqRBBGc5kez8JoQ0K/IfQzVHzuVFgtavcwQVhTUKbP4P7tPXI6P9gf4sRkycPnMyJzgvf5XAIQ==}
     engines: {node: '>= 14'}
     dependencies:
-      '@sentry/bundler-plugin-core': 2.13.0
+      '@sentry/bundler-plugin-core': 2.14.0
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
