@@ -20,7 +20,7 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.8.4",
+    "@axe-core/playwright": "4.8.5",
     "@playwright/test": "1.41.2",
     "@types/node": "20.11.17",
     "@typescript-eslint/eslint-plugin": "6.21.0",
