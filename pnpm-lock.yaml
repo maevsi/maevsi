@@ -387,8 +387,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(vue-router@4.2.5)(vue@3.4.19)
       vue-qrcode-reader:
-        specifier: 5.5.2
-        version: 5.5.2
+        specifier: 5.5.3
+        version: 5.5.3
       vue-router:
         specifier: 4.2.5
         version: 4.2.5(vue@3.4.19)
@@ -19048,8 +19048,8 @@ packages:
       vue: 3.4.19(typescript@5.3.3)
     dev: true
 
-  /vue-qrcode-reader@5.5.2:
-    resolution: {integrity: sha512-jTw8BKQjsxEgEUtph6UwPcR1nWg7y5nYsrCefp4QUDj0nWSsD3fJriJQ/z2GoJK62Nsu7BhrnWia3oKyYOs72Q==}
+  /vue-qrcode-reader@5.5.3:
+    resolution: {integrity: sha512-ZR+3axFuW1rxrBZXhkmH+4x6c7JqYLkrYuBmwKLve2eEVZb3LiuYJdW7HZaWqvuuOo1uMjqFe3MqyFOf4/BGyA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       barcode-detector: 2.2.2
