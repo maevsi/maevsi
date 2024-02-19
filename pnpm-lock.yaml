@@ -3583,7 +3583,7 @@ packages:
     peerDependencies:
       vue: ^3.2.0
     dependencies:
-      '@tanstack/vue-virtual': 3.1.0(vue@3.4.19)
+      '@tanstack/vue-virtual': 3.1.1(vue@3.4.19)
       vue: 3.4.19(typescript@5.3.3)
     dev: true
 
@@ -6004,8 +6004,8 @@ packages:
     resolution: {integrity: sha512-SCwPom2Wn8XxNlEeqdzycU93SKgzYeVsedjqDsgZaz4XiiPpZUzlHt2NAEQTwTnPcHNZapZ6vbkwJ8P11ggL3Q==}
     dev: true
 
-  /@shikijs/core@1.1.3:
-    resolution: {integrity: sha512-1QWSvWcPbvZXsDxB1F7ejW+Kuxp3z/JHs944hp/f8BYOlFd5gplzseFIkE/GTu/qytFef3zNME4qw1oHbQ0j2A==}
+  /@shikijs/core@1.1.5:
+    resolution: {integrity: sha512-cKc5vGQ4p/4sjx48BHIO7CvLaN32vqpz5Wh7v2n+U1EezGdfX4Wms7khBctKz3iCg9yYq4sfGUc2t+JWj6EUsw==}
     dev: true
 
   /@shuding/opentype.js@1.4.0-beta.0:
@@ -6150,16 +6150,16 @@ packages:
       tailwindcss: 3.4.1
     dev: true
 
-  /@tanstack/virtual-core@3.1.0:
-    resolution: {integrity: sha512-1aEM1ikiHRFq5mc5pFBfSNT5CdwT8uI7HOVzv/Iyu55Zc2OF9YZHBTpkCiyaFyAoLrwuJGxwByWgiDWhUXG70A==}
+  /@tanstack/virtual-core@3.1.1:
+    resolution: {integrity: sha512-I5lerX+RWxLM+zw35gwwQIoLvtkOm0ecuQUlEjNey+Ga6TnR66WKLBnSHre59onugxhpDLT2nofRYzxf+izDFQ==}
     dev: true
 
-  /@tanstack/vue-virtual@3.1.0(vue@3.4.19):
-    resolution: {integrity: sha512-Wq7o3J0cRxUFGDfo5KmU4YOm/Aq6VPBqxjW3T1SoY5zAQtYs5S3lH0TN6o/hAKRH/rb/7zTRz/4WhL3/JlWEug==}
+  /@tanstack/vue-virtual@3.1.1(vue@3.4.19):
+    resolution: {integrity: sha512-62am497kFAOEdOlK7ECEqKiZPxgaPk5BbK4ah+PhTrvz1yNRCHbUbYGe8JwV1DIoY9k1MNXGBLUW5hAa5tvnzQ==}
     peerDependencies:
       vue: ^2.7.0 || ^3.0.0
     dependencies:
-      '@tanstack/virtual-core': 3.1.0
+      '@tanstack/virtual-core': 3.1.1
       vue: 3.4.19(typescript@5.3.3)
     dev: true
 
@@ -9536,7 +9536,7 @@ packages:
       postcss: ^8.4.31
     dependencies:
       cssnano-preset-default: 6.0.3(postcss@8.4.35)
-      lilconfig: 3.1.0
+      lilconfig: 3.1.1
       postcss: 8.4.35
     dev: true
 
@@ -12845,8 +12845,8 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /lilconfig@3.1.0:
-    resolution: {integrity: sha512-p3cz0JV5vw/XeouBU3Ldnp+ZkBjE+n8ydJ4mcwBrOiXXPqNlrzGBqWs9X4MWF7f+iKUBu794Y8Hh8yawiJbCjw==}
+  /lilconfig@3.1.1:
+    resolution: {integrity: sha512-O18pf7nyvHTckunPWCV1XUNXU1piu01y2b7ATJ0ppkUkk8ocqVWBrYjJBCwHDjD/ZWcfyrA0P4gKhzWGi5EINQ==}
     engines: {node: '>=14'}
     dev: true
 
@@ -14120,7 +14120,7 @@ packages:
       radix3: 1.1.0
       satori: 0.10.13
       satori-html: 0.3.2
-      shiki: 1.1.3
+      shiki: 1.1.5
       sirv: 2.0.4
       splitpanes: 3.1.5
       std-env: 3.7.0
@@ -14165,7 +14165,7 @@ packages:
       nuxt-site-config: 2.2.9(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.19)(nuxt@3.10.2)(postcss@8.4.35)(rollup@4.12.0)(vite@5.1.3)(vue@3.4.19)(webpack@5.90.2)
       nuxt-site-config-kit: 2.2.9(rollup@4.12.0)(vue@3.4.19)
       pathe: 1.1.2
-      shiki: 1.1.3
+      shiki: 1.1.5
       sirv: 2.0.4
     transitivePeerDependencies:
       - '@nuxt/devtools'
@@ -14458,7 +14458,7 @@ packages:
       nuxt-site-config-kit: 2.2.9(rollup@4.12.0)(vue@3.4.19)
       pathe: 1.1.2
       pkg-types: 1.0.3
-      shiki: 1.1.3
+      shiki: 1.1.5
       sirv: 2.0.4
       site-config-stack: 2.2.9(vue@3.4.19)
       ufo: 1.4.0
@@ -15406,7 +15406,7 @@ packages:
       ts-node:
         optional: true
     dependencies:
-      lilconfig: 3.1.0
+      lilconfig: 3.1.1
       postcss: 8.4.35
       yaml: 2.3.4
     dev: true
@@ -16831,10 +16831,10 @@ packages:
       '@shikijs/core': 1.0.0-beta.3
     dev: true
 
-  /shiki@1.1.3:
-    resolution: {integrity: sha512-k/B4UvtWmGcHMLp6JnQminlex3Go5MHKXEiormmzTJECAiSQiwSon6USuwTyto8EMUQc9aYRJ7HojkfVLbBk+g==}
+  /shiki@1.1.5:
+    resolution: {integrity: sha512-754GuKIwkUdT810Xm8btuyNQPL+q3PqOkwGW/VlmAWyMYp+HbvvDt69sWXO1sm5aeczBJQjmQTTMR4GkKQNQPw==}
     dependencies:
-      '@shikijs/core': 1.1.3
+      '@shikijs/core': 1.1.5
     dev: true
 
   /shikiji-core@0.10.0-beta.9:
@@ -19450,6 +19450,7 @@ packages:
 
   /workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 7.0.0
       workbox-core: 7.0.0
