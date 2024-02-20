@@ -177,11 +177,11 @@ importers:
         specifier: 1.8.10
         version: 1.8.10(vue@3.4.19)
       '@uppy/core':
-        specifier: 3.9.0
-        version: 3.9.0
+        specifier: 3.9.1
+        version: 3.9.1
       '@uppy/tus':
-        specifier: 3.5.1
-        version: 3.5.1(@uppy/core@3.9.0)
+        specifier: 3.5.2
+        version: 3.5.2(@uppy/core@3.9.1)
       '@urql/core':
         specifier: 4.2.3
         version: 4.2.3(graphql@16.8.1)
@@ -6429,8 +6429,8 @@ packages:
       vue: 3.4.19(typescript@5.3.3)
     dev: true
 
-  /@transloadit/prettier-bytes@0.2.0:
-    resolution: {integrity: sha512-nTFbcKEik+v4gEUlTAD3MAIAF3wOTFch3iNNBUVNhsrQPgY6SpSdV06+mR/hX9TJGb6tjbJ04LqJQP/qmT2sHw==}
+  /@transloadit/prettier-bytes@0.3.1:
+    resolution: {integrity: sha512-TozlXhWmBH1e2ZcQoz9tKuEl9dsvbS6uUghvcx/oluwN1XdcPHyF6+sZ3WhPv+FxO9j6dX7I3UV651mvJCbiQA==}
     dev: true
 
   /@trysound/sax@0.2.0:
@@ -7201,23 +7201,23 @@ packages:
       - rollup
     dev: true
 
-  /@uppy/companion-client@3.7.1(@uppy/core@3.9.0):
-    resolution: {integrity: sha512-gH/7tRS6iuiOdz3qrDbIK5wdx335TeTOGNFBfqr61x+4iLdSMuvwAxUui6j+OTaqSChX5Bu8WadiHcj4SCn/pA==}
+  /@uppy/companion-client@3.7.2(@uppy/core@3.9.1):
+    resolution: {integrity: sha512-MdNFAabuABpQyF5QPpdy3PBygke/rebPhUiKsSMHIoURLDMaBCGd2asvNBd+kgkwniUaymOBJypGBrzqfOQexQ==}
     peerDependencies:
-      '@uppy/core': ^3.9.0
+      '@uppy/core': ^3.9.1
     dependencies:
-      '@uppy/core': 3.9.0
-      '@uppy/utils': 5.7.1
+      '@uppy/core': 3.9.1
+      '@uppy/utils': 5.7.2
       namespace-emitter: 2.0.1
       p-retry: 6.2.0
     dev: true
 
-  /@uppy/core@3.9.0:
-    resolution: {integrity: sha512-RA3sEpSE0FXSHozofugrfaccoJ+SKTPwkMUItp06EYsEfZwMlvZf0lYUTy2sxUxURm+C/9Tl5TYmX+YFPziStg==}
+  /@uppy/core@3.9.1:
+    resolution: {integrity: sha512-vKR45ljWscecBVXAMn4ilf1m2uGZEuVA8VqJtueUVREqSLsAzXVj26J6EVfz+WQZUNUUkUC3wtd8wIhCvLWJqQ==}
     dependencies:
-      '@transloadit/prettier-bytes': 0.2.0
-      '@uppy/store-default': 3.2.1
-      '@uppy/utils': 5.7.1
+      '@transloadit/prettier-bytes': 0.3.1
+      '@uppy/store-default': 3.2.2
+      '@uppy/utils': 5.7.2
       lodash: 4.17.21
       mime-match: 1.0.2
       namespace-emitter: 2.0.1
@@ -7225,23 +7225,23 @@ packages:
       preact: 10.19.5
     dev: true
 
-  /@uppy/store-default@3.2.1:
-    resolution: {integrity: sha512-koExp9GcKw94CqZZki2ylEbJ2IAz4ji0xzT+uObc02wwjtha3nOZOfNodL6hLK8pCf1izZ7042Ec1qEo8yoTSQ==}
+  /@uppy/store-default@3.2.2:
+    resolution: {integrity: sha512-OiSgT++Jj4nLK0N9WTeod3UNjCH81OXE5BcMJCd9oWzl2d0xPNq2T/E9Y6O72XVd+6Y7+tf5vZlPElutfMB3KQ==}
     dev: true
 
-  /@uppy/tus@3.5.1(@uppy/core@3.9.0):
-    resolution: {integrity: sha512-AV+coqoiBtgEDyM5bIZqNGOo/PHr7sM2W2IU8hcsrVAVHd8CtbCWOJEKTP51qk1/EA6E8CcvPmgpdKFtzZLmhw==}
+  /@uppy/tus@3.5.2(@uppy/core@3.9.1):
+    resolution: {integrity: sha512-HqZMcwC4vpG4jqO5HzCTw8AKKUw5Y4Lx9m1NVs4WgwlxdfMdZsquB/hWtuC9+jHSTTHyjl6Pqi4E0Q8nksLwgA==}
     peerDependencies:
-      '@uppy/core': ^3.9.0
+      '@uppy/core': ^3.9.1
     dependencies:
-      '@uppy/companion-client': 3.7.1(@uppy/core@3.9.0)
-      '@uppy/core': 3.9.0
-      '@uppy/utils': 5.7.1
+      '@uppy/companion-client': 3.7.2(@uppy/core@3.9.1)
+      '@uppy/core': 3.9.1
+      '@uppy/utils': 5.7.2
       tus-js-client: 3.1.3
     dev: true
 
-  /@uppy/utils@5.7.1:
-    resolution: {integrity: sha512-o4WXNDEmldCvxek6O9QaafKdimy5C0dcxE/Bo/EaY4UMqeQeGovNBeQzwxFvyiojXQcqJzjKw0oYM7+jLiqhEQ==}
+  /@uppy/utils@5.7.2:
+    resolution: {integrity: sha512-hEqHZhKTVjBVZtH48JLsHYD6hs2fvGYZNteng4Hut+jo9+eLkGORY0HTWmurA+ZtoCgUtM7nnZRWndzY5gZ8iQ==}
     dependencies:
       lodash: 4.17.21
       preact: 10.19.5
