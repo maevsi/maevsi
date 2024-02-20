@@ -81,8 +81,8 @@ importers:
         specifier: 1.1.9
         version: 1.1.9
       '@intlify/eslint-plugin-vue-i18n':
-        specifier: 3.0.0-next.5
-        version: 3.0.0-next.5(eslint@8.56.0)
+        specifier: 3.0.0-next.7
+        version: 3.0.0-next.7(eslint@8.56.0)
       '@nuxt/devtools':
         specifier: 1.0.8
         version: 1.0.8(nuxt@3.10.2)(rollup@4.12.0)(vite@5.1.3)
@@ -3970,8 +3970,8 @@ packages:
       '@intlify/shared': 9.3.0-beta.27
     dev: true
 
-  /@intlify/eslint-plugin-vue-i18n@3.0.0-next.5(eslint@8.56.0):
-    resolution: {integrity: sha512-w761GEOrXqbmeGtaGsnYOHIdAEAEOkJfzddLRawJps9WsM5JjlH9JcONwBzAw8IApsKv7BNt0pLkmJGrP/4jQQ==}
+  /@intlify/eslint-plugin-vue-i18n@3.0.0-next.7(eslint@8.56.0):
+    resolution: {integrity: sha512-xW1ucTDpn40orTJYu+28B7XGZ1nD3jJLVZshZdT9eDH3IC0FTUqxENOEdq8Ba5nHA1CC2p8GGeaBVAVlUJ/iSw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0-0
