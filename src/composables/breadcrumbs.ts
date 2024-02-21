@@ -1,15 +1,15 @@
 import type { TypedToLocalePath } from '@typed-router'
 
-import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
+import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 export const useGetBreadcrumbItemProps = () => {
   const { locale } = useI18n()
   const localePath = useLocalePath()
 
-  return (breadcrumbsWithLocales: BreadcrumbItemPropsLocalizedObject[]) =>
-    breadcrumbsWithLocales.map((breadcrumbWithLocales) =>
+  return (breadcrumbsWithLocales: BreadcrumbLinkLocalized[]) =>
+    breadcrumbsWithLocales.map((breadcrumbLinkLocalized) =>
       getBreadcrumbItemProps(
-        breadcrumbWithLocales,
+        breadcrumbLinkLocalized,
         locale.value as LOCALE_CODES,
         localePath,
       ),
@@ -17,20 +17,18 @@ export const useGetBreadcrumbItemProps = () => {
 }
 
 const getBreadcrumbItemProps = (
-  breadcrumbWithLocales: BreadcrumbItemPropsLocalizedObject,
+  breadcrumbLinkLocalized: BreadcrumbLinkLocalized,
   locale: LOCALE_CODES,
   localePath: TypedToLocalePath,
 ) => ({
-  ...breadcrumbWithLocales,
-  'aria-label': breadcrumbWithLocales.ariaLabel
-    ? typeof breadcrumbWithLocales.ariaLabel === 'string'
-      ? breadcrumbWithLocales.ariaLabel
-      : breadcrumbWithLocales.ariaLabel[locale]
+  'aria-label': breadcrumbLinkLocalized.ariaLabel
+    ? typeof breadcrumbLinkLocalized.ariaLabel === 'string'
+      ? breadcrumbLinkLocalized.ariaLabel
+      : breadcrumbLinkLocalized.ariaLabel[locale]
     : undefined,
-  label: breadcrumbWithLocales.label
-    ? typeof breadcrumbWithLocales.label === 'string'
-      ? breadcrumbWithLocales.label
-      : breadcrumbWithLocales.label[locale]
-    : undefined,
-  to: localePath(breadcrumbWithLocales.to, locale).toString(),
+  label:
+    typeof breadcrumbLinkLocalized.label === 'string'
+      ? breadcrumbLinkLocalized.label
+      : breadcrumbLinkLocalized.label[locale],
+  to: localePath(breadcrumbLinkLocalized.to, locale).toString(),
 })

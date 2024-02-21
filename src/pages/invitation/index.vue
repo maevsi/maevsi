@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
-import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
+import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 export const usePageBreadcrumb = () =>
   ({
@@ -19,7 +19,7 @@ export const usePageBreadcrumb = () =>
       en: 'Invitations',
     },
     to: '/invitation',
-  }) as BreadcrumbItemPropsLocalizedObject
+  }) satisfies BreadcrumbLinkLocalized
 </script>
 
 <script setup lang="ts">

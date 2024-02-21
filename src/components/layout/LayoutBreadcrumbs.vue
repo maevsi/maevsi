@@ -7,8 +7,10 @@
 </template>
 
 <script setup lang="ts">
+import type { BreadcrumbLink } from '#ui/types'
+
 export interface Props {
-  items: any // TODO: use `BreadcrumbLink` (https://github.com/nuxt/ui/issues/1169)
+  items: BreadcrumbLink[]
 }
 withDefaults(defineProps<Props>(), {})
 

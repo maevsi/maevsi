@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
-import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
+import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 export const usePageBreadcrumb = () => {
   return {
@@ -23,7 +23,7 @@ export const usePageBreadcrumb = () => {
       en: 'Files',
     },
     to: '/upload',
-  } as BreadcrumbItemPropsLocalizedObject
+  } satisfies BreadcrumbLinkLocalized
 }
 </script>
 

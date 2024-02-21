@@ -104,7 +104,7 @@ import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
 
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
+import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: RoutesNamesList = 'account-view-username'
 
@@ -114,7 +114,7 @@ export const usePageBreadcrumb = () => {
   return {
     label: route.params.username,
     to: `/account/view/${route.params.username}`,
-  } as BreadcrumbItemPropsLocalizedObject
+  } satisfies BreadcrumbLinkLocalized
 }
 </script>
 

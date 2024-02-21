@@ -383,7 +383,7 @@ import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
-import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
+import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
 
@@ -412,7 +412,7 @@ export const pageBreadcrumb = async ({
   return {
     label: event?.name,
     to: `/event/view/${route.params.username}/${route.params.event_name}`,
-  } as BreadcrumbItemPropsLocalizedObject
+  } satisfies BreadcrumbLinkLocalized
 }
 </script>
 
