@@ -33,8 +33,8 @@ importers:
   src:
     devDependencies:
       '@dargmuesli/nuxt-cookie-control':
-        specifier: 7.2.6
-        version: 7.2.6(rollup@4.12.0)(webpack@5.90.2)
+        specifier: 7.2.7
+        version: 7.2.7(rollup@4.12.0)(webpack@5.90.2)
       '@fontsource-variable/manrope':
         specifier: 5.0.18
         version: 5.0.18
@@ -2279,11 +2279,11 @@ packages:
       postcss-selector-parser: 6.0.15
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control@7.2.6(rollup@4.12.0)(webpack@5.90.2):
-    resolution: {integrity: sha512-kHhdpDeBjnMdJtItz5gFGvg2B7cBeAmzFHXLadlWYdNVt3aNTApS/gjoA0U7QXJ4gn6LrLPOJFoNNYVthpckvg==}
+  /@dargmuesli/nuxt-cookie-control@7.2.7(rollup@4.12.0)(webpack@5.90.2):
+    resolution: {integrity: sha512-W8Cv2trKy1MnnJ6F2plCOkZy1hUh3R2ag48f/HOL5HvHJ2h2Hjgcjr2t8EzPxW4rRnp7jdxeM2BcNmlJYXaj6A==}
     engines: {node: '>=16'}
     dependencies:
-      '@nuxt/kit': 3.10.1(rollup@4.12.0)
+      '@nuxt/kit': 3.10.2(rollup@4.12.0)
       '@sindresorhus/slugify': 2.2.1
       css-vars-ponyfill: 2.4.8
       string-replace-loader: 3.1.0(webpack@5.90.2)
@@ -4564,33 +4564,6 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/kit@3.10.1(rollup@4.12.0):
-    resolution: {integrity: sha512-M9VRY0QGbG6lWOVqt69ZF96RLBUZVXyFpbBUwHnoHgjF9BXSX/MT/hrZcJicN4aPM2QRephGgsBd4U5wFmmn6g==}
-    engines: {node: ^14.18.0 || >=16.10.0}
-    dependencies:
-      '@nuxt/schema': 3.10.1(rollup@4.12.0)
-      c12: 1.8.0
-      consola: 3.2.3
-      defu: 6.1.4
-      globby: 14.0.1
-      hash-sum: 2.0.0
-      ignore: 5.3.1
-      jiti: 1.21.0
-      knitwork: 1.0.0
-      mlly: 1.5.0
-      pathe: 1.1.2
-      pkg-types: 1.0.3
-      scule: 1.3.0
-      semver: 7.6.0
-      ufo: 1.4.0
-      unctx: 2.3.1
-      unimport: 3.7.1(rollup@4.12.0)
-      untyped: 1.4.2
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-    dev: true
-
   /@nuxt/kit@3.10.2(rollup@4.12.0):
     resolution: {integrity: sha512-Bua7taY9CIm7HCTpHXqFyM1xlZkrUl6HOqWrkGjLLQg9eeWAdKT7ppT0iEMiGnb9f+5T0uL5Ec3TvuR5J8P9WA==}
     engines: {node: ^14.18.0 || >=16.10.0}
@@ -4611,26 +4584,6 @@ packages:
       semver: 7.6.0
       ufo: 1.4.0
       unctx: 2.3.1
-      unimport: 3.7.1(rollup@4.12.0)
-      untyped: 1.4.2
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-    dev: true
-
-  /@nuxt/schema@3.10.1(rollup@4.12.0):
-    resolution: {integrity: sha512-DyZLhbaaoGBCXO2jboCHTp77jbCIUem/va5iSu2+GO6M8vAHbNRphksw38gpSk/F74LbJDTbW0t3hrMBzU4B3g==}
-    engines: {node: ^14.18.0 || >=16.10.0}
-    dependencies:
-      '@nuxt/ui-templates': 1.3.1
-      consola: 3.2.3
-      defu: 6.1.4
-      hookable: 5.5.3
-      pathe: 1.1.2
-      pkg-types: 1.0.3
-      scule: 1.3.0
-      std-env: 3.7.0
-      ufo: 1.4.0
       unimport: 3.7.1(rollup@4.12.0)
       untyped: 1.4.2
     transitivePeerDependencies:
