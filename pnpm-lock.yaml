@@ -385,13 +385,13 @@ importers:
         version: 2.0.1(vue@3.4.19)
       vue-i18n-routing:
         specifier: 1.2.0
-        version: 1.2.0(vue-router@4.2.5)(vue@3.4.19)
+        version: 1.2.0(vue-router@4.3.0)(vue@3.4.19)
       vue-qrcode-reader:
         specifier: 5.5.3
         version: 5.5.3
       vue-router:
-        specifier: 4.2.5
-        version: 4.2.5(vue@3.4.19)
+        specifier: 4.3.0
+        version: 4.3.0(vue@3.4.19)
       vue-tsc:
         specifier: 1.8.27
         version: 1.8.27(typescript@5.3.3)
@@ -4096,7 +4096,7 @@ packages:
         optional: true
     dev: true
 
-  /@intlify/vue-router-bridge@1.1.0(vue-router@4.2.5)(vue@3.4.19):
+  /@intlify/vue-router-bridge@1.1.0(vue-router@4.3.0)(vue@3.4.19):
     resolution: {integrity: sha512-EX+KndT9VS3muMdZWFmc99D8nUaWTOXr322a8zNf5HnMCbpbogdifWYW8hat+nVE73St/gcDbPz6u5smVUPoQg==}
     engines: {node: '>= 12'}
     hasBin: true
@@ -4111,7 +4111,7 @@ packages:
         optional: true
     dependencies:
       vue-demi: 0.14.7(vue@3.4.19)
-      vue-router: 4.2.5(vue@3.4.19)
+      vue-router: 4.3.0(vue@3.4.19)
     transitivePeerDependencies:
       - vue
     dev: true
@@ -4843,7 +4843,7 @@ packages:
       ufo: 1.4.0
       unplugin: 1.7.1
       vue-i18n: 9.9.1(vue@3.4.19)
-      vue-router: 4.2.5(vue@3.4.19)
+      vue-router: 4.3.0(vue@3.4.19)
     transitivePeerDependencies:
       - petite-vue-i18n
       - rollup
@@ -14472,12 +14472,12 @@ packages:
       unenv: 1.9.0
       unimport: 3.7.1(rollup@4.12.0)
       unplugin: 1.7.1
-      unplugin-vue-router: 0.7.0(rollup@4.12.0)(vue-router@4.2.5)(vue@3.4.19)
+      unplugin-vue-router: 0.7.0(rollup@4.12.0)(vue-router@4.3.0)(vue@3.4.19)
       untyped: 1.4.2
       vue: 3.4.19(typescript@5.3.3)
       vue-bundle-renderer: 2.0.0
       vue-devtools-stub: 0.1.0
-      vue-router: 4.2.5(vue@3.4.19)
+      vue-router: 4.3.0(vue@3.4.19)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -18267,7 +18267,7 @@ packages:
       - supports-color
     dev: true
 
-  /unplugin-vue-router@0.7.0(rollup@4.12.0)(vue-router@4.2.5)(vue@3.4.19):
+  /unplugin-vue-router@0.7.0(rollup@4.12.0)(vue-router@4.3.0)(vue@3.4.19):
     resolution: {integrity: sha512-ddRreGq0t5vlSB7OMy4e4cfU1w2AwBQCwmvW3oP/0IHQiokzbx4hd3TpwBu3eIAFVuhX2cwNQwp1U32UybTVCw==}
     peerDependencies:
       vue-router: ^4.1.0
@@ -18287,7 +18287,7 @@ packages:
       pathe: 1.1.2
       scule: 1.3.0
       unplugin: 1.7.1
-      vue-router: 4.2.5(vue@3.4.19)
+      vue-router: 4.3.0(vue@3.4.19)
       yaml: 2.3.4
     transitivePeerDependencies:
       - rollup
@@ -18959,7 +18959,7 @@ packages:
       vue: 3.4.19(typescript@5.3.3)
     dev: true
 
-  /vue-i18n-routing@1.2.0(vue-router@4.2.5)(vue@3.4.19):
+  /vue-i18n-routing@1.2.0(vue-router@4.3.0)(vue@3.4.19):
     resolution: {integrity: sha512-pn+bIFRMX5BN1BVQJ5rn05dYVnBhU/QnkxhjEJAe9HnYtJhDubetvoY+yfgDNWwesNWfHbbvsilsgSGL6DJyeA==}
     engines: {node: '>= 14.6'}
     peerDependencies:
@@ -18982,11 +18982,11 @@ packages:
     dependencies:
       '@intlify/shared': 9.9.1
       '@intlify/vue-i18n-bridge': 1.1.0
-      '@intlify/vue-router-bridge': 1.1.0(vue-router@4.2.5)(vue@3.4.19)
+      '@intlify/vue-router-bridge': 1.1.0(vue-router@4.3.0)(vue@3.4.19)
       ufo: 1.4.0
       vue: 3.4.19(typescript@5.3.3)
       vue-demi: 0.14.7(vue@3.4.19)
-      vue-router: 4.2.5(vue@3.4.19)
+      vue-router: 4.3.0(vue@3.4.19)
     dev: true
 
   /vue-i18n@9.9.1(vue@3.4.19):
@@ -19017,8 +19017,8 @@ packages:
       vue: 3.4.19(typescript@5.3.3)
     dev: true
 
-  /vue-router@4.2.5(vue@3.4.19):
-    resolution: {integrity: sha512-DIUpKcyg4+PTQKfFPX88UWhlagBEBEfJ5A8XDXRJLUnZOvcpMF8o/dnL90vpVkGaPbjvXazV/rC1qBKrZlFugw==}
+  /vue-router@4.3.0(vue@3.4.19):
+    resolution: {integrity: sha512-dqUcs8tUeG+ssgWhcPbjHvazML16Oga5w34uCUmsk7i0BcnskoLGwjpa15fqMr2Fa5JgVBrdL2MEgqz6XZ/6IQ==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
