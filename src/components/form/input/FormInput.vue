@@ -30,61 +30,59 @@
           </span>
         </label>
       </div>
-      <div>
-        <slot v-if="$slots.default" />
-        <!-- TODO: support textarea, checkboxes and radio buttons natively -->
-        <div v-else class="flex grow">
-          <input
-            :id="idLabelFull"
-            class="form-input"
-            :class="{
-              'rounded-r-none': $slots.icon,
-            }"
-            :disabled="isDisabled"
-            :placeholder="placeholder"
-            :readonly="isReadonly"
-            :type="type"
-            :value="valueFormatter(value?.$model as string)"
-            @click="emit('click')"
-            @focusout="value?.$touch()"
-            @input="emit('input', ($event.target as HTMLInputElement)?.value)"
-          />
-          <div v-if="validationProperty && isValidatable">
-            <FormInputIconWrapper v-if="validationProperty.$pending">
-              <ISolarHourglassBold
-                class="text-blue-600"
-                :title="t('globalLoading')"
-              />
-            </FormInputIconWrapper>
-            <FormInputIconWrapper
-              v-else-if="
-                !!validationProperty.$model && !validationProperty.$invalid
-              "
-            >
-              <IHeroiconsCheckCircleSolid
-                class="text-green-600"
-                :title="t('valid')"
-              />
-            </FormInputIconWrapper>
-            <FormInputIconWrapper
-              v-else-if="
-                !!validationProperty.$model && validationProperty.$invalid
-              "
-            >
-              <IHeroiconsExclamationCircleSolid
-                class="text-red-600"
-                :title="t('validNot')"
-              />
-            </FormInputIconWrapper>
-          </div>
-          <span
-            v-if="$slots.icon"
-            class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-600"
-            @click="emit('icon')"
+      <slot v-if="$slots.default" />
+      <!-- TODO: support textarea, checkboxes and radio buttons natively -->
+      <div v-else class="flex grow">
+        <input
+          :id="idLabelFull"
+          class="form-input"
+          :class="{
+            'rounded-r-none': $slots.icon,
+          }"
+          :disabled="isDisabled"
+          :placeholder="placeholder"
+          :readonly="isReadonly"
+          :type="type"
+          :value="valueFormatter(value?.$model as string)"
+          @click="emit('click')"
+          @focusout="value?.$touch()"
+          @input="emit('input', ($event.target as HTMLInputElement)?.value)"
+        />
+        <div v-if="validationProperty && isValidatable">
+          <FormInputIconWrapper v-if="validationProperty.$pending">
+            <ISolarHourglassBold
+              class="text-blue-600"
+              :title="t('globalLoading')"
+            />
+          </FormInputIconWrapper>
+          <FormInputIconWrapper
+            v-else-if="
+              !!validationProperty.$model && !validationProperty.$invalid
+            "
           >
-            <slot name="icon" />
-          </span>
+            <IHeroiconsCheckCircleSolid
+              class="text-green-600"
+              :title="t('valid')"
+            />
+          </FormInputIconWrapper>
+          <FormInputIconWrapper
+            v-else-if="
+              !!validationProperty.$model && validationProperty.$invalid
+            "
+          >
+            <IHeroiconsExclamationCircleSolid
+              class="text-red-600"
+              :title="t('validNot')"
+            />
+          </FormInputIconWrapper>
         </div>
+        <span
+          v-if="$slots.icon"
+          class="inline-flex cursor-pointer items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-600"
+          @click="emit('icon')"
+        >
+          <slot name="icon" />
+        </span>
       </div>
     </div>
     <div class="md:w-1/3" />
@@ -137,6 +135,7 @@ export interface Props {
   valueFormatter?: (x?: string) => typeof x | undefined
   warning?: boolean
 }
+
 const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   isOptional: false,
