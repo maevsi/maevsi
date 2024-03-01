@@ -17,16 +17,7 @@
       "
     >
       <div class="relative">
-        <LoaderImage
-          :alt="t('heroImage')"
-          aspect="aspect-[3/2]"
-          classes="rounded-t-lg brightness-[62.5%] h-48 object-cover w-full"
-          height="2"
-          :src="`/assets/static/images/event/${getHeroImageName(
-            event.name,
-          )}.jpg`"
-          width="3"
-        />
+        <EventHeroImage :event="event" />
         <div
           class="absolute bottom-4 left-4 flex flex-col justify-between gap-4 md:flex-row"
         >
@@ -120,9 +111,7 @@ const eventStart = computed(() => dateTime(props.event.start))
 
 <i18n lang="yaml">
 de:
-  heroImage: Titelbild der Veranstaltung
   private: privat
 en:
-  heroImage: Title picture of the event
   private: private
 </i18n>

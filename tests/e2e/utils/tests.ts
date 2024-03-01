@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { joinURL } from 'ufo'
 
@@ -8,7 +8,7 @@ import type { TypedLocalePathParameter } from '#src/.nuxt/typed-router/__paths'
 export const testA11y = <T extends string = never>(
   url: TypedLocalePathParameter<T>,
 ) =>
-  test.describe('a11y', () => {
+  maevsiTest.describe('a11y', () => {
     maevsiTest(
       'should not have any automatically detectable accessibility issues',
       async ({ defaultPage }) => {
@@ -30,7 +30,7 @@ export const testA11y = <T extends string = never>(
 export const testOgImage = <T extends string = never>(
   url: TypedLocalePathParameter<T>,
 ) =>
-  test.describe('visual regression', () => {
+  maevsiTest.describe('visual regression', () => {
     maevsiTest('generates the open graph image', async ({ page }) => {
       await page.goto(joinURL('/__og-image__/image', url, '/og.png'))
       await expect(page).toHaveScreenshot({ fullPage: true })
@@ -44,7 +44,7 @@ export const testPageLoad = <T extends string = never>(
   url: TypedLocalePathParameter<T>,
   statusCode: number = 200,
 ) =>
-  test.describe('page load', () => {
+  maevsiTest.describe('page load', () => {
     maevsiTest('loads the page successfully', async ({ request }) => {
       const resp = await request.get(url)
       expect(resp.status()).toBe(statusCode)
@@ -54,7 +54,7 @@ export const testPageLoad = <T extends string = never>(
 export const testVisualRegression = <T extends string = never>(
   url: TypedLocalePathParameter<T>,
 ) =>
-  test.describe('visual regression', () => {
+  maevsiTest.describe('visual regression', () => {
     maevsiTest('looks as before', async ({ defaultPage }) => {
       await defaultPage.goto(url)
 

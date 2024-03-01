@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect } from '@playwright/test'
 
 import { maevsiTest } from '#tests/e2e/fixtures/maevsiTest'
 import { PAGE_READY } from '#tests/e2e/utils/constants'
@@ -16,7 +16,7 @@ testOgImage(PAGE_PATH)
 testPageLoad(PAGE_PATH)
 testVisualRegression(PAGE_PATH)
 
-test.describe('internationalization', () => {
+maevsiTest.describe('internationalization', () => {
   const textEnglish = 'Personal invitations. Proper feedback.'
   const textGerman = 'Persönliche Einladungen. Geordnetes Feedback.'
 
@@ -59,7 +59,7 @@ test.describe('internationalization', () => {
 // })
 // })
 
-test.describe('visual regression', () => {
+maevsiTest.describe('visual regression', () => {
   maevsiTest('displays the cookie banner', async ({ page }) => {
     await page.goto('/')
     await PAGE_READY({ page, options: { cookieControl: false } })

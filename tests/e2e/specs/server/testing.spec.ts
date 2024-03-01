@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test'
+import { expect } from '@playwright/test'
 
 import { TESTING_COOKIE_NAME } from '#src/utils/constants'
 import { maevsiTest } from '#tests/e2e/fixtures/maevsiTest'
 
-test.describe('testing', () => {
+maevsiTest.describe('testing', () => {
   maevsiTest('cookie', async ({ defaultPage }) => {
     expect(
       (await defaultPage.page.context().cookies()).filter(
