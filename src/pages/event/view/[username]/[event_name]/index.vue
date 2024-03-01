@@ -95,16 +95,7 @@
       <div class="flex flex-col gap-4">
         <div>
           <div class="relative">
-            <LoaderImage
-              :alt="t('heroImage')"
-              aspect="aspect-[5143/3429]"
-              classes="rounded-t-lg brightness-50"
-              height="3429"
-              :src="`/assets/static/images/event/${getHeroImageName(
-                event.name,
-              )}.jpg`"
-              width="5143"
-            />
+            <EventHeroImage :event="event" />
             <div
               class="absolute bottom-4 left-4 flex flex-col justify-between gap-4 md:flex-row"
             >
@@ -600,7 +591,6 @@ de:
   # feedbackRequest: 'Bitte gib eine Rückmeldung, ob du teilnehmen wirst:'
   greeting: Hey{usernameString}!
   greetingDescription: Du wurdest zu folgender Veranstaltung eingeladen.
-  heroImage: Titelbild der Veranstaltung
   hintQrCode: Dieses Bild ist deine Zugangsberechtigung für die Veranstaltung
   invitationAccept: Einladung annehmen
   invitationAcceptAdmin: Einladung im Namen von {name} annehmen
@@ -632,7 +622,6 @@ en:
   # feedbackRequest: 'Please confirm if you will attend:'
   greeting: Hey{usernameString}!
   greetingDescription: "You've been invited to the following event."
-  heroImage: Title picture of the event
   hintQrCode: This picture is your access authorization for the event
   invitationAccept: Accept invitation
   invitationAcceptAdmin: Accept invitation on behalf of {name}
