@@ -1,15 +1,4 @@
 {
-  "css.validate": false,
-  "eslint.workingDirectories": [
-    {
-      "directory": "./src/"
-    },
-    {
-      "directory": "./tests/"
-    }
-  ],
-  "shellcheck.customArgs": ["-x"],
-  "stylelint.validate": ["css", "vue"],
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -30,5 +19,16 @@
   },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "css.validate": false,
+  "eslint.workingDirectories": [
+    {
+      "directory": "./src/"
+    },
+    {
+      "directory": "./tests/"
+    }
+  ],
+  "shellcheck.customArgs": ["-x"],
+  "stylelint.validate": ["css", "vue"]
 }
