@@ -396,8 +396,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0
       zxing-wasm:
-        specifier: 1.2.4
-        version: 1.2.4
+        specifier: 1.2.5
+        version: 1.2.5
 
   tests:
     dependencies:
@@ -19607,6 +19607,12 @@ packages:
 
   /zxing-wasm@1.2.4:
     resolution: {integrity: sha512-XWgUYb0ZjfWNCslD6bfSpApNvMyX4iz3rMcFNOQJhHkZAJhU9zMNcUVek9R7/JNakmkUlvhWlE26Z+mPULw2sA==}
+    dependencies:
+      '@types/emscripten': 1.39.10
+    dev: true
+
+  /zxing-wasm@1.2.5:
+    resolution: {integrity: sha512-vNnJNJSQQOZwxgnjTN6QKhn7meiItZmuUMD9pfXFaAB+Ky3Wy5ROuRMLhQSVH9fIfL0moKWBEpMKwdihE9eVNQ==}
     dependencies:
       '@types/emscripten': 1.39.10
     dev: true

@@ -148,6 +148,6 @@
     "vue-router": "4.3.0",
     "vue-tsc": "2.0.4",
     "workbox-precaching": "7.0.0",
-    "zxing-wasm": "1.2.4"
+    "zxing-wasm": "1.2.5"
   }
 }
