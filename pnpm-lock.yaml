@@ -33,8 +33,8 @@ importers:
         specifier: 7.3.0
         version: 7.3.0(rollup@4.12.0)(webpack@5.90.3)
       '@fontsource-variable/manrope':
-        specifier: 5.0.18
-        version: 5.0.18
+        specifier: 5.0.19
+        version: 5.0.19
       '@graphql-codegen/cli':
         specifier: 5.0.2
         version: 5.0.2(@types/node@20.11.24)(graphql@16.8.1)(typescript@5.3.3)
@@ -2811,8 +2811,8 @@ packages:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
     dev: true
 
-  /@fontsource-variable/manrope@5.0.18:
-    resolution: {integrity: sha512-BmTWanceVCX3/xAY0VhBLM9fwEwe+Z/jR3/EPDLxas6+b3gnBChI+MYh+vMxDPEavfpEhcQptCCNJ3kQxn07iw==}
+  /@fontsource-variable/manrope@5.0.19:
+    resolution: {integrity: sha512-1WQ1NFnS3tfZ+ZQ3nNJ6sQGpIr6RWhq/wTovlcTlmvVrd53lnmITSolq6vBSEgVef6DWNFUehEvodDcyL3O6EA==}
     dev: true
 
   /@fortawesome/fontawesome-common-types@6.5.1:
