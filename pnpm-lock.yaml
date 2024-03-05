@@ -90,8 +90,8 @@ importers:
         specifier: 3.10.3
         version: 3.10.3(rollup@4.12.0)
       '@nuxt/ui':
-        specifier: 2.14.1
-        version: 2.14.1(nuxt@3.10.3)(rollup@4.12.0)(vite@5.1.5)(vue@3.4.21)
+        specifier: 2.14.2
+        version: 2.14.2(nuxt@3.10.3)(rollup@4.12.0)(vite@5.1.5)(vue@3.4.21)
       '@nuxtjs/eslint-config-typescript':
         specifier: 12.1.0
         version: 12.1.0(eslint@8.57.0)(typescript@5.3.3)
@@ -4636,8 +4636,8 @@ packages:
     resolution: {integrity: sha512-5gc02Pu1HycOVUWJ8aYsWeeXcSTPe8iX8+KIrhyEtEoOSkY0eMBuo0ssljB8wALuEmepv31DlYe5gpiRwkjESA==}
     dev: true
 
-  /@nuxt/ui@2.14.1(nuxt@3.10.3)(rollup@4.12.0)(vite@5.1.5)(vue@3.4.21):
-    resolution: {integrity: sha512-yz6S05a37Q5PRskw1eXtRet4q8C463WMJFSu1Lw7zpKSl2yCyPJYegzwXqQV/fLo/NvM9j62XTuEy7+Xe7j0Kw==}
+  /@nuxt/ui@2.14.2(nuxt@3.10.3)(rollup@4.12.0)(vite@5.1.5)(vue@3.4.21):
+    resolution: {integrity: sha512-xEtgnofE2A/Ou+Afv70m/hLtcfvLs41cs/qZHVcqErv6OO8uKyDETS5bKhiZGlDcI0wccTJq/ULaDUGuwnRN2g==}
     engines: {node: '>=v16.20.2'}
     dependencies:
       '@egoist/tailwindcss-icons': 1.7.4(tailwindcss@3.4.1)
