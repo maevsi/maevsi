@@ -1,3 +1,10 @@
+## [3.25.5](https://github.com/maevsi/maevsi/compare/3.25.4...3.25.5) (2024-03-09)
+
+
+### Bug Fixes
+
+* schedule release ([aff5633](https://github.com/maevsi/maevsi/commit/aff563302659f2f2868a2f9c799cf23dbc549b27))
+
 ## [3.25.4](https://github.com/maevsi/maevsi/compare/3.25.3...3.25.4) (2024-03-01)
 
 
