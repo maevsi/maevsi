@@ -26,7 +26,7 @@
     "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
   },
   "devDependencies": {
-    "@dargmuesli/nuxt-cookie-control": "7.3.1",
+    "@dargmuesli/nuxt-cookie-control": "7.4.0",
     "@fontsource-variable/manrope": "5.0.19",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/client-preset": "4.2.4",
