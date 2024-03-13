@@ -117,8 +117,8 @@ importers:
         specifier: 7.106.1
         version: 7.106.1
       '@sentry/vite-plugin':
-        specifier: 2.14.3
-        version: 2.14.3
+        specifier: 2.15.0
+        version: 2.15.0
       '@sentry/vue':
         specifier: 7.106.1
         version: 7.106.1(vue@3.4.21)
@@ -5466,8 +5466,8 @@ packages:
       '@sentry/utils': 7.106.1
     dev: true
 
-  /@sentry/babel-plugin-component-annotate@2.14.3:
-    resolution: {integrity: sha512-h0ONVTe8j3Ma2g5SMsl9ynmLZdCf+CupLF7PQ7n06K0L8dDtrHqo8yjsWaZSJf4InGrJ9HC4MaOSItbFjiTFLw==}
+  /@sentry/babel-plugin-component-annotate@2.15.0:
+    resolution: {integrity: sha512-4AaRN2E1iqOPlceDE5ae4thnq717reEQkqOslSWpJf7FmJ+oDrp2bWQhO82xcW8ZBBMbtkOGw2wmrScq5TnMxw==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -5484,12 +5484,12 @@ packages:
       '@sentry/utils': 7.106.1
     dev: true
 
-  /@sentry/bundler-plugin-core@2.14.3:
-    resolution: {integrity: sha512-iEtMdAPFUAYngvYhkfbgY8m3zB439u+5tvovj9rBXHGMr3nEB5fzZLOcVuiL47GEuUvMjDdrubl9MDGZ0c1IuQ==}
+  /@sentry/bundler-plugin-core@2.15.0:
+    resolution: {integrity: sha512-K6tEmo6ilUdR5uEQZ4P1uaXCvRoAeq5JsJAg7lRv0JSG5XG67jhoHu+mrpiDMB93FxbTgCQkPCT87Z0Bmqpmew==}
     engines: {node: '>= 14'}
     dependencies:
       '@babel/core': 7.24.0
-      '@sentry/babel-plugin-component-annotate': 2.14.3
+      '@sentry/babel-plugin-component-annotate': 2.15.0
       '@sentry/cli': 2.30.0
       dotenv: 16.4.5
       find-up: 5.0.0
@@ -5627,11 +5627,11 @@ packages:
       '@sentry/types': 7.106.1
     dev: true
 
-  /@sentry/vite-plugin@2.14.3:
-    resolution: {integrity: sha512-sSMbn6lND0N5eE0R/gmzlZKgegIgkSge/yrECf0xZi3tMHn4n6Ue1VO7m0+sJZFLP5C26htYFh0lI16EUweYEg==}
+  /@sentry/vite-plugin@2.15.0:
+    resolution: {integrity: sha512-Q1ML+6p0xBLEbk6pHnZoLs7gQctXrsyI/zzhEQsR/uyPIZIkrwSLcnZ6iCjSz570SvK9H0UVgp1bdLJK/Mpb7Q==}
     engines: {node: '>= 14'}
     dependencies:
-      '@sentry/bundler-plugin-core': 2.14.3
+      '@sentry/bundler-plugin-core': 2.15.0
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
