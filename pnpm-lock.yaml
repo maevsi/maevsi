@@ -255,8 +255,8 @@ importers:
         specifier: 9.0.5
         version: 9.0.5
       ical-generator:
-        specifier: 6.0.1
-        version: 6.0.1(@types/node@20.11.28)(dayjs@2.0.0-alpha.4)
+        specifier: 7.0.0
+        version: 7.0.0(@types/node@20.11.28)(dayjs@2.0.0-alpha.4)
       isomorphic-dompurify:
         specifier: 2.4.0
         version: 2.4.0
@@ -11524,8 +11524,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ical-generator@6.0.1(@types/node@20.11.28)(dayjs@2.0.0-alpha.4):
-    resolution: {integrity: sha512-m0Li239l4xddH+MveodfAWFFrHrT8F3rGmgR0zyWUe0Mg7Q/XxiPssN+cKer3+WSpfFNyhjdAsqalTUivKl/vQ==}
+  /ical-generator@7.0.0(@types/node@20.11.28)(dayjs@2.0.0-alpha.4):
+    resolution: {integrity: sha512-zDCdxBSijoLZq8hFumuASWHO6zKB7ByvP0kR9nSFXm6fVCYbTmFx2Q7lFJ9q9njHJVNFm0TbYqpy+kiyguFnQg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@touch4it/ical-timezones': '>=1.6.0'
