@@ -1,3 +1,10 @@
+## [3.25.6](https://github.com/maevsi/maevsi/compare/3.25.5...3.25.6) (2024-03-19)
+
+
+### Bug Fixes
+
+* **deps:** update ([4e23d35](https://github.com/maevsi/maevsi/commit/4e23d353e5964899a7e878828ff6985f2c9271bf))
+
 ## [3.25.5](https://github.com/maevsi/maevsi/compare/3.25.4...3.25.5) (2024-03-09)
 
 
