@@ -82,7 +82,7 @@ export const getIcalString = ({
           },
           // description: getTextFromHtml(DOMPurify.sanitize(eventDescriptionHtml)),
         }),
-        ...(event.location && { location: event.location }),
+        location: event.location,
         organizer: {
           name: eventAuthorUsername,
           email: eventAuthorUsername + '@' + hostname,
