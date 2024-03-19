@@ -22,7 +22,7 @@
     "test:e2e:docker:server:static": "pnpm --dir tests run test:e2e:docker:server:static"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.2.0",
+    "@commitlint/cli": "19.2.1",
     "@commitlint/config-conventional": "19.1.0",
     "conventional-changelog-conventionalcommits": "7.0.2",
     "husky": "9.0.11",
