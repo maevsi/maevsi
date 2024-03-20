@@ -63,6 +63,7 @@ export default defineNuxtConfig({
     '@nuxtjs/turnstile',
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
+    'nuxt-gtag',
     async (_options: ModuleOptions, nuxt: Nuxt) => {
       nuxt.options.runtimeConfig.public.vio.releaseName = await RELEASE_NAME()
     },
@@ -136,7 +137,6 @@ export default defineNuxtConfig({
       },
       vio: {
         environment: process.env.NODE_ENV || 'development',
-        googleAnalyticsId: 'G-WMQ1JY99XH',
         isTesting: false,
         stagingHost:
           process.env.NODE_ENV !== 'production' &&

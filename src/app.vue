@@ -33,7 +33,6 @@ import type { WritableComputedRef } from 'vue'
 
 import supportedBrowsers from '~/supportedBrowsers'
 
-const cookieControl = useCookieControl()
 const i18n = useI18n()
 const store = useMaevsiStore()
 const { $pwa } = useNuxtApp()
@@ -76,18 +75,6 @@ const saveTimezoneAsCookie = () =>
 onBeforeMount(() => {
   isBrowserSupported.value = supportedBrowsers.test(navigator.userAgent)
 })
-watch(
-  () => cookieControl.cookiesEnabledIds.value,
-  (current, previous) => {
-    if (
-      (!previous?.includes('ga') && current?.includes('ga')) ||
-      (previous?.includes('ga') && !current?.includes('ga'))
-    ) {
-      window.location.reload()
-    }
-  },
-  { deep: true },
-)
 watch(
   () => $pwa,
   async (current, _previous) => {
@@ -135,6 +122,7 @@ useSchemaOrg([
   }),
   defineWebPage(),
 ])
+useMaevsiGtag()
 initialize()
 </script>
 
