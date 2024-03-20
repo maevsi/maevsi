@@ -32,9 +32,6 @@ importers:
       '@dargmuesli/nuxt-cookie-control':
         specifier: 8.0.0-beta.3
         version: 8.0.0-beta.3(rollup@4.13.0)(webpack@5.90.3)
-      '@dargmuesli/nuxt-vio':
-        specifier: 10.3.0
-        version: 10.3.0(@lezer/common@1.2.1)(@unhead/shared@1.8.20)(@vue/compiler-core@3.4.21)(graphql@16.8.1)(h3@1.11.1)(nuxt@3.11.1)(playwright-core@1.42.1)(postcss@8.4.36)(rollup@4.13.0)(tailwindcss@3.4.1)(typescript@5.4.2)(unhead@1.8.20)(vite@5.1.6)(vue-router@4.3.0)(vue@3.4.21)(webpack@5.90.3)
       '@fontsource-variable/manrope':
         specifier: 5.0.19
         version: 5.0.19
@@ -2309,94 +2306,6 @@ packages:
       - webpack
     dev: true
 
-  /@dargmuesli/nuxt-vio@10.3.0(@lezer/common@1.2.1)(@unhead/shared@1.8.20)(@vue/compiler-core@3.4.21)(graphql@16.8.1)(h3@1.11.1)(nuxt@3.11.1)(playwright-core@1.42.1)(postcss@8.4.36)(rollup@4.13.0)(tailwindcss@3.4.1)(typescript@5.4.2)(unhead@1.8.20)(vite@5.1.6)(vue-router@4.3.0)(vue@3.4.21)(webpack@5.90.3):
-    resolution: {integrity: sha512-w+nCpXJAn3hFQIal9ZQ1WcTFghmgXSjP5NgAesnqRZlcbW0KW+bV2sP/fVT/7lucoiJIoTKy6vDpuVPJ8paNSQ==}
-    engines: {node: '20'}
-    peerDependencies:
-      nuxt: 3.11.1
-      playwright-core: 1.42.1
-      vue: 3.4.21
-      vue-router: 4.3.0
-    dependencies:
-      '@dargmuesli/nuxt-cookie-control': 8.0.0-beta.3(rollup@4.13.0)(webpack@5.90.3)
-      '@heroicons/vue': 2.1.1(vue@3.4.21)
-      '@http-util/status-i18n': 0.8.1
-      '@nuxt/devtools': 1.0.8(nuxt@3.11.1)(rollup@4.13.0)(vite@5.1.6)
-      '@nuxt/image': 1.4.0(rollup@4.13.0)
-      '@nuxtjs/color-mode': 3.3.3(rollup@4.13.0)
-      '@nuxtjs/html-validator': 1.6.0(rollup@4.13.0)
-      '@nuxtjs/i18n': 8.2.0(rollup@4.13.0)(vue@3.4.21)
-      '@nuxtjs/seo': 2.0.0-rc.9(@lezer/common@1.2.1)(@nuxt/devtools@1.0.8)(@unhead/shared@1.8.20)(@vue/compiler-core@3.4.21)(h3@1.11.1)(nuxt@3.11.1)(postcss@8.4.36)(rollup@4.13.0)(unhead@1.8.20)(vite@5.1.6)(vue@3.4.21)(webpack@5.90.3)
-      '@nuxtjs/tailwindcss': 6.11.4(rollup@4.13.0)
-      '@pinia/nuxt': 0.5.1(rollup@4.13.0)(typescript@5.4.2)(vue@3.4.21)
-      '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.1)
-      '@tailwindcss/typography': 0.5.10(tailwindcss@3.4.1)
-      '@types/lodash-es': 4.17.12
-      '@urql/core': 4.3.0(graphql@16.8.1)
-      '@vuelidate/core': 2.0.3(vue@3.4.21)
-      '@vuelidate/validators': 2.0.4(vue@3.4.21)
-      clipboardy: 4.0.0
-      dayjs: 2.0.0-alpha.4
-      jose: 5.2.3
-      nuxt: 3.11.1(@types/node@20.11.30)(eslint@8.57.0)(rollup@4.13.0)(stylelint@16.2.1)(typescript@5.4.2)(vite@5.1.6)(vue-tsc@2.0.6)
-      nuxt-gtag: 2.0.5(rollup@4.13.0)
-      nuxt-security: 1.2.2(rollup@4.13.0)
-      playwright-core: 1.42.1
-      sweetalert2: 11.10.6
-      vue: 3.4.21(typescript@5.4.2)
-      vue-router: 4.3.0(vue@3.4.21)
-    transitivePeerDependencies:
-      - '@azure/app-configuration'
-      - '@azure/cosmos'
-      - '@azure/data-tables'
-      - '@azure/identity'
-      - '@azure/keyvault-secrets'
-      - '@azure/storage-blob'
-      - '@capacitor/preferences'
-      - '@lezer/common'
-      - '@netlify/blobs'
-      - '@planetscale/database'
-      - '@unhead/shared'
-      - '@unocss/webpack'
-      - '@upstash/redis'
-      - '@vercel/kv'
-      - '@vue/compiler-core'
-      - '@vue/composition-api'
-      - async-validator
-      - axios
-      - bluebird
-      - bufferutil
-      - change-case
-      - drauu
-      - fuse.js
-      - graphql
-      - h3
-      - idb-keyval
-      - ioredis
-      - jest
-      - jest-diff
-      - jest-snapshot
-      - jwt-decode
-      - nprogress
-      - petite-vue-i18n
-      - postcss
-      - qrcode
-      - rollup
-      - sortablejs
-      - supports-color
-      - tailwindcss
-      - ts-node
-      - typescript
-      - uWebSockets.js
-      - unhead
-      - universal-cookie
-      - utf-8-validate
-      - vite
-      - vitest
-      - vue-i18n-bridge
-      - webpack
-    dev: true
-
   /@egoist/tailwindcss-icons@1.7.4(tailwindcss@3.4.1):
     resolution: {integrity: sha512-883qx0sqeNb8km7os0w8K6UYue88dbgTWwyEUwW74Bgz0H7t+m7PMIIEvSQ4JqHwA823Qd5ciz+NoTBWKaMYfg==}
     peerDependencies:
@@ -3674,14 +3583,6 @@ packages:
       vue: 3.4.21(typescript@5.4.2)
     dev: true
 
-  /@heroicons/vue@2.1.1(vue@3.4.21):
-    resolution: {integrity: sha512-Yi5nh/89L193ALgHyJUQUdNLsKXPrrE3yj5yiR8WAlo7nZyXGxGauQcEAmBsa2XJGMhBMuEdoOiuZ8wEwTBxVQ==}
-    peerDependencies:
-      vue: '>= 3'
-    dependencies:
-      vue: 3.4.21(typescript@5.4.2)
-    dev: true
-
   /@html-validate/stylish@4.2.0:
     resolution: {integrity: sha512-Nl8HCv0hGRSLQ+n1OD4Hk3a+Urwk9HH0vQkAzzCarT4KlA7bRl+6xEiS5PZVwOmjtC7XiH/oNe3as9Fxcr2A1w==}
     engines: {node: '>= 16'}
@@ -4659,16 +4560,6 @@ packages:
     dependencies:
       '@nuxt/kit': 3.11.1(rollup@4.13.0)
       lodash.template: 4.5.0
-      pathe: 1.1.2
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-    dev: true
-
-  /@nuxtjs/color-mode@3.3.3(rollup@4.13.0):
-    resolution: {integrity: sha512-t6QM/tj1d/53xQ9JznNVIaqIfQWhjHRzNt5VqTxNeAJWG0HCdiHVezkUTMahPUgUbEJnBrtCoquUYwpyFhNF+Q==}
-    dependencies:
-      '@nuxt/kit': 3.11.1(rollup@4.13.0)
       pathe: 1.1.2
     transitivePeerDependencies:
       - rollup

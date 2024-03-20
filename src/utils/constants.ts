@@ -1,6 +1,4 @@
 import { DEFAULTS } from '@dargmuesli/nuxt-cookie-control/runtime/types'
-import type { LocaleObject } from 'vue-i18n-routing'
-import type { UnionToTupleRecord } from '~/types/types'
 
 export const SITE_NAME = 'maevsi'
 export const SITE_URL =
@@ -21,16 +19,15 @@ export const JWT_ALGORITHM = 'RS256'
 export const JWT_NAME = () =>
   `${process.env.NODE_ENV === 'production' ? '__Secure-' : ''}jwt`
 export type LOCALE_CODES = 'de' | 'en'
-export const LOCALES: LocaleObject[] &
-  UnionToTupleRecord<'code', LOCALE_CODES, LocaleObject> = [
+export const LOCALES = [
   {
-    code: 'de' as const,
+    code: 'de',
     file: 'de.json',
     name: 'Deutsch',
     iso: 'de',
   },
   {
-    code: 'en' as const,
+    code: 'en',
     file: 'en.json',
     name: 'English',
     iso: 'en', // Will be used as catchall locale by default.
