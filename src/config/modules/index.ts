@@ -26,9 +26,7 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
   ...cookieControlConfig,
   gtag: {
     config: {
-      cookie_flags: `samesite=strict${
-        process.env.NODE_ENV === 'production' ? ';secure' : ''
-      }`,
+      cookie_flags: 'samesite=strict',
     },
     enabled: false,
     id: 'G-WMQ1JY99XH',
