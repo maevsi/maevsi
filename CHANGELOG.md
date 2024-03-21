@@ -1,3 +1,16 @@
+## [4.0.0](https://github.com/maevsi/maevsi/compare/3.25.6...4.0.0) (2024-03-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cookies:** migrate to `nuxt-gtag` and google analytics consent mode
+
+### Features
+
+* **cookies:** migrate to `nuxt-gtag` and google analytics consent mode ([52ce7bb](https://github.com/maevsi/maevsi/commit/52ce7bb249b33cb8dd5e9a4d2cf06b029f857d43))
+* **session:** allow anonymous edit ([5e8762a](https://github.com/maevsi/maevsi/commit/5e8762abc127af29f0c48515686acc45b7b5d51b))
+* **session:** correct i18n ([21b76e1](https://github.com/maevsi/maevsi/commit/21b76e10d547e99c2a6a17323fb45c423058cc6d))
+
 ## [3.25.6](https://github.com/maevsi/maevsi/compare/3.25.5...3.25.6) (2024-03-19)
 
 
