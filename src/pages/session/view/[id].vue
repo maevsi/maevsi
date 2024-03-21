@@ -1,18 +1,6 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <!-- <ButtonList class="justify-center">
-      <ButtonColored
-        v-if="store.jwtDecoded?.id"
-        :aria-label="t('edit')"
-        :to="localePath(`/session/edit/${store.jwtDecoded.id}`)"
-      >
-        {{ t('edit') }}
-        <template #prefix>
-          <IHeroiconsPencil />
-        </template>
-      </ButtonColored>
-    </ButtonList> -->
     <LayoutPageTitle
       :title="title"
       :to="localePath(`/session/edit/${route.params.id}`)"
@@ -23,13 +11,18 @@
         <div class="grid gap-4 lg:grid-cols-2">
           <div class="flex-1">
             <Card>
-              {{ t('sessionExpiry', { exp: sessionExpiryTime }) }}
+              {{
+                store.jwtDecoded
+                  ? t('sessionExpiry', { exp: sessionExpiryTime })
+                  : t('sessionExpiryNone')
+              }}
             </Card>
           </div>
           <div class="flex-1">
             <div class="flex flex-col gap-2">
               <ButtonColored
                 :aria-label="t('endNow')"
+                :disabled="!store.jwtDecoded"
                 :is-primary="false"
                 @click="signOut"
               >
@@ -309,8 +302,7 @@ useHeadDefault({ title })
 de:
   codes: Einladungscodes
   codesEntered: 'Du hast die folgenden Codes eingegeben:'
-  codesEnteredNone: Dieser Sitzung sind keine Einladungscodes zugeordnet 😕
-  # edit: Bearbeiten
+  codesEnteredNone: Dieser Sitzung sind keine Einladungscodes zugeordnet.
   end: Ende
   endNow: Diese Sitzung beenden
   hasNavigatorPermissions: Navigator hat Berechtigungen
@@ -321,13 +313,13 @@ de:
   notificationPermitted: Benachrichtigungen sind erlaubt
   notificationSend: Benachrichtigung senden
   sessionExpiry: Deine Sitzung läuft am {exp} ab.
+  sessionExpiryNone: Es sind keine Sitzungsdaten verfügbar.
   title: Sitzung
   userAgentString: User agent string
 en:
   codes: Invitation codes
   codesEntered: 'You entered the following codes:'
-  codesEnteredNone: There are no invitation codes assigned to this session 😕
-  # edit: Edit
+  codesEnteredNone: There are no invitation codes assigned to this session.
   end: End
   endNow: End this session
   hasNavigatorPermissions: Navigator has permissions
@@ -338,6 +330,7 @@ en:
   notificationPermitted: Notifications are permitted
   notificationSend: Send notification
   sessionExpiry: Your session expires on {exp}.
+  sessionExpiryNone: No session data is available.
   title: Session
   userAgentString: User agent string
 </i18n>

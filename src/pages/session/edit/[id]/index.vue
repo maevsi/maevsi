@@ -227,7 +227,7 @@ en:
   bugReport: Issue
   bugReportDescription: Report a problem
   colorScheme: Color scheme
-  colorSchemeDescription: Switch between dark and brigth mode
+  colorSchemeDescription: Switch between dark and light mode
   contact: Contact
   contactDescription: Get in touch with the maevsi team
   cookies: Cookies

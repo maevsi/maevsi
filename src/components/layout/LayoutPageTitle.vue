@@ -21,10 +21,9 @@
         <ISolarCalendarAddOutline height="2em" width="2em" />
       </ButtonIcon>
       <ButtonIcon
-        v-if="store.jwtDecoded"
         :aria-label="t('settings')"
         class="shrink-0 2xl:hidden"
-        :to="localePath(`/session/edit/${store.jwtDecoded.id}`)"
+        :to="localePath(`/session/edit/${store.jwtDecoded?.id || 'anonymous'}`)"
       >
         <IHeroiconsBars3 height="2em" width="2em" />
       </ButtonIcon>

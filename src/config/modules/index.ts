@@ -24,6 +24,26 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
     classSuffix: '',
   },
   ...cookieControlConfig,
+  gtag: {
+    config: {
+      cookie_flags: 'samesite=strict',
+    },
+    enabled: false,
+    id: 'G-WMQ1JY99XH',
+    initCommands: [
+      [
+        'consent',
+        'default',
+        {
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          ad_storage: 'denied',
+          analytics_storage: 'denied',
+          wait_for_update: 500,
+        },
+      ],
+    ],
+  },
   htmlValidator: {
     failOnError: true,
     logLevel: 'warning',

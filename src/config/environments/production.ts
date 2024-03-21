@@ -11,9 +11,9 @@ export const productionConfig: ReturnType<DefineNuxtConfig> = {
     },
 
     // modules
-    cookieControl: {
-      cookieOptions: {
-        secure: true,
+    gtag: {
+      config: {
+        cookie_flags: 'samesite=strict;secure',
       },
     },
     security: {
