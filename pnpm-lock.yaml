@@ -442,8 +442,8 @@ importers:
         specifier: 5.4.3
         version: 5.4.3
       ufo:
-        specifier: 1.5.2
-        version: 1.5.2
+        specifier: 1.5.3
+        version: 1.5.3
       vitest:
         specifier: 1.4.0
         version: 1.4.0(@types/node@20.11.30)
@@ -4186,7 +4186,7 @@ packages:
       pkg-types: 1.0.3
       scule: 1.3.0
       semver: 7.6.0
-      ufo: 1.5.2
+      ufo: 1.5.3
       unctx: 2.3.1
       unimport: 3.7.1(rollup@4.13.0)
       untyped: 1.4.2
@@ -4327,7 +4327,7 @@ packages:
       rollup-plugin-visualizer: 5.12.0(rollup@4.13.0)
       std-env: 3.7.0
       strip-literal: 2.0.0
-      ufo: 1.5.2
+      ufo: 1.5.3
       unenv: 1.9.0
       unplugin: 1.10.0
       vite: 5.2.2(@types/node@20.11.30)
@@ -4523,7 +4523,7 @@ packages:
       shiki: 1.1.7
       sirv: 2.0.4
       site-config-stack: 2.2.11(vue@3.4.21)
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - '@nuxt/devtools'
       - '@unocss/webpack'
@@ -6334,7 +6334,7 @@ packages:
       '@unhead/shared': 1.8.20
       magic-string: 0.30.8
       mlly: 1.6.1
-      ufo: 1.5.2
+      ufo: 1.5.3
       unplugin: 1.10.0
       unplugin-ast: 0.8.2(rollup@4.13.0)
     transitivePeerDependencies:
@@ -6355,7 +6355,7 @@ packages:
       unhead: '>=1.8.10'
     dependencies:
       '@unhead/shared': 1.8.20
-      ufo: 1.5.2
+      ufo: 1.5.3
       unhead: 1.8.20
     dev: true
 
@@ -10315,7 +10315,7 @@ packages:
       enhanced-resolve: 5.16.0
       mlly: 1.6.1
       pathe: 1.1.2
-      ufo: 1.5.2
+      ufo: 1.5.3
     dev: true
 
   /extract-files@11.0.0:
@@ -11528,7 +11528,7 @@ packages:
       pathe: 1.1.2
       sharp: 0.32.6
       svgo: 3.2.0
-      ufo: 1.5.2
+      ufo: 1.5.3
       unstorage: 1.10.2(ioredis@5.3.2)
       xss: 1.0.15
     transitivePeerDependencies:
@@ -12436,7 +12436,7 @@ packages:
       node-forge: 1.3.1
       pathe: 1.1.2
       std-env: 3.7.0
-      ufo: 1.5.2
+      ufo: 1.5.3
       untun: 0.1.3
       uqr: 0.1.2
     transitivePeerDependencies:
@@ -13091,7 +13091,7 @@ packages:
       acorn: 8.11.3
       pathe: 1.1.2
       pkg-types: 1.0.3
-      ufo: 1.5.2
+      ufo: 1.5.3
     dev: true
 
   /mri@1.2.0:
@@ -13263,7 +13263,7 @@ packages:
       serve-placeholder: 2.0.1
       serve-static: 1.15.0
       std-env: 3.7.0
-      ufo: 1.5.2
+      ufo: 1.5.3
       uncrypto: 0.1.3
       unctx: 2.3.1
       unenv: 1.9.0
@@ -13585,7 +13585,7 @@ packages:
       shiki: 1.2.0
       sirv: 2.0.4
       site-config-stack: 2.2.11(vue@3.4.21)
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - '@nuxt/devtools'
       - '@unocss/webpack'
@@ -13646,7 +13646,7 @@ packages:
       splitpanes: 3.1.5
       std-env: 3.7.0
       terminate: 2.6.1
-      ufo: 1.5.2
+      ufo: 1.5.3
       unwasm: 0.3.8
       vanilla-jsoneditor: 0.23.0(@lezer/common@1.2.1)
       yoga-wasm-web: 0.3.3
@@ -13744,7 +13744,7 @@ packages:
       nuxt-site-config: 2.2.11(@nuxt/devtools@1.0.8)(@vue/compiler-core@3.4.21)(nuxt@3.11.1)(postcss@8.4.38)(rollup@4.13.0)(vite@5.2.2)(vue@3.4.21)(webpack@5.91.0)
       nuxt-site-config-kit: 2.2.11(rollup@4.13.0)(vue@3.4.21)
       pathe: 1.1.2
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - '@nuxt/devtools'
       - '@unocss/webpack'
@@ -13820,7 +13820,7 @@ packages:
       shiki: 1.0.0-beta.3
       sirv: 2.0.4
       std-env: 3.7.0
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - '@nuxt/devtools'
       - '@unocss/webpack'
@@ -13854,7 +13854,7 @@ packages:
       pkg-types: 1.0.3
       site-config-stack: 1.6.7(vue@3.4.21)
       std-env: 3.7.0
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -13869,7 +13869,7 @@ packages:
       pkg-types: 1.0.3
       site-config-stack: 2.2.11(vue@3.4.21)
       std-env: 3.7.0
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -13884,7 +13884,7 @@ packages:
       pkg-types: 1.0.3
       site-config-stack: 2.2.7(vue@3.4.21)
       std-env: 3.7.0
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -13903,7 +13903,7 @@ packages:
       shiki-es: 0.14.0
       sirv: 2.0.4
       site-config-stack: 1.6.7(vue@3.4.21)
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - '@nuxt/devtools'
       - '@unocss/webpack'
@@ -13943,7 +13943,7 @@ packages:
       shiki: 1.2.0
       sirv: 2.0.4
       site-config-stack: 2.2.11(vue@3.4.21)
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - '@nuxt/devtools'
       - '@unocss/webpack'
@@ -13983,7 +13983,7 @@ packages:
       shikiji: 0.10.2
       sirv: 2.0.4
       site-config-stack: 2.2.7(vue@3.4.21)
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - '@nuxt/devtools'
       - '@unocss/webpack'
@@ -14153,7 +14153,7 @@ packages:
       consola: 3.2.3
       execa: 8.0.1
       pathe: 1.1.2
-      ufo: 1.5.2
+      ufo: 1.5.3
     dev: true
 
   /object-assign@4.1.1:
@@ -16497,7 +16497,7 @@ packages:
     peerDependencies:
       vue: ^3
     dependencies:
-      ufo: 1.5.2
+      ufo: 1.5.3
       vue: 3.4.21(typescript@5.4.3)
     dev: true
 
@@ -16506,7 +16506,7 @@ packages:
     peerDependencies:
       vue: ^3
     dependencies:
-      ufo: 1.5.2
+      ufo: 1.5.3
       vue: 3.4.21(typescript@5.4.3)
     dev: true
 
@@ -16515,7 +16515,7 @@ packages:
     peerDependencies:
       vue: ^3
     dependencies:
-      ufo: 1.5.2
+      ufo: 1.5.3
       vue: 3.4.21(typescript@5.4.3)
     dev: true
 
@@ -18070,7 +18070,7 @@ packages:
       mri: 1.2.0
       node-fetch-native: 1.6.4
       ofetch: 1.3.4
-      ufo: 1.5.2
+      ufo: 1.5.3
     transitivePeerDependencies:
       - uWebSockets.js
     dev: true
@@ -18579,7 +18579,7 @@ packages:
   /vue-bundle-renderer@2.0.0:
     resolution: {integrity: sha512-oYATTQyh8XVkUWe2kaKxhxKVuuzK2Qcehe+yr3bGiaQAhK3ry2kYE4FWOfL+KO3hVFwCdLmzDQTzYhTi9C+R2A==}
     dependencies:
-      ufo: 1.5.2
+      ufo: 1.5.3
     dev: true
 
   /vue-chartjs@5.3.0(chart.js@4.4.2)(vue@3.4.21):
