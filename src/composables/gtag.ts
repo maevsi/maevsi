@@ -19,9 +19,9 @@ export const useMaevsiGtag = () => {
       initializeGtag()
       enableAnalytics()
       gtag('consent', 'update', {
-        ad_user_data: 'granted',
-        ad_personalization: 'granted',
-        ad_storage: 'granted',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        ad_storage: 'denied',
         analytics_storage: 'granted',
       })
     }
