@@ -52,7 +52,7 @@
     "@nuxtjs/i18n": "8.2.0",
     "@nuxtjs/seo": "2.0.0-rc.10",
     "@nuxtjs/tailwindcss": "6.11.4",
-    "@nuxtjs/turnstile": "0.6.3",
+    "@nuxtjs/turnstile": "0.7.1",
     "@pinia/nuxt": "0.5.1",
     "@sentry/node": "7.108.0",
     "@sentry/vite-plugin": "2.16.0",
