@@ -1,3 +1,11 @@
+## [4.0.1](https://github.com/maevsi/maevsi/compare/4.0.0...4.0.1) (2024-03-25)
+
+
+### Bug Fixes
+
+* **deps:** update ([be1978f](https://github.com/maevsi/maevsi/commit/be1978f318b0461bf337ab3d2c6dfa659abd504e))
+* **gtag:** only grant analytics ([53e8f49](https://github.com/maevsi/maevsi/commit/53e8f490695717752e2fa644693e1aba59dbc5a0))
+
 ## [4.0.0](https://github.com/maevsi/maevsi/compare/3.25.6...4.0.0) (2024-03-21)
 
 
