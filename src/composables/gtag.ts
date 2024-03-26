@@ -16,14 +16,14 @@ export const useMaevsiGtag = () => {
       !previous?.includes(GTAG_COOKIE_ID) &&
       current?.includes(GTAG_COOKIE_ID)
     ) {
-      initializeGtag()
-      enableAnalytics()
       gtag('consent', 'update', {
         ad_user_data: 'denied',
         ad_personalization: 'denied',
         ad_storage: 'denied',
         analytics_storage: 'granted',
       })
+      initializeGtag()
+      enableAnalytics()
     }
 
     if (
