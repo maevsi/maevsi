@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/maevsi/maevsi/compare/4.0.1...4.0.2) (2024-04-01)
+
+
+### Bug Fixes
+
+* **gtag:** correct loading order ([725346f](https://github.com/maevsi/maevsi/commit/725346ff6039f70ca14b9217c6069d252e65fe3a))
+
 ## [4.0.1](https://github.com/maevsi/maevsi/compare/4.0.0...4.0.1) (2024-03-25)
 
 
