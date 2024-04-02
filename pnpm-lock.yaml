@@ -243,8 +243,8 @@ importers:
         specifier: 5.1.3
         version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.2.5)
       eslint-plugin-yml:
-        specifier: 1.13.2
-        version: 1.13.2(eslint@8.57.0)
+        specifier: 1.14.0
+        version: 1.14.0(eslint@8.57.0)
       graphql:
         specifier: 16.8.1
         version: 16.8.1
@@ -436,8 +436,8 @@ importers:
         specifier: 5.1.3
         version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.2.5)
       eslint-plugin-yml:
-        specifier: 1.13.2
-        version: 1.13.2(eslint@8.57.0)
+        specifier: 1.14.0
+        version: 1.14.0(eslint@8.57.0)
       typescript:
         specifier: 5.4.3
         version: 5.4.3
@@ -10167,8 +10167,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-yml@1.13.2(eslint@8.57.0):
-    resolution: {integrity: sha512-1i71VhmsG5UxE41rIJmJjhlTTxYy7upAY5Hqj8AdBc7rfJzRIZr3a2spuOS8+N7ZDCWsHAWY3J6lzQNQHDv6Uw==}
+  /eslint-plugin-yml@1.14.0(eslint@8.57.0):
+    resolution: {integrity: sha512-ESUpgYPOcAYQO9czugcX5OqRvn/ydDVwGCPXY4YjPqc09rHaUVUA6IE6HLQys4rXk/S+qx3EwTd1wHCwam/OWQ==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
