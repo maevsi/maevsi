@@ -117,8 +117,8 @@ importers:
         specifier: 7.109.0
         version: 7.109.0
       '@sentry/vite-plugin':
-        specifier: 2.16.0
-        version: 2.16.0
+        specifier: 2.16.1
+        version: 2.16.1
       '@sentry/vue':
         specifier: 7.109.0
         version: 7.109.0(vue@3.4.21)
@@ -5309,8 +5309,8 @@ packages:
       '@sentry/utils': 7.109.0
     dev: true
 
-  /@sentry/babel-plugin-component-annotate@2.16.0:
-    resolution: {integrity: sha512-+uy1qPkA5MSNgJ0L9ur/vNTydfdHwHnBX2RQ+0thsvkqf90fU788YjkkXwUiBBNuqNyI69JiOW6frixAWy7oUg==}
+  /@sentry/babel-plugin-component-annotate@2.16.1:
+    resolution: {integrity: sha512-pJka66URsqQbk6hTs9H1XFpUeI0xxuqLYf9Dy5pRGNHSJMtfv91U+CaYSWt03aRRMGDXMduh62zAAY7Wf0HO+A==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -5327,17 +5327,17 @@ packages:
       '@sentry/utils': 7.109.0
     dev: true
 
-  /@sentry/bundler-plugin-core@2.16.0:
-    resolution: {integrity: sha512-dhgIZsIR3L9KnE2OO5JJm6hPtStAjEPYKQsZzxRr69uVhd9xAvfXeXr0afKVNVEcIDksas6yMgHqwQ2wOXFIAg==}
+  /@sentry/bundler-plugin-core@2.16.1:
+    resolution: {integrity: sha512-n6z8Ts3T9HROLuY7tVEYpBKvS+P7+b8NdqxP7QBcwp2nuPUlN5Ola1ivFjk1p5a7wRYeN9zM8orGe4l2HeNfYA==}
     engines: {node: '>= 14'}
     dependencies:
       '@babel/core': 7.24.3
-      '@sentry/babel-plugin-component-annotate': 2.16.0
+      '@sentry/babel-plugin-component-annotate': 2.16.1
       '@sentry/cli': 2.31.0
       dotenv: 16.4.5
       find-up: 5.0.0
       glob: 9.3.5
-      magic-string: 0.27.0
+      magic-string: 0.30.8
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
@@ -5470,11 +5470,11 @@ packages:
       '@sentry/types': 7.109.0
     dev: true
 
-  /@sentry/vite-plugin@2.16.0:
-    resolution: {integrity: sha512-/7rFTpasql9fJ1KbruF0yDESKV/ojvOP9pL/qqwUffvA9iy9Bvw3kYzzyzd1YsiCiVBgftoCsFTKPcvL3A4rwQ==}
+  /@sentry/vite-plugin@2.16.1:
+    resolution: {integrity: sha512-RSIyeqFG3PR5iJsZnagQxzOhM22z1Kh9DG+HQQsfVrxokzrWKRu/G17O2MIDh2I5iYEaL0Fkd/9RAXE4/b0aVg==}
     engines: {node: '>= 14'}
     dependencies:
-      '@sentry/bundler-plugin-core': 2.16.0
+      '@sentry/bundler-plugin-core': 2.16.1
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
@@ -12885,13 +12885,6 @@ packages:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
     dependencies:
       sourcemap-codec: 1.4.8
-    dev: true
-
-  /magic-string@0.27.0:
-    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
   /magic-string@0.30.8:
