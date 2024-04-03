@@ -409,8 +409,8 @@ importers:
         version: 1.42.1
     devDependencies:
       '@axe-core/playwright':
-        specifier: 4.8.5
-        version: 4.8.5(playwright-core@1.42.1)
+        specifier: 4.9.0
+        version: 4.9.0(playwright-core@1.42.1)
       '@playwright/test':
         specifier: 1.42.1
         version: 1.42.1
@@ -546,12 +546,12 @@ packages:
       - encoding
     dev: true
 
-  /@axe-core/playwright@4.8.5(playwright-core@1.42.1):
-    resolution: {integrity: sha512-GFdXXAEn9uk0Vyzgl2eEP+VwvgGzas0YSnacoJ/0U237G83zWZ1PhbP/RDymm0cqevoA+xRjMo+ONzh9Q711nw==}
+  /@axe-core/playwright@4.9.0(playwright-core@1.42.1):
+    resolution: {integrity: sha512-Q1Lz75dNsX38jof+aev7RficDMdH/HLOLySkDdXR0fUoeFcLdw4UNgDO2CNNP4CTpoesEdfYRdd6VmDXjhBgbA==}
     peerDependencies:
       playwright-core: '>= 1.0.0'
     dependencies:
-      axe-core: 4.8.4
+      axe-core: 4.9.0
       playwright-core: 1.42.1
     dev: true
 
@@ -7969,8 +7969,8 @@ packages:
       possible-typed-array-names: 1.0.0
     dev: true
 
-  /axe-core@4.8.4:
-    resolution: {integrity: sha512-CZLSKisu/bhJ2awW4kJndluz2HLZYIHh5Uy1+ZwDRkJi69811xgIXXfdU9HSLX0Th+ILrHj8qfL/5wzamsFtQg==}
+  /axe-core@4.9.0:
+    resolution: {integrity: sha512-H5orY+M2Fr56DWmMFpMrq5Ge93qjNdPVqzBv5gWK3aD1OvjBEJlEzxf09z93dGVQeI0LiW+aCMIx1QtShC/zUw==}
     engines: {node: '>=4'}
     dev: true
 
