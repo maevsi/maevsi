@@ -282,8 +282,8 @@ importers:
         specifier: 0.4.4
         version: 0.4.4(@nuxt/devtools@1.1.5)(@vue/compiler-core@3.4.21)(nuxt@3.11.1)(postcss@8.4.38)(rollup@4.13.2)(vite@5.2.7)(vue@3.4.21)(webpack@5.91.0)
       nuxt-typed-router:
-        specifier: 3.6.1
-        version: 3.6.1(prettier@3.2.5)(rollup@4.13.2)
+        specifier: 3.6.2
+        version: 3.6.2(prettier@3.2.5)(rollup@4.13.2)
       pg:
         specifier: 8.11.5
         version: 8.11.5
@@ -13319,8 +13319,8 @@ packages:
     hasBin: true
     dev: true
 
-  /nanoid@5.0.3:
-    resolution: {integrity: sha512-I7X2b22cxA4LIHXPSqbBCEQSL+1wv8TuoefejsX4HFWyC6jc5JG7CEaxOltiKjc1M+YCS2YkrZZcj4+dytw9GA==}
+  /nanoid@5.0.6:
+    resolution: {integrity: sha512-rRq0eMHoGZxlvaFOUdK1Ev83Bd1IgzzR+WJ3IbDJ7QOSdAxYjlurSPqFs9s4lJg29RT6nPwizFtJhQS6V5xgiA==}
     engines: {node: ^18 || >=20}
     hasBin: true
     dev: true
@@ -14166,8 +14166,8 @@ packages:
       - webpack
     dev: true
 
-  /nuxt-typed-router@3.6.1(prettier@3.2.5)(rollup@4.13.2):
-    resolution: {integrity: sha512-eQMwBF81krzNzbOr+dNlHi60CmDAvp/T3ViwT7KX1orbM1TC1WeDT0SV1IR+D5hLM5dYoJRXvCtOM0Aouq74xg==}
+  /nuxt-typed-router@3.6.2(prettier@3.2.5)(rollup@4.13.2):
+    resolution: {integrity: sha512-vQgl1Dt73P9ud3vUWZTlc0+HPk9HqkvGlReiyeJ2LBRRn6tPMEzJjUi/Su/eVzjNvIRHk7PQHB7diivs8OpVvQ==}
     peerDependencies:
       prettier: ^2.5.x || 3.x
     dependencies:
@@ -14177,8 +14177,8 @@ packages:
       lodash-es: 4.17.21
       log-symbols: 6.0.0
       mkdirp: 3.0.1
-      nanoid: 5.0.3
-      pathe: 1.1.1
+      nanoid: 5.0.6
+      pathe: 1.1.2
       prettier: 3.2.5
     transitivePeerDependencies:
       - rollup
@@ -14779,10 +14779,6 @@ packages:
   /path-type@5.0.0:
     resolution: {integrity: sha512-5HviZNaZcfqP95rwpv+1HDgUamezbqdSYTyzjTvwtJSnIH+3vnbmWsItli8OFEndS984VT55M3jduxZbX351gg==}
     engines: {node: '>=12'}
-    dev: true
-
-  /pathe@1.1.1:
-    resolution: {integrity: sha512-d+RQGp0MAYTIaDBIMmOfMwz3E+LOZnxx1HZd5R18mmCZY0QBlK0LDZfPc8FW8Ed2DlvsuE6PRjroDY+wg4+j/Q==}
     dev: true
 
   /pathe@1.1.2:

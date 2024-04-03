@@ -110,7 +110,7 @@
     "nuxt-gtag": "2.0.5",
     "nuxt-security": "1.2.2",
     "nuxt-seo-ui": "0.4.4",
-    "nuxt-typed-router": "3.6.1",
+    "nuxt-typed-router": "3.6.2",
     "pg": "8.11.5",
     "pinia": "2.1.7",
     "prettier": "3.2.5",
