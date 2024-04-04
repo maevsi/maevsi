@@ -60,8 +60,8 @@ importers:
         specifier: 1.1.19
         version: 1.1.19
       '@iconify-json/fa6-regular':
-        specifier: 1.1.18
-        version: 1.1.18
+        specifier: 1.1.19
+        version: 1.1.19
       '@iconify-json/fa6-solid':
         specifier: 1.1.20
         version: 1.1.20
@@ -3416,8 +3416,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/fa6-regular@1.1.18:
-    resolution: {integrity: sha512-+lLtiTHf02rxeC/9R6vzJi9eGcuubzeHfTt/HWvDnovz2Kt5NEntW8foUSLeLo7kPU7RNvea68lt7QM9HYFloQ==}
+  /@iconify-json/fa6-regular@1.1.19:
+    resolution: {integrity: sha512-PKixQXqMF2cdMu1vYYBYUc1kaNsOt+QdAAEAW2bBOqvL6k2UiaoZsY7LtufgdZwn1Ag1J7k9p90mx+nU5xK0aw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
