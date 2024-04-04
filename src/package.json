@@ -48,7 +48,7 @@
     "@nuxt/schema": "3.11.1",
     "@nuxt/ui": "2.15.1",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
-    "@nuxtjs/html-validator": "1.6.0",
+    "@nuxtjs/html-validator": "1.7.1",
     "@nuxtjs/i18n": "8.3.0",
     "@nuxtjs/seo": "2.0.0-rc.10",
     "@nuxtjs/tailwindcss": "6.11.4",
