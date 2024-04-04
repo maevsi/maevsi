@@ -57,8 +57,8 @@ importers:
         specifier: 0.8.1
         version: 0.8.1
       '@iconify-json/fa6-brands':
-        specifier: 1.1.18
-        version: 1.1.18
+        specifier: 1.1.19
+        version: 1.1.19
       '@iconify-json/fa6-regular':
         specifier: 1.1.18
         version: 1.1.18
@@ -3410,8 +3410,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/fa6-brands@1.1.18:
-    resolution: {integrity: sha512-vmeJP06Xbj0XbVGiBHg0q8H3M894d4bGXKCmiHt6JqUdpiGcIV7r96N+BOU4ZS1+hvpV57fTfXlFPiUfxAIfkg==}
+  /@iconify-json/fa6-brands@1.1.19:
+    resolution: {integrity: sha512-3Dl0D1gtFwIj7/GT2xJbkM9D/LjuozsgfLrqRWP6B5xuajtsyEvR1wD0Z06y3iaNtASpgWPWyYbml+AHQ3Hw0g==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
