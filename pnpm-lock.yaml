@@ -204,8 +204,8 @@ importers:
         specifier: 2.2.5
         version: 2.2.5
       browserslist-useragent-regexp:
-        specifier: 4.1.1
-        version: 4.1.1(browserslist@4.23.0)
+        specifier: 4.1.2
+        version: 4.1.2(browserslist@4.23.0)
       chart.js:
         specifier: 4.4.2
         version: 4.4.2
@@ -8184,8 +8184,8 @@ packages:
       fill-range: 7.0.1
     dev: true
 
-  /browserslist-useragent-regexp@4.1.1(browserslist@4.23.0):
-    resolution: {integrity: sha512-/OBUauhHZ6YmB1cBmXK7Qbkj3kgdxympkERsyNkCfTAJUCt/5acZ6ANmjBZeaUmE0qjl8uGpkOXdyMe9Q7lijA==}
+  /browserslist-useragent-regexp@4.1.2(browserslist@4.23.0):
+    resolution: {integrity: sha512-90SNTEE3rU4XtLrJaD9Uh+8FhUq903lLOFH3EYy/F90+Xkvtm4BeELgHKkQzNEOEUix51ahLu7m9C1GNSgCKPA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     peerDependencies:
