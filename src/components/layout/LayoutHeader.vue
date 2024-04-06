@@ -78,6 +78,14 @@
               {{ t('signIn') }}
             </ButtonText>
           </template>
+          <ButtonIcon
+            :aria-label="t('settings')"
+            :to="
+              localePath(`/session/edit/${store.jwtDecoded?.id || 'anonymous'}`)
+            "
+          >
+            <IHeroiconsBars3 height="2em" width="2em" />
+          </ButtonIcon>
         </div>
       </div>
     </div>
@@ -99,6 +107,7 @@ de:
   menuHide: Menü verstecken
   menuShow: Menü anzeigen
   profileLink: Profilseite anzeigen
+  settings: Einstellungen
   signIn: Anmelden
 en:
   dashboard: Dashboard
@@ -107,5 +116,6 @@ en:
   menuHide: Hide menu
   menuShow: Show menu
   profileLink: Show profile page
+  settings: Settings
   signIn: Sign in
 </i18n>
