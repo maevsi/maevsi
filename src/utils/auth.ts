@@ -50,13 +50,15 @@ export const getJwtFromCookie = () => {
   const cookie = useCookie(JWT_NAME())
 
   if (!cookie.value) {
-    return consola.debug('No token cookie.')
+    consola.debug('No token cookie.')
+    return
   }
 
   const jwt = decodeJwt(cookie.value)
 
   if (jwt.exp === undefined || jwt.exp <= Date.now() / 1000) {
-    return consola.info('Token expired.')
+    consola.info('Token expired.')
+    return
   }
 
   return {
