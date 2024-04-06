@@ -7,13 +7,10 @@ export default defineEventHandler(async (event: H3Event) => {
   const jwtPublicKey = await useJwtPublicKey()
 
   if (!jwtPublicKey) {
-    sendError(
-      event,
-      createError({
-        statusCode: 500,
-        statusMessage: 'The authentication key is not available!',
-      }),
-    )
+    return throwError({
+      code: 500,
+      message: 'The authentication key is not available!',
+    })
   }
 
   res.setHeader('Content-Type', 'text/plain')

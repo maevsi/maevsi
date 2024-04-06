@@ -23,23 +23,17 @@ export default defineEventHandler(async (event: H3Event) => {
   consola.log('tusdDelete: ' + uploadId)
 
   if (!req.headers.authorization) {
-    return sendError(
-      event,
-      createError({
-        statusCode: 401,
-        statusMessage: 'The request header "Authorization" is missing!',
-      }),
-    )
+    return throwError({
+      code: 401,
+      message: 'The request header "Authorization" is missing!',
+    })
   }
 
   if (!configPostgraphileJwtPublicKey) {
-    return sendError(
-      event,
-      createError({
-        statusCode: 500,
-        statusMessage: 'The JSON web token public key is missing!',
-      }),
-    )
+    return throwError({
+      code: 500,
+      message: 'The JSON web token public key is missing!',
+    })
   }
 
   try {
@@ -53,34 +47,28 @@ export default defineEventHandler(async (event: H3Event) => {
       },
     )
   } catch (err: any) {
-    return sendError(
-      event,
-      createError({
-        statusCode: 401,
-        statusMessage: `JSON web token verification failed: "${err.message}"!`,
-      }),
-    )
+    return throwError({
+      code: 401,
+      message: `JSON web token verification failed: "${err.message}"!`,
+    })
   }
 
   const queryResult = await pool
     .query('SELECT * FROM maevsi.upload WHERE id = $1;', [uploadId])
     .catch((err) => {
-      sendError(
-        event,
-        createError({ statusCode: 500, statusMessage: err.message }),
-      )
+      return throwError({
+        code: 500,
+        message: err.message,
+      })
     })
 
   if (!queryResult) return
 
   if (!queryResult.rows.length) {
-    return sendError(
-      event,
-      createError({
-        statusCode: 500,
-        statusMessage: 'No result found for id "' + uploadId + '"!',
-      }),
-    )
+    return throwError({
+      code: 500,
+      message: 'No result found for id "' + uploadId + '"!',
+    })
   }
 
   const storageKey = (
@@ -109,12 +97,9 @@ export default defineEventHandler(async (event: H3Event) => {
       await deleteUpload(event, uploadId)
       break
     default:
-      return sendError(
-        event,
-        createError({
-          statusCode: 500,
-          statusMessage: `Unexpected tusd status code: ${response.status}`,
-        }),
-      )
+      return throwError({
+        code: 500,
+        message: `Unexpected tusd status code: ${response.status}`,
+      })
   }
 })

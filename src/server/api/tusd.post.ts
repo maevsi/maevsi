@@ -13,22 +13,19 @@ export default defineEventHandler(async (event: H3Event) => {
           body.Event.Upload.MetaData.maevsiUploadUuid,
         ])
         .catch((err) => {
-          sendError(
-            event,
-            createError({ statusCode: 500, statusMessage: err.message }),
-          )
+          return throwError({
+            code: 500,
+            message: err.message,
+          })
         })
 
       if (!queryResult) return
 
       if (!queryResult.rows[0].exists) {
-        return sendError(
-          event,
-          createError({
-            statusCode: 500,
-            statusMessage: 'Upload id does not exist!',
-          }),
-        )
+        return throwError({
+          code: 500,
+          message: 'Upload id does not exist!',
+        })
       }
 
       await send(event, JSON.stringify({}), MIMES.json)
@@ -44,13 +41,10 @@ export default defineEventHandler(async (event: H3Event) => {
           body.Event.Upload.MetaData.maevsiUploadUuid,
         ])
         .catch((err) => {
-          sendError(
-            event,
-            createError({
-              statusCode: 500,
-              statusMessage: err.message,
-            }),
-          )
+          return throwError({
+            code: 500,
+            message: err.message,
+          })
         })
 
       if (!queryRes) return
@@ -65,12 +59,9 @@ export default defineEventHandler(async (event: H3Event) => {
 
       break
     default:
-      sendError(
-        event,
-        createError({
-          statusCode: 500,
-          statusMessage: 'Invalid hook name header.',
-        }),
-      )
+      return throwError({
+        code: 500,
+        message: 'Invalid hook name header.',
+      })
   }
 })
