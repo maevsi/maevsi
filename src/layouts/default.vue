@@ -73,7 +73,7 @@
           <!-- TODO: rename id to jti -->
           <AppLink
             v-if="store.jwtDecoded?.id"
-            :to="localePath(`/session/view/${store.jwtDecoded.id}`)"
+            :to="localePath(`/session/edit/${store.jwtDecoded.id}`)"
           >
             {{ t('session') }}
           </AppLink>
