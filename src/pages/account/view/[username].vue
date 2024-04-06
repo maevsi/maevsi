@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="flex justify-center">
-        <div class="relative">
+        <UnderConstruction>
           <ButtonColored
             v-if="store.signedInUsername !== routeParamUsername"
             :aria-label="t('friendAdd')"
@@ -24,8 +24,7 @@
           >
             {{ t('friendAdd') }}
           </ButtonColored>
-          <UnderConstruction />
-        </div>
+        </UnderConstruction>
       </div>
       <CardButton
         v-if="store.signedInUsername !== routeParamUsername"
@@ -35,62 +34,72 @@
         <IHeroiconsCalendar />
       </CardButton>
       <div class="flex flex-col gap-2">
-        <span class="text-xl font-bold">
-          {{ t('friends') }}
-        </span>
-        <!-- @vue-ignore -->
-        <CardButton class="relative" is-disabled :to="`/friend/view/$username`">
-          <div class="isolate flex -space-x-2 overflow-hidden p-1">
-            <AccountProfilePicture
-              account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
-              classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
-              height="64"
-              width="64"
-            />
-            <AccountProfilePicture
-              account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
-              classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
-              height="64"
-              width="64"
-            />
-            <AccountProfilePicture
-              account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
-              classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
-              height="64"
-              width="64"
-            />
-          </div>
-          <UnderConstruction />
-        </CardButton>
+        <UnderConstruction>
+          <span class="text-xl font-bold">
+            {{ t('friends') }}
+          </span>
+          <!-- @vue-ignore -->
+          <CardButton
+            class="relative"
+            is-disabled
+            :to="`/friend/view/$username`"
+          >
+            <div class="isolate flex -space-x-2 overflow-hidden p-1">
+              <AccountProfilePicture
+                account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
+                classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
+                height="64"
+                width="64"
+              />
+              <AccountProfilePicture
+                account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
+                classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
+                height="64"
+                width="64"
+              />
+              <AccountProfilePicture
+                account-id="d3d7f2d0-bbf5-46aa-84ba-82ccf3c6af6b"
+                classes="rounded-full ring ring-background-brighten dark:ring-background-darken"
+                height="64"
+                width="64"
+              />
+            </div>
+          </CardButton>
+        </UnderConstruction>
       </div>
       <div class="flex flex-col gap-2">
-        <span class="text-xl font-bold">
-          {{ t('achievements') }}
-        </span>
-        <!-- @vue-ignore -->
-        <CardButton class="relative" is-disabled :to="`/trophy/view/$username`">
-          <div class="flex gap-2 text-center">
-            <div class="flex flex-1 flex-col items-center gap-2 p-2">
-              <IHeroiconsTrophy height="2em" width="2em" />
-              <span class="text-gray-700 dark:text-gray-300">
-                {{ t('achievementTopG') }}
-              </span>
+        <UnderConstruction>
+          <span class="text-xl font-bold">
+            {{ t('achievements') }}
+          </span>
+          <!-- @vue-ignore -->
+          <CardButton
+            class="relative"
+            is-disabled
+            :to="`/trophy/view/$username`"
+          >
+            <div class="flex gap-2 text-center">
+              <div class="flex flex-1 flex-col items-center gap-2 p-2">
+                <IHeroiconsTrophy height="2em" width="2em" />
+                <span class="text-gray-700 dark:text-gray-300">
+                  {{ t('achievementTopG') }}
+                </span>
+              </div>
+              <div class="flex flex-1 flex-col items-center gap-2 p-2">
+                <IHeroiconsStar height="2em" width="2em" />
+                <span class="text-gray-700 dark:text-gray-300">
+                  {{ t('achievementStarChef') }}
+                </span>
+              </div>
+              <div class="flex flex-1 flex-col items-center gap-2 p-2">
+                <IHeroiconsArrowPath height="2em" width="2em" />
+                <span class="text-gray-700 dark:text-gray-300">
+                  {{ t('achievementReturnee') }}
+                </span>
+              </div>
             </div>
-            <div class="flex flex-1 flex-col items-center gap-2 p-2">
-              <IHeroiconsStar height="2em" width="2em" />
-              <span class="text-gray-700 dark:text-gray-300">
-                {{ t('achievementStarChef') }}
-              </span>
-            </div>
-            <div class="flex flex-1 flex-col items-center gap-2 p-2">
-              <IHeroiconsArrowPath height="2em" width="2em" />
-              <span class="text-gray-700 dark:text-gray-300">
-                {{ t('achievementReturnee') }}
-              </span>
-            </div>
-          </div>
-          <UnderConstruction />
-        </CardButton>
+          </CardButton>
+        </UnderConstruction>
       </div>
     </div>
   </Loader>
