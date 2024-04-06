@@ -10,14 +10,16 @@
     <IHeroiconsMagnifyingGlass />
   </LayoutMenuItem>
   <!-- <IHeroiconsBell /> -->
-  <LayoutMenuItem title="Notifications" :to="localePath('/notification')">
-    <div class="relative">
-      <IHeroiconsHeart />
-      <div class="absolute right-0 top-0">
-        <NotificationIndicator />
+  <UnderConstruction>
+    <LayoutMenuItem title="Notifications" :to="localePath('/notification')">
+      <div class="relative">
+        <IHeroiconsHeart />
+        <div class="absolute right-0 top-0">
+          <NotificationIndicator />
+        </div>
       </div>
-    </div>
-  </LayoutMenuItem>
+    </LayoutMenuItem>
+  </UnderConstruction>
   <LayoutMenuItem
     title="Account"
     :to="

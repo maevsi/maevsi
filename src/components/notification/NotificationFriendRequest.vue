@@ -29,7 +29,6 @@
           height="2.5em"
           width="2.5em"
         />
-        <UnderConstruction class="rounded-full" />
       </div>
     </div>
   </Card>
