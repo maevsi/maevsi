@@ -1,3 +1,18 @@
+## [4.1.0](https://github.com/maevsi/maevsi/compare/4.0.2...4.1.0) (2024-04-06)
+
+
+### Features
+
+* **footer:** point to session edit ([1d2ff75](https://github.com/maevsi/maevsi/commit/1d2ff75b975cc19e3f366f77cf742394b49b7f2a))
+* **footer:** replace with bar button ([30f75a9](https://github.com/maevsi/maevsi/commit/30f75a9032659f251ea6cc9b488df272c5668853))
+* **work-in-progress:** hide on production ([8df3b57](https://github.com/maevsi/maevsi/commit/8df3b57c0017dc1e313f07abaab8e1f3ca26f1b7))
+
+
+### Bug Fixes
+
+* **auth:** correct return value ([f67adc4](https://github.com/maevsi/maevsi/commit/f67adc423b802968cfed24f5aa40dcf910f1d38f))
+* **pages:** correct home breadcrumbs ([3eaeb7e](https://github.com/maevsi/maevsi/commit/3eaeb7ebd3b04a580bd540a2a82600817e0dce45))
+
 ## [4.0.2](https://github.com/maevsi/maevsi/compare/4.0.1...4.0.2) (2024-04-01)
 
 
