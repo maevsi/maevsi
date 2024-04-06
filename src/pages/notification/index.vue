@@ -3,37 +3,38 @@
     <LayoutBreadcrumbs :items="breadcrumbItems" />
     <LayoutPageTitle :title="title" />
     <div class="flex flex-col gap-8">
-      <section
-        v-if="store.signedInAccountId && store.signedInUsername"
-        class="flex flex-col gap-4"
-      >
-        <FormInputStateInfo>
-          {{ t('example') }}
-        </FormInputStateInfo>
-        <!-- <h2>{{ t('friendRequests') }}</h2> -->
-        <div>
-          <NotificationFriendRequest
-            :account-id="store.signedInAccountId"
-            :username="store.signedInUsername"
-          />
-          <!-- <NotificationFriendRequest
-            :account-id="store.signedInAccountId"
-            :username="store.signedInUsername"
-          />
-          <NotificationFriendRequest
-            :account-id="store.signedInAccountId"
-            :username="store.signedInUsername"
-          /> -->
+      <UnderConstruction>
+        <div class="flex flex-col gap-8">
+          <section
+            v-if="store.signedInAccountId && store.signedInUsername"
+            class="flex flex-col gap-4"
+          >
+            <!-- <h2>{{ t('friendRequests') }}</h2> -->
+            <div>
+              <NotificationFriendRequest
+                :account-id="store.signedInAccountId"
+                :username="store.signedInUsername"
+              />
+              <!-- <NotificationFriendRequest
+              :account-id="store.signedInAccountId"
+              :username="store.signedInUsername"
+            />
+            <NotificationFriendRequest
+              :account-id="store.signedInAccountId"
+              :username="store.signedInUsername"
+            /> -->
+            </div>
+          </section>
+          <section class="flex flex-col gap-4">
+            <!-- <h2>{{ t('general') }}</h2> -->
+            <div class="flex flex-col gap-2">
+              <NotificationGeneral />
+              <NotificationGeneral2 />
+              <!-- <NotificationGeneral /> -->
+            </div>
+          </section>
         </div>
-      </section>
-      <section class="flex flex-col gap-4">
-        <!-- <h2>{{ t('general') }}</h2> -->
-        <div class="flex flex-col gap-2">
-          <NotificationGeneral />
-          <NotificationGeneral2 />
-          <!-- <NotificationGeneral /> -->
-        </div>
-      </section>
+      </UnderConstruction>
       <ButtonApp />
     </div>
   </div>
@@ -76,11 +77,9 @@ useHeadDefault({ title })
 de:
   # friendRequests: Freundschaftsanfragen
   # general: Allgemein
-  example: Beispielhafte Darstellung
   notifications: Benachrichtigungen
 en:
   # friendRequests: Friend requests
   # general: General
-  example: Exemplary representation
   notifications: Notifications
 </i18n>

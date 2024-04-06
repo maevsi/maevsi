@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 
-import { createError, type H3Event, send, sendError } from 'h3'
+import { type H3Event, send } from 'h3'
 import pg from 'pg'
 
 const secretPostgresDbPath = process.env.POSTGRES_DB_FILE || ''
@@ -31,10 +31,10 @@ export const deleteUpload = async (event: H3Event, uploadId: any) => {
       uploadId,
     ])
     .catch((err: Error) => {
-      sendError(
-        event,
-        createError({ statusCode: 500, statusMessage: err.message }),
-      )
+      return throwError({
+        code: 500,
+        message: err.message,
+      })
     })
 
   if (!queryResult) return
@@ -42,10 +42,10 @@ export const deleteUpload = async (event: H3Event, uploadId: any) => {
   queryResult = await pool
     .query('DELETE FROM maevsi.upload WHERE id = $1;', [uploadId])
     .catch((err) => {
-      sendError(
-        event,
-        createError({ statusCode: 500, statusMessage: err.message }),
-      )
+      return throwError({
+        code: 500,
+        message: err.message,
+      })
     })
 
   if (!queryResult) return

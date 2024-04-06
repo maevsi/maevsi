@@ -17,13 +17,10 @@ export default defineEventHandler(async (event: H3Event) => {
     // TODO: decide whether to use the following if / to fetch the authentication key from staging (https://github.com/maevsi/maevsi/issues/916)
     if (process.env.NODE_ENV === 'production') {
       if (!jwtPublicKey) {
-        return sendError(
-          event,
-          createError({
-            statusCode: 500,
-            statusMessage: 'Secret missing!',
-          }),
-        )
+        return throwError({
+          code: 500,
+          message: 'Secret missing!',
+        })
       }
 
       try {
@@ -33,14 +30,10 @@ export default defineEventHandler(async (event: H3Event) => {
           issuer: 'postgraphile',
         })
       } catch (err: any) {
-        return sendError(
-          event,
-          createError({
-            statusCode: 401,
-            statusMessage:
-              'Json web token verification failed: "' + err.message + '"!',
-          }),
-        )
+        return throwError({
+          code: 401,
+          message: 'Json web token verification failed: "' + err.message + '"!',
+        })
       }
     }
   }

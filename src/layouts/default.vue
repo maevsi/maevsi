@@ -12,7 +12,7 @@
           <slot />
         </main>
       </div>
-      <LayoutFooter class="hidden 2xl:block">
+      <!-- <LayoutFooter class="hidden 2xl:block">
         <LayoutFooterCategory :heading="t('product')">
           <AppLink :to="localePath({ name: 'index', hash: '#overview' })">
             {{ t('overview') }}
@@ -20,15 +20,6 @@
           <AppLink :to="localePath({ name: 'index', hash: '#features' })">
             {{ t('features') }}
           </AppLink>
-          <!--<AppLink :to="localePath('/#pricing')">
-            {{ t('pricing') }}
-          </AppLink>-->
-          <!-- <AppLink :to="localePath('/about/team')">
-            {{ t('team') }}
-          </AppLink> -->
-          <!-- <AppLink :to="localePath('/about/awards')">
-            {{ t('awards') }}
-          </AppLink> -->
         </LayoutFooterCategory>
         <LayoutFooterCategory :heading="t('legal')">
           <AppLink :to="localePath({ name: 'legal-notice' })">
@@ -37,21 +28,7 @@
           <AppLink :to="localePath({ name: 'privacy-policy' })">
             {{ t('privacyPolicy') }}
           </AppLink>
-          <!-- <AppLink :to="localePath('/code-of-conduct')">
-            {{ t('codeOfConduct') }}
-          </AppLink> -->
         </LayoutFooterCategory>
-        <!-- <LayoutFooterCategory :heading="t('support')">
-          <AppLink :to="localePath('/support/tutorials')">
-            {{ t('tutorials') }}
-          </AppLink>
-          <AppLink :to="localePath('/support/contact')">
-            {{ t('contact') }}
-          </AppLink>
-          <AppLink :to="localePath('/support/docs')">
-            {{ t('documentation') }}
-          </AppLink>
-        </LayoutFooterCategory> -->
         <LayoutFooterCategory :heading="t('quickLinks')">
           <AppLink
             is-external
@@ -70,10 +47,9 @@
           <AppLink is-external to="mailto:contact+maev-si@maev.si">
             {{ t('contact') }}
           </AppLink>
-          <!-- TODO: rename id to jti -->
           <AppLink
             v-if="store.jwtDecoded?.id"
-            :to="localePath(`/session/view/${store.jwtDecoded.id}`)"
+            :to="localePath(`/session/edit/${store.jwtDecoded.id}`)"
           >
             {{ t('session') }}
           </AppLink>
@@ -99,7 +75,7 @@
             </template>
           </ClientOnly>
         </LayoutFooterCategory>
-      </LayoutFooter>
+      </LayoutFooter> -->
       <LayoutMenuBottomNavigation />
     </div>
   </div>
@@ -107,24 +83,24 @@
 
 <script setup lang="ts">
 const { $dayjs } = useNuxtApp()
-const localePath = useLocalePath()
-const switchLocalePath = useSwitchLocalePath()
-const { availableLocales, t, locale } = useI18n()
-const store = useMaevsiStore()
+// const localePath = useLocalePath()
+// const switchLocalePath = useSwitchLocalePath()
+const { /* availableLocales, t, */ locale } = useI18n()
+// const store = useMaevsiStore()
 
 const loadingId = Math.random()
 const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
 
-// methods
-const getLocaleName = (locale: string) => {
-  const locales = LOCALES.filter((localeObject) => localeObject.code === locale)
+// // methods
+// const getLocaleName = (locale: string) => {
+//   const locales = LOCALES.filter((localeObject) => localeObject.code === locale)
 
-  if (locales.length) {
-    return locales[0].name
-  } else {
-    return undefined
-  }
-}
+//   if (locales.length) {
+//     return locales[0].name
+//   } else {
+//     return undefined
+//   }
+// }
 
 // computations
 const isLoading = computed(() => !!loadingIds.value.length)
@@ -136,7 +112,7 @@ onMounted(() => loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1))
 $dayjs.locale(locale.value)
 </script>
 
-<i18n lang="yaml">
+<!-- <i18n lang="yaml">
 de:
   colorScheme: Farbschema
   contact: Kontakt & Feedback
@@ -171,4 +147,4 @@ en:
   sourceCode: Source code
   status: Status
   # team: Team
-</i18n>
+</i18n> -->

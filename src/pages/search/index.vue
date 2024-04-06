@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { usePageBreadcrumb as usePageBreadcrumbHome } from './index.vue'
+import { usePageBreadcrumb as usePageBreadcrumbHome } from '../index.vue'
 import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
 
 export const usePageBreadcrumb = () =>

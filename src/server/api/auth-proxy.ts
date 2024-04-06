@@ -18,24 +18,39 @@ export default defineEventHandler(async function (event: H3Event) {
     return res.end()
   }
 
+  switch (body.operationName) {
+    case 'authenticate': // TODO: don't verify turnstile on anonymous authentication (https://github.com/maevsi/maevsi/issues/1567)
+    case 'accountRegistration':
+      await turnstileVerify(event)
+      break
+    default:
+      return res.end()
+  }
+
   if (['authenticate', 'accountRegistration'].includes(body.operationName)) {
     const turnstileToken = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
 
     if (Array.isArray(turnstileToken)) {
-      return throwError(422, 'Turnstile token cannot be an array.')
+      return throwError({
+        code: 422,
+        message: 'Turnstile token cannot be an array.',
+      })
     }
 
     if (!turnstileToken) {
-      return throwError(422, 'Turnstile token not provided.')
+      return throwError({
+        code: 422,
+        message: 'Turnstile token not provided.',
+      })
     }
 
     const result = await verifyTurnstileToken(turnstileToken)
 
     if (!result.success) {
-      return throwError(
-        403,
-        `Turnstile verification unsuccessful: ${result['error-codes'].join(', ')}`,
-      )
+      return throwError({
+        code: 403,
+        message: `Turnstile verification unsuccessful: ${result['error-codes'].join(', ')}`,
+      })
     }
 
     consola.debug('Turnstile verification succeeded')
@@ -44,10 +59,33 @@ export default defineEventHandler(async function (event: H3Event) {
   res.end()
 })
 
-function throwError(code: number, message: string) {
-  consola.error(message)
-  throw createError({
-    statusCode: code,
-    statusMessage: message,
-  })
+const turnstileVerify = async (event: H3Event) => {
+  const { req } = event.node
+
+  const turnstileToken = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
+
+  if (Array.isArray(turnstileToken)) {
+    return throwError({
+      code: 422,
+      message: 'Turnstile token cannot be an array.',
+    })
+  }
+
+  if (!turnstileToken) {
+    return throwError({
+      code: 422,
+      message: 'Turnstile token not provided.',
+    })
+  }
+
+  const result = await verifyTurnstileToken(turnstileToken)
+
+  if (!result.success) {
+    return throwError({
+      code: 403,
+      message: `Turnstile verification unsuccessful: ${result['error-codes'].join(', ')}`,
+    })
+  }
+
+  consola.debug('Turnstile verification succeeded')
 }
