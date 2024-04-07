@@ -103,7 +103,7 @@
     "html-to-text": "9.0.5",
     "ical-generator": "7.0.0",
     "isomorphic-dompurify": "2.6.0",
-    "jose": "5.2.3",
+    "jose": "5.2.4",
     "lodash-es": "4.17.21",
     "mustache": "4.2.0",
     "nuxt": "3.11.1",
