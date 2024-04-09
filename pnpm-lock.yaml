@@ -165,8 +165,8 @@ importers:
         specifier: 20.12.6
         version: 20.12.6
       '@types/pg':
-        specifier: 8.11.2
-        version: 8.11.2
+        specifier: 8.11.5
+        version: 8.11.5
       '@types/seedrandom':
         specifier: 3.0.8
         version: 3.0.8
@@ -6095,8 +6095,8 @@ packages:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
     dev: true
 
-  /@types/pg@8.11.2:
-    resolution: {integrity: sha512-G2Mjygf2jFMU/9hCaTYxJrwdObdcnuQde1gndooZSOHsNSaCehAuwc7EIuSA34Do8Jx2yZ19KtvW8P0j4EuUXw==}
+  /@types/pg@8.11.5:
+    resolution: {integrity: sha512-2xMjVviMxneZHDHX5p5S6tsRRs7TpDHeeK7kTTMe/kAC/mRRNjWHjZg0rkiY+e17jXSZV3zJYDxXV8Cy72/Vuw==}
     dependencies:
       '@types/node': 20.12.6
       pg-protocol: 1.6.1
