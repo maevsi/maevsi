@@ -30,8 +30,8 @@ importers:
   src:
     devDependencies:
       '@dargmuesli/nuxt-cookie-control':
-        specifier: 8.1.0
-        version: 8.1.0(rollup@4.14.1)(webpack@5.91.0)
+        specifier: 8.1.1
+        version: 8.1.1(rollup@4.14.1)(webpack@5.91.0)
       '@fontsource-variable/manrope':
         specifier: 5.0.19
         version: 5.0.19
@@ -2297,8 +2297,8 @@ packages:
       postcss: 8.4.38
     dev: true
 
-  /@dargmuesli/nuxt-cookie-control@8.1.0(rollup@4.14.1)(webpack@5.91.0):
-    resolution: {integrity: sha512-uRVe9WvvUfFWOWvtANS/7gPK0CA+FrZQ35CeMdRgJAICrgvDRVskm9bp9ti3FHvszuQuRgX0VwVzE9doRQQzbw==}
+  /@dargmuesli/nuxt-cookie-control@8.1.1(rollup@4.14.1)(webpack@5.91.0):
+    resolution: {integrity: sha512-zjagP5coV6fa+RsDd6OR8MU0o+W2nXy4O6Bkd6KbCRPDfrZHiXkkPsxc58TUv939IUVOuVPP/NcVEicdmAv3OQ==}
     engines: {node: '>=16'}
     dependencies:
       '@nuxt/kit': 3.11.2(rollup@4.14.1)
@@ -4292,7 +4292,7 @@ packages:
     resolution: {integrity: sha512-Ghv2MgWbJcUM9G5Dy3oQP0cJkUwEgaiuQxEF61FXJdn0a69Q4StZEP/hLF0MWPM9m6EvAwI7orxkJHM7MrmtVg==}
     hasBin: true
     dependencies:
-      '@nuxt/kit': 3.11.1(rollup@4.14.1)
+      '@nuxt/kit': 3.11.2(rollup@4.14.1)
       ci-info: 4.0.0
       consola: 3.2.3
       create-require: 1.1.1
