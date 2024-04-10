@@ -78,7 +78,7 @@
     "@uppy/tus": "3.5.4",
     "@urql/core": "5.0.0",
     "@urql/devtools": "2.0.3",
-    "@urql/exchange-graphcache": "7.0.0",
+    "@urql/exchange-graphcache": "7.0.1",
     "@urql/vue": "1.1.3",
     "@vite-pwa/nuxt": "0.6.0",
     "@vuelidate/core": "2.0.3",
