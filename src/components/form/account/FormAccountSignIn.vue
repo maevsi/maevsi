@@ -75,7 +75,6 @@ const fireAlert = useFireAlert()
 const { t } = useI18n()
 const { jwtStore } = useJwtStore()
 const localePath = useLocalePath()
-const store = useMaevsiStore()
 
 // api data
 const accountRegistrationRefreshMutation =
@@ -106,9 +105,7 @@ const submit = async () => {
   if (result.error) return
 
   try {
-    store.routerAfterEachs.push(async () => {
-      await jwtStore(result.data?.authenticate?.jwt)
-    })
+    await jwtStore(result.data?.authenticate?.jwt)
   } catch (error) {
     await fireAlert({
       error,

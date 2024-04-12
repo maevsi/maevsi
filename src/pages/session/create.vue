@@ -16,6 +16,7 @@
 const { t } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
+const store = useMaevsiStore()
 
 // data
 const title = t('title')
@@ -27,6 +28,14 @@ const to = computed(() =>
 
 // methods
 const onSignIn = async () => {
+  // A link that allows users to delete their account is required by the Google Play Store (https://support.google.com/googleplay/android-developer/answer/13316080#account_deletion)
+  // TODO: generalize, potentially whitelist valid redirection targets
+  if (to.value === 'account-deletion') {
+    return await navigateTo(
+      localePath(`/account/edit/${store.jwtDecoded?.account_username}`),
+    )
+  }
+
   if (to.value) return await navigateTo(to.value)
 
   return await navigateTo(localePath(`/dashboard`))
