@@ -34,9 +34,7 @@ import type { WritableComputedRef } from 'vue'
 import supportedBrowsers from '~/supportedBrowsers'
 
 const i18n = useI18n()
-const store = useMaevsiStore()
 const { $pwa } = useNuxtApp()
-const router = useRouter()
 const runtimeConfig = useRuntimeConfig()
 const siteConfig = useSiteConfig()
 const locale = i18n.locale as WritableComputedRef<Locale>
@@ -47,22 +45,10 @@ const isBrowserSupported = ref(true)
 
 // methods
 const initialize = () => {
-  initializeAfterNavigationTaskRunner()
-
   if (process.client) {
     saveTimezoneAsCookie()
   }
 }
-const initializeAfterNavigationTaskRunner = () =>
-  router.afterEach(async () => {
-    while (store.routerAfterEachs.length > 0) {
-      const routerAfterEach = store.routerAfterEachs.pop()
-
-      if (!routerAfterEach) return
-
-      await routerAfterEach()
-    }
-  })
 const saveTimezoneAsCookie = () =>
   (useCookie(TIMEZONE_COOKIE_NAME, {
     // default: () => undefined, // setting `default` on the client side only does not write the cookie
