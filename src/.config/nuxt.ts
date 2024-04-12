@@ -8,9 +8,9 @@ import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import Components from 'unplugin-vue-components/vite'
 
-import { modulesConfig } from './config/modules'
-import { environmentsConfig } from './config/environments'
-import { SITE_NAME, SITE_URL } from './utils/constants'
+import { modulesConfig } from '../config/modules'
+import { environmentsConfig } from '../config/environments'
+import { SITE_NAME, SITE_URL } from '../utils/constants'
 
 const execPromise = promisify(exec)
 const RELEASE_NAME = async () =>
