@@ -46,7 +46,7 @@
     "@nuxt/devtools": "1.1.5",
     "@nuxt/image": "1.5.0",
     "@nuxt/schema": "3.11.1",
-    "@nuxt/ui": "2.15.1",
+    "@nuxt/ui": "2.15.2",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@nuxtjs/html-validator": "1.7.1",
     "@nuxtjs/i18n": "8.3.0",

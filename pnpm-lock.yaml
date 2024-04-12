@@ -90,8 +90,8 @@ importers:
         specifier: 3.11.1
         version: 3.11.1(rollup@4.14.1)
       '@nuxt/ui':
-        specifier: 2.15.1
-        version: 2.15.1(nuxt@3.11.1)(rollup@4.14.1)(vite@5.2.8)(vue@3.4.21)
+        specifier: 2.15.2
+        version: 2.15.2(nuxt@3.11.1)(rollup@4.14.1)(vite@5.2.8)(vue@3.4.21)
       '@nuxtjs/eslint-config-typescript':
         specifier: 12.1.0
         version: 12.1.0(eslint@8.57.0)(typescript@5.4.5)
@@ -4318,8 +4318,8 @@ packages:
     resolution: {integrity: sha512-3BG5doAREcD50dbKyXgmjD4b1GzY8CUy3T41jMhHZXNDdaNwOd31IBq+D6dV00OSrDVhzrTVj0IxsUsnMyHvIQ==}
     dev: true
 
-  /@nuxt/ui@2.15.1(nuxt@3.11.1)(rollup@4.14.1)(vite@5.2.8)(vue@3.4.21):
-    resolution: {integrity: sha512-wQXq7yYH5uAH9KE5wxA3KU/LniP5FhJ51tcgz6u+d+CDOXaKcDYQdzU9efSpTLNBuipbLQXDGiqq6aSeRIT6rw==}
+  /@nuxt/ui@2.15.2(nuxt@3.11.1)(rollup@4.14.1)(vite@5.2.8)(vue@3.4.21):
+    resolution: {integrity: sha512-3NxFcC0KN4bdTePNKKEVp4tj2BgeuGlucnnOFLVYSdhw60xU0LpFq9wDGeP7BBUl622xF9FnPNiXW5/6RS4i6w==}
     engines: {node: '>=v16.20.2'}
     dependencies:
       '@egoist/tailwindcss-icons': 1.7.4(tailwindcss@3.4.3)
@@ -4327,7 +4327,7 @@ packages:
       '@headlessui/vue': 1.7.19(vue@3.4.21)
       '@iconify-json/heroicons': 1.1.20
       '@nuxt/kit': 3.11.2(rollup@4.14.1)
-      '@nuxtjs/color-mode': 3.3.3(rollup@4.14.1)
+      '@nuxtjs/color-mode': 3.4.0(rollup@4.14.1)
       '@nuxtjs/tailwindcss': 6.11.4(rollup@4.14.1)
       '@popperjs/core': 2.11.8
       '@tailwindcss/aspect-ratio': 0.4.2(tailwindcss@3.4.3)
@@ -4434,6 +4434,18 @@ packages:
     dependencies:
       '@nuxt/kit': 3.11.2(rollup@4.14.1)
       pathe: 1.1.2
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
+  /@nuxtjs/color-mode@3.4.0(rollup@4.14.1):
+    resolution: {integrity: sha512-rS51nG3zW8ksOwNubIP3BPQ+vBL0r2M6td1kkB/VaR1e1uVtNfWlBPfZjb604bgNCE2AeRNqaI0CrxkfnQ6h6Q==}
+    dependencies:
+      '@nuxt/kit': 3.11.2(rollup@4.14.1)
+      pathe: 1.1.2
+      pkg-types: 1.0.3
+      semver: 7.6.0
     transitivePeerDependencies:
       - rollup
       - supports-color
