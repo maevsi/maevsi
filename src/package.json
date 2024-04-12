@@ -73,7 +73,7 @@
     "@types/node": "20.12.7",
     "@types/pg": "8.11.5",
     "@types/seedrandom": "3.0.8",
-    "@unhead/vue": "1.9.4",
+    "@unhead/vue": "1.9.5",
     "@uppy/core": "3.10.0",
     "@uppy/tus": "3.5.4",
     "@urql/core": "5.0.0",
