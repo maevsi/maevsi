@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/maevsi/maevsi/compare/4.1.0...4.1.1) (2024-04-12)
+
+
+### Bug Fixes
+
+* **auth-proxy:** remove duplicate code ([109d14e](https://github.com/maevsi/maevsi/commit/109d14e664c8fc97544e0d1d1d19c77160249cbc))
+
 ## [4.1.0](https://github.com/maevsi/maevsi/compare/4.0.2...4.1.0) (2024-04-06)
 
 
