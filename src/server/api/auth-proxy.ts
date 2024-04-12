@@ -27,35 +27,6 @@ export default defineEventHandler(async function (event: H3Event) {
       return res.end()
   }
 
-  if (['authenticate', 'accountRegistration'].includes(body.operationName)) {
-    const turnstileToken = req.headers[TURNSTILE_HEADER_KEY.toLowerCase()]
-
-    if (Array.isArray(turnstileToken)) {
-      return throwError({
-        code: 422,
-        message: 'Turnstile token cannot be an array.',
-      })
-    }
-
-    if (!turnstileToken) {
-      return throwError({
-        code: 422,
-        message: 'Turnstile token not provided.',
-      })
-    }
-
-    const result = await verifyTurnstileToken(turnstileToken)
-
-    if (!result.success) {
-      return throwError({
-        code: 403,
-        message: `Turnstile verification unsuccessful: ${result['error-codes'].join(', ')}`,
-      })
-    }
-
-    consola.debug('Turnstile verification succeeded')
-  }
-
   res.end()
 })
 
