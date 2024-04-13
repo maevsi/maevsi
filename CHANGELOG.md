@@ -1,3 +1,10 @@
+## [4.2.0](https://github.com/maevsi/maevsi/compare/4.1.1...4.2.0) (2024-04-13)
+
+
+### Features
+
+* **session:** allow to redirect to account deletion ([4b43aff](https://github.com/maevsi/maevsi/commit/4b43affe942e5e8a2d47cf7f426834db82d688c2))
+
 ## [4.1.1](https://github.com/maevsi/maevsi/compare/4.1.0...4.1.1) (2024-04-12)
 
 
