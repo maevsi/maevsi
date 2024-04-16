@@ -165,7 +165,7 @@ const submit = async () => {
         successIds.push(contactId)
       }
     }
-  } catch (error: any) {
+  } catch (error) {
     return
   } finally {
     for (const successId of successIds) {
@@ -178,7 +178,7 @@ const submit = async () => {
 
 // computations
 const contactsFiltered = computed(() => {
-  if (!contacts) {
+  if (!contacts.value) {
     return undefined
   }
 

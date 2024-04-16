@@ -64,7 +64,7 @@
 </template>
 
 <script lang="ts">
-// @ts-ignore
+// @ts-expect-error wasm url is correct
 import wasmFile from 'zxing-wasm/reader/zxing_reader.wasm?url'
 import { consola } from 'consola'
 import { type DetectedBarcode } from 'barcode-detector'
@@ -186,7 +186,7 @@ const qrCodeScan = () => {
 const onCameraOn = () => {
   loading.value = false
 }
-const onError = async (error: any) => {
+const onError = async (error: Error) => {
   let errorMessage: string = error.message
 
   if (error.name === 'NotAllowedError') {
@@ -210,10 +210,11 @@ const onError = async (error: any) => {
   consola.error(errorMessage)
 }
 const onClick = async () => {
+  if (!invitationId.value) return
   await writeTag(invitationId.value)
 }
-const onDetect = async (e: DetectedBarcode[]) => {
-  invitationId.value = e[0].rawValue
+const onDetect = async (detectedBarcodes: DetectedBarcode[]) => {
+  invitationId.value = detectedBarcodes[0].rawValue
   await fireAlert({ level: 'success' })
   store.modalRemove('ModalAttendanceScanQrCode')
 }
@@ -248,9 +249,9 @@ const checkWriteTag = async () => {
     }
   }
 }
-const writeTag = async (e: any) => {
+const writeTag = async (data: string) => {
   try {
-    await new NDEFReader().write(e)
+    await new NDEFReader().write(data)
     await fireAlert({ level: 'success' })
   } catch (error) {
     if (error instanceof DOMException) {

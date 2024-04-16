@@ -142,7 +142,7 @@ const pending = reactive({
 
 // methods
 const copyLink = async (invitation: Pick<InvitationItemFragment, 'id'>) => {
-  if (!process.client) return
+  if (!import.meta.client) return
 
   await copyText(
     `${window.location.origin}${localePath(`/invitation/unlock`)}?ic=${

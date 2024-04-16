@@ -8,7 +8,7 @@ import {
   minValue,
   required,
 } from '@vuelidate/validators'
-import { Client } from '@urql/core'
+import type { Client } from '@urql/core'
 import { consola } from 'consola'
 import type { Ref } from 'vue'
 import type { LocationQueryValue } from 'vue-router'

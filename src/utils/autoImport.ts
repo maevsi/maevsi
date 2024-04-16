@@ -1,4 +1,4 @@
-import { CombinedError } from '@urql/core'
+import type { CombinedError } from '@urql/core'
 import { consola } from 'consola'
 
 import type { ArrayElement, UnionToIntersection } from '~/types/types'
@@ -50,9 +50,9 @@ export const getTimezone = () =>
     sameSite: 'strict',
     secure: useRuntimeConfig().public.vio.isInProduction,
   }).value ||
-  process.client
+  import.meta.client
     ? Intl.DateTimeFormat().resolvedOptions().timeZone
     : undefined
 
 export const zalgo = async <T>(maybePromise: T) =>
-  process.server ? await maybePromise : maybePromise
+  import.meta.server ? await maybePromise : maybePromise

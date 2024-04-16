@@ -1,4 +1,4 @@
-import { H3Event } from 'h3'
+import type { H3Event } from 'h3'
 import { TESTING_COOKIE_NAME } from '~/utils/constants'
 
 export const isTestingServer = (event?: H3Event) => {

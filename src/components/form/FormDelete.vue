@@ -19,15 +19,15 @@
 </template>
 
 <script setup lang="ts">
-import type { UseMutationResponse } from '@urql/vue'
+import type { AnyVariables, UseMutationResponse } from '@urql/vue'
 import { useVuelidate } from '@vuelidate/core'
 
 export interface Props {
   errorsPgIds?: Record<string, string>
   itemNameDeletion: string
   itemNameSuccess: string
-  mutation: UseMutationResponse<any, any>
-  variables?: Record<string, any>
+  mutation: UseMutationResponse<unknown, AnyVariables>
+  variables?: Record<string, unknown>
 }
 const props = withDefaults(defineProps<Props>(), {
   errorsPgIds: undefined,

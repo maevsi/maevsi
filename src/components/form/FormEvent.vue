@@ -330,7 +330,7 @@ const dateTimeFormatter = (x?: string) =>
         timeStyle: 'short',
       })
     : undefined
-const onInputName = ($event: any) => {
+const onInputName = ($event: string) => {
   v$.value.name.$model = $event
   updateSlug()
 }
@@ -406,7 +406,7 @@ const updateForm = (data?: Pick<EventItemFragment, 'name' | 'slug'>) => {
   if (!data) return
 
   for (const [k, v] of Object.entries(data)) {
-    ;(form as Record<string, any>)[k] = v
+    ;(form as Record<string, unknown>)[k] = v
   }
 }
 

@@ -1,4 +1,4 @@
-import { useServerSeoMeta } from '@unhead/vue'
+import type { useServerSeoMeta } from '@unhead/vue'
 
 import { STYLE_DEFAULT_GRAY } from './utils/constants'
 

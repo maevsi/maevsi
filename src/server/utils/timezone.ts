@@ -1,4 +1,4 @@
-import { H3Event } from 'h3'
+import type { H3Event } from 'h3'
 
 import { TIMEZONE_COOKIE_NAME } from '~/utils/constants'
 

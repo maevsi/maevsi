@@ -350,7 +350,7 @@
 </template>
 
 <script lang="ts">
-import { Client } from '@urql/core'
+import type { Client } from '@urql/core'
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import prntr from 'prntr'

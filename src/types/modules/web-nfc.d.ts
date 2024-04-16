@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 // Type definitions for Web NFC
 // Project: https://github.com/w3c/web-nfc
 // Definitions by: Takefumi Yoshii <https://github.com/takefumi-yoshii>
@@ -62,11 +61,11 @@ interface NDEFScanOptions {
 
 declare class NDEFReader extends EventTarget {
   constructor()
-  onreading: (this: this, event: NDEFReadingEvent) => any
-  onreadingerror: (this: this, error: Event) => any
+  onreading: (this: this, event: NDEFReadingEvent) => unknown
+  onreadingerror: (this: this, error: Event) => unknown
   scan: (options?: NDEFScanOptions) => Promise<void>
   write: (
     message: NDEFMessageSource,
-    options?: NDEFWriteOptions
+    options?: NDEFWriteOptions,
   ) => Promise<void>
 }
