@@ -99,7 +99,7 @@
     "jose": "5.2.4",
     "lodash-es": "4.17.21",
     "mustache": "4.2.0",
-    "nuxt": "3.11.2",
+    "nuxt": "3.11.1",
     "nuxt-gtag": "2.0.5",
     "nuxt-security": "1.3.2",
     "nuxt-seo-ui": "0.4.4",
