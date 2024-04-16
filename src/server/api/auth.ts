@@ -29,10 +29,10 @@ export default defineEventHandler(async (event: H3Event) => {
           audience: 'postgraphile',
           issuer: 'postgraphile',
         })
-      } catch (err: any) {
+      } catch (error) {
         return throwError({
           code: 401,
-          message: 'Json web token verification failed: "' + err.message + '"!',
+          message: `Json web token verification failed${error instanceof Error ? `: ${error.message}` : '.'}`,
         })
       }
     }

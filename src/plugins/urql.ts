@@ -24,7 +24,7 @@ const SSR_KEY = '__URQL_DATA__'
 const invalidateCache = (
   cache: Cache,
   name: string,
-  args?: { input: { id: any } },
+  args?: { input: { id: string | number | null } },
 ) =>
   args
     ? cache.invalidate({ __typename: name, id: args.input.id })
@@ -68,22 +68,21 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const getServiceHref = useGetServiceHref()
 
   const ssrExchange = getSsrExchange({
-    isClient: process.client,
+    isClient: import.meta.client,
   })
 
-  if (process.client) {
+  if (import.meta.client) {
     nuxtApp.hook('app:created', () => {
       ssrExchange.restoreData(nuxtApp.payload[SSR_KEY] as SSRData)
     })
   }
 
-  if (process.server) {
+  if (import.meta.server) {
     nuxtApp.hook('app:rendered', () => {
       nuxtApp.payload[SSR_KEY] = ssrExchange.extractData()
     })
   }
 
-  // @ts-ignore
   const graphCacheConfig: GraphCacheConfig = {
     schema,
     resolvers: {
@@ -94,7 +93,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         allUploads: relayPagination(),
       },
     },
-    // storage: makeDefaultStorage(),
+    // @ts-expect-error server side there is no storage
+    storage: import.meta.client ? makeDefaultStorage() : undefined,
     updates: {
       Mutation: {
         // create
@@ -118,11 +118,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     },
   }
 
-  const cacheExchange = process.client
+  const cacheExchange = import.meta.client
     ? getOfflineExchange({
         ...graphCacheConfig,
         schema,
-        storage: makeDefaultStorage(),
       })
     : undefined
 
@@ -130,7 +129,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     requestPolicy: 'cache-and-network',
     fetchOptions: () => {
       const { jwt, turnstileToken } = useMaevsiStore()
-      const headers = {} as Record<string, any>
+      const headers = {} as Record<string, string>
 
       if (jwt) {
         consola.trace('GraphQL request authenticated with: ' + jwt)

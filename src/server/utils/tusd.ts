@@ -11,7 +11,7 @@ const secretPostgresRoleMaevsiTusdUsernamePath =
 
 // https://github.com/brianc/node-postgres/issues/2137
 // https://github.com/brianc/node-postgres/issues/2353
-// eslint-disable-next-line import/no-named-as-default-member
+
 export const pool = new pg.Pool({
   database: fs.existsSync(secretPostgresDbPath)
     ? fs.readFileSync(secretPostgresDbPath, 'utf-8')
@@ -25,7 +25,7 @@ export const pool = new pg.Pool({
     : undefined,
 })
 
-export const deleteUpload = async (event: H3Event, uploadId: any) => {
+export const deleteUpload = async (event: H3Event, uploadId: unknown) => {
   let queryResult = await pool
     .query('DELETE FROM maevsi.profile_picture WHERE upload_id = $1;', [
       uploadId,

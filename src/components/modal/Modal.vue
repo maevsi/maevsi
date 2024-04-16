@@ -71,7 +71,7 @@ export interface Props {
   isFooterHidden?: boolean
   isSubmitDisabled?: boolean
   submitName?: string
-  submitTaskProvider?: () => Promise<any>
+  submitTaskProvider?: () => Promise<unknown>
 }
 const props = withDefaults(defineProps<Props>(), {
   isFooterHidden: false,
@@ -82,7 +82,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   close: []
-  submitSuccess: [submitSuccess: any]
+  submitSuccess: [submitSuccess: unknown]
 }>()
 
 const store = useMaevsiStore()
@@ -127,7 +127,7 @@ const submit = async () => {
     const value = await props.submitTaskProvider()
     emit('submitSuccess', value)
     close()
-  } catch (errorsLocal: any) {
+  } catch (errorsLocal) {
     errors.value = [errorsLocal]
     consola.error(errorsLocal)
   }

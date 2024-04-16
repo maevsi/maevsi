@@ -45,7 +45,7 @@ const isBrowserSupported = ref(true)
 
 // methods
 const initialize = () => {
-  if (process.client) {
+  if (import.meta.client) {
     saveTimezoneAsCookie()
   }
 }
@@ -83,7 +83,7 @@ watch(
 )
 
 // initialization
-if (process.server) {
+if (import.meta.server) {
   updateSiteConfig({
     description: t('globalSeoSiteDescription'),
   })

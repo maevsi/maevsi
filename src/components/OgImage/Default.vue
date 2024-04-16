@@ -63,7 +63,7 @@ const containerAttrs = computed(() => {
     'items-center',
     'justify-center',
   ]
-  const styles: Record<string, any> = {
+  const styles: Record<string, string> = {
     padding: props.padding,
   }
   return { class: classes, style: styles }

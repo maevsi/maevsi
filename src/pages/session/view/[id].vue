@@ -253,7 +253,7 @@ const requestNotificationPermissions = () =>
 // computations
 const isNotificationPermissionRequestPossible = computed(
   () =>
-    process.client &&
+    import.meta.client &&
     isWindowHavingNotification.value &&
     permissionState.value === 'prompt',
 )

@@ -1,4 +1,4 @@
-import { Client } from '@urql/vue'
+import type { Client } from '@urql/vue'
 import { consola } from 'consola'
 import { type H3Event, setCookie } from 'h3'
 import { decodeJwt } from 'jose'
@@ -140,7 +140,7 @@ export const jwtStore = async ({
         method: 'POST',
         ...(jwt ? { headers: { Authorization: `Bearer ${jwt}` } } : {}),
       })
-    } catch (error: any) {
+    } catch (error) {
       return Promise.reject(Error('Authentication api call failed.'))
     }
   }

@@ -295,12 +295,12 @@ const loadProfilePicture = (event: Event) => {
       store.modals.push({ id: 'ModalUploadGallery' })
     }
     fileReader.readAsDataURL(file)
-  } catch (err: any) {
-    consola.error(err)
+  } catch (error) {
+    consola.error(error)
   }
 }
 const toggleSelect = (upload: UnwrapRef<typeof selectedItem>) => {
-  if (selectedItem === upload) {
+  if (selectedItem.value === upload) {
     selectedItem.value = undefined
     emit('selection', undefined)
   } else {

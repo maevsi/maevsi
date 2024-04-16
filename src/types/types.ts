@@ -2,17 +2,17 @@ export type ArrayElement<ArrayType extends readonly unknown[]> =
   ArrayType extends readonly (infer ElementType)[] ? ElementType : never
 
 export type UnionToIntersection<T> = (
-  T extends any ? (x: T) => any : never
-) extends (x: infer R) => any
+  T extends unknown ? (x: T) => unknown : never
+) extends (x: infer R) => unknown
   ? R
   : never
 
 export type LastOf<T> =
-  UnionToIntersection<T extends any ? () => T : never> extends () => infer R
+  UnionToIntersection<T extends unknown ? () => T : never> extends () => infer R
     ? R
     : never
 
-type Push<T extends any[], V> = [...T, V]
+type Push<T extends unknown[], V> = [...T, V]
 
 export type UnionToTuple<
   T,

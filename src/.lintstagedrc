@@ -1,4 +1,4 @@
 {
-  "*.{js,ts,vue}": "eslint",
-  "*.{css,vue}": "stylelint"
+  "*.{js,json,ts,vue}": "pnpm run lint:js",
+  "*.{css,vue}": "pnpm run lint:style"
 }

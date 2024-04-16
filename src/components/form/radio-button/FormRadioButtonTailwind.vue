@@ -62,14 +62,14 @@
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 
 export interface Props {
-  model?: any
-  options: any[]
+  model?: string
+  options: { id: string; name: string }[]
 }
 withDefaults(defineProps<Props>(), {
   model: undefined,
 })
 
 const emit = defineEmits<{
-  change: [value: any]
+  change: [value: string]
 }>()
 </script>
