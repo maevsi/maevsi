@@ -10,9 +10,6 @@ const POLYFILLS = JITI('./utils/constants.ts').POLYFILLS
 export default withNuxt(
   ...VIO_ESLINT_CONFIG,
   {
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
-    },
     settings: {
       polyfills: POLYFILLS,
       'vue-i18n': {
