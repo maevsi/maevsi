@@ -1,7 +1,8 @@
 <template>
-  <NuxtLink
+  <AppLink
     active-class="bg-blue-600 dark:bg-blue-400 text-text-bright dark:text-text-dark"
     class="min-w-0 basis-full rounded-xl"
+    :is-colored="false"
     :to="props.to"
   >
     <div class="mx-4 my-2 flex flex-col items-center lg:flex-row lg:gap-2">
@@ -12,7 +13,7 @@
         {{ title }}
       </span>
     </div>
-  </NuxtLink>
+  </AppLink>
 </template>
 
 <script
