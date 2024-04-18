@@ -128,19 +128,20 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const clientOptions: ClientOptions = {
     requestPolicy: 'cache-and-network',
     fetchOptions: () => {
-      const { jwt, turnstileToken } = useMaevsiStore()
+      const store = useMaevsiStore()
       const headers = {} as Record<string, string>
 
-      if (jwt) {
-        consola.trace('GraphQL request authenticated with: ' + jwt)
-        headers.authorization = `Bearer ${jwt}`
+      if (store.jwt) {
+        consola.trace('GraphQL request authenticated with: ' + store.jwt)
+        headers.authorization = `Bearer ${store.jwt}`
       } else {
         consola.trace('GraphQL request without authentication.')
       }
 
-      if (turnstileToken) {
-        consola.debug(`Turnstile token: ${turnstileToken}`)
-        headers[TURNSTILE_HEADER_KEY] = turnstileToken
+      if (store.turnstileToken) {
+        consola.debug(`Turnstile token: ${store.turnstileToken}`)
+        headers[TURNSTILE_HEADER_KEY] = store.turnstileToken
+        store.turnstileToken = undefined
       }
 
       return { headers }
