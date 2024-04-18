@@ -17,10 +17,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     ...sharedSentryConfig,
     app: nuxtApp.vueApp,
     integrations: [
-      new Sentry.BrowserTracing({
-        routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-      }),
-      new Sentry.Replay(),
+      Sentry.browserTracingIntegration({ router }),
+      Sentry.replayIntegration(),
     ],
     replaysOnErrorSampleRate:
       runtimeConfig.public.sentry.replays.onError.sampleRate,
