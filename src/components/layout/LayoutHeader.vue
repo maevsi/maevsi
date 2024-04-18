@@ -2,13 +2,6 @@
   <!-- <Loader :api="api" indicator="ping"> -->
   <header class="lg:mb-8">
     <div class="flex items-center justify-between gap-4">
-      <ButtonIcon
-        :aria-label="store.isSidebarVisible ? t('menuHide') : t('menuShow')"
-        class="hidden lg:block 2xl:hidden"
-        @click="store.isSidebarVisible = !store.isSidebarVisible"
-      >
-        <IHeroiconsBars3 height="2em" width="2em" />
-      </ButtonIcon>
       <Button
         :aria-label="t('home')"
         class="hidden 2xl:block"
@@ -104,8 +97,6 @@ de:
   dashboard: Dashboard
   events: Veranstaltungen entdecken
   home: Nach Hause
-  menuHide: Menü verstecken
-  menuShow: Menü anzeigen
   profileLink: Profilseite anzeigen
   settings: Einstellungen
   signIn: Anmelden
@@ -113,8 +104,6 @@ en:
   dashboard: Dashboard
   events: Explore events
   home: Head home
-  menuHide: Hide menu
-  menuShow: Show menu
   profileLink: Show profile page
   settings: Settings
   signIn: Sign in
