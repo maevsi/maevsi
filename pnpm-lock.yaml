@@ -93,8 +93,8 @@ importers:
         specifier: 2.15.2
         version: 2.15.2(change-case@4.1.2)(focus-trap@7.5.4)(nuxt@3.11.2(@parcel/watcher@2.4.1)(@types/node@20.12.7)(@unocss/reset@0.59.2)(change-case@4.1.2)(encoding@0.1.13)(eslint@9.0.0)(floating-vue@5.2.2(@nuxt/kit@3.11.2(rollup@4.14.3))(vue@3.4.23(typescript@5.4.5)))(fuse.js@6.6.2)(ioredis@5.4.0)(meow@13.2.0)(optionator@0.9.3)(rollup@4.14.3)(sass@1.75.0)(stylelint@16.3.1(typescript@5.4.5))(terser@5.30.3)(typescript@5.4.5)(unocss@0.59.2(@unocss/webpack@0.58.9(rollup@4.14.3)(webpack@5.91.0(esbuild@0.20.2)))(postcss@8.4.38)(rollup@4.14.3)(vite@5.2.9(@types/node@20.12.7)(sass@1.75.0)(terser@5.30.3)))(vite@5.2.9(@types/node@20.12.7)(sass@1.75.0)(terser@5.30.3))(vue-tsc@2.0.13(typescript@5.4.5)))(rollup@4.14.3)(vite@5.2.9(@types/node@20.12.7)(sass@1.75.0)(terser@5.30.3))(vue@3.4.23(typescript@5.4.5))
       '@nuxtjs/html-validator':
-        specifier: 1.7.1
-        version: 1.7.1(rollup@4.14.3)(vitest@1.5.0(@types/node@20.12.7)(jsdom@24.0.0)(sass@1.75.0)(terser@5.30.3))
+        specifier: 1.7.2
+        version: 1.7.2(rollup@4.14.3)(vitest@1.5.0(@types/node@20.12.7)(jsdom@24.0.0)(sass@1.75.0)(terser@5.30.3))
       '@nuxtjs/i18n':
         specifier: 8.3.0
         version: 8.3.0(rollup@4.14.3)(vue@3.4.23(typescript@5.4.5))
@@ -2213,6 +2213,9 @@ packages:
 
   '@nuxtjs/html-validator@1.7.1':
     resolution: {integrity: sha512-cpFyjcnj8xcbcFTIxgc1Wjv6ICCiPozFWQlYOOU4cXVKnh7j+jJrj3kwhOO5K2QF/1TyGVOn0O4mHSwKnUBSCA==}
+
+  '@nuxtjs/html-validator@1.7.2':
+    resolution: {integrity: sha512-fc8O2ulA3/BjpFFkao1ljO2PWiyMQZ550MGakdY5GIfDP71vkP2I8kPejvOVkzzz9Pqkwtig4TCA7rVOvfSfZw==}
 
   '@nuxtjs/i18n@8.3.0':
     resolution: {integrity: sha512-/2g4zYwBwHwIVJitu/i5zP73G4F9xH394Uq0RbfOGc34YxscN+B2kMnuPL8XXM9zThdMVj9ctHInQXXtr62CLg==}
@@ -12496,6 +12499,22 @@ snapshots:
       - supports-color
 
   '@nuxtjs/html-validator@1.7.1(rollup@4.14.3)(vitest@1.5.0(@types/node@20.12.7)(jsdom@24.0.0)(sass@1.75.0)(terser@5.30.3))':
+    dependencies:
+      '@nuxt/kit': 3.11.2(rollup@4.14.3)
+      chalk: 5.3.0
+      html-validate: 8.18.1(vitest@1.5.0(@types/node@20.12.7)(jsdom@24.0.0)(sass@1.75.0)(terser@5.30.3))
+      pathe: 1.1.2
+      prettier: 3.2.5
+      std-env: 3.7.0
+    transitivePeerDependencies:
+      - jest
+      - jest-diff
+      - jest-snapshot
+      - rollup
+      - supports-color
+      - vitest
+
+  '@nuxtjs/html-validator@1.7.2(rollup@4.14.3)(vitest@1.5.0(@types/node@20.12.7)(jsdom@24.0.0)(sass@1.75.0)(terser@5.30.3))':
     dependencies:
       '@nuxt/kit': 3.11.2(rollup@4.14.3)
       chalk: 5.3.0
