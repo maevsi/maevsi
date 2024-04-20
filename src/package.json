@@ -28,7 +28,7 @@
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "8.1.2",
     "@dargmuesli/nuxt-vio": "11.2.0",
-    "@fontsource-variable/manrope": "5.0.19",
+    "@fontsource-variable/manrope": "5.0.20",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/client-preset": "4.2.5",
     "@graphql-codegen/typescript-urql-graphcache": "3.1.0",
