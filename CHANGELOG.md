@@ -1,3 +1,10 @@
+## [4.2.1](https://github.com/maevsi/maevsi/compare/4.2.0...4.2.1) (2024-04-20)
+
+
+### Bug Fixes
+
+* schedule release ([83e027b](https://github.com/maevsi/maevsi/commit/83e027bc91782ee21c88ca5dffb724ba41c81573))
+
 ## [4.2.0](https://github.com/maevsi/maevsi/compare/4.1.1...4.2.0) (2024-04-13)
 
 
