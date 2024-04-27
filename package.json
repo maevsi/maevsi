@@ -24,10 +24,17 @@
   "devDependencies": {
     "@commitlint/cli": "19.3.0",
     "@commitlint/config-conventional": "19.2.2",
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/commit-analyzer": "12.0.0",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "10.0.3",
+    "@semantic-release/npm": "12.0.0",
+    "@semantic-release/release-notes-generator": "13.0.0",
     "conventional-changelog-conventionalcommits": "7.0.2",
     "husky": "9.0.11",
     "jiti": "1.21.0",
-    "lint-staged": "15.2.2"
+    "lint-staged": "15.2.2",
+    "semantic-release": "23.0.8"
   },
   "type": "module"
 }
