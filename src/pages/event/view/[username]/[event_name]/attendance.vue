@@ -80,7 +80,7 @@ import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/e
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
+import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: RoutesNamesList =
   'event-view-username-event_name-attendance___en'
@@ -91,7 +91,7 @@ export const usePageBreadcrumb = () => {
   return {
     label: 'Check-in',
     to: `/event/view/${route.params.username}/${route.params.event_name}/attendance`,
-  } as BreadcrumbItemPropsLocalizedObject
+  } as BreadcrumbLinkLocalized
 }
 
 setZXingModuleOverrides({

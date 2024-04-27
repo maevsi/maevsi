@@ -57,7 +57,7 @@ import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/acco
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
+import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: RoutesNamesList = 'account-edit-username'
 
@@ -70,7 +70,7 @@ export const usePageBreadcrumb = () => {
       en: 'Edit',
     },
     to: `/account/edit/${route.params.username}`,
-  } as BreadcrumbItemPropsLocalizedObject
+  } as BreadcrumbLinkLocalized
 }
 </script>
 

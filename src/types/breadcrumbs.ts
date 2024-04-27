@@ -1,7 +1,7 @@
 import type { BreadcrumbItemProps } from 'nuxt-seo-ui'
 import type { TypedLocalePathParameter } from '@typed-router/__paths'
 
-export type BreadcrumbItemPropsLocalizedObject = Omit<
+export type BreadcrumbLinkLocalized = Omit<
   BreadcrumbItemProps,
   'ariaLabel' | 'label' | 'to'
 > & {
@@ -11,5 +11,5 @@ export type BreadcrumbItemPropsLocalizedObject = Omit<
 }
 
 export type UseBreadcrumbItemPropsLocalized = () =>
-  | BreadcrumbItemPropsLocalizedObject
-  | Promise<BreadcrumbItemPropsLocalizedObject>
+  | BreadcrumbLinkLocalized
+  | Promise<BreadcrumbLinkLocalized>
