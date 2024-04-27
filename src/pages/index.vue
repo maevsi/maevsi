@@ -164,7 +164,7 @@
 </template>
 
 <script lang="ts">
-import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
+import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 export const usePageBreadcrumb = () =>
   ({
@@ -174,7 +174,7 @@ export const usePageBreadcrumb = () =>
     },
     icon: 'todo', // TODO: let slot suffice
     to: '/',
-  }) as BreadcrumbItemPropsLocalizedObject
+  }) as BreadcrumbLinkLocalized
 </script>
 
 <script setup lang="ts">

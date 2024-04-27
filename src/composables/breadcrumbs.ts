@@ -1,12 +1,12 @@
 import type { TypedToLocalePath } from '@typed-router'
 
-import type { BreadcrumbItemPropsLocalizedObject } from '~/types/breadcrumbs'
+import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 export const useGetBreadcrumbItemProps = () => {
   const { locale } = useI18n()
   const localePath = useLocalePath()
 
-  return (breadcrumbsWithLocales: BreadcrumbItemPropsLocalizedObject[]) =>
+  return (breadcrumbsWithLocales: BreadcrumbLinkLocalized[]) =>
     breadcrumbsWithLocales.map((breadcrumbWithLocales) =>
       getBreadcrumbItemProps(
         breadcrumbWithLocales,
@@ -17,7 +17,7 @@ export const useGetBreadcrumbItemProps = () => {
 }
 
 const getBreadcrumbItemProps = (
-  breadcrumbWithLocales: BreadcrumbItemPropsLocalizedObject,
+  breadcrumbWithLocales: BreadcrumbLinkLocalized,
   locale: LOCALE_CODES,
   localePath: TypedToLocalePath,
 ) => ({
@@ -31,6 +31,6 @@ const getBreadcrumbItemProps = (
     ? typeof breadcrumbWithLocales.label === 'string'
       ? breadcrumbWithLocales.label
       : breadcrumbWithLocales.label[locale]
-    : undefined,
+    : '',
   to: localePath(breadcrumbWithLocales.to, locale).toString(),
 })
