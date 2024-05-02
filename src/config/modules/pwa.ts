@@ -1,7 +1,9 @@
 import { type DefineNuxtConfig } from 'nuxt/config'
 import colors from 'tailwindcss/colors'
 
-import { CACHE_VERSION } from '../../utils/constants'
+import { CACHE_VERSION, STYLE_DEFAULT_GRAY } from '../../utils/constants'
+
+const gray = colors[STYLE_DEFAULT_GRAY] // or gray, neutral, slate, stone
 
 export const pwaConfig: ReturnType<DefineNuxtConfig> = {
   pwa: {
@@ -15,7 +17,7 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
     },
     filename: 'sw.ts',
     manifest: {
-      background_color: colors.gray['800'],
+      background_color: gray['800'],
       categories: ['events'],
       description: 'Find events, guests and friends 💙❤️💚',
       dir: 'ltr',
@@ -207,7 +209,7 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
           url: '/events',
         },
       ],
-      theme_color: colors.gray['800'],
+      theme_color: gray['800'],
       // widgets: [
       //   {
       //     name: 'PWAmp mini player',
