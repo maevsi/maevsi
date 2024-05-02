@@ -36,5 +36,11 @@
     "lint-staged": "15.2.2",
     "semantic-release": "23.0.8"
   },
+  "pnpm": {
+    "overrides": {
+      "@nuxtjs/html-validator": "1.7.2",
+      "@nuxtjs/i18n": "8.3.0"
+    }
+  },
   "type": "module"
 }
