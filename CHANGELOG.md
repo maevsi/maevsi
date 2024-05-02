@@ -1,3 +1,10 @@
+## [4.4.0](https://github.com/maevsi/maevsi/compare/4.3.1...4.4.0) (2024-05-02)
+
+
+### Features
+
+* **metadata:** add origin usage relation to asset link ([181ac19](https://github.com/maevsi/maevsi/commit/181ac198efa8223197078211d92f476faead3c3b))
+
 ## [4.3.1](https://github.com/maevsi/maevsi/compare/4.3.0...4.3.1) (2024-05-02)
 
 
