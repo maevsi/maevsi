@@ -1,3 +1,17 @@
+## [4.3.0](https://github.com/maevsi/maevsi/compare/4.2.1...4.3.0) (2024-05-02)
+
+
+### Features
+
+* **platform:** try detection by header ([6f9f7d8](https://github.com/maevsi/maevsi/commit/6f9f7d81d60384f77abd3ff2bc0e23c0adf3fe1b))
+* **pwa:** add play store app as related ([fd04a80](https://github.com/maevsi/maevsi/commit/fd04a80293b18a15fbf5867287c55b04b79a338c))
+
+
+### Bug Fixes
+
+* **pwa:** remove orientation from manifest ([06fbe24](https://github.com/maevsi/maevsi/commit/06fbe247aac9efab90a6dda22eb033208ab1cc20))
+* **theme:** correct color ([b6a6f5a](https://github.com/maevsi/maevsi/commit/b6a6f5a67f9404c6a4a25f68e2bf570b27d5e75a))
+
 ## [4.2.1](https://github.com/maevsi/maevsi/compare/4.2.0...4.2.1) (2024-04-20)
 
 
