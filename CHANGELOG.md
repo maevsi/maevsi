@@ -1,3 +1,10 @@
+## [4.3.1](https://github.com/maevsi/maevsi/compare/4.3.0...4.3.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **deps:** update dargmuesli/github-actions to v2.0.0-beta.12 ([c40b41b](https://github.com/maevsi/maevsi/commit/c40b41b7504ae345862d39744d91ce322ff45b6e))
+
 ## [4.3.0](https://github.com/maevsi/maevsi/compare/4.2.1...4.3.0) (2024-05-02)
 
 
