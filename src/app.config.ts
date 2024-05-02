@@ -12,7 +12,7 @@ export default defineAppConfig({
     seoMeta: {
       twitterSite: '@maev_si',
     },
-    themeColor: '#1F2937',
+    themeColor: '#27272a',
   },
 })
 

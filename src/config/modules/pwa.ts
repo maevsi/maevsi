@@ -1,7 +1,9 @@
 import { type DefineNuxtConfig } from 'nuxt/config'
 import colors from 'tailwindcss/colors'
 
-import { CACHE_VERSION } from '../../utils/constants'
+import { CACHE_VERSION, STYLE_DEFAULT_GRAY } from '../../utils/constants'
+
+const gray = colors[STYLE_DEFAULT_GRAY] // or gray, neutral, slate, stone
 
 export const pwaConfig: ReturnType<DefineNuxtConfig> = {
   pwa: {
@@ -15,7 +17,7 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
     },
     filename: 'sw.ts',
     manifest: {
-      background_color: colors.gray['800'],
+      background_color: gray['800'],
       categories: ['events'],
       description: 'Find events, guests and friends 💙❤️💚',
       dir: 'ltr',
@@ -135,7 +137,7 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
       },
       name: 'maevsi',
       short_name: 'maevsi',
-      orientation: 'any',
+      // orientation: ..., // Disabled to respect system's rotation setting
       scope: '/',
       screenshots: [
         {
@@ -176,11 +178,11 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
         // },
       ],
       related_applications: [
-        // {
-        //   platform: 'play',
-        //   url: 'https://play.google.com/store/apps/details?id=si.maev.twa',
-        //   id: 'si.maev.twa',
-        // },
+        {
+          platform: 'play',
+          url: 'https://play.google.com/store/apps/details?id=si.maev.twa',
+          id: 'si.maev.twa',
+        },
       ],
       scope_extensions: [{ origin: 'maev.si' }, { origin: 'maevsi.com' }],
       // share_target: {
@@ -207,7 +209,7 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
           url: '/events',
         },
       ],
-      theme_color: colors.gray['800'],
+      theme_color: gray['800'],
       // widgets: [
       //   {
       //     name: 'PWAmp mini player',
