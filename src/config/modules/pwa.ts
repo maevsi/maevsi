@@ -137,7 +137,7 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
       },
       name: 'maevsi',
       short_name: 'maevsi',
-      orientation: 'any',
+      // orientation: ..., // Disabled to respect system's rotation setting
       scope: '/',
       screenshots: [
         {
