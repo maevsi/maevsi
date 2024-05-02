@@ -178,11 +178,11 @@ export const pwaConfig: ReturnType<DefineNuxtConfig> = {
         // },
       ],
       related_applications: [
-        // {
-        //   platform: 'play',
-        //   url: 'https://play.google.com/store/apps/details?id=si.maev.twa',
-        //   id: 'si.maev.twa',
-        // },
+        {
+          platform: 'play',
+          url: 'https://play.google.com/store/apps/details?id=si.maev.twa',
+          id: 'si.maev.twa',
+        },
       ],
       scope_extensions: [{ origin: 'maev.si' }, { origin: 'maevsi.com' }],
       // share_target: {
