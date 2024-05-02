@@ -2,6 +2,12 @@ import { getCspAsString } from '~/server/utils/security'
 
 export default defineEventHandler((event) => {
   const runtimeConfig = useRuntimeConfig()
+  const headers = getHeaders(event)
+
+  // todo: replace with platform detection composable
+  if (headers['maevsi-platform']) {
+    console.log(`maevsi-platform header: ${headers['maevsi-platform']}`)
+  }
 
   appendHeader(event, 'Content-Security-Policy', getCspAsString(event)) // TODO: migrate to nuxt-security header (https://github.com/maevsi/maevsi/issues/1416)
 
