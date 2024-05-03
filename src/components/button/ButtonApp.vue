@@ -1,5 +1,6 @@
 <template>
   <Button
+    v-if="!isApp"
     :aria-label="t('appInstall')"
     :is-primary="false"
     :to="localePath('/docs/app')"
@@ -14,6 +15,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
+const { isApp } = usePlatform()
 </script>
 
 <i18n lang="yaml">
