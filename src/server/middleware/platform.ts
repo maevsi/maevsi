@@ -1,21 +1,10 @@
 export default defineEventHandler(async (event) => {
-  const runtimeConfig = useRuntimeConfig()
+  deleteCookie(event, 'maevsi-platform') // TODO: remove after some time, this is only for migration
 
   const maevsiPlatformHeader = getHeader(event, 'maevsi-platform')
 
   if (maevsiPlatformHeader) {
     event.context.$platform = maevsiPlatformHeader
-    setCookie(event, 'maevsi-platform', maevsiPlatformHeader, {
-      httpOnly: false,
-      sameSite: 'strict',
-      secure: runtimeConfig.public.vio.isInProduction,
-    })
     return
-  }
-
-  const maevsiPlatformCookie = getCookie(event, 'maevsi-platform')
-
-  if (maevsiPlatformCookie) {
-    event.context.$platform = maevsiPlatformCookie
   }
 })

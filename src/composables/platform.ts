@@ -1,12 +1,13 @@
 export const usePlatform = () => {
   const { ssrContext } = useNuxtApp()
 
-  const platform = ssrContext
-    ? ssrContext.event.context.$platform
-    : useCookie('maevsi-platform').value
+  const platform = useState(
+    'maevsi-platform',
+    () => ssrContext?.event.context.$platform,
+  )
 
   const isApp = ref<boolean | undefined>(
-    platform ? ['android', 'ios'].includes(platform) : undefined,
+    platform.value ? ['android', 'ios'].includes(platform.value) : undefined,
   )
 
   return {
