@@ -35,6 +35,7 @@
               {{ t('testNowFree') }}
             </ButtonColored>
             <Button
+              v-if="!isApp"
               :aria-label="t('appInstall')"
               :is-primary="false"
               :to="localePath('/docs/app')"
@@ -181,6 +182,7 @@ export const usePageBreadcrumb = () =>
 const { t } = useI18n()
 const localePath = useLocalePath()
 const siteConfig = useSiteConfig()
+const { isApp } = usePlatform()
 
 // refs
 const sectionStepsRef = ref<HTMLElement>()
