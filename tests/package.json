@@ -31,7 +31,7 @@
     "typescript": "5.4.5",
     "typescript-eslint": "7.8.0",
     "ufo": "1.5.3",
-    "vitest": "1.5.3"
+    "vitest": "1.6.0"
   },
   "peerDependencies": {
     "playwright-core": "1.43.1"
