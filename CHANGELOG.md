@@ -1,3 +1,10 @@
+## [4.5.1](https://github.com/maevsi/maevsi/compare/4.5.0...4.5.1) (2024-05-03)
+
+
+### Bug Fixes
+
+* **platform:** correct cookie's http only property ([5f0c035](https://github.com/maevsi/maevsi/commit/5f0c035f890b747b7bd9998e81c773e8e12b7c4c))
+
 ## [4.5.0](https://github.com/maevsi/maevsi/compare/4.4.0...4.5.0) (2024-05-03)
 
 
