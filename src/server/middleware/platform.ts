@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   if (maevsiPlatformHeader) {
     event.context.$platform = maevsiPlatformHeader
     setCookie(event, 'maevsi-platform', maevsiPlatformHeader, {
-      httpOnly: true,
+      httpOnly: false,
       sameSite: 'strict',
       secure: runtimeConfig.public.vio.isInProduction,
     })
