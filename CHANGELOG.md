@@ -1,3 +1,10 @@
+## [4.5.0](https://github.com/maevsi/maevsi/compare/4.4.0...4.5.0) (2024-05-03)
+
+
+### Features
+
+* **app:** detect ([a985028](https://github.com/maevsi/maevsi/commit/a985028c4cbb1ee41a04faeac31c1efadbca6b8b))
+
 ## [4.4.0](https://github.com/maevsi/maevsi/compare/4.3.1...4.4.0) (2024-05-02)
 
 
