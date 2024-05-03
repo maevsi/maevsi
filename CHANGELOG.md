@@ -1,3 +1,10 @@
+## [4.5.2](https://github.com/maevsi/maevsi/compare/4.5.1...4.5.2) (2024-05-03)
+
+
+### Bug Fixes
+
+* **platform:** drop cookie ([f800210](https://github.com/maevsi/maevsi/commit/f8002104ff93f440a4519c3b7ffd82b51113ed60))
+
 ## [4.5.1](https://github.com/maevsi/maevsi/compare/4.5.0...4.5.1) (2024-05-03)
 
 
