@@ -116,8 +116,8 @@ export default defineNuxtConfig({
         },
         project: {
           client: {
-            id: '4507213729628240',
-            publicKey: 'aa7cf549e1115e78c5a30dc5d0b4bf25',
+            id: '4507213736837200',
+            publicKey: '5e253cec6a72a9eea44531e7205016ba',
           },
           server: {
             id: '4507213739393104',
