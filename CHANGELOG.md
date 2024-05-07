@@ -1,3 +1,10 @@
+## [4.5.5](https://github.com/maevsi/maevsi/compare/4.5.4...4.5.5) (2024-05-07)
+
+
+### Bug Fixes
+
+* **sentry:** correct host ([4041176](https://github.com/maevsi/maevsi/commit/4041176f6601f8563d90dcfc7f50081f4b48be15))
+
 ## [4.5.4](https://github.com/maevsi/maevsi/compare/4.5.3...4.5.4) (2024-05-07)
 
 
