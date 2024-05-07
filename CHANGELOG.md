@@ -1,3 +1,10 @@
+## [4.5.3](https://github.com/maevsi/maevsi/compare/4.5.2...4.5.3) (2024-05-07)
+
+
+### Bug Fixes
+
+* **sentry:** switch to eu region ([4853572](https://github.com/maevsi/maevsi/commit/48535720e2bdb92804784265ca9cd9c491db4785))
+
 ## [4.5.2](https://github.com/maevsi/maevsi/compare/4.5.1...4.5.2) (2024-05-03)
 
 
