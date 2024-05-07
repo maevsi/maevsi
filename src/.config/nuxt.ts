@@ -110,7 +110,7 @@ export default defineNuxtConfig({
           : { baseUrl: SITE_URL }),
       },
       sentry: {
-        host: 'o4507213726154752.ingest.sentry.io',
+        host: 'o4507213726154752.ingest.de.sentry.io',
         profiles: {
           sampleRate: 1.0,
         },
