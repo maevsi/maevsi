@@ -1,3 +1,10 @@
+## [4.5.4](https://github.com/maevsi/maevsi/compare/4.5.3...4.5.4) (2024-05-07)
+
+
+### Bug Fixes
+
+* **sentry:** correct client data ([c367123](https://github.com/maevsi/maevsi/commit/c3671232a7ec546fb7c29a32c188d632638d9b38))
+
 ## [4.5.3](https://github.com/maevsi/maevsi/compare/4.5.2...4.5.3) (2024-05-07)
 
 
