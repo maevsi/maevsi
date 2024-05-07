@@ -1,7 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>dargmuesli/renovate-config",
-    "group:allNonMajor"
+    "github>dargmuesli/renovate-config"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["@nuxtjs/i18n"],
+      "allowedVersions": "8.3.0"
+    }
   ]
 }
