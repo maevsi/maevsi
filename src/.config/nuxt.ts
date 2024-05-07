@@ -110,18 +110,18 @@ export default defineNuxtConfig({
           : { baseUrl: SITE_URL }),
       },
       sentry: {
-        host: 'o4506083883352064.ingest.sentry.io',
+        host: 'o4507213726154752.ingest.sentry.io',
         profiles: {
           sampleRate: 1.0,
         },
         project: {
           client: {
-            id: '4506114193817600',
-            publicKey: '6263f9ee33de7bc8d128c160df268869',
+            id: '4507213729628240',
+            publicKey: 'aa7cf549e1115e78c5a30dc5d0b4bf25',
           },
           server: {
-            id: '4506114183528448',
-            publicKey: 'be543bc70951bae8ed5bc5874b99b112',
+            id: '4507213739393104',
+            publicKey: 'a02892bc5feeb74b598b1edd33c14336',
           },
         },
         replays: {
