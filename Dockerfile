@@ -1,7 +1,7 @@
 #############
 # Create base image.
 
-FROM node:20.12.2-alpine AS base-image
+FROM node:20.13.0-alpine AS base-image
 
 # The `CI` environment variable must be set for pnpm to run in headless mode
 ENV CI=true
