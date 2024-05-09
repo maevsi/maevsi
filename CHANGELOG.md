@@ -1,3 +1,11 @@
+## [4.5.6](https://github.com/maevsi/maevsi/compare/4.5.5...4.5.6) (2024-05-09)
+
+
+### Bug Fixes
+
+* **layout-header:** correct avatar's border radius ([66ee7f0](https://github.com/maevsi/maevsi/commit/66ee7f00c745a79e95a4c9982df1195349c11ee8))
+* **tailwind:** use css instead of plugins ([5801374](https://github.com/maevsi/maevsi/commit/5801374da1afdf07c0a753d2bf4ebcaca7e7994c))
+
 ## [4.5.5](https://github.com/maevsi/maevsi/compare/4.5.4...4.5.5) (2024-05-07)
 
 
