@@ -1,3 +1,10 @@
+## [4.5.7](https://github.com/maevsi/maevsi/compare/4.5.6...4.5.7) (2024-05-09)
+
+
+### Bug Fixes
+
+* **form-input-password:** clarify placeholder ([61b546d](https://github.com/maevsi/maevsi/commit/61b546d0e2be4c5093747a20e1cb56a6fed53015))
+
 ## [4.5.6](https://github.com/maevsi/maevsi/compare/4.5.5...4.5.6) (2024-05-09)
 
 
