@@ -31,7 +31,7 @@
       <div
         class="flex min-h-0 flex-col"
         :class="{
-          'pointer-events-none relative disabled': isSubmitting,
+          'disabled pointer-events-none relative': isSubmitting,
         }"
       >
         <slot />

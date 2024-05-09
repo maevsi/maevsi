@@ -4,7 +4,7 @@
     class="relative"
   >
     <slot />
-    <div class="absolute inset-0 opacity-20 under-construction" />
+    <div class="under-construction absolute inset-0 opacity-20" />
   </div>
 </template>
 
