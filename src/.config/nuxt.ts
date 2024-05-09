@@ -49,7 +49,6 @@ export default defineNuxtConfig({
         }),
       )
     },
-    'tailwindcss:config': (tailwindConfig) => tailwindConfig.plugins?.reverse(), // let `tailwind.config.ts`'s custom plugin override the form plugin's `form-input` class component
   },
   modules: [
     '@dargmuesli/nuxt-cookie-control',

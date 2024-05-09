@@ -45,12 +45,13 @@
           <ButtonIcon
             v-if="store.signedInUsername && store.signedInAccountId"
             :aria-label="store.signedInUsername"
+            class="rounded-full"
             :title="t('profileLink')"
             :to="localePath(`/account/view/${store.signedInUsername}`)"
           >
             <AccountProfilePicture
               :account-id="store.signedInAccountId"
-              classes="h-10 rounded-full w-10"
+              classes="h-10 w-10"
               height="40"
               width="40"
             />
