@@ -1,30 +1,5 @@
 {
-  "name": "maevsi",
-  "private": true,
-  "version": "4.5.7",
   "description": "Find events, guests and friends 💙❤️💚",
-  "type": "module",
-  "engines": {
-    "node": "20"
-  },
-  "scripts": {
-    "build": "pnpm run build:node",
-    "build:node": "nuxt build",
-    "build:static": "nuxt generate",
-    "dev": "pnpm run start:dev",
-    "generate": "pnpm run build:static",
-    "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config .codegenrc.ts",
-    "lint:fix": "pnpm run lint:js --fix",
-    "lint:js": "eslint --cache",
-    "lint:style": "stylelint --cache \"**/*.{vue,css}\" --ignore-path .gitignore",
-    "lint:types": "nuxt typecheck",
-    "lint": "pnpm run lint:js && pnpm run lint:types && pnpm run lint:style",
-    "prepare": "nuxt prepare",
-    "start:dev": "nuxt dev",
-    "start:node": "node .output/server/index.mjs",
-    "start:static": "serve .output/public",
-    "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
-  },
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "8.2.3",
     "@dargmuesli/nuxt-vio": "11.2.3",
@@ -142,5 +117,31 @@
     "vue-router": "4.3.2",
     "vue-tsc": "2.0.16",
     "workbox-precaching": "7.1.0"
-  }
+  },
+  "engines": {
+    "node": "20"
+  },
+  "name": "maevsi",
+  "prettier": "./.config/prettier.js",
+  "private": true,
+  "scripts": {
+    "build": "pnpm run build:node",
+    "build:node": "nuxt build",
+    "build:static": "nuxt generate",
+    "dev": "pnpm run start:dev",
+    "generate": "pnpm run build:static",
+    "gql:codegen": "NODE_TLS_REJECT_UNAUTHORIZED=0 graphql-codegen --config .codegenrc.ts",
+    "lint": "pnpm run lint:js && pnpm run lint:types && pnpm run lint:style",
+    "lint:fix": "pnpm run lint:js --fix",
+    "lint:js": "eslint --cache --config .config/eslint.js",
+    "lint:style": "stylelint --cache \"**/*.{vue,css}\" --config .config/stylelint.ts --ignore-path .gitignore",
+    "lint:types": "nuxt typecheck",
+    "prepare": "nuxt prepare",
+    "start:dev": "nuxt dev",
+    "start:node": "node .output/server/index.mjs",
+    "start:static": "serve .output/public",
+    "supportedBrowsers": "echo \"export default $(browserslist-useragent-regexp --allowHigherVersions);\" > supportedBrowsers.js"
+  },
+  "type": "module",
+  "version": "4.5.7"
 }
