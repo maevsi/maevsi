@@ -29,6 +29,7 @@
       "directory": "./tests/"
     }
   ],
+  "prettier.configPath": "src/.config/prettier.js",
   "shellcheck.customArgs": ["-x"],
   "stylelint.validate": ["css", "vue"]
 }

@@ -1,4 +1,0 @@
-{
-  "*.{js,json,ts,vue}": "pnpm run lint:js",
-  "*.{css,vue}": "pnpm run lint:style"
-}
