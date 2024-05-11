@@ -102,7 +102,7 @@
     "stylelint-config-recommended-vue": "1.5.0",
     "stylelint-config-standard": "36.0.0",
     "stylelint-no-unsupported-browser-features": "8.0.1",
-    "sweetalert2": "11.10.8",
+    "sweetalert2": "11.11.0",
     "tailwindcss": "3.4.3",
     "unhead": "1.9.10",
     "unplugin-icons": "0.19.0",
