@@ -5,12 +5,14 @@
   >
     <IHeroiconsHome />
   </LayoutMenuItem>
-  <!-- <ISolarTelescopeBold /> -->
-  <LayoutMenuItem :title="t('search')" :to="localePath('/search')">
-    <IHeroiconsMagnifyingGlass />
-  </LayoutMenuItem>
-  <!-- <IHeroiconsBell /> -->
   <UnderConstruction>
+    <!-- <ISolarTelescopeBold /> -->
+    <LayoutMenuItem :title="t('search')" :to="localePath('/search')">
+      <IHeroiconsMagnifyingGlass />
+    </LayoutMenuItem>
+  </UnderConstruction>
+  <UnderConstruction>
+    <!-- <IHeroiconsBell /> -->
     <LayoutMenuItem
       :title="t('notifications')"
       :to="localePath('/notification')"

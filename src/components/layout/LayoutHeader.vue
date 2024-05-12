@@ -18,17 +18,19 @@
         <div
           class="hidden items-center gap-2 whitespace-nowrap lg:gap-4 2xl:flex"
         >
-          <ButtonText
-            :aria-label="t('events')"
-            class="hidden lg:flex"
-            :to="localePath('/event')"
-            :is-primary="false"
-          >
-            {{ t('events') }}
-            <template #prefix>
-              <ISolarTelescopeBold />
-            </template>
-          </ButtonText>
+          <UnderConstruction>
+            <ButtonText
+              :aria-label="t('events')"
+              class="hidden lg:flex"
+              :to="localePath('/event')"
+              :is-primary="false"
+            >
+              {{ t('events') }}
+              <template #prefix>
+                <ISolarTelescopeBold />
+              </template>
+            </ButtonText>
+          </UnderConstruction>
           <ButtonEventNew class="hidden lg:flex" variant="text" />
           <div
             class="my-1 hidden w-px flex-none self-stretch bg-gray-300 dark:bg-gray-600 lg:flex"
