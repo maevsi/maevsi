@@ -24,11 +24,6 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
     classSuffix: '',
   },
   ...cookieControlConfig,
-  eslint: {
-    config: {
-      autoInit: false,
-    },
-  },
   gtag: {
     config: {
       cookie_flags: 'samesite=strict',

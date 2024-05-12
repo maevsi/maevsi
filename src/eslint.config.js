@@ -1,11 +1,11 @@
 import { VIO_ESLINT_CONFIG } from '@dargmuesli/nuxt-vio/.config/lint.js'
 import jiti from 'jiti'
 
-import withNuxt from '../.nuxt/eslint.config.mjs'
+import withNuxt from './.nuxt/eslint.config.mjs'
 
 const moduleFileUrl = new URL(import.meta.url)
 const JITI = jiti(moduleFileUrl.pathname)
-const POLYFILLS = JITI('../utils/constants.ts').POLYFILLS
+const POLYFILLS = JITI('./utils/constants.ts').POLYFILLS
 
 export default withNuxt(
   ...VIO_ESLINT_CONFIG,
