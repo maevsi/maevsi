@@ -1,5 +1,5 @@
 <template>
-  <UBreadcrumb :links="items">
+  <UBreadcrumb class="hidden lg:block" :links="items">
     <template #icon="{ link }">
       <IconLogo
         v-if="link.to === localePath('/')"
