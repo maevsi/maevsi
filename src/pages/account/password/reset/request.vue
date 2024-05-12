@@ -1,10 +1,6 @@
 <template>
   <div>
-    <LayoutPageTitle
-      is-centered
-      :title="title"
-      :to="localePath('/session/create')"
-    />
+    <LayoutPageTitle is-centered :title="title" />
     <div class="flex justify-center">
       <FormAccountPasswordResetRequest class="max-w-sm grow" />
     </div>
@@ -13,7 +9,6 @@
 
 <script setup lang="ts">
 const { t } = useI18n()
-const localePath = useLocalePath()
 
 // data
 const title = t('title')

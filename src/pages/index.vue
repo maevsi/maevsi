@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-32 pt-8 md:gap-32">
-    <LayoutPageTitle title="slot">
+    <LayoutPageTitle title="-">
       <section id="overview" class="flex items-center gap-8">
         <div class="flex w-full flex-col items-start gap-8 md:gap-16 lg:w-1/2">
           <i18n-t

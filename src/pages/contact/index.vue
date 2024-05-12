@@ -1,7 +1,7 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <LayoutPageTitle :title="title" :to="localePath('/dashboard')" />
+    <LayoutPageTitle :title="title" />
     <ContactList v-if="store.jwtDecoded?.role === 'maevsi_account'" />
     <LayoutCallToAction
       v-else
@@ -29,7 +29,6 @@ export const usePageBreadcrumb = () =>
 const store = useMaevsiStore()
 const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
-const localePath = useLocalePath()
 
 // data
 const breadcrumbItems = getBreadcrumbItemProps([

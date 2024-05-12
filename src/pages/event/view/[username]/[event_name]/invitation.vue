@@ -5,10 +5,7 @@
       class="flex flex-col gap-4"
     >
       <LayoutBreadcrumbs :items="breadcrumbItems" />
-      <LayoutPageTitle
-        :title="t('title')"
-        :to="`/event/view/${route.params.username}/${route.params.event_name}`"
-      />
+      <LayoutPageTitle :title="t('title')" />
       <InvitationList :event="event" />
     </div>
     <Error v-else :status-code="403" />

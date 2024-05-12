@@ -1,10 +1,7 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <LayoutPageTitle
-      :title="title"
-      :to="localePath(`/session/edit/${route.params.id}`)"
-    />
+    <LayoutPageTitle :title="title" />
     <div class="flex flex-col gap-8">
       <section class="flex flex-col gap-4">
         <h2>{{ t('end') }}</h2>
@@ -213,8 +210,6 @@ const requestEvent = useRequestEvent()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
 const dateTime = useDateTime()
-const route = useRoute(ROUTE_NAME)
-const localePath = useLocalePath()
 const { signOut } = useSignOut()
 
 // data

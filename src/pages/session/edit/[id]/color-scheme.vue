@@ -1,9 +1,6 @@
 <template>
   <div>
-    <LayoutPageTitle
-      :title="title"
-      :to="localePath(`/session/edit/${route.params.id}`)"
-    />
+    <LayoutPageTitle :title="title" />
     <ClientOnly>
       <!-- <IHeroiconsComputerDesktop v-if="colorScheme.id === 'system'" />
       <IHeroiconsSun v-else-if="colorScheme.id === 'light'" />
@@ -22,14 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import type { RoutesNamesList } from '@typed-router'
-
-const ROUTE_NAME: RoutesNamesList = 'session-edit-id-language'
-
 const colorMode = useColorMode()
 const { t } = useI18n()
-const route = useRoute(ROUTE_NAME)
-const localePath = useLocalePath()
 
 // data
 const title = t('title')

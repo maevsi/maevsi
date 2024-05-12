@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex items-baseline gap-4">
-      <ButtonIcon v-if="props.to" :aria-label="t('back')" :to="props.to">
+      <ButtonIcon :aria-label="t('back')" @click="router.back()">
         <IHeroiconsChevronLeft />
       </ButtonIcon>
       <div class="flex-1 overflow-hidden">
@@ -34,24 +34,21 @@
   </div>
 </template>
 
-<script setup lang="ts" generic="T extends RoutesNamesList, P extends string">
-import type { NuxtRoute, RoutesNamesList } from '@typed-router'
-
-export interface Props<T extends RoutesNamesList, P extends string> {
+<script setup lang="ts">
+export interface Props {
   isButtonEventCreateShown?: boolean
   isCentered?: boolean
   title: string
-  to?: NuxtRoute<T, P>
 }
-const props = withDefaults(defineProps<Props<T, P>>(), {
+withDefaults(defineProps<Props>(), {
   isButtonEventCreateShown: true,
   isCentered: false,
-  to: undefined,
 })
 
 const store = useMaevsiStore()
 const { t } = useI18n()
 const localePath = useLocalePath()
+const router = useRouter()
 </script>
 
 <i18n lang="yaml">
