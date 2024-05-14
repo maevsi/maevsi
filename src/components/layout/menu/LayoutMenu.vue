@@ -1,24 +1,19 @@
 <template>
-  <LayoutMenuItem
-    :title="t('dashboard')"
-    :to="localePath(store.signedInUsername ? '/dashboard' : '/')"
-  >
-    <IHeroiconsHome />
+  <LayoutMenuItem :title="t('explore')" :to="localePath('/event')">
+    <IHeroiconsHeart />
   </LayoutMenuItem>
   <UnderConstruction>
-    <!-- <ISolarTelescopeBold /> -->
     <LayoutMenuItem :title="t('search')" :to="localePath('/search')">
       <IHeroiconsMagnifyingGlass />
     </LayoutMenuItem>
   </UnderConstruction>
   <UnderConstruction>
-    <!-- <IHeroiconsBell /> -->
     <LayoutMenuItem
       :title="t('notifications')"
       :to="localePath('/notification')"
     >
       <div class="relative">
-        <IHeroiconsHeart />
+        <IHeroiconsBell />
         <div class="absolute right-0 top-0">
           <NotificationIndicator />
         </div>
@@ -27,15 +22,16 @@
   </UnderConstruction>
   <LayoutMenuItem
     :title="t('account')"
-    :to="
-      localePath(
-        store.signedInUsername
-          ? `/account/view/${store.signedInUsername}`
-          : '/session/create',
-      )
-    "
+    :to="localePath(store.signedInUsername ? `/dashboard` : '/session/create')"
   >
-    <IHeroiconsUser />
+    <AccountProfilePicture
+      v-if="store.signedInUsername && store.signedInAccountId"
+      :account-id="store.signedInAccountId"
+      classes="rounded-full"
+      height="24"
+      width="24"
+    />
+    <IHeroiconsUser v-else />
   </LayoutMenuItem>
 </template>
 
@@ -47,13 +43,13 @@ const localePath = useLocalePath()
 
 <i18n lang="yaml">
 de:
-  account: Konto
-  dashboard: Dashboard
+  account: Dashboard
+  explore: Empfehlungen
   notifications: Benachrichtigungen
   search: Suche
 en:
-  account: Account
-  dashboard: Dashboard
+  account: Dashboard
+  explore: Suggestions
   notifications: Notifications
   search: Search
 </i18n>

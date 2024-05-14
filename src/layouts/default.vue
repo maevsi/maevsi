@@ -7,7 +7,7 @@
       data-testid="is-loading"
     >
       <div class="flex-1 2xl:pb-32">
-        <LayoutHeader class="lg:hidden 2xl:block" />
+        <LayoutHeader />
         <main class="flex-1 overflow-hidden p-1">
           <slot />
         </main>
