@@ -23,7 +23,7 @@
     "@axe-core/playwright": "4.9.0",
     "@eslint/js": "9.2.0",
     "@playwright/test": "1.44.0",
-    "@types/node": "20.12.11",
+    "@types/node": "20.12.12",
     "cross-env": "7.0.3",
     "eslint": "9.2.0",
     "eslint-config-prettier": "9.1.0",
