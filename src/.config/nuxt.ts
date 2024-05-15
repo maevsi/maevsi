@@ -144,16 +144,6 @@ export default defineNuxtConfig({
     },
   },
   sourcemap: true,
-  typescript: {
-    shim: false,
-    strict: true,
-    tsConfig: {
-      compilerOptions: {
-        esModuleInterop: true,
-        // noErrorTruncation: true,
-      },
-    },
-  },
   vite: {
     optimizeDeps: {
       include: [
