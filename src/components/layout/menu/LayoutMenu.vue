@@ -2,24 +2,6 @@
   <LayoutMenuItem :title="t('explore')" :to="localePath('/event')">
     <IHeroiconsHeart />
   </LayoutMenuItem>
-  <UnderConstruction>
-    <LayoutMenuItem :title="t('search')" :to="localePath('/search')">
-      <IHeroiconsMagnifyingGlass />
-    </LayoutMenuItem>
-  </UnderConstruction>
-  <UnderConstruction>
-    <LayoutMenuItem
-      :title="t('notifications')"
-      :to="localePath('/notification')"
-    >
-      <div class="relative">
-        <IHeroiconsBell />
-        <div class="absolute right-0 top-0">
-          <NotificationIndicator />
-        </div>
-      </div>
-    </LayoutMenuItem>
-  </UnderConstruction>
   <LayoutMenuItem
     :title="t('account')"
     :to="localePath(store.signedInUsername ? `/dashboard` : '/session/create')"
@@ -33,6 +15,24 @@
     />
     <IHeroiconsUser v-else />
   </LayoutMenuItem>
+  <UnderConstruction>
+    <LayoutMenuItem
+      :title="t('notifications')"
+      :to="localePath('/notification')"
+    >
+      <div class="relative">
+        <IHeroiconsBell />
+        <div class="absolute right-0 top-0">
+          <NotificationIndicator />
+        </div>
+      </div>
+    </LayoutMenuItem>
+  </UnderConstruction>
+  <UnderConstruction>
+    <LayoutMenuItem :title="t('search')" :to="localePath('/search')">
+      <IHeroiconsMagnifyingGlass />
+    </LayoutMenuItem>
+  </UnderConstruction>
 </template>
 
 <script setup lang="ts">
