@@ -35,6 +35,13 @@
         >
           <IHeroiconsFolder />
         </CardButton>
+        <CardButton
+          :description="t('accountDescription')"
+          :title="t('account')"
+          :to="localePath(`/account/view/${store.signedInUsername}`)"
+        >
+          <IHeroiconsIdentification />
+        </CardButton>
       </section>
       <ButtonApp />
       <UnderConstruction>
@@ -85,6 +92,8 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
+  account: Konto
+  accountDescription: Präsentiere deine Errungenschaften
   anonymousCta: Finde ihn auf maevsi
   anonymousCtaDescription: Dir fehlt der Überblick über Veranstaltungen?
   contacts: Kontake
@@ -98,6 +107,8 @@ de:
   uploads: Uploads
   uploadsDescription: Teile deine Dateien
 en:
+  account: Account
+  accountDescription: Showcase your achievements
   anonymousCta: Find it on maevsi
   anonymousCtaDescription: Are you missing an overview of events?
   contacts: Contacts
