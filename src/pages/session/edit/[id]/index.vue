@@ -39,32 +39,6 @@
         </div>
       </section>
       <section class="flex flex-col gap-4">
-        <span class="text-xl font-bold">{{ t('legal') }}</span>
-        <div class="flex flex-col gap-2">
-          <CardButton
-            :description="t('cookiesDescription')"
-            :title="t('cookies')"
-            @click="cookieControl.isModalActive.value = true"
-          >
-            <IMaterialSymbolsCookieOutline />
-          </CardButton>
-          <CardButton
-            :description="t('legalNoticeDescription')"
-            :title="t('legalNotice')"
-            :to="localePath('/legal-notice')"
-          >
-            <IHeroiconsScale />
-          </CardButton>
-          <CardButton
-            :description="t('privacyPolicyDescription')"
-            :title="t('privacyPolicy')"
-            :to="localePath('/privacy-policy')"
-          >
-            <IHeroiconsShieldCheck />
-          </CardButton>
-        </div>
-      </section>
-      <section class="flex flex-col gap-4">
         <span class="text-xl font-bold">{{ t('support') }}</span>
         <div class="flex flex-col gap-2">
           <CardButton
@@ -132,6 +106,32 @@
             :to="`/session/view/${route.params.id}`"
           >
             <IHeroiconsWrench />
+          </CardButton>
+        </div>
+      </section>
+      <section class="flex flex-col gap-4">
+        <span class="text-xl font-bold">{{ t('legal') }}</span>
+        <div class="flex flex-col gap-2">
+          <CardButton
+            :description="t('cookiesDescription')"
+            :title="t('cookies')"
+            @click="cookieControl.isModalActive.value = true"
+          >
+            <IMaterialSymbolsCookieOutline />
+          </CardButton>
+          <CardButton
+            :description="t('legalNoticeDescription')"
+            :title="t('legalNotice')"
+            :to="localePath('/legal-notice')"
+          >
+            <IHeroiconsScale />
+          </CardButton>
+          <CardButton
+            :description="t('privacyPolicyDescription')"
+            :title="t('privacyPolicy')"
+            :to="localePath('/privacy-policy')"
+          >
+            <IHeroiconsShieldCheck />
           </CardButton>
         </div>
       </section>
