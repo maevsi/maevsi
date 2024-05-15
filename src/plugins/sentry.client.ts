@@ -18,6 +18,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     app: nuxtApp.vueApp,
     integrations: [
       Sentry.browserTracingIntegration({ router }),
+      Sentry.captureConsoleIntegration({ levels: ['error'] }),
+      Sentry.httpClientIntegration(),
       Sentry.replayIntegration(),
     ],
     replaysOnErrorSampleRate:
