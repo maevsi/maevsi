@@ -1,3 +1,22 @@
+## [4.6.0](https://github.com/maevsi/maevsi/compare/4.5.7...4.6.0) (2024-05-15)
+
+
+### Features
+
+* **breadcrumbs:** disable ([0203bbc](https://github.com/maevsi/maevsi/commit/0203bbc458316748127921cb08776fd934b0fc45))
+* **breadcrumbs:** hide on non-desktop ([678b984](https://github.com/maevsi/maevsi/commit/678b9842fd55a70135c7a1a68d4c3ba3cfeb6154))
+* **breadcrumbs:** replace root logo ([fc900e9](https://github.com/maevsi/maevsi/commit/fc900e95cfbc7a5622148ef1577703cae5435b30))
+* **docs:** style app buttons for desktop ([4d04f12](https://github.com/maevsi/maevsi/commit/4d04f1294f95da870daa0571b467d5ec0e581a47))
+* **header:** rework ([c81bbe6](https://github.com/maevsi/maevsi/commit/c81bbe6d1b105799bba75c0bd020d3695c04afa0))
+* **menu:** reorder ([b3da7d5](https://github.com/maevsi/maevsi/commit/b3da7d5540667a950392a0e80ab8aee966edcfd1))
+* put event discovery / search links under construction ([4a14d10](https://github.com/maevsi/maevsi/commit/4a14d1058105190ba442ae4208fde8a5f9b15182))
+
+
+### Bug Fixes
+
+* **menu:** translate ([70208fd](https://github.com/maevsi/maevsi/commit/70208fd5b382ff28397ee0587bafcac9ad7b542e))
+* **page-title:** use simple back navigation ([f3f698f](https://github.com/maevsi/maevsi/commit/f3f698feff646cc01ddf30d12296c4003690c83b))
+
 ## [4.5.7](https://github.com/maevsi/maevsi/compare/4.5.6...4.5.7) (2024-05-09)
 
 
