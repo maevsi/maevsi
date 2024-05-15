@@ -1,3 +1,10 @@
+## [4.7.0](https://github.com/maevsi/maevsi/compare/4.6.0...4.7.0) (2024-05-15)
+
+
+### Features
+
+* **sentry:** capture console errors and fetches ([1039769](https://github.com/maevsi/maevsi/commit/103976950298bc761ba97ca3ee8cc1eb7dcb1320))
+
 ## [4.6.0](https://github.com/maevsi/maevsi/compare/4.5.7...4.6.0) (2024-05-15)
 
 
