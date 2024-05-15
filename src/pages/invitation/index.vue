@@ -1,7 +1,7 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <LayoutPageTitle :title="title" :to="localePath('/dashboard')" />
+    <LayoutPageTitle :title="title" />
     <CardStateInfo>
       {{ t('soon') }}
     </CardStateInfo>
@@ -24,7 +24,6 @@ export const usePageBreadcrumb = () =>
 
 <script setup lang="ts">
 const { t } = useI18n()
-const localePath = useLocalePath()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // data

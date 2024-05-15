@@ -12,20 +12,21 @@
           {{ t('descriptionContent') }}
         </div>
       </div>
-      <div class="flex flex-col gap-4">
-        <CardButton
-          :is-external="true"
-          :title="t('googlePlay')"
-          to="https://play.google.com/store/apps/details?id=si.maev.twa"
-        >
-          <IFa6BrandsGooglePlay />
-        </CardButton>
+      <div class="flex flex-col justify-center gap-4 lg:flex-row lg:gap-8">
         <CardButton
           :is-external="true"
           :title="t('appStore')"
           to="https://testflight.apple.com/join/kkStPDoc"
         >
           <IFa6BrandsAppStore />
+        </CardButton>
+        <CardButton
+          class="lg:h-32"
+          :is-external="true"
+          :title="t('googlePlay')"
+          to="https://play.google.com/store/apps/details?id=si.maev.twa"
+        >
+          <IFa6BrandsGooglePlay />
         </CardButton>
       </div>
     </div>
@@ -48,7 +49,7 @@ de:
   title: App
 en:
   appStore: maevsi on the App Store
-  descriptionContent: Install maevsi as app now.
+  descriptionContent: Install the maevsi app now.
   descriptionTitle: Don't miss any events.
   googlePlay: maevsi on Google Play
   title: App

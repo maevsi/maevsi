@@ -1,9 +1,6 @@
 <template>
   <div>
-    <LayoutPageTitle
-      :title="title"
-      :to="localePath(`/session/edit/${route.params.id}`)"
-    />
+    <LayoutPageTitle :title="title" />
     <FormRadioButtonTailwind
       :model="locale"
       :options="options"
@@ -13,16 +10,11 @@
 </template>
 
 <script setup lang="ts">
-import { type RoutesNamesList } from '@typed-router'
 import { MODULE_CONFIG } from '~/config/modules/i18n'
-
-const ROUTE_NAME: RoutesNamesList = 'session-edit-id-language'
 
 const { availableLocales, locale, t } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
-const route = useRoute(ROUTE_NAME)
 const router = useRouter()
-const localePath = useLocalePath()
 
 // data
 const options = availableLocales.map((availableLocale) => ({

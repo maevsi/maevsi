@@ -1,40 +1,55 @@
 <template>
+  <LayoutMenuItem :title="t('explore')" :to="localePath('/event')">
+    <IHeroiconsHeart />
+  </LayoutMenuItem>
   <LayoutMenuItem
-    title="Home"
-    :to="localePath(store.signedInUsername ? '/dashboard' : '/')"
+    :title="t('account')"
+    :to="localePath(store.signedInUsername ? `/dashboard` : '/session/create')"
   >
-    <IHeroiconsHome />
+    <AccountProfilePicture
+      v-if="store.signedInUsername && store.signedInAccountId"
+      :account-id="store.signedInAccountId"
+      classes="rounded-full"
+      height="24"
+      width="24"
+    />
+    <IHeroiconsUser v-else />
   </LayoutMenuItem>
-  <!-- <ISolarTelescopeBold /> -->
-  <LayoutMenuItem title="Search" :to="localePath('/search')">
-    <IHeroiconsMagnifyingGlass />
-  </LayoutMenuItem>
-  <!-- <IHeroiconsBell /> -->
   <UnderConstruction>
-    <LayoutMenuItem title="Notifications" :to="localePath('/notification')">
+    <LayoutMenuItem
+      :title="t('notifications')"
+      :to="localePath('/notification')"
+    >
       <div class="relative">
-        <IHeroiconsHeart />
+        <IHeroiconsBell />
         <div class="absolute right-0 top-0">
           <NotificationIndicator />
         </div>
       </div>
     </LayoutMenuItem>
   </UnderConstruction>
-  <LayoutMenuItem
-    title="Account"
-    :to="
-      localePath(
-        store.signedInUsername
-          ? `/account/view/${store.signedInUsername}`
-          : '/session/create',
-      )
-    "
-  >
-    <IHeroiconsUser />
-  </LayoutMenuItem>
+  <UnderConstruction>
+    <LayoutMenuItem :title="t('search')" :to="localePath('/search')">
+      <IHeroiconsMagnifyingGlass />
+    </LayoutMenuItem>
+  </UnderConstruction>
 </template>
 
 <script setup lang="ts">
 const store = useMaevsiStore()
+const { t } = useI18n()
 const localePath = useLocalePath()
 </script>
+
+<i18n lang="yaml">
+de:
+  account: Dashboard
+  explore: Empfehlungen
+  notifications: Benachrichtigungen
+  search: Suche
+en:
+  account: Dashboard
+  explore: Suggestions
+  notifications: Notifications
+  search: Search
+</i18n>

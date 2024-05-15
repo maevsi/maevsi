@@ -2,11 +2,7 @@
   <Loader :api="api" indicator="ping">
     <div class="flex flex-col gap-4">
       <LayoutBreadcrumbs :items="breadcrumbItems" />
-      <LayoutPageTitle
-        v-if="store.jwtDecoded"
-        :title="routeParamUsername"
-        :to="`/session/edit/${store.jwtDecoded.id}`"
-      />
+      <LayoutPageTitle v-if="store.jwtDecoded" :title="routeParamUsername" />
       <section class="flex justify-center">
         <Button
           :aria-label="t('profilePictureChange')"

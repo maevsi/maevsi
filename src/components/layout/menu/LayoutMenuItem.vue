@@ -9,7 +9,7 @@
       <div>
         <slot />
       </div>
-      <span class="hidden text-xs sm:block lg:text-lg">
+      <span class="hidden whitespace-nowrap text-xs sm:block lg:text-lg">
         {{ title }}
       </span>
     </div>

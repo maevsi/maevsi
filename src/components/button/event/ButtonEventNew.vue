@@ -1,48 +1,27 @@
 <template>
-  <ButtonText
-    v-if="variant === 'text'"
-    :aria-label="t('new')"
+  <Button
+    :aria-label="t('text')"
+    class="shrink-0 2xl:whitespace-nowrap 2xl:px-4 2xl:py-2 2xl:font-medium"
     :to="localePath('/event/create')"
-    @click="emit('click')"
   >
-    {{ t('new') }}
+    <span class="hidden 2xl:block">
+      {{ t('text') }}
+    </span>
+    <ISolarCalendarAddOutline class="2xl:hidden" height="2em" width="2em" />
     <template #prefix>
-      <IHeroiconsPlus />
+      <IHeroiconsPlus class="hidden 2xl:block" />
     </template>
-  </ButtonText>
-  <ButtonColored
-    v-else
-    :aria-label="t('new')"
-    :is-primary="variant === 'primary'"
-    :to="localePath('/event/create')"
-    @click="emit('click')"
-  >
-    {{ t('new') }}
-    <template #prefix>
-      <IHeroiconsPlus />
-    </template>
-  </ButtonColored>
+  </Button>
 </template>
 
 <script setup lang="ts">
 const localePath = useLocalePath()
 const { t } = useI18n()
-
-export interface Props {
-  variant?: 'text' | 'primary' | 'secondary'
-}
-withDefaults(defineProps<Props>(), {
-  variant: 'primary',
-})
-
-const emit = defineEmits<{
-  click: []
-}>()
 </script>
 
 <i18n lang="yaml">
 de:
-  new: Veranstaltung erstellen
+  text: Veranstaltung erstellen
 en:
-  new: Create event
+  text: Create event
 </i18n>

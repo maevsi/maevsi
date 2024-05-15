@@ -1,7 +1,7 @@
 <template>
   <div>
     <LayoutBreadcrumbs :items="breadcrumbItems" />
-    <LayoutPageTitle :title="title" :to="localePath('/dashboard')" />
+    <LayoutPageTitle :title="title" />
     <!-- "UploadGallery" must come after "ModalUploadSelection" for them to overlay properly! -->
     <UploadGallery v-if="store.jwtDecoded?.role === 'maevsi_account'" />
     <LayoutCallToAction
@@ -31,7 +31,6 @@ export const usePageBreadcrumb = () => {
 const { t } = useI18n()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 const store = useMaevsiStore()
-const localePath = useLocalePath()
 
 // data
 const breadcrumbItems = getBreadcrumbItemProps([

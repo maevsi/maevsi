@@ -1,7 +1,10 @@
 <template>
-  <UBreadcrumb :links="items">
+  <UBreadcrumb v-if="false" class="hidden lg:block" :links="items">
     <template #icon="{ link }">
-      <IHeroiconsHome v-if="link.to === localePath('/')" />
+      <IconLogo
+        v-if="link.to === localePath('/')"
+        class="h-6 w-6 opacity-40 brightness-0 dark:opacity-50 dark:invert"
+      />
     </template>
   </UBreadcrumb>
 </template>
