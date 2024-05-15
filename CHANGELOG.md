@@ -1,3 +1,11 @@
+## [4.8.0](https://github.com/maevsi/maevsi/compare/4.7.0...4.8.0) (2024-05-15)
+
+
+### Features
+
+* **dashboard:** add account link ([b63594e](https://github.com/maevsi/maevsi/commit/b63594edf34f829fc06211f5ac40919eea754285))
+* **session:** move down legal section ([325053d](https://github.com/maevsi/maevsi/commit/325053dc87e286eba6c6fe6ad14f7687bfd6a4b2))
+
 ## [4.7.0](https://github.com/maevsi/maevsi/compare/4.6.0...4.7.0) (2024-05-15)
 
 
