@@ -1,154 +1,77 @@
 <template>
-  <div class="flex flex-col gap-32 pt-8 md:gap-32">
-    <LayoutPageTitle title="-">
-      <section id="overview" class="flex items-center gap-8">
-        <div class="flex w-full flex-col items-start gap-8 md:gap-16 lg:w-1/2">
-          <i18n-t
-            class="m-0 text-left text-4xl font-extrabold sm:text-5xl md:text-5xl xl:text-7xl"
-            keypath="title"
-            tag="h1"
+  <div class="flex flex-col gap-32 pb-64 pt-8 md:gap-64">
+    <section id="overview" class="flex items-center gap-8">
+      <div class="flex flex-col items-start gap-8 md:gap-16">
+        <h1
+          class="m-0 text-left text-4xl font-extrabold sm:text-5xl md:text-5xl xl:text-7xl"
+        >
+          {{ t('title') }}
+        </h1>
+        <div class="flex gap-8">
+          <ButtonColored
+            :aria-label="t('testNowFree')"
+            class="text-lg md:text-xl"
+            :to="localePath('/event')"
           >
-            <template #events>
-              <span class="text-blue-600">{{ t('titleBlue') }}</span>
+            {{ t('testNowFree') }}
+          </ButtonColored>
+          <Button
+            v-if="!isApp"
+            :aria-label="t('appInstall')"
+            :is-primary="false"
+            :to="localePath('/docs/app')"
+          >
+            {{ t('appInstall') }}
+            <template #suffix>
+              <IHeroiconsArrowRight />
             </template>
-            <template #guests>
-              <span class="text-green-600">{{ t('titleGreen') }}</span>
-            </template>
-            <template #friends>
-              <span class="text-red-600">{{ t('titleRed') }}</span>
-            </template>
-          </i18n-t>
-          <div class="flex flex-col gap-2 text-lg md:text-xl">
-            <p>
-              {{ t('maevsiDescription1') }}
-            </p>
-            <p>
-              {{ t('maevsiDescription2') }}
-            </p>
-          </div>
-          <div class="flex gap-8">
-            <ButtonColored
-              :aria-label="t('testNowFree')"
-              class="text-lg md:text-xl"
-              :to="localePath('/event')"
-            >
-              {{ t('testNowFree') }}
-            </ButtonColored>
-            <Button
-              v-if="!isApp"
-              :aria-label="t('appInstall')"
-              :is-primary="false"
-              :to="localePath('/docs/app')"
-            >
-              {{ t('appInstall') }}
-              <template #suffix>
-                <IHeroiconsArrowRight />
-              </template>
-            </Button>
-          </div>
+          </Button>
         </div>
-        <LoaderImage
-          :alt="t('heroImage')"
-          aspect="aspect-[750/861]"
-          class="hidden w-1/2 lg:block"
-          height="861"
-          src="/assets/static/images/hero_background.png"
-          width="750"
-        />
-      </section>
-    </LayoutPageTitle>
-    <section id="steps" ref="sectionStepsRef">
-      <h2 class="text-center text-5xl font-extrabold">
-        {{ t('stepsTitle') }}
-      </h2>
-      <div class="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap">
-        <Step
-          class="sm:w-1/4"
-          :number="t('stepCreateNumber')"
-          :title="t('stepCreateTitle')"
-        >
-          {{ t('stepCreateDescription') }}
-        </Step>
-        <Step
-          class="sm:w-1/4"
-          :number="t('stepInviteNumber')"
-          :title="t('stepInviteTitle')"
-        >
-          {{ t('stepInviteDescription') }}
-        </Step>
-        <Step
-          class="sm:w-1/4"
-          :number="t('stepDefineNumber')"
-          :title="t('stepDefineTitle')"
-        >
-          {{ t('stepDefineDescription') }}
-        </Step>
       </div>
-    </section>
-    <section class="flex flex-col items-center gap-8 lg:flex-row">
       <LoaderImage
         :alt="t('heroImage')"
-        aspect="aspect-square"
-        class="w-full lg:w-1/2"
-        height="750"
-        src="/assets/static/images/smartphone.webp"
+        aspect="aspect-[750/861]"
+        class="hidden xl:block"
+        height="861"
+        src="/assets/static/images/hero_background.png"
         width="750"
       />
-      <div class="flex flex-col items-start gap-8 lg:w-1/2">
-        <h2 class="text-4xl font-extrabold">
-          {{ t('smartphoneTitle') }}
-        </h2>
-        <p class="text-lg font-normal leading-8">
-          {{ t('smartphoneDescription') }}
-        </p>
-        <ButtonColored
-          :aria-label="t('testNow')"
-          :to="localePath('/event/create')"
-        >
-          {{ t('testNow') }}
-        </ButtonColored>
-      </div>
     </section>
-    <section id="features" class="flex flex-col gap-8">
-      <i18n-t
-        class="text-center text-5xl font-extrabold"
-        keypath="benefitsTitle"
-        tag="h2"
+    <section class="grid gap-32 2xl:grid-cols-2 2xl:gap-64">
+      <TailwindFeature
+        :keyword="t('featureRecommendationsKeyword')"
+        :title="t('featureRecommendationsTitle')"
+        :description="t('featureRecommendationsDescription')"
       >
-        <template #maevsi><br />{{ t('maevsi') }}</template>
-      </i18n-t>
-      <div class="flex flex-wrap">
-        <Benefit
-          :description="t('benefitInformationDescription')"
-          icon-path="/assets/static/icons/flexibility.svg"
-          :title="t('benefitInformation')"
-        />
-        <Benefit
-          :description="t('benefitPersonalDescription')"
-          icon-path="/assets/static/icons/statistics.svg"
-          :title="t('benefitPersonal')"
-        />
-        <Benefit
-          :description="t('benefitControlDescription')"
-          icon-path="/assets/static/icons/management.svg"
-          :title="t('benefitControl')"
-        />
-        <Benefit
-          :description="t('benefitUserFriendlyDescription')"
-          icon-path="/assets/static/icons/user-friendly.svg"
-          :title="t('benefitUserFriendly')"
-        />
-        <Benefit
-          :description="t('benefitSecureDescription')"
-          icon-path="/assets/static/icons/modules.svg"
-          :title="t('benefitSecure')"
-        />
-        <Benefit
-          :description="t('benefitOpenSourceDescription')"
-          icon-path="/assets/static/icons/open-source.svg"
-          :title="t('benefitOpenSource')"
-        />
-      </div>
+        <IHeroiconsLightBulb />
+      </TailwindFeature>
+      <TailwindFeature
+        :keyword="t('featureInvitationsKeyword')"
+        :title="t('featureInvitationsTitle')"
+        :description="t('featureInvitationsDescription')"
+      >
+        <IHeroiconsSparkles />
+      </TailwindFeature>
+      <TailwindFeature
+        :keyword="t('featurePortfolioKeyword')"
+        :title="t('featurePortfolioTitle')"
+        :description="t('featurePortfolioDescription')"
+      >
+        <IHeroiconsTrophy />
+      </TailwindFeature>
+      <TailwindFeature
+        :keyword="t('featureCommunityKeyword')"
+        :title="t('featureCommunityTitle')"
+        :description="t('featureCommunityDescription')"
+      >
+        <IHeroiconsUserGroup />
+      </TailwindFeature>
+    </section>
+    <section>
+      <TailwindDiscord />
+    </section>
+    <section>
+      <TailwindPricing />
     </section>
     <div
       class="fixed bottom-4 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xl transition duration-300"
@@ -161,6 +84,13 @@
         @click="scrollToSteps"
       />
     </div>
+    <!-- Timeline / Awards / KPIs (https://tailwindui.com/components/marketing/sections/stats-sections) -->
+    <!-- Blog (https://tailwindui.com/components/marketing/sections/blog-sections) -->
+    <!-- Contact form (https://tailwindui.com/components/marketing/sections/contact-sections) -->
+    <!-- Socials (https://tailwindui.com/components/marketing/sections/footers) -->
+    <!-- Testimonials (https://tailwindui.com/components/marketing/sections/testimonials, https://tailwindui.com/components/marketing/sections/logo-clouds) -->
+    <!-- Team (https://tailwindui.com/components/marketing/sections/team-sections) -->
+    <!-- Organizer Page (https://github.com/maevsi/maevsi/blob/3900d49c7c2025bb75a741ed96fff03fbe204300/src/pages/index.vue) -->
   </div>
 </template>
 
@@ -173,7 +103,6 @@ export const usePageBreadcrumb = () =>
       de: 'Start',
       en: 'Home',
     },
-    icon: 'todo', // TODO: let slot suffice
     to: '/',
   }) as BreadcrumbLinkLocalized
 </script>
@@ -220,77 +149,37 @@ useHeadDefault({ title: siteConfig.name })
 
 <i18n lang="yaml">
 de:
+  featureRecommendationsKeyword: Smarte Relevanz
+  featureRecommendationsTitle: Vorteilhafte Empfehlungen
+  featureRecommendationsDescription: Lehne dich zurück und entspanne dich mit einem Lächeln im Gesicht, denn du weißt, dass maevsi dich informiert, wenn es etwas geben wird, das du nicht verpassen willst.
+  featureInvitationsKeyword: Persönliche Wertschätzung
+  featureInvitationsTitle: Exklusive Einladungen
+  featureInvitationsDescription: 'Ob du es glaubst oder nicht: Menschen lieben es, dich bei sich zu haben. Nun liegt es an dir, ihnen zu ermöglichen, dich auf elegante Art und Weise zu unvergesslichen Veranstaltungen einzuladen.'
+  featurePortfolioKeyword: Vertrauenswürdige Nutzer
+  featurePortfolioTitle: Respektables Auftreten
+  featurePortfolioDescription: Vertraue nicht uns, vertraue den Nutzenden. Sieh dir die Erfahrungen an, die andere stolz teilen, und entscheide selbst, wohin du am besten gehst.
+  featureCommunityKeyword: Loyale Gemeinschaft
+  featureCommunityTitle: Stärkende Freundschaften
+  featureCommunityDescription: An einem neuen Ort anzukommen, kann hart sein. Am selben Ort zu bleiben, auch. Wo auch immer du bist, maevsi ist deine Abkürzung, unter tolle Menschen zu kommen und lang anhaltende Verbindungen aufzubauen.
   appInstall: oder die App installieren
-  benefitControl: Kontrolle
-  benefitControlDescription: Du kannst genau planen, was deine Gäste brauchen
-  benefitInformation: Klare Infos
-  benefitInformationDescription: Kein Durcheinander, wie in Gruppen-Chats
-  benefitOpenSource: Öffentlicher Code
-  benefitOpenSourceDescription: 'Keine Geheimnisse: du kannst sehen wie maevsi funktioniert'
-  benefitPersonal: Persönlich
-  benefitPersonalDescription: Digitaler Komfort, kombiniert mit individuellen Einladungen
-  benefitSecure: Sicher
-  benefitSecureDescription: Du bestimmst, wer welche Daten sehen kann
-  benefitsTitle: Deine Vorteile mit {maevsi}
-  benefitUserFriendly: Benutzerfreundlich
-  benefitUserFriendlyDescription: Gäste können ganz einfach teilnehmen, komplett ohne Login
   heroImage: Heldenbild.
-  maevsi: maevsi
-  maevsiDescription1: Persönliche Einladungen. Geordnetes Feedback.
-  maevsiDescription2: Verpasse keine Veranstaltungen, zu denen deine Freunde gehen.
-  smartphoneDescription: Mit maevsi musst du deine Veranstaltungen nicht mehr öde per Chat-Gruppe organisieren. Du kommunizierst sauber alle wichtigen Informationen, behältst die Kontrolle über individuelle Einladungen und hast den Kopf frei für den Inhalt deiner Veranstaltung – deine Gäste werden es dir danken
-  smartphoneTitle: Organisierst du noch so deine Veranstaltung?
-  stepCreateDescription: Ruhe für dich und deine Gäste, statt wuseligem Gruppenchat
-  stepCreateNumber: '1'
-  stepCreateTitle: Erstelle ein Event
-  stepDefineDescription: du hast alle Zu- und Absagen im Griff
-  stepDefineNumber: '3'
-  stepDefineTitle: Erhalte Rückmeldung
-  stepInviteDescription: erziele Aufmerksamkeit durch persönliche Einladungstexte
-  stepInviteNumber: '2'
-  stepInviteTitle: Lade Gäste ein
-  stepsTitle: So einfach geht’s
-  testNow: Jetzt testen
   testNowFree: Jetzt kostenlos testen
-  title: Deine {events}, {guests} und {friends}
-  titleBlue: Veranstaltungen
-  titleGreen: Gäste
-  titleRed: Freunde
+  title: Keine Veranstaltung mehr verpassen
 en:
+  featureRecommendationsKeyword: Smart relevance
+  featureRecommendationsTitle: Advantageous recommendations
+  featureRecommendationsDescription: Lean back and relax with a smile on your face, knowing very well that maevsi will let you know whenever there's something coming up that you don't want to miss.
+  featureInvitationsKeyword: Personal appreciation
+  featureInvitationsTitle: Exclusive invitations
+  featureInvitationsDescription: 'Believe it or not: People love to have you around. Now allow them to bring you in most elegantly for memorable get-togethers.'
+  featurePortfolioKeyword: Trustworthy users
+  featurePortfolioTitle: Respectable appearance
+  featurePortfolioDescription: Don't trust us, trust the users. Check the experiences shared proudly by others and be in full control of where to go best.
+  featureCommunityKeyword: Loyal community
+  featureCommunityTitle: Empowering friendships
+  featureCommunityDescription: Arriving somewhere new can be hard. Staying in the same place can be too. Wherever you are, maevsi is your shortcut to get among amazing people and build long lasting connections.
   appInstall: or install the app
-  benefitControl: Control
-  benefitControlDescription: You can plan exactly for your guest's needs
-  benefitInformation: Clear info
-  benefitInformationDescription: No clutter, like in group chats
-  benefitOpenSource: Source available
-  benefitOpenSourceDescription: "No secrets: you're free to see how maevsi works"
-  benefitPersonal: Personal
-  benefitPersonalDescription: Digital convenience combined with individual invitations
-  benefitSecure: Secure
-  benefitSecureDescription: You decide who can see which data
-  benefitsTitle: Your benefits with {maevsi}
-  benefitUserFriendly: User friendly
-  benefitUserFriendlyDescription: Guests can participate easily, without any login
   heroImage: Hero image.
-  maevsi: maevsi
-  maevsiDescription1: Personal invitations. Proper feedback.
-  maevsiDescription2: Never miss events your friends are going to.
-  smartphoneDescription: With maevsi, you no longer have to organize your events via chat groups anymore. You communicate all important information clearly, keep control over individual invitations and focus on the content of your event without distraction – your guests will thank you for it.
-  smartphoneTitle: Do you still organize your event like that?
-  stepCreateDescription: Peace of mind for you and your guests, instead of a bustling group chat
-  stepCreateNumber: '1'
-  stepCreateTitle: Create an event
-  stepDefineDescription: all acceptances and declines under your control
-  stepDefineNumber: '3'
-  stepDefineTitle: Receive feedback
-  stepInviteDescription: achieve attention through personal invitation texts
-  stepInviteNumber: '2'
-  stepInviteTitle: Invite guests
-  stepsTitle: "It's as easy as that"
-  testNow: Test now
   testNowFree: Test now for free
-  title: Your {events}, {guests} and {friends}
-  titleBlue: events
-  titleGreen: guests
-  titleRed: friends
+  title: Never miss an event
 </i18n>

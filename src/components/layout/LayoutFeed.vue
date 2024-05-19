@@ -1,7 +1,7 @@
 <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
 <template>
   <div class="flow-root">
-    <ul role="list" class="-mb-8">
+    <ul class="-mb-8">
       <li
         v-for="(activityItem, activityItemIdx) in activity.reverse()"
         :key="activityItem.id"
