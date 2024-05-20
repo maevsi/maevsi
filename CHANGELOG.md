@@ -1,3 +1,10 @@
+## [4.9.0](https://github.com/maevsi/maevsi/compare/4.8.0...4.9.0) (2024-05-20)
+
+
+### Features
+
+* rework startpage ([a2f0d44](https://github.com/maevsi/maevsi/commit/a2f0d443bf361989135ffa8b7b9554d4d1bbf5ed))
+
 ## [4.8.0](https://github.com/maevsi/maevsi/compare/4.7.0...4.8.0) (2024-05-15)
 
 
