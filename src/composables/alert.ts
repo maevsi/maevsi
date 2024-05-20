@@ -1,20 +1,17 @@
 import { consola } from 'consola'
-import Swal, { type SweetAlertIcon } from 'sweetalert2'
+import Swal, { type SweetAlertIcon, type SweetAlertOptions } from 'sweetalert2'
 
 export const useFireAlert = () => {
   const { t } = useI18n()
 
-  return ({
-    error,
-    level,
-    text,
-    title,
-  }: {
-    error?: unknown
-    level: SweetAlertIcon
-    text?: string
-    title?: string
-  }) => {
+  return (
+    options: SweetAlertOptions & {
+      error?: unknown
+      level: SweetAlertIcon
+    },
+  ) => {
+    const { error, title, level } = options
+
     if (error) {
       consola.error(error)
     }
@@ -34,8 +31,7 @@ export const useFireAlert = () => {
     } as Record<SweetAlertIcon, { icon: SweetAlertIcon; title?: string }>
 
     return Swal.fire({
-      title,
-      text,
+      ...options,
       ...iconTitleMapping[level],
     })
   }
