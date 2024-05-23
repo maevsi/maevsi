@@ -29,7 +29,7 @@
     "@nuxtjs/turnstile": "0.8.0",
     "@pinia/nuxt": "0.5.1",
     "@sentry/node": "7.116.0",
-    "@sentry/vite-plugin": "2.16.1",
+    "@sentry/vite-plugin": "2.17.0",
     "@sentry/vue": "7.116.0",
     "@tailwindcss/forms": "0.5.7",
     "@tailwindcss/typography": "0.5.13",
