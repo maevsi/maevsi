@@ -165,7 +165,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // Either authenticate anonymously or refresh token on page load.
   if (nuxtApp.ssrContext) {
-    const store = useMaevsiStore(nuxtApp.ssrContext.$pinia)
+    const store = useMaevsiStore()
     const jwtFromCookie = getJwtFromCookie()
 
     if (jwtFromCookie?.jwtDecoded?.id) {

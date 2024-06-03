@@ -222,7 +222,7 @@ de:
   tier2FeatureTargetGroup: KI-Zielgruppenkalibrierung
   tier2Name: Organisation
   tier3Cta: Vertrieb kontaktieren
-  tier3Description: Alles in Organisator*in, plus tiefe Einblicke und Data Warehousing.
+  tier3Description: Alles in Organisation, plus tiefe Einblicke und Data Warehousing.
   tier3FeatureAnalytics: Analysen und Prognosen
   tier3FeaturePromotion: Hervorhebung von Veranstaltungen
   tier3FeatureReports: Leistungsberichte

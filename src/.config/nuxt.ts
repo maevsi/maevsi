@@ -162,6 +162,7 @@ export default defineNuxtConfig({
         'downloadjs',
         'html-to-text',
         'isomorphic-dompurify',
+        'js-confetti',
         'lodash-es',
         'mustache',
         'pretty-bytes',
