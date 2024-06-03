@@ -1,3 +1,10 @@
+## [4.9.2](https://github.com/maevsi/maevsi/compare/4.9.1...4.9.2) (2024-06-03)
+
+
+### Bug Fixes
+
+* **pricing:** correct plan name ([8598fa7](https://github.com/maevsi/maevsi/commit/8598fa7ca82ecf21204a5bde70295476bd2437ea))
+
 ## [4.9.1](https://github.com/maevsi/maevsi/compare/4.9.0...4.9.1) (2024-06-01)
 
 
