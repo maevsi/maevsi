@@ -2,7 +2,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { DefineNuxtConfig } from 'nuxt/config'
 
-import { LOCALES, SITE_NAME, SITE_URL } from '../../utils/constants'
+import { SITE_NAME, SITE_URL } from '../../utils/constants'
 import { cookieControlConfig } from './cookieControl'
 import { i18nConfig } from './i18n'
 import { pwaConfig } from './pwa'
@@ -49,13 +49,6 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
     logLevel: 'warning',
   },
   ...i18nConfig,
-  i18n: {
-    defaultLocale: 'en', // Must be set for the default prefix_except_default prefix strategy.
-    detectBrowserLanguage: false,
-    langDir: 'locales',
-    lazy: true,
-    locales: LOCALES,
-  },
   ...pwaConfig,
   turnstile: {
     secretKeyPath: process.env.NUXT_PUBLIC_SITE_URL
