@@ -1,3 +1,10 @@
+## [4.9.3](https://github.com/maevsi/maevsi/compare/4.9.2...4.9.3) (2024-06-04)
+
+### Bug Fixes
+
+* **router:** account for trailing slash ([c1c613f](https://github.com/maevsi/maevsi/commit/c1c613fa19018d5480ff094245d76584f7d55ce1))
+* **router:** store history ([77d9d3e](https://github.com/maevsi/maevsi/commit/77d9d3e76e4c4a70010885548bdca591455fd3ab))
+
 ## [4.9.2](https://github.com/maevsi/maevsi/compare/4.9.1...4.9.2) (2024-06-03)
 
 
