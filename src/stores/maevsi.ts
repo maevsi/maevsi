@@ -6,9 +6,13 @@ import { ref } from 'vue'
 import type { Modal } from '~/types/modal'
 
 export const useMaevsiStore = defineStore('maevsi', () => {
+  const localePath = useLocalePath()
+
   const jwt = ref<string>()
   const jwtDecoded = ref<JWTPayload>()
   const modals = ref<Modal[]>([])
+  const routeHistory = ref<string[]>([])
+  const routeHistoryDisabled = ref<boolean>(false)
   const signedInAccountId = ref<string>()
   const signedInUsername = ref<string>()
   const turnstileToken = ref<string>()
@@ -42,15 +46,24 @@ export const useMaevsiStore = defineStore('maevsi', () => {
     })
   }
 
+  const navigateBack = async () => {
+    routeHistoryDisabled.value = true
+    await navigateTo(localePath(routeHistory.value.pop() || '/'))
+    routeHistoryDisabled.value = false
+  }
+
   return {
     jwt,
     jwtDecoded,
     modals,
+    routeHistory,
+    routeHistoryDisabled,
     signedInAccountId,
     signedInUsername,
     turnstileToken,
     jwtRemove,
     jwtSet,
     modalRemove,
+    navigateBack,
   }
 })
