@@ -4,7 +4,8 @@
     <div class="flex items-center justify-between gap-4">
       <ButtonIcon
         v-if="
-          store.routeHistory.length || route.path !== localePath('/').toString()
+          store.routeHistory.length ||
+          !isEqual(route.path, localePath('/').toString())
         "
         :aria-label="t('back')"
         @click="store.navigateBack()"
@@ -65,6 +66,8 @@
 </template>
 
 <script setup lang="ts">
+import { isEqual } from 'ufo'
+
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
