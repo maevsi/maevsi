@@ -2,7 +2,13 @@
   <!-- <Loader :api="api" indicator="ping"> -->
   <header class="2xl:mb-8">
     <div class="flex items-center justify-between gap-4">
-      <ButtonIcon :aria-label="t('back')" @click="router.back()">
+      <ButtonIcon
+        v-if="
+          store.routeHistory.length || route.path !== localePath('/').toString()
+        "
+        :aria-label="t('back')"
+        @click="store.navigateBack()"
+      >
         <IHeroiconsChevronLeft />
       </ButtonIcon>
       <Button
@@ -62,7 +68,7 @@
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
-const router = useRouter()
+const route = useRoute()
 </script>
 
 <i18n lang="yaml">
