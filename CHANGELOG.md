@@ -1,3 +1,9 @@
+## [4.10.0](https://github.com/maevsi/maevsi/compare/4.9.3...4.10.0) (2024-06-14)
+
+### Features
+
+* **achievements:** meet the team ([41bcde1](https://github.com/maevsi/maevsi/commit/41bcde1a8cd5ca85426d97f846dd4fd05c7f9bab))
+
 ## [4.9.3](https://github.com/maevsi/maevsi/compare/4.9.2...4.9.3) (2024-06-04)
 
 ### Bug Fixes
