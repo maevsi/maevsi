@@ -1,6 +1,6 @@
-import fs from 'node:fs'
-
 import { type H3Event } from 'h3'
+
+import { useJwtPublicKey } from '../utils/auth'
 
 export default defineEventHandler(async (event: H3Event) => {
   const { res } = event.node
@@ -16,18 +16,3 @@ export default defineEventHandler(async (event: H3Event) => {
   res.setHeader('Content-Type', 'text/plain')
   res.end(jwtPublicKey)
 })
-
-export const useJwtPublicKey = async () => {
-  const runtimeConfig = useRuntimeConfig()
-  const jwtPublicKeyPath = process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE
-
-  if (runtimeConfig.public.vio.stagingHost) {
-    return await $fetch<string>(
-      `https://${runtimeConfig.public.vio.stagingHost}/api/auth-key`,
-    )
-  } else {
-    return jwtPublicKeyPath && fs.existsSync(jwtPublicKeyPath)
-      ? fs.readFileSync(jwtPublicKeyPath, 'utf-8')
-      : undefined
-  }
-}

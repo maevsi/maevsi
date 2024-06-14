@@ -1,8 +1,25 @@
 import { type H3Event, MIMES } from 'h3'
 import { consola } from 'consola'
+import { z } from 'zod'
+
+const tusdPostBodySchema = z.object({
+  Type: z.string(),
+  Event: z.object({
+    Upload: z.object({
+      ID: z.string(),
+      MetaData: z.object({
+        maevsiUploadUuid: z.string(),
+      }),
+    }),
+  }),
+})
 
 export default defineEventHandler(async (event: H3Event) => {
-  const body = await readBody(event)
+  const bodyValidationResult = await readValidatedBody(event, (body) =>
+    tusdPostBodySchema.safeParse(body),
+  )
+  if (!bodyValidationResult.success) throw bodyValidationResult.error.issues
+  const body = bodyValidationResult.data
 
   switch (body.Type) {
     case 'pre-create': {

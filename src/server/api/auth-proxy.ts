@@ -1,7 +1,12 @@
 import { consola } from 'consola'
 import { type H3Event } from 'h3'
+import { z } from 'zod'
 
 import { TURNSTILE_HEADER_KEY } from '~/utils/constants'
+
+const authProxyBodySchema = z.object({
+  operationName: z.string().optional(),
+})
 
 export default defineEventHandler(async function (event: H3Event) {
   const { req, res } = event.node
@@ -11,7 +16,11 @@ export default defineEventHandler(async function (event: H3Event) {
     return res.end()
   }
 
-  const body = await readBody(event)
+  const bodyValidationResult = await readValidatedBody(event, (body) =>
+    authProxyBodySchema.safeParse(body),
+  )
+  if (!bodyValidationResult.success) throw bodyValidationResult.error.issues
+  const body = bodyValidationResult.data
 
   if (!body.operationName) {
     consola.debug("Request's body is missing the operation name.")
