@@ -1,57 +1,25 @@
-import fs from 'node:fs'
-
 import { type H3Event } from 'h3'
 import { consola } from 'consola'
-import { jwtVerify, importSPKI } from 'jose'
+import { z } from 'zod'
 
-import { JWT_ALGORITHM } from '~/utils/constants'
+import { verifyAuth } from '../utils/auth'
 
-const configPostgraphileJwtPublicKeyPath =
-  process.env.POSTGRAPHILE_JWT_PUBLIC_KEY_FILE || ''
-const configPostgraphileJwtPublicKey = fs.existsSync(
-  configPostgraphileJwtPublicKeyPath,
-)
-  ? fs.readFileSync(configPostgraphileJwtPublicKeyPath, 'utf-8')
-  : undefined
+const uploadDeleteBodySchema = z.object({
+  uploadId: z.string(),
+})
 
 export default defineEventHandler(async (event: H3Event) => {
-  const {
-    node: { req },
-  } = event
-  const uploadId = getQuery(event).uploadId
+  await verifyAuth(event)
+
+  const queryValidationResult = await getValidatedQuery(event, (query) =>
+    uploadDeleteBodySchema.safeParse(query),
+  )
+  if (!queryValidationResult.success) throw queryValidationResult.error.issues
+  const query = queryValidationResult.data
+
+  const uploadId = query.uploadId
 
   consola.log('tusdDelete: ' + uploadId)
-
-  if (!req.headers.authorization) {
-    return throwError({
-      code: 401,
-      message: 'The request header "Authorization" is missing!',
-    })
-  }
-
-  if (!configPostgraphileJwtPublicKey) {
-    return throwError({
-      code: 500,
-      message: 'The JSON web token public key is missing!',
-    })
-  }
-
-  try {
-    jwtVerify(
-      req.headers.authorization.substring(7),
-      await importSPKI(configPostgraphileJwtPublicKey, JWT_ALGORITHM),
-      {
-        algorithms: [JWT_ALGORITHM],
-        audience: 'postgraphile',
-        issuer: 'postgraphile',
-      },
-    )
-  } catch (error) {
-    return throwError({
-      code: 401,
-      message: `JSON web token verification failed${error instanceof Error ? `: ${error.message}` : '.'}`,
-    })
-  }
 
   const queryResult = await pool
     .query('SELECT * FROM maevsi.upload WHERE id = $1;', [uploadId])

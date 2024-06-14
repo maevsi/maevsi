@@ -52,6 +52,8 @@ export type Scalars = {
 /** Public account data. */
 export type Account = Node & {
   __typename?: 'Account'
+  /** Reads and enables pagination through a set of `Achievement`. */
+  achievementsByAccountId: AchievementsConnection
   /** Reads and enables pagination through a set of `Contact`. */
   contactsByAccountId: ContactsConnection
   /** Reads and enables pagination through a set of `Contact`. */
@@ -75,6 +77,17 @@ export type Account = Node & {
   uploadsByAccountId: UploadsConnection
   /** The account's username. */
   username: Scalars['String']['output']
+}
+
+/** Public account data. */
+export type AccountAchievementsByAccountIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AchievementCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
 /** Public account data. */
@@ -362,6 +375,128 @@ export enum AccountsOrderBy {
   UsernameDesc = 'USERNAME_DESC',
 }
 
+/** Achievements unlocked by users. */
+export type Achievement = Node & {
+  __typename?: 'Achievement'
+  /** Reads a single `Account` that is related to this `Achievement`. */
+  accountByAccountId?: Maybe<Account>
+  /** The account which unlocked the achievement. */
+  accountId: Scalars['UUID']['output']
+  /** The unlock's achievement. */
+  achievement: AchievementType
+  /** The achievement unlock's internal id. */
+  id: Scalars['UUID']['output']
+  /** The achievement unlock's level. */
+  level: Scalars['Int']['output']
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output']
+}
+
+/**
+ * A condition to be used against `Achievement` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ */
+export type AchievementCondition = {
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `achievement` field. */
+  achievement?: InputMaybe<AchievementType>
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `level` field. */
+  level?: InputMaybe<Scalars['Int']['input']>
+}
+
+/** An input for mutations affecting `Achievement` */
+export type AchievementInput = {
+  /** The account which unlocked the achievement. */
+  accountId: Scalars['UUID']['input']
+  /** The unlock's achievement. */
+  achievement: AchievementType
+  /** The achievement unlock's internal id. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** The achievement unlock's level. */
+  level?: InputMaybe<Scalars['Int']['input']>
+}
+
+/** Represents an update to a `Achievement`. Fields that are set will be updated. */
+export type AchievementPatch = {
+  /** The account which unlocked the achievement. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
+  /** The unlock's achievement. */
+  achievement?: InputMaybe<AchievementType>
+  /** The achievement unlock's internal id. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** The achievement unlock's level. */
+  level?: InputMaybe<Scalars['Int']['input']>
+}
+
+/** Achievements that can be unlocked by users. */
+export enum AchievementType {
+  MeetTheTeam = 'MEET_THE_TEAM',
+}
+
+/** All input for the `achievementUnlock` mutation. */
+export type AchievementUnlockInput = {
+  alias: Scalars['String']['input']
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  code: Scalars['UUID']['input']
+}
+
+/** The output of our `achievementUnlock` mutation. */
+export type AchievementUnlockPayload = {
+  __typename?: 'AchievementUnlockPayload'
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+  uuid?: Maybe<Scalars['UUID']['output']>
+}
+
+/** A connection to a list of `Achievement` values. */
+export type AchievementsConnection = {
+  __typename?: 'AchievementsConnection'
+  /** A list of edges which contains the `Achievement` and cursor to aid in pagination. */
+  edges: Array<AchievementsEdge>
+  /** A list of `Achievement` objects. */
+  nodes: Array<Achievement>
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** The count of *all* `Achievement` you could get from the connection. */
+  totalCount: Scalars['Int']['output']
+}
+
+/** A `Achievement` edge in the connection. */
+export type AchievementsEdge = {
+  __typename?: 'AchievementsEdge'
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>
+  /** The `Achievement` at the end of the edge. */
+  node: Achievement
+}
+
+/** Methods to use when ordering `Achievement`. */
+export enum AchievementsOrderBy {
+  AccountIdAsc = 'ACCOUNT_ID_ASC',
+  AccountIdDesc = 'ACCOUNT_ID_DESC',
+  AchievementAsc = 'ACHIEVEMENT_ASC',
+  AchievementDesc = 'ACHIEVEMENT_DESC',
+  IdAsc = 'ID_ASC',
+  IdDesc = 'ID_DESC',
+  LevelAsc = 'LEVEL_ASC',
+  LevelDesc = 'LEVEL_DESC',
+  Natural = 'NATURAL',
+  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
+  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
+}
+
 /** All input for the `authenticate` mutation. */
 export type AuthenticateInput = {
   /**
@@ -573,6 +708,40 @@ export type CreateAccountPayload = {
 /** The output of our create `Account` mutation. */
 export type CreateAccountPayloadAccountEdgeArgs = {
   orderBy?: InputMaybe<Array<AccountsOrderBy>>
+}
+
+/** All input for the create `Achievement` mutation. */
+export type CreateAchievementInput = {
+  /** The `Achievement` to be created by this mutation. */
+  achievement: AchievementInput
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
+/** The output of our create `Achievement` mutation. */
+export type CreateAchievementPayload = {
+  __typename?: 'CreateAchievementPayload'
+  /** Reads a single `Account` that is related to this `Achievement`. */
+  accountByAccountId?: Maybe<Account>
+  /** The `Achievement` that was created by this mutation. */
+  achievement?: Maybe<Achievement>
+  /** An edge for our `Achievement`. May be used by Relay 1. */
+  achievementEdge?: Maybe<AchievementsEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our create `Achievement` mutation. */
+export type CreateAchievementPayloadAchievementEdgeArgs = {
+  orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
 /** All input for the create `Contact` mutation. */
@@ -874,6 +1043,65 @@ export type DeleteAccountPayload = {
 /** The output of our delete `Account` mutation. */
 export type DeleteAccountPayloadAccountEdgeArgs = {
   orderBy?: InputMaybe<Array<AccountsOrderBy>>
+}
+
+/** All input for the `deleteAchievementByAccountIdAndAchievement` mutation. */
+export type DeleteAchievementByAccountIdAndAchievementInput = {
+  /** The account which unlocked the achievement. */
+  accountId: Scalars['UUID']['input']
+  /** The unlock's achievement. */
+  achievement: AchievementType
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
+/** All input for the `deleteAchievementById` mutation. */
+export type DeleteAchievementByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The achievement unlock's internal id. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteAchievement` mutation. */
+export type DeleteAchievementInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Achievement` to be deleted. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our delete `Achievement` mutation. */
+export type DeleteAchievementPayload = {
+  __typename?: 'DeleteAchievementPayload'
+  /** Reads a single `Account` that is related to this `Achievement`. */
+  accountByAccountId?: Maybe<Account>
+  /** The `Achievement` that was deleted by this mutation. */
+  achievement?: Maybe<Achievement>
+  /** An edge for our `Achievement`. May be used by Relay 1. */
+  achievementEdge?: Maybe<AchievementsEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedAchievementId?: Maybe<Scalars['ID']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our delete `Achievement` mutation. */
+export type DeleteAchievementPayloadAchievementEdgeArgs = {
+  orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
 /** All input for the `deleteContactByAuthorAccountIdAndAccountId` mutation. */
@@ -1990,10 +2218,13 @@ export type Mutation = {
   accountRegistration?: Maybe<AccountRegistrationPayload>
   /** Refreshes an account's email address verification validity period. */
   accountRegistrationRefresh?: Maybe<AccountRegistrationRefreshPayload>
+  achievementUnlock?: Maybe<AchievementUnlockPayload>
   /** Creates a JWT token that will securely identify an account and give it certain permissions. */
   authenticate?: Maybe<AuthenticatePayload>
   /** Creates a single `Account`. */
   createAccount?: Maybe<CreateAccountPayload>
+  /** Creates a single `Achievement`. */
+  createAchievement?: Maybe<CreateAchievementPayload>
   /** Creates a single `Contact`. */
   createContact?: Maybe<CreateContactPayload>
   /** Creates a single `Event`. */
@@ -2014,6 +2245,12 @@ export type Mutation = {
   deleteAccountById?: Maybe<DeleteAccountPayload>
   /** Deletes a single `Account` using a unique key. */
   deleteAccountByUsername?: Maybe<DeleteAccountPayload>
+  /** Deletes a single `Achievement` using its globally unique id. */
+  deleteAchievement?: Maybe<DeleteAchievementPayload>
+  /** Deletes a single `Achievement` using a unique key. */
+  deleteAchievementByAccountIdAndAchievement?: Maybe<DeleteAchievementPayload>
+  /** Deletes a single `Achievement` using a unique key. */
+  deleteAchievementById?: Maybe<DeleteAchievementPayload>
   /** Deletes a single `Contact` using its globally unique id. */
   deleteContact?: Maybe<DeleteContactPayload>
   /** Deletes a single `Contact` using a unique key. */
@@ -2074,6 +2311,12 @@ export type Mutation = {
   updateAccountById?: Maybe<UpdateAccountPayload>
   /** Updates a single `Account` using a unique key and a patch. */
   updateAccountByUsername?: Maybe<UpdateAccountPayload>
+  /** Updates a single `Achievement` using its globally unique id and a patch. */
+  updateAchievement?: Maybe<UpdateAchievementPayload>
+  /** Updates a single `Achievement` using a unique key and a patch. */
+  updateAchievementByAccountIdAndAchievement?: Maybe<UpdateAchievementPayload>
+  /** Updates a single `Achievement` using a unique key and a patch. */
+  updateAchievementById?: Maybe<UpdateAchievementPayload>
   /** Updates a single `Contact` using its globally unique id and a patch. */
   updateContact?: Maybe<UpdateContactPayload>
   /** Updates a single `Contact` using a unique key and a patch. */
@@ -2156,6 +2399,11 @@ export type MutationAccountRegistrationRefreshArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationAchievementUnlockArgs = {
+  input: AchievementUnlockInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationAuthenticateArgs = {
   input: AuthenticateInput
 }
@@ -2163,6 +2411,11 @@ export type MutationAuthenticateArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateAccountArgs = {
   input: CreateAccountInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateAchievementArgs = {
+  input: CreateAchievementInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2213,6 +2466,21 @@ export type MutationDeleteAccountByIdArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAccountByUsernameArgs = {
   input: DeleteAccountByUsernameInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAchievementArgs = {
+  input: DeleteAchievementInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAchievementByAccountIdAndAchievementArgs = {
+  input: DeleteAchievementByAccountIdAndAchievementInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAchievementByIdArgs = {
+  input: DeleteAchievementByIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2363,6 +2631,21 @@ export type MutationUpdateAccountByIdArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAccountByUsernameArgs = {
   input: UpdateAccountByUsernameInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAchievementArgs = {
+  input: UpdateAchievementInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAchievementByAccountIdAndAchievementArgs = {
+  input: UpdateAchievementByAccountIdAndAchievementInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAchievementByIdArgs = {
+  input: UpdateAchievementByIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2629,8 +2912,14 @@ export type Query = Node & {
   accountByUsername?: Maybe<Account>
   /** Gets the total upload quota in bytes for the invoking account. */
   accountUploadQuotaBytes?: Maybe<Scalars['BigInt']['output']>
+  /** Reads a single `Achievement` using its globally unique `ID`. */
+  achievement?: Maybe<Achievement>
+  achievementByAccountIdAndAchievement?: Maybe<Achievement>
+  achievementById?: Maybe<Achievement>
   /** Reads and enables pagination through a set of `Account`. */
   allAccounts?: Maybe<AccountsConnection>
+  /** Reads and enables pagination through a set of `Achievement`. */
+  allAchievements?: Maybe<AchievementsConnection>
   /** Reads and enables pagination through a set of `Contact`. */
   allContacts?: Maybe<ContactsConnection>
   /** Reads and enables pagination through a set of `EventGrouping`. */
@@ -2712,6 +3001,22 @@ export type QueryAccountByUsernameArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAchievementArgs = {
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAchievementByAccountIdAndAchievementArgs = {
+  accountId: Scalars['UUID']['input']
+  achievement: AchievementType
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAchievementByIdArgs = {
+  id: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllAccountsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
@@ -2720,6 +3025,17 @@ export type QueryAllAccountsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>
   offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<AccountsOrderBy>>
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllAchievementsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AchievementCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
@@ -3006,6 +3322,70 @@ export type UpdateAccountPayload = {
 /** The output of our update `Account` mutation. */
 export type UpdateAccountPayloadAccountEdgeArgs = {
   orderBy?: InputMaybe<Array<AccountsOrderBy>>
+}
+
+/** All input for the `updateAchievementByAccountIdAndAchievement` mutation. */
+export type UpdateAchievementByAccountIdAndAchievementInput = {
+  /** The account which unlocked the achievement. */
+  accountId: Scalars['UUID']['input']
+  /** The unlock's achievement. */
+  achievement: AchievementType
+  /** An object where the defined keys will be set on the `Achievement` being updated. */
+  achievementPatch: AchievementPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
+/** All input for the `updateAchievementById` mutation. */
+export type UpdateAchievementByIdInput = {
+  /** An object where the defined keys will be set on the `Achievement` being updated. */
+  achievementPatch: AchievementPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The achievement unlock's internal id. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `updateAchievement` mutation. */
+export type UpdateAchievementInput = {
+  /** An object where the defined keys will be set on the `Achievement` being updated. */
+  achievementPatch: AchievementPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Achievement` to be updated. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our update `Achievement` mutation. */
+export type UpdateAchievementPayload = {
+  __typename?: 'UpdateAchievementPayload'
+  /** Reads a single `Account` that is related to this `Achievement`. */
+  accountByAccountId?: Maybe<Account>
+  /** The `Achievement` that was updated by this mutation. */
+  achievement?: Maybe<Achievement>
+  /** An edge for our `Achievement`. May be used by Relay 1. */
+  achievementEdge?: Maybe<AchievementsEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our update `Achievement` mutation. */
+export type UpdateAchievementPayloadAchievementEdgeArgs = {
+  orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
 /** All input for the `updateContactByAuthorAccountIdAndAccountId` mutation. */
@@ -3598,6 +3978,15 @@ export type AccountItemFragment = {
   username: string
 } & { ' $fragmentName'?: 'AccountItemFragment' }
 
+export type AchievementItemFragment = {
+  __typename?: 'Achievement'
+  nodeId: string
+  id: any
+  accountId: any
+  achievement: AchievementType
+  level: number
+} & { ' $fragmentName'?: 'AchievementItemFragment' }
+
 export type ContactItemFragment = {
   __typename?: 'Contact'
   nodeId: string
@@ -3798,6 +4187,20 @@ export type AccountRegistrationRefreshMutation = {
   accountRegistrationRefresh?: {
     __typename?: 'AccountRegistrationRefreshPayload'
     clientMutationId?: string | null
+  } | null
+}
+
+export type AchievementUnlockMutationVariables = Exact<{
+  code: Scalars['UUID']['input']
+  alias: Scalars['String']['input']
+}>
+
+export type AchievementUnlockMutation = {
+  __typename?: 'Mutation'
+  achievementUnlock?: {
+    __typename?: 'AchievementUnlockPayload'
+    clientMutationId?: string | null
+    uuid?: any | null
   } | null
 }
 
@@ -4048,6 +4451,22 @@ export type AccountUploadQuotaBytesQuery = {
   accountUploadQuotaBytes?: any | null
 }
 
+export type AllAchievementsQueryVariables = Exact<{
+  accountId?: InputMaybe<Scalars['UUID']['input']>
+}>
+
+export type AllAchievementsQuery = {
+  __typename?: 'Query'
+  allAchievements?: {
+    __typename?: 'AchievementsConnection'
+    nodes: Array<
+      { __typename?: 'Achievement' } & {
+        ' $fragmentRefs'?: { AchievementItemFragment: AchievementItemFragment }
+      }
+    >
+  } | null
+}
+
 export type AllContactsQueryVariables = Exact<{
   after?: InputMaybe<Scalars['Cursor']['input']>
   authorAccountId?: InputMaybe<Scalars['UUID']['input']>
@@ -4224,6 +4643,29 @@ export const AccountItemFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<AccountItemFragment, unknown>
+export const AchievementItemFragmentDoc = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AchievementItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Achievement' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'achievement' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'level' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AchievementItemFragment, unknown>
 export const EventItemFragmentDoc = {
   kind: 'Document',
   definitions: [
@@ -5227,6 +5669,89 @@ export const AccountRegistrationRefreshDocument = {
 } as unknown as DocumentNode<
   AccountRegistrationRefreshMutation,
   AccountRegistrationRefreshMutationVariables
+>
+export const AchievementUnlockDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'mutation',
+      name: { kind: 'Name', value: 'achievementUnlock' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'code' } },
+          type: {
+            kind: 'NonNullType',
+            type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'alias' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'achievementUnlock' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'input' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'code' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'code' },
+                      },
+                    },
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'alias' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'alias' },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'clientMutationId' },
+                },
+                { kind: 'Field', name: { kind: 'Name', value: 'uuid' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  AchievementUnlockMutation,
+  AchievementUnlockMutationVariables
 >
 export const CreateContactDocument = {
   kind: 'Document',
@@ -6794,6 +7319,93 @@ export const AccountUploadQuotaBytesDocument = {
 } as unknown as DocumentNode<
   AccountUploadQuotaBytesQuery,
   AccountUploadQuotaBytesQueryVariables
+>
+export const AllAchievementsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'allAchievements' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'accountId' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'UUID' } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'allAchievements' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'condition' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'accountId' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'accountId' },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'nodes' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'FragmentSpread',
+                        name: { kind: 'Name', value: 'AchievementItem' },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: 'FragmentDefinition',
+      name: { kind: 'Name', value: 'AchievementItem' },
+      typeCondition: {
+        kind: 'NamedType',
+        name: { kind: 'Name', value: 'Achievement' },
+      },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          { kind: 'Field', name: { kind: 'Name', value: 'nodeId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'accountId' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'achievement' } },
+          { kind: 'Field', name: { kind: 'Name', value: 'level' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  AllAchievementsQuery,
+  AllAchievementsQueryVariables
 >
 export const AllContactsDocument = {
   kind: 'Document',

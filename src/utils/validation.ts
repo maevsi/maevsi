@@ -176,14 +176,20 @@ export const validateAccountExistence = async ({
   }
 
   if (!accountIsExisting.data?.accountByUsername) {
-    return abortNavigation({ statusCode: 404 })
+    throw createError({
+      statusCode: 404,
+    })
+    // return abortNavigation({ statusCode: 404 })
   }
 
   if (
     isAuthorizationRequired &&
     route.params.username !== store.signedInUsername
   ) {
-    return abortNavigation({ statusCode: 403 })
+    throw createError({
+      statusCode: 403,
+    })
+    // return abortNavigation({ statusCode: 403 })
   }
 
   return true
@@ -252,14 +258,20 @@ export const validateEventExistence = async (
   })
 
   if (!account) {
-    return abortNavigation({ statusCode: 404 })
+    throw createError({
+      statusCode: 404,
+    })
+    // return abortNavigation({ statusCode: 404 })
   }
 
   if (
     typeof route.params.event_name !== 'string' ||
     typeof account.id !== 'string'
   ) {
-    return abortNavigation({ statusCode: 500 })
+    throw createError({
+      statusCode: 500,
+    })
+    // return abortNavigation({ statusCode: 500 })
   }
 
   const eventIsExisting = await $urql.value
@@ -274,7 +286,10 @@ export const validateEventExistence = async (
   }
 
   if (!eventIsExisting.data?.eventIsExisting) {
-    return abortNavigation({ statusCode: 404 })
+    throw createError({
+      statusCode: 404,
+    })
+    // return abortNavigation({ statusCode: 404 })
   }
 
   return true

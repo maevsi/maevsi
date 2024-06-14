@@ -15,6 +15,8 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
 const documents = {
   '\n  fragment AccountItem on Account {\n    nodeId\n    id\n    username\n  }\n':
     types.AccountItemFragmentDoc,
+  '\n  fragment AchievementItem on Achievement {\n    nodeId\n    id\n    accountId\n    achievement\n    level\n  }\n':
+    types.AchievementItemFragmentDoc,
   '\n  fragment ContactItem on Contact {\n    nodeId\n    id\n    accountId\n    accountByAccountId {\n      id\n      username\n    }\n    accountByAuthorAccountId {\n      id\n      username\n    }\n    authorAccountId\n    address\n    emailAddress\n    emailAddressHash\n    firstName\n    lastName\n    phoneNumber\n    url\n  }\n':
     types.ContactItemFragmentDoc,
   '\n  fragment EventItem on Event {\n    id\n    nodeId\n    authorAccountId\n    accountByAuthorAccountId {\n      id\n      username\n    }\n    description\n    end\n    inviteeCountMaximum\n    isArchived\n    isInPerson\n    isRemote\n    location\n    name\n    slug\n    start\n    url\n    visibility\n  }\n':
@@ -43,6 +45,8 @@ const documents = {
     types.AccountRegistrationDocument,
   '\n      mutation accountRegistrationRefresh(\n        $accountId: UUID!\n        $language: String!\n      ) {\n        accountRegistrationRefresh(\n          input: { language: $language, accountId: $accountId }\n        ) {\n          clientMutationId\n        }\n      }\n    ':
     types.AccountRegistrationRefreshDocument,
+  '\n      mutation achievementUnlock($code: UUID!, $alias: String!) {\n        achievementUnlock(input: { code: $code, alias: $alias }) {\n          clientMutationId\n          uuid\n        }\n      }\n    ':
+    types.AchievementUnlockDocument,
   '\n      mutation createContact($contactInput: ContactInput!) {\n        createContact(input: { contact: $contactInput }) {\n          contact {\n            ...ContactItem\n          }\n        }\n      }\n    ':
     types.CreateContactDocument,
   '\n      mutation deleteContactById($id: UUID!) {\n        deleteContactById(input: { id: $id }) {\n          clientMutationId\n          contact {\n            ...ContactItem\n          }\n        }\n      }\n    ':
@@ -75,6 +79,8 @@ const documents = {
     types.AccountByUsernameDocument,
   '\n      query accountUploadQuotaBytes {\n        accountUploadQuotaBytes\n      }\n    ':
     types.AccountUploadQuotaBytesDocument,
+  '\n      query allAchievements($accountId: UUID) {\n        allAchievements(condition: { accountId: $accountId }) {\n          nodes {\n            ...AchievementItem\n          }\n        }\n      }\n    ':
+    types.AllAchievementsDocument,
   '\n      query allContacts($after: Cursor, $authorAccountId: UUID, $first: Int!) {\n        allContacts(\n          after: $after\n          condition: { authorAccountId: $authorAccountId }\n          first: $first\n          orderBy: [FIRST_NAME_ASC, LAST_NAME_ASC]\n        ) {\n          nodes {\n            ...ContactItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ':
     types.AllContactsDocument,
   '\n  query eventByAuthorAccountIdAndSlug(\n    $authorAccountId: UUID!\n    $slug: String!\n    $invitationId: UUID\n  ) {\n    eventByAuthorAccountIdAndSlug(\n      authorAccountId: $authorAccountId\n      slug: $slug\n    ) {\n      ...EventItem\n      invitationsByEventId(condition: { id: $invitationId }) {\n        nodes {\n          ...InvitationItem\n          contactByContactId {\n            ...ContactItem\n          }\n        }\n      }\n    }\n  }\n':
@@ -111,6 +117,12 @@ export function graphql(source: string): unknown
 export function graphql(
   source: '\n  fragment AccountItem on Account {\n    nodeId\n    id\n    username\n  }\n',
 ): (typeof documents)['\n  fragment AccountItem on Account {\n    nodeId\n    id\n    username\n  }\n']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n  fragment AchievementItem on Achievement {\n    nodeId\n    id\n    accountId\n    achievement\n    level\n  }\n',
+): (typeof documents)['\n  fragment AchievementItem on Achievement {\n    nodeId\n    id\n    accountId\n    achievement\n    level\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -195,6 +207,12 @@ export function graphql(
 export function graphql(
   source: '\n      mutation accountRegistrationRefresh(\n        $accountId: UUID!\n        $language: String!\n      ) {\n        accountRegistrationRefresh(\n          input: { language: $language, accountId: $accountId }\n        ) {\n          clientMutationId\n        }\n      }\n    ',
 ): (typeof documents)['\n      mutation accountRegistrationRefresh(\n        $accountId: UUID!\n        $language: String!\n      ) {\n        accountRegistrationRefresh(\n          input: { language: $language, accountId: $accountId }\n        ) {\n          clientMutationId\n        }\n      }\n    ']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n      mutation achievementUnlock($code: UUID!, $alias: String!) {\n        achievementUnlock(input: { code: $code, alias: $alias }) {\n          clientMutationId\n          uuid\n        }\n      }\n    ',
+): (typeof documents)['\n      mutation achievementUnlock($code: UUID!, $alias: String!) {\n        achievementUnlock(input: { code: $code, alias: $alias }) {\n          clientMutationId\n          uuid\n        }\n      }\n    ']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -291,6 +309,12 @@ export function graphql(
 export function graphql(
   source: '\n      query accountUploadQuotaBytes {\n        accountUploadQuotaBytes\n      }\n    ',
 ): (typeof documents)['\n      query accountUploadQuotaBytes {\n        accountUploadQuotaBytes\n      }\n    ']
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n      query allAchievements($accountId: UUID) {\n        allAchievements(condition: { accountId: $accountId }) {\n          nodes {\n            ...AchievementItem\n          }\n        }\n      }\n    ',
+): (typeof documents)['\n      query allAchievements($accountId: UUID) {\n        allAchievements(condition: { accountId: $accountId }) {\n          nodes {\n            ...AchievementItem\n          }\n        }\n      }\n    ']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

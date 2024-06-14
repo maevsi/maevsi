@@ -93,8 +93,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         allUploads: relayPagination(),
       },
     },
-    // @ts-expect-error server side there is no storage
-    storage: import.meta.client ? makeDefaultStorage() : undefined,
     updates: {
       Mutation: {
         // create
@@ -122,6 +120,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     ? getOfflineExchange({
         ...graphCacheConfig,
         schema,
+        storage: makeDefaultStorage(),
       })
     : undefined
 

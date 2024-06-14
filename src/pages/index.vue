@@ -91,10 +91,17 @@
     <!-- Testimonials (https://tailwindui.com/components/marketing/sections/testimonials, https://tailwindui.com/components/marketing/sections/logo-clouds) -->
     <!-- Team (https://tailwindui.com/components/marketing/sections/team-sections) -->
     <!-- Organizer Page (https://github.com/maevsi/maevsi/blob/3900d49c7c2025bb75a741ed96fff03fbe204300/src/pages/index.vue) -->
+    <canvas
+      ref="canvasRef"
+      class="pointer-events-none fixed inset-0 h-full w-full"
+    />
   </div>
 </template>
 
 <script lang="ts">
+import JSConfetti from 'js-confetti'
+
+import { useAchievementUnlockMutation } from '~/gql/documents/mutations/achievement/achievementUnlock'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 export const usePageBreadcrumb = () =>
@@ -112,14 +119,22 @@ const { t } = useI18n()
 const localePath = useLocalePath()
 const siteConfig = useSiteConfig()
 const { isApp } = usePlatform()
+const store = useMaevsiStore()
+const fireAlert = useFireAlert()
+let confetti: JSConfetti
 
 // refs
 const sectionStepsRef = ref<HTMLElement>()
+const canvasRef = ref<HTMLCanvasElement>()
 
 // data
 const isScrollHintShown = ref(false)
 const loadingId = Math.random()
 const loadingIds = useState(STATE_LOADING_IDS_NAME, () => [loadingId])
+
+// api data
+const achievementUnlockMutation = useAchievementUnlockMutation()
+// const api = getApiData([achievementUnlockMutation])
 
 // methods
 const hideScrollHint = () => {
@@ -130,7 +145,7 @@ const scrollToSteps = () => {
 }
 
 // lifecycle
-onMounted(() => {
+onMounted(async () => {
   if (window.scrollY === 0) {
     isScrollHintShown.value = true
 
@@ -138,6 +153,36 @@ onMounted(() => {
   }
 
   loadingIds.value.splice(loadingIds.value.indexOf(loadingId), 1)
+
+  confetti = new JSConfetti({ canvas: canvasRef.value })
+
+  if (store.jwtDecoded?.role === 'maevsi_account') {
+    const result = await achievementUnlockMutation.executeMutation({
+      code: 'c29d9fd1-e455-4f19-a62f-f89b5256a52b',
+      alias: window.location.search,
+    })
+
+    if (result.error || !result.data?.achievementUnlock?.uuid) return
+
+    confetti.addConfetti()
+
+    const alertResult = await fireAlert({
+      confirmButtonText: t('unlockConfirm'),
+      denyButtonColor: 'gray',
+      denyButtonText: t('unlockDeny'),
+      iconHtml: '🎉',
+      level: 'success',
+      showDenyButton: true,
+      text: t('unlockText'),
+      title: t('unlockTitle'),
+    })
+
+    if (alertResult.isConfirmed) {
+      await navigateTo(
+        localePath(`/account/view/${store.jwtDecoded.account_username}`),
+      )
+    }
+  }
 })
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', hideScrollHint)
@@ -165,6 +210,10 @@ de:
   heroImage: Heldenbild.
   testNowFree: Jetzt kostenlos testen
   title: Keine Veranstaltung mehr verpassen
+  unlockConfirm: Zum Profil
+  unlockDeny: Schließen
+  unlockText: Sieh dir dein neues Abzeichen auf deinem Profil an.
+  unlockTitle: Auszeichnung freigeschaltet
 en:
   featureRecommendationsKeyword: Smart relevance
   featureRecommendationsTitle: Advantageous recommendations
@@ -182,4 +231,8 @@ en:
   heroImage: Hero image.
   testNowFree: Test now for free
   title: Never miss an event
+  unlockConfirm: Go to profile
+  unlockDeny: Close
+  unlockText: Check out your new achievement on your profile.
+  unlockTitle: Achievement unlocked
 </i18n>

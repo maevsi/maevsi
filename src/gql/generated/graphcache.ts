@@ -1,9 +1,9 @@
 /* eslint-disable no-use-before-define */
-import {
-  offlineExchange,
-  type Resolver as GraphCacheResolver,
-  type UpdateResolver as GraphCacheUpdateResolver,
-  type OptimisticMutationResolver as GraphCacheOptimisticMutationResolver,
+import { cacheExchange } from '@urql/exchange-graphcache'
+import type {
+  Resolver as GraphCacheResolver,
+  UpdateResolver as GraphCacheUpdateResolver,
+  OptimisticMutationResolver as GraphCacheOptimisticMutationResolver,
 } from '@urql/exchange-graphcache'
 
 export type Maybe<T> = T | null
@@ -43,6 +43,8 @@ export type Scalars = {
 /** Public account data. */
 export type Account = Node & {
   __typename?: 'Account'
+  /** Reads and enables pagination through a set of `Achievement`. */
+  achievementsByAccountId: AchievementsConnection
   /** Reads and enables pagination through a set of `Contact`. */
   contactsByAccountId: ContactsConnection
   /** Reads and enables pagination through a set of `Contact`. */
@@ -66,6 +68,17 @@ export type Account = Node & {
   uploadsByAccountId: UploadsConnection
   /** The account's username. */
   username: Scalars['String']['output']
+}
+
+/** Public account data. */
+export type AccountAchievementsByAccountIdArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AchievementCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
 /** Public account data. */
@@ -353,6 +366,128 @@ export enum AccountsOrderBy {
   UsernameDesc = 'USERNAME_DESC',
 }
 
+/** Achievements unlocked by users. */
+export type Achievement = Node & {
+  __typename?: 'Achievement'
+  /** Reads a single `Account` that is related to this `Achievement`. */
+  accountByAccountId?: Maybe<Account>
+  /** The account which unlocked the achievement. */
+  accountId: Scalars['UUID']['output']
+  /** The unlock's achievement. */
+  achievement: AchievementType
+  /** The achievement unlock's internal id. */
+  id: Scalars['UUID']['output']
+  /** The achievement unlock's level. */
+  level: Scalars['Int']['output']
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars['ID']['output']
+}
+
+/**
+ * A condition to be used against `Achievement` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ */
+export type AchievementCondition = {
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `achievement` field. */
+  achievement?: InputMaybe<AchievementType>
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** Checks for equality with the object’s `level` field. */
+  level?: InputMaybe<Scalars['Int']['input']>
+}
+
+/** An input for mutations affecting `Achievement` */
+export type AchievementInput = {
+  /** The account which unlocked the achievement. */
+  accountId: Scalars['UUID']['input']
+  /** The unlock's achievement. */
+  achievement: AchievementType
+  /** The achievement unlock's internal id. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** The achievement unlock's level. */
+  level?: InputMaybe<Scalars['Int']['input']>
+}
+
+/** Represents an update to a `Achievement`. Fields that are set will be updated. */
+export type AchievementPatch = {
+  /** The account which unlocked the achievement. */
+  accountId?: InputMaybe<Scalars['UUID']['input']>
+  /** The unlock's achievement. */
+  achievement?: InputMaybe<AchievementType>
+  /** The achievement unlock's internal id. */
+  id?: InputMaybe<Scalars['UUID']['input']>
+  /** The achievement unlock's level. */
+  level?: InputMaybe<Scalars['Int']['input']>
+}
+
+/** Achievements that can be unlocked by users. */
+export enum AchievementType {
+  MeetTheTeam = 'MEET_THE_TEAM',
+}
+
+/** All input for the `achievementUnlock` mutation. */
+export type AchievementUnlockInput = {
+  alias: Scalars['String']['input']
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  code: Scalars['UUID']['input']
+}
+
+/** The output of our `achievementUnlock` mutation. */
+export type AchievementUnlockPayload = {
+  __typename?: 'AchievementUnlockPayload'
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+  uuid?: Maybe<Scalars['UUID']['output']>
+}
+
+/** A connection to a list of `Achievement` values. */
+export type AchievementsConnection = {
+  __typename?: 'AchievementsConnection'
+  /** A list of edges which contains the `Achievement` and cursor to aid in pagination. */
+  edges: Array<AchievementsEdge>
+  /** A list of `Achievement` objects. */
+  nodes: Array<Achievement>
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+  /** The count of *all* `Achievement` you could get from the connection. */
+  totalCount: Scalars['Int']['output']
+}
+
+/** A `Achievement` edge in the connection. */
+export type AchievementsEdge = {
+  __typename?: 'AchievementsEdge'
+  /** A cursor for use in pagination. */
+  cursor?: Maybe<Scalars['Cursor']['output']>
+  /** The `Achievement` at the end of the edge. */
+  node: Achievement
+}
+
+/** Methods to use when ordering `Achievement`. */
+export enum AchievementsOrderBy {
+  AccountIdAsc = 'ACCOUNT_ID_ASC',
+  AccountIdDesc = 'ACCOUNT_ID_DESC',
+  AchievementAsc = 'ACHIEVEMENT_ASC',
+  AchievementDesc = 'ACHIEVEMENT_DESC',
+  IdAsc = 'ID_ASC',
+  IdDesc = 'ID_DESC',
+  LevelAsc = 'LEVEL_ASC',
+  LevelDesc = 'LEVEL_DESC',
+  Natural = 'NATURAL',
+  PrimaryKeyAsc = 'PRIMARY_KEY_ASC',
+  PrimaryKeyDesc = 'PRIMARY_KEY_DESC',
+}
+
 /** All input for the `authenticate` mutation. */
 export type AuthenticateInput = {
   /**
@@ -564,6 +699,40 @@ export type CreateAccountPayload = {
 /** The output of our create `Account` mutation. */
 export type CreateAccountPayloadAccountEdgeArgs = {
   orderBy?: InputMaybe<Array<AccountsOrderBy>>
+}
+
+/** All input for the create `Achievement` mutation. */
+export type CreateAchievementInput = {
+  /** The `Achievement` to be created by this mutation. */
+  achievement: AchievementInput
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
+/** The output of our create `Achievement` mutation. */
+export type CreateAchievementPayload = {
+  __typename?: 'CreateAchievementPayload'
+  /** Reads a single `Account` that is related to this `Achievement`. */
+  accountByAccountId?: Maybe<Account>
+  /** The `Achievement` that was created by this mutation. */
+  achievement?: Maybe<Achievement>
+  /** An edge for our `Achievement`. May be used by Relay 1. */
+  achievementEdge?: Maybe<AchievementsEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our create `Achievement` mutation. */
+export type CreateAchievementPayloadAchievementEdgeArgs = {
+  orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
 /** All input for the create `Contact` mutation. */
@@ -865,6 +1034,65 @@ export type DeleteAccountPayload = {
 /** The output of our delete `Account` mutation. */
 export type DeleteAccountPayloadAccountEdgeArgs = {
   orderBy?: InputMaybe<Array<AccountsOrderBy>>
+}
+
+/** All input for the `deleteAchievementByAccountIdAndAchievement` mutation. */
+export type DeleteAchievementByAccountIdAndAchievementInput = {
+  /** The account which unlocked the achievement. */
+  accountId: Scalars['UUID']['input']
+  /** The unlock's achievement. */
+  achievement: AchievementType
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
+/** All input for the `deleteAchievementById` mutation. */
+export type DeleteAchievementByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The achievement unlock's internal id. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `deleteAchievement` mutation. */
+export type DeleteAchievementInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Achievement` to be deleted. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our delete `Achievement` mutation. */
+export type DeleteAchievementPayload = {
+  __typename?: 'DeleteAchievementPayload'
+  /** Reads a single `Account` that is related to this `Achievement`. */
+  accountByAccountId?: Maybe<Account>
+  /** The `Achievement` that was deleted by this mutation. */
+  achievement?: Maybe<Achievement>
+  /** An edge for our `Achievement`. May be used by Relay 1. */
+  achievementEdge?: Maybe<AchievementsEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  deletedAchievementId?: Maybe<Scalars['ID']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our delete `Achievement` mutation. */
+export type DeleteAchievementPayloadAchievementEdgeArgs = {
+  orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
 /** All input for the `deleteContactByAuthorAccountIdAndAccountId` mutation. */
@@ -1981,10 +2209,13 @@ export type Mutation = {
   accountRegistration?: Maybe<AccountRegistrationPayload>
   /** Refreshes an account's email address verification validity period. */
   accountRegistrationRefresh?: Maybe<AccountRegistrationRefreshPayload>
+  achievementUnlock?: Maybe<AchievementUnlockPayload>
   /** Creates a JWT token that will securely identify an account and give it certain permissions. */
   authenticate?: Maybe<AuthenticatePayload>
   /** Creates a single `Account`. */
   createAccount?: Maybe<CreateAccountPayload>
+  /** Creates a single `Achievement`. */
+  createAchievement?: Maybe<CreateAchievementPayload>
   /** Creates a single `Contact`. */
   createContact?: Maybe<CreateContactPayload>
   /** Creates a single `Event`. */
@@ -2005,6 +2236,12 @@ export type Mutation = {
   deleteAccountById?: Maybe<DeleteAccountPayload>
   /** Deletes a single `Account` using a unique key. */
   deleteAccountByUsername?: Maybe<DeleteAccountPayload>
+  /** Deletes a single `Achievement` using its globally unique id. */
+  deleteAchievement?: Maybe<DeleteAchievementPayload>
+  /** Deletes a single `Achievement` using a unique key. */
+  deleteAchievementByAccountIdAndAchievement?: Maybe<DeleteAchievementPayload>
+  /** Deletes a single `Achievement` using a unique key. */
+  deleteAchievementById?: Maybe<DeleteAchievementPayload>
   /** Deletes a single `Contact` using its globally unique id. */
   deleteContact?: Maybe<DeleteContactPayload>
   /** Deletes a single `Contact` using a unique key. */
@@ -2065,6 +2302,12 @@ export type Mutation = {
   updateAccountById?: Maybe<UpdateAccountPayload>
   /** Updates a single `Account` using a unique key and a patch. */
   updateAccountByUsername?: Maybe<UpdateAccountPayload>
+  /** Updates a single `Achievement` using its globally unique id and a patch. */
+  updateAchievement?: Maybe<UpdateAchievementPayload>
+  /** Updates a single `Achievement` using a unique key and a patch. */
+  updateAchievementByAccountIdAndAchievement?: Maybe<UpdateAchievementPayload>
+  /** Updates a single `Achievement` using a unique key and a patch. */
+  updateAchievementById?: Maybe<UpdateAchievementPayload>
   /** Updates a single `Contact` using its globally unique id and a patch. */
   updateContact?: Maybe<UpdateContactPayload>
   /** Updates a single `Contact` using a unique key and a patch. */
@@ -2147,6 +2390,11 @@ export type MutationAccountRegistrationRefreshArgs = {
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationAchievementUnlockArgs = {
+  input: AchievementUnlockInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationAuthenticateArgs = {
   input: AuthenticateInput
 }
@@ -2154,6 +2402,11 @@ export type MutationAuthenticateArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateAccountArgs = {
   input: CreateAccountInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateAchievementArgs = {
+  input: CreateAchievementInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2204,6 +2457,21 @@ export type MutationDeleteAccountByIdArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAccountByUsernameArgs = {
   input: DeleteAccountByUsernameInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAchievementArgs = {
+  input: DeleteAchievementInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAchievementByAccountIdAndAchievementArgs = {
+  input: DeleteAchievementByAccountIdAndAchievementInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAchievementByIdArgs = {
+  input: DeleteAchievementByIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2354,6 +2622,21 @@ export type MutationUpdateAccountByIdArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAccountByUsernameArgs = {
   input: UpdateAccountByUsernameInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAchievementArgs = {
+  input: UpdateAchievementInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAchievementByAccountIdAndAchievementArgs = {
+  input: UpdateAchievementByAccountIdAndAchievementInput
+}
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAchievementByIdArgs = {
+  input: UpdateAchievementByIdInput
 }
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2620,8 +2903,14 @@ export type Query = Node & {
   accountByUsername?: Maybe<Account>
   /** Gets the total upload quota in bytes for the invoking account. */
   accountUploadQuotaBytes?: Maybe<Scalars['BigInt']['output']>
+  /** Reads a single `Achievement` using its globally unique `ID`. */
+  achievement?: Maybe<Achievement>
+  achievementByAccountIdAndAchievement?: Maybe<Achievement>
+  achievementById?: Maybe<Achievement>
   /** Reads and enables pagination through a set of `Account`. */
   allAccounts?: Maybe<AccountsConnection>
+  /** Reads and enables pagination through a set of `Achievement`. */
+  allAchievements?: Maybe<AchievementsConnection>
   /** Reads and enables pagination through a set of `Contact`. */
   allContacts?: Maybe<ContactsConnection>
   /** Reads and enables pagination through a set of `EventGrouping`. */
@@ -2703,6 +2992,22 @@ export type QueryAccountByUsernameArgs = {
 }
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAchievementArgs = {
+  nodeId: Scalars['ID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAchievementByAccountIdAndAchievementArgs = {
+  accountId: Scalars['UUID']['input']
+  achievement: AchievementType
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAchievementByIdArgs = {
+  id: Scalars['UUID']['input']
+}
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllAccountsArgs = {
   after?: InputMaybe<Scalars['Cursor']['input']>
   before?: InputMaybe<Scalars['Cursor']['input']>
@@ -2711,6 +3016,17 @@ export type QueryAllAccountsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>
   offset?: InputMaybe<Scalars['Int']['input']>
   orderBy?: InputMaybe<Array<AccountsOrderBy>>
+}
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllAchievementsArgs = {
+  after?: InputMaybe<Scalars['Cursor']['input']>
+  before?: InputMaybe<Scalars['Cursor']['input']>
+  condition?: InputMaybe<AchievementCondition>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+  offset?: InputMaybe<Scalars['Int']['input']>
+  orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
 /** The root query type which gives access points into the data universe. */
@@ -2997,6 +3313,70 @@ export type UpdateAccountPayload = {
 /** The output of our update `Account` mutation. */
 export type UpdateAccountPayloadAccountEdgeArgs = {
   orderBy?: InputMaybe<Array<AccountsOrderBy>>
+}
+
+/** All input for the `updateAchievementByAccountIdAndAchievement` mutation. */
+export type UpdateAchievementByAccountIdAndAchievementInput = {
+  /** The account which unlocked the achievement. */
+  accountId: Scalars['UUID']['input']
+  /** The unlock's achievement. */
+  achievement: AchievementType
+  /** An object where the defined keys will be set on the `Achievement` being updated. */
+  achievementPatch: AchievementPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+}
+
+/** All input for the `updateAchievementById` mutation. */
+export type UpdateAchievementByIdInput = {
+  /** An object where the defined keys will be set on the `Achievement` being updated. */
+  achievementPatch: AchievementPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The achievement unlock's internal id. */
+  id: Scalars['UUID']['input']
+}
+
+/** All input for the `updateAchievement` mutation. */
+export type UpdateAchievementInput = {
+  /** An object where the defined keys will be set on the `Achievement` being updated. */
+  achievementPatch: AchievementPatch
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars['String']['input']>
+  /** The globally unique `ID` which will identify a single `Achievement` to be updated. */
+  nodeId: Scalars['ID']['input']
+}
+
+/** The output of our update `Achievement` mutation. */
+export type UpdateAchievementPayload = {
+  __typename?: 'UpdateAchievementPayload'
+  /** Reads a single `Account` that is related to this `Achievement`. */
+  accountByAccountId?: Maybe<Account>
+  /** The `Achievement` that was updated by this mutation. */
+  achievement?: Maybe<Achievement>
+  /** An edge for our `Achievement`. May be used by Relay 1. */
+  achievementEdge?: Maybe<AchievementsEdge>
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars['String']['output']>
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>
+}
+
+/** The output of our update `Achievement` mutation. */
+export type UpdateAchievementPayloadAchievementEdgeArgs = {
+  orderBy?: InputMaybe<Array<AchievementsOrderBy>>
 }
 
 /** All input for the `updateContactByAuthorAccountIdAndAccountId` mutation. */
@@ -3611,6 +3991,14 @@ export type GraphCacheKeysConfig = {
   ) => null | string
   AccountsConnection?: (data: WithTypename<AccountsConnection>) => null | string
   AccountsEdge?: (data: WithTypename<AccountsEdge>) => null | string
+  Achievement?: (data: WithTypename<Achievement>) => null | string
+  AchievementUnlockPayload?: (
+    data: WithTypename<AchievementUnlockPayload>,
+  ) => null | string
+  AchievementsConnection?: (
+    data: WithTypename<AchievementsConnection>,
+  ) => null | string
+  AchievementsEdge?: (data: WithTypename<AchievementsEdge>) => null | string
   AuthenticatePayload?: (
     data: WithTypename<AuthenticatePayload>,
   ) => null | string
@@ -3619,6 +4007,9 @@ export type GraphCacheKeysConfig = {
   ContactsEdge?: (data: WithTypename<ContactsEdge>) => null | string
   CreateAccountPayload?: (
     data: WithTypename<CreateAccountPayload>,
+  ) => null | string
+  CreateAchievementPayload?: (
+    data: WithTypename<CreateAchievementPayload>,
   ) => null | string
   CreateContactPayload?: (
     data: WithTypename<CreateContactPayload>,
@@ -3641,6 +4032,9 @@ export type GraphCacheKeysConfig = {
   ) => null | string
   DeleteAccountPayload?: (
     data: WithTypename<DeleteAccountPayload>,
+  ) => null | string
+  DeleteAchievementPayload?: (
+    data: WithTypename<DeleteAchievementPayload>,
   ) => null | string
   DeleteContactPayload?: (
     data: WithTypename<DeleteContactPayload>,
@@ -3715,6 +4109,9 @@ export type GraphCacheKeysConfig = {
   UpdateAccountPayload?: (
     data: WithTypename<UpdateAccountPayload>,
   ) => null | string
+  UpdateAchievementPayload?: (
+    data: WithTypename<UpdateAchievementPayload>,
+  ) => null | string
   UpdateContactPayload?: (
     data: WithTypename<UpdateContactPayload>,
   ) => null | string
@@ -3764,10 +4161,30 @@ export type GraphCacheResolvers = {
       Record<string, never>,
       Scalars['BigInt'] | string
     >
+    achievement?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryAchievementArgs,
+      WithTypename<Achievement> | string
+    >
+    achievementByAccountIdAndAchievement?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryAchievementByAccountIdAndAchievementArgs,
+      WithTypename<Achievement> | string
+    >
+    achievementById?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryAchievementByIdArgs,
+      WithTypename<Achievement> | string
+    >
     allAccounts?: GraphCacheResolver<
       WithTypename<Query>,
       QueryAllAccountsArgs,
       WithTypename<AccountsConnection> | string
+    >
+    allAchievements?: GraphCacheResolver<
+      WithTypename<Query>,
+      QueryAllAchievementsArgs,
+      WithTypename<AchievementsConnection> | string
     >
     allContacts?: GraphCacheResolver<
       WithTypename<Query>,
@@ -3913,6 +4330,7 @@ export type GraphCacheResolvers = {
       WithTypename<Query>,
       QueryNodeArgs,
       | WithTypename<Account>
+      | WithTypename<Achievement>
       | WithTypename<Contact>
       | WithTypename<Event>
       | WithTypename<EventGroup>
@@ -3965,6 +4383,11 @@ export type GraphCacheResolvers = {
     >
   }
   Account?: {
+    achievementsByAccountId?: GraphCacheResolver<
+      WithTypename<Account>,
+      AccountAchievementsByAccountIdArgs,
+      WithTypename<AchievementsConnection> | string
+    >
     contactsByAccountId?: GraphCacheResolver<
       WithTypename<Account>,
       AccountContactsByAccountIdArgs,
@@ -4139,6 +4562,89 @@ export type GraphCacheResolvers = {
       WithTypename<Account> | string
     >
   }
+  Achievement?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<Achievement>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    accountId?: GraphCacheResolver<
+      WithTypename<Achievement>,
+      Record<string, never>,
+      Scalars['UUID'] | string
+    >
+    achievement?: GraphCacheResolver<
+      WithTypename<Achievement>,
+      Record<string, never>,
+      AchievementType | string
+    >
+    id?: GraphCacheResolver<
+      WithTypename<Achievement>,
+      Record<string, never>,
+      Scalars['UUID'] | string
+    >
+    level?: GraphCacheResolver<
+      WithTypename<Achievement>,
+      Record<string, never>,
+      Scalars['Int'] | string
+    >
+    nodeId?: GraphCacheResolver<
+      WithTypename<Achievement>,
+      Record<string, never>,
+      Scalars['ID'] | string
+    >
+  }
+  AchievementUnlockPayload?: {
+    clientMutationId?: GraphCacheResolver<
+      WithTypename<AchievementUnlockPayload>,
+      Record<string, never>,
+      Scalars['String'] | string
+    >
+    query?: GraphCacheResolver<
+      WithTypename<AchievementUnlockPayload>,
+      Record<string, never>,
+      WithTypename<Query> | string
+    >
+    uuid?: GraphCacheResolver<
+      WithTypename<AchievementUnlockPayload>,
+      Record<string, never>,
+      Scalars['UUID'] | string
+    >
+  }
+  AchievementsConnection?: {
+    edges?: GraphCacheResolver<
+      WithTypename<AchievementsConnection>,
+      Record<string, never>,
+      Array<WithTypename<AchievementsEdge> | string>
+    >
+    nodes?: GraphCacheResolver<
+      WithTypename<AchievementsConnection>,
+      Record<string, never>,
+      Array<WithTypename<Achievement> | string>
+    >
+    pageInfo?: GraphCacheResolver<
+      WithTypename<AchievementsConnection>,
+      Record<string, never>,
+      WithTypename<PageInfo> | string
+    >
+    totalCount?: GraphCacheResolver<
+      WithTypename<AchievementsConnection>,
+      Record<string, never>,
+      Scalars['Int'] | string
+    >
+  }
+  AchievementsEdge?: {
+    cursor?: GraphCacheResolver<
+      WithTypename<AchievementsEdge>,
+      Record<string, never>,
+      Scalars['Cursor'] | string
+    >
+    node?: GraphCacheResolver<
+      WithTypename<AchievementsEdge>,
+      Record<string, never>,
+      WithTypename<Achievement> | string
+    >
+  }
   AuthenticatePayload?: {
     clientMutationId?: GraphCacheResolver<
       WithTypename<AuthenticatePayload>,
@@ -4280,6 +4786,33 @@ export type GraphCacheResolvers = {
     >
     query?: GraphCacheResolver<
       WithTypename<CreateAccountPayload>,
+      Record<string, never>,
+      WithTypename<Query> | string
+    >
+  }
+  CreateAchievementPayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<CreateAchievementPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    achievement?: GraphCacheResolver<
+      WithTypename<CreateAchievementPayload>,
+      Record<string, never>,
+      WithTypename<Achievement> | string
+    >
+    achievementEdge?: GraphCacheResolver<
+      WithTypename<CreateAchievementPayload>,
+      CreateAchievementPayloadAchievementEdgeArgs,
+      WithTypename<AchievementsEdge> | string
+    >
+    clientMutationId?: GraphCacheResolver<
+      WithTypename<CreateAchievementPayload>,
+      Record<string, never>,
+      Scalars['String'] | string
+    >
+    query?: GraphCacheResolver<
+      WithTypename<CreateAchievementPayload>,
       Record<string, never>,
       WithTypename<Query> | string
     >
@@ -4516,6 +5049,38 @@ export type GraphCacheResolvers = {
     >
     query?: GraphCacheResolver<
       WithTypename<DeleteAccountPayload>,
+      Record<string, never>,
+      WithTypename<Query> | string
+    >
+  }
+  DeleteAchievementPayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<DeleteAchievementPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    achievement?: GraphCacheResolver<
+      WithTypename<DeleteAchievementPayload>,
+      Record<string, never>,
+      WithTypename<Achievement> | string
+    >
+    achievementEdge?: GraphCacheResolver<
+      WithTypename<DeleteAchievementPayload>,
+      DeleteAchievementPayloadAchievementEdgeArgs,
+      WithTypename<AchievementsEdge> | string
+    >
+    clientMutationId?: GraphCacheResolver<
+      WithTypename<DeleteAchievementPayload>,
+      Record<string, never>,
+      Scalars['String'] | string
+    >
+    deletedAchievementId?: GraphCacheResolver<
+      WithTypename<DeleteAchievementPayload>,
+      Record<string, never>,
+      Scalars['ID'] | string
+    >
+    query?: GraphCacheResolver<
+      WithTypename<DeleteAchievementPayload>,
       Record<string, never>,
       WithTypename<Query> | string
     >
@@ -5395,6 +5960,33 @@ export type GraphCacheResolvers = {
       WithTypename<Query> | string
     >
   }
+  UpdateAchievementPayload?: {
+    accountByAccountId?: GraphCacheResolver<
+      WithTypename<UpdateAchievementPayload>,
+      Record<string, never>,
+      WithTypename<Account> | string
+    >
+    achievement?: GraphCacheResolver<
+      WithTypename<UpdateAchievementPayload>,
+      Record<string, never>,
+      WithTypename<Achievement> | string
+    >
+    achievementEdge?: GraphCacheResolver<
+      WithTypename<UpdateAchievementPayload>,
+      UpdateAchievementPayloadAchievementEdgeArgs,
+      WithTypename<AchievementsEdge> | string
+    >
+    clientMutationId?: GraphCacheResolver<
+      WithTypename<UpdateAchievementPayload>,
+      Record<string, never>,
+      Scalars['String'] | string
+    >
+    query?: GraphCacheResolver<
+      WithTypename<UpdateAchievementPayload>,
+      Record<string, never>,
+      WithTypename<Query> | string
+    >
+  }
   UpdateContactPayload?: {
     accountByAccountId?: GraphCacheResolver<
       WithTypename<UpdateContactPayload>,
@@ -5733,6 +6325,10 @@ export type GraphCacheOptimisticUpdaters = {
     MutationAccountRegistrationRefreshArgs,
     Maybe<WithTypename<AccountRegistrationRefreshPayload>>
   >
+  achievementUnlock?: GraphCacheOptimisticMutationResolver<
+    MutationAchievementUnlockArgs,
+    Maybe<WithTypename<AchievementUnlockPayload>>
+  >
   authenticate?: GraphCacheOptimisticMutationResolver<
     MutationAuthenticateArgs,
     Maybe<WithTypename<AuthenticatePayload>>
@@ -5740,6 +6336,10 @@ export type GraphCacheOptimisticUpdaters = {
   createAccount?: GraphCacheOptimisticMutationResolver<
     MutationCreateAccountArgs,
     Maybe<WithTypename<CreateAccountPayload>>
+  >
+  createAchievement?: GraphCacheOptimisticMutationResolver<
+    MutationCreateAchievementArgs,
+    Maybe<WithTypename<CreateAchievementPayload>>
   >
   createContact?: GraphCacheOptimisticMutationResolver<
     MutationCreateContactArgs,
@@ -5780,6 +6380,18 @@ export type GraphCacheOptimisticUpdaters = {
   deleteAccountByUsername?: GraphCacheOptimisticMutationResolver<
     MutationDeleteAccountByUsernameArgs,
     Maybe<WithTypename<DeleteAccountPayload>>
+  >
+  deleteAchievement?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteAchievementArgs,
+    Maybe<WithTypename<DeleteAchievementPayload>>
+  >
+  deleteAchievementByAccountIdAndAchievement?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteAchievementByAccountIdAndAchievementArgs,
+    Maybe<WithTypename<DeleteAchievementPayload>>
+  >
+  deleteAchievementById?: GraphCacheOptimisticMutationResolver<
+    MutationDeleteAchievementByIdArgs,
+    Maybe<WithTypename<DeleteAchievementPayload>>
   >
   deleteContact?: GraphCacheOptimisticMutationResolver<
     MutationDeleteContactArgs,
@@ -5901,6 +6513,18 @@ export type GraphCacheOptimisticUpdaters = {
     MutationUpdateAccountByUsernameArgs,
     Maybe<WithTypename<UpdateAccountPayload>>
   >
+  updateAchievement?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateAchievementArgs,
+    Maybe<WithTypename<UpdateAchievementPayload>>
+  >
+  updateAchievementByAccountIdAndAchievement?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateAchievementByAccountIdAndAchievementArgs,
+    Maybe<WithTypename<UpdateAchievementPayload>>
+  >
+  updateAchievementById?: GraphCacheOptimisticMutationResolver<
+    MutationUpdateAchievementByIdArgs,
+    Maybe<WithTypename<UpdateAchievementPayload>>
+  >
   updateContact?: GraphCacheOptimisticMutationResolver<
     MutationUpdateContactArgs,
     Maybe<WithTypename<UpdateContactPayload>>
@@ -6009,9 +6633,27 @@ export type GraphCacheUpdaters = {
       { accountUploadQuotaBytes: Maybe<Scalars['BigInt']> },
       Record<string, never>
     >
+    achievement?: GraphCacheUpdateResolver<
+      { achievement: Maybe<WithTypename<Achievement>> },
+      QueryAchievementArgs
+    >
+    achievementByAccountIdAndAchievement?: GraphCacheUpdateResolver<
+      {
+        achievementByAccountIdAndAchievement: Maybe<WithTypename<Achievement>>
+      },
+      QueryAchievementByAccountIdAndAchievementArgs
+    >
+    achievementById?: GraphCacheUpdateResolver<
+      { achievementById: Maybe<WithTypename<Achievement>> },
+      QueryAchievementByIdArgs
+    >
     allAccounts?: GraphCacheUpdateResolver<
       { allAccounts: Maybe<WithTypename<AccountsConnection>> },
       QueryAllAccountsArgs
+    >
+    allAchievements?: GraphCacheUpdateResolver<
+      { allAchievements: Maybe<WithTypename<AchievementsConnection>> },
+      QueryAllAchievementsArgs
     >
     allContacts?: GraphCacheUpdateResolver<
       { allContacts: Maybe<WithTypename<ContactsConnection>> },
@@ -6137,6 +6779,7 @@ export type GraphCacheUpdaters = {
       {
         node: Maybe<
           | WithTypename<Account>
+          | WithTypename<Achievement>
           | WithTypename<Contact>
           | WithTypename<Event>
           | WithTypename<EventGroup>
@@ -6227,6 +6870,10 @@ export type GraphCacheUpdaters = {
       },
       MutationAccountRegistrationRefreshArgs
     >
+    achievementUnlock?: GraphCacheUpdateResolver<
+      { achievementUnlock: Maybe<WithTypename<AchievementUnlockPayload>> },
+      MutationAchievementUnlockArgs
+    >
     authenticate?: GraphCacheUpdateResolver<
       { authenticate: Maybe<WithTypename<AuthenticatePayload>> },
       MutationAuthenticateArgs
@@ -6234,6 +6881,10 @@ export type GraphCacheUpdaters = {
     createAccount?: GraphCacheUpdateResolver<
       { createAccount: Maybe<WithTypename<CreateAccountPayload>> },
       MutationCreateAccountArgs
+    >
+    createAchievement?: GraphCacheUpdateResolver<
+      { createAchievement: Maybe<WithTypename<CreateAchievementPayload>> },
+      MutationCreateAchievementArgs
     >
     createContact?: GraphCacheUpdateResolver<
       { createContact: Maybe<WithTypename<CreateContactPayload>> },
@@ -6276,6 +6927,22 @@ export type GraphCacheUpdaters = {
     deleteAccountByUsername?: GraphCacheUpdateResolver<
       { deleteAccountByUsername: Maybe<WithTypename<DeleteAccountPayload>> },
       MutationDeleteAccountByUsernameArgs
+    >
+    deleteAchievement?: GraphCacheUpdateResolver<
+      { deleteAchievement: Maybe<WithTypename<DeleteAchievementPayload>> },
+      MutationDeleteAchievementArgs
+    >
+    deleteAchievementByAccountIdAndAchievement?: GraphCacheUpdateResolver<
+      {
+        deleteAchievementByAccountIdAndAchievement: Maybe<
+          WithTypename<DeleteAchievementPayload>
+        >
+      },
+      MutationDeleteAchievementByAccountIdAndAchievementArgs
+    >
+    deleteAchievementById?: GraphCacheUpdateResolver<
+      { deleteAchievementById: Maybe<WithTypename<DeleteAchievementPayload>> },
+      MutationDeleteAchievementByIdArgs
     >
     deleteContact?: GraphCacheUpdateResolver<
       { deleteContact: Maybe<WithTypename<DeleteContactPayload>> },
@@ -6433,6 +7100,22 @@ export type GraphCacheUpdaters = {
       { updateAccountByUsername: Maybe<WithTypename<UpdateAccountPayload>> },
       MutationUpdateAccountByUsernameArgs
     >
+    updateAchievement?: GraphCacheUpdateResolver<
+      { updateAchievement: Maybe<WithTypename<UpdateAchievementPayload>> },
+      MutationUpdateAchievementArgs
+    >
+    updateAchievementByAccountIdAndAchievement?: GraphCacheUpdateResolver<
+      {
+        updateAchievementByAccountIdAndAchievement: Maybe<
+          WithTypename<UpdateAchievementPayload>
+        >
+      },
+      MutationUpdateAchievementByAccountIdAndAchievementArgs
+    >
+    updateAchievementById?: GraphCacheUpdateResolver<
+      { updateAchievementById: Maybe<WithTypename<UpdateAchievementPayload>> },
+      MutationUpdateAchievementByIdArgs
+    >
     updateContact?: GraphCacheUpdateResolver<
       { updateContact: Maybe<WithTypename<UpdateContactPayload>> },
       MutationUpdateContactArgs
@@ -6556,6 +7239,10 @@ export type GraphCacheUpdaters = {
   }
   Subscription?: {}
   Account?: {
+    achievementsByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Account>>,
+      AccountAchievementsByAccountIdArgs
+    >
     contactsByAccountId?: GraphCacheUpdateResolver<
       Maybe<WithTypename<Account>>,
       AccountContactsByAccountIdArgs
@@ -6699,6 +7386,74 @@ export type GraphCacheUpdaters = {
       Record<string, never>
     >
   }
+  Achievement?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Achievement>>,
+      Record<string, never>
+    >
+    accountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Achievement>>,
+      Record<string, never>
+    >
+    achievement?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Achievement>>,
+      Record<string, never>
+    >
+    id?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Achievement>>,
+      Record<string, never>
+    >
+    level?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Achievement>>,
+      Record<string, never>
+    >
+    nodeId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<Achievement>>,
+      Record<string, never>
+    >
+  }
+  AchievementUnlockPayload?: {
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AchievementUnlockPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AchievementUnlockPayload>>,
+      Record<string, never>
+    >
+    uuid?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AchievementUnlockPayload>>,
+      Record<string, never>
+    >
+  }
+  AchievementsConnection?: {
+    edges?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AchievementsConnection>>,
+      Record<string, never>
+    >
+    nodes?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AchievementsConnection>>,
+      Record<string, never>
+    >
+    pageInfo?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AchievementsConnection>>,
+      Record<string, never>
+    >
+    totalCount?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AchievementsConnection>>,
+      Record<string, never>
+    >
+  }
+  AchievementsEdge?: {
+    cursor?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AchievementsEdge>>,
+      Record<string, never>
+    >
+    node?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<AchievementsEdge>>,
+      Record<string, never>
+    >
+  }
   AuthenticatePayload?: {
     clientMutationId?: GraphCacheUpdateResolver<
       Maybe<WithTypename<AuthenticatePayload>>,
@@ -6814,6 +7569,28 @@ export type GraphCacheUpdaters = {
     >
     query?: GraphCacheUpdateResolver<
       Maybe<WithTypename<CreateAccountPayload>>,
+      Record<string, never>
+    >
+  }
+  CreateAchievementPayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateAchievementPayload>>,
+      Record<string, never>
+    >
+    achievement?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateAchievementPayload>>,
+      Record<string, never>
+    >
+    achievementEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateAchievementPayload>>,
+      CreateAchievementPayloadAchievementEdgeArgs
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateAchievementPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<CreateAchievementPayload>>,
       Record<string, never>
     >
   }
@@ -7006,6 +7783,32 @@ export type GraphCacheUpdaters = {
     >
     query?: GraphCacheUpdateResolver<
       Maybe<WithTypename<DeleteAccountPayload>>,
+      Record<string, never>
+    >
+  }
+  DeleteAchievementPayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAchievementPayload>>,
+      Record<string, never>
+    >
+    achievement?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAchievementPayload>>,
+      Record<string, never>
+    >
+    achievementEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAchievementPayload>>,
+      DeleteAchievementPayloadAchievementEdgeArgs
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAchievementPayload>>,
+      Record<string, never>
+    >
+    deletedAchievementId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAchievementPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<DeleteAchievementPayload>>,
       Record<string, never>
     >
   }
@@ -7723,6 +8526,28 @@ export type GraphCacheUpdaters = {
       Record<string, never>
     >
   }
+  UpdateAchievementPayload?: {
+    accountByAccountId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateAchievementPayload>>,
+      Record<string, never>
+    >
+    achievement?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateAchievementPayload>>,
+      Record<string, never>
+    >
+    achievementEdge?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateAchievementPayload>>,
+      UpdateAchievementPayloadAchievementEdgeArgs
+    >
+    clientMutationId?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateAchievementPayload>>,
+      Record<string, never>
+    >
+    query?: GraphCacheUpdateResolver<
+      Maybe<WithTypename<UpdateAchievementPayload>>,
+      Record<string, never>
+    >
+  }
   UpdateContactPayload?: {
     accountByAccountId?: GraphCacheUpdateResolver<
       Maybe<WithTypename<UpdateContactPayload>>,
@@ -7975,7 +8800,7 @@ export type GraphCacheUpdaters = {
   }
 }
 
-export type GraphCacheConfig = Parameters<typeof offlineExchange>[0] & {
+export type GraphCacheConfig = Parameters<typeof cacheExchange>[0] & {
   updates?: GraphCacheUpdaters
   keys?: GraphCacheKeysConfig
   optimistic?: GraphCacheOptimisticUpdaters

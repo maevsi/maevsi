@@ -6,14 +6,12 @@
       <div
         class="flex min-w-0 flex-col items-center justify-center sm:flex-row"
       >
-        <div class="sm:mr-4">
-          <AccountProfilePicture
-            :account-id="account?.id"
-            classes="h-48 rounded w-48"
-            height="192"
-            width="192"
-          />
-        </div>
+        <AccountProfilePicture
+          :account-id="account?.id"
+          classes="h-48 rounded w-48"
+          height="192"
+          width="192"
+        />
       </div>
       <div class="flex justify-center">
         <UnderConstruction>
@@ -68,38 +66,33 @@
         </UnderConstruction>
       </div>
       <div class="flex flex-col gap-2">
-        <UnderConstruction>
-          <span class="text-xl font-bold">
-            {{ t('achievements') }}
-          </span>
-          <!-- @vue-ignore -->
-          <CardButton
-            class="relative"
-            is-disabled
-            :to="`/trophy/view/$username`"
+        <span class="text-xl font-bold">
+          {{ t('achievements') }}
+        </span>
+        <!-- @vue-ignore -->
+        <CardButton class="relative" is-disabled :to="`/trophy/view/$username`">
+          <div
+            v-if="
+              achievements.filter(
+                (achievement) =>
+                  achievement.achievement === AchievementType.MeetTheTeam,
+              ).length
+            "
+            class="flex gap-2 text-center"
           >
-            <div class="flex gap-2 text-center">
-              <div class="flex flex-1 flex-col items-center gap-2 p-2">
-                <IHeroiconsTrophy height="2em" width="2em" />
-                <span class="text-gray-700 dark:text-gray-300">
-                  {{ t('achievementTopG') }}
-                </span>
+            <div class="flex flex-1 flex-col items-center gap-2 p-2">
+              <div class="relative">
+                <IMaterialSymbolsHexagonOutline height="4em" width="4em" />
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <IFa6SolidHandshake height="1.5em" width="1.5em" />
+                </div>
               </div>
-              <div class="flex flex-1 flex-col items-center gap-2 p-2">
-                <IHeroiconsStar height="2em" width="2em" />
-                <span class="text-gray-700 dark:text-gray-300">
-                  {{ t('achievementStarChef') }}
-                </span>
-              </div>
-              <div class="flex flex-1 flex-col items-center gap-2 p-2">
-                <IHeroiconsArrowPath height="2em" width="2em" />
-                <span class="text-gray-700 dark:text-gray-300">
-                  {{ t('achievementReturnee') }}
-                </span>
-              </div>
+              <span class="text-gray-700 dark:text-gray-300">
+                {{ t('achievementMeetTheTeam') }}
+              </span>
             </div>
-          </CardButton>
-        </UnderConstruction>
+          </div>
+        </CardButton>
       </div>
     </div>
   </Loader>
@@ -112,8 +105,11 @@ import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
 
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import { getAchievementItem } from '~/gql/documents/fragments/achievementItem'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import { useAllAchievementsQuery } from '~/gql/documents/queries/achievement/achievementsAll'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
+import { AchievementType } from '~/gql/generated/graphql'
 
 const ROUTE_NAME: RoutesNamesList = 'account-view-username'
 
@@ -151,7 +147,14 @@ const accountByUsernameQuery = await zalgo(
 const account = getAccountItem(
   accountByUsernameQuery.data.value?.accountByUsername,
 )
-const api = getApiData([accountByUsernameQuery])
+const achievementsQuery = await useAllAchievementsQuery({
+  accountId: account?.id,
+})
+const achievements =
+  achievementsQuery.data.value?.allAchievements?.nodes
+    .map((x) => getAchievementItem(x))
+    .filter(isNeitherNullNorUndefined) || []
+const api = getApiData([accountByUsernameQuery, achievementsQuery])
 
 // data
 const breadcrumbItems = getBreadcrumbItemProps([
@@ -178,17 +181,13 @@ useHeadDefault({
 <i18n lang="yaml">
 de:
   achievements: Trophäen
-  achievementReturnee: Wiederkehrer
-  achievementStarChef: Sterne-Koch
-  achievementTopG: Bester Mann
+  achievementMeetTheTeam: Triff das Team
   eventsTheir: Veranstaltungen von {name}
   friendAdd: Freundschaftsanfrage senden
   friends: Freunde
 en:
   achievements: Achievements
-  achievementReturnee: Returnee
-  achievementStarChef: Star chef
-  achievementTopG: Top G
+  achievementMeetTheTeam: Meet the team
   eventsTheir: Events by {name}
   friends: Friends
   friendAdd: Send friend request
