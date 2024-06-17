@@ -1,3 +1,9 @@
+## [4.10.1](https://github.com/maevsi/maevsi/compare/4.10.0...4.10.1) (2024-06-17)
+
+### Bug Fixes
+
+* **achievement:** add empty state text ([3fd7f73](https://github.com/maevsi/maevsi/commit/3fd7f7374a70aa1f7f8c6189de9152e108f993eb))
+
 ## [4.10.0](https://github.com/maevsi/maevsi/compare/4.9.3...4.10.0) (2024-06-14)
 
 ### Features
