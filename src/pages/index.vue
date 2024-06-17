@@ -212,7 +212,7 @@ de:
   title: Keine Veranstaltung mehr verpassen
   unlockConfirm: Zum Profil
   unlockDeny: Schließen
-  unlockText: Sieh dir dein neues Abzeichen auf deinem Profil an.
+  unlockText: Sieh dir deine neue Errungenschaft auf deinem Profil an.
   unlockTitle: Auszeichnung freigeschaltet
 en:
   featureRecommendationsKeyword: Smart relevance
