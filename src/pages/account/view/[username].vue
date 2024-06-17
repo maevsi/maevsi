@@ -70,7 +70,11 @@
           {{ t('achievements') }}
         </span>
         <!-- @vue-ignore -->
-        <CardButton class="relative" is-disabled :to="`/trophy/view/$username`">
+        <CardButton
+          class="relative"
+          is-disabled
+          :to="`/achievement/view/$username`"
+        >
           <div
             v-if="
               achievements.filter(
@@ -92,6 +96,9 @@
               </span>
             </div>
           </div>
+          <span v-else>
+            {{ t('achievementsNone') }}
+          </span>
         </CardButton>
       </div>
     </div>
@@ -180,13 +187,15 @@ useHeadDefault({
 
 <i18n lang="yaml">
 de:
-  achievements: Trophäen
+  achievements: Errungenschaften
+  achievementsNone: Noch keine freigeschaltet
   achievementMeetTheTeam: Triff das Team
   eventsTheir: Veranstaltungen von {name}
   friendAdd: Freundschaftsanfrage senden
   friends: Freunde
 en:
   achievements: Achievements
+  achievementsNone: None unlocked yet
   achievementMeetTheTeam: Meet the team
   eventsTheir: Events by {name}
   friends: Friends
