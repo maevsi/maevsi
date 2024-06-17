@@ -4,8 +4,7 @@ export const useAppLayout = () => {
   const appConfig = useAppConfig()
   const siteConfig = useSiteConfig()
 
-  // TODO: replace with `useServerHeadSafe`
-  useHeadSafe({
+  useServerHeadSafe({
     ...useLocaleHead({ addDirAttribute: true, addSeoAttributes: true }).value,
     bodyAttrs: {
       class:
@@ -28,8 +27,7 @@ export const useAppLayout = () => {
   }
 
   if (appConfig.vio.themeColor) {
-    // TODO: replace with `useServerSeoMeta`
-    useSeoMeta({
+    useServerSeoMeta({
       msapplicationTileColor: appConfig.vio.themeColor,
       themeColor: appConfig.vio.themeColor,
     })
