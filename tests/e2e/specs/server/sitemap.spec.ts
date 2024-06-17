@@ -8,21 +8,23 @@ const PAGE_PATH = '/sitemap.xml' as TypedLocalePathParameter<never> // TODO: hav
 testPageLoad(PAGE_PATH)
 
 test.describe('sitemap', () => {
+  const languages = ['en', 'de']
+
   test('index', async ({ request }) => {
     const resp = await request.get('/sitemap_index.xml')
     const text = await resp.text()
 
-    for (const lang of ['en', 'de']) {
-      expect(text).toContain(`http://localhost:3001/${lang}-sitemap.xml`)
+    for (const language of languages) {
+      expect(text).toContain(`http://localhost:3001/${language}-sitemap.xml`)
     }
   })
 
   test('content', async ({ request }) => {
-    for (const lang of ['en', 'de']) {
-      const resp = await request.get(`/${lang}-sitemap.xml`)
+    for (const language of languages) {
+      const resp = await request.get(`/${language}-sitemap.xml`)
       const text = await resp.text()
       expect(text.replace(/\n.+<\/lastmod>/g, '')).toMatchSnapshot(
-        `sitemap-content-${lang}.xml`,
+        `sitemap-content-${language}.xml`,
       )
     }
   })
