@@ -73,7 +73,7 @@
     "html-to-text": "9.0.5",
     "ical-generator": "7.1.0",
     "isomorphic-dompurify": "2.12.0",
-    "jose": "5.4.1",
+    "jose": "5.5.0",
     "js-confetti": "0.12.0",
     "lodash-es": "4.17.21",
     "mustache": "4.2.0",
