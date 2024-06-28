@@ -6,7 +6,7 @@ import {
   TIMEZONE_COOKIE_NAME,
 } from '#src/utils/constants'
 import {
-  COOKIE_CONTROL_CONSENT_COOKIE_DEFAUL_VALUE,
+  COOKIE_CONTROL_CONSENT_COOKIE_DEFAULT_VALUE,
   TIMEZONE_DEFAULT,
 } from '#tests/e2e/utils/constants'
 
@@ -60,7 +60,7 @@ export const maevsiTest = test.extend<{
         domain: 'localhost',
         name: COOKIE_CONTROL_CONSENT_COOKIE_NAME,
         path: '/',
-        value: COOKIE_CONTROL_CONSENT_COOKIE_DEFAUL_VALUE,
+        value: COOKIE_CONTROL_CONSENT_COOKIE_DEFAULT_VALUE,
       },
     ])
 
