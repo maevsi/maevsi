@@ -1,3 +1,9 @@
+## [4.10.3](https://github.com/maevsi/maevsi/compare/4.10.2...4.10.3) (2024-06-28)
+
+### Bug Fixes
+
+* **timezone:** use h3's request ip ([6a2520e](https://github.com/maevsi/maevsi/commit/6a2520e43e9fd2c6cabfc4fb5c50a4da5f8e6de9))
+
 ## [4.10.2](https://github.com/maevsi/maevsi/compare/4.10.1...4.10.2) (2024-06-28)
 
 ### Bug Fixes
