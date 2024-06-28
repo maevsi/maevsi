@@ -1,3 +1,9 @@
+## [4.10.2](https://github.com/maevsi/maevsi/compare/4.10.1...4.10.2) (2024-06-28)
+
+### Bug Fixes
+
+* **polyfill:** remove ([433eab8](https://github.com/maevsi/maevsi/commit/433eab82a318dcaf6aba6c6fa5665265c7a9ce02))
+
 ## [4.10.1](https://github.com/maevsi/maevsi/compare/4.10.0...4.10.1) (2024-06-17)
 
 ### Bug Fixes
