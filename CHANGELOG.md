@@ -1,3 +1,9 @@
+## [4.11.0](https://github.com/maevsi/maevsi/compare/4.10.3...4.11.0) (2024-06-28)
+
+### Features
+
+* **cookie:** explain cloudflare cookie ([d35e0f8](https://github.com/maevsi/maevsi/commit/d35e0f8588e5b10726343e8569e8cf0ffd6035ba))
+
 ## [4.10.3](https://github.com/maevsi/maevsi/compare/4.10.2...4.10.3) (2024-06-28)
 
 ### Bug Fixes
