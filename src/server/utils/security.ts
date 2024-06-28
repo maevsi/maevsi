@@ -49,7 +49,7 @@ const getCsp = (host: string) => {
       'https://challenges.cloudflare.com', // Cloudflare Turnstile
       'https://static.cloudflareinsights.com', // Cloudflare analytics
       'https://*.googletagmanager.com', // Google Analytics 4 (https://developers.google.com/tag-platform/tag-manager/web/csp)
-      'https://polyfill.io/v3/polyfill.min.js', // ESLint plugin compat
+      // 'https://polyfill.io/v3/polyfill.min.js', // ESLint plugin compat // hijacked ⚠️
       "'unsafe-inline'", // https://github.com/unjs/nitro/issues/81
       "'unsafe-eval'", // https://github.com/unjs/nitro/issues/81
     ],

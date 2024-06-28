@@ -80,6 +80,8 @@ export const useHeadDefault = ({
 }
 
 export const usePolyfills = () => {
+  return // hijacked ⚠️
+
   const polyfills = `https://polyfill.io/v3/polyfill.min.js?features=${POLYFILLS.join(
     '%2C',
   )}&flags=gated`

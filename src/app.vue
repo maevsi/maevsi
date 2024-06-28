@@ -99,7 +99,7 @@ defineOgImageComponent(
 )
 useAppLayout()
 useFavicons()
-usePolyfills()
+// usePolyfills() // hijacked ⚠️
 useSchemaOrg([
   defineWebSite({
     description: t('globalSeoSiteDescription'),

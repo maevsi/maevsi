@@ -154,7 +154,7 @@ const cropperRef = ref()
 const inputProfilePictureRef = ref()
 
 // api data
-const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery()
+const accountUploadQuotaBytesQuery = await useAccountUploadQuotaBytesQuery({})
 const allUploadsQuery = await useAllUploadsQuery({
   after,
   first: ITEMS_PER_PAGE,

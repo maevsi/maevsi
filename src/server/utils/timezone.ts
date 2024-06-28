@@ -12,9 +12,9 @@ export const getTimezoneServer = async (event: H3Event) => {
 
   if (timezoneByCookie) return timezoneByCookie
 
-  const ip = event.node.req.headers['x-real-ip']
+  const ip = getRequestIP(event, { xForwardedFor: true })
 
-  if (ip && !Array.isArray(ip)) {
+  if (ip) {
     const timezoneByIpApi = await getTimezoneByIpApi(ip)
 
     if (timezoneByIpApi) return timezoneByIpApi
@@ -22,6 +22,8 @@ export const getTimezoneServer = async (event: H3Event) => {
 }
 
 export const getTimezoneByIpApi = async (ip: string) => {
+  if (isTestingServer()) return
+
   const ipApiResult = await $fetch<{ timezone: string }>(
     `http://ip-api.com/json/${ip}`,
   ).catch(() => {})

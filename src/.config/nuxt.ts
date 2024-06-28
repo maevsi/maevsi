@@ -52,6 +52,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
+    '@nuxt/scripts',
     // '@nuxtjs/color-mode', // installed by @nuxt/ui
     '@nuxtjs/html-validator',
     '@nuxtjs/i18n',
