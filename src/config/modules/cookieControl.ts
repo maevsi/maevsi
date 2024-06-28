@@ -61,6 +61,18 @@ export const cookieControlConfig: ReturnType<DefineNuxtConfig> = {
           },
           targetCookieIds: [TIMEZONE_COOKIE_NAME],
         },
+        {
+          description: {
+            de: 'Dieser Cookie vom Drittanbieter Cloudflare speichert eine erfolgreiche Sicherheitsüberprüfung des Zugriffs.',
+            en: 'This third-party cookie by Cloudflare saves a successful security check on access.',
+          },
+          id: 'cc',
+          name: {
+            de: 'Cloudflare',
+            en: 'Cloudflare',
+          },
+          targetCookieIds: ['cf_clearance'],
+        },
       ],
       optional: [
         {
@@ -73,7 +85,10 @@ export const cookieControlConfig: ReturnType<DefineNuxtConfig> = {
             'https://policies.google.com/privacy': 'Google Privacy Policy',
             'https://policies.google.com/terms': 'Google Terms of Service',
           },
-          name: 'Analytics',
+          name: {
+            de: 'Analyse',
+            en: 'Analytics',
+          },
           targetCookieIds: ['_ga', '_ga_WMQ1JY99XH'],
         },
       ],
