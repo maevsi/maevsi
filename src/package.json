@@ -2,7 +2,7 @@
   "description": "Find events, guests and friends 💙❤️💚",
   "devDependencies": {
     "@dargmuesli/nuxt-cookie-control": "8.4.2",
-    "@dargmuesli/nuxt-vio": "13.1.9",
+    "@dargmuesli/nuxt-vio": "13.1.10",
     "@fontsource-variable/manrope": "5.0.20",
     "@graphql-codegen/add": "5.0.3",
     "@graphql-codegen/cli": "5.0.2",
