@@ -115,7 +115,7 @@
 </template>
 
 <script setup lang="ts">
-import { Uppy, type UppyFile } from '@uppy/core'
+import { Uppy } from '@uppy/core'
 import Tus from '@uppy/tus'
 import { consola } from 'consola'
 import prettyBytes from 'pretty-bytes'
@@ -185,7 +185,7 @@ const pending = reactive({
 const selectedItem = ref<{
   id?: string | null
 }>()
-const uppy = ref<Uppy>()
+const uppy = ref<Uppy<{ maevsiUploadUuid: string }>>()
 
 // computations
 const sizeByteTotal = computed(
@@ -335,7 +335,7 @@ const getUploadBlobPromise = () =>
           meta: {
             maevsiUploadUuid: result.data.uploadCreate?.upload?.id, // TODO: rename
           },
-          onBeforeUpload: (files: { [key: string]: UppyFile }) =>
+          onBeforeUpload: (files) =>
             Object.keys(files).reduce(
               (p, c) => ({
                 ...p,
@@ -369,7 +369,7 @@ const getUploadBlobPromise = () =>
 
         allUploadsQuery.executeQuery()
 
-        if (uploadResult.failed.length > 0) {
+        if (!uploadResult?.failed || uploadResult.failed.length > 0) {
           return reject(t('uploadError'))
         } else {
           return resolve()
@@ -380,7 +380,7 @@ const getUploadBlobPromise = () =>
   })
 
 // lifecycle
-onBeforeUnmount(() => uppy.value?.close())
+onBeforeUnmount(() => uppy.value?.destroy())
 </script>
 
 <style>
