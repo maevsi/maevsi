@@ -30,6 +30,7 @@ export default defineNuxtConfig({
       titleTemplate: '%s', // fully set in `composables/useAppLayout.ts`
     },
   },
+  compatibilityDate: '2024-04-03',
   hooks: {
     'vite:extendConfig': async (config, { isClient }) => {
       config.plugins ||= []
