@@ -79,7 +79,7 @@
     "lodash-es": "4.17.21",
     "mustache": "4.2.0",
     "nuxt": "3.12.3",
-    "nuxt-gtag": "2.0.6",
+    "nuxt-gtag": "2.0.7",
     "nuxt-security": "1.4.3",
     "nuxt-seo-ui": "0.4.4",
     "nuxt-typed-router": "3.6.5",
