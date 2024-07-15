@@ -39,7 +39,6 @@
   "type": "module",
   "pnpm": {
     "overrides": {
-      "@nuxt/scripts": "0.5.1",
       "@nuxtjs/i18n": "8.3.0",
       "typescript": "5.4.5"
     }

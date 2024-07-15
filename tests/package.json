@@ -29,9 +29,9 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.1.3",
     "typescript": "5.4.5",
-    "typescript-eslint": "7.16.0",
+    "typescript-eslint": "7.16.1",
     "ufo": "1.5.3",
-    "vitest": "2.0.2"
+    "vitest": "2.0.3"
   },
   "peerDependencies": {
     "playwright-core": "1.45.1"
