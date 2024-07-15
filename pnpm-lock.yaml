@@ -403,8 +403,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(vue-i18n@9.13.1(vue@3.4.31(typescript@5.4.5)))(vue-router@4.4.0(vue@3.4.31(typescript@5.4.5)))(vue@3.4.31(typescript@5.4.5))
       vue-qrcode-reader:
-        specifier: 5.5.6
-        version: 5.5.6
+        specifier: 5.5.7
+        version: 5.5.7
       vue-router:
         specifier: 4.4.0
         version: 4.4.0(vue@3.4.31(typescript@5.4.5))
@@ -7325,6 +7325,7 @@ packages:
 
   nuxt-simple-robots@4.0.0-rc.19:
     resolution: {integrity: sha512-Q9ExiIPvvircFY8oDi/+7WZjTvVMu6acXberEQQwfIx6e+wXat7ZRR9POd2cucJxlxeFgPNqceHad+WGQ8YneA==}
+    deprecated: module has been migrated to @nuxtjs/robots, see the migration guide https://nuxtseo.com/robots/releases/v4
 
   nuxt-site-config-kit@1.6.7:
     resolution: {integrity: sha512-dq7W5ra1KRRi8gW/v8j3e7rNCN8jEZHXnGZ9Ao4r7JZvyHpJyntQYcftcI2N7VViT+6xWdIE7ge4oma7+gvjVQ==}
@@ -9873,8 +9874,8 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  vue-qrcode-reader@5.5.6:
-    resolution: {integrity: sha512-aKEm0OHVO4aj2VZSZPua0nJytSHqqAnnVlH5a6OBXhq9644NuQ4UAHXhXKbkmzJXN+9LuKhX2+C8SHNV8RXCjg==}
+  vue-qrcode-reader@5.5.7:
+    resolution: {integrity: sha512-aflcKS6sQ5CDlmoyAaJJQ3OFeMcdnF6RRO2zHBlmKkHKL5nwPt+ayl/TCw+LvUBXhmfR3kNtPC5oJtgk9TcrBw==}
     engines: {node: '>=18.0.0'}
 
   vue-resize@2.0.0-alpha.1:
@@ -22366,7 +22367,7 @@ snapshots:
       '@vue/devtools-api': 6.6.3
       vue: 3.4.31(typescript@5.4.5)
 
-  vue-qrcode-reader@5.5.6:
+  vue-qrcode-reader@5.5.7:
     dependencies:
       barcode-detector: 2.2.2
       webrtc-adapter: 8.2.3
