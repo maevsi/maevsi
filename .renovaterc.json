@@ -5,10 +5,6 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["@nuxt/scripts"],
-      "allowedVersions": "0.5.1"
-    },
-    {
       "matchPackageNames": ["@nuxtjs/i18n"],
       "allowedVersions": "8.3.0"
     },

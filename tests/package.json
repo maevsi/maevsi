@@ -5,8 +5,8 @@
     "lint:ts": "tsc --noEmit",
     "lint": "pnpm run lint:js && pnpm run lint:ts",
     "test:e2e:docker:br": "pnpm run test:e2e:docker:build && pnpm run test:e2e:docker:run",
-    "test:e2e:docker:build": "docker build -t test-e2e_development --build-arg UID=$(id -u) --build-arg GID=$(id -g) --target test-e2e_development ..",
-    "test:e2e:docker:run": "docker run --rm -v \"$PWD/..:/srv/app\" -v \"$(pnpm store path):/srv/.pnpm-store\" test-e2e_development",
+    "test:e2e:docker:build": "sudo docker build -t test-e2e_development --build-arg UID=$(id -u) --build-arg GID=$(id -g) --target test-e2e_development ..",
+    "test:e2e:docker:run": "sudo docker run --rm -v \"$PWD/..:/srv/app\" -v \"$(pnpm store path):/srv/.pnpm-store\" test-e2e_development",
     "test:e2e:docker:server:dev:update": "pnpm run test:e2e:docker:server:dev --update-snapshots",
     "test:e2e:docker:server:dev": "pnpm run test:e2e:docker:br pnpm --dir tests run test:e2e:server:dev",
     "test:e2e:docker:server:node:update": "pnpm run test:e2e:docker:server:node --update-snapshots",
@@ -29,9 +29,9 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.1.3",
     "typescript": "5.4.5",
-    "typescript-eslint": "7.16.0",
+    "typescript-eslint": "7.16.1",
     "ufo": "1.5.3",
-    "vitest": "2.0.2"
+    "vitest": "2.0.3"
   },
   "peerDependencies": {
     "playwright-core": "1.45.1"
