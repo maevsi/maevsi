@@ -55,8 +55,8 @@ importers:
   src:
     devDependencies:
       '@dargmuesli/nuxt-cookie-control':
-        specifier: 8.4.5
-        version: 8.4.5(magicast@0.3.4)(rollup@4.19.0)(webpack@5.93.0(esbuild@0.21.5))
+        specifier: 8.4.6
+        version: 8.4.6(magicast@0.3.4)(rollup@4.19.0)(webpack@5.93.0(esbuild@0.21.5))
       '@dargmuesli/nuxt-vio':
         specifier: 13.2.2
         version: 13.2.2(@types/eslint@8.56.10)(graphql@16.9.0)(h3@1.12.0)(ioredis@5.4.1)(magicast@0.3.4)(nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@20.14.12)(eslint@9.7.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.19.0)(stylelint@16.7.0(typescript@5.4.5))(terser@5.31.3)(typescript@5.4.5)(vite@5.3.4(@types/node@20.14.12)(terser@5.31.3))(vue-tsc@2.0.28(typescript@5.4.5)))(prettier@3.3.3)(rollup@4.19.0)(tailwindcss@3.4.6)(typescript@5.4.5)(vite@5.3.4(@types/node@20.14.12)(terser@5.31.3))(vue-router@4.4.0(vue@3.4.33(typescript@5.4.5)))(vue@3.4.33(typescript@5.4.5))(webpack@5.93.0(esbuild@0.21.5))
@@ -1279,6 +1279,10 @@ packages:
 
   '@dargmuesli/nuxt-cookie-control@8.4.5':
     resolution: {integrity: sha512-qtFNNF77gXw6GJmhJ4Wtij8K0fXi6OSDZMRS77K2sVfMIUne2uQ1PvZnl1FCcysmevzZ8tIjN/tSmKuY5G3pjg==}
+    engines: {node: '>=16'}
+
+  '@dargmuesli/nuxt-cookie-control@8.4.6':
+    resolution: {integrity: sha512-41XYyAUM5GYnK5C1+uZ0pp+1u9Sudzn8REVoHya0j2DPZmupCkYndG8h/zQSh9QYT8Nwwi3rVpvSoNwOAC/Uqg==}
     engines: {node: '>=16'}
 
   '@dargmuesli/nuxt-vio@13.2.2':
@@ -11153,6 +11157,18 @@ snapshots:
       postcss-selector-parser: 6.1.1
 
   '@dargmuesli/nuxt-cookie-control@8.4.5(magicast@0.3.4)(rollup@4.19.0)(webpack@5.93.0(esbuild@0.21.5))':
+    dependencies:
+      '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.19.0)
+      css-vars-ponyfill: 2.4.9
+      defu: 6.1.4
+      string-replace-loader: 3.1.0(webpack@5.93.0(esbuild@0.21.5))
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
+      - webpack
+
+  '@dargmuesli/nuxt-cookie-control@8.4.6(magicast@0.3.4)(rollup@4.19.0)(webpack@5.93.0(esbuild@0.21.5))':
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.19.0)
       css-vars-ponyfill: 2.4.9
