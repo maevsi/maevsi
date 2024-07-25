@@ -27,11 +27,11 @@
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/commit-analyzer": "13.0.0",
     "@semantic-release/git": "10.0.1",
-    "@semantic-release/github": "10.1.1",
+    "@semantic-release/github": "10.1.2",
     "@semantic-release/npm": "12.0.1",
     "@semantic-release/release-notes-generator": "14.0.1",
     "conventional-changelog-conventionalcommits": "8.0.0",
-    "husky": "9.1.1",
+    "husky": "9.1.2",
     "jiti": "1.21.6",
     "lint-staged": "15.2.7",
     "semantic-release": "24.0.0"
