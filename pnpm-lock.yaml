@@ -271,8 +271,8 @@ importers:
         specifier: 7.1.0
         version: 7.1.0(@types/node@20.14.12)(dayjs@2.0.0-alpha.4)
       isomorphic-dompurify:
-        specifier: 2.13.0
-        version: 2.13.0
+        specifier: 2.14.0
+        version: 2.14.0
       jose:
         specifier: 5.6.3
         version: 5.6.3
@@ -6358,8 +6358,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  isomorphic-dompurify@2.13.0:
-    resolution: {integrity: sha512-jVxFnyOiA3fKPkteQjfIogww9T/BIX1Basuwt5D50MB3Sqvki9yBNq96ICLHpbiDY79jc6RC555DeBbTCt6i6A==}
+  isomorphic-dompurify@2.14.0:
+    resolution: {integrity: sha512-7xyjuzBf3P/HBt0PbOpmv5LuV38TmfvidBFvgyuSWVMLwCGDITBPHWsBZ/L1a8DpcGz5PEintBeGdlrKzUqt5A==}
     engines: {node: '>=18'}
 
   isomorphic-ws@5.0.0:
@@ -17672,7 +17672,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  isomorphic-dompurify@2.13.0:
+  isomorphic-dompurify@2.14.0:
     dependencies:
       '@types/dompurify': 3.0.5
       dompurify: 3.1.6
