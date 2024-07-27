@@ -147,6 +147,9 @@ importers:
       '@sentry/node':
         specifier: 8.20.0
         version: 8.20.0
+      '@sentry/profiling-node':
+        specifier: 8.20.0
+        version: 8.20.0
       '@sentry/vite-plugin':
         specifier: 2.21.1
         version: 2.21.1
@@ -3143,6 +3146,11 @@ packages:
       '@opentelemetry/instrumentation': ^0.52.1
       '@opentelemetry/sdk-trace-base': ^1.25.1
       '@opentelemetry/semantic-conventions': ^1.25.1
+
+  '@sentry/profiling-node@8.20.0':
+    resolution: {integrity: sha512-vQaMYjPM7o0qvmj4atxXZywIDhnxMwTlc6x24eKqT8zN0OFBuIc1nYIacT7pEmd7R6e/mXdiG04GH1Vg0bHfOQ==}
+    engines: {node: '>=14.18'}
+    hasBin: true
 
   '@sentry/types@8.20.0':
     resolution: {integrity: sha512-6IP278KojOpiAA7vrd1hjhUyn26cl0n0nGsShzic5ztCVs92sTeVRnh7MTB9irDVtAbOEyt/YH6go3h+Jia1pA==}
@@ -14109,6 +14117,17 @@ snapshots:
       '@sentry/types': 8.20.0
       '@sentry/utils': 8.20.0
 
+  '@sentry/profiling-node@8.20.0':
+    dependencies:
+      '@sentry/core': 8.20.0
+      '@sentry/node': 8.20.0
+      '@sentry/types': 8.20.0
+      '@sentry/utils': 8.20.0
+      detect-libc: 2.0.3
+      node-abi: 3.65.0
+    transitivePeerDependencies:
+      - supports-color
+
   '@sentry/types@8.20.0': {}
 
   '@sentry/utils@8.20.0':
@@ -18980,7 +18999,6 @@ snapshots:
   node-abi@3.65.0:
     dependencies:
       semver: 7.6.3
-    optional: true
 
   node-addon-api@6.1.0:
     optional: true

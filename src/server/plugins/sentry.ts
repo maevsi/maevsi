@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/node'
-// import { ProfilingIntegration } from '@sentry/profiling-node'
+import { nodeProfilingIntegration } from '@sentry/profiling-node'
 import { consola } from 'consola'
 
 export default defineNitroPlugin((nitroApp) => {
@@ -23,9 +23,8 @@ export default defineNitroPlugin((nitroApp) => {
 
   Sentry.init({
     ...sentryConfig,
-    // TODO: enable profiling (https://github.com/getsentry/profiling-node/issues/195)
-    // integrations: [new ProfilingIntegration()],
-    // profilesSampleRate: runtimeConfig.public.sentry.profiles.sampleRate, // profiling sample rate is relative to traces sample rate
+    integrations: [nodeProfilingIntegration()],
+    profilesSampleRate: runtimeConfig.public.sentry.profiles.sampleRate, // profiling sample rate is relative to traces sample rate
   })
 
   nitroApp.hooks.hook('error', (error) => {
