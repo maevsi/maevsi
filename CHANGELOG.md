@@ -1,3 +1,9 @@
+## [4.12.0](https://github.com/maevsi/maevsi/compare/4.11.2...4.12.0) (2024-07-27)
+
+### Features
+
+* **sentry:** add node profiling ([3f41934](https://github.com/maevsi/maevsi/commit/3f41934dd956f182b807b229853d500a5a433f34))
+
 ## [4.11.2](https://github.com/maevsi/maevsi/compare/4.11.1...4.11.2) (2024-07-20)
 
 ### Bug Fixes
