@@ -59,7 +59,7 @@ importers:
         version: 8.4.6(magicast@0.3.4)(rollup@4.19.1)(webpack@5.93.0(esbuild@0.21.5))
       '@dargmuesli/nuxt-vio':
         specifier: 13.2.2
-        version: 13.2.2(@types/eslint@9.6.0)(graphql@16.9.0)(h3@1.12.0)(ioredis@5.4.1)(magicast@0.3.4)(nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@20.14.13)(eslint@9.7.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.19.1)(stylelint@16.8.1(typescript@5.4.5))(terser@5.31.3)(typescript@5.4.5)(vite@5.3.5(@types/node@20.14.13)(terser@5.31.3))(vue-tsc@2.0.29(typescript@5.4.5)))(prettier@3.3.3)(rollup@4.19.1)(tailwindcss@3.4.7)(typescript@5.4.5)(vite@5.3.5(@types/node@20.14.13)(terser@5.31.3))(vue-router@4.4.0(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))(webpack@5.93.0(esbuild@0.21.5))
+        version: 13.2.2(@types/eslint@9.6.0)(graphql@16.9.0)(h3@1.12.0)(ioredis@5.4.1)(magicast@0.3.4)(nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@20.14.13)(eslint@9.7.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.19.1)(stylelint@16.8.1(typescript@5.4.5))(terser@5.31.3)(typescript@5.4.5)(vite@5.3.5(@types/node@20.14.13)(terser@5.31.3))(vue-tsc@2.0.29(typescript@5.4.5)))(prettier@3.3.3)(rollup@4.19.1)(tailwindcss@3.4.7)(typescript@5.4.5)(vite@5.3.5(@types/node@20.14.13)(terser@5.31.3))(vue-router@4.4.1(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))(webpack@5.93.0(esbuild@0.21.5))
       '@fontsource-variable/manrope':
         specifier: 5.0.20
         version: 5.0.20
@@ -404,13 +404,13 @@ importers:
         version: 2.0.1(vue@3.4.35(typescript@5.4.5))
       vue-i18n-routing:
         specifier: 1.2.0
-        version: 1.2.0(vue-i18n@9.13.1(vue@3.4.35(typescript@5.4.5)))(vue-router@4.4.0(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))
+        version: 1.2.0(vue-i18n@9.13.1(vue@3.4.35(typescript@5.4.5)))(vue-router@4.4.1(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))
       vue-qrcode-reader:
         specifier: 5.5.7
         version: 5.5.7
       vue-router:
-        specifier: 4.4.0
-        version: 4.4.0(vue@3.4.35(typescript@5.4.5))
+        specifier: 4.4.1
+        version: 4.4.1(vue@3.4.35(typescript@5.4.5))
       vue-tsc:
         specifier: 2.0.29
         version: 2.0.29(typescript@5.4.5)
@@ -10008,8 +10008,8 @@ packages:
     resolution: {integrity: sha512-aflcKS6sQ5CDlmoyAaJJQ3OFeMcdnF6RRO2zHBlmKkHKL5nwPt+ayl/TCw+LvUBXhmfR3kNtPC5oJtgk9TcrBw==}
     engines: {node: '>=18.0.0'}
 
-  vue-router@4.4.0:
-    resolution: {integrity: sha512-HB+t2p611aIZraV2aPSRNXf0Z/oLZFrlygJm+sZbdJaW6lcFqEDQwnzUBXn+DApw+/QzDU/I9TeWx9izEjTmsA==}
+  vue-router@4.4.1:
+    resolution: {integrity: sha512-njTLt/6gYGgIhv+U8nc5J6JpJpntFgy4fptRJ9Dp2qWQRo/PekB5DbKRYRPt0kM6feXysPKl7A5BjOmOJL5Ttw==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -11442,7 +11442,7 @@ snapshots:
       - supports-color
       - webpack
 
-  '@dargmuesli/nuxt-vio@13.2.2(@types/eslint@9.6.0)(graphql@16.9.0)(h3@1.12.0)(ioredis@5.4.1)(magicast@0.3.4)(nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@20.14.13)(eslint@9.7.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.19.1)(stylelint@16.8.1(typescript@5.4.5))(terser@5.31.3)(typescript@5.4.5)(vite@5.3.5(@types/node@20.14.13)(terser@5.31.3))(vue-tsc@2.0.29(typescript@5.4.5)))(prettier@3.3.3)(rollup@4.19.1)(tailwindcss@3.4.7)(typescript@5.4.5)(vite@5.3.5(@types/node@20.14.13)(terser@5.31.3))(vue-router@4.4.0(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))(webpack@5.93.0(esbuild@0.21.5))':
+  '@dargmuesli/nuxt-vio@13.2.2(@types/eslint@9.6.0)(graphql@16.9.0)(h3@1.12.0)(ioredis@5.4.1)(magicast@0.3.4)(nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@20.14.13)(eslint@9.7.0)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.19.1)(stylelint@16.8.1(typescript@5.4.5))(terser@5.31.3)(typescript@5.4.5)(vite@5.3.5(@types/node@20.14.13)(terser@5.31.3))(vue-tsc@2.0.29(typescript@5.4.5)))(prettier@3.3.3)(rollup@4.19.1)(tailwindcss@3.4.7)(typescript@5.4.5)(vite@5.3.5(@types/node@20.14.13)(terser@5.31.3))(vue-router@4.4.1(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))(webpack@5.93.0(esbuild@0.21.5))':
     dependencies:
       '@dargmuesli/nuxt-cookie-control': 8.4.5(magicast@0.3.4)(rollup@4.19.1)(webpack@5.93.0(esbuild@0.21.5))
       '@eslint/compat': 1.1.1
@@ -11478,7 +11478,7 @@ snapshots:
       nuxt-security: 2.0.0-rc.9(magicast@0.3.4)(rollup@4.19.1)
       sweetalert2: 11.12.3
       vue: 3.4.35(typescript@5.4.5)
-      vue-router: 4.4.0(vue@3.4.35(typescript@5.4.5))
+      vue-router: 4.4.1(vue@3.4.35(typescript@5.4.5))
       vue-tsc: 2.0.26(typescript@5.4.5)
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -12503,11 +12503,11 @@ snapshots:
     optionalDependencies:
       vue-i18n: 9.13.1(vue@3.4.35(typescript@5.4.5))
 
-  '@intlify/vue-router-bridge@1.1.0(vue-router@4.4.0(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))':
+  '@intlify/vue-router-bridge@1.1.0(vue-router@4.4.1(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))':
     dependencies:
       vue-demi: 0.14.10(vue@3.4.35(typescript@5.4.5))
     optionalDependencies:
-      vue-router: 4.4.0(vue@3.4.35(typescript@5.4.5))
+      vue-router: 4.4.1(vue@3.4.35(typescript@5.4.5))
     transitivePeerDependencies:
       - vue
 
@@ -13143,7 +13143,7 @@ snapshots:
       ufo: 1.5.4
       unplugin: 1.12.0
       vue-i18n: 9.13.1(vue@3.4.35(typescript@5.4.5))
-      vue-router: 4.4.0(vue@3.4.35(typescript@5.4.5))
+      vue-router: 4.4.1(vue@3.4.35(typescript@5.4.5))
     transitivePeerDependencies:
       - magicast
       - petite-vue-i18n
@@ -19551,13 +19551,13 @@ snapshots:
       unenv: 1.10.0
       unimport: 3.9.1(rollup@4.19.1)
       unplugin: 1.12.0
-      unplugin-vue-router: 0.10.1(rollup@4.19.1)(vue-router@4.4.0(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))
+      unplugin-vue-router: 0.10.1(rollup@4.19.1)(vue-router@4.4.1(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))
       unstorage: 1.10.2(ioredis@5.4.1)
       untyped: 1.4.2
       vue: 3.4.35(typescript@5.4.5)
       vue-bundle-renderer: 2.1.0
       vue-devtools-stub: 0.1.0
-      vue-router: 4.4.0(vue@3.4.35(typescript@5.4.5))
+      vue-router: 4.4.1(vue@3.4.35(typescript@5.4.5))
     optionalDependencies:
       '@parcel/watcher': 2.4.1
       '@types/node': 20.14.13
@@ -21932,7 +21932,7 @@ snapshots:
       - rollup
       - supports-color
 
-  unplugin-vue-router@0.10.1(rollup@4.19.1)(vue-router@4.4.0(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5)):
+  unplugin-vue-router@0.10.1(rollup@4.19.1)(vue-router@4.4.1(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5)):
     dependencies:
       '@babel/types': 7.25.0
       '@rollup/pluginutils': 5.1.0(rollup@4.19.1)
@@ -21948,7 +21948,7 @@ snapshots:
       unplugin: 1.12.0
       yaml: 2.5.0
     optionalDependencies:
-      vue-router: 4.4.0(vue@3.4.35(typescript@5.4.5))
+      vue-router: 4.4.1(vue@3.4.35(typescript@5.4.5))
     transitivePeerDependencies:
       - rollup
       - vue
@@ -22289,17 +22289,17 @@ snapshots:
     dependencies:
       vue: 3.4.35(typescript@5.4.5)
 
-  vue-i18n-routing@1.2.0(vue-i18n@9.13.1(vue@3.4.35(typescript@5.4.5)))(vue-router@4.4.0(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5)):
+  vue-i18n-routing@1.2.0(vue-i18n@9.13.1(vue@3.4.35(typescript@5.4.5)))(vue-router@4.4.1(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5)):
     dependencies:
       '@intlify/shared': 9.13.1
       '@intlify/vue-i18n-bridge': 1.1.0(vue-i18n@9.13.1(vue@3.4.35(typescript@5.4.5)))
-      '@intlify/vue-router-bridge': 1.1.0(vue-router@4.4.0(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))
+      '@intlify/vue-router-bridge': 1.1.0(vue-router@4.4.1(vue@3.4.35(typescript@5.4.5)))(vue@3.4.35(typescript@5.4.5))
       ufo: 1.5.4
       vue-demi: 0.14.10(vue@3.4.35(typescript@5.4.5))
     optionalDependencies:
       vue: 3.4.35(typescript@5.4.5)
       vue-i18n: 9.13.1(vue@3.4.35(typescript@5.4.5))
-      vue-router: 4.4.0(vue@3.4.35(typescript@5.4.5))
+      vue-router: 4.4.1(vue@3.4.35(typescript@5.4.5))
 
   vue-i18n@9.13.1(vue@3.4.35(typescript@5.4.5)):
     dependencies:
@@ -22313,7 +22313,7 @@ snapshots:
       barcode-detector: 2.2.2
       webrtc-adapter: 8.2.3
 
-  vue-router@4.4.0(vue@3.4.35(typescript@5.4.5)):
+  vue-router@4.4.1(vue@3.4.35(typescript@5.4.5)):
     dependencies:
       '@vue/devtools-api': 6.6.3
       vue: 3.4.35(typescript@5.4.5)
