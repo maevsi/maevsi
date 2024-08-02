@@ -48,7 +48,7 @@
     "@types/html-to-text": "9.0.4",
     "@types/lodash-es": "4.17.12",
     "@types/mustache": "4.2.5",
-    "@types/node": "20.14.13",
+    "@types/node": "20.14.14",
     "@types/pg": "8.11.6",
     "@types/seedrandom": "3.0.8",
     "@unhead/vue": "1.9.16",
