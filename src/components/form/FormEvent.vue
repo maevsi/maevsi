@@ -181,15 +181,15 @@
       <FormInput :title="t('attendanceType')" type="checkbox">
         <FormCheckbox
           form-key="is-in-person"
-          :value="v$.isInPerson.$model"
-          @change="form.isInPerson = $event"
+          :is-checked="v$.isInPerson.$model"
+          @change="v$.isInPerson.$model = !v$.isInPerson.$model"
         >
           {{ t('isInPerson') }}
         </FormCheckbox>
         <FormCheckbox
           form-key="is-remote"
-          :value="v$.isRemote.$model"
-          @change="form.isRemote = $event"
+          :is-checked="v$.isRemote.$model"
+          @change="v$.isRemote.$model = !v$.isRemote.$model"
         >
           {{ t('isRemote') }}
         </FormCheckbox>

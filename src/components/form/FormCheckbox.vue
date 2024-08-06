@@ -2,26 +2,39 @@
   <div>
     <input
       :id="`input-${formKey}`"
-      class="rounded"
+      ref="checkbox"
       type="checkbox"
-      :checked="value"
-      @change="emit('change', ($event.target as HTMLInputElement).checked)"
+      @change.prevent="emit('change')"
     />
-    <label class="pl-2" :for="`input-${formKey}`"><slot /></label>
+    <label class="pl-2" :for="`input-${formKey}`">
+      <slot />
+    </label>
   </div>
 </template>
 
 <script setup lang="ts">
 export interface Props {
-  formKey?: string
-  value?: boolean
+  formKey: string
+  isChecked?: boolean
 }
-withDefaults(defineProps<Props>(), {
-  formKey: undefined,
-  value: undefined,
+const props = withDefaults(defineProps<Props>(), {
+  isChecked: false,
 })
 
 const emit = defineEmits<{
-  change: [change: boolean]
+  change: []
 }>()
+
+// data
+const checkbox = ref<HTMLInputElement>()
+
+// methods
+const setIsChecked = (isChecked: boolean) =>
+  (checkbox.value.checked = isChecked)
+
+watch(
+  () => props.isChecked,
+  (currentValue) => setIsChecked(currentValue),
+)
+onMounted(() => setIsChecked(props.isChecked))
 </script>
