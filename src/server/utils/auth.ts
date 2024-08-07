@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 
-import { type H3Event } from 'h3'
+import type { H3Event } from 'h3'
 import { decodeJwt, jwtVerify, importSPKI } from 'jose'
 
 import { JWT_ALGORITHM } from '~/utils/constants'

@@ -109,7 +109,7 @@
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
+import type { TypedRouteFromName, RoutesNamesList } from '@typed-router'
 
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 import { getAchievementItem } from '~/gql/documents/fragments/achievementItem'

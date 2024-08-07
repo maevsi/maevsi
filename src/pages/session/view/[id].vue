@@ -185,7 +185,7 @@ import { consola } from 'consola'
 
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import { type RoutesNamesList } from '@typed-router'
+import type { RoutesNamesList } from '@typed-router'
 
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 

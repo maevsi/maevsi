@@ -1,4 +1,4 @@
-import { type DefineNuxtConfig } from 'nuxt/config'
+import type { DefineNuxtConfig } from 'nuxt/config'
 import colors from 'tailwindcss/colors'
 
 import { CACHE_VERSION, STYLE_DEFAULT_GRAY } from '../../utils/constants'

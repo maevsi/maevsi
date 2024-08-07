@@ -1,4 +1,4 @@
-import { type H3Event } from 'h3'
+import type { H3Event } from 'h3'
 import { consola } from 'consola'
 import { z } from 'zod'
 

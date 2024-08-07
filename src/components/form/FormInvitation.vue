@@ -166,6 +166,7 @@ const submit = async () => {
       }
     }
   } catch (error) {
+    console.error(error)
     return
   } finally {
     for (const successId of successIds) {
