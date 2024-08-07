@@ -1,4 +1,4 @@
-import { type DefineNuxtConfig } from 'nuxt/config'
+import type { DefineNuxtConfig } from 'nuxt/config'
 
 export const securityConfig: ReturnType<DefineNuxtConfig> = {
   security: {

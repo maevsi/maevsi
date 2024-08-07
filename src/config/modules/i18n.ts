@@ -1,5 +1,5 @@
 import type { NuxtI18nOptions } from '@nuxtjs/i18n'
-import { type DefineNuxtConfig } from 'nuxt/config'
+import type { DefineNuxtConfig } from 'nuxt/config'
 
 import { LOCALES } from '../../utils/constants'
 

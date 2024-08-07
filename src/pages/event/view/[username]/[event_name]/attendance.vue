@@ -64,14 +64,14 @@
 // @ts-expect-error wasm url is correct
 import wasmFile from 'zxing-wasm/reader/zxing_reader.wasm?url'
 import { consola } from 'consola'
-import { type DetectedBarcode } from 'barcode-detector'
+import type { DetectedBarcode } from 'barcode-detector'
 import { setZXingModuleOverrides } from 'vue-qrcode-reader'
 
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from './index.vue'
 
-import { type RoutesNamesList, type TypedRouteFromName } from '@typed-router'
+import type { RoutesNamesList, TypedRouteFromName } from '@typed-router'
 
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import { getEventItem } from '~/gql/documents/fragments/eventItem'

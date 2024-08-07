@@ -38,7 +38,7 @@ import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from '../../view/[use
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../../view/[username]/index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 
-import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
+import type { TypedRouteFromName, RoutesNamesList } from '@typed-router'
 
 import { getEventItem } from '~/gql/documents/fragments/eventItem'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'

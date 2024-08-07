@@ -1,4 +1,4 @@
-import { type H3Event } from 'h3'
+import type { H3Event } from 'h3'
 
 export const getDomainTldPort = (host: string) => {
   const hostParts = host.split('.')

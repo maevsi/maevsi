@@ -144,7 +144,7 @@ import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbSession } from '../../view/[id].vue'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
-import { type RoutesNamesList } from '@typed-router'
+import type { RoutesNamesList } from '@typed-router'
 
 const ROUTE_NAME: RoutesNamesList = 'session-edit-id'
 
