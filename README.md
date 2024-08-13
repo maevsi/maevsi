@@ -49,7 +49,6 @@ The setup for backend development is more complex as it consists of numerous ser
     ```sh
     cd maevsi
     nvm install
-    nvm use
     ```
 1. then install all dependencies using [pnpm](https://pnpm.io/), which should include the **src** directory automatically:
     ```sh
