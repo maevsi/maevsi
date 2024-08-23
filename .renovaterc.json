@@ -7,6 +7,10 @@
     {
       "matchPackageNames": ["@nuxtjs/i18n"],
       "allowedVersions": "8.3.0"
+    },
+    {
+      "matchPackageNames": ["cheerio"],
+      "allowedVersions": "1.0.0-rc.12"
     }
   ]
 }
