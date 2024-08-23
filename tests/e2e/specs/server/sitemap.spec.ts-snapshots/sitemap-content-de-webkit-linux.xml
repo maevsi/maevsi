@@ -102,10 +102,4 @@
         <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/session/create" />
         <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/session/create" />
     </url>
-    <url>
-        <loc>http://localhost:3001/de/account/password/reset/request</loc>
-        <xhtml:link rel="alternate" hreflang="de" href="http://localhost:3001/de/account/password/reset/request" />
-        <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3001/account/password/reset/request" />
-        <xhtml:link rel="alternate" hreflang="x-default" href="http://localhost:3001/account/password/reset/request" />
-    </url>
 </urlset>
