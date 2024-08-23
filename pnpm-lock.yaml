@@ -528,8 +528,8 @@ packages:
     resolution: {integrity: sha512-BBt3opiCOxUr9euZ5/ro/Xv8/V7yJ5bjYMqG/C1YAo8MIKAnumZalCN+msbci3Pigy4lIQfPUpfMM27HMGaYEA==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/generator@7.25.4':
-    resolution: {integrity: sha512-NFtZmZsyzDPJnk9Zg3BbTfKKc9UlHYzD0E//p2Z3B9nCwwtJW9T0gVbCz8+fBngnn4zf1Dr3IK8PHQQHq0lDQw==}
+  '@babel/generator@7.25.5':
+    resolution: {integrity: sha512-abd43wyLfbWoxC6ahM8xTkqLpGB2iWBVyuKC9/srhFunCd1SDNrV1s72bBpK4hLj8KLzHBBcOblvLQZBNw9r3w==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-annotate-as-pure@7.24.7':
@@ -1154,8 +1154,8 @@ packages:
     resolution: {integrity: sha512-DSgLeL/FNcpXuzav5wfYvHCGvynXkJbn3Zvc3823AEe9nPwW9IK4UoCSS5yGymmQzN0pCPvivtgS6/8U2kkm1w==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/standalone@7.25.4':
-    resolution: {integrity: sha512-F2P17c0lbgnrG9++a5A3izJDSbHK7ekJS+y8p9NZVoioMRPlmFh0szX+9U7vBw1VUt152B1uslGR+CsLmd94qw==}
+  '@babel/standalone@7.25.5':
+    resolution: {integrity: sha512-46bI7GJHwgWfWszOWMvJIsJjXd+LBMIlaiw4R54+b7GvDfxTVE6ytsqR8uEiI/zYECoB33ChwfN0wq/MLHLFXg==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.25.0':
@@ -10414,7 +10414,7 @@ snapshots:
   '@ardatan/relay-compiler@12.0.0(graphql@16.9.0)':
     dependencies:
       '@babel/core': 7.25.2
-      '@babel/generator': 7.25.4
+      '@babel/generator': 7.25.5
       '@babel/parser': 7.25.4
       '@babel/runtime': 7.25.4
       '@babel/traverse': 7.25.4
@@ -10457,7 +10457,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@babel/code-frame': 7.24.7
-      '@babel/generator': 7.25.4
+      '@babel/generator': 7.25.5
       '@babel/helper-compilation-targets': 7.25.2
       '@babel/helper-module-transforms': 7.25.2(@babel/core@7.25.2)
       '@babel/helpers': 7.25.0
@@ -10473,7 +10473,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/generator@7.25.4':
+  '@babel/generator@7.25.5':
     dependencies:
       '@babel/types': 7.25.4
       '@jridgewell/gen-mapping': 0.3.5
@@ -11277,7 +11277,7 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
-  '@babel/standalone@7.25.4': {}
+  '@babel/standalone@7.25.5': {}
 
   '@babel/template@7.25.0':
     dependencies:
@@ -11288,7 +11288,7 @@ snapshots:
   '@babel/traverse@7.25.4':
     dependencies:
       '@babel/code-frame': 7.24.7
-      '@babel/generator': 7.25.4
+      '@babel/generator': 7.25.5
       '@babel/parser': 7.25.4
       '@babel/template': 7.25.0
       '@babel/types': 7.25.4
@@ -11839,7 +11839,7 @@ snapshots:
 
   '@graphql-codegen/cli@5.0.2(@parcel/watcher@2.4.1)(@types/node@22.5.0)(graphql@16.9.0)(typescript@5.5.4)':
     dependencies:
-      '@babel/generator': 7.25.4
+      '@babel/generator': 7.25.5
       '@babel/template': 7.25.0
       '@babel/types': 7.25.4
       '@graphql-codegen/client-preset': 4.3.3(graphql@16.9.0)
@@ -21799,7 +21799,7 @@ snapshots:
   unplugin-ast@0.10.0(rollup@4.21.0):
     dependencies:
       '@antfu/utils': 0.7.10
-      '@babel/generator': 7.25.4
+      '@babel/generator': 7.25.5
       '@babel/parser': 7.25.4
       '@rollup/pluginutils': 5.1.0(rollup@4.21.0)
       ast-kit: 0.12.2
@@ -21825,7 +21825,7 @@ snapshots:
   unplugin-remove@1.0.3(rollup@4.21.0):
     dependencies:
       '@babel/core': 7.25.2
-      '@babel/generator': 7.25.4
+      '@babel/generator': 7.25.5
       '@babel/parser': 7.25.4
       '@babel/traverse': 7.25.4
       '@rollup/pluginutils': 5.1.0(rollup@4.21.0)
@@ -21917,7 +21917,7 @@ snapshots:
   untyped@1.4.2:
     dependencies:
       '@babel/core': 7.25.2
-      '@babel/standalone': 7.25.4
+      '@babel/standalone': 7.25.5
       '@babel/types': 7.25.4
       defu: 6.1.4
       jiti: 1.21.6
