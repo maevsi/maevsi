@@ -49,7 +49,6 @@ The setup for backend development is more complex as it consists of numerous ser
     ```sh
     cd maevsi
     nvm install
-    nvm use
     ```
 1. then install all dependencies using [pnpm](https://pnpm.io/), which should include the **src** directory automatically:
     ```sh
@@ -138,7 +137,7 @@ The setup for backend development is more complex as it consists of numerous ser
 
 To see if services are running or not you can use [Portainer](https://www.portainer.io/) if you prefer a web view instead of the command line:
 ```sh
-sudo docker run --name portainer --restart=always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+sudo docker run -d -p 8000:8000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
 ```
 Access Portainer on `http://localhost:9000` then.
 Create a user, add an environment, start the Docker wizard, choose "Socket", name it e.g. "local" and close the wizard.
