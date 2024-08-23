@@ -39,7 +39,8 @@
   "type": "module",
   "pnpm": {
     "overrides": {
-      "@nuxtjs/i18n": "8.3.0"
+      "@nuxtjs/i18n": "8.3.0",
+      "cheerio": "1.0.0-rc.12"
     }
   }
 }
