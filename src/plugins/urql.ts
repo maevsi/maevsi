@@ -14,6 +14,7 @@ import { makeDefaultStorage } from '@urql/exchange-graphcache/default-storage'
 import { relayPagination } from '@urql/exchange-graphcache/extras'
 import { devtoolsExchange } from '@urql/devtools'
 import { provideClient } from '@urql/vue'
+import type { Client } from '@urql/vue'
 import { consola } from 'consola'
 import { ref } from 'vue'
 
@@ -194,3 +195,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     },
   }
 })
+
+declare module '#app' {
+  interface NuxtApp {
+    $urql: Ref<Client>
+    $urqlReset: () => Client
+  }
+}

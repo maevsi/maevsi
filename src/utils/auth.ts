@@ -14,7 +14,7 @@ export const authenticationAnonymous = async ({
   isInProduction,
   store,
 }: {
-  $urqlReset: () => void
+  $urqlReset: () => Client
   client: Client
   event?: H3Event
   isInProduction: boolean
@@ -75,7 +75,7 @@ export const jwtRefresh = async ({
   isInProduction,
   store,
 }: {
-  $urqlReset: () => void
+  $urqlReset: () => Client
   client: Client
   event: H3Event
   id: string
@@ -115,7 +115,7 @@ export const jwtStore = async ({
   jwt,
   store,
 }: {
-  $urqlReset: () => void
+  $urqlReset: () => Client
   event?: H3Event
   isInProduction: boolean
   jwt?: string
@@ -141,6 +141,7 @@ export const jwtStore = async ({
         ...(jwt ? { headers: { Authorization: `Bearer ${jwt}` } } : {}),
       })
     } catch (error) {
+      console.error(error)
       return Promise.reject(Error('Authentication api call failed.'))
     }
   }
@@ -171,7 +172,7 @@ export const signOut = async ({
   isInProduction,
   store,
 }: {
-  $urqlReset: () => void
+  $urqlReset: () => Client
   client: Client
   event?: H3Event
   isInProduction: boolean

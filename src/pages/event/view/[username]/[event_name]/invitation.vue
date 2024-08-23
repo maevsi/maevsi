@@ -17,7 +17,7 @@ import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from './index.vue'
 
-import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
+import type { TypedRouteFromName, RoutesNamesList } from '@typed-router'
 
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'

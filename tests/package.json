@@ -20,16 +20,16 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.9.1",
-    "@eslint/js": "9.8.0",
+    "@axe-core/playwright": "4.10.0",
+    "@eslint/js": "9.9.0",
     "@playwright/test": "1.46.1",
     "@types/node": "20.14.14",
     "cross-env": "7.0.3",
-    "eslint": "9.8.0",
+    "eslint": "9.9.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.2.1",
-    "typescript": "5.4.5",
-    "typescript-eslint": "8.0.0",
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.2.0",
     "ufo": "1.5.4",
     "vitest": "2.0.5"
   },

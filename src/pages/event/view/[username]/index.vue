@@ -18,7 +18,7 @@
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
 
-import { type TypedRouteFromName, type RoutesNamesList } from '@typed-router'
+import type { TypedRouteFromName, RoutesNamesList } from '@typed-router'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'

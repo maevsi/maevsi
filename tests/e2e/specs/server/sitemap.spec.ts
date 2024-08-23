@@ -15,7 +15,9 @@ test.describe('sitemap', () => {
     const text = await resp.text()
 
     for (const language of languages) {
-      expect(text).toContain(`http://localhost:3001/${language}-sitemap.xml`)
+      expect(text).toContain(
+        `http://localhost:3001/__sitemap__/${language}.xml`,
+      )
     }
   })
 
