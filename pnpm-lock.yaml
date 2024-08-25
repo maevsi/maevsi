@@ -292,8 +292,8 @@ importers:
         specifier: 3.13.0
         version: 3.13.0(@parcel/watcher@2.4.1)(@types/node@22.5.0)(eslint@9.9.0(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.21.0)(stylelint@16.8.2(typescript@5.5.4))(terser@5.31.6)(typescript@5.5.4)(vite@5.4.2(@types/node@22.5.0)(terser@5.31.6))(vue-tsc@2.0.29(typescript@5.5.4))
       nuxt-gtag:
-        specifier: 2.1.0
-        version: 2.1.0(magicast@0.3.4)(rollup@4.21.0)
+        specifier: 3.0.0
+        version: 3.0.0(magicast@0.3.4)(rollup@4.21.0)
       nuxt-security:
         specifier: 1.4.3
         version: 1.4.3(magicast@0.3.4)(rollup@4.21.0)
@@ -7484,6 +7484,9 @@ packages:
 
   nuxt-gtag@2.1.0:
     resolution: {integrity: sha512-06ES+hgMs5l98bHmsLyltbJXfVr1LAkm/5gwcncdNkz96+D0fVA+RhecIp06iDQXF+YPBE2xAgB4G5PnUn8drA==}
+
+  nuxt-gtag@3.0.0:
+    resolution: {integrity: sha512-SARR40ZeXO5Q6vjekW3UAQuB4qzLxM/Df7/mE4HlmHirczgBc7CpsxJ99zmKypozt+SJIvn3OIKrwYOMOQQdtg==}
 
   nuxt-icon@0.6.10:
     resolution: {integrity: sha512-S9zHVA66ox4ZSpMWvCjqKZC4ZogC0s2z3vZs+M4D95YXGPEXwxDZu+insMKvkbe8+k7gvEmtTk0eq3KusKlxiw==}
@@ -19262,6 +19265,17 @@ snapshots:
       - supports-color
 
   nuxt-gtag@2.1.0(magicast@0.3.4)(rollup@4.21.0):
+    dependencies:
+      '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@4.21.0)
+      defu: 6.1.4
+      pathe: 1.1.2
+      ufo: 1.5.4
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
+
+  nuxt-gtag@3.0.0(magicast@0.3.4)(rollup@4.21.0):
     dependencies:
       '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@4.21.0)
       defu: 6.1.4
