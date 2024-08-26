@@ -33,7 +33,6 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
     config: {
       cookie_flags: 'samesite=strict',
     },
-    enabled: false,
     id: 'G-WMQ1JY99XH',
     initCommands: [
       [
@@ -48,6 +47,7 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
         },
       ],
     ],
+    initMode: 'manual',
   },
   htmlValidator: {
     failOnError: true,

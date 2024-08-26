@@ -80,7 +80,7 @@
     "lodash-es": "4.17.21",
     "mustache": "4.2.0",
     "nuxt": "3.13.0",
-    "nuxt-gtag": "2.1.0",
+    "nuxt-gtag": "3.0.0",
     "nuxt-security": "1.4.3",
     "nuxt-seo-ui": "0.4.4",
     "nuxt-typed-router": "3.6.5",
