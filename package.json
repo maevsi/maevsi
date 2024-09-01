@@ -33,7 +33,7 @@
     "conventional-changelog-conventionalcommits": "8.0.0",
     "husky": "9.1.5",
     "jiti": "1.21.6",
-    "lint-staged": "15.2.9",
+    "lint-staged": "15.2.10",
     "semantic-release": "24.1.0"
   },
   "type": "module",
