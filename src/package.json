@@ -23,7 +23,7 @@
     "@nuxt/devtools": "1.4.1",
     "@nuxt/image": "1.8.0",
     "@nuxt/schema": "3.13.1",
-    "@nuxt/scripts": "0.8.3",
+    "@nuxt/scripts": "0.8.4",
     "@nuxt/ui": "2.18.4",
     "@nuxtjs/html-validator": "1.8.2",
     "@nuxtjs/i18n": "8.3.0",
