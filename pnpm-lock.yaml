@@ -373,8 +373,8 @@ importers:
         specifier: 8.0.1
         version: 8.0.1(stylelint@16.9.0(typescript@5.5.4))
       sweetalert2:
-        specifier: 11.13.2
-        version: 11.13.2
+        specifier: 11.13.3
+        version: 11.13.3
       tailwindcss:
         specifier: 3.4.10
         version: 3.4.10
@@ -9342,8 +9342,8 @@ packages:
   sweetalert2@11.12.4:
     resolution: {integrity: sha512-ZSpyaLbAmn4b7xjnV9x9BFD1UOrCAhIzm1D8dZ443kGxtVKqbTIA5SgXs4xeEtmFfEXUyC3RBgpSlu1AXmCiHA==}
 
-  sweetalert2@11.13.2:
-    resolution: {integrity: sha512-Q361QVJrDce3pA+46m2JmfDQyxxlmVE6t7ScoMwubm2PQKTlUqaMpzWq/DZRSPL8Sg2hUCzUAXQ9dwMPnbsy7Q==}
+  sweetalert2@11.13.3:
+    resolution: {integrity: sha512-hFDPMzsa+PB+u8dJIiah7Wl4OnFk6YAMCX3/ATeqazl3ZG7x1AGlwmrRV8LHVrggcsgEQSnU2eBbOs2O7St6Lw==}
 
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
@@ -22055,7 +22055,7 @@ snapshots:
 
   sweetalert2@11.12.4: {}
 
-  sweetalert2@11.13.2: {}
+  sweetalert2@11.13.3: {}
 
   symbol-tree@3.2.4: {}
 
