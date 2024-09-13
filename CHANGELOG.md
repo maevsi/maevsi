@@ -1,3 +1,9 @@
+## [4.12.4](https://github.com/maevsi/maevsi/compare/4.12.3...4.12.4) (2024-09-13)
+
+### Bug Fixes
+
+* **api:** correct type ([3876125](https://github.com/maevsi/maevsi/commit/3876125dd770ba239a201ef267cd86096113c95a))
+
 ## [4.12.3](https://github.com/maevsi/maevsi/compare/4.12.2...4.12.3) (2024-09-07)
 
 ### Bug Fixes
