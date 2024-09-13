@@ -3,7 +3,7 @@
   "engines": {
     "node": "20"
   },
-  "packageManager": "pnpm@9.9.0",
+  "packageManager": "pnpm@9.10.0",
   "scripts": {
     "build": "pnpm --dir src run build:node",
     "build:node": "nuxt --dir src run build",
@@ -22,8 +22,8 @@
     "test:e2e:docker:server:static": "pnpm --dir tests run test:e2e:docker:server:static"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.4.1",
-    "@commitlint/config-conventional": "19.4.1",
+    "@commitlint/cli": "19.5.0",
+    "@commitlint/config-conventional": "19.5.0",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/commit-analyzer": "13.0.0",
     "@semantic-release/git": "10.0.1",
@@ -31,10 +31,10 @@
     "@semantic-release/npm": "12.0.1",
     "@semantic-release/release-notes-generator": "14.0.1",
     "conventional-changelog-conventionalcommits": "8.0.0",
-    "husky": "9.1.5",
+    "husky": "9.1.6",
     "jiti": "1.21.6",
     "lint-staged": "15.2.10",
-    "semantic-release": "24.1.0"
+    "semantic-release": "24.1.1"
   },
   "type": "module",
   "pnpm": {

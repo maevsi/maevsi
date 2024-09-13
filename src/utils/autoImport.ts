@@ -22,7 +22,7 @@ export const getApiData = <
       >,
     ),
     errors: (queries || []).reduce(
-      (p, c) => (c?.error.value ? [...p, c.error.value] : p),
+      (p, c) => (c?.error.value ? [...p, c.error.value as BackendError] : p),
       [] as BackendError[],
     ),
     isFetching: (queries || []).reduce(
