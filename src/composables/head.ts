@@ -78,9 +78,9 @@ export const useHeadDefault = ({
 }
 
 export const usePolyfills = () => {
-  return // hijacked ⚠️
+  if (!POLYFILLS.length) return
 
-  const polyfills = `https://polyfill.io/v3/polyfill.min.js?features=${POLYFILLS.join(
+  const polyfillsUrl = `https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=${POLYFILLS.join(
     '%2C',
   )}&flags=gated`
 
@@ -88,7 +88,7 @@ export const usePolyfills = () => {
     link: [
       {
         rel: 'preload',
-        href: polyfills,
+        href: polyfillsUrl,
         crossorigin: 'anonymous',
         as: 'script',
         'data-testid': 'polyfill-preload',
@@ -96,7 +96,7 @@ export const usePolyfills = () => {
     ],
     script: [
       {
-        src: polyfills,
+        src: polyfillsUrl,
         crossorigin: 'anonymous',
         'data-testid': 'polyfill-script',
       },

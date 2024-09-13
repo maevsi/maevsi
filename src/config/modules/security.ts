@@ -36,7 +36,7 @@ export const securityConfig: ReturnType<DefineNuxtConfig> = {
       //     'connect-src': ["'self'"], // `${SITE_URL}/api/healthcheck`
       //     'manifest-src': [`${SITE_URL}/site.webmanifest`],
       //     'script-src-elem': [
-      //       'https://polyfill.io/v3/polyfill.min.js', // ESLint plugin compat
+      //       'https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js', // ESLint plugin compat
       //     ],
       //   },
       //   {
