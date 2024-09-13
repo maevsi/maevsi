@@ -12,7 +12,7 @@ export const useAppLayout = () => {
     },
   })
 
-  // TODO: convert to `useServerHeadSafe` (https://github.com/harlan-zw/nuxt-seo-kit/issues/98)
+  // adding `Server` leads incorrect title template on hydration
   useSeoMeta({
     titleTemplate: (title) =>
       TITLE_TEMPLATE({
@@ -22,8 +22,7 @@ export const useAppLayout = () => {
   })
 
   if (appConfig.vio.seoMeta) {
-    // TODO: replace with `useServerSeoMeta`
-    useSeoMeta(appConfig.vio.seoMeta)
+    useServerSeoMeta(appConfig.vio.seoMeta)
   }
 
   if (appConfig.vio.themeColor) {
@@ -37,8 +36,7 @@ export const useAppLayout = () => {
 export const useFavicons = () => {
   const appConfig = useAppConfig()
 
-  // TODO: replace with `useServerHeadSafe`
-  useHeadSafe({
+  useServerHeadSafe({
     link: [
       {
         color: appConfig.vio.themeColor,
@@ -86,8 +84,7 @@ export const usePolyfills = () => {
     '%2C',
   )}&flags=gated`
 
-  // TODO: replace with `useServerHead`
-  useHead({
+  useServerHead({
     link: [
       {
         rel: 'preload',
