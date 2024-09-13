@@ -1,3 +1,13 @@
+## [4.13.0](https://github.com/maevsi/maevsi/compare/4.12.4...4.13.0) (2024-09-13)
+
+### Features
+
+* **polyfills:** reenable ([9bc605c](https://github.com/maevsi/maevsi/commit/9bc605ca88791a7c1764556a33873a7973fa1beb))
+
+### Performance Improvements
+
+* **head:** use server side where possible ([3040629](https://github.com/maevsi/maevsi/commit/3040629a9231015c76f7a8455a31fb7f4cc9a044))
+
 ## [4.12.4](https://github.com/maevsi/maevsi/compare/4.12.3...4.12.4) (2024-09-13)
 
 ### Bug Fixes
