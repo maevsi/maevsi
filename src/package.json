@@ -125,7 +125,7 @@
     "zod": "3.23.8"
   },
   "engines": {
-    "node": "20"
+    "node": "22"
   },
   "name": "maevsi",
   "prettier": "./.config/prettier.js",
