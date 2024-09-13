@@ -12,7 +12,7 @@ export const useAppLayout = () => {
     },
   })
 
-  // TODO: convert to `useServerHeadSafe` (https://github.com/harlan-zw/nuxt-seo-kit/issues/98)
+  // adding `Server` leads incorrect title template on hydration
   useSeoMeta({
     titleTemplate: (title) =>
       TITLE_TEMPLATE({
@@ -22,8 +22,7 @@ export const useAppLayout = () => {
   })
 
   if (appConfig.vio.seoMeta) {
-    // TODO: replace with `useServerSeoMeta`
-    useSeoMeta(appConfig.vio.seoMeta)
+    useServerSeoMeta(appConfig.vio.seoMeta)
   }
 
   if (appConfig.vio.themeColor) {
@@ -37,8 +36,7 @@ export const useAppLayout = () => {
 export const useFavicons = () => {
   const appConfig = useAppConfig()
 
-  // TODO: replace with `useServerHeadSafe`
-  useHeadSafe({
+  useServerHeadSafe({
     link: [
       {
         color: appConfig.vio.themeColor,
@@ -80,18 +78,17 @@ export const useHeadDefault = ({
 }
 
 export const usePolyfills = () => {
-  return // hijacked ⚠️
+  if (!POLYFILLS.length) return
 
-  const polyfills = `https://polyfill.io/v3/polyfill.min.js?features=${POLYFILLS.join(
+  const polyfillsUrl = `https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=${POLYFILLS.join(
     '%2C',
   )}&flags=gated`
 
-  // TODO: replace with `useServerHead`
-  useHead({
+  useServerHead({
     link: [
       {
         rel: 'preload',
-        href: polyfills,
+        href: polyfillsUrl,
         crossorigin: 'anonymous',
         as: 'script',
         'data-testid': 'polyfill-preload',
@@ -99,7 +96,7 @@ export const usePolyfills = () => {
     ],
     script: [
       {
-        src: polyfills,
+        src: polyfillsUrl,
         crossorigin: 'anonymous',
         'data-testid': 'polyfill-script',
       },

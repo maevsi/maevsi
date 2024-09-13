@@ -23,7 +23,7 @@ test.describe('sitemap', () => {
 
   test('content', async ({ request }) => {
     for (const language of languages) {
-      const resp = await request.get(`/${language}-sitemap.xml`)
+      const resp = await request.get(`/__sitemap__/${language}.xml`)
       const text = await resp.text()
       expect(text.replace(/\n.+<\/lastmod>/g, '')).toMatchSnapshot(
         `sitemap-content-${language}.xml`,
