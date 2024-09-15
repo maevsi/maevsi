@@ -100,7 +100,6 @@ You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD
     ```sh
     cd maevsi
     nvm install
-    nvm use
     ```
 1. then install all dependencies using [pnpm](https://pnpm.io/), including the **src** directory:
     ```sh
