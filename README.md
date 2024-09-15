@@ -26,6 +26,8 @@ The setup for frontend development is easy! 💅
 
 The setup for backend development is more complex as it consists of numerous services which are best set up containerized 🧑‍💻
 
+You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD3wEUQ4) if the setup could go smoother!
+
 ### Frontend only
 
 <details>
