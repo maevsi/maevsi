@@ -136,12 +136,11 @@ You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD
 
 #### Container Management
 
-To see if services are running or not you can use [Portainer](https://www.portainer.io/) if you prefer a web view instead of the command line:
-```sh
-sudo docker run -d -p 8000:8000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
-```
-Access Portainer on `http://localhost:9000` then.
-Create a user, add an environment, start the Docker wizard, choose "Socket", name it e.g. "local" and close the wizard.
+To see if services are running or not you can use [Portainer](https://www.portainer.io/) if you prefer a web view instead of the command line.
+Head to [this gist](https://gist.github.com/dargmuesli/5808c950c03b2b49754681e1d9e5cb4e) for the Portainer setup command.
+When the container is running, you'll be able to access Portainer under https://localhost:9443.
+You may be asked to accept the risk of a self-signed certificate, which is ok to do at this time.
+On your local Portainer website, create a user, add an environment, start the Docker wizard, choose "Socket", name it e.g. "local" and close the wizard.
 Under "home", select the newly created environment then.
 You'll have access to all containers, images, volumes and more via the left sidebar then.
 </details>
