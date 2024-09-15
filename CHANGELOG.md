@@ -1,3 +1,9 @@
+## [4.13.1](https://github.com/maevsi/maevsi/compare/4.13.0...4.13.1) (2024-09-15)
+
+### Bug Fixes
+
+* **gtag:** update consent on initial page load ([b9fd4f4](https://github.com/maevsi/maevsi/commit/b9fd4f482069e98fa73672b708d2265077a569f2))
+
 ## [4.13.0](https://github.com/maevsi/maevsi/compare/4.12.4...4.13.0) (2024-09-13)
 
 ### Features
