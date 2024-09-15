@@ -14,6 +14,9 @@ export const developmentConfig: ReturnType<DefineNuxtConfig> = {
     },
 
     // modules
+    gtag: {
+      enabled: false,
+    },
     security: {
       headers: {
         strictTransportSecurity: false,
