@@ -26,6 +26,8 @@ The setup for frontend development is easy! 💅
 
 The setup for backend development is more complex as it consists of numerous services which are best set up containerized 🧑‍💻
 
+You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD3wEUQ4) if the setup could go smoother!
+
 ### Frontend only
 
 <details>
@@ -98,25 +100,30 @@ The setup for backend development is more complex as it consists of numerous ser
     ```sh
     cd maevsi
     nvm install
-    nvm use
     ```
 1. then install all dependencies using [pnpm](https://pnpm.io/), including the **src** directory:
     ```sh
     corepack enable
     pnpm install
     ```
-1. configure maevsi's [DargStack](https://github.com/dargstack/dargstack) then:
+1. configure maevsi's [DargStack](https://github.com/dargstack/dargstack) then take note of the following output:
     ```sh
     cd ../maevsi_stack/src/development
     cp stack.env.template stack.env
     pnpm store path
-    $EDITOR stack.env # fill PNPM_STORE_DIR with what's printed by the previous command
     ```
-1. install a root development certificate on your system and create subcertificates for the application:
+1. use the previous command's path output to fill the `PNPM_STORE_DIR` variabe using the editor of your choice:
+    ```sh
+    $EDITOR stack.env
+    ```
+1. install a root development certificate on your system and create subcertificates for the application to have all services available under `https`:
     ```sh
     mkcert -install
     ./certificates/mkcert.sh
     ```
+    > Note that in a WSL setup `mkcert` does not import the root certificate authority into your browsers' certificate store.
+    You'd need to manually add this certificate to your browsers' storage then.
+    You can find the directory containing the certificate file by running `mkcert -CAROOT`.
 1. you are now ready to start everything up:
     ```sh
     cd ../../
@@ -135,12 +142,11 @@ The setup for backend development is more complex as it consists of numerous ser
 
 #### Container Management
 
-To see if services are running or not you can use [Portainer](https://www.portainer.io/) if you prefer a web view instead of the command line:
-```sh
-sudo docker run -d -p 8000:8000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
-```
-Access Portainer on `http://localhost:9000` then.
-Create a user, add an environment, start the Docker wizard, choose "Socket", name it e.g. "local" and close the wizard.
+To see if services are running or not you can use [Portainer](https://www.portainer.io/) if you prefer a web view instead of the command line.
+Head to [this gist](https://gist.github.com/dargmuesli/5808c950c03b2b49754681e1d9e5cb4e) for the Portainer setup command.
+When the container is running, you'll be able to access Portainer under https://localhost:9443.
+You may be asked to accept the risk of a self-signed certificate, which is ok to do at this time.
+On your local Portainer website, create a user, add an environment, start the Docker wizard, choose "Socket", name it e.g. "local" and close the wizard.
 Under "home", select the newly created environment then.
 You'll have access to all containers, images, volumes and more via the left sidebar then.
 </details>
