@@ -106,18 +106,24 @@ You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD
     corepack enable
     pnpm install
     ```
-1. configure maevsi's [DargStack](https://github.com/dargstack/dargstack) then:
+1. configure maevsi's [DargStack](https://github.com/dargstack/dargstack) then take note of the following output:
     ```sh
     cd ../maevsi_stack/src/development
     cp stack.env.template stack.env
     pnpm store path
-    $EDITOR stack.env # fill PNPM_STORE_DIR with what's printed by the previous command
     ```
-1. install a root development certificate on your system and create subcertificates for the application:
+1. use the previous command's path output to fill the `PNPM_STORE_DIR` variabe using the editor of your choice:
+    ```sh
+    $EDITOR stack.env
+    ```
+1. install a root development certificate on your system and create subcertificates for the application to have all services available under `https`:
     ```sh
     mkcert -install
     ./certificates/mkcert.sh
     ```
+    > Note that in a WSL setup `mkcert` does not import the root certificate authority into your browsers' certificate store.
+    You'd need to manually add this certificate to your browsers' storage then.
+    You can find the directory containing the certificate file by running `mkcert -CAROOT`.
 1. you are now ready to start everything up:
     ```sh
     cd ../../
