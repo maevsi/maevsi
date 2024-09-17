@@ -12,3 +12,4 @@ jobs:
       PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     with:
       DIRECTORY: src/
+      NODE_VERSION: 22
