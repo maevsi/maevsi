@@ -194,6 +194,11 @@ export default defineNuxtConfig({
         scale: 1.5,
       }),
     ],
+    server: {
+      hmr: {
+        protocol: process.env.NUXT_PUBLIC_SITE_URL ? 'wss' : 'ws',
+      },
+    },
   },
   ...modulesConfig,
   ...environmentsConfig,
