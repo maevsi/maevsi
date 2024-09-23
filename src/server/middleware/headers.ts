@@ -1,9 +1,5 @@
-import { getCspAsString } from '~/server/utils/security'
-
 export default defineEventHandler((event) => {
   const runtimeConfig = useRuntimeConfig()
-
-  appendHeader(event, 'Content-Security-Policy', getCspAsString(event)) // TODO: migrate to nuxt-security header (https://github.com/maevsi/maevsi/issues/1416)
 
   appendHeader(
     event,

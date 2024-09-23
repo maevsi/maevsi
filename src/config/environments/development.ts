@@ -19,9 +19,9 @@ export const developmentConfig: ReturnType<DefineNuxtConfig> = {
     },
     security: {
       headers: {
-        strictTransportSecurity: false,
+        // crossOriginEmbedderPolicy: 'unsafe-none',
+        strictTransportSecurity: false, // prevent endless reload in Chrome
       },
-      rateLimiter: false, // TODO: enable when nuxt-link-checker bundles requests (https://github.com/harlan-zw/nuxt-link-checker/issues/21)
     },
     site: {
       debug: true,

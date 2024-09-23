@@ -41,6 +41,7 @@ export const REGEX_UPPERCASE_NONE = /^[^A-Z]+$/
 export const REGEX_URL_HTTPS = /^https:\/\//
 export const REGEX_UUID =
   /^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/
+export const STAGING_HOST = 'maev.si'
 export const STATE_LOADING_IDS_NAME = 'loadingIds'
 export const STYLE_DEFAULT_GRAY = 'zinc'
 export const TESTING_COOKIE_NAME = 'maevsi_is-testing'
