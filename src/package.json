@@ -81,7 +81,7 @@
     "mustache": "4.2.0",
     "nuxt": "3.13.1",
     "nuxt-gtag": "3.0.1",
-    "nuxt-security": "1.4.3",
+    "nuxt-security": "2.0.0",
     "nuxt-seo-ui": "0.4.4",
     "nuxt-typed-router": "3.6.5",
     "pg": "8.13.0",

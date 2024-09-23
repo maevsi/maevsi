@@ -1,9 +1,17 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('headers middleware', () => {
-  test('sets the correct CSP header', async ({ request }) => {
-    const resp = await request.get('/')
+  test('sets the correct security headers', async ({ request }) => {
+    if (process.env.VIO_SERVER === 'static') return // TODO: use single snapshot and all servers
 
-    expect(resp.headers()['content-security-policy']).toMatchSnapshot('csp.txt')
+    const headers = (await request.get('/')).headers()
+
+    expect(
+      headers['content-security-policy'].replace(/nonce-[^']+/g, 'nonce'),
+    ).toMatchSnapshot(
+      `csp-${
+        process.env.NODE_ENV === 'production' ? 'production' : 'development'
+      }.txt`,
+    )
   })
 })

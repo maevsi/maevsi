@@ -1,6 +1,8 @@
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 
+import { defu } from 'defu'
+
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 import type { Nuxt, ModuleOptions } from 'nuxt/schema'
 // import { defu } from 'defu'
@@ -11,6 +13,7 @@ import Components from 'unplugin-vue-components/vite'
 import { modulesConfig } from '../config/modules'
 import { environmentsConfig } from '../config/environments'
 import { SITE_NAME, SITE_URL } from '../utils/constants'
+import { GET_CSP } from '../server/utils/constants'
 
 const execPromise = promisify(exec)
 const RELEASE_NAME = async () =>
@@ -68,28 +71,33 @@ export default defineNuxtConfig({
     },
     // nuxt-security: remove invalid `'none'`s and duplicates
     (_options: ModuleOptions, nuxt: Nuxt) => {
-      const nuxtConfigSecurity = nuxt.options.security
+      const nuxtConfigSecurityHeaders = nuxt.options.security.headers
 
       if (
-        typeof nuxtConfigSecurity.headers !== 'boolean' &&
-        nuxtConfigSecurity.headers.contentSecurityPolicy &&
-        typeof nuxtConfigSecurity.headers.contentSecurityPolicy !== 'boolean' &&
-        typeof nuxtConfigSecurity.headers.contentSecurityPolicy !== 'string'
+        typeof nuxtConfigSecurityHeaders !== 'boolean' &&
+        nuxtConfigSecurityHeaders.contentSecurityPolicy
       ) {
-        for (const [key, value] of Object.entries(
-          nuxtConfigSecurity.headers.contentSecurityPolicy,
-        )) {
+        if (nuxt.options._generate) {
+          nuxtConfigSecurityHeaders.contentSecurityPolicy = defu(
+            {
+              'script-src-elem': [
+                "'unsafe-inline'", // nuxt-color-mode (https://github.com/nuxt-modules/color-mode/issues/266), runtimeConfig (static)
+              ],
+            },
+            GET_CSP({ siteUrl: new URL(SITE_URL) }),
+            nuxtConfigSecurityHeaders.contentSecurityPolicy,
+          )
+        }
+
+        const csp = nuxtConfigSecurityHeaders.contentSecurityPolicy
+
+        for (const [key, value] of Object.entries(csp)) {
           if (!Array.isArray(value)) continue
 
           const valueFiltered = value.filter((x) => x !== "'none'")
 
           if (valueFiltered.length) {
-            ;(
-              nuxtConfigSecurity.headers.contentSecurityPolicy as Record<
-                string,
-                unknown
-              >
-            )[key] = [...new Set(valueFiltered)]
+            ;(csp as Record<string, unknown>)[key] = [...new Set(valueFiltered)]
           }
         }
       }
@@ -130,6 +138,9 @@ export default defineNuxtConfig({
             sampleRate: 0.0,
           },
         },
+      },
+      site: {
+        url: SITE_URL,
       },
       turnstile: {
         siteKey: '0x4AAAAAAABtEW1Hc8mcgWcZ',
