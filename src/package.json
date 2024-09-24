@@ -87,7 +87,7 @@
     "pg": "8.13.0",
     "pinia": "2.2.2",
     "prettier": "3.3.3",
-    "prettier-plugin-tailwindcss": "0.6.6",
+    "prettier-plugin-tailwindcss": "0.6.8",
     "pretty-bytes": "6.1.1",
     "prntr": "2.0.18",
     "prosemirror-commands": "1.6.0",
