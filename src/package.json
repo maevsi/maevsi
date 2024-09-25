@@ -1,7 +1,7 @@
 {
   "description": "Find events, guests and friends 💙❤️💚",
   "devDependencies": {
-    "@dargmuesli/nuxt-cookie-control": "8.4.12",
+    "@dargmuesli/nuxt-cookie-control": "8.4.13",
     "@dargmuesli/nuxt-vio": "14.0.0",
     "@fontsource-variable/manrope": "5.1.0",
     "@graphql-codegen/add": "5.0.3",
@@ -48,7 +48,7 @@
     "@types/html-to-text": "9.0.4",
     "@types/lodash-es": "4.17.12",
     "@types/mustache": "4.2.5",
-    "@types/node": "22.6.1",
+    "@types/node": "22.7.0",
     "@types/pg": "8.11.10",
     "@types/seedrandom": "3.0.8",
     "@unhead/vue": "1.11.6",
