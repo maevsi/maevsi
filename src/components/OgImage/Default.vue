@@ -10,9 +10,13 @@
           <div v-bind="titleAttrs">
             {{ title || 'No Title' }}
           </div>
-          <div v-if="description" v-bind="descriptionAttrs">
+          <span
+            v-if="description"
+            class="items-center"
+            v-bind="descriptionAttrs"
+          >
             {{ description }}
-          </div>
+          </span>
         </div>
       </div>
       <div class="absolute bottom-10 flex flex-row items-start text-left">
