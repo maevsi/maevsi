@@ -22,10 +22,11 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const runtimeConfig = useRuntimeConfig()
+const dateTime = useDateTime()
 
 // computations
 const year = computed(() =>
-  runtimeConfig.public.vio.isTesting ? 1337 : new Date().getFullYear(),
+  runtimeConfig.public.vio.isTesting ? 1337 : dateTime().year(),
 )
 </script>
 

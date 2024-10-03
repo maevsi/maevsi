@@ -141,7 +141,7 @@
         id-label="input-start"
         is-readonly
         is-required
-        :placeholder="dateTimeFormatter(new Date().toISOString())"
+        :placeholder="dateTimeFormatter(now.toISOString())"
         :title="t('start')"
         type="text"
         :value="v$.start"
@@ -166,7 +166,7 @@
       <FormInput
         id-label="input-end"
         is-readonly
-        :placeholder="dateTimeFormatter(new Date().toISOString())"
+        :placeholder="dateTimeFormatter(now.toISOString())"
         :title="t('end')"
         type="text"
         :value="v$.end"
@@ -298,8 +298,10 @@ const { locale, t } = useI18n()
 const store = useMaevsiStore()
 const runtimeConfig = useRuntimeConfig()
 const colorMode = useColorMode()
+const dateTime = useDateTime()
 
 // data
+const now = dateTime()
 const form = reactive({
   id: ref<string>(),
   authorAccountId: ref<string>(),
@@ -328,6 +330,7 @@ const dateTimeFormatter = (x?: string) =>
     ? new Date(x).toLocaleString(locale.value, {
         dateStyle: 'medium',
         timeStyle: 'short',
+        timeZone: getTimezone(),
       })
     : undefined
 const onInputName = ($event: string) => {
@@ -419,7 +422,7 @@ const updateSlug = () => {
 
 // computations
 const isWarningStartPastShown = computed(
-  () => !!form.start && new Date(form.start) < new Date(),
+  () => !!form.start && dateTime(form.start) < dateTime(),
 )
 
 // vuelidate

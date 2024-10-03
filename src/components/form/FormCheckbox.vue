@@ -3,6 +3,7 @@
     <input
       :id="`input-${formKey}`"
       class="rounded"
+      :disabled="isDisabled"
       type="checkbox"
       :checked="value"
       @change="emit('change', ($event.target as HTMLInputElement).checked)"
@@ -14,10 +15,12 @@
 <script setup lang="ts">
 export interface Props {
   formKey?: string
+  isDisabled?: boolean
   value?: boolean
 }
 withDefaults(defineProps<Props>(), {
   formKey: undefined,
+  isDisabled: undefined,
   value: undefined,
 })
 

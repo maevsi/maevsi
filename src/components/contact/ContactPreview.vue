@@ -1,5 +1,5 @@
 <template>
-  <div v-if="contact" class="flex gap-4">
+  <div v-if="contact" class="flex min-w-0 flex-1 gap-4">
     <div class="relative">
       <AccountProfilePicture
         v-if="contact.accountId"
@@ -22,10 +22,10 @@
       />
     </div>
     <div class="flex flex-col items-start justify-center overflow-hidden">
-      <div class="truncate font-medium">
+      <span class="truncate font-medium">
         {{ contact.firstName }}
         {{ contact.lastName }}
-      </div>
+      </span>
       <div
         v-if="contact.accountByAccountId?.username"
         class="truncate text-gray-500 dark:text-gray-400"

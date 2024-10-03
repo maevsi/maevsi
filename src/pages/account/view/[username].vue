@@ -25,7 +25,6 @@
         </UnderConstruction>
       </div>
       <CardButton
-        v-if="store.signedInUsername !== routeParamUsername"
         :title="t('eventsTheir', { name: routeParamUsername })"
         :to="localePath(`/event/view/${routeParamUsername}`)"
       >

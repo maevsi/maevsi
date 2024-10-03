@@ -9,9 +9,9 @@
     @click="emit('click')"
   >
     <slot name="prefix" />
-    <div class="truncate-overflow">
-      <slot />
-    </div>
+    <!-- <div class="truncate-overflow"> -->
+    <slot />
+    <!-- </div> -->
     <slot name="suffix" />
   </AppLink>
   <button
@@ -23,9 +23,9 @@
     @click="emit('click')"
   >
     <slot name="prefix" />
-    <span class="truncate-overflow">
-      <slot />
-    </span>
+    <!-- <span class="truncate-overflow"> -->
+    <slot />
+    <!-- </span> -->
     <slot name="suffix" />
   </button>
 </template>
