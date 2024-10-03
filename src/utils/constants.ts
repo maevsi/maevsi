@@ -13,6 +13,8 @@ export const CACHE_VERSION = '2EvuFKRRxT'
 export const COOKIE_CONTROL_CONSENT_COOKIE_NAME =
   DEFAULTS.cookieNameIsConsentGiven
 export const GTAG_COOKIE_ID = 'ga'
+export const IS_NITRO_OPENAPI_ENABLED =
+  !!process.env.NUXT_IS_NITRO_OPENAPI_ENABLED || false
 export const ITEMS_PER_PAGE = 10
 export const ITEMS_PER_PAGE_LARGE = 100
 export const JWT_ALGORITHM = 'RS256'

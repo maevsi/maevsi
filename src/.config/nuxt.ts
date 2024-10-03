@@ -12,7 +12,11 @@ import Components from 'unplugin-vue-components/vite'
 
 import { modulesConfig } from '../config/modules'
 import { environmentsConfig } from '../config/environments'
-import { SITE_NAME, SITE_URL } from '../utils/constants'
+import {
+  IS_NITRO_OPENAPI_ENABLED,
+  SITE_NAME,
+  SITE_URL,
+} from '../utils/constants'
 import { GET_CSP } from '../server/utils/constants'
 
 const execPromise = promisify(exec)
@@ -107,6 +111,9 @@ export default defineNuxtConfig({
   ],
   nitro: {
     compressPublicAssets: true,
+    experimental: {
+      openAPI: IS_NITRO_OPENAPI_ENABLED,
+    },
   },
   runtimeConfig: {
     public: {
@@ -207,7 +214,7 @@ export default defineNuxtConfig({
     ],
     server: {
       hmr: {
-        protocol: process.env.NUXT_PUBLIC_SITE_URL ? 'wss' : 'ws',
+        protocol: process.env.NUXT_PUBLIC_SITE_URL ? 'wss' : 'ws', // TODO: remove in Nuxt 3.14.0 (https://github.com/nuxt/nuxt/pull/29049)
       },
     },
   },
