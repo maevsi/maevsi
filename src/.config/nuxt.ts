@@ -214,7 +214,7 @@ export default defineNuxtConfig({
     ],
     server: {
       hmr: {
-        protocol: process.env.NUXT_PUBLIC_SITE_URL ? 'wss' : 'ws',
+        protocol: process.env.NUXT_PUBLIC_SITE_URL ? 'wss' : 'ws', // TODO: remove in Nuxt 3.14.0 (https://github.com/nuxt/nuxt/pull/29049)
       },
     },
   },
