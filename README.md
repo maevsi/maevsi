@@ -154,4 +154,10 @@ You'll have access to all containers, images, volumes and more via the left side
 
 ## Technology
 
-[<img src="https://nuxt.com/assets/design-kit/logo-green-black.svg" alt="Nuxt" width="1000"/>](https://nuxt.com)
+<a href="https://nuxt.com">
+  <picture>
+    <source srcset="https://nuxt.com/assets/design-kit/logo-green-black.png" media="(prefers-color-scheme: light)">
+    <source srcset="https://nuxt.com/assets/design-kit/logo-green-white.png" media="(prefers-color-scheme: dark)">
+    <img alt="Nuxt" src="https://nuxt.com/assets/design-kit/logo-green-black.svg" width="1200">
+  </picture>
+</a>
