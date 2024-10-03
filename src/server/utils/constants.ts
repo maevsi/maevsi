@@ -167,11 +167,11 @@ export const GET_CSP = ({
         "'self'", // e.g. `/_nuxt/builds/meta/`, `/_payload.json`, `/privacy-policy/_payload.json`
         // ...(process.env.NODE_ENV === 'development'
         //   ? [
-        //       'http://localhost:3000/_nuxt/', // hot reload
-        //       'https://localhost:3000/_nuxt/', // hot reload
-        //       'ws://localhost:3000/_nuxt/', // hot reload
-        //       'wss://localhost:3000/_nuxt/', // hot reload
-        //     ] // TODO: generalize for different ports
+        //       `http://${domainTldPort}/_nuxt/`, // hot reload
+        //       `https://${domainTldPort}/_nuxt/`, // hot reload
+        //       `ws://${domainTldPort}/_nuxt/`, // hot reload
+        //       `wss://${domainTldPort}/_nuxt/`, // hot reload
+        //     ]
         //   : []),
       ],
       'img-src': [
