@@ -1,3 +1,18 @@
+## [4.15.0](https://github.com/maevsi/maevsi/compare/4.14.0...4.15.0) (2024-10-03)
+
+### Features
+
+* **account:** link event list for own account as well ([df5d606](https://github.com/maevsi/maevsi/commit/df5d6068b24e884dfc4e14fa956de479b08c0ec6))
+
+### Bug Fixes
+
+* **button:** remove `truncate-overflow` ([de4b39a](https://github.com/maevsi/maevsi/commit/de4b39ab9cae761b988c73647cef1fe24c449a95))
+* **contact:** correct overflow for preview ([556c84e](https://github.com/maevsi/maevsi/commit/556c84e2940980f7015a3be07b6b6aa400a5f0ed))
+* **event:** correct title color ([92f778a](https://github.com/maevsi/maevsi/commit/92f778a30f035a74c41c02d1a4d3da3af483c375))
+* **event:** correct user's event list ([f04830b](https://github.com/maevsi/maevsi/commit/f04830ba128e305033ef028cc1ac4bca98299ed5))
+* **invitation:** beautify contact list ([0917ec0](https://github.com/maevsi/maevsi/commit/0917ec000992a06bc918643117b5ece31fc1e33e))
+* **timezone:** correct hydration error ([10cc208](https://github.com/maevsi/maevsi/commit/10cc2088550f95092a6f0dee05975f232eb509df))
+
 ## [4.14.0](https://github.com/maevsi/maevsi/compare/4.13.2...4.14.0) (2024-10-03)
 
 ### Features
