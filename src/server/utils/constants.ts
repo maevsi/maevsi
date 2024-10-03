@@ -1,7 +1,10 @@
 import { defu } from 'defu'
 import type { RuntimeConfig } from 'nuxt/schema'
 
-import { STAGING_HOST as PRODUCTION_HOST } from '../../utils/constants'
+import {
+  IS_NITRO_OPENAPI_ENABLED,
+  STAGING_HOST as PRODUCTION_HOST,
+} from '../../utils/constants'
 import { getDomainTldPort as getSiteAndPort } from '../../utils/networking'
 
 const IS_IN_PRODUCTION = process.env.NODE_ENV === 'production'
@@ -185,17 +188,22 @@ export const GET_CSP = ({
         // "'unsafe-eval'", // https://github.com/unjs/nitro/issues/81
       ], // TODO: use `style-src-elem` once Playwright WebKit supports it
     },
-    // {
-    //   // nitro
-    //   'connect-src': ["'self'"] /* swagger
-    //   'http://localhost:3000/_nitro/openapi.json',
-    //   'http://localhost:3000/_nitro/swagger', */,
-    //   'script-src-elem': [
-    //     'https://cdn.jsdelivr.net/npm/', // swagger // TODO: increase precision (https://github.com/unjs/nitro/issues/1757)
-    //   ],
-    //   'style-src': [
-    //     'https://cdn.jsdelivr.net/npm/', // swagger // TODO: increase precision (https://github.com/unjs/nitro/issues/1757)
-    //   ],
-    // },
+    {
+      // nitro
+      ...(IS_NITRO_OPENAPI_ENABLED
+        ? {
+            // // TODO: find out why nuxt-security does not apply here
+            // 'connect-src': ["'self'"] /* swagger
+            // `${siteUrl}_nitro/openapi.json`,
+            // `${siteUrl}_nitro/swagger`, */,
+            // 'script-src-elem': [
+            //   'https://cdn.jsdelivr.net/npm/', // swagger // TODO: increase precision (https://github.com/unjs/nitro/issues/1757)
+            // ],
+            // 'style-src': [
+            //   'https://cdn.jsdelivr.net/npm/', // swagger // TODO: increase precision (https://github.com/unjs/nitro/issues/1757)
+            // ],
+          }
+        : {}),
+    },
   )
 }
