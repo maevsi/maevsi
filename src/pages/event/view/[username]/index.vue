@@ -10,7 +10,8 @@
         </template>
       </i18n-t>
     </LayoutPageTitle>
-    <EventList :username="routeParamUsername" />
+    <EventList v-if="account" :account-id="account.id" />
+    <Error v-else :status-code="500" />
   </div>
 </template>
 
@@ -20,6 +21,8 @@ import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
 
 import type { TypedRouteFromName, RoutesNamesList } from '@typed-router'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
+import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
+import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
 const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
 
@@ -46,6 +49,16 @@ const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
 const localePath = useLocalePath()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
+
+// api data
+const accountByUsernameQuery = await zalgo(
+  useAccountByUsernameQuery({
+    username: route.params.username,
+  }),
+)
+const account = getAccountItem(
+  accountByUsernameQuery.data.value?.accountByUsername,
+)
 
 // data
 const breadcrumbItems = getBreadcrumbItemProps([
