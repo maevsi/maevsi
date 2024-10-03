@@ -56,26 +56,30 @@
     </FormInput>
     <ScrollContainer
       v-if="contacts"
-      class="flex flex-col"
+      class="flex flex-col gap-2"
       :has-next-page="!!api.data.allContacts?.pageInfo.hasNextPage"
       @load-more="after = api.data.allContacts?.pageInfo.endCursor"
     >
-      <div v-for="contact in contactsFiltered" :key="contact.id">
-        <Button
-          :aria-label="t('buttonContact')"
-          class="flex w-full items-center gap-4 rounded border-2 border-neutral-300 px-4 py-2 dark:border-neutral-600"
-          :disabled="invitationContactIdsExisting?.includes(contact.id)"
-          type="button"
-          @click="selectToggle(contact.id)"
-        >
-          <input
-            type="checkbox"
-            readonly
-            :checked="contactIdsComputed.includes(contact.id)"
-          />
-          <ContactPreview :contact="contact" :is-username-linked="false" />
-        </Button>
-      </div>
+      <!-- <div class="flex flex-col gap-2"> -->
+      <Button
+        v-for="contact in contactsFiltered"
+        :key="contact.id"
+        :aria-label="t('buttonContact')"
+        class="flex w-full items-center gap-4 rounded border-2 border-neutral-300 px-4 py-2 dark:border-neutral-600"
+        :disabled="invitationContactIdsExisting?.includes(contact.id)"
+        type="button"
+        @click="selectToggle(contact.id)"
+      >
+        <ContactPreview :contact="contact" :is-username-linked="false" />
+        <FormCheckbox
+          :is-disabled="invitationContactIdsExisting?.includes(contact.id)"
+          :value="
+            invitationContactIdsExisting?.includes(contact.id) ||
+            contactIdsComputed.includes(contact.id)
+          "
+        />
+      </Button>
+      <!-- </div> -->
     </ScrollContainer>
   </Form>
 </template>
@@ -88,8 +92,8 @@ import { useCreateInvitationMutation } from '~/gql/documents/mutations/invitatio
 import { useAllContactsQuery } from '~/gql/documents/queries/contact/contactsAll'
 import type { EventItemFragment } from '~/gql/generated/graphql'
 import { getContactItem } from '~/gql/documents/fragments/contactItem'
-import { accountByIdQuery } from '~/gql/documents/queries/account/accountById'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+// import { accountByIdQuery } from '~/gql/documents/queries/account/accountById'
+// import { getAccountItem } from '~/gql/documents/fragments/accountItem'
 
 export interface Props {
   event: Pick<EventItemFragment, 'id'>
@@ -103,7 +107,7 @@ const emit = defineEmits<{
   submitSuccess: []
 }>()
 
-const { $urql } = useNuxtApp()
+// const { $urql } = useNuxtApp()
 const store = useMaevsiStore()
 const localePath = useLocalePath()
 const { t } = useI18n()
@@ -188,32 +192,32 @@ const contactsFiltered = computed(() => {
   }
 
   const searchStringParts = form.searchString.split(' ')
-  const allContactsFiltered = contacts.value?.filter(async (contact) => {
-    // TODO: make more performant
-    const contactAccountQuery = contact.accountId
-      ? await $urql.value
-          .query(accountByIdQuery, {
-            id: contact.accountId,
-          })
-          .toPromise()
-      : undefined
+  const allContactsFiltered = contacts.value.filter((contact) => {
+    // // TODO: make more performant
+    // const contactAccountQuery = contact.accountId
+    //   ? await $urql.value
+    //       .query(accountByIdQuery, {
+    //         id: contact.accountId,
+    //       })
+    //       .toPromise()
+    //   : undefined
 
-    if (contactAccountQuery?.error) {
-      throw new Error(
-        getCombinedErrorMessages([contactAccountQuery.error]).join(),
-      )
-    }
+    // if (contactAccountQuery?.error) {
+    //   throw new Error(
+    //     getCombinedErrorMessages([contactAccountQuery.error]).join(),
+    //   )
+    // }
 
-    const contactAccount = getAccountItem(
-      contactAccountQuery?.data?.accountById,
-    )
+    // const contactAccount = getAccountItem(
+    //   contactAccountQuery?.data?.accountById,
+    // )
 
-    if (!contactAccount) {
-      throw new Error('Contact account not found!')
-    }
+    // if (!contactAccount) {
+    //   throw new Error('Contact account not found!')
+    // }
 
     const contactProperties = [
-      ...(contactAccount ? [contactAccount.username.toLowerCase()] : []),
+      // ...(contactAccount ? [contactAccount.username.toLowerCase()] : []),
       ...(contact.firstName ? [contact.firstName.toLowerCase()] : []),
       ...(contact.lastName ? [contact.lastName.toLowerCase()] : []),
     ]
