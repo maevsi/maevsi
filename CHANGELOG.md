@@ -1,3 +1,13 @@
+## [4.14.0](https://github.com/maevsi/maevsi/compare/4.13.2...4.14.0) (2024-10-03)
+
+### Features
+
+* **nitro:** add `OpenAPI` switch ([30527d3](https://github.com/maevsi/maevsi/commit/30527d3e254eae7f0adae7ac9f3142556ebc227e))
+
+### Bug Fixes
+
+* **security:** unblock development tools iframe ([cbcfa80](https://github.com/maevsi/maevsi/commit/cbcfa8005b172e717a2c028aaf0bcbb317925fe0))
+
 ## [4.13.2](https://github.com/maevsi/maevsi/compare/4.13.1...4.13.2) (2024-09-28)
 
 ### Bug Fixes
