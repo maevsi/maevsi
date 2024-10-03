@@ -50,9 +50,9 @@ export const getTimezone = () =>
     sameSite: 'strict',
     secure: useRuntimeConfig().public.vio.isInProduction,
   }).value ||
-  import.meta.client
+  (import.meta.client
     ? Intl.DateTimeFormat().resolvedOptions().timeZone
-    : undefined
+    : undefined)
 
 export const zalgo = async <T>(maybePromise: T) =>
   import.meta.server ? await maybePromise : maybePromise
