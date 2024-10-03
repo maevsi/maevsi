@@ -21,22 +21,25 @@
         <ModalUploadSelection @select="onUploadSelect" />
       </section>
       <section>
-        <h2>{{ t('titlePasswordChange') }}</h2>
-        <FormAccountPasswordChange />
+        <h2>{{ t('titleInterests') }}</h2>
+        <FormInterest />
       </section>
-      <section>
-        <h2>{{ t('titleAccountDelete') }}</h2>
-        <FormDelete
-          id="deleteAccount"
-          :error-pg-ids="{
-            postgres23503: t('postgres23503'),
-            postgres28P01: t('postgres28P01'),
-          }"
-          :item-name-deletion="t('formDeleteItemNameDeletion')"
-          :item-name-success="t('formDeleteItemNameSuccess')"
-          :mutation="mutation"
-          @success="signOut"
-        />
+      <section class="flex flex-col gap-4">
+        <h2>{{ t('account') }}</h2>
+        <div class="flex flex-col gap-2">
+          <CardButton
+            :title="t('passwordChange')"
+            :to="localePath(`/account/password/edit/${route.params.username}`)"
+          >
+            <IHeroiconsKey />
+          </CardButton>
+          <CardButton
+            :title="t('accountDelete')"
+            :to="localePath(`/account/delete/${route.params.username}`)"
+          >
+            <IHeroiconsTrash />
+          </CardButton>
+        </div>
       </section>
     </div>
   </Loader>
@@ -49,7 +52,6 @@ import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
 import type { TypedRouteFromName, RoutesNamesList } from '@typed-router'
 
-import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
 import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
 import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
 import { getAccountItem } from '~/gql/documents/fragments/accountItem'
@@ -81,10 +83,9 @@ definePageMeta({
 })
 
 const store = useMaevsiStore()
-const { signOut } = useSignOut()
+const localePath = useLocalePath()
 const { t } = useI18n()
 const route = useRoute(ROUTE_NAME)
-const accountDeleteMutation = useAccountDeleteMutation()
 const getBreadcrumbItemProps = useGetBreadcrumbItemProps()
 
 // api data
@@ -109,9 +110,8 @@ const breadcrumbItems = getBreadcrumbItemProps([
     ...usePageBreadcrumb(),
   },
 ])
-const mutation = accountDeleteMutation
 const routeParamUsername = route.params.username
-const title = t('settings')
+const title = t('title')
 
 // methods
 const onUploadSelect = async (uploadId?: string | null | undefined) =>
@@ -128,21 +128,17 @@ useHeadDefault({ title })
 
 <i18n lang="yaml">
 de:
-  formDeleteItemNameDeletion: Konto
-  formDeleteItemNameSuccess: Konto
-  postgres23503: Dir gehören noch Daten! Lösche erst all deine Veranstaltungen, Kontakte und Bilder.
-  postgres28P01: Passwort falsch! Überprüfe, ob du alles richtig geschrieben hast.
+  account: Konto
+  accountDelete: Konto löschen
   profilePictureChange: Profilbild ändern
-  settings: Bearbeiten
-  titleAccountDelete: Konto löschen
-  titlePasswordChange: Password des Kontos ändern
+  passwordChange: Password ändern
+  title: Bearbeiten
+  titleInterests: Interessen
 en:
-  formDeleteItemNameDeletion: account
-  formDeleteItemNameSuccess: Account
-  postgres23503: There's still some data connected to your account! Delete all your events, contacts and images first.
-  postgres28P01: Password incorrect! Check for spelling mistakes.
+  account: Account
+  accountDelete: Delete account
   profilePictureChange: Change profile picture
-  settings: edit
-  titleAccountDelete: Delete account
-  titlePasswordChange: Change account password
+  passwordChange: Change password
+  title: Edit
+  titleInterests: Interests
 </i18n>
