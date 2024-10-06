@@ -2,6 +2,8 @@ import { type H3Event, MIMES } from 'h3'
 import { consola } from 'consola'
 import { z } from 'zod'
 
+import { getBodySafe } from '../utils/validation'
+
 const tusdPostBodySchema = z.object({
   Type: z.string(),
   Event: z.object({
@@ -15,11 +17,7 @@ const tusdPostBodySchema = z.object({
 })
 
 export default defineEventHandler(async (event: H3Event) => {
-  const bodyValidationResult = await readValidatedBody(event, (body) =>
-    tusdPostBodySchema.safeParse(body),
-  )
-  if (!bodyValidationResult.success) throw bodyValidationResult.error.issues
-  const body = bodyValidationResult.data
+  const body = await getBodySafe({ event, schema: tusdPostBodySchema })
 
   switch (body.Type) {
     case 'pre-create': {
