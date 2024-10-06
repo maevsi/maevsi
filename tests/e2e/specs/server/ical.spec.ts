@@ -16,10 +16,10 @@ test.describe('api load', () => {
 
   test('validates input data', async ({ request }) => {
     const inputData = [
-      { data: undefined, message: 'Internal Server Error' },
+      { data: undefined, message: 'Validation Error' },
       {
         data: { contact: {}, invitation: {} },
-        message: 'Internal Server Error',
+        message: 'Validation Error',
       },
     ]
 
@@ -28,7 +28,7 @@ test.describe('api load', () => {
         data: inputDataElement.data,
       })
 
-      expect(resp.status()).toEqual(500)
+      expect(resp.status()).toEqual(400)
       expect(resp.statusText()).toEqual(inputDataElement.message)
     }
   })

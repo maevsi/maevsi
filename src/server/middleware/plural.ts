@@ -1,9 +1,12 @@
+import consola from 'consola'
+
 export default defineEventHandler((event) => {
   const requestPath = event.path
 
   if (
     requestPath.match(/^\/(de\/)?(account|contact|event|task|upload)(s)(.*)/)
   ) {
+    consola.log('Middleware plural used!')
     return sendRedirect(
       event,
       requestPath.replace(
@@ -15,6 +18,7 @@ export default defineEventHandler((event) => {
   }
 
   if (requestPath.match(/^\/(de\/)?tasks\/(account|event)(s)(.*)/)) {
+    consola.log('Middleware plural used!')
     return sendRedirect(
       event,
       requestPath.replace(
@@ -30,6 +34,7 @@ export default defineEventHandler((event) => {
       /^\/(de\/)?event\/view\/([^/]+)\/([^/]+)\/(attendance|invitation)(s)(.*)/,
     )
   ) {
+    consola.log('Middleware plural used!')
     return sendRedirect(
       event,
       requestPath.replace(
@@ -42,6 +47,7 @@ export default defineEventHandler((event) => {
   }
 
   if (requestPath.match(/^\/(de\/)?task\/events\/unlock/)) {
+    consola.log('Middleware plural used!')
     return sendRedirect(
       event,
       requestPath.replace(
@@ -53,6 +59,7 @@ export default defineEventHandler((event) => {
   }
 
   if (requestPath.match(/^\/(de\/)?task\/accounts\/email-address\/verify/)) {
+    consola.log('Middleware plural used!')
     return sendRedirect(
       event,
       requestPath.replace(

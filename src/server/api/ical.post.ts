@@ -3,6 +3,7 @@ import { z } from 'zod'
 
 import { SITE_URL } from '~/utils/constants'
 import { getIcalString } from '~/server/utils/ical'
+import { getBodySafe } from '../utils/validation'
 
 const icalPostBodySchema = z.object({
   contact: z.object({
@@ -29,11 +30,7 @@ const icalPostBodySchema = z.object({
 })
 
 export default defineEventHandler(async (h3Event: H3Event) => {
-  const bodyValidationResult = await readValidatedBody(h3Event, (body) =>
-    icalPostBodySchema.safeParse(body),
-  )
-  if (!bodyValidationResult.success) throw bodyValidationResult.error.issues
-  const body = bodyValidationResult.data
+  const body = await getBodySafe({ event: h3Event, schema: icalPostBodySchema })
 
   const contact = body.contact
   const event = body.event

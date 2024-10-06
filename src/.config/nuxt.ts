@@ -1,9 +1,9 @@
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 
-import { defu } from 'defu'
-
 import { sentryVitePlugin } from '@sentry/vite-plugin'
+import vue from '@vitejs/plugin-vue'
+import { defu } from 'defu'
 import type { Nuxt, ModuleOptions } from 'nuxt/schema'
 // import { defu } from 'defu'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -113,6 +113,10 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     experimental: {
       openAPI: IS_NITRO_OPENAPI_ENABLED,
+    },
+    rollupConfig: {
+      // @ts-expect-error deep type instantiation (https://github.com/vitejs/vite-plugin-vue/issues/422)
+      plugins: [vue()],
     },
   },
   runtimeConfig: {
