@@ -407,8 +407,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(vue-i18n@9.14.1(vue@3.5.11(typescript@5.6.3)))(vue-router@4.4.5(vue@3.5.11(typescript@5.6.3)))(vue@3.5.11(typescript@5.6.3))
       vue-qrcode-reader:
-        specifier: 5.5.10
-        version: 5.5.10
+        specifier: 5.5.11
+        version: 5.5.11
       vue-router:
         specifier: 4.4.5
         version: 4.4.5(vue@3.5.11(typescript@5.6.3))
@@ -10184,8 +10184,8 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
-  vue-qrcode-reader@5.5.10:
-    resolution: {integrity: sha512-lj83FKqRyvo0VLMu49wrLsaHueonfXcwyX9r/GDw0y+myOY5xTfsl75hjBgmmByAxzFSlCPI+CGA9FxYVtRAFQ==}
+  vue-qrcode-reader@5.5.11:
+    resolution: {integrity: sha512-Ec/bVML1jgxSX+usbgdcXGhOFEFo4EzApCO2CNT1YK0Dcb0Mp7ASygz78RJJs22SU2oI7vz9iJDyr4ucSDTvjQ==}
     engines: {node: '>=18.0.0'}
 
   vue-router@4.4.5:
@@ -22739,7 +22739,7 @@ snapshots:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.11(typescript@5.6.3)
 
-  vue-qrcode-reader@5.5.10:
+  vue-qrcode-reader@5.5.11:
     dependencies:
       barcode-detector: 2.2.2
       webrtc-adapter: 8.2.3

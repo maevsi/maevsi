@@ -118,7 +118,7 @@
     "vue-chartjs": "5.3.1",
     "vue-gtag": "2.0.1",
     "vue-i18n-routing": "1.2.0",
-    "vue-qrcode-reader": "5.5.10",
+    "vue-qrcode-reader": "5.5.11",
     "vue-router": "4.4.5",
     "vue-tsc": "2.1.6",
     "workbox-precaching": "7.1.0",
