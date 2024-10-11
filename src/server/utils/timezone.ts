@@ -25,7 +25,7 @@ export const getTimezoneByIpApi = async (ip: string) => {
   if (isTestingServer()) return
 
   const ipApiResult = await $fetch<{ timezone: string }>(
-    `http://ip-api.com/json/${ip}`,
+    `http://geoip:8080/${ip}`,
   ).catch(() => {})
 
   if (ipApiResult) {

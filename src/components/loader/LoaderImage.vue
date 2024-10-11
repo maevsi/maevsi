@@ -8,11 +8,19 @@
       v-if="srcWhenLoaded"
       :alt="alt"
       :class="[aspect, classes]"
+      :crossorigin="crossOrigin"
       :height="height"
       :src="srcWhenLoaded"
       :width="width"
     />
-    <img :alt="alt" class="hidden" :height="height" :src="src" :width="width" />
+    <img
+      :alt="alt"
+      class="hidden"
+      :crossorigin="crossOrigin"
+      :height="height"
+      :src="src"
+      :width="width"
+    />
   </div>
 </template>
 
@@ -23,12 +31,14 @@ export interface Props {
   alt: string
   aspect: string
   classes?: string
+  crossOrigin?: 'anonymous'
   height: string
   src: string
   width: string
 }
 const props = withDefaults(defineProps<Props>(), {
   classes: undefined,
+  crossOrigin: undefined,
 })
 
 const { t } = useI18n()
@@ -54,6 +64,7 @@ const loadOnClient = () => {
     loadingStop()
     isError.value = true
   }
+  img.value.crossOrigin = props.crossOrigin || null
   img.value.src = props.src
 }
 const loadingStart = () => {
