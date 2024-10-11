@@ -31,6 +31,7 @@ export const securityConfig: ReturnType<DefineNuxtConfig> = {
       },
       xXSSProtection: '1; mode=block', // TODO: set back to `0` once CSP does not use `unsafe-*` anymore (https://github.com/maevsi/maevsi/issues/1047)
     },
+    rateLimiter: process.env.IS_RATE_LIMITER_DISABLED ? false : undefined,
     ssg: {
       hashStyles: true,
     },
