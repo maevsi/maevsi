@@ -64,7 +64,7 @@ const loadOnClient = () => {
     loadingStop()
     isError.value = true
   }
-  img.value.crossOrigin = props.crossOrigin
+  img.value.crossOrigin = props.crossOrigin || null
   img.value.src = props.src
 }
 const loadingStart = () => {
