@@ -1,3 +1,9 @@
+## [4.17.0](https://github.com/maevsi/maevsi/compare/4.16.1...4.17.0) (2024-10-11)
+
+### Features
+
+* **security:** add rate limiter flag ([8554745](https://github.com/maevsi/maevsi/commit/8554745110e6c7b0a5ce0433f7f74eea03a03ca1))
+
 ## [4.16.1](https://github.com/maevsi/maevsi/compare/4.16.0...4.16.1) (2024-10-11)
 
 ### Bug Fixes
