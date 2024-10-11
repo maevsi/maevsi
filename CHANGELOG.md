@@ -1,3 +1,16 @@
+## [4.16.0](https://github.com/maevsi/maevsi/compare/4.15.0...4.16.0) (2024-10-11)
+
+### Features
+
+* **loader-image:** account for cross origin requests ([51418e0](https://github.com/maevsi/maevsi/commit/51418e06122fc0bca8ee059f29fe71a42874da26))
+
+### Bug Fixes
+
+* **csp:** correct service worker rule ([0f3310d](https://github.com/maevsi/maevsi/commit/0f3310df24e62d7e74ab888aac37e8a93d4d7910))
+* **csp:** simplify cloudflare script source rule ([30b7fad](https://github.com/maevsi/maevsi/commit/30b7fad1b9a2069f920a5dfcaa5ffe907b3cbc2b))
+* **loader-image:** correct property type ([1238182](https://github.com/maevsi/maevsi/commit/1238182f06a7a61e9ffc046d8d417d3f3b80832d))
+* **timezone:** use local ip geolocation service ([205e13b](https://github.com/maevsi/maevsi/commit/205e13be548b49ddc36af213c4632ba70b6d2e8e))
+
 ## [4.15.0](https://github.com/maevsi/maevsi/compare/4.14.0...4.15.0) (2024-10-03)
 
 ### Features
