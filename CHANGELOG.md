@@ -1,3 +1,9 @@
+## [4.16.1](https://github.com/maevsi/maevsi/compare/4.16.0...4.16.1) (2024-10-11)
+
+### Bug Fixes
+
+* **proxy:** don't verify captcha for anonymous authentication ([ac16df5](https://github.com/maevsi/maevsi/commit/ac16df55ccd26d92b42bfe14d93df3e5fddf7490))
+
 ## [4.16.0](https://github.com/maevsi/maevsi/compare/4.15.0...4.16.0) (2024-10-11)
 
 ### Features
