@@ -3,6 +3,7 @@
     :alt="t('profilePictureAlt', { emailAddress })"
     :aspect="aspect"
     :classes="classes"
+    :cross-origin="crossOrigin"
     :height="size"
     :src="imageSrc"
     :width="size"
@@ -30,11 +31,15 @@ const { t } = useI18n()
 
 // computations
 const imageSrc = computed(() => {
-  if (props.emailAddress && props.emailAddressHash) {
+  if (props.emailAddress && props.emailAddressHash)
     return `https://www.gravatar.com/avatar/${props.emailAddressHash}?d=mp&s=${props.size}`
-  } else {
-    return blankProfilePicture
-  }
+
+  return blankProfilePicture
+})
+const crossOrigin = computed(() => {
+  if (props.emailAddress && props.emailAddressHash) return 'anonymous'
+
+  return undefined
 })
 </script>
 
