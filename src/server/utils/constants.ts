@@ -49,13 +49,9 @@ export const GET_CSP = ({
         // "'unsafe-eval'", // TODO: check source
         'https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js', // ESLint plugin compat
       ],
-      ...(process.env.NODE_ENV === 'development'
-        ? {
-            'worker-src': [
-              `${siteUrl}dev-sw.js`, // @vite-pwa/nuxt
-            ],
-          }
-        : {}),
+      'worker-src': [
+        `${siteUrl}${process.env.NODE_ENV === 'development' ? 'dev-' : ''}sw.js`, // @vite-pwa/nuxt
+      ],
     },
     // {
     //   // vio
