@@ -1,3 +1,9 @@
+## [4.17.1](https://github.com/maevsi/maevsi/compare/4.17.0...4.17.1) (2024-10-12)
+
+### Bug Fixes
+
+* **security:** disable xss validator on internal authentication proxy ([4ccb8f5](https://github.com/maevsi/maevsi/commit/4ccb8f555abe526c531783ccbe9475507f2d8ce2))
+
 ## [4.17.0](https://github.com/maevsi/maevsi/compare/4.16.1...4.17.0) (2024-10-11)
 
 ### Features
