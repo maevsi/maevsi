@@ -6,23 +6,25 @@ export const useAllInvitationsQuery = (
   variables: AllInvitationsQueryVariables,
 ) =>
   useQuery({
-    query: graphql(`
-      query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {
-        allInvitations(
-          after: $after
-          condition: { eventId: $eventId }
-          first: $first
-        ) {
-          nodes {
-            ...InvitationItem
-          }
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          totalCount
-        }
-      }
-    `),
+    query: allInvitationsQuery,
     variables,
   })
+
+export const allInvitationsQuery = graphql(`
+  query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {
+    allInvitations(
+      after: $after
+      condition: { eventId: $eventId }
+      first: $first
+    ) {
+      nodes {
+        ...InvitationItem
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      totalCount
+    }
+  }
+`)
