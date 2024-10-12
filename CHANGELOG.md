@@ -1,3 +1,10 @@
+## [4.17.3](https://github.com/maevsi/maevsi/compare/4.17.2...4.17.3) (2024-10-12)
+
+### Bug Fixes
+
+* **auth-proxy:** don't require variables in body schema ([b75bac1](https://github.com/maevsi/maevsi/commit/b75bac1ab51cead95dcbd904cb971af4ac98ea54))
+* **security:** correct rate limiter disabling at runtime ([ff95f85](https://github.com/maevsi/maevsi/commit/ff95f85f8e6ef697852ac892be2c0048472245bd))
+
 ## [4.17.2](https://github.com/maevsi/maevsi/compare/4.17.1...4.17.2) (2024-10-12)
 
 ### Bug Fixes
