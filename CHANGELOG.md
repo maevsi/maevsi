@@ -1,3 +1,9 @@
+## [4.17.5](https://github.com/maevsi/maevsi/compare/4.17.4...4.17.5) (2024-10-12)
+
+### Bug Fixes
+
+* **cache:** reset contact query on contact addition ([f630805](https://github.com/maevsi/maevsi/commit/f630805870f1733e5d545cab6c2e11305ca0b19a))
+
 ## [4.17.4](https://github.com/maevsi/maevsi/compare/4.17.3...4.17.4) (2024-10-12)
 
 ### Bug Fixes
