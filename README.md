@@ -84,18 +84,16 @@ You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD
 #### Setup
 
 1. create a directory named `maevsi` in a directory of your liking
-1. download the project modules [maevsi](https://github.com/maevsi/maevsi), [maevsi_stack](https://github.com/maevsi/maevsi_stack), [sqitch](https://github.com/maevsi/sqitch) and [stomper](https://github.com/maevsi/stomper) into that newly created directory:
+1. download the project modules [maevsi](https://github.com/maevsi/maevsi), [maevsi_stack](https://github.com/maevsi/maevsi_stack) and [sqitch](https://github.com/maevsi/sqitch) into that newly created directory:
     ```sh
     cd maevsi
     git clone https://github.com/maevsi/maevsi.git
     git clone https://github.com/maevsi/maevsi_stack.git
     git clone https://github.com/maevsi/sqitch.git
-    git clone https://github.com/maevsi/stomper.git
     ```
     - **maevsi** contains the frontend and database migrations
     - **maevsi_stack** is the service configuration
     - **sqitch** is the database migration service
-    - **stomper** is the service that sends emails
 1. switch into the `maevsi` subdirectory and setup Node:
     ```sh
     cd maevsi
@@ -129,11 +127,10 @@ You're encouraged to ask questions on [maevsi's Discord](https://discord.gg/E3hD
     cd ../../
     dargstack deploy
     ```
-1. finally, create the Docker development images for `maevsi`, `sqitch` and `stomper` so that their services start successfully:
+1. finally, create the Docker development images for `maevsi` and `sqitch` so that their services start successfully:
     ```sh
     dargstack build maevsi
     dargstack build sqitch
-    dargstack build stomper
     ```
 1. you should now be able to access maevsi under https://localhost! 🎉
 
