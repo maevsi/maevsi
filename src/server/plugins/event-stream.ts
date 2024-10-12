@@ -37,9 +37,6 @@ export default defineNitroPlugin(async (nitroApp) => {
 
       switch (topic) {
         case TOPIC_NOTIFICATION:
-          // TODO: check why before is always null, even after updating a record
-          // if (value.payload.before) return // only process newly inserted notifications
-
           try {
             await processNotification({
               channelEvent: {
