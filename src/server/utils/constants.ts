@@ -150,6 +150,7 @@ export const GET_CSP = ({
             ]
           : []),
       ],
+      'worker-src': ['blob:'],
     },
     {
       // nuxt
