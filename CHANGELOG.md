@@ -1,3 +1,10 @@
+## [4.17.4](https://github.com/maevsi/maevsi/compare/4.17.3...4.17.4) (2024-10-12)
+
+### Bug Fixes
+
+* **auth-proxy:** allow nullable variables in body schema ([b94af0d](https://github.com/maevsi/maevsi/commit/b94af0d95fa4ad4973d515616a6e0c0b7ef1bc65))
+* **invitation:** reset query on list change ([7b66f92](https://github.com/maevsi/maevsi/commit/7b66f928330f0b828c92ab507ec99cc5c7d7d508))
+
 ## [4.17.3](https://github.com/maevsi/maevsi/compare/4.17.2...4.17.3) (2024-10-12)
 
 ### Bug Fixes
