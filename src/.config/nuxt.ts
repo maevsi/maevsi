@@ -115,6 +115,13 @@ export default defineNuxtConfig({
       openAPI: IS_NITRO_OPENAPI_ENABLED,
     },
   },
+  routeRules: {
+    '/api/auth-proxy': {
+      security: {
+        xssValidator: false, // TipTap's HTML is stored unescaped (is escaped when displayed) so api requests would trigger the xss protection on forward authentication (https://github.com/maevsi/maevsi/issues/1603)
+      },
+    },
+  },
   runtimeConfig: {
     public: {
       i18n: {
