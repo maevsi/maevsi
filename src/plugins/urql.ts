@@ -5,7 +5,6 @@ import {
   type ClientOptions,
   type SSRData,
 } from '@urql/core'
-// import type { Data } from '@urql/exchange-graphcache'
 import {
   type Cache,
   offlineExchange as getOfflineExchange,
@@ -35,34 +34,6 @@ const invalidateCache = (
         .forEach((field) => {
           cache.invalidate('Query', field.fieldKey)
         })
-// TODO: create manual updates that do not require invalidation (https://github.com/maevsi/maevsi/issues/720)
-// const listPush = (cache: Cache, fieldName: string, data: Data | null) =>
-//   cache
-//     .inspectFields('Query')
-//     .filter((field) => field.fieldName === fieldName)
-//     .forEach((field) => {
-//       const dataField = cache.resolve('Query', field.fieldKey)
-
-//       if (typeof dataField !== 'string')
-//         throw new Error('Data field is no string!')
-
-//       const allInvitations = cache.resolve(dataField, 'nodes')
-
-//       if (
-//         !data ||
-//         !Array.isArray(allInvitations) ||
-//         !isNonEmptyArrayOfStrings(allInvitations)
-//       )
-//         throw new Error('Data field is no array!')
-
-// // TODO: insert IDs, not data  (https://github.com/maevsi/maevsi/issues/720)
-//       allInvitations.push(data)
-//       cache.link('Query', field.fieldKey, allInvitations)
-//     })
-
-// const isNonEmptyArrayOfStrings = (value: unknown): value is (string | Data)[] => {
-//   return Array.isArray(value) && value.every((item) => typeof item === 'string')
-// }
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const runtimeConfig = useRuntimeConfig()
@@ -97,21 +68,52 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     updates: {
       Mutation: {
         // create
-        createContact: (_parent, _args, cache, _info) =>
+        createContact: (_result, _args, cache, _info) =>
           invalidateCache(cache, 'allContacts'),
-        createInvitation: (_parent, _args, cache, _info) =>
+        createInvitation: (_result, _args, cache, _info) =>
           invalidateCache(cache, 'allInvitations'),
         // TODO: create manual updates that do not require invalidation (https://github.com/maevsi/maevsi/issues/720)
-        // listPush(cache, 'allInvitations', parent.createInvitation),
+        // createInvitation: (result, args, cache, info) => {
+        //   cache.updateQuery(
+        //     {
+        //       query: allInvitationsQuery,
+        //       variables: {
+        //         eventId: args.input.invitation.eventId,
+        //         first: 10, // Replace with the appropriate value or keep this dynamic
+        //         after: null, // Update accordingly, this could be the first page of results
+        //       },
+        //     },
+        //     (data) => {
+        //       if (data?.allInvitations?.nodes) {
+        //         // Append the new invitation to the allInvitations array
+        //         return {
+        //           ...data,
+        //           allInvitations: {
+        //             ...data.allInvitations,
+        //             nodes: [
+        //               ...data.allInvitations.nodes,
+        //               ...(result.createInvitation?.invitation
+        //                 ? [result.createInvitation?.invitation]
+        //                 : []),
+        //             ],
+        //             totalCount: data.allInvitations.totalCount + 1,
+        //           },
+        //         }
+        //       } else {
+        //         return data
+        //       }
+        //     },
+        //   )
+        // },
 
         // update
-        profilePictureSet: (_parent, _args, cache, _info) =>
+        profilePictureSet: (_result, _args, cache, _info) =>
           invalidateCache(cache, 'profilePictureByAccountId'),
 
         // delete
-        deleteContactById: (_parent, args, cache, _info) =>
+        deleteContactById: (_result, args, cache, _info) =>
           invalidateCache(cache, 'Contact', args),
-        deleteInvitationById: (_parent, args, cache, _info) =>
+        deleteInvitationById: (_result, args, cache, _info) =>
           invalidateCache(cache, 'Invitation', args),
       },
     },
