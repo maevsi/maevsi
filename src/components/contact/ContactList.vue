@@ -50,10 +50,10 @@
           </template>
         </ButtonColored>
       </div>
-      <Modal id="ModalContact" is-footer-hidden @close="onClose">
+      <Modal id="ModalContact" is-footer-hidden @close="onModalContactClose">
         <FormContact
           :contact="selectedContact"
-          @submit-success="store.modalRemove('ModalContact')"
+          @submit-success="onContactSubmitSuccess"
         />
         <template #header>
           {{ formContactHeading }}
@@ -114,6 +114,7 @@ const selectedContact =
 
 // methods
 const add = () => {
+  contactsQuery.pause()
   formContactHeading.value = t('contactAdd')
   selectedContact.value = undefined
   store.modals.push({ id: 'ModalContact' })
@@ -122,6 +123,7 @@ const delete_ = async (nodeId: string, id: string) => {
   pending.deletions.push(nodeId)
   await deleteContactByIdMutation.executeMutation({ id })
   pending.deletions.splice(pending.deletions.indexOf(nodeId), 1)
+  // TODO: update cache, especially pagination, or reset query (https://github.com/maevsi/maevsi/issues/720)
 }
 const edit = (
   contact: Pick<
@@ -142,7 +144,12 @@ const edit = (
   selectedContact.value = contact
   store.modals.push({ id: 'ModalContact' })
 }
-const onClose = () => {
+const onContactSubmitSuccess = () => {
+  store.modalRemove('ModalContact')
+  after.value = undefined
+  contactsQuery.resume()
+}
+const onModalContactClose = () => {
   if (!selectedContact.value) return
 
   pending.edits.splice(pending.edits.indexOf(selectedContact.value.nodeId), 1)
