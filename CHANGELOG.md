@@ -1,3 +1,17 @@
+## [5.0.0-beta.1](https://github.com/maevsi/maevsi/compare/4.15.0...5.0.0-beta.1) (2024-10-12)
+
+### ⚠ BREAKING CHANGES
+
+* **email:** use amazon web services' simple email service
+
+### Features
+
+* **email:** use amazon web services' simple email service ([59a1158](https://github.com/maevsi/maevsi/commit/59a1158238873389758f845ee4e23c562b553b02))
+
+### Bug Fixes
+
+* **event-stream:** retry indefinitely ([f6647f1](https://github.com/maevsi/maevsi/commit/f6647f1ab0290f6a2e7c7c37a80e9d691d6e0842))
+
 ## [4.15.0](https://github.com/maevsi/maevsi/compare/4.14.0...4.15.0) (2024-10-03)
 
 ### Features
