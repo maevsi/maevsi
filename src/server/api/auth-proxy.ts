@@ -6,10 +6,12 @@ import { TURNSTILE_HEADER_KEY } from '~/utils/constants'
 
 const authProxyBodySchema = z.object({
   operationName: z.string().optional(),
-  variables: z.object({
-    password: z.string().optional(),
-    username: z.string().optional(),
-  }),
+  variables: z
+    .object({
+      password: z.string().optional(),
+      username: z.string().optional(),
+    })
+    .optional(),
 })
 
 export default defineEventHandler(async function (event: H3Event) {
@@ -34,7 +36,7 @@ export default defineEventHandler(async function (event: H3Event) {
   switch (body.operationName) {
     case 'authenticate':
       // don't check captcha for anonymous authentication
-      if (body.variables.password === '' && body.variables.username === '')
+      if (body.variables?.password === '' && body.variables.username === '')
         return res.end()
 
       await turnstileVerify(event)
