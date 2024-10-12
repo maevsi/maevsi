@@ -153,6 +153,9 @@ export default defineNuxtConfig({
           },
         },
       },
+      security: {
+        isRateLimiterDisabled: false,
+      },
       site: {
         url: SITE_URL,
       },
