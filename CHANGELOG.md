@@ -1,3 +1,9 @@
+## [4.17.2](https://github.com/maevsi/maevsi/compare/4.17.1...4.17.2) (2024-10-12)
+
+### Bug Fixes
+
+* **security:** add worker source for sentry content security policy ([0d681c7](https://github.com/maevsi/maevsi/commit/0d681c7f2759356cdc01eee8a062eb8a50cb9360))
+
 ## [4.17.1](https://github.com/maevsi/maevsi/compare/4.17.0...4.17.1) (2024-10-12)
 
 ### Bug Fixes
