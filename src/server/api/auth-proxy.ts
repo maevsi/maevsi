@@ -11,7 +11,8 @@ const authProxyBodySchema = z.object({
       password: z.string().optional(),
       username: z.string().optional(),
     })
-    .optional(),
+    .optional()
+    .nullable(),
 })
 
 export default defineEventHandler(async function (event: H3Event) {
