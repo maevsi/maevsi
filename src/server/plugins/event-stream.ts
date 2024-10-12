@@ -10,6 +10,13 @@ export default defineNitroPlugin(async (nitroApp) => {
   const kafka = new Kafka({
     clientId: 'maevsi',
     brokers: ['redpanda:9092'],
+    retry: {
+      retries: Number.POSITIVE_INFINITY,
+      initialRetryTime: 30000,
+      factor: 0,
+      multiplier: 1,
+      maxRetryTime: 30000,
+    },
   })
 
   const consumer = kafka.consumer({ groupId: 'maevsi' })
