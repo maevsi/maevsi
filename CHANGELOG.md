@@ -1,3 +1,9 @@
+## [4.17.7](https://github.com/maevsi/maevsi/compare/4.17.6...4.17.7) (2024-10-13)
+
+### Bug Fixes
+
+* **invitation:** add paths to redirect ([6c1f00d](https://github.com/maevsi/maevsi/commit/6c1f00df69f1224b1e55264d67286408395fc939))
+
 ## [4.17.6](https://github.com/maevsi/maevsi/compare/4.17.5...4.17.6) (2024-10-13)
 
 ### Bug Fixes
