@@ -15,7 +15,7 @@ export const getIcalString = ({
   invitation,
   siteUrl,
 }: {
-  contact?: ContactItemFragment
+  contact?: Pick<ContactItemFragment, 'firstName' | 'lastName'>
   event: Pick<
     EventItemFragment,
     | 'accountByAuthorAccountId'
@@ -27,7 +27,7 @@ export const getIcalString = ({
     | 'slug'
     | 'start'
   >
-  invitation?: InvitationItemFragment
+  invitation?: Pick<InvitationItemFragment, 'id'>
   siteUrl: string
 }) => {
   const eventAuthorUsername = event.accountByAuthorAccountId?.username
