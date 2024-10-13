@@ -1,3 +1,10 @@
+## [4.17.6](https://github.com/maevsi/maevsi/compare/4.17.5...4.17.6) (2024-10-13)
+
+### Bug Fixes
+
+* **schema:** correct for ical ([0297953](https://github.com/maevsi/maevsi/commit/0297953b19499f8a8437b6ba2b599504672d51a3))
+* **security:** disable xss validator on ical api route ([1517472](https://github.com/maevsi/maevsi/commit/15174725636318267acd7694e1d6c591a7bb0ecc))
+
 ## [4.17.5](https://github.com/maevsi/maevsi/compare/4.17.4...4.17.5) (2024-10-12)
 
 ### Bug Fixes
