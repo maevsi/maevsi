@@ -121,6 +121,11 @@ export default defineNuxtConfig({
         xssValidator: false, // TipTap's HTML is stored unescaped (is escaped when displayed) so api requests would trigger the xss protection on forward authentication (https://github.com/maevsi/maevsi/issues/1603)
       },
     },
+    '/api/ical': {
+      security: {
+        xssValidator: false, // TipTap's HTML is stored unescaped (is escaped when displayed) so api requests would trigger the xss protection here (https://github.com/maevsi/maevsi/issues/1603)
+      },
+    },
   },
   runtimeConfig: {
     public: {
