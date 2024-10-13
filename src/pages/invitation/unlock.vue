@@ -99,6 +99,7 @@ definePageMeta({
       if (!result.data?.eventUnlock?.eventUnlockResponse?.jwt) {
         return await navigateTo(
           localePath({
+            path: `/invitation/unlock`,
             query: {
               ...to.query,
               error: null,
@@ -130,6 +131,7 @@ definePageMeta({
       } else {
         return await navigateTo(
           localePath({
+            path: `/invitation/unlock`,
             query: {
               ...to.query,
               redirect: localePath(
