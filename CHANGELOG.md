@@ -1,3 +1,9 @@
+## [4.17.8](https://github.com/maevsi/maevsi/compare/4.17.7...4.17.8) (2024-10-13)
+
+### Bug Fixes
+
+* **render:** show cookie banner on client side only ([7ed2dd3](https://github.com/maevsi/maevsi/commit/7ed2dd31db40aa97a8ada72a266f8524fce85953))
+
 ## [4.17.7](https://github.com/maevsi/maevsi/compare/4.17.6...4.17.7) (2024-10-13)
 
 ### Bug Fixes
