@@ -1,3 +1,9 @@
+## [4.17.9](https://github.com/maevsi/maevsi/compare/4.17.8...4.17.9) (2024-10-14)
+
+### Bug Fixes
+
+* **deps:** pin `@nuxtjs/turnstile` to v0.9.6 ([554ecc5](https://github.com/maevsi/maevsi/commit/554ecc54f690c986a9c17ec316ad3996e6ae7622))
+
 ## [4.17.8](https://github.com/maevsi/maevsi/compare/4.17.7...4.17.8) (2024-10-13)
 
 ### Bug Fixes
