@@ -29,7 +29,7 @@
     "@nuxtjs/i18n": "8.3.0",
     "@nuxtjs/seo": "2.0.0-rc.23",
     "@nuxtjs/tailwindcss": "6.12.1",
-    "@nuxtjs/turnstile": "0.9.10",
+    "@nuxtjs/turnstile": "0.9.11-beta.1",
     "@pinia/nuxt": "0.5.5",
     "@sentry/node": "8.34.0",
     "@sentry/profiling-node": "8.34.0",
