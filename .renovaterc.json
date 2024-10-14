@@ -11,10 +11,6 @@
     {
       "matchPackageNames": ["caniuse-lite"],
       "allowedVersions": "1.0.30001653"
-    },
-    {
-      "matchPackageNames": ["cheerio"],
-      "allowedVersions": "1.0.0-rc.12"
     }
   ]
 }
