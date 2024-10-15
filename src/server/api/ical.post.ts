@@ -3,6 +3,7 @@ import { z } from 'zod'
 
 import { SITE_URL } from '~/utils/constants'
 import { getIcalString } from '~/server/utils/ical'
+import { EventVisibility } from '~/gql/generated/graphql'
 
 const icalPostBodySchema = z.object({
   contact: z
@@ -23,6 +24,7 @@ const icalPostBodySchema = z.object({
       username: z.string(),
     }),
     slug: z.string(),
+    visibility: z.nativeEnum(EventVisibility),
   }),
   invitation: z
     .object({
