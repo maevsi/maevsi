@@ -1,3 +1,10 @@
+## [4.17.10](https://github.com/maevsi/maevsi/compare/4.17.9...4.17.10) (2024-10-15)
+
+### Bug Fixes
+
+* **ical:** correct event link ([e4141aa](https://github.com/maevsi/maevsi/commit/e4141aabb863ac4efd25fb5987ae7b96b183fdb1))
+* **nuxt:** set rate limiter disable default temporarily ([a6e8c4b](https://github.com/maevsi/maevsi/commit/a6e8c4b84af2dc78b65fcdb4123f121a8afd4891))
+
 ## [4.17.9](https://github.com/maevsi/maevsi/compare/4.17.8...4.17.9) (2024-10-14)
 
 ### Bug Fixes
