@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { EventVisibility } from '~~/gql/generated/graphql'
 import { SITE_URL } from '~~/node'
 
 const icalPostBodySchema = z.object({
@@ -21,6 +22,7 @@ const icalPostBodySchema = z.object({
       username: z.string(),
     }),
     slug: z.string(),
+    visibility: z.nativeEnum(EventVisibility),
   }),
   invitation: z
     .object({
