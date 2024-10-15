@@ -159,7 +159,7 @@ export default defineNuxtConfig({
         },
       },
       security: {
-        isRateLimiterDisabled: false,
+        isRateLimiterDisabled: true, // TODO: disable once api requests are optimized (https://github.com/maevsi/maevsi/issues/1654)
       },
       site: {
         url: SITE_URL,
