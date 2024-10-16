@@ -1,3 +1,10 @@
+## [4.17.12](https://github.com/maevsi/maevsi/compare/4.17.11...4.17.12) (2024-10-16)
+
+### Bug Fixes
+
+* **dashboard:** mark invitations as under construction ([c32ebae](https://github.com/maevsi/maevsi/commit/c32ebae4a63320d542d6ce31a428a87886b976c2))
+* **form-input:** correct icon placement ([1a5846b](https://github.com/maevsi/maevsi/commit/1a5846b0f6bda2d32c82a164b990539fcfe16104))
+
 ## [4.17.11](https://github.com/maevsi/maevsi/compare/4.17.10...4.17.11) (2024-10-16)
 
 ### Bug Fixes
