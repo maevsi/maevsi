@@ -205,8 +205,8 @@ importers:
         specifier: 3.0.8
         version: 3.0.8
       '@unhead/vue':
-        specifier: 1.11.9
-        version: 1.11.9(vue@3.5.12(typescript@5.6.3))
+        specifier: 1.11.10
+        version: 1.11.10(vue@3.5.12(typescript@5.6.3))
       '@uppy/core':
         specifier: 4.2.2
         version: 4.2.2
@@ -271,8 +271,8 @@ importers:
         specifier: 9.0.5
         version: 9.0.5
       ical-generator:
-        specifier: 8.0.0
-        version: 8.0.0(@types/node@22.7.5)(dayjs@2.0.0-alpha.4)
+        specifier: 8.0.1
+        version: 8.0.1(@types/node@22.7.5)(dayjs@2.0.0-alpha.4)
       isomorphic-dompurify:
         specifier: 2.16.0
         version: 2.16.0
@@ -379,8 +379,8 @@ importers:
         specifier: 3.4.14
         version: 3.4.14
       unhead:
-        specifier: 1.11.9
-        version: 1.11.9
+        specifier: 1.11.10
+        version: 1.11.10
       unplugin-icons:
         specifier: 0.19.3
         version: 0.19.3(@vue/compiler-sfc@3.5.12)(webpack-sources@3.2.3)
@@ -3628,6 +3628,9 @@ packages:
   '@unhead/addons@1.11.7':
     resolution: {integrity: sha512-h2EfW4NHgUSr/MZTHnr+nWm2eiX6yVFdxAdYuVOI8VgTUdyYGD7RsY5Gm0gMcJ9h/KPrSh7EyF0tKlS5jyVVrQ==}
 
+  '@unhead/dom@1.11.10':
+    resolution: {integrity: sha512-nL1mdRzYVATZIYauK15zOI2YyM3YxCLfhbTqljEjDFJeiJUzTTi+a//5FHiUk84ewSucFnrwHNey/pEXFlyY1A==}
+
   '@unhead/dom@1.11.7':
     resolution: {integrity: sha512-Nj2ulnbY5lvIcxqXwdO5YfdvLm8EYLjcaOje2b2aQnfyPAyOIVeR8iB79DDKk/uZZAPEwkdhSnUdEh9Ny0b3lw==}
 
@@ -3637,11 +3640,17 @@ packages:
   '@unhead/schema-org@1.11.7':
     resolution: {integrity: sha512-yo3SL1G7+CWeyoSbP8cMYqtWoPpatoMEL5zs2bBvoWJtKmT22eDNQ3HH9hqBhIx8DOLvZw7S0Y/o2AA5q/IZeg==}
 
+  '@unhead/schema@1.11.10':
+    resolution: {integrity: sha512-lXh7cm5XtFaw3gc+ZVXTSfIHXiBpAywbjtEiOsz5TR4GxOjj2rtfOAl4C3Difk1yupP6L2otYmOZdn/i8EXSJg==}
+
   '@unhead/schema@1.11.7':
     resolution: {integrity: sha512-j9uN7T63aUXrZ6yx2CfjVT7xZHjn0PZO7TPMaWqMFjneIH/NONKvDVCMEqDlXeqdSIERIYtk/xTHgCUMer5eyw==}
 
   '@unhead/schema@1.11.9':
     resolution: {integrity: sha512-0V37bxG4sQuiLw3M5DMD+b99ndOOngecMlekQ122TDvBb24W8rWwkHhXvAu5eFg6bQXPdQF1A0U0PuRMcCj/ZA==}
+
+  '@unhead/shared@1.11.10':
+    resolution: {integrity: sha512-YQgZcOyo1id7drUeDPGn0R83pirvIcV+Car3/m7ZfCLL1Syab6uXmRckVRd69yVbUL4eirIm9IzzmvzM/OuGuw==}
 
   '@unhead/shared@1.11.7':
     resolution: {integrity: sha512-5v3PmV1LMyikGyQi/URYS5ilH8dg1Iomtja7iFWke990O8RBDEzAdagJqcsUE/fw+o7cXRSOamyx5wCf5Q1TrA==}
@@ -3651,6 +3660,11 @@ packages:
 
   '@unhead/ssr@1.11.7':
     resolution: {integrity: sha512-qI1zNFY8fU5S9EhroxlXSA5Q/XKbWAKXrVVNG+6bIh/IRrMOMJrPk4d1GmphF4gmNri3ARqly+OWx4VVaj0scA==}
+
+  '@unhead/vue@1.11.10':
+    resolution: {integrity: sha512-v6ddp4YEQCNILhYrx37Yt0GKRIFeTrb3VSmTbjh+URT+ua1mwgmNFTfl2ZldtTtri3tEkwSG1/5wLRq20ma70g==}
+    peerDependencies:
+      vue: '>=2.7 || >=3'
 
   '@unhead/vue@1.11.9':
     resolution: {integrity: sha512-vdl3H1bwJNindhRplMun7zhtNFggP8QqpPwc1e7kd2a0ORp776+QpFXKdYHFSlX+eAMmDVv8LQ+VL0N++pXxNg==}
@@ -6206,8 +6220,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  ical-generator@8.0.0:
-    resolution: {integrity: sha512-CvVKK3JJrKop6z7i7/NS69FjYdR6ux1LswIeiZ3yaicX7ocMFLQI475JhQabCT7koUkaCVFNVxLaYaxtdPgwww==}
+  ical-generator@8.0.1:
+    resolution: {integrity: sha512-D7D0HPdjg8dEVTyN3QM95sioJj5/6TPj9wetrpt16tzszVgTIXHSSlreTsLuSSQpF61EdVxxTwYS9TVWr7vF0g==}
     engines: {node: 18 || 20 || >=22.0.0}
     peerDependencies:
       '@touch4it/ical-timezones': '>=1.6.0'
@@ -9577,6 +9591,9 @@ packages:
 
   unenv@1.10.0:
     resolution: {integrity: sha512-wY5bskBQFL9n3Eca5XnhH6KbUo/tfvkwm9OpcdCvLaeA7piBNbavbOKJySEwQ1V0RH6HvNlSAFRTpvTqgKRQXQ==}
+
+  unhead@1.11.10:
+    resolution: {integrity: sha512-hypXrAI47wE3wIhkze0RMPGAWcoo45Q1+XzdqLD/OnTCzjFXQrpuE4zBy8JRexyrqp+Ud2+nFTUNf/mjfFSymw==}
 
   unhead@1.11.9:
     resolution: {integrity: sha512-EwEGMjbXVVn2O5vNfXUHiAjHWFHngPjkAx0yVZZsrTgqzs7+A/YvJ90TLvBna874+HCKZWtufo7QAI7luU2CgA==}
@@ -14747,6 +14764,11 @@ snapshots:
       - rollup
       - webpack-sources
 
+  '@unhead/dom@1.11.10':
+    dependencies:
+      '@unhead/schema': 1.11.10
+      '@unhead/shared': 1.11.10
+
   '@unhead/dom@1.11.7':
     dependencies:
       '@unhead/schema': 1.11.7
@@ -14761,6 +14783,11 @@ snapshots:
     dependencies:
       ufo: 1.5.4
 
+  '@unhead/schema@1.11.10':
+    dependencies:
+      hookable: 5.5.3
+      zhead: 2.2.4
+
   '@unhead/schema@1.11.7':
     dependencies:
       hookable: 5.5.3
@@ -14770,6 +14797,10 @@ snapshots:
     dependencies:
       hookable: 5.5.3
       zhead: 2.2.4
+
+  '@unhead/shared@1.11.10':
+    dependencies:
+      '@unhead/schema': 1.11.10
 
   '@unhead/shared@1.11.7':
     dependencies:
@@ -14783,6 +14814,15 @@ snapshots:
     dependencies:
       '@unhead/schema': 1.11.7
       '@unhead/shared': 1.11.7
+
+  '@unhead/vue@1.11.10(vue@3.5.12(typescript@5.6.3))':
+    dependencies:
+      '@unhead/schema': 1.11.10
+      '@unhead/shared': 1.11.10
+      defu: 6.1.4
+      hookable: 5.5.3
+      unhead: 1.11.10
+      vue: 3.5.12(typescript@5.6.3)
 
   '@unhead/vue@1.11.9(vue@3.5.12(typescript@5.6.3))':
     dependencies:
@@ -17935,7 +17975,7 @@ snapshots:
 
   husky@9.1.6: {}
 
-  ical-generator@8.0.0(@types/node@22.7.5)(dayjs@2.0.0-alpha.4):
+  ical-generator@8.0.1(@types/node@22.7.5)(dayjs@2.0.0-alpha.4):
     dependencies:
       uuid-random: 1.3.2
     optionalDependencies:
@@ -19510,7 +19550,7 @@ snapshots:
       '@unhead/dom': 1.11.7
       '@unhead/shared': 1.11.7
       '@unhead/ssr': 1.11.7
-      '@unhead/vue': 1.11.9(vue@3.5.12(typescript@5.6.3))
+      '@unhead/vue': 1.11.10(vue@3.5.12(typescript@5.6.3))
       '@vue/shared': 3.5.12
       acorn: 8.12.1
       c12: 1.11.2(magicast@0.3.5)
@@ -19555,7 +19595,7 @@ snapshots:
       uncrypto: 0.1.3
       unctx: 2.3.1(webpack-sources@3.2.3)
       unenv: 1.10.0
-      unhead: 1.11.9
+      unhead: 1.11.10
       unimport: 3.13.1(rollup@4.24.0)(webpack-sources@3.2.3)
       unplugin: 1.14.1(webpack-sources@3.2.3)
       unplugin-vue-router: 0.10.8(rollup@4.24.0)(vue-router@4.4.5(vue@3.5.12(typescript@5.6.3)))(vue@3.5.12(typescript@5.6.3))(webpack-sources@3.2.3)
@@ -21806,6 +21846,13 @@ snapshots:
       mime: 3.0.0
       node-fetch-native: 1.6.4
       pathe: 1.1.2
+
+  unhead@1.11.10:
+    dependencies:
+      '@unhead/dom': 1.11.10
+      '@unhead/schema': 1.11.10
+      '@unhead/shared': 1.11.10
+      hookable: 5.5.3
 
   unhead@1.11.9:
     dependencies:
