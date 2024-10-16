@@ -1,3 +1,9 @@
+## [4.17.11](https://github.com/maevsi/maevsi/compare/4.17.10...4.17.11) (2024-10-16)
+
+### Bug Fixes
+
+* **form:** set captcha token on submit instead of on fetch ([4ddaaa5](https://github.com/maevsi/maevsi/commit/4ddaaa5b97bc5d33cc9f4995d3feb994fc331a05))
+
 ## [4.17.10](https://github.com/maevsi/maevsi/compare/4.17.9...4.17.10) (2024-10-15)
 
 ### Bug Fixes
