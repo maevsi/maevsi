@@ -12,6 +12,108 @@
 
 * **event-stream:** retry indefinitely ([f6647f1](https://github.com/maevsi/maevsi/commit/f6647f1ab0290f6a2e7c7c37a80e9d691d6e0842))
 
+## [4.17.12](https://github.com/maevsi/maevsi/compare/4.17.11...4.17.12) (2024-10-16)
+
+### Bug Fixes
+
+* **dashboard:** mark invitations as under construction ([c32ebae](https://github.com/maevsi/maevsi/commit/c32ebae4a63320d542d6ce31a428a87886b976c2))
+* **form-input:** correct icon placement ([1a5846b](https://github.com/maevsi/maevsi/commit/1a5846b0f6bda2d32c82a164b990539fcfe16104))
+
+## [4.17.11](https://github.com/maevsi/maevsi/compare/4.17.10...4.17.11) (2024-10-16)
+
+### Bug Fixes
+
+* **form:** set captcha token on submit instead of on fetch ([4ddaaa5](https://github.com/maevsi/maevsi/commit/4ddaaa5b97bc5d33cc9f4995d3feb994fc331a05))
+
+## [4.17.10](https://github.com/maevsi/maevsi/compare/4.17.9...4.17.10) (2024-10-15)
+
+### Bug Fixes
+
+* **ical:** correct event link ([e4141aa](https://github.com/maevsi/maevsi/commit/e4141aabb863ac4efd25fb5987ae7b96b183fdb1))
+* **nuxt:** set rate limiter disable default temporarily ([a6e8c4b](https://github.com/maevsi/maevsi/commit/a6e8c4b84af2dc78b65fcdb4123f121a8afd4891))
+
+## [4.17.9](https://github.com/maevsi/maevsi/compare/4.17.8...4.17.9) (2024-10-14)
+
+### Bug Fixes
+
+* **deps:** pin `@nuxtjs/turnstile` to v0.9.6 ([554ecc5](https://github.com/maevsi/maevsi/commit/554ecc54f690c986a9c17ec316ad3996e6ae7622))
+
+## [4.17.8](https://github.com/maevsi/maevsi/compare/4.17.7...4.17.8) (2024-10-13)
+
+### Bug Fixes
+
+* **render:** show cookie banner on client side only ([7ed2dd3](https://github.com/maevsi/maevsi/commit/7ed2dd31db40aa97a8ada72a266f8524fce85953))
+
+## [4.17.7](https://github.com/maevsi/maevsi/compare/4.17.6...4.17.7) (2024-10-13)
+
+### Bug Fixes
+
+* **invitation:** add paths to redirect ([6c1f00d](https://github.com/maevsi/maevsi/commit/6c1f00df69f1224b1e55264d67286408395fc939))
+
+## [4.17.6](https://github.com/maevsi/maevsi/compare/4.17.5...4.17.6) (2024-10-13)
+
+### Bug Fixes
+
+* **schema:** correct for ical ([0297953](https://github.com/maevsi/maevsi/commit/0297953b19499f8a8437b6ba2b599504672d51a3))
+* **security:** disable xss validator on ical api route ([1517472](https://github.com/maevsi/maevsi/commit/15174725636318267acd7694e1d6c591a7bb0ecc))
+
+## [4.17.5](https://github.com/maevsi/maevsi/compare/4.17.4...4.17.5) (2024-10-12)
+
+### Bug Fixes
+
+* **cache:** reset contact query on contact addition ([f630805](https://github.com/maevsi/maevsi/commit/f630805870f1733e5d545cab6c2e11305ca0b19a))
+
+## [4.17.4](https://github.com/maevsi/maevsi/compare/4.17.3...4.17.4) (2024-10-12)
+
+### Bug Fixes
+
+* **auth-proxy:** allow nullable variables in body schema ([b94af0d](https://github.com/maevsi/maevsi/commit/b94af0d95fa4ad4973d515616a6e0c0b7ef1bc65))
+* **invitation:** reset query on list change ([7b66f92](https://github.com/maevsi/maevsi/commit/7b66f928330f0b828c92ab507ec99cc5c7d7d508))
+
+## [4.17.3](https://github.com/maevsi/maevsi/compare/4.17.2...4.17.3) (2024-10-12)
+
+### Bug Fixes
+
+* **auth-proxy:** don't require variables in body schema ([b75bac1](https://github.com/maevsi/maevsi/commit/b75bac1ab51cead95dcbd904cb971af4ac98ea54))
+* **security:** correct rate limiter disabling at runtime ([ff95f85](https://github.com/maevsi/maevsi/commit/ff95f85f8e6ef697852ac892be2c0048472245bd))
+
+## [4.17.2](https://github.com/maevsi/maevsi/compare/4.17.1...4.17.2) (2024-10-12)
+
+### Bug Fixes
+
+* **security:** add worker source for sentry content security policy ([0d681c7](https://github.com/maevsi/maevsi/commit/0d681c7f2759356cdc01eee8a062eb8a50cb9360))
+
+## [4.17.1](https://github.com/maevsi/maevsi/compare/4.17.0...4.17.1) (2024-10-12)
+
+### Bug Fixes
+
+* **security:** disable xss validator on internal authentication proxy ([4ccb8f5](https://github.com/maevsi/maevsi/commit/4ccb8f555abe526c531783ccbe9475507f2d8ce2))
+
+## [4.17.0](https://github.com/maevsi/maevsi/compare/4.16.1...4.17.0) (2024-10-11)
+
+### Features
+
+* **security:** add rate limiter flag ([8554745](https://github.com/maevsi/maevsi/commit/8554745110e6c7b0a5ce0433f7f74eea03a03ca1))
+
+## [4.16.1](https://github.com/maevsi/maevsi/compare/4.16.0...4.16.1) (2024-10-11)
+
+### Bug Fixes
+
+* **proxy:** don't verify captcha for anonymous authentication ([ac16df5](https://github.com/maevsi/maevsi/commit/ac16df55ccd26d92b42bfe14d93df3e5fddf7490))
+
+## [4.16.0](https://github.com/maevsi/maevsi/compare/4.15.0...4.16.0) (2024-10-11)
+
+### Features
+
+* **loader-image:** account for cross origin requests ([51418e0](https://github.com/maevsi/maevsi/commit/51418e06122fc0bca8ee059f29fe71a42874da26))
+
+### Bug Fixes
+
+* **csp:** correct service worker rule ([0f3310d](https://github.com/maevsi/maevsi/commit/0f3310df24e62d7e74ab888aac37e8a93d4d7910))
+* **csp:** simplify cloudflare script source rule ([30b7fad](https://github.com/maevsi/maevsi/commit/30b7fad1b9a2069f920a5dfcaa5ffe907b3cbc2b))
+* **loader-image:** correct property type ([1238182](https://github.com/maevsi/maevsi/commit/1238182f06a7a61e9ffc046d8d417d3f3b80832d))
+* **timezone:** use local ip geolocation service ([205e13b](https://github.com/maevsi/maevsi/commit/205e13be548b49ddc36af213c4632ba70b6d2e8e))
+
 ## [4.15.0](https://github.com/maevsi/maevsi/compare/4.14.0...4.15.0) (2024-10-03)
 
 ### Features

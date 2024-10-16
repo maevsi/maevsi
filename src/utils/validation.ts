@@ -114,10 +114,10 @@ export const VALIDATION_USERNAME = ({
   validateExistenceNone?: boolean
 }) => ({
   ...(validateExistence
-    ? { existence: helpers.withAsync(validateUsername()) }
+    ? { existence: helpers.withAsync(validateUsername()) } // TODO: debounce (https://github.com/maevsi/maevsi/issues/1672)
     : {}),
   ...(validateExistenceNone
-    ? { existenceNone: helpers.withAsync(validateUsername(true)) }
+    ? { existenceNone: helpers.withAsync(validateUsername(true)) } // TODO: debounce (https://github.com/maevsi/maevsi/issues/1672)
     : {}),
   formatSlug: VALIDATION_FORMAT_SLUG,
   lengthMax: maxLength(VALIDATION_USERNAME_LENGTH_MAXIMUM),

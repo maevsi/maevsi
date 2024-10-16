@@ -14,7 +14,10 @@
     </NuxtLayout>
     <NuxtLoadingIndicator color="#fff" />
     <VitePwaManifest />
-    <CookieControl :locale="locale" />
+    <ClientOnly>
+      <!-- TODO: render server side too when styling is improved (https://github.com/dargmuesli/nuxt-cookie-control/discussions/228)  -->
+      <CookieControl :locale="locale" />
+    </ClientOnly>
     <div
       class="absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
       aria-hidden="true"

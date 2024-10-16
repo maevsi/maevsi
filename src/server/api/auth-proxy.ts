@@ -7,6 +7,13 @@ import { getBodySafe } from '../utils/validation'
 
 const authProxyBodySchema = z.object({
   operationName: z.string().optional(),
+  variables: z
+    .object({
+      password: z.string().optional(),
+      username: z.string().optional(),
+    })
+    .optional()
+    .nullable(),
 })
 
 export default defineEventHandler(async function (event: H3Event) {
@@ -25,7 +32,13 @@ export default defineEventHandler(async function (event: H3Event) {
   }
 
   switch (body.operationName) {
-    case 'authenticate': // TODO: don't verify turnstile on anonymous authentication (https://github.com/maevsi/maevsi/issues/1567)
+    case 'authenticate':
+      // don't check captcha for anonymous authentication
+      if (body.variables?.password === '' && body.variables.username === '')
+        return res.end()
+
+      await turnstileVerify(event)
+      break
     case 'accountRegistration':
       await turnstileVerify(event)
       break

@@ -11,6 +11,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * 3. It does not support dead code elimination, so it will add unused operations.
  *
  * Therefore it is highly recommended to use the babel or swc plugin for production.
+ * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
   '\n  fragment AccountItem on Account {\n    nodeId\n    id\n    username\n  }\n':
@@ -89,7 +90,7 @@ const documents = {
     types.EventIsExistingDocument,
   '\n      query allEvents($after: Cursor, $authorAccountId: UUID, $first: Int!) {\n        allEvents(\n          after: $after\n          condition: { authorAccountId: $authorAccountId }\n          first: $first\n          orderBy: START_DESC\n        ) {\n          nodes {\n            ...EventItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ':
     types.AllEventsDocument,
-  '\n      query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {\n        allInvitations(\n          after: $after\n          condition: { eventId: $eventId }\n          first: $first\n        ) {\n          nodes {\n            ...InvitationItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ':
+  '\n  query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {\n    allInvitations(\n      after: $after\n      condition: { eventId: $eventId }\n      first: $first\n    ) {\n      nodes {\n        ...InvitationItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n':
     types.AllInvitationsDocument,
   '\n      query profilePictureByAccountId($accountId: UUID!) {\n        profilePictureByAccountId(accountId: $accountId) {\n          ...ProfilePictureItem\n        }\n      }\n    ':
     types.ProfilePictureByAccountIdDocument,
@@ -343,8 +344,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: '\n      query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {\n        allInvitations(\n          after: $after\n          condition: { eventId: $eventId }\n          first: $first\n        ) {\n          nodes {\n            ...InvitationItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ',
-): (typeof documents)['\n      query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {\n        allInvitations(\n          after: $after\n          condition: { eventId: $eventId }\n          first: $first\n        ) {\n          nodes {\n            ...InvitationItem\n          }\n          pageInfo {\n            hasNextPage\n            endCursor\n          }\n          totalCount\n        }\n      }\n    ']
+  source: '\n  query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {\n    allInvitations(\n      after: $after\n      condition: { eventId: $eventId }\n      first: $first\n    ) {\n      nodes {\n        ...InvitationItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n',
+): (typeof documents)['\n  query allInvitations($after: Cursor, $eventId: UUID!, $first: Int!) {\n    allInvitations(\n      after: $after\n      condition: { eventId: $eventId }\n      first: $first\n    ) {\n      nodes {\n        ...InvitationItem\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n      totalCount\n    }\n  }\n']
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

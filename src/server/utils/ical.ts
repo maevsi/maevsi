@@ -15,7 +15,7 @@ export const getIcalString = ({
   invitation,
   siteUrl,
 }: {
-  contact?: ContactItemFragment
+  contact?: Pick<ContactItemFragment, 'firstName' | 'lastName'>
   event: Pick<
     EventItemFragment,
     | 'accountByAuthorAccountId'
@@ -27,12 +27,12 @@ export const getIcalString = ({
     | 'slug'
     | 'start'
   >
-  invitation?: InvitationItemFragment
+  invitation?: Pick<InvitationItemFragment, 'id'>
   siteUrl: string
 }) => {
   const eventAuthorUsername = event.accountByAuthorAccountId?.username
   const userEventPath = `${eventAuthorUsername}/${event.slug}`
-  const eventUrl = `${siteUrl}/events/${userEventPath}`
+  const eventUrl = `${siteUrl}/event/view/${userEventPath}`
   const eventDescriptionHtml = mustache.render(
     event.description ? `${eventUrl}\n${event.description}` : '',
     {

@@ -6,27 +6,30 @@ import { getIcalString } from '~/server/utils/ical'
 import { getBodySafe } from '../utils/validation'
 
 const icalPostBodySchema = z.object({
-  contact: z.object({
-    id: z.string(),
-    nodeId: z.string(),
-    authorAccountId: z.string(),
-  }),
+  contact: z
+    .object({
+      firstName: z.string().optional().nullable(),
+      lastName: z.string().optional().nullable(),
+    })
+    .optional(),
   event: z.object({
     id: z.string(),
+    description: z.string().optional().nullable(),
+    end: z.string().optional().nullable(),
+    location: z.string().optional().nullable(),
     name: z.string(),
-    start: z.date(),
+    start: z.string(),
     accountByAuthorAccountId: z.object({
       id: z.string(),
       username: z.string(),
     }),
     slug: z.string(),
   }),
-  invitation: z.object({
-    id: z.string(),
-    nodeId: z.string(),
-    contactId: z.string(),
-    eventId: z.string(),
-  }),
+  invitation: z
+    .object({
+      id: z.string(),
+    })
+    .optional(),
 })
 
 export default defineEventHandler(async (h3Event: H3Event) => {

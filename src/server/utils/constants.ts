@@ -49,13 +49,9 @@ export const GET_CSP = ({
         // "'unsafe-eval'", // TODO: check source
         'https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js', // ESLint plugin compat
       ],
-      ...(process.env.NODE_ENV === 'development'
-        ? {
-            'worker-src': [
-              `${siteUrl}dev-sw.js`, // @vite-pwa/nuxt
-            ],
-          }
-        : {}),
+      'worker-src': [
+        `${siteUrl}${process.env.NODE_ENV === 'development' ? 'dev-' : ''}sw.js`, // @vite-pwa/nuxt
+      ],
     },
     // {
     //   // vio
@@ -69,8 +65,7 @@ export const GET_CSP = ({
             'connect-src': ['https://cloudflareinsights.com'], // analytics
             'script-src-elem': [
               'https://static.cloudflareinsights.com', // analytics
-              `${siteUrl}cdn-cgi/scripts/`, // email obfuscation
-              `${siteUrl}cdn-cgi/rum`,
+              `${siteUrl}cdn-cgi/`, // https://developers.cloudflare.com/fundamentals/reference/cdn-cgi-endpoint/
             ],
           }
         : {}),
@@ -155,6 +150,7 @@ export const GET_CSP = ({
             ]
           : []),
       ],
+      'worker-src': ['blob:'],
     },
     {
       // nuxt

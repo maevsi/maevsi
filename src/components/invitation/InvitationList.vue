@@ -75,7 +75,7 @@
         <FormInvitation
           :event="event"
           :invitation-contact-ids-existing="invitations.map((i) => i.contactId)"
-          @submit-success="store.modalRemove('ModalInvitation')"
+          @submit-success="onInvitationSubmitSuccess"
         />
         <template #header>
           {{ t('contactSelect') }}
@@ -145,7 +145,15 @@ const options = {
 }
 
 // methods
-const add = () => store.modals.push({ id: 'ModalInvitation' })
+const add = () => {
+  invitationsQuery.pause()
+  store.modals.push({ id: 'ModalInvitation' })
+}
+const onInvitationSubmitSuccess = () => {
+  store.modalRemove('ModalInvitation')
+  after.value = undefined
+  invitationsQuery.resume()
+}
 const updateChart = () => {
   Chart.defaults.color = colorMode.value === 'dark' ? '#fff' : '#000'
 
