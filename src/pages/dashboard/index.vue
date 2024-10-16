@@ -14,13 +14,15 @@
         >
           <IHeroiconsCalendar />
         </CardButton>
-        <CardButton
-          :description="t('invitationsDescription')"
-          :title="t('invitations')"
-          :to="localePath(`/invitation`)"
-        >
-          <ISolarLetterLinear />
-        </CardButton>
+        <UnderConstruction>
+          <CardButton
+            :description="t('invitationsDescription')"
+            :title="t('invitations')"
+            :to="localePath(`/invitation`)"
+          >
+            <ISolarLetterLinear />
+          </CardButton>
+        </UnderConstruction>
         <CardButton
           :description="t('contactsDescription')"
           :title="t('contacts')"
