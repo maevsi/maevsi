@@ -64,7 +64,6 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-const store = useMaevsiStore()
 const colorMode = useColorMode()
 const runtimeConfig = useRuntimeConfig()
 
@@ -108,7 +107,6 @@ const reset = () => {
 }
 const update = (e: string) => {
   isLoading.value = false
-  store.turnstileToken = e
   emit('input', e)
 }
 
