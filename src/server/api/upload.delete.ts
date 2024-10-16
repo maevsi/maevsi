@@ -3,20 +3,16 @@ import { consola } from 'consola'
 import { z } from 'zod'
 
 import { verifyAuth } from '../utils/auth'
+import { getQuerySafe } from '../utils/validation'
 
-const uploadDeleteBodySchema = z.object({
+const uploadDeleteQuerySchema = z.object({
   uploadId: z.string(),
 })
 
 export default defineEventHandler(async (event: H3Event) => {
   await verifyAuth(event)
 
-  const queryValidationResult = await getValidatedQuery(event, (query) =>
-    uploadDeleteBodySchema.safeParse(query),
-  )
-  if (!queryValidationResult.success) throw queryValidationResult.error.issues
-  const query = queryValidationResult.data
-
+  const query = await getQuerySafe({ event, schema: uploadDeleteQuerySchema })
   const uploadId = query.uploadId
 
   consola.log('tusdDelete: ' + uploadId)
