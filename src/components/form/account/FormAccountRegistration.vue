@@ -57,6 +57,7 @@ import { useAccountRegistrationMutation } from '~/gql/documents/mutations/accoun
 const { locale, t } = useI18n()
 const localePath = useLocalePath()
 const fireAlert = useFireAlert()
+const store = useMaevsiStore()
 
 // api data
 const accountRegistrationMutation = useAccountRegistrationMutation()
@@ -74,6 +75,8 @@ const isFormSent = ref(false)
 // methods
 const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
+
+  store.turnstileToken = form.captcha
 
   const result = await accountRegistrationMutation.executeMutation({
     emailAddress: form.emailAddress || '',

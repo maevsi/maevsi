@@ -75,6 +75,7 @@ const fireAlert = useFireAlert()
 const { t } = useI18n()
 const { jwtStore } = useJwtStore()
 const localePath = useLocalePath()
+const store = useMaevsiStore()
 
 // api data
 const accountRegistrationRefreshMutation =
@@ -96,6 +97,8 @@ const isFormSent = ref(false)
 // methods
 const submit = async () => {
   if (!(await isFormValid({ v$, isFormSent }))) return
+
+  store.turnstileToken = form.captcha
 
   const result = await authenticateMutation.executeMutation({
     username: form.username || '',
