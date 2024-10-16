@@ -30,7 +30,7 @@
           </span>
         </label>
       </div>
-      <div>
+      <div class="relative">
         <slot v-if="$slots.default" />
         <!-- TODO: support textarea, checkboxes and radio buttons natively -->
         <div v-else class="flex grow">
