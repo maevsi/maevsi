@@ -30,7 +30,7 @@
     "@nuxtjs/html-validator": "1.8.2",
     "@nuxtjs/i18n": "8.3.0",
     "@nuxtjs/seo": "2.0.0-rc.23",
-    "@nuxtjs/tailwindcss": "6.12.1",
+    "@nuxtjs/tailwindcss": "6.12.2",
     "@nuxtjs/turnstile": "0.9.11-beta.1",
     "@pinia/nuxt": "0.5.5",
     "@sentry/node": "8.34.0",
