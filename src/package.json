@@ -82,7 +82,7 @@
     "html-to-text": "9.0.5",
     "ical-generator": "8.0.1",
     "isomorphic-dompurify": "2.16.0",
-    "jose": "5.9.4",
+    "jose": "5.9.6",
     "js-confetti": "0.12.0",
     "kafkajs": "2.2.4",
     "lodash-es": "4.17.21",
