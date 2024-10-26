@@ -4,7 +4,7 @@
     "@aws-sdk/client-ses": "3.679.0",
     "@aws-sdk/credential-providers": "3.679.0",
     "@dargmuesli/nuxt-cookie-control": "8.4.15",
-    "@dargmuesli/nuxt-vio": "14.0.7",
+    "@dargmuesli/nuxt-vio": "14.0.8",
     "@fontsource-variable/manrope": "5.1.0",
     "@graphql-codegen/add": "5.0.3",
     "@graphql-codegen/cli": "5.0.3",
@@ -130,7 +130,7 @@
     "vue-i18n-routing": "1.2.0",
     "vue-qrcode-reader": "5.5.11",
     "vue-router": "4.4.5",
-    "vue-tsc": "2.1.6",
+    "vue-tsc": "2.1.8",
     "workbox-precaching": "7.1.0",
     "zod": "3.23.8"
   },
