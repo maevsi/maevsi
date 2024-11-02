@@ -111,8 +111,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0
       '@iconify-json/material-symbols':
-        specifier: 1.2.5
-        version: 1.2.5
+        specifier: 1.2.6
+        version: 1.2.6
       '@iconify-json/solar':
         specifier: 1.2.1
         version: 1.2.1
@@ -2355,8 +2355,8 @@ packages:
   '@iconify-json/logos@1.2.3':
     resolution: {integrity: sha512-JLHS5hgZP1b55EONAWNeqBUuriRfRNKWXK4cqYx0PpVaJfIIMiiMxFfvoQiX/bkE9XgkLhcKmDUqL3LXPdXPwQ==}
 
-  '@iconify-json/material-symbols@1.2.5':
-    resolution: {integrity: sha512-CXG4noUsqBrbr0npZVldxlf8XGUW3LF3VEGvgk/2k+A3GQt/DM/04PsbjkO2wOI/ORP8rcaHz2pw8F2TPL+CKA==}
+  '@iconify-json/material-symbols@1.2.6':
+    resolution: {integrity: sha512-eXqnY9DY8B/7Uw/INwhpN8gfBrC3BBaWBx7T/Yf4oHxQRiVto4qSlDF3MD46q7vqp4GjtyQW1IkZvhgWHn0LTA==}
 
   '@iconify-json/ri@1.2.2':
     resolution: {integrity: sha512-7i6uxb8guYyyWtcf23QgKXlipvwaqBSnm3tGgo0eBlc1C8C1rHVEJXManwB7PrxWXLAecBL/Sb+0zaLfSYeQzg==}
@@ -13746,7 +13746,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.2.5':
+  '@iconify-json/material-symbols@1.2.6':
     dependencies:
       '@iconify/types': 2.0.0
 
