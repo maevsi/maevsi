@@ -3,7 +3,7 @@
   "devDependencies": {
     "@aws-sdk/client-ses": "3.682.0",
     "@aws-sdk/credential-providers": "3.685.0",
-    "@dargmuesli/nuxt-cookie-control": "8.4.15",
+    "@dargmuesli/nuxt-cookie-control": "8.4.16",
     "@dargmuesli/nuxt-vio": "14.0.8",
     "@fontsource-variable/manrope": "5.1.0",
     "@graphql-codegen/add": "5.0.3",
@@ -31,7 +31,7 @@
     "@nuxtjs/i18n": "8.3.0",
     "@nuxtjs/seo": "2.0.0-rc.23",
     "@nuxtjs/tailwindcss": "6.12.2",
-    "@nuxtjs/turnstile": "0.9.11-beta.1",
+    "@nuxtjs/turnstile": "0.9.11",
     "@pinia/nuxt": "0.7.0",
     "@sentry/node": "8.37.1",
     "@sentry/profiling-node": "8.37.1",
