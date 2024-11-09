@@ -1,3 +1,9 @@
+## [5.0.2](https://github.com/maevsi/maevsi/compare/5.0.1...5.0.2) (2024-11-09)
+
+### Bug Fixes
+
+* schedule release ([7bd017e](https://github.com/maevsi/maevsi/commit/7bd017e00d089094bdf45cb0b01d7456bb9ce167))
+
 ## [5.0.1](https://github.com/maevsi/maevsi/compare/5.0.0...5.0.1) (2024-10-26)
 
 ### Bug Fixes
