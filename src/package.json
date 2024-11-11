@@ -56,7 +56,7 @@
     "@types/seedrandom": "3.0.8",
     "@unhead/vue": "1.11.11",
     "@uppy/core": "4.2.3",
-    "@uppy/tus": "4.1.3",
+    "@uppy/tus": "4.1.4",
     "@urql/core": "5.0.8",
     "@urql/devtools": "2.0.3",
     "@urql/exchange-graphcache": "7.2.1",
