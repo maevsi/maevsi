@@ -1,3 +1,9 @@
+## [5.1.0](https://github.com/maevsi/maevsi/compare/5.0.2...5.1.0) (2024-11-19)
+
+### Features
+
+* **security:** require trusted types for script ([4daa543](https://github.com/maevsi/maevsi/commit/4daa543a2b487f39f017a0628d49db12e8f58456))
+
 ## [5.0.2](https://github.com/maevsi/maevsi/compare/5.0.1...5.0.2) (2024-11-09)
 
 ### Bug Fixes
