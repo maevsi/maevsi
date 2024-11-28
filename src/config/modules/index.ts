@@ -67,9 +67,6 @@ export const modulesConfig: ReturnType<DefineNuxtConfig> = {
     disallow: ROBOTS_DISALLOW,
   },
   ...securityConfig,
-  seo: {
-    splash: false,
-  },
   site: {
     name: SITE_NAME,
     url: SITE_URL,
