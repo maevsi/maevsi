@@ -32,7 +32,7 @@
     "@nuxtjs/seo": "2.0.2",
     "@nuxtjs/tailwindcss": "6.12.2",
     "@nuxtjs/turnstile": "0.9.11",
-    "@pinia/nuxt": "0.7.0",
+    "@pinia/nuxt": "0.5.5",
     "@sentry/node": "8.41.0",
     "@sentry/profiling-node": "8.41.0",
     "@sentry/vite-plugin": "2.22.6",
