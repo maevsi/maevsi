@@ -14,6 +14,12 @@ withDefaults(defineProps<Props>(), {
 })
 </script>
 
+<script lang="ts">
+export default {
+  name: 'MaevsiEmail',
+}
+</script>
+
 <template>
   <Html :lang="locale">
     <Head>
