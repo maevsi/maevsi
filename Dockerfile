@@ -187,10 +187,6 @@ COPY --from=test-e2e-node /srv/app/package.json /tmp/package.json
 
 # FROM nginx:1.25.2-alpine AS production
 
-# # The `CI` environment variable must be set for pnpm to run in headless mode
-# ENV CI=true
-# ENV NODE_ENV=production
-
 # WORKDIR /usr/share/nginx/html
 
 # COPY ./docker/nginx.conf /etc/nginx/nginx.conf
