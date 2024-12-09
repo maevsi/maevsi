@@ -57,7 +57,7 @@
     "@unhead/vue": "1.11.13",
     "@uppy/core": "4.3.0",
     "@uppy/tus": "4.1.5",
-    "@urql/core": "5.0.8",
+    "@urql/core": "5.1.0",
     "@urql/devtools": "2.0.3",
     "@urql/exchange-graphcache": "7.2.1",
     "@urql/vue": "1.4.2",
