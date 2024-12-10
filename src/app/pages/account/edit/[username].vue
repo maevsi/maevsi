@@ -43,19 +43,20 @@
 </template>
 
 <script lang="ts">
+import type { RouteLocationNormalized } from 'vue-router'
+import type { RouteNamedMap } from 'vue-router/auto-routes'
+
 import { usePageBreadcrumb as usePageBreadcrumbAccountsId } from '../view/[username].vue'
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import type { TypedRouteFromName, RoutesNamesList } from '@typed-router'
-
-import { useAccountDeleteMutation } from '~/gql/documents/mutations/account/accountDelete'
-import { useProfilePictureSetMutation } from '~/gql/documents/mutations/profilePicture/profilePictureSet'
-import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import { useAccountDeleteMutation } from '~~/gql/documents/mutations/account/accountDelete'
+import { useProfilePictureSetMutation } from '~~/gql/documents/mutations/profilePicture/profilePictureSet'
+import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
+import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
-const ROUTE_NAME: RoutesNamesList = 'account-edit-username'
+const ROUTE_NAME: keyof RouteNamedMap = 'account-edit-username___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
@@ -75,7 +76,7 @@ definePageMeta({
   async validate(route) {
     return await validateAccountExistence({
       isAuthorizationRequired: true,
-      route: route as TypedRouteFromName<typeof ROUTE_NAME>,
+      route: route as RouteLocationNormalized<typeof ROUTE_NAME>,
     })
   },
 })

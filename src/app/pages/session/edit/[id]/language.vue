@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import type { I18N_LOCALE_CODE } from '@dargmuesli/nuxt-vio/types/i18n'
-import { MODULE_CONFIG } from '~/config/modules/i18n'
+import { MODULE_CONFIG } from '~~/config/modules/i18n'
 
 const { availableLocales, locale, t } = useI18n()
 const switchLocalePath = useSwitchLocalePath()

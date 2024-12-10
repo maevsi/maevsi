@@ -128,7 +128,7 @@ const tiers = [
     },
     name: t('tier1Name'),
     id: 'tier-basic',
-    to: localePath('/account/create'),
+    to: localePath('account-create'),
     description: t('tier1Description'),
     features: [
       t('tier1FeatureNotification'),

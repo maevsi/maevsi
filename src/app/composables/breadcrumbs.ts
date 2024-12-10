@@ -1,5 +1,3 @@
-import type { TypedToLocalePath } from '@typed-router'
-
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 export const useGetBreadcrumbItemProps = () => {
@@ -19,7 +17,7 @@ export const useGetBreadcrumbItemProps = () => {
 const getBreadcrumbItemProps = (
   breadcrumbWithLocales: BreadcrumbLinkLocalized,
   locale: LOCALE_CODES,
-  localePath: TypedToLocalePath,
+  localePath: ReturnType<typeof useLocalePath>,
 ) => ({
   ...breadcrumbWithLocales,
   'aria-label': breadcrumbWithLocales.ariaLabel

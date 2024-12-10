@@ -9,7 +9,17 @@
           <CardButton
             :description="t('personalDataDescription')"
             :title="t('personalData')"
-            :to="localePath(`/account/edit/${store.signedInUsername}`)"
+            :to="
+              localePath(
+                {
+                  name: 'account-edit-username',
+                  params: {
+                    username: store.signedInUsername,
+                  },
+                },
+                //`/account/edit/${store.signedInUsername}`
+              )
+            "
           >
             <IHeroiconsIdentification />
           </CardButton>
@@ -25,14 +35,34 @@
           <CardButton
             :description="t('colorSchemeDescription')"
             :title="t('colorScheme')"
-            :to="localePath(`/session/edit/${route.params.id}/color-scheme`)"
+            :to="
+              localePath(
+                {
+                  name: 'session-edit-id-color-scheme',
+                  params: {
+                    id: route.params.id,
+                  },
+                },
+                //`/session/edit/${route.params.id}/color-scheme`
+              )
+            "
           >
             <IHeroiconsSun />
           </CardButton>
           <CardButton
             :description="t('languageDescription')"
             :title="t('language')"
-            :to="localePath(`/session/edit/${route.params.id}/language`)"
+            :to="
+              localePath(
+                {
+                  name: 'session-edit-id-language',
+                  params: {
+                    id: route.params.id,
+                  },
+                },
+                //`/session/edit/${route.params.id}/language`
+              )
+            "
           >
             <IHeroiconsLanguage />
           </CardButton>
@@ -73,7 +103,7 @@
           <CardButton
             :description="t('aboutDescription')"
             :title="t('about')"
-            :to="localePath('/')"
+            :to="localePath('index')"
           >
             <IHeroiconsNewspaper />
           </CardButton>
@@ -122,14 +152,14 @@
           <CardButton
             :description="t('legalNoticeDescription')"
             :title="t('legalNotice')"
-            :to="localePath('/legal-notice')"
+            :to="localePath('legal-notice')"
           >
             <IHeroiconsScale />
           </CardButton>
           <CardButton
             :description="t('privacyPolicyDescription')"
             :title="t('privacyPolicy')"
-            :to="localePath('/privacy-policy')"
+            :to="localePath('privacy-policy')"
           >
             <IHeroiconsShieldCheck />
           </CardButton>
@@ -144,9 +174,9 @@ import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbSession } from '../../view/[id].vue'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
-import type { RoutesNamesList } from '@typed-router'
+import type { RouteNamedMap } from 'vue-router/auto-routes'
 
-const ROUTE_NAME: RoutesNamesList = 'session-edit-id'
+const ROUTE_NAME: keyof RouteNamedMap = 'session-edit-id___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)

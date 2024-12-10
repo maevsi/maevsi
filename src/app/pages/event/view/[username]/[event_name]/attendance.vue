@@ -66,20 +66,20 @@ import wasmFile from 'zxing-wasm/reader/zxing_reader.wasm?url'
 import { consola } from 'consola'
 import type { DetectedBarcode } from 'barcode-detector'
 import { setZXingModuleOverrides } from 'vue-qrcode-reader'
+import type { RouteLocationNormalized } from 'vue-router'
+import type { RouteNamedMap } from 'vue-router/auto-routes'
 
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from './index.vue'
 
-import type { RoutesNamesList, TypedRouteFromName } from '@typed-router'
-
-import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
-import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import { getEventItem } from '~~/gql/documents/fragments/eventItem'
+import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
+import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
-const ROUTE_NAME: RoutesNamesList =
+const ROUTE_NAME: keyof RouteNamedMap =
   'event-view-username-event_name-attendance___en'
 
 export const usePageBreadcrumb = () => {
@@ -113,7 +113,7 @@ export default {
 definePageMeta({
   async validate(route) {
     return await validateEventExistence(
-      route as TypedRouteFromName<typeof ROUTE_NAME>,
+      route as RouteLocationNormalized<typeof ROUTE_NAME>,
     )
   },
 })

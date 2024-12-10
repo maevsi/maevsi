@@ -26,7 +26,15 @@
       </div>
       <CardButton
         :title="t('eventsTheir', { name: routeParamUsername })"
-        :to="localePath(`/event/view/${routeParamUsername}`)"
+        :to="
+          localePath(
+            {
+              name: 'event-view-username',
+              params: { username: routeParamUsername },
+            },
+            //`/event/view/${routeParamUsername}`
+          )
+        "
       >
         <IHeroiconsCalendar />
       </CardButton>
@@ -105,19 +113,20 @@
 </template>
 
 <script lang="ts">
+import type { RouteLocationNormalized } from 'vue-router'
+import type { RouteNamedMap } from 'vue-router/auto-routes'
+
 import { usePageBreadcrumb as usePageBreadcrumbAccounts } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
 
-import type { TypedRouteFromName, RoutesNamesList } from '@typed-router'
-
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import { getAchievementItem } from '~/gql/documents/fragments/achievementItem'
-import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import { useAllAchievementsQuery } from '~/gql/documents/queries/achievement/achievementsAll'
+import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
+import { getAchievementItem } from '~~/gql/documents/fragments/achievementItem'
+import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
+import { useAllAchievementsQuery } from '~~/gql/documents/queries/achievement/achievementsAll'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
-import { AchievementType } from '~/gql/generated/graphql'
+import { AchievementType } from '~~/gql/generated/graphql'
 
-const ROUTE_NAME: RoutesNamesList = 'account-view-username'
+const ROUTE_NAME: keyof RouteNamedMap = 'account-view-username___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
@@ -129,11 +138,11 @@ export const usePageBreadcrumb = () => {
 }
 </script>
 
-<script setup lang="ts" generic="T extends RoutesNamesList, P extends string">
+<script setup lang="ts">
 definePageMeta({
   async validate(route) {
     return await validateAccountExistence({
-      route: route as TypedRouteFromName<typeof ROUTE_NAME>,
+      route: route as RouteLocationNormalized<typeof ROUTE_NAME>,
     })
   },
 })

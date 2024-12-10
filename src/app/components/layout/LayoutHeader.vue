@@ -5,7 +5,7 @@
       <ButtonIcon
         v-if="
           store.routeHistory.length ||
-          !isEqual(route.path, localePath('/').toString())
+          !isEqual(route.path, localePath('index').toString())
         "
         :aria-label="t('back')"
         @click="store.navigateBack()"
@@ -15,7 +15,7 @@
       <Button
         :aria-label="t('home')"
         class="hidden 2xl:block"
-        :to="localePath('/')"
+        :to="localePath('index')"
       >
         <IconLogoWithText class="h-10 w-32" />
       </Button>
@@ -34,7 +34,7 @@
           :aria-label="t('dashboard')"
           class="hidden rounded-full 2xl:block"
           :title="t('dashboard')"
-          :to="localePath(`/dashboard`)"
+          :to="localePath(`dashboard`)"
         >
           <AccountProfilePicture
             :account-id="store.signedInAccountId"
@@ -47,14 +47,20 @@
           v-else
           :aria-label="t('signIn')"
           class="hidden 2xl:inline-block"
-          :to="localePath('/session/create')"
+          :to="localePath('session-create')"
         >
           {{ t('signIn') }}
         </ButtonText>
         <ButtonIcon
           :aria-label="t('settings')"
           :to="
-            localePath(`/session/edit/${store.jwtDecoded?.id || 'anonymous'}`)
+            localePath(
+              {
+                name: 'session-edit-id',
+                params: { id: store.jwtDecoded?.id || 'anonymous' },
+              },
+              //`/session/edit/${store.jwtDecoded?.id || 'anonymous'}`
+            )
           "
         >
           <IHeroiconsBars3 height="2em" width="2em" />

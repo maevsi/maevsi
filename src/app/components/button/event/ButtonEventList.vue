@@ -2,7 +2,7 @@
   <ButtonColored
     :aria-label="t('eventAll')"
     :is-primary="false"
-    :to="localePath('/event')"
+    :to="localePath('event')"
     @click="emit('click')"
   >
     {{ t('eventAll') }}

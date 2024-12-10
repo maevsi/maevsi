@@ -1,7 +1,7 @@
 <template>
   <ButtonColored
     :aria-label="t('home')"
-    :to="localePath('/')"
+    :to="localePath('index')"
     @click="emit('click')"
   >
     {{ t('home') }}

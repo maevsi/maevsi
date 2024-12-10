@@ -3,8 +3,8 @@ import { consola } from 'consola'
 import { type H3Event, setCookie } from 'h3'
 import { decodeJwt } from 'jose'
 
-import { authenticateMutation } from '~/gql/documents/mutations/account/accountAuthenticate'
-import { jwtRefreshMutation } from '~/gql/documents/mutations/account/accountJwtRefresh'
+import { authenticateMutation } from '~~/gql/documents/mutations/account/accountAuthenticate'
+import { jwtRefreshMutation } from '~~/gql/documents/mutations/account/accountJwtRefresh'
 
 export const authenticationAnonymous = async ({
   $urqlReset,

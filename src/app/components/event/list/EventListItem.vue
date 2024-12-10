@@ -12,7 +12,14 @@
       is-block
       :to="
         localePath(
-          `/event/view/${event.accountByAuthorAccountId.username}/${event.slug}`,
+          {
+            name: 'event-view-username-event_name',
+            params: {
+              username: event.accountByAuthorAccountId.username,
+              event_name: event.slug,
+            },
+          },
+          //`/event/view/${event.accountByAuthorAccountId.username}/${event.slug}`,
         )
       "
     >
@@ -70,7 +77,7 @@
 import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 
-import type { EventItemFragment } from '~/gql/generated/graphql'
+import type { EventItemFragment } from '~~/gql/generated/graphql'
 
 export interface Props {
   event: Pick<

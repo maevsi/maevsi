@@ -122,10 +122,10 @@ import prettyBytes from 'pretty-bytes'
 import type { UnwrapRef } from 'vue'
 import { Cropper, type CropperResult, type Size } from 'vue-advanced-cropper'
 
-import { useUploadCreateMutation } from '~/gql/documents/mutations/upload/uploadCreate'
-import { useAccountUploadQuotaBytesQuery } from '~/gql/documents/queries/account/accountUploadQuotaBytes'
-import { useAllUploadsQuery } from '~/gql/documents/queries/upload/uploadsAll'
-import { getUploadItem } from '~/gql/documents/fragments/uploadItem'
+import { useUploadCreateMutation } from '~~/gql/documents/mutations/upload/uploadCreate'
+import { useAccountUploadQuotaBytesQuery } from '~~/gql/documents/queries/account/accountUploadQuotaBytes'
+import { useAllUploadsQuery } from '~~/gql/documents/queries/upload/uploadsAll'
+import { getUploadItem } from '~~/gql/documents/fragments/uploadItem'
 
 export interface Props {
   isReadonly?: boolean
@@ -211,7 +211,7 @@ const initStretcher = ({
   stretcher.style.width = `${cropper.parentElement?.clientWidth}px`
 }
 const selectProfilePicture = async () => {
-  const pathUpload = localePath('/upload')
+  const pathUpload = localePath('upload')
 
   if (route.path === pathUpload.toString()) {
     inputProfilePictureRef.value.click()
@@ -384,7 +384,7 @@ onBeforeUnmount(() => uppy.value?.destroy())
 </script>
 
 <style>
-@import url('~/node_modules/vue-advanced-cropper/dist/style.css');
+@import url('~~/node_modules/vue-advanced-cropper/dist/style.css');
 </style>
 
 <i18n lang="yaml">

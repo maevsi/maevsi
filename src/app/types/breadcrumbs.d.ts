@@ -1,5 +1,4 @@
 import type { BreadcrumbItemProps } from 'nuxt-seo-ui'
-import type { TypedLocalePathParameter } from '@typed-router/__paths'
 
 export type BreadcrumbLinkLocalized = Omit<
   BreadcrumbItemProps,

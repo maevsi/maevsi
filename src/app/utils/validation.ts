@@ -11,15 +11,14 @@ import {
 import type { Client } from '@urql/core'
 import { consola } from 'consola'
 import type { Ref } from 'vue'
-import type { LocationQueryValue } from 'vue-router'
+import type { LocationQueryValue, RouteLocationNormalized } from 'vue-router'
 
-import type { TypedRouteFromName } from '@typed-router/__router'
-import { eventIsExistingQuery } from '~/gql/documents/queries/event/eventIsExisting'
-import { accountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import { eventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import { EventVisibility } from '~/gql/generated/graphql'
-import { getEventItem } from '~/gql/documents/fragments/eventItem'
+import { eventIsExistingQuery } from '~~/gql/documents/queries/event/eventIsExisting'
+import { accountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
+import { eventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
+import { EventVisibility } from '~~/gql/generated/graphql'
+import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 
 export const VALIDATION_ADDRESS_LENGTH_MAXIMUM = 300
 export const VALIDATION_EMAIL_ADDRESS_LENGTH_MAXIMUM = 254 // source: https://www.dominicsayers.com/isemail/
@@ -137,7 +136,7 @@ export const isFormValid = async ({
 }
 
 export const isQueryIcFormatValid = (
-  ic: LocationQueryValue | LocationQueryValue[],
+  ic?: LocationQueryValue | LocationQueryValue[],
 ) => ic && !Array.isArray(ic) && REGEX_UUID.test(ic)
 
 export const validateAccountExistence = async ({
@@ -145,11 +144,12 @@ export const validateAccountExistence = async ({
   route,
 }: {
   isAuthorizationRequired?: boolean
-  route: TypedRouteFromName<
-    | 'account-edit-username'
-    | 'account-view-username'
+  route: RouteLocationNormalized<
+    | 'account-edit-username___en'
+    | 'account-edit-username___en'
+    | 'account-view-username___en'
     | 'event-edit-username-event_name___en'
-    | 'event-view-username'
+    | 'event-view-username___en'
     | 'event-view-username-event_name___en'
     | 'event-view-username-event_name-attendance___en'
     | 'event-view-username-event_name-invitation___en'
@@ -236,7 +236,7 @@ export const getEventByAuthorAccountIdAndSlug = async ({
 }
 
 export const validateEventExistence = async (
-  route: TypedRouteFromName<
+  route: RouteLocationNormalized<
     | 'event-edit-username-event_name___en'
     | 'event-view-username-event_name___en'
     | 'event-view-username-event_name-attendance___en'

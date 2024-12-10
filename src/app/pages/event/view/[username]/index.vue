@@ -4,7 +4,17 @@
     <LayoutPageTitle title="-">
       <i18n-t keypath="title" tag="h1">
         <template #name>
-          <AppLink :to="localePath(`/account/view/${routeParamUsername}`)">
+          <AppLink
+            :to="
+              localePath(
+                {
+                  name: 'account-view-username',
+                  params: { username: routeParamUsername },
+                },
+                //`/account/view/${routeParamUsername}`
+              )
+            "
+          >
             {{ routeParamUsername }}
           </AppLink>
         </template>
@@ -16,15 +26,17 @@
 </template>
 
 <script lang="ts">
+import type { RouteLocationNormalized } from 'vue-router'
+import type { RouteNamedMap } from 'vue-router/auto-routes'
+
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../index.vue'
 
-import type { TypedRouteFromName, RoutesNamesList } from '@typed-router'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
-import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
+import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 
-const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
+const ROUTE_NAME: keyof RouteNamedMap = 'event-view-username-event_name___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
@@ -40,7 +52,7 @@ export const usePageBreadcrumb = () => {
 definePageMeta({
   async validate(route) {
     return await validateAccountExistence({
-      route: route as TypedRouteFromName<typeof ROUTE_NAME>,
+      route: route as RouteLocationNormalized<typeof ROUTE_NAME>,
     })
   },
 })

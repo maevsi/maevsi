@@ -33,7 +33,15 @@
         <AppLink
           v-if="isUsernameLinked"
           :to="
-            localePath(`/account/view/${contact.accountByAccountId.username}`)
+            localePath(
+              {
+                name: 'account-view-username',
+                params: {
+                  username: contact.accountByAccountId.username,
+                },
+              },
+              //`/account/view/${contact.accountByAccountId.username}`
+            )
           "
         >
           {{ `@${contact.accountByAccountId.username}` }}
@@ -47,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ContactItemFragment } from '~/gql/generated/graphql'
+import type { ContactItemFragment } from '~~/gql/generated/graphql'
 
 export interface Props {
   contact: Pick<

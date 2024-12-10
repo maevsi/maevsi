@@ -55,9 +55,13 @@
         <ButtonColored
           :aria-label="t('invitations')"
           :to="
-            localePath(
-              `/event/view/${route.params.username}/${route.params.event_name}/invitation`,
-            )
+            localePath({
+              name: 'event-view-username-event_name-invitation',
+              params: {
+                event_name: route.params.event_name,
+                username: route.params.username,
+              },
+            })
           "
         >
           {{ t('invitations') }}
@@ -69,7 +73,14 @@
           :aria-label="t('attendances')"
           :to="
             localePath(
-              `/event/view/${route.params.username}/${route.params.event_name}/attendance`,
+              {
+                name: 'event-view-username-event_name-attendance',
+                params: {
+                  event_name: route.params.event_name,
+                  username: route.params.username,
+                },
+              },
+              // `/event/view/${route.params.username}/${route.params.event_name}/attendance`,
             )
           "
         >
@@ -82,7 +93,14 @@
           :aria-label="t('settings')"
           :to="
             localePath(
-              `/event/edit/${route.params.username}/${route.params.event_name}`,
+              {
+                name: 'event-edit-username-event_name',
+                params: {
+                  event_name: route.params.event_name,
+                  username: route.params.username,
+                },
+              },
+              //`/event/edit/${route.params.username}/${route.params.event_name}`,
             )
           "
         >
@@ -355,35 +373,35 @@ import DOMPurify from 'isomorphic-dompurify'
 import mustache from 'mustache'
 import prntr from 'prntr'
 import QrcodeVue from 'qrcode.vue'
+import type { RouteLocationNormalized } from 'vue-router'
+import type { RouteNamedMap } from 'vue-router/auto-routes'
 
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../../index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../../../index.vue'
 
-import type { RoutesNamesList, TypedRouteFromName } from '@typed-router'
-
-import { useUpdateInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationUpdateById'
+import { useUpdateInvitationByIdMutation } from '~~/gql/documents/mutations/invitation/invitationUpdateById'
 import {
   InvitationFeedback,
   type InvitationItemFragment,
   type InvitationPatch,
-} from '~/gql/generated/graphql'
-import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'
-import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import { getContactItem } from '~/gql/documents/fragments/contactItem'
-import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+} from '~~/gql/generated/graphql'
+import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
+import { getInvitationItem } from '~~/gql/documents/fragments/invitationItem'
+import { getEventItem } from '~~/gql/documents/fragments/eventItem'
+import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
+import { getContactItem } from '~~/gql/documents/fragments/contactItem'
+import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
-const ROUTE_NAME: RoutesNamesList = 'event-view-username-event_name___en'
+const ROUTE_NAME: keyof RouteNamedMap = 'event-view-username-event_name___en'
 
 export const pageBreadcrumb = async ({
   $urql,
   route,
 }: {
   $urql: Ref<Client>
-  route: TypedRouteFromName<
+  route: RouteLocationNormalized<
     | 'event-edit-username-event_name___en'
     | 'event-view-username-event_name___en'
     | 'event-view-username-event_name-attendance___en'
@@ -411,7 +429,7 @@ export const pageBreadcrumb = async ({
 definePageMeta({
   async validate(route) {
     return await validateEventExistence(
-      route as TypedRouteFromName<typeof ROUTE_NAME>,
+      route as RouteLocationNormalized<typeof ROUTE_NAME>,
     )
   },
 })

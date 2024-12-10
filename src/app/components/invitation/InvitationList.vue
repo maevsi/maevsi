@@ -99,9 +99,9 @@ import {
 import { consola } from 'consola'
 import { Doughnut } from 'vue-chartjs'
 
-import { useAllInvitationsQuery } from '~/gql/documents/queries/invitation/invitationsAll'
-import type { EventItemFragment } from '~/gql/generated/graphql'
-import { getInvitationItem } from '~/gql/documents/fragments/invitationItem'
+import { useAllInvitationsQuery } from '~~/gql/documents/queries/invitation/invitationsAll'
+import type { EventItemFragment } from '~~/gql/generated/graphql'
+import { getInvitationItem } from '~~/gql/documents/fragments/invitationItem'
 
 export interface Props {
   event: Pick<

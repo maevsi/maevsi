@@ -1,10 +1,10 @@
 <template>
-  <LayoutMenuItem :title="t('explore')" :to="localePath('/event')">
+  <LayoutMenuItem :title="t('explore')" :to="localePath('event')">
     <IHeroiconsHeart />
   </LayoutMenuItem>
   <LayoutMenuItem
     :title="t('account')"
-    :to="localePath(store.signedInUsername ? `/dashboard` : '/session/create')"
+    :to="localePath(store.signedInUsername ? `dashboard` : 'session-create')"
   >
     <AccountProfilePicture
       v-if="store.signedInUsername && store.signedInAccountId"
@@ -18,7 +18,7 @@
   <UnderConstruction>
     <LayoutMenuItem
       :title="t('notifications')"
-      :to="localePath('/notification')"
+      :to="localePath('notification')"
     >
       <div class="relative">
         <IHeroiconsBell />
@@ -29,7 +29,7 @@
     </LayoutMenuItem>
   </UnderConstruction>
   <UnderConstruction>
-    <LayoutMenuItem :title="t('search')" :to="localePath('/search')">
+    <LayoutMenuItem :title="t('search')" :to="localePath('search')">
       <IHeroiconsMagnifyingGlass />
     </LayoutMenuItem>
   </UnderConstruction>

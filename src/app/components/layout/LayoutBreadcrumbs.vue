@@ -2,7 +2,7 @@
   <UBreadcrumb v-if="false" class="hidden lg:block" :links="items">
     <template #icon="{ link }">
       <IconLogo
-        v-if="link.to === localePath('/')"
+        v-if="link.to === localePath('index')"
         class="h-6 w-6 opacity-40 brightness-0 dark:opacity-50 dark:invert"
       />
     </template>

@@ -3,7 +3,7 @@
     v-if="!isApp"
     :aria-label="t('appInstall')"
     :is-primary="false"
-    :to="localePath('/docs/app')"
+    :to="localePath('docs-app')"
   >
     {{ t('appInstall') }}
     <template #suffix>

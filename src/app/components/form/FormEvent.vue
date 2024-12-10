@@ -279,12 +279,12 @@ import { useVuelidate } from '@vuelidate/core'
 import slugify from 'slugify'
 import { DatePicker } from 'v-calendar'
 
-import { useCreateEventMutation } from '~/gql/documents/mutations/event/eventCreate'
-import { useUpdateEventByIdMutation } from '~/gql/documents/mutations/event/eventUpdateById'
+import { useCreateEventMutation } from '~~/gql/documents/mutations/event/eventCreate'
+import { useUpdateEventByIdMutation } from '~~/gql/documents/mutations/event/eventUpdateById'
 import {
   type EventItemFragment,
   EventVisibility,
-} from '~/gql/generated/graphql'
+} from '~~/gql/generated/graphql'
 
 export interface Props {
   event?: Pick<EventItemFragment, 'name' | 'slug'>
@@ -400,7 +400,16 @@ const submit = async () => {
       )
 
     await navigateTo(
-      localePath(`/event/view/${store.signedInUsername}/${form.slug}`),
+      localePath(
+        {
+          name: 'event-view-username-event_name',
+          params: {
+            username: store.signedInUsername,
+            event_name: form.slug,
+          },
+        },
+        //`/event/view/${store.signedInUsername}/${form.slug}`
+      ),
     )
   }
 }
@@ -465,7 +474,7 @@ updateForm(props.event)
 </script>
 
 <style>
-@import url('~/node_modules/v-calendar/dist/style.css');
+@import url('~~/node_modules/v-calendar/dist/style.css');
 </style>
 
 <i18n lang="yaml">

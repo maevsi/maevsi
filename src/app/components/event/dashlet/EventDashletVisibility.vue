@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import type { EventItemFragment } from '~/gql/generated/graphql'
+import type { EventItemFragment } from '~~/gql/generated/graphql'
 
 export interface Props {
   event: Pick<EventItemFragment, 'isArchived' | 'visibility'>

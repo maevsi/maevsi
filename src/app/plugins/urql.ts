@@ -17,8 +17,8 @@ import type { Client } from '@urql/vue'
 import { consola } from 'consola'
 import { ref } from 'vue'
 
-import schema from '~/gql/generated/introspection'
-import type { GraphCacheConfig } from '~/gql/generated/graphcache'
+import schema from '~~/gql/generated/introspection'
+import type { GraphCacheConfig } from '~~/gql/generated/graphcache'
 
 const SSR_KEY = '__URQL_DATA__'
 const invalidateCache = (

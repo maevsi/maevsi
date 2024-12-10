@@ -25,7 +25,7 @@
           :variables="{
             id: event.id,
           }"
-          @success="navigateTo(localePath(`/dashboard`))"
+          @success="navigateTo(localePath(`dashboard`))"
         />
       </section>
     </div>
@@ -34,20 +34,21 @@
 </template>
 
 <script lang="ts">
+import type { RouteLocationNormalized } from 'vue-router'
+import type { RouteNamedMap } from 'vue-router/auto-routes'
+
 import { pageBreadcrumb as usePageBreadcrumbEventsUserId } from '../../view/[username]/[event_name]/index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEventsUser } from '../../view/[username]/index.vue'
 import { usePageBreadcrumb as usePageBreadcrumbEvents } from '../../index.vue'
 
-import type { TypedRouteFromName, RoutesNamesList } from '@typed-router'
-
-import { getEventItem } from '~/gql/documents/fragments/eventItem'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import { useEventDeleteMutation } from '~/gql/documents/mutations/event/eventDelete'
-import { useAccountByUsernameQuery } from '~/gql/documents/queries/account/accountByUsername'
-import { useEventByAuthorAccountIdAndSlugQuery } from '~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
+import { getEventItem } from '~~/gql/documents/fragments/eventItem'
+import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
+import { useEventDeleteMutation } from '~~/gql/documents/mutations/event/eventDelete'
+import { useAccountByUsernameQuery } from '~~/gql/documents/queries/account/accountByUsername'
+import { useEventByAuthorAccountIdAndSlugQuery } from '~~/gql/documents/queries/event/eventByAuthorAccountIdAndSlug'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
-const ROUTE_NAME: RoutesNamesList = 'event-edit-username-event_name___en'
+const ROUTE_NAME: keyof RouteNamedMap = 'event-edit-username-event_name___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)
@@ -66,7 +67,7 @@ export const usePageBreadcrumb = () => {
 definePageMeta({
   async validate(route) {
     return await validateEventExistence(
-      route as TypedRouteFromName<typeof ROUTE_NAME>,
+      route as RouteLocationNormalized<typeof ROUTE_NAME>,
     )
   },
 })

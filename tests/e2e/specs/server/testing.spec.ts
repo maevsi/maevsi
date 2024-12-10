@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test'
 
-import { TESTING_COOKIE_NAME } from '#src/utils/constants'
+import { TESTING_COOKIE_NAME } from '#src/shared/utils/constants'
 import { maevsiTest } from '#tests/e2e/fixtures/maevsiTest'
 
 maevsiTest.describe('testing', () => {

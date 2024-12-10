@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ContactItemFragment } from '~/gql/generated/graphql'
+import type { ContactItemFragment } from '~~/gql/generated/graphql'
 
 export interface Props {
   contact: Pick<

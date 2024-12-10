@@ -3,7 +3,7 @@
     <ButtonColored
       :is-primary="false"
       :aria-label="t('register')"
-      :to="localePath('/account/create')"
+      :to="localePath('account-create')"
     >
       {{ t('register') }}
       <template #prefix>
@@ -56,7 +56,7 @@
         </ButtonColored>
       </template>
     </Form>
-    <AppLink :to="localePath('/account/password/reset/request')">
+    <AppLink :to="localePath('account-password-reset-request')">
       {{ t('passwordReset') }}
     </AppLink>
   </div>
@@ -64,8 +64,8 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { useAuthenticateMutation } from '~/gql/documents/mutations/account/accountAuthenticate'
-import { useAccountRegistrationRefreshMutation } from '~/gql/documents/mutations/account/accountRegistrationRefresh'
+import { useAuthenticateMutation } from '~~/gql/documents/mutations/account/accountAuthenticate'
+import { useAccountRegistrationRefreshMutation } from '~~/gql/documents/mutations/account/accountRegistrationRefresh'
 
 const emit = defineEmits<{
   'signed-in': []

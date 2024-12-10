@@ -2,8 +2,9 @@
 import { decodeJwt, type JWTPayload } from 'jose'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import type { RouteNamedMapI18n } from 'vue-router/auto-routes'
 
-import type { Modal } from '~~/types/modal'
+import type { Modal } from '~/types/modal'
 
 export const useMaevsiStore = defineStore('maevsi', () => {
   const localePath = useLocalePath()
@@ -48,7 +49,11 @@ export const useMaevsiStore = defineStore('maevsi', () => {
 
   const navigateBack = async () => {
     routeHistoryDisabled.value = true
-    await navigateTo(localePath(routeHistory.value.pop() || '/'))
+    await navigateTo(
+      localePath(
+        (routeHistory.value.pop() as keyof RouteNamedMapI18n) || 'index',
+      ),
+    )
     routeHistoryDisabled.value = false
   }
 

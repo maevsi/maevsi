@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { useAccountPasswordResetRequestMutation } from '~/gql/documents/mutations/account/accountPasswordResetRequest'
+import { useAccountPasswordResetRequestMutation } from '~~/gql/documents/mutations/account/accountPasswordResetRequest'
 
 export interface Props {
   formClass?: string

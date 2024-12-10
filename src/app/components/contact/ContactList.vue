@@ -64,10 +64,10 @@
 </template>
 
 <script setup lang="ts">
-import { useDeleteContactByIdMutation } from '~/gql/documents/mutations/contact/contactDeleteById'
-import { useAllContactsQuery } from '~/gql/documents/queries/contact/contactsAll'
-import type { ContactItemFragment } from '~/gql/generated/graphql'
-import { getContactItem } from '~/gql/documents/fragments/contactItem'
+import { useDeleteContactByIdMutation } from '~~/gql/documents/mutations/contact/contactDeleteById'
+import { useAllContactsQuery } from '~~/gql/documents/queries/contact/contactsAll'
+import type { ContactItemFragment } from '~~/gql/generated/graphql'
+import { getContactItem } from '~~/gql/documents/fragments/contactItem'
 
 const { t } = useI18n()
 const store = useMaevsiStore()

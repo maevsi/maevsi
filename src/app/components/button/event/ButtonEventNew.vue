@@ -2,7 +2,7 @@
   <Button
     :aria-label="t('text')"
     class="shrink-0 2xl:whitespace-nowrap 2xl:px-4 2xl:py-2 2xl:font-medium"
-    :to="localePath('/event/create')"
+    :to="localePath('event-create')"
   >
     <span class="hidden 2xl:block">
       {{ t('text') }}

@@ -11,32 +11,20 @@
   </NuxtLink>
 </template>
 
-<script
-  setup
-  lang="ts"
-  generic="
-    T extends RoutesNamesList,
-    P extends string,
-    E extends boolean = false
-  "
->
+<script setup lang="ts">
 import type { NuxtLinkProps } from '#app'
-import type { NuxtRoute, RoutesNamesList } from '@typed-router'
+import type { RouteLocationRaw } from 'vue-router'
 
-export interface Props<
-  T extends RoutesNamesList,
-  P extends string,
-  E extends boolean = false,
-> {
+export interface Props {
   ariaLabel?: string
   isDisabled?: boolean
   isColored?: boolean
-  isExternal?: E
+  isExternal?: boolean
   isUnderlined?: boolean
   target?: NuxtLinkProps['target']
-  to: NuxtRoute<T, P, E>
+  to: RouteLocationRaw
 }
-const props = withDefaults(defineProps<Props<T, P, E>>(), {
+const props = withDefaults(defineProps<Props>(), {
   ariaLabel: undefined,
   isDisabled: undefined,
   isColored: true,

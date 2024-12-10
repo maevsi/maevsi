@@ -3,7 +3,7 @@
     <ButtonColored
       :is-primary="false"
       :aria-label="t('register')"
-      :to="localePath('/session/create')"
+      :to="localePath('session-create')"
     >
       {{ t('signIn') }}
       <template #prefix>
@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { useAccountRegistrationMutation } from '~/gql/documents/mutations/account/accountRegistration'
+import { useAccountRegistrationMutation } from '~~/gql/documents/mutations/account/accountRegistration'
 
 const { locale, t } = useI18n()
 const localePath = useLocalePath()

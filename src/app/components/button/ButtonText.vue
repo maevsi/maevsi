@@ -17,16 +17,16 @@
   </Button>
 </template>
 
-<script setup lang="ts" generic="T extends RoutesNamesList, P extends string">
-import type { NuxtRoute, RoutesNamesList } from '@typed-router'
+<script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
 
-export interface Props<T extends RoutesNamesList, P extends string> {
+export interface Props {
   ariaLabel: string
   disabled?: boolean
-  to?: NuxtRoute<T, P>
+  to?: RouteLocationRaw
   type?: 'button' | 'reset' | 'submit'
 }
-const props = withDefaults(defineProps<Props<T, P>>(), {
+const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   to: undefined,
   type: 'button',

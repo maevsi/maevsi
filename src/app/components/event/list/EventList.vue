@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { useAllEventsQuery } from '~/gql/documents/queries/event/eventsAll'
-import { getEventItem } from '~/gql/documents/fragments/eventItem'
+import { useAllEventsQuery } from '~~/gql/documents/queries/event/eventsAll'
+import { getEventItem } from '~~/gql/documents/fragments/eventItem'
 
 export interface Props {
   accountId?: string

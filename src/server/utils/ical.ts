@@ -2,6 +2,8 @@ import DOMPurify from 'isomorphic-dompurify'
 import ical, { ICalCalendarMethod, ICalEventStatus } from 'ical-generator'
 import mustache from 'mustache'
 
+import { getTextFromHtml } from '../../shared/utils/text'
+
 import type {
   ContactItemFragment,
   EventItemFragment,

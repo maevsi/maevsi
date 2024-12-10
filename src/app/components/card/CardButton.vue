@@ -31,29 +31,17 @@
   </Button>
 </template>
 
-<script
-  setup
-  lang="ts"
-  generic="
-    T extends RoutesNamesList,
-    P extends string,
-    E extends boolean = false
-  "
->
-import type { NuxtRoute, RoutesNamesList } from '@typed-router'
+<script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
 
-export interface Props<
-  T extends RoutesNamesList,
-  P extends string,
-  E extends boolean = false,
-> {
+export interface Props {
   description?: string
   isDisabled?: boolean
-  isExternal?: E
+  isExternal?: boolean
   title: string
-  to?: NuxtRoute<T, P, E>
+  to?: RouteLocationRaw
 }
-const props = withDefaults(defineProps<Props<T, P, E>>(), {
+const props = withDefaults(defineProps<Props>(), {
   description: undefined,
   isDisabled: undefined,
   isExternal: undefined,

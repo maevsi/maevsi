@@ -28,30 +28,18 @@
   </Button>
 </template>
 
-<script
-  setup
-  lang="ts"
-  generic="
-    T extends RoutesNamesList,
-    P extends string,
-    E extends boolean = false
-  "
->
-import type { NuxtRoute, RoutesNamesList } from '@typed-router'
+<script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
 
-export interface Props<
-  T extends RoutesNamesList,
-  P extends string,
-  E extends boolean = false,
-> {
+export interface Props {
   ariaLabel: string
   disabled?: boolean
-  isExternal?: E
+  isExternal?: boolean
   isPrimary?: boolean
-  to?: NuxtRoute<T, P, E>
+  to?: RouteLocationRaw
   type?: 'button' | 'reset' | 'submit'
 }
-const props = withDefaults(defineProps<Props<T, P, E>>(), {
+const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   isExternal: undefined,
   isPrimary: true,

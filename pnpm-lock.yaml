@@ -330,9 +330,6 @@ importers:
       nuxt-seo-ui:
         specifier: 0.4.4
         version: 0.4.4(@nuxt/devtools@1.6.3(rollup@4.28.1)(vite@5.4.11(@types/node@22.10.1)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3)))(@unocss/webpack@0.65.1(rollup@4.28.1)(webpack@5.97.1(esbuild@0.23.1)))(@vue/compiler-core@3.5.13)(change-case@5.4.4)(fuse.js@7.0.0)(magicast@0.3.5)(nuxt@3.14.1592(@parcel/watcher@2.5.0)(@types/node@22.10.1)(eslint@9.16.0(jiti@2.4.1))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(stylelint@16.11.0(typescript@5.6.3))(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.1)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3)))(postcss@8.4.49)(rollup@4.28.1)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.1)(terser@5.37.0))(vue@3.5.13(typescript@5.6.3))(webpack@5.97.1(esbuild@0.23.1))
-      nuxt-typed-router:
-        specifier: 3.7.1
-        version: 3.7.1(magicast@0.3.5)(prettier@3.4.2)(rollup@4.28.1)
       pg:
         specifier: 8.13.1
         version: 8.13.1
@@ -7547,10 +7544,6 @@ packages:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
     engines: {node: '>=10'}
 
-  log-symbols@7.0.0:
-    resolution: {integrity: sha512-zrc91EDk2M+2AXo/9BTvK91pqb7qrPg2nX/Hy+u8a5qQlbaOflCKO+6SqgZ+M+xUFxGdKTgwnGiL96b1W3ikRA==}
-    engines: {node: '>=18'}
-
   log-update@4.0.0:
     resolution: {integrity: sha512-9fkkDevMefjg0mmzWFBW8YkFP91OrizzkW3diF7CpG+S2EYdy4+TVfGwz1zeF8x7hCx1ovSPTOE9Ngib74qqUg==}
     engines: {node: '>=10'}
@@ -8113,11 +8106,6 @@ packages:
 
   nuxt-site-config@3.0.6:
     resolution: {integrity: sha512-Mkyen81br21/nA2sxlLCOtJZ2L8sGL+YzxHlsVhLhEnC355CP2SwKVtYqJNJ4aYFbxeusqZXJFiD4KbveHhk0w==}
-
-  nuxt-typed-router@3.7.1:
-    resolution: {integrity: sha512-4hlPVT18JqlXmM6mgKciOH8DQg6FldkccBN6JQV7+fkPkwVNkzfNwGdlS96LcMeyRQZpayN8SCgPz7cOHYvYFw==}
-    peerDependencies:
-      prettier: ^2.5.x || 3.x
 
   nuxt@3.14.1592:
     resolution: {integrity: sha512-roWAQH4Mb6WY72cNos+YVw0DgTCNAhNygiAMCedM7hbX6ESTR2n3VH7tU0yIWDPe/hfFdii4M4wWTTNHOtS44g==}
@@ -20322,11 +20310,6 @@ snapshots:
       chalk: 4.1.2
       is-unicode-supported: 0.1.0
 
-  log-symbols@7.0.0:
-    dependencies:
-      is-unicode-supported: 2.1.0
-      yoctocolors: 2.1.1
-
   log-update@4.0.0:
     dependencies:
       ansi-escapes: 4.3.2
@@ -21067,22 +21050,6 @@ snapshots:
       - supports-color
       - vite
       - vue
-
-  nuxt-typed-router@3.7.1(magicast@0.3.5)(prettier@3.4.2)(rollup@4.28.1):
-    dependencies:
-      '@nuxt/kit': 3.14.1592(magicast@0.3.5)(rollup@4.28.1)
-      chalk: 5.3.0
-      defu: 6.1.4
-      lodash-es: 4.17.21
-      log-symbols: 7.0.0
-      mkdirp: 3.0.1
-      nanoid: 5.0.9
-      pathe: 1.1.2
-      prettier: 3.4.2
-    transitivePeerDependencies:
-      - magicast
-      - rollup
-      - supports-color
 
   nuxt@3.14.1592(@parcel/watcher@2.5.0)(@types/node@22.10.1)(eslint@9.16.0(jiti@2.4.1))(ioredis@5.4.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.28.1)(stylelint@16.11.0(typescript@5.6.3))(terser@5.37.0)(typescript@5.6.3)(vite@5.4.11(@types/node@22.10.1)(terser@5.37.0))(vue-tsc@2.1.10(typescript@5.6.3)):
     dependencies:

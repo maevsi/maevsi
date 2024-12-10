@@ -182,14 +182,12 @@
 
 <script lang="ts">
 import { consola } from 'consola'
+import type { RouteNamedMap } from 'vue-router/auto-routes'
 
 import { usePageBreadcrumb as usePageBreadcrumbHome } from '../../index.vue'
-
-import type { RoutesNamesList } from '@typed-router'
-
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
-const ROUTE_NAME: RoutesNamesList = 'session-view-id'
+const ROUTE_NAME: keyof RouteNamedMap = 'session-view-id___en'
 
 export const usePageBreadcrumb = () => {
   const route = useRoute(ROUTE_NAME)

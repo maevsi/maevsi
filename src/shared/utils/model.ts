@@ -1,4 +1,4 @@
-import type { ContactItemFragment } from '~/gql/generated/graphql'
+import type { ContactItemFragment } from '~~/gql/generated/graphql'
 
 export const getContactName = (
   contact: Pick<ContactItemFragment, 'accountId' | 'firstName' | 'lastName'>,

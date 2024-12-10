@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAccountEmailAddressVerificationMutation } from '~/gql/documents/mutations/account/accountEmailAddressVerification'
+import { useAccountEmailAddressVerificationMutation } from '~~/gql/documents/mutations/account/accountEmailAddressVerification'
 
 const localePath = useLocalePath()
 const { t } = useI18n()
@@ -51,7 +51,7 @@ onMounted(async () => {
       text: t('verifiedBody'),
       title: t('verified'),
     })
-    navigateTo(localePath('/session/create'))
+    navigateTo(localePath('session-create'))
   }
 })
 

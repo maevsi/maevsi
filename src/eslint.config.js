@@ -31,7 +31,7 @@ export default withNuxt(
     },
   },
   {
-    ignores: ['app/gql/generated/**/*'],
+    ignores: ['gql/generated/**/*'],
   },
   {
     files: ['i18n/locales/**/*'],

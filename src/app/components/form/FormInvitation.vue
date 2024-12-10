@@ -12,10 +12,7 @@
       <span>
         {{ t('formHint') }}
       </span>
-      <ButtonColored
-        :aria-label="t('contactsAdd')"
-        :to="localePath('/contact')"
-      >
+      <ButtonColored :aria-label="t('contactsAdd')" :to="localePath('contact')">
         {{ t('contactsAdd') }}
         <template #suffix>
           <IHeroiconsArrowRight />
@@ -88,12 +85,12 @@
 import { useVuelidate } from '@vuelidate/core'
 import { minLength, minValue, required } from '@vuelidate/validators'
 
-import { useCreateInvitationMutation } from '~/gql/documents/mutations/invitation/invitationCreate'
-import { useAllContactsQuery } from '~/gql/documents/queries/contact/contactsAll'
-import type { EventItemFragment } from '~/gql/generated/graphql'
-import { getContactItem } from '~/gql/documents/fragments/contactItem'
-// import { accountByIdQuery } from '~/gql/documents/queries/account/accountById'
-// import { getAccountItem } from '~/gql/documents/fragments/accountItem'
+import { useCreateInvitationMutation } from '~~/gql/documents/mutations/invitation/invitationCreate'
+import { useAllContactsQuery } from '~~/gql/documents/queries/contact/contactsAll'
+import type { EventItemFragment } from '~~/gql/generated/graphql'
+import { getContactItem } from '~~/gql/documents/fragments/contactItem'
+// import { accountByIdQuery } from '~~/gql/documents/queries/account/accountById'
+// import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
 
 export interface Props {
   event: Pick<EventItemFragment, 'id'>

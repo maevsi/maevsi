@@ -10,7 +10,15 @@
         <CardButton
           :description="t('eventsDescription')"
           :title="t('events')"
-          :to="localePath(`/event/view/${store.signedInUsername}`)"
+          :to="
+            localePath(
+              {
+                name: 'event-view-username',
+                params: { username: store.signedInUsername },
+              },
+              //`/event/view/${store.signedInUsername}`
+            )
+          "
         >
           <IHeroiconsCalendar />
         </CardButton>
@@ -18,7 +26,7 @@
           <CardButton
             :description="t('invitationsDescription')"
             :title="t('invitations')"
-            :to="localePath(`/invitation`)"
+            :to="localePath(`invitation`)"
           >
             <ISolarLetterLinear />
           </CardButton>
@@ -26,21 +34,31 @@
         <CardButton
           :description="t('contactsDescription')"
           :title="t('contacts')"
-          :to="localePath(`/contact`)"
+          :to="localePath(`contact`)"
         >
           <IHeroiconsUsers />
         </CardButton>
         <CardButton
           :description="t('uploadsDescription')"
           :title="t('uploads')"
-          :to="localePath(`/upload`)"
+          :to="localePath(`upload`)"
         >
           <IHeroiconsFolder />
         </CardButton>
         <CardButton
           :description="t('accountDescription')"
           :title="t('account')"
-          :to="localePath(`/account/view/${store.signedInUsername}`)"
+          :to="
+            localePath(
+              {
+                name: 'account-view-username',
+                params: {
+                  username: store.signedInUsername,
+                },
+              },
+              //`/account/view/${store.signedInUsername}`
+            )
+          "
         >
           <IHeroiconsIdentification />
         </CardButton>

@@ -24,7 +24,7 @@ import type {
   ContactItemFragment,
   EventItemFragment,
   InvitationItemFragment,
-} from '~/gql/generated/graphql'
+} from '~~/gql/generated/graphql'
 
 export interface Props {
   contact?: ContactItemFragment

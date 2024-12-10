@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { useAccountPasswordResetMutation } from '~/gql/documents/mutations/account/accountPasswordReset'
+import { useAccountPasswordResetMutation } from '~~/gql/documents/mutations/account/accountPasswordReset'
 
 export interface Props {
   formClass?: string
@@ -57,7 +57,7 @@ const submit = async () => {
   if (result.error || !result.data) return
 
   showToast({ title: t('accountPasswordResetSuccess') })
-  await navigateTo(localePath(`/session/create`))
+  await navigateTo(localePath(`session-create`))
 }
 
 // vuelidate

@@ -108,13 +108,13 @@
 </template>
 
 <script setup lang="ts">
-import { useDeleteInvitationByIdMutation } from '~/gql/documents/mutations/invitation/invitationDelete'
-import { useInviteMutation } from '~/gql/documents/mutations/invitation/invite'
-import { getContactItem } from '~/gql/documents/fragments/contactItem'
+import { useDeleteInvitationByIdMutation } from '~~/gql/documents/mutations/invitation/invitationDelete'
+import { useInviteMutation } from '~~/gql/documents/mutations/invitation/invite'
+import { getContactItem } from '~~/gql/documents/fragments/contactItem'
 import type {
   EventItemFragment,
   InvitationItemFragment,
-} from '~/gql/generated/graphql'
+} from '~~/gql/generated/graphql'
 
 export interface Props {
   event: Pick<EventItemFragment, 'accountByAuthorAccountId' | 'slug'>
@@ -145,7 +145,7 @@ const copyLink = async (invitation: Pick<InvitationItemFragment, 'id'>) => {
   if (!import.meta.client) return
 
   await copyText(
-    `${window.location.origin}${localePath(`/invitation/unlock`)}?ic=${
+    `${window.location.origin}${localePath(`invitation-unlock`)}?ic=${
       invitation.id
     }`,
   )

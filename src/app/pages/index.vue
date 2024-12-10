@@ -11,7 +11,7 @@
           <ButtonColored
             :aria-label="t('testNowFree')"
             class="text-lg md:text-xl"
-            :to="localePath('/event')"
+            :to="localePath('event')"
           >
             {{ t('testNowFree') }}
           </ButtonColored>
@@ -19,7 +19,7 @@
             v-if="!isApp"
             :aria-label="t('appInstall')"
             :is-primary="false"
-            :to="localePath('/docs/app')"
+            :to="localePath('docs-app')"
           >
             {{ t('appInstall') }}
             <template #suffix>
@@ -101,7 +101,7 @@
 <script lang="ts">
 import JSConfetti from 'js-confetti'
 
-import { useAchievementUnlockMutation } from '~/gql/documents/mutations/achievement/achievementUnlock'
+import { useAchievementUnlockMutation } from '~~/gql/documents/mutations/achievement/achievementUnlock'
 import type { BreadcrumbLinkLocalized } from '~/types/breadcrumbs'
 
 export const usePageBreadcrumb = () =>
@@ -179,7 +179,15 @@ onMounted(async () => {
 
     if (alertResult.isConfirmed) {
       await navigateTo(
-        localePath(`/account/view/${store.jwtDecoded.account_username}`),
+        localePath(
+          {
+            name: 'account-view-username',
+            params: {
+              username: store.jwtDecoded.account_username,
+            },
+          },
+          //`/account/view/${store.jwtDecoded.account_username}`
+        ),
       )
     }
   }

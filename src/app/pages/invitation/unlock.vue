@@ -26,7 +26,7 @@
           <FormInputStateInfo v-if="routeQueryIc">
             <div>
               {{ t('invitationIdAutomatic') }}
-              <AppLink :to="localePath('/invitation/unlock')">
+              <AppLink :to="localePath('invitation-unlock')">
                 {{ t('invitationIdManual') }}
               </AppLink>
             </div>
@@ -61,7 +61,7 @@ import { consola } from 'consola'
 import {
   eventUnlockMutation as eventUnlockMutationImported,
   useEventUnlockMutation,
-} from '~/gql/documents/mutations/event/eventUnlock'
+} from '~~/gql/documents/mutations/event/eventUnlock'
 
 definePageMeta({
   layout: computed(() => {
@@ -125,7 +125,17 @@ definePageMeta({
       if ('quick' in to.query) {
         return await navigateTo(
           localePath(
-            `/event/view/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`,
+            {
+              name: 'event-view-username-event_name',
+              params: {
+                username:
+                  result.data.eventUnlock.eventUnlockResponse
+                    .authorAccountUsername,
+                event_name:
+                  result.data.eventUnlock.eventUnlockResponse.eventSlug,
+              },
+            },
+            //`/event/view/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`,
           ),
         )
       } else {
@@ -135,7 +145,17 @@ definePageMeta({
             query: {
               ...to.query,
               redirect: localePath(
-                `/event/view/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`,
+                {
+                  name: 'event-view-username-event_name',
+                  params: {
+                    username:
+                      result.data.eventUnlock.eventUnlockResponse
+                        .authorAccountUsername,
+                    event_name:
+                      result.data.eventUnlock.eventUnlockResponse.eventSlug,
+                  },
+                },
+                // `/event/view/${result.data.eventUnlock.eventUnlockResponse.authorAccountUsername}/${result.data.eventUnlock.eventUnlockResponse.eventSlug}`,
               ).toString(),
             },
           }),
@@ -188,7 +208,16 @@ const submit = async () => {
 
   navigateTo(
     localePath(
-      `/event/view/${result.data?.eventUnlock?.eventUnlockResponse?.authorAccountUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`,
+      {
+        name: 'event-view-username-event_name',
+        params: {
+          username:
+            result.data?.eventUnlock?.eventUnlockResponse
+              ?.authorAccountUsername,
+          event_name: result.data?.eventUnlock?.eventUnlockResponse?.eventSlug,
+        },
+      },
+      // `/event/view/${result.data?.eventUnlock?.eventUnlockResponse?.authorAccountUsername}/${result.data?.eventUnlock?.eventUnlockResponse?.eventSlug}`,
     ),
   )
 }

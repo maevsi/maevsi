@@ -13,11 +13,11 @@
 
 <script setup lang="ts">
 import blankProfilePicture from '~/assets/images/blank-profile-picture.svg'
-import { getAccountItem } from '~/gql/documents/fragments/accountItem'
-import { getProfilePictureItem } from '~/gql/documents/fragments/profilePictureItem'
-import { getUploadItem } from '~/gql/documents/fragments/uploadItem'
-import { useAccountByIdQuery } from '~/gql/documents/queries/account/accountById'
-import { useProfilePictureByAccountIdQuery } from '~/gql/documents/queries/profilePicture/profilePictureByAccountId'
+import { getAccountItem } from '~~/gql/documents/fragments/accountItem'
+import { getProfilePictureItem } from '~~/gql/documents/fragments/profilePictureItem'
+import { getUploadItem } from '~~/gql/documents/fragments/uploadItem'
+import { useAccountByIdQuery } from '~~/gql/documents/queries/account/accountById'
+import { useProfilePictureByAccountIdQuery } from '~~/gql/documents/queries/profilePicture/profilePictureByAccountId'
 
 export interface Props {
   accountId: string
